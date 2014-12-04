@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.scn.community.sdk.feature_1.0.0.201412041816.jar" id="org.scn.community.sdk.feature" version="1.0.0.201412041816">
+   <feature url="features/org.scn.community.sdk.feature_1.0.0.201412041825.jar" id="org.scn.community.sdk.feature" version="1.0.0.201412041825">
       <category name="com.sap.ip.bi.zen.sdk"/>
    </feature>
    <category-def name="com.sap.ip.bi.zen.sdk" label="com.sap.ip.bi.zen.sdk"/>
