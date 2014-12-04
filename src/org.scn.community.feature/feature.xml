@@ -225,7 +225,7 @@ http://www.apache.org/licenses/
    </url>
 
    <requires>
-      <import plugin="com.sap.ip.bi.zen.rt.components.sdk.eclipse" version="13.1.0" match="greaterOrEqual"/>
+      <import plugin="com.sap.ip.bi.zen.rt.components.sdk.eclipse" version="14.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
