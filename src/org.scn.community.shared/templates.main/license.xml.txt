@@ -3,7 +3,7 @@
    Apache License
    Version 2.0, January 2004
    http://www.apache.org/licenses/
-   https://github.com/sap-design-studio-free-addons/sdk-package/blob/master/LICENSE
+   https://github.com/org-scn-design-studio-community/sdkpackage//blob/master/LICENSE
 	 
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 

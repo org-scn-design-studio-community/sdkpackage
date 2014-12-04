@@ -9,12 +9,12 @@
       Community Package with Free SDK Components. Contains many components which can be used based on free license.
    </description>
 
-   <copyright url="https://github.com/sap-design-studio-free-addons/sdk-package/blob/master/COPYRIGHT">
+   <copyright url="https://github.com/org-scn-design-studio-community/sdkpackage//blob/master/COPYRIGHT">
       /**
  * Copyright 2014, Contributors
  * 
  * Original Source Code Location:
- *  https://github.com/sap-design-studio-free-addons/sdk-package
+ *  https://github.com/org-scn-design-studio-community/sdkpackage/
  * 
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); 
  * you may not use this file except in compliance with the License. 
@@ -30,7 +30,7 @@
  */
    </copyright>
 
-   <license url="https://github.com/sap-design-studio-free-addons/sdk-package/blob/master/LICENSE">
+   <license url="https://github.com/org-scn-design-studio-community/sdkpackage//blob/master/LICENSE">
       Content is free for use and distribution under Apache License Version 2.0.
      
 Unless required by applicable law or agreed to in writing, Licensor provides the Work 
@@ -219,7 +219,7 @@ http://www.apache.org/licenses/
    </license>
 
    <url>
-      <discovery label="GitHub Source Code Location" url="https://github.com/sap-design-studio-free-addons/sdk-package"/>
+      <discovery label="GitHub Source Code Location" url="https://github.com/org-scn-design-studio-community/sdkpackage/"/>
       <discovery label="Michael&apos;s Page at SCN" url="http://scn.sap.com/people/mike.howles4"/>
       <discovery label="Karol&apos;s Page at SCN" url="http://scn.sap.com/people/karol.kalisz"/>
    </url>
