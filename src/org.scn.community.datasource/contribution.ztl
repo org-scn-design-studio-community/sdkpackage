@@ -20,4 +20,22 @@
 
 class org.scn.community.datasource.DynCsvDataSource extends SdkDataBuffer {
 	// empty
+}class org.scn.community.datasource.BYOData extends SdkDataSource {
+	/**
+	 * Set a mutator for a measure by index (starting at 0)
+	 * <example>
+	* Set a mutator to increase the second measures's value by 25%
+	* <code>
+	* DS_1.setMutator(1, 1.25);<br>
+	* </code>
+	* </example>
+	 */
+	void setMutator(/*Index*/ int index, /*Factor*/ float factor ){*
+		var m = eval(this.mutators);
+		while(m.length<index){
+			m.push(1.0);
+		}
+		m[index] = factor;
+		this.mutators = JSON.stringify(m);
+	*}
 }

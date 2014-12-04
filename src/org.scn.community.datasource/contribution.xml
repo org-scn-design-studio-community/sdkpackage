@@ -211,4 +211,22 @@
 		title="Has Header Column"
 		type="boolean" />
 </component>
+<component id="BYOData" 
+	title="Bring Your Own Data" 
+	handlerType="datasource"
+	icon="res/BYOData/BYOData.png"
+	propertySheetPath="res/BYOData/aps/BYODataPropertyPage.html"
+>
+	<jsInclude>res/BYOData/BYOData.js</jsInclude>
+	<property type="String" title="Data" id="data"/>
+	<property type="String" title="Mutators" id="mutators"/>
+	<property type="int" title="Number of Dimensions" id="kfIndex"/>
+	<property type="boolean" title="Measures in Rows" id="swap"/>
+	<initialization>
+		<defaultValue property="kfIndex">2</defaultValue>
+		<defaultValue property="swap">false</defaultValue>
+		<defaultValue property="data">Region,Year,Sales,Quantity|East,2011,100,5|West,2011,75,7</defaultValue>
+		<defaultValue property="mutators">[1,1,1]</defaultValue>
+	</initialization>
+</component>
 </sdkExtension>
