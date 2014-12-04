@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.scn.community.sdk.feature"
-      label="Design Studio SCN Community Free Components"
+      label="Design Studio SCN Community Free SDK Components"
       version="1.0.0.qualifier"
       provider-name="SCN Community Contributors">
 
