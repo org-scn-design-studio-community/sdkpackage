@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="web/site.xsl"?>
+
+<site>
+   <description name="Karol&apos;s Design Studio Add-Ons" url="http://kalisz.org/designstudio/addons/latest">
+      Add Ons for Design Studio 1. 3SP1 and higher
+   </description>
+   <feature url="features/org.kalisz.karol.scn.sdk_1.0.21.201410281032.jar"
+	                                             version="1.0.21.201410281032"
+                id="org.kalisz.karol.scn.sdk">
+      <category name="com.sap.ip.bi.zen.sdk"/>
+   </feature>
+   <category-def name="com.sap.ip.bi.zen.sdk" label="com.sap.ip.bi.zen.sdk"/>
+</site>
