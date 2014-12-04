@@ -1,0 +1,50 @@
+
+<component
+	id="ApplicationHeader"
+	title="Application Header"
+	handlerType="sapui5"
+	icon="res/ah/ApplicationHeader.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/ah/ApplicationHeader.js</jsInclude>
+	<property
+		id="displayLogoff"
+		title="Display Logoff"
+		tooltip="If set to true, the logoff area will be displayed at the right hand side of the application header."
+		type="boolean" />
+	<property
+		id="displayWelcome"
+		title="Display Welcome"
+		tooltip="By default, set to true and dislpays the welcome text."
+		type="boolean" />
+	<property
+		id="logoSrc"
+		title="Logo Source"
+		tooltip="Path (src) to the logo icon to be displayed in the application header."
+		type="Url" />
+	<property
+		id="logoText"
+		title="Logo Text"
+		tooltip="The text that will be displayed beside the logo in the application header. This property is optional."
+		type="String" />
+	<property
+		id="userName"
+		title="User Name"
+		tooltip="User name that will be displayed beside the welcome text."
+		type="String" />
+	<property
+		id="onLogoff"
+		title="On Logoff"
+		tooltip="Fires an event to log off the user from the application."
+		group="Events"
+		type="ScriptText" />
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">0</defaultValue>
+		<defaultValue property="WIDTH">auto</defaultValue>
+		<defaultValue property="HEIGHT">38</defaultValue>
+		<defaultValue property="displayWelcome">true</defaultValue>
+	</initialization>
+</component>

@@ -1,0 +1,28 @@
+
+/**
+ * Class for ProgressIndicator
+ */
+class org.scn.community.basics.ProgressIndicator extends Component {
+
+	/** Sets the percentage value of the progress bar */
+	void setPercentValue(
+		/** Percent value */ int percentValue) {*
+		this.percentValue = percentValue;	
+	*}
+	
+	/** Returns the percentage value of the progress bar */
+	int getPercentValue() {*
+		return this.percentValue;	
+	*}
+	
+	/** Sets the text value displayed in the bar */
+	void setDisplayValue(
+		/** Display value */ String displayValue) {*
+		this.displayValue = displayValue;	
+	*}
+	
+	/** Returns the text value displayed in the bar */
+	String getDisplayValue() {*
+		return this.displayValue;	
+	*}
+}

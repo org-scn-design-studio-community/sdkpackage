@@ -1,0 +1,55 @@
+.-scn-pack-DataTopFlop {
+	background: #FFFFFF !important;
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+	border: solid 1px #000000 !important;
+}
+
+.scn-pack-DataTopFlop-Layout {
+	border: solid 2px transparent !important;
+}
+
+.scn-pack-DataTopFlop-SelectedValue {
+	border: solid 2px #000000 !important;
+}
+
+.scn-pack-DataTopFlop-Picture {
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+}
+
+.scn-pack-DataTopFlop-ValueLayout {
+	background: #D1D1D1 !important;
+}
+
+.scn-pack-DataTopFlop-ValueLayoutGood {
+	background: #32B243 !important;
+}
+
+.scn-pack-DataTopFlop-ValueLayoutBad {
+	background: #FD6442 !important;
+}
+
+.scn-pack-DataTopFlop-IndexText {
+	color: #309ABA !important;
+	font-weight: bold !important;
+}
+
+.scn-pack-DataTopFlop-Link {
+	color: #3778C7 !important;
+	font-weight: bold !important;
+}
+
+.scn-pack-DataTopFlop-Text {
+	color: #666 !important;
+}
+
+.scn-pack-DataTopFlop-AverageText {
+	color: #666 !important;
+	font-weight: bold !important;
+	font-size: 12px !important;
+}
+
+.scn-pack-DataTopFlop-TextDelta {
+	color: #666 !important;
+	font-weight: bold !important;
+	font-size: 12px !important;
+}

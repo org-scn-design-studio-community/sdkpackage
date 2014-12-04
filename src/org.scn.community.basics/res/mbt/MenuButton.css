@@ -1,0 +1,17 @@
+.-scn-pack-MenuBar {
+	background: #FFFFFF !important;
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+	border: solid 1px #000000 !important;
+}
+
+.scn-pack-MenuBar-Layout {
+	border: solid 2px transparent !important;
+}
+
+.scn-pack-MenuBar-SelectedValue {
+	border: solid 2px #000000 !important;
+}
+
+.scn-pack-MenuBar-Image {
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+}

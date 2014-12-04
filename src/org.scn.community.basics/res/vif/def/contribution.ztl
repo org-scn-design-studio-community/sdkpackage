@@ -1,0 +1,40 @@
+
+/**
+ * Class for ValiInput
+ */
+class org.scn.community.basics.ValiInput extends Component {
+	
+	/** returns value */
+	String getValue () {*
+		return this.DValue;	
+	*}
+		
+	/** sets value */
+	void setValue (String value) {*
+		this.DValue = value;	
+	*}
+
+	/** returns tooltip */
+	String getTooltip () {*
+		return this.DTooltip;	
+	*}
+	
+	/** sets the tooltip */
+	void setTooltip (String tooltip) {*
+		this.DTooltip = tooltip;	
+	*}
+
+	/** sets the valid flag */
+	void setValidState (String value) {*
+		if(value == "None" || value == "Error" || value == "Success" || value == "Warning") {
+			this.DValidState = value;	
+		} else {
+			this.DValidState = "None";	
+		}
+	*}
+
+	/** returns the valid flag */
+	String getValidState () {*
+		return this.DValidState;	
+	*}
+}

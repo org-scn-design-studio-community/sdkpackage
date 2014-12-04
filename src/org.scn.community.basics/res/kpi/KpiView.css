@@ -1,0 +1,36 @@
+.scn-pack-KpiView {
+	border: 1px solid lightgray !important;
+	background: white !important;
+}
+
+.scn-pack-KpiView-Value {
+	font-weight: bold !important;
+	font-size: 46px !important;
+	line-height: 46px !important;
+	color: rgb(95, 118, 138) !important;
+}
+
+.scn-pack-KpiView-ValuePrefix, .scn-pack-KpiView-ValueSuffix {
+	font-weight: bold !important;
+	font-size: 18px !important;
+	color: rgb(95, 118, 138) !important;
+	line-height: 21px !important;
+}
+
+.scn-pack-KpiView-Bottom .sapUiHLayoutChildWrapper {
+	vertical-align: bottom;
+	line-height:
+}
+
+.scn-pack-KpiView-Title {
+	padding-bottom: 5px !important;
+	font-size: 20px !important;
+	color: rgb(68, 68, 68) !important;
+	line-height: 20px !important;
+}
+
+.scn-pack-KpiView-Footer, .scn-pack-KpiView-Header {
+	font-size: 14px !important;
+	line-height: 14px !important;
+	color: rgb(151, 151, 151) !important;
+}

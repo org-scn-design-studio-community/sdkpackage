@@ -1,0 +1,37 @@
+
+/**
+	Holder for value. You can use the content as in below example.
+	<br>
+	var content = COLLECTION_1.getAsValueTextArray();<br>
+	<br>
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.ValueTextArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.ValueText<br>
+		var elValue = element.value;<br>
+		var elText = element.text;<br>
+	});
+*/
+class org.scn.community.shared.ValueText {
+  String value;
+  String text;
+}
+
+/**
+	Array for org.scn.community.shared.ValueText. You can use this array as in below example.
+	<br>
+	var content = ARRAY_1.getAsValueTextArray();<br>
+	<br>
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.ValueTextArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.ValueText<br>
+		var elValue = element.value;<br>
+		var elText = element.text;<br>
+	});
+*/
+class org.scn.community.shared.ValueTextArray extends Array {
+	org.scn.community.shared.ValueTextArray (org.scn.community.shared.ValueText b);
+}

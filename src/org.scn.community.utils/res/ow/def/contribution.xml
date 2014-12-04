@@ -1,0 +1,65 @@
+
+<component
+	id="OpenWindowPost"
+	title="Open Window by Post"
+	tooltip="Open new Window by Post Method (removes URL size restriction)"
+	icon="res/ow/OpenWindowPost.png"
+	handlerType="sapui5"
+	group="ScnCommunityUtils"
+>
+
+	<jsInclude>res/ow/OpenWindowPost.js</jsInclude>
+
+	<property
+		id="url"
+		type="String"
+		title="Url To Open by Post"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="formId"
+		type="String"
+		title="Form Id for the Open by Post Form and Window"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="trigger"
+		type="String"
+		title="Just as Simple Triger"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="fallbackSencario"
+		type="String"
+		title="Fallback if Window already Open"
+		group="Display"
+		visible="true"
+	>
+		<possibleValue>Close and Reopen</possibleValue>
+		<possibleValue>New Window</possibleValue>
+	</property>
+
+	<property
+		id="parameters"
+		type="String"
+		title="Technical proprty for list of parameters (name/value)"
+		group="Display"
+		visible="false" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="items"></defaultValue>
+		<defaultValue property="formId">OpenWindow</defaultValue>
+		<defaultValue property="fallbackSencario">Close and Reopen</defaultValue>
+	</initialization>
+
+</component>

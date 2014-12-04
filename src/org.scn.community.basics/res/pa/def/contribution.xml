@@ -1,0 +1,31 @@
+
+<component
+	id="Paginator"
+	title="Paginator"
+	handlerType="sapui5"
+	icon="res/pa/Paginator.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/pa/Paginator.js</jsInclude>
+	<property
+		id="currentPage"
+		title="Current Page"
+		tooltip="Represents the current page number."
+		type="int" />
+	<property
+		id="numberOfPages"
+		title="Number of Pages"
+		tooltip="Represents the overall number of pages that are embedded into the parent control."
+		type="int" />
+	<property
+		id="onPageChange"
+		title="On Page Change"
+		tooltip="Event is fired when the user navigates to another page by selecting it directly, or by jumping forward or backward."
+		type="ScriptText"
+		group="Events" />
+	<initialization>
+		<defaultValue property="WIDTH">270</defaultValue>
+		<defaultValue property="HEIGHT">20</defaultValue>
+		<defaultValue property="numberOfPages">3</defaultValue>
+	</initialization>
+</component>

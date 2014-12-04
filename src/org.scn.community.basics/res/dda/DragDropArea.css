@@ -1,0 +1,33 @@
+.scn-pack-DragDropArea {
+	background: #FFFFFF !important;
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+	border: solid 1px #000000 !important;
+}
+
+.scn-pack-DragDropArea-Layout {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.scn-pack-DragDropArea-H100 {
+	height: 100% !important;
+}
+
+.scn-pack-DragDropArea-W100 {
+	width: 100% !important;
+}
+
+.scn-pack-DragDropArea-Drop {
+	border: 1px solid transparent !important;
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+	padding: 1px 6px;
+	background: transparent !important;
+}
+
+.scn-pack-DragDropArea-DropEffect {
+	background: #67AFFF !important;
+}
+
+.scn-pack-DragDropArea-DropEffectDone {
+	background: blue !important;
+}

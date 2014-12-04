@@ -1,0 +1,67 @@
+
+<component
+	id="FishEye"
+	title="Fish Eye"
+	icon="res/fe/FishEye.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>res/fe/FishEye.js</jsInclude>
+	<cssInclude>res/fe/FishEye.css</cssInclude>
+
+	<property
+		id="defaultImage"
+		type="Url"
+		title="Default Image Url"
+		tooltip="Url for Default Image (must be set)"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="orientation"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="true"
+	>
+		<possibleValue>horizontal-top</possibleValue>
+		<possibleValue>horizontal-bottom</possibleValue>
+	</property>
+
+	<property
+		id="elements"
+		type="String"
+		title="Technical proprty for list of elements"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="defaultImage"></defaultValue>
+		<defaultValue property="selectedKey"></defaultValue>
+		<defaultValue property="orientation">horizontal-bottom</defaultValue>
+		<defaultValue property="elements"></defaultValue>
+
+	</initialization>
+
+</component>

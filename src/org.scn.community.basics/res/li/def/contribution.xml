@@ -1,0 +1,30 @@
+
+<component
+	id="Link"
+	title="Link"
+	handlerType="sapui5"
+	icon="res/li/Link.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/li/Link.js</jsInclude>
+	<property
+		id="text"
+		title="Link Text"
+		tooltip="Link text to be displayed.."
+		type="String" />
+	<property
+		id="onPress"
+		title="On Press"
+		tooltip="Fires the event when the user clicks the control."
+		group="Events"
+		type="ScriptText" />
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">20</defaultValue>
+		<defaultValue property="text">Go Sap...</defaultValue>
+	</initialization>
+</component>

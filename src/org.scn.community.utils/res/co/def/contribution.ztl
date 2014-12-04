@@ -1,0 +1,569 @@
+
+/**
+ * Component created with collaboration with Michael Howles
+ * http://scn.sap.com/people/mike.howles4
+ * 
+ * based on the discussion thread http://scn.sap.com/community/businessobjects-design-studio/blog/2014/09/12/design-studio-sdk--get-topbottom-n-rankings-with-a-little-less-code
+ * 
+ * Authors: Michael Howles, Scn Community Contributors
+ */
+class org.scn.community.utils.Collection extends Component {  
+	
+	/**
+	Returns the collection content as loopable array.
+	<example>
+	You want to loop at the "k1;k2;k3", "l1;l2;l3", "12.4;25.1;94.2" collection:
+	<code>
+	var content = COLLECTION_1.getAsKeyLabelValueArray();<br>
+	<br>
+	// a loop for all entries<br>
+	content.forEach(function(element, index) {<br>
+		LISTBOX_1.addItem(element.key, element.label + "( " + element.value + " )");<br>
+	});
+	</code>
+	This LISTBOX_1 has now following values entries:<br>
+		<ul><li>key: k1; value: l1 ( 12.4 )</li>
+		<li>key: k2; value: l2 ( 25.1 )</li>
+		<li>key: k3; value: l3 ( 94.2 )</li></ul>
+	</example>
+	*/
+	org.scn.community.shared.KeyLabelValueArray getAsKeyLabelValueArray (
+			/**max members*/ optional int maxMembers) {*
+		var s = this.items;  
+		var items = JSON.parse(s);
+		
+		var a = [];
+		
+		// APPLICATION.createInfoMessage("Max: " + maxMembers); // debug
+		
+		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > items.length) {
+			maxMembers = items.length;
+		}
+		
+		for(var i=0;i<maxMembers;i++){
+			var itemDef = { 
+				"key": items[i].key, 
+				"label": items[i].label,
+				"value": items[i].value
+			};
+			
+			a.push(itemDef);
+		}
+		
+		return a;
+	*}
+
+	/**
+	Returns the collection content as loopable array.
+	<example>
+	You want to loop at the "k1;k2;k3", "l1;l2;l3", "12.4;25.1;94.2" collection:
+	<code>
+	var content = COLLECTION_1.getAsKeyLabelValueArray();<br>
+	<br>
+	// a loop for all entries<br>
+	content.forEach(function(element, index) {<br>
+		LISTBOX_1.addItem(element.key, element.label + "( " + element.value + " )");<br>
+	});
+	</code>
+	This LISTBOX_1 has now following values entries:<br>
+		<ul><li>key: k1; value: l1 ( 12.4 )</li>
+		<li>key: k2; value: l2 ( 25.1 )</li>
+		<li>key: k3; value: l3 ( 94.2 )</li></ul>
+	</example>
+	*/
+	org.scn.community.shared.KeyLabelValuePropertyArray getAsKeyLabelValuePropertyArray (
+			/**max members*/ optional int maxMembers) {*
+		var s = this.items;  
+		var items = JSON.parse(s);
+		
+		var a = [];
+		
+		// APPLICATION.createInfoMessage("Max: " + maxMembers); // debug
+		
+		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > items.length) {
+			maxMembers = items.length;
+		}
+		
+		for(var i=0;i<maxMembers;i++){
+			var itemDef = { 
+				"key": items[i].key, 
+				"label": items[i].label,
+				"value": items[i].value,
+				"prop1": items[i].prop1,
+				"prop2": items[i].prop2,
+				"prop3": items[i].prop3
+			};
+			
+			a.push(itemDef);
+		}
+		
+		return a;
+	*}
+
+	/**
+	 * Removes all Items (clears the collection)
+	 */
+	void removeAllItems () {*
+		var items = [];
+		this.items = JSON.stringify(items);  
+	*}
+			
+	/**
+	Sets items of the array by 2 strings: for keys, labels, values. Optionally a given separator can be specified. This implementation of collection allows duplicate keys.
+	Values must be float numbers. The content length is equal with number of keys. in case labels or values are shorter, correspondingly an empty label or 0.0 will be inserted. 
+	<example>
+	You want to set the string "k1;k2;k3" array:
+	<code>
+	COLLECTION_1.setItems("k1;k2;k3", "l1;l2;l3", "12.4;25.1;94.2", ";");<br>
+	</code>
+	This array has now following values: k1,k2,k3
+	</example>
+	*/
+	void setItems (
+			/*keys*/ String keys, 
+			/*labels*/ String labels, 
+			/*values*/ String values,
+			/*separator*/ optional String separator,
+			/*optional prop 1 array*/ optional String prop1s,
+			/*optional prop 2 array*/ optional String prop2s,
+			/*optional prop 3 array*/ optional String prop3s) {*  
+		var items = [];
+	
+		if(separator == undefined) {
+			separator = ",";
+		}
+			
+		if(prop1s == undefined) {
+			prop1s = "";
+		}
+		if(prop2s == undefined) {
+			prop2s = "";
+		}
+		if(prop3s == undefined) {
+			prop3s = "";
+		}
+		
+		var k = keys.split(separator);  
+		var l = labels.split(separator);  
+		var v = values.split(separator);
+		
+		var p1 = prop1s.split(separator);
+		var p2 = prop2s.split(separator);
+		var p3 = prop3s.split(separator);
+		
+		while(k.length>l.length) l.push("");  
+		while(k.length>v.length) v.push("0");
+		
+		while(k.length>p1.length) p1.push("");
+		while(k.length>p2.length) p2.push("");
+		while(k.length>p3.length) p3.push("");
+
+		for(var i=0; i<k.length; i++){
+			var itemDef = {
+				"key" : k[i],
+				"label" : l[i],  
+				"value" : v[i],
+				"prop1": p1[i],
+				"prop2": p2[i],
+				"prop3": p3[i]
+			};
+			
+			items.push(itemDef);
+		}
+		
+		this.items = JSON.stringify(items);  
+	*}  
+
+	/**
+	Adds a value to new or existing array. This implementation of collection allows duplicate keys. 
+	<example>
+	You want to create an "k1,k2,k3" array:
+	<code>
+	COLLECTION_1.addItem("k1", "l1", 45.75);<br>
+	COLLECTION_1.addItem("k2", "l2", 11.21);<br>
+	COLLECTION_1.addItem("k3", "l3", 85.439);<br>
+	</code>
+	This array has now following elements with keys: k1,k2,k3
+	</example>
+	*/
+	void addItem (
+			/*key*/ String key, 
+			/*label*/ String label, 
+			/*value*/ float value,
+			/*optional prop 1*/ optional String prop1,
+			/*optional prop 2*/ optional String prop2,
+			/*optional prop 3*/ optional String prop3) {*  
+		
+		var s = this.items;  
+		var a = [];  
+		if(s!="") a = JSON.parse(s);
+		
+		if(prop1 == undefined) {
+			prop1 = "";
+		}
+		if(prop2 == undefined) {
+			prop2 = "";
+		}
+		if(prop3 == undefined) {
+			prop3 = "";
+		}
+		
+		var itemDef = {
+			"key" : key,
+			"label" : label,  
+			"value" : value,
+			"prop1" : prop1,
+			"prop2" : prop2,
+			"prop3" : prop3
+		};
+		
+		a.push(itemDef);
+		
+		this.items = JSON.stringify(a);  
+	*}
+
+	/**
+	Returns all keys as String separated by given optional separator. default separator is comma ,
+	<example>
+	You have an array with 3 elements with keys ["K1", "K2", "K3"]:
+	<code>
+	var keysAsString = COLLECTION_1.getKeys ("|");<br>
+	</code>
+	
+	The "keysAsString" has now "K1|K2|K3" as content.
+	</example>
+	*/
+	String getKeys(
+			/*separator*/ optional String separator) {*  
+		var s = this.items;  
+		var items = JSON.parse(s);
+		var a = [];
+		
+		for(var i=0;i<items.length;i++){  
+			a.push(items[i].key);  
+		}
+		
+		if(separator == undefined) {
+			separator = ",";
+		}
+		
+		return a.join(separator);  
+	*}
+
+	/**
+	Returns all labels as String separated by given optional separator. default separator is comma ,
+	<example>
+	You have an array with 3 elements with labels ["L1", "L2", "L3"]:
+	<code>
+	var labelsAsString = COLLECTION_1.getLabels ("|");<br>
+	</code>
+	
+	The "labelsAsString" has now "L1|L2|L3" as content.
+	</example>
+	*/
+	String getLabels(
+			/*separator*/ optional String separator) {*  
+		var s = this.items;  
+		var items = JSON.parse(s);  
+		var a = [];  
+		
+		for(var i=0;i<items.length;i++){  
+			a.push(items[i].label);  
+		}  
+		
+		if(separator == undefined) {
+			separator = ",";
+		}
+		
+		return a.join(separator);  
+	*}
+
+	/**
+	Returns all values as String separated by given optional separator. default separator is comma ,
+	<example>
+	You have an array with 3 elements with values ["11.4", "87.66", "147.41"]:
+	<code>
+	var valuesAsString = COLLECTION_1.getValues ("|");<br>
+	</code>
+	
+	The "valuesAsString" has now "11.4|87.66|147.41" as content.
+	</example>
+	*/
+	String getValues(
+			/*separator*/ optional String separator) {*  
+		var s = this.items;  
+		var items = JSON.parse(s);  
+		var a = [];  
+		
+		for(var i=0;i<items.length;i++){  
+			a.push(items[i].value);  
+		}  
+		
+		if(separator == undefined) {
+			separator = ",";
+		}
+		
+		return a.join(separator);  
+	*}
+
+	/**
+	 * Sorts the collection by values with optional parameter for direction (ascending is default)
+	 */
+	void sortByKey(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
+		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+			this.sortByKeyDescending();
+			return;
+		}
+	
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		
+		a.sort(function(a,b){  
+			return a.key>b.key;  
+		});  
+		
+		this.items = JSON.stringify(a);  
+	*}  
+
+	/**
+	 * Sorts the collection by key (descending)
+	 */
+	void sortByKeyDescending() {*  
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		
+		a.sort(function(a,b){  
+			return (b.key>a.key);  
+		});  
+		
+		this.items = JSON.stringify(a);  
+	*}
+
+	/**
+	 * Sorts the collection by values with optional parameter for direction (ascending is default)
+	 */
+	void sortByLabel(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
+		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+			this.sortByLabelDescending();
+			return;
+		}
+
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		
+		a.sort(function(a,b){  
+			return a.label>b.label;  
+		});  
+		
+		this.items = JSON.stringify(a);  
+	*}  
+		
+	/**
+	 * Sorts the collection by labels (descending)
+	 */
+	void sortByLabelDescending() {*  
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		
+		a.sort(function(a,b){  
+			return (b.label>a.label);  
+		});  
+		
+		this.items = JSON.stringify(a);  
+	*}
+		
+	/**
+	 * Sorts the collection by values with optional parameter for direction (ascending is default)
+	 */
+	void sortByValue(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
+		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+			this.sortByValueDescending();
+			return;
+		}
+
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		
+		a.sort(function(a,b){  
+			var newA = parseFloat(a.value);  
+			var newB = parseFloat(b.value);  
+			return newA-newB;  
+		});
+		
+		this.items = JSON.stringify(a);  
+	*}  
+
+	/**
+	 * Sorts the collection by values (descending)
+	 */
+	void sortByValueDescending() {*  
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		
+		a.sort(function(a,b){  
+			var newA = parseFloat(a.value);  
+			var newB = parseFloat(b.value);  
+			return newB-newA;  
+		});
+		
+		this.items = JSON.stringify(a);  
+	*}  
+	
+	/**
+	 * Returns length of current collection
+	 */
+	int getLength() {*  
+		var s = this.items;  
+		var a = [];  
+		if(s!="") a = JSON.parse(s);
+		
+		return a.length;  
+	*}  
+
+	/**
+	Returns label by given index. Indices are 0-based. In case the index does not exist, "N/A" is given back.
+	<example>
+	You have a "k1,k2,k3" collection with label "Value for Key 2" at index 1 and want to get value at index 1:
+	<code>
+	var label1 = COLLECTION_1.getLabelByIndex(1);<br>
+	</code>
+	Now "label1" is set to String "Value for Key 2".
+	</example>
+	*/
+	String getLabelByIndex( 
+			/* index */ int index) {*  
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		var r = "N/A";
+		
+		if(a.length>index){  
+			r = a[index].label;  
+		}
+		
+		return r;  
+	*}
+
+	/**
+	Returns label by given key. In case the key does not exist, "N/A" is given back.
+	<example>
+	You have a "k1,k2,k3" collection with value "Value for Key 2" at index 1 (key == "k2") and want to get value at key "k2":
+	<code>
+	var label1 = COLLECTION_1.getLabelByKey("k2");<br>
+	</code>
+	Now "label1" is set to float "Value for Key 2".
+	</example>
+	*/
+	String getLabelByKey( 
+			/* index */ String key) {*  
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		var r = "N/A";
+		
+		for(var i=0;i<a.length;i++){
+			if(a[i].key == key) {
+				r = a[i].label;
+				break;
+			}
+		}
+		
+		return r;  
+	*}
+
+	/**
+	Returns value by given index. Indices are 0-based. In case the index does not exist, "NaN" is given back.
+	<example>
+	You have a "k1,k2,k3" collection with value "54.48" at index 1 and want to get value at index 1:
+	<code>
+	var value1 = COLLECTION_1.getValueByIndexAsString(1);<br>
+	</code>
+	Now "value1" is set to String "54.48".
+	</example>
+	*/
+	String getValueByIndexAsString( 
+			/* index */ int index) {*  
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		var r = "NaN";  
+		
+		if(a.length>index){  
+			r = a[index].value;  
+		}  
+		
+		return r;  
+	*}  
+
+	/**
+	Returns value by given index. Indices are 0-based. In case the index does not exist, "0.0" is given back.
+	<example>
+	You have a "k1,k2,k3" collection with value "54.48" at index 1 and want to get value at index 1:
+	<code>
+	var value1 = COLLECTION_1.getValueByIndex(1);<br>
+	</code>
+	Now "value1" is set to float "54.48".
+	</example>
+	*/
+	float getValueByIndex( 
+			/* index */ int index) {*  
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		
+		var r = 0.0;  
+		if(a.length>index){  
+			r = a[index].value;  
+		}
+		
+		return r;  
+	*}
+
+	/**
+	Returns value by given key. In case the index does not exist, "NaN" is given back.
+	<example>
+	You have a "k1,k2,k3" collection with value "54.48" at index 1 (key == "k2") and want to get value at key "k2":
+	<code>
+	var value1 = COLLECTION_1.getValueByKeyAsString("k2");<br>
+	</code>
+	Now "value1" is set to String "54.48".
+	</example>
+	*/
+	String getValueByKeyAsString( 
+			/* key */ String key) {*  
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		var r = "NaN";  
+		
+		for(var i=0;i<a.length;i++){
+			if(a[i].key == key) {
+				r = a[i].value;
+				break;
+			}
+		}
+		
+		return r;  
+	*}  
+
+	/**
+	Returns value by given key. In case the index does not exist, "0.0" is given back.
+	<example>
+	You have a "k1,k2,k3" collection with value "54.48" at index 1 (key == "k2") and want to get value at key "k2":
+	<code>
+	var value1 = COLLECTION_1.getValueByKey("k2");<br>
+	</code>
+	Now "value1" is set to float "54.48".
+	</example>
+	*/
+	float getValueByKey(
+			/* index */ String key) {*  
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		var r = 0.0;  
+		
+		for(var i=0;i<a.length;i++){
+			if(a[i].key == key) {
+				r = a[i].value;
+				break;
+			}
+		}
+		
+		return r;  
+	*}
+}

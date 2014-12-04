@@ -1,0 +1,28 @@
+
+/**
+ * Class for Paginator
+ */
+class org.scn.community.basics.Paginator extends Component {
+	
+	/** Sets the current page number */
+	void setCurrentPage(
+		/** Current page number */ int currentPage) {*
+		this.currentPage = currentPage;	
+	*}
+	
+	/** Returns the current page number */
+	int getCurrentPage() {*
+		return this.currentPage;	
+	*}
+
+	/** Sets the overall number of pages that are embedded into the parent control */
+	void setNumberOfPages(
+		/** Overall number of pages */ int numberOfPages) {*
+		this.numberOfPages = numberOfPages;	
+	*}
+	
+	/** Returns the overall number of pages that are embedded into the parent control */
+	int getNumberOfPages() {*
+		return this.numberOfPages;	
+	*}
+}

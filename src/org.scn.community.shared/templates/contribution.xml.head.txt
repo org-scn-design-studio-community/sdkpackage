@@ -1,0 +1,2 @@
+	id="org.scn.community.shared"
+	title="Design Studio SCN Community Shared"

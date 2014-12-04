@@ -1,0 +1,57 @@
+/* Fisheye Menu Styles */
+#fisheye_menu {
+	list-style: none;
+	padding: 0;
+	margin: 10px;
+	height: 81px;
+}
+
+#fisheye_menu li {
+	position: relative;
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#fisheye_menu span {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	text-align: center;
+	width: 79px;
+	padding: 1px;
+	margin: 0;
+	border: solid 1px #bbb;
+	color: #333;
+	background: #eee;
+}
+
+#fisheye_menu a {
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}
+
+#fisheye_menu img {
+	border: 0;
+	vertical-align: top;
+}
+
+.scn-pack-FishEye-ChildrenBottom .sapUiHLayoutChildWrapper {
+	vertical-align: bottom;
+}
+
+.scn-pack-FishEye-Image {
+	border: solid 3px transparent !important;
+}
+
+.scn-pack-FishEye-SelectedImage {
+	border: solid 3px #000000 !important;
+}
+
+.scn-pack-FishEye-Text {
+	background-color: #ffffff !important;
+	opacity: 0.9 !important;
+	text-align: center !important;
+}

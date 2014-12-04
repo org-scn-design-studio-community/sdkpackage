@@ -1,0 +1,25 @@
+
+<component
+	id="ColorPicker"
+	title="Color Picker"
+	handlerType="sapui5"
+	icon="res/cp/ColorPicker.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/cp/ColorPicker.js</jsInclude>
+	<property
+		id="colorString"
+		title="Color"
+		type="Color"
+		tooltip="This is the import-parameter of the ColorPicker. As input-parameter, it can be a Hexadecimal string (#FFFFFF), a RGB-string rgb(255,255,255), a HSV-string hsv(360,100,100), or a CSS-colorname 'red'. As output-parameter it is a RGB-string containing the current color."
+	></property>
+	<property
+		id="onColorChange"
+		title="On Color Change"
+		type="ScriptText" />
+	<initialization>
+		<defaultValue property="WIDTH">270</defaultValue>
+		<defaultValue property="HEIGHT">134</defaultValue>
+		<defaultValue property="colorString">red</defaultValue>
+	</initialization>
+</component>

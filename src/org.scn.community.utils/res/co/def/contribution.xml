@@ -1,0 +1,31 @@
+
+<component
+	id="Collection"
+	title="Collection Utility"
+	icon="res/co/Collection.png"
+	handlerType="div"
+	group="ScnCommunityUtils"
+>
+
+	<jsInclude>res/co/Collection.js</jsInclude>
+
+	<property
+		id="items"
+		type="String"
+		title="Technical proprty for list of items"
+		group="Display"
+		visible="false" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="items"></defaultValue>
+
+	</initialization>
+
+</component>

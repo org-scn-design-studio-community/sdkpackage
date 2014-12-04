@@ -1,0 +1,27 @@
+
+/**
+ * Class for TextArea
+ */
+class org.scn.community.basics.TextArea extends Component {
+	
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+
+	/** sets the value */
+	void setValue (String value) {*
+		this.value = value;	
+	*}
+
+	/** returns the value */
+	String getValue () {*
+		return this.value;	
+	*}
+}

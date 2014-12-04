@@ -1,0 +1,17 @@
+
+/**
+ * Class for Link
+ */
+class org.scn.community.basics.Link extends Component {
+	
+	/** Sets the text that is displayed */
+	void setText(
+		/** text */ String text) {*
+		this.text = text;	
+	*}
+	
+	/** Returns the text that is displayed */
+	String getText() {*
+		return this.text;	
+	*}
+}

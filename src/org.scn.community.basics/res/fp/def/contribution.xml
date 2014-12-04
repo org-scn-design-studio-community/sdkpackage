@@ -1,0 +1,37 @@
+<component
+	id="FallbackPicture"
+	title="Fallback Picture"
+	icon="res/fp/FallbackPicture.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/fp/FallbackPicture.js</jsInclude>
+	<cssInclude>res/fp/FallbackPicture.css</cssInclude>
+
+	<property
+		id="picture"
+		title="Url for Picture"
+		tooltip="Url for Picture which should be shown"
+		type="Url"
+		visible="true" />
+
+	<property
+		id="fallbackPicture"
+		title="Url for Fallback Picture"
+		tooltip="Url for Fallback Picture which should be shown"
+		type="Url"
+		visible="true" />
+
+	<initialization>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="picture"></defaultValue>
+		<defaultValue property="fallbackPicture"></defaultValue>
+
+	</initialization>
+
+</component>

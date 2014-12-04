@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Simple Table Property Sheet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script
+	src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
+<script src="additional_properties_sheet.js"></script>
+</head>
+<script>
+		new com.sap.sample.SimpleTablePropertyPage();
+	</script>
+<body>
+	<form id="form">
+		<fieldset>
+			<legend>Simple Table Properties</legend>
+			<table>
+				<tr>
+					<td>Select a member</td>
+					<td><select id="members" name="members" style="width: 100px"
+						size="1"></select></td>
+				</tr>
+			</table>
+			<input type="button" id="editcolumn1" value="Edit Column 1" />
+		</fieldset>
+	</form>
+</body>
+</html>

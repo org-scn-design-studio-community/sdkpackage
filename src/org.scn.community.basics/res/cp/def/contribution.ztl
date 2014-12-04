@@ -1,0 +1,17 @@
+
+/**
+ * Class for ColorPicker
+ */
+class org.scn.community.basics.ColorPicker extends Component {
+
+	/** Sets the color top be shown */
+	void setColor(
+			/** Color value */ String colorString) {*
+		this.colorString = colorString;
+			*}
+
+	/** Returns the picked color */
+	String getColor() {*
+		return this.colorString;
+	*}
+}

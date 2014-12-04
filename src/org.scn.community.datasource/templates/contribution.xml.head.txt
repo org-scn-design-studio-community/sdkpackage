@@ -1,0 +1,2 @@
+	id="org.scn.community.datasource"
+	title="Design Studio SCN Community Data Sources"

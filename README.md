@@ -1,4 +1,4 @@
-sdkpackage
-==========
+sdk-package
+===========
 
-SDK Package of SCN Design Studio Community
+Repository for SDK Components

@@ -1,0 +1,33 @@
+@font-face {
+	font-family: 'SAP-icons';
+	src: url('SAP-icons.ttf'), url('SAP-icons.eot'); /* IE9+ */
+	font-weight: normal;
+	font-style: normal;
+}
+
+.scn-pack-FioriButton:before {
+	font-family: 'SAP-icons';
+	speak: none;
+}
+
+.scn-pack-FioriButton-S:hover {
+	opacity: 0.7;
+}
+
+.scn-pack-FioriButton-L {
+	font-size: 14px !important;
+	line-height: 38px !important;
+}
+
+.scn-pack-FioriButton-M {
+	font-size: 12px !important;
+	line-height: 32px !important;
+}
+
+.scn-pack-FioriButton-L:before {
+	font-size: 22px;
+}
+
+.scn-pack-FioriButton-M:before {
+	font-size: 16px;
+}

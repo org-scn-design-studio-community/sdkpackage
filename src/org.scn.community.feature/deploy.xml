@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="feature_export" name="build">
+	<target name="feature_export">
+		<pde.exportFeatures destination="C:\SDK_DEMO\GitHub\DesignStudioSdkPack\deployable" exportSource="false" exportType="zip" features="org.kalisz.karol.scn.sdk" filename="org.kalisz.karol.scn.pack.zip" useJARFormat="true"/>
+	</target>
+</project>

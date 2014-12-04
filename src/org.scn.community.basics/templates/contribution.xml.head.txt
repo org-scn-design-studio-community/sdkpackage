@@ -1,0 +1,2 @@
+	id="org.scn.community.basics"
+	title="Design Studio SCN Community Basics"

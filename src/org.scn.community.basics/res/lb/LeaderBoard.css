@@ -1,0 +1,35 @@
+.-scn-pack-LeaderBoard {
+	background: #FFFFFF !important;
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+	border: solid 1px #000000 !important;
+}
+
+.scn-pack-LeaderBoard-Layout {
+	border: solid 2px transparent !important;
+}
+
+.scn-pack-LeaderBoard-SelectedValue {
+	border: solid 2px #000000 !important;
+}
+
+.scn-pack-LeaderBoard-Picture {
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+}
+
+.scn-pack-LeaderBoard-ValueLayout {
+	background: #E3EDF5 !important;
+}
+
+.scn-pack-LeaderBoard-IndexText {
+	color: #309ABA !important;
+	font-weight: bold !important;
+}
+
+.scn-pack-LeaderBoard-Link {
+	color: #3778C7 !important;
+	font-weight: bold !important;
+}
+
+.scn-pack-LeaderBoard-Text {
+	color: #666 !important;
+}

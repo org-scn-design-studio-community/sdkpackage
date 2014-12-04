@@ -1,0 +1,35 @@
+.-scn-pack-DataLeaderBoard {
+	background: #FFFFFF !important;
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+	border: solid 1px #000000 !important;
+}
+
+.scn-pack-DataLeaderBoard-Layout {
+	border: solid 2px transparent !important;
+}
+
+.scn-pack-DataLeaderBoard-SelectedValue {
+	border: solid 2px #000000 !important;
+}
+
+.scn-pack-DataLeaderBoard-Picture {
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+}
+
+.scn-pack-DataLeaderBoard-ValueLayout {
+	background: #E3EDF5 !important;
+}
+
+.scn-pack-DataLeaderBoard-IndexText {
+	color: #309ABA !important;
+	font-weight: bold !important;
+}
+
+.scn-pack-DataLeaderBoard-Link {
+	color: #3778C7 !important;
+	font-weight: bold !important;
+}
+
+.scn-pack-DataLeaderBoard-Text {
+	color: #666 !important;
+}

@@ -1,0 +1,19 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_SortDirectionEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort direction 
+ */
+class org_scn_community_shared_SortDirection extends Enum {
+
+	/** ASCENDING */
+	org_scn_community_shared_SortDirectionEnumfield ASCENDING;
+       
+	/** DESCENDING */
+	org_scn_community_shared_SortDirectionEnumfield DESCENDING;
+}

@@ -1,0 +1,48 @@
+
+<component
+	id="ProgressIndicator"
+	title="Progress Indicator"
+	handlerType="sapui5"
+	icon="res/pi/ProgressIndicator.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/pi/ProgressIndicator.js</jsInclude>
+	<property
+		id="barColor"
+		title="Bar Color"
+		tooltip="The color of the bar."
+		type="String"
+	>
+		<possibleValue>CRITICAL</possibleValue>
+		<possibleValue>NEGATIVE</possibleValue>
+		<possibleValue>NEUTRAL</possibleValue>
+		<possibleValue>POSITIVE</possibleValue>
+	</property>
+	<property
+		id="displayValue"
+		title="Display Value"
+		tooltip="The text value to be displayed in the bar."
+		type="String" />
+	<property
+		id="enabled"
+		title="Enabled"
+		tooltip="Switches enabled state of the control. Disabled fields have different colors and can not be focused."
+		type="boolean" />
+	<property
+		id="percentValue"
+		title="Percent Value"
+		tooltip="The numerical value for the displayed length of the progress bar."
+		type="int" />
+	<property
+		id="showValue"
+		title="Show Value"
+		tooltip="Specifies whether the current value shall be rendered inside the bar."
+		type="boolean" />
+	<initialization>
+		<defaultValue property="WIDTH">270</defaultValue>
+		<defaultValue property="HEIGHT">20</defaultValue>
+		<defaultValue property="barColor">NEUTRAL</defaultValue>
+		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="showValue">true</defaultValue>
+	</initialization>
+</component>

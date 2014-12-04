@@ -1,0 +1,28 @@
+
+/**
+ * Class for FioriButton
+ */
+class org.scn.community.basics.FioriButton extends Component {
+
+	/** Sets the text that is displayed */
+	void setText(
+			/** text */ String text) {*
+		this.dText = text;	
+			*}
+
+	/** Returns the text that is displayed */
+	String getText() {*
+		return this.dText;	
+	*}
+
+	/** Sets the tooltip that is displayed */
+	void setTooltip(
+			/** text */ String tooltip) {*
+		this.dTooltip = tooltip;	
+			*}
+
+	/** Returns the tooltip that is displayed */
+	String getTooltip() {*
+		return this.dTooltip;	
+	*}
+}

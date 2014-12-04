@@ -1,0 +1,287 @@
+
+/**
+ * Component created with collaboration with Michael Howles
+ * http://scn.sap.com/people/mike.howles4
+ * 
+ * based on the blog thread http://scn.sap.com/community/businessobjects-design-studio/blog/2014/09/16/design-studio-sdk--bial-fornext-loop-and-my-first-github-co-author-attempt
+ * 
+ * Authors: Michael Howles, Scn Community Contributors
+ */
+class org.scn.community.utils.Array extends Component {  
+	
+	/**
+	Returns the array content as loopable array.
+	<example>
+	You want to loop at the "k1;k2;k3" array:
+	<code>
+	var content = ARRAY_1.getValuesAsValueTextArray();<br>
+	<br>
+	// a loop for all values<br>
+	content.forEach(function(element, index) {<br>
+		LISTBOX_1.addItem(""+ index, element.value + "( " + index + " )");<br>
+	});
+	</code>
+	This LISTBOX_1 has now following values entries:<br>
+		<ul><li>key: 0; value: k1 ( 0 )</li>
+		<<li>key: 1; value: k2 ( 1 )</li>
+		<li>key: 2; value: k3 ( 2 )</li></ul>
+	</example>
+	*/
+	org.scn.community.shared.ValueTextArray getValuesAsValueTextArray (
+			/**max members*/ optional int maxMembers) {*
+		var s = this.items;  
+		var items = JSON.parse(s);
+		
+		var a = [];
+		
+		// APPLICATION.createInfoMessage("Max: " + maxMembers); // debug
+		
+		if(maxMembers == undefined || maxMembers <= 0) {
+			maxMembers = items.length;
+		}
+		
+		for(var i=0;i<maxMembers;i++){
+			var itemDef = { 
+				"value": items[i].value, 
+				"text": items[i].value
+			};
+			
+			a.push(itemDef);
+		}
+		
+		return a;
+	*}
+
+	/**
+	Returns the array content as loopable array. The element is directly containing the string value.
+	Pro: compatible to the API in other scripts where object "ValueTextArray" is expected.
+	<example>
+	You want to loop at the "k1;k2;k3" array:
+	<code>
+	var content = ARRAY_1.getValuesAsSimpleValueTextArray();<br>
+	<br>
+	// a loop for all values<br>
+	content.forEach(function(element, index) {<br>
+		LISTBOX_1.addItem(""+ index, element + "( " + index + " )");<br>
+	});
+	</code>
+	This LISTBOX_1 has now following values entries:<br>
+		<ul><li>key: 0; value: k1 ( 0 )</li>
+		<<li>key: 1; value: k2 ( 1 )</li>
+		<li>key: 2; value: k3 ( 2 )</li></ul>
+	</example>
+	
+	<example>
+	You want to pass the content of the array directly to chart selection.
+	<code>
+	var valuesAsArray = ARRAY_1.getValuesAsSimpleValueTextArray();<br>
+	CHART_1.setDataSelection( {<br>
+ 		"<your dimension>": valuesAsArray<br>
+	});<br>
+	</code>
+	This CHART will get the corresponding selection<br>
+	</example>
+	*/
+	StringArray getValuesAsSimpleStringArray (
+			/**max members*/ optional int maxMembers) {*
+		var s = this.items;  
+		var items = JSON.parse(s);
+		
+		var a = [];
+		
+		// APPLICATION.createInfoMessage("Max: " + maxMembers); // debug
+		
+		if(maxMembers == undefined || maxMembers <= 0) {
+			maxMembers = items.length;
+		}
+		
+		for(var i=0;i<maxMembers;i++){
+			var itemDef = items[i].value;
+			
+			a.push(itemDef);
+		}
+		
+		return a;
+	*}
+	
+	/**
+	Generates an array of integers for use in BIAL forEach statement in order to emulate a traditional for loop.
+	<example>
+	Fill a list box with 10 values:
+	<code>ARRAY_1.eaches(0, 9, 1).forEach(function(element, index) {<br>
+	LISTBOX_1.addItem(element, "Item " + (element + "") );<br>
+	});</code>
+	This would be equivalent to a loop in JavaScript:
+	<code>
+	for(var element = 0;element<=9;element++){<br>
+		Your code here.<br>
+	}
+	</code>
+	</example>
+	*/
+	Array eaches(/*Starting int*/ int start, /* Ending int */ int finish, /* Interval increment */int interval) {*
+		var a = [];
+		for(var i=start;i<=finish;i+=interval){
+			a.push(i);
+		}
+		return a;
+	*}
+
+	/**
+	Returns all values as String separated by given optional separator. default separator is comma ,
+	<example>
+	You have an array with 3 values ["v1", "v2", "v3"]:
+	<code>
+	var valuesAsString = ARRAY_1.getValues ("|");<br>
+	</code>
+	
+	The "valuesAsString" has now "v1|v2|v3" as content.
+	</example>
+	*/
+	String getValues (
+			/*separator*/ optional String separator) {*  
+		var s = this.items;  
+		var items = JSON.parse(s);  
+		var a = [];  
+		
+		for(var i=0;i<items.length;i++){  
+			a.push(items[i].value);  
+		}  
+		
+		if(separator == undefined) {
+			separator = ",";
+		}
+		
+		return a.join(separator);  
+	*}
+	
+	/**
+	Creates an array of requested length with integers as values (starting at 0). 
+	<example>
+	You want an array with length 7:
+	<code>
+	ARRAY_1.createArray(7);<br>
+	</code>
+	This array has now following values: 0,1,2,3,4,5,6,7
+	</example>
+	*/
+	void createArray (
+			/**length*/ int lenght) {*
+		var items = [];
+			
+		for(var i=0; i<lenght; i++){
+			var itemDef = {
+				"value" : "" + i,
+				"text" : "" + i
+			};
+			
+			items.push(itemDef);
+		}
+		
+		this.items = JSON.stringify(items);  
+	*}
+	
+	/**
+	 * Removes all Values (clears the array)
+	 */
+	void removeAllValues () {*
+		var items = [];
+		this.items = JSON.stringify(items);  
+	*}
+
+	/**
+	Sets values of the array by string. Optionally a given separator can be specified. This implementation of array allows duplicate keys.
+	<example>
+	You want to set the string "k1;k2;k3" array:
+	<code>
+	ARRAY_1.setValues("k1;k2;k3", ";");<br>
+	</code>
+	This array has now following values: k1,k2,k3
+	</example>
+	*/
+	void setValues (
+			/**values*/ String values,
+			/**separator*/ optional String separator) {*  
+		var items = [];
+	
+		if(separator == undefined) {
+			separator = ",";
+		}
+			
+		var v = values.split(separator);
+		
+		for(var i=0; i<v.length; i++){
+			var itemDef = {
+				"value" : v[i],
+				"text" : v[i]
+			};
+			
+			items.push(itemDef);
+		}
+		
+		this.items = JSON.stringify(items);  
+	*}
+
+	/**
+	Adds a value to new or existing array. This implementation of array allows duplicate keys.
+	<example>
+	You want to create an "k1,k2,k3" array:
+	<code>
+	ARRAY_1.addValue("k1");<br>
+	ARRAY_1.addValue("k2");<br>
+	ARRAY_1.addValue("k3");<br>
+	</code>
+	This array has now following values: k1,k2,k3
+	</example>
+	*/
+	void addValue (
+			/*value*/ String value) {*  
+		
+		var s = this.items;  
+		var a = [];  
+		if(s!="") a = JSON.parse(s);
+		
+		var itemDef = {
+			"value" : value,
+			"text" : value
+		};
+		
+		a.push(itemDef);
+		
+		this.items = JSON.stringify(a);  
+	*}
+	
+	/**
+	 * Returns length of current array
+	 */
+	int getLength() {*  
+		var s = this.items;  
+		var a = [];  
+		if(s!="") a = JSON.parse(s);
+		
+		return a.length;  
+	*}  
+
+	/**
+	Returns value by given index. Indices are 0-based. In case the index does not exist, "N/A" is given back.
+	<example>
+	You have an "k1,k2,k3" array and want to get value at index 1:
+	<code>
+	var value1 = ARRAY_1.getValueByIndex(1);<br>
+	</code>
+	Now "value1" is set to "k2".
+	</example>
+	*/
+	String getValueByIndex ( 
+			/* index */ int index) {*  
+		var s = this.items;  
+		var a = JSON.parse(s);  
+		
+		var r = "N/A";  
+		if(a.length>index){  
+			r = a[index].value;  
+		}
+		
+		return r;  
+	*}
+}

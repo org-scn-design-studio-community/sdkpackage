@@ -1,0 +1,39 @@
+
+<component
+	id="CustomCssCollector"
+	title="Custom Css Collector"
+	tooltip="Allows to add Custom Css Files Dynamically"
+	icon="res/cc/CustomCssCollector.png"
+	handlerType="div"
+	group="ScnCommunityUtils"
+>
+
+	<jsInclude>res/cc/CustomCssCollector.js</jsInclude>
+
+	<property
+		id="additionalCss"
+		type="Url"
+		title="Css File for Baseline Url"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="elementsContent"
+		type="String"
+		title="Technical property for list of css"
+		group="Display"
+		visible="false" />
+
+	<initialization>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="additionalCss"></defaultValue>
+		<defaultValue property="elementsContent"></defaultValue>
+	</initialization>
+
+</component>

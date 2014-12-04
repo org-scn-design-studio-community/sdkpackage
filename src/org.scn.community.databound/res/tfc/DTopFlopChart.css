@@ -1,0 +1,62 @@
+.-scn-pack-DataTopFlopChart {
+	background: #FFFFFF !important;
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+	border: solid 1px #000000 !important;
+}
+
+.scn-pack-DataTopFlopChart-Layout {
+	border: solid 2px transparent !important;
+}
+
+.scn-pack-DataTopFlopChart-LayoutNoInteraction {
+	border: solid 0px transparent !important;
+}
+
+.scn-pack-DataTopFlopChart-SelectedValue {
+	border: solid 2px #000000 !important;
+}
+
+.scn-pack-DataTopFlopChart-Picture {
+	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+}
+
+.scn-pack-DataTopFlopChart-ValueLayout {
+	background: #D1D1D1 !important;
+}
+
+.scn-pack-DataTopFlopChart-ValueLayoutGood {
+	background: #32B243 !important;
+}
+
+.scn-pack-DataTopFlopChart-ValueLayoutBad {
+	background: #FD6442 !important;
+}
+
+.scn-pack-DataTopFlopChart-IndexText {
+	color: #309ABA !important;
+	font-weight: bold !important;
+}
+
+.scn-pack-DataTopFlopChart-Link {
+	color: #3778C7 !important;
+	font-weight: bold !important;
+}
+
+.scn-pack-DataTopFlopChart-Text {
+	color: black !important;
+	font-size: 12px !important;
+}
+
+.scn-pack-DataTopFlopChart-AverageText {
+	color: #666 !important;
+	font-size: 12px !important;
+}
+
+.scn-pack-DataTopFlopChart-TextDelta {
+	color: black !important;
+	font-size: 12px !important;
+}
+
+.scn-pack-DataTopFlopChart-BaseLine {
+	background: black !important;
+}

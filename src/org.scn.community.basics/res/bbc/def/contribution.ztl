@@ -1,0 +1,36 @@
+
+/**
+ * Class for BasicBusinessCard
+ */
+class org.scn.community.basics.BasicBusinessCard extends Component {
+
+	/** returns the image url */
+	String getImage () {*
+		return this.image;	
+	*}
+	
+	/** sets the image url */
+	void setImage (String imageUrl) {*
+		this.image = imageUrl;	
+	*}
+
+	/** returns the name */
+	String getName () {*
+		return this.name;	
+	*}
+	
+	/** sets the name */
+	void setName (String name) {*
+		this.name = name;	
+	*}
+
+	/** returns the title */
+	String getTitle () {*
+		return this.title;	
+	*}
+	
+	/** sets the title */
+	void setTitle (String title) {*
+		this.title = title;	
+	*}
+}

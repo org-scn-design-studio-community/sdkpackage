@@ -1,0 +1,94 @@
+
+/**
+ * Class for Slider
+ */
+class org.scn.community.basics.Slider extends Component {
+
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+
+	/** Sets the minimum value. */
+	void setMinimumValue(
+		/** Minimum value */ float min) {*
+		this.min = min;
+	*}
+	
+	/** Returns the minimum value. */
+	float getMinimumValue() {*
+		return this.min;
+	*}
+
+	/** Sets the maximum value. */
+	void setMaximumValue(
+		/** Maximum value */ float max) {*
+		this.max = max;
+	*}
+	
+	/** Returns the maximum value. */
+	float getMaximumValue() {*
+		return this.max;
+	*}
+
+	/** Sets the value. */
+	void setValue(
+		/** Value */ float value) {*
+		this.value = value;
+	*}
+	
+	/** Returns the value. */
+	float getValue() {*
+		return this.value;
+	*}
+	
+	/** Sets the total units value. */
+	void setTotalUnits(
+		/** Total units value */ int totalUnits) {*
+		this.totalUnits = totalUnits;
+	*}
+	
+	/** Returns the total units value. */
+	int getTotalUnits() {*
+		return this.totalUnits;
+	*}
+
+	/** Sets the step labels value. */
+	void setStepLabels(
+		/** Step labels value */ boolean stepLabels) {*
+		this.stepLabels = stepLabels;
+	*}
+	
+	/** Returns the step labels value. */
+	boolean isStepLabels() {*
+		return this.stepLabels;
+	*}
+
+	/** Sets the vertical value. */
+	void setVertical(
+		/** Vertical value */ boolean vertical) {*
+		this.vertical = vertical;
+	*}
+	
+	/** Returns the vertical value. */
+	boolean isVertical() {*
+		return this.vertical;
+	*}
+
+	/** Sets the small step width value. */
+	void setSmallStepWidth(
+		/** Small step width value */ float smallStepWidth) {*
+		this.smallStepWidth = smallStepWidth;
+	*}
+	
+	/** Returns the small step width value. */
+	float getSmallStepWidth() {*
+		return this.smallStepWidth;
+	*}
+}

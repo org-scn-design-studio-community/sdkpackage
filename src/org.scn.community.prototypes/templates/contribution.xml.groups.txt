@@ -1,0 +1,4 @@
+
+	<group
+		id="ScnCommunityPrototypes"
+		title="Scn Community Prototypes"/>

@@ -1,0 +1,2 @@
+Bundle-Name: Design Studio SCN Community Data Bound
+Bundle-SymbolicName: org.scn.community.databound;singleton:=true

@@ -1,0 +1,37 @@
+
+/**
+	Holder for Key, Label. You can access the content as in below example.
+	<br>
+	var content = COMPONENT.getSelectedElementsArray();<br>
+	
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.KeyLabelArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.KeyLabel<br>
+		var elKey = element.key;<br>
+		var elLabel = element.label;<br>
+	});
+ */
+class org.scn.community.shared.KeyLabel {
+  String key;
+  String label;
+}
+
+/**
+	Array for org.scn.community.shared.KeyLabel. You can use this array as in below example.
+	<br>
+	var content = COMPONENT.getSelectedElementsArray();<br>
+	<br>
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.KeyLabelArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.KeyLabelValue<br>
+		var elKey = element.key;<br>
+		var elLabel = element.label;<br>
+	});
+ */
+class org.scn.community.shared.KeyLabelArray extends Array {
+	org.scn.community.shared.KeyLabelArray (org.scn.community.shared.KeyLabel b);
+}

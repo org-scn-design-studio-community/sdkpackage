@@ -1,0 +1,87 @@
+
+<component
+	id="FioriButton"
+	title="Fiori Button"
+	icon="res/fb/FioriButton.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+	propertySheetPath="res/fb/aps/FioriButton.html"
+>
+	<jsInclude>res/fb/FioriButton.js</jsInclude>
+	<cssInclude>res/fb/FioriButton.css</cssInclude>
+	<property
+		id="dIcon"
+		type="String"
+		title="Icon"
+		tooltip="Icon for this Button"
+		group="Display"
+		visible="true" />
+	<property
+		id="dText"
+		type="String"
+		title="Text"
+		tooltip="Text for this Button"
+		group="Display"
+		visible="true" />
+	<property
+		id="dTooltip"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip for this Button"
+		group="Display"
+		visible="true" />
+	<property
+		id="dStyle"
+		type="String"
+		title="Button Style"
+		tooltip="Predefined Style for this Button"
+		group="Display"
+		visible="true"
+	>
+		<possibleValue>Default</possibleValue>
+		<possibleValue>Emph</possibleValue>
+		<possibleValue>Accept</possibleValue>
+		<possibleValue>Reject</possibleValue>
+	</property>
+	<property
+		id="dFontColor"
+		type="Color"
+		title="Font Color"
+		tooltip="Font Color for this Button"
+		group="Display"
+		visible="true" />
+	<property
+		id="dBackColor"
+		type="Color"
+		title="Background Color"
+		tooltip="Background Color for this Button"
+		group="Display"
+		visible="true" />
+	<property
+		id="dSize"
+		type="String"
+		title="Size M (16px) | L (22px)"
+		tooltip="The Size of the content"
+		group="Display"
+		visible="true"
+	>
+		<possibleValue>M</possibleValue>
+		<possibleValue>L</possibleValue>
+	</property>
+	<property
+		id="onClick"
+		type="ScriptText"
+		title="Event for On Click"
+		group="Events" />
+	<initialization>
+		<defaultValue property="WIDTH">42</defaultValue>
+		<defaultValue property="HEIGHT">42</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="dSize">L</defaultValue>
+		<defaultValue property="dIcon">e03e</defaultValue>
+		<defaultValue property="dStyle">Default</defaultValue>
+	</initialization>
+</component>

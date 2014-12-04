@@ -1,0 +1,80 @@
+
+<component
+	id="ToggleButton"
+	title="Toggle Button"
+	icon="res/tb/ToggleButton.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>res/tb/ToggleButton.js</jsInclude>
+	<cssInclude>res/tb/ToggleButton.css</cssInclude>
+
+	<property
+		id="text"
+		type="String"
+		title="Text Value"
+		tooltip="Button text displayed at runtime"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="tooltip"
+		type="String"
+		title="Tooltip Value"
+		tooltip="Button tooltip displayed at runtime"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="enabled"
+		title="Enabled"
+		tooltip="Switches enabled state of the control. Disabled fields have different colors and can not be focused."
+		type="boolean"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="icon"
+		title="Icon"
+		tooltip="Icon to be displayed as graphical element within the button. This can be an URI to an image or an icon font URI"
+		type="Url" />
+
+	<property
+		id="iconHovered"
+		title="Icon Hovered"
+		tooltip="Icon to be displayed as graphical element within the button when it is hovered (only if also a base icon was specified). If not specified the base icon is used. If a icon font icon is used, this property is ignored"
+		type="Url" />
+
+	<property
+		id="iconSelected"
+		title="Icon Selected"
+		tooltip="Icon to be displayed as graphical element within the button when it is selected (only if also a base icon was specified). If not specified the base or hovered icon is used. If a icon font icon is used, this property is ignored"
+		type="Url" />
+
+	<property
+		id="pressed"
+		title="Pressed"
+		tooltip="The property is true when the control is toggled. The default state of this property is false"
+		type="boolean"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="onPress"
+		type="ScriptText"
+		title="Event for On Press"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">80</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="enabled">true</defaultValue>
+
+	</initialization>
+</component>

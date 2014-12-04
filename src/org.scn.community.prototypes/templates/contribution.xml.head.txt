@@ -1,0 +1,2 @@
+	id="org.scn.community.prototypes"
+	title="Design Studio SCN Community Prototypes"

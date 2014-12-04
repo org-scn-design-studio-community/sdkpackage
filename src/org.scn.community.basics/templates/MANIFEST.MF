@@ -1,0 +1,2 @@
+Bundle-Name: Design Studio SCN Community Basics
+Bundle-SymbolicName: org.scn.community.basics;singleton:=true

@@ -1,0 +1,53 @@
+
+<component
+	id="Slider"
+	title="Slider"
+	handlerType="sapui5"
+	icon="res/sl/Slider.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/sl/Slider.js</jsInclude>
+	<property
+		id="min"
+		title="Minimum Value"
+		type="float" />
+	<property
+		id="max"
+		title="Maximum Value"
+		type="float" />
+	<property
+		id="value"
+		title="Value"
+		type="float" />
+	<property
+		id="totalUnits"
+		title="Total Units"
+		type="int" />
+	<property
+		id="stepLabels"
+		title="Step Labels"
+		type="boolean" />
+	<property
+		id="vertical"
+		title="Change to Vertical Orientation"
+		type="boolean" />
+	<property
+		id="smallStepWidth"
+		title="Small Step Width"
+		type="float" />
+	<property
+		id="onChange"
+		title="On Change"
+		type="ScriptText"
+		group="Events" />
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">30</defaultValue>
+		<defaultValue property="min">0.0</defaultValue>
+		<defaultValue property="max">100.0</defaultValue>
+		<defaultValue property="value">20.0</defaultValue>
+		<defaultValue property="totalUnits">10</defaultValue>
+		<defaultValue property="vertical">false</defaultValue>
+		<defaultValue property="smallStepWidth">10</defaultValue>
+	</initialization>
+</component>

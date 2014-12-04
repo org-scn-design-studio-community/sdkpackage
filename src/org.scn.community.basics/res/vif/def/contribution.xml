@@ -1,0 +1,97 @@
+
+<component
+	id="ValiInput"
+	title="Validated Input Field"
+	icon="res/vif/ValiInput.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/vif/validate.js</jsInclude>
+	<jsInclude>res/vif/ValiInput.js</jsInclude>
+	<cssInclude>res/vif/ValiInput.css</cssInclude>
+	<property
+		id="DValue"
+		type="String"
+		title="Value"
+		tooltip="Value"
+		group="Display"
+		visible="true" />
+	<property
+		id="DTooltip"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true" />
+	<property
+		id="DValidState"
+		type="String"
+		title="Valid State (for custom)"
+		tooltip="Valid State, only for custom validation"
+		group="Display"
+		visible="true"
+	>
+		<possibleValue>None</possibleValue>
+		<possibleValue>Error</possibleValue>
+		<possibleValue>Success</possibleValue>
+		<possibleValue>Warning</possibleValue>
+	</property>
+	<property
+		id="DValidation"
+		type="String"
+		title="Validation Type"
+		tooltip="Predefined Typs of Input Validation"
+		group="Display"
+		visible="true"
+	>
+		<possibleValue>none</possibleValue>
+		<possibleValue>default</possibleValue>
+		<possibleValue>custom</possibleValue>
+		<possibleValue>numeric</possibleValue>
+		<possibleValue>integer</possibleValue>
+		<possibleValue>decimal</possibleValue>
+		<possibleValue>max_length</possibleValue>
+		<possibleValue>min_length</possibleValue>
+		<possibleValue>exact_length</possibleValue>
+		<possibleValue>greater_than</possibleValue>
+		<possibleValue>less_than</possibleValue>
+		<possibleValue>alpha</possibleValue>
+		<possibleValue>alpha_numeric</possibleValue>
+		<possibleValue>alpha_dash</possibleValue>
+		<possibleValue>is_natural</possibleValue>
+		<possibleValue>is_natural_no_zero</possibleValue>
+		<possibleValue>valid_ip</possibleValue>
+		<possibleValue>valid_base64</possibleValue>
+		<possibleValue>valid_url</possibleValue>
+	</property>
+	<property
+		id="DLength"
+		title="Length"
+		tooltip="Length (required for length validation)"
+		type="int" />
+	<property
+		id="DNumber"
+		title="Number"
+		tooltip="Number (required for than validation)"
+		type="float" />
+	<property
+		id="DDefault"
+		title="Default Value"
+		tooltip="Default Value (required for default validation)"
+		type="String" />
+	<property
+		id="onChanged"
+		type="ScriptText"
+		title="Event for On Changed"
+		group="Events" />
+	<initialization>
+		<defaultValue property="WIDTH">42</defaultValue>
+		<defaultValue property="HEIGHT">42</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="DValidation">none</defaultValue>
+		<defaultValue property="DValidState">None</defaultValue>
+	</initialization>
+</component>

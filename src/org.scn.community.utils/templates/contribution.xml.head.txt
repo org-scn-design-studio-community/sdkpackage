@@ -1,0 +1,2 @@
+	id="org.scn.community.utils"
+	title="Design Studio SCN Community Utils"

@@ -1,0 +1,147 @@
+/* GENERATED - DO NOT EDIT */
+/**
+ * Copyright 2014, Contributors
+ * 
+ * Original Source Code Location:
+ *  https://github.com/sap-design-studio-free-addons/sdk-package
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ *  
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *  
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ */
+
+/**
+ * Class for ProgressBar Properties
+ */
+class org.scn.community.prototypes.BarProperty {
+  String title;
+  String fillColor;
+  String number;
+  String numberUnit;
+}
+/**
+ * Class for ProgressBar
+ */
+class org.scn.community.prototypes.ProgressSet extends Component {
+	/**
+	Sets bar thickness (-1 = auto)
+	*/
+	void setBarThickness(/* Thickness */ int thickness) {*
+		this.barHeight = thickness;
+	*}
+	/**
+	Gets bar thickness (-1 = auto)
+	*/
+	int getBarThickness() {*
+		return this.barHeight;
+	*}
+	/**
+	Sets inline labels to true/false
+	*/
+	void setInlineLabels(/* true/false */ boolean isInline) {*
+		this.inlineLabels = isInline;
+	*}
+	/**
+	Gets whether labels are inline are not
+	*/
+	boolean getInlineLabels() {*
+		return this.inlineLabels;
+	*}
+	/**
+	Gets Bar Selected
+	*/
+	String getBarClicked() {*
+		return this.selectedBar;
+	*}
+	/** Remove All Bars
+ 	<example>
+	Remove all bars
+	<code>
+	PROGRESSET_1.removeAllBars();<br>
+	</code>
+	</example>
+	 */
+	void removeAllBars () {*		
+		this.barConfig = JSON.stringify([]);
+	*}
+	/** Remove a bar
+ 	<example>
+	Remove a bar titled "Sales"
+	<code>
+	PROGRESSET_1.removeBar("Sales");<br>
+	</code>
+	</example>
+	 */
+	void removeBar (/*Tile Title*/String title) {*		
+		var o = eval(this.barConfig);
+		if(!o) o = [];
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		barConfig = JSON.stringify(o);
+	*}
+	com.sample.utilities.BarProperty getBarProperty(/*Title*/String title){*
+		var r = {
+			title : "",
+			fillColor : "",
+			number : "",
+			numberUnit : ""
+		}
+		var o = eval(this.barConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex>-1){
+			var barConf = o[matchIndex];
+			r.title = barConf.title;
+			r.fillColor = barConf.fillColor;
+			r.number = tileConf.number;
+			r.numberUnit = tileConf.numberUnit;
+		}
+		return r;
+	*}
+	/** Adds or Updates a Bar (if title already exists)
+ 	<example>
+	Add/Update a bar called "Sales"
+	<code>
+	PROGRESSET_1.addBar("Sales", "#FF0000", "1234", "USD");<br>
+	</code>
+	</example>
+	 */
+	void addBar (
+			/*Title*/String title, 
+			/*Number*/optional String number, 
+			/*Number Unit*/optional String numberUnit,
+			/*Fill Color*/optional String fillColor
+			) {*		
+		var o = eval(this.barConfig);
+		if(!o) o = [];
+		var bar = {
+			title: title,
+			fillColor: fillColor || "auto",
+			number: number,
+			numberUnit: numberUnit
+		};	
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex==-1){	// New Bar
+			o.push(bar);
+		}else{	// Update Bar
+			o[matchIndex] = bar;
+		}
+		barConfig = JSON.stringify(o);
+	*}
+}

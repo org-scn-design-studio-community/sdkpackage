@@ -1,0 +1,28 @@
+
+/**
+ * Class for RatingIndicator
+ */
+class org.scn.community.basics.RatingIndicator extends Component {
+
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+
+	/** Sets the rating value */
+	void setValue(
+		/** Rating value */ float value) {*
+		this.value = value;	
+	*}
+	
+	/** Returns the rating value */
+	float getValue() {*
+		return this.value;	
+	*}
+}

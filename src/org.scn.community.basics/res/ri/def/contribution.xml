@@ -1,0 +1,50 @@
+
+<component
+	id="RatingIndicator"
+	title="Rating Indicator"
+	handlerType="sapui5"
+	icon="res/ri/RatingIndicator.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/ri/RatingIndicator.js</jsInclude>
+	<property
+		id="editable"
+		title="Editable"
+		tooltip="Value 'true' is required for changes on the rating symbols."
+		type="boolean" />
+	<property
+		id="iconHovered"
+		title="Icon Hovered"
+		tooltip="The URI to the image which is displayed when the mouse hovers onto a rating symbol. If used, a requirement is that all custom icons need to have the same size. Note that when this attribute is used also the other icon attributes need to be set."
+		type="Url" />
+	<property
+		id="iconSelected"
+		title="Icon Selected"
+		tooltip="The URI to the image which shall be displayed for all selected rating symbols. Note that when this attribute is used, also the other icon attributes need to be set."
+		type="Url" />
+	<property
+		id="iconUnselected"
+		title="Icon Unselected"
+		tooltip="The URI to the image which shall be displayed for all unselected rating symbols. If this attribute is used, a requirement is that all custom icons need to have the same size. Note that when this attribute is used also the other icon attributes need to be set."
+		type="Url" />
+	<property
+		id="maxValue"
+		title="Maximum Value"
+		tooltip="The number of displayed rating symbols"
+		type="int" />
+	<property
+		id="value"
+		title="Value"
+		tooltip="The number of displayed rating symbols"
+		type="float" />
+	<property
+		id="onChange"
+		title="On Change"
+		tooltip="The event is fired when the user has done a rating."
+		type="ScriptText"
+		group="Events" />
+	<initialization>
+		<defaultValue property="editable">true</defaultValue>
+		<defaultValue property="maxValue">5</defaultValue>
+	</initialization>
+</component>

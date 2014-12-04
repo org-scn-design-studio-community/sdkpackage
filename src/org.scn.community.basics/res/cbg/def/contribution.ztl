@@ -1,0 +1,186 @@
+
+/**
+ * Class for CheckBox Group
+ */
+class org.scn.community.basics.CheckBoxGroup extends Component {
+	
+	/** remove all elements */
+	void removeAllElements () {*		
+			var elementsArray = [];
+			this.elements = JSON.stringify(elementsArray);
+	*}
+	
+	/** add an element containing key, text, imageUrl, value (float) and value (Sting)*/
+	void addElement (String elementKey, String elementText, String imageUrl, boolean selected) {*		
+		
+		var itemDef = { 
+			"key": elementKey, 
+			"text": elementText, 
+			"url": imageUrl,
+			"selected": selected
+			};
+	
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		elementsJson.push(itemDef);
+	
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	
+	/** insert an element */
+	void insertElement (String elementKey, String elementText, String imageUrl, boolean selected, int insertionIndex0based) {*
+		
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		var newElementsJson = [];
+		
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				var itemDef = { 
+						"key": elementKey, 
+						"text": elementText, 
+						"url": imageUrl,
+						"selected": selected
+						};
+				
+				newElementsJson.push(itemDef);
+			}
+			
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.elements = JSON.stringify(newElementsJson);
+	*}
+	
+	/** update given element */
+	void updateElement (String elementKey, String elementText, String imageUrl, boolean selected) {*
+		
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i].text = elementText;
+				elementsJson[i].url = imageUrl;
+				elementsJson[i].selected = selected;
+				break;
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	
+	/** delete an element */
+	void deleteElement (String elementKey) {*
+		
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		var newElementsJson = [];
+		
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key != elementKey) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+
+		this.elements = JSON.stringify(newElementsJson);
+	*}
+	
+	/** returns key at given index */
+	String getKeyAtIndex (int index) {*		
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		var newElementsJson = [];
+		
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index == i) {
+				return elementsJson[i].key;
+			}
+		}
+		
+		return "";
+	*}
+	
+	/** returns the selected key */
+	org.scn.pack.KeyLabelArray getSelectedElementsArray () {*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].selected == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	
+	/** sets the selected key */
+	void setSelectedKey (String key, boolean selected) {*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var elementsJson = JSON.parse(this.elements);
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].selected = selected;
+				break;
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	
+	/** sets the selected key */
+	void setSelectedKeys (String keys, String separator) {*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var selectedKeys = keys.split(separator);  
+
+		var elementsJson = JSON.parse(this.elements);
+		
+		// unselect all
+		for (var i = 0; i < elementsJson.length ; i++){
+			elementsJson[i].selected = false;
+		}
+		
+		// loop and find and select
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < selectedKeys.length ; j++){
+				if (elementsJson[i].key == selectedKeys[j]) {
+					elementsJson[i].selected = true;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+}
