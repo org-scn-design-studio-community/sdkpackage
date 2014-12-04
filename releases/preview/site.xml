@@ -3,7 +3,7 @@
    <description name="Design Studio SCN Community Free SDK Components" url="http://org-scn-design-studio-community.github.io/sdkpackage/releases/stable">
       Community Package with Free SDK Components. Contains many components which can be used based on free license.
    </description>
-   <feature url="features/org.scn.community.sdk.feature_1.0.0.201412041255.jar" id="org.scn.community.sdk.feature" version="1.0.0.201412041255">
+   <feature url="features/org.scn.community.sdk.feature_1.0.0.201412041456.jar" id="org.scn.community.sdk.feature" version="1.0.0.201412041456">
       <category name="com.sap.ip.bi.zen.sdk"/>
    </feature>
    <category-def name="com.sap.ip.bi.zen.sdk" label="com.sap.ip.bi.zen.sdk"/>
