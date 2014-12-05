@@ -9,3 +9,4 @@ del *.* /q
 cd..
 
 del *.jar /q
+del *.zip /q
