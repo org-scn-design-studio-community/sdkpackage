@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="clean_up" name="build">
+	<target name="clean_up">
+	 <delete>
+	    <fileset dir="." includes="**/*.jar"/>
+	  </delete>
+	</target>
+</project>
