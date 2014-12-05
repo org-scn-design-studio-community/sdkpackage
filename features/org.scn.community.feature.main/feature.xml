@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.scn.community.sdk.feature.main"
-      label="Design Studio SCN Community Free SDK Components [req. 1.3+ release]"
+      label="SCN Community Free SDK Components for Design Studio [rel. 1.3 or higher]"
       version="1.0.0.qualifier"
       provider-name="SCN Community Contributors">
 
    <description url="https://github.com/KarolKalisz/DesignStudioSdkPack/blob/stable/README.md">
-      Community Package with Free SDK Components. Contains many components which can be used based on free license.
+      SCN Community Package with free SDK Data Sources. Contains many components which can be used based on free Apache 2.0 license.
    </description>
 
    <copyright url="https://github.com/org-scn-design-studio-community/sdkpackage//blob/master/COPYRIGHT">
       /**
- * Copyright 2014, Contributors
+ * Copyright 2014, SCN Community Contributors: Mike Howles, Karol Kalisz and others
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/

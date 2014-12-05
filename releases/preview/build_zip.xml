@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="feature_export" name="build">
+	<target name="feature_export">
+		<pde.exportFeatures destination="" exportSource="false" exportType="zip" 
+			features="org.scn.community.sdk.feature.datasource,org.scn.community.sdk.feature.main" 
+			filename="org.scn.community.sdk.package_preview.zip" 
+			useJARFormat="true"/>
+	</target>
+</project>
