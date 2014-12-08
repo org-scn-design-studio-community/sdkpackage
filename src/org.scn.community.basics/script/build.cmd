@@ -14,6 +14,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\ColorPicker\def\contribution.xml ^
 ..\res\DragDropArea\def\contribution.xml ^
 ..\res\FallbackPicture\def\contribution.xml ^
+..\res\FioriAppHeader\def\contribution.xml ^
 ..\res\FioriButton\def\contribution.xml ^
 ..\res\FishEye\def\contribution.xml ^
 ..\res\ImageCarousel\def\contribution.xml ^
@@ -53,6 +54,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ColorPicker\def\contribution.ztl ^
 ..\res\DragDropArea\def\contribution.ztl ^
 ..\res\FallbackPicture\def\contribution.ztl ^
+..\res\FioriAppHeader\def\contribution.ztl ^
 ..\res\FioriButton\def\contribution.ztl ^
 ..\res\FishEye\def\contribution.ztl ^
 ..\res\ImageCarousel\def\contribution.ztl ^

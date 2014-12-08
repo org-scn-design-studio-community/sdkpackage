@@ -17,7 +17,6 @@
  * limitations under the License. 
  * 
  */
-
 /**
  * Based on from original version by Mike Howles, blogged here: 
  * (http://scn.sap.com/community/businessobjects-design-studio/blog/2014/10/09/design-studio-sdk-13--popover-buttons)
