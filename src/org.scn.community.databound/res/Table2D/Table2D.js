@@ -58,7 +58,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Table2D", f
 		colHeaders.text(function(d){return d});
 		// Create Rows and Row Headers
 		var rows = tbody.selectAll(".row").data(vals);
-		rows.enter().append("tr").classed("row",true);
+		rows.enter().append("tr").classed("row",true).classed("row-secondary", function(d,i){return ((i+1)/2 == Math.floor((i+1)/2));});
 		rows.exit().remove();
 		// Create Row Cells
 		var rowCells = rows.selectAll(".cell").data(function(d,i){return d;})
