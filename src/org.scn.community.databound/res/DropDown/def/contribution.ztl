@@ -3,10 +3,6 @@
  */
 class org.scn.community.databound.DropDown extends Component {
 
-	void _privateFillMasterData() {*
-	
-	*}
-
 	/** returns the selected key 
     <example>
 	You want to get first and second selected key in the range

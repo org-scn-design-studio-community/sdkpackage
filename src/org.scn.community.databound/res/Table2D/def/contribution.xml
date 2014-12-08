@@ -2,7 +2,7 @@
 <component
 		id="Table2D"
 		title="2D Crosstab"
-		icon="res/tab/Table2D.png"
+		icon="res/Table2D/Table2D.png"
 		handlerType="div"
 		propertySheetPath="res/Table2D/aps/Table2D.html"
 		group="ScnCommunityDataBound"
