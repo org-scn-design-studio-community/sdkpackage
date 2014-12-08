@@ -194,12 +194,43 @@
 <component
 	id="Array"
 	title="Array Utility"
-	icon="res/ar/Array.png"
+	icon="res/Array/Array.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/ar/Array.js</jsInclude>
+	<jsInclude>res/Array/Array.js</jsInclude>
+
+	<property
+		id="items"
+		type="String"
+		title="Technical proprty for list of items"
+		group="Display"
+		visible="false" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="items"></defaultValue>
+
+	</initialization>
+
+</component>
+
+<component
+	id="Collection"
+	title="Collection Utility"
+	icon="res/Collection/Collection.png"
+	handlerType="div"
+	group="ScnCommunityUtils"
+>
+
+	<jsInclude>res/Collection/Collection.js</jsInclude>
 
 	<property
 		id="items"
@@ -226,12 +257,12 @@
 	id="CustomCssCollector"
 	title="Custom Css Collector"
 	tooltip="Allows to add Custom Css Files Dynamically"
-	icon="res/cc/CustomCssCollector.png"
+	icon="res/CustomCssCollector/CustomCssCollector.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/cc/CustomCssCollector.js</jsInclude>
+	<jsInclude>res/CustomCssCollector/CustomCssCollector.js</jsInclude>
 
 	<property
 		id="additionalCss"
@@ -262,46 +293,15 @@
 </component>
 
 <component
-	id="Collection"
-	title="Collection Utility"
-	icon="res/co/Collection.png"
-	handlerType="div"
-	group="ScnCommunityUtils"
->
-
-	<jsInclude>res/co/Collection.js</jsInclude>
-
-	<property
-		id="items"
-		type="String"
-		title="Technical proprty for list of items"
-		group="Display"
-		visible="false" />
-
-	<initialization>
-		<defaultValue property="WIDTH">300</defaultValue>
-		<defaultValue property="HEIGHT">100</defaultValue>
-		<defaultValue property="TOP_MARGIN">0</defaultValue>
-		<defaultValue property="LEFT_MARGIN">0</defaultValue>
-		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-
-		<defaultValue property="items"></defaultValue>
-
-	</initialization>
-
-</component>
-
-<component
 	id="OpenWindowPost"
 	title="Open Window by Post"
 	tooltip="Open new Window by Post Method (removes URL size restriction)"
-	icon="res/ow/OpenWindowPost.png"
+	icon="res/OpenWindowPost/OpenWindowPost.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/ow/OpenWindowPost.js</jsInclude>
+	<jsInclude>res/OpenWindowPost/OpenWindowPost.js</jsInclude>
 
 	<property
 		id="url"

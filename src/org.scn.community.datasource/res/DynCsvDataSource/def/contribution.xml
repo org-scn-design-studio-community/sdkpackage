@@ -1,0 +1,25 @@
+<component
+	id="DynCsvDataSource"
+	title="Dynamic Csv Data Source"
+	tooltip="Allows dynamic access to data from a CSV file stored in the application folder, or uploaded mynually"
+	icon="res/DynCsvDataSource/DynCsvDataSource.png"
+	handlerType="datasource"
+>
+
+	<jsInclude>res/DynCsvDataSource/DynCsvDataSource.js</jsInclude>
+
+	<property
+		id="csvfile"
+		title="CSV File"
+		type="Url" />
+
+	<property
+		id="hasHeaderRow"
+		title="Has Header Row"
+		type="boolean" />
+
+	<property
+		id="hasHeaderColumn"
+		title="Has Header Column"
+		type="boolean" />
+</component>

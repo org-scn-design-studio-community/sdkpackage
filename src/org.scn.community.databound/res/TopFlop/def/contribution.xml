@@ -1,0 +1,166 @@
+
+<component
+	id="TopFlop"
+	title="Data Top Flop"
+	icon="res/TopFlop/TopFlop.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<stdInclude kind="cvom" />
+
+	<jsInclude>res/common.js</jsInclude>
+	<jsInclude>res/TopFlop/TopFlop.js</jsInclude>
+	<cssInclude>res/TopFlop/TopFlop.css</cssInclude>
+
+	<property
+		id="data"
+		title="Data List"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+	</property>
+
+	<property
+		id="maxNumber"
+		title="Maximum Number"
+		type="int"
+		group="Display" />
+
+	<property
+		id="topBottom"
+		title="Top X, Bottom X or Both"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>Top X</possibleValue>
+		<possibleValue>Bottom X</possibleValue>
+		<possibleValue>Both</possibleValue>
+	</property>
+
+	<property
+		id="fallbackPicture"
+		title="Url for the Fallback Picture"
+		type="Url"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="usePictures"
+		type="boolean"
+		title="Use Pictures"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="addCounter"
+		type="boolean"
+		title="Add Counter"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="pressedKey"
+		type="String"
+		title="Technical proprty for Pressed Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="valuePrefix"
+		type="String"
+		title="Value Prefix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="valueSuffix"
+		type="String"
+		title="Value Suffix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="deltaValueSuffix"
+		type="String"
+		title="Delta Value Suffix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="valueDecimalPlaces"
+		title="Value Decimal Places"
+		type="int"
+		group="Display"
+	>
+		<possibleValue>0</possibleValue>
+		<possibleValue>1</possibleValue>
+		<possibleValue>2</possibleValue>
+		<possibleValue>3</possibleValue>
+		<possibleValue>4</possibleValue>
+		<possibleValue>5</possibleValue>
+		<possibleValue>6</possibleValue>
+		<possibleValue>7</possibleValue>
+		<possibleValue>8</possibleValue>
+		<possibleValue>9</possibleValue>
+	</property>
+
+	<property
+		id="fixedAverage"
+		title="Fixed Average Value (-1 for calculated Average)"
+		type="int"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="averagePrefix"
+		title="Prefix for Average Value"
+		type="String"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="averageSuffix"
+		title="Suffix for Average Value"
+		type="String"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<property
+		id="onPress"
+		type="ScriptText"
+		title="Event for On Press"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">225</defaultValue>
+		<defaultValue property="HEIGHT">190</defaultValue>
+
+		<defaultValue property="topBottom">Both</defaultValue>
+		<defaultValue property="maxNumber">3</defaultValue>
+		<defaultValue property="addCounter">true</defaultValue>
+		<defaultValue property="usePictures">true</defaultValue>
+		<defaultValue property="valueDecimalPlaces">0</defaultValue>
+		<defaultValue property="fixedAverage">-1</defaultValue>
+		<defaultValue property="averagePrefix">Average: </defaultValue>
+	</initialization>
+
+</component>

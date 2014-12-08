@@ -194,12 +194,12 @@
 <component
 	id="Accordion"
 	title="Accordion"
-	icon="res/ac/Accordion.png"
+	icon="res/Accordion/Accordion.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/ac/Accordion.js</jsInclude>
-	<cssInclude>res/ac/Accordion.css</cssInclude>
+	<jsInclude>res/Accordion/Accordion.js</jsInclude>
+	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 
 	<property
 		id="selectedKey"
@@ -297,10 +297,11 @@
 	id="ApplicationHeader"
 	title="Application Header"
 	handlerType="sapui5"
-	icon="res/ah/ApplicationHeader.png"
+	icon="res/ApplicationHeader/ApplicationHeader.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/ah/ApplicationHeader.js</jsInclude>
+	<jsInclude>res/ApplicationHeader/ApplicationHeader.js</jsInclude>
+
 	<property
 		id="displayLogoff"
 		title="Display Logoff"
@@ -345,13 +346,13 @@
 <component
 	id="BasicBusinessCard"
 	title="Basic Business Card"
-	icon="res/bbc/BasicBusinessCard.png"
+	icon="res/BasicBusinessCard/BasicBusinessCard.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
-	<jsInclude>res/bbc/BasicBusinessCard.js</jsInclude>
-	<cssInclude>res/bbc/BasicBusinessCard.css</cssInclude>
+	<jsInclude>res/BasicBusinessCard/BasicBusinessCard.js</jsInclude>
+	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
 
 	<property
 		id="image"
@@ -403,12 +404,12 @@
 <component
 	id="CheckBoxGroup"
 	title="Check Box Group"
-	icon="res/cbg/CheckBoxGroup.png"
+	icon="res/CheckBoxGroup/CheckBoxGroup.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/cbg/CheckBoxGroup.js</jsInclude>
-	<cssInclude>res/cbg/CheckBoxGroup.css</cssInclude>
+	<jsInclude>res/CheckBoxGroup/CheckBoxGroup.js</jsInclude>
+	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 
 	<property
 		id="fallbackPicture"
@@ -468,10 +469,11 @@
 	id="ColorPicker"
 	title="Color Picker"
 	handlerType="sapui5"
-	icon="res/cp/ColorPicker.png"
+	icon="res/ColorPicker/ColorPicker.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/cp/ColorPicker.js</jsInclude>
+	<jsInclude>res/ColorPicker/ColorPicker.js</jsInclude>
+
 	<property
 		id="colorString"
 		title="Color"
@@ -491,14 +493,14 @@
 <component
 	id="DragDropArea"
 	title="Drag Drop Area"
-	icon="res/dda/DragDropArea.png"
+	icon="res/DragDropArea/DragDropArea.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
-	<jsInclude>res/dda/jquery.ndd.js</jsInclude>
-	<jsInclude>res/dda/DragDropArea.js</jsInclude>
-	<cssInclude>res/dda/DragDropArea.css</cssInclude>
+	<jsInclude>res/DragDropArea/jquery.ndd.js</jsInclude>
+	<jsInclude>res/DragDropArea/DragDropArea.js</jsInclude>
+	<cssInclude>res/DragDropArea/DragDropArea.css</cssInclude>
 
 	<property
 		id="defaultImage"
@@ -604,17 +606,53 @@
 
 	</initialization>
 
+</component><component
+	id="FallbackPicture"
+	title="Fallback Picture"
+	icon="res/FallbackPicture/FallbackPicture.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/FallbackPicture/FallbackPicture.js</jsInclude>
+	<cssInclude>res/FallbackPicture/FallbackPicture.css</cssInclude>
+
+	<property
+		id="picture"
+		title="Url for Picture"
+		tooltip="Url for Picture which should be shown"
+		type="Url"
+		visible="true" />
+
+	<property
+		id="fallbackPicture"
+		title="Url for Fallback Picture"
+		tooltip="Url for Fallback Picture which should be shown"
+		type="Url"
+		visible="true" />
+
+	<initialization>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="picture"></defaultValue>
+		<defaultValue property="fallbackPicture"></defaultValue>
+
+	</initialization>
+
 </component>
 <component
 	id="FioriButton"
 	title="Fiori Button"
-	icon="res/fb/FioriButton.png"
+	icon="res/FioriButton/FioriButton.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
-	propertySheetPath="res/fb/aps/FioriButton.html"
+	propertySheetPath="res/FioriButton/aps/FioriButton.html"
 >
-	<jsInclude>res/fb/FioriButton.js</jsInclude>
-	<cssInclude>res/fb/FioriButton.css</cssInclude>
+	<jsInclude>res/FioriButton/FioriButton.js</jsInclude>
+	<cssInclude>res/FioriButton/FioriButton.css</cssInclude>
 	<property
 		id="dIcon"
 		type="String"
@@ -694,13 +732,13 @@
 <component
 	id="FishEye"
 	title="Fish Eye"
-	icon="res/fe/FishEye.png"
+	icon="res/FishEye/FishEye.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
-	<jsInclude>res/fe/FishEye.js</jsInclude>
-	<cssInclude>res/fe/FishEye.css</cssInclude>
+	<jsInclude>res/FishEye/FishEye.js</jsInclude>
+	<cssInclude>res/FishEye/FishEye.css</cssInclude>
 
 	<property
 		id="defaultImage"
@@ -756,52 +794,16 @@
 
 	</initialization>
 
-</component><component
-	id="FallbackPicture"
-	title="Fallback Picture"
-	icon="res/fp/FallbackPicture.png"
-	handlerType="sapui5"
-	group="ScnCommunityBasics"
->
-	<jsInclude>res/fp/FallbackPicture.js</jsInclude>
-	<cssInclude>res/fp/FallbackPicture.css</cssInclude>
-
-	<property
-		id="picture"
-		title="Url for Picture"
-		tooltip="Url for Picture which should be shown"
-		type="Url"
-		visible="true" />
-
-	<property
-		id="fallbackPicture"
-		title="Url for Fallback Picture"
-		tooltip="Url for Fallback Picture which should be shown"
-		type="Url"
-		visible="true" />
-
-	<initialization>
-		<defaultValue property="WIDTH">100</defaultValue>
-		<defaultValue property="HEIGHT">100</defaultValue>
-		<defaultValue property="TOP_MARGIN">0</defaultValue>
-		<defaultValue property="LEFT_MARGIN">0</defaultValue>
-		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="picture"></defaultValue>
-		<defaultValue property="fallbackPicture"></defaultValue>
-
-	</initialization>
-
 </component>
 <component
 	id="ImageCarousel"
 	title="Image Carousel"
-	icon="res/ic/ImageCarousel.png"
+	icon="res/ImageCarousel/ImageCarousel.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/ic/ImageCarousel.js</jsInclude>
-	<cssInclude>res/ic/ImageCarousel.css</cssInclude>
+	<jsInclude>res/ImageCarousel/ImageCarousel.js</jsInclude>
+	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 
 	<property
 		id="defaultImage"
@@ -848,7 +850,7 @@
 <component
 	id="KpiView"
 	title="Kpi View"
-	icon="res/kpi/KpiView.png"
+	icon="res/KpiView/KpiView.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 	databound="true"
@@ -856,8 +858,8 @@
 
 	<stdInclude kind="cvom" />
 
-	<jsInclude>res/kpi/KpiView.js</jsInclude>
-	<cssInclude>res/kpi/KpiView.css</cssInclude>
+	<jsInclude>res/KpiView/KpiView.js</jsInclude>
+	<cssInclude>res/KpiView/KpiView.css</cssInclude>
 
 	<property
 		id="data"
@@ -1024,12 +1026,12 @@
 <component
 	id="LeaderBoard"
 	title="Leader Board"
-	icon="res/lb/LeaderBoard.png"
+	icon="res/LeaderBoard/LeaderBoard.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/lb/LeaderBoard.js</jsInclude>
-	<cssInclude>res/lb/LeaderBoard.css</cssInclude>
+	<jsInclude>res/LeaderBoard/LeaderBoard.js</jsInclude>
+	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 
 	<property
 		id="fallbackPicture"
@@ -1112,10 +1114,10 @@
 	id="Link"
 	title="Link"
 	handlerType="sapui5"
-	icon="res/li/Link.png"
+	icon="res/Link/Link.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/li/Link.js</jsInclude>
+	<jsInclude>res/Link/Link.js</jsInclude>
 	<property
 		id="text"
 		title="Link Text"
@@ -1140,14 +1142,14 @@
 <component
 	id="MenuBar"
 	title="Menu Bar (>= 1.4)"
-	icon="res/mb/MenuBar.png"
+	icon="res/MenuBar/MenuBar.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
 	<jsInclude>res/common.js</jsInclude>
-	<jsInclude>res/mb/MenuBar.js</jsInclude>
-	<cssInclude>res/mb/menuBar.css</cssInclude>
+	<jsInclude>res/MenuBar/MenuBar.js</jsInclude>
+	<cssInclude>res/MenuBar/menuBar.css</cssInclude>
 
 	<property
 		id="selectedKey"
@@ -1200,14 +1202,14 @@
 <component
 	id="MenuButton"
 	title="Menu Button (>= 1.4)"
-	icon="res/mbt/MenuButton.png"
+	icon="res/MenuButton/MenuButton.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
 	<jsInclude>res/common.js</jsInclude>
-	<jsInclude>res/mbt/MenuButton.js</jsInclude>
-	<cssInclude>res/mbt/MenuButton.css</cssInclude>
+	<jsInclude>res/MenuButton/MenuButton.js</jsInclude>
+	<cssInclude>res/MenuButton/MenuButton.css</cssInclude>
 
 	<property
 		id="text"
@@ -1293,12 +1295,12 @@
 <component
 	id="NotificationBar"
 	title="Notification Bar"
-	icon="res/nb/NotificationBar.png"
+	icon="res/NotificationBar/NotificationBar.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/nb/NotificationBar.js</jsInclude>
-	<cssInclude>res/nb/NotificationBar.css</cssInclude>
+	<jsInclude>res/NotificationBar/NotificationBar.js</jsInclude>
+	<cssInclude>res/NotificationBar/NotificationBar.css</cssInclude>
 
 	<property
 		id="defaultImage"
@@ -1385,7 +1387,7 @@
 <component
 	id="Map"
 	title="Open Street Map"
-	icon="res/map/OSMap.png"
+	icon="res/OSMap/OSMap.png"
 	handlerType="div"
 	group="ScnCommunityBasics"
 >
@@ -1393,8 +1395,8 @@
 	<jsInclude>os/mm/mm-min.js</jsInclude>
 	<jsInclude>os/mm/mm-follower.js</jsInclude>
 
-	<jsInclude>res/osm/OSMap.js</jsInclude>
-	<cssInclude>res/osm/OSMap.css</cssInclude>
+	<jsInclude>res/OSMap/OSMap.js</jsInclude>
+	<cssInclude>res/OSMap/OSMap.css</cssInclude>
 
 	<property
 		id="moveTo"
@@ -1465,10 +1467,10 @@
 	id="Paginator"
 	title="Paginator"
 	handlerType="sapui5"
-	icon="res/pa/Paginator.png"
+	icon="res/Paginator/Paginator.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/pa/Paginator.js</jsInclude>
+	<jsInclude>res/Paginator/Paginator.js</jsInclude>
 	<property
 		id="currentPage"
 		title="Current Page"
@@ -1495,10 +1497,10 @@
 	id="ProgressIndicator"
 	title="Progress Indicator"
 	handlerType="sapui5"
-	icon="res/pi/ProgressIndicator.png"
+	icon="res/ProgressIndicator/ProgressIndicator.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/pi/ProgressIndicator.js</jsInclude>
+	<jsInclude>res/ProgressIndicator/ProgressIndicator.js</jsInclude>
 	<property
 		id="barColor"
 		title="Bar Color"
@@ -1539,62 +1541,13 @@
 	</initialization>
 </component>
 <component
-	id="RatingIndicator"
-	title="Rating Indicator"
-	handlerType="sapui5"
-	icon="res/ri/RatingIndicator.png"
-	group="ScnCommunityBasics"
->
-	<jsInclude>res/ri/RatingIndicator.js</jsInclude>
-	<property
-		id="editable"
-		title="Editable"
-		tooltip="Value 'true' is required for changes on the rating symbols."
-		type="boolean" />
-	<property
-		id="iconHovered"
-		title="Icon Hovered"
-		tooltip="The URI to the image which is displayed when the mouse hovers onto a rating symbol. If used, a requirement is that all custom icons need to have the same size. Note that when this attribute is used also the other icon attributes need to be set."
-		type="Url" />
-	<property
-		id="iconSelected"
-		title="Icon Selected"
-		tooltip="The URI to the image which shall be displayed for all selected rating symbols. Note that when this attribute is used, also the other icon attributes need to be set."
-		type="Url" />
-	<property
-		id="iconUnselected"
-		title="Icon Unselected"
-		tooltip="The URI to the image which shall be displayed for all unselected rating symbols. If this attribute is used, a requirement is that all custom icons need to have the same size. Note that when this attribute is used also the other icon attributes need to be set."
-		type="Url" />
-	<property
-		id="maxValue"
-		title="Maximum Value"
-		tooltip="The number of displayed rating symbols"
-		type="int" />
-	<property
-		id="value"
-		title="Value"
-		tooltip="The number of displayed rating symbols"
-		type="float" />
-	<property
-		id="onChange"
-		title="On Change"
-		tooltip="The event is fired when the user has done a rating."
-		type="ScriptText"
-		group="Events" />
-	<initialization>
-		<defaultValue property="editable">true</defaultValue>
-		<defaultValue property="maxValue">5</defaultValue>
-	</initialization>
-</component>
-<component
 	id="RangeSlider"
 	title="Range Slider"
 	handlerType="sapui5"
-	icon="res/rsl/RangeSlider.png"
+	icon="res/RangeSlider/RangeSlider.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/rsl/RangeSlider.js</jsInclude>
+	<jsInclude>res/RangeSlider/RangeSlider.js</jsInclude>
 	<property
 		id="min"
 		title="Minimum Value"
@@ -1645,13 +1598,62 @@
 	</initialization>
 </component>
 <component
+	id="RatingIndicator"
+	title="Rating Indicator"
+	handlerType="sapui5"
+	icon="res/RatingIndicator/RatingIndicator.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/RatingIndicator/RatingIndicator.js</jsInclude>
+	<property
+		id="editable"
+		title="Editable"
+		tooltip="Value 'true' is required for changes on the rating symbols."
+		type="boolean" />
+	<property
+		id="iconHovered"
+		title="Icon Hovered"
+		tooltip="The URI to the image which is displayed when the mouse hovers onto a rating symbol. If used, a requirement is that all custom icons need to have the same size. Note that when this attribute is used also the other icon attributes need to be set."
+		type="Url" />
+	<property
+		id="iconSelected"
+		title="Icon Selected"
+		tooltip="The URI to the image which shall be displayed for all selected rating symbols. Note that when this attribute is used, also the other icon attributes need to be set."
+		type="Url" />
+	<property
+		id="iconUnselected"
+		title="Icon Unselected"
+		tooltip="The URI to the image which shall be displayed for all unselected rating symbols. If this attribute is used, a requirement is that all custom icons need to have the same size. Note that when this attribute is used also the other icon attributes need to be set."
+		type="Url" />
+	<property
+		id="maxValue"
+		title="Maximum Value"
+		tooltip="The number of displayed rating symbols"
+		type="int" />
+	<property
+		id="value"
+		title="Value"
+		tooltip="The number of displayed rating symbols"
+		type="float" />
+	<property
+		id="onChange"
+		title="On Change"
+		tooltip="The event is fired when the user has done a rating."
+		type="ScriptText"
+		group="Events" />
+	<initialization>
+		<defaultValue property="editable">true</defaultValue>
+		<defaultValue property="maxValue">5</defaultValue>
+	</initialization>
+</component>
+<component
 	id="Slider"
 	title="Slider"
 	handlerType="sapui5"
-	icon="res/sl/Slider.png"
+	icon="res/Slider/Slider.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/sl/Slider.js</jsInclude>
+	<jsInclude>res/Slider/Slider.js</jsInclude>
 	<property
 		id="min"
 		title="Minimum Value"
@@ -1699,12 +1701,12 @@
 <component
 	id="TextArea"
 	title="TextArea"
-	icon="res/ta/TextArea.png"
+	icon="res/TextArea/TextArea.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/ta/TextArea.js</jsInclude>
-	<cssInclude>res/ta/TextArea.css</cssInclude>
+	<jsInclude>res/TextArea/TextArea.js</jsInclude>
+	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	<property
 		id="value"
 		type="String"
@@ -1744,13 +1746,13 @@
 <component
 	id="ToggleButton"
 	title="Toggle Button"
-	icon="res/tb/ToggleButton.png"
+	icon="res/ToggleButton/ToggleButton.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
-	<jsInclude>res/tb/ToggleButton.js</jsInclude>
-	<cssInclude>res/tb/ToggleButton.css</cssInclude>
+	<jsInclude>res/ToggleButton/ToggleButton.js</jsInclude>
+	<cssInclude>res/ToggleButton/ToggleButton.css</cssInclude>
 
 	<property
 		id="text"
@@ -1824,12 +1826,12 @@
 <component
 	id="Tree"
 	title="Tree"
-	icon="res/tr/Tree.png"
+	icon="res/Tree/Tree.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/tr/Tree.js</jsInclude>
-	<cssInclude>res/tr/Tree.css</cssInclude>
+	<jsInclude>res/Tree/Tree.js</jsInclude>
+	<cssInclude>res/Tree/Tree.css</cssInclude>
 
 	<property
 		id="selectedKey"
@@ -1903,13 +1905,13 @@
 <component
 	id="ValiInput"
 	title="Validated Input Field"
-	icon="res/vif/ValiInput.png"
+	icon="res/ValiInput/ValiInput.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 	<jsInclude>res/vif/validate.js</jsInclude>
-	<jsInclude>res/vif/ValiInput.js</jsInclude>
-	<cssInclude>res/vif/ValiInput.css</cssInclude>
+	<jsInclude>res/ValiInput/ValiInput.js</jsInclude>
+	<cssInclude>res/ValiInput/ValiInput.css</cssInclude>
 	<property
 		id="DValue"
 		type="String"

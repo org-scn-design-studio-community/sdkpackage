@@ -552,160 +552,6 @@ class org.scn.community.basics.DragDropArea extends Component {
 		return this.dragContext;	
 	*}
 }
-
-/**
- * Class for FioriButton
- */
-class org.scn.community.basics.FioriButton extends Component {
-
-	/** Sets the text that is displayed */
-	void setText(
-			/** text */ String text) {*
-		this.dText = text;	
-			*}
-
-	/** Returns the text that is displayed */
-	String getText() {*
-		return this.dText;	
-	*}
-
-	/** Sets the tooltip that is displayed */
-	void setTooltip(
-			/** text */ String tooltip) {*
-		this.dTooltip = tooltip;	
-			*}
-
-	/** Returns the tooltip that is displayed */
-	String getTooltip() {*
-		return this.dTooltip;	
-	*}
-}
-
-/**
- * Class for FishEye
- */
-class org.scn.community.basics.FishEye extends Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elements = JSON.stringify(elementsArray);
-	*}
-	
-	/** add an element */
-	void addElement (String elementKey, String elementText, String imageUrl) {*		
-		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl
-			};
-	
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		elementsJson.push(itemDef);
-	
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** insert an element */
-	void insertElement (String elementKey, String elementText, String imageUrl, int insertionIndex0based) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (i == insertionIndex0based) {
-				var itemDef = { 
-						"key": elementKey, 
-						"text": elementText, 
-						"url": imageUrl
-						};
-				
-				newElementsJson.push(itemDef);
-			}
-			
-			newElementsJson.push(elementsJson[i]);
-		}
-
-		this.elements = JSON.stringify(newElementsJson);
-	*}
-	
-	/** update given element */
-	void updateElement (String elementKey, String elementText, String imageUrl) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
-				elementsJson[i].text = elementText;
-				elementsJson[i].url = imageUrl;
-				break;
-			}
-		}
-		
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** delete an element */
-	void deleteElement (String elementKey) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key != elementKey) {
-				newElementsJson.push(elementsJson[i]);
-			}
-		}
-
-		this.elements = JSON.stringify(newElementsJson);
-	*}
-	
-	/** returns key at given index */
-	String getKeyAtIndex (int index) {*		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (index == i) {
-				return elementsJson[i].key;
-			}
-		}
-		
-		return "";
-	*}
-	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
-	*}
-}
 /**
  * Copyright 2014 Scn Community Contributors
  * 
@@ -3125,6 +2971,160 @@ class org.scn.community.basics.MenuButton extends Component {
 }
 
 /**
+ * Class for FioriButton
+ */
+class org.scn.community.basics.FioriButton extends Component {
+
+	/** Sets the text that is displayed */
+	void setText(
+			/** text */ String text) {*
+		this.dText = text;	
+			*}
+
+	/** Returns the text that is displayed */
+	String getText() {*
+		return this.dText;	
+	*}
+
+	/** Sets the tooltip that is displayed */
+	void setTooltip(
+			/** text */ String tooltip) {*
+		this.dTooltip = tooltip;	
+			*}
+
+	/** Returns the tooltip that is displayed */
+	String getTooltip() {*
+		return this.dTooltip;	
+	*}
+}
+
+/**
+ * Class for FishEye
+ */
+class org.scn.community.basics.FishEye extends Component {
+	
+	/** remove all elements */
+	void removeAllElements () {*		
+			var elementsArray = [];
+			this.elements = JSON.stringify(elementsArray);
+	*}
+	
+	/** add an element */
+	void addElement (String elementKey, String elementText, String imageUrl) {*		
+		
+		var itemDef = { 
+			"key": elementKey, 
+			"text": elementText, 
+			"url": imageUrl
+			};
+	
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		elementsJson.push(itemDef);
+	
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	
+	/** insert an element */
+	void insertElement (String elementKey, String elementText, String imageUrl, int insertionIndex0based) {*
+		
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		var newElementsJson = [];
+		
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				var itemDef = { 
+						"key": elementKey, 
+						"text": elementText, 
+						"url": imageUrl
+						};
+				
+				newElementsJson.push(itemDef);
+			}
+			
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.elements = JSON.stringify(newElementsJson);
+	*}
+	
+	/** update given element */
+	void updateElement (String elementKey, String elementText, String imageUrl) {*
+		
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i].text = elementText;
+				elementsJson[i].url = imageUrl;
+				break;
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	
+	/** delete an element */
+	void deleteElement (String elementKey) {*
+		
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		var newElementsJson = [];
+		
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key != elementKey) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+
+		this.elements = JSON.stringify(newElementsJson);
+	*}
+	
+	/** returns key at given index */
+	String getKeyAtIndex (int index) {*		
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		var newElementsJson = [];
+		
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index == i) {
+				return elementsJson[i].key;
+			}
+		}
+		
+		return "";
+	*}
+	
+	/** returns the selected key */
+	String getSelectedKey () {*
+		return this.selectedKey;	
+	*}
+	
+	/** sets the selected key */
+	void setSelectedKey (String key) {*
+		this.selectedKey = key;	
+	*}
+}
+
+/**
  * Class for ImageCarousel
  */
 class org.scn.community.basics.ImageCarousel extends Component {
@@ -4042,34 +4042,6 @@ class org.scn.community.basics.ProgressIndicator extends Component {
 }
 
 /**
- * Class for RatingIndicator
- */
-class org.scn.community.basics.RatingIndicator extends Component {
-
-	/** Sets the editable value */
-	void setEditable(
-		/** Editable value */ boolean editable) {*
-		this.editable = editable;
-	*}
-	
-	/** Returns the editable value */
-	boolean isEditable() {*
-		return this.editable;
-	*}
-
-	/** Sets the rating value */
-	void setValue(
-		/** Rating value */ float value) {*
-		this.value = value;	
-	*}
-	
-	/** Returns the rating value */
-	float getValue() {*
-		return this.value;	
-	*}
-}
-
-/**
  * Class for RangeSlider (extension of slider)
  */
 class org.scn.community.basics.RangeSlider extends Component {
@@ -4171,6 +4143,34 @@ class org.scn.community.basics.RangeSlider extends Component {
 	/** Returns the small step width value. */
 	float getSmallStepWidth() {*
 		return this.smallStepWidth;
+	*}
+}
+
+/**
+ * Class for RatingIndicator
+ */
+class org.scn.community.basics.RatingIndicator extends Component {
+
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+
+	/** Sets the rating value */
+	void setValue(
+		/** Rating value */ float value) {*
+		this.value = value;	
+	*}
+	
+	/** Returns the rating value */
+	float getValue() {*
+		return this.value;	
 	*}
 }
 

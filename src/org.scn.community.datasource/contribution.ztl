@@ -18,9 +18,7 @@
  * limitations under the License. 
  */
 
-class org.scn.community.datasource.DynCsvDataSource extends SdkDataBuffer {
-	// empty
-}class org.scn.community.datasource.BYOData extends SdkDataSource {
+class org.scn.community.datasource.BYOData extends SdkDataSource {
 	/**
 	 * Set a mutator for a measure by index (starting at 0)
 	 * <example>
@@ -38,4 +36,6 @@ class org.scn.community.datasource.DynCsvDataSource extends SdkDataBuffer {
 		m[index] = factor;
 		this.mutators = JSON.stringify(m);
 	*}
+}class org.scn.community.datasource.DynCsvDataSource extends SdkDataBuffer {
+	// empty
 }

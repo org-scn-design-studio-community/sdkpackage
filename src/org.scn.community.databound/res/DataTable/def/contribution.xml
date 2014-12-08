@@ -1,0 +1,60 @@
+
+<component
+	id="Table"
+	title="Data Table"
+	icon="res/DataTable/DataTable.png"
+	handlerType="div"
+	propertySheetPath="res/DataTable/aps/DataTable.html"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>res/DataTable/DataTable.js</jsInclude>
+
+	<property
+		id="column1"
+		title="Column 1"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+		<option
+			name="includeFormattedData"
+			value="true" />
+		<option
+			name="includeData"
+			value="false" />
+	</property>
+
+	<property
+		id="column2"
+		title="Column 2"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+		<option
+			name="includeFormattedData"
+			value="true" />
+		<option
+			name="includeData"
+			value="false" />
+	</property>
+
+	<property
+		id="column3"
+		title="Column 3"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+		<option
+			name="includeFormattedData"
+			value="true" />
+		<option
+			name="includeData"
+			value="false" />
+	</property>
+
+	<initialization>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+	</initialization>
+</component>

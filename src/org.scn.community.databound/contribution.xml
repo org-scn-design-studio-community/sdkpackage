@@ -192,9 +192,68 @@
 		title="Scn Community Data Bound"/>
 
 <component
+	id="Table"
+	title="Data Table"
+	icon="res/DataTable/DataTable.png"
+	handlerType="div"
+	propertySheetPath="res/DataTable/aps/DataTable.html"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>res/DataTable/DataTable.js</jsInclude>
+
+	<property
+		id="column1"
+		title="Column 1"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+		<option
+			name="includeFormattedData"
+			value="true" />
+		<option
+			name="includeData"
+			value="false" />
+	</property>
+
+	<property
+		id="column2"
+		title="Column 2"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+		<option
+			name="includeFormattedData"
+			value="true" />
+		<option
+			name="includeData"
+			value="false" />
+	</property>
+
+	<property
+		id="column3"
+		title="Column 3"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+		<option
+			name="includeFormattedData"
+			value="true" />
+		<option
+			name="includeData"
+			value="false" />
+	</property>
+
+	<initialization>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+	</initialization>
+</component>
+<component
 	id="DropDown"
 	title="Data Drop Down"
-	icon="res/dd/DDropDown.png"
+	icon="res/DropDown/DropDown.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
 	databound="true"
@@ -203,8 +262,29 @@
 	<stdInclude kind="cvom" />
 
 	<jsInclude>res/common.js</jsInclude>
-	<jsInclude>res/dd/DDropDown.js</jsInclude>
-	<cssInclude>res/dd/DDropDown.css</cssInclude>
+	<jsInclude>res/DropDown/DropDown.js</jsInclude>
+	<cssInclude>res/DropDown/DropDown.css</cssInclude>
+
+	<property
+		id="DSBindingMode"
+		title="Binding Mode (metadata, resultset)"
+		type="String"
+		group="Display"
+		visible="false"
+	>
+		<possibleValue>Result Set</possibleValue>
+		<possibleValue>Master Data</possibleValue>
+		<possibleValue>Both</possibleValue>
+	</property>
+
+	<property
+		id="DSElements"
+		title="Master Data Elements"
+		type="String"
+		group="DataBinding"
+		visible="false"
+	>
+	</property>
 
 	<property
 		id="data"
@@ -294,6 +374,7 @@
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">26</defaultValue>
 
+		<defaultValue property="DSBindingMode">Result Set</defaultValue>
 		<defaultValue property="topBottom">Both</defaultValue>
 		<defaultValue property="sorting">By Value</defaultValue>
 		<defaultValue property="maxNumber">3</defaultValue>
@@ -306,7 +387,7 @@
 <component
 	id="LeaderBoard"
 	title="Data Leader Board"
-	icon="res/lb/DLeaderBoard.png"
+	icon="res/LeaderBoard/LeaderBoard.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
 	databound="true"
@@ -314,8 +395,8 @@
 
 	<stdInclude kind="cvom" />
 
-	<jsInclude>res/lb/DLeaderBoard.js</jsInclude>
-	<cssInclude>res/lb/DLeaderBoard.css</cssInclude>
+	<jsInclude>res/LeaderBoard/LeaderBoard.js</jsInclude>
+	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 
 	<property
 		id="data"
@@ -435,7 +516,7 @@
 <component
 	id="RangeSlider"
 	title="Data Range Slider"
-	icon="res/rsl/DRangeSlider.png"
+	icon="res/RangeSlider/RangeSlider.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
 	databound="true"
@@ -444,8 +525,8 @@
 	<stdInclude kind="cvom" />
 
 	<jsInclude>res/common.js</jsInclude>
-	<jsInclude>res/rsl/DRangeSlider.js</jsInclude>
-	<cssInclude>res/rsl/DRangeSlider.css</cssInclude>
+	<jsInclude>res/RangeSlider/RangeSlider.js</jsInclude>
+	<cssInclude>res/RangeSlider/RangeSlider.css</cssInclude>
 
 	<property
 		id="data"
@@ -561,7 +642,7 @@
 <component
 	id="Slider"
 	title="Data Slider"
-	icon="res/sl/DSlider.png"
+	icon="res/Slider/Slider.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
 	databound="true"
@@ -570,8 +651,8 @@
 	<stdInclude kind="cvom" />
 
 	<jsInclude>res/common.js</jsInclude>
-	<jsInclude>res/sl/DSlider.js</jsInclude>
-	<cssInclude>res/sl/DSlider.css</cssInclude>
+	<jsInclude>res/Slider/Slider.js</jsInclude>
+	<cssInclude>res/Slider/Slider.css</cssInclude>
 
 	<property
 		id="data"
@@ -664,59 +745,31 @@
 
 </component>
 <component
-	id="Table"
-	title="Data Table"
-	icon="res/tab/DataTable.png"
-	handlerType="div"
-	propertySheetPath="res/tab/aps/DataTable.html"
-	group="ScnCommunityDataBound"
-	databound="true"
+		id="Table2D"
+		title="2D Crosstab"
+		icon="res/tab/Table2D.png"
+		handlerType="div"
+		propertySheetPath="res/Table2D/aps/Table2D.html"
+		group="ScnCommunityDataBound"
+		databound="true"
 >
-
-	<jsInclude>res/tab/DataTable.js</jsInclude>
-
+	<stdInclude kind="d3"/>
+	<jsInclude>res/common.js</jsInclude>
+	<jsInclude>res/Table2D/Table2D.js</jsInclude>
+	<cssInclude>res/Table2D/Table2D.css</cssInclude>
 	<property
-		id="column1"
-		title="Column 1"
-		type="ResultCellList"
-		group="DataBinding"
-	>
-		<option
-			name="includeFormattedData"
-			value="true" />
-		<option
-			name="includeData"
-			value="false" />
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="false"/>
 	</property>
-
 	<property
-		id="column2"
-		title="Column 2"
-		type="ResultCellList"
-		group="DataBinding"
-	>
-		<option
-			name="includeFormattedData"
-			value="true" />
-		<option
-			name="includeData"
-			value="false" />
-	</property>
-
-	<property
-		id="column3"
-		title="Column 3"
-		type="ResultCellList"
-		group="DataBinding"
-	>
-		<option
-			name="includeFormattedData"
-			value="true" />
-		<option
-			name="includeData"
-			value="false" />
-	</property>
-
+		id="onSelect"
+		title="On Select"
+		type="ScriptText"
+		group="Events"/>
 	<initialization>
 		<defaultValue property="WIDTH">150</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
@@ -725,7 +778,7 @@
 <component
 	id="TopFlop"
 	title="Data Top Flop"
-	icon="res/tf/DTopFlop.png"
+	icon="res/TopFlop/TopFlop.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
 	databound="true"
@@ -734,8 +787,8 @@
 	<stdInclude kind="cvom" />
 
 	<jsInclude>res/common.js</jsInclude>
-	<jsInclude>res/tf/DTopFlop.js</jsInclude>
-	<cssInclude>res/tf/DTopFlop.css</cssInclude>
+	<jsInclude>res/TopFlop/TopFlop.js</jsInclude>
+	<cssInclude>res/TopFlop/TopFlop.css</cssInclude>
 
 	<property
 		id="data"
@@ -890,7 +943,7 @@
 <component
 	id="TopFlopChart"
 	title="Data Top FLop Chart"
-	icon="res/tfc/DTopFlopChart.png"
+	icon="res/TopFlopChart/TopFlopChart.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
 	databound="true"
@@ -898,8 +951,8 @@
 
 	<stdInclude kind="cvom" />
 
-	<jsInclude>res/tfc/DTopFlopChart.js</jsInclude>
-	<cssInclude>res/tfc/DTopFlopChart.css</cssInclude>
+	<jsInclude>res/TopFlopChart/TopFlopChart.js</jsInclude>
+	<cssInclude>res/TopFlopChart/TopFlopChart.css</cssInclude>
 
 	<property
 		id="data"
@@ -1113,36 +1166,5 @@
 		<defaultValue property="maxValueSize">-1</defaultValue>
 	</initialization>
 
-</component>
-<component
-		id="Table2D"
-		title="2D Crosstab"
-		icon="res/tab/Table2D.png"
-		handlerType="div"
-		propertySheetPath="res/Table2D/aps/Table2D.html"
-		group="ScnCommunityDataBound"
-		databound="true"
->
-	<stdInclude kind="d3"/>
-	<jsInclude>res/common.js</jsInclude>
-	<jsInclude>res/Table2D/Table2D.js</jsInclude>
-	<cssInclude>res/Table2D/Table2D.css</cssInclude>
-	<property
-		id="data"
-		title="Data Selection"
-		type="ResultSet"
-		group="DataBinding">
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="false"/>
-	</property>
-	<property
-		id="onSelect"
-		title="On Select"
-		type="ScriptText"
-		group="Events"/>
-	<initialization>
-		<defaultValue property="WIDTH">150</defaultValue>
-		<defaultValue property="HEIGHT">200</defaultValue>
-	</initialization>
 </component>
 </sdkExtension>
