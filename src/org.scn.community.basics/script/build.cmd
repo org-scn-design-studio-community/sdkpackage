@@ -6,7 +6,9 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.xml.txt ^
 ..\templates\contribution.xml.groups.txt ^
 ..\res\Accordion\def\contribution.xml ^
+..\res\ActionSheetButton\def\contribution.xml ^
 ..\res\ApplicationHeader\def\contribution.xml ^
+..\res\Base64Image\def\contribution.xml ^
 ..\res\BasicBusinessCard\def\contribution.xml ^
 ..\res\CheckBoxGroup\def\contribution.xml ^
 ..\res\ColorPicker\def\contribution.xml ^
@@ -16,8 +18,10 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\FishEye\def\contribution.xml ^
 ..\res\ImageCarousel\def\contribution.xml ^
 ..\res\KpiView\def\contribution.xml ^
+..\res\LaunchPad\def\contribution.xml ^
 ..\res\LeaderBoard\def\contribution.xml ^
 ..\res\Link\def\contribution.xml ^
+..\res\ListSelector\def\contribution.xml ^
 ..\res\MenuBar\def\contribution.xml ^
 ..\res\MenuButton\def\contribution.xml ^
 ..\res\NotificationBar\def\contribution.xml ^
@@ -40,7 +44,9 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\templates\contribution.ztl.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.js.txt ^
 ..\res\Accordion\def\contribution.ztl ^
+..\res\ActionSheetButton\def\contribution.ztl ^
 ..\res\ApplicationHeader\def\contribution.ztl ^
+..\res\Base64Image\def\contribution.ztl ^
 ..\res\BasicBusinessCard\def\contribution.ztl ^
 ..\res\CheckBoxGroup\def\contribution.ztl ^
 ..\res\ColorPicker\def\contribution.ztl ^
@@ -50,8 +56,10 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\FishEye\def\contribution.ztl ^
 ..\res\ImageCarousel\def\contribution.ztl ^
 ..\res\KpiView\def\contribution.ztl ^
+..\res\LaunchPad\def\contribution.ztl ^
 ..\res\LeaderBoard\def\contribution.ztl ^
 ..\res\Link\def\contribution.ztl ^
+..\res\ListSelector\def\contribution.ztl ^
 ..\res\MenuBar\def\contribution.ztl ^
 ..\res\MenuButton\def\contribution.ztl ^
 ..\res\NotificationBar\def\contribution.ztl ^

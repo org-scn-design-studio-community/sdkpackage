@@ -134,6 +134,65 @@ class org.scn.community.basics.Accordion extends Component {
 		this.maxSectionHeight = height;	
 	*}
 }
+class org.scn.community.basics.ActionSheetButton extends Component {
+	/**
+	Gets Item Selected and resets to blank.
+	*/
+	String getItemClicked() {*
+		var si = this.selectedItem;
+		this.selectedItem = "";
+		return si;
+	*}
+	/** Remove All Items
+ 	<example>
+	Remove all items
+	<code>
+	ACTIONSHEETBUTTON_1.removeAllItems();<br>
+	</code>
+	</example>
+	 */
+	void removeAllItems () {*		
+		this.items = "";
+	*}
+	/** Add an item
+ 	<example>
+	Add an item called "Filters" with a filter icon
+	<code>
+	ACTIONSHEETBUTTON_1.addItem("sap-icon://filter|Filters");<br>
+	</code>
+	</example>
+	 */
+	void addItem (/*Item*/String item) {*		
+		var o = [];
+		if(this.items != "") o = this.items.split("\n");
+		o.push(item);
+		items = o.join("\n");
+	*}
+	/** Remove an item
+ 	<example>
+	Remove an item called "Filters"
+	<code>
+	ACTIONSHEETBUTTON_1.removeItem("Filters");<br>
+	</code>
+	</example>
+	 */
+	void removeItem (/*Item*/String item) {*		
+		var o = [];
+		if(this.items != "") o = this.items.split("\n");
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			var entry = o[i];
+			var title = entry;
+			var opts = entry.split("|");
+			if(opts.length>1){
+				title = opts.slice(1).join("");
+			}
+			if(item == title) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		this.items = o.join("\n");
+	*}
+}
 
 /**
  * Class for ApplicationHeader
@@ -162,7 +221,20 @@ class org.scn.community.basics.ApplicationHeader extends Component {
 		return this.logoText;	
 	*}
 }
-
+class org.scn.community.basics.Base64Image extends Component {
+	/**
+	 * Sets Source URL Property
+	 */	
+	void setSrc( /* Source URL or Base-64 String */ String s){*
+		this.src = s;
+	*}
+	/**
+	 * Gets Source URL Property
+	 */	
+	String getSrc() {*
+		return this.src;
+	*}
+}
 /**
  * Class for BasicBusinessCard
  */
@@ -3407,6 +3479,117 @@ class org.scn.community.basics.KpiView extends Component {
 		this.data = this.stringifySelection(cellSelection);
 	*}
 }
+class org.scn.community.basics.TileProperty {
+  String title;
+  String info;
+  String icon;
+  String number;
+  String numberUnit;
+  String valueState;
+}
+class org.scn.community.basics.LaunchPad extends Component {
+	/**
+	Gets Tile Selected
+	*/
+	String getTileClicked() {*
+		return this.selectedTile;
+	*}
+	/** Remove All Tiles
+ 	<example>
+	Remove all tiles
+	<code>
+	LAUNCHPAD_1.removeAllTiles();<br>
+	</code>
+	</example>
+	 */
+	void removeAllTiles () {*		
+		this.tileConfig = JSON.stringify([]);
+	*}
+	
+	org.scn.community.basics.TileProperty getTileProperty(/*Title*/String title){*
+		var r = {
+			title : "",
+			info : "",
+			icon : "",
+			number : "",
+			numberUnit : "",
+			valueState : "",
+			styleClass : ""
+		}
+		var o = eval(this.tileConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex>-1){
+			var tileConf = o[matchIndex];
+			r.title = tileConf.title;
+			r.info = tileConf.info;
+			r.icon = tileConf.icon;
+			r.number = tileConf.number;
+			r.numberUnit = tileConf.numberUnit;
+			r.valueState = tileConf.valueState;
+			r.styleClass = tileConf.styleClass;
+		}
+		return r;
+	*}
+	
+	/** Adds or Updates a Tile (if title already exists)
+ 	<example>
+	Add/Update a tile called "Sales"
+	<code>
+	LAUNCHPAD_1.addTile("Sales", "YTD", "sap-icon://money-bills", "1234", "USD", "good");<br>
+	</code>
+	</example>
+	 */
+	void addTile (/*Title*/String title, 
+			/*Info*/optional String info, 
+			/*Icon*/optional String icon, 
+			/*Number*/optional String number, 
+			/*Number Unit*/optional String numberUnit,
+			/*Value State*/optional String valueState,
+			/*CSS Class*/optional String styleClass) {*		
+		var o = eval(this.tileConfig);
+		if(!o) o = [];
+		var tile = {
+			title: title,
+			info: info,
+			icon: icon,
+			number: number,
+			numberUnit: numberUnit,
+			valueState : valueState || "None",
+			styleClass : styleClass
+		};	
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex==-1){	// New Tile
+			o.push(tile);
+		}else{	// Update Tile
+			o[matchIndex] = tile;
+		}
+		tileConfig = JSON.stringify(o);
+	*}
+	/** Remove a tile
+ 	<example>
+	Remove a tile titled "Sales"
+	<code>
+	LAUNCHPAD_1.removeTile("Sales");<br>
+	</code>
+	</example>
+	 */
+	void removeTile (/*Tile Title*/String title) {*		
+		var o = eval(this.tileConfig);
+		if(!o) o = [];
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		tileConfig = JSON.stringify(o);
+	*}
+}
 
 /**
  * Class for LeaderBoard
@@ -3561,7 +3744,32 @@ class org.scn.community.basics.Link extends Component {
 		return this.text;	
 	*}
 }
-
+class org.scn.community.basics.ListSelector extends Component {
+	/**
+	Get last menu element title clicked.
+	<example><code>var itemSelected = LISTSELECTOR_1.getLabelClicked();</code></example>
+	<returns>Chart property as String type.</returns>
+	*/
+	String getLabelClicked() {*
+		return this.labelClicked;
+	*}
+	/**
+	Sets titles of your menu elements.
+	<example><code>LISTSELECTOR_1.setTitles("Google,Bing,Ask.com");</code></example>
+	<note>Seperate each entry by a comma.</note>
+	*/
+	void setTitles( /* Titles */ String titles){*
+		this.titles = titles;
+	*}
+	/**
+	Get list of menu element titles.
+	<example><code>var titles = LISTSELECTOR_1.Titles();</code></example>
+	<returns>Comma-seperated list of menu element titles</returns>
+	*/
+	String getTitles() {*
+		return this.titles;
+	*}
+}
 /**
  * Class for MenuBar
  */

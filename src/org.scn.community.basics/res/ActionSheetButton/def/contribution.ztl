@@ -1,0 +1,59 @@
+class org.scn.community.basics.ActionSheetButton extends Component {
+	/**
+	Gets Item Selected and resets to blank.
+	*/
+	String getItemClicked() {*
+		var si = this.selectedItem;
+		this.selectedItem = "";
+		return si;
+	*}
+	/** Remove All Items
+ 	<example>
+	Remove all items
+	<code>
+	ACTIONSHEETBUTTON_1.removeAllItems();<br>
+	</code>
+	</example>
+	 */
+	void removeAllItems () {*		
+		this.items = "";
+	*}
+	/** Add an item
+ 	<example>
+	Add an item called "Filters" with a filter icon
+	<code>
+	ACTIONSHEETBUTTON_1.addItem("sap-icon://filter|Filters");<br>
+	</code>
+	</example>
+	 */
+	void addItem (/*Item*/String item) {*		
+		var o = [];
+		if(this.items != "") o = this.items.split("\n");
+		o.push(item);
+		items = o.join("\n");
+	*}
+	/** Remove an item
+ 	<example>
+	Remove an item called "Filters"
+	<code>
+	ACTIONSHEETBUTTON_1.removeItem("Filters");<br>
+	</code>
+	</example>
+	 */
+	void removeItem (/*Item*/String item) {*		
+		var o = [];
+		if(this.items != "") o = this.items.split("\n");
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			var entry = o[i];
+			var title = entry;
+			var opts = entry.split("|");
+			if(opts.length>1){
+				title = opts.slice(1).join("");
+			}
+			if(item == title) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		this.items = o.join("\n");
+	*}
+}
