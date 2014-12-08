@@ -465,4 +465,7 @@ class org.scn.community.databound.TopFlopChart extends Component {
 		return this.pressedKey;	
 	*}
 }
+class org.scn.community.databound.Table2D extends Component {
+
+}
 

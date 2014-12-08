@@ -1,0 +1,31 @@
+
+<component
+		id="Table2D"
+		title="2D Crosstab"
+		icon="res/tab/Table2D.png"
+		handlerType="div"
+		propertySheetPath="res/Table2D/aps/Table2D.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<stdInclude kind="d3"/>
+	<jsInclude>res/Table2D/Table2D.js</jsInclude>
+	<cssInclude>res/Table2D/Table2D.css</cssInclude>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="false"/>
+	</property>
+	<property
+		id="onSelect"
+		title="On Select"
+		type="ScriptText"
+		group="Events"/>
+	<initialization>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+	</initialization>
+</component>

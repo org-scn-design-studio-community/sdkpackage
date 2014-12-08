@@ -314,3 +314,82 @@ org_scn_community_databound.getFormattedValue = function (value) {
 	var valueFormatted = sap.common.globalization.NumericFormatManager.format(value, strFormat);
 	return valueFormatted;
 };
+
+/**
+ * Flattens data from tuple format to 2D Array
+ * @author Mike Howles
+ * @param options { 
+ *	 	"selection" : [Array of dimension selections] 	
+ *	 	"tuples" : *Design Studio Tuples*,
+ *		"data" : *Design Studio Data*,
+ *   	"formattedData" : *Design Studio Formatted Data*,
+ * 		"dimensions" : *Design Studio Metadata Dimensions JSON*,
+ *		"locale" : *Design Studio user locale (e.g. en_US)",
+ *	  	"axis_columns : [Array of Column Axis Dimension Selection Members]
+ *	  	"axis_rows" : [Array of Row Axis Dimension Selection Members]
+ *	 }
+ * 
+ * @return {
+ * 		"columnHeaders" : [1D Array of Header Labels]
+ * 		"rowHeaders" : [1D Array of Row Headers]
+ * 		"values" : [2D Array of Measures] 
+ *
+ * }
+ */
+org_scn_community_databound.flatten = function (options) {
+	var retObj = {
+		columnHeaders : [],
+		rowHeaders : [],
+		values : [],
+		formattedValues : []
+	};
+	if(!options || !options.dimensions || (!options.data && !options.formattedData)) {
+		throw("Incomplete data given.\n\n" + JSON.stringify(options));
+	}
+	var dimensionCols = [];
+	var dimensionRows = [];
+	var data2D = [];
+	var colLength = options.axis_columns.length;
+	var rowLength = options.axis_rows.length;
+	var tupleIndex = 0;
+	// Make Row Header Labels
+	for(var row=0;row<rowLength;row++){
+		var newValueRow = [];
+		var newFormattedValueRow = [];
+		var rowHeader = "";
+		var rowAxisTuple = options.axis_rows[row];
+		var sep = "";
+		for(var j=0;j<rowAxisTuple.length;j++){
+			if(rowAxisTuple[j] != -1){
+				rowHeader += sep + options.dimensions[j].members[rowAxisTuple[j]].text;
+				sep = " ";
+			}
+		}
+		retObj.rowHeaders.push(rowHeader);		
+		for(var col=0;col<colLength;col++){
+			if(options.data && options.data.length > 0){
+				newValueRow.push(options.data[tupleIndex]);
+			}
+			if(options.formattedData && options.formattedData.length > 0){
+				newFormattedValueRow.push(options.formattedData[tupleIndex]);
+			}
+			tupleIndex++;
+		}
+		if(newValueRow.length>0) retObj.values.push(newValueRow);
+		if(newFormattedValueRow.length>0) retObj.formattedValues.push(newFormattedValueRow);
+	}
+	// Make Column Header Labels
+	for(var col=0;col<colLength;col++){
+		var colHeader = "";
+		var colAxisTuple = options.axis_columns[col];
+		var sep = "";
+		for(var j=0;j<colAxisTuple.length;j++){
+			if(colAxisTuple[j] != -1){
+				colHeader += sep + options.dimensions[j].members[colAxisTuple[j]].text;
+				sep = " ";
+			}
+		}
+		retObj.columnHeaders.push(colHeader);
+	}
+	return retObj;
+}

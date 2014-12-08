@@ -13,6 +13,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\tab\def\contribution.xml ^
 ..\res\tf\def\contribution.xml ^
 ..\res\tfc\def\contribution.xml ^
+..\res\Table2D\def\contribution.xml ^
 ..\..\org.scn.community.shared\templates.main\contribution.xml.close.txt > ^
 ..\contribution.xml
 
@@ -29,6 +30,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\tab\def\contribution.ztl ^
 ..\res\tf\def\contribution.ztl ^
 ..\res\tfc\def\contribution.ztl ^
+..\res\Table2D\def\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 
