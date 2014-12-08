@@ -1124,6 +1124,7 @@
 		databound="true"
 >
 	<stdInclude kind="d3"/>
+	<jsInclude>res/common.js</jsInclude>
 	<jsInclude>res/Table2D/Table2D.js</jsInclude>
 	<cssInclude>res/Table2D/Table2D.css</cssInclude>
 	<property
