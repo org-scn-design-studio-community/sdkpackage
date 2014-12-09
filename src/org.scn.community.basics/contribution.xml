@@ -312,6 +312,7 @@
 	  	-->
 	  	<property id="icon" type="String" title="Icon"/>
 	  	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
+	  	<property type="String" title="Selected Key" id="selectedKey" visible="false"/>
 	  	<property type="ScriptText" title="On Select" id="onPopoverSelect"/>
 	  	<property id="buttonType" type="String" title="Type">
 	  		<possibleValue>Default</possibleValue>

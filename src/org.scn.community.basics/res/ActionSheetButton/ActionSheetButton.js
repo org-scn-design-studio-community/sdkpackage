@@ -33,18 +33,17 @@ sap.m.Button.extend("org.scn.community.basics.ActionSheetButton", {
 	_popoverWidth : "auto",
 	_popoverHeight : "auto",
 	_selectedItem : "",
+	_selectedKey : "",
 	_items : [],
 	renderer : {},
 	metadata : {				// Not to be confused with the Data Source metadata property
 		properties : {
-			title : "string",			// Title
+			title : "string",			// Button Title
 			buttonType : "string",		// 'type' in sap.m, but DS messes with it
 			placement : "string",		// Popover placement
-			showHeader: "boolean",		// Show Popover Title
-			popoverWidth : "string",	// Popover Width
-			popoverHeight : "string",	// Popover Height
 			items : "string",			// Popover List
-			selectedItem : "string"		// Selected Popover Item
+			selectedItem : "string",	// Selected Popover Item (Text)
+			selectedKey : "string"		// Selected Popover Item (Key)
 		}
 	},
 	setType : function(s){
@@ -57,29 +56,18 @@ sap.m.Button.extend("org.scn.community.basics.ActionSheetButton", {
 	getSelectedItem : function(){
 		return this._selectedItem;
 	},
+	setSelectedKey : function(s){
+		this._selectedKey = s;
+	},
+	getSelectedKey : function(){
+		return this._selectedKey;
+	},
 	setItems : function(s){
-		this._items = s.split("\n");
+		this._items = [];
+		if(s && s!="") this._items = jQuery.parseJSON(s);
 	},
 	getItems : function(){
-		return this._items.join("\n");
-	},
-	setPopoverWidth : function(s){
-		this._popoverWidth = s; 
-	},
-	getPopoverWidth : function(){
-		return this._popoverWidth;
-	},
-	setPopoverHeight : function(s){
-		this._popoverHeight = s; 
-	},
-	getPopoverHeight : function(){
-		return this._popoverHeight;
-	},
-	setShowHeader : function(b){
-		this._showHeader = b;
-	},
-	getShowHeader : function(){
-		return this._showHeader;
+		return JSON.stringify(this._items);
 	},
 	setTitle : function(s){
 		this._title = s;
@@ -103,13 +91,13 @@ sap.m.Button.extend("org.scn.community.basics.ActionSheetButton", {
 	initDesignStudio : function() {
 		// Called by sap.designstudio.sdkui5.Handler  (sdkui5_handler.js)
 	},
-	listSelect : function(title,oControlEvent){
+	listSelect : function(o,oControlEvent){
 		if(this._popover){
 			this._popover.close();
-			//this._popover.destroy();
 		}
-		this._selectedItem = title;
-		this.fireDesignStudioPropertiesChanged(["selectedItem"]);
+		this._selectedItem = o.text;
+		this._selectedKey = o.key;
+		this.fireDesignStudioPropertiesChanged(["selectedItem","selectedKey"]);
 		this.fireDesignStudioEvent("onPopoverSelect");
 	},
 	dsClick : function(oControlEvent){
@@ -120,22 +108,18 @@ sap.m.Button.extend("org.scn.community.basics.ActionSheetButton", {
 		});
 		for(var i=0;i<this._items.length;i++){
 			var item = this._items[i];
-			var title = item;
-			var icon = "";
-			var opts = item.split("|");
-			if(opts.length>1){
-				icon = opts[0];
-				title = opts.slice(1).join("");
-			}
 			var actionButton = new sap.m.Button({
-				text : title,
+				text : item.text,
 			    //type : sap.m.ListType.Active,
-			    icon : icon
+			    icon : item.icon
 			});
-			actionButton.attachBrowserEvent("click",function(t){return function(oControlEvent){this.listSelect(t,oControlEvent);};}(title),this);
+			actionButton.attachBrowserEvent("click",
+			function(o){return function(oControlEvent){this.listSelect(o,oControlEvent);};}({
+				key : item.key,
+				text : item.text
+			}),this);
 			this._popover.addButton(actionButton);
 		};
-		//this._popover.addContent(list);
 		this._popover.openBy(this);
 	},
 	init : function(){

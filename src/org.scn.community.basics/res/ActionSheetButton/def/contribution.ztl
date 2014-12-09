@@ -1,11 +1,15 @@
 class org.scn.community.basics.ActionSheetButton extends Component {
 	/**
-	Gets Item Selected and resets to blank.
+	Gets Item Selected
 	*/
-	String getItemClicked() {*
-		var si = this.selectedItem;
-		this.selectedItem = "";
-		return si;
+	String getSelectedItem() {*
+		return this.selectedItem;
+	*}
+	/**
+	Gets Item Key Selected
+	*/
+	String getSelectedKey() {*
+		return this.selectedKey;
 	*}
 	/** Remove All Items
  	<example>
@@ -16,44 +20,51 @@ class org.scn.community.basics.ActionSheetButton extends Component {
 	</example>
 	 */
 	void removeAllItems () {*		
-		this.items = "";
+		this.items = "[]";
 	*}
 	/** Add an item
  	<example>
-	Add an item called "Filters" with a filter icon
 	<code>
-	ACTIONSHEETBUTTON_1.addItem("sap-icon://filter|Filters");<br>
+	ACTIONSHEETBUTTON_1.addItem("delete", "Delete Bookmark", "sap-icon://delete");<br>
 	</code>
 	</example>
 	 */
-	void addItem (/*Item*/String item) {*		
+	void addItem (/*Key*/String key, /*Text*/String text, /*Icon*/String icon) {*		
 		var o = [];
-		if(this.items != "") o = this.items.split("\n");
-		o.push(item);
-		items = o.join("\n");
+		if(this.items != "") o = eval(this.items);
+		var newItem = {
+			key : key,
+			text : text,
+			icon : icon
+		};
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			var item = o[i];
+			if(item.key == key) matchIndex = i;
+		}
+		if(matchIndex>-1) {
+			o[matchIndex] = newItem;
+		}else{
+			o.push(newItem);
+		}
+		items = JSON.stringify(o);
 	*}
 	/** Remove an item
  	<example>
-	Remove an item called "Filters"
 	<code>
-	ACTIONSHEETBUTTON_1.removeItem("Filters");<br>
+	ACTIONSHEETBUTTON_1.removeItem("delete");<br>
 	</code>
 	</example>
 	 */
-	void removeItem (/*Item*/String item) {*		
+	void removeItem (/*Item*/String key) {*		
 		var o = [];
-		if(this.items != "") o = this.items.split("\n");
+		if(this.items != "") o = eval(this.items);
 		var matchIndex = -1;
 		for(var i=0;i<o.length;i++){
-			var entry = o[i];
-			var title = entry;
-			var opts = entry.split("|");
-			if(opts.length>1){
-				title = opts.slice(1).join("");
-			}
-			if(item == title) matchIndex = i;
+			var item = o[i];
+			if(item.key == key) matchIndex = i;
 		}
 		if(matchIndex>-1) o.splice(matchIndex,1);
-		this.items = o.join("\n");
+		this.items = JSON.stringify(o);
 	*}
 }
