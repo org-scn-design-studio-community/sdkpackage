@@ -5,7 +5,7 @@
 	icon="res/Accordion/Accordion.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
->
+	propertySheetPath="res/Accordion/aps/AccordionPropertyPage.html">
 	<jsInclude>res/Accordion/Accordion.js</jsInclude>
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 

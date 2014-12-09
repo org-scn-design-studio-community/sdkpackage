@@ -197,28 +197,28 @@
 	icon="res/Accordion/Accordion.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
->
+	propertySheetPath="res/Accordion/aps/AccordionPropertyPage.html">
 	<jsInclude>res/Accordion/Accordion.js</jsInclude>
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 
 	<property
 		id="selectedKey"
 		type="String"
-		title="Technical proprty for Selected Key"
+		title="Technical property for Selected Key"
 		group="Display"
 		visible="false" />
 
 	<property
 		id="expandedKey"
 		type="String"
-		title="Technical proprty for Expanded Key"
+		title="Technical property for Expanded Key"
 		group="Display"
 		visible="false" />
 
 	<property
 		id="cleanAll"
 		type="boolean"
-		title="Technical proprty for Clean All Nodes"
+		title="Technical property for Clean All Nodes"
 		group="Display"
 		visible="false" />
 
