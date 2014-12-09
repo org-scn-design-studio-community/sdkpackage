@@ -22,7 +22,7 @@
 var myScript = $("script:last")[0].src;
 _readScriptPath = function () {
 	if(myScript) {
-		var myScriptSuffix = "res/cbg/";
+		var myScriptSuffix = "res/CheckBoxGroup/";
 		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
  		var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
  		return ownScriptPath;

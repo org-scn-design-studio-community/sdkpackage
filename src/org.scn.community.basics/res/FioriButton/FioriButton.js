@@ -30,7 +30,7 @@ if(!org_scn_community_basics_FioriButton.registeredStyles){
 var myScript = $("script:last")[0].src;
 _readScriptPath = function () {
 	if(myScript) {
-		var myScriptSuffix = "res/fb/";
+		var myScriptSuffix = "res/FioriButton/";
 		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
  		var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
  		return ownScriptPath;
