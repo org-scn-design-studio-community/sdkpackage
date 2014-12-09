@@ -257,7 +257,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.AccordionPr
 				}
 			}
 			// Delete Items under Section
-			for(this._elementsContent.length-1;i>=0;i--){
+			for(var i=this._elementsContent.length-1;i>=0;i--){
 				if(this._elementsContent[i].leaf == true && this._elementsContent[i].parent == key) {
 					this._elementsContent.splice(i,1);
 				}
