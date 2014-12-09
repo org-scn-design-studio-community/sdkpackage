@@ -385,9 +385,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.AccordionPr
 		this._hLayout = new sap.ui.commons.layout.HorizontalLayout({ });
 		this._content.addContent(this._hLayout);
 		this._listBuilder = new org.scn.community.propertysheet.ListBuilder({
-			width : "200px",
-			newKeyPrefix : "section",
-			newTextPrefix : "Section "
+			width : "200px"
 		});
 		this._listBuilder.attachItemAdded(this.addSection,this);
 		this._listBuilder.attachItemDeleted(this.delSection,this);
