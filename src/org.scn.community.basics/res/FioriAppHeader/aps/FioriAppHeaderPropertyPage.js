@@ -1,199 +1,194 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.FioriAppHeaderPropertyPage",  function() {
 	var that = this;
-	this._itemConfig = [];
-	this._selectedIndex = -1;
-	this._selectedItemIndex = -1;
+	this._items = [];
+	this._selectedSectionKey = "";
+	this._selectedItemKey = "";
+
 	this.componentSelected = function(){
 		this.updateProps();
 	};
-	this.updateSelection = function(oControlEvent){
-		this._selectedIndex = oControlEvent.getParameter("selectedIndex");
-		if(this._selectedIndex == -1){
-			this._btnDelSection.setEnabled(false);
+	this.getSection = function(key){
+		for(var i=0;i<this._items.length;i++){
+			if(this._items[i].key==key) return this._items[i];
+		}
+	};
+	this.updateSection = function(oControlEvent){
+		var item = this.getSection(this.actionList.getSelectedKey());
+		if(!item) return;
+		// Protect Key
+		if(item.key != this.txtActionKey.getValue()) item.key = this.actionList.generateKey(this.txtActionKey.getValue());
+		item.text = this.txtActionText.getValue();
+		item.icon = this.txtActionIcon.getValue();
+		item.showTitle = this.chkShowText.getChecked();
+		this.actionList.setSelectedKey(item.key);
+		this.firePropertiesChanged(["itemConfig"]);
+		this.updateProps();
+	};
+	this.showSection = function(index){
+		this._selectedSectionKey = this.actionList.getSelectedKey();
+		var item = this.getSection(this.actionList.getSelectedKey());
+		if(!item){
+			this.actionProps.setVisible(false);
 		}else{
-			this._btnDelSection.setEnabled(true);
+			this.actionProps.setVisible(true);
+			this.txtActionKey.setValue(item.key);
+			this.txtActionText.setValue(item.text);
+			this.chkShowText.setChecked(item.showTitle);
+			this.txtActionIcon.setValue(item.icon);
+			this.actionItems.setList(item.items);
 		}
-		this.showSelectionProperties(this._selectedIndex);
-	};
-	this.showSelectionProperties = function(index){
-		try{
-		this._sectionPropertyLayout.destroyContent();
-		this._selectedItemIndex = -1;
-		if(index<0) return;
-		var section = this._itemConfig[this._selectedIndex];
-		if(!section.items) section.items = [];
-		var sectionTitle = new sap.ui.commons.TextView({text : "Button Title"});
-		var txtSectionTitle = new sap.ui.commons.TextField({value : this._itemConfig[index].title});
-		var chkShowTitle = new sap.ui.commons.CheckBox({
-			text : "Show Title",
-			checked : this._itemConfig[index].showTitle || false
-		});
-		var sectionIcon = new sap.ui.commons.TextView({text : "Button Icon (Optional)"});
-		var txtSectionIcon = new sap.ui.commons.TextField({value : this._itemConfig[index].icon});
-		var itemsLabel = new sap.ui.commons.TextView({text : "Items"});
-		var itemsList = new sap.ui.commons.TextArea({
-			value : section.items.join("\n"),
-			design : sap.ui.core.Design.Monospace,
-			rows : 5,
-			width : "200px",
-			wrapping : sap.ui.core.Wrapping.Off
-		});
-		
-		this._sectionPropertyLayout.addContent(sectionTitle);
-		this._sectionPropertyLayout.addContent(txtSectionTitle);
-		this._sectionPropertyLayout.addContent(chkShowTitle);
-		this._sectionPropertyLayout.addContent(sectionIcon);
-		this._sectionPropertyLayout.addContent(txtSectionIcon);
-		this._sectionPropertyLayout.addContent(itemsLabel);
-		this._sectionPropertyLayout.addContent(itemsList);
-		txtSectionTitle.attachChange(this.sectionTitleChanged, this);
-		chkShowTitle.attachChange(this.sectionShowTitleChanged, this);
-		txtSectionIcon.attachChange(this.sectionIconChanged, this);
-		itemsList.attachChange(this.itemListChanged, this);
-		}catch(e){
-			alert(e);
-		}
-	};
-	this.sectionTitleChanged = function(oControlEvent){
-		var value = oControlEvent.getParameter("newValue");
-		this._itemConfig[this._selectedIndex].title = value;
-		this.firePropertiesChanged(["itemConfig"]);
-		this.updateProps();
-	};
-	this.sectionShowTitleChanged = function(oControlEvent){
-		var value = oControlEvent.getSource().getChecked();
-		this._itemConfig[this._selectedIndex].showTitle = value;
-		this.firePropertiesChanged(["itemConfig"]);
-		this.updateProps();
-	};
-	this.sectionIconChanged = function(oControlEvent){
-		var value = oControlEvent.getParameter("newValue");
-		this._itemConfig[this._selectedIndex].icon = value;
-		this.firePropertiesChanged(["itemConfig"]);
-		this.updateProps();
-	};
-	this.itemListChanged = function(oControlEvent){
-		var section = this._itemConfig[this._selectedIndex];
-		if(!section.items) section.items = [];
-		section.items = oControlEvent.getSource().getValue().split("\n");
-		this.firePropertiesChanged(["itemConfig"]);		
-	};
-	this.itemSelected = function(oControlEvent){
-		alert(oControlEvent.getParameter("selectedIndex"));
 	};
 	this.updateProps = function(){
-		this._sectionList.destroyItems();
-		for(var i=0;i<this._itemConfig.length;i++){
-			this._sectionList.addItem(new sap.ui.core.Item({
-				key : this._itemConfig[i].title,
-				text : this._itemConfig[i].title
-			}));
-		}
-		if(this._selectedIndex != -1 && this._selectedIndex < this._itemConfig.length) {
-			this._sectionList.setSelectedIndex(this._selectedIndex);
-			this._btnDelSection.setEnabled(true);
-		}else{
-			this._selectedIndex = -1;
-			this._btnDelSection.setEnabled(false);
-		}
-		this.showSelectionProperties(this._selectedIndex);
+		this.actionList.setList(this._items);
+		this.showSection(this.actionList.getSelectedKey());
 	};
-	this.upSection = function(){
-		var si = this._sectionList.getSelectedIndex();
-		if(si == 0 || si == -1) return;
-		var temp = this._itemConfig[si-1];
-		this._itemConfig[si-1] = this._itemConfig[si];
-		this._itemConfig[si] = temp;
-		this._selectedIndex = si-1;
-		this.firePropertiesChanged(["itemConfig"]);
-		this.updateProps();
-	};
-	this.downSection = function(){
-		var si = this._sectionList.getSelectedIndex();
-		if(si >= this._itemConfig.length-1 || si == - 1) return;
-		var temp = this._itemConfig[si+1];
-		this._itemConfig[si+1] = this._itemConfig[si];
-		this._itemConfig[si] = temp;
-		this._selectedIndex = si+1;
-		this.firePropertiesChanged(["itemConfig"]);
-		this.updateProps();
-	};
-	this.delSection = function(){
-		var si = this._sectionList.getSelectedIndex();
-		if(si==-1) return;
-		
-		this._itemConfig.splice(si,1);
-		this.firePropertiesChanged(["itemConfig"]);
-		this.updateProps();
-	};
-	this.addSection = function(){
-		var newItem = {
-			title : "Section " + (this._itemConfig.length + 1),
+	/*
+	 * Fires when section add button clicked
+	 */
+	this.addSection = function(oControlEvent){
+		var newKey = this.actionList.generateKey("Section");
+		var newSection = {
+			key : newKey,
+			text : "Section " + (this._items.length + 1),
 			showTitle : true,
 			icon : "sap-icon://action",
 			items : []
 		};
-		this._selectedIndex = this._itemConfig.length;
-		this._itemConfig.push(newItem);
+		this.actionList.setSelectedKey(newKey);
+		this._items.push(newSection);
 		this.firePropertiesChanged(["itemConfig"]);
 		this.updateProps();
 	};
+	/*
+	 * Fires when item add button clicked
+	 */
+	this.addItem = function(oControlEvent){
+		var section = this.getSection(this.actionList.getSelectedKey());
+		if(!section) return;
+		var newKey = this.actionItems.generateKey("Item");
+		var newItem = {
+			key : newKey,
+			text : "Item " + (section.items.length + 1),
+			icon : "sap-icon://action"
+		};
+		this.actionItems.setSelectedKey(newKey);
+		section.items.push(newItem);
+		this.firePropertiesChanged(["itemConfig"]);
+		this.updateProps();
+	};
+	this.moveItem = function(oControlEvent){
+		var section = this.getSection(this.actionList.getSelectedKey());
+		if(!section) return;
+		var movementData = oControlEvent.getParameters();
+		var targetIndex = -1;
+		var sourceIndex = -1;
+		for(var i=0;i<section.items.length;i++){
+			if(section.items[i].key == movementData.key) sourceIndex = i;
+			if(section.items[i].key == movementData.targetKey) targetIndex = i;
+		}
+		if(targetIndex != -1 && sourceIndex != -1){
+			var temp = section.items[targetIndex];
+			section.items[targetIndex] = section.items[sourceIndex];
+			section.items[sourceIndex] = temp;
+			this.firePropertiesChanged(["itemConfig"]);
+			this.updateProps();
+		}
+	};
+	this.moveSection = function(oControlEvent){
+		var movementData = oControlEvent.getParameters();
+		var targetIndex = -1;
+		var sourceIndex = -1;
+		for(var i=0;i<this._items.length;i++){
+			if(this._items[i].key == movementData.key) sourceIndex = i;
+			if(this._items[i].key == movementData.targetKey) targetIndex = i;
+		}
+		if(targetIndex != -1 && sourceIndex != -1){
+			var temp = this._items[targetIndex];
+			this._items[targetIndex] = this._items[sourceIndex];
+			this._items[sourceIndex] = temp;
+			this.firePropertiesChanged(["itemConfig"]);
+			this.updateProps();
+		}
+	};
+	this.deleteItem = function(oControlEvent){
+		var section = this.getSection(this.actionList.getSelectedKey());
+		if(!section) return;
+		for(var i=0;i<section.items.length;i++){
+			if(section.items[i].key==this.actionItems.getSelectedKey()){
+				section.items.splice(i,1);
+				this.firePropertiesChanged(["itemConfig"]);
+				this.updateProps();
+			}
+		}	
+	};
+	this.deleteSection = function(oControlEvent){
+		for(var i=0;i<this._items.length;i++){
+			if(this._items[i].key==this.actionList.getSelectedKey()){
+				this._items.splice(i,1);
+				this.firePropertiesChanged(["itemConfig"]);
+				this.updateProps();
+			}
+		}	
+	};	
 	this.init = function(){
-		// Init
-		this._content = new sap.ui.commons.layout.VerticalLayout({
-			width : "100%"
+		// Build UI
+		this._content = new sap.ui.commons.layout.HorizontalLayout({ });
+		this.actionList = new org.scn.community.propertysheet.ListBuilder({
+			width : "200px"
 		});
-		this._hLayout = new sap.ui.commons.layout.HorizontalLayout({
-			
+		this.actionProps = new sap.ui.commons.layout.VerticalLayout({ });
+		this.lblActionKey = new sap.ui.commons.TextView({text : "Action Key"});
+		this.txtActionKey = new sap.ui.commons.TextField({});
+		this.lblActionText = new sap.ui.commons.TextView({text : "Action Text"});
+		this.txtActionText = new sap.ui.commons.TextField({});
+		this.chkShowText = new sap.ui.commons.CheckBox({ text : "Show Text"});
+		this.lblActionIcon = new sap.ui.commons.TextView({text : "Action Icon"});
+		this.txtActionIcon = new sap.ui.commons.TextField({});
+		this.lblActionItems = new sap.ui.commons.TextView({text : "Items"});
+		this.actionItems = new org.scn.community.propertysheet.ListBuilder({
+			width : "200px"
 		});
-		this._content.addContent(this._hLayout);
-		this._sectionList = new sap.ui.commons.ListBox({
-			width : "100%"
-		});
-		this._btnAddSection = new sap.ui.commons.Button({
-			text : "+"
-		});
-		this._btnDelSection = new sap.ui.commons.Button({
-			text : "-",
-			enabled : false
-		});
-		this._btnUpSection = new sap.ui.commons.Button({
-			text : "^"
-		});
-		this._btnDownSection = new sap.ui.commons.Button({
-			text : "v"
-		});
-		this._sectionOptions = new sap.ui.commons.layout.HorizontalLayout({
-			content : [this._btnAddSection, this._btnDelSection, this._btnUpSection, this._btnDownSection]
-		});
-		this._sectionLayout = new sap.ui.commons.layout.VerticalLayout({
-			width : "150px",
-			content : [this._sectionOptions, this._sectionList]
-		});
-		this._sectionPropertyLayout = new sap.ui.commons.layout.VerticalLayout({
-			width : "300px"
-		});
-		this._hLayout.addContent(this._sectionLayout);
-		this._hLayout.addContent(this._sectionPropertyLayout);
-		// Events
-		this._sectionList.attachSelect(this.updateSelection, this);
-		this._btnAddSection.attachPress(this.addSection, this);
-		this._btnDelSection.attachPress(this.delSection, this);
-		this._btnUpSection.attachPress(this.upSection, this);
-		this._btnDownSection.attachPress(this.downSection, this);
-
+		
+		this.actionProps.addContent(this.lblActionKey);
+		this.actionProps.addContent(this.txtActionKey);
+		this.actionProps.addContent(this.lblActionText);
+		this.actionProps.addContent(this.txtActionText);
+		this.actionProps.addContent(this.chkShowText);
+		this.actionProps.addContent(this.lblActionIcon);
+		this.actionProps.addContent(this.txtActionIcon);
+		this.actionProps.addContent(this.lblActionItems);
+		this.actionProps.addContent(this.actionItems);
+		
+		this._content.addContent(this.actionList);
+		this._content.addContent(this.actionProps);
 		this._content.placeAt($("#content"));
+
+		// Events
+		this.actionList.attachItemAdded(this.addSection,this);
+		this.actionList.attachItemSelected(this.showSection,this);
+		this.actionList.attachItemDeleted(this.deleteSection,this);
+		this.actionList.attachItemMoved(this.moveSection,this);
+
+		this.actionItems.attachItemAdded(this.addItem,this);
+		//this.actionItems.attachItemSelected(this.showItem,this);
+		this.actionItems.attachItemDeleted(this.deleteItem,this);
+		this.actionItems.attachItemMoved(this.moveItem,this);
+
+		this.txtActionKey.attachChange(this.updateSection, this);
+		this.txtActionText.attachChange(this.updateSection, this);
+		this.txtActionIcon.attachChange(this.updateSection, this);
+		this.chkShowText.attachChange(this.updateSection, this);
 		
 		this.updateProps();
 	};
 	this.itemConfig = function(s){
 		if( s === undefined){
-			return JSON.stringify(this._itemConfig);
+			return JSON.stringify(this._items);
 		}else{
 			var o = [];
 			if(s && s!="") o = jQuery.parseJSON(s);
-			this._itemConfig = o;
-			this.updateProps();
+			this._items = o;
+			//this.updateProps();
 			return this;
 		}
 	};	

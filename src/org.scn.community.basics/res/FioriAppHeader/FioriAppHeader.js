@@ -71,7 +71,7 @@ sap.m.Page.extend("org.scn.community.basics.FioriAppHeader", {
 		this.destroyHeaderContent();
 		for(var i=0;i<this._itemConfig.length;i++){
 			var title = "";
-			var actualTitle = this._itemConfig[i].title;
+			var actualTitle = this._itemConfig[i].text;
 			if(this._itemConfig[i].showTitle) title = actualTitle;
 			var b = new sap.m.Button({
 				text : title,
@@ -93,30 +93,23 @@ sap.m.Page.extend("org.scn.community.basics.FioriAppHeader", {
 					return function(oControlEvent){
 						var items = this._itemConfig[index].items;
 						var actionSheet = new sap.m.ActionSheet({
-							title :  this._itemConfig[index].title,
+							title :  this._itemConfig[index].text,
 							placement : "Vertical",
 						});
 						for(var j=0;j<items.length;j++){
 							var item = items[j];
-							var title = item;
-							var icon = "";
-							var opts = item.split("|");
-							if(opts.length>1){
-								icon = opts[0];
-								title = opts.slice(1).join("");
-							}
 							var actionButton = new sap.m.Button({
-								text : title,
-							    icon : icon
+								text : item.text,
+							    icon : item.icon
 							});
-							actionButton.attachBrowserEvent("click",function(title,header){
+							actionButton.attachBrowserEvent("click",function(it,section){
 								return function(oControlEvent){
-									this._selectedItem = title;
-									this._selectedHeader = header;
+									this._selectedItem = it.key;
+									this._selectedHeader = section.key;
 									this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem"]);
 									this.fireDesignStudioEvent("onitemselect");
 								};
-							}(title,this._itemConfig[index].title),this);
+							}(item,this._itemConfig[index]),this);
 							actionSheet.addButton(actionButton);
 						}
 						actionSheet.openBy(this.getHeaderContent()[index]);
