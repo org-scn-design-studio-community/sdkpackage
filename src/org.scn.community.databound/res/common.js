@@ -125,6 +125,12 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimesn
 			var key =  metadata.dimensions[dimesnsionEndIndex].members[tupel[dimesnsionEndIndex]].key;
 			var text =  metadata.dimensions[dimesnsionEndIndex].members[tupel[dimesnsionEndIndex]].text;
 			
+			var value = data.data[i];
+
+			if(value == undefined || value == "null") {
+				continue;
+			}
+			
 			// check the key existence
 			if(text.indexOf("|") > -1) {
 				text = text.replace("|", " | ");
@@ -139,8 +145,6 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimesn
 			
 			allKeys = allKeys + key + "|";
 			
-			var value = data.data[i];
-
 			lValues.push(value);
 			
 			var itemDef = { 

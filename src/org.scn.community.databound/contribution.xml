@@ -270,7 +270,7 @@
 		title="Binding Mode (metadata, resultset)"
 		type="String"
 		group="Display"
-		visible="false"
+		visible="true"
 	>
 		<possibleValue>Result Set</possibleValue>
 		<possibleValue>Master Data</possibleValue>
@@ -295,7 +295,7 @@
 	</property>
 
 	<property
-		id="dimension"
+		id="DDimension"
 		title="Selected Dimension"
 		type="String"
 		group="DataBinding"
@@ -303,7 +303,7 @@
 	</property>
 
 	<property
-		id="topBottom"
+		id="DTopBottom"
 		title="Top X, Bottom X or Both"
 		type="String"
 		group="Display"
@@ -314,7 +314,7 @@
 	</property>
 
 	<property
-		id="sorting"
+		id="DSorting"
 		title="Sorting By Value | Defalut"
 		type="String"
 		group="Display"
@@ -324,23 +324,44 @@
 	</property>
 
 	<property
-		id="maxNumber"
-		title="Maximum Number"
+		id="DMaxMembers"
+		title="Maximum Numner of Members"
 		type="int"
 		group="Display" />
 
 	<property
-		id="dSelectedKey"
+		id="DSelectedKeyExt"
 		type="String"
 		title="Technical proprty for Selected Key"
 		group="Display"
 		visible="false" />
 
 	<property
-		id="dSelectedText"
+		id="DSelectedKeyExtFull"
+		type="String"
+		title="Technical proprty for Selected External String Full"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DSelectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DSelectedText"
 		type="String"
 		title="Technical proprty for Selected Text"
 		group="Display"
+		visible="false" />
+
+	<property
+		id="onInternalSelectionChanged"
+		type="ScriptText"
+		title="Internal Event for On Selection Changed"
+		group="Events"
 		visible="false" />
 
 	<property
@@ -362,7 +383,7 @@
 		group="Events" />
 
 	<property
-		id="doRefresh"
+		id="DDoRefresh"
 		type="boolean"
 		title="Technical proprty for pause refresh"
 		group="Display"
@@ -375,13 +396,14 @@
 		<defaultValue property="HEIGHT">26</defaultValue>
 
 		<defaultValue property="DBindingMode">Result Set</defaultValue>
-		<defaultValue property="topBottom">Both</defaultValue>
-		<defaultValue property="sorting">By Value</defaultValue>
-		<defaultValue property="maxNumber">3</defaultValue>
-		<defaultValue property="enabled">true</defaultValue>
-		<defaultValue property="doRefresh">true</defaultValue>
+		<defaultValue property="DTopBottom">Both</defaultValue>
+		<defaultValue property="DSorting">By Value</defaultValue>
+		<defaultValue property="DMaxMembers">3</defaultValue>
+		<defaultValue property="DEnabled">true</defaultValue>
+		<defaultValue property="DDoRefresh">true</defaultValue>
 		
 		<defaultValue property="onBeforeRender">this.onBeforeRender();</defaultValue>
+		<defaultValue property="onInternalSelectionChanged">this.onInternalSelectionChanged();</defaultValue>
 
 	</initialization>
 

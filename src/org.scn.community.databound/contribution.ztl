@@ -40,8 +40,39 @@ class org.scn.community.databound.Table extends Component {
  */
 class org.scn.community.databound.DropDown extends org.scn.community.shared.DataComponent {
 
+	void onInternalSelectionChanged () {*
+		var key = this.getSelectedKey();
+	
+		this.internalWriteLog("Internal Selection on Dimension: " + this.getDimension() + " | " + key);
+
+		if(key == "-CLEAR-") {
+			this.getDataSource().clearFilter(this.getDimension());
+		} else {
+			this.getDataSource().setFilter(this.getDimension(), key);	
+		}
+	*}
+	
 	void onBeforeRender() {*
-		this.DElements = this.superReadMetaData();			
+		// unfortunately this does not work correctly as this method is too late included (as first method on rendering, instead on before rendering)
+		// this causes incorrect events in a phase where events are not allowed any more... (error: DS_1 cannot be changed in rendering phase)
+		// workaround is to call once explicitelly "getMembers" on this dimension
+		if(this.DBindingMode == "Master Data") {
+			this.internalWriteLog("Call Members on Dimension: " + this.getDimension() + " | " + this.DMaxMembers);
+			this.DElements = this.superReadMembers(this.getDimension(), this.DMaxMembers);	
+		}
+	
+		// check current selection from data source
+		var selectionExt = this.getDataSource().getFilterExt(this.getDimension());
+		this.internalWriteLog("Selection on Dimension: " + this.getDimension() + " | " + selectionExt);
+
+		this.DSelectedKeyExtFull = selectionExt;
+		
+		// only single member
+		if(selectionExt.indexOf(";") == -1 && selectionExt.indexOf(" - ") == -1) {
+			this.DSelectedKeyExt = selectionExt;	
+		} else {
+			this.DSelectedKeyExt = "";
+		}
 	*}
 
 	/** returns the selected key 
@@ -63,32 +94,32 @@ class org.scn.community.databound.DropDown extends org.scn.community.shared.Data
 	</example>
 	*/
 	String getSelectedKey () {*
-		return this.dSelectedKey;	
+		return this.DSelectedKey;	
 	*}
 
 	/** returns the selected text */
 	String getSelectedText () {*
-		return this.dSelectedText;	
+		return this.DSelectedText;	
 	*}
 	
 	/** gest the dimension */
 	String getDimension () {*
-		return this.dimension;	
+		return this.DDimension;	
 	*}
 	
 	/** sets the dimension */
 	void setDimension (String dimension) {*
-		this.dimension = dimension;	
+		this.DDimension = dimension;	
 	*}
 	
 	/** sets the pause refresh flag */
 	void pauseRefresh () {*
-		this.doRefresh = false;	
+		this.DDoRefresh = false;	
 	*}
 
 	/** sets the pause refresh flag */
 	void allowRefresh () {*
-		this.doRefresh = true;	
+		this.DDoRefresh = true;	
 	*}
 }
 /**

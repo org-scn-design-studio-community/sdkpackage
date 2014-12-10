@@ -41,13 +41,15 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
         properties: {
         	  "DBindingMode": {type: "string"},
         	  "DElements": {type: "string"},
-              "dimension": {type: "string"},
-              "topBottom": {type: "string"},
-              "sorting": {type: "string"},
-              "maxNumber": {type: "int"},
-              "dSelectedKey": {type: "string"},
-              "dSelectedText": {type: "string"},
-              "doRefresh": {type: "boolean"},
+              "DDimension": {type: "string"},
+              "DTopBottom": {type: "string"},
+              "DSorting": {type: "string"},
+              "DMaxMembers": {type: "int"},
+              "DSelectedKey": {type: "string"},
+              "DSelectedKeyExt": {type: "string"},
+              "DSelectedKeyExtFull": {type: "string"},
+              "DSelectedText": {type: "string"},
+              "DDoRefresh": {type: "boolean"},
         }
 	},
 
@@ -87,13 +89,15 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 				this.setDSelectedKey("-N/A-");
 				this.setDSelectedText("");
 				
-				that.fireDesignStudioPropertiesChanged(["dSelectedKey", "dSelectedText"]);
+				that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText"]);
+				that.fireDesignStudioEvent("onInternalSelectionChanged");
 				that.fireDesignStudioEvent("onClear");
 			} else {
 				this.setDSelectedKey(key);
 				this.setDSelectedText(text);
 				
-				that.fireDesignStudioPropertiesChanged(["dSelectedKey", "dSelectedText"]);
+				that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText"]);
+				that.fireDesignStudioEvent("onInternalSelectionChanged");
 				that.fireDesignStudioEvent("onSelectionChanged");
 			}
 		};
@@ -108,31 +112,36 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 		var lData = this._data;
 		var lMetadata = this._metadata;
 		
-		if(this.getDoRefresh()){
+		var lCurrentSelection = "Current Selection [" + this.getDSelectedKeyExtFull() + "]";
+		
+		if(this.getDDoRefresh()){
 			var lDBindingMode = this.getDBindingMode();
 			
-			var lElementsToRenderArray = [];
+			this._ElementsToRenderArray = [];
 			
 			if(lDBindingMode == "Result Set") {
-				lElementsToRenderArray = org_scn_community_databound.getTopBottomElementsForDimension 
-			     (lData, this.getDimension(), lMetadata, this.getMaxNumber(), this.getTopBottom(), this.getSorting(), "Ignore Duplicates");
-			}
-			
-			if(lDBindingMode == "Master Data") {
+				this._ElementsToRenderArray = org_scn_community_databound.getTopBottomElementsForDimension 
+			     (lData, this.getDDimension(), lMetadata, this.getDMaxMembers(), this.getDTopBottom(), this.getDSorting(), "Ignore Duplicates");
+			} else if(lDBindingMode == "Master Data") {
 				var lDElements = this.getDElements();
 				if(lDElements != null && lDElements != undefined && lDElements != ""){
-					lElementsToRenderArray = JSON.parse(lDSElements);
+					var lDlementsJson = JSON.parse(lDElements);
+					this._ElementsToRenderArray = lDlementsJson.members;
 				}
 			}
 			
 			this._content = []; 
 			
-			this._content.push({k:"-N/A-", t:"Default Selection"});
+			this._content.push({k:"-N/A-", t: lCurrentSelection});
 
-			for (var i = 0; i < lElementsToRenderArray.length; i++) {
-				var element = lElementsToRenderArray[i];
+			for (var i = 0; i < this._ElementsToRenderArray.length; i++) {
+				var element = this._ElementsToRenderArray[i];
 				
-				this._content.push({k:element.key, t:element.text});
+				if(lDBindingMode == "Result Set") {
+					this._content.push({k:element.key, t:element.text + " (" + element.value + ")"});	
+				} else if(lDBindingMode == "Master Data") {
+					this._content.push({k:element.key, t:element.text});
+				}
 			};
 			
 			this._content.push({k:"-CLEAR-", t:"Clear..."});
@@ -142,23 +151,25 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 		this._oModel.setData({
 			items: this._content,
 			editable: true, 
-			tooltip: "t"});
+			tooltip: lCurrentSelection});
 
 		if(this._oldContent == undefined || JSON.stringify(this._content) != JSON.stringify(this._oldContent)) {
 			// if data has changed, remove always selected key!
 			this.setDSelectedKey("-N/A-");
 			this.setDSelectedText("");
 			
-			that.fireDesignStudioPropertiesChanged(["dSelectedKey", "dSelectedText"]);
+			that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText"]);
 			that.fireDesignStudioEvent("onDataChanged");
 			
 			this._oldContent = this._content;
 		}
-		
-		if(this.getDSelectedKey() != "") {
-			for (var i = 0; i < this._content.length; i++) {
-				var currentKey = this._content[i].k;
-				if(currentKey == this.getDSelectedKey()) {
+
+		// internal key selection is possible only via external key
+		if(this.getDSelectedKeyExt() != "") {
+			for (var i = 0; i < this._ElementsToRenderArray.length; i++) {
+				var currentKey = this._ElementsToRenderArray[i].key;
+				var currentKeyExt = this._ElementsToRenderArray[i].keyExt;
+				if(currentKeyExt == this.getDSelectedKeyExt()) {
 					this.setSelectedKey(currentKey);
 					break;
 				};

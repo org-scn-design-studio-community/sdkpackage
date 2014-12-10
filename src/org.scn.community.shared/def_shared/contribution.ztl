@@ -3,6 +3,15 @@
  */
 class org.scn.community.shared.Component extends Component {
 	
+	void internalWriteLog(String log) {*
+		// only for debugging
+		var active = false;
+	
+		if(active) {
+			APPLICATION.log(log);
+		}
+	*}
+
 }
 
 /**
@@ -10,6 +19,42 @@ class org.scn.community.shared.Component extends Component {
  */
 class org.scn.community.shared.DataComponent extends org.scn.community.shared.Component {
 
+	String superReadMembers(
+			/**technical name of the dimension*/String dimensionName,
+			/**max members to load (optional, default 1000)*/optional int maxMembers
+			) {*
+		var ds = this.getDataSource();
+		
+		var membersArray = [];
+	
+		if(maxMembers == undefined) {
+			maxMembers = 1000;
+		}
+		
+		var members = ds.getMembers(dimensionName, maxMembers);
+
+		this.internalWriteLog("Load Members [length]: " + members.length);
+		
+		members.forEach(function(member, index) {
+			var memberEntry = {};
+			membersArray.push(memberEntry);
+			
+			memberEntry.key = member.internalKey;
+			// member.internalNoncompoundedKey;
+			memberEntry.keyExt = member.externalKey;
+			// member.externalNoncompoundedKey;
+			memberEntry.text = member.text;
+		});
+		
+		var membersMetaData = {};
+		membersMetaData.dimensionName = dimensionName;
+		membersMetaData.members = membersArray;
+		
+		var result = JSON.stringify(membersMetaData);
+		return result;
+	
+	*}
+	
 	String superReadMetaData() {*
 		// APPLICATION.createInfoMessage("_readMetaData");
 		
