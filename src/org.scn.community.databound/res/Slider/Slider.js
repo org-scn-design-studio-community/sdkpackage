@@ -123,9 +123,8 @@ sap.ui.commons.Slider.extend("org.scn.community.databound.Slider", {
 			// if data has changed, remove always selected key!
 			this.setSelectedKey("-N/A-");
 			this.setSelectedText("");
-			this.setSelectedKeys("");
 			
-			that.fireDesignStudioPropertiesChanged(["selectedKeys", "selectedKey", "selectedText"]);
+			that.fireDesignStudioPropertiesChanged(["selectedKey", "selectedText"]);
 			that.fireDesignStudioEvent("onDataChanged");
 			
 			this._oldContent = this._lLabels;
