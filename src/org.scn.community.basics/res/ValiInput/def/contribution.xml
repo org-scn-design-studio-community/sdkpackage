@@ -6,7 +6,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/vif/validate.js</jsInclude>
+	<jsInclude>os/validate/validate-min.js</jsInclude>
 	<jsInclude>res/ValiInput/ValiInput.js</jsInclude>
 	<cssInclude>res/ValiInput/ValiInput.css</cssInclude>
 	<property
