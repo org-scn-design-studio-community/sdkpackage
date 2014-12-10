@@ -7,6 +7,7 @@ class org.scn.community.prototypes.BarProperty {
   String number;
   String numberUnit;
 }
+
 /**
  * Class for ProgressBar
  */

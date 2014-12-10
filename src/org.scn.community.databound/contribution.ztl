@@ -38,7 +38,11 @@ class org.scn.community.databound.Table extends Component {
 /**
  * Class for DataDropDown
  */
-class org.scn.community.databound.DropDown extends Component {
+class org.scn.community.databound.DropDown extends org.scn.community.shared.DataComponent {
+
+	void onBeforeRender() {*
+		this.DElements = this.superReadMetaData();			
+	*}
 
 	/** returns the selected key 
     <example>
@@ -269,4 +273,3 @@ class org.scn.community.databound.TopFlopChart extends Component {
 		return this.pressedKey;	
 	*}
 }
-

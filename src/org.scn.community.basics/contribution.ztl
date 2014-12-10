@@ -165,7 +165,7 @@ class org.scn.community.basics.ActionSheetButton extends Component {
 	</code>
 	</example>
 	 */
-	void addItem (/*Item*/String key, String text, String icon) {*		
+	void addItem (/*Key*/String key, /*Text*/String text, /*Icon*/String icon) {*		
 		var o = [];
 		if(this.items != "") o = eval(this.items);
 		var newItem = {
@@ -4858,4 +4858,3 @@ class org.scn.community.basics.ValiInput extends Component {
 		return this.DValidState;	
 	*}
 }
-

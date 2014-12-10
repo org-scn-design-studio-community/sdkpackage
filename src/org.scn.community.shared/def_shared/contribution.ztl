@@ -1,0 +1,77 @@
+/**
+ * Class for reusable ZTL component methods
+ */
+class org.scn.community.shared.Component extends Component {
+	
+}
+
+/**
+ * Class for reusable ZTL data bound component methods
+ */
+class org.scn.community.shared.DataComponent extends org.scn.community.shared.Component {
+
+	String superReadMetaData() {*
+		// APPLICATION.createInfoMessage("_readMetaData");
+		
+		var ds = this.getDataSource();
+	  
+		var dimensionsArray = [];
+	
+		var dims = ds.getDimensions();
+		dims.forEach(function(element, index) {
+			var dimEntry = {};
+			dimensionsArray.push(dimEntry);
+			dimEntry.name = element.name;
+			dimEntry.text = element.text;
+			
+			if (element.isMeasuresDimension) {
+				var measuresArray = [];
+				var measures = ds.getMembers(element.name, 100);
+				measures.forEach(function(measure) {
+					var measureEntry = {};
+					measuresArray.push(measureEntry);
+
+					measureEntry.name = measure.internalKey;
+					measureEntry.text = measure.text;
+				});
+
+				dimEntry.measures = measuresArray;
+			} else {
+				dimEntry.memberDisplay = ds.getMemberDisplay(element.name);
+				dimEntry.showTotals = ds.getTotalsDisplay(element.name);
+				dimEntry.hierarchies =  ds.getHierarchies(element.name);
+				dimEntry.assignedHierarchy = ds.getAssignedHierarchy(element.name);
+			}
+		});
+
+		var conditionalFormatsJson = [];
+		var conditionalFormat = DS_1.getConditionalFormats();
+		conditionalFormat.forEach(function(element, index) {
+		  var conditionalFormatJson = {};
+		  conditionalFormatJson.push(conditionalFormatJson);
+		  
+		  conditionalFormatJson.id = element;
+		  conditionalFormatJson.name = ds.getConditionalFormatName(element);
+		  conditionalFormatJson.active = ds.isConditionalFormatActive(element);
+		});
+		
+		var measureFiltersJson = [];
+		var measureFilters = ds.getMeasureFilters();
+		measureFilters.forEach(function(element, index) {
+		  var conditionJson = {};
+		  measureFiltersJson.push(conditionJson);
+		  
+		  measureFilterJson.id = element;
+		  measureFilterJson.name = ds.getMeasureFilterName(element);
+		  measureFilterJson.active = ds.isMeasureFilterActive(element);
+		});
+		
+		var dataSourceMetaData = {};
+		dataSourceMetaData.dimensions = dimensionsArray;
+		dataSourceMetaData.conditionalFormats = conditionalFormatsJson;
+		dataSourceMetaData.measureFilters = measureFiltersJson;
+		
+		var result = JSON.stringify(dataSourceMetaData);
+		return result;
+	*}
+}

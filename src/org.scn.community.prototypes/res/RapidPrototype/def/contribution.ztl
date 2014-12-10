@@ -1,3 +1,6 @@
+/**
+ * Class for RapidPrototype 
+ */
 class org.scn.community.prototypes.RapidPrototype extends Component {
 	/* Returns the current value */
 	String getHTML() {*

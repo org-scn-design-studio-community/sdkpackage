@@ -39,8 +39,8 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 	
 	metadata: {
         properties: {
-        	  "DSBindingMode": {type: "string"},
-        	  "DSElements": {type: "string"},
+        	  "DBindingMode": {type: "string"},
+        	  "DElements": {type: "string"},
               "dimension": {type: "string"},
               "topBottom": {type: "string"},
               "sorting": {type: "string"},
@@ -109,18 +109,18 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 		var lMetadata = this._metadata;
 		
 		if(this.getDoRefresh()){
-			var lDSBindingMode = this.getDSBindingMode();
+			var lDBindingMode = this.getDBindingMode();
 			
 			var lElementsToRenderArray = [];
 			
-			if(lDSBindingMode == "Result Set") {
+			if(lDBindingMode == "Result Set") {
 				lElementsToRenderArray = org_scn_community_databound.getTopBottomElementsForDimension 
 			     (lData, this.getDimension(), lMetadata, this.getMaxNumber(), this.getTopBottom(), this.getSorting(), "Ignore Duplicates");
 			}
 			
-			if(lDSBindingMode == "Master Data") {
-				var lDSElements = this.getDSElements();
-				if(lDSElements != null && lDSElements != undefined && lDSElements != ""){
+			if(lDBindingMode == "Master Data") {
+				var lDElements = this.getDElements();
+				if(lDElements != null && lDElements != undefined && lDElements != ""){
 					lElementsToRenderArray = JSON.parse(lDSElements);
 				}
 			}

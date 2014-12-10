@@ -27,6 +27,7 @@ class org.scn.community.prototypes.BarProperty {
   String number;
   String numberUnit;
 }
+
 /**
  * Class for ProgressBar
  */
@@ -144,7 +145,11 @@ class org.scn.community.prototypes.ProgressSet extends Component {
 		}
 		barConfig = JSON.stringify(o);
 	*}
-}class org.scn.community.prototypes.RapidPrototype extends Component {
+}
+/**
+ * Class for RapidPrototype 
+ */
+class org.scn.community.prototypes.RapidPrototype extends Component {
 	/* Returns the current value */
 	String getHTML() {*
 		return this.HTML;
@@ -162,4 +167,3 @@ class org.scn.community.prototypes.ProgressSet extends Component {
 		this["replacement"+index] = replacement;
 	*}
 }
-

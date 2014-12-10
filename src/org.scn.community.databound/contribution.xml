@@ -266,7 +266,7 @@
 	<cssInclude>res/DropDown/DropDown.css</cssInclude>
 
 	<property
-		id="DSBindingMode"
+		id="DBindingMode"
 		title="Binding Mode (metadata, resultset)"
 		type="String"
 		group="Display"
@@ -278,7 +278,7 @@
 	</property>
 
 	<property
-		id="DSElements"
+		id="DElements"
 		title="Master Data Elements"
 		type="String"
 		group="DataBinding"
@@ -374,12 +374,14 @@
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">26</defaultValue>
 
-		<defaultValue property="DSBindingMode">Result Set</defaultValue>
+		<defaultValue property="DBindingMode">Result Set</defaultValue>
 		<defaultValue property="topBottom">Both</defaultValue>
 		<defaultValue property="sorting">By Value</defaultValue>
 		<defaultValue property="maxNumber">3</defaultValue>
 		<defaultValue property="enabled">true</defaultValue>
 		<defaultValue property="doRefresh">true</defaultValue>
+		
+		<defaultValue property="onBeforeRender">this.onBeforeRender();</defaultValue>
 
 	</initialization>
 
