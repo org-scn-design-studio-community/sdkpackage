@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+  targetNamespace="http://www.sap.com/bi/zen/sdk"
+  elementFormDefault="qualified"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="http://www.sap.com/bi/zen/sdk">
+  <annotation>
+    <documentation>
+      This schema describes an SAP BusinessObjects Design Studio software development kit (SDK)
+      extension. A developer uses this schema to express an SDK extension with extension components
+      in an XML file.
+    </documentation>
+  </annotation>
+
+  <element
+    name="sdkExtension"
+    type="tns:Extension">
+    <unique name="uniqueComponentName">
+      <selector xpath="./tns:component"/>
+      <field xpath="@id"/>
+    </unique>
+    <unique name="uniqueGroupName">
+      <selector xpath="./tns:group"/>
+      <field xpath="@id"/>
+    </unique>
+  </element>
+
+  <complexType name="Extension">
+    <annotation>
+      <documentation>This is the root type for a Design Studio SDK extension.</documentation>
+    </annotation>
+    <sequence>
+      <element
+        name="license"
+        type="string"
+        minOccurs="0"
+        maxOccurs="1">
+        <annotation>
+          <documentation>
+            License agreement text
+          </documentation>
+        </annotation>
+      </element>
+      <element
+        name="group"
+        type="tns:Group"
+        minOccurs="0"
+        maxOccurs="unbounded">
+      </element>
+      <element
+        name="component"
+        type="tns:Component"
+        minOccurs="0"
+        maxOccurs="unbounded">
+        <unique name="uniquePropertyId">
+          <selector xpath="./tns:property"/>
+          <field xpath="@id"/>
+        </unique>
+      </element>
+    </sequence>
+    <attribute
+      name="eula"
+      type="string">
+      <annotation>
+        <documentation>
+          End user license agreement text.
+        </documentation>
+      </annotation>
+    </attribute>
+    <attribute
+      name="id"
+      use="required">
+      <annotation>
+        <documentation>
+          Specifies an extension id to avoid name conflicts of an SDK extension and its extension
+          components with other SDK extensions and their extension components. The specified string
+          is combined with all extension component names in this SDK extension to create a unique
+          extension component id. Use a Java-like package notation, for example "com.samplecompany",
+          using lower-case letters, digits, and a period (.) as a delimiter.
+        </documentation>
+      </annotation>
+      <simpleType>
+        <restriction base="token">
+          <pattern value="([a-z|\d])+(\.([a-z]|\d)+)*"></pattern>
+        </restriction>
+      </simpleType>
+    </attribute>
+    <attribute
+      name="vendor"
+      type="string"
+      use="required">
+      <annotation>
+        <documentation>
+          Vendor name.
+        </documentation>
+      </annotation>
+    </attribute>
+    <attribute
+      name="version"
+      use="required">
+      <annotation>
+        <documentation>
+          Version number in major.minor format, for example "1.0".
+        </documentation>
+      </annotation>
+      <simpleType>
+        <restriction base="token">
+          <pattern value="\d+\.\d+"></pattern>
+        </restriction>
+      </simpleType>
+    </attribute>
+    <attribute
+      name="title"
+      type="string"
+      use="required">
+      <annotation>
+        <documentation>
+          Title of the SDK extension.
+        </documentation>
+      </annotation>
+    </attribute>
+  </complexType>
+
+  <complexType name="Group">
+    <annotation>
+      <documentation>
+        Specifies a custom group in Design Studio's views. A custom group in the Component view
+        contains extension components. A custom group in the Properties view contains properties of
+        an extension component.
+      </documentation>
+    </annotation>
+    <complexContent>
+      <extension base="tns:Descriptable">
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="Component">
+    <annotation>
+      <documentation>
+        Specifies an extension component.
+      </documentation>
+    </annotation>
+    <complexContent>
+      <extension base="tns:Descriptable">
+        <sequence>
+          <element
+            name="stdInclude"
+            type="tns:StdInclude"
+            minOccurs="0"
+            maxOccurs="unbounded">
+            <annotation>
+              <documentation>
+                Includes a JavaScript framework.
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="jsInclude"
+            type="string"
+            minOccurs="0"
+            maxOccurs="unbounded">
+            <annotation>
+              <documentation>
+                References a JavaScript file to include with this extension component. It is either
+                a relative path to the root folder of the SDK extension or a fully qualified URL.
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="cssInclude"
+            type="string"
+            minOccurs="0"
+            maxOccurs="unbounded">
+            <annotation>
+              <documentation>
+                References a CSS file to include with this extension component. It is either a
+                relative path to the root folder of the SDK extension or a fully qualified URL.
+              </documentation>
+            </annotation>
+          </element>          <element            name="property"            type="tns:Property"            minOccurs="0"            maxOccurs="unbounded">
+            <annotation>
+              <documentation>
+                Property of the extension component.
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="initialization"
+            type="tns:Initialization"
+            minOccurs="0"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Initialization values of properties.
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="supportedBackend"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            type="tns:BackendSystemType">
+            <annotation>
+              <documentation>
+                Platform which supports this custom component. Specify one of the following values:
+                LOCAL, BIPLATFORM, HANA, or NETWEAVER. If this element is unspecified, then all
+                platforms support this extension component.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+        <attribute
+          name="group"
+          type="string">
+          <annotation>
+            <documentation>
+              Group in the Design Studio's Component view where this extension component is
+              displayed. Specify a custom group you have defined in this SDK extension, otherwise
+              this extension component is placed in the default Custom Component group.
+            </documentation>
+          </annotation>
+        </attribute>
+        <attribute
+          name="propertySheetPath"
+          type="string">
+          <annotation>
+            <documentation>
+              References the HTML file of the Additional Properties Sheet. This file must be located
+              in the "res" folder of the extension component.
+            </documentation>
+          </annotation>
+        </attribute>
+        <attribute
+          name="databound"
+          type="boolean"
+          use="optional"
+          default="false">
+          <annotation>
+            <documentation>
+              Indicates if this extension component is data-bound (uses data sources).
+            </documentation>
+          </annotation>
+        </attribute>
+        <attribute
+          name="newInstancePrefix"
+          type="string">
+          <annotation>
+            <documentation>
+              Prefix of the name of a newly created instance of this extension component. If this
+              attribute is unspecified, then a default name of the form "extension component type
+              (upper-case) + integer counter" is used, for example COLOREDBOX_1.
+            </documentation>
+          </annotation>
+        </attribute>
+        <attribute
+          name="handlerType"
+          type="tns:HandlerTypes"
+          default="div">
+          <annotation>
+            <documentation>
+              Specifies the technology that implements this extension component. Specify one of the 
+              following values: div, sapui5 (default: div).              
+            </documentation>
+          </annotation>
+        </attribute>
+        <attribute
+          name="icon"
+          type="string">
+          <annotation>
+            <documentation>
+              References an icon displayed with this extension component in Design Studio's 
+              Component and Outline view. The path is relative to the root folder of the SDK
+              extension.
+            </documentation>
+          </annotation>
+        </attribute>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="Descriptable">
+    <attribute
+      name="id"
+      use="required">
+      <simpleType>
+        <restriction base="token">
+          <pattern value="([a-z|A-Z|\d|/])+"></pattern>
+        </restriction>
+      </simpleType>
+    </attribute>
+    <attribute
+      name="title"
+      type="string"
+      use="required"></attribute>    <attribute      name="tooltip"      type="string"></attribute>
+    <attribute
+      name="visible"
+      type="boolean"
+      default="true"></attribute>
+  </complexType>
+
+  <complexType name="Property">
+    <annotation>
+      <documentation>
+        Property of this extension component.
+      </documentation>
+    </annotation>
+    <complexContent>
+      <extension base="tns:Descriptable">
+        <sequence>
+          <element
+            name="possibleValue"
+            type="string"
+            minOccurs="0"
+            maxOccurs="unbounded">
+          </element>
+          <element
+            name="option"
+            type="tns:Option" minOccurs="0" maxOccurs="unbounded">
+          </element>
+        </sequence>
+        <attribute
+          name="type"
+          type="tns:PropertyType"
+          use="required"></attribute>
+        <attribute
+          name="group"
+          type="string">
+          <annotation>
+            <documentation>
+              Group in the Design Studio's Properties view where this property is displayed. Specify 
+              a custom group you have defined in this SDK extension or one of the following values: 
+              Display, DataBinding, or Events (default: Display).
+            </documentation>
+          </annotation>
+        </attribute>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <simpleType name="PropertyType">
+    <restriction base="string">
+      <enumeration value="String"></enumeration>
+      <enumeration value="Text"></enumeration>
+      <enumeration value="int"></enumeration>
+      <enumeration value="float"></enumeration>
+      <enumeration value="boolean"></enumeration>
+      <enumeration value="ScriptText"></enumeration>
+      <enumeration value="Color"></enumeration>
+      <enumeration value="Url"></enumeration>
+      <enumeration value="ResultCell"></enumeration>
+      <enumeration value="ResultCellSet"></enumeration>
+      <enumeration value="ResultCellList"></enumeration>
+      <enumeration value="ResultSet"></enumeration>
+    </restriction>
+  </simpleType>
+
+  <complexType name="Initialization">
+    <annotation>
+      <documentation>
+        Initial values of properties (built-in and custom) of this extension component when a new 
+        instance of this extension component is created.
+      </documentation>
+    </annotation>
+    <sequence>
+      <element
+        name="defaultValue"
+        type="tns:PropertyValue"
+        minOccurs="0"
+        maxOccurs="unbounded"></element>
+    </sequence>
+  </complexType>
+
+  <complexType name="PropertyValue">
+    <annotation>
+      <documentation>
+        Initial value of a property (built-in and custom) of this extension component when a new 
+        instance of this custom extension component is created.
+      </documentation>
+    </annotation>
+    <simpleContent>
+      <extension base="string">
+        <attribute
+          name="property"
+          type="string"
+          use="required"></attribute>
+      </extension>
+    </simpleContent>
+  </complexType>
+
+  <simpleType name="BackendSystemType">
+    <restriction base="string">
+      <enumeration value="LOCAL"></enumeration>
+      <enumeration value="BIPLATFORM"></enumeration>
+      <enumeration value="NETWEAVER"></enumeration>
+      <enumeration value="HANA"></enumeration>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="HandlerTypes">
+    <annotation>
+      <documentation>
+        Specifies the technology that implements this custom component. It defines the JavaScript 
+        format of your handler file.
+      </documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="div"></enumeration>
+      <enumeration value="sapui5"></enumeration>
+      <enumeration value="cvom"></enumeration>
+      <enumeration value="datasource"></enumeration>
+    </restriction>
+  </simpleType>
+
+  <complexType name="StdInclude">
+    <annotation>
+      <documentation>
+        Includes a JavaScript framework shipped with Design Studio.
+      </documentation>
+    </annotation>
+    <attribute
+      name="kind"
+      use="required">
+      <simpleType>
+        <restriction base="string">
+          <enumeration value="d3"></enumeration>
+          <enumeration value="cvom"></enumeration>
+        </restriction>
+      </simpleType>
+    </attribute>
+  </complexType>
+
+  <complexType name="Option">
+    <attribute
+      name="name"
+      type="string" use="required">
+    </attribute>
+    <attribute
+      name="value"
+      type="string" use="required">
+    </attribute>
+  </complexType>
+</schema>
