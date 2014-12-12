@@ -2097,7 +2097,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>os/validate/validate-min.js</jsInclude>
+	<jsInclude>os/validate/validate.js</jsInclude>
 	<jsInclude>res/ValiInput/ValiInput.js</jsInclude>
 	<cssInclude>res/ValiInput/ValiInput.css</cssInclude>
 	<property
@@ -2176,8 +2176,8 @@
 		title="Event for On Changed"
 		group="Events" />
 	<initialization>
-		<defaultValue property="WIDTH">42</defaultValue>
-		<defaultValue property="HEIGHT">42</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
