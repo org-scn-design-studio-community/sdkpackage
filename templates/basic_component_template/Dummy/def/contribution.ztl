@@ -1,0 +1,7 @@
+/**
+ * Class for Dummy
+ */
+class org.scn.community.basics.Dummy extends org.scn.community.shared.Component {
+	
+	// extend the shared if you want to use common provided methods (like log..)
+}

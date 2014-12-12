@@ -125,6 +125,7 @@ sap.ui.commons.TextField.extend("org.scn.community.basics.ValiInput", {
 		
 		if(iValue != "") {
 			if(validationMode == "none"){
+				that._DValid = "None";
 				// nothing to do
 			} else if(validationMode.indexOf("length") > -1){
 				valid = that.formValidator._hooks[validationMode](preparedHook, this.getDLength());

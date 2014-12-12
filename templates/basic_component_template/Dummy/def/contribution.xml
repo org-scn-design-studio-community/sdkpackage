@@ -1,0 +1,19 @@
+
+<component
+	id="Dummy"
+	title="Some Dummy"
+	icon="res/Dummy/Dummy.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+	propertySheetPath="res/Dummy/aps/Dummy.html">
+	<jsInclude>res/Dummy/Dummy.js</jsInclude>
+	<cssInclude>res/Dummy/Dummy.css</cssInclude>
+	
+	<property
+		id="DSomeProperty"
+		type="boolean"
+		title="Some Property"
+		group="Display"
+		visible="true" />
+	
+</component>
