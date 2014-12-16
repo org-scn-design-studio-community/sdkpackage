@@ -8,6 +8,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\DataTable\def\contribution.xml ^
 ..\res\DropDown\def\contribution.xml ^
 ..\res\LeaderBoard\def\contribution.xml ^
+..\res\MultiLevelDropDown\def\contribution.xml ^
 ..\res\RangeSlider\def\contribution.xml ^
 ..\res\Slider\def\contribution.xml ^
 ..\res\Table2D\def\contribution.xml ^
@@ -24,6 +25,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\DataTable\def\contribution.ztl ^
 ..\res\DropDown\def\contribution.ztl ^
 ..\res\LeaderBoard\def\contribution.ztl ^
+..\res\MultiLevelDropDown\def\contribution.ztl ^
 ..\res\RangeSlider\def\contribution.ztl ^
 ..\res\Slider\def\contribution.ztl ^
 ..\res\Table2D\def\contribution.ztl ^
