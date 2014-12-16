@@ -33,15 +33,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 		this._content.addContent(this.comboSelChar);
 		
 		this._content.placeAt($("#content"));
-	
 		this.updateProps();
 	};
 	
 	this.updateProps = function(value){
-		
 		this.comboSelChar.removeAllItems();
 		this.comboSelChar.setSelectedKey(this._selChar);
-		
 		
 		var compMeta = this.callRuntimeHandler("getDimensions");
 		
@@ -49,7 +46,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 		for(var i=0;i<dims.length;i++){
 			var dim = dims[i];
 			
-			alert(dim.key);
 			this.comboSelChar.addItem(new sap.ui.core.ListItem({
 				key : dim.key,
 				text: dim.text,
@@ -68,12 +64,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 		}
 	};
 	
-	this.componentSelected = function(){
-		//this.updateProps();
-	};
-	
-//	
-	
+
 	/* SDK-Provided Metadata Property
 	 * Cannot use default getter/setter, since we can return dummy data when no Datasource is bound
 	 */

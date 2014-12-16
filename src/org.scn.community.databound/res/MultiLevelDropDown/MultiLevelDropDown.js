@@ -192,7 +192,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			}
 		}
 		
-		if (dimensionId = -1) {
+		if (dimensionId == -1) {
 			this.$().append($('<p>Please select a dimension</p>'));
 		} else {
 			//Should parse and display the member as list				

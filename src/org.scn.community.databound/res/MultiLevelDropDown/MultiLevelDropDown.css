@@ -20,14 +20,14 @@
 	background-color:gray;
 }
 
-#primary_nav_wrap ul div
+#primary_nav_wrap ul a
 {
 	display:block;
 	color:#333;
 	text-decoration:none;
 	font-size:12px;
 	line-height:32px;
-	font-family:\"HelveticaNeue\",\"Helvetica Neue\",Helvetica,Arial,sans-serif
+	font-family:"HelveticaNeue","Helvetica Neue","Helvetica\","Arial,sans-serif";
 }
 
 #primary_nav_wrap ul li
@@ -102,7 +102,7 @@
 #primary_nav_wrap ul ul a
 {
 	line-height:120%;
-	padding:10px 15px
+	padding:10px 0px
 }
 
 #primary_nav_wrap ul ul ul
