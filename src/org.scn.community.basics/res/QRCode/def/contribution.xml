@@ -1,0 +1,68 @@
+
+<component id="QRCode"
+	title="QRCode Generator"
+	icon="res/QRCode/QRCode.png"
+	tooltip="QRCode Generation"
+	handlerType="div"
+	group="ScnCommunityBasics">
+	<jsInclude>os/jquery-qrcode/jquery.qrcode.min.js</jsInclude>
+	<jsInclude>res/QRCode/QRCode.js</jsInclude>
+	<property type="String" title="QR Code Text" id="text" />
+	<property type="String" title="Render Mode" id="render">
+		<possibleValue>canvas</possibleValue>
+		<possibleValue>div</possibleValue>
+		<possibleValue>image</possibleValue>
+	</property>
+	<property type="String" title="Error Correction Level" id="ecLevel">
+		<possibleValue>L</possibleValue>
+		<possibleValue>M</possibleValue>
+		<possibleValue>Q</possibleValue>
+		<possibleValue>H</possibleValue>
+	</property>
+	<property type="int" title="Min Version (1-40)" id="minVersion" />
+	<property type="int" title="Max Version (1-40)" id="maxVersion" />
+	<property type="Color" title="Fill Color" id="fill" />
+	<property type="Color" title="Background Color" id="background" />
+	<property type="float" title="Corner Radius (0.0 - 0.5)" id="radius" />
+	<property type="float" title="Quiet Zone" id="quiet" />
+	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>
+	<!-- THINGS THAT DO NOT WORK WELL 
+	<property type="int" title="Left Offset (px)" id="left" />
+	<property type="int" title="Top Offset (px)" id="top" />
+	<property type="int" title="Size (px) (-1 = auto)" id="size" />
+	<property type="String" title="Label" id="label" />
+	<property type="float" title="mSize" id="mSize" />
+	<property type="float" title="mPosX" id="mPosX" />
+	<property type="float" title="mPosY" id="mPosY" />
+	<property type="String" title="Label Font" id="fontname" />
+	<property type="Color" title="Label Color" id="fontcolor" />
+	<property type="String" title="Mode" id="mode">
+		<possibleValue>Normal</possibleValue>
+		<possibleValue>Label Strip</possibleValue>
+		<possibleValue>Label Box</possibleValue>
+		<possibleValue>Image Box</possibleValue>
+	</property>
+	-->
+	
+	<initialization>
+		<defaultValue property="HEIGHT">256</defaultValue>
+		<defaultValue property="WIDTH">256</defaultValue>
+		<defaultValue property="render">canvas</defaultValue>
+		<defaultValue property="ecLevel">L</defaultValue>
+		<defaultValue property="minVersion">1</defaultValue>
+		<defaultValue property="maxVersion">40</defaultValue>
+		<defaultValue property="radius">0</defaultValue>
+		<defaultValue property="quiet">0</defaultValue>
+		<defaultValue property="text">QRCode Text</defaultValue>
+		<!-- THINGS THAT DO NOT WORK WELL 
+		<defaultValue property="left">0</defaultValue>
+		<defaultValue property="top">0</defaultValue>
+		<defaultValue property="size">0</defaultValue>
+		<defaultValue property="mode">Normal</defaultValue>
+		<defaultValue property="label">Label</defaultValue>
+		<defaultValue property="mSize">0.1</defaultValue>
+		<defaultValue property="mPosX">0.5</defaultValue>
+		<defaultValue property="mPosY">0.5</defaultValue>
+		-->
+	</initialization>
+</component>
