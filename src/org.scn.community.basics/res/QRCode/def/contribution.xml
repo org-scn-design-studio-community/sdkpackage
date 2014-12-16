@@ -7,12 +7,14 @@
 	group="ScnCommunityBasics">
 	<jsInclude>os/jquery-qrcode/jquery.qrcode.min.js</jsInclude>
 	<jsInclude>res/QRCode/QRCode.js</jsInclude>
+	<cssInclude>res/QRCode/QRCode.css</cssInclude>
 	<property type="String" title="QR Code Text" id="text" />
 	<property type="String" title="Render Mode" id="render">
 		<possibleValue>canvas</possibleValue>
 		<possibleValue>div</possibleValue>
 		<possibleValue>image</possibleValue>
 	</property>
+	<property type="boolean" title="Only show on printouts" id="printOnly"/>
 	<property type="String" title="Error Correction Level" id="ecLevel">
 		<possibleValue>L</possibleValue>
 		<possibleValue>M</possibleValue>

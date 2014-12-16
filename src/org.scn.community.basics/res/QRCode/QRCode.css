@@ -1,0 +1,8 @@
+@media screen {
+	.DesignStudioSCN.QRCode.printOnly {
+		display : none;
+	}
+	.DesignStudioSCN.QRCode.designTimePrintOnly {
+		opacity : .4;
+	}
+}

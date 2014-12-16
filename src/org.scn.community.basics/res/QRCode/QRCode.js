@@ -34,6 +34,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.QRCode", funct
 		text : { value : "" },
 		radius : { value : 0 },
 		quiet : { value : 0 },
+		printOnly : {value : false},
 		// These are set but not exposed for changing in Design Studio
 		left : { value : 0 },
 		top : { value : 0 },
@@ -63,8 +64,21 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.QRCode", funct
 			};
 		}(property);
 	}
-	
+	this.init = function(){
+		this.$().addClass("DesignStudioSCN");
+		this.$().addClass("QRCode");
+	}
 	this.afterUpdate = function(){
+		if(this.printOnly()){
+			if(!(sap && sap.zen && sap.zen.designmode)){
+				this.$().addClass("printOnly");
+			}else{
+				this.$().addClass("designTimePrintOnly");
+			}
+		}else{
+			this.$().removeClass("printOnly");
+			this.$().removeClass("designTimePrintOnly");
+		}
 		var size = this.size();
 		if(size==-1){	// Auto
 			size = this.$().width();

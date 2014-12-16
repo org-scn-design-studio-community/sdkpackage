@@ -26,13 +26,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Table2D", f
 		}
 	};
 	/**
-	 * D3 Render
-	 */
-	this.renderD3 = function(flatData){
-		
-		
-	}
-	/**
 	 * Fires after property change.
 	 */
 	this.afterUpdate = function() {

@@ -4501,6 +4501,18 @@ class org.scn.community.basics.QRCode extends Component {
 	int getQuiet() {*
 		return this.quiet;
 	*}
+	/**
+	 * Sets Print-Only
+	 */	
+	void setPrintOnly( /* Print Only (true/false) */ boolean printOnly){*
+		this.printOnly = printOnly;
+	*}
+	/**
+	 * Gets Print-Only
+	 */	
+	String getPrintOnly() {*
+		return this.printOnly;
+	*}
 }
 /**
  * Class for RangeSlider (extension of slider)
