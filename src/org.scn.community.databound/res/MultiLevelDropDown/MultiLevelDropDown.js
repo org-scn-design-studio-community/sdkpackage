@@ -26,7 +26,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	 */
 	
 	var data 						= null;
-	var metadata					= null;
 	var _propSelChar				= "";
 	var _propSingleRootNodeName 	= null;
 	var _propAddSingleRootNode  	= null;
@@ -178,7 +177,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	 */
 	this.updateDisplay = function() {
 
-		var hasData = org_scn_community_databound.hasData(data, metadata);
+		var hasData = org_scn_community_databound.hasData(data);
 		
 		if(!hasData) {
 			return;
@@ -409,19 +408,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 		}
 	};
 	
-	this.metadata = function(value) {
-		if (value === undefined) {
-			return metadata;
-		} else {
-			
-			if (!loaded && !!value) {
-				metadata = value;
-			}
-			
-			return this;
-		}
-	};
-	
+
 	/*
 	 * This is the getter/Setter of selChar.
 	 * It can be called at 2 places:
