@@ -175,6 +175,15 @@ class org.scn.community.databound.MultiLevelDropDown extends Component {
 	void setResetButton(String value) {*
 		this.resetButton = value;
 	*}
+
+	String getDimension() {*
+		return this.selChar;
+	*}
+
+	void setDimension(String value) {*
+		this.selChar = value;
+	*}
+
 }
 
 /**

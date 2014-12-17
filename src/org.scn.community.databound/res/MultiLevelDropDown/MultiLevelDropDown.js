@@ -26,6 +26,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	 */
 	
 	var data 						= null;
+	var metadata					= null;
 	var _propSelChar				= "";
 	var _propSingleRootNodeName 	= null;
 	var _propAddSingleRootNode  	= null;
@@ -46,7 +47,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	 * Others
 	 */
 	
-	var dimensionId					= 0;
+	var dimensionId					= -1; // init with -1 to assure component correct initialized (KK)
 	var loaded						= false;
 	
 	//Strings
@@ -177,6 +178,12 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	 */
 	this.updateDisplay = function() {
 
+		var hasData = org_scn_community_databound.hasData(data, metadata);
+		
+		if(!hasData) {
+			return;
+		}
+		
 		this.debugConsoleDir(data, "this.updateDisplay / var data");
 		
 		var rootUL		= null;
@@ -396,6 +403,19 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 				data = value;
 				loaded = true;
 				this.setRendered(false);
+			}
+			
+			return this;
+		}
+	};
+	
+	this.metadata = function(value) {
+		if (value === undefined) {
+			return metadata;
+		} else {
+			
+			if (!loaded && !!value) {
+				metadata = value;
 			}
 			
 			return this;

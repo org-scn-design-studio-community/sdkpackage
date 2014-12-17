@@ -9,6 +9,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Collection\def\contribution.xml ^
 ..\res\CustomCssCollector\def\contribution.xml ^
 ..\res\OpenWindowPost\def\contribution.xml ^
+..\res\SimpleDate\def\contribution.xml ^
 ..\..\org.scn.community.shared\templates.main\contribution.xml.close.txt > ^
 ..\contribution.xml
 
@@ -21,6 +22,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\Collection\def\contribution.ztl ^
 ..\res\CustomCssCollector\def\contribution.ztl ^
 ..\res\OpenWindowPost\def\contribution.ztl ^
+..\res\SimpleDate\def\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 

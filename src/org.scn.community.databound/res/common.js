@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Karol Kalisz
+ * Copyright 2014 Scn SDK Community
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/
@@ -18,6 +18,32 @@
  */
 
 var org_scn_community_databound = org_scn_community_databound || {};
+
+org_scn_community_databound.hasData = function (data) {
+	
+	if(!data || data == "" || data == undefined) {
+		return false;
+	}
+	
+	return true;
+};
+
+org_scn_community_databound.hasDataAndMetadata = function (data, metadata) {
+	
+	if(!data || data == "" || data == undefined) {
+		return false;
+	}
+	
+	if(!metadata || metadata == "" || metadata == undefined) {
+		return false;
+	}
+	
+	if(!metadata || !metadata.dimensions) {
+		return false;
+	}
+	
+	return true;
+};	
 
 org_scn_community_databound.getTopBottomElementsForDimension = function (data, requestedDimensionKey, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates) {
 
@@ -397,4 +423,4 @@ org_scn_community_databound.flatten = function (options) {
 		retObj.columnHeaders.push(colHeader);
 	}
 	return retObj;
-}
+};

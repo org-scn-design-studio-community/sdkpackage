@@ -101,27 +101,3 @@ class org.scn.community.basics.NotificationBar extends Component {
 		this.notifications = JSON.stringify(notificationsJson);
 	*}
 }
-
-/**
- * Class for FallbackPicture
- */
-class org.scn.community.basics.FallbackPicture extends Component {
-	
-	/**
-	 * Setter for "normal case" picture
-	 */
-	void setPicture (
-			/** picture */
-			String pictureForNormalCase) {*
-		this.picture = pictureForNormalCase;
-	*}
-
-	/**
-	 * Setter for "fallback case" picture
-	 */
-	void setFallbackPicture (
-			/** fallback picture */
-			String pictureForFallbackCase) {*
-		this.fallbackPicture = pictureForFallbackCase;
-	*}
-}
