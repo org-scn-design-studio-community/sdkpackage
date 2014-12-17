@@ -5,13 +5,17 @@
 class org.scn.community.basics.ColorPicker extends Component {
 
 	/** Sets the color top be shown */
-	void setColor(
-			/** Color value */ String colorString) {*
+	void setColor( /** Color value */ String colorString) {*
 		this.colorString = colorString;
-			*}
+	*}
 
-	/** Returns the picked color */
+	/** Returns the picked color as RGB like: rgb(255,255,255) */
 	String getColor() {*
 		return this.colorString;
+	*}
+	
+	/** Returns the picked color as Hexadecimal string like: #FFFFFF */
+	String getColorAsHex() {*
+		return this.colorStringHex;
 	*}
 }

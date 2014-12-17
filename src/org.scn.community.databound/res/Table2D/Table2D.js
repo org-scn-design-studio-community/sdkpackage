@@ -26,15 +26,31 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Table2D", f
 		}
 	};
 	/**
-	 * D3 Render
+	 * Fires after property change.
 	 */
-	this.renderD3 = function(flatData){
+	this.afterUpdate = function() {
+		var flatData;
 		var vals = [];
-		if(flatData.formattedValues && flatData.formattedValues.length > 0) {
-			vals = flatData.formattedValues.slice();
-		}else if(flatData.values && flatData.values.length > 0){
-			vals = flatData.values.slice();
+		try{
+			flatData = org_scn_community_databound.flatten(this.data());
+			if(flatData && flatData.formattedValues && flatData.formattedValues.length > 0) {
+				vals = flatData.formattedValues.slice();
+			}else if(flatData && flatData.values && flatData.values.length > 0){
+				vals = flatData.values.slice();
+			}else{
+				// Something happened.
+				throw("No formatted or unformatted values found.");
+			}
+		}catch(e){
+			var errorMessage = e;
+			if(e.indexOf("Incomplete data given.")>-1) errorMessage = "Incomplete data.  Try assigning a datasource.";
+			if(!flatData) flatData = {
+				columnHeaders : ["Error"],
+				rowHeaders : [errorMessage]
+			};
+			vals = [[]];
 		}
+		
 		for(var i=0;i<vals.length;i++){
 			if(flatData.rowHeaders.length>=i)
 			vals[i].splice(0,0,flatData.rowHeaders[i]);
@@ -65,42 +81,5 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Table2D", f
 		rowCells.enter().append("td").classed("cell",true).classed("row-header", function(d,i){return i==0;});
 		rowCells.exit().remove();	
 		rowCells.text(function(d,i,pI){ return d;});
-		
-	}
-	/**
-	 * Fires after property change.
-	 */
-	this.afterUpdate = function() {
-		var h = "";
-		try{
-			//this.$().html();
-			var flat = org_scn_community_databound.flatten(this.data());
-			this.renderD3(flat);
-			return;
-			h = "<TABLE>";
-			h+="<TH><TD></TD>";
-			for(var col=0;col<flat.columnHeaders.length;col++){
-				h+="<TD>" + flat.columnHeaders[col];
-			}
-			h+="</TH>";
-			var vals = [];
-			if(flat.formattedValues && flat.formattedValues.length > 0) {
-				vals = flat.formattedValues 
-			}else if(flat.values && flat.values.length > 0){
-				vals = flat.values
-			}
-			for(var row=0;row<vals.length;row++){
-				h+="<TR>";
-				h+="<TD>" + flat.rowHeaders[row] + "<TD>";
-				for(var col=0;col<vals[row].length;col++){
-					h+="<TD>" + vals[row][col];	
-				}
-				h+="</TR>";
-			}
-			h+="</TABLE>";
-		}catch(e){
-			h = e;
-		}
-		this.$().html(h);
 	};
 });

@@ -129,7 +129,7 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 				coordinate.splice(0,0,kfNames[j]);
 				var d = _data[i][kfIndex+j];
 				var mutate = 1;
-				if(_mutators.length>=j) mutate = parseFloat(_mutators[j]);
+				if(_mutators.length>j) mutate = parseFloat(_mutators[j]);
 				d = d * mutate;
 				this.setDataCell(coordinate,d);
 			}

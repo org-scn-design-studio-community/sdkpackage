@@ -18,12 +18,24 @@
  */
 
 sap.ui.commons.ColorPicker.extend("org.scn.community.basics.ColorPicker", {
-
+	_hexColor : "",
+	metadata : {
+		properties : {
+			colorStringHex : "string"
+		}
+	},
+	getColorStringHex : function(){
+		return this._hexColor;
+	},
+	setColorStringHex : function(s){
+		// Do nothing.
+	},
 	initDesignStudio: function() {
 		var that = this;
 		
-		this.attachChange(function() {
-			that.fireDesignStudioPropertiesChanged(["colorString"]);
+		this.attachChange(function(oControlEvent) {
+			that._hexColor = oControlEvent.getParameters().hex;
+			that.fireDesignStudioPropertiesChanged(["colorString","colorStringHex"]);
 			that.fireDesignStudioEvent("onColorChange");
 		});
 	},

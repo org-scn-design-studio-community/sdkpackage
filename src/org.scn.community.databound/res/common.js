@@ -25,8 +25,9 @@ org_scn_community_databound.getTopBottomElementsForDimension = function (data, r
 		return [];
 	}
 	
-	var dimesnsionStartIndex = -1;
-	var dimesnsionEndIndex = -1;
+	//FBL20141216 Removed an additionnal S from the variable name
+	var dimensionStartIndex = -1;
+	var dimensionEndIndex   = -1;
 
 	// column or row (more rows as columns, means a column, vertical)
 	// 1.3 release does not bring rowCount and columnCount...
@@ -36,8 +37,8 @@ org_scn_community_databound.getTopBottomElementsForDimension = function (data, r
 		var dimension = metadata.dimensions[i];
 
 		if(dimension.key == requestedDimensionKey) {
-			dimesnsionStartIndex = i;
-			dimesnsionEndIndex = i;
+			dimensionStartIndex = i;
+			dimensionEndIndex = i;
 
 			if(dimension.axis == "ROWS") {
 				isARow = false;
@@ -50,11 +51,11 @@ org_scn_community_databound.getTopBottomElementsForDimension = function (data, r
 	}
 
 	// if dimension is not in the resultset, empty list back
-	if(dimesnsionStartIndex == -1) {
+	if(dimensionStartIndex == -1) {
 		return [];
 	}
 	
-	return org_scn_community_databound.getTopBottomElementsByIndex (data, dimesnsionStartIndex, dimesnsionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates);
+	return org_scn_community_databound.getTopBottomElementsByIndex (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates);
 };
 
 /**
@@ -66,13 +67,13 @@ org_scn_community_databound.getTopBottomElementsForDimension = function (data, r
  */
 org_scn_community_databound.getTopBottomElements = function (data, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates) {
 
-	var dimesnsionStartIndex = -1;
-	var dimesnsionEndIndex = -1;
+	var dimensionStartIndex = -1;
+	var dimensionEndIndex = -1;
 
-	return org_scn_community_databound.getTopBottomElementsByIndex (data, dimesnsionStartIndex, dimesnsionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates);
+	return org_scn_community_databound.getTopBottomElementsByIndex (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates);
 };
 
-org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimesnsionStartIndex, dimesnsionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates) {
+org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates) {
 	var list = [];
 	
 	if(!data || data == "" || data == undefined) {
@@ -91,11 +92,11 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimesn
 			var dimension = metadata.dimensions[i];
 
 			if(dimension.axis == "ROWS") {
-				if(dimesnsionStartIndex == -1) {
-					dimesnsionStartIndex = i;	
+				if(dimensionStartIndex == -1) {
+					dimensionStartIndex = i;	
 				}
-				if(dimesnsionEndIndex == -1) {
-					dimesnsionEndIndex = i;
+				if(dimensionEndIndex == -1) {
+					dimensionEndIndex = i;
 				}
 			}
 		}
@@ -105,11 +106,11 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimesn
 			var dimension = metadata.dimensions[i];
 
 			if(dimension.axis == "COLUMNS") {
-				if(dimesnsionStartIndex == -1) {
-					dimesnsionStartIndex = i;	
+				if(dimensionStartIndex == -1) {
+					dimensionStartIndex = i;	
 				}
-				if(dimesnsionEndIndex == -1) {
-					dimesnsionEndIndex = i;
+				if(dimensionEndIndex == -1) {
+					dimensionEndIndex = i;
 				}
 			}
 		}
@@ -119,11 +120,11 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimesn
 	
 	for (var i = 0; i < data.data.length; i++) {
 		var tupel = data.tuples[i]; 
-		var isResult = metadata.dimensions[dimesnsionEndIndex].members[tupel[dimesnsionEndIndex]].type == "RESULT";
+		var isResult = metadata.dimensions[dimensionEndIndex].members[tupel[dimensionEndIndex]].type == "RESULT";
 		
 		if(!isResult) {
-			var key =  metadata.dimensions[dimesnsionEndIndex].members[tupel[dimesnsionEndIndex]].key;
-			var text =  metadata.dimensions[dimesnsionEndIndex].members[tupel[dimesnsionEndIndex]].text;
+			var key =  metadata.dimensions[dimensionEndIndex].members[tupel[dimensionEndIndex]].key;
+			var text =  metadata.dimensions[dimensionEndIndex].members[tupel[dimensionEndIndex]].text;
 			
 			var value = data.data[i];
 
