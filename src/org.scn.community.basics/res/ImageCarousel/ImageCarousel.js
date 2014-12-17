@@ -29,11 +29,11 @@ _readScriptPath = function () {
 	}
 		
 	return "";
-},
-/** end of path recognition */
+};
 
 jQuery.sap.require("sap.ui.commons.Carousel");
 
+/** end of path recognition */
 sap.ui.commons.Carousel.extend("org.scn.community.basics.ImageCarousel", {
 
 	setDefaultImage : function(value) {

@@ -13,6 +13,7 @@ del ..\contribution.ztl /q
 type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\templates\contribution.ztl.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.js.txt ^
+..\res\ConstButtonStyle\contribution.ztl ^
 ..\res\ConstSortDirection\contribution.ztl ^
 ..\res\KeyLabel\contribution.ztl ^
 ..\res\KeyLabelValue\contribution.ztl ^

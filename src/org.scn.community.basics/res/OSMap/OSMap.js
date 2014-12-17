@@ -29,7 +29,7 @@ _readScriptPath = function () {
 	}
 		
 	return "";
-},
+};
 /** end of path recognition */
 
 sap.designstudio.sdk.Component.subclass("org.scn.community.basics.Map", function() {

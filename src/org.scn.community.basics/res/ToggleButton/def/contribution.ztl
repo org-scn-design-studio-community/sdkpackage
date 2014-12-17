@@ -37,4 +37,14 @@ class org.scn.community.basics.ToggleButton extends Component {
 	boolean getEnabled () {*
 		return this.enabled;	
 	*}
+	
+	/** sets the text */
+	void setText (String text) {*
+		this.text = text;	
+	*}
+
+	/** returns the text */
+	String getText () {*
+		return this.text;	
+	*}
 }

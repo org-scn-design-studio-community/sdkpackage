@@ -29,7 +29,7 @@ _readScriptPath = function () {
 	}
 		
 	return "";
-},
+};
 /** end of path recognition */
 
 sap.ui.commons.TextField.extend("org.scn.community.basics.ValiInput", {

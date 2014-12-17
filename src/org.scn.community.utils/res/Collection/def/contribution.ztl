@@ -30,27 +30,28 @@ class org.scn.community.utils.Collection extends Component {
 	org.scn.community.shared.KeyLabelValueArray getAsKeyLabelValueArray (
 			/**max members*/ optional int maxMembers) {*
 		var s = this.items;  
-		var items = JSON.parse(s);
+		var a = []; 
+		if(s!="") a = JSON.parse(s);
 		
-		var a = [];
+		var tempA = [];
 		
 		// APPLICATION.createInfoMessage("Max: " + maxMembers); // debug
 		
-		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > items.length) {
-			maxMembers = items.length;
+		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > a.length) {
+			maxMembers = a.length;
 		}
 		
 		for(var i=0;i<maxMembers;i++){
 			var itemDef = { 
-				"key": items[i].key, 
-				"label": items[i].label,
-				"value": items[i].value
+				"key": a[i].key, 
+				"label": a[i].label,
+				"value": a[i].value
 			};
 			
-			a.push(itemDef);
+			tempA.push(itemDef);
 		}
 		
-		return a;
+		return tempA;
 	*}
 
 	/**
@@ -74,38 +75,39 @@ class org.scn.community.utils.Collection extends Component {
 	org.scn.community.shared.KeyLabelValuePropertyArray getAsKeyLabelValuePropertyArray (
 			/**max members*/ optional int maxMembers) {*
 		var s = this.items;  
-		var items = JSON.parse(s);
+		var a = []; 
+		if(s!="") a = JSON.parse(s);
 		
-		var a = [];
+		var tempA = [];
 		
 		// APPLICATION.createInfoMessage("Max: " + maxMembers); // debug
 		
-		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > items.length) {
-			maxMembers = items.length;
+		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > a.length) {
+			maxMembers = a.length;
 		}
 		
 		for(var i=0;i<maxMembers;i++){
 			var itemDef = { 
-				"key": items[i].key, 
-				"label": items[i].label,
-				"value": items[i].value,
-				"prop1": items[i].prop1,
-				"prop2": items[i].prop2,
-				"prop3": items[i].prop3
+				"key": a[i].key, 
+				"label": a[i].label,
+				"value": a[i].value,
+				"prop1": a[i].prop1,
+				"prop2": a[i].prop2,
+				"prop3": a[i].prop3
 			};
 			
-			a.push(itemDef);
+			tempA.push(itemDef);
 		}
 		
-		return a;
+		return tempA;
 	*}
 
 	/**
 	 * Removes all Items (clears the collection)
 	 */
 	void removeAllItems () {*
-		var items = [];
-		this.items = JSON.stringify(items);  
+		var a = [];
+		this.items = JSON.stringify(a);  
 	*}
 			
 	/**
@@ -127,7 +129,7 @@ class org.scn.community.utils.Collection extends Component {
 			/*optional prop 1 array*/ optional String prop1s,
 			/*optional prop 2 array*/ optional String prop2s,
 			/*optional prop 3 array*/ optional String prop3s) {*  
-		var items = [];
+		var a = [];
 	
 		if(separator == undefined) {
 			separator = ",";
@@ -168,10 +170,10 @@ class org.scn.community.utils.Collection extends Component {
 				"prop3": p3[i]
 			};
 			
-			items.push(itemDef);
+			a.push(itemDef);
 		}
 		
-		this.items = JSON.stringify(items);  
+		this.items = JSON.stringify(a);  
 	*}  
 
 	/**
@@ -236,18 +238,20 @@ class org.scn.community.utils.Collection extends Component {
 	String getKeys(
 			/*separator*/ optional String separator) {*  
 		var s = this.items;  
-		var items = JSON.parse(s);
 		var a = [];
+		if(s!="") a = JSON.parse(s);
+
+		var tempA = [];
 		
-		for(var i=0;i<items.length;i++){  
-			a.push(items[i].key);  
+		for(var i=0;i<a.length;i++){  
+			tempA.push(a[i].key);  
 		}
 		
 		if(separator == undefined) {
 			separator = ",";
 		}
 		
-		return a.join(separator);  
+		return tempA.join(separator);  
 	*}
 
 	/**
@@ -264,18 +268,20 @@ class org.scn.community.utils.Collection extends Component {
 	String getLabels(
 			/*separator*/ optional String separator) {*  
 		var s = this.items;  
-		var items = JSON.parse(s);  
-		var a = [];  
+		var a = [];
+		if(s!="") a = JSON.parse(s);
+
+		var tempA = [];
 		
-		for(var i=0;i<items.length;i++){  
-			a.push(items[i].label);  
+		for(var i=0;i<a.length;i++){  
+			tempA.push(a[i].label);  
 		}  
 		
 		if(separator == undefined) {
 			separator = ",";
 		}
 		
-		return a.join(separator);  
+		return tempA.join(separator);  
 	*}
 
 	/**
@@ -292,18 +298,20 @@ class org.scn.community.utils.Collection extends Component {
 	String getValues(
 			/*separator*/ optional String separator) {*  
 		var s = this.items;  
-		var items = JSON.parse(s);  
-		var a = [];  
+		var a = [];
+		if(s!="") a = JSON.parse(s);
+
+		var tempA = []; 
 		
-		for(var i=0;i<items.length;i++){  
-			a.push(items[i].value);  
+		for(var i=0;i<a.length;i++){  
+			tempA.push(a[i].value);  
 		}  
 		
 		if(separator == undefined) {
 			separator = ",";
 		}
 		
-		return a.join(separator);  
+		return tempA.join(separator);  
 	*}
 
 	/**
@@ -316,7 +324,8 @@ class org.scn.community.utils.Collection extends Component {
 		}
 	
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
 		
 		a.sort(function(a,b){  
 			return a.key>b.key;  
@@ -330,7 +339,8 @@ class org.scn.community.utils.Collection extends Component {
 	 */
 	void sortByKeyDescending() {*  
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
 		
 		a.sort(function(a,b){  
 			return (b.key>a.key);  
@@ -349,7 +359,8 @@ class org.scn.community.utils.Collection extends Component {
 		}
 
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
 		
 		a.sort(function(a,b){  
 			return a.label>b.label;  
@@ -363,7 +374,8 @@ class org.scn.community.utils.Collection extends Component {
 	 */
 	void sortByLabelDescending() {*  
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s); 
 		
 		a.sort(function(a,b){  
 			return (b.label>a.label);  
@@ -382,7 +394,8 @@ class org.scn.community.utils.Collection extends Component {
 		}
 
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s); 
 		
 		a.sort(function(a,b){  
 			var newA = parseFloat(a.value);  
@@ -398,7 +411,8 @@ class org.scn.community.utils.Collection extends Component {
 	 */
 	void sortByValueDescending() {*  
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
 		
 		a.sort(function(a,b){  
 			var newA = parseFloat(a.value);  
@@ -421,6 +435,57 @@ class org.scn.community.utils.Collection extends Component {
 	*}  
 
 	/**
+	Returns key by given index. Indices are 0-based. In case the index does not exist, "N/A" is given back.
+	<example>
+	You have a "k1,k2,k3" collection with label "Value for Key 2" at index 1 and want to get value at index 1:
+	<code>
+	var key1 = COLLECTION_1.getKeyByIndex(1);<br>
+	</code>
+	Now "key1" is set to String "Value for Key 2".
+	</example>
+	*/
+	String getKeyByIndex( 
+			/* index */ int index) {*  
+		var s = this.items;  
+		var a = [];
+		if(s!="") a = JSON.parse(s);   
+		var r = "N/A";
+		
+		if(a.length>index){  
+			r = a[index].key;  
+		}
+		
+		return r;  
+	*}
+	
+	/**
+	Returns index by given key. In case the key does not exist, "N/A" is given back.
+	<example>
+	You have a "k1,k2,k3" collection with value "Value for Key 2" at index 1 (key == "k2") and want to get index at key "k2":
+	<code>
+	var index1 = COLLECTION_1.getIndexByKey("k2");<br>
+	</code>
+	Now "index1" is set to float "1".
+	</example>
+	*/
+	int getIndexByKey( 
+			/* index */ String key) {*  
+		var s = this.items;  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
+		var r = "N/A";
+		
+		for(var i=0;i<a.length;i++){
+			if(a[i].key == key) {
+				r = i;
+				break;
+			}
+		}
+		
+		return r;  
+	*}
+	
+	/**
 	Returns label by given index. Indices are 0-based. In case the index does not exist, "N/A" is given back.
 	<example>
 	You have a "k1,k2,k3" collection with label "Value for Key 2" at index 1 and want to get value at index 1:
@@ -433,7 +498,8 @@ class org.scn.community.utils.Collection extends Component {
 	String getLabelByIndex( 
 			/* index */ int index) {*  
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s);   
 		var r = "N/A";
 		
 		if(a.length>index){  
@@ -456,7 +522,8 @@ class org.scn.community.utils.Collection extends Component {
 	String getLabelByKey( 
 			/* index */ String key) {*  
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
 		var r = "N/A";
 		
 		for(var i=0;i<a.length;i++){
@@ -482,7 +549,8 @@ class org.scn.community.utils.Collection extends Component {
 	String getValueByIndexAsString( 
 			/* index */ int index) {*  
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
 		var r = "NaN";  
 		
 		if(a.length>index){  
@@ -505,7 +573,8 @@ class org.scn.community.utils.Collection extends Component {
 	float getValueByIndex( 
 			/* index */ int index) {*  
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  		
 		
 		var r = 0.0;  
 		if(a.length>index){  
@@ -528,7 +597,8 @@ class org.scn.community.utils.Collection extends Component {
 	String getValueByKeyAsString( 
 			/* key */ String key) {*  
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
 		var r = "NaN";  
 		
 		for(var i=0;i<a.length;i++){
@@ -554,7 +624,8 @@ class org.scn.community.utils.Collection extends Component {
 	float getValueByKey(
 			/* index */ String key) {*  
 		var s = this.items;  
-		var a = JSON.parse(s);  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
 		var r = 0.0;  
 		
 		for(var i=0;i<a.length;i++){
@@ -565,5 +636,23 @@ class org.scn.community.utils.Collection extends Component {
 		}
 		
 		return r;  
+	*}
+
+	/**
+	Returns the current size.
+	<example>
+	You have a "k1,k2,k3" collection with value "54.48" at index 1 (key == "k2") and want to get the size:
+	<code>
+	var size = COLLECTION_1.size();<br>
+	</code>
+	Now "size" is set to integer "3".
+	</example>
+	*/
+	int size() {*  
+		var s = this.items;  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
+			
+		return a.length;  
 	*}
 }

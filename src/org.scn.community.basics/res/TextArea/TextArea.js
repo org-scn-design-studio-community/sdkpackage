@@ -29,7 +29,7 @@ _readScriptPath = function () {
 	}
 		
 	return "";
-},
+};
 /** end of path recognition */
 
 jQuery.sap.require("sap.ui.commons.TextArea");

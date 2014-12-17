@@ -37,7 +37,7 @@ _readScriptPath = function () {
 	}
 		
 	return "";
-},
+};
 /** end of path recognition */
 
 sap.ui.commons.Button.extend("org.scn.community.basics.FioriButton", {

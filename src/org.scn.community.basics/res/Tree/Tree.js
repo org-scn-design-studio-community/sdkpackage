@@ -20,6 +20,7 @@
 (function() {
 /** code for recognition of script path */
 var myScript = $("script:last")[0].src;
+
 _readScriptPath = function () {
 	if(myScript) {
 		var myScriptSuffix = "res/Tree/";
@@ -29,7 +30,7 @@ _readScriptPath = function () {
 	}
 		
 	return "";
-},
+};
 /** end of path recognition */
 
 sap.ui.commons.Tree.extend("org.scn.community.basics.Tree", {
