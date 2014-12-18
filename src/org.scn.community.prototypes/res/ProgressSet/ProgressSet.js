@@ -1,6 +1,11 @@
 sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.ProgressSet", function() {
 	this._barConfig = [];
 	this._selectedBar = "";
+	this._poller = null;
+	this._pollInterval = 250;
+	this._previousWidth = -1;
+	this._previousHeight = -1;
+	
 	this.props = {
 		orientation : { value : "horizontal" },
 		inlineLabels : { value : false },
@@ -58,6 +63,23 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.ProgressSe
 		this._selectedTile = title;
 		this.fireDesignStudioPropertiesChanged(["selectedTile"]);
 		this.fireDesignStudioEvent("onTileSelect");
+	};
+	this.measureSize = function(that){
+		var currentWidth = that.$().innerWidth();
+		var currentHeight = that.$().innerHeight();
+		if(currentWidth != that._previousWidth || currentHeight != that._previousHeight){
+			// If width or height has changed since the last calculation, redraw.
+			/* Debug alert:
+			alert("Resize detected.\n\nOld:" + that._previousWidth + " x " + that._previousHeight + 
+					"\n\nNew:" + currentWidth + " x " + currentHeight);
+			*/
+			that._previousHeight = currentHeight;
+			that._previousWidth = currentWidth;	
+			this.drawBars();
+		}else{
+			// Sizes are the same.  Don't redraw, but poll again after an interval.
+			that._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);	
+		}
 	};
 	this.init = function(){
 		this.$().addClass("utilPackProgressSet");
@@ -135,9 +157,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.ProgressSe
 		if(vis.empty()) {
 			vis = d3.select(this.$().get(0))
 			.append("svg")
-				.attr("id", this.$().attr("id")+"_viz")
-				.attr("width", this.$().innerWidth())
-				.attr("height", this.$().innerHeight() - 2);
+				.attr("id", this.$().attr("id")+"_viz");				
 			
 			vis.append("linearGradient")
 			    .attr("y1", 0)
@@ -148,6 +168,10 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.ProgressSe
 		}else{
 			//alert("vis exists");
 		}
+		vis.transition().duration(250)
+			.attr("width", this.$().innerWidth())
+			.attr("height", this.$().innerHeight() - 2);
+		
 		var gradient = vis.select("#" + this.$().attr("id")+"_barGradient")
 			.attr("y2", y.rangeBand());
 		
@@ -351,5 +375,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.ProgressSe
 		bars.exit().transition().duration(400)
 			.style("fill-opacity", 1e-6)
 			.remove();
+
+		this._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);
 	};
 });
