@@ -680,7 +680,7 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 				strMetadata= this._propSheet.callRuntimeHandler("getMetadataAsString", 
 						useDD, this._propSheet.dummyDataSet(), LZString.compressToBase64(this._propSheet.localData()));
 			}
-			archius.geoUtils.getLatLngs({
+			org_scn_community_geovis.geoUtils.getLatLngs({
 				geoDimCity : hierProp.geoDimCity,
 				geoDimRegion : hierProp.geoDimRegion,
 				geoDimZip : hierProp.geoDimZip,
