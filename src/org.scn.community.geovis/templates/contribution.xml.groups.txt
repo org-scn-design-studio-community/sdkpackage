@@ -1,0 +1,4 @@
+
+	<group
+		id="ScnCommunityGeo"
+		title="Scn Community Geovis"/>

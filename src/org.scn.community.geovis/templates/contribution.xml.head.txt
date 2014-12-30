@@ -1,0 +1,2 @@
+	id="org.scn.community.geovis"
+	title="Design Studio SCN Community Geovisualizations"

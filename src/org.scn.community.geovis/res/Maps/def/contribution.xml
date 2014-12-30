@@ -1,0 +1,47 @@
+
+<component id="Maps" 
+	title="Maps"
+	icon="res/Maps/Maps.png"
+	handlerType="div"
+	propertySheetPath="res/Maps/MapsPropertyPage.html"
+	databound = "true"
+	group="ScnCommunityGeo">	
+	<jsInclude>os/leaflet-0.7.3/leaflet.js</jsInclude>
+	<jsInclude>os/Leaflet.heat-gh-pages/dist/leaflet-heat.js</jsInclude>
+	<jsInclude>os/Leaflet.markercluster-master/dist/leaflet.markercluster.js</jsInclude>
+	<jsInclude>os/Leaflet.awesome-markers-2.0/leaflet.awesome-markers.js</jsInclude>
+	<jsInclude>res/Maps/aps/shared.js</jsInclude>
+	<jsInclude>res/Maps/Maps.js</jsInclude>
+	
+	<cssInclude>os/leaflet-0.7.3/leaflet.css</cssInclude>
+	<!-- <cssInclude>os/font-awesome-4.2.0/css/font-awesome.min.css</cssInclude> -->
+	<cssInclude>os/Leaflet.awesome-markers-2.0/leaflet.awesome-markers.css</cssInclude>
+	<cssInclude>os/Leaflet.markercluster-master/dist/MarkerCluster.css</cssInclude>
+	<cssInclude>os/Leaflet.markercluster-master/dist/MarkerCluster.Default.css</cssInclude>
+	
+	<property type="String" title="Tile JSON" id="tileJSON"/>
+	<property type="String" title="Default Location" id="defaultLocation"/>
+	<property type="boolean" title="Show Zoom Control" id="zoomControl"></property>
+	<property type="String" title="Default Zoom Level" id="zoom"></property>
+	<property type="String" title="Map Title" id="mapTitle"/>
+	<property type="String" title="Layer Configuration" id="layerConfig"/>
+	<property type="String" title="Geo Hierarchy" id="geoHierarchy"/>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+	</property>	
+	<initialization>
+		<defaultValue property="tileJSON">{&quot;pattern&quot; : &quot;/org.scn.community.geovis/res/Maps/tiles/simple/{z}/{x}/{y}.png&quot;, &quot;type&quot; : &quot;internal&quot;,&quot;description&quot; : &quot;Small sized starter map.  Requires no map pack install.  No usage restrictions or attribution required and no external tile resources are needed.  Zoom up to level 4 supported.&quot;,&quot;options&quot; : {&quot;maxZoom&quot;: 4}}</defaultValue>
+		<defaultValue property="geoHierarchy">[]</defaultValue>
+		<defaultValue property="mapTitle">Maps</defaultValue>
+		<defaultValue property="defaultLocation">[35.1174,-89.9711]</defaultValue>
+		<defaultValue property="zoom">4</defaultValue>
+		<defaultValue property="zoomControl">true</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+	</initialization>
+</component>
