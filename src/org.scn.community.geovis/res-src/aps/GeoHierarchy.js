@@ -183,32 +183,40 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 		});
 		btnSample.attachPress(function(occ){
 			try{
-			var strResults = "";
-			var useDD = this._propSheet.useDummyData();
-			if(useDD==null || this._propSheet.dummyDataSet() == null ) {
-				strResults = this._propSheet.callRuntimeHandler("getResultsAsString");
-				strMetadata = this._propSheet.callRuntimeHandler("getMetadataAsString");
-			}else{
-				strResults= this._propSheet.callRuntimeHandler("getResultsAsString", 
-						useDD, this._propSheet.dummyDataSet(), LZString.compressToBase64(this._propSheet.localData()));
-				strMetadata= this._propSheet.callRuntimeHandler("getMetadataAsString", 
-						useDD, this._propSheet.dummyDataSet(), LZString.compressToBase64(this._propSheet.localData()));
-			}
-			org_scn_community_geovis.geoUtils.getLatLngs({
-				geoDimCity : hierProp.geoDimCity,
-				geoDimRegion : hierProp.geoDimRegion,
-				geoDimZip : hierProp.geoDimZip,
-				geoDimCountry : hierProp.geoDimCountry,
-				geoDimAddress : hierProp.geoDimAddress,
-				metadata : jQuery.parseJSON(strMetadata),
-				results : jQuery.parseJSON(strResults),
-				callback : function(r){
-					alert(JSON.stringify(r.solved));
+			var strData = this._propSheet.callRuntimeHandler("getDataAsString");
+			this._data = null;
+			if (strData && strData !="") {
+				try{
+					this._data = jQuery.parseJSON(strData);	
+				}catch(e){
+					alert("Problem reading data during sampling:\n\n" + strData);
 				}
-			});
-			alert(strResults);
-			}catch(e){alert(e);}
+			}else{
+				
+			}
+			if (this._data && this._data.dimensions && this._data.dimensions.length>0) {
+				try{
+					org_scn_community_geovis.getLatLngs({
+						geoDimCity : hierProp.geoDimCity,
+						geoDimRegion : hierProp.geoDimRegion,
+						geoDimZip : hierProp.geoDimZip,
+						geoDimCountry : hierProp.geoDimCountry,
+						geoDimAddress : hierProp.geoDimAddress,
+						metadata : jQuery.parseJSON(strData),
+						results : jQuery.parseJSON(strData),
+						callback : function(r){
+							alert(JSON.stringify(r.solved));
+						}
+					});
+				}catch(e){
+					alert("Error getting lat/lng samples:\n\n" + e);
+				}
+			}
+			}catch(e){
+				alert("Error when sampling data:\n\n"+e);
+			}
 		},this);
+		
 		var m = this._dsmetadata;
 		 if(m && m.dimensions){
 			 for(var i=0;i<m.dimensions.length;i++){

@@ -3,7 +3,8 @@
  */
 sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function() {
 	// Rework using Karol script path detection
-	this.resPfx = "/aad/zen/mimes/sdk_include";
+	this.sdkPfx = "/aad/zen/mimes/sdk_include";
+	this.resPfx = "/aad/zen/mimes/sdk_include/org.scn.community.geovis/";
 	this._alive = false;
 	this.batchLimit = 25;
 	this._geoCache = {};
@@ -41,7 +42,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
     	if(!this.cityLookup){
 			var geoDB = $.ajax({
 	    		async : false,
-	    		url : this.resPfx + "/org.scn.community.geovis/res/Maps/geo/citylookup.json"
+	    		url : this.resPfx + "res/Maps/geo/citylookup.json"
 	    	});
 	    	this.cityLookup = jQuery.parseJSON(geoDB.responseText);
 		}
@@ -50,7 +51,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
     	if(!this.regionLookup){
 			var geoDB = $.ajax({
 	    		async : false,
-	    		url : this.resPfx + "/org.scn.community.geovis/res/Maps/geo/regionlookup.json"
+	    		url : this.resPfx + "res/Maps/geo/regionlookup.json"
 	    	});
 	    	this.regionLookup = jQuery.parseJSON(geoDB.responseText);
 		}
@@ -91,7 +92,8 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 	    	var tileJSONString = this.tileJSON();
 	    	if(tileJSONString){
 	    		tileConfig = jQuery.parseJSON(tileJSONString);
-	    		if(tileConfig.type=="internal") tileConfig.pattern = this.resPfx + tileConfig.pattern;
+	    		// Special handling for relative URLs
+	    		if(tileConfig.type=="internal") tileConfig.pattern = this.sdkPfx + tileConfig.pattern;
 	    	}
 	    	if(this._map) this._map.remove();
 	    	this._map = new L.Map(this._mapContainer.get(0),{
@@ -261,7 +263,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 					if(!this.cityLookup){
 						var geoDB = $.ajax({
 				    		async : false,
-				    		url : this.resPfx + "/org.scn.community.geovis/res/Maps/geo/citylookup.json"
+				    		url : this.resPfx + "res/Maps/geo/citylookup.json"
 				    	});
 				    	this.cityLookup = jQuery.parseJSON(geoDB.responseText);
 					}
@@ -279,7 +281,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 					if(!this.cityLookup){
 						var geoDB = $.ajax({
 				    		async : false,
-				    		url : this.resPfx + "/org.scn.community.geovis/res/Maps/geo/citylookup.json"
+				    		url : this.resPfx + "res/Maps/geo/citylookup.json"
 				    	});
 				    	this.cityLookup = jQuery.parseJSON(geoDB.responseText);
 					}
@@ -304,7 +306,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 					if(!this.locationsJSON[country].loaded){	// On Demand Loading
 						var countryDB = $.ajax({
 				    		async : false,
-				    		url : this.resPfx + "/org.scn.community.geovis/res/Maps/geo/world/" + country + ".json"
+				    		url : this.resPfx + "res/Maps/geo/world/" + country + ".json"
 				    	});
 				    	var countryJSON = jQuery.parseJSON(countryDB.responseText);
 				    	for(var region in countryJSON){
@@ -321,7 +323,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 						if(!this.locationsJSON[country].r[region].loaded){	// On Demand Loading
 							var regionDB = $.ajax({
 					    		async : false,
-					    		url : this.resPfx + "/org.scn.community.geovis/res/Maps/geo/world/" + country + "/" + region +".json"
+					    		url : this.resPfx + "res/Maps/geo/world/" + country + "/" + region +".json"
 					    	});
 							this.locationsJSON[country].r[region] = jQuery.parseJSON(regionDB.responseText);
 							this.locationsJSON[country].r[region].loaded = true;
@@ -563,11 +565,13 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 		return point;
     };
     this.init = function() {
+    	org_scn_community_geovis.resourcePrefix = this.resPfx;
+    	org_scn_community_geovis.mode = "component";
     	try{
     	if(!this.locationsJSON){
 	    	var geoDB = $.ajax({
 	    		async : false,
-	    		url : this.resPfx + "/org.scn.community.geovis/res/Maps/geo/world.json"
+	    		url : this.resPfx + "res/Maps/geo/world.json"
 	    	});
 	    	var worldJSON = jQuery.parseJSON(geoDB.responseText);
 	    	this.locationsJSON = {};

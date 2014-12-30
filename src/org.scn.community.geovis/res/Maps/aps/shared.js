@@ -28,23 +28,34 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
  * Global Functions for work with components
  */
 var org_scn_community_geovis = org_scn_community_geovis || {
+	mode : "component",				// This will be set to aps if loaded by APS servlet
+	resourcePrefix : "",
 	loadCityLookup : function(){
-    	if(!this.cityLookup){
-			var geoDB = $.ajax({
-	    		async : false,
-	    		url : "js/geo/citylookup.json"
-	    	});
-	    	this.cityLookup = jQuery.parseJSON(geoDB.responseText);
+    	try{
+    		if(!this.cityLookup){
+				var geoDB = $.ajax({
+		    		async : false,
+		    		url : this.resourcePrefix + "res/Maps/geo/citylookup.json"
+		    	});
+		    	this.cityLookup = jQuery.parseJSON(geoDB.responseText);
+			}
+		}catch(e){
+			alert("Error during city reverse lookup:\n\n" + e);
 		}
+		
     },
     loadRegionLookup : function(){
-    	if(!this.regionLookup){
-			var geoDB = $.ajax({
-	    		async : false,
-	    		url : "js/geo/regionlookup.json"
-	    	});
-	    	this.regionLookup = jQuery.parseJSON(geoDB.responseText);
-		}
+    	try{
+	    	if(!this.regionLookup){
+				var geoDB = $.ajax({
+		    		async : false,
+		    		url : this.resourcePrefix + "res/Maps/geo/regionlookup.json"
+		    	});
+		    	this.regionLookup = jQuery.parseJSON(geoDB.responseText);
+			}
+    	}catch(e){
+    		alert("Error during region reverse lookup:\n\n" + e);
+    	}
     },
 	// Compare two 1-D arrays
 	arraysIdentical : function(a, b) {
@@ -128,7 +139,7 @@ var org_scn_community_geovis = org_scn_community_geovis || {
 		if(!this.locationsJSON){
 	    	var geoDB = $.ajax({
 	    		async : false,
-	    		url : "js/geo/world.json"
+	    		url : this.resourcePrefix + "res/Maps/geo/world.json"
 	    	});
 	    	var worldJSON = jQuery.parseJSON(geoDB.responseText);
 	    	this.locationsJSON = {};
@@ -153,7 +164,6 @@ var org_scn_community_geovis = org_scn_community_geovis || {
 				if(j==geoIndexRegion) region = value.toLowerCase().replace(/[;#\/]/g,"");
 				if(j==geoIndexCountry) country = value.toLowerCase().replace(/[;#\/]/g,"");
 			}
-			
 			if(zip){
 				var za = zip.split("-");
 				zip=za[0];
@@ -201,16 +211,17 @@ var org_scn_community_geovis = org_scn_community_geovis || {
 				var c = this.regionLookup[region];
 				if(c && c.length>0) {
 					if(c.length>1) resolved = false;
-					unsolvedReason = "Multiple countried possible for this region."
+					unsolvedReason = "Multiple countries possible for this region."
 					country = c[0].toLowerCase();
 				}
 			}
+
 			// Walk the lat/lng hierarchy
 			if(country && this.locationsJSON[country]){
 				if(!this.locationsJSON[country].loaded){	// On Demand Loading
 					var countryDB = $.ajax({
 			    		async : false,
-			    		url : "js/geo/world/" + country + ".json"
+			    		url : this.resourcePrefix + "res/Maps/geo/world/" + country + ".json"
 			    	});
 			    	var countryJSON = jQuery.parseJSON(countryDB.responseText);
 			    	for(var region in countryJSON){
@@ -228,7 +239,7 @@ var org_scn_community_geovis = org_scn_community_geovis || {
 						if(!this.locationsJSON[country].r[region].loaded){	// On Demand Loading
 							var regionDB = $.ajax({
 					    		async : false,
-					    		url : "js/geo/world/" + country + "/" + region +".json"
+					    		url : this.resourcePrefix + "res/Maps/geo/world/" + country + "/" + region +".json"
 					    	});
 							this.locationsJSON[country].r[region] = jQuery.parseJSON(regionDB.responseText);
 							this.locationsJSON[country].r[region].loaded = true;

@@ -237,6 +237,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 	 * Init called on first rendering of page.
 	 */
 	this.init = function() {
+		org_scn_community_geovis.mode = "aps";
+		org_scn_community_geovis.resourcePrefix = "/aad/zen/mimes/sdk_include/org.scn.community.geovis/";
 		try{
 			this.mainPage.placeAt("content");
 			this.writeLog("Property Sheet Initialized.");	
