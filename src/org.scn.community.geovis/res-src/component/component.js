@@ -180,22 +180,10 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 					if(geoH==hiers[i].id) selectedHierarchy = hiers[i];
 				}
 			}
-			var geoIndexAddress = org_scn_community_geovis.dimensionIndex(selectedHierarchy.geoDimAddress, m);
-			var geoIndexCity = org_scn_community_geovis.dimensionIndex(selectedHierarchy.geoDimCity, m);
-			var geoIndexZip = org_scn_community_geovis.dimensionIndex(selectedHierarchy.geoDimZip, m);
-			var geoIndexRegion = org_scn_community_geovis.dimensionIndex(selectedHierarchy.geoDimRegion, m);
-			var geoIndexCountry = org_scn_community_geovis.dimensionIndex(selectedHierarchy.geoDimCountry, m);
+			
 			var titleIndex = org_scn_community_geovis.dimensionIndex(conf.markerTitleDim, m);
 			var dynamicColorIndex = org_scn_community_geovis.dimensionIndex(conf.dynamicColorDim, m);
 			
-			var highest="none";
-			if(geoIndexAddress) highest = "address";
-			if(geoIndexZip) highest = "zip";
-			if(geoIndexCity) highest = "city";
-			if(geoIndexRegion) highest = "region";
-			if(geoIndexCountry) highest = "country";
-
-
 			var filters = {};
 			if(conf.filters) filters = conf.filters;
 			var filteredResults = {
@@ -222,159 +210,80 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 				if(rowPass) {
 					filteredResults.tuples.push(r.tuples[i]);
 					filteredResults.data.push(r.data[i]);
+					
 				}
 				
 			}
 			var leafletLocations = [];
 			// Second pass - Geocode
-			for(var i=0;i<filteredResults.tuples.length;i++){
-				var address = undefined, city=undefined, region=undefined, zip=undefined, country=undefined, title=undefined, color=undefined;
-				var locbuilder = []; 
-				var tuple = filteredResults.tuples[i];
-				for(var j=0;j<tuple.length;j++){
-					var tupleDim = m.dimensions[j];
-					var value = tupleDim.members[tuple[j]].key;
-					if(j==geoIndexAddress) address = value.toLowerCase();
-					if(j==geoIndexCity) city = value.toLowerCase().replace(/[;#\/]/g,"");
-					if(j==geoIndexZip) zip = value.toLowerCase();
-					if(j==geoIndexRegion) region = value.toLowerCase().replace(/[;#\/]/g,"");
-					if(j==geoIndexCountry) country = value.toLowerCase().replace(/[;#\/]/g,"");
-					if(j==titleIndex) title = value;
-					if(j==dynamicColorIndex) color = tuple[j];
-				}
-				if(zip){
-					var za = zip.split("-");
-					zip=za[0];
-				}
-				// Local Lat/Lng
-				var latlng = [];
-				if(city && !country && !region){
-					this.loadCityLookup();
-					var c = this.cityLookup[city];
-					// Take first one because who knows?
-					if(c){
-						//alert(JSON.stringify(c));
-						region = c[0].r.toLowerCase();
-						country = c[0].cy.toLowerCase();;
-					}
-					
-				}
-				if(city && country && !region){
-					if(!this.cityLookup){
-						var geoDB = $.ajax({
-				    		async : false,
-				    		url : this.resPfx + "res/Maps/geo/citylookup.json"
-				    	});
-				    	this.cityLookup = jQuery.parseJSON(geoDB.responseText);
-					}
-					var c = this.cityLookup[city];
-					if(c){
-						for(var j=0;j<c.length;j++){
-							if(c[j].cy.toLowerCase()==country) {
-								region = c[j].r.toLowerCase();
+			try{
+				/*
+				 * TODO: Use key caching
+				 */
+				var that = this;
+				org_scn_community_geovis.getLatLngs({
+					geoDimCity : selectedHierarchy.geoDimCity,
+					geoDimRegion : selectedHierarchy.geoDimRegion,
+					geoDimZip : selectedHierarchy.geoDimZip,
+					geoDimCountry : selectedHierarchy.geoDimCountry,
+					geoDimAddress : selectedHierarchy.geoDimAddress,
+					manualCountry : selectedHierarchy.manualCountry,
+					manualRegion : selectedHierarchy.manualRegion,
+					metadata : m,
+					results : filteredResults,
+					// Callback for future async requests.
+					callback : function(conf){return function(results){
+						var markers = [];
+						for(var j=0;j<results.solved.length;j++){
+							var loc = results.solved[j];
+							var markerConfig = {
+								title : "Untitled",
+								color : conf.markerColor,
+								icon : conf.markerSymbol,
+								latlng : loc.latlng,
+								conf : conf
 							}
+							if(titleIndex) markerConfig.title = m.dimensions[titleIndex].members[loc.tuple[titleIndex]].text;//members[loc.tuple[titleIndex]].text;
+							
+							markers.push(markerConfig);
 						}
-					}
-					
-				}
-				if(city && !country && region){
-					if(!this.cityLookup){
-						var geoDB = $.ajax({
-				    		async : false,
-				    		url : this.resPfx + "res/Maps/geo/citylookup.json"
-				    	});
-				    	this.cityLookup = jQuery.parseJSON(geoDB.responseText);
-					}
-					var c = this.cityLookup[city];
-					if(c) {
-						for(var j=0;j<c.length;j++){
-							if(c[j].r.toLowerCase()==region) {
-								country = c[j].cy.toLowerCase();
-							}
-						}
-					}					
-				}
-				if(region && !country && !city){
-					this.loadRegionLookup();
-					var c = this.regionLookup[region];
-					if(c && c.length>0) {
-						country = c[0].toLowerCase();
-					}
-				}
-				// Walk the lat/lng hierarchy
-				if(country && this.locationsJSON[country]){
-					if(!this.locationsJSON[country].loaded){	// On Demand Loading
-						var countryDB = $.ajax({
-				    		async : false,
-				    		url : this.resPfx + "res/Maps/geo/world/" + country + ".json"
-				    	});
-				    	var countryJSON = jQuery.parseJSON(countryDB.responseText);
-				    	for(var region in countryJSON){
-				    		this.locationsJSON[country].r[region] = {
-				    			loaded : false,
-				    			l : countryJSON[region],
-				    			c : {}
-				    		};
-				    	}
-				    	this.locationsJSON[country].loaded = true;
-					}
-					latlng = this.locationsJSON[country].l;
-					if(region && this.locationsJSON[country].r[region]){
-						if(!this.locationsJSON[country].r[region].loaded){	// On Demand Loading
-							var regionDB = $.ajax({
-					    		async : false,
-					    		url : this.resPfx + "res/Maps/geo/world/" + country + "/" + region +".json"
-					    	});
-							this.locationsJSON[country].r[region] = jQuery.parseJSON(regionDB.responseText);
-							this.locationsJSON[country].r[region].loaded = true;
-						}
-						latlng = this.locationsJSON[country].r[region].l;
-						if(city && this.locationsJSON[country].r[region].c[city]){
-							latlng = this.locationsJSON[country].r[region].c[city].l;
-							if(zip && this.locationsJSON[country].r[region].c[city].z[zip]){
-								latlng = this.locationsJSON[country].r[region].c[city].z[zip];
-							}
-						}
-					}
-				}
-				if(address) locbuilder.push(address);
-				if(city) locbuilder.push(city);
-				if(region) locbuilder.push(region);
-				if(zip) locbuilder.push(zip);
-				if(country) locbuilder.push(country);
-				// Locations
-				var locationstring = locbuilder.join(" ");
-				locationstring = locationstring.toLowerCase().replace(/[;#\/]/g,"");				// Cleanse special characters
-				//locationstring = locationstring.toLowerCase().replace(/[-]/g," ");					// Replace - with space
-				// Titles
-				if(!title) title = "untitled";
-				// Colors
-				var markerColor = conf.markerColor;
-				var dynamicColors = conf.dynamicPalette || "#1f77b4,#ff7f0e,#2ca02c,#d62728,#9467bd,#8c564b,#e377c2,#7f7f7f,#bcbd22,#17becf".toUpperCase().split(",");
-				if(color!=undefined) markerColor = dynamicColors[color % dynamicColors.length];
-				
-				
-				// See if we have this location in cache - Mapbox				
-				if(this._geoCache && this._geoCache[locationstring]){
-					cache.geoCoderResults.push(this._geoCache[locationstring]);
-					cache.locations.push(locationstring);
-					cache.titles.push(title);
-					cache.colors.push(markerColor);
-				}else{
-					//alert("No cache for " + locationstring);
-					// Location not in cache - add it to geocoder queue
-					locations.push(locationstring);
-					titles.push(title);				
-					colors.push(markerColor);
-					leafletLocations.push({
-						title : title,
-						color : markerColor,
-						icon : conf.markerSymbol,
-						latlng : latlng,
-						conf : jQuery.parseJSON(JSON.stringify(conf))	// Lazy copy layer config
-					});
-				}
+						if(conf.type=="markerLayer") that.leafletMarkerLayer(markers);
+						if(conf.type=="heatLayer") that.leafletHeatLayer(markers,conf);
+						if(conf.type=="clusterLayer") that.leafletClusterLayer(markers,conf);
+					};}(conf)
+				});
+			}catch(e){
+				throw("Problem Component-side with getLatLngs\n"+e);
 			}
+			return;
+			if(!title) title = "untitled";
+			// Colors
+			var markerColor = conf.markerColor;
+			var dynamicColors = conf.dynamicPalette || "#1f77b4,#ff7f0e,#2ca02c,#d62728,#9467bd,#8c564b,#e377c2,#7f7f7f,#bcbd22,#17becf".toUpperCase().split(",");
+			if(color!=undefined) markerColor = dynamicColors[color % dynamicColors.length];
+			
+			
+			// See if we have this location in cache - Mapbox				
+			if(this._geoCache && this._geoCache[locationstring]){
+				cache.geoCoderResults.push(this._geoCache[locationstring]);
+				cache.locations.push(locationstring);
+				cache.titles.push(title);
+				cache.colors.push(markerColor);
+			}else{
+				//alert("No cache for " + locationstring);
+				// Location not in cache - add it to geocoder queue
+				locations.push(locationstring);
+				titles.push(title);				
+				colors.push(markerColor);
+				leafletLocations.push({
+					title : title,
+					color : markerColor,
+					icon : conf.markerSymbol,
+					latlng : latlng,
+					conf : jQuery.parseJSON(JSON.stringify(conf))	// Lazy copy layer config
+				});
+			}
+			
 			if(conf.type=="markerLayer") this.leafletMarkerLayer(leafletLocations);
 			if(conf.type=="heatLayer") this.leafletHeatLayer(leafletLocations,conf);
 			if(conf.type=="clusterLayer") this.leafletClusterLayer(leafletLocations,conf);
@@ -423,7 +332,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
     		blur : parseInt(conf.blur) || 15	
     	}).addTo(this._map);
 		}catch(e){
-			alert(r.length+JSON.stringify(grad));
+			alert("Bug in heat layer caught." + r.length+JSON.stringify(grad));
 		}
     	for(var i=0;i<locations.length;i++){
     		var location = locations[i];

@@ -200,13 +200,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 		 * (Design Studio 1.2 SP1, SP2 and 1.3)
 		 */
 		var strMetadata;
-		// Get Geocoder from designtime.
-		var strGeoCache = this.callRuntimeHandler("getGeoCoderCacheAsString");
-		if(this.geoCodeCache()!=strGeoCache){
-			this._properties.geoCodeCache.component.setValue(strGeoCache);
-			this._geoCache = strGeoCache;
-			this.firePropertiesChanged(["geoCodeCache"]);
-		}
+		// Get any databound properties
 		strData = this.callRuntimeHandler("getDataAsString");
 		this._data = null;
 		if (strData) {

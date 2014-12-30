@@ -16,6 +16,19 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 	    	valueChange : {}
 	    }
 	 },
+	 refreshDS : function(){
+		strData = this._propSheet.callRuntimeHandler("getDataAsString");
+		this._dsmetadata = null;
+		if (strData && strData != "") {
+			try{
+				this._dsmetadata = jQuery.parseJSON(strData);	
+			}catch(e){
+				alert("Problem reading data in GeoHier component:\n\n" + strData);
+			}
+		}else{
+			
+		}
+	 },
 	 setPropSheet : function(o){
 		 this._propSheet = o;
 	 },
@@ -71,7 +84,41 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 		 this.fireValueChange();
 		 this.renderComp();
 	 },
+	 fetchRegionsByCountry : function(country, cbo){
+		 cbo.removeAllItems();
+		 cbo.addItem(new sap.ui.core.ListItem({
+			key : "guess",
+			text : "Try to Guess"
+		 }));
+		 if(country != "guess"){
+			 if(!this.locationsJSON[country].loaded){	// On Demand Loading
+				 // Try to load once and flag loaded
+				 this.locationsJSON[country].loaded = true;
+				 var countryDB = $.ajax({
+		    		async : false,
+		    		url : this.resourcePrefix + "res/Maps/geo/world/" + country + ".json"
+		    	});
+		    	var countryJSON = jQuery.parseJSON(countryDB.responseText);
+		    	for(var region in countryJSON){
+		    		this.locationsJSON[country].r[region] = {
+		    			loaded : false,
+		    			l : countryJSON[region],
+		    			c : {}
+		    		};
+		    	}
+			}
+			 for(var region in this.locationsJSON[country].r){
+				 
+				 if(!cbo.getSelectedKey() == region) cbo.setSelectedKey(region);	// Take first entry
+				 cbo.addItem(new sap.ui.core.ListItem({
+					key : region,
+					text : region
+				}));
+			 }
+		}
+	 },
 	 renderHierProps : function(){
+		 this.refreshDS();
 		 try{
 		 var that = this;
 		 var si = this.hierList.getSelectedIndex();
@@ -100,6 +147,15 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 		 var lblGeoCountry = new sap.ui.commons.TextView({
 			 text : "Country Dimension"
 		 });
+		 var lblFallback = new sap.ui.commons.TextView({
+			 text : "Country and Region Dimension Fallbacks"
+		 });
+		 var lblManualCountry = new sap.ui.commons.TextView({
+			 text : "If no Country Dimension available, use:"
+		 });
+		 var lblManualRegion = new sap.ui.commons.TextView({
+			 text : "If no Region Dimension available, use:"
+		 });
 		 var txtHierTitle = new sap.ui.commons.TextField({
 			value : hierProp.title 
 		 });
@@ -113,6 +169,39 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 		 var cboGeoRegion = new sap.ui.commons.ComboBox({});
 		 var cboGeoZip = new sap.ui.commons.ComboBox({});
 		 var cboGeoCountry = new sap.ui.commons.ComboBox({});
+		 // Manual Support
+		 var cboManualCountry = new sap.ui.commons.ComboBox({});
+		 cboManualCountry.addItem(new sap.ui.core.ListItem({
+			key : "guess",
+			text : "Try to Guess"
+		 }));
+		 var cboManualRegion = new sap.ui.commons.ComboBox({});
+		 for(var country in this.locationsJSON){
+			cboManualCountry.addItem(new sap.ui.core.ListItem({
+				key : country,
+				text : country
+			}));
+		 }
+		 if(!hierProp.manualCountry) hierProp.manualCountry = "us";
+		 cboManualCountry.setSelectedKey(hierProp.manualCountry);
+		 this.fetchRegionsByCountry(hierProp.manualCountry, cboManualRegion);
+		 if(hierProp.manualRegion) {
+			 cboManualRegion.setSelectedKey(hierProp.manualRegion);		 
+		 }else{
+			 hierProp.manualRegion = cboManualRegion.getSelectedKey(); 
+		 }
+		 cboManualCountry.attachChange(function(oControlEvent){
+			 hierProp.manualCountry = oControlEvent.getParameter("selectedItem").getKey();
+			 hierProp.manualRegion = null;
+			 this.fetchRegionsByCountry(hierProp.manualCountry, cboManualRegion);
+			 hierProp.manualRegion = cboManualRegion.getSelectedKey();
+			 this.fireValueChange();
+		 },this);
+		 cboManualRegion.attachChange(function(oControlEvent){
+			 hierProp.manualRegion = oControlEvent.getParameter("selectedItem").getKey();
+			 this.fireValueChange();
+		 },this);
+		 
 		 if(hierProp.geoDimAddress) {
 			 cboGeoAddress.setSelectedKey(hierProp.geoDimAddress);
 		 }else{
@@ -178,6 +267,34 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			key : "",
 			text : "Select a Country dimension"
 		}));
+		
+		var locationList =  new sap.ui.table.Table({
+			visibleRowCount : 10,
+			width : "100%"
+		});
+		var geoLocColumn = new sap.ui.table.Column({
+			label : "Location",
+			template: new sap.ui.commons.TextView().bindProperty("text", "geoLoc"),
+			sortProperty: "geoLoc",
+			filterProperty: "geoLoc",
+		});
+		var geoLatColumn = new sap.ui.table.Column({
+			label : "Latitude",
+			template: new sap.ui.commons.TextView().bindProperty("text", "latitude"),
+			sortProperty: "latitude",
+			filterProperty: "latitude",
+		});
+		var geoLngColumn = new sap.ui.table.Column({
+			label : "Longitude",
+			template: new sap.ui.commons.TextView().bindProperty("text", "longitude"),
+			sortProperty: "longitude",
+			filterProperty: "longitude",
+		});
+		
+		locationList.addColumn(geoLocColumn);
+		locationList.addColumn(geoLatColumn);
+		locationList.addColumn(geoLngColumn);
+		
 		var btnSample = new sap.ui.commons.Button({
 			text : "Sample Locations"
 		});
@@ -202,14 +319,30 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 						geoDimZip : hierProp.geoDimZip,
 						geoDimCountry : hierProp.geoDimCountry,
 						geoDimAddress : hierProp.geoDimAddress,
+						manualCountry : hierProp.manualCountry,
+						manualRegion : hierProp.manualRegion,
 						metadata : jQuery.parseJSON(strData),
 						results : jQuery.parseJSON(strData),
 						callback : function(r){
-							alert(JSON.stringify(r.solved));
+							// We use a callback just so if we end up writing async GIS support later, we have a hook
+							var locationModel = new sap.ui.model.json.JSONModel();
+							var locs = [];
+							alert(JSON.stringify(r.solved) + "\n\n" + JSON.stringify(r.unsolved));
+							for(var i=0;i<r.solved.length;i++){
+								var geoLocation = r.solved[i];
+								locs.push({
+									geoLoc : geoLocation.locationKey,
+									latitude : geoLocation.latlng[0],
+									longitude : geoLocation.latlng[1],
+								});
+							}
+							locationModel.setData({solved: locs});
+							locationList.setModel(locationModel);
+							locationList.bindRows("/solved");
 						}
 					});
 				}catch(e){
-					alert("Error getting lat/lng samples:\n\n" + e);
+					alert("Error getting latitude and longitude samples:\n\n" + e);
 				}
 			}
 			}catch(e){
@@ -241,25 +374,54 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 					 text : m.dimensions[i].text
 				 }));
 			 }
+			 layer.addContent(lblHierTitle);
+			 layer.addContent(txtHierTitle);
+			 //layer.addContent(lblGeoAddress);		Maybe with a GIS
+			 //layer.addContent(cboGeoAddress);		Maybe with a GIS
+			 layer.addContent(lblGeoCity);
+			 layer.addContent(cboGeoCity);
+			 layer.addContent(lblGeoRegion);
+			 layer.addContent(cboGeoRegion);
+			 layer.addContent(lblGeoZip);
+			 layer.addContent(cboGeoZip);
+			 layer.addContent(lblGeoCountry);
+			 layer.addContent(cboGeoCountry);
+			 // Manual support
+			 layer.addContent(lblFallback);
+			 layer.addContent(lblManualCountry);
+			 layer.addContent(cboManualCountry);
+			 layer.addContent(lblManualRegion);
+			 layer.addContent(cboManualRegion);
+			 layer.addContent(locationList);
+			 layer.addContent(btnSample);
+		}else{
+			layer.addContent(new sap.ui.commons.TextView({
+				 text : "Cannot determine a data source.  Make sure you have bound a data source to this component, and that it is not using Load in Script = true."
+			}));
 		}
-		 layer.addContent(lblHierTitle);
-		 layer.addContent(txtHierTitle);
-		 layer.addContent(lblGeoAddress);
-		 layer.addContent(cboGeoAddress);
-		 layer.addContent(lblGeoCity);
-		 layer.addContent(cboGeoCity);
-		 layer.addContent(lblGeoRegion);
-		 layer.addContent(cboGeoRegion);
-		 layer.addContent(lblGeoZip);
-		 layer.addContent(cboGeoZip);
-		 layer.addContent(lblGeoCountry);
-		 layer.addContent(cboGeoCountry);
-		 layer.addContent(btnSample);
+		
 	 this.hierProps.addContent(layer);
 		 }catch(e){alert(e)};
 	 },	 
 	init : function(){
 		var that = this;
+		this.resourcePrefix = "/aad/zen/mimes/sdk_include/org.scn.community.geovis/";
+		if(!this.locationsJSON){
+	    	var geoDB = $.ajax({
+	    		async : false,
+	    		url : this.resourcePrefix + "res/Maps/geo/world.json"
+	    	});
+	    	var worldJSON = jQuery.parseJSON(geoDB.responseText);
+	    	this.locationsJSON = {};
+	    	for(var country in worldJSON){
+	    		this.locationsJSON[country] = {
+	    			loaded : false,
+	    			l : worldJSON[country],
+	    			r : {}
+	    		};
+	    	}
+	    	//this.locationsJSON = jQuery.parseJSON(geoDB.responseText);
+    	}
 		this._value = [];
 		this.leftSide = new sap.ui.commons.layout.VerticalLayout({
 			width : "125px"
@@ -291,7 +453,9 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 								geoDimCity : null,
 								geoDimRegion : null,
 								geoDimZip : null,
-								geoDimCountry : null
+								geoDimCountry : null,
+								manualCountry : "us",
+								manualRegion : "tn"
 							 });
 							}catch(e){alert(e);}
 						}
