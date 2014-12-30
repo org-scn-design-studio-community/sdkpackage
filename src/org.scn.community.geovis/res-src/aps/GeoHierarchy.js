@@ -272,8 +272,13 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			visibleRowCount : 10,
 			width : "100%"
 		});
+		var unsolvedList =  new sap.ui.table.Table({
+			visibleRowCount : 10,
+			width : "100%"
+		});
+		
 		var geoLocColumn = new sap.ui.table.Column({
-			label : "Location",
+			label : "Location Key",
 			template: new sap.ui.commons.TextView().bindProperty("text", "geoLoc"),
 			sortProperty: "geoLoc",
 			filterProperty: "geoLoc",
@@ -291,10 +296,40 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			filterProperty: "longitude",
 		});
 		
+		var unsolvedGeoLocColumn = new sap.ui.table.Column({
+			label : "Location Key",
+			template: new sap.ui.commons.TextView().bindProperty("text", "geoLoc"),
+			sortProperty: "geoLoc",
+			filterProperty: "geoLoc",
+		});
+		var unsolvedGeoLatColumn = new sap.ui.table.Column({
+			label : "Latitude",
+			template: new sap.ui.commons.TextView().bindProperty("text", "latitude"),
+			sortProperty: "latitude",
+			filterProperty: "latitude",
+		});
+		var unsolvedGeoLngColumn = new sap.ui.table.Column({
+			label : "Longitude",
+			template: new sap.ui.commons.TextView().bindProperty("text", "longitude"),
+			sortProperty: "longitude",
+			filterProperty: "longitude",
+		});
+		
+		var tabStrip = new sap.ui.commons.TabStrip({
+			width : "100%"
+		});
+		var solvedTab = new sap.ui.commons.Tab();
+		var unsolvedTab = new sap.ui.commons.Tab();
+		solvedTab.setText("Solved Locations");
+		unsolvedTab.setText("Unsolved Locations");
 		locationList.addColumn(geoLocColumn);
 		locationList.addColumn(geoLatColumn);
 		locationList.addColumn(geoLngColumn);
-		
+		unsolvedList.addColumn(unsolvedGeoLocColumn);
+		unsolvedList.addColumn(unsolvedGeoLatColumn);
+		unsolvedList.addColumn(unsolvedGeoLngColumn);
+		tabStrip.addTab(solvedTab);
+		tabStrip.addTab(unsolvedTab);
 		var btnSample = new sap.ui.commons.Button({
 			text : "Sample Locations"
 		});
@@ -327,7 +362,6 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 							// We use a callback just so if we end up writing async GIS support later, we have a hook
 							var locationModel = new sap.ui.model.json.JSONModel();
 							var locs = [];
-							alert(JSON.stringify(r.solved) + "\n\n" + JSON.stringify(r.unsolved));
 							for(var i=0;i<r.solved.length;i++){
 								var geoLocation = r.solved[i];
 								locs.push({
@@ -336,9 +370,24 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 									longitude : geoLocation.latlng[1],
 								});
 							}
-							locationModel.setData({solved: locs});
+							
+							var unsolvedLocs = [];
+							for(var i=0;i<r.unsolved.length;i++){
+								var geoLocation = r.unsolved[i];
+								unsolvedLocs.push({
+									geoLoc : geoLocation.locationKey,
+									latitude : geoLocation.latlng[0],
+									longitude : geoLocation.latlng[1],
+								});
+							}
+							locationModel.setData({
+								solved: locs,
+								unsolved: unsolvedLocs
+							});
 							locationList.setModel(locationModel);
 							locationList.bindRows("/solved");
+							unsolvedList.setModel(locationModel);
+							unsolvedList.bindRows("/unsolved");
 						}
 					});
 				}catch(e){
@@ -392,7 +441,10 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			 layer.addContent(cboManualCountry);
 			 layer.addContent(lblManualRegion);
 			 layer.addContent(cboManualRegion);
-			 layer.addContent(locationList);
+			 layer.addContent(tabStrip);
+			 solvedTab.addContent(locationList);
+			 unsolvedTab.addContent(unsolvedList);
+			 //layer.addContent(locationList);
 			 layer.addContent(btnSample);
 		}else{
 			layer.addContent(new sap.ui.commons.TextView({
