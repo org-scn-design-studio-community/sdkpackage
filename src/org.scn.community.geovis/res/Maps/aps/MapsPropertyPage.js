@@ -1,3 +1,7 @@
+/**
+ * Move this to its own include later.
+ * 
+ */
 function constructAPSProperties(opts){
 	var propSheet = opts.propSheet;			// APS side
 	var properties = opts.properties;		// Component and APS
@@ -35,16 +39,17 @@ function constructAPSProperties(opts){
 							// Step 1 - Property Sheet DS Proxy sets the value.  Store the new value.
 							try{	
 								propertyInstances[propertyConfig].value = value;
-								// Step 2 - Update Property Sheet Component
 							}catch(e){
 								alert("An error happened while trying to set property " + propertyConfig + "\n\n" + e);
 							}
+							// Step 2 - Update Property Sheet Component
 							try{
 								propertyInstances[propertyConfig].updateComponent(value);
-								// Step 3 - Any post-property change logic
 							}catch(e){
 								alert("An error happened while trying to update PROPERTY SHEET component for property " + propertyConfig + "\n\n" + e);
-							}							
+							}
+							// Step 3 - Any post-property change logic for UI components, for instance
+							if(propertyInstances[propertyConfig].afterSetAPS) propertyInstances[propertyConfig].afterSetAPS(value); 
 						//}
 						// Final Step - Return self for required methodchaining.
 						return propSheet;
@@ -55,23 +60,26 @@ function constructAPSProperties(opts){
 	}
 	return propertyInstances;
 }
+
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropertyPage", function() {
 	var that = this;
-	// Create storage, getters and setters for properties
+	/*
+	 * Create storage, getters and setters for properties
+	 */ 
 	this._propertyInstances = constructAPSProperties({
 		properties : getDesignStudioProperties(),			// from properties.js
 		propSheet : this
 	});
 	/*
-	 * Custom Event Listener logic after component properties change
-	 * Need to account for intial setter too, though.
+	 * Custom AfterSet logic after component properties are set from Java or Component Change
 	 */
-	this._propertyInstances.geoHierarchy.component.attachValueChange(function(oControlEvent){
+	this._propertyInstances.geoHierarchy.afterSetAPS = function(v){
 		// Update Layer Property with new Hierarchy Property config
-		var newValue = oControlEvent.getSource().getValue();
-		this._propertyInstances.layerConfig.component.setHierarchies(jQuery.parseJSON(newValue));
-	},this);
-	
+		that._propertyInstances.layerConfig.component.setHierarchies(jQuery.parseJSON(v));
+	};
+	/*
+	 * Instantiate UI5 Property Sheet Components
+	 */
 	// Main Property Page
 	this.mainIconStrip = new sap.ui.commons.Toolbar({
 		rightItems : [ ]		// Reserve for maybe some map property component
@@ -88,7 +96,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 	    content : [this.mainIconStrip,this.mainLayout]
 	});	
 	/*
-	 *  Render Categories based on metadata defined in categories.js
+	 *  Dynamically Decorate Categories based on metadata defined in categories.js with UI5 refs
+	 *  Might switch this to a true tabstrip now that DS 1.4 has better UI5 Libs.
 	 */
 	for(cat in aps_categories){
 		if(!aps_categories[cat].children) aps_categories[cat].children = [];
@@ -160,10 +169,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 	this.componentSelected = function(){
 		this.updateProps("Component Selected");
 	};
-
-	this.isRelevant = function(prop){
-		return true;		// Because maps
-	};
 	/**
 	 * Highlight the main button icon pressed last
 	 */
@@ -178,12 +183,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 			alert(e);
 		}
 	};
-	/**
-	 * Debugging
-	 */
-	this.writeLog = function(s){
-		// this.callRuntimeHandler("writeLog",s);
-	};
 	this.geoCodeCache = function(s){
 		if(s===undefined){
 			return this._geoCache;
@@ -194,12 +193,11 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 	};
 	this.updateDataboundComps = function(){
 		/*
-		 * For reasons unknown, must pull metadata over as JSON string-serialized object with a callRuntimeHandler
-		 * (Design Studio 1.2 SP1, SP2 and 1.3)
+		 * For racing conditions, must pull metadata over as JSON string-serialized object with a callRuntimeHandler
+		 * because the property setter for metadata may not have been called yet.
+		 * (Design Studio 1.2 SP1, SP2 and 1.3 and 1.4)
 		 */
-		var strMetadata;
-		// Get any databound properties
-		strData = this.callRuntimeHandler("getDataAsString");
+		var strData = this.callRuntimeHandler("getDataAsString");
 		this._data = null;
 		if (strData) {
 			try{
@@ -208,7 +206,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 				alert("Problem reading data:\n\n" + strData);
 			}
 		}else{
-			
+			alert("Component no longer responsive.  Something is broken.  Try reloading your BI App.");
 		}
 		if (this._data && this._data.dimensions && this._data.dimensions.length>0) {
 			this._propertyInstances.layerConfig.component.setDsmetadata(this._data);
@@ -222,7 +220,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 	this.updateProps = function(reason){
 		this.renderUI("Updated Props " + reason);
 		this.updateDataboundComps();
-		
 	};
 	
 	/**
@@ -233,11 +230,11 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 		org_scn_community_geovis.resourcePrefix = "/aad/zen/mimes/sdk_include/org.scn.community.geovis/";
 		try{
 			this.mainPage.placeAt("content");
-			this.writeLog("Property Sheet Initialized.");	
 			this.renderUI("init");
 		}catch(e){
 			alert(e);
 		}
+		this.updateProps("Initial Load");
 	};
 	/**
 	 * RenderUI called when certain properties are changed
@@ -245,12 +242,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 	this.renderUI = function(reason){
 		var that = this;
 		var title = "Maps Properties";
-		this.mainPage.setText(title);
-		
-		//this.writeLog("UI Render: [" + this.mapType() +"] - " + reason);
+		this.mainPage.setText(title);	
 		try{		
-			// this._properties.dataSetConfig.component.setChartType(this.chartType());	
-			// Render all Layouts from property config stucture (Take 2)
+			// Render all Layouts from property config stucture
 			for(category in aps_categories){
 				var cat = aps_categories[category];
 				// Remove all buttons, add only the ones back that have properties.
@@ -264,10 +258,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 					if(!child.props) child.props = [];
 					for(var j=0;j<child.props.length;j++){
 						var prop=child.props[j];
-						if(this.isRelevant(prop)) {
-							entries++;
-							child.layout.addContent(this.makeListItem(this._propertyInstances[prop]));
-						}
+						entries++;
+						child.layout.addContent(this.makePropertyEntry(this._propertyInstances[prop]));
 					}
 					if(entries>0){
 						cat.strip.addItem(child.stripButton);
@@ -290,13 +282,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 		}
 	};
 	/**
-	 * Renders a sap.m List Item entry
+	 * Renders a property Entry for Sheet
+	 * Depending on type of component, some need Labels, some have their own...
+	 * Can clean this up more later...
 	 */
-	this.makeListItem = function(prop){
+	this.makePropertyEntry = function(prop){
 		var hLayout = new sap.ui.commons.layout.HorizontalLayout({
 			
 		});
-		
 		var compType;
 		var component;
 		if(prop){
@@ -325,43 +318,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 		if(prop.tooltip){
 			//label.setTooltip(prop.tooltip);
 		}
-		var labelComponent = new sap.ui.commons.Link({
+		var labelComponent = new sap.ui.commons.TextView({
 			width : "200px",
-			text : label
+			text : label,
+			tooltip : prop.tooltip
 		});
-		if(tooltip){
-			labelComponent.setEnabled(true);
-			labelComponent.attachPress(function(tt){
-				return function(occ){
-					var p = new sap.ui.ux3.ToolPopup({
-						//modal : true,
-						autoClose : true,
-						maxWidth : "80%",
-						opener : labelComponent,
-						close : function(oControlEvent){
-							this.destroyContent();
-							this.destroyButtons();
-						}
-					});
-					var pHelp = new sap.ui.commons.TextView({
-						text : tt
-					});
-					var pOk = new sap.ui.commons.Button({
-						text : "Ok"
-					});
-					pOk.attachPress(function(occ){
-						p.close();
-					});
-					p.addContent(pHelp);
-					p.addButton(pOk);
-					p.open(
-						sap.ui.core.Popup.Dock.EndTop, sap.ui.core.Popup.Dock.EndBottom
-					);
-				};
-			}(tooltip));
-		}else{
-			labelComponent.setEnabled(false);
-		}
+		
 		switch(compType){
 			case "apsTextInput":
 			case "apsComboBox":
@@ -379,8 +341,5 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 				return component;
 			}
 		}
-		
-		
-		
 	};
 });

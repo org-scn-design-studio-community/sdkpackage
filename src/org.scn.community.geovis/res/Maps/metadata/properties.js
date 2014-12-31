@@ -2,6 +2,7 @@
  * label - Label of Component Property for APS
  * tooltip - Tooltip help for Component Property in APS
  * afterChange - After Change function fired component-side (optional, might remove this)
+ * afterSetAPS - Optional function to call after APS Property is updated from Java-initiated setter
  * component - Type of APS Component to use for Property
  * componentOptions - Any further UI5 config that may need to be passed
  * 
