@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.scn.community.sdk.feature.geovispack.standard_1.0.0.qualifier.jar" id="org.scn.community.sdk.feature.geovispack.standard" version="1.0.0.qualifier">
+   <feature url="features/org.scn.community.sdk.feature.geovis_1.0.0.qualifier.jar" id="org.scn.community.sdk.feature.geovis" version="1.0.0.qualifier">
       <category name="com.sap.ip.bi.zen.sdk"/>
    </feature>
    <category-def name="com.sap.ip.bi.zen.sdk" label="com.sap.ip.bi.zen.sdk"/>
