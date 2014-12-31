@@ -1,81 +1,9 @@
 /**
- * Properties Utility Class
-**/
-var propUtility = function(propConfig, componentRef){
-	var that = this;
-	this.toString = function(){
-		return "Design Studio Property Utility Class - Private Scope";
-	};
-	this._properties = propConfig;
-	/*
-	 * Create the aforementioned getter/setter and attach to 'this'.
-	 */
-	var obj = {
-		props : this._properties,
-		toString : function(){
-			return "Design Studio Property Utility Class";
-		},
-		resetAll : function(){
-			for(var prop in that._properties){
-				that._properties[prop].changed = false;
-			}
-		}
-	};
-	for(var property in this._properties){
-		this._properties[property].changed = false;
-
-		// Return full-fledged object (Non-DS setter/getter version)
-		obj[property] = function(property){
-			return function(value){	// not using value yet
-				var r = that._properties[property];
-				// Enhance object config
-				r.reset = function(){
-					that._properties[property].changed = false;
-				};
-				return r;
-			};
-		}(property);
-		// Check if we should ignore special properties like onclick events
-		if(!this._properties[property].noSetterGetter){
-			// Attach setter/getter function for SDK DIV handler
-			componentRef[property] = function(property){
-				return function(value){
-					if(value===undefined){
-						//var v = null;
-						var v;
-						if(that._properties[property].value == null){
-							if(that._properties[property].nullHandler) v = that._properties[property].nullHandler();
-						}else{
-							v = that._properties[property].value;
-						}
-						return v;
-					}else{
-						var oldVal = JSON.stringify(that._properties[property].value);
-						var newVal = JSON.stringify(value);
-						if(oldVal != newVal){
-							that._properties[property].oldValue = that._properties[property].value;
-							that._properties[property].value = value;
-							that._properties[property].changed = true;
-							if(that._properties[property].afterChange){
-								that._properties[property].afterChange();
-							}
-						}
-						return componentRef;
-					}
-				};
-			}(property);
-		}
-	}
-	return obj;
-}
-/**
- * Design Studio Property Handler Factory for Additional Properties Sheet
+ * Design Studio Property Instance Factory for APS
  */
-var DesignStudioProperty = function(opts){
+var DesignStudioPropertyInstance = function(opts){
 	try{
-		var propSheet = opts.propSheet;		// If we are on the component side, this will be null.
-		var propertyInstances = {};
-		if(propSheet != undefined) propertyInstances = propSheet._properties;
+		var propSheet = opts.propSheet;
 		/*
 		 * Property Sheet Component Factories - Only used on APS side
 		 */
@@ -94,7 +22,6 @@ var DesignStudioProperty = function(opts){
 					}catch(e){
 						alert(e);
 					}
-					if(propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet();
 				}
 			});
 		};
@@ -113,7 +40,6 @@ var DesignStudioProperty = function(opts){
 					}catch(e){
 						alert(e);
 					}
-					if(propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet();
 				}
 			});
 		};
@@ -130,7 +56,6 @@ var DesignStudioProperty = function(opts){
 						alert(e);
 					}
 					
-					if(propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet();
 				}
 			});
 		};
@@ -149,8 +74,6 @@ var DesignStudioProperty = function(opts){
 					}catch(e){
 						alert(e);
 					}
-					
-					if(propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet();
 				}
 			});
 		};
@@ -163,8 +86,6 @@ var DesignStudioProperty = function(opts){
 					var v = String(this.getValue());
 					propSheet[that.propertyName](v);
 					propSheet.firePropertiesChanged([that.propertyName]);
-					//if(propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet(); BAD
-					if(propSheet._properties[that.propertyName].afterSet) propSheet._properties[that.propertyName].afterSet();
 				}
 			});
 		};
@@ -178,8 +99,6 @@ var DesignStudioProperty = function(opts){
 					var v = String(this.getValue());
 					propSheet[that.propertyName](v);
 					propSheet.firePropertiesChanged([that.propertyName]);
-					//if(propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet(); BAD
-					if(propSheet._properties[that.propertyName].afterSet) propSheet._properties[that.propertyName].afterSet();
 				}
 			});
 		};
@@ -191,7 +110,6 @@ var DesignStudioProperty = function(opts){
 				tooltip : this.tooltip,
 				press : function(){
 					if(componentOptions && componentOptions.press) componentOptions.press();
-					if(propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet();
 				}
 			});
 		};
@@ -205,7 +123,6 @@ var DesignStudioProperty = function(opts){
 				if(this.getValue()!=propSheet[that.propertyName]()){
 					propSheet[that.propertyName](this.getValue());
 					propSheet.firePropertiesChanged([that.propertyName]);
-					if(propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet();
 				}
 			}
 		});};
@@ -223,7 +140,6 @@ var DesignStudioProperty = function(opts){
 				if(this.getValue()!=propSheet[that.propertyName]()){
 					propSheet[that.propertyName](this.getValue());
 					propSheet.firePropertiesChanged([that.propertyName]);
-					if(propSheet._properties[that.propertyName].afterSet) propSheet._properties[that.propertyName].afterSet();
 				}
 			}
 		});};
@@ -237,8 +153,6 @@ var DesignStudioProperty = function(opts){
 					if(this.getChecked()!=propSheet[that.propertyName]()){
 						propSheet[that.propertyName](this.getChecked());
 						propSheet.firePropertiesChanged([that.propertyName]);
-						// Be sure to use constructed object, not the configuration.
-						if(propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet();
 					}
 				}
 			});
@@ -254,7 +168,6 @@ var DesignStudioProperty = function(opts){
 				colorChange : function(oControlEvent){
 					propSheet[that.propertyName](this.getBackgroundColor());
 					propSheet.firePropertiesChanged([that.propertyName]);
-					if(propertyInstances && propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet();
 				},
 				alphaChange : function(oControlEvent){
 					if(that.alphaProperty) {
@@ -291,7 +204,6 @@ var DesignStudioProperty = function(opts){
 				colorChange : function(oControlEvent){
 					propSheet[that.propertyName](this.getColors());
 					propSheet.firePropertiesChanged([that.propertyName]);
-					if(propertyInstances && propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet();
 				},
 				alphaChange : function(oControlEvent){
 					if(that.alphaProperty){
@@ -321,7 +233,6 @@ var DesignStudioProperty = function(opts){
 				change : function(){
 					propSheet[that.propertyName](this.getSelectedKey());
 					propSheet.firePropertiesChanged([that.propertyName]);			
-					if(propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet();
 				}
 			});
 			if(componentOptions && componentOptions.items){
@@ -346,12 +257,12 @@ var DesignStudioProperty = function(opts){
 				valueChange : function(oControlEvent){
 					propSheet[that.propertyName](this.getValue());
 					propSheet.firePropertiesChanged([that.propertyName]);
-					if(propertyInstances[that.propertyName].afterSet) propertyInstances[that.propertyName].afterSet();
 				}
 			});
-		};	
-		
-		
+		};
+		/*
+		 * Based on component options, select one of the previously defined component factories.
+		 */
 		switch(opts.component){
 			case "apsTextInput":
 				opts.factory = dsTextInput;
@@ -402,7 +313,16 @@ var DesignStudioProperty = function(opts){
 				opts.factory = null;
 				break;
 		}
-		
+		/*
+		 * JSON Object to be returned.
+		 * 
+		 * componentType - Type of component it is (Checkbox, Text, etc)
+		 * properyName - Name of the property (e.g. title)
+		 * serialize -
+		 * serialized - Serializer function (if any)
+		 * reqs
+		 * 
+		 */
 		var returnObj = {
 			componentType : opts.component,
 			propertyName : opts.propertyName,
@@ -413,42 +333,43 @@ var DesignStudioProperty = function(opts){
 			value : opts.value || null,
 			tooltip : opts.tooltip || "",
 			dsOnly : opts.dsOnly || false,
-			afterSet : opts.afterSet || function(v){ },
 			afterSetAPS : opts.afterSetAPS,
 			afterChange : opts.afterChange || function(v){ },
 			label : opts.label || opts.propertyName		
 		};
-		if(propSheet){		// Property Sheet-specific
-			try{
-				returnObj.component = (opts.factory)?opts.factory(opts.componentOptions||{}):null;	
-			}catch(e){
-
-			}
-			
-			returnObj.updateComponent = function(v){
-				if(opts.component=="apsInvisible") {
-					if(opts.afterSetAPS) opts.afterSetAPS(v);
-				}
-				if(opts.component=="apsTextInput") this.component.setValue(v);
-				if(opts.component=="apsTextBox") this.component.setValue(v);
-				if(opts.component=="apsSwitch") this.component.setSelected(v);
-				if(opts.component=="apsCheckBox") this.component.setChecked(v);
-				if(opts.component=="apsColorPicker") this.component.setBackgroundColor(v);
-				if(opts.component=="apsColorBuilder") this.component.setColors(v);
-				if(opts.component=="apsComboBox") this.component.setSelectedKey(v);
-				if(opts.component=="apsSlider") this.component.setValue(parseFloat(v));
-				if(opts.component=="apsGeoCache") this.component.setValue(v);
-				if(opts.component=="apsTileJSON") this.component.setValue(v);
-				if(opts.component=="apsGeoLookup") this.component.setValue(v);
-				if(opts.component=="apsGeoLookupLocal") this.component.setValue(v);
-				if(opts.component=="apsGeoLayers") this.component.setValue(v);
-				if(opts.component=="apsGeoHierarchy") this.component.setValue(v);
-				if(opts.component=="apsColorRanges") this.component.setColorRanges(v);
-				if(opts.component=="apsButton") this.component.setTooltip(v);
-			};
+		try{
+			returnObj.component = (opts.factory)?opts.factory(opts.componentOptions||{}):null;	
+		}catch(e){
+			alert("fix this");
 		}
+		/*
+		 * Each type of UI5 component can have a different setter method (setSelected, setChecked, setValue, etc)
+		 * so abstract it to updateComponent and account for each
+		 */
+		returnObj.updateComponent = function(v){
+			if(opts.component=="apsInvisible") {
+				if(opts.afterSetAPS) opts.afterSetAPS(v);
+			}
+			if(opts.component=="apsTextInput") this.component.setValue(v);
+			if(opts.component=="apsTextBox") this.component.setValue(v);
+			if(opts.component=="apsSwitch") this.component.setSelected(v);
+			if(opts.component=="apsCheckBox") this.component.setChecked(v);
+			if(opts.component=="apsColorPicker") this.component.setBackgroundColor(v);
+			if(opts.component=="apsColorBuilder") this.component.setColors(v);
+			if(opts.component=="apsComboBox") this.component.setSelectedKey(v);
+			if(opts.component=="apsSlider") this.component.setValue(parseFloat(v));
+			if(opts.component=="apsGeoCache") this.component.setValue(v);
+			if(opts.component=="apsTileJSON") this.component.setValue(v);
+			if(opts.component=="apsGeoLookup") this.component.setValue(v);
+			if(opts.component=="apsGeoLookupLocal") this.component.setValue(v);
+			if(opts.component=="apsGeoLayers") this.component.setValue(v);
+			if(opts.component=="apsGeoHierarchy") this.component.setValue(v);
+			if(opts.component=="apsColorRanges") this.component.setColorRanges(v);
+			if(opts.component=="apsButton") this.component.setTooltip(v);
+		};
+		// Return completed property instance.
 		return returnObj;
 	}catch(e){
-		
+		alert("fix this too");
 	}
 };

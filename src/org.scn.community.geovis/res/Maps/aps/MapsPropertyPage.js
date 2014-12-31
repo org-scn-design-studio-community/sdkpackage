@@ -1,10 +1,77 @@
+function constructAPSProperties(opts){
+	var propSheet = opts.propSheet;			// APS side
+	var properties = opts.properties;		// Component and APS
+	var propertyInstances = {};
+	for (var propertyConfig in properties){
+		var config = properties[propertyConfig];
+		config.propertyName = propertyConfig;
+		config.propSheet = opts.propSheet;
+		config.propertyInstances = propertyInstances;
+		// Attach setter/getter function to property sheet if no flag otherwise.
+		if(!config.noPropertySheet){
+			// Construct Property Instance (contains config and UI5 component)
+			propertyInstances[propertyConfig] = new DesignStudioPropertyInstance(config);
+			// Construct Setter/Getter and attach to property sheet
+			propSheet[propertyConfig] = function(propertyConfig){
+				return function(value){
+					if(value===undefined){
+						/*
+						 * Design Studio PROPERTY SHEET Getter
+						 */
+						var v = null;
+						if(propertyInstances[propertyConfig].value == null){
+							if(propertyInstances[propertyConfig].nullHandler) {
+								v = propertyInstances[propertyConfig].nullHandler();
+							}
+						}else{
+							v = propertyInstances[propertyConfig].value;
+						}
+						return v;
+					}else{
+						/*
+						 * Design Studio PROPERTY SHEET Setter
+						 */
+						//if(propSheet._properties[propertyConfig].value!=value){
+							// Step 1 - Property Sheet DS Proxy sets the value.  Store the new value.
+							try{	
+								propertyInstances[propertyConfig].value = value;
+								// Step 2 - Update Property Sheet Component
+							}catch(e){
+								alert("An error happened while trying to set property " + propertyConfig + "\n\n" + e);
+							}
+							try{
+								propertyInstances[propertyConfig].updateComponent(value);
+								// Step 3 - Any post-property change logic
+							}catch(e){
+								alert("An error happened while trying to update PROPERTY SHEET component for property " + propertyConfig + "\n\n" + e);
+							}							
+						//}
+						// Final Step - Return self for required methodchaining.
+						return propSheet;
+					}
+				};
+			}(propertyConfig);
+		}
+	}
+	return propertyInstances;
+}
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropertyPage", function() {
 	var that = this;
 	// Create storage, getters and setters for properties
-	this.cProps = new ComponentProperties({
+	this._propertyInstances = constructAPSProperties({
+		properties : getDesignStudioProperties(),			// from properties.js
 		propSheet : this
 	});
-	this._properties = this.cProps.properties;
+	/*
+	 * Custom Event Listener logic after component properties change
+	 * Need to account for intial setter too, though.
+	 */
+	this._propertyInstances.geoHierarchy.component.attachValueChange(function(oControlEvent){
+		// Update Layer Property with new Hierarchy Property config
+		var newValue = oControlEvent.getSource().getValue();
+		this._propertyInstances.layerConfig.component.setHierarchies(jQuery.parseJSON(newValue));
+	},this);
+	
 	// Main Property Page
 	this.mainIconStrip = new sap.ui.commons.Toolbar({
 		rightItems : [ ]		// Reserve for maybe some map property component
@@ -20,18 +87,20 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 	    applyContentPadding : false,
 	    content : [this.mainIconStrip,this.mainLayout]
 	});	
-	// Render Categories
-	for(cat in this.cProps.categories){
-		if(!this.cProps.categories[cat].children) this.cProps.categories[cat].children = [];
-		this.cProps.categories[cat].page = new sap.ui.commons.layout.VerticalLayout({ width : "100%"});
-		this.cProps.categories[cat].strip = new sap.ui.commons.Toolbar({ });
-		this.cProps.categories[cat].layout = new sap.ui.commons.layout.VerticalLayout({ width : "100%"});
-		this.cProps.categories[cat].page.addContent(this.cProps.categories[cat].strip);
-		this.cProps.categories[cat].page.addContent(this.cProps.categories[cat].layout);
+	/*
+	 *  Render Categories based on metadata defined in categories.js
+	 */
+	for(cat in aps_categories){
+		if(!aps_categories[cat].children) aps_categories[cat].children = [];
+		aps_categories[cat].page = new sap.ui.commons.layout.VerticalLayout({ width : "100%"});
+		aps_categories[cat].strip = new sap.ui.commons.Toolbar({ });
+		aps_categories[cat].layout = new sap.ui.commons.layout.VerticalLayout({ width : "100%"});
+		aps_categories[cat].page.addContent(aps_categories[cat].strip);
+		aps_categories[cat].page.addContent(aps_categories[cat].layout);
 		// Main Button Event
-		this.cProps.categories[cat].button = new sap.ui.commons.Button({
-			text : this.cProps.categories[cat].label,
-			tooltip : this.cProps.categories[cat].label,
+		aps_categories[cat].button = new sap.ui.commons.Button({
+			text : aps_categories[cat].label,
+			tooltip : aps_categories[cat].label,
 			press : function(cat){
 				return function(occ){
 					var btns = that.mainIconStrip.getItems();
@@ -44,16 +113,13 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 					}
 					that.mainLayout.removeAllContent();
 					that.mainLayout.addContent(cat.page);
-					//that.colorMainIconStrip(occ);
-					//that.mainNav.to(p);
 				};
-			}(this.cProps.categories[cat])
+			}(aps_categories[cat])
 		});
-		//if(this.cProps.categories[cat].icon) this.cProps.categories[cat].button.setIcon(this.cProps.categories[cat].icon);
-		this.mainIconStrip.addItem(this.cProps.categories[cat].button);
+		this.mainIconStrip.addItem(aps_categories[cat].button);
 		// Go through sub-categories
-		for(var i=0;i<this.cProps.categories[cat].children.length;i++){
-			var child = this.cProps.categories[cat].children[i];
+		for(var i=0;i<aps_categories[cat].children.length;i++){
+			var child = aps_categories[cat].children[i];
 			// Button for main toolbar
 			child.stripButton = new sap.ui.commons.Button({
 				text : child.label,
@@ -70,24 +136,23 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 						cat.layout.removeAllContent();
 						cat.layout.addContent(ch.layout);
 					};
-				}(child,this.cProps.categories[cat])
+				}(child,aps_categories[cat])
 			});
-			this.cProps.categories[cat].strip.addItem(child.stripButton);
+			aps_categories[cat].strip.addItem(child.stripButton);
 			child.layout = new sap.ui.commons.layout.VerticalLayout({
 				width : "100%"
-				//noDataText : "No properties for this chart type apply in this category."
 			});
 			// Set initial tab
 			if(i==0) {
-				this.cProps.categories[cat].lastButtonClicked = child.stripButton;
+				aps_categories[cat].lastButtonClicked = child.stripButton;
 				child.stripButton.setStyle(sap.ui.commons.ButtonStyle.Accept);
-				this.cProps.categories[cat].layout.addContent(child.layout);
+				aps_categories[cat].layout.addContent(child.layout);
 			}
 		}
 	}
 	// Default to Basics Tab
-	this.cProps.categories.basics.button.setStyle(sap.ui.commons.ButtonStyle.Accept);
-	that.mainLayout.addContent(this.cProps.categories.basics.page);
+	aps_categories.basics.button.setStyle(sap.ui.commons.ButtonStyle.Accept);
+	that.mainLayout.addContent(aps_categories.basics.page);
 	
 	/**
 	 * Called by SDK when component selected during design time.
@@ -95,76 +160,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 	this.componentSelected = function(){
 		this.updateProps("Component Selected");
 	};
-	
-	this.getChartByKey = function(key){
-		var chartConfig = this._properties.chartType.component.getChartConfig();
-		for(var i=0;i<chartConfig.length;i++){
-			if(chartConfig[i].key==key) return chartConfig[i];
-		}
-		return null;
-	};
-	this.chartIn = function(a){
-		 var ct = this.chartType();
-		 	for(var i=0;i<a.length;i++) if(a[i]==ct) return true;
-		 return false;
-	};
+
 	this.isRelevant = function(prop){
 		return true;		// Because maps
-		try{
-			// See if we care
-			if(!this._chkRelevance.getChecked()) return true;
-			var chartKey = this.chartType();
-			if(!chartKey) return false;
-			// See if it's a valid property
-			var p = this._properties[prop];
-			if(!p) {
-				// alert(prop + " not found.");
-				return false;
-			}
-			// Grab chart metadata
-			var chartMeta = this.getChartByKey(chartKey);
-			// If it's invalid, bail out false
-			if(chartMeta==null) {
-				// alert("Chart Metadata not found!" + this.chartType());
-				return false;
-			}
-			var ct = chartMeta.type;
-			// Assume at this point it's relevant unless we hit requirements
-			var relevant = true;
-			// Check chart engine version
-			if(p.engines && p.engines.length>0){
-				for(var i=0;i<p.engines.length;i++){
-					if(p.engines[i]==this.engine) return true;
-				}
-				return false;
-			}
-			if(p.charts && p.charts.length>0){
-				for(var i=0;i<p.charts.length;i++){
-					if(p.charts[i]==chartKey || p.charts[i]=="All") return true;
-				}
-				return false;
-			};
-			if(p.reqs && p.reqs.length>0){
-				var attrs = chartMeta.attrs;
-				//alert(JSON.stringify(attrs));
-				// Loop thru requirements
-				for(var i=0;i<p.reqs.length;i++){
-					var match = false;
-					var req = p.reqs[i];
-					// Loop thru chart attributes
-					if(attrs && attrs.length>0){
-						for(var j=0;j<attrs.length;j++){
-							// Requirement fufilled.
-							if(attrs[j]==req) match = true;
-						}
-					}
-					if(!match) relevant = false;
-				}
-			}
-			return relevant;
-		}catch(e){
-			alert(e);
-		}
 	};
 	/**
 	 * Highlight the main button icon pressed last
@@ -213,8 +211,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 			
 		}
 		if (this._data && this._data.dimensions && this._data.dimensions.length>0) {
-			this._properties.layerConfig.component.setDsmetadata(this._data);
-			this._properties.geoHierarchy.component.setDsmetadata(this._data);
+			this._propertyInstances.layerConfig.component.setDsmetadata(this._data);
+			this._propertyInstances.geoHierarchy.component.setDsmetadata(this._data);
 		}
 	};
 	/**
@@ -253,8 +251,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 		try{		
 			// this._properties.dataSetConfig.component.setChartType(this.chartType());	
 			// Render all Layouts from property config stucture (Take 2)
-			for(category in this.cProps.categories){
-				var cat = this.cProps.categories[category];
+			for(category in aps_categories){
+				var cat = aps_categories[category];
 				// Remove all buttons, add only the ones back that have properties.
 				cat.strip.removeAllItems();
 				var buttons = 0;
@@ -268,7 +266,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.MapsPropert
 						var prop=child.props[j];
 						if(this.isRelevant(prop)) {
 							entries++;
-							child.layout.addContent(this.makeListItem(this._properties[prop]));
+							child.layout.addContent(this.makeListItem(this._propertyInstances[prop]));
 						}
 					}
 					if(entries>0){

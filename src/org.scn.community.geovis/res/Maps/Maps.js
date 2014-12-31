@@ -19,13 +19,33 @@
 
 
 
+/** code for recognition of script path */
+(function() {
+	var myScript = $("script:last")[0].src;
+	_readScriptPath = function () {
+		if(myScript) {
+			var myScriptSuffix = "res/Maps/";
+			var myPluginSuffix = "org.scn.community.geovis/";
+			var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
+			var mainSDKPathIndex = myScript.indexOf(myPluginSuffix);
+			var mainSDKPath = myScript.substring(0, mainSDKPathIndex);
+			var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
+			return {
+				myScriptPath : ownScriptPath,
+				mainSDKPath : mainSDKPath
+			};
+		}
+		return "";
+};
+/** end of recognition of script path */
 /**
  * Leaflet Wrapper
  */
 sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function() {
 	// Rework using Karol script path detection
-	this.sdkPfx = "/aad/zen/mimes/sdk_include";
-	this.resPfx = "/aad/zen/mimes/sdk_include/org.scn.community.geovis/";
+	var pathInfo = _readScriptPath();
+	this.sdkPfx = pathInfo.mainSDKPath;
+	this.resPfx = pathInfo.mainSDKPath + "org.scn.community.geovis/";
 	this._alive = false;
 	this.batchLimit = 25;
 	this._geoCache = {};
@@ -514,10 +534,11 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 	    	}
 	    	//this.locationsJSON = jQuery.parseJSON(geoDB.responseText);
     	}
-		// Design Studio ComponentProperty Object
-    	var cProps = new ComponentProperties({ componentRef : this });
 		// Design Studio Utility Property Class
-    	if (!this.propUtil)	this.propUtil = new propUtility(cProps.properties, this);
+    	if (!this.propUtil)	this.propUtil = new AutoPropertyUtility({
+    		properties : getDesignStudioProperties(),
+    		componentRef : this
+    	});
 		this._mapContainer = $("<div/>");
 		this._mapContainer.css({
 			width : "100%",
@@ -555,7 +576,8 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 	this.getResultsAsString = function() {
 		return "";
 	};
-});;
+});
+})();
 
 
 

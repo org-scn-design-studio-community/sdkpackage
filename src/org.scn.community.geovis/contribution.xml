@@ -198,15 +198,17 @@
 	propertySheetPath="res/Maps/MapsPropertyPage.html"
 	databound = "true"
 	group="ScnCommunityGeo">	
+	<!-- TODO: Merge these JS Files in Grunt for one pull for speed sake later -->
 	<jsInclude>os/leaflet-0.7.3/leaflet.js</jsInclude>
 	<jsInclude>os/Leaflet.heat-gh-pages/dist/leaflet-heat.js</jsInclude>
 	<jsInclude>os/Leaflet.markercluster-master/dist/leaflet.markercluster.js</jsInclude>
 	<jsInclude>os/Leaflet.awesome-markers-2.0/leaflet.awesome-markers.js</jsInclude>
-	<jsInclude>res/Maps/aps/shared.js</jsInclude>
+	<jsInclude>res/Maps/shared.js</jsInclude>
+	<jsInclude>res/Maps/metadata/properties.js</jsInclude>
+	<jsInclude>res/Maps/AutoPropertyUtility.js</jsInclude>
 	<jsInclude>res/Maps/Maps.js</jsInclude>
 	
 	<cssInclude>os/leaflet-0.7.3/leaflet.css</cssInclude>
-	<!-- <cssInclude>os/font-awesome-4.2.0/css/font-awesome.min.css</cssInclude> -->
 	<cssInclude>os/Leaflet.awesome-markers-2.0/leaflet.awesome-markers.css</cssInclude>
 	<cssInclude>os/Leaflet.markercluster-master/dist/MarkerCluster.css</cssInclude>
 	<cssInclude>os/Leaflet.markercluster-master/dist/MarkerCluster.Default.css</cssInclude>

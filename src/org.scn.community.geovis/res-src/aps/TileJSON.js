@@ -353,7 +353,7 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.TileJSON",{
 									text : "Simple Map [0-4]",
 									select : function(){
 										that._value = {
-											pattern : "/org.scn.community.geovis/res/Maps/tiles/simple/{z}/{x}/{y}.png",
+											pattern : "org.scn.community.geovis/res/Maps/tiles/simple/{z}/{x}/{y}.png",
 											type : "internal",
 											description : "Small sized starter map.  Requires no map pack install.  No usage restrictions or attribution required and no external tile resources are needed.  Zoom up to level 4 supported.",
 											options : {
@@ -368,7 +368,7 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.TileJSON",{
 									text : "Simple Terrain [0-4]",
 									select : function(){
 										that._value = {
-											pattern : "/org.scn.community.geovis/res/Maps/tiles/terrain/{z}/{x}/{y}.jpg",
+											pattern : "org.scn.community.geovis/res/Maps/tiles/terrain/{z}/{x}/{y}.jpg",
 											type : "internal",
 											description : "Small sized terrain map.  Requires no map pack install.  No usage restrictions or attribution required and no external tile resources are needed.  Zoom up to level 4 supported.",
 											options : {
@@ -383,7 +383,7 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.TileJSON",{
 									text : "Standard Map [0-7]",
 									select : function(){
 										that._value = {
-												pattern : "/org.scn.community.geovispack.standard/res/StandardMapPack/tiles/{z}/{x}/{y}.png",
+											pattern : "org.scn.community.geovispack.standard/res/StandardMapPack/tiles/{z}/{x}/{y}.png",
 											type : "internal",
 											description : "(SDK Map Pack Required) Standard Map with common features such as countries, regions, and major urban population features.  Includes major US roadways.  Zoom up to level 7 supported.  No attribution or external resources needed.",
 											options : {
@@ -398,7 +398,7 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.TileJSON",{
 									text : "Terrain Map [0-7]",
 									select : function(){
 										that._value = {
-												pattern : "/org.scn.community.geovispack.terrain/res/TerrainMapPack/tiles/{z}/{x}/{y}.jpg",
+											pattern : "org.scn.community.geovispack.terrain/res/TerrainMapPack/tiles/{z}/{x}/{y}.jpg",
 											description : "(SDK Map Pack Required) Terrain Map with common features such as countries, regions, and major urban population features.  Includes major US roadways.  Zoom up to level 5 supported.  No attribution or external resources needed.",
 											type : "internal",
 											options : {
