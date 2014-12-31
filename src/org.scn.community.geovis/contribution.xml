@@ -229,7 +229,7 @@
 		<option name="includeData" value="true"/>
 	</property>	
 	<initialization>
-		<defaultValue property="tileJSON">{&quot;pattern&quot; : &quot;/org.scn.community.geovis/res/Maps/tiles/simple/{z}/{x}/{y}.png&quot;, &quot;type&quot; : &quot;internal&quot;,&quot;description&quot; : &quot;Small sized starter map.  Requires no map pack install.  No usage restrictions or attribution required and no external tile resources are needed.  Zoom up to level 4 supported.&quot;,&quot;options&quot; : {&quot;maxZoom&quot;: 4}}</defaultValue>
+		<defaultValue property="tileJSON">{&quot;pattern&quot; : &quot;org.scn.community.geovis/res/Maps/tiles/simple/{z}/{x}/{y}.png&quot;, &quot;type&quot; : &quot;internal&quot;,&quot;description&quot; : &quot;Small sized starter map.  Requires no map pack install.  No usage restrictions or attribution required and no external tile resources are needed.  Zoom up to level 4 supported.&quot;,&quot;options&quot; : {&quot;maxZoom&quot;: 4}}</defaultValue>
 		<defaultValue property="geoHierarchy">[]</defaultValue>
 		<defaultValue property="mapTitle">Maps</defaultValue>
 		<defaultValue property="defaultLocation">[35.1174,-89.9711]</defaultValue>
