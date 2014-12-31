@@ -198,12 +198,22 @@ var org_scn_community_geovis = org_scn_community_geovis || {
 				var c = this.cityLookup[city];
 				if(c) {
 					// Region was supplied, let's see if it was found in reverse lookup.
+					var regionfound = false;
 					for(var j=0;j<c.length;j++){
 						if(c[j].r.toLowerCase()==region) {
 							country = c[j].cy.toLowerCase();
+							regionfound = true;
 						}
 					}
-				}					
+					if(!regionfound){
+						unsolvedReason = city + " in " + region + " not in DB.";
+						resolved = false;
+					}
+				}else{
+					// No city found by given name.  Fall back to region but mark as unsolved.
+					unsolvedReason = "City not found.";
+					resolved = false;
+				}			
 			}
 			if(region && !country && !city){
 				lookupReason = "Need to try a reverse region lookup.  No country and no city was supplied.";

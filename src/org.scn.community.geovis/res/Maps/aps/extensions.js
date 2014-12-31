@@ -800,7 +800,12 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			sortProperty: "longitude",
 			filterProperty: "longitude",
 		});
-		
+		var unsolvedReason = new sap.ui.table.Column({
+			label : "Reason",
+			template: new sap.ui.commons.TextView().bindProperty("text", "reason"),
+			sortProperty: "reason",
+			filterProperty: "reason",
+		});
 		var tabStrip = new sap.ui.commons.TabStrip({
 			width : "100%"
 		});
@@ -814,6 +819,7 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 		unsolvedList.addColumn(unsolvedGeoLocColumn);
 		unsolvedList.addColumn(unsolvedGeoLatColumn);
 		unsolvedList.addColumn(unsolvedGeoLngColumn);
+		unsolvedList.addColumn(unsolvedReason);
 		tabStrip.addTab(solvedTab);
 		tabStrip.addTab(unsolvedTab);
 		var btnSample = new sap.ui.commons.Button({
@@ -844,27 +850,38 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 						manualRegion : hierProp.manualRegion,
 						metadata : jQuery.parseJSON(strData),
 						results : jQuery.parseJSON(strData),
-						callback : function(r){
-							// We use a callback just so if we end up writing async GIS support later, we have a hook
+						callback : function(r){  // We use a callback just so if we end up writing async GIS support later, we have a hook.						
+							/* Locations come back at the tuple level so there will be duplicate locations
+							 * when sampling.  Loop through the results and only display once unique occurence per location.
+							 */
 							var locationModel = new sap.ui.model.json.JSONModel();
 							var locs = [];
+							var hit = {};
 							for(var i=0;i<r.solved.length;i++){
 								var geoLocation = r.solved[i];
-								locs.push({
-									geoLoc : geoLocation.locationKey,
-									latitude : geoLocation.latlng[0],
-									longitude : geoLocation.latlng[1],
-								});
+								if(!hit[geoLocation.locationKey]){
+									locs.push({
+										geoLoc : geoLocation.locationKey,
+										latitude : geoLocation.latlng[0],
+										longitude : geoLocation.latlng[1],
+									});
+									hit[geoLocation.locationKey] = true;
+								}								
 							}
-							
+							// Same procedure for unsolved locations							
 							var unsolvedLocs = [];
+							var unsolvedhit = {};
 							for(var i=0;i<r.unsolved.length;i++){
 								var geoLocation = r.unsolved[i];
-								unsolvedLocs.push({
-									geoLoc : geoLocation.locationKey,
-									latitude : geoLocation.latlng[0],
-									longitude : geoLocation.latlng[1],
-								});
+								if(!unsolvedhit[geoLocation.locationKey]){
+									unsolvedLocs.push({
+										geoLoc : geoLocation.locationKey,
+										reason : geoLocation.reason,
+										latitude : geoLocation.latlng[0],
+										longitude : geoLocation.latlng[1],
+									});
+									unsolvedhit[geoLocation.locationKey] = true;
+								}
 							}
 							locationModel.setData({
 								solved: locs,
