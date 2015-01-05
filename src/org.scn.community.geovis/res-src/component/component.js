@@ -214,7 +214,8 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 				color : layerConfig.markerColor,
 				icon : layerConfig.markerSymbol,
 				latlng : loc.latlng,
-				conf : layerConfig
+				conf : layerConfig,
+				tuple : geocodeResults.solved[j].tuple.slice()
 			}
 			if(layerConfig.titleIndex) markerConfig.title = this.data().dimensions[layerConfig.titleIndex].members[loc.tuple[layerConfig.titleIndex]].text;
 			markers.push(markerConfig);
@@ -276,13 +277,20 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
     };
     this.leafletMarkerLayer = function(geocodeResults, layerConfig){
     	var markers = this.buildMarkerBaseline(geocodeResults, layerConfig);
+    	var dynamicPalette = layerConfig.dynamicPalette || "#1f77b4,#ff7f0e,#2ca02c,#d62728".toUpperCase().split(",");
     	var geoJSON = [];
-    	for(var i=0;i<markers.length;i++){
+    	   	for(var i=0;i<markers.length;i++){
     		var marker = markers[i];
     		if(marker.latlng.length>1){
+    			var markerColor = marker.color;		// Default.
+    			if(layerConfig.dynamicColorIndex) {
+    				var color = marker.tuple[layerConfig.dynamicColorIndex];
+    				markerColor = dynamicPalette[color % dynamicPalette.length]
+    			}
+    			//if()
     			var Lmarker = new L.marker(marker.latlng,{
     				icon : L.SCNDesignStudioMarkers.icon({
-    					markerColor : marker.color,
+    					markerColor : markerColor,
     					icon : marker.icon,
     					iconSize : [layerConfig.markerWidth || 32 , layerConfig.markerHeight || 32],
     					anchorPosition : layerConfig.anchorPosition || [.5,.5]
