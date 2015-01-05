@@ -42,24 +42,11 @@
  * Leaflet Wrapper
  */
 sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function() {
-	// Rework using Karol script path detection
+	// Reworked using modified Karol script path detection code.
 	var pathInfo = _readScriptPath();
 	this.sdkPfx = pathInfo.mainSDKPath;
 	this.resPfx = pathInfo.mainSDKPath + "org.scn.community.geovis/";
 	this._alive = false;
-	this.batchLimit = 25;
-	this._geoCache = {};
-	// Property setter/getter functions	
-    this.geoCodeCache = function(s){
-    	if(s===undefined){
-    		return JSON.stringify(this._geoCache);
-    	}else{
-    		if(!this._geoCache || s!=JSON.stringify(this._geoCache)){
-    			this._geoCache = jQuery.parseJSON(s);
-    		}
-    		return this;
-    	}
-    };
 	this.autoProperties = {
 		// Blank for now.
     };
@@ -79,45 +66,15 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 			};
 		}(property);
 	}
-    this.loadCityLookup = function(){
-    	if(!this.cityLookup){
-			var geoDB = $.ajax({
-	    		async : false,
-	    		url : this.resPfx + "res/Maps/geo/citylookup.json"
-	    	});
-	    	this.cityLookup = jQuery.parseJSON(geoDB.responseText);
-		}
-    };
-    this.loadRegionLookup = function(){
-    	if(!this.regionLookup){
-			var geoDB = $.ajax({
-	    		async : false,
-	    		url : this.resPfx + "res/Maps/geo/regionlookup.json"
-	    	});
-	    	this.regionLookup = jQuery.parseJSON(geoDB.responseText);
-		}
-    };
-    // After Property Update
     this.afterUpdate = function(){
-    	this.redraw();
-    	return;
-    	var redraw = false;
-    	for(var property in this.autoProperties){
-    		if(this.autoProperties[property].changed && this.autoProperties[property].redraw) redraw = true;
-    	}
-    	// Determine if a redraw is needed
-    	if(redraw) this.redraw();
-    	// Reset change flags
-    	for(var property in this.autoProperties){
-    		this.autoProperties[property].changed = false;
-    	}
+    	this.redraw();		// Always redraw for now.
     };
-    // Redraw HTML
+    /*
+     * Redraws entire Leaflet Container
+     */
     this.redraw = function(){
     	try{
 	    	var that = this;
-	    	// this.$().empty();
-	    	// this.$().html("<div id='" + this.$().attr("id") + "_map'></div>");
 	    	var latitude = 0;
 	    	var longitude = 0;
 	    	if(this.defaultLocation()){
@@ -203,139 +160,97 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 		var locations = [];
 		var titles = [];
 		var colors = [];
-		// We will pre-fill cached arrays
-		var cache = {
-			geoCoderResults : [],
-			locations : [],
-			titles : [],
-			colors : []
-		};
-		try{
-			var geoH = conf.geoHierarchy;
-			var strGeoHier = this.geoHierarchy();
-			var hiers = [];
-			if(strGeoHier && strGeoHier != "") hiers = jQuery.parseJSON(strGeoHier);
-			var selectedHierarchy = {};
-			if(hiers && hiers.length>0){
-				for(var i=0;i<hiers.length;i++){
-					if(geoH==hiers[i].id) selectedHierarchy = hiers[i];
-				}
+		var geoH = conf.geoHierarchy;
+		var strGeoHier = this.geoHierarchy();
+		var hiers = [];
+		if(strGeoHier && strGeoHier != "") hiers = jQuery.parseJSON(strGeoHier);
+		var selectedHierarchy = {};
+		if(hiers && hiers.length>0){
+			for(var i=0;i<hiers.length;i++){
+				if(geoH==hiers[i].id) selectedHierarchy = hiers[i];
 			}
-			
-			var titleIndex = org_scn_community_geovis.dimensionIndex(conf.markerTitleDim, m);
-			var dynamicColorIndex = org_scn_community_geovis.dimensionIndex(conf.dynamicColorDim, m);
-			
-			var filters = {};
-			if(conf.filters) filters = conf.filters;
-			var filteredResults = {
-				tuples : [],
-				data : []
-			};
-			// First pass - Filter
-			for(var i=0;i<r.tuples.length;i++){
-				var tuple = r.tuples[i];
-				var rowPass = true;
-				for(var j=0;j<tuple.length;j++){
-					var tupleDim = m.dimensions[j];
-					var value = tupleDim.members[tuple[j]].key;
-					var selectionMembers = [];
-					if(filters[tupleDim.key]) selectionMembers = filters[tupleDim.key].selections;
-					var pass=false;
-					if(selectionMembers.length==0) pass = true;
-					for(var k=0;k<selectionMembers.length;k++){
-						if(selectionMembers[k]==value) pass = true;
-					}
-					if(!pass) rowPass = false;
+		}
+		// Decorator Pattern
+		conf.titleIndex = org_scn_community_geovis.dimensionIndex(conf.markerTitleDim, m);
+		conf.dynamicColorIndex = org_scn_community_geovis.dimensionIndex(conf.dynamicColorDim, m);
+		
+		var filters = {};
+		if(conf.filters) filters = conf.filters;
+		var filteredResults = {
+			tuples : [],
+			data : []
+		};
+		// First pass - Filter
+		for(var i=0;i<r.tuples.length;i++){
+			var tuple = r.tuples[i];
+			var rowPass = true;
+			for(var j=0;j<tuple.length;j++){
+				var tupleDim = m.dimensions[j];
+				var value = tupleDim.members[tuple[j]].key;
+				var selectionMembers = [];
+				if(filters[tupleDim.key]) selectionMembers = filters[tupleDim.key].selections;
+				var pass=false;
+				if(selectionMembers.length==0) pass = true;
+				for(var k=0;k<selectionMembers.length;k++){
+					if(selectionMembers[k]==value) pass = true;
 				}
-				// If tuple passed selection criteria, let it through.
-				if(rowPass) {
-					filteredResults.tuples.push(r.tuples[i]);
-					filteredResults.data.push(r.data[i]);
-					
-				}
+				if(!pass) rowPass = false;
+			}
+			// If tuple passed selection criteria, let it through.
+			if(rowPass) {
+				filteredResults.tuples.push(r.tuples[i]);
+				filteredResults.data.push(r.data[i]);
 				
 			}
-			var leafletLocations = [];
-			// Second pass - Geocode
-			try{
-				/*
-				 * TODO: Use key caching
-				 */
-				var that = this;
-				org_scn_community_geovis.getLatLngs({
-					geoDimCity : selectedHierarchy.geoDimCity,
-					geoDimRegion : selectedHierarchy.geoDimRegion,
-					geoDimZip : selectedHierarchy.geoDimZip,
-					geoDimCountry : selectedHierarchy.geoDimCountry,
-					geoDimAddress : selectedHierarchy.geoDimAddress,
-					manualCountry : selectedHierarchy.manualCountry,
-					manualRegion : selectedHierarchy.manualRegion,
-					metadata : m,
-					results : filteredResults,
-					// Callback for future async requests.
-					callback : function(conf){return function(results){
-						var markers = [];
-						for(var j=0;j<results.solved.length;j++){
-							var loc = results.solved[j];
-							var markerConfig = {
-								title : "Untitled",
-								color : conf.markerColor,
-								icon : conf.markerSymbol,
-								latlng : loc.latlng,
-								conf : conf
-							}
-							if(titleIndex) markerConfig.title = m.dimensions[titleIndex].members[loc.tuple[titleIndex]].text;//members[loc.tuple[titleIndex]].text;
-							
-							markers.push(markerConfig);
-						}
-						if(conf.type=="markerLayer") that.leafletMarkerLayer(markers);
-						if(conf.type=="heatLayer") that.leafletHeatLayer(markers,conf);
-						if(conf.type=="clusterLayer") that.leafletClusterLayer(markers,conf);
-					};}(conf)
-				});
-			}catch(e){
-				throw("Problem Component-side with getLatLngs\n"+e);
-			}
-			return;
-			if(!title) title = "untitled";
-			// Colors
-			var markerColor = conf.markerColor;
-			var dynamicColors = conf.dynamicPalette || "#1f77b4,#ff7f0e,#2ca02c,#d62728,#9467bd,#8c564b,#e377c2,#7f7f7f,#bcbd22,#17becf".toUpperCase().split(",");
-			if(color!=undefined) markerColor = dynamicColors[color % dynamicColors.length];
 			
-			
-			// See if we have this location in cache - Mapbox				
-			if(this._geoCache && this._geoCache[locationstring]){
-				cache.geoCoderResults.push(this._geoCache[locationstring]);
-				cache.locations.push(locationstring);
-				cache.titles.push(title);
-				cache.colors.push(markerColor);
-			}else{
-				//alert("No cache for " + locationstring);
-				// Location not in cache - add it to geocoder queue
-				locations.push(locationstring);
-				titles.push(title);				
-				colors.push(markerColor);
-				leafletLocations.push({
-					title : title,
-					color : markerColor,
-					icon : conf.markerSymbol,
-					latlng : latlng,
-					conf : jQuery.parseJSON(JSON.stringify(conf))	// Lazy copy layer config
-				});
-			}
-			
-			if(conf.type=="markerLayer") this.leafletMarkerLayer(leafletLocations);
-			if(conf.type=="heatLayer") this.leafletHeatLayer(leafletLocations,conf);
-			if(conf.type=="clusterLayer") this.leafletClusterLayer(leafletLocations,conf);
-		}catch(e){
-			alert("GeoJSON error:\n\n"+ e);
 		}
-    };   
+		var leafletLocations = [];
+		// Second pass - Geocode
+		try{
+			/*
+			 * TODO: Use key caching
+			 */
+			var that = this;
+			org_scn_community_geovis.getLatLngs({
+				geoDimCity : selectedHierarchy.geoDimCity,
+				geoDimRegion : selectedHierarchy.geoDimRegion,
+				geoDimZip : selectedHierarchy.geoDimZip,
+				geoDimCountry : selectedHierarchy.geoDimCountry,
+				geoDimAddress : selectedHierarchy.geoDimAddress,
+				manualCountry : selectedHierarchy.manualCountry,
+				manualRegion : selectedHierarchy.manualRegion,
+				metadata : m,
+				results : filteredResults,
+				conf : conf,
+				// Callback for future async requests.
+				callback : this.geocodeComplete,
+				scope : this
+			},conf);
+		}catch(e){
+			throw("Problem Component-side with getLatLngs\n"+e);
+		}
+    };
+    this.geocodeComplete = function(results, conf){
+    	var that = this;
+    	var markers = [];
+		for(var j=0;j<results.solved.length;j++){
+			var loc = results.solved[j];
+			var markerConfig = {
+				title : "Untitled",
+				color : conf.markerColor,
+				icon : conf.markerSymbol,
+				latlng : loc.latlng,
+				conf : conf
+			}
+			if(conf.titleIndex) markerConfig.title = this.data().dimensions[conf.titleIndex].members[loc.tuple[conf.titleIndex]].text;//members[loc.tuple[conf.titleIndex]].text;
+			
+			markers.push(markerConfig);
+		}
+		if(conf.type=="markerLayer") that.leafletMarkerLayer(markers);
+		if(conf.type=="heatLayer") that.leafletHeatLayer(markers,conf);
+		if(conf.type=="clusterLayer") that.leafletClusterLayer(markers,conf);
+	};
     this.leafletClusterLayer = function(locations,conf){
-    	this._message.css({
-    		display : "none"
-    	});
     	var cluster = new L.MarkerClusterGroup();	
     	for(var i=0;i<locations.length;i++){
     		var location = locations[i];
@@ -346,9 +261,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 		this._map.addLayer(cluster);
     };
     this.leafletHeatLayer = function(locations,conf){
-    	this._message.css({
-    		display : "none"
-    	});
 		var colors = conf.colors || "";
 		var ratios = conf.ratios || "";
 		var r = [];
@@ -385,9 +297,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
     	
     };
     this.leafletMarkerLayer = function(locations){
-    	this._message.css({
-    		display : "none"
-    	});
     	var geoJSON = [];
     	for(var i=0;i<locations.length;i++){
     		var location = locations[i];
@@ -417,81 +326,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 			}	
     	}
     };
-    this.finalizeMarkerLayer = function(options){
-    	/*	Example Point
-    	 *  {
-        	   type:"Feature",
-        	   geometry:{
-                 coordinates : [
-                    -77.03865925788863, 38.93156715514535
-                 ],
-                 type:"Point"
-              },
-              properties:{
-                 "description":"<a href=\"http://www.mtpleasantdc.com/makeitmtpleasant\" target=\"_blank\" title=\"Opens in a new window\">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.",
-                 "id":"krhy93as",
-                 "marker-color":"#AA0000",
-                 "marker-size":"medium",
-                 "marker-symbol":"shop",
-                 "marker-zoom":"17",
-                 "title":"Make it Mount Pleasant"
-              }
-           }
-    	 * 
-    	 */
-    	this._message.css({
-    		display : "none"
-    	});
-    	var geoJSON = [];
-    	var cacheChange = 0;
-    	// Start from cache
-    	for(var i=0;i<options.cache.locations.length;i++){
-    		var result = options.cache.geoCoderResults[i];
-    		if(result.center){		// Check for Geometry
-    			geoJSON.push(this.renderMarkerJSON({
-    				result : result,
-    				title : options.cache.titles[i],
-    				color : options.cache.colors[i],
-    				layerConfig : options.layerConfig
-    			}));
-    		}else{
-    			// Blank geocoder query results.
-    		}
-    	}
-    	// Finish with new lookups
-    	for(var i=0;i<options.locations.length;i++){
-    		var result = options.geoCoderResults[i];
-    		// Cache the entry if it's new.
-			if(!this._geoCache[options.locations[i]]){
-				this._geoCache[options.locations[i]] = result;
-				cacheChange++;
-			}
-    		if(result.center){
-    			geoJSON.push(this.renderMarkerJSON({
-    				result : result,
-    				title : options.titles[i],
-    				color : options.colors[i],
-    				layerConfig : options.layerConfig
-    			}));
-    		}else{
-    			// Blank geocoder query results.
-    		}
-    	}
-    	if(cacheChange>0){
-    		//alert(cacheChange + " new cache entries.");
-    		this.firePropertiesChanged(["geoCodeCache"]);
-    		// Fire Design Studio onclick event.
-    		//this.fireEvent("onclick");
-    	}
-    	/*alert(cacheChange + " entries added to cache.\n\n"+
-    			"Used " + options.cache.locations.length + " entries from cache.\n\n"+
-    		"Used Mapbox for " + options.locations.length + " lookups.\n\n"+JSON.stringify(options.locations));
-    		*/
-    	
-    	//var featureLayer = L.mapbox.featureLayer(geoJSON);
-		//featureLayer.addTo(this._map);
-    };
-    
     this.renderMarkerJSON = function(options){
 		var point = {
 			type : "Feature",
@@ -514,52 +348,59 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 		
 		return point;
     };
+    /**
+     * Fires on component creation or static width or height change.
+     */
     this.init = function() {
+    	// Configure shared geovis to work.
     	org_scn_community_geovis.resourcePrefix = this.resPfx;
     	org_scn_community_geovis.mode = "component";
+    	// Pull in world JSON geodata.  Perhaps move this out of component to local geocoder.
     	try{
-    	if(!this.locationsJSON){
-	    	var geoDB = $.ajax({
-	    		async : false,
-	    		url : this.resPfx + "res/Maps/geo/world.json"
+    		if(!this.locationsJSON){
+		    	var geoDB = $.ajax({
+		    		async : false,
+		    		url : this.resPfx + "res/Maps/geo/world.json"
+		    	});
+		    	var worldJSON = jQuery.parseJSON(geoDB.responseText);
+		    	this.locationsJSON = {};
+		    	for(var country in worldJSON){
+		    		this.locationsJSON[country] = {
+		    				loaded : false,
+		    				l : worldJSON[country],
+		    				r : {}
+		    		};
+	    		}
+    		}
+			// Design Studio Utility Property Class
+	    	if (!this.propUtil)	this.propUtil = new AutoPropertyUtility({
+	    		properties : getDesignStudioProperties(),
+	    		componentRef : this
 	    	});
-	    	var worldJSON = jQuery.parseJSON(geoDB.responseText);
-	    	this.locationsJSON = {};
-	    	for(var country in worldJSON){
-	    		this.locationsJSON[country] = {
-	    			loaded : false,
-	    			l : worldJSON[country],
-	    			r : {}
-	    		};
-	    	}
-	    	//this.locationsJSON = jQuery.parseJSON(geoDB.responseText);
-    	}
-		// Design Studio Utility Property Class
-    	if (!this.propUtil)	this.propUtil = new AutoPropertyUtility({
-    		properties : getDesignStudioProperties(),
-    		componentRef : this
-    	});
-		this._mapContainer = $("<div/>");
-		this._mapContainer.css({
-			width : "100%",
-			height : "100%"
-		});
-    	this._message = $("<div/>");
-    	this._message.css({
-			background : "#000000",
-    		opacity : 0.7,
-    		position : "absolute",
-			top : 0,
-			left : 0,
-    		height : "100%",
-    		width : "100%",
-    		display : "none"
-    		//z-index : 2
-		});
-		this.$().append(this._mapContainer);
-    	this.$().append(this._message);
-		// this.redraw();
-		this._alive = true;
+	    	// Create Map Container DIV
+	    	this._mapContainer = $("<div/>");
+			this._mapContainer.css({
+				width : "100%",
+				height : "100%"
+			});
+	    	this.$().append(this._mapContainer);
+	    	/*
+	    	this._message = $("<div/>");
+	    	this._message.css({
+				background : "#000000",
+	    		opacity : 0.7,
+	    		position : "absolute",
+				top : 0,
+				left : 0,
+	    		height : "100%",
+	    		width : "100%",
+	    		display : "none"
+	    		//z-index : 2
+			});
+	    	this.$().append(this._message);
+	    	*/
+	    	// this.redraw();
+	    	this._alive = true;
     	}catch(e){
     		alert("Error during component init:\n\n" + e);
     	}

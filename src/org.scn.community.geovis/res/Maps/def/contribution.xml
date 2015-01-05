@@ -11,7 +11,7 @@
 	<jsInclude>os/Leaflet.heat-gh-pages/dist/leaflet-heat.js</jsInclude>
 	<jsInclude>os/Leaflet.markercluster-master/dist/leaflet.markercluster.js</jsInclude>
 	<jsInclude>os/Leaflet.awesome-markers-2.0/leaflet.awesome-markers.js</jsInclude>
-	<jsInclude>res/Maps/shared.js</jsInclude>
+	<jsInclude>res/Maps/aps/shared.js</jsInclude>
 	<jsInclude>res/Maps/metadata/properties.js</jsInclude>
 	<jsInclude>res/Maps/AutoPropertyUtility.js</jsInclude>
 	<jsInclude>res/Maps/Maps.js</jsInclude>

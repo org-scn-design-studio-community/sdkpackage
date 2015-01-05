@@ -99,11 +99,14 @@ var org_scn_community_geovis = org_scn_community_geovis || {
 		var results = options.results;
 		var callback = options.callback;
 		if(!metadata || !results){
-			if(!callback) throw "No callback specified";
+			// callback(results, conf)
+			//if(!callback) throw "No callback specified";
+			/*
 			callback({
 				solved : [],
 				unresolved : []
-			});
+			},options.conf);
+			*/
 		}
 		var distincts = [];
 		var tuples = results.tuples;
@@ -340,10 +343,13 @@ var org_scn_community_geovis = org_scn_community_geovis || {
 			}
 		}
 		// This is a sync callback so fire back right away
-		if(options.callback) options.callback({
-			distincts : distincts,
-			solved : solved,
-			unsolved : unsolved
-		});
+		if(options.callback) {
+			if(!options.scope) options.scope = this;
+			options.callback.apply(options.scope,[{
+				distincts : distincts,
+				solved : solved,
+				unsolved : unsolved
+			},options.conf]);
+		}
 	}
 };
