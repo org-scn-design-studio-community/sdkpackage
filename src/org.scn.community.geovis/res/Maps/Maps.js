@@ -204,12 +204,8 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 			}
 			
 		}
-		var leafletLocations = [];
 		// Second pass - Geocode
 		try{
-			/*
-			 * TODO: Use key caching
-			 */
 			var that = this;
 			org_scn_community_geovis.getLatLngs({
 				geoDimCity : selectedHierarchy.geoDimCity,
@@ -230,39 +226,42 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 			throw("Problem Component-side with getLatLngs\n"+e);
 		}
     };
-    this.geocodeComplete = function(results, conf){
-    	var that = this;
+    this.buildMarkerBaseline = function(geocodeResults, layerConfig){
     	var markers = [];
-		for(var j=0;j<results.solved.length;j++){
-			var loc = results.solved[j];
+    	for(var j=0;j<geocodeResults.solved.length;j++){
+			var loc = geocodeResults.solved[j];
 			var markerConfig = {
 				title : "Untitled",
-				color : conf.markerColor,
-				icon : conf.markerSymbol,
+				color : layerConfig.markerColor,
+				icon : layerConfig.markerSymbol,
 				latlng : loc.latlng,
-				conf : conf
+				conf : layerConfig
 			}
-			if(conf.titleIndex) markerConfig.title = this.data().dimensions[conf.titleIndex].members[loc.tuple[conf.titleIndex]].text;//members[loc.tuple[conf.titleIndex]].text;
-			
+			if(layerConfig.titleIndex) markerConfig.title = this.data().dimensions[layerConfig.titleIndex].members[loc.tuple[layerConfig.titleIndex]].text;
 			markers.push(markerConfig);
 		}
-		if(conf.type=="markerLayer") that.leafletMarkerLayer(markers);
-		if(conf.type=="heatLayer") that.leafletHeatLayer(markers,conf);
-		if(conf.type=="clusterLayer") that.leafletClusterLayer(markers,conf);
+    	return markers;
+    };
+    this.geocodeComplete = function(results, conf){
+		if(conf.type=="markerLayer") this.leafletMarkerLayer(results, conf);
+		if(conf.type=="heatLayer") this.leafletHeatLayer(results, conf);
+		if(conf.type=="clusterLayer") this.leafletClusterLayer(results, conf);
 	};
-    this.leafletClusterLayer = function(locations,conf){
-    	var cluster = new L.MarkerClusterGroup();	
-    	for(var i=0;i<locations.length;i++){
-    		var location = locations[i];
-    		if(location.latlng.length>1){
-    			cluster.addLayer(new L.Marker(new L.LatLng(location.latlng[0],location.latlng[1])));
+    this.leafletClusterLayer = function(geocodeResults, layerConfig){
+    	var markers = this.buildMarkerBaseline(geocodeResults, layerConfig);
+    	var cluster = new L.MarkerClusterGroup();
+    	for(var i=0;i<markers.length;i++){
+    		var marker = markers[i];
+    		if(marker.latlng.length>1){
+    			cluster.addLayer(new L.Marker(new L.LatLng(marker.latlng[0],marker.latlng[1])));
 			}	
     	}
 		this._map.addLayer(cluster);
     };
-    this.leafletHeatLayer = function(locations,conf){
-		var colors = conf.colors || "";
-		var ratios = conf.ratios || "";
+    this.leafletHeatLayer = function(geocodeResults, layerConfig){
+    	var markers = this.buildMarkerBaseline(geocodeResults, layerConfig);
+		var colors = layerConfig.colors || "";
+		var ratios = layerConfig.ratios || "";
 		var r = [];
 		var c = [];
 		if(ratios && ratios!="") r = ratios.split(",");
@@ -281,72 +280,51 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 		try{
     	var heat = L.heatLayer([],{
     		gradient : grad || {".4":"blue",".6":"cyan",".7":"lime",".8":"yellow","1":"red"},
-    		radius : parseInt(conf.radius) || 25,
-    		blur : parseInt(conf.blur) || 15	
+    		radius : parseInt(layerConfig.radius) || 25,
+    		blur : parseInt(layerConfig.blur) || 15	
     	}).addTo(this._map);
 		}catch(e){
 			alert("Bug in heat layer caught." + r.length+JSON.stringify(grad));
 		}
-    	for(var i=0;i<locations.length;i++){
-    		var location = locations[i];
-    		if(location.latlng.length>1){
-    			heat.addLatLng(new L.LatLng(location.latlng[0],location.latlng[1]));
+    	for(var i=0;i<markers.length;i++){
+    		var marker = markers[i];
+    		if(marker.latlng.length>1){
+    			heat.addLatLng(new L.LatLng(marker.latlng[0],marker.latlng[1]));
 			}	
     	}
 		
     	
     };
-    this.leafletMarkerLayer = function(locations){
+    this.leafletMarkerLayer = function(geocodeResults, layerConfig){
+    	var markers = this.buildMarkerBaseline(geocodeResults, layerConfig);
     	var geoJSON = [];
-    	for(var i=0;i<locations.length;i++){
-    		var location = locations[i];
-    		if(location.latlng.length>1){
-    			var marker = new L.marker(location.latlng,{
-    				icon : L.AwesomeMarkers.icon({
-    					markerColor : location.color,
-    					icon : location.icon,
-    					iconSize : [location.conf.markerWidth || 32 , location.conf.markerHeight || 32],
-    					anchorPosition : location.conf.anchorPosition || [.5,.5]
+    	for(var i=0;i<markers.length;i++){
+    		var marker = markers[i];
+    		if(marker.latlng.length>1){
+    			var Lmarker = new L.marker(marker.latlng,{
+    				icon : L.SCNDesignStudioMarkers.icon({
+    					markerColor : marker.color,
+    					icon : marker.icon,
+    					iconSize : [layerConfig.markerWidth || 32 , layerConfig.markerHeight || 32],
+    					anchorPosition : layerConfig.anchorPosition || [.5,.5]
     				})
     			});
     			
-    			marker.on('mouseover', function(loc){return function(evt) {
+    			Lmarker.on('mouseover', function(loc){return function(evt) {
 				  //evt.target is the marker that is being moused over 
 				  //bindPopup() does not need to be called here if it was already called
 				  //somewhere else for this marker.
 				  evt.target.bindPopup(loc).openPopup();
-				};}(location.title));
+				};}(marker.title));
 				/*
     			marker.on('click', function(evt) {
 				  //again, evt.target will contain the marker that was clicked
 				  console.log('you clicked a marker');
 				});
 				*/
-				marker.addTo(this._map);
+				Lmarker.addTo(this._map);
 			}	
     	}
-    };
-    this.renderMarkerJSON = function(options){
-		var point = {
-			type : "Feature",
-			geometry : options.result.geometry,
-    		properties : {
-    			title : options.title,		// Account for chunking
-    			description : options.result.place_name,				// Full Address
-    			"marker-color" : options.color,
-    			"marker-size" : "medium",						// Size
-    			"marker-symbol" : options.layerConfig.markerSymbol || "marker"	// Marker Symbol
-    		}
-		};
-		
-		if(options.result.center){
-			if(options.result.center[0] && options.result.center[1]){
-				var marker = L.marker([options.result.center[1],options.result.center[0]]);
-				marker.addTo(this._map);	
-			}			
-		}
-		
-		return point;
     };
     /**
      * Fires on component creation or static width or height change.

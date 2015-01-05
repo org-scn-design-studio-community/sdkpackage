@@ -202,14 +202,14 @@
 	<jsInclude>os/leaflet-0.7.3/leaflet.js</jsInclude>
 	<jsInclude>os/Leaflet.heat-gh-pages/dist/leaflet-heat.js</jsInclude>
 	<jsInclude>os/Leaflet.markercluster-master/dist/leaflet.markercluster.js</jsInclude>
-	<jsInclude>os/Leaflet.awesome-markers-2.0/leaflet.awesome-markers.js</jsInclude>
+	<jsInclude>res/Maps/leaflet.scn-designstudio-markers.js</jsInclude>
 	<jsInclude>res/Maps/aps/shared.js</jsInclude>
 	<jsInclude>res/Maps/metadata/properties.js</jsInclude>
 	<jsInclude>res/Maps/AutoPropertyUtility.js</jsInclude>
 	<jsInclude>res/Maps/Maps.js</jsInclude>
 	
 	<cssInclude>os/leaflet-0.7.3/leaflet.css</cssInclude>
-	<cssInclude>os/Leaflet.awesome-markers-2.0/leaflet.awesome-markers.css</cssInclude>
+	<cssInclude>res/Maps/leaflet.scn-designstudio-markers.css</cssInclude>
 	<cssInclude>os/Leaflet.markercluster-master/dist/MarkerCluster.css</cssInclude>
 	<cssInclude>os/Leaflet.markercluster-master/dist/MarkerCluster.Default.css</cssInclude>
 	
