@@ -10,6 +10,9 @@
  */
 function getDesignStudioProperties() { 
 	return {
+		data : {
+			dsOnly : true
+		},
 		mapTitle : {
 			label : "Title",
 			tooltip : "Title of the map.",

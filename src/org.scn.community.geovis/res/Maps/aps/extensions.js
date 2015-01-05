@@ -454,6 +454,13 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 		 var lblHierTitle = new sap.ui.commons.TextView({
 			 text : "Hierarchy Title"
 		 });
+		 var lblGeoCoder = new sap.ui.commons.TextView({
+			 text : "Geocoder Service"
+		 })
+		 var lblApiKey = new sap.ui.commons.TextView({
+			 text : "Geocoder API Key",
+			 tooltip : "Not required if not using a Geocoder Service"
+		 });
 		 var lblGeoAddress = new sap.ui.commons.TextView({
 			 text : "Street Address Dimension"
 		 });
@@ -481,16 +488,39 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 		 var txtHierTitle = new sap.ui.commons.TextField({
 			value : hierProp.title 
 		 });
+		 var txtApiKey = new sap.ui.commons.TextField({
+			value : hierProp.apiKey 
+		 });
+		 txtApiKey.attachChange(function(oControlEvent){
+			 hierProp.apiKey = oControlEvent.getSource().getValue();
+			 this.fireValueChange();
+		 },this);
 		 txtHierTitle.attachChange(function(oControlEvent){
 			 hierProp.title = oControlEvent.getSource().getValue();
 			 this.fireValueChange();
 			 this.renderComp();
 		 },this);
+		 
 		 var cboGeoAddress = new sap.ui.commons.ComboBox({});
 		 var cboGeoCity = new sap.ui.commons.ComboBox({});
 		 var cboGeoRegion = new sap.ui.commons.ComboBox({});
 		 var cboGeoZip = new sap.ui.commons.ComboBox({});
 		 var cboGeoCountry = new sap.ui.commons.ComboBox({});
+		 var cboGeoCoder = new sap.ui.commons.ComboBox({});
+		 if(!hierProp.geoCoder) hierProp.geoCoder = "local";	// b/w compat
+		 cboGeoCoder.setSelectedKey(hierProp.geoCoder);
+		 cboGeoCoder.addItem(new sap.ui.core.ListItem({
+			key : "local",
+			text : "Local Lookup (Limited)"
+		 }));
+		 cboGeoCoder.addItem(new sap.ui.core.ListItem({
+			key : "mapbox",
+			text : "Mapbox Geooder"
+		 }));
+		 cboGeoCoder.addItem(new sap.ui.core.ListItem({
+			key : "esri",
+			text : "ESRI Geooder"
+		 }));
 		 // Manual Support
 		 var cboManualCountry = new sap.ui.commons.ComboBox({});
 		 cboManualCountry.addItem(new sap.ui.core.ListItem({
@@ -522,6 +552,11 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 		 cboManualRegion.attachChange(function(oControlEvent){
 			 hierProp.manualRegion = oControlEvent.getParameter("selectedItem").getKey();
 			 this.fireValueChange();
+		 },this);
+		 cboGeoCoder.attachChange(function(oControlEvent){
+			 hierProp.geoCoder = oControlEvent.getParameter("selectedItem").getKey();
+			 this.fireValueChange();
+			 this.renderHierProps();
 		 },this);
 		 
 		 if(hierProp.geoDimAddress) {
@@ -590,11 +625,11 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			text : "Select a Country dimension"
 		}));
 		
-		var locationList =  new sap.ui.table.Table({
+		this.locationList =  new sap.ui.table.Table({
 			visibleRowCount : 10,
 			width : "100%"
 		});
-		var unsolvedList =  new sap.ui.table.Table({
+		this.unsolvedList =  new sap.ui.table.Table({
 			visibleRowCount : 10,
 			width : "100%"
 		});
@@ -649,13 +684,13 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 		var unsolvedTab = new sap.ui.commons.Tab();
 		solvedTab.setText("Solved Locations");
 		unsolvedTab.setText("Unsolved Locations");
-		locationList.addColumn(geoLocColumn);
-		locationList.addColumn(geoLatColumn);
-		locationList.addColumn(geoLngColumn);
-		unsolvedList.addColumn(unsolvedGeoLocColumn);
-		unsolvedList.addColumn(unsolvedGeoLatColumn);
-		unsolvedList.addColumn(unsolvedGeoLngColumn);
-		unsolvedList.addColumn(unsolvedReason);
+		this.locationList.addColumn(geoLocColumn);
+		this.locationList.addColumn(geoLatColumn);
+		this.locationList.addColumn(geoLngColumn);
+		this.unsolvedList.addColumn(unsolvedGeoLocColumn);
+		this.unsolvedList.addColumn(unsolvedGeoLatColumn);
+		this.unsolvedList.addColumn(unsolvedGeoLngColumn);
+		this.unsolvedList.addColumn(unsolvedReason);
 		tabStrip.addTab(solvedTab);
 		tabStrip.addTab(unsolvedTab);
 		var btnSample = new sap.ui.commons.Button({
@@ -675,8 +710,20 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 				
 			}
 			if (this._data && this._data.dimensions && this._data.dimensions.length>0) {
+				var geoCoderAdapter = null;
+				if(hierProp.geoCoder=="local"){
+					geoCoderAdapter = org_scn_community_geovis;
+				}
+				if(hierProp.geoCoder=="mapbox"){
+					geoCoderAdapter = getMapboxAdapter({
+						apiKey : hierProp.apiKey
+					});
+				}
+				if(hierProp.geoCoder=="esri"){
+					geoCoderAdapter = getEsriAdapter();
+				}
 				try{
-					org_scn_community_geovis.getLatLngs({
+					geoCoderAdapter.getLatLngs({
 						geoDimCity : hierProp.geoDimCity,
 						geoDimRegion : hierProp.geoDimRegion,
 						geoDimZip : hierProp.geoDimZip,
@@ -686,48 +733,8 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 						manualRegion : hierProp.manualRegion,
 						metadata : jQuery.parseJSON(strData),
 						results : jQuery.parseJSON(strData),
-						callback : function(r){  // We use a callback just so if we end up writing async GIS support later, we have a hook.						
-							/* Locations come back at the tuple level so there will be duplicate locations
-							 * when sampling.  Loop through the results and only display once unique occurence per location.
-							 */
-							var locationModel = new sap.ui.model.json.JSONModel();
-							var locs = [];
-							var hit = {};
-							for(var i=0;i<r.solved.length;i++){
-								var geoLocation = r.solved[i];
-								if(!hit[geoLocation.locationKey]){
-									locs.push({
-										geoLoc : geoLocation.locationKey,
-										latitude : geoLocation.latlng[0],
-										longitude : geoLocation.latlng[1],
-									});
-									hit[geoLocation.locationKey] = true;
-								}								
-							}
-							// Same procedure for unsolved locations							
-							var unsolvedLocs = [];
-							var unsolvedhit = {};
-							for(var i=0;i<r.unsolved.length;i++){
-								var geoLocation = r.unsolved[i];
-								if(!unsolvedhit[geoLocation.locationKey]){
-									unsolvedLocs.push({
-										geoLoc : geoLocation.locationKey,
-										reason : geoLocation.reason,
-										latitude : geoLocation.latlng[0],
-										longitude : geoLocation.latlng[1],
-									});
-									unsolvedhit[geoLocation.locationKey] = true;
-								}
-							}
-							locationModel.setData({
-								solved: locs,
-								unsolved: unsolvedLocs
-							});
-							locationList.setModel(locationModel);
-							locationList.bindRows("/solved");
-							unsolvedList.setModel(locationModel);
-							unsolvedList.bindRows("/unsolved");
-						}
+						scope : this,
+						callback : this.getLatLngComplete
 					});
 				}catch(e){
 					alert("Error getting latitude and longitude samples:\n\n" + e);
@@ -764,8 +771,14 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			 }
 			 layer.addContent(lblHierTitle);
 			 layer.addContent(txtHierTitle);
-			 //layer.addContent(lblGeoAddress);		Maybe with a GIS
-			 //layer.addContent(cboGeoAddress);		Maybe with a GIS
+			 layer.addContent(lblGeoCoder);
+			 layer.addContent(cboGeoCoder);
+			 if(hierProp.geoCoder!="local"){
+				 layer.addContent(lblApiKey);
+				 layer.addContent(txtApiKey);
+				 layer.addContent(lblGeoAddress);
+				 layer.addContent(cboGeoAddress);				 
+			 }
 			 layer.addContent(lblGeoCity);
 			 layer.addContent(cboGeoCity);
 			 layer.addContent(lblGeoRegion);
@@ -781,19 +794,61 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			 layer.addContent(lblManualRegion);
 			 layer.addContent(cboManualRegion);
 			 layer.addContent(tabStrip);
-			 solvedTab.addContent(locationList);
-			 unsolvedTab.addContent(unsolvedList);
-			 //layer.addContent(locationList);
+			 solvedTab.addContent(this.locationList);
+			 unsolvedTab.addContent(this.unsolvedList);
+			 //layer.addContent(this.locationList);
 			 layer.addContent(btnSample);
 		}else{
 			layer.addContent(new sap.ui.commons.TextView({
 				 text : "Cannot determine a data source.  Make sure you have bound a data source to this component, and that it is not using Load in Script = true."
 			}));
 		}
-		
 	 this.hierProps.addContent(layer);
 		 }catch(e){alert(e)};
 	 },	 
+	 getLatLngComplete : function(results, layerConfig){  
+		// We use a callback just so if we end up writing async GIS support later, we have a hook.						
+		/* Locations come back at the tuple level so there will be duplicate locations
+		 * when sampling.  Loop through the results and only display once unique occurence per location.
+		 */
+		var locationModel = new sap.ui.model.json.JSONModel();
+		var locs = [];
+		var hit = {};
+		for(var i=0;i<results.solved.length;i++){
+			var geoLocation = results.solved[i];
+			if(!hit[geoLocation.locationKey]){
+				locs.push({
+					geoLoc : geoLocation.locationKey,
+					latitude : geoLocation.latlng[0],
+					longitude : geoLocation.latlng[1],
+				});
+				hit[geoLocation.locationKey] = true;
+			}								
+		}
+		// Same procedure for unsolved locations							
+		var unsolvedLocs = [];
+		var unsolvedhit = {};
+		for(var i=0;i<results.unsolved.length;i++){
+			var geoLocation = results.unsolved[i];
+			if(!unsolvedhit[geoLocation.locationKey]){
+				unsolvedLocs.push({
+					geoLoc : geoLocation.locationKey,
+					reason : geoLocation.reason,
+					latitude : geoLocation.latlng[0],
+					longitude : geoLocation.latlng[1],
+				});
+				unsolvedhit[geoLocation.locationKey] = true;
+			}
+		}
+		locationModel.setData({
+			solved: locs,
+			unsolved: unsolvedLocs
+		});
+		this.locationList.setModel(locationModel);
+		this.locationList.bindRows("/solved");
+		this.unsolvedList.setModel(locationModel);
+		this.unsolvedList.bindRows("/unsolved");
+	},
 	init : function(){
 		var that = this;
 		this.resourcePrefix = "/aad/zen/mimes/sdk_include/org.scn.community.geovis/";
@@ -831,7 +886,7 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			menu : new sap.ui.commons.Menu({
 				items :[
 			        new sap.ui.commons.MenuItem({
-			        	text : "Geographic Hierarchy",
+			        	text : "Local Geographic Hierarchy",
 			        	select : function(){
 							try{
 			        		that.addHier({
@@ -839,6 +894,8 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			        			    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
 			        			    return v.toString(16);
 			        			}),
+			        			geoCoder : "local",
+			        			apiKey : "your-key-here",
 								title : "New Geographic Hierarchy",
 								geoDimAddress : null,
 								geoDimCity : null,

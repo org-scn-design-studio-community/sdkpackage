@@ -26,25 +26,9 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 	this.sdkPfx = pathInfo.mainSDKPath;
 	this.resPfx = pathInfo.mainSDKPath + "org.scn.community.geovis/";
 	this._alive = false;
-	this.autoProperties = {
-		// Blank for now.
-    };
 	/*
-	 * Create the aforementioned getter/setter and attach to 'this'.
+	 * Fires after any Design Studio Property Change
 	 */
-	for(var property in this.autoProperties){
-		this[property] = function(property){
-			return function(value){
-				if(value===undefined){
-					return this.autoProperties[property].value;
-				}else{
-					this.autoProperties[property].value = value;
-					this.autoProperties[property].changed = true;
-					return this;
-				}
-			};
-		}(property);
-	}
     this.afterUpdate = function(){
     	this.redraw();		// Always redraw for now.
     };
@@ -117,6 +101,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 		}
     };
     this.renderPolyLayer = function(conf){
+    	// TODO: Poly Layers
     	var geoJSON = conf.strGeoJSON;
     	if(geoJSON) {
     		var o = jQuery.parseJSON(geoJSON);
@@ -124,47 +109,35 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
     		//layer.addTo(this._map);
     	}
     };
-    this.data = function(o){
-    	if(o===undefined){
-    		return this._data;
-    	}else{
-    		this._data = o;
-    		return this;
-    	}
-    }
-    this.renderMarkerLayer = function(conf){
-    	var m = this.data();
-		var r = this.data();
-		var geoCoderResults = [];
-		var locations = [];
-		var titles = [];
-		var colors = [];
-		var geoH = conf.geoHierarchy;
-		var strGeoHier = this.geoHierarchy();
-		var hiers = [];
-		if(strGeoHier && strGeoHier != "") hiers = jQuery.parseJSON(strGeoHier);
+    this.renderMarkerLayer = function(layerConfig){
+    	var d = this.data();
+    	// Decorator Pattern
+		layerConfig.titleIndex = org_scn_community_geovis.dimensionIndex(layerConfig.markerTitleDim, d);
+		layerConfig.dynamicColorIndex = org_scn_community_geovis.dimensionIndex(layerConfig.dynamicColorDim, d);
+
+		// Find what Geohierarchy we are working with.
 		var selectedHierarchy = {};
-		if(hiers && hiers.length>0){
-			for(var i=0;i<hiers.length;i++){
-				if(geoH==hiers[i].id) selectedHierarchy = hiers[i];
+		var geoHiers = [];
+		var geoHierID = layerConfig.geoHierarchy;	// Key ID
+		var strGeoHier = this.geoHierarchy();	// Serialized JSON
+		if(strGeoHier && strGeoHier != "") geoHiers = jQuery.parseJSON(strGeoHier);
+		if(geoHiers && geoHiers.length>0){
+			for(var i=0;i<geoHiers.length;i++){
+				if(geoHiers[i].id == geoHierID) selectedHierarchy = geoHiers[i];
 			}
 		}
-		// Decorator Pattern
-		conf.titleIndex = org_scn_community_geovis.dimensionIndex(conf.markerTitleDim, m);
-		conf.dynamicColorIndex = org_scn_community_geovis.dimensionIndex(conf.dynamicColorDim, m);
-		
+		// First pass - Filter
 		var filters = {};
-		if(conf.filters) filters = conf.filters;
+		if(layerConfig.filters) filters = layerConfig.filters;
 		var filteredResults = {
 			tuples : [],
 			data : []
 		};
-		// First pass - Filter
-		for(var i=0;i<r.tuples.length;i++){
-			var tuple = r.tuples[i];
+		for(var i=0;i<d.tuples.length;i++){
+			var tuple = d.tuples[i];
 			var rowPass = true;
 			for(var j=0;j<tuple.length;j++){
-				var tupleDim = m.dimensions[j];
+				var tupleDim = d.dimensions[j];
 				var value = tupleDim.members[tuple[j]].key;
 				var selectionMembers = [];
 				if(filters[tupleDim.key]) selectionMembers = filters[tupleDim.key].selections;
@@ -177,15 +150,14 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 			}
 			// If tuple passed selection criteria, let it through.
 			if(rowPass) {
-				filteredResults.tuples.push(r.tuples[i]);
-				filteredResults.data.push(r.data[i]);
+				filteredResults.tuples.push(d.tuples[i]);
+				filteredResults.data.push(d.data[i]);
 				
 			}
 			
 		}
 		// Second pass - Geocode
 		try{
-			var that = this;
 			org_scn_community_geovis.getLatLngs({
 				geoDimCity : selectedHierarchy.geoDimCity,
 				geoDimRegion : selectedHierarchy.geoDimRegion,
@@ -194,17 +166,28 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 				geoDimAddress : selectedHierarchy.geoDimAddress,
 				manualCountry : selectedHierarchy.manualCountry,
 				manualRegion : selectedHierarchy.manualRegion,
-				metadata : m,
+				metadata : d,
 				results : filteredResults,
-				conf : conf,
+				conf : layerConfig,
 				// Callback for future async requests.
 				callback : this.geocodeComplete,
 				scope : this
-			},conf);
+			},layerConfig);
 		}catch(e){
 			throw("Problem Component-side with getLatLngs\n"+e);
 		}
     };
+    /**
+     * Callback function for after geocoding is completed.
+     */
+    this.geocodeComplete = function(results, layerConfig){
+		if(layerConfig.type=="markerLayer") this.leafletMarkerLayer(results, layerConfig);
+		if(layerConfig.type=="heatLayer") this.leafletHeatLayer(results, layerConfig);
+		if(layerConfig.type=="clusterLayer") this.leafletClusterLayer(results, layerConfig);
+	};
+	/**
+	 * Baseline Marker Configuration Build
+	 */
     this.buildMarkerBaseline = function(geocodeResults, layerConfig){
     	var markers = [];
     	for(var j=0;j<geocodeResults.solved.length;j++){
@@ -222,11 +205,9 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 		}
     	return markers;
     };
-    this.geocodeComplete = function(results, conf){
-		if(conf.type=="markerLayer") this.leafletMarkerLayer(results, conf);
-		if(conf.type=="heatLayer") this.leafletHeatLayer(results, conf);
-		if(conf.type=="clusterLayer") this.leafletClusterLayer(results, conf);
-	};
+    /**
+     * Leaflet Cluster Layer
+     */
     this.leafletClusterLayer = function(geocodeResults, layerConfig){
     	var markers = this.buildMarkerBaseline(geocodeResults, layerConfig);
     	var cluster = new L.MarkerClusterGroup();
@@ -238,6 +219,9 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
     	}
 		this._map.addLayer(cluster);
     };
+    /**
+     * Leaflet Heat Layer
+     */
     this.leafletHeatLayer = function(geocodeResults, layerConfig){
     	var markers = this.buildMarkerBaseline(geocodeResults, layerConfig);
 		var colors = layerConfig.colors || "";
@@ -272,9 +256,10 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
     			heat.addLatLng(new L.LatLng(marker.latlng[0],marker.latlng[1]));
 			}	
     	}
-		
-    	
     };
+    /**
+     * Leaflet Marker Layer
+     */
     this.leafletMarkerLayer = function(geocodeResults, layerConfig){
     	var markers = this.buildMarkerBaseline(geocodeResults, layerConfig);
     	var dynamicPalette = layerConfig.dynamicPalette || "#1f77b4,#ff7f0e,#2ca02c,#d62728".toUpperCase().split(",");
@@ -377,10 +362,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 	 * Serialize SDK-Provided metadata as String
 	 */
 	this.getDataAsString = function() {
-		return JSON.stringify(this._data);
-	};
-	this.getResultsAsString = function() {
-		return "";
+		return JSON.stringify(this.data());
 	};
 });
 })()
