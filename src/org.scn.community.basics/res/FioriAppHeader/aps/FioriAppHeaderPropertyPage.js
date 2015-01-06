@@ -147,7 +147,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.FioriAppHea
 		if(this._currentItemConfig.key != this.txtItemKey.getValue()) this._currentItemConfig.key = allItems.generateKey(this.txtItemKey.getValue());
 		delete allItems;	
 		this._currentItemConfig.text = this.txtItemTitle.getValue();
-		this._currentItemConfig.url = this.txtItemUrl.getValue();
+		this._currentItemConfig.icon = this.txtItemUrl.getValue();
 		this.firePropertiesChanged(["itemConfig"]);
 		this.updateProps();
 		this.closeDetail();
@@ -163,7 +163,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.FioriAppHea
 		if(!this._currentItemConfig) return;
 		this.txtItemKey.setValue(this._currentItemConfig.key);
 		this.txtItemTitle.setValue(this._currentItemConfig.text);
-		this.txtItemUrl.setValue(this._currentItemConfig.url);
+		this.txtItemUrl.setValue(this._currentItemConfig.icon);
 		if(!this._popup) this._popup = new sap.ui.core.Popup(this.itemDetailPanel, true, true, true);
 		
 		//this._popup.destroyContent();
