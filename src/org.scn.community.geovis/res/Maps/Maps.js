@@ -178,8 +178,17 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 			
 		}
 		// Second pass - Geocode
+		var geoCoderAdapter = null;
+		if(selectedHierarchy.geoCoder == "local"){
+			geoCoderAdapter = org_scn_community_geovis;
+		}
+		if(selectedHierarchy.geoCoder == "mapbox"){
+			geoCoderAdapter = getMapboxAdapter({
+				apiKey : selectedHierarchy.apiKey
+			});
+		}
 		try{
-			org_scn_community_geovis.getLatLngs({
+			geoCoderAdapter.getLatLngs({
 				geoDimCity : selectedHierarchy.geoDimCity,
 				geoDimRegion : selectedHierarchy.geoDimRegion,
 				geoDimZip : selectedHierarchy.geoDimZip,
@@ -219,10 +228,10 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 				icon : layerConfig.markerSymbol,
 				latlng : loc.latlng,
 				conf : layerConfig,
-				tuple : geocodeResults.solved[j].tuple.slice()
+				tuple : loc.tuple.slice()
 			}
 			if(layerConfig.titleIndex) markerConfig.title = this.data().dimensions[layerConfig.titleIndex].members[loc.tuple[layerConfig.titleIndex]].text;
-			markers.push(markerConfig);
+			if(loc.latlng && loc.latlng.length>1) markers.push(markerConfig);
 		}
     	return markers;
     };
@@ -287,7 +296,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
     	var geoJSON = [];
     	   	for(var i=0;i<markers.length;i++){
     		var marker = markers[i];
-    		if(marker.latlng.length>1){
+    		if(marker.latlng && marker.latlng.length>1){
     			var markerColor = marker.color;		// Default.
     			if(layerConfig.dynamicColorIndex) {
     				var color = marker.tuple[layerConfig.dynamicColorIndex];

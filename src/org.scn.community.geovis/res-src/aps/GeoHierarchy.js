@@ -495,12 +495,16 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 		for(var i=0;i<results.solved.length;i++){
 			var geoLocation = results.solved[i];
 			if(!hit[geoLocation.locationKey]){
-				locs.push({
-					geoLoc : geoLocation.locationKey,
-					latitude : geoLocation.latlng[0],
-					longitude : geoLocation.latlng[1],
-				});
-				hit[geoLocation.locationKey] = true;
+				if(geoLocation.latlng && geoLocation.latlng.length>1){
+					locs.push({
+						geoLoc : geoLocation.locationKey,
+						latitude : geoLocation.latlng[0],
+						longitude : geoLocation.latlng[1],
+					});
+					hit[geoLocation.locationKey] = true;
+				}else{
+					// Missing Lat/Lng
+				}				
 			}								
 		}
 		// Same procedure for unsolved locations							
