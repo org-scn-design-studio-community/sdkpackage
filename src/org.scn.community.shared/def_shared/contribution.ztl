@@ -90,7 +90,7 @@ class org.scn.community.shared.DataComponent extends org.scn.community.shared.Co
 		});
 
 		var conditionalFormatsJson = [];
-		var conditionalFormat = DS_1.getConditionalFormats();
+		var conditionalFormat = ds.getConditionalFormats();	// Issue Fix for Github Issue 22 reported by sschau
 		conditionalFormat.forEach(function(element, index) {
 		  var conditionalFormatJson = {};
 		  conditionalFormatJson.push(conditionalFormatJson);
