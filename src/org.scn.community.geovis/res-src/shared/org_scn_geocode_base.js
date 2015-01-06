@@ -50,7 +50,7 @@ function org_scn_geocode_base(options){
  * Override
  * @param options
  */
-org_scn_geocode_base.getLatLngs = function(options){
+org_scn_geocode_base.prototype.getLatLngs = function(options){
 	// Override
 	this.issueCallback(options,{
 		solved : [],
