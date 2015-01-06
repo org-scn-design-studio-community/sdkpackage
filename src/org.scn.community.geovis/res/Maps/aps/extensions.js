@@ -712,15 +712,17 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			if (this._data && this._data.dimensions && this._data.dimensions.length>0) {
 				var geoCoderAdapter = null;
 				if(hierProp.geoCoder=="local"){
-					geoCoderAdapter = org_scn_community_geovis;
+					geoCoderAdapter = new org_scn_geocode_local();
+					geoCoderAdapter.mode = "aps";
+					geoCoderAdapter.resourcePrefix = "/aad/zen/mimes/sdk_include/org.scn.community.geovis/";
 				}
 				if(hierProp.geoCoder=="mapbox"){
-					geoCoderAdapter = getMapboxAdapter({
-						apiKey : hierProp.apiKey
-					});
+					geoCoderAdapter = new org_scn_geocode_mapbox();
+					geoCoderAdapter.apiKey = hierProp.apiKey;
 				}
 				if(hierProp.geoCoder=="esri"){
-					geoCoderAdapter = getEsriAdapter();
+					geoCoderAdapter = new org_scn_geocode_esri();
+					geoCoderAdapter.apiKey = hierProp.apiKey;
 				}
 				try{
 					geoCoderAdapter.getLatLngs({

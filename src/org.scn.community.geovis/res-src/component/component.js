@@ -112,8 +112,8 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
     this.renderMarkerLayer = function(layerConfig){
     	var d = this.data();
     	// Decorator Pattern
-		layerConfig.titleIndex = org_scn_community_geovis.dimensionIndex(layerConfig.markerTitleDim, d);
-		layerConfig.dynamicColorIndex = org_scn_community_geovis.dimensionIndex(layerConfig.dynamicColorDim, d);
+		layerConfig.titleIndex = this.localGeocoder.dimensionIndex(layerConfig.markerTitleDim, d);
+		layerConfig.dynamicColorIndex = this.localGeocoder.dimensionIndex(layerConfig.dynamicColorDim, d);
 
 		// Find what Geohierarchy we are working with.
 		var selectedHierarchy = {};
@@ -159,10 +159,15 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
 		// Second pass - Geocode
 		var geoCoderAdapter = null;
 		if(selectedHierarchy.geoCoder == "local"){
-			geoCoderAdapter = org_scn_community_geovis;
+			geoCoderAdapter = this.localGeocoder;
 		}
 		if(selectedHierarchy.geoCoder == "mapbox"){
-			geoCoderAdapter = getMapboxAdapter({
+			geoCoderAdapter = new org_scn_geocode_mapbox({
+				apiKey : selectedHierarchy.apiKey
+			});
+		}
+		if(selectedHierarchy.geoCoder == "esri"){
+			geoCoderAdapter = new org_scn_geocode_esri({
 				apiKey : selectedHierarchy.apiKey
 			});
 		}
@@ -312,8 +317,9 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function
      */
     this.init = function() {
     	// Configure shared geovis to work.
-    	org_scn_community_geovis.resourcePrefix = this.resPfx;
-    	org_scn_community_geovis.mode = "component";
+    	this.localGeocoder = new org_scn_geocode_local();
+    	this.localGeocoder.resourcePrefix = this.resPfx;
+    	this.localGeocoder.mode = "component";
     	// Pull in world JSON geodata.  Perhaps move this out of component to local geocoder.
     	try{
     		if(!this.locationsJSON){

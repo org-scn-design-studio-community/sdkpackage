@@ -43,9 +43,10 @@ module.exports = function(grunt) {
         		src :  [
         		       "../res-src/shared/license.js",
         			   "../os/lz-string-1.3.3-min.js",
-        			   "../res-src/shared/geoUtilities.js",
-        			   "../res-src/shared/mapbox-geocoder-adapter.js",
-        			   "../res-src/shared/esri-geocoder-adapter.js"
+        			   "../res-src/shared/org_scn_geocode_base.js",
+        			   "../res-src/shared/org_scn_geocode_local.js",
+        			   "../res-src/shared/org_scn_geocode_mapbox.js",
+        			   "../res-src/shared/org_scn_geocode_esri.js"
         	    ],
 	        	dest : "../res/Maps/aps/shared.js"
         	}
