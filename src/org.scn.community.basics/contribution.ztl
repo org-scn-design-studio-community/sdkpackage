@@ -843,7 +843,159 @@ class org.scn.community.basics.FioriButton extends Component {
 		return this.dStyle;	
 	*}
 }
+class org.scn.community.basics.FioriToolbar extends Component {
+	/** Add a header button
+ 	<example>
+	Add or update a header button by key 'MENU'.
+	<code>
+	FIORITOOLBAR_1.addHeaderButton("MENU","Menu",false,"sap-icon://menu2","Emphasized");<br>
+	</code>
+	</example>
+	 */
+	void addHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		var sTitle = true;
+		if(showTitle!=undefined) sTitle = showTitle;
+		var h = {
+			key : buttonKey,
+			text : buttonTitle,
+			showTitle : sTitle,
+			icon : icon,
+			items : [],
+			type : buttonType || "Default"
+		};
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex==-1) {
+			o.push(h);
+		}else{
+			o[matchIndex] = h;
+		}		
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Remove All Button
+ 	<example>
+	Remove all button
+	<code>
+	FIORITOOLBAR_1.removeAllButtons();<br>
+	</code>
+	</example>
+	 */
+	void removeAllButtons () {*		
+		itemConfig = JSON.stringify([]);
+	*}
+	/** Remove All Items in a header button
+ 	<example>
+	Remove all items in header button 'Menu'
+	<code>
+	FIORITOOLBAR_1.removeAllItems("Menu");<br>
+	</code>
+	</example>
+	 */
+	void removeAllItems (/*Button Title*/String buttonTitle) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == buttonTitle) matchIndex = i;
+		}
+		if(matchIndex>-1) o[matchIndex].items = [];
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Remove a button
+ 	<example>
+	Remove a header button called 'Menu'
+	<code>
+	FIORITOOLBAR_1.removeHeaderButton("Menu");<br>
+	</code>
+	</example>
+	 */
+	void removeHeaderButton (/*Button Key*/String buttonKey) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonTitle) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Add an item to a header button.  Will add the header button if it does not yet exist.
+ 	<example>
+	Add an item called 'Help' to header button called 'Menu' with an icon sys-help-2
+	<code>
+	FIORITOOLBAR_1.addItem("Menu","sap-icon://sys-help-2|Help");<br>
+	</code>
+	</example>
+	 */
+	void addItem (/*Button Key*/String buttonKey, /*Item Title*/String itemTitle) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex == -1 ){	// Add section for the lazy
+			this.addHeaderButton(buttonTitle);
+			o = eval(this.itemConfig);
+			matchIndex = o.length-1;
+		}
+		o[matchIndex].items.push(itemTitle);
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Removes an item from a header button.
+ 	<example>
+	Remove an item called 'Help' from header button called 'Menu'
+	<code>
+	FIORITOOLBAR_1.removeItem("Menu", "Help");<br>
+	</code>
+	</example>
+	 */
+	void removeItem (/*Button Title*/String buttonTitle, /*Item Title*/ String itemTitle) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == buttonTitle) matchIndex = i;
+		}
+		if(matchIndex != -1 ){
+			var items = o[matchIndex].items;
+			var itemIndex = -1;
+			for(var i=0;i<items.length;i++){
+				if(items[i]==itemTitle) itemIndex = i;
+			}
+			if(itemIndex>-1) items.splice(itemIndex,1);
+			itemConfig = JSON.stringify(o);
+		}		
+	*}
+	/**
+	Get item clicked.
+	*/
+	String getItemClicked() {*
+		return this.selectedItem;
+	*}
+	/**
+	Get header of and item clicked.
+	*/
+	String getHeaderClicked() {*
+		return this.selectedHeader;
+	*}
 
+	/* Shows or hides the back button. */
+	void setShowNavButton(/* If true, then the back button is shown, else it is hidden */ boolean visible) {*
+		this.showNavButton = visible;
+	*}
+	/* Returns true if the back button is shown, else false. */
+	boolean getShowNavButton() {*
+		return this.showNavButton;
+	*}
+	/* Sets the title. */
+	void setTitle(/* Title */ String title) {*
+		this.title = title;
+	*}	
+	/* Returns the title. */
+	String getTitle() {*
+		return this.title;
+	*}
+}
 /**
  * Class for FishEye
  */
