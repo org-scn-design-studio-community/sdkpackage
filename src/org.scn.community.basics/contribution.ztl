@@ -856,22 +856,25 @@ class org.scn.community.basics.FioriToolbar extends Component {
 		var o = eval(this.itemConfig);
 		var matchIndex = -1;
 		var sTitle = true;
-		if(showTitle!=undefined) sTitle = showTitle;
-		var h = {
-			key : buttonKey,
-			text : buttonTitle,
-			showTitle : sTitle,
-			icon : icon,
-			items : [],
-			type : buttonType || "Default"
-		};
+		if(showTitle != undefined) sTitle = showTitle;
+		var h;
 		for(var i=0;i<o.length;i++){
 			if(o[i].key == buttonKey) matchIndex = i;
 		}
 		if(matchIndex==-1) {
-			o.push(h);
-		}else{
-			o[matchIndex] = h;
+			o.push({
+				key : buttonKey,
+				text : buttonTitle,
+				showTitle : sTitle,
+				icon : icon,
+				items : [],
+				type : buttonType || "Default"
+			});
+		}else{	// Don't overwrite items
+			o[matchIndex].text = buttonTitle;
+			o[matchIndex].showTitle = sTitle;
+			o[matchIndex].icon = icon;
+			o[matchIndex].type = buttonType || "Default";
 		}		
 		itemConfig = JSON.stringify(o);
 	*}
@@ -928,18 +931,22 @@ class org.scn.community.basics.FioriToolbar extends Component {
 	</code>
 	</example>
 	 */
-	void addItem (/*Button Key*/String buttonKey, /*Item Title*/String itemTitle) {*		
+	void addItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon) {*		
 		var o = eval(this.itemConfig);
 		var matchIndex = -1;
 		for(var i=0;i<o.length;i++){
 			if(o[i].key == buttonKey) matchIndex = i;
 		}
 		if(matchIndex == -1 ){	// Add section for the lazy
-			this.addHeaderButton(buttonTitle);
+			this.addHeaderButton(buttonKey, buttonKey);
 			o = eval(this.itemConfig);
 			matchIndex = o.length-1;
 		}
-		o[matchIndex].items.push(itemTitle);
+		o[matchIndex].items.push({
+			key : itemKey,
+			text : itemText,
+			icon : itemIcon || ""
+		});
 		itemConfig = JSON.stringify(o);
 	*}
 	/** Removes an item from a header button.
@@ -950,17 +957,17 @@ class org.scn.community.basics.FioriToolbar extends Component {
 	</code>
 	</example>
 	 */
-	void removeItem (/*Button Title*/String buttonTitle, /*Item Title*/ String itemTitle) {*		
+	void removeItem (/*Button Key*/String buttonKey, /*Item Key*/ String itemKey) {*		
 		var o = eval(this.itemConfig);
 		var matchIndex = -1;
 		for(var i=0;i<o.length;i++){
-			if(o[i].title == buttonTitle) matchIndex = i;
+			if(o[i].key == buttonKey) matchIndex = i;
 		}
 		if(matchIndex != -1 ){
 			var items = o[matchIndex].items;
 			var itemIndex = -1;
 			for(var i=0;i<items.length;i++){
-				if(items[i]==itemTitle) itemIndex = i;
+				if(items[i].key == itemKey) itemIndex = i;
 			}
 			if(itemIndex>-1) items.splice(itemIndex,1);
 			itemConfig = JSON.stringify(o);
@@ -977,23 +984,6 @@ class org.scn.community.basics.FioriToolbar extends Component {
 	*/
 	String getHeaderClicked() {*
 		return this.selectedHeader;
-	*}
-
-	/* Shows or hides the back button. */
-	void setShowNavButton(/* If true, then the back button is shown, else it is hidden */ boolean visible) {*
-		this.showNavButton = visible;
-	*}
-	/* Returns true if the back button is shown, else false. */
-	boolean getShowNavButton() {*
-		return this.showNavButton;
-	*}
-	/* Sets the title. */
-	void setTitle(/* Title */ String title) {*
-		this.title = title;
-	*}	
-	/* Returns the title. */
-	String getTitle() {*
-		return this.title;
 	*}
 }
 /**
