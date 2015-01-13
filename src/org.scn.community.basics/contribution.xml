@@ -1613,7 +1613,7 @@
 	  </component>
 <component
 	id="Map"
-	title="Open Street Map"
+	title="Basic Map"
 	icon="res/OSMap/OSMap.png"
 	handlerType="div"
 	group="ScnCommunityBasics"
