@@ -908,9 +908,9 @@ class org.scn.community.basics.FioriToolbar extends Component {
 	*}
 	/** Remove a button
  	<example>
-	Remove a header button called 'Menu'
+	Remove a header button with key 'MENU'
 	<code>
-	FIORITOOLBAR_1.removeHeaderButton("Menu");<br>
+	FIORITOOLBAR_1.removeHeaderButton("MENU");<br>
 	</code>
 	</example>
 	 */
@@ -918,7 +918,7 @@ class org.scn.community.basics.FioriToolbar extends Component {
 		var o = eval(this.itemConfig);
 		var matchIndex = -1;
 		for(var i=0;i<o.length;i++){
-			if(o[i].key == buttonTitle) matchIndex = i;
+			if(o[i].key == buttonKey) matchIndex = i;
 		}
 		if(matchIndex>-1) o.splice(matchIndex,1);
 		itemConfig = JSON.stringify(o);
