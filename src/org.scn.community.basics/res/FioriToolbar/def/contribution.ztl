@@ -46,17 +46,17 @@ class org.scn.community.basics.FioriToolbar extends Component {
 	*}
 	/** Remove All Items in a header button
  	<example>
-	Remove all items in header button 'Menu'
+	Remove all items in header button 'MENU'
 	<code>
 	FIORITOOLBAR_1.removeAllItems("Menu");<br>
 	</code>
 	</example>
 	 */
-	void removeAllItems (/*Button Title*/String buttonTitle) {*		
+	void removeAllItems (/*Button Key*/String buttonKey) {*		
 		var o = eval(this.itemConfig);
 		var matchIndex = -1;
 		for(var i=0;i<o.length;i++){
-			if(o[i].title == buttonTitle) matchIndex = i;
+			if(o[i].key == buttonKey) matchIndex = i;
 		}
 		if(matchIndex>-1) o[matchIndex].items = [];
 		itemConfig = JSON.stringify(o);
@@ -80,9 +80,9 @@ class org.scn.community.basics.FioriToolbar extends Component {
 	*}
 	/** Add an item to a header button.  Will add the header button if it does not yet exist.
  	<example>
-	Add an item called 'Help' to header button called 'Menu' with an icon sys-help-2
+	Add an item called 'Help' to header button with key 'MENU' with an icon sys-help-2
 	<code>
-	FIORITOOLBAR_1.addItem("Menu","sap-icon://sys-help-2|Help");<br>
+	FIORITOOLBAR_1.addItem("MENU", "help", "Help", "sap-icon://sys-help-2");<br>
 	</code>
 	</example>
 	 */
@@ -106,9 +106,9 @@ class org.scn.community.basics.FioriToolbar extends Component {
 	*}
 	/** Removes an item from a header button.
  	<example>
-	Remove an item called 'Help' from header button called 'Menu'
+	Remove an item with key 'HELP' from header button with key 'MENU'
 	<code>
-	FIORITOOLBAR_1.removeItem("Menu", "Help");<br>
+	FIORITOOLBAR_1.removeItem("MENU", "HELP");<br>
 	</code>
 	</example>
 	 */
@@ -135,9 +135,22 @@ class org.scn.community.basics.FioriToolbar extends Component {
 		return this.selectedItem;
 	*}
 	/**
+	Get item key clicked.
+	*/
+	String getItemKeyClicked() {*
+		return this.selectedItemKey;
+	*}
+	/**
 	Get header of and item clicked.
 	*/
 	String getHeaderClicked() {*
 		return this.selectedHeader;
 	*}
+	/**
+	Get header key of and item clicked.
+	*/
+	String getHeaderKeyClicked() {*
+		return this.selectedHeaderKey;
+	*}
+	
 }
