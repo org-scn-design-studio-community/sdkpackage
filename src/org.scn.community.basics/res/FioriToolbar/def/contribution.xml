@@ -21,6 +21,8 @@
   	</property>
   	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
   	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false"/>
+  	<property type="String" title="Selected Item Key" id="selectedItemKey" visible="false"/>
+  	<property type="String" title="Selected Header Key of Item" id="selectedHeaderKey" visible="false"/>
   	<property type="ScriptText" title="On Item Select" id="onitemselect"/>  	
  	<initialization>
  		<!-- 

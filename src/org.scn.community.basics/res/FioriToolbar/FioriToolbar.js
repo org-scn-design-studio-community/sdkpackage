@@ -30,7 +30,9 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 		properties : {
 			itemConfig : "string",	// JSON section/items config from Design Studio
 			selectedItem : "string",
-			selectedHeader : "string"
+			selectedItemKey : "string",
+			selectedHeader : "string",
+			selectedHeaderKey : "string"
 		}
 	},
 	initDesignStudio : function() {
@@ -42,14 +44,26 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 	setSelectedItem : function(s){
 		this._selectedItem = s;
 	},
+	setSelectedItemKey : function(s){
+		this._selectedItemKey = s;
+	},
 	getSelectedItem : function(){
 		return this._selectedItem;
+	},
+	getSelectedItemKey : function(){
+		return this._selectedItemKey;
 	},
 	setSelectedHeader : function(s){
 		this._selectedHeader = s;
 	},
+	setSelectedHeaderKey : function(s){
+		this._selectedHeaderKey = s;
+	},
 	getSelectedHeader : function(){
 		return this._selectedHeader;
+	},
+	getSelectedHeaderKey : function(){
+		return this._selectedHeaderKey;
 	},
 	setItemConfig : function(s){
 		var o = [];
@@ -75,14 +89,20 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 			this.addContent(b);
 			var items = this._itemConfig[i].items || [];
 			if(items.length<=0){	// Single button
-				b.attachBrowserEvent("click",function(title){
+				b.attachBrowserEvent("click",function(o){
 					return function(oControlEvent){
-						this._selectedItem = title;
-						this._selectedHeader = title;
-						this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem"]);
+						this._selectedItem = o.headerTitle;
+						this._selectedItemKey = o.headerKey;
+						this._selectedHeader = o.headerTitle;
+						this._selectedHeaderKey = o.headerKey;
+						this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem","selectedHeaderKey","selectedItemKey"]);
 						this.fireDesignStudioEvent("onitemselect");
 					};
-				}(actualTitle),this);
+				}({
+					headerTitle : actualTitle,
+					headerKey : this._itemConfig[i].key
+				}),this);
+
 			}else{	// Action Sheet
 				b.attachBrowserEvent("click",function(index){
 					return function(oControlEvent){
@@ -99,9 +119,11 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 							});
 							actionButton.attachBrowserEvent("click",function(it,section){
 								return function(oControlEvent){
-									this._selectedItem = it.key;
-									this._selectedHeader = section.key;
-									this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem"]);
+									this._selectedItem = it.text;
+									this._selectedItemKey = it.key;
+									this._selectedHeader = section.text;
+									this._selectedHeaderKey = section.key;
+									this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem","selectedHeaderKey","selectedItemKey"]);
 									this.fireDesignStudioEvent("onitemselect");
 								};
 							}(item,this._itemConfig[index]),this);
