@@ -43,7 +43,7 @@ class org.scn.community.utils.Array extends Component {
 	</code>
 	This LISTBOX_1 has now following values entries:<br>
 		<ul><li>key: 0; value: k1 ( 0 )</li>
-		<<li>key: 1; value: k2 ( 1 )</li>
+		<li>key: 1; value: k2 ( 1 )</li>
 		<li>key: 2; value: k3 ( 2 )</li></ul>
 	</example>
 	*/
@@ -87,7 +87,7 @@ class org.scn.community.utils.Array extends Component {
 	</code>
 	This LISTBOX_1 has now following values entries:<br>
 		<ul><li>key: 0; value: k1 ( 0 )</li>
-		<<li>key: 1; value: k2 ( 1 )</li>
+		<li>key: 1; value: k2 ( 1 )</li>
 		<li>key: 2; value: k3 ( 2 )</li></ul>
 	</example>
 	
@@ -305,7 +305,39 @@ class org.scn.community.utils.Array extends Component {
 		return r;  
 	*}
 }
-
+/**
+ * Class for ClientInformation
+ */
+class org.scn.community.utils.ClientInformation extends Component {
+	
+	/**
+	 * Returns the width of the browser window
+	 */
+	int getWindowWidth () {*
+		return this.windowWidth;
+	*}
+	
+	/**
+	 * Returns the height of the browser window
+	 */
+	int getWindowHeight () {*
+		return this.windowHeight;
+	*}
+	
+	/**
+	 * Returns the width of the own size
+	 */
+	int getOwnWidth () {*
+		return this.ownWidth;
+	*}
+	
+	/**
+	 * Returns the height of the own size
+	 */
+	int getOwnHeight () {*
+		return this.ownHeight;
+	*}
+}
 /**
  * Component created with collaboration with Michael Howles
  * http://scn.sap.com/people/mike.howles4

@@ -1,11 +1,7 @@
 
 <component
 	id="Map"
-<<<<<<< HEAD
 	title="Open Street Map (Basic)"
-=======
-	title="Open Street Map"
->>>>>>> branch 'master' of https://github.com/org-scn-design-studio-community/sdkpackage.git
 	icon="res/OSMap/OSMap.png"
 	handlerType="div"
 	group="ScnCommunityBasics"
