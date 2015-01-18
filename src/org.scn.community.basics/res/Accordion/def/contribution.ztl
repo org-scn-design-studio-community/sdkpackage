@@ -20,8 +20,7 @@ class org.scn.community.basics.Accordion extends Component {
 	You want to add 2 elements, second one is a child of first one
 	<code>
 	ACCORDION_1.addElement("KEY1", "First Element", "", "ROOT", true);<br>
-	ACCORDION_1.addElement("KEY2", "First Element Child", "", "KEY1", true);<br>
-	<br>
+	ACCORDION_1.addElement("KEY2", "First Element Child", "", "KEY1", true);
 	</code>
 	</example>
 	 */

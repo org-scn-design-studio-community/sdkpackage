@@ -4,7 +4,7 @@
 		title="Simple Date"
 		icon="res/SimpleDate/SimpleDate.png"
 		handlerType="div"
-		group="CommonUtils">
+		group="ScnCommunityUtils">
 
 	<jsInclude>res/SimpleDate/SimpleDate.js</jsInclude>
 

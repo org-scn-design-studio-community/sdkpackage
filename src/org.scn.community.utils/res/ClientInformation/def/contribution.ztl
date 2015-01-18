@@ -1,0 +1,33 @@
+/**
+ * Class for ClientInformation
+ */
+class org.scn.community.utils.ClientInformation extends Component {
+	
+	/**
+	 * Returns the width of the browser window
+	 */
+	int getWindowWidth () {*
+		return this.windowWidth;
+	*}
+	
+	/**
+	 * Returns the height of the browser window
+	 */
+	int getWindowHeight () {*
+		return this.windowHeight;
+	*}
+	
+	/**
+	 * Returns the width of the own size
+	 */
+	int getOwnWidth () {*
+		return this.ownWidth;
+	*}
+	
+	/**
+	 * Returns the height of the own size
+	 */
+	int getOwnHeight () {*
+		return this.ownHeight;
+	*}
+}

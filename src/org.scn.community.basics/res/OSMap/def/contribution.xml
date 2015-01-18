@@ -1,7 +1,7 @@
 
 <component
 	id="Map"
-	title="Basic Map"
+	title="Open Street Map (Basic)"
 	icon="res/OSMap/OSMap.png"
 	handlerType="div"
 	group="ScnCommunityBasics"
