@@ -16,7 +16,7 @@ public class Value {
 		String templateValues = Helpers.resource2String(this.getClass(), "value.html");
 
 		templateValues = templateValues.replace("%VALUE%", this.name);
-		templateValues = templateValues.replace("%DEFAULT%", this.isDefault ? "X" : "");
+		templateValues = templateValues.replace("%DEFAULT%", this.isDefault ? "X" : "&nbsp;");
 
 		return templateValues;
 	}

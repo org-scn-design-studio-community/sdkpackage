@@ -54,7 +54,7 @@
 	</property>
 
 	<initialization>
-		<defaultValue property="WIDTH">150</defaultValue>
-		<defaultValue property="HEIGHT">200</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
 	</initialization>
 </component>

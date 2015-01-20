@@ -11,6 +11,13 @@
 	<jsInclude>res/ClientInformation/ClientInformation.js</jsInclude>
 
 	<property
+		id="readLocation"
+		type="boolean"
+		title="Read the Location from Browser"
+		group="Display"
+		visible="true" />
+
+	<property
 		id="windowHeight"
 		type="int"
 		title="Height of the Window"
@@ -37,20 +44,46 @@
 		title="Width of the Component"
 		group="Display"
 		visible="false" />
+		
+	<property
+		id="information"
+		type="String"
+		title="Technical Component for Client Information"
+		group="Display"
+		visible="false" />
 
 	<property
-		id="onChanged"
+		id="geoLocation"
+		type="String"
+		title="Technical Component for Client Geo Location"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onSizeChanged"
 		type="ScriptText"
-		title="Event for On Changed"
+		title="Event for On Size Changed"
+		group="Events" />
+		
+	<property
+		id="onInformationAvailable"
+		type="ScriptText"
+		title="Event for On Information Available"
+		group="Events" />
+		
+	<property
+		id="onGeoAvailable"
+		type="ScriptText"
+		title="Event for On Geo Available"
 		group="Events" />
 		
 	<initialization>
-		<defaultValue property="WIDTH">300</defaultValue>
-		<defaultValue property="HEIGHT">100</defaultValue>
+		<defaultValue property="WIDTH">auto</defaultValue>
+		<defaultValue property="HEIGHT">auto</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
-		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">0</defaultValue>
 
 		<defaultValue property="ownHeight"></defaultValue>
 		<defaultValue property="ownWwidth"></defaultValue>

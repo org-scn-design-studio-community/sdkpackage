@@ -40,24 +40,24 @@ public class Property {
 
 		if (this.name == null) {
 			System.out.println("ISSUE: " + componentName + " - PARAMETER - property '" + this.name + "' is missing 'name'");
-			this.name = "";
+			this.name = "&nbsp;";
 		}
 		if (this.title == null) {
 			System.out.println("ISSUE: " + componentName + " - PARAMETER  - property '" + this.name + "' is missing 'title'");
-			this.title = "";
+			this.title = "&nbsp;";
 		}
 		if (this.tooltip == null) {
 			// System.out.println("ISSUE: " + componentName + "Property '" + this.name + "' is missing 'tooltip'");
-			this.tooltip = "";
+			this.tooltip = "&nbsp;";
 		}
 		if (this.type == null) {
 			System.out.println("ISSUE: " + componentName + " - PARAMETER  - property '" + this.name + "' is missing 'type'");
-			this.type = "";
+			this.type = "&nbsp;";
 		}
 
 		if (this.group == null) {
 			System.out.println("ISSUE: " + componentName + " - PARAMETER  - property '" + this.name + "' is missing 'group'");
-			this.group = "";
+			this.group = "&nbsp;";
 		}
 	}
 
@@ -72,7 +72,12 @@ public class Property {
 		template = template.replace("%PROPERTY_GROUP%", this.group);
 		template = template.replace("%VISIBLE_FLAG%", this.visible);
 
-		template = template.replace("%DEFAULT_VALUE%", this.defaultValue);
+		if (this.defaultValue == "") {
+			this.defaultValue = "&nbsp;";
+		}
+
+		// cut default value in case too long
+		template = template.replace("%DEFAULT_VALUE%", this.defaultValue.length() < 100 ? this.defaultValue : this.defaultValue.substring(0, 100) + " ... truncated");
 
 		if (this.values.size() > 0) {
 			for (Value value : this.values) {

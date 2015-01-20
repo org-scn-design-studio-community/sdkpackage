@@ -1,0 +1,25 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_BrowserEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort direction 
+ */
+class org_scn_community_shared_Browser extends Enum {
+
+	/** DEFAULT */
+	org_scn_community_shared_BrowserEnumfield CHROME;
+       
+	/** EMPH */
+	org_scn_community_shared_BrowserEnumfield SAFARI;
+
+	/** ACCEPT */
+	org_scn_community_shared_BrowserEnumfield MOZILLA;
+
+	/** REJECT */
+	org_scn_community_shared_BrowserEnumfield IE;
+}

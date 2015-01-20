@@ -1,0 +1,39 @@
+
+<component
+	id="FlowLayouter"
+	title="Flow Layouter"
+	icon="res/FlowLayouter/FlowLayouter.png"
+	handlerType="div"
+	group="ScnCommunityUtils"
+>
+
+	<jsInclude>res/FlowLayouter/FlowLayouter.js</jsInclude>
+
+	<property
+		id="splitSpace"
+		type="int"
+		title="Space between Elements in px"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="hideOnOverlap"
+		type="boolean"
+		title="Hide components which are out of visible area"
+		group="Display"
+		visible="true" />
+
+	<initialization>
+		<defaultValue property="WIDTH">800</defaultValue>
+		<defaultValue property="HEIGHT">600</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		
+		<defaultValue property="splitSpace">10</defaultValue>
+		<defaultValue property="hideOnOverlap">true</defaultValue>
+
+	</initialization>
+
+</component>

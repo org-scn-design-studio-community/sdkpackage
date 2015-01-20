@@ -25,11 +25,17 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
               "windowWidth": {type: "int"},
               "ownHeight": {type: "int"},
               "ownWidth": {type: "int"},
+              "readLocation": {type: "boolean"},
+              "geoLocation": {type: "string"},
+              "information": {type: "string"},
         }
 	},
 
 	initDesignStudio: function() {
 		var that = this;
+		
+		// make this element invisible
+		// that.setVisible(false);
 		
 		if(window.attachEvent) {
 		    window.attachEvent('onresize', function() {
@@ -72,7 +78,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
 				that.setWindowHeight(that._windowHeight);
 				
 				that.fireDesignStudioPropertiesChanged(["ownHeight", "ownWidth", "windowHeight", "windowWidth"]);
-				that.fireDesignStudioEvent("onChanged");
+				that.fireDesignStudioEvent("onSizeChanged");
 			}
 		};
 	},
@@ -80,35 +86,103 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
 	renderer: {},
 	
 	afterDesignStudioUpdate : function() {
+		var that = this;
+		
 		// http://www.html-world.de/282/clientinformation/
 
-		var information = window.clientInformation;
+		var information = navigator;
+
+		if(that.informationJson == undefined) {
+			that.informationJson = {};
+
+			that.informationJson.appCodeName = information.appCodeName;
+			that.informationJson.appName = information.appName;
+			that.informationJson.appVersion = information.appVersion;
+			that.informationJson.language = information.language;
+			that.informationJson.platform = information.platform;
+			that.informationJson.product = information.product;
+			that.informationJson.userAgent = information.userAgent;
+			that.informationJson.verndor = information.verndor;
+			
+			if(that.informationJson.verndor == undefined && window.clientInformation != undefined) {
+				that.informationJson.verndor = window.clientInformation.vendor;
+			}
+
+			if (window.screen) {
+				that.informationJson.width  = window.screen.width;
+				that.informationJson.height = window.screen.height;
+				that.informationJson.colors = window.screen.colorDepth;
+			}
+
+			var browser = $.browser;
+
+			var browserJson = {};
+
+			if(browser.chrome) {
+				browserJson.browser = "CHROME";
+			}
+			if(browser.safari) {
+				browserJson.browser = "SAFARI";
+			}
+			if(browser.mozilla) {
+				browserJson.browser = "MOZILLA";
+			}
+			if(browser.msie) {
+				browserJson.browser = "IE";
+			}
+
+			browserJson.version = browser.version;
+			browserJson.fVersion = browser.fVersion;
+			
+			browserJson.mobile = browser.mobile;
+			
+			that.informationJson.browserInfo = browserJson;
+			
+			var informationString = JSON.stringify(that.informationJson);
+			
+			that.setInformation(informationString);
+
+			that.fireDesignStudioPropertiesChanged(["information"]);
+			that.fireDesignStudioEvent("onInformationAvailable");
+		}
 		
-//		var options = {
-//		  enableHighAccuracy: true,
-//		  timeout: 5000,
-//		  maximumAge: 0
-//		};
-//
-//		function success(pos) {
-//		  var crd = pos.coords;
-//
-//		  console.log('Your current position is:');
-//		  console.log('Latitude : ' + crd.latitude);
-//		  console.log('Longitude: ' + crd.longitude);
-//		  console.log('More or less ' + crd.accuracy + ' meters.');
-//		};
-//
-//		function error(err) {
-//		  console.warn('ERROR(' + err.code + '): ' + err.message);
-//		};
-//
-//		information.geolocation.getCurrentPosition(success, error, options);
-//	    
-//		if (window.screen) {
-//			var width  = screen.width;
-//		    var height = screen.height;
-//		    var colors = screen.colorDepth;
-//		}
+		if(that.getReadLocation() && that.geoJson == undefined) {
+			var options = {
+			  enableHighAccuracy: true,
+			  timeout: 5000,
+			  maximumAge: 0
+			};
+
+			function success(pos) {
+			  var crd = pos.coords;
+
+			  that.geoJson = {};
+			  that. geoJson.latitude = crd.latitude;
+			  that.geoJson.longitude = crd.longitude;
+			  that.geoJson.accuracy = crd.accuracy;
+			  that.geoJson.ok = true;
+			  
+			  var geoString = JSON.stringify(that.geoJson);
+			  
+			  that.setGeoLocation(geoString);
+			  
+			  that.fireDesignStudioPropertiesChanged(["geoLocation"]);
+			  that.fireDesignStudioEvent("onGeoAvailable");
+			};
+
+			function error(err) {
+			  that.geoJson = {};
+			  that.geoJson.ok = false;
+			  
+			  var geoString = JSON.stringify(that.geoJson);
+			  
+			  that.setGeoLocation(geoString);
+			  
+			  that.fireDesignStudioPropertiesChanged(["geoLocation"]);
+			  that.fireDesignStudioEvent("onGeoAvailable");
+			};
+
+			information.geolocation.getCurrentPosition(success, error, options);
+		}
 	},
 });

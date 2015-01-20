@@ -1,4 +1,4 @@
-sap.designstudio.sdk.PropertyPage.subclass("com.sap.sample.SimpleTablePropertyPage", function() {
+sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.TablePropertyPage", function() {
 
 	var that = this;
 
@@ -6,6 +6,13 @@ sap.designstudio.sdk.PropertyPage.subclass("com.sap.sample.SimpleTablePropertyPa
 		fillDropDown();
 		$("#editcolumn1").click(function() {
 			that.openPropertyDialog("column1");
+		});
+		$("#editcolumn2").click(function() {
+			alert("here");
+			that.openPropertyDialog("column2");
+		});
+		$("#editcolumn3").click(function() {
+			that.openPropertyDialog("column3");
 		});
 	};
 

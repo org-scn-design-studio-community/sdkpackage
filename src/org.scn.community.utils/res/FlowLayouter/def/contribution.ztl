@@ -1,0 +1,118 @@
+/**
+ * class for FlowLayouter
+ */
+class org.scn.community.utils.FlowLayouter extends Component {  
+	
+	/** Register the parent component in case you want to have a resize for the complete layout 
+	 * This component will be resized to the content + split space on all sides.
+	 * There can be only one parent component.
+	 * */
+	void registerParentComponent (Component component) {*
+		this.parentComponent = component;
+	*}
+	
+	/** Register components which will be repositioned by this layouter.
+	 * The components will be placed in the registration order in its parent component.
+	 * */
+	void registerComponent (Component component) {*
+		if(this.registeredComponents == undefined) {
+			this.registeredComponents = [];
+		}
+	
+		this.registeredComponents.push(component);
+	*}
+
+	/** Re-Layout the content based on the given rules, which are:
+	 * - the size will be taken from this layouter (split is done on width)
+	 * - the space between components will be set by the property "split space"
+	 * - if "hide on overlap" is set to true, components which are outside of visible area are hidden.
+	 * - in other case, when the parent component is set, it will be resized to the new content 
+	 * */
+	void reLayout () {*
+		if(this.splitSpace < 0) {
+			this.splitSpace = 0;
+		}
+		
+		this.outerWidth = this.getWidth();
+		this.outerHeight = this.getHeight();
+		
+		// check the sizes
+		// check settings
+		// get width
+		// position
+		
+		var widths = [];
+		var heights = [];
+
+		for(var i=0; i<this.registeredComponents.length; i++){  
+			widths.push(this.registeredComponents[i].getWidth()); 
+			heights.push(this.registeredComponents[i].getHeight());
+		}
+		
+		// reset the current sizes
+		var currentOuterWidth = this.splitSpace;
+		var currentMaxHeight = this.splitSpace;
+		
+		// the maximum width of a line across all lines
+		var maxVisibleWidth = 0;
+		
+		// set the current positions
+		var currentTop = this.getTopMargin() + this.splitSpace;
+		var currentLeft = this.getLeftMargin() + this.splitSpace;
+		
+		for(var i=0;i<this.registeredComponents.length;i++){
+			var width = this.registeredComponents[i].getWidth();  
+			var height = this.registeredComponents[i].getHeight();
+
+			// check if we are already more than the size
+			if(currentOuterWidth + width > this.outerWidth) {
+				// reset position to next row
+				currentLeft = this.getLeftMargin() + this.splitSpace;
+				currentTop = currentTop + currentMaxHeight + this.splitSpace;
+				
+				// add next line by updating the width and max height
+				currentOuterWidth = this.splitSpace + width + this.splitSpace;
+				currentMaxHeight = height;
+			} else {
+				// calculate position
+				currentLeft = currentOuterWidth + this.getLeftMargin();
+
+				// still fits
+				currentOuterWidth = currentOuterWidth + width + this.splitSpace;
+				
+				if(currentMaxHeight < height) {
+					currentMaxHeight = height;
+				}
+				
+				if(maxVisibleWidth < currentOuterWidth) {
+					maxVisibleWidth = currentOuterWidth;
+				}
+			}
+
+			// print current data for debugging
+			// this.internal_print(currentOuterWidth, width, currentTop, currentLeft, currentMaxHeight);
+
+			// position the component
+			this.registeredComponents[i].setLeftMargin(currentLeft);
+			this.registeredComponents[i].setTopMargin(currentTop);
+			this.registeredComponents[i].setVisible(true);
+			
+			// check if out of visible area and hide
+			if (this.hideOnOverlap && currentTop + currentMaxHeight > this.outerHeight) {
+				// this component is out of visible area
+				this.registeredComponents[i].setVisible(false);
+			}
+		}
+		
+		if(!this.hideOnOverlap && this.parentComponent != undefined) {
+			this.parentComponent.setHeight(currentTop + currentMaxHeight + this.splitSpace);
+			this.parentComponent.setWidth(maxVisibleWidth);
+		}
+
+	*}
+	
+	/** Internal method to print all data (for debugging) */
+	void internal_print(int currentOuterWidth, int componentWidth, int currentTop, int currentLeft, int currentMaxHeight) {*
+		APPLICATION.createInfoMessage("TOP: " + currentTop + ", LEFT: " + currentLeft + ", OUTER: " + currentOuterWidth + ", WIDTH: " + componentWidth + ", HEIGHT: " + currentMaxHeight);
+	*}
+}
