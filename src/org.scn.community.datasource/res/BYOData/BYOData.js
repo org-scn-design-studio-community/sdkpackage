@@ -34,12 +34,13 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 	_dataString = "";
 	_kfIndex = 0;
 	_swap = false;
+	_simulateHierarchy = false;
 	
-	this.kfIndex = function(i){
-		if(i===undefined){
-			return _kfIndex;
+	this.kfIndex = function(s){
+		if(s===undefined){
+			return String(_kfIndex);
 		}else{
-			_kfIndex = i;
+			_kfIndex = parseInt(s);
 			this.recalculate();
 			return this;
 		}
@@ -49,6 +50,15 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 			return _swap;
 		}else{
 			_swap = b;
+			this.recalculate();
+			return this;
+		}
+	};
+	this.simulateHierarchy = function(b){
+		if(b===undefined){
+			return _simulateHierarchy;
+		}else{
+			_simulateHierarchy = b;
 			this.recalculate();
 			return this;
 		}
@@ -92,12 +102,13 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 			this.fireUpdate();
 			return;
 		}
+		
 		var headers = _data[0].slice();							// Shallow Copy 1st row to get labels
 		var dataStart = 1;										// Account for header row
-		var kfIndex = this.kfIndex();							// Measure Starting Column
+		var kfIndex = _kfIndex;									// Measure Starting Column
 		var kfLength = headers.length - kfIndex;				// Get number of Measures
 		var dimNames = headers.slice(0,kfIndex);				// Get Dimensions Names
-		var kfNames = headers.splice(kfIndex,headers.length-1);	// Get Measure Names
+		var kfNames = headers.splice(kfIndex,headers.length);	// Get Measure Names
 		var measureAxis = "COLUMNS";
 		var dimensionAxis = "ROWS";
 		if(this.swap()==true){
@@ -114,25 +125,68 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 		}];
 		// Define Dimensions
 		for(var i=0;i<dimNames.length;i++){
-			dims.push({
+			var dim = {
 				key : dimNames[i],
 				text : dimNames[i],
 				axis : dimensionAxis
-			})
+			};
+			/*
+			 * Doesn't seem to do anything :(
+			 */
+			if(_simulateHierarchy){
+				if(i==dimNames.length-1){
+					dim.nodeState = "COLLAPSED";
+				}else{
+					dim.nodeState = "EXPANDED";
+				}
+				
+				dim.level = i;
+			}
+			dims.push(dim)
 		}
 		this.defineDimensions(dims);
+		/*
+		 * Step 1:
+		 * Looks like setDataCell assumes coordinate will be a unique tuple, which may not be the case.
+		 * We will make sure each tuple is unique here.
+		 */ 
+		var uniques = {};
 		// Set data
 		for(var i=dataStart;i<_data.length;i++){
+			// Get dimensions
+			var coordinate = _data[i].slice(0,kfIndex);
 			for(var j=0;j<kfLength;j++){
-				var coordinate = _data[i].slice(0,kfIndex);
-				// Splice in measure member
+				if(j>0){	// Knock out prior Measure
+					coordinate.splice(0,1);
+				}
+				// Splice in measure member in first position.
 				coordinate.splice(0,0,kfNames[j]);
 				var d = _data[i][kfIndex+j];
+				if(isNaN(Number(d))) d = 0;
 				var mutate = 1;
 				if(_mutators.length>j) mutate = parseFloat(_mutators[j]);
+				if(isNaN(mutate)) mutate = 1;
 				d = d * mutate;
-				this.setDataCell(coordinate,d);
+				var hash = coordinate.join("~");
+				if(!uniques[hash]){
+					if(coordinate) {
+						uniques[hash] = {
+							coordinate : coordinate.slice(),	// Shallow copy
+							data : d
+						};
+					}
+				}else{
+					// Summarize on duplicate
+					uniques[hash].data += d;
+				}
 			}
+		}
+		//alert(_kfIndex + "\n\n" + JSON.stringify(uniques));
+		/*
+		 * Step 2 - Send unique over
+		 */
+		for(var item in uniques){
+			this.setDataCell(uniques[item].coordinate,uniques[item].data);	
 		}
 		this.firePropertiesChanged(["metadata"]);
 		this.fireUpdate();

@@ -6,6 +6,7 @@
 sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Table2D", function() {
 	var that = this;
 	var _data = null;
+	var _concatenateDimensions = false;
 	/**
 	 * Initialization or Resize of Component
 	 */
@@ -25,6 +26,14 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Table2D", f
 			return this;
 		}
 	};
+	this.concatenateDimensions = function(b) {
+		if (b === undefined) {
+			return _concatenateDimensions;
+		} else {
+			_concatendateDimensions = b;
+			return this;
+		}
+	};
 	/**
 	 * Fires after property change.
 	 */
@@ -32,7 +41,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Table2D", f
 		var flatData;
 		var vals = [];
 		try{
-			flatData = org_scn_community_databound.flatten(this.data());
+			flatData = org_scn_community_databound.flatten(this.data(),{});
 			if(flatData && flatData.formattedValues && flatData.formattedValues.length > 0) {
 				vals = flatData.formattedValues.slice();
 			}else if(flatData && flatData.values && flatData.values.length > 0){
@@ -43,7 +52,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Table2D", f
 			}
 		}catch(e){
 			var errorMessage = e;
-			if(e.indexOf("Incomplete data given.")>-1) errorMessage = "Incomplete data.  Try assigning a datasource.";
+			if(e && e.indexOf("Incomplete data given.")>-1) errorMessage = "Incomplete data.  Try assigning a datasource.";
 			if(!flatData) flatData = {
 				columnHeaders : ["Error"],
 				rowHeaders : [errorMessage]

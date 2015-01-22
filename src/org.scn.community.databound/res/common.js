@@ -349,7 +349,7 @@ org_scn_community_databound.getFormattedValue = function (value) {
 /**
  * Flattens data from tuple format to 2D Array
  * @author Mike Howles
- * @param options { 
+ * @param data { 
  *	 	"selection" : [Array of dimension selections] 	
  *	 	"tuples" : *Design Studio Tuples*,
  *		"data" : *Design Studio Data*,
@@ -359,50 +359,55 @@ org_scn_community_databound.getFormattedValue = function (value) {
  *	  	"axis_columns : [Array of Column Axis Dimension Selection Members]
  *	  	"axis_rows" : [Array of Row Axis Dimension Selection Members]
  *	 }
+ * @param options {
+ * 		Placeholder
+ * }
  * 
  * @return {
  * 		"columnHeaders" : [1D Array of Header Labels]
+ * 		"columnHeaders2D" : [2D Array of Header Labels]
  * 		"rowHeaders" : [1D Array of Row Headers]
  * 		"values" : [2D Array of Measures] 
  *
  * }
  */
-org_scn_community_databound.flatten = function (options) {
+org_scn_community_databound.flatten = function (data, options) {
 	var retObj = {
 		columnHeaders : [],
+		columnHeaders2D : [],
 		rowHeaders : [],
 		values : [],
 		formattedValues : []
 	};
-	if(!options || !options.dimensions || (!options.data && !options.formattedData)) {
-		throw("Incomplete data given.\n\n" + JSON.stringify(options));
+	if(!data || !data.dimensions || (!data.data && !data.formattedData)) {
+		throw("Incomplete data given.\n\n" + JSON.stringify(data));
 	}
 	var dimensionCols = [];
 	var dimensionRows = [];
 	var data2D = [];
-	var colLength = options.axis_columns.length;
-	var rowLength = options.axis_rows.length;
+	var colLength = data.axis_columns.length;
+	var rowLength = data.axis_rows.length;
 	var tupleIndex = 0;
 	// Make Row Header Labels
 	for(var row=0;row<rowLength;row++){
 		var newValueRow = [];
 		var newFormattedValueRow = [];
 		var rowHeader = "";
-		var rowAxisTuple = options.axis_rows[row];
+		var rowAxisTuple = data.axis_rows[row];
 		var sep = "";
 		for(var j=0;j<rowAxisTuple.length;j++){
 			if(rowAxisTuple[j] != -1){
-				rowHeader += sep + options.dimensions[j].members[rowAxisTuple[j]].text;
+				rowHeader += sep + data.dimensions[j].members[rowAxisTuple[j]].text;
 				sep = " ";
 			}
 		}
 		retObj.rowHeaders.push(rowHeader);		
 		for(var col=0;col<colLength;col++){
-			if(options.data && options.data.length > 0){
-				newValueRow.push(options.data[tupleIndex]);
+			if(data.data && data.data.length > 0){
+				newValueRow.push(data.data[tupleIndex]);
 			}
-			if(options.formattedData && options.formattedData.length > 0){
-				newFormattedValueRow.push(options.formattedData[tupleIndex]);
+			if(data.formattedData && data.formattedData.length > 0){
+				newFormattedValueRow.push(data.formattedData[tupleIndex]);
 			}
 			tupleIndex++;
 		}
@@ -412,15 +417,18 @@ org_scn_community_databound.flatten = function (options) {
 	// Make Column Header Labels
 	for(var col=0;col<colLength;col++){
 		var colHeader = "";
-		var colAxisTuple = options.axis_columns[col];
+		var colHeaderItem = [];
+		var colAxisTuple = data.axis_columns[col];
 		var sep = "";
 		for(var j=0;j<colAxisTuple.length;j++){
 			if(colAxisTuple[j] != -1){
-				colHeader += sep + options.dimensions[j].members[colAxisTuple[j]].text;
+				colHeader += sep + data.dimensions[j].members[colAxisTuple[j]].text;
+				colHeaderItem.push(data.dimensions[j].members[colAxisTuple[j]].text);
 				sep = " ";
 			}
 		}
 		retObj.columnHeaders.push(colHeader);
+		retObj.columnHeaders2D.push(colHeaderItem);
 	}
 	return retObj;
 };
