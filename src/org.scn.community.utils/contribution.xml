@@ -347,6 +347,27 @@
 </component>
 
 <component
+	id="ComponentHolder"
+	title="Component Holder"
+	tooltip="Allows holding and listing of components"
+	icon="res/ComponentHolder/ComponentHolder.png"
+	handlerType="sapui5"
+	group="ScnCommunityUtils"
+>
+
+	<jsInclude>res/ComponentHolder/ComponentHolder.js</jsInclude>
+		
+	<initialization>
+		<defaultValue property="WIDTH">auto</defaultValue>
+		<defaultValue property="HEIGHT">auto</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">0</defaultValue>
+	</initialization>
+
+</component>
+<component
 	id="FlowLayouter"
 	title="Flow Layouter"
 	icon="res/FlowLayouter/FlowLayouter.png"

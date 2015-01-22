@@ -13,6 +13,8 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\CheckBoxGroup\def\contribution.xml ^
 ..\res\ColorPicker\def\contribution.xml ^
 ..\res\DragDropArea\def\contribution.xml ^
+..\res\EmbeddedFrame\def\contribution.xml ^
+..\res\EmbeddedMedia\def\contribution.xml ^
 ..\res\FallbackPicture\def\contribution.xml ^
 ..\res\FioriAppHeader\def\contribution.xml ^
 ..\res\FioriButton\def\contribution.xml ^
@@ -26,6 +28,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\ListSelector\def\contribution.xml ^
 ..\res\MenuBar\def\contribution.xml ^
 ..\res\MenuButton\def\contribution.xml ^
+..\res\ModalBrowser\def\contribution.xml ^
 ..\res\NotificationBar\def\contribution.xml ^
 ..\res\Notify\def\contribution.xml ^
 ..\res\OSMap\def\contribution.xml ^
@@ -55,6 +58,8 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\CheckBoxGroup\def\contribution.ztl ^
 ..\res\ColorPicker\def\contribution.ztl ^
 ..\res\DragDropArea\def\contribution.ztl ^
+..\res\EmbeddedFrame\def\contribution.ztl ^
+..\res\EmbeddedMedia\def\contribution.ztl ^
 ..\res\FallbackPicture\def\contribution.ztl ^
 ..\res\FioriAppHeader\def\contribution.ztl ^
 ..\res\FioriButton\def\contribution.ztl ^
@@ -68,6 +73,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ListSelector\def\contribution.ztl ^
 ..\res\MenuBar\def\contribution.ztl ^
 ..\res\MenuButton\def\contribution.ztl ^
+..\res\ModalBrowser\def\contribution.ztl ^
 ..\res\NotificationBar\def\contribution.ztl ^
 ..\res\Notify\def\contribution.ztl ^
 ..\res\OSMap\def\contribution.ztl ^

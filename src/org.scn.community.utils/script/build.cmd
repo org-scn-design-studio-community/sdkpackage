@@ -8,6 +8,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Array\def\contribution.xml ^
 ..\res\ClientInformation\def\contribution.xml ^
 ..\res\Collection\def\contribution.xml ^
+..\res\ComponentHolder\def\contribution.xml ^
 ..\res\FlowLayouter\def\contribution.xml ^
 ..\res\CustomCssCollector\def\contribution.xml ^
 ..\res\OpenWindowPost\def\contribution.xml ^
@@ -23,6 +24,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\Array\def\contribution.ztl ^
 ..\res\ClientInformation\def\contribution.ztl ^
 ..\res\Collection\def\contribution.ztl ^
+..\res\ComponentHolder\def\contribution.ztl ^
 ..\res\CustomCssCollector\def\contribution.ztl ^
 ..\res\FlowLayouter\def\contribution.ztl ^
 ..\res\OpenWindowPost\def\contribution.ztl ^

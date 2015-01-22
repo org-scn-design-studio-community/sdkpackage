@@ -640,6 +640,40 @@ class org.scn.community.basics.DragDropArea extends Component {
 }
 
 /**
+ * Class for EmbeddedFrame
+ */
+class org.scn.community.basics.EmbeddedFrame extends Component {
+	
+	/** Sets the content url which will be embedded */
+	void setURL(
+		/** text */ String text) {*
+		this.url = url;	
+	*}
+	
+	/** Returns the content url */
+	String getURL() {*
+		return this.url;	
+	*}
+}
+
+/**
+ * Class for EmbeddedMedia
+ */
+class org.scn.community.basics.EmbeddedMedia extends Component {
+	
+	/** Sets the content url which will be embedded */
+	void setURL(
+		/** text */ String text) {*
+		this.url = url;	
+	*}
+	
+	/** Returns the content url */
+	String getURL() {*
+		return this.url;	
+	*}
+}
+
+/**
  * Class for FallbackPicture
  */
 class org.scn.community.basics.FallbackPicture extends Component {
@@ -1877,6 +1911,35 @@ class org.scn.community.basics.MenuButton extends Component {
 	/** returns the selected key */
 	String getSelectedKey () {*
 		return this.selectedKey;	
+	*}
+}
+
+/**
+ * Class for ModalBrowser
+ */
+class org.scn.community.basics.ModalBrowser extends Component {
+	
+	/**
+	Invoke Click event
+	*/
+	String click() {*
+		this.clickTrigger = Math.random();
+	*}
+	
+	/**
+	Sets URL
+	<example><code>BROWSERPOPUP_1.setURL("http://server.example.com/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=ABC123XYZ");</code></example>
+	<note>If opening a page in a Modal Browser Dialog, make sure that the page does not use a Frame Buster.</note>
+	*/
+	void setURL( /* URL */ String url){*
+		this.url = url;
+	*}
+	
+	/**
+	Gets URL
+	*/
+	String getURL() {*
+		return this.url;
 	*}
 }
 

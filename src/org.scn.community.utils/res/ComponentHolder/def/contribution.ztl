@@ -1,0 +1,57 @@
+/**
+ * Class for ComponentHolder
+ */
+class org.scn.community.utils.ComponentHolder extends Component {
+
+	Panel getAsPanel (String name) {*
+		var panel = eval(name);
+		return panel;
+	*}
+
+	String listComponents () {*
+		var output = "";
+		for (var key in this) {
+			output = output + key + ";";
+  			// var value = this[key];
+			if(key.indexOf("PANEL") > -1) {
+				output = output + "PANEL:" + key + ";";
+			}
+	  		// output = output + ";" + key + "=" + value;
+		}
+
+		output = output + "VAR: " + eval("this._VariableName") + ";";
+		output = output + "VAR: " + eval("this.get_VariableName()") + ";";
+		output = output + "VAR: " + eval("this.getOwner().getName()") + ";";
+		
+		return output;
+	*}
+	
+	String listComponentsWindow () {*
+		var output = "";
+		
+		if(this.getGlobal == undefined) {
+			this.getGlobal = function () {
+				return (function() {
+					return this;
+				}).call(null);
+			}
+		}
+
+		for (var key in this.getGlobal()) {
+			output = output + key + ";";
+		}
+		
+		return output;
+	*}
+}
+
+/**
+ * Singleton for ComponentHolderFactory
+ */
+//class ComponentHolderFactory extends Singleton {
+//
+//	org.scn.community.utils.ComponentHolder getHolder() {*
+//		this.holder = new n.community.utils.ComponentHolder();
+//		return holder;
+//	*};
+//}

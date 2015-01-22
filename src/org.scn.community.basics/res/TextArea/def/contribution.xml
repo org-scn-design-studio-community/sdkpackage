@@ -1,7 +1,7 @@
 
 <component
 	id="TextArea"
-	title="TextArea"
+	title="Text Area"
 	icon="res/TextArea/TextArea.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
