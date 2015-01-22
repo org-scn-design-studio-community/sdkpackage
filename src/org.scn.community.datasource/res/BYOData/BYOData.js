@@ -32,6 +32,7 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 	_mutators = [];
 	_mutateString = "";
 	_dataString = "";
+	_sortMethod = "NONE";
 	_kfIndex = 0;
 	_swap = false;
 	_simulateHierarchy = false;
@@ -41,6 +42,15 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 			return String(_kfIndex);
 		}else{
 			_kfIndex = parseInt(s);
+			this.recalculate();
+			return this;
+		}
+	};
+	this.sortMethod = function(s){
+		if(s===undefined){
+			return _sortMethod;
+		}else{
+			_sortMethod = s;
 			this.recalculate();
 			return this;
 		}
@@ -181,12 +191,45 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 				}
 			}
 		}
-		//alert(_kfIndex + "\n\n" + JSON.stringify(uniques));
+		var payload = [];
+		for(var item in uniques){
+			payload.push({
+				key : item,
+				value : uniques[item]
+			});
+		}
+		if(this.sortMethod()=="Alphanumeric Ascending"){
+			payload.sort(function(a,b){
+				var coordA = a.value.coordinate;
+				var coordB = b.value.coordinate;
+				var i=1;	// Skip sorting Measure Members
+				while(i<coordA.length){
+					if(coordA[i].toLowerCase() < coordB[i].toLowerCase()) return -1;
+					if(coordA[i].toLowerCase() > coordB[i].toLowerCase()) return 1;
+					if(coordA[i].toLowerCase() == coordB[i].toLowerCase()) i++;
+				}
+				return 0;
+			});
+		}
+		if(this.sortMethod()=="Alphanumeric Descending"){
+			payload.sort(function(a,b){
+				var coordA = a.value.coordinate;
+				var coordB = b.value.coordinate;
+				var i=1;	// Skip sorting Measure Members
+				while(i<coordA.length){
+					if(coordA[i].toLowerCase() < coordB[i].toLowerCase()) return 1;
+					if(coordA[i].toLowerCase() > coordB[i].toLowerCase()) return -1;
+					if(coordA[i].toLowerCase() == coordB[i].toLowerCase()) i++;
+				}
+				return 0;
+			});
+		}
 		/*
 		 * Step 2 - Send unique over
 		 */
-		for(var item in uniques){
-			this.setDataCell(uniques[item].coordinate,uniques[item].data);	
+		for(var i=0;i<payload.length;i++){
+			var item = payload[i];
+			this.setDataCell(item.value.coordinate,item.value.data);	
 		}
 		this.firePropertiesChanged(["metadata"]);
 		this.fireUpdate();

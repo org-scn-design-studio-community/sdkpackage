@@ -10,11 +10,15 @@
 	<property type="String" title="Mutators" id="mutators"/>
 	<property type="String" title="Number of Dimensions" id="kfIndex"/>
 	<property type="boolean" title="Measures in Rows" id="swap"/>
-	<property type="boolean" title="Simulate a Hierarchy" id="simulateHierarchy"/>
+	<property type="String" title="Sort Method" id="sortMethod">
+		<possibleValue>NONE</possibleValue>
+		<possibleValue>Alphanumeric Ascending</possibleValue>
+		<possibleValue>Alphanumeric Descending</possibleValue>
+	</property>
 	<initialization>
 		<defaultValue property="kfIndex">2</defaultValue>
 		<defaultValue property="swap">false</defaultValue>
-		<!-- <defaultValue property="simulateHierarchy">false</defaultValue>  -->
+		<defaultValue property="sortMethod">Alphanumeric Ascending</defaultValue>
 		<defaultValue property="data">Region,Year,Sales,Quantity|East,2011,100,5|West,2011,75,7</defaultValue>
 		<defaultValue property="mutators">[1,1,1]</defaultValue>
 	</initialization>

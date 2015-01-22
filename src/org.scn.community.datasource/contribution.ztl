@@ -22,11 +22,11 @@ class org.scn.community.datasource.BYOData extends SdkDataSource {
 	/**
 	 * Set a mutator for a measure by index (starting at 0)
 	 * <example>
-	* Set a mutator to increase the second measures's value by 25%
-	* <code>
-	* DS_1.setMutator(1, 1.25);<br>
-	* </code>
-	* </example>
+	 * Set a mutator to increase the second measures's value by 25%
+	 * <code>
+	 * DS_1.setMutator(1, 1.25);<br>
+	 * </code>
+	 * </example>
 	 */
 	void setMutator(/*Index*/ int index, /*Factor*/ float factor ){*
 		var m = eval(this.mutators);
@@ -35,6 +35,109 @@ class org.scn.community.datasource.BYOData extends SdkDataSource {
 		}
 		m[index] = factor;
 		this.mutators = JSON.stringify(m);
+	*}
+	/**
+	 * Sets title of Headers.
+	 * <example>
+	 * Set Headers 'Department','Product','Sales','Quantity'.
+	 * <code>
+	 * DS_1.setHeaders("Department,Product,Sales,Quantity");<br>
+	 * </code>
+	 * </example> 
+	 */
+	void setHeaders(/*Header Names*/String s){*
+		var d = this.data.split("\n");
+		d[0] = s;
+		this.data = d.join("\n");
+	*}
+	/**
+	 * Set number of columns that should be treated as dimensional.  Remaining columns are treated as Measures.
+	 */
+	void setDimensionCount(/*Number of Columns*/int i){*
+		this.kfIndex = i;
+	*}
+	/**
+	 * Gets number of columns that are Dimensions.
+	 */
+	int getDimensionCount(){*
+		return this.kfIndex;
+	*}
+	/**
+	 * Delete all data
+	 * <example>
+	 * <code>
+	 * DS_1.clear();<br>
+	 * </code>
+	 * </example> 
+	 */
+	void clear(){*
+		var d = this.data.split("\n");
+		d.splice(1,d.length-1);
+		this.data = d.join("\n");
+	*}
+	/**
+	 * Delete a Row by a given Dimension Key.
+	 * <example>
+	 * Delete a row with 2 Dimensions Values of 'Grocery' and 'Juice'
+	 * <code>
+	 * DS_1.deleteRow("Grocery,Juice");<br>
+	 * </code>
+	 * </example> 
+	 */
+	void deleteRow(/*Dimensions*/String dimensions){*
+		var dims = balanceDimension(dimensions);
+		var match = 0;
+		var rows = this.data.split("\n");
+		while(match>-1){
+			match = -1;
+			for(var i=0;i<rows.length;i++){
+				var row = rows[i].split(",");
+				var key = [];
+				for(var j=0;j<this.kfIndex;j++){
+					key.push(row[j]);
+				}
+				var hash = key.join(",");
+				if(hash==dims) match = i;
+			}
+			if(match>-1) rows.splice(match,1);
+		}
+		this.data = rows.join("\n");
+	*}
+	/**
+	 * Balance a Dimension Selection
+	 */
+	String balanceDimension(/*Dimensions*/String dimensions){*
+		var dims = dimensions.split(",");
+		while(dims.length>this.kfIndex){
+			dims.splice(dims.length-1,1);
+		}
+		while(dims.length<kfIndex){
+			dims.push("#");
+		}
+		for(var i=0;i<dims.length;i++){
+			if(dims[i]=="") dims[i]=="#";
+		}
+		return dims.join(",");
+	*}
+	/**
+	 * Add or Replace a Row by a given Dimension Key
+	 * <example>
+	 * Add a row with 2 Dimensions and 2 Measures
+	 * <code>
+	 * DS_1.addRow("Grocery,Juice", "100,1.25");<br>
+	 * </code>
+	 * </example> 
+	 */
+	void addRow(/*Dimensions*/ String dimensions, /*Measures*/ String measures, /*Overwrite*/ optional boolean overwrite){*
+		if(overwrite) deleteRow(dimensions);
+		var dims = balanceDimension(dimensions).split(",");
+		var kfs = measures.split(",");
+		var rows = this.data.split("\n");
+		var columnCount = 0;
+		var newRow = dims.join(",") + "," + kfs.join(",");
+		rows.push(newRow);
+		var newRows = rows.join("\n");
+		this.data = newRows;
 	*}
 }class org.scn.community.datasource.DynCsvDataSource extends SdkDataBuffer {
 	// empty
