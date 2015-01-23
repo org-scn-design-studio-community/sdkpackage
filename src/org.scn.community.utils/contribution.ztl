@@ -1463,7 +1463,10 @@ class org.scn.community.utils.ComponentManager extends Component {
 		return allComponents;
 	*}
 	
-	/**Internal function to read return global scope*/
+	/**
+	 * Internal function to read return global scope
+	 * http://stackoverflow.com/questions/1162998/how-can-i-add-an-object-property-to-the-global-object-in-rhino-javascript 
+	 */
 	void internal_assureGlobalAccess () {*
 		if(this.getGlobal == undefined) {
 			this.getGlobal = function () {
@@ -1611,6 +1614,9 @@ class org.scn.community.utils.ComponentManager extends Component {
 
 	/**Cast to Validated Input Field component*/
 	org.scn.community.basics.ValiInput returnAsScnValiInput (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to D3 Hierarchy component*/
+	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Table component*/
 	org.scn.community.databound.Table returnAsScnTable (Component inputComponent) {* return inputComponent; *}

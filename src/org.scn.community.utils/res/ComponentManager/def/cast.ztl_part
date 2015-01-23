@@ -109,6 +109,9 @@
 	/**Cast to Validated Input Field component*/
 	org.scn.community.basics.ValiInput returnAsScnValiInput (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to D3 Hierarchy component*/
+	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Table component*/
 	org.scn.community.databound.Table returnAsScnTable (Component inputComponent) {* return inputComponent; *}
 

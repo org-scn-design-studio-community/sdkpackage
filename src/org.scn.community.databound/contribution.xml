@@ -409,6 +409,84 @@
 
 </component>
 <component
+		id="jpd3hier"
+		title="D3 Hierarchy"
+		icon="res/D3Hier/jplogo.png"
+		handlerType="div"
+		propertySheetPath="res/D3Hier/aps/aps_d3hier.html"
+		tooltip="Includes D3 Hierarchy"
+		group="ScnCommunityDataBound"
+		databound="true">
+		<stdInclude kind="d3"/>
+		<jsInclude>res/D3Hier/d3hier_component.js</jsInclude>
+		<cssInclude>res/D3Hier/d3hier_component.css</cssInclude>
+		
+		<!-- Resultset Entries -->
+		<property id="rsltSet" type="ResultSet" title="JSON Object that contains the metadata that is assigned with the Datasource" visible="false" group="DataBinding"></property>
+		
+		<!-- Boolean parameters -->
+		<property id="useDummyData" type="boolean" title="useDummyData - Use Dummy Data when no DataSource" visible="false"></property>
+		<property id="showText" type="boolean" title="showText - Should the text of the single bubbles be shown."></property>
+		<property id="showWarnings" type="boolean" title="showWarnings - Should warnings get shown"></property>
+		<property id="showRootBubble" type="boolean" title="showRootBubble - Defines if the default first bubble should get shown"></property>
+		<property id="alerterUsePercentage" type="boolean" title="alerterUsePercentage - Should percentages be used or real values"></property>
+		<property id="alerterHighValuesAreGood" type="boolean" title="alerterHighValuesAreGood - High values use color green and low values red if set to true"></property>
+		
+		<!-- String parameters -->
+		<property id="dimHierarchy" type="String" title="dimHierarchy - Which dimension contains the hierarchy" visible="false"></property>
+		<property id="kfBubbleSize" type="String" title="kfBubbleSize - Which keyfigure should get used for size of bubbles" visible="false"></property>
+		<property id="selectedNode" type="String" title="selectedNode - Returns an JSON Object of the selected node" visible="false"></property>
+		<!-- property id="kfBubbleCol" type="String" title="kfBubbleCol - Which keyfigure should get used for the alerter colors of bubbles" visible="true"></property -->
+		<property id="kfColBub" type="String" title="kfColBub - Which keyfigure should get used for the alerter of bubbles" visible="false"></property>
+		<property id="whichTextShown" type="String" title="whichTextShown - possible values are value, value_text, text_value, text" visible="true"></property>
+
+		<!-- integer parameters -->
+		<property id="BubbleSizeMaxSize" type="int" title="BubbleSizeMaxSize - What size in pixels should the startpoint have" ></property>
+		<property id="BubbleRootXTranslation" type="int" title="BubbleRootXTranslation - What translation should the root have from the default position. positive means right, negative means left translation" ></property>
+		<property id="BubbleSizeBoderSize" type="int" title="BubbleSizeBoderSize - What size should the border of a bubble have. Possible values are 1 to 15" ></property>
+		<property id="AlerterColorGreenVal" type="int" title="AlerterColorGreenVal - What percentage or real value should good values have - value has to be higher than Yellow" ></property>
+		<property id="AlerterColorYellowVal" type="int" title="AlerterColorYellowVal - What percentage or real value should medium values have - all lower values are red" ></property>
+		<!-- property id="AlerterColorRedVal" type="int" title="AlerterColorRedVal - What percentage or real value should bad values have" ></property -->
+		
+		
+		<!-- color parameters -->
+		<property id="alertColorRed" title="alertColorRed - Alert Red Color" type="Color" group="Display" ></property>
+		<property id="alertColorYellow" title="alertColorYellow - Alert Yellow Color" type="Color" group="Display" ></property>
+		<property id="alertColorGreen" title="alertColorGreen - Alert Green Color" type="Color" group="Display" ></property>
+		
+		<!-- events -->
+		<property id="onclick" title="On Click" type="ScriptText" group="Events" ></property>
+		<property id="onHExpand" title="On Hierarchy expand" type="ScriptText" group="Events" visible="true" ></property>
+		<property id="onHCollapse" title="On Hierarchy collapse" type="ScriptText" group="Events" visible="true" ></property>
+		<property id="onHExpandInv" title="onHExpandInv" type="ScriptText" group="Events" visible="false" ></property>
+		<property id="onHCollapseInv" title="onHCollapseInv" type="ScriptText" group="Events" visible="false" ></property>
+		
+		<initialization>
+			<defaultValue property="WIDTH">100</defaultValue>
+			<defaultValue property="HEIGHT">100</defaultValue>
+			<defaultValue property="useDummyData">false</defaultValue>
+			<defaultValue property="BubbleSizeMaxSize">12</defaultValue>
+			<defaultValue property="BubbleRootXTranslation">0</defaultValue>
+			<defaultValue property="selectedNode">InitialNode</defaultValue>
+			<defaultValue property="onHExpandInv">this.expandHierarchyNodes();</defaultValue>
+			<defaultValue property="onHCollapseInv">this.collapseHierarchyNodes();</defaultValue>
+			<defaultValue property="showText">true</defaultValue>
+			<defaultValue property="showWarnings">true</defaultValue>
+			<defaultValue property="showRootBubble">true</defaultValue>
+			<defaultValue property="whichTextShown">text_value</defaultValue>
+			<defaultValue property="alertColorRed">red</defaultValue>
+			<defaultValue property="alertColorYellow">yellow</defaultValue>
+			<defaultValue property="alertColorGreen">green</defaultValue>
+			<defaultValue property="BubbleSizeBoderSize">3</defaultValue>
+			<defaultValue property="alerterUsePercentage">true</defaultValue>
+			<defaultValue property="alerterHighValuesAreGood">true</defaultValue>
+			<defaultValue property="AlerterColorGreenVal">30</defaultValue>
+			<defaultValue property="AlerterColorYellowVal">10</defaultValue>
+			<!-- defaultValue property="AlerterColorRedVal">2</defaultValue-->
+		</initialization>
+	</component>
+	
+<component
 	id="LeaderBoard"
 	title="Data Leader Board"
 	icon="res/LeaderBoard/LeaderBoard.png"

@@ -229,11 +229,11 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.FishEye", 
 	},
 
 	_fGetStartSize : function() {
-		return this.oComponentProperties.height * 0.7;
+		return this.$().outerHeight() * 0.7;
 	},
 	
 	_fGetEndSize : function() {
-		return this.oComponentProperties.height * 1.0;
+		return this.$().outerHeight() * 1.0;
 	},
 
 	_fGetAnimationSteps : function() {
@@ -247,11 +247,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.FishEye", 
 		var that = this;
 		
 		text.setVisible(false);
-		
-		lCcontentPanel.setWidth(this._fGetStartSize()+"px");
-		lCcontentPanel.setHeight(this._fGetStartSize()+"px");
-		
-		if (!lCcontentPanel.currentWidth) lCcontentPanel.currentWidth = that._fGetStartSize();
 
 		var fOnCompleteOut = function () {
 			var contentPanelExistingArray = that._lLayout.getContent();
@@ -282,7 +277,12 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.FishEye", 
 		lCcontentPanel.onAfterRendering = function () {
 			var jqThis = lCcontentPanel.$();
 			jqThis.hover(fOnOver, fOnOut);
+
+			lCcontentPanel.setWidth(that._fGetStartSize()+"px");
+			lCcontentPanel.setHeight(that._fGetStartSize()+"px");
 			
+			if (!lCcontentPanel.currentWidth) lCcontentPanel.currentWidth = that._fGetStartSize();
+
 			// image.attachBrowserEvent('hoover', fOnOver, fOnOut);
 			// image.attachBrowserEvent('mouseover', fOnOver);
 			// image.attachBrowserEvent('mouseout', fOnOut);
