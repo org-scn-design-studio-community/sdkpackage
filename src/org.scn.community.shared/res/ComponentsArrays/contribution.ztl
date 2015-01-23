@@ -1,0 +1,53 @@
+
+/**
+	Array Holder for Component, Name and Type
+ */
+class org.scn.community.shared.ComponentHolder {
+	  Component component;
+	  String name;
+	  String type;
+}
+
+/**
+	Array for Components
+	<br>
+	var panels = COMPONENTHOLDER.getPanels();<br>
+	<br>
+	// a loop for all entries<br>
+	// content is of type Component<br>
+	panels.forEach(function(element, index) {<br>
+	
+		// panel is of type Component<br>
+		var componentWidth = element.getWidth();<br>
+	});
+ */
+class org.scn.community.shared.ComponentArray extends Array {
+	org.scn.community.shared.ComponentArray (org.scn.community.shared.ComponentHolder h);
+}
+
+
+/**
+	Array Holder for DataSourceAlias, Name and Type
+ */
+class org.scn.community.shared.DataSourceHolder {
+	  DataSourceAlias datasource;
+	  String name;
+	  String type;
+}
+
+/**
+	Array for DataSourceAlias
+	<br>
+	var panels = COMPONENTHOLDER.getPanels();<br>
+	<br>
+	// a loop for all entries<br>
+	// content is of type DataSourceAlias<br>
+	panels.forEach(function(element, index) {<br>
+	
+		// panel is of type DataSourceAlias<br>
+		var componentWidth = element.getWidth();<br>
+	});
+ */
+class org.scn.community.shared.DataSourceArray extends Array {
+	org.scn.community.shared.DataSourceArray (org.scn.community.shared.DataSourceHolder h);
+}

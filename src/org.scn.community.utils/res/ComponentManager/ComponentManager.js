@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
 
-sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ComponentHolder", {
+sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ComponentManager", {
 
 	metadata: {
         properties: {

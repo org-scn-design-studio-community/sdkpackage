@@ -47,6 +47,7 @@ public class Main {
 		targetFolder = targetFolder + "/" + "components";
 
 		String templateList = Helpers.resource2String(Main.class, "list.html");
+		String castString = "";
 
 		for (Object element : allContributionXmls) {
 			File contrXml = (File) element;
@@ -68,7 +69,13 @@ public class Main {
 			templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%", templateCopy + "\r\n" + " %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%");
 
 			Helpers.string2File(iFileName, component.toHtml());
+
+			String castStringFromComponent = component.toCastString();
+			castString = castString + castStringFromComponent + "\r\n";
 		}
+
+		// C:\DEV\community.sdkpackage\src\org.scn.community.utils\res\ComponentManager\def\contribution.ztl
+		Helpers.string2File(mainSrcFolder.getAbsolutePath() + "\\org.scn.community.utils\\res\\ComponentManager\\def\\" + "cast.ztl_part", castString);
 
 		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_BASICS%", "");
 		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_DATABOUND%", "");

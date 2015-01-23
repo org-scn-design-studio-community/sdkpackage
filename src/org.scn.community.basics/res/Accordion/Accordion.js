@@ -207,8 +207,8 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.Accordion"
 			var lElement = this._oElements[lElementKey];
 			if(lElement._childrenRequested) {
 				var elements = lElement.getContent();
-				lElement.removeContent(elements[0]);
-				elements[0].destroy();
+				// lElement.removeContent(elements[0]);
+				// elements[0].destroy();
 				
 				lElement._childrenRequested = false;
 			}
@@ -220,8 +220,8 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.Accordion"
 			if(lElement) {
 				if(lElement._childrenRequested == undefined) {
 					var elements = lElement.getContent();
-					lElement.removeContent(elements[0]);
-					elements[0].destroy();
+					// lElement.removeContent(elements[0]);
+					// elements[0].destroy();
 					
 					lElement._childrenRequested = false;
 				}
@@ -263,15 +263,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.Accordion"
 		
 		lElement._Key = iElementKey;
 		lElement._ParentKey = iParentKey;
-		
-		if(!isLeaf) {
-			var oLoadingElement = new sap.ui.commons.Label( 
-					{text: "loading..."});
-			
-			lElement.addContent(oLoadingElement);
-		} else {
-			
-		}
 		
 		return lElement;
 	},

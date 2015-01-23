@@ -31,8 +31,13 @@ public class Component {
 
 	private final String customHtmlContent;
 
+	private String fullName;
+
+	private final File contributionXml;
+
 	@SuppressWarnings("null")
 	Component(File contributionXml) {
+		this.contributionXml = contributionXml;
 		// System.out.println("Parsing: " + contributionXml.getAbsolutePath());
 		this.properties = new ArrayList<Property>();
 
@@ -132,6 +137,13 @@ public class Component {
 
 		this.handlerType = reader.getAttributeValue("", "handlerType");
 
+		// read package from file
+		int srcI = this.contributionXml.getAbsolutePath().indexOf("src");
+		int resI = this.contributionXml.getAbsolutePath().indexOf("res");
+
+		String packageName = this.contributionXml.getAbsolutePath().substring(srcI + 4, resI - 1);
+		this.fullName = packageName + "." + this.name;
+
 		if (this.handlerType.equals("datasource")) {
 			this.group = this.handlerType;
 		}
@@ -205,5 +217,11 @@ public class Component {
 		template = template.replace("%CUSTOM_HTML%", this.customHtmlContent);
 
 		return template; //replace(this.getClass().getResource("component.html").openStream().);
+	}
+
+	public String toCastString() {
+		String output = "\t/**Cast to " + this.title + " component*/\r\n";
+		output = output + "\t" + this.fullName + " returnAsScn" + this.name + " (Component inputComponent) {* return inputComponent; *}\r\n";
+		return output;
 	}
 }
