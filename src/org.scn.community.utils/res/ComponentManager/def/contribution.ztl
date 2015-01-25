@@ -100,8 +100,11 @@ class org.scn.community.utils.ComponentManager extends Component {
 		for (var i = 0; i < componentsJson[group].length ; i++){
 			var componentHolder = {};
 			componentHolder.name = componentsJson[group][i]	;
-			componentHolder.type = "-N/A-";
-			componentHolder.component = undefined;
+			
+			var component = this.getComponentByName(componentHolder.name);
+			componentHolder.type = this.identifyType(something);
+			componentHolder.component = component;
+			
 			allComponents.push(componentHolder);	
 		}
 		
@@ -127,7 +130,32 @@ class org.scn.community.utils.ComponentManager extends Component {
 		var component = eval(name);
 		return component;
 	*}
-
+	
+	/**
+	 * If you want to check if the component with name exists
+	 * <example>
+	 * You want to check existance of a component with name "BUTTON_43"
+	 * <code>
+	 *  var exists = COMPONENTMANAGER_1.existsComponentByName("BUTTON_43");
+	 *	
+	 *  if (exists) {
+	 *    ...
+	 *  }
+	 * <code>
+	 * </example>
+	 */
+	boolean existsComponentByName (String name) {*
+		
+		this.internal_assureGlobalAccess();
+		
+		for (var key in this.getGlobal()) {
+			if( key == name ) {
+				return true;
+			}
+		}
+		return false;
+	*}
+	
 	/**
 	 * If you know the name of the data source, you can request the object
 	 * <example>
@@ -145,6 +173,31 @@ class org.scn.community.utils.ComponentManager extends Component {
 		return component;
 	*}
 
+	/**
+	 * If you want to check if the data source with name exists
+	 * <example>
+	 * You want to check existence of a data source with name "DS_1"
+	 * <code>
+	 *  var exists = COMPONENTMANAGER_1.existsDataSourceByName("DS_1");
+	 *	
+	 *  if (exists) {
+	 *    ...
+	 *  }
+	 * <code>
+	 * </example>
+	 */
+	boolean existsDataSourceByName (String name) {*
+		
+		this.internal_assureGlobalAccess();
+
+		for (var key in this.getGlobal()) {
+			if( key == name ) {
+				return true;
+			}
+		}
+		return false;
+	*}
+	
 	/**
 	 * can list all components in the application by optional prefix and suffix
 	 * <example>
@@ -202,11 +255,13 @@ class org.scn.community.utils.ComponentManager extends Component {
 				}
 				
 				try {
-					var componentHolder = {};
-					componentHolder.name = key;
-					componentHolder.type = "-N/A-";
-					componentHolder.component = something;
 					if(something.getWidth != undefined) {
+						var componentHolder = {};
+
+						componentHolder.name = key;
+						componentHolder.type = this.identifyType(something);
+						componentHolder.component = something;
+						
 						allComponents.push(componentHolder);	
 					}
 				} catch (e) {}
@@ -263,11 +318,13 @@ class org.scn.community.utils.ComponentManager extends Component {
 				}
 				
 				try {
-					var componentHolder = {};
-					componentHolder.name = key;
-					componentHolder.type = "-N/A-";
-					componentHolder.component = something;
 					if(something.assignDataSource != undefined) {
+						var componentHolder = {};
+						
+						componentHolder.name = key;
+						componentHolder.type = "DATA_SOURCE";
+						componentHolder.component = something;
+					
 						allComponents.push(componentHolder);	
 					}
 				} catch (e) {}
@@ -331,7 +388,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 					if (key.indexOf(componentType) > -1) {
 						var componentHolder = {};
 						componentHolder.name = key;
-						componentHolder.type = componentType;
+						componentHolder.type = this.identifyType(something);
 						componentHolder.component = something;
 						
 						// check if the object contains getWidth method -> seems to be component
@@ -345,6 +402,34 @@ class org.scn.community.utils.ComponentManager extends Component {
 		
 		return allComponents;
 	*}
+	
+	/**
+	 * Identify Component Type. Returns the type for this component.
+	 * 
+	 */
+	String identifyType (Component inputComponent) {*
+		
+		this.internal_assureGlobalAccess();
+	  	
+		var type = "UNKNOWN";
+		
+		
+		if(inputComponent.getOwner){
+			
+			var owner = inputComponent.getOwner();
+			
+			if(owner.getItemType) {
+				type = owner.getItemType();
+				APPLICATION.createInfoMessage("Comp: " + type);
+			}
+		}
+		
+		if(type.indexOf("_COMPONENT") > -1) {
+			type = type.substring(0, type.indexOf("_COMPONENT"));
+		}
+		
+		return type;
+	  *}
 	
 	/**
 	 * Internal function to read return global scope
