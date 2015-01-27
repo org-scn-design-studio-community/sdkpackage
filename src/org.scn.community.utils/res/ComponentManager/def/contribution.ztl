@@ -12,11 +12,11 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 * <code>
 	 * COMPONENTMANAGER_1.addDataSourceToGroup("SALES", "DS_SALE_1");
 	 * COMPONENTMANAGER_1.addDataSourceToGroup("SALES", "DS_SALE_PRE");
-	 * <code>
+	 * </code>
 	 * </example>
 	 * Now, you can process with the method "getDataSourcesFromGroup"
 	 */
-	void addDataSOurceToGroup (String group, String dataSourceName) {*
+	void addDataSourceToGroup (String group, String dataSourceName) {*
 		this.addComponentToGroup(group, dataSourceName);
 	*}
 	
@@ -29,7 +29,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 * COMPONENTMANAGER_1.addComponentToGroup("ACCEPT_BUTTONS", "SALES_BUTTON_ACCEPT");
 	 * COMPONENTMANAGER_1.addComponentToGroup("ACCEPT_BUTTONS", "REVENUE_BUTTON_ACCEPT");
 	 * COMPONENTMANAGER_1.addComponentToGroup("ACCEPT_BUTTONS", "ANOTHER_BUTTON_ACCEPT");
-	 * <code>
+	 * </code>
 	 * </example>
 	 * Now, you can process with the method "getComponentsFromGroup"
 	 */
@@ -60,7 +60,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 *	  
 	 *	  ds.copyFilters(DS_1);
 	 *	});
-	 * <code>
+	 * </code>
 	 * </example>
 	 * Now, you have replicated the filters in dynamic way
 	 */
@@ -85,7 +85,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 *
 	 *	  button.setText("Accept Now");
 	 *	});
-	 * <code>
+	 * </code>
 	 * </example>
 	 * Now, you have changed the text of all components in this group in dynamic way
 	 */
@@ -123,7 +123,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 *	
 	 *	// now you can change some properties
 	 *	button.setText("Accept Now");
-	 * <code>
+	 * </code>
 	 * </example>
 	 */
 	Component getComponentByName (String name) {*
@@ -141,7 +141,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 *  if (exists) {
 	 *    ...
 	 *  }
-	 * <code>
+	 * </code>
 	 * </example>
 	 */
 	boolean existsComponentByName (String name) {*
@@ -165,7 +165,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 * 
 	 *	// now you can change some properties
 	 *	ds.setFilter(...);
-	 * <code>
+	 * </code>
 	 * </example>
 	 */
 	DataSourceAlias getDataSourceByName (String name) {*
@@ -183,7 +183,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 *  if (exists) {
 	 *    ...
 	 *  }
-	 * <code>
+	 * </code>
 	 * </example>
 	 */
 	boolean existsDataSourceByName (String name) {*
@@ -221,7 +221,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 *	    crosstab.setWidth(600);
 	 *    }
 	 *	});
-	 * <code>
+	 * </code>
 	 * </example>
 	 */
 	org.scn.community.shared.ComponentArray listAllComponents (optional String prefix, optional String suffix) {*
@@ -284,7 +284,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 *
 	 *	  datasource.setFilter(...);
 	 *	});
-	 * <code>
+	 * </code>
 	 * </example>
 	 */
 	org.scn.community.shared.DataSourceArray listAllDataSources (optional String prefix, optional String suffix) {*
@@ -350,7 +350,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 *
 	 *	  button.setText("Accept Now");
 	 *	});
-	 * <code>
+	 * </code>
 	 * </example>
 	 */
 	org.scn.community.shared.ComponentArray listAllComponentsWithType (String componentType, optional String prefix, optional String suffix) {*
