@@ -102,14 +102,19 @@ sap.m.Page.extend("org.scn.community.basics.FioriAppHeader", {
 								text : item.text,
 							    icon : item.icon
 							});
-							actionButton.attachBrowserEvent("click",function(it,section){
+							// Event Handler definition
+							var clickHandler = function(it,section){
 								return function(oControlEvent){
 									this._selectedItem = it.key;
 									this._selectedHeader = section.key;
 									this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem"]);
 									this.fireDesignStudioEvent("onitemselect");
 								};
-							}(item,this._itemConfig[index]),this);
+							}(item,this._itemConfig[index]);
+							// Desktop Support
+							actionButton.attachBrowserEvent("click",clickHandler,this);
+							// Mobile Support
+							actionButton.attachPress(clickHandler,this);
 							actionSheet.addButton(actionButton);
 						}
 						actionSheet.openBy(this.getHeaderContent()[index]);

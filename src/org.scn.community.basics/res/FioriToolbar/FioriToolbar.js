@@ -104,7 +104,8 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 				}),this);
 
 			}else{	// Action Sheet
-				b.attachBrowserEvent("click",function(index){
+				// Event Handler definition
+				var clickHandler = function(index){
 					return function(oControlEvent){
 						var items = this._itemConfig[index].items;
 						var actionSheet = new sap.m.ActionSheet({
@@ -131,7 +132,11 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 						}
 						actionSheet.openBy(this.getContent()[index]);
 					};
-				}(i),this);
+				}(i);
+				// Desktop Support
+				b.attachBrowserEvent("click",clickHandler,this);
+				// Mobile Support
+				b.attachPress(clickHandler,this);
 			}
 		}
 	},

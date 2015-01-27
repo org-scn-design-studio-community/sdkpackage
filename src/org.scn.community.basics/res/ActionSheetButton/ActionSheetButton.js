@@ -113,11 +113,15 @@ sap.m.Button.extend("org.scn.community.basics.ActionSheetButton", {
 			    //type : sap.m.ListType.Active,
 			    icon : item.icon
 			});
-			actionButton.attachBrowserEvent("click",
-			function(o){return function(oControlEvent){this.listSelect(o,oControlEvent);};}({
+			// Event Handler
+			var clickHandler = function(o){return function(oControlEvent){this.listSelect(o,oControlEvent);};}({
 				key : item.key,
 				text : item.text
-			}),this);
+			});
+			// Desktop Support
+			actionButton.attachBrowserEvent("click",clickHandler,this);
+			// Mobile Support
+			actionButton.attachPress(clickHandler,this);
 			this._popover.addButton(actionButton);
 		};
 		this._popover.openBy(this);
