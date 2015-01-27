@@ -118,7 +118,8 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 								text : item.text,
 							    icon : item.icon
 							});
-							actionButton.attachBrowserEvent("click",function(it,section){
+							// Action Item Handler
+							var actionHandler = function(it,section){
 								return function(oControlEvent){
 									this._selectedItem = it.text;
 									this._selectedItemKey = it.key;
@@ -127,7 +128,11 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 									this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem","selectedHeaderKey","selectedItemKey"]);
 									this.fireDesignStudioEvent("onitemselect");
 								};
-							}(item,this._itemConfig[index]),this);
+							}(item,this._itemConfig[index]);
+							// Desktop Support
+							actionButton.attachBrowserEvent("click",actionHandler,this);
+							// Mobile Support
+							actionButton.attachPress(actionHandler,this);
 							actionSheet.addButton(actionButton);
 						}
 						actionSheet.openBy(this.getContent()[index]);
