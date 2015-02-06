@@ -94,7 +94,7 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 			return d.join("\n");
 		}else{
 			_data = [];
-			_dataString = s.replace(/\|/g,"\n");
+			_dataString = s.replace(/\~|~/g,"\n");
 			var sd = _dataString.split("\n");
 			for(var i=0;i<sd.length;i++){
 				_data.push(sd[i].split(","));

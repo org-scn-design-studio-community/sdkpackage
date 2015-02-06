@@ -1,3 +1,6 @@
 class org.scn.community.databound.Table2D extends Component {
-
+	/** returns the data */
+	String getStringData () {*
+		return this.stringData;	
+	*}
 }

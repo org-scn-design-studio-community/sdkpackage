@@ -114,10 +114,14 @@ sap.m.Button.extend("org.scn.community.basics.ActionSheetButton", {
 			    icon : item.icon
 			});
 			// Event Handler
-			var clickHandler = function(o){return function(oControlEvent){this.listSelect(o,oControlEvent);};}({
-				key : item.key,
-				text : item.text
-			});
+			var clickHandler = function(o,as){
+				return function(oControlEvent){
+					as.close();
+					this.listSelect(o,oControlEvent);};
+				}({
+					key : item.key,
+					text : item.text
+				},this._popover);
 			// Desktop Support
 			actionButton.attachBrowserEvent("click",clickHandler,this);
 			// Mobile Support

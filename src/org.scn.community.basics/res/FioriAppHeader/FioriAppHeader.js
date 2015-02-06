@@ -103,14 +103,15 @@ sap.m.Page.extend("org.scn.community.basics.FioriAppHeader", {
 							    icon : item.icon
 							});
 							// Event Handler definition
-							var clickHandler = function(it,section){
+							var clickHandler = function(it,section,as){
 								return function(oControlEvent){
 									this._selectedItem = it.key;
 									this._selectedHeader = section.key;
+									as.close();
 									this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem"]);
 									this.fireDesignStudioEvent("onitemselect");
 								};
-							}(item,this._itemConfig[index]);
+							}(item,this._itemConfig[index],actionSheet);
 							// Desktop Support
 							actionButton.attachBrowserEvent("click",clickHandler,this);
 							// Mobile Support

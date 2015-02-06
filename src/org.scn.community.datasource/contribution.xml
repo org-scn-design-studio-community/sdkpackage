@@ -207,7 +207,7 @@
 		<defaultValue property="kfIndex">2</defaultValue>
 		<defaultValue property="swap">false</defaultValue>
 		<defaultValue property="sortMethod">Alphanumeric Ascending</defaultValue>
-		<defaultValue property="data">Region,Year,Sales,Quantity|East,2011,100,5|West,2011,75,7</defaultValue>
+		<defaultValue property="data">Region,Year,Sales,Quantity~|~East,2011,100,5~|~West,2011,75,7</defaultValue>
 		<defaultValue property="mutators">[1,1,1]</defaultValue>
 	</initialization>
 </component><component

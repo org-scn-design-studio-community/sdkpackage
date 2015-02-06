@@ -719,6 +719,37 @@
 </component>
 
 <component
+		id="Projector"
+		title="Data Projector"
+		icon="res/Projector/Projector.png"
+		handlerType="div"
+		propertySheetPath="res/Projector/aps/Projector.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<stdInclude kind="d3"/>
+	<jsInclude>res/common.js</jsInclude>
+	<jsInclude>res/Projector/Projector.js</jsInclude>
+	<cssInclude>res/Projector/Projector.css</cssInclude>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="false"/>
+	</property>
+	<property id="projectDimension" title="Dimension to Project" type="String"/>
+	<property id="projectionMethod" title="Projection Method" type="String"/>
+	<property id="projectedData" title="Projected Data" type="String"/>
+	<initialization>
+		<defaultValue property="projectDimension"></defaultValue>
+		<defaultValue property="projectionMethod">SUM</defaultValue>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+	</initialization>
+</component>
+<component
 	id="RangeSlider"
 	title="Data Range Slider"
 	icon="res/RangeSlider/RangeSlider.png"
@@ -962,6 +993,8 @@
 	<jsInclude>res/common.js</jsInclude>
 	<jsInclude>res/Table2D/Table2D.js</jsInclude>
 	<cssInclude>res/Table2D/Table2D.css</cssInclude>
+	<property id="concatenateDimensions" type="boolean" title = "Concatenate Dimensions"/>
+	<property id="stringData" type="String" title = "Data Stringified" visible="false"/>
 	<property
 		id="data"
 		title="Data Selection"
@@ -976,6 +1009,7 @@
 		type="ScriptText"
 		group="Events"/>
 	<initialization>
+		<defaultValue property="stringData">BLANK</defaultValue>
 		<defaultValue property="WIDTH">150</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
 	</initialization>

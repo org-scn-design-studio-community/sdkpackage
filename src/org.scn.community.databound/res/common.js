@@ -367,6 +367,7 @@ org_scn_community_databound.getFormattedValue = function (value) {
  * 		"columnHeaders" : [1D Array of Header Labels]
  * 		"columnHeaders2D" : [2D Array of Header Labels]
  * 		"rowHeaders" : [1D Array of Row Headers]
+ *  	"rowHeaders2D" : [2D Array of Row Headers]
  * 		"values" : [2D Array of Measures] 
  *
  * }
@@ -376,6 +377,7 @@ org_scn_community_databound.flatten = function (data, options) {
 		columnHeaders : [],
 		columnHeaders2D : [],
 		rowHeaders : [],
+		rowHeaders2D : [],
 		values : [],
 		formattedValues : []
 	};
@@ -393,15 +395,18 @@ org_scn_community_databound.flatten = function (data, options) {
 		var newValueRow = [];
 		var newFormattedValueRow = [];
 		var rowHeader = "";
+		var rowHeader2D = [];
 		var rowAxisTuple = data.axis_rows[row];
 		var sep = "";
 		for(var j=0;j<rowAxisTuple.length;j++){
 			if(rowAxisTuple[j] != -1){
 				rowHeader += sep + data.dimensions[j].members[rowAxisTuple[j]].text;
+				rowHeader2D.push(data.dimensions[j].members[rowAxisTuple[j]].text);
 				sep = " ";
 			}
 		}
-		retObj.rowHeaders.push(rowHeader);		
+		retObj.rowHeaders.push(rowHeader);
+		retObj.rowHeaders2D.push(rowHeader2D);
 		for(var col=0;col<colLength;col++){
 			if(data.data && data.data.length > 0){
 				newValueRow.push(data.data[tupleIndex]);
@@ -417,18 +422,18 @@ org_scn_community_databound.flatten = function (data, options) {
 	// Make Column Header Labels
 	for(var col=0;col<colLength;col++){
 		var colHeader = "";
-		var colHeaderItem = [];
+		var colHeader2D = [];
 		var colAxisTuple = data.axis_columns[col];
 		var sep = "";
 		for(var j=0;j<colAxisTuple.length;j++){
 			if(colAxisTuple[j] != -1){
 				colHeader += sep + data.dimensions[j].members[colAxisTuple[j]].text;
-				colHeaderItem.push(data.dimensions[j].members[colAxisTuple[j]].text);
+				colHeader2D.push(data.dimensions[j].members[colAxisTuple[j]].text);
 				sep = " ";
 			}
 		}
 		retObj.columnHeaders.push(colHeader);
-		retObj.columnHeaders2D.push(colHeaderItem);
+		retObj.columnHeaders2D.push(colHeader2D);
 	}
 	return retObj;
 };

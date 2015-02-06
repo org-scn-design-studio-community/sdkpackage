@@ -1,5 +1,19 @@
 class org.scn.community.datasource.BYOData extends SdkDataSource {
 	/**
+	 * Sets data in serialized string form.  Meant to be used in conjunction with
+	 * SCN Community Projection data component or another BYO Data component.
+	 */
+	void setDataString(/*String*/ String dataString){*
+		this.data = dataString;
+	*}
+	/**
+	 * Returns serialized string representing data.  Meant to be used with another
+	 * SCN Community BYO Data component.
+	 */
+	String getDataString(){*
+		return this.data;
+	*}
+	/**
 	 * Set a mutator for a measure by index (starting at 0)
 	 * <example>
 	 * Set a mutator to increase the second measures's value by 25%
