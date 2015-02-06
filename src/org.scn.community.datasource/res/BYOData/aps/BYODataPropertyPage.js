@@ -232,7 +232,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.datasource.BYOData
 		// Step 1 - Translate from Text
 		var d = this.dataContents.getValue();
 		_data = [];
-		_dataString = d.replace(/\|/g,"\n");
+		_dataString = d.replace(/~\|~/g,"\n");
 		var sd = _dataString.split("\n");
 		for(var i=0;i<sd.length;i++){
 			_data.push(sd[i].split(","));
@@ -655,7 +655,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.datasource.BYOData
 			return d.join("\n");
 		}else{
 			_data = [];
-			_dataString = s.replace(/\|/g,"\n");
+			_dataString = s.replace(/~\|~/g,"\n");
 			var sd = _dataString.split("\n");
 			for(var i=0;i<sd.length;i++){
 				_data.push(sd[i].split(","));
