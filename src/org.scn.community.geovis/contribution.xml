@@ -254,11 +254,18 @@
 	<property id="globeOn" title="Enable Globe" type="boolean"/>
 	<property id="colorReverse" title="Color Reverse" type="boolean"/>
 	<property id="colorPalette" title="Colour Palette" type="String"/>
-	<property id="colorSet" title="Color Set" type="String">
-		<possibleValue>Spectral</possibleValue>
-		<possibleValue>Paired</possibleValue>
-		<possibleValue>Greens</possibleValue>
-		<possibleValue>Purples</possibleValue>
+	<property id="map" title="Map" type="String">
+		<possibleValue>world-countries</possibleValue>
+		<possibleValue>USA-regions</possibleValue>
+		<possibleValue>United-Kingdom-regions</possibleValue>
+		<possibleValue>Afghanistan-regions</possibleValue>
+		<possibleValue>Canada-regions</possibleValue>
+		<possibleValue>Germany-regions</possibleValue>
+		<possibleValue>Greenland-regions</possibleValue>
+		<possibleValue>France-regions</possibleValue>
+		<possibleValue>China-regions</possibleValue>
+		<possibleValue>USA-counties</possibleValue>
+		<possibleValue>external</possibleValue>
 	</property>
 	<property id="colorProperty" title="Choropleth Measure" type="String"/>
 	<property id="labelsOn" title="Enable Labels" type="boolean"/>
@@ -297,15 +304,7 @@
 		<possibleValue>stereographic</possibleValue>
 		<possibleValue>transverseMercator</possibleValue>
 	</property>
-	<property id="map" title="Map" type="String">
-		<possibleValue>world-countries</possibleValue>
-		<possibleValue>USA-regions</possibleValue>
-		<possibleValue>Germany-regions</possibleValue>
-		<possibleValue>China-regions</possibleValue>
-		<possibleValue>Afghanistan-regions</possibleValue>
-		<possibleValue>USA-counties</possibleValue>
-		<possibleValue>external</possibleValue>
-	</property>
+	
 	<property id="externalMap" title="External Map URL" type="String"/>
 	<property id="propertyMapping" title="Dimension Property Mapping" type="String"/>
 	<property id="onSelect" title="On Select" type="ScriptText"/>
@@ -332,7 +331,6 @@
 		<defaultValue property="colorOn">true</defaultValue>
 		<defaultValue property="globeOn">true</defaultValue>
 		<defaultValue property="colorProperty">0AMOUNT</defaultValue>
-		<defaultValue property="colorSet">Spectral</defaultValue>
 		<defaultValue property="brewerColors">#009966</defaultValue>
 		<defaultValue property="projection">equirectangular</defaultValue>
 		<defaultValue property="propertyMapping">NAME</defaultValue>
