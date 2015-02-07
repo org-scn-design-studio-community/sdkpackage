@@ -1,0 +1,1091 @@
+/* NOTE: This file was generated as an optimized version of "library.source.less" for the Theme Designer. */
+
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5)
+ *
+ * (c) Copyright 2009-2014 SAP SE. All rights reserved
+ */
+
+@import "../base/library.less";
+@import "../../../../../../../Base/baseLib/sap_bluecrystal/base.less"; /* ORIGINAL IMPORT PATH: "../../../../../../sap/ui/core/themes/sap_bluecrystal/base.less" */
+
+@import (less) "../../../../../../sap/ui/core/themes/sap_bluecrystal/global.css";
+/* START "shared.css" */
+/* This CSS inherits rules from default/shared.css */
+/* END "shared.css" */
+
+
+/* START "BulletChart.css" */
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/BulletChart.control */
+/* ============================================= */
+
+/* ============================================================================== */
+/* CSS for sap.suite.ui.commons/BulletChart.control for 'sap_bluecrystal' theme*/
+/* ============================================================================== */
+.sapSuiteBCContent {
+	font-family: @sapUiFontHeaderFamily;
+}
+
+.sap-desktop .sapSuiteBCContent:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+
+.sapSuiteBCContent:focus:not([tabindex]) {
+	outline: none;
+}
+
+.sap-desktop .XS.sapSuiteBCContent:focus {
+	outline: none;
+} 
+
+.sap-desktop .XS.sapSuiteBCContent:focus::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: -5px;
+    left: -2px;
+    right: -2px;
+    bottom: -12px;
+    border: 1px dotted @sapUiFocus;
+}
+
+.sapSuiteBCBarValue.Neutral,
+.sapSuiteBCBarValueMarker.Neutral,
+.sapSuiteBCThreshold.Neutral {
+    background-color: @sapUiChartNeutral;
+}
+
+.sapSuiteBCBarValue.Good,
+.sapSuiteBCBarValueMarker.Good,
+.sapSuiteBCThreshold.Good {
+    background-color: @sapUiChartGood;
+}
+
+.sapSuiteBCBarValue.Critical,
+.sapSuiteBCBarValueMarker.Critical,
+.sapSuiteBCThreshold.Critical {
+    background-color: @sapUiChartCritical;
+}
+
+.sapSuiteBCBarValue.Error,
+.sapSuiteBCBarValueMarker.Error,
+.sapSuiteBCThreshold.Error {
+    background-color: @sapUiChartBad;
+}
+
+.sapSuiteBCItemValue.Neutral {
+    color: @sapUiLightText;
+}
+
+.sapSuiteBCItemValue.Good {
+    color: @sapUiPositiveText;
+}
+
+.sapSuiteBCItemValue.Critical {
+    color: @sapUiCriticalText;
+}
+
+.sapSuiteBCItemValue.Error {
+    color: @sapUiNegativeText;
+}
+
+.sapSuiteBCTargetBarValue {
+	border-left: .0625rem solid @sapUiLightestBorder;
+	background-color: darken(@sapUiExtraDarkBorder,33);
+}
+
+.sapSuiteBCTargetValue {
+    color: @sapUiDarkText;
+}
+
+.sapSuiteBCDiamond {
+    background-color: @sapUiChartBad;
+}
+
+.sapSuiteBCForecastBarValue.Neutral {
+    background-color: lighten(@sapUiChartNeutral,30);
+}
+
+.sapSuiteBCForecastBarValue.Good {
+    background-color: lighten(@sapUiChartGood,30);
+}
+
+.sapSuiteBCForecastBarValue.Critical {
+    background-color: lighten(@sapUiChartCritical,30);
+}
+
+.sapSuiteBCForecastBarValue.Error {
+    background-color: lighten(@sapUiChartBad,35);
+}
+
+.sapSuiteBCBar.Lightest {
+    background-color: @sapUiLightestBG;
+}
+
+.sapSuiteBCBar.ExtraLight {
+    background-color: @sapUiExtraLightBG;
+}
+
+.sapSuiteBCBar.Light {
+    background-color: @sapUiLightBG;
+}
+
+.sapSuiteBCBar.Medium {
+    background-color: @sapUiMediumBG;
+}
+
+.sapSuiteBCBar.MediumLight {
+    background-color: lighten(@sapUiChartNeutral,38.5);
+}
+
+.sapSuiteBCBar.Dark {
+    background-color: @sapUiDarkBG;
+}
+
+.sapSuiteBCBar.ExtraDark {
+    background-color: @sapUiExtraDarkBG;
+}
+
+.sapSuiteBCBar.Darkest {
+    background-color: @sapUiDarkestBG;
+}
+/* END "BulletChart.css" */
+
+/* START "ChartTile.css" */
+/* ============================================================================== */
+/* CSS for sap.suite.ui.commons/ComparisonTile.control for 'sap_bluecrystal' theme*/
+/* ============================================================================== */
+
+.sapSuiteCmpTileItemValue.Neutral,
+.sapSuiteCmpTileItemScale.Neutral {
+    color: @sapUiChartNeutral;
+}
+
+.sapSuiteCmpTileItemValue.Good,
+.sapSuiteCmpTileItemScale.Good {
+    color: @sapUiChartGood;
+}
+
+.sapSuiteCmpTileItemValue.Critical,
+.sapSuiteCmpTileItemScale.Critical {
+    color: @sapUiChartCritical;
+}
+
+.sapSuiteCmpTileItemValue.Error,
+.sapSuiteCmpTileItemScale.Error {
+    color: @sapUiChartBad;
+}
+
+.sapSuiteCmpTileBarValue.Neutral {
+    background-color: @sapUiChartNeutral;
+}
+
+.sapSuiteCmpTileBarValue.Good {
+    background-color: @sapUiChartGood;
+}
+
+.sapSuiteCmpTileBarValue.Critical {
+    background-color: @sapUiChartCritical;
+}
+
+.sapSuiteCmpTileBarValue.Error {
+    background-color: @sapUiChartBad;
+}
+/* END "ChartTile.css" */
+
+/* START "ColumnMicroChart.css" */
+.sap-desktop .sapSuiteCmc:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+
+.sapSuiteCmc:focus:not([tabindex]) {
+	outline: none;
+}
+
+.sapSuiteCmcBar.Error {
+	background-color: @sapUiChartBad;
+}
+
+.sapSuiteCmcBar.Good {
+	background-color: @sapUiChartGood;
+}
+
+.sapSuiteCmcBar.Critical {
+	background-color: @sapUiChartCritical;
+}
+
+.sapSuiteCmcBar.Neutral {
+	background-color: @sapUiChartNeutral;	
+}
+/* END "ColumnMicroChart.css" */
+
+/* START "ComparisonChart.css" */
+/* ============================================================================== */
+/* CSS for sap.suite.ui.commons/ComparisonChart.control for 'sap_bluecrystal' theme*/
+/* ============================================================================== */
+
+.sapSuiteCmpChartItemValue {
+	color: @sapUiDarkText;
+}
+
+.sapSuiteCmpChartItemValue.Neutral {
+    color: @sapUiLightText;
+}
+
+.sapSuiteCmpChartItemValue.Good {
+    color: @sapUiPositiveText;
+}
+
+.sapSuiteCmpChartItemValue.Critical {
+    color: @sapUiCriticalText;
+}
+
+.sapSuiteCmpChartItemValue.Error {
+    color: @sapUiNegativeText;
+}
+
+.sapSuiteCmpChartBarValue.Neutral {
+    background-color: @sapUiChartNeutral;
+}
+
+.sapSuiteCmpChartBarValue.Good {
+    background-color: @sapUiChartGood;
+}
+
+.sapSuiteCmpChartBarValue.Critical {
+    background-color: @sapUiChartCritical;
+}
+
+.sapSuiteCmpChartBarValue.Error {
+    background-color: @sapUiChartBad;
+}
+
+.sapSuiteCmpChartContent {
+    font-family: @sapUiFontHeaderFamily;
+	font-weight: @sapUiFontHeaderWeight; 
+	font-size: @sapMFontSmallSize;
+}
+
+.sapSuiteCmpChartContent.L {
+	font-size: @sapMFontMediumSize;
+}
+
+.sap-desktop .sapSuiteCmpChartContent:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+
+.sapSuiteCmpChartContent:focus:not([tabindex]) {
+	outline: none;
+}
+/* END "ComparisonChart.css" */
+
+/* START "DynamicContainer.css" */
+.sapSuiteDC {
+	box-shadow: 0px 0px 0.25rem fade(@sapUiDarkShadowTint, 10);
+}
+
+.sap-desktop .sapSuiteDC:hover,
+.sap-desktop .sapSuiteDCHvr:hover,
+.sap-tablet .sapSuiteDCHvr:hover,
+.sap-phone .sapSuiteDCHvr:hover {
+	box-shadow: 0px 0px 0px 2px @sapUiLightShadowTint;
+}
+
+.sap-desktop .sapSuiteDC:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+.sapSuiteDCIcon {
+	color: @sapUiLightBG;
+}
+/* END "DynamicContainer.css" */
+
+/* START "FacetOverview.css" */
+.sapSuiteFovHoverIcon {
+	color: @sapUiElement;
+}
+
+.sapSuiteFov {
+	background-color: fade(@sapUiLightestBG, 80%);
+}
+
+.sapSuiteFovSelected {
+	background-color: @sapUiHighlight;
+	color: @sapUiTextInverted;
+}
+
+.sap-desktop .sapSuiteFovActiveCont:focus,
+.sap-desktop .sapSuiteFovClickable:focus {
+	outline-color: @sapUiFocus;
+}
+
+.sapSuiteFovTitle {
+    font-size: @sapMFontHeader4Size;
+}
+/* END "FacetOverview.css" */
+
+/* START "GenericTile.css" */
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/GenericTile.control */
+/* ============================================= */
+
+.sapUiMedia-Std-Desktop .sapSuiteGTHdrTxt.Auto > .sapMText,
+.sapSuiteGTHdrTxt.L > .sapMText,
+.sapUiMedia-Std-Tablet .sapSuiteGTHdrTxt.Auto > .sapMText,
+.sapSuiteGTHdrTxt.M > .sapMText  {
+    color: @sapUiDarkText;
+    font-family: @sapUiFontFamily;   
+    font-size: @sapMFontHeader5Size;  
+    font-weight: normal;
+}
+
+.sapSuiteGTSubHdrTxt {
+    font-family: @sapUiFontFamily;   
+    font-size: @sapMFontMediumSize;
+    font-weight: normal;  
+    color: @sapUiLightText;
+}
+
+.sapSuiteGTHdrIconImage {
+    font-family: @sapUiFontHeaderFamily;
+	font-weight: @sapUiFontHeaderWeight;
+	color: @sapUiHighlight;
+}
+.sap-desktop .sapSuiteGT:focus {
+    outline-color: @sapUiFocus;
+    outline-style: dotted;
+    outline-width: 1px;
+}
+
+.sap-desktop .sapSuiteGT:focus:not([tabindex]) {
+	outline: none;
+}
+html[data-sap-ui-browser^="ff"] .sapSuiteGT:focus {
+	outline-offset: -0.30rem;
+}
+
+.sapSuiteGT {
+	box-shadow: 0px 0px 0.25rem fade(@sapUiDarkShadowTint, 10);
+}
+
+.sapSuiteGenericTileFtrFldTxt {
+    font-family: @sapUiFontFamily;  
+    font-size: @sapMFontSmallSize; 
+    color: @sapUiLightText;
+}
+
+html[data-sap-ui-browser^="ff"] .sapSuiteGT:hover {
+    outline-offset: -0.60rem;
+}
+.sap-desktop .sapSuiteGT:hover,
+.sap-desktop .sapSuiteGTHvrOutln:hover,
+.sap-phone .sapSuiteGTHvrOutln:hover,
+.sap-tablet .sapSuiteGTHvrOutln:hover {
+	box-shadow: 0px 0px 0px 2px @sapUiLightShadowTint;
+}
+
+.sapSuiteGenericTileFtrFldIcn {
+    color: @sapUiLightText;
+}
+/* END "GenericTile.css" */
+
+/* START "HeaderContainer.css" */
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/HeaderContainer.control */
+/* ============================================= */
+
+/* END "HeaderContainer.css" */
+
+/* START "JamContent.css" */
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/JamContent.control */
+/* ============================================= */
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsJCCTxt.Auto > .sapMText,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsJCCTxt.Auto > .sapMText,
+.sapSuiteUiCommonsJCCTxt.L > .sapMText, .sapSuiteUiCommonsJCCTxt.M > .sapMText{
+  	font-size: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsJCCTxt.Auto > .sapMText,
+.sapSuiteUiCommonsJCCTxt.S > .sapMText, .sapSuiteUiCommonsJCCTxt.XS > .sapMText {
+  	font-size: 10px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsJCSbh.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsJCSbh.Auto,
+.sapSuiteUiCommonsJCSbh.L, .sapSuiteUiCommonsJCSbh.M {
+  	font-size: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsJCSbh.Auto,
+.sapSuiteUiCommonsJCSbh.S, .sapSuiteUiCommonsJCSbh.XS {
+  	font-size: 10px;
+}
+
+.sapSuiteUiCommonsJCValue {
+  	font-family: @sapUiFontHeaderFamily;
+  	font-weight: @sapUiFontHeaderWeight;
+}
+
+.sapSuiteUiCommonsJCValue.Neutral {
+	color: @sapUiChartNeutral;	
+}
+
+.sapSuiteUiCommonsJCValue.Good {
+	color: @sapUiChartGood;	
+}
+
+.sapSuiteUiCommonsJCValue.Critical {
+	color: @sapUiChartCritical;	
+}
+
+.sapSuiteUiCommonsJCValue.Error {
+	color: @sapUiChartBad;	
+}
+
+.sap-desktop .sapSuiteUiCommonsJC:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+
+.sapSuiteUiCommonsJC:focus:not([tabindex]) {
+	outline: none;
+}
+/* END "JamContent.css" */
+
+/* START "KpiTile.css" */
+.sapSuiteKTileStatusGood {
+    color: @sapUiPositive;
+}
+
+.sapSuiteKTileStatusNeutral {
+    color: @sapUiExtraLightText;
+}
+
+.sapSuiteKTileStatusCritical {
+    color: @sapUiCritical;
+}
+
+.sapSuiteKTileStatusBad {
+    color: @sapUiNegative;
+}
+
+.sapSuiteKTileValueSmallText {
+    font-size: @sapMFontLargeSize;
+}
+
+.sapSuiteKTileScale {
+    font-size: @sapMFontMediumSize;
+}
+
+.sapSuiteKTileDesc{
+    font-size: @sapMFontSmallSize;
+}
+
+/* END "KpiTile.css" */
+
+/* START "LinkActionSheet.css" */
+.sap-desktop .sapUILinkActionSheetLink:focus {
+	outline-color: @sapUiInvertedFocus;
+}
+
+.sap-desktop[data-sap-ui-browser^="ie"]
+    .sapUILinkActionSheetLink:focus:before {
+        border-color: @sapUiInvertedFocus;
+    }
+
+.sapUILinkActionSheet > {
+	.sapUILinkActionSheetLink, 
+	.sapUILinkActionSheetLink:visited,
+	.sapUILinkActionSheetLink:active {
+		border-top: 0.0625rem solid fade(@sapUiLightestBorder, 20%);
+		text-shadow: 0 -0.0625rem 0 fade(@sapUiDarkShadowTint, 60%);
+        font-size: @sapMFontMediumSize;
+	}
+}
+
+.sap-desktop .sapUILinkActionSheetLink:hover {
+	background-color: @sapUiBtnBGTransparentHover;
+}
+/* END "LinkActionSheet.css" */
+
+/* START "MicroAreaChart.css" */
+.sapSuiteMacTarget.Good,
+.sapSuiteMacChart.Good {
+	color: @sapUiChartGood;	
+}
+
+.sapSuiteMacTarget.Critical,
+.sapSuiteMacChart.Critical {
+	color: @sapUiChartCritical;	
+}
+
+.sapSuiteMacTarget.Error,
+.sapSuiteMacChart.Error {
+	color: @sapUiChartBad;	
+}
+
+.sapSuiteMacLbl {
+	font-family: @sapUiFontFamily;
+	font-size: @sapMFontMediumSize;
+}
+
+.sapSuiteMacLbl.Neutral {
+	color: @sapUiLightText;	
+}
+
+.sapSuiteMacLbl.Good {
+	color: @sapUiPositiveText;	
+}
+
+.sapSuiteMacLbl.Critical {
+	color: @sapUiCriticalText;	
+}
+
+.sapSuiteMacLbl.Error {
+	color: @sapUiNegativeText;	
+}
+
+.sapSuiteMacThreshold.Error {
+	background-color: fade(@sapUiNegative, 35);
+}
+
+.sapSuiteMacThreshold.Good {
+	background-color: fade(@sapUiPositive, 35);
+}
+
+.sapSuiteMacThreshold.Critical {
+	background-color: fade(@sapUiCritical, 35);
+}
+
+.sapSuiteMacTarget.Neutral {
+	color: @sapUiExtraDarkBorder;
+}
+
+.sapSuiteMacChart.Neutral {
+	color: @sapUiElement;	
+}
+
+.sap-desktop .sapSuiteMac:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+
+.sapSuiteMac:focus:not([tabindex]) {
+	outline: none;
+}
+/* END "MicroAreaChart.css" */
+
+/* START "MonitoringTile.css" */
+/* ============================================================================== */
+/* CSS for sap.suite.ui.commons/MonitoringTile.control for 'sap_bluecrystal' theme*/
+/* ============================================================================== */
+.sapSuiteUiCommonsMTFooterText.Positive {
+	color: @sapUiPositive;	
+}
+
+.sapSuiteUiCommonsMTFooterText.Critical {
+	color: @sapUiCritical;	
+}
+
+.sapSuiteUiCommonsMTFooterText.Negative {
+	color: @sapUiNegative;	
+}
+/* END "MonitoringTile.css" */
+
+/* START "NewsContent.css" */
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/NewsContent.control */
+/* ============================================= */
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNwCCTxt.Auto > .sapMText,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNwCCTxt.Auto > .sapMText,
+.sapSuiteUiCommonsNwCCTxt.L > .sapMText, .sapSuiteUiCommonsNwCCTxt.M > .sapMText{
+  	font-size: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNwCCTxt.Auto > .sapMText,
+.sapSuiteUiCommonsNwCCTxt.S > .sapMText, .sapSuiteUiCommonsNwCCTxt.XS > .sapMText {
+  	font-size: 10px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNwCSbh.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNwCSbh.Auto,
+.sapSuiteUiCommonsNwCSbh.L, .sapSuiteUiCommonsNwCSbh.M {
+  	font-size: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNwCSbh.Auto,
+.sapSuiteUiCommonsNwCSbh.S, .sapSuiteUiCommonsNwCSbh.XS {
+  	font-size: 10px;
+}
+
+.sapSuiteUiCommonsNwC {
+	color: @sapUiDarkText;
+	background-color: fade(@sapUiLightestBG, 60);
+}
+
+.sap-desktop .sapSuiteUiCommonsNwC:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+
+.sapSuiteUiCommonsNwC:focus:not([tabindex]) {
+	outline: none;
+}
+
+.sapSuiteUiCommonsNwCSbh {
+	color: @sapUiLightText;
+}
+/* END "NewsContent.css" */
+
+/* START "NumericContent.css" */
+/* =========================================================================== */
+/* CSS for sap.suite.ui.commons/NumericContent.control for 'sap_bluecrystal' theme*/
+/* =========================================================================== */
+.sapSuiteUiCommonsNCIconImage {
+    font-family: @sapUiFontHeaderFamily;
+	font-weight: @sapUiFontHeaderWeight;
+	color: @sapUiHighlight;
+}
+
+.sapSuiteUiCommonsNCScale {
+    font-family: @sapUiFontHeaderFamily;
+	font-weight: @sapUiFontHeaderWeight;
+	font-size: @sapMFontMediumSize;
+    display: block;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNCScale.Auto,
+.sapSuiteUiCommonsNCScale.S,
+.sapSuiteUiCommonsNCScale.XS {
+    font-size: 0.75rem;
+}
+
+.sapSuiteUiCommonsNCValue {
+  	font-family: @sapUiFontHeaderFamily;
+    font-weight: @sapUiFontHeaderWeight;
+}
+
+.sapSuiteUiCommonsNCScale.L {
+	font-size: @sapMFontHeader5Size;
+}
+
+.sapSuiteUiCommonsNCValue.Neutral,
+.sapSuiteUiCommonsNCIndicator.Neutral {
+	color: @sapUiChartNeutral;	
+}
+
+.sapSuiteUiCommonsNCValue.Good,
+.sapSuiteUiCommonsNCIndicator.Good {
+	color: @sapUiChartGood;	
+}
+
+.sapSuiteUiCommonsNCValue.Critical,
+.sapSuiteUiCommonsNCIndicator.Critical {
+	color: @sapUiChartCritical;	
+}
+
+.sapSuiteUiCommonsNCValue.Error,
+.sapSuiteUiCommonsNCIndicator.Error {
+	color: @sapUiChartBad;	
+}
+
+.sapSuiteUiCommonsNCScale.Neutral {
+	color: @sapUiLightText;	
+}
+
+.sapSuiteUiCommonsNCScale.Good {
+	color: @sapUiPositiveText;	
+}
+
+.sapSuiteUiCommonsNCScale.Critical {
+	color: @sapUiCriticalText;	
+}
+
+.sapSuiteUiCommonsNCScale.Error {
+	color: @sapUiNegativeText;	
+}
+
+.sapSuiteUiCommonsNCIndicator.Loading,
+.sapSuiteUiCommonsNCValue.Loading,
+.sapSuiteUiCommonsNCScale.Loading,
+.sapSuiteUiCommonsNCIconImage.Loading,
+.sapSuiteUiCommonsNCIndicator.Failed,
+.sapSuiteUiCommonsNCValue.Failed,
+.sapSuiteUiCommonsNCScale.Failed,
+.sapSuiteUiCommonsNCIconImage.Failed {
+    color: @sapUiLightText;
+    opacity: 0.25;
+}
+
+.sap-desktop .sapSuiteUiCommonsNC:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+
+.sapSuiteUiCommonsNC:focus:not([tabindex]) {
+	outline: none;
+}
+/* END "NumericContent.css" */
+
+/* START "NumericTile.css" */
+/* =========================================================================== */
+/* CSS for sap.suite.ui.commons/NumericTile.control for 'sap_bluecrystal' theme*/
+/* =========================================================================== */
+
+.sapSuiteUiCommonsNT.Neutral {
+	color: @sapUiChartNeutral;	
+}
+
+.sapSuiteUiCommonsNT.Good {
+	color: @sapUiChartGood;	
+}
+
+.sapSuiteUiCommonsNT.Critical {
+	color: @sapUiChartCritical;	
+}
+
+.sapSuiteUiCommonsNT.Error {
+	color: @sapUiChartBad;	
+}
+/* END "NumericTile.css" */
+
+/* START "ProcessFlowNode.css" */
+/* Title */
+.sapSuiteUiCommonsProcessFlowNode3Title,
+.sapSuiteUiCommonsProcessFlowNode3Title > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxWidth {
+    color: @sapUiHeaderText;
+}
+/* END "ProcessFlowNode.css" */
+
+/* START "TileContent.css" */
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/TileContent.control */
+/* ============================================= */
+
+/* Footer CSS */
+.sapSuiteTileCntFtrTxt {
+    font-family: @sapUiFontFamily;   
+    font-size: @sapMFontMediumSize;
+    color: @sapUiLightText;
+}
+
+.sapSuiteTileCnt.News {
+	background-color: fade(@sapUiLightestBG, 60);
+}
+/* END "TileContent.css" */
+
+/* START "Timeline.css" */
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/Timeline.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsTimeline{
+    min-width: 20rem;
+	height: 100%;
+}
+.sapSuiteUiCommonsTimelineContents{
+	width: 100%;
+	padding: 1rem 0 0 0;
+	overflow: hidden;
+	position: relative; 
+}
+
+.sapSuiteUiCommonsTimelineScroll {
+	display: inline-block; 
+	//background-color: white;
+	//opacity:0.8;
+    //-moz-opacity:0.8; 
+    //-webkit-opacity:0.8;
+}
+
+.sapSuiteUiCommonsTimelineScrollV .sapSuiteUiCommonsTimelineScroll {
+	display: block; 
+	width: ~"calc(100% - 3rem)";
+}
+
+.sapSuiteUiCommonsTimelineGetMoreBar{
+	width: 0.0625rem;
+	height: 3.1rem;
+	margin-left: 1.375rem;
+	margin-top: -0.1rem;
+	background: linear-gradient(@sapUiHighlight, transparent);
+	background: -webkit-linear-gradient(@sapUiHighlight, transparent);
+	background: -o-linear-gradient(@sapUiHighlight, transparent);  
+    background: -moz-linear-gradient(@sapUiHighlight, transparent);  
+    background: -ms-linear-gradient(@sapUiHighlight, transparent);
+}
+
+.sapSuiteUiCommonsTimelineGetMoreBox{
+	background: transperent;
+    width: 100%;
+    height: 3rem;
+    margin-left: 1.5rem;
+	margin-right: -2.5rem;
+}
+
+.sapSuiteUiCommonsTimelineGetMoreBox .sapMBtn .sapMBtnInner{
+	border: 0.0625rem solid @sapUiLightBorder;
+    padding: 0 0 0 0;
+}
+
+/* END "Timeline.css" */
+
+/* START "TimelineItem.css" */
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/TimelineItem.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsTimelineItemShellBody .sapMOH {
+margin: 0;
+padding: 0 0 0 0;
+}
+
+.sapSuiteUiCommonsTimelineItemShellBody .sapMOHTitle .sapMOHTitle {
+font-size: 1.2rem;
+}
+
+.sapSuiteUiCommonsTimelineItemShellBody .sapMOHNumber {
+font-size: 1.5rem;
+}
+
+
+.sapSuiteUiCommonsTimelineItem {
+	border-bottom: 0rem;
+	height: 7rem;
+	width: 100%;
+	-webkit-user-select: all;
+	-moz-user-select: all;
+	-ms-user-select: all;
+	user-select: all;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.sapSuiteUiCommonsTimelineItemShell{
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.sapSuiteUiCommonsTimelineItemShellUser{
+  font-family: @sapUiFontFamily;
+  font-size: @sapMFontMediumSize;
+  font-weight: normal;
+  color: @sapUiStandardText;
+  line-height: 1.4rem;
+}
+
+.sapSuiteUiCommonsTimelineItemShellHdr{
+  font-family: @sapUiFontFamily;
+  font-size: @sapMFontMediumSize;
+  font-weight: normal;
+  color: @sapUiStandardText;
+  line-height: 1.4rem;
+}
+
+.sapSuiteUiCommonsTimelineItemShellDateTime{
+  font-family: @sapUiFontFamily;
+  font-size: @sapMFontSmallSize;
+  font-weight: normal;
+  color: @sapUiLightText;
+  line-height: auto;
+}
+
+.sapSuiteUiCommonsTimelineItemShellBody{
+	padding: 0.5rem 0 0.2rem 0;
+	font-size: .9rem;
+}
+
+.sapSuiteUiCommonsTimelineItem .sapSuiteUiCommonsTimelineItemWrapper {
+	position: relative;
+}
+
+.sapSuiteUiCommonsTimelineItem .sapSuiteUiCommonsTimelineItemWrapper
+{
+	width: 100%;
+	height: 100%;
+}
+
+.sapSuiteUiCommonsTimelineItemBar
+{
+	position: absolute;
+	width: 0.0625rem;
+	height: 7rem;
+	top: 2.1rem;
+	background-color: @sapUiHighlight;
+	left: 1.375rem;
+}
+
+
+.sap-desktop .sap-tablet .sapSuiteUiCommonsTimelineItem {
+/*	left: 50.35%;*/
+}
+
+.sapSuiteUiCommonsTimelineItemBar.sapSuiteUiCommonsTimelineItemBarBottom {
+    height: 0rem;
+    top: 0;
+}
+
+.sapSuiteUiCommonsTimelineItemDot
+{
+	position: absolute;
+	top: 16px;
+	width: 11px;
+	height: 11px;
+	border-radius: 11px;
+	background-color: #36a9e0;
+	left: 7px;
+}
+
+
+.sapSuiteUiCommonsTimelineItemWrapper .sapSuiteUiCommonsTimelineItemIcon
+    {
+	position: absolute;
+	font-size: 1.375rem;
+	color: @sapUiElement;
+	top: 0rem;
+	left: 0.5rem;
+}
+.sapSuiteUiCommonsTimelineItemWrapper .sapSuiteUiCommonsTimelineItemNoIcon
+    {
+	position: absolute;
+	top: 1.12rem;
+	height: 0.5rem;
+	width: 0.5rem;
+	border-radius: 50%;
+	left: 1.15rem;
+	background-color: @sapUiHighlight;
+}
+
+.sapSuiteUiCommonsTimelineItemArrow {
+    position: relative;
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: white;
+    opacity:1;
+    -moz-opacity:1; 
+    -webkit-opacity:1;
+    border-bottom: 0.0625rem solid @sapUiLightBorder;
+    border-left: 0.0625rem solid @sapUiLightBorder;
+    -webkit-transform: translateX(0px) translateY(0px) rotate(45deg);
+    transform: translateX(0px) translateY(0px) rotate(45deg);
+    -moz-transform: translateX(0px) translateY(0px) rotate(45deg);
+    z-index: 1;
+}
+
+.sapSuiteUiCommonsTimelineItemBox {
+    position: absolute;
+    //width: 12rem;
+    min-height: 4rem;
+    background-color: white;
+    opacity:1;
+    -moz-opacity:1; 
+    -webkit-opacity:1;
+    height: auto;
+    border: 0.0625rem solid @sapUiLightBorder;
+    padding: 0 0 0 0;
+    font-family: @sapUiFontFamily;
+}
+
+.sapSuiteUiCommonsTimelineItemBubble {
+    position: relative;
+    width: 100%;;
+    //height: 100%;
+    left: -0.2rem;
+}
+
+.sapSuiteUiCommonsTimelineItemArrow {
+    position: absolute;
+    top: 1rem;
+    left: -1.2rem;
+}
+
+.sapSuiteUiCommonsTimelineItemBox {
+    position: absolute;
+    top: 0.2rem;
+	left: -0.8rem;
+	width: 100%; 
+}
+
+.sapSuiteUiCommonsTimelineItemBubbleSpacer {
+    position: relative;
+    width: ~"calc( 100% - 0.5rem)";
+    left: 3.875rem;
+    //top: 0px;
+}
+
+.sapSuiteUiCommonsTimelineItemBubbleSpacerRight,
+.sapSuiteUiCommonsTimelineItemBubbleSpacerLeft { /*box will render to the right of the timeline*/
+    .sapSuiteUiCommonsTimelineItemArrow {
+        -webkit-transform: translateX(0px) translateY(0px) rotate(45deg);
+        transform: translateX(0px) translateY(0px) rotate(45deg);
+        -moz-transform: translateX(0px) translateY(0px) rotate(45deg);
+    }
+}
+
+.sapSuiteUiCommonsTimelineItemDot.sapSuiteUiCommonsTimelineItemDotBottom {
+    //top: 18px;
+}
+
+
+/* END "TimelineItem.css" */
+
+/* START "UnifiedThingGroup.css" */
+.sapSuiteUtgTitle {
+	font-size: @sapMFontHeader2Size;
+}
+
+.sap-phone .sapSuiteUtgTitle {
+	font-size: @sapMFontHeader3Size;
+}
+
+.sapSuiteUtgDesc {
+    font-size: @sapMFontLargeSize;
+}
+
+/* END "UnifiedThingGroup.css" */
+
+/* START "UnifiedThingInspector.css" */
+.sap-desktop .sapSuiteUti .sapMBar.sapMPageHeader {
+	background: @sapUiLightestBG;
+}
+
+.sapSuiteUtiHeaderName {
+    font-size: @sapMFontHeader1Size;
+}
+
+.sapSuiteUtiHeaderDesc {
+    font-size: @sapMFontMediumSize;
+}
+
+/* END "UnifiedThingInspector.css" */
+

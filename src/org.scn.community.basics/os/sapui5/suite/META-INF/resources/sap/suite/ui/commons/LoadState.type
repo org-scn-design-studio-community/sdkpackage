@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>LoadState</name>
+	<author></author>
+
+	<documentation>Enumeration of possible load states for LoadableView.</documentation>
+	<baseType>sap.ui.core/string</baseType>
+	<enumeration>
+		<value name="Loading">
+			<documentation>LoadableView is loading the control.</documentation>
+		</value>
+		<value name="Loaded">
+			<documentation>LoadableView has loaded the control.</documentation>
+		</value>
+		<value name="Failed">
+			<documentation>LoadableView failed to load the control.</documentation>
+		</value>
+		<value name="Disabled">
+			<documentation>LoadableView disabled to load the control.</documentation>
+		</value>
+	</enumeration>
+</simple-type>

@@ -489,6 +489,150 @@ class org.scn.community.basics.ColorPicker extends Component {
 }
 
 /**
+ * Class for DateRangeScroller
+ */
+class org.scn.community.basics.DateRangeScroller extends Component {
+
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+	
+	/** Returns the start date */
+	String getStartDate() {*
+		return this.DStartDate;
+	*}
+	
+	/** Returns the end date */
+	String getEndDate() {*
+		return this.dEndDate;
+	*}
+
+}
+
+/**
+ * Class for DateRangeSlider
+ */
+class org.scn.community.basics.DateRangeSlider extends Component {
+
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+
+	/** Sets the minimum value. */
+	void setMinimumDate(
+		/** Minimum value */ String min) {*
+		this.DMin = min;
+	*}
+	
+	/** Returns the minimum value. */
+	String getMinimumDate() {*
+		return this.DMin;
+	*}
+
+	/** Sets the maximum value. */
+	void setMaximumDate(
+		/** Maximum value */ String max) {*
+		this.DMax = max;
+	*}
+	
+	/** Returns the maximum value. */
+	String getMaximumValueDate() {*
+		return this.DMax;
+	*}
+
+	/** Sets the value. */
+	void setStartDate(
+		/** Value */ String value) {*
+		this.DValue = value;
+	*}
+	
+	/** Returns the value. */
+	String getStartDate() {*
+		return this.DValue;
+	*}
+	
+	/** Sets the second value. */
+	void setEndDate(
+		/** Second value */ String value2) {*
+		this.DValue2 = value2;
+	*}
+	
+	/** Returns the second value. */
+	String getEndDate() {*
+		return this.DValue2;
+	*}
+
+	/** Sets the total units value. */
+	void setTotalUnits(
+		/** Total units value */ int totalUnits) {*
+		this.totalUnits = totalUnits;
+	*}
+	
+	/** Returns the total units value. */
+	int getTotalUnits() {*
+		return this.totalUnits;
+	*}
+
+	/** Sets the step labels value. */
+	void setStepLabels(
+		/** Step labels value */ boolean stepLabels) {*
+		this.stepLabels = stepLabels;
+	*}
+	
+	/** Returns the step labels value. */
+	boolean isStepLabels() {*
+		return this.stepLabels;
+	*}
+
+	/** Sets the vertical value. */
+	void setVertical(
+		/** Vertical value */ boolean vertical) {*
+		this.vertical = vertical;
+	*}
+	
+	/** Returns the vertical value. */
+	boolean isVertical() {*
+		return this.vertical;
+	*}
+
+	/** Sets the small step width value. */
+	void setSmallStepWidth(
+		/** Small step width value */ float smallStepWidth) {*
+		this.smallStepWidth = smallStepWidth;
+	*}
+	
+	/** Returns the small step width value. */
+	float getSmallStepWidth() {*
+		return this.smallStepWidth;
+	*}
+	
+	/** Sets the small step width value. */
+	void setShowBubbles(
+		/** Small step width value */ boolean showBubbles) {*
+		this.showBubbles = showBubbles;
+	*}
+	
+	/** Returns the small step width value. */
+	boolean getShowBubbles() {*
+		return this.showBubbles;
+	*}
+}
+
+/**
  * Class for DragDropArea
  */
 class org.scn.community.basics.DragDropArea extends Component {

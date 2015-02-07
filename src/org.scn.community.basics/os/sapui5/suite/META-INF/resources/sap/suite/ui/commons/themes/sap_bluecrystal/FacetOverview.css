@@ -1,0 +1,21 @@
+.sapSuiteFovHoverIcon {
+	color: @sapUiElement;
+}
+
+.sapSuiteFov {
+	background-color: fade(@sapUiLightestBG, 80%);
+}
+
+.sapSuiteFovSelected {
+	background-color: @sapUiHighlight;
+	color: @sapUiTextInverted;
+}
+
+.sap-desktop .sapSuiteFovActiveCont:focus,
+.sap-desktop .sapSuiteFovClickable:focus {
+	outline-color: @sapUiFocus;
+}
+
+.sapSuiteFovTitle {
+    font-size: @sapMFontHeader4Size;
+}

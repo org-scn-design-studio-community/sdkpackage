@@ -99,10 +99,10 @@ class org.scn.community.utils.ComponentManager extends Component {
 		
 		for (var i = 0; i < componentsJson[group].length ; i++){
 			var componentHolder = {};
-			componentHolder.name = componentsJson[group][i]	;
+			componentHolder.name = componentsJson[group][i];
 			
 			var component = this.getComponentByName(componentHolder.name);
-			componentHolder.type = this.identifyType(something);
+			componentHolder.type = this.identifyType(component);
 			componentHolder.component = component;
 			
 			allComponents.push(componentHolder);	
@@ -335,12 +335,36 @@ class org.scn.community.utils.ComponentManager extends Component {
 	*}
 	
 	/**
+	 * can list all components in the application by type (given as component object) and optional prefix and suffix
+	 * <example>
+	 * You want to list all buttons which are starting with "SALES", BUTTON_1 is a button component.
+	 * <code>
+	 *  var components = COMPONENTMANAGER_1.listAllComponentsWithSameType(BUTTON_1, "SALES");
+	 * 
+	 *	components.forEach(function(element, index) {
+	 *	  var name = element.name;
+	 *	  var component = element.component;
+	 *
+	 *	  var button = COMPONENTMANAGER_1.returnAsButton(component);
+	 *
+	 *	  button.setText("Accept Now");
+	 *	});
+	 * </code>
+	 * </example>
+	 */
+	org.scn.community.shared.ComponentArray listAllComponentsWithSameType (Component componentAsType, optional String prefix, optional String suffix) {*
+		var componentType = this.identifyType(componentAsType, true);
+
+		return this.internal_listAllComponentsWithType(componentType, prefix, suffix, true);
+	*}
+	
+	/**
 	 * can list all components in the application by type and optional prefix and suffix
 	 * Type is a primitive string which must be contained in the component name , eg. for button you have to name the buttons "BLABLA_BUTTON_SOMETHING"
 	 * <example>
 	 * You want to list all buttons which are starting with "SALES"
 	 * <code>
-	 *  var components = COMPONENTMANAGER_1.listAllComponents("BUTTON", "SALES");
+	 *  var components = COMPONENTMANAGER_1.listAllComponentsWithType("BUTTON", "SALES");
 	 * 
 	 *	components.forEach(function(element, index) {
 	 *	  var name = element.name;
@@ -354,6 +378,10 @@ class org.scn.community.utils.ComponentManager extends Component {
 	 * </example>
 	 */
 	org.scn.community.shared.ComponentArray listAllComponentsWithType (String componentType, optional String prefix, optional String suffix) {*
+		return this.internal_listAllComponentsWithType(componentType, prefix, suffix, false);
+	*}
+	
+	org.scn.community.shared.ComponentArray internal_listAllComponentsWithType (String componentType, optional String prefix, optional String suffix, optional boolean typeIsExact) {*
 		var allComponents = [];
 	
 		this.internal_assureGlobalAccess();
@@ -385,7 +413,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 				
 				try {
 					// currently only type in the name can be supported, eg. KAR_BUTTON_32 as BUTTON (logical assignment)
-					if (key.indexOf(componentType) > -1) {
+					if (!typeIsExact && key.indexOf(componentType) > -1) {
 						var componentHolder = {};
 						componentHolder.name = key;
 						componentHolder.type = this.identifyType(something);
@@ -395,6 +423,20 @@ class org.scn.community.utils.ComponentManager extends Component {
 						if(something.getWidth != undefined) {
 							allComponents.push(componentHolder);	
 						}
+					} else if (typeIsExact) {
+						var currentType = this.identifyType(something, true);
+						
+						if (currentType == componentType) {
+							var componentHolder = {};
+							componentHolder.name = key;
+							componentHolder.type = currentType;
+							componentHolder.component = something;
+							
+							// check if the object contains getWidth method -> seems to be component
+							if(something.getWidth != undefined) {
+								allComponents.push(componentHolder);	
+							}
+						}
 					}
 				} catch (e) {}	
 			}
@@ -402,12 +444,12 @@ class org.scn.community.utils.ComponentManager extends Component {
 		
 		return allComponents;
 	*}
-	
+
 	/**
 	 * Identify Component Type. Returns the type for this component.
 	 * 
 	 */
-	String identifyType (Component inputComponent) {*
+	String identifyType (Component inputComponent, optional boolean keepFullType) {*
 		
 		this.internal_assureGlobalAccess();
 	  	
@@ -420,12 +462,14 @@ class org.scn.community.utils.ComponentManager extends Component {
 			
 			if(owner.getItemType) {
 				type = owner.getItemType();
-				APPLICATION.createInfoMessage("Comp: " + type);
+				// APPLICATION.createInfoMessage("Comp: " + type);
 			}
 		}
 		
-		if(type.indexOf("_COMPONENT") > -1) {
-			type = type.substring(0, type.indexOf("_COMPONENT"));
+		if(!keepFullType) {
+			if(type.indexOf("_COMPONENT") > -1) {
+				type = type.substring(0, type.indexOf("_COMPONENT"));
+			}
 		}
 		
 		return type;

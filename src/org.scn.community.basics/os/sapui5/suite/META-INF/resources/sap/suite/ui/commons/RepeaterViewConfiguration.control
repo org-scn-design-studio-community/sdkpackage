@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>RepeaterViewConfiguration</name>
+	<documentation>A configuration control defining how the content of the sap.suite.ui.commons.ViewRepeater control is displayed and what data is bound.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="title" type="sap.ui.core/string">
+			<documentation>The title of the view to be displayed in sap.suite.ui.commons.ViewRepeater view selector. If neither this nor &quot;icon&quot; property are defined, the default title &quot;View ##&quot; will be shown, where ## is an index number of the view in View Repeater starting from 1.</documentation>
+		</property>
+		<property group="Misc" name="icon" type="sap.ui.core/URI">
+			<documentation>A path to the icon representing this view in sap.suite.ui.commons.ViewRepeater view selector.</documentation>
+		</property>
+		<property group="Misc" name="iconHovered" type="sap.ui.core/URI">
+			<documentation>A path to the icon representing this view in sap.suite.ui.commons.ViewRepeater view selector when the regular icon is hovered.</documentation>
+		</property>
+		<property group="Misc" name="path" type="sap.ui.core/string">
+			<documentation>A path used for rows/titles data binding.</documentation>
+		</property>
+		<property group="Misc" name="itemMinWidth" type="sap.ui.core/int" defaultValue="-1">
+			<documentation>The minimal width of the tile in this view. Only applicable if &quot;responsive&quot; property is set to true.</documentation>
+		</property>
+		<property group="Misc" name="numberOfTiles" type="sap.ui.core/int" defaultValue="-1">
+			<documentation>The number of tiles/rows that will be shown on a single page in this view.</documentation>
+		</property>
+		<property group="Misc" name="responsive" type="sap.ui.core/any" defaultValue="false">
+			<documentation>This parameter indicates whether the content is shown in rows or tiles. If false, the content is shown in rows just like in core sap.ui.commons.RowRepeater. If true, the content is shown in tiles (similar to sap.ui.ux3.DataSet control) that have minimal width defined by the &quot;itemMinWidth&quot; property. The number of columns depends on the parent control's width. If you resize the control, the number of columns may change respectively so that the content tiles can fill the entire space of a row.</documentation>
+		</property>
+		<property group="Misc" name="external" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>Indicates if the external representation of this view is rendered instead of the row repeater's own content.</documentation>
+		</property>
+		<property group="Misc" name="iconSelected" type="sap.ui.core/URI">
+			<documentation>A path to the icon representing this view in sap.suite.ui.commons.ViewRepeater view selector when the regular icon is selected.</documentation>
+		</property>
+		<property group="Misc" name="itemHeight" type="sap.ui.core/int">
+			<documentation>The height of the tile in this view in pixels. Only applicable if the responsive property is set to true. This value is used for calculating the number of tile rows.</documentation>
+		</property>
+	</properties>
+	<aggregations>
+		<aggregation cardinality="0..1" name="template" type="sap.ui.core/Control">
+			<documentation>The control used as a template while displaying rows/tiles in this view. It should not have fixed width wider than defined by the &quot;itemMinWidth&quot; property, otherwise some content may appear cropped.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="externalRepresentation" type="sap.ui.core/Control">
+			<documentation>The control to be rendered instead of sap.suite.ui.commons.ViewRepeater's own content. Only used if the &quot;external&quot; property is set to true. This allows you to create custom views, for example, Table views. The sap.suite.ui.commons.ViewRepeater control will share its model with this control if the control does not have its own model.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

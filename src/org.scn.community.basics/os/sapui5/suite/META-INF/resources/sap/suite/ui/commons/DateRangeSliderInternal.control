@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>DateRangeSliderInternal</name>
+	<documentation>The Date Range Slider provides the user with a Range Slider control that is optimized for use with Dates.</documentation>
+
+	<baseType>sap.ui.commons/RangeSlider</baseType>
+	<properties>
+		<property group="Misc" name="showBubbles" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Property to show or hide bubbles. Default is true.</documentation>
+		</property>
+		<property group="Misc" name="pinGrip" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>Property to pin Grip (left grip) of the slider so that user cannot move it with key or mouse clicks.</documentation>
+		</property>
+		<property group="Misc" name="pinGrip2" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>Property to pin Grip2 (right grip) of the slider so that user cannot move it with key or mouse clicks.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="change">
+			<documentation>This event is fired when user changes the positions of the grips of the control. It contains value as Date object and value2 as Date object which are based on the positions of two grips.</documentation>
+		</event>
+		<event name="liveChange">
+			<documentation>This live event is fired when user changes the positions of the grips of the control. It contains value as Date object and value2 as Date object which are based on the positions of two grips.</documentation>
+		</event>
+	</events>
+</control>

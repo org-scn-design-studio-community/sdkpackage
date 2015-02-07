@@ -1,0 +1,78 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/ThingCollection.control */
+/* ============================================= */
+@sapSuiteUiThingCollectionBg: #5C6E7D;
+@sapSuiteUiThingCollectionLightBg: #8EA5B9;
+
+.sapSuiteTc {
+    position: relative;
+    background: url(img/img_bg.png);
+    background: url(img/img_bg.png), @sapSuiteUiThingCollectionBg;
+    background: url(img/img_bg.png), radial-gradient(circle, @sapSuiteUiThingCollectionLightBg 30%, @sapSuiteUiThingCollectionBg);
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=60, finishopacity=100, style=2);
+}
+
+.sapSuiteTc>.sapUiUx3OverlayCloseButton {
+    top: 74px;
+    right: 59px;
+}
+
+.sapSuiteTcNavPrev,.sapSuiteTcNavNext {
+    position: absolute;
+    width: 70px;
+    top: 100px;
+    bottom: 105px;
+}
+.sapSuiteTcNavPrev {
+    left: 0;
+}
+.sapSuiteTcNavNext {
+    right: 0;
+}
+
+.sapSuiteTcNavPrevArrow {
+    background-image: url("img/btn_nav_left_a.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+.sapSuiteTcNavPrevArrow:hover {
+    background-image: url("img/btn_nav_left_p.png");
+    cursor: pointer;
+}
+.sapSuiteTcNavNextArrow {
+	background-image: url("img/btn_nav_right_a.png");
+	background-repeat: no-repeat;
+    background-position: right center;
+}
+.sapSuiteTcNavNextArrow:hover {
+    background-image: url("img/btn_nav_right_p.png");
+    cursor: pointer;
+}
+
+.sapSuiteTcContainer {
+    position: absolute;
+    left: 70px;
+    right: 70px;
+    top: 85px;
+    bottom: 90px;
+    overflow: hidden;
+}
+
+.sapSuiteTcPrev,.sapSuiteTcCenter,.sapSuiteTcNext {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.sapSuiteTcPrev {
+    left: -110%;
+}
+
+.sapSuiteTcCenter {
+    left: 0;
+}
+
+.sapSuiteTcNext {
+    left: 110%;
+}

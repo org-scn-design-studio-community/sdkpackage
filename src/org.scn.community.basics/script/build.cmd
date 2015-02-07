@@ -12,6 +12,8 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\BasicBusinessCard\def\contribution.xml ^
 ..\res\CheckBoxGroup\def\contribution.xml ^
 ..\res\ColorPicker\def\contribution.xml ^
+..\res\DateRangeScroller\def\contribution.xml ^
+..\res\DateRangeSlider\def\contribution.xml ^
 ..\res\DragDropArea\def\contribution.xml ^
 ..\res\EmbeddedFrame\def\contribution.xml ^
 ..\res\EmbeddedMedia\def\contribution.xml ^
@@ -57,6 +59,8 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\BasicBusinessCard\def\contribution.ztl ^
 ..\res\CheckBoxGroup\def\contribution.ztl ^
 ..\res\ColorPicker\def\contribution.ztl ^
+..\res\DateRangeScroller\def\contribution.ztl ^
+..\res\DateRangeSlider\def\contribution.ztl ^
 ..\res\DragDropArea\def\contribution.ztl ^
 ..\res\EmbeddedFrame\def\contribution.ztl ^
 ..\res\EmbeddedMedia\def\contribution.ztl ^

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ThreePanelThingViewer</name>
+	<documentation>This control extends the sap.ui.ux3.ThingViewer control. The first panel can display a thing icon, a title, the Action Menu button, up to two rows of text descriptions (the first is wrapped, the second is truncated), vertical navigation bar (sap.suite.ui.commons.VerticalNavigationBar), and an image aka key visual. The second panel displays the header area as a vertical panel containing ThingGroup objects. The third panel is a main content area designed to display ThingGroup objects.</documentation>
+
+	<baseType>sap.ui.ux3/ThingViewer</baseType>
+	<properties>
+		<property group="Misc" name="logo" type="sap.ui.core/URI">
+			<documentation>A URL of the source of an image known as key visual. This can be a company logo or other essential graphics.</documentation>
+		</property>
+		<property group="Misc" name="showHeader" type="sap.ui.core/boolean">
+			<documentation>Shows or hides a middle panel named Header that contains general information.</documentation>
+		</property>
+		<property group="Misc" name="sidebarWidth" type="sap.ui.core/CSSSize" defaultValue="244px">
+			<documentation>The width of the first panel that contains thing's title, icon, key visual and navigation bar. The default value is "244px".</documentation>
+		</property>
+	</properties>
+	<aggregations>
+		<aggregation cardinality="0..n" name="menuContent" type="sap.ui.commons/Link">
+			<documentation>This aggregation allows you to add sap.ui.commons.Link items to the Action Menu. The menu appears as a popup when a user chooses a button in the top title section of the navigation panel.</documentation>
+		</aggregation>
+	</aggregations>
+	<methods>
+		<method name="selectDefaultFacet" type="sap.suite.ui.commons/ThreePanelThingViewer">
+			<documentation>Marks the first facet(navigation item) as selected if no facets selected and fires facetSelected event.</documentation>
+		</method>
+	</methods>
+</control>

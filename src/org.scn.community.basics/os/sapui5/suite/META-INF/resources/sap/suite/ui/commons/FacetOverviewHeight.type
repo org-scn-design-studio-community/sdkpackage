@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>FacetOverviewHeight</name>
+	<author></author>
+
+	<documentation>Enumeration of possible FacetOverview height settings.</documentation>
+	<baseType>sap.ui.core/string</baseType>
+	<enumeration>
+		<value name="XS">
+			<documentation>Extra small height</documentation>
+		</value>
+		<value name="S">
+			<documentation>Small height</documentation>
+		</value>
+		<value name="M">
+			<documentation>Medium height</documentation>
+		</value>
+		<value name="L">
+			<documentation>Large height</documentation>
+		</value>
+		<value name="XL">
+			<documentation>Extra Large height</documentation>
+		</value>
+		<value name="XXL">
+			<documentation>Extra extra large height</documentation>
+		</value>
+		<value name="Auto">
+			<documentation>Content based height</documentation>
+		</value>
+		<value name="None">
+			<documentation>No value. The height of the control is defined by depricated height property.</documentation>
+		</value>
+	</enumeration>
+</simple-type>

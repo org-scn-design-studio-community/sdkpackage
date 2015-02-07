@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>MicroAreaChartPoint</name>
+
+	<documentation>This control contains data for the point.</documentation>
+
+	<baseType>sap.ui.core/Element</baseType>
+	<properties>
+		<property group="Misc" name="x" type="sap.ui.core/float">
+			<documentation>X value for the given point.</documentation>
+		</property>
+		<property group="Misc" name="y" type="sap.ui.core/float">
+			<documentation>Y value for the given point.</documentation>
+		</property>
+	</properties>
+	<methods>
+		<method name="getXValue" type="sap.ui.core/float">
+			<documentation>Returns x value including undefined if the x property was not set or an invalid number was set.</documentation>
+		</method>
+		<method name="getYValue" type="sap.ui.core/float">
+			<documentation>Returns y value including undefined if the y property was not set or an invalid number was set.</documentation>
+		</method>
+	</methods>
+</control>

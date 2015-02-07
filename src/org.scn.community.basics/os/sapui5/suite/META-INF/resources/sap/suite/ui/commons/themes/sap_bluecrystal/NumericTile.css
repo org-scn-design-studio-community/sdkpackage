@@ -1,0 +1,19 @@
+/* =========================================================================== */
+/* CSS for sap.suite.ui.commons/NumericTile.control for 'sap_bluecrystal' theme*/
+/* =========================================================================== */
+
+.sapSuiteUiCommonsNT.Neutral {
+	color: @sapUiChartNeutral;	
+}
+
+.sapSuiteUiCommonsNT.Good {
+	color: @sapUiChartGood;	
+}
+
+.sapSuiteUiCommonsNT.Critical {
+	color: @sapUiChartCritical;	
+}
+
+.sapSuiteUiCommonsNT.Error {
+	color: @sapUiChartBad;	
+}

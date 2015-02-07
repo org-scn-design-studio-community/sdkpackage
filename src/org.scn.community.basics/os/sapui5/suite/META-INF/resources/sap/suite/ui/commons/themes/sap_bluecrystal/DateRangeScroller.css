@@ -1,0 +1,41 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/DateRangeScroller.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsDateRangeScroller {
+  
+}
+
+.sapSuiteUiCommonsDateRangeScrollerLabel {
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 1px;
+}
+
+.sapSuiteUiCommonsDateRangeScrollerScrollBtn {
+	display: inline-block;
+	text-indent: -99999px;
+	background-repeat: no-repeat; 		
+	height: 22px;
+	width: 22px;	
+	background-position: 3px 3px;
+}
+
+.sapSuiteUiCommonsDateRangeScrollerIncBtnArrow {
+	background-image: url(img/arrow_right.png);
+}
+
+.sapSuiteUiCommonsDateRangeScrollerIncBtnArrow:hover {
+	background-image: url(img/arrow_right_hover.png);
+	background-color: @sapUiHighlight;
+}
+
+.sapSuiteUiCommonsDateRangeScrollerDecBtnArrow {	
+	background-image: url(img/arrow_left.png);
+}
+
+.sapSuiteUiCommonsDateRangeScrollerDecBtnArrow:hover {
+	background-image: url(img/arrow_left_hover.png);
+	background-color: @sapUiHighlight;	
+}

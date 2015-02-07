@@ -1,0 +1,190 @@
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/ThreePanelThingViewer.control */
+/* ============================================= */
+@sapSuiteUiThingViewerHeaderBgHEX: #F8F8F8;
+@sapSuiteUiThingViewerHeaderBgRGBA: rgba(248, 248, 248, .85);
+@sapSuiteUiThingViewerFacetBgRGBA: rgba(255, 255, 255, .85);
+@sapSuiteUiThingViewerTitleBgRGBA: rgba(255, 255, 255, 0);
+
+.sapUiUx3TV {
+    background-color: @sapUiWhite;
+    overflow: hidden;
+    min-height: 508px;
+    background-image: url(img/img_bg_ti.png);
+    background-position: bottom left;
+    background-repeat: no-repeat;
+}
+
+.sapSuiteTvMinHeight {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.sapSuiteTvTitleBar {
+    font-family: Arial, sans-serif;
+}
+
+.sapSuiteTvTitle {
+    background: @sapUiWhite;
+    background: linear-gradient(175deg, @sapUiWhite 200px, @sapSuiteUiThingViewerTitleBgRGBA);
+    height: 100%;
+    float: left;
+    border-right: 1px solid #dcdcdc;
+    padding: 20px 10px 0 10px;
+}
+
+.sapSuiteTvTitleIcon {
+    float: left;
+    width: 64px;
+    height: 64px;
+}
+
+.sapSuiteTvTextCrop {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sapSuiteTvTitleType {
+	clear: both;
+    display: block;
+    color: @sapUiMediumText;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.sapSuiteTvTitleFirst {
+    display: block;
+    color: @sapUiDeepText;
+    font-size: 18px;
+    word-wrap: break-word;
+    padding-top: 20px;
+}
+
+.sapSuiteTvTitleSecond {
+    display: block;
+    color: @sapUiDeepText;
+    font-size: 16px;
+    padding-top: 20px;
+}
+
+.sapSuiteTvNav {
+    position: absolute;
+    top: 230px;
+    bottom: 196px;
+    left: 10px;
+    overflow-y: auto;
+    min-height: 64px;
+    margin-bottom: 20px;
+}
+.sapSuiteTvNav.sapSuiteTvNavNoLogo {
+    bottom: 0;
+    margin-bottom: 10px;
+}
+
+.sapSuiteTvLogo {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 10px;
+    height: 186px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.sapSuiteTvLogoIcon {
+    border: 1px solid @sapUiWhiteBorder;
+}
+
+.sapSuiteTvHeader {
+    background-color: @sapSuiteUiThingViewerHeaderBgHEX;
+    background-color: @sapSuiteUiThingViewerHeaderBgRGBA;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=85);
+    height: 100%;
+    width: 276px;
+    overflow-y: auto;
+    float: left;
+    border-right: 1px solid #dcdcdc;
+}
+
+.sapSuiteTvFacet {
+    height: 100%;
+    overflow-y: auto;
+    background-color: @sapUiWhite;
+    background-color: @sapSuiteUiThingViewerFacetBgRGBA;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=85);
+}
+
+.sapSuiteTvHeader .sapUiUx3TVHeaderContainer {
+    padding: 11px 10px 2px 10px;
+}
+
+.sapSuiteTvHeader .sapUiUx3TVHeaderGroupTitle {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: none;
+}
+.sapSuiteTvHeader .sapUiUx3TVHeaderGroupContent {
+    margin-top: 7px;
+}
+
+.sapSuiteTvHeader .sapUiUx3TVHRWhite {
+    display: none;
+}
+
+.sapSuiteTvFacet .sapUiUx3TVFacetThingGroupContentTitle {
+    margin: 16px 20px 0 10px;
+    padding-bottom: 3px;
+    color: @sapUiBaseText;
+    text-transform: none;
+}
+
+.sapSuiteTvFacet .sapUiUx3TVFacetThingGroupContent {
+	margin-top: 2px;
+	margin-left: 10px;
+}
+
+.sapSuiteTvTitleMb {
+    float: right;
+    margin-top: 32px;
+    background-image: url("img/btn_actions_regular.png");
+    width: 32px;
+    height: 32px;
+}
+.sapSuiteTvTitleMb:hover,.sapSuiteTvTitleMb:focus {
+    background-image: url("img/btn_actions_hover.png");
+}
+
+.sapSuiteTvPopupMenu {
+    position: absolute;
+    top: 88px;
+    display: none;
+    width: 240px;
+    max-height: 245px;
+    z-index: 5;
+    border: 9px solid @sapUiWhiteBorder;
+    background-color: @sapUiWhite;
+    box-shadow: @sapUiShadow;
+    overflow: auto;
+}
+
+.sapSuiteTvPopupMenuLink {
+    display: block;
+    margin: 4px 1px 6px 1px;
+}
+
+.sapSuiteTvFacet .sapUiUx3TVFacetThingGroup {
+    min-width: 100px;
+}
+.sapSuiteTvFacet .sapUiUx3TVFacetThingGroupSpan {
+    min-width: 200px;
+}
+
+html[data-sap-ui-browser="ie8"] .sapSuiteTvPopupMenu {
+    border: 1px solid @sapUiBlackBorder;
+}
