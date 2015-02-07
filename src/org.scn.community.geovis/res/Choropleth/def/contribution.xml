@@ -1,0 +1,96 @@
+
+<component id="Choropleth" 
+	title="Choropleth Map"
+	icon="res/Choropleth/Choropleth.png"
+	handlerType="div"
+	propertySheetPath="res/Choropleth/ChoroplethPropertyPage.html"
+	databound = "true"
+	group="ScnCommunityGeo">
+	<jsInclude>res/common.js</jsInclude>
+	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
+	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
+	<property id="selectedFeature" title="Selected Feature" type="String"/>
+	<property id="colorOn" title="Enable Color" type="boolean"/>
+	<property id="globeOn" title="Enable Globe" type="boolean"/>
+	<property id="colorReverse" title="Color Reverse" type="boolean"/>
+	<property id="colorSet" title="Color Set" type="String">
+		<possibleValue>Spectral</possibleValue>
+		<possibleValue>Paired</possibleValue>
+		<possibleValue>Greens</possibleValue>
+		<possibleValue>Purples</possibleValue>
+	</property>
+	<property id="colorProperty" title="Choropleth Measure" type="String"/>
+	<property id="legendOn" title="Enable Legend" type="boolean"/>
+	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="legendWidth" title="Legend Width (0 = Auto)" type="int"/>
+	<property id="legendScale" title="Legend Scale" type="int"/>
+	<property id="legendX" title="Legend Offset X" type="int"/>
+	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="mapX" title="Map Offset X" type="int"/>
+	<property id="mapY" title="Map Offset Y" type="int"/>
+	<property id="graticuleOn" title="Enable Graticule Grid" type="boolean"/>
+	<property id="canvasDragOn" title="Enable Drag" type="boolean"/>
+	<!-- 
+	<property id="center" title="Center" type="String"/>
+	<property id="scale" title="Scale" type="float"/>
+	-->
+	
+	<property id="tooltipOn" title="Enable Tooltips" type="boolean"/>
+	<property id="rotationX" title="Yaw" type="float"/>
+	<property id="rotationY" title="Pitch" type="float"/>
+	<property id="rotationZ" title="Roll" type="float"/>
+	<property id="projection" title="Projection" type="String">
+		<possibleValue>mercator</possibleValue>
+		<possibleValue>albersUsa</possibleValue>
+		<possibleValue>equirectangular</possibleValue>
+		<possibleValue>conicEqualArea</possibleValue>
+		<possibleValue>conicConformal</possibleValue>
+		<possibleValue>orthographic</possibleValue>
+		<possibleValue>azimuthalEqualArea</possibleValue>
+		<possibleValue>azimuthalEquidistant</possibleValue>
+		<possibleValue>conicEquidistant</possibleValue>
+		<possibleValue>gnomonic</possibleValue>
+		<possibleValue>stereographic</possibleValue>
+		<possibleValue>transverseMercator</possibleValue>
+	</property>
+	<property id="map" title="Map" type="String">
+		<possibleValue>USA</possibleValue>
+		<possibleValue>us</possibleValue>
+		<possibleValue>world-population.geo</possibleValue>
+		<possibleValue>external</possibleValue>
+	</property>
+	<property id="externalMap" title="External Map URL" type="String"/>
+	<property id="propertyMapping" title="Dimension Property Mapping" type="String"/>
+	<property id="onSelect" title="On Select" type="ScriptText"/>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+	</property>	
+	<initialization>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="legendScale">1</defaultValue>
+		<defaultValue property="legendWidth">0</defaultValue>
+		<defaultValue property="legendTitle">Legend Title</defaultValue>
+		<defaultValue property="legendX">0</defaultValue>
+		<defaultValue property="legendY">0</defaultValue>
+		<defaultValue property="mapX">0</defaultValue>
+		<defaultValue property="mapY">0</defaultValue>
+		<defaultValue property="colorOn">true</defaultValue>
+		<defaultValue property="globeOn">true</defaultValue>
+		<defaultValue property="colorProperty">0AMOUNT</defaultValue>
+		<defaultValue property="colorSet">Spectral</defaultValue>
+		<defaultValue property="projection">equirectangular</defaultValue>
+		<defaultValue property="propertyMapping">NAME</defaultValue>
+		<defaultValue property="scale">150</defaultValue>
+		<defaultValue property="rotationX">90</defaultValue>
+		<defaultValue property="center">0,0</defaultValue>
+		<defaultValue property="map">countries</defaultValue>
+		<defaultValue property="externalMap">http://code.minnpost.com/simple-map-d3/example-data/europe-population-density-geocommons.geo.json</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+	</initialization>
+</component>

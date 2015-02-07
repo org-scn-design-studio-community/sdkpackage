@@ -35,7 +35,6 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 	_sortMethod = "NONE";
 	_kfIndex = 0;
 	_swap = false;
-	_simulateHierarchy = false;
 	
 	this.kfIndex = function(s){
 		if(s===undefined){
@@ -60,15 +59,6 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 			return _swap;
 		}else{
 			_swap = b;
-			this.recalculate();
-			return this;
-		}
-	};
-	this.simulateHierarchy = function(b){
-		if(b===undefined){
-			return _simulateHierarchy;
-		}else{
-			_simulateHierarchy = b;
 			this.recalculate();
 			return this;
 		}
@@ -140,18 +130,6 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 				text : dimNames[i],
 				axis : dimensionAxis
 			};
-			/*
-			 * Doesn't seem to do anything :(
-			 */
-			if(_simulateHierarchy){
-				if(i==dimNames.length-1){
-					dim.nodeState = "COLLAPSED";
-				}else{
-					dim.nodeState = "EXPANDED";
-				}
-				
-				dim.level = i;
-			}
 			dims.push(dim)
 		}
 		this.defineDimensions(dims);

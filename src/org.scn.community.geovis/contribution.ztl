@@ -20,4 +20,6 @@
 
 class org.scn.community.geovis.Maps extends Component {
 	
+}class org.scn.community.geovis.Choropleth extends Component {
+	
 }
