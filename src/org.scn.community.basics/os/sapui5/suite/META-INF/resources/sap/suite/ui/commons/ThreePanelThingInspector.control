@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ThreePanelThingInspector</name>
+	<documentation>This control extends the sap.ui.ux3.ThingInspector control. It displays the sap.suite.ui.commons.ThreePanelThingViewer control in the sap.ui.ux3.Overlay control.</documentation>
+
+	<baseType>sap.ui.ux3/ThingInspector</baseType>
+	<properties>
+		<property group="Misc" name="showHeader" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Shows or hides a middle panel of the ThingViewer named Header that contains general information.</documentation>
+		</property>
+		<property group="Misc" name="logo" type="sap.ui.core/URI">
+			<documentation>A URL of the source of the ThingViewer's key visual image.</documentation>
+		</property>
+		<property group="Misc" name="sidebarWidth" type="sap.ui.core/CSSSize" defaultValue="224px">
+			<documentation>The width of the ThingViewer's navigation panel.</documentation>
+		</property>
+	</properties>
+	<aggregations>
+		<aggregation name="menuContent" type="sap.ui.commons/Link" cardinality="0..n">
+			<documentation>The items of the ThingViewer's Action Menu.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

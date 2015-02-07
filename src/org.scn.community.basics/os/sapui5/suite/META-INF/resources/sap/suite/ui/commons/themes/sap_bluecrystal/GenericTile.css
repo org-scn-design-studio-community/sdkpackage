@@ -1,0 +1,63 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/GenericTile.control */
+/* ============================================= */
+
+.sapUiMedia-Std-Desktop .sapSuiteGTHdrTxt.Auto > .sapMText,
+.sapSuiteGTHdrTxt.L > .sapMText,
+.sapUiMedia-Std-Tablet .sapSuiteGTHdrTxt.Auto > .sapMText,
+.sapSuiteGTHdrTxt.M > .sapMText  {
+    color: @sapUiDarkText;
+    font-family: @sapUiFontFamily;   
+    font-size: @sapMFontHeader5Size;  
+    font-weight: normal;
+}
+
+.sapSuiteGTSubHdrTxt {
+    font-family: @sapUiFontFamily;   
+    font-size: @sapMFontMediumSize;
+    font-weight: normal;  
+    color: @sapUiLightText;
+}
+
+.sapSuiteGTHdrIconImage {
+    font-family: @sapUiFontHeaderFamily;
+	font-weight: @sapUiFontHeaderWeight;
+	color: @sapUiHighlight;
+}
+.sap-desktop .sapSuiteGT:focus {
+    outline-color: @sapUiFocus;
+    outline-style: dotted;
+    outline-width: 1px;
+}
+
+.sap-desktop .sapSuiteGT:focus:not([tabindex]) {
+	outline: none;
+}
+html[data-sap-ui-browser^="ff"] .sapSuiteGT:focus {
+	outline-offset: -0.30rem;
+}
+
+.sapSuiteGT {
+	box-shadow: 0px 0px 0.25rem fade(@sapUiDarkShadowTint, 10);
+}
+
+.sapSuiteGenericTileFtrFldTxt {
+    font-family: @sapUiFontFamily;  
+    font-size: @sapMFontSmallSize; 
+    color: @sapUiLightText;
+}
+
+html[data-sap-ui-browser^="ff"] .sapSuiteGT:hover {
+    outline-offset: -0.60rem;
+}
+.sap-desktop .sapSuiteGT:hover,
+.sap-desktop .sapSuiteGTHvrOutln:hover,
+.sap-phone .sapSuiteGTHvrOutln:hover,
+.sap-tablet .sapSuiteGTHvrOutln:hover {
+	box-shadow: 0px 0px 0px 2px @sapUiLightShadowTint;
+}
+
+.sapSuiteGenericTileFtrFldIcn {
+    color: @sapUiLightText;
+}

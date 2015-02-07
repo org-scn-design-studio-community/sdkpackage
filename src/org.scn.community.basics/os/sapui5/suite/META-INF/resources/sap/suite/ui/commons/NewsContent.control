@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>NewsContent</name>
+	<documentation>This control displays the news content text and subheader in a tile.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" type="sap.suite.ui.commons/InfoTileSize" name="size" defaultValue='Auto'>
+			<documentation>Updates the size of the chart. If not set then the default size is applied based on the device tile.</documentation>
+		</property>
+		<property group="Misc" name="contentText" type="sap.ui.core/string">
+			<documentation>The content text.</documentation>
+		</property>
+		<property group="Misc" name="subheader" type="sap.ui.core/string">
+			<documentation>The subheader.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the news content.</documentation>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation name="contentTextAgr" type="sap.m/Text" visibility="hidden" cardinality="0..1">
+			<documentation>The hidden aggregation for the content text.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

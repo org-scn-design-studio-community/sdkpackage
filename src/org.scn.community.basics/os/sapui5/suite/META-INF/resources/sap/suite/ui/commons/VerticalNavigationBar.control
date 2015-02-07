@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>VerticalNavigationBar</name>
+	<documentation>This control extends the sap.ui.ux3.NavigationBar and allows you to display navigation items vertically. The navigation list can contain sap.ui.ux3.NavigationItem or sap.suite.ui.commons.CountingNavigationItem controls. </documentation>
+
+	<baseType>sap.ui.ux3/NavigationBar</baseType>
+</control>

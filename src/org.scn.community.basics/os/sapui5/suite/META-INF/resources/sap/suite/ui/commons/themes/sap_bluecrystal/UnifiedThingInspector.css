@@ -1,0 +1,11 @@
+.sap-desktop .sapSuiteUti .sapMBar.sapMPageHeader {
+	background: @sapUiLightestBG;
+}
+
+.sapSuiteUtiHeaderName {
+    font-size: @sapMFontHeader1Size;
+}
+
+.sapSuiteUtiHeaderDesc {
+    font-size: @sapMFontMediumSize;
+}

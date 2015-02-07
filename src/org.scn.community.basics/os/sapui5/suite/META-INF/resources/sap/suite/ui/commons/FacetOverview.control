@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>FacetOverview</name>
+	<documentation>This control is used in UnifiedThingInspector to display the preview of the facet content.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="title" type="sap.ui.core/string">
+			<documentation>This property is shown in the upper left part of control.</documentation>
+		</property>
+		<property group="Misc" name="quantity" type="sap.ui.core/int" defaultValue="-1">
+			<documentation>Displays a label with the number of items in the right part of the control.</documentation>
+		</property>
+		<property group="Misc" name="width" type="sap.ui.core/CSSSize" defaultValue="auto">
+			<documentation>Defines the width of the control. By default, the value is empty and the control inhertis the size from its content.</documentation>
+		</property>
+		<property group="Misc" name="height" type="sap.ui.core/CSSSize" defaultValue="10rem">
+			<documentation>Defines the height of the control only if the heightType prperty is set to None. Must be set in rems for the correct work in the UnifiedThingInspector.</documentation>
+			<deprecation since="1.17.1">This property was replaced by heightType property.</deprecation>
+		</property>
+		<property group="Misc" name="rowSpan" type="sap.ui.core/int" defaultValue="1">
+			<documentation>Defines the number of rows that the control represents in an external layout.</documentation>
+			<deprecation since="1.17.1">It is not used any more for the laoyut calculations in UnifiedThingInspector.</deprecation>
+		</property>
+		<property group="Misc" name="heightType" type="FacetOverviewHeight" defaultValue="None">
+			<documentation>Indicates the height of the control in the predifened values. If set to None, then the height is defined by the depricated height property.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the control. Provides an event with parameter id, the ID of the chosen control.</documentation>
+			<parameters>
+				<parameter name="id" type="sap.ui.core/string">
+					<documentation>The control ID.</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="heightChange">
+			<documentation>This event is fired when a new value to the heightType or height property is set.</documentation>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..1" name="content" type="sap.ui.core/Control">
+			<documentation>The content that appears in the left part of the control.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

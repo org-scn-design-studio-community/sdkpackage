@@ -19,6 +19,12 @@
 	/**Cast to Color Picker component*/
 	org.scn.community.basics.ColorPicker returnAsScnColorPicker (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Date Range Scroller component*/
+	org.scn.community.basics.DateRangeScroller returnAsScnDateRangeScroller (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Date Range Slider component*/
+	org.scn.community.basics.DateRangeSlider returnAsScnDateRangeSlider (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Drag Drop Area component*/
 	org.scn.community.basics.DragDropArea returnAsScnDragDropArea (Component inputComponent) {* return inputComponent; *}
 
@@ -124,6 +130,9 @@
 	/**Cast to Multi Level DropDown Menu component*/
 	org.scn.community.databound.MultiLevelDropDown returnAsScnMultiLevelDropDown (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Data Projector component*/
+	org.scn.community.databound.Projector returnAsScnProjector (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Range Slider component*/
 	org.scn.community.databound.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
 
@@ -148,6 +157,12 @@
 	/**Cast to Maps component*/
 	org.scn.community.geovis.Maps returnAsScnMaps (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to (PROTOTYPE!) Application Header (with Event) component*/
+	org.scn.community.prototypes.ApplicationHeaderE returnAsScnApplicationHeaderE (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to (PROTOTYPE!) Application Header (OnBeforeRender) component*/
+	org.scn.community.prototypes.ApplicationHeaderO returnAsScnApplicationHeaderO (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Progress Bar Set component*/
 	org.scn.community.prototypes.ProgressSet returnAsScnProgressSet (Component inputComponent) {* return inputComponent; *}
 
@@ -171,6 +186,9 @@
 
 	/**Cast to Flow Layouter component*/
 	org.scn.community.utils.FlowLayouter returnAsScnFlowLayouter (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Math Utility component*/
+	org.scn.community.utils.Math returnAsScnMath (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Open Window by Post component*/
 	org.scn.community.utils.OpenWindowPost returnAsScnOpenWindowPost (Component inputComponent) {* return inputComponent; *}

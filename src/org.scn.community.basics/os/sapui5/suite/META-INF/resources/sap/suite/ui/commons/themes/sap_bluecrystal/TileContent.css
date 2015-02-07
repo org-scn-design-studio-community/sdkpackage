@@ -1,0 +1,15 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/TileContent.control */
+/* ============================================= */
+
+/* Footer CSS */
+.sapSuiteTileCntFtrTxt {
+    font-family: @sapUiFontFamily;   
+    font-size: @sapMFontMediumSize;
+    color: @sapUiLightText;
+}
+
+.sapSuiteTileCnt.News {
+	background-color: fade(@sapUiLightestBG, 60);
+}
