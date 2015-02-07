@@ -12,7 +12,13 @@
   fill: none;
   stroke: #fff;
 }
-
+.DesignStudioSCN.Choropleth .subunit-label {
+  fill: #000;
+  fill-opacity: .5;
+  /* font-size: 20px; */
+  font-weight: 300;
+  text-anchor: middle;
+}
 .DesignStudioSCN.Choropleth .tooltip-container {
   position: relative;
 }

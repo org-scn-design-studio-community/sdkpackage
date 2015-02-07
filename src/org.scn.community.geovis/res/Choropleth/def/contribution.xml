@@ -3,7 +3,7 @@
 	title="Choropleth Map"
 	icon="res/Choropleth/Choropleth.png"
 	handlerType="div"
-	propertySheetPath="res/Choropleth/ChoroplethPropertyPage.html"
+	propertySheetPath="res/Choropleth/aps/ChoroplethPropertyPage.html"
 	databound = "true"
 	group="ScnCommunityGeo">
 	<jsInclude>res/common.js</jsInclude>
@@ -13,6 +13,7 @@
 	<property id="colorOn" title="Enable Color" type="boolean"/>
 	<property id="globeOn" title="Enable Globe" type="boolean"/>
 	<property id="colorReverse" title="Color Reverse" type="boolean"/>
+	<property id="colorPalette" title="Colour Palette" type="String"/>
 	<property id="colorSet" title="Color Set" type="String">
 		<possibleValue>Spectral</possibleValue>
 		<possibleValue>Paired</possibleValue>
@@ -20,6 +21,9 @@
 		<possibleValue>Purples</possibleValue>
 	</property>
 	<property id="colorProperty" title="Choropleth Measure" type="String"/>
+	<property id="labelsOn" title="Enable Labels" type="boolean"/>
+	<property id="labelProperty" title="Label Property" type="String"/>
+	<property id="labelSize" title="Label Size (CSS Size)" type="String"/>
 	<property id="legendOn" title="Enable Legend" type="boolean"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
 	<property id="legendWidth" title="Legend Width (0 = Auto)" type="int"/>
@@ -54,9 +58,12 @@
 		<possibleValue>transverseMercator</possibleValue>
 	</property>
 	<property id="map" title="Map" type="String">
-		<possibleValue>USA</possibleValue>
-		<possibleValue>us</possibleValue>
-		<possibleValue>world-population.geo</possibleValue>
+		<possibleValue>world-countries</possibleValue>
+		<possibleValue>USA-regions</possibleValue>
+		<possibleValue>Germany-regions</possibleValue>
+		<possibleValue>China-regions</possibleValue>
+		<possibleValue>Afghanistan-regions</possibleValue>
+		<possibleValue>USA-counties</possibleValue>
 		<possibleValue>external</possibleValue>
 	</property>
 	<property id="externalMap" title="External Map URL" type="String"/>
@@ -71,6 +78,9 @@
 		<option name="includeData" value="true"/>
 	</property>	
 	<initialization>
+		<defaultValue property="labelsOn">true</defaultValue>
+		<defaultValue property="labelSize">10px</defaultValue>
+		<defaultValue property="labelProperty">name</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
 		<defaultValue property="legendScale">1</defaultValue>
 		<defaultValue property="legendWidth">0</defaultValue>
@@ -83,12 +93,13 @@
 		<defaultValue property="globeOn">true</defaultValue>
 		<defaultValue property="colorProperty">0AMOUNT</defaultValue>
 		<defaultValue property="colorSet">Spectral</defaultValue>
+		<defaultValue property="brewerColors">#009966</defaultValue>
 		<defaultValue property="projection">equirectangular</defaultValue>
 		<defaultValue property="propertyMapping">NAME</defaultValue>
 		<defaultValue property="scale">150</defaultValue>
 		<defaultValue property="rotationX">90</defaultValue>
 		<defaultValue property="center">0,0</defaultValue>
-		<defaultValue property="map">countries</defaultValue>
+		<defaultValue property="map">world-countries</defaultValue>
 		<defaultValue property="externalMap">http://code.minnpost.com/simple-map-d3/example-data/europe-population-density-geocommons.geo.json</defaultValue>
 		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">300</defaultValue>
