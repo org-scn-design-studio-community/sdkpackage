@@ -12,3 +12,77 @@
   fill: none;
   stroke: #fff;
 }
+
+.DesignStudioSCN.Choropleth .tooltip-container {
+  position: relative;
+}
+
+.DesignStudioSCN.Choropleth .tooltip {
+  position: absolute;
+  display: none;
+  top: 5px;
+  right: 5px;
+  border: 1px solid #898989;
+  padding: .5em;
+  font-size: .75em;
+  background-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.DesignStudioSCN.Choropleth .canvas.draggable,
+.DesignStudioSCN.Choropleth .draggable { 
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+.DesignStudioSCN.Choropleth .canvas.draggable.dragging,
+.DesignStudioSCN.Choropleth .draggable.dragging {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.DesignStudioSCN.Choropleth .background {
+  fill: transparent;
+  stroke: 0;
+}
+
+.DesignStudioSCN.Choropleth .path {
+  stroke: #898989;
+  stroke-width: .4px;
+  stroke-opacity: .85;
+}
+
+.DesignStudioSCN.Choropleth .path:hover {
+  stroke-opacity: 1;
+  stroke-width: .5px;
+}
+
+.DesignStudioSCN.Choropleth .canvas.tooltipped .path:hover {
+  cursor: pointer;
+}
+
+.DesignStudioSCN.Choropleth .legend-container {
+  stroke-width: .5px;
+  fill: #FFFFFF;
+  fill-opacity: 0.9;
+  stroke: #898989;
+}
+
+.DesignStudioSCN.Choropleth .legend-label {
+  font-weight: bold;
+}
+
+.DesignStudioSCN.Choropleth .graticule {
+  fill: none;
+  stroke: #222222;
+  stroke-width: .5px;
+  stroke-opacity: .75;
+}
+
+.DesignStudioSCN.Choropleth .globe {
+  fill: none;
+  stroke: #222222;
+  stroke-width: 3px;
+}

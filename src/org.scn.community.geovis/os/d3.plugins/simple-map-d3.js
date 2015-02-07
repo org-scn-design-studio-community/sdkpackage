@@ -548,10 +548,6 @@ function SimpleMapD3(o) {
           // Styles
           smd.options.d3Object.select(this).style(smd.options.styles);
         })
-        /**
-         * Addition for DesignStudio SDK
-         * Mike Howles
-         */
         .on('click', function(d){ 
         	smd.options.sdkComponent.setSelectedFeature(d);
     	});

@@ -9,19 +9,25 @@
 	<jsInclude>res/common.js</jsInclude>
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
-	<cssInclude>res/Choropleth/simple-map-d3.css</cssInclude>
 	<property id="selectedFeature" title="Selected Feature" type="String"/>
 	<property id="colorOn" title="Enable Color" type="boolean"/>
+	<property id="globeOn" title="Enable Globe" type="boolean"/>
 	<property id="colorReverse" title="Color Reverse" type="boolean"/>
 	<property id="colorSet" title="Color Set" type="String">
 		<possibleValue>Spectral</possibleValue>
 		<possibleValue>Paired</possibleValue>
+		<possibleValue>Greens</possibleValue>
+		<possibleValue>Purples</possibleValue>
 	</property>
 	<property id="colorProperty" title="Choropleth Measure" type="String"/>
 	<property id="legendOn" title="Enable Legend" type="boolean"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
 	<property id="legendWidth" title="Legend Width (0 = Auto)" type="int"/>
 	<property id="legendScale" title="Legend Scale" type="int"/>
+	<property id="legendX" title="Legend Offset X" type="int"/>
+	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="mapX" title="Map Offset X" type="int"/>
+	<property id="mapY" title="Map Offset Y" type="int"/>
 	<property id="graticuleOn" title="Enable Graticule Grid" type="boolean"/>
 	<property id="canvasDragOn" title="Enable Drag" type="boolean"/>
 	<!-- 
@@ -48,7 +54,7 @@
 		<possibleValue>transverseMercator</possibleValue>
 	</property>
 	<property id="map" title="Map" type="String">
-		<possibleValue>countries</possibleValue>
+		<possibleValue>USA</possibleValue>
 		<possibleValue>us</possibleValue>
 		<possibleValue>world-population.geo</possibleValue>
 		<possibleValue>external</possibleValue>
@@ -69,7 +75,12 @@
 		<defaultValue property="legendScale">1</defaultValue>
 		<defaultValue property="legendWidth">0</defaultValue>
 		<defaultValue property="legendTitle">Legend Title</defaultValue>
+		<defaultValue property="legendX">0</defaultValue>
+		<defaultValue property="legendY">0</defaultValue>
+		<defaultValue property="mapX">0</defaultValue>
+		<defaultValue property="mapY">0</defaultValue>
 		<defaultValue property="colorOn">true</defaultValue>
+		<defaultValue property="globeOn">true</defaultValue>
 		<defaultValue property="colorProperty">0AMOUNT</defaultValue>
 		<defaultValue property="colorSet">Spectral</defaultValue>
 		<defaultValue property="projection">equirectangular</defaultValue>

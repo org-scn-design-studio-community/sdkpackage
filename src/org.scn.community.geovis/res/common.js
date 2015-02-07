@@ -379,7 +379,8 @@ org_scn_community_databound.flatten = function (data, options) {
 		rowHeaders : [],
 		rowHeaders2D : [],
 		values : [],
-		formattedValues : []
+		formattedValues : [],
+		hash : {}
 	};
 	if(!data || !data.dimensions || (!data.data && !data.formattedData)) {
 		throw("Incomplete data given.\n\n" + JSON.stringify(data));
@@ -405,6 +406,7 @@ org_scn_community_databound.flatten = function (data, options) {
 				sep = " ";
 			}
 		}
+		retObj.hash[rowHeader] = row;
 		retObj.rowHeaders.push(rowHeader);
 		retObj.rowHeaders2D.push(rowHeader2D);
 		for(var col=0;col<colLength;col++){
