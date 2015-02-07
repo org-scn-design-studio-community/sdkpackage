@@ -4,7 +4,7 @@
 	title="(PROTOTYPE!) Application Header (OnBeforeRender)"
 	handlerType="sapui5"
 	icon="res/ApplicationHeaderOnBeforeRender/ApplicationHeader.png"
-	group="ScnCommunityBasics"
+	group="ScnCommunityPrototypes"
 >
 	<jsInclude>res/ApplicationHeaderOnBeforeRender/ApplicationHeader.js</jsInclude>
 

@@ -157,6 +157,12 @@
 	/**Cast to Maps component*/
 	org.scn.community.geovis.Maps returnAsScnMaps (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to (PROTOTYPE!) Application Header (with Event) component*/
+	org.scn.community.prototypes.ApplicationHeaderE returnAsScnApplicationHeaderE (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to (PROTOTYPE!) Application Header (OnBeforeRender) component*/
+	org.scn.community.prototypes.ApplicationHeaderO returnAsScnApplicationHeaderO (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Progress Bar Set component*/
 	org.scn.community.prototypes.ProgressSet returnAsScnProgressSet (Component inputComponent) {* return inputComponent; *}
 

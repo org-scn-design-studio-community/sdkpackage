@@ -4,7 +4,7 @@
 	title="(PROTOTYPE!) Application Header (with Event)"
 	handlerType="sapui5"
 	icon="res/ApplicationHeaderEventTrigger/ApplicationHeader.png"
-	group="ScnCommunityBasics"
+	group="ScnCommunityPrototypes"
 >
 	<jsInclude>res/ApplicationHeaderEventTrigger/ApplicationHeader.js</jsInclude>
 
