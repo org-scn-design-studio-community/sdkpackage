@@ -67,6 +67,30 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 	/**
 	 * Setter/Getters
 	 */
+	this.projection = function(s){
+		if(s===undefined){
+			return this._projection
+		}else{
+			this._projection = s;
+			this.compProjection.setSelectedKey(s);
+		}
+	};
+	this.backgroundColor = function(s){
+		if(s===undefined){
+			return this._backgroundColor
+		}else{
+			this._backgroundColor = s;
+			this.compBackgroundColor.setBackgroundColor(s);
+		}
+	};
+	this.defaultFillColor = function(s){
+		if(s===undefined){
+			return this._defaultFillColor
+		}else{
+			this._defaultFillColor = s;
+			this.compFillColor.setBackgroundColor(s);
+		}
+	};
 	this.colorPalette = function(s){
 		if(s===undefined){
 			return this._colorPalette
@@ -90,18 +114,55 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 	/**
 	 * UI5 Components
 	 */
+	this.compProjection = new sap.ui.commons.ComboBox({
+		items : [
+		  new sap.ui.core.ListItem({ key : "mercator", text : "Mercator" }),
+		  new sap.ui.core.ListItem({ key : "albersUsa", text : "Albers USA" }),
+		  new sap.ui.core.ListItem({ key : "conicEqualArea", text : "Albers Conic Equal Area" }),
+		  new sap.ui.core.ListItem({ key : "equirectangular", text : "Equirectangular" }),
+		  new sap.ui.core.ListItem({ key : "conicConformal", text : "Conformal Conic" }),
+		  new sap.ui.core.ListItem({ key : "conicEquidistant", text : "Conic Equal Area" }),
+		  new sap.ui.core.ListItem({ key : "orthographic", text : "Orthographic Sphere" }),
+		  new sap.ui.core.ListItem({ key : "azimuthalEqualArea", text : "Azimuthal Equal-Area" }),
+		  new sap.ui.core.ListItem({ key : "azimuthalEquidistant", text : "Azimuthal Equidistant" }),
+		  new sap.ui.core.ListItem({ key : "gnomonic", text : "Gnomonic" }),
+		  new sap.ui.core.ListItem({ key : "stereographic", text : "Stereographic" }),
+		  new sap.ui.core.ListItem({ key : "transverseMercator", text : "Transverse Mercator" })
+		]
+	});
+	this.compProjection.attachChange(function(oControlEvent){
+		that.projection(this.getSelectedKey());
+		that.firePropertiesChanged(["projection"]);
+	});
 	this.brewer = new org.scn.community.aps.ColorBuilder({
 		width : "100%",
 		title : new sap.ui.commons.Title({
 			text: "Colors"
 		}),
-		tooltip: this.tooltip,
+		tooltip: "Choropleth Colors",
 		showCollapseIcon : false,
 		showAlpha : false,
 		showRatios : false,
 		colorChange : function(oControlEvent){
 			that.colorPalette(this.getColors());
 			that.firePropertiesChanged(["colorPalette"]);
+		}
+	});
+	this.compBackgroundColor = new org.scn.community.aps.ColorPicker({
+		title : new sap.ui.commons.Title({
+			text: "Background Color"
+		}),
+		showAlpha : false,
+		colorChange : function(oControlEvent){
+			that.backgroundColor(this.getBackgroundColor());
+			that.firePropertiesChanged(["backgroundColor"]);
+		}
+	});
+	this.compFillColor = new org.scn.community.aps.ColorPicker({
+		showAlpha : false,
+		colorChange : function(oControlEvent){
+			that.defaultFillColor(this.getBackgroundColor());
+			that.firePropertiesChanged(["defaultFillColor"]);
 		}
 	});
 	this.byoMap = new sap.ui.commons.TextArea({
@@ -167,12 +228,22 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 				text : "Load Map...",
 				menu : this.presetMenu
 			});
+			
+			cosmeticsLayout.addContent(this.hLabel("Background Color",this.compBackgroundColor));
+			cosmeticsLayout.addContent(this.hLabel("Default Land Color",this.compFillColor));
 			cosmeticsLayout.addContent(this.brewer);
+			mappingLayout.addContent(this.hLabel("Projection Method",this.compProjection));
 			mappingLayout.addContent(this.presetsButton);
 			mappingLayout.addContent(this.byoMap);
 			mappingLayout.addContent(this.tableAttributes);
 			this.content.placeAt("content");
 	};
+	this.hLabel = function(label,component){
+		var hLayout = new sap.ui.commons.layout.HorizontalLayout({})
+		hLayout.addContent(new sap.ui.commons.TextView({ text : label, width : "150px"}));
+		hLayout.addContent(component);
+		return hLayout;
+	}
 	/**
 	 * Utility Functions
 	 */

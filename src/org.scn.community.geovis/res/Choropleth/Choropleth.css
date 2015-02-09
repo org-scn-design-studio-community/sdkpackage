@@ -1,7 +1,11 @@
 .land {
   fill: #222;
 }
-
+.globe {
+  fill: #d8ffff;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
 .county-boundary {
   fill: none;
   stroke: #fff;
@@ -30,9 +34,9 @@
   right: 5px;
   border: 1px solid #898989;
   padding: .5em;
-  font-size: .75em;
+  /*font-size: 8pt;*/
   background-color: #FFFFFF;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .DesignStudioSCN.Choropleth .canvas.draggable,
@@ -65,7 +69,8 @@
   stroke-width: .5px;
 }
 
-.DesignStudioSCN.Choropleth .canvas.tooltipped .path:hover {
+.DesignStudioSCN.Choropleth .canvas.tooltipped .path:hover, 
+.DesignStudioSCN.Choropleth .canvas.tooltipped .text:hover{
   cursor: pointer;
 }
 
@@ -88,7 +93,7 @@
 }
 
 .DesignStudioSCN.Choropleth .globe {
-  fill: none;
+  fill: #009966;
   stroke: #222222;
   stroke-width: 3px;
 }
