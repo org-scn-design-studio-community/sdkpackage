@@ -10,6 +10,7 @@
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
 	<property id="selectedFeature" title="Selected Feature" type="String"/>
+	<property id="ms" title="Transition Time (ms)" type="int"/>
 	<property id="colorOn" title="Enable Color" type="boolean"/>
 	<property id="globeOn" title="Enable Globe" type="boolean"/>
 	<property id="colorReverse" title="Color Reverse" type="boolean"/>
@@ -25,8 +26,10 @@
 		<possibleValue>France-regions</possibleValue>
 		<possibleValue>China-regions</possibleValue>
 		<possibleValue>USA-counties</possibleValue>
-		<possibleValue>external</possibleValue>
+		<possibleValue>Use Map Data</possibleValue>
+		<possibleValue>Use External URL</possibleValue>
 	</property>
+	<property id="mapData" title="Map Data" type="String"/>
 	<property id="colorProperty" title="Choropleth Measure" type="String"/>
 	<property id="labelsOn" title="Enable Labels" type="boolean"/>
 	<property id="labelProperty" title="Label Property" type="String"/>
@@ -77,6 +80,7 @@
 		<option name="includeData" value="true"/>
 	</property>	
 	<initialization>
+		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="labelsOn">true</defaultValue>
 		<defaultValue property="labelSize">10px</defaultValue>
 		<defaultValue property="labelProperty">name</defaultValue>
@@ -98,6 +102,7 @@
 		<defaultValue property="rotationX">90</defaultValue>
 		<defaultValue property="center">0,0</defaultValue>
 		<defaultValue property="map">world-countries</defaultValue>
+		<defaultValue property="mapData">EMPTY</defaultValue>
 		<defaultValue property="externalMap">http://code.minnpost.com/simple-map-d3/example-data/europe-population-density-geocommons.geo.json</defaultValue>
 		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">300</defaultValue>
