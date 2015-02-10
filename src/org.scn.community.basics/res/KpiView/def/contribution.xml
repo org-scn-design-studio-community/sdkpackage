@@ -10,6 +10,7 @@
 
 	<stdInclude kind="cvom" />
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/KpiView/KpiView.js</jsInclude>
 	<cssInclude>res/KpiView/KpiView.css</cssInclude>
 

@@ -155,7 +155,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 			// insert Average Information
 			var oText = new sap.ui.commons.TextView();
 			oText.addStyleClass("scn-pack-DataTopFlop-AverageText");
-			oText.setText(this.getAveragePrefix() + this._fFormatNumber(this._Average) + this.getAverageSuffix());
+			oText.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(this._Average, this._metadata.locale, this.getValueDecimalPlaces()) + this.getAverageSuffix());
 			this._lLayout.addContent(
 					oText
 			);	
@@ -208,7 +208,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 					text: text, 
 					url: key,
 					value: value,
-					valueS: this._fFormatNumber(value),
+					valueS: org_scn_community_basics.getFormattedValue(value, this._metadata.locale, this.getValueDecimalPlaces()),
 				};
 
 				list.push(itemDef);
@@ -524,9 +524,9 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 		
 		var delta = value - this._Average;
 		if(delta > 0) {
-			oTextDeltaValue.setText (" Δ " + "+" + this._fFormatNumber(delta) + this.getDeltaValueSuffix());	
+			oTextDeltaValue.setText (" Δ " + "+" + org_scn_community_basics.getFormattedValue(delta, this._metadata.locale, this.getValueDecimalPlaces()) + this.getDeltaValueSuffix());	
 		} else {
-			oTextDeltaValue.setText (" Δ " + this._fFormatNumber(delta) + this.getDeltaValueSuffix());
+			oTextDeltaValue.setText (" Δ " + org_scn_community_basics.getFormattedValue(delta, this._metadata.locale, this.getValueDecimalPlaces()) + this.getDeltaValueSuffix());
 		}
 		
 		

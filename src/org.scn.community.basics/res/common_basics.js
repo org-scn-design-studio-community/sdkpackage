@@ -77,3 +77,22 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 		parent._oContentPlaced = true;
 	};
 };
+
+/**
+ * Formats the double value according to locale (using cvom lib)
+ */
+org_scn_community_basics.getFormattedValue = function (value, locale, numberOfDecimal) {
+	sap.common.globalization.NumericFormatManager.setPVL(locale);
+	
+	var strFormat = "#"+sap.common.globalization.NumericFormatManager.getThousandSeparator()+"##0";
+	
+	if (numberOfDecimal > 0) {
+		strFormat += sap.common.globalization.NumericFormatManager.getDecimalSeparator();
+		for (var i = 0; i < this.getValueDecimalPlaces(); i++) {
+			strFormat += "0";
+		}
+	}
+	
+	var valueFormatted = sap.common.globalization.NumericFormatManager.format(value, strFormat);
+	return valueFormatted;
+};

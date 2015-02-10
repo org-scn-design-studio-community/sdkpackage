@@ -1,6 +1,5 @@
-/* GENERATED - DO NOT EDIT */
 /**
- * Copyright 2014, Contributors
+ * Copyright 2014 Scn SDK Community
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/
@@ -18,25 +17,5 @@
  * limitations under the License. 
  */
 
-class org.scn.community.geovis.Maps extends Component {
-	
-}class org.scn.community.geovis.Choropleth extends Component {
-	/**
-	Get selected feature
-	*/
-	String getSelectedFeature() {*
-		return this.selectedFeature;
-	*}
-	/**
-	Set Measure to use for coloring
-	*/
-	String setMeasure(/*Measure*/String measure) {*
-		return this.measureMember = measure;
-	*}
-	/**
-	Set Projection Method
-	*/
-	String setProjection(/*Projection*/String projection) {*
-		return this.projection = projection;
-	*}
-}
+var org_scn_community_geovis = org_scn_community_geovis || {};
+

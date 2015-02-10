@@ -10,7 +10,8 @@
 
 	<stdInclude kind="cvom" />
 
-	<jsInclude>res/common.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/Slider/Slider.js</jsInclude>
 	<cssInclude>res/Slider/Slider.css</cssInclude>
 

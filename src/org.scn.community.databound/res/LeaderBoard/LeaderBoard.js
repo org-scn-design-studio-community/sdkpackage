@@ -190,7 +190,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.LeaderB
 					text: text, 
 					url: key,
 					value: value,
-					valueS: this._fFormatNumber(value)
+					valueS: org_scn_community_basics.getFormattedValue(value, this._metadata.locale, this.getValueDecimalPlaces())
 				};
 
 				list.push(itemDef);

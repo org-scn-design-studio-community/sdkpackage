@@ -209,7 +209,65 @@ class org.scn.community.databound.jpd3hier extends Component {
 	*}
 	
 }
+/**
+ * Class for DataDropDown
+ */
+class org.scn.community.databound.FacetFilter extends org.scn.community.shared.DataComponent {
 
+	void private_onSelectionChanged () {*
+		var selection = this.DSelection;
+	
+		var selectionJson = JSON.parse(selection);
+		
+		var dimension = selectionJson.dimension;
+		var keys = selectionJson.keys;
+		
+		var keysAsArray = [];
+
+		var DS = this.getDataSource();
+
+		if(keys.length == 1 && keys[0] == "-ALL-") {
+			DS.clearFilter(dimension);
+		} else {
+			for (var iK = 0; iK < keys.length; iK++) {
+				var key = keys[iK];
+				
+				keysAsArray.push(key);
+			}
+			// APPLICATION.createInfoMessage("Filter: " + dimension + ", " + JSON.stringify(keysAsArray));
+			DS.setFilter(dimension, keysAsArray);
+		}
+		
+	*}
+	
+	void private_onBeforeRender() {*
+	*}
+	
+	void reloadDataSource() {*
+		var elementsJson = [];
+
+		var DS = this.getDataSource();
+
+		if(DS) {
+			var dimensions = DS.getDimensions();
+			
+			dimensions.forEach(function(dimension, index) {
+			  var members = DS.getMembers(dimension, 1000);
+
+			  var dimensionJson = {};
+			  dimensionJson.name = dimension.name;
+			  dimensionJson.text = dimension.text;
+			  dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
+
+			  dimensionJson.members = members;
+
+			  elementsJson.push(dimensionJson);
+			});
+
+			this.DElements = JSON.stringify(elementsJson);
+		}
+	*}
+}
 /**
  * Class for DataLeaderBoard
  */
