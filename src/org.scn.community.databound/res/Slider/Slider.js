@@ -92,7 +92,7 @@ sap.ui.commons.Slider.extend("org.scn.community.databound.Slider", {
 		
 		if(this.getDoRefresh()){
 			var lElementsToRenderArray = org_scn_community_databound.getTopBottomElements 
-			    (lData, lMetadata, this.getMaxNumber(), this.getTopBottom(), this.getSorting(), "Ignore Duplicates");
+			    (lData, lMetadata, this.getMaxNumber(), this.getTopBottom(), this.getSorting(), "Ignore Duplicates", 2);
 			
 			this._lLabels = []; 
 			this._lLabelKeys = [];

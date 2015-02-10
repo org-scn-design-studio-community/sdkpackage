@@ -45,7 +45,7 @@ org_scn_community_databound.hasDataAndMetadata = function (data, metadata) {
 	return true;
 };	
 
-org_scn_community_databound.getTopBottomElementsForDimension = function (data, requestedDimensionKey, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates) {
+org_scn_community_databound.getTopBottomElementsForDimension = function (data, requestedDimensionKey, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates, numberOfDecimals) {
 
 	if(!metadata || !metadata.dimensions) {
 		return [];
@@ -81,7 +81,7 @@ org_scn_community_databound.getTopBottomElementsForDimension = function (data, r
 		return [];
 	}
 	
-	return org_scn_community_databound.getTopBottomElementsByIndex (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates);
+	return org_scn_community_databound.getTopBottomElementsByIndex (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates, numberOfDecimals);
 };
 
 /**
@@ -91,15 +91,15 @@ org_scn_community_databound.getTopBottomElementsForDimension = function (data, r
  * iSortBy - string, "Default" | <some other string>
  * iDuplicates - string, "Ignore Duplicates" | <some other string>
  */
-org_scn_community_databound.getTopBottomElements = function (data, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates) {
+org_scn_community_databound.getTopBottomElements = function (data, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates, numberOfDecimals) {
 
 	var dimensionStartIndex = -1;
 	var dimensionEndIndex = -1;
 
-	return org_scn_community_databound.getTopBottomElementsByIndex (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates);
+	return org_scn_community_databound.getTopBottomElementsByIndex (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates, numberOfDecimals);
 };
 
-org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates) {
+org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates, numberOfDecimals) {
 	var list = [];
 	
 	if(!data || data == "" || data == undefined) {
@@ -179,7 +179,7 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimens
 				text: text, 
 				url: key,
 				value: value,
-				valueS: org_scn_community_databound.getFormattedValue(value),
+				valueS: org_scn_community_basics.getFormattedValue(value, numberOfDecimals),
 			};
 
 			list.push(itemDef);
@@ -323,27 +323,6 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimens
 	}
 	
 	return newList;
-};
-
-/**
- * Formats the double value according to locale (using cvom lib)
- */
-org_scn_community_databound.getFormattedValue = function (value) {
-	if(!this._metadata) {
-		return value;
-	}
-	sap.common.globalization.NumericFormatManager.setPVL(this._metadata.locale);
-	var strFormat = "#"+sap.common.globalization.NumericFormatManager.getThousandSeparator()+"##0";
-	
-	if (this.getValueDecimalPlaces() > 0) {
-		strFormat += sap.common.globalization.NumericFormatManager.getDecimalSeparator();
-		for (var i = 0; i < this.getValueDecimalPlaces(); i++) {
-			strFormat += "0";
-		}
-	}
-	
-	var valueFormatted = sap.common.globalization.NumericFormatManager.format(value, strFormat);
-	return valueFormatted;
 };
 
 /**

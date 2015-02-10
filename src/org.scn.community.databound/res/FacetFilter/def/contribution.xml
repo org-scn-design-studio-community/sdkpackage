@@ -1,0 +1,80 @@
+
+<component
+	id="FacetFilter"
+	title="Facet Filter"
+	icon="res/FacetFilter/FacetFilter.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<stdInclude kind="cvom" />
+
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/FacetFilter/FacetFilter.js</jsInclude>
+	<cssInclude>res/FacetFilter/FacetFilter.css</cssInclude>
+
+	<property
+		id="DElements"
+		title="Master Data Elements"
+		type="String"
+		group="DataBinding"
+		visible="false"
+	>
+	</property>
+
+	<property
+		id="DSelection"
+		title="Selected Elements"
+		type="String"
+		group="DataBinding"
+		visible="false"
+	>
+	</property>
+	
+	<property
+		id="DData"
+		title="ResultSet"
+		type="ResultSet"
+		group="DataBinding"
+		visible="false"
+	>
+	</property>
+
+	<property
+		id="DMaxMembers"
+		title="Maximum Number of Members"
+		type="int"
+		group="Display" />
+
+	<property  
+	  id="onDSelectionChanged"  
+	  title="On User List Selection"  
+	  type="ScriptText"  
+    visible="false"
+  />  
+
+	<property
+		id="onBeforeRender"
+		type="ScriptText"
+		title="Event for On Before Render"
+		group="Events"
+		visible="false" 
+	/>
+
+	<initialization>
+		<defaultValue property="TOP">0</defaultValue>
+		<defaultValue property="LEFT">0</defaultValue>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">26</defaultValue>
+		
+		<defaultValue property="DElements"></defaultValue>
+		<defaultValue property="DMaxMembers">1000</defaultValue>
+		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
+		<defaultValue property="onSelectionChanged">this.private_onSelectionChanged();</defaultValue>
+		<defaultValue property="onDSelectionChanged">this.private_onSelectionChanged();</defaultValue>
+
+	</initialization>
+
+</component>

@@ -210,7 +210,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.KpiView", 
 			lValue = this.getValueText();
 			if (this._data && this._data.data.length > 0) {
 				lValue = this._data.data[0];
-				lValue = this._fFormatNumber (lValue);
+				lValue = org_scn_community_basics.getFormattedValue (lValue, this._metadata.locale, this.getValueDecimalPlaces());
 			}
 		}
     	
@@ -267,20 +267,5 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.KpiView", 
 			this._lImage.setHeight(imageSize);
 		}
 	},
-	
-	_fFormatNumber : function (value) {
-		sap.common.globalization.NumericFormatManager.setPVL(this._meta_data.locale);
-		var strFormat = "#"+sap.common.globalization.NumericFormatManager.getThousandSeparator()+"##0";
-		
-		if (this.getValueDecimalPlaces() > 0) {
-			strFormat += sap.common.globalization.NumericFormatManager.getDecimalSeparator();
-			for (var i = 0; i < this.getValueDecimalPlaces(); i++) {
-				strFormat += "0";
-			}
-		}
-		
-		var valueFormatted = sap.common.globalization.NumericFormatManager.format(value, strFormat);
-		return valueFormatted;
-	}
 });
 })();

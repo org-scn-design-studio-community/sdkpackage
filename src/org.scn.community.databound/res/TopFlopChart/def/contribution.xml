@@ -10,6 +10,8 @@
 
 	<stdInclude kind="cvom" />
 
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/TopFlopChart/TopFlopChart.js</jsInclude>
 	<cssInclude>res/TopFlopChart/TopFlopChart.css</cssInclude>
 
@@ -99,6 +101,13 @@
 		id="useBackground"
 		type="boolean"
 		title="Mark Background"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="showDelta"
+		type="boolean"
+		title="Show Delta Value in Item"
 		group="Display"
 		visible="true" />
 
@@ -216,6 +225,7 @@
 		<defaultValue property="valueDecimalPlaces">0</defaultValue>
 		<defaultValue property="fixedAverage">-1</defaultValue>
 		<defaultValue property="useBackground">false</defaultValue>
+		<defaultValue property="showDelta">true</defaultValue>
 		<defaultValue property="useDelta">false</defaultValue>
 		<defaultValue property="allowInteraction">true</defaultValue>
 		<defaultValue property="breakOnIndex">-1</defaultValue>

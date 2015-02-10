@@ -246,7 +246,7 @@
 	propertySheetPath="res/Choropleth/aps/ChoroplethPropertyPage.html"
 	databound = "true"
 	group="ScnCommunityGeo">
-	<jsInclude>res/common.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
 	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>

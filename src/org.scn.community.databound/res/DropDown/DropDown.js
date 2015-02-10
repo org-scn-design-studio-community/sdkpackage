@@ -121,7 +121,7 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 			
 			if(lDBindingMode == "Result Set") {
 				this._ElementsToRenderArray = org_scn_community_databound.getTopBottomElementsForDimension 
-			     (lData, this.getDDimension(), lMetadata, this.getDMaxMembers(), this.getDTopBottom(), this.getDSorting(), "Ignore Duplicates");
+			     (lData, this.getDDimension(), lMetadata, this.getDMaxMembers(), this.getDTopBottom(), this.getDSorting(), "Ignore Duplicates", 2);
 			} else if(lDBindingMode == "Master Data") {
 				var lDElements = this.getDElements();
 				if(lDElements != null && lDElements != undefined && lDElements != ""){

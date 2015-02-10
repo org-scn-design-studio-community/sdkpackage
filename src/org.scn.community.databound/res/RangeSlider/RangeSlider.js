@@ -117,7 +117,7 @@ sap.ui.commons.RangeSlider.extend("org.scn.community.databound.RangeSlider", {
 		
 		if(this.getDoRefresh()){
 			var lElementsToRenderArray = org_scn_community_databound.getTopBottomElements 
-			    (lData, lMetadata, this.getMaxNumber(), this.getTopBottom(), this.getSorting(), "Ignore Duplicates");
+			    (lData, lMetadata, this.getMaxNumber(), this.getTopBottom(), this.getSorting(), "Ignore Duplicates", 2);
 			
 			this._lLabels = []; 
 			this._lLabelKeys = [];

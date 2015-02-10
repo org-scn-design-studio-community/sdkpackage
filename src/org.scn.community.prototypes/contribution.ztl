@@ -52,12 +52,6 @@ class org.scn.community.prototypes.ApplicationHeaderE extends Component {
 		// APPLICATION.createInfoMessage("Name: " + APPLICATION.getInfo().name);
 	    this.appName = "Event: " + APPLICATION.getInfo().name;
 	*}
-	
-	// @Visibility(private)
-	void private_beforeRender() {*
-		// APPLICATION.createInfoMessage("Name: " + APPLICATION.getInfo().name);
-	    this.appName = "OnBeforeRender: " + APPLICATION.getInfo().name;
-	*}
 }
 
 /**

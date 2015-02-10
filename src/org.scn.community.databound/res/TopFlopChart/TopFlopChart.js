@@ -62,6 +62,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
               "averagePrefix": {type: "string"},
               "averageSuffix": {type: "string"},
               "useBackground": {type: "boolean"},
+              "showDelta": {type: "boolean"},
               "useDelta": {type: "boolean"},
               "allowInteraction": {type: "boolean"},
               "breakOnIndex": {type: "int"},
@@ -197,7 +198,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 				// insert Average Information
 				var oTextValue = new sap.ui.commons.TextView();
 				oTextValue.addStyleClass("scn-pack-DataTopFlopChart-AverageText");
-				oTextValue.setText(this.getAveragePrefix() + org_scn_community_databound.getFormattedValue(this._metadata, this._Average) + this.getAverageSuffix());
+				oTextValue.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(this._Average, this._metadata.locale, this.getValueDecimalPlaces()) + this.getAverageSuffix());
 				this._lLayout.addContent(
 						oTextValue
 				);
@@ -250,7 +251,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 					text: text, 
 					url: key,
 					value: value,
-					valueS: this._fFormatNumber(value),
+					valueS: org_scn_community_basics.getFormattedValue(value, this._metadata.locale, this.getValueDecimalPlaces()),
 				};
 
 				list.push(itemDef);
@@ -582,9 +583,9 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 		
 		var delta = value - this._Average;
 		if(delta > 0) {
-			oTextDeltaValue.setText (" Δ " + "+" + this._fFormatNumber(delta) + this.getDeltaValueSuffix());	
+			oTextDeltaValue.setText (" Δ " + "+" + org_scn_community_basics.getFormattedValue(delta, this._metadata.locale, this.getValueDecimalPlaces()) + this.getDeltaValueSuffix());	
 		} else {
-			oTextDeltaValue.setText (" Δ " + this._fFormatNumber(delta) + this.getDeltaValueSuffix());
+			oTextDeltaValue.setText (" Δ " + org_scn_community_basics.getFormattedValue(delta, this._metadata.locale, this.getValueDecimalPlaces()) + this.getDeltaValueSuffix());
 		}
 		
 		if(!this.getUseDelta() || delta > 0) {
@@ -645,24 +646,26 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 
 		var textDeltaPlace = this._width - baseStart - lSizeValue + 3;
 		
-		if(this.getUseDelta()){
-			textDeltaPlace = 2;
-			oLayout.addContent(
-					oTextDeltaValue,
-					{right: textDeltaPlace + "px", top: "0px"}
-			);
-		} else {
-			if(lSizeValue < 120) {
-				textDeltaPlace = baseStart + lSizeValue + 3;
-				oLayout.addContent(
-						oTextDeltaValue,
-						{left: textDeltaPlace + "px", top: "0px"}
-				);
-			} else {
+		if(this.getShowDelta()){
+			if(this.getUseDelta()){
+				textDeltaPlace = 2;
 				oLayout.addContent(
 						oTextDeltaValue,
 						{right: textDeltaPlace + "px", top: "0px"}
 				);
+			} else {
+				if(lSizeValue < 120) {
+					textDeltaPlace = baseStart + lSizeValue + 3;
+					oLayout.addContent(
+							oTextDeltaValue,
+							{left: textDeltaPlace + "px", top: "0px"}
+					);
+				} else {
+					oLayout.addContent(
+							oTextDeltaValue,
+							{right: textDeltaPlace + "px", top: "0px"}
+					);
+				}
 			}
 		}
 
