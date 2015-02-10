@@ -77,6 +77,7 @@
 				labelsOn :  { value : true },
 				tooltipOn :  { value : true },
 				legendOn :  { value : true },
+				makeRoomX :  { value : true },
 				legendWidth :  { value : 0 },
 				legendX : { value : 0},
 				legendY : { value : 0},
@@ -189,12 +190,354 @@
 					throw("A problem was encountered while applying data to map:\n\n" + e);
 				}
 			};
-			this.redraw = function(){
+			/**
+			 * Update Features
+			 */
+			this.updateFeaturePaths = function(){
+				// Data
+				var features = this.pathGroup.selectAll('path').data(this._mapJSON.features);
+				var labels = this.labelGroup.selectAll('text').data(this._mapJSON.features);
+				// Enter
+				var newFeatures = features.enter().append("path")
+					.attr("class","path");
+				
+				var newLabels = labels.enter().append("text")
+					.attr('class', function(d) { return "subunit-label " + d.id; })
+					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
+					.attr("dy", ".35em")
+					.style("font-size", that.labelSize())
+					.text(function(d) { return d.properties[that.labelProperty()]; });
+				// Update
+				this.pathGroup.selectAll("path")
+					.transition().duration(this.ms())
+					.attr("d",this.projPath)
+					.attr("fill", function(d) {
+						if(d.properties && d.properties.designStudioMeasures){
+							return that.colorRange(d.properties.designStudioMeasures[that.measureMember()]) || that.defaultFillColor();	
+						}else{
+							return that.defaultFillColor();
+						}
+					});
+				this.labelGroup.selectAll("text")
+					.style("font-size", that.labelSize())	
+					.transition().duration(this.ms())
+					.attr('class', function(d) { return "subunit-label " + d.id; })
+					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
+					.text(function(d) { return d.properties[that.labelProperty()]; });
+				// Events
+				this.pathGroup.selectAll('path')
+					.on('mouseover', this.doTooltip)
+					.on('mouseout', function(d) {
+						that.container.select('.tooltip').style('display', 'none');
+					})
+					.on('click', function(d){ 
+						that.setSelectedFeature(d);
+					});
+				this.labelGroup.selectAll("text")
+					.on('mouseover', this.doTooltip);
+				// Exit
+				 features.exit().remove();
+				 labels.exit().remove();
+				return this;
+			}
+			/**
+			 * Update Cosmetics
+			 */
+			this.updateCosmetics = function(){
+				this.canvas
+		    		.transition().duration(this.ms())
+		    		.attr('width', this.dimensions.width)
+		    		.attr('height', this.dimensions.height)
+		    		.attr('class', 'canvas');
+	    	
+		    	this.canvas
+		    		.classed('tooltipped', this.tooltipOn())
+		    		.data([{ x: 0, y: 0 }]);
+
+		    	this.background
+		    		.transition().duration(this.ms())
+		    		.style("fill",this.backgroundColor())
+		    		.attr('width', this.dimensions.width)
+		    		.attr('height', this.dimensions.height);
+		    	
+		    	this.gradientRect
+		    		.transition().duration(this.ms())
+		    		.attr("x",this.dimensions.gradientLeft)
+		    		.attr("y", this.dimensions.height - this.dimensions.gradientY - this.dimensions.gradientHeight)
+		    		.attr('width', this.dimensions.width - this.dimensions.gradientLeft - this.dimensions.gradientRight)
+		    		.attr('height', this.dimensions.gradientHeight);
+		    	
+		    	var trans = this.dimensions.gradientLeft + "," + (this.dimensions.height - this.dimensions.gradientY - this.dimensions.gradientHeight);
+		    	this.gradientTicks
+		    		.transition().duration(this.ms())
+		    		.attr("transform", "translate(" + trans +")");
+		    	
+		    	this.legendGroup//.data([{ x: this.dimensions.legendLeft - 1, y: this.dimensions.legendY - 1 }])
+	    			.transition().duration(this.ms())
+    				.attr("transform", "translate("+this.dimensions.legendLeft+","+this.dimensions.legendTop+") "+
+    					  "scale(" + this.legendScale() + ")")
+    				.attr("opacity", function(){
+    					if(that.legendOn()){
+    						return 1;
+    					}else{
+    						return 0;
+    					}
+    				});
+    				
+		    	this.featureGroup
+		    		.transition().duration(this.ms())
+	    			.attr("transform", "translate("+this.dimensions.mapLeft+","+this.dimensions.mapTop+")")
+		    		.attr('width', this.dimensions.mapWidth)
+	    			.attr('height', this.dimensions.mapHeight);
+		    	
+		    	return this;
+			}
+			/**
+			 * Update Color Range
+			 */
+			this.updateColorRange = function(){
+		        var d, domain;
+		        this.valuesSet = [];
+	        	// Get values for range
+		        for (d = 0; d < this._mapJSON.features.length; d++) {
+	        		if(this._mapJSON.features[d].properties.designStudioMeasures){
+	        			this.valuesSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[this.measureMember()]));	
+	        		}else{
+	        			this.valuesSet.push(null);
+	        		}
+		        }
+		        this.valuesSet.sort(function(a, b) { return a - b; });
+		        // Make range with appropriate values
+		        this.colorRange = d3.scale[this.colorScale()]()
+		        	.domain(this.valuesSet)
+		        	.range(this.colorPalette().split(","));
+		        // Clamp if can
+		        if (typeof this.colorRange.clamp == 'function') {
+		        	this.colorRange.clamp(true);
+		        }
+		        
+		        	
+		        return this;
+			};
+			/**
+			 * Update Legend
+			 */
+			this.updateLegend = function(){
+				// LEGEND
+			    var formatter = d3.format(',.2f');			// Make a DS property
+			    var unit = 10;								// Swatch Size
+			    var min = d3.min(this.valuesSet);
+			    var max = d3.max(this.valuesSet);
+			    var legendSwatches = [];
+			    var gradientStops = [];
+			    var c = this.colorPalette();
+			    if(c!="") gradientStops = c.split(","); 
+			    var gradient2 = [];
+			    if (this.colorScale() == 'quantile') {
+			    	legendSwatches = this.colorRange.quantiles();
+			    	for(var i=0;i<legendSwatches.length;i++){
+			    		gradient2.push(this.colorRange.invertExtent(gradientStops[i]));	// Returns array of [min,max] per quantile "bucket"
+			    	}
+			    	legendSwatches[0] = min;
+			    	alert(JSON.stringify(gradient2));
+			    }
+				if (this.colorScale() === 'quantize') {
+					for (var i=0; i < gradientStops.length; i++) {
+						legendSwatches.push(this.colorRange.invertExtent(gradientStops[i])[0]);
+					}
+				}
+				/**
+				 * https://github.com/mbostock/d3/wiki/Quantitative-Scales
+				 * legendSwatches - [100,150,1500,2000] // Comes from colorRange.quantiles
+				 * gradientStop   - [#009966,#000000]
+				 * invertExtent(index) - [min,max] of quantile bucket
+				 * 
+				 */
+				
+				//Ensure we have something to make a legend with
+				if (legendSwatches && legendSwatches.length > 0) {
+			        var scale = d3.scale.ordinal()
+			        	.rangePoints([0,1])
+			        	.domain(gradientStops);
+			        
+			        var tickScale = d3.scale.ordinal()
+		        		.rangePoints([0,this.dimensions.gradientWidth])
+		        		.domain(gradientStops);
+			        
+			        var tickValueScale = d3.scale.ordinal()
+	        			.rangePoints([0,this.dimensions.gradientWidth])
+	        			.domain(legendSwatches);
+			        
+			        var stops = this.gradientDef.selectAll("stop").data(gradientStops);
+			        var ticks = this.gradientTicks.selectAll("line").data(gradientStops);
+			        var tickLabels = this.gradientTicks.selectAll("text").data(legendSwatches);
+			        
+			        stops.enter().append("stop");
+			        ticks.enter().append("line")
+			        	.attr("stroke-width", 1)
+			        	.attr("stroke", "black");
+			        tickLabels.enter().append('text')
+						.attr('class', 'tick-label')
+						.attr("dy", "0em")
+						.attr("y",-5)
+						.style("text-anchor", "middle")
+						.style("font-size", "8pt")
+						.text(function(d) { return formatter(d); });
+			        
+			        stops.exit().remove();
+			        ticks.exit().remove();
+					tickLabels.exit().remove();
+					
+			        this.gradientDef.selectAll("stop")
+			        	.transition().duration(this.ms())
+			        	.attr("offset",function(d){return scale(d) * 100 + "%";})
+			        	.attr("stop-color",function(d){return d;})
+			        	.attr("stop-opacity",1);
+			        
+			        this.gradientTicks.selectAll("line")
+			        	.transition().duration(this.ms())
+			        	.attr("x1",function(d){return tickScale(d);})
+			        	.attr("x2",function(d){return tickScale(d);})
+			        	.attr("y1",0).attr("y2",this.dimensions.gradientHeight)
+					
+			        this.gradientTicks.selectAll("text")
+						.transition().duration(this.ms())
+						.attr("x",function(d){return tickValueScale(d);})
+						.text(function(d) { return formatter(d); });
+					
+					/**
+					 * LEGEND
+					 */
+					this.legendRect
+			    		.transition().duration(this.ms())
+    					.attr('width', this.dimensions.legendWidth)
+    					.attr('height', legendSwatches.length * (unit * 2) + (unit * 3));
+			    	this.legendLabel
+			    		.transition().duration(this.ms())	
+			    		.attr('font-size', unit)
+				        .attr('x', (unit * 1))
+				        .attr('y', (unit * 2))
+				        .text(function(){
+				        	if(that.legendTitle()=="") {
+				        		return that.measureMember();
+				        	}else{
+				        		return that.legendTitle();
+				        	}
+				        });
+					// Add colors swatches
+					var rects = this.legendGroup.selectAll('rect.legend-swatch').data(legendSwatches);
+					
+					// Enter Color Swatches
+					rects.enter().append('rect').attr('class', 'legend-swatch');
+						
+					// Exit Color Swatches
+					rects.exit().remove();
+
+					// Update Color Swatches
+					this.legendGroup.selectAll('rect.legend-swatch')
+						.transition().duration(this.ms())  
+						.attr('width', unit)
+						.attr('height', unit)
+						.attr('x', (unit * 1))
+						.attr('y', function(d, i) { return (i * unit * 2) + (unit * 3); })
+						.style('fill', function(d, i) { return that.colorRange(d); });
+					
+					// Select swatch labels
+					var legendLabels = this.legendGroup.selectAll('text.legend-amount').data(legendSwatches);
+					// Enter swatch labels
+					legendLabels.enter().append('text').attr('class', 'legend-amount');
+					// Exit swatch labels
+					legendLabels.exit().remove();
+					// Update - why doesn't text update here, or does it?
+					
+					this.legendGroup.selectAll('text.legend-amount')
+						.transition().duration(this.ms())
+					    .attr('font-size', unit)
+					    .attr('x', (unit * 3))
+					    .attr('y', function(d, i) { return (i * unit * 2) + (unit * 4 - 1); })
+					    .text(function(d, i) { return '>= ' + formatter(d); });		
+				    }
+				return this;
+			}
+			/**
+			 * Update Projection
+			 */
+			this.updateProjection = function(){
+				// Determine Center of Map
+		    	this.centroid = d3.geo.centroid(this._mapJSON);
+		    	// Create path
+		    	this.proj = d3.geo[this.projection()]()
+	    			.scale(1)
+	    			.translate([0,0]);
+	    		this.projPath = d3.geo.path()
+	    			.projection(this.proj);
+
+	    		// Compute the bounds of a feature of interest, then derive scale & translate.
+		    	var b = this.projPath.bounds(this._mapJSON),
+		    	    s = .95 / Math.max((b[1][0] - b[0][0]) / this.dimensions.mapWidth, (b[1][1] - b[0][1]) / this.dimensions.mapHeight),
+		    	    t = [(this.dimensions.mapWidth - s * (b[1][0] + b[0][0])) / 2, (this.dimensions.mapHeight - s * (b[1][1] + b[0][1])) / 2];
+		    	
+		    	this.proj.scale(s).translate(t);
+		    	
+		    	// Center if projection supports
+		    	//if(typeof this.proj.center === "function"){
+		    	//	this.proj.center(this.centroid);
+		    	//}
+		    	// Rotate if projection supports
+		    	if (typeof this.proj.rotate === "function") {
+		    	    this.proj.rotate([this.yaw(),this.pitch(),this.roll()]);
+		    	}
+		    	if(this.projection()=="orthographic") this.proj.clipAngle(90);
+		    	return this;
+			}
+			/**
+			 * Build Map Framework
+			 */
+			this.buildMap = function(){
+				this.canvas = this.container.append('svg');
+				this.defs = this.canvas.insert("defs");
+				this.gradientDef = this.defs.append("linearGradient")
+					.attr("id","myGradient")
+					.attr("x1", "0%")
+					.attr("y1", "0%")
+					.attr("x2", "100%")
+					.attr("y2", "0%")
+					.attr("spreadMethod", "pad");
+	    		this.background = this.canvas.append('rect')
+	    			.classed('background', true);
+	    		this.gradientRect = this.canvas.append("rect")
+	    			.attr("height",10)
+	    			.style("fill","url(#myGradient)");
+	    		
+	    		var trans = this.dimensions.gradientLeft + "," + (this.dimensions.height - this.dimensions.gradientY - this.dimensions.gradientHeight);
+	    		this.gradientTicks = this.canvas.append("g")
+	    			.attr("class", "gradient-ticks")
+	    			.attr("transform", "translate(" + trans +")");
+	    		
+	    		this.featureGroup = this.canvas.append('g')
+	    			.attr('class', 'feature-group');
+	    		this.pathGroup = this.featureGroup.append('g')
+    				.attr('class', 'path-group');
+	    		this.labelGroup = this.featureGroup.append('g')
+    				.attr('class', 'label-group');
+	    		this.tooltipDiv = this.container.append('div')
+	    			.attr("class","tooltip-container")
+	    			.classed('tooltip', true);
+	    		this.legendGroup = this.canvas.append('g')
+		        	.attr('class', 'legend-group');
+	    		this.legendRect = this.legendGroup.append('rect')
+			        .attr('class', 'legend-container')
+			        .attr('x', 0)
+			        .attr('y', 0);
+			    this.legendLabel = this.legendGroup.append('text')
+			        .attr('class', 'legend-label');
+			    return this;
+			}
+			this.afterUpdate = function(){
 				// Flatten Data
 				var flatData;
 				var that = this;
 				// var mapData = this.loadMap(this.map());
-				var brew = this.colorPalette().split(",");
 				var vals = [];
 				try{
 					flatData = org_scn_community_databound.flatten(this.data(),{});
@@ -210,114 +553,38 @@
 					var errorMessage = e;
 				}
 				this.applyMeasures(this._mapJSON,flatData);
-		    	var width = this.$().width();
-		    	var height = this.$().height();
-		    	var mapWidth = width - this.mapLeft() - this.mapRight();
-		    	var mapHeight = height - this.mapTop() - this.mapBottom();
-		    	this.container = d3.select("#"+this.$().attr("id"));
+				this.dimensions = {
+					width : this.$().width(),
+					height : this.$().height(),
+					gradientLeft : 50,
+					gradientRight : 50,
+					gradientHeight : 10,
+					gradientY : 10,
+					mapLeft : this.mapLeft(),
+					mapRight : this.mapRight(),
+					mapTop : this.mapTop(),
+					mapBottom : this.mapBottom(),
+					legendWidth : this.legendWidth() || (this.$().width() / 5),
+					legendTop : this.legendY(),
+					legendLeft : this.legendX()
+				};
+				if(this.legendOn()){
+					if (this.makeRoomX()) this.dimensions.mapLeft += (this.dimensions.legendWidth + this.legendX());
+				}
+				this.dimensions.gradientWidth = this.dimensions.width - this.dimensions.gradientLeft - this.dimensions.gradientRight;
+				this.dimensions.mapWidth = this.dimensions.width - this.dimensions.mapLeft - this.dimensions.mapRight;
+				this.dimensions.mapHeight = this.dimensions.height - this.dimensions.mapTop - this.dimensions.mapBottom;
+		    	
+				this.container = d3.select("#"+this.$().attr("id"));
 		    	// Render Canvas
 		    	this.canvas = this.container.select("svg");
-		    	if(this.canvas.empty()){
-		    		this.canvas = this.container.append('svg');
-		    		this.background = this.canvas.append('rect')
-		    			.classed('background', true);
-		    		this.featureGroup = this.canvas.append('g')
-		    			.attr('class', 'feature-group');
-		    		this.tooltipDiv = this.container.append('div')
-		    			.attr("class","tooltip-container")
-		    			.classed('tooltip', true);
-		    		this.legendGroup = this.canvas.append('g')
-			        	.attr('class', 'legend-group');
-		    		// Make container and label for legend
-		    		this.legendHeader = this.legendGroup.append('rect')
-				        .attr('class', 'legend-container')
-				        .attr('x', 0)
-				        .attr('y', 0);
-				    this.legendHeaderLabel = this.legendGroup.append('text')
-				        .attr('class', 'legend-label');
-		    	}
-		    	// Determine Center of Map
-		    	this.centroid = d3.geo.centroid(this._mapJSON);
-		    	// Create path
-		    	this.proj = d3.geo[this.projection()]()
-	    			.scale(1)
-	    			.translate([0,0]);
-	    		this.projPath = d3.geo.path()
-	    			.projection(this.proj);
-
-	    		// Compute the bounds of a feature of interest, then derive scale & translate.
-		    	var b = this.projPath.bounds(this._mapJSON),
-		    	    s = .95 / Math.max((b[1][0] - b[0][0]) / mapWidth, (b[1][1] - b[0][1]) / mapHeight),
-		    	    t = [(mapWidth - s * (b[1][0] + b[0][0])) / 2, (mapHeight - s * (b[1][1] + b[0][1])) / 2];
-		    	
-		    	this.proj.scale(s).translate(t);
-		    	
-		    	// Center if projection supports
-		    	//if(typeof this.proj.center === "function"){
-		    	//	this.proj.center(this.centroid);
-		    	//}
-		    	// Rotate if projection supports
-		    	if (typeof this.proj.rotate === "function") {
-		    	    this.proj.rotate([this.yaw(),this.pitch(),this.roll()]);
-		    	}
-		    	if(this.projection()=="orthographic") this.proj.clipAngle(90);
-		    	
-		    	this.canvas
-		    		.transition().duration(this.ms())
-		    		.attr('width', width)
-		    		.attr('height', height)
-		    		.attr('class', 'canvas');
-		    	
-		    	this.canvas
-		    		.classed('tooltipped', this.tooltipOn())
-		    		.data([{ x: 0, y: 0 }]);
-    
-		    	this.background
-		    		.transition().duration(this.ms())
-		    		.style("fill",this.backgroundColor())
-		    		.attr('width', width)
-		    		.attr('height', height);
-		    		    		
-		    		//.style(smd.options.stylesBackground);
-    
-		    	this.featureGroup
-		    		.transition().duration(this.ms())
-	    			.attr("transform", "translate("+this.mapLeft()+","+this.mapTop()+")")
-		    		.attr('x', this.mapLeft())
-	    			.attr('y', this.mapTop())
-		    		.attr('width', mapWidth)
-	    			.attr('height', mapHeight);
-		    	
-		    	// Add tooltip
-		    	//if (this.tooltipOn()) {
-//		    		this.container.classed('tooltip-container', true);
-//
-		    	//}
-		    	// COLOR RANGE
-		        var d, domain;
-		        this.valuesSet = [];
-		        if (this.colorOn()) {
-		        	// Get values for range
-			        for (d = 0; d < this._mapJSON.features.length; d++) {
-		        		if(this._mapJSON.features[d].properties.designStudioMeasures){
-		        			this.valuesSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[this.measureMember()]));	
-		        		}else{
-		        			this.valuesSet.push(null);
-		        		}
-			        				        		
-			        }
-			        this.valuesSet.sort(function(a, b) { return a - b; });
-			        // Make range with appropriate values
-			        this.colorRange = d3.scale[this.colorScale()]()
-			          .domain(this.valuesSet)
-			          .range(brew);
-			        // Clamp if can
-			        if (typeof this.colorRange.clamp == 'function') {
-			          this.colorRange.clamp(true);
-			        }
-		        }
-				
-		        // END OF COLOR RANGE
+		    	if(this.canvas.empty()) this.buildMap();
+		    	this.updateProjection()
+		    		.updateCosmetics()
+		    		.updateColorRange()
+		    		.updateLegend()
+		    		.updateFeaturePaths();
+				/*
 		        // GRATICULE
 		        if (this.graticuleOn()) {
 		          this.graticule = d3.geo.graticule();
@@ -327,148 +594,7 @@
 		            .attr('class', 'graticule');
 		            //.style(smd.options.stylesGraticule);
 		        }
-		    	// Features
-				var paths = this.featureGroup.selectAll('path')
-					.data(this._mapJSON.features);
-				// Feature New
-				var newPaths = paths.enter()
-					.append('path');
-				// Feature Update
-				this.featureGroup.selectAll('path')
-					.transition().duration(this.ms())
-					.attr('class', 'path')
-					.attr('d', this.projPath)
-					//.attrTween("d", this.projectionTween(this.proj, this.proj = d3.geo[this.projection()]()))
-					.attr('fill', function(d) {
-					if (!that.colorOn()) {
-						return that.defaultFillColor();
-					} else {
-						if(d.properties && d.properties.designStudioMeasures){
-							return that.colorRange(d.properties.designStudioMeasures[that.measureMember()]) || that.defaultFillColor();	
-						}else{
-							return that.defaultFillColor();
-						}
-						
-					}
-					});			
-				// Events
-				this.featureGroup.selectAll('path')
-					.on('mouseover', this.doTooltip)
-					.on('mouseout', function(d) {
-						// 	Tooltip
-						if (that.tooltipOn()) {
-							that.container.select('.tooltip')
-								.style('display', 'none');
-						}
-						// Styles
-						// d3.select(this).style(smd.options.styles);
-					})
-					.on('click', function(d){ 
-						that.setSelectedFeature(d);
-					});
-				paths.exit().remove();
-
-				// Feature Labels
-				var labels = this.featureGroup.selectAll('text')
-					.data(this._mapJSON.features);
-				var newLabels = labels.enter()
-					.append('text');
-				this.featureGroup.selectAll('text')
-					.transition().duration(this.ms())
-					.attr('class', function(d) { return "subunit-label " + d.id; })
-					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
-					.attr("dy", ".35em")
-					.style("font-size", that.labelSize())
-					.text(function(d) { return d.properties[that.labelProperty()]; });
-				this.featureGroup.selectAll("text")
-					.on('mouseover', this.doTooltip);
-				
-				labels.exit().remove();
-		    	// LEGEND
-			    var formatter = d3.format(',.2f');			// Make a DS property
-			    var unit = 10;
-			    var lwidth = this.legendWidth() || (width / 5);
-			    var scale = this.legendScale() || 1;
-			    var min = d3.min(this.valuesSet);
-			    var max = d3.max(this.valuesSet);
-			    var offset = [this.legendX(),this.legendY()];
-			    var legendSwatches = [];
-			    var c;
-			    
-			    // Make sure legend is on
-			    //if (this.legendOn() && this.colorRange) {
-				    if (this.colorScale() == 'quantile') {
-				      legendSwatches = this.colorRange.quantiles();
-				      legendSwatches[0] = min;
-				    }
-				    if (this.colorScale() === 'quantize') {
-				      for (c = 0; c < brew.length; c++) {
-				        legendSwatches.push(this.colorRange.invertExtent(brew[c])[0]);
-				      }
-				    }
-				    // Ensure we have something to make a legend with
-				    if (legendSwatches && legendSwatches.length > 0) {
-				    	this.legendHeader
-				    		.transition().duration(this.ms())
-	    					.attr('width', lwidth)
-	    					.attr('height', legendSwatches.length * (unit * 2) + (unit * 3));
-				    	this.legendHeaderLabel
-				    		.transition().duration(this.ms())	
-				    		.attr('font-size', unit)
-					        .attr('x', (unit * 1))
-					        .attr('y', (unit * 2))
-					        .text(function(){
-					        	if(that.legendTitle()=="") {
-					        		return that.measureMember();
-					        	}else{
-					        		return that.legendTitle();
-					        	}
-					        });
-				      // Add colors swatches
-				      var rects = this.legendGroup.selectAll('rect.legend-swatch').data(legendSwatches);
-				      rects.enter().append('rect')
-				          .attr('class', 'legend-swatch');
-				      rects.exit().remove();
-				      // Updates
-				      this.legendGroup.selectAll('rect.legend-swatch')
-				        .transition().duration(this.ms())  
-				      	.attr('width', unit)
-				          .attr('height', unit)
-				          .attr('x', (unit * 1))
-				          .attr('y', function(d, i) { return (i * unit * 2) + (unit * 3); })
-				          //.style(smd.options.stylesLegendSwatch)
-				          .style('fill', function(d, i) { return that.colorRange(d); });
-			    	 
-					          
-					      // Add text label
-					      var legendLabels = this.legendGroup.selectAll('text.legend-amount').data(legendSwatches);
-					      legendLabels.enter().append('text')
-					      	.attr('class', 'legend-amount');
-					      legendLabels.exit().remove();
-					      // Update - why no text?
-					      this.legendGroup.selectAll('text.legend-amount')
-					          .transition().duration(this.ms())
-					          .attr('font-size', unit)
-					          .attr('x', (unit * 3))
-					          .attr('y', function(d, i) { return (i * unit * 2) + (unit * 4 - 1); })
-					          .text(function(d, i) { return '>= ' + formatter(d); });
-					          //.style(smd.options.stylesLegendText);
-					      
-					      // Scale legend
-					      this.legendGroup
-					      	.data([{ x: offset[0] - 1, y: offset[1] - 1 }])	
-					      	.transition().duration(this.ms())
-					      	.attr("opacity", function(){
-					      		if(that.legendOn()){
-					      			return 1;
-					      		}else{
-					      			return 0;
-					      		}
-					      	})
-					      	.attr('transform', 'translate(' + offset + ')')
-					        .attr('transform', 'scale(' + scale + ')');				        
-				    }
-			    //}
+		        */
 			    this._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);
 			};
 			this.projectionTween = function(projection0, projection1) {
@@ -511,7 +637,7 @@
 					*/
 					that._previousHeight = currentHeight;
 					that._previousWidth = currentWidth;	
-					this.redraw();
+					this.afterUpdate();
 				}else{
 					// Sizes are the same.  Don't redraw, but poll again after an interval.
 					that._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);	
@@ -599,19 +725,9 @@
 					this.$().addClass("Choropleth");
 					this.props.mapData.onChange = this.mapDataChanged;
 					this.props.mapData.onChange.call(this,"init");
-					this.redraw();
 				}catch(e){
 					this.$().html("Error in init:\n\n" + e);
 				}
-			};
-			
-			this.afterUpdate = function() {
-				try{
-					this.redraw();	
-				}catch(e){
-					throw("Error in redraw routine:\n\n"+e);
-				}
-				
 			};
 		 });
 		 // End of SDK

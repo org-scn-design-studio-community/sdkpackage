@@ -177,6 +177,22 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			that.firePropertiesChanged(["legendOn"]);
 		} 
 	});
+	this.makeRoomX = function(b){
+		if(b===undefined){
+			return this._makeRoomX;
+		}else{
+			this._makeRoomX = b;
+			this.compMakeRoomX.setChecked(b);
+			return this; 
+		}
+	};
+	this.compMakeRoomX =  new sap.ui.commons.CheckBox({
+		text : "Map Avoids Legend",
+		change : function(oControlEvent){
+			that.makeRoomX(this.getChecked());
+			that.firePropertiesChanged(["makeRoomX"]);
+		} 
+	});
 	this.tooltipOn = function(b){
 		if(b===undefined){
 			return this._tooltipOn;
@@ -351,6 +367,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 				menu : this.presetMenu
 			});
 			cosmeticsLayout.addContent(this.compLegendOn);
+			cosmeticsLayout.addContent(this.compMakeRoomX);
 			cosmeticsLayout.addContent(this.compTooltipOn);
 			cosmeticsLayout.addContent(this.hLabel("Animation Duration (ms)",this.compMs));
 			cosmeticsLayout.addContent(this.hLabel("Map Left",this.compMapLeft));

@@ -24,8 +24,9 @@
 	<property id="labelsOn" title="Enable Labels" type="boolean"/>
 	<property id="labelSize" title="Label Size (CSS Size)" type="String"/>
 	<property id="legendOn" title="Enable Legend" type="boolean"/>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
-	<property id="legendWidth" title="Legend Width (0 = Auto)" type="String"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int"/>
 	<property id="legendScale" title="Legend Scale" type="float"/>
 	<property id="legendX" title="Legend Offset X" type="int"/>
 	<property id="legendY" title="Legend Offset Y" type="int"/>
@@ -38,6 +39,11 @@
 	<property id="yaw" title="Yaw" type="float"/>
 	<property id="pitch" title="Pitch" type="float"/>
 	<property id="roll" title="Roll" type="float"/>
+	<property id="colorScale" title="Color Scale" type="String">
+		<possibleValue>quantile</possibleValue>
+		<possibleValue>quantize</possibleValue>
+		<possibleValue>linear</possibleValue>
+	</property>
 	<property id="projection" title="Projection" type="String">
 		<possibleValue>mercator</possibleValue>
 		<possibleValue>albersUsa</possibleValue>
@@ -65,14 +71,15 @@
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="defaultFillColor">#E5EADE</defaultValue>
 		<defaultValue property="brewerColors">#F0F9E8,#CCEBC5,#A8DDB5,#7BCCC4,#43A2CA,#0868AC</defaultValue>
+		<defaultValue property="colorScale">quantile</defaultValue>
 		<defaultValue property="featureProperty">NAME_1</defaultValue>
 		<defaultValue property="labelProperty">NAME_1</defaultValue>
 		<defaultValue property="labelsOn">true</defaultValue>
-		<defaultValue property="labelSize">10px</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="tooltipOn">true</defaultValue>
 		<defaultValue property="legendScale">1.0</defaultValue>
-		<defaultValue property="legendWidth">100px</defaultValue>
+		<defaultValue property="legendWidth">100</defaultValue>
 		<defaultValue property="legendTitle"></defaultValue>
 		<defaultValue property="legendX">0</defaultValue>
 		<defaultValue property="legendY">0</defaultValue>
