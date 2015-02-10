@@ -77,7 +77,6 @@
 				labelsOn :  { value : true },
 				tooltipOn :  { value : true },
 				legendOn :  { value : true },
-				globeOn :  { value : true },
 				legendWidth :  { value : 0 },
 				legendX : { value : 0},
 				legendY : { value : 0},
@@ -89,8 +88,10 @@
 				colorPalette :  { value : "#F0F9E8,#CCEBC5,#A8DDB5,#7BCCC4,#43A2CA,#0868AC" },
 				colorScale : { value : "quantile" },
 				mapData : { value : "" },
-				mapX : { value : 0 },
-				mapY : { value : 0 },
+				mapLeft : { value : 0 },
+				mapTop : { value : 0 },
+				mapRight : { value : 0 },
+				mapBottom : { value : 0 },
 				center : { value : "0,0" },
 				scale : { value : 150 },
 				yaw : { value : 0.0 },
@@ -211,8 +212,8 @@
 				this.applyMeasures(this._mapJSON,flatData);
 		    	var width = this.$().width();
 		    	var height = this.$().height();
-		    	var mapWidth = width - this.mapX();
-		    	var mapHeight = height - this.mapY();
+		    	var mapWidth = width - this.mapLeft() - this.mapRight();
+		    	var mapHeight = height - this.mapTop() - this.mapBottom();
 		    	this.container = d3.select("#"+this.$().attr("id"));
 		    	// Render Canvas
 		    	this.canvas = this.container.select("svg");
@@ -223,40 +224,28 @@
 		    		this.featureGroup = this.canvas.append('g')
 		    			.attr('class', 'feature-group');
 		    		this.tooltipDiv = this.container.append('div')
+		    			.attr("class","tooltip-container")
 		    			.classed('tooltip', true);
-		    		this.draggableLegendGroup = this.canvas.append('g')
-		    			.attr('class', 'draggable-legend');
-		    		this.legendGroup = this.draggableLegendGroup.append('g')
+		    		this.legendGroup = this.canvas.append('g')
 			        	.attr('class', 'legend-group');
 		    		// Make container and label for legend
 		    		this.legendHeader = this.legendGroup.append('rect')
 				        .attr('class', 'legend-container')
 				        .attr('x', 0)
 				        .attr('y', 0);
-		    			
-				        
-				        //.style(smd.options.stylesLegendContainer);
 				    this.legendHeaderLabel = this.legendGroup.append('text')
 				        .attr('class', 'legend-label');
 		    	}
 		    	// Determine Center of Map
 		    	this.centroid = d3.geo.centroid(this._mapJSON);
-		    	this.proj = d3.geo[this.projection()]()
-		    		.scale(1)
-		    		.translate([0,0]);
-		    	
 		    	// Create path
-		    	this.projPath = d3.geo.path().projection(this.proj);
-		    	// Globe
-	    		this.globe = {type: "Sphere"};
-	    		this.dGlobe = this.featureGroup.append("path")
-	    			.datum(this.globe)
-	    			.attr("class","globe")
-	    			.attr("d",this.projPath);
-		    	// Get Globe
-		    	//this.dGlobe.attr("d",this.projPath);
-		    	
-		    	// Compute the bounds of a feature of interest, then derive scale & translate.
+		    	this.proj = d3.geo[this.projection()]()
+	    			.scale(1)
+	    			.translate([0,0]);
+	    		this.projPath = d3.geo.path()
+	    			.projection(this.proj);
+
+	    		// Compute the bounds of a feature of interest, then derive scale & translate.
 		    	var b = this.projPath.bounds(this._mapJSON),
 		    	    s = .95 / Math.max((b[1][0] - b[0][0]) / mapWidth, (b[1][1] - b[0][1]) / mapHeight),
 		    	    t = [(mapWidth - s * (b[1][0] + b[0][0])) / 2, (mapHeight - s * (b[1][1] + b[0][1])) / 2];
@@ -272,10 +261,7 @@
 		    	    this.proj.rotate([this.yaw(),this.pitch(),this.roll()]);
 		    	}
 		    	if(this.projection()=="orthographic") this.proj.clipAngle(90);
-		    	/*
-		    	this.globe
-		    		.attr("d",this.projPath);
-		    	*/
+		    	
 		    	this.canvas
 		    		.transition().duration(this.ms())
 		    		.attr('width', width)
@@ -296,16 +282,17 @@
     
 		    	this.featureGroup
 		    		.transition().duration(this.ms())
-	    			.attr('x', this.mapX())
-	    			.attr('y', this.mapY())
+	    			.attr("transform", "translate("+this.mapLeft()+","+this.mapTop()+")")
+		    		.attr('x', this.mapLeft())
+	    			.attr('y', this.mapTop())
 		    		.attr('width', mapWidth)
 	    			.attr('height', mapHeight);
 		    	
 		    	// Add tooltip
-		    	if (this.tooltipOn()) {
-		    		this.container.classed('tooltip-container', true);
-		    		
-		    	}
+		    	//if (this.tooltipOn()) {
+//		    		this.container.classed('tooltip-container', true);
+//
+		    	//}
 		    	// COLOR RANGE
 		        var d, domain;
 		        this.valuesSet = [];
@@ -351,6 +338,7 @@
 					.transition().duration(this.ms())
 					.attr('class', 'path')
 					.attr('d', this.projPath)
+					//.attrTween("d", this.projectionTween(this.proj, this.proj = d3.geo[this.projection()]()))
 					.attr('fill', function(d) {
 					if (!that.colorOn()) {
 						return that.defaultFillColor();
@@ -397,7 +385,6 @@
 				
 				labels.exit().remove();
 		    	// LEGEND
-			    var qs;
 			    var formatter = d3.format(',.2f');			// Make a DS property
 			    var unit = 10;
 			    var lwidth = this.legendWidth() || (width / 5);
@@ -409,7 +396,7 @@
 			    var c;
 			    
 			    // Make sure legend is on
-			    if (this.legendOn() && this.colorRange) {
+			    //if (this.legendOn() && this.colorRange) {
 				    if (this.colorScale() == 'quantile') {
 				      legendSwatches = this.colorRange.quantiles();
 				      legendSwatches[0] = min;
@@ -469,18 +456,50 @@
 					      
 					      // Scale legend
 					      this.legendGroup
+					      	.data([{ x: offset[0] - 1, y: offset[1] - 1 }])	
 					      	.transition().duration(this.ms())
-					        .attr('transform', 'scale(' + scale + ')');
-					        
-					      // Offset group for dragging
-					      this.draggableLegendGroup
-					        .attr('transform', 'translate(' + offset + ')')
-					        .data([{ x: offset[0] - 1, y: offset[1] - 1 }]);
-					    
+					      	.attr("opacity", function(){
+					      		if(that.legendOn()){
+					      			return 1;
+					      		}else{
+					      			return 0;
+					      		}
+					      	})
+					      	.attr('transform', 'translate(' + offset + ')')
+					        .attr('transform', 'scale(' + scale + ')');				        
 				    }
-			    }
+			    //}
 			    this._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);
 			};
+			this.projectionTween = function(projection0, projection1) {
+				return function(d) {
+				    var t = 0;
+
+				    var projection = d3.geo.projection(project)
+				        .scale(1)
+				        .translate([width / 2, height / 2]);
+
+				    var path = d3.geo.path()
+				        .projection(projection);
+
+				    var b = path.bounds(this._mapJSON),
+		    	    	s = .95 / Math.max((b[1][0] - b[0][0]) / mapWidth, (b[1][1] - b[0][1]) / mapHeight),
+		    	    	t = [(mapWidth - s * (b[1][0] + b[0][0])) / 2, (mapHeight - s * (b[1][1] + b[0][1])) / 2];
+				    projection.scale(s).translate(t);
+				    
+				    function project(λ, φ) {
+				      λ *= 180 / Math.PI, φ *= 180 / Math.PI;
+				      var p0 = projection0([λ, φ]), p1 = projection1([λ, φ]);
+				      return [(1 - t) * p0[0] + t * p1[0], (1 - t) * -p0[1] + t * -p1[1]];
+				    }
+
+				    return function(_) {
+				      t = _;
+				      return path(d);
+				    };
+				  };
+				}
+
 			this.measureSize = function(that){
 				var currentWidth = that.$().innerWidth();
 				var currentHeight = that.$().innerHeight();

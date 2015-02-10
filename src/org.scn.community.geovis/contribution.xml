@@ -257,7 +257,7 @@
 	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
 	<property id="ms" title="Transition Time (ms)" type="int"/>
 	<property id="colorOn" title="Enable Color" type="boolean"/>
-	<property id="globeOn" title="Enable Globe" type="boolean"/>
+	<property id="tooltipOn" title="Enable Tooltips" type="boolean"/>
 	<property id="colorReverse" title="Color Reverse" type="boolean"/>
 	<property id="colorPalette" title="Colour Palette" type="String" visible="false"/>
 	<property id="mapData" title="Map Data" type="String" visible="false"/>
@@ -269,12 +269,12 @@
 	<property id="legendScale" title="Legend Scale" type="float"/>
 	<property id="legendX" title="Legend Offset X" type="int"/>
 	<property id="legendY" title="Legend Offset Y" type="int"/>
-	<property id="mapX" title="Map Offset X" type="int"/>
-	<property id="mapY" title="Map Offset Y" type="int"/>
+	<property id="mapLeft" title="Map Margin Left" type="int"/>
+	<property id="mapTop" title="Map Margin Top" type="int"/>
+	<property id="mapRight" title="Map Margin Right" type="int"/>
+	<property id="mapBottom" title="Map Margin Bottom" type="int"/>
 	<property id="graticuleOn" title="Enable Graticule Grid" type="boolean"/>
 	<property id="canvasDragOn" title="Enable Drag" type="boolean"/>
-	
-	<property id="tooltipOn" title="Enable Tooltips" type="boolean"/>
 	<property id="yaw" title="Yaw" type="float"/>
 	<property id="pitch" title="Pitch" type="float"/>
 	<property id="roll" title="Roll" type="float"/>
@@ -316,10 +316,11 @@
 		<defaultValue property="legendTitle"></defaultValue>
 		<defaultValue property="legendX">0</defaultValue>
 		<defaultValue property="legendY">0</defaultValue>
-		<defaultValue property="mapX">0</defaultValue>
-		<defaultValue property="mapY">0</defaultValue>
+		<defaultValue property="mapLeft">0</defaultValue>
+		<defaultValue property="mapTop">0</defaultValue>
+		<defaultValue property="mapRight">0</defaultValue>
+		<defaultValue property="mapBottom">0</defaultValue>
 		<defaultValue property="colorOn">true</defaultValue>
-		<defaultValue property="globeOn">true</defaultValue>
 		<defaultValue property="colorProperty"></defaultValue>
 		<defaultValue property="projection">equirectangular</defaultValue>
 		<defaultValue property="yaw">0.0</defaultValue>

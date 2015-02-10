@@ -69,18 +69,137 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 	 */
 	this.projection = function(s){
 		if(s===undefined){
-			return this._projection
+			return this._projection;
 		}else{
 			this._projection = s;
 			this.compProjection.setSelectedKey(s);
+			return this;
 		}
 	};
+	this.ms = function(f){
+		if(f===undefined){
+			return this._ms;
+		}else{
+			this._ms = f;
+			this.compMs.setValue(f);
+			return this;
+		}
+	};
+	this.compMs = new org.scn.community.aps.Spinner({
+		min : 0,
+		max : 2000,
+		valueChange : function(oControlEvent){
+			that._ms = this.getValue();
+			that.firePropertiesChanged(["ms"]);			
+		}
+	});
+	this.mapLeft = function(f){
+		if(f===undefined){
+			return this._mapLeft;
+		}else{
+			this._mapLeft = f;
+			this.compMapLeft.setValue(f);
+			return this;
+		}
+	};
+	this.compMapLeft = new org.scn.community.aps.Spinner({
+		min : 0,
+		max : 500,
+		valueChange : function(oControlEvent){
+			that._mapLeft = this.getValue();
+			that.firePropertiesChanged(["mapLeft"]);			
+		}
+	});
+	this.mapRight = function(f){
+		if(f===undefined){
+			return this._mapRight;
+		}else{
+			this._mapRight = f;
+			this.compMapRight.setValue(f);
+			return this;
+		}
+	};
+	this.compMapRight = new org.scn.community.aps.Spinner({
+		min : 0,
+		max : 500,
+		valueChange : function(oControlEvent){
+			that._mapRight = this.getValue();
+			that.firePropertiesChanged(["mapRight"]);			
+		}
+	});
+	this.mapBottom = function(f){
+		if(f===undefined){
+			return this._mapBottom;
+		}else{
+			this._mapBottom = f;
+			this.compMapBottom.setValue(f);
+			return this;
+		}
+	};
+	this.compMapBottom = new org.scn.community.aps.Spinner({
+		min : 0,
+		max : 500,
+		valueChange : function(oControlEvent){
+			that._mapBottom = this.getValue();
+			that.firePropertiesChanged(["mapBottom"]);			
+		}
+	});
+	this.mapTop = function(f){
+		if(f===undefined){
+			return this._mapTop;
+		}else{
+			this._mapTop = f;
+			this.compMapTop.setValue(f);
+			return this;
+		}
+	};
+	this.compMapTop = new org.scn.community.aps.Spinner({
+		min : 0,
+		max : 500,
+		valueChange : function(oControlEvent){
+			that._mapTop = this.getValue();
+			that.firePropertiesChanged(["mapTop"]);			
+		}
+	});
+	this.legendOn = function(b){
+		if(b===undefined){
+			return this._legendOn;
+		}else{
+			this._legendOn = b;
+			this.compLegendOn.setChecked(b);
+			return this; 
+		}
+	};
+	this.compLegendOn =  new sap.ui.commons.CheckBox({
+		text : "Display Legend",
+		change : function(oControlEvent){
+			that.legendOn(this.getChecked());
+			that.firePropertiesChanged(["legendOn"]);
+		} 
+	});
+	this.tooltipOn = function(b){
+		if(b===undefined){
+			return this._tooltipOn;
+		}else{
+			this._tooltipOn = b;
+			this.compTooltipOn.setChecked(b);
+			return this; 
+		}
+	};
+	this.compTooltipOn =  new sap.ui.commons.CheckBox({
+		text : "Display Tooltips",
+		change : function(oControlEvent){
+			that.tooltipOn(this.getChecked());
+			that.firePropertiesChanged(["tooltipOn"]);
+		} 
+	});
 	this.backgroundColor = function(s){
 		if(s===undefined){
-			return this._backgroundColor
+			return this._backgroundColor;
 		}else{
 			this._backgroundColor = s;
 			this.compBackgroundColor.setBackgroundColor(s);
+			return this;
 		}
 	};
 	this.defaultFillColor = function(s){
@@ -89,6 +208,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 		}else{
 			this._defaultFillColor = s;
 			this.compFillColor.setBackgroundColor(s);
+			return this;
 		}
 	};
 	this.colorPalette = function(s){
@@ -97,6 +217,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 		}else{
 			this._colorPalette = s;
 			this.brewer.setColors(s);
+			return this;
 		}
 	};
 	this.mapData = function(s){
@@ -109,6 +230,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			this._geoData = this.processMapData(data);
 			this._attrData = this.scanData(this._geoData);
 			this.updateTable();
+			return this;
 		}
 	};
 	/**
@@ -228,7 +350,13 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 				text : "Load Map...",
 				menu : this.presetMenu
 			});
-			
+			cosmeticsLayout.addContent(this.compLegendOn);
+			cosmeticsLayout.addContent(this.compTooltipOn);
+			cosmeticsLayout.addContent(this.hLabel("Animation Duration (ms)",this.compMs));
+			cosmeticsLayout.addContent(this.hLabel("Map Left",this.compMapLeft));
+			cosmeticsLayout.addContent(this.hLabel("Map Right",this.compMapRight));
+			cosmeticsLayout.addContent(this.hLabel("Map Top",this.compMapTop));
+			cosmeticsLayout.addContent(this.hLabel("Map Bottom",this.compMapBottom));
 			cosmeticsLayout.addContent(this.hLabel("Background Color",this.compBackgroundColor));
 			cosmeticsLayout.addContent(this.hLabel("Default Land Color",this.compFillColor));
 			cosmeticsLayout.addContent(this.brewer);
