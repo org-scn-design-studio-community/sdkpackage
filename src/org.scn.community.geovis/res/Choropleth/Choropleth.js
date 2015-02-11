@@ -336,11 +336,14 @@
 			    if (this.colorScale() == 'quantile') {
 			    	legendSwatches = this.colorRange.quantiles();
 			    	for(var i=0;i<legendSwatches.length;i++){
-			    		gradient2.push(this.colorRange.invertExtent(gradientStops[i]));	// Returns array of [min,max] per quantile "bucket"
+			    		// Push min in 1st position?
+			    		gradient2.push(this.colorRange.invertExtent(gradientStops[i])[0]);	// Returns array of [min,max] per quantile "bucket"
+			    		if(i==legendSwatches.length-1) gradient2.push(this.colorRange.invertExtent(gradientStops[i])[1]);
 			    	}
 			    	legendSwatches[0] = min;
-			    	alert(JSON.stringify(gradient2));
 			    }
+			    var gradMin = d3.min(gradient2);
+			    var gradMax = d3.max(gradient2);
 				if (this.colorScale() === 'quantize') {
 					for (var i=0; i < gradientStops.length; i++) {
 						legendSwatches.push(this.colorRange.invertExtent(gradientStops[i])[0]);
@@ -356,26 +359,27 @@
 				
 				//Ensure we have something to make a legend with
 				if (legendSwatches && legendSwatches.length > 0) {
-			        var scale = d3.scale.ordinal()
-			        	.rangePoints([0,1])
-			        	.domain(gradientStops);
+			        var scale = d3.scale.linear()
+			        	.range([0,1])
+			        	.domain([gradMin,gradMax]);
 			        
-			        var tickScale = d3.scale.ordinal()
-		        		.rangePoints([0,this.dimensions.gradientWidth])
-		        		.domain(gradientStops);
+			        var tickScale = d3.scale.linear()
+		        		.range([0,this.dimensions.gradientWidth])
+		        		.domain([gradMin,gradMax]);
 			        
 			        var tickValueScale = d3.scale.ordinal()
 	        			.rangePoints([0,this.dimensions.gradientWidth])
 	        			.domain(legendSwatches);
 			        
-			        var stops = this.gradientDef.selectAll("stop").data(gradientStops);
-			        var ticks = this.gradientTicks.selectAll("line").data(gradientStops);
-			        var tickLabels = this.gradientTicks.selectAll("text").data(legendSwatches);
+			        var stops = this.gradientDef.selectAll("stop").data(gradient2);
+			        var ticks = this.gradientTicks.selectAll("line").data(gradient2);
+			        var tickLabels = this.gradientTicks.selectAll("text").data(gradient2);
 			        
 			        stops.enter().append("stop");
 			        ticks.enter().append("line")
 			        	.attr("stroke-width", 1)
 			        	.attr("stroke", "black");
+			        
 			        tickLabels.enter().append('text')
 						.attr('class', 'tick-label')
 						.attr("dy", "0em")
@@ -388,10 +392,11 @@
 			        ticks.exit().remove();
 					tickLabels.exit().remove();
 					
-			        this.gradientDef.selectAll("stop")
+			        // Make Solid
+					this.gradientDef.selectAll("stop")
 			        	.transition().duration(this.ms())
 			        	.attr("offset",function(d){return scale(d) * 100 + "%";})
-			        	.attr("stop-color",function(d){return d;})
+			        	.attr("stop-color",function(d){return that.colorRange(d);})
 			        	.attr("stop-opacity",1);
 			        
 			        this.gradientTicks.selectAll("line")
@@ -402,7 +407,7 @@
 					
 			        this.gradientTicks.selectAll("text")
 						.transition().duration(this.ms())
-						.attr("x",function(d){return tickValueScale(d);})
+						.attr("x",function(d){return tickScale(d);})
 						.text(function(d) { return formatter(d); });
 					
 					/**

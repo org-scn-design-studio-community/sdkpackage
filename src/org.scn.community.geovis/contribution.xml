@@ -338,4 +338,5 @@
 		<defaultValue property="HEIGHT">300</defaultValue>
 	</initialization>
 </component>
+
 </sdkExtension>
