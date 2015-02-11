@@ -66,26 +66,30 @@
 			 // Design Studio Autoproperties
 			 this.props = {
 				selectedFeature : { value : ""},
+				centerFeature : { value : ""},
 				featureProperty : { value : "NAME_1"},
 				labelProperty : { value : "NAME_1"},
 				measureMember :  { value : "" },
 				ms :  { value : 750 },
+				floor :  { value : 0 },
 				defaultFillColor : { value : "#E5EADE" },
 				backgroundColor : { value : "transparent" },
 				projection : { value : "mercator" },
-				colorOn :  { value : true },
-				labelsOn :  { value : true },
 				tooltipOn :  { value : true },
 				legendOn :  { value : true },
+				globeOn :  { value : true },
+				graticuleOn :  { value : true },
 				makeRoomX :  { value : true },
 				legendWidth :  { value : 0 },
 				legendX : { value : 0},
 				legendY : { value : 0},
-				graticuleOn :  { value : true },
-				legendScale :  { value : 1 },
+				legendScale : { value : 1},
+				gradientLeft : { value : 30 },
+				gradientRight : { value : 30 },
+				gradientBottom :  { value : 15 },
+				gradientHeight :  { value : 10 },
 				labelSize :  { value : "10px" },
 				legendTitle :  { value : "" },
-				colorReverse :  { value : false },
 				colorPalette :  { value : "#F0F9E8,#CCEBC5,#A8DDB5,#7BCCC4,#43A2CA,#0868AC" },
 				colorScale : { value : "quantile" },
 				mapData : { value : "" },
@@ -207,13 +211,36 @@
 					.attr("dy", ".35em")
 					.style("font-size", that.labelSize())
 					.text(function(d) { return d.properties[that.labelProperty()]; });
-				// Update
+
+				// Update graticule
+	    		this.graticulePath
+	    			.transition().duration(this.ms())
+	    			.attr('opacity', function(){ if(that.graticuleOn()){
+	    				return 1;
+	    			}else{
+	    				return 0;
+	    			}})
+            		.attr('d', this.projPath);
+	    		// Update globe
+	    		this.globePath
+	    			.transition().duration(this.ms())
+	    			.attr('opacity', function(){ if(that.globeOn()){
+	    				return 1;
+	    			}else{
+	    				return 0;
+	    			}})
+        			.attr('d', this.projPath);
+				// Update features
 				this.pathGroup.selectAll("path")
 					.transition().duration(this.ms())
 					.attr("d",this.projPath)
 					.attr("fill", function(d) {
 						if(d.properties && d.properties.designStudioMeasures){
-							return that.colorRange(d.properties.designStudioMeasures[that.measureMember()]) || that.defaultFillColor();	
+							var mm = that.measureMember();
+							if(!mm){
+								if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+							}
+							return that.colorRange(d.properties.designStudioMeasures[mm]) || that.defaultFillColor();	
 						}else{
 							return that.defaultFillColor();
 						}
@@ -228,6 +255,9 @@
 				this.pathGroup.selectAll('path')
 					.on('mouseover', this.doTooltip)
 					.on('mouseout', function(d) {
+						that.triangle
+							.transition().duration(that.ms())
+							.attr("opacity",0);
 						that.container.select('.tooltip').style('display', 'none');
 					})
 					.on('click', function(d){ 
@@ -260,14 +290,25 @@
 		    		.attr('width', this.dimensions.width)
 		    		.attr('height', this.dimensions.height);
 		    	
+		    	/*
 		    	this.gradientRect
 		    		.transition().duration(this.ms())
 		    		.attr("x",this.dimensions.gradientLeft)
-		    		.attr("y", this.dimensions.height - this.dimensions.gradientY - this.dimensions.gradientHeight)
+		    		.attr("y", this.dimensions.height - this.dimensions.gradientBottom - this.dimensions.gradientHeight)
 		    		.attr('width', this.dimensions.width - this.dimensions.gradientLeft - this.dimensions.gradientRight)
 		    		.attr('height', this.dimensions.gradientHeight);
+		    	*/
+		    	var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.height - this.dimensions.gradientBottom - this.dimensions.gradientHeight);
+		    	this.legend2
+		    		.transition().duration(this.ms())
+		    		.attr("transform", "translate(" + legend2Transform +")");
 		    	
-		    	var trans = this.dimensions.gradientLeft + "," + (this.dimensions.height - this.dimensions.gradientY - this.dimensions.gradientHeight);
+		    	this.triangle
+		    		.transition().duration(this.ms())
+		    		.attr("d","M-"+this.gradientHeight()/2+" 0 L"+this.gradientHeight()/2+" 0 L 0 "+this.gradientHeight()/2+" Z")
+		    		.attr("transform", "translate(0,"+(0-this.dimensions.gradientHeight)+")");
+		    	
+		    	var trans = "0," + (0 - this.dimensions.gradientHeight);
 		    	this.gradientTicks
 		    		.transition().duration(this.ms())
 		    		.attr("transform", "translate(" + trans +")");
@@ -297,20 +338,26 @@
 			 */
 			this.updateColorRange = function(){
 		        var d, domain;
-		        this.valuesSet = [];
+		        this.valuesSet = [this.floor()];
 	        	// Get values for range
 		        for (d = 0; d < this._mapJSON.features.length; d++) {
 	        		if(this._mapJSON.features[d].properties.designStudioMeasures){
-	        			this.valuesSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[this.measureMember()]));	
+	        			var mm = that.measureMember();
+						if(!mm){
+							if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+						}
+	        			this.valuesSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[mm]));	
 	        		}else{
 	        			this.valuesSet.push(null);
 	        		}
 		        }
 		        this.valuesSet.sort(function(a, b) { return a - b; });
 		        // Make range with appropriate values
+		        var cp = [];
+		        if(this.colorPalette()!="") cp = this.colorPalette().split(",");
 		        this.colorRange = d3.scale[this.colorScale()]()
 		        	.domain(this.valuesSet)
-		        	.range(this.colorPalette().split(","));
+		        	.range(cp);
 		        // Clamp if can
 		        if (typeof this.colorRange.clamp == 'function') {
 		        	this.colorRange.clamp(true);
@@ -324,7 +371,6 @@
 			 */
 			this.updateLegend = function(){
 				// LEGEND
-			    var formatter = d3.format(',.2f');			// Make a DS property
 			    var unit = 10;								// Swatch Size
 			    var min = d3.min(this.valuesSet);
 			    var max = d3.max(this.valuesSet);
@@ -332,23 +378,23 @@
 			    var gradientStops = [];
 			    var c = this.colorPalette();
 			    if(c!="") gradientStops = c.split(","); 
-			    var gradient2 = [];
+			    var extents = [];
 			    if (this.colorScale() == 'quantile') {
 			    	legendSwatches = this.colorRange.quantiles();
-			    	for(var i=0;i<legendSwatches.length;i++){
-			    		// Push min in 1st position?
-			    		gradient2.push(this.colorRange.invertExtent(gradientStops[i])[0]);	// Returns array of [min,max] per quantile "bucket"
-			    		if(i==legendSwatches.length-1) gradient2.push(this.colorRange.invertExtent(gradientStops[i])[1]);
-			    	}
-			    	legendSwatches[0] = min;
 			    }
-			    var gradMin = d3.min(gradient2);
-			    var gradMax = d3.max(gradient2);
 				if (this.colorScale() === 'quantize') {
 					for (var i=0; i < gradientStops.length; i++) {
 						legendSwatches.push(this.colorRange.invertExtent(gradientStops[i])[0]);
 					}
 				}
+				for(var i=0;i<gradientStops.length;i++){
+		    		// Push min in 1st position?
+		    		extents.push({
+		    			min : this.colorRange.invertExtent(gradientStops[i])[0],	// Returns array of [min,max] per quantile "bucket"
+		    			max : this.colorRange.invertExtent(gradientStops[i])[1],
+		    		});
+		    	}
+
 				/**
 				 * https://github.com/mbostock/d3/wiki/Quantitative-Scales
 				 * legendSwatches - [100,150,1500,2000] // Comes from colorRange.quantiles
@@ -361,21 +407,25 @@
 				if (legendSwatches && legendSwatches.length > 0) {
 			        var scale = d3.scale.linear()
 			        	.range([0,1])
-			        	.domain([gradMin,gradMax]);
+			        	.domain([min,max]);
 			        
-			        var tickScale = d3.scale.linear()
+			        this.tickScale = d3.scale.linear()
 		        		.range([0,this.dimensions.gradientWidth])
-		        		.domain([gradMin,gradMax]);
-			        
+		        		.domain([min,max]);
+			        		        
 			        var tickValueScale = d3.scale.ordinal()
 	        			.rangePoints([0,this.dimensions.gradientWidth])
 	        			.domain(legendSwatches);
 			        
-			        var stops = this.gradientDef.selectAll("stop").data(gradient2);
-			        var ticks = this.gradientTicks.selectAll("line").data(gradient2);
-			        var tickLabels = this.gradientTicks.selectAll("text").data(gradient2);
-			        
-			        stops.enter().append("stop");
+			        var rects = this.legendGroup.selectAll('rect.legend-swatch').data(extents);
+			        var rects2 = this.gradientRects.selectAll("rect").data(extents);
+			        var ticks = this.gradientTicks.selectAll("line").data(extents);
+			        var tickLabels = this.gradientTicks.selectAll("text").data(extents);
+					var legendLabels = this.legendGroup.selectAll('text.legend-amount').data(extents);
+					
+			        rects2.enter().append("rect");
+			        /*
+			         * Too cluttered
 			        ticks.enter().append("line")
 			        	.attr("stroke-width", 1)
 			        	.attr("stroke", "black");
@@ -386,29 +436,38 @@
 						.attr("y",-5)
 						.style("text-anchor", "middle")
 						.style("font-size", "8pt")
-						.text(function(d) { return formatter(d); });
-			        
-			        stops.exit().remove();
+						.text(function(d) { return that.formatter(d); });
+			        */
+			        rects2.exit().remove();
 			        ticks.exit().remove();
 					tickLabels.exit().remove();
 					
 			        // Make Solid
-					this.gradientDef.selectAll("stop")
+					/*this.gradientDef.selectAll("stop")
 			        	.transition().duration(this.ms())
 			        	.attr("offset",function(d){return scale(d) * 100 + "%";})
 			        	.attr("stop-color",function(d){return that.colorRange(d);})
 			        	.attr("stop-opacity",1);
+			        */
+
+					this.gradientRects.selectAll("rect")
+						.transition().duration(this.ms())
+			        	.attr("x",function(d){return that.tickScale(d.min);})
+			        	.attr("width",function(d){return that.tickScale(d.max) - that.tickScale(d.min);})
+			        	.attr("y",0)
+			        	.attr("height",this.dimensions.gradientHeight)
+			        	.attr("fill",function(d){return that.colorRange(d.min);});
 			        
 			        this.gradientTicks.selectAll("line")
 			        	.transition().duration(this.ms())
-			        	.attr("x1",function(d){return tickScale(d);})
-			        	.attr("x2",function(d){return tickScale(d);})
+			        	.attr("x1",function(d){return that.tickScale(d.min);})
+			        	.attr("x2",function(d){return that.tickScale(d.min);})
 			        	.attr("y1",0).attr("y2",this.dimensions.gradientHeight)
 					
 			        this.gradientTicks.selectAll("text")
 						.transition().duration(this.ms())
-						.attr("x",function(d){return tickScale(d);})
-						.text(function(d) { return formatter(d); });
+						.attr("x",function(d){return that.tickScale(d.min);})
+						.text(function(d) { return that.formatter(d.min); });
 					
 					/**
 					 * LEGEND
@@ -416,24 +475,29 @@
 					this.legendRect
 			    		.transition().duration(this.ms())
     					.attr('width', this.dimensions.legendWidth)
-    					.attr('height', legendSwatches.length * (unit * 2) + (unit * 3));
+    					.attr('height', extents.length * (unit * 2) + (unit * 3));
 			    	this.legendLabel
 			    		.transition().duration(this.ms())	
 			    		.attr('font-size', unit)
 				        .attr('x', (unit * 1))
 				        .attr('y', (unit * 2))
 				        .text(function(){
+				        	var mm = that.measureMember();
+							if(!mm){
+								if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+							}
 				        	if(that.legendTitle()=="") {
-				        		return that.measureMember();
+				        		return mm || "No Measure Found";
 				        	}else{
 				        		return that.legendTitle();
 				        	}
 				        });
 					// Add colors swatches
-					var rects = this.legendGroup.selectAll('rect.legend-swatch').data(legendSwatches);
+					
 					
 					// Enter Color Swatches
-					rects.enter().append('rect').attr('class', 'legend-swatch');
+					rects.enter().append('rect')
+						.attr('class', 'legend-swatch');
 						
 					// Exit Color Swatches
 					rects.exit().remove();
@@ -445,10 +509,8 @@
 						.attr('height', unit)
 						.attr('x', (unit * 1))
 						.attr('y', function(d, i) { return (i * unit * 2) + (unit * 3); })
-						.style('fill', function(d, i) { return that.colorRange(d); });
+						.style('fill', function(d, i) { return that.colorRange(d.min); });
 					
-					// Select swatch labels
-					var legendLabels = this.legendGroup.selectAll('text.legend-amount').data(legendSwatches);
 					// Enter swatch labels
 					legendLabels.enter().append('text').attr('class', 'legend-amount');
 					// Exit swatch labels
@@ -460,7 +522,7 @@
 					    .attr('font-size', unit)
 					    .attr('x', (unit * 3))
 					    .attr('y', function(d, i) { return (i * unit * 2) + (unit * 4 - 1); })
-					    .text(function(d, i) { return '>= ' + formatter(d); });		
+					    .text(function(d, i) { return '>= ' + that.formatter(d.min); });		
 				    }
 				return this;
 			}
@@ -469,14 +531,23 @@
 			 */
 			this.updateProjection = function(){
 				// Determine Center of Map
-		    	this.centroid = d3.geo.centroid(this._mapJSON);
-		    	// Create path
+		    	// this.centroid = d3.geo.centroid(this._mapJSON);
+		    	var centerFeature = null;
+		    	for(var i=0;i<this._mapJSON.features.length;i++){
+		    		var f = this._mapJSON.features[i];
+		    		if(f.properties && f.properties[this.featureProperty()] && f.properties[this.featureProperty()]==this.centerFeature()){
+		    			centerFeature = f;
+		    		}
+		    	}
+		    	this.centroid = d3.geo.centroid(centerFeature);
+		    	// Create projection
 		    	this.proj = d3.geo[this.projection()]()
 	    			.scale(1)
 	    			.translate([0,0]);
-	    		this.projPath = d3.geo.path()
+	    		// Create path
+		    	this.projPath = d3.geo.path()
 	    			.projection(this.proj);
-
+            	
 	    		// Compute the bounds of a feature of interest, then derive scale & translate.
 		    	var b = this.projPath.bounds(this._mapJSON),
 		    	    s = .95 / Math.max((b[1][0] - b[0][0]) / this.dimensions.mapWidth, (b[1][1] - b[0][1]) / this.dimensions.mapHeight),
@@ -485,9 +556,9 @@
 		    	this.proj.scale(s).translate(t);
 		    	
 		    	// Center if projection supports
-		    	//if(typeof this.proj.center === "function"){
-		    	//	this.proj.center(this.centroid);
-		    	//}
+		    	if(typeof this.proj.center === "function"){
+		    		if(centerFeature) this.proj.center(this.centroid);
+		    	}
 		    	// Rotate if projection supports
 		    	if (typeof this.proj.rotate === "function") {
 		    	    this.proj.rotate([this.yaw(),this.pitch(),this.roll()]);
@@ -510,21 +581,33 @@
 					.attr("spreadMethod", "pad");
 	    		this.background = this.canvas.append('rect')
 	    			.classed('background', true);
-	    		this.gradientRect = this.canvas.append("rect")
+	    		
+	    		/* pretty, but useless.
+	    		 * this.gradientRect = this.canvas.append("rect")
 	    			.attr("height",10)
 	    			.style("fill","url(#myGradient)");
+	    		*/
 	    		
-	    		var trans = this.dimensions.gradientLeft + "," + (this.dimensions.height - this.dimensions.gradientY - this.dimensions.gradientHeight);
-	    		this.gradientTicks = this.canvas.append("g")
-	    			.attr("class", "gradient-ticks")
-	    			.attr("transform", "translate(" + trans +")");
+	    		var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.height - this.dimensions.gradientBottom - this.dimensions.gradientHeight);
+	    		var tickTransform = "0," + (0 - this.dimensions.gradientHeight);
+	    		
+	    		
+	    		
 	    		
 	    		this.featureGroup = this.canvas.append('g')
 	    			.attr('class', 'feature-group');
+	    		this.globePath = this.featureGroup.append('path')
+	    			.datum({ type: 'Sphere' })
+	    			.attr('class', 'globe');
+	    		this.graticule = d3.geo.graticule();
+		        this.graticulePath = this.featureGroup.append('path')
+	            	.datum(this.graticule)
+	            	.attr('class', 'graticule');
 	    		this.pathGroup = this.featureGroup.append('g')
     				.attr('class', 'path-group');
 	    		this.labelGroup = this.featureGroup.append('g')
     				.attr('class', 'label-group');
+		        
 	    		this.tooltipDiv = this.container.append('div')
 	    			.attr("class","tooltip-container")
 	    			.classed('tooltip', true);
@@ -536,20 +619,33 @@
 			        .attr('y', 0);
 			    this.legendLabel = this.legendGroup.append('text')
 			        .attr('class', 'legend-label');
+
+			    // Horizontal Scale
+			    this.legend2 = this.canvas.append("g")
+    				.attr("transform", "translate(" + legend2Transform +")");	    		
+    	 		this.gradientRects = this.legend2.append("g")
+					.attr("class", "gradient-rects");
+	    		this.triangle = this.legend2.append("path")
+	    			.attr("opacity",0)
+					.attr("d","M-"+this.gradientHeight()/2+" 0 L"+this.gradientHeight()/2+" 0 L 0 "+this.gradientHeight()/2+" Z");
+	    		this.gradientTicks = this.legend2.append("g")
+	    			.attr("class", "gradient-ticks")
+	    			.attr("transform", "translate(" + tickTransform +")");
+			    
 			    return this;
 			}
 			this.afterUpdate = function(){
 				// Flatten Data
-				var flatData;
+				this._flatData = null;
 				var that = this;
 				// var mapData = this.loadMap(this.map());
 				var vals = [];
 				try{
-					flatData = org_scn_community_databound.flatten(this.data(),{});
-					if(flatData && flatData.formattedValues && flatData.formattedValues.length > 0) {
-						vals = flatData.formattedValues.slice();
-					}else if(flatData && flatData.values && flatData.values.length > 0){
-						vals = flatData.values.slice();
+					this._flatData = org_scn_community_databound.flatten(this.data(),{});
+					if(this._flatData && this._flatData.formattedValues && this._flatData.formattedValues.length > 0) {
+						vals = this._flatData.formattedValues.slice();
+					}else if(this._flatData && this._flatData.values && this._flatData.values.length > 0){
+						vals = this._flatData.values.slice();
 					}else{
 						// Something happened.
 						throw("No formatted or unformatted values found.");
@@ -557,14 +653,15 @@
 				}catch(e){
 					var errorMessage = e;
 				}
-				this.applyMeasures(this._mapJSON,flatData);
+				this.formatter = d3.format(',.2f');			// Make a DS property
+				this.applyMeasures(this._mapJSON,this._flatData);
 				this.dimensions = {
 					width : this.$().width(),
 					height : this.$().height(),
-					gradientLeft : 50,
-					gradientRight : 50,
-					gradientHeight : 10,
-					gradientY : 10,
+					gradientLeft : this.gradientLeft(),
+					gradientRight : this.gradientRight(),
+					gradientHeight : this.gradientHeight(),
+					gradientBottom : this.gradientBottom(),
 					mapLeft : this.mapLeft(),
 					mapRight : this.mapRight(),
 					mapTop : this.mapTop(),
@@ -589,17 +686,8 @@
 		    		.updateColorRange()
 		    		.updateLegend()
 		    		.updateFeaturePaths();
-				/*
-		        // GRATICULE
-		        if (this.graticuleOn()) {
-		          this.graticule = d3.geo.graticule();
-		          this.featureGroup.append('path')
-		            .datum(this.graticule)
-		            .attr('d', this.projPath)
-		            .attr('class', 'graticule');
-		            //.style(smd.options.stylesGraticule);
-		        }
-		        */
+
+		        
 			    this._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);
 			};
 			this.projectionTween = function(projection0, projection1) {
@@ -649,6 +737,20 @@
 				}
 			};
 			this.doTooltip = function(d) {
+				var mm = that.measureMember();
+				if(!mm){
+					if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+				}
+				var val = null;
+				if(d.properties && d.properties.designStudioMeasures && d.properties.designStudioMeasures[mm]){
+					val = d.properties.designStudioMeasures[mm];
+					that.triangle
+						.transition().duration(that.ms())
+						.attr("d","M-"+that.gradientHeight()/2+" 0 L"+that.gradientHeight()/2+" 0 L 0 "+that.gradientHeight()/2+" Z")
+						.attr("opacity",1)
+						.attr("transform", "translate("+that.tickScale(val)+","+(0-that.dimensions.gradientHeight)+")");
+				}
+				
 				// Tooltip
 				if (that.tooltipOn()) {
 					var tt = "";
@@ -659,7 +761,7 @@
 						tt +="<br/><ul>"
 						var dsm = d.properties.designStudioMeasures;
 						for(var measure in dsm){
-							tt+="<li><b>" + measure + "</b>: " + dsm[measure] + "</li>";
+							tt+="<li><b>" + measure + "</b>: " + that.formatter(dsm[measure]) + "</li>";
 						}
 						tt +="</ul>";
 					}

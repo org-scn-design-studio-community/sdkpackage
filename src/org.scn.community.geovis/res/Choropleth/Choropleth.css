@@ -87,13 +87,13 @@
 
 .DesignStudioSCN.Choropleth .graticule {
   fill: none;
-  stroke: #222222;
+  stroke: #808080;
   stroke-width: .5px;
   stroke-opacity: .75;
 }
 
 .DesignStudioSCN.Choropleth .globe {
-  fill: #009966;
+  fill: #A0C3FF;
   stroke: #222222;
-  stroke-width: 3px;
+  stroke-width: 1.5px;
 }

@@ -10,39 +10,40 @@
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
 	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
-	<property id="featureProperty" title="Feature Property" type="String"/>
-	<property id="labelProperty" title="Label Property" type="String"/>
-	<property id="measureMember" title="Measure to Colour" type="String"/>
+	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
+	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
+	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
+	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String"/>
 	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
 	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
-	<property id="ms" title="Transition Time (ms)" type="int"/>
-	<property id="colorOn" title="Enable Color" type="boolean"/>
-	<property id="tooltipOn" title="Enable Tooltips" type="boolean"/>
-	<property id="colorReverse" title="Color Reverse" type="boolean"/>
+	<property id="ms" title="Transition Time (ms)" type="int" visible = "false"/>
+	<property id="tooltipOn" title="Enable Tooltips" type="boolean" visible="false" />
+	<property id="graticuleOn" title="Show Graticule Grid" type="boolean" visible="false" />
+	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
+	<property id="legendOn" title="Enable Legend" type="boolean" visible="false" />
 	<property id="colorPalette" title="Colour Palette" type="String" visible="false"/>
 	<property id="mapData" title="Map Data" type="String" visible="false"/>
-	<property id="labelsOn" title="Enable Labels" type="boolean"/>
 	<property id="labelSize" title="Label Size (CSS Size)" type="String"/>
-	<property id="legendOn" title="Enable Legend" type="boolean"/>
-	<property id="makeRoomX" title="Avoid Legend" type="boolean"/>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="legendTitle" title="Legend Title" type="String"/>
 	<property id="legendWidth" title="Legend Width (px)" type="int"/>
 	<property id="legendScale" title="Legend Scale" type="float"/>
 	<property id="legendX" title="Legend Offset X" type="int"/>
 	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="gradientLeft" title="Horizontal Scale Left" type="int"/>
+	<property id="gradientRight" title="Horizontal Scale Right" type="int"/>
+	<property id="gradientBottom" title="Horizontal Scale Bottom" type="int"/>
+	<property id="gradientHeight" title="Horizontal Scale Height" type="int"/>
 	<property id="mapLeft" title="Map Margin Left" type="int"/>
 	<property id="mapTop" title="Map Margin Top" type="int"/>
 	<property id="mapRight" title="Map Margin Right" type="int"/>
 	<property id="mapBottom" title="Map Margin Bottom" type="int"/>
-	<property id="graticuleOn" title="Enable Graticule Grid" type="boolean"/>
-	<property id="canvasDragOn" title="Enable Drag" type="boolean"/>
 	<property id="yaw" title="Yaw" type="float"/>
 	<property id="pitch" title="Pitch" type="float"/>
 	<property id="roll" title="Roll" type="float"/>
 	<property id="colorScale" title="Color Scale" type="String">
 		<possibleValue>quantile</possibleValue>
 		<possibleValue>quantize</possibleValue>
-		<possibleValue>linear</possibleValue>
 	</property>
 	<property id="projection" title="Projection" type="String">
 		<possibleValue>mercator</possibleValue>
@@ -74,20 +75,22 @@
 		<defaultValue property="colorScale">quantile</defaultValue>
 		<defaultValue property="featureProperty">NAME_1</defaultValue>
 		<defaultValue property="labelProperty">NAME_1</defaultValue>
-		<defaultValue property="labelsOn">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="tooltipOn">true</defaultValue>
 		<defaultValue property="legendScale">1.0</defaultValue>
 		<defaultValue property="legendWidth">100</defaultValue>
 		<defaultValue property="legendTitle"></defaultValue>
+		<defaultValue property="gradientLeft">30</defaultValue>
+		<defaultValue property="gradientRight">30</defaultValue>
+		<defaultValue property="gradientBottom">15</defaultValue>
+		<defaultValue property="gradientHeight">10</defaultValue>
 		<defaultValue property="legendX">0</defaultValue>
 		<defaultValue property="legendY">0</defaultValue>
 		<defaultValue property="mapLeft">0</defaultValue>
 		<defaultValue property="mapTop">0</defaultValue>
 		<defaultValue property="mapRight">0</defaultValue>
 		<defaultValue property="mapBottom">0</defaultValue>
-		<defaultValue property="colorOn">true</defaultValue>
 		<defaultValue property="colorProperty"></defaultValue>
 		<defaultValue property="projection">equirectangular</defaultValue>
 		<defaultValue property="yaw">0.0</defaultValue>

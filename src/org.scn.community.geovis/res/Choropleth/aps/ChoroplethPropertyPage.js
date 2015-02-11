@@ -76,6 +76,24 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			return this;
 		}
 	};
+	this.featureProperty = function(s){
+		if(s===undefined){
+			return this._featureProperty;
+		}else{
+			this._featureProperty = s;
+			this.compFeatureProperty.setSelectedKey(s);
+			return this;
+		}
+	};
+	this.labelProperty = function(s){
+		if(s===undefined){
+			return this._labelProperty;
+		}else{
+			this._labelProperty = s;
+			this.compLabelProperty.setSelectedKey(s);
+			return this;
+		}
+	};
 	this.ms = function(f){
 		if(f===undefined){
 			return this._ms;
@@ -202,6 +220,38 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			return this; 
 		}
 	};
+	this.graticuleOn = function(b){
+		if(b===undefined){
+			return this._graticuleOn;
+		}else{
+			this._graticuleOn = b;
+			this.compGraticuleOn.setChecked(b);
+			return this; 
+		}
+	};
+	this.globeOn = function(b){
+		if(b===undefined){
+			return this._globeOn;
+		}else{
+			this._globeOn = b;
+			this.compGlobeOn.setChecked(b);
+			return this; 
+		}
+	};
+	this.compGraticuleOn =  new sap.ui.commons.CheckBox({
+		text : "Display Graticule",
+		change : function(oControlEvent){
+			that.graticuleOn(this.getChecked());
+			that.firePropertiesChanged(["graticuleOn"]);
+		} 
+	});
+	this.compGlobeOn =  new sap.ui.commons.CheckBox({
+		text : "Display Globe",
+		change : function(oControlEvent){
+			that.globeOn(this.getChecked());
+			that.firePropertiesChanged(["globeOn"]);
+		} 
+	});
 	this.compTooltipOn =  new sap.ui.commons.CheckBox({
 		text : "Display Tooltips",
 		change : function(oControlEvent){
@@ -246,12 +296,27 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			this._geoData = this.processMapData(data);
 			this._attrData = this.scanData(this._geoData);
 			this.updateTable();
+			this.updateDropdowns();
 			return this;
 		}
 	};
 	/**
 	 * UI5 Components
 	 */
+	this.compFeatureProperty = new sap.ui.commons.ComboBox({
+		tooltip : "Select a feature property that matches the dimension values that you want to map (e.g. NAME_1 matches 0REGION in your Initial View Rows)",
+		change : function(oControlEvent){
+			that.featureProperty(this.getSelectedKey());
+			that.firePropertiesChanged(["featureProperty"]);
+		}
+	});
+	this.compLabelProperty = new sap.ui.commons.ComboBox({
+		tooltip : "Select a feature property that represents the label you want to overlay on your features (e.g. NAME_1 containing titles such as 'Tennessee')",
+		change : function(oControlEvent){
+			that.labelProperty(this.getSelectedKey());
+			that.firePropertiesChanged(["labelProperty"]);
+		}
+	});
 	this.compProjection = new sap.ui.commons.ComboBox({
 		items : [
 		  new sap.ui.core.ListItem({ key : "mercator", text : "Mercator" }),
@@ -369,6 +434,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			cosmeticsLayout.addContent(this.compLegendOn);
 			cosmeticsLayout.addContent(this.compMakeRoomX);
 			cosmeticsLayout.addContent(this.compTooltipOn);
+			cosmeticsLayout.addContent(this.compGlobeOn);
+			cosmeticsLayout.addContent(this.compGraticuleOn);
 			cosmeticsLayout.addContent(this.hLabel("Animation Duration (ms)",this.compMs));
 			cosmeticsLayout.addContent(this.hLabel("Map Left",this.compMapLeft));
 			cosmeticsLayout.addContent(this.hLabel("Map Right",this.compMapRight));
@@ -377,8 +444,10 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			cosmeticsLayout.addContent(this.hLabel("Background Color",this.compBackgroundColor));
 			cosmeticsLayout.addContent(this.hLabel("Default Land Color",this.compFillColor));
 			cosmeticsLayout.addContent(this.brewer);
+			mappingLayout.addContent(this.hLabel("Download Map",this.presetsButton));
 			mappingLayout.addContent(this.hLabel("Projection Method",this.compProjection));
-			mappingLayout.addContent(this.presetsButton);
+			mappingLayout.addContent(this.hLabel("Feature Property",this.compFeatureProperty));
+			mappingLayout.addContent(this.hLabel("Label Property",this.compLabelProperty));
 			mappingLayout.addContent(this.byoMap);
 			mappingLayout.addContent(this.tableAttributes);
 			this.content.placeAt("content");
@@ -422,6 +491,21 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
     		};}(o.url), this);
 		}
 	}
+	/**
+	 * Update drop downs
+	 */
+	this.updateDropdowns = function(){
+		this.compLabelProperty.destroyItems();
+		this.compFeatureProperty.destroyItems();
+		this.compLabelProperty.addItem(new sap.ui.core.ListItem({ key : "", text : "No Label" }));
+		this.compFeatureProperty.addItem(new sap.ui.core.ListItem({ key : "", text : "No Feature Mapping" }));
+		for(var field in this._attrData[i]){
+			var newItem = new sap.ui.core.ListItem({ key : field, text : field });
+			var newItem2 = new sap.ui.core.ListItem({ key : field, text : field });
+			this.compLabelProperty.addItem(newItem);
+			this.compFeatureProperty.addItem(newItem2);
+		}
+	};
 	/**
 	 * Update data table
 	 */
