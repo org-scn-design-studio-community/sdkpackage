@@ -91,9 +91,19 @@ sap.ui.commons.Slider.extend("org.scn.community.databound.Slider", {
 		var lMetadata = this._metadata;
 		
 		if(this.getDoRefresh()){
-			var lElementsToRenderArray = org_scn_community_databound.getTopBottomElements 
-			    (lData, lMetadata, this.getMaxNumber(), this.getTopBottom(), this.getSorting(), "Ignore Duplicates", 2);
+var options = org_scn_community_databound.initializeOptions();
 			
+			options.iMaxNumber = this.getMaxNumber();
+			options.iTopBottom = this.getTopBottom();
+			options.iSortBy = this.getSorting();
+			options.iDuplicates = "Ignore";
+			options.iNnumberOfDecimals = 2;
+			
+			var returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
+		     (lData, lMetadata, "", options);
+			
+			lElementsToRenderArray = returnObject.list;
+
 			this._lLabels = []; 
 			this._lLabelKeys = [];
 			

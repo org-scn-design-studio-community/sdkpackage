@@ -259,6 +259,8 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 			  dimensionJson.text = dimension.text;
 			  dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
 
+			  dimensionJson.hierarchyActive = DS.isHierarchyActive(dimension);
+			  
 			  dimensionJson.members = members;
 
 			  elementsJson.push(dimensionJson);

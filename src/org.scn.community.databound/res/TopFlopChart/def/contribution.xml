@@ -22,7 +22,7 @@
 		group="DataBinding"
 	>
 	</property>
-
+	
 	<property
 		id="maxNumber"
 		title="Maximum Number"
