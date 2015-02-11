@@ -105,10 +105,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 	beforeDesignStudioUpdate : function() {
 		this._width = this.oComponentProperties.width - 4;
 		this._height = 20;
-
-		this._maxValue = undefined;
-		this._minValue = undefined;
-		this._maxDelta = -1;
 	},
 	
 	afterDesignStudioUpdate : function() {
@@ -139,35 +135,22 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 
 			var lData = this._data;
 			var lMetadata = this._metadata;
+		
+			var options = org_scn_community_databound.initializeOptions();
 			
-			var lElementsToRenderArray = this._getElements(lData, lMetadata);
+			options.iMaxNumber = this.getMaxNumber();
+			options.iTopBottom = this.getTopBottom();
+			options.iSortBy = "Value";
+			options.iDuplicates = "Ignore";
+			options.iNnumberOfDecimals = this.getValueDecimalPlaces();
+			
+			var returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
+		     (lData, lMetadata, "", options);
+			
+			lElementsToRenderArray = returnObject.list;
 			
 			// Destroy old content
 			this._lLayout.destroyContent();
-
-			// find highest value
-			for (var i = 0; i < lElementsToRenderArray.length; i++) {
-				var element = lElementsToRenderArray[i];
-				if(this._maxValue == undefined) {
-					this._maxValue = element.value;
-				}
-				if(element.value > this._maxValue) {
-					this._maxValue = element.value;
-				}
-				if(this._minValue == undefined) {
-					this._minValue = element.value;
-				}
-				if(element.value < this._minValue) {
-					this._minValue = element.value;
-				}
-			}
-			
-			if(this._maxValue == 0) {
-				this._maxValue = 1;
-			}
-			if(this._minValue == 0) {
-				this._minValue = 1;
-			}
 			
 			var breakOnIndex = this.getBreakOnIndex();
 			var breakOnAverage = this.getBreakOnAverage();
@@ -189,7 +172,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 					}
 				}
 				
-				var lImageElement = this.createLeaderElement(i, element.key, element.text, element.url, element.value, element.valueS, element.counter, element.delta);
+				var lImageElement = this.createLeaderElement(i, element.key, element.text, element.url, element.value, element.valueS, element.counter, element.delta, returnObject);
 				this._oElements[element.key] = lImageElement;
 				this._lLayout.addContent(lImageElement);
 			}
@@ -198,7 +181,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 				// insert Average Information
 				var oTextValue = new sap.ui.commons.TextView();
 				oTextValue.addStyleClass("scn-pack-DataTopFlopChart-AverageText");
-				oTextValue.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(this._Average, this._metadata.locale, this.getValueDecimalPlaces()) + this.getAverageSuffix());
+				oTextValue.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(returnObject.average, this._metadata.locale, this.getValueDecimalPlaces()) + this.getAverageSuffix());
 				this._lLayout.addContent(
 						oTextValue
 				);
@@ -216,182 +199,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 		}
 	},
 	
-	_getElements : function (data, metadata) {
-		var list = [];
-		
-		if(!data || data == "" || data == undefined) {
-			return list;
-		}
-		
-		var lValues = [];
-		
-		// colum or row? 1= column, 2= row
-		var dimesniosnIndex = 1;
-		if (data.columnCount > data.rowCount) {
-			dimesniosnIndex = 0;
-		}
-		
-		for (var i = 0; i < data.data.length; i++) {
-			var isResult = metadata.dimensions[dimesniosnIndex].members[i].type == "RESULT";
-			
-			if(!isResult) {
-				var key = metadata.dimensions[dimesniosnIndex].members[i].key;
-				var text = metadata.dimensions[dimesniosnIndex].members[i].text;
-				// check the key existence
-				if(text.indexOf("|") > -1) {
-					text = text.substring(0, text.indexOf("|"));
-				}
-				
-				var value = data.data[i];
-
-				lValues.push(value);
-				
-				var itemDef = { 
-					key: key, 
-					text: text, 
-					url: key,
-					value: value,
-					valueS: org_scn_community_basics.getFormattedValue(value, this._metadata.locale, this.getValueDecimalPlaces()),
-				};
-
-				list.push(itemDef);
-			}
-		}
-		
-		list.sort(function(a,b) { return parseFloat(b.value) - parseFloat(a.value) } );
-
-		var lAverage = 0;
-		for (var i = 0; i < lValues.length; i++) {
-			lAverage = lAverage + lValues[i];
-		}
-		
-		this._Average = lAverage / lValues.length;
-		
-		if(this.getFixedAverage() != -1) {
-			this._Average = this.getFixedAverage();
-		}
-		
-		var max = this.getMaxNumber();
-		var newList = [];
-		
-		this._maxDelta = 0;
-		
-		var counter = 0;
-		if(this.getTopBottom() == "Top X") {
-			for (var i = 0; i < list.length; i++) {
-				if(counter >= max) {
-					break;
-				}
-				
-				list[i].counter = (i+1);
-				list[i].delta = (list[i].value - this._Average);
-				
-				if(list[i].delta > 0 && list[i].delta > this._maxDelta) {
-					this._maxDelta = list[i].delta;	
-				}
-				if(list[i].delta < 0 && (list[i].delta * -1) > this._maxDelta) {
-					this._maxDelta = (list[i].delta * -1);	
-				}
-				
-				if(list[i].delta < 0) {
-					break;
-				}
-				
-				newList.push(list[i]);
-				counter = counter + 1;
-			}
-		} else if (this.getTopBottom() == "Bottom X"){
-			var start = list.length-max;
-			
-			if(list.length < max) {
-				start = 0;
-			}
-
-			for (var i = start; i < list.length; i++) {
-				if(counter >= max) {
-					break;
-				}
-				
-				list[i].counter = (i+1);
-				list[i].delta = (list[i].value - this._Average);
-				
-				if(list[i].delta > 0 && list[i].delta > this._maxDelta) {
-					this._maxDelta = list[i].delta;	
-				}
-				if(list[i].delta < 0 && (list[i].delta * -1) > this._maxDelta) {
-					this._maxDelta = (list[i].delta * -1);	
-				}
-				
-				if(list[i].delta > 0) {
-					continue;
-				}
-				
-				newList.push(list[i]);
-				counter = counter + 1;
-			}
-		} else {
-			for (var i = 0; i < list.length; i++) {
-				if(counter >= max) {
-					break;
-				}
-				
-				list[i].counter = (i+1);
-				list[i].delta = (list[i].value - this._Average);
-				
-				if(list[i].delta > 0 && list[i].delta > this._maxDelta) {
-					this._maxDelta = list[i].delta;	
-				}
-				if(list[i].delta < 0 && (list[i].delta * -1) > this._maxDelta) {
-					this._maxDelta = (list[i].delta * -1);	
-				}
-
-				if(list[i].delta < 0) {
-					break;
-				}
-				
-				newList.push(list[i]);
-				counter = counter + 1;
-			}
-			
-			var start = list.length-max;
-			if(list.length < max) {
-				start = 0;
-			}
-			
-			if(start < counter) {
-				start = counter;
-			}
-
-			counter = 0;
-			
-			for (var i = start; i < list.length; i++) {
-				if(counter >= max) {
-					break;
-				}
-				
-				list[i].counter = (i+1);
-				list[i].delta = (list[i].value - this._Average);
-				
-				if(list[i].delta > 0 && list[i].delta > this._maxDelta) {
-					this._maxDelta = list[i].delta;	
-				}
-				if(list[i].delta < 0 && (list[i].delta * -1) > this._maxDelta) {
-					this._maxDelta = (list[i].delta * -1);	
-				}
-				
-				if(list[i].delta > 0) {
-					continue;
-				}
-				
-				newList.push(list[i]);
-				counter = counter + 1;
-			}
-		}
-		
-		return newList;
-	},
-	
-	createEmptyLeaderElement: function (index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, delta) {
+	createEmptyLeaderElement: function (index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, delta, returnObject) {
 		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
 			width: this._width + "px",
 			height: this._height + "px"
@@ -400,7 +208,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 		return oLayout;
 	},
 	
-	createLeaderElement: function (index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, delta) {
+	createLeaderElement: function (index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, delta, returnObject) {
 		var that = this;
 		
 		// in case starts with http, keep as is 
@@ -435,16 +243,12 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 			height: this._height + "px"
 		});
 		
-		if(this._maxDelta == 0) {
-			this._maxDelta = 1;
-		}
-		
 		if(delta < 0) {
 			delta = delta * -1;
 		}
 
 		var baseValue = value;
-		var baseMax = this._maxValue;
+		var baseMax = returnObject.maxValue;
 		var baseStart = this._valueStart; 
 		var baseWidth = this.getMaxValueSize();
 		if(baseWidth == -1) {
@@ -453,7 +257,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 
 		if(this.getUseDelta()) {
 			baseValue = delta;
-			baseMax = this._maxDelta;
+			baseMax = returnObject.maxDelta;
 			baseStart = ((this._width - this._valueStart) / 2) + this._valueStart;
 			if(baseWidth == this._width) {
 				baseWidth = baseWidth - 70;
@@ -466,7 +270,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 		var oValueLayout = new sap.ui.commons.layout.AbsoluteLayout ({
 			width: lSizeValue + "px",
 			height: "18px"
-		});
+		});		
 		
 		var oValueLayoutBackground = undefined;
 		if(this.getUseBackground()) {
@@ -477,7 +281,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 			oValueLayoutBackground.addStyleClass("scn-pack-DataTopFlopChart-ValueLayout");
 		}
 
-		if(value < this._Average) {
+		if(value < returnObject.average) {
 			oValueLayout.addStyleClass("scn-pack-DataTopFlopChart-ValueLayoutBad");
 		} else {
 			oValueLayout.addStyleClass("scn-pack-DataTopFlopChart-ValueLayoutGood");
@@ -581,7 +385,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.TopFlop
 		
 		oTextValue.setText (this.getValuePrefix() + valueAsString + this.getValueSuffix());
 		
-		var delta = value - this._Average;
+		var delta = value - returnObject.average;
 		if(delta > 0) {
 			oTextDeltaValue.setText (" Δ " + "+" + org_scn_community_basics.getFormattedValue(delta, this._metadata.locale, this.getValueDecimalPlaces()) + this.getDeltaValueSuffix());	
 		} else {

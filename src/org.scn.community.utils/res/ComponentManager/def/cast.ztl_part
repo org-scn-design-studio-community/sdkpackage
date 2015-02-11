@@ -124,6 +124,9 @@
 	/**Cast to Data Drop Down component*/
 	org.scn.community.databound.DropDown returnAsScnDropDown (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Facet Filter component*/
+	org.scn.community.databound.FacetFilter returnAsScnFacetFilter (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
@@ -153,6 +156,9 @@
 
 	/**Cast to Dynamic Csv Data Source component*/
 	org.scn.community.datasource.DynCsvDataSource returnAsScnDynCsvDataSource (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Choropleth Map component*/
+	org.scn.community.geovis.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Maps component*/
 	org.scn.community.geovis.Maps returnAsScnMaps (Component inputComponent) {* return inputComponent; *}

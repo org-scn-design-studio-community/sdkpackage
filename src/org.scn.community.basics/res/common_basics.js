@@ -88,11 +88,27 @@ org_scn_community_basics.getFormattedValue = function (value, locale, numberOfDe
 	
 	if (numberOfDecimal > 0) {
 		strFormat += sap.common.globalization.NumericFormatManager.getDecimalSeparator();
-		for (var i = 0; i < this.getValueDecimalPlaces(); i++) {
+		for (var i = 0; i < numberOfDecimal; i++) {
 			strFormat += "0";
 		}
 	}
 	
 	var valueFormatted = sap.common.globalization.NumericFormatManager.format(value, strFormat);
 	return valueFormatted;
+};
+
+org_scn_community_basics.hideNoDataOverlay = function(componentId, includeFullSizeChild) {
+	var css = "";
+	css = css + "#" + componentId + "_loadingState {visibility: hidden !important;}";
+	css = css + "#" + componentId + "_loadingStateBox {visibility: hidden !important;}";
+	css = css + "#" + componentId + "_loadingState_message {visibility: hidden !important;}";
+
+	if(includeFullSizeChild) {
+		css = css + "#" + componentId + " > div[class=\"sapUiLayoutAbsPos\"] {width: 100% !important;height: 100% !important;}";
+	}
+	
+	var style = document.createElement('style');
+	style.type = 'text/css';
+	style.innerHTML = css;
+	document.getElementsByTagName('head')[0].appendChild(style);
 };

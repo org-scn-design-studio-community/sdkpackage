@@ -120,8 +120,16 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 			this._ElementsToRenderArray = [];
 			
 			if(lDBindingMode == "Result Set") {
+				var options = org_scn_community_databound.initializeOptions();
+				
+				options.iMaxNumber = this.getDMaxMembers();
+				options.iTopBottom = this.getDTopBottom();
+				options.iSortBy = this.getDSorting();
+				options.iDuplicates = "Ignore";
+				options.iNnumberOfDecimals = 2;
+				
 				this._ElementsToRenderArray = org_scn_community_databound.getTopBottomElementsForDimension 
-			     (lData, this.getDDimension(), lMetadata, this.getDMaxMembers(), this.getDTopBottom(), this.getDSorting(), "Ignore Duplicates", 2);
+			     (lData, lMetadata, this.getDDimension(), options).list;
 			} else if(lDBindingMode == "Master Data") {
 				var lDElements = this.getDElements();
 				if(lDElements != null && lDElements != undefined && lDElements != ""){

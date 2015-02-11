@@ -40,7 +40,7 @@ class org.scn.community.databound.Table extends Component {
  */
 class org.scn.community.databound.DropDown extends org.scn.community.shared.DataComponent {
 
-	void onInternalSelectionChanged () {*
+	void private_onSelectionChanged () {*
 		var key = this.getSelectedKey();
 	
 		this.internalWriteLog("Internal Selection on Dimension: " + this.getDimension() + " | " + key);
@@ -52,7 +52,11 @@ class org.scn.community.databound.DropDown extends org.scn.community.shared.Data
 		}
 	*}
 	
-	void onBeforeRender() {*
+	void private_onBeforeRender() {*
+		
+	*}
+	
+	void reloadDataSource() {*
 		// unfortunately this does not work correctly as this method is too late included (as first method on rendering, instead on before rendering)
 		// this causes incorrect events in a phase where events are not allowed any more... (error: DS_1 cannot be changed in rendering phase)
 		// workaround is to call once explicitelly "getMembers" on this dimension
@@ -259,6 +263,8 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 			  dimensionJson.text = dimension.text;
 			  dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
 
+			  dimensionJson.hierarchyActive = DS.isHierarchyActive(dimension);
+			  
 			  dimensionJson.members = members;
 
 			  elementsJson.push(dimensionJson);

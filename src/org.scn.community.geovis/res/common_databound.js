@@ -43,12 +43,42 @@ org_scn_community_databound.hasDataAndMetadata = function (data, metadata) {
 	}
 	
 	return true;
-};	
+};
 
-org_scn_community_databound.getTopBottomElementsForDimension = function (data, requestedDimensionKey, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates, numberOfDecimals) {
+org_scn_community_databound.initializeOptions = function () {
+	var options = {};
+	
+	options.iMaxNumber = 100;
+	options.iTopBottom = "Both";
+	options.iSortBy = "Default";
+	options.iDuplicates = "Ignore";
+	options.iNnumberOfDecimals = 2;
+	options.allKeys = false;
+	options.idPrefix = "";
+	
+	return options;
+}
 
+org_scn_community_databound.initializeEmptyReturn = function () {
+	var returnObject = {};
+	
+	returnObject.list = [];
+	returnObject.maxDelta = 0;
+	returnObject.average = 0;
+	returnObject.maxValue = 0;
+	returnObject.minValue = 0;
+	returnObject.allKeys = "";
+	
+	return returnObject;
+}
+
+org_scn_community_databound.getTopBottomElementsForDimension = function (data, metadata, requestedDimensionKey, options) {
+	if(options == undefined) {
+		options = org_scn_community_databound.initializeOptions();
+	}
+	
 	if(!metadata || !metadata.dimensions) {
-		return [];
+		return org_scn_community_databound.initializeEmptyReturn();;
 	}
 	
 	//FBL20141216 Removed an additionnal S from the variable name
@@ -59,29 +89,34 @@ org_scn_community_databound.getTopBottomElementsForDimension = function (data, r
 	// 1.3 release does not bring rowCount and columnCount...
 	var isARow = (data.rowCount && data.columnCount && data.rowCount < data.columnCount);
 
-	for (var i = 0; i < metadata.dimensions.length; i++) {
-		var dimension = metadata.dimensions[i];
-
-		if(dimension.key == requestedDimensionKey) {
-			dimensionStartIndex = i;
-			dimensionEndIndex = i;
-
-			if(dimension.axis == "ROWS") {
-				isARow = false;
+	if(requestedDimensionKey == undefined || requestedDimensionKey == "") {
+		dimensionStartIndex = -1;
+		dimensionEndIndex = -1;
+	} else {
+		for (var i = 0; i < metadata.dimensions.length; i++) {
+			var dimension = metadata.dimensions[i];
+	
+			if(dimension.key == requestedDimensionKey) {
+				dimensionStartIndex = i;
+				dimensionEndIndex = i;
+	
+				if(dimension.axis == "ROWS") {
+					isARow = false;
+				}
+				if(dimension.axis == "COLUMNS") {
+					isARow = true;
+				}
+				break;
 			}
-			if(dimension.axis == "COLUMNS") {
-				isARow = true;
-			}
-			break;
+		}
+		
+		// if dimension is not in the resultset, empty list back
+		if(dimensionStartIndex == -1) {
+			return org_scn_community_databound.initializeEmptyReturn();;
 		}
 	}
-
-	// if dimension is not in the resultset, empty list back
-	if(dimensionStartIndex == -1) {
-		return [];
-	}
 	
-	return org_scn_community_databound.getTopBottomElementsByIndex (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates, numberOfDecimals);
+	return org_scn_community_databound.getTopBottomElementsByIndex(data, metadata, dimensionStartIndex, dimensionEndIndex, options);
 };
 
 /**
@@ -91,19 +126,19 @@ org_scn_community_databound.getTopBottomElementsForDimension = function (data, r
  * iSortBy - string, "Default" | <some other string>
  * iDuplicates - string, "Ignore Duplicates" | <some other string>
  */
-org_scn_community_databound.getTopBottomElements = function (data, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates, numberOfDecimals) {
+org_scn_community_databound.getTopBottomElements = function (data, metadata, options) {
 
 	var dimensionStartIndex = -1;
 	var dimensionEndIndex = -1;
 
-	return org_scn_community_databound.getTopBottomElementsByIndex (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates, numberOfDecimals);
+	return org_scn_community_databound.getTopBottomElementsByIndex(data, metadata, dimensionStartIndex, dimensionEndIndex, options);
 };
 
-org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimensionStartIndex, dimensionEndIndex, metadata, iMaxNumber, iTopBottom, iSortBy, iDuplicates, numberOfDecimals) {
+org_scn_community_databound.getTopBottomElementsByIndex = function (data, metadata, dimensionStartIndex, dimensionEndIndex, options) {
 	var list = [];
 	
 	if(!data || data == "" || data == undefined) {
-		return list;
+		return org_scn_community_databound.initializeEmptyReturn();
 	}
 	
 	var lValues = [];
@@ -142,7 +177,7 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimens
 		}
 	}
 	
-	var allKeys = "" + "|";
+	var allKeys = "|";
 	
 	for (var i = 0; i < data.data.length; i++) {
 		var tupel = data.tuples[i]; 
@@ -163,7 +198,7 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimens
 				text = text.replace("|", " | ");
 			}
 			
-			if(iDuplicates=="Ignore Duplicates") {
+			if(options.iDuplicates=="Ignore") {
 				if(allKeys.indexOf("|" + key + "|") > -1) {
 					// key already in the array...
 					continue;
@@ -179,14 +214,14 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimens
 				text: text, 
 				url: key,
 				value: value,
-				valueS: org_scn_community_basics.getFormattedValue(value, numberOfDecimals),
+				valueS: org_scn_community_basics.getFormattedValue(value, metadata.locale, options.iNnumberOfDecimals),
 			};
 
 			list.push(itemDef);
 		}
 	}
 	
-	if(iSortBy!="Default") {
+	if(options.iSortBy!="Default") {
 		list.sort(function(a,b) { return parseFloat(b.value) - parseFloat(a.value); } );
 	}
 
@@ -195,31 +230,24 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimens
 		lAverage = lAverage + lValues[i];
 	}
 	
-	this._Average = lAverage / lValues.length;
+	if(lValues.length > 0) {
+		lAverage = lAverage / lValues.length;
+	}
 	
-	var max = iMaxNumber;
+	var max = options.iMaxNumber;
 	var newList = [];
-	
-	this._maxDelta = 0;
-	
+		
 	var counter = 0;
-	if(iTopBottom == "Top X") {
+	if(options.iTopBottom == "Top X") {
 		for (var i = 0; i < list.length; i++) {
 			if(counter >= max) {
 				break;
 			}
 			
 			list[i].counter = (i+1);
-			list[i].delta = (list[i].value - this._Average);
-			
-			if(list[i].delta > 0 && list[i].delta > this._maxDelta) {
-				this._maxDelta = list[i].delta;	
-			}
-			if(list[i].delta < 0 && (list[i].delta * -1) > this._maxDelta) {
-				this._maxDelta = (list[i].delta * -1);	
-			}
-			
-			if(iSortBy!="Default") { // break criteria only for sorted lists
+			list[i].delta = (list[i].value - lAverage);
+
+			if(options.iSortBy!="Default") { // break criteria only for sorted lists
 				if(list[i].delta < 0) {
 					break;
 				}
@@ -228,7 +256,7 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimens
 			newList.push(list[i]);
 			counter = counter + 1;
 		}
-	} else if (iTopBottom == "Bottom X"){
+	} else if (options.iTopBottom == "Bottom X"){
 		var start = list.length-max;
 		
 		if(list.length < max) {
@@ -241,16 +269,9 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimens
 			}
 			
 			list[i].counter = (i+1);
-			list[i].delta = (list[i].value - this._Average);
-			
-			if(list[i].delta > 0 && list[i].delta > this._maxDelta) {
-				this._maxDelta = list[i].delta;	
-			}
-			if(list[i].delta < 0 && (list[i].delta * -1) > this._maxDelta) {
-				this._maxDelta = (list[i].delta * -1);	
-			}
-			
-			if(iSortBy!="Default") { // break criteria only for sorted lists
+			list[i].delta = (list[i].value - lAverage);
+
+			if(options.iSortBy!="Default") { // break criteria only for sorted lists
 				if(list[i].delta > 0) {
 					continue;
 				}
@@ -266,16 +287,9 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimens
 			}
 			
 			list[i].counter = (i+1);
-			list[i].delta = (list[i].value - this._Average);
-			
-			if(list[i].delta > 0 && list[i].delta > this._maxDelta) {
-				this._maxDelta = list[i].delta;	
-			}
-			if(list[i].delta < 0 && (list[i].delta * -1) > this._maxDelta) {
-				this._maxDelta = (list[i].delta * -1);	
-			}
+			list[i].delta = (list[i].value - lAverage);
 
-			if(iSortBy!="Default") { // break criteria only for sorted lists
+			if(options.iSortBy!="Default") { // break criteria only for sorted lists
 				if(list[i].delta < 0) {
 					break;
 				}
@@ -301,18 +315,13 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimens
 				break;
 			}
 			
-			list[i].counter = (i+1);
-			list[i].delta = (list[i].value - this._Average);
+			var element = list[i];
 			
-			if(list[i].delta > 0 && list[i].delta > this._maxDelta) {
-				this._maxDelta = list[i].delta;	
-			}
-			if(list[i].delta < 0 && (list[i].delta * -1) > this._maxDelta) {
-				this._maxDelta = (list[i].delta * -1);	
-			}
-
-			if(iSortBy!="Default") { // break criteria only for sorted lists
-				if(list[i].delta > 0) {
+			element.counter = (i+1);
+			element.delta = (element.value - lAverage);
+			
+			if(options.iSortBy!="Default") { // break criteria only for sorted lists
+				if(element.delta > 0) {
 					continue;
 				}
 			}
@@ -321,8 +330,119 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, dimens
 			counter = counter + 1;
 		}
 	}
+
+	if(newList.length > 0) {
+		var lMaxDelta = Math.abs(newList[0].delta);
+		var lMinValue = newList[0].value;
+		var lMaxValue = newList[0].value;
+	}
 	
-	return newList;
+	for (var i = 0; i < newList.length; i++) {
+		var element = newList[i];
+		
+		if(lMaxDelta < Math.abs(element.delta)) {
+			lMaxDelta = Math.abs(element.delta);	
+		}
+		if(lMinValue > element.value) {
+			lMinValue = element.value;	
+		}
+		if(lMaxValue < element.value) {
+			lMaxValue = element.value;	
+		}
+	}
+	
+	if(lMaxDelta == 0) {
+		lMaxDelta = 1;
+	}
+
+	var returnObject = org_scn_community_databound.initializeEmptyReturn();
+	returnObject.list = newList;
+	returnObject.maxDelta = lMaxDelta;
+	returnObject.average = lAverage;
+	returnObject.maxValue = lMaxValue;
+	returnObject.minValue = lMinValue;
+
+	if(options.allKeys && allKeys.length > 1) {
+		returnObject.allKeys = allKeys;
+	}
+	
+	return returnObject;
+};
+
+org_scn_community_databound.getDataModelForDimensions = function (data, metadata, dimensions, options) {
+	var oData = {};
+
+	if(dimensions != undefined) {
+		var lDimensionsJson = JSON.parse(dimensions);
+		for (var iD = 0; iD < lDimensionsJson.length; iD++) {
+			var dimension = lDimensionsJson[iD];
+			
+			if(dimension.isMeasuresDimension != true) {
+				var name = dimension.name;
+				var text = dimension.text;
+				var members = dimension.members;
+				
+				oData[name] = {};
+				oData[name].name = name;
+				oData[name].text = text;
+				oData[name].items = [];
+				
+				var dimensionData = org_scn_community_databound.initializeEmptyReturn();
+				if(!dimension.hierarchyActive) {
+					// only check the resultset if hierarchy is inactive
+					dimensionData = org_scn_community_databound.getTopBottomElementsForDimension(data, metadata, name, options);
+				}
+				
+				for (var iM = 0; iM < members.length; iM++) {
+					var member = members[iM];
+					
+					var memberJson = {};
+					memberJson.name = member.internalKey;
+					memberJson.text = member.text;
+					memberJson.id = options.idPrefix + name + member.internalKey;
+					
+					if(dimensionData.allKeys.length > 0) {
+						if(dimensionData.allKeys.indexOf("|" + member.internalKey + "|") > -1) {
+							// this member is also in result set, means can be selected
+							memberJson.available = true;
+						} else {
+							memberJson.available = false;
+						}
+					} else {
+						memberJson.available = true;
+					}
+					
+					oData[name].items.push(memberJson);
+				}
+			}
+		}
+	} else {
+		oData = {
+			brands: [
+ 				{name : "BMW", key: "1"},
+ 				{name : "AUDI", key: "2", enabled: false}
+ 			],
+ 			models: [
+ 				{name : "320d", key: "1"},
+ 				{name : "325i", key: "2"},
+ 				{name : "330d", key: "3"},
+ 				{name : "330i", key: "4"},
+ 				{name : "335i", key: "5"},
+ 				{name : "A1", key: "6"},
+ 				{name : "A3", key: "7"},
+ 				{name : "A4", key: "8"},
+ 				{name : "A5", key: "9"},
+ 				{name : "A6", key: "10"}
+ 			],
+ 			types: [
+ 				{name : "Limousine", key: "1"},
+ 				{name : "Coupé", key: "2"},
+ 				{name : "Cabrio", key: "3"}
+ 			]						
+ 		};
+	}
+
+	return oData;
 };
 
 /**
