@@ -24,7 +24,6 @@
 	>
 		<possibleValue>Result Set</possibleValue>
 		<possibleValue>Master Data</possibleValue>
-		<possibleValue>Both</possibleValue>
 	</property>
 
 	<property
@@ -152,8 +151,8 @@
 		<defaultValue property="DEnabled">true</defaultValue>
 		<defaultValue property="DDoRefresh">true</defaultValue>
 		
-		<defaultValue property="onBeforeRender">this.onBeforeRender();</defaultValue>
-		<defaultValue property="onInternalSelectionChanged">this.onInternalSelectionChanged();</defaultValue>
+		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
+		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
 
 	</initialization>
 

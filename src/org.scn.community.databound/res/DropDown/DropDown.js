@@ -129,7 +129,7 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 				options.iNnumberOfDecimals = 2;
 				
 				this._ElementsToRenderArray = org_scn_community_databound.getTopBottomElementsForDimension 
-			     (lData, lMetadata, this.getDDimension(), options);
+			     (lData, lMetadata, this.getDDimension(), options).list;
 			} else if(lDBindingMode == "Master Data") {
 				var lDElements = this.getDElements();
 				if(lDElements != null && lDElements != undefined && lDElements != ""){
