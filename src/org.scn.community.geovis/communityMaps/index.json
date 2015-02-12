@@ -1,4 +1,4 @@
-[ { "label" : "Canned Maps",
+[ { "label" : "Community Maps",
     "maps" : [ { "label" : "Global",
           "maps" : [ { "label" : "Countries",
                 "url" : "world-countries.json"

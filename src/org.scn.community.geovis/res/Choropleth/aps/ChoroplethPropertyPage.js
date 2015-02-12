@@ -426,7 +426,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			try{
 				for(var i=0;i<this.presets.length;i++){
 					if(this.presets[i].type && this.presets[i].type=="external"){
-						//alert(this.presets[i].indexUrl);
+						/*
 						$.ajax({
 							url : this.presets[i].indexUrl + "index.json",
 							dataType : "jsonp"
@@ -436,7 +436,11 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 						})
 						.fail(function(){
 							//alert("Could not load");
+						})
+						.always(function(){
+							//alert("?");
 						});
+						*/
 					}else{
 						var generatedMenuItem = new sap.ui.commons.MenuItem({
 							text : this.presets[i].label
