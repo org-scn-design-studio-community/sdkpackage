@@ -1,91 +1,87 @@
 [ { "label" : "Canned Maps",
     "maps" : [ { "label" : "Global",
           "maps" : [ { "label" : "Countries",
-                "url" : "maps/world-countries.json"
+                "url" : "world-countries.json"
               } ]
         },
         { "label" : "North America",
           "maps" : [ { "label" : "United States",
-                "url" : "maps/USA-regions.json"
+                "url" : "USA-regions.json"
               },
               { "label" : "Canada",
-                "url" : "maps/Canada-regions.json"
+                "url" : "Canada-regions.json"
               },
               { "label" : "Mexico",
-                "url" : "maps/Mexico-regions.json"
+                "url" : "Mexico-regions.json"
               }
             ]
         },
         { "label" : "South America",
           "maps" : [ { "label" : "United States",
-                "url" : "maps/USA-regions.json"
+                "url" : "USA-regions.json"
               },
               { "label" : "Canada",
-                "url" : "maps/Canada-regions.json"
+                "url" : "Canada-regions.json"
               },
               { "label" : "Mexico",
-                "url" : "maps/Mexico-regions.json"
+                "url" : "Mexico-regions.json"
               }
             ]
         },
         { "label" : "Europe",
           "maps" : [ { "label" : "United Kingdom",
-                "url" : "maps/United-Kingdom-regions.json"
+                "url" : "United-Kingdom-regions.json"
               },
               { "label" : "France",
-                "url" : "maps/France-regions.json"
+                "url" : "France-regions.json"
               },
               { "label" : "Germany",
-                "url" : "maps/Germany-regions.json"
+                "url" : "Germany-regions.json"
               },
               { "label" : "Greenland",
-                "url" : "maps/Greenland-regions.json"
+                "url" : "Greenland-regions.json"
               },
               { "label" : "Albania",
-                "url" : "maps/Aland-regions.json"
+                "url" : "Aland-regions.json"
               },
               { "label" : "Åland Islands",
-                "url" : "maps/Aland-regions.json"
+                "url" : "Aland-regions.json"
               }
             ]
         },
         { "label" : "Africa",
           "maps" : [ { "label" : "Nigeria",
-                "url" : "maps/Nigeria-regions.json"
+                "url" : "Nigeria-regions.json"
               },
               { "label" : "Ethiopia",
-                "url" : "maps/Ethiopia-regions.json"
+                "url" : "Ethiopia-regions.json"
               },
               { "label" : "Egypt",
-                "url" : "maps/Egypt-regions.json"
+                "url" : "Egypt-regions.json"
               }
             ]
         },
         { "label" : "Asia",
           "maps" : [ { "label" : "China",
-                "url" : "maps/China-regions.json"
+                "url" : "China-regions.json"
               },
               { "label" : "Hong Kong",
-                "url" : "maps/Hong-Kong-regions.json"
+                "url" : "Hong-Kong-regions.json"
               },
               { "label" : "India",
-                "url" : "maps/India-regions.json"
+                "url" : "India-regions.json"
               },
               { "label" : "Indonesia",
-                "url" : "maps/Indonesia-regions.json"
+                "url" : "Indonesia-regions.json"
               },
               { "label" : "Iraq",
-                "url" : "maps/Iraq-regions.json"
+                "url" : "Iraq-regions.json"
               },
               { "label" : "Afghanistan",
-                "url" : "maps/Afghanistan-regions.json"
+                "url" : "Afghanistan-regions.json"
               }
             ]
         }
       ]
-  },
-  { "label" : "SCN Community Maps",
-  	"type" : "external",
-  	"indexUrl" : "https://raw.githubusercontent.com/org-scn-design-studio-community/sdkpackage/master/src/org.scn.community.geovis/communityMaps/"
   }
 ]

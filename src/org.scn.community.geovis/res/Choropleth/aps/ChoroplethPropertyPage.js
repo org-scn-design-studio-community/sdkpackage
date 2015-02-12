@@ -426,9 +426,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			try{
 				for(var i=0;i<this.presets.length;i++){
 					if(this.presets[i].type && this.presets[i].type=="external"){
-						alert(this.presets[i].indexUrl);
+						//alert(this.presets[i].indexUrl);
 						$.ajax({
-							url : this.presets[i].indexUrl,
+							url : this.presets[i].indexUrl + "index.json",
 							dataType : "jsonp"
 						})
 						.done(function(data){
