@@ -65,8 +65,9 @@
 }
 
 .DesignStudioSCN.Choropleth .path:hover {
-  stroke-opacity: 1;
-  stroke-width: .5px;
+  stroke-opacity: .5;
+  stroke: #000000;
+  stroke-width: 2px;
 }
 
 .DesignStudioSCN.Choropleth .canvas.tooltipped .path:hover, 

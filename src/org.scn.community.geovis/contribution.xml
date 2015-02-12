@@ -251,10 +251,13 @@
 	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
 	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
 	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
+	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
 	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
 	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
 	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String"/>
 	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
+	<property id="selectedColor" title="Selected Feature Colour" type="String" visible="false"/>
+	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
 	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
 	<property id="ms" title="Transition Time (ms)" type="int" visible = "false"/>
 	<property id="tooltipOn" title="Enable Tooltips" type="boolean" visible="false" />
@@ -311,27 +314,28 @@
 	<initialization>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="defaultFillColor">#E5EADE</defaultValue>
-		<defaultValue property="brewerColors">#F0F9E8,#CCEBC5,#A8DDB5,#7BCCC4,#43A2CA,#0868AC</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="hoverColor">#999900</defaultValue>
+		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>
 		<defaultValue property="colorScale">quantile</defaultValue>
 		<defaultValue property="featureProperty">NAME_1</defaultValue>
 		<defaultValue property="labelProperty">NAME_1</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
-		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="makeRoomX">false</defaultValue>
 		<defaultValue property="tooltipOn">true</defaultValue>
 		<defaultValue property="legendScale">1.0</defaultValue>
 		<defaultValue property="legendWidth">100</defaultValue>
 		<defaultValue property="legendTitle"></defaultValue>
+		<defaultValue property="legendX">15</defaultValue>
+		<defaultValue property="legendY">15</defaultValue>
 		<defaultValue property="gradientLeft">30</defaultValue>
 		<defaultValue property="gradientRight">30</defaultValue>
 		<defaultValue property="gradientBottom">15</defaultValue>
 		<defaultValue property="gradientHeight">10</defaultValue>
-		<defaultValue property="legendX">0</defaultValue>
-		<defaultValue property="legendY">0</defaultValue>
-		<defaultValue property="mapLeft">0</defaultValue>
-		<defaultValue property="mapTop">0</defaultValue>
-		<defaultValue property="mapRight">0</defaultValue>
-		<defaultValue property="mapBottom">0</defaultValue>
-		<defaultValue property="colorProperty"></defaultValue>
+		<defaultValue property="mapLeft">10</defaultValue>
+		<defaultValue property="mapTop">10</defaultValue>
+		<defaultValue property="mapRight">10</defaultValue>
+		<defaultValue property="mapBottom">10</defaultValue>
 		<defaultValue property="projection">equirectangular</defaultValue>
 		<defaultValue property="yaw">0.0</defaultValue>
 		<defaultValue property="pitch">0.0</defaultValue>

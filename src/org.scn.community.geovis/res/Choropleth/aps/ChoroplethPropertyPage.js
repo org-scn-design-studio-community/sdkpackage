@@ -1,72 +1,32 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethPropertyPage", function() {
 	var that = this;
-	this.presets = [
-     	{
-    		label : "Canned Maps",
-    		maps : [
-    		    {
-    			  	label : "Global",
-    			   	maps : [
-    			   	     {label : "Countries", url : "maps/world-countries.json"}
-    			    ]
-    			},{
-    			   	label : "North America",
-    			   	maps : [
-    			   	     {label : "United States", url : "maps/USA-regions.json"},
-    			   	     {label : "Canada", url : "maps/Canada-regions.json"},
-    			   	     {label : "Mexico", url : "maps/Mexico-regions.json"}
-    			   	]
-    			},{
-    			   	label : "South America",
-    			   	maps : [
-    			   	     {label : "United States", url : "maps/USA-regions.json"},
-    			   	     {label : "Canada", url : "maps/Canada-regions.json"},
-    			   	     {label : "Mexico", url : "maps/Mexico-regions.json"}
-    			   	]
-    			},{
-    			   	label : "Europe",
-    			   	maps : [
-    			   	     {label : "United Kingdom", url : "maps/United-Kingdom-regions.json"},
-    			   	     {label : "France", url : "maps/France-regions.json"},
-    			   	     {label : "Germany", url : "maps/Germany-regions.json"},
-    			   	     {label : "Greenland", url : "maps/Greenland-regions.json"},
-    			   	     {label : "Albania", url : "maps/Aland-regions.json"},
-    			   	     {label : "Åland Islands", url : "maps/Aland-regions.json"}    			   	  
-    			   	]
-    			},{
-    			   	label : "Africa",
-    			   	maps : [
-    			   	     {label : "Nigeria", url : "maps/Nigeria-regions.json"},
-    			   	     {label : "Ethiopia", url : "maps/Ethiopia-regions.json"},
-    			   	     {label : "Egypt", url : "maps/Egypt-regions.json"}
-    			   	]
-    			},{
-    			   	label : "Asia",
-    			   	maps : [
-    			   	     {label : "China", url : "maps/China-regions.json"},
-    			   	     {label : "Hong Kong", url : "maps/Hong-Kong-regions.json"},
-    			   	     {label : "India", url : "maps/India-regions.json"},
-    			   	     {label : "Indonesia", url : "maps/Indonesia-regions.json"},
-    			   	     {label : "Iraq", url : "maps/Iraq-regions.json"},
-    			   	     {label : "Afghanistan", url : "maps/Afghanistan-regions.json"}
-    			   	]
-    			}
-    		]
-    	},{
-	    	label : "Community Maps",
-	    	maps : [
-				 {
-    			  	label : "Global",
-    			   	urls : [
-    			   	     {label : "Countries", url : "world-countries.json"}
-    			    ]
-    			}
-			]
-    	}
-    ];
+	this.presets = [];
 	/**
 	 * Setter/Getters
 	 */
+	//sap.ui.commons.TextField
+	this.styleClasses = function(s){
+		if(s===undefined){
+			return JSON.stringify(this._oStyleClasses);
+		}else{
+			this._styleClasses = s;
+			this._oStyleClasses = {}
+			if(this._styleClasses!="") this._oStyleClasses = jQuery.parseJSON(this._styleClasses);
+			this.compStylePath.setValue(this._oStyleClasses.path || "");
+			this.compStyleTtContainer.setValue(this._oStyleClasses.ttContainer || "");
+			this.compStyleLgContainer.setValue(this._oStyleClasses.lgContainer || "");
+			return this;
+		}
+	}
+	this.compStylePath = new sap.ui.commons.TextField({
+		change : function(oControlEvent){ that._oStyleClasses.path = this.getValue(); that.firePropertiesChanged(["styleClasses"]); }
+	});
+	this.compStyleTtContainer = new sap.ui.commons.TextField({
+		change : function(oControlEvent){ that._oStyleClasses.ttContainer = this.getValue(); that.firePropertiesChanged(["styleClasses"]); }
+	});
+	this.compStyleLgContainer = new sap.ui.commons.TextField({
+		change : function(oControlEvent){ that._oStyleClasses.lgContainer = this.getValue(); that.firePropertiesChanged(["styleClasses"]); }
+	});
 	this.projection = function(s){
 		if(s===undefined){
 			return this._projection;
@@ -268,6 +228,24 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			return this;
 		}
 	};
+	this.selectedColor = function(s){
+		if(s===undefined){
+			return this._selectedColor;
+		}else{
+			this._selectedColor = s;
+			this.compSelectedColor.setBackgroundColor(s);
+			return this;
+		}
+	};
+	this.hoverColor = function(s){
+		if(s===undefined){
+			return this._hoverColor;
+		}else{
+			this._hoverColor = s;
+			this.compHoverColor.setBackgroundColor(s);
+			return this;
+		}
+	};
 	this.defaultFillColor = function(s){
 		if(s===undefined){
 			return this._defaultFillColor
@@ -368,6 +346,20 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			that.firePropertiesChanged(["defaultFillColor"]);
 		}
 	});
+	this.compSelectedColor = new org.scn.community.aps.ColorPicker({
+		showAlpha : false,
+		colorChange : function(oControlEvent){
+			that.selectedColor(this.getBackgroundColor());
+			that.firePropertiesChanged(["selectedColor"]);
+		}
+	});
+	this.compHoverColor = new org.scn.community.aps.ColorPicker({
+		showAlpha : false,
+		colorChange : function(oControlEvent){
+			that.hoverColor(this.getBackgroundColor());
+			that.firePropertiesChanged(["hoverColor"]);
+		}
+	});
 	this.byoMap = new sap.ui.commons.TextArea({
 		value : this.mapData(),
 		design : sap.ui.core.Design.Monospace,
@@ -402,7 +394,17 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 	 */
 	this.init = function(){
 		// Build UI
-		
+			try{
+				var indexJSON = $.ajax({
+					async : false,
+					type : "GET",
+					url : "maps/index.json?r=" + Math.random()
+				}).responseText;
+				this.presets = jQuery.parseJSON(indexJSON);
+			}catch(e){
+				alert(e);
+				throw("Error loading maps index:\n\n" + e);
+			}
 			this.content = new sap.ui.commons.TabStrip({
 				width : "100%",
 				//height : "500px"
@@ -414,15 +416,34 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			var mappingLayout = new sap.ui.commons.layout.VerticalLayout({
 				width : "100%"
 			});
+			
+			var cssLayout = new sap.ui.commons.layout.VerticalLayout({
+				width : "100%"
+			});
 			this.content.createTab("Cosmetics", cosmeticsLayout);
 			this.content.createTab("Mapping", mappingLayout);
+			//	this.content.createTab("Styles", cssLayout);		// Not yet...
 			try{
 				for(var i=0;i<this.presets.length;i++){
-					var generatedMenuItem = new sap.ui.commons.MenuItem({
-						text : this.presets[i].label
-					});
-					this.makeMapMenu(this.presets[i], generatedMenuItem);
-					this.presetMenu.addItem(generatedMenuItem);
+					if(this.presets[i].type && this.presets[i].type=="external"){
+						alert(this.presets[i].indexUrl);
+						$.ajax({
+							url : this.presets[i].indexUrl,
+							dataType : "jsonp"
+						})
+						.done(function(data){
+							//alert(JSON.stringify(data));
+						})
+						.fail(function(){
+							//alert("Could not load");
+						});
+					}else{
+						var generatedMenuItem = new sap.ui.commons.MenuItem({
+							text : this.presets[i].label
+						});
+						this.makeMapMenu(this.presets[i], generatedMenuItem);
+						this.presetMenu.addItem(generatedMenuItem);	
+					}					
 				}
 			}catch(e){
 				alert(e);
@@ -443,6 +464,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			cosmeticsLayout.addContent(this.hLabel("Map Bottom",this.compMapBottom));
 			cosmeticsLayout.addContent(this.hLabel("Background Color",this.compBackgroundColor));
 			cosmeticsLayout.addContent(this.hLabel("Default Land Color",this.compFillColor));
+			cosmeticsLayout.addContent(this.hLabel("Selected Color",this.compSelectedColor));
+			cosmeticsLayout.addContent(this.hLabel("Hover Color",this.compHoverColor));
 			cosmeticsLayout.addContent(this.brewer);
 			mappingLayout.addContent(this.hLabel("Download Map",this.presetsButton));
 			mappingLayout.addContent(this.hLabel("Projection Method",this.compProjection));
@@ -450,6 +473,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			mappingLayout.addContent(this.hLabel("Label Property",this.compLabelProperty));
 			mappingLayout.addContent(this.byoMap);
 			mappingLayout.addContent(this.tableAttributes);
+			cssLayout.addContent(this.hLabel("Feature Class",this.compStylePath));
+			cssLayout.addContent(this.hLabel("Tooltip Container Class",this.compStyleTtContainer));
+			cssLayout.addContent(this.hLabel("Legend Container Class",this.compStyleLgContainer));
 			this.content.placeAt("content");
 	};
 	this.hLabel = function(label,component){
