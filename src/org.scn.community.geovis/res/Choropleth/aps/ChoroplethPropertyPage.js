@@ -268,9 +268,15 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 		if(s===undefined){
 			return this._mapData;
 		}else{
-			this._mapData = s;
-			this.byoMap.setValue(s);
-			var data = jQuery.parseJSON(s);
+			var data;
+			if(typeof s=="string"){
+				this._mapData = JSON.stringify(jQuery.parseJSON(s));
+				data = jQuery.parseJSON(s);	
+			}else{
+				this._mapData = JSON.stringify(s);
+				data = s;				
+			}
+			this.byoMap.setValue(this._mapData);
 			this._geoData = this.processMapData(data);
 			this._attrData = this.scanData(this._geoData);
 			this.updateTable();
@@ -363,7 +369,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 	this.byoMap = new sap.ui.commons.TextArea({
 		value : this.mapData(),
 		design : sap.ui.core.Design.Monospace,
-		rows : 10,
+		rows : 20,
 		width : "100%",
 		wrapping : sap.ui.core.Wrapping.Off
 	});
@@ -371,16 +377,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 		this._mapData = oControlEvent.getSource().getValue();
 		this.firePropertiesChanged(["mapData"]);
 	}, this);
-	this.presetMenu = new sap.ui.commons.Menu({
-		items :[
-	        /*new sap.ui.commons.MenuItem({
-	        	text : "Blank Map",
-	        	select : function(){
-					that.mapData("Hello");
-				}
-	        })*/
-        ]
-	});
+	
 	this.tableAttributes =  new sap.ui.table.Table({
 		title: "Map Attributes",
 		visibleRowCount: 10,
@@ -389,22 +386,43 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 	var dataModel = new sap.ui.model.json.JSONModel();
 	this.tableAttributes.setModel(dataModel);
 	this.tableAttributes.bindRows("/rows");
+	this.mapLoadComplete = function(data){
+		try{
+			this.presets = jQuery.parseJSON(data);
+			for(var i=0;i<this.presets.length;i++){
+				if(this.presets[i].type && this.presets[i].type=="external"){
+					$.ajax({
+						url : this.presets[i].indexUrl + "index.json?ref=gh-pages",
+						headers : this.presets[i].headers
+					})
+					.done(function(config){return function(data){
+						var generatedMenuItem = new sap.ui.commons.MenuItem({
+							text : data.label
+						});
+						that.presetMenu.addItem(generatedMenuItem);
+						that.makeMapMenu(data, generatedMenuItem, config);
+						that.presetMenu.addItem(generatedMenuItem);
+					};}(this.presets[i]))
+					.fail(function(xhr, textStatus, errorThrown ){
+						alert("Could not load\n\n"+errorThrown );
+					});
+				}else{
+					var generatedMenuItem = new sap.ui.commons.MenuItem({
+						text : this.presets[i].label
+					});
+					this.makeMapMenu(this.presets[i], generatedMenuItem,this.presets[i]);
+					this.presetMenu.addItem(generatedMenuItem);	
+				}					
+			}
+		}catch(e){
+			alert(e);
+		}
+	};
 	/**
 	 * Design Studio Events
 	 */
 	this.init = function(){
 		// Build UI
-			try{
-				var indexJSON = $.ajax({
-					async : false,
-					type : "GET",
-					url : "maps/index.json?r=" + Math.random()
-				}).responseText;
-				this.presets = jQuery.parseJSON(indexJSON);
-			}catch(e){
-				alert(e);
-				throw("Error loading maps index:\n\n" + e);
-			}
 			this.content = new sap.ui.commons.TabStrip({
 				width : "100%",
 				//height : "500px"
@@ -423,35 +441,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			this.content.createTab("Cosmetics", cosmeticsLayout);
 			this.content.createTab("Mapping", mappingLayout);
 			//	this.content.createTab("Styles", cssLayout);		// Not yet...
-			try{
-				for(var i=0;i<this.presets.length;i++){
-					if(this.presets[i].type && this.presets[i].type=="external"){
-						/*
-						$.ajax({
-							url : this.presets[i].indexUrl + "index.json",
-							dataType : "jsonp"
-						})
-						.done(function(data){
-							//alert(JSON.stringify(data));
-						})
-						.fail(function(){
-							//alert("Could not load");
-						})
-						.always(function(){
-							//alert("?");
-						});
-						*/
-					}else{
-						var generatedMenuItem = new sap.ui.commons.MenuItem({
-							text : this.presets[i].label
-						});
-						this.makeMapMenu(this.presets[i], generatedMenuItem);
-						this.presetMenu.addItem(generatedMenuItem);	
-					}					
-				}
-			}catch(e){
-				alert(e);
-			}
+			this.presetMenu = new sap.ui.commons.Menu({
+				items :[ ]
+			});
 			this.presetsButton = new sap.ui.commons.MenuButton({ 
 				text : "Load Map...",
 				menu : this.presetMenu
@@ -471,16 +463,35 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 			cosmeticsLayout.addContent(this.hLabel("Selected Color",this.compSelectedColor));
 			cosmeticsLayout.addContent(this.hLabel("Hover Color",this.compHoverColor));
 			cosmeticsLayout.addContent(this.brewer);
-			mappingLayout.addContent(this.hLabel("Download Map",this.presetsButton));
-			mappingLayout.addContent(this.hLabel("Projection Method",this.compProjection));
-			mappingLayout.addContent(this.hLabel("Feature Property",this.compFeatureProperty));
-			mappingLayout.addContent(this.hLabel("Label Property",this.compLabelProperty));
-			mappingLayout.addContent(this.byoMap);
-			mappingLayout.addContent(this.tableAttributes);
+			this.mapStrip = new sap.ui.commons.TabStrip({
+				width : "100%",
+			});
+			mappingLayout.addContent(this.mapStrip);
+			this.mapSettings = this.mapStrip.createTab("Settings");
+			this.mapProperties = this.mapStrip.createTab("Map Attributes");
+			this.mapJSON = this.mapStrip.createTab("JSON");
+			this.mapSettings.addContent(this.hLabel("Download Map",this.presetsButton));
+			this.mapSettings.addContent(this.hLabel("Projection Method",this.compProjection));
+			this.mapSettings.addContent(this.hLabel("Feature Property",this.compFeatureProperty));
+			this.mapSettings.addContent(this.hLabel("Label Property",this.compLabelProperty));
+			this.mapJSON.addContent(this.byoMap);
+			this.mapProperties.addContent(this.tableAttributes);
 			cssLayout.addContent(this.hLabel("Feature Class",this.compStylePath));
 			cssLayout.addContent(this.hLabel("Tooltip Container Class",this.compStyleTtContainer));
 			cssLayout.addContent(this.hLabel("Legend Container Class",this.compStyleLgContainer));
 			this.content.placeAt("content");
+			try{
+				$.ajax({
+					url : "maps/index.json?r=" + Math.random(),
+					context : this
+				})
+				.done(this.mapLoadComplete)
+				.fail(function(){alert("Problem occured when loading maps menu.")});
+				//this.presets = jQuery.parseJSON(indexJSON);
+			}catch(e){
+				alert(e);
+				throw("Error loading maps index:\n\n" + e);
+			}
 	};
 	this.hLabel = function(label,component){
 		var hLayout = new sap.ui.commons.layout.HorizontalLayout({})
@@ -491,7 +502,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 	/**
 	 * Utility Functions
 	 */
-	this.makeMapMenu = function(o, menuitem){
+	this.makeMapMenu = function(o, menuitem, rootConfig){
 		menuitem.setText(o.label);
 		if(o.maps){
 			var newMenu = new sap.ui.commons.Menu({});
@@ -501,24 +512,30 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.geovis.ChoroplethP
 					text : o.maps[i].label
 				});
 				newMenu.addItem(newMenuItem);
-				this.makeMapMenu(o.maps[i], newMenuItem);
+				this.makeMapMenu(o.maps[i], newMenuItem, rootConfig);
 			}
 		}
 		if(o.url) {
-			menuitem.attachSelect(function(mapURL){return function(oControlEvent){
+			var mapURL = o.url;
+			if(rootConfig.indexUrl) mapURL = rootConfig.indexUrl + mapURL;
+			menuitem.attachSelect(function(mapURL,config){return function(oControlEvent){
 				try{
-					var featureJSON = $.ajax({
-						async : false,
-						type : "GET",
-						url : mapURL
-					}).responseText;
-					this.mapData(featureJSON);
+					$.ajax({
+						//async : false,
+						url : mapURL,
+						headers : config.headers
+					}).done(function(data){
+						that.mapData(data);
+						that.firePropertiesChanged(["mapData"]);
+					}).fail(function(xhr,text,errorThrown){
+						alert("An error occured while trying to download the map.\n\n" + errorThrown);
+					});
 				}catch(e){
 					alert(e);
 					throw("Error loading map:\n\nFile:" + mapURL + "\n\n" + e);
 				}
-				this.firePropertiesChanged(["mapData"]);
-    		};}(o.url), this);
+				
+    		};}(mapURL,rootConfig), this);
 		}
 	}
 	/**

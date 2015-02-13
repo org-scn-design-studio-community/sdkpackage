@@ -157,7 +157,11 @@
 			};
 			this.setSelectedFeature = function(d){				
 				if(d.properties && d.properties[this.featureProperty()]) {
-					this.selectedFeature(d.properties[this.featureProperty()]);
+					if(d.properties[this.featureProperty()]==this.selectedFeature()){
+						this.selectedFeature("");
+					}else{
+						this.selectedFeature(d.properties[this.featureProperty()]);	
+					}
 					this.firePropertiesChanged(["selectedFeature"]);
 					this.fireEvent("onSelect");
 				}
@@ -238,7 +242,7 @@
 					.attr("d",this.projPath)
 					.attr("fill", function(d) {
 						if(d.properties && d.properties && d.properties[that.featureProperty()]){
-							if(d.properties[that.featureProperty()]==that.selectedFeature()) return that.selectedColor();
+							if(d.properties[that.featureProperty()]==that.selectedFeature() && that.selectedColor()) return that.selectedColor();
 						}
 						if(d.properties && d.properties.designStudioMeasures){
 							var mm = that.measureMember();
@@ -258,8 +262,8 @@
 					.text(function(d) { return d.properties[that.labelProperty()]; });
 				// Events
 				this.pathGroup.selectAll('path')
-					.on('mouseenter', this.doTooltip)
-					.on('mouseleave', function() {
+					.on('mouseover', this.doTooltip)
+					.on('mouseout', function() {
 						that.lastHover = null;
 						/*d3.select(this).attr("fill", function(d) {
 							// Color back
@@ -321,7 +325,7 @@
 			    	.attr("width",this.dimensions.width)
 			    	.attr("height",this.dimensions.height);
 		    	
-		    	this.tooltipDiv.attr("class","tooltip-container")
+		    	this.tooltipDiv.attr("class","tooltip")
     			this.legendRect.attr('class', "legend-container")
 		    	
 		    	/*
@@ -731,6 +735,7 @@
 	    			.attr("transform", "translate(" + tickTransform +")");
 	    		
 			    this.messageGroup = this.canvas.append("g")
+			    	.attr("display", "none")
 			    	.attr("opacity", 0);
 			    
 			    this.messageRect = this.messageGroup.append("rect")
@@ -802,6 +807,7 @@
 					this.applyMeasures(this._mapJSON,this._flatData);
 		    		this.messageGroup
 		    			.transition().duration(this.ms())
+		    			.attr("display", "none")
 		    			.attr("opacity", 0);
 		    		this.calculateDimensions();
 		    		this.updateProjection()
@@ -818,7 +824,8 @@
 			this.displayMessage=function(message){
 				this.messageText.text(message);
 				this.messageGroup
-    				.transition().duration(this.ms())
+					.attr("display", "inline")
+					.transition().duration(this.ms())
     				.attr("opacity", 1);
 			}
 			this.projectionTween = function(projection0, projection1) {
@@ -915,7 +922,7 @@
 					this._mapJSON = this.processMapData(j);
 				}catch(e){
 					this._mapJSON = {};
-					throw "Error with Map Data.\n\n" + e;
+					//throw "Error with Map Data.\n\n" + e;
 				}
 			}
 			this.loadMap = function(mapFile){
