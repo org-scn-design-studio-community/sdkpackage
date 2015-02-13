@@ -43,13 +43,42 @@
 	</property>
 
 	<property
+		id="DSortingType"
+		title="Member Sorting Type"
+		type="String"
+		group="Display">
+			<possibleValue>Default</possibleValue>
+			<possibleValue>Selected</possibleValue>
+			<possibleValue>Available</possibleValue>
+			<possibleValue>Alphabetical</possibleValue>
+	</property>
+	
+	<property
+		id="DSortingDirection"
+		title="Member Sorting Direction"
+		type="String"
+		group="Display">
+			<possibleValue>Ascending</possibleValue>
+			<possibleValue>Descending</possibleValue>
+	</property>
+
+	<property
 		id="DMaxMembers"
 		title="Maximum Number of Members"
 		type="int"
 		group="Display" />
 
+	<property
+		id="DContentMode"
+		title="Content Mode (how much should be visualized)"
+		type="String"
+		group="Display">
+			<possibleValue>All Dimensions</possibleValue>
+			<possibleValue>Only from Result Set</possibleValue>
+	</property>
+
 	<property  
-	  id="onDSelectionChanged"  
+	  id="onInternalSelectionChanged"  
 	  title="On User List Selection"  
 	  type="ScriptText"  
     visible="false"
@@ -71,10 +100,12 @@
 		
 		<defaultValue property="DElements"></defaultValue>
 		<defaultValue property="DMaxMembers">1000</defaultValue>
+		<defaultValue property="DContentMode">Only from Result Set</defaultValue>
+		<defaultValue property="DSortingType">Available</defaultValue>
+		<defaultValue property="DSortingDirection">Descending</defaultValue>
+	
 		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
-		<defaultValue property="onSelectionChanged">this.private_onSelectionChanged();</defaultValue>
-		<defaultValue property="onDSelectionChanged">this.private_onSelectionChanged();</defaultValue>
-
+		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
 	</initialization>
 
 </component>

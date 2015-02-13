@@ -218,7 +218,27 @@ class org.scn.community.databound.jpd3hier extends Component {
  */
 class org.scn.community.databound.FacetFilter extends org.scn.community.shared.DataComponent {
 
-	void private_onSelectionChanged () {*
+	
+	/**
+	 * Returns the value of max members property
+	 */
+	int getMaxMembers() {*
+		return this.DMaxMembers;
+	*}
+
+	/**
+	 * Sets the value of max members property
+	 */
+	void setMaxMembers(int value) {*
+		this.DMaxMembers = value;
+	*}
+	
+	/**
+	 * DO NOT USE PRIVATE METHODS
+	 */
+	void private_onSelectionChanged (optional DataSourceAlias DS) {*
+		var that = this;
+	
 		var selection = this.DSelection;
 	
 		var selectionJson = JSON.parse(selection);
@@ -228,50 +248,217 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		
 		var keysAsArray = [];
 
-		var DS = this.getDataSource();
-
-		if(keys.length == 1 && keys[0] == "-ALL-") {
-			DS.clearFilter(dimension);
-		} else {
-			for (var iK = 0; iK < keys.length; iK++) {
-				var key = keys[iK];
-				
-				keysAsArray.push(key);
-			}
-			// APPLICATION.createInfoMessage("Filter: " + dimension + ", " + JSON.stringify(keysAsArray));
-			DS.setFilter(dimension, keysAsArray);
+		if(!DS) {
+			DS = this.getDataSource();
 		}
 		
+		if(DS) {
+			if(keys.length == 1 && keys[0] == "-ALL-") {
+				DS.clearFilter(dimension);
+			} else {
+				for (var iK = 0; iK < keys.length; iK++) {
+					var key = keys[iK];
+					
+					keysAsArray.push(key);
+				}
+				// APPLICATION.createInfoMessage("Filter: " + dimension + ", " + JSON.stringify(keysAsArray));
+				DS.setFilter(dimension, keysAsArray);
+			}
+		}
 	*}
-	
+
+	/**
+	 * DO NOT USE PRIVATE METHODS
+	 */
 	void private_onBeforeRender() {*
 	*}
 	
-	void reloadDataSource() {*
+	/**
+	 * This function must be used for initialization and in case the drilldown structure has been changed.
+	 * You should trigger it once and ideally when filters are NOT set on dimensions, other case you will see only members which are available in resultset (depends on your setting "member selection" on dimension level).
+	 * When to use this method?
+	 * - As soon the Data Source is initialized, either in "onStartup()" script or after loading in script.
+	 * <example>
+	 * You have loaded the data source and want to initialize.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACETFILTER_1.reloadDataSource();
+	 * FACETFILTER_1.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACETFILTER_1.reloadDataSource(DS_FULL);
+	 * FACETFILTER_1.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadDataSource(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		var that = this;
+	
 		var elementsJson = [];
 
 		var DS = this.getDataSource();
 
+		if(!memberAccessSource) {
+			memberAccessSource = DS;
+		}
+
 		if(DS) {
-			var dimensions = DS.getDimensions();
+			var dimensions = undefined;
 			
+			if(this.DContentMode == "Only from Result Set") {
+				var dimensionsRows = DS.getDimensions(Axis.ROWS);
+				var dimensionsColumns = DS.getDimensions(Axis.ROWS);
+				
+				dimensions = [];
+
+				dimensionsRows.forEach(function(dimension, indexD) {
+					dimensions.push(dimension);
+				});	
+				dimensionsColumns.forEach(function(dimension, indexD) {
+					dimensions.push(dimension);
+				});
+			} else {
+				dimensions = DS.getDimensions();
+			}
+			
+			var dimensionKeys = "";
 			dimensions.forEach(function(dimension, index) {
-			  var members = DS.getMembers(dimension, 1000);
+				dimensionKeys = dimensionKeys + dimension.name;
+			});
+			
+			if(this.oldDimensionKeys != dimensionKeys) {
+				dimensions.forEach(function(dimension, index) {
+					  var members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+		
+					  var dimensionJson = {};
+					  dimensionJson.name = dimension.name;
+					  dimensionJson.text = dimension.text;
+					  dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
+		
+					  dimensionJson.hierarchyActive = DS.isHierarchyActive(dimension);
+					  dimensionJson.filterExt = ";" + DS.getFilterExt(dimension);
+					  
+					  dimensionJson.members = members;
+		
+					  elementsJson.push(dimensionJson);
+				});
 
-			  var dimensionJson = {};
-			  dimensionJson.name = dimension.name;
-			  dimensionJson.text = dimension.text;
-			  dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
+				this.DElements = JSON.stringify(elementsJson);
+				this.oldDimensionKeys = dimensionKeys;
+			}
+		}
+	*}
+	
+	/**
+	 * This function can be used after the filter in data source was changed to update the component.
+	 * You should be trigered every time the filter change occurs, therefore the event in Data Source -> onResultSetChanged() is a good place.
+	 * When to use this method?
+	 * - Always the filter is changed, also the "onResultSetChanged()" event is good for this.
+	 * <example>
+	 * You want to keep the selections with data source.
+	 * The code should be placed in "onResultSetChanged()" method.
+	 * <code>
+	 * // if you want to update also dimensions when drilldown is changed
+	 * FACETFILTER_1.reloadDataSource();
+	 * 
+	 * // every time 
+	 * FACETFILTER_1.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACETFILTER_1.reloadDataSource(DS_FULL);
+	 * FACETFILTER_1.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadSelection(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		var that = this;
+	
+		var elementsJson = {};
 
-			  dimensionJson.hierarchyActive = DS.isHierarchyActive(dimension);
-			  
-			  dimensionJson.members = members;
+		var DS = this.getDataSource();
 
-			  elementsJson.push(dimensionJson);
+		if(!memberAccessSource) {
+			memberAccessSource = DS;
+		}
+		
+		if(DS) {
+			var dimensions = undefined;
+			
+			if(this.DContentMode == "Only from Result Set") {
+				var dimensionsRows = DS.getDimensions(Axis.ROWS);
+				var dimensionsColumns = DS.getDimensions(Axis.ROWS);
+				
+				dimensions = [];
+				
+				dimensionsRows.forEach(function(dimension, indexD) {
+					dimensions.push(dimension);
+				});
+				dimensionsColumns.forEach(function(dimension, indexD) {
+					dimensions.push(dimension);
+				});
+			} else {
+				dimensions = DS.getDimensions();
+			}
+			
+			dimensions.forEach(function(dimension, indexD) {
+				  var members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+
+				  var dimensionJson = {};
+				  dimensionJson.name = dimension.name;
+				  dimensionJson.members = [];
+				  dimensionJson.filterExt = "; " + DS.getFilterExt(dimension) + ";";
+
+				  elementsJson[dimension.name] = dimensionJson;
 			});
 
-			this.DElements = JSON.stringify(elementsJson);
+			this.DSelection = JSON.stringify(elementsJson);
 		}
+	*}
+	
+	/**
+	 * Sets the sorting direction - ASCENDING | DESCENDING
+	 */
+	void setSortingDirection (org_scn_community_shared_SortDirectionEnumfield direction) {*
+		if(direction == org_scn_community_shared_SortDirection.ASCENDING) {
+			this.DSortingType = "Ascending";
+			return;
+		}
+		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+			this.DSortingType = "Descending";
+			return;
+		}
+		this.DSortingType = "Ascending";
+	*}
+	
+	/**
+	 * Sets the sorting type - DEFAULT | ALPHABETICAL | SELECTED | AVAILABLE
+	 */
+	void setSortingType (org_scn_community_shared_SortTypeEnumfield type) {*
+		if(type == org_scn_community_shared_SortType.DEAFULT) {
+			this.DSortingType = "Default";
+			return;
+		}
+		if(type == org_scn_community_shared_SortType.ALPHABETICAL) {
+			this.DSortingType = "Alphabetical";
+			return;
+		}
+		if(type == org_scn_community_shared_SortType.SELECTED) {
+			this.DSortingType = "Selected";
+			return;
+		}
+		if(type == org_scn_community_shared_SortType.AVAILABLE) {
+			this.DSortingType = "Available";
+			return;
+		}
+		this.DSortingType = "Default";
 	*}
 }
 /**

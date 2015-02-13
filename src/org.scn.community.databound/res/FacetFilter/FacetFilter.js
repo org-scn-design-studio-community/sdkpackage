@@ -32,6 +32,8 @@ sap.ui.core.ListItem.extend("org.scn.community.databound.ExtraListItem", {
 sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFilter", {
 
 	setData : function(value) {
+		var that = this;
+		
 		this._data = value;
 
 		// clean mixed Data
@@ -48,15 +50,28 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 		return this;
 	},
 
-	getMetadata : function(value) {
+	getMetadata : function() {
 		return this._metadata;
 	},
 	
+	setDElements : function(value) {
+		this.DElements = value;
+		
+		this._isInitialized = undefined;
+		return this;
+	},
+
+	getDElements : function() {
+		return this.DElements;
+	},
+
 	metadata: {
         properties: {
-        	  "DElements": {type: "string"},
         	  "DSelection": {type: "string"},
+        	  "DSortingType": {type: "string"},
+        	  "DSortingDirection": {type: "string"},
               "DMaxMembers": {type: "int"},
+              "DContentMode": {type: "string"},
         }
 	},
 
@@ -73,6 +88,8 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
     		that._facetFilter,
 			{left: "0px", top: "0px"}
 		);
+
+    	that.lists = {}; 
     	
     	that._facetFilter.setVisibleItemCountMode(sap.ui.ux3.VisibleItemCountMode.Auto);
 	},
@@ -84,6 +101,9 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 
 		// define model
 		if(that._mixedData == undefined) {
+			
+			that._facetFilter.removeAllLists()
+			
 			var lData = this._data;
 			var lMetadata = this._metadata;
 			var lDimensions = this.getDElements();
@@ -95,8 +115,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 			
 			that._mixedData = org_scn_community_databound.getDataModelForDimensions(lData, lData, lDimensions, options);	
 		
-			that._oModel.setData(that._mixedData);
-			
 			if(that._isInitialized == undefined) {
 				for (dimensionKey in that._mixedData) {
 					var lDimension = that._mixedData[dimensionKey];
@@ -126,19 +144,121 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 		
 						that.setDSelection(selectionJson);
 						that.fireDesignStudioPropertiesChanged(["DSelection"]);
-						that.fireDesignStudioEvent("onDSelectionChanged");
+						that.fireDesignStudioEvent("onInternalSelectionChanged");
 					});
 					
 					that._facetFilter.addList(lDimList);
 
 					lDimList._dName = name;
 					lDimList._dKey = dimensionKey;
+					
+					that.lists[dimensionKey] = lDimList;
 				}
 				
 				org_scn_community_basics.hideNoDataOverlay(this.getId(), true);
 				
 				that._isInitialized = true;
 			}
-		}		
+		}
+		
+		var lSelection = this.getDSelection();
+		if(lSelection != undefined && lSelection != "") {
+			var selectionJson = JSON.parse(lSelection);
+			
+			if(selectionJson.keys == undefined) {
+				for (dimensionKey in that._mixedData) {
+					var lDimension = that._mixedData[dimensionKey];
+
+					var members = lDimension.items;
+					var selectionInDimension = selectionJson[lDimension.name];
+					
+					if(selectionInDimension.filterExt.length > 2) {
+						var filteredMemberKeys = [];
+						
+						for (var iM = 0; iM < members.length; iM++) {
+							var member = members[iM];
+
+							member.text = member.text.replace("(*) ", "");
+
+							if(member.available) {
+								member.text = "(*) " + member.text;
+							}
+							
+							if (selectionInDimension.filterExt.indexOf("; " + member.externalKey + ";") > -1) {
+								member.selected = true;
+								
+								filteredMemberKeys.push(member.name);
+							} else {
+								member.selected = false;
+							}
+						}
+						
+						that.lists[dimensionKey].setSelectedKeys(filteredMemberKeys);
+					} else {
+						for (var iM = 0; iM < members.length; iM++) {
+							var member = members[iM];
+							
+							member.text = member.text.replace("(*) ", "");
+
+							if(member.available) {
+								member.text = "(*) " + member.text;
+							}
+						}
+						
+						that.lists[dimensionKey].setSelectedKeys([]);
+					}
+					
+					var lSortingType = this.getDSortingType();
+					if(lSortingType != "Default") {
+						var sortByAttribute = function (prop, descending){
+
+						var result = 1;
+						
+						if(descending) {
+							result = -1;
+						}
+						
+						return function(a,b){
+						    if( a[prop] > b[prop]){
+						    	return result;
+						    } else if( a[prop] < b[prop] ){
+						    	return result * -1;
+						    }
+					      	return 0;
+							}
+						};
+						
+						var lSortingDirection = that.getDSortingDirection();
+						
+						if(lSortingDirection == "Descending"){
+							lSortingDirection = true;
+						} else {
+							lSortingDirection = false;
+						}
+						
+						if(lSortingType == "Selected") {
+							members.sort(sortByAttribute("selected", lSortingDirection));
+						} else if(lSortingType == "Available") {
+							members.sort(sortByAttribute("available", lSortingDirection));
+						} else if(lSortingType == "Alphabetical") {
+							members.sort(sortByAttribute("name", lSortingDirection));
+						}
+					}
+				}
+			}
+		}
+
+		that._oModel.setData(that._mixedData);
+	},
+	
+	_containsInArray: function(members, memberName) {
+	    var i = null;
+	    for (i = 0; members.length > i; i += 1) {
+	        if (members[i] === memberName) {
+	            return true;
+	        }
+	    }
+	     
+	    return false;
 	},
 });

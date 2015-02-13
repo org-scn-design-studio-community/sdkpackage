@@ -17,6 +17,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ConstBrowser\contribution.ztl ^
 ..\res\ConstButtonStyle\contribution.ztl ^
 ..\res\ConstSortDirection\contribution.ztl ^
+..\res\ConstSortType\contribution.ztl ^
 ..\res\KeyLabel\contribution.ztl ^
 ..\res\KeyLabelValue\contribution.ztl ^
 ..\res\KeyLabelValueProperty\contribution.ztl ^

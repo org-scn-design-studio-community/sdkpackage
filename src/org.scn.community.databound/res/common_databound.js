@@ -372,7 +372,7 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, metada
 org_scn_community_databound.getDataModelForDimensions = function (data, metadata, dimensions, options) {
 	var oData = {};
 
-	if(dimensions != undefined) {
+	if(dimensions != undefined && dimensions != "") {
 		var lDimensionsJson = JSON.parse(dimensions);
 		for (var iD = 0; iD < lDimensionsJson.length; iD++) {
 			var dimension = lDimensionsJson[iD];
@@ -388,10 +388,10 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 				oData[name].items = [];
 				
 				var dimensionData = org_scn_community_databound.initializeEmptyReturn();
-				if(!dimension.hierarchyActive) {
-					// only check the resultset if hierarchy is inactive
+				// ok, we check the existence also when hierarchy is active, even in many cases the members are not visible as collapsed
+				//if(!dimension.hierarchyActive) {
 					dimensionData = org_scn_community_databound.getTopBottomElementsForDimension(data, metadata, name, options);
-				}
+				//}
 				
 				for (var iM = 0; iM < members.length; iM++) {
 					var member = members[iM];
@@ -399,6 +399,7 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 					var memberJson = {};
 					memberJson.name = member.internalKey;
 					memberJson.text = member.text;
+					memberJson.externalKey = member.externalKey;
 					// memberJson.id = options.idPrefix + name + member.internalKey;
 					
 					if(dimensionData.allKeys.length > 0) {
@@ -410,8 +411,8 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 							memberJson.available = false;
 						}
 					} else {
-						// there are no members in the resultset, default selection is currently true
-						memberJson.available = true;
+						// there are no members in the resultset
+						memberJson.available = false;
 					}
 					
 					oData[name].items.push(memberJson);
@@ -420,27 +421,41 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 		}
 	} else {
 		oData = {
-			brands: [
- 				{name : "BMW", key: "1"},
- 				{name : "AUDI", key: "2", enabled: false}
- 			],
- 			models: [
- 				{name : "320d", key: "1"},
- 				{name : "325i", key: "2"},
- 				{name : "330d", key: "3"},
- 				{name : "330i", key: "4"},
- 				{name : "335i", key: "5"},
- 				{name : "A1", key: "6"},
- 				{name : "A3", key: "7"},
- 				{name : "A4", key: "8"},
- 				{name : "A5", key: "9"},
- 				{name : "A6", key: "10"}
- 			],
- 			types: [
- 				{name : "Limousine", key: "1"},
- 				{name : "Coupé", key: "2"},
- 				{name : "Cabrio", key: "3"}
- 			]						
+			brands: {
+				name: "BRANDS",
+				text: "Brands",
+				items: [
+				   {text : "BMW", name: "1"},
+			 	   {text : "AUDI", name: "2", enabled: false}
+				]
+			}
+ 			,
+ 			models: {
+				name: "MODELS",
+				text: "Models",
+				items: [
+	 				{text : "320d", name: "1"},
+	 				{text : "325i", name: "2"},
+	 				{text : "330d", name: "3"},
+	 				{text : "330i", name: "4"},
+	 				{text : "335i", name: "5"},
+	 				{text : "A1", name: "6"},
+	 				{text : "A3", name: "7"},
+	 				{text : "A4", name: "8"},
+	 				{text : "A5", name: "9"},
+	 				{text : "A6", name: "10"}
+	 			]
+			}
+ 			,
+ 			types: {
+				name: "TYPES",
+				text: "Types",
+				items: [
+					{text : "Limousine", name: "1"},
+					{text : "Coupé", name: "2"},
+					{text : "Cabrio", name: "3"}
+				]
+ 			}
  		};
 	}
 
