@@ -108,8 +108,7 @@
   	"type" : "external",
   	"indexUrl" : "https://api.github.com/repos/org-scn-design-studio-community/sdkcommunitymaps/contents/geojson/",
   	"headers" : { 
-  		"accept":"application/vnd.github.v3.raw+json",
-  		"Authorization" : "token df8aeb1164a75789b4dc3ea778ff466dfd412988"
+  		"accept":"application/vnd.github.v3.raw+json"
   	}
   }
 ]
