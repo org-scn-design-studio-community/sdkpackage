@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Karol Kalisz
+ * Copyright 2014 SCN SDK Community
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/
@@ -60,7 +60,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 		this._isInitialized = undefined;
 		return this;
 	},
-
+	
 	getDElements : function() {
 		return this.DElements;
 	},
@@ -70,6 +70,9 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
         	  "DSelection": {type: "string"},
         	  "DSortingType": {type: "string"},
         	  "DSortingDirection": {type: "string"},
+        	  "DMarkAvailable": {type: "boolean"},
+        	  "DMarkNotAvailable": {type: "boolean"},
+        	  "DResetSelectionOnNotAvailable": {type: "boolean"},
               "DMaxMembers": {type: "int"},
               "DContentMode": {type: "string"},
         }
@@ -79,6 +82,8 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 		var that = this;
 		
 		that._facetFilter = new sap.ui.ux3.FacetFilter(this.getId() + "_ff");
+		
+		this.addStyleClass("scn-pack-FullSizeChildren");
 		
 		// set the model
 		that._oModel = new sap.ui.model.json.JSONModel(); 
@@ -92,6 +97,11 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
     	that.lists = {}; 
     	
     	that._facetFilter.setVisibleItemCountMode(sap.ui.ux3.VisibleItemCountMode.Auto);
+    	
+    	org_scn_community_basics.hideNoDataOverlay(this.getId(), true);
+    	
+    	that.onAfterRendering = function() {
+    	};
 	},
 	
 	renderer: {},
@@ -122,8 +132,11 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 					var name = lDimension.name;
 					var text = lDimension.text;
 
-					var oItemTemplate = new org.scn.community.databound.ExtraListItem({available:"{available}", text:"{text}", key:"{name}", enabled:"{enabled}"});
-			
+					var oItemTemplate = new org.scn.community.databound.ExtraListItem(
+							{text:"{text}", key:"{name}", enabled:"{enabled}",
+								customData: new sap.ui.core.CustomData({key:"available", value:"{available}", writeToDom:true}), 
+								});
+					
 					var lDimList = new sap.ui.ux3.FacetFilterList({
 						title: text,
 						items : {path : "/" + dimensionKey + "/items", template : oItemTemplate}
@@ -133,15 +146,24 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 						var selection = {};
 						selection.dimension = oEvent.oSource._dKey;
 		
+						selection.clearOthers = false;
 						if(oEvent.getParameter("all")) {
 							selection.keys = ["-ALL-"];
 						} else {
 							var keys = oEvent.oSource.getSelectedKeys();
 							selection.keys = keys;
+							
+							for (var iM = 0; iM < selection.keys.length; iM++) {
+								// check if key is available or not
+								if(that._mixedData[selection.dimension].availableMembers && that._mixedData[selection.dimension].availableMembers.indexOf(selection.keys[iM])){
+									selection.clearOthers = true;
+									break;
+								}
+							}
 						}
-		
+
 						var selectionJson = JSON.stringify(selection);
-		
+
 						that.setDSelection(selectionJson);
 						that.fireDesignStudioPropertiesChanged(["DSelection"]);
 						that.fireDesignStudioEvent("onInternalSelectionChanged");
@@ -154,9 +176,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 					
 					that.lists[dimensionKey] = lDimList;
 				}
-				
-				org_scn_community_basics.hideNoDataOverlay(this.getId(), true);
-				
+
 				that._isInitialized = true;
 			}
 		}
@@ -177,13 +197,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 						
 						for (var iM = 0; iM < members.length; iM++) {
 							var member = members[iM];
-
-							member.text = member.text.replace("(*) ", "");
-
-							if(member.available) {
-								member.text = "(*) " + member.text;
-							}
-							
 							if (selectionInDimension.filterExt.indexOf("; " + member.externalKey + ";") > -1) {
 								member.selected = true;
 								
@@ -195,16 +208,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 						
 						that.lists[dimensionKey].setSelectedKeys(filteredMemberKeys);
 					} else {
-						for (var iM = 0; iM < members.length; iM++) {
-							var member = members[iM];
-							
-							member.text = member.text.replace("(*) ", "");
-
-							if(member.available) {
-								member.text = "(*) " + member.text;
-							}
-						}
-						
 						that.lists[dimensionKey].setSelectedKeys([]);
 					}
 					
@@ -244,11 +247,28 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 							members.sort(sortByAttribute("name", lSortingDirection));
 						}
 					}
+					
+					var lDMarkAvailable = this.getDMarkAvailable();
+					if(lDMarkAvailable) {
+						this.addStyleClass("scn-pack-MarkAvailable");
+					} else {
+						this.removeStyleClass("scn-pack-MarkAvailable");
+					}
+					var lDMarkNotAvailable = this.getDMarkNotAvailable();
+					if(lDMarkNotAvailable) {
+						this.addStyleClass("scn-pack-MarkNotAvailable");
+					} else {
+						this.removeStyleClass("scn-pack-MarkNotAvailable");
+					}
 				}
 			}
 		}
 
 		that._oModel.setData(that._mixedData);
+		
+		// selections
+		
+		
 	},
 	
 	_containsInArray: function(members, memberName) {

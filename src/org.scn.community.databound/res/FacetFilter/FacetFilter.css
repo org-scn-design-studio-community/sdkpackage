@@ -1,4 +1,4 @@
-/**
+/*
 var style = document.createElement('style')
 style.type = 'text/css'
 style.innerHTML = 'content'
@@ -8,3 +8,10 @@ document.getElementsByTagName('head')[0].appendChild(style)
 #FACETFILTER_1_control_loadingStateBox {visibility: hidden !important;}
 #FACETFILTER_1_control_loadingState_message {visibility: hidden !important;}
 */
+
+div[class~=scn-pack-MarkNotAvailable] ul>li[data-available=false] {background-color: #fef8c0!important;}
+div[class~=scn-pack-MarkAvailable] ul>li[data-available=true] {background-color: #d3ffcc!important;}
+
+div[class~=scn-pack-MarkSelected] ul>li[aria-selected=true] {background-color: #acc2f4 !important;}
+
+div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% !important;height: 100% !important;}

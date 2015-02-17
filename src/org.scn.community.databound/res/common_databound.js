@@ -389,10 +389,9 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 				
 				var dimensionData = org_scn_community_databound.initializeEmptyReturn();
 				// ok, we check the existence also when hierarchy is active, even in many cases the members are not visible as collapsed
-				//if(!dimension.hierarchyActive) {
-					dimensionData = org_scn_community_databound.getTopBottomElementsForDimension(data, metadata, name, options);
-				//}
+				dimensionData = org_scn_community_databound.getTopBottomElementsForDimension(data, metadata, name, options);
 				
+				var availableMembers = "|";
 				for (var iM = 0; iM < members.length; iM++) {
 					var member = members[iM];
 					
@@ -405,17 +404,19 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 					if(dimensionData.allKeys.length > 0) {
 						if(dimensionData.allKeys.indexOf("|" + member.internalKey + "|") > -1) {
 							// this member is also in result set, means can be selected in drill down mode
-							memberJson.available = true;
+							memberJson.available = ""+true;
+							availableMembers = availableMembers + "|" + memberJson.name + "|";
 						} else {
 							// the member is not in the resultset, cannot be selected in drill down mode
-							memberJson.available = false;
+							memberJson.available = ""+false;
 						}
 					} else {
 						// there are no members in the resultset
-						memberJson.available = false;
+						memberJson.available = ""+false;
 					}
 					
 					oData[name].items.push(memberJson);
+					oData[name].availableMembers = availableMembers;
 				}
 			}
 		}
@@ -425,8 +426,8 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 				name: "BRANDS",
 				text: "Brands",
 				items: [
-				   {text : "BMW", name: "1"},
-			 	   {text : "AUDI", name: "2", enabled: false}
+				   {text : "BMW", name: "1", enabled: true, available: "false"},
+			 	   {text : "AUDI", name: "2", enabled: true, available: "true"}
 				]
 			}
  			,
@@ -434,16 +435,16 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 				name: "MODELS",
 				text: "Models",
 				items: [
-	 				{text : "320d", name: "1"},
-	 				{text : "325i", name: "2"},
-	 				{text : "330d", name: "3"},
-	 				{text : "330i", name: "4"},
-	 				{text : "335i", name: "5"},
-	 				{text : "A1", name: "6"},
-	 				{text : "A3", name: "7"},
-	 				{text : "A4", name: "8"},
-	 				{text : "A5", name: "9"},
-	 				{text : "A6", name: "10"}
+	 				{text : "320d", name: "1", enabled: true, available: "false"},
+	 				{text : "325i", name: "2", enabled: true, available: "false"},
+	 				{text : "330d", name: "3", enabled: true, available: "false"},
+	 				{text : "330i", name: "4", enabled: true, available: "true"},
+	 				{text : "335i", name: "5", enabled: true, available: "true"},
+	 				{text : "A1", name: "6", enabled: true, available: "false"},
+	 				{text : "A3", name: "7", enabled: true, available: "false"},
+	 				{text : "A4", name: "8", enabled: true, available: "false"},
+	 				{text : "A5", name: "9", enabled: true, available: "false"},
+	 				{text : "A6", name: "10", enabled: true, available: "false"}
 	 			]
 			}
  			,
@@ -451,9 +452,9 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 				name: "TYPES",
 				text: "Types",
 				items: [
-					{text : "Limousine", name: "1"},
-					{text : "Coupé", name: "2"},
-					{text : "Cabrio", name: "3"}
+					{text : "Limousine", name: "1", enabled: true, available: "false"},
+					{text : "Coupé", name: "2", enabled: true, available: "false"},
+					{text : "Cabrio", name: "3", enabled: true, available: "false"}
 				]
  			}
  		};

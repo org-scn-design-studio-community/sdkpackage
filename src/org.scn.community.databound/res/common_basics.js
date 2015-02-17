@@ -97,16 +97,12 @@ org_scn_community_basics.getFormattedValue = function (value, locale, numberOfDe
 	return valueFormatted;
 };
 
-org_scn_community_basics.hideNoDataOverlay = function(componentId, includeFullSizeChild) {
+org_scn_community_basics.hideNoDataOverlay = function(componentId) {
 	var css = "";
 	css = css + "#" + componentId + "_loadingState {visibility: hidden !important;}";
 	css = css + "#" + componentId + "_loadingStateBox {visibility: hidden !important;}";
 	css = css + "#" + componentId + "_loadingState_message {visibility: hidden !important;}";
 
-	if(includeFullSizeChild) {
-		css = css + "#" + componentId + " > div[class=\"sapUiLayoutAbsPos\"] {width: 100% !important;height: 100% !important;}";
-	}
-	
 	var style = document.createElement('style');
 	style.type = 'text/css';
 	style.innerHTML = css;

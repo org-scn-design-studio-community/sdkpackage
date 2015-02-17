@@ -234,36 +234,133 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	*}
 	
 	/**
+	 * Returns the value of mark available
+	 */
+	boolean getMarkAvailable() {*
+		return this.DMarkAvailable;
+	*}
+
+	/**
+	 * Sets the value of mark available
+	 */
+	void setMarkAvailable(boolean value) {*
+		this.DMarkAvailable = value;
+	*}
+	
+	/**
+	 * Returns the value of mark not available
+	 */
+	boolean getMarkNotAvailable() {*
+		return this.DMarkNotAvailable;
+	*}
+
+	/**
+	 * Sets the value of mark not available
+	 */
+	void setMarkNotAvailable(boolean value) {*
+		this.DMarkNotAvailable = value;
+	*}
+	
+	/**
+	 * Returns the value of reset selection on not available
+	 */
+	boolean getResetSelectionOnNotAvailable() {*
+		return this.DResetSelectionOnNotAvailable;
+	*}
+
+	/**
+	 * Sets the value of reset selection on not available
+	 */
+	void setResetSelectionOnNotAvailable(boolean value) {*
+		this.DResetSelectionOnNotAvailable = value;
+	*}
+	
+	/**
+	 * Returns the value of clear others
+	 */
+	boolean getClearOthers() {*
+		return this.DClearOthers;
+	*}
+
+	/**
+	 * Sets the value of clear others
+	 */
+	void setClearOthers(boolean value) {*
+		this.DClearOthers = value;
+	*}
+	
+	/**
 	 * DO NOT USE PRIVATE METHODS
 	 */
-	void private_onSelectionChanged (optional DataSourceAlias DS) {*
+	void private_onSelectionChanged () {*
 		var that = this;
-	
-		var selection = this.DSelection;
-	
-		var selectionJson = JSON.parse(selection);
+		try{
+		if(DEBUG) {	DEBUG.openZtl(this)};
 		
-		var dimension = selectionJson.dimension;
-		var keys = selectionJson.keys;
+		var l = {};
+		l.selection = this.DSelection;
+	
+		l.selectionJson = JSON.parse(l.selection);
 		
-		var keysAsArray = [];
+		l.dimensionName = l.selectionJson.dimension;
+		l.keys = l.selectionJson.keys;
+		
+		l.keysAsArray = [];
 
-		if(!DS) {
-			DS = this.getDataSource();
+		l.DS = this.getDataSource();
+		
+		if(DEBUG) {	DEBUG.inspectZtl(that, l)};
+		
+		if(l.DS) {
+			if(l.selectionJson.clearOthers && that.getClearOthers()) {
+				l.dimensions = undefined;
+				
+				if(this.DContentMode == "Only from Result Set") {
+					l.dimensionsRows = DS.getDimensions(Axis.ROWS);
+					l.dimensionsColumns = DS.getDimensions(Axis.COLUMNS);
+					
+					l.dimensions = [];
+
+					l.dimensionsRows.forEach(function(dimension, indexD) {
+						l.dimensions.push(dimension);
+					});	
+					l.dimensionsColumns.forEach(function(dimension, indexD) {
+						l.dimensions.push(dimension);
+					});
+				} else {
+					l.dimensions = DS.getDimensions();
+				}
+				
+				if(DEBUG) {	DEBUG.inspectZtl(this, l)};
+				
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						l.currentDimensionName = dimension.name
+						if(l.currentDimensionName != l.dimensionName) {
+							l.DS.clearFilter(l.currentDimensionName);
+						}
+					}
+				});
+			}
+			
+			if(l.keys.length == 1 && l.keys[0] == "-ALL-") {
+				l.DS.clearFilter(l.dimensionName);
+			} else {
+				for (var iK = 0; iK < l.keys.length; iK++) {
+					l.key = l.keys[iK];
+					
+					l.keysAsArray.push(l.key);
+				}
+				
+				if(DEBUG) {	DEBUG.inspectZtl(that, l)};
+				
+				l.DS.setFilter(l.dimensionName, l.keysAsArray);
+			}
 		}
 		
-		if(DS) {
-			if(keys.length == 1 && keys[0] == "-ALL-") {
-				DS.clearFilter(dimension);
-			} else {
-				for (var iK = 0; iK < keys.length; iK++) {
-					var key = keys[iK];
-					
-					keysAsArray.push(key);
-				}
-				// APPLICATION.createInfoMessage("Filter: " + dimension + ", " + JSON.stringify(keysAsArray));
-				DS.setFilter(dimension, keysAsArray);
-			}
+		if(DEBUG) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(DEBUG) {	DEBUG.processZtlException(that, l, e)};throw e;
 		}
 	*}
 
@@ -296,61 +393,78 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * </example>
 	 */
 	void reloadDataSource(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
 		var that = this;
 	
-		var elementsJson = [];
+		try{
+		if(DEBUG) {	DEBUG.openZtl(that)};
+		var l = {};
+		/* entering general block*/
+		
+		l.elementsJson = [];
 
-		var DS = this.getDataSource();
+		l.DS = this.getDataSource();
 
 		if(!memberAccessSource) {
-			memberAccessSource = DS;
+			memberAccessSource = l.DS;
 		}
 
-		if(DS) {
-			var dimensions = undefined;
+		if(l.DS) {
+			l.dimensions = undefined;
 			
 			if(this.DContentMode == "Only from Result Set") {
-				var dimensionsRows = DS.getDimensions(Axis.ROWS);
-				var dimensionsColumns = DS.getDimensions(Axis.ROWS);
+				l.dimensionsRows = DS.getDimensions(Axis.ROWS);
+				l.dimensionsColumns = DS.getDimensions(Axis.COLUMNS);
 				
-				dimensions = [];
+				l.dimensions = [];
 
-				dimensionsRows.forEach(function(dimension, indexD) {
-					dimensions.push(dimension);
+				l.dimensionsRows.forEach(function(dimension, indexD) {
+					l.dimensions.push(dimension);
 				});	
-				dimensionsColumns.forEach(function(dimension, indexD) {
-					dimensions.push(dimension);
+				l.dimensionsColumns.forEach(function(dimension, indexD) {
+					l.dimensions.push(dimension);
 				});
 			} else {
-				dimensions = DS.getDimensions();
+				l.dimensions = DS.getDimensions();
 			}
 			
-			var dimensionKeys = "";
-			dimensions.forEach(function(dimension, index) {
-				dimensionKeys = dimensionKeys + dimension.name;
+			if(DEBUG) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensionKeys = "";
+			l.dimensions.forEach(function(dimension, index) {
+				l.dimensionKeys = l.dimensionKeys + dimension.name;
 			});
 			
-			if(this.oldDimensionKeys != dimensionKeys) {
-				dimensions.forEach(function(dimension, index) {
-					  var members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+			if(this.oldDimensionKeys != l.dimensionKeys) {
+				l.dimensions.forEach(function(dimension, index) {
+					l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
 		
-					  var dimensionJson = {};
-					  dimensionJson.name = dimension.name;
-					  dimensionJson.text = dimension.text;
-					  dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
+					l.dimensionJson = {};
+					l.dimensionJson.name = dimension.name;
+					l.dimensionJson.text = dimension.text;
+					l.dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
 		
-					  dimensionJson.hierarchyActive = DS.isHierarchyActive(dimension);
-					  dimensionJson.filterExt = ";" + DS.getFilterExt(dimension);
-					  
-					  dimensionJson.members = members;
+					l.dimensionJson.hierarchyActive = DS.isHierarchyActive(dimension);
+					l.dimensionJson.filterExt = ";" + DS.getFilterExt(dimension);
+					
+					l.dimensionJson.members = l.members;
 		
-					  elementsJson.push(dimensionJson);
+					l.elementsJson.push(l.dimensionJson);
 				});
 
-				this.DElements = JSON.stringify(elementsJson);
-				this.oldDimensionKeys = dimensionKeys;
+				this.DElements = JSON.stringify(l.elementsJson);
+				this.oldDimensionKeys = l.dimensionKeys;
+				
+				if(DEBUG) {	DEBUG.inspectZtl(that, l)};
 			}
 		}
+		
+		/* exiting general block*/
+		if(DEBUG) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(DEBUG) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
 	*}
 	
 	/**
@@ -379,48 +493,67 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * </example>
 	 */
 	void reloadSelection(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
 		var that = this;
 	
-		var elementsJson = {};
+		try{
+		if(DEBUG) {	DEBUG.openZtl(that)};
+		var l = {};
+		/* entering general block*/
+	
+		l.elementsJson = {};
 
-		var DS = this.getDataSource();
+		l.DS = this.getDataSource();
 
 		if(!memberAccessSource) {
-			memberAccessSource = DS;
+			memberAccessSource = l.DS;
 		}
 		
-		if(DS) {
-			var dimensions = undefined;
+		if(l.DS) {
+			l.dimensions = undefined;
+			
+			if(DEBUG) {	DEBUG.inspectZtl(that)};
 			
 			if(this.DContentMode == "Only from Result Set") {
-				var dimensionsRows = DS.getDimensions(Axis.ROWS);
-				var dimensionsColumns = DS.getDimensions(Axis.ROWS);
+				l.dimensionsRows = l.DS.getDimensions(Axis.ROWS);
+				l.dimensionsColumns = l.DS.getDimensions(Axis.COLUMNS);
 				
-				dimensions = [];
+				l.dimensions = [];
 				
-				dimensionsRows.forEach(function(dimension, indexD) {
-					dimensions.push(dimension);
+				l.dimensionsRows.forEach(function(dimension, indexD) {
+					l.dimensions.push(dimension);
 				});
-				dimensionsColumns.forEach(function(dimension, indexD) {
-					dimensions.push(dimension);
+				l.dimensionsColumns.forEach(function(dimension, indexD) {
+					l.dimensions.push(dimension);
 				});
 			} else {
-				dimensions = DS.getDimensions();
+				l.dimensions = DS.getDimensions();
 			}
 			
-			dimensions.forEach(function(dimension, indexD) {
-				  var members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+			if(DEBUG) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensions.forEach(function(dimension, indexD) {
+				l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
 
-				  var dimensionJson = {};
-				  dimensionJson.name = dimension.name;
-				  dimensionJson.members = [];
-				  dimensionJson.filterExt = "; " + DS.getFilterExt(dimension) + ";";
+				l.dimensionJson = {};
+				l.dimensionJson.name = dimension.name;
+				l.dimensionJson.members = [];
+				l.dimensionJson.filterExt = "; " + l.DS.getFilterExt(dimension) + ";";
 
-				  elementsJson[dimension.name] = dimensionJson;
+				l.elementsJson[dimension.name] = l.dimensionJson;
 			});
 
-			this.DSelection = JSON.stringify(elementsJson);
+			this.DSelection = JSON.stringify(l.elementsJson);
+			
+			if(DEBUG) {	DEBUG.inspectZtl(that, l)};
 		}
+		
+		/* exiting general block*/
+		if(DEBUG) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(DEBUG) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
 	*}
 	
 	/**

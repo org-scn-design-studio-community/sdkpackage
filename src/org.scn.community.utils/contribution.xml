@@ -347,6 +347,104 @@
 </component>
 
 <component
+	id="Debugger"
+	title="Debugger Code Inspector"
+	icon="res/Debugger/Debugger.png"
+	handlerType="sapui5"
+	group="ScnCommunityUtils"
+>
+
+	<jsInclude>res/Debugger/Debugger.js</jsInclude>
+	<cssInclude>res/Debugger/Debugger.css</cssInclude>
+
+	<property
+		id="DConsole"
+		type="String"
+		title="Technical proprty for console"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DStack"
+		type="String"
+		title="Technical proprty for stack"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DVariables"
+		type="String"
+		title="Technical proprty for variables"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DActive"
+		type="boolean"
+		title="Active"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DLogActive"
+		type="boolean"
+		title="Log Active"
+		group="Display"
+		visible="true" />
+		
+	<property
+		id="DGlobals"
+		type="boolean"
+		title="Track Globals"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DOwner"
+		type="boolean"
+		title="Track Owner"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DLocals"
+		type="boolean"
+		title="Track Locals"
+		group="Display"
+		visible="true" />
+
+	<property  
+	  id="onInternalClear"  
+	  title="On Clear Content"  
+	  type="ScriptText"  
+    visible="false"
+  />
+
+	<initialization>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="DConsole"></defaultValue>
+		<defaultValue property="DStack">[]</defaultValue>
+		<defaultValue property="DVariables">[]</defaultValue>
+
+		<defaultValue property="DActive">true</defaultValue>
+		<defaultValue property="DLogActive">true</defaultValue>
+
+		<defaultValue property="DLocals">true</defaultValue>
+		<defaultValue property="DOwner">true</defaultValue>
+		<defaultValue property="DGlobals">true</defaultValue>
+		
+		<defaultValue property="onInternalClear">this.reset();</defaultValue>
+	</initialization>
+
+</component>
+
+<component
 	id="ComponentManager"
 	title="Component Manager"
 	tooltip="Allows managing and listing of components"

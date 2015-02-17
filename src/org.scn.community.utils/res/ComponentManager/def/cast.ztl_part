@@ -190,6 +190,9 @@
 	/**Cast to Custom Css Collector component*/
 	org.scn.community.utils.CustomCssCollector returnAsScnCustomCssCollector (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Debugger Code Inspector component*/
+	org.scn.community.utils.Debugger returnAsScnDebugger (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Flow Layouter component*/
 	org.scn.community.utils.FlowLayouter returnAsScnFlowLayouter (Component inputComponent) {* return inputComponent; *}
 

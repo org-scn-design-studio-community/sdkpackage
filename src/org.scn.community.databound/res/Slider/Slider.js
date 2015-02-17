@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Karol Kalisz
+ * Copyright 2014 SCN SDK Community
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/

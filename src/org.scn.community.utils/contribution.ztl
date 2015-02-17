@@ -1918,7 +1918,367 @@ class org.scn.community.utils.CustomCssCollector extends Component {
 		
 		this.elementsContent = JSON.stringify(elementsJson);
 	*}
-}/**
+}
+/**
+ * Component created with collaboration with Michael Howles
+ * http://scn.sap.com/people/mike.howles4
+ * 
+ * based on the blog thread
+ * http://scn.sap.com/community/businessobjects-design-studio/blog/2014/09/16/design-studio-sdk--bial-fornext-loop-and-my-first-github-co-author-attempt
+ * 
+ * Authors: Michael Howles, Scn Community Contributors
+ */
+class org.scn.community.utils.Debugger extends Component {  
+
+	/**
+	 * Returns active flag
+	 */
+	boolean isActive() {*  
+		return this.DActive;  
+	*}  
+
+	/**
+	 * Sets active flag
+	 */
+	void setActive(boolean value) {*  
+		this.DActive = value;
+	*}
+
+	/**
+	 * Returns log active flag
+	 */
+	boolean isLogActive() {*  
+		return this.DLogActive;  
+	*}  
+
+	/**
+	 * Sets log active flag
+	 */
+	void setLogActive(boolean valu) {*  
+		this.DLogActive = value;
+	*}
+
+	void openZtl(String thisValue, Object locals) {*
+		if(this.DActive != true) {
+			return;
+		}
+	
+		this.internal_assureGlobalAccess();
+		
+		this.toConsole("Component [ENTRY] : " + thisValue._VariableName, true);
+		this.private_inspect(thisValue, locals);
+	*}
+	
+	void exitZtl(String thisValue, Object locals) {*
+		if(this.DActive != true) {
+			return;
+		}
+	
+		this.internal_assureGlobalAccess();
+		
+		this.toConsole("Component [EXIT] : " + thisValue._VariableName, true);
+		this.private_inspect(thisValue, locals);
+	*}
+
+	void inspectNow(optional String comment, optional Component thisValue) {*
+		if(this.DActive != true) {
+			return;
+		}
+	
+		this.internal_assureGlobalAccess();
+		
+		if(comment == undefined) {comment="";}
+		
+		if(thisValue == undefined) {
+			thisValue = {};
+		}
+		
+		if(thisValue._VariableName == undefined) {
+			thisValue._VariableName = comment;
+		}
+		
+		this.toConsole("Component [CUSTOM] : " + thisValue._VariableName, true);
+		this.private_inspect(thisValue);
+	*}
+	
+	void processZtlException(String thisValue, Object locals, Object exception) {*
+		if(this.DActive != true) {
+			return;
+		}
+	
+		this.internal_assureGlobalAccess();
+		
+		this.toConsole("Component [EXCEPTION] : " + thisValue._VariableName, true);
+		this.private_inspect(thisValue, locals, exception);
+	*}
+
+	void inspectZtl(String thisValue, Object locals, Object exception) {*
+		if(this.DActive != true) {
+			return;
+		}
+		
+		this.internal_assureGlobalAccess();
+		
+		this.toConsole("Component [INSPECT] : " + thisValue._VariableName, true);
+		this.private_inspect(thisValue, locals, exception);
+	*}
+	
+	/**
+	 * Private Inspection Method
+	 */
+	void private_inspect(String thisValue, Object locals, Object exception) {*
+		if(this.DActive != true) {
+			return;
+		}
+	
+		var that = this;
+	
+		var lStack = undefined;
+		if(this.DStack == "") {
+			lStack = [];
+		} else {
+			lStack = JSON.parse(this.DStack);
+		}
+		
+		var lVariables = undefined;
+		if(this.DVariables == "") {
+			lVariables = [];
+		} else {
+			lVariables = JSON.parse(this.DVariables);
+		}
+	
+		var l = {};
+
+		l.mydate = new Date();
+		l.date = l.mydate.toString("yyyymmddhhmmss");
+		l.date = l.date + " - " + l.mydate.getSeconds() + "," + l.mydate.getMilliseconds();
+		
+		l.stackEntry  = {};
+	
+		this.internal_assureGlobalAccess();
+		
+		var method = this.getCallingMethod();
+		var line = 0;
+		if(method.indexOf(":") > -1) {
+			line = method.substring(method.indexOf(":") + 1);
+			if(line.indexOf("\n") > -1) {
+				line = line.substring(0, line.indexOf("\n"));
+			}
+			method = method.substring(0, method.indexOf(":"));
+		}
+		
+		if(method == undefined || method == "") {
+			method = thisValue._VariableName;
+		}
+		
+		this.toConsole("Calling Method: " + method);
+		
+		l.stackEntry["method"] = method;
+		l.stackEntry["date"] = l.date;
+		l.stackEntry["line"] = line;
+		l.stackEntry["component"] = thisValue._VariableName;
+		
+		if(that.DGlobals) {
+			// globals
+			this.toConsole("GLOBALS");
+			var globalScope = this.getGlobal();
+			for (var name in globalScope) {
+				var something = globalScope[name];
+	
+				if(something == undefined) {
+					continue;
+				}
+				
+				try {
+					var value = globalScope[name];
+					
+					if(value.indexOf("com.sap.ip.bi.zen") > -1) {
+						// internal object
+						continue;
+					}
+					
+					this.toConsole("  " + name + "=" + value);
+					lVariables.push({"date":l.date, "name":name, "value":value, "type":"global"});
+				} catch (e) {
+					// ignore
+				}
+			}
+		}
+
+		if(that.DOwner) {
+			// owner
+			this.toConsole("OWNER ? "+(thisValue != undefined));
+			if(thisValue) {
+				for (var name in thisValue) {
+					try {
+						if(name.indexOf("_VariableName") > -1) {
+							continue;
+						}
+						
+						if(name.indexOf("MARGIN") > -1 || name.indexOf("margin") > -1) {
+							this.toConsole("  " + name + "=<not read>");	
+							continue;
+						}
+						
+						var value = thisValue[name];
+						
+						if(value.indexOf("function") > -1) {
+							// internal function
+							continue;
+						}
+		
+						if(value.indexOf("com.sap.ip.bi.zen") > -1) {
+							// internal object
+							continue;
+						}
+		
+						if(value.indexOf("{") == 0 || value.indexOf("[") == 0) {
+							var jValue = JSON.stringify(value);
+							this.toConsole("  " + name + "=" + jValue);
+							lVariables.push({"date":l.date, "name":name, "value":jValue, "type":"owner"});
+						} else {
+							this.toConsole("  " + name + "=" + value);
+							lVariables.push({"date":l.date, "name":name, "value":value, "type":"owner"});
+						}
+					} catch (e) {
+						// ignore
+					}
+				}
+			}								
+		}
+
+		if(that.DLocals) {
+			// locals
+			this.toConsole("LOCALS ? "+(locals != undefined));
+			if(locals != undefined) {
+				for (var name in locals) {
+					try {
+						var value = locals[name];
+	
+						if(value.indexOf("{") == 0 || value.indexOf("[") == 0) {
+							var jValue = JSON.stringify(value);
+							this.toConsole("  " + name + "=" + jValue);
+							lVariables.push({"date":l.date, "name":name, "value":jValue, "type":"local"});
+						} else {
+							this.toConsole("  " + name + "=" + value);
+							lVariables.push({"date":l.date, "name":name, "value":value, "type":"local"});
+						}
+					} catch (e) {
+						// ignore
+					}
+				}
+			}
+		}
+		
+		// callstack
+		this.toConsole("CALLSTACK");
+		
+		var callstack = this.getCallStack(exception);
+		this.toConsole(callstack);
+		l.stackEntry["callstack"] = callstack;
+
+		lStack.push(l.stackEntry);
+		this.DStack = JSON.stringify(lStack);
+
+		this.DVariables = JSON.stringify(lVariables);
+	*}
+	
+	String getCallStack(optional Object exception) {*
+		var stackValue = "";
+
+		if(exception != undefined) {
+			stackValue = stackValue + exception.stack;
+		} else {
+			try {
+				var s;
+				s.key = "a";	
+			} catch (e) {
+				stackValue = stackValue + e.stack;
+			}
+		}
+
+		var indexOfCut = stackValue.indexOf("(private_inspect)") + "(private_inspect)".length;
+		stackValue = stackValue.substring(indexOfCut);
+
+		indexOfCut = stackValue.indexOf("at ") + "at ".length;;
+		stackValue = stackValue.substring(indexOfCut);
+
+		indexOfCut = stackValue.indexOf("at ");
+		stackValue = stackValue.substring(indexOfCut);
+
+		return stackValue;
+	*}
+	
+	String getCallingMethod() {*
+		var methodName = "";
+		
+		try {
+			var s;
+			s.key = "a";	
+		} catch (e) {
+			methodName = methodName + e.stack;
+		}
+		
+		var indexOfCut = methodName.indexOf("(private_inspect)") + "(private_inspect)".length;
+		if(indexOfCut > -1) {
+			methodName = methodName.substring(indexOfCut);
+			
+			indexOfCut = methodName.indexOf("at ") + "at ".length;
+			methodName = methodName.substring(indexOfCut);
+
+			indexOfCut = methodName.indexOf("at ") + "at ".length;
+			methodName = methodName.substring(indexOfCut);
+
+			indexOfCut = methodName.indexOf(" (");
+			methodName = methodName.substring(0, indexOfCut);
+		}
+
+		return methodName;
+	*}
+	
+	void toConsole(String value, optional boolean withDate) {*
+		if(withDate) {
+			var mydate = new Date();
+			var date = mydate.toString('dddd MMM yyyy h:mm:ss');
+			value = date + ": " + value;
+		}
+		this.DConsole = this.DConsole + value + "\r\n";
+		
+		if(this.DLogActive) {
+			APPLICATION.log(value);	
+		}
+	*}
+
+	String getConsole() {*
+		return this.DConsole;
+	*}
+
+	void clearConsole() {*
+		this.DConsole = "";
+	*}
+	
+	void reset() {*
+		this.clearConsole();
+		this.DStack = "[]";
+		this.DVariables = "[]";
+	*}
+
+	/**
+	 * Internal function to read return global scope
+	 * http://stackoverflow.com/questions/1162998/how-can-i-add-an-object-property-to-the-global-object-in-rhino-javascript
+	 */
+	void internal_assureGlobalAccess () {*
+		if(this.getGlobal == undefined) {
+			this.getGlobal = function () {
+				return (function() {
+					return this;
+				}).call(null);
+			}
+		}
+	*}
+	
+}
+/**
  * class for FlowLayouter
  */
 class org.scn.community.utils.FlowLayouter extends Component {  

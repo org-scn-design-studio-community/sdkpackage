@@ -46,7 +46,8 @@
 		id="DSortingType"
 		title="Member Sorting Type"
 		type="String"
-		group="Display">
+		group="Display"
+		visible="true">
 			<possibleValue>Default</possibleValue>
 			<possibleValue>Selected</possibleValue>
 			<possibleValue>Available</possibleValue>
@@ -57,7 +58,8 @@
 		id="DSortingDirection"
 		title="Member Sorting Direction"
 		type="String"
-		group="Display">
+		group="Display"
+		visible="true">
 			<possibleValue>Ascending</possibleValue>
 			<possibleValue>Descending</possibleValue>
 	</property>
@@ -66,13 +68,40 @@
 		id="DMaxMembers"
 		title="Maximum Number of Members"
 		type="int"
-		group="Display" />
+		group="Display"
+		visible="true">
+	</property>
 
 	<property
+		id="DMarkAvailable"
+		title="Mark Available Members"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DMarkNotAvailable"
+		title="Mark Not Available Members"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DClearOthers"
+		title="Clear Selection of other dimensions when member is aot available"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+<property
 		id="DContentMode"
 		title="Content Mode (how much should be visualized)"
 		type="String"
-		group="Display">
+		group="Display"
+		visible="true">
 			<possibleValue>All Dimensions</possibleValue>
 			<possibleValue>Only from Result Set</possibleValue>
 	</property>
@@ -103,7 +132,10 @@
 		<defaultValue property="DContentMode">Only from Result Set</defaultValue>
 		<defaultValue property="DSortingType">Available</defaultValue>
 		<defaultValue property="DSortingDirection">Descending</defaultValue>
-	
+		<defaultValue property="DMarkAvailable">true</defaultValue>
+		<defaultValue property="DMarkNotAvailable">true</defaultValue>
+		<defaultValue property="DClearOthers">true</defaultValue>
+		
 		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
 		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
 	</initialization>
