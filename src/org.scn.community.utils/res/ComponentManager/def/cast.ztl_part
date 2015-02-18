@@ -88,6 +88,9 @@
 	/**Cast to Paginator component*/
 	org.scn.community.basics.Paginator returnAsScnPaginator (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Password Field component*/
+	org.scn.community.basics.PasswordField returnAsScnPasswordField (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Progress Indicator component*/
 	org.scn.community.basics.ProgressIndicator returnAsScnProgressIndicator (Component inputComponent) {* return inputComponent; *}
 
@@ -112,8 +115,14 @@
 	/**Cast to Tree component*/
 	org.scn.community.basics.Tree returnAsScnTree (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Tri State CheckBox component*/
+	org.scn.community.basics.TriStateCheckBox returnAsScnTriStateCheckBox (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Validated Input Field component*/
 	org.scn.community.basics.ValiInput returnAsScnValiInput (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Value Help Field component*/
+	org.scn.community.basics.ValueHelpField returnAsScnValueHelpField (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to D3 Hierarchy component*/
 	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}

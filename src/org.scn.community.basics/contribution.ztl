@@ -2369,6 +2369,32 @@ class org.scn.community.basics.Paginator extends Component {
 }
 
 /**
+ * Class for PasswordField
+ */
+class org.scn.community.basics.PasswordField extends Component {
+	
+	/** returns value */
+	String getValue () {*
+		return this.value;	
+	*}
+		
+	/** sets value */
+	void setValue (String value) {*
+		this.value = value;	
+	*}
+
+	/** returns tooltip */
+	String getTooltip () {*
+		return this.tooltip;	
+	*}
+	
+	/** sets the tooltip */
+	void setTooltip (String tooltip) {*
+		this.tooltip = tooltip;	
+	*}
+}
+
+/**
  * Class for ProgressIndicator
  */
 class org.scn.community.basics.ProgressIndicator extends Component {

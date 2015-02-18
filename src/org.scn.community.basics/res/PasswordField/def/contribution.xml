@@ -1,0 +1,43 @@
+
+<component
+	id="PasswordField"
+	title="Password Field"
+	icon="res/PasswordField/PasswordField.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>res/PasswordField/PasswordField.js</jsInclude>
+	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
+
+	<property
+		id="value"
+		type="String"
+		title="Value"
+		tooltip="Value"
+		group="Display"
+		visible="true" />
+	<property
+		id="tooltip"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="onChanged"
+		type="ScriptText"
+		title="Event for On Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="value"></defaultValue>
+	</initialization>
+</component>
