@@ -9,9 +9,10 @@ document.getElementsByTagName('head')[0].appendChild(style)
 #FACETFILTER_1_control_loadingState_message {visibility: hidden !important;}
 */
 
-div[class~=scn-pack-MarkNotAvailable] ul>li[data-available=false] {background-color: #fef8c0!important;}
-div[class~=scn-pack-MarkAvailable] ul>li[data-available=true] {background-color: #d3ffcc!important;}
+div[class~=scn-pack-FacetFilter-MarkPositiveValue] ul>li[data-hasValue="+"] {background-color: #8ff78c!important;}
+div[class~=scn-pack-FacetFilter-MarkNegativeValue] ul>li[data-hasValue="-"] {background-color: #f89b8b!important;}
 
-div[class~=scn-pack-MarkSelected] ul>li[aria-selected=true] {background-color: #acc2f4 !important;}
+div[class~=scn-pack-FacetFilter-MarkAnyValue] ul>li[data-hasValue="+"] {background-color: #ffff80!important;}
+div[class~=scn-pack-FacetFilter-MarkAnyValue] ul>li[data-hasValue="-"] {background-color: #ffff80!important;}
 
 div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% !important;height: 100% !important;}

@@ -20,6 +20,6 @@ class org_scn_community_shared_SortType extends Enum {
 	/** SELECTED */
 	org_scn_community_shared_SortTypeEnumfield SELECTED;
 
-	/** AVAILABLE */
-	org_scn_community_shared_SortTypeEnumfield AVAILABLE;
+	/** VALUE */
+	org_scn_community_shared_SortTypeEnumfield VALUE;
 }

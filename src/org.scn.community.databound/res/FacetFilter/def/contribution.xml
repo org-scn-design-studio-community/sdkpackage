@@ -43,17 +43,27 @@
 	</property>
 
 	<property
+		id="DDisplayText"
+		title="Display Text"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Text</possibleValue>
+			<possibleValue>Text (Value)</possibleValue>
+	</property>
+
+	<property
 		id="DSortingType"
 		title="Member Sorting Type"
 		type="String"
 		group="Display"
 		visible="true">
 			<possibleValue>Default</possibleValue>
-			<possibleValue>Selected</possibleValue>
-			<possibleValue>Available</possibleValue>
 			<possibleValue>Alphabetical</possibleValue>
+			<possibleValue>Selected</possibleValue>
+			<possibleValue>Value</possibleValue>
 	</property>
-	
+
 	<property
 		id="DSortingDirection"
 		title="Member Sorting Direction"
@@ -73,30 +83,14 @@
 	</property>
 
 	<property
-		id="DMarkAvailable"
-		title="Mark Available Members"
-		type="boolean"
-		group="Display"
-		visible="true">
-	</property>
-
-	<property
-		id="DMarkNotAvailable"
-		title="Mark Not Available Members"
-		type="boolean"
-		group="Display"
-		visible="true">
-	</property>
-
-	<property
 		id="DClearOthers"
-		title="Clear Selection of other dimensions when member is aot available"
+		title="Clear Selection of other dimensions when member value is 0"
 		type="boolean"
 		group="Display"
 		visible="true">
 	</property>
 
-<property
+	<property
 		id="DContentMode"
 		title="Content Mode (how much should be visualized)"
 		type="String"
@@ -104,6 +98,15 @@
 		visible="true">
 			<possibleValue>All Dimensions</possibleValue>
 			<possibleValue>Only from Result Set</possibleValue>
+			<possibleValue>Custom Dimension Set</possibleValue>
+	</property>
+
+	<property
+		id="DCustomDimensions"
+		title="Custom Dimensions as Array [...]"
+		type="String"
+		group="Display"
+		visible="true">
 	</property>
 
 	<property  
@@ -111,7 +114,7 @@
 	  title="On User List Selection"  
 	  type="ScriptText"  
     visible="false"
-  />  
+    />  
 
 	<property
 		id="onBeforeRender"
@@ -130,10 +133,10 @@
 		<defaultValue property="DElements"></defaultValue>
 		<defaultValue property="DMaxMembers">1000</defaultValue>
 		<defaultValue property="DContentMode">Only from Result Set</defaultValue>
-		<defaultValue property="DSortingType">Available</defaultValue>
+		<defaultValue property="DCustomDimensions">[]</defaultValue>
+		<defaultValue property="DDisplayType">Text (Value)</defaultValue>
+		<defaultValue property="DSortingType">Default</defaultValue>
 		<defaultValue property="DSortingDirection">Descending</defaultValue>
-		<defaultValue property="DMarkAvailable">true</defaultValue>
-		<defaultValue property="DMarkNotAvailable">true</defaultValue>
 		<defaultValue property="DClearOthers">true</defaultValue>
 		
 		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
