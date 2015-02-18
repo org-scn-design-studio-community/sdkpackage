@@ -1,0 +1,23 @@
+.DesignStudioSCN.HexBin .axis path,
+.DesignStudioSCN.HexBin .axis line {
+	fill: none;
+  	stroke: #000;
+  	shape-rendering: crispEdges;
+}
+
+.DesignStudioSCN.HexBin .hexagon {
+  fill: none;
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+.DesignStudioSCN.HexBin .legend-container {
+  stroke-width: .5px;
+  fill: #FFFFFF;
+  fill-opacity: 0.9;
+  stroke: #898989;
+}
+
+.DesignStudioSCN.HexBin .legend-label {
+  font-weight: bold;
+}
