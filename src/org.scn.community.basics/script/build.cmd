@@ -44,6 +44,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\ToggleButton\def\contribution.xml ^
 ..\res\Tree\def\contribution.xml ^
 ..\res\ValiInput\def\contribution.xml ^
+..\res\ValueHelpField\def\contribution.xml ^
 ..\..\org.scn.community.shared\templates.main\contribution.xml.close.txt > ^
 ..\contribution.xml
 
@@ -91,6 +92,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ToggleButton\def\contribution.ztl ^
 ..\res\Tree\def\contribution.ztl ^
 ..\res\ValiInput\def\contribution.ztl ^
+..\res\ValueHelpField\def\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 

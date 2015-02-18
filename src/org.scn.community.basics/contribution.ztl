@@ -2900,3 +2900,29 @@ class org.scn.community.basics.ValiInput extends Component {
 		return this.DValidState;	
 	*}
 }
+
+/**
+ * Class for ValueHelpField
+ */
+class org.scn.community.basics.ValueHelpField extends Component {
+	
+	/** returns value */
+	String getValue () {*
+		return this.value;	
+	*}
+		
+	/** sets value */
+	void setValue (String value) {*
+		this.value = value;	
+	*}
+
+	/** returns tooltip */
+	String getTooltip () {*
+		return this.tooltip;	
+	*}
+	
+	/** sets the tooltip */
+	void setTooltip (String tooltip) {*
+		this.tooltip = tooltip;	
+	*}
+}
