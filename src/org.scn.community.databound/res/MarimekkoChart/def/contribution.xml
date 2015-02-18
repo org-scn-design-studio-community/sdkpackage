@@ -44,7 +44,7 @@
 		group="Events"/>
 	<initialization>
 		<defaultValue property="stringData">BLANK</defaultValue>
-		<defaultValue property="animationDuration">750</defaultValue>
+		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
 		<defaultValue property="legendWidth">150</defaultValue>
