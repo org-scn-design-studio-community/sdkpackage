@@ -206,13 +206,11 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MarimekkoCh
 		var vals = [];
 		try{
 			this.flatData = org_scn_community_databound.flatten(this.data(),{});
-			if(this.flatData && this.flatData.formattedValues && this.flatData.formattedValues.length > 0) {
-				vals = this.flatData.formattedValues.slice();
-			}else if(this.flatData && this.flatData.values && this.flatData.values.length > 0){
+			if(this.flatData && this.flatData.values && this.flatData.values.length > 0){
 				vals = this.flatData.values.slice();
 			}else{
 				// Something happened.
-				throw("No formatted or unformatted values found.");
+				throw("No values found.");
 			}
 		}catch(e){
 			var errorMessage = e;
@@ -231,7 +229,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MarimekkoCh
 				mekko.push({
 					"row" : this.flatData.rowHeaders[i],
 					"col" : this.flatData.columnHeaders[j],
-					"value" : parseFloat(currentRow[j])
+					"value" : parseFloat(currentRow[j]) || null
 				});
 			}
 		}

@@ -34,7 +34,7 @@
 		title="Data Selection"
 		type="ResultSet"
 		group="DataBinding">
-		<option name="includeFormattedData" value="true"/>
+		<option name="includeFormattedData" value="false"/>
 		<option name="includeData" value="true"/>
 	</property>
 	<property

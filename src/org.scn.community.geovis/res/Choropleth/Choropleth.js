@@ -791,13 +791,11 @@
 					var vals = [];
 					try{
 						this._flatData = org_scn_community_databound.flatten(this.data(),{});
-						if(this._flatData && this._flatData.formattedValues && this._flatData.formattedValues.length > 0) {
-							vals = this._flatData.formattedValues.slice();
-						}else if(this._flatData && this._flatData.values && this._flatData.values.length > 0){
+						if(this._flatData && this._flatData.values && this._flatData.values.length > 0){
 							vals = this._flatData.values.slice();
 						}else{
 							// Something happened.
-							throw("No formatted or unformatted values found.");
+							throw("No values found.");
 						}
 					}catch(e){
 						var errorMessage = e;
