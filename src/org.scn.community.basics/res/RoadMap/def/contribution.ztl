@@ -1,0 +1,126 @@
+
+/**
+ * Class for RoadMap
+ */
+class org.scn.community.basics.RoadMap extends Component {
+	
+	/** remove all steps */
+	void removeAllSteps () {*		
+			var elementsArray = [];
+			this.DElementsContent = JSON.stringify(elementsArray);
+			
+			this.DCleanAll = true;
+	*}
+	
+	/** Adds an step containing Key, Text, Visible and Enable flags.
+
+ 	<example>
+	You want to add 2 steps
+	<code>
+	ROADMAP.addStep("STEP1", "First Step", true, false);<br>
+	ROADMAP.addStep("STEP2", "Second Step", true, true);
+	</code>
+	</example>
+	 */
+	void addStep (
+			/**Step Key (must be unique)*/String stepKey, 
+			/**Step text*/String stepText, 
+			/**Visible*/boolean visible, 
+			/**Enabled*/boolean enabled) {*		
+
+		var itemDef = { 
+			"key": stepKey, 
+			"text": stepText, 
+			"visible": visible,
+			"enabled": enabled
+			};
+	
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == stepKey) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	<example>
+	You want to make the step visible
+	<code>
+	ROADMAP.addStepVisible("STEP1", true);<br>
+	</code>
+	</example>
+	 */
+	void setStepVisible (
+			/**Step Key (must be unique)*/String stepKey, 
+			/**Visible*/boolean visible) {*		
+
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == stepKey) {
+				elementsJson[i].visible = visible;
+				break;
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	<example>
+	You want to make the step enabled
+	<code>
+	ROADMAP.addStepEnabled("STEP1", true);<br>
+	</code>
+	</example>
+	 */
+	void setStepEnabled (
+			/**Step Key (must be unique)*/String stepKey, 
+			/**Enabled*/boolean enabled) {*		
+
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == stepKey) {
+				elementsJson[i].enabled = enabled;
+				break;
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/** returns the selected step */
+	String getSelectedStep () {*
+		return this.DSelectedKey;	
+	*}
+	
+	/** sets the selected step */
+	void setSelectedStep (String key) {*
+		this.DSelectedKey = key;	
+	*}
+}

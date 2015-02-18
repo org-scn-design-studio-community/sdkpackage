@@ -11,6 +11,13 @@
 	<jsInclude>res/ClientInformation/ClientInformation.js</jsInclude>
 
 	<property
+		id="reloadRequest"
+		type="String"
+		title="Reload Request Technical Flag"
+		group="Display"
+		visible="false" />
+
+	<property
 		id="readLocation"
 		type="boolean"
 		title="Read the Location from Browser"
@@ -89,6 +96,8 @@
 		<defaultValue property="ownWwidth"></defaultValue>
 		<defaultValue property="windowHeight"></defaultValue>
 		<defaultValue property="windowWidth"></defaultValue>
+		
+		<defaultValue property="reloadRequest">X</defaultValue>
 	</initialization>
 
 </component>

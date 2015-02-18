@@ -68,11 +68,11 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 	metadata: {
         properties: {
         	  "DSelection": {type: "string"},
+        	  "DDisplayText": {type: "string"},
         	  "DSortingType": {type: "string"},
         	  "DSortingDirection": {type: "string"},
-        	  "DMarkAvailable": {type: "boolean"},
-        	  "DMarkNotAvailable": {type: "boolean"},
-        	  "DResetSelectionOnNotAvailable": {type: "boolean"},
+        	  "DMarkWithValue": {type: "boolean"},
+        	  "DClearOthers": {type: "boolean"},
               "DMaxMembers": {type: "int"},
               "DContentMode": {type: "string"},
         }
@@ -122,6 +122,9 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 			options.iMaxNumber = 10000;
 			options.allKeys = true;
 			options.idPrefix = this.getId();
+			options.iDuplicates = "Sum";
+			
+			options.iDisplayText = this.getDDisplayText();
 			
 			that._mixedData = org_scn_community_databound.getDataModelForDimensions(lData, lData, lDimensions, options);	
 		
@@ -133,13 +136,14 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 					var text = lDimension.text;
 
 					var oItemTemplate = new org.scn.community.databound.ExtraListItem(
-							{text:"{text}", key:"{name}", enabled:"{enabled}",
-								customData: new sap.ui.core.CustomData({key:"available", value:"{available}", writeToDom:true}), 
+							{text:"{display}", key:"{name}", enabled:"{enabled}",
+								customData: new sap.ui.core.CustomData({key:"hasValue", value:"{hasValue}", writeToDom:true}), 
 								});
 					
 					var lDimList = new sap.ui.ux3.FacetFilterList({
 						title: text,
-						items : {path : "/" + dimensionKey + "/items", template : oItemTemplate}
+						items : {path : "/" + dimensionKey + "/items", template : oItemTemplate},
+						showCounter: true,
 					});
 					
 					lDimList.attachSelect(function(oEvent) {
@@ -155,7 +159,8 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 							
 							for (var iM = 0; iM < selection.keys.length; iM++) {
 								// check if key is available or not
-								if(that._mixedData[selection.dimension].availableMembers && that._mixedData[selection.dimension].availableMembers.indexOf(selection.keys[iM])){
+								if(that._mixedData[selection.dimension].availableMembers && 
+										that._mixedData[selection.dimension].availableMembers.indexOf("|" + selection.keys[iM] + "|") == -1){
 									selection.clearOthers = true;
 									break;
 								}
@@ -241,34 +246,21 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 						
 						if(lSortingType == "Selected") {
 							members.sort(sortByAttribute("selected", lSortingDirection));
-						} else if(lSortingType == "Available") {
-							members.sort(sortByAttribute("available", lSortingDirection));
+						} else if(lSortingType == "Value") {
+							members.sort(sortByAttribute("value", lSortingDirection));
 						} else if(lSortingType == "Alphabetical") {
 							members.sort(sortByAttribute("name", lSortingDirection));
 						}
-					}
-					
-					var lDMarkAvailable = this.getDMarkAvailable();
-					if(lDMarkAvailable) {
-						this.addStyleClass("scn-pack-MarkAvailable");
-					} else {
-						this.removeStyleClass("scn-pack-MarkAvailable");
-					}
-					var lDMarkNotAvailable = this.getDMarkNotAvailable();
-					if(lDMarkNotAvailable) {
-						this.addStyleClass("scn-pack-MarkNotAvailable");
-					} else {
-						this.removeStyleClass("scn-pack-MarkNotAvailable");
 					}
 				}
 			}
 		}
 
 		that._oModel.setData(that._mixedData);
-		
-		// selections
-		
-		
+	},
+	
+	getDisplayText: function() {
+		return "karol";
 	},
 	
 	_containsInArray: function(members, memberName) {

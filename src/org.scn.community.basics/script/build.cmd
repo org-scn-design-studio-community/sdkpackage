@@ -35,15 +35,19 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Notify\def\contribution.xml ^
 ..\res\OSMap\def\contribution.xml ^
 ..\res\Paginator\def\contribution.xml ^
+..\res\PasswordField\def\contribution.xml ^
 ..\res\QRCode\def\contribution.xml ^
 ..\res\ProgressIndicator\def\contribution.xml ^
 ..\res\RangeSlider\def\contribution.xml ^
 ..\res\RatingIndicator\def\contribution.xml ^
+..\res\RoadMap\def\contribution.xml ^
 ..\res\Slider\def\contribution.xml ^
 ..\res\TextArea\def\contribution.xml ^
 ..\res\ToggleButton\def\contribution.xml ^
 ..\res\Tree\def\contribution.xml ^
+..\res\TriStateCheckBox\def\contribution.xml ^
 ..\res\ValiInput\def\contribution.xml ^
+..\res\ValueHelpField\def\contribution.xml ^
 ..\..\org.scn.community.shared\templates.main\contribution.xml.close.txt > ^
 ..\contribution.xml
 
@@ -82,15 +86,19 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\Notify\def\contribution.ztl ^
 ..\res\OSMap\def\contribution.ztl ^
 ..\res\Paginator\def\contribution.ztl ^
+..\res\PasswordField\def\contribution.ztl ^
 ..\res\ProgressIndicator\def\contribution.ztl ^
 ..\res\QRCode\def\contribution.ztl ^
 ..\res\RangeSlider\def\contribution.ztl ^
 ..\res\RatingIndicator\def\contribution.ztl ^
+..\res\RoadMap\def\contribution.ztl ^
 ..\res\Slider\def\contribution.ztl ^
 ..\res\TextArea\def\contribution.ztl ^
 ..\res\ToggleButton\def\contribution.ztl ^
 ..\res\Tree\def\contribution.ztl ^
+..\res\TriStateCheckBox\def\contribution.ztl ^
 ..\res\ValiInput\def\contribution.ztl ^
+..\res\ValueHelpField\def\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 

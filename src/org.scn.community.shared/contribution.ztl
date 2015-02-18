@@ -125,6 +125,28 @@ class org_scn_community_shared_ButtonStyle extends Enum {
 /**
  * enum filed definition
  */
+class org_scn_community_shared_SelectionStateEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify field 
+ */
+class org_scn_community_shared_SelectionState extends Enum {
+
+	/** CHECKED */
+	org_scn_community_shared_SelectionStateEnumfield CHECKED;
+       
+	/** UNCHECKED */
+	org_scn_community_shared_SelectionStateEnumfield UNCHECKED;
+
+	/** MIXED */
+	org_scn_community_shared_SelectionStateEnumfield MIXED;
+}
+
+/**
+ * enum filed definition
+ */
 class org_scn_community_shared_SortDirectionEnumfield extends Enumfield {
        
 }
@@ -162,8 +184,8 @@ class org_scn_community_shared_SortType extends Enum {
 	/** SELECTED */
 	org_scn_community_shared_SortTypeEnumfield SELECTED;
 
-	/** AVAILABLE */
-	org_scn_community_shared_SortTypeEnumfield AVAILABLE;
+	/** VALUE */
+	org_scn_community_shared_SortTypeEnumfield VALUE;
 }
 
 /**

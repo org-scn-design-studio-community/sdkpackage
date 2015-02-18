@@ -2104,6 +2104,64 @@
 		<defaultValue property="numberOfPages">3</defaultValue>
 	</initialization>
 </component>
+<component
+	id="PasswordField"
+	title="Password Field"
+	icon="res/PasswordField/PasswordField.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>res/PasswordField/PasswordField.js</jsInclude>
+	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
+
+	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		tooltip="Enabled"
+		group="Display"
+		visible="true" />
+	<property
+		id="editable"
+		type="boolean"
+		title="Editable"
+		tooltip="Editable"
+		group="Display"
+		visible="true" />
+	<property
+		id="value"
+		type="String"
+		title="Value"
+		tooltip="Value"
+		group="Display"
+		visible="true" />
+	<property
+		id="tooltip"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="onChanged"
+		type="ScriptText"
+		title="Event for On Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="value"></defaultValue>
+		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
+	</initialization>
+</component>
 <component id="QRCode"
 	title="QRCode Generator"
 	icon="res/QRCode/QRCode.png"
@@ -2327,6 +2385,64 @@
 	</initialization>
 </component>
 <component
+	id="RoadMap"
+	title="Road Map"
+	icon="res/RoadMap/RoadMap.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics">
+
+	<jsInclude>res/RoadMap/RoadMap.js</jsInclude>
+	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
+
+	<property
+		id="DSelectedKey"
+		type="String"
+		title="Selected Step Key"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="numberOfVisibleSteps"
+		type="String"
+		title="Number of Visible Steps"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DCleanAll"
+		type="boolean"
+		title="Technical property for Clean All Nodes"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DElementsContent"
+		type="String"
+		title="Technical property for list of nodes"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">230</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="DSelectedKey"></defaultValue>
+		<defaultValue property="DElementsContent">[]</defaultValue>
+	</initialization>
+
+</component>
+
+<component
 	id="Slider"
 	title="Slider"
 	handlerType="sapui5"
@@ -2395,10 +2511,17 @@
 		group="Display"
 		visible="true" />
 	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		tooltip="Enabled"
+		group="Display"
+		visible="true" />
+	<property
 		id="editable"
 		type="boolean"
-		title="Editable flag"
-		tooltip="Editable flag"
+		title="Editable"
+		tooltip="Editable"
 		group="Display"
 		visible="true" />
 	<property
@@ -2419,6 +2542,7 @@
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="value"></defaultValue>
+		<defaultValue property="enabled">true</defaultValue>
 		<defaultValue property="editable">true</defaultValue>
 		<defaultValue property="maxLength">0</defaultValue>
 	</initialization>
@@ -2583,6 +2707,77 @@
 
 </component>
 <component
+	id="TriStateCheckBox"
+	title="Tri State CheckBox"
+	icon="res/TriStateCheckBox/TriStateCheckBox.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>res/TriStateCheckBox/TriStateCheckBox.js</jsInclude>
+	<cssInclude>res/TriStateCheckBox/TriStateCheckBox.css</cssInclude>
+
+	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		tooltip="Enabled"
+		group="Display"
+		visible="true" />
+	<property
+		id="editable"
+		type="boolean"
+		title="Editable"
+		tooltip="Editable"
+		group="Display"
+		visible="true" />
+	<property
+		id="text"
+		type="String"
+		title="Value"
+		tooltip="Value"
+		group="Display"
+		visible="true" />
+	<property
+		id="tooltip"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true" />
+	<property
+		id="selectionState"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true">
+		<possibleValue>Checked</possibleValue>
+		<possibleValue>Unchecked</possibleValue>
+		<possibleValue>Mixed</possibleValue>
+	</property>
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
+		<defaultValue property="text">tri state value</defaultValue>
+		<defaultValue property="selectionState">Unchecked</defaultValue>
+	</initialization>
+</component>
+<component
 	id="ValiInput"
 	title="Validated Input Field"
 	icon="res/ValiInput/ValiInput.png"
@@ -2676,6 +2871,70 @@
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="DValidation">none</defaultValue>
 		<defaultValue property="DValidState">None</defaultValue>
+	</initialization>
+</component>
+<component
+	id="ValueHelpField"
+	title="Value Help Field"
+	icon="res/ValueHelpField/ValueHelpField.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>res/ValueHelpField/ValueHelpField.js</jsInclude>
+	<cssInclude>res/ValueHelpField/ValueHelpField.css</cssInclude>
+
+	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		tooltip="Enabled"
+		group="Display"
+		visible="true" />
+	<property
+		id="editable"
+		type="boolean"
+		title="Editable"
+		tooltip="Editable"
+		group="Display"
+		visible="true" />
+	<property
+		id="value"
+		type="String"
+		title="Value"
+		tooltip="Value"
+		group="Display"
+		visible="true" />
+	<property
+		id="tooltip"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="onChanged"
+		type="ScriptText"
+		title="Event for On Changed"
+		group="Events" />
+
+	<property
+		id="onValueHelpRequest"
+		type="ScriptText"
+		title="Event for On Value Help Request"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
+		<defaultValue property="value">some value</defaultValue>
 	</initialization>
 </component>
 </sdkExtension>
