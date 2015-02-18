@@ -1,0 +1,16 @@
+.DesignStudioSCN.MarimekkoChart svg {
+	shape-rendering: crispEdges;
+}
+.DesignStudioSCN.MarimekkoChart rect {
+	stroke: #000;
+}
+.DesignStudioSCN.MarimekkoChart .legend-container {
+  stroke-width: .5px;
+  fill: #FFFFFF;
+  fill-opacity: 0.9;
+  stroke: #898989;
+}
+
+.DesignStudioSCN.MarimekkoChart .legend-label {
+  font-weight: bold;
+}

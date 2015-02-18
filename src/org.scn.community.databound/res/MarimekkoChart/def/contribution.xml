@@ -1,0 +1,60 @@
+
+<component
+		id="MarimekkoChart"
+		title="Marimekko Chart"
+		icon="res/MarimekkoChart/MarimekkoChart.png"
+		handlerType="div"
+		propertySheetPath="res/MarimekkoChart/aps/MarimekkoChart.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<stdInclude kind="d3"/>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
+	<cssInclude>res/MarimekkoChart/MarimekkoChart.css</cssInclude>
+	<property id="stringData" type="String" title = "Data Stringified" visible="false"/>
+	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
+	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
+	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
+	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
+	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
+	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int"/>
+	<property id="legendScale" title="Legend Scale" type="float"/>
+	<property id="legendX" title="Legend Offset X" type="int"/>
+	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="margin" type="int" title = "Margin Size" visible="false"/>
+	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+	</property>
+	<property
+		id="onSelect"
+		title="On Select"
+		type="ScriptText"
+		group="Events"/>
+	<initialization>
+		<defaultValue property="stringData">BLANK</defaultValue>
+		<defaultValue property="animationDuration">750</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="legendWidth">150</defaultValue>
+		<defaultValue property="legendTitle">Legend</defaultValue>
+		<defaultValue property="legendScale">1</defaultValue>
+		<defaultValue property="margin">20</defaultValue>
+		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+	</initialization>
+</component>

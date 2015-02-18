@@ -65,6 +65,18 @@ class org.scn.community.datasource.BYOData extends SdkDataSource {
 		this.data = d.join("\n");
 	*}
 	/**
+	 * Whether to swap axis
+	 */
+	void setRotateAxis(/*Rotate*/boolean b){*
+		this.swap = b;
+	*}
+	/**
+	 * Get if axis is rotated
+	 */
+	boolean getRotateAxis(){*
+		return this.swap;
+	*}
+	/**
 	 * Set number of columns that should be treated as dimensional.  Remaining columns are treated as Measures.
 	 */
 	void setDimensionCount(/*Number of Columns*/int i){*

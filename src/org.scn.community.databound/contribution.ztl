@@ -614,7 +614,38 @@ class org.scn.community.databound.LeaderBoard extends Component {
 		return this.pressedKey;	
 	*}
 }
-
+class org.scn.community.databound.MarimekkoChart extends Component {
+	/**
+	Get selected row
+	*/
+	String getSelectedRow() {*
+		return this.selectedRow;
+	*}
+	/**
+	Get selected column
+	*/
+	String getSelectedColumn() {*
+		return this.selectedColumn;
+	*}
+	/**
+	Get selected value
+	*/
+	float getSelectedValue() {*
+		return this.selectedValue;
+	*}
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		return this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+}
 class org.scn.community.databound.MultiLevelDropDown extends Component {
 	Boolean getAddSingleRootNode() {*
 		return this.addSingleRootNode;
