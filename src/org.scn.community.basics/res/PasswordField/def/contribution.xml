@@ -11,6 +11,20 @@
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
 
 	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		tooltip="Enabled"
+		group="Display"
+		visible="true" />
+	<property
+		id="editable"
+		type="boolean"
+		title="Editable"
+		tooltip="Editable"
+		group="Display"
+		visible="true" />
+	<property
 		id="value"
 		type="String"
 		title="Value"
@@ -39,5 +53,7 @@
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="value"></defaultValue>
+		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
 	</initialization>
 </component>
