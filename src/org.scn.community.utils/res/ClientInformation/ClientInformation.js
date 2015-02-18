@@ -28,6 +28,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
               "readLocation": {type: "boolean"},
               "geoLocation": {type: "string"},
               "information": {type: "string"},
+              "reloadRequest": {type: "string"},
         }
 	},
 
@@ -92,6 +93,16 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
 
 		var information = navigator;
 
+		var reloadRequest = this.getReloadRequest();
+		if(reloadRequest != "X") {
+			if(reloadRequest != that._oldReloadRequest) {
+				that._oldReloadRequest = reloadRequest;
+				that.onAfterRendering();
+			}
+		} else {
+			that._oldReloadRequest = "X";
+		}
+		
 		if(that.informationJson == undefined) {
 			that.informationJson = {};
 

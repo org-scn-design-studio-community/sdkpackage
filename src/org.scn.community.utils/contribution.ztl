@@ -311,6 +311,17 @@ class org.scn.community.utils.Array extends Component {
 class org.scn.community.utils.ClientInformation extends Component {
 	
 	/**
+	 * Reload Explicit Position Data
+	 */
+	void reload() {*
+		if(this.reloadRequest != "+") {
+			this.reloadRequest = "+";	
+		} else {
+			this.reloadRequest = "-";
+		}
+	*}
+	
+	/**
 	 * Returns the width of the browser window
 	 */
 	int getWindowWidth () {*
