@@ -1312,9 +1312,10 @@
 	databound="true"
 >
 
-	<stdInclude kind="cvom" />
-
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
+
 	<jsInclude>res/KpiView/KpiView.js</jsInclude>
 	<cssInclude>res/KpiView/KpiView.css</cssInclude>
 
@@ -1359,6 +1360,11 @@
 		id="valueText"
 		title="Value"
 		type="String"
+		group="Display" />
+	<property
+		id="valueFloat"
+		title="Value as Float"
+		type="float"
 		group="Display" />
 	<property
 		id="valueHAlign"

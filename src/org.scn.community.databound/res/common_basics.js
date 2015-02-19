@@ -79,30 +79,33 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 };
 
 /**
- * Formats the double value according to locale (using cvom lib)
+ * Formats the double value, using plain JS to avoid load of CVOM
  */
 org_scn_community_basics.getFormattedValue = function (value, locale, numberOfDecimal) {
-	sap.common.globalization.NumericFormatManager.setPVL(locale);
-	
-	var strFormat = "#"+sap.common.globalization.NumericFormatManager.getThousandSeparator()+"##0";
-	
-	if (numberOfDecimal > 0) {
-		strFormat += sap.common.globalization.NumericFormatManager.getDecimalSeparator();
-		for (var i = 0; i < numberOfDecimal; i++) {
-			strFormat += "0";
-		}
+	// locale got from SAPUI5 is browser dependent, not data dependent
+	if(locale == undefined) {
+		locale = sap.ui.getCore().getConfiguration().getLanguage();	
 	}
+
+	var decimals = "";for (var i = 0; i < numberOfDecimal; i++) {decimals += "0";}
+	var formatString = "#,###." + decimals;
+
+	var number = jQuery.formatNumber(value, {format:formatString, locale:locale});
+	number = number.toLocaleString(numberOfDecimal);
 	
-	var valueFormatted = sap.common.globalization.NumericFormatManager.format(value, strFormat);
-	return valueFormatted;
+	return number;
 };
 
-org_scn_community_basics.hideNoDataOverlay = function(componentId) {
+org_scn_community_basics.hideNoDataOverlay = function(componentId, includeFullSizeChild) {
 	var css = "";
 	css = css + "#" + componentId + "_loadingState {visibility: hidden !important;}";
 	css = css + "#" + componentId + "_loadingStateBox {visibility: hidden !important;}";
 	css = css + "#" + componentId + "_loadingState_message {visibility: hidden !important;}";
 
+	if(includeFullSizeChild) {
+		css = css + "#" + componentId + " > div[class=\"sapUiLayoutAbsPos\"] {width: 100% !important;height: 100% !important;}";
+	}
+	
 	var style = document.createElement('style');
 	style.type = 'text/css';
 	style.innerHTML = css;

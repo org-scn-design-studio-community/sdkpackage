@@ -55,6 +55,7 @@ org_scn_community_databound.initializeOptions = function () {
 	options.iNnumberOfDecimals = 2;
 	options.allKeys = false;
 	options.idPrefix = "";
+	options.iDisplayText = "Text";
 	
 	return options;
 }
@@ -425,11 +426,11 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 							for(var iA = 0; iA < dimensionData.list.length; iA++) {
 								if(dimensionData.list[iA].key == memberJson.name){
 									if(dimensionData.list[iA].value > 0) {
-										memberJson.hasValue = "+";
+										memberJson.valueSign = "+";
 									} else if(dimensionData.list[iA].value < 0) {
-										memberJson.hasValue = "-";
+										memberJson.valueSign = "-";
 									} else {
-										memberJson.hasValue = ".";	
+										memberJson.valueSign = "0";	
 									}
 									
 									memberJson.value = dimensionData.list[iA].value;
@@ -440,13 +441,13 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 							availableMembers = availableMembers + "|" + memberJson.name + "|";
 						} else {
 							// the member is not in the resultset, cannot be selected in drill down mode
-							memberJson.hasValue = "";
+							memberJson.valueSign = "0";
 							memberJson.value = 0;
 							memberJson.valueS = "0";
 						}
 					} else {
 						// there are no members in the resultset
-						memberJson.hasValue = "";
+						memberJson.valueSign = "0";
 						memberJson.value = undefined;
 						memberJson.valueS = "";
 					}
@@ -468,8 +469,8 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 				name: "BRANDS",
 				text: "Brands",
 				items: [
-				   {text : "BMW", name: "1", enabled: true, value: "30.45", hasData: "+"},
-			 	   {text : "AUDI", name: "2", enabled: true, value: "40.725", hasData: "+"}
+				   {text : "BMW", name: "1", enabled: true, value: 30.45, valueS: "30.45", valueSign: "+"},
+			 	   {text : "AUDI", name: "2", enabled: true, value: -40.72, valueS: "-40.72", valueSign: "-"}
 				]
 			}
  			,
@@ -477,16 +478,16 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 				name: "MODELS",
 				text: "Models",
 				items: [
-	 				{text : "320d", name: "1", enabled: true, value: "0", hasData: ""},
-	 				{text : "325i", name: "2", enabled: true, value: "6.4", hasData: "+"},
-	 				{text : "330d", name: "3", enabled: true, value: "0", hasData: ""},
-	 				{text : "330i", name: "4", enabled: true, value: "1.75", hasData: "+"},
-	 				{text : "335i", name: "5", enabled: true, value: "22", hasData: "+"},
-	 				{text : "A1", name: "6", enabled: true, value: "0", hasData: ""},
-	 				{text : "A3", name: "7", enabled: true, value: "18.32", hasData: "+"},
-	 				{text : "A4", name: "8", enabled: true, value: "7", hasData: "+"},
-	 				{text : "A5", name: "9", enabled: true, value: "2.45", hasData: "+"},
-	 				{text : "A6", name: "10", enabled: true, value: "6.1", hasData: "+"}
+	 				{text : "320d", name: "1", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+	 				{text : "325i", name: "2", enabled: true, value: -6.43, valueS: "-6.43", valueSign: "-"},
+	 				{text : "330d", name: "3", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+	 				{text : "330i", name: "4", enabled: true, value: 1.75, valueS: "1.75", valueSign: "+"},
+	 				{text : "335i", name: "5", enabled: true, value: -22.42, valueS: "-22.42", valueSign: "-"},
+	 				{text : "A1", name: "6", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+	 				{text : "A3", name: "7", enabled: true, value: 18.32, valueS: "18.32", valueSign: "+"},
+	 				{text : "A4", name: "8", enabled: true, value: -7.01, valueS: "-7.01", valueSign: "-"},
+	 				{text : "A5", name: "9", enabled: true, value: 2.45, valueS: "2.45", valueSign: "+"},
+	 				{text : "A6", name: "10", enabled: true, value: 6.12, valueS: "6.12", valueSign: "+"}
 	 			]
 			}
  			,
@@ -494,9 +495,9 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 				name: "TYPES",
 				text: "Types",
 				items: [
-					{text : "Limousine", name: "1", enabled: true, value: "0", hasData: ""},
-					{text : "Coupé", name: "2", enabled: true, value: "19.54", hasData: "+"},
-					{text : "Cabrio", name: "3", enabled: true, value: "2.42", hasData: "+"}
+					{text : "Limousine", name: "1", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+					{text : "Coupé", name: "2", enabled: true, value: -19.54, valueS: "-19.54", valueSign: "-"},
+					{text : "Cabrio", name: "3", enabled: true, value: 2.42, valueS: "2.42", valueSign: "+"}
 				]
  			}
  		};

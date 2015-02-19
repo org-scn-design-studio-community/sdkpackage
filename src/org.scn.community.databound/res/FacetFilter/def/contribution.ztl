@@ -223,10 +223,6 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 							APPLICATION.createWarningMessage("Data Source has an Active Hierarchy on Dimension: " + dimension.name);
 						}
 	
-						if(l.DS.getTotalsDisplay(dimension) != TotalsDisplay.HIDE) {
-							  APPLICATION.createWarningMessage("Data Source has an Totals on Dimension: " + dimension.name);				  	
-						}
-	
 						l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
 	
 						l.dimensionJson = {};

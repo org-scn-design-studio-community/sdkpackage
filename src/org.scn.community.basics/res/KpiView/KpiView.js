@@ -46,6 +46,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.KpiView", 
         	"valuePrefixText": {type: "string"},
         	"valuePrefixCssClass": {type: "string"},
         	"valueText": {type: "string"},
+        	"valueFloat": {type: "string"},
         	"valueHAlign": {type: "string"},
         	"footerHAlign": {type: "string"},
         	"valueCssClass": {type: "string"},
@@ -206,14 +207,22 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.KpiView", 
     	
     	// value processing
     	var lValue = "";
-    	if (this.getValueText() !== "") {
-			lValue = this.getValueText();
-			if (this._data && this._data.data.length > 0) {
-				lValue = this._data.data[0];
-				lValue = org_scn_community_basics.getFormattedValue (lValue, this._metadata.locale, this.getValueDecimalPlaces());
-			}
-		}
     	
+		if (this._data && this._data.data.length > 0) {
+			lValue = this._data.data[0];
+			lValue = org_scn_community_basics.getFormattedValue (lValue, this._metadata.locale, this.getValueDecimalPlaces());
+		}
+
+		if (lValue == "" && this.getValueText() !== "") {
+			lValue = this.getValueText();
+    	}
+    	
+		if (lValue == "") {
+    		lValue = this.getValueFloat();
+    		// value as float number given directly is formatted
+        	lValue = org_scn_community_basics.getFormattedValue (this.getValueFloat(), undefined, this.getValueDecimalPlaces());
+    	}
+
 		this._lTextValue.setText (lValue);
 
 		if(this._inittLayoutOnce != true) {

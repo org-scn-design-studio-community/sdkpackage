@@ -103,6 +103,9 @@
 	/**Cast to Rating Indicator component*/
 	org.scn.community.basics.RatingIndicator returnAsScnRatingIndicator (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Road Map component*/
+	org.scn.community.basics.RoadMap returnAsScnRoadMap (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Slider component*/
 	org.scn.community.basics.Slider returnAsScnSlider (Component inputComponent) {* return inputComponent; *}
 
@@ -135,6 +138,9 @@
 
 	/**Cast to Facet Filter component*/
 	org.scn.community.databound.FacetFilter returnAsScnFacetFilter (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Hexbin Chart component*/
+	org.scn.community.databound.HexBin returnAsScnHexBin (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}

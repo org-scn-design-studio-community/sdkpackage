@@ -8,10 +8,11 @@
 	databound="true"
 >
 
-	<stdInclude kind="cvom" />
-
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
+
 	<jsInclude>res/FacetFilter/FacetFilter.js</jsInclude>
 	<cssInclude>res/FacetFilter/FacetFilter.css</cssInclude>
 
@@ -35,10 +36,10 @@
 	
 	<property
 		id="data"
-		title="ResultSet"
-		type="ResultSet"
+		title="Data List"
+		type="ResultCellList"
 		group="DataBinding"
-		visible="false"
+		visible="true"
 	>
 	</property>
 

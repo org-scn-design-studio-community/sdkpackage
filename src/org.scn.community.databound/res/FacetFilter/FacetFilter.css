@@ -9,10 +9,12 @@ document.getElementsByTagName('head')[0].appendChild(style)
 #FACETFILTER_1_control_loadingState_message {visibility: hidden !important;}
 */
 
-div[class~=scn-pack-FacetFilter-MarkPositiveValue] ul>li[data-hasValue="+"] {background-color: #8ff78c!important;}
-div[class~=scn-pack-FacetFilter-MarkNegativeValue] ul>li[data-hasValue="-"] {background-color: #f89b8b!important;}
+div[class~=scn-pack-FacetFilter-MarkPositiveValue] ul>li[data-valueSign="+"] {background-color: #8ff78c!important;}
+div[class~=scn-pack-FacetFilter-MarkNegativeValue] ul>li[data-valueSign="-"] {background-color: #f89b8b!important;}
 
-div[class~=scn-pack-FacetFilter-MarkAnyValue] ul>li[data-hasValue="+"] {background-color: #ffff80!important;}
-div[class~=scn-pack-FacetFilter-MarkAnyValue] ul>li[data-hasValue="-"] {background-color: #ffff80!important;}
+div[class~=scn-pack-FacetFilter-MarkAnyValue] ul>li[data-valueSign="+"] {background-color: #b9efff!important;}
+div[class~=scn-pack-FacetFilter-MarkAnyValue] ul>li[data-valueSign="-"] {background-color: #b9efff!important;}
+
+div[class~=scn-pack-FacetFilter-MarkAnyEmptyValue] ul>li[data-valueSign="-"] {background-color: #ffffb9!important;}
 
 div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% !important;height: 100% !important;}

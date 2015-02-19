@@ -537,6 +537,12 @@ class org.scn.community.utils.ComponentManager extends Component {
 	/**Cast to Color Picker component*/
 	org.scn.community.basics.ColorPicker returnAsScnColorPicker (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Date Range Scroller component*/
+	org.scn.community.basics.DateRangeScroller returnAsScnDateRangeScroller (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Date Range Slider component*/
+	org.scn.community.basics.DateRangeSlider returnAsScnDateRangeSlider (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Drag Drop Area component*/
 	org.scn.community.basics.DragDropArea returnAsScnDragDropArea (Component inputComponent) {* return inputComponent; *}
 
@@ -600,6 +606,9 @@ class org.scn.community.utils.ComponentManager extends Component {
 	/**Cast to Paginator component*/
 	org.scn.community.basics.Paginator returnAsScnPaginator (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Password Field component*/
+	org.scn.community.basics.PasswordField returnAsScnPasswordField (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Progress Indicator component*/
 	org.scn.community.basics.ProgressIndicator returnAsScnProgressIndicator (Component inputComponent) {* return inputComponent; *}
 
@@ -611,6 +620,9 @@ class org.scn.community.utils.ComponentManager extends Component {
 
 	/**Cast to Rating Indicator component*/
 	org.scn.community.basics.RatingIndicator returnAsScnRatingIndicator (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Road Map component*/
+	org.scn.community.basics.RoadMap returnAsScnRoadMap (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Slider component*/
 	org.scn.community.basics.Slider returnAsScnSlider (Component inputComponent) {* return inputComponent; *}
@@ -624,8 +636,14 @@ class org.scn.community.utils.ComponentManager extends Component {
 	/**Cast to Tree component*/
 	org.scn.community.basics.Tree returnAsScnTree (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Tri State CheckBox component*/
+	org.scn.community.basics.TriStateCheckBox returnAsScnTriStateCheckBox (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Validated Input Field component*/
 	org.scn.community.basics.ValiInput returnAsScnValiInput (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Value Help Field component*/
+	org.scn.community.basics.ValueHelpField returnAsScnValueHelpField (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to D3 Hierarchy component*/
 	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}
@@ -636,11 +654,23 @@ class org.scn.community.utils.ComponentManager extends Component {
 	/**Cast to Data Drop Down component*/
 	org.scn.community.databound.DropDown returnAsScnDropDown (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Facet Filter component*/
+	org.scn.community.databound.FacetFilter returnAsScnFacetFilter (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Hexbin Chart component*/
+	org.scn.community.databound.HexBin returnAsScnHexBin (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Marimekko Chart component*/
+	org.scn.community.databound.MarimekkoChart returnAsScnMarimekkoChart (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Multi Level DropDown Menu component*/
 	org.scn.community.databound.MultiLevelDropDown returnAsScnMultiLevelDropDown (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Data Projector component*/
+	org.scn.community.databound.Projector returnAsScnProjector (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Range Slider component*/
 	org.scn.community.databound.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
@@ -663,8 +693,17 @@ class org.scn.community.utils.ComponentManager extends Component {
 	/**Cast to Dynamic Csv Data Source component*/
 	org.scn.community.datasource.DynCsvDataSource returnAsScnDynCsvDataSource (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Choropleth Map component*/
+	org.scn.community.geovis.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Maps component*/
 	org.scn.community.geovis.Maps returnAsScnMaps (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to (PROTOTYPE!) Application Header (with Event) component*/
+	org.scn.community.prototypes.ApplicationHeaderE returnAsScnApplicationHeaderE (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to (PROTOTYPE!) Application Header (OnBeforeRender) component*/
+	org.scn.community.prototypes.ApplicationHeaderO returnAsScnApplicationHeaderO (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Progress Bar Set component*/
 	org.scn.community.prototypes.ProgressSet returnAsScnProgressSet (Component inputComponent) {* return inputComponent; *}
@@ -687,8 +726,14 @@ class org.scn.community.utils.ComponentManager extends Component {
 	/**Cast to Custom Css Collector component*/
 	org.scn.community.utils.CustomCssCollector returnAsScnCustomCssCollector (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Debugger Code Inspector component*/
+	org.scn.community.utils.Debugger returnAsScnDebugger (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Flow Layouter component*/
 	org.scn.community.utils.FlowLayouter returnAsScnFlowLayouter (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Math Utility component*/
+	org.scn.community.utils.Math returnAsScnMath (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Open Window by Post component*/
 	org.scn.community.utils.OpenWindowPost returnAsScnOpenWindowPost (Component inputComponent) {* return inputComponent; *}

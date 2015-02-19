@@ -71,7 +71,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
         	  "DDisplayText": {type: "string"},
         	  "DSortingType": {type: "string"},
         	  "DSortingDirection": {type: "string"},
-        	  "DMarkWithValue": {type: "boolean"},
         	  "DClearOthers": {type: "boolean"},
               "DMaxMembers": {type: "int"},
               "DContentMode": {type: "string"},
@@ -123,10 +122,9 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 			options.allKeys = true;
 			options.idPrefix = this.getId();
 			options.iDuplicates = "Sum";
+			options.iDisplayText = "Text";
 			
-			options.iDisplayText = this.getDDisplayText();
-			
-			that._mixedData = org_scn_community_databound.getDataModelForDimensions(lData, lData, lDimensions, options);	
+			that._mixedData = org_scn_community_databound.getDataModelForDimensions(lData, lMetadata, lDimensions, options);	
 		
 			if(that._isInitialized == undefined) {
 				for (dimensionKey in that._mixedData) {
@@ -135,15 +133,23 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 					var name = lDimension.name;
 					var text = lDimension.text;
 
+					var additionalText = "";
+					var displaySecondaryValues = false;
+					if(that.getDDisplayText() == "Text (Value)") {
+						additionalText = "{valueS}";
+						displaySecondaryValues = true;
+					}
+
 					var oItemTemplate = new org.scn.community.databound.ExtraListItem(
-							{text:"{display}", key:"{name}", enabled:"{enabled}",
-								customData: new sap.ui.core.CustomData({key:"hasValue", value:"{hasValue}", writeToDom:true}), 
-								});
+						{text:"{display}", additionalText: additionalText, key:"{name}", enabled:"{enabled}",
+							customData: new sap.ui.core.CustomData({key:"valueSign", value:"{valueSign}", writeToDom:true}), 
+						});
 					
 					var lDimList = new sap.ui.ux3.FacetFilterList({
 						title: text,
 						items : {path : "/" + dimensionKey + "/items", template : oItemTemplate},
 						showCounter: true,
+						displaySecondaryValues: displaySecondaryValues,
 					});
 					
 					lDimList.attachSelect(function(oEvent) {

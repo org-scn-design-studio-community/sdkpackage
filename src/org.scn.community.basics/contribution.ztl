@@ -1510,6 +1510,16 @@ class org.scn.community.basics.KpiView extends Component {
 		return this.valueText;
 	*}
 
+	/* Sets the value number. */
+	void setValueFloat(/* Value number */ float number) {*
+		this.valueFloat = number;
+	*}	
+
+	/* Returns the value number. */
+	float getValueFloat() {*
+		return this.valueFloat;
+	*}
+	
 	/* Sets the value CSS class. */
 	void setValueCssClass(/* Value CSS class */ String cssClass) {*
 		this.valueCssClass = cssClass;
