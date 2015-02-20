@@ -585,24 +585,6 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 
 class org.scn.community.databound.HexBin extends org.scn.community.shared.DataComponent {
 	/**
-	Get selected row
-	*/
-	String getSelectedRow() {*
-		return this.selectedRow;
-	*}
-	/**
-	Get selected column
-	*/
-	String getSelectedColumn() {*
-		return this.selectedColumn;
-	*}
-	/**
-	Get selected value
-	*/
-	float getSelectedValue() {*
-		return this.selectedValue;
-	*}
-	/**
 	Set Legend Visibility
 	*/
 	void setLegendVisible(/*Visible*/boolean visible) {*
@@ -613,6 +595,66 @@ class org.scn.community.databound.HexBin extends org.scn.community.shared.DataCo
 	*/
 	void setColorPalette(/*Color Palette*/String palette) {*
 		this.colorPalette = palette;
+	*}
+	/**
+	Set Hexagon Radius
+	*/
+	void setRadius(/*Radius (px)*/int radius) {*
+		this.radius = radius;
+	*}
+	/**
+	Get Hexagon Radius
+	*/
+	int getRadius() {*
+		return this.radius;
+	*}
+	/**
+	Set Max Threshold
+	*/
+	void setThreshold(/*Threshold*/int threshold) {*
+		this.threshold = threshold;
+	*}
+	/**
+	Get Max Threshold
+	*/
+	int getThreshold() {*
+		return this.threshold;
+	*}
+	/**
+	Set Min Threshold (Tolerance)
+	*/
+	void setTolerance(/*Tolerance*/int tolerance) {*
+		this.tolerance = tolerance;
+	*}
+	/**
+	Get Min Threshold (Tolerance)
+	*/
+	int getTolerance() {*
+		return this.tolerance;
+	*}
+	/**
+	Set X-Axis Measure by text
+	*/
+	void setMeasureX(/*Measure*/String measure) {*
+		this.measureX = measure;
+	*}
+	/**
+	Get X-Axis Measure text
+	*/
+	String getMeasureX() {*
+		return this.measureX;
+	*}
+	/**
+	Set Y-Axis Measure by text
+	*/
+	void setMeasureY(/*Measure*/String measure) {*
+		this.measureY = measure;
+	*}
+	/**
+	Get Y-Axis Measure text
+	*/
+	String getMeasureY() {*
+		return this.measureY;
 	*}
 }
 

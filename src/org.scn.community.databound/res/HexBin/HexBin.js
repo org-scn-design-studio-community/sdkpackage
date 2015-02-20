@@ -22,16 +22,17 @@
 	 var sdkReqs = require.config({
 		 context : "sdkhexbin",
 		 paths: {
-			d3 :     pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.min",
-			hexbin : pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3-hexbin" 
+			d3 :     pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.min"/*
+			hexbin : pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3-hexbin"
+			*/
 		 },
 		 shim : {
 			d3 : {
 				// exports : "d3"
-			},
+			}/*,
 			hexbin : {
 				deps : ["d3"]
-			}
+			}*/
 		 }
 	 });
 	 sdkReqs(["require","d3"], function(require,d3) {
@@ -149,7 +150,6 @@
 		sap.designstudio.sdk.Component.subclass("org.scn.community.databound.HexBin", function() {
 			var that = this;
 			var _data = null;
-			var _stringData = "BLANK";
 			var _selectedIndex = -1;
 			var _selectedRow = "";
 			var _selectedKey = "";
@@ -161,6 +161,7 @@
 				measureX : { value : "" },
 				measureY : { value : "" },
 				radius : { value : 20 },
+				tolerance : { value : 0 },
 				threshold : { value : 20 },
 				legendScale : { value : 1 },
 				legendX : { value : 0 },
@@ -202,15 +203,6 @@
 					return _data;
 				} else {
 					_data = value;
-					_stringData = JSON.stringify(value);
-					return this;
-				}
-			};
-			this.stringData = function(value) {
-				if (value === undefined) {
-					return _stringData;
-				} else {
-					// Don't do anything with setter ever.
 					return this;
 				}
 			};
@@ -419,7 +411,6 @@
 					};
 					vals = [[]];
 				}
-				this.firePropertiesChanged(["stringData"]);
 				var mx = this.measureX();
 				var my = this.measureY();
 				var mxIndex = 0;
@@ -465,7 +456,7 @@
 	    			.interpolate(d3.interpolateLab);
 				*/
 				this.colorRange = d3.scale.quantize()
-    			.domain([0,this.threshold()])
+    			.domain([this.tolerance(),this.threshold()])
 				//.domain(this.points.sort(function(a, b) { return a - b; }))
     			.range(cp);
     			//.interpolate(d3.interpolateLab);

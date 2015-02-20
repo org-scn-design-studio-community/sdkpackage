@@ -646,7 +646,7 @@
 	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/HexBin/HexBin.js</jsInclude>
 	<cssInclude>res/HexBin/HexBin.css</cssInclude>
-	<property id="stringData" type="String" title = "Data Stringified" visible="false"/>
+	<!-- <property id="stringData" type="String" title = "Data Stringified" visible="false"/>-->
 	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
 	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
@@ -661,6 +661,7 @@
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="radius" type="int" title = "Hex Radius" visible="true"/>
+	<property id="tolerance" type="int" title = "Tolerance" visible="true"/>
 	<property id="threshold" type="int" title = "Threshold" visible="true"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
 	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
@@ -683,6 +684,7 @@
 		<defaultValue property="stringData">BLANK</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="radius">20</defaultValue>
+		<defaultValue property="tolerance">0</defaultValue>
 		<defaultValue property="threshold">20</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
