@@ -22,7 +22,7 @@
 /**
  * Class for ApplicationHeader
  */
-class org.scn.community.prototypes.ApplicationHeaderE extends Component {
+class org.scn.community.prototypes.ApplicationHeaderE extends org.scn.community.shared.Component {
 	
 	/** Sets the user name that is displayed beside the welcome text. */
 	void setUserName(
@@ -52,12 +52,60 @@ class org.scn.community.prototypes.ApplicationHeaderE extends Component {
 		// APPLICATION.createInfoMessage("Name: " + APPLICATION.getInfo().name);
 	    this.appName = "Event: " + APPLICATION.getInfo().name;
 	*}
+	
+	/**
+	 * Just a show case, but this will never work - 
+	 * ValueTextList is just a representation for Java object which needs implementation of some interface
+	 * and will be passed directly through ZTL - cannot be coded via JSON.
+	 */
+	void setValues(ValueTextList list) {*
+		var that = this;
+	
+		var l = {};
+		l.value = list;
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		var string = list.toString();
+		l.string = string;
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+	*}
+	
+	org.scn.community.shared.ValueTextArray getValueTextList() {*
+		var myArray = [];
+		
+		myArray.push({"value": "A", "text": "A-T"});
+		myArray.push({"value": "B", "text": "C-T"});
+		myArray.push({"value": "C", "text": "B-T"});
+	
+		return myArray;  
+	*}
+	
+	void fillIntoSelectionComponent(SelectionComponent selectionComponent, org.scn.community.shared.ValueTextArray list) {*
+		selectionComponent.removeAllItems();
+		
+		var that = this;
+		
+		var l = {};
+		l.value = list;
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		for(var i=0;i<list.length;i++){
+			if(this.isDebug()) {	l[list[i].value] = list[i].value + ": " + list[i].text; }
+			selectionComponent.addItem(list[i].value, list[i].text);
+		}
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+	*}
 }
+
 
 /**
  * Class for ApplicationHeader
  */
-class org.scn.community.prototypes.ApplicationHeaderO extends Component {
+class org.scn.community.prototypes.ApplicationHeaderO extends org.scn.community.shared.Component {
 	
 	/** Sets the user name that is displayed beside the welcome text. */
 	void setUserName(
@@ -100,7 +148,7 @@ class org.scn.community.prototypes.BarProperty {
 /**
  * Class for ProgressBar
  */
-class org.scn.community.prototypes.ProgressSet extends Component {
+class org.scn.community.prototypes.ProgressSet extends org.scn.community.shared.Component {
 	/**
 	Sets bar thickness (-1 = auto)
 	*/
@@ -218,7 +266,7 @@ class org.scn.community.prototypes.ProgressSet extends Component {
 /**
  * Class for RapidPrototype 
  */
-class org.scn.community.prototypes.RapidPrototype extends Component {
+class org.scn.community.prototypes.RapidPrototype extends org.scn.community.shared.Component {
 	/* Returns the current value */
 	String getHTML() {*
 		return this.HTML;

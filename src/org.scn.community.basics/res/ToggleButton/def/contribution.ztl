@@ -2,7 +2,7 @@
 /**
  * Class for ToggleButton
  */
-class org.scn.community.basics.ToggleButton extends Component {
+class org.scn.community.basics.ToggleButton extends org.scn.community.shared.Component {
 	/** returns the pressed state 
     <example>
 	You want to get the pressed state to decide what to do

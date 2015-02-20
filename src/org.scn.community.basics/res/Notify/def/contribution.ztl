@@ -2,7 +2,7 @@
 /**
  * Class for Notify
  */
-class org.scn.community.basics.Notify extends Component {
+class org.scn.community.basics.Notify extends org.scn.community.shared.Component {
 	void alert( /* Text to be shown */ String text){*
 		this["msgtype"] = "alert";
 		this["msgtext"] = text;

@@ -1,4 +1,5 @@
-class org.scn.community.databound.Projector extends Component {
+
+class org.scn.community.databound.Projector extends org.scn.community.shared.DataComponent {
 	/**
 	 * Sets data in serialized string form.  Meant to be used in conjunction with
 	 * SCN Community Projection data component or another BYO Data component.

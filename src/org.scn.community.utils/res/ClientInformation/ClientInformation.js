@@ -25,6 +25,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
               "windowWidth": {type: "int"},
               "ownHeight": {type: "int"},
               "ownWidth": {type: "int"},
+              "htmlVisible": {type: "boolean"},
               "readLocation": {type: "boolean"},
               "geoLocation": {type: "string"},
               "information": {type: "string"},
@@ -60,6 +61,25 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
 			var containerWidth = jqThis.outerWidth(true);
 			var containerHeight = jqThis.outerHeight(true);
 			
+			var lVisibility = this.getHtmlVisible();
+			if(containerWidth == undefined && containerHeight == undefined) {
+				// probably not visible
+				
+				if(lVisibility != false) {
+					that.setHtmlVisible(false);
+					that.fireDesignStudioPropertiesChanged(["htmlVisible"]);
+					that.fireDesignStudioEvent("onSizeChanged");
+				}
+				
+				return;
+			}
+			
+			var lVisibilityChanged = false;
+			if(lVisibility != true) {
+				that.setHtmlVisible(true);
+				lVisibilityChanged = true;
+			}
+			
 			var windowWidth = docJqThis.outerWidth(true);
 			var windowHeight = docJqThis.outerHeight(true);
 
@@ -78,7 +98,12 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
 				that.setWindowWidth(that._windowWidth);
 				that.setWindowHeight(that._windowHeight);
 				
-				that.fireDesignStudioPropertiesChanged(["ownHeight", "ownWidth", "windowHeight", "windowWidth"]);
+				var changed = ["ownHeight", "ownWidth", "windowHeight", "windowWidth"];
+				if(lVisibilityChanged) {
+					changed.push("htmlVisible");
+				}
+				
+				that.fireDesignStudioPropertiesChanged(changed);
 				that.fireDesignStudioEvent("onSizeChanged");
 			}
 		};

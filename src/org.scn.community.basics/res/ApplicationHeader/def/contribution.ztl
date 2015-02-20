@@ -2,7 +2,7 @@
 /**
  * Class for ApplicationHeader
  */
-class org.scn.community.basics.ApplicationHeader extends Component {
+class org.scn.community.basics.ApplicationHeader extends org.scn.community.shared.Component {
 	
 	/** Sets the user name that is displayed beside the welcome text. */
 	void setUserName(

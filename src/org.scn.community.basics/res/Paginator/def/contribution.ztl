@@ -2,7 +2,7 @@
 /**
  * Class for Paginator
  */
-class org.scn.community.basics.Paginator extends Component {
+class org.scn.community.basics.Paginator extends org.scn.community.shared.Component {
 	
 	/** Sets the current page number */
 	void setCurrentPage(

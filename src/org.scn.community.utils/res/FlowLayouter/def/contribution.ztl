@@ -1,7 +1,7 @@
 /**
  * class for FlowLayouter
  */
-class org.scn.community.utils.FlowLayouter extends Component {  
+class org.scn.community.utils.FlowLayouter extends org.scn.community.shared.Component {  
 	
 	/** Register the parent component in case you want to have a resize for the complete layout 
 	 * This component will be resized to the content + split space on all sides.

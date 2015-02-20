@@ -1,5 +1,5 @@
 
-class org.scn.community.databound.MultiLevelDropDown extends Component {
+class org.scn.community.databound.MultiLevelDropDown extends org.scn.community.shared.DataComponent {
 	Boolean getAddSingleRootNode() {*
 		return this.addSingleRootNode;
 	*}

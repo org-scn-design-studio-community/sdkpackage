@@ -2,7 +2,7 @@
 /**
  * Class for RatingIndicator
  */
-class org.scn.community.basics.RatingIndicator extends Component {
+class org.scn.community.basics.RatingIndicator extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(

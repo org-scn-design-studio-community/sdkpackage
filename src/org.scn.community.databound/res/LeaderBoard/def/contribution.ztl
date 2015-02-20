@@ -2,7 +2,7 @@
 /**
  * Class for DataLeaderBoard
  */
-class org.scn.community.databound.LeaderBoard extends Component {
+class org.scn.community.databound.LeaderBoard extends org.scn.community.shared.DataComponent {
 
 	/** returns the selected key */
 	String getSelectedKey () {*

@@ -2,7 +2,7 @@
 /**
  * Class for FallbackPicture
  */
-class org.scn.community.basics.FallbackPicture extends Component {
+class org.scn.community.basics.FallbackPicture extends org.scn.community.shared.Component {
 	
 	/**
 	 * Setter for "normal case" picture

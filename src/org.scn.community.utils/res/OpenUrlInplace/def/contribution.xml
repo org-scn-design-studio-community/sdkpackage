@@ -1,0 +1,46 @@
+
+<component
+	id="OpenUrlInplace"
+	title="Open Url Inplace"
+	tooltip="Open the URL in the same frame as Design Studio"
+	icon="res/OpenUrlInplace/OpenUrlInplace.png"
+	handlerType="sapui5"
+	group="ScnCommunityUtils"
+>
+
+	<jsInclude>res/OpenUrlInplace/OpenUrlInplace.js</jsInclude>
+
+	<property
+		id="url"
+		type="String"
+		title="Url To Open by Post"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="trigger"
+		type="String"
+		title="Just as Simple Triger"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="parameters"
+		type="String"
+		title="Technical proprty for list of parameters (name/value)"
+		group="Display"
+		visible="false" />
+
+	<initialization>
+		<defaultValue property="WIDTH">50</defaultValue>
+		<defaultValue property="HEIGHT">50</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="parameters"></defaultValue>
+		<defaultValue property="reloadCurrentFrame">false</defaultValue>
+	</initialization>
+
+</component>

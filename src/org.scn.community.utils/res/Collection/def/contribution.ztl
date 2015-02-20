@@ -7,7 +7,7 @@
  * 
  * Authors: Michael Howles, Scn Community Contributors
  */
-class org.scn.community.utils.Collection extends Component {  
+class org.scn.community.utils.Collection extends org.scn.community.shared.Component {  
 	
 	/**
 	Returns the collection content as loopable array.
@@ -654,5 +654,31 @@ class org.scn.community.utils.Collection extends Component {
 		if(s!="") a = JSON.parse(s);  
 			
 		return a.length;  
+	*}
+	
+	/**
+	 * Fills the content of this array into given selection component
+	 <example>
+	 You want to fill the dropdown with the content
+	 <code>
+	 COLLECTION.fillIntoSelectionComponent(DROPDOWN, 30);
+	 </code>
+	 Now the dropdown is filled in with given values
+	 </example>
+	 */
+	void fillIntoSelectionComponent(SelectionComponent selectionComponent, /**max members*/ optional int maxMembers) {*
+		selectionComponent.removeAllItems();
+		
+		var that = this;
+		
+		var l = {};
+		l.list = this.getAsKeyLabelValueArray(maxMembers);
+		
+		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
+		for(var i=0;i<l.list.length;i++){
+			selectionComponent.addItem(l.list[i].key, l.list[i].label);
+		}
+		
+		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
 	*}
 }

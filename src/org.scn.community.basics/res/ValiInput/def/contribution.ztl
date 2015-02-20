@@ -2,7 +2,7 @@
 /**
  * Class for ValiInput
  */
-class org.scn.community.basics.ValiInput extends Component {
+class org.scn.community.basics.ValiInput extends org.scn.community.shared.Component {
 	
 	/** returns value */
 	String getValue () {*

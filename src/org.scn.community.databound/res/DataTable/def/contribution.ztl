@@ -1,4 +1,5 @@
-class org.scn.community.databound.Table extends Component {
+
+class org.scn.community.databound.Table extends org.scn.community.shared.DataComponent {
 
 	/* Sets the data displayed in the first column. */
 	void setColumn1Selection(/* A selection specifying a single column (or row) of keyfigures from a data source */ ResultCellListSelection selection) {*

@@ -1,4 +1,4 @@
-class org.scn.community.basics.FioriToolbar extends Component {
+class org.scn.community.basics.FioriToolbar extends org.scn.community.shared.Component {
 	/** Add a header button
  	<example>
 	Add or update a header button by key 'MENU'.

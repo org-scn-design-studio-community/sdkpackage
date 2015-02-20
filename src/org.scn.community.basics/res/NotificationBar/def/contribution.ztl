@@ -2,7 +2,7 @@
 /**
  * Class for NotificationBar
  */
-class org.scn.community.basics.NotificationBar extends Component {
+class org.scn.community.basics.NotificationBar extends org.scn.community.shared.Component {
 
 	/** 
 	 * Add Category

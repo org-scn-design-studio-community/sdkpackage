@@ -2,7 +2,7 @@
 /**
  * Class for CheckBox Group
  */
-class org.scn.community.basics.CheckBoxGroup extends Component {
+class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		

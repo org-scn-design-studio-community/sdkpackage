@@ -18,7 +18,8 @@
  * limitations under the License. 
  */
 
-class org.scn.community.databound.Table extends Component {
+
+class org.scn.community.databound.Table extends org.scn.community.shared.DataComponent {
 
 	/* Sets the data displayed in the first column. */
 	void setColumn1Selection(/* A selection specifying a single column (or row) of keyfigures from a data source */ ResultCellListSelection selection) {*
@@ -35,6 +36,7 @@ class org.scn.community.databound.Table extends Component {
 		this.column3 = this.stringifySelection(selection);
 	*}
 }
+
 /**
  * Class for DataDropDown
  */
@@ -126,10 +128,11 @@ class org.scn.community.databound.DropDown extends org.scn.community.shared.Data
 		this.DDoRefresh = true;	
 	*}
 }
+
 /**
  * Class for D3Hier
  */
-class org.scn.community.databound.jpd3hier extends Component {
+class org.scn.community.databound.jpd3hier extends org.scn.community.shared.DataComponent {
 
 	/* Returns the Key of the currently selected Tree Element. */
 	String getSelectedNodeKey() {*
@@ -213,11 +216,11 @@ class org.scn.community.databound.jpd3hier extends Component {
 	*}
 	
 }
+
 /**
  * Class for DataDropDown
  */
 class org.scn.community.databound.FacetFilter extends org.scn.community.shared.DataComponent {
-
 	
 	/**
 	 * Returns the value of max members property
@@ -263,7 +266,7 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		var l = {};
 
 		try{
-		if(DEBUG) {	DEBUG.openZtl(that, l)};
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
 		/* entering general block*/
 
 		l.selection = this.DSelection;
@@ -277,14 +280,14 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 
 		l.DS = this.getDataSource();
 		
-		if(DEBUG) {	DEBUG.inspectZtl(that, l)};
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
 		
 		if(l.DS) {
 			if(l.selectionJson.clearOthers && that.getClearOthers()) {
 				this.private_readDimensions(l.DS);
 				l.dimensions = this._tempDimensions;
 				
-				if(DEBUG) {	DEBUG.inspectZtl(this, l)};
+				if(this.isDebug()) {	DEBUG.inspectZtl(this, l)};
 				
 				l.dimensions.forEach(function(dimension, index) {
 					if(!dimension.isMeasuresDimension) {
@@ -305,15 +308,15 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 					l.keysAsArray.push(l.key);
 				}
 				
-				if(DEBUG) {	DEBUG.inspectZtl(that, l)};
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
 				
 				l.DS.setFilter(l.dimensionName, l.keysAsArray);
 			}
 		}
 		
-		if(DEBUG) {	DEBUG.exitZtl(that, l)};
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
 		} catch (e) {
-			if(DEBUG) {	DEBUG.processZtlException(that, l, e)};throw e;
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
 		}
 	*}
 
@@ -326,7 +329,7 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		var l = {};
 
 		try{
-		if(DEBUG) {	DEBUG.openZtl(that, l)};
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
 		/* entering general block*/
 
 		if(this.DContentMode == "Only from Result Set") {
@@ -342,7 +345,7 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 				l.dimensions.push(dimension);
 			});
 			
-			if(DEBUG) {	DEBUG.inspectZtl(that, l)};
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
 		} else if(this.DContentMode == "Custom Dimension Set") {
 			l.dimensionsAll = dataSource.getDimensions();
 			l.customDimensions = JSON.parse(that.DCustomDimensions);
@@ -365,9 +368,9 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		}
 		
 		/* exiting general block*/
-		if(DEBUG) {	DEBUG.exitZtl(that, l)};
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
 		} catch (e) {
-			if(DEBUG) {	DEBUG.processZtlException(that, l, e)};throw e;
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
 		}
 		/* exiting general block*/
 		
@@ -408,7 +411,7 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		var l = {};
 
 		try{
-		if(DEBUG) {	DEBUG.openZtl(that, l)};
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
 		/* entering general block*/
 
 		l.elementsJson = [];
@@ -423,7 +426,7 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 			this.private_readDimensions(memberAccessSource);
 			l.dimensions = this._tempDimensions;
 
-			if(DEBUG) {	DEBUG.inspectZtl(that, l)};
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
 			
 			l.dimensionKeys = "";
 			l.dimensions.forEach(function(dimension, index) {
@@ -457,14 +460,14 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 				this.DElements = JSON.stringify(l.elementsJson);
 				this.oldDimensionKeys = l.dimensionKeys;
 				
-				if(DEBUG) {	DEBUG.inspectZtl(that, l)};
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
 			}
 		}
 		
 		/* exiting general block*/
-		if(DEBUG) {	DEBUG.exitZtl(that, l)};
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
 		} catch (e) {
-			if(DEBUG) {	DEBUG.processZtlException(that, l, e)};throw e;
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
 		}
 		/* exiting general block*/
 	*}
@@ -500,7 +503,7 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		var l = {};
 
 		try{
-		if(DEBUG) {	DEBUG.openZtl(that, l)};
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
 		/* entering general block*/
 	
 		l.elementsJson = {};
@@ -515,7 +518,7 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 			this.private_readDimensions(memberAccessSource);
 			l.dimensions = this._tempDimensions;
 
-			if(DEBUG) {	DEBUG.inspectZtl(that, l)};
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
 			
 			l.dimensions.forEach(function(dimension, indexD) {
 				l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
@@ -530,13 +533,13 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 
 			this.DSelection = JSON.stringify(l.elementsJson);
 			
-			if(DEBUG) {	DEBUG.inspectZtl(that, l)};
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
 		}
 		
 		/* exiting general block*/
-		if(DEBUG) {	DEBUG.exitZtl(that, l)};
+		if(this.isDebug("DEBUG_2")) { DEBUG_2.exitZtl(that, l)};
 		} catch (e) {
-			if(DEBUG) {	DEBUG.processZtlException(that, l, e)};throw e;
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
 		}
 		/* exiting general block*/
 	*}
@@ -578,7 +581,9 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		}
 		this.DSortingType = "Default";
 	*}
-}class org.scn.community.databound.HexBin extends Component {
+}
+
+class org.scn.community.databound.HexBin extends org.scn.community.shared.DataComponent {
 	/**
 	Get selected row
 	*/
@@ -610,10 +615,11 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		this.colorPalette = palette;
 	*}
 }
+
 /**
  * Class for DataLeaderBoard
  */
-class org.scn.community.databound.LeaderBoard extends Component {
+class org.scn.community.databound.LeaderBoard extends org.scn.community.shared.DataComponent {
 
 	/** returns the selected key */
 	String getSelectedKey () {*
@@ -630,7 +636,8 @@ class org.scn.community.databound.LeaderBoard extends Component {
 		return this.pressedKey;	
 	*}
 }
-class org.scn.community.databound.MarimekkoChart extends Component {
+
+class org.scn.community.databound.MarimekkoChart extends org.scn.community.shared.DataComponent {
 	/**
 	Get selected row
 	*/
@@ -662,7 +669,8 @@ class org.scn.community.databound.MarimekkoChart extends Component {
 		this.colorPalette = palette;
 	*}
 }
-class org.scn.community.databound.MultiLevelDropDown extends Component {
+
+class org.scn.community.databound.MultiLevelDropDown extends org.scn.community.shared.DataComponent {
 	Boolean getAddSingleRootNode() {*
 		return this.addSingleRootNode;
 	*}
@@ -704,7 +712,8 @@ class org.scn.community.databound.MultiLevelDropDown extends Component {
 	*}
 
 }
-class org.scn.community.databound.Projector extends Component {
+
+class org.scn.community.databound.Projector extends org.scn.community.shared.DataComponent {
 	/**
 	 * Sets data in serialized string form.  Meant to be used in conjunction with
 	 * SCN Community Projection data component or another BYO Data component.
@@ -758,7 +767,7 @@ class org.scn.community.databound.Projector extends Component {
 /**
  * Class for DataRangeSlider
  */
-class org.scn.community.databound.RangeSlider extends Component {
+class org.scn.community.databound.RangeSlider extends org.scn.community.shared.DataComponent {
 
 	/** returns the selected key 
     <example>
@@ -844,7 +853,7 @@ class org.scn.community.databound.RangeSlider extends Component {
 /**
  * Class for DataSlider
  */
-class org.scn.community.databound.Slider extends Component {
+class org.scn.community.databound.Slider extends org.scn.community.shared.DataComponent {
 
 	/** returns the selected key */
 	String getSelectedKey () {*
@@ -871,7 +880,9 @@ class org.scn.community.databound.Slider extends Component {
 		this.doRefresh = true;	
 	*}
 }
-class org.scn.community.databound.Table2D extends Component {
+
+class org.scn.community.databound.Table2D extends org.scn.community.shared.DataComponent {
+	
 	/** returns the data */
 	String getStringData () {*
 		return this.stringData;	
@@ -881,7 +892,7 @@ class org.scn.community.databound.Table2D extends Component {
 /**
  * Class for DataTopFlop
  */
-class org.scn.community.databound.TopFlop extends Component {
+class org.scn.community.databound.TopFlop extends org.scn.community.shared.DataComponent {
 
 	/** returns the selected key */
 	String getSelectedKey () {*
@@ -902,7 +913,7 @@ class org.scn.community.databound.TopFlop extends Component {
 /**
  * Class for DataTopFlopChart
  */
-class org.scn.community.databound.TopFlopChart extends Component {
+class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.DataComponent {
 
 	/** returns the selected key */
 	String getSelectedKey () {*

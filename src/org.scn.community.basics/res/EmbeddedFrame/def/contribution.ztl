@@ -2,7 +2,7 @@
 /**
  * Class for EmbeddedFrame
  */
-class org.scn.community.basics.EmbeddedFrame extends Component {
+class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Component {
 	
 	/** Sets the content url which will be embedded */
 	void setURL(

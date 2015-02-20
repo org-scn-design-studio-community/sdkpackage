@@ -53,6 +53,13 @@
 		visible="false" />
 		
 	<property
+		id="htmlVisible"
+		type="boolean"
+		title="Is The Component Visible"
+		group="Display"
+		visible="false" />
+
+	<property
 		id="information"
 		type="String"
 		title="Technical Component for Client Information"

@@ -2,7 +2,7 @@
 /**
  * Component Math
  */
-class org.scn.community.utils.Math extends Component {  
+class org.scn.community.utils.Math extends org.scn.community.shared.Component {  
 
 	/**
 	 * Returns the absolute value of x

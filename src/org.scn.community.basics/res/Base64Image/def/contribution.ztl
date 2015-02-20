@@ -1,4 +1,4 @@
-class org.scn.community.basics.Base64Image extends Component {
+class org.scn.community.basics.Base64Image extends org.scn.community.shared.Component {
 	/**
 	 * Sets Source URL Property
 	 */	

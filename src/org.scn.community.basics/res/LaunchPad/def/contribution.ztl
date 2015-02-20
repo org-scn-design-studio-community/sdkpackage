@@ -6,7 +6,7 @@ class org.scn.community.basics.TileProperty {
   String numberUnit;
   String valueState;
 }
-class org.scn.community.basics.LaunchPad extends Component {
+class org.scn.community.basics.LaunchPad extends org.scn.community.shared.Component {
 	/**
 	Gets Tile Selected
 	*/

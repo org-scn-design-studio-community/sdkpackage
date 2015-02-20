@@ -13,6 +13,9 @@
 	/**Cast to Basic Business Card component*/
 	org.scn.community.basics.BasicBusinessCard returnAsScnBasicBusinessCard (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Calendar component*/
+	org.scn.community.basics.Calendar returnAsScnCalendar (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Check Box Group component*/
 	org.scn.community.basics.CheckBoxGroup returnAsScnCheckBoxGroup (Component inputComponent) {* return inputComponent; *}
 
@@ -216,6 +219,9 @@
 
 	/**Cast to Math Utility component*/
 	org.scn.community.utils.Math returnAsScnMath (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Open Url Inplace component*/
+	org.scn.community.utils.OpenUrlInplace returnAsScnOpenUrlInplace (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Open Window by Post component*/
 	org.scn.community.utils.OpenWindowPost returnAsScnOpenWindowPost (Component inputComponent) {* return inputComponent; *}

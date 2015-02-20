@@ -2,7 +2,7 @@
 /**
  * Class for DateRangeSlider
  */
-class org.scn.community.basics.DateRangeSlider extends Component {
+class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(

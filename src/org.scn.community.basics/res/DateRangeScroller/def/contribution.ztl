@@ -2,7 +2,7 @@
 /**
  * Class for DateRangeScroller
  */
-class org.scn.community.basics.DateRangeScroller extends Component {
+class org.scn.community.basics.DateRangeScroller extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(

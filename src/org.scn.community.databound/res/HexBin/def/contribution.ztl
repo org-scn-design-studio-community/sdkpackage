@@ -1,4 +1,5 @@
-class org.scn.community.databound.HexBin extends Component {
+
+class org.scn.community.databound.HexBin extends org.scn.community.shared.DataComponent {
 	/**
 	Get selected row
 	*/

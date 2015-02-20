@@ -2,7 +2,7 @@
 /**
  * Class for ValueHelpField
  */
-class org.scn.community.basics.TriStateCheckBox extends Component {
+class org.scn.community.basics.TriStateCheckBox extends org.scn.community.shared.Component {
 	
 	/** Sets the enabled value */
 	void setEnabled(

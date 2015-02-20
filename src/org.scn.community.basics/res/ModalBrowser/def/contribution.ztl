@@ -2,7 +2,7 @@
 /**
  * Class for ModalBrowser
  */
-class org.scn.community.basics.ModalBrowser extends Component {
+class org.scn.community.basics.ModalBrowser extends org.scn.community.shared.Component {
 	
 	/**
 	Invoke Click event

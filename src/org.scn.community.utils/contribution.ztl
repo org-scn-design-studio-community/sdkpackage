@@ -27,7 +27,7 @@
  * 
  * Authors: Michael Howles, Scn Community Contributors
  */
-class org.scn.community.utils.Array extends Component {  
+class org.scn.community.utils.Array extends org.scn.community.shared.Component {  
 	
 	/**
 	Returns the array content as loopable array.
@@ -304,11 +304,37 @@ class org.scn.community.utils.Array extends Component {
 		
 		return r;  
 	*}
+	
+	/**
+	 * Fills the content of this array into given selection component
+	 <example>
+	 You want to fill the dropdown with the content
+	 <code>
+	 ARRAY.fillIntoSelectionComponent(DROPDOWN, 30);
+	 </code>
+	 Now the dropdown is filled in with given values
+	 </example>
+	 */
+	void fillIntoSelectionComponent(/**Component which should be filled*/SelectionComponent selectionComponent, /**max members*/ optional int maxMembers) {*
+		selectionComponent.removeAllItems();
+		
+		var that = this;
+		
+		var l = {};
+		l.list = this.getValuesAsValueTextArray(maxMembers);
+		
+		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
+		for(var i=0;i<l.list.length;i++){
+			selectionComponent.addItem(l.list[i].value, l.list[i].text);
+		}
+		
+		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
+	*}
 }
 /**
  * Class for ClientInformation
  */
-class org.scn.community.utils.ClientInformation extends Component {
+class org.scn.community.utils.ClientInformation extends org.scn.community.shared.Component {
 	
 	/**
 	 * Reload Explicit Position Data
@@ -347,6 +373,13 @@ class org.scn.community.utils.ClientInformation extends Component {
 	 */
 	int getOwnHeight () {*
 		return this.ownHeight;
+	*}
+	
+	/**
+	 * Returns the html visibility
+	 */
+	boolean isHtmlVisible () {*
+		return this.htmlVisible;
 	*}
 	
 	/** Returns the information about appCodeName*/
@@ -477,7 +510,7 @@ class org.scn.community.utils.ClientInformation extends Component {
  * 
  * Authors: Michael Howles, Scn Community Contributors
  */
-class org.scn.community.utils.Collection extends Component {  
+class org.scn.community.utils.Collection extends org.scn.community.shared.Component {  
 	
 	/**
 	Returns the collection content as loopable array.
@@ -1125,12 +1158,38 @@ class org.scn.community.utils.Collection extends Component {
 			
 		return a.length;  
 	*}
+	
+	/**
+	 * Fills the content of this array into given selection component
+	 <example>
+	 You want to fill the dropdown with the content
+	 <code>
+	 COLLECTION.fillIntoSelectionComponent(DROPDOWN, 30);
+	 </code>
+	 Now the dropdown is filled in with given values
+	 </example>
+	 */
+	void fillIntoSelectionComponent(SelectionComponent selectionComponent, /**max members*/ optional int maxMembers) {*
+		selectionComponent.removeAllItems();
+		
+		var that = this;
+		
+		var l = {};
+		l.list = this.getAsKeyLabelValueArray(maxMembers);
+		
+		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
+		for(var i=0;i<l.list.length;i++){
+			selectionComponent.addItem(l.list[i].key, l.list[i].label);
+		}
+		
+		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
+	*}
 }
 
 /**
  * Class for ComponentManager
  */
-class org.scn.community.utils.ComponentManager extends Component {
+class org.scn.community.utils.ComponentManager extends org.scn.community.shared.Component {
 
 	/**
 	 * Adds a data source to group by name
@@ -1602,21 +1661,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 		
 		return type;
 	  *}
-	
-	/**
-	 * Internal function to read return global scope
-	 * http://stackoverflow.com/questions/1162998/how-can-i-add-an-object-property-to-the-global-object-in-rhino-javascript 
-	 */
-	void internal_assureGlobalAccess () {*
-		if(this.getGlobal == undefined) {
-			this.getGlobal = function () {
-				return (function() {
-					return this;
-				}).call(null);
-			}
-		}
-	*}
-	
+
 	/**Cast to specific component*/
 	Button returnAsButton (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
@@ -1632,11 +1677,15 @@ class org.scn.community.utils.ComponentManager extends Component {
 	/**Cast to specific component*/
 	Dimensionfilter returnAsDimensionfilter (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
+	Dropdown returnAsCheckboxgroup (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
 	Filterpanel returnAsFilterpanel (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
 	Image returnAsImage (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
 	Inputfield returnAsInputfield (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Listbox returnAsInputfield (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
 	Text returnAsText (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
@@ -1785,6 +1834,9 @@ class org.scn.community.utils.ComponentManager extends Component {
 	/**Cast to Facet Filter component*/
 	org.scn.community.databound.FacetFilter returnAsScnFacetFilter (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Hexbin Chart component*/
+	org.scn.community.databound.HexBin returnAsScnHexBin (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
@@ -1868,7 +1920,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 
 }
 
-class org.scn.community.utils.CustomCssCollector extends Component {
+class org.scn.community.utils.CustomCssCollector extends org.scn.community.shared.Component {
 	
 	/**
 	 * Adds new CSS by with a key for later work on
@@ -1981,7 +2033,7 @@ class org.scn.community.utils.CustomCssCollector extends Component {
  * 
  * Authors: Michael Howles, Scn Community Contributors
  */
-class org.scn.community.utils.Debugger extends Component {  
+class org.scn.community.utils.Debugger extends org.scn.community.shared.Component {  
 
 	/**
 	 * Returns active flag
@@ -2315,26 +2367,11 @@ class org.scn.community.utils.Debugger extends Component {
 		this.DStack = "[]";
 		this.DVariables = "[]";
 	*}
-
-	/**
-	 * Internal function to read return global scope
-	 * http://stackoverflow.com/questions/1162998/how-can-i-add-an-object-property-to-the-global-object-in-rhino-javascript
-	 */
-	void internal_assureGlobalAccess () {*
-		if(this.getGlobal == undefined) {
-			this.getGlobal = function () {
-				return (function() {
-					return this;
-				}).call(null);
-			}
-		}
-	*}
-	
 }
 /**
  * class for FlowLayouter
  */
-class org.scn.community.utils.FlowLayouter extends Component {  
+class org.scn.community.utils.FlowLayouter extends org.scn.community.shared.Component {  
 	
 	/** Register the parent component in case you want to have a resize for the complete layout 
 	 * This component will be resized to the content + split space on all sides.
@@ -2470,7 +2507,7 @@ class org.scn.community.utils.FlowLayouter extends Component {
 /**
  * Component Math
  */
-class org.scn.community.utils.Math extends Component {  
+class org.scn.community.utils.Math extends org.scn.community.shared.Component {  
 
 	/**
 	 * Returns the absolute value of x
@@ -2714,6 +2751,55 @@ class org.scn.community.utils.Math extends Component {
 /**
  * Class for OpenWindowPost
  */
+class org.scn.community.utils.OpenUrlInplace extends org.scn.community.shared.Component {
+	
+	/**
+	 * Trigger Execution of the given URL and parameter list
+	 */
+	void triggerExecution () {*
+		this.trigger = "GO";
+	*}
+	
+	/**
+	 * Set URL 
+	 */
+	void setUrl (
+			/**url*/String url) {*
+		this.url = url;
+	*}
+
+	/** 
+	 * Add parameter
+	 * 
+	 */
+	void removeAllParameters () {*
+		this.parameters = "";
+	*}
+			
+	/** 
+	 * Add parameter
+	 * 
+	 */
+	void addParameter (
+			/**name*/String name, 
+			/**value*/String value) {*
+		var itemDef = { 
+				"name": name,
+				"value": value 
+				};
+	
+		if (this.parameters === undefined || this.parameters === "" || this.parameters === "<delete>"){
+			this.parameters = "[]";
+		}
+		
+		var parametersJson = JSON.parse(this.parameters);
+		parametersJson.push(itemDef)
+	
+		this.parameters = JSON.stringify(parametersJson);
+	*}
+}/**
+ * Class for OpenWindowPost
+ */
 class org.scn.community.utils.OpenWindowPost extends Component {
 	
 	/**
@@ -2768,7 +2854,7 @@ class org.scn.community.utils.OpenWindowPost extends Component {
 	
 		this.parameters = JSON.stringify(parametersJson);
 	*}
-}class org.scn.community.utils.SimpleDate extends Component {
+}class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Component {
 
 	/**
 	 * Initialization method with year, month and day

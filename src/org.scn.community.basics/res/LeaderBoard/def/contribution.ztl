@@ -2,7 +2,7 @@
 /**
  * Class for LeaderBoard
  */
-class org.scn.community.basics.LeaderBoard extends Component {
+class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		

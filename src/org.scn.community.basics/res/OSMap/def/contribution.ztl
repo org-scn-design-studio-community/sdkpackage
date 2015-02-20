@@ -2,7 +2,7 @@
 /**
  * Class for Open Street Map
  */
-class org.scn.community.basics.Map extends Component {
+class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 	
 	/**
 	 * Zooms in the map

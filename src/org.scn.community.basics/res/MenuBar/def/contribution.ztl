@@ -2,7 +2,7 @@
 /**
  * Class for MenuBar
  */
-class org.scn.community.basics.MenuBar extends Component {
+class org.scn.community.basics.MenuBar extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		

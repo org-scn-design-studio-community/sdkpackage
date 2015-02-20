@@ -1,4 +1,6 @@
-class org.scn.community.databound.Table2D extends Component {
+
+class org.scn.community.databound.Table2D extends org.scn.community.shared.DataComponent {
+	
 	/** returns the data */
 	String getStringData () {*
 		return this.stringData;	

@@ -1,4 +1,4 @@
-class org.scn.community.basics.ListSelector extends Component {
+class org.scn.community.basics.ListSelector extends org.scn.community.shared.Component {
 	/**
 	Get last menu element title clicked.
 	<example><code>var itemSelected = LISTSELECTOR_1.getLabelClicked();</code></example>

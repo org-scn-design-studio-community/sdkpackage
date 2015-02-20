@@ -8,7 +8,7 @@
  * 
  * Authors: Michael Howles, Scn Community Contributors
  */
-class org.scn.community.utils.Debugger extends Component {  
+class org.scn.community.utils.Debugger extends org.scn.community.shared.Component {  
 
 	/**
 	 * Returns active flag
@@ -342,19 +342,4 @@ class org.scn.community.utils.Debugger extends Component {
 		this.DStack = "[]";
 		this.DVariables = "[]";
 	*}
-
-	/**
-	 * Internal function to read return global scope
-	 * http://stackoverflow.com/questions/1162998/how-can-i-add-an-object-property-to-the-global-object-in-rhino-javascript
-	 */
-	void internal_assureGlobalAccess () {*
-		if(this.getGlobal == undefined) {
-			this.getGlobal = function () {
-				return (function() {
-					return this;
-				}).call(null);
-			}
-		}
-	*}
-	
 }

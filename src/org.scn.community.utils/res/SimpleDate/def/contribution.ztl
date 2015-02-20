@@ -1,4 +1,4 @@
-class org.scn.community.utils.SimpleDate extends Component {
+class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Component {
 
 	/**
 	 * Initialization method with year, month and day

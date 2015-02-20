@@ -2,7 +2,7 @@
 /**
  * Class for D3Hier
  */
-class org.scn.community.databound.jpd3hier extends Component {
+class org.scn.community.databound.jpd3hier extends org.scn.community.shared.DataComponent {
 
 	/* Returns the Key of the currently selected Tree Element. */
 	String getSelectedNodeKey() {*

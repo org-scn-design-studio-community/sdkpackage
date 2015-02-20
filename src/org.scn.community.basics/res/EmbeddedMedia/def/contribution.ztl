@@ -2,7 +2,7 @@
 /**
  * Class for EmbeddedMedia
  */
-class org.scn.community.basics.EmbeddedMedia extends Component {
+class org.scn.community.basics.EmbeddedMedia extends org.scn.community.shared.Component {
 	
 	/** Sets the content url which will be embedded */
 	void setURL(

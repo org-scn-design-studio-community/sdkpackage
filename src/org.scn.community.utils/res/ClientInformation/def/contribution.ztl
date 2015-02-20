@@ -1,7 +1,7 @@
 /**
  * Class for ClientInformation
  */
-class org.scn.community.utils.ClientInformation extends Component {
+class org.scn.community.utils.ClientInformation extends org.scn.community.shared.Component {
 	
 	/**
 	 * Reload Explicit Position Data
@@ -40,6 +40,13 @@ class org.scn.community.utils.ClientInformation extends Component {
 	 */
 	int getOwnHeight () {*
 		return this.ownHeight;
+	*}
+	
+	/**
+	 * Returns the html visibility
+	 */
+	boolean isHtmlVisible () {*
+		return this.htmlVisible;
 	*}
 	
 	/** Returns the information about appCodeName*/

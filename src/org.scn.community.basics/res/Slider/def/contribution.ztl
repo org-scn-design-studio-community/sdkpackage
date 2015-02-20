@@ -2,7 +2,7 @@
 /**
  * Class for Slider
  */
-class org.scn.community.basics.Slider extends Component {
+class org.scn.community.basics.Slider extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(

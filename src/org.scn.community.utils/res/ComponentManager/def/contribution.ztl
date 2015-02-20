@@ -2,7 +2,7 @@
 /**
  * Class for ComponentManager
  */
-class org.scn.community.utils.ComponentManager extends Component {
+class org.scn.community.utils.ComponentManager extends org.scn.community.shared.Component {
 
 	/**
 	 * Adds a data source to group by name
@@ -474,21 +474,7 @@ class org.scn.community.utils.ComponentManager extends Component {
 		
 		return type;
 	  *}
-	
-	/**
-	 * Internal function to read return global scope
-	 * http://stackoverflow.com/questions/1162998/how-can-i-add-an-object-property-to-the-global-object-in-rhino-javascript 
-	 */
-	void internal_assureGlobalAccess () {*
-		if(this.getGlobal == undefined) {
-			this.getGlobal = function () {
-				return (function() {
-					return this;
-				}).call(null);
-			}
-		}
-	*}
-	
+
 	/**Cast to specific component*/
 	Button returnAsButton (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
@@ -504,11 +490,15 @@ class org.scn.community.utils.ComponentManager extends Component {
 	/**Cast to specific component*/
 	Dimensionfilter returnAsDimensionfilter (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
+	Dropdown returnAsCheckboxgroup (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
 	Filterpanel returnAsFilterpanel (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
 	Image returnAsImage (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
 	Inputfield returnAsInputfield (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Listbox returnAsInputfield (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
 	Text returnAsText (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/

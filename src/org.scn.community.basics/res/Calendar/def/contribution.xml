@@ -1,0 +1,58 @@
+
+<component
+	id="Calendar"
+	title="Calendar"
+	icon="res/Calendar/Calendar.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>res/Calendar/Calendar.js</jsInclude>
+	<cssInclude>res/Calendar/Calendar.css</cssInclude>
+
+	<property
+		id="DValue"
+		type="String"
+		title="Date Value"
+		tooltip="Date Value"
+		group="Display"
+		visible="true" />
+	<property
+		id="DValue2"
+		type="String"
+		title="Date Value 2"
+		tooltip="Date Value 2"
+		group="Display"
+		visible="true" />
+	<property
+		id="DSelectionType"
+		type="String"
+		title="Selection Type"
+		tooltip="Selection Type"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onSingleChanged"
+		type="ScriptText"
+		title="Event for On Value Change with Single Date"
+		group="Events" />
+
+	<property
+		id="onRangeChanged"
+		type="ScriptText"
+		title="Event for On Value Change with Date Range"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="value"></defaultValue>
+		<defaultValue property="value2"></defaultValue>
+		<defaultValue property="DSelectionType">Single Date</defaultValue>
+	</initialization>	
+</component>

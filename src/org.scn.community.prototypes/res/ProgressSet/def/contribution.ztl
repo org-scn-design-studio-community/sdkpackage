@@ -11,7 +11,7 @@ class org.scn.community.prototypes.BarProperty {
 /**
  * Class for ProgressBar
  */
-class org.scn.community.prototypes.ProgressSet extends Component {
+class org.scn.community.prototypes.ProgressSet extends org.scn.community.shared.Component {
 	/**
 	Sets bar thickness (-1 = auto)
 	*/

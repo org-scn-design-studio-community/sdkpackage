@@ -2,7 +2,7 @@
 /**
  * Class for ProgressIndicator
  */
-class org.scn.community.basics.ProgressIndicator extends Component {
+class org.scn.community.basics.ProgressIndicator extends org.scn.community.shared.Component {
 
 	/** Sets the percentage value of the progress bar */
 	void setPercentValue(

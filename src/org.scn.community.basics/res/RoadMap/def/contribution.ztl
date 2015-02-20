@@ -2,7 +2,7 @@
 /**
  * Class for RoadMap
  */
-class org.scn.community.basics.RoadMap extends Component {
+class org.scn.community.basics.RoadMap extends org.scn.community.shared.Component {
 	
 	/** remove all steps */
 	void removeAllSteps () {*		

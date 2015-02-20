@@ -1,4 +1,4 @@
-class org.scn.community.basics.ActionSheetButton extends Component {
+class org.scn.community.basics.ActionSheetButton extends org.scn.community.shared.Component {
 	/**
 	Gets Item Selected
 	*/

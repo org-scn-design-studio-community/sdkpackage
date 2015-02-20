@@ -2,7 +2,7 @@
 /**
  * Class for PasswordField
  */
-class org.scn.community.basics.PasswordField extends Component {
+class org.scn.community.basics.PasswordField extends org.scn.community.shared.Component {
 
 	/** Sets the enabled value */
 	void setEnabled(

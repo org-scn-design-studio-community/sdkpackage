@@ -2,7 +2,7 @@
 /**
  * Class for TextArea
  */
-class org.scn.community.basics.TextArea extends Component {
+class org.scn.community.basics.TextArea extends org.scn.community.shared.Component {
 	
 	/** Sets the enabled value */
 	void setEnabled(

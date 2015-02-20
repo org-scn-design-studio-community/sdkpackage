@@ -12,6 +12,47 @@ class org.scn.community.shared.Component extends Component {
 		}
 	*}
 
+	/**
+	 * DO NOT USE, ONLY FOR DEBUG ACTIVATION
+	 */
+	@Visibility(private)
+	boolean isDebug(optional String componentName) {*
+		// quick check here
+		if(componentName == undefined) {
+			if(this._dbgDEBUG == "+") { return true; }
+			if(this._dbgDEBUG == "-") { return false; }
+			componentName = "DEBUG";
+		} else {
+			if(this["_dbg" + componentName] == "+") { return true; }
+			if(this["_dbg" + componentName] == "-") { return false; }
+		}
+	
+		internal_assureGlobalAccess ();
+		
+		var something = this.getGlobal()[componentName];
+		if(something != undefined) {
+			this["_dbg" + componentName] == "+";
+			return true;
+		} else {
+			this["_dbg" + componentName] == "-";
+			return false;
+		}
+	*}
+	
+	/**
+	 * Internal function to read return global scope
+	 * http://stackoverflow.com/questions/1162998/how-can-i-add-an-object-property-to-the-global-object-in-rhino-javascript
+	 */
+	@Visibility(private)
+	void internal_assureGlobalAccess () {*
+		if(this.getGlobal == undefined) {
+			this.getGlobal = function () {
+				return (function() {
+					return this;
+				}).call(null);
+			}
+		}
+	*}
 }
 
 /**

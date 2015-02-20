@@ -2,7 +2,7 @@
 /**
  * Class for DataRangeSlider
  */
-class org.scn.community.databound.RangeSlider extends Component {
+class org.scn.community.databound.RangeSlider extends org.scn.community.shared.DataComponent {
 
 	/** returns the selected key 
     <example>

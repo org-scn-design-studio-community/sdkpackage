@@ -2,7 +2,7 @@
 /**
  * Class for ImageCarousel
  */
-class org.scn.community.basics.ImageCarousel extends Component {
+class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		

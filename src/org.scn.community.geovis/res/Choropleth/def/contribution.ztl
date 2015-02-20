@@ -1,4 +1,4 @@
-class org.scn.community.geovis.Choropleth extends Component {
+class org.scn.community.geovis.Choropleth extends org.scn.community.shared.Component {
 	/**
 	Get selected feature
 	*/

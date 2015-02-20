@@ -18,9 +18,9 @@
  * limitations under the License. 
  */
 
-class org.scn.community.geovis.Maps extends Component {
+class org.scn.community.geovis.Maps extends org.scn.community.shared.Component {
 	
-}class org.scn.community.geovis.Choropleth extends Component {
+}class org.scn.community.geovis.Choropleth extends org.scn.community.shared.Component {
 	/**
 	Get selected feature
 	*/

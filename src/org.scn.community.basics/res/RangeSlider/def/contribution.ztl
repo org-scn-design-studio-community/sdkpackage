@@ -2,7 +2,7 @@
 /**
  * Class for RangeSlider (extension of slider)
  */
-class org.scn.community.basics.RangeSlider extends Component {
+class org.scn.community.basics.RangeSlider extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(

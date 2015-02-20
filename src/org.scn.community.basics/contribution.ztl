@@ -22,7 +22,7 @@
 /**
  * Class for Accordion
  */
-class org.scn.community.basics.Accordion extends Component {
+class org.scn.community.basics.Accordion extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -133,7 +133,7 @@ class org.scn.community.basics.Accordion extends Component {
 		this.maxSectionHeight = height;	
 	*}
 }
-class org.scn.community.basics.ActionSheetButton extends Component {
+class org.scn.community.basics.ActionSheetButton extends org.scn.community.shared.Component {
 	/**
 	Gets Item Selected
 	*/
@@ -207,7 +207,7 @@ class org.scn.community.basics.ActionSheetButton extends Component {
 /**
  * Class for ApplicationHeader
  */
-class org.scn.community.basics.ApplicationHeader extends Component {
+class org.scn.community.basics.ApplicationHeader extends org.scn.community.shared.Component {
 	
 	/** Sets the user name that is displayed beside the welcome text. */
 	void setUserName(
@@ -231,7 +231,7 @@ class org.scn.community.basics.ApplicationHeader extends Component {
 		return this.logoText;	
 	*}
 }
-class org.scn.community.basics.Base64Image extends Component {
+class org.scn.community.basics.Base64Image extends org.scn.community.shared.Component {
 	/**
 	 * Sets Source URL Property
 	 */	
@@ -248,7 +248,7 @@ class org.scn.community.basics.Base64Image extends Component {
 /**
  * Class for BasicBusinessCard
  */
-class org.scn.community.basics.BasicBusinessCard extends Component {
+class org.scn.community.basics.BasicBusinessCard extends org.scn.community.shared.Component {
 
 	/** returns the image url */
 	String getImage () {*
@@ -284,7 +284,7 @@ class org.scn.community.basics.BasicBusinessCard extends Component {
 /**
  * Class for CheckBox Group
  */
-class org.scn.community.basics.CheckBoxGroup extends Component {
+class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -470,7 +470,7 @@ class org.scn.community.basics.CheckBoxGroup extends Component {
 /**
  * Class for ColorPicker
  */
-class org.scn.community.basics.ColorPicker extends Component {
+class org.scn.community.basics.ColorPicker extends org.scn.community.shared.Component {
 
 	/** Sets the color top be shown */
 	void setColor( /** Color value */ String colorString) {*
@@ -491,7 +491,7 @@ class org.scn.community.basics.ColorPicker extends Component {
 /**
  * Class for DateRangeScroller
  */
-class org.scn.community.basics.DateRangeScroller extends Component {
+class org.scn.community.basics.DateRangeScroller extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(
@@ -519,7 +519,7 @@ class org.scn.community.basics.DateRangeScroller extends Component {
 /**
  * Class for DateRangeSlider
  */
-class org.scn.community.basics.DateRangeSlider extends Component {
+class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(
@@ -635,7 +635,7 @@ class org.scn.community.basics.DateRangeSlider extends Component {
 /**
  * Class for DragDropArea
  */
-class org.scn.community.basics.DragDropArea extends Component {
+class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -786,7 +786,7 @@ class org.scn.community.basics.DragDropArea extends Component {
 /**
  * Class for EmbeddedFrame
  */
-class org.scn.community.basics.EmbeddedFrame extends Component {
+class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Component {
 	
 	/** Sets the content url which will be embedded */
 	void setURL(
@@ -803,7 +803,7 @@ class org.scn.community.basics.EmbeddedFrame extends Component {
 /**
  * Class for EmbeddedMedia
  */
-class org.scn.community.basics.EmbeddedMedia extends Component {
+class org.scn.community.basics.EmbeddedMedia extends org.scn.community.shared.Component {
 	
 	/** Sets the content url which will be embedded */
 	void setURL(
@@ -820,7 +820,7 @@ class org.scn.community.basics.EmbeddedMedia extends Component {
 /**
  * Class for FallbackPicture
  */
-class org.scn.community.basics.FallbackPicture extends Component {
+class org.scn.community.basics.FallbackPicture extends org.scn.community.shared.Component {
 	
 	/**
 	 * Setter for "normal case" picture
@@ -840,7 +840,7 @@ class org.scn.community.basics.FallbackPicture extends Component {
 		this.fallbackPicture = pictureForFallbackCase;
 	*}
 }
-class org.scn.community.basics.FioriAppHeader extends Component {
+class org.scn.community.basics.FioriAppHeader extends org.scn.community.shared.Component {
 	/** Add a header button
  	<example>
 	Add a header button called 'Menu' with no label show and a menu icon.
@@ -985,7 +985,7 @@ class org.scn.community.basics.FioriAppHeader extends Component {
 /**
  * Class for FioriButton
  */
-class org.scn.community.basics.FioriButton extends Component {
+class org.scn.community.basics.FioriButton extends org.scn.community.shared.Component {
 
 	/** Sets the text that is displayed */
 	void setText(
@@ -1020,7 +1020,7 @@ class org.scn.community.basics.FioriButton extends Component {
 		return this.dStyle;	
 	*}
 }
-class org.scn.community.basics.FioriToolbar extends Component {
+class org.scn.community.basics.FioriToolbar extends org.scn.community.shared.Component {
 	/** Add a header button
  	<example>
 	Add or update a header button by key 'MENU'.
@@ -1179,7 +1179,7 @@ class org.scn.community.basics.FioriToolbar extends Component {
 /**
  * Class for FishEye
  */
-class org.scn.community.basics.FishEye extends Component {
+class org.scn.community.basics.FishEye extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -1305,7 +1305,7 @@ class org.scn.community.basics.FishEye extends Component {
 /**
  * Class for ImageCarousel
  */
-class org.scn.community.basics.ImageCarousel extends Component {
+class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -1428,7 +1428,7 @@ class org.scn.community.basics.ImageCarousel extends Component {
 	*}
 }
 
-class org.scn.community.basics.KpiView extends Component {
+class org.scn.community.basics.KpiView extends org.scn.community.shared.Component {
 	
 	/* Sets the header text. */
 	void setHeaderText(/* Header text */ String text) {*
@@ -1603,7 +1603,7 @@ class org.scn.community.basics.TileProperty {
   String numberUnit;
   String valueState;
 }
-class org.scn.community.basics.LaunchPad extends Component {
+class org.scn.community.basics.LaunchPad extends org.scn.community.shared.Component {
 	/**
 	Gets Tile Selected
 	*/
@@ -1710,7 +1710,7 @@ class org.scn.community.basics.LaunchPad extends Component {
 /**
  * Class for LeaderBoard
  */
-class org.scn.community.basics.LeaderBoard extends Component {
+class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -1847,7 +1847,7 @@ class org.scn.community.basics.LeaderBoard extends Component {
 /**
  * Class for Link
  */
-class org.scn.community.basics.Link extends Component {
+class org.scn.community.basics.Link extends org.scn.community.shared.Component {
 	
 	/** Sets the text that is displayed */
 	void setText(
@@ -1860,7 +1860,7 @@ class org.scn.community.basics.Link extends Component {
 		return this.text;	
 	*}
 }
-class org.scn.community.basics.ListSelector extends Component {
+class org.scn.community.basics.ListSelector extends org.scn.community.shared.Component {
 	/**
 	Get last menu element title clicked.
 	<example><code>var itemSelected = LISTSELECTOR_1.getLabelClicked();</code></example>
@@ -1889,7 +1889,7 @@ class org.scn.community.basics.ListSelector extends Component {
 /**
  * Class for MenuBar
  */
-class org.scn.community.basics.MenuBar extends Component {
+class org.scn.community.basics.MenuBar extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -1980,7 +1980,7 @@ class org.scn.community.basics.MenuBar extends Component {
 /**
  * Class for MenuButton
  */
-class org.scn.community.basics.MenuButton extends Component {
+class org.scn.community.basics.MenuButton extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -2071,7 +2071,7 @@ class org.scn.community.basics.MenuButton extends Component {
 /**
  * Class for ModalBrowser
  */
-class org.scn.community.basics.ModalBrowser extends Component {
+class org.scn.community.basics.ModalBrowser extends org.scn.community.shared.Component {
 	
 	/**
 	Invoke Click event
@@ -2100,7 +2100,7 @@ class org.scn.community.basics.ModalBrowser extends Component {
 /**
  * Class for NotificationBar
  */
-class org.scn.community.basics.NotificationBar extends Component {
+class org.scn.community.basics.NotificationBar extends org.scn.community.shared.Component {
 
 	/** 
 	 * Add Category
@@ -2203,7 +2203,7 @@ class org.scn.community.basics.NotificationBar extends Component {
 /**
  * Class for Notify
  */
-class org.scn.community.basics.Notify extends Component {
+class org.scn.community.basics.Notify extends org.scn.community.shared.Component {
 	void alert( /* Text to be shown */ String text){*
 		this["msgtype"] = "alert";
 		this["msgtext"] = text;
@@ -2239,7 +2239,7 @@ class org.scn.community.basics.Notify extends Component {
 /**
  * Class for Open Street Map
  */
-class org.scn.community.basics.Map extends Component {
+class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 	
 	/**
 	 * Zooms in the map
@@ -2353,7 +2353,7 @@ class org.scn.community.basics.Map extends Component {
 /**
  * Class for Paginator
  */
-class org.scn.community.basics.Paginator extends Component {
+class org.scn.community.basics.Paginator extends org.scn.community.shared.Component {
 	
 	/** Sets the current page number */
 	void setCurrentPage(
@@ -2381,7 +2381,7 @@ class org.scn.community.basics.Paginator extends Component {
 /**
  * Class for PasswordField
  */
-class org.scn.community.basics.PasswordField extends Component {
+class org.scn.community.basics.PasswordField extends org.scn.community.shared.Component {
 
 	/** Sets the enabled value */
 	void setEnabled(
@@ -2429,7 +2429,7 @@ class org.scn.community.basics.PasswordField extends Component {
 /**
  * Class for ProgressIndicator
  */
-class org.scn.community.basics.ProgressIndicator extends Component {
+class org.scn.community.basics.ProgressIndicator extends org.scn.community.shared.Component {
 
 	/** Sets the percentage value of the progress bar */
 	void setPercentValue(
@@ -2453,7 +2453,7 @@ class org.scn.community.basics.ProgressIndicator extends Component {
 		return this.displayValue;	
 	*}
 }
-class org.scn.community.basics.QRCode extends Component {
+class org.scn.community.basics.QRCode extends org.scn.community.shared.Component {
 	/**
 	 * Sets QRCode Text
 	 */	
@@ -2530,7 +2530,7 @@ class org.scn.community.basics.QRCode extends Component {
 /**
  * Class for RangeSlider (extension of slider)
  */
-class org.scn.community.basics.RangeSlider extends Component {
+class org.scn.community.basics.RangeSlider extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(
@@ -2635,7 +2635,7 @@ class org.scn.community.basics.RangeSlider extends Component {
 /**
  * Class for RatingIndicator
  */
-class org.scn.community.basics.RatingIndicator extends Component {
+class org.scn.community.basics.RatingIndicator extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(
@@ -2663,7 +2663,7 @@ class org.scn.community.basics.RatingIndicator extends Component {
 /**
  * Class for RoadMap
  */
-class org.scn.community.basics.RoadMap extends Component {
+class org.scn.community.basics.RoadMap extends org.scn.community.shared.Component {
 	
 	/** remove all steps */
 	void removeAllSteps () {*		
@@ -2789,7 +2789,7 @@ class org.scn.community.basics.RoadMap extends Component {
 /**
  * Class for Slider
  */
-class org.scn.community.basics.Slider extends Component {
+class org.scn.community.basics.Slider extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(
@@ -2883,7 +2883,7 @@ class org.scn.community.basics.Slider extends Component {
 /**
  * Class for TextArea
  */
-class org.scn.community.basics.TextArea extends Component {
+class org.scn.community.basics.TextArea extends org.scn.community.shared.Component {
 	
 	/** Sets the enabled value */
 	void setEnabled(
@@ -2921,7 +2921,7 @@ class org.scn.community.basics.TextArea extends Component {
 /**
  * Class for ToggleButton
  */
-class org.scn.community.basics.ToggleButton extends Component {
+class org.scn.community.basics.ToggleButton extends org.scn.community.shared.Component {
 	/** returns the pressed state 
     <example>
 	You want to get the pressed state to decide what to do
@@ -2971,7 +2971,7 @@ class org.scn.community.basics.ToggleButton extends Component {
 /**
  * Class for Tree
  */
-class org.scn.community.basics.Tree extends Component {
+class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	
 	/** remove all nodes */
 	void removeAllNodes () {*		
@@ -3059,7 +3059,7 @@ class org.scn.community.basics.Tree extends Component {
 /**
  * Class for ValueHelpField
  */
-class org.scn.community.basics.TriStateCheckBox extends Component {
+class org.scn.community.basics.TriStateCheckBox extends org.scn.community.shared.Component {
 	
 	/** Sets the enabled value */
 	void setEnabled(
@@ -3144,7 +3144,7 @@ class org.scn.community.basics.TriStateCheckBox extends Component {
 /**
  * Class for ValiInput
  */
-class org.scn.community.basics.ValiInput extends Component {
+class org.scn.community.basics.ValiInput extends org.scn.community.shared.Component {
 	
 	/** returns value */
 	String getValue () {*
@@ -3184,7 +3184,7 @@ class org.scn.community.basics.ValiInput extends Component {
 /**
  * Class for ValueHelpField
  */
-class org.scn.community.basics.ValueHelpField extends Component {
+class org.scn.community.basics.ValueHelpField extends org.scn.community.shared.Component {
 	
 	/** Sets the enabled value */
 	void setEnabled(

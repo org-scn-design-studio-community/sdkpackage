@@ -7,7 +7,7 @@
  * 
  * Authors: Michael Howles, Scn Community Contributors
  */
-class org.scn.community.utils.Array extends Component {  
+class org.scn.community.utils.Array extends org.scn.community.shared.Component {  
 	
 	/**
 	Returns the array content as loopable array.
@@ -283,5 +283,31 @@ class org.scn.community.utils.Array extends Component {
 		}
 		
 		return r;  
+	*}
+	
+	/**
+	 * Fills the content of this array into given selection component
+	 <example>
+	 You want to fill the dropdown with the content
+	 <code>
+	 ARRAY.fillIntoSelectionComponent(DROPDOWN, 30);
+	 </code>
+	 Now the dropdown is filled in with given values
+	 </example>
+	 */
+	void fillIntoSelectionComponent(/**Component which should be filled*/SelectionComponent selectionComponent, /**max members*/ optional int maxMembers) {*
+		selectionComponent.removeAllItems();
+		
+		var that = this;
+		
+		var l = {};
+		l.list = this.getValuesAsValueTextArray(maxMembers);
+		
+		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
+		for(var i=0;i<l.list.length;i++){
+			selectionComponent.addItem(l.list[i].value, l.list[i].text);
+		}
+		
+		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
 	*}
 }

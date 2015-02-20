@@ -2,7 +2,7 @@
 /**
  * Class for MenuButton
  */
-class org.scn.community.basics.MenuButton extends Component {
+class org.scn.community.basics.MenuButton extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		

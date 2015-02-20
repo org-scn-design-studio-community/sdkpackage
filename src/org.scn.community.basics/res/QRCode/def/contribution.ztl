@@ -1,4 +1,4 @@
-class org.scn.community.basics.QRCode extends Component {
+class org.scn.community.basics.QRCode extends org.scn.community.shared.Component {
 	/**
 	 * Sets QRCode Text
 	 */	

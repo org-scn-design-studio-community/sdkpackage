@@ -2,7 +2,7 @@
 /**
  * Class for Accordion
  */
-class org.scn.community.basics.Accordion extends Component {
+class org.scn.community.basics.Accordion extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		

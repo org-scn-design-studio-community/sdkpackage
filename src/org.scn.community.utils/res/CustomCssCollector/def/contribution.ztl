@@ -1,5 +1,5 @@
 
-class org.scn.community.utils.CustomCssCollector extends Component {
+class org.scn.community.utils.CustomCssCollector extends org.scn.community.shared.Component {
 	
 	/**
 	 * Adds new CSS by with a key for later work on

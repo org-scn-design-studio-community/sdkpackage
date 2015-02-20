@@ -2,7 +2,7 @@
 /**
  * Class for FioriButton
  */
-class org.scn.community.basics.FioriButton extends Component {
+class org.scn.community.basics.FioriButton extends org.scn.community.shared.Component {
 
 	/** Sets the text that is displayed */
 	void setText(

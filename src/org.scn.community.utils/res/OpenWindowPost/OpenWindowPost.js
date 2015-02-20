@@ -26,6 +26,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.OpenWindow
               "parameters": {type: "string"},
               "formId": {type: "string"},
               "fallbackSencario": {type: "string"},
+              "reloadInPlace": {type: "boolean"},
         }
 	},
 
@@ -34,42 +35,47 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.OpenWindow
 		
 		this._oWindows = {};
 		this._oCounter = 0;
-	},
+	},	
 	
 	renderer: {},
 	
 	afterDesignStudioUpdate : function() {
-		
-		var lParameters = this.getParameters();
-		
-		var formId = this.getFormId();
-
 		if(this.getUrl() != "" && this.getTrigger() == "GO") {
-			
-			if(this._oWindows[formId]) {
-				// exists already...
-				
-				var fallbackSencario = this.getFallbackSencario();
-				
-				if(fallbackSencario == "New Window") {
-					formId = formId + this._oCounter;
-					this._oCounter = this._oCounter + 1;
-				} else if(fallbackSencario == "Close and Reopen") {
-					this._oWindows[formId].close();
+			var lParameters = this.getParameters();
+			var formId = this.getFormId();
+
+			var lInPlace = this.getReloadInPlace();
+			var targetDocument = undefined;
+
+			if(!lInPlace) {
+				if(this._oWindows[formId]) {
+					// exists already...
+					
+					var fallbackSencario = this.getFallbackSencario();
+					
+					if(fallbackSencario == "New Window") {
+						formId = formId + this._oCounter;
+						this._oCounter = this._oCounter + 1;
+					} else if(fallbackSencario == "Close and Reopen") {
+						this._oWindows[formId].close();
+					}
 				}
+	
+				var newWindow = window.open(this.getUrl(), formId);
+				
+				if (!newWindow) return false;
+				
+				this._oWindows[formId] = newWindow;
+				
+				targetDocument = newWindow.document;
+			} else {
+				targetDocument = document;
 			}
 
-			var newWindow = window.open(this.getUrl(), formId);
-			
-			if (!newWindow) return false;
-			
-			this._oWindows[formId] = newWindow;
-			
 			var html = "";
-			
+
 			html += "<html><head></head><body><form id='"+formId+"' method='post' action='" + this.getUrl() +"'>";
-			
-			
+
 			// read local created new Notifications
 			if((lParameters != undefined || lParameters != undefined) && lParameters != "" && lParameters != "<delete>"){
 				var lParametersArray = JSON.parse(lParameters);
@@ -78,19 +84,20 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.OpenWindow
 					html += "<input type='hidden' name='" + lParametersArray[i].name + "' value='" + lParametersArray[i].value + "'/>";
 				}
 			}
-			
+
 			html += "</form><script type='text/javascript'>document.getElementById(\""+formId+"\").submit()</sc"+"ript></body></html>";
 
-			newWindow.document.write(html);
+			targetDocument.write(html);
+
+			if(!lInPlace) {
+				if(this.getTrigger() != "") {
+					// clean up the trigger
+					this.setTrigger("");
+
+					// fire event to rerender
+					this.fireDesignStudioPropertiesChanged(["trigger"]);
+				}
+			}
 		}
-
-		
-		// clean up the trigger
-		this.setTrigger("");
-		
-		// fire event to rerender
-		this.fireDesignStudioPropertiesChanged(["trigger"]);
-
 	}
-
 });

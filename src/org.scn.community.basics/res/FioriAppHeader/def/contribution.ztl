@@ -1,4 +1,4 @@
-class org.scn.community.basics.FioriAppHeader extends Component {
+class org.scn.community.basics.FioriAppHeader extends org.scn.community.shared.Component {
 	/** Add a header button
  	<example>
 	Add a header button called 'Menu' with no label show and a menu icon.

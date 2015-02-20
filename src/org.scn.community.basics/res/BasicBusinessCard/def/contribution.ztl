@@ -2,7 +2,7 @@
 /**
  * Class for BasicBusinessCard
  */
-class org.scn.community.basics.BasicBusinessCard extends Component {
+class org.scn.community.basics.BasicBusinessCard extends org.scn.community.shared.Component {
 
 	/** returns the image url */
 	String getImage () {*

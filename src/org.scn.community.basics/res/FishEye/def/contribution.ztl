@@ -2,7 +2,7 @@
 /**
  * Class for FishEye
  */
-class org.scn.community.basics.FishEye extends Component {
+class org.scn.community.basics.FishEye extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
