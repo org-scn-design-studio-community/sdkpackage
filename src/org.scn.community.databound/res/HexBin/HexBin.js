@@ -168,6 +168,20 @@
 	    		parentInit.call(this);
 	    		this.$().addClass("HexBin");
 	    	}
+	    	var parentPreReq = this.preReqCheck;
+	    	this.preReqCheck = function(){
+	    		var status = parentPreReq.apply(this);
+	    		if(!status.success) return status;
+	    		if(this.flatData.columnHeaders.length<2) return {
+	    			success : false,
+	    			reason : "I need at least 2 measures"
+	    		};
+	    		if(this.measureX() == this.measureY()) return {
+	    			success : false,
+	    			reason : "X and Y Axis Measures should not be the same."
+	    		}
+	    		return status;
+	    	}
 		}
 		sap.designstudio.sdk.Component.subclass("org.scn.community.databound.HexBin", HexBin);	// End of SDK
 		sap.zen.Dispatcher.instance.resumeDispatching();

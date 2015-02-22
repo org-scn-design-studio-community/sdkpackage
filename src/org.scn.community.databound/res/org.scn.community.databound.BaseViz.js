@@ -23,36 +23,15 @@ function org_scn_community_databound_BaseViz(d3, options){
 	/**
 	 * Update Cosmetics
 	 */
-	this.updateCosmetics = function(){   	
-		var x = d3.scale.linear()
-			.domain([0, d3.max(this.xVals)])	
-			.range([0, this.dimensions.chartWidth]),
-		y = d3.scale.linear()
-			.domain([d3.max(this.yVals),0])	
-			.range([0,this.dimensions.chartHeight]),					
-		xAxis = d3.svg.axis()
-			.scale(x)
-			.orient("bottom")
-			.tickSize(6,-this.dimensions.chartHeight),
-		yAxis = d3.svg.axis()
-	    	.scale(y)
-	    	.orient("left")
-	    	.tickSize(6, -this.dimensions.chartWidth);
-		
+	this.updateCosmetics = function(){ 
 		this.svg
-			.transition().duration(this.ms())
-			.attr("width", this.dimensions.width)
-			.attr("height", this.dimensions.height);
-		
-		this.svgG
+		.transition().duration(this.ms())
+		.attr("width", this.dimensions.width)
+		.attr("height", this.dimensions.height);
+	
+		this.plotArea
 			.transition().duration(this.ms())
 			.attr("transform", "translate(" + (this.dimensions.margin + this.dimensions.chartLeft) + "," + this.dimensions.margin + ")");
-		
-		this.mesh
-			.transition().duration(this.ms())
-			.attr("width", this.dimensions.chartWidth)
-			.attr("height", this.dimensions.chartHeight);
-		
 		this.legendGroup
 			.transition().duration(this.ms())
 			.attr("transform", "translate("+this.dimensions.legendLeft+","+this.dimensions.legendTop+") "+
@@ -64,14 +43,16 @@ function org_scn_community_databound_BaseViz(d3, options){
 					return 0;
 				}
 			});
+		this.messageRect
+			.transition().duration(this.ms())	
+			.attr("width",this.dimensions.width)
+			.attr("height",this.dimensions.height);
 		
-		this.yAxisGroup.transition().duration(this.ms())
-			.call(yAxis);
+		return this;
+			
+		
 	
-		this.xAxisGroup.transition().duration(this.ms())
-			.attr("transform", "translate(0," + this.dimensions.chartHeight + ")")	
-			.call(xAxis);
-    	return this;
+		
 	};
 	this.calculateDimensions = function(){
 		this.dimensions = {
@@ -119,26 +100,36 @@ function org_scn_community_databound_BaseViz(d3, options){
 			reason : reason
 		};
 	};
+	this.updatePlot = function() {
+		this.messageGroup
+			.transition().duration(this.ms())
+			.attr("display", "none")
+			.attr("opacity", 0);
+	};
 	this.afterUpdate = function() {
 		var that = this;
-		this.calculateDimensions();
+		this.calculateDimensions()
+			.updateCosmetics();
+		
 		var check = this.preReqCheck();
-		var vals = [];
 		if(check.success){
-			// D3 time
-			vals = this.flatData.values.slice();
+			this.updatePlot();
 		}else{
 			// Give informational window
-			alert(check.reason);
+			this.displayMessage(check.reason);
+			return;
 		}
-		
+		this.mesh
+			.transition().duration(this.ms())
+			.attr("width", this.dimensions.chartWidth)
+			.attr("height", this.dimensions.chartHeight);
+		var vals = [];
+		// D3 time
+		vals = this.flatData.values.slice();
 		var mx = this.measureX();
 		var my = this.measureY();
 		var mxIndex = 0;
 		var myIndex = 1;
-		if(this.flatData.columnHeaders.length<2){
-			throw "I need at least 2 measures";
-		}
 		for(var i=0;i<this.flatData.columnHeaders.length;i++){
 			if(this.flatData.columnHeaders[i] == mx) mxIndex = i;
 			if(this.flatData.columnHeaders[i] == my) myIndex = i;
@@ -151,16 +142,42 @@ function org_scn_community_databound_BaseViz(d3, options){
 			this.xVals.push(currentRow[mxIndex]);
 			this.yVals.push(currentRow[myIndex]);
 		}
+		
+		/*var x = d3.scale.linear()
+			.domain([0, d3.max(this.xVals)])	
+			.range([0, this.dimensions.chartWidth]),
+		y = d3.scale.linear()
+			.domain([d3.max(this.yVals),0])	
+			.range([0,this.dimensions.chartHeight]),	
+			*/
 		var x = d3.scale.linear()
 			.domain([0, d3.max(this.xVals)])	
 			.range([0, this.dimensions.chartWidth]),
 		y = d3.scale.linear()
 			.domain([d3.max(this.yVals),0])	
 			.range([0,this.dimensions.chartHeight]);
+		var xAxis = d3.svg.axis()
+			.scale(x)
+			.orient("bottom")
+			.tickSize(6,-this.dimensions.chartHeight),
+		yAxis = d3.svg.axis()
+	    	.scale(y)
+	    	.orient("left")
+	    	.tickSize(6, -this.dimensions.chartWidth);
+		
+		
+		
+		
 		for(var i=0;i<vals.length;i++){
 			var currentRow = vals[i];
 			this.points.push([x(currentRow[mxIndex]),y(currentRow[myIndex])]);
 		}
+		this.yAxisGroup.transition().duration(this.ms())
+			.call(yAxis);
+	
+		this.xAxisGroup.transition().duration(this.ms())
+			.attr("transform", "translate(0," + this.dimensions.chartHeight + ")")	
+			.call(xAxis);
 		//alert(JSON.stringify(this.points));
 		
 		//alert([this.dimensions.chartWidth, this.dimensions.chartHeight]);
@@ -188,8 +205,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 
 		
 		
-		this.updateCosmetics()
-			.updateLegend();
+		this.updateLegend();
 
 		// Canvas
 		this.hexbin = d3.hexbin()
@@ -287,6 +303,13 @@ function org_scn_community_databound_BaseViz(d3, options){
 		return this;
 
 	};
+	this.displayMessage = function(message){
+		this.messageText.text(message);
+		this.messageGroup
+			.attr("display", "inline")
+			.transition().duration(this.ms())
+			.attr("opacity", 1);
+	}
 	var parentInit = this.init;
 	this.init = function(){
 		parentInit.apply(this);
@@ -295,15 +318,15 @@ function org_scn_community_databound_BaseViz(d3, options){
 		this.svg = d3.select("#" + this.$().attr("id")).select("svg");
 		if(this.svg.empty()){
 			this.svg = d3.select("#" + this.$().attr("id")).append("svg");
-			this.svgG = this.svg.append("g");
-			this.clip = this.svg.append("clipPath").attr("id",this.$().attr("id")+"_clip");
+			this.plotArea = this.svg.append("g");
+			this.clip = this.plotArea.append("clipPath").attr("id",this.$().attr("id")+"_clip");
 			this.mesh = this.clip.append("rect")
 				.attr("class","mesh");
-			this.canvas = this.svg.append("g")
+			this.canvas = this.plotArea.append("g")
 				.attr("clip-path","url(#" + this.$().attr("id")+"_clip)");
-			this.yAxisGroup = this.svg.append("g")
+			this.yAxisGroup = this.plotArea.append("g")
 				.attr("class", "y axis");
-			this.xAxisGroup = this.svg.append("g")
+			this.xAxisGroup = this.plotArea.append("g")
 				.attr("class", "x axis")
 				.attr("transform", "translate(0," + this.dimensions.chartHeight + ")");
 			this.legendGroup = this.svg.append('g')
@@ -314,6 +337,22 @@ function org_scn_community_databound_BaseViz(d3, options){
 	        	.attr('y', 0);
 			this.legendLabel = this.legendGroup.append('text')
 	        	.attr('class', 'legend-label');
+			
+			this.messageGroup = this.svg.append("g")
+		    	.attr("display", "none")
+		    	.attr("opacity", 0);
+	    
+		    this.messageRect = this.messageGroup.append("rect")
+		    	.attr("fill", "#006699")
+		    	.attr("x",0).attr("y",0)
+		    	.attr("width",this.dimensions.width)
+		    	.attr("height",this.dimensions.height)
+		    	
+	    	this.messageText = this.messageGroup.append("text")
+		    	.style("text-anchor","middle")
+		    	.style("fill","#FFFFFF")
+		    	.attr("x",this.dimensions.width/2).attr("y",this.dimensions.height/2)
+		    	.text("Message");
 		}
 	}
 };
