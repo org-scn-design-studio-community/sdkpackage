@@ -160,6 +160,7 @@
 				radius : { value : 20 },
 				tolerance : { value : 0 },
 				threshold : { value : 20 },
+				thresholdMethod : { value : "Manual" },
 				margin : { value : 20},
 				showValues : { value : true}
 			});

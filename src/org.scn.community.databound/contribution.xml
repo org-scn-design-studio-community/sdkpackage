@@ -662,8 +662,14 @@
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="radius" type="int" title = "Hex Radius" visible="true"/>
-	<property id="tolerance" type="int" title = "Tolerance" visible="true"/>
-	<property id="threshold" type="int" title = "Threshold" visible="true"/>
+	<property id="tolerance" type="int" title = "Manual Tolerance" visible="true"/>
+	<property id="threshold" type="int" title = "Manual Threshold" visible="true"/>
+	<property id="thresholdMethod" type="String" title = "Threshold Method" visible="true">
+		<possibleValue>Max</possibleValue>
+		<possibleValue>Median</possibleValue>
+		<possibleValue>Mean</possibleValue>
+		<possibleValue>Manual</possibleValue>
+	</property>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
 	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
 	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String"/>
@@ -686,6 +692,7 @@
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="radius">20</defaultValue>
 		<defaultValue property="tolerance">0</defaultValue>
+		<defaultValue property="thresholdMethod">Median</defaultValue>
 		<defaultValue property="threshold">20</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>

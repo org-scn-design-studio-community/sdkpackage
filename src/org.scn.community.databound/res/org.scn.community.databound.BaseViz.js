@@ -119,7 +119,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			this.displayMessage(check.reason);
 			return;
 		}
-		this.mesh
+		this.clipRect
 			.transition().duration(this.ms())
 			.attr("width", this.dimensions.chartWidth)
 			.attr("height", this.dimensions.chartHeight);
@@ -142,14 +142,9 @@ function org_scn_community_databound_BaseViz(d3, options){
 			this.xVals.push(currentRow[mxIndex]);
 			this.yVals.push(currentRow[myIndex]);
 		}
-		
-		/*var x = d3.scale.linear()
-			.domain([0, d3.max(this.xVals)])	
-			.range([0, this.dimensions.chartWidth]),
-		y = d3.scale.linear()
-			.domain([d3.max(this.yVals),0])	
-			.range([0,this.dimensions.chartHeight]),	
-			*/
+		this.hexbin = d3.hexbin()
+			.size([this.dimensions.chartWidth, this.dimensions.chartHeight])
+			.radius(this.radius());
 		var x = d3.scale.linear()
 			.domain([0, d3.max(this.xVals)])	
 			.range([0, this.dimensions.chartWidth]),
@@ -164,14 +159,12 @@ function org_scn_community_databound_BaseViz(d3, options){
 	    	.scale(y)
 	    	.orient("left")
 	    	.tickSize(6, -this.dimensions.chartWidth);
-		
-		
-		
-		
+
 		for(var i=0;i<vals.length;i++){
 			var currentRow = vals[i];
 			this.points.push([x(currentRow[mxIndex]),y(currentRow[myIndex])]);
 		}
+		this.hexbins = this.hexbin(this.points);
 		this.yAxisGroup.transition().duration(this.ms())
 			.call(yAxis);
 	
@@ -186,16 +179,24 @@ function org_scn_community_databound_BaseViz(d3, options){
 		if(this.colorPalette()!=""){
 			cp = this.colorPalette().split(",");
 		}
-		/*
-		this.colorRange = d3.scale.linear()
-			.domain([0,this.radius()])
-			//.domain(this.points.sort(function(a, b) { return a - b; }))
-			.range(cp)
-			.interpolate(d3.interpolateLab);
-		*/
+		var min = this.tolerance();
+		var max = this.threshold();
+		switch (this.thresholdMethod()){
+		case "Median":
+			min = 0;
+			max = d3.median(this.hexbins, function(d){ return d.length }) * 2;
+			break;
+		case "Mean":
+			min = 0;
+			max = d3.mean(this.hexbins, function(d){ return d.length }) * 2;
+			break;
+		case "Max":
+			min = 0;
+			max = d3.max(this.hexbins, function(d){ return d.length });
+			break;
+		}
 		this.colorRange = d3.scale.quantize()
-		.domain([this.tolerance(),this.threshold()])
-		//.domain(this.points.sort(function(a, b) { return a - b; }))
+		.domain([min,max])
 		.range(cp);
 		//.interpolate(d3.interpolateLab);
 			//z = d3.scale.category10();
@@ -203,16 +204,11 @@ function org_scn_community_databound_BaseViz(d3, options){
 		var n = d3.format(",d"),
 		    p = d3.format("%");
 
-		
-		
 		this.updateLegend();
-
 		// Canvas
-		this.hexbin = d3.hexbin()
-			.size([this.dimensions.chartWidth, this.dimensions.chartHeight])
-			.radius(this.radius());
 		
-		var canvSelection = this.canvas.selectAll(".hexagon").data(this.hexbin(this.points));
+		
+		var canvSelection = this.canvas.selectAll(".hexagon").data(this.hexbins);
 		canvSelection.enter().append("path")
 			.attr("class", "hexagon")
 			.attr("d", this.hexbin.hexagon())
@@ -318,17 +314,28 @@ function org_scn_community_databound_BaseViz(d3, options){
 		this.svg = d3.select("#" + this.$().attr("id")).select("svg");
 		if(this.svg.empty()){
 			this.svg = d3.select("#" + this.$().attr("id")).append("svg");
+			// Main Plot Area
 			this.plotArea = this.svg.append("g");
-			this.clip = this.plotArea.append("clipPath").attr("id",this.$().attr("id")+"_clip");
-			this.mesh = this.clip.append("rect")
-				.attr("class","mesh");
+			// Clip Path
+			this.clip = this.plotArea.append("clipPath")
+				.attr("id",this.$().attr("id")+"_clip");
+			// Rectangle Shape for clip path
+			this.clipRect = this.clip.append("rect")
+				.attr("class","clipRect");
+			// Canvas Group
 			this.canvas = this.plotArea.append("g")
 				.attr("clip-path","url(#" + this.$().attr("id")+"_clip)");
+			/*
+			 * Axes
+			 */
 			this.yAxisGroup = this.plotArea.append("g")
 				.attr("class", "y axis");
 			this.xAxisGroup = this.plotArea.append("g")
 				.attr("class", "x axis")
 				.attr("transform", "translate(0," + this.dimensions.chartHeight + ")");
+			/*
+			 * Legend
+			 */
 			this.legendGroup = this.svg.append('g')
         		.attr('class', "legend-group" );
 			this.legendRect = this.legendGroup.append('rect')
@@ -337,7 +344,9 @@ function org_scn_community_databound_BaseViz(d3, options){
 	        	.attr('y', 0);
 			this.legendLabel = this.legendGroup.append('text')
 	        	.attr('class', 'legend-label');
-			
+			/*
+			 * Messages
+			 */
 			this.messageGroup = this.svg.append("g")
 		    	.attr("display", "none")
 		    	.attr("opacity", 0);

@@ -582,13 +582,41 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		this.DSortingType = "Default";
 	*}
 }
+/**
+ * enum field definition
+ */
+class org_scn_community_shared_ThresholdMethod extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify field 
+ */
+class org_scn_community_shared_ThresholdMethodTypes extends Enum {
+
+	/** CHECKED */
+	org_scn_community_shared_ThresholdMethod CHECKED;
+       
+	/** UNCHECKED */
+	org_scn_community_shared_ThresholdMethod UNCHECKED;
+
+	/** MIXED */
+	org_scn_community_shared_ThresholdMethod MIXED;
+}
+
 
 class org.scn.community.databound.HexBin extends org.scn.community.shared.DataComponent {
+	/**
+	Set Threshold Method
+	*/
+	void setThresholdMethod(/*Method*/ String method) {*
+		this.thresholdMethod = method;
+	*}
 	/**
 	Set Legend Visibility
 	*/
 	void setLegendVisible(/*Visible*/boolean visible) {*
-		return this.legendOn = visible;
+		this.legendOn = visible;
 	*}
 	/**
 	Set Color Palette
