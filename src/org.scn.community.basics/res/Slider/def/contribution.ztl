@@ -42,10 +42,19 @@ class org.scn.community.basics.Slider extends org.scn.community.shared.Component
 		/** Value */ float value) {*
 		this.value = value;
 	*}
+	/** Sets the value from integer. */
+	void setValueAsInt(
+		/** Value */ int value) {*
+		this.value = parseFloat(value);
+	*}
 	
 	/** Returns the value. */
 	float getValue() {*
 		return this.value;
+	*}
+	/** Returns the value as an integer. */
+	int getValueAsInt() {*
+		return parseInt(Math.floor(this.value));
 	*}
 	
 	/** Sets the total units value. */

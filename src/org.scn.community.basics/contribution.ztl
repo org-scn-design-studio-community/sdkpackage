@@ -2638,10 +2638,20 @@ class org.scn.community.basics.RangeSlider extends org.scn.community.shared.Comp
 		/** Value */ float value) {*
 		this.value = value;
 	*}
+	/** Sets the value from integer. */
+	void setValueAsInt(
+		/** Value */ int value) {*
+		this.value = parseFloat(value);
+	*}
 	
 	/** Returns the value. */
 	float getValue() {*
 		return this.value;
+	*}
+	
+	/** Returns the value as integer. */
+	int getValueAsInt() {*
+		return parseInt(Math.floor(this.value));
 	*}
 	
 	/** Sets the second value. */
@@ -2649,10 +2659,20 @@ class org.scn.community.basics.RangeSlider extends org.scn.community.shared.Comp
 		/** Second value */ float value2) {*
 		this.value2 = value2;
 	*}
+	/** Sets the second value from integer. */
+	void setValue2AsInt(
+		/** Value */ int value) {*
+		this.value2 = parseFloat(value);
+	*}
 	
 	/** Returns the second value. */
 	float getValue2() {*
 		return this.value2;
+	*}
+	
+	/** Returns the second value as integer. */
+	int getValue2AsInt() {*
+		return parseInt(Math.floor(this.value2));
 	*}
 
 	/** Sets the total units value. */
@@ -2897,10 +2917,19 @@ class org.scn.community.basics.Slider extends org.scn.community.shared.Component
 		/** Value */ float value) {*
 		this.value = value;
 	*}
+	/** Sets the value from integer. */
+	void setValueAsInt(
+		/** Value */ int value) {*
+		this.value = parseFloat(value);
+	*}
 	
 	/** Returns the value. */
 	float getValue() {*
 		return this.value;
+	*}
+	/** Returns the value as an integer. */
+	int getValueAsInt() {*
+		return parseInt(Math.floor(this.value));
 	*}
 	
 	/** Sets the total units value. */
