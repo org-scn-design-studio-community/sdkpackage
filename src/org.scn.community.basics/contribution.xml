@@ -468,6 +468,137 @@
 </component>
 
 <component
+	id="Calendar"
+	title="Calendar"
+	icon="res/Calendar/Calendar.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>os/sapui5/load.sap.m.js</jsInclude>
+	<jsInclude>os/date/DateFormat.js</jsInclude>
+	<jsInclude>res/Calendar/Calendar.js</jsInclude>
+	<cssInclude>res/Calendar/Calendar.css</cssInclude>
+
+	<property
+		id="DCurrentValue"
+		type="String"
+		title="Current Date Value YYYYMMDD"
+		tooltip="Current Date Value YYYYMMDD"
+		group="Display"
+		visible="true" />
+	<property
+		id="DValue"
+		type="String"
+		title="Date Single Value YYYYMMDD"
+		tooltip="Date Single Value YYYYMMDD"
+		group="Display"
+		visible="true" />
+	<property
+		id="DValueF"
+		type="String"
+		title="Date Value Range From YYYYMMDD"
+		tooltip="Date Value Range From YYYYMMDD"
+		group="Display"
+		visible="true" />
+	<property
+		id="DValueT"
+		type="String"
+		title="Date Value Range To YYYYMMDD"
+		tooltip="Date Value Range To YYYYMMDD"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="firstDayOffset"
+		type="int"
+		title="First Day Offset (0 == Sunday)"
+		tooltip="First Day Offset (0 == Sunday, 1 == Monday)"
+		group="Display"
+		visible="true" />
+	<property
+		id="singleRow"
+		type="boolean"
+		title="Single Row"
+		tooltip="Single Row"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="monthsToDisplay"
+		type="int"
+		title="Months To Display"
+		tooltip="Months  ToDisplay"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="weeksPerRow"
+		type="int"
+		title="Weeks Per Row"
+		tooltip="Weeks Per Row"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="monthsPerRow"
+		type="int"
+		title="Months Per Row"
+		tooltip="Months Per Row"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DSelectionType"
+		type="String"
+		title="Selection Type"
+		tooltip="Selection Type"
+		group="Display"
+		visible="true">
+		<possibleValue>Single Selection</possibleValue>
+		<possibleValue>Range Selection</possibleValue>
+	</property>
+
+	<property
+		id="onCurrentChanged"
+		type="ScriptText"
+		title="Event for On Current Value Changed"
+		group="Events" />
+
+	<property
+		id="onSingleChanged"
+		type="ScriptText"
+		title="Event for On Value Change with Single Date"
+		group="Events" />
+
+	<property
+		id="onRangeChanged"
+		type="ScriptText"
+		title="Event for On Value Change with Date Range"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="DCurrentValue">TODAY</defaultValue>
+		<defaultValue property="DValue">TODAY</defaultValue>
+		<defaultValue property="DValueF">TODAY</defaultValue>
+		<defaultValue property="DValueT">TODAY</defaultValue>
+	
+		<defaultValue property="firstDayOffset">1</defaultValue>
+		<defaultValue property="singleRow">false</defaultValue>
+		<defaultValue property="monthsToDisplay">1</defaultValue>
+		<defaultValue property="weeksPerRow">1</defaultValue>
+		<defaultValue property="monthsPerRow">1</defaultValue>
+	
+		<defaultValue property="DSelectionType">Single Selection</defaultValue>
+	</initialization>	
+</component>
+<component
 	id="CheckBoxGroup"
 	title="Check Box Group"
 	icon="res/CheckBoxGroup/CheckBoxGroup.png"

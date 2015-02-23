@@ -32,7 +32,6 @@ _readScriptPath = function () {
 /** end of path recognition */
 
 var oCore = sap.ui.getCore();
-oCore.loadLibrary("sap.m");
 oCore.loadLibrary("sap.me");
 
 jQuery.sap.require("sap.me.Calendar");
@@ -42,8 +41,10 @@ sap.me.Calendar.extend("org.scn.community.basics.Calendar", {
 
 	metadata: {
         properties: {
+        	  "DCurrentValue": {type: "string"},
         	  "DValue": {type: "string"},
-        	  "DValue2": {type: "string"},
+        	  "DValueF": {type: "string"},
+        	  "DValueT": {type: "string"},
         	  "DSelectionType": {type: "string"},
         }
 	},
@@ -55,50 +56,116 @@ sap.me.Calendar.extend("org.scn.community.basics.Calendar", {
 		this.addStyleClass("scn-pack-Calendar");
 		this.addStyleClass(this.getId());
         
+		this.attachTapOnDate(this._tapOnDate);
 		this.attachChangeCurrentDate(this._changeCurrentDate);
 		this.attachChangeRange(this._attachChangeRange);
-
-		// this.onAfterRendering = this._onAfterRendering;
   	},
 	
 	renderer: {},
 	
 	afterDesignStudioUpdate : function() {
-		this.setCurrentDate(this.getDValue());
-        this.setFirstDayOffset(0);
-        
-        this.setSingleRow(false);
-        this.setMonthsToDisplay(1);
-        this.setWeeksPerRow(1);
-        this.setMonthsPerRow(1);
-        this.setFirstDayOffset(0);
+		var that = this;
+		
+		var currentDate = that.getDateValue(that.getDCurrentValue(), dateFormat);
+		var singleDate = that.getDateValue(that.getDValue(), dateFormat);
+		var fromDate = that.getDateValue(that.getDValueF(), dateFormat);
+		var toDate = that.getDateValue(that.getDValueT(), dateFormat);
+
+		that._deactivateEvent = true;
+		if(that._oldDateValues != currentDate.formatted) {
+			that._oldDateValues = currentDate.formatted;
+			
+			var curActual = that.getCurrentDate();
+			var dateO = new Date(curActual);
+			var techDate = "" + dateO.format(dateFormat.masks.technical);
+	    	
+			if(techDate != currentDate.formatted) {
+				that.setCurrentDate(currentDate.formatted);	
+			}
+		}
+		that._deactivateEvent = false;
+		
+		var selectionType = this.getDSelectionType();
+		if(selectionType == "Single Selection") {
+			this.setSelectionMode(sap.me.CalendarSelectionMode.SINGLE);
+		} else if(selectionType == "Range Selection") { 
+			this.setSelectionMode(sap.me.CalendarSelectionMode.RANGE);
+		}
 	},
 
 	_changeCurrentDate: function(oEvent) {
-		// msgLabel.setText("you navigated to new date: " + oEvent.getParameters().currentDate);
+		var that = this;
+		if(that._deactivateEvent) {
+			// endless loop...
+			return;
+		}
+		
+    	var date = oEvent.getParameters().currentDate;
+		var dateO = new Date(date);
+		var techDate = "" + dateO.format(dateFormat.masks.technical);
+    	this.setDCurrentValue(techDate);
+    	
+        that.fireDesignStudioPropertiesChanged(["DCurrentValue"]);
+		that.fireDesignStudioEvent("onCurrentChanged");
 	},
 	
-	_attachTapOnDate: function (oEvent) {
-        //msgLabel.setText("you tapped on " + oEvent.getParameters().date + " didSelected: " + oEvent.getParameters().didSelect);
+	_tapOnDate: function (oEvent) {
+		var that = this;
+		if(that._deactivateEvent) {
+			// endless loop...
+			return;
+		}
+		
+        var that = this;
+        
+    	var did = oEvent.getParameters().didSelect;
     	
-    	this.setDSelectionType("single");
-    	
-    	this.setDValue(oEvent.getParameters().date);
+    	var date = oEvent.getParameters().date;
+		var dateO = new Date(date);
+		var techDate = "" + dateO.format(dateFormat.masks.technical);
+    	this.setDValue(techDate);
     	
         that.fireDesignStudioPropertiesChanged(["DValue"]);
 		that.fireDesignStudioEvent("onSingleChanged");
     },
     
     _attachChangeRange: function (oEvent) {
-        // msgLabel.setText("you selected a range of dates from: " + oEvent.getParameters().fromDate + " to: " + oEvent.getParameters().toDate);
+    	var that = this;
+		if(that._deactivateEvent) {
+			// endless loop...
+			return;
+		}
     	
-    	this.setDSelectionType("range");
+    	var that = this;
+        
+    	var date = oEvent.getParameters().fromDate;
+		var dateO = new Date(date);
+		var techDate = "" + dateO.format(dateFormat.masks.technical);
+    	this.setDValueF(techDate);
+
+    	date = oEvent.getParameters().toDate;
+		dateO = new Date(date);
+		techDate = "" + dateO.format(dateFormat.masks.technical);
+    	this.setDValueT(techDate);
     	
-    	this.setDValue(oEvent.getParameters().fromDate);
-    	this.setDValue2(oEvent.getParameters().toDate);
-    	
-        that.fireDesignStudioPropertiesChanged(["DValue", "DValue2"]);
+        that.fireDesignStudioPropertiesChanged(["DValueF", "DValueT"]);
 		that.fireDesignStudioEvent("onRangeChanged");
     },
+    
+	getDateValue: function (inputDate, dateFormat) {
+		if(inputDate == "TODAY" || inputDate.length != 8) {
+			inputDate = new Date();
+			inputDate = inputDate.format(dateFormat.masks.technical);
+		}
+		
+		var year = inputDate.substring(0,4);
+		var month = inputDate.substring(4,6);
+		var day = inputDate.substring(6,8);
+		
+		var date = new Date(year, month - 1, day);
+		date.formatted = date.format(dateFormat.masks.technical);
+		
+		return date;
+	},
 });
 })();

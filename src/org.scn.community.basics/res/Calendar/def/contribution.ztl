@@ -25,24 +25,44 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	boolean isEditable() {*
 		return this.editable;
 	*}
-	
-	/** returns value */
-	String getValue () {*
-		return this.value;	
+
+	/** returns current value */
+	String getCurrentDateValue () {*
+		return this.DCurrentValue;	
 	*}
 		
-	/** sets value */
-	void setValue (String value) {*
-		this.value = value;	
+	/** sets current value */
+	void setCurrentDateValue (String value) {*
+		this.DCurrentValue = value;	
+	*}
+	
+	/** returns single value */
+	String getSingleDateValue () {*
+		return this.DValue;	
+	*}
+		
+	/** sets single value */
+	void setSingleDateValue (String value) {*
+		this.DValue = value;	
 	*}
 
-	/** returns value 2*/
-	String getValue2 () {*
-		return this.value2;	
+	/** returns value from*/
+	String getRangeDateValueFrom () {*
+		return this.DValueF;	
 	*}
 		
-	/** sets value 2*/
-	void setValue2 (String value) {*
-		this.value2 = value;	
+	/** sets value from*/
+	void setRangeDateValueFrom (String value) {*
+		this.DValueF = value;	
+	*}
+
+	/** returns value to*/
+	String getRangeDateValueTo () {*
+		return this.DValueT;	
+	*}
+		
+	/** sets value to*/
+	void setRangeDateValueTo (String value) {*
+		this.DValueT = value;	
 	*}
 }

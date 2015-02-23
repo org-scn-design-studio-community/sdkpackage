@@ -10,6 +10,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\ApplicationHeader\def\contribution.xml ^
 ..\res\Base64Image\def\contribution.xml ^
 ..\res\BasicBusinessCard\def\contribution.xml ^
+..\res\Calendar\def\contribution.xml ^
 ..\res\CheckBoxGroup\def\contribution.xml ^
 ..\res\ColorPicker\def\contribution.xml ^
 ..\res\DateRangeScroller\def\contribution.xml ^
@@ -61,6 +62,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ApplicationHeader\def\contribution.ztl ^
 ..\res\Base64Image\def\contribution.ztl ^
 ..\res\BasicBusinessCard\def\contribution.ztl ^
+..\res\Calendar\def\contribution.ztl ^
 ..\res\CheckBoxGroup\def\contribution.ztl ^
 ..\res\ColorPicker\def\contribution.ztl ^
 ..\res\DateRangeScroller\def\contribution.ztl ^
