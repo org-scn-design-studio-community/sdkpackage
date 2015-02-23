@@ -71,26 +71,56 @@ sap.me.Calendar.extend("org.scn.community.basics.Calendar", {
 		var fromDate = that.getDateValue(that.getDValueF(), dateFormat);
 		var toDate = that.getDateValue(that.getDValueT(), dateFormat);
 
-		that._deactivateEvent = true;
-		if(that._oldDateValues != currentDate.formatted) {
-			that._oldDateValues = currentDate.formatted;
-			
-			var curActual = that.getCurrentDate();
-			var dateO = new Date(curActual);
-			var techDate = "" + dateO.format(dateFormat.masks.technical);
-	    	
-			if(techDate != currentDate.formatted) {
-				that.setCurrentDate(currentDate.formatted);	
-			}
-		}
-		that._deactivateEvent = false;
-		
 		var selectionType = this.getDSelectionType();
 		if(selectionType == "Single Selection") {
 			this.setSelectionMode(sap.me.CalendarSelectionMode.SINGLE);
 		} else if(selectionType == "Range Selection") { 
 			this.setSelectionMode(sap.me.CalendarSelectionMode.RANGE);
 		}
+
+		that._deactivateEvent = true;
+		if(that._oldDateValues != currentDate.formatted+singleDate.formatted+fromDate.formatted+toDate.formatted) {
+			that._oldDateValues = currentDate.formatted+singleDate.formatted+fromDate.formatted+toDate.formatted;
+			
+			var curActual = that.getCurrentDate();
+			var dateO = new Date(curActual);
+			var techDate = "" + dateO.format(dateFormat.masks.technical);
+	    	
+			if(techDate != currentDate.formatted) {
+				that.setCurrentDate(currentDate);	
+			}
+			
+			var selectedDates = that.getSelectedDates();
+			
+			if(this.getSelectionMode() == sap.me.CalendarSelectionMode.SINGLE) {
+				if(selectedDates.length == 1) {
+					var curSelected = selectedDates[0];
+					var dateO = new Date(curSelected);
+					var techDate = "" + dateO.format(dateFormat.masks.technical);
+			    	
+					if(techDate != singleDate.formatted) {
+						that.unselectAllDates();
+						that.toggleDatesRangeSelection(singleDate, singleDate, true);
+					}
+				}
+			} else if(this.getSelectionMode() == sap.me.CalendarSelectionMode.RANGE) {
+				if(selectedDates.length >= 2) {
+					var fromSelected = selectedDates[0];
+					var dateF = new Date(fromSelected);
+					var dateF = "" + dateF.format(dateFormat.masks.technical);
+			    	
+					var toSelected = selectedDates[selectedDates.length-1];
+					var dateT = new Date(toSelected);
+					var dateT = "" + dateT.format(dateFormat.masks.technical);
+
+					if(dateF != fromDate.formatted || dateT != toDate.formatted) {
+						that.unselectAllDates();
+						that.toggleDatesRangeSelection(fromDate, toDate, true);
+					}
+				}
+			}
+		}
+		that._deactivateEvent = false;
 	},
 
 	_changeCurrentDate: function(oEvent) {
