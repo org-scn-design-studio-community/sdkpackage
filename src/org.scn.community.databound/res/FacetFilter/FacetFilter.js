@@ -54,17 +54,30 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 		return this._metadata;
 	},
 	
-	setDElements : function(value) {
-		this.DElements = value;
-		
+	/* special code as we want to reset */
+	setDElements : function(value) { 
+		this.DElements = value;		
 		this._isInitialized = undefined;
+		this._mixedData = undefined;
 		return this;
 	},
 	
 	getDElements : function() {
 		return this.DElements;
 	},
-
+	
+	/* special code as we want to reset */
+	setDContentMode : function(value) { 
+		this.DContentMode = value;		
+		this._isInitialized = undefined;
+		this._mixedData = undefined;
+		return this;
+	},
+	
+	getDContentMode : function() {
+		return this.DContentMode;
+	},
+	
 	metadata: {
         properties: {
         	  "DSelection": {type: "string"},
@@ -73,7 +86,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
         	  "DSortingDirection": {type: "string"},
         	  "DClearOthers": {type: "boolean"},
               "DMaxMembers": {type: "int"},
-              "DContentMode": {type: "string"},
         }
 	},
 
@@ -123,9 +135,8 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 			options.idPrefix = this.getId();
 			options.iDuplicates = "Sum";
 			options.iDisplayText = "Text";
-			
-			that._mixedData = org_scn_community_databound.getDataModelForDimensions(lData, lMetadata, lDimensions, options);	
 		
+			that._mixedData = org_scn_community_databound.getDataModelForDimensions(lData, lMetadata, lDimensions, options);
 			if(that._isInitialized == undefined) {
 				for (dimensionKey in that._mixedData) {
 					var lDimension = that._mixedData[dimensionKey];
@@ -203,6 +214,10 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 					var members = lDimension.items;
 					var selectionInDimension = selectionJson[lDimension.name];
 					
+					if(selectionInDimension == undefined) {
+						continue;
+					}
+
 					if(selectionInDimension.filterExt.length > 2) {
 						var filteredMemberKeys = [];
 						

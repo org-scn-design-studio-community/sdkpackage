@@ -99,8 +99,10 @@ sap.ui.commons.RoadMap.extend("org.scn.community.basics.RoadMap", {
 		} else {
 			that.addDummy();
 		}
-		
-		that.setSelectedStep(that.getDSelectedKey());
+
+		if(this._oSteps[this.getId() + "_" + that.getDSelectedKey()] != undefined) {
+			that.setSelectedStep(this._oSteps[this.getId() + "_" + that.getDSelectedKey()]);	
+		}
 	},
 	
 	onSelected: function(oEvent) {
@@ -114,11 +116,13 @@ sap.ui.commons.RoadMap.extend("org.scn.community.basics.RoadMap", {
 	},
 	
 	addDummy: function() {
+		var that = this;
+		
 		//create the RoadMap steps
-		var oStep1 = new sap.ui.commons.RoadMapStep("step1", {label: "Step 1"});
-		var oStep2 = new sap.ui.commons.RoadMapStep("step2", {label: "Step 2", enabled: false});
-		var oStep3 = new sap.ui.commons.RoadMapStep("step3", {label: "Step 3"});
-		var oStep4 = new sap.ui.commons.RoadMapStep("step4", {label: "Step 4"});
+		var oStep1 = new sap.ui.commons.RoadMapStep({label: "Step 1"});
+		var oStep2 = new sap.ui.commons.RoadMapStep({label: "Step 2", enabled: false});
+		var oStep3 = new sap.ui.commons.RoadMapStep({label: "Step 3"});
+		var oStep4 = new sap.ui.commons.RoadMapStep({label: "Step 4"});
 	
 		//add steps to the RoadMap
 		this.addStep(oStep1);

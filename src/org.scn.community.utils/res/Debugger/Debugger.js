@@ -252,7 +252,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.utils.Debugger", 
 					value = value.replace("\\\"", "\"");	
 				}
 				value = value.substring(1);
-				value = value.substring(0, value.length - 2);
+				value = value.substring(0, value.length - 1);
 			}
 			
 			theText.setValue(value);

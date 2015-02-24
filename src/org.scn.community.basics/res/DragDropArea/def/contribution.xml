@@ -109,7 +109,7 @@
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="defaultImage"></defaultValue>
-		<defaultValue property="elements"></defaultValue>
+		<defaultValue property="elements">[]</defaultValue>
 		<defaultValue property="orientation">horizontal</defaultValue>
 		<defaultValue property="itemWidth">120</defaultValue>
 

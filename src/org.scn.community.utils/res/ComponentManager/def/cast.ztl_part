@@ -79,6 +79,9 @@
 	/**Cast to Modal Browser component*/
 	org.scn.community.basics.ModalBrowser returnAsScnModalBrowser (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Navigation Bar component*/
+	org.scn.community.basics.NavigationBar returnAsScnNavigationBar (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Notification Bar component*/
 	org.scn.community.basics.NotificationBar returnAsScnNotificationBar (Component inputComponent) {* return inputComponent; *}
 

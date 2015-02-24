@@ -47,7 +47,7 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 		}else{
 			o.push(newItem);
 		}
-		items = JSON.stringify(o);
+		this.items = JSON.stringify(o);
 	*}
 	/** Remove an item
  	<example>

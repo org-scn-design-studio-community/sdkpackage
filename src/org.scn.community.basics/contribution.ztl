@@ -182,7 +182,7 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 		}else{
 			o.push(newItem);
 		}
-		items = JSON.stringify(o);
+		this.items = JSON.stringify(o);
 	*}
 	/** Remove an item
  	<example>
@@ -740,6 +740,13 @@ class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Com
 		var elementsJson = JSON.parse(this.elements);
 		var newElementsJson = [];
 		
+		// special case 1
+		if(insertionIndex0based == 0 && elementsJson.length == 0) {
+			this.addElement(elementKey, elementText, imageUrl);
+			return;
+		}
+		
+		var found = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (i == insertionIndex0based) {
 				var itemDef = { 
@@ -749,11 +756,18 @@ class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Com
 						};
 				
 				newElementsJson.push(itemDef);
+				found = true;
 			}
 			
 			newElementsJson.push(elementsJson[i]);
 		}
-
+		
+		// special case 2
+		if(!found) {
+			this.addElement(elementKey, elementText, imageUrl);
+			return;
+		}
+		
 		this.elements = JSON.stringify(newElementsJson);
 	*}
 	
@@ -795,6 +809,39 @@ class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Com
 		}
 
 		this.elements = JSON.stringify(newElementsJson);
+	*}
+	
+	/**
+	Returns the content as key label array
+	<example>
+	You want to get the content of this area
+	<code>
+	var content = DRAGDROP.getAsKeyLabelArray();<br>
+	<br>
+	// a loop for all entries<br>
+	content.forEach(function(element, index) {<br>
+		LISTBOX_1.addItem(element.key, element.label);<br>
+	});
+	</code>
+	</example>
+	*/
+	org.scn.community.shared.KeyLabelArray getAsKeyLabelArray () {*
+		var s = this.elements;  
+		var a = []; 
+		if(s!="") a = JSON.parse(s);
+		
+		var tempA = [];
+		
+		for(var i=0;i<a.length;i++){
+			var itemDef = { 
+				"key": a[i].key, 
+				"label": a[i].text
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		return tempA;
 	*}
 	
 	/** returns key at given index */
@@ -2162,6 +2209,132 @@ class org.scn.community.basics.ModalBrowser extends org.scn.community.shared.Com
 	*/
 	String getURL() {*
 		return this.url;
+	*}
+}
+
+/**
+ * Class for NAVIGATIONBAR
+ */
+class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Component {
+	
+	/** remove all items */
+	void removeAllItems () {*		
+			var elementsArray = [];
+			this.DElementsContent = JSON.stringify(elementsArray);
+			
+			this.DCleanAll = true;
+	*}
+	
+	/** Adds an item containing Key, Text, Visible and Enable flags.
+
+ 	<example>
+	You want to add 2 items
+	<code>
+	NAVIGATIONBAR.addItem("ITEM1", "First Item", true, false);<br>
+	NAVIGATIONBAR.addItem("ITEM2", "Second Item", true, true);
+	</code>
+	</example>
+	 */
+	void addItem (
+			/**Item Key (must be unique)*/String itemKey, 
+			/**Item text*/String itemText, 
+			/**Visible*/boolean visible, 
+			/**Enabled*/boolean enabled) {*		
+
+		var itemDef = { 
+			"key": itemKey, 
+			"text": itemText, 
+			"visible": visible,
+			"enabled": enabled
+			};
+	
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == itemKey) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	<example>
+	You want to make the item visible
+	<code>
+	NAVIGATIONBAR.addItemVisible("ITEM1", true);<br>
+	</code>
+	</example>
+	 */
+	void setItemVisible (
+			/**Item Key (must be unique)*/String itemKey, 
+			/**Visible*/boolean visible) {*		
+
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == itemKey) {
+				elementsJson[i].visible = visible;
+				break;
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	<example>
+	You want to make the item enabled
+	<code>
+	NAVIGATIONBAR.addItemEnabled("ITEM1", true);<br>
+	</code>
+	</example>
+	 */
+	void setItemEnabled (
+			/**Item Key (must be unique)*/String itemKey, 
+			/**Enabled*/boolean enabled) {*		
+
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == itemKey) {
+				elementsJson[i].enabled = enabled;
+				break;
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/** returns the selected item */
+	String getSelectedItem () {*
+		return this.DSelectedKey;	
+	*}
+	
+	/** sets the selected item */
+	void setSelectedItem (String key) {*
+		this.DSelectedKey = key;	
 	*}
 }
 

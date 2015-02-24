@@ -1206,7 +1206,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	void addDataSourceToGroup (String group, String dataSourceName) {*
 		this.addComponentToGroup(group, dataSourceName);
 	*}
-	
+
 	/**
 	 * Adds a component to group by name
 	 * Allows grouping of components
@@ -1231,7 +1231,116 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 		
 		this.components = JSON.stringify(componentsJson);
 	*}
+
+	/**
+	 * Removes a data source from group by name
+	 * Allows grouping of data sources
+	 * <example>
+	 * You want to remove data source from dynamic access
+	 * <code>
+	 * COMPONENTMANAGER_1.removeDataSourceFromGroup("SALES", "DS_SALE_1");
+	 * </code>
+	 * </example>
+	 * Now, you can process with the method "getDataSourcesFromGroup"
+	 */
+	void removeDataSourceFormGroup (String group, String dataSourceName) {*
+		this.removeComponentFromGroup(group, dataSourceName);
+	*}
+
+	/**
+	 * Removes a component to group by name
+	 * Allows grouping of components
+	 * <example>
+	 * You want to remove component from dynamic access
+	 * <code>
+	 * COMPONENTMANAGER_1.removeComponentFromGroup("ACCEPT_BUTTONS", "SALES_BUTTON_ACCEPT");
+	 * </code>
+	 * </example>
+	 * Now, you can process with the method "getComponentsFromGroup"
+	 */
+	void removeComponentFromGroup (String group, String componentName) {*
+		var componentsJson = JSON.parse(this.components);
+		
+		if(componentsJson[group] == undefined) {
+			componentsJson[group] = [];
+			return;
+		}
+		
+		for (var i = 0; i < componentsJson[group].length ; i++){
+			var componentHolder = {};
+			componentHolder.name = componentsJson[group][i];
+			
+			if(componentHolder.name == componentName) {
+				componentsJson[group].splice(i, 1);
+			}
+		}		
+		
+		this.components = JSON.stringify(componentsJson);
+	*}
+
+	/**
+	 * Adds a data source to group by object reference
+	 * Allows grouping of data sources
+	 * <example>
+	 * You want to group 2 data sources for dynamic access, so first add both to a common group
+	 * <code>
+	 * COMPONENTMANAGER_1.addDataSourceToGroup("SALES", DS_SALE_1);
+	 * COMPONENTMANAGER_1.addDataSourceToGroup("SALES", DS_SALE_PRE);
+	 * </code>
+	 * </example>
+	 * Now, you can process with the method "getDataSourcesFromGroup"
+	 */
+	void addDataSourceReferenceToGroup (String group, DataSourceAlias dataSource) {*
+		this.addComponentToGroup(group, dataSource.getOwner().getName());
+	*}
+
+	/**
+	 * Adds a component to group by object reference
+	 * Allows grouping of components
+	 * <example>
+	 * You want to group 3 components for dynamic access, so first add both to a common group
+	 * <code>
+	 * COMPONENTMANAGER_1.addComponentToGroup("ACCEPT_BUTTONS", SALES_BUTTON_ACCEPT);
+	 * COMPONENTMANAGER_1.addComponentToGroup("ACCEPT_BUTTONS", REVENUE_BUTTON_ACCEPT);
+	 * COMPONENTMANAGER_1.addComponentToGroup("ACCEPT_BUTTONS", ANOTHER_BUTTON_ACCEPT);
+	 * </code>
+	 * </example>
+	 * Now, you can process with the method "getComponentsFromGroup"
+	 */
+	void addComponentReferenceToGroup (String group, Component component) {*
+		this.addComponentToGroup(group, component.getOwner().getName());
+	*}
 	
+	/**
+	 * Removes a data source to group by object reference
+	 * Allows grouping of data sources
+	 * <example>
+	 * You want to remove data sources from dynamic access
+	 * <code>
+	 * COMPONENTMANAGER_1.removeDataSourceReferenceFromGroup("SALES", DS_SALE_1);
+	 * </code>
+	 * </example>
+	 * Now, you can process with the method "getDataSourcesFromGroup"
+	 */
+	void removeDataSourceReferenceFromGroup (String group, DataSourceAlias dataSource) {*
+		this.removeComponentFromGroup(group, dataSource.getOwner().getName());
+	*}
+
+	/**
+	 * Removes a component to group by object reference
+	 * Allows grouping of components
+	 * <example>
+	 * You want to remove component from dynamic access
+	 * <code>
+	 * COMPONENTMANAGER_1.removeComponentReferenceFromGroup("ACCEPT_BUTTONS", SALES_BUTTON_ACCEPT);
+	 * </code>
+	 * </example>
+	 * Now, you can process with the method "getComponentsFromGroup"
+	 */
+	void removeComponentReferenceFromGroup (String group, Component component) {*
+		this.removeComponentFromGroup(group, component.getOwner().getName());
+	*}
+
 	/**
 	 * Returns array of data sources from the group
 	 * Allows work on grouped data sources in dynamic way
@@ -1280,6 +1389,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 		var allComponents = [];
 		var componentsJson = JSON.parse(this.components);
 	
+		var l = {};
+		l.group = group;
+		
 		if(componentsJson[group] == undefined) {
 			return allComponents;
 		}
@@ -1287,10 +1399,17 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 		for (var i = 0; i < componentsJson[group].length ; i++){
 			var componentHolder = {};
 			componentHolder.name = componentsJson[group][i];
+		
+			l.name = componentHolder.name;
 			
 			var component = this.getComponentByName(componentHolder.name);
 			componentHolder.type = this.identifyType(component);
 			componentHolder.component = component;
+			componentHolder.datasource = component;
+			
+			l.componentExists = (component != undefined);
+			l.type = componentHolder.type;
+			if(this.isDebug()) DEBUG.inspectZtl(this, l, undefined, true);
 			
 			allComponents.push(componentHolder);	
 		}
@@ -1642,6 +1761,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	  	
 		var type = "UNKNOWN";
 		
+		if(this.isDebug()) DEBUG.inspectZtl(this, inputComponent, undefined, true);
 		
 		if(inputComponent.getOwner){
 			
@@ -1649,7 +1769,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 			
 			if(owner.getItemType) {
 				type = owner.getItemType();
-				// APPLICATION.createInfoMessage("Comp: " + type);
 			}
 		}
 		
@@ -2098,9 +2217,9 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 			thisValue = {};
 		}
 		
-		if(thisValue._VariableName == undefined) {
-			thisValue._VariableName = comment;
-		}
+//		if(thisValue._VariableName == undefined) {
+//			thisValue._VariableName = comment;
+//		}
 		
 		this.toConsole("Component [CUSTOM] : " + thisValue._VariableName, true);
 		this.private_inspect(thisValue);
@@ -2117,7 +2236,7 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 		this.private_inspect(thisValue, locals, exception);
 	*}
 
-	void inspectZtl(String thisValue, Object locals, Object exception) {*
+	void inspectZtl(Object thisValue, Object locals, Object exception) {*
 		if(this.DActive != true) {
 			return;
 		}
@@ -2131,13 +2250,17 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 	/**
 	 * Private Inspection Method
 	 */
-	void private_inspect(String thisValue, Object locals, Object exception) {*
+	void private_inspect(Object thisValue, Object locals, Object exception, optional boolean fullScope) {*
 		if(this.DActive != true) {
 			return;
 		}
 	
 		var that = this;
 	
+		if(fullScope==undefined) {
+			fullScope = false;
+		}
+		
 		var lStack = undefined;
 		if(this.DStack == "") {
 			lStack = [];
@@ -2214,9 +2337,15 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 			// owner
 			this.toConsole("OWNER ? "+(thisValue != undefined));
 			if(thisValue) {
+				
+				var owner = thisValue.getOwner();
+				
+				lVariables.push({"date":l.date, "item-type":name, "value":owner.getItemType(), "type":"info"});
+				lVariables.push({"date":l.date, "item-name":name, "value":owner.getName(), "type":"info"});
+				
 				for (var name in thisValue) {
 					try {
-						if(name.indexOf("_VariableName") > -1) {
+						if(!fullScope && name.indexOf("_VariableName") > -1) {
 							continue;
 						}
 						
@@ -2227,12 +2356,12 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 						
 						var value = thisValue[name];
 						
-						if(value.indexOf("function") > -1) {
+						if(!fullScope && value.indexOf("function") > -1) {
 							// internal function
 							continue;
 						}
 		
-						if(value.indexOf("com.sap.ip.bi.zen") > -1) {
+						if(!fullScope && value.indexOf("com.sap.ip.bi.zen") > -1) {
 							// internal object
 							continue;
 						}
@@ -2246,7 +2375,7 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 							lVariables.push({"date":l.date, "name":name, "value":value, "type":"owner"});
 						}
 					} catch (e) {
-						// ignore
+						lVariables.push({"date":l.date, "name":name, "value":"<read error>", "type":"owner"});
 					}
 				}
 			}								
@@ -2269,7 +2398,7 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 							lVariables.push({"date":l.date, "name":name, "value":value, "type":"local"});
 						}
 					} catch (e) {
-						// ignore
+						lVariables.push({"date":l.date, "name":name, "value":"<read error>", "type":"local"});
 					}
 				}
 			}

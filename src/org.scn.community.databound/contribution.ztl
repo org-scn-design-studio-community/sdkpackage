@@ -581,6 +581,36 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		}
 		this.DSortingType = "Default";
 	*}
+	
+	/**
+	 * Sets the sorting type - ALL | RESULTSET | CUSTOM
+	 */
+	void setContentMode (org_scn_community_shared_ContentModeEnumfield mode) {*
+		if(mode == org_scn_community_shared_ContentMode.ALL) {
+			this.DContentMode = "All Dimensions";
+			return;
+		}
+		if(mode == org_scn_community_shared_ContentMode.RESULTSET) {
+			this.DContentMode = "Only from Result Set";
+			return;
+		}
+		if(mode == org_scn_community_shared_ContentMode.CUSTOM) {
+			this.DContentMode = "Custom Dimension Set";
+			return;
+		}
+		this.DContentMode = "Only from Result Set";
+	*}
+	
+	void setCustomDimensions (StringArray dimensions) {*
+		this.DCustomDimensions = JSON.stringify(dimensions);
+	*}
+	
+	/**
+	 * Sets simple selection for dynamic use, you can place here some measure (member of measure dimension)
+	 */
+	void setSimpleSelection(String dimension, String member) {*
+		this.data = "{\""+dimension+"\": \""+member+"\"}";
+	*}
 }
 /**
  * enum field definition

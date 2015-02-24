@@ -32,6 +32,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\MenuBar\def\contribution.xml ^
 ..\res\MenuButton\def\contribution.xml ^
 ..\res\ModalBrowser\def\contribution.xml ^
+..\res\NavigationBar\def\contribution.xml ^
 ..\res\NotificationBar\def\contribution.xml ^
 ..\res\Notify\def\contribution.xml ^
 ..\res\OSMap\def\contribution.xml ^
@@ -84,6 +85,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\MenuBar\def\contribution.ztl ^
 ..\res\MenuButton\def\contribution.ztl ^
 ..\res\ModalBrowser\def\contribution.ztl ^
+..\res\NavigationBar\def\contribution.ztl ^
 ..\res\NotificationBar\def\contribution.ztl ^
 ..\res\Notify\def\contribution.ztl ^
 ..\res\OSMap\def\contribution.ztl ^

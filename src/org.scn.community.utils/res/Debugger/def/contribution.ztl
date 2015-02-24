@@ -73,9 +73,9 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 			thisValue = {};
 		}
 		
-		if(thisValue._VariableName == undefined) {
-			thisValue._VariableName = comment;
-		}
+//		if(thisValue._VariableName == undefined) {
+//			thisValue._VariableName = comment;
+//		}
 		
 		this.toConsole("Component [CUSTOM] : " + thisValue._VariableName, true);
 		this.private_inspect(thisValue);
@@ -92,7 +92,7 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 		this.private_inspect(thisValue, locals, exception);
 	*}
 
-	void inspectZtl(String thisValue, Object locals, Object exception) {*
+	void inspectZtl(Object thisValue, Object locals, Object exception) {*
 		if(this.DActive != true) {
 			return;
 		}
@@ -106,13 +106,17 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 	/**
 	 * Private Inspection Method
 	 */
-	void private_inspect(String thisValue, Object locals, Object exception) {*
+	void private_inspect(Object thisValue, Object locals, Object exception, optional boolean fullScope) {*
 		if(this.DActive != true) {
 			return;
 		}
 	
 		var that = this;
 	
+		if(fullScope==undefined) {
+			fullScope = false;
+		}
+		
 		var lStack = undefined;
 		if(this.DStack == "") {
 			lStack = [];
@@ -189,9 +193,15 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 			// owner
 			this.toConsole("OWNER ? "+(thisValue != undefined));
 			if(thisValue) {
+				
+				var owner = thisValue.getOwner();
+				
+				lVariables.push({"date":l.date, "item-type":name, "value":owner.getItemType(), "type":"info"});
+				lVariables.push({"date":l.date, "item-name":name, "value":owner.getName(), "type":"info"});
+				
 				for (var name in thisValue) {
 					try {
-						if(name.indexOf("_VariableName") > -1) {
+						if(!fullScope && name.indexOf("_VariableName") > -1) {
 							continue;
 						}
 						
@@ -202,12 +212,12 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 						
 						var value = thisValue[name];
 						
-						if(value.indexOf("function") > -1) {
+						if(!fullScope && value.indexOf("function") > -1) {
 							// internal function
 							continue;
 						}
 		
-						if(value.indexOf("com.sap.ip.bi.zen") > -1) {
+						if(!fullScope && value.indexOf("com.sap.ip.bi.zen") > -1) {
 							// internal object
 							continue;
 						}
@@ -221,7 +231,7 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 							lVariables.push({"date":l.date, "name":name, "value":value, "type":"owner"});
 						}
 					} catch (e) {
-						// ignore
+						lVariables.push({"date":l.date, "name":name, "value":"<read error>", "type":"owner"});
 					}
 				}
 			}								
@@ -244,7 +254,7 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 							lVariables.push({"date":l.date, "name":name, "value":value, "type":"local"});
 						}
 					} catch (e) {
-						// ignore
+						lVariables.push({"date":l.date, "name":name, "value":"<read error>", "type":"local"});
 					}
 				}
 			}

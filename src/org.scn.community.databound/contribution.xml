@@ -614,16 +614,18 @@
 	/>
 
 	<initialization>
-		<defaultValue property="TOP">0</defaultValue>
-		<defaultValue property="LEFT">0</defaultValue>
-		<defaultValue property="WIDTH">100</defaultValue>
-		<defaultValue property="HEIGHT">26</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
 		
 		<defaultValue property="DElements"></defaultValue>
 		<defaultValue property="DMaxMembers">1000</defaultValue>
 		<defaultValue property="DContentMode">Only from Result Set</defaultValue>
 		<defaultValue property="DCustomDimensions">[]</defaultValue>
-		<defaultValue property="DDisplayType">Text (Value)</defaultValue>
+		<defaultValue property="DDisplayText">Text (Value)</defaultValue>
 		<defaultValue property="DSortingType">Default</defaultValue>
 		<defaultValue property="DSortingDirection">Descending</defaultValue>
 		<defaultValue property="DClearOthers">true</defaultValue>
