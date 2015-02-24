@@ -1,0 +1,62 @@
+
+<component
+	id="NavigationBar"
+	title="Navigation Bar"
+	icon="res/NavigationBar/NavigationBar.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>res/NavigationBar/NavigationBar.js</jsInclude>
+	<cssInclude>res/NavigationBar/NavigationBar.css</cssInclude>
+
+	<property
+		id="DSelectedKey"
+		type="String"
+		title="Selected Step Key"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="numberOfVisibleSteps"
+		type="String"
+		title="Number of Visible Steps"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DCleanAll"
+		type="boolean"
+		title="Technical property for Clean All Nodes"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DElementsContent"
+		type="String"
+		title="Technical property for list of nodes"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="DCurrentValue">TODAY</defaultValue>
+		<defaultValue property="DValue">TODAY</defaultValue>
+		<defaultValue property="DValueF">TODAY</defaultValue>
+		<defaultValue property="DValueT">TODAY</defaultValue>
+	
+		<defaultValue property="DSelectedKey"></defaultValue>
+		<defaultValue property="DElementsContent">[]</defaultValue>
+	</initialization>	
+</component>
