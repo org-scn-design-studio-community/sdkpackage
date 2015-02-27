@@ -25,6 +25,8 @@
 	<property id="legendScale" title="Legend Scale" type="float"/>
 	<property id="legendX" title="Legend Offset X" type="int"/>
 	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="maxX" title="Max X" type="int"/>
+	<property id="maxY" title="Max Y" type="int"/>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="radius" type="int" title = "Hex Radius" visible="true"/>
@@ -67,6 +69,8 @@
 		<defaultValue property="legendScale">1</defaultValue>
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="maxX">-1</defaultValue>
+		<defaultValue property="maxY">-1</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
 		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
 		<defaultValue property="WIDTH">150</defaultValue>

@@ -24,17 +24,23 @@ function org_scn_community_databound_BaseViz(d3, options){
 	 * Update Cosmetics
 	 */
 	this.updateCosmetics = function(){ 
+		// Resize main SVG
 		this.svg
-		.transition().duration(this.ms())
-		.attr("width", this.dimensions.width)
-		.attr("height", this.dimensions.height);
-	
+			.transition().duration(this.ms())
+			.attr("width", this.dimensions.width)
+			.attr("height", this.dimensions.height);
+		// Reorient Canvas Group
+		this.canvas
+			.transition().duration(this.ms())
+			.attr("transform", "translate(" + (this.dimensions.margin) + "," + this.dimensions.margin + ")");
+		// Reorient Plot Area
 		this.plotArea
 			.transition().duration(this.ms())
-			.attr("transform", "translate(" + (this.dimensions.margin + this.dimensions.chartLeft) + "," + this.dimensions.margin + ")");
+			.attr("transform", "translate(" + (this.dimensions.plotLeft) + "," + this.dimensions.plotTop + ")");
+		// Reorient and Resize Legend Group		
 		this.legendGroup
 			.transition().duration(this.ms())
-			.attr("transform", "translate("+this.dimensions.legendLeft+","+this.dimensions.legendTop+") "+
+			.attr("transform", "translate("+this.dimensions.legendX+","+this.dimensions.legendY+") "+
 				  "scale(" + this.legendScale() + ")")
 			.attr("opacity", function(){
 				if(that.legendOn()){
@@ -43,37 +49,41 @@ function org_scn_community_databound_BaseViz(d3, options){
 					return 0;
 				}
 			});
+		
+		// Reorient and Resize Message Box
 		this.messageRect
 			.transition().duration(this.ms())	
 			.attr("width",this.dimensions.width)
 			.attr("height",this.dimensions.height);
 		
 		return this;
-			
-		
-	
-		
+
 	};
 	this.calculateDimensions = function(){
 		this.dimensions = {
 			width : this.$().width(),
 			height : this.$().height(),
 			margin : this.margin(),
-			chartLeft : this.margin(),
-			chartTop : this.margin(),
-			chartRight : this.margin(),
-			chartBottom : this.margin(),
+			plotLeft : 0,
+			plotTop : 0,
+			plotRight : 0,
+			plotBottom : 0,
 			legendWidth : this.legendWidth() || (this.$().width() / 5),
 			legendY : this.legendY(),
 			legendX : this.legendX()
 		};
+		// If Legend is on and Make Room for Legend is set, make room		
 		if(this.legendOn()){
-			if (this.makeRoomX()) this.dimensions.chartLeft += (this.dimensions.legendWidth + this.legendX());
+			if (this.makeRoomX()) this.dimensions.plotLeft += (this.dimensions.legendWidth + this.legendX());
 		}
-		this.dimensions.chartWidth = this.dimensions.width - this.dimensions.chartLeft - this.dimensions.margin - this.dimensions.margin;
-		this.dimensions.chartHeight = this.dimensions.height - this.dimensions.margin - this.dimensions.margin;
+		// Calculate remaining plot area
+		this.dimensions.plotWidth = this.dimensions.width - this.dimensions.plotLeft - this.dimensions.margin - this.dimensions.margin;
+		this.dimensions.plotHeight = this.dimensions.height - this.dimensions.margin - this.dimensions.margin;
 		return this;
 	};
+	/**
+	 * Calculates new and old sizes and if different, trigger afterUpdate.
+	 */
 	this.measureSize = function(that){
 		var currentWidth = that.$().innerWidth();
 		var currentHeight = that.$().innerHeight();
@@ -105,6 +115,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			.transition().duration(this.ms())
 			.attr("display", "none")
 			.attr("opacity", 0);
+		return this;
 	};
 	this.afterUpdate = function() {
 		var that = this;
@@ -113,189 +124,20 @@ function org_scn_community_databound_BaseViz(d3, options){
 		
 		var check = this.preReqCheck();
 		if(check.success){
-			this.updatePlot();
+			this.updatePlot()
+				.updateLegend();
 		}else{
 			// Give informational window
 			this.displayMessage(check.reason);
 			return;
 		}
-		this.clipRect
-			.transition().duration(this.ms())
-			.attr("width", this.dimensions.chartWidth)
-			.attr("height", this.dimensions.chartHeight);
-		var vals = [];
-		// D3 time
-		vals = this.flatData.values.slice();
-		var mx = this.measureX();
-		var my = this.measureY();
-		var mxIndex = 0;
-		var myIndex = 1;
-		for(var i=0;i<this.flatData.columnHeaders.length;i++){
-			if(this.flatData.columnHeaders[i] == mx) mxIndex = i;
-			if(this.flatData.columnHeaders[i] == my) myIndex = i;
-		}
-		this.points = [];
-		this.xVals = [];
-		this.yVals = [];
-		for(var i=0;i<vals.length;i++){
-			var currentRow = vals[i];
-			this.xVals.push(currentRow[mxIndex]);
-			this.yVals.push(currentRow[myIndex]);
-		}
-		this.hexbin = d3.hexbin()
-			.size([this.dimensions.chartWidth, this.dimensions.chartHeight])
-			.radius(this.radius());
-		var x = d3.scale.linear()
-			.domain([0, d3.max(this.xVals)])	
-			.range([0, this.dimensions.chartWidth]),
-		y = d3.scale.linear()
-			.domain([d3.max(this.yVals),0])	
-			.range([0,this.dimensions.chartHeight]);
-		var xAxis = d3.svg.axis()
-			.scale(x)
-			.orient("bottom")
-			.tickSize(6,-this.dimensions.chartHeight),
-		yAxis = d3.svg.axis()
-	    	.scale(y)
-	    	.orient("left")
-	    	.tickSize(6, -this.dimensions.chartWidth);
-
-		for(var i=0;i<vals.length;i++){
-			var currentRow = vals[i];
-			this.points.push([x(currentRow[mxIndex]),y(currentRow[myIndex])]);
-		}
-		this.hexbins = this.hexbin(this.points);
-		this.yAxisGroup.transition().duration(this.ms())
-			.call(yAxis);
-	
-		this.xAxisGroup.transition().duration(this.ms())
-			.attr("transform", "translate(0," + this.dimensions.chartHeight + ")")	
-			.call(xAxis);
-		//alert(JSON.stringify(this.points));
-		
-		//alert([this.dimensions.chartWidth, this.dimensions.chartHeight]);
-		
-		var cp = ["#DFDFDF"];
-		if(this.colorPalette()!=""){
-			cp = this.colorPalette().split(",");
-		}
-		var min = this.tolerance();
-		var max = this.threshold();
-		switch (this.thresholdMethod()){
-		case "Median":
-			min = 0;
-			max = d3.median(this.hexbins, function(d){ return d.length }) * 2;
-			break;
-		case "Mean":
-			min = 0;
-			max = d3.mean(this.hexbins, function(d){ return d.length }) * 2;
-			break;
-		case "Max":
-			min = 0;
-			max = d3.max(this.hexbins, function(d){ return d.length });
-			break;
-		}
-		this.colorRange = d3.scale.quantize()
-		.domain([min,max])
-		.range(cp);
-		//.interpolate(d3.interpolateLab);
-			//z = d3.scale.category10();
-
-		var n = d3.format(",d"),
-		    p = d3.format("%");
-
-		this.updateLegend();
-		// Canvas
-		
-		
-		var canvSelection = this.canvas.selectAll(".hexagon").data(this.hexbins);
-		canvSelection.enter().append("path")
-			.attr("class", "hexagon")
-			.attr("d", this.hexbin.hexagon())
-			.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-			.style("fill", function(d) { return that.colorRange(d.length); });
-		
-		canvSelection
-			.transition().duration(this.ms())
-			.attr("d", this.hexbin.hexagon())
-			.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-			.style("fill", function(d) { return that.colorRange(d.length); });
-		
-		canvSelection.exit().remove();
 		this._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);
 	};
 	/**
 	 * Update Legend
 	 */
 	this.updateLegend = function(){
-		var that = this;
-		/**
-		 * LEGEND
-		 */
-		var unit = 10;
-		var rects = this.legendGroup.selectAll('rect.legend-swatch').data(this.flatData.rowHeaders);
-		var legendLabels = this.legendGroup.selectAll('text.legend-amount').data(this.flatData.rowHeaders);
-		var cp = [];
-		var gradientStops = [];
-		var legendSwatches = [];
-		var extents = [];
-		if(this.colorPalette()!="") {
-			gradientStops = this.colorPalette().split(",");
-			cp = this.colorPalette().split(",");
-		}
-		for (var i=0; i < gradientStops.length; i++) {
-			legendSwatches.push(this.colorRange.invertExtent(gradientStops[i])[0]);
-			extents.push({
-    			min : this.colorRange.invertExtent(gradientStops[i])[0],	// Returns array of [min,max] per quantile "bucket"
-    			max : this.colorRange.invertExtent(gradientStops[i])[1],
-    		});
-		}
-		this.legendRect
-    		.transition().duration(this.ms())
-			.attr('width', this.dimensions.legendWidth)
-			.attr('height', extents.length * (unit * 2) + (unit * 3));
-    	
-		this.legendLabel
-    		.transition().duration(this.ms())	
-    		.attr('font-size', unit)
-	        .attr('x', (unit * 1))
-	        .attr('y', (unit * 2))
-	        .text(function(){
-	        	return that.legendTitle()
-	        });
-		// Add colors swatches
-		var rects = this.legendGroup.selectAll('rect.legend-swatch').data(extents);
-		var legendLabels = this.legendGroup.selectAll('text.legend-amount').data(extents);
-		
-		// Enter Color Swatches
-		rects.enter().append('rect')
-			.attr('class', 'legend-swatch');
-			
-		// Exit Color Swatches
-		rects.exit().remove();
-
-		// Update Color Swatches
-		this.legendGroup.selectAll('rect.legend-swatch')
-			.transition().duration(this.ms())  
-			.attr('width', unit)
-			.attr('height', unit)
-			.attr('x', (unit * 1))
-			.attr('y', function(d, i) { return (i * unit * 2) + (unit * 3); })
-			.style('fill', function(d, i) { return that.colorRange(d.min); });
-		
-		// Enter swatch labels
-		legendLabels.enter().append('text').attr('class', 'legend-amount');
-		// Exit swatch labels
-		legendLabels.exit().remove();
-		// Update - why doesn't text update here, or does it?
-		
-		this.legendGroup.selectAll('text.legend-amount')
-			.transition().duration(this.ms())
-		    .attr('font-size', unit)
-		    .attr('x', (unit * 3))
-		    .attr('y', function(d, i) { return (i * unit * 2) + (unit * 4 - 1); })
-		    .text(function(d, i) { return '>= ' + that.formatter(d.min); });		
-	    
+		this.legendLabel.text(this.legendTitle());
 		return this;
 
 	};
@@ -315,15 +157,17 @@ function org_scn_community_databound_BaseViz(d3, options){
 		if(this.svg.empty()){
 			this.svg = d3.select("#" + this.$().attr("id")).append("svg");
 			// Main Plot Area
-			this.plotArea = this.svg.append("g");
+			this.canvas = this.svg.append("g");
 			// Clip Path
-			this.clip = this.plotArea.append("clipPath")
+			this.clip = this.canvas.append("clipPath")
 				.attr("id",this.$().attr("id")+"_clip");
 			// Rectangle Shape for clip path
 			this.clipRect = this.clip.append("rect")
 				.attr("class","clipRect");
-			// Canvas Group
-			this.canvas = this.plotArea.append("g")
+			// Plot Area
+			this.plotArea = this.canvas.append("g");
+			// Plot Layer
+			this.plotLayer = this.plotArea.append("g")
 				.attr("clip-path","url(#" + this.$().attr("id")+"_clip)");
 			/*
 			 * Axes
@@ -332,11 +176,11 @@ function org_scn_community_databound_BaseViz(d3, options){
 				.attr("class", "y axis");
 			this.xAxisGroup = this.plotArea.append("g")
 				.attr("class", "x axis")
-				.attr("transform", "translate(0," + this.dimensions.chartHeight + ")");
+				.attr("transform", "translate(0," + this.dimensions.plotHeight + ")");
 			/*
 			 * Legend
 			 */
-			this.legendGroup = this.svg.append('g')
+			this.legendGroup = this.canvas.append('g')
         		.attr('class', "legend-group" );
 			this.legendRect = this.legendGroup.append('rect')
 	        	.attr("class", "legend-container")	
@@ -364,12 +208,4 @@ function org_scn_community_databound_BaseViz(d3, options){
 		    	.text("Message");
 		}
 	}
-};
-
-/**
- * Initialization or Resize of Component
- */
-org_scn_community_databound_BaseViz.prototype = {
-	
-	
 };

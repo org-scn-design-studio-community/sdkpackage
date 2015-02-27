@@ -35,7 +35,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Table2D", f
 			return _data;
 		} else {
 			_data = value;
-			_stringData = JSON.stringify(value);
+			//_stringData = JSON.stringify(value);
 			return this;
 		}
 	};
@@ -75,7 +75,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Table2D", f
 			};
 			vals = [[]];
 		}
-		this.firePropertiesChanged(["stringData"]);
+		//this.firePropertiesChanged(["stringData"]);
 		for(var i=0;i<vals.length;i++){
 			if(flatData.rowHeaders.length>=i)
 			vals[i].splice(0,0,flatData.rowHeaders[i]);

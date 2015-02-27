@@ -156,6 +156,8 @@
 	    	// Call super
 	    	org_scn_community_databound_BaseViz.call(this,d3,{
 				measureX : { value : "" },
+				maxX : { value : -1 },
+				maxY : { value : -1 },
 				measureY : { value : "" },
 				radius : { value : 20 },
 				tolerance : { value : 0 },
@@ -168,6 +170,201 @@
 	    	this.init = function(){
 	    		parentInit.call(this);
 	    		this.$().addClass("HexBin");
+	    	}
+	    	var parentUpdatePlot = this.updatePlot;
+	    	this.updatePlot = function(){
+	    		parentUpdatePlot.call(this);
+	    		var that = this;
+	    		// D3 time
+				var vals = [];
+				vals = this.flatData.values.slice();
+				var mx = this.measureX();
+				var my = this.measureY();
+				var mxIndex = 0;
+				var myIndex = 1;
+				for(var i=0;i<this.flatData.columnHeaders.length;i++){
+					if(this.flatData.columnHeaders[i] == mx) mxIndex = i;
+					if(this.flatData.columnHeaders[i] == my) myIndex = i;
+				}
+				this.points = [];
+				this.xVals = [];
+				this.yVals = [];
+				for(var i=0;i<vals.length;i++){
+					var currentRow = vals[i];
+					this.xVals.push(currentRow[mxIndex]);
+					this.yVals.push(currentRow[myIndex]);
+				}
+				var x = d3.scale.linear()
+					.domain([0, (this.maxX() || d3.max(this.xVals))])	
+					.range([0, (this.dimensions.plotWidth)]);
+				var xAxis = d3.svg.axis()
+					.scale(x)
+					.orient("top")
+					.tickSize(6/*,-this.dimensions.plotHeight*/);
+				this.xAxisGroup.call(xAxis);
+				var maxh = 0;
+				this.xAxisGroup.selectAll("text").each(function() {
+				    if(this.getBBox().height > maxh) maxh = this.getBBox().height;
+				});
+				this.dimensions.xAxisHeight = maxh + 6 + 3;
+				var y = d3.scale.linear()
+					.domain([this.maxY() || d3.max(this.yVals),0])	
+					.range([0,(this.dimensions.plotHeight - this.dimensions.xAxisHeight)]);
+				var yAxis = d3.svg.axis()
+			    	.scale(y)
+			    	.orient("right")
+			    	.tickSize(6/*, -this.dimensions.plotWidth*/);
+				this.yAxisGroup.call(yAxis);
+				var maxw = 0;
+				this.yAxisGroup.selectAll("text").each(function() {
+				    if(this.getBBox().width > maxw) maxw = this.getBBox().width;
+				});
+				this.dimensions.yAxisWidth = maxw + 6 + 3;
+				// Update X range now that we know y-axis width
+				x.range([0, (this.dimensions.plotWidth - this.yAxisWidth)]);
+				xAxis.scale(x);
+				this.xAxisGroup.call(xAxis);
+				
+				this.hexbin = d3.hexbin()
+					.size([(this.dimensions.plotWidth - this.dimensions.yAxisWidth), (this.dimensions.plotHeight - this.dimensions.xAxisHeight)])
+					.radius(this.radius());
+				
+				var x = d3.scale.linear()
+					.domain([0, (this.maxX() || d3.max(this.xVals))])	
+					.range([0, (this.dimensions.plotWidth-this.dimensions.yAxisWidth)]);
+				var xAxis = d3.svg.axis()
+					.scale(x)
+					.orient("bottom")
+					.tickSize(6/*,-this.dimensions.plotHeight*/);
+				
+				
+				for(var i=0;i<vals.length;i++){
+					var currentRow = vals[i];
+					this.points.push([x(currentRow[mxIndex]),y(currentRow[myIndex])]);
+				}
+				this.hexbins = this.hexbin(this.points);
+				// Build Color Range
+				var cp = ["#DFDFDF"];
+				if(this.colorPalette()!=""){
+					cp = this.colorPalette().split(",");
+				}
+				var min = this.tolerance();
+				var max = this.threshold();
+				switch (this.thresholdMethod()){
+				case "Median":
+					min = 0;
+					max = d3.median(this.hexbins, function(d){ return d.length }) * 2;
+					break;
+				case "Mean":
+					min = 0;
+					max = d3.mean(this.hexbins, function(d){ return d.length }) * 2;
+					break;
+				case "Max":
+					min = 0;
+					max = d3.max(this.hexbins, function(d){ return d.length });
+					break;
+				}
+				this.colorRange = d3.scale.quantize()
+					.domain([min,max])
+					.range(cp);
+				this.clipRect
+					//.transition().duration(this.ms())
+					.attr("width", this.dimensions.plotWidth - this.dimensions.yAxisWidth)
+					.attr("height", this.dimensions.plotHeight - this.dimensions.xAxisHeight);
+				this.yAxisGroup
+					//.transition().duration(this.ms())
+					.attr("transform", "translate(" + (this.dimensions.plotWidth - this.dimensions.yAxisWidth) + ",0)");
+				
+				this.xAxisGroup
+					//.transition().duration(this.ms())
+					.attr("transform", "translate(0," + (this.dimensions.plotHeight - this.dimensions.xAxisHeight) + ")")	
+					.call(xAxis);
+				
+				var canvSelection = this.plotLayer.selectAll(".hexagon").data(this.hexbins);
+				canvSelection.enter().append("path")
+					.attr("class", "hexagon")
+					.attr("d", this.hexbin.hexagon())
+					.attr("opacity",0)
+					.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ") scale(0)"; })
+					.style("fill", function(d) { return that.colorRange(d.length); });
+				
+				canvSelection
+					.transition().duration(this.ms())
+					.attr("d", this.hexbin.hexagon())
+					.attr("opacity",1)
+					.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ") scale(1)"; })
+					.style("fill", function(d) { return that.colorRange(d.length); });
+				
+				canvSelection.exit().remove();
+				return this;
+	    	}
+	    	var parentUpdateLegend = this.updateLegend;
+	    	this.updateLegend = function(){
+	    		parentUpdateLegend.apply(this);
+	    		var that = this;
+	    		var n = d3.format(",d"),
+	    		    p = d3.format("%");
+	    		var unit = 10;
+	    		var rects = this.legendGroup.selectAll('rect.legend-swatch').data(this.flatData.rowHeaders);
+	    		var legendLabels = this.legendGroup.selectAll('text.legend-amount').data(this.flatData.rowHeaders);
+	    		var cp = [];
+	    		var gradientStops = [];
+	    		var legendSwatches = [];
+	    		var extents = [];
+	    		if(this.colorPalette()!="") {
+	    			gradientStops = this.colorPalette().split(",");
+	    			cp = this.colorPalette().split(",");
+	    		}
+	    		for (var i=0; i < gradientStops.length; i++) {
+	    			legendSwatches.push(this.colorRange.invertExtent(gradientStops[i])[0]);
+	    			extents.push({
+	        			min : this.colorRange.invertExtent(gradientStops[i])[0],	// Returns array of [min,max] per quantile "bucket"
+	        			max : this.colorRange.invertExtent(gradientStops[i])[1],
+	        		});
+	    		}
+	    		this.legendRect
+	    			.transition().duration(this.ms())
+	    			.attr('width', this.dimensions.legendWidth)
+	    			.attr('height', extents.length * (unit * 2) + (unit * 3));
+	    		
+	    		this.legendLabel
+	    			.transition().duration(this.ms())	
+	    			.attr('font-size', unit)
+	    	        .attr('x', (unit * 1))
+	    	        .attr('y', (unit * 2));
+	    		// Add colors swatches
+	    		var rects = this.legendGroup.selectAll('rect.legend-swatch').data(extents);
+	    		var legendLabels = this.legendGroup.selectAll('text.legend-amount').data(extents);
+	    		
+	    		// Enter Color Swatches
+	    		rects.enter().append('rect')
+	    			.attr('class', 'legend-swatch');
+	    			
+	    		// Exit Color Swatches
+	    		rects.exit().remove();
+
+	    		// Update Color Swatches
+	    		this.legendGroup.selectAll('rect.legend-swatch')
+	    			.transition().duration(this.ms())  
+	    			.attr('width', unit)
+	    			.attr('height', unit)
+	    			.attr('x', (unit * 1))
+	    			.attr('y', function(d, i) { return (i * unit * 2) + (unit * 3); })
+	    			.style('fill', function(d, i) { return that.colorRange(d.min); });
+	    		
+	    		// Enter swatch labels
+	    		legendLabels.enter().append('text').attr('class', 'legend-amount');
+	    		// Exit swatch labels
+	    		legendLabels.exit().remove();
+	    		// Update - why doesn't text update here, or does it?
+	    		
+	    		this.legendGroup.selectAll('text.legend-amount')
+	    			.transition().duration(this.ms())
+	    		    .attr('font-size', unit)
+	    		    .attr('x', (unit * 3))
+	    		    .attr('y', function(d, i) { return (i * unit * 2) + (unit * 4 - 1); })
+	    		    .text(function(d, i) { return '>= ' + that.formatter(d.min); });		
+	    	    
 	    	}
 	    	var parentPreReq = this.preReqCheck;
 	    	this.preReqCheck = function(){
