@@ -20,7 +20,7 @@
 (function() {
 /** code for recognition of script path */
 var myScript = $("script:last")[0].src;
-_readScriptPath = function () {
+var _readScriptPath = function () {
 	if(myScript) {
 		var myScriptSuffix = "res/LeaderBoard/";
 		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
@@ -29,7 +29,7 @@ _readScriptPath = function () {
 	}
 		
 	return "";
-},
+};
 /** end of path recognition */
 
 sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.LeaderBoard", {
@@ -125,7 +125,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.LeaderB
 			options.iTopBottom = this.getTopBottom();
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";
-			options.iNnumberOfDecimals = this.getValueDecimalPlaces();
+			options.iNumberOfDecimals = this.getValueDecimalPlaces();
 			
 			var returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
 		     (lData, lMetadata, "", options);

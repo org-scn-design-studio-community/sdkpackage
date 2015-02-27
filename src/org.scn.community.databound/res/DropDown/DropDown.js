@@ -126,7 +126,7 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 				options.iTopBottom = this.getDTopBottom();
 				options.iSortBy = this.getDSorting();
 				options.iDuplicates = "Ignore";
-				options.iNnumberOfDecimals = 2;
+				options.iNumberOfDecimals = 2;
 				
 				this._ElementsToRenderArray = org_scn_community_databound.getTopBottomElementsForDimension 
 			     (lData, lMetadata, this.getDDimension(), options).list;

@@ -122,7 +122,7 @@ sap.ui.commons.RangeSlider.extend("org.scn.community.databound.RangeSlider", {
 			options.iTopBottom = this.getTopBottom();
 			options.iSortBy = this.getSorting();
 			options.iDuplicates = "Ignore";
-			options.iNnumberOfDecimals = 2;
+			options.iNumberOfDecimals = 2;
 			
 			var returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
 		     (lData, lMetadata, "", options);

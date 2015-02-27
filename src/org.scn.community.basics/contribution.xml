@@ -2501,6 +2501,16 @@
 		title="Second Value"
 		type="float" />
 	<property
+		id="liveValue"
+		title="First Value (Live)"
+		type="float" 
+		visible="false" />
+	<property
+		id="liveValue2"
+		title="Second Value (Live)"
+		type="float" 
+		visible="false" />
+	<property
 		id="totalUnits"
 		title="Total Units"
 		type="int" />
@@ -2519,6 +2529,11 @@
 	<property
 		id="onChange"
 		title="On Change"
+		type="ScriptText"
+		group="Events" />
+	<property
+		id="onLiveChange"
+		title="On Live Change"
 		type="ScriptText"
 		group="Events" />
 	<initialization>
@@ -2661,6 +2676,11 @@
 		title="Value"
 		type="float" />
 	<property
+		id="liveValue"
+		title="First Value (Live)"
+		type="float" 
+		visible="false" />
+	<property
 		id="totalUnits"
 		title="Total Units"
 		type="int" />
@@ -2679,6 +2699,11 @@
 	<property
 		id="onChange"
 		title="On Change"
+		type="ScriptText"
+		group="Events" />
+	<property
+		id="onLiveChange"
+		title="On Live Change"
 		type="ScriptText"
 		group="Events" />
 	<initialization>

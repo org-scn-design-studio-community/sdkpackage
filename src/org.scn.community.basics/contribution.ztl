@@ -2837,7 +2837,7 @@ class org.scn.community.basics.RangeSlider extends org.scn.community.shared.Comp
 		/** Value */ int value) {*
 		this.value2 = parseFloat(value);
 	*}
-	
+
 	/** Returns the second value. */
 	float getValue2() {*
 		return this.value2;
@@ -2846,6 +2846,26 @@ class org.scn.community.basics.RangeSlider extends org.scn.community.shared.Comp
 	/** Returns the second value as integer. */
 	int getValue2AsInt() {*
 		return parseInt(Math.floor(this.value2));
+	*}
+
+	/** Returns the live value. */
+	float getLiveValue() {*
+		return this.liveValue;
+	*}
+	
+	/** Returns the live value as integer. */
+	int getLiveValueAsInt() {*
+		return parseInt(Math.floor(this.liveValue));
+	*}
+	
+	/** Returns the second live value. */
+	float getLiveValue2() {*
+		return this.liveValue2;
+	*}
+	
+	/** Returns the second live value as integer. */
+	int getLiveValue2AsInt() {*
+		return parseInt(Math.floor(this.liveValue2));
 	*}
 
 	/** Sets the total units value. */
@@ -3105,6 +3125,16 @@ class org.scn.community.basics.Slider extends org.scn.community.shared.Component
 		return parseInt(Math.floor(this.value));
 	*}
 	
+	/** Returns the live value. */
+	float getLiveValue() {*
+		return this.liveValue;
+	*}
+	
+	/** Returns the live value as integer. */
+	int getLiveValueAsInt() {*
+		return parseInt(Math.floor(this.liveValue));
+	*}
+
 	/** Sets the total units value. */
 	void setTotalUnits(
 		/** Total units value */ int totalUnits) {*

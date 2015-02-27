@@ -19,6 +19,12 @@
 
 sap.ui.commons.Slider.extend("org.scn.community.basics.Slider", {
 	
+	metadata: {
+        properties: {
+              "liveValue": {type: "int"},
+        }
+	},
+	
 	initDesignStudio: function() {
 		var that = this;
 		
@@ -40,6 +46,29 @@ sap.ui.commons.Slider.extend("org.scn.community.basics.Slider", {
 				
 				that.fireDesignStudioPropertiesChanged(["value"]);
 				that.fireDesignStudioEvent("onChange");
+			}
+		});
+		
+		this.attachLiveChange(function(oControlEvent) {
+			var value = oControlEvent.getParameters().value;
+			
+			var updateRequired = false;
+			if(that._SavedLiveValue == undefined) {
+				that._SavedLiveValue = value;
+				updateRequired = true;
+			}
+			
+			if(!updateRequired && that._SavedLiveValue != value) {
+				updateRequired = true;
+			}
+
+			if(updateRequired) {
+				that._SavedLiveValue = value;
+				
+				this.setLiveValue(value);
+				
+				that.fireDesignStudioPropertiesChanged(["liveValue"]);
+				that.fireDesignStudioEvent("onLiveChange");
 			}
 		});
 	},

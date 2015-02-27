@@ -19,6 +19,13 @@
 
 sap.ui.commons.RangeSlider.extend("org.scn.community.basics.RangeSlider", {
 	
+	metadata: {
+        properties: {
+              "liveValue": {type: "int"},
+              "liveValue2": {type: "int"},
+        }
+	},
+	
 	initDesignStudio: function() {
 		var that = this;
 		
@@ -49,6 +56,39 @@ sap.ui.commons.RangeSlider.extend("org.scn.community.basics.RangeSlider", {
 				that.fireDesignStudioPropertiesChanged(["value2"]);
 
 				that.fireDesignStudioEvent("onChange");
+			}
+		});
+		
+		this.attachLiveChange(function(oControlEvent) {
+			var value = oControlEvent.getParameters().value;
+			var value2 = oControlEvent.getParameters().value2;
+			
+			var updateRequired = false;
+			if(that._SavedLiveValue == undefined) {
+				that._SavedLiveValue = value;
+				updateRequired = true;
+			}
+			
+			if(that._SavedLiveValue2 == undefined) {
+				that._SavedLiveValue2 = value2;
+				updateRequired = true;
+			}
+			
+			if(!updateRequired && (that._SavedLiveValue != value || that._SavedLiveValue2 != value2)) {
+				updateRequired = true;
+			}
+
+			if(updateRequired) {
+				that._SavedLiveValue = value;
+				that._SavedLiveValue2 = value2;
+				
+				this.setLiveValue(value);
+				this.setLiveValue2(value2);
+				
+				that.fireDesignStudioPropertiesChanged(["liveValue"]);
+				that.fireDesignStudioPropertiesChanged(["liveValue2"]);
+
+				that.fireDesignStudioEvent("onLiveChange");
 			}
 		});
 	},

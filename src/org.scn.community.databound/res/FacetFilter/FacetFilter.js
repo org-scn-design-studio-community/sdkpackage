@@ -280,10 +280,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 		that._oModel.setData(that._mixedData);
 	},
 	
-	getDisplayText: function() {
-		return "karol";
-	},
-	
 	_containsInArray: function(members, memberName) {
 	    var i = null;
 	    for (i = 0; members.length > i; i += 1) {

@@ -57,6 +57,16 @@ class org.scn.community.basics.Slider extends org.scn.community.shared.Component
 		return parseInt(Math.floor(this.value));
 	*}
 	
+	/** Returns the live value. */
+	float getLiveValue() {*
+		return this.liveValue;
+	*}
+	
+	/** Returns the live value as integer. */
+	int getLiveValueAsInt() {*
+		return parseInt(Math.floor(this.liveValue));
+	*}
+
 	/** Sets the total units value. */
 	void setTotalUnits(
 		/** Total units value */ int totalUnits) {*

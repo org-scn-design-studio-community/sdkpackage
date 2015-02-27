@@ -28,7 +28,7 @@ if(!org_scn_community_basics_FioriButton.registeredStyles){
 (function() {
 /** code for recognition of script path */
 var myScript = $("script:last")[0].src;
-_readScriptPath = function () {
+var _readScriptPath = function () {
 	if(myScript) {
 		var myScriptSuffix = "res/FioriButton/";
 		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
