@@ -1,33 +1,5 @@
-/**
- * enum field definition
- */
-class org_scn_community_shared_ThresholdMethod extends Enumfield {
-       
-}
 
-/**
- * a set of constants to specify field 
- */
-class org_scn_community_shared_ThresholdMethodTypes extends Enum {
-
-	/** CHECKED */
-	org_scn_community_shared_ThresholdMethod CHECKED;
-       
-	/** UNCHECKED */
-	org_scn_community_shared_ThresholdMethod UNCHECKED;
-
-	/** MIXED */
-	org_scn_community_shared_ThresholdMethod MIXED;
-}
-
-
-class org.scn.community.databound.HexBin extends org.scn.community.shared.DataComponent {
-	/**
-	Set Threshold Method
-	*/
-	void setThresholdMethod(/*Method*/ String method) {*
-		this.thresholdMethod = method;
-	*}
+class org.scn.community.databound.ScatterPlot extends org.scn.community.shared.DataComponent {
 	/**
 	Set Legend Visibility
 	*/
@@ -51,30 +23,6 @@ class org.scn.community.databound.HexBin extends org.scn.community.shared.DataCo
 	*/
 	int getRadius() {*
 		return this.radius;
-	*}
-	/**
-	Set Max Threshold
-	*/
-	void setThreshold(/*Threshold*/int threshold) {*
-		this.threshold = threshold;
-	*}
-	/**
-	Get Max Threshold
-	*/
-	int getThreshold() {*
-		return this.threshold;
-	*}
-	/**
-	Set Min Threshold (Tolerance)
-	*/
-	void setTolerance(/*Tolerance*/int tolerance) {*
-		this.tolerance = tolerance;
-	*}
-	/**
-	Get Min Threshold (Tolerance)
-	*/
-	int getTolerance() {*
-		return this.tolerance;
 	*}
 	/**
 	Set X-Axis Measure by text

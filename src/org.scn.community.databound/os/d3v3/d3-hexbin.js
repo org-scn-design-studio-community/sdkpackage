@@ -1,4 +1,22 @@
-d3.hexbin = function() {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module with d3 as a dependency.
+    define(['d3'], factory)
+  } else if (typeof module === 'object' && module.exports) {
+    // CommonJS
+    module.exports = function(d3) {
+      d3.hexbin = factory(d3)
+      return d3.hexbin
+    }
+  } else {
+    // Browser global.
+    root.d3.hexbin = factory(root.d3)
+  }
+}(this, function (d3) {
+	var d3_hexbinAngles = d3.range(0, 2 * Math.PI, Math.PI / 3),
+    d3_hexbinX = function(d) { return d[0]; },
+    d3_hexbinY = function(d) { return d[1]; };
+    d3.hexbin = function() {
   var width = 1,
       height = 1,
       r,
@@ -99,9 +117,6 @@ d3.hexbin = function() {
   };
 
   return hexbin.radius(1);
-};
-
-var d3_hexbinAngles = d3.range(0, 2 * Math.PI, Math.PI / 3),
-    d3_hexbinX = function(d) { return d[0]; },
-    d3_hexbinY = function(d) { return d[1]; };
+  };
+}));
 

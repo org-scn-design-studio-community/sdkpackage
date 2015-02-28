@@ -22,6 +22,8 @@ var org_scn_community_databound_Base = function(options){
 	 * @return {
 	 * 		"columnHeaders" : [1D Array of Header Labels]
 	 * 		"columnHeaders2D" : [2D Array of Header Labels]
+	 * 		"dimensionHeaders" : [1D Array of Dimension Headers]
+	 * 		"dimensionHeader" : Concatenated String of Dimension Headers
 	 * 		"rowHeaders" : [1D Array of Row Headers]
 	 *  	"rowHeaders2D" : [2D Array of Row Headers]
 	 * 		"values" : [2D Array of Measures] 
@@ -30,6 +32,8 @@ var org_scn_community_databound_Base = function(options){
 	 */
 	this.flattenData = function (data, options) {
 		this.flatData = {
+			dimensionHeaders : [],
+			dimensionheader : "",
 			columnHeaders : [],
 			columnHeaders2D : [],
 			rowHeaders : [],
@@ -48,6 +52,8 @@ var org_scn_community_databound_Base = function(options){
 		var colLength = data.axis_columns.length;
 		var rowLength = data.axis_rows.length;
 		var tupleIndex = 0;
+		var dimensionHeaders = [];
+		var dimensionHeader = "";
 		// Make Row Header Labels
 		for(var row=0;row<rowLength;row++){
 			var newValueRow = [];
@@ -55,17 +61,21 @@ var org_scn_community_databound_Base = function(options){
 			var rowHeader = "";
 			var rowHeader2D = [];
 			var rowAxisTuple = data.axis_rows[row];
+			var containsTotal = false;
 			var sep = "";
+			dimensionHeaders = [];
+			dimensionHeader = "";
 			for(var j=0;j<rowAxisTuple.length;j++){
 				if(rowAxisTuple[j] != -1){
+					dimensionHeaders.push(data.dimensions[j].text);	// Dimension Headers []
+					dimensionHeader+=sep + data.dimensions[j].text;
+					if(data.dimensions[j].members[rowAxisTuple[j]].type == "RESULT") containsTotal = true;
 					rowHeader += sep + data.dimensions[j].members[rowAxisTuple[j]].text;
 					rowHeader2D.push(data.dimensions[j].members[rowAxisTuple[j]].text);
-					sep = " ";
+					sep = " ";						
 				}
 			}
-			this.flatData.hash[rowHeader] = row;
-			this.flatData.rowHeaders.push(rowHeader);
-			this.flatData.rowHeaders2D.push(rowHeader2D);
+			
 			for(var col=0;col<colLength;col++){
 				if(data.data && data.data.length > 0){
 					newValueRow.push(data.data[tupleIndex]);
@@ -75,9 +85,16 @@ var org_scn_community_databound_Base = function(options){
 				}
 				tupleIndex++;
 			}
-			if(newValueRow.length>0) this.flatData.values.push(newValueRow);
-			if(newFormattedValueRow.length>0) this.flatData.formattedValues.push(newFormattedValueRow);
+			if(!this.ignoreTotals() || !containsTotal){
+				this.flatData.hash[rowHeader] = row;
+				this.flatData.rowHeaders.push(rowHeader);
+				this.flatData.rowHeaders2D.push(rowHeader2D);
+				if(newValueRow.length>0) this.flatData.values.push(newValueRow);
+				if(newFormattedValueRow.length>0) this.flatData.formattedValues.push(newFormattedValueRow);
+			}
 		}
+		this.flatData.dimensionHeaders = dimensionHeaders;
+		this.flatData.dimensionHeader = dimensionHeader;
 		// Make Column Header Labels
 		for(var col=0;col<colLength;col++){
 			var colHeader = "";
@@ -100,6 +117,10 @@ var org_scn_community_databound_Base = function(options){
 	this.props = {
 		data : { 
 			value : null,
+			onChange : this.flattenData
+		},
+		ignoreTotals : {
+			value : true,
 			onChange : this.flattenData
 		}
 	};

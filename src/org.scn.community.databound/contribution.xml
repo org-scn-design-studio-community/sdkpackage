@@ -647,8 +647,10 @@
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>
 	<jsInclude>res/HexBin/HexBin.js</jsInclude>
-	<cssInclude>res/HexBin/HexBin.css</cssInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<cssInclude>os/d3-tip.css</cssInclude>
 	<!-- <property id="stringData" type="String" title = "Data Stringified" visible="false"/>-->
 	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
 	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
@@ -661,8 +663,20 @@
 	<property id="legendScale" title="Legend Scale" type="float"/>
 	<property id="legendX" title="Legend Offset X" type="int"/>
 	<property id="legendY" title="Legend Offset Y" type="int"/>
-	<property id="maxX" title="Max X" type="int"/>
-	<property id="maxY" title="Max Y" type="int"/>
+	<property id="minX" title="Manual Min X" type="int"/>
+	<property id="minY" title="Manual Min Y" type="int"/>
+	<property id="maxX" title="Manual Max X" type="int"/>
+	<property id="maxY" title="Manual Max Y" type="int"/>
+	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
+	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
+	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
+		<possibleValue>top</possibleValue>
+		<possibleValue>bottom</possibleValue>	
+	</property>
+	<property id="yAxisOrientation" type="String" title = "Y-Axis Orientation" visible="true">
+		<possibleValue>left</possibleValue>
+		<possibleValue>right</possibleValue>
+	</property>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="radius" type="int" title = "Hex Radius" visible="true"/>
@@ -705,8 +719,14 @@
 		<defaultValue property="legendScale">1</defaultValue>
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
-		<defaultValue property="maxX">-1</defaultValue>
-		<defaultValue property="maxY">-1</defaultValue>
+		<defaultValue property="xAxisTicks">5</defaultValue>
+		<defaultValue property="yAxisTicks">5</defaultValue>
+		<defaultValue property="xAxisOrientation">bottom</defaultValue>
+		<defaultValue property="yAxisOrientation">left</defaultValue>
+		<defaultValue property="maxX">0</defaultValue>
+		<defaultValue property="maxY">0</defaultValue>
+		<defaultValue property="minX">0</defaultValue>
+		<defaultValue property="minY">0</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
 		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
 		<defaultValue property="WIDTH">150</defaultValue>
@@ -1170,6 +1190,95 @@
 
 	</initialization>
 
+</component>
+<component
+		id="ScatterPlot"
+		title="Scatter Plot Chart"
+		icon="res/ScatterPlot/ScatterPlot.png"
+		handlerType="div"
+		propertySheetPath="res/ScatterPlot/aps/ScatterPlot.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>
+	<jsInclude>res/ScatterPlot/ScatterPlot.js</jsInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<cssInclude>os/d3-tip.css</cssInclude>
+	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
+	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
+	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
+	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="colorDimension" title="Dimension for Series" type="String"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int"/>
+	<property id="legendScale" title="Legend Scale" type="float"/>
+	<property id="legendX" title="Legend Offset X" type="int"/>
+	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="minX" title="Manual Min X" type="int"/>
+	<property id="minY" title="Manual Min Y" type="int"/>
+	<property id="maxX" title="Manual Max X" type="int"/>
+	<property id="maxY" title="Manual Max Y" type="int"/>
+	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
+	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
+	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
+		<possibleValue>top</possibleValue>
+		<possibleValue>bottom</possibleValue>	
+	</property>
+	<property id="yAxisOrientation" type="String" title = "Y-Axis Orientation" visible="true">
+		<possibleValue>left</possibleValue>
+		<possibleValue>right</possibleValue>
+	</property>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="margin" type="int" title = "Margin Size" visible="false"/>
+	<property id="radius" type="int" title = "Plot Radius" visible="true"/>
+	<property id="bubbleMin" type="int" title = "Bubble Min Radius" visible="true"/>
+	<property id="bubbleMax" type="int" title = "Bubble Max Radius" visible="true"/>
+	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
+	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String"/>
+	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String"/>
+	<property id="measureZ" title="Z-Axis Measure (Blank will disable)" type="String"/>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="false"/>
+		<option name="includeData" value="true"/>
+	</property>
+	<property
+		id="onSelect"
+		title="On Select"
+		type="ScriptText"
+		group="Events"/>
+	<initialization>
+		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="radius">5</defaultValue>
+		<defaultValue property="bubbleMin">3</defaultValue>
+		<defaultValue property="bubbleMax">50</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="legendWidth">150</defaultValue>
+		<defaultValue property="legendTitle">Frequency</defaultValue>
+		<defaultValue property="legendScale">1</defaultValue>
+		<defaultValue property="margin">20</defaultValue>
+		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="xAxisTicks">5</defaultValue>
+		<defaultValue property="yAxisTicks">5</defaultValue>
+		<defaultValue property="xAxisOrientation">bottom</defaultValue>
+		<defaultValue property="yAxisOrientation">left</defaultValue>
+		<defaultValue property="maxX">0</defaultValue>
+		<defaultValue property="maxY">0</defaultValue>
+		<defaultValue property="minX">0</defaultValue>
+		<defaultValue property="minY">0</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+	</initialization>
 </component>
 <component
 	id="Slider"
