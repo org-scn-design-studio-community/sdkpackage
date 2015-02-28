@@ -2929,7 +2929,7 @@ class org.scn.community.utils.OpenUrlInplace extends org.scn.community.shared.Co
 }/**
  * Class for OpenWindowPost
  */
-class org.scn.community.utils.OpenWindowPost extends Component {
+class org.scn.community.utils.OpenWindowPost extends org.scn.community.shared.Component {
 	
 	/**
 	 * Trigger Execution of the given URL and parameter list
@@ -2983,7 +2983,27 @@ class org.scn.community.utils.OpenWindowPost extends Component {
 	
 		this.parameters = JSON.stringify(parametersJson);
 	*}
-}class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Component {
+}
+/**
+ * Class for PdfPrint
+ */
+class org.scn.community.utils.PdfPrint extends org.scn.community.shared.Component {
+
+	/**
+	 * Trigger Execution of the given URL and parameter list
+	 */
+	void print () {*
+		this.trigger = "GO";
+	*}
+	
+	/**
+	 * Sets the root panel name, this panel will be printed as sub part of the application
+	 */
+	void setRootPanel (String /*Name of the panel to print*/panelName) {*
+		this.rootPanel = panelName;
+	*}
+}
+class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Component {
 
 	/**
 	 * Initialization method with year, month and day

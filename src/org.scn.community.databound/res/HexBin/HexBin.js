@@ -234,4 +234,4 @@
 		sap.designstudio.sdk.Component.subclass("org.scn.community.databound.HexBin", HexBin);	// End of SDK
 		sap.zen.Dispatcher.instance.resumeDispatching();
 	 });//End of Require Callback 	
-})();// End of closure
+})();// End of closure	

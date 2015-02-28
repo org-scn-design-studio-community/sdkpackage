@@ -1,7 +1,7 @@
 /**
  * Class for OpenWindowPost
  */
-class org.scn.community.utils.OpenWindowPost extends Component {
+class org.scn.community.utils.OpenWindowPost extends org.scn.community.shared.Component {
 	
 	/**
 	 * Trigger Execution of the given URL and parameter list

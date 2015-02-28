@@ -19,7 +19,7 @@
  /** code for recognition of script path */
  (function() {
 	 var myScript = $("script:last")[0].src;
- 	_readScriptPath = function () {
+ 	var _readScriptPath = function () {
  		if(myScript) {
  			var myScriptSuffix = "res/Choropleth/";
  			var myPluginSuffix = "org.scn.community.geovis/";

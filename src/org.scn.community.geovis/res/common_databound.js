@@ -52,7 +52,7 @@ org_scn_community_databound.initializeOptions = function () {
 	options.iTopBottom = "Both";
 	options.iSortBy = "Default";
 	options.iDuplicates = "Ignore";
-	options.iNnumberOfDecimals = 2;
+	options.iNumberOfDecimals = 2;
 	options.allKeys = false;
 	options.idPrefix = "";
 	
@@ -214,7 +214,7 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, metada
 				text: text, 
 				url: key,
 				value: value,
-				valueS: org_scn_community_basics.getFormattedValue(value, metadata.locale, options.iNnumberOfDecimals),
+				valueS: org_scn_community_basics.getFormattedValue(value, metadata.locale, options.iNumberOfDecimals),
 			};
 
 			list.push(itemDef);
