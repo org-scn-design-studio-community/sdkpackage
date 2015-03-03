@@ -6,14 +6,74 @@ org_scn_community_databound_XYViz.constructor = org_scn_community_databound_XYVi
 function org_scn_community_databound_XYViz(d3, options){
 	var that = this;
 	var properties = {
-		xAxisTicks : { value : -1 },
-		yAxisTicks : { value : -1 },
-		xAxisOrientation : { value : "left" },
-		yAxisOrientation : { value : "bottom" },
-		maxX : { value : 0 },
-		maxY : { value : 0 },
-		minX : { value : 0 },
-		minY : { value : 0 },
+		xAxisTicks : { 
+			value : -1,
+			opts : {
+				desc : "X-Axis Ticks",
+				cat : "Axis",
+				apsControl : "spinner"	
+			}
+		},
+		yAxisTicks : { 
+			value : -1,
+			opts : {
+				desc : "Y-Axis Ticks",
+				cat : "Axis",
+				apsControl : "spinner"	
+			}
+		},
+		xAxisOrientation : { 
+			value : "bottom",
+			opts : {
+				apsControl : "combobox",
+				desc : "X-Axis Orientation",
+				cat : "Axis",
+				options : [{key : "bottom", text : "Bottom"},
+				         {key : "top", text : "Top"}]
+			}
+		},
+		yAxisOrientation : { 
+			value : "left",
+			opts : {
+				apsControl : "combobox",
+				desc : "Y-Axis Orientation",
+				cat : "Axis",
+				options : [{key : "left", text : "Left"},
+				         {key : "right", text : "Right"}]
+			}
+		},
+		maxX : {
+			value : 0,
+			opts : {
+				desc : "X-Axis Manual Max",
+				cat : "Axis",
+				apsControl : "spinner"
+			}
+		},
+		maxY : { 
+			value : 0,
+			opts : {
+				desc : "Y-Axis Manual Max",
+				cat : "Axis",
+				apsControl : "spinner"
+			}
+		},
+		minX : { 
+			value : 0,
+			opts : {
+				desc : "X-Axis Manual Min",
+				cat : "Axis",
+				apsControl : "spinner"
+			}
+		},
+		minY : { 
+			value : 0,
+			opts : {
+				desc : "Y-Axis Manual Min",
+				cat : "Axis",
+				apsControl : "spinner"
+			}
+		},
 		measureX : { value : "" },
 		measureY : { value : "" },
 		measureZ : { value : "" }

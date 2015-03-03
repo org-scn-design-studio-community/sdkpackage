@@ -29,8 +29,21 @@
 	 sdkReqs(["require","d3","d3tip"], function(require,d3,d3tip) {
 		 var tip = d3tip()
 		 	.attr('class', 'd3-tip')
-		 	.html(function(d) { return '<span>' + d.label + '</span><br/>' + d.x + "," + d.y })
-		 	.offset([-12, 0]);
+		 	.html(function(d) { 
+		 		var html = "<span>";
+		 		var sep = "";
+		 		for(var i=0;i<d.labels.length;i++){
+		 			html+=d.labels[i]+"<br/>";
+		 		}
+		 		html += d.x + "," + d.y;
+		 		if(d.z) html+= "," + d.z;
+		 		html+="</span>";
+		 		return html;
+		 	})
+		 	//.offset([-12, 0]);
+		 	.offset(function(d) {
+		 		return [(this.getBBox().height / 2) - 12, 0]
+		 	});
 		 /**
 		 * Scatter Plot based on D3 Example:
 		 * http://bl.ocks.org
@@ -81,7 +94,8 @@
 					var point = {
 						x : currentRow[mxIndex],
 						y : currentRow[myIndex],
-						label : this.flatData.rowHeaders2D[i][cdIndex]
+						labelIndex : cdIndex,
+						labels : this.flatData.rowHeaders2D[i].slice()
 					};
 					if(mzIndex>-1){
 						point.z = currentRow[mzIndex];
@@ -100,7 +114,7 @@
 					cp = this.colorPalette().split(",");
 				}
 				this.colorRange = d3.scale.ordinal()
-					.domain(this.points.map(function(d){return d.label;}))
+					.domain(this.points.map(function(d){return d.labels[d.labelIndex];}))
 					.range(cp);
 				this.clipRect
 					//.transition().duration(this.ms())
@@ -143,23 +157,16 @@
 				var canvSelection = this.plotLayer.selectAll(".scatterplot").data(this.points);
 				canvSelection.enter().append("circle")
 					.attr("class", "scatterplot")
-					.attr("r", function(d){
-						if(d.z){
-							return that.bubbleScale(d.z);
-						}else{
-							return that.radius();
-						}
-					})
+					.attr("r", 0)
 					.attr("cx",function(d){return that.xScale(d.x)})
 					.attr("cy",function(d){return that.yScale(d.y)})
-					//.attr("d", this.hexbin.hexagon())
 					.attr("opacity",0)
-					//.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ") scale(0)"; })
 					.on("mouseover",tip.show)
 					.on("mouseout",tip.hide)
-					.style("fill", function(d) { return that.colorRange(d.label); });
+					.style("fill", function(d) { return that.colorRange(d.labels[d.labelIndex]); });
 				
 				canvSelection
+					.transition().duration(this.ms())
 					.attr("r", function(d){
 						if(d.z){
 							return that.bubbleScale(d.z);
@@ -167,13 +174,10 @@
 							return that.radius();
 						}
 					})
-					.transition().duration(this.ms())
 					.attr("cx",function(d){return that.xScale(d.x)})
 					.attr("cy",function(d){return that.yScale(d.y)})
-					//.attr("d", this.hexbin.hexagon())
-					.attr("opacity",.6)
-					//.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ") scale(1)"; })
-					.style("fill", function(d) { return that.colorRange(d.label); });
+					.attr("opacity",function(d){ return that.plotAlpha(); })
+					.style("fill", function(d) { return that.colorRange(d.labels[d.labelIndex]); });
 
 				canvSelection.exit().remove();
 				canvSelection.call(tip);

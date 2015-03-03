@@ -1,0 +1,1843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GENERATED - DO NOT EDIT -->
+<sdkExtension
+	id="org.scn.community.databound"
+	title="Design Studio SCN Community Data Bound"
+
+	xmlns="http://www.sap.com/bi/zen/sdk"
+	version="1.0"
+	vendor="SCN Design Studio Community"
+	eula="Content is free for use and distribution under Apache License Version 2.0. Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License. For details refer to https://github.com/org-scn-design-studio-community/sdkpackage//blob/master/LICENSE">
+
+  <license>
+   Apache License
+   Version 2.0, January 2004
+   http://www.apache.org/licenses/
+   https://github.com/org-scn-design-studio-community/sdkpackage//blob/master/LICENSE
+	 
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      &quot;License&quot; shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      &quot;Licensor&quot; shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      &quot;Legal Entity&quot; shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      &quot;control&quot; means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      &quot;You&quot; (or &quot;Your&quot;) shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      &quot;Source&quot; form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      &quot;Object&quot; form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      &quot;Work&quot; shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      &quot;Derivative Works&quot; shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      &quot;Contribution&quot; shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, &quot;submitted&quot;
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as &quot;Not a Contribution.&quot;
+
+      &quot;Contributor&quot; shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a &quot;NOTICE&quot; text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an &quot;AS IS&quot; BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+  </license>
+
+	<group
+		id="ScnCommunityDataBound"
+		title="Scn Community Data Bound"/>
+
+<component
+	id="Table"
+	title="Data Table"
+	icon="res/DataTable/DataTable.png"
+	handlerType="div"
+	propertySheetPath="res/DataTable/aps/DataTable.html"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>res/DataTable/DataTable.js</jsInclude>
+
+	<property
+		id="column1"
+		title="Column 1"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+		<option
+			name="includeFormattedData"
+			value="true" />
+		<option
+			name="includeData"
+			value="false" />
+	</property>
+
+	<property
+		id="column2"
+		title="Column 2"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+		<option
+			name="includeFormattedData"
+			value="true" />
+		<option
+			name="includeData"
+			value="false" />
+	</property>
+
+	<property
+		id="column3"
+		title="Column 3"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+		<option
+			name="includeFormattedData"
+			value="true" />
+		<option
+			name="includeData"
+			value="false" />
+	</property>
+
+	<initialization>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+	</initialization>
+</component>
+<component
+	id="DropDown"
+	title="Data Drop Down"
+	icon="res/DropDown/DropDown.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+
+	<jsInclude>res/DropDown/DropDown.js</jsInclude>
+	<cssInclude>res/DropDown/DropDown.css</cssInclude>
+
+	<property
+		id="DBindingMode"
+		title="Binding Mode (metadata, resultset)"
+		type="String"
+		group="Display"
+		visible="true"
+	>
+		<possibleValue>Result Set</possibleValue>
+		<possibleValue>Master Data</possibleValue>
+	</property>
+
+	<property
+		id="DElements"
+		title="Master Data Elements"
+		type="String"
+		group="DataBinding"
+		visible="false"
+	>
+	</property>
+
+	<property
+		id="data"
+		title="Data List"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+	</property>
+
+	<property
+		id="DDimension"
+		title="Selected Dimension"
+		type="String"
+		group="DataBinding"
+	>
+	</property>
+
+	<property
+		id="DTopBottom"
+		title="Top X, Bottom X or Both"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>Top X</possibleValue>
+		<possibleValue>Bottom X</possibleValue>
+		<possibleValue>Both</possibleValue>
+	</property>
+
+	<property
+		id="DSorting"
+		title="Sorting By Value | Defalut"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>By Value</possibleValue>
+		<possibleValue>Default</possibleValue>
+	</property>
+
+	<property
+		id="DMaxMembers"
+		title="Maximum Numner of Members"
+		type="int"
+		group="Display" />
+
+	<property
+		id="DSelectedKeyExt"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DSelectedKeyExtFull"
+		type="String"
+		title="Technical proprty for Selected External String Full"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DSelectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DSelectedText"
+		type="String"
+		title="Technical proprty for Selected Text"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onInternalSelectionChanged"
+		type="ScriptText"
+		title="Internal Event for On Selection Changed"
+		group="Events"
+		visible="false" />
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<property
+		id="onClear"
+		type="ScriptText"
+		title="Event for On Clear"
+		group="Events" />
+
+	<property
+		id="onDataChanged"
+		type="ScriptText"
+		title="Event for On Data Changed"
+		group="Events" />
+
+	<property
+		id="DDoRefresh"
+		type="boolean"
+		title="Technical proprty for pause refresh"
+		group="Display"
+		visible="false" />
+
+	<initialization>
+		<defaultValue property="TOP">0</defaultValue>
+		<defaultValue property="LEFT">0</defaultValue>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">26</defaultValue>
+
+		<defaultValue property="DBindingMode">Result Set</defaultValue>
+		<defaultValue property="DTopBottom">Both</defaultValue>
+		<defaultValue property="DSorting">By Value</defaultValue>
+		<defaultValue property="DMaxMembers">3</defaultValue>
+		<defaultValue property="DEnabled">true</defaultValue>
+		<defaultValue property="DDoRefresh">true</defaultValue>
+		
+		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
+		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
+
+	</initialization>
+
+</component>
+<component
+		id="jpd3hier"
+		title="D3 Hierarchy"
+		icon="res/D3Hier/jplogo.png"
+		handlerType="div"
+		propertySheetPath="res/D3Hier/aps/aps_d3hier.html"
+		tooltip="Includes D3 Hierarchy"
+		group="ScnCommunityDataBound"
+		databound="true">
+		<stdInclude kind="d3"/>
+		<jsInclude>res/D3Hier/d3hier_component.js</jsInclude>
+		<cssInclude>res/D3Hier/d3hier_component.css</cssInclude>
+		
+		<!-- Resultset Entries -->
+		<property id="rsltSet" type="ResultSet" title="JSON Object that contains the metadata that is assigned with the Datasource" visible="false" group="DataBinding"></property>
+		
+		<!-- Boolean parameters -->
+		<property id="useDummyData" type="boolean" title="useDummyData - Use Dummy Data when no DataSource" visible="false"></property>
+		<property id="showText" type="boolean" title="showText - Should the text of the single bubbles be shown."></property>
+		<property id="showWarnings" type="boolean" title="showWarnings - Should warnings get shown"></property>
+		<property id="showRootBubble" type="boolean" title="showRootBubble - Defines if the default first bubble should get shown"></property>
+		<property id="alerterUsePercentage" type="boolean" title="alerterUsePercentage - Should percentages be used or real values"></property>
+		<property id="alerterHighValuesAreGood" type="boolean" title="alerterHighValuesAreGood - High values use color green and low values red if set to true"></property>
+		
+		<!-- String parameters -->
+		<property id="dimHierarchy" type="String" title="dimHierarchy - Which dimension contains the hierarchy" visible="false"></property>
+		<property id="kfBubbleSize" type="String" title="kfBubbleSize - Which keyfigure should get used for size of bubbles" visible="false"></property>
+		<property id="selectedNode" type="String" title="selectedNode - Returns an JSON Object of the selected node" visible="false"></property>
+		<!-- property id="kfBubbleCol" type="String" title="kfBubbleCol - Which keyfigure should get used for the alerter colors of bubbles" visible="true"></property -->
+		<property id="kfColBub" type="String" title="kfColBub - Which keyfigure should get used for the alerter of bubbles" visible="false"></property>
+		<property id="whichTextShown" type="String" title="whichTextShown - possible values are value, value_text, text_value, text" visible="true"></property>
+
+		<!-- integer parameters -->
+		<property id="BubbleSizeMaxSize" type="int" title="BubbleSizeMaxSize - What size in pixels should the startpoint have" ></property>
+		<property id="BubbleRootXTranslation" type="int" title="BubbleRootXTranslation - What translation should the root have from the default position. positive means right, negative means left translation" ></property>
+		<property id="BubbleSizeBoderSize" type="int" title="BubbleSizeBoderSize - What size should the border of a bubble have. Possible values are 1 to 15" ></property>
+		<property id="AlerterColorGreenVal" type="int" title="AlerterColorGreenVal - What percentage or real value should good values have - value has to be higher than Yellow" ></property>
+		<property id="AlerterColorYellowVal" type="int" title="AlerterColorYellowVal - What percentage or real value should medium values have - all lower values are red" ></property>
+		<!-- property id="AlerterColorRedVal" type="int" title="AlerterColorRedVal - What percentage or real value should bad values have" ></property -->
+		
+		
+		<!-- color parameters -->
+		<property id="alertColorRed" title="alertColorRed - Alert Red Color" type="Color" group="Display" ></property>
+		<property id="alertColorYellow" title="alertColorYellow - Alert Yellow Color" type="Color" group="Display" ></property>
+		<property id="alertColorGreen" title="alertColorGreen - Alert Green Color" type="Color" group="Display" ></property>
+		
+		<!-- events -->
+		<property id="onclick" title="On Click" type="ScriptText" group="Events" ></property>
+		<property id="onHExpand" title="On Hierarchy expand" type="ScriptText" group="Events" visible="true" ></property>
+		<property id="onHCollapse" title="On Hierarchy collapse" type="ScriptText" group="Events" visible="true" ></property>
+		<property id="onHExpandInv" title="onHExpandInv" type="ScriptText" group="Events" visible="false" ></property>
+		<property id="onHCollapseInv" title="onHCollapseInv" type="ScriptText" group="Events" visible="false" ></property>
+		
+		<initialization>
+			<defaultValue property="WIDTH">100</defaultValue>
+			<defaultValue property="HEIGHT">100</defaultValue>
+			<defaultValue property="useDummyData">false</defaultValue>
+			<defaultValue property="BubbleSizeMaxSize">12</defaultValue>
+			<defaultValue property="BubbleRootXTranslation">0</defaultValue>
+			<defaultValue property="selectedNode">InitialNode</defaultValue>
+			<defaultValue property="onHExpandInv">this.expandHierarchyNodes();</defaultValue>
+			<defaultValue property="onHCollapseInv">this.collapseHierarchyNodes();</defaultValue>
+			<defaultValue property="showText">true</defaultValue>
+			<defaultValue property="showWarnings">true</defaultValue>
+			<defaultValue property="showRootBubble">true</defaultValue>
+			<defaultValue property="whichTextShown">text_value</defaultValue>
+			<defaultValue property="alertColorRed">red</defaultValue>
+			<defaultValue property="alertColorYellow">yellow</defaultValue>
+			<defaultValue property="alertColorGreen">green</defaultValue>
+			<defaultValue property="BubbleSizeBoderSize">3</defaultValue>
+			<defaultValue property="alerterUsePercentage">true</defaultValue>
+			<defaultValue property="alerterHighValuesAreGood">true</defaultValue>
+			<defaultValue property="AlerterColorGreenVal">30</defaultValue>
+			<defaultValue property="AlerterColorYellowVal">10</defaultValue>
+			<!-- defaultValue property="AlerterColorRedVal">2</defaultValue-->
+		</initialization>
+	</component>
+	
+<component
+	id="FacetFilter"
+	title="Facet Filter"
+	icon="res/FacetFilter/FacetFilter.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+
+	<jsInclude>res/FacetFilter/FacetFilter.js</jsInclude>
+	<cssInclude>res/FacetFilter/FacetFilter.css</cssInclude>
+
+	<property
+		id="DElements"
+		title="Master Data Elements"
+		type="String"
+		group="DataBinding"
+		visible="false"
+	>
+	</property>
+
+	<property
+		id="DSelection"
+		title="Selected Elements"
+		type="String"
+		group="DataBinding"
+		visible="false"
+	>
+	</property>
+	
+	<property
+		id="data"
+		title="Data List"
+		type="ResultCellList"
+		group="DataBinding"
+		visible="true"
+	>
+	</property>
+
+	<property
+		id="DDisplayText"
+		title="Display Text"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Text</possibleValue>
+			<possibleValue>Text (Value)</possibleValue>
+	</property>
+
+	<property
+		id="DSortingType"
+		title="Member Sorting Type"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Default</possibleValue>
+			<possibleValue>Alphabetical</possibleValue>
+			<possibleValue>Selected</possibleValue>
+			<possibleValue>Value</possibleValue>
+	</property>
+
+	<property
+		id="DSortingDirection"
+		title="Member Sorting Direction"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Ascending</possibleValue>
+			<possibleValue>Descending</possibleValue>
+	</property>
+
+	<property
+		id="DMaxMembers"
+		title="Maximum Number of Members"
+		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DClearOthers"
+		title="Clear Selection of other dimensions when member value is 0"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DContentMode"
+		title="Content Mode (how much should be visualized)"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>All Dimensions</possibleValue>
+			<possibleValue>Only from Result Set</possibleValue>
+			<possibleValue>Custom Dimension Set</possibleValue>
+	</property>
+
+	<property
+		id="DCustomDimensions"
+		title="Custom Dimensions as Array [...]"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property  
+	  id="onInternalSelectionChanged"  
+	  title="On User List Selection"  
+	  type="ScriptText"  
+    visible="false"
+    />  
+
+	<property
+		id="onBeforeRender"
+		type="ScriptText"
+		title="Event for On Before Render"
+		group="Events"
+		visible="false" 
+	/>
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="DElements"></defaultValue>
+		<defaultValue property="DMaxMembers">1000</defaultValue>
+		<defaultValue property="DContentMode">Only from Result Set</defaultValue>
+		<defaultValue property="DCustomDimensions">[]</defaultValue>
+		<defaultValue property="DDisplayText">Text (Value)</defaultValue>
+		<defaultValue property="DSortingType">Default</defaultValue>
+		<defaultValue property="DSortingDirection">Descending</defaultValue>
+		<defaultValue property="DClearOthers">true</defaultValue>
+		
+		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
+		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
+	</initialization>
+
+</component>
+<component
+		id="HexBin"
+		title="Hexbin Chart"
+		icon="res/HexBin/HexBin.png"
+		handlerType="div"
+		propertySheetPath="res/HexBin/aps/HexBin.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>
+	<jsInclude>res/HexBin/HexBin.js</jsInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<cssInclude>os/d3-tip.css</cssInclude>
+	<!-- <property id="stringData" type="String" title = "Data Stringified" visible="false"/>-->
+	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
+	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
+	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
+	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
+	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
+	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int"/>
+	<property id="legendScale" title="Legend Scale" type="float"/>
+	<property id="legendX" title="Legend Offset X" type="int"/>
+	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="minX" title="Manual Min X" type="int"/>
+	<property id="minY" title="Manual Min Y" type="int"/>
+	<property id="maxX" title="Manual Max X" type="int"/>
+	<property id="maxY" title="Manual Max Y" type="int"/>
+	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
+	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
+	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
+		<possibleValue>top</possibleValue>
+		<possibleValue>bottom</possibleValue>	
+	</property>
+	<property id="yAxisOrientation" type="String" title = "Y-Axis Orientation" visible="true">
+		<possibleValue>left</possibleValue>
+		<possibleValue>right</possibleValue>
+	</property>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="margin" type="int" title = "Margin Size" visible="false"/>
+	<property id="radius" type="int" title = "Hex Radius" visible="true"/>
+	<property id="tolerance" type="int" title = "Manual Tolerance" visible="true"/>
+	<property id="threshold" type="int" title = "Manual Threshold" visible="true"/>
+	<property id="thresholdMethod" type="String" title = "Threshold Method" visible="true">
+		<possibleValue>Max</possibleValue>
+		<possibleValue>Median</possibleValue>
+		<possibleValue>Mean</possibleValue>
+		<possibleValue>Manual</possibleValue>
+	</property>
+	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
+	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String"/>
+	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String"/>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="false"/>
+		<option name="includeData" value="true"/>
+	</property>
+	<property
+		id="onSelect"
+		title="On Select"
+		type="ScriptText"
+		group="Events"/>
+	<initialization>
+		<defaultValue property="stringData">BLANK</defaultValue>
+		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="radius">20</defaultValue>
+		<defaultValue property="tolerance">0</defaultValue>
+		<defaultValue property="thresholdMethod">Median</defaultValue>
+		<defaultValue property="threshold">20</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="legendWidth">150</defaultValue>
+		<defaultValue property="legendTitle">Frequency</defaultValue>
+		<defaultValue property="legendScale">1</defaultValue>
+		<defaultValue property="margin">20</defaultValue>
+		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="xAxisTicks">5</defaultValue>
+		<defaultValue property="yAxisTicks">5</defaultValue>
+		<defaultValue property="xAxisOrientation">bottom</defaultValue>
+		<defaultValue property="yAxisOrientation">left</defaultValue>
+		<defaultValue property="maxX">0</defaultValue>
+		<defaultValue property="maxY">0</defaultValue>
+		<defaultValue property="minX">0</defaultValue>
+		<defaultValue property="minY">0</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+	</initialization>
+</component>
+<component
+	id="LeaderBoard"
+	title="Data Leader Board"
+	icon="res/LeaderBoard/LeaderBoard.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+
+	<jsInclude>res/LeaderBoard/LeaderBoard.js</jsInclude>
+	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
+
+	<property
+		id="data"
+		title="Data List"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+	</property>
+
+	<property
+		id="maxNumber"
+		title="Maximum Number"
+		type="int"
+		group="Display" />
+
+	<property
+		id="topBottom"
+		title="Top X or Bottom X"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>Top X</possibleValue>
+		<possibleValue>Bottom X</possibleValue>
+	</property>
+
+	<property
+		id="fallbackPicture"
+		title="Url for the Fallback Picture"
+		type="Url"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="usePictures"
+		type="boolean"
+		title="Use Pictures"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="addCounter"
+		type="boolean"
+		title="Add Counter"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="pressedKey"
+		type="String"
+		title="Technical proprty for Pressed Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="valuePrefix"
+		type="String"
+		title="Value Prefix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="valueSuffix"
+		type="String"
+		title="Value Suffix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="valueDecimalPlaces"
+		title="Value Decimal Places"
+		type="int"
+		group="Display"
+	>
+		<possibleValue>0</possibleValue>
+		<possibleValue>1</possibleValue>
+		<possibleValue>2</possibleValue>
+		<possibleValue>3</possibleValue>
+		<possibleValue>4</possibleValue>
+		<possibleValue>5</possibleValue>
+		<possibleValue>6</possibleValue>
+		<possibleValue>7</possibleValue>
+		<possibleValue>8</possibleValue>
+		<possibleValue>9</possibleValue>
+	</property>
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<property
+		id="onPress"
+		type="ScriptText"
+		title="Event for On Press"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">225</defaultValue>
+		<defaultValue property="HEIGHT">190</defaultValue>
+
+		<defaultValue property="topBottom">Top X</defaultValue>
+		<defaultValue property="maxNumber">10</defaultValue>
+		<defaultValue property="addCounter">true</defaultValue>
+		<defaultValue property="usePictures">true</defaultValue>
+	</initialization>
+
+</component>
+<component
+		id="MarimekkoChart"
+		title="Marimekko Chart"
+		icon="res/MarimekkoChart/MarimekkoChart.png"
+		handlerType="div"
+		propertySheetPath="res/MarimekkoChart/aps/MarimekkoChart.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<stdInclude kind="d3"/>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
+	<cssInclude>res/MarimekkoChart/MarimekkoChart.css</cssInclude>
+	<property id="stringData" type="String" title = "Data Stringified" visible="false"/>
+	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
+	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
+	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
+	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
+	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
+	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int"/>
+	<property id="legendScale" title="Legend Scale" type="float"/>
+	<property id="legendX" title="Legend Offset X" type="int"/>
+	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="margin" type="int" title = "Margin Size" visible="false"/>
+	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="false"/>
+		<option name="includeData" value="true"/>
+	</property>
+	<property
+		id="onSelect"
+		title="On Select"
+		type="ScriptText"
+		group="Events"/>
+	<initialization>
+		<defaultValue property="stringData">BLANK</defaultValue>
+		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="legendWidth">150</defaultValue>
+		<defaultValue property="legendTitle">Legend</defaultValue>
+		<defaultValue property="legendScale">1</defaultValue>
+		<defaultValue property="margin">20</defaultValue>
+		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+	</initialization>
+</component>
+<component
+	id="MultiLevelDropDown"
+	title="Multi Level DropDown Menu"
+	icon="res/MultiLevelDropDown/dp.gif"
+	handlerType="div"
+	propertySheetPath="res/MultiLevelDropDown/aps/MultiLevelDropDown.html"
+	databound="true"
+	group="ScnCommunityDataBound">
+	
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+
+	<jsInclude>res/MultiLevelDropDown/MultiLevelDropDown.js</jsInclude>
+	
+	<!--CSS adapted from http://codepen.io/philhoyt/pen/ujHzd-->
+	<cssInclude>res/MultiLevelDropDown/MultiLevelDropDown.css</cssInclude>
+	
+	<!-- Result set containing the data-->
+		<property 
+			type="ResultSet" 
+			title="Data" 
+			id="data"
+			group="DataBinding" 
+			visible="false">
+		</property>
+		
+		<!-- Selected menu, not used -->
+		<property 
+			type="String" 
+			title="selChar" 
+			id="selChar" 
+			visible="false">
+		</property>
+		
+		<!-- Add Single root node instead of all the first child of the hierarchy -->
+		<property 
+			type="boolean" 	
+			title="Add a single root node" 	
+			id="addSingleRootNode">
+		</property>
+		
+		<!-- Name of the Single root node-->
+		<property 
+			type="String" 	
+			title="Single root node name" 	
+			id="singleRootNodeName">
+		</property>
+		
+		<!-- On Click Event property -->
+		<property 
+			type="ScriptText"
+			title="On Click" 				
+			id="onClick" 				
+			group="Events">
+		</property>
+		
+		<!-- Menu that has been selected, "clicked" -->
+		<property 
+			type="String" 	
+			title="clicked Element Key" 	
+			id="clickedElemKey" 		
+			visible="false">
+		</property>
+		<property 
+			type="String" 	
+			title="clicked Element Text" 	
+			id="clickedElemText" 		
+			visible="false">
+		</property>
+		
+		<!-- Display reset button property-->
+		<property 
+			type="String" 	
+			title="Display Reset Button" 	
+			id="resetButton">
+			<possibleValue>None</possibleValue>
+			<possibleValue>Left</possibleValue>
+			<possibleValue>Right</possibleValue>
+		</property>
+		<!-- On Reset event property-->
+		<property 
+			type="ScriptText" 
+			title='onReset' 				
+			id="onReset"				
+			group="Events">
+		</property>
+
+		<initialization>
+			<!-- WIDTH -->
+			<defaultValue property="WIDTH">700</defaultValue>
+			<!-- HEIGHT -->
+			<defaultValue property="HEIGHT">200</defaultValue>
+			<!-- selChar (obsolete) -->
+			<defaultValue property="selChar"></defaultValue>
+			<!-- singleRootNodeName -->
+			<defaultValue property="singleRootNodeName">Root</defaultValue>
+			<!-- addSingleRootNodeName -->
+			<defaultValue property="addSingleRootNodeName">false</defaultValue>
+			<!-- clickedElemKey -->
+			<defaultValue property="clickedElemKey">INITIAL VALUE</defaultValue>
+			<!-- resetButton -->
+			<defaultValue property="resetButton">None</defaultValue>
+		</initialization>
+</component>
+
+<component
+		id="Projector"
+		title="Data Projector"
+		icon="res/Projector/Projector.png"
+		handlerType="div"
+		propertySheetPath="res/Projector/aps/Projector.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<stdInclude kind="d3"/>
+	
+  <jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/Projector/Projector.js</jsInclude>
+	<cssInclude>res/Projector/Projector.css</cssInclude>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="false"/>
+	</property>
+	<property id="projectDimension" title="Dimension to Project" type="String"/>
+	<property id="projectionMethod" title="Projection Method" type="String"/>
+	<property id="projectedData" title="Projected Data" type="String"/>
+	<initialization>
+		<defaultValue property="projectDimension"></defaultValue>
+		<defaultValue property="projectionMethod">SUM</defaultValue>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+	</initialization>
+</component>
+<component
+	id="RangeSlider"
+	title="Data Range Slider"
+	icon="res/RangeSlider/RangeSlider.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+
+	<jsInclude>res/RangeSlider/RangeSlider.js</jsInclude>
+	<cssInclude>res/RangeSlider/RangeSlider.css</cssInclude>
+
+	<property
+		id="data"
+		title="Data List"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+	</property>
+
+	<property
+		id="maxNumber"
+		title="Maximum Number"
+		type="int"
+		group="Display" />
+
+	<property
+		id="topBottom"
+		title="Top X, Bottom X or Both"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>Top X</possibleValue>
+		<possibleValue>Bottom X</possibleValue>
+		<possibleValue>Both</possibleValue>
+	</property>
+
+	<property
+		id="sorting"
+		title="Sorting By Value | Defalut"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>By Value</possibleValue>
+		<possibleValue>Default</possibleValue>
+	</property>
+
+	<property
+		id="vertical"
+		title="Change to Vertical Orientation"
+		type="boolean"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="doRefresh"
+		type="boolean"
+		title="Technical proprty for pause refresh"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="selectedText"
+		type="String"
+		title="Technical proprty for Selected Text"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="selectedKey2"
+		type="String"
+		title="Technical proprty for Selected Key 2"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="selectedText2"
+		type="String"
+		title="Technical proprty for Selected Text 2"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="selectedKeys"
+		type="String"
+		title="Technical proprty for Selected Keys"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<property
+		id="onDataChanged"
+		type="ScriptText"
+		title="Event for On Data Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="TOP">0</defaultValue>
+		<defaultValue property="LEFT">0</defaultValue>
+		<defaultValue property="WIDTH">60</defaultValue>
+		<defaultValue property="HEIGHT">600</defaultValue>
+
+		<defaultValue property="topBottom">Both</defaultValue>
+		<defaultValue property="sorting">Default</defaultValue>
+		<defaultValue property="maxNumber">10</defaultValue>
+		<defaultValue property="vertical">false</defaultValue>
+		<defaultValue property="doRefresh">true</defaultValue>
+
+	</initialization>
+
+</component>
+<component
+		id="ScatterPlot"
+		title="Scatter Plot Chart"
+		icon="res/ScatterPlot/ScatterPlot.png"
+		handlerType="div"
+		propertySheetPath="res/ScatterPlot/aps/ScatterPlot.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>
+	<jsInclude>res/ScatterPlot/ScatterPlot.js</jsInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<cssInclude>os/d3-tip.css</cssInclude>
+	<property id="styleCSS" title="Style CSS" type="String"/>
+	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
+	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true"/>
+	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
+	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="colorDimension" title="Dimension for Series" type="String"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int"/>
+	<property id="legendScale" title="Legend Scale" type="float"/>
+	<property id="legendX" title="Legend Offset X" type="int"/>
+	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="minX" title="Manual Min X" type="int"/>
+	<property id="minY" title="Manual Min Y" type="int"/>
+	<property id="maxX" title="Manual Max X" type="int"/>
+	<property id="maxY" title="Manual Max Y" type="int"/>
+	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
+	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
+	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
+		<possibleValue>top</possibleValue>
+		<possibleValue>bottom</possibleValue>	
+	</property>
+	<property id="yAxisOrientation" type="String" title = "Y-Axis Orientation" visible="true">
+		<possibleValue>left</possibleValue>
+		<possibleValue>right</possibleValue>
+	</property>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="margin" type="int" title = "Margin Size" visible="false"/>
+	<property id="radius" type="int" title = "Plot Radius" visible="true"/>
+	<property id="bubbleMin" type="int" title = "Bubble Min Radius" visible="true"/>
+	<property id="bubbleMax" type="int" title = "Bubble Max Radius" visible="true"/>
+	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="true"/>
+	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String"/>
+	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String"/>
+	<property id="measureZ" title="Z-Axis Measure (Blank will disable)" type="String"/>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="false"/>
+		<option name="includeData" value="true"/>
+	</property>
+	<property
+		id="onSelect"
+		title="On Select"
+		type="ScriptText"
+		group="Events"/>
+	<initialization>
+		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="styleCSS">/*Default CSS*/
+__n__circle {
+__n__  stroke: #303030;
+__n__  stroke-width: .75px;
+__n__}
+__n__circle:hover {
+__n__  stroke: #303030;
+__n__  stroke-width: 2px;
+__n__}
+		</defaultValue>
+		<defaultValue property="radius">5</defaultValue>
+		<defaultValue property="bubbleMin">3</defaultValue>
+		<defaultValue property="bubbleMax">50</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="legendWidth">150</defaultValue>
+		<defaultValue property="legendTitle">Frequency</defaultValue>
+		<defaultValue property="legendScale">1</defaultValue>
+		<defaultValue property="margin">20</defaultValue>
+		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="xAxisTicks">5</defaultValue>
+		<defaultValue property="yAxisTicks">5</defaultValue>
+		<defaultValue property="xAxisOrientation">bottom</defaultValue>
+		<defaultValue property="yAxisOrientation">left</defaultValue>
+		<defaultValue property="maxX">0</defaultValue>
+		<defaultValue property="maxY">0</defaultValue>
+		<defaultValue property="minX">0</defaultValue>
+		<defaultValue property="minY">0</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+	</initialization>
+</component>
+<component
+	id="Slider"
+	title="Data Slider"
+	icon="res/Slider/Slider.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+
+	<jsInclude>res/Slider/Slider.js</jsInclude>
+	<cssInclude>res/Slider/Slider.css</cssInclude>
+
+	<property
+		id="data"
+		title="Data List"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+	</property>
+
+	<property
+		id="maxNumber"
+		title="Maximum Number"
+		type="int"
+		group="Display" />
+
+	<property
+		id="topBottom"
+		title="Top X, Bottom X or Both"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>Top X</possibleValue>
+		<possibleValue>Bottom X</possibleValue>
+		<possibleValue>Both</possibleValue>
+	</property>
+
+	<property
+		id="sorting"
+		title="Sorting By Value | Defalut"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>By Value</possibleValue>
+		<possibleValue>Default</possibleValue>
+	</property>
+
+	<property
+		id="vertical"
+		title="Change to Vertical Orientation"
+		type="boolean"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="doRefresh"
+		type="boolean"
+		title="Technical proprty for pause refresh"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="selectedText"
+		type="String"
+		title="Technical proprty for Selected Text"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<property
+		id="onDataChanged"
+		type="ScriptText"
+		title="Event for On Data Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="TOP">0</defaultValue>
+		<defaultValue property="LEFT">0</defaultValue>
+		<defaultValue property="WIDTH">60</defaultValue>
+		<defaultValue property="HEIGHT">600</defaultValue>
+
+		<defaultValue property="topBottom">Both</defaultValue>
+		<defaultValue property="sorting">By Value</defaultValue>
+		<defaultValue property="maxNumber">3</defaultValue>
+		<defaultValue property="vertical">false</defaultValue>
+		<defaultValue property="doRefresh">true</defaultValue>
+
+	</initialization>
+
+</component>
+<component
+		id="Table2D"
+		title="2D Crosstab"
+		icon="res/Table2D/Table2D.png"
+		handlerType="div"
+		propertySheetPath="res/Table2D/aps/Table2D.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<stdInclude kind="d3"/>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/Table2D/Table2D.js</jsInclude>
+	<cssInclude>res/Table2D/Table2D.css</cssInclude>
+	<property id="concatenateDimensions" type="boolean" title = "Concatenate Dimensions"/>
+	<property id="stringData" type="String" title = "Data Stringified" visible="false"/>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="false"/>
+	</property>
+	<property
+		id="onSelect"
+		title="On Select"
+		type="ScriptText"
+		group="Events"/>
+	<initialization>
+		<defaultValue property="stringData">BLANK</defaultValue>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+	</initialization>
+</component>
+<component
+	id="TopFlop"
+	title="Data Top Flop"
+	icon="res/TopFlop/TopFlop.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+
+	<jsInclude>res/TopFlop/TopFlop.js</jsInclude>
+	<cssInclude>res/TopFlop/TopFlop.css</cssInclude>
+
+	<property
+		id="data"
+		title="Data List"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+	</property>
+
+	<property
+		id="maxNumber"
+		title="Maximum Number"
+		type="int"
+		group="Display" />
+
+	<property
+		id="topBottom"
+		title="Top X, Bottom X or Both"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>Top X</possibleValue>
+		<possibleValue>Bottom X</possibleValue>
+		<possibleValue>Both</possibleValue>
+	</property>
+
+	<property
+		id="fallbackPicture"
+		title="Url for the Fallback Picture"
+		type="Url"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="usePictures"
+		type="boolean"
+		title="Use Pictures"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="addCounter"
+		type="boolean"
+		title="Add Counter"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="pressedKey"
+		type="String"
+		title="Technical proprty for Pressed Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="valuePrefix"
+		type="String"
+		title="Value Prefix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="valueSuffix"
+		type="String"
+		title="Value Suffix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="deltaValueSuffix"
+		type="String"
+		title="Delta Value Suffix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="valueDecimalPlaces"
+		title="Value Decimal Places"
+		type="int"
+		group="Display"
+	>
+		<possibleValue>0</possibleValue>
+		<possibleValue>1</possibleValue>
+		<possibleValue>2</possibleValue>
+		<possibleValue>3</possibleValue>
+		<possibleValue>4</possibleValue>
+		<possibleValue>5</possibleValue>
+		<possibleValue>6</possibleValue>
+		<possibleValue>7</possibleValue>
+		<possibleValue>8</possibleValue>
+		<possibleValue>9</possibleValue>
+	</property>
+
+	<property
+		id="fixedAverage"
+		title="Fixed Average Value (-1 for calculated Average)"
+		type="int"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="averagePrefix"
+		title="Prefix for Average Value"
+		type="String"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="averageSuffix"
+		title="Suffix for Average Value"
+		type="String"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<property
+		id="onPress"
+		type="ScriptText"
+		title="Event for On Press"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">225</defaultValue>
+		<defaultValue property="HEIGHT">190</defaultValue>
+
+		<defaultValue property="topBottom">Both</defaultValue>
+		<defaultValue property="maxNumber">3</defaultValue>
+		<defaultValue property="addCounter">true</defaultValue>
+		<defaultValue property="usePictures">true</defaultValue>
+		<defaultValue property="valueDecimalPlaces">0</defaultValue>
+		<defaultValue property="fixedAverage">-1</defaultValue>
+		<defaultValue property="averagePrefix">Average: </defaultValue>
+	</initialization>
+
+</component>
+<component
+	id="TopFlopChart"
+	title="Data Top FLop Chart"
+	icon="res/TopFlopChart/TopFlopChart.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+
+	<jsInclude>res/TopFlopChart/TopFlopChart.js</jsInclude>
+	<cssInclude>res/TopFlopChart/TopFlopChart.css</cssInclude>
+
+	<property
+		id="data"
+		title="Data List"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+	</property>
+	
+	<property
+		id="maxNumber"
+		title="Maximum Number"
+		type="int"
+		group="Display" />
+
+	<property
+		id="topBottom"
+		title="Top X, Bottom X or Both"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>Top X</possibleValue>
+		<possibleValue>Bottom X</possibleValue>
+		<possibleValue>Both</possibleValue>
+	</property>
+
+	<property
+		id="fallbackPicture"
+		title="Url for the Fallback Picture"
+		type="Url"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="usePictures"
+		type="boolean"
+		title="Use Pictures"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="addCounter"
+		type="boolean"
+		title="Add Counter"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="pressedKey"
+		type="String"
+		title="Technical proprty for Pressed Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="valuePrefix"
+		type="String"
+		title="Value Prefix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="valueSuffix"
+		type="String"
+		title="Value Suffix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="deltaValueSuffix"
+		type="String"
+		title="Delta Value Suffix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="useBackground"
+		type="boolean"
+		title="Mark Background"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="showDelta"
+		type="boolean"
+		title="Show Delta Value in Item"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="useDelta"
+		type="boolean"
+		title="Use Delta as Value"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="allowInteraction"
+		type="boolean"
+		title="Allow Any Interaction (Link, Selection)"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="breakOnIndex"
+		type="int"
+		title="Place an Empty Area after Index"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="breakOnAverage"
+		type="boolean"
+		title="Place an Empty Area after Average is Matched"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="showAverage"
+		type="boolean"
+		title="Show Average Information"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="valueStart"
+		type="int"
+		title="Text / Value Split Point in px"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="maxValueSize"
+		type="int"
+		title="Maximal Size of the Value Area in px"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="valueDecimalPlaces"
+		title="Value Decimal Places"
+		type="int"
+		group="Display"
+	>
+		<possibleValue>0</possibleValue>
+		<possibleValue>1</possibleValue>
+		<possibleValue>2</possibleValue>
+		<possibleValue>3</possibleValue>
+		<possibleValue>4</possibleValue>
+		<possibleValue>5</possibleValue>
+		<possibleValue>6</possibleValue>
+		<possibleValue>7</possibleValue>
+		<possibleValue>8</possibleValue>
+		<possibleValue>9</possibleValue>
+	</property>
+
+	<property
+		id="fixedAverage"
+		title="Fixed Average Value (-1 for calculated Average)"
+		type="int"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="averagePrefix"
+		title="Prefix for Average Value"
+		type="String"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="averageSuffix"
+		title="Suffix for Average Value"
+		type="String"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<property
+		id="onPress"
+		type="ScriptText"
+		title="Event for On Press"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">225</defaultValue>
+		<defaultValue property="HEIGHT">190</defaultValue>
+
+		<defaultValue property="topBottom">Both</defaultValue>
+		<defaultValue property="maxNumber">3</defaultValue>
+		<defaultValue property="addCounter">true</defaultValue>
+		<defaultValue property="usePictures">true</defaultValue>
+		<defaultValue property="valueDecimalPlaces">0</defaultValue>
+		<defaultValue property="fixedAverage">-1</defaultValue>
+		<defaultValue property="useBackground">false</defaultValue>
+		<defaultValue property="showDelta">true</defaultValue>
+		<defaultValue property="useDelta">false</defaultValue>
+		<defaultValue property="allowInteraction">true</defaultValue>
+		<defaultValue property="breakOnIndex">-1</defaultValue>
+		<defaultValue property="breakOnAverage">false</defaultValue>
+		<defaultValue property="showAverage">true</defaultValue>
+		<defaultValue property="valueStart">80</defaultValue>
+		<defaultValue property="maxValueSize">-1</defaultValue>
+	</initialization>
+
+</component>
+</sdkExtension>

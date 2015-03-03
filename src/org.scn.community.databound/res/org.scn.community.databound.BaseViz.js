@@ -7,16 +7,113 @@ function org_scn_community_databound_BaseViz(d3, options){
 	var that = this;
 	this.formatter = d3.format(',.2f');			// Make a DS property
 	var properties = {
-		legendScale : { value : 1 },
-		legendX : { value : 0 },
-		legendY : { value : 0 },
-		legendTitle : { value : "Legend" },
-		legendWidth : { value : 150 },
-		legendOn : { value : true },
-		margin : { value : 15 },
-		makeRoomX : { value : true },
-		ms : { value : 750},
-		colorPalette :  { value : "#F0F9E8,#CCEBC5,#A8DDB5,#7BCCC4,#43A2CA,#0868AC" }
+		styleCSS : { 
+			value : "/* CSS */",
+			onChange : function(value){
+				this.props.styleCSS.value = value.replace(/__n__/g,"\n");
+			},
+			opts : {
+				cat : "CSS",
+				onSet : function(value){
+					return s.replace(/__n__/g,"\r\n");
+				},
+				apsControl : "textbox"
+			}
+		},
+		legendOn : { 
+			value : true,
+			opts : {
+				desc : "Show Legend",
+				cat : "Legend",
+				apsControl : "checkbox"	
+			}
+		},
+		legendTitle : { 
+			value : "Legend",
+			opts : {
+				desc : "Legend Title",
+				cat : "Legend",
+				apsControl : "text"
+			}
+		},
+		legendWidth : {
+			value : 150,
+			opts : {
+				desc : "Legend Width",
+				cat : "Legend",
+				apsControl : "spinner"	
+			}
+		},
+		legendX : {
+			value : 0,
+			opts : {
+				desc : "Legend X Offset",
+				cat : "Legend",
+				apsControl : "spinner"	
+			}
+		},
+		legendY : {
+			desc : "Legend Y Offset",
+			cat : "Legend",
+			value : 0,
+			apsControl : "spinner"
+		},
+		makeRoomX : { 
+			value : true,
+			opts : {
+				desc : "Chart Avoids Legend",
+				cat : "Legend",
+				apsControl : "checkbox"	
+			}
+		},
+		legendScale : {
+			value : 1,
+			opts : {
+				desc : "Legend Scale",
+				cat : "Legend",
+				apsControl : "spinner"	
+			}
+		},
+		margin : {
+			value : 15,
+			opts : {
+				desc : "Margins",
+				cat : "Cosmetics",
+				apsControl : "spinner"	
+			}
+		},
+		plotAlpha : {
+			value : .9,
+			opts : {
+				desc : "Plot Alpha",
+				cat : "Cosmetics",
+				apsControl : "spinner"	
+			}
+		},
+		ms : {
+			value : 750,
+			opts : {
+				desc : "Animation Time",
+				cat : "Cosmetics",
+				apsControl : "spinner"	
+			}
+		},
+		colorPalette :  { 
+			value : "#F0F9E8,#CCEBC5,#A8DDB5,#7BCCC4,#43A2CA,#0868AC",
+			opts : {
+				desc : "Color Palette",
+				cat : "Cosmetics",
+				apsControl : "palette"	
+			}
+		},
+		selectedColor :  { 
+			value : "#000000",
+			opts : {
+				desc : "Selected Color",
+				cat : "Cosmetics",
+				apsControl : "color"	
+			}
+		}
 	};
 	for(var prop in options) properties[prop] = options[prop];
 	org_scn_community_databound_Base.call(this,properties);
@@ -29,6 +126,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			.transition().duration(this.ms())
 			.attr("width", this.dimensions.width)
 			.attr("height", this.dimensions.height);
+		this.svgStyle.text(this.styleCSS());
 		// Reorient Canvas Group
 		this.canvas
 			.transition().duration(this.ms())
@@ -37,19 +135,25 @@ function org_scn_community_databound_BaseViz(d3, options){
 		this.plotArea
 			.transition().duration(this.ms())
 			.attr("transform", "translate(" + (this.dimensions.plotLeft) + "," + this.dimensions.plotTop + ")");
+		var legendTransition;
+		if(this.legendOn()){
+			legendTransition = this.legendGroup
+				.attr("display", "inline")
+				.transition().duration(this.ms())
+				.attr("opacity", 1);
+		}else{
+			legendTransition = this.legendGroup
+				.transition().duration(this.ms())
+				.attr("opacity", 0)
+				.transition().delay(this.ms())
+				.attr("display", "none");
+		}
 		// Reorient and Resize Legend Group		
-		this.legendGroup
+		legendTransition
 			.transition().duration(this.ms())
 			.attr("transform", "translate("+this.dimensions.legendX+","+this.dimensions.legendY+") "+
-				  "scale(" + this.legendScale() + ")")
-			.attr("opacity", function(){
-				if(that.legendOn()){
-					return 1;
-				}else{
-					return 0;
-				}
-			});
-		
+				  "scale(" + this.legendScale() + ")");
+
 		// Reorient and Resize Message Box
 		this.messageRect
 			.transition().duration(this.ms())	
@@ -102,6 +206,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 		if(this.flatData && this.flatData.values && this.flatData.values.length > 0){
 			
 		}else{
+			alert(JSON.stringify(this.flatData));
 			success = false;
 			reason = "No values found.";
 		}
@@ -156,6 +261,10 @@ function org_scn_community_databound_BaseViz(d3, options){
 		this.svg = d3.select("#" + this.$().attr("id")).select("svg");
 		if(this.svg.empty()){
 			this.svg = d3.select("#" + this.$().attr("id")).append("svg");
+			this.svgDefs = this.svg.append("defs");
+			this.svgStyle = this.svgDefs.append("style")
+				.attr("type","text/css");
+			
 			// Main Plot Area
 			this.canvas = this.svg.append("g");
 			// Clip Path

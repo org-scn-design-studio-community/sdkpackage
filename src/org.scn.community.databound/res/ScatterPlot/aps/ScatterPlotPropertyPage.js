@@ -1,180 +1,171 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ScatterPlotPropertyPage", function() {
 	var that = this;
-	/**
-	 * Setter/Getters
-	 */
-	this.ms = function(f){
-		if(f===undefined){
-			return this._ms;
-		}else{
-			this._ms = f;
-			this.compMs.setValue(f);
-			return this;
-		}
-	};
-	this.compMs = new org.scn.community.aps.Spinner({
-		min : 0,
-		max : 2000,
-		valueChange : function(oControlEvent){
-			that._ms = this.getValue();
-			that.firePropertiesChanged(["ms"]);			
-		}
-	});
-	this.compMargin = new org.scn.community.aps.Spinner({
-		min : 0,
-		max : 500,
-		valueChange : function(oControlEvent){
-			that._margin = this.getValue();
-			that.firePropertiesChanged(["margin"]);			
-		}
-	});
-	this.selectedColor = function(s){
+	this.styleCSS = function(s){
 		if(s===undefined){
-			return this._selectedColor;
+			return this._styleCSS;
 		}else{
-			this._selectedColor = s;
-			this.compSelectedColor.setBackgroundColor(s);
+			this.txtStyleCSS.setValue(this._styleCSS);
 			return this;
 		}
 	};
-	this.compSelectedColor = new org.scn.community.aps.ColorPicker({
-		showAlpha : false,
-		colorChange : function(oControlEvent){
-			that.selectedColor(this.getBackgroundColor());
-			that.firePropertiesChanged(["selectedColor"]);
-		}
-	});
-	this.margin = function(f){
-		if(f===undefined){
-			return this._margin;
-		}else{
-			this._margin = f;
-			this.compMargin.setValue(f);
-			return this;
-		}
-	};
-	this.compMargin = new org.scn.community.aps.Spinner({
-		min : 0,
-		max : 500,
-		valueChange : function(oControlEvent){
-			that._margin = this.getValue();
-			that.firePropertiesChanged(["margin"]);			
-		}
-	});
-	this.legendOn = function(b){
-		if(b===undefined){
-			return this._legendOn;
-		}else{
-			this._legendOn = b;
-			this.compLegendOn.setChecked(b);
-			return this; 
-		}
-	};
-	this.compLegendOn =  new sap.ui.commons.CheckBox({
-		text : "Display Legend",
-		change : function(oControlEvent){
-			that.legendOn(this.getChecked());
-			that.firePropertiesChanged(["legendOn"]);
-		} 
-	});
-	this.makeRoomX = function(b){
-		if(b===undefined){
-			return this._makeRoomX;
-		}else{
-			this._makeRoomX = b;
-			this.compMakeRoomX.setChecked(b);
-			return this; 
-		}
-	};
-	this.compMakeRoomX =  new sap.ui.commons.CheckBox({
-		text : "Chart Avoids Legend",
-		change : function(oControlEvent){
-			that.makeRoomX(this.getChecked());
-			that.firePropertiesChanged(["makeRoomX"]);
-		} 
-	});
-	this.tooltipOn = function(b){
-		if(b===undefined){
-			return this._tooltipOn;
-		}else{
-			this._tooltipOn = b;
-			this.compTooltipOn.setChecked(b);
-			return this; 
-		}
-	};
-	this.showValues = function(b){
-		if(b===undefined){
-			return this._showValues;
-		}else{
-			this._showValues = b;
-			this.compShowValues.setChecked(b);
-			return this; 
-		}
-	};
-	this.compShowValues =  new sap.ui.commons.CheckBox({
-		text : "Show Values",
-		change : function(oControlEvent){
-			that.showValues(this.getChecked());
-			that.firePropertiesChanged(["showValues"]);
-		} 
-	});
-	this.compTooltipOn =  new sap.ui.commons.CheckBox({
-		text : "Display Tooltips",
-		change : function(oControlEvent){
-			that.tooltipOn(this.getChecked());
-			that.firePropertiesChanged(["tooltipOn"]);
-		} 
-	});
-	this.colorPalette = function(s){
-		if(s===undefined){
-			return this._colorPalette
-		}else{
-			this._colorPalette = s;
-			this.brewer.setColors(s);
-			return this;
-		}
-	};
-	/**
-	 * UI5 Components
-	 */
-	this.brewer = new org.scn.community.aps.ColorBuilder({
-		width : "100%",
-		title : new sap.ui.commons.Title({
-			text: "Colors"
-		}),
-		tooltip: "Choropleth Colors",
-		showCollapseIcon : false,
-		showAlpha : false,
-		showRatios : false,
-		colorChange : function(oControlEvent){
-			that.colorPalette(this.getColors());
-			that.firePropertiesChanged(["colorPalette"]);
-		}
-	});
-
 	/**
 	 * Design Studio Events
 	 */
 	this.init = function(){
+		var propMetadata = this.callRuntimeHandler("getPropertyMetaData");
 		// Build UI
-			this.content = new sap.ui.commons.TabStrip({
-				width : "100%",
-				//height : "500px"
-			});
-			var cosmeticsLayout = new sap.ui.commons.layout.VerticalLayout({
-				width : "100%"
-			});
+		this.content = new sap.ui.commons.TabStrip({
+			width : "100%"
+		});
+		this.metaProps = jQuery.parseJSON(propMetadata);
+		this.props = {};
+		try{
+		for(var prop in this.metaProps){
+			var property = this.metaProps[prop].name;
+			var propertyOptions = this.metaProps[prop].opts;
+			var apsControl = propertyOptions.apsControl;
+			var category = propertyOptions.cat || "etc";
+			if(!this["layout_"+category]){
+				this["layout_"+category] = new sap.ui.commons.layout.VerticalLayout({
+					width : "100%"
+				});
+				this.content.createTab(category,this["layout_"+category]);
+			}
+			if(!this[property]+"xx"){
+				this.props[property] = {
+					value : null
+				};
+				// Step 1, create getter/setter
+				this[property] = function(property,apsControl){
+					return function(value){
+						if(value===undefined){
+							return this.props[property].value;
+						}else{
+							if(this.props[property].onSet) alert(this.props[property].onSet);
+							this.props[property].value = value;
+							if(apsControl=="text" || !apsControl){
+								this["cmp_"+property].setValue(value);	
+							}
+							if(apsControl=="textbox"){
+								this["cmp_"+property].setValue(value);	
+							}
+							if(apsControl=="checkbox"){
+								this["cmp_"+property].setChecked(Boolean(value));	
+							}
+							if(apsControl=="spinner"){
+								this["cmp_"+property].setValue(value);
+							}
+							if(apsControl=="palette"){
+								this["cmp_"+property].setColors(value);
+							}
+							if(apsControl=="combobox"){
+								this["cmp_"+property].setSelectedKey(value);
+							}
+							if(apsControl=="color"){
+								this["cmp_"+property].setBackgroundColor(value);
+							}
+							return this;
+						}
+					};
+				}(property,apsControl);
+				// Step 2, create component event handler
+				var f = function(property,apsControl){
+					return function(oControlEvent){
+						var newValue;
+						if(apsControl=="text" || apsControl==null){
+							newValue = oControlEvent.getSource().getValue();
+						}
+						if(apsControl=="textbox"){
+							newValue = oControlEvent.getSource().getValue();
+						}
+						if(apsControl=="checkbox"){
+							newValue = oControlEvent.getSource().getChecked();
+						}
+						if(apsControl=="spinner"){
+							newValue = oControlEvent.getSource().getValue();
+						}
+						if(apsControl=="palette"){
+							newValue = oControlEvent.getSource().getColors();
+						}
+						if(apsControl=="combobox"){
+							newValue = oControlEvent.getSource().getSelectedKey();
+						}
+						if(apsControl=="color"){
+							newValue = oControlEvent.getSource().getBackgroundColor();
+						}
+						this.props[property].value = newValue;
+						this.firePropertiesChanged([property]);
+					};
+				}(property,apsControl);
+				// Step 3, create component
+				if(apsControl == "text" || !apsControl){
+					this["cmp_"+property] = new sap.ui.commons.TextField({
+						value : ""
+					});
+					this["cmp_"+property].attachChange(f,this);
+				}
+				if(apsControl == "textbox"){
+					this["cmp_"+property] = new sap.ui.commons.TextArea({
+						design : sap.ui.core.Design.Monospace,
+						rows : 20,
+						width : "100%",
+						wrapping : sap.ui.core.Wrapping.Off
+					});
+					this["cmp_"+property].attachChange(f,this);
+				}
+				if(apsControl == "checkbox"){
+					this["cmp_"+property] = new sap.ui.commons.CheckBox();
+					this["cmp_"+property].attachChange(f,this);
+				}
+				if(apsControl == "spinner"){
+					this["cmp_"+property] = new org.scn.community.aps.Spinner({
+						min : 0,
+						max : 100
+					 });
+					this["cmp_"+property].attachValueChange(f,this);
+				}
+				if(apsControl == "combobox"){
+					this["cmp_"+property] = new sap.ui.commons.ComboBox({});
+					if(propertyOptions.options && propertyOptions.options.length>0){
+						for(var i=0;i<propertyOptions.options.length;i++){
+							var option = propertyOptions.options[i];
+							this["cmp_"+property].addItem(new sap.ui.core.ListItem({
+								key : option.key,
+								text : option.text || option.key
+							 }));
+						}
+					}
+					this["cmp_"+property].attachChange(f,this);
+				}
+				if(apsControl == "palette"){
+					this["cmp_"+property] = new org.scn.community.aps.ColorBuilder({
+						width : "100%",
+						title : new sap.ui.commons.Title({
+							text: propertyOptions.desc
+						}),
+						tooltip: this.metaProps[prop].tooltip,
+						showCollapseIcon : false,
+						showAlpha : false,
+						showRatios : false
+					});
+					this["cmp_"+property].attachColorChange(f,this);
+				}
+				if(apsControl == "color"){
+					this["cmp_"+property] = new org.scn.community.aps.ColorPicker({
+						showAlpha : false
+					});
+					this["cmp_"+property].attachColorChange(f,this);
+				}
+				// Step 4, add control to layout
+				//etcLayout.addContent(this.hLabel(property,this["cmp_"+property]));
+				this["layout_"+category].addContent(this.hLabel(propertyOptions.desc,this["cmp_"+property]));
+			}
 			
-			this.content.createTab("Cosmetics", cosmeticsLayout);
-			cosmeticsLayout.addContent(this.compLegendOn);
-			cosmeticsLayout.addContent(this.compMakeRoomX);
-			cosmeticsLayout.addContent(this.compShowValues);
-			cosmeticsLayout.addContent(this.compTooltipOn);
-			cosmeticsLayout.addContent(this.hLabel("Animation Duration (ms)",this.compMs));
-			cosmeticsLayout.addContent(this.hLabel("Margins",this.compMargin));
-			cosmeticsLayout.addContent(this.hLabel("Selected Color",this.compSelectedColor));
-			cosmeticsLayout.addContent(this.brewer);
-			this.content.placeAt("content");
+		}
+		}catch(e){
+			alert(e);
+		}
+		this.content.placeAt("content");
 	};
 	this.hLabel = function(label,component){
 		var hLayout = new sap.ui.commons.layout.HorizontalLayout({})
