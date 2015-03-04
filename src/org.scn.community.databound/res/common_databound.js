@@ -215,13 +215,16 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, metada
 			};
 
 			if(options.iDuplicates=="Sum") {
-				if(allKeys.indexOf("|" + key + "|") > -1 && value != 0) {
-					for (var iL = 0; iL < list.length; iL++) {
-						if(list[iL].key == key){
-							list[iL].value = list[iL].value + value;
-							list[iL].valueS = org_scn_community_basics.getFormattedValue(list[iL].value, metadata.locale, options.iNnumberOfDecimals);
-							lValues[iL] = list[iL].value;
-							break;
+				if(allKeys.indexOf("|" + key + "|") > -1) {
+					if(value != 0) {
+						// search and update value
+						for (var iL = 0; iL < list.length; iL++) {
+							if(list[iL].key == key){
+								list[iL].value = list[iL].value + value;
+								list[iL].valueS = org_scn_community_basics.getFormattedValue(list[iL].value, metadata.locale, options.iNumberOfDecimals);
+								lValues[iL] = list[iL].value;
+								break;
+							}
 						}
 					}
 				} else {
