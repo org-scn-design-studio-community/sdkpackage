@@ -1,0 +1,24 @@
+
+<component
+	id="SapMList"
+	title="(PROTOTYPE!) Sap M List"
+	icon="res/SapMList/SapMList.png"
+	handlerType="sapui5"
+	group="ScnCommunityPrototypes"
+>
+
+	<jsInclude>os/iscroll-4/src/iscroll.js</jsInclude>
+	<jsInclude>os/sapui5/load.sap.m.js</jsInclude>
+	<jsInclude>res/SapMList/SapMList.js</jsInclude>
+	<cssInclude>res/SapMList/SapMList.css</cssInclude>
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">600</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+	
+	</initialization>	
+</component>
