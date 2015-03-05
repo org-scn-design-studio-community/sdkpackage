@@ -1,0 +1,7 @@
+
+/**
+ * Class for SapMList
+ */
+class org.scn.community.prototypes.SapMList extends org.scn.community.shared.Component {
+	
+}

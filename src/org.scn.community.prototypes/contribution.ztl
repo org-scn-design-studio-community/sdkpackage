@@ -263,6 +263,13 @@ class org.scn.community.prototypes.ProgressSet extends org.scn.community.shared.
 		barConfig = JSON.stringify(o);
 	*}
 }
+
+/**
+ * Class for SapMList
+ */
+class org.scn.community.prototypes.SapMList extends org.scn.community.shared.Component {
+	
+}
 /**
  * Class for RapidPrototype 
  */

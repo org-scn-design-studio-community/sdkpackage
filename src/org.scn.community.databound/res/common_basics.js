@@ -91,6 +91,11 @@ org_scn_community_basics.getFormattedValue = function (value, locale, numberOfDe
 	var formatString = "#,###." + decimals;
 
 	var number = jQuery.formatNumber(value, {format:formatString, locale:locale});
+	// in case format starts with ".", the 0 needs to be placed (manually) at the beginning
+	if(number.indexOf(".") == 0) {
+		number = "0" + number;
+	}
+
 	number = number.toLocaleString(numberOfDecimal);
 	
 	return number;
