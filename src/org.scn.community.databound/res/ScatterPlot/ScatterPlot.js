@@ -56,10 +56,46 @@
 	     function ScatterPlot() {
 	    	// Call super
 	    	org_scn_community_databound_XYViz.call(this, d3,{
-				radius : { value : 20 },
-				bubbleMin : { value : 3 },
-				bubbleMax : { value : 3 },
-				colorDimension : { value : ""}
+				radius : { 
+					value : 20,
+					opts : {
+						desc : "Plot Radius",
+						cat : "Cosmetics",
+						apsControl : "spinner"	
+					}
+				},
+				bubbleMin : { 
+					value : 5,
+					opts : {
+						desc : "Minimum Bubble Size",
+						cat : "Cosmetics",
+						apsControl : "spinner"	
+					}
+				},
+				bubbleMax : { 
+					value : 20,
+					opts : {
+						desc : "Maximum Bubble Size",
+						cat : "Cosmetics",
+						apsControl : "spinner"	
+					}
+				},
+				measureZ : { 
+					value : "",
+					opts : {
+						desc : "Z-Axis Measure",
+						cat : "Data",
+						apsControl : "text"
+					} 
+				},
+				colorDimension : { 
+					value : "",
+					opts : {
+						desc : "Dimension for Color",
+						cat : "Data",
+						apsControl : "text"
+					} 
+				}
 			});
 	    	var parentInit = this.init;
 	    	this.init = function(){

@@ -7,7 +7,7 @@ function org_scn_community_databound_XYViz(d3, options){
 	var that = this;
 	var properties = {
 		xAxisTicks : { 
-			value : -1,
+			value : 5,
 			opts : {
 				desc : "X-Axis Ticks",
 				cat : "Axis",
@@ -74,9 +74,22 @@ function org_scn_community_databound_XYViz(d3, options){
 				apsControl : "spinner"
 			}
 		},
-		measureX : { value : "" },
-		measureY : { value : "" },
-		measureZ : { value : "" }
+		measureX : { 
+			value : "",
+			opts : {
+				desc : "X-Axis Measure",
+				cat : "Data",
+				apsControl : "text"
+			} 
+		},
+		measureY : { 
+			value : "",
+			opts : {
+				desc : "Y-Axis Measure",
+				cat : "Data",
+				apsControl : "text"
+			} 
+		}
 	};
 	for(var prop in options) properties[prop] = options[prop];
 	org_scn_community_databound_BaseViz.call(this,d3,properties);

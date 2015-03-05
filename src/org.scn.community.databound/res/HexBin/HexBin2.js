@@ -1,6 +1,6 @@
 (function() {
 	 var myScript = $("script:last")[0].src;
-	 _readScriptPath = function () {
+	 var _readScriptPath = function () {
 		 if(myScript) {
  			var myScriptSuffix = "res/HexBin/";
  			var myPluginSuffix = "org.scn.community.databound/";
@@ -20,7 +20,7 @@
 	 var pathInfo = _readScriptPath();
 	 sap.zen.Dispatcher.instance.pauseDispatching();
 	 var sdkReqs = require.config({
-		 context : "sdk",
+		 context : "sdkhexbin",
 		 paths: {
 			d3 :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.min",
 			d3tip :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3-tip",
@@ -36,48 +36,20 @@
 		 * Hexagonal Binning based on D3 Example:
 		 * http://bl.ocks.org/mbostock/4248145
 		 */
-		 HexBin.prototype = org_scn_community_databound_XYViz;
-		 HexBin.prototype.constructor = HexBin;
-		 HexBin.prototype.toString = function(){
+		 HexBin.prototype = org_scn_community_databound_BaseViz;
+	     HexBin.prototype.constructor = HexBin;
+	     HexBin.prototype.toString = function(){
 	    	 return "org.scn.community.databound.HexBin";
 	     }
 	     function HexBin() {
 	    	// Call super
 	    	org_scn_community_databound_XYViz.call(this, d3,{
-				radius : { 
-					value : 20,
-					opts : {
-						desc : "Hexagon Radius",
-						cat : "Cosmetics",
-						apsControl : "spinner"	
-					}
-				},
-				tolerance : { 
-					value : 5,
-					opts : {
-						desc : "Tolerance",
-						cat : "Cosmetics",
-						apsControl : "spinner"	
-					}
-				},
-				threshold : { 
-					value : 0,
-					opts : {
-						desc : "Threshold",
-						cat : "Cosmetics",
-						apsControl : "spinner"	
-					}
-				},
-				thresholdMethod : { 
-					value : "Manual",
-					opts : {
-						apsControl : "combobox",
-						desc : "Threshold Method",
-						cat : "Cosmetics",
-						options : [{key : "Manual", text : "Manual"},
-						         {key : "Median", text : "Median"}]
-					}
-				},
+				radius : { value : 20 },
+				tolerance : { value : 0 },
+				threshold : { value : 20 },
+				thresholdMethod : { value : "Manual" },
+				margin : { value : 20},
+				showValues : { value : true}
 			});
 	    	var parentInit = this.init;
 	    	this.init = function(){
@@ -262,4 +234,4 @@
 		sap.designstudio.sdk.Component.subclass("org.scn.community.databound.HexBin", HexBin);	// End of SDK
 		sap.zen.Dispatcher.instance.resumeDispatching();
 	 });//End of Require Callback 	
-})();// End of closure
+})();// End of closure	

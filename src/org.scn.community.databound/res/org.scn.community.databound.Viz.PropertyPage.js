@@ -1,4 +1,4 @@
-sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ScatterPlotPropertyPage", function() {
+sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.PropertyPage", function() {
 	var that = this;
 	this.styleCSS = function(s){
 		if(s===undefined){
@@ -36,12 +36,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ScatterP
 					value : null
 				};
 				// Step 1, create getter/setter
-				this[property] = function(property,apsControl){
+				this[property] = function(property,apsControl,onSet){
 					return function(value){
 						if(value===undefined){
 							return this.props[property].value;
 						}else{
-							if(this.props[property].onSet) alert(this.props[property].onSet);
+							if(onSet) {
+								value = this.callRuntimeHandler("callOnSet",property,value.replace(/\n/g,"\\n"));
+							}
 							this.props[property].value = value;
 							if(apsControl=="text" || !apsControl){
 								this["cmp_"+property].setValue(value);	
@@ -67,7 +69,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ScatterP
 							return this;
 						}
 					};
-				}(property,apsControl);
+				}(property,apsControl,propertyOptions.onSet);
 				// Step 2, create component event handler
 				var f = function(property,apsControl){
 					return function(oControlEvent){
@@ -158,7 +160,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ScatterP
 				}
 				// Step 4, add control to layout
 				//etcLayout.addContent(this.hLabel(property,this["cmp_"+property]));
-				this["layout_"+category].addContent(this.hLabel(propertyOptions.desc,this["cmp_"+property]));
+				this["layout_"+category].addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
 			}
 			
 		}

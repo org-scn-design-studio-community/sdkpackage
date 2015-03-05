@@ -12,11 +12,13 @@ function org_scn_community_databound_BaseViz(d3, options){
 			onChange : function(value){
 				this.props.styleCSS.value = value.replace(/__n__/g,"\n");
 			},
+			onSet : function(value){
+				return value.replace(/__n__/g,"\r\n");
+			},
 			opts : {
+				desc : "SVG CSS",
 				cat : "CSS",
-				onSet : function(value){
-					return s.replace(/__n__/g,"\r\n");
-				},
+				onSet : true,
 				apsControl : "textbox"
 			}
 		},
@@ -53,10 +55,12 @@ function org_scn_community_databound_BaseViz(d3, options){
 			}
 		},
 		legendY : {
-			desc : "Legend Y Offset",
-			cat : "Legend",
 			value : 0,
-			apsControl : "spinner"
+			opts : {
+				desc : "Legend Y Offset",
+				cat : "Legend",
+				apsControl : "spinner"	
+			}
 		},
 		makeRoomX : { 
 			value : true,
@@ -206,7 +210,6 @@ function org_scn_community_databound_BaseViz(d3, options){
 		if(this.flatData && this.flatData.values && this.flatData.values.length > 0){
 			
 		}else{
-			alert(JSON.stringify(this.flatData));
 			success = false;
 			reason = "No values found.";
 		}

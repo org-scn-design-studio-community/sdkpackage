@@ -4,7 +4,7 @@
 		title="Scatter Plot Chart"
 		icon="res/ScatterPlot/ScatterPlot.png"
 		handlerType="div"
-		propertySheetPath="res/ScatterPlot/aps/ScatterPlot.html"
+		propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
 		group="ScnCommunityDataBound"
 		databound="true"
 >

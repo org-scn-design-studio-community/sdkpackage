@@ -164,6 +164,13 @@ var org_scn_community_databound_Base = function(options){
 			};
 		}(property);
 	}
+	this.callOnSet = function(property,value){
+		if(this.props[property] && this.props[property].onSet){
+			return this.props[property].onSet(value);
+		}else{
+			return "ERROR";
+		}
+	}
 	this.getPropertyMetaData = function(){
 		var r = [];
 		for(var prop in this.props){
