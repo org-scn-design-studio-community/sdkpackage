@@ -30,6 +30,14 @@ function org_scn_community_databound_BaseViz(d3, options){
 				apsControl : "checkbox"	
 			}
 		},
+		showValues : { 
+			value : true,
+			opts : {
+				desc : "Show Values",
+				cat : "Cosmetics",
+				apsControl : "checkbox"	
+			}
+		},
 		legendTitle : { 
 			value : "Legend",
 			opts : {

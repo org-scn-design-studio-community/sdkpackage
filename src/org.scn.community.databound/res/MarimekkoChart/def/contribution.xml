@@ -4,15 +4,18 @@
 		title="Marimekko Chart"
 		icon="res/MarimekkoChart/MarimekkoChart.png"
 		handlerType="div"
-		propertySheetPath="res/MarimekkoChart/aps/MarimekkoChart.html"
+		propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
 		group="ScnCommunityDataBound"
 		databound="true"
 >
 	<stdInclude kind="d3"/>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
 	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
-	<cssInclude>res/MarimekkoChart/MarimekkoChart.css</cssInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<cssInclude>os/d3-tip.css</cssInclude>
 	<property id="stringData" type="String" title = "Data Stringified" visible="false"/>
 	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
 	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
