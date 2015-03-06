@@ -1,0 +1,114 @@
+[ { "label" : "Canned Maps",
+    "maps" : [ { "label" : "Global",
+          "maps" : [ { "label" : "Countries",
+                "url" : "maps/world-countries.json"
+              } ]
+        },
+        { "label" : "North America",
+          "maps" : [ { "label" : "United States",
+                "url" : "maps/NorthAmerica/USA-regions.json"
+              },
+              { "label" : "Canada",
+                "url" : "maps/NorthAmerica/Canada-regions.json"
+              },
+              { "label" : "Mexico",
+                "url" : "maps/NorthAmerica/Mexico-regions.json"
+              },
+              { "label" : "Greenland",
+                "url" : "maps/NorthAmerica/Greenland-regions.json"
+              }
+            ]
+        },
+        { "label" : "South America",
+          "maps" : [ { "label" : "Argentina",
+                "url" : "maps/SouthAmerica/Argentina-regions.json"
+              },
+              { "label" : "Brazil",
+                "url" : "maps/SouthAmerica/Brazil-regions.json"
+              },
+              { "label" : "Chile",
+                "url" : "maps/SouthAmerica/Chile-regions.json"
+              },
+              { "label" : "Columbia",
+                "url" : "maps/SouthAmerica/Columbia-regions.json"
+              }
+            ]
+        },
+        { "label" : "Europe",
+          "maps" : [ { "label" : "United Kingdom",
+                "url" : "maps/United-Kingdom-regions.json"
+              },
+              { "label" : "France",
+                "url" : "maps/Europe/France-regions.json"
+              },
+              { "label" : "Germany",
+                "url" : "maps/Europe/Germany-regions.json"
+              },
+              { "label" : "Albania",
+                "url" : "maps/Europe/Aland-regions.json"
+              },
+              { "label" : "Åland Islands",
+                "url" : "maps/Europe/Aland-regions.json"
+              }
+            ]
+        },
+        { "label" : "Africa",
+          "maps" : [ { "label" : "Nigeria",
+                "url" : "maps/Africa/Nigeria-regions.json"
+              },
+              { "label" : "Ethiopia",
+                "url" : "maps/Africa/Ethiopia-regions.json"
+              },
+              { "label" : "Egypt",
+                "url" : "maps/Africa/Egypt-regions.json"
+              }
+            ]
+        },
+        { "label" : "Asia",
+          "maps" : [ { "label" : "China",
+                "url" : "maps/China-regions.json"
+              },
+              { "label" : "Hong Kong",
+                "url" : "maps/Asia/Hong-Kong-regions.json"
+              },
+              { "label" : "India",
+                "url" : "maps/Asia/India-regions.json"
+              },
+              { "label" : "Indonesia",
+                "url" : "maps/Asia/Indonesia-regions.json"
+              },
+              { "label" : "Iraq",
+                "url" : "maps/Asia/Iraq-regions.json"
+              },
+              { "label" : "Afghanistan",
+                "url" : "maps/Asia/Afghanistan-regions.json"
+              }
+            ]
+        },{ "label" : "Oceania",
+          "maps" : [ { "label" : "Australia",
+                "url" : "maps/Oceania/Australia-regions.json"
+              },{ "label" : "New Zealand",
+                "url" : "maps/Oceania/New-Zealand-regions.json"
+              },{ "label" : "Guam",
+                "url" : "maps/Oceania/Guam-regions.json"
+              }
+            ]
+        },{ "label" : "Antarctica",
+          "maps" : [ { "label" : "Antarctica",
+                "url" : "maps/Antarctica/Antarctica-regions.json"
+              },{ "label" : "South Georgia and the Sandwich Islands",
+                "url" : "maps/Antarctica/South-Georgia-Sandwich-Islands-regions.json"
+              }
+            ]
+        }
+        
+      ]
+  },
+  { "label" : "SCN Community Maps",
+  	"type" : "external",
+  	"indexUrl" : "https://api.github.com/repos/org-scn-design-studio-community/sdkcommunitymaps/contents/geojson/",
+  	"headers" : { 
+  		"accept":"application/vnd.github.v3.raw+json"
+  	}
+  }
+]

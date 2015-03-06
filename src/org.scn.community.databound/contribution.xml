@@ -191,6 +191,113 @@
 		id="ScnCommunityDataBound"
 		title="Scn Community Data Bound"/>
 
+<component id="Choropleth" 
+	title="Choropleth Map"
+	icon="res/Choropleth/Choropleth.png"
+	handlerType="div"
+	propertySheetPath="res/Choropleth/aps/ChoroplethPropertyPage.html"
+	databound = "true"
+	group="ScnCommunityGeo">
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
+	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
+	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
+	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
+	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
+	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
+	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
+	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String"/>
+	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
+	<property id="selectedColor" title="Selected Feature Colour" type="String" visible="false"/>
+	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
+	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
+	<property id="ms" title="Transition Time (ms)" type="int" visible = "false"/>
+	<property id="tooltipOn" title="Enable Tooltips" type="boolean" visible="false" />
+	<property id="graticuleOn" title="Show Graticule Grid" type="boolean" visible="false" />
+	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
+	<property id="legendOn" title="Enable Legend" type="boolean" visible="false" />
+	<property id="colorPalette" title="Colour Palette" type="String" visible="false"/>
+	<property id="mapData" title="Map Data" type="String" visible="false"/>
+	<property id="labelSize" title="Label Size (CSS Size)" type="String"/>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int"/>
+	<property id="legendScale" title="Legend Scale" type="float"/>
+	<property id="legendX" title="Legend Offset X" type="int"/>
+	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="gradientLeft" title="Horizontal Scale Left" type="int"/>
+	<property id="gradientRight" title="Horizontal Scale Right" type="int"/>
+	<property id="gradientBottom" title="Horizontal Scale Bottom" type="int"/>
+	<property id="gradientHeight" title="Horizontal Scale Height" type="int"/>
+	<property id="mapLeft" title="Map Margin Left" type="int"/>
+	<property id="mapTop" title="Map Margin Top" type="int"/>
+	<property id="mapRight" title="Map Margin Right" type="int"/>
+	<property id="mapBottom" title="Map Margin Bottom" type="int"/>
+	<property id="yaw" title="Yaw" type="float"/>
+	<property id="pitch" title="Pitch" type="float"/>
+	<property id="roll" title="Roll" type="float"/>
+	<property id="colorScale" title="Color Scale" type="String">
+		<possibleValue>quantile</possibleValue>
+		<possibleValue>quantize</possibleValue>
+	</property>
+	<property id="projection" title="Projection" type="String">
+		<possibleValue>mercator</possibleValue>
+		<possibleValue>albersUsa</possibleValue>
+		<possibleValue>equirectangular</possibleValue>
+		<possibleValue>conicEqualArea</possibleValue>
+		<possibleValue>conicConformal</possibleValue>
+		<possibleValue>orthographic</possibleValue>
+		<possibleValue>azimuthalEqualArea</possibleValue>
+		<possibleValue>azimuthalEquidistant</possibleValue>
+		<possibleValue>conicEquidistant</possibleValue>
+		<possibleValue>gnomonic</possibleValue>
+		<possibleValue>stereographic</possibleValue>
+		<possibleValue>transverseMercator</possibleValue>
+	</property>
+	<property id="onSelect" title="On Select" type="ScriptText"/>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="false"/>
+		<option name="includeData" value="true"/>
+	</property>	
+	<initialization>
+		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="defaultFillColor">#E5EADE</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="hoverColor">#999900</defaultValue>
+		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>
+		<defaultValue property="colorScale">quantile</defaultValue>
+		<defaultValue property="featureProperty">NAME_1</defaultValue>
+		<defaultValue property="labelProperty">NAME_1</defaultValue>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="makeRoomX">false</defaultValue>
+		<defaultValue property="tooltipOn">true</defaultValue>
+		<defaultValue property="legendScale">1.0</defaultValue>
+		<defaultValue property="legendWidth">100</defaultValue>
+		<defaultValue property="legendTitle"></defaultValue>
+		<defaultValue property="legendX">15</defaultValue>
+		<defaultValue property="legendY">15</defaultValue>
+		<defaultValue property="gradientLeft">30</defaultValue>
+		<defaultValue property="gradientRight">30</defaultValue>
+		<defaultValue property="gradientBottom">15</defaultValue>
+		<defaultValue property="gradientHeight">10</defaultValue>
+		<defaultValue property="mapLeft">10</defaultValue>
+		<defaultValue property="mapTop">10</defaultValue>
+		<defaultValue property="mapRight">10</defaultValue>
+		<defaultValue property="mapBottom">10</defaultValue>
+		<defaultValue property="projection">equirectangular</defaultValue>
+		<defaultValue property="yaw">0.0</defaultValue>
+		<defaultValue property="pitch">0.0</defaultValue>
+		<defaultValue property="roll">0.0</defaultValue>
+		<defaultValue property="mapData"></defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+	</initialization>
+</component>
+
 <component
 	id="Table"
 	title="Data Table"
