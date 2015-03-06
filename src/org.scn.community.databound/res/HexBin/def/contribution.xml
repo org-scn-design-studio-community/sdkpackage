@@ -16,6 +16,7 @@
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
 	<!-- <property id="stringData" type="String" title = "Data Stringified" visible="false"/>-->
+	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
 	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
@@ -31,6 +32,7 @@
 	<property id="minY" title="Manual Min Y" type="int"/>
 	<property id="maxX" title="Manual Max X" type="int"/>
 	<property id="maxY" title="Manual Max Y" type="int"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int"/>
 	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
 	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
 	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
@@ -70,8 +72,19 @@
 		type="ScriptText"
 		group="Events"/>
 	<initialization>
-		<defaultValue property="stringData">BLANK</defaultValue>
+		<defaultValue property="styleCSS">/*Default CSS*/
+__n__.hexagon {
+__n__  stroke: #303030;
+__n__  stroke-width: .75px;
+__n__  fill: none;
+__n__}
+__n__.hexagon:hover {
+__n__  stroke: #303030;
+__n__  stroke-width: 2px;
+__n__}
+		</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="radius">20</defaultValue>
 		<defaultValue property="tolerance">0</defaultValue>
 		<defaultValue property="thresholdMethod">Median</defaultValue>

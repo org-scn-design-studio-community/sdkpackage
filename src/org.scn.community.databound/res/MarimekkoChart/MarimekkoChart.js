@@ -147,8 +147,9 @@
 	    		this.xScale = d3.scale.linear().range([0, this.dimensions.plotWidth]);
 	    		this.xAxis = d3.svg.axis()
 					.scale(this.xScale)
-					.orient("bottom")
-					.tickSize(6);
+					.orient(this.xAxisOrientation())
+					.tickSize(6)
+					.tickFormat(d3.format(".0%"));
 	    		if(xTicks > 0) this.xAxis.ticks(xTicks);
 	    		this.xAxisGroup.call(this.xAxis);
 	    		var maxh = 0;
@@ -157,11 +158,12 @@
 	    		});
 	    		this.dimensions.xAxisHeight = maxh + 6 + 3;
 	    		// Y-Axis
-	    		this.yScale = d3.scale.linear().range([0, this.dimensions.plotHeight]);
+	    		this.yScale = d3.scale.linear().range([0, this.dimensions.plotHeight - this.dimensions.xAxisHeight]);
 	    		this.yAxis = d3.svg.axis()
 			    	.scale(this.yScale)
-			    	.orient("left")
-			    	.tickSize(6);
+			    	.orient(this.yAxisOrientation())
+			    	.tickSize(6)
+			    	.tickFormat(d3.format(".0%"));
 	    		if(yTicks > 0) this.yAxis.ticks(yTicks);
 	    		this.yAxisGroup.call(this.yAxis);
 	    		var maxw = 0;
@@ -272,6 +274,7 @@
 	  		  newRows.append("a")
 	  		  	.attr("class", "row")
 	  		  		.append("rect")
+	  		  		.attr("class","plot")
 	  		  		.attr("opacity",0);
 	  		  segs.exit()
 	  		  	.select("rect")
@@ -311,7 +314,7 @@
 	  		  
 	  		  segs.selectAll("rect")
 	  		  	.transition().duration(this.ms())    
-	  		  	.attr("opacity",1)
+	  		  	.attr("opacity",this.plotAlpha()/100)
 	  		  	.attr("y", function(d) { return that.yScale(d.offset / d.parent.sum); })
 	  		  	.attr("height", function(d) { return that.yScale(d.value / d.parent.sum); })
 	  		  	.attr("width", function(d) { return that.xScale(d.parent.sum / sum); })

@@ -30,7 +30,7 @@
 	 sdkReqs(["require","d3","d3tip","hexbin"], function(require,d3,d3tip,d3hexbin) {
 		 var tip = d3tip()
 		 	.attr('class', 'd3-tip')
-		 	.html(function(d) { return '<span>' + d.length + '<br/>' + d.i + "," + d.j + '</span>' + ' occurences' })
+		 	.html(function(d) { return '<span>' + d.length + ' occurences<br/>'/* + d.i + "," + d.j*/ + '</span>'})
 		 	.offset([-12, 0]);
 		 /**
 		 * Hexagonal Binning based on D3 Example:
@@ -183,7 +183,7 @@
 				canvSelection
 					.transition().duration(this.ms())
 					.attr("d", this.hexbin.hexagon())
-					.attr("opacity",1)
+					.attr("opacity",this.plotAlpha()/100)
 					.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ") scale(1)"; })
 					.style("fill", function(d) { return that.colorRange(d.length); });
 

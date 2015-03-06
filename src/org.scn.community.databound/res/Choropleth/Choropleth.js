@@ -1,26 +1,7 @@
-/**
- * Copyright 2014 - 2015 SCN Community Contributors
- * 
- * Original Source Code Location:
- *  https://github.com/org-scn-design-studio-community/sdkpackage/
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- *  
- *  http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an "AS IS" BASIS, 
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and 
- * limitations under the License. 
- */;
- /** code for recognition of script path */
- (function() {
+(function() {
 	 var myScript = $("script:last")[0].src;
- 	var _readScriptPath = function () {
- 		if(myScript) {
+	 _readScriptPath = function () {
+		 if(myScript) {
  			var myScriptSuffix = "res/Choropleth/";
  			var myPluginSuffix = "org.scn.community.databound/";
  			var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
@@ -33,37 +14,57 @@
  			};
  		}
  		return "";
- };
- /** end of recognition of script path */
- /** RequireJS Config **/
- var pathInfo = _readScriptPath();
- sap.zen.Dispatcher.instance.pauseDispatching();
- var sdkReqs = require.config({
-	context : "sdk",
-	paths: {
-		d3:  pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.min",
-		topojson : pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/topojson.v1.min"
-	}
- });
-sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
+	 };
+	 /** end of recognition of script path */
+	 /** RequireJS Config **/
+	 var pathInfo = _readScriptPath();
+	 sap.zen.Dispatcher.instance.pauseDispatching();
+	 var sdkReqs = require.config({
+		 context : "sdk",
+		 paths: {
+			d3 :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.min",
+			d3tip :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3-tip",
+			topojson : 	pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/topojson.v1.min"
+		 }
+	 });
+	 sdkReqs(["require","d3","d3tip","topojson"], function(require,d3,d3tip,topojson) {
+		 var tip = d3tip()
+		 	.attr('class', 'd3-tip')
+		 	.html(function(d) { 
+		 		var html = "<span>";
+		 		var sep = "";
+		 		for(var i=0;i<d.labels.length;i++){
+		 			html+=d.labels[i]+"<br/>";
+		 		}
+		 		html += d.x + "," + d.y;
+		 		if(d.z) html+= "," + d.z;
+		 		html+="</span>";
+		 		return html;
+		 	})
+		 	//.offset([-12, 0]);
+		 	.offset(function(d) {
+		 		return [(this.getBBox().height / 2) - 12, 0]
+		 	});
 		 /**
-		  * Choropleth Map
-		  */
-		 sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Choropleth",function() {
-			 var that = this;
-			 // Map Cache
-			 this.mapCache = {};
-			 // Design Studio Autoproperties
-			 this.props = {
-				styleClasses : { value : ""},
+		 * Choropleth on D3 Example:
+		 * http://bl.ocks.org
+		 */
+		 Choropleth.prototype = org_scn_community_databound_BaseViz;
+		 Choropleth.prototype.constructor = Choropleth;
+		 Choropleth.prototype.toString = function(){
+	    	 return "org.scn.community.databound.Choropleth";
+	     }
+	     function Choropleth() {
+	    	 var that = this;
+	    	// Call super
+	    	org_scn_community_databound_BaseViz.call(this, d3,{
+	    		styleClasses : { value : ""},
 				selectedFeature : { value : ""},
-				selectedColor : { value : ""},
 				hoverColor : { value : ""},
 				centerFeature : { value : ""},
 				featureProperty : { value : "NAME_1"},
 				labelProperty : { value : "NAME_1"},
 				measureMember :  { value : "" },
-				ms :  { value : 750 },
 				floor :  { value : 0 },
 				defaultFillColor : { value : "#E5EADE" },
 				backgroundColor : { value : "transparent" },
@@ -72,20 +73,28 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 				legendOn :  { value : true },
 				globeOn :  { value : true },
 				graticuleOn :  { value : true },
-				makeRoomX :  { value : true },
-				legendWidth :  { value : 0 },
-				legendX : { value : 0},
-				legendY : { value : 0},
-				legendScale : { value : 1},
 				gradientLeft : { value : 30 },
 				gradientRight : { value : 30 },
 				gradientBottom :  { value : 15 },
 				gradientHeight :  { value : 10 },
 				labelSize :  { value : "10px" },
-				legendTitle :  { value : "" },
 				colorPalette :  { value : "#F0F9E8,#CCEBC5,#A8DDB5,#7BCCC4,#43A2CA,#0868AC" },
 				colorScale : { value : "quantile" },
-				mapData : { value : "" },
+				mapData : { 
+					value : "",
+					onChange : function(value){
+						var j = {};
+						try{
+							if(value!=""){
+								j = jQuery.parseJSON(value);
+							}
+							this._mapJSON = this.processMapData(j);
+						}catch(e){
+							this._mapJSON = {};
+							//throw "Error with Map Data.\n\n" + e;
+						}
+					}
+				},
 				mapLeft : { value : 0 },
 				mapTop : { value : 0 },
 				mapRight : { value : 0 },
@@ -94,41 +103,11 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 				scale : { value : 150 },
 				yaw : { value : 0.0 },
 				pitch : { value : 0.0 },
-				roll : { value : 0.0 }
-				
-			};
-			/*
-			 * Create the aforementioned getter/setter and attach to 'this'.
-			 */
-			for(var property in this.props){
-				this[property] = function(property){
-					return function(value){
-						if(value===undefined){
-							return this.props[property].value;
-						}else{
-							this.props[property].value = value;
-							this.props[property].changed = true;
-							if(this.props[property].onChange) {
-								this.props[property].onChange.call(this,"Property Change");
-							}
-							return this;
-						}
-					};
-				}(property);
-			}
-			/**
-			 * @param value Design Studio ResultSet JSON Structure
-			 * @return If value is undefined, returns data, else returns reference to itself.
-			 */
-			this.data = function(value) {
-				if (value === undefined) {
-					return this._data;
-				} else {
-					this._data = value;
-					return this;
-				}
-			};
-			/**
+				roll : { value : 0.0 },
+	    		selectedColor : { value : "#009966"},
+	    		selectedValue : { value : 0.0}
+			});
+	    	/**
 			 * Convert any TopoJSON data into GeoJSON
 			 */
 			this.processMapData = function(mapData) {
@@ -146,18 +125,7 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 			    }
 			    return returnObject;
 			};
-			this.setSelectedFeature = function(d){				
-				if(d.properties && d.properties[this.featureProperty()]) {
-					if(d.properties[this.featureProperty()]==this.selectedFeature()){
-						this.selectedFeature("");
-					}else{
-						this.selectedFeature(d.properties[this.featureProperty()]);	
-					}
-					this.firePropertiesChanged(["selectedFeature"]);
-					this.fireEvent("onSelect");
-				}
-			};
-			/*
+			/**
 			 * This adds flattened Design Studio Data to the GeoJSON under a property called 'designStudioMeasures'
 			 */
 			this.applyMeasures = function(mapData,flatData){
@@ -190,9 +158,212 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 				}
 			};
 			/**
+			 * Sets BIAL-level selected feature and fires onSelect event.
+			 */
+			this.setSelectedFeature = function(d){				
+				if(d.properties && d.properties[this.featureProperty()]) {
+					if(d.properties[this.featureProperty()]==this.selectedFeature()){
+						this.selectedFeature("");
+					}else{
+						this.selectedFeature(d.properties[this.featureProperty()]);	
+					}
+					this.firePropertiesChanged(["selectedFeature"]);
+					this.fireEvent("onSelect");
+				}
+			};
+			/**
+			 * Handle tooltip updates
+			 */
+			this.doTooltip = function(d) {
+				that.lastHover = d.properties[that.featureProperty()];
+				/*d3.select(this)
+					.transition().duration(that.ms())
+					.attr("fill",that.hoverColor());*/
+				var mm = that.measureMember();
+				if(!mm){
+					if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+				}
+				var val = null;
+				if(d.properties && d.properties.designStudioMeasures && d.properties.designStudioMeasures[mm]){
+					val = d.properties.designStudioMeasures[mm];
+				}
+				
+				// Tooltip
+				if (that.tooltipOn()) {
+					var tt = "";
+					if(d.properties && d.properties[that.labelProperty()]){
+						tt+="<b>" + d.properties[that.labelProperty()] + "</b>";
+					}
+					if(d.properties && d.properties.designStudioMeasures){
+						tt +="<br/><ul>"
+						var dsm = d.properties.designStudioMeasures;
+						for(var measure in dsm){
+							tt+="<li><b>" + measure + "</b>: " + that.formatter(dsm[measure]) + "</li>";
+						}
+						tt +="</ul>";
+					}
+					if(d.properties && d.properties[that.featureProperty()]){
+						
+					}
+					that.tooltipDiv
+						.style('display', 'block')
+						.html(tt);
+				}
+				//that.updateFeaturePaths();
+				that.updateTriangles();
+			}
+			var parentPreReq = this.preReqCheck;
+			this.preReqCheck = function(){
+				// Map component is tolerant of no data.  Override method.
+				//var status = parentPreReq.apply(this);
+				//if(!status.success) return status;
+				var status = {
+					success : true
+				};
+				if(!this._mapJSON || !this._mapJSON.features) status = {
+					success : false,
+					reason : "No Map Data set.  Open Additional Properties Sheet to download a map!"
+				};
+				return status;
+			};
+			/**
+			 * Calculate Visualization Sizing
+			 */
+			var parentCalculateDimensions = this.calculateDimensions;
+			this.calculateDimensions = function(){
+				parentCalculateDimensions.call(this);
+				this.dimensions.gradientLeft = this.gradientLeft();
+				this.dimensions.gradientRight = this.gradientRight();
+				this.dimensions.gradientHeight = this.gradientHeight();
+				this.dimensions.gradientBottom = this.gradientBottom();
+				this.dimensions.mapLeft = this.mapLeft();
+				this.dimensions.mapRight = this.mapRight();
+				this.dimensions.mapTop = this.mapTop();
+				this.dimensions.mapBottom = this.mapBottom();
+				if(this.legendOn()){
+					if (this.makeRoomX()) this.dimensions.mapLeft += (this.dimensions.legendWidth + this.legendX());
+				}
+				this.dimensions.gradientWidth = this.dimensions.plotWidth - this.dimensions.gradientLeft - this.dimensions.gradientRight;
+				this.dimensions.mapWidth = this.dimensions.plotWidth - this.dimensions.mapLeft - this.dimensions.mapRight;
+				this.dimensions.mapHeight = this.dimensions.plotHeight - this.dimensions.mapTop - this.dimensions.mapBottom;
+				return this;
+			}
+			/**
+			 * After Update
+			 */
+			var parentAfterUpdate = this.afterUpdate;
+			this.afterUpdate = function(){
+				this.applyMeasures(this._mapJSON,this.flatData);
+				parentAfterUpdate.call(this);
+			};
+			/**
+			 * Init
+			 */
+	    	var parentInit = this.init;
+	    	this.init = function(){
+	    		parentInit.call(this);
+	    		this.$().addClass("Choropleth");
+	    		this.container = d3.select("#"+this.$().attr("id"));
+	    		// Globe Layer
+	    		this.globePath = this.plotLayer.append('path')
+	    			.datum({ type: 'Sphere' })
+	    			.attr('class', 'globe');
+	    		// Graticule Layer
+	    		this.graticule = d3.geo.graticule();
+		        this.graticulePath = this.plotLayer.append('path')
+	            	.datum(this.graticule)
+	            	.attr('class', 'graticule');
+	    		this.pathGroup = this.plotLayer.append('g')
+    				.attr('class', 'path-group');
+	    		this.labelGroup = this.plotLayer.append('g')
+    				.attr('class', 'label-group');
+		        
+	    		this.tooltipDiv = this.canvas.append('div')
+	    			.classed('tooltip', true);
+
+	    		// Horizontal Scale/Legend
+	    		var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.plotHeight - (this.dimensions.gradientBottom + this.dimensions.gradientHeight));
+	    		var tickTransform = "0," + (0 - this.dimensions.gradientHeight);
+			    this.legend2 = this.canvas.append("g")
+    				.attr("transform", "translate(" + legend2Transform +")");	    		
+    	 		this.gradientRects = this.legend2.append("g")
+					.attr("class", "gradient-rects");
+    	 		this.selTriangle = this.legend2.append("path")
+	    			.attr("opacity",0)
+	    			.attr("fill",that.selectedColor())
+					.attr("d","M-"+this.gradientHeight()/2+" 0 L"+this.gradientHeight()/2+" 0 L 0 "+this.gradientHeight()/2+" Z");
+    	 		this.triangle = this.legend2.append("path")
+	    			.attr("opacity",0)
+	    			.attr("fill",that.hoverColor())
+					.attr("d","M-"+this.gradientHeight()/2+" 0 L"+this.gradientHeight()/2+" 0 L 0 "+this.gradientHeight()/2+" Z");
+	    		this.gradientTicks = this.legend2.append("g")
+	    			.attr("class", "gradient-ticks")
+	    			.attr("transform", "translate(" + tickTransform +")");
+	    		
+	    		this.tooltipDiv = this.container.append('div')
+    				.classed('tooltip', true);
+			    return this;
+	    	}
+	    	/**
+			 * Update Color Range
+			 */
+			this.updateColorRange = function(){
+		        var d, domain;
+		        this.valuesSet = [this.floor()];
+	        	// Get values for range
+		        for (d = 0; d < this._mapJSON.features.length; d++) {
+	        		if(this._mapJSON.features[d].properties.designStudioMeasures){
+	        			var mm = this.measureMember();
+						if(!mm){
+							if(this.flatData && this.flatData.columnHeaders && this.flatData.columnHeaders.length > 1) mm = this.flatData.columnHeaders[0];
+						}
+	        			this.valuesSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[mm]));	
+	        		}else{
+	        			this.valuesSet.push(null);
+	        		}
+		        }
+		        this.valuesSet.sort(function(a, b) { return a - b; });
+		        // Make range with appropriate values
+		        var cp = [];
+		        if(this.colorPalette()!="") cp = this.colorPalette().split(",");
+		        this.colorRange = d3.scale[this.colorScale()]()
+		        	.domain(this.valuesSet)
+		        	.range(cp);
+		        // Clamp if can
+		        if (typeof this.colorRange.clamp == 'function') {
+		        	this.colorRange.clamp(true);
+		        }
+		        
+		        	
+		        return this;
+			};
+	    	var parentUpdatePlot = this.updatePlot;
+	    	/**
 			 * Update Features
 			 */
-			this.updateFeaturePaths = function(){
+			this.updatePlot = function(){
+				parentUpdatePlot.call(this);
+				// Horizontal Scale/Legend
+				var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.plotHeight - (this.dimensions.gradientBottom + this.dimensions.gradientHeight));
+		    	this.legend2
+		    		.transition().duration(this.ms())
+		    		.attr("transform", "translate(" + legend2Transform +")");
+		    	var trans = "0," + (0 - this.dimensions.gradientHeight);
+		    	this.gradientTicks
+		    		.transition().duration(this.ms())
+		    		.attr("transform", "translate(" + trans +")");
+				this.plotLayer
+		    		.transition().duration(this.ms())
+	    			.attr("transform", "translate("+this.dimensions.mapLeft+","+this.dimensions.mapTop+")")
+		    		.attr('width', this.dimensions.mapWidth)
+	    			.attr('height', this.dimensions.mapHeight);
+				this.clipRect
+					//.transition().duration(this.ms())
+					.attr("width", this.dimensions.plotWidth)
+					.attr("height", this.dimensions.plotHeight);
+				this.updateColorRange();
+				this.updateProjection();
+				var that = this;
 				// Data
 				var features = this.pathGroup.selectAll('path').data(this._mapJSON.features);
 				var labels = this.labelGroup.selectAll('text').data(this._mapJSON.features);
@@ -238,7 +409,7 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 						if(d.properties && d.properties.designStudioMeasures){
 							var mm = that.measureMember();
 							if(!mm){
-								if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+								if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 1) mm = that.flatData.columnHeaders[0];
 							}
 							return that.colorRange(d.properties.designStudioMeasures[mm]) || that.defaultFillColor();	
 						}else{
@@ -265,7 +436,7 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 							if(d.properties && d.properties.designStudioMeasures){
 								var mm = that.measureMember();
 								if(!mm){
-									if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+									if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 1) mm = that.flatData.columnHeaders[0];
 								}
 								return that.colorRange(d.properties.designStudioMeasures[mm]) || that.defaultFillColor();	
 							}else{
@@ -275,7 +446,7 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 						that.triangle
 							.transition().duration(that.ms())
 							.attr("opacity",0);
-						that.container.select('.tooltip').style('display', 'none');
+						that.tooltipDiv.style('display', 'none');
 					})
 					.on('click', function(d){ 
 						d3.select(this)
@@ -291,114 +462,13 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 				 labels.exit().remove();
 				return this;
 			}
-			/**
-			 * Update Cosmetics
-			 */
-			this.updateCosmetics = function(){
-				this.canvas
-		    		.transition().duration(this.ms())
-		    		.attr('width', this.dimensions.width)
-		    		.attr('height', this.dimensions.height)
-		    		.attr('class', 'canvas');
-	    	
-		    	this.canvas
-		    		.classed('tooltipped', this.tooltipOn())
-		    		.data([{ x: 0, y: 0 }]);
-
-		    	this.background
-		    		.transition().duration(this.ms())
-		    		.style("fill",this.backgroundColor())
-		    		.attr('width', this.dimensions.width)
-		    		.attr('height', this.dimensions.height);
-		    	
-		    	this.messageRect
-			    	.transition().duration(this.ms())	
-			    	.attr("width",this.dimensions.width)
-			    	.attr("height",this.dimensions.height);
-		    	
-		    	this.tooltipDiv.attr("class","tooltip")
-    			this.legendRect.attr('class', "legend-container")
-		    	
-		    	/*
-		    	this.gradientRect
-		    		.transition().duration(this.ms())
-		    		.attr("x",this.dimensions.gradientLeft)
-		    		.attr("y", this.dimensions.height - this.dimensions.gradientBottom - this.dimensions.gradientHeight)
-		    		.attr('width', this.dimensions.width - this.dimensions.gradientLeft - this.dimensions.gradientRight)
-		    		.attr('height', this.dimensions.gradientHeight);
-		    	*/
-		    	var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.height - this.dimensions.gradientBottom - this.dimensions.gradientHeight);
-		    	this.legend2
-		    		.transition().duration(this.ms())
-		    		.attr("transform", "translate(" + legend2Transform +")");
-		    	
-		    	this.triangle
-		    		.transition().duration(this.ms())
-		    		.attr("fill",that.hoverColor())
-		    		.attr("d","M-"+this.gradientHeight()/2+" 0 L"+this.gradientHeight()/2+" 0 L 0 "+this.gradientHeight()/2+" Z")
-		    		.attr("transform", "translate(0,"+(0-this.dimensions.gradientHeight)+")");
-		    	
-		    	var trans = "0," + (0 - this.dimensions.gradientHeight);
-		    	this.gradientTicks
-		    		.transition().duration(this.ms())
-		    		.attr("transform", "translate(" + trans +")");
-		    	
-		    	this.legendGroup//.data([{ x: this.dimensions.legendLeft - 1, y: this.dimensions.legendY - 1 }])
-	    			.transition().duration(this.ms())
-    				.attr("transform", "translate("+this.dimensions.legendLeft+","+this.dimensions.legendTop+") "+
-    					  "scale(" + this.legendScale() + ")")
-    				.attr("opacity", function(){
-    					if(that.legendOn()){
-    						return 1;
-    					}else{
-    						return 0;
-    					}
-    				});
-		    	this.featureGroup
-		    		.transition().duration(this.ms())
-	    			.attr("transform", "translate("+this.dimensions.mapLeft+","+this.dimensions.mapTop+")")
-		    		.attr('width', this.dimensions.mapWidth)
-	    			.attr('height', this.dimensions.mapHeight);
-		    	
-		    	return this;
-			}
-			/**
-			 * Update Color Range
-			 */
-			this.updateColorRange = function(){
-		        var d, domain;
-		        this.valuesSet = [this.floor()];
-	        	// Get values for range
-		        for (d = 0; d < this._mapJSON.features.length; d++) {
-	        		if(this._mapJSON.features[d].properties.designStudioMeasures){
-	        			var mm = that.measureMember();
-						if(!mm){
-							if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
-						}
-	        			this.valuesSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[mm]));	
-	        		}else{
-	        			this.valuesSet.push(null);
-	        		}
-		        }
-		        this.valuesSet.sort(function(a, b) { return a - b; });
-		        // Make range with appropriate values
-		        var cp = [];
-		        if(this.colorPalette()!="") cp = this.colorPalette().split(",");
-		        this.colorRange = d3.scale[this.colorScale()]()
-		        	.domain(this.valuesSet)
-		        	.range(cp);
-		        // Clamp if can
-		        if (typeof this.colorRange.clamp == 'function') {
-		        	this.colorRange.clamp(true);
-		        }
-		        
-		        	
-		        return this;
-			};
-			/**
+	    	var parentUpdateLegend = this.updateLegend;
+	    	/**
 			 * Update Legend
 			 */
 			this.updateLegend = function(){
+				parentUpdateLegend.call(this);
+				this.updateColorRange();
 				// LEGEND
 			    var unit = 10;								// Swatch Size
 			    var min = d3.min(this.valuesSet);
@@ -513,7 +583,7 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 				        .text(function(){
 				        	var mm = that.measureMember();
 							if(!mm){
-								if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+								if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 1) mm = that.flatData.columnHeaders[0];
 							}
 				        	if(that.legendTitle()=="") {
 				        		return mm || "No Measure Found";
@@ -555,7 +625,7 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 				    }
 				return this;
 			}
-			/**
+	    	/**
 			 * Update Projection
 			 */
 			this.updateProjection = function(){
@@ -604,7 +674,7 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 				if(selectedFeature) {
 					var mm = that.measureMember();
 					if(!mm){
-						if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+						if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 1) mm = that.flatData.columnHeaders[0];
 					}
 					var val = null;
 					if(selectedFeature.properties && selectedFeature.properties.designStudioMeasures && selectedFeature.properties.designStudioMeasures[mm]){
@@ -628,7 +698,7 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 				if(hoverFeature){
 					var mm = that.measureMember();
 					if(!mm){
-						if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+						if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 1) mm = that.flatData.columnHeaders[0];
 					}
 					var val = null;
 					if(hoverFeature.properties && hoverFeature.properties.designStudioMeasures && hoverFeature.properties.designStudioMeasures[mm]){
@@ -641,8 +711,6 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 						.attr("opacity",1)
 						.attr("transform", "translate("+that.tickScale(val)+","+(0-that.dimensions.gradientHeight)+")");
 				}
-				
-				
 			}
 			this.findFeature = function(featureName){
 				if(!this._mapJSON || !this._mapJSON.features) return null;
@@ -655,318 +723,9 @@ sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 				}
 				return null;
 			}
-			/**
-			 * Build Map Framework
-			 */
-			this.buildMap = function(){
-				this.calculateDimensions();
-				this.canvas = this.container.append('svg');
-				this.defs = this.canvas.insert("defs");
-				this.gradientDef = this.defs.append("linearGradient")
-					.attr("id","myGradient")
-					.attr("x1", "0%")
-					.attr("y1", "0%")
-					.attr("x2", "100%")
-					.attr("y2", "0%")
-					.attr("spreadMethod", "pad");
-	    		this.background = this.canvas.append('rect')
-	    			.classed('background', true);
-	    		
-	    		/* pretty, but useless.
-	    		 * this.gradientRect = this.canvas.append("rect")
-	    			.attr("height",10)
-	    			.style("fill","url(#myGradient)");
-	    		*/
-	    		
-	    		var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.height - this.dimensions.gradientBottom - this.dimensions.gradientHeight);
-	    		var tickTransform = "0," + (0 - this.dimensions.gradientHeight);
-	    		
-	    		
-	    		
-	    		
-	    		this.featureGroup = this.canvas.append('g')
-	    			.attr('class', 'feature-group');
-	    		this.globePath = this.featureGroup.append('path')
-	    			.datum({ type: 'Sphere' })
-	    			.attr('class', 'globe');
-	    		this.graticule = d3.geo.graticule();
-		        this.graticulePath = this.featureGroup.append('path')
-	            	.datum(this.graticule)
-	            	.attr('class', 'graticule');
-	    		this.pathGroup = this.featureGroup.append('g')
-    				.attr('class', 'path-group');
-	    		this.labelGroup = this.featureGroup.append('g')
-    				.attr('class', 'label-group');
-		        
-	    		this.tooltipDiv = this.container.append('div')
-	    			.classed('tooltip', true);
-	    		this.legendGroup = this.canvas.append('g')
-		        	.attr('class', "legend-group" );
-	    		this.legendRect = this.legendGroup.append('rect')
-			        .attr('x', 0)
-			        .attr('y', 0);
-			    this.legendLabel = this.legendGroup.append('text')
-			        .attr('class', 'legend-label');
-
-			    // Horizontal Scale
-			    this.legend2 = this.canvas.append("g")
-    				.attr("transform", "translate(" + legend2Transform +")");	    		
-    	 		this.gradientRects = this.legend2.append("g")
-					.attr("class", "gradient-rects");
-    	 		this.selTriangle = this.legend2.append("path")
-	    			.attr("opacity",0)
-	    			.attr("fill",that.selectedColor())
-					.attr("d","M-"+this.gradientHeight()/2+" 0 L"+this.gradientHeight()/2+" 0 L 0 "+this.gradientHeight()/2+" Z");
-    	 		this.triangle = this.legend2.append("path")
-	    			.attr("opacity",0)
-	    			.attr("fill",that.hoverColor())
-					.attr("d","M-"+this.gradientHeight()/2+" 0 L"+this.gradientHeight()/2+" 0 L 0 "+this.gradientHeight()/2+" Z");
-	    		this.gradientTicks = this.legend2.append("g")
-	    			.attr("class", "gradient-ticks")
-	    			.attr("transform", "translate(" + tickTransform +")");
-	    		
-			    this.messageGroup = this.canvas.append("g")
-			    	.attr("display", "none")
-			    	.attr("opacity", 0);
-			    
-			    this.messageRect = this.messageGroup.append("rect")
-			    	.attr("fill", "#006699")
-			    	.attr("x",0).attr("y",0)
-			    	.attr("width",this.dimensions.width)
-			    	.attr("height",this.dimensions.height)
-			    	
-			    this.messageText = this.messageGroup.append("text")
-			    	.style("text-anchor","middle")
-			    	.style("fill","#FFFFFF")
-			    	.attr("x",this.dimensions.width/2).attr("y",this.dimensions.height/2)
-			    	.text("Message");
-			    return this;
-			}
-			this.calculateDimensions = function(){
-				this.dimensions = {
-					width : this.$().width(),
-					height : this.$().height(),
-					gradientLeft : this.gradientLeft(),
-					gradientRight : this.gradientRight(),
-					gradientHeight : this.gradientHeight(),
-					gradientBottom : this.gradientBottom(),
-					mapLeft : this.mapLeft(),
-					mapRight : this.mapRight(),
-					mapTop : this.mapTop(),
-					mapBottom : this.mapBottom(),
-					legendWidth : this.legendWidth() || (this.$().width() / 5),
-					legendTop : this.legendY(),
-					legendLeft : this.legendX()
-				};
-				if(this.legendOn()){
-					if (this.makeRoomX()) this.dimensions.mapLeft += (this.dimensions.legendWidth + this.legendX());
-				}
-				this.dimensions.gradientWidth = this.dimensions.width - this.dimensions.gradientLeft - this.dimensions.gradientRight;
-				this.dimensions.mapWidth = this.dimensions.width - this.dimensions.mapLeft - this.dimensions.mapRight;
-				this.dimensions.mapHeight = this.dimensions.height - this.dimensions.mapTop - this.dimensions.mapBottom;
-				return this;
-			}
-			this.afterUpdate = function(){
-				// Flatten Data
-				this._oStyleClasses = {};
-				if(this.styleClasses()!="") this._oStyleClasses = jQuery.parseJSON(this.styleClasses());
-				
-				this.formatter = d3.format(',.2f');			// Make a DS property
-				this.container = d3.select("#"+this.$().attr("id"));
-		    	// Render Canvas
-		    	this.canvas = this.container.select("svg");
-		    	if(this.canvas.empty()) this.buildMap();
-		    	if(this._mapJSON && this._mapJSON.features) {
-		    		this._flatData = null;
-					var that = this;
-					var vals = [];
-					try{
-						this._flatData = org_scn_community_databound.flatten(this.data(),{});
-						if(this._flatData && this._flatData.values && this._flatData.values.length > 0){
-							vals = this._flatData.values.slice();
-						}else{
-							// Something happened.
-							throw("No values found.");
-						}
-					}catch(e){
-						var errorMessage = e;
-						this._flatData = {};
-						//alert(errorMessage);
-					}
-					this.applyMeasures(this._mapJSON,this._flatData);
-		    		this.messageGroup
-		    			.transition().duration(this.ms())
-		    			.attr("display", "none")
-		    			.attr("opacity", 0);
-		    		this.calculateDimensions();
-		    		this.updateProjection()
-			    		.updateCosmetics()
-			    		.updateColorRange()
-			    		.updateLegend()
-			    		.updateFeaturePaths()
-			    		.updateTriangles();
-		    		this._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);
-		    	}else{
-		    		this.displayMessage("No Map Data set.  Open Additional Properties Sheet to download a map!");
-		    	}
-			};
-			this.displayMessage=function(message){
-				this.messageText.text(message);
-				this.messageGroup
-					.attr("display", "inline")
-					.transition().duration(this.ms())
-    				.attr("opacity", 1);
-			}
-			this.projectionTween = function(projection0, projection1) {
-				return function(d) {
-				    var t = 0;
-
-				    var projection = d3.geo.projection(project)
-				        .scale(1)
-				        .translate([width / 2, height / 2]);
-
-				    var path = d3.geo.path()
-				        .projection(projection);
-
-				    var b = path.bounds(this._mapJSON),
-		    	    	s = .95 / Math.max((b[1][0] - b[0][0]) / mapWidth, (b[1][1] - b[0][1]) / mapHeight),
-		    	    	t = [(mapWidth - s * (b[1][0] + b[0][0])) / 2, (mapHeight - s * (b[1][1] + b[0][1])) / 2];
-				    projection.scale(s).translate(t);
-				    
-				    function project(λ, φ) {
-				      λ *= 180 / Math.PI, φ *= 180 / Math.PI;
-				      var p0 = projection0([λ, φ]), p1 = projection1([λ, φ]);
-				      return [(1 - t) * p0[0] + t * p1[0], (1 - t) * -p0[1] + t * -p1[1]];
-				    }
-
-				    return function(_) {
-				      t = _;
-				      return path(d);
-				    };
-				  };
-				}
-
-			this.measureSize = function(that){
-				var currentWidth = that.$().innerWidth();
-				var currentHeight = that.$().innerHeight();
-				if(currentWidth != that._previousWidth || currentHeight != that._previousHeight){
-					// If width or height has changed since the last calculation, redraw.
-					/* Debug alert:
-					alert("Resize detected.\n\nOld:" + that._previousWidth + " x " + that._previousHeight + 
-							"\n\nNew:" + currentWidth + " x " + currentHeight);
-					*/
-					that._previousHeight = currentHeight;
-					that._previousWidth = currentWidth;	
-					this.afterUpdate();
-				}else{
-					// Sizes are the same.  Don't redraw, but poll again after an interval.
-					that._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);	
-				}
-			};
-			this.doTooltip = function(d) {
-				that.lastHover = d.properties[that.featureProperty()];
-				/*d3.select(this)
-					.transition().duration(that.ms())
-					.attr("fill",that.hoverColor());*/
-				var mm = that.measureMember();
-				if(!mm){
-					if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
-				}
-				var val = null;
-				if(d.properties && d.properties.designStudioMeasures && d.properties.designStudioMeasures[mm]){
-					val = d.properties.designStudioMeasures[mm];
-				}
-				
-				// Tooltip
-				if (that.tooltipOn()) {
-					var tt = "";
-					if(d.properties && d.properties[that.labelProperty()]){
-						tt+="<b>" + d.properties[that.labelProperty()] + "</b>";
-					}
-					if(d.properties && d.properties.designStudioMeasures){
-						tt +="<br/><ul>"
-						var dsm = d.properties.designStudioMeasures;
-						for(var measure in dsm){
-							tt+="<li><b>" + measure + "</b>: " + that.formatter(dsm[measure]) + "</li>";
-						}
-						tt +="</ul>";
-					}
-					if(d.properties && d.properties[that.featureProperty()]){
-						
-					}
-					that.container.select('.tooltip')
-						.style('display', 'block')
-						.html(tt);
-				}
-				//that.updateFeaturePaths();
-				that.updateTriangles();
-			}
-			
-			this.mapDataChanged = function(reason){				
-				var j = {};
-				try{
-					if(this.mapData()!=""){
-						j = jQuery.parseJSON(this.mapData());
-					}
-					this._mapJSON = this.processMapData(j);
-				}catch(e){
-					this._mapJSON = {};
-					//throw "Error with Map Data.\n\n" + e;
-				}
-			}
-			this.loadMap = function(mapFile){
-				var mapURL = pathInfo.myScriptPath + 'maps/' + mapFile + ".json";
-				if(mapFile=="Use External URL") {
-					mapFile = this.externalMap();
-					mapURL = this.externalMap();
-				}
-				if(mapFile=="Use Map Data") {
-					try{
-						if(this.mapData()!=""){
-							j = jQuery.parseJSON(this.mapData());
-						}
-						return this.processMapData(j);
-					}catch(e){
-						throw "Error with Map Data.\n\n" + e;
-					}
-				}
-				if(this.mapCache[mapURL]) return this.mapCache[mapURL].features;
-				this.mapCache[mapURL] = {
-					fileName : mapFile,
-					features : {}
-				}
-				try{
-					var featureJSON = $.ajax({
-						async : false,
-						type : "GET",
-						url : mapURL
-					}).responseText;
-					this.mapCache[mapURL].mapData = jQuery.parseJSON(featureJSON);
-					this.mapCache[mapURL].features = this.processMapData(this.mapCache[mapURL].mapData);
-					//alert(JSON.stringify(this.mapCache[mapURL].features));
-				}catch(e){
-					throw("Error loading map:\n\nFile:" + mapURL + "\n\n" + e);
-				}
-				return this.mapCache[mapURL].features;
-			}
-			this.init = function() {
-				this.container = d3.select("#"+this.$().attr("id"));
-				this.canvas = this.container.select("svg");
-		    	if(this.canvas.empty()) this.buildMap();
-				try{
-					this.$().css("overflow","hidden");
-					this.$().addClass("DesignStudioSCN");
-					this.$().addClass("Choropleth");
-					this.props.mapData.onChange = this.mapDataChanged;
-					this.props.mapData.onChange.call(this,"init");
-				}catch(e){
-					this.displayMessage("Error in init:\n\n" + e);
-				}
-			};
-		 });
-		 // End of SDK
-		 sap.zen.Dispatcher.instance.resumeDispatching();
- 	});
- // End of Require d3+topo Callback
-})();
- // End of closure
+		}
+	     
+		sap.designstudio.sdk.Component.subclass("org.scn.community.databound.Choropleth", Choropleth);	// End of SDK
+		sap.zen.Dispatcher.instance.resumeDispatching();
+	 });//End of Require Callback 	
+})();// End of closure

@@ -95,9 +95,9 @@ function org_scn_community_databound_BaseViz(d3, options){
 			}
 		},
 		plotAlpha : {
-			value : .9,
+			value : 95,
 			opts : {
-				desc : "Plot Alpha",
+				desc : "Plot Alpha (0-100)",
 				cat : "Cosmetics",
 				apsControl : "spinner"	
 			}
@@ -157,12 +157,12 @@ function org_scn_community_databound_BaseViz(d3, options){
 			legendTransition = this.legendGroup
 				.transition().duration(this.ms())
 				.attr("opacity", 0)
-				.transition().delay(this.ms())
+				//.transition().delay(this.ms())	// Buggy
 				.attr("display", "none");
 		}
 		// Reorient and Resize Legend Group		
 		legendTransition
-			.transition().duration(this.ms())
+			//.transition().duration(this.ms())
 			.attr("transform", "translate("+this.dimensions.legendX+","+this.dimensions.legendY+") "+
 				  "scale(" + this.legendScale() + ")");
 
@@ -219,13 +219,24 @@ function org_scn_community_databound_BaseViz(d3, options){
 			
 		}else{
 			success = false;
-			reason = "No values found.";
+			reason = "No data found.  Try assigning a datasource and ensure Load in Script is set to false.";
 		}
 		return {
 			success : success,
 			reason : reason
 		};
 	};
+	this.updateMessage = function(){
+		this.messageRect
+	    	.attr("width",this.dimensions.width)
+	    	.attr("height",this.dimensions.height)
+	    	
+	 	this.messageText
+	 		.attr("x",this.dimensions.width/2)
+	 		.attr("y",this.dimensions.height/2);
+		
+		return this;
+	}
 	this.updatePlot = function() {
 		this.messageGroup
 			.transition().duration(this.ms())
@@ -236,6 +247,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 	this.afterUpdate = function() {
 		var that = this;
 		this.calculateDimensions()
+			.updateMessage()
 			.updateCosmetics();
 		
 		var check = this.preReqCheck();
@@ -245,7 +257,6 @@ function org_scn_community_databound_BaseViz(d3, options){
 		}else{
 			// Give informational window
 			this.displayMessage(check.reason);
-			return;
 		}
 		this._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);
 	};

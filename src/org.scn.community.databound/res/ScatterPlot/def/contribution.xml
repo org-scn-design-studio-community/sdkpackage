@@ -31,6 +31,7 @@
 	<property id="minY" title="Manual Min Y" type="int"/>
 	<property id="maxX" title="Manual Max X" type="int"/>
 	<property id="maxY" title="Manual Max Y" type="int"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int"/>
 	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
 	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
 	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
@@ -76,6 +77,8 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
+		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="radius">5</defaultValue>
 		<defaultValue property="bubbleMin">3</defaultValue>
 		<defaultValue property="bubbleMax">50</defaultValue>

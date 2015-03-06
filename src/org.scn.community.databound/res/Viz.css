@@ -5,12 +5,6 @@
   	shape-rendering: crispEdges;
   	stroke-width: .75px;
 }
-
-.DesignStudioSCN.Viz.HexBin .hexagon {
-  fill: none;
-  stroke: #000;
-  stroke-width: .5px;
-}
 .DesignStudioSCN.Viz .legend-container {
   stroke-width: .5px;
   fill: #FFFFFF;

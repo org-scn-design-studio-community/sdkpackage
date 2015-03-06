@@ -7,6 +7,8 @@
 	databound = "true"
 	group="ScnCommunityGeo">
 	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
 	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>

@@ -199,6 +199,8 @@
 	databound = "true"
 	group="ScnCommunityGeo">
 	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
 	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
@@ -759,6 +761,7 @@
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
 	<!-- <property id="stringData" type="String" title = "Data Stringified" visible="false"/>-->
+	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
 	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
@@ -774,6 +777,7 @@
 	<property id="minY" title="Manual Min Y" type="int"/>
 	<property id="maxX" title="Manual Max X" type="int"/>
 	<property id="maxY" title="Manual Max Y" type="int"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int"/>
 	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
 	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
 	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
@@ -813,8 +817,19 @@
 		type="ScriptText"
 		group="Events"/>
 	<initialization>
-		<defaultValue property="stringData">BLANK</defaultValue>
+		<defaultValue property="styleCSS">/*Default CSS*/
+__n__.hexagon {
+__n__  stroke: #303030;
+__n__  stroke-width: .75px;
+__n__  fill: none;
+__n__}
+__n__.hexagon:hover {
+__n__  stroke: #303030;
+__n__  stroke-width: 2px;
+__n__}
+		</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="radius">20</defaultValue>
 		<defaultValue property="tolerance">0</defaultValue>
 		<defaultValue property="thresholdMethod">Median</defaultValue>
@@ -989,6 +1004,7 @@
 	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
+	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="stringData" type="String" title = "Data Stringified" visible="false"/>
 	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
 	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
@@ -1001,10 +1017,21 @@
 	<property id="legendScale" title="Legend Scale" type="float"/>
 	<property id="legendX" title="Legend Offset X" type="int"/>
 	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int"/>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
 	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
+	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
+	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
+	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
+		<possibleValue>top</possibleValue>
+		<possibleValue>bottom</possibleValue>	
+	</property>
+	<property id="yAxisOrientation" type="String" title = "Y-Axis Orientation" visible="true">
+		<possibleValue>left</possibleValue>
+		<possibleValue>right</possibleValue>
+	</property>
 	<property
 		id="data"
 		title="Data Selection"
@@ -1019,8 +1046,20 @@
 		type="ScriptText"
 		group="Events"/>
 	<initialization>
+			<defaultValue property="styleCSS">/*Default CSS*/
+__n__.plot {
+__n__  stroke: #303030;
+__n__  stroke-width: .75px;
+__n__  fill: none;
+__n__}
+__n__.plot:hover {
+__n__  stroke: #303030;
+__n__  stroke-width: 2px;
+__n__}
+		</defaultValue>
 		<defaultValue property="stringData">BLANK</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
 		<defaultValue property="legendWidth">150</defaultValue>
@@ -1030,6 +1069,10 @@
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
 		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
+		<defaultValue property="xAxisTicks">5</defaultValue>
+		<defaultValue property="yAxisTicks">5</defaultValue>
+		<defaultValue property="xAxisOrientation">bottom</defaultValue>
+		<defaultValue property="yAxisOrientation">left</defaultValue>
 		<defaultValue property="WIDTH">150</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
 	</initialization>
@@ -1333,6 +1376,7 @@
 	<property id="minY" title="Manual Min Y" type="int"/>
 	<property id="maxX" title="Manual Max X" type="int"/>
 	<property id="maxY" title="Manual Max Y" type="int"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int"/>
 	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
 	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
 	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
@@ -1378,6 +1422,8 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
+		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="radius">5</defaultValue>
 		<defaultValue property="bubbleMin">3</defaultValue>
 		<defaultValue property="bubbleMax">50</defaultValue>

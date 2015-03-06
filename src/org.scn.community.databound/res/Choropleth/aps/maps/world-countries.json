@@ -216,7 +216,7 @@
 					"arcs" : [[-84, 209, 210, 211, 212, 213]],
 					"type" : "Polygon",
 					"properties" : {
-						"NAME_1" : "Côte d'Ivoire"
+						"NAME_1" : "Ivory Coast"
 					}
 				}, {
 					"arcs" : [[214, -141, 215, 216, 217, 218, 219, 220, 221]],
@@ -273,7 +273,7 @@
 				}, {
 					"type" : null,
 					"properties" : {
-						"NAME_1" : "Curaçao"
+						"NAME_1" : "Curacao"
 					}
 				}, {
 					"arcs" : [[255, 256, -227, 257]],
@@ -1052,7 +1052,7 @@
 				}, {
 					"type" : null,
 					"properties" : {
-						"NAME_1" : "São Tomé and Principe"
+						"NAME_1" : "Sao Tome and Principe"
 					}
 				}, {
 					"arcs" : [[-330, -115, -369, 634]],

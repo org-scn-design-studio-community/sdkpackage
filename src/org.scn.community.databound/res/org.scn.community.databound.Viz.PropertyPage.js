@@ -12,6 +12,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 	 * Design Studio Events
 	 */
 	this.init = function(){
+		try{
 		var propMetadata = this.callRuntimeHandler("getPropertyMetaData");
 		// Build UI
 		this.content = new sap.ui.commons.TabStrip({
@@ -19,7 +20,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 		});
 		this.metaProps = jQuery.parseJSON(propMetadata);
 		this.props = {};
-		try{
+		
 		for(var prop in this.metaProps){
 			var property = this.metaProps[prop].name;
 			var propertyOptions = this.metaProps[prop].opts;
@@ -42,7 +43,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 							return this.props[property].value;
 						}else{
 							if(onSet) {
-								value = this.callRuntimeHandler("callOnSet",property,value.replace(/\n/g,"\\n"));
+								value = this.callRuntimeHandler("callOnSet",property,value.replace(/(\n|\r\n)/g,"__n__"));
 							}
 							this.props[property].value = value;
 							if(apsControl=="text" || !apsControl){
@@ -165,7 +166,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 			
 		}
 		}catch(e){
-			alert(e);
+			alert("Problem during initialization of property sheet.\n\n"+e);
 		}
 		this.content.placeAt("content");
 	};

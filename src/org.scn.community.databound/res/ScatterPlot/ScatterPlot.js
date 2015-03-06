@@ -212,7 +212,7 @@
 					})
 					.attr("cx",function(d){return that.xScale(d.x)})
 					.attr("cy",function(d){return that.yScale(d.y)})
-					.attr("opacity",function(d){ return that.plotAlpha(); })
+					.attr("opacity",function(d){ return that.plotAlpha()/100; })
 					.style("fill", function(d) { return that.colorRange(d.labels[d.labelIndex]); });
 
 				canvSelection.exit().remove();
