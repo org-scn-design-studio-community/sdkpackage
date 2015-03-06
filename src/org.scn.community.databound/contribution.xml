@@ -204,6 +204,8 @@
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
 	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
 	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
 	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
@@ -266,6 +268,8 @@
 		<option name="includeData" value="true"/>
 	</property>	
 	<initialization>
+		<defaultValue property="showTitle">true</defaultValue>
+		<defaultValue property="chartTitle">Choropleth Map</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="defaultFillColor">#E5EADE</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
@@ -760,6 +764,8 @@
 	<jsInclude>res/HexBin/HexBin.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<!-- <property id="stringData" type="String" title = "Data Stringified" visible="false"/>-->
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
@@ -828,6 +834,8 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
+		<defaultValue property="showTitle">true</defaultValue>
+		<defaultValue property="chartTitle">HexBin Chart</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="radius">20</defaultValue>
@@ -1004,6 +1012,8 @@ __n__}
 	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="stringData" type="String" title = "Data Stringified" visible="false"/>
 	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
@@ -1057,6 +1067,8 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
+		<defaultValue property="showTitle">true</defaultValue>
+		<defaultValue property="chartTitle">Marimekko Chart</defaultValue>
 		<defaultValue property="stringData">BLANK</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
@@ -1360,6 +1372,8 @@ __n__}
 	<jsInclude>res/ScatterPlot/ScatterPlot.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
@@ -1422,6 +1436,8 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
+		<defaultValue property="showTitle">true</defaultValue>
+		<defaultValue property="chartTitle">Scatterplot Chart</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="radius">5</defaultValue>

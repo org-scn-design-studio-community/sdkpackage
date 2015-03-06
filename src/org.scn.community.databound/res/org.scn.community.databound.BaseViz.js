@@ -38,6 +38,22 @@ function org_scn_community_databound_BaseViz(d3, options){
 				apsControl : "checkbox"	
 			}
 		},
+		showTitle : { 
+			value : true,
+			opts : {
+				desc : "Show Chart Tile",
+				cat : "Cosmetics",
+				apsControl : "checkbox"	
+			}
+		},
+		chartTitle : { 
+			value : "Chart Title",
+			opts : {
+				desc : "Chart Title",
+				cat : "Cosmetics",
+				apsControl : "text"
+			}
+		},
 		legendTitle : { 
 			value : "Legend",
 			opts : {
@@ -133,12 +149,12 @@ function org_scn_community_databound_BaseViz(d3, options){
 	 * Update Cosmetics
 	 */
 	this.updateCosmetics = function(){ 
+		this.svgStyle.text(this.styleCSS());
 		// Resize main SVG
 		this.svg
 			.transition().duration(this.ms())
 			.attr("width", this.dimensions.width)
 			.attr("height", this.dimensions.height);
-		this.svgStyle.text(this.styleCSS());
 		// Reorient Canvas Group
 		this.canvas
 			.transition().duration(this.ms())
@@ -148,6 +164,19 @@ function org_scn_community_databound_BaseViz(d3, options){
 			.transition().duration(this.ms())
 			.attr("transform", "translate(" + (this.dimensions.plotLeft) + "," + this.dimensions.plotTop + ")");
 		var legendTransition;
+		if(this.showTitle()){
+			this.chartLabel
+				.attr("display","inline");
+		}else{
+			this.chartLabel
+				.attr("display","none");
+		}
+		this.chartLabel
+			.text(this.chartTitle())
+			.attr("x",this.dimensions.width/2);
+		var textHeight = this.chartLabel[0][0].getBBox().height;
+		this.chartLabel
+			.attr("y",textHeight);
 		if(this.legendOn()){
 			legendTransition = this.legendGroup
 				.attr("display", "inline")
@@ -319,6 +348,11 @@ function org_scn_community_databound_BaseViz(d3, options){
 	        	.attr('y', 0);
 			this.legendLabel = this.legendGroup.append('text')
 	        	.attr('class', 'legend-label');
+			// Chart Title
+			this.chartLabel = this.canvas.append("text")
+				.attr("text-anchor","middle")
+				.attr("alignment-baseline","baseline")
+				.attr("class","chartTitle");
 			/*
 			 * Messages
 			 */

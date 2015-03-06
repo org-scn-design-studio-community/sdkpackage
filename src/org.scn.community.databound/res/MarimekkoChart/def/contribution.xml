@@ -16,6 +16,8 @@
 	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="stringData" type="String" title = "Data Stringified" visible="false"/>
 	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
@@ -69,6 +71,8 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
+		<defaultValue property="showTitle">true</defaultValue>
+		<defaultValue property="chartTitle">Marimekko Chart</defaultValue>
 		<defaultValue property="stringData">BLANK</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>

@@ -15,6 +15,8 @@
 	<jsInclude>res/ScatterPlot/ScatterPlot.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
@@ -77,6 +79,8 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
+		<defaultValue property="showTitle">true</defaultValue>
+		<defaultValue property="chartTitle">Scatterplot Chart</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="radius">5</defaultValue>

@@ -12,6 +12,8 @@
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
 	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
 	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
 	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
@@ -74,6 +76,8 @@
 		<option name="includeData" value="true"/>
 	</property>	
 	<initialization>
+		<defaultValue property="showTitle">true</defaultValue>
+		<defaultValue property="chartTitle">Choropleth Map</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="defaultFillColor">#E5EADE</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
