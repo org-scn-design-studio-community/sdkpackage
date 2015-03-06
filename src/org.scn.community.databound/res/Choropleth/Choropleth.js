@@ -39,22 +39,13 @@
  var pathInfo = _readScriptPath();
  sap.zen.Dispatcher.instance.pauseDispatching();
  var sdkReqs = require.config({
-	 context : "sdk",
-	 paths: {
+	context : "sdk",
+	paths: {
 		d3:  pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.min",
-		topojson : pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/topojson"
-	},
-	shim : {
-		d3 : {
-			// exports : "d3"
-		},
-		topojson : {
-			deps : ["d3"],
-			exports : "topojson"
-		}
+		topojson : pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/topojson.v1.min"
 	}
  });
- sdkReqs(["require","d3"], function(require, d3) {require(["topojson"],function(topojson){
+sdkReqs(["require","d3","topojson"], function(require, d3, topojson) {
 		 /**
 		  * Choropleth Map
 		  */
@@ -975,7 +966,6 @@
 		 });
 		 // End of SDK
 		 sap.zen.Dispatcher.instance.resumeDispatching();
- 		});//End of topojson callback
  	});
  // End of Require d3+topo Callback
 })();
