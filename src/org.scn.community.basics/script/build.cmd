@@ -43,6 +43,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\RangeSlider\def\contribution.xml ^
 ..\res\RatingIndicator\def\contribution.xml ^
 ..\res\RoadMap\def\contribution.xml ^
+..\res\SegmentedButton\def\contribution.xml ^
 ..\res\Slider\def\contribution.xml ^
 ..\res\TextArea\def\contribution.xml ^
 ..\res\ToggleButton\def\contribution.xml ^
@@ -96,6 +97,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\RangeSlider\def\contribution.ztl ^
 ..\res\RatingIndicator\def\contribution.ztl ^
 ..\res\RoadMap\def\contribution.ztl ^
+..\res\SegmentedButton\def\contribution.ztl ^
 ..\res\Slider\def\contribution.ztl ^
 ..\res\TextArea\def\contribution.ztl ^
 ..\res\ToggleButton\def\contribution.ztl ^

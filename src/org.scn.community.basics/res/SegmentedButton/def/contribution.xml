@@ -1,0 +1,122 @@
+
+<component
+	id="SegmentedButton"
+	title="Segmented Button"
+	icon="res/SegmentedButton/SegmentedButton.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+	propertySheetPath="res/SegmentedButton/aps/SegmentedButtonPropertyPage.html">
+	
+	<jsInclude>res/SegmentedButton/SegmentedButton.js</jsInclude>
+	<cssInclude>res/SegmentedButton/SegmentedButton.css</cssInclude>
+
+	<property
+		id="DCleanAll"
+		type="boolean"
+		title="Technical property for Clean All Nodes"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DElementsContent"
+		type="String"
+		title="List of Buttons with Sub-Items"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DSelectedKeys"
+		type="String"
+		title="Technical property for selected keys"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DPressedButtonKey"
+		type="String"
+		title="Technical property for pressed button key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DPressedItemKey"
+		type="String"
+		title="Technical property for pressed item key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DSelectionType"
+		title="Selection Type"
+		tooltip="Selection Type SINGLE | MULTIPLE"
+		type="String"
+		visible="true"
+	>
+		<possibleValue>Single</possibleValue>
+		<possibleValue>Multiple</possibleValue>
+	</property>
+
+	<property
+		id="DDefaultImage"
+		title="Url for Default Image"
+		tooltip="Url for Default Image which should be shown in case no other is specified"
+		type="Url"
+		visible="true" />
+
+	<property
+		id="DWithImages"
+		title="Use Images"
+		type="boolean"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="DImageSize"
+		title="Size of the Image"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>16px</possibleValue>
+		<possibleValue>32px</possibleValue>
+	</property>
+
+	<property
+		id="onSelected"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<property
+		id="onButtonPressed"
+		type="ScriptText"
+		title="Event for On Button Pressed"
+		group="Events" />
+
+	<property
+		id="onItemPressed"
+		type="ScriptText"
+		title="Event for On Item Pressed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="DElementsContent"></defaultValue>
+		<defaultValue property="DSelectionType">Single</defaultValue>
+		
+		<defaultValue property="DWithImage">false</defaultValue>
+		<defaultValue property="DDefaultImage"></defaultValue>
+		<defaultValue property="DImageSize">16px</defaultValue>
+
+		<defaultValue property="DSelectedKeys">[]</defaultValue>
+		<defaultValue property="DPressedButtonKey"></defaultValue>
+		<defaultValue property="DPressedItemKey"></defaultValue>
+	</initialization>
+
+</component>
