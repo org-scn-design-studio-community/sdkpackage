@@ -6,6 +6,10 @@ public class Value {
 
 	final String name;
 
+	public String getName() {
+		return name;
+	}
+
 	public boolean isDefault;
 
 	public Value(String name) {

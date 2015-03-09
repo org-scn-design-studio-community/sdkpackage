@@ -1,0 +1,32 @@
+	this.updateProperty%PROPERTY_NAME% = function(){
+		this._input%PROPERTY_NAME%.setValue(this._%PROPERTY_NAME%);
+	};
+	
+	this.init%PROPERTY_NAME% = function(){
+		this._label%PROPERTY_NAME% = new sap.ui.commons.Label({text: " %PROPERTY_DESCRIPTION%"});
+		this._label%PROPERTY_NAME%.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._label%PROPERTY_NAME%);
+		
+		this._input%PROPERTY_NAME% = new sap.ui.commons.TextField({width: "300px"});
+		this._content.addContent(this._input%PROPERTY_NAME%);
+		this._input%PROPERTY_NAME%.attachChange(this.propertyChanged%PROPERTY_NAME%, this);
+		this._input%PROPERTY_NAME%.addStyleClass("org-scn-ApsSimple");
+		
+		this.updateProperty%PROPERTY_NAME%();
+	};
+
+	this.propertyChanged%PROPERTY_NAME% = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		this._%PROPERTY_NAME% = value;
+		this.firePropertiesChanged(["%PROPERTY_NAME%"]);
+	};
+	
+	this.%PROPERTY_NAME% = function(s){
+		if( s === undefined){
+			return this._%PROPERTY_NAME%;
+		}else{
+			this._%PROPERTY_NAME% = s;
+			this.updateProperty%PROPERTY_NAME%();
+			return this;
+		}
+	};

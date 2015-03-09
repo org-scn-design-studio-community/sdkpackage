@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+
+import org.scn.community.defgenerator.ZtlAndAps;
+import org.scn.community.defgenerator.ParamSpec;
 import org.scn.community.utils.Helpers;
 
 public class Property {
@@ -24,8 +27,13 @@ public class Property {
 
 	private String defaultValue;
 
+	private ParamSpec extendedSpec;
+
+	private String componentName;
+
 	@SuppressWarnings("nls")
 	public Property(XMLStreamReader reader, String componentName) {
+		this.componentName = componentName;
 		this.name = reader.getAttributeValue("", "id");
 		this.title = reader.getAttributeValue("", "title");
 		this.tooltip = reader.getAttributeValue("", "tooltip");
@@ -59,6 +67,10 @@ public class Property {
 			System.out.println("ISSUE: " + componentName + " - PARAMETER  - property '" + this.name + "' is missing 'group'");
 			this.group = "&nbsp;";
 		}
+	}
+
+	public String toString() {
+		return toHtml();
 	}
 
 	public String toHtml() {
@@ -115,5 +127,49 @@ public class Property {
 		} catch (XMLStreamException e) {
 			// TODO Auto-generated catch block
 		}
+	}
+
+	public void extendSpec(ParamSpec parameter) {
+		this.extendedSpec = parameter;
+	}
+	
+	public boolean hasExtendSpec() {
+		return (this.extendedSpec != null);
+	}
+
+	public ZtlAndAps generateZtlAndAps() {
+		return this.extendedSpec.getFunctions();
+	}
+
+	public String getNameCut() {
+		if(!this.name.startsWith("D")) {
+			throw new RuntimeException("Property Must Start with D");
+		}
+		
+		return this.name.substring(1);
+	}
+
+	public CharSequence getName() {
+		return this.name;
+	}
+
+	public String getType() {
+		return this.type;
+	}
+
+	public String getHelp() {
+		return "/* " + this.tooltip + " */ ";
+	}
+
+	public String getTitle() {
+		return this.title;
+	}
+
+	public String getComponent() {
+		return componentName;
+	}
+
+	public ArrayList<Value> getValues() {
+		return this.values;
 	}
 }

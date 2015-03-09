@@ -4,11 +4,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.scn.community.defgenerator.ParamSpec;
+import org.scn.community.defgenerator.ZtlAndAps;
 import org.scn.community.utils.Helpers;
 
 public class Component {
@@ -34,6 +40,10 @@ public class Component {
 	private String fullName;
 
 	private final File contributionXml;
+
+	private String pathToZtl;
+
+	private String packageName;
 
 	@SuppressWarnings("null")
 	Component(File contributionXml) {
@@ -83,7 +93,30 @@ public class Component {
 
 		} while (hasNextTag(reader));
 
-		String pathToZtl = contributionXml.getAbsolutePath().replace(".xml", ".ztl");
+		String pathToGenJson = contributionXml.getAbsolutePath().replace(".xml", ".json");
+		pathToGenJson = pathToGenJson.replace(File.separator + "def" + File.separator, File.separator + "spec" + File.separator);
+		File fileGenJson = new File(pathToGenJson);
+		
+		String pathToGenlock = pathToGenJson.replace("contribution.json", "spec.lock");
+		File fileToGenlock = new File(pathToGenlock);
+		
+		pathToZtl = contributionXml.getAbsolutePath().replace(".xml", ".ztl");
+
+		// spec is there and no lock file
+		if(fileGenJson.exists() && !fileToGenlock.exists()) {
+			// run ZTL and APS generation
+			
+			String contentJson = Helpers.file2String(pathToGenJson);
+			try {
+				JSONObject jsonSpec = new JSONObject(contentJson);
+				readExtendedSpec(jsonSpec);
+			} catch (JSONException e) {
+				throw new RuntimeException(e);
+			}
+			
+			generateZtlAndAps();
+		}
+		
 		List<String> ztlContent = Helpers.file2List(pathToZtl);
 
 		if (ztlContent != null && ztlContent.size() > 0) {
@@ -116,6 +149,176 @@ public class Component {
 		this.customHtmlContent = customHtmlContent == null ? "" : customHtmlContent;
 	}
 
+	private void generateZtlAndAps() {
+		String template = Helpers.resource2String(ParamSpec.class, "ztl_root.ztl.tmlp");
+		String templateAps = Helpers.resource2String(ParamSpec.class, "aps_root.js.tmlp");
+		String templateApsHtml = Helpers.resource2String(ParamSpec.class, "aps_root.html.tmlp");
+		
+		template = template.replace("%TECH_NAME%", this.fullName);
+		template = template.replace("%TECH_DESCRIPTION%", this.title);
+		
+		templateAps = templateAps.replace("%TECH_NAME%", this.fullName);
+		templateAps = templateAps.replace("%TECH_DESCRIPTION%", this.title);
+		templateAps = templateAps.replace("%TECH_SHORT_NAME%", this.name);
+		
+		templateApsHtml = templateApsHtml.replace("%TECH_NAME%", this.fullName);
+		templateApsHtml = templateApsHtml.replace("%TECH_DESCRIPTION%", this.title);
+		templateApsHtml = templateApsHtml.replace("%TECH_SHORT_NAME%", this.name);
+
+		if(this.packageName.endsWith(".databound")) {
+			template = template.replace("%TECH_EXTENSION%", "DataComponent");
+		} else {
+			template = template.replace("%TECH_EXTENSION%", "Component");
+		}
+		
+		for (Property property : this.properties) {
+			if(property.hasExtendSpec()) {
+				ZtlAndAps generatedZtlAndAps = property.generateZtlAndAps();
+				
+				template = template.replace("%FUNCTION_ENTRY%", generatedZtlAndAps.getFunctions() + "\r\n\r\n%FUNCTION_ENTRY%");
+				templateAps = templateAps.replace("%APS_ENTRY%", generatedZtlAndAps.getAps() + "\r\n\r\n%APS_ENTRY%");
+				
+				if(generatedZtlAndAps.getAps() != null && generatedZtlAndAps.getAps().length() > 0) {
+					templateAps = templateAps.replace("%INIT_PROPERTY%", "this.init"+property.getName() + "();\r\n\t\t%INIT_PROPERTY%");	
+					templateAps = templateAps.replace("%UPDATE_PROPERTY%", "this.update"+property.getName() + "();\r\n\t\t%UPDATE_PROPERTY%");
+				}
+			}
+		}
+		
+		templateApsHtml = templateApsHtml.replace("%PROPERTY_SEQUENCE%", "");
+		
+		template = template.replace("%FUNCTION_ENTRY%", "");
+		templateAps = templateAps.replace("%APS_ENTRY%", "");
+		templateAps = templateAps.replace("%INIT_PROPERTY%", "");
+		templateAps = templateAps.replace("%UPDATE_PROPERTY%", "");
+		
+		String pathToGenZtl = contributionXml.getAbsolutePath().replace(".xml", ".ztl");
+		pathToGenZtl = pathToGenZtl.replace(File.separator + "def" + File.separator, File.separator + "spec" + File.separator);
+		File fileGenZtl = new File(pathToGenZtl);
+		
+		if(fileGenZtl.exists()) {
+			String customZtl = Helpers.file2String(fileGenZtl);
+			template = template.replace("%CUSTOM_ENTRY%", customZtl);
+		}
+		
+		template = template.replace("%CUSTOM_ENTRY%", "");
+		
+		String pathToGenAps = contributionXml.getAbsolutePath().replace("contribution.xml", this.name + "PropertyPage.js");
+		pathToGenAps = pathToGenAps.replace(File.separator + "def" + File.separator, File.separator + "aps" + File.separator);
+				
+		String pathToGenApsHtml = contributionXml.getAbsolutePath().replace("contribution.xml", this.name + "PropertyPage.html");
+		pathToGenApsHtml = pathToGenApsHtml.replace(File.separator + "def" + File.separator, File.separator + "aps" + File.separator);
+
+		Helpers.string2File(pathToGenApsHtml, templateApsHtml);
+		Helpers.string2File(pathToGenAps, templateAps);
+		Helpers.string2File(pathToZtl, template);
+	}
+
+	private void readExtendedSpec(JSONObject jsonSpec) {
+		
+		Iterator keys = jsonSpec.keys();
+		while (keys.hasNext()) {
+			String key = (String) keys.next();
+			
+			ParamSpec parameter = new ParamSpec();
+			parameter.setName(key);
+			
+			try {
+				Object object = (Object) jsonSpec.get(key);
+				
+				if(object instanceof JSONObject) {
+					JSONObject object1 = (JSONObject) object;
+					
+					Iterator keys2 = object1.keys();
+					while (keys2.hasNext()) {
+						String key2 = (String) keys2.next();
+						
+						Object object2 = (Object) object1.get(key2);
+						
+						if(object2 instanceof JSONObject) {
+							
+							ParamSpec parameter2 = new ParamSpec();
+							parameter2.setName(key2);
+							
+							parameter.addParameter(parameter2);
+							
+							// parse object
+							JSONObject object3 = (JSONObject) object2;
+							
+							Iterator keys3 = object3.keys();
+							while (keys3.hasNext()) {
+								String key3 = (String) keys3.next();
+								
+								Object object4 = (Object) object3.get(key3);
+								
+								if(object4 instanceof JSONObject) {
+									
+									ParamSpec parameter3 = new ParamSpec();
+									parameter3.setName(key3);
+									
+									parameter2.addParameter(parameter3);
+									
+									JSONObject object5 = (JSONObject) object4;
+									Iterator keys5 = object5.keys();
+									while (keys5.hasNext()) {
+										String key5 = (String) keys5.next();
+										
+										Object object6 = (Object) object5.get(key5);
+										
+										if(object6 instanceof JSONObject) {
+											
+											ParamSpec parameter4 = new ParamSpec();
+											parameter4.setName(key5);
+											
+											parameter3.addParameter(parameter4);
+											
+											JSONObject object7 = (JSONObject) object6;
+											Iterator keys7 = object7.keys();
+											while (keys7.hasNext()) {
+												String key7 = (String) keys7.next();
+												insertParameter(parameter4, key7, object7.get(key7));
+											}
+										} else {
+											
+											insertParameter(parameter3, key5, object6);
+										}
+									}
+								} else {
+									insertParameter(parameter2, key3, object4);
+								}
+							}
+						} else {
+							insertParameter(parameter, key2, object2);
+						}
+					}
+				} else {
+					insertParameter(parameter, key, object);
+				}
+			} catch (JSONException e) {
+				throw new RuntimeException(e);
+			}
+			
+			Property prop = getProperty(parameter.getKey());
+			parameter.setParent(prop);
+			prop.extendSpec(parameter);
+		}
+		
+	}
+
+	private void insertParameter(ParamSpec parameterTo, String key, Object value) {
+		if(key.startsWith("gen-")) {
+			String realKey = key.substring(key.indexOf("-")+1);
+			
+			parameterTo.addProperty(realKey, (String) value);
+		} else {
+			ParamSpec parameterNew = new ParamSpec();
+			parameterNew.setName(key);
+			// parameterNew.setValue((String) value);
+			
+			parameterTo.addParameter(parameterNew);
+		}
+	}
+
 	private Property getProperty(String propertyName) {
 		for (Property property : this.properties) {
 			if (property.name.equals(propertyName)) {
@@ -141,7 +344,7 @@ public class Component {
 		int srcI = this.contributionXml.getAbsolutePath().indexOf("src");
 		int resI = this.contributionXml.getAbsolutePath().indexOf("res");
 
-		String packageName = this.contributionXml.getAbsolutePath().substring(srcI + 4, resI - 1);
+		this.packageName = this.contributionXml.getAbsolutePath().substring(srcI + 4, resI - 1);
 		this.fullName = packageName + "." + this.name;
 
 		if (this.handlerType.equals("datasource")) {

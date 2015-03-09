@@ -25,6 +25,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Table2D\def\contribution.xml ^
 ..\res\TopFlop\def\contribution.xml ^
 ..\res\TopFlopChart\def\contribution.xml ^
+..\res\UI5Table\def\contribution.xml ^
 ..\..\org.scn.community.shared\templates.main\contribution.xml.close.txt > ^
 ..\contribution.xml
 
@@ -49,6 +50,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\Table2D\def\contribution.ztl ^
 ..\res\TopFlop\def\contribution.ztl ^
 ..\res\TopFlopChart\def\contribution.ztl ^
+..\res\UI5Table\def\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 

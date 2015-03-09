@@ -14,7 +14,7 @@ class org.scn.community.utils.PdfPrint extends org.scn.community.shared.Componen
 	/**
 	 * Sets the root panel name, this panel will be printed as sub part of the application
 	 */
-	void setRootPanel (String /*Name of the panel to print*/panelName) {*
+	void setRootPanel (/*Name of the panel to print*/ String panelName) {*
 		this.rootPanel = panelName;
 	*}
 }

@@ -594,37 +594,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 		return type;
 	  *}
 
-	/**Cast to specific component*/
-	Button returnAsButton (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Chart returnAsChart (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Checkbox returnAsCheckbox (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Checkboxgroup returnAsCheckboxgroup (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Crosstab returnAsCrosstab (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Datefield returnAsDatefield (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Dimensionfilter returnAsDimensionfilter (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Dropdown returnAsCheckboxgroup (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Filterpanel returnAsFilterpanel (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Image returnAsImage (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Inputfield returnAsInputfield (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Listbox returnAsInputfield (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Text returnAsText (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Radiobuttongroup returnAsRadiobuttongroup (Component inputComponent) {* return inputComponent; *}
-
-	/* copy of the content from cast.ztl_part */
-	
 	/**Cast to Accordion component*/
 	org.scn.community.basics.Accordion returnAsScnAccordion (Component inputComponent) {* return inputComponent; *}
 
@@ -639,6 +608,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Basic Business Card component*/
 	org.scn.community.basics.BasicBusinessCard returnAsScnBasicBusinessCard (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Calendar component*/
+	org.scn.community.basics.Calendar returnAsScnCalendar (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Check Box Group component*/
 	org.scn.community.basics.CheckBoxGroup returnAsScnCheckBoxGroup (Component inputComponent) {* return inputComponent; *}
@@ -703,6 +675,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Modal Browser component*/
 	org.scn.community.basics.ModalBrowser returnAsScnModalBrowser (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Navigation Bar component*/
+	org.scn.community.basics.NavigationBar returnAsScnNavigationBar (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Notification Bar component*/
 	org.scn.community.basics.NotificationBar returnAsScnNotificationBar (Component inputComponent) {* return inputComponent; *}
 
@@ -733,6 +708,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Road Map component*/
 	org.scn.community.basics.RoadMap returnAsScnRoadMap (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Segmented Button component*/
+	org.scn.community.basics.SegmentedButton returnAsScnSegmentedButton (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Slider component*/
 	org.scn.community.basics.Slider returnAsScnSlider (Component inputComponent) {* return inputComponent; *}
 
@@ -753,6 +731,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Value Help Field component*/
 	org.scn.community.basics.ValueHelpField returnAsScnValueHelpField (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Choropleth Map component*/
+	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to D3 Hierarchy component*/
 	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}
@@ -784,6 +765,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Data Range Slider component*/
 	org.scn.community.databound.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Scatter Plot Chart component*/
+	org.scn.community.databound.ScatterPlot returnAsScnScatterPlot (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Slider component*/
 	org.scn.community.databound.Slider returnAsScnSlider (Component inputComponent) {* return inputComponent; *}
 
@@ -796,14 +780,14 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Data Top FLop Chart component*/
 	org.scn.community.databound.TopFlopChart returnAsScnTopFlopChart (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to UI5 Table component*/
+	org.scn.community.databound.UI5Table returnAsScnUI5Table (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Bring Your Own Data component*/
 	org.scn.community.datasource.BYOData returnAsScnBYOData (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Dynamic Csv Data Source component*/
 	org.scn.community.datasource.DynCsvDataSource returnAsScnDynCsvDataSource (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Choropleth Map component*/
-	org.scn.community.geovis.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Maps component*/
 	org.scn.community.geovis.Maps returnAsScnMaps (Component inputComponent) {* return inputComponent; *}
@@ -819,6 +803,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Rapid Prototyping component*/
 	org.scn.community.prototypes.RapidPrototype returnAsScnRapidPrototype (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to (PROTOTYPE!) Sap M List component*/
+	org.scn.community.prototypes.SapMList returnAsScnSapMList (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Array Utility component*/
 	org.scn.community.utils.Array returnAsScnArray (Component inputComponent) {* return inputComponent; *}
@@ -844,8 +831,14 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Math Utility component*/
 	org.scn.community.utils.Math returnAsScnMath (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Open Url Inplace component*/
+	org.scn.community.utils.OpenUrlInplace returnAsScnOpenUrlInplace (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Open Window by Post component*/
 	org.scn.community.utils.OpenWindowPost returnAsScnOpenWindowPost (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to PDF Print component*/
+	org.scn.community.utils.PdfPrint returnAsScnPdfPrint (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}

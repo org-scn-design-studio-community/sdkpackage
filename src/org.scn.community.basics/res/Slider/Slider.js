@@ -21,7 +21,8 @@ sap.ui.commons.Slider.extend("org.scn.community.basics.Slider", {
 	
 	metadata: {
         properties: {
-              "liveValue": {type: "int"},
+              "liveValue": {type: "float"},
+              "DLiveChangeActive": {type: "boolean"},
         }
 	},
 	
@@ -48,34 +49,39 @@ sap.ui.commons.Slider.extend("org.scn.community.basics.Slider", {
 				that.fireDesignStudioEvent("onChange");
 			}
 		});
-		
-		this.attachLiveChange(function(oControlEvent) {
-			var value = oControlEvent.getParameters().value;
-			
-			var updateRequired = false;
-			if(that._SavedLiveValue == undefined) {
-				that._SavedLiveValue = value;
-				updateRequired = true;
-			}
-			
-			if(!updateRequired && that._SavedLiveValue != value) {
-				updateRequired = true;
-			}
-
-			if(updateRequired) {
-				that._SavedLiveValue = value;
-				
-				this.setLiveValue(value);
-				
-				that.fireDesignStudioPropertiesChanged(["liveValue"]);
-				that.fireDesignStudioEvent("onLiveChange");
-			}
-		});
 	},
 	
 	renderer: {},
 		
 	afterDesignStudioUpdate: function() {
-		// empty for now
+		var that = this;
+		
+		var liveChangeActive = this.getDLiveChangeActive();
+		if(!that._liveEventCheck && liveChangeActive) {
+			this.attachLiveChange(function(oControlEvent) {
+				var value = oControlEvent.getParameters().value;
+				
+				var updateRequired = false;
+				if(that._SavedLiveValue == undefined) {
+					that._SavedLiveValue = value;
+					updateRequired = true;
+				}
+				
+				if(!updateRequired && that._SavedLiveValue != value) {
+					updateRequired = true;
+				}
+	
+				if(updateRequired) {
+					that._SavedLiveValue = value;
+					
+					this.setLiveValue(value);
+					
+					that.fireDesignStudioPropertiesChanged(["liveValue"]);
+					that.fireDesignStudioEvent("onLiveChange");
+				}
+			});
+		}
+		
+		that._liveEventCheck = true;
 	}
 });

@@ -2058,4 +2058,102 @@ __n__}
 	</initialization>
 
 </component>
+<component
+	id="UI5Table"
+	title="UI5 Table"
+	icon="res/UI5Table/UI5Table.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+
+	<jsInclude>res/UI5Table/UI5Table.js</jsInclude>
+	<cssInclude>res/UI5Table/UI5Table.css</cssInclude>
+
+	<property
+		id="data"
+		title="Data List"
+		type="ResultSet"
+		group="DataBinding"
+		visible="false"
+	>
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="false"/>
+	</property>
+
+	<property
+		id="DVisibleRowCount"
+		title="Visible Row Count"
+		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DRowHeight"
+		title="Row Height in px"
+		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DHeaderColWidth"
+		title="Header Column Width in px"
+		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DNavigationMode"
+		title="Navigation Mode"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Paginator</possibleValue>
+			<possibleValue>Scrollbar</possibleValue>
+	</property>
+
+	<property
+		id="DCustomDimensions"
+		title="Custom Dimensions as Array [...]"
+		type="String"
+		group="Display"
+		visible="false">
+	</property>
+
+	<property
+		id="onBeforeRender"
+		type="ScriptText"
+		title="Event for On Before Render"
+		group="Events"
+		visible="false" 
+	/>
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">800</defaultValue>
+		<defaultValue property="HEIGHT">600</defaultValue>
+
+		<defaultValue property="DCustomDimensions">[]</defaultValue>
+
+		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
+		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
+		
+		<defaultValue property="DNavigationMode">Paginator</defaultValue>
+		<defaultValue property="DRowHeight">22</defaultValue>
+		<defaultValue property="DVisibleRowCount">12</defaultValue>
+		<defaultValue property="DHeaderColWidth">200</defaultValue>
+	</initialization>
+
+</component>
 </sdkExtension>
