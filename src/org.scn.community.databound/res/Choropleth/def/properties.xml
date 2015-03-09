@@ -1,0 +1,42 @@
+
+	<!-- Begin of Chropleth Properties -->
+	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
+	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
+	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
+	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
+	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
+	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String"/>
+	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
+	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
+	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
+	<property id="tooltipOn" title="Enable Tooltips" type="boolean" visible="false" />
+	<property id="graticuleOn" title="Show Graticule Grid" type="boolean" visible="false" />
+	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
+	<property id="mapData" title="Map Data" type="String" visible="false"/>
+	<property id="labelSize" title="Label Size (CSS Size)" type="String"/>
+	<property id="gradientLeft" title="Horizontal Scale Left" type="int"/>
+	<property id="gradientRight" title="Horizontal Scale Right" type="int"/>
+	<property id="gradientBottom" title="Horizontal Scale Bottom" type="int"/>
+	<property id="gradientHeight" title="Horizontal Scale Height" type="int"/>
+	<property id="yaw" title="Yaw" type="float"/>
+	<property id="pitch" title="Pitch" type="float"/>
+	<property id="roll" title="Roll" type="float"/>
+	<property id="colorScale" title="Color Scale" type="String">
+		<possibleValue>quantile</possibleValue>
+		<possibleValue>quantize</possibleValue>
+	</property>
+	<property id="projection" title="Projection" type="String">
+		<possibleValue>mercator</possibleValue>
+		<possibleValue>albersUsa</possibleValue>
+		<possibleValue>equirectangular</possibleValue>
+		<possibleValue>conicEqualArea</possibleValue>
+		<possibleValue>conicConformal</possibleValue>
+		<possibleValue>orthographic</possibleValue>
+		<possibleValue>azimuthalEqualArea</possibleValue>
+		<possibleValue>azimuthalEquidistant</possibleValue>
+		<possibleValue>conicEquidistant</possibleValue>
+		<possibleValue>gnomonic</possibleValue>
+		<possibleValue>stereographic</possibleValue>
+		<possibleValue>transverseMercator</possibleValue>
+	</property>
+	<!-- End of Chropleth Properties -->

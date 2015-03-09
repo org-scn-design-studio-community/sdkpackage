@@ -1,0 +1,13 @@
+
+<component id="Choropleth" 
+	title="Choropleth Map"
+	icon="res/Choropleth/Choropleth.png"
+	handlerType="div"
+	propertySheetPath="res/Choropleth/aps/ChoroplethPropertyPage.html"
+	databound = "true"
+	group="ScnCommunityGeo">
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
+	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>

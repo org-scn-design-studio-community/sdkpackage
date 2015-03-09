@@ -203,40 +203,60 @@
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
-	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
+	<!-- Base Databound Properties -->
+	<property
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true"/>
+	<!-- End of Base Databound Properties -->
+	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
+	<property id="styleCSS" title="Style CSS" type="String"/>
+	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
+	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
+	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
+	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int"/>
+	<property id="legendScale" title="Legend Scale" type="float"/>
+	<property id="legendX" title="Legend Offset X" type="int"/>
+	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int"/>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="margin" type="int" title = "Margin Size" visible="false"/>
+	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="true"/>
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="plotLeft" title="Plot Offset Left" type="int"/>
+	<property id="plotRight" title="Plot Offset Right" type="int"/>
+	<property id="plotTop" title="Plot Offset Top" type="int"/>
+	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<!-- End of Base Viz Properties -->
+	<!-- Begin of Chropleth Properties -->
+	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
 	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
 	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
 	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
 	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
 	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String"/>
 	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
-	<property id="selectedColor" title="Selected Feature Colour" type="String" visible="false"/>
 	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
 	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
-	<property id="ms" title="Transition Time (ms)" type="int" visible = "false"/>
 	<property id="tooltipOn" title="Enable Tooltips" type="boolean" visible="false" />
 	<property id="graticuleOn" title="Show Graticule Grid" type="boolean" visible="false" />
 	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
-	<property id="legendOn" title="Enable Legend" type="boolean" visible="false" />
-	<property id="colorPalette" title="Colour Palette" type="String" visible="false"/>
 	<property id="mapData" title="Map Data" type="String" visible="false"/>
 	<property id="labelSize" title="Label Size (CSS Size)" type="String"/>
-	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
-	<property id="legendTitle" title="Legend Title" type="String"/>
-	<property id="legendWidth" title="Legend Width (px)" type="int"/>
-	<property id="legendScale" title="Legend Scale" type="float"/>
-	<property id="legendX" title="Legend Offset X" type="int"/>
-	<property id="legendY" title="Legend Offset Y" type="int"/>
 	<property id="gradientLeft" title="Horizontal Scale Left" type="int"/>
 	<property id="gradientRight" title="Horizontal Scale Right" type="int"/>
 	<property id="gradientBottom" title="Horizontal Scale Bottom" type="int"/>
 	<property id="gradientHeight" title="Horizontal Scale Height" type="int"/>
-	<property id="mapLeft" title="Map Margin Left" type="int"/>
-	<property id="mapTop" title="Map Margin Top" type="int"/>
-	<property id="mapRight" title="Map Margin Right" type="int"/>
-	<property id="mapBottom" title="Map Margin Bottom" type="int"/>
 	<property id="yaw" title="Yaw" type="float"/>
 	<property id="pitch" title="Pitch" type="float"/>
 	<property id="roll" title="Roll" type="float"/>
@@ -258,19 +278,30 @@
 		<possibleValue>stereographic</possibleValue>
 		<possibleValue>transverseMercator</possibleValue>
 	</property>
-	<property id="onSelect" title="On Select" type="ScriptText"/>
-	<property
-		id="data"
-		title="Data Selection"
-		type="ResultSet"
-		group="DataBinding">
-		<option name="includeFormattedData" value="false"/>
-		<option name="includeData" value="true"/>
-	</property>	
+	<!-- End of Chropleth Properties -->
 	<initialization>
+		<!-- Base Defaults -->
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<!-- End of Base Defaults -->
+		<!-- Base Viz Defaults -->
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
 		<defaultValue property="showTitle">true</defaultValue>
-		<defaultValue property="chartTitle">Choropleth Map</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="plotAlpha">95</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="legendWidth">125</defaultValue>
+		<defaultValue property="legendTitle">Legend Title</defaultValue>
+		<defaultValue property="legendScale">1</defaultValue>
+		<defaultValue property="margin">20</defaultValue>
+		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<!-- End of Base Defaults -->
+		<!-- Begin of Choropleth Defaults -->
+		<defaultValue property="chartTitle">Choropleth Map</defaultValue>
 		<defaultValue property="defaultFillColor">#E5EADE</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
 		<defaultValue property="hoverColor">#999900</defaultValue>
@@ -278,33 +309,17 @@
 		<defaultValue property="colorScale">quantile</defaultValue>
 		<defaultValue property="featureProperty">NAME_1</defaultValue>
 		<defaultValue property="labelProperty">NAME_1</defaultValue>
-		<defaultValue property="legendOn">true</defaultValue>
-		<defaultValue property="makeRoomX">false</defaultValue>
-		<defaultValue property="tooltipOn">true</defaultValue>
-		<defaultValue property="legendScale">1.0</defaultValue>
-		<defaultValue property="legendWidth">100</defaultValue>
-		<defaultValue property="legendTitle"></defaultValue>
-		<defaultValue property="legendX">15</defaultValue>
-		<defaultValue property="legendY">15</defaultValue>
 		<defaultValue property="gradientLeft">30</defaultValue>
 		<defaultValue property="gradientRight">30</defaultValue>
 		<defaultValue property="gradientBottom">15</defaultValue>
 		<defaultValue property="gradientHeight">10</defaultValue>
-		<defaultValue property="mapLeft">10</defaultValue>
-		<defaultValue property="mapTop">10</defaultValue>
-		<defaultValue property="mapRight">10</defaultValue>
-		<defaultValue property="mapBottom">10</defaultValue>
 		<defaultValue property="projection">equirectangular</defaultValue>
 		<defaultValue property="yaw">0.0</defaultValue>
 		<defaultValue property="pitch">0.0</defaultValue>
 		<defaultValue property="roll">0.0</defaultValue>
-		<defaultValue property="mapData"></defaultValue>
-		<defaultValue property="WIDTH">400</defaultValue>
-		<defaultValue property="HEIGHT">300</defaultValue>
+		<!-- End of Choropleth Defaults -->
 	</initialization>
 </component>
-
-
 <component
 	id="Table"
 	title="Data Table"
