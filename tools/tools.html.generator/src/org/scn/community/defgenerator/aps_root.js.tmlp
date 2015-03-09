@@ -1,0 +1,25 @@
+
+/**
+ * Generated ZTL Class for %TECH_DESCRIPTION%
+ * 
+ * DO NOT EDIT
+ */
+sap.designstudio.sdk.PropertyPage.subclass("%TECH_NAME%PropertyPage",  function() {
+	var that = this;
+
+	this.init = function () {
+		this._content = new sap.ui.commons.layout.VerticalLayout({
+			width : "100%"
+		});
+		this._content.placeAt($("#content"));
+
+		%INIT_PROPERTY%
+	};
+	
+	this.componentSelected = function(){
+		%UPDATE_PROPERTY%
+	};
+	
+	
+%APS_ENTRY%
+});

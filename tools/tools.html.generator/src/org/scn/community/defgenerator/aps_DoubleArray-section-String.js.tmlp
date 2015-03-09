@@ -1,0 +1,12 @@
+		var section%PARAM_NAME% = new sap.ui.commons.TextView({text : "%PARAM_TITLE%"});
+		section%PARAM_NAME%.addStyleClass("org-scn-ApsLabelArray");
+		var txtElement%PARAM_NAME% = new sap.ui.commons.TextField({value : selectedElement.%PARAM_NAME%, width: "180px"});
+		txtElement%PARAM_NAME%.addStyleClass("org-scn-ApsInputArray");
+		txtElement%PARAM_NAME%.attachChange(function(oControlEvent){
+			var value = oControlEvent.getParameter("newValue");
+			var section = this.getElement%PROPERTY_NAME%(this._listBuilder%PROPERTY_NAME%.getSelectedKey());
+			section.%PARAM_NAME% = value;
+			this.updateElement%PROPERTY_NAME%(this._listBuilder%PROPERTY_NAME%.getSelectedKey(),section);
+		}, this);
+		this._sectionPropertyLayout%PROPERTY_NAME%.addContent(section%PARAM_NAME%);
+		this._sectionPropertyLayout%PROPERTY_NAME%.addContent(txtElement%PARAM_NAME%);

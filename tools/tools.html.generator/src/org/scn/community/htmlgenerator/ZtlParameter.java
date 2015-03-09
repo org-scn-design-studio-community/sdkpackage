@@ -17,7 +17,7 @@ public class ZtlParameter {
 	public ZtlParameter(String paramLine) {
 		this.paramLine = paramLine.trim();
 
-		if (paramLine.contains("/**")) {
+		if (paramLine.contains("/*")) {
 			this.docu = this.paramLine.substring(this.paramLine.indexOf("/*") + 2, this.paramLine.indexOf("*/"));
 			this.docu = this.docu.replace("*", "");
 		} else {
@@ -34,6 +34,10 @@ public class ZtlParameter {
 		}
 
 		this.paramLine = this.paramLine.trim();
+		if(this.paramLine.indexOf(" ") == -1) {
+			System.err.println(paramLine + " does not contain type!");
+		}
+		
 		this.type = this.paramLine.substring(0, this.paramLine.indexOf(" "));
 		this.name = this.paramLine.substring(this.paramLine.indexOf(" ") + 1);
 	}

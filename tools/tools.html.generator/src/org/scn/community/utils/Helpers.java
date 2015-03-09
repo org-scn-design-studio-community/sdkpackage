@@ -15,6 +15,7 @@ import java.io.Writer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Helpers {
 
@@ -269,5 +270,9 @@ public class Helpers {
 		}
 
 		return sb.toString();
+	}
+
+	public static String makeFirstUpper(String value) {
+		return value.substring(0,1).toUpperCase(Locale.ENGLISH)  +value.substring(1);
 	}
 }
