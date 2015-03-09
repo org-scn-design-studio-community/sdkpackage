@@ -16,12 +16,21 @@
 	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
+	<!-- Base Databound Properties -->
+	<property
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true"/>
+	<!-- End of Base Databound Properties -->
+	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
-	<property id="stringData" type="String" title = "Data Stringified" visible="false"/>
-	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
-	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
@@ -35,7 +44,14 @@
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
-	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="true"/>
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="plotLeft" title="Plot Offset Left" type="int"/>
+	<property id="plotRight" title="Plot Offset Right" type="int"/>
+	<property id="plotTop" title="Plot Offset Top" type="int"/>
+	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<!-- End of Base Viz Properties -->
+	<!-- Begin of Marimekko Chart Properties -->
 	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
 	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
 	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
@@ -46,21 +62,31 @@
 		<possibleValue>left</possibleValue>
 		<possibleValue>right</possibleValue>
 	</property>
-	<property
-		id="data"
-		title="Data Selection"
-		type="ResultSet"
-		group="DataBinding">
-		<option name="includeFormattedData" value="false"/>
-		<option name="includeData" value="true"/>
-	</property>
-	<property
-		id="onSelect"
-		title="On Select"
-		type="ScriptText"
-		group="Events"/>
+	<!-- End of Marimekko Chart Properties -->
 	<initialization>
-			<defaultValue property="styleCSS">/*Default CSS*/
+		<!-- Base Defaults -->
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<!-- End of Base Defaults -->
+		<!-- Base Viz Defaults -->
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
+		<defaultValue property="showTitle">true</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="plotAlpha">95</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="legendWidth">125</defaultValue>
+		<defaultValue property="legendTitle">Legend Title</defaultValue>
+		<defaultValue property="legendScale">1</defaultValue>
+		<defaultValue property="margin">20</defaultValue>
+		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<!-- End of Base Defaults -->
+		<!-- Begin of Marimekko Chart Defaults -->
+		<defaultValue property="chartTitle">Marimekko Chart</defaultValue>
+		<defaultValue property="styleCSS">/*Default CSS*/
 __n__.plot {
 __n__  stroke: #303030;
 __n__  stroke-width: .75px;
@@ -71,25 +97,11 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
-		<defaultValue property="showTitle">true</defaultValue>
-		<defaultValue property="chartTitle">Marimekko Chart</defaultValue>
-		<defaultValue property="stringData">BLANK</defaultValue>
-		<defaultValue property="ms">750</defaultValue>
-		<defaultValue property="plotAlpha">95</defaultValue>
-		<defaultValue property="showValues">true</defaultValue>
-		<defaultValue property="legendOn">true</defaultValue>
-		<defaultValue property="legendWidth">150</defaultValue>
-		<defaultValue property="legendTitle">Legend</defaultValue>
-		<defaultValue property="legendScale">1</defaultValue>
-		<defaultValue property="margin">20</defaultValue>
-		<defaultValue property="makeRoomX">true</defaultValue>
-		<defaultValue property="selectedColor">#009966</defaultValue>
-		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
 		<defaultValue property="xAxisTicks">5</defaultValue>
 		<defaultValue property="yAxisTicks">5</defaultValue>
 		<defaultValue property="xAxisOrientation">bottom</defaultValue>
 		<defaultValue property="yAxisOrientation">left</defaultValue>
-		<defaultValue property="WIDTH">150</defaultValue>
-		<defaultValue property="HEIGHT">200</defaultValue>
+		
+		<!-- End of Marimekko Chart Defaults -->
 	</initialization>
 </component>

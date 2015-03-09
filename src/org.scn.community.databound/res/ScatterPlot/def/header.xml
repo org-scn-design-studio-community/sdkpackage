@@ -1,0 +1,17 @@
+
+<component
+		id="ScatterPlot"
+		title="Scatter Plot Chart"
+		icon="res/ScatterPlot/ScatterPlot.png"
+		handlerType="div"
+		propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>
+	<jsInclude>res/ScatterPlot/ScatterPlot.js</jsInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<cssInclude>os/d3-tip.css</cssInclude>

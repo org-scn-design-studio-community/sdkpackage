@@ -41,7 +41,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 		showTitle : { 
 			value : true,
 			opts : {
-				desc : "Show Chart Tile",
+				desc : "Show Chart Title",
 				cat : "Cosmetics",
 				apsControl : "checkbox"	
 			}
@@ -54,11 +54,35 @@ function org_scn_community_databound_BaseViz(d3, options){
 				apsControl : "text"
 			}
 		},
+		chartTitleStyle : { 
+			value : "",
+			opts : {
+				desc : "Chart Title Style",
+				cat : "CSS",
+				apsControl : "text"
+			}
+		},
+		chartValueStyle : { 
+			value : "",
+			opts : {
+				desc : "Chart Value Style",
+				cat : "CSS",
+				apsControl : "text"
+			}
+		},
 		legendTitle : { 
 			value : "Legend",
 			opts : {
 				desc : "Legend Title",
 				cat : "Legend",
+				apsControl : "text"
+			}
+		},
+		legendTitleStyle : { 
+			value : "",
+			opts : {
+				desc : "Legend Title Style",
+				cat : "CSS",
 				apsControl : "text"
 			}
 		},
@@ -141,42 +165,76 @@ function org_scn_community_databound_BaseViz(d3, options){
 				cat : "Cosmetics",
 				apsControl : "color"	
 			}
+		},
+		plotLeft : { 
+			value : 0,
+			opts : {
+				desc : "Plot Left Offset",
+				cat : "Cosmetics",
+				apsControl : "spinner"	
+			}
+		},
+		plotRight : { 
+			value : 0,
+			opts : {
+				desc : "Plot Right Offset",
+				cat : "Cosmetics",
+				apsControl : "spinner"	
+			}
+		},
+		plotTop : { 
+			value : 0,
+			opts : {
+				desc : "Plot Top Offset",
+				cat : "Cosmetics",
+				apsControl : "spinner"	
+			}
+		},
+		plotBottom : { 
+			value : 0,
+			opts : {
+				desc : "Plot Bottom Offset",
+				cat : "Cosmetics",
+				apsControl : "spinner"	
+			}
 		}
 	};
 	for(var prop in options) properties[prop] = options[prop];
 	org_scn_community_databound_Base.call(this,properties);
 	/**
+	 * Update Labels
+	 */
+	this.updateLabels = function(){
+		if(this.showTitle()){
+			this.chartLabel.attr("display","inline");
+			this.chartLabel
+				.text(this.chartTitle())
+				.attr("style",this.chartTitleStyle());
+		}else{
+			this.chartLabel.attr("display","none");
+		}
+		return this;
+	}
+	/**
 	 * Update Cosmetics
 	 */
 	this.updateCosmetics = function(){ 
 		this.svgStyle.text(this.styleCSS());
-		// Resize main SVG
-		this.svg
-			.transition().duration(this.ms())
-			.attr("width", this.dimensions.width)
-			.attr("height", this.dimensions.height);
+		this.chartLabel
+			.attr("x",this.dimensions.width/2)
+			.attr("y",(this.dimensions.chartLabelHeight / 2));
 		// Reorient Canvas Group
 		this.canvas
 			.transition().duration(this.ms())
 			.attr("transform", "translate(" + (this.dimensions.margin) + "," + this.dimensions.margin + ")");
 		// Reorient Plot Area
+		this.stage
+			.transition().duration(this.ms())
+			.attr("transform", "translate(" + (0) + "," + (this.dimensions.chartLabelHeight) + ")");
 		this.plotArea
 			.transition().duration(this.ms())
-			.attr("transform", "translate(" + (this.dimensions.plotLeft) + "," + this.dimensions.plotTop + ")");
+			.attr("transform", "translate(" + (this.dimensions.plotLeft) + "," + (this.dimensions.plotTop) + ")");
 		var legendTransition;
-		if(this.showTitle()){
-			this.chartLabel
-				.attr("display","inline");
-		}else{
-			this.chartLabel
-				.attr("display","none");
-		}
-		this.chartLabel
-			.text(this.chartTitle())
-			.attr("x",this.dimensions.width/2);
-		var textHeight = this.chartLabel[0][0].getBBox().height;
-		this.chartLabel
-			.attr("y",textHeight);
 		if(this.legendOn()){
 			legendTransition = this.legendGroup
 				.attr("display", "inline")
@@ -209,21 +267,30 @@ function org_scn_community_databound_BaseViz(d3, options){
 			width : this.$().width(),
 			height : this.$().height(),
 			margin : this.margin(),
-			plotLeft : 0,
-			plotTop : 0,
-			plotRight : 0,
-			plotBottom : 0,
+			stageWidth : 0,
+			plotLeft : this.plotLeft(),
+			plotTop : this.plotTop(),
+			plotRight : this.plotRight(),
+			plotBottom : this.plotBottom(),
+			chartLabelHeight : 0,
 			legendWidth : this.legendWidth() || (this.$().width() / 5),
 			legendY : this.legendY(),
 			legendX : this.legendX()
 		};
+		// Update Chart Label
+		if(this.chartLabel !== undefined){
+			this.dimensions.chartLabelHeight = this.chartLabel[0][0].getBBox().height;
+		}
+		this.dimensions.stageWidth = this.dimensions.width - (this.dimensions.margin * 2);
 		// If Legend is on and Make Room for Legend is set, make room		
 		if(this.legendOn()){
 			if (this.makeRoomX()) this.dimensions.plotLeft += (this.dimensions.legendWidth + this.legendX());
 		}
 		// Calculate remaining plot area
-		this.dimensions.plotWidth = this.dimensions.width - this.dimensions.plotLeft - this.dimensions.margin - this.dimensions.margin;
-		this.dimensions.plotHeight = this.dimensions.height - this.dimensions.margin - this.dimensions.margin;
+		this.dimensions.plotWidth = this.dimensions.width - this.dimensions.plotLeft - this.dimensions.plotRight - (this.dimensions.margin * 2);
+		//this.dimensions.plotTop = this.dimensions.chartLabelHeight;
+		this.dimensions.plotHeight = this.dimensions.height - (this.dimensions.margin * 2) - this.dimensions.chartLabelHeight - this.dimensions.plotTop - this.dimensions.plotBottom;
+		//alert(this.dimensions.chartLabelHeight);
 		return this;
 	};
 	/**
@@ -275,7 +342,8 @@ function org_scn_community_databound_BaseViz(d3, options){
 	};
 	this.afterUpdate = function() {
 		var that = this;
-		this.calculateDimensions()
+		this.updateLabels()
+			.calculateDimensions()
 			.updateMessage()
 			.updateCosmetics();
 		
@@ -305,6 +373,31 @@ function org_scn_community_databound_BaseViz(d3, options){
 			.attr("opacity", 1);
 	}
 	var parentInit = this.init;
+	/**
+	 *  _________________________________________________
+	 * |svg                                              |
+	 * |  _____________________________________________  |
+	 * | |#canvas with clippath                        | |
+	 * | |#chartTitle                                  | |
+	 * | |  _________________________________________  | |
+	 * | | |#stage                                   | | |
+	 * | | |  ____________   ______________________  | | |
+	 * | | | |#legendgroup| |#plotarea             | | | |
+	 * | | | |            | | 1)plot layer         | | | |
+	 * | | | |            | | 2)y-axis group       | | | |
+	 * | | | |            | | 3)x-axis group       | | | |
+	 * | | | |            | |                      | | | |
+	 * | | | |____________| |______________________| | | |
+	 * | | |_________________________________________| | |
+	 * | |_____________________________________________| |
+	 * |  _____________________________________________  |
+	 * | |#message (hidden unless message)             | |
+	 * | |_____________________________________________| |
+	 * |                                                 |
+	 * |_________________________________________________|
+	 * 
+	 */
+	
 	this.init = function(){
 		parentInit.apply(this);
 		this.$().addClass("Viz");
@@ -312,12 +405,24 @@ function org_scn_community_databound_BaseViz(d3, options){
 		this.svg = d3.select("#" + this.$().attr("id")).select("svg");
 		if(this.svg.empty()){
 			this.svg = d3.select("#" + this.$().attr("id")).append("svg");
+			this.svg
+				.attr("preserveAspectRatio","xMidYMid meet")
+				.attr("width","100%")
+				.attr("height","100%");
 			this.svgDefs = this.svg.append("defs");
 			this.svgStyle = this.svgDefs.append("style")
 				.attr("type","text/css");
 			
 			// Main Plot Area
 			this.canvas = this.svg.append("g");
+			// Chart Title
+			this.chartLabel = this.canvas.append("text")
+				.attr("text-anchor","middle")
+				//.attr("dominant-baseline","hanging")	// Not supported in IE :(
+				.attr("class","chartTitle");
+			// Stage holding legend and plot
+			this.stage = this.canvas.append("g")
+				.attr("id",this.$().attr("id")+"_stage");
 			// Clip Path
 			this.clip = this.canvas.append("clipPath")
 				.attr("id",this.$().attr("id")+"_clip");
@@ -325,40 +430,41 @@ function org_scn_community_databound_BaseViz(d3, options){
 			this.clipRect = this.clip.append("rect")
 				.attr("class","clipRect");
 			// Plot Area
-			this.plotArea = this.canvas.append("g");
+			this.plotArea = this.stage.append("g")
+				.attr("id",this.$().attr("id") + "_plotarea");
 			// Plot Layer
 			this.plotLayer = this.plotArea.append("g")
-				.attr("clip-path","url(#" + this.$().attr("id")+"_clip)");
+				.attr("clip-path","url(#" + this.$().attr("id")+"_clip)")
+				.attr("id",this.$().attr("id")+"_plotlayer");
 			/*
 			 * Axes
 			 */
 			this.yAxisGroup = this.plotArea.append("g")
-				.attr("class", "y axis");
+				.attr("class", "y axis")
+				.attr("id",this.$().attr("id")+"_yaxis");
 			this.xAxisGroup = this.plotArea.append("g")
 				.attr("class", "x axis")
-				.attr("transform", "translate(0," + this.dimensions.plotHeight + ")");
+				.attr("transform", "translate(0," + this.dimensions.plotHeight + ")")
+				.attr("id",this.$().attr("id")+"_xaxis");
 			/*
 			 * Legend
 			 */
-			this.legendGroup = this.canvas.append('g')
-        		.attr('class', "legend-group" );
+			this.legendGroup = this.stage.append('g')
+        		.attr('class', "legend-group" )
+				.attr("id",this.$().attr("id")+"_legend");
 			this.legendRect = this.legendGroup.append('rect')
 	        	.attr("class", "legend-container")	
 	        	.attr('x', 0)
 	        	.attr('y', 0);
 			this.legendLabel = this.legendGroup.append('text')
 	        	.attr('class', 'legend-label');
-			// Chart Title
-			this.chartLabel = this.canvas.append("text")
-				.attr("text-anchor","middle")
-				.attr("alignment-baseline","baseline")
-				.attr("class","chartTitle");
 			/*
 			 * Messages
 			 */
 			this.messageGroup = this.svg.append("g")
 		    	.attr("display", "none")
-		    	.attr("opacity", 0);
+		    	.attr("opacity", 0)
+		    	.attr("id",this.$().attr("id")+"_message");
 	    
 		    this.messageRect = this.messageGroup.append("rect")
 		    	.attr("fill", "#006699")

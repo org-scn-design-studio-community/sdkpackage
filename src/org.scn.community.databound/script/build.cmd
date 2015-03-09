@@ -1,5 +1,9 @@
 del ..\contribution.xml /q
 
+REM Build Viz Databound contribution.xml files
+call build_viz.cmd
+
+REM Build the rest as normal
 type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\templates\contribution.xml.head.txt ^
 ..\..\org.scn.community.shared\templates.main\eula.xml.txt ^

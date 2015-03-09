@@ -1,0 +1,11 @@
+
+		<!-- BaseVizXY Defaults -->
+		<defaultValue property="xAxisTicks">5</defaultValue>
+		<defaultValue property="yAxisTicks">5</defaultValue>
+		<defaultValue property="xAxisOrientation">bottom</defaultValue>
+		<defaultValue property="yAxisOrientation">left</defaultValue>
+		<defaultValue property="maxX">0</defaultValue>
+		<defaultValue property="maxY">0</defaultValue>
+		<defaultValue property="minX">0</defaultValue>
+		<defaultValue property="minY">0</defaultValue>
+		<!-- End of BaseVizXY Defaults -->

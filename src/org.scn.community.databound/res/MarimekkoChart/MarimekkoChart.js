@@ -283,7 +283,7 @@
 	  		  segs.exit().transition().delay(this.ms()).remove();
 	  		  
 	  		  lbls.enter().append("text")
-	  		  	.style("text-anchor","middle")
+	  		  	.attr("text-anchor","middle")
 	  		  	.attr("dy",".5em")
 	  		  	.attr("opacity",0);
 	  		  
@@ -294,12 +294,12 @@
 	  		  	.attr("xlink:title", function(d) { return d.row + " " + d.parent.key + ": " + n(d.value); });
 	  		  
 	  		  columns.select(".labelLayer").selectAll("text")
-	  		  //lbls
 	  		  	.text(function(d) { 
 	  		  		return that.formatter(d.value);
 	  		  	})
 	  		  	.attr("pointer-events", "none")
-	  		  	.transition().duration(this.ms())    
+	  		  	.attr("style",this.chartValueStyle())
+	  		  	.transition().duration(this.ms())
 	  		  	.attr("opacity",function(d){
 	  		  		if(that.showValues()){
 	  		  			return 1;

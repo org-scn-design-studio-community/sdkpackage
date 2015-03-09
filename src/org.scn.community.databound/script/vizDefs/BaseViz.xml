@@ -1,0 +1,25 @@
+
+	<!-- Base Viz Properties -->
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
+	<property id="styleCSS" title="Style CSS" type="String"/>
+	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
+	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
+	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
+	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int"/>
+	<property id="legendScale" title="Legend Scale" type="float"/>
+	<property id="legendX" title="Legend Offset X" type="int"/>
+	<property id="legendY" title="Legend Offset Y" type="int"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int"/>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="margin" type="int" title = "Margin Size" visible="false"/>
+	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="true"/>
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="plotLeft" title="Plot Offset Left" type="int"/>
+	<property id="plotRight" title="Plot Offset Right" type="int"/>
+	<property id="plotTop" title="Plot Offset Top" type="int"/>
+	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<!-- End of Base Viz Properties -->

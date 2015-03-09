@@ -82,6 +82,10 @@
 	    	var parentInit = this.init;
 	    	this.init = function(){
 	    		parentInit.call(this);
+	    		this.pathGroup = this.plotLayer.append('g')
+					.attr('class', 'path-group');
+	    		this.labelGroup = this.plotLayer.append('g')
+					.attr('class', 'label-group');
 	    		this.$().addClass("HexBin");
 	    	}
 	    	var parentUpdatePlot = this.updatePlot;
@@ -170,7 +174,8 @@
 						translate = "translate(" + x + "," + y + ")";
 						return translate;	
 					});
-				var canvSelection = this.plotLayer.selectAll(".hexagon").data(this.hexbins);
+				var labelSelection = this.labelGroup.selectAll("text").data(this.hexbins);
+				var canvSelection = this.pathGroup.selectAll(".hexagon").data(this.hexbins);
 				canvSelection.enter().append("path")
 					.attr("class", "hexagon")
 					.attr("d", this.hexbin.hexagon())
@@ -180,14 +185,34 @@
 					.on("mouseout",tip.hide)
 					.style("fill", function(d) { return that.colorRange(d.length); });
 				
+				labelSelection.enter().append("text")
+					.attr("class","chartValue")
+					.attr("text-anchor","middle")
+					.attr("pointer-events", "none")
+	  		  		.attr("dy",".5em")
+					.attr("style",this.chartValueStyle())
+					.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ") scale(1)"; });
+				
 				canvSelection
 					.transition().duration(this.ms())
 					.attr("d", this.hexbin.hexagon())
 					.attr("opacity",this.plotAlpha()/100)
 					.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ") scale(1)"; })
 					.style("fill", function(d) { return that.colorRange(d.length); });
-
+				
+				labelSelection
+					.text(function(d){return d.length;})
+					.transition().duration(this.ms())
+					.attr("opacity",function(){
+							var op = 0;
+							if(that.showValues()) op = that.plotAlpha()/100;
+							return op;
+	    			})
+					.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ") scale(1)"; });
+				
+				
 				canvSelection.exit().remove();
+				labelSelection.exit().remove();
 				return this;
 	    	}
 	    	var parentUpdateLegend = this.updateLegend;

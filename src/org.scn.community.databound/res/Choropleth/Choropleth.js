@@ -95,10 +95,10 @@
 						}
 					}
 				},
-				mapLeft : { value : 0 },
-				mapTop : { value : 0 },
-				mapRight : { value : 0 },
-				mapBottom : { value : 0 },
+				plotLeft : { value : 0 },
+				plotTop : { value : 0 },
+				plotRight : { value : 0 },
+				plotBottom : { value : 0 },
 				center : { value : "0,0" },
 				scale : { value : 150 },
 				yaw : { value : 0.0 },
@@ -236,16 +236,8 @@
 				this.dimensions.gradientRight = this.gradientRight();
 				this.dimensions.gradientHeight = this.gradientHeight();
 				this.dimensions.gradientBottom = this.gradientBottom();
-				this.dimensions.mapLeft = this.mapLeft();
-				this.dimensions.mapRight = this.mapRight();
-				this.dimensions.mapTop = this.mapTop();
-				this.dimensions.mapBottom = this.mapBottom();
-				if(this.legendOn()){
-					if (this.makeRoomX()) this.dimensions.mapLeft += (this.dimensions.legendWidth + this.legendX());
-				}
 				this.dimensions.gradientWidth = this.dimensions.plotWidth - this.dimensions.gradientLeft - this.dimensions.gradientRight;
-				this.dimensions.mapWidth = this.dimensions.plotWidth - this.dimensions.mapLeft - this.dimensions.mapRight;
-				this.dimensions.mapHeight = this.dimensions.plotHeight - this.dimensions.mapTop - this.dimensions.mapBottom;
+				//alert(JSON.stringify(this.dimensions));
 				return this;
 			}
 			/**
@@ -352,11 +344,9 @@
 		    	this.gradientTicks
 		    		.transition().duration(this.ms())
 		    		.attr("transform", "translate(" + trans +")");
-				this.plotLayer
+				this.plotArea
 		    		.transition().duration(this.ms())
-	    			.attr("transform", "translate("+this.dimensions.mapLeft+","+this.dimensions.mapTop+")")
-		    		.attr('width', this.dimensions.mapWidth)
-	    			.attr('height', this.dimensions.mapHeight);
+	    			.attr("transform", "translate("+this.dimensions.plotLeft+","+this.dimensions.plotTop+")");
 				this.clipRect
 					//.transition().duration(this.ms())
 					.attr("width", this.dimensions.plotWidth)
@@ -575,7 +565,7 @@
 			    		.transition().duration(this.ms())
     					.attr('width', this.dimensions.legendWidth)
     					.attr('height', extents.length * (unit * 2) + (unit * 3));
-			    	this.legendLabel
+					this.legendLabel
 			    		.transition().duration(this.ms())	
 			    		.attr('font-size', unit)
 				        .attr('x', (unit * 1))
@@ -649,8 +639,8 @@
             	
 	    		// Compute the bounds of a feature of interest, then derive scale & translate.
 		    	var b = this.projPath.bounds(this._mapJSON),
-		    	    s = .95 / Math.max((b[1][0] - b[0][0]) / this.dimensions.mapWidth, (b[1][1] - b[0][1]) / this.dimensions.mapHeight),
-		    	    t = [(this.dimensions.mapWidth - s * (b[1][0] + b[0][0])) / 2, (this.dimensions.mapHeight - s * (b[1][1] + b[0][1])) / 2];
+		    	    s = .95 / Math.max((b[1][0] - b[0][0]) / this.dimensions.plotWidth, (b[1][1] - b[0][1]) / this.dimensions.plotHeight),
+		    	    t = [(this.dimensions.plotWidth - s * (b[1][0] + b[0][0])) / 2, (this.dimensions.plotHeight - s * (b[1][1] + b[0][1])) / 2];
 		    	
 		    	this.proj.scale(s).translate(t);
 		    	

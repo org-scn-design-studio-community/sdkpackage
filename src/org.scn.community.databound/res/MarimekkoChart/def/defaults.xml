@@ -1,0 +1,20 @@
+
+		<!-- Begin of Marimekko Chart Defaults -->
+		<defaultValue property="chartTitle">Marimekko Chart</defaultValue>
+		<defaultValue property="styleCSS">/*Default CSS*/
+__n__.plot {
+__n__  stroke: #303030;
+__n__  stroke-width: .75px;
+__n__  fill: none;
+__n__}
+__n__.plot:hover {
+__n__  stroke: #303030;
+__n__  stroke-width: 2px;
+__n__}
+		</defaultValue>
+		<defaultValue property="xAxisTicks">5</defaultValue>
+		<defaultValue property="yAxisTicks">5</defaultValue>
+		<defaultValue property="xAxisOrientation">bottom</defaultValue>
+		<defaultValue property="yAxisOrientation">left</defaultValue>
+		
+		<!-- End of Marimekko Chart Defaults -->

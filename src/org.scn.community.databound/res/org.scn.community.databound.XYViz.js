@@ -110,6 +110,7 @@ function org_scn_community_databound_XYViz(d3, options){
 	};
 	var parentUpdatePlot = this.updatePlot;
 	this.updatePlot = function() {
+		this.updateAxes();
 		parentUpdatePlot.apply(this);
 		return this;
 	};
@@ -182,23 +183,6 @@ function org_scn_community_databound_XYViz(d3, options){
 		if(xTicks > 0) this.xAxis.ticks(xTicks);
 		return this;
 	}
-	this.afterUpdate = function() {
-		var that = this;
-		this.calculateDimensions()
-			.updateCosmetics();
-		
-		var check = this.preReqCheck();
-		if(check.success){
-			this.updateAxes()
-				.updatePlot()
-				.updateLegend();
-		}else{
-			// Give informational window
-			this.displayMessage(check.reason);
-			return;
-		}
-		this._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);
-	};
 	/**
 	 * Update Legend
 	 */

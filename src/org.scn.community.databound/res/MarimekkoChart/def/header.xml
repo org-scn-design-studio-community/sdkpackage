@@ -1,0 +1,18 @@
+
+<component
+		id="MarimekkoChart"
+		title="Marimekko Chart"
+		icon="res/MarimekkoChart/MarimekkoChart.png"
+		handlerType="div"
+		propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<stdInclude kind="d3"/>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<cssInclude>os/d3-tip.css</cssInclude>

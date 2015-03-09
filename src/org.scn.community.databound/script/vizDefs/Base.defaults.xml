@@ -1,0 +1,4 @@
+
+		<!-- Base Defaults -->
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<!-- End of Base Defaults -->
