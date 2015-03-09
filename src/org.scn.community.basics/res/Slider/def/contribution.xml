@@ -46,6 +46,10 @@
 		type="ScriptText"
 		group="Events" />
 	<property
+		id="DLiveChangeActive"
+		title="Activate Live Change Event (prototype)"
+		type="boolean" />
+	<property
 		id="onLiveChange"
 		title="On Live Change"
 		type="ScriptText"
@@ -59,5 +63,6 @@
 		<defaultValue property="totalUnits">10</defaultValue>
 		<defaultValue property="vertical">false</defaultValue>
 		<defaultValue property="smallStepWidth">10</defaultValue>
+		<defaultValue property="DLiveChangeActive">false</defaultValue>
 	</initialization>
 </component>
