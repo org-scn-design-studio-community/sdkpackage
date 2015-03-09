@@ -156,7 +156,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.CheckBoxGr
 		}
 
 		var oCheckBox = new sap.ui.commons.CheckBox({
-			change: function() {
+			change: function(oControlEvent) {
 
 				var lElementsToRender = that.getElements();
 				if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != ""){

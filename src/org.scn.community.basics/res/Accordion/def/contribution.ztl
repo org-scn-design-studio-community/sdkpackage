@@ -11,7 +11,7 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 			
 			this.cleanAll = true;
 	*}
-	
+
 	/** Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.
 	 * You need to specify a unique and existing parent element.
 	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.  

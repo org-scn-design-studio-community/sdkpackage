@@ -27,8 +27,8 @@
 	<initialization>
 		<defaultValue property="WIDTH">10</defaultValue>
 		<defaultValue property="HEIGHT">10</defaultValue>
-		<defaultValue property="TOP_MARGIN">0</defaultValue>
-		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="TOP_MARGIN">-2000</defaultValue>
+		<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 
