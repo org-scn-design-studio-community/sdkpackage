@@ -227,6 +227,11 @@ function org_scn_community_databound_BaseViz(d3, options){
 		this.canvas
 			.transition().duration(this.ms())
 			.attr("transform", "translate(" + (this.dimensions.margin) + "," + this.dimensions.margin + ")");
+		this.mainClipRect
+			.transition().duration(this.ms())
+			//.attr("transform", "translate(" + (this.dimensions.margin) + "," + this.dimensions.margin + ")")
+			.attr("width", this.dimensions.width)
+			.attr("height", this.dimensions.height);
 		// Reorient Plot Area
 		this.stage
 			.transition().duration(this.ms())
@@ -234,6 +239,12 @@ function org_scn_community_databound_BaseViz(d3, options){
 		this.plotArea
 			.transition().duration(this.ms())
 			.attr("transform", "translate(" + (this.dimensions.plotLeft) + "," + (this.dimensions.plotTop) + ")");
+		/*
+		this.legendGroup.attr("transform", function(d){
+			return d.translate;
+			//return "translate(" + that.dimensions.legendX + "," + that.dimensions.legendY + d.y + ") scale(" + that.legendScale() + ")";
+			}).call(this.legendDrag);
+			*/
 		var legendTransition;
 		if(this.legendOn()){
 			legendTransition = this.legendGroup
@@ -248,10 +259,8 @@ function org_scn_community_databound_BaseViz(d3, options){
 				.attr("display", "none");
 		}
 		// Reorient and Resize Legend Group		
-		legendTransition
 			//.transition().duration(this.ms())
-			.attr("transform", "translate("+this.dimensions.legendX+","+this.dimensions.legendY+") "+
-				  "scale(" + this.legendScale() + ")");
+			
 
 		// Reorient and Resize Message Box
 		this.messageRect
@@ -340,6 +349,15 @@ function org_scn_community_databound_BaseViz(d3, options){
 			.attr("opacity", 0);
 		return this;
 	};
+	this.dragLegend = function(d) {
+		d3.select(this)
+			.attr("transform", d.translate = "translate(" + that.dimensions.legendX + "," + 
+					that.dimensions.legendY + d3.event.y + ") scale(" + that.legendScale() + ")");
+	}
+
+	/**
+	 * Fires after Design Studio property updates
+	 */
 	this.afterUpdate = function() {
 		var that = this;
 		this.updateLabels()
@@ -372,6 +390,32 @@ function org_scn_community_databound_BaseViz(d3, options){
 			.transition().duration(this.ms())
 			.attr("opacity", 1);
 	}
+	// Semantic Zooming - not working
+	var that = this;
+	this.semanticZoomed = function(){
+		d3.select(this).attr("transform",function transform(d) {
+			  return "translate(" + that.zoomscale.x(d[0]) + "," + that.zoomscale.y(d[1]) + ")";
+		});
+	}
+	// Geometric Zooming
+	this.zoomed = function(d){
+		//d3.select(this).selectAll(".hexagon").style("stroke-width", .25 / d3.event.scale);
+		/*function(d){
+				var sw = d3.select(this).style("stroke-width");
+				return (sw + 0) / d3.event.scale + "px";
+		});*/
+		
+		if(d3.event.scale>1){
+			d3.select(this)
+				//.transition().duration(200)
+				.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");	
+		}else{
+			d3.select(this)
+				//.transition().duration(200)
+				.attr("transform", "translate("+that.margin() + " " + that.margin() + ")scale(" + d3.event.scale + ")");
+		}
+		
+	};
 	var parentInit = this.init;
 	/**
 	 *  _________________________________________________
@@ -401,9 +445,17 @@ function org_scn_community_databound_BaseViz(d3, options){
 	this.init = function(){
 		parentInit.apply(this);
 		this.$().addClass("Viz");
+		this.$().css({"overflow":"hidden"});
 		this.calculateDimensions();
 		this.svg = d3.select("#" + this.$().attr("id")).select("svg");
 		if(this.svg.empty()){
+			this.zoomscale = {
+				x : d3.scale.linear().domain([0,this.dimensions.width]).range([0,this.dimensions.width]),
+				y : d3.scale.linear().domain([0,this.dimensions.height]).range([0,this.dimensions.height])
+			};
+			this.zoom = d3.behavior.zoom()
+				.scaleExtent([1,10])
+				.on("zoom",this.zoomed);
 			this.svg = d3.select("#" + this.$().attr("id")).append("svg");
 			this.svg
 				.attr("preserveAspectRatio","xMidYMid meet")
@@ -412,9 +464,21 @@ function org_scn_community_databound_BaseViz(d3, options){
 			this.svgDefs = this.svg.append("defs");
 			this.svgStyle = this.svgDefs.append("style")
 				.attr("type","text/css");
-			
+			this.main = this.svg.append("g");
 			// Main Plot Area
-			this.canvas = this.svg.append("g");
+			this.canvas = this.main.append("g")
+				.call(this.zoom);/*
+				.call(d3.behavior.zoom()
+						.x(this.zoomscale.x)
+						.y(this.zoomscale.y)
+						.scaleExtent([1,10])
+						.on("zoom",this.semanticZoomed));*/
+			// Clip Path
+			this.mainClip = this.svgDefs.append("clipPath")
+				.attr("id",this.$().attr("id")+"_mainclip");
+			// Rectangle Shape for clip path
+			this.mainClipRect = this.mainClip.append("rect");
+			this.main.attr("clip-path","url(#" + this.$().attr("id")+"_mainclip)");
 			// Chart Title
 			this.chartLabel = this.canvas.append("text")
 				.attr("text-anchor","middle")
@@ -449,9 +513,18 @@ function org_scn_community_databound_BaseViz(d3, options){
 			/*
 			 * Legend
 			 */
+			this.legendDrag = d3.behavior.drag()
+		    	.origin(Object)
+		    	.on("drag", this.dragLegend);
+			
 			this.legendGroup = this.stage.append('g')
+				.data([{x:0,y:0}])
         		.attr('class', "legend-group" )
-				.attr("id",this.$().attr("id")+"_legend");
+				.attr("id",this.$().attr("id")+"_legend")
+				.attr("transform", function(d){
+					return d.translate;
+				})
+				.call(this.legendDrag);
 			this.legendRect = this.legendGroup.append('rect')
 	        	.attr("class", "legend-container")	
 	        	.attr('x', 0)
@@ -461,7 +534,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			/*
 			 * Messages
 			 */
-			this.messageGroup = this.svg.append("g")
+			this.messageGroup = this.main.append("g")
 		    	.attr("display", "none")
 		    	.attr("opacity", 0)
 		    	.attr("id",this.$().attr("id")+"_message");

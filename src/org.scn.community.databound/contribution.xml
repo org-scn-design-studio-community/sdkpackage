@@ -217,12 +217,15 @@
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
+	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
 	<property id="legendWidth" title="Legend Width (px)" type="int"/>
 	<property id="legendScale" title="Legend Scale" type="float"/>
 	<property id="legendX" title="Legend Offset X" type="int"/>
@@ -794,12 +797,15 @@
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
+	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
 	<property id="legendWidth" title="Legend Width (px)" type="int"/>
 	<property id="legendScale" title="Legend Scale" type="float"/>
 	<property id="legendX" title="Legend Offset X" type="int"/>
@@ -1059,12 +1065,15 @@ __n__}
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
+	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
 	<property id="legendWidth" title="Legend Width (px)" type="int"/>
 	<property id="legendScale" title="Legend Scale" type="float"/>
 	<property id="legendX" title="Legend Offset X" type="int"/>
@@ -1431,12 +1440,15 @@ __n__}
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
+	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
 	<property id="legendWidth" title="Legend Width (px)" type="int"/>
 	<property id="legendScale" title="Legend Scale" type="float"/>
 	<property id="legendX" title="Legend Offset X" type="int"/>
