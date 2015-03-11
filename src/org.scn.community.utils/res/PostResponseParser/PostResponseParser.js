@@ -38,12 +38,13 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 	renderer: {},
 	
 	afterDesignStudioUpdate : function() {
+		var that = this;
+
 		if(this.getDUrl() != "" && this.getDTrigger() == "GO") {
-			var lParameters = this.getDParameters();
-			var that = this;
+			var lParameters = that.getDParameters();
 
 			var http = new XMLHttpRequest();
-			var url = this.getDUrl();
+			var url = that.getDUrl();
 			
 			var params = "";
 			var emphason = "";
@@ -68,28 +69,28 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 
 			// "application/json; charset=utf-8"
 			if(this.getDContentType() != "") {
-				http.setRequestHeader("Content-type", this.getDContentType());	
+				http.setRequestHeader("Content-type", that.getDContentType());	
 			}
 			
 			
 			if(this.getDBasicAuthorisation() != "") {
-				http.setRequestHeader("Authorization", this.getDBasicAuthorisation());	
+				http.setRequestHeader("Authorization", that.getDBasicAuthorisation());	
 			}
 			
 			http.onreadystatechange = function() {
-			    if(http.readyState == 4 && http.status == this.getDExpectedResponseStatus()) {
+			    if(http.readyState == 4 && http.status == that.getDExpectedResponseStatus()) {
 			        alert(http.responseText);
 			    }
 			}
 			
 			http.send(params);
 			
-			if(this.getDTrigger() != "") {
+			if(that.getDTrigger() != "") {
 				// clean up the trigger
-				this.setDTrigger("");
+				that.setDTrigger("");
 
 				// fire event to rerender
-				this.fireDesignStudioPropertiesChanged(["DTrigger"]);
+				that.fireDesignStudioPropertiesChanged(["DTrigger"]);
 			}
 		}
 	}

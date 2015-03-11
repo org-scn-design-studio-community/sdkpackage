@@ -35,20 +35,6 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	*}
 
 	/**
-	 * Sets Response Status for Good Response Property
-	 */	
-	void setExpectedResponseStatus( /* &nbsp; */  int expectedResponseStatus){*
-		this.DExpectedResponseStatus = expectedResponseStatus;
-	*}
-
-	/**
-	 * Gets Response Status for Good Response Property
-	 */	
-	int getExpectedResponseStatus() {*
-		return this.DExpectedResponseStatus;
-	*}
-
-	/**
 	 * Sets Content Type Property
 	 */	
 	void setContentType( /* &nbsp; */  String contentType){*
@@ -60,6 +46,20 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	 */	
 	String getContentType() {*
 		return this.DContentType;
+	*}
+
+	/**
+	 * Sets Response Status for Good Response Property
+	 */	
+	void setExpectedResponseStatus( /* &nbsp; */  int expectedResponseStatus){*
+		this.DExpectedResponseStatus = expectedResponseStatus;
+	*}
+
+	/**
+	 * Gets Response Status for Good Response Property
+	 */	
+	int getExpectedResponseStatus() {*
+		return this.DExpectedResponseStatus;
 	*}
 
 	/**

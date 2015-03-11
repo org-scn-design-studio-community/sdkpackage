@@ -15,8 +15,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 
 		this.initDUrl();
 		this.initDBasicAuthorisation();
-		this.initDExpectedResponseStatus();
 		this.initDContentType();
+		this.initDExpectedResponseStatus();
 		this.initDParameters();
 		this.initDRawParameters();
 		
@@ -25,8 +25,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 	this.componentSelected = function(){
 		this.updateDUrl();
 		this.updateDBasicAuthorisation();
-		this.updateDExpectedResponseStatus();
 		this.updateDContentType();
+		this.updateDExpectedResponseStatus();
 		this.updateDParameters();
 		this.updateDRawParameters();
 		
@@ -99,39 +99,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		}
 	};
 
-	this.updatePropertyDExpectedResponseStatus = function(){
-		this._inputDExpectedResponseStatus.setValue(this._DExpectedResponseStatus);
-	};
-	
-	this.initDExpectedResponseStatus = function(){
-		this._labelDExpectedResponseStatus = new sap.ui.commons.Label({text: " Response Status for Good Response"});
-		this._labelDExpectedResponseStatus.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDExpectedResponseStatus);
-		
-		this._inputDExpectedResponseStatus = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDExpectedResponseStatus);
-		this._inputDExpectedResponseStatus.attachChange(this.propertyChangedDExpectedResponseStatus, this);
-		this._inputDExpectedResponseStatus.addStyleClass("org-scn-ApsSimple");
-		
-		this.updatePropertyDExpectedResponseStatus();
-	};
-
-	this.propertyChangedDExpectedResponseStatus = function(oControlEvent){
-		var value = oControlEvent.getParameter("newValue");
-		this._DExpectedResponseStatus = value;
-		this.firePropertiesChanged(["DExpectedResponseStatus"]);
-	};
-	
-	this.DExpectedResponseStatus = function(s){
-		if( s === undefined){
-			return this._DExpectedResponseStatus;
-		}else{
-			this._DExpectedResponseStatus = s;
-			this.updatePropertyDExpectedResponseStatus();
-			return this;
-		}
-	};
-
 	this.updatePropertyDContentType = function(){
 		this._inputDContentType.setValue(this._DContentType);
 	};
@@ -161,6 +128,39 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		}else{
 			this._DContentType = s;
 			this.updatePropertyDContentType();
+			return this;
+		}
+	};
+
+	this.updatePropertyDExpectedResponseStatus = function(){
+		this._inputDExpectedResponseStatus.setValue(this._DExpectedResponseStatus);
+	};
+	
+	this.initDExpectedResponseStatus = function(){
+		this._labelDExpectedResponseStatus = new sap.ui.commons.Label({text: " Response Status for Good Response"});
+		this._labelDExpectedResponseStatus.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDExpectedResponseStatus);
+		
+		this._inputDExpectedResponseStatus = new sap.ui.commons.TextField({width: "300px"});
+		this._content.addContent(this._inputDExpectedResponseStatus);
+		this._inputDExpectedResponseStatus.attachChange(this.propertyChangedDExpectedResponseStatus, this);
+		this._inputDExpectedResponseStatus.addStyleClass("org-scn-ApsSimple");
+		
+		this.updatePropertyDExpectedResponseStatus();
+	};
+
+	this.propertyChangedDExpectedResponseStatus = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		this._DExpectedResponseStatus = value;
+		this.firePropertiesChanged(["DExpectedResponseStatus"]);
+	};
+	
+	this.DExpectedResponseStatus = function(s){
+		if( s === undefined){
+			return this._DExpectedResponseStatus;
+		}else{
+			this._DExpectedResponseStatus = s;
+			this.updatePropertyDExpectedResponseStatus();
 			return this;
 		}
 	};
