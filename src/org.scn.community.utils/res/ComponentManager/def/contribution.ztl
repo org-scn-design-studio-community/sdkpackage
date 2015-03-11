@@ -759,6 +759,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Multi Level DropDown Menu component*/
 	org.scn.community.databound.MultiLevelDropDown returnAsScnMultiLevelDropDown (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Nice Chart component*/
+	org.scn.community.databound.NiceChart returnAsScnNiceChart (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Projector component*/
 	org.scn.community.databound.Projector returnAsScnProjector (Component inputComponent) {* return inputComponent; *}
 
@@ -839,6 +842,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to PDF Print component*/
 	org.scn.community.utils.PdfPrint returnAsScnPdfPrint (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Post Responce Parser component*/
+	org.scn.community.utils.PostResponceParser returnAsScnPostResponceParser (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}

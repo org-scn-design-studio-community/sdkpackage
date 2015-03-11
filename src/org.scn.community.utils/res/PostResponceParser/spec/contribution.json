@@ -1,0 +1,59 @@
+{
+	"DUrl" : {
+		"gen-type":"String",
+	},
+	
+	"DBasicAuthorisation" : {
+		"gen-type":"String",
+	},
+	
+	"DParameters":{
+      "gen-type":"DoubleArray",
+
+      "parameter":{
+         "gen-type":"Array",
+         "gen-sequence":"key,value",
+         
+         "key": {
+         	"gen-desc": "Parameter Key",
+         	"gen-type": "String",
+         },
+         "value": {
+         	"gen-desc": "Parameter Value",
+         	"gen-type": "String",
+         },
+         
+         "subParameter":{
+            "gen-type":"Array",
+            "gen-sequence":"parentKey,key,value",
+
+            "parentKey": {
+	         	"gen-desc": "The key of the parent button",
+	         	"gen-type": "String",
+	         	"gen-mode": "ztl"
+	         },
+	         "key": {
+	         	"gen-desc": "Unique key of this item",
+	         	"gen-type": "String",
+	         },
+	         "value": {
+         		"gen-desc": "Parameter Value",
+         		"gen-type": "String",
+         	 },
+         }
+      },
+   },
+   
+   "DCleanAll" : {
+   	  "gen-type":"boolean",
+   	  "gen-mode":"ztl",
+   	  "gen-function":"-clean",
+   	  "gen-refProperty":"DParameters",
+   	  "gen-refDesc":"Parameters",
+   	  "gen-refValue":"[]",
+   },
+   
+   "DRawParameters" : {
+		"gen-type":"String",
+   },
+}

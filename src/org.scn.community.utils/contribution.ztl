@@ -2996,6 +2996,198 @@ class org.scn.community.utils.PdfPrint extends org.scn.community.shared.Componen
 		this.rootPanel = panelName;
 	*}
 }
+
+/**
+ * Generated ZTL Class for Post Responce Parser
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /gen/contribution.ztl
+ */
+class org.scn.community.utils.PostResponceParser extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Url To Open by Post Property
+	 */	
+	void setUrl( /* &nbsp; */  String url){*
+		this.DUrl = url;
+	*}
+
+	/**
+	 * Gets Url To Open by Post Property
+	 */	
+	String getUrl() {*
+		return this.DUrl;
+	*}
+
+	/**
+	 * Sets basic Authorization Content Property
+	 */	
+	void setBasicAuthorisation( /* &nbsp; */  String basicAuthorisation){*
+		this.DBasicAuthorisation = basicAuthorisation;
+	*}
+
+	/**
+	 * Gets basic Authorization Content Property
+	 */	
+	String getBasicAuthorisation() {*
+		return this.DBasicAuthorisation;
+	*}
+
+	/**
+	 * Remove All Parameters from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DParameters = JSON.stringify(elementsArray);
+	*}
+
+	/** Adds an element containing parentKey [String], key [String], value [String] properties.
+	 * You need to specify a unique and existing parent element.
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	POSTRESPONCEPARSER.addSubParameter(parentKey [String], key [String], value [String]);<br>
+	POSTRESPONCEPARSER.addSubParameter(parentKey [String], key [String], value [String]);
+	</code>
+	</example>
+	 */
+	void addSubParameter (
+			/**The key of the parent button*/String parentKey, 
+			/**Unique key of this item*/String key, 
+			/**Parameter Value*/String value
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key, 
+			value:value 
+			};
+	
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DParameters);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONCEPARSER.addParameter(key [String], value [String]);<br>
+	POSTRESPONCEPARSER.addParameter(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addParameter (
+			/**Parameter Key*/String key, 
+			/**Parameter Value*/String value
+			) {*		
+		
+		this.addSubParameter("ROOT", key, 
+			value);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	POSTRESPONCEPARSER.removeSubParameter(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeSubParameter (
+			String key
+			) {*		
+		
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DParameters);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	POSTRESPONCEPARSER.removeParameter(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeParameter (
+			String key
+			) {*		
+		
+		this.removeSubParameter(key);
+	*}
+
+	/**
+	 * Sets Technical proprty for raw parameters Property
+	 */	
+	void setRawParameters( /* &nbsp; */  String rawParameters){*
+		this.DRawParameters = rawParameters;
+	*}
+
+	/**
+	 * Gets Technical proprty for raw parameters Property
+	 */	
+	String getRawParameters() {*
+		return this.DRawParameters;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Trigger Execution of the given URL and parameter list
+	 */
+	void triggerExecution () {*
+		this.DTrigger = "GO";
+	*}
+}
 class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Component {
 
 	/**

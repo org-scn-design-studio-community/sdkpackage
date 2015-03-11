@@ -1,0 +1,68 @@
+
+<component
+	id="PostResponceParser"
+	title="Post Responce Parser"
+	tooltip="Creates a Request and Parses the Response (Json)"
+	icon="res/PostResponceParser/PostResponceParser.png"
+	handlerType="sapui5"
+	propertySheetPath="res/PostResponceParser/aps/PostResponceParserPropertyPage.html"
+	group="ScnCommunityUtils"
+>
+
+	<jsInclude>res/PostResponceParser/PostResponceParser.js</jsInclude>
+
+	<property
+		id="DUrl"
+		type="String"
+		title="Url To Open by Post"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DBasicAuthorisation"
+		type="String"
+		title="basic Authorization Content"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DTrigger"
+		type="String"
+		title="Just as Simple Triger"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DCleanAll"
+		type="String"
+		title="Clean All Parameters"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DParameters"
+		type="String"
+		title="Technical proprty for list of parameters (name/value)"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DRawParameters"
+		type="String"
+		title="Technical proprty for raw parameters"
+		group="Display"
+		visible="false" />
+
+	<initialization>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="TOP_MARGIN">-2000</defaultValue>
+		<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="DUrl"></defaultValue>
+		<defaultValue property="DParameters"></defaultValue>
+	</initialization>
+
+</component>
