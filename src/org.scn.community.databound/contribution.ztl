@@ -892,6 +892,130 @@ class org.scn.community.databound.MultiLevelDropDown extends org.scn.community.s
 
 }
 
+/**
+ * Generated ZTL Class for Nice Chart
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /gen/contribution.ztl
+ */
+class org.scn.community.databound.NiceChart extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Chart Type Property
+	 */	
+	void setChartType( /* &nbsp; */  String chartType){*
+		this.DChartType = chartType;
+	*}
+
+	/**
+	 * Gets Chart Type Property
+	 */	
+	String getChartType() {*
+		return this.DChartType;
+	*}
+
+	/**
+	 * Sets Swap Axes Property
+	 */	
+	void setSwapAxes( /* &nbsp; */  boolean swapAxes){*
+		this.DSwapAxes = swapAxes;
+	*}
+
+	/**
+	 * Gets Swap Axes Property
+	 */	
+	boolean getSwapAxes() {*
+		return this.DSwapAxes;
+	*}
+
+	/**
+	 * Sets Starting Color Hue Property
+	 */	
+	void setColorHue( /* &nbsp; */  int colorHue){*
+		this.DColorHue = colorHue;
+	*}
+
+	/**
+	 * Gets Starting Color Hue Property
+	 */	
+	int getColorHue() {*
+		return this.DColorHue;
+	*}
+
+	/**
+	 * Sets Starting Color Distance Property
+	 */	
+	void setColorDistance( /* &nbsp; */  float colorDistance){*
+		this.DColorDistance = colorDistance;
+	*}
+
+	/**
+	 * Gets Starting Color Distance Property
+	 */	
+	float getColorDistance() {*
+		return this.DColorDistance;
+	*}
+
+	/**
+	 * Sets Starting Color Palette Property
+	 */	
+	void setColorPalette( /* &nbsp; */  String colorPalette){*
+		this.DColorPalette = colorPalette;
+	*}
+
+	/**
+	 * Gets Starting Color Palette Property
+	 */	
+	String getColorPalette() {*
+		return this.DColorPalette;
+	*}
+
+	/**
+	 * Sets Show Legend Property
+	 */	
+	void setShowLegend( /* &nbsp; */  boolean showLegend){*
+		this.DShowLegend = showLegend;
+	*}
+
+	/**
+	 * Gets Show Legend Property
+	 */	
+	boolean getShowLegend() {*
+		return this.DShowLegend;
+	*}
+
+	/**
+	 * Sets Legend Position Property
+	 */	
+	void setLegendPosition( /* &nbsp; */  String legendPosition){*
+		this.DLegendPosition = legendPosition;
+	*}
+
+	/**
+	 * Gets Legend Position Property
+	 */	
+	String getLegendPosition() {*
+		return this.DLegendPosition;
+	*}
+
+	/**
+	 * Sets Width of Legend in px Property
+	 */	
+	void setLegendWidth( /* &nbsp; */  int legendWidth){*
+		this.DLegendWidth = legendWidth;
+	*}
+
+	/**
+	 * Gets Width of Legend in px Property
+	 */	
+	int getLegendWidth() {*
+		return this.DLegendWidth;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
 class org.scn.community.databound.Projector extends org.scn.community.shared.DataComponent {
 	/**
 	 * Sets data in serialized string form.  Meant to be used in conjunction with

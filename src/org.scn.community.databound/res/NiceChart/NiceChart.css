@@ -1,0 +1,97 @@
+.org-scn-NiceChart-Legend {
+	-border: 1px solid #000000 !important;
+	-background: #ffffff !important;
+}
+
+.org-scn-NiceChart-Overflow {
+        background: #ffffff;
+        border: 1px solid #000000;
+        color: rgb(240, 17, 17);
+        
+        margin: 2px;
+        padding: 3px;
+        border-radius: 3px;
+        -webkit-transition: all .1s ease;
+        transition: all .1s ease;
+        pointer-events: none;
+        -webkit-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+        font-weight: bold;
+        font-size: large;
+        
+        position: absolute;
+	    bottom: 10px;
+	    left: 200px;
+}
+
+.org-scn-NiceChart-Legend .title {
+    display: block;
+    margin-bottom: 0.5em;
+    line-height: 1.2em;
+    padding: 0 0.3em;
+}
+
+.org-scn-NiceChart-Legend .color-sample {
+    display: block;
+    float: left;
+    width: 1em;
+    height: 1em;
+    border: 2px solid; /* Comment out if you don't want to show the fillColor */
+    border-radius: 0.5em; /* Comment out if you prefer squarish samples */
+    margin-right: 0.5em;
+}
+
+.org-scn-NiceChart-Tooltip {
+        opacity: 0;
+        position: absolute;
+        -background: rgba(0, 0, 0, .9);
+        background: #ffffff;
+        border: 1px solid #000000;
+        color: white;
+        margin: 2px;
+        padding: 3px;
+        border-radius: 3px;
+        -webkit-transition: all .1s ease;
+        transition: all .1s ease;
+        pointer-events: none;
+        -webkit-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+}
+
+.chartjs-tooltip-key {
+	    margin: 1px;
+ 		display:inline-block;
+ 		width:16px;
+ 		height:16px;
+ 		float: left;
+ 		margin-left: 0.5em;
+}
+
+.chartjs-tooltip-text {
+	    margin: 1px;
+	    margin-left: 3px;
+ 		display:inline-block;
+ 		height:16px;
+ 		
+ 		float: left;
+ 		margin-right: 0.5em;
+ 		-color: #ffffff;
+ 		color: #000000;
+}
+
+.chartjs-tooltip-value {
+ 		margin: 1px;
+ 		display:inline-block;
+ 		height:16px;
+
+ 		float: right;
+ 		text-align:right;
+ 		margin-right: 0.5em;
+ 		-color: #ffffff;
+ 		color: #000000;
+}
+
+.chartjs-tooltip-section {
+	 -background: rgba(0, 0, 0, .7);
+	 background: #ffffff;
+}
