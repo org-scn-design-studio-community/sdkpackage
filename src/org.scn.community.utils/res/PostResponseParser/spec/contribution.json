@@ -6,7 +6,15 @@
 	"DBasicAuthorisation" : {
 		"gen-type":"String",
 	},
-	
+
+	"DExpectedResponseStatus" : {
+		"gen-type":"int",
+	},
+
+	"DContentType" : {
+		"gen-type":"String",
+	},
+		
 	"DParameters":{
       "gen-type":"DoubleArray",
 

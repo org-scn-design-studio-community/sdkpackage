@@ -1,27 +1,41 @@
 
 <component
-	id="PostResponceParser"
-	title="Post Responce Parser"
+	id="PostResponseParser"
+	title="Post Response Parser"
 	tooltip="Creates a Request and Parses the Response (Json)"
-	icon="res/PostResponceParser/PostResponceParser.png"
+	icon="res/PostResponseParser/PostResponseParser.png"
 	handlerType="sapui5"
-	propertySheetPath="res/PostResponceParser/aps/PostResponceParserPropertyPage.html"
+	propertySheetPath="res/PostResponseParser/aps/PostResponseParserPropertyPage.html"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/PostResponceParser/PostResponceParser.js</jsInclude>
+	<jsInclude>res/PostResponseParser/PostResponseParser.js</jsInclude>
 
 	<property
 		id="DUrl"
 		type="String"
-		title="Url To Open by Post"
+		title="Url To Send the Request"
 		group="Display"
 		visible="true" />
 
 	<property
 		id="DBasicAuthorisation"
 		type="String"
-		title="basic Authorization Content"
+		title="Basic Authorization Content [Basic: GUID]"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DExpectedResponseStatus"
+		type="int"
+		title="Response Status for Good Response"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DContentType"
+		type="String"
+		title="Content Type"
 		group="Display"
 		visible="true" />
 
@@ -42,7 +56,7 @@
 	<property
 		id="DParameters"
 		type="String"
-		title="Technical proprty for list of parameters (name/value)"
+		title="List of Parameters (key/value)"
 		group="Display"
 		visible="false" />
 

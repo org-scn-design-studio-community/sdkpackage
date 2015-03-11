@@ -17,14 +17,17 @@
  * limitations under the License. 
  */
 
-sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostResponceParser", {
+sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostResponseParser", {
 
 	metadata: {
         properties: {
               "DUrl": {type: "string"},
               "DTrigger": {type: "string"},
               "DParameters": {type: "string"},
+              "DRawParameters": {type: "string"},
               "DBasicAuthorisation": {type: "string"},
+              "DExpectedResponseStatus": {type: "int"},
+              "DContentType": {type: "string"},
         }
 	},
 
@@ -43,23 +46,38 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 			var url = this.getDUrl();
 			
 			var params = "";
+			var emphason = "";
 			
-			if((lParameters != undefined || lParameters != undefined) && lParameters != "" && lParameters != "<delete>"){
-				var lParametersArray = JSON.parse(lParameters);
-
-				params = JSON.stringify(lParametersArray);
+			var lRawParameters = this.getDRawParameters();
+			if(lRawParameters != undefined && lRawParameters.length > 0) {
+				params = lRawParameters;
+			} else {
+				if((lParameters != undefined || lParameters != undefined) && lParameters != "" && lParameters != "<delete>"){
+					var lParametersArray = JSON.parse(lParameters);
+					
+					for (var i = 0; i < lParametersArray.length; i++) {
+						if(lParametersArray[i].parentKey == "ROOT") {
+							params += emphason + lParametersArray[i].key + "=" + lParametersArray[i].value + "";
+							emphason = "&";
+						}
+					}
+				}
 			}
 			
 			http.open("POST", url, true);
 
-			http.setRequestHeader("Content-type", "application/json; charset=utf-8");
+			// "application/json; charset=utf-8"
+			if(this.getDContentType() != "") {
+				http.setRequestHeader("Content-type", this.getDContentType());	
+			}
+			
 			
 			if(this.getDBasicAuthorisation() != "") {
 				http.setRequestHeader("Authorization", this.getDBasicAuthorisation());	
 			}
 			
 			http.onreadystatechange = function() {
-			    if(http.readyState == 4 && http.status == 200) {
+			    if(http.readyState == 4 && http.status == this.getDExpectedResponseStatus()) {
 			        alert(http.responseText);
 			    }
 			}

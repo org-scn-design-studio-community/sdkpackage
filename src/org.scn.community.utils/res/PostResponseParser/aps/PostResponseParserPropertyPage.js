@@ -1,10 +1,10 @@
 
 /**
- * Generated ZTL Class for Post Responce Parser
+ * Generated ZTL Class for Post Response Parser
  * 
  * DO NOT EDIT
  */
-sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponceParserPropertyPage",  function() {
+sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponseParserPropertyPage",  function() {
 	var that = this;
 
 	this.init = function () {
@@ -15,6 +15,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponce
 
 		this.initDUrl();
 		this.initDBasicAuthorisation();
+		this.initDExpectedResponseStatus();
+		this.initDContentType();
 		this.initDParameters();
 		this.initDRawParameters();
 		
@@ -23,6 +25,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponce
 	this.componentSelected = function(){
 		this.updateDUrl();
 		this.updateDBasicAuthorisation();
+		this.updateDExpectedResponseStatus();
+		this.updateDContentType();
 		this.updateDParameters();
 		this.updateDRawParameters();
 		
@@ -34,7 +38,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponce
 	};
 	
 	this.initDUrl = function(){
-		this._labelDUrl = new sap.ui.commons.Label({text: " Url To Open by Post"});
+		this._labelDUrl = new sap.ui.commons.Label({text: " Url To Send the Request"});
 		this._labelDUrl.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDUrl);
 		
@@ -67,7 +71,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponce
 	};
 	
 	this.initDBasicAuthorisation = function(){
-		this._labelDBasicAuthorisation = new sap.ui.commons.Label({text: " basic Authorization Content"});
+		this._labelDBasicAuthorisation = new sap.ui.commons.Label({text: " Basic Authorization Content [Basic: GUID]"});
 		this._labelDBasicAuthorisation.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDBasicAuthorisation);
 		
@@ -91,6 +95,72 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponce
 		}else{
 			this._DBasicAuthorisation = s;
 			this.updatePropertyDBasicAuthorisation();
+			return this;
+		}
+	};
+
+	this.updatePropertyDExpectedResponseStatus = function(){
+		this._inputDExpectedResponseStatus.setValue(this._DExpectedResponseStatus);
+	};
+	
+	this.initDExpectedResponseStatus = function(){
+		this._labelDExpectedResponseStatus = new sap.ui.commons.Label({text: " Response Status for Good Response"});
+		this._labelDExpectedResponseStatus.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDExpectedResponseStatus);
+		
+		this._inputDExpectedResponseStatus = new sap.ui.commons.TextField({width: "300px"});
+		this._content.addContent(this._inputDExpectedResponseStatus);
+		this._inputDExpectedResponseStatus.attachChange(this.propertyChangedDExpectedResponseStatus, this);
+		this._inputDExpectedResponseStatus.addStyleClass("org-scn-ApsSimple");
+		
+		this.updatePropertyDExpectedResponseStatus();
+	};
+
+	this.propertyChangedDExpectedResponseStatus = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		this._DExpectedResponseStatus = value;
+		this.firePropertiesChanged(["DExpectedResponseStatus"]);
+	};
+	
+	this.DExpectedResponseStatus = function(s){
+		if( s === undefined){
+			return this._DExpectedResponseStatus;
+		}else{
+			this._DExpectedResponseStatus = s;
+			this.updatePropertyDExpectedResponseStatus();
+			return this;
+		}
+	};
+
+	this.updatePropertyDContentType = function(){
+		this._inputDContentType.setValue(this._DContentType);
+	};
+	
+	this.initDContentType = function(){
+		this._labelDContentType = new sap.ui.commons.Label({text: " Content Type"});
+		this._labelDContentType.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDContentType);
+		
+		this._inputDContentType = new sap.ui.commons.TextField({width: "300px"});
+		this._content.addContent(this._inputDContentType);
+		this._inputDContentType.attachChange(this.propertyChangedDContentType, this);
+		this._inputDContentType.addStyleClass("org-scn-ApsSimple");
+		
+		this.updatePropertyDContentType();
+	};
+
+	this.propertyChangedDContentType = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		this._DContentType = value;
+		this.firePropertiesChanged(["DContentType"]);
+	};
+	
+	this.DContentType = function(s){
+		if( s === undefined){
+			return this._DContentType;
+		}else{
+			this._DContentType = s;
+			this.updatePropertyDContentType();
 			return this;
 		}
 	};
@@ -464,7 +534,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponce
 	 */
 	this.initDParameters = function(){
 		
-		this._labelDParameters = new sap.ui.commons.Label({text: " Technical proprty for list of parameters (name/value)"});
+		this._labelDParameters = new sap.ui.commons.Label({text: " List of Parameters (key/value)"});
 		this._labelDParameters.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDParameters);
 		
