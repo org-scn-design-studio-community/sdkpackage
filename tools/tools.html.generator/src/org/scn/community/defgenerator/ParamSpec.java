@@ -272,14 +272,23 @@ public class ParamSpec {
 				template = template.replace("%ROOT_PROPERTY_DEFINITION_FULL%", ROOT_PROPERTY_DEFINITION_FULL);
 				template = template.replace("%PROPERTY_FULL%", PROPERTY_FULL);
 				template = template.replace("%ROOT_ALL_PROPERTIES%", ROOT_ALL_PROPERTIES);
-				template = template.replace("%CONTENT_NAME%", Helpers.makeFirstUpper(CONTENT_NAME));
+				if(CONTENT_NAME != null && CONTENT_NAME.length() > 0) {
+					template = template.replace("%CONTENT_NAME%", Helpers.makeFirstUpper(CONTENT_NAME));	
+				} else {
+					template = template.replace("%CONTENT_NAME%", "none");
+				}
+				
 				
 				template = template.replace("%COMPONENT_NAME%", this.parentProperty.getComponent().toUpperCase(Locale.ENGLISH));
 				template = template.replace("%PROPERTY_NAME%", this.parentProperty.getName());
 				template = template.replace("%ROOT_PROPERTY_DEFINITION_KEY%", ROOT_PROPERTY_DEFINITION_KEY);
 				template = template.replace("%ROOT_PROPERTY_KEY%", ROOT_PROPERTY_KEY);
 				
-				templateAps = templateAps.replace("%CONTENT_NAME%", Helpers.makeFirstUpper(CONTENT_NAME));
+				if(CONTENT_NAME != null && CONTENT_NAME.length() > 0) {
+					templateAps = templateAps.replace("%CONTENT_NAME%", Helpers.makeFirstUpper(CONTENT_NAME));	
+				} else {
+					templateAps = templateAps.replace("%CONTENT_NAME%", "none");
+				}
 				templateAps = templateAps.replace("%SECTION_CONTENT_HANDLER%", "");
 				templateAps = templateAps.replace("%ROOT_PROPERTY_DESCRIPTION%", ROOT_PROPERTY_DESCRIPTION);
 				

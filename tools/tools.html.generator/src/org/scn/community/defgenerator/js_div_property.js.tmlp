@@ -1,0 +1,8 @@
+				this.%PROPERTY_CAPITAL% = function(value) {
+	    			if (value === undefined) {
+	    				return this._%PROPERTY_CAPITAL%;
+	    			} else {
+	    				this._%PROPERTY_CAPITAL% = value;
+	    				return this;
+	    			};
+	    		};

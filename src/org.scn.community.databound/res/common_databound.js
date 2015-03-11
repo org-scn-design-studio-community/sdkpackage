@@ -57,6 +57,7 @@ org_scn_community_databound.initializeOptions = function () {
 	options.idPrefix = "";
 	options.iDisplayText = "Text";
 	options.ignoreResults = false;
+	options.dimensionSeparator = " | ";
 	
 	return options;
 }
@@ -537,6 +538,10 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
  * }
  */
 org_scn_community_databound.flatten = function (data, options) {
+	if(!options) {
+		options = org_scn_community_databound.initializeOptions();
+	}
+	
 	var retObj = {
 		columnHeaders : [],
 		columnHeaders2D : [],
@@ -589,7 +594,7 @@ org_scn_community_databound.flatten = function (data, options) {
 
 				rowHeader += sep + data.dimensions[j].members[rowAxisTuple[j]].text;
 				rowHeader2D.push(data.dimensions[j].members[rowAxisTuple[j]].text);
-				sep = " ";
+				sep = options.dimensionSeparator;
 			}
 		}
 		
@@ -613,6 +618,9 @@ org_scn_community_databound.flatten = function (data, options) {
 		if(newValueRow.length>0) retObj.values.push(newValueRow);
 		if(newFormattedValueRow.length>0) retObj.formattedValues.push(newFormattedValueRow);
 	}
+	
+	var spiceIndexCorrection = 0;
+	
 	// Make Column Header Labels
 	for(var col=0;col<retObj.geometry.colLength;col++){
 		var colHeader = "";
@@ -621,9 +629,19 @@ org_scn_community_databound.flatten = function (data, options) {
 		var sep = "";
 		for(var j=0;j<colAxisTuple.length;j++){
 			if(colAxisTuple[j] != -1){
+//				if(options.ignoreResults && data.dimensions[j].members[colAxisTuple[j]].type == "RESULT") {
+//					for(var row=0;row<maxRows;row++){
+//						if(retObj.values[row]) {
+//							retObj.values[row].spice(j-spiceIndexCorrection,1);
+//							retObj.formattedValues[row].spice(j-spiceIndexCorrection,1);
+//							spiceIndexCorrection++;
+//						}
+//					}
+//				}
+				
 				colHeader += sep + data.dimensions[j].members[colAxisTuple[j]].text;
 				colHeader2D.push(data.dimensions[j].members[colAxisTuple[j]].text);
-				sep = " ";
+				sep = options.dimensionSeparator;
 			}
 		}
 		retObj.columnHeaders.push(colHeader);
@@ -668,3 +686,27 @@ org_scn_community_databound.toRowTable = function (flatData, options) {
 	
 	return flatData;
 };
+
+org_scn_community_databound.getSampleDataFlat = function (pathInfo, callBack, afterPrepare) {
+	var requestForData = new XMLHttpRequest();
+    var returnValue = undefined;
+    
+	requestForData.onreadystatechange = function() {
+		// check status and react
+		if (requestForData.readyState == 4){
+			// sometimes it gets 200 without content
+			if(requestForData.status == 404 || requestForData.responseUrl == "" || requestForData.response == "") {
+				returnValue= {};
+			} else {
+				returnValue= requestForData.response;
+				callBack(JSON.parse(returnValue), afterPrepare);
+			};
+		};
+	};
+	
+	// trigger ajax request
+	var dataUrl = pathInfo.mainSDKPath + "org.scn.community.databound/res/_data/data.flat.json";
+	
+	requestForData.open("GET", dataUrl, true);
+	requestForData.send();
+}

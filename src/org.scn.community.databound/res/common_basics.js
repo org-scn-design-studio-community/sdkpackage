@@ -116,3 +116,22 @@ org_scn_community_basics.hideNoDataOverlay = function(componentId, includeFullSi
 	style.innerHTML = css;
 	document.getElementsByTagName('head')[0].appendChild(style);
 };
+
+org_scn_community_basics.readOwnScriptAccess = function(scriptSrc, componentName, packageName) {
+	if(myScript) {
+		var myScriptSuffix = "res/"+componentName+"/";
+		var myPluginSuffix = "org.scn.community."+packageName+"/";
+		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
+		var mainSDKPathIndex = myScript.indexOf(myPluginSuffix);
+		var mainSDKPath = myScript.substring(0, mainSDKPathIndex);
+		var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
+		return {
+			myScriptPath : ownScriptPath,	// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/res/<component-name>/
+			mainSDKPath : mainSDKPath		// http://localhost:9091/aad/zen/mimes/sdk_include/
+		};
+	}
+	return {
+ 		myScriptPath: "/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/res/<component-name>/",
+ 		mainSDKPath: "/aad/zen/mimes/sdk_include/"
+ 	};
+}
