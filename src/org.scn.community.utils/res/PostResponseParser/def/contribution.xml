@@ -40,6 +40,40 @@
 		visible="true" />
 
 	<property
+		id="DExpectedContentType"
+		type="String"
+		title="Expected Content Type"
+		group="Display"
+		visible="true">
+			<possibleValue>JSON</possibleValue>
+			<possibleValue>String</possibleValue>
+	</property>
+
+	<property
+		id="DReturnParameters"
+		type="String"
+		title="Return Parameters"
+		group="Display"
+		visible="false">
+	</property>
+
+	<property
+		id="DReturnResponse"
+		type="String"
+		title="Return Response as String"
+		group="Display"
+		visible="false">
+	</property>
+
+	<property
+		id="DReturnStatus"
+		type="int"
+		title="Return Status"
+		group="Display"
+		visible="false">
+	</property>
+
+	<property
 		id="DTrigger"
 		type="String"
 		title="Just as Simple Triger"
@@ -63,9 +97,15 @@
 	<property
 		id="DRawParameters"
 		type="String"
-		title="Technical proprty for raw parameters"
+		title="Raw Parameters as String Content"
 		group="Display"
 		visible="false" />
+
+	<property
+		id="onResponse"
+		type="ScriptText"
+		title="Event for On Response"
+		group="Events" />
 
 	<initialization>
 		<defaultValue property="WIDTH">10</defaultValue>
@@ -79,7 +119,8 @@
 		<defaultValue property="DParameters"></defaultValue>
 		<defaultValue property="DContentType">application/x-www-form-urlencoded; charset=UTF-8</defaultValue>
 		<defaultValue property="DExpectedResponseStatus">200</defaultValue>
-		
+		<defaultValue property="DDExpectedContentType">String</defaultValue>
+
 	</initialization>
 
 </component>

@@ -1,0 +1,37 @@
+
+/**
+	Holder for Name, Value. You can access the content as in below example.
+	<br>
+	var content = COMPONENT.getSelectedElementsArray();<br>
+	
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.NameValueArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.NameValue<br>
+		var elName = element.name;<br>
+		var elValue = element.value;<br>
+	});
+ */
+class org.scn.community.shared.NameValue {
+  String name;
+  String value;
+}
+
+/**
+	Array for org.scn.community.shared.NameValue. You can use this array as in below example.
+	<br>
+	var content = COMPONENT.getSelectedElementsArray();<br>
+	<br>
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.NameValueArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.NameValueValue<br>
+		var elName = element.name;<br>
+		var elValue = element.value;<br>
+	});
+ */
+class org.scn.community.shared.NameValueArray extends Array {
+	org.scn.community.shared.NameValueArray (org.scn.community.shared.NameValue b);
+}

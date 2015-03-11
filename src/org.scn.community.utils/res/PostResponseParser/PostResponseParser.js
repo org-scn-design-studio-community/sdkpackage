@@ -26,8 +26,14 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
               "DParameters": {type: "string"},
               "DRawParameters": {type: "string"},
               "DBasicAuthorisation": {type: "string"},
-              "DExpectedResponseStatus": {type: "int"},
               "DContentType": {type: "string"},
+
+              "DExpectedResponseStatus": {type: "int"},
+              "DExpectedContentType": {type: "string"},
+              
+              "DReturnParameters": {type: "string"},
+              "DReturnResponse": {type: "string"},
+              "DReturnStatus": {type: "string"},
         }
 	},
 
@@ -78,8 +84,50 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 			}
 			
 			http.onreadystatechange = function() {
-			    if(http.readyState == 4 && http.status == that.getDExpectedResponseStatus()) {
-			        alert(http.responseText);
+			    if(http.readyState == 4) {
+			    	
+			    	var returnParameters = [];
+			    	
+			    	if(http.status == that.getDExpectedResponseStatus()){
+			    		var response = http.responseText;
+			    		var status = http.status;
+			    		
+			    		if(that.getDExpectedContentType() == "JSON") {
+			    			try{
+			    				var responseJson = JSON.parse(response);
+			    				
+			    				for (lElementKey in responseJson) {
+			    					returnParameters.push({name: lElementKey, value: responseJson[lElementKey]});
+			    				}
+			    				
+			    			} catch (e) {
+			    				returnParameters.push({name: "STATUS", value: "PARSE_ERROR"});
+			    			}
+			    		}
+			    		
+			    		returnParameters = JSON.stringify(returnParameters);
+			    		
+			    		that.setDReturnParameters(returnParameters);
+			    		that.setDReturnResponse(response);
+			    		that.setDReturnStatus(status);
+			    		
+			    		var changed = ["DReturnParameters", "DReturnResponse", "DReturnStatus"];
+						
+						that.fireDesignStudioPropertiesChanged(changed);
+						that.fireDesignStudioEvent("onResponse");
+			    	} else {
+			    		returnParameters.push({name: "STATUS", value: "ERROR"});
+			    		returnParameters = JSON.stringify(returnParameters);
+			    		
+			    		that.setDReturnParameters(returnParameters);
+			    		that.setDReturnResponse(response);
+			    		that.setDReturnStatus(status);
+			    		
+			    		var changed = ["DReturnParameters", "DReturnResponse", "DReturnStatus"];
+						
+						that.fireDesignStudioPropertiesChanged(changed);
+						that.fireDesignStudioEvent("onResponse");
+			    	}
 			    }
 			}
 			

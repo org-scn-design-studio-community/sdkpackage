@@ -167,6 +167,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 
 
 
+
+
+
+
+
+
 	this._elementsContentDParameters = [];
 	this._selectedElementKeyDParameters = "";
 	this._selectedItemKeyDParameters = "";
@@ -583,7 +589,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 	};
 	
 	this.initDRawParameters = function(){
-		this._labelDRawParameters = new sap.ui.commons.Label({text: " Technical proprty for raw parameters"});
+		this._labelDRawParameters = new sap.ui.commons.Label({text: " Raw Parameters as String Content"});
 		this._labelDRawParameters.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDRawParameters);
 		

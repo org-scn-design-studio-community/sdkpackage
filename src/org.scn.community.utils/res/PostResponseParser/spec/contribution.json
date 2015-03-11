@@ -14,7 +14,25 @@
 	"DContentType" : {
 		"gen-type":"String",
 	},
-		
+
+	"DReturnParameters" : {
+		"gen-type":"shared.NameValue",
+        "gen-mode":"ztl",
+        "gen-function":"-get"
+	},
+
+	"DReturnResponse" : {
+		"gen-type":"String",
+        "gen-mode":"ztl",
+        "gen-function":"-get"
+   	},
+
+	"DReturnStatus" : {
+		"gen-type":"int",
+        "gen-mode":"ztl",
+        "gen-function":"-get"
+   	},
+
 	"DParameters":{
       "gen-type":"DoubleArray",
 

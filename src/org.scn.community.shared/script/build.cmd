@@ -23,6 +23,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\KeyLabel\contribution.ztl ^
 ..\res\KeyLabelValue\contribution.ztl ^
 ..\res\KeyLabelValueProperty\contribution.ztl ^
+..\res\NameValue\contribution.ztl ^
 ..\res\ValueText\contribution.ztl ^
 ..\def_shared\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
