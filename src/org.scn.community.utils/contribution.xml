@@ -856,3 +856,120 @@
 		<defaultValue property="fileName">PDF_$TIME</defaultValue>
 	</initialization>
 </component>
+
+<component
+	id="PostResponseParser"
+	title="Post Response Parser"
+	tooltip="Creates a Request and Parses the Response (Json)"
+	icon="res/PostResponseParser/PostResponseParser.png"
+	handlerType="sapui5"
+	propertySheetPath="res/PostResponseParser/aps/PostResponseParserPropertyPage.html"
+	group="ScnCommunityUtils"
+>
+
+	<jsInclude>res/PostResponseParser/PostResponseParser.js</jsInclude>
+
+	<property
+		id="DUrl"
+		type="String"
+		title="Url To Send the Request"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DBasicAuthorisation"
+		type="String"
+		title="Basic Authorization Content [Basic: GUID]"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DExpectedResponseStatus"
+		type="int"
+		title="Response Status for Good Response"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DContentType"
+		type="String"
+		title="Content Type"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DTrigger"
+		type="String"
+		title="Just as Simple Triger"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DCleanAll"
+		type="String"
+		title="Clean All Parameters"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DParameters"
+		type="String"
+		title="List of Parameters (key/value)"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DRawParameters"
+		type="String"
+		title="Technical proprty for raw parameters"
+		group="Display"
+		visible="false" />
+
+	<initialization>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="TOP_MARGIN">-2000</defaultValue>
+		<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="DUrl"></defaultValue>
+		<defaultValue property="DParameters"></defaultValue>
+	</initialization>
+
+</component>
+	<component
+		id="SimpleDate"
+		title="Simple Date"
+		icon="res/SimpleDate/SimpleDate.png"
+		handlerType="div"
+		group="ScnCommunityUtils">
+
+	<jsInclude>res/SimpleDate/SimpleDate.js</jsInclude>
+
+	<property
+			id="days"
+			title="Days"
+			tooltip=""
+			type="String"
+			visible="false"/>
+
+	<property
+			id="oneDay"
+			title="One Day"
+			tooltip=""
+			type="String"
+			visible="false"/>
+		
+	<initialization>
+			<defaultValue property="WIDTH">10</defaultValue>
+			<defaultValue property="HEIGHT">10</defaultValue>
+			<defaultValue property="TOP_MARGIN">-2000</defaultValue>
+			<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
+			<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+			<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+	</initialization>
+
+	</component>
+
+</sdkExtension>
