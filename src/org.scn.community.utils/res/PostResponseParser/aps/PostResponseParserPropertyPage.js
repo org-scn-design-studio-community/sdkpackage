@@ -18,6 +18,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		this.initDContentType();
 		this.initDExpectedResponseStatus();
 		this.initDParameters();
+		this.initDHeaders();
 		this.initDRawParameters();
 		
 	};
@@ -28,6 +29,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		this.updateDContentType();
 		this.updateDExpectedResponseStatus();
 		this.updateDParameters();
+		this.updateDHeaders();
 		this.updateDRawParameters();
 		
 	};
@@ -564,6 +566,401 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 			if(s && s!="") o = jQuery.parseJSON(s);
 			this._elementsContentDParameters = o;
 			this.updatePropertyDParameters();
+			return this;
+		}
+	};
+
+	this._elementsContentDHeaders = [];
+	this._selectedElementKeyDHeaders = "";
+	this._selectedItemKeyDHeaders = "";
+	this._currentItemConfigDHeaders = {};
+
+	/*
+	 * Retrieves JSON for Element Entry
+	 */
+	this.getElementDHeaders = function(key){
+		var sections = this.gatherElementsDHeaders();
+		for(var i=0;i<sections.length;i++){
+			if(sections[i].key == key) return sections[i];
+		}
+	};
+	/*
+	 * Retrieves JSON for Item Entry
+	 */
+	this.getItemDHeaders = function(sectionKey,key){
+		for(var i=0;i<this._elementsContentDHeaders.length;i++){
+			if(this._elementsContentDHeaders[i].key == key && this._elementsContentDHeaders[i].parentKey==sectionKey) return this._elementsContentDHeaders[i];
+		}
+	};
+	/*
+	 * Update Element JSON and notify Design Studio IDE
+	 */
+	this.updateElementDHeaders = function(key,section){
+		for(var i=0;i<this._elementsContentDHeaders.length;i++){
+			var element = this._elementsContentDHeaders[i];
+			if(!element.leaf && element.key==key){
+				this._elementsContentDHeaders[i] = section;
+			}
+		}
+		this.firePropertiesChanged(["DHeaders"]);
+		this.updatePropertyDHeaders();
+	};
+	/*
+	 * Update Item JSON and notify Design Studio IDE
+	 */
+	this.updateItemDHeaders = function(key){
+		for(var i=0;i<this._elementsContentDHeaders.length;i++){
+			var element = this._elementsContentDHeaders[i];
+			if(element.leaf && element.key==key){
+				this._elementsContentDHeaders[i] = this._currentItemConfigDHeaders;
+			}
+		}
+		this.firePropertiesChanged(["DHeaders"]);
+		this.updatePropertyDHeaders();
+		this.closeDetailDHeaders();
+	};
+	/*
+	 * Displays Element Properties
+	 */
+	this.showElementPropertiesDHeaders = function(){
+		this._sectionPropertyLayoutDHeaders.destroyContent();
+		this._sectionPropertyListDHeaders.destroyContent();
+		
+		this._selectedElementKeyDHeaders = this._listBuilderDHeaders.getSelectedKey();
+		if(!this._selectedElementKeyDHeaders) return;
+		var selectedElement = this.getElementDHeaders(this._selectedElementKeyDHeaders);		
+		if(!selectedElement) return;
+		
+		var items = this.gatherItemsDHeaders(this._selectedElementKeyDHeaders);
+		
+		var sectionKey = new sap.ui.commons.TextView({text : "Header Name"});
+		sectionKey.addStyleClass("org-scn-ApsLabelArray");
+		var txtElementKey = new sap.ui.commons.TextField({value : selectedElement.key, width: "180px"});
+		txtElementKey.addStyleClass("org-scn-ApsInputArray");
+		txtElementKey.attachChange(function(oControlEvent){
+			var value = oControlEvent.getParameter("newValue");
+			// Protect Key
+			value = this._listBuilderDHeaders.generateKey(value);
+			var section = this.getElementDHeaders(this._listBuilderDHeaders.getSelectedKey());
+			section.key = value;
+			// Update Parent Key references
+			for(var i=0;i<this._elementsContentDHeaders.length;i++){
+				var element = this._elementsContentDHeaders[i];
+				if(element.parentKey == this._listBuilderDHeaders.getSelectedKey() && element.leaf) element.parentKey = value;
+			}
+			this.updateElementDHeaders(this._listBuilderDHeaders.getSelectedKey(),section);
+			this._listBuilderDHeaders.setSelectedKey(value);
+			this.showElementPropertiesDHeaders();
+		}, this);
+		this._sectionPropertyLayoutDHeaders.addContent(sectionKey);
+		this._sectionPropertyLayoutDHeaders.addContent(txtElementKey);
+
+		var sectionvalue = new sap.ui.commons.TextView({text : "Header Value"});
+		sectionvalue.addStyleClass("org-scn-ApsLabelArray");
+		var txtElementvalue = new sap.ui.commons.TextField({value : selectedElement.value, width: "180px"});
+		txtElementvalue.addStyleClass("org-scn-ApsInputArray");
+		txtElementvalue.attachChange(function(oControlEvent){
+			var value = oControlEvent.getParameter("newValue");
+			var section = this.getElementDHeaders(this._listBuilderDHeaders.getSelectedKey());
+			section.value = value;
+			this.updateElementDHeaders(this._listBuilderDHeaders.getSelectedKey(),section);
+		}, this);
+		this._sectionPropertyLayoutDHeaders.addContent(sectionvalue);
+		this._sectionPropertyLayoutDHeaders.addContent(txtElementvalue);
+
+
+		var itemsLabel = new sap.ui.commons.TextView({text : "Items"});
+		itemsLabel.addStyleClass("org-scn-ApsLabelArray");
+		var itemsList = new org.scn.community.propertysheet.ListBuilder({
+			width : "200px",
+			newKeyPrefix : "ITEM_",
+			newTextPrefix : "Item ",
+			list : this.gatherItemsDHeaders(this._listBuilderDHeaders.getSelectedKey()),
+			showDetail : true,
+			selectedKey : this._selectedItemKeyDHeaders
+		});
+		
+		itemsList.attachItemAdded(this.addItemDHeaders,this);
+		itemsList.attachItemDeleted(this.delItemDHeaders,this);
+		itemsList.attachItemDetail(this.showItemPropertiesDHeaders,this);
+		itemsList.attachItemMoved(this.moveItemDHeaders,this);
+		itemsList.attachItemSelected(this.itemSelectedDHeaders,this);
+		
+		this._sectionPropertyListDHeaders.addContent(itemsLabel);
+		this._sectionPropertyListDHeaders.addContent(itemsList);
+	};
+	/*
+	 * Displays Item Properties in a Popup Panel
+	 */
+	this.showItemPropertiesDHeaders = function(oControlEvent){
+		var detailData = oControlEvent.getParameters();
+		this._currentItemConfigDHeaders = this.getItemDHeaders(this._listBuilderDHeaders.getSelectedKey(),detailData.key);
+		if(!this._currentItemConfigDHeaders) return;
+		
+		var itemDetailPanel = new sap.ui.commons.Panel({
+			text : "Item Details",
+			showCollapseIcon : false,
+			width : "95%"
+		});
+		itemDetailPanel.addStyleClass("org-scn-ApsPopupPanel");
+		var itemDetailLayout = new sap.ui.commons.layout.VerticalLayout({
+			width : "100%"
+		});
+		
+		var itemKey = new sap.ui.commons.TextView({text : "%ITEM_PROPERTY_DESCRIPTION%"});
+		itemKey.addStyleClass("org-scn-ApsLabelArray");
+		var txtItemKey = new sap.ui.commons.TextField({value : this._currentItemConfigDHeaders.key, width: "300px"});
+		txtItemKey.addStyleClass("org-scn-ApsInputArray");
+		txtItemKey.attachChange(function(oControlEvent){
+			var value = oControlEvent.getParameter("newValue");
+			// Protect Key
+			var allItems = new org.scn.community.propertysheet.ListBuilder();		
+			allItems.setList(this._elementsContentDHeaders);
+			var newItemKey = allItems.generateKey(value);
+			delete allItems;
+			this._currentItemConfigDHeaders.key = newItemKey;		
+		}, this);
+		itemDetailLayout.addContent(itemKey);
+		itemDetailLayout.addContent(txtItemKey);
+
+
+		var detailButtons = new sap.ui.commons.layout.HorizontalLayout({ });
+		var closeButton = new sap.ui.commons.Button({
+			text : "Cancel"
+		});
+		var okButton = new sap.ui.commons.Button({
+			text : "Update"
+		});
+		
+		closeButton.attachPress(this.closeDetailDHeaders,this);
+		okButton.attachPress(this.updateItemDHeaders,this);
+		
+		detailButtons.addContent(closeButton);
+		detailButtons.addContent(okButton);
+		detailButtons.addStyleClass("org-scn-ApsPopUpButtons");
+		
+		itemDetailLayout.addContent(detailButtons);
+		itemDetailPanel.addContent(itemDetailLayout);
+		
+		if(!this._popupDHeaders) this._popupDHeaders = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
+		
+		//this._popupDHeaders.destroyContent();
+		this._popupDHeaders.open(250,"center center", "center center", document.body, null);
+	};
+	/*
+	 * Fires when Element Listbox is selected
+	 */
+	this.elementSelectedDHeaders = function(oControlEvent){
+		this._selectedElementKeyDHeaders = "";
+		if(oControlEvent.getParameters().key) this._selectedElementKeyDHeaders = oControlEvent.getParameters().key;
+		this.showElementPropertiesDHeaders();
+	};
+	/*
+	 * Fires when Item Listbox is selected
+	 */
+	this.itemSelectedDHeaders = function(oControlEvent){
+		this._selectedItemKeyDHeaders = "";
+		if(oControlEvent.getParameters().key) this._selectedItemKeyDHeaders = oControlEvent.getParameters().key;
+	};
+	/*
+	 * Fires when component is selected or when properties change to re-render
+	 */
+	this.updatePropertyDHeaders = function(){
+		this._listBuilderDHeaders.setList(this.gatherElementsDHeaders());
+		this.showElementPropertiesDHeaders(this._listBuilderDHeaders.getSelectedKey());
+	};
+	/*
+	 * Fires when item delete button clicked
+	 */
+	this.delItemDHeaders = function(oControlEvent){
+		var sectionKey = this._listBuilderDHeaders.getSelectedKey();
+		var itemKey = oControlEvent.getParameter("key");
+		if(sectionKey && itemKey) {
+			for(var i=0;i<this._elementsContentDHeaders.length;i++){
+				if(this._elementsContentDHeaders[i].leaf == true && this._elementsContentDHeaders[i].key == itemKey && this._elementsContentDHeaders[i].parentKey==sectionKey) {
+					this._elementsContentDHeaders.splice(i,1);
+					this.firePropertiesChanged(["DHeaders"]);
+					this.updatePropertyDHeaders();
+				}
+			}
+		}
+		this.updatePropertyDHeaders();
+	}
+	/*
+	 * Fires when section delete button clicked
+	 */
+	this.delElementDHeaders = function(oControlEvent){
+		var key = oControlEvent.getParameter("key");
+		if(key) {
+			// Delete Element
+			for(var i=0;i<this._elementsContentDHeaders.length;i++){
+				if(this._elementsContentDHeaders[i].leaf == false && this._elementsContentDHeaders[i].key == key) {
+					this._elementsContentDHeaders.splice(i,1);
+				}
+			}
+			// Delete Items under Element
+			for(var i=this._elementsContentDHeaders.length-1;i>=0;i--){
+				if(this._elementsContentDHeaders[i].leaf == true && this._elementsContentDHeaders[i].parentKey == key) {
+					this._elementsContentDHeaders.splice(i,1);
+				}
+			}
+			this.firePropertiesChanged(["DHeaders"]);
+		}
+		this.updatePropertyDHeaders();
+	};
+	/*
+	 * Fires when item add button clicked
+	 */
+	this.addItemDHeaders = function(oControlEvent){
+		var allItems = new org.scn.community.propertysheet.ListBuilder();		
+		allItems.setList(this._elementsContentDHeaders);
+		var newItemKey = allItems.generateKey("Item");
+		delete allItems;
+		var sectionItems = new org.scn.community.propertysheet.ListBuilder();
+		sectionItems.setList(this._elementsContentDHeaders);
+		var newItem = { 
+			parentKey : this._listBuilderDHeaders.getSelectedKey(),
+			key : newItemKey, 
+			leaf: true, 
+			
+		};
+		this._elementsContentDHeaders.push(newItem);
+		this.firePropertiesChanged(["DHeaders"]);
+		this.updatePropertyDHeaders();
+	}
+	/*
+	 * Fires when section add button clicked
+	 */
+	this.addElementDHeaders = function(oControlEvent){
+		var newKey = this._listBuilderDHeaders.generateKey("Element");
+		var newElement = { 
+			parentKey : "ROOT",
+			key : newKey,
+			leaf: false, 
+			value:""
+		};
+		this._listBuilderDHeaders.setSelectedKey(newKey);
+		this._elementsContentDHeaders.push(newElement);
+		this.firePropertiesChanged(["DHeaders"]);
+		this.updatePropertyDHeaders();
+	};
+	/*
+	 * Fires when section up or down button clicked
+	 */
+	this.moveElementDHeaders = function(oControlEvent){
+		var movementData = oControlEvent.getParameters();
+		var targetIndex = -1;
+		var sourceIndex = -1;
+		for(var i=0;i<this._elementsContentDHeaders.length;i++){
+			if(this._elementsContentDHeaders[i].key == movementData.key && !this._elementsContentDHeaders[i].leaf) sourceIndex = i;
+			if(this._elementsContentDHeaders[i].key == movementData.targetKey && !this._elementsContentDHeaders[i].leaf) targetIndex = i;
+		}
+		if(targetIndex != -1 && sourceIndex != -1){
+			var temp = this._elementsContentDHeaders[targetIndex];
+			this._elementsContentDHeaders[targetIndex] = this._elementsContentDHeaders[sourceIndex];
+			this._elementsContentDHeaders[sourceIndex] = temp;
+			this.firePropertiesChanged(["DHeaders"]);
+			this.updatePropertyDHeaders();
+		}
+	};
+	/*
+	 * Close Item Properties Popup
+	 */
+	this.closeDetailDHeaders = function(oControlEvent){
+		if(this._popupDHeaders) {
+			this._popupDHeaders.close();
+			this._popupDHeaders.destroy();
+			delete this._popupDHeaders;
+		}
+		
+	};
+	/*
+	 * Fires when item up or down button clicked
+	 */
+	this.moveItemDHeaders = function(oControlEvent){
+		var movementData = oControlEvent.getParameters();
+		var targetIndex = -1;
+		var sourceIndex = -1;
+		var sectionKey = this._listBuilderDHeaders.getSelectedKey();
+		var itemKey = oControlEvent.getParameter("key");
+		for(var i=0;i<this._elementsContentDHeaders.length;i++){
+			if(this._elementsContentDHeaders[i].key == itemKey && this._elementsContentDHeaders[i].parentKey == sectionKey && this._elementsContentDHeaders[i].leaf) sourceIndex = i;
+			if(this._elementsContentDHeaders[i].key == movementData.targetKey && this._elementsContentDHeaders[i].parentKey == sectionKey && this._elementsContentDHeaders[i].leaf) targetIndex = i;
+		}
+		if(targetIndex != -1 && sourceIndex != -1){
+			var temp = this._elementsContentDHeaders[targetIndex];
+			this._elementsContentDHeaders[targetIndex] = this._elementsContentDHeaders[sourceIndex];
+			this._elementsContentDHeaders[sourceIndex] = temp;
+			this.firePropertiesChanged(["DHeaders"]);
+			this.updatePropertyDHeaders();
+		}
+	}
+	/*
+	 * Convenience Function to return only entries that are Elements
+	 */
+	this.gatherElementsDHeaders = function(){
+		var sections = [];
+		for(var i=0;i<this._elementsContentDHeaders.length;i++){
+			if(this._elementsContentDHeaders[i].leaf==false) sections.push(this._elementsContentDHeaders[i]);
+		}
+		return sections;
+	};
+	/*
+	 * Convenience Function to return only entries that are Items (Leafs)
+	 */
+	this.gatherItemsDHeaders = function(sectionKey){
+		var items = [];
+		for(var i=0;i<this._elementsContentDHeaders.length;i++){
+			if(this._elementsContentDHeaders[i].leaf==true && this._elementsContentDHeaders[i].parentKey==sectionKey) items.push(this._elementsContentDHeaders[i]);
+		}
+		return items;
+	};
+	/*
+	 * Property Sheet Initialization
+	 */
+	this.initDHeaders = function(){
+		
+		this._labelDHeaders = new sap.ui.commons.Label({text: " List of Headers (Name / Value)"});
+		this._labelDHeaders.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDHeaders);
+		
+		this._hLayoutDHeaders = new sap.ui.commons.layout.HorizontalLayout({ });
+		this._content.addContent(this._hLayoutDHeaders);
+		this._listBuilderDHeaders = new org.scn.community.propertysheet.ListBuilder({
+			width : "200px"
+		});
+		
+		this._listBuilderDHeaders.attachItemAdded(this.addElementDHeaders,this);
+		this._listBuilderDHeaders.attachItemDeleted(this.delElementDHeaders,this);
+		this._listBuilderDHeaders.attachItemMoved(this.moveElementDHeaders,this);
+		this._listBuilderDHeaders.attachItemSelected(this.elementSelectedDHeaders,this);
+		
+		this._sectionPropertyLayoutDHeaders = new sap.ui.commons.layout.VerticalLayout({
+			width : "200px"
+		});
+		this._sectionPropertyListDHeaders = new sap.ui.commons.layout.VerticalLayout({
+			width : "200px"
+		});
+		this._sectionPropertyLayoutDHeaders.addStyleClass("org-scn-ApsDoubleArrayVertical");
+		this._sectionPropertyListDHeaders.addStyleClass("org-scn-ApsDoubleArrayVertical");
+
+		this._hLayoutDHeaders.addContent(this._listBuilderDHeaders);
+		this._hLayoutDHeaders.addContent(this._sectionPropertyLayoutDHeaders);
+		this._hLayoutDHeaders.addContent(this._sectionPropertyListDHeaders);
+		this._sectionPropertyListDHeaders.addStyleClass("org-scn-Aps-DetailList-SingleArray");
+		this._hLayoutDHeaders.addStyleClass("org-scn-ApsDoubleArray");
+		
+		this.updatePropertyDHeaders();
+	};
+
+	this.DHeaders = function(s){
+		if( s === undefined){
+			return JSON.stringify(this._elementsContentDHeaders);
+		}else{
+			var o = [];
+			if(s && s!="") o = jQuery.parseJSON(s);
+			this._elementsContentDHeaders = o;
+			this.updatePropertyDHeaders();
 			return this;
 		}
 	};

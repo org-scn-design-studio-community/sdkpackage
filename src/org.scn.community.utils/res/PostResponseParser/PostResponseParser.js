@@ -23,8 +23,11 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
         properties: {
               "DUrl": {type: "string"},
               "DTrigger": {type: "string"},
+              
               "DParameters": {type: "string"},
               "DRawParameters": {type: "string"},
+              "DHeaders": {type: "string"},
+              
               "DBasicAuthorisation": {type: "string"},
               "DContentType": {type: "string"},
 
@@ -47,8 +50,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 		var that = this;
 
 		if(this.getDUrl() != "" && this.getDTrigger() == "GO") {
-			var lParameters = that.getDParameters();
-
 			var http = new XMLHttpRequest();
 			var url = that.getDUrl();
 			
@@ -59,6 +60,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 			if(lRawParameters != undefined && lRawParameters.length > 0) {
 				params = lRawParameters;
 			} else {
+				var lParameters = that.getDParameters();
 				if((lParameters != undefined || lParameters != undefined) && lParameters != "" && lParameters != "<delete>"){
 					var lParametersArray = JSON.parse(lParameters);
 					
@@ -83,14 +85,25 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 				http.setRequestHeader("Authorization", that.getDBasicAuthorisation());	
 			}
 			
+			var lHeaders = that.getDHeaders();
+			if((lHeaders != undefined || lHeaders != undefined) && lHeaders != "" && lHeaders != "<delete>"){
+				var lHeadersArray = JSON.parse(lHeaders);
+				
+				for (var i = 0; i < lHeadersArray.length; i++) {
+					if(lHeadersArray[i].parentKey == "ROOT") {
+						http.setRequestHeader(lHeadersArray[i].key, lHeadersArray[i].value);	
+					}
+				}
+			}
+
 			var returnParameters = [];
 			
 			http.onreadystatechange = function() {
 			    if(http.readyState == 4) {
+			    	var response = http.responseText;
+		    		var status = http.status;
+		    		
 			    	if(http.status == that.getDExpectedResponseStatus()){
-			    		var response = http.responseText;
-			    		var status = http.status;
-			    		
 			    		if(that.getDExpectedContentType() == "JSON") {
 			    			try{
 			    				var responseJson = JSON.parse(response);

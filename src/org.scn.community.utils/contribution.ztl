@@ -3167,31 +3167,27 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		this.DParameters = JSON.stringify(elementsArray);
 	*}
 
-	/** Adds an element containing parentKey [String], key [String], value [String] properties.
-	 * You need to specify a unique and existing parent element.
+	/** Adds a root element containing key [String], value [String].
 
  	<example>
-	You want to add 2 elements
+	You want to add 2 root elements
 	<code>
-	POSTRESPONSEPARSER.addSubParameter(parentKey [String], key [String], value [String]);<br>
-	POSTRESPONSEPARSER.addSubParameter(parentKey [String], key [String], value [String]);
+	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
+	<br>
 	</code>
 	</example>
 	 */
-	void addSubParameter (
-			/**The key of the parent button*/String parentKey, 
-			/**Unique key of this item*/String key, 
+	void addParameter (
+			/**Parameter Name*/String key, 
 			/**Parameter Value*/String value
 			) {*		
 		
-		var leaf = (parentKey != "ROOT");
-		
 		
 		var itemDef = {
-			leaf:leaf,
-			parentKey:parentKey, 
+			leaf:true,
 			key:key, 
-			value:value 
+			value:value
 			};
 	
 		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
@@ -3214,38 +3210,18 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	
 		this.DParameters = JSON.stringify(elementsJson);
 	*}
-
-	/** Adds a root element containing key [String], value [String].
+	
+	/** Removes a root element by key.
 
  	<example>
-	You want to add 2 root elements
+	You want to remove root element
 	<code>
-	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
-	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.removeParameter(String key);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void addParameter (
-			/**Parameter Key*/String key, 
-			/**Parameter Value*/String value
-			) {*		
-		
-		this.addSubParameter("ROOT", key, 
-			value);
-	*}
-	
-	/** removes an element by String key properties.
-	 * You need to specify a unique and existing key.
-
- 	<example>
-	You want to remove element
-	<code>
-	POSTRESPONSEPARSER.removeSubParameter(String key);<br>
-	</code>
-	</example>
-	 */
-	void removeSubParameter (
+	void removeParameter (
 			String key
 			) {*		
 		
@@ -3273,21 +3249,86 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		this.DParameters = JSON.stringify(elementsJson);
 	*}
 
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONSEPARSER.addHeader(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addHeader(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addHeader (
+			/**Header Name*/String key, 
+			/**Header Value*/String value
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+	
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DHeaders);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DHeaders = JSON.stringify(elementsJson);
+	*}
+	
 	/** Removes a root element by key.
 
  	<example>
 	You want to remove root element
 	<code>
-	POSTRESPONSEPARSER.removeParameter(String key);<br>
+	POSTRESPONSEPARSER.removeHeader(String key);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void removeParameter (
+	void removeHeader (
 			String key
 			) {*		
 		
-		this.removeSubParameter(key);
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DHeaders);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DHeaders = JSON.stringify(elementsJson);
 	*}
 
 	/**

@@ -51,6 +51,24 @@
       },
    },
    
+   	"DHeaders":{
+      "gen-type":"SingleArray",
+
+      "header":{
+         "gen-type":"Array",
+         "gen-sequence":"key,value",
+         
+         "key": {
+         	"gen-desc": "Header Name",
+         	"gen-type": "String",
+         },
+         "value": {
+         	"gen-desc": "Header Value",
+         	"gen-type": "String",
+         },
+      },
+   },
+   
    "DCleanAll" : {
    	  "gen-type":"boolean",
    	  "gen-mode":"ztl",

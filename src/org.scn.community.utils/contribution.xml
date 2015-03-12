@@ -960,7 +960,14 @@
 	<property
 		id="DParameters"
 		type="String"
-		title="List of Parameters (key/value)"
+		title="List of Parameters (Name / Value)"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DHeaders"
+		type="String"
+		title="List of Headers (Name / Value)"
 		group="Display"
 		visible="false" />
 

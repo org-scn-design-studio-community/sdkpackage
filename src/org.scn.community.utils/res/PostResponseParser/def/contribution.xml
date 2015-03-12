@@ -96,6 +96,13 @@
 		visible="false" />
 
 	<property
+		id="DHeaders"
+		type="String"
+		title="List of Headers (Name / Value)"
+		group="Display"
+		visible="false" />
+
+	<property
 		id="DRawParameters"
 		type="String"
 		title="Raw Parameters as String Content"
