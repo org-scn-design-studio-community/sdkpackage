@@ -1,4 +1,5 @@
 
 		<!-- Base Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
 		<!-- End of Base Defaults -->

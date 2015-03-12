@@ -26,6 +26,7 @@
 			<option name="includeData" value="true"/>
 	</property>
 	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true"/>
+	<!-- <property id="swapAxes" type="boolean" title = "Swap Axes" visible="true"/> -->
 	<!-- End of Base Databound Properties -->
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
@@ -90,6 +91,7 @@
 	<initialization>
 		<!-- Base Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- Base Viz Defaults -->
 		<defaultValue property="WIDTH">400</defaultValue>
