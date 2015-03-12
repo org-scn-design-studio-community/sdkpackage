@@ -48,7 +48,7 @@ sap.m.Button.extend("org.scn.community.basics.ActionSheetButton", {
 	},
 	setType : function(s){
 		if(s=="sdkui5") return; // Fix 1.3 SP0 bug '"sdkui5" is not a valid entry of the enumeration for property "type" of Element'
-		sap.m.Button.prototype.setType.apply(this,arguments);		
+		this.setType(sap.m.ButtonType[s]);
 	},
 	setSelectedItem : function(s){
 		this._selectedItem = s;
@@ -90,6 +90,7 @@ sap.m.Button.extend("org.scn.community.basics.ActionSheetButton", {
 	},
 	initDesignStudio : function() {
 		// Called by sap.designstudio.sdkui5.Handler  (sdkui5_handler.js)
+		this.attachBrowserEvent("click",this.dsClick,this);
 	},
 	listSelect : function(o,oControlEvent){
 		if(this._popover){
@@ -130,8 +131,4 @@ sap.m.Button.extend("org.scn.community.basics.ActionSheetButton", {
 		};
 		this._popover.openBy(this);
 	},
-	init : function(){
-		sap.m.Button.prototype.init.apply(this,arguments);
-		this.attachBrowserEvent("click",this.dsClick,this);
-	}
 });

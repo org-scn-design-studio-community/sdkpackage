@@ -68,7 +68,7 @@ sap.m.Button.extend("org.scn.community.basics.ModalBrowser", {
 	},
 	setType : function(s){
 		if(s=="sdkui5") return; // Fix 1.3 SP0 bug '"sdkui5" is not a valid entry of the enumeration for property "type" of Element'
-		sap.m.Button.prototype.setType.apply(this,arguments);		
+		this.setType(sap.m.ButtonType[s]);
 	},
 	setBrowserWidth : function(s){
 		this._browserWidth = s; 
@@ -103,6 +103,8 @@ sap.m.Button.extend("org.scn.community.basics.ModalBrowser", {
 	},
 	initDesignStudio : function() {
 		// Called by sap.designstudio.sdkui5.Handler  (sdkui5_handler.js)
+		this.addStyleClass("utilPackBrowserPopup");
+		this.attachBrowserEvent("click",this.dsClick,this);
 	},
 	dsClick : function(oControlEvent){
 		if(this.getOpenMethod()=="New Window"){
@@ -141,9 +143,4 @@ sap.m.Button.extend("org.scn.community.basics.ModalBrowser", {
 			}
 		}
 	},
-	init : function(){
-		sap.m.Button.prototype.init.apply(this,arguments);
-		this.addStyleClass("utilPackBrowserPopup");
-		this.attachBrowserEvent("click",this.dsClick,this);
-	}
 });
