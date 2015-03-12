@@ -602,6 +602,8 @@ org_scn_community_databound.flatten = function (data, options) {
 		
 		if(isResult) { 
 			retObj.geometry.rowLength = retObj.geometry.rowLength - 1;
+			// move the tupleIndex by the skipped values
+			tupleIndex = tupleIndex + retObj.geometry.colLength;
 			continue; 
 		}
 		

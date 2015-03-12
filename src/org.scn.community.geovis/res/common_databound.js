@@ -55,6 +55,9 @@ org_scn_community_databound.initializeOptions = function () {
 	options.iNumberOfDecimals = 2;
 	options.allKeys = false;
 	options.idPrefix = "";
+	options.iDisplayText = "Text";
+	options.ignoreResults = false;
+	options.dimensionSeparator = " | ";
 	
 	return options;
 }
@@ -198,16 +201,12 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, metada
 				text = text.replace("|", " | ");
 			}
 			
-			if(options.iDuplicates=="Ignore") {
-				if(allKeys.indexOf("|" + key + "|") > -1) {
+			if(allKeys.indexOf("|" + key + "|") > -1) {
+				if(options.iDuplicates=="Ignore") {
 					// key already in the array...
 					continue;
 				}
-			} 
-			
-			allKeys = allKeys + key + "|";
-			
-			lValues.push(value);
+			}
 			
 			var itemDef = { 
 				key: key, 
@@ -217,7 +216,31 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, metada
 				valueS: org_scn_community_basics.getFormattedValue(value, metadata.locale, options.iNumberOfDecimals),
 			};
 
-			list.push(itemDef);
+			if(options.iDuplicates=="Sum") {
+				if(allKeys.indexOf("|" + key + "|") > -1) {
+					if(value != 0) {
+						// search and update value
+						for (var iL = 0; iL < list.length; iL++) {
+							if(list[iL].key == key){
+								list[iL].value = list[iL].value + value;
+								list[iL].valueS = org_scn_community_basics.getFormattedValue(list[iL].value, metadata.locale, options.iNumberOfDecimals);
+								lValues[iL] = list[iL].value;
+								break;
+							}
+						}
+					}
+				} else {
+					list.push(itemDef);
+					lValues.push(value);
+				}
+			} else {
+				list.push(itemDef);
+				lValues.push(value);
+			}
+			
+			if(allKeys.indexOf("|" + key + "|") == -1) {
+				allKeys = allKeys + key + "|";
+			}
 		}
 	}
 	
@@ -372,7 +395,7 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, metada
 org_scn_community_databound.getDataModelForDimensions = function (data, metadata, dimensions, options) {
 	var oData = {};
 
-	if(dimensions != undefined) {
+	if(dimensions != undefined && dimensions != "") {
 		var lDimensionsJson = JSON.parse(dimensions);
 		for (var iD = 0; iD < lDimensionsJson.length; iD++) {
 			var dimension = lDimensionsJson[iD];
@@ -388,57 +411,100 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 				oData[name].items = [];
 				
 				var dimensionData = org_scn_community_databound.initializeEmptyReturn();
-				if(!dimension.hierarchyActive) {
-					// only check the resultset if hierarchy is inactive
-					dimensionData = org_scn_community_databound.getTopBottomElementsForDimension(data, metadata, name, options);
-				}
+				// ok, we check the existence also when hierarchy is active, even in many cases the members are not visible as collapsed
+				dimensionData = org_scn_community_databound.getTopBottomElementsForDimension(data, metadata, name, options);
 				
+				var availableMembers = "|";
 				for (var iM = 0; iM < members.length; iM++) {
 					var member = members[iM];
 					
 					var memberJson = {};
 					memberJson.name = member.internalKey;
 					memberJson.text = member.text;
-					memberJson.id = options.idPrefix + name + member.internalKey;
+					memberJson.externalKey = member.externalKey;
+					// memberJson.id = options.idPrefix + name + member.internalKey;
 					
 					if(dimensionData.allKeys.length > 0) {
 						if(dimensionData.allKeys.indexOf("|" + member.internalKey + "|") > -1) {
-							// this member is also in result set, means can be selected
-							memberJson.available = true;
+							// this member is also in result set, means can be selected in drill down mode
+
+							for(var iA = 0; iA < dimensionData.list.length; iA++) {
+								if(dimensionData.list[iA].key == memberJson.name){
+									if(dimensionData.list[iA].value > 0) {
+										memberJson.valueSign = "+";
+									} else if(dimensionData.list[iA].value < 0) {
+										memberJson.valueSign = "-";
+									} else {
+										memberJson.valueSign = "0";	
+									}
+									
+									memberJson.value = dimensionData.list[iA].value;
+									memberJson.valueS = dimensionData.list[iA].valueS;
+								}
+							}
+
+							availableMembers = availableMembers + "|" + memberJson.name + "|";
 						} else {
-							memberJson.available = false;
+							// the member is not in the resultset, cannot be selected in drill down mode
+							memberJson.valueSign = "0";
+							memberJson.value = 0;
+							memberJson.valueS = "0";
 						}
 					} else {
-						memberJson.available = true;
+						// there are no members in the resultset
+						memberJson.valueSign = "0";
+						memberJson.value = undefined;
+						memberJson.valueS = "";
 					}
 					
+					if(options.iDisplayText == "Text (Value)") {
+						memberJson.display = memberJson.text + " (" + memberJson.valueS + ")";	
+					} else {
+						memberJson.display = memberJson.text;
+					}
+
 					oData[name].items.push(memberJson);
+					oData[name].availableMembers = availableMembers;
 				}
 			}
 		}
 	} else {
 		oData = {
-			brands: [
- 				{name : "BMW", key: "1"},
- 				{name : "AUDI", key: "2", enabled: false}
- 			],
- 			models: [
- 				{name : "320d", key: "1"},
- 				{name : "325i", key: "2"},
- 				{name : "330d", key: "3"},
- 				{name : "330i", key: "4"},
- 				{name : "335i", key: "5"},
- 				{name : "A1", key: "6"},
- 				{name : "A3", key: "7"},
- 				{name : "A4", key: "8"},
- 				{name : "A5", key: "9"},
- 				{name : "A6", key: "10"}
- 			],
- 			types: [
- 				{name : "Limousine", key: "1"},
- 				{name : "Coupé", key: "2"},
- 				{name : "Cabrio", key: "3"}
- 			]						
+			brands: {
+				name: "BRANDS",
+				text: "Brands",
+				items: [
+				   {text : "BMW", name: "1", enabled: true, value: 30.45, valueS: "30.45", valueSign: "+"},
+			 	   {text : "AUDI", name: "2", enabled: true, value: -40.72, valueS: "-40.72", valueSign: "-"}
+				]
+			}
+ 			,
+ 			models: {
+				name: "MODELS",
+				text: "Models",
+				items: [
+	 				{text : "320d", name: "1", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+	 				{text : "325i", name: "2", enabled: true, value: -6.43, valueS: "-6.43", valueSign: "-"},
+	 				{text : "330d", name: "3", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+	 				{text : "330i", name: "4", enabled: true, value: 1.75, valueS: "1.75", valueSign: "+"},
+	 				{text : "335i", name: "5", enabled: true, value: -22.42, valueS: "-22.42", valueSign: "-"},
+	 				{text : "A1", name: "6", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+	 				{text : "A3", name: "7", enabled: true, value: 18.32, valueS: "18.32", valueSign: "+"},
+	 				{text : "A4", name: "8", enabled: true, value: -7.01, valueS: "-7.01", valueSign: "-"},
+	 				{text : "A5", name: "9", enabled: true, value: 2.45, valueS: "2.45", valueSign: "+"},
+	 				{text : "A6", name: "10", enabled: true, value: 6.12, valueS: "6.12", valueSign: "+"}
+	 			]
+			}
+ 			,
+ 			types: {
+				name: "TYPES",
+				text: "Types",
+				items: [
+					{text : "Limousine", name: "1", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+					{text : "Coupé", name: "2", enabled: true, value: -19.54, valueS: "-19.54", valueSign: "-"},
+					{text : "Cabrio", name: "3", enabled: true, value: 2.42, valueS: "2.42", valueSign: "+"}
+				]
+ 			}
  		};
 	}
 
@@ -447,7 +513,7 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 
 /**
  * Flattens data from tuple format to 2D Array
- * @author Mike Howles
+ * @author Mike Howles & Karol Kalisz
  * @param data { 
  *	 	"selection" : [Array of dimension selections] 	
  *	 	"tuples" : *Design Studio Tuples*,
@@ -472,43 +538,79 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
  * }
  */
 org_scn_community_databound.flatten = function (data, options) {
+	if(!options) {
+		options = org_scn_community_databound.initializeOptions();
+	}
+	
 	var retObj = {
+		dimensionHeaders : [],
+		dimensionheader : "",
 		columnHeaders : [],
 		columnHeaders2D : [],
 		rowHeaders : [],
 		rowHeaders2D : [],
 		values : [],
 		formattedValues : [],
-		hash : {}
+		hash : {},
+		geometry : {}
 	};
 	if(!data || !data.dimensions || (!data.data && !data.formattedData)) {
 		throw("Incomplete data given.\n\n" + JSON.stringify(data));
 	}
-	var dimensionCols = [];
-	var dimensionRows = [];
-	var data2D = [];
-	var colLength = data.axis_columns.length;
-	var rowLength = data.axis_rows.length;
+
+	retObj.dimensionCols = [];
+	retObj.dimensionRows = [];
+	retObj.dimensionHeaders = [];
+	
+	// put on object for external access
+	retObj.geometry.colLength = data.axis_columns.length;
+	retObj.geometry.rowLength = data.axis_rows.length;
+
+	for(var dI=0;dI<data.dimensions.length;dI++){
+		var dim = data.dimensions[dI];
+
+		if(dim.axis == "ROWS") {
+			retObj.dimensionRows.push({key: dim.key, text: dim.text});
+			retObj.dimensionHeaders.push(dim.text);
+		}
+		if(dim.axis == "COLUMNS") {
+			retObj.dimensionCols.push({key: dim.key, text: dim.text});
+		}
+	}
+	
 	var tupleIndex = 0;
 	// Make Row Header Labels
-	for(var row=0;row<rowLength;row++){
+	var maxRows = retObj.geometry.rowLength;
+	for(var row=0;row<maxRows;row++){
 		var newValueRow = [];
 		var newFormattedValueRow = [];
 		var rowHeader = "";
 		var rowHeader2D = [];
 		var rowAxisTuple = data.axis_rows[row];
 		var sep = "";
+		var isResult = false;
+		
 		for(var j=0;j<rowAxisTuple.length;j++){
 			if(rowAxisTuple[j] != -1){
+				if(options.ignoreResults && data.dimensions[j].members[rowAxisTuple[j]].type == "RESULT") { isResult=true; break;}
+
 				rowHeader += sep + data.dimensions[j].members[rowAxisTuple[j]].text;
 				rowHeader2D.push(data.dimensions[j].members[rowAxisTuple[j]].text);
-				sep = " ";
+				sep = options.dimensionSeparator;
 			}
 		}
+		
+		if(isResult) { 
+			retObj.geometry.rowLength = retObj.geometry.rowLength - 1;
+			// move the tupleIndex by the skipped values
+			tupleIndex = tupleIndex + retObj.geometry.colLength;
+			continue; 
+		}
+		
 		retObj.hash[rowHeader] = row;
 		retObj.rowHeaders.push(rowHeader);
 		retObj.rowHeaders2D.push(rowHeader2D);
-		for(var col=0;col<colLength;col++){
+		for(var col=0;col<retObj.geometry.colLength;col++){
 			if(data.data && data.data.length > 0){
 				newValueRow.push(data.data[tupleIndex]);
 			}
@@ -520,21 +622,95 @@ org_scn_community_databound.flatten = function (data, options) {
 		if(newValueRow.length>0) retObj.values.push(newValueRow);
 		if(newFormattedValueRow.length>0) retObj.formattedValues.push(newFormattedValueRow);
 	}
+	
+	var spiceIndexCorrection = 0;
+	
 	// Make Column Header Labels
-	for(var col=0;col<colLength;col++){
+	for(var col=0;col<retObj.geometry.colLength;col++){
 		var colHeader = "";
 		var colHeader2D = [];
 		var colAxisTuple = data.axis_columns[col];
 		var sep = "";
 		for(var j=0;j<colAxisTuple.length;j++){
 			if(colAxisTuple[j] != -1){
+//				if(options.ignoreResults && data.dimensions[j].members[colAxisTuple[j]].type == "RESULT") {
+//					for(var row=0;row<maxRows;row++){
+//						if(retObj.values[row]) {
+//							retObj.values[row].spice(j-spiceIndexCorrection,1);
+//							retObj.formattedValues[row].spice(j-spiceIndexCorrection,1);
+//							spiceIndexCorrection++;
+//						}
+//					}
+//				}
+				
 				colHeader += sep + data.dimensions[j].members[colAxisTuple[j]].text;
 				colHeader2D.push(data.dimensions[j].members[colAxisTuple[j]].text);
-				sep = " ";
+				sep = options.dimensionSeparator;
 			}
 		}
 		retObj.columnHeaders.push(colHeader);
 		retObj.columnHeaders2D.push(colHeader2D);
 	}
+	
+	if(retObj.rowHeaders2D[0]) {
+		retObj.geometry.headersLength = retObj.rowHeaders2D[0].length;	
+	} else {
+		retObj.geometry.headersLength = 0;
+	}
+	
+	retObj.geometry.allColumnsLength = retObj.geometry.headersLength + retObj.geometry.colLength;
+
 	return retObj;
 };
+
+org_scn_community_databound.toRowTable = function (flatData, options) {
+	var rowsData = [];
+	var rowsDataPlain = [];
+
+	for(var rI=0;rI<flatData.geometry.rowLength;rI++){
+		var rowPlain = {};
+		var row = [];
+		for(var cI=0;cI<flatData.geometry.allColumnsLength;cI++){
+			var cell = {};
+			if(cI < flatData.geometry.headersLength) {
+				cell[""+cI] = flatData.rowHeaders2D[rI][cI];
+				rowPlain[cI] = flatData.rowHeaders2D[rI][cI];
+			} else {
+				cell[""+cI] = flatData.formattedValues[rI][cI-flatData.geometry.headersLength];
+				rowPlain[cI] = flatData.formattedValues[rI][cI-flatData.geometry.headersLength];
+			}
+			row.push(cell);
+		}
+		rowsData.push(row);
+		rowsDataPlain.push(rowPlain);
+	}
+
+	flatData.data2D = rowsData;
+	flatData.data2DPlain = rowsDataPlain;
+	
+	return flatData;
+};
+
+org_scn_community_databound.getSampleDataFlat = function (pathInfo, callBack, afterPrepare) {
+	var requestForData = new XMLHttpRequest();
+    var returnValue = undefined;
+    
+	requestForData.onreadystatechange = function() {
+		// check status and react
+		if (requestForData.readyState == 4){
+			// sometimes it gets 200 without content
+			if(requestForData.status == 404 || requestForData.responseUrl == "" || requestForData.response == "") {
+				returnValue= {};
+			} else {
+				returnValue= requestForData.response;
+				callBack(JSON.parse(returnValue), afterPrepare);
+			};
+		};
+	};
+	
+	// trigger ajax request
+	var dataUrl = pathInfo.mainSDKPath + "org.scn.community.databound/res/_data/data.flat.json";
+	
+	requestForData.open("GET", dataUrl, true);
+	requestForData.send();
+}
