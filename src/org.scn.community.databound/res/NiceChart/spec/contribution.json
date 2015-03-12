@@ -31,4 +31,8 @@
 		"gen-type":"int",
 	},
 	
+	"DMaxDataPoints" : {
+		"gen-type":"int",
+	},
+
 }

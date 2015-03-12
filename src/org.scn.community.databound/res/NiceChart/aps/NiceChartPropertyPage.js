@@ -21,6 +21,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.NiceChar
 		this.initDShowLegend();
 		this.initDLegendPosition();
 		this.initDLegendWidth();
+		this.initDMaxDataPoints();
 		
 	};
 	
@@ -33,6 +34,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.NiceChar
 		this.updateDShowLegend();
 		this.updateDLegendPosition();
 		this.updateDLegendWidth();
+		this.updateDMaxDataPoints();
 		
 	};
 	
@@ -314,6 +316,39 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.NiceChar
 		}else{
 			this._DLegendWidth = s;
 			this.updatePropertyDLegendWidth();
+			return this;
+		}
+	};
+
+	this.updatePropertyDMaxDataPoints = function(){
+		this._inputDMaxDataPoints.setValue(this._DMaxDataPoints);
+	};
+	
+	this.initDMaxDataPoints = function(){
+		this._labelDMaxDataPoints = new sap.ui.commons.Label({text: " Maximum Number of Data Points"});
+		this._labelDMaxDataPoints.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDMaxDataPoints);
+		
+		this._inputDMaxDataPoints = new sap.ui.commons.TextField({width: "300px"});
+		this._content.addContent(this._inputDMaxDataPoints);
+		this._inputDMaxDataPoints.attachChange(this.propertyChangedDMaxDataPoints, this);
+		this._inputDMaxDataPoints.addStyleClass("org-scn-ApsSimple");
+		
+		this.updatePropertyDMaxDataPoints();
+	};
+
+	this.propertyChangedDMaxDataPoints = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		this._DMaxDataPoints = value;
+		this.firePropertiesChanged(["DMaxDataPoints"]);
+	};
+	
+	this.DMaxDataPoints = function(s){
+		if( s === undefined){
+			return this._DMaxDataPoints;
+		}else{
+			this._DMaxDataPoints = s;
+			this.updatePropertyDMaxDataPoints();
 			return this;
 		}
 	};

@@ -1373,6 +1373,14 @@ __n__}
 		visible="true">
 	</property>
 
+	<property
+		id="DMaxDataPoints"
+		title="Maximum Number of Data Points"
+		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
@@ -1390,6 +1398,7 @@ __n__}
 		<defaultValue property="DShowLegend">true</defaultValue>
 		<defaultValue property="DLegendPosition">Right</defaultValue>
 		<defaultValue property="DLegendWidth">200</defaultValue>
+		<defaultValue property="DMaxDataPoints">100</defaultValue>
 	</initialization>
 
 </component>

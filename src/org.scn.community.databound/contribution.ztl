@@ -1011,6 +1011,20 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 		return this.DLegendWidth;
 	*}
 
+	/**
+	 * Sets Maximum Number of Data Points Property
+	 */	
+	void setMaxDataPoints( /* &nbsp; */  int maxDataPoints){*
+		this.DMaxDataPoints = maxDataPoints;
+	*}
+
+	/**
+	 * Gets Maximum Number of Data Points Property
+	 */	
+	int getMaxDataPoints() {*
+		return this.DMaxDataPoints;
+	*}
+
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 

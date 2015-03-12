@@ -592,7 +592,12 @@ org_scn_community_databound.flatten = function (data, options) {
 		
 		for(var j=0;j<rowAxisTuple.length;j++){
 			if(rowAxisTuple[j] != -1){
-				if(options.ignoreResults && data.dimensions[j].members[rowAxisTuple[j]].type == "RESULT") { isResult=true; break;}
+				if(options.ignoreResults) {
+					var member = data.dimensions[j].members[rowAxisTuple[j]];
+					if(member.type == "RESULT") { isResult=true; break;}
+					// also hierarchy nodes should be ignored, but this need more work, some code snippet
+					// if(member.type == "HIERARCHY_NODE" && member.level == 1 && member.nodeState == "EXPANDED") { isResult=true; break;}
+				}
 
 				rowHeader += sep + data.dimensions[j].members[rowAxisTuple[j]].text;
 				rowHeader2D.push(data.dimensions[j].members[rowAxisTuple[j]].text);

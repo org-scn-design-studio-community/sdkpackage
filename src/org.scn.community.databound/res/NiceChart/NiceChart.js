@@ -46,6 +46,7 @@
 	    	    this.DLegendPosition = function(value) { if (value === undefined) { return this._DLegendPosition; } else { this._DLegendPosition = value; return this; } };
 	    	    this.DLegendWidth = function(value) { if (value === undefined) { return this._DLegendWidth; } else { this._DLegendWidth = value; return this; } };
 	    	    this.DSwapAxes = function(value) { if (value === undefined) { return this._DSwapAxes; } else { this._DSwapAxes = value; return this; } };
+	    	    this.DMaxDataPoints = function(value) { if (value === undefined) { return this._DMaxDataPoints; } else { this._DMaxDataPoints = value; return this; } };
 	    		
 /*AUTO PROPERTIES - END*/
 	    		var that = this;
@@ -249,7 +250,7 @@
         					var otherLength = flatData.geometry.rowLength;
         					var otherHeaders = flatData.rowHeaders;
         				}
-	    				that.maxRows = Math.min(length, 20);
+	    				that.maxRows = Math.min(length, that._DMaxDataPoints);
 	    				for (var i = 0; i < that.maxRows; i++) {
 	    					data.labels.push(headers[i]);
 	    				}
