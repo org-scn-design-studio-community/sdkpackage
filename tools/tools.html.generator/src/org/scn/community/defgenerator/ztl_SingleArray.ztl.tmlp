@@ -13,9 +13,10 @@
 			%ROOT_PROPERTY_DEFINITION_FULL%
 			) {*		
 		
-		%ASSURE_OPTIONAL_INITIALIZED%
+		%ASSURE_OPTIONAL_ROOT_INITIALIZED%
 		var itemDef = {
-			%ROOT_PROPERTY_DEFINITION_JSON% 
+			leaf:true,
+			%ROOT_PROPERTY_DEFINITION_JSON%
 			};
 	
 		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
@@ -44,7 +45,7 @@
  	<example>
 	You want to remove root element
 	<code>
-	%COMPONENT_NAME%.remove%ROOT_CONTENT_NAME%(%PROPERTY_DEFINITION_KEY%);<br>
+	%COMPONENT_NAME%.remove%ROOT_CONTENT_NAME%(%ROOT_PROPERTY_DEFINITION_KEY%);<br>
 	<br>
 	</code>
 	</example>

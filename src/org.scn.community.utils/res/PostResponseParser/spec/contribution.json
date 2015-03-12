@@ -34,39 +34,20 @@
    	},
 
 	"DParameters":{
-      "gen-type":"DoubleArray",
+      "gen-type":"SingleArray",
 
       "parameter":{
          "gen-type":"Array",
          "gen-sequence":"key,value",
          
          "key": {
-         	"gen-desc": "Parameter Key",
+         	"gen-desc": "Parameter Name",
          	"gen-type": "String",
          },
          "value": {
          	"gen-desc": "Parameter Value",
          	"gen-type": "String",
          },
-         
-         "subParameter":{
-            "gen-type":"Array",
-            "gen-sequence":"parentKey,key,value",
-
-            "parentKey": {
-	         	"gen-desc": "The key of the parent button",
-	         	"gen-type": "String",
-	         	"gen-mode": "ztl"
-	         },
-	         "key": {
-	         	"gen-desc": "Unique key of this item",
-	         	"gen-type": "String",
-	         },
-	         "value": {
-         		"gen-desc": "Parameter Value",
-         		"gen-type": "String",
-         	 },
-         }
       },
    },
    

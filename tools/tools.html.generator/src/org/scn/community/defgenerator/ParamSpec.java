@@ -114,18 +114,24 @@ public class ParamSpec {
 				function = "";
 			}
 			
-			template = Helpers.resource2String(ParamSpec.class, "ztl_"+type+function+".ztl.tmlp");
-			templateAps = Helpers.resource2String(ParamSpec.class, "aps_"+type+function+".js.tmlp");
+			String arraySubType = "";
+			if(type.equals("DoubleArray") || type.equals("SingleArray")) {
+				arraySubType = type;
+				type = "Array";
+			}
+			
+			if(type.equals("Array")) {
+				template = Helpers.resource2String(ParamSpec.class, "ztl_"+arraySubType+function+".ztl.tmlp");
+				templateAps = Helpers.resource2String(ParamSpec.class, "aps_"+type+function+".js.tmlp");
 
-			if(template == null) {
-				template = Helpers.resource2String(ParamSpec.class, "ztl_"+"simple"+".ztl.tmlp");
-			}
-			
-			if(templateAps == null) {
-				templateAps = Helpers.resource2String(ParamSpec.class, "aps_"+"simple"+".js.tmlp");
-			}
-			
-			if(type.equals("DoubleArray") || type.equals("SimpleArray")) {
+				if(template == null) {
+					template = Helpers.resource2String(ParamSpec.class, "ztl_"+"simple"+".ztl.tmlp");
+				}
+				
+				if(templateAps == null) {
+					templateAps = Helpers.resource2String(ParamSpec.class, "aps_"+"simple"+".js.tmlp");
+				}
+
 				ParamSpec paramFirstChild = this.parameters.get(0);
 				String firstKey = paramFirstChild.getName();
 				String firstKeyUpper = Helpers.makeFirstUpper(firstKey); 
@@ -143,6 +149,8 @@ public class ParamSpec {
 				String ROOT_PROPERTY_KEY = "";
 				String ROOT_PROPERTY_DEFINITION_FULL = "";
 				String ROOT_PROPERTY_DEFINITION_JSON = "";
+				String ROOT_PROPERTY_NEW_APS_JSON = "";
+				String ASSURE_OPTIONAL_ROOT_INITIALIZED = "";
 				
 				for (int i = 0; i < splitSequence.length; i++) {
 					String keySequence = splitSequence[i];
@@ -160,6 +168,7 @@ public class ParamSpec {
 							
 							String PROPERTY_DEFINITION_FULL = "";
 							String PROPERTY_DEFINITION_JSON = "";
+							String PROPERTY_NEW_APS_JSON = "";
 							String ALL_PROPERTIES = "";
 							String PROPERTY_DEFINITION_KEY = "";
 							String ASSURE_OPTIONAL_INITIALIZED = "";
@@ -183,13 +192,14 @@ public class ParamSpec {
 											
 											boolean optional = paramGenChild2.isOptional();
 											
+											String initValue = paramGenChild2.getType().equals("boolean")?"false":"\"\"";
 											if(optional) {
-												String initValue = paramGenChild2.getType().equals("boolean")?"false":"\"\"";
 												ASSURE_OPTIONAL_INITIALIZED = ASSURE_OPTIONAL_INITIALIZED + "if(" + paramGenChild2.getName() + " == undefined) { " + paramGenChild2.getName() + " = "+initValue+";}" + "\r\n\t\t";; 
 											}
 											
 											PROPERTY_DEFINITION_FULL = PROPERTY_DEFINITION_FULL + paramGenChild2.getHelp() + (optional?"optional ":"") + paramGenChild2.getType() + " " + paramGenChild2.getName();
 											PROPERTY_DEFINITION_JSON = PROPERTY_DEFINITION_JSON + paramGenChild2.getName() + ":" + paramGenChild2.getName();
+											
 											ALL_PROPERTIES = ALL_PROPERTIES + paramGenChild2.getName() + " [" + paramGenChild2.getType() + "]"; 
 											
 											if(paramGenChild2.getName().equals("key")) {
@@ -199,6 +209,11 @@ public class ParamSpec {
 												boolean isAps = paramGenChild2.isAps();
 												
 												if(isAps) {
+													if(PROPERTY_NEW_APS_JSON.length() > 0) {
+														PROPERTY_NEW_APS_JSON = PROPERTY_NEW_APS_JSON + ", "  + "\r\n\t\t\t";
+													}
+													PROPERTY_NEW_APS_JSON = PROPERTY_NEW_APS_JSON + paramGenChild2.getName() + ":" + initValue;
+													
 													// add param handler
 													String paramGenChild2Value = paramGenChild2.getType();
 													String paramGenChild2Template = Helpers.resource2String(ParamSpec.class, "aps_"+type+"-param-"+paramGenChild2Value+".js.tmlp");
@@ -227,6 +242,7 @@ public class ParamSpec {
 							
 							templateAps = templateAps.replace("%ITEM_CONTENT_HANDLER%", "");
 							templateAps = templateAps.replace("%ITEM_PROPERTY_DESCRIPTION%", ITEM_PROPERTY_DESCRIPTION);
+							templateAps = templateAps.replace("%PROPERTY_NEW_APS_JSON%", PROPERTY_NEW_APS_JSON);
 						} else {
 							if(keySequence.equals(paramGenChild.getName())) {
 								if(ROOT_PROPERTY_DEFINITION_FULL.length() > 0) {
@@ -237,6 +253,12 @@ public class ParamSpec {
 								}
 								
 								boolean optional = paramGenChild.isOptional();
+								String initValue = paramGenChild.getType().equals("boolean")?"false":"\"\"";
+								
+								if(optional) {
+									ASSURE_OPTIONAL_ROOT_INITIALIZED = ASSURE_OPTIONAL_ROOT_INITIALIZED + "if(" + paramGenChild.getName() + " == undefined) { " + paramGenChild.getName() + " = "+initValue+";}" + "\r\n\t\t";; 
+								}
+								
 								ROOT_PROPERTY_DEFINITION_FULL = ROOT_PROPERTY_DEFINITION_FULL + paramGenChild.getHelp() + (optional?"optional ":"") + paramGenChild.getType() + " " + paramGenChild.getName();
 								ROOT_PROPERTY_DEFINITION_JSON = ROOT_PROPERTY_DEFINITION_JSON + paramGenChild.getName() + ":" + paramGenChild.getName();
 								PROPERTY_FULL = PROPERTY_FULL + paramGenChild.getName();
@@ -248,8 +270,13 @@ public class ParamSpec {
 									ROOT_PROPERTY_DESCRIPTION = paramGenChild.getTitle();
 								} else {
 									boolean isAps = paramGenChild.isAps();
-									
 									if(isAps) {
+										
+										if(ROOT_PROPERTY_NEW_APS_JSON.length() > 0) {
+											ROOT_PROPERTY_NEW_APS_JSON = ROOT_PROPERTY_NEW_APS_JSON + ", "  + "\r\n\t\t\t";
+										}
+										ROOT_PROPERTY_NEW_APS_JSON = ROOT_PROPERTY_NEW_APS_JSON + paramGenChild.getName() + ":" + initValue;
+										
 										// add param handler
 										String paramGenChildValue = paramGenChild.getType();
 										String paramGenChildTemplate = Helpers.resource2String(ParamSpec.class, "aps_"+type+"-section-"+paramGenChildValue+".js.tmlp");
@@ -274,6 +301,8 @@ public class ParamSpec {
 				template = template.replace("%ROOT_PROPERTY_DEFINITION_JSON%", ROOT_PROPERTY_DEFINITION_JSON);
 				template = template.replace("%PROPERTY_FULL%", PROPERTY_FULL);
 				template = template.replace("%ROOT_ALL_PROPERTIES%", ROOT_ALL_PROPERTIES);
+				template = template.replace("%ASSURE_OPTIONAL_ROOT_INITIALIZED%", ASSURE_OPTIONAL_ROOT_INITIALIZED);
+				
 				if(CONTENT_NAME != null && CONTENT_NAME.length() > 0) {
 					template = template.replace("%CONTENT_NAME%", Helpers.makeFirstUpper(CONTENT_NAME));	
 				} else {
@@ -293,11 +322,25 @@ public class ParamSpec {
 				}
 				templateAps = templateAps.replace("%SECTION_CONTENT_HANDLER%", "");
 				templateAps = templateAps.replace("%ROOT_PROPERTY_DESCRIPTION%", ROOT_PROPERTY_DESCRIPTION);
-				
+				templateAps = templateAps.replace("%ROOT_ARRAY_TYPE_LIST_CSS%", "org-scn-Aps-DetailList-" + arraySubType);
+				templateAps = templateAps.replace("%ITEM_CONTENT_HANDLER%", "");
+				templateAps = templateAps.replace("%ROOT_PROPERTY_NEW_APS_JSON%", ROOT_PROPERTY_NEW_APS_JSON);
+				templateAps = templateAps.replace("%PROPERTY_NEW_APS_JSON%", "");
 				templateAps = templateAps.replace("%COMPONENT_NAME%", this.parentProperty.getComponent().toUpperCase(Locale.ENGLISH));
 				templateAps = templateAps.replace("%PROPERTY_NAME%", this.parentProperty.getName());
 				templateAps = templateAps.replace("%PROPERTY_DESCRIPTION%", this.parentProperty.getTitle());
-			} else {				 
+			} else {
+				template = Helpers.resource2String(ParamSpec.class, "ztl_"+type+function+".ztl.tmlp");
+				templateAps = Helpers.resource2String(ParamSpec.class, "aps_"+type+function+".js.tmlp");
+
+				if(template == null) {
+					template = Helpers.resource2String(ParamSpec.class, "ztl_"+"simple"+".ztl.tmlp");
+				}
+				
+				if(templateAps == null) {
+					templateAps = Helpers.resource2String(ParamSpec.class, "aps_"+"simple"+".js.tmlp");
+				}
+
 				 String nameCut = this.parentProperty.getNameCut();
 				 template = template.replace("%PROPERTY_CAPITAL_CUT%", nameCut);
 				 template = template.replace("%PROPERTY_SMALL_CUT%", nameCut.substring(0,1).toLowerCase(Locale.ENGLISH) + nameCut.substring(1));

@@ -236,7 +236,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		
 		var items = this.gatherItemsDParameters(this._selectedElementKeyDParameters);
 		
-		var sectionKey = new sap.ui.commons.TextView({text : "Parameter Key"});
+		var sectionKey = new sap.ui.commons.TextView({text : "Parameter Name"});
 		sectionKey.addStyleClass("org-scn-ApsLabelArray");
 		var txtElementKey = new sap.ui.commons.TextField({value : selectedElement.key, width: "180px"});
 		txtElementKey.addStyleClass("org-scn-ApsInputArray");
@@ -310,7 +310,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 			width : "100%"
 		});
 		
-		var itemKey = new sap.ui.commons.TextView({text : "Unique key of this item"});
+		var itemKey = new sap.ui.commons.TextView({text : "%ITEM_PROPERTY_DESCRIPTION%"});
 		itemKey.addStyleClass("org-scn-ApsLabelArray");
 		var txtItemKey = new sap.ui.commons.TextField({value : this._currentItemConfigDParameters.key, width: "300px"});
 		txtItemKey.addStyleClass("org-scn-ApsInputArray");
@@ -325,17 +325,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		}, this);
 		itemDetailLayout.addContent(itemKey);
 		itemDetailLayout.addContent(txtItemKey);
-
-		var itemvalue = new sap.ui.commons.TextView({text : "Parameter Value"});
-		itemvalue.addStyleClass("org-scn-ApsLabelArray");
-		var txtItemvalue = new sap.ui.commons.TextField({value : this._currentItemConfigDParameters.value, width: "300px"});
-		txtItemvalue.addStyleClass("org-scn-ApsInputArray");
-		txtItemvalue.attachChange(function(oControlEvent){
-			var value = oControlEvent.getParameter("newValue");
-			this._currentItemConfigDParameters.value = value;		
-		}, this);
-		itemDetailLayout.addContent(itemvalue);
-		itemDetailLayout.addContent(txtItemvalue);
 
 
 		var detailButtons = new sap.ui.commons.layout.HorizontalLayout({ });
@@ -435,11 +424,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		var newItem = { 
 			parentKey : this._listBuilderDParameters.getSelectedKey(),
 			key : newItemKey, 
-			text : newItemKey, 
-			leaf : true,
-			toggable:false,
-			image:"",
-			selected:false
+			leaf: true, 
+			
 		};
 		this._elementsContentDParameters.push(newItem);
 		this.firePropertiesChanged(["DParameters"]);
@@ -453,11 +439,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		var newElement = { 
 			parentKey : "ROOT",
 			key : newKey,
-			text : newKey, 
-			leaf : false,
-			toggable:false,
-			image:"",
-			selected:false
+			leaf: false, 
+			value:""
 		};
 		this._listBuilderDParameters.setSelectedKey(newKey);
 		this._elementsContentDParameters.push(newElement);
@@ -540,7 +523,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 	 */
 	this.initDParameters = function(){
 		
-		this._labelDParameters = new sap.ui.commons.Label({text: " List of Parameters (key/value)"});
+		this._labelDParameters = new sap.ui.commons.Label({text: " List of Parameters (Name / Value)"});
 		this._labelDParameters.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDParameters);
 		
@@ -567,6 +550,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		this._hLayoutDParameters.addContent(this._listBuilderDParameters);
 		this._hLayoutDParameters.addContent(this._sectionPropertyLayoutDParameters);
 		this._hLayoutDParameters.addContent(this._sectionPropertyListDParameters);
+		this._sectionPropertyListDParameters.addStyleClass("org-scn-Aps-DetailList-SingleArray");
 		this._hLayoutDParameters.addStyleClass("org-scn-ApsDoubleArray");
 		
 		this.updatePropertyDParameters();

@@ -236,11 +236,8 @@
 		var newItem = { 
 			parentKey : this._listBuilder%PROPERTY_NAME%.getSelectedKey(),
 			key : newItemKey, 
-			text : newItemKey, 
-			leaf : true,
-			toggable:false,
-			image:"",
-			selected:false
+			leaf: true, 
+			%PROPERTY_NEW_APS_JSON%
 		};
 		this._elementsContent%PROPERTY_NAME%.push(newItem);
 		this.firePropertiesChanged(["%PROPERTY_NAME%"]);
@@ -254,11 +251,8 @@
 		var newElement = { 
 			parentKey : "ROOT",
 			key : newKey,
-			text : newKey, 
-			leaf : false,
-			toggable:false,
-			image:"",
-			selected:false
+			leaf: false, 
+			%ROOT_PROPERTY_NEW_APS_JSON%
 		};
 		this._listBuilder%PROPERTY_NAME%.setSelectedKey(newKey);
 		this._elementsContent%PROPERTY_NAME%.push(newElement);
@@ -368,6 +362,7 @@
 		this._hLayout%PROPERTY_NAME%.addContent(this._listBuilder%PROPERTY_NAME%);
 		this._hLayout%PROPERTY_NAME%.addContent(this._sectionPropertyLayout%PROPERTY_NAME%);
 		this._hLayout%PROPERTY_NAME%.addContent(this._sectionPropertyList%PROPERTY_NAME%);
+		this._sectionPropertyList%PROPERTY_NAME%.addStyleClass("%ROOT_ARRAY_TYPE_LIST_CSS%");
 		this._hLayout%PROPERTY_NAME%.addStyleClass("org-scn-ApsDoubleArray");
 		
 		this.updateProperty%PROPERTY_NAME%();

@@ -343,10 +343,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		var newItem = { 
 			parentKey : this._listBuilderDElementsContent.getSelectedKey(),
 			key : newItemKey, 
-			text : newItemKey, 
-			leaf : true,
-			toggable:false,
-			image:"",
+			leaf: true, 
+			text:"", 
+			image:"", 
 			selected:false
 		};
 		this._elementsContentDElementsContent.push(newItem);
@@ -361,10 +360,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		var newElement = { 
 			parentKey : "ROOT",
 			key : newKey,
-			text : newKey, 
-			leaf : false,
-			toggable:false,
-			image:"",
+			leaf: false, 
+			text:"", 
+			image:"", 
 			selected:false
 		};
 		this._listBuilderDElementsContent.setSelectedKey(newKey);
@@ -475,6 +473,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		this._hLayoutDElementsContent.addContent(this._listBuilderDElementsContent);
 		this._hLayoutDElementsContent.addContent(this._sectionPropertyLayoutDElementsContent);
 		this._hLayoutDElementsContent.addContent(this._sectionPropertyListDElementsContent);
+		this._sectionPropertyListDElementsContent.addStyleClass("org-scn-Aps-DetailList-DoubleArray");
 		this._hLayoutDElementsContent.addStyleClass("org-scn-ApsDoubleArray");
 		
 		this.updatePropertyDElementsContent();

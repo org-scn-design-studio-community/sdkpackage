@@ -6,6 +6,13 @@
 	background-color: #FFFFFF !important;	
 }
 
+.org-scn-Aps-DetailList-SingleArray {
+	visibility: hidden;
+	display: none;
+}
+.org-scn-Aps-DetailList-DoubleArray {	
+}
+
 .org-scn-ApsLabel {
 	margin-left: 4px;
 	font-size: 12px;
