@@ -77,7 +77,7 @@ var org_scn_community_databound_Base = function(options){
 						sep = " ";						
 					}
 				}
-				if(this.ignoreTotals()==true || !containsTotal){
+				if(this.ignoreTotals()==false || !containsTotal){
 					for(var col=0;col<colLength;col++){
 						if(data.data && data.data.length > 0){
 							newValueRow.push(data.data[tupleIndex]);

@@ -2,12 +2,13 @@
 	 var myScript = $("script:last")[0].src;
 	 var ownComponentName = "org.scn.community.databound.HexBin";
 	 var _readScriptPath = function () {
-		 var scriptInfo = org_scn_community_basics.readGenericScriptAccess(myScript, "res/HexBin", "databound");
+		 var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
 		 return scriptInfo;
 	 };
 	 /** end of recognition of script path */
 	 /** RequireJS Config **/
 	 var pathInfo = _readScriptPath();
+	 alert(JSON.stringify(pathInfo));
 	 sap.zen.Dispatcher.instance.pauseDispatching();
 	 var sdkReqs = require.config({
 		 context : "sdk",

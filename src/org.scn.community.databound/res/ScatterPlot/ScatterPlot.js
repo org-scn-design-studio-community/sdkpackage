@@ -2,7 +2,7 @@
 	 var myScript = $("script:last")[0].src;
 	 var ownComponentName = "org.scn.community.databound.ScatterPlot";
 	 var _readScriptPath = function () {
-		 var scriptInfo = org_scn_community_basics.readGenericScriptAccess(myScript, "res/ScatterPlot", "databound");
+		 var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
 		 return scriptInfo;
 	 };
 	 /** end of recognition of script path */
