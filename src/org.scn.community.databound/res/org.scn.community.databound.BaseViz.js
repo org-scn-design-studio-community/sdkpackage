@@ -197,6 +197,22 @@ function org_scn_community_databound_BaseViz(d3, options){
 				cat : "Cosmetics",
 				apsControl : "spinner"	
 			}
+		},
+		minZoom : {
+			value : 1,
+			opts : {
+				desc : "Minimum Zoom Scale Extent",
+				cat : "Cosmetics",
+				apsControl : "spinner"	
+			}
+		},
+		maxZoom : {
+			value : 5,
+			opts : {
+				desc : "Maximum Zoom Scale Extent",
+				cat : "Cosmetics",
+				apsControl : "spinner"	
+			}
 		}
 	};
 	for(var prop in options) properties[prop] = options[prop];
@@ -239,6 +255,10 @@ function org_scn_community_databound_BaseViz(d3, options){
 		this.plotArea
 			.transition().duration(this.ms())
 			.attr("transform", "translate(" + (this.dimensions.plotLeft) + "," + (this.dimensions.plotTop) + ")");
+		this.plotBG
+			.transition().duration(this.ms())
+			.attr("width", this.dimensions.width)
+			.attr("height", this.dimensions.height);
 		/*
 		this.legendGroup.attr("transform", function(d){
 			return d.translate;
@@ -310,7 +330,20 @@ function org_scn_community_databound_BaseViz(d3, options){
 		var currentHeight = that.$().innerHeight();
 		if(currentWidth != that._previousWidth || currentHeight != that._previousHeight){
 			that._previousHeight = currentHeight;
-			that._previousWidth = currentWidth;	
+			that._previousWidth = currentWidth;
+			this.calculateDimensions();
+			this.zoomYScale
+				.domain([0, this.dimensions.plotHeight])
+				.range([0,this.dimensions.plotHeight]);
+			this.zoomXScale
+				.domain([0, this.dimensions.plotWidth])
+				.range([0, this.dimensions.plotWidth]);				
+			this.semanticZoom
+				.x(this.zoomXScale)
+				.y(this.zoomYScale)
+				.scaleExtent([this.minZoom(),this.maxZoom()])
+				.size([this.dimensions.plotWidth, this.dimensions.plotHeight])
+				.scale(this.zoomScale || this.minZoom());
 			this.afterUpdate();
 		}else{
 			// Sizes are the same.  Don't redraw, but poll again after an interval.
@@ -393,9 +426,22 @@ function org_scn_community_databound_BaseViz(d3, options){
 	// Semantic Zooming - not working
 	var that = this;
 	this.semanticZoomed = function(){
-		d3.select(this).attr("transform",function transform(d) {
-			  return "translate(" + that.zoomscale.x(d[0]) + "," + that.zoomscale.y(d[1]) + ")";
+		//alert("X\n" + that.zoomXScale.domain() + "\n" + that.zoomXScale.range() + "\n\nY:\n" + that.zoomYScale.domain() + "\n" + that.zoomYScale.range());
+		that.zoomScale = d3.event.scale;
+		//alert(JSON.stringify(d3.event));
+		if(d3.event.scale==that.minZoom()) {
+			that.zoomYScale.domain([0, that.dimensions.plotHeight])
+				.range([0, that.dimensions.plotHeight]);
+			that.zoomXScale.domain([0, that.dimensions.plotWidth])
+				.range([0, that.dimensions.plotWidth]);
+		} 
+		that.afterUpdate();
+		/*
+		
+		 d3.select(this).attr("transform",function transform(d) {
+			  return "translate(" + that.xScale(d[0]) + "," + that.yScale(d[1]) + ")";
 		});
+		*/
 	}
 	// Geometric Zooming
 	this.zoomed = function(d){
@@ -404,7 +450,9 @@ function org_scn_community_databound_BaseViz(d3, options){
 				var sw = d3.select(this).style("stroke-width");
 				return (sw + 0) / d3.event.scale + "px";
 		});*/
-		
+		if(that.previousZoom==d3.event.scale) return;
+		that.previousZoom = d3.event.scale;
+		that.afterUpdate();
 		if(d3.event.scale>1){
 			d3.select(this)
 				//.transition().duration(200)
@@ -412,7 +460,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 		}else{
 			d3.select(this)
 				//.transition().duration(200)
-				.attr("transform", "translate("+that.margin() + " " + that.margin() + ")scale(" + d3.event.scale + ")");
+				.attr("transform", "translate(0 0)scale(" + d3.event.scale + ")");
 		}
 		
 	};
@@ -449,13 +497,30 @@ function org_scn_community_databound_BaseViz(d3, options){
 		this.calculateDimensions();
 		this.svg = d3.select("#" + this.$().attr("id")).select("svg");
 		if(this.svg.empty()){
-			this.zoomscale = {
-				x : d3.scale.linear().domain([0,this.dimensions.width]).range([0,this.dimensions.width]),
-				y : d3.scale.linear().domain([0,this.dimensions.height]).range([0,this.dimensions.height])
-			};
+			// X, Y and Zoom Scales
+			this.previousZoom = this.minZoom();
+			this.zoomYScale = d3.scale.linear()
+				.domain([0, this.dimensions.plotHeight])
+				.range([0, this.dimensions.plotHeight]);
+			this.zoomXScale = d3.scale.linear()
+				.domain([0, this.dimensions.plotWidth])
+				.range([0, this.dimensions.plotWidth]);
+			this.yScale = d3.scale.linear()
+				.domain([this.dimensions.plotHeight, 0])
+				.range([0, this.dimensions.plotHeight]);
+			this.xScale = d3.scale.linear()
+				.domain([0, this.dimensions.plotWidth])
+				.range([0, this.dimensions.plotWidth]);
 			this.zoom = d3.behavior.zoom()
-				.scaleExtent([1,10])
+				.scaleExtent([this.minZoom(),this.maxZoom()])
 				.on("zoom",this.zoomed);
+			this.semanticZoom = d3.behavior.zoom()
+				.scaleExtent([this.minZoom(),this.maxZoom()])
+				.x(this.zoomXScale)
+				.y(this.zoomYScale)
+				.size([this.dimensions.plotWidth, this.dimensions.plotHeight])
+				.on("zoom",this.semanticZoomed)
+				.scale(this.minZoom());
 			this.svg = d3.select("#" + this.$().attr("id")).append("svg");
 			this.svg
 				.attr("preserveAspectRatio","xMidYMid meet")
@@ -466,13 +531,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 				.attr("type","text/css");
 			this.main = this.svg.append("g");
 			// Main Plot Area
-			this.canvas = this.main.append("g")
-				.call(this.zoom);/*
-				.call(d3.behavior.zoom()
-						.x(this.zoomscale.x)
-						.y(this.zoomscale.y)
-						.scaleExtent([1,10])
-						.on("zoom",this.semanticZoomed));*/
+			this.canvas = this.main.append("g");
 			// Clip Path
 			this.mainClip = this.svgDefs.append("clipPath")
 				.attr("id",this.$().attr("id")+"_mainclip");
@@ -496,20 +555,22 @@ function org_scn_community_databound_BaseViz(d3, options){
 			// Plot Area
 			this.plotArea = this.stage.append("g")
 				.attr("id",this.$().attr("id") + "_plotarea");
+			this.plotWindow = this.plotArea.append("g")
+				.attr("id",this.$().attr("id") + "_plotwindow")
+				.attr("clip-path","url(#" + this.$().attr("id")+"_clip)");
+			// Plot Background
+			this.plotBG = this.plotWindow.append("rect")
+				.attr("id",this.$().attr("id")+"_plotBG")
+				.attr("opacity", 0)
+				//.call(this.zoom);
+				.call(this.semanticZoom);
+				//.on("mousedown.zoom", null);
 			// Plot Layer
-			this.plotLayer = this.plotArea.append("g")
-				.attr("clip-path","url(#" + this.$().attr("id")+"_clip)")
-				.attr("id",this.$().attr("id")+"_plotlayer");
-			/*
-			 * Axes
-			 */
-			this.yAxisGroup = this.plotArea.append("g")
-				.attr("class", "y axis")
-				.attr("id",this.$().attr("id")+"_yaxis");
-			this.xAxisGroup = this.plotArea.append("g")
-				.attr("class", "x axis")
-				.attr("transform", "translate(0," + this.dimensions.plotHeight + ")")
-				.attr("id",this.$().attr("id")+"_xaxis");
+			this.plotLayer = this.plotWindow.append("g")
+				.attr("id",this.$().attr("id")+"_plotlayer")
+				.call(this.semanticZoom);
+				//.on("mousedown.zoom", null);
+				
 			/*
 			 * Legend
 			 */

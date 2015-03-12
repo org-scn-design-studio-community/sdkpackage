@@ -161,7 +161,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 				}
 				// Step 4, add control to layout
 				//etcLayout.addContent(this.hLabel(property,this["cmp_"+property]));
-				this["layout_"+category].addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
+				var useLabel = true;
+				if(apsControl == "palette") useLabel = false;
+				if(useLabel){
+					this["layout_"+category].addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
+				}else{
+					this["layout_"+category].addContent(this["cmp_"+property]);
+				}
+				
 			}
 			
 		}

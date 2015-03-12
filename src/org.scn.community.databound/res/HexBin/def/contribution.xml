@@ -52,6 +52,8 @@
 	<property id="plotRight" title="Plot Offset Right" type="int"/>
 	<property id="plotTop" title="Plot Offset Top" type="int"/>
 	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
 	<!-- End of Base Viz Properties -->
 	<!-- BaseVizXY Properties -->
 	<property id="minX" title="Manual Min X" type="int"/>
@@ -104,6 +106,8 @@
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="minZoom">1</defaultValue>
+		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- BaseVizXY Defaults -->
 		<defaultValue property="xAxisTicks">5</defaultValue>

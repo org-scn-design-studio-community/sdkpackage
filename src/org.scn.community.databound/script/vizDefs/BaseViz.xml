@@ -25,4 +25,6 @@
 	<property id="plotRight" title="Plot Offset Right" type="int"/>
 	<property id="plotTop" title="Plot Offset Top" type="int"/>
 	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
 	<!-- End of Base Viz Properties -->

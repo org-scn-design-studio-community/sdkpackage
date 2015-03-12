@@ -164,7 +164,7 @@
 						return translate;	
 					})
 					.call(this.xAxis);
-				this.plotLayer.transition().duration(this.ms())
+				this.plotWindow.transition().duration(this.ms())
 					.attr("transform", function(d){
 						var x = 0;
 						var y = 0;

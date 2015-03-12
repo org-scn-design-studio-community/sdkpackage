@@ -197,7 +197,7 @@
 	handlerType="div"
 	propertySheetPath="res/Choropleth/aps/ChoroplethPropertyPage.html"
 	databound = "true"
-	group="ScnCommunityGeo">
+	group="ScnCommunityDataBound">
 	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
@@ -240,6 +240,8 @@
 	<property id="plotRight" title="Plot Offset Right" type="int"/>
 	<property id="plotTop" title="Plot Offset Top" type="int"/>
 	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
 	<!-- End of Base Viz Properties -->
 	<!-- Begin of Chropleth Properties -->
 	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
@@ -302,6 +304,8 @@
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="minZoom">1</defaultValue>
+		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- Begin of Choropleth Defaults -->
 		<defaultValue property="chartTitle">Choropleth Map</defaultValue>
@@ -820,6 +824,8 @@
 	<property id="plotRight" title="Plot Offset Right" type="int"/>
 	<property id="plotTop" title="Plot Offset Top" type="int"/>
 	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
 	<!-- End of Base Viz Properties -->
 	<!-- BaseVizXY Properties -->
 	<property id="minX" title="Manual Min X" type="int"/>
@@ -872,6 +878,8 @@
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="minZoom">1</defaultValue>
+		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- BaseVizXY Defaults -->
 		<defaultValue property="xAxisTicks">5</defaultValue>
@@ -1088,6 +1096,8 @@ __n__}
 	<property id="plotRight" title="Plot Offset Right" type="int"/>
 	<property id="plotTop" title="Plot Offset Top" type="int"/>
 	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
 	<!-- End of Base Viz Properties -->
 	<!-- Begin of Marimekko Chart Properties -->
 	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
@@ -1121,6 +1131,8 @@ __n__}
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="minZoom">1</defaultValue>
+		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- Begin of Marimekko Chart Defaults -->
 		<defaultValue property="chartTitle">Marimekko Chart</defaultValue>
@@ -1591,6 +1603,8 @@ __n__}
 	<property id="plotRight" title="Plot Offset Right" type="int"/>
 	<property id="plotTop" title="Plot Offset Top" type="int"/>
 	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
 	<!-- End of Base Viz Properties -->
 	<!-- BaseVizXY Properties -->
 	<property id="minX" title="Manual Min X" type="int"/>
@@ -1637,6 +1651,8 @@ __n__}
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="minZoom">1</defaultValue>
+		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- BaseVizXY Defaults -->
 		<defaultValue property="xAxisTicks">5</defaultValue>

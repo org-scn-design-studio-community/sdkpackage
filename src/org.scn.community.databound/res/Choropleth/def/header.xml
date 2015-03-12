@@ -5,7 +5,7 @@
 	handlerType="div"
 	propertySheetPath="res/Choropleth/aps/ChoroplethPropertyPage.html"
 	databound = "true"
-	group="ScnCommunityGeo">
+	group="ScnCommunityDataBound">
 	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>

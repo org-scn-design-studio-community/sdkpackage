@@ -119,6 +119,18 @@
 	    	this.init = function(){
 	    		parentInit.call(this);
 	    		this.$().addClass("MarimekkoChart");
+	    		/*
+				 * Axes - NOTE: Marimekko is not an XY Chart but uses similar stuff
+				 */
+	    		this.yScale.domain([0,1]);
+	    		this.xScale.domain([0,1]);
+				this.yAxisGroup = this.plotArea.append("g")
+					.attr("class", "y axis")
+					.attr("id",this.$().attr("id")+"_yaxis");
+				this.xAxisGroup = this.plotArea.append("g")
+					.attr("class", "x axis")
+					.attr("transform", "translate(0," + this.dimensions.plotHeight + ")")
+					.attr("id",this.$().attr("id")+"_xaxis");
 	    	}
 	    	var parentUpdatePlot = this.updatePlot;
 	    	this.updatePlot = function(){
@@ -144,7 +156,17 @@
 	    			cp = this.colorPalette().split(",");
 	    		}
 	    		// X-Axis
-	    		this.xScale = d3.scale.linear().range([0, this.dimensions.plotWidth]);
+	    		this.xScale
+	    			.domain([0,1])
+	    			.range([0, this.dimensions.plotWidth]);
+	    		    		
+	    		var reverseXDomain = [0,1];	    		
+	    			reverseXDomain[0] = this.xScale.invert(this.zoomXScale.domain()[0]);
+	    			reverseXDomain[1] = this.xScale.invert(this.zoomXScale.domain()[1]);
+	    		this.xScale
+	    			.domain(reverseXDomain)
+	    			.range([0, this.dimensions.plotWidth]);
+	    		
 	    		this.xAxis = d3.svg.axis()
 					.scale(this.xScale)
 					.orient(this.xAxisOrientation())
@@ -158,7 +180,35 @@
 	    		});
 	    		this.dimensions.xAxisHeight = maxh + 6 + 3;
 	    		// Y-Axis
-	    		this.yScale = d3.scale.linear().range([0, this.dimensions.plotHeight - this.dimensions.xAxisHeight]);
+	    		/*
+	    		 * yScale Domain - 0 - 1 (%) -> Range - 0px, 200px
+	    		 * yScale(.5) = 100px
+	    		 * s2 yZoom Domain - 0px, 200px -> Range 200px, 0px 
+	    		 * s2 yZoom Domain - 25px, 300px -> Range 200px, 0px
+	    		 * yZoom Range - 0, 500, Domain 
+	    		 * 
+	    		 */
+	    		this.yScale
+	    			.domain([0,1])
+	    			.range([0, this.dimensions.plotHeight - this.dimensions.xAxisHeight]);
+	    		
+	    		var reverseDomain = [0,1];	    		
+	    		reverseDomain[0] = this.yScale.invert(this.zoomYScale.domain()[1]);
+	    		reverseDomain[1] = this.yScale.invert(this.zoomYScale.domain()[0]);
+	    		/*
+	    		 alert("yz Domain: " + this.zoomYScale.domain() + "\n"+
+	    		      "yz Range:" + this.zoomYScale.range() + "\n" +
+	    		      "plot height:" + this.dimensions.plotHeight + "\n" +
+	    		      "yz(0):" + this.zoomYScale(this.yScale(0)) + "\n" +
+	    		      "reverse:" + reverseDomain + "\n" +
+	    			  "yz(1):" + this.zoomYScale(1));
+	    		*/
+	    		// Default domain is [0,1]
+	    		
+	    		this.yScale
+	    			.domain(reverseDomain)
+	    			.range([0, this.dimensions.plotHeight - this.dimensions.xAxisHeight]);
+	    		
 	    		this.yAxis = d3.svg.axis()
 			    	.scale(this.yScale)
 			    	.orient(this.yAxisOrientation())

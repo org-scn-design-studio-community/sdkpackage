@@ -139,9 +139,14 @@ function org_scn_community_databound_XYViz(d3, options){
 			this.xVals.push(currentRow[mxIndex]);
 			this.yVals.push(currentRow[myIndex]);
 		}
-		this.xScale = d3.scale.linear()
-			.domain([(this.minX() || d3.min(this.xVals)), (this.maxX() || d3.max(this.xVals))])	
+		var reverseXDomain = [(this.minX() || d3.min(this.xVals)), (this.maxX() || d3.max(this.xVals))];
+		this.xScale
+			.domain(reverseXDomain)	
 			.range([0, (this.dimensions.plotWidth)]);
+		reverseXDomain[0] = this.xScale.invert(this.zoomXScale.domain()[0]);
+		reverseXDomain[1] = this.xScale.invert(this.zoomXScale.domain()[1]);
+		this.xScale.domain(reverseXDomain);
+
 		this.xAxis = d3.svg.axis()
 			.scale(this.xScale)
 			.orient(this.xAxisOrientation())
@@ -153,9 +158,17 @@ function org_scn_community_databound_XYViz(d3, options){
 		    if(this.getBBox().height > maxh) maxh = this.getBBox().height;
 		});
 		this.dimensions.xAxisHeight = maxh + 6 + 3;
-		this.yScale = d3.scale.linear()
-			.domain([this.maxY() || d3.max(this.yVals),this.minY() || d3.min(this.yVals)])	
+		
+		var reverseDomain = [this.maxY() || d3.max(this.yVals),this.minY() || d3.min(this.yVals)];
+		this.yScale
+			.domain(reverseDomain)	
 			.range([0,(this.dimensions.plotHeight - this.dimensions.xAxisHeight)]);
+		
+		reverseDomain[0] = this.yScale.invert(this.zoomYScale.domain()[0]);
+		reverseDomain[1] = this.yScale.invert(this.zoomYScale.domain()[1]);
+		
+		this.yScale.domain(reverseDomain);
+		
 		this.yAxis = d3.svg.axis()
 	    	.scale(this.yScale)
 	    	.orient(this.yAxisOrientation())
@@ -172,8 +185,8 @@ function org_scn_community_databound_XYViz(d3, options){
 		this.xAxis.scale(this.xScale);
 		this.xAxisGroup.call(this.xAxis);
 		
-		this.xScale = d3.scale.linear()
-			.domain([(this.minX() || d3.min(this.xVals)), (this.maxX() || d3.max(this.xVals))])	
+		this.xScale
+			//.domain([(this.minX() || d3.min(this.xVals)), (this.maxX() || d3.max(this.xVals))])	
 			.range([0, (this.dimensions.plotWidth-this.dimensions.yAxisWidth)]);
 		
 		this.xAxis = d3.svg.axis()
@@ -201,61 +214,16 @@ function org_scn_community_databound_XYViz(d3, options){
 	var parentInit = this.init;
 	this.init = function(){
 		parentInit.apply(this);
-		this.$().addClass("Viz");
-		this.calculateDimensions();
-		this.svg = d3.select("#" + this.$().attr("id")).select("svg");
-		if(this.svg.empty()){
-			this.svg = d3.select("#" + this.$().attr("id")).append("svg");
-			// Main Plot Area
-			this.canvas = this.svg.append("g");
-			// Clip Path
-			this.clip = this.canvas.append("clipPath")
-				.attr("id",this.$().attr("id")+"_clip");
-			// Rectangle Shape for clip path
-			this.clipRect = this.clip.append("rect")
-				.attr("class","clipRect");
-			// Plot Area
-			this.plotArea = this.canvas.append("g");
-			// Plot Layer
-			this.plotLayer = this.plotArea.append("g")
-				.attr("clip-path","url(#" + this.$().attr("id")+"_clip)");
-			/*
-			 * Axes
-			 */
-			this.yAxisGroup = this.plotArea.append("g")
-				.attr("class", "y axis");
-			this.xAxisGroup = this.plotArea.append("g")
-				.attr("class", "x axis")
-				.attr("transform", "translate(0," + this.dimensions.plotHeight + ")");
-			/*
-			 * Legend
-			 */
-			this.legendGroup = this.canvas.append('g')
-        		.attr('class', "legend-group" );
-			this.legendRect = this.legendGroup.append('rect')
-	        	.attr("class", "legend-container")	
-	        	.attr('x', 0)
-	        	.attr('y', 0);
-			this.legendLabel = this.legendGroup.append('text')
-	        	.attr('class', 'legend-label');
-			/*
-			 * Messages
-			 */
-			this.messageGroup = this.svg.append("g")
-		    	.attr("display", "none")
-		    	.attr("opacity", 0);
-	    
-		    this.messageRect = this.messageGroup.append("rect")
-		    	.attr("fill", "#006699")
-		    	.attr("x",0).attr("y",0)
-		    	.attr("width",this.dimensions.width)
-		    	.attr("height",this.dimensions.height)
-		    	
-	    	this.messageText = this.messageGroup.append("text")
-		    	.style("text-anchor","middle")
-		    	.style("fill","#FFFFFF")
-		    	.attr("x",this.dimensions.width/2).attr("y",this.dimensions.height/2)
-		    	.text("Message");
-		}
+		/*
+		 * Axes
+		 */
+		this.yAxisGroup = this.plotArea.append("g")
+			.attr("class", "y axis")
+			.attr("id",this.$().attr("id")+"_yaxis");
+		this.xAxisGroup = this.plotArea.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + this.dimensions.plotHeight + ")")
+			.attr("id",this.$().attr("id")+"_xaxis");
+		this.$().addClass("VizXY");
 	}
 };
