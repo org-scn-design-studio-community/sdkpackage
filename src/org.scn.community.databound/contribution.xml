@@ -198,6 +198,7 @@
 	propertySheetPath="res/Choropleth/aps/ChoroplethPropertyPage.html"
 	databound = "true"
 	group="ScnCommunityDataBound">
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
@@ -783,6 +784,7 @@
 		databound="true"
 >
 	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>
@@ -1562,6 +1564,7 @@ __n__}
 		databound="true"
 >
 	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>

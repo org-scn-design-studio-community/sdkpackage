@@ -8,7 +8,6 @@
 	 /** end of recognition of script path */
 	 /** RequireJS Config **/
 	 var pathInfo = _readScriptPath();
-	 alert(JSON.stringify(pathInfo));
 	 sap.zen.Dispatcher.instance.pauseDispatching();
 	 var sdkReqs = require.config({
 		 context : "sdk",

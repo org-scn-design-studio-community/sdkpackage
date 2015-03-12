@@ -513,7 +513,7 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 
 /**
  * Flattens data from tuple format to 2D Array
- * @author Mike Howles
+ * @author Mike Howles & Karol Kalisz
  * @param data { 
  *	 	"selection" : [Array of dimension selections] 	
  *	 	"tuples" : *Design Studio Tuples*,
@@ -543,6 +543,8 @@ org_scn_community_databound.flatten = function (data, options) {
 	}
 	
 	var retObj = {
+		dimensionHeaders : [],
+		dimensionheader : "",
 		columnHeaders : [],
 		columnHeaders2D : [],
 		rowHeaders : [],

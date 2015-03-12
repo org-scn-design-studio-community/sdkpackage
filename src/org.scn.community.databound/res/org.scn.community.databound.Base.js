@@ -2,36 +2,13 @@
  * Base Databound Class
  */
 var org_scn_community_databound_Base = function(options){
-	/**
-	 * Flattens data from tuple format to 2D Array
-	 * @author Mike Howles
-	 * @param data { 
-	 *	 	"selection" : [Array of dimension selections] 	
-	 *	 	"tuples" : *Design Studio Tuples*,
-	 *		"data" : *Design Studio Data*,
-	 *   	"formattedData" : *Design Studio Formatted Data*,
-	 * 		"dimensions" : *Design Studio Metadata Dimensions JSON*,
-	 *		"locale" : *Design Studio user locale (e.g. en_US)",
-	 *	  	"axis_columns : [Array of Column Axis Dimension Selection Members]
-	 *	  	"axis_rows" : [Array of Row Axis Dimension Selection Members]
-	 *	 }
-	 * @param options {
-	 * 		Placeholder
-	 * }
-	 * 
-	 * @return {
-	 * 		"columnHeaders" : [1D Array of Header Labels]
-	 * 		"columnHeaders2D" : [2D Array of Header Labels]
-	 * 		"dimensionHeaders" : [1D Array of Dimension Headers]
-	 * 		"dimensionHeader" : Concatenated String of Dimension Headers
-	 * 		"rowHeaders" : [1D Array of Row Headers]
-	 *  	"rowHeaders2D" : [2D Array of Row Headers]
-	 * 		"values" : [2D Array of Measures] 
-	 *
-	 * }
-	 */
 	this.flattenData = function (value, options) {
 		var data = this.data();
+		this.flatData =  org_scn_community_databound.flatten(data,{
+			ignoreResults : this.ignoreTotals()
+		});
+		return;
+		// Temp ref
 		try{
 			this.flatData = {
 				dimensionHeaders : [],
