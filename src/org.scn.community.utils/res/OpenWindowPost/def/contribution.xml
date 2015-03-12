@@ -8,6 +8,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/OpenWindowPost/OpenWindowPost.js</jsInclude>
 
 	<property

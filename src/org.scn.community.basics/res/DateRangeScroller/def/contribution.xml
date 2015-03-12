@@ -6,6 +6,7 @@
 	icon="res/DateRangeScroller/DateRangeScroller.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>os/sapui5/suite/mapping.js</jsInclude>
 	<jsInclude>os/date/DateFormat.js</jsInclude>
 	<jsInclude>res/DateRangeScroller/DateRangeScroller.js</jsInclude>

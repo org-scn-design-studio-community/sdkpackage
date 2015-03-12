@@ -20,21 +20,16 @@
 (function() {
 /** code for recognition of script path */
 var myScript = $("script:last")[0].src;
+var ownComponentName = "org.scn.community.basics.ToggleButton";
 var _readScriptPath = function () {
-	if(myScript) {
-		var myScriptSuffix = "res/ToggleButton/";
-		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
- 		var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
- 		return ownScriptPath;
-	}
-		
-	return "";
+	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
+	return scriptInfo.myScriptPath;
 };
 /** end of path recognition */
 
 jQuery.sap.require("sap.ui.commons.ToggleButton");
 
-sap.ui.commons.ToggleButton.extend("org.scn.community.basics.ToggleButton", {
+sap.ui.commons.ToggleButton.extend(ownComponentName, {
 
   	initDesignStudio: function() {
 		var that = this;

@@ -20,19 +20,14 @@
 (function() {
 /** code for recognition of script path */
 var myScript = $("script:last")[0].src;
+var ownComponentName = "org.scn.community.basics.Accordion";
 var _readScriptPath = function () {
-	if(myScript) {
-		var myScriptSuffix = "res/Accordion/";
-		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
- 		var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
- 		return ownScriptPath;
-	}
-		
-	return "";
+	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
+	return scriptInfo.myScriptPath;
 };
 /** end of path recognition */
 
-sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.Accordion", {
+sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 
 	setDefaultImage : function(value) {
 		this._DefaultImage = value;

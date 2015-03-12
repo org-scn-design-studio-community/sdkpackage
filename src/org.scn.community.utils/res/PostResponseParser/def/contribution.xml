@@ -9,6 +9,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/PostResponseParser/PostResponseParser.js</jsInclude>
 
 	<property

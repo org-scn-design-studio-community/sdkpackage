@@ -19,15 +19,10 @@
 (function() {
 /** code for recognition of script path */
 var myScript = $("script:last")[0].src;
+var ownComponentName = "org.scn.community.basics.Calendar";
 var _readScriptPath = function () {
-	if(myScript) {
-		var myScriptSuffix = "res/Calendar/";
-		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
- 		var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
- 		return ownScriptPath;
-	}
-		
-	return "";
+	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
+	return scriptInfo.myScriptPath;
 };
 /** end of path recognition */
 
@@ -37,7 +32,7 @@ oCore.loadLibrary("sap.me");
 jQuery.sap.require("sap.me.Calendar");
 jQuery.sap.require("sap.m.Button");
 
-sap.me.Calendar.extend("org.scn.community.basics.Calendar", {
+sap.me.Calendar.extend(ownComponentName, {
 
 	metadata: {
         properties: {

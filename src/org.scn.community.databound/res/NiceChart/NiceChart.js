@@ -19,23 +19,10 @@
 
 (function() {
 	 var myScript = $("script:last")[0].src;
+	 var ownComponentName = "org.scn.community.databound.NiceChart";
 	 var _readScriptPath = function () {
-		 if(myScript) {
- 			var myScriptSuffix = "res/NiceChart/";
- 			var myPluginSuffix = "org.scn.community.databound/";
- 			var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
- 			var mainSDKPathIndex = myScript.indexOf(myPluginSuffix);
- 			var mainSDKPath = myScript.substring(0, mainSDKPathIndex);
- 			var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
- 			return {
- 				myScriptPath : ownScriptPath,	// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.databound/res/ScatterPlot/
- 				mainSDKPath : mainSDKPath		// http://localhost:9091/aad/zen/mimes/sdk_include/
- 			};
- 		}
-		 return {
-	 			myScriptPath: "/aad/zen/mimes/sdk_include/org.scn.community.databound/res/HexBin/",
-	 			mainSDKPath: "/aad/zen/mimes/sdk_include/"
-	 		};
+		 var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
+		 return scriptInfo;
 	 };
 	 /** end of recognition of script path */
 	 /** RequireJS Config **/
@@ -491,7 +478,7 @@
     		    };
 	     	}
 	     
-	     	sap.designstudio.sdk.Component.subclass("org.scn.community.databound.NiceChart", NiceChart);	// End of SDK
+	     	sap.designstudio.sdk.Component.subclass(ownComponentName, NiceChart);	// End of SDK
 	     	sap.zen.Dispatcher.instance.resumeDispatching(); 	
 })();// End of closure
 

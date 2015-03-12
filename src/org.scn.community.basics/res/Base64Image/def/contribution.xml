@@ -6,7 +6,10 @@
 	handlerType="sapui5"
 	propertySheetPath="res/Base64Image/aps/Base64ImagePropertyPage.html"
 	group="ScnCommunityBasics">
+	
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Base64Image/Base64Image.js</jsInclude>
+	
 	<property type="String" title="Image Source URI" id="src" />
 	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>			
 	<initialization>

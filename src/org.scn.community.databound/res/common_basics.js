@@ -117,21 +117,31 @@ org_scn_community_basics.hideNoDataOverlay = function(componentId, includeFullSi
 	document.getElementsByTagName('head')[0].appendChild(style);
 };
 
-org_scn_community_basics.readOwnScriptAccess = function(scriptSrc, componentName, packageName) {
-	if(myScript) {
-		var myScriptSuffix = "res/"+componentName+"/";
+org_scn_community_basics.readOwnScriptAccess = function(scriptSrc, componentFullName) {
+	var packageAndName = componentFullName.substring("org.scn.community.".length);
+	var componentName = packageAndName.substring(packageAndName.indexOf(".") + 1);
+	var packageName = packageAndName.substring(0, packageAndName.indexOf("."));
+	return org_scn_community_basics.readGenericScriptAccess(scriptSrc, "res/"+componentName+"/", packageName);
+}
+
+org_scn_community_basics.readGenericScriptAccess = function(scriptSrc, sctiptPath, packageName) {
+	if(scriptSrc) {
+		var myScriptSuffix = sctiptPath;
 		var myPluginSuffix = "org.scn.community."+packageName+"/";
-		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
-		var mainSDKPathIndex = myScript.indexOf(myPluginSuffix);
-		var mainSDKPath = myScript.substring(0, mainSDKPathIndex);
-		var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
+		var mainScriptPathIndex = scriptSrc.indexOf(myScriptSuffix);
+		var mainSDKPathIndex = scriptSrc.indexOf(myPluginSuffix);
+		var mainSDKPath = scriptSrc.substring(0, mainSDKPathIndex);
+		var ownScriptPath = scriptSrc.substring(0, mainScriptPathIndex) + myScriptSuffix;
 		return {
-			myScriptPath : ownScriptPath,	// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/res/<component-name>/
-			mainSDKPath : mainSDKPath		// http://localhost:9091/aad/zen/mimes/sdk_include/
+			myScriptPath : ownScriptPath,					// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/res/<component-name>/
+			myPackagePath: mainSDKPath + myPluginSuffix, 	// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/
+			mainSDKPath : mainSDKPath						// http://localhost:9091/aad/zen/mimes/sdk_include/
 		};
 	}
 	return {
- 		myScriptPath: "/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/res/<component-name>/",
+		// temporary hack for local mode in 1.5 release
+		myScriptPath: "/aad/zen/mimes/sdk_include/org.scn.community."+packageName+"/" + sctiptPath + "/",
+		myPackagePath: "/aad/zen/mimes/sdk_include/org.scn.community."+packageName+"/",
  		mainSDKPath: "/aad/zen/mimes/sdk_include/"
  	};
 }

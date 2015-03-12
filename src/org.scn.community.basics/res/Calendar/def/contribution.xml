@@ -7,6 +7,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>os/sapui5/load.sap.m.js</jsInclude>
 	<jsInclude>os/date/DateFormat.js</jsInclude>
 	<jsInclude>res/Calendar/Calendar.js</jsInclude>

@@ -30,6 +30,7 @@
 	<jsInclude>os/jspdf/jspdf.plugin.standard_fonts_metrics.js</jsInclude>
 	<jsInclude>os/jspdf/jspdf.plugin.total_pages.js</jsInclude>
 	
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/PdfPrint/PdfPrint.js</jsInclude>
 
 	<property

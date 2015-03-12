@@ -1,19 +1,9 @@
 (function() {
 	 var myScript = $("script:last")[0].src;
-	 _readScriptPath = function () {
-		 if(myScript) {
- 			var myScriptSuffix = "res/ScatterPlot/";
- 			var myPluginSuffix = "org.scn.community.databound/";
- 			var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
- 			var mainSDKPathIndex = myScript.indexOf(myPluginSuffix);
- 			var mainSDKPath = myScript.substring(0, mainSDKPathIndex);
- 			var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
- 			return {
- 				myScriptPath : ownScriptPath,	// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.databound/res/ScatterPlot/
- 				mainSDKPath : mainSDKPath		// http://localhost:9091/aad/zen/mimes/sdk_include/
- 			};
- 		}
- 		return "";
+	 var ownComponentName = "org.scn.community.databound.ScatterPlot";
+	 var _readScriptPath = function () {
+		 var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
+		 return scriptInfo.myScriptPath;
 	 };
 	 /** end of recognition of script path */
 	 /** RequireJS Config **/
@@ -51,7 +41,7 @@
 		 ScatterPlot.prototype = org_scn_community_databound_XYViz;
 		 ScatterPlot.prototype.constructor = ScatterPlot;
 		 ScatterPlot.prototype.toString = function(){
-	    	 return "org.scn.community.databound.ScatterPlot";
+	    	 return ownComponentName;
 	     }
 	     function ScatterPlot() {
 	    	// Call super
@@ -268,7 +258,7 @@
 	    	    
 	    	}
 		}
-		sap.designstudio.sdk.Component.subclass("org.scn.community.databound.ScatterPlot", ScatterPlot);	// End of SDK
+		sap.designstudio.sdk.Component.subclass(ownComponentName, ScatterPlot);	// End of SDK
 		sap.zen.Dispatcher.instance.resumeDispatching();
 	 });//End of Require Callback 	
 })();// End of closure

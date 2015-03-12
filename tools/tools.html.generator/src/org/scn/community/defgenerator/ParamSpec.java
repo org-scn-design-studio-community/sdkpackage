@@ -125,9 +125,7 @@ public class ParamSpec {
 				templateAps = Helpers.resource2String(ParamSpec.class, "aps_"+"simple"+".js.tmlp");
 			}
 			
-			if(type.equals("SimpleArray")) {
-				
-			} else if(type.equals("DoubleArray")) {
+			if(type.equals("DoubleArray") || type.equals("SimpleArray")) {
 				ParamSpec paramFirstChild = this.parameters.get(0);
 				String firstKey = paramFirstChild.getName();
 				String firstKeyUpper = Helpers.makeFirstUpper(firstKey); 
@@ -137,13 +135,14 @@ public class ParamSpec {
 				String sequence = paramFirstChild.properties.get("sequence");
 				String[] splitSequence = sequence.split(",");
 				
-				String ROOT_PROPERTY_DEFINITION_FULL = "";
 				String PROPERTY_FULL = "";
 				String CONTENT_NAME = "";
 				String ROOT_ALL_PROPERTIES = "";
 				String ROOT_PROPERTY_DEFINITION_KEY = "";
 				String ROOT_PROPERTY_DESCRIPTION = "";
 				String ROOT_PROPERTY_KEY = "";
+				String ROOT_PROPERTY_DEFINITION_FULL = "";
+				String ROOT_PROPERTY_DEFINITION_JSON = "";
 				
 				for (int i = 0; i < splitSequence.length; i++) {
 					String keySequence = splitSequence[i];
@@ -234,10 +233,12 @@ public class ParamSpec {
 									ROOT_PROPERTY_DEFINITION_FULL = ROOT_PROPERTY_DEFINITION_FULL + ", " + "\r\n\t\t\t";
 									PROPERTY_FULL = PROPERTY_FULL + ", " + "\r\n\t\t\t";
 									ROOT_ALL_PROPERTIES = ROOT_ALL_PROPERTIES + ", ";
+									ROOT_PROPERTY_DEFINITION_JSON = ROOT_PROPERTY_DEFINITION_JSON + ", "  + "\r\n\t\t\t";
 								}
 								
 								boolean optional = paramGenChild.isOptional();
 								ROOT_PROPERTY_DEFINITION_FULL = ROOT_PROPERTY_DEFINITION_FULL + paramGenChild.getHelp() + (optional?"optional ":"") + paramGenChild.getType() + " " + paramGenChild.getName();
+								ROOT_PROPERTY_DEFINITION_JSON = ROOT_PROPERTY_DEFINITION_JSON + paramGenChild.getName() + ":" + paramGenChild.getName();
 								PROPERTY_FULL = PROPERTY_FULL + paramGenChild.getName();
 								ROOT_ALL_PROPERTIES = ROOT_ALL_PROPERTIES + paramGenChild.getName() + " [" + paramGenChild.getType() + "]";
 								
@@ -270,6 +271,7 @@ public class ParamSpec {
 				}
 
 				template = template.replace("%ROOT_PROPERTY_DEFINITION_FULL%", ROOT_PROPERTY_DEFINITION_FULL);
+				template = template.replace("%ROOT_PROPERTY_DEFINITION_JSON%", ROOT_PROPERTY_DEFINITION_JSON);
 				template = template.replace("%PROPERTY_FULL%", PROPERTY_FULL);
 				template = template.replace("%ROOT_ALL_PROPERTIES%", ROOT_ALL_PROPERTIES);
 				if(CONTENT_NAME != null && CONTENT_NAME.length() > 0) {

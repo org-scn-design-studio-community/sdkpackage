@@ -20,21 +20,16 @@
 (function() {
 /** code for recognition of script path */
 var myScript = $("script:last")[0].src;
+var ownComponentName = "org.scn.community.basics.ImageCarousel";
 var _readScriptPath = function () {
-	if(myScript) {
-		var myScriptSuffix = "res/ImageCarousel/";
-		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
- 		var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
- 		return ownScriptPath;
-	}
-		
-	return "";
+	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
+	return scriptInfo.myScriptPath;
 };
 
 jQuery.sap.require("sap.ui.commons.Carousel");
 
 /** end of path recognition */
-sap.ui.commons.Carousel.extend("org.scn.community.basics.ImageCarousel", {
+sap.ui.commons.Carousel.extend(ownComponentName, {
 
 	setDefaultImage : function(value) {
 		this._DefaultImage = value;

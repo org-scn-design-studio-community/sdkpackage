@@ -6,6 +6,7 @@
 	icon="res/ApplicationHeaderOnBeforeRender/ApplicationHeader.png"
 	group="ScnCommunityPrototypes"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ApplicationHeaderOnBeforeRender/ApplicationHeader.js</jsInclude>
 
 	<property

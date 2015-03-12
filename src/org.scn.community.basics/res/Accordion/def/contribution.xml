@@ -6,6 +6,8 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 	propertySheetPath="res/Accordion/aps/AccordionPropertyPage.html">
+	
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Accordion/Accordion.js</jsInclude>
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 

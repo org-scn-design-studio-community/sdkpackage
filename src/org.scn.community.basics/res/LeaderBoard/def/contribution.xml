@@ -6,6 +6,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/LeaderBoard/LeaderBoard.js</jsInclude>
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 

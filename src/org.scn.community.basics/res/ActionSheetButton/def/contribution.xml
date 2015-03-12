@@ -6,7 +6,10 @@
 		handlerType="sapui5" 
 		propertySheetPath="res/ActionSheetButton/aps/ActionSheetButtonPropertyPage.html"
 		group="ScnCommunityBasics">
-	  	<jsInclude>res/ActionSheetButton/ActionSheetButton.js</jsInclude>
+	  	
+		<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/ActionSheetButton/ActionSheetButton.js</jsInclude>
+	  	
 	  	<property id="text" type="String" title="Title"/>
 	  	<property id="items" type="String" title="Items" visible="false"/>
 	  	<!-- 

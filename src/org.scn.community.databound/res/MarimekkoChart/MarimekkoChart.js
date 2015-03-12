@@ -1,19 +1,9 @@
 (function() {
 	 var myScript = $("script:last")[0].src;
-	 _readScriptPath = function () {
-		 if(myScript) {
- 			var myScriptSuffix = "res/MarimekkoChart/";
- 			var myPluginSuffix = "org.scn.community.databound/";
- 			var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
- 			var mainSDKPathIndex = myScript.indexOf(myPluginSuffix);
- 			var mainSDKPath = myScript.substring(0, mainSDKPathIndex);
- 			var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
- 			return {
- 				myScriptPath : ownScriptPath,	// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.databound/res/MarimekkoChart/
- 				mainSDKPath : mainSDKPath		// http://localhost:9091/aad/zen/mimes/sdk_include/
- 			};
- 		}
- 		return "";
+	 var ownComponentName = "org.scn.community.databound.MarimekkoChart";
+	 var _readScriptPath = function () {
+		 var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
+		 return scriptInfo;
 	 };
 	 /** end of recognition of script path */
 	 /** RequireJS Config **/
@@ -51,7 +41,7 @@
 		 MarimekkoChart.prototype = org_scn_community_databound_BaseViz;
 		 MarimekkoChart.prototype.constructor = MarimekkoChart;
 		 MarimekkoChart.prototype.toString = function(){
-	    	 return "org.scn.community.databound.MarimekkoChart";
+	    	 return ownComponentName;
 	     }
 	     function MarimekkoChart() {
 	    	 var that = this;
@@ -427,7 +417,7 @@
 	    	    
 	    	}
 		}
-		sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MarimekkoChart", MarimekkoChart);	// End of SDK
+		sap.designstudio.sdk.Component.subclass(ownComponentName, MarimekkoChart);	// End of SDK
 		sap.zen.Dispatcher.instance.resumeDispatching();
 	 });//End of Require Callback 	
 })();// End of closure

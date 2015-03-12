@@ -6,6 +6,7 @@
 	icon="res/Link/Link.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Link/Link.js</jsInclude>
 	<property
 		id="text"

@@ -6,6 +6,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ImageCarousel/ImageCarousel.js</jsInclude>
 	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 

@@ -198,6 +198,8 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 	propertySheetPath="res/Accordion/aps/AccordionPropertyPage.html">
+	
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Accordion/Accordion.js</jsInclude>
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 
@@ -300,7 +302,10 @@
 		handlerType="sapui5" 
 		propertySheetPath="res/ActionSheetButton/aps/ActionSheetButtonPropertyPage.html"
 		group="ScnCommunityBasics">
-	  	<jsInclude>res/ActionSheetButton/ActionSheetButton.js</jsInclude>
+	  	
+		<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/ActionSheetButton/ActionSheetButton.js</jsInclude>
+	  	
 	  	<property id="text" type="String" title="Title"/>
 	  	<property id="items" type="String" title="Items" visible="false"/>
 	  	<!-- 
@@ -350,6 +355,7 @@
 	icon="res/ApplicationHeader/ApplicationHeader.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ApplicationHeader/ApplicationHeader.js</jsInclude>
 
 	<property
@@ -400,7 +406,10 @@
 	handlerType="sapui5"
 	propertySheetPath="res/Base64Image/aps/Base64ImagePropertyPage.html"
 	group="ScnCommunityBasics">
+	
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Base64Image/Base64Image.js</jsInclude>
+	
 	<property type="String" title="Image Source URI" id="src" />
 	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>			
 	<initialization>
@@ -417,6 +426,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/BasicBusinessCard/BasicBusinessCard.js</jsInclude>
 	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
 
@@ -475,6 +485,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>os/sapui5/load.sap.m.js</jsInclude>
 	<jsInclude>os/date/DateFormat.js</jsInclude>
 	<jsInclude>res/Calendar/Calendar.js</jsInclude>
@@ -605,6 +616,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/CheckBoxGroup/CheckBoxGroup.js</jsInclude>
 	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 
@@ -669,6 +681,7 @@
 	icon="res/ColorPicker/ColorPicker.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ColorPicker/ColorPicker.js</jsInclude>
 
 	<property
@@ -701,6 +714,7 @@
 	icon="res/DateRangeScroller/DateRangeScroller.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>os/sapui5/suite/mapping.js</jsInclude>
 	<jsInclude>os/date/DateFormat.js</jsInclude>
 	<jsInclude>res/DateRangeScroller/DateRangeScroller.js</jsInclude>
@@ -843,6 +857,7 @@
 	group="ScnCommunityBasics"
 >
 	
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>os/sapui5/suite/mapping.js</jsInclude>
 	<jsInclude>os/date/DateFormat.js</jsInclude>
 	<jsInclude>res/DateRangeSlider/DateRangeSlider.js</jsInclude>
@@ -963,6 +978,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/DragDropArea/jquery.ndd.js</jsInclude>
 	<jsInclude>res/DragDropArea/DragDropArea.js</jsInclude>
 	<cssInclude>res/DragDropArea/DragDropArea.css</cssInclude>
@@ -1079,6 +1095,7 @@
 	icon="res/EmbeddedFrame/EmbeddedFrame.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/EmbeddedFrame/EmbeddedFrame.js</jsInclude>
 	
 	<property
@@ -1107,6 +1124,7 @@
 	icon="res/EmbeddedMedia/EmbeddedMedia.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/EmbeddedMedia/EmbeddedMedia.js</jsInclude>
 	
 	<property
@@ -1146,6 +1164,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FallbackPicture/FallbackPicture.js</jsInclude>
 	<cssInclude>res/FallbackPicture/FallbackPicture.css</cssInclude>
 
@@ -1182,7 +1201,10 @@
 	handlerType="sapui5" 
 	propertySheetPath="res/FioriAppHeader/aps/FioriAppHeaderPropertyPage.html"
 	group="ScnCommunityBasics">
-  	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
+  	
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
+  	
   	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
   	<property id="title" type="String" title="Title"/>
   	<property id="itemConfig" type="String" title="Item Config" visible="false"/>
@@ -1204,8 +1226,10 @@
 	group="ScnCommunityBasics"
 	propertySheetPath="res/FioriButton/aps/FioriButton.html"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FioriButton/FioriButton.js</jsInclude>
 	<cssInclude>res/FioriButton/FioriButton.css</cssInclude>
+	
 	<property
 		id="dIcon"
 		type="String"
@@ -1288,7 +1312,8 @@
 	handlerType="sapui5" 
 	propertySheetPath="res/FioriToolbar/aps/FioriToolbarPropertyPage.html"
 	group="ScnCommunityBasics">
-  	<jsInclude>res/FioriToolbar/FioriToolbar.js</jsInclude>
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/FioriToolbar/FioriToolbar.js</jsInclude>
   	<cssInclude>res/FioriToolbar/FioriToolbar.css</cssInclude>
   	<property id="itemConfig" type="String" title="Item Config" visible="false"/>
   	<!--
@@ -1324,6 +1349,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FishEye/FishEye.js</jsInclude>
 	<cssInclude>res/FishEye/FishEye.css</cssInclude>
 
@@ -1389,6 +1415,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ImageCarousel/ImageCarousel.js</jsInclude>
 	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 
@@ -1625,7 +1652,8 @@
 	handlerType="sapui5"
 	propertySheetPath="res/LaunchPad/aps/LaunchPadPropertyPage.html"
 	group="ScnCommunityBasics">
-  	<jsInclude>res/LaunchPad/LaunchPad.js</jsInclude>
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/LaunchPad/LaunchPad.js</jsInclude>
   	<cssInclude>res/LaunchPad/LaunchPad.css</cssInclude>
   	<property type="String" title="Tile Config" id="tileConfig" visible="false"/>
   	<property type="String" title="Selected Tile" id="selectedTile" visible="false"/>
@@ -1643,6 +1671,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/LeaderBoard/LeaderBoard.js</jsInclude>
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 
@@ -1730,6 +1759,7 @@
 	icon="res/Link/Link.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Link/Link.js</jsInclude>
 	<property
 		id="text"
@@ -1758,7 +1788,8 @@
 		icon="res/ListSelector/ListSelector.png"
 		propertySheetPath="res/ListSelector/aps/ListSelectorPropertyPage.html"
 		group="ScnCommunityBasics">
-	  	<jsInclude>res/ListSelector/ListSelector.js</jsInclude>
+	  	<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/ListSelector/ListSelector.js</jsInclude>
 	  	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
 	  	<property id="titles" type="String" title="Titles"/>
 	  	<property id="spriteIDs" type="String" title="Sprite IDs (Optional)"/>
@@ -1958,7 +1989,8 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics">
 	
-  	<jsInclude>res/ModalBrowser/ModalBrowser.js</jsInclude>
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/ModalBrowser/ModalBrowser.js</jsInclude>
   	<cssInclude>res/ModalBrowser/ModalBrowser.css</cssInclude>
   	
   	<property type="String" title="URL" id="url"/>
@@ -2010,6 +2042,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/NavigationBar/NavigationBar.js</jsInclude>
 	<cssInclude>res/NavigationBar/NavigationBar.css</cssInclude>
 
@@ -2070,6 +2103,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/NotificationBar/NotificationBar.js</jsInclude>
 	<cssInclude>res/NotificationBar/NotificationBar.css</cssInclude>
 
@@ -2161,7 +2195,8 @@
 	handlerType="div"
 	group="ScnCommunityBasics"
   	tooltip="Notify - Leandro Cardoso" >
-	  	<jsInclude>res/Notify/Notify.js</jsInclude>
+	  	<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/Notify/Notify.js</jsInclude>
     	<jsInclude>os/noty/packaged/jquery.noty.packaged.js</jsInclude>
 	  	<property type="String" title="msgtext" id="msgtext" visible="false" />
 		<property type="String" title="shownote" id="shownote" visible="false" />
@@ -2203,6 +2238,7 @@
 	<jsInclude>os/mm/mm-min.js</jsInclude>
 	<jsInclude>os/mm/mm-follower.js</jsInclude>
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/OSMap/OSMap.js</jsInclude>
 	<cssInclude>res/OSMap/OSMap.css</cssInclude>
 
@@ -2279,6 +2315,7 @@
 	icon="res/Paginator/Paginator.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Paginator/Paginator.js</jsInclude>
 	<property
 		id="currentPage"
@@ -2310,6 +2347,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/PasswordField/PasswordField.js</jsInclude>
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
 
@@ -2366,6 +2404,7 @@
 	tooltip="QRCode Generation"
 	handlerType="div"
 	group="ScnCommunityBasics">
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>os/jquery-qrcode/jquery.qrcode.min.js</jsInclude>
 	<jsInclude>res/QRCode/QRCode.js</jsInclude>
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
@@ -2436,6 +2475,7 @@
 	icon="res/ProgressIndicator/ProgressIndicator.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ProgressIndicator/ProgressIndicator.js</jsInclude>
 	<property
 		id="barColor"
@@ -2483,6 +2523,7 @@
 	icon="res/RangeSlider/RangeSlider.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/RangeSlider/RangeSlider.js</jsInclude>
 	<property
 		id="min"
@@ -2560,6 +2601,7 @@
 	icon="res/RatingIndicator/RatingIndicator.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/RatingIndicator/RatingIndicator.js</jsInclude>
 	<property
 		id="editable"
@@ -2609,6 +2651,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics">
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/RoadMap/RoadMap.js</jsInclude>
 	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
 
@@ -2668,6 +2711,7 @@
 	group="ScnCommunityBasics"
 	propertySheetPath="res/SegmentedButton/aps/SegmentedButtonPropertyPage.html">
 	
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/SegmentedButton/SegmentedButton.js</jsInclude>
 	<cssInclude>res/SegmentedButton/SegmentedButton.css</cssInclude>
 
@@ -2789,6 +2833,7 @@
 	icon="res/Slider/Slider.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Slider/Slider.js</jsInclude>
 	<property
 		id="min"
@@ -2856,6 +2901,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/TextArea/TextArea.js</jsInclude>
 	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	<property
@@ -2910,6 +2956,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ToggleButton/ToggleButton.js</jsInclude>
 	<cssInclude>res/ToggleButton/ToggleButton.css</cssInclude>
 
@@ -2989,6 +3036,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Tree/Tree.js</jsInclude>
 	<cssInclude>res/Tree/Tree.css</cssInclude>
 
@@ -3069,6 +3117,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/TriStateCheckBox/TriStateCheckBox.js</jsInclude>
 	<cssInclude>res/TriStateCheckBox/TriStateCheckBox.css</cssInclude>
 
@@ -3139,6 +3188,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>os/validate/validate.js</jsInclude>
 	<jsInclude>res/ValiInput/ValiInput.js</jsInclude>
 	<cssInclude>res/ValiInput/ValiInput.css</cssInclude>
@@ -3236,6 +3286,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ValueHelpField/ValueHelpField.js</jsInclude>
 	<cssInclude>res/ValueHelpField/ValueHelpField.css</cssInclude>
 

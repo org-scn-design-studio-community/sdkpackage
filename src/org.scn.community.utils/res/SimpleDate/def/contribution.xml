@@ -6,6 +6,7 @@
 		handlerType="div"
 		group="ScnCommunityUtils">
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/SimpleDate/SimpleDate.js</jsInclude>
 
 	<property

@@ -22,26 +22,16 @@
 /** code for recognition of script path */
 (function() {
 	var myScript = $("script:last")[0].src;
+	var ownComponentName = "org.scn.community.geovis.Maps";
 	var _readScriptPath = function () {
-		if(myScript) {
-			var myScriptSuffix = "res/Maps/";
-			var myPluginSuffix = "org.scn.community.geovis/";
-			var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
-			var mainSDKPathIndex = myScript.indexOf(myPluginSuffix);
-			var mainSDKPath = myScript.substring(0, mainSDKPathIndex);
-			var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
-			return {
-				myScriptPath : ownScriptPath,
-				mainSDKPath : mainSDKPath
-			};
-		}
-		return "";
+		var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
+		return scriptInfo;
 };
 /** end of recognition of script path */
 /**
  * Leaflet Wrapper
  */
-sap.designstudio.sdk.Component.subclass("org.scn.community.geovis.Maps",function() {
+sap.designstudio.sdk.Component.subclass(ownComponentName,function() {
 	// Reworked using modified Karol script path detection code.
 	var pathInfo = _readScriptPath();
 	this.sdkPfx = pathInfo.mainSDKPath;

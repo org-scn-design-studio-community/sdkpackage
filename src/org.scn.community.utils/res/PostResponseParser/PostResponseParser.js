@@ -83,11 +83,10 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 				http.setRequestHeader("Authorization", that.getDBasicAuthorisation());	
 			}
 			
+			var returnParameters = [];
+			
 			http.onreadystatechange = function() {
 			    if(http.readyState == 4) {
-			    	
-			    	var returnParameters = [];
-			    	
 			    	if(http.status == that.getDExpectedResponseStatus()){
 			    		var response = http.responseText;
 			    		var status = http.status;
@@ -131,7 +130,27 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 			    }
 			}
 			
-			http.send(params);
+			try {
+				http.send(params);	
+			} catch (e) {
+				// in case the send is not working, can happen on cors (https > http)
+				returnParameters = JSON.stringify(returnParameters);
+				that.setDReturnParameters(returnParameters);
+				
+				var response = "EXCEPTION\r\n";
+				if(e.name) {response = "NAME: " + e.name + "\r\n";}
+				if(e.message) {response = "MESSAGE: " + e.message + "\r\n";}
+	    		that.setDReturnResponse(response);
+	    		
+	    		that.setDReturnStatus(500);
+
+				that.setDTrigger("");
+
+	    		var changed = ["DTrigger", "DReturnParameters", "DReturnResponse", "DReturnStatus"];
+				
+				that.fireDesignStudioPropertiesChanged(changed);
+				that.fireDesignStudioEvent("onResponse");
+			}
 			
 			if(that.getDTrigger() != "") {
 				// clean up the trigger

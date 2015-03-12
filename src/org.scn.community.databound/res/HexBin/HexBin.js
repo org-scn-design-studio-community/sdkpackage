@@ -1,19 +1,9 @@
 (function() {
 	 var myScript = $("script:last")[0].src;
-	 _readScriptPath = function () {
-		 if(myScript) {
- 			var myScriptSuffix = "res/HexBin/";
- 			var myPluginSuffix = "org.scn.community.databound/";
- 			var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
- 			var mainSDKPathIndex = myScript.indexOf(myPluginSuffix);
- 			var mainSDKPath = myScript.substring(0, mainSDKPathIndex);
- 			var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
- 			return {
- 				myScriptPath : ownScriptPath,	// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.databound/res/HexBin/
- 				mainSDKPath : mainSDKPath		// http://localhost:9091/aad/zen/mimes/sdk_include/
- 			};
- 		}
- 		return "";
+	 var ownComponentName = "org.scn.community.databound.HexBin";
+	 var _readScriptPath = function () {
+		 var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
+		 return scriptInfo;
 	 };
 	 /** end of recognition of script path */
 	 /** RequireJS Config **/
@@ -39,7 +29,7 @@
 		 HexBin.prototype = org_scn_community_databound_XYViz;
 		 HexBin.prototype.constructor = HexBin;
 		 HexBin.prototype.toString = function(){
-	    	 return "org.scn.community.databound.HexBin";
+	    	 return ownComponentName;
 	     }
 	     function HexBin() {
 	    	// Call super
@@ -284,7 +274,7 @@
 	    	    
 	    	}
 		}
-		sap.designstudio.sdk.Component.subclass("org.scn.community.databound.HexBin", HexBin);	// End of SDK
+		sap.designstudio.sdk.Component.subclass(ownComponentName, HexBin);	// End of SDK
 		sap.zen.Dispatcher.instance.resumeDispatching();
 	 });//End of Require Callback 	
 })();// End of closure

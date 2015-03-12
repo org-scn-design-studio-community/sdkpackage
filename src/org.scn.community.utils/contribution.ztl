@@ -2181,7 +2181,10 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 		this.DLogActive = value;
 	*}
 
-	void openZtl(String thisValue, Object locals) {*
+	/**
+	 * Only for Use in SDK Development in ZTL code!
+	 */
+	void openZtl(Object thisValue, Object locals) {*
 		if(this.DActive != true) {
 			return;
 		}
@@ -2192,7 +2195,10 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 		this.private_inspect(thisValue, locals);
 	*}
 	
-	void exitZtl(String thisValue, Object locals) {*
+	/**
+	 * Only for Use in SDK Development in ZTL code!
+	 */
+	void exitZtl(Object thisValue, Object locals) {*
 		if(this.DActive != true) {
 			return;
 		}
@@ -2203,6 +2209,12 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 		this.private_inspect(thisValue, locals);
 	*}
 
+	/**
+	 * Inspection Function for Use in BIAL Event Sctips.
+	 * You can use it to inspect the GLOBAL VARIABLES and also Components (see optional parameters)
+	 * 
+	 * In case of "standard" components it does not show much, but on SDK components it shows calues of all internal propertes.
+	 */
 	void inspectNow(optional String comment, optional Component thisValue) {*
 		if(this.DActive != true) {
 			return;
@@ -2224,6 +2236,9 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 		this.private_inspect(thisValue);
 	*}
 	
+	/**
+	 * Only for Use in SDK Development in ZTL code!
+	 */
 	void processZtlException(String thisValue, Object locals, Object exception) {*
 		if(this.DActive != true) {
 			return;
@@ -2235,6 +2250,9 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 		this.private_inspect(thisValue, locals, exception);
 	*}
 
+	/**
+	 * Only for Use in SDK Development in ZTL code!
+	 */
 	void inspectZtl(Object thisValue, Object locals, Object exception) {*
 		if(this.DActive != true) {
 			return;
@@ -2247,7 +2265,8 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Private Inspection Method
+	 * Private Inspection Method.
+	 * Do not Use externally, API can be changed here!
 	 */
 	void private_inspect(Object thisValue, Object locals, Object exception, optional boolean fullScope) {*
 		if(this.DActive != true) {
@@ -2339,8 +2358,10 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 				
 				var owner = thisValue.getOwner();
 				
-				lVariables.push({"date":l.date, "item-type":name, "value":owner.getItemType(), "type":"info"});
-				lVariables.push({"date":l.date, "item-name":name, "value":owner.getName(), "type":"info"});
+				if(owner) {
+					lVariables.push({"date":l.date, "item-type":name, "value":owner.getItemType(), "type":"info"});
+					lVariables.push({"date":l.date, "item-name":name, "value":owner.getName(), "type":"info"});
+				}
 				
 				for (var name in thisValue) {
 					try {
@@ -2469,6 +2490,10 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 		return methodName;
 	*}
 	
+	/**
+	 * you can use this method to push some code to console, APPLICATION.log(value).
+	 * The difference is, you can activate or deactivate the function in properties w/o changes in the code.
+	 */
 	void toConsole(String value, optional boolean withDate) {*
 		if(withDate) {
 			var mydate = new Date();
@@ -2482,14 +2507,23 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 		}
 	*}
 
+	/**
+	 * Returns Console Content
+	 */
 	String getConsole() {*
 		return this.DConsole;
 	*}
 
+	/**
+	 * Clears Console Content
+	 */
 	void clearConsole() {*
 		this.DConsole = "";
 	*}
 	
+	/**
+	 * Resets Completely the Content
+	 */
 	void reset() {*
 		this.clearConsole();
 		this.DStack = "[]";

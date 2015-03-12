@@ -5,6 +5,7 @@
 	tooltip="QRCode Generation"
 	handlerType="div"
 	group="ScnCommunityBasics">
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>os/jquery-qrcode/jquery.qrcode.min.js</jsInclude>
 	<jsInclude>res/QRCode/QRCode.js</jsInclude>
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>

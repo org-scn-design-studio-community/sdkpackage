@@ -5,7 +5,10 @@
 	handlerType="sapui5" 
 	propertySheetPath="res/FioriAppHeader/aps/FioriAppHeaderPropertyPage.html"
 	group="ScnCommunityBasics">
-  	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
+  	
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
+  	
   	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
   	<property id="title" type="String" title="Title"/>
   	<property id="itemConfig" type="String" title="Item Config" visible="false"/>

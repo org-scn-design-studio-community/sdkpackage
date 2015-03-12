@@ -202,6 +202,7 @@
 	<jsInclude>os/leaflet-0.7.3/leaflet.js</jsInclude>
 	<jsInclude>os/Leaflet.heat-gh-pages/dist/leaflet-heat.js</jsInclude>
 	<jsInclude>os/Leaflet.markercluster-master/dist/leaflet.markercluster.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Maps/leaflet.scn-designstudio-markers.js</jsInclude>
 	<jsInclude>res/Maps/aps/shared.js</jsInclude>
 	<jsInclude>res/Maps/metadata/properties.js</jsInclude>

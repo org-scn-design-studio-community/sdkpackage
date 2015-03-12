@@ -7,8 +7,10 @@
 	group="ScnCommunityBasics"
 	propertySheetPath="res/FioriButton/aps/FioriButton.html"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FioriButton/FioriButton.js</jsInclude>
 	<cssInclude>res/FioriButton/FioriButton.css</cssInclude>
+	
 	<property
 		id="dIcon"
 		type="String"

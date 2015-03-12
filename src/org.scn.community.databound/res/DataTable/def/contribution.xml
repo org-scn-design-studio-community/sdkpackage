@@ -9,6 +9,7 @@
 	databound="true"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/DataTable/DataTable.js</jsInclude>
 
 	<property

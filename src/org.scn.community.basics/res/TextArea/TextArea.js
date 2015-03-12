@@ -20,21 +20,16 @@
 (function() {
 /** code for recognition of script path */
 var myScript = $("script:last")[0].src;
+var ownComponentName = "org.scn.community.basics.TextArea";
 var _readScriptPath = function () {
-	if(myScript) {
-		var myScriptSuffix = "res/TextArea/";
-		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
- 		var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
- 		return ownScriptPath;
-	}
-		
-	return "";
+	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
+	return scriptInfo.myScriptPath;
 };
 /** end of path recognition */
 
 jQuery.sap.require("sap.ui.commons.TextArea");
 
-sap.ui.commons.TextArea.extend("org.scn.community.basics.TextArea", {
+sap.ui.commons.TextArea.extend(ownComponentName, {
 
   	initDesignStudio: function() {
 		var that = this;

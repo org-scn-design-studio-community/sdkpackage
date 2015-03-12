@@ -7,6 +7,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FishEye/FishEye.js</jsInclude>
 	<cssInclude>res/FishEye/FishEye.css</cssInclude>
 

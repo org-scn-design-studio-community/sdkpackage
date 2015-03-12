@@ -6,6 +6,7 @@
 	icon="res/EmbeddedMedia/EmbeddedMedia.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/EmbeddedMedia/EmbeddedMedia.js</jsInclude>
 	
 	<property

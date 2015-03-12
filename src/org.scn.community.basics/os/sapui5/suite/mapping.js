@@ -1,21 +1,20 @@
 (function() {
 /** code for recognition of script path */
 var myScript = $("script:last")[0].src;
-var _readScriptPath = function () {
-	if(myScript) {
-		var myScriptSuffix = "os/sapui5/suite";
-		var mainScriptPathIndex = myScript.indexOf(myScriptSuffix);
- 		var ownScriptPath = myScript.substring(0, mainScriptPathIndex) + myScriptSuffix;
- 		return ownScriptPath;
-	}
-		
-	return "";
-};
-/** end of path recognition */
+var scriptInfo = org_scn_community_basics.readGenericScriptAccess(myScript, "os/sapui5/suite", "basics");
 
-var path = _readScriptPath();
-path = path + "/META-INF/resources/sap/suite/ui/commons";
+var commonsPath = scriptInfo.myScriptPath + "/META-INF/resources/sap/suite/ui/commons";
 
-jQuery.sap.registerModulePath("sap.suite.ui.commons", path);
+//check requried for 1.4 release, 1.5 has already access to suite
+try {
+	jQuery.sap.require("sap.suite.ui.commons.DateRangeSlider");	
+} catch (e) {
+	jQuery.sap.unloadResources("sap/suite/ui/commons/DateRangeSlider.js", false, true, true);
+}
+
+// check requried for 1.4 release, 1.5 has already access to suite
+if(!(sap.suite && sap.suite.ui && sap.suite.ui.commons  && sap.suite.ui.commons.DateRangeSlider)) {
+	jQuery.sap.registerModulePath("sap.suite.ui.commons", commonsPath);	
+}
 
 })();

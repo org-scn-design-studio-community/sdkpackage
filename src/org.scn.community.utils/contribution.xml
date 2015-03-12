@@ -199,6 +199,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Array/Array.js</jsInclude>
 
 	<property
@@ -231,6 +232,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ClientInformation/ClientInformation.js</jsInclude>
 
 	<property
@@ -339,6 +341,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Collection/Collection.js</jsInclude>
 
 	<property
@@ -370,6 +373,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Debugger/Debugger.js</jsInclude>
 	<cssInclude>res/Debugger/Debugger.css</cssInclude>
 
@@ -469,6 +473,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ComponentManager/ComponentManager.js</jsInclude>
 
 	<property
@@ -499,6 +504,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/CustomCssCollector/CustomCssCollector.js</jsInclude>
 
 	<property
@@ -537,6 +543,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FlowLayouter/FlowLayouter.js</jsInclude>
 
 	<property
@@ -576,6 +583,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Math/Math.js</jsInclude>
 
 	<initialization>
@@ -598,6 +606,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/OpenUrlInplace/OpenUrlInplace.js</jsInclude>
 
 	<property
@@ -643,6 +652,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/OpenWindowPost/OpenWindowPost.js</jsInclude>
 
 	<property
@@ -739,6 +749,7 @@
 	<jsInclude>os/jspdf/jspdf.plugin.standard_fonts_metrics.js</jsInclude>
 	<jsInclude>os/jspdf/jspdf.plugin.total_pages.js</jsInclude>
 	
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/PdfPrint/PdfPrint.js</jsInclude>
 
 	<property
@@ -867,6 +878,7 @@
 	group="ScnCommunityUtils"
 >
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/PostResponseParser/PostResponseParser.js</jsInclude>
 
 	<property
@@ -989,6 +1001,7 @@
 		handlerType="div"
 		group="ScnCommunityUtils">
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/SimpleDate/SimpleDate.js</jsInclude>
 
 	<property

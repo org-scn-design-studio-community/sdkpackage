@@ -6,6 +6,7 @@
 	icon="res/RangeSlider/RangeSlider.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/RangeSlider/RangeSlider.js</jsInclude>
 	<property
 		id="min"

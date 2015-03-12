@@ -6,6 +6,7 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics">
 
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/RoadMap/RoadMap.js</jsInclude>
 	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
 
