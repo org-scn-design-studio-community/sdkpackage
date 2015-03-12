@@ -37,6 +37,8 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 	},
 	initDesignStudio : function() {
 		// Called by sap.designstudio.sdkui5.Handler  (sdkui5_handler.js)
+		this.addStyleClass("DesignStudioSCN");
+		this.addStyleClass("FioriToolbar");
 	},
 	dsClick : function(oControlEvent){
 		this.fireDesignStudioEvent("onnav");
@@ -146,9 +148,4 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 			}
 		}
 	},
-	init : function(){
-		sap.m.Toolbar.prototype.init.apply(this,arguments);
-		this.addStyleClass("DesignStudioSCN");
-		this.addStyleClass("FioriToolbar");
-	}
 });

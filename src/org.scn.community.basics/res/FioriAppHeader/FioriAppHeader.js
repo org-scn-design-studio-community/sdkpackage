@@ -37,6 +37,9 @@ sap.m.Page.extend("org.scn.community.basics.FioriAppHeader", {
 	},
 	initDesignStudio : function() {
 		// Called by sap.designstudio.sdkui5.Handler  (sdkui5_handler.js)
+		this.addStyleClass("DesignStudioSCN");
+		this.addStyleClass("FioriAppHeader");
+		if(this._navBtn) this._navBtn.attachBrowserEvent("click",this.dsClick,this);
 	},
 	dsClick : function(oControlEvent){
 		this.fireDesignStudioEvent("onnav");
@@ -124,10 +127,4 @@ sap.m.Page.extend("org.scn.community.basics.FioriAppHeader", {
 			}
 		}
 	},
-	init : function(){
-		sap.m.Page.prototype.init.apply(this,arguments);
-		this.addStyleClass("DesignStudioSCN");
-		this.addStyleClass("FioriAppHeader");
-		if(this._navBtn) this._navBtn.attachBrowserEvent("click",this.dsClick,this);
-	}
 });

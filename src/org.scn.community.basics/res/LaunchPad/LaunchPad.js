@@ -49,16 +49,13 @@ sap.m.TileContainer.extend("org.scn.community.basics.LaunchPad", {
 	},
 	initDesignStudio : function() {
 		// Called by sap.designstudio.sdkui5.Handler  (sdkui5_handler.js)
+		this.addStyleClass("utilPackLaunchPad");
+		this.drawTiles();
 	},
 	tileSelect : function(title,oControlEvent){
 		this._selectedTile = title;
 		this.fireDesignStudioPropertiesChanged(["selectedTile"]);
 		this.fireDesignStudioEvent("onTileSelect");
-	},
-	init : function(){
-		sap.m.TileContainer.prototype.init.apply(this,arguments);
-		this.addStyleClass("utilPackLaunchPad");
-		this.drawTiles();
 	},
 	drawTiles : function(){
 		this.destroyTiles();
