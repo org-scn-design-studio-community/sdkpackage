@@ -537,9 +537,10 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
  *
  * }
  */
-org_scn_community_databound.flatten = function (data, options) {
-	if(!options) {
-		options = org_scn_community_databound.initializeOptions();
+org_scn_community_databound.flatten = function (data, opts) {
+	var options = org_scn_community_databound.initializeOptions();
+	if(opts) {
+		for(var option in opts) options[option] = opts[option];
 	}
 	
 	var retObj = {
@@ -605,17 +606,17 @@ org_scn_community_databound.flatten = function (data, options) {
 			}
 		}
 		
-		if(isResult) { 
+		if(isResult && options.ignoreResults) { // Added if clause - Mike
 			retObj.geometry.rowLength = retObj.geometry.rowLength - 1;
 			// move the tupleIndex by the skipped values
-			// Added if clause - Mike
-			if(options.ignoreResults) tupleIndex = tupleIndex + retObj.geometry.colLength;
+			tupleIndex = tupleIndex + retObj.geometry.colLength;
 			continue; 
+		}else{
+			retObj.hash[rowHeader] = row;
+			retObj.rowHeaders.push(rowHeader);
+			retObj.rowHeaders2D.push(rowHeader2D);
 		}
 		
-		retObj.hash[rowHeader] = row;
-		retObj.rowHeaders.push(rowHeader);
-		retObj.rowHeaders2D.push(rowHeader2D);
 		for(var col=0;col<retObj.geometry.colLength;col++){
 			if(data.data && data.data.length > 0){
 				newValueRow.push(data.data[tupleIndex]);
@@ -629,33 +630,39 @@ org_scn_community_databound.flatten = function (data, options) {
 		if(newFormattedValueRow.length>0) retObj.formattedValues.push(newFormattedValueRow);
 	}
 	
-	var spiceIndexCorrection = 0;
+	var spliceIndexCorrection = 0;
 	
-	// Make Column Header Labels
+	// Make Column Header Labels and Strip out columns containing totals
 	for(var col=0;col<retObj.geometry.colLength;col++){
 		var colHeader = "";
 		var colHeader2D = [];
 		var colAxisTuple = data.axis_columns[col];
 		var sep = "";
+		var removeColumn = false;
 		for(var j=0;j<colAxisTuple.length;j++){
 			if(colAxisTuple[j] != -1){
-//				if(options.ignoreResults && data.dimensions[j].members[colAxisTuple[j]].type == "RESULT") {
-//					for(var row=0;row<maxRows;row++){
-//						if(retObj.values[row]) {
-//							retObj.values[row].spice(j-spiceIndexCorrection,1);
-//							retObj.formattedValues[row].spice(j-spiceIndexCorrection,1);
-//							spiceIndexCorrection++;
-//						}
-//					}
-//				}
-				
+				if(options.ignoreResults && data.dimensions[j].members[colAxisTuple[j]].type == "RESULT") {
+					removeColumn = true;
+				}
 				colHeader += sep + data.dimensions[j].members[colAxisTuple[j]].text;
 				colHeader2D.push(data.dimensions[j].members[colAxisTuple[j]].text);
-				sep = options.dimensionSeparator;
+				sep = options.dimensionSeparator;			
 			}
 		}
-		retObj.columnHeaders.push(colHeader);
-		retObj.columnHeaders2D.push(colHeader2D);
+		if(removeColumn){
+			for(var row=0;row<maxRows;row++){
+				if(retObj.values[row]) {
+					retObj.values[row].splice(col - spliceIndexCorrection,1);
+				}
+				if(retObj.formattedValues[row]) {
+					retObj.formattedValues[row].splice(col - spliceIndexCorrection,1);
+				}
+			}
+			spliceIndexCorrection++;
+		}else{
+			retObj.columnHeaders.push(colHeader);
+			retObj.columnHeaders2D.push(colHeader2D);
+		}		
 	}
 	
 	if(retObj.rowHeaders2D[0]) {
