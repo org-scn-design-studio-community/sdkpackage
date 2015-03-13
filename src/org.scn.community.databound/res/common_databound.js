@@ -58,6 +58,7 @@ org_scn_community_databound.initializeOptions = function () {
 	options.iDisplayText = "Text";
 	options.ignoreResults = false;
 	options.dimensionSeparator = " | ";
+	options.createHaderRow = true;
 	
 	return options;
 }
@@ -633,7 +634,7 @@ org_scn_community_databound.flatten = function (data, opts) {
 	var spliceIndexCorrection = 0;
 	
 	// Make Column Header Labels and Strip out columns containing totals
-	for(var col=0;col<retObj.geometry.colLength;col++){
+	for(var col=0;col<data.axis_columns.length;col++){
 		var colHeader = "";
 		var colHeader2D = [];
 		var colAxisTuple = data.axis_columns[col];
@@ -658,6 +659,8 @@ org_scn_community_databound.flatten = function (data, opts) {
 					retObj.formattedValues[row].splice(col - spliceIndexCorrection,1);
 				}
 			}
+			retObj.geometry.colLength = retObj.geometry.colLength - 1;
+			
 			spliceIndexCorrection++;
 		}else{
 			retObj.columnHeaders.push(colHeader);
@@ -676,10 +679,26 @@ org_scn_community_databound.flatten = function (data, opts) {
 	return retObj;
 };
 
-org_scn_community_databound.toRowTable = function (flatData, options) {
+org_scn_community_databound.toRowTable = function (flatData, opts) {
+	var options = org_scn_community_databound.initializeOptions();
+	if(opts) {
+		for(var option in opts) options[option] = opts[option];
+	}
+	
 	var rowsData = [];
 	var rowsDataPlain = [];
+	var headerDataPlain = [];
 
+	if(options.createHaderRow) {
+		for(rI=0;rI<flatData.dimensionHeaders.length;rI++){
+			headerDataPlain.push(flatData.dimensionHeaders[rI].text);
+		}
+	
+		for(var cI=0;cI<flatData.columnHeaders.length;cI++){
+			headerDataPlain.push(flatData.columnHeaders[cI].text);
+		}
+	}
+	
 	for(var rI=0;rI<flatData.geometry.rowLength;rI++){
 		var rowPlain = {};
 		var row = [];
@@ -700,6 +719,8 @@ org_scn_community_databound.toRowTable = function (flatData, options) {
 
 	flatData.data2D = rowsData;
 	flatData.data2DPlain = rowsDataPlain;
+	
+	flatData.headerDataPlain = headerDataPlain;
 	
 	return flatData;
 };
