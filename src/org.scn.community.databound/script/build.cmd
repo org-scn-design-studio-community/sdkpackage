@@ -21,6 +21,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\NiceChart\def\contribution.xml ^
 ..\res\Projector\def\contribution.xml ^
 ..\res\RangeSlider\def\contribution.xml ^
+..\res\ResultSetInfo\def\contribution.xml ^
 ..\res\ScatterPlot\def\contribution.xml ^
 ..\res\Slider\def\contribution.xml ^
 ..\res\Table2D\def\contribution.xml ^
@@ -47,6 +48,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\NiceChart\def\contribution.ztl ^
 ..\res\Projector\def\contribution.ztl ^
 ..\res\RangeSlider\def\contribution.ztl ^
+..\res\ResultSetInfo\def\contribution.ztl ^
 ..\res\ScatterPlot\def\contribution.ztl ^
 ..\res\Slider\def\contribution.ztl ^
 ..\res\Table2D\def\contribution.ztl ^
