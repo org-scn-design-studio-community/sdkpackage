@@ -14,10 +14,11 @@
 		 paths: {
 			d3 :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.min",
 			d3tip :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3-tip",
-			topojson : 	pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/topojson.v1.min"
+			topojson : 	pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/topojson.v1.min",
+			"d3-geo-projection" : 	pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.geo.projection"
 		 }
 	 });
-	 sdkReqs(["require","d3","d3tip","topojson"], function(require,d3,d3tip,topojson) {
+	 sdkReqs(["require","d3","d3tip","topojson","d3-geo-projection"], function(require,d3,d3tip,topojson,d3geoproj) {
 		 var tip = d3tip()
 		 	.attr('class', 'd3-tip')
 		 	.html(function(d) { 
@@ -97,6 +98,77 @@
 	    		selectedColor : { value : "#009966"},
 	    		selectedValue : { value : 0.0}
 			});
+	    	this.projections = {
+	    	   "Albers USA": d3.geo.albersUsa(),
+	    	   "Mercator": d3.geo.mercator().scale(490 / 2 / Math.PI),
+	    	   "Equirectangular": d3.geo.equirectangular(),
+	    	   "Orthographic": d3.geo.orthographic(),
+	    	   
+	    	   "Aitoff": d3.geo.aitoff(),
+               "Albers": d3.geo.albers().scale(145).parallels([20, 50]),
+               "August": d3.geo.august().scale(60),
+               "Baker": d3.geo.baker().scale(100),
+               "Boggs": d3.geo.boggs(),
+               "Bonne": d3.geo.bonne().scale(120),
+               "Bromley": d3.geo.bromley(),
+               "Collignon": d3.geo.collignon().scale(93),
+               "Craster Parabolic": d3.geo.craster(),
+               "Eckert I": d3.geo.eckert1().scale(165),
+               "Eckert II": d3.geo.eckert2().scale(165),
+               "Eckert III": d3.geo.eckert3().scale(180),
+               "Eckert IV": d3.geo.eckert4().scale(180),
+               "Eckert V": d3.geo.eckert5().scale(170),
+               "Eckert VI": d3.geo.eckert6().scale(170),
+               "Eisenlohr": d3.geo.eisenlohr().scale(60),
+               "Hammer": d3.geo.hammer().scale(165),
+               "Hill": d3.geo.hill(),
+               "Goode Homolosine": d3.geo.homolosine(),
+               "Kavrayskiy VII": d3.geo.kavrayskiy7(),
+               "Lambert cylindrical equal-area": d3.geo.cylindricalEqualArea(),
+               "Lagrange": d3.geo.lagrange().scale(120),
+               "Larrivée": d3.geo.larrivee().scale(95),
+               "Laskowski": d3.geo.laskowski().scale(120),
+               "Loximuthal": d3.geo.loximuthal(),
+               "Miller": d3.geo.miller().scale(100),
+               "McBryde–Thomas Flat-Polar Parabolic": d3.geo.mtFlatPolarParabolic(),
+               "McBryde–Thomas Flat-Polar Quartic": d3.geo.mtFlatPolarQuartic(),
+               "McBryde–Thomas Flat-Polar Sinusoidal": d3.geo.mtFlatPolarSinusoidal(),
+               "Mollweide": d3.geo.mollweide().scale(165),
+               "Natural Earth": d3.geo.naturalEarth(),
+               "Nell–Hammer": d3.geo.nellHammer(),
+               "Polyconic": d3.geo.polyconic().scale(100),
+               "Robinson": d3.geo.robinson(),
+               "Sinusoidal": d3.geo.sinusoidal(),
+               "Sinu-Mollweide": d3.geo.sinuMollweide(),
+               "van der Grinten": d3.geo.vanDerGrinten().scale(75),
+               "van der Grinten IV": d3.geo.vanDerGrinten4().scale(120),
+               "Wagner IV": d3.geo.wagner4(),
+               "Wagner VI": d3.geo.wagner6(),
+               "Wagner VII": d3.geo.wagner7(),
+               "Winkel Tripel": d3.geo.winkel3()
+	     	};
+	    	this.projectionTween = function(projection0, projection1) {
+	    		return function(d) {
+	    			var t = 0;
+	    			
+	    			var projection = d3.geo.projection(project)
+	    				.scale(1)
+	    				.translate([that.dimensions.plotWidth / 2, that.dimensions.plotHeight / 2]);
+
+    				var path = d3.geo.path().projection(projection);   				
+
+	    			function project(λ, φ) {
+						λ *= 180 / Math.PI, φ *= 180 / Math.PI;
+						var p0 = projection0([λ, φ]), p1 = projection1([λ, φ]);
+						return [(1 - t) * p0[0] + t * p1[0], (1 - t) * -p0[1] + t * -p1[1]];
+					}					
+
+					return function(_) {
+						t = _;
+						return path(d);
+					};
+	    		};
+	    	}
 	    	/**
 			 * Convert any TopoJSON data into GeoJSON
 			 */
@@ -255,6 +327,8 @@
 		        this.graticulePath = this.plotLayer.append('path')
 	            	.datum(this.graticule)
 	            	.attr('class', 'graticule');
+		        this.proj = this.projections[this.projection()] || this.projections["Mercator"];
+		        this.projPath = d3.geo.path().projection(this.proj);
 	    		this.pathGroup = this.plotLayer.append('g')
     				.attr('class', 'path-group');
 	    		this.labelGroup = this.plotLayer.append('g')
@@ -620,13 +694,18 @@
 		    	}
 		    	this.centroid = d3.geo.centroid(centerFeature);
 		    	// Create projection
-		    	this.proj = d3.geo[this.projection()]()
+		    	this.proj = this.projections[this.projection()] || this.projections["Mercator"];
+		    	this.proj
 	    			.scale(1)
 	    			.translate([0,0]);
 	    		// Create path
-		    	this.projPath = d3.geo.path()
-	    			.projection(this.proj);
-            	
+		    	this.projPath.projection(this.proj);
+		    	/*
+		    	 * My head hurts.
+		    	this.pathGroup.selectAll("path")
+		    		.transition().duration(this.ms())
+		    		.attrTween("d",this.projectionTween(this.proj, this.proj = this.proj = this.projections[this.projection()] || this.projections["Mercator"]));
+		    	*/          	
 	    		// Compute the bounds of a feature of interest, then derive scale & translate.
 		    	var b = this.projPath.bounds(this._mapJSON),
 		    	    s = .95 / Math.max((b[1][0] - b[0][0]) / this.dimensions.plotWidth, (b[1][1] - b[0][1]) / this.dimensions.plotHeight),
@@ -642,7 +721,7 @@
 		    	if (typeof this.proj.rotate === "function") {
 		    	    this.proj.rotate([this.yaw(),this.pitch(),this.roll()]);
 		    	}
-		    	if(this.projection()=="orthographic") this.proj.clipAngle(90);
+		    	if(this.projection()=="Orthographic") this.proj.clipAngle(90);
 		    	return this;
 			}
 			/**
