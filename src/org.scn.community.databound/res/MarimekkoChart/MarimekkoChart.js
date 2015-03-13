@@ -22,18 +22,22 @@
 		 	.html(function(d) { 
 		 		var html = "<span>";
 		 		var sep = "";
+		 		html += d.value;
+		 		/*
 		 		for(var i=0;i<d.labels.length;i++){
 		 			html+=d.labels[i]+"<br/>";
 		 		}
+		 		
 		 		html += d.x + "," + d.y;
 		 		if(d.z) html+= "," + d.z;
+		 		*/
 		 		html+="</span>";
 		 		return html;
 		 	})
-		 	//.offset([-12, 0]);
-		 	.offset(function(d) {
+		 	.offset([-12, 0]);
+		 	/*.offset(function(d) {
 		 		return [(this.getBBox().height / 2) - 12, 0]
-		 	});
+		 	});*/
 		 /**
 		 * Scatter Plot based on D3 Example:
 		 * http://bl.ocks.org
@@ -72,6 +76,7 @@
 	    	var parentInit = this.init;
 	    	this.init = function(){
 	    		parentInit.call(this);
+	    		this.svg.call(tip);
 	    		this.$().addClass("MarimekkoChart");
 	    	}
 	    	/**
@@ -104,13 +109,11 @@
 	    		this.yScale
 	    			.domain([1,0])
 	    			.range([0, this.dimensions.plotHeight - this.dimensions.xAxisHeight]);
-	    		
+	    		// Screwy zoom.
 	    		if(this.enableZoom()){
 		    		var reverseDomain = [1,0];	    		
 		    		reverseDomain[0] = this.yScale.invert(this.zoomYScale.domain()[1]);
-		    		reverseDomain[1] = this.yScale.invert(this.zoomYScale.domain()[0]);
-		    		// Default domain is [0,1]
-		    		
+		    		reverseDomain[1] = this.yScale.invert(this.zoomYScale.domain()[0]);	    		
 		    		this.yScale
 		    			.domain(reverseDomain)
 		    			.range([0, this.dimensions.plotHeight - this.dimensions.xAxisHeight]);
@@ -233,8 +236,11 @@
 	  		  		return that.colorRange(d.row);
 	  		  	});
 	  		  // Events
-	  		  segs.select("rect").on('click', this.setSelection);
-				return this;
+	  		segs.on("mouseover", tip.show)
+	  			.on("mouseout", tip.hide)
+	  			.on('click', this.setSelection);
+			
+	  		return this;
 	    	}
 	    	/**
 	    	 * Update Legend

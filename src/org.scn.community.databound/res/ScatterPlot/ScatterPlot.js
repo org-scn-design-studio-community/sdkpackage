@@ -90,6 +90,7 @@
 	    	var parentInit = this.init;
 	    	this.init = function(){
 	    		parentInit.call(this);
+	    		this.svg.call(tip);
 	    		this.$().addClass("ScatterPlot");
 	    	}
 	    	var parentUpdatePlot = this.updatePlot;
@@ -169,7 +170,6 @@
 					.style("fill", function(d) { return that.colorRange(d.labels[d.labelIndex]); });
 
 				canvSelection.exit().remove();
-				canvSelection.call(tip);
 				return this;
 	    	}
 	    	var parentUpdateLegend = this.updateLegend;

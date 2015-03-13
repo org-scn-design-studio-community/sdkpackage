@@ -16,4 +16,5 @@
 		<defaultValue property="yaw">0.0</defaultValue>
 		<defaultValue property="pitch">0.0</defaultValue>
 		<defaultValue property="roll">0.0</defaultValue>
+		<defaultValue property="labelSize">10</defaultValue>
 		<!-- End of Choropleth Defaults -->

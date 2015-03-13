@@ -265,8 +265,8 @@ function org_scn_community_databound_BaseViz(d3, options){
 			.attr("transform", "translate(" + (this.dimensions.plotLeft) + "," + (this.dimensions.plotTop) + ")");
 		this.plotBG
 			.transition().duration(this.ms())
-			.attr("width", this.dimensions.width)
-			.attr("height", this.dimensions.height);
+			.attr("width", this.dimensions.plotWidth)
+			.attr("height", this.dimensions.plotHeight);
 		/*
 		this.legendGroup.attr("transform", function(d){
 			return d.translate;
@@ -436,6 +436,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 	this.semanticZoomed = function(){
 		//alert("X\n" + that.zoomXScale.domain() + "\n" + that.zoomXScale.range() + "\n\nY:\n" + that.zoomYScale.domain() + "\n" + that.zoomYScale.range());
 		that.zoomScale = d3.event.scale;
+		that.zoomTranslate = d3.event.translate;
 		//alert(JSON.stringify(d3.event));
 		if(d3.event.scale==that.minZoom()) {
 			that.zoomYScale.domain([0, that.dimensions.plotHeight])
@@ -507,6 +508,8 @@ function org_scn_community_databound_BaseViz(d3, options){
 		if(this.svg.empty()){
 			// X, Y and Zoom Scales
 			this.previousZoom = this.minZoom();
+			this.zoomScale = this.minZoom();
+			this.zoomTranslate = [0,0];
 			this.zoomYScale = d3.scale.linear()
 				.domain([0, this.dimensions.plotHeight])
 				.range([0, this.dimensions.plotHeight]);
@@ -534,6 +537,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 				.attr("preserveAspectRatio","xMidYMid meet")
 				.attr("width","100%")
 				.attr("height","100%");
+			//this.svg.call(this.semanticZoom);
 			this.svgDefs = this.svg.append("defs");
 			this.svgStyle = this.svgDefs.append("style")
 				.attr("type","text/css");
@@ -562,23 +566,20 @@ function org_scn_community_databound_BaseViz(d3, options){
 				.attr("class","clipRect");
 			// Plot Area
 			this.plotArea = this.stage.append("g")
-				.attr("id",this.$().attr("id") + "_plotarea");
+				.attr("id",this.$().attr("id") + "_plotarea")
+				.call(this.semanticZoom);
+			
 			this.plotWindow = this.plotArea.append("g")
 				.attr("id",this.$().attr("id") + "_plotwindow")
 				.attr("clip-path","url(#" + this.$().attr("id")+"_clip)");
 			// Plot Background
 			this.plotBG = this.plotWindow.append("rect")
 				.attr("id",this.$().attr("id")+"_plotBG")
-				.attr("opacity", 0)
-				//.call(this.zoom);
-				.call(this.semanticZoom);
-				//.on("mousedown.zoom", null);
+				.attr("opacity", 0);
+			
 			// Plot Layer
 			this.plotLayer = this.plotWindow.append("g")
-				.attr("id",this.$().attr("id")+"_plotlayer")
-				.call(this.semanticZoom);
-				//.on("mousedown.zoom", null);
-				
+				.attr("id",this.$().attr("id")+"_plotlayer");
 			/*
 			 * Legend
 			 */

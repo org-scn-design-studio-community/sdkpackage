@@ -19,23 +19,6 @@
 		 }
 	 });
 	 sdkReqs(["require","d3","d3tip","topojson","d3-geo-projection"], function(require,d3,d3tip,topojson,d3geoproj) {
-		 var tip = d3tip()
-		 	.attr('class', 'd3-tip')
-		 	.html(function(d) { 
-		 		var html = "<span>";
-		 		var sep = "";
-		 		for(var i=0;i<d.labels.length;i++){
-		 			html+=d.labels[i]+"<br/>";
-		 		}
-		 		html += d.x + "," + d.y;
-		 		if(d.z) html+= "," + d.z;
-		 		html+="</span>";
-		 		return html;
-		 	})
-		 	//.offset([-12, 0]);
-		 	.offset(function(d) {
-		 		return [(this.getBBox().height / 2) - 12, 0]
-		 	});
 		 /**
 		 * Choropleth on D3 Example:
 		 * http://bl.ocks.org
@@ -47,6 +30,40 @@
 	     }
 	     function Choropleth() {
 	    	 var that = this;
+			 var tip = d3tip()
+			 	.attr('class', 'd3-tip')
+			 	.html(function(d) { 
+			 		var html = "<span>";
+			 		var mm = that.measureMember();
+			 		if(!mm){
+			 			if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+			 		}
+			 		var val = null;
+			 		if(d.propertiees && d.properties.designStudioMeasures && d.properties.designStudioMeasures[mm]){
+			 			val = d.properties.designStudioMeasures[mm];
+			 		}
+		 			var tt = "";
+		 				if(d.properties && d.properties[that.labelProperty()]){
+			 				tt+="<b>" + d.properties[that.labelProperty()] + "</b>";
+			 			}
+			 			if(d.properties && d.properties.designStudioMeasures){
+			 				tt +="<br/><ul>"
+			 				var dsm = d.properties.designStudioMeasures;
+			 				for(var measure in dsm){
+			 					tt+="<li><b>" + measure + "</b>: " + that.formatter(dsm[measure]) + "</li>";
+			 				}
+			 				tt +="</ul>";
+			 			}
+			 			if(d.properties && d.properties[that.featureProperty()]){
+			 				
+			 			}
+			 		html+=tt;
+			 		html+="</span>";
+			 		return html;
+			 	})
+			 	.offset(function(d) {
+			 		return [this.getBBox().height / 2 - 12, 0]
+			 	});
 	    	// Call super
 	    	org_scn_community_databound_BaseViz.call(this, d3,{
 	    		styleClasses : { value : ""},
@@ -68,7 +85,8 @@
 				gradientRight : { value : 30 },
 				gradientBottom :  { value : 15 },
 				gradientHeight :  { value : 10 },
-				labelSize :  { value : "10px" },
+				labelSize :  { value : 10 },
+				labelThreshold :  { value : 80 },
 				colorPalette :  { value : "#F0F9E8,#CCEBC5,#A8DDB5,#7BCCC4,#43A2CA,#0868AC" },
 				colorScale : { value : "quantile" },
 				mapData : { 
@@ -238,40 +256,7 @@
 			 */
 			this.doTooltip = function(d) {
 				that.lastHover = d.properties[that.featureProperty()];
-				/*d3.select(this)
-					.transition().duration(that.ms())
-					.attr("fill",that.hoverColor());*/
-				var mm = that.measureMember();
-				if(!mm){
-					if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
-				}
-				var val = null;
-				if(d.properties && d.properties.designStudioMeasures && d.properties.designStudioMeasures[mm]){
-					val = d.properties.designStudioMeasures[mm];
-				}
-				
-				// Tooltip
-				if (that.tooltipOn()) {
-					var tt = "";
-					if(d.properties && d.properties[that.labelProperty()]){
-						tt+="<b>" + d.properties[that.labelProperty()] + "</b>";
-					}
-					if(d.properties && d.properties.designStudioMeasures){
-						tt +="<br/><ul>"
-						var dsm = d.properties.designStudioMeasures;
-						for(var measure in dsm){
-							tt+="<li><b>" + measure + "</b>: " + that.formatter(dsm[measure]) + "</li>";
-						}
-						tt +="</ul>";
-					}
-					if(d.properties && d.properties[that.featureProperty()]){
-						
-					}
-					that.tooltipDiv
-						.style('display', 'block')
-						.html(tt);
-				}
-				//that.updateFeaturePaths();
+				tip.show.call(this,d);
 				that.updateTriangles();
 			}
 			var parentPreReq = this.preReqCheck;
@@ -316,6 +301,7 @@
 	    	var parentInit = this.init;
 	    	this.init = function(){
 	    		parentInit.call(this);
+	    		this.svg.call(tip);
 	    		this.$().addClass("Choropleth");
 	    		this.container = d3.select("#"+this.$().attr("id"));
 	    		// Globe Layer
@@ -334,9 +320,6 @@
 	    		this.labelGroup = this.plotLayer.append('g')
     				.attr('class', 'label-group');
 		        
-	    		this.tooltipDiv = this.canvas.append('div')
-	    			.classed('tooltip', true);
-
 	    		// Horizontal Scale/Legend
 	    		var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.plotHeight - (this.dimensions.gradientBottom + this.dimensions.gradientHeight));
 	    		var tickTransform = "0," + (0 - this.dimensions.gradientHeight);
@@ -356,8 +339,6 @@
 	    			.attr("class", "gradient-ticks")
 	    			.attr("transform", "translate(" + tickTransform +")");
 	    		
-	    		this.tooltipDiv = this.container.append('div')
-    				.classed('tooltip', true);
 			    return this;
 	    	}
 	    	/**
@@ -393,11 +374,42 @@
 		        	
 		        return this;
 			};
+			this.adjustPlotZoom = function(){
+				try{
+				// Update features
+	    		this.plotLayer.attr("transform","translate(" + this.zoomTranslate + ") scale(" + this.zoomScale + ")");
+	    		this.graticulePath.style("stroke-width", 1 / this.zoomScale);
+	    		this.globePath.style("stroke-width", 1 / this.zoomScale);
+	    		this.pathGroup.selectAll("path").style("stroke-width", 1 / this.zoomScale)
+	    		this.labelGroup.selectAll("text").style("font-size", (this.labelSize() / this.zoomScale) + "px");
+	    		// Hide tight labels
+				this.labelGroup.selectAll("text")
+				.attr("opacity", function(d, i){
+					var mapShape = that.pathGroup.select(".path#" + that.$().attr("id")+"_feature_" + i );
+						if(mapShape.empty()){
+						return 0;
+						// noop
+					}else{
+						var w = this.getBBox().width;
+						var fw = mapShape[0][0].getBBox().width;
+						//alert(w+"\n\n"+fw);
+						if(w/fw < that.labelThreshold()/100) {
+							return 1;
+						}
+					}
+					return 0;
+				});
+				}catch(e){
+					alert(e);
+				}
+			}
 	    	var parentUpdatePlot = this.updatePlot;
 	    	/**
 			 * Update Features
 			 */
 			this.updatePlot = function(){
+				try{
+				//alert(this.labelSize()/this.zoomScale);
 				parentUpdatePlot.call(this);
 				// Horizontal Scale/Legend
 				var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.plotHeight - (this.dimensions.gradientBottom + this.dimensions.gradientHeight));
@@ -426,11 +438,10 @@
 					.attr("class","path");
 				
 				var newLabels = labels.enter().append("text")
-					.attr('class', function(d) { return "subunit-label " + d.id; })
+					.attr('class', function(d) { return "subunit-label " + d.properties[that.labelProperty()]; })
 					.attr("pointer-events", "none")
 					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
 					.attr("dy", ".35em")
-					.style("font-size", that.labelSize())
 					.text(function(d) { return d.properties[that.labelProperty()]; });
 
 				// Update graticule
@@ -451,11 +462,13 @@
 	    				return 0;
 	    			}})
         			.attr('d', this.projPath);
-				// Update features
+	    		
 				this.pathGroup.selectAll("path")
 					.transition().duration(this.ms())
-					.attr("class","path")
+					.attr("class",function(d){return "path";})
+					.attr("id",function(d,i){return that.$().attr("id")+"_feature_" + i;})
 					.attr("d",this.projPath)
+					.attr("opacity",this.plotAlpha()/100)
 					.attr("fill", function(d) {
 						if(d.properties && d.properties && d.properties[that.featureProperty()]){
 							if(d.properties[that.featureProperty()]==that.selectedFeature() && that.selectedColor()) return that.selectedColor();
@@ -471,36 +484,19 @@
 						}
 					});
 				this.labelGroup.selectAll("text")
-					.style("font-size", that.labelSize())	
 					.transition().duration(this.ms())
-					.attr('class', function(d) { return "subunit-label " + d.id; })
+					.attr('class', function(d) { return "subunit-label " + d.properties[that.labelProperty()]; })
 					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
 					.text(function(d) { return d.properties[that.labelProperty()]; });
+
 				// Events
 				this.pathGroup.selectAll('path')
 					.on('mouseover', this.doTooltip)
-					.on('mouseout', function() {
-						that.lastHover = null;
-						/*d3.select(this).attr("fill", function(d) {
-							// Color back
-							if(d.properties && d.properties && d.properties[that.featureProperty()]){
-								if(d.properties[that.featureProperty()]==that.lastHover) return that.hoverColor();
-								if(d.properties[that.featureProperty()]==that.selectedFeature()) return that.selectedColor();
-							}
-							if(d.properties && d.properties.designStudioMeasures){
-								var mm = that.measureMember();
-								if(!mm){
-									if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 1) mm = that.flatData.columnHeaders[0];
-								}
-								return that.colorRange(d.properties.designStudioMeasures[mm]) || that.defaultFillColor();	
-							}else{
-								return that.defaultFillColor();
-							}
-						});*/
+					.on('mouseout', function(d) {
+						tip.hide(d);
 						that.triangle
 							.transition().duration(that.ms())
 							.attr("opacity",0);
-						that.tooltipDiv.style('display', 'none');
 					})
 					.on('click', function(d){ 
 						d3.select(this)
@@ -514,7 +510,11 @@
 				// Exit
 				 features.exit().remove();
 				 labels.exit().remove();
+				 this.adjustPlotZoom();
 				return this;
+				}catch(e){
+					alert("Error updating plot:\n\n"+e);
+				}
 			}
 	    	var parentUpdateLegend = this.updateLegend;
 	    	/**
@@ -679,6 +679,25 @@
 				    }
 				return this;
 			}
+			/**
+			 * Semantic Zooming
+			 */
+			var parentSemanticZoomed = this.semanticZoomed;
+			this.semanticZoomed = function(){
+				//alert("X\n" + that.zoomXScale.domain() + "\n" + that.zoomXScale.range() + "\n\nY:\n" + that.zoomYScale.domain() + "\n" + that.zoomYScale.range());
+				that.zoomScale = d3.event.scale;
+				that.zoomTranslate = d3.event.translate;
+				//alert(JSON.stringify(d3.event));
+				if(d3.event.scale==that.minZoom()) {
+					that.zoomYScale.domain([0, that.dimensions.plotHeight])
+						.range([0, that.dimensions.plotHeight]);
+					that.zoomXScale.domain([0, that.dimensions.plotWidth])
+						.range([0, that.dimensions.plotWidth]);
+				} 
+				//that.afterUpdate();
+				//that.updateProjection();
+				that.adjustPlotZoom();
+			}
 	    	/**
 			 * Update Projection
 			 */
@@ -707,12 +726,21 @@
 		    		.attrTween("d",this.projectionTween(this.proj, this.proj = this.proj = this.projections[this.projection()] || this.projections["Mercator"]));
 		    	*/          	
 	    		// Compute the bounds of a feature of interest, then derive scale & translate.
+		    	
+		    	
 		    	var b = this.projPath.bounds(this._mapJSON),
-		    	    s = .95 / Math.max((b[1][0] - b[0][0]) / this.dimensions.plotWidth, (b[1][1] - b[0][1]) / this.dimensions.plotHeight),
-		    	    t = [(this.dimensions.plotWidth - s * (b[1][0] + b[0][0])) / 2, (this.dimensions.plotHeight - s * (b[1][1] + b[0][1])) / 2];
+		    	    s = (.95/* * this.zoomScale*/) / Math.max((b[1][0] - b[0][0]) / this.dimensions.plotWidth, (b[1][1] - b[0][1]) / this.dimensions.plotHeight);
 		    	
+		    	var t = this.zoomTranslate.slice();
+		    	if(this.zoomScale >= 1){
+		    		//alert(this.zoomScale + "\n\n" + this.zoomTranslate);
+		    		t = [((this.dimensions.plotWidth - s * (b[1][0] + b[0][0])) / 2), 
+		    	         ((this.dimensions.plotHeight - s * (b[1][1] + b[0][1])) / 2)
+		    	    ];
+		    	}		    	    
+		    	//alert(s);
 		    	this.proj.scale(s).translate(t);
-		    	
+		    	//alert(this.zoomTranslate);
 		    	// Center if projection supports
 		    	if(typeof this.proj.center === "function"){
 		    		if(centerFeature) this.proj.center(this.centroid);

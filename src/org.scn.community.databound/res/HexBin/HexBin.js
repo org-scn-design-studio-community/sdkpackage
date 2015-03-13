@@ -72,6 +72,7 @@
 	    	var parentInit = this.init;
 	    	this.init = function(){
 	    		parentInit.call(this);
+	    		this.svg.call(tip);
 	    		this.pathGroup = this.plotLayer.append('g')
 					.attr('class', 'path-group');
 	    		this.labelGroup = this.plotLayer.append('g')
@@ -81,7 +82,6 @@
 	    	var parentUpdatePlot = this.updatePlot;
 	    	this.updatePlot = function(){
 	    		parentUpdatePlot.call(this);
-	    		this.svg.call(tip);
 	    		var that = this;
 	    		this.points = [];
 	    		var vals = [];
