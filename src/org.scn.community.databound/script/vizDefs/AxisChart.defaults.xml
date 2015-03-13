@@ -1,0 +1,7 @@
+
+		<!-- AxisChart Defaults -->
+		<defaultValue property="xAxisTicks">5</defaultValue>
+		<defaultValue property="yAxisTicks">5</defaultValue>
+		<defaultValue property="xAxisOrientation">bottom</defaultValue>
+		<defaultValue property="yAxisOrientation">left</defaultValue>
+		<!-- End of AxisChart Defaults -->

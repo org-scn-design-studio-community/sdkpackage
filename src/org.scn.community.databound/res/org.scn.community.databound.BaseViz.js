@@ -198,6 +198,14 @@ function org_scn_community_databound_BaseViz(d3, options){
 				apsControl : "spinner"	
 			}
 		},
+		enableZoom : {
+			value : false,
+			opts : {
+				desc : "Enable Zooming",
+				cat : "Cosmetics",
+				apsControl : "checkbox"	
+			}
+		},
 		minZoom : {
 			value : 1,
 			opts : {

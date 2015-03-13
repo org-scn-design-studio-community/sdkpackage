@@ -2,11 +2,13 @@ del ..\res\ScatterPlot\def\contribution.xml
 type ..\res\ScatterPlot\def\header.xml ^
 .\vizDefs\Base.xml ^
 .\vizDefs\BaseViz.xml ^
+.\vizDefs\AxisChart.xml ^
 .\vizDefs\BaseVizXY.xml ^
 ..\res\ScatterPlot\def\properties.xml ^
 .\vizDefs\InitializationHeader.xml ^
 .\vizDefs\Base.defaults.xml ^
 .\vizDefs\BaseViz.defaults.xml ^
+.\vizDefs\AxisChart.defaults.xml ^
 .\vizDefs\BaseVizXY.defaults.xml ^
 ..\res\ScatterPlot\def\defaults.xml ^
 .\vizDefs\Footer.xml > ^
@@ -16,11 +18,13 @@ del ..\res\HexBin\def\contribution.xml
 type ..\res\HexBin\def\header.xml ^
 .\vizDefs\Base.xml ^
 .\vizDefs\BaseViz.xml ^
+.\vizDefs\AxisChart.xml ^
 .\vizDefs\BaseVizXY.xml ^
 ..\res\HexBin\def\properties.xml ^
 .\vizDefs\InitializationHeader.xml ^
 .\vizDefs\Base.defaults.xml ^
 .\vizDefs\BaseViz.defaults.xml ^
+.\vizDefs\AxisChart.defaults.xml ^
 .\vizDefs\BaseVizXY.defaults.xml ^
 ..\res\HexBin\def\defaults.xml ^
 .\vizDefs\Footer.xml > ^
@@ -30,10 +34,12 @@ del ..\res\MarimekkoChart\def\contribution.xml
 type ..\res\MarimekkoChart\def\header.xml ^
 .\vizDefs\Base.xml ^
 .\vizDefs\BaseViz.xml ^
+.\vizDefs\AxisChart.xml ^
 ..\res\MarimekkoChart\def\properties.xml ^
 .\vizDefs\InitializationHeader.xml ^
 .\vizDefs\Base.defaults.xml ^
 .\vizDefs\BaseViz.defaults.xml ^
+.\vizDefs\AxisChart.defaults.xml ^
 ..\res\MarimekkoChart\def\defaults.xml ^
 .\vizDefs\Footer.xml > ^
 ..\res\MarimekkoChart\def\contribution.xml

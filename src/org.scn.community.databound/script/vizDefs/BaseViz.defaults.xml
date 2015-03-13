@@ -15,6 +15,7 @@
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="enableZoom">false</defaultValue>
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->

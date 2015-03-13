@@ -54,12 +54,15 @@
 	<property id="plotRight" title="Plot Offset Right" type="int"/>
 	<property id="plotTop" title="Plot Offset Top" type="int"/>
 	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="enableZoom" title="Enable Zoom" type="boolean" visible="false" />
 	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
 	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
 	<!-- End of Base Viz Properties -->
-	<!-- Begin of Marimekko Chart Properties -->
+	<!-- Axis Chart Properties -->
 	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
 	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
+	<property id="xAxisTickFormat" title="X-Axis Tick Format" type="String"/>
+	<property id="yAxisTickFormat" title="Y-Axis Tick Format" type="String"/>
 	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
 		<possibleValue>top</possibleValue>
 		<possibleValue>bottom</possibleValue>	
@@ -68,6 +71,10 @@
 		<possibleValue>left</possibleValue>
 		<possibleValue>right</possibleValue>
 	</property>
+
+	<!-- End of Base Viz Properties -->
+	<!-- Begin of Marimekko Chart Properties -->
+
 	<!-- End of Marimekko Chart Properties -->
 	<initialization>
 		<!-- Base Defaults -->
@@ -90,9 +97,16 @@
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="enableZoom">false</defaultValue>
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
+		<!-- AxisChart Defaults -->
+		<defaultValue property="xAxisTicks">5</defaultValue>
+		<defaultValue property="yAxisTicks">5</defaultValue>
+		<defaultValue property="xAxisOrientation">bottom</defaultValue>
+		<defaultValue property="yAxisOrientation">left</defaultValue>
+		<!-- End of AxisChart Defaults -->
 		<!-- Begin of Marimekko Chart Defaults -->
 		<defaultValue property="chartTitle">Marimekko Chart</defaultValue>
 		<defaultValue property="styleCSS">/*Default CSS*/
@@ -106,10 +120,8 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
-		<defaultValue property="xAxisTicks">5</defaultValue>
-		<defaultValue property="yAxisTicks">5</defaultValue>
-		<defaultValue property="xAxisOrientation">bottom</defaultValue>
-		<defaultValue property="yAxisOrientation">left</defaultValue>
+		<defaultValue property="xAxisTickFormat">%</defaultValue>
+		<defaultValue property="yAxisTickFormat">%</defaultValue>
 		
 		<!-- End of Marimekko Chart Defaults -->
 	</initialization>

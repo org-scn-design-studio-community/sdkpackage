@@ -4,16 +4,6 @@
 	<property id="minY" title="Manual Min Y" type="int"/>
 	<property id="maxX" title="Manual Max X" type="int"/>
 	<property id="maxY" title="Manual Max Y" type="int"/>
-	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
-	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
-	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
-		<possibleValue>top</possibleValue>
-		<possibleValue>bottom</possibleValue>	
-	</property>
-	<property id="yAxisOrientation" type="String" title = "Y-Axis Orientation" visible="true">
-		<possibleValue>left</possibleValue>
-		<possibleValue>right</possibleValue>
-	</property>
 	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String"/>
 	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String"/>
 	<!-- End of BaseVizXY Properties -->

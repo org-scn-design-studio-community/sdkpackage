@@ -12,9 +12,7 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
-		<defaultValue property="xAxisTicks">5</defaultValue>
-		<defaultValue property="yAxisTicks">5</defaultValue>
-		<defaultValue property="xAxisOrientation">bottom</defaultValue>
-		<defaultValue property="yAxisOrientation">left</defaultValue>
+		<defaultValue property="xAxisTickFormat">%</defaultValue>
+		<defaultValue property="yAxisTickFormat">%</defaultValue>
 		
 		<!-- End of Marimekko Chart Defaults -->

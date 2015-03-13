@@ -14,4 +14,6 @@ __n__}
 		<defaultValue property="radius">5</defaultValue>
 		<defaultValue property="bubbleMin">3</defaultValue>
 		<defaultValue property="bubbleMax">50</defaultValue>
+		<defaultValue property="xAxisTickFormat">,n</defaultValue>
+		<defaultValue property="yAxisTickFormat">,n</defaultValue>
 		<!-- End of ScatterPlot Defaults -->

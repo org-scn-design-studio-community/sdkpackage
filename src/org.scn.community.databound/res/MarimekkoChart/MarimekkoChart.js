@@ -38,7 +38,7 @@
 		 * Scatter Plot based on D3 Example:
 		 * http://bl.ocks.org
 		 */
-		 MarimekkoChart.prototype = org_scn_community_databound_BaseViz;
+		 MarimekkoChart.prototype = org_scn_community_databound_AxisChart;
 		 MarimekkoChart.prototype.constructor = MarimekkoChart;
 		 MarimekkoChart.prototype.toString = function(){
 	    	 return ownComponentName;
@@ -46,43 +46,7 @@
 	     function MarimekkoChart() {
 	    	 var that = this;
 	    	// Call super
-	    	org_scn_community_databound_BaseViz.call(this, d3,{
-				xAxisTicks : { 
-					value : 5,
-					opts : {
-						desc : "X-Axis Ticks",
-						cat : "Axis",
-						apsControl : "spinner"	
-					}
-				},
-				yAxisTicks : { 
-					value : -1,
-					opts : {
-						desc : "Y-Axis Ticks",
-						cat : "Axis",
-						apsControl : "spinner"	
-					}
-				},
-				xAxisOrientation : { 
-					value : "bottom",
-					opts : {
-						apsControl : "combobox",
-						desc : "X-Axis Orientation",
-						cat : "Axis",
-						options : [{key : "bottom", text : "Bottom"},
-						         {key : "top", text : "Top"}]
-					}
-				},
-				yAxisOrientation : { 
-					value : "left",
-					opts : {
-						apsControl : "combobox",
-						desc : "Y-Axis Orientation",
-						cat : "Axis",
-						options : [{key : "left", text : "Left"},
-						         {key : "right", text : "Right"}]
-					}
-				},
+	    	org_scn_community_databound_AxisChart.call(this, d3,{
 	    		selectedColor : { value : "#009966"},
 	    		selectedRow : { value : ""},
 	    		selectedColumn : { value : ""},
@@ -109,18 +73,49 @@
 	    	this.init = function(){
 	    		parentInit.call(this);
 	    		this.$().addClass("MarimekkoChart");
-	    		/*
-				 * Axes - NOTE: Marimekko is not an XY Chart but uses similar stuff
-				 */
-	    		this.yScale.domain([0,1]);
-	    		this.xScale.domain([0,1]);
-				this.yAxisGroup = this.plotArea.append("g")
-					.attr("class", "y axis")
-					.attr("id",this.$().attr("id")+"_yaxis");
-				this.xAxisGroup = this.plotArea.append("g")
-					.attr("class", "x axis")
-					.attr("transform", "translate(0," + this.dimensions.plotHeight + ")")
-					.attr("id",this.$().attr("id")+"_xaxis");
+	    	}
+	    	/**
+	    	 * Compute X Scale
+	    	 */
+	    	var parentComputeXScale = this.computeXScale;
+	    	this.computeXScale = function(){
+	    		parentComputeXScale.apply(this);
+	    		this.xScale
+	    			.domain([0,1])
+	    			.range([0, this.dimensions.plotWidth - this.dimensions.yAxisWidth]);
+	    		
+	    		if(this.enableZoom()){
+		    		var reverseXDomain = [0,1];	    		
+		    			reverseXDomain[0] = this.xScale.invert(this.zoomXScale.domain()[0]);
+		    			reverseXDomain[1] = this.xScale.invert(this.zoomXScale.domain()[1]);
+		    			
+		    		this.xScale
+		    			.domain(reverseXDomain)
+		    			.range([0, this.dimensions.plotWidth  - this.dimensions.yAxisWidth]);
+	    		}
+	    		return this;
+	    	}
+	    	/**
+	    	 * Compute Y Scale
+	    	 */
+	    	var parentComputeYScale = this.computeYScale;
+	    	this.computeYScale = function(){
+	    		parentComputeYScale.apply(this);
+	    		this.yScale
+	    			.domain([1,0])
+	    			.range([0, this.dimensions.plotHeight - this.dimensions.xAxisHeight]);
+	    		
+	    		if(this.enableZoom()){
+		    		var reverseDomain = [1,0];	    		
+		    		reverseDomain[0] = this.yScale.invert(this.zoomYScale.domain()[1]);
+		    		reverseDomain[1] = this.yScale.invert(this.zoomYScale.domain()[0]);
+		    		// Default domain is [0,1]
+		    		
+		    		this.yScale
+		    			.domain(reverseDomain)
+		    			.range([0, this.dimensions.plotHeight - this.dimensions.xAxisHeight]);
+	    		}
+	    		return this;
 	    	}
 	    	/**
 	    	 * Update Plot
@@ -128,8 +123,6 @@
 	    	var parentUpdatePlot = this.updatePlot;
 	    	this.updatePlot = function(){
 	    		parentUpdatePlot.call(this);
-	    		var xTicks = this.xAxisTicks();
-	    		var yTicks = this.yAxisTicks();
 	    		var that = this;
 	    		var mekko = [];
 	    		var vals = [];
@@ -148,118 +141,7 @@
 	    		if(this.colorPalette()!=""){
 	    			cp = this.colorPalette().split(",");
 	    		}
-	    		// X-Axis
-	    		this.xScale
-	    			.domain([0,1])
-	    			.range([0, this.dimensions.plotWidth]);
-	    		    		
-	    		var reverseXDomain = [0,1];	    		
-	    			reverseXDomain[0] = this.xScale.invert(this.zoomXScale.domain()[0]);
-	    			reverseXDomain[1] = this.xScale.invert(this.zoomXScale.domain()[1]);
-	    			
-	    		this.xScale
-	    			.domain(reverseXDomain)
-	    			.range([0, this.dimensions.plotWidth]);
-	    		
-	    		this.xAxis = d3.svg.axis()
-					.scale(this.xScale)
-					.orient(this.xAxisOrientation())
-					.tickSize(6)
-					.tickFormat(d3.format(".0%"));
-	    		if(xTicks > 0) this.xAxis.ticks(xTicks);
-	    		this.xAxisGroup.call(this.xAxis);
-	    		var maxh = 0;
-	    		this.xAxisGroup.selectAll("text").each(function() {
-	    		    if(this.getBBox().height > maxh) maxh = this.getBBox().height;
-	    		});
-	    		this.dimensions.xAxisHeight = maxh + 6 + 3;
-	    		// Y-Axis
-	    		/*
-	    		 * yScale Domain - 0 - 1 (%) -> Range - 0px, 200px
-	    		 * yScale(.5) = 100px
-	    		 * s2 yZoom Domain - 0px, 200px -> Range 200px, 0px 
-	    		 * s2 yZoom Domain - 25px, 300px -> Range 200px, 0px
-	    		 * yZoom Range - 0, 500, Domain 
-	    		 * 
-	    		 */
-	    		this.yScale
-	    			.domain([0,1])
-	    			.range([0, this.dimensions.plotHeight - this.dimensions.xAxisHeight]);
-	    		
-	    		var reverseDomain = [0,1];	    		
-	    		reverseDomain[0] = this.yScale.invert(this.zoomYScale.domain()[1]);
-	    		reverseDomain[1] = this.yScale.invert(this.zoomYScale.domain()[0]);
-	    		// Default domain is [0,1]
-	    		
-	    		this.yScale
-	    			.domain(reverseDomain)
-	    			.range([0, this.dimensions.plotHeight - this.dimensions.xAxisHeight]);
-	    		
-	    		this.yAxis = d3.svg.axis()
-			    	.scale(this.yScale)
-			    	.orient(this.yAxisOrientation())
-			    	.tickSize(6)
-			    	.tickFormat(d3.format(".0%"));
-	    		if(yTicks > 0) this.yAxis.ticks(yTicks);
-	    		this.yAxisGroup.call(this.yAxis);
-	    		var maxw = 0;
-	    		this.yAxisGroup.selectAll("text").each(function() {
-	    		    if(this.getBBox().width > maxw) maxw = this.getBBox().width;
-	    		});
-	    		this.dimensions.yAxisWidth = maxw + 6 + 3;
-	    		// Update X range now that we know y-axis width
-	    		this.xScale.range([0, (this.dimensions.plotWidth - this.dimensions.yAxisWidth)]);
-	    		this.xAxis.scale(this.xScale);
-	    		this.xAxisGroup.call(this.xAxis);
 	    		this.colorRange = d3.scale.ordinal().domain(this.flatData.rowHeaders).range(cp);
-	    		// TODO: Measure widths
-	    		//this.dimensions.yAxisWidth = 20;
-	    		//this.dimensions.xAxisHeight = 20;
-	    		this.clipRect
-					//.transition().duration(this.ms())
-					.attr("width", this.dimensions.plotWidth - this.dimensions.yAxisWidth)
-					.attr("height", this.dimensions.plotHeight - this.dimensions.xAxisHeight);
-	    		
-	    		
-	    		this.yAxisGroup
-					//.transition().duration(this.ms())
-					.attr("transform", function(d){
-						var x = that.dimensions.yAxisWidth;
-						var y = 0;
-						var translate = "";
-						if(that.xAxisOrientation()=="top") y = that.dimensions.xAxisHeight;
-						if(that.yAxisOrientation()=="right") x = that.dimensions.plotWidth - that.dimensions.yAxisWidth;
-						translate = "translate(" + x + "," + y + ")";
-						return translate;	
-					});
-				
-				this.xAxisGroup
-					//.transition().duration(this.ms())
-					.attr("transform", function(d){
-						var x = 0;
-						var y = that.dimensions.xAxisHeight;
-						var translate = "";
-						if(that.xAxisOrientation()=="bottom") y = that.dimensions.plotHeight - that.dimensions.xAxisHeight;
-						if(that.yAxisOrientation()=="left") x = that.dimensions.yAxisWidth;
-						translate = "translate(" + x + "," + y + ")";
-						return translate;	
-					})
-					.call(this.xAxis);
-				
-				this.plotWindow.transition().duration(this.ms())
-					.attr("transform", function(d){
-						var x = 0;
-						var y = 0;
-						var translate = "";
-						if(that.xAxisOrientation()=="top") y = that.dimensions.xAxisHeight;
-						if(that.yAxisOrientation()=="left") x = that.dimensions.yAxisWidth;
-						translate = "translate(" + x + "," + y + ")";
-						return translate;	
-					});
-	    		
-	    		
-	    		
-	    		
 	    		var n = d3.format(",d"),
 	    		    p = d3.format("%");
 	    		// Nest values by col. We assume each row+col is unique.

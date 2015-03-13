@@ -12,6 +12,7 @@
 	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.AxisChart.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>
 	<jsInclude>res/ScatterPlot/ScatterPlot.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>

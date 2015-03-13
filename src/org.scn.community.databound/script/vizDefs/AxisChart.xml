@@ -1,0 +1,16 @@
+
+	<!-- Axis Chart Properties -->
+	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
+	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
+	<property id="xAxisTickFormat" title="X-Axis Tick Format" type="String"/>
+	<property id="yAxisTickFormat" title="Y-Axis Tick Format" type="String"/>
+	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
+		<possibleValue>top</possibleValue>
+		<possibleValue>bottom</possibleValue>	
+	</property>
+	<property id="yAxisOrientation" type="String" title = "Y-Axis Orientation" visible="true">
+		<possibleValue>left</possibleValue>
+		<possibleValue>right</possibleValue>
+	</property>
+
+	<!-- End of Base Viz Properties -->

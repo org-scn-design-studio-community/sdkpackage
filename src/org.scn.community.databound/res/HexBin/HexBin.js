@@ -126,44 +126,6 @@
 				this.colorRange = d3.scale.quantize()
 					.domain([min,max])
 					.range(cp);
-				this.clipRect
-					//.transition().duration(this.ms())
-					.attr("width", this.dimensions.plotWidth - this.dimensions.yAxisWidth)
-					.attr("height", this.dimensions.plotHeight - this.dimensions.xAxisHeight);
-				this.yAxisGroup
-				//.transition().duration(this.ms())
-				.attr("transform", function(d){
-					var x = that.dimensions.yAxisWidth;
-					var y = 0;
-					var translate = "";
-					if(that.xAxisOrientation()=="top") y = that.dimensions.xAxisHeight;
-					if(that.yAxisOrientation()=="right") x = that.dimensions.plotWidth - that.dimensions.yAxisWidth;
-					translate = "translate(" + x + "," + y + ")";
-					return translate;	
-				});
-				
-				this.xAxisGroup
-					//.transition().duration(this.ms())
-					.attr("transform", function(d){
-						var x = 0;
-						var y = that.dimensions.xAxisHeight;
-						var translate = "";
-						if(that.xAxisOrientation()=="bottom") y = that.dimensions.plotHeight - that.dimensions.xAxisHeight;
-						if(that.yAxisOrientation()=="left") x = that.dimensions.yAxisWidth;
-						translate = "translate(" + x + "," + y + ")";
-						return translate;	
-					})
-					.call(this.xAxis);
-				this.plotWindow.transition().duration(this.ms())
-					.attr("transform", function(d){
-						var x = 0;
-						var y = 0;
-						var translate = "";
-						if(that.xAxisOrientation()=="top") y = that.dimensions.xAxisHeight;
-						if(that.yAxisOrientation()=="left") x = that.dimensions.yAxisWidth;
-						translate = "translate(" + x + "," + y + ")";
-						return translate;	
-					});
 				var labelSelection = this.labelGroup.selectAll("text").data(this.hexbins);
 				var canvSelection = this.pathGroup.selectAll(".hexagon").data(this.hexbins);
 				canvSelection.enter().append("path")

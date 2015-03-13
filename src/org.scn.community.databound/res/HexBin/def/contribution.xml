@@ -12,6 +12,7 @@
 	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.AxisChart.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>
 	<jsInclude>res/HexBin/HexBin.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
@@ -54,16 +55,15 @@
 	<property id="plotRight" title="Plot Offset Right" type="int"/>
 	<property id="plotTop" title="Plot Offset Top" type="int"/>
 	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="enableZoom" title="Enable Zoom" type="boolean" visible="false" />
 	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
 	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
 	<!-- End of Base Viz Properties -->
-	<!-- BaseVizXY Properties -->
-	<property id="minX" title="Manual Min X" type="int"/>
-	<property id="minY" title="Manual Min Y" type="int"/>
-	<property id="maxX" title="Manual Max X" type="int"/>
-	<property id="maxY" title="Manual Max Y" type="int"/>
+	<!-- Axis Chart Properties -->
 	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
 	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
+	<property id="xAxisTickFormat" title="X-Axis Tick Format" type="String"/>
+	<property id="yAxisTickFormat" title="Y-Axis Tick Format" type="String"/>
 	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
 		<possibleValue>top</possibleValue>
 		<possibleValue>bottom</possibleValue>	
@@ -72,6 +72,13 @@
 		<possibleValue>left</possibleValue>
 		<possibleValue>right</possibleValue>
 	</property>
+
+	<!-- End of Base Viz Properties -->
+	<!-- BaseVizXY Properties -->
+	<property id="minX" title="Manual Min X" type="int"/>
+	<property id="minY" title="Manual Min Y" type="int"/>
+	<property id="maxX" title="Manual Max X" type="int"/>
+	<property id="maxY" title="Manual Max Y" type="int"/>
 	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String"/>
 	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String"/>
 	<!-- End of BaseVizXY Properties -->	
@@ -109,14 +116,17 @@
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="enableZoom">false</defaultValue>
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
-		<!-- BaseVizXY Defaults -->
+		<!-- AxisChart Defaults -->
 		<defaultValue property="xAxisTicks">5</defaultValue>
 		<defaultValue property="yAxisTicks">5</defaultValue>
 		<defaultValue property="xAxisOrientation">bottom</defaultValue>
 		<defaultValue property="yAxisOrientation">left</defaultValue>
+		<!-- End of AxisChart Defaults -->
+		<!-- BaseVizXY Defaults -->
 		<defaultValue property="maxX">0</defaultValue>
 		<defaultValue property="maxY">0</defaultValue>
 		<defaultValue property="minX">0</defaultValue>
@@ -138,6 +148,8 @@ __n__}
 		<defaultValue property="tolerance">0</defaultValue>
 		<defaultValue property="thresholdMethod">Median</defaultValue>
 		<defaultValue property="threshold">20</defaultValue>
+		<defaultValue property="xAxisTickFormat">,n</defaultValue>
+		<defaultValue property="yAxisTickFormat">,n</defaultValue>
 		<!-- End of HexBin Defaults -->
 	</initialization>
 </component>
