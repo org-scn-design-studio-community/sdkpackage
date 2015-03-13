@@ -122,6 +122,9 @@
 					.attr("transform", "translate(0," + this.dimensions.plotHeight + ")")
 					.attr("id",this.$().attr("id")+"_xaxis");
 	    	}
+	    	/**
+	    	 * Update Plot
+	    	 */
 	    	var parentUpdatePlot = this.updatePlot;
 	    	this.updatePlot = function(){
 	    		parentUpdatePlot.call(this);
@@ -153,6 +156,7 @@
 	    		var reverseXDomain = [0,1];	    		
 	    			reverseXDomain[0] = this.xScale.invert(this.zoomXScale.domain()[0]);
 	    			reverseXDomain[1] = this.xScale.invert(this.zoomXScale.domain()[1]);
+	    			
 	    		this.xScale
 	    			.domain(reverseXDomain)
 	    			.range([0, this.dimensions.plotWidth]);
@@ -185,14 +189,6 @@
 	    		var reverseDomain = [0,1];	    		
 	    		reverseDomain[0] = this.yScale.invert(this.zoomYScale.domain()[1]);
 	    		reverseDomain[1] = this.yScale.invert(this.zoomYScale.domain()[0]);
-	    		/*
-	    		 alert("yz Domain: " + this.zoomYScale.domain() + "\n"+
-	    		      "yz Range:" + this.zoomYScale.range() + "\n" +
-	    		      "plot height:" + this.dimensions.plotHeight + "\n" +
-	    		      "yz(0):" + this.zoomYScale(this.yScale(0)) + "\n" +
-	    		      "reverse:" + reverseDomain + "\n" +
-	    			  "yz(1):" + this.zoomYScale(1));
-	    		*/
 	    		// Default domain is [0,1]
 	    		
 	    		this.yScale
@@ -226,16 +222,16 @@
 	    		
 	    		
 	    		this.yAxisGroup
-				//.transition().duration(this.ms())
-				.attr("transform", function(d){
-					var x = that.dimensions.yAxisWidth;
-					var y = 0;
-					var translate = "";
-					if(that.xAxisOrientation()=="top") y = that.dimensions.xAxisHeight;
-					if(that.yAxisOrientation()=="right") x = that.dimensions.plotWidth - that.dimensions.yAxisWidth;
-					translate = "translate(" + x + "," + y + ")";
-					return translate;	
-				});
+					//.transition().duration(this.ms())
+					.attr("transform", function(d){
+						var x = that.dimensions.yAxisWidth;
+						var y = 0;
+						var translate = "";
+						if(that.xAxisOrientation()=="top") y = that.dimensions.xAxisHeight;
+						if(that.yAxisOrientation()=="right") x = that.dimensions.plotWidth - that.dimensions.yAxisWidth;
+						translate = "translate(" + x + "," + y + ")";
+						return translate;	
+					});
 				
 				this.xAxisGroup
 					//.transition().duration(this.ms())
@@ -249,7 +245,8 @@
 						return translate;	
 					})
 					.call(this.xAxis);
-				this.plotLayer.transition().duration(this.ms())
+				
+				this.plotWindow.transition().duration(this.ms())
 					.attr("transform", function(d){
 						var x = 0;
 						var y = 0;
@@ -297,30 +294,25 @@
 	  		  
 	  		  
 	  		  columns.exit()
-	  		  	.transition().duration(this.ms())
-	  		  	.attr("opacity",0)
-	  		  	.remove();
+		  		  .transition().duration(this.ms())
+		  		  .attr("opacity",0)
+		  		  .remove();
 	  		  
 	  		  columns
 	  		  	  .transition().duration(this.ms())
 	  		  	  .attr("opacity",1)
-	  		      .attr("xlink:title", function(d) { return d.key; })
 	  		      .attr("transform", function(d) { return "translate(" + that.xScale(d.offset / sum) + ")"; });
 
 	  		  // Add a rect for each row.
-	  		  var segs = columns.select(".rectLayer").selectAll(".row").data(function(d) { return d.values; });
+	  		  var segs = columns.select(".rectLayer").selectAll("rect").data(function(d) { return d.values; });
 	  		  var lbls = columns.select(".labelLayer").selectAll("text").data(function(d) { return d.values; });
-	  		  var newRows = segs.enter();
-	  		  newRows.append("a")
-	  		  	.attr("class", "row")
-	  		  		.append("rect")
-	  		  		.attr("class","plot")
-	  		  		.attr("opacity",0);
-	  		  segs.exit()
-	  		  	.select("rect")
-	  		  	.transition().duration(this.ms())
-	  		  	.attr("opacity",0);
-	  		  segs.exit().transition().delay(this.ms()).remove();
+
+	  		  segs.enter().append("rect")
+		  		.attr("class","row")
+		  		.attr("class","plot")
+		  		.attr("opacity",0);
+	  		  
+	  		  segs.exit().remove();
 	  		  
 	  		  lbls.enter().append("text")
 	  		  	.attr("text-anchor","middle")
@@ -329,14 +321,8 @@
 	  		  
 	  		  lbls.exit().remove();
 	  		  
-	  		  segs
-	  		  	.transition().duration(this.ms())
-	  		  	.attr("xlink:title", function(d) { return d.row + " " + d.parent.key + ": " + n(d.value); });
-	  		  
 	  		  columns.select(".labelLayer").selectAll("text")
-	  		  	.text(function(d) { 
-	  		  		return that.formatter(d.value);
-	  		  	})
+	  		  	.text(function(d) { return that.formatter(d.value);})
 	  		  	.attr("pointer-events", "none")
 	  		  	.attr("style",this.chartValueStyle())
 	  		  	.transition().duration(this.ms())
@@ -352,11 +338,11 @@
 	  		  	.attr("width", function(d) { return that.xScale(d.parent.sum / sum); });
 	  		  	//.call(this.wrap);
 	  		  
-	  		  segs.selectAll("rect")
+	  		  columns.select(".rectLayer").selectAll("rect")
 	  		  	.transition().duration(this.ms())    
 	  		  	.attr("opacity",this.plotAlpha()/100)
-	  		  	.attr("y", function(d) { return that.yScale(d.offset / d.parent.sum); })
-	  		  	.attr("height", function(d) { return that.yScale(d.value / d.parent.sum); })
+	  		  	.attr("y", function(d) { return that.yScale((d.offset + d.value) / d.parent.sum); })
+	  		  	.attr("height", function(d) {return that.yScale((d.parent.sum - d.value) / d.parent.sum); })
 	  		  	.attr("width", function(d) { return that.xScale(d.parent.sum / sum); })
 	  		  	.style("fill", function(d) { 
 	  		  		if(d && d.row == that.selectedRow() && d.col == that.selectedColumn()){
@@ -368,6 +354,9 @@
 	  		  segs.select("rect").on('click', this.setSelection);
 				return this;
 	    	}
+	    	/**
+	    	 * Update Legend
+	    	 */
 	    	var parentUpdateLegend = this.updateLegend;
 	    	this.updateLegend = function(){
 	    		parentUpdateLegend.apply(this);
