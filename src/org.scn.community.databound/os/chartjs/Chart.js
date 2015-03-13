@@ -2003,7 +2003,7 @@
 
 
 	if (amd) {
-		define(function(){
+		define(["chartjs"], function(){
 			return Chart;
 		});
 	} else if (typeof module === 'object' && module.exports) {

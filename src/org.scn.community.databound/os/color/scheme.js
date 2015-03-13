@@ -642,7 +642,7 @@ var ColorScheme;
     module.exports = ColorScheme;
   } else {
     if (typeof define === 'function' && define.amd) {
-      define([], function() {
+      define(["scheme"], function() {
         return ColorScheme;
       });
     } else {
