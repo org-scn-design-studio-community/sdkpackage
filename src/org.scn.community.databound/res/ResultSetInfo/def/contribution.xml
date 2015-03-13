@@ -1,0 +1,33 @@
+
+<component
+	id="ResultSetInfo"
+	title="ResultSet Info"
+	icon="res/ResultSetInfo/ResultSetInfo.png"
+	handlerType="div"
+	group="ScnCommunityDataBound"
+	propertySheetPath="res/ResultSetInfo/aps/ResultSetInfoPropertyPage.html"
+	databound="true"
+>	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ResultSetInfo/ResultSetInfoLoader.js</jsInclude>
+	
+	<property
+		id="data"
+		title="Result Set"
+		type="ResultSet"
+		group="DataBinding"
+		visible="false"
+	>
+		<option name="includeFormattedData" value="true"/>
+	</property>
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+	</initialization>
+
+</component>

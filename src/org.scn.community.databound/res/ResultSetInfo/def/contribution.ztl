@@ -1,0 +1,12 @@
+
+/**
+ * Generated ZTL Class for ResultSet Info
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /gen/contribution.ztl
+ */
+class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared.DataComponent {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
