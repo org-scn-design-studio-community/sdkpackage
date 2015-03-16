@@ -52,6 +52,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 							if(apsControl=="textbox"){
 								this["cmp_"+property].setValue(value);	
 							}
+							if(apsControl=="mapdownload"){
+								this["cmp_"+property].setMapData(value);	
+							}
 							if(apsControl=="checkbox"){
 								this["cmp_"+property].setChecked(Boolean(value));	
 							}
@@ -80,6 +83,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 						}
 						if(apsControl=="textbox"){
 							newValue = oControlEvent.getSource().getValue();
+						}
+						if(apsControl=="mapdownload"){
+							newValue = oControlEvent.getSource().getMapData();
 						}
 						if(apsControl=="checkbox"){
 							newValue = oControlEvent.getSource().getChecked();
@@ -115,6 +121,19 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 						wrapping : sap.ui.core.Wrapping.Off
 					});
 					this["cmp_"+property].attachChange(f,this);
+				}
+				if(apsControl == "mapdownload"){
+					this["cmp_"+property] = new org.scn.community.aps.MapDownloader({
+						width : "100%",
+						title : new sap.ui.commons.Title({
+							text: propertyOptions.desc
+						}),
+						tooltip: this.metaProps[prop].tooltip,
+						showCollapseIcon : false,
+						showAlpha : false,
+						showRatios : false
+					});
+					this["cmp_"+property].attachMapDataChange(f,this);
 				}
 				if(apsControl == "checkbox"){
 					this["cmp_"+property] = new sap.ui.commons.CheckBox();
@@ -162,7 +181,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 				// Step 4, add control to layout
 				//etcLayout.addContent(this.hLabel(property,this["cmp_"+property]));
 				var useLabel = true;
-				if(apsControl == "palette") useLabel = false;
+				if(apsControl == "palette" || apsControl == "mapdownload") useLabel = false;
 				if(useLabel){
 					this["layout_"+category].addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
 				}else{

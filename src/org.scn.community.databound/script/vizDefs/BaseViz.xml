@@ -4,10 +4,13 @@
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
 	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
+	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
 	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>

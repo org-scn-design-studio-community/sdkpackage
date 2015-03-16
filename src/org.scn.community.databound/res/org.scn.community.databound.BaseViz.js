@@ -38,6 +38,30 @@ function org_scn_community_databound_BaseViz(d3, options){
 				apsControl : "checkbox"	
 			}
 		},
+		showTooltips : { 
+			value : true,
+			opts : {
+				desc : "Show Tooltips",
+				cat : "Cosmetics",
+				apsControl : "checkbox"	
+			}
+		},
+		chartValueSize : { 
+			value : 10.0,
+			opts : {
+				desc : "Chart Value Size",
+				cat : "Cosmetics",
+				apsControl : "spinner"	
+			}
+		},
+		chartValueWidthThreshold : {
+			value : 80,
+			opts : {
+				desc : "Value Width Visibility Threshold (%)",
+				cat : "Cosmetics",
+				apsControl : "spinner"	
+			} 
+		},
 		showTitle : { 
 			value : true,
 			opts : {
@@ -256,13 +280,15 @@ function org_scn_community_databound_BaseViz(d3, options){
 			//.attr("transform", "translate(" + (this.dimensions.margin) + "," + this.dimensions.margin + ")")
 			.attr("width", this.dimensions.width)
 			.attr("height", this.dimensions.height);
-		// Reorient Plot Area
+		// Reorient Stage
 		this.stage
 			.transition().duration(this.ms())
 			.attr("transform", "translate(" + (0) + "," + (this.dimensions.chartLabelHeight) + ")");
+		// Reorient Plot Area
 		this.plotArea
 			.transition().duration(this.ms())
 			.attr("transform", "translate(" + (this.dimensions.plotLeft) + "," + (this.dimensions.plotTop) + ")");
+		// Resize plot BG
 		this.plotBG
 			.transition().duration(this.ms())
 			.attr("width", this.dimensions.plotWidth)
@@ -431,9 +457,25 @@ function org_scn_community_databound_BaseViz(d3, options){
 			.transition().duration(this.ms())
 			.attr("opacity", 1);
 	}
-	// Semantic Zooming - not working
 	var that = this;
+	this.semanticDragged = function(){
+		// TODO
+	};
+	// Semantic Zooming Start
+	this.semanticZoomStarted = function(){
+		that.moved = false;
+		//d3.event.stopPropagation();
+	}
+	// Semantic Zooming End
+	this.semanticZoomEnded = function(){
+		that.isZooming = false;
+		//that.isZooming = false;
+		// TODO
+		//d3.event.stopPropagation();
+	}
+	// Semantic Zooming
 	this.semanticZoomed = function(){
+		that.moved = true;
 		//alert("X\n" + that.zoomXScale.domain() + "\n" + that.zoomXScale.range() + "\n\nY:\n" + that.zoomYScale.domain() + "\n" + that.zoomYScale.range());
 		that.zoomScale = d3.event.scale;
 		that.zoomTranslate = d3.event.translate;
@@ -443,7 +485,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 				.range([0, that.dimensions.plotHeight]);
 			that.zoomXScale.domain([0, that.dimensions.plotWidth])
 				.range([0, that.dimensions.plotWidth]);
-		} 
+		}
 		that.afterUpdate();
 		/*
 		
@@ -452,7 +494,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 		});
 		*/
 	}
-	// Geometric Zooming
+	// Geometric Zooming - Not using.
 	this.zoomed = function(d){
 		//d3.select(this).selectAll(".hexagon").style("stroke-width", .25 / d3.event.scale);
 		/*function(d){
@@ -531,7 +573,13 @@ function org_scn_community_databound_BaseViz(d3, options){
 				.y(this.zoomYScale)
 				.size([this.dimensions.plotWidth, this.dimensions.plotHeight])
 				.on("zoom",this.semanticZoomed)
+				//.on("dblclick.zoom",null)
+				.on("zoomstart",this.semanticZoomStarted)
+				.on("zoomend",this.semanticZoomEnded)
 				.scale(this.minZoom());
+			this.semanticDrag = d3.behavior.drag()
+				.origin(function(d) { return d;})
+				.on("dragstart",this.semanticDragged);
 			this.svg = d3.select("#" + this.$().attr("id")).append("svg");
 			this.svg
 				.attr("preserveAspectRatio","xMidYMid meet")
@@ -541,6 +589,9 @@ function org_scn_community_databound_BaseViz(d3, options){
 			this.svgDefs = this.svg.append("defs");
 			this.svgStyle = this.svgDefs.append("style")
 				.attr("type","text/css");
+			// Hidden Plot Area
+			this.shadowPlotArea = this.svg.append("g")
+				.attr("id",this.$().attr("id") + "_shadowplotarea").style("opacity",0);//.style("display","none");
 			this.main = this.svg.append("g");
 			// Main Plot Area
 			this.canvas = this.main.append("g");
@@ -567,7 +618,8 @@ function org_scn_community_databound_BaseViz(d3, options){
 			// Plot Area
 			this.plotArea = this.stage.append("g")
 				.attr("id",this.$().attr("id") + "_plotarea")
-				.call(this.semanticZoom);
+				.call(this.semanticZoom)
+				.call(this.semanticDrag);
 			
 			this.plotWindow = this.plotArea.append("g")
 				.attr("id",this.$().attr("id") + "_plotwindow")

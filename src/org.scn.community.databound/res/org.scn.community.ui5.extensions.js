@@ -1,4 +1,232 @@
 /*
+ * Map Downloader
+ */
+sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
+	_mapData : "",
+	_attrData : [],
+	metadata : {                             
+        properties : {
+        	mapData : {
+				type : "string",
+				defaultValue : ""
+        	},
+        	showRatios : {
+        		type : "boolean",
+        		defaultValue : false
+        	},
+        	propSheet : {}
+        },
+	    events : {
+	    	mapDataChange : {}
+	    }
+	 },
+	 setMapData : function(s){
+		if(s!=this._mapData){
+			try{
+				var data;
+				if(typeof s=="string"){
+					this._mapData = JSON.stringify(jQuery.parseJSON(s));
+					data = jQuery.parseJSON(s);	
+				}else{
+					this._mapData = JSON.stringify(s);
+					data = s;				
+				}
+				this._mapData = JSON.stringify(this.processMapData(data));
+				this._attrData = this.scanData(this._mapData);
+				this.updateContents();	
+			}catch(e){
+				alert("Problem setting map data\n\n" + e);
+			}			
+		} 
+	 },
+	 getMapData : function(){
+		 return this._mapData;
+	 },
+	updateContents: function(){
+		var that = this;
+		this.geoJSONText.setValue(this._mapData);
+		this.tableAttributes.destroyColumns();
+		var objs = {};
+		for(var i=0;i<this._attrData.length;i++){
+			for(var field in this._attrData[i]){
+				objs[field]=field;
+			}
+		}
+		for(var field in objs){
+			var newColumn = new sap.ui.table.Column({
+				label: new sap.ui.commons.Label({text: objs[field]}),
+				template: new sap.ui.commons.TextView().bindProperty("text", objs[field]),
+				width : "50px",
+				sortProperty: objs[field],
+				filterProperty: objs[field]
+			});
+			this.tableAttributes.addColumn(newColumn);
+		}
+		this.tableAttributes.getModel().setData({
+			rows: this._attrData
+		});
+	},
+	/**
+	 * Scan FeatureJSON for all attributes
+	 */
+	scanData : function(strMapData){
+		var geoJSON = jQuery.parseJSON(strMapData);
+		var attrs = [];
+		var features = geoJSON.features || [];
+		for(var i=0;i<features.length;i++){
+			var feature = features[i];
+			if(feature.properties) attrs.push(feature.properties);
+		}
+		return attrs;
+	},
+	/**
+	 * Convert any TopoJSON data into GeoJSON
+	 */
+	processMapData : function(mapData) {
+	    //var o = smd.options.topojsonObject;
+	    var obj;
+	    var returnObject = mapData;		// Assume GeoJSON
+	    if (mapData && mapData.type && mapData.type.toLowerCase() === 'topology' && typeof topojson != 'undefined') {
+	        for (var o in mapData.objects) {
+	          if (mapData.objects.hasOwnProperty(o)) {
+	            obj = mapData.objects[o];
+	            break;
+	          }
+	        }
+	      returnObject = topojson.feature(mapData, mapData.objects[o]);
+	    }
+	    return returnObject;
+	},
+	mapLoadComplete : function(data){
+		try{
+			this.presets = jQuery.parseJSON(data);
+			for(var i=0;i<this.presets.length;i++){
+				if(this.presets[i].type && this.presets[i].type=="external"){
+					$.ajax({
+						url : this.presets[i].indexUrl + "index.json?ref=gh-pages",
+						headers : this.presets[i].headers
+					})
+					.done(function(config){return function(data){
+						var generatedMenuItem = new sap.ui.commons.MenuItem({
+							text : data.label
+						});
+						that.presetMenu.addItem(generatedMenuItem);
+						that.makeMapMenu(data, generatedMenuItem, config);
+						that.presetMenu.addItem(generatedMenuItem);
+					};}(this.presets[i]))
+					.fail(function(config){return function(xhr, textStatus, errorThrown ){
+						alert("Could not load\n\n"+errorThrown+JSON.stringify(config) );
+					};}(this.presets[i]))
+				}else{
+					var generatedMenuItem = new sap.ui.commons.MenuItem({
+						text : this.presets[i].label
+					});
+					this.makeMapMenu(this.presets[i], generatedMenuItem,this.presets[i]);
+					this.presetMenu.addItem(generatedMenuItem);	
+				}					
+			}
+		}catch(e){
+			alert(e);
+		}
+	},
+	makeMapMenu : function(o, menuitem, rootConfig){
+		var that = this;
+		menuitem.setText(o.label);
+		if(o.maps){
+			var newMenu = new sap.ui.commons.Menu({});
+			menuitem.setSubmenu(newMenu);
+			for(var i=0;i<o.maps.length;i++){
+				var newMenuItem = new sap.ui.commons.MenuItem({
+					text : o.maps[i].label
+				});
+				newMenu.addItem(newMenuItem);
+				this.makeMapMenu(o.maps[i], newMenuItem, rootConfig);
+			}
+		}
+		if(o.url) {
+			var mapURL = o.url;
+			if(o.type!="external") mapURL = "../os/maps/" + mapURL;
+			if(rootConfig.indexUrl) mapURL = rootConfig.indexUrl + mapURL;
+			menuitem.attachSelect(function(mapURL,config){return function(oControlEvent){
+				try{
+					$.ajax({
+						//async : false,
+						url : mapURL,
+						headers : config.headers
+					}).done(function(data){
+						that._mapData = data;
+						that.fireMapDataChange();
+					})
+					.fail(function(mapURL){return function(xhr, textStatus, errorThrown ){
+						alert("An error occured while trying to download the map.\n\n"+errorThrown+mapURL );
+					};}(mapURL));
+				}catch(e){
+					alert(e);
+					throw("Error loading map:\n\nFile:" + mapURL + "\n\n" + e);
+				}
+				
+    		};}(mapURL,rootConfig), this);
+		}
+	},
+	init : function(){
+		try{
+		var that = this;
+		sap.ui.commons.Panel.prototype.init.apply(this,arguments);
+		this.presetMenu = new sap.ui.commons.Menu({
+			items :[ ]
+		});
+		this.mapStrip = new sap.ui.commons.TabStrip({
+			width : "100%",
+		});
+		this.tableAttributes =  new sap.ui.table.Table({
+			title: "Map Attributes",
+			visibleRowCount: 10,
+			selectionMode: sap.ui.table.SelectionMode.Single
+		});
+		var dataModel = new sap.ui.model.json.JSONModel();
+		this.tableAttributes.setModel(dataModel);
+		this.tableAttributes.bindRows("/rows");
+		
+		this.mapContents = this.mapStrip.createTab("Map Contents");
+		this.mapProperties = this.mapStrip.createTab("Map Attributes");
+		this.geoJSONText = new sap.ui.commons.TextArea({
+			// value : this.mapData(),
+			design : sap.ui.core.Design.Monospace,
+			rows : 20,
+			width : "100%",
+			wrapping : sap.ui.core.Wrapping.Off
+		});
+		this.mapContents.addContent(this.geoJSONText);
+		this.mapProperties.addContent(this.tableAttributes);
+		try{
+			$.ajax({
+				url : "../os/maps/index.json?r=" + Math.random(),
+				context : this
+			})
+			.done(this.mapLoadComplete)
+			.fail(function(){alert("Problem occured when loading maps menu.")});
+			//this.presets = jQuery.parseJSON(indexJSON);
+		}catch(e){
+			alert(e);
+			throw("Error loading maps index:\n\n" + e);
+		}
+		this.addButton(new sap.ui.commons.MenuButton({ 
+			text : "Load Map...",
+			menu : this.presetMenu
+		}));
+		this._vLayout = new sap.ui.commons.layout.VerticalLayout({
+			width : "100%"
+		});
+		this._vLayout.addContent(this.mapStrip);
+		this.addContent(this._vLayout);	
+		this.updateContents();
+		}catch(e){
+			alert("Problem with Map Downloader Init\n\n"+e);
+		}
+	},
+	renderer : {}
+});
+/*
  * GeoCoder/Cache Component (Not finished)
  */
 sap.ui.commons.Panel.extend("org.scn.community.aps.GeoCache",{

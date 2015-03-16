@@ -19,3 +19,140 @@
 .DesignStudioSCN.Viz .chartTitle {
   font-weight: bold;
 }
+.DesignStudioSCN.Choropleth .subunit-label {
+  fill: #000;
+  fill-opacity: .5;
+  /* font-size: 20px; */
+  font-weight: 300;
+  text-anchor: middle;
+}
+.DesignStudioSCN.Choropleth .tooltip-container {
+  position: relative;
+}
+
+.DesignStudioSCN.Choropleth .tooltip {
+  position: absolute;
+  display: none;
+  top: 5px;
+  right: 5px;
+  border: 1px solid #898989;
+  padding: .5em;
+  /*font-size: 8pt;*/
+  background-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.DesignStudioSCN.Choropleth .canvas.draggable,
+.DesignStudioSCN.Choropleth .draggable { 
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+.DesignStudioSCN.Choropleth .canvas.draggable.dragging,
+.DesignStudioSCN.Choropleth .draggable.dragging {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.DesignStudioSCN.Choropleth .background {
+  fill: transparent;
+  stroke: 0;
+}
+
+.DesignStudioSCN.Choropleth .path {
+  stroke: #898989;
+  stroke-width: .4px;
+  stroke-opacity: .85;
+}
+
+.DesignStudioSCN.Choropleth .path:hover {
+  stroke-opacity: .5;
+  stroke: #000000;
+  stroke-width: 2px;
+}
+
+.DesignStudioSCN.Choropleth .canvas.tooltipped .path:hover, 
+.DesignStudioSCN.Choropleth .canvas.tooltipped .text:hover{
+  cursor: pointer;
+}
+
+.DesignStudioSCN.Choropleth .legend-container {
+  stroke-width: .5px;
+  fill: #FFFFFF;
+  fill-opacity: 0.9;
+  stroke: #898989;
+}
+
+.DesignStudioSCN.Choropleth .legend-label {
+  font-weight: bold;
+}
+
+.DesignStudioSCN.Choropleth .graticule {
+  fill: none;
+  stroke: #808080;
+  stroke-width: .5px;
+  stroke-opacity: .75;
+}
+
+.DesignStudioSCN.Choropleth .globe {
+  fill: #A0C3FF;
+  stroke: #222222;
+  stroke-width: 1.5px;
+}
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Northward tooltips */
+.d3-tip.n:after {
+  content: "\25BC";
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+  text-align: center;
+}
+
+/* Eastward tooltips */
+.d3-tip.e:after {
+  content: "\25C0";
+  margin: -4px 0 0 0;
+  top: 50%;
+  left: -8px;
+}
+
+/* Southward tooltips */
+.d3-tip.s:after {
+  content: "\25B2";
+  margin: 0 0 1px 0;
+  top: -8px;
+  left: 0;
+  text-align: center;
+}
+
+/* Westward tooltips */
+.d3-tip.w:after {
+  content: "\25B6";
+  margin: -4px 0 0 -1px;
+  top: 50%;
+  left: 100%;
+}
