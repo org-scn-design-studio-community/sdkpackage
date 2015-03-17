@@ -34,7 +34,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : true,
 			opts : {
 				desc : "Show Values",
-				cat : "Cosmetics",
+				cat : "Cosmetics-Values",
 				apsControl : "checkbox"	
 			}
 		},
@@ -42,15 +42,59 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : true,
 			opts : {
 				desc : "Show Tooltips",
-				cat : "Cosmetics",
+				cat : "Tooltips",
 				apsControl : "checkbox"	
+			}
+		},
+		tooltipPositioning : { 
+			value : "plotcenter",
+			opts : {
+				apsControl : "combobox",
+				desc : "Tooltip Positioning",
+				cat : "Tooltips",
+				options : [{key : "plotcenter", text : "Plot Center"},
+				           {key : "followmouse", text : "Follow Mouse"},
+				           {key : "static", text : "Static Position"}
+				]
+			}
+		},
+		tooltipLeft : { 
+			value : "auto",
+			opts : {
+				apsControl : "text",
+				desc : "Tooltip Left (CSS)",
+				cat : "Tooltips"
+			}
+		},
+		tooltipRight : { 
+			value : "0px",
+			opts : {
+				apsControl : "text",
+				desc : "Tooltip Right (CSS)",
+				cat : "Tooltips"
+			}
+		},
+		tooltipTop : { 
+			value : "0px",
+			opts : {
+				apsControl : "text",
+				desc : "Tooltip Top (CSS)",
+				cat : "Tooltips"
+			}
+		},
+		tooltipBottom : { 
+			value : "auto",
+			opts : {
+				apsControl : "text",
+				desc : "Tooltip Bottom (CSS)",
+				cat : "Tooltips"
 			}
 		},
 		chartValueSize : { 
 			value : 10.0,
 			opts : {
 				desc : "Chart Value Size",
-				cat : "Cosmetics",
+				cat : "Cosmetics-Values",
 				apsControl : "spinner"	
 			}
 		},
@@ -58,7 +102,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : 80,
 			opts : {
 				desc : "Value Width Visibility Threshold (%)",
-				cat : "Cosmetics",
+				cat : "Cosmetics-Values",
 				apsControl : "spinner"	
 			} 
 		},
@@ -90,7 +134,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : "",
 			opts : {
 				desc : "Chart Value Style",
-				cat : "CSS",
+				cat : "Cosmetics-Values",
 				apsControl : "text"
 			}
 		},
@@ -106,7 +150,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : "",
 			opts : {
 				desc : "Legend Title Style",
-				cat : "CSS",
+				cat : "Legend",
 				apsControl : "text"
 			}
 		},
@@ -154,7 +198,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : 15,
 			opts : {
 				desc : "Margins",
-				cat : "Cosmetics",
+				cat : "Cosmetics-Margins",
 				apsControl : "spinner"	
 			}
 		},
@@ -162,7 +206,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : 95,
 			opts : {
 				desc : "Plot Alpha (0-100)",
-				cat : "Cosmetics",
+				cat : "Cosmetics-Plot",
 				apsControl : "spinner"	
 			}
 		},
@@ -178,7 +222,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : "#F0F9E8,#CCEBC5,#A8DDB5,#7BCCC4,#43A2CA,#0868AC",
 			opts : {
 				desc : "Color Palette",
-				cat : "Cosmetics",
+				cat : "Cosmetics-Colors",
 				apsControl : "palette"	
 			}
 		},
@@ -186,7 +230,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : "#000000",
 			opts : {
 				desc : "Selected Color",
-				cat : "Cosmetics",
+				cat : "Cosmetics-Colors",
 				apsControl : "color"	
 			}
 		},
@@ -194,7 +238,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : 0,
 			opts : {
 				desc : "Plot Left Offset",
-				cat : "Cosmetics",
+				cat : "Cosmetics-Margins",
 				apsControl : "spinner"	
 			}
 		},
@@ -202,7 +246,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : 0,
 			opts : {
 				desc : "Plot Right Offset",
-				cat : "Cosmetics",
+				cat : "Cosmetics-Margins",
 				apsControl : "spinner"	
 			}
 		},
@@ -210,7 +254,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : 0,
 			opts : {
 				desc : "Plot Top Offset",
-				cat : "Cosmetics",
+				cat : "Cosmetics-Margins",
 				apsControl : "spinner"	
 			}
 		},
@@ -218,7 +262,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : 0,
 			opts : {
 				desc : "Plot Bottom Offset",
-				cat : "Cosmetics",
+				cat : "Cosmetics-Margins",
 				apsControl : "spinner"	
 			}
 		},
@@ -360,9 +404,17 @@ function org_scn_community_databound_BaseViz(d3, options){
 	 * Calculates new and old sizes and if different, trigger afterUpdate.
 	 */
 	this.measureSize = function(that){
-		var currentWidth = that.$().innerWidth();
-		var currentHeight = that.$().innerHeight();
+		/*
+		 var currentWidth = that.$().innerWidth();
+		 var currentHeight = that.$().innerHeight();
+		*/
+		var currentWidth = that.$().outerWidth();
+		var currentHeight = that.$().outerHeight();
 		if(currentWidth != that._previousWidth || currentHeight != that._previousHeight){
+			/*
+			 alert("old w/h:" + that._previousWidth + "x" + that._previousHeight + "\n"+
+				  "new w/h:" + currentWidth + "x" + currentHeight);
+			 */
 			that._previousHeight = currentHeight;
 			that._previousWidth = currentWidth;
 			this.calculateDimensions();
@@ -544,7 +596,10 @@ function org_scn_community_databound_BaseViz(d3, options){
 	this.init = function(){
 		parentInit.apply(this);
 		this.$().addClass("Viz");
-		this.$().css({"overflow":"hidden"});
+		this.$().css({
+			"overflow":"hidden",
+			"position":"relative"
+		});
 		this.calculateDimensions();
 		this.svg = d3.select("#" + this.$().attr("id")).select("svg");
 		if(this.svg.empty()){

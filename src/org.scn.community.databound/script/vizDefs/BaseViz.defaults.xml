@@ -18,6 +18,11 @@
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="tooltipPositioning">followmouse</defaultValue>
+		<defaultValue property="tooltipLeft">auto</defaultValue>
+		<defaultValue property="tooltipRight">0px</defaultValue>
+		<defaultValue property="tooltipTop">0px</defaultValue>
+		<defaultValue property="tooltipBottom">auto</defaultValue>
 		<defaultValue property="enableZoom">false</defaultValue>
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>

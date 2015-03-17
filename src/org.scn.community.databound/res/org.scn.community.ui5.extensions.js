@@ -145,7 +145,7 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 		}
 		if(o.url) {
 			var mapURL = o.url;
-			if(o.type!="external") mapURL = "../os/maps/" + mapURL;
+			if(o.type!="external") mapURL = "../os/maps/" + mapURL + "?r=" + Math.random();
 			if(rootConfig.indexUrl) mapURL = rootConfig.indexUrl + mapURL;
 			menuitem.attachSelect(function(mapURL,config){return function(oControlEvent){
 				try{

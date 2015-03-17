@@ -33,7 +33,7 @@ var org_scn_community_databound_Base = function(options){
 			onChange : this.flattenData,
 			opts : {
 				desc : "Ignore Totals",
-				cat : "Cosmetics",
+				cat : "Data",
 				tooltip : "Whether to ignore totals",
 				apsControl : "checkbox"	
 			}
@@ -43,7 +43,7 @@ var org_scn_community_databound_Base = function(options){
 			onChange : this.flattenData,
 			opts : {
 				desc : "Swap Axes",
-				cat : "Cosmetics",
+				cat : "Data",
 				tooltip : "Whether to swap axes",
 				apsControl : "checkbox",
 				noAps : true

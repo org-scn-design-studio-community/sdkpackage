@@ -11,6 +11,11 @@
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
 	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
+	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
+	<property id="tooltipLeft" type="String" title = "Tooltip Left" visible="false"/>
+	<property id="tooltipRight" type="String" title = "Tooltip Right" visible="false"/>
+	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
+	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
 	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>

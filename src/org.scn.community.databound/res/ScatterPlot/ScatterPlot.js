@@ -50,7 +50,7 @@
 					value : 20,
 					opts : {
 						desc : "Plot Radius",
-						cat : "Cosmetics",
+						cat : "Cosmetics-Sizes",
 						apsControl : "spinner"	
 					}
 				},
@@ -58,7 +58,7 @@
 					value : 5,
 					opts : {
 						desc : "Minimum Bubble Size",
-						cat : "Cosmetics",
+						cat : "Cosmetics-Sizes",
 						apsControl : "spinner"	
 					}
 				},
@@ -66,7 +66,7 @@
 					value : 20,
 					opts : {
 						desc : "Maximum Bubble Size",
-						cat : "Cosmetics",
+						cat : "Cosmetics-Sizes",
 						apsControl : "spinner"	
 					}
 				},

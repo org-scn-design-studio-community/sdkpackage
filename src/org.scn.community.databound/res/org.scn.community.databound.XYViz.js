@@ -10,7 +10,7 @@ function org_scn_community_databound_XYViz(d3, options){
 			value : 0,
 			opts : {
 				desc : "X-Axis Manual Max",
-				cat : "Axis",
+				cat : "Axis-X Axis",
 				apsControl : "spinner"
 			}
 		},
@@ -18,7 +18,7 @@ function org_scn_community_databound_XYViz(d3, options){
 			value : 0,
 			opts : {
 				desc : "Y-Axis Manual Max",
-				cat : "Axis",
+				cat : "Axis-Y Axis",
 				apsControl : "spinner"
 			}
 		},
@@ -26,7 +26,7 @@ function org_scn_community_databound_XYViz(d3, options){
 			value : 0,
 			opts : {
 				desc : "X-Axis Manual Min",
-				cat : "Axis",
+				cat : "Axis-X Axis",
 				apsControl : "spinner"
 			}
 		},
@@ -34,7 +34,7 @@ function org_scn_community_databound_XYViz(d3, options){
 			value : 0,
 			opts : {
 				desc : "Y-Axis Manual Min",
-				cat : "Axis",
+				cat : "Axis-Y Axis",
 				apsControl : "spinner"
 			}
 		},

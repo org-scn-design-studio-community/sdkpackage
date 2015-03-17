@@ -38,7 +38,7 @@
 					value : 20,
 					opts : {
 						desc : "Hexagon Radius",
-						cat : "Cosmetics",
+						cat : "Cosmetics-Clustering",
 						apsControl : "spinner"	
 					}
 				},
@@ -46,7 +46,7 @@
 					value : 5,
 					opts : {
 						desc : "Tolerance",
-						cat : "Cosmetics",
+						cat : "Cosmetics-Clustering",
 						apsControl : "spinner"	
 					}
 				},
@@ -54,7 +54,7 @@
 					value : 0,
 					opts : {
 						desc : "Threshold",
-						cat : "Cosmetics",
+						cat : "Cosmetics-Clustering",
 						apsControl : "spinner"	
 					}
 				},
@@ -63,9 +63,10 @@
 					opts : {
 						apsControl : "combobox",
 						desc : "Threshold Method",
-						cat : "Cosmetics",
+						cat : "Cosmetics-Clustering",
 						options : [{key : "Manual", text : "Manual"},
-						         {key : "Median", text : "Median"}]
+						         {key : "Median", text : "Median"},
+						         {key : "Mean", text : "Mean"}]
 					}
 				},
 			});

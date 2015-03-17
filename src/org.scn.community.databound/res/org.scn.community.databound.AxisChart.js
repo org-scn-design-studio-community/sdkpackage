@@ -10,7 +10,7 @@ function org_scn_community_databound_AxisChart(d3, options){
 			value : 5,
 			opts : {
 				desc : "X-Axis Ticks",
-				cat : "Axis",
+				cat : "Axis-X Axis",
 				apsControl : "spinner"	
 			}
 		},
@@ -18,7 +18,7 @@ function org_scn_community_databound_AxisChart(d3, options){
 			value : -1,
 			opts : {
 				desc : "Y-Axis Ticks",
-				cat : "Axis",
+				cat : "Axis-Y Axis",
 				apsControl : "spinner"	
 			}
 		},
@@ -26,7 +26,7 @@ function org_scn_community_databound_AxisChart(d3, options){
 			value : "%",
 			opts : {
 				desc : "X-Axis Tick Format",
-				cat : "Axis",
+				cat : "Axis-X Axis",
 				apsControl : "text"
 			}
 		},
@@ -34,7 +34,7 @@ function org_scn_community_databound_AxisChart(d3, options){
 			value : "%",
 			opts : {
 				desc : "Y-Axis Tick Format",
-				cat : "Axis",
+				cat : "Axis-Y Axis",
 				apsControl : "text"
 			}
 		},
@@ -43,7 +43,7 @@ function org_scn_community_databound_AxisChart(d3, options){
 			opts : {
 				apsControl : "combobox",
 				desc : "X-Axis Orientation",
-				cat : "Axis",
+				cat : "Axis-X Axis",
 				options : [{key : "bottom", text : "Bottom"},
 				         {key : "top", text : "Top"}]
 			}
@@ -53,7 +53,7 @@ function org_scn_community_databound_AxisChart(d3, options){
 			opts : {
 				apsControl : "combobox",
 				desc : "Y-Axis Orientation",
-				cat : "Axis",
+				cat : "Axis-Y Axis",
 				options : [{key : "left", text : "Left"},
 				         {key : "right", text : "Right"}]
 			}

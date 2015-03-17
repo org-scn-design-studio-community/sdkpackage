@@ -41,6 +41,11 @@
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
 	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
+	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
+	<property id="tooltipLeft" type="String" title = "Tooltip Left" visible="false"/>
+	<property id="tooltipRight" type="String" title = "Tooltip Right" visible="false"/>
+	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
+	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
 	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
@@ -116,6 +121,11 @@
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="tooltipPositioning">followmouse</defaultValue>
+		<defaultValue property="tooltipLeft">auto</defaultValue>
+		<defaultValue property="tooltipRight">0px</defaultValue>
+		<defaultValue property="tooltipTop">0px</defaultValue>
+		<defaultValue property="tooltipBottom">auto</defaultValue>
 		<defaultValue property="enableZoom">false</defaultValue>
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
