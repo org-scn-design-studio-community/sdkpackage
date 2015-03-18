@@ -1,8 +1,8 @@
 
 <component
-		id="MarimekkoChart"
-		title="Marimekko Chart"
-		icon="res/MarimekkoChart/MarimekkoChart.png"
+		id="Table2D"
+		title="2D Crosstab"
+		icon="res/Table2D/Table2D.png"
 		handlerType="div"
 		propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
 		group="ScnCommunityDataBound"
@@ -11,8 +11,7 @@
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.AxisChart.js</jsInclude>
-	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
+	<jsInclude>res/Table2D/Table2D.js</jsInclude>
+	<cssInclude>res/Table2D/Table2D.css</cssInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>

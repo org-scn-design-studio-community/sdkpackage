@@ -62,35 +62,184 @@
 			 		return html;
 			 	})
 			 	.offset(function(d) {
-			 		return [this.getBBox().height / 2 - 12, 0]
+			 		var y = (this.getBBox().height * that.zoomScale / 2 ) - 12;
+			 		return [y, 0]
 			 	});
 	    	// Call super
 	    	org_scn_community_databound_BaseViz.call(this, d3,{
 	    		styleClasses : { value : ""},
-				selectedFeature : { value : ""},
-				hoverColor : { value : ""},
 				centerFeature : { value : ""},
-				featureProperty : { value : "NAME_1"},
-				labelProperty : { value : "NAME_1"},
-				measureMember :  { value : "" },
-				floor :  { value : 0 },
-				defaultFillColor : { value : "#E5EADE" },
-				backgroundColor : { value : "transparent" },
-				projection : { value : "mercator" },
-				tooltipOn :  { value : true },
-				legendOn :  { value : true },
-				globeOn :  { value : true },
-				graticuleOn :  { value : true },
-				gradientLeft : { value : 30 },
-				gradientRight : { value : 30 },
-				gradientBottom :  { value : 15 },
-				gradientHeight :  { value : 10 },
-				labelSize :  { value : 10 },
-				labelThreshold :  { value : 80 },
-				colorPalette :  { value : "#F0F9E8,#CCEBC5,#A8DDB5,#7BCCC4,#43A2CA,#0868AC" },
-				colorScale : { value : "quantile" },
+				measureMember :  { 
+					value : "",
+					opts : {
+						desc : "Choropleth Measure",
+						cat : "Data",
+						apsControl : "text"
+					}					
+				},
+				defaultFillColor :  { 
+					value : "#E5EADE",
+					opts : {
+						desc : "Default Land Color",
+						cat : "Cosmetics-Colors",
+						apsControl : "color"	
+					}
+				},
+				backgroundColor :  { 
+					value : "",
+					opts : {
+						desc : "Background Color",
+						cat : "Cosmetics-Colors",
+						apsControl : "color"	
+					}
+				},
+				projection : { 
+					value : "Mercator",
+					opts : {
+						apsControl : "combobox",
+						desc : "Projection Method",
+						cat : "Mapping",
+						options : [
+							{ key : 'Mercator', text : 'Mercator'},
+							{ key : 'Albers USA', text : 'Albers USA'},
+							{ key : 'Orthographic', text : 'Orthographic'},
+							{ key : 'Equirectangular', text : 'Equirectangular'},
+							
+							{ key : 'Aitoff', text : 'Aitoff'},
+							{ key : 'Albers', text : 'Albers'},
+							{ key : 'August', text : 'August'},
+							{ key : 'Baker', text : 'Baker'},
+							{ key : 'Boggs', text : 'Boggs'},
+							{ key : 'Bonne', text : 'Bonne'},
+							{ key : 'Bromley', text : 'Bromley'},
+							{ key : 'Collignon', text : 'Collignon'},
+							{ key : 'Craster Parabolic', text : 'Craster Parabolic'},
+							{ key : 'Eckert I', text : 'Eckert I'},
+							{ key : 'Eckert II', text : 'Eckert II'},
+							{ key : 'Eckert III', text : 'Eckert III'},
+							{ key : 'Eckert IV', text : 'Eckert IV'},
+							{ key : 'Eckert V', text : 'Eckert V'},
+							{ key : 'Eckert VI', text : 'Eckert VI'},
+							{ key : 'Eisenlohr', text : 'Eisenlohr'},
+							{ key : 'Equirectangular (Plate Carrée)', text : 'Equirectangular (Plate Carrée)'},
+							{ key : 'Hammer', text : 'Hammer'},
+							{ key : 'Hill', text : 'Hill'},
+							{ key : 'Goode Homolosine', text : 'Goode Homolosine'},
+							{ key : 'Kavrayskiy VII', text : 'Kavrayskiy VII'},
+							{ key : 'Lambert cylindrical equal-area', text : 'Lambert cylindrical equal-area'},
+							{ key : 'Lagrange', text : 'Lagrange'},
+							{ key : 'Larrivée', text : 'Larrivée'},
+							{ key : 'Laskowski', text : 'Laskowski'},
+							{ key : 'Loximuthal', text : 'Loximuthal'},
+							{ key : 'Miller', text : 'Miller'},
+							{ key : 'McBryde–Thomas Flat-Polar Parabolic', text : 'McBryde–Thomas Flat-Polar Parabolic'},
+							{ key : 'McBryde–Thomas Flat-Polar Quartic', text : 'McBryde–Thomas Flat-Polar Quartic'},
+							{ key : 'McBryde–Thomas Flat-Polar Sinusoidal', text : 'McBryde–Thomas Flat-Polar Sinusoidal'},
+							{ key : 'Mollweide', text : 'Mollweide'},
+							{ key : 'Natural Earth', text : 'Natural Earth'},
+							{ key : 'Nell–Hammer', text : 'Nell–Hammer'},
+							{ key : 'Polyconic', text : 'Polyconic'},
+							{ key : 'Robinson', text : 'Robinson'},
+							{ key : 'Sinusoidal', text : 'Sinusoidal'},
+							{ key : 'Sinu-Mollweide', text : 'Sinu-Mollweide'},
+							{ key : 'van der Grinten', text : 'van der Grinten'},
+							{ key : 'van der Grinten IV', text : 'van der Grinten IV'},
+							{ key : 'Wagner IV', text : 'Wagner IV'},
+							{ key : 'Wagner VI', text : 'Wagner VI'},
+							{ key : 'Wagner VII', text : 'Wagner VII'},
+							{ key : 'Winkel Tripel', text : 'Winkel Tripel'}
+						]
+					}
+				},
+				featureProperty : { 
+					value : "NAME_1",
+					opts : {
+						desc : "Feature Attribute",
+						cat : "Mapping",
+						apsControl : "text"
+					}
+				},
+				labelProperty : { 
+					value : "NAME_1",
+					opts : {
+						desc : "Label Attribute",
+						cat : "Mapping",
+						apsControl : "text"
+					}
+				},
+				globeOn : { 
+					value : false,
+					opts : {
+						desc : "Show Globe",
+						cat : "Cosmetics",
+						apsControl : "checkbox"	
+					}
+				},
+				graticuleOn : { 
+					value : true,
+					opts : {
+						desc : "Show Graticule",
+						cat : "Cosmetics",
+						apsControl : "checkbox"	
+					}
+				},
+				gradientLeft : { 
+					value : 30,
+					opts : {
+						desc : "Left",
+						cat : "Legend-Horizontal Legend",
+						apsControl : "spinner"	
+					}
+				},
+				gradientRight : { 
+					value : 30,
+					opts : {
+						desc : "Right",
+						cat : "Legend-Horizontal Legend",
+						apsControl : "spinner"	
+					}
+				},
+				gradientBottom : { 
+					value : 15,
+					opts : {
+						desc : "Bottom",
+						cat : "Legend-Horizontal Legend",
+						apsControl : "spinner"	
+					}
+				},
+				gradientHeight : { 
+					value : 15,
+					opts : {
+						desc : "Plot Bottom Offset",
+						cat : "Legend-Horizontal Legend",
+						apsControl : "spinner"	
+					}
+				},
+				hoverColor :  { 
+					value : "#F7CA36",
+					opts : {
+						desc : "Hover Arrow Color",
+						cat : "Legend-Horizontal Legend",
+						apsControl : "color"	
+					}
+				},
+				colorScale : { 
+					value : "quantile",
+					opts : {
+						apsControl : "combobox",
+						desc : "Color Scale Method",
+						cat : "Legend",
+						options : [{key : "quantile", text : "Quantile"},
+						         {key : "quantize", text : "Quantize"}]
+					}
+				},
 				mapData : { 
 					value : "",
+					opts : {
+						apsControl : "mapdownload",
+						desc : "Map Data",
+						cat : "Mapping-Map Data"
+					},
 					onChange : function(value){
 						var j = {};
 						try{
@@ -103,18 +252,56 @@
 							//throw "Error with Map Data.\n\n" + e;
 						}
 					}
-				},
-				plotLeft : { value : 0 },
-				plotTop : { value : 0 },
-				plotRight : { value : 0 },
-				plotBottom : { value : 0 },
+				},/*
 				center : { value : "0,0" },
 				scale : { value : 150 },
-				yaw : { value : 0.0 },
-				pitch : { value : 0.0 },
-				roll : { value : 0.0 },
-	    		selectedColor : { value : "#009966"},
-	    		selectedValue : { value : 0.0}
+				
+				*/
+				yaw : { 
+					value : 0,
+					opts : {
+						desc : "Yaw (0-360)",
+						cat : "Mapping",
+						apsControl : "spinner"	
+					}
+				},
+				pitch : { 
+					value : 0,
+					opts : {
+						desc : "Pitch (0-360)",
+						cat : "Mapping",
+						apsControl : "spinner"	
+					}
+				},
+				roll : { 
+					value : 0,
+					opts : {
+						desc : "Roll (0-360)",
+						cat : "Mapping",
+						apsControl : "spinner"	
+					}
+				},
+				floor :  { value : 0 },
+	    		selectedValue : { 
+	    			value : 0.0,
+	    			opts : {
+	    				desc : "Data",
+	    				cat : "Data",
+	    				tooltip : "Selected Value",
+	    				value : null,
+	    				noAps : true
+	    			}
+				},
+				selectedFeature : { 
+	    			value : "",
+	    			opts : {
+	    				desc : "Data",
+	    				cat : "Data",
+	    				tooltip : "Selected Feature",
+	    				value : null,
+	    				noAps : true
+	    			}
+				}
 			});
 	    	this.projections = {
 	    	   "Albers USA": d3.geo.albersUsa(),
@@ -256,7 +443,89 @@
 			 */
 			this.doTooltip = function(d) {
 				that.lastHover = d.properties[that.featureProperty()];
-				tip.show.call(this,d);
+				if(that.showTooltips()){
+					var html = "<span>";
+			 		var mm = that.measureMember();
+			 		if(!mm){
+			 			if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
+			 		}
+			 		var val = null;
+			 		if(d.propertiees && d.properties.designStudioMeasures && d.properties.designStudioMeasures[mm]){
+			 			val = d.properties.designStudioMeasures[mm];
+			 		}
+		 			var tt = "";
+		 				if(d.properties && d.properties[that.labelProperty()]){
+			 				tt+="<b>" + d.properties[that.labelProperty()] + "</b>";
+			 			}
+			 			if(d.properties && d.properties.designStudioMeasures){
+			 				tt +="<br/><ul>"
+			 				var dsm = d.properties.designStudioMeasures;
+			 				for(var measure in dsm){
+			 					tt+="<li><b>" + measure + "</b>: " + that.formatter(dsm[measure]) + "</li>";
+			 				}
+			 				tt +="</ul>";
+			 			}
+			 			if(d.properties && d.properties[that.featureProperty()]){
+			 				
+			 			}
+			 		html+=tt;
+			 		html+="</span>";
+					//tip.show.call(this,d);
+					//offsets for tooltips
+					var offsetL = that.$()[0].offsetLeft+20;
+					var offsetT = that.$()[0].offsetTop+10;
+				    // Approach 1
+					that.tooltip
+						.classed("hidden", false)
+						.html(html);
+					// Follow Mouse approach
+					if(that.tooltipPositioning()=="followmouse"){
+						var mouse = d3.mouse(that.svg.node()).map( function(d) { return parseInt(d); } );
+					    var x = mouse[0];
+					    var y = mouse[1];
+					    that.tooltip
+					    	.attr("style", "left:"+(x + offsetL)+"px;top:"+(y + offsetT)+"px");
+					}
+					// Static Approach
+					if(that.tooltipPositioning()=="static"){
+					    var marginLeft = that.tooltipLeft();
+					    var marginRight = that.tooltipRight();
+					    var marginTop = that.tooltipTop();
+					    var marginBottom = that.tooltipBottom();
+					    // Cannot have opposing auto.
+					    if(marginLeft.toLowerCase()=="auto" && marginRight.toLowerCase()=="auto") marginRight = "0px";
+					    if(marginTop.toLowerCase()=="auto" && marginBottom.toLowerCase()=="auto") marginTop = "0px";
+					    that.tooltip
+					    	.style("left", marginLeft)
+					    	.style("right", marginRight)
+					    	.style("top", marginTop)
+					    	.style("bottom", marginBottom);
+					}
+					
+				    
+				    // Approach 2
+				    /*
+				    var bb = this.getBBox();
+				    var matrix = this.getScreenCTM().translate(+bb.x,+bb.y);
+				    var tt = d3.select("body").selectAll("#"+that.$().attr("id")+"_tooltip")
+				    	.data([{
+				    		id : that.$().attr("id")+"_tooltip",
+				    		x: matrix.e,
+				    		y: matrix.f,
+				    		html : html}
+				    	])
+				    	.html(function(d){return d.html})
+				    	.style("left", (window.pageXOffset + matrix.e) + "px")
+				    	.style("top", (window.pageXOffset + matrix.f + 30) + "px");
+				    
+				    tt.exit().remove();
+				    
+				    tt.enter().append("div")
+					   	.attr("id",function(d){return d.id})
+					   	.attr("class", "DesignStudioSCN Viz tooltip");
+					*/
+				    	
+				}			
 				that.updateTriangles();
 			}
 			var parentPreReq = this.preReqCheck;
@@ -301,9 +570,10 @@
 	    	var parentInit = this.init;
 	    	this.init = function(){
 	    		parentInit.call(this);
-	    		this.svg.call(tip);
+	    		//this.svg.call(tip);
 	    		this.$().addClass("Choropleth");
 	    		this.container = d3.select("#"+this.$().attr("id"));
+	    		this.tooltip = this.container.append("div").attr("class", "tooltip hidden");
 	    		// Globe Layer
 	    		this.globePath = this.plotLayer.append('path')
 	    			.datum({ type: 'Sphere' })
@@ -318,12 +588,16 @@
 	    		this.pathGroup = this.plotLayer.append('g')
     				.attr('class', 'path-group');
 	    		this.labelGroup = this.plotLayer.append('g')
+					.attr('class', 'label-group');
+	    		this.shadowPathGroup = this.shadowPlotArea.append('g')
+					.attr('class', 'path-group');
+	    		this.shadowLabelGroup = this.shadowPlotArea.append('g')
     				.attr('class', 'label-group');
 		        
 	    		// Horizontal Scale/Legend
 	    		var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.plotHeight - (this.dimensions.gradientBottom + this.dimensions.gradientHeight));
 	    		var tickTransform = "0," + (0 - this.dimensions.gradientHeight);
-			    this.legend2 = this.canvas.append("g")
+			    this.legend2 = this.plotWindow.append("g")
     				.attr("transform", "translate(" + legend2Transform +")");	    		
     	 		this.gradientRects = this.legend2.append("g")
 					.attr("class", "gradient-rects");
@@ -376,31 +650,64 @@
 			};
 			this.adjustPlotZoom = function(){
 				try{
+				// Scale and translate plot
+				this.plotLayer.attr("transform","translate(" + this.zoomTranslate + ") scale(" + this.zoomScale + ")");
+				this.shadowPlotArea.attr("transform","translate(" + this.zoomTranslate + ") scale(" + this.zoomScale + ")");
+				// Precomputation for measuring bounding boxes of features for label visibility
+				// Note: Only setting attributes that influence size and position for speed purposes
+				var _features = this.shadowPathGroup.selectAll('path').data(this._mapJSON.features);
+				var _labels = this.shadowLabelGroup.selectAll('text').data(this._mapJSON.features);
+				_features.enter()
+					.append("path").attr("class","path");
+				_features
+					.attr("id",function(d,i){return that.$().attr("id")+"_shadowfeature_" + i;})
+					.attr("d",this.projPath);
+				_labels.enter().append("text")
+					.attr('class', function(d) { return "subunit-label " + d.properties[that.labelProperty()]; })
+					.attr("dy", ".35em")
+					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
+					.text(function(d) { return d.properties[that.labelProperty()]; });
+				_labels
+					.style("font-size", (this.chartValueSize() / this.zoomScale) + "px")
+					.attr('class', function(d) { return "subunit-label " + d.properties[that.labelProperty()]; })
+					.attr("id",function(d,i){return that.$().attr("id")+"_shadowlabel_" + i;})
+					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
+					.text(function(d) { return d.properties[that.labelProperty()]; });
+				_features.exit().remove();
+				_labels.exit().remove();
 				// Update features
-	    		this.plotLayer.attr("transform","translate(" + this.zoomTranslate + ") scale(" + this.zoomScale + ")");
+				
 	    		this.graticulePath.style("stroke-width", 1 / this.zoomScale);
 	    		this.globePath.style("stroke-width", 1 / this.zoomScale);
 	    		this.pathGroup.selectAll("path").style("stroke-width", 1 / this.zoomScale)
-	    		this.labelGroup.selectAll("text").style("font-size", (this.labelSize() / this.zoomScale) + "px");
-	    		// Hide tight labels
-				this.labelGroup.selectAll("text")
-				.attr("opacity", function(d, i){
-					var mapShape = that.pathGroup.select(".path#" + that.$().attr("id")+"_feature_" + i );
-						if(mapShape.empty()){
-						return 0;
-						// noop
-					}else{
-						var w = this.getBBox().width;
-						var fw = mapShape[0][0].getBBox().width;
-						//alert(w+"\n\n"+fw);
-						if(w/fw < that.labelThreshold()/100) {
-							return 1;
+	    		this.labelGroup.selectAll("text")
+	    			.style("font-size", (this.chartValueSize() / this.zoomScale) + "px")
+	    			// Get from shadow copy that's already updated.
+	    			.transition().duration(this.ms())
+					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
+					.attr("opacity", function(d, i){
+						if(!that.showValues()) return 0;
+						try{
+						var mapShape = that.shadowPathGroup.select(".path#" + that.$().attr("id")+"_shadowfeature_" + i );
+						var labelShape = that.shadowLabelGroup.select("#" + that.$().attr("id")+"_shadowlabel_" + i );
+						if(mapShape.empty() || labelShape.empty()){
+							return 0;
+							// noop
+						}else{
+							var w = labelShape[0][0].getBBox().width;
+							var fw = mapShape[0][0].getBBox().width;
+							if(w/fw < that.chartValueWidthThreshold()/100) {
+								return 1;
+							}								
 						}
-					}
-					return 0;
-				});
+						return 0;
+						}catch(e){
+							alert("Problem determining label visibility on " + i);
+						}
+					});
+				
 				}catch(e){
-					alert(e);
+					alert("Problem on zoom adjust\n\n" + e);
 				}
 			}
 	    	var parentUpdatePlot = this.updatePlot;
@@ -408,8 +715,8 @@
 			 * Update Features
 			 */
 			this.updatePlot = function(){
+				var that = this;
 				try{
-				//alert(this.labelSize()/this.zoomScale);
 				parentUpdatePlot.call(this);
 				// Horizontal Scale/Legend
 				var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.plotHeight - (this.dimensions.gradientBottom + this.dimensions.gradientHeight));
@@ -430,6 +737,7 @@
 				this.updateColorRange();
 				this.updateProjection();
 				var that = this;
+				
 				// Data
 				var features = this.pathGroup.selectAll('path').data(this._mapJSON.features);
 				var labels = this.labelGroup.selectAll('text').data(this._mapJSON.features);
@@ -483,38 +791,46 @@
 							return that.defaultFillColor();
 						}
 					});
-				this.labelGroup.selectAll("text")
-					.transition().duration(this.ms())
+				
+				labels
 					.attr('class', function(d) { return "subunit-label " + d.properties[that.labelProperty()]; })
 					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
 					.text(function(d) { return d.properties[that.labelProperty()]; });
-
+				
 				// Events
 				this.pathGroup.selectAll('path')
-					.on('mouseover', this.doTooltip)
+					.on('mousemove', this.doTooltip)
+					//.on('mouseover', this.doTooltip)
 					.on('mouseout', function(d) {
-						tip.hide(d);
+						//d3.select("body").selectAll("#"+that.$().attr("id")+"_tooltip").remove();
+						that.tooltip.classed("hidden",true);
 						that.triangle
 							.transition().duration(that.ms())
 							.attr("opacity",0);
 					})
 					.on('click', function(d){ 
+						if(that.moved) {
+							that.moved = false;
+							return;
+						}
 						d3.select(this)
 							.transition().duration(that.ms())
 							.attr("fill",that.selectedColor());
 						that.setSelectedFeature(d);
 						that.updateTriangles();
 					});
+				/*
 				this.labelGroup.selectAll("text")
 					.on('mouseover', this.doTooltip);
+				*/
 				// Exit
 				 features.exit().remove();
 				 labels.exit().remove();
-				 this.adjustPlotZoom();
-				return this;
 				}catch(e){
 					alert("Error updating plot:\n\n"+e);
 				}
+				this.adjustPlotZoom();
+				return this;
 			}
 	    	var parentUpdateLegend = this.updateLegend;
 	    	/**
@@ -684,19 +1000,20 @@
 			 */
 			var parentSemanticZoomed = this.semanticZoomed;
 			this.semanticZoomed = function(){
-				//alert("X\n" + that.zoomXScale.domain() + "\n" + that.zoomXScale.range() + "\n\nY:\n" + that.zoomYScale.domain() + "\n" + that.zoomYScale.range());
+				// Hide tooltips because it's distracting.
+				tip.hide();
+				// Flag component as having moved so we can cancel any onclick listeners
+				that.moved = true;
+				// Capture current zoom scale and translation
 				that.zoomScale = d3.event.scale;
 				that.zoomTranslate = d3.event.translate;
-				//alert(JSON.stringify(d3.event));
-				if(d3.event.scale==that.minZoom()) {
-					that.zoomYScale.domain([0, that.dimensions.plotHeight])
-						.range([0, that.dimensions.plotHeight]);
-					that.zoomXScale.domain([0, that.dimensions.plotWidth])
-						.range([0, that.dimensions.plotWidth]);
-				} 
-				//that.afterUpdate();
-				//that.updateProjection();
-				that.adjustPlotZoom();
+				if(that.previousScale && that.previousScale == that.zoomScale){
+					// If scale has not changed, don't bother with costly path and label updates.
+					that.plotLayer.attr("transform","translate(" + that.zoomTranslate + ")");
+				}else{}
+					// Zoom scale changed, update paths and labels.
+					that.adjustPlotZoom();
+				that.previousScale = that.zoomScale;				
 			}
 	    	/**
 			 * Update Projection
@@ -712,7 +1029,7 @@
 		    		}
 		    	}
 		    	this.centroid = d3.geo.centroid(centerFeature);
-		    	// Create projection
+		    	// Select a projection
 		    	this.proj = this.projections[this.projection()] || this.projections["Mercator"];
 		    	this.proj
 	    			.scale(1)
@@ -725,22 +1042,16 @@
 		    		.transition().duration(this.ms())
 		    		.attrTween("d",this.projectionTween(this.proj, this.proj = this.proj = this.projections[this.projection()] || this.projections["Mercator"]));
 		    	*/          	
-	    		// Compute the bounds of a feature of interest, then derive scale & translate.
-		    	
-		    	
-		    	var b = this.projPath.bounds(this._mapJSON),
-		    	    s = (.95/* * this.zoomScale*/) / Math.max((b[1][0] - b[0][0]) / this.dimensions.plotWidth, (b[1][1] - b[0][1]) / this.dimensions.plotHeight);
-		    	
-		    	var t = this.zoomTranslate.slice();
-		    	if(this.zoomScale >= 1){
-		    		//alert(this.zoomScale + "\n\n" + this.zoomTranslate);
-		    		t = [((this.dimensions.plotWidth - s * (b[1][0] + b[0][0])) / 2), 
-		    	         ((this.dimensions.plotHeight - s * (b[1][1] + b[0][1])) / 2)
-		    	    ];
-		    	}		    	    
-		    	//alert(s);
+	    		// Compute the projection bounds of a feature of interest
+		    	var b = this.projPath.bounds(this._mapJSON);
+		    	// Projection scale (NOT geometric scale on plot zoom)
+		    	var s = .95 / Math.max((b[1][0] - b[0][0]) / this.dimensions.plotWidth, (b[1][1] - b[0][1]) / this.dimensions.plotHeight);
+		    	// Projection translation (NOT translation on plot for zoom)
+		    	var t = [
+		    	    ((this.dimensions.plotWidth - s * (b[1][0] + b[0][0])) / 2), 
+			    	((this.dimensions.plotHeight - s * (b[1][1] + b[0][1])) / 2)
+				];
 		    	this.proj.scale(s).translate(t);
-		    	//alert(this.zoomTranslate);
 		    	// Center if projection supports
 		    	if(typeof this.proj.center === "function"){
 		    		if(centerFeature) this.proj.center(this.centroid);
@@ -749,6 +1060,7 @@
 		    	if (typeof this.proj.rotate === "function") {
 		    	    this.proj.rotate([this.yaw(),this.pitch(),this.roll()]);
 		    	}
+		    	// If Orthographic, clip at 90 degrees so we don't see the back of the globe.
 		    	if(this.projection()=="Orthographic") this.proj.clipAngle(90);
 		    	return this;
 			}

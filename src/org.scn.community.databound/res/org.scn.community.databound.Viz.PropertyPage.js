@@ -1,13 +1,26 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.PropertyPage", function() {
 	var that = this;
-	this.styleCSS = function(s){
-		if(s===undefined){
-			return this._styleCSS;
-		}else{
-			this.txtStyleCSS.setValue(this._styleCSS);
-			return this;
+	this.generateStructure = function(category,parentComponent){
+		var arrL = category.split("-");
+		var catChain = "";
+		var sep="";
+		var parent = this.content;
+		for(var j=0;j<arrL.length;j++){
+			catChain += sep + arrL[j];
+			sep="-";
+			if(!this.layouts[catChain]){
+				this.tabstrips[catChain] = new sap.ui.commons.TabStrip({
+					width : "100%"
+				});
+				this.layouts[catChain] = new sap.ui.commons.layout.VerticalLayout({
+					width : "100%"
+				});
+				this.tabstrips[catChain].createTab(arrL[j],this.layouts[catChain]);
+				parent.createTab(arrL[j],this.tabstrips[catChain]);
+			}
+			parent = this.tabstrips[catChain];
 		}
-	};
+	}
 	/**
 	 * Design Studio Events
 	 */
@@ -20,19 +33,26 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 		});
 		this.metaProps = jQuery.parseJSON(propMetadata);
 		this.props = {};
-		
+		this.tabstrips = {
+			//"General" : this.content
+		};
+		this.layouts = {
+			/*"General": new sap.ui.commons.layout.VerticalLayout({
+				width : "100%"
+			})*/
+		};
+		//this.content.createTab("General",this.layouts["General"]);
+		var template = [/*"General","Cosmetics","Legend","Tooltips","Mapping"*/];
+		for(var i=0;i<template.length;i++) this.generateStructure(template[i],this.content);
+		//this.generateStructure("testing",this.content);
+		var hier = {};
 		for(var prop in this.metaProps){
 			var property = this.metaProps[prop].name;
 			var propertyOptions = this.metaProps[prop].opts;
 			var apsControl = propertyOptions.apsControl;
 			var category = propertyOptions.cat || "etc";
-			if(!this["layout_"+category]){
-				this["layout_"+category] = new sap.ui.commons.layout.VerticalLayout({
-					width : "100%"
-				});
-				this.content.createTab(category,this["layout_"+category]);
-			}
-			if(!this[property]+"xx"){
+			this.generateStructure(category,this.content);
+			if(!this[property]){
 				this.props[property] = {
 					value : null
 				};
@@ -51,6 +71,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 							}
 							if(apsControl=="textbox"){
 								this["cmp_"+property].setValue(value);	
+							}
+							if(apsControl=="mapdownload"){
+								this["cmp_"+property].setMapData(value);	
 							}
 							if(apsControl=="checkbox"){
 								this["cmp_"+property].setChecked(Boolean(value));	
@@ -80,6 +103,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 						}
 						if(apsControl=="textbox"){
 							newValue = oControlEvent.getSource().getValue();
+						}
+						if(apsControl=="mapdownload"){
+							newValue = oControlEvent.getSource().getMapData();
 						}
 						if(apsControl=="checkbox"){
 							newValue = oControlEvent.getSource().getChecked();
@@ -115,6 +141,19 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 						wrapping : sap.ui.core.Wrapping.Off
 					});
 					this["cmp_"+property].attachChange(f,this);
+				}
+				if(apsControl == "mapdownload"){
+					this["cmp_"+property] = new org.scn.community.aps.MapDownloader({
+						width : "100%",
+						title : new sap.ui.commons.Title({
+							text: propertyOptions.desc
+						}),
+						tooltip: this.metaProps[prop].tooltip,
+						showCollapseIcon : false,
+						showAlpha : false,
+						showRatios : false
+					});
+					this["cmp_"+property].attachMapDataChange(f,this);
 				}
 				if(apsControl == "checkbox"){
 					this["cmp_"+property] = new sap.ui.commons.CheckBox();
@@ -162,20 +201,59 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.Prop
 				// Step 4, add control to layout
 				//etcLayout.addContent(this.hLabel(property,this["cmp_"+property]));
 				var useLabel = true;
-				if(apsControl == "palette") useLabel = false;
+				if(apsControl == "palette" || apsControl == "mapdownload") useLabel = false;
 				if(useLabel){
-					this["layout_"+category].addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
+					this.layouts[category].addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
 				}else{
-					this["layout_"+category].addContent(this["cmp_"+property]);
+					this.layouts[category].addContent(this["cmp_"+property]);
 				}
 				
+			}else{
+				alert(property + " found here.");
 			}
 			
 		}
 		}catch(e){
 			alert("Problem during initialization of property sheet.\n\n"+e);
 		}
+		/*
+		 * Remove empty tab strips stubs
+		 */
+		for(var tabstrip in this.tabstrips){
+			var ts = this.tabstrips[tabstrip];
+			var tabs = ts.getTabs();
+			for(var i=0;i<tabs.length;i++){
+				var tabContent = tabs[i].getContent();
+				var keep = false;
+				var contentLength = 0;
+				if(tabContent[0] instanceof sap.ui.commons.layout.VerticalLayout){
+					contentLength = tabContent[0].getContent().length;
+				}
+				if(tabContent[0] instanceof sap.ui.commons.TabStrip){
+					contentLength = tabContent[0].getTabs().length;
+					//if(contentLength>0) alert(contentLength + tabContent[0].getTabs()[0]);
+				}
+				if(contentLength>0) keep = true;
+				if(!keep){
+					ts.removeTab(tabs[i]);
+				}
+			}
+		}
 		this.content.placeAt("content");
+		// Clean up any empty master tabs
+		/*
+		for(var tabstrip in this.tabstrips){
+			var ts = this.tabstrips[tabstrip];
+			var tabs = ts.getTabs();
+			if(tabs.length==0){
+				try{
+					this.content.removeTab(ts);	
+				}catch(e){
+					alert(e);
+				}
+				
+			}
+		}*/
 	};
 	this.hLabel = function(label,component){
 		var hLayout = new sap.ui.commons.layout.HorizontalLayout({})

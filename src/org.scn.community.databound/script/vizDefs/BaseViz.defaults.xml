@@ -5,6 +5,9 @@
 		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
 		<defaultValue property="showTitle">true</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="showTooltips">true</defaultValue>
+		<defaultValue property="chartValueSize">10</defaultValue>
+		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
@@ -15,6 +18,11 @@
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="tooltipPositioning">followmouse</defaultValue>
+		<defaultValue property="tooltipLeft">auto</defaultValue>
+		<defaultValue property="tooltipRight">0px</defaultValue>
+		<defaultValue property="tooltipTop">0px</defaultValue>
+		<defaultValue property="tooltipBottom">auto</defaultValue>
 		<defaultValue property="enableZoom">false</defaultValue>
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>

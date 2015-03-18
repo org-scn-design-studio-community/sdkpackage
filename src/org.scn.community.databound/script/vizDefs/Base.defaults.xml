@@ -2,4 +2,5 @@
 		<!-- Base Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
 		<!-- End of Base Defaults -->

@@ -51,10 +51,33 @@
 	    	 var that = this;
 	    	// Call super
 	    	org_scn_community_databound_AxisChart.call(this, d3,{
-	    		selectedColor : { value : "#009966"},
-	    		selectedRow : { value : ""},
-	    		selectedColumn : { value : ""},
-	    		selectedValue : { value : 0.0}
+	    		selectedRow : { 
+	    			value : "",
+	    			opts : {
+	    				desc : "Data",
+	    				cat : "Data",
+	    				tooltip : "Selected Value",
+	    				noAps : true
+	    			}
+	    		},
+	    		selectedColumn : { 
+	    			value : "",
+	    			opts : {
+	    				desc : "Data",
+	    				cat : "Data",
+	    				tooltip : "Selected Column",
+	    				noAps : true
+	    			}
+	    		},
+	    		selectedRow : { 
+	    			value : 0.0,
+	    			opts : {
+	    				desc : "Data",
+	    				cat : "Data",
+	    				tooltip : "Selected Row",
+	    				noAps : true
+	    			}
+	    		}
 			});
 	    	this.setSelection = function(d){
 	    		if(d) {

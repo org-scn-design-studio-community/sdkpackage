@@ -3,7 +3,7 @@
 	title="Choropleth Map"
 	icon="res/Choropleth/Choropleth.png"
 	handlerType="div"
-	propertySheetPath="res/Choropleth/aps/ChoroplethPropertyPage.html"
+	propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
 	databound = "true"
 	group="ScnCommunityDataBound">
 	<jsInclude>res/common_basics.js</jsInclude>
@@ -11,4 +11,4 @@
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
-	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
+	<cssInclude>res/Viz.css</cssInclude>

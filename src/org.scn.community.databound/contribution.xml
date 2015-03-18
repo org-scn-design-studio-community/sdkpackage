@@ -195,7 +195,7 @@
 	title="Choropleth Map"
 	icon="res/Choropleth/Choropleth.png"
 	handlerType="div"
-	propertySheetPath="res/Choropleth/aps/ChoroplethPropertyPage.html"
+	propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
 	databound = "true"
 	group="ScnCommunityDataBound">
 	<jsInclude>res/common_basics.js</jsInclude>
@@ -203,7 +203,7 @@
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
-	<cssInclude>res/Choropleth/Choropleth.css</cssInclude>
+	<cssInclude>res/Viz.css</cssInclude>
 	<!-- Base Databound Properties -->
 	<property
 			id="data"
@@ -213,18 +213,27 @@
 			<option name="includeFormattedData" value="false"/>
 			<option name="includeData" value="true"/>
 	</property>
-	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true"/>
-	<!-- <property id="swapAxes" type="boolean" title = "Swap Axes" visible="true"/> -->
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
 	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
+	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
+	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
+	<property id="tooltipLeft" type="String" title = "Tooltip Left" visible="false"/>
+	<property id="tooltipRight" type="String" title = "Tooltip Right" visible="false"/>
+	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
+	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
 	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
@@ -327,6 +336,7 @@
 		<!-- Base Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- Base Viz Defaults -->
 		<defaultValue property="WIDTH">400</defaultValue>
@@ -334,6 +344,9 @@
 		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
 		<defaultValue property="showTitle">true</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="showTooltips">true</defaultValue>
+		<defaultValue property="chartValueSize">10</defaultValue>
+		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
@@ -344,6 +357,11 @@
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="tooltipPositioning">followmouse</defaultValue>
+		<defaultValue property="tooltipLeft">auto</defaultValue>
+		<defaultValue property="tooltipRight">0px</defaultValue>
+		<defaultValue property="tooltipTop">0px</defaultValue>
+		<defaultValue property="tooltipBottom">auto</defaultValue>
 		<defaultValue property="enableZoom">false</defaultValue>
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
@@ -842,18 +860,27 @@
 			<option name="includeFormattedData" value="false"/>
 			<option name="includeData" value="true"/>
 	</property>
-	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true"/>
-	<!-- <property id="swapAxes" type="boolean" title = "Swap Axes" visible="true"/> -->
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
 	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
+	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
+	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
+	<property id="tooltipLeft" type="String" title = "Tooltip Left" visible="false"/>
+	<property id="tooltipRight" type="String" title = "Tooltip Right" visible="false"/>
+	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
+	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
 	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
@@ -915,6 +942,7 @@
 		<!-- Base Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- Base Viz Defaults -->
 		<defaultValue property="WIDTH">400</defaultValue>
@@ -922,6 +950,9 @@
 		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
 		<defaultValue property="showTitle">true</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="showTooltips">true</defaultValue>
+		<defaultValue property="chartValueSize">10</defaultValue>
+		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
@@ -932,6 +963,11 @@
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="tooltipPositioning">followmouse</defaultValue>
+		<defaultValue property="tooltipLeft">auto</defaultValue>
+		<defaultValue property="tooltipRight">0px</defaultValue>
+		<defaultValue property="tooltipTop">0px</defaultValue>
+		<defaultValue property="tooltipBottom">auto</defaultValue>
 		<defaultValue property="enableZoom">false</defaultValue>
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
@@ -1114,6 +1150,7 @@ __n__}
 	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.AxisChart.js</jsInclude>
 	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
@@ -1126,18 +1163,27 @@ __n__}
 			<option name="includeFormattedData" value="false"/>
 			<option name="includeData" value="true"/>
 	</property>
-	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true"/>
-	<!-- <property id="swapAxes" type="boolean" title = "Swap Axes" visible="true"/> -->
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
 	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
+	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
+	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
+	<property id="tooltipLeft" type="String" title = "Tooltip Left" visible="false"/>
+	<property id="tooltipRight" type="String" title = "Tooltip Right" visible="false"/>
+	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
+	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
 	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
@@ -1181,6 +1227,7 @@ __n__}
 		<!-- Base Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- Base Viz Defaults -->
 		<defaultValue property="WIDTH">400</defaultValue>
@@ -1188,6 +1235,9 @@ __n__}
 		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
 		<defaultValue property="showTitle">true</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="showTooltips">true</defaultValue>
+		<defaultValue property="chartValueSize">10</defaultValue>
+		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
@@ -1198,6 +1248,11 @@ __n__}
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="tooltipPositioning">followmouse</defaultValue>
+		<defaultValue property="tooltipLeft">auto</defaultValue>
+		<defaultValue property="tooltipRight">0px</defaultValue>
+		<defaultValue property="tooltipTop">0px</defaultValue>
+		<defaultValue property="tooltipBottom">auto</defaultValue>
 		<defaultValue property="enableZoom">false</defaultValue>
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
@@ -1683,18 +1738,27 @@ __n__}
 			<option name="includeFormattedData" value="false"/>
 			<option name="includeData" value="true"/>
 	</property>
-	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true"/>
-	<!-- <property id="swapAxes" type="boolean" title = "Swap Axes" visible="true"/> -->
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
 	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
+	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
 	<property id="styleCSS" title="Style CSS" type="String"/>
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
 	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
+	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
+	<property id="tooltipLeft" type="String" title = "Tooltip Left" visible="false"/>
+	<property id="tooltipRight" type="String" title = "Tooltip Right" visible="false"/>
+	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
+	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
 	<property id="legendTitle" title="Legend Title" type="String"/>
 	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
@@ -1750,6 +1814,7 @@ __n__}
 		<!-- Base Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- Base Viz Defaults -->
 		<defaultValue property="WIDTH">400</defaultValue>
@@ -1757,6 +1822,9 @@ __n__}
 		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
 		<defaultValue property="showTitle">true</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="showTooltips">true</defaultValue>
+		<defaultValue property="chartValueSize">10</defaultValue>
+		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
@@ -1767,6 +1835,11 @@ __n__}
 		<defaultValue property="margin">20</defaultValue>
 		<defaultValue property="makeRoomX">true</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="tooltipPositioning">followmouse</defaultValue>
+		<defaultValue property="tooltipLeft">auto</defaultValue>
+		<defaultValue property="tooltipRight">0px</defaultValue>
+		<defaultValue property="tooltipTop">0px</defaultValue>
+		<defaultValue property="tooltipBottom">auto</defaultValue>
 		<defaultValue property="enableZoom">false</defaultValue>
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
@@ -1915,34 +1988,43 @@ __n__}
 		title="2D Crosstab"
 		icon="res/Table2D/Table2D.png"
 		handlerType="div"
-		propertySheetPath="res/Table2D/aps/Table2D.html"
+		propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
 		group="ScnCommunityDataBound"
 		databound="true"
 >
-	<stdInclude kind="d3"/>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/Table2D/Table2D.js</jsInclude>
 	<cssInclude>res/Table2D/Table2D.css</cssInclude>
-	<property id="concatenateDimensions" type="boolean" title = "Concatenate Dimensions"/>
-	<property id="stringData" type="String" title = "Data Stringified" visible="false"/>
+	<cssInclude>res/Viz.css</cssInclude>
+	<cssInclude>os/d3-tip.css</cssInclude>
+	<!-- Base Databound Properties -->
 	<property
-		id="data"
-		title="Data Selection"
-		type="ResultSet"
-		group="DataBinding">
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="false"/>
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
 	</property>
-	<property
-		id="onSelect"
-		title="On Select"
-		type="ScriptText"
-		group="Events"/>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
+	<!-- End of Base Databound Properties -->
+	<!-- Begin of 2D Crosstab Properties -->
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<!-- <property id="concatenateDimensions" type="boolean" title = "Concatenate Dimensions"/> -->
+	<!-- End of 2D Crosstab Properties -->
 	<initialization>
-		<defaultValue property="stringData">BLANK</defaultValue>
-		<defaultValue property="WIDTH">150</defaultValue>
-		<defaultValue property="HEIGHT">200</defaultValue>
+		<!-- Base Defaults -->
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
+		<!-- End of Base Defaults -->
+		<!-- Begin of 2D Crosstab Defaults -->
+				
+		<!-- End of 2D Crosstab Defaults -->
 	</initialization>
 </component>
 <component

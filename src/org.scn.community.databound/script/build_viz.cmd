@@ -1,3 +1,13 @@
+del ..\res\Table2D\def\contribution.xml
+type ..\res\Table2D\def\header.xml ^
+.\vizDefs\Base.xml ^
+..\res\Table2D\def\properties.xml ^
+.\vizDefs\InitializationHeader.xml ^
+.\vizDefs\Base.defaults.xml ^
+..\res\Table2D\def\defaults.xml ^
+.\vizDefs\Footer.xml > ^
+..\res\Table2D\def\contribution.xml
+
 del ..\res\ScatterPlot\def\contribution.xml
 type ..\res\ScatterPlot\def\header.xml ^
 .\vizDefs\Base.xml ^
