@@ -1,0 +1,5 @@
+
+	<!-- Begin of 2D Crosstab Properties -->
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<!-- <property id="concatenateDimensions" type="boolean" title = "Concatenate Dimensions"/> -->
+	<!-- End of 2D Crosstab Properties -->

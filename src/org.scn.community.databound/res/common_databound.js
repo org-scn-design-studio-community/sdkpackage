@@ -526,7 +526,9 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
  *	  	"axis_rows" : [Array of Row Axis Dimension Selection Members]
  *	 }
  * @param options {
- * 		Placeholder
+ * 		ignoreTotals : Boolean
+ * 		swapAxes : Boolean
+ * 		useMockData : Boolean
  * }
  * 
  * @return {
@@ -538,7 +540,9 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
  *
  * }
  */
-org_scn_community_databound.flatten = function (data, opts) {
+org_scn_community_databound.flatten = function (designStudioData, opts) {
+	// Important - Copy the JSON object so we do not accidently change original object
+	var data = jQuery.parseJSON(JSON.stringify(designStudioData));
 	var options = org_scn_community_databound.initializeOptions();
 	if(opts) {
 		for(var option in opts) options[option] = opts[option];
@@ -559,7 +563,20 @@ org_scn_community_databound.flatten = function (data, opts) {
 	if(!data || !data.dimensions || (!data.data && !data.formattedData)) {
 		throw("Incomplete data given.\n\n" + JSON.stringify(data));
 	}
-
+	/*
+	 * If Swap Axes is set, simply swap row and column-specific properties.
+	 */
+	if(options.swapAxes){
+		var tmp = data.axis_columns;
+		data.axis_columns = data.axis_rows;
+		data.axis_rows = tmp;
+		for(var dI=0;dI<data.dimensions.length;dI++){
+			var dim = data.dimensions[dI];
+			var axis = dim.axis;
+			if(axis=="ROWS") dim.axis="COLUMNS";
+			if(axis=="COLUMNS") dim.axis="ROWS";
+		}
+	}
 	retObj.dimensionCols = [];
 	retObj.dimensionRows = [];
 	retObj.dimensionHeaders = [];

@@ -26,8 +26,9 @@
 			<option name="includeFormattedData" value="false"/>
 			<option name="includeData" value="true"/>
 	</property>
-	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true"/>
-	<!-- <property id="swapAxes" type="boolean" title = "Swap Axes" visible="true"/> -->
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
@@ -101,6 +102,7 @@
 		<!-- Base Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- Base Viz Defaults -->
 		<defaultValue property="WIDTH">400</defaultValue>

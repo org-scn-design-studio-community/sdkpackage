@@ -1,67 +1,16 @@
-.DesignStudioSCN.Table2D.default section{
-	border: 1px solid #000;
-	background: #009966;
-}
-.DesignStudioSCN.Table2D.default .container {
-	/* Tweak margin-top as needed */
-}
-.DesignStudioSCN.Table2D.default table {
-	border-spacing: 0;
-}
-.DesignStudioSCN.Table2D.default td + td {
-	border-left:1px solid #eee;
-}
-.DesignStudioSCN.Table2D.default td, .DesignStudioSCN.Table2D.default th {
-	border-bottom:1px solid #eee;
-	padding: 10px 25px;
-}
-.DesignStudioSCN.Table2D.default th {
-	height: 0;
-	line-height: 0;
-	padding-top: 0;
-	padding-bottom: 0;
-	border: none;
-}
-.DesignStudioSCN.Table2D.default th div{
-	color: #fff;
-	padding: 9px 25px;
-	top: 0;
-	margin-left: -25px;
-	line-height: normal;
-	border-left: 1px solid #800;
-}
-.DesignStudioSCN.Table2D.default th:first-child div{
-	border: none;
-}
-/*
-	Baseline CSS needed for frozen header
-*/
-
-
-
-.DesignStudioSCN.Table2D section{
-	position: relative;
-	background: #efefef; 
-}
-
-.DesignStudioSCN.Table2D .container {
-	margin-top: 32px;
-	overflow-y: auto;
-}
 .DesignStudioSCN.Table2D table {
 	width:100%;
 }
-.DesignStudioSCN.Table2D td,
-.DesignStudioSCN.Table2D th {
-	background: #ddd;
-	color: #000;
+.DesignStudioSCN.Table2D .row{
+	background : #ffffff;
 }
+.DesignStudioSCN.Table2D .row.row-secondary{
+	background : #efffff;
+}
+.DesignStudioSCN.Table2D .row-header, .DesignStudioSCN.Table2D th {
+	background: #efefef;
+}
+
 .DesignStudioSCN.Table2D th {
-	color: transparent;
 	white-space: nowrap;
-}
-.DesignStudioSCN.Table2D th div{
-	position: absolute;
-  	background: transparent;
-  	color : #000;
 }

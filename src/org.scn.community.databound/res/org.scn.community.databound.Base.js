@@ -2,14 +2,15 @@
  * Base Databound Class
  */
 var org_scn_community_databound_Base = function(options){
+	this.flatData = null;
 	this.flattenData = function (value, options) {
-		var data = this.data();
-		//this.oldFlatten();		return;
+		// Make a copy so we don't mess with references
+		this.flatData = null;
 		try{
-			this.flatData = org_scn_community_databound.flatten(data,{
-				ignoreResults : this.ignoreTotals()
-				/*,
-				swapAxes : this.swapAxes()*/
+			this.flatData = org_scn_community_databound.flatten(this.data(),{
+				ignoreResults : this.ignoreTotals(),
+				useMockData : this.useMockData(),		// TODO
+				swapAxes : this.swapAxes()				// TODO
 			});	
 		}catch(e){
 			// alert("Problem flattening data:\n\n"+e);
@@ -45,12 +46,20 @@ var org_scn_community_databound_Base = function(options){
 				desc : "Swap Axes",
 				cat : "Data",
 				tooltip : "Whether to swap axes",
-				apsControl : "checkbox",
-				noAps : true
+				apsControl : "checkbox"
+			}
+		},
+		useMockData : {
+			value : false,
+			onChange : this.flattenData,
+			opts : {
+				desc : "Use Mock Data when no datasource",
+				cat : "Data",
+				tooltip : "Use Mock Data when no datasource",
+				apsControl : "checkbox"
 			}
 		}
 	};
-	this.flatData = null;
 	for(property in options){
 		this.props[property] = options[property]
 	};
@@ -80,16 +89,17 @@ var org_scn_community_databound_Base = function(options){
 			return "ERROR";
 		}
 	}
+	/**
+	 * Relays Design Studio Property Information over to Additional Properties Sheet.
+	 */
 	this.getPropertyMetaData = function(){
 		var r = [];
 		for(var prop in this.props){
-			if(!this.props[prop].noAps){
-				var o = {
-					name : prop,
-					opts : this.props[prop].opts || {}
-				}
-				if(!o.opts.noAps) r.push(o);				
+			var o = {
+				name : prop,
+				opts : this.props[prop].opts || {}
 			}
+			if(!o.opts.noAps) r.push(o);				
 		}
 		return JSON.stringify(r);
 	}
