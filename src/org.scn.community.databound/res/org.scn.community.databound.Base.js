@@ -8,6 +8,7 @@ var org_scn_community_databound_Base = function(options){
 		this.flatData = null;
 		try{
 			this.flatData = org_scn_community_databound.flatten(this.data(),{
+				ignoreExpandedNodes : this.ignoreExpandedNodes(),
 				ignoreResults : this.ignoreTotals(),
 				useMockData : this.useMockData(),
 				swapAxes : this.swapAxes()
@@ -36,6 +37,16 @@ var org_scn_community_databound_Base = function(options){
 				desc : "Ignore Totals",
 				cat : "Data",
 				tooltip : "Whether to ignore totals",
+				apsControl : "checkbox"	
+			}
+		},
+		ignoreExpandedNodes : {
+			value : true,
+			onChange : this.flattenData,
+			opts : {
+				desc : "Ignore Expanded Hierarchy Nodes",
+				cat : "Data",
+				tooltip : "Whether to ignore expanded hierarchy nodes",
 				apsControl : "checkbox"	
 			}
 		},

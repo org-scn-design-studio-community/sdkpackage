@@ -22,6 +22,7 @@
 			<option name="includeData" value="true"/>
 	</property>
 	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="true" group="DataBinding"/>
 	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
 	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
@@ -143,6 +144,7 @@
 	<initialization>
 		<!-- Base Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
 		<defaultValue property="useMockData">true</defaultValue>
 		<!-- End of Base Defaults -->

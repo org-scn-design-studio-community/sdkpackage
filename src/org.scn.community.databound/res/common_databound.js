@@ -57,6 +57,8 @@ org_scn_community_databound.initializeOptions = function () {
 	options.idPrefix = "";
 	options.iDisplayText = "Text";
 	options.ignoreResults = false;
+	options.ignoreExpandedNodes = false;
+	options.useMockData = true;
 	options.dimensionSeparator = " | ";
 	options.createHaderRow = true;
 	
@@ -526,9 +528,10 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
  *	  	"axis_rows" : [Array of Row Axis Dimension Selection Members]
  *	 }
  * @param options {
- * 		ignoreTotals : Boolean
- * 		swapAxes : Boolean
- * 		useMockData : Boolean
+ * 		ignoreResults : Boolean (default = true)
+ *		ignoreExpandedNodes : Boolean (default = false)
+ * 		swapAxes : Boolean (default = false)
+ * 		useMockData : Boolean (default = true)
  * }
  * 
  * @return {
@@ -625,12 +628,13 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 		var rowAxisTuple = data.axis_rows[row];
 		var sep = "";
 		var isResult = false;
-		
+		var isExpanded = false;
 		for(var j=0;j<rowAxisTuple.length;j++){
 			if(rowAxisTuple[j] != -1){
-				if(options.ignoreResults) {
+				if(options.ignoreResults || options.ignoreExpandedNodes) {
 					var member = data.dimensions[j].members[rowAxisTuple[j]];
 					if(member.type == "RESULT") { isResult=true; break;}
+					if(member.nodeState && member.nodeState == "EXPANDED") { isExpanded=true; break;}
 					// also hierarchy nodes should be ignored, but this need more work, some code snippet
 					// if(member.type == "HIERARCHY_NODE" && member.level == 1 && member.nodeState == "EXPANDED") { isResult=true; break;}
 				}
@@ -641,7 +645,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 			}
 		}
 		
-		if(isResult && options.ignoreResults) { // Added if clause - Mike
+		if((isResult && options.ignoreResults) || (isExpanded && options.ignoreExpandedNodes)) { // Added if clause - Mike
 			retObj.geometry.rowLength = retObj.geometry.rowLength - 1;
 			// move the tupleIndex by the skipped values
 			tupleIndex = tupleIndex + retObj.geometry.colLength;
@@ -676,7 +680,10 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 		var removeColumn = false;
 		for(var j=0;j<colAxisTuple.length;j++){
 			if(colAxisTuple[j] != -1){
-				if(options.ignoreResults && data.dimensions[j].members[colAxisTuple[j]].type == "RESULT") {
+				if(
+					(options.ignoreResults && data.dimensions[j].members[colAxisTuple[j]].type == "RESULT") || 	// Ignore Results case
+					(options.ignoreExpandedNodes && data.dimensions[j].members[colAxisTuple[j]].nodeState=="EXPANDED")) // Ignore Expanded node case
+					{
 					removeColumn = true;
 				}
 				colHeader += sep + data.dimensions[j].members[colAxisTuple[j]].text;
