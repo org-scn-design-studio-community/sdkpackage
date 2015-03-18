@@ -9,8 +9,8 @@ var org_scn_community_databound_Base = function(options){
 		try{
 			this.flatData = org_scn_community_databound.flatten(this.data(),{
 				ignoreResults : this.ignoreTotals(),
-				useMockData : this.useMockData(),		// TODO
-				swapAxes : this.swapAxes()				// TODO
+				useMockData : this.useMockData(),
+				swapAxes : this.swapAxes()
 			});	
 		}catch(e){
 			// alert("Problem flattening data:\n\n"+e);

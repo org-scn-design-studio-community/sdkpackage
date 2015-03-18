@@ -532,6 +532,8 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
  * }
  * 
  * @return {
+ * 		"dimensionHeaders" : [2D Array of dimensions used in rows]
+ * 		"dimensionheader" : [1D Array of dimensions used in rows]
  * 		"columnHeaders" : [1D Array of Header Labels]
  * 		"columnHeaders2D" : [2D Array of Header Labels]
  * 		"rowHeaders" : [1D Array of Row Headers]
@@ -543,25 +545,40 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 org_scn_community_databound.flatten = function (designStudioData, opts) {
 	// Important - Copy the JSON object so we do not accidently change original object
 	var data = jQuery.parseJSON(JSON.stringify(designStudioData));
+	// Initialize with default options
 	var options = org_scn_community_databound.initializeOptions();
+	// Overwrite defaults with any passed options
 	if(opts) {
 		for(var option in opts) options[option] = opts[option];
 	}
-	
+	// Create shell return object
 	var retObj = {
-		dimensionHeaders : [],
-		dimensionheader : "",
-		columnHeaders : [],
-		columnHeaders2D : [],
-		rowHeaders : [],
-		rowHeaders2D : [],
-		values : [],
-		formattedValues : [],
-		hash : {},
-		geometry : {}
+		dimensionHeaders : [],		// ["0CALDAY", "0LOCATION", ...]
+		dimensionheader : "",		// "0CALDAY | 0LOCATION"
+		dimensionColHeaders : [],	// ["0SALESREP", "0MEASURES", ...]		(TODO)
+		dimensionColheader : "",	// "0SALESREP | 0MEASURES"				(TODO)
+		columnHeaders2D : [],		// Two Dimensions in Columns example:
+									// [["John Doe", "Sales"],["John Doe", "Discounts"], ...]
+									// Simple Example with just Measures Structure: 
+									// [["Sales"],["Discounts"], ...]
+		columnHeaders : [],			// Two Dimension in Columns Example:
+									// ["John Doe | Sales", "John Does | Discounts", ...]
+									// Simple Example:
+									// ["Sales", "Discounts", ...]
+		rowHeaders2D : [],			// [["01/2015", "Memphis"],["01/2015", "Nashville"], ...]]
+		rowHeaders : [],			// ["01/2015 | Memphis", "01/2015 | Nashville", ...]
+		values : [],				// [[100, 50], [200, 250], ...]
+		formattedValues : [],		// [["100 USD", "50 USD"], ["200 USD", "250 USD"], ...]
+		hash : {},					// {"01/2015 | Memphis" : 0, "01/2015 | Nashville" : 1, ... }
+		geometry : {}				// {"rowLength" : "18", "colLength" : "2", "headersLength" : "2", "allColumnsLength" : "4" }
 	};
 	if(!data || !data.dimensions || (!data.data && !data.formattedData)) {
-		throw("Incomplete data given.\n\n" + JSON.stringify(data));
+		if(!options.useMockData){
+			throw("Incomplete data given.\n\n" + JSON.stringify(data));	
+		}else{
+			// Use Karol's mock data - Maybe dynamically load this?
+			data = {"selection":[-1,-1,-1],"tuples":[[0,0,0],[1,0,0],[0,0,1],[1,0,1],[0,0,2],[1,0,2],[0,0,3],[1,0,3],[0,1,4],[1,1,4],[0,1,3],[1,1,3],[0,2,1],[1,2,1],[0,2,2],[1,2,2],[0,2,4],[1,2,4],[0,2,3],[1,2,3],[0,3,1],[1,3,1],[0,3,2],[1,3,2],[0,3,4],[1,3,4],[0,3,3],[1,3,3],[0,4,1],[1,4,1],[0,4,4],[1,4,4],[0,4,3],[1,4,3],[0,5,3],[1,5,3]],"data":["52.72","1","30.27","1","43.41","1","126.40","3","71.08","1","71.08","1","89.23","2","16.64","1","58.19","1","164.06","4","29.93","1","73.72","1","95.55","2","199.20","4","60.91","2","144.17","3","205.08","5","765.82","17"],"formattedData":["52.72 EUR","1","30.27 EUR","1","43.41 EUR","1","126.40 EUR","3","71.08 EUR","1","71.08 EUR","1","89.23 EUR","2","16.64 EUR","1","58.19 EUR","1","164.06 EUR","4","29.93 EUR","1","73.72 EUR","1","95.55 EUR","2","199.20 EUR","4","60.91 EUR","2","144.17 EUR","3","205.08 EUR","5","765.82 EUR","17"],"dimensions":[{"key":"4FW8C4P934W533L5W4N3J5AON","text":"Key Figures","axis":"COLUMNS","axis_index":0,"containsMeasures":true,"members":[{"key":"4FW8C4WXM3HULQ4M1YPFT79EF","text":"0BC_TURN","scalingFactor":0,"unitOfMeasure":"EUR","formatString":"#,##0.00 EUR;'-'#,##0.00 EUR"},{"key":"4FW8RN37GL043NF22OTQFXYL3","text":"0BC_COUNT","scalingFactor":0,"formatString":"#,##0;'-'#,##0"}]},{"key":"0BC_PERS1","text":"0BC_PERS1","axis":"ROWS","axis_index":0,"members":[{"key":"00002","text":"2"},{"key":"00003","text":"3"},{"key":"00007","text":"7"},{"key":"00008","text":"8"},{"key":"00009","text":"9"},{"key":"SUMME","text":"Overall Result","type":"RESULT"}]},{"key":"0BC_PROD1","text":"0BC_PROD1","axis":"ROWS","axis_index":1,"members":[{"key":"00002","text":"2"},{"key":"00003","text":"3"},{"key":"00008","text":"8"},{"key":"SUMME","text":"Result","type":"RESULT"},{"key":"00012","text":"12"}]}],"locale":"en_US","axis_columns":[[0,-1,-1],[1,-1,-1]],"axis_rows":[[-1,0,0],[-1,0,1],[-1,0,2],[-1,0,3],[-1,1,4],[-1,1,3],[-1,2,1],[-1,2,2],[-1,2,4],[-1,2,3],[-1,3,1],[-1,3,2],[-1,3,4],[-1,3,3],[-1,4,1],[-1,4,4],[-1,4,3],[-1,5,3]],"columnCount":2,"rowCount":18}
+		}
 	}
 	/*
 	 * If Swap Axes is set, simply swap row and column-specific properties.
