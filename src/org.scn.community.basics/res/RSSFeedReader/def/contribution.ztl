@@ -1,0 +1,30 @@
+
+/**
+ * Class for RSSFeedReader
+ */
+class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Component {
+	
+	/** Set url of desired rss feed  
+
+ 	<example>
+	<code>
+	RSSFeedReader_1.setFeedUrl("http://cdn.eex.com/rss/de/market.rss").
+	</code>
+	</example>
+	 */
+	String setFeedUrl(String url_string){*
+		this.feedurldimension = url_string;
+	*}
+	
+	/** Set url of custom xsl sheet to parse rss feed. Be aware of cross origin browser policies.
+
+ 	<example>
+	<code>
+	RSSFeedReader_1.setXslUrl("http://www.someurl.com/yourxsl.xsl").
+	</code>
+	</example>
+	 */
+	String setXslUrl(String url_string){*
+		this.xslurldimension = url_string;
+	*}
+}
