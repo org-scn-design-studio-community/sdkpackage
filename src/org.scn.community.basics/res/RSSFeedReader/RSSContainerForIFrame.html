@@ -70,7 +70,9 @@
 	    }
         catch (e) {
             // 4
-            alert("The type [XSLTProcessor] is not supported by this browser, can't transform XML document to HTML string! Probably Design Studios IE implementation is currently broken! Other browsers should be fine.");
+            document.getElementById("feed").innerHTML = "The type [XSLTProcessor] is not supported by this browser, can't transform XML document to HTML string! Probably Design Studios IE implementation is currently broken! Other browsers should be fine.";
+            // Browser alerts were painful.  :)
+            // alert("The type [XSLTProcessor] is not supported by this browser, can't transform XML document to HTML string! Probably Design Studios IE implementation is currently broken! Other browsers should be fine.");
             return null;
         }
       	});

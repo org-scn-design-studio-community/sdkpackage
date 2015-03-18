@@ -38,7 +38,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.RSSFeedReader"
 	var saveFeedUrlDimension 		= null;
 	var saveXslUrlDimension			= null;
 	
-	var rss_container				= 'RSSContainerForIFrame.html?';
+	var rss_container				= 'RSSContainerForIFrame.html?rnd=' + Math.random() + "&";	// Cache-busting
 	
 	/**
 	 * @desc First function called during SAP Design Studio Plugin Lifecycle
