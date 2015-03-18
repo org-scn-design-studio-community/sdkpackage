@@ -1,0 +1,30 @@
+
+<component
+	id="RSSFeedReader"
+	title="RSSFeedReader"
+	icon="res/RSSFeedReader/RSSFeedReader.png"
+	handlerType="div"
+	group="ScnCommunityBasics">
+	
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/RSSFeedReader/RSSFeedReader.js</jsInclude>
+	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
+	<property type="String" title="RSS Feed URL"
+		id="feedurldimension">
+	</property>
+	<property type="String" title="XSL URL"
+		id="xslurldimension">
+	</property>
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+		<defaultValue property="runtimedata">{}</defaultValue>
+		<defaultValue property="feedurldimension">
+			http://cdn.eex.com/rss/de/market.rss
+		</defaultValue>
+		<defaultValue property="xslurldimension">
+			rss.xsl
+		</defaultValue>
+	</initialization>
+
+</component>

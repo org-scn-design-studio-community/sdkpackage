@@ -1,0 +1,25 @@
+
+<component
+	id="WorldTime"
+	title="WorldTime"
+	icon="res/WorldTime/WorldTime.png"
+	handlerType="div"
+	group="ScnCommunityBasics">
+	
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/WorldTime/WorldTime.js</jsInclude>
+	<property type="String" title="UTC Offset" id="utcoffset">
+	</property>
+	<property type="boolean" title="Show time only" id="showtimeonly">
+	</property>
+	<property type="int" title="Update Interval (in ms)" id="interval">
+	</property>
+	<initialization>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">40</defaultValue>
+		<defaultValue property="utcoffset">0</defaultValue>
+		<defaultValue property="showtimeonly">true</defaultValue>
+		<defaultValue property="interval">5000</defaultValue>
+	</initialization>
+
+</component>

@@ -43,6 +43,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\RangeSlider\def\contribution.xml ^
 ..\res\RatingIndicator\def\contribution.xml ^
 ..\res\RoadMap\def\contribution.xml ^
+..\res\RSSFeedReader\def\contribution.xml ^
 ..\res\SegmentedButton\def\contribution.xml ^
 ..\res\Slider\def\contribution.xml ^
 ..\res\TextArea\def\contribution.xml ^
@@ -51,6 +52,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\TriStateCheckBox\def\contribution.xml ^
 ..\res\ValiInput\def\contribution.xml ^
 ..\res\ValueHelpField\def\contribution.xml ^
+..\res\WorldTime\def\contribution.xml ^
 ..\..\org.scn.community.shared\templates.main\contribution.xml.close.txt > ^
 ..\contribution.xml
 
@@ -97,6 +99,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\RangeSlider\def\contribution.ztl ^
 ..\res\RatingIndicator\def\contribution.ztl ^
 ..\res\RoadMap\def\contribution.ztl ^
+..\res\RSSFeedReader\def\contribution.ztl ^
 ..\res\SegmentedButton\def\contribution.ztl ^
 ..\res\Slider\def\contribution.ztl ^
 ..\res\TextArea\def\contribution.ztl ^
@@ -105,6 +108,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\TriStateCheckBox\def\contribution.ztl ^
 ..\res\ValiInput\def\contribution.ztl ^
 ..\res\ValueHelpField\def\contribution.ztl ^
+..\res\WorldTime\def\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 

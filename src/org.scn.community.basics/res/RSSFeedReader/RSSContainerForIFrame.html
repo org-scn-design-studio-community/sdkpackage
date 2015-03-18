@@ -1,0 +1,84 @@
+<html>
+<head>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type='text/javascript'>
+	google.load("feeds", "1");
+	
+	function getSearchParameters() {
+	    var prmstr = window.location.search.substr(1);
+	    return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+	}
+	
+	function transformToAssocArray( prmstr ) {
+	  var params = {};
+	  var prmarr = prmstr.split("&");
+	  for ( var i = 0; i < prmarr.length; i++) {
+	      var tmparr = prmarr[i].split("=");
+	      params[tmparr[0]] = tmparr[1];
+	  }
+	  return params;
+	}
+
+	function loadXMLDoc(filename) {
+		if (window.ActiveXObject) {
+			xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+		} else {
+			xhttp = new XMLHttpRequest();
+		}
+		xhttp.open("GET", filename, false);
+		//@TODO fix this IE11 bug causing Design Studio to crash 14.11.14
+		//try {xhttp.responseType = "msxml-document";} catch (err) {alert(err);} // Helping IE11
+		xhttp.send();
+		return xhttp.responseXML;
+	}
+
+	function initialize() {
+		var params = getSearchParameters();
+
+	  	var feedUrl = params['feed'];
+	  	var xsl = loadXMLDoc(params['xsl']);      
+	  	var feed = new google.feeds.Feed(feedUrl);
+	  	feed.setResultFormat(google.feeds.Feed.XML_FORMAT);
+      	feed.load(function(result) {
+	    try {
+	      	if (!result.error) {
+				var xml = result.xmlDocument;
+			  	if (xhttp.responseType == "msxml-document") {
+					if (typeof (xml.transformNode) != "undefined") {
+			  			var ex = xml.transformNode(xsl);
+						document.getElementById("feed").innerHTML = ex;
+				  	}//IE10
+					else if(ActiveXObject){
+						var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+						var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+						xslDoc.loadXML(xsl.xml);
+						xslt.stylesheet = xslDoc;
+						var xslProc = xslt.createProcessor();
+						xslProc.input = xml;
+						xslProc.transform();
+						document.getElementById("feed").innerHTML = xslProc.output;
+				  	}
+			  	}
+				// code for Chrome, Firefox, Opera, etc.
+				else if (document.implementation && document.implementation.createDocument) {
+					var xsltProcessor = new XSLTProcessor();
+					xsltProcessor.importStylesheet(xsl);
+					var resultDocument = xsltProcessor.transformToFragment(xml, document);
+					document.getElementById("feed").appendChild(resultDocument);
+				}
+	        }
+	    }
+        catch (e) {
+            // 4
+            alert("The type [XSLTProcessor] is not supported by this browser, can't transform XML document to HTML string! Probably Design Studios IE implementation is currently broken! Other browsers should be fine.");
+            return null;
+        }
+      	});
+    }
+    google.setOnLoadCallback(initialize);
+</script>
+</head>
+<body>
+	<div id="feed"></div>
+</body>
+</html>
