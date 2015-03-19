@@ -213,21 +213,26 @@
 			<option name="includeFormattedData" value="false"/>
 			<option name="includeData" value="true"/>
 	</property>
-	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
-	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="true" group="DataBinding"/>
-	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
-	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
-	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	
 	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
 	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
+	<!--
 	<property id="styleCSS" title="Style CSS" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	 -->
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
-	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
+	<property id="pollInterval" type="int" title = "Resize Poll Interval" visible="false"/>
+	<property id="ms" type="int" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
 	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
 	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
@@ -236,25 +241,24 @@
 	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
 	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
-	<property id="legendTitle" title="Legend Title" type="String"/>
-	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
-	<property id="legendWidth" title="Legend Width (px)" type="int"/>
-	<property id="legendScale" title="Legend Scale" type="float"/>
-	<property id="legendX" title="Legend Offset X" type="int"/>
-	<property id="legendY" title="Legend Offset Y" type="int"/>
-	<property id="plotAlpha" title="Plot Alpha" type="int"/>
+	<property id="legendTitle" title="Legend Title" type="String" visible="false"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int" visible="false"/>
+	<property id="legendScale" title="Legend Scale" type="float" visible="false"/>
+	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
+	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
-	<property id="selectedColor" type="String" title = "Selection Colour" visible="true"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
 	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
-	<property id="plotLeft" title="Plot Offset Left" type="int"/>
-	<property id="plotRight" title="Plot Offset Right" type="int"/>
-	<property id="plotTop" title="Plot Offset Top" type="int"/>
-	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="plotLeft" title="Plot Offset Left" type="int" visible="false"/>
+	<property id="plotRight" title="Plot Offset Right" type="int" visible="false"/>
+	<property id="plotTop" title="Plot Offset Top" type="int" visible="false"/>
+	<property id="plotBottom" title="Plot Offset Bottom" type="int" visible="false"/>
 	<property id="enableZoom" title="Enable Zoom" type="boolean" visible="false" />
-	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
-	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
+	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
 	<!-- End of Base Viz Properties -->
 	<!-- Begin of Chropleth Properties -->
 	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
@@ -262,7 +266,7 @@
 	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
 	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
 	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
-	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String"/>
+	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String" visible="false"/>
 	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
 	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
 	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
@@ -270,20 +274,20 @@
 	<property id="graticuleOn" title="Show Graticule Grid" type="boolean" visible="false" />
 	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
 	<property id="mapData" title="Map Data" type="String" visible="false"/>
-	<property id="floor" title="Minimum Scale Value" type="float"/>
-	<property id="labelSize" title="Label Size (px)" type="float"/>
-	<property id="gradientLeft" title="Horizontal Scale Left" type="int"/>
-	<property id="gradientRight" title="Horizontal Scale Right" type="int"/>
-	<property id="gradientBottom" title="Horizontal Scale Bottom" type="int"/>
-	<property id="gradientHeight" title="Horizontal Scale Height" type="int"/>
-	<property id="yaw" title="Yaw" type="float"/>
-	<property id="pitch" title="Pitch" type="float"/>
-	<property id="roll" title="Roll" type="float"/>
-	<property id="colorScale" title="Color Scale" type="String">
+	<property id="floor" title="Minimum Scale Value" type="float" visible="false"/>
+	<property id="labelSize" title="Label Size (px)" type="float" visible="false"/>
+	<property id="gradientLeft" title="Horizontal Scale Left" type="int" visible="false"/>
+	<property id="gradientRight" title="Horizontal Scale Right" type="int" visible="false"/>
+	<property id="gradientBottom" title="Horizontal Scale Bottom" type="int" visible="false"/>
+	<property id="gradientHeight" title="Horizontal Scale Height" type="int" visible="false"/>
+	<property id="yaw" title="Yaw" type="float" visible="false"/>
+	<property id="pitch" title="Pitch" type="float" visible="false"/>
+	<property id="roll" title="Roll" type="float" visible="false"/>
+	<property id="colorScale" title="Color Scale" type="String" visible="false">
 		<possibleValue>quantile</possibleValue>
 		<possibleValue>quantize</possibleValue>
 	</property>
-	<property id="projection" title="Projection" type="String">
+	<property id="projection" title="Projection" type="String" visible="false">
 		<possibleValue>Albers USA</possibleValue>
 		<possibleValue>Mercator</possibleValue>
 		<possibleValue>Orthographic</possibleValue>
@@ -351,6 +355,7 @@
 		<defaultValue property="chartValueSize">10</defaultValue>
 		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="pollInterval">250</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
@@ -864,21 +869,26 @@
 			<option name="includeFormattedData" value="false"/>
 			<option name="includeData" value="true"/>
 	</property>
-	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
-	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="true" group="DataBinding"/>
-	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
-	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
-	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	
 	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
 	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
+	<!--
 	<property id="styleCSS" title="Style CSS" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	 -->
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
-	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
+	<property id="pollInterval" type="int" title = "Resize Poll Interval" visible="false"/>
+	<property id="ms" type="int" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
 	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
 	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
@@ -887,25 +897,24 @@
 	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
 	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
-	<property id="legendTitle" title="Legend Title" type="String"/>
-	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
-	<property id="legendWidth" title="Legend Width (px)" type="int"/>
-	<property id="legendScale" title="Legend Scale" type="float"/>
-	<property id="legendX" title="Legend Offset X" type="int"/>
-	<property id="legendY" title="Legend Offset Y" type="int"/>
-	<property id="plotAlpha" title="Plot Alpha" type="int"/>
+	<property id="legendTitle" title="Legend Title" type="String" visible="false"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int" visible="false"/>
+	<property id="legendScale" title="Legend Scale" type="float" visible="false"/>
+	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
+	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
-	<property id="selectedColor" type="String" title = "Selection Colour" visible="true"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
 	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
-	<property id="plotLeft" title="Plot Offset Left" type="int"/>
-	<property id="plotRight" title="Plot Offset Right" type="int"/>
-	<property id="plotTop" title="Plot Offset Top" type="int"/>
-	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="plotLeft" title="Plot Offset Left" type="int" visible="false"/>
+	<property id="plotRight" title="Plot Offset Right" type="int" visible="false"/>
+	<property id="plotTop" title="Plot Offset Top" type="int" visible="false"/>
+	<property id="plotBottom" title="Plot Offset Bottom" type="int" visible="false"/>
 	<property id="enableZoom" title="Enable Zoom" type="boolean" visible="false" />
-	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
-	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
+	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
 	<!-- End of Base Viz Properties -->
 	<!-- Axis Chart Properties -->
 	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
@@ -923,20 +932,20 @@
 
 	<!-- End of Base Viz Properties -->
 	<!-- BaseVizXY Properties -->
-	<property id="minX" title="Manual Min X" type="int"/>
-	<property id="minY" title="Manual Min Y" type="int"/>
-	<property id="maxX" title="Manual Max X" type="int"/>
-	<property id="maxY" title="Manual Max Y" type="int"/>
-	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String"/>
-	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String"/>
+	<property id="minX" title="Manual Min X" type="int" visible="false"/>
+	<property id="minY" title="Manual Min Y" type="int" visible="false"/>
+	<property id="maxX" title="Manual Max X" type="int" visible="false"/>
+	<property id="maxY" title="Manual Max Y" type="int" visible="false"/>
+	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String" visible="false"/>
+	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String" visible="false"/>
 	<!-- End of BaseVizXY Properties -->	
 	<!-- HexBin Properties -->
 	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
 	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
-	<property id="radius" type="int" title = "Hex Radius" visible="true"/>
-	<property id="tolerance" type="int" title = "Manual Tolerance" visible="true"/>
-	<property id="threshold" type="int" title = "Manual Threshold" visible="true"/>
-	<property id="thresholdMethod" type="String" title = "Threshold Method" visible="true">
+	<property id="radius" type="int" title = "Hex Radius" visible="false"/>
+	<property id="tolerance" type="int" title = "Manual Tolerance" visible="false"/>
+	<property id="threshold" type="int" title = "Manual Threshold" visible="false"/>
+	<property id="thresholdMethod" type="String" title = "Threshold Method" visible="false">
 		<possibleValue>Max</possibleValue>
 		<possibleValue>Median</possibleValue>
 		<possibleValue>Mean</possibleValue>
@@ -960,6 +969,7 @@
 		<defaultValue property="chartValueSize">10</defaultValue>
 		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="pollInterval">250</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
@@ -1169,21 +1179,26 @@ __n__}
 			<option name="includeFormattedData" value="false"/>
 			<option name="includeData" value="true"/>
 	</property>
-	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
-	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="true" group="DataBinding"/>
-	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
-	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
-	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	
 	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
 	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
+	<!--
 	<property id="styleCSS" title="Style CSS" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	 -->
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
-	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
+	<property id="pollInterval" type="int" title = "Resize Poll Interval" visible="false"/>
+	<property id="ms" type="int" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
 	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
 	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
@@ -1192,25 +1207,24 @@ __n__}
 	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
 	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
-	<property id="legendTitle" title="Legend Title" type="String"/>
-	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
-	<property id="legendWidth" title="Legend Width (px)" type="int"/>
-	<property id="legendScale" title="Legend Scale" type="float"/>
-	<property id="legendX" title="Legend Offset X" type="int"/>
-	<property id="legendY" title="Legend Offset Y" type="int"/>
-	<property id="plotAlpha" title="Plot Alpha" type="int"/>
+	<property id="legendTitle" title="Legend Title" type="String" visible="false"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int" visible="false"/>
+	<property id="legendScale" title="Legend Scale" type="float" visible="false"/>
+	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
+	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
-	<property id="selectedColor" type="String" title = "Selection Colour" visible="true"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
 	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
-	<property id="plotLeft" title="Plot Offset Left" type="int"/>
-	<property id="plotRight" title="Plot Offset Right" type="int"/>
-	<property id="plotTop" title="Plot Offset Top" type="int"/>
-	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="plotLeft" title="Plot Offset Left" type="int" visible="false"/>
+	<property id="plotRight" title="Plot Offset Right" type="int" visible="false"/>
+	<property id="plotTop" title="Plot Offset Top" type="int" visible="false"/>
+	<property id="plotBottom" title="Plot Offset Bottom" type="int" visible="false"/>
 	<property id="enableZoom" title="Enable Zoom" type="boolean" visible="false" />
-	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
-	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
+	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
 	<!-- End of Base Viz Properties -->
 	<!-- Axis Chart Properties -->
 	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
@@ -1247,6 +1261,7 @@ __n__}
 		<defaultValue property="chartValueSize">10</defaultValue>
 		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="pollInterval">250</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
@@ -1746,21 +1761,26 @@ __n__}
 			<option name="includeFormattedData" value="false"/>
 			<option name="includeData" value="true"/>
 	</property>
-	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
-	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="true" group="DataBinding"/>
-	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
-	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
 	<!-- Base Viz Properties -->
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
-	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	
 	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
 	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
+	<!--
 	<property id="styleCSS" title="Style CSS" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	 -->
 	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
-	<property id="ms" type="String" title = "Animation Duration (ms)" visible="false"/>
+	<property id="pollInterval" type="int" title = "Resize Poll Interval" visible="false"/>
+	<property id="ms" type="int" title = "Animation Duration (ms)" visible="false"/>
 	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
 	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
 	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
@@ -1769,25 +1789,24 @@ __n__}
 	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
 	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
 	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
-	<property id="legendTitle" title="Legend Title" type="String"/>
-	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
-	<property id="legendWidth" title="Legend Width (px)" type="int"/>
-	<property id="legendScale" title="Legend Scale" type="float"/>
-	<property id="legendX" title="Legend Offset X" type="int"/>
-	<property id="legendY" title="Legend Offset Y" type="int"/>
-	<property id="plotAlpha" title="Plot Alpha" type="int"/>
+	<property id="legendTitle" title="Legend Title" type="String" visible="false"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int" visible="false"/>
+	<property id="legendScale" title="Legend Scale" type="float" visible="false"/>
+	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
+	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
-	<property id="selectedColor" type="String" title = "Selection Colour" visible="true"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
 	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
-	<property id="plotLeft" title="Plot Offset Left" type="int"/>
-	<property id="plotRight" title="Plot Offset Right" type="int"/>
-	<property id="plotTop" title="Plot Offset Top" type="int"/>
-	<property id="plotBottom" title="Plot Offset Bottom" type="int"/>
+	<property id="plotLeft" title="Plot Offset Left" type="int" visible="false"/>
+	<property id="plotRight" title="Plot Offset Right" type="int" visible="false"/>
+	<property id="plotTop" title="Plot Offset Top" type="int" visible="false"/>
+	<property id="plotBottom" title="Plot Offset Bottom" type="int" visible="false"/>
 	<property id="enableZoom" title="Enable Zoom" type="boolean" visible="false" />
-	<property id="minZoom" title="Minimum Zoom Scale" type="float"/>
-	<property id="maxZoom" title="Maximum Zoom Scale" type="float"/>
+	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
 	<!-- End of Base Viz Properties -->
 	<!-- Axis Chart Properties -->
 	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
@@ -1805,12 +1824,12 @@ __n__}
 
 	<!-- End of Base Viz Properties -->
 	<!-- BaseVizXY Properties -->
-	<property id="minX" title="Manual Min X" type="int"/>
-	<property id="minY" title="Manual Min Y" type="int"/>
-	<property id="maxX" title="Manual Max X" type="int"/>
-	<property id="maxY" title="Manual Max Y" type="int"/>
-	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String"/>
-	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String"/>
+	<property id="minX" title="Manual Min X" type="int" visible="false"/>
+	<property id="minY" title="Manual Min Y" type="int" visible="false"/>
+	<property id="maxX" title="Manual Max X" type="int" visible="false"/>
+	<property id="maxY" title="Manual Max Y" type="int" visible="false"/>
+	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String" visible="false"/>
+	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String" visible="false"/>
 	<!-- End of BaseVizXY Properties -->
 	<!-- ScatterPlot Properties -->
 	<property id="colorDimension" title="Dimension for Series" type="String"/>
@@ -1836,6 +1855,7 @@ __n__}
 		<defaultValue property="chartValueSize">10</defaultValue>
 		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="pollInterval">250</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
@@ -2018,10 +2038,10 @@ __n__}
 			<option name="includeFormattedData" value="false"/>
 			<option name="includeData" value="true"/>
 	</property>
-	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="true" group="DataBinding"/>
-	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="true" group="DataBinding"/>
-	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
-	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
 	<!-- Begin of 2D Crosstab Properties -->
 	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>

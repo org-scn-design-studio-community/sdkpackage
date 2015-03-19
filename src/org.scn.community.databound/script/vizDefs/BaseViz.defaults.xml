@@ -9,6 +9,7 @@
 		<defaultValue property="chartValueSize">10</defaultValue>
 		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
 		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="pollInterval">250</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>

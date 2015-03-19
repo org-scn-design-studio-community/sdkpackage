@@ -7,19 +7,13 @@ function org_scn_community_databound_BaseViz(d3, options){
 	var that = this;
 	this.formatter = d3.format(',.2f');			// Make a DS property
 	var properties = {
-		styleCSS : { 
-			value : "/* CSS */",
-			onChange : function(value){
-				this.props.styleCSS.value = value.replace(/__n__/g,"\n");
-			},
-			onSet : function(value){
-				return value.replace(/__n__/g,"\r\n");
-			},
+		pollInterval : { 
+			value : 250,
 			opts : {
-				desc : "SVG CSS",
-				cat : "CSS",
-				onSet : true,
-				apsControl : "textbox"
+				desc : "Resize Polling Interval (ms)",
+				cat : "Behavior",
+				apsControl : "spinner",
+				noAps : true
 			}
 		},
 		legendOn : { 
@@ -78,7 +72,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			value : "0px",
 			opts : {
 				apsControl : "text",
-				desc : "Tooltip Top (CSS)",
+				desc : "Tooltip Tip (CSS)",
 				cat : "Tooltips"
 			}
 		},
@@ -119,14 +113,6 @@ function org_scn_community_databound_BaseViz(d3, options){
 			opts : {
 				desc : "Chart Title",
 				cat : "Cosmetics",
-				apsControl : "text"
-			}
-		},
-		chartTitleStyle : { 
-			value : "",
-			opts : {
-				desc : "Chart Title Style",
-				cat : "CSS",
 				apsControl : "text"
 			}
 		},
@@ -306,8 +292,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 		if(this.showTitle()){
 			this.chartLabel.attr("display","inline");
 			this.chartLabel
-				.text(this.chartTitle())
-				.attr("style",this.chartTitleStyle());
+				.text(this.chartTitle());
 		}else{
 			this.chartLabel.attr("display","none");
 		}
@@ -317,7 +302,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 	 * Update Cosmetics
 	 */
 	this.updateCosmetics = function(){ 
-		this.svgStyle.text(this.styleCSS());
+		//this.svgStyle.text(this.styleCSS());
 		this.chartLabel
 			.attr("x",this.dimensions.width/2)
 			.attr("y",(this.dimensions.chartLabelHeight / 2));
@@ -439,7 +424,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			this.afterUpdate();
 		}else{
 			// Sizes are the same.  Don't redraw, but poll again after an interval.
-			that._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);	
+			that._poller = window.setTimeout(function(){that.measureSize(that)},that.pollInterval());	
 		}
 	};
 	this.preReqCheck = function() {
@@ -498,7 +483,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			// Give informational window
 			this.displayMessage(check.reason);
 		}
-		this._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);
+		this._poller = window.setTimeout(function(){that.measureSize(that)},that.pollInterval());
 	};
 	/**
 	 * Update Legend
