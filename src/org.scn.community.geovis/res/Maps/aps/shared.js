@@ -98,7 +98,7 @@ org_scn_geocode_local.prototype.loadRegionLookup = function(){
     	if(!this.regionLookup){
 			var geoDB = $.ajax({
 	    		async : false,
-	    		url : this.resourcePrefix + "res/Maps/geo/regionlookup.json"
+	    		url : this.resourcePrefix + "res/geo/regionlookup.json"
 	    	});
 	    	this.regionLookup = jQuery.parseJSON(geoDB.responseText);
 		}
@@ -112,7 +112,7 @@ org_scn_geocode_local.prototype.loadCityLookup = function(){
 		if(!this.cityLookup){
 			var geoDB = $.ajax({
 	    		async : false,
-	    		url : this.resourcePrefix + "res/Maps/geo/citylookup.json"
+	    		url : this.resourcePrefix + "res/geo/citylookup.json"
 	    	});
 	    	this.cityLookup = jQuery.parseJSON(geoDB.responseText);
 		}
@@ -146,11 +146,10 @@ org_scn_geocode_local.prototype.getLatLngs = function(options){
 	var geoIndexZip = this.dimensionIndex(options.geoDimZip, metadata);
 	var geoIndexRegion = this.dimensionIndex(options.geoDimRegion, metadata);
 	var geoIndexCountry = this.dimensionIndex(options.geoDimCountry, metadata);	
-	
 	if(!this.locationsJSON){
     	var geoDB = $.ajax({
     		async : false,
-    		url : this.resourcePrefix + "res/Maps/geo/world.json"
+    		url : this.resourcePrefix + "res/geo/world.json"
     	});
     	var worldJSON = jQuery.parseJSON(geoDB.responseText);
     	this.locationsJSON = {};
@@ -163,6 +162,7 @@ org_scn_geocode_local.prototype.getLatLngs = function(options){
     	}
     	//this.locationsJSON = jQuery.parseJSON(geoDB.responseText);
 	}
+	
 	// Shallow Copy 2D array
 	for(var row=0;row<tuples.length;row++){
 		distincts.push(tuples[row].slice());
@@ -289,7 +289,7 @@ org_scn_geocode_local.prototype.getLatLngs = function(options){
 				if(!this.locationsJSON[country].loaded){	// On Demand Loading
 					var countryDB = $.ajax({
 			    		async : false,
-			    		url : this.resourcePrefix + "res/Maps/geo/world/" + country + ".json"
+			    		url : this.resourcePrefix + "res/geo/world/" + country + ".json"
 			    	});
 			    	var countryJSON = jQuery.parseJSON(countryDB.responseText);
 			    	for(var rgn in countryJSON){
@@ -310,7 +310,7 @@ org_scn_geocode_local.prototype.getLatLngs = function(options){
 								this.locationsJSON[country].r[region].loaded = true;
 								var regionDB = $.ajax({
 						    		async : false,
-						    		url : this.resourcePrefix + "res/Maps/geo/world/" + country + "/" + region +".json"
+						    		url : this.resourcePrefix + "res/geo/world/" + country + "/" + region +".json"
 						    	});
 								this.locationsJSON[country].r[region] = jQuery.parseJSON(regionDB.responseText);
 							}catch(e){

@@ -36,6 +36,7 @@ sap.designstudio.sdk.Component.subclass(ownComponentName,function() {
 	var pathInfo = _readScriptPath();
 	this.sdkPfx = pathInfo.mainSDKPath;
 	this.resPfx = pathInfo.mainSDKPath + "org.scn.community.geovis/";
+	this.lookupPfx = pathInfo.mainSDKPath + "org.scn.community.geovispack.standard/";
 	this._alive = false;
 	/*
 	 * Fires after any Design Studio Property Change
@@ -329,14 +330,14 @@ sap.designstudio.sdk.Component.subclass(ownComponentName,function() {
     this.init = function() {
     	// Configure shared geovis to work.
     	this.localGeocoder = new org_scn_geocode_local();
-    	this.localGeocoder.resourcePrefix = this.resPfx;
+    	this.localGeocoder.resourcePrefix = this.lookupPfx;
     	this.localGeocoder.mode = "component";
     	// Pull in world JSON geodata.  Perhaps move this out of component to local geocoder.
     	try{
     		if(!this.locationsJSON){
 		    	var geoDB = $.ajax({
 		    		async : false,
-		    		url : this.resPfx + "res/Maps/geo/world.json"
+		    		url : this.lookupPfx + "res/geo/world.json"
 		    	});
 		    	var worldJSON = jQuery.parseJSON(geoDB.responseText);
 		    	this.locationsJSON = {};

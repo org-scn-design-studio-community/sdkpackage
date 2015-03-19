@@ -412,30 +412,32 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			key : "guess",
 			text : "Try to Guess"
 		 }));
-		 if(country != "guess"){
-			 if(!this.locationsJSON[country].loaded){	// On Demand Loading
-				 // Try to load once and flag loaded
-				 this.locationsJSON[country].loaded = true;
-				 var countryDB = $.ajax({
-		    		async : false,
-		    		url : this.resourcePrefix + "res/Maps/geo/world/" + country + ".json"
-		    	});
-		    	var countryJSON = jQuery.parseJSON(countryDB.responseText);
-		    	for(var region in countryJSON){
-		    		this.locationsJSON[country].r[region] = {
-		    			loaded : false,
-		    			l : countryJSON[region],
-		    			c : {}
-		    		};
-		    	}
-			}
-			 for(var region in this.locationsJSON[country].r){
-				 
-				 if(!cbo.getSelectedKey() == region) cbo.setSelectedKey(region);	// Take first entry
-				 cbo.addItem(new sap.ui.core.ListItem({
-					key : region,
-					text : region
-				}));
+		 if(!this.localMissing){
+			 if(country != "guess"){
+				 if(!this.locationsJSON[country].loaded){	// On Demand Loading
+					 // Try to load once and flag loaded
+					 this.locationsJSON[country].loaded = true;
+					 var countryDB = $.ajax({
+			    		async : false,
+			    		url : this.resourcePrefix + "res/geo/world/" + country + ".json"
+			    	});
+			    	var countryJSON = jQuery.parseJSON(countryDB.responseText);
+			    	for(var region in countryJSON){
+			    		this.locationsJSON[country].r[region] = {
+			    			loaded : false,
+			    			l : countryJSON[region],
+			    			c : {}
+			    		};
+			    	}
+				}
+				 for(var region in this.locationsJSON[country].r){
+					 
+					 if(!cbo.getSelectedKey() == region) cbo.setSelectedKey(region);	// Take first entry
+					 cbo.addItem(new sap.ui.core.ListItem({
+						key : region,
+						text : region
+					}));
+				 }
 			 }
 		}
 	 },
@@ -712,9 +714,10 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 			if (this._data && this._data.dimensions && this._data.dimensions.length>0) {
 				var geoCoderAdapter = null;
 				if(hierProp.geoCoder=="local"){
+					if(this.localMissing) alert("Local geocoding files moved to Standard Map Pack due to size and count of files.  It does not look like you have this installed on your Design Studio client.  Please install Standard Map Pack if you are using local geocoder and try again.  Prepare yourself for an error message after clicking OK.  Sorry!");
 					geoCoderAdapter = new org_scn_geocode_local();
 					geoCoderAdapter.mode = "aps";
-					geoCoderAdapter.resourcePrefix = "/aad/zen/mimes/sdk_include/org.scn.community.geovis/";
+					geoCoderAdapter.resourcePrefix = "/aad/zen/mimes/sdk_include/org.scn.community.geovispack.standard/";
 				}
 				if(hierProp.geoCoder=="mapbox"){
 					geoCoderAdapter = new org_scn_geocode_mapbox();
@@ -857,23 +860,29 @@ sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.GeoHierarch
 	},
 	init : function(){
 		var that = this;
-		this.resourcePrefix = "/aad/zen/mimes/sdk_include/org.scn.community.geovis/";
-		if(!this.locationsJSON){
-	    	var geoDB = $.ajax({
-	    		async : false,
-	    		url : this.resourcePrefix + "res/Maps/geo/world.json"
-	    	});
-	    	var worldJSON = jQuery.parseJSON(geoDB.responseText);
-	    	this.locationsJSON = {};
-	    	for(var country in worldJSON){
-	    		this.locationsJSON[country] = {
-	    			loaded : false,
-	    			l : worldJSON[country],
-	    			r : {}
-	    		};
-	    	}
-	    	//this.locationsJSON = jQuery.parseJSON(geoDB.responseText);
+		this.resourcePrefix = "/aad/zen/mimes/sdk_include/org.scn.community.geovispack.standard/";
+		try{
+			if(!this.locationsJSON){
+		    	var geoDB = $.ajax({
+		    		async : false,
+		    		url : this.resourcePrefix + "res/geo/world.json"
+		    	});
+		    	var worldJSON = jQuery.parseJSON(geoDB.responseText);
+		    	this.locationsJSON = {};
+		    	for(var country in worldJSON){
+		    		this.locationsJSON[country] = {
+		    			loaded : false,
+		    			l : worldJSON[country],
+		    			r : {}
+		    		};
+		    	}
+		    	//this.locationsJSON = jQuery.parseJSON(geoDB.responseText);
+			}
+		}catch(e){
+			this.locationsJSON = {"us": ["38.0000","-97.0000"]};
+    		this.localMissing = true;
     	}
+		
 		this._value = [];
 		this.leftSide = new sap.ui.commons.layout.VerticalLayout({
 			width : "125px"
