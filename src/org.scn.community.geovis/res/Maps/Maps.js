@@ -332,7 +332,7 @@ sap.designstudio.sdk.Component.subclass(ownComponentName,function() {
     	this.localGeocoder = new org_scn_geocode_local();
     	this.localGeocoder.resourcePrefix = this.lookupPfx;
     	this.localGeocoder.mode = "component";
-    	// Pull in world JSON geodata.  Perhaps move this out of component to local geocoder.
+    	// Pull in world JSON geodata.  Moved this out of component.
     	try{
     		if(!this.locationsJSON){
 		    	var geoDB = $.ajax({
@@ -349,7 +349,12 @@ sap.designstudio.sdk.Component.subclass(ownComponentName,function() {
 		    		};
 	    		}
     		}
-			// Design Studio Utility Property Class
+    	}catch(e){
+    		this.locationsJSON = {};
+    		this.localMissing = true;
+    		//alert("Local Geocoder DB files not found.  Load Standard Map Pack." + e);
+    	}
+    		// Design Studio Utility Property Class
 	    	if (!this.propUtil)	this.propUtil = new AutoPropertyUtility({
 	    		properties : getDesignStudioProperties(),
 	    		componentRef : this
@@ -378,9 +383,6 @@ sap.designstudio.sdk.Component.subclass(ownComponentName,function() {
 	    	*/
 	    	// this.redraw();
 	    	this._alive = true;
-    	}catch(e){
-    		alert("Error during component init:\n\n" + e);
-    	}
 	};
 	this.getGeoCoderCacheAsString = function(){
 		return JSON.stringify(this._geoCache);

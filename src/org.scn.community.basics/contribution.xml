@@ -3389,8 +3389,8 @@
 	<property type="int" title="Update Interval (in ms)" id="interval">
 	</property>
 	<initialization>
-		<defaultValue property="WIDTH">230</defaultValue>
-		<defaultValue property="HEIGHT">400</defaultValue>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">40</defaultValue>
 		<defaultValue property="utcoffset">0</defaultValue>
 		<defaultValue property="showtimeonly">true</defaultValue>
 		<defaultValue property="interval">5000</defaultValue>

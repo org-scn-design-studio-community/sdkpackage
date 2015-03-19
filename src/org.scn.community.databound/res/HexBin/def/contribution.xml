@@ -35,7 +35,6 @@
 	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
 	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
 	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
-	
 	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
 	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
 	<!--
