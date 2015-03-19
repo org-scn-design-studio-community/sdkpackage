@@ -67,8 +67,10 @@
 			 	});
 	    	// Call super
 	    	org_scn_community_databound_BaseViz.call(this, d3,{
+	    		/*
 	    		styleClasses : { value : ""},
 				centerFeature : { value : ""},
+				*/
 				measureMember :  { 
 					value : "",
 					opts : {
@@ -228,9 +230,18 @@
 					opts : {
 						apsControl : "combobox",
 						desc : "Color Scale Method",
-						cat : "Legend",
+						cat : "Cosmetics-Scale",
 						options : [{key : "quantile", text : "Quantile"},
 						         {key : "quantize", text : "Quantize"}]
+					}
+				},
+				floor :  { 
+					value : 0,
+					opts : {
+	    				desc : "Minimum Value for Scale",
+	    				cat : "Cosmetics-Scale",
+	    				tooltip : "Selected Value",
+						apsControl : "spinner"
 					}
 				},
 				mapData : { 
@@ -281,7 +292,6 @@
 						apsControl : "spinner"	
 					}
 				},
-				floor :  { value : 0 },
 	    		selectedValue : { 
 	    			value : 0.0,
 	    			opts : {
@@ -303,6 +313,14 @@
 	    			}
 				}
 			});
+	    	this.componentInfo.title = "Choropleth Map";
+	    	this.componentInfo.description = "A Choropleth Map is a thematic map in which areas are shaded or pattened in proportion to the measurment of the measure being displayed on the map, such as population density or per-capita income.  Definition source: <a target='_blank' href='http://en.wikipedia.org/wiki/Choropleth_map'>Wikipedia: Choropleth Map</a>  "+
+	    	"This component is loosely based on and inspired by <a target='_blank' href='http://bl.ocks.org/mbostock/4060606'>Mike Bostock's Choropleth Example</a> with many additional enhancements made to allow ease of use and configuration in Design Studio.";
+	    	this.componentInfo.icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAgVJREFUeNqcU01vEkEYfmZmF+JWsECTViyQaGs9eNCYaPTkD/DimYNnEo8eOfsT7JkDP8CDv8GLMWliNWqKTSm0gHZBY6W78+E7Q9iCPclmdjP7zvs879czrNFovAJQw2LPtqe1rlWr1YXQzWaz5iml3M+L16eQv2Nwj2HYayFX3AAYLcboBeSPjyhX1pHxzzA2KTx/XITFJgTC5zBpAUYEnPY8JRzQfu6ttBF5XZTXPHBmoBmngxkCYwzEJQ9MUDTO4QUe/CXfZZASCjdXR+iMJQrLlCHZODcOM5fBqN+CUdqeQqQ9jAYtF30z26d9B5kACHvfHAFsAmv3JwRSSse2cuMWoA2sR3jwBfnKFnyK/vT6EJf9a2jttbGxue7KshwWY7EJQSn7E0ozDKKM60GQVnhS+oB8MMbn4694u/ce+3EegjKsFMq4c/XhOQGg8Cj3Bpn0EpaDK3hnTnB36whGR9hpf8LR8DgZndIaByeHRIBzgjM5xu7hrnMIUgFOQ0n/BfR/DSCVvDB/a/unBI3u/neYGadO2L0A7JCPdeJCwNyeIdBaIV/MUle1E06vHWK1lJsDT202iOBiksmUQGkqI5KIaSy2y+M4xp8omiOYtXESUlKCExINVpuJOGhR80ht2swRzNoM05OGToUU+Fk8e/Dyvy5SokS6jdv1en3h6/xXgAEArt0tznrHscwAAAAASUVORK5CYII=";
+	    	this.componentInfo.topics.push({
+	    		title : "Choropleth Map",
+	    		content : "Choropleth Maps will look at your flattened data set, picking up dimension values found in Rows, such as State, or Country being ideal candidates.  These values are referenced against the Map you choose in the Mapping section.  For example, if you choose a World map that contains Features at the country level, you'd want to supply Country in Rows.  For sub-region/states, a Map of Country would be suitable, and so-on."
+	    	});
 	    	this.projections = {
 	    	   "Albers USA": d3.geo.albersUsa(),
 	    	   "Mercator": d3.geo.mercator().scale(490 / 2 / Math.PI),
@@ -1020,8 +1038,10 @@
 			 */
 			this.updateProjection = function(){
 				// Determine Center of Map
-		    	// this.centroid = d3.geo.centroid(this._mapJSON);
-		    	var centerFeature = null;
+		    	this.centroid = d3.geo.centroid(this._mapJSON);
+		    	/*
+		    	// Center Feature Logic - TODO.
+				var centerFeature = null;
 		    	for(var i=0;i<this._mapJSON.features.length;i++){
 		    		var f = this._mapJSON.features[i];
 		    		if(f.properties && f.properties[this.featureProperty()] && f.properties[this.featureProperty()]==this.centerFeature()){
@@ -1029,6 +1049,7 @@
 		    		}
 		    	}
 		    	this.centroid = d3.geo.centroid(centerFeature);
+		    	*/
 		    	// Select a projection
 		    	this.proj = this.projections[this.projection()] || this.projections["Mercator"];
 		    	this.proj
@@ -1054,7 +1075,8 @@
 		    	this.proj.scale(s).translate(t);
 		    	// Center if projection supports
 		    	if(typeof this.proj.center === "function"){
-		    		if(centerFeature) this.proj.center(this.centroid);
+		    		//if(centerFeature) 
+		    		this.proj.center(this.centroid);
 		    	}
 		    	// Rotate if projection supports
 		    	if (typeof this.proj.rotate === "function") {

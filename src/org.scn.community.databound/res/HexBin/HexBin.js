@@ -70,6 +70,13 @@
 					}
 				},
 			});
+	    	this.componentInfo.title = "HexBin Chart";
+	    	this.componentInfo.description = "A HexBin Chart is useful for aggregating data into a clustered visualization where analysis of density of occurences is important.  Rather than say, a Scatter Plot which may contain hundreds of points in close proximity, a HexBin Chart will 'bin' or 'cluster' these within a given hexagonal radius, apply a color based on an ordinal scale dictated by your color palette."+
+	    	"This chart is based on and inspired by <a target='_blank' href='https://github.com/d3/d3-plugins/tree/master/hexbin'>D3's Hexagonal Binning plugin</a> which itself is based on <a target='_blank' href='http://indiemaps.com/blog/2011/10/hexbins/'>Zachary Forest Johnson's work</a>";
+	    	this.componentInfo.topics.push({
+	    		title : "HexBin Chart",
+	    		content : "HexBin Charts have an X and Y Axis similar to a Scatter Chart, however instead of individual plots, they are aggregated to hexagons of a certain radius.  As such, you have properties such as Radius, and color palette, and scale thresholds to control visualization."
+	    	});
 	    	var parentInit = this.init;
 	    	this.init = function(){
 	    		parentInit.call(this);

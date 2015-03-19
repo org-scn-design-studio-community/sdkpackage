@@ -87,6 +87,8 @@
 					} 
 				}
 			});
+	    	this.componentInfo.title = "ScatterPlot/Bubble Chart";
+	    	this.componentInfo.description = "This is a ScatterPlot and Bubble Chart Component.  X and Y measures are taken from columns, defaulting to the first 2 columns.  A 3rd Z measure representing Bubble Size can be set by explicitely naming the column Member."
 	    	var parentInit = this.init;
 	    	this.init = function(){
 	    		parentInit.call(this);

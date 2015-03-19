@@ -13,6 +13,7 @@
 	<property id="graticuleOn" title="Show Graticule Grid" type="boolean" visible="false" />
 	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
 	<property id="mapData" title="Map Data" type="String" visible="false"/>
+	<property id="floor" title="Minimum Scale Value" type="float"/>
 	<property id="labelSize" title="Label Size (px)" type="float"/>
 	<property id="gradientLeft" title="Horizontal Scale Left" type="int"/>
 	<property id="gradientRight" title="Horizontal Scale Right" type="int"/>

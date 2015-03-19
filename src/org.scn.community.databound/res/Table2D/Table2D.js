@@ -53,6 +53,13 @@
 	    			}
 	    		}
 	    	 });
+	    	 this.componentInfo.title = "2D Crosstab";
+		    	this.componentInfo.description = "A simple flattened two-dimensional (Rows and Columns) representation of your data source.  Multiple dimensions in either rows or columns are concatenated.";
+		    	this.componentInfo.icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAFmSURBVDhPpZA7SwNBFIXnf/ggiK2Vf2DAv+ADROMUYmdjpQgSSBMfhWCCQQlYBXygloJNmoRoVBR8IBbiLzAiqDFrjufObsi6Zo3ohY+5e+bew5lVarwENXYENVqEGiHDeagM3FO+m2kyKzuyK03mHig9AkVy/sTBFeD6GTgtu0jv1844s/tAzdBERYu44kVPFjAHQPqEF2mgaxvo3HLp2qHGBHLWte49ajaBREuRpMcqiRag2hJk3mMBqmPRPetaO/u+fTfBJRP0bgITh8D6BQ0GCwjWze2d1zVqKbUWYtCf90Ya1cxgNpFs8gS+Xw0V7EIrZuLLIQkG8qg4NVSqjsX5qNkFOa32Tng/Ncf/9KOBDzGQ87Xi4OWtavvJ6TgNNnL4hsl9iRpGLBajAYelNBclQfa4bA2CJQvB+reBsQb+6HV++QTXICSB/wcKshDUjPEMZEnn/mqgGTnCxg+1iNYt0UbjE3akCrn/ESejAAAAAElFTkSuQmCC";
+		    	this.componentInfo.topics.push({
+		    		title : "2D Crosstab",
+		    		content : "A simple HTML table containing your datasource values.  Table appearance intended to be managed by the CSS Class you assign to it."
+		    	});
 
 			/**
 			 * Fires after property change.

@@ -61,7 +61,11 @@ function org_scn_community_databound_AxisChart(d3, options){
 	};
 	for(var prop in options) properties[prop] = options[prop];
 	org_scn_community_databound_BaseViz.call(this,d3,properties);
-
+	this.componentInfo.title = "Axis Chart";
+	this.componentInfo.topics.push({
+		title : "Axis Chart",
+		content : "This component is a chart that has at least one Axis.  You will have some axis formatting options such as axis orientation and tick formatting"
+	});
 	var parentPreReq = this.preReqCheck;
 	this.preReqCheck = function(){
 		var status = parentPreReq.apply(this);

@@ -79,6 +79,9 @@
 	    			}
 	    		}
 			});
+	    	/*
+	    	 * TODO: Remove?
+	    	 */
 	    	this.setSelection = function(d){
 	    		if(d) {
 	    			var changes = [];
@@ -95,7 +98,13 @@
 	    			that.fireEvent("onSelect");
 	    		}
 	    	};
-	    	
+	    	this.componentInfo.title = "Marimekko Chart";
+	    	this.componentInfo.description = "A Marimekko Chart is a stacked version of a variable width column chart.  This chart type is popular where departments analyze segmentation of markets, for example. The chart's name is coined from patterns found in a Marimekko fabric.";
+	    	this.componentInfo.icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABVSURBVDhPY6gnEYA0KG30QUNognDuMNKAFcBVQ9TBGSANDIteoCFyNKABwhrQuCRrgANinQQXx6nhf706HKFrwArQNMABSAOyHAShCcK5UA0kgPp6AFKfZrgAwbpiAAAAAElFTkSuQmCC";
+	    	this.componentInfo.topics.push({
+	    		title : "Marimekko Chart",
+	    		content : "Marimekko Charts have an X and Y Axis that by default show percentages to illustrate share (such as a market share).  The actual values can be seen in each plot's area."
+	    	});
 	    	var parentInit = this.init;
 	    	this.init = function(){
 	    		parentInit.call(this);
