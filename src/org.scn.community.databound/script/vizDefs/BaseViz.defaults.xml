@@ -11,6 +11,7 @@
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="pollInterval">250</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
+		<defaultValue property="plotThickness">1.0</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
 		<defaultValue property="legendWidth">125</defaultValue>

@@ -7,6 +7,8 @@
 	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
 	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String" visible="false"/>
 	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
+	<property id="globeColor" title="Globe Colour" type="String" visible="false"/>
+	<property id="graticuleColor" title="Graticule Colour" type="String" visible="false"/>
 	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
 	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
 	<property id="tooltipOn" title="Enable Tooltips" type="boolean" visible="false" />

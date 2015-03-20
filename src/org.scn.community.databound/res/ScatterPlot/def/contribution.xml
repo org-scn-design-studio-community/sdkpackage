@@ -59,6 +59,7 @@
 	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
 	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
 	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
+	<property id="plotThickness" title="Plot Thickness" type="float" visible="false"/>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
@@ -121,6 +122,7 @@
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="pollInterval">250</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
+		<defaultValue property="plotThickness">1.0</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
 		<defaultValue property="legendWidth">125</defaultValue>

@@ -95,6 +95,22 @@
 						apsControl : "color"	
 					}
 				},
+				globeColor :  { 
+					value : "",
+					opts : {
+						desc : "Globe Color",
+						cat : "Cosmetics-Colors",
+						apsControl : "color"	
+					}
+				},
+				graticuleColor :  { 
+					value : "",
+					opts : {
+						desc : "Graticule Color",
+						cat : "Cosmetics-Colors",
+						apsControl : "color"	
+					}
+				},
 				projection : { 
 					value : "Mercator",
 					opts : {
@@ -695,9 +711,9 @@
 				_labels.exit().remove();
 				// Update features
 				
-	    		this.graticulePath.style("stroke-width", 1 / this.zoomScale);
-	    		this.globePath.style("stroke-width", 1 / this.zoomScale);
-	    		this.pathGroup.selectAll("path").style("stroke-width", 1 / this.zoomScale)
+	    		this.graticulePath.style("stroke-width", this.plotThickness() / this.zoomScale);
+	    		this.globePath.style("stroke-width", this.plotThickness() / this.zoomScale);
+	    		this.pathGroup.selectAll("path").style("stroke-width", this.plotThickness() / this.zoomScale)
 	    		this.labelGroup.selectAll("text")
 	    			.style("font-size", (this.chartValueSize() / this.zoomScale) + "px")
 	    			// Get from shadow copy that's already updated.
@@ -769,10 +785,11 @@
 					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
 					.attr("dy", ".35em")
 					.text(function(d) { return d.properties[that.labelProperty()]; });
-
+				
 				// Update graticule
 	    		this.graticulePath
 	    			.transition().duration(this.ms())
+	    			.style("stroke",this.graticuleColor())
 	    			.attr('opacity', function(){ if(that.graticuleOn()){
 	    				return 1;
 	    			}else{
@@ -782,6 +799,7 @@
 	    		// Update globe
 	    		this.globePath
 	    			.transition().duration(this.ms())
+	    			.style("fill",this.globeColor())
 	    			.attr('opacity', function(){ if(that.globeOn()){
 	    				return 1;
 	    			}else{

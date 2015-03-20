@@ -246,6 +246,7 @@
 	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
 	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
 	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
+	<property id="plotThickness" title="Plot Thickness" type="float" visible="false"/>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
@@ -267,6 +268,8 @@
 	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
 	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String" visible="false"/>
 	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
+	<property id="globeColor" title="Globe Colour" type="String" visible="false"/>
+	<property id="graticuleColor" title="Graticule Colour" type="String" visible="false"/>
 	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
 	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
 	<property id="tooltipOn" title="Enable Tooltips" type="boolean" visible="false" />
@@ -356,6 +359,7 @@
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="pollInterval">250</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
+		<defaultValue property="plotThickness">1.0</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
 		<defaultValue property="legendWidth">125</defaultValue>
@@ -375,7 +379,9 @@
 		<!-- End of Base Defaults -->
 		<!-- Begin of Choropleth Defaults -->
 		<defaultValue property="chartTitle">Choropleth Map</defaultValue>
-		<defaultValue property="defaultFillColor">#E5EADE</defaultValue>
+		<defaultValue property="defaultFillColor">#E9E5DC</defaultValue>
+		<defaultValue property="globeColor">#7FB5DF</defaultValue>
+		<defaultValue property="graticuleColor">#808080</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
 		<defaultValue property="hoverColor">#999900</defaultValue>
 		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>
@@ -901,6 +907,7 @@
 	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
 	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
 	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
+	<property id="plotThickness" title="Plot Thickness" type="float" visible="false"/>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
@@ -969,6 +976,7 @@
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="pollInterval">250</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
+		<defaultValue property="plotThickness">1.0</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
 		<defaultValue property="legendWidth">125</defaultValue>
@@ -1210,6 +1218,7 @@ __n__}
 	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
 	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
 	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
+	<property id="plotThickness" title="Plot Thickness" type="float" visible="false"/>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
@@ -1260,6 +1269,7 @@ __n__}
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="pollInterval">250</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
+		<defaultValue property="plotThickness">1.0</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
 		<defaultValue property="legendWidth">125</defaultValue>
@@ -1791,6 +1801,7 @@ __n__}
 	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
 	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
 	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
+	<property id="plotThickness" title="Plot Thickness" type="float" visible="false"/>
 	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
 	<property id="margin" type="int" title = "Margin Size" visible="false"/>
 	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
@@ -1853,6 +1864,7 @@ __n__}
 		<defaultValue property="ms">750</defaultValue>
 		<defaultValue property="pollInterval">250</defaultValue>
 		<defaultValue property="plotAlpha">95</defaultValue>
+		<defaultValue property="plotThickness">1.0</defaultValue>
 		<defaultValue property="showValues">true</defaultValue>
 		<defaultValue property="legendOn">true</defaultValue>
 		<defaultValue property="legendWidth">125</defaultValue>

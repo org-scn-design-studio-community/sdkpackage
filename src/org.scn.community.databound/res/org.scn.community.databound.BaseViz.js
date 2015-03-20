@@ -196,6 +196,14 @@ function org_scn_community_databound_BaseViz(d3, options){
 				apsControl : "spinner"	
 			}
 		},
+		plotThickness : {
+			value : 1.0,
+			opts : {
+				desc : "Plot Thickness (px)",
+				cat : "Cosmetics-Plot",
+				apsControl : "spinner"	
+			}
+		},
 		ms : {
 			value : 750,
 			opts : {
