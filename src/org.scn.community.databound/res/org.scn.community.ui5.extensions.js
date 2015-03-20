@@ -196,6 +196,10 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 			width : "100%",
 			wrapping : sap.ui.core.Wrapping.Off
 		});
+		this.geoJSONText.attachChange(function(oControlEvent){
+			this._mapData = oControlEvent.getSource().getValue();
+			that.fireMapDataChange();
+		},this);
 		this.mapContents.addContent(this.geoJSONText);
 		this.mapProperties.addContent(this.tableAttributes);
 		try{
