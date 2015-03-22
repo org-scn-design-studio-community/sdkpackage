@@ -143,7 +143,7 @@ public class Property {
 
 	public String getNameCut() {
 		if(!this.name.startsWith("D")) {
-			throw new RuntimeException("Property Must Start with D");
+			return this.name;
 		}
 		
 		return this.name.substring(1);

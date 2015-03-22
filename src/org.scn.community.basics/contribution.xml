@@ -1409,6 +1409,64 @@
 
 </component>
 <component
+	id="Gauge"
+	title="Gauge (Speedometer)"
+	tooltip="Displays a Gauge (Speedometer)"
+	icon="res/Gauge/Gauge.png"
+	handlerType="div"
+	group="ScnCommunityBasics"
+	propertySheetPath="res/Gauge/aps/GaugePropertyPage.html">
+		
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/Gauge/Gauge.js</jsInclude>
+		
+	<property id="haveNumbers" title="Show Number" type="boolean"/>
+	<property type="int" title="Number of Big Ticks" id="numOfBigTicks"/>
+	<property type="int" title="Number of Small Ticks" id="numOfSmallTicks"/>
+	<property type="float" title="Indicator Value" id="indicatorValue"/>
+	<property type="boolean" title="Show Value" id="showValue"/>
+	<property type="String" title="Showed Value" id="showedValue"/>
+	<property type="Color" title="Needle Color" id="needleColor"/>
+	<property type="String" title="Title" id="title"/>
+	<property type="int" title="Start Value" id="startValue"/>
+	<property type="int" title="End Value" id="endValue"/>
+	<property type="boolean" title="Gradient Color" id="gradientColor"/>
+	<property type="Color" title="First Color" id="firstColor"/>
+	<property type="Color" title="Second Color" id="secondColor"/>
+	<property type="Color" title="Third Color" id="thirdColor"/>
+	<property type="int" title="Start of Second Color" id="startSecondColor"/>
+	<property type="int" title="Start of Third Color" id="startThirdColor"/>
+	<property type="Color" title="Main Color" id="mainColor"/>
+	<property type="Color" title="Text and Ticks Color" id="ttColor"/>
+
+	<initialization>
+		<defaultValue property="TOP">0</defaultValue>
+		<defaultValue property="LEFT">0</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+		<defaultValue property="showNumbers">true</defaultValue>
+		<defaultValue property="numOfBigTicks">5</defaultValue>
+		<defaultValue property="numOfSmallTicks">2</defaultValue>
+		<defaultValue property="indicatorValue">25</defaultValue>
+		<defaultValue property="showedValue">25 %</defaultValue>
+		<defaultValue property="needleColor">#D80000</defaultValue>
+		<defaultValue property="title">Insert Title Here</defaultValue>
+		<defaultValue property="showValue">true</defaultValue>
+		<defaultValue property="startValue">0</defaultValue>
+		<defaultValue property="endValue">100</defaultValue>
+		<defaultValue property="gredientColor">true</defaultValue>
+		<defaultValue property="firstColor">#FA1E1E</defaultValue>
+		<defaultValue property="secondColor">#FCFA4E</defaultValue>
+		<defaultValue property="thirdColor">#2BFC23</defaultValue>
+		<defaultValue property="startSecondColor">20</defaultValue>
+		<defaultValue property="startThirdColor">80</defaultValue>
+		<defaultValue property="mainColor">#EDEDED</defaultValue>
+		<defaultValue property="ttColor">#000000</defaultValue>
+		
+		
+	</initialization>
+	</component>
+<component
 	id="ImageCarousel"
 	title="Image Carousel"
 	icon="res/ImageCarousel/ImageCarousel.png"

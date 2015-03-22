@@ -9,14 +9,14 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Chart Type Property
 	 */	
-	void setChartType( /* &nbsp; */  String chartType){*
+	void setChartType( /* &nbsp; */  choice chartType){*
 		this.DChartType = chartType;
 	*}
 
 	/**
 	 * Gets Chart Type Property
 	 */	
-	String getChartType() {*
+	choice getChartType() {*
 		return this.DChartType;
 	*}
 
@@ -65,14 +65,14 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Starting Color Palette Property
 	 */	
-	void setColorPalette( /* &nbsp; */  String colorPalette){*
+	void setColorPalette( /* &nbsp; */  choice colorPalette){*
 		this.DColorPalette = colorPalette;
 	*}
 
 	/**
 	 * Gets Starting Color Palette Property
 	 */	
-	String getColorPalette() {*
+	choice getColorPalette() {*
 		return this.DColorPalette;
 	*}
 
@@ -93,14 +93,14 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Legend Position Property
 	 */	
-	void setLegendPosition( /* &nbsp; */  String legendPosition){*
+	void setLegendPosition( /* &nbsp; */  choice legendPosition){*
 		this.DLegendPosition = legendPosition;
 	*}
 
 	/**
 	 * Gets Legend Position Property
 	 */	
-	String getLegendPosition() {*
+	choice getLegendPosition() {*
 		return this.DLegendPosition;
 	*}
 

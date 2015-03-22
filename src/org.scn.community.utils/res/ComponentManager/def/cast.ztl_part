@@ -52,6 +52,9 @@
 	/**Cast to Fish Eye component*/
 	org.scn.community.basics.FishEye returnAsScnFishEye (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Gauge (Speedometer) component*/
+	org.scn.community.basics.Gauge returnAsScnGauge (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Image Carousel component*/
 	org.scn.community.basics.ImageCarousel returnAsScnImageCarousel (Component inputComponent) {* return inputComponent; *}
 
@@ -112,6 +115,9 @@
 	/**Cast to Road Map component*/
 	org.scn.community.basics.RoadMap returnAsScnRoadMap (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to RSSFeedReader component*/
+	org.scn.community.basics.RSSFeedReader returnAsScnRSSFeedReader (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Segmented Button component*/
 	org.scn.community.basics.SegmentedButton returnAsScnSegmentedButton (Component inputComponent) {* return inputComponent; *}
 
@@ -135,6 +141,9 @@
 
 	/**Cast to Value Help Field component*/
 	org.scn.community.basics.ValueHelpField returnAsScnValueHelpField (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to WorldTime component*/
+	org.scn.community.basics.WorldTime returnAsScnWorldTime (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Choropleth Map component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}

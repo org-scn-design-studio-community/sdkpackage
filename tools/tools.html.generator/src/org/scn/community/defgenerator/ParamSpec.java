@@ -50,7 +50,7 @@ public class ParamSpec {
 			type = type.substring(0, type.indexOf(","));
 		}
 		
-		if(type.equals("Url")) {
+		if(type.equals("Url") || type.equals("Color")) {
 			type = "String";
 		}
 		return type;
@@ -342,10 +342,11 @@ public class ParamSpec {
 				}
 
 				 String nameCut = this.parentProperty.getNameCut();
+				 nameCut = Helpers.makeFirstUpper(nameCut);
 				 template = template.replace("%PROPERTY_CAPITAL_CUT%", nameCut);
 				 template = template.replace("%PROPERTY_SMALL_CUT%", nameCut.substring(0,1).toLowerCase(Locale.ENGLISH) + nameCut.substring(1));
 				 template = template.replace("%PROPERTY_CAPITAL%", this.parentProperty.getName());
-				 template = template.replace("%PROPERTY_TYPE%", this.parentProperty.getType());
+				 template = template.replace("%PROPERTY_TYPE%", this.getType());
 				 template = template.replace("%PROPERTY_TYPE_OVERLOAD%", type);
 				 template = template.replace("%HELP%", this.parentProperty.getHelp());
 				 template = template.replace("%NAME%", this.parentProperty.getTitle());

@@ -23,6 +23,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\FioriButton\def\contribution.xml ^
 ..\res\FioriToolbar\def\contribution.xml ^
 ..\res\FishEye\def\contribution.xml ^
+..\res\Gauge\def\contribution.xml ^
 ..\res\ImageCarousel\def\contribution.xml ^
 ..\res\KpiView\def\contribution.xml ^
 ..\res\LaunchPad\def\contribution.xml ^
@@ -79,6 +80,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\FioriButton\def\contribution.ztl ^
 ..\res\FioriToolbar\def\contribution.ztl ^
 ..\res\FishEye\def\contribution.ztl ^
+..\res\Gauge\def\contribution.ztl ^
 ..\res\ImageCarousel\def\contribution.ztl ^
 ..\res\KpiView\def\contribution.ztl ^
 ..\res\LaunchPad\def\contribution.ztl ^
