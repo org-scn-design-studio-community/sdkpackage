@@ -81,6 +81,7 @@
 					};
 					vals = this.flatData.formattedValues.slice();
 				}
+				vals = jQuery.parseJSON(JSON.stringify(vals));	// Deep copy, shallow copy doesn't work on deep arrays
 				//this.firePropertiesChanged(["stringData"]);
 				// Splice in row header label
 				for(var i=0;i<vals.length;i++){
