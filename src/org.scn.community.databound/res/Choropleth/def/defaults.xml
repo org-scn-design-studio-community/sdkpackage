@@ -20,4 +20,9 @@
 		<defaultValue property="roll">0.0</defaultValue>
 		<defaultValue property="floor">0.0</defaultValue>
 		<defaultValue property="labelSize">10</defaultValue>
+		<defaultValue property="bubbleMin">3</defaultValue>
+		<defaultValue property="bubbleMax">50</defaultValue>
+		<defaultValue property="bubbleAlpha">50</defaultValue>
+		<defaultValue property="bubbleColor">#006699</defaultValue>
+		
 		<!-- End of Choropleth Defaults -->

@@ -32,6 +32,12 @@ class org.scn.community.databound.Choropleth extends org.scn.community.shared.Co
 		return this.measureMember = measure;
 	*}
 	/**
+	Set Bubble Measure to use for coloring
+	*/
+	void setBubbleMeasure(/*Measure*/String measure) {*
+		return this.bubbleMember = measure;
+	*}
+	/**
 	Set Projection Method
 	*/
 	void setProjection(/*Projection*/String projection) {*
@@ -48,6 +54,24 @@ class org.scn.community.databound.Choropleth extends org.scn.community.shared.Co
 	*/
 	void setColorPalette(/*Color Palette*/String palette) {*
 		this.colorPalette = palette;
+	*}
+	/**
+	Set Bubble Color
+	*/
+	void setBubbleColor(/*Color*/String color) {*
+		this.bubbleColor = color;
+	*}
+	/**
+	Set Feature Attribute from GeoJSON that matches values in rows
+	*/
+	void setFeatureProperty(/*Attribute*/String attribute) {*
+		this.featureProperty = attribute;
+	*}
+	/**
+	Set Label Attribute from GeoJSON that should be used for labeling
+	*/
+	void setLabelProperty(/*Attribute*/String attribute) {*
+		this.labelProperty = attribute;
 	*}
 }
 class org.scn.community.databound.Table extends org.scn.community.shared.DataComponent {

@@ -2,11 +2,16 @@
     "maps" : [ { "label" : "Global",
           "maps" : [ { "label" : "Countries",
                 "url" : "world-countries.json"
+              },{ "label" : "Countries (Low-Res)",
+                "url" : "world-countries-low.json"
               } ]
         },
         { "label" : "North America",
           "maps" : [ { "label" : "United States",
                 "url" : "NorthAmerica/USA-regions.json"
+              },
+              { "label" : "United States (Low-Res)",
+                "url" : "NorthAmerica/USA-regions-low.json"
               },
               { "label" : "Canada",
                 "url" : "NorthAmerica/Canada-regions.json"

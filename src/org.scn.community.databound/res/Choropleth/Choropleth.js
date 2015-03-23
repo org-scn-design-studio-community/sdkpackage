@@ -79,10 +79,26 @@
 						apsControl : "text"
 					}					
 				},
+				bubbleMember :  { 
+					value : "",
+					opts : {
+						desc : "Bubble Measure",
+						cat : "Data",
+						apsControl : "text"
+					}					
+				},
 				defaultFillColor :  { 
 					value : "#E5EADE",
 					opts : {
 						desc : "Default Land Color",
+						cat : "Cosmetics-Colors",
+						apsControl : "color"	
+					}
+				},
+				bubbleColor :  { 
+					value : "#006699",
+					opts : {
+						desc : "Bubble Color",
 						cat : "Cosmetics-Colors",
 						apsControl : "color"	
 					}
@@ -258,6 +274,30 @@
 	    				cat : "Cosmetics-Scale",
 	    				tooltip : "Selected Value",
 						apsControl : "spinner"
+					}
+				},
+				bubbleMin : { 
+					value : 5,
+					opts : {
+						desc : "Minimum Bubble Size",
+						cat : "Cosmetics-Scale",
+						apsControl : "spinner"	
+					}
+				},
+				bubbleMax : { 
+					value : 20,
+					opts : {
+						desc : "Maximum Bubble Size",
+						cat : "Cosmetics-Scale",
+						apsControl : "spinner"	
+					}
+				},
+				bubbleAlpha : { 
+					value : 50,
+					opts : {
+						desc : "Bubble Alpha",
+						cat : "Cosmetics-Plot",
+						apsControl : "spinner"	
 					}
 				},
 				mapData : { 
@@ -621,6 +661,8 @@
 		        this.projPath = d3.geo.path().projection(this.proj);
 	    		this.pathGroup = this.plotLayer.append('g')
     				.attr('class', 'path-group');
+	    		this.bubbleGroup = this.plotLayer.append('g')
+					.attr('class', 'bubble-group');
 	    		this.labelGroup = this.plotLayer.append('g')
 					.attr('class', 'label-group');
 	    		this.shadowPathGroup = this.shadowPlotArea.append('g')
@@ -650,24 +692,33 @@
 			    return this;
 	    	}
 	    	/**
-			 * Update Color Range
+			 * Update Color and Bubble Ranges
 			 */
 			this.updateColorRange = function(){
 		        var d, domain;
 		        this.valuesSet = [this.floor()];
+		        this.bubbleSet = [this.floor()];
 	        	// Get values for range
 		        for (d = 0; d < this._mapJSON.features.length; d++) {
 	        		if(this._mapJSON.features[d].properties.designStudioMeasures){
 	        			var mm = this.measureMember();
+	        			var bm = this.bubbleMember();
 						if(!mm){
-							if(this.flatData && this.flatData.columnHeaders && this.flatData.columnHeaders.length > 1) mm = this.flatData.columnHeaders[0];
+							if(this.flatData && this.flatData.columnHeaders && this.flatData.columnHeaders.length > 0) mm = this.flatData.columnHeaders[0];
 						}
-	        			this.valuesSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[mm]));	
+	        			if(bm && this._mapJSON.features[d].properties.designStudioMeasures[bm]){
+	        				this.bubbleSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[bm]));
+	        			}
+						this.valuesSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[mm]));	
 	        		}else{
 	        			this.valuesSet.push(null);
+	        			this.bubbleSet.push(null);
 	        		}
 		        }
 		        this.valuesSet.sort(function(a, b) { return a - b; });
+		        this.bubbleScale = d3.scale.linear()
+					.range([this.bubbleMin(),this.bubbleMax()]);
+		        this.bubbleScale.domain([d3.min(this.bubbleSet),d3.max(this.bubbleSet)]);
 		        // Make range with appropriate values
 		        var cp = [];
 		        if(this.colorPalette()!="") cp = this.colorPalette().split(",");
@@ -774,6 +825,7 @@
 				
 				// Data
 				var features = this.pathGroup.selectAll('path').data(this._mapJSON.features);
+				var bubbles = this.bubbleGroup.selectAll('circle').data(this._mapJSON.features);
 				var labels = this.labelGroup.selectAll('text').data(this._mapJSON.features);
 				// Enter
 				var newFeatures = features.enter().append("path")
@@ -785,6 +837,15 @@
 					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
 					.attr("dy", ".35em")
 					.text(function(d) { return d.properties[that.labelProperty()]; });
+				
+				var newBubbles = bubbles.enter().append("circle")
+					.attr('class', function(d) { return "subunit-bubble " + d.properties[that.labelProperty()]; })
+					.attr("pointer-events", "none")
+					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
+					.attr("r", 0)
+					.attr("opacity", 0)
+					.attr("fill", this.bubbleColor());
+				
 				
 				// Update graticule
 	    		this.graticulePath
@@ -806,7 +867,6 @@
 	    				return 0;
 	    			}})
         			.attr('d', this.projPath);
-	    		
 				this.pathGroup.selectAll("path")
 					.transition().duration(this.ms())
 					.attr("class",function(d){return "path";})
@@ -820,7 +880,7 @@
 						if(d.properties && d.properties.designStudioMeasures){
 							var mm = that.measureMember();
 							if(!mm){
-								if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 1) mm = that.flatData.columnHeaders[0];
+								if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 0) mm = that.flatData.columnHeaders[0];
 							}
 							return that.colorRange(d.properties.designStudioMeasures[mm]) || that.defaultFillColor();	
 						}else{
@@ -828,6 +888,31 @@
 						}
 					});
 				
+				this.bubbleGroup.selectAll("circle")
+    				.transition().duration(this.ms())
+    				.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
+    				.attr("r", function(d,i){
+						if(d.properties && d.properties.designStudioMeasures){
+							var bm = that.bubbleMember();
+							if(bm){
+								if(d.properties.designStudioMeasures[bm]){
+									return that.bubbleScale(d.properties.designStudioMeasures[bm]);
+									// linear scale
+								}else{
+									return 0;	
+								}
+								//that.colorRange(d.properties.designStudioMeasures[mm]) || that.defaultFillColor();
+								//if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 0 && ) mm = that.flatData.columnHeaders[0];
+							}else{
+								return 0;
+							}
+						}
+						return 0;
+    				})
+    				.attr("opacity", this.bubbleAlpha()/100)
+    				.attr("fill", this.bubbleColor());
+					//var bm = that.bubbleMember();
+    			
 				labels
 					.attr('class', function(d) { return "subunit-label " + d.properties[that.labelProperty()]; })
 					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
@@ -861,6 +946,7 @@
 				*/
 				// Exit
 				 features.exit().remove();
+				 bubbles.exit().remove();
 				 labels.exit().remove();
 				}catch(e){
 					alert("Error updating plot:\n\n"+e);
