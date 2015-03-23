@@ -43,6 +43,7 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 		 return this._mapData;
 	 },
 	updateContents: function(){
+		try{
 		var that = this;
 		this.geoJSONText.setValue(this._mapData);
 		this.tableAttributes.destroyColumns();
@@ -65,6 +66,10 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 		this.tableAttributes.getModel().setData({
 			rows: this._attrData
 		});
+		this.drawMap();
+		}catch(e){
+			alert("Error updating property sheet contents\n\n"+e);
+		}
 	},
 	/**
 	 * Scan FeatureJSON for all attributes
@@ -154,7 +159,8 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 						url : mapURL,
 						headers : config.headers
 					}).done(function(data){
-						that._mapData = data;
+						that._mapData = that.processMapData(data);
+						that.updateContents();
 						that.fireMapDataChange();
 					})
 					.fail(function(mapURL){return function(xhr, textStatus, errorThrown ){
@@ -167,6 +173,55 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 				
     		};}(mapURL,rootConfig), this);
 		}
+	},
+	drawMap : function(){
+		try{
+			var map = d3.select("#" +this.getId() + "_map");
+			if(map.empty()) {
+				// Not rendered yet.
+			}else{
+				var svg = map.select("svg");
+				if(svg.empty()) {
+					svg = map.append("svg")
+						.attr("width","400px")
+						.attr("height","300px");
+				}
+				var projection = d3.geo.mercator()
+					.scale(400 / 2 / Math.PI)
+					.translate([400/2,300/2]);
+				svg.on("click",function(){
+					alert(projection.invert(d3.mouse(this)));
+				});
+				var projPath = d3.geo.path().projection(projection);
+				var geoJson = jQuery.parseJSON(this._mapData);
+				if(geoJson && geoJson.features){
+					var featureSelection = svg.selectAll(".feature")
+						.data(geoJson.features)
+						.attr("d",projPath)
+						.attr("class","feature")
+						.attr("fill","#efefef")
+						.attr("stroke","#009966")
+						.attr("stroke-width",".25px");
+					
+					featureSelection.enter()
+						.append("path")
+						.attr("d",projPath)
+						.attr("class","feature")
+						.attr("fill","#efefef")
+						.attr("stroke","#808080")
+						.attr("stroke-width",".25px");
+					
+					
+					//svg.selectAll(".feature")
+						
+					
+					featureSelection.exit().remove();
+				}
+				
+			}
+			}catch(e){
+				alert("Error on map rendering" + e);
+			}
 	},
 	init : function(){
 		try{
@@ -189,6 +244,7 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 		
 		this.mapContents = this.mapStrip.createTab("Map Contents");
 		this.mapProperties = this.mapStrip.createTab("Map Attributes");
+		this.mapView = this.mapStrip.createTab("Map View");
 		this.geoJSONText = new sap.ui.commons.TextArea({
 			// value : this.mapData(),
 			design : sap.ui.core.Design.Monospace,
@@ -196,11 +252,19 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 			width : "100%",
 			wrapping : sap.ui.core.Wrapping.Off
 		});
+		this.map = new sap.ui.core.HTML({
+			content : "<div id='" + this.getId() + "_map'></div>"
+		});
+		this.map.attachAfterRendering(function(occ){
+			var that = this;
+			this.drawMap();
+		},this);
 		this.geoJSONText.attachChange(function(oControlEvent){
 			this._mapData = oControlEvent.getSource().getValue();
 			that.fireMapDataChange();
 		},this);
 		this.mapContents.addContent(this.geoJSONText);
+		this.mapView.addContent(this.map);
 		this.mapProperties.addContent(this.tableAttributes);
 		try{
 			$.ajax({

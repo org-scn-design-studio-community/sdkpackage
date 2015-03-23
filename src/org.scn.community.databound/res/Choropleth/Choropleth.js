@@ -1141,6 +1141,7 @@
 			 * Update Projection
 			 */
 			this.updateProjection = function(){
+				try{
 				// Determine Center of Map
 		    	this.centroid = d3.geo.centroid(this._mapJSON);
 		    	/*
@@ -1156,9 +1157,8 @@
 		    	*/
 		    	// Select a projection
 		    	this.proj = this.projections[this.projection()] || this.projections["Mercator"];
-		    	this.proj
-	    			.scale(1)
-	    			.translate([0,0]);
+		    	this.proj.scale(1).translate([0,0]);
+	    		
 	    		// Create path
 		    	this.projPath.projection(this.proj);
 		    	/*
@@ -1180,7 +1180,7 @@
 		    	// Center if projection supports
 		    	if(typeof this.proj.center === "function"){
 		    		//if(centerFeature) 
-		    		this.proj.center(this.centroid);
+		    		//this.proj.center(this.centroid);
 		    	}
 		    	// Rotate if projection supports
 		    	if (typeof this.proj.rotate === "function") {
@@ -1189,6 +1189,9 @@
 		    	// If Orthographic, clip at 90 degrees so we don't see the back of the globe.
 		    	if(this.projection()=="Orthographic") this.proj.clipAngle(90);
 		    	return this;
+				}catch(e){
+					alert("Error updating projection:\n\n"+e);
+				}
 			}
 			/**
 			 * Update Triangles
