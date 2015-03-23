@@ -1420,7 +1420,7 @@ class org.scn.community.basics.FishEye extends org.scn.community.shared.Componen
 /**
  * Generated ZTL Class for Gauge (Speedometer)
  * 
- * DO NOT EDIT, ROOT SOURCE for custom functions in /gen/contribution.ztl
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.Gauge extends org.scn.community.shared.Component {
 
@@ -3372,7 +3372,7 @@ class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Co
 /**
  * Generated ZTL Class for Segmented Button
  * 
- * DO NOT EDIT, ROOT SOURCE for custom functions in /gen/contribution.ztl
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.Component {
 

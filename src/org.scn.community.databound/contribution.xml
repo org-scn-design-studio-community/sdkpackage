@@ -1721,15 +1721,17 @@ __n__}
 </component>
 <component
 	id="ResultSetInfo"
-	title="ResultSet Info"
+	title="Result Set Information (Not Ready Yet)"
 	icon="res/ResultSetInfo/ResultSetInfo.png"
-	handlerType="div"
+	handlerType="sapui5"
 	group="ScnCommunityDataBound"
 	propertySheetPath="res/ResultSetInfo/aps/ResultSetInfoPropertyPage.html"
 	databound="true"
 >	
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ResultSetInfo/ResultSetInfoLoader.js</jsInclude>
+	
+	<cssInclude>res/ResultSetInfo/ResultSetInfo.css</cssInclude>
 	
 	<property
 		id="data"
@@ -1739,6 +1741,91 @@ __n__}
 		visible="false"
 	>
 		<option name="includeFormattedData" value="true"/>
+	</property>
+
+	<property
+		id="DCentralProvisioning"
+		title="Central Data Provisioning"
+		tooltip="Provision Data Centrally for Component Access"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+	</initialization>
+
+</component>
+<component
+	id="ResultSetStructureBlender"
+	title="Result Set Structure Blender (Not Ready Yet)"
+	icon="res/ResultSetStructureBlender/ResultSetStructureBlender.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	propertySheetPath="res/ResultSetStructureBlender/aps/ResultSetStructureBlenderPropertyPage.html"
+	databound="true"
+>	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ResultSetStructureBlender/ResultSetStructureBlenderLoader.js</jsInclude>
+	
+	<property
+		id="DMasterStructureProvisioner"
+		title="Central Data Provisioner for Master Structure"
+		tooltip="Result Set with Master Structure"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveResultSetProvisioner1"
+		title="Central Data Provisioner for Slave Row Based Result Set 1"
+		tooltip="Result Set with First Slave Rows for Selection"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveResultSetProvisioner2"
+		title="Central Data Provisioner for Slave Row Based Result Set 2"
+		tooltip="Result Set with Second Slave Rows for Selection"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlave2ContentCondition"
+		title="Condition to Read Slave Result Set 2 based on Content 1"
+		tooltip="Under which condition should be the Slave 2 read (based on contnet of slave 1)"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlave2StructureRowCondition"
+		title="Condition to Read Slave Result Set 2 based on header Column Content"
+		tooltip="Under which condition should be the Slave 2 read (based on contnet of header column"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlave2StructureColumnCondition"
+		title="Condition to Read Slave Result Set 2 based on header Row Content"
+		tooltip="Under which condition should be the Slave 2 read (based on contnet of header row)"
+		type="String"
+		group="Display"
+		visible="true">
 	</property>
 
 	<initialization>
@@ -2508,6 +2595,15 @@ __n__}
 	>
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="false"/>
+	</property>
+
+	<property
+		id="DDataProvisioner"
+		title="Central Data Provisioner for Result Set"
+		tooltip="Central Result Set with Data"
+		type="String"
+		group="Display"
+		visible="true">
 	</property>
 
 	<property

@@ -2,7 +2,7 @@
 /**
  * Generated ZTL Class for Post Response Parser
  * 
- * DO NOT EDIT, ROOT SOURCE for custom functions in /gen/contribution.ztl
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.utils.PostResponseParser extends org.scn.community.shared.Component {
 

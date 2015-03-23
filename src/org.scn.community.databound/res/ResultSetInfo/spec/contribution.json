@@ -1,3 +1,5 @@
 {
-
+	"DCentralProvisioning" : {
+		"gen-type":"boolean",
+	},
 }

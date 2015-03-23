@@ -181,8 +181,11 @@
 	/**Cast to Data Range Slider component*/
 	org.scn.community.databound.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to ResultSet Info component*/
+	/**Cast to Result Set Information component*/
 	org.scn.community.databound.ResultSetInfo returnAsScnResultSetInfo (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Result Set Structure Blender component*/
+	org.scn.community.databound.ResultSetStructureBlender returnAsScnResultSetStructureBlender (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Scatter Plot Chart component*/
 	org.scn.community.databound.ScatterPlot returnAsScnScatterPlot (Component inputComponent) {* return inputComponent; *}

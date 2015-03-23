@@ -2,7 +2,7 @@
 /**
  * Generated ZTL Class for %TECH_DESCRIPTION%
  * 
- * DO NOT EDIT, ROOT SOURCE for custom functions in /gen/contribution.ztl
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class %TECH_NAME% extends org.scn.community.shared.%TECH_EXTENSION% {
 

@@ -28,6 +28,15 @@
 	</property>
 
 	<property
+		id="DDataProvisioner"
+		title="Central Data Provisioner for Result Set"
+		tooltip="Central Result Set with Data"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
 		id="DVisibleRowCount"
 		title="Visible Row Count"
 		type="int"

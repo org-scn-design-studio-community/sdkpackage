@@ -75,6 +75,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
               "DNavigationMode": {type: "string"},
               "DCustomDimensions": {type: "string"},
               "DHeaderColWidth": {type: "int"},
+              "DDataProvisioner": {type: "string"},
         }
 	},
 
@@ -140,8 +141,14 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 			
 				that._vals = [];
 				try{
-					that._flatData = org_scn_community_databound.flatten(lData,options);
-					that._rowData = org_scn_community_databound.toRowTable(that._flatData,options);
+					var lDataProvisioner = that.getDDataProvisioner();
+					if(lDataProvisioner != undefined) {
+						that._flatData = org_scn_community_databound.centralDataStorage[lDataProvisioner].flatData;
+						that._rowData = that._flatData;
+					} else {
+						that._flatData = org_scn_community_databound.flatten(lData,options);
+						that._rowData = org_scn_community_databound.toRowTable(that._flatData,options);
+					}
 					
 					if(that._flatData && that._flatData.formattedValues && that._flatData.formattedValues.length > 0) {
 						that._vals = that._flatData.formattedValues.slice();

@@ -1,10 +1,24 @@
 
 /**
- * Generated ZTL Class for ResultSet Info
+ * Generated ZTL Class for Result Set Information
  * 
- * DO NOT EDIT, ROOT SOURCE for custom functions in /gen/contribution.ztl
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Central Data Provisioning Property
+	 */	
+	void setCentralProvisioning( /* Provision Data Centrally for Component Access */  boolean centralProvisioning){*
+		this.DCentralProvisioning = centralProvisioning;
+	*}
+
+	/**
+	 * Gets Central Data Provisioning Property
+	 */	
+	boolean getCentralProvisioning() {*
+		return this.DCentralProvisioning;
+	*}
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */

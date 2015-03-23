@@ -557,18 +557,23 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 	// Create shell return object
 	var retObj = {
 		dimensionHeaders : [],		// ["0CALDAY", "0LOCATION", ...]
-		dimensionheader : "",		// "0CALDAY | 0LOCATION"
+		dimensionHeader : "",		// "0CALDAY | 0LOCATION"
 		dimensionColHeaders : [],	// ["0SALESREP", "0MEASURES", ...]		(TODO)
-		dimensionColheader : "",	// "0SALESREP | 0MEASURES"				(TODO)
+		dimensionColHeader : "",	// "0SALESREP | 0MEASURES"				(TODO)
 		columnHeaders2D : [],		// Two Dimensions in Columns example:
 									// [["John Doe", "Sales"],["John Doe", "Discounts"], ...]
 									// Simple Example with just Measures Structure: 
 									// [["Sales"],["Discounts"], ...]
+		columnHeadersKeys2D : [],	// Two Dimensions in Columns example:
+									// [["01", "SAL"],["02", "DIS"], ...]
+									// Simple Example with just Measures Structure: 
+									// [["SAL"],["DIS"], ...]
 		columnHeaders : [],			// Two Dimension in Columns Example:
 									// ["John Doe | Sales", "John Does | Discounts", ...]
 									// Simple Example:
 									// ["Sales", "Discounts", ...]
 		rowHeaders2D : [],			// [["01/2015", "Memphis"],["01/2015", "Nashville"], ...]]
+		rowHeadersKeys2D : [],		// [["01.2015", "MEMPHIS"],["01.2015", "NASHVILLE"], ...]]
 		rowHeaders : [],			// ["01/2015 | Memphis", "01/2015 | Nashville", ...]
 		values : [],				// [[100, 50], [200, 250], ...]
 		formattedValues : [],		// [["100 USD", "50 USD"], ["200 USD", "250 USD"], ...]
@@ -625,6 +630,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 		var newFormattedValueRow = [];
 		var rowHeader = "";
 		var rowHeader2D = [];
+		var rowHeaderKey2D = [];
 		var rowAxisTuple = data.axis_rows[row];
 		var sep = "";
 		var isResult = false;
@@ -641,6 +647,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 
 				rowHeader += sep + data.dimensions[j].members[rowAxisTuple[j]].text;
 				rowHeader2D.push(data.dimensions[j].members[rowAxisTuple[j]].text);
+				rowHeaderKey2D.push(data.dimensions[j].members[rowAxisTuple[j]].key);
 				sep = options.dimensionSeparator;
 			}
 		}
@@ -654,6 +661,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 			retObj.hash[rowHeader] = row;
 			retObj.rowHeaders.push(rowHeader);
 			retObj.rowHeaders2D.push(rowHeader2D);
+			retObj.rowHeadersKeys2D.push(rowHeaderKey2D);
 		}
 		
 		for(var col=0;col<retObj.geometry.colLength;col++){
@@ -675,6 +683,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 	for(var col=0;col<data.axis_columns.length;col++){
 		var colHeader = "";
 		var colHeader2D = [];
+		var colHeaderKey2D = [];
 		var colAxisTuple = data.axis_columns[col];
 		var sep = "";
 		var removeColumn = false;
@@ -688,6 +697,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 				}
 				colHeader += sep + data.dimensions[j].members[colAxisTuple[j]].text;
 				colHeader2D.push(data.dimensions[j].members[colAxisTuple[j]].text);
+				colHeaderKey2D.push(data.dimensions[j].members[colAxisTuple[j]].key);
 				sep = options.dimensionSeparator;			
 			}
 		}
@@ -706,6 +716,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 		}else{
 			retObj.columnHeaders.push(colHeader);
 			retObj.columnHeaders2D.push(colHeader2D);
+			retObj.columnHeadersKeys2D.push(colHeaderKey2D);
 		}		
 	}
 	
@@ -788,4 +799,27 @@ org_scn_community_databound.getSampleDataFlat = function (pathInfo, callBack, af
 	
 	requestForData.open("GET", dataUrl, true);
 	requestForData.send();
+}
+
+org_scn_community_databound.blendStructure = function (master, slave) {
+	var flatMaster = master.flatData;
+	var flatSlave = slave.flatData;
+	
+	for(var mcI=0;mcI<flatMaster.columnHeadersKeys2D.length;mcI++){
+		for(var mrI=0;mrI<flatMaster.rowHeadersKeys2D.length;mrI++){
+			var rowHeaderKey = flatMaster.rowHeadersKeys2D[mrI];
+			var colHeaderKey = flatMaster.columnHeadersKeys2D[mcI];
+			
+			for(var srI=0;srI<flatSlave.rowHeadersKeys2D.length;srI++){
+				var row1HeaderKey = flatSlave.rowHeadersKeys2D[srI][0];
+				var row2HeaderKey = flatSlave.rowHeadersKeys2D[srI][1];
+
+				if(rowHeaderKey == row1HeaderKey && colHeaderKey == row2HeaderKey) {
+					// found row.. 
+					flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength] = flatSlave.data2DPlain[srI][2];
+				}
+			}
+		}
+	}
+	var k = 0;
 }
