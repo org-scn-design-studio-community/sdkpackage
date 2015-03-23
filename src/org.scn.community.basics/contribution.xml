@@ -1897,7 +1897,7 @@
 
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/MenuBar/MenuBar.js</jsInclude>
-	<cssInclude>res/MenuBar/menuBar.css</cssInclude>
+	<cssInclude>res/MenuBar/MenuBar.css</cssInclude>
 
 	<property
 		id="selectedKey"
@@ -1905,6 +1905,13 @@
 		title="Technical proprty for Selected Key"
 		group="Display"
 		visible="false" />
+		
+	<property
+		id="selectedText"
+		type="String"
+		title="Technical proprty for Selected Text"
+		group="Display"
+		visible="false" />	
 
 	<property
 		id="cleanAll"

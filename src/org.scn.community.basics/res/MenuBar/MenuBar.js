@@ -46,6 +46,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
         	  "withImage": {type: "boolean"},
               "imageSize": {type: "string"},
               "selectedKey": {type: "string"},
+              "selectedText": {type: "string"},
               "expandedKey": {type: "string"},
               "elementsContent": {type: "string"},
               "cleanAll": {type: "boolean"}
@@ -55,8 +56,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 	initDesignStudio: function() {
 		var that = this;
 		this._ownScript = _readScriptPath();
-		
-		this.addStyleClass("scn-pack-MenuBar");
 		
 		this._oElements = {};
 		
@@ -89,7 +88,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
 				if(this._oElements[element.key] == undefined) {
-					var lNewElement = this._createElement(i, element.key, element.text, element.url, element.parent, element.leaf);
+					var lNewElement = this._createElement(i, element.key, element.text, element.url, element.parent, element.leaf, element.enabled);
 					
 					this._oElements[element.key] = lNewElement;
 				}
@@ -121,7 +120,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		}
 	},
 	
-
 	/**
 	 * Specific Function for Initialization of the Content Component
 	 */
@@ -129,6 +127,8 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		var that = this;
 		
 		this._oMenuBar = new sap.ui.commons.MenuBar();
+		
+		this._oMenuBar.addStyleClass("scn-pack-MenuBar");
 		
 		// resize function
 		this.onAfterRendering = function() {
@@ -165,7 +165,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		iParent.addItem(iElement);
 	},
 
-	_createElement: function (index, iElementKey, iElementText, iImageUrl, iParentKey, isLeaf) {
+	_createElement: function (index, iElementKey, iElementText, iImageUrl, iParentKey, isLeaf, isEnabled) {
 		var that = this;
 		
 		// in case starts with http, keep as is 
@@ -184,13 +184,15 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			lElement = new sap.ui.unified.MenuItem({
 					id: this.getId() + "-sec-" +  iElementKey,
 					text: iElementText,
-					icon: iImageUrl
+					icon: iImageUrl,
+					enabled: isEnabled
 				});
 		} else {
 			lElement = new sap.ui.unified.MenuItem({
 					id: this.getId() + "-sec-" +  iElementKey,
 					text: iElementText,
-					icon: iImageUrl
+					icon: iImageUrl,
+					enabled: isEnabled
 				});
 		}
 		
@@ -210,8 +212,10 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 
 		var handleSelect = function(oEvent){
 			that.setSelectedKey(lElement._Key);
+			that.setSelectedText(lElement.getText());
 			
 			that.fireDesignStudioPropertiesChanged(["selectedKey"]);
+			that.fireDesignStudioPropertiesChanged(["selectedText"]);
 			that.fireDesignStudioEvent("onSelectionChanged");
 		};
 
