@@ -9,7 +9,7 @@
 
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/MenuBar/MenuBar.js</jsInclude>
-	<cssInclude>res/MenuBar/menuBar.css</cssInclude>
+	<cssInclude>res/MenuBar/MenuBar.css</cssInclude>
 
 	<property
 		id="selectedKey"
