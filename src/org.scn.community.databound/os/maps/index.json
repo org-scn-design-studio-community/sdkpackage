@@ -41,7 +41,7 @@
         },
         { "label" : "Europe",
           "maps" : [ { "label" : "United Kingdom",
-                "url" : "United-Kingdom-regions.json"
+                "url" : "Europe/United-Kingdom-regions.json"
               },
               { "label" : "France",
                 "url" : "Europe/France-regions.json"
