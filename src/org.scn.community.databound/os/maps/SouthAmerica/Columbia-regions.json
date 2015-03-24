@@ -12,703 +12,319 @@
 					"arcs": [[2, 3, 4, 5]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 652,
 						"NAME_1": "Amazonas",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.AM",
-						"CC_1": "",
-						"TYPE_1": "Comisaría",
-						"ENGTYPE_1": "Commissiary",
-						"VALIDFR_1": "1942",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 23.7750513848,
-						"Shape_Area": 8.73440075787
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[6, 7, 8, 9, 10, 11, 12, 13, 14]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 653,
 						"NAME_1": "Antioquia",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.AN",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 19.1411284048,
-						"Shape_Area": 5.16836535537
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[15, 16, 17, 18]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 654,
 						"NAME_1": "Arauca",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.AR",
-						"CC_1": "",
-						"TYPE_1": "Intendencia",
-						"ENGTYPE_1": "Intendancy",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 7.90690278294,
-						"Shape_Area": 2.07164393348
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[19, 20, 21]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 655,
 						"NAME_1": "Atlántico",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.AT",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 3.2850541585,
-						"Shape_Area": 0.364898901865
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[-21, 22, 23, 24, -8, 25, 26, 27]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 656,
 						"NAME_1": "Bolívar",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.BL",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1967",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 13.9220690975,
-						"Shape_Area": 2.13941266532
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[28, -18, 29, 30, -10, 31, 32]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 657,
 						"NAME_1": "Boyacá",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.BY",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1900",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 12.3605381808,
-						"Shape_Area": 1.90853551129
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[33, 34, 35, -12]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 658,
 						"NAME_1": "Caldas",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.CL",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1967",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 5.4585482711,
-						"Shape_Area": 0.616328750864
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[36, 37, -5, 38, 39, 40, 41]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 659,
 						"NAME_1": "Caquetá",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.CQ",
-						"CC_1": "",
-						"TYPE_1": "Intendencia",
-						"ENGTYPE_1": "Intendancy",
-						"VALIDFR_1": "1942",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 17.0143637411,
-						"Shape_Area": 7.3245066534
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[42, 43, 44, -30, -17]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 660,
 						"NAME_1": "Casanare",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.CS",
-						"CC_1": "",
-						"TYPE_1": "Intendencia",
-						"ENGTYPE_1": "Intendancy",
-						"VALIDFR_1": "1900",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 9.94084521973,
-						"Shape_Area": 3.64081024711
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[45, 46, -40, 47, 48, 49, 50]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 661,
 						"NAME_1": "Cauca",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.CA",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 11.8915442907,
-						"Shape_Area": 2.3713941174
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[51, 52, 53, -24, 54, 55]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 662,
 						"NAME_1": "Cesar",
-						"VARNAME_1": "El Cesar",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.CE",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1967",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 9.65575290996,
-						"Shape_Area": 1.88729530811
+						"VARNAME_1": "El Cesar"
 					}
 				},
 				{
 					"arcs": [[-14, 58, 59, 60, 61, 62]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 663,
 						"NAME_1": "Chocó",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.CH",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 23.3945760092,
-						"Shape_Area": 3.69484545225
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[63, -26, -7, 64]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 664,
 						"NAME_1": "Córdoba",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.CO",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1950",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 8.31241525887,
-						"Shape_Area": 2.04579935591
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[-45, 65, 66, 67, -34, -11, -31]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 665,
 						"NAME_1": "Cundinamarca",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.CU",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "Contains Distrito Federal which is nowadays considered a separate 1st level division",
-						"Shape_Leng": 8.58252064642,
-						"Shape_Area": 1.9929901113
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[68, 69, 70, 71]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 666,
 						"NAME_1": "Guainía",
-						"VARNAME_1": "Guania",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.GN",
-						"CC_1": "",
-						"TYPE_1": "Comisaría",
-						"ENGTYPE_1": "Commissiary",
-						"VALIDFR_1": "1964",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 17.4043024376,
-						"Shape_Area": 5.59730700328
+						"VARNAME_1": "Guania"
 					}
 				},
 				{
 					"arcs": [[72, -70, 73, -37, 74]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 667,
 						"NAME_1": "Guaviare",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.GV",
-						"CC_1": "",
-						"TYPE_1": "Comisaría",
-						"ENGTYPE_1": "Commissiary",
-						"VALIDFR_1": "1982",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 14.0046709562,
-						"Shape_Area": 4.51894761125
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[-41, -47, 75, -67, 76]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 668,
 						"NAME_1": "Huila",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.HU",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 8.37729594802,
-						"Shape_Area": 1.65092822219
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[77, -56, 78, 79]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 669,
 						"NAME_1": "La Guajira",
-						"VARNAME_1": "Guajira|Goagira|La Goajira",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.LG",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 14.8933257707,
-						"Shape_Area": 1.74089873944
+						"VARNAME_1": "Guajira|Goagira|La Goajira"
 					}
 				},
 				{
 					"arcs": [[-79, -55, -23, -20, 80]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 670,
 						"NAME_1": "Magdalena",
-						"VARNAME_1": "La Magdalena",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.MA",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1967",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 10.3029202567,
-						"Shape_Area": 1.77786227901
+						"VARNAME_1": "La Magdalena"
 					}
 				},
 				{
 					"arcs": [[-75, -42, -77, -66, -44, 81]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 671,
 						"NAME_1": "Meta",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.ME",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1942",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 15.1567282957,
-						"Shape_Area": 6.94373984279
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[-49, 82, 83]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 672,
 						"NAME_1": "Nariño",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.NA",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 11.9479330267,
-						"Shape_Area": 2.59686793753
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[-33, 84, -53, 85]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 673,
 						"NAME_1": "Norte de Santander",
-						"VARNAME_1": "Santander del Norte",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.NS",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 8.76317810815,
-						"Shape_Area": 1.8709251172
+						"VARNAME_1": "Santander del Norte"
 					}
 				},
 				{
 					"arcs": [[-39, -4, 86, -83, -48]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 674,
 						"NAME_1": "Putumayo",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.PU",
-						"CC_1": "",
-						"TYPE_1": "Intendencia",
-						"ENGTYPE_1": "Intendancy",
-						"VALIDFR_1": "1942",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 11.1306053998,
-						"Shape_Area": 1.95272846379
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[87, 88, 89]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 675,
 						"NAME_1": "Quindío",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.QD",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "19660807",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 1.87672307729,
-						"Shape_Area": 0.141012216009
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[-36, 90, -90, 91, -59, -13]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 676,
 						"NAME_1": "Risaralda",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.RI",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1967",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 3.94339130573,
-						"Shape_Area": 0.329330862978
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"type": null,
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 677,
 						"NAME_1": "San Andrés y Providencia",
-						"VARNAME_1": "Saint Andrew and Providence",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.SA",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "Unknown",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 0.846972255896,
-						"Shape_Area": 0.0043623731225
+						"VARNAME_1": "Saint Andrew and Providence"
 					}
 				},
 				{
 					"arcs": [[-85, -32, -9, -25, -54]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 678,
 						"NAME_1": "Santander",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.ST",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 9.37287348089,
-						"Shape_Area": 2.4767253771
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[-64, 92, -27]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 679,
 						"NAME_1": "Sucre",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.SU",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1967",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 6.88770572576,
-						"Shape_Area": 0.888842768586
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[-68, -76, -46, 93, -88, -91, -35]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 680,
 						"NAME_1": "Tolima",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.TO",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 7.69906601674,
-						"Shape_Area": 1.90648175981
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[-60, -92, -89, -94, -51, 95, -57, 96]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 681,
 						"NAME_1": "Valle del Cauca",
-						"VARNAME_1": "Valle",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.VC",
-						"CC_1": "",
-						"TYPE_1": "Departamento",
-						"ENGTYPE_1": "Department",
-						"VALIDFR_1": "1935",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 16.1795219817,
-						"Shape_Area": 1.79148665989
+						"VARNAME_1": "Valle"
 					}
 				},
 				{
 					"arcs": [[97, -1, -6, -38, -74, -69]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 682,
 						"NAME_1": "Vaupés",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.VP",
-						"CC_1": "",
-						"TYPE_1": "Comisaría",
-						"ENGTYPE_1": "Commissiary",
-						"VALIDFR_1": "1982",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 15.3626198098,
-						"Shape_Area": 4.32603105043
+						"VARNAME_1": ""
 					}
 				},
 				{
 					"arcs": [[-71, -73, -82, -43, -16, 98]],
 					"type": "Polygon",
 					"properties": {
-						"ID_0": 51,
 						"ISO": "COL",
 						"NAME_0": "Colombia",
-						"ID_1": 683,
 						"NAME_1": "Vichada",
-						"VARNAME_1": "",
-						"NL_NAME_1": "",
-						"HASC_1": "CO.VD",
-						"CC_1": "",
-						"TYPE_1": "Comisaría",
-						"ENGTYPE_1": "Commissiary",
-						"VALIDFR_1": "1942",
-						"VALIDTO_1": "Present",
-						"REMARKS_1": "",
-						"Shape_Leng": 16.0931025992,
-						"Shape_Area": 8.21289968593
+						"VARNAME_1": ""
 					}
 				}
 			]

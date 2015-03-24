@@ -40,8 +40,12 @@
             ]
         },
         { "label" : "Europe",
-          "maps" : [ { "label" : "United Kingdom",
-                "url" : "Europe/United-Kingdom-regions.json"
+          "maps" : [
+              { "label" : "Albania",
+                "url" : "Europe/Aland-regions.json"
+              },
+              { "label" : "Austria",
+                "url" : "Europe/Austria-regions.json"
               },
               { "label" : "France",
                 "url" : "Europe/France-regions.json"
@@ -49,8 +53,26 @@
               { "label" : "Germany",
                 "url" : "Europe/Germany-regions.json"
               },
-              { "label" : "Albania",
-                "url" : "Europe/Aland-regions.json"
+              { "label" : "Iceland",
+                "url" : "Europe/Iceland-regions.json"
+              },
+              { "label" : "Poland",
+                "url" : "Europe/Poland-regions.json"
+              },
+              { "label" : "Russia",
+                "url" : "Europe/Russia-regions.json"
+              },
+              { "label" : "Sweden",
+                "url" : "Europe/Sweden-regions.json"
+              },
+              { "label" : "Switzerland",
+                "url" : "Europe/Switzerland-regions.json"
+              },
+              { "label" : "Ukraine",
+                "url" : "Europe/Ukraine-regions.json"
+              },
+              { "label" : "United Kingdom",
+                "url" : "Europe/United-Kingdom-regions.json"
               },
               { "label" : "Åland Islands",
                 "url" : "Europe/Aland-regions.json"
