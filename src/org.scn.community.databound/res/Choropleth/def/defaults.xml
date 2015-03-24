@@ -4,6 +4,7 @@
 		<defaultValue property="defaultFillColor">#E9E5DC</defaultValue>
 		<defaultValue property="globeColor">#7FB5DF</defaultValue>
 		<defaultValue property="graticuleColor">#808080</defaultValue>
+		<defaultValue property="graticuleThickness">.5</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
 		<defaultValue property="hoverColor">#999900</defaultValue>
 		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>

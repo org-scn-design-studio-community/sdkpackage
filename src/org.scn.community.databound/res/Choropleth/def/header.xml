@@ -10,5 +10,6 @@
 	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Map.js</jsInclude>
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>

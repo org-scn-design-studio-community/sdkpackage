@@ -10,6 +10,7 @@
 	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
 	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.databound.Map.js</jsInclude>
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<!-- Base Databound Properties -->
@@ -90,6 +91,7 @@
 	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
 	<property id="mapData" title="Map Data" type="String" visible="false"/>
 	<property id="floor" title="Minimum Scale Value" type="float" visible="false"/>
+	<property id="graticuleThickness" title="Graticule Thickness" type="float" visible="false"/>
 	<property id="labelSize" title="Label Size (px)" type="float" visible="false"/>
 	<property id="gradientLeft" title="Horizontal Scale Left" type="int" visible="false"/>
 	<property id="gradientRight" title="Horizontal Scale Right" type="int" visible="false"/>
@@ -195,6 +197,7 @@
 		<defaultValue property="defaultFillColor">#E9E5DC</defaultValue>
 		<defaultValue property="globeColor">#7FB5DF</defaultValue>
 		<defaultValue property="graticuleColor">#808080</defaultValue>
+		<defaultValue property="graticuleThickness">.5</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
 		<defaultValue property="hoverColor">#999900</defaultValue>
 		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>

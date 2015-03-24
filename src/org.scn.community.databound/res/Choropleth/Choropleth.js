@@ -23,7 +23,7 @@
 		 * Choropleth on D3 Example:
 		 * http://bl.ocks.org
 		 */
-		 Choropleth.prototype = org_scn_community_databound_BaseViz;
+		 Choropleth.prototype = org_scn_community_databound_Map;
 		 Choropleth.prototype.constructor = Choropleth;
 		 Choropleth.prototype.toString = function(){
 	    	 return ownComponentName;
@@ -66,7 +66,7 @@
 			 		return [y, 0]
 			 	});
 	    	// Call super
-	    	org_scn_community_databound_BaseViz.call(this, d3,{
+	    	org_scn_community_databound_Map.call(this, d3,topojson,{
 	    		/*
 	    		styleClasses : { value : ""},
 				centerFeature : { value : ""},
@@ -87,14 +87,6 @@
 						apsControl : "text"
 					}					
 				},
-				defaultFillColor :  { 
-					value : "#E5EADE",
-					opts : {
-						desc : "Default Land Color",
-						cat : "Cosmetics-Colors",
-						apsControl : "color"	
-					}
-				},
 				bubbleColor :  { 
 					value : "#006699",
 					opts : {
@@ -103,88 +95,7 @@
 						apsControl : "color"	
 					}
 				},
-				backgroundColor :  { 
-					value : "",
-					opts : {
-						desc : "Background Color",
-						cat : "Cosmetics-Colors",
-						apsControl : "color"	
-					}
-				},
-				globeColor :  { 
-					value : "",
-					opts : {
-						desc : "Globe Color",
-						cat : "Cosmetics-Colors",
-						apsControl : "color"	
-					}
-				},
-				graticuleColor :  { 
-					value : "",
-					opts : {
-						desc : "Graticule Color",
-						cat : "Cosmetics-Colors",
-						apsControl : "color"	
-					}
-				},
-				projection : { 
-					value : "Mercator",
-					opts : {
-						apsControl : "combobox",
-						desc : "Projection Method",
-						cat : "Mapping",
-						options : [
-							{ key : 'Mercator', text : 'Mercator'},
-							{ key : 'Albers USA', text : 'Albers USA'},
-							{ key : 'Orthographic', text : 'Orthographic'},
-							{ key : 'Equirectangular', text : 'Equirectangular'},
-							
-							{ key : 'Aitoff', text : 'Aitoff'},
-							{ key : 'Albers', text : 'Albers'},
-							{ key : 'August', text : 'August'},
-							{ key : 'Baker', text : 'Baker'},
-							{ key : 'Boggs', text : 'Boggs'},
-							{ key : 'Bonne', text : 'Bonne'},
-							{ key : 'Bromley', text : 'Bromley'},
-							{ key : 'Collignon', text : 'Collignon'},
-							{ key : 'Craster Parabolic', text : 'Craster Parabolic'},
-							{ key : 'Eckert I', text : 'Eckert I'},
-							{ key : 'Eckert II', text : 'Eckert II'},
-							{ key : 'Eckert III', text : 'Eckert III'},
-							{ key : 'Eckert IV', text : 'Eckert IV'},
-							{ key : 'Eckert V', text : 'Eckert V'},
-							{ key : 'Eckert VI', text : 'Eckert VI'},
-							{ key : 'Eisenlohr', text : 'Eisenlohr'},
-							{ key : 'Equirectangular (Plate Carrée)', text : 'Equirectangular (Plate Carrée)'},
-							{ key : 'Hammer', text : 'Hammer'},
-							{ key : 'Hill', text : 'Hill'},
-							{ key : 'Goode Homolosine', text : 'Goode Homolosine'},
-							{ key : 'Kavrayskiy VII', text : 'Kavrayskiy VII'},
-							{ key : 'Lambert cylindrical equal-area', text : 'Lambert cylindrical equal-area'},
-							{ key : 'Lagrange', text : 'Lagrange'},
-							{ key : 'Larrivée', text : 'Larrivée'},
-							{ key : 'Laskowski', text : 'Laskowski'},
-							{ key : 'Loximuthal', text : 'Loximuthal'},
-							{ key : 'Miller', text : 'Miller'},
-							{ key : 'McBryde–Thomas Flat-Polar Parabolic', text : 'McBryde–Thomas Flat-Polar Parabolic'},
-							{ key : 'McBryde–Thomas Flat-Polar Quartic', text : 'McBryde–Thomas Flat-Polar Quartic'},
-							{ key : 'McBryde–Thomas Flat-Polar Sinusoidal', text : 'McBryde–Thomas Flat-Polar Sinusoidal'},
-							{ key : 'Mollweide', text : 'Mollweide'},
-							{ key : 'Natural Earth', text : 'Natural Earth'},
-							{ key : 'Nell–Hammer', text : 'Nell–Hammer'},
-							{ key : 'Polyconic', text : 'Polyconic'},
-							{ key : 'Robinson', text : 'Robinson'},
-							{ key : 'Sinusoidal', text : 'Sinusoidal'},
-							{ key : 'Sinu-Mollweide', text : 'Sinu-Mollweide'},
-							{ key : 'van der Grinten', text : 'van der Grinten'},
-							{ key : 'van der Grinten IV', text : 'van der Grinten IV'},
-							{ key : 'Wagner IV', text : 'Wagner IV'},
-							{ key : 'Wagner VI', text : 'Wagner VI'},
-							{ key : 'Wagner VII', text : 'Wagner VII'},
-							{ key : 'Winkel Tripel', text : 'Winkel Tripel'}
-						]
-					}
-				},
+				
 				featureProperty : { 
 					value : "NAME_1",
 					opts : {
@@ -299,55 +210,11 @@
 						cat : "Cosmetics-Plot",
 						apsControl : "spinner"	
 					}
-				},
-				mapData : { 
-					value : "",
-					opts : {
-						apsControl : "mapdownload",
-						desc : "Map Data",
-						cat : "Mapping-Map Data"
-					},
-					onChange : function(value){
-						var j = {};
-						try{
-							if(value!=""){
-								j = jQuery.parseJSON(value);
-							}
-							this._mapJSON = this.processMapData(j);
-						}catch(e){
-							this._mapJSON = {};
-							//throw "Error with Map Data.\n\n" + e;
-						}
-					}
 				},/*
 				center : { value : "0,0" },
 				scale : { value : 150 },
 				
 				*/
-				yaw : { 
-					value : 0,
-					opts : {
-						desc : "Yaw (0-360)",
-						cat : "Mapping",
-						apsControl : "spinner"	
-					}
-				},
-				pitch : { 
-					value : 0,
-					opts : {
-						desc : "Pitch (0-360)",
-						cat : "Mapping",
-						apsControl : "spinner"	
-					}
-				},
-				roll : { 
-					value : 0,
-					opts : {
-						desc : "Roll (0-360)",
-						cat : "Mapping",
-						apsControl : "spinner"	
-					}
-				},
 	    		selectedValue : { 
 	    			value : 0.0,
 	    			opts : {
@@ -377,95 +244,9 @@
 	    		title : "Choropleth Map",
 	    		content : "Choropleth Maps will look at your flattened data set, picking up dimension values found in Rows, such as State, or Country being ideal candidates.  These values are referenced against the Map you choose in the Mapping section.  For example, if you choose a World map that contains Features at the country level, you'd want to supply Country in Rows.  For sub-region/states, a Map of Country would be suitable, and so-on."
 	    	});
-	    	this.projections = {
-	    	   "Albers USA": d3.geo.albersUsa(),
-	    	   "Mercator": d3.geo.mercator().scale(490 / 2 / Math.PI),
-	    	   "Equirectangular": d3.geo.equirectangular(),
-	    	   "Orthographic": d3.geo.orthographic(),
-	    	   
-	    	   "Aitoff": d3.geo.aitoff(),
-               "Albers": d3.geo.albers().scale(145).parallels([20, 50]),
-               "August": d3.geo.august().scale(60),
-               "Baker": d3.geo.baker().scale(100),
-               "Boggs": d3.geo.boggs(),
-               "Bonne": d3.geo.bonne().scale(120),
-               "Bromley": d3.geo.bromley(),
-               "Collignon": d3.geo.collignon().scale(93),
-               "Craster Parabolic": d3.geo.craster(),
-               "Eckert I": d3.geo.eckert1().scale(165),
-               "Eckert II": d3.geo.eckert2().scale(165),
-               "Eckert III": d3.geo.eckert3().scale(180),
-               "Eckert IV": d3.geo.eckert4().scale(180),
-               "Eckert V": d3.geo.eckert5().scale(170),
-               "Eckert VI": d3.geo.eckert6().scale(170),
-               "Eisenlohr": d3.geo.eisenlohr().scale(60),
-               "Hammer": d3.geo.hammer().scale(165),
-               "Hill": d3.geo.hill(),
-               "Goode Homolosine": d3.geo.homolosine(),
-               "Kavrayskiy VII": d3.geo.kavrayskiy7(),
-               "Lambert cylindrical equal-area": d3.geo.cylindricalEqualArea(),
-               "Lagrange": d3.geo.lagrange().scale(120),
-               "Larrivée": d3.geo.larrivee().scale(95),
-               "Laskowski": d3.geo.laskowski().scale(120),
-               "Loximuthal": d3.geo.loximuthal(),
-               "Miller": d3.geo.miller().scale(100),
-               "McBryde–Thomas Flat-Polar Parabolic": d3.geo.mtFlatPolarParabolic(),
-               "McBryde–Thomas Flat-Polar Quartic": d3.geo.mtFlatPolarQuartic(),
-               "McBryde–Thomas Flat-Polar Sinusoidal": d3.geo.mtFlatPolarSinusoidal(),
-               "Mollweide": d3.geo.mollweide().scale(165),
-               "Natural Earth": d3.geo.naturalEarth(),
-               "Nell–Hammer": d3.geo.nellHammer(),
-               "Polyconic": d3.geo.polyconic().scale(100),
-               "Robinson": d3.geo.robinson(),
-               "Sinusoidal": d3.geo.sinusoidal(),
-               "Sinu-Mollweide": d3.geo.sinuMollweide(),
-               "van der Grinten": d3.geo.vanDerGrinten().scale(75),
-               "van der Grinten IV": d3.geo.vanDerGrinten4().scale(120),
-               "Wagner IV": d3.geo.wagner4(),
-               "Wagner VI": d3.geo.wagner6(),
-               "Wagner VII": d3.geo.wagner7(),
-               "Winkel Tripel": d3.geo.winkel3()
-	     	};
-	    	this.projectionTween = function(projection0, projection1) {
-	    		return function(d) {
-	    			var t = 0;
-	    			
-	    			var projection = d3.geo.projection(project)
-	    				.scale(1)
-	    				.translate([that.dimensions.plotWidth / 2, that.dimensions.plotHeight / 2]);
-
-    				var path = d3.geo.path().projection(projection);   				
-
-	    			function project(λ, φ) {
-						λ *= 180 / Math.PI, φ *= 180 / Math.PI;
-						var p0 = projection0([λ, φ]), p1 = projection1([λ, φ]);
-						return [(1 - t) * p0[0] + t * p1[0], (1 - t) * -p0[1] + t * -p1[1]];
-					}					
-
-					return function(_) {
-						t = _;
-						return path(d);
-					};
-	    		};
-	    	}
-	    	/**
-			 * Convert any TopoJSON data into GeoJSON
-			 */
-			this.processMapData = function(mapData) {
-			    var obj;
-			    var returnObject = mapData;		// Assume GeoJSON
-			    if (mapData && mapData.type && mapData.type.toLowerCase() === 'topology' && typeof topojson != 'undefined') {
-			    	// Use first object found if object not defined
-			        for (var o in mapData.objects) {
-			          if (mapData.objects.hasOwnProperty(o)) {
-			            obj = mapData.objects[o];
-			            break;
-			          }
-			        }
-			      returnObject = topojson.feature(mapData, obj);
-			    }
-			    return returnObject;
-			};
+	    	
+	    	
+	    	
 			/**
 			 * This adds flattened Design Studio Data to the GeoJSON under a property called 'designStudioMeasures'
 			 */
@@ -575,9 +356,7 @@
 					    	.style("top", marginTop)
 					    	.style("bottom", marginBottom);
 					}
-					
-				    
-				    // Approach 2
+					// Approach 2
 				    /*
 				    var bb = this.getBBox();
 				    var matrix = this.getScreenCTM().translate(+bb.x,+bb.y);
@@ -602,20 +381,7 @@
 				}			
 				that.updateTriangles();
 			}
-			var parentPreReq = this.preReqCheck;
-			this.preReqCheck = function(){
-				// Map component is tolerant of no data.  Override method.
-				//var status = parentPreReq.apply(this);
-				//if(!status.success) return status;
-				var status = {
-					success : true
-				};
-				if(!this._mapJSON || !this._mapJSON.features) status = {
-					success : false,
-					reason : "No Map Data set.  Open Additional Properties Sheet to download a map!"
-				};
-				return status;
-			};
+			
 			/**
 			 * Calculate Visualization Sizing
 			 */
@@ -644,23 +410,8 @@
 	    	var parentInit = this.init;
 	    	this.init = function(){
 	    		parentInit.call(this);
-	    		//this.svg.call(tip);
 	    		this.$().addClass("Choropleth");
-	    		this.container = d3.select("#"+this.$().attr("id"));
-	    		this.tooltip = this.container.append("div").attr("class", "tooltip hidden");
-	    		// Globe Layer
-	    		this.globePath = this.plotLayer.append('path')
-	    			.datum({ type: 'Sphere' })
-	    			.attr('class', 'globe');
-	    		// Graticule Layer
-	    		this.graticule = d3.geo.graticule();
-		        this.graticulePath = this.plotLayer.append('path')
-	            	.datum(this.graticule)
-	            	.attr('class', 'graticule');
-		        this.proj = this.projections[this.projection()] || this.projections["Mercator"];
-		        this.projPath = d3.geo.path().projection(this.proj);
-	    		this.pathGroup = this.plotLayer.append('g')
-    				.attr('class', 'path-group');
+	    		
 	    		this.bubbleGroup = this.plotLayer.append('g')
 					.attr('class', 'bubble-group');
 	    		this.labelGroup = this.plotLayer.append('g')
@@ -762,7 +513,7 @@
 				_labels.exit().remove();
 				// Update features
 				
-	    		this.graticulePath.style("stroke-width", this.plotThickness() / this.zoomScale);
+	    		this.graticulePath.style("stroke-width", this.graticuleThickness() / this.zoomScale);
 	    		this.globePath.style("stroke-width", this.plotThickness() / this.zoomScale);
 	    		this.pathGroup.selectAll("path").style("stroke-width", this.plotThickness() / this.zoomScale)
 	    		this.labelGroup.selectAll("text")
@@ -795,165 +546,82 @@
 					alert("Problem on zoom adjust\n\n" + e);
 				}
 			}
-	    	var parentUpdatePlot = this.updatePlot;
-	    	/**
+			this.featureFill = function(d) {
+				if(d.properties && d.properties && d.properties[that.featureProperty()]){
+					if(d.properties[that.featureProperty()]==that.selectedFeature() && that.selectedColor()) return that.selectedColor();
+				}
+				if(d.properties && d.properties.designStudioMeasures){
+					var mm = that.measureMember();
+					if(!mm){
+						if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 0) mm = that.flatData.columnHeaders[0];
+					}
+					return that.colorRange(d.properties.designStudioMeasures[mm]) || that.defaultFillColor();	
+				}else{
+					return that.defaultFillColor();
+				}
+			};
+			var parentUpdatePlot = this.updatePlot;
+			/**
 			 * Update Features
 			 */
 			this.updatePlot = function(){
 				var that = this;
 				try{
-				parentUpdatePlot.call(this);
-				// Horizontal Scale/Legend
-				var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.plotHeight - (this.dimensions.gradientBottom + this.dimensions.gradientHeight));
-		    	this.legend2
-		    		.transition().duration(this.ms())
-		    		.attr("transform", "translate(" + legend2Transform +")");
-		    	var trans = "0," + (0 - this.dimensions.gradientHeight);
-		    	this.gradientTicks
-		    		.transition().duration(this.ms())
-		    		.attr("transform", "translate(" + trans +")");
-				this.plotArea
-		    		.transition().duration(this.ms())
-	    			.attr("transform", "translate("+this.dimensions.plotLeft+","+this.dimensions.plotTop+")");
-				this.clipRect
-					//.transition().duration(this.ms())
-					.attr("width", this.dimensions.plotWidth)
-					.attr("height", this.dimensions.plotHeight);
-				this.updateColorRange();
-				this.updateProjection();
-				var that = this;
-				
-				// Data
-				var features = this.pathGroup.selectAll('path').data(this._mapJSON.features);
-				var bubbles = this.bubbleGroup.selectAll('circle').data(this._mapJSON.features);
-				var labels = this.labelGroup.selectAll('text').data(this._mapJSON.features);
-				// Enter
-				var newFeatures = features.enter().append("path")
-					.attr("class","path");
-				
-				var newLabels = labels.enter().append("text")
-					.attr('class', function(d) { return "subunit-label " + d.properties[that.labelProperty()]; })
-					.attr("pointer-events", "none")
-					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
-					.attr("dy", ".35em")
-					.text(function(d) { return d.properties[that.labelProperty()]; });
-				
-				var newBubbles = bubbles.enter().append("circle")
-					.attr('class', function(d) { return "subunit-bubble " + d.properties[that.labelProperty()]; })
-					.attr("pointer-events", "none")
-					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
-					.attr("r", 0)
-					.attr("opacity", 0)
-					.attr("fill", this.bubbleColor());
-				
-				
-				// Update graticule
-	    		this.graticulePath
-	    			.transition().duration(this.ms())
-	    			.style("stroke",this.graticuleColor())
-	    			.attr('opacity', function(){ if(that.graticuleOn()){
-	    				return 1;
-	    			}else{
-	    				return 0;
-	    			}})
-            		.attr('d', this.projPath);
-	    		// Update globe
-	    		this.globePath
-	    			.transition().duration(this.ms())
-	    			.style("fill",this.globeColor())
-	    			.attr('opacity', function(){ if(that.globeOn()){
-	    				return 1;
-	    			}else{
-	    				return 0;
-	    			}})
-        			.attr('d', this.projPath);
-				this.pathGroup.selectAll("path")
-					.transition().duration(this.ms())
-					.attr("class",function(d){return "path";})
-					.attr("id",function(d,i){return that.$().attr("id")+"_feature_" + i;})
-					.attr("d",this.projPath)
-					.attr("opacity",this.plotAlpha()/100)
-					.attr("fill", function(d) {
-						if(d.properties && d.properties && d.properties[that.featureProperty()]){
-							if(d.properties[that.featureProperty()]==that.selectedFeature() && that.selectedColor()) return that.selectedColor();
-						}
-						if(d.properties && d.properties.designStudioMeasures){
-							var mm = that.measureMember();
-							if(!mm){
-								if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 0) mm = that.flatData.columnHeaders[0];
+					this.updateColorRange();
+					parentUpdatePlot.call(this);
+					// Events
+					this.pathGroup.selectAll('path')
+						.on('click', function(d){ 
+							if(that.moved) {
+								that.moved = false;
+								return;
 							}
-							return that.colorRange(d.properties.designStudioMeasures[mm]) || that.defaultFillColor();	
-						}else{
-							return that.defaultFillColor();
-						}
-					});
-				
-				this.bubbleGroup.selectAll("circle")
-    				.transition().duration(this.ms())
-    				.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
-    				.attr("r", function(d,i){
-						if(d.properties && d.properties.designStudioMeasures){
-							var bm = that.bubbleMember();
-							if(bm){
-								if(d.properties.designStudioMeasures[bm]){
-									return that.bubbleScale(d.properties.designStudioMeasures[bm]);
-									// linear scale
+							d3.select(this)
+								.transition().duration(that.ms())
+								.attr("fill",that.selectedColor());
+							that.setSelectedFeature(d);
+							that.updateTriangles();
+						});
+					var bubbles = this.bubbleGroup.selectAll('circle').data(this._mapJSON.features);
+					var newBubbles = bubbles.enter().append("circle")
+						.attr('class', function(d) { return "subunit-bubble " + d.properties[that.labelProperty()]; })
+						.attr("pointer-events", "none")
+						.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
+						.attr("r", 0)
+						.attr("opacity", 0)
+						.attr("fill", this.bubbleColor());
+
+					this.bubbleGroup.selectAll("circle")
+						.transition().duration(this.ms())
+						.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
+						.attr("r", function(d,i){
+							if(d.properties && d.properties.designStudioMeasures){
+								var bm = that.bubbleMember();
+								if(bm){
+									if(d.properties.designStudioMeasures[bm]){
+										return that.bubbleScale(d.properties.designStudioMeasures[bm]);
+										// linear scale
+									}else{
+										return 0;	
+									}
+									//that.colorRange(d.properties.designStudioMeasures[mm]) || that.defaultFillColor();
+									//if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 0 && ) mm = that.flatData.columnHeaders[0];
 								}else{
-									return 0;	
+									return 0;
 								}
-								//that.colorRange(d.properties.designStudioMeasures[mm]) || that.defaultFillColor();
-								//if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 0 && ) mm = that.flatData.columnHeaders[0];
-							}else{
-								return 0;
 							}
-						}
-						return 0;
-    				})
-    				.attr("opacity", this.bubbleAlpha()/100)
-    				.attr("fill", this.bubbleColor());
-					//var bm = that.bubbleMember();
-    			
-				labels
-					.attr('class', function(d) { return "subunit-label " + d.properties[that.labelProperty()]; })
-					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
-					.text(function(d) { return d.properties[that.labelProperty()]; });
+							return 0;
+						})
+						.attr("opacity", this.bubbleAlpha()/100)
+						.attr("fill", this.bubbleColor());
+						//var bm = that.bubbleMember();
+					 bubbles.exit().remove();
 				
-				// Events
-				this.pathGroup.selectAll('path')
-					.on('mousemove', this.doTooltip)
-					//.on('mouseover', this.doTooltip)
-					.on('mouseout', function(d) {
-						//d3.select("body").selectAll("#"+that.$().attr("id")+"_tooltip").remove();
-						that.tooltip.classed("hidden",true);
-						that.triangle
-							.transition().duration(that.ms())
-							.attr("opacity",0);
-					})
-					.on('click', function(d){ 
-						if(that.moved) {
-							that.moved = false;
-							return;
-						}
-						d3.select(this)
-							.transition().duration(that.ms())
-							.attr("fill",that.selectedColor());
-						that.setSelectedFeature(d);
-						that.updateTriangles();
-					});
-				/*
-				this.labelGroup.selectAll("text")
-					.on('mouseover', this.doTooltip);
-				*/
-				// Exit
-				 features.exit().remove();
-				 bubbles.exit().remove();
-				 labels.exit().remove();
 				}catch(e){
-					alert("Error updating plot:\n\n"+e);
+					alert("Error updating Choropleth Chart Plot:\n\n"+e);
 				}
-				this.adjustPlotZoom();
 				return this;
-			}
+			};
 	    	var parentUpdateLegend = this.updateLegend;
 	    	/**
 			 * Update Legend
