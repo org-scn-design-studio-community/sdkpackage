@@ -159,6 +159,7 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 						url : mapURL,
 						headers : config.headers
 					}).done(function(data){
+						data = removeDiacritics(data);
 						that._mapData = that.processMapData(data);
 						that.updateContents();
 						that.fireMapDataChange();
@@ -260,7 +261,9 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 			this.drawMap();
 		},this);
 		this.geoJSONText.attachChange(function(oControlEvent){
-			this._mapData = oControlEvent.getSource().getValue();
+			var textvalue = oControlEvent.getSource().getValue();
+			textvalue = removeDiacritics(textvalue);
+			this._mapData = textvalue;
 			that.fireMapDataChange();
 		},this);
 		this.mapContents.addContent(this.geoJSONText);

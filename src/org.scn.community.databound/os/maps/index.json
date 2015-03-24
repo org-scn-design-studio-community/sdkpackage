@@ -71,7 +71,7 @@
         },
         { "label" : "Asia",
           "maps" : [ { "label" : "China",
-                "url" : "China-regions.json"
+                "url" : "Asia/China-regions.json"
               },
               { "label" : "Hong Kong",
                 "url" : "Asia/Hong-Kong-regions.json"
