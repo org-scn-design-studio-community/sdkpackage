@@ -15,7 +15,8 @@
 			d3 :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.min",
 			d3tip :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3-tip",
 			hexbin :	pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3-hexbin"
-		 }
+		 },
+		 rlArgs: "v=" + org_scn_community_require.jsVersion,
 	 });
 	 sdkReqs(["require","d3","d3tip","hexbin"], function(require,d3,d3tip,d3hexbin) {
 		 var tip = d3tip()
