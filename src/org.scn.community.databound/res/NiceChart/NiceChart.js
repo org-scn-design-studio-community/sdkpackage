@@ -1,6 +1,6 @@
 (function(){
 
-var myComponentData = org_scn_community_require.knownComponents.databound.ResultSetMixer;
+var myComponentData = org_scn_community_require.knownComponents.databound.NiceChart;
 myComponentData.instance = function () {
 
 /*AUTO PROPERTIES - START*/
