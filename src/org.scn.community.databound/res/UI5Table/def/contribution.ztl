@@ -49,6 +49,62 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
+	 * Sets Allow Sort in Columns Property
+	 */	
+	void setAllowSort( /* &nbsp; */  boolean allowSort){*
+		this.DAllowSort = allowSort;
+	*}
+
+	/**
+	 * Gets Allow Sort in Columns Property
+	 */	
+	boolean getAllowSort() {*
+		return this.DAllowSort;
+	*}
+
+	/**
+	 * Sets Allow Reorder of Columns Property
+	 */	
+	void setAllowColumnReorder( /* &nbsp; */  boolean allowColumnReorder){*
+		this.DAllowColumnReorder = allowColumnReorder;
+	*}
+
+	/**
+	 * Gets Allow Reorder of Columns Property
+	 */	
+	boolean getAllowColumnReorder() {*
+		return this.DAllowColumnReorder;
+	*}
+
+	/**
+	 * Sets Allow Selection in the Table Property
+	 */	
+	void setAllowSelection( /* &nbsp; */  boolean allowSelection){*
+		this.DAllowSelection = allowSelection;
+	*}
+
+	/**
+	 * Gets Allow Selection in the Table Property
+	 */	
+	boolean getAllowSelection() {*
+		return this.DAllowSelection;
+	*}
+
+	/**
+	 * Sets Fiexd Header Rows Property
+	 */	
+	void setFixedHeader( /* &nbsp; */  boolean fixedHeader){*
+		this.DFixedHeader = fixedHeader;
+	*}
+
+	/**
+	 * Gets Fiexd Header Rows Property
+	 */	
+	boolean getFixedHeader() {*
+		return this.DFixedHeader;
+	*}
+
+	/**
 	 * Sets Header Column Width in px Property
 	 */	
 	void setHeaderColWidth( /* &nbsp; */  int headerColWidth){*
@@ -92,5 +148,19 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
-
+	/**
+	 * Gets Cell Selection As JSON String
+	 */	
+	String getCellSelectionAsJSON() {*
+		var jsonObject = JSON.parse(this.DCellSelection);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Gets Row Selection As JSON String
+	 */	
+	String getRowSelectionAsJSON() {*
+		var jsonObject = JSON.parse(this.DRowSelection);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
 }

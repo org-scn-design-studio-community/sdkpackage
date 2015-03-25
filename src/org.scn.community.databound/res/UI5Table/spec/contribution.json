@@ -17,4 +17,16 @@
 	"DFormatingCondition" : {
 		"gen-type":"String",
 	},
+	"DAllowSort" : {
+		"gen-type":"boolean",
+	},
+	"DAllowColumnReorder" : {
+		"gen-type":"boolean",
+	},
+	"DAllowSelection" : {
+		"gen-type":"boolean",
+	},
+	"DFixedHeader" : {
+		"gen-type":"boolean",
+	},
 }

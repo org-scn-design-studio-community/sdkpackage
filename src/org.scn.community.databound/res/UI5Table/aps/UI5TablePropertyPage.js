@@ -16,6 +16,10 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		this.initDDataProvisioner();
 		this.initDVisibleRowCount();
 		this.initDRowHeight();
+		this.initDAllowSort();
+		this.initDAllowColumnReorder();
+		this.initDAllowSelection();
+		this.initDFixedHeader();
 		this.initDHeaderColWidth();
 		this.initDFormatingCondition();
 		this.initDNavigationMode();
@@ -26,6 +30,10 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		this.updateDDataProvisioner();
 		this.updateDVisibleRowCount();
 		this.updateDRowHeight();
+		this.updateDAllowSort();
+		this.updateDAllowColumnReorder();
+		this.updateDAllowSelection();
+		this.updateDFixedHeader();
 		this.updateDHeaderColWidth();
 		this.updateDFormatingCondition();
 		this.updateDNavigationMode();
@@ -128,6 +136,138 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		}else{
 			this._DRowHeight = s;
 			this.updatePropertyDRowHeight();
+			return this;
+		}
+	};
+
+	this.updatePropertyDAllowSort = function(){
+		this._inputDAllowSort.setChecked(this._DAllowSort);
+	};
+	
+	this.initDAllowSort = function(){
+		this._labelDAllowSort = new sap.ui.commons.Label({text: " Allow Sort in Columns"});
+		this._labelDAllowSort.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDAllowSort);
+		
+		this._inputDAllowSort = new sap.ui.commons.CheckBox({width: "300px", text: "Allow Sort in Columns"});
+		this._content.addContent(this._inputDAllowSort);
+		this._inputDAllowSort.attachChange(this.propertyChangedDAllowSort, this);
+		this._inputDAllowSort.addStyleClass("org-scn-ApsBoolean");
+		
+		this.updatePropertyDAllowSort();
+	};
+
+	this.propertyChangedDAllowSort = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		this._DAllowSort = checked;
+		this.firePropertiesChanged(["DAllowSort"]);
+	};
+	
+	this.DAllowSort = function(s){
+		if( s === undefined){
+			return this._DAllowSort;
+		}else{
+			this._DAllowSort = s;
+			this.updatePropertyDAllowSort();
+			return this;
+		}
+	};
+
+	this.updatePropertyDAllowColumnReorder = function(){
+		this._inputDAllowColumnReorder.setChecked(this._DAllowColumnReorder);
+	};
+	
+	this.initDAllowColumnReorder = function(){
+		this._labelDAllowColumnReorder = new sap.ui.commons.Label({text: " Allow Reorder of Columns"});
+		this._labelDAllowColumnReorder.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDAllowColumnReorder);
+		
+		this._inputDAllowColumnReorder = new sap.ui.commons.CheckBox({width: "300px", text: "Allow Reorder of Columns"});
+		this._content.addContent(this._inputDAllowColumnReorder);
+		this._inputDAllowColumnReorder.attachChange(this.propertyChangedDAllowColumnReorder, this);
+		this._inputDAllowColumnReorder.addStyleClass("org-scn-ApsBoolean");
+		
+		this.updatePropertyDAllowColumnReorder();
+	};
+
+	this.propertyChangedDAllowColumnReorder = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		this._DAllowColumnReorder = checked;
+		this.firePropertiesChanged(["DAllowColumnReorder"]);
+	};
+	
+	this.DAllowColumnReorder = function(s){
+		if( s === undefined){
+			return this._DAllowColumnReorder;
+		}else{
+			this._DAllowColumnReorder = s;
+			this.updatePropertyDAllowColumnReorder();
+			return this;
+		}
+	};
+
+	this.updatePropertyDAllowSelection = function(){
+		this._inputDAllowSelection.setChecked(this._DAllowSelection);
+	};
+	
+	this.initDAllowSelection = function(){
+		this._labelDAllowSelection = new sap.ui.commons.Label({text: " Allow Selection in the Table"});
+		this._labelDAllowSelection.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDAllowSelection);
+		
+		this._inputDAllowSelection = new sap.ui.commons.CheckBox({width: "300px", text: "Allow Selection in the Table"});
+		this._content.addContent(this._inputDAllowSelection);
+		this._inputDAllowSelection.attachChange(this.propertyChangedDAllowSelection, this);
+		this._inputDAllowSelection.addStyleClass("org-scn-ApsBoolean");
+		
+		this.updatePropertyDAllowSelection();
+	};
+
+	this.propertyChangedDAllowSelection = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		this._DAllowSelection = checked;
+		this.firePropertiesChanged(["DAllowSelection"]);
+	};
+	
+	this.DAllowSelection = function(s){
+		if( s === undefined){
+			return this._DAllowSelection;
+		}else{
+			this._DAllowSelection = s;
+			this.updatePropertyDAllowSelection();
+			return this;
+		}
+	};
+
+	this.updatePropertyDFixedHeader = function(){
+		this._inputDFixedHeader.setChecked(this._DFixedHeader);
+	};
+	
+	this.initDFixedHeader = function(){
+		this._labelDFixedHeader = new sap.ui.commons.Label({text: " Fiexd Header Rows"});
+		this._labelDFixedHeader.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDFixedHeader);
+		
+		this._inputDFixedHeader = new sap.ui.commons.CheckBox({width: "300px", text: "Fiexd Header Rows"});
+		this._content.addContent(this._inputDFixedHeader);
+		this._inputDFixedHeader.attachChange(this.propertyChangedDFixedHeader, this);
+		this._inputDFixedHeader.addStyleClass("org-scn-ApsBoolean");
+		
+		this.updatePropertyDFixedHeader();
+	};
+
+	this.propertyChangedDFixedHeader = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		this._DFixedHeader = checked;
+		this.firePropertiesChanged(["DFixedHeader"]);
+	};
+	
+	this.DFixedHeader = function(s){
+		if( s === undefined){
+			return this._DFixedHeader;
+		}else{
+			this._DFixedHeader = s;
+			this.updatePropertyDFixedHeader();
 			return this;
 		}
 	};

@@ -774,9 +774,10 @@ org_scn_community_databound.toRowTable = function (flatData, opts) {
 
 	flatData.data2D = rowsData;
 	flatData.data2DPlain = rowsDataPlain;
-	
 	flatData.headerDataPlain = headerDataPlain;
 	
+	flatData.data2DStructured = {};
+	flatData.data2DStructured["values"] = flatData.data2DPlain;
 	return flatData;
 };
 
@@ -1160,6 +1161,12 @@ org_scn_community_databound.applyConditionalFormats = function (flatData, opts) 
 		}
 	}
 	
+	flatData.data2DStructured["formats"] = [];
+	for(var mrI=0;mrI<flatData.data2D.length;mrI++){
+		flatData.data2DStructured["formats"].push(flatData.data2D[mrI]["formats"]);	
+	}
+	
+
 	return 0;
 };
 

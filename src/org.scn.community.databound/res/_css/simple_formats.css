@@ -1,0 +1,3 @@
+div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% !important;height: 100% !important;}
+
+div[class~=scn-pack-FacetFilter-ActivateSimpleConditions] td>div>label[data-condformat="bad1"] {background-color: #ff0000!important;}

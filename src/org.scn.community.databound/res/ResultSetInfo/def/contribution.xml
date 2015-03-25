@@ -21,6 +21,7 @@
 		visible="false"
 	>
 		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
 	</property>
 
 	<property
