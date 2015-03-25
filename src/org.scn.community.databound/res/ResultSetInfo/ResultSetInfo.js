@@ -58,7 +58,7 @@ var ResultSetInfo = {
 		// Destroy old content
 		that._lLayout.destroyContent();
 		
-		that._lLayout.addContent(that.createFlowPanel("Number of Data Cells", that._flatData.values.length));
+		that._lLayout.addContent(that.createFlowPanel("Number of Data Cells", that._data.data.length));
 		that._lLayout.addContent(that.createFlowPanel("Number of Data Columns", that._flatData.geometry.colLength));
 		that._lLayout.addContent(that.createFlowPanel("Number of Header Columns", that._flatData.geometry.headersLength));
 		that._lLayout.addContent(that.createFlowPanel("Number of Rows", that._flatData.geometry.rowLength));

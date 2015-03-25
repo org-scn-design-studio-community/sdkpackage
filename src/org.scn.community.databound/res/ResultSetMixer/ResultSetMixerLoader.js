@@ -19,7 +19,7 @@
 
 (function() {
 	 // this line below needs to be adjusted
-	 var myComponentData = org_scn_community_require.knownComponents.databound.ResultSetStructureBlender;
+	 var myComponentData = org_scn_community_require.knownComponents.databound.ResultSetMixer;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
@@ -36,7 +36,7 @@
 
 	 sdkReqs(requireInfo1.plainNames, function() {
 			 // define the nice chart object
-		 	 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, org_scn_community_components.databound.ResultSetStructureBlender);	// End of SDK
+		 	 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 	     	 sap.zen.Dispatcher.instance.resumeDispatching();
 	});//End of Require Callback 1
 })();// End of closure

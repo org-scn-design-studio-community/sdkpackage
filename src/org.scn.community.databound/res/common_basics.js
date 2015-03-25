@@ -145,3 +145,15 @@ org_scn_community_basics.readGenericScriptAccess = function(scriptSrc, sctiptPat
  		mainSDKPath: "/aad/zen/mimes/sdk_include/"
  	};
 }
+
+org_scn_community_basics.cloneJson = function(json) {
+	if (typeof JSON.clone !== "function")
+	{
+	    JSON.clone = function(obj)
+	    {
+	        return JSON.parse(JSON.stringify(obj));
+	    };
+	}
+	
+	return JSON.clone(json);
+}

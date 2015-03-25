@@ -2,19 +2,21 @@ var org_scn_community_databound = org_scn_community_databound || {};
 org_scn_community_databound.centralDataStorage = org_scn_community_databound.centralDataStorage || {}; 
 
 (function(){
-	
-var ResultSetStructureBlender = {
+
+var myComponentData = org_scn_community_require.knownComponents.databound.ResultSetMixer;
+myComponentData.instance = {
 
 /*AUTO PROPERTIES - START*/
 
 	metadata: {
         properties: {
-              "DMasterStructureProvisioner": {type: "string"},
-              "DSlaveResultSetProvisioner1": {type: "string"},
-              "DSlaveResultSetProvisioner2": {type: "string"},
-              "DSlave2ContentCondition": {type: "string"},
-              "DSlave2StructureRowCondition": {type: "string"},
-              "DSlave2StructureColumnCondition": {type: "string"},
+              "DMasterProvisioner": {type: "string"},
+              "DMasterGeometry": {type: "string"},
+              "DSlaveProvisioner": {type: "string"},
+              "DSlaveColumnIndex": {type: "int"},
+              "DSlaveContentCondition": {type: "string"},
+              "DSlaveRowCondition": {type: "string"},
+              "DSlaveColumnCondition": {type: "string"},
         }
 	},
 
@@ -84,30 +86,45 @@ var ResultSetStructureBlender = {
 	afterPrepare: function (owner) {
 		var that = owner;
 		
+		var conditionColumns = that.getDSlaveColumnCondition();
+		var conditionRows = that.getDSlaveRowCondition();
+		var conditionContent = that.getDSlaveContentCondition();
+		var slaveColumnIndex = that.getDSlaveColumnIndex();
+		
+		var options = {};
+		options.conditionColumns = conditionColumns;
+		options.conditionRows = conditionRows;
+		options.conditionContent = conditionContent;
+		options.collectMultiple = true;
+		options.slaveColumnIndex = slaveColumnIndex;
+		
 		// mix data by keys
-		org_scn_community_databound.blendStructure(that._masterData, that._slaveData1);
+		var masterGeometry = that.getDMasterGeometry();
+		if(masterGeometry == "Structure") {
+			org_scn_community_databound.mixStructure(that._masterData, that._slaveData, options);	
+		} else if(masterGeometry == "Rows") {
+			org_scn_community_databound.mixRows(that._masterData, that._slaveData, options);	
+		}
+		
 		org_scn_community_databound.centralDataStorage[that.oComponentProperties.id] = that._masterData;
 	},
 	
 	getPreparedData : function (afterPrepare) {
 		var that = this;
 		
-		var masterProvisioner = that.getDMasterStructureProvisioner();
+		var masterProvisioner = that.getDMasterProvisioner();
 		that._masterData = org_scn_community_databound.centralDataStorage[masterProvisioner];
+		that._masterData = org_scn_community_basics.cloneJson(that._masterData);
 		
-		var slave1Provisioner = that.getDSlaveResultSetProvisioner1();
-		that._slaveData1 = org_scn_community_databound.centralDataStorage[slave1Provisioner];
-
-		var slave2Provisioner = that.getDSlaveResultSetProvisioner2();
-		that._slaveData2 = org_scn_community_databound.centralDataStorage[slave2Provisioner];
+		var slave1Provisioner = that.getDSlaveProvisioner();
+		that._slaveData = org_scn_community_databound.centralDataStorage[slave1Provisioner];
 		
 		afterPrepare(that);
 	},
 };
 
-define([org_scn_community_require.knownComponents.databound.ResultSetStructureBlender.requireName], function(databoundresultsetstructureblender){
-	org_scn_community_components.databound.ResultSetStructureBlender = ResultSetStructureBlender;
-	return ResultSetStructureBlender;
+define([myComponentData.requireName], function(databoundresultsetmixer){
+	return myComponentData.instance;
 });
 
 }).call(this);

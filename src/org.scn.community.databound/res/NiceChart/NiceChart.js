@@ -1,6 +1,7 @@
 (function(){
 
-var NiceChart = function () {
+var myComponentData = org_scn_community_require.knownComponents.databound.ResultSetMixer;
+myComponentData.instance = function () {
 
 /*AUTO PROPERTIES - START*/
 
@@ -448,9 +449,8 @@ var NiceChart = function () {
     };
 };
 
-define(["databoundnicechart"], function(databoundnicechart){
-	org_scn_community_components.databound.NiceChart = NiceChart;
-	return NiceChart;
+define([myComponentData.requireName], function(databoundnicechart){
+	return myComponentData.instance;
 });
 
 }).call(this);

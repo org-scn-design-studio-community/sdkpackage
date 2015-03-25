@@ -1,0 +1,110 @@
+
+/**
+ * Generated ZTL Class for Result Set Mixer (Not Ready Yet)
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.ResultSetMixer extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Central Data Provisioner for Master  Property
+	 */	
+	void setMasterProvisioner( /* Result Set with Master  */  String masterProvisioner){*
+		this.DMasterProvisioner = masterProvisioner;
+	*}
+
+	/**
+	 * Gets Central Data Provisioner for Master  Property
+	 */	
+	String getMasterProvisioner() {*
+		return this.DMasterProvisioner;
+	*}
+
+	/**
+	 * Sets Geometry of the Master Result Set Property
+	 */	
+	void setMasterGeometry( /* &nbsp; */  choice masterGeometry){*
+		this.DMasterGeometry = masterGeometry;
+	*}
+
+	/**
+	 * Gets Geometry of the Master Result Set Property
+	 */	
+	choice getMasterGeometry() {*
+		return this.DMasterGeometry;
+	*}
+
+	/**
+	 * Sets Central Data Provisioner for Slave Row Based Result Set 1 Property
+	 */	
+	void setSlaveProvisioner( /* Result Set with First Slave Rows for Selection */  String slaveProvisioner){*
+		this.DSlaveProvisioner = slaveProvisioner;
+	*}
+
+	/**
+	 * Gets Central Data Provisioner for Slave Row Based Result Set 1 Property
+	 */	
+	String getSlaveProvisioner() {*
+		return this.DSlaveProvisioner;
+	*}
+
+	/**
+	 * Sets Colun Index of the Slave Comlumn Result Set Property
+	 */	
+	void setSlaveColumnIndex( /* Which column should be loaded from the slave result set */  int slaveColumnIndex){*
+		this.DSlaveColumnIndex = slaveColumnIndex;
+	*}
+
+	/**
+	 * Gets Colun Index of the Slave Comlumn Result Set Property
+	 */	
+	int getSlaveColumnIndex() {*
+		return this.DSlaveColumnIndex;
+	*}
+
+	/**
+	 * Sets Condition to Read Slave Result Set based on Content Property
+	 */	
+	void setSlaveContentCondition( /* Under which condition should be the slave result set read (based on content) */  String slaveContentCondition){*
+		this.DSlaveContentCondition = slaveContentCondition;
+	*}
+
+	/**
+	 * Gets Condition to Read Slave Result Set based on Content Property
+	 */	
+	String getSlaveContentCondition() {*
+		return this.DSlaveContentCondition;
+	*}
+
+	/**
+	 * Sets Condition to Read Slave Result Set based on header Row Content Property
+	 */	
+	void setSlaveRowCondition( /* Under which condition should be the slave result set read (based on contnet of header row) */  String slaveRowCondition){*
+		this.DSlaveRowCondition = slaveRowCondition;
+	*}
+
+	/**
+	 * Gets Condition to Read Slave Result Set based on header Row Content Property
+	 */	
+	String getSlaveRowCondition() {*
+		return this.DSlaveRowCondition;
+	*}
+
+	/**
+	 * Sets Condition to Read Slave Result Set based on header Column Content Property
+	 */	
+	void setSlaveColumnCondition( /* Under which condition should be the slave result set read (based on contnet of header column) */  String slaveColumnCondition){*
+		this.DSlaveColumnCondition = slaveColumnCondition;
+	*}
+
+	/**
+	 * Gets Condition to Read Slave Result Set based on header Column Content Property
+	 */	
+	String getSlaveColumnCondition() {*
+		return this.DSlaveColumnCondition;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}

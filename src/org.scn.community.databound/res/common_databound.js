@@ -61,6 +61,10 @@ org_scn_community_databound.initializeOptions = function () {
 	options.useMockData = true;
 	options.dimensionSeparator = " | ";
 	options.createHaderRow = true;
+	options.conditionColumns = undefined; // JSON condition definition, work in progress, eg. {"operator": "and", "rules": [{"condition": "contains", "members": ["AUSC", "AUSA"]}]}
+	options.conditionRows = undefined; // JSON condition definition, work in progress
+	options.conditionContent = undefined; // JSON condition definition, work in progress
+	options.collectMultiple = true;
 	
 	return options;
 }
@@ -753,17 +757,16 @@ org_scn_community_databound.toRowTable = function (flatData, opts) {
 	
 	for(var rI=0;rI<flatData.geometry.rowLength;rI++){
 		var rowPlain = {};
-		var row = [];
+		var row = {};
+		row["values"] = [];
 		for(var cI=0;cI<flatData.geometry.allColumnsLength;cI++){
-			var cell = {};
 			if(cI < flatData.geometry.headersLength) {
-				cell[""+cI] = flatData.rowHeaders2D[rI][cI];
+				row["values"].push(flatData.rowHeaders2D[rI][cI]);
 				rowPlain[cI] = flatData.rowHeaders2D[rI][cI];
 			} else {
-				cell[""+cI] = flatData.formattedValues[rI][cI-flatData.geometry.headersLength];
+				row["values"].push(flatData.formattedValues[rI][cI-flatData.geometry.headersLength]);
 				rowPlain[cI] = flatData.formattedValues[rI][cI-flatData.geometry.headersLength];
 			}
-			row.push(cell);
 		}
 		rowsData.push(row);
 		rowsDataPlain.push(rowPlain);
@@ -801,25 +804,371 @@ org_scn_community_databound.getSampleDataFlat = function (pathInfo, callBack, af
 	requestForData.send();
 }
 
-org_scn_community_databound.blendStructure = function (master, slave) {
+org_scn_community_databound.mixRows = function (master, slave, opts) {
+	var options = org_scn_community_databound.initializeOptions();
+	if(opts) {
+		for(var option in opts) options[option] = opts[option];
+	}
+	
+	var scI = options.slaveColumnIndex;
+	if(!scI) {
+		scI = 1;
+	}
+	
 	var flatMaster = master.flatData;
 	var flatSlave = slave.flatData;
 	
-	for(var mcI=0;mcI<flatMaster.columnHeadersKeys2D.length;mcI++){
-		for(var mrI=0;mrI<flatMaster.rowHeadersKeys2D.length;mrI++){
-			var rowHeaderKey = flatMaster.rowHeadersKeys2D[mrI];
-			var colHeaderKey = flatMaster.columnHeadersKeys2D[mcI];
+	var rowConditionJson = {};
+	if(options.conditionRows && options.conditionRows.length > 1) {
+		rowConditionJson = JSON.parse(options.conditionRows);
+	}
+	
+	var contentConditionJson = {};
+	if(options.conditionContent && options.conditionContent.length > 1) {
+		contentConditionJson = JSON.parse(options.conditionContent);
+	}
+	
+	var mcI = flatMaster.geometry.colLength; //flatMaster.geometry.allColumnsLength;
+	flatMaster.columnHeaders.push(flatSlave.columnHeaders[0]);
+	flatMaster.columnHeaders2D[0].push(flatSlave.columnHeaders2D[0]);
+	flatMaster.columnHeadersKeys2D[0].push(flatSlave.columnHeadersKeys2D[0]);
+
+	for(var mrI=0;mrI<flatMaster.rowHeadersKeys2D.length;mrI++){
+		var insertRuleRowPassed = true;
+		var insertRuleContentPassed = true;
+
+		var rowHeaderKey = flatMaster.rowHeadersKeys2D[mrI][0];
+
+		if(rowConditionJson.operator) {
+			var ruleAppliedPositive = false;
 			
+			for(rI in rowConditionJson.rules) {
+				ruleAppliedPositive = org_scn_community_databound.checkRule(rowConditionJson.rules[rI], rowHeaderKey);
+
+				if(!ruleAppliedPositive) {
+					insertRuleRowPassed = false;
+					break;
+				}
+			}
+		}
+
+		var firstDataInserted = false;
+		if(insertRuleRowPassed) {
 			for(var srI=0;srI<flatSlave.rowHeadersKeys2D.length;srI++){
 				var row1HeaderKey = flatSlave.rowHeadersKeys2D[srI][0];
-				var row2HeaderKey = flatSlave.rowHeadersKeys2D[srI][1];
 
-				if(rowHeaderKey == row1HeaderKey && colHeaderKey == row2HeaderKey) {
-					// found row.. 
-					flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength] = flatSlave.data2DPlain[srI][2];
+				if(rowHeaderKey == row1HeaderKey) {
+					if(insertRuleContentPassed) {
+						firstDataInserted = org_scn_community_databound.appendColumn (mrI, mcI, srI, scI, firstDataInserted, flatMaster, flatSlave, options);
+					}
 				}
 			}
 		}
 	}
-	var k = 0;
+	
+	return 0;
+};
+
+org_scn_community_databound.mixStructure = function (master, slave, opts) {
+	var options = org_scn_community_databound.initializeOptions();
+	if(opts) {
+		for(var option in opts) options[option] = opts[option];
+	}
+
+	var scI = options.slaveColumnIndex;
+	if(!scI) {
+		scI = 1;
+	}
+	
+	var flatMaster = master.flatData;
+	var flatSlave = slave.flatData;
+
+	var columnConditionJson = {};
+	if(options.conditionColumns && options.conditionColumns.length > 1) {
+		columnConditionJson = JSON.parse(options.conditionColumns);
+	}
+	
+	var rowConditionJson = {};
+	if(options.conditionRows && options.conditionRows.length > 1) {
+		rowConditionJson = JSON.parse(options.conditionRows);
+	}
+	
+	var contentConditionJson = {};
+	if(options.conditionContent && options.conditionContent.length > 1) {
+		contentConditionJson = JSON.parse(options.conditionContent);
+	}
+
+	for(var mcI=0;mcI<flatMaster.columnHeadersKeys2D.length;mcI++){
+		var insertRuleColumnPassed = true;
+		var insertRuleRowPassed = true;
+		var insertRuleContentPassed = true;
+		
+		for(var mrI=0;mrI<flatMaster.rowHeadersKeys2D.length;mrI++){
+			var rowHeaderKey = flatMaster.rowHeadersKeys2D[mrI];
+			var colHeaderKey = flatMaster.columnHeadersKeys2D[mcI];
+
+			if(columnConditionJson.operator) {
+				var ruleAppliedPositive = false;
+				
+				for(rI in columnConditionJson.rules) {
+					ruleAppliedPositive = org_scn_community_databound.checkRule(columnConditionJson.rules[rI], colHeaderKey);
+
+					if(!ruleAppliedPositive) {
+						insertRuleColumnPassed = false;
+						break;
+					}
+				}
+			}
+			
+			if(rowConditionJson.operator) {
+				var ruleAppliedPositive = false;
+				
+				for(rI in rowConditionJson.rules) {
+					ruleAppliedPositive = org_scn_community_databound.checkRule(rowConditionJson.rules[rI], rowHeaderKey);
+
+					if(!ruleAppliedPositive) {
+						insertRuleRowPassed = false;
+						break;
+					}
+				}
+			}
+
+			var firstDataInserted = false;
+			if(insertRuleColumnPassed && insertRuleRowPassed) {
+				for(var srI=0;srI<flatSlave.rowHeadersKeys2D.length;srI++){
+					var row1HeaderKey = flatSlave.rowHeadersKeys2D[srI][0];
+					var row2HeaderKey = flatSlave.rowHeadersKeys2D[srI][1];
+
+					if(rowHeaderKey == row1HeaderKey && colHeaderKey == row2HeaderKey) {
+						var dataContent = flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength];
+						var dataIndex = mrI * flatMaster.columnHeadersKeys2D.length + mcI;
+						var dataValue = flatMaster.values[mrI][mcI];
+						
+						if(contentConditionJson.operator) {
+							var ruleAppliedPositive = false;
+							
+							for(rI in contentConditionJson.rules) {
+								ruleAppliedPositive = org_scn_community_databound.checkRule(contentConditionJson.rules[rI], dataContent, dataValue);
+
+								if(!ruleAppliedPositive) {
+									insertRuleContentPassed = false;
+									break;
+								}
+							}
+						}
+						
+						if(insertRuleContentPassed) {
+							firstDataInserted = org_scn_community_databound.updateDataContent (mrI, mcI, srI, scI, firstDataInserted, flatMaster, flatSlave, options);
+						}
+					}
+				}
+			}
+
+			if(!insertRuleColumnPassed) {
+				break;
+			}
+		}
+	}
+	
+	return 0;
+};
+
+org_scn_community_databound.checkRule = function (rule, content, value) {
+	var ruleAppliedPositive = false;
+	
+	if(rule.condition == "contains") {
+		for(rM in rule.members) {
+			var memberKey = rule.members[rM];
+
+			if(rule.exclude && content.indexOf(memberKey) == -1) {
+				ruleAppliedPositive = true;
+				break;
+			}
+			
+			if(!rule.exclude && content.indexOf(memberKey) > -1) {
+				ruleAppliedPositive = true;
+				break;
+			}
+		}
+	}
+
+	if(rule.condition == "equals") {
+		for(rM in rule.members) {
+			var memberKey = rule.members[rM];
+
+			if(rule.exclude && content != memberKey) {
+				ruleAppliedPositive = true;
+				break;
+			}
+
+			if(!rule.exclude && content == memberKey) {
+				ruleAppliedPositive = true;
+				break;
+			}
+		}
+	}
+	
+	if(rule.condition == "empty") {
+		if(rule.exclude && content != "") {
+			ruleAppliedPositive = true;
+		}
+		
+		if(!rule.exclude && content == "") {
+			ruleAppliedPositive = true;
+		}
+	}
+	
+	if(rule.condition == "value") {
+		var sign = rule.sign;
+		var ruleValue = rule.value;
+		
+		if(value) {
+			try {
+				var valueFloat = parseFloat(value);
+				var ruleValueFloat = parseFloat(ruleValue);
+				
+				if(!isNaN(valueFloat)) {
+					if(sign == ">") {
+						if(rule.exclude && !(valueFloat > ruleValueFloat)) {
+							ruleAppliedPositive = true;
+						}
+		
+						if(!rule.exclude && (valueFloat > ruleValueFloat)) {
+							ruleAppliedPositive = true;
+						}
+					} else if(sign == "<") {
+						if(rule.exclude && !(valueFloat < ruleValueFloat)) {
+							ruleAppliedPositive = true;
+						}
+		
+						if(!rule.exclude && (valueFloat < ruleValueFloat)) {
+							ruleAppliedPositive = true;
+						}
+					} else if(sign == "=") {
+						if(rule.exclude && !(valueFloat == ruleValueFloat)) {
+							ruleAppliedPositive = true;
+						}
+		
+						if(!rule.exclude && (valueFloat == ruleValueFloat)) {
+							ruleAppliedPositive = true;
+						}
+					}
+				}
+			} catch (e) {
+				// ignoring any exceptions...
+			}
+		}
+	}
+
+	return ruleAppliedPositive;
+};
+
+org_scn_community_databound.updateDataContent = function (mrI, mcI, srI, scI, firstDataInserted, flatMaster, flatSlave, options) {
+	if(!firstDataInserted) {
+		// clear the content first
+		flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength] = "";
+	}
+	
+	var targetData = flatSlave.data2DPlain[srI][scI];
+	
+	var connectedData = targetData;
+
+	// found row.. 
+	if(options.collectMultiple && flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength] != "") {
+		connectedData = flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength] + ", " + targetData;
+	} else {
+		firstDataInserted = true;
+	}
+
+	// no update all data areas of master
+	flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength] = connectedData;
+	flatMaster.data2D[mrI]["values"][mcI+flatMaster.geometry.headersLength] = connectedData;
+	if(!flatMaster.values[mrI]) {
+		flatMaster.values[mrI] = [];
+		flatMaster.formattedValues[mrI] = [];
+		mcI = -1;
+	}
+	flatMaster.values[mrI][mcI] = connectedData; // hmm, how does this work then, TODO: find the corresponding real value
+	flatMaster.formattedValues[mrI][mcI] = connectedData;
+	
+	return firstDataInserted;
 }
+
+org_scn_community_databound.appendColumn = function (mrI, mcI, srI, scI, firstDataInserted, flatMaster, flatSlave, options) {
+	if(!firstDataInserted) {
+		// clear the content first
+		flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength] = "";
+	}
+	
+	var targetData = flatSlave.data2DPlain[srI][scI];
+	
+	var connectedData = targetData;
+
+	// found row.. 
+	if(options.collectMultiple && flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength] != "") {
+		connectedData = flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength] + ", " + targetData;
+	} else {
+		firstDataInserted = true;
+	}
+
+	// no update all data areas of master
+	flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength] = connectedData;
+	flatMaster.data2D[mrI]["values"][mcI+flatMaster.geometry.headersLength] = connectedData;
+	
+	// rare case, no values at all
+	if(!flatMaster.values[mrI]) {
+		flatMaster.values[mrI] = [];
+		flatMaster.formattedValues[mrI] = [];
+		mcI = 0;
+	}
+	flatMaster.values[mrI][mcI] = connectedData; // hmm, how does this work then, TODO: find the corresponding real value
+	flatMaster.formattedValues[mrI][mcI] = connectedData;
+	
+	return firstDataInserted;
+}
+
+org_scn_community_databound.applyConditionalFormats = function (flatData, opts) {
+	var options = org_scn_community_databound.initializeOptions();
+	if(opts) {
+		for(var option in opts) options[option] = opts[option];
+	}
+	
+	var formattingConditionJson = {};
+	if(options.formattingCondition && options.formattingCondition.length > 1) {
+		formattingConditionJson = JSON.parse(options.formattingCondition);
+	}
+	
+	if(formattingConditionJson.operator) {
+		var ruleSimpleFormat = false;
+		
+		for(rI in formattingConditionJson.rules) {
+			for(var mrI=0;mrI<flatData.data2D.length;mrI++){
+				for(var mcI=0;mcI<flatData.data2D[mrI]["values"].length;mcI++){
+					var content = flatData.data2D[mrI]["values"][mcI];
+					var value = content;
+					if(mcI>=flatData.geometry.headersLength) {
+						value = flatData.values[mrI][mcI-flatData.geometry.headersLength];	
+					}
+					ruleSimpleFormat = org_scn_community_databound.checkSimpleFormatingRule(formattingConditionJson.rules[rI], content, value);
+					
+					if(!flatData.data2D[mrI]["formats"]) {
+						flatData.data2D[mrI]["formats"] = [];
+					}
+					flatData.data2D[mrI]["formats"].push(ruleSimpleFormat);					
+				}
+			}
+		}
+	}
+	
+	return 0;
+};
+
+org_scn_community_databound.checkSimpleFormatingRule = function (rule, content, value) {
+	var applies = org_scn_community_databound.checkRule (rule, content, value);
+	
+	if(applies) {
+		return rule.simpleFormat;
+	}
+	
+	return "";
+};

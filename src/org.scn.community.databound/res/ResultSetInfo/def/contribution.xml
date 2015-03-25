@@ -1,7 +1,7 @@
 
 <component
 	id="ResultSetInfo"
-	title="Result Set Information (Not Ready Yet)"
+	title="Result Set Information (Test Phase)"
 	icon="res/ResultSetInfo/ResultSetInfo.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"

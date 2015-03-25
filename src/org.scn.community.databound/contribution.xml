@@ -1934,7 +1934,7 @@ __n__}
 </component>
 <component
 	id="ResultSetInfo"
-	title="Result Set Information (Not Ready Yet)"
+	title="Result Set Information (Test Phase)"
 	icon="res/ResultSetInfo/ResultSetInfo.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
@@ -1976,28 +1976,38 @@ __n__}
 
 </component>
 <component
-	id="ResultSetStructureBlender"
-	title="Result Set Structure Blender (Not Ready Yet)"
-	icon="res/ResultSetStructureBlender/ResultSetStructureBlender.png"
+	id="ResultSetMixer"
+	title="Result Set Mixer (Test Phase)"
+	icon="res/ResultSetMixer/ResultSetMixer.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
-	propertySheetPath="res/ResultSetStructureBlender/aps/ResultSetStructureBlenderPropertyPage.html"
+	propertySheetPath="res/ResultSetMixer/aps/ResultSetMixerPropertyPage.html"
 	databound="true"
 >	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ResultSetStructureBlender/ResultSetStructureBlenderLoader.js</jsInclude>
+	<jsInclude>res/ResultSetMixer/ResultSetMixerLoader.js</jsInclude>
 	
 	<property
-		id="DMasterStructureProvisioner"
-		title="Central Data Provisioner for Master Structure"
-		tooltip="Result Set with Master Structure"
+		id="DMasterProvisioner"
+		title="Central Data Provisioner for Master "
+		tooltip="Result Set with Master "
 		type="String"
 		group="Display"
 		visible="true">
 	</property>
 
 	<property
-		id="DSlaveResultSetProvisioner1"
+		id="DMasterGeometry"
+		title="Geometry of the Master Result Set"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Structure</possibleValue>
+			<possibleValue>Rows</possibleValue>
+	</property>
+	
+	<property
+		id="DSlaveProvisioner"
 		title="Central Data Provisioner for Slave Row Based Result Set 1"
 		tooltip="Result Set with First Slave Rows for Selection"
 		type="String"
@@ -2006,36 +2016,36 @@ __n__}
 	</property>
 
 	<property
-		id="DSlaveResultSetProvisioner2"
-		title="Central Data Provisioner for Slave Row Based Result Set 2"
-		tooltip="Result Set with Second Slave Rows for Selection"
+		id="DSlaveColumnIndex"
+		title="Colun Index of the Slave Comlumn Result Set"
+		tooltip="Which column should be loaded from the slave result set"
+		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveContentCondition"
+		title="Condition to Read Slave Result Set based on Content"
+		tooltip="Under which condition should be the slave result set read (based on content)"
 		type="String"
 		group="Display"
 		visible="true">
 	</property>
 
 	<property
-		id="DSlave2ContentCondition"
-		title="Condition to Read Slave Result Set 2 based on Content 1"
-		tooltip="Under which condition should be the Slave 2 read (based on contnet of slave 1)"
+		id="DSlaveRowCondition"
+		title="Condition to Read Slave Result Set based on header Row Content"
+		tooltip="Under which condition should be the slave result set read (based on contnet of header row)"
 		type="String"
 		group="Display"
 		visible="true">
 	</property>
 
 	<property
-		id="DSlave2StructureRowCondition"
-		title="Condition to Read Slave Result Set 2 based on header Column Content"
-		tooltip="Under which condition should be the Slave 2 read (based on contnet of header column"
-		type="String"
-		group="Display"
-		visible="true">
-	</property>
-
-	<property
-		id="DSlave2StructureColumnCondition"
-		title="Condition to Read Slave Result Set 2 based on header Row Content"
-		tooltip="Under which condition should be the Slave 2 read (based on contnet of header row)"
+		id="DSlaveColumnCondition"
+		title="Condition to Read Slave Result Set based on header Column Content"
+		tooltip="Under which condition should be the slave result set read (based on contnet of header column)"
 		type="String"
 		group="Display"
 		visible="true">
@@ -2048,6 +2058,8 @@ __n__}
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="DMasterGeometry">RowBased</defaultValue>
 	</initialization>
 
 </component>
@@ -2788,6 +2800,7 @@ __n__}
 	icon="res/UI5Table/UI5Table.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
+	propertySheetPath="res/UI5Table/aps/UI5TablePropertyPage.html"
 	databound="true"
 >
 
@@ -2844,6 +2857,14 @@ __n__}
 	</property>
 
 	<property
+		id="DFormatingCondition"
+		title="Formating Condition"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
 		id="DNavigationMode"
 		title="Navigation Mode"
 		type="String"
@@ -2853,22 +2874,6 @@ __n__}
 			<possibleValue>Scrollbar</possibleValue>
 	</property>
 
-	<property
-		id="DCustomDimensions"
-		title="Custom Dimensions as Array [...]"
-		type="String"
-		group="Display"
-		visible="false">
-	</property>
-
-	<property
-		id="onBeforeRender"
-		type="ScriptText"
-		title="Event for On Before Render"
-		group="Events"
-		visible="false" 
-	/>
-
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
@@ -2877,11 +2882,6 @@ __n__}
 		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 
-		<defaultValue property="DCustomDimensions">[]</defaultValue>
-
-		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
-		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
-		
 		<defaultValue property="DNavigationMode">Paginator</defaultValue>
 		<defaultValue property="DRowHeight">22</defaultValue>
 		<defaultValue property="DVisibleRowCount">12</defaultValue>

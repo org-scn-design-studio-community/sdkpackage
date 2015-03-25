@@ -76,6 +76,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
               "DCustomDimensions": {type: "string"},
               "DHeaderColWidth": {type: "int"},
               "DDataProvisioner": {type: "string"},
+              "DFormatingCondition": {type: "string"},
         }
 	},
 
@@ -94,7 +95,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		// set the model
 		that._oModel = new sap.ui.model.json.JSONModel(); 
 		that._table.setModel(that._oModel);
-		that._table.bindRows("/data2DPlain");
+		that._table.bindRows("/data2D");
 
     	this.addContent(
     		that._table,
@@ -144,10 +145,9 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 					var lDataProvisioner = that.getDDataProvisioner();
 					if(lDataProvisioner != undefined) {
 						that._flatData = org_scn_community_databound.centralDataStorage[lDataProvisioner].flatData;
-						that._rowData = that._flatData;
 					} else {
 						that._flatData = org_scn_community_databound.flatten(lData,options);
-						that._rowData = org_scn_community_databound.toRowTable(that._flatData,options);
+						org_scn_community_databound.toRowTable(that._flatData,options);
 					}
 					
 					if(that._flatData && that._flatData.formattedValues && that._flatData.formattedValues.length > 0) {
@@ -170,46 +170,61 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 			}
 			
 			that._table.removeAllColumns();
-			var rI=0;
+			var colI=0;
 
-			if(that._rowData) {
-				for(rI=0;rI<that._rowData.dimensionHeaders.length;rI++){
+			var options = {};
+			options.formattingCondition = that.getDFormatingCondition();
+			
+			if(options.formattingCondition.length > 1) {
+				that.addStyleClass("scn-pack-FacetFilter-ActivateSimpleConditions");
+			}
+			
+			org_scn_community_databound.applyConditionalFormats(that._flatData, options);
+			
+			that._oModel.setData(that._flatData);
+
+			if(that._flatData) {
+				for(colI=0;colI<that._flatData.dimensionHeaders.length;colI++){
+					var oItemTemplate = new sap.ui.commons.Label (
+							{text: "{values/" + colI + "}",
+								tooltip: "{values/" + colI + "}",
+								design: sap.ui.commons.LabelDesign.Bold,
+								customData: new sap.ui.core.CustomData({key:"condFormat", value:"{formats/" + colI + "}", writeToDom:true}), 
+							});
 					that._table.addColumn(new sap.ui.table.Column({
 						label: new sap.ui.commons.Label(
 						{
-							text: that._rowData.dimensionHeaders[rI],
+							text: that._flatData.dimensionHeaders[colI],
 							design: sap.ui.commons.LabelDesign.Bold,
 						}),
-						template: new sap.ui.commons.Label(
-						{
-							design: sap.ui.commons.LabelDesign.Bold,
-						}).bindProperty("text", ""+rI),
-						sortProperty: ""+rI,
-						filterProperty: ""+rI,
+						template: oItemTemplate,
+						sortProperty: ""+colI,
+						filterProperty: ""+colI,
 						width: that.getDHeaderColWidth()+"px"
 					}));
 				}
 
-				for(var cI=0;cI<that._rowData.columnHeaders.length;cI++){
+				for(var dataColI=0;dataColI<that._flatData.columnHeaders.length;dataColI++){
+					var oItemTemplate = new sap.ui.commons.Label (
+							{text: "{values/" + colI + "}",
+								tooltip: "{values/" + colI + "}",
+								textAlign: sap.ui.core.TextAlign.Right,
+								customData: new sap.ui.core.CustomData({key:"condFormat", value:"{formats/" + colI + "}", writeToDom:true}), //.bindProperty("value", "formats/" + colI), 
+							});
+					
+
 					that._table.addColumn(new sap.ui.table.Column({
-						label: new sap.ui.commons.Label({text: that._rowData.columnHeaders[cI]}),
-						template: new sap.ui.commons.Label(
-						{
-							design: sap.ui.commons.LabelDesign.Normal,
-							textAlign: sap.ui.core.TextAlign.Right,
-						}
-						).bindProperty("text", ""+rI),
-						sortProperty: ""+rI,
-						filterProperty: ""+rI,
+						label: new sap.ui.commons.Label({text: that._flatData.columnHeaders[dataColI]}),
+						template: oItemTemplate,
+						sortProperty: ""+colI,
+						filterProperty: ""+colI,
 					}));
-					rI = rI+1;
+					colI = colI+1;
 				}
 
-				that._table.setFixedColumnCount(that._rowData.dimensionHeaders.length);
+				that._table.setFixedColumnCount(that._flatData.dimensionHeaders.length);
 			}
 		}
-
-		that._oModel.setData(that._rowData);
 	},
 
 	

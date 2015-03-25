@@ -107,11 +107,11 @@ org_scn_community_components.databound = org_scn_community_components.databound 
 			script: "org.scn.community.databound/res/ResultSetInfo/ResultSetInfo",
 			min: false
 		},
-		ResultSetStructureBlender: {
-			name: "databound.ResultSetStructureBlender",
-			requireName: "databoundresultsetstructureblender",
-			fullComponentName: "org.scn.community.databound.ResultSetStructureBlender",
-			script: "org.scn.community.databound/res/ResultSetStructureBlender/ResultSetStructureBlender",
+		ResultSetMixer: {
+			name: "databound.ResultSetMixer",
+			requireName: "databoundresultsetmixer",
+			fullComponentName: "org.scn.community.databound.ResultSetMixer",
+			script: "org.scn.community.databound/res/ResultSetMixer/ResultSetMixer",
 			min: false
 		},
 	};

@@ -1,6 +1,6 @@
 
 /**
- * Generated ZTL Class for Result Set Information
+ * Generated ZTL Class for Result Set Information (Not Ready Yet)
  * 
  * DO NOT EDIT
  */

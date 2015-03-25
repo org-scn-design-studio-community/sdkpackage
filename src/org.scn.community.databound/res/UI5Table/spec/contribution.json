@@ -1,0 +1,20 @@
+{
+	"DDataProvisioner" : {
+		"gen-type":"String",
+	},
+	"DVisibleRowCount" : {
+		"gen-type":"int",
+	},
+	"DRowHeight" : {
+		"gen-type":"int",
+	},
+	"DHeaderColWidth" : {
+		"gen-type":"int",
+	},
+	"DNavigationMode" : {
+		"gen-type":"choice",
+	},
+	"DFormatingCondition" : {
+		"gen-type":"String",
+	},
+}

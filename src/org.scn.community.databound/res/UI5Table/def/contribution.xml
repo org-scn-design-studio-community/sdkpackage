@@ -5,6 +5,7 @@
 	icon="res/UI5Table/UI5Table.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
+	propertySheetPath="res/UI5Table/aps/UI5TablePropertyPage.html"
 	databound="true"
 >
 
@@ -61,6 +62,14 @@
 	</property>
 
 	<property
+		id="DFormatingCondition"
+		title="Formating Condition"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
 		id="DNavigationMode"
 		title="Navigation Mode"
 		type="String"
@@ -70,22 +79,6 @@
 			<possibleValue>Scrollbar</possibleValue>
 	</property>
 
-	<property
-		id="DCustomDimensions"
-		title="Custom Dimensions as Array [...]"
-		type="String"
-		group="Display"
-		visible="false">
-	</property>
-
-	<property
-		id="onBeforeRender"
-		type="ScriptText"
-		title="Event for On Before Render"
-		group="Events"
-		visible="false" 
-	/>
-
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
@@ -94,11 +87,6 @@
 		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 
-		<defaultValue property="DCustomDimensions">[]</defaultValue>
-
-		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
-		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
-		
 		<defaultValue property="DNavigationMode">Paginator</defaultValue>
 		<defaultValue property="DRowHeight">22</defaultValue>
 		<defaultValue property="DVisibleRowCount">12</defaultValue>

@@ -166,6 +166,9 @@
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Location Intelligence component*/
+	org.scn.community.databound.LocationIntel returnAsScnLocationIntel (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Marimekko Chart component*/
 	org.scn.community.databound.MarimekkoChart returnAsScnMarimekkoChart (Component inputComponent) {* return inputComponent; *}
 
@@ -181,11 +184,11 @@
 	/**Cast to Data Range Slider component*/
 	org.scn.community.databound.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Result Set Information component*/
+	/**Cast to Result Set Information (Not Ready Yet) component*/
 	org.scn.community.databound.ResultSetInfo returnAsScnResultSetInfo (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Result Set Structure Blender component*/
-	org.scn.community.databound.ResultSetStructureBlender returnAsScnResultSetStructureBlender (Component inputComponent) {* return inputComponent; *}
+	/**Cast to Result Set Mixer (Not Ready Yet) component*/
+	org.scn.community.databound.ResultSetMixer returnAsScnResultSetMixer (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Scatter Plot Chart component*/
 	org.scn.community.databound.ScatterPlot returnAsScnScatterPlot (Component inputComponent) {* return inputComponent; *}

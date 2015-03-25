@@ -1,0 +1,89 @@
+
+<component
+	id="ResultSetMixer"
+	title="Result Set Mixer (Test Phase)"
+	icon="res/ResultSetMixer/ResultSetMixer.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	propertySheetPath="res/ResultSetMixer/aps/ResultSetMixerPropertyPage.html"
+	databound="true"
+>	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ResultSetMixer/ResultSetMixerLoader.js</jsInclude>
+	
+	<property
+		id="DMasterProvisioner"
+		title="Central Data Provisioner for Master "
+		tooltip="Result Set with Master "
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DMasterGeometry"
+		title="Geometry of the Master Result Set"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Structure</possibleValue>
+			<possibleValue>Rows</possibleValue>
+	</property>
+	
+	<property
+		id="DSlaveProvisioner"
+		title="Central Data Provisioner for Slave Row Based Result Set 1"
+		tooltip="Result Set with First Slave Rows for Selection"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveColumnIndex"
+		title="Colun Index of the Slave Comlumn Result Set"
+		tooltip="Which column should be loaded from the slave result set"
+		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveContentCondition"
+		title="Condition to Read Slave Result Set based on Content"
+		tooltip="Under which condition should be the slave result set read (based on content)"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveRowCondition"
+		title="Condition to Read Slave Result Set based on header Row Content"
+		tooltip="Under which condition should be the slave result set read (based on contnet of header row)"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveColumnCondition"
+		title="Condition to Read Slave Result Set based on header Column Content"
+		tooltip="Under which condition should be the slave result set read (based on contnet of header column)"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="DMasterGeometry">RowBased</defaultValue>
+	</initialization>
+
+</component>
