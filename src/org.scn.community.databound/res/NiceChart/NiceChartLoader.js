@@ -29,7 +29,8 @@
 	 sap.zen.Dispatcher.instance.pauseDispatching();	 
 	 var sdkReqs = require.config({
 		 context : "sdk",
-		 paths: requireInfo1.definition
+		 paths: requireInfo1.definition,
+		 urlArgs: "v=" + org_scn_community_require.jsVersion,
 	 });
 
 	 sdkReqs(requireInfo1.plainNames, function(jshashtable) {
