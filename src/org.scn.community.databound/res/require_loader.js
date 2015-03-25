@@ -18,6 +18,10 @@
  */
 
 var org_scn_community_require = org_scn_community_require || {};
+
+// set the version to assure cache is cleared
+org_scn_community_require.jsVersion = "20140325";
+
 var org_scn_community_basics = org_scn_community_basics || {};
 
 var org_scn_community_components = org_scn_community_basics || {};
