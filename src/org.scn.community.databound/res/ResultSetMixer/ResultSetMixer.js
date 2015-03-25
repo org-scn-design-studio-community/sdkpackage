@@ -14,6 +14,7 @@ myComponentData.instance = {
               "DMasterGeometry": {type: "string"},
               "DSlaveProvisioner": {type: "string"},
               "DSlaveColumnIndex": {type: "int"},
+              "DCollectMultipleMatches": {type: "string"},
               "DSlaveContentCondition": {type: "string"},
               "DSlaveRowCondition": {type: "string"},
               "DSlaveColumnCondition": {type: "string"},
@@ -90,12 +91,13 @@ myComponentData.instance = {
 		var conditionRows = that.getDSlaveRowCondition();
 		var conditionContent = that.getDSlaveContentCondition();
 		var slaveColumnIndex = that.getDSlaveColumnIndex();
+		var collectMultiple = that.getDCollectMultipleMatches();
 		
 		var options = {};
 		options.conditionColumns = conditionColumns;
 		options.conditionRows = conditionRows;
 		options.conditionContent = conditionContent;
-		options.collectMultiple = true;
+		options.collectMultiple = (collectMultiple == "Collect");
 		options.slaveColumnIndex = slaveColumnIndex;
 		
 		// mix data by keys

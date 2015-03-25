@@ -11,6 +11,9 @@
 	"DSlaveColumnIndex" : {
 		"gen-type":"int",
 	},
+	"DCollectMultipleMatches": {
+		"gen-type":"choice",
+	},
 	"DSlaveContentCondition" : {
 		"gen-type":"String",
 	},

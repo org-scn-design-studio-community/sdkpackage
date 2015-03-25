@@ -1,6 +1,6 @@
 
 /**
- * Generated ZTL Class for Result Set Mixer (Not Ready Yet)
+ * Generated ZTL Class for Result Set Mixer (Test Phase)
  * 
  * DO NOT EDIT
  */
@@ -17,6 +17,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 		this.initDMasterGeometry();
 		this.initDSlaveProvisioner();
 		this.initDSlaveColumnIndex();
+		this.initDCollectMultipleMatches();
 		this.initDSlaveContentCondition();
 		this.initDSlaveRowCondition();
 		this.initDSlaveColumnCondition();
@@ -28,6 +29,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 		this.updateDMasterGeometry();
 		this.updateDSlaveProvisioner();
 		this.updateDSlaveColumnIndex();
+		this.updateDCollectMultipleMatches();
 		this.updateDSlaveContentCondition();
 		this.updateDSlaveRowCondition();
 		this.updateDSlaveColumnCondition();
@@ -40,7 +42,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 	};
 	
 	this.initDMasterProvisioner = function(){
-		this._labelDMasterProvisioner = new sap.ui.commons.Label({text: " Central Data Provisioner for Master "});
+		this._labelDMasterProvisioner = new sap.ui.commons.Label({text: " Central Data Provisioner for Master"});
 		this._labelDMasterProvisioner.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDMasterProvisioner);
 		
@@ -142,7 +144,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 	};
 	
 	this.initDSlaveColumnIndex = function(){
-		this._labelDSlaveColumnIndex = new sap.ui.commons.Label({text: " Colun Index of the Slave Comlumn Result Set"});
+		this._labelDSlaveColumnIndex = new sap.ui.commons.Label({text: " Column Index of the Slave Comlumn Result Set"});
 		this._labelDSlaveColumnIndex.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDSlaveColumnIndex);
 		
@@ -166,6 +168,42 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 		}else{
 			this._DSlaveColumnIndex = s;
 			this.updatePropertyDSlaveColumnIndex();
+			return this;
+		}
+	};
+
+	this.updatePropertyDCollectMultipleMatches = function(){
+		this._inputDCollectMultipleMatches.setSelectedKey(this._DCollectMultipleMatches);
+	};
+	
+	this.initDCollectMultipleMatches = function(){
+		this._labelDCollectMultipleMatches = new sap.ui.commons.Label({text: " Collect Multiple Matches"});
+		this._labelDCollectMultipleMatches.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDCollectMultipleMatches);
+		
+		this._inputDCollectMultipleMatches = new sap.ui.commons.ComboBox({width: "300px"});
+		this._inputDCollectMultipleMatches.addItem(new sap.ui.core.ListItem({key:"Collect", text:"Collect"}));
+		this._inputDCollectMultipleMatches.addItem(new sap.ui.core.ListItem({key:"UseLast", text:"UseLast"}));
+		
+		this._content.addContent(this._inputDCollectMultipleMatches);
+		this._inputDCollectMultipleMatches.attachChange(this.propertyChangedDCollectMultipleMatches, this);
+		this._inputDCollectMultipleMatches.addStyleClass("org-scn-ApsBoolean");
+		
+		this.updatePropertyDCollectMultipleMatches();
+	};
+
+	this.propertyChangedDCollectMultipleMatches = function(oControlEvent){
+		var newValue = oControlEvent.getParameter("newValue");
+		this._DCollectMultipleMatches = newValue;
+		this.firePropertiesChanged(["DCollectMultipleMatches"]);
+	};
+	
+	this.DCollectMultipleMatches = function(s){
+		if( s === undefined){
+			return this._DCollectMultipleMatches;
+		}else{
+			this._DCollectMultipleMatches = s;
+			this.updatePropertyDCollectMultipleMatches();
 			return this;
 		}
 	};

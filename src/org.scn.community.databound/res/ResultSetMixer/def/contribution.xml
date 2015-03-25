@@ -6,14 +6,14 @@
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
 	propertySheetPath="res/ResultSetMixer/aps/ResultSetMixerPropertyPage.html"
-	databound="true"
+	databound="false"
 >	
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ResultSetMixer/ResultSetMixerLoader.js</jsInclude>
 	
 	<property
 		id="DMasterProvisioner"
-		title="Central Data Provisioner for Master "
+		title="Central Data Provisioner for Master"
 		tooltip="Result Set with Master "
 		type="String"
 		group="Display"
@@ -41,11 +41,22 @@
 
 	<property
 		id="DSlaveColumnIndex"
-		title="Colun Index of the Slave Comlumn Result Set"
+		title="Column Index of the Slave Comlumn Result Set"
 		tooltip="Which column should be loaded from the slave result set"
 		type="int"
 		group="Display"
 		visible="true">
+	</property>
+
+	<property
+		id="DCollectMultipleMatches"
+		title="Collect Multiple Matches"
+		tooltip="Procedure what should happen when multiple matches are available"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Collect</possibleValue>
+			<possibleValue>UseLast</possibleValue>
 	</property>
 
 	<property
@@ -84,6 +95,9 @@
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
 		<defaultValue property="DMasterGeometry">RowBased</defaultValue>
+		<defaultValue property="DCollectMultipleMatches">Collect</defaultValue>
+		<defaultValue property="DSlaveColumnIndex">1</defaultValue>
+		
 	</initialization>
 
 </component>

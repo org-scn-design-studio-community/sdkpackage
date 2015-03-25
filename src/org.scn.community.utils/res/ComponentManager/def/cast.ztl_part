@@ -184,10 +184,10 @@
 	/**Cast to Data Range Slider component*/
 	org.scn.community.databound.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Result Set Information (Not Ready Yet) component*/
+	/**Cast to Result Set Information (Test Phase) component*/
 	org.scn.community.databound.ResultSetInfo returnAsScnResultSetInfo (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Result Set Mixer (Not Ready Yet) component*/
+	/**Cast to Result Set Mixer (Test Phase) component*/
 	org.scn.community.databound.ResultSetMixer returnAsScnResultSetMixer (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Scatter Plot Chart component*/
