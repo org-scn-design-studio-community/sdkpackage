@@ -272,6 +272,11 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 	onCellClick : function (oEvent) {
 		var that = oEvent.oSource.getParent().getParent();
 		
+		var allowSelection = that.getDAllowSelection();;
+		if(!allowSelection){
+			return;
+		}
+
 		var selection = {};
 		
 		// this gets a visual row back, sorts are corrupting the index
@@ -309,6 +314,11 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 	onRowClick : function (oEvent) {
 		var that = oEvent.oSource.getParent().getParent();
 		
+		var allowSelection = that.getDAllowSelection();;
+		if(!allowSelection){
+			return;
+		}
+
 		var selection = {};
 		
 		var rowContext = oEvent.getParameters().rowContext
