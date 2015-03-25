@@ -1,0 +1,67 @@
+
+	<!-- Base Map Properties -->
+	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
+	<property id="globeColor" title="Globe Colour" type="String" visible="false"/>
+	<property id="graticuleColor" title="Graticule Colour" type="String" visible="false"/>
+	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
+	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
+	<property id="tooltipOn" title="Enable Tooltips" type="boolean" visible="false" />
+	<property id="graticuleOn" title="Show Graticule Grid" type="boolean" visible="false" />
+	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
+	<property id="mapData" title="Map Data" type="String" visible="false"/>
+	<property id="graticuleThickness" title="Graticule Thickness" type="float" visible="false"/>
+	<property id="labelSize" title="Label Size (px)" type="float" visible="false"/>
+	<property id="yaw" title="Yaw" type="float" visible="false"/>
+	<property id="pitch" title="Pitch" type="float" visible="false"/>
+	<property id="roll" title="Roll" type="float" visible="false"/>
+	<property id="projection" title="Projection" type="String" visible="false">
+		<possibleValue>Albers USA</possibleValue>
+		<possibleValue>Mercator</possibleValue>
+		<possibleValue>Orthographic</possibleValue>
+		<possibleValue>Equirectangular</possibleValue>
+		
+		<possibleValue>Aitoff</possibleValue>
+		<possibleValue>Albers</possibleValue>
+		<possibleValue>August</possibleValue>
+		<possibleValue>Baker</possibleValue>
+		<possibleValue>Boggs</possibleValue>
+		<possibleValue>Bonne</possibleValue>
+		<possibleValue>Bromley</possibleValue>
+		<possibleValue>Collignon</possibleValue>
+		<possibleValue>Craster Parabolic</possibleValue>
+		<possibleValue>Eckert I</possibleValue>
+		<possibleValue>Eckert II</possibleValue>
+		<possibleValue>Eckert III</possibleValue>
+		<possibleValue>Eckert IV</possibleValue>
+		<possibleValue>Eckert V</possibleValue>
+		<possibleValue>Eckert VI</possibleValue>
+		<possibleValue>Eisenlohr</possibleValue>
+		<possibleValue>Equirectangular (Plate Carrée)</possibleValue>
+		<possibleValue>Hammer</possibleValue>
+		<possibleValue>Hill</possibleValue>
+		<possibleValue>Goode Homolosine</possibleValue>
+		<possibleValue>Kavrayskiy VII</possibleValue>
+		<possibleValue>Lambert cylindrical equal-area</possibleValue>
+		<possibleValue>Lagrange</possibleValue>
+		<possibleValue>Larrivée</possibleValue>
+		<possibleValue>Laskowski</possibleValue>
+		<possibleValue>Loximuthal</possibleValue>
+		<possibleValue>Miller</possibleValue>
+		<possibleValue>McBryde–Thomas Flat-Polar Parabolic</possibleValue>
+		<possibleValue>McBryde–Thomas Flat-Polar Quartic</possibleValue>
+		<possibleValue>McBryde–Thomas Flat-Polar Sinusoidal</possibleValue>
+		<possibleValue>Mollweide</possibleValue>
+		<possibleValue>Natural Earth</possibleValue>
+		<possibleValue>Nell–Hammer</possibleValue>
+		<possibleValue>Polyconic</possibleValue>
+		<possibleValue>Robinson</possibleValue>
+		<possibleValue>Sinusoidal</possibleValue>
+		<possibleValue>Sinu-Mollweide</possibleValue>
+		<possibleValue>van der Grinten</possibleValue>
+		<possibleValue>van der Grinten IV</possibleValue>
+		<possibleValue>Wagner IV</possibleValue>
+		<possibleValue>Wagner VI</possibleValue>
+		<possibleValue>Wagner VII</possibleValue>
+		<possibleValue>Winkel Tripel</possibleValue>
+	</property>
+	<!-- End of Base Map Properties -->

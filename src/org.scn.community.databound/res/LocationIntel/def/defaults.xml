@@ -1,0 +1,9 @@
+
+		<!-- Begin of LocationIntel Defaults -->
+		<defaultValue property="chartTitle">Location Intel Map</defaultValue>
+		<defaultValue property="markerSize">5</defaultValue>
+		<defaultValue property="markerMin">5</defaultValue>
+		<defaultValue property="markerMax">50</defaultValue>
+		<defaultValue property="markerAlpha">70</defaultValue>
+		<defaultValue property="markerColor">#006699</defaultValue>
+		<!-- End of LocationIntel Defaults -->

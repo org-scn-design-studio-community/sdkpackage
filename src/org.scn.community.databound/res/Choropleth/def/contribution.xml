@@ -69,19 +69,8 @@
 	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
 	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
 	<!-- End of Base Viz Properties -->
-	<!-- Begin of Chropleth Properties -->
-	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
-	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
-	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
-	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
+	<!-- Base Map Properties -->
 	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
-	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String" visible="false"/>
-	<property id="bubbleMember" title="Measure to use as Bubble (Blank hide bubble)" type="String" visible="false"/>
-	<property id="bubbleMin" type="int" title = "Bubble Min Radius" visible="false"/>
-	<property id="bubbleMax" type="int" title = "Bubble Max Radius" visible="false"/>
-	<property id="bubbleAlpha" type="int" title = "Bubble Alpha (0-100)" visible="false"/>
-	<property id="bubbleColor" type="String" title = "Bubble Colour" visible="false"/>
-	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
 	<property id="globeColor" title="Globe Colour" type="String" visible="false"/>
 	<property id="graticuleColor" title="Graticule Colour" type="String" visible="false"/>
 	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
@@ -90,20 +79,11 @@
 	<property id="graticuleOn" title="Show Graticule Grid" type="boolean" visible="false" />
 	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
 	<property id="mapData" title="Map Data" type="String" visible="false"/>
-	<property id="floor" title="Minimum Scale Value" type="float" visible="false"/>
 	<property id="graticuleThickness" title="Graticule Thickness" type="float" visible="false"/>
 	<property id="labelSize" title="Label Size (px)" type="float" visible="false"/>
-	<property id="gradientLeft" title="Horizontal Scale Left" type="int" visible="false"/>
-	<property id="gradientRight" title="Horizontal Scale Right" type="int" visible="false"/>
-	<property id="gradientBottom" title="Horizontal Scale Bottom" type="int" visible="false"/>
-	<property id="gradientHeight" title="Horizontal Scale Height" type="int" visible="false"/>
 	<property id="yaw" title="Yaw" type="float" visible="false"/>
 	<property id="pitch" title="Pitch" type="float" visible="false"/>
 	<property id="roll" title="Roll" type="float" visible="false"/>
-	<property id="colorScale" title="Color Scale" type="String" visible="false">
-		<possibleValue>quantile</possibleValue>
-		<possibleValue>quantize</possibleValue>
-	</property>
 	<property id="projection" title="Projection" type="String" visible="false">
 		<possibleValue>Albers USA</possibleValue>
 		<possibleValue>Mercator</possibleValue>
@@ -154,6 +134,28 @@
 		<possibleValue>Wagner VII</possibleValue>
 		<possibleValue>Winkel Tripel</possibleValue>
 	</property>
+	<!-- End of Base Map Properties -->
+	<!-- Begin of Chropleth Properties -->
+	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
+	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
+	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
+	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
+	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String" visible="false"/>
+	<property id="bubbleMember" title="Measure to use as Bubble (Blank hide bubble)" type="String" visible="false"/>
+	<property id="bubbleMin" type="int" title = "Bubble Min Radius" visible="false"/>
+	<property id="bubbleMax" type="int" title = "Bubble Max Radius" visible="false"/>
+	<property id="bubbleAlpha" type="int" title = "Bubble Alpha (0-100)" visible="false"/>
+	<property id="bubbleColor" type="String" title = "Bubble Colour" visible="false"/>
+	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
+	<property id="floor" title="Minimum Scale Value" type="float" visible="false"/>
+	<property id="gradientLeft" title="Horizontal Scale Left" type="int" visible="false"/>
+	<property id="gradientRight" title="Horizontal Scale Right" type="int" visible="false"/>
+	<property id="gradientBottom" title="Horizontal Scale Bottom" type="int" visible="false"/>
+	<property id="gradientHeight" title="Horizontal Scale Height" type="int" visible="false"/>
+	<property id="colorScale" title="Color Scale" type="String" visible="false">
+		<possibleValue>quantile</possibleValue>
+		<possibleValue>quantize</possibleValue>
+	</property>
 	<!-- End of Chropleth Properties -->
 	<initialization>
 		<!-- Base Defaults -->
@@ -192,26 +194,28 @@
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
-		<!-- Begin of Choropleth Defaults -->
-		<defaultValue property="chartTitle">Choropleth Map</defaultValue>
+		<!-- Base Map Defaults -->
 		<defaultValue property="defaultFillColor">#E9E5DC</defaultValue>
 		<defaultValue property="globeColor">#7FB5DF</defaultValue>
 		<defaultValue property="graticuleColor">#808080</defaultValue>
 		<defaultValue property="graticuleThickness">.5</defaultValue>
-		<defaultValue property="selectedColor">#009966</defaultValue>
-		<defaultValue property="hoverColor">#999900</defaultValue>
 		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>
-		<defaultValue property="colorScale">quantile</defaultValue>
-		<defaultValue property="featureProperty">NAME_1</defaultValue>
 		<defaultValue property="labelProperty">NAME_1</defaultValue>
-		<defaultValue property="gradientLeft">30</defaultValue>
-		<defaultValue property="gradientRight">30</defaultValue>
-		<defaultValue property="gradientBottom">15</defaultValue>
-		<defaultValue property="gradientHeight">10</defaultValue>
 		<defaultValue property="projection">equirectangular</defaultValue>
 		<defaultValue property="yaw">0.0</defaultValue>
 		<defaultValue property="pitch">0.0</defaultValue>
 		<defaultValue property="roll">0.0</defaultValue>
+		<!-- End of Base Map Defaults -->
+		<!-- Begin of Choropleth Defaults -->
+		<defaultValue property="chartTitle">Choropleth Map</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="hoverColor">#999900</defaultValue>
+		<defaultValue property="colorScale">quantile</defaultValue>
+		<defaultValue property="featureProperty">NAME_1</defaultValue>
+		<defaultValue property="gradientLeft">30</defaultValue>
+		<defaultValue property="gradientRight">30</defaultValue>
+		<defaultValue property="gradientBottom">15</defaultValue>
+		<defaultValue property="gradientHeight">10</defaultValue>
 		<defaultValue property="floor">0.0</defaultValue>
 		<defaultValue property="labelSize">10</defaultValue>
 		<defaultValue property="bubbleMin">3</defaultValue>

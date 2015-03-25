@@ -95,37 +95,12 @@
 						apsControl : "color"	
 					}
 				},
-				
 				featureProperty : { 
 					value : "NAME_1",
 					opts : {
 						desc : "Feature Attribute",
 						cat : "Mapping",
 						apsControl : "text"
-					}
-				},
-				labelProperty : { 
-					value : "NAME_1",
-					opts : {
-						desc : "Label Attribute",
-						cat : "Mapping",
-						apsControl : "text"
-					}
-				},
-				globeOn : { 
-					value : false,
-					opts : {
-						desc : "Show Globe",
-						cat : "Cosmetics",
-						apsControl : "checkbox"	
-					}
-				},
-				graticuleOn : { 
-					value : true,
-					opts : {
-						desc : "Show Graticule",
-						cat : "Cosmetics",
-						apsControl : "checkbox"	
 					}
 				},
 				gradientLeft : { 
@@ -414,12 +389,8 @@
 	    		
 	    		this.bubbleGroup = this.plotLayer.append('g')
 					.attr('class', 'bubble-group');
-	    		this.labelGroup = this.plotLayer.append('g')
-					.attr('class', 'label-group');
-	    		this.shadowPathGroup = this.shadowPlotArea.append('g')
-					.attr('class', 'path-group');
-	    		this.shadowLabelGroup = this.shadowPlotArea.append('g')
-    				.attr('class', 'label-group');
+	    		
+
 		        
 	    		// Horizontal Scale/Legend
 	    		var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.plotHeight - (this.dimensions.gradientBottom + this.dimensions.gradientHeight));
@@ -484,68 +455,9 @@
 		        	
 		        return this;
 			};
-			this.adjustPlotZoom = function(){
-				try{
-				// Scale and translate plot
-				this.plotLayer.attr("transform","translate(" + this.zoomTranslate + ") scale(" + this.zoomScale + ")");
-				this.shadowPlotArea.attr("transform","translate(" + this.zoomTranslate + ") scale(" + this.zoomScale + ")");
-				// Precomputation for measuring bounding boxes of features for label visibility
-				// Note: Only setting attributes that influence size and position for speed purposes
-				var _features = this.shadowPathGroup.selectAll('path').data(this._mapJSON.features);
-				var _labels = this.shadowLabelGroup.selectAll('text').data(this._mapJSON.features);
-				_features.enter()
-					.append("path").attr("class","path");
-				_features
-					.attr("id",function(d,i){return that.$().attr("id")+"_shadowfeature_" + i;})
-					.attr("d",this.projPath);
-				_labels.enter().append("text")
-					.attr('class', function(d) { return "subunit-label " + d.properties[that.labelProperty()]; })
-					.attr("dy", ".35em")
-					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
-					.text(function(d) { return d.properties[that.labelProperty()]; });
-				_labels
-					.style("font-size", (this.chartValueSize() / this.zoomScale) + "px")
-					.attr('class', function(d) { return "subunit-label " + d.properties[that.labelProperty()]; })
-					.attr("id",function(d,i){return that.$().attr("id")+"_shadowlabel_" + i;})
-					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
-					.text(function(d) { return d.properties[that.labelProperty()]; });
-				_features.exit().remove();
-				_labels.exit().remove();
-				// Update features
-				
-	    		this.graticulePath.style("stroke-width", this.graticuleThickness() / this.zoomScale);
-	    		this.globePath.style("stroke-width", this.plotThickness() / this.zoomScale);
-	    		this.pathGroup.selectAll("path").style("stroke-width", this.plotThickness() / this.zoomScale)
-	    		this.labelGroup.selectAll("text")
-	    			.style("font-size", (this.chartValueSize() / this.zoomScale) + "px")
-	    			// Get from shadow copy that's already updated.
-	    			.transition().duration(this.ms())
-					.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
-					.attr("opacity", function(d, i){
-						if(!that.showValues()) return 0;
-						try{
-						var mapShape = that.shadowPathGroup.select(".path#" + that.$().attr("id")+"_shadowfeature_" + i );
-						var labelShape = that.shadowLabelGroup.select("#" + that.$().attr("id")+"_shadowlabel_" + i );
-						if(mapShape.empty() || labelShape.empty()){
-							return 0;
-							// noop
-						}else{
-							var w = labelShape[0][0].getBBox().width;
-							var fw = mapShape[0][0].getBBox().width;
-							if(w/fw < that.chartValueWidthThreshold()/100) {
-								return 1;
-							}								
-						}
-						return 0;
-						}catch(e){
-							alert("Problem determining label visibility on " + i);
-						}
-					});
-				
-				}catch(e){
-					alert("Problem on zoom adjust\n\n" + e);
-				}
-			}
+			/**
+			 * Feature Fill Routine - Overrides parent.
+			 */
 			this.featureFill = function(d) {
 				if(d.properties && d.properties && d.properties[that.featureProperty()]){
 					if(d.properties[that.featureProperty()]==that.selectedFeature() && that.selectedColor()) return that.selectedColor();
@@ -569,6 +481,14 @@
 				try{
 					this.updateColorRange();
 					parentUpdatePlot.call(this);
+					var legend2Transform = this.dimensions.gradientLeft + "," + (this.dimensions.plotHeight - (this.dimensions.gradientBottom + this.dimensions.gradientHeight));
+			    	this.legend2
+			    		.transition().duration(this.ms())
+			    		.attr("transform", "translate(" + legend2Transform +")");
+			    	var trans = "0," + (0 - this.dimensions.gradientHeight);
+			    	this.gradientTicks
+			    		.transition().duration(this.ms())
+			    		.attr("transform", "translate(" + trans +")");
 					// Events
 					this.pathGroup.selectAll('path')
 						.on('click', function(d){ 
@@ -616,6 +536,17 @@
 						.attr("fill", this.bubbleColor());
 						//var bm = that.bubbleMember();
 					 bubbles.exit().remove();
+					// Events
+						this.pathGroup.selectAll('path')
+							.on('mousemove', this.doTooltip)
+							//.on('mouseover', this.doTooltip)
+							.on('mouseout', function(d) {
+								//d3.select("body").selectAll("#"+that.$().attr("id")+"_tooltip").remove();
+								that.tooltip.classed("hidden",true);
+								that.triangle
+									.transition().duration(that.ms())
+									.attr("opacity",0);
+							});
 				
 				}catch(e){
 					alert("Error updating Choropleth Chart Plot:\n\n"+e);
@@ -805,62 +736,7 @@
 					that.adjustPlotZoom();
 				that.previousScale = that.zoomScale;				
 			}
-	    	/**
-			 * Update Projection
-			 */
-			this.updateProjection = function(){
-				try{
-				// Determine Center of Map
-		    	this.centroid = d3.geo.centroid(this._mapJSON);
-		    	/*
-		    	// Center Feature Logic - TODO.
-				var centerFeature = null;
-		    	for(var i=0;i<this._mapJSON.features.length;i++){
-		    		var f = this._mapJSON.features[i];
-		    		if(f.properties && f.properties[this.featureProperty()] && f.properties[this.featureProperty()]==this.centerFeature()){
-		    			centerFeature = f;
-		    		}
-		    	}
-		    	this.centroid = d3.geo.centroid(centerFeature);
-		    	*/
-		    	// Select a projection
-		    	this.proj = this.projections[this.projection()] || this.projections["Mercator"];
-		    	this.proj.scale(1).translate([0,0]);
-	    		
-	    		// Create path
-		    	this.projPath.projection(this.proj);
-		    	/*
-		    	 * My head hurts.
-		    	this.pathGroup.selectAll("path")
-		    		.transition().duration(this.ms())
-		    		.attrTween("d",this.projectionTween(this.proj, this.proj = this.proj = this.projections[this.projection()] || this.projections["Mercator"]));
-		    	*/          	
-	    		// Compute the projection bounds of a feature of interest
-		    	var b = this.projPath.bounds(this._mapJSON);
-		    	// Projection scale (NOT geometric scale on plot zoom)
-		    	var s = .95 / Math.max((b[1][0] - b[0][0]) / this.dimensions.plotWidth, (b[1][1] - b[0][1]) / this.dimensions.plotHeight);
-		    	// Projection translation (NOT translation on plot for zoom)
-		    	var t = [
-		    	    ((this.dimensions.plotWidth - s * (b[1][0] + b[0][0])) / 2), 
-			    	((this.dimensions.plotHeight - s * (b[1][1] + b[0][1])) / 2)
-				];
-		    	this.proj.scale(s).translate(t);
-		    	// Center if projection supports
-		    	if(typeof this.proj.center === "function"){
-		    		//if(centerFeature) 
-		    		//this.proj.center(this.centroid);
-		    	}
-		    	// Rotate if projection supports
-		    	if (typeof this.proj.rotate === "function") {
-		    	    this.proj.rotate([this.yaw(),this.pitch(),this.roll()]);
-		    	}
-		    	// If Orthographic, clip at 90 degrees so we don't see the back of the globe.
-		    	if(this.projection()=="Orthographic") this.proj.clipAngle(90);
-		    	return this;
-				}catch(e){
-					alert("Error updating projection:\n\n"+e);
-				}
-			}
+	    	
 			/**
 			 * Update Triangles
 			 */

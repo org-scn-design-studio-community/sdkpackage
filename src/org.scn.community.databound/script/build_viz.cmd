@@ -58,10 +58,26 @@ del ..\res\Choropleth\def\contribution.xml
 type ..\res\Choropleth\def\header.xml ^
 .\vizDefs\Base.xml ^
 .\vizDefs\BaseViz.xml ^
+.\vizDefs\Map.xml ^
 ..\res\Choropleth\def\properties.xml ^
 .\vizDefs\InitializationHeader.xml ^
 .\vizDefs\Base.defaults.xml ^
 .\vizDefs\BaseViz.defaults.xml ^
+.\vizDefs\Map.defaults.xml ^
 ..\res\Choropleth\def\defaults.xml ^
 .\vizDefs\Footer.xml > ^
 ..\res\Choropleth\def\contribution.xml
+
+del ..\res\LocationIntel\def\contribution.xml
+type ..\res\LocationIntel\def\header.xml ^
+.\vizDefs\Base.xml ^
+.\vizDefs\BaseViz.xml ^
+.\vizDefs\Map.xml ^
+..\res\LocationIntel\def\properties.xml ^
+.\vizDefs\InitializationHeader.xml ^
+.\vizDefs\Base.defaults.xml ^
+.\vizDefs\BaseViz.defaults.xml ^
+.\vizDefs\Map.defaults.xml ^
+..\res\LocationIntel\def\defaults.xml ^
+.\vizDefs\Footer.xml > ^
+..\res\LocationIntel\def\contribution.xml
