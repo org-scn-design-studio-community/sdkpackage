@@ -1994,8 +1994,8 @@ __n__}
 	
 	<property
 		id="DMasterProvisioner"
-		title="Central Data Provisioner for Master"
-		tooltip="Result Set with Master "
+		title="Master Central Data Provisioner"
+		tooltip="Result Set with Master Data"
 		type="String"
 		group="Display"
 		visible="true">
@@ -2013,8 +2013,8 @@ __n__}
 	
 	<property
 		id="DSlaveProvisioner"
-		title="Central Data Provisioner for Slave Row Based Result Set 1"
-		tooltip="Result Set with First Slave Rows for Selection"
+		title="Slave Central Data Provisioner"
+		tooltip="Result Set with Slave Data for Selection"
 		type="String"
 		group="Display"
 		visible="true">
@@ -2022,8 +2022,8 @@ __n__}
 
 	<property
 		id="DSlaveColumnIndex"
-		title="Column Index of the Slave Comlumn Result Set"
-		tooltip="Which column should be loaded from the slave result set"
+		title="Column Index for the Selection from Slave Result Set"
+		tooltip="Which column should be selected from the slave result set"
 		type="int"
 		group="Display"
 		visible="true">

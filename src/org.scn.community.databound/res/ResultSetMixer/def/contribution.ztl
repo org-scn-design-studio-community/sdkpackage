@@ -7,14 +7,14 @@
 class org.scn.community.databound.ResultSetMixer extends org.scn.community.shared.DataComponent {
 
 	/**
-	 * Sets Central Data Provisioner for Master Property
+	 * Sets Master Central Data Provisioner Property
 	 */	
-	void setMasterProvisioner( /* Result Set with Master  */  String masterProvisioner){*
+	void setMasterProvisioner( /* Result Set with Master Data */  String masterProvisioner){*
 		this.DMasterProvisioner = masterProvisioner;
 	*}
 
 	/**
-	 * Gets Central Data Provisioner for Master Property
+	 * Gets Master Central Data Provisioner Property
 	 */	
 	String getMasterProvisioner() {*
 		return this.DMasterProvisioner;
@@ -35,28 +35,28 @@ class org.scn.community.databound.ResultSetMixer extends org.scn.community.share
 	*}
 
 	/**
-	 * Sets Central Data Provisioner for Slave Row Based Result Set 1 Property
+	 * Sets Slave Central Data Provisioner Property
 	 */	
-	void setSlaveProvisioner( /* Result Set with First Slave Rows for Selection */  String slaveProvisioner){*
+	void setSlaveProvisioner( /* Result Set with Slave Data for Selection */  String slaveProvisioner){*
 		this.DSlaveProvisioner = slaveProvisioner;
 	*}
 
 	/**
-	 * Gets Central Data Provisioner for Slave Row Based Result Set 1 Property
+	 * Gets Slave Central Data Provisioner Property
 	 */	
 	String getSlaveProvisioner() {*
 		return this.DSlaveProvisioner;
 	*}
 
 	/**
-	 * Sets Column Index of the Slave Comlumn Result Set Property
+	 * Sets Column Index for the Selection from Slave Result Set Property
 	 */	
-	void setSlaveColumnIndex( /* Which column should be loaded from the slave result set */  int slaveColumnIndex){*
+	void setSlaveColumnIndex( /* Which column should be selected from the slave result set */  int slaveColumnIndex){*
 		this.DSlaveColumnIndex = slaveColumnIndex;
 	*}
 
 	/**
-	 * Gets Column Index of the Slave Comlumn Result Set Property
+	 * Gets Column Index for the Selection from Slave Result Set Property
 	 */	
 	int getSlaveColumnIndex() {*
 		return this.DSlaveColumnIndex;

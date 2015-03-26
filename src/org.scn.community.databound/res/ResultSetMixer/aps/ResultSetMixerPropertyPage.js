@@ -42,7 +42,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 	};
 	
 	this.initDMasterProvisioner = function(){
-		this._labelDMasterProvisioner = new sap.ui.commons.Label({text: " Central Data Provisioner for Master"});
+		this._labelDMasterProvisioner = new sap.ui.commons.Label({text: " Master Central Data Provisioner"});
 		this._labelDMasterProvisioner.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDMasterProvisioner);
 		
@@ -111,7 +111,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 	};
 	
 	this.initDSlaveProvisioner = function(){
-		this._labelDSlaveProvisioner = new sap.ui.commons.Label({text: " Central Data Provisioner for Slave Row Based Result Set 1"});
+		this._labelDSlaveProvisioner = new sap.ui.commons.Label({text: " Slave Central Data Provisioner"});
 		this._labelDSlaveProvisioner.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDSlaveProvisioner);
 		
@@ -144,7 +144,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 	};
 	
 	this.initDSlaveColumnIndex = function(){
-		this._labelDSlaveColumnIndex = new sap.ui.commons.Label({text: " Column Index of the Slave Comlumn Result Set"});
+		this._labelDSlaveColumnIndex = new sap.ui.commons.Label({text: " Column Index for the Selection from Slave Result Set"});
 		this._labelDSlaveColumnIndex.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDSlaveColumnIndex);
 		
