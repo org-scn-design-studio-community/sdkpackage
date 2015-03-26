@@ -1,0 +1,15 @@
+
+	<!-- Base Databound Properties -->
+	<property
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
+	<!-- End of Base Databound Properties -->

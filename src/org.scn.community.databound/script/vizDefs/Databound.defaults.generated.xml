@@ -1,7 +1,7 @@
 
-		<!-- Base Defaults -->
+		<!-- Databound Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
 		<defaultValue property="useMockData">true</defaultValue>
-		<!-- End of Base Defaults -->
+		<!-- End of Databound Defaults -->
