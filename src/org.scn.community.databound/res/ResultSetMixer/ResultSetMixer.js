@@ -115,13 +115,29 @@ myComponentData.instance = {
 		var that = this;
 		
 		var masterProvisioner = that.getDMasterProvisioner();
-		that._masterData = org_scn_community_databound.centralDataStorage[masterProvisioner];
-		that._masterData = org_scn_community_basics.cloneJson(that._masterData);
+		var hasMasterDataProvisioner = false;
+		if(masterProvisioner != undefined && masterProvisioner.length != "") {
+			hasMasterDataProvisioner = (org_scn_community_databound.centralDataStorage[masterProvisioner] != undefined);
+		}
+
+		if(hasMasterDataProvisioner) {
+			that._masterData = org_scn_community_databound.centralDataStorage[masterProvisioner];
+			that._masterData = org_scn_community_basics.cloneJson(that._masterData);
+		}
 		
-		var slave1Provisioner = that.getDSlaveProvisioner();
-		that._slaveData = org_scn_community_databound.centralDataStorage[slave1Provisioner];
+		var slaveProvisioner = that.getDSlaveProvisioner();
+		var hasSlaveDataProvisioner = false;
+		if(slaveProvisioner != undefined && slaveProvisioner.length != "") {
+			hasSlaveDataProvisioner = (org_scn_community_databound.centralDataStorage[slaveProvisioner] != undefined);
+		}
+
+		if(hasSlaveDataProvisioner) {
+			that._slaveData = org_scn_community_databound.centralDataStorage[slaveProvisioner];
+		}
 		
-		afterPrepare(that);
+		if(that._masterData && that._slaveData) {
+			afterPrepare(that);	
+		}
 	},
 };
 

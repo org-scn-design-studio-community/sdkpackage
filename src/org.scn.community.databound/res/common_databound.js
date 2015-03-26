@@ -576,9 +576,14 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 									// ["John Doe | Sales", "John Does | Discounts", ...]
 									// Simple Example:
 									// ["Sales", "Discounts", ...]
+		columnHeadersKeys : [],		// Two Dimension in Columns Example:
+									// ["001 | SALES", "001 | DISC", ...]
+									// Simple Example:
+									// ["SALES", "DISC", ...]
 		rowHeaders2D : [],			// [["01/2015", "Memphis"],["01/2015", "Nashville"], ...]]
 		rowHeadersKeys2D : [],		// [["01.2015", "MEMPHIS"],["01.2015", "NASHVILLE"], ...]]
 		rowHeaders : [],			// ["01/2015 | Memphis", "01/2015 | Nashville", ...]
+		rowHeadersKeys : [],		// ["01.2015 | MEMPHIS", "01.2015 | NASHVILLE", ...]
 		values : [],				// [[100, 50], [200, 250], ...]
 		formattedValues : [],		// [["100 USD", "50 USD"], ["200 USD", "250 USD"], ...]
 		hash : {},					// {"01/2015 | Memphis" : 0, "01/2015 | Nashville" : 1, ... }
@@ -633,6 +638,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 		var newValueRow = [];
 		var newFormattedValueRow = [];
 		var rowHeader = "";
+		var rowHeaderKey = "";
 		var rowHeader2D = [];
 		var rowHeaderKey2D = [];
 		var rowAxisTuple = data.axis_rows[row];
@@ -650,6 +656,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 				}
 
 				rowHeader += sep + data.dimensions[j].members[rowAxisTuple[j]].text;
+				rowHeaderKey += sep + data.dimensions[j].members[rowAxisTuple[j]].key;
 				rowHeader2D.push(data.dimensions[j].members[rowAxisTuple[j]].text);
 				rowHeaderKey2D.push(data.dimensions[j].members[rowAxisTuple[j]].key);
 				sep = options.dimensionSeparator;
@@ -664,6 +671,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 		}else{
 			retObj.hash[rowHeader] = row;
 			retObj.rowHeaders.push(rowHeader);
+			retObj.rowHeadersKeys.push(rowHeaderKey);
 			retObj.rowHeaders2D.push(rowHeader2D);
 			retObj.rowHeadersKeys2D.push(rowHeaderKey2D);
 		}
@@ -686,6 +694,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 	// Make Column Header Labels and Strip out columns containing totals
 	for(var col=0;col<data.axis_columns.length;col++){
 		var colHeader = "";
+		var colHeaderKey = "";
 		var colHeader2D = [];
 		var colHeaderKey2D = [];
 		var colAxisTuple = data.axis_columns[col];
@@ -700,6 +709,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 					removeColumn = true;
 				}
 				colHeader += sep + data.dimensions[j].members[colAxisTuple[j]].text;
+				colHeaderKey += sep + data.dimensions[j].members[colAxisTuple[j]].key;
 				colHeader2D.push(data.dimensions[j].members[colAxisTuple[j]].text);
 				colHeaderKey2D.push(data.dimensions[j].members[colAxisTuple[j]].key);
 				sep = options.dimensionSeparator;			
@@ -719,6 +729,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 			spliceIndexCorrection++;
 		}else{
 			retObj.columnHeaders.push(colHeader);
+			retObj.columnHeadersKeys.push(colHeaderKey);
 			retObj.columnHeaders2D.push(colHeader2D);
 			retObj.columnHeadersKeys2D.push(colHeaderKey2D);
 		}		
@@ -899,28 +910,28 @@ org_scn_community_databound.mixStructure = function (master, slave, opts) {
 		contentConditionJson = JSON.parse(options.conditionContent);
 	}
 
-	for(var mcI=0;mcI<flatMaster.columnHeadersKeys2D.length;mcI++){
+	for(var mcI=0;mcI<flatMaster.columnHeadersKeys.length;mcI++){
 		var insertRuleColumnPassed = true;
-		var insertRuleRowPassed = true;
-		var insertRuleContentPassed = true;
 		
-		for(var mrI=0;mrI<flatMaster.rowHeadersKeys2D.length;mrI++){
-			var rowHeaderKey = flatMaster.rowHeadersKeys2D[mrI];
-			var colHeaderKey = flatMaster.columnHeadersKeys2D[mcI];
+		var colHeaderKey = flatMaster.columnHeadersKeys[mcI];
+		if(columnConditionJson.operator) {
+			var ruleAppliedPositive = false;
+			
+			for(rI in columnConditionJson.rules) {
+				ruleAppliedPositive = org_scn_community_databound.checkRule(columnConditionJson.rules[rI], colHeaderKey);
 
-			if(columnConditionJson.operator) {
-				var ruleAppliedPositive = false;
-				
-				for(rI in columnConditionJson.rules) {
-					ruleAppliedPositive = org_scn_community_databound.checkRule(columnConditionJson.rules[rI], colHeaderKey);
-
-					if(!ruleAppliedPositive) {
-						insertRuleColumnPassed = false;
-						break;
-					}
+				if(!ruleAppliedPositive) {
+					insertRuleColumnPassed = false;
+					break;
 				}
 			}
-			
+		}
+
+		for(var mrI=0;mrI<flatMaster.rowHeadersKeys.length;mrI++){
+			var insertRuleRowPassed = true;
+			var insertRuleContentPassed = true;
+			var rowHeaderKey = flatMaster.rowHeadersKeys[mrI];
+
 			if(rowConditionJson.operator) {
 				var ruleAppliedPositive = false;
 				
@@ -936,28 +947,27 @@ org_scn_community_databound.mixStructure = function (master, slave, opts) {
 
 			var firstDataInserted = false;
 			if(insertRuleColumnPassed && insertRuleRowPassed) {
+				var dataContent = flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength];
+				var dataIndex = mrI * flatMaster.columnHeadersKeys.length + mcI;
+				var dataValue = flatMaster.values[mrI][mcI];
+				
+				if(contentConditionJson.operator) {
+					var ruleAppliedPositive = false;
+					
+					for(rI in contentConditionJson.rules) {
+						ruleAppliedPositive = org_scn_community_databound.checkRule(contentConditionJson.rules[rI], dataContent, dataValue);
+
+						if(!ruleAppliedPositive) {
+							insertRuleContentPassed = false;
+							break;
+						}
+					}
+				}
 				for(var srI=0;srI<flatSlave.rowHeadersKeys2D.length;srI++){
 					var row1HeaderKey = flatSlave.rowHeadersKeys2D[srI][0];
 					var row2HeaderKey = flatSlave.rowHeadersKeys2D[srI][1];
 
 					if(rowHeaderKey == row1HeaderKey && colHeaderKey == row2HeaderKey) {
-						var dataContent = flatMaster.data2DPlain[mrI][mcI+flatMaster.geometry.headersLength];
-						var dataIndex = mrI * flatMaster.columnHeadersKeys2D.length + mcI;
-						var dataValue = flatMaster.values[mrI][mcI];
-						
-						if(contentConditionJson.operator) {
-							var ruleAppliedPositive = false;
-							
-							for(rI in contentConditionJson.rules) {
-								ruleAppliedPositive = org_scn_community_databound.checkRule(contentConditionJson.rules[rI], dataContent, dataValue);
-
-								if(!ruleAppliedPositive) {
-									insertRuleContentPassed = false;
-									break;
-								}
-							}
-						}
-						
 						if(insertRuleContentPassed) {
 							firstDataInserted = org_scn_community_databound.updateDataContent (mrI, mcI, srI, scI, firstDataInserted, flatMaster, flatSlave, options);
 						}
@@ -981,14 +991,43 @@ org_scn_community_databound.checkRule = function (rule, content, value) {
 		for(rM in rule.members) {
 			var memberKey = rule.members[rM];
 
-			if(rule.exclude && content.indexOf(memberKey) == -1) {
-				ruleAppliedPositive = true;
-				break;
+			if(content != undefined && content.length > 0) {
+				if(rule.exclude && content.indexOf(memberKey) == -1) {
+					ruleAppliedPositive = true;
+					break;
+				}
+				
+				if(!rule.exclude && content.indexOf(memberKey) > -1) {
+					ruleAppliedPositive = true;
+					break;
+				}
 			}
-			
-			if(!rule.exclude && content.indexOf(memberKey) > -1) {
-				ruleAppliedPositive = true;
-				break;
+		}
+	}
+
+	if(rule.condition == "pattern") {
+		for(rM in rule.members) {
+			var pattern = rule.members[rM];
+
+			if(content.length >= pattern.length) {
+				for(var spI=0;spI<pattern.length;spI++){
+					var patternCharacter = pattern.substring(spI, spI + 1);
+					var contentCharacter = content.substring(spI, spI + 1);
+					
+					if(patternCharacter == "?") {
+						// this index does not matter
+					} else {
+						if(rule.exclude && patternCharacter != contentCharacter) {
+							ruleAppliedPositive = true;
+							break;
+						}
+						
+						if(!rule.exclude && patternCharacter == contentCharacter) {
+							ruleAppliedPositive = true;
+							break;
+						}						
+					}
+				}
 			}
 		}
 	}
