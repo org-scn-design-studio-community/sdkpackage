@@ -1316,6 +1316,7 @@ __n__}
 	</property>
 	<!-- End of Base Map Properties -->
 	<!-- Begin of Location Intel Properties -->
+	<property id="selectedMarker" title="Selected Marker" type="String" visible = "false"/>
 	<property id="latitudeField" title="Latitude Field" type="String" visible="false"/>
 	<property id="longitudeField" title="Longitude Field" type="String" visible="false"/>
 	<property id="markerTitle" title="Marker Title Field" type="String" visible="false"/>
