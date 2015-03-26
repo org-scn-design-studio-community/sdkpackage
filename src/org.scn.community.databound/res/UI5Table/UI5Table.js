@@ -145,7 +145,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 			var lDataProvisioner = that.getDDataProvisioner();
 			var hasDataProvisioner = false;
 			if(lDataProvisioner != undefined && lDataProvisioner.length != "") {
-				hasDataProvisioner = (com_schaeffler.centralDataStorage[lDataProvisioner] != undefined);
+				hasDataProvisioner = (org_scn_community_databound.centralDataStorage[lDataProvisioner] != undefined);
 			}
 			
 			if(lData == "" && !hasDataProvisioner) {
