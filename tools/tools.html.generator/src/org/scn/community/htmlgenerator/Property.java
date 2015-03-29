@@ -6,7 +6,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
 import org.scn.community.defgenerator.ZtlAndAps;
-import org.scn.community.defgenerator.ParamSpec;
+import org.scn.community.defgenerator.ParamSimpleSpec;
+import org.scn.community.spec.ParamFullSpec;
 import org.scn.community.utils.Helpers;
 
 public class Property {
@@ -27,13 +28,16 @@ public class Property {
 
 	private String defaultValue;
 
-	private ParamSpec extendedSpec;
+	private ParamSimpleSpec extendedSimpleSpec;
+	
+	private ParamFullSpec extendedFullSpec;
 
 	private String componentName;
 
 	@SuppressWarnings("nls")
 	public Property(XMLStreamReader reader, String componentName) {
 		this.componentName = componentName;
+		
 		this.name = reader.getAttributeValue("", "id");
 		this.title = reader.getAttributeValue("", "title");
 		this.tooltip = reader.getAttributeValue("", "tooltip");
@@ -67,6 +71,11 @@ public class Property {
 			System.out.println("ISSUE: " + componentName + " - PARAMETER  - property '" + this.name + "' is missing 'group'");
 			this.group = "&nbsp;";
 		}
+	}
+
+	public Property(String componentName, String propertyName) {
+		this.componentName = componentName;
+		this.name = propertyName;
 	}
 
 	public String toString() {
@@ -129,16 +138,26 @@ public class Property {
 		}
 	}
 
-	public void extendSpec(ParamSpec parameter) {
-		this.extendedSpec = parameter;
+	public void extendSpec(ParamSimpleSpec parameter) {
+		this.extendedSimpleSpec = parameter;
+	}
+	
+	public void extendSpec(ParamFullSpec parameter) {
+		this.extendedFullSpec = parameter;
 	}
 	
 	public boolean hasExtendSpec() {
-		return (this.extendedSpec != null);
+		return (this.extendedSimpleSpec != null) || (this.extendedFullSpec != null);
 	}
 
 	public ZtlAndAps generateZtlAndAps() {
-		return this.extendedSpec.getFunctions();
+		if(this.extendedSimpleSpec != null) {
+			return this.extendedSimpleSpec.getFunctions();	
+		}
+		if(this.extendedFullSpec != null) {
+			return this.extendedFullSpec.getFunctions();
+		}
+		return null;
 	}
 
 	public String getNameCut() {
@@ -149,7 +168,7 @@ public class Property {
 		return this.name.substring(1);
 	}
 
-	public CharSequence getName() {
+	public String getName() {
 		return this.name;
 	}
 
@@ -171,5 +190,9 @@ public class Property {
 
 	public ArrayList<Value> getValues() {
 		return this.values;
+	}
+
+	public ParamFullSpec getExtendedFullSpec() {
+		return this.extendedFullSpec;
 	}
 }

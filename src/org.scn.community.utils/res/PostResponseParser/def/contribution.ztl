@@ -21,6 +21,48 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	*}
 
 	/**
+	 * Sets Request Type (JQuery | HTTP) Property
+	 */	
+	void setRequestType( /* &nbsp; */  choice requestType){*
+		this.DRequestType = requestType;
+	*}
+
+	/**
+	 * Gets Request Type (JQuery | HTTP) Property
+	 */	
+	choice getRequestType() {*
+		return this.DRequestType;
+	*}
+
+	/**
+	 * Sets Request Method (POST | GET | PUT) Property
+	 */	
+	void setRequestMethod( /* &nbsp; */  choice requestMethod){*
+		this.DRequestMethod = requestMethod;
+	*}
+
+	/**
+	 * Gets Request Method (POST | GET | PUT) Property
+	 */	
+	choice getRequestMethod() {*
+		return this.DRequestMethod;
+	*}
+
+	/**
+	 * Sets Is this Request Cross-Domain Property
+	 */	
+	void setCrossDomain( /* &nbsp; */  boolean crossDomain){*
+		this.DCrossDomain = crossDomain;
+	*}
+
+	/**
+	 * Gets Is this Request Cross-Domain Property
+	 */	
+	boolean getCrossDomain() {*
+		return this.DCrossDomain;
+	*}
+
+	/**
 	 * Sets Basic Authorization Content [Basic: GUID] Property
 	 */	
 	void setBasicAuthorisation( /* &nbsp; */  String basicAuthorisation){*
@@ -60,6 +102,20 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	 */	
 	int getExpectedResponseStatus() {*
 		return this.DExpectedResponseStatus;
+	*}
+
+	/**
+	 * Sets Expected Content Type Property
+	 */	
+	void setExpectedContentType( /* &nbsp; */  choice expectedContentType){*
+		this.DExpectedContentType = expectedContentType;
+	*}
+
+	/**
+	 * Gets Expected Content Type Property
+	 */	
+	choice getExpectedContentType() {*
+		return this.DExpectedContentType;
 	*}
 
 	/**

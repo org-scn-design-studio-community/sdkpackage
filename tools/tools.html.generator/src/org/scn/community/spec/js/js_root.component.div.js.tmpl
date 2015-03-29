@@ -1,0 +1,47 @@
+(function(){
+
+var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
+
+myComponentData.instance = function() {
+
+	var that = this;
+
+	this.init = function() {
+		var that = this;
+		that.loadSpecification();
+		
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+	};
+
+	this.afterUpdate = function() {
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+	};
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+
+	this.loadSpecification = function () {
+		var that = this;
+		
+		that.spec = {}; 
+		that.compSpec = {};
+		
+%FULL_SPEC_DEFINITION%
+%FULL_COMP_SPEC_DEFINITION%
+		
+		/*SPECIFICATION*/
+		
+		org_scn_community_spec.base.loadSpecification (that, that.spec, that.compSpec);
+	}
+};
+
+define([myComponentData.requireName], function(%COMP-package%%COMP-id(lower)%){
+	return myComponentData.instance;
+});
+
+}).call(this);

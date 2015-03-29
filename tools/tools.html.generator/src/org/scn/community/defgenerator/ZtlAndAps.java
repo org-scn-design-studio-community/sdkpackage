@@ -4,6 +4,7 @@ public class ZtlAndAps {
 
 	String functions = "";
 	String aps = "";
+	String xml = "";
 	
 	public String getFunctions() {
 		if(functions == null) {
@@ -23,5 +24,15 @@ public class ZtlAndAps {
 	}
 	public void setAps(String aps) {
 		this.aps = aps;
+	}
+	
+	public String getXml() {
+		if(xml == null) {
+			return "";
+		}
+		return xml;
+	}
+	public void setXml(String xml) {
+		this.xml = xml;
 	}
 }

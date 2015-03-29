@@ -21,7 +21,7 @@
 	 var _myScript = $("script:last")[0].src;
 	 var _pathInfo = org_scn_community_basics.readOwnScriptAccess(_myScript, "%TECH_SHORT_NAME%", "%PACKAGE_SHORT_NAME%");
 
-	/*JS_REQUIRE_CALLS '/
+	/* JS_REQUIRE_CALLS */
 
 	function %TECH_SHORT_NAME%() {
 
@@ -30,7 +30,7 @@
 	    		var that = this;
     			
 	    		this.init = function() {
-	    			/* init funnction */
+	    			/* init function */
 	    		};
 	    		
 	    		this.afterUpdate = function() {
@@ -40,10 +40,7 @@
 	    				
 	    				/* custom after render code */			
 
-	    				that._tool = document.createElement('div');
-	    				that._tool.id = that._jqThis[0].id + "_custom";
-	    				that._tool.className = "org-scn-%TECH_SHORT_NAME%-Custom";
-	    				that._jqThis[0].appendChild(that._tool);
+	    				
 
 	    				that._afterRender = true;
 	    			}

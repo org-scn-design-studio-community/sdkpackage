@@ -20,6 +20,111 @@
 
 
 /**
+ * Generated ZTL Class for ApsTester
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Ignore Expanded Hierarchy Nodes Property
+	 */	
+	void setComboboxExample( /**Ignore Expanded Hierarchy Nodes*/ String comboboxExample){*
+		this.comboboxExample = comboboxExample;
+	*}
+
+	/**
+	 * Gets Ignore Expanded Hierarchy Nodes Property
+	 */	
+	String getComboboxExample() {*
+		return this.comboboxExample;
+	*}
+
+	/**
+	 * Sets Ignore Expanded Hierarchy Nodes Property
+	 */	
+	void setColorExample( /**Ignore Expanded Hierarchy Nodes*/ String colorExample){*
+		this.colorExample = colorExample;
+	*}
+
+	/**
+	 * Gets Ignore Expanded Hierarchy Nodes Property
+	 */	
+	String getColorExample() {*
+		return this.colorExample;
+	*}
+
+
+
+	/**
+	 * Sets Ignore Totals Property
+	 */	
+	void setCheckboxExample( /**Ignore Totals*/ boolean checkboxExample){*
+		this.checkboxExample = checkboxExample;
+	*}
+
+	/**
+	 * Gets Ignore Totals Property
+	 */	
+	boolean isCheckboxExample() {*
+		return this.checkboxExample;
+	*}
+
+	/**
+	 * Gets Ignore Totals Property
+	 */	
+	boolean isCheckboxOnlyGetterExample() {*
+		return this.checkboxOnlyGetterExample;
+	*}
+
+	/**
+	 * Sets Ignore Expanded Hierarchy Nodes Property
+	 */	
+	void setPaletteExample( /**Ignore Expanded Hierarchy Nodes*/ String paletteExample){*
+		this.paletteExample = paletteExample;
+	*}
+
+	/**
+	 * Gets Ignore Expanded Hierarchy Nodes Property
+	 */	
+	String getPaletteExample() {*
+		return this.paletteExample;
+	*}
+
+	/**
+	 * Sets Ignore Expanded Hierarchy Nodes Property
+	 */	
+	void setTextExample( /**Ignore Expanded Hierarchy Nodes*/ String textExample){*
+		this.textExample = textExample;
+	*}
+
+	/**
+	 * Gets Ignore Expanded Hierarchy Nodes Property
+	 */	
+	String getTextExample() {*
+		return this.textExample;
+	*}
+
+	/**
+	 * Sets Ignore Expanded Hierarchy Nodes Property
+	 */	
+	void setSpinnerExample( /**Ignore Expanded Hierarchy Nodes*/ int spinnerExample){*
+		this.spinnerExample = spinnerExample;
+	*}
+
+	/**
+	 * Gets Ignore Expanded Hierarchy Nodes Property
+	 */	
+	int getSpinnerExample() {*
+		return this.spinnerExample;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
  * Class for ApplicationHeader
  */
 class org.scn.community.prototypes.ApplicationHeaderE extends org.scn.community.shared.Component {
