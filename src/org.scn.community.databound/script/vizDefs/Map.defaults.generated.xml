@@ -1,0 +1,49 @@
+
+		<!-- Databound Defaults -->
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
+		<!-- End of Databound Defaults -->
+		<!-- Base Viz Defaults -->
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
+		<defaultValue property="showTitle">true</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="showTooltips">true</defaultValue>
+		<defaultValue property="chartValueSize">10</defaultValue>
+		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
+		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="pollInterval">250</defaultValue>
+		<defaultValue property="plotAlpha">95</defaultValue>
+		<defaultValue property="plotThickness">1.0</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="legendWidth">125</defaultValue>
+		<defaultValue property="legendTitle">Legend Title</defaultValue>
+		<defaultValue property="legendScale">1</defaultValue>
+		<defaultValue property="margin">20</defaultValue>
+		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="tooltipPositioning">followmouse</defaultValue>
+		<defaultValue property="tooltipLeft">auto</defaultValue>
+		<defaultValue property="tooltipRight">0px</defaultValue>
+		<defaultValue property="tooltipTop">0px</defaultValue>
+		<defaultValue property="tooltipBottom">auto</defaultValue>
+		<defaultValue property="enableZoom">false</defaultValue>
+		<defaultValue property="minZoom">1</defaultValue>
+		<defaultValue property="maxZoom">1</defaultValue>
+		<!-- End of Base Defaults -->
+		<!-- Base Map Defaults -->
+		<defaultValue property="defaultFillColor">#E9E5DC</defaultValue>
+		<defaultValue property="globeColor">#7FB5DF</defaultValue>
+		<defaultValue property="graticuleColor">#808080</defaultValue>
+		<defaultValue property="graticuleThickness">.5</defaultValue>
+		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>
+		<defaultValue property="labelProperty">NAME_1</defaultValue>
+		<defaultValue property="projection">equirectangular</defaultValue>
+		<defaultValue property="yaw">0.0</defaultValue>
+		<defaultValue property="pitch">0.0</defaultValue>
+		<defaultValue property="roll">0.0</defaultValue>
+		<!-- End of Base Map Defaults -->

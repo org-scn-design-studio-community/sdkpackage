@@ -99,6 +99,16 @@
 						cat : "Cosmetics-Scale",
 						apsControl : "spinner"	
 					}
+				},
+				selectedMarker : { 
+	    			value : "",
+	    			opts : {
+	    				desc : "Data",
+	    				cat : "Data",
+	    				tooltip : "Selected Plot",
+	    				value : null,
+	    				noAps : true
+	    			}
 				}
 			});
 	    	
@@ -109,6 +119,18 @@
 	    		title : "Location Intelligence Map",
 	    		content : "TODO"
 	    	});
+			/**
+			 * Sets BIAL-level selected plot and fires onSelect event.
+			 */
+			this.setSelectedMarker = function(d){				
+				if(!d.title) {
+					this.selectedMarker("");
+				}else{
+					this.selectedMarker(d.title);	
+				}
+				this.firePropertiesChanged(["selectedMarker"]);
+				this.fireEvent("onSelect");
+			};
 	    	/**
 			 * Handle tooltip updates
 			 */
@@ -172,23 +194,89 @@
 					}
 				}			
 			}
+			/**
+			 * Update Scales
+			 */
+			this.updateScales = function(){
+		        var d, domain;
+		        this.bubbleSet = [0];
+		        if(this.markerSizeMeasure()){
+		        	for(var i=0;i<this.plots.length;i++){
+		        		var plot = this.plots[i];
+		        		if(plot.designStudioMeasures && plot.designStudioMeasures[this.markerSizeMeasure()]){
+		        			this.bubbleSet.push(plot.designStudioMeasures[this.markerSizeMeasure()]);
+		        		}else{
+		        			// No value
+		        		}
+		        	}
+		        }
+		        this.bubbleScale = d3.scale.linear()
+					.range([this.markerMin(),this.markerMax()]);
+		        this.bubbleScale.domain([d3.min(this.bubbleSet),d3.max(this.bubbleSet)]);
+		        /*
+		        // Make range with appropriate values
+		        var cp = [];
+				this.valuesSet.sort(function(a, b) { return a - b; });
+		        if(this.colorPalette()!="") cp = this.colorPalette().split(",");
+		        this.colorRange = d3.scale[this.colorScale()]()
+		        	.domain(this.valuesSet)
+		        	.range(cp);
+		        // Clamp if can
+		        if (typeof this.colorRange.clamp == 'function') {
+		        	this.colorRange.clamp(true);
+		        }
+		        */
+		        	
+		        return this;
+			};
 	    	var parentUpdatePlot = this.updatePlot;
 	    	this.updatePlot = function(){
 	    		parentUpdatePlot.call(this);
+	    		this.updateScales();
 				var markers = this.markerGroup.selectAll('circle').data(this.plots);
 				var newMarkers = markers.enter().append("circle")
-					.attr("cx", function(d) { return that.proj([d.longitude,d.latitude])[0]; })
-					.attr("cy", function(d) { return that.proj([d.longitude,d.latitude])[1]; })
+					.attr("cx", function(d) { 
+						var a = that.proj([d.longitude,d.latitude]);
+						if(a && a.length && a.length>0) return a[0];
+					})
+					.attr("cy", function(d) { 
+						var a = that.proj([d.longitude,d.latitude]);
+						if(a && a.length && a.length>1) return a[1];
+					})
 					//.attr("transform", function(d) { return "translate(" + that.proj([d.longitude,d.latitude]) + ")"; })
 					.attr("r", 0)
 					.attr("opacity", this.markerAlpha()/100)
 					.attr("fill", this.markerColor());
 
 				this.markerGroup.selectAll("circle")
-					.attr("r", this.markerSize()/this.zoomScale)
-					.transition().duration(this.ms())
-					.attr("cx", function(d) { return that.proj([d.longitude,d.latitude])[0]; })
-					.attr("cy", function(d) { return that.proj([d.longitude,d.latitude])[1]; })
+					.transition().duration(this.ms())	
+					.attr("r",function(d){
+						if(d.designStudioMeasures){
+							var bm = that.markerSizeMeasure();
+							if(bm){
+								if(d.designStudioMeasures[bm]){
+									return that.bubbleScale(d.designStudioMeasures[bm])/that.zoomScale;
+									// linear scale
+								}else{
+									return that.markerSize()/that.zoomScale;	
+								}
+								//that.colorRange(d.properties.designStudioMeasures[mm]) || that.defaultFillColor();
+								//if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 0 && ) mm = that.flatData.columnHeaders[0];
+							}else{
+								return that.markerSize()/that.zoomScale;
+							}
+						}
+						return that.markerSize()/that.zoomScale;
+					})
+					//.transition().duration(this.ms())
+					.attr("cx", function(d) { 
+						var a = that.proj([d.longitude,d.latitude]);
+						if(a && a.length && a.length>0) return a[0];
+					})
+					.attr("cy", function(d) { 
+						var a = that.proj([d.longitude,d.latitude]);
+						if(a && a.length && a.length>1) return a[1];
+					})
 					//.attr("transform", function(d) { return "translate(" + that.proj([d.longitude,d.latitude]) + ")"; })
 					.attr("opacity", this.markerAlpha()/100)
 					.attr("fill", this.markerColor());
@@ -198,7 +286,18 @@
 					.on('mousemove', this.doTooltip)
 					.on('mouseout', function(d) {
 						that.tooltip.classed("hidden",true);
-					});
+					})
+					.on('click', function(d){ 
+						if(that.moved) {
+							that.moved = false;
+							return;
+						}
+					d3.select(this)
+						.transition().duration(that.ms())
+						.attr("fill",that.selectedColor());
+					that.setSelectedMarker(d);
+				});
+				// Events
 				 markers.exit().remove();
 				 return this;
 				 //alert("!");
@@ -222,7 +321,7 @@
 						var row = this.flatData.rowHeaders2D[i];
 						var dsm = {};
 						for(var j=0;j<this.flatData.columnHeaders.length;j++){
-							dsm[this.flatData.columnHeaders[j]] = this.flatData.values[j];
+							dsm[this.flatData.columnHeaders[j]] = this.flatData.values[i][j];
 						}
 						this.plots.push({
 							latitude : row[latIndex],

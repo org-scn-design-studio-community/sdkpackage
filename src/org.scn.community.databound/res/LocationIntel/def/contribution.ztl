@@ -1,21 +1,9 @@
-class org.scn.community.databound.Choropleth extends org.scn.community.shared.Component {
+class org.scn.community.databound.LocationIntel extends org.scn.community.shared.Component {
 	/**
 	Get selected feature
 	*/
-	String getSelectedFeature() {*
-		return this.selectedFeature;
-	*}
-	/**
-	Set Measure to use for coloring
-	*/
-	void setMeasure(/*Measure*/String measure) {*
-		return this.measureMember = measure;
-	*}
-	/**
-	Set Bubble Measure to use for coloring
-	*/
-	void setBubbleMeasure(/*Measure*/String measure) {*
-		return this.bubbleMember = measure;
+	String getSelectedMarker() {*
+		return this.selectedMarker;
 	*}
 	/**
 	Set Projection Method
@@ -36,16 +24,22 @@ class org.scn.community.databound.Choropleth extends org.scn.community.shared.Co
 		this.colorPalette = palette;
 	*}
 	/**
-	Set Bubble Color
+	Set Marker Color
 	*/
-	void setBubbleColor(/*Color*/String color) {*
-		this.bubbleColor = color;
+	void setMarkerColor(/*Color*/String color) {*
+		this.markerColor = color;
 	*}
 	/**
-	Set Feature Attribute from GeoJSON that matches values in rows
+	Set Marker Title Field
 	*/
-	void setFeatureProperty(/*Attribute*/String attribute) {*
-		this.featureProperty = attribute;
+	void setMarkerTitle(/*Color*/String dimension) {*
+		this.markerTitle = dimension;
+	*}
+	/**
+	Set Marker Size Field
+	*/
+	void setMarkerSizeMeasure(/*Color*/String measure) {*
+		this.markerSizeMeasure = measure;
 	*}
 	/**
 	Set Label Attribute from GeoJSON that should be used for labeling

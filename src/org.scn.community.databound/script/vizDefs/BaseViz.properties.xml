@@ -1,0 +1,43 @@
+
+	<!-- Base Viz Properties -->
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
+	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
+	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
+	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
+	<!--
+	<property id="styleCSS" title="Style CSS" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	 -->
+	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
+	<property id="pollInterval" type="int" title = "Resize Poll Interval" visible="false"/>
+	<property id="ms" type="int" title = "Animation Duration (ms)" visible="false"/>
+	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
+	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
+	<property id="tooltipLeft" type="String" title = "Tooltip Left" visible="false"/>
+	<property id="tooltipRight" type="String" title = "Tooltip Right" visible="false"/>
+	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
+	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
+	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
+	<property id="legendTitle" title="Legend Title" type="String" visible="false"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int" visible="false"/>
+	<property id="legendScale" title="Legend Scale" type="float" visible="false"/>
+	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
+	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
+	<property id="plotThickness" title="Plot Thickness" type="float" visible="false"/>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="margin" type="int" title = "Margin Size" visible="false"/>
+	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="plotLeft" title="Plot Offset Left" type="int" visible="false"/>
+	<property id="plotRight" title="Plot Offset Right" type="int" visible="false"/>
+	<property id="plotTop" title="Plot Offset Top" type="int" visible="false"/>
+	<property id="plotBottom" title="Plot Offset Bottom" type="int" visible="false"/>
+	<property id="enableZoom" title="Enable Zoom" type="boolean" visible="false" />
+	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
+	<!-- End of Base Viz Properties -->
