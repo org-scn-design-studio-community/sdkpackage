@@ -176,28 +176,31 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 				value : uniques[item]
 			});
 		}
+		/**
+		 * Fixed nasty sort bug!  Also sort Measure Members.
+		 */
 		if(this.sortMethod()=="Alphanumeric Ascending"){
 			payload.sort(function(a,b){
-				var coordA = a.value.coordinate;
-				var coordB = b.value.coordinate;
-				var i=1;	// Skip sorting Measure Members
-				while(i<coordA.length){
-					if(coordA[i].toLowerCase() < coordB[i].toLowerCase()) return -1;
+				var coordA = a.value.coordinate.slice();
+				var coordB = b.value.coordinate.slice();
+				var i=coordA.length-1;	
+				while(i>=0){
 					if(coordA[i].toLowerCase() > coordB[i].toLowerCase()) return 1;
-					if(coordA[i].toLowerCase() == coordB[i].toLowerCase()) i++;
+					if(coordA[i].toLowerCase() < coordB[i].toLowerCase()) return -1;
+					i--;
 				}
 				return 0;
 			});
 		}
 		if(this.sortMethod()=="Alphanumeric Descending"){
 			payload.sort(function(a,b){
-				var coordA = a.value.coordinate;
-				var coordB = b.value.coordinate;
-				var i=1;	// Skip sorting Measure Members
-				while(i<coordA.length){
+				var coordA = a.value.coordinate.slice();
+				var coordB = b.value.coordinate.slice();
+				var i=coordA.length-1;	
+				while(i>=0){
 					if(coordA[i].toLowerCase() < coordB[i].toLowerCase()) return 1;
 					if(coordA[i].toLowerCase() > coordB[i].toLowerCase()) return -1;
-					if(coordA[i].toLowerCase() == coordB[i].toLowerCase()) i++;
+					i--;
 				}
 				return 0;
 			});
@@ -205,10 +208,16 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 		/*
 		 * Step 2 - Send unique over
 		 */
+		var errLog = "";
 		for(var i=0;i<payload.length;i++){
 			var item = payload[i];
-			this.setDataCell(item.value.coordinate,item.value.data);	
+			try{
+				this.setDataCell(item.value.coordinate,item.value.data);				
+			}catch(e){
+				errLog+="\n"+i+":"+JSON.stringify(item)+e;
+			}
 		}
+		if(errLog) console.log(errLog);
 		this.firePropertiesChanged(["metadata"]);
 		this.fireUpdate();
 	};
