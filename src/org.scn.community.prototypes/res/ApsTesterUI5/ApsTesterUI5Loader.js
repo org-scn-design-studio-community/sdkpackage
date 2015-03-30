@@ -19,20 +19,20 @@
 
 (function() {
 
-	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id% = {
-		name: "%COMP-package%.%COMP-id%",
-		requireName: "%COMP-package%%COMP-id(lower)%",
-		fullComponentName: "org.scn.community.%COMP-package%.%COMP-id%",
-		script: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%",
+	org_scn_community_require.knownComponents.prototypes.ApsTesterUI5 = {
+		name: "prototypes.ApsTesterUI5",
+		requireName: "prototypesapstesterui5",
+		fullComponentName: "org.scn.community.prototypes.ApsTesterUI5",
+		script: "org.scn.community.prototypes/res/ApsTesterUI5/ApsTesterUI5",
 		min: false
 	};
 
-	var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
+	var myComponentData = org_scn_community_require.knownComponents.prototypes.ApsTesterUI5;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-	  	%COMPONENT_REQUIRE_SPEC%
+	  	
 	  	org_scn_community_require.knownModules.common_basics.name,
 	  	org_scn_community_require.knownModules.common_databound.name,
 	  	org_scn_community_require.knownModules.component_core.name,

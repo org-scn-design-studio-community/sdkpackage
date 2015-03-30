@@ -6,6 +6,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.xml.txt ^
 ..\templates\contribution.xml.groups.txt ^
 ..\res\ApsTester\def\contribution.xml ^
+..\res\ApsTesterUI5\def\contribution.xml ^
 ..\res\ApplicationHeaderEventTrigger\def\contribution.xml ^
 ..\res\ApplicationHeaderOnBeforeRender\def\contribution.xml ^
 ..\res\ProgressSet\def\contribution.xml ^
@@ -20,6 +21,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\templates\contribution.ztl.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.js.txt ^
 ..\res\ApsTester\def\contribution.ztl ^
+..\res\ApsTesterUI5\def\contribution.ztl ^
 ..\res\ApplicationHeaderEventTrigger\def\contribution.ztl ^
 ..\res\ApplicationHeaderOnBeforeRender\def\contribution.ztl ^
 ..\res\ProgressSet\def\contribution.ztl ^

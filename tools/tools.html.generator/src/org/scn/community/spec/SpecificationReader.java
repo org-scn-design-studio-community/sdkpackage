@@ -55,7 +55,7 @@ public class SpecificationReader {
 		} catch (JSONException e) {
 			throw new RuntimeException(e);
 		}
-		pathToGenSpec = pathToGenSpec.replace("specification.json", "about.json");
+		pathToGenSpec = pathToGenSpec.replace("component.json", "about.json");
 		spec = Helpers.file2String(pathToGenSpec);
 		try {
 			jsonAbout = new JSONObject(spec);
@@ -250,7 +250,7 @@ public class SpecificationReader {
 			// here we will generically clean up the replacement
 			content = content.replace("%FUNCTION_ENTRY%", "");
 			content = content.replace("%CUSTOM_ENTRY%", "");
-			content = content.replace("%COMPONENT_REUIRE_SPEC%", "");
+			content = content.replace("%COMPONENT_REQUIRE_SPEC%", "");
 			
 			content = content.replace("%XML_PROPERTY_TEMPLATE%", "");
 			content = content.replace("%XML_EVENT_TEMPLATE%", "");
@@ -258,7 +258,8 @@ public class SpecificationReader {
 
 			try {
 				content = content.replace("%FULL_SPEC_DEFINITION%", "that.spec = \r\n" + jsonSpecification.toString(2) + ";");
-				content = content.replace("%FULL_COMP_SPEC_DEFINITION%", "that.compSpec = \r\n" +jsonComponent.toString(2) + ";");
+				// content = content.replace("%FULL_COMP_SPEC_DEFINITION%", "that.compSpec = \r\n" +jsonAbout.toString(2) + ";");
+				content = content.replace("%FULL_ABOUT_SPEC_DEFINITION%", "that.aboutSpec = \r\n" +jsonAbout.toString(2) + ";");
 			} catch (JSONException e) {
 				throw new RuntimeException(e);
 			}

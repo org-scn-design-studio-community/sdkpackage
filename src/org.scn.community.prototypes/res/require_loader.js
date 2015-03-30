@@ -40,9 +40,16 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 	org_scn_community_basics.readGenericScriptAccess = function(scriptSrc, sctiptPath, packageName) {
 		if(scriptSrc) {
 			var myScriptSuffix = sctiptPath;
-			var myPluginSuffix = "org.scn.community."+packageName+"/";
+			
+			var myPluginSuffix = "org.scn.community."
+			if(packageName != "") {
+				myPluginSuffix+packageName+"/";	
+			}
 			var mainScriptPathIndex = scriptSrc.indexOf(myScriptSuffix);
 			var mainSDKPathIndex = scriptSrc.indexOf(myPluginSuffix);
+			if(packageName == "") {
+				myPluginSuffix+"basics"+"/";	
+			}
 			var mainSDKPath = scriptSrc.substring(0, mainSDKPathIndex);
 			var ownScriptPath = scriptSrc.substring(0, mainScriptPathIndex) + myScriptSuffix;
 			return {
@@ -61,7 +68,7 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 
 	/** code for recognition of script path */
 	var myScript = $("script:last")[0].src;
-	org_scn_community_require.scriptInfo = org_scn_community_basics.readGenericScriptAccess(myScript, "res", "databound");
+	org_scn_community_require.scriptInfo = org_scn_community_basics.readGenericScriptAccess(myScript, "res", "");
 
 	org_scn_community_require.knownModules = {
 			common_basics: {
@@ -74,11 +81,21 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 				script: "org.scn.community.databound/res/common_databound",
 				min: false
 			},
-			generic_base: {
-				name: "generic_base",
-				script: "org.scn.community.basics/res/org.scn.community.generic.Base",
+			component_core: {
+				name: "component_core",
+				script: "org.scn.community.basics/res/org.scn.community.component.Core",
 				min: false
 			},
+			generic_aps: {
+				name: "generic_aps",
+				script: "org.scn.community.basics/aps/org.scn.community.generic.PropertyPage",
+				min: false
+			},
+			generic_aps_ui5: {
+				name: "generic_aps_ui5",
+				script: "org.scn.community.basics/aps/org.scn.community.ui5.extensions",
+				min: false
+			},	
 			chartjs: {
 				name: "chartjs",
 				script: "org.scn.community.databound/os/chartjs/Chart",

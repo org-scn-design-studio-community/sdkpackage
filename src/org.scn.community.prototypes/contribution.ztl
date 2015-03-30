@@ -27,28 +27,28 @@
 class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Component {
 
 	/**
-	 * Sets Ignore Expanded Hierarchy Nodes Property
+	 * Sets Simple Choice Property
 	 */	
-	void setComboboxExample( /**Ignore Expanded Hierarchy Nodes*/ String comboboxExample){*
+	void setComboboxExample( /**Simple Choice*/ String comboboxExample){*
 		this.comboboxExample = comboboxExample;
 	*}
 
 	/**
-	 * Gets Ignore Expanded Hierarchy Nodes Property
+	 * Gets Simple Choice Property
 	 */	
 	String getComboboxExample() {*
 		return this.comboboxExample;
 	*}
 
 	/**
-	 * Sets Ignore Expanded Hierarchy Nodes Property
+	 * Sets Simple Color Property
 	 */	
-	void setColorExample( /**Ignore Expanded Hierarchy Nodes*/ String colorExample){*
+	void setColorExample( /**Simple Color*/ String colorExample){*
 		this.colorExample = colorExample;
 	*}
 
 	/**
-	 * Gets Ignore Expanded Hierarchy Nodes Property
+	 * Gets Simple Color Property
 	 */	
 	String getColorExample() {*
 		return this.colorExample;
@@ -78,42 +78,147 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 
 	/**
-	 * Sets Ignore Expanded Hierarchy Nodes Property
+	 * Sets Color Palette Property
 	 */	
-	void setPaletteExample( /**Ignore Expanded Hierarchy Nodes*/ String paletteExample){*
+	void setPaletteExample( /**Color Palette*/ String paletteExample){*
 		this.paletteExample = paletteExample;
 	*}
 
 	/**
-	 * Gets Ignore Expanded Hierarchy Nodes Property
+	 * Gets Color Palette Property
 	 */	
 	String getPaletteExample() {*
 		return this.paletteExample;
 	*}
 
 	/**
-	 * Sets Ignore Expanded Hierarchy Nodes Property
+	 * Sets A saple text Property
 	 */	
-	void setTextExample( /**Ignore Expanded Hierarchy Nodes*/ String textExample){*
+	void setTextExample( /**A saple text*/ String textExample){*
 		this.textExample = textExample;
 	*}
 
 	/**
-	 * Gets Ignore Expanded Hierarchy Nodes Property
+	 * Gets A saple text Property
 	 */	
 	String getTextExample() {*
 		return this.textExample;
 	*}
 
 	/**
-	 * Sets Ignore Expanded Hierarchy Nodes Property
+	 * Sets Some numbers Property
 	 */	
-	void setSpinnerExample( /**Ignore Expanded Hierarchy Nodes*/ int spinnerExample){*
+	void setSpinnerExample( /**Some numbers*/ int spinnerExample){*
 		this.spinnerExample = spinnerExample;
 	*}
 
 	/**
-	 * Gets Ignore Expanded Hierarchy Nodes Property
+	 * Gets Some numbers Property
+	 */	
+	int getSpinnerExample() {*
+		return this.spinnerExample;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Generated ZTL Class for ApsTesterUI5
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.prototypes.ApsTesterUI5 extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Simple Choice Property
+	 */	
+	void setComboboxExample( /**Simple Choice*/ String comboboxExample){*
+		this.comboboxExample = comboboxExample;
+	*}
+
+	/**
+	 * Gets Simple Choice Property
+	 */	
+	String getComboboxExample() {*
+		return this.comboboxExample;
+	*}
+
+	/**
+	 * Sets Simple Color Property
+	 */	
+	void setColorExample( /**Simple Color*/ String colorExample){*
+		this.colorExample = colorExample;
+	*}
+
+	/**
+	 * Gets Simple Color Property
+	 */	
+	String getColorExample() {*
+		return this.colorExample;
+	*}
+
+
+
+	/**
+	 * Sets Ignore Totals Property
+	 */	
+	void setCheckboxExample( /**Ignore Totals*/ boolean checkboxExample){*
+		this.checkboxExample = checkboxExample;
+	*}
+
+	/**
+	 * Gets Ignore Totals Property
+	 */	
+	boolean isCheckboxExample() {*
+		return this.checkboxExample;
+	*}
+
+	/**
+	 * Gets Ignore Totals Property
+	 */	
+	boolean isCheckboxOnlyGetterExample() {*
+		return this.checkboxOnlyGetterExample;
+	*}
+
+	/**
+	 * Sets Color Palette Property
+	 */	
+	void setPaletteExample( /**Color Palette*/ String paletteExample){*
+		this.paletteExample = paletteExample;
+	*}
+
+	/**
+	 * Gets Color Palette Property
+	 */	
+	String getPaletteExample() {*
+		return this.paletteExample;
+	*}
+
+	/**
+	 * Sets A saple text Property
+	 */	
+	void setTextExample( /**A saple text*/ String textExample){*
+		this.textExample = textExample;
+	*}
+
+	/**
+	 * Gets A saple text Property
+	 */	
+	String getTextExample() {*
+		return this.textExample;
+	*}
+
+	/**
+	 * Sets Some numbers Property
+	 */	
+	void setSpinnerExample( /**Some numbers*/ int spinnerExample){*
+		this.spinnerExample = spinnerExample;
+	*}
+
+	/**
+	 * Gets Some numbers Property
 	 */	
 	int getSpinnerExample() {*
 		return this.spinnerExample;

@@ -2,13 +2,16 @@
 
 var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
 
-myComponentData.instance = {
+%COMP-id% = {
 
 	renderer: {},
 	
 	initDesignStudio: function() {
 		var that = this;
-		that.loadSpecification();
+		
+		that.readSpecification();
+		org_scn_community_component_Core(that, that.spec);
+		that.readAbout();
 		
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		
@@ -27,22 +30,30 @@ myComponentData.instance = {
 
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 
-	loadSpecification: function () {
+	readSpecification: function () {
 		var that = this;
 		
-		that.spec = {};
-		that.compSpec = {};
-
+		that.spec = {}; 
 %FULL_SPEC_DEFINITION%
-%FULL_COMP_SPEC_DEFINITION%
+	},
+	
+	readAbout: function () {
+		var that = this;
 		
-		/*SPECIFICATION*/
-		
-		org_scn_community_spec.base.loadSpecification (that, that.spec, that.compSpec);
+		this.compSpec = {}; 
+%FULL_ABOUT_SPEC_DEFINITION%
+
+		this.componentInfo.title = that.compSpec.title;
+	    this.componentInfo.description = that.compSpec.description;
+	    
+	    for(var topic in that.compSpec.topics) {
+	    	this.componentInfo.topics.push(topic);
+	    }
 	},
 };
 
 define([myComponentData.requireName], function(%COMP-package%%COMP-id(lower)%){
+	myComponentData.instance = %COMP-id%;
 	return myComponentData.instance;
 });
 

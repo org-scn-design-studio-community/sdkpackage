@@ -1,10 +1,10 @@
 
 /**
- * Generated ZTL Class for ApsTester
+ * Generated ZTL Class for ApsTesterUI5
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
-class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Component {
+class org.scn.community.prototypes.ApsTesterUI5 extends org.scn.community.shared.Component {
 
 	/**
 	 * Sets Simple Choice Property

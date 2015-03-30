@@ -1783,37 +1783,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/* STANDARD COMPONENT CASTS - MANUAL UPDATE REQUIRED */
 	
-	/**Cast to specific component*/
-	Button returnAsButton (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Chart returnAsChart (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Checkbox returnAsCheckbox (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Checkboxgroup returnAsCheckboxgroup (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Crosstab returnAsCrosstab (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Datefield returnAsDatefield (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Dimensionfilter returnAsDimensionfilter (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Dropdown returnAsCheckboxgroup (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Filterpanel returnAsFilterpanel (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Image returnAsImage (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Inputfield returnAsInputfield (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Listbox returnAsInputfield (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Text returnAsText (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
-	Radiobuttongroup returnAsRadiobuttongroup (Component inputComponent) {* return inputComponent; *}
-
-	/* SCN COMPONENT CASTS - GENERATED CONTENT, COPY from cast.ztl_part */
-
 	/**Cast to Accordion component*/
 	org.scn.community.basics.Accordion returnAsScnAccordion (Component inputComponent) {* return inputComponent; *}
 
@@ -2086,6 +2055,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Post Response Parser component*/
 	org.scn.community.utils.PostResponseParser returnAsScnPostResponseParser (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Real Date component*/
+	org.scn.community.utils.RealDate returnAsScnRealDate (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
