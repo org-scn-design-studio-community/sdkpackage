@@ -271,6 +271,9 @@
 	/**Cast to Post Response Parser component*/
 	org.scn.community.utils.PostResponseParser returnAsScnPostResponseParser (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Real Date component*/
+	org.scn.community.utils.RealDate returnAsScnRealDate (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
 
