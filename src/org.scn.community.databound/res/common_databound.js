@@ -649,8 +649,8 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 			if(rowAxisTuple[j] != -1){
 				if(options.ignoreResults || options.ignoreExpandedNodes) {
 					var member = data.dimensions[j].members[rowAxisTuple[j]];
-					if(member.type == "RESULT") { isResult=true; break;}
-					if(member.nodeState && member.nodeState == "EXPANDED") { isExpanded=true; break;}
+					if(member.type == "RESULT") { isResult=true;}
+					if(member.nodeState && member.nodeState == "EXPANDED") { isExpanded=true;}
 					// also hierarchy nodes should be ignored, but this need more work, some code snippet
 					// if(member.type == "HIERARCHY_NODE" && member.level == 1 && member.nodeState == "EXPANDED") { isResult=true; break;}
 				}
@@ -659,6 +659,11 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 				rowHeaderKey += sep + data.dimensions[j].members[rowAxisTuple[j]].key;
 				rowHeader2D.push(data.dimensions[j].members[rowAxisTuple[j]].text);
 				rowHeaderKey2D.push(data.dimensions[j].members[rowAxisTuple[j]].key);
+				
+				if(isResult || isExpanded) {
+					break;
+				}
+				
 				sep = options.dimensionSeparator;
 			}
 		}
@@ -712,6 +717,11 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 				colHeaderKey += sep + data.dimensions[j].members[colAxisTuple[j]].key;
 				colHeader2D.push(data.dimensions[j].members[colAxisTuple[j]].text);
 				colHeaderKey2D.push(data.dimensions[j].members[colAxisTuple[j]].key);
+				
+				if(removeColumn) {
+					break;
+				}
+				
 				sep = options.dimensionSeparator;			
 			}
 		}
