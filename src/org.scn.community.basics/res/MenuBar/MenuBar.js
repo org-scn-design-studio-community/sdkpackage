@@ -128,8 +128,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		
 		this._oMenuBar = new sap.ui.commons.MenuBar();
 		
-		this._oMenuBar.addStyleClass("scn-pack-MenuBar");
-		
 		// resize function
 		this.onAfterRendering = function() {
 			org_scn_community_basics.resizeContentAbsoluteLayout(that, this._oMenuBar);

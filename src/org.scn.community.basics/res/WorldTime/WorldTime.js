@@ -23,10 +23,13 @@
  * 
  */
 sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", function() {
-	var offset = null;
-	var time_only = false;
-	var update_interval = null;
-	var $div = null;
+	var offset 					= null;
+	var SaveLocale 				= null;
+	var saveDateFormat 			= null;
+	var saveTimeFormat			= null;
+	var saveShowTimeZoneName 	= null;
+	var update_interval 		= null;
+	var $div 					= null;
 	
 	/**
 	 * @desc First function called during SAP Design Studio Plugin Lifecycle
@@ -66,7 +69,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", fu
 	/**
 	 * @function to calculate local time given the UTC offset
 	 */
-	function calcTime(offset) {
+	function calcTime(offset) {	
 		
 		var result = null;
 
@@ -82,12 +85,35 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", fu
 	    // using supplied offset
 	    nd = new Date(utc + (3600000*offset));
 	    
+	    var options = getOptionsByParameters();
+	    
 	    // return time as a string
-	    if(time_only){
+	    if(options.defTime === true){
 	    	result = nd.toLocaleTimeString();
-	    }else{
+	    }else if(options.defDate === true){
 	    	result = nd.toLocaleString();
+	    }else{
+	    	if(SaveLocale === 'en-US'){
+	    		if(options.hideTime === true){
+			    	result = nd.toLocaleString('en-US', options);
+	    		}else{
+			    	result = nd.toLocaleTimeString('en-US', options);	
+	    		}
+		    }else if(SaveLocale === 'de-DE'){
+		    	if(options.hideTime === true){
+			    	result = nd.toLocalString('de-DE', options);
+		    	}else{
+			    	result = nd.toLocaleTimeString('de-DE', options);	
+		    	}
+		    }else{
+		    	if(options.hideTime === true){
+		    		result = nd.toLocaleString(navigator.language, options);
+		    	}else{
+		    		result = nd.toLocaleTimeString(navigator.language, options);
+		    	}
+		    }
 	    }
+	    
 	    return result;
 
 	}
@@ -105,6 +131,54 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", fu
 	    return text;
 	}
 	
+	function getOptionsByParameters(){
+		var options = {};
+		
+		if(saveDateFormat === 'dd.mm.yy'){
+	    	options.day = '2-digit';
+	    	options.month = '2-digit';
+	    	options.year = '2-digit';
+	    }else if(saveDateFormat === 'dd.mm'){
+	    	options.day = '2-digit';
+	    	options.month = '2-digit';
+	    }else if(saveDateFormat === 'mm.yy'){
+	    	options.month = '2-digit';
+	    	options.year = '2-digit';
+	    }else if(saveDateFormat === 'hide'){
+	    	options.hideDate = true;
+	    }else if(saveDateFormat === 'default'){
+	    	options.defDate = true;
+	    }else{
+	    	if(window.console){
+		    	console.log('date format string not supported: '+saveDateFormat);
+	    	}
+	    }
+	    
+	    if(saveTimeFormat === 'hh:mm:ss'){
+	    	options.hour = '2-digit';
+	    	options.minute = '2-digit';
+	    	options.second = '2-digit';
+	    }else if(saveTimeFormat === 'hh:mm'){
+	    	options.hour = '2-digit';
+	    	options.minute = '2-digit';
+	    }else if(saveTimeFormat === 'hide'){
+	    	options.hideTime = true;
+	    }else if(saveTimeFormat === 'default'){
+	    	options.defTime = true;
+	    }else{
+	    	if(window.console){
+		    	console.log('time format string not supported: '+saveTimeFormat);
+	    	}
+	    }
+	    
+	    if(saveShowTimeZoneName === true){
+	    	options.timeZone = 'UTC';
+	    	options.timeZoneName = 'short';
+	    }
+		
+		return options;
+	}
+	
 	this.utcoffset = function(value) {
 		if (value === undefined) {
 			return offset;
@@ -114,11 +188,38 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", fu
 		}
 	};
 	
-	this.showtimeonly = function(value) {
+	this.locale = function(value) {
 		if (value === undefined) {
-			return time_only;
+			return SaveLocale;
 		} else {
-			time_only = value;
+			SaveLocale = value;
+			return this;
+		}
+	};
+	
+	this.dateformat = function(value) {
+		if (value === undefined) {
+			return saveDateFormat;
+		} else {
+			saveDateFormat = value;
+			return this;
+		}
+	};
+	
+	this.timeformat = function(value) {
+		if (value === undefined) {
+			return saveTimeFormat;
+		} else {
+			saveTimeFormat = value;
+			return this;
+		}
+	};
+	
+	this.showtimezonename = function(value) {
+		if (value === undefined) {
+			return saveShowTimeZoneName;
+		} else {
+			saveShowTimeZoneName = value;
 			return this;
 		}
 	};

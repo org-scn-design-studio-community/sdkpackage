@@ -3449,7 +3449,25 @@
 	<jsInclude>res/WorldTime/WorldTime.js</jsInclude>
 	<property type="String" title="UTC Offset" id="utcoffset">
 	</property>
-	<property type="boolean" title="Show time only" id="showtimeonly">
+	<property type="String" title="Locale" id="locale">
+		<possibleValue>en-US</possibleValue>
+		<possibleValue>de-DE</possibleValue>
+		<possibleValue>default</possibleValue>
+	</property>
+	<property type="boolean" title="Show Timezone name" id="showtimezonename">
+	</property>
+	<property type="String" title="Date Format" id="dateformat">
+		<possibleValue>dd.mm.yy</possibleValue>
+		<possibleValue>dd.mm</possibleValue>
+		<possibleValue>mm.yy</possibleValue>
+		<possibleValue>hide</possibleValue>
+		<possibleValue>default</possibleValue>
+	</property>
+	<property type="String" title="Time Format" id="timeformat">
+		<possibleValue>hh:mm:ss</possibleValue>
+		<possibleValue>hh:mm</possibleValue>
+		<possibleValue>hide</possibleValue>
+		<possibleValue>default</possibleValue>
 	</property>
 	<property type="int" title="Update Interval (in ms)" id="interval">
 	</property>
@@ -3457,7 +3475,10 @@
 		<defaultValue property="WIDTH">150</defaultValue>
 		<defaultValue property="HEIGHT">40</defaultValue>
 		<defaultValue property="utcoffset">0</defaultValue>
-		<defaultValue property="showtimeonly">true</defaultValue>
+		<defaultValue property="locale">de-DE</defaultValue>
+		<defaultValue property="dateformat">dd.mm.yy</defaultValue>
+		<defaultValue property="timeformat">hh:mm:ss</defaultValue>
+		<defaultValue property="showtimezonename">true</defaultValue>
 		<defaultValue property="interval">5000</defaultValue>
 	</initialization>
 
