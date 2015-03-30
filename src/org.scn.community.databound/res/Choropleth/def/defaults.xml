@@ -1,23 +1,19 @@
 
 		<!-- Begin of Choropleth Defaults -->
 		<defaultValue property="chartTitle">Choropleth Map</defaultValue>
-		<defaultValue property="defaultFillColor">#E9E5DC</defaultValue>
-		<defaultValue property="globeColor">#7FB5DF</defaultValue>
-		<defaultValue property="graticuleColor">#808080</defaultValue>
 		<defaultValue property="selectedColor">#009966</defaultValue>
 		<defaultValue property="hoverColor">#999900</defaultValue>
-		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>
 		<defaultValue property="colorScale">quantile</defaultValue>
 		<defaultValue property="featureProperty">NAME_1</defaultValue>
-		<defaultValue property="labelProperty">NAME_1</defaultValue>
 		<defaultValue property="gradientLeft">30</defaultValue>
 		<defaultValue property="gradientRight">30</defaultValue>
 		<defaultValue property="gradientBottom">15</defaultValue>
 		<defaultValue property="gradientHeight">10</defaultValue>
-		<defaultValue property="projection">equirectangular</defaultValue>
-		<defaultValue property="yaw">0.0</defaultValue>
-		<defaultValue property="pitch">0.0</defaultValue>
-		<defaultValue property="roll">0.0</defaultValue>
 		<defaultValue property="floor">0.0</defaultValue>
 		<defaultValue property="labelSize">10</defaultValue>
+		<defaultValue property="bubbleMin">3</defaultValue>
+		<defaultValue property="bubbleMax">50</defaultValue>
+		<defaultValue property="bubbleAlpha">50</defaultValue>
+		<defaultValue property="bubbleColor">#006699</defaultValue>
+		
 		<!-- End of Choropleth Defaults -->

@@ -195,13 +195,16 @@
 	title="Choropleth Map"
 	icon="res/Choropleth/Choropleth.png"
 	handlerType="div"
-	propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
+	propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
 	databound = "true"
-	group="ScnCommunityDataBound">
+	group="ScnCommunitycomponent">
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Map.js</jsInclude>
 	<jsInclude>res/Choropleth/Choropleth.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<!-- Base Databound Properties -->
@@ -260,14 +263,8 @@
 	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
 	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
 	<!-- End of Base Viz Properties -->
-	<!-- Begin of Chropleth Properties -->
-	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
-	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
-	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
-	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
+	<!-- Base Map Properties -->
 	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
-	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String" visible="false"/>
-	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
 	<property id="globeColor" title="Globe Colour" type="String" visible="false"/>
 	<property id="graticuleColor" title="Graticule Colour" type="String" visible="false"/>
 	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
@@ -276,19 +273,11 @@
 	<property id="graticuleOn" title="Show Graticule Grid" type="boolean" visible="false" />
 	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
 	<property id="mapData" title="Map Data" type="String" visible="false"/>
-	<property id="floor" title="Minimum Scale Value" type="float" visible="false"/>
+	<property id="graticuleThickness" title="Graticule Thickness" type="float" visible="false"/>
 	<property id="labelSize" title="Label Size (px)" type="float" visible="false"/>
-	<property id="gradientLeft" title="Horizontal Scale Left" type="int" visible="false"/>
-	<property id="gradientRight" title="Horizontal Scale Right" type="int" visible="false"/>
-	<property id="gradientBottom" title="Horizontal Scale Bottom" type="int" visible="false"/>
-	<property id="gradientHeight" title="Horizontal Scale Height" type="int" visible="false"/>
 	<property id="yaw" title="Yaw" type="float" visible="false"/>
 	<property id="pitch" title="Pitch" type="float" visible="false"/>
 	<property id="roll" title="Roll" type="float" visible="false"/>
-	<property id="colorScale" title="Color Scale" type="String" visible="false">
-		<possibleValue>quantile</possibleValue>
-		<possibleValue>quantize</possibleValue>
-	</property>
 	<property id="projection" title="Projection" type="String" visible="false">
 		<possibleValue>Albers USA</possibleValue>
 		<possibleValue>Mercator</possibleValue>
@@ -339,14 +328,36 @@
 		<possibleValue>Wagner VII</possibleValue>
 		<possibleValue>Winkel Tripel</possibleValue>
 	</property>
+	<!-- End of Base Map Properties -->
+	<!-- Begin of Chropleth Properties -->
+	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
+	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
+	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
+	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
+	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String" visible="false"/>
+	<property id="bubbleMember" title="Measure to use as Bubble (Blank hide bubble)" type="String" visible="false"/>
+	<property id="bubbleMin" type="int" title = "Bubble Min Radius" visible="false"/>
+	<property id="bubbleMax" type="int" title = "Bubble Max Radius" visible="false"/>
+	<property id="bubbleAlpha" type="int" title = "Bubble Alpha (0-100)" visible="false"/>
+	<property id="bubbleColor" type="String" title = "Bubble Colour" visible="false"/>
+	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
+	<property id="floor" title="Minimum Scale Value" type="float" visible="false"/>
+	<property id="gradientLeft" title="Horizontal Scale Left" type="int" visible="false"/>
+	<property id="gradientRight" title="Horizontal Scale Right" type="int" visible="false"/>
+	<property id="gradientBottom" title="Horizontal Scale Bottom" type="int" visible="false"/>
+	<property id="gradientHeight" title="Horizontal Scale Height" type="int" visible="false"/>
+	<property id="colorScale" title="Color Scale" type="String" visible="false">
+		<possibleValue>quantile</possibleValue>
+		<possibleValue>quantize</possibleValue>
+	</property>
 	<!-- End of Chropleth Properties -->
 	<initialization>
-		<!-- Base Defaults -->
+		<!-- Databound Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
 		<defaultValue property="useMockData">true</defaultValue>
-		<!-- End of Base Defaults -->
+		<!-- End of Databound Defaults -->
 		<!-- Base Viz Defaults -->
 		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">300</defaultValue>
@@ -377,27 +388,35 @@
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
-		<!-- Begin of Choropleth Defaults -->
-		<defaultValue property="chartTitle">Choropleth Map</defaultValue>
+		<!-- Base Map Defaults -->
 		<defaultValue property="defaultFillColor">#E9E5DC</defaultValue>
 		<defaultValue property="globeColor">#7FB5DF</defaultValue>
 		<defaultValue property="graticuleColor">#808080</defaultValue>
-		<defaultValue property="selectedColor">#009966</defaultValue>
-		<defaultValue property="hoverColor">#999900</defaultValue>
+		<defaultValue property="graticuleThickness">.5</defaultValue>
 		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>
-		<defaultValue property="colorScale">quantile</defaultValue>
-		<defaultValue property="featureProperty">NAME_1</defaultValue>
 		<defaultValue property="labelProperty">NAME_1</defaultValue>
-		<defaultValue property="gradientLeft">30</defaultValue>
-		<defaultValue property="gradientRight">30</defaultValue>
-		<defaultValue property="gradientBottom">15</defaultValue>
-		<defaultValue property="gradientHeight">10</defaultValue>
 		<defaultValue property="projection">equirectangular</defaultValue>
 		<defaultValue property="yaw">0.0</defaultValue>
 		<defaultValue property="pitch">0.0</defaultValue>
 		<defaultValue property="roll">0.0</defaultValue>
+		<!-- End of Base Map Defaults -->
+		<!-- Begin of Choropleth Defaults -->
+		<defaultValue property="chartTitle">Choropleth Map</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="hoverColor">#999900</defaultValue>
+		<defaultValue property="colorScale">quantile</defaultValue>
+		<defaultValue property="featureProperty">NAME_1</defaultValue>
+		<defaultValue property="gradientLeft">30</defaultValue>
+		<defaultValue property="gradientRight">30</defaultValue>
+		<defaultValue property="gradientBottom">15</defaultValue>
+		<defaultValue property="gradientHeight">10</defaultValue>
 		<defaultValue property="floor">0.0</defaultValue>
 		<defaultValue property="labelSize">10</defaultValue>
+		<defaultValue property="bubbleMin">3</defaultValue>
+		<defaultValue property="bubbleMax">50</defaultValue>
+		<defaultValue property="bubbleAlpha">50</defaultValue>
+		<defaultValue property="bubbleColor">#006699</defaultValue>
+		
 		<!-- End of Choropleth Defaults -->
 	</initialization>
 </component>
@@ -852,16 +871,18 @@
 		title="Hexbin Chart"
 		icon="res/HexBin/HexBin.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
-		group="ScnCommunityDataBound"
+		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		group="ScnCommunitycomponent"
 		databound="true"
 >
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.AxisChart.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.AxisChart.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.XYViz.js</jsInclude>
 	<jsInclude>res/HexBin/HexBin.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
@@ -921,21 +942,6 @@
 	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
 	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
 	<!-- End of Base Viz Properties -->
-	<!-- Axis Chart Properties -->
-	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
-	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
-	<property id="xAxisTickFormat" title="X-Axis Tick Format" type="String"/>
-	<property id="yAxisTickFormat" title="Y-Axis Tick Format" type="String"/>
-	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
-		<possibleValue>top</possibleValue>
-		<possibleValue>bottom</possibleValue>	
-	</property>
-	<property id="yAxisOrientation" type="String" title = "Y-Axis Orientation" visible="true">
-		<possibleValue>left</possibleValue>
-		<possibleValue>right</possibleValue>
-	</property>
-
-	<!-- End of Base Viz Properties -->
 	<!-- BaseVizXY Properties -->
 	<property id="minX" title="Manual Min X" type="int" visible="false"/>
 	<property id="minY" title="Manual Min Y" type="int" visible="false"/>
@@ -958,12 +964,12 @@
 	</property>
 	<!-- End of HexBin Properties -->
 	<initialization>
-		<!-- Base Defaults -->
+		<!-- Databound Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
 		<defaultValue property="useMockData">true</defaultValue>
-		<!-- End of Base Defaults -->
+		<!-- End of Databound Defaults -->
 		<!-- Base Viz Defaults -->
 		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">300</defaultValue>
@@ -994,12 +1000,6 @@
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
-		<!-- AxisChart Defaults -->
-		<defaultValue property="xAxisTicks">5</defaultValue>
-		<defaultValue property="yAxisTicks">5</defaultValue>
-		<defaultValue property="xAxisOrientation">bottom</defaultValue>
-		<defaultValue property="yAxisOrientation">left</defaultValue>
-		<!-- End of AxisChart Defaults -->
 		<!-- BaseVizXY Defaults -->
 		<defaultValue property="maxX">0</defaultValue>
 		<defaultValue property="maxY">0</defaultValue>
@@ -1159,20 +1159,231 @@ __n__}
 	</initialization>
 
 </component>
+<component id="LocationIntel" 
+	title="Location Intelligence"
+	icon="res/LocationIntel/LocationIntel.png"
+	handlerType="div"
+	propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+	databound = "true"
+	group="ScnCommunitycomponent">
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Map.js</jsInclude>
+	<jsInclude>res/LocationIntel/LocationIntel.js</jsInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<!-- Base Databound Properties -->
+	<property
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
+	<!-- End of Base Databound Properties -->
+	<!-- Base Viz Properties -->
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
+	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
+	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
+	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
+	<!--
+	<property id="styleCSS" title="Style CSS" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	 -->
+	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
+	<property id="pollInterval" type="int" title = "Resize Poll Interval" visible="false"/>
+	<property id="ms" type="int" title = "Animation Duration (ms)" visible="false"/>
+	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
+	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
+	<property id="tooltipLeft" type="String" title = "Tooltip Left" visible="false"/>
+	<property id="tooltipRight" type="String" title = "Tooltip Right" visible="false"/>
+	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
+	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
+	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
+	<property id="legendTitle" title="Legend Title" type="String" visible="false"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int" visible="false"/>
+	<property id="legendScale" title="Legend Scale" type="float" visible="false"/>
+	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
+	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
+	<property id="plotThickness" title="Plot Thickness" type="float" visible="false"/>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="margin" type="int" title = "Margin Size" visible="false"/>
+	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="plotLeft" title="Plot Offset Left" type="int" visible="false"/>
+	<property id="plotRight" title="Plot Offset Right" type="int" visible="false"/>
+	<property id="plotTop" title="Plot Offset Top" type="int" visible="false"/>
+	<property id="plotBottom" title="Plot Offset Bottom" type="int" visible="false"/>
+	<property id="enableZoom" title="Enable Zoom" type="boolean" visible="false" />
+	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
+	<!-- End of Base Viz Properties -->
+	<!-- Base Map Properties -->
+	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
+	<property id="globeColor" title="Globe Colour" type="String" visible="false"/>
+	<property id="graticuleColor" title="Graticule Colour" type="String" visible="false"/>
+	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
+	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
+	<property id="tooltipOn" title="Enable Tooltips" type="boolean" visible="false" />
+	<property id="graticuleOn" title="Show Graticule Grid" type="boolean" visible="false" />
+	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
+	<property id="mapData" title="Map Data" type="String" visible="false"/>
+	<property id="graticuleThickness" title="Graticule Thickness" type="float" visible="false"/>
+	<property id="labelSize" title="Label Size (px)" type="float" visible="false"/>
+	<property id="yaw" title="Yaw" type="float" visible="false"/>
+	<property id="pitch" title="Pitch" type="float" visible="false"/>
+	<property id="roll" title="Roll" type="float" visible="false"/>
+	<property id="projection" title="Projection" type="String" visible="false">
+		<possibleValue>Albers USA</possibleValue>
+		<possibleValue>Mercator</possibleValue>
+		<possibleValue>Orthographic</possibleValue>
+		<possibleValue>Equirectangular</possibleValue>
+		
+		<possibleValue>Aitoff</possibleValue>
+		<possibleValue>Albers</possibleValue>
+		<possibleValue>August</possibleValue>
+		<possibleValue>Baker</possibleValue>
+		<possibleValue>Boggs</possibleValue>
+		<possibleValue>Bonne</possibleValue>
+		<possibleValue>Bromley</possibleValue>
+		<possibleValue>Collignon</possibleValue>
+		<possibleValue>Craster Parabolic</possibleValue>
+		<possibleValue>Eckert I</possibleValue>
+		<possibleValue>Eckert II</possibleValue>
+		<possibleValue>Eckert III</possibleValue>
+		<possibleValue>Eckert IV</possibleValue>
+		<possibleValue>Eckert V</possibleValue>
+		<possibleValue>Eckert VI</possibleValue>
+		<possibleValue>Eisenlohr</possibleValue>
+		<possibleValue>Equirectangular (Plate Carrée)</possibleValue>
+		<possibleValue>Hammer</possibleValue>
+		<possibleValue>Hill</possibleValue>
+		<possibleValue>Goode Homolosine</possibleValue>
+		<possibleValue>Kavrayskiy VII</possibleValue>
+		<possibleValue>Lambert cylindrical equal-area</possibleValue>
+		<possibleValue>Lagrange</possibleValue>
+		<possibleValue>Larrivée</possibleValue>
+		<possibleValue>Laskowski</possibleValue>
+		<possibleValue>Loximuthal</possibleValue>
+		<possibleValue>Miller</possibleValue>
+		<possibleValue>McBryde–Thomas Flat-Polar Parabolic</possibleValue>
+		<possibleValue>McBryde–Thomas Flat-Polar Quartic</possibleValue>
+		<possibleValue>McBryde–Thomas Flat-Polar Sinusoidal</possibleValue>
+		<possibleValue>Mollweide</possibleValue>
+		<possibleValue>Natural Earth</possibleValue>
+		<possibleValue>Nell–Hammer</possibleValue>
+		<possibleValue>Polyconic</possibleValue>
+		<possibleValue>Robinson</possibleValue>
+		<possibleValue>Sinusoidal</possibleValue>
+		<possibleValue>Sinu-Mollweide</possibleValue>
+		<possibleValue>van der Grinten</possibleValue>
+		<possibleValue>van der Grinten IV</possibleValue>
+		<possibleValue>Wagner IV</possibleValue>
+		<possibleValue>Wagner VI</possibleValue>
+		<possibleValue>Wagner VII</possibleValue>
+		<possibleValue>Winkel Tripel</possibleValue>
+	</property>
+	<!-- End of Base Map Properties -->
+	<!-- Begin of Location Intel Properties -->
+	<property id="selectedMarker" title="Selected Marker" type="String" visible = "false"/>
+	<property id="latitudeField" title="Latitude Field" type="String" visible="false"/>
+	<property id="longitudeField" title="Longitude Field" type="String" visible="false"/>
+	<property id="markerTitle" title="Marker Title Field" type="String" visible="false"/>
+	<property id="markerSize" title="Marker Title Field" type="String" visible="false"/>
+	<property id="markerAlpha" type="int" title = "Marker Alpha (0-100)" visible="false"/>
+	<property id="markerColor" type="String" title = "Marker Colour" visible="false"/>
+	<property id="markerSizeMeasure" title="Measure to use for Marker Size" type="String" visible="false"/>
+	<property id="markerMin" type="int" title = "Marker Min Radius" visible="false"/>
+	<property id="markerMax" type="int" title = "Marker Max Radius" visible="false"/>
+	<!-- End of Location Intel Properties -->
+	<initialization>
+		<!-- Databound Defaults -->
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
+		<!-- End of Databound Defaults -->
+		<!-- Base Viz Defaults -->
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
+		<defaultValue property="showTitle">true</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="showTooltips">true</defaultValue>
+		<defaultValue property="chartValueSize">10</defaultValue>
+		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
+		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="pollInterval">250</defaultValue>
+		<defaultValue property="plotAlpha">95</defaultValue>
+		<defaultValue property="plotThickness">1.0</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="legendWidth">125</defaultValue>
+		<defaultValue property="legendTitle">Legend Title</defaultValue>
+		<defaultValue property="legendScale">1</defaultValue>
+		<defaultValue property="margin">20</defaultValue>
+		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="tooltipPositioning">followmouse</defaultValue>
+		<defaultValue property="tooltipLeft">auto</defaultValue>
+		<defaultValue property="tooltipRight">0px</defaultValue>
+		<defaultValue property="tooltipTop">0px</defaultValue>
+		<defaultValue property="tooltipBottom">auto</defaultValue>
+		<defaultValue property="enableZoom">false</defaultValue>
+		<defaultValue property="minZoom">1</defaultValue>
+		<defaultValue property="maxZoom">1</defaultValue>
+		<!-- End of Base Defaults -->
+		<!-- Base Map Defaults -->
+		<defaultValue property="defaultFillColor">#E9E5DC</defaultValue>
+		<defaultValue property="globeColor">#7FB5DF</defaultValue>
+		<defaultValue property="graticuleColor">#808080</defaultValue>
+		<defaultValue property="graticuleThickness">.5</defaultValue>
+		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>
+		<defaultValue property="labelProperty">NAME_1</defaultValue>
+		<defaultValue property="projection">equirectangular</defaultValue>
+		<defaultValue property="yaw">0.0</defaultValue>
+		<defaultValue property="pitch">0.0</defaultValue>
+		<defaultValue property="roll">0.0</defaultValue>
+		<!-- End of Base Map Defaults -->
+		<!-- Begin of LocationIntel Defaults -->
+		<defaultValue property="chartTitle">Location Intel Map</defaultValue>
+		<defaultValue property="markerSize">5</defaultValue>
+		<defaultValue property="markerMin">5</defaultValue>
+		<defaultValue property="markerMax">50</defaultValue>
+		<defaultValue property="markerAlpha">70</defaultValue>
+		<defaultValue property="markerColor">#006699</defaultValue>
+		<!-- End of LocationIntel Defaults -->
+	</initialization>
+</component>
 <component
 		id="MarimekkoChart"
 		title="Marimekko Chart"
 		icon="res/MarimekkoChart/MarimekkoChart.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
-		group="ScnCommunityDataBound"
+		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		group="ScnCommunitycomponent"
 		databound="true"
 >
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.AxisChart.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.AxisChart.js</jsInclude>
 	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
@@ -1251,12 +1462,12 @@ __n__}
 
 	<!-- End of Marimekko Chart Properties -->
 	<initialization>
-		<!-- Base Defaults -->
+		<!-- Databound Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
 		<defaultValue property="useMockData">true</defaultValue>
-		<!-- End of Base Defaults -->
+		<!-- End of Databound Defaults -->
 		<!-- Base Viz Defaults -->
 		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">300</defaultValue>
@@ -1711,15 +1922,17 @@ __n__}
 </component>
 <component
 	id="ResultSetInfo"
-	title="ResultSet Info"
+	title="Result Set Information (Test Phase)"
 	icon="res/ResultSetInfo/ResultSetInfo.png"
-	handlerType="div"
+	handlerType="sapui5"
 	group="ScnCommunityDataBound"
 	propertySheetPath="res/ResultSetInfo/aps/ResultSetInfoPropertyPage.html"
 	databound="true"
 >	
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ResultSetInfo/ResultSetInfoLoader.js</jsInclude>
+	
+	<cssInclude>res/ResultSetInfo/ResultSetInfo.css</cssInclude>
 	
 	<property
 		id="data"
@@ -1729,6 +1942,16 @@ __n__}
 		visible="false"
 	>
 		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+	</property>
+
+	<property
+		id="DCentralProvisioning"
+		title="Central Data Provisioning"
+		tooltip="Provision Data Centrally for Component Access"
+		type="boolean"
+		group="Display"
+		visible="true">
 	</property>
 
 	<initialization>
@@ -1742,20 +1965,124 @@ __n__}
 
 </component>
 <component
+	id="ResultSetMixer"
+	title="Result Set Mixer (Test Phase)"
+	icon="res/ResultSetMixer/ResultSetMixer.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	propertySheetPath="res/ResultSetMixer/aps/ResultSetMixerPropertyPage.html"
+	databound="false"
+>	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ResultSetMixer/ResultSetMixerLoader.js</jsInclude>
+	
+	<property
+		id="DMasterProvisioner"
+		title="Master Central Data Provisioner"
+		tooltip="Result Set with Master Data"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DMasterGeometry"
+		title="Geometry of the Master Result Set"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Structure</possibleValue>
+			<possibleValue>Rows</possibleValue>
+	</property>
+	
+	<property
+		id="DSlaveProvisioner"
+		title="Slave Central Data Provisioner"
+		tooltip="Result Set with Slave Data for Selection"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveColumnIndex"
+		title="Column Index for the Selection from Slave Result Set"
+		tooltip="Which column should be selected from the slave result set"
+		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DCollectMultipleMatches"
+		title="Collect Multiple Matches"
+		tooltip="Procedure what should happen when multiple matches are available"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Collect</possibleValue>
+			<possibleValue>UseLast</possibleValue>
+	</property>
+
+	<property
+		id="DSlaveContentCondition"
+		title="Condition to Read Slave Result Set based on Content"
+		tooltip="Under which condition should be the slave result set read (based on content)"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveRowCondition"
+		title="Condition to Read Slave Result Set based on header Row Content"
+		tooltip="Under which condition should be the slave result set read (based on contnet of header row)"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveColumnCondition"
+		title="Condition to Read Slave Result Set based on header Column Content"
+		tooltip="Under which condition should be the slave result set read (based on contnet of header column)"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="DMasterGeometry">RowBased</defaultValue>
+		<defaultValue property="DCollectMultipleMatches">Collect</defaultValue>
+		<defaultValue property="DSlaveColumnIndex">1</defaultValue>
+		
+	</initialization>
+
+</component>
+<component
 		id="ScatterPlot"
 		title="Scatter Plot Chart"
 		icon="res/ScatterPlot/ScatterPlot.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
-		group="ScnCommunityDataBound"
+		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		group="ScnCommunitycomponent"
 		databound="true"
 >
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.AxisChart.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.AxisChart.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.XYViz.js</jsInclude>
 	<jsInclude>res/ScatterPlot/ScatterPlot.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>
@@ -1815,21 +2142,6 @@ __n__}
 	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
 	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
 	<!-- End of Base Viz Properties -->
-	<!-- Axis Chart Properties -->
-	<property id="xAxisTicks" title="Manual Number of X-Axis Ticks" type="int"/>
-	<property id="yAxisTicks" title="Manual Number of Y-Axis Ticks" type="int"/>
-	<property id="xAxisTickFormat" title="X-Axis Tick Format" type="String"/>
-	<property id="yAxisTickFormat" title="Y-Axis Tick Format" type="String"/>
-	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
-		<possibleValue>top</possibleValue>
-		<possibleValue>bottom</possibleValue>	
-	</property>
-	<property id="yAxisOrientation" type="String" title = "Y-Axis Orientation" visible="true">
-		<possibleValue>left</possibleValue>
-		<possibleValue>right</possibleValue>
-	</property>
-
-	<!-- End of Base Viz Properties -->
 	<!-- BaseVizXY Properties -->
 	<property id="minX" title="Manual Min X" type="int" visible="false"/>
 	<property id="minY" title="Manual Min Y" type="int" visible="false"/>
@@ -1846,12 +2158,12 @@ __n__}
 	<property id="measureZ" title="Z-Axis Measure (Blank will disable)" type="String"/>
 	<!-- End of ScatterPlot Properties -->
 	<initialization>
-		<!-- Base Defaults -->
+		<!-- Databound Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
 		<defaultValue property="useMockData">true</defaultValue>
-		<!-- End of Base Defaults -->
+		<!-- End of Databound Defaults -->
 		<!-- Base Viz Defaults -->
 		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">300</defaultValue>
@@ -1882,12 +2194,6 @@ __n__}
 		<defaultValue property="minZoom">1</defaultValue>
 		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
-		<!-- AxisChart Defaults -->
-		<defaultValue property="xAxisTicks">5</defaultValue>
-		<defaultValue property="yAxisTicks">5</defaultValue>
-		<defaultValue property="xAxisOrientation">bottom</defaultValue>
-		<defaultValue property="yAxisOrientation">left</defaultValue>
-		<!-- End of AxisChart Defaults -->
 		<!-- BaseVizXY Defaults -->
 		<defaultValue property="maxX">0</defaultValue>
 		<defaultValue property="maxY">0</defaultValue>
@@ -2026,13 +2332,15 @@ __n__}
 		title="2D Crosstab"
 		icon="res/Table2D/Table2D.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
-		group="ScnCommunityDataBound"
+		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		group="ScnCommunitycomponent"
 		databound="true"
 >
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
 	<jsInclude>res/Table2D/Table2D.js</jsInclude>
 	<cssInclude>res/Table2D/Table2D.css</cssInclude>
 	<cssInclude>res/Viz.css</cssInclude>
@@ -2056,12 +2364,12 @@ __n__}
 	<!-- <property id="concatenateDimensions" type="boolean" title = "Concatenate Dimensions"/> -->
 	<!-- End of 2D Crosstab Properties -->
 	<initialization>
-		<!-- Base Defaults -->
+		<!-- Databound Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
 		<defaultValue property="useMockData">true</defaultValue>
-		<!-- End of Base Defaults -->
+		<!-- End of Databound Defaults -->
 		<!-- Begin of 2D Crosstab Defaults -->
 				
 		<!-- End of 2D Crosstab Defaults -->
@@ -2478,15 +2786,17 @@ __n__}
 	icon="res/UI5Table/UI5Table.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
+	propertySheetPath="res/UI5Table/aps/UI5TablePropertyPage.html"
 	databound="true"
 >
-
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
 	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 
 	<jsInclude>res/UI5Table/UI5Table.js</jsInclude>
+	<cssInclude>res/_css/simple_formats.css</cssInclude>
 	<cssInclude>res/UI5Table/UI5Table.css</cssInclude>
 
 	<property
@@ -2497,7 +2807,16 @@ __n__}
 		visible="false"
 	>
 		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="false"/>
+		<option name="includeData" value="true"/>
+	</property>
+
+	<property
+		id="DDataProvisioner"
+		title="Central Data Provisioner for Result Set"
+		tooltip="Central Result Set with Data"
+		type="String"
+		group="Display"
+		visible="true">
 	</property>
 
 	<property
@@ -2517,9 +2836,49 @@ __n__}
 	</property>
 
 	<property
+		id="DAllowSort"
+		title="Allow Sort in Columns"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DAllowColumnReorder"
+		title="Allow Reorder of Columns"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DAllowSelection"
+		title="Allow Selection in the Table"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+	
+	<property
+		id="DFixedHeader"
+		title="Fiexd Header Rows"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
 		id="DHeaderColWidth"
 		title="Header Column Width in px"
 		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DFormatingCondition"
+		title="Formating Condition"
+		type="String"
 		group="Display"
 		visible="true">
 	</property>
@@ -2535,20 +2894,32 @@ __n__}
 	</property>
 
 	<property
-		id="DCustomDimensions"
-		title="Custom Dimensions as Array [...]"
+		id="DCellSelection"
+		title="Selection Content for Cell"
 		type="String"
 		group="Display"
 		visible="false">
 	</property>
 
 	<property
-		id="onBeforeRender"
+		id="onCellSelected"
 		type="ScriptText"
-		title="Event for On Before Render"
-		group="Events"
-		visible="false" 
-	/>
+		title="Event for On Cell Selected"
+		group="Events" />
+
+	<property
+		id="DRowSelection"
+		title="Selection Content for Row"
+		type="String"
+		group="Display"
+		visible="false">
+	</property>
+
+	<property
+		id="onRowSelected"
+		type="ScriptText"
+		title="Event for On Row Selected"
+		group="Events" />
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
@@ -2558,15 +2929,14 @@ __n__}
 		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 
-		<defaultValue property="DCustomDimensions">[]</defaultValue>
-
-		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
-		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
-		
 		<defaultValue property="DNavigationMode">Paginator</defaultValue>
 		<defaultValue property="DRowHeight">22</defaultValue>
 		<defaultValue property="DVisibleRowCount">12</defaultValue>
 		<defaultValue property="DHeaderColWidth">200</defaultValue>
+		<defaultValue property="DAllowSort">true</defaultValue>
+		<defaultValue property="DAllowColumnReorder">true</defaultValue>
+		<defaultValue property="DAllowSelection">false</defaultValue>
+		<defaultValue property="DFixedHeader">true</defaultValue>		
 	</initialization>
 
 </component>

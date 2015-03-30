@@ -1,0 +1,123 @@
+
+	<!-- Base Databound Properties -->
+	<property
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
+	<!-- End of Base Databound Properties -->
+	<!-- Base Viz Properties -->
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
+	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
+	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
+	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
+	<!--
+	<property id="styleCSS" title="Style CSS" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	 -->
+	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
+	<property id="pollInterval" type="int" title = "Resize Poll Interval" visible="false"/>
+	<property id="ms" type="int" title = "Animation Duration (ms)" visible="false"/>
+	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
+	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
+	<property id="tooltipLeft" type="String" title = "Tooltip Left" visible="false"/>
+	<property id="tooltipRight" type="String" title = "Tooltip Right" visible="false"/>
+	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
+	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
+	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
+	<property id="legendTitle" title="Legend Title" type="String" visible="false"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int" visible="false"/>
+	<property id="legendScale" title="Legend Scale" type="float" visible="false"/>
+	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
+	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
+	<property id="plotThickness" title="Plot Thickness" type="float" visible="false"/>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="margin" type="int" title = "Margin Size" visible="false"/>
+	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="plotLeft" title="Plot Offset Left" type="int" visible="false"/>
+	<property id="plotRight" title="Plot Offset Right" type="int" visible="false"/>
+	<property id="plotTop" title="Plot Offset Top" type="int" visible="false"/>
+	<property id="plotBottom" title="Plot Offset Bottom" type="int" visible="false"/>
+	<property id="enableZoom" title="Enable Zoom" type="boolean" visible="false" />
+	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
+	<!-- End of Base Viz Properties -->
+	<!-- Base Map Properties -->
+	<property id="labelProperty" title="Label Property" type="String" visible = "false"/>
+	<property id="globeColor" title="Globe Colour" type="String" visible="false"/>
+	<property id="graticuleColor" title="Graticule Colour" type="String" visible="false"/>
+	<property id="hoverColor" title="Hover Feature Colour" type="String" visible="false"/>
+	<property id="defaultFillColor" title="Default Land Colour" type="String" visible="false"/>
+	<property id="tooltipOn" title="Enable Tooltips" type="boolean" visible="false" />
+	<property id="graticuleOn" title="Show Graticule Grid" type="boolean" visible="false" />
+	<property id="globeOn" title="Show Globe" type="boolean" visible="false" />
+	<property id="mapData" title="Map Data" type="String" visible="false"/>
+	<property id="graticuleThickness" title="Graticule Thickness" type="float" visible="false"/>
+	<property id="labelSize" title="Label Size (px)" type="float" visible="false"/>
+	<property id="yaw" title="Yaw" type="float" visible="false"/>
+	<property id="pitch" title="Pitch" type="float" visible="false"/>
+	<property id="roll" title="Roll" type="float" visible="false"/>
+	<property id="projection" title="Projection" type="String" visible="false">
+		<possibleValue>Albers USA</possibleValue>
+		<possibleValue>Mercator</possibleValue>
+		<possibleValue>Orthographic</possibleValue>
+		<possibleValue>Equirectangular</possibleValue>
+		
+		<possibleValue>Aitoff</possibleValue>
+		<possibleValue>Albers</possibleValue>
+		<possibleValue>August</possibleValue>
+		<possibleValue>Baker</possibleValue>
+		<possibleValue>Boggs</possibleValue>
+		<possibleValue>Bonne</possibleValue>
+		<possibleValue>Bromley</possibleValue>
+		<possibleValue>Collignon</possibleValue>
+		<possibleValue>Craster Parabolic</possibleValue>
+		<possibleValue>Eckert I</possibleValue>
+		<possibleValue>Eckert II</possibleValue>
+		<possibleValue>Eckert III</possibleValue>
+		<possibleValue>Eckert IV</possibleValue>
+		<possibleValue>Eckert V</possibleValue>
+		<possibleValue>Eckert VI</possibleValue>
+		<possibleValue>Eisenlohr</possibleValue>
+		<possibleValue>Equirectangular (Plate Carrée)</possibleValue>
+		<possibleValue>Hammer</possibleValue>
+		<possibleValue>Hill</possibleValue>
+		<possibleValue>Goode Homolosine</possibleValue>
+		<possibleValue>Kavrayskiy VII</possibleValue>
+		<possibleValue>Lambert cylindrical equal-area</possibleValue>
+		<possibleValue>Lagrange</possibleValue>
+		<possibleValue>Larrivée</possibleValue>
+		<possibleValue>Laskowski</possibleValue>
+		<possibleValue>Loximuthal</possibleValue>
+		<possibleValue>Miller</possibleValue>
+		<possibleValue>McBryde–Thomas Flat-Polar Parabolic</possibleValue>
+		<possibleValue>McBryde–Thomas Flat-Polar Quartic</possibleValue>
+		<possibleValue>McBryde–Thomas Flat-Polar Sinusoidal</possibleValue>
+		<possibleValue>Mollweide</possibleValue>
+		<possibleValue>Natural Earth</possibleValue>
+		<possibleValue>Nell–Hammer</possibleValue>
+		<possibleValue>Polyconic</possibleValue>
+		<possibleValue>Robinson</possibleValue>
+		<possibleValue>Sinusoidal</possibleValue>
+		<possibleValue>Sinu-Mollweide</possibleValue>
+		<possibleValue>van der Grinten</possibleValue>
+		<possibleValue>van der Grinten IV</possibleValue>
+		<possibleValue>Wagner IV</possibleValue>
+		<possibleValue>Wagner VI</possibleValue>
+		<possibleValue>Wagner VII</possibleValue>
+		<possibleValue>Winkel Tripel</possibleValue>
+	</property>
+	<!-- End of Base Map Properties -->

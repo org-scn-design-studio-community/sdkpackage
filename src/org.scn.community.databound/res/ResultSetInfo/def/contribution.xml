@@ -1,15 +1,17 @@
 
 <component
 	id="ResultSetInfo"
-	title="ResultSet Info"
+	title="Result Set Information (Test Phase)"
 	icon="res/ResultSetInfo/ResultSetInfo.png"
-	handlerType="div"
+	handlerType="sapui5"
 	group="ScnCommunityDataBound"
 	propertySheetPath="res/ResultSetInfo/aps/ResultSetInfoPropertyPage.html"
 	databound="true"
 >	
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ResultSetInfo/ResultSetInfoLoader.js</jsInclude>
+	
+	<cssInclude>res/ResultSetInfo/ResultSetInfo.css</cssInclude>
 	
 	<property
 		id="data"
@@ -19,6 +21,16 @@
 		visible="false"
 	>
 		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+	</property>
+
+	<property
+		id="DCentralProvisioning"
+		title="Central Data Provisioning"
+		tooltip="Provision Data Centrally for Component Access"
+		type="boolean"
+		group="Display"
+		visible="true">
 	</property>
 
 	<initialization>

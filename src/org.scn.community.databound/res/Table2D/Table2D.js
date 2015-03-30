@@ -14,7 +14,8 @@
 		 paths: {
 			d3 :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.min",
 			d3tip :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3-tip"
-		 }
+		 },
+		 urlArgs: "v=" + org_scn_community_require.jsVersion,
 	 });
 	 sdkReqs(["require","d3","d3tip"], function(require,d3,d3tip) {
 		 var tip = d3tip()
@@ -81,6 +82,7 @@
 					};
 					vals = this.flatData.formattedValues.slice();
 				}
+				vals = jQuery.parseJSON(JSON.stringify(vals));	// Deep copy, shallow copy doesn't work on deep arrays
 				//this.firePropertiesChanged(["stringData"]);
 				// Splice in row header label
 				for(var i=0;i<vals.length;i++){

@@ -13,8 +13,9 @@ import javax.xml.stream.XMLStreamReader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.scn.community.defgenerator.ParamSpec;
+import org.scn.community.defgenerator.ParamSimpleSpec;
 import org.scn.community.defgenerator.ZtlAndAps;
+import org.scn.community.spec.SpecificationReader;
 import org.scn.community.utils.Helpers;
 
 public class Component {
@@ -50,6 +51,20 @@ public class Component {
 		this.contributionXml = contributionXml;
 		// System.out.println("Parsing: " + contributionXml.getAbsolutePath());
 		this.properties = new ArrayList<Property>();
+
+		/* FULL SPECIFICATION */
+		String pathToGenSpec = contributionXml.getAbsolutePath().replace("contribution.xml", "specification.json");
+		pathToGenSpec = pathToGenSpec.replace(File.separator + "def" + File.separator, File.separator + "spec" + File.separator);
+		File fileGenSpec = new File(pathToGenSpec);
+		// spec is there and no lock file
+		if(fileGenSpec.exists()) {
+			// run full generation
+			
+			SpecificationReader specReader = new SpecificationReader(pathToGenSpec, this);
+			specReader.read();
+			specReader.generate();
+		}
+		/* FULL SPECIFICATION */
 
 		XMLInputFactory factory = XMLInputFactory.newInstance();
 
@@ -109,14 +124,14 @@ public class Component {
 			String contentJson = Helpers.file2String(pathToGenJson);
 			try {
 				JSONObject jsonSpec = new JSONObject(contentJson);
-				readExtendedSpec(jsonSpec);
+				readSpecification(jsonSpec);
 			} catch (JSONException e) {
 				throw new RuntimeException(e);
 			}
 			
 			generateZtlAndAps();
 		}
-		
+
 		List<String> ztlContent = Helpers.file2List(pathToZtl);
 
 		if (ztlContent != null && ztlContent.size() > 0) {
@@ -150,9 +165,9 @@ public class Component {
 	}
 
 	private void generateZtlAndAps() {
-		String template = Helpers.resource2String(ParamSpec.class, "ztl_root.ztl.tmlp");
-		String templateAps = Helpers.resource2String(ParamSpec.class, "aps_root.js.tmlp");
-		String templateApsHtml = Helpers.resource2String(ParamSpec.class, "aps_root.html.tmlp");
+		String template = Helpers.resource2String(ParamSimpleSpec.class, "ztl_root.ztl.tmlp");
+		String templateAps = Helpers.resource2String(ParamSimpleSpec.class, "aps_root.js.tmlp");
+		String templateApsHtml = Helpers.resource2String(ParamSimpleSpec.class, "aps_root.html.tmlp");
 		
 		template = template.replace("%TECH_NAME%", this.fullName);
 		template = template.replace("%TECH_DESCRIPTION%", this.title);
@@ -214,13 +229,13 @@ public class Component {
 		Helpers.string2File(pathToZtl, template);
 	}
 
-	private void readExtendedSpec(JSONObject jsonSpec) {
+	private void readSpecification(JSONObject jsonSpec) {
 		
 		Iterator keys = jsonSpec.keys();
 		while (keys.hasNext()) {
 			String key = (String) keys.next();
 			
-			ParamSpec parameter = new ParamSpec();
+			ParamSimpleSpec parameter = new ParamSimpleSpec();
 			parameter.setName(key);
 			
 			try {
@@ -237,7 +252,7 @@ public class Component {
 						
 						if(object2 instanceof JSONObject) {
 							
-							ParamSpec parameter2 = new ParamSpec();
+							ParamSimpleSpec parameter2 = new ParamSimpleSpec();
 							parameter2.setName(key2);
 							
 							parameter.addParameter(parameter2);
@@ -253,7 +268,7 @@ public class Component {
 								
 								if(object4 instanceof JSONObject) {
 									
-									ParamSpec parameter3 = new ParamSpec();
+									ParamSimpleSpec parameter3 = new ParamSimpleSpec();
 									parameter3.setName(key3);
 									
 									parameter2.addParameter(parameter3);
@@ -267,7 +282,7 @@ public class Component {
 										
 										if(object6 instanceof JSONObject) {
 											
-											ParamSpec parameter4 = new ParamSpec();
+											ParamSimpleSpec parameter4 = new ParamSimpleSpec();
 											parameter4.setName(key5);
 											
 											parameter3.addParameter(parameter4);
@@ -305,13 +320,13 @@ public class Component {
 		
 	}
 
-	private void insertParameter(ParamSpec parameterTo, String key, Object value) {
+	private void insertParameter(ParamSimpleSpec parameterTo, String key, Object value) {
 		if(key.startsWith("gen-")) {
 			String realKey = key.substring(key.indexOf("-")+1);
 			
 			parameterTo.addProperty(realKey, (String) value);
 		} else {
-			ParamSpec parameterNew = new ParamSpec();
+			ParamSimpleSpec parameterNew = new ParamSimpleSpec();
 			parameterNew.setName(key);
 			// parameterNew.setValue((String) value);
 			

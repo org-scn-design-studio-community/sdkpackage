@@ -166,6 +166,9 @@
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Location Intelligence component*/
+	org.scn.community.databound.LocationIntel returnAsScnLocationIntel (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Marimekko Chart component*/
 	org.scn.community.databound.MarimekkoChart returnAsScnMarimekkoChart (Component inputComponent) {* return inputComponent; *}
 
@@ -181,8 +184,11 @@
 	/**Cast to Data Range Slider component*/
 	org.scn.community.databound.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to ResultSet Info component*/
+	/**Cast to Result Set Information (Test Phase) component*/
 	org.scn.community.databound.ResultSetInfo returnAsScnResultSetInfo (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Result Set Mixer (Test Phase) component*/
+	org.scn.community.databound.ResultSetMixer returnAsScnResultSetMixer (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Scatter Plot Chart component*/
 	org.scn.community.databound.ScatterPlot returnAsScnScatterPlot (Component inputComponent) {* return inputComponent; *}
@@ -216,6 +222,9 @@
 
 	/**Cast to (PROTOTYPE!) Application Header (OnBeforeRender) component*/
 	org.scn.community.prototypes.ApplicationHeaderO returnAsScnApplicationHeaderO (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Aps Tester component*/
+	org.scn.community.prototypes.ApsTester returnAsScnApsTester (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Progress Bar Set component*/
 	org.scn.community.prototypes.ProgressSet returnAsScnProgressSet (Component inputComponent) {* return inputComponent; *}
@@ -261,6 +270,9 @@
 
 	/**Cast to Post Response Parser component*/
 	org.scn.community.utils.PostResponseParser returnAsScnPostResponseParser (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Real Date component*/
+	org.scn.community.utils.RealDate returnAsScnRealDate (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}

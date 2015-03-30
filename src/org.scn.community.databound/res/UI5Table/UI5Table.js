@@ -75,6 +75,14 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
               "DNavigationMode": {type: "string"},
               "DCustomDimensions": {type: "string"},
               "DHeaderColWidth": {type: "int"},
+              "DDataProvisioner": {type: "string"},
+              "DFormatingCondition": {type: "string"},
+              "DCellSelection": {type: "string"},
+              "DRowSelection": {type: "string"},
+              "DAllowSort": {type: "boolean"},
+              "DAllowColumnReorder": {type: "boolean"},
+              "DFixedHeader": {type: "boolean"},
+              "DAllowSelection": {type: "boolean"},
         }
 	},
 
@@ -93,7 +101,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		// set the model
 		that._oModel = new sap.ui.model.json.JSONModel(); 
 		that._table.setModel(that._oModel);
-		that._table.bindRows("/data2DPlain");
 
     	this.addContent(
     		that._table,
@@ -104,6 +111,9 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
     	
     	that.onAfterRendering = function() {
     	};
+    	
+    	that._table.attachCellClick(that.onCellClick);
+    	that._table.attachRowSelectionChange(that.onRowClick);
 	},
 	
 	renderer: {},
@@ -132,7 +142,13 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 				lMetadata = lData;
 			}
 			
-			if(lData == "") {
+			var lDataProvisioner = that.getDDataProvisioner();
+			var hasDataProvisioner = false;
+			if(lDataProvisioner != undefined && lDataProvisioner.length != "") {
+				hasDataProvisioner = (org_scn_community_databound.centralDataStorage[lDataProvisioner] != undefined);
+			}
+			
+			if(lData == "" && !hasDataProvisioner) {
 				this._fakeData();
 			} else {
 				var options = org_scn_community_databound.initializeOptions();
@@ -140,8 +156,12 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 			
 				that._vals = [];
 				try{
-					that._flatData = org_scn_community_databound.flatten(lData,options);
-					that._rowData = org_scn_community_databound.toRowTable(that._flatData,options);
+					if(hasDataProvisioner) {
+						that._flatData = org_scn_community_databound.centralDataStorage[lDataProvisioner].flatData;
+					} else {
+						that._flatData = org_scn_community_databound.flatten(lData,options);
+						org_scn_community_databound.toRowTable(that._flatData,options);
+					}
 					
 					if(that._flatData && that._flatData.formattedValues && that._flatData.formattedValues.length > 0) {
 						that._vals = that._flatData.formattedValues.slice();
@@ -163,48 +183,172 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 			}
 			
 			that._table.removeAllColumns();
-			var rI=0;
+			var colI=0;
 
-			if(that._rowData) {
-				for(rI=0;rI<that._rowData.dimensionHeaders.length;rI++){
-					that._table.addColumn(new sap.ui.table.Column({
-						label: new sap.ui.commons.Label(
-						{
-							text: that._rowData.dimensionHeaders[rI],
-							design: sap.ui.commons.LabelDesign.Bold,
-						}),
-						template: new sap.ui.commons.Label(
-						{
-							design: sap.ui.commons.LabelDesign.Bold,
-						}).bindProperty("text", ""+rI),
-						sortProperty: ""+rI,
-						filterProperty: ""+rI,
-						width: that.getDHeaderColWidth()+"px"
-					}));
+			if(that._flatData) {
+				var lAllowSort = that.getDAllowSort();
+				var lAllowReorder = that.getDAllowColumnReorder();
+				var lAllowFilter = true;
+				
+				var allowSelection = that.getDAllowSelection();;
+				var lPathPrefix = "";
+				
+				var options = {};
+				options.formattingCondition = that.getDFormatingCondition();
+				
+				if(options.formattingCondition.length > 1 || allowSelection) {
+					that.addStyleClass("scn-pack-ActivateSimpleConditions");
+					that._table.bindRows("/data2D");
+					lAllowReorder = false;
+					lAllowSort = false;
+					lAllowFilter = false;
+					lPathPrefix = "values/";
+				} else {
+					that._table.bindRows("/data2DPlain");
 				}
-
-				for(var cI=0;cI<that._rowData.columnHeaders.length;cI++){
-					that._table.addColumn(new sap.ui.table.Column({
-						label: new sap.ui.commons.Label({text: that._rowData.columnHeaders[cI]}),
-						template: new sap.ui.commons.Label(
-						{
-							design: sap.ui.commons.LabelDesign.Normal,
-							textAlign: sap.ui.core.TextAlign.Right,
+				
+				org_scn_community_databound.applyConditionalFormats(that._flatData, options);
+				
+				that._oModel.setData(that._flatData);
+				that._table.setAllowColumnReordering();
+	
+				if(that._flatData) {
+					for(colI=0;colI<that._flatData.dimensionHeaders.length;colI++){
+						var oItemTemplate = new sap.ui.commons.Label (
+								{text: "{" + lPathPrefix +colI + "}",
+									tooltip: "{" + lPathPrefix + colI + "}",
+									design: sap.ui.commons.LabelDesign.Bold,
+								});
+						
+						if(options.formattingCondition.length) {
+							oItemTemplate.addCustomData (new sap.ui.core.CustomData({key:"condFormat", value:"{formats/" + colI + "}", writeToDom:true}));
+							oItemTemplate.addCustomData ( new sap.ui.core.CustomData({key:"realCol", value: colI, writeToDom:false}));
 						}
-						).bindProperty("text", ""+rI),
-						sortProperty: ""+rI,
-						filterProperty: ""+rI,
-					}));
-					rI = rI+1;
+						
+						that._table.addColumn(new sap.ui.table.Column({
+							label: new sap.ui.commons.Label(
+							{
+								text: that._flatData.dimensionHeaders[colI],
+								design: sap.ui.commons.LabelDesign.Bold,
+							}),
+							template: oItemTemplate,
+							sortProperty: ""+colI,
+							filterProperty: ""+colI,
+							showSortMenuEntry: lAllowSort,
+							showFilterMenuEntry: lAllowFilter,
+							width: that.getDHeaderColWidth()+"px"
+						}));
+					}
+	
+					for(var dataColI=0;dataColI<that._flatData.columnHeaders.length;dataColI++){
+						var oItemTemplate = new sap.ui.commons.Label (
+								{text: "{" + lPathPrefix + colI + "}",
+									tooltip: "{" + lPathPrefix + colI + "}",
+									textAlign: sap.ui.core.TextAlign.Right,
+								});
+	
+						if(options.formattingCondition.length || allowSelection) {
+							oItemTemplate.addCustomData (new sap.ui.core.CustomData({key:"condFormat", value:"{formats/" + colI + "}", writeToDom:true}));
+							oItemTemplate.addCustomData ( new sap.ui.core.CustomData({key:"realCol", value: colI, writeToDom:false}));
+						}
+	
+						that._table.addColumn(new sap.ui.table.Column({
+							label: new sap.ui.commons.Label({text: that._flatData.columnHeaders[dataColI]}),
+							template: oItemTemplate,
+							sortProperty: ""+colI,
+							filterProperty: ""+colI,
+							showSortMenuEntry: lAllowSort,
+							showFilterMenuEntry: lAllowFilter,
+						}));
+						colI = colI+1;
+					}
+	
+					if(that.getDFixedHeader()) {
+						that._table.setFixedColumnCount(that._flatData.dimensionHeaders.length);	
+					}
 				}
-
-				that._table.setFixedColumnCount(that._rowData.dimensionHeaders.length);
 			}
 		}
-
-		that._oModel.setData(that._rowData);
 	},
 
+	onCellClick : function (oEvent) {
+		var that = oEvent.oSource.getParent().getParent();
+		
+		var allowSelection = that.getDAllowSelection();;
+		if(!allowSelection){
+			return;
+		}
+
+		var selection = {};
+		
+		// this gets a visual row back, sorts are corrupting the index
+		selection.row = parseInt(oEvent.getParameters().rowIndex);
+		
+		// no better way for today
+		//var path = oEvent.getParameters().cellControl.mBindingInfos.text.binding.sPath;
+		//path = path.substring(1);
+		//selection.row = parseInt(path.substring(path.indexOf("/")+1));
+		
+		selection.column = parseInt(oEvent.getParameters().columnIndex);
+		selection.value = that._flatData.data2D[selection.row]["values"][selection.column];
+
+		if(selection.column < that._flatData.geometry.headersLength) {
+			selection.columnKeys = [];
+			selection.space = "Header";
+		} else {
+			selection.columnKeys = that._flatData.columnHeadersKeys2D[selection.column-that._flatData.geometry.headersLength];
+			selection.space = "Data";
+		}
+		
+		selection.rowKeys = that._flatData.rowHeadersKeys2D[selection.row];
+		selection.rowValues = that._flatData.data2D[selection.row]["values"];
+		
+		selection.columnDimensions = that._flatData.dimensionCols;
+		selection.rowDimensions = that._flatData.dimensionRows;
+		
+		var selectionS = JSON.stringify(selection);
+		that.setDCellSelection(selectionS);
+		
+		that.fireDesignStudioPropertiesChanged(["DCellSelection"]);
+		that.fireDesignStudioEvent("onCellSelected");
+	},
+	
+	onRowClick : function (oEvent) {
+		var that = oEvent.oSource.getParent().getParent();
+		
+		var allowSelection = that.getDAllowSelection();;
+		if(!allowSelection){
+			return;
+		}
+
+		var selection = {};
+		
+		var rowContext = oEvent.getParameters().rowContext
+		if(rowContext == undefined) {
+			return;
+		}
+		
+		var path = rowContext.sPath;
+		path = path.substring(1);
+		selection.row = parseInt(path.substring(path.indexOf("/")+1));
+
+		selection.values = that._flatData.data2D[selection.row]["values"];
+
+		selection.columnKeys = [];
+		selection.space = "Row";
+		
+		selection.rowKeys = that._flatData.rowHeadersKeys2D[selection.row];
+		selection.rowValues = that._flatData.data2D[selection.row]["values"];
+		
+		selection.columnDimensions = [];
+		selection.rowDimensions = that._flatData.dimensionRows;
+		
+		var selectionS = JSON.stringify(selection);
+		that.setDRowSelection(selectionS);
+		
+		that.fireDesignStudioPropertiesChanged(["DRowSelection"]);
+		that.fireDesignStudioEvent("onRowSelected");
+	},
 	
 	_fakeData : function () {
 		

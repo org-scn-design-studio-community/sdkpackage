@@ -24,7 +24,7 @@
   display: none; 
 }
 
-.DesignStudioSCN.Choropleth .subunit-label {
+.DesignStudioSCN.Map .subunit-label {
   fill: #000;
   fill-opacity: .5;
   /* font-size: 20px; */
@@ -32,61 +32,47 @@
   text-anchor: middle;
 }
 
-.DesignStudioSCN.Choropleth .canvas.draggable,
-.DesignStudioSCN.Choropleth .draggable { 
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-}
-
-.DesignStudioSCN.Choropleth .canvas.draggable.dragging,
-.DesignStudioSCN.Choropleth .draggable.dragging {
-  cursor: grabbing;
-  cursor: -moz-grabbing;
-  cursor: -webkit-grabbing;
-}
-
-.DesignStudioSCN.Choropleth .background {
+.DesignStudioSCN.Map .background {
   fill: transparent;
   stroke: 0;
 }
 
-.DesignStudioSCN.Choropleth .path {
+.DesignStudioSCN.Map .path {
   stroke: #898989;
   stroke-width: .4px;
   stroke-opacity: .85;
 }
 
-.DesignStudioSCN.Choropleth .path:hover {
+.DesignStudioSCN.Map .path:hover {
   stroke-opacity: .5;
   stroke: #000000;
   stroke-width: 2px;
 }
 
-.DesignStudioSCN.Choropleth .canvas.tooltipped .path:hover, 
-.DesignStudioSCN.Choropleth .canvas.tooltipped .text:hover{
+.DesignStudioSCN.Map .canvas.tooltipped .path:hover, 
+.DesignStudioSCN.Map .canvas.tooltipped .text:hover{
   cursor: pointer;
 }
 
-.DesignStudioSCN.Choropleth .legend-container {
+.DesignStudioSCN.Map .legend-container {
   stroke-width: .5px;
   fill: #FFFFFF;
   fill-opacity: 0.9;
   stroke: #898989;
 }
 
-.DesignStudioSCN.Choropleth .legend-label {
+.DesignStudioSCN.Map .legend-label {
   font-weight: bold;
 }
 
-.DesignStudioSCN.Choropleth .graticule {
+.DesignStudioSCN.Map .graticule {
   fill: none;
   stroke: #808080;
   stroke-width: .5px;
   stroke-opacity: .75;
 }
 
-.DesignStudioSCN.Choropleth .globe {
+.DesignStudioSCN.Map .globe {
   fill: #7FB5DF;
   stroke: #222222;
   stroke-width: 1.5px;

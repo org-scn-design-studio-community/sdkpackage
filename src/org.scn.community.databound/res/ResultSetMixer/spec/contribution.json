@@ -1,0 +1,26 @@
+{
+	"DMasterProvisioner" : {
+		"gen-type":"String",
+	},
+	"DMasterGeometry": {
+		"gen-type":"choice",
+	},
+	"DSlaveProvisioner" : {
+		"gen-type":"String",
+	},
+	"DSlaveColumnIndex" : {
+		"gen-type":"int",
+	},
+	"DCollectMultipleMatches": {
+		"gen-type":"choice",
+	},
+	"DSlaveContentCondition" : {
+		"gen-type":"String",
+	},
+	"DSlaveRowCondition" : {
+		"gen-type":"String",
+	},
+	"DSlaveColumnCondition" : {
+		"gen-type":"String",
+	},
+}

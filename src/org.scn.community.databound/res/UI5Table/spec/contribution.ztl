@@ -1,0 +1,15 @@
+	/**
+	 * Gets Cell Selection As JSON String
+	 */	
+	String getCellSelectionAsJSON() {*
+		var jsonObject = JSON.parse(this.DCellSelection);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Gets Row Selection As JSON String
+	 */	
+	String getRowSelectionAsJSON() {*
+		var jsonObject = JSON.parse(this.DRowSelection);
+		return JSON.stringify(jsonObject, null, 4);
+	*}

@@ -1,0 +1,86 @@
+
+<component
+	id="ApsTester"
+	title="Aps Tester"
+	tooltip="Application Property Sheet Tester"
+	icon="res/ApsTester/ApsTester.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.generic.PropertyPage.html"
+	group="ScnCommunityPrototypes"
+	databound="true"
+>
+
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ApsTester/ApsTesterLoader.js</jsInclude>
+
+	<property
+		id="comboboxExample"
+		type="String"
+		title="Ignore Expanded Hierarchy Nodes"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="colorExample"
+		type="String"
+		title="Ignore Expanded Hierarchy Nodes"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultSet"
+		title="Data"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="checkboxExample"
+		type="boolean"
+		title="Ignore Totals"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="checkboxOnlyGetterExample"
+		type="boolean"
+		title="Ignore Totals"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="paletteExample"
+		type="String"
+		title="Ignore Expanded Hierarchy Nodes"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="textExample"
+		type="String"
+		title="Ignore Expanded Hierarchy Nodes"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="spinnerExample"
+		type="int"
+		title="Ignore Expanded Hierarchy Nodes"
+		group="Display"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+
+	</initialization>
+
+</component>

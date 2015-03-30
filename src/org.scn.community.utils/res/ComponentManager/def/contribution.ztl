@@ -594,6 +594,8 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 		return type;
 	  *}
 
+	/* STANDARD COMPONENT CASTS - MANUAL UPDATE REQUIRED */
+	
 	/**Cast to Accordion component*/
 	org.scn.community.basics.Accordion returnAsScnAccordion (Component inputComponent) {* return inputComponent; *}
 
@@ -647,6 +649,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Fish Eye component*/
 	org.scn.community.basics.FishEye returnAsScnFishEye (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Gauge (Speedometer) component*/
+	org.scn.community.basics.Gauge returnAsScnGauge (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Image Carousel component*/
 	org.scn.community.basics.ImageCarousel returnAsScnImageCarousel (Component inputComponent) {* return inputComponent; *}
@@ -708,6 +713,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Road Map component*/
 	org.scn.community.basics.RoadMap returnAsScnRoadMap (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to RSSFeedReader component*/
+	org.scn.community.basics.RSSFeedReader returnAsScnRSSFeedReader (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Segmented Button component*/
 	org.scn.community.basics.SegmentedButton returnAsScnSegmentedButton (Component inputComponent) {* return inputComponent; *}
 
@@ -732,6 +740,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Value Help Field component*/
 	org.scn.community.basics.ValueHelpField returnAsScnValueHelpField (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to WorldTime component*/
+	org.scn.community.basics.WorldTime returnAsScnWorldTime (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Choropleth Map component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
@@ -753,6 +764,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Location Intelligence component*/
+	org.scn.community.databound.LocationIntel returnAsScnLocationIntel (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Marimekko Chart component*/
 	org.scn.community.databound.MarimekkoChart returnAsScnMarimekkoChart (Component inputComponent) {* return inputComponent; *}
 
@@ -767,6 +781,12 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Data Range Slider component*/
 	org.scn.community.databound.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Result Set Information (Test Phase) component*/
+	org.scn.community.databound.ResultSetInfo returnAsScnResultSetInfo (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Result Set Mixer (Test Phase) component*/
+	org.scn.community.databound.ResultSetMixer returnAsScnResultSetMixer (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Scatter Plot Chart component*/
 	org.scn.community.databound.ScatterPlot returnAsScnScatterPlot (Component inputComponent) {* return inputComponent; *}
@@ -800,6 +820,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to (PROTOTYPE!) Application Header (OnBeforeRender) component*/
 	org.scn.community.prototypes.ApplicationHeaderO returnAsScnApplicationHeaderO (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Aps Tester component*/
+	org.scn.community.prototypes.ApsTester returnAsScnApsTester (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Progress Bar Set component*/
 	org.scn.community.prototypes.ProgressSet returnAsScnProgressSet (Component inputComponent) {* return inputComponent; *}
@@ -845,6 +868,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Post Response Parser component*/
 	org.scn.community.utils.PostResponseParser returnAsScnPostResponseParser (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Real Date component*/
+	org.scn.community.utils.RealDate returnAsScnRealDate (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}

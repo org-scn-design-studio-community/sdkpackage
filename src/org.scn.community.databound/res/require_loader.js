@@ -18,9 +18,13 @@
  */
 
 var org_scn_community_require = org_scn_community_require || {};
+
+// set the version to assure cache is cleared
+org_scn_community_require.jsVersion = "20140325";
+
 var org_scn_community_basics = org_scn_community_basics || {};
 
-var org_scn_community_components = org_scn_community_basics || {};
+var org_scn_community_components = org_scn_community_components || {};
 org_scn_community_components.databound = org_scn_community_components.databound || {};
 
 (function() {
@@ -105,6 +109,13 @@ org_scn_community_components.databound = org_scn_community_components.databound 
 			requireName: "databoundresultsetinfo",
 			fullComponentName: "org.scn.community.databound.ResultSetInfo",
 			script: "org.scn.community.databound/res/ResultSetInfo/ResultSetInfo",
+			min: false
+		},
+		ResultSetMixer: {
+			name: "databound.ResultSetMixer",
+			requireName: "databoundresultsetmixer",
+			fullComponentName: "org.scn.community.databound.ResultSetMixer",
+			script: "org.scn.community.databound/res/ResultSetMixer/ResultSetMixer",
 			min: false
 		},
 	};

@@ -4,16 +4,18 @@
 		title="Hexbin Chart"
 		icon="res/HexBin/HexBin.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.databound.Viz.PropertyPage.html"
-		group="ScnCommunityDataBound"
+		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		group="ScnCommunitycomponent"
 		databound="true"
 >
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.Base.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.BaseViz.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.AxisChart.js</jsInclude>
-	<jsInclude>res/org.scn.community.databound.XYViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.AxisChart.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.XYViz.js</jsInclude>
 	<jsInclude>res/HexBin/HexBin.js</jsInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<cssInclude>os/d3-tip.css</cssInclude>

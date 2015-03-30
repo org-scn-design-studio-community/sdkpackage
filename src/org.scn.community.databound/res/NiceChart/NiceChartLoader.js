@@ -18,6 +18,9 @@
  */
 
 (function() {
+	 // this line below needs to be adjusted
+	 var myComponentData = org_scn_community_require.knownComponents.databound.NiceChart;
+	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 			 [
@@ -26,7 +29,8 @@
 	 sap.zen.Dispatcher.instance.pauseDispatching();	 
 	 var sdkReqs = require.config({
 		 context : "sdk",
-		 paths: requireInfo1.definition
+		 paths: requireInfo1.definition,
+		 urlArgs: "v=" + org_scn_community_require.jsVersion,
 	 });
 
 	 sdkReqs(requireInfo1.plainNames, function(jshashtable) {
@@ -45,7 +49,7 @@
 		 });
 		 sdkReqs(requireInfo2.plainNames, function(chartjs, scheme, numberformatter, databoundnicechart) {
 			 // define the nice chart object
-	     	 sap.designstudio.sdk.Component.subclass(org_scn_community_require.knownComponents.databound.NiceChart.fullComponentName, org_scn_community_components.databound.NiceChart);	// End of SDK
+	     	 sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 	     	 sap.zen.Dispatcher.instance.resumeDispatching();
 		 });//End of Require Callback 2 	
 	});//End of Require Callback 1

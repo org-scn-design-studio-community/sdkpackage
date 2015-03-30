@@ -1,0 +1,50 @@
+class org.scn.community.databound.LocationIntel extends org.scn.community.shared.Component {
+	/**
+	Get selected feature
+	*/
+	String getSelectedMarker() {*
+		return this.selectedMarker;
+	*}
+	/**
+	Set Projection Method
+	*/
+	void setProjection(/*Projection*/String projection) {*
+		this.projection = projection;
+	*}
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		return this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+	/**
+	Set Marker Color
+	*/
+	void setMarkerColor(/*Color*/String color) {*
+		this.markerColor = color;
+	*}
+	/**
+	Set Marker Title Field
+	*/
+	void setMarkerTitle(/*Color*/String dimension) {*
+		this.markerTitle = dimension;
+	*}
+	/**
+	Set Marker Size Field
+	*/
+	void setMarkerSizeMeasure(/*Color*/String measure) {*
+		this.markerSizeMeasure = measure;
+	*}
+	/**
+	Set Label Attribute from GeoJSON that should be used for labeling
+	*/
+	void setLabelProperty(/*Attribute*/String attribute) {*
+		this.labelProperty = attribute;
+	*}
+}

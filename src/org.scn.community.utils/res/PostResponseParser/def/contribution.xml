@@ -18,6 +18,32 @@
 		title="Url To Send the Request"
 		group="Display"
 		visible="true" />
+		
+	<property
+		id="DRequestType"
+		type="String"
+		title="Request Type (JQuery | HTTP)"
+		group="Display"
+		visible="true">
+			<possibleValue>JQuery</possibleValue>
+			<possibleValue>HTTPRequest</possibleValue>
+	</property>
+	<property
+		id="DRequestMethod"
+		type="String"
+		title="Request Method (POST | GET | PUT)"
+		group="Display"
+		visible="true">
+			<possibleValue>POST</possibleValue>
+			<possibleValue>GET</possibleValue>
+			<possibleValue>PUT</possibleValue>
+	</property>
+	<property
+		id="DCrossDomain"
+		type="boolean"
+		title="Is this Request Cross-Domain"
+		group="Display"
+		visible="true" />
 
 	<property
 		id="DBasicAuthorisation"
@@ -46,8 +72,8 @@
 		title="Expected Content Type"
 		group="Display"
 		visible="true">
-			<possibleValue>JSON</possibleValue>
-			<possibleValue>String</possibleValue>
+			<possibleValue>text</possibleValue>
+			<possibleValue>json</possibleValue>
 	</property>
 
 	<property
@@ -124,10 +150,13 @@
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 
 		<defaultValue property="DUrl"></defaultValue>
+		<defaultValue property="DRequestType">JQuery</defaultValue>
+		<defaultValue property="DRequestMethod">POST</defaultValue>
+		
 		<defaultValue property="DParameters"></defaultValue>
-		<defaultValue property="DContentType">application/x-www-form-urlencoded; charset=UTF-8</defaultValue>
+		<defaultValue property="DContentType">application/x-www-form-urlencoded</defaultValue>
 		<defaultValue property="DExpectedResponseStatus">200</defaultValue>
-		<defaultValue property="DDExpectedContentType">String</defaultValue>
+		<defaultValue property="DDExpectedContentType">text</defaultValue>
 
 	</initialization>
 

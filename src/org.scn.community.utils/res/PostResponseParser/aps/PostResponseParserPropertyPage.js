@@ -14,9 +14,13 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		this._content.placeAt($("#content"));
 
 		this.initDUrl();
+		this.initDRequestType();
+		this.initDRequestMethod();
+		this.initDCrossDomain();
 		this.initDBasicAuthorisation();
 		this.initDContentType();
 		this.initDExpectedResponseStatus();
+		this.initDExpectedContentType();
 		this.initDParameters();
 		this.initDHeaders();
 		this.initDRawParameters();
@@ -25,9 +29,13 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 	
 	this.componentSelected = function(){
 		this.updateDUrl();
+		this.updateDRequestType();
+		this.updateDRequestMethod();
+		this.updateDCrossDomain();
 		this.updateDBasicAuthorisation();
 		this.updateDContentType();
 		this.updateDExpectedResponseStatus();
+		this.updateDExpectedContentType();
 		this.updateDParameters();
 		this.updateDHeaders();
 		this.updateDRawParameters();
@@ -64,6 +72,112 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		}else{
 			this._DUrl = s;
 			this.updatePropertyDUrl();
+			return this;
+		}
+	};
+
+	this.updatePropertyDRequestType = function(){
+		this._inputDRequestType.setSelectedKey(this._DRequestType);
+	};
+	
+	this.initDRequestType = function(){
+		this._labelDRequestType = new sap.ui.commons.Label({text: " Request Type (JQuery | HTTP)"});
+		this._labelDRequestType.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDRequestType);
+		
+		this._inputDRequestType = new sap.ui.commons.ComboBox({width: "300px"});
+		this._inputDRequestType.addItem(new sap.ui.core.ListItem({key:"JQuery", text:"JQuery"}));
+		this._inputDRequestType.addItem(new sap.ui.core.ListItem({key:"HTTPRequest", text:"HTTPRequest"}));
+		
+		this._content.addContent(this._inputDRequestType);
+		this._inputDRequestType.attachChange(this.propertyChangedDRequestType, this);
+		this._inputDRequestType.addStyleClass("org-scn-ApsBoolean");
+		
+		this.updatePropertyDRequestType();
+	};
+
+	this.propertyChangedDRequestType = function(oControlEvent){
+		var newValue = oControlEvent.getParameter("newValue");
+		this._DRequestType = newValue;
+		this.firePropertiesChanged(["DRequestType"]);
+	};
+	
+	this.DRequestType = function(s){
+		if( s === undefined){
+			return this._DRequestType;
+		}else{
+			this._DRequestType = s;
+			this.updatePropertyDRequestType();
+			return this;
+		}
+	};
+
+	this.updatePropertyDRequestMethod = function(){
+		this._inputDRequestMethod.setSelectedKey(this._DRequestMethod);
+	};
+	
+	this.initDRequestMethod = function(){
+		this._labelDRequestMethod = new sap.ui.commons.Label({text: " Request Method (POST | GET | PUT)"});
+		this._labelDRequestMethod.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDRequestMethod);
+		
+		this._inputDRequestMethod = new sap.ui.commons.ComboBox({width: "300px"});
+		this._inputDRequestMethod.addItem(new sap.ui.core.ListItem({key:"POST", text:"POST"}));
+		this._inputDRequestMethod.addItem(new sap.ui.core.ListItem({key:"GET", text:"GET"}));
+		this._inputDRequestMethod.addItem(new sap.ui.core.ListItem({key:"PUT", text:"PUT"}));
+		
+		this._content.addContent(this._inputDRequestMethod);
+		this._inputDRequestMethod.attachChange(this.propertyChangedDRequestMethod, this);
+		this._inputDRequestMethod.addStyleClass("org-scn-ApsBoolean");
+		
+		this.updatePropertyDRequestMethod();
+	};
+
+	this.propertyChangedDRequestMethod = function(oControlEvent){
+		var newValue = oControlEvent.getParameter("newValue");
+		this._DRequestMethod = newValue;
+		this.firePropertiesChanged(["DRequestMethod"]);
+	};
+	
+	this.DRequestMethod = function(s){
+		if( s === undefined){
+			return this._DRequestMethod;
+		}else{
+			this._DRequestMethod = s;
+			this.updatePropertyDRequestMethod();
+			return this;
+		}
+	};
+
+	this.updatePropertyDCrossDomain = function(){
+		this._inputDCrossDomain.setChecked(this._DCrossDomain);
+	};
+	
+	this.initDCrossDomain = function(){
+		this._labelDCrossDomain = new sap.ui.commons.Label({text: " Is this Request Cross-Domain"});
+		this._labelDCrossDomain.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDCrossDomain);
+		
+		this._inputDCrossDomain = new sap.ui.commons.CheckBox({width: "300px", text: "Is this Request Cross-Domain"});
+		this._content.addContent(this._inputDCrossDomain);
+		this._inputDCrossDomain.attachChange(this.propertyChangedDCrossDomain, this);
+		this._inputDCrossDomain.addStyleClass("org-scn-ApsBoolean");
+		
+		this.updatePropertyDCrossDomain();
+	};
+
+	this.propertyChangedDCrossDomain = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		this._DCrossDomain = checked;
+		this.firePropertiesChanged(["DCrossDomain"]);
+	};
+	
+	this.DCrossDomain = function(s){
+		if( s === undefined){
+			return this._DCrossDomain;
+		}else{
+			this._DCrossDomain = s;
+			this.updatePropertyDCrossDomain();
 			return this;
 		}
 	};
@@ -163,6 +277,42 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		}else{
 			this._DExpectedResponseStatus = s;
 			this.updatePropertyDExpectedResponseStatus();
+			return this;
+		}
+	};
+
+	this.updatePropertyDExpectedContentType = function(){
+		this._inputDExpectedContentType.setSelectedKey(this._DExpectedContentType);
+	};
+	
+	this.initDExpectedContentType = function(){
+		this._labelDExpectedContentType = new sap.ui.commons.Label({text: " Expected Content Type"});
+		this._labelDExpectedContentType.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDExpectedContentType);
+		
+		this._inputDExpectedContentType = new sap.ui.commons.ComboBox({width: "300px"});
+		this._inputDExpectedContentType.addItem(new sap.ui.core.ListItem({key:"text", text:"text"}));
+		this._inputDExpectedContentType.addItem(new sap.ui.core.ListItem({key:"json", text:"json"}));
+		
+		this._content.addContent(this._inputDExpectedContentType);
+		this._inputDExpectedContentType.attachChange(this.propertyChangedDExpectedContentType, this);
+		this._inputDExpectedContentType.addStyleClass("org-scn-ApsBoolean");
+		
+		this.updatePropertyDExpectedContentType();
+	};
+
+	this.propertyChangedDExpectedContentType = function(oControlEvent){
+		var newValue = oControlEvent.getParameter("newValue");
+		this._DExpectedContentType = newValue;
+		this.firePropertiesChanged(["DExpectedContentType"]);
+	};
+	
+	this.DExpectedContentType = function(s){
+		if( s === undefined){
+			return this._DExpectedContentType;
+		}else{
+			this._DExpectedContentType = s;
+			this.updatePropertyDExpectedContentType();
 			return this;
 		}
 	};

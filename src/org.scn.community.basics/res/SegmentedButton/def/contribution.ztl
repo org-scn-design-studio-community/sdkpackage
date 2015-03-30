@@ -2,7 +2,7 @@
 /**
  * Generated ZTL Class for Segmented Button
  * 
- * DO NOT EDIT, ROOT SOURCE for custom functions in /gen/contribution.ztl
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.Component {
 

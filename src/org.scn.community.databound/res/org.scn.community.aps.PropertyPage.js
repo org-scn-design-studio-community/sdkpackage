@@ -1,4 +1,4 @@
-sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.Viz.PropertyPage", function() {
+sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.aps.PropertyPage", function() {
 	var that = this;
 	/**
 	 * Crawl Node config by node key to find its UI sheet.

@@ -5,15 +5,17 @@
 	icon="res/UI5Table/UI5Table.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
+	propertySheetPath="res/UI5Table/aps/UI5TablePropertyPage.html"
 	databound="true"
 >
-
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
 	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 
 	<jsInclude>res/UI5Table/UI5Table.js</jsInclude>
+	<cssInclude>res/_css/simple_formats.css</cssInclude>
 	<cssInclude>res/UI5Table/UI5Table.css</cssInclude>
 
 	<property
@@ -24,7 +26,16 @@
 		visible="false"
 	>
 		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="false"/>
+		<option name="includeData" value="true"/>
+	</property>
+
+	<property
+		id="DDataProvisioner"
+		title="Central Data Provisioner for Result Set"
+		tooltip="Central Result Set with Data"
+		type="String"
+		group="Display"
+		visible="true">
 	</property>
 
 	<property
@@ -44,9 +55,49 @@
 	</property>
 
 	<property
+		id="DAllowSort"
+		title="Allow Sort in Columns"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DAllowColumnReorder"
+		title="Allow Reorder of Columns"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DAllowSelection"
+		title="Allow Selection in the Table"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+	
+	<property
+		id="DFixedHeader"
+		title="Fiexd Header Rows"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
 		id="DHeaderColWidth"
 		title="Header Column Width in px"
 		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DFormatingCondition"
+		title="Formating Condition"
+		type="String"
 		group="Display"
 		visible="true">
 	</property>
@@ -62,20 +113,32 @@
 	</property>
 
 	<property
-		id="DCustomDimensions"
-		title="Custom Dimensions as Array [...]"
+		id="DCellSelection"
+		title="Selection Content for Cell"
 		type="String"
 		group="Display"
 		visible="false">
 	</property>
 
 	<property
-		id="onBeforeRender"
+		id="onCellSelected"
 		type="ScriptText"
-		title="Event for On Before Render"
-		group="Events"
-		visible="false" 
-	/>
+		title="Event for On Cell Selected"
+		group="Events" />
+
+	<property
+		id="DRowSelection"
+		title="Selection Content for Row"
+		type="String"
+		group="Display"
+		visible="false">
+	</property>
+
+	<property
+		id="onRowSelected"
+		type="ScriptText"
+		title="Event for On Row Selected"
+		group="Events" />
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
@@ -85,15 +148,14 @@
 		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 
-		<defaultValue property="DCustomDimensions">[]</defaultValue>
-
-		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
-		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
-		
 		<defaultValue property="DNavigationMode">Paginator</defaultValue>
 		<defaultValue property="DRowHeight">22</defaultValue>
 		<defaultValue property="DVisibleRowCount">12</defaultValue>
 		<defaultValue property="DHeaderColWidth">200</defaultValue>
+		<defaultValue property="DAllowSort">true</defaultValue>
+		<defaultValue property="DAllowColumnReorder">true</defaultValue>
+		<defaultValue property="DAllowSelection">false</defaultValue>
+		<defaultValue property="DFixedHeader">true</defaultValue>		
 	</initialization>
 
 </component>

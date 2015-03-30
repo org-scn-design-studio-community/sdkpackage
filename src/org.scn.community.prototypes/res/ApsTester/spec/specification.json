@@ -1,0 +1,113 @@
+{
+	"data" : {
+		"type" : "ResultSet",
+		"value" : "null",
+		"visible": true,
+		"onChange" : "this.flattenData",
+		"opts" : {
+			"type": "data",
+			"ztlFunction": "",
+			"desc" : "Data",
+			"cat" : "Data",
+			"tooltip" : "Data from datasource",
+			"value" : null,
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"checkboxExample" : {
+		"type" : "boolean", 
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Ignore Totals",
+			"cat" : "Data",
+			"tooltip" : "Whether to ignore totals",
+			"apsControl" : "checkbox",
+		}
+	},
+	"checkboxOnlyGetterExample" : {
+		"type" : "boolean", 
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-get",
+			"desc" : "Ignore Totals",
+			"cat" : "Data",
+			"tooltip" : "Whether to ignore totals",
+			"apsControl" : "checkbox",
+		}
+	},
+	"textExample" : {
+		"type" : "String",
+		"value" : "initial",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Ignore Expanded Hierarchy Nodes",
+			"cat" : "Data",
+			"tooltip" : "Whether to ignore expanded hierarchy nodes",
+			"apsControl" : "text"	
+		}
+	},
+	"spinnerExample" : {
+		"type" : "int",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Ignore Expanded Hierarchy Nodes",
+			"cat" : "Data",
+			"tooltip" : "Whether to ignore expanded hierarchy nodes",
+			"apsControl" : "spinner"	
+		}
+	},
+	"paletteExample" : {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Ignore Expanded Hierarchy Nodes",
+			"cat" : "Data",
+			"tooltip" : "Whether to ignore expanded hierarchy nodes",
+			"apsControl" : "palette"	
+		}
+	},
+	"comboboxExample" : {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "choice",
+			"ztlFunction": "",
+			"desc" : "Ignore Expanded Hierarchy Nodes",
+			"cat" : "Data",
+			"tooltip" : "Whether to ignore expanded hierarchy nodes",
+			"apsControl" : "combobox",
+			"options" : [
+				{"key" : "quantile", "text" : "Quantile"},
+				{"key" : "quantize", "text" : "Quantize"}
+			]
+		}
+	},	
+	"colorExample" : {
+		"type" : "Color",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Ignore Expanded Hierarchy Nodes",
+			"cat" : "Data",
+			"tooltip" : "Whether to ignore expanded hierarchy nodes",
+			"apsControl" : "color"	
+		}
+	}
+}
