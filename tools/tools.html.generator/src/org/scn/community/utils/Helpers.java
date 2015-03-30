@@ -271,6 +271,75 @@ public class Helpers {
 
 		return sb.toString();
 	}
+	
+	public static boolean copyFileBin(File sourceFile, File targetFile) {
+		// check deltas
+		boolean deltas = (targetFile.lastModified() != sourceFile.lastModified());
+		if (!deltas) {
+			deltas = deltas || (targetFile.length() != sourceFile.length());
+		}
+
+		if (deltas) {
+			if (!targetFile.exists()) {
+				// create parent directory if necessary
+				File parentDir = targetFile.getParentFile();
+				if (!parentDir.isDirectory()) {
+					if (!parentDir.mkdirs()) {
+						return false;
+					}
+				}
+			} else {
+				targetFile.delete();
+			}
+			try {
+				targetFile.createNewFile();
+			} catch (IOException e) {
+				return false;
+			}
+
+			FileOutputStream fileO;
+			try {
+				fileO = new FileOutputStream(targetFile.getAbsolutePath(), true);
+			} catch (FileNotFoundException e) {
+				return false;
+			}
+			FileInputStream fileI;
+			try {
+				fileI = new FileInputStream(sourceFile);
+			} catch (FileNotFoundException e) {
+				return false;
+			}
+			try {
+				byte[] buf = new byte[1024];
+				int len;
+				while ((len = fileI.read(buf)) > 0) {
+					fileO.write(buf, 0, len);
+				}
+				fileI.close();
+
+				fileO.flush();
+				fileO.close();
+			} catch (IOException e) {
+				try {
+					fileI.close();
+				} catch (IOException e1) {
+					// ignore
+
+				}
+				try {
+					fileO.close();
+				} catch (IOException e1) {
+					// ignore
+
+				}
+				return false;
+			}
+
+			targetFile.setLastModified(sourceFile.lastModified());
+		}
+		return true;
+	}
+
 
 	public static String makeFirstUpper(String value) {
 		return value.substring(0,1).toUpperCase(Locale.ENGLISH)  +value.substring(1);

@@ -63,7 +63,7 @@
            .bindProperty("info", oContext.sPath + "/info")
            .bindProperty("number", oContext.sPath + "/number")
            .bindProperty("numberUnit", oContext.sPath + "/numberUnit")
-           //.bindProperty("icon",oContext.sPath+"/icon")
+           .bindProperty("icon",oContext.sPath+"/icon")
            .addCustomData(new sap.ui.core.CustomData({
                key: "modelId",
                value: oContext.oModel.getProperty(oContext.sPath + "/id"),
@@ -111,7 +111,7 @@
 
        //SPECIFIC code for this Tree
        //just updates a TextView with the ids we have found. 
-       alert("onTileNodeClicked ModelId:" + modelId + " \nsapui5 component id:" + selectedId);
+       // alert("onTileNodeClicked ModelId:" + modelId + " \nsapui5 component id:" + selectedId);
        window.location = modelId + ".html";
    }
 

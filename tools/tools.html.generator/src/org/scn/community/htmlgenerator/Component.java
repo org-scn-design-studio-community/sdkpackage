@@ -442,4 +442,13 @@ public class Component {
 		output = output + "\t" + this.fullName + " returnAsScn" + this.name + " (Component inputComponent) {* return inputComponent; *}\r\n";
 		return output;
 	}
+
+	public void copyIcon(String iFileName) {
+		String icon = contributionXml.getAbsolutePath().replace("def"+File.separator+"contribution.xml", this.name + ".png");
+		iFileName = iFileName.replace(".html", ".png");
+		File targetFile = new File(iFileName);
+		if(!targetFile.exists()) {
+			Helpers.copyFileBin(new File(icon), targetFile);
+		}
+	}
 }

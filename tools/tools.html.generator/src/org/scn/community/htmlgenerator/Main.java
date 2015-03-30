@@ -55,6 +55,7 @@ public class Main {
 			File contrXml = (File) element;
 
 			Component component = new Component(contrXml);
+			
 
 			String group = component.group;
 			group = group.replace("ScnCommunity", "");
@@ -63,6 +64,8 @@ public class Main {
 			String iFileName = targetFolder + "/" + group + "/" + component.name + ".html";
 			iFileName = iFileName.toLowerCase(Locale.ENGLISH);
 
+			component.copyIcon(iFileName);
+			
 			String templateCopy = template;
 			String ui5TemplateCopy = ui5Template;
 			templateCopy = templateCopy.replace("%COMPONENT_HTML_PACKAGE%", group);
@@ -73,7 +76,8 @@ public class Main {
 			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_HTML_PAGE%", group + "/" + component.name.toLowerCase(Locale.ENGLISH));
 			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_NAME%", component.name);
 			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_TITLE%", component.title);
-			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_ICON%", "");
+			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_ICON%", group + "/" + component.name.toLowerCase(Locale.ENGLISH) + ".png");
+			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_PACKAGE%", group);
 
 			templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%", templateCopy + "\r\n" + " %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%");
 			ui5TemplateList = ui5TemplateList.replace(" %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%", ui5TemplateCopy + "\r\n" + " %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%");
@@ -85,7 +89,7 @@ public class Main {
 
 		// C:\DEV\community.sdkpackage\src\org.scn.community.utils\res\ComponentManager\def\contribution.ztl
 		Helpers.string2File(mainSrcFolder.getAbsolutePath() + "\\org.scn.community.utils\\res\\ComponentManager\\def\\" + "cast.ztl_part", castString);
-
+		
 		templateList = removeReplacements(templateList);
 		ui5TemplateList = removeReplacements(ui5TemplateList);
 
