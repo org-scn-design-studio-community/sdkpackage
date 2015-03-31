@@ -213,7 +213,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 	};
 	
 	this.initDSlaveContentCondition = function(){
-		this._labelDSlaveContentCondition = new sap.ui.commons.Label({text: " Condition to Read Slave Result Set based on Content"});
+		this._labelDSlaveContentCondition = new sap.ui.commons.Label({text: " Content Condition to Read Slave Result Set"});
 		this._labelDSlaveContentCondition.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDSlaveContentCondition);
 		
@@ -246,7 +246,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 	};
 	
 	this.initDSlaveRowCondition = function(){
-		this._labelDSlaveRowCondition = new sap.ui.commons.Label({text: " Condition to Read Slave Result Set based on header Row Content"});
+		this._labelDSlaveRowCondition = new sap.ui.commons.Label({text: " Row Condition to Read Slave Result Set"});
 		this._labelDSlaveRowCondition.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDSlaveRowCondition);
 		
@@ -279,7 +279,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 	};
 	
 	this.initDSlaveColumnCondition = function(){
-		this._labelDSlaveColumnCondition = new sap.ui.commons.Label({text: " Condition to Read Slave Result Set based on header Column Content"});
+		this._labelDSlaveColumnCondition = new sap.ui.commons.Label({text: " Column Condition to Read Slave Result Set"});
 		this._labelDSlaveColumnCondition.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDSlaveColumnCondition);
 		

@@ -65,7 +65,14 @@ org_scn_community_databound.initializeOptions = function () {
 	options.conditionRows = undefined; // JSON condition definition, work in progress
 	options.conditionContent = undefined; // JSON condition definition, work in progress
 	options.collectMultiple = true;
+
+	options.emptyDataValue = "";
+	options.emptyHeaderValue = "";
 	
+	options.formattinCondition = {};
+	options.formattinCondition.operator = undefined;
+	options.formattinCondition.rules = [];
+
 	return options;
 }
 
@@ -782,11 +789,15 @@ org_scn_community_databound.toRowTable = function (flatData, opts) {
 		row["values"] = [];
 		for(var cI=0;cI<flatData.geometry.allColumnsLength;cI++){
 			if(cI < flatData.geometry.headersLength) {
-				row["values"].push(flatData.rowHeaders2D[rI][cI]);
-				rowPlain[cI] = flatData.rowHeaders2D[rI][cI];
+				var value = flatData.rowHeaders2D[rI][cI];
+				if(value == undefined || value == "") {value = options.emptyHeaderValue};
+				row["values"].push(value);
+				rowPlain[cI] = value;
 			} else {
-				row["values"].push(flatData.formattedValues[rI][cI-flatData.geometry.headersLength]);
-				rowPlain[cI] = flatData.formattedValues[rI][cI-flatData.geometry.headersLength];
+				var value = flatData.formattedValues[rI][cI-flatData.geometry.headersLength];
+				if(value == undefined || value == "") {value = options.emptyDataValue};
+				row["values"].push(value);
+				rowPlain[cI] = value;
 			}
 		}
 		rowsData.push(row);
@@ -1023,19 +1034,30 @@ org_scn_community_databound.checkRule = function (rule, content, value) {
 				for(var spI=0;spI<pattern.length;spI++){
 					var patternCharacter = pattern.substring(spI, spI + 1);
 					var contentCharacter = content.substring(spI, spI + 1);
-					
+
 					if(patternCharacter == "?") {
 						// this index does not matter
 					} else {
-						if(rule.exclude && patternCharacter != contentCharacter) {
-							ruleAppliedPositive = true;
-							break;
+						if(ruleAppliedPositive) {
+							// now when the characted is not fitting, we break with negative response
+							if(rule.exclude && patternCharacter == contentCharacter) {
+								ruleAppliedPositive = false;
+								break;
+							}
+							
+							if(!rule.exclude && patternCharacter != contentCharacter) {
+								ruleAppliedPositive = false;
+								break;
+							}
+						} else {
+							if(rule.exclude && patternCharacter != contentCharacter) {
+								ruleAppliedPositive = true;
+							}
+							
+							if(!rule.exclude && patternCharacter == contentCharacter) {
+								ruleAppliedPositive = true;
+							}
 						}
-						
-						if(!rule.exclude && patternCharacter == contentCharacter) {
-							ruleAppliedPositive = true;
-							break;
-						}						
 					}
 				}
 			}
@@ -1183,33 +1205,72 @@ org_scn_community_databound.applyConditionalFormats = function (flatData, opts) 
 		for(var option in opts) options[option] = opts[option];
 	}
 	
-	var formattingConditionJson = {};
-	if(options.formattingCondition && options.formattingCondition.length > 1) {
-		formattingConditionJson = JSON.parse(options.formattingCondition);
+	var columnConditionJson = {};
+	if(options.conditionColumns && options.conditionColumns.length > 1) {
+		columnConditionJson = JSON.parse(options.conditionColumns);
 	}
 	
-	if(formattingConditionJson.operator) {
+	if(options.formattingCondition.operator) {
 		var ruleSimpleFormat = false;
 		
-		for(rI in formattingConditionJson.rules) {
-			for(var mrI=0;mrI<flatData.data2D.length;mrI++){
-				for(var mcI=0;mcI<flatData.data2D[mrI]["values"].length;mcI++){
-					var content = flatData.data2D[mrI]["values"][mcI];
-					var value = content;
-					if(mcI>=flatData.geometry.headersLength) {
-						value = flatData.values[mrI][mcI-flatData.geometry.headersLength];	
-					}
-					ruleSimpleFormat = org_scn_community_databound.checkSimpleFormatingRule(formattingConditionJson.rules[rI], content, value);
+		for(var mrI=0;mrI<flatData.data2D.length;mrI++){
+			for(var mcI=0;mcI<flatData.data2D[mrI]["values"].length;mcI++){
+
+				var insertRuleColumnPassed = true;
+
+				var colHeaderKey = "";
+				if(mcI < flatData.geometry.headersLength) {
+					colHeaderKey = flatData.dimensionCols[mcI].key;
+				} else {
+					colHeaderKey = flatData.columnHeadersKeys[mcI - flatData.geometry.headersLength];
+				}
+				
+				if(columnConditionJson.operator) {
+					var ruleAppliedPositive = false;
 					
-					if(!flatData.data2D[mrI]["formats"]) {
-						flatData.data2D[mrI]["formats"] = [];
+					for(rcI in columnConditionJson.rules) {
+						ruleAppliedPositive = org_scn_community_databound.checkRule(columnConditionJson.rules[rcI], colHeaderKey);
+
+						if(!ruleAppliedPositive) {
+							insertRuleColumnPassed = false;
+							break;
+						}
 					}
-					flatData.data2D[mrI]["formats"].push(ruleSimpleFormat);					
+				}
+				
+				if(!flatData.data2D[mrI]["formats"]) {
+					flatData.data2D[mrI]["formats"] = [];
+				}
+
+					if(insertRuleColumnPassed) {
+					for(rI in options.formattingCondition.rules) {
+						var content = flatData.data2D[mrI]["values"][mcI];
+						var value = content;
+						if(mcI>=flatData.geometry.headersLength) {
+							value = flatData.values[mrI][mcI-flatData.geometry.headersLength];
+							if(value == undefined) {value=content};
+						}
+						ruleSimpleFormat = org_scn_community_databound.checkSimpleFormatingRule(options.formattingCondition.rules[rI], content, value);
+						
+						if(flatData.data2D[mrI]["formats"][mcI] == undefined || flatData.data2D[mrI]["formats"][mcI] == "") {
+							flatData.data2D[mrI]["formats"].push(ruleSimpleFormat);
+						} else {
+							if(options.formattingCondition.operator == "Collect") {
+								flatData.data2D[mrI]["formats"][mcI] = flatData.data2D[mrI]["formats"][mcI] + " " + ruleSimpleFormat;	
+							} else if(options.formattingCondition.operator == "UseLast") {
+								flatData.data2D[mrI]["formats"][mcI] = ruleSimpleFormat;
+							} else if(options.formattingCondition.operator == "UseFirst") {
+								// do nothing
+							}
+						}
+					}
+				} else {
+					flatData.data2D[mrI]["formats"].push("no");
 				}
 			}
 		}
 	}
-	
+
 	flatData.data2DStructured["formats"] = [];
 	for(var mrI=0;mrI<flatData.data2D.length;mrI++){
 		flatData.data2DStructured["formats"].push(flatData.data2D[mrI]["formats"]);	
@@ -1226,5 +1287,5 @@ org_scn_community_databound.checkSimpleFormatingRule = function (rule, content, 
 		return rule.simpleFormat;
 	}
 	
-	return "";
+	return "no";
 };

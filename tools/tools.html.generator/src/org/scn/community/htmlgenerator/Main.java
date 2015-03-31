@@ -36,7 +36,16 @@ public class Main {
 
 		List<File> allContributionXmls = new ArrayList<File>();
 		Helpers.findMatchingFiles(mainSrcFolder, "contribution.xml", "def", "component", allContributionXmls);
+		List<File> allSpecifications = new ArrayList<File>();
+		Helpers.findMatchingFiles(mainSrcFolder, "component.json", "spec", "\"id\"", allSpecifications);
 
+		for (File file : allSpecifications) {
+			String pathSpec = file.getAbsolutePath();
+			pathSpec = pathSpec.replace("component.json", "contribution.xml");
+			pathSpec = pathSpec.replace(File.separator + "spec" + File.separator, File.separator + "def" + File.separator);
+			allContributionXmls.add(new File(pathSpec));
+		}
+		
 		System.out.println("Components Count: " + allContributionXmls.size());
 
 		ArrayList<String> listEntries = new ArrayList<String>();

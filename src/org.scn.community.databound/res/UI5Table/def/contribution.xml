@@ -95,8 +95,51 @@
 	</property>
 
 	<property
-		id="DFormatingCondition"
-		title="Formating Condition"
+		id="DDataColWidths"
+		title="Data Column Widths (JSON: [{'index':'index-0-based | *','width':'width in px'}])"
+		type="String"
+		group="Display"
+		visible="false">
+	</property>
+
+	<property
+		id="DFormattingOperator"
+		title="Formatting Operator"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>UseFirst</possibleValue>
+			<possibleValue>UseLast</possibleValue>
+			<possibleValue>Collect</possibleValue>
+	</property>
+
+	<property
+		id="DFormattingCondition"
+		title="Formatting Condition"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DColumnFormattingCondition"
+		title="Column Based Formatting Condition"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DEmptyHeaderValue"
+		title="Empty Value For Header Cell"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DEmptyDataValue"
+		title="Empty Value For Data Cell"
 		type="String"
 		group="Display"
 		visible="true">
@@ -113,7 +156,7 @@
 	</property>
 
 	<property
-		id="DCellSelection"
+		id="DSelection"
 		title="Selection Content for Cell"
 		type="String"
 		group="Display"
@@ -125,14 +168,6 @@
 		type="ScriptText"
 		title="Event for On Cell Selected"
 		group="Events" />
-
-	<property
-		id="DRowSelection"
-		title="Selection Content for Row"
-		type="String"
-		group="Display"
-		visible="false">
-	</property>
 
 	<property
 		id="onRowSelected"
@@ -152,10 +187,13 @@
 		<defaultValue property="DRowHeight">22</defaultValue>
 		<defaultValue property="DVisibleRowCount">12</defaultValue>
 		<defaultValue property="DHeaderColWidth">200</defaultValue>
+		<defaultValue property="DDataColWidths">[{"index":"*","width":""}]</defaultValue>
 		<defaultValue property="DAllowSort">true</defaultValue>
 		<defaultValue property="DAllowColumnReorder">true</defaultValue>
 		<defaultValue property="DAllowSelection">false</defaultValue>
-		<defaultValue property="DFixedHeader">true</defaultValue>		
+		<defaultValue property="DFixedHeader">true</defaultValue>	
+		<defaultValue property="DFormattingCondition"></defaultValue>
+		<defaultValue property="DFormattingOperator">UseFirst</defaultValue>
 	</initialization>
 
 </component>

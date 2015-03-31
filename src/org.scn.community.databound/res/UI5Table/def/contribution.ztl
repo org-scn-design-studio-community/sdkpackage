@@ -118,18 +118,156 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		return this.DHeaderColWidth;
 	*}
 
-	/**
-	 * Sets Formating Condition Property
-	 */	
-	void setFormatingCondition( /* &nbsp; */  String formatingCondition){*
-		this.DFormatingCondition = formatingCondition;
+	/** Adds a root element containing index [String], width [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	UI5TABLE.addParameter(index [String], width [String]);<br>
+	UI5TABLE.addParameter(index [String], width [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addParameter (
+			/**Data Column Index*/String index, 
+			/**Width*/String width
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:true,
+			index:index, 
+			width:width
+			};
+	
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DDataColWidths);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	UI5TABLE.removeParameter();<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeParameter (
+			
+			) {*		
+		
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DDataColWidths);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DDataColWidths = JSON.stringify(elementsJson);
 	*}
 
 	/**
-	 * Gets Formating Condition Property
+	 * Sets Formatting Operator Property
 	 */	
-	String getFormatingCondition() {*
-		return this.DFormatingCondition;
+	void setFormattingOperator( /* &nbsp; */  choice formattingOperator){*
+		this.DFormattingOperator = formattingOperator;
+	*}
+
+	/**
+	 * Gets Formatting Operator Property
+	 */	
+	choice getFormattingOperator() {*
+		return this.DFormattingOperator;
+	*}
+
+	/**
+	 * Sets Formatting Condition Property
+	 */	
+	void setFormattingCondition( /* &nbsp; */  String formattingCondition){*
+		this.DFormattingCondition = formattingCondition;
+	*}
+
+	/**
+	 * Gets Formatting Condition Property
+	 */	
+	String getFormattingCondition() {*
+		return this.DFormattingCondition;
+	*}
+
+	/**
+	 * Sets Column Based Formatting Condition Property
+	 */	
+	void setColumnFormattingCondition( /* &nbsp; */  String columnFormattingCondition){*
+		this.DColumnFormattingCondition = columnFormattingCondition;
+	*}
+
+	/**
+	 * Gets Column Based Formatting Condition Property
+	 */	
+	String getColumnFormattingCondition() {*
+		return this.DColumnFormattingCondition;
+	*}
+
+	/**
+	 * Sets Empty Value For Header Cell Property
+	 */	
+	void setEmptyHeaderValue( /* &nbsp; */  String emptyHeaderValue){*
+		this.DEmptyHeaderValue = emptyHeaderValue;
+	*}
+
+	/**
+	 * Gets Empty Value For Header Cell Property
+	 */	
+	String getEmptyHeaderValue() {*
+		return this.DEmptyHeaderValue;
+	*}
+
+	/**
+	 * Sets Empty Value For Data Cell Property
+	 */	
+	void setEmptyDataValue( /* &nbsp; */  String emptyDataValue){*
+		this.DEmptyDataValue = emptyDataValue;
+	*}
+
+	/**
+	 * Gets Empty Value For Data Cell Property
+	 */	
+	String getEmptyDataValue() {*
+		return this.DEmptyDataValue;
 	*}
 
 	/**
@@ -149,18 +287,90 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 	/**
-	 * Gets Cell Selection As JSON String
+	 * Gets Selection As JSON String
 	 */	
-	String getCellSelectionAsJSON() {*
-		var jsonObject = JSON.parse(this.DCellSelection);
+	String getSelectionAsJSON() {*
+		var jsonObject = JSON.parse(this.DSelection);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Selected Row Index (0 - based)
+	 */
+	int getSelectedRow() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.row;
 	*}
 	
 	/**
-	 * Gets Row Selection As JSON String
-	 */	
-	String getRowSelectionAsJSON() {*
-		var jsonObject = JSON.parse(this.DRowSelection);
-		return JSON.stringify(jsonObject, null, 4);
+	 * Selected Column Index (0 - based)
+	 */
+	int getSelectedColumn() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.column;
+	*}
+
+	/**
+	 * Selected Value Content
+	 */
+	int getSelectedValue() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.value;
+	*}
+	
+	/**
+	 * Selection Space (Header, Data)
+	 */
+	String getSelectionSpace() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.value;
+	*}
+
+	/**
+	 * Return dimensions and corresponding members for the selection as array
+	 */
+	org.scn.community.shared.DimensionMemberArray getSelectionDimensionMembers() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		
+		var tempA = [];
+		
+		for(var i=0;i<jsonObject.rowDimensions.length;i++){
+			var itemDef = { 
+				"dimension": jsonObject.rowDimensions[i].key, 
+				"member": jsonObject.rowKeys[i]
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		if(jsonObject.columnDimensions) {
+			for(var i=0;i<jsonObject.columnDimensions.length;i++){
+				var itemDef = { 
+					"dimension": jsonObject.columnDimensions[i].key, 
+					"member": jsonObject.columnKeys[i]
+				};
+				
+				tempA.push(itemDef);
+			}
+		}
+		
+		return tempA;
+	*}
+
+	/**
+	 * Values of the Row
+	 */
+	StringArray getSelectionRowValues() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		
+	
+		var tempA = [];
+		for(var i=0;i<jsonObject.rowValues.length;i++){
+			var itemDef = jsonObject.rowValues[i];
+			
+			tempA.push(itemDef);
+		}
+
+		return tempA;
 	*}
 }

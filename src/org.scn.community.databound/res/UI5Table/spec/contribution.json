@@ -11,10 +11,39 @@
 	"DHeaderColWidth" : {
 		"gen-type":"int",
 	},
+	"DDataColWidths" : {
+      "gen-type":"SingleArray",
+
+      "parameter":{
+         "gen-type":"Array",
+         "gen-sequence":"index,width",
+         
+         "index": {
+         	"gen-desc": "Data Column Index",
+         	"gen-type": "String",
+         },
+         "width": {
+         	"gen-desc": "Width",
+         	"gen-type": "String",
+         },
+      },
+    },
 	"DNavigationMode" : {
 		"gen-type":"choice",
 	},
-	"DFormatingCondition" : {
+	"DEmptyHeaderValue" : {
+		"gen-type":"String",
+	},
+	"DEmptyDataValue" : {
+		"gen-type":"String",
+	},
+	"DFormattingOperator" : {
+		"gen-type":"choice",
+	},
+	"DFormattingCondition" : {
+		"gen-type":"String",
+	},
+	"DColumnFormattingCondition" : {
 		"gen-type":"String",
 	},
 	"DAllowSort" : {

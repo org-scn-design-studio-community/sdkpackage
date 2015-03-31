@@ -1,0 +1,37 @@
+
+/**
+	Holder for Dimension, Member. You can access the content as in below example.
+	<br>
+	var content = COMPONENT.getSelectedElementsArray();<br>
+	
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.DimensionMemberArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.DimensionMember<br>
+		var elDimension = element.dimension;<br>
+		var elMember = element.member;<br>
+	});
+ */
+class org.scn.community.shared.DimensionMember {
+  String dimension;
+  String member;
+}
+
+/**
+	Array for org.scn.community.shared.DimensionMember. You can use this array as in below example.
+	<br>
+	var content = COMPONENT.getSelectedElementsArray();<br>
+	<br>
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.DimensionMemberArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.DimensionMemberValue<br>
+		var elDimension = element.dimension;<br>
+		var elMember = element.member;<br>
+	});
+ */
+class org.scn.community.shared.DimensionMemberArray extends Array {
+	org.scn.community.shared.DimensionMemberArray (org.scn.community.shared.DimensionMember b);
+}

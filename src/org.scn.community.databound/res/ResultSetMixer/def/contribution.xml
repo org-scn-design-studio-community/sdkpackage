@@ -61,8 +61,8 @@
 
 	<property
 		id="DSlaveContentCondition"
-		title="Condition to Read Slave Result Set based on Content"
-		tooltip="Under which condition should be the slave result set read (based on content)"
+		title="Content Condition to Read Slave Result Set"
+		tooltip="Under which condition should be the slave result set read (based on content or value)"
 		type="String"
 		group="Display"
 		visible="true">
@@ -70,8 +70,8 @@
 
 	<property
 		id="DSlaveRowCondition"
-		title="Condition to Read Slave Result Set based on header Row Content"
-		tooltip="Under which condition should be the slave result set read (based on contnet of header row)"
+		title="Row Condition to Read Slave Result Set"
+		tooltip="Under which condition should be the slave result set read (based on contnet of header row key)"
 		type="String"
 		group="Display"
 		visible="true">
@@ -79,8 +79,8 @@
 
 	<property
 		id="DSlaveColumnCondition"
-		title="Condition to Read Slave Result Set based on header Column Content"
-		tooltip="Under which condition should be the slave result set read (based on contnet of header column)"
+		title="Column Condition to Read Slave Result Set"
+		tooltip="Under which condition should be the slave result set read (based on contnet of header column key)"
 		type="String"
 		group="Display"
 		visible="true">

@@ -616,8 +616,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	
 	/*BASIC*/
 	/**Cast to specific component*/
-	Bookmarkfilter returnAsBookmarkfilter (Component inputComponent) {* return inputComponent; *}
-	/**Cast to specific component*/
 	Button returnAsButton (Component inputComponent) {* return inputComponent; *}
 	/**Cast to specific component*/
 	ChartTypePicker returnAsChartTypePicker (Component inputComponent) {* return inputComponent; *}
@@ -943,6 +941,12 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Aps Tester component*/
+	org.scn.community.prototypes.ApsTester returnAsScnApsTester (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Aps Tester UI5 component*/
+	org.scn.community.prototypes.ApsTesterUI5 returnAsScnApsTesterUI5 (Component inputComponent) {* return inputComponent; *}
 
 
 }

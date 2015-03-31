@@ -1,15 +1,87 @@
 	/**
-	 * Gets Cell Selection As JSON String
+	 * Gets Selection As JSON String
 	 */	
-	String getCellSelectionAsJSON() {*
-		var jsonObject = JSON.parse(this.DCellSelection);
+	String getSelectionAsJSON() {*
+		var jsonObject = JSON.parse(this.DSelection);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Selected Row Index (0 - based)
+	 */
+	int getSelectedRow() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.row;
 	*}
 	
 	/**
-	 * Gets Row Selection As JSON String
-	 */	
-	String getRowSelectionAsJSON() {*
-		var jsonObject = JSON.parse(this.DRowSelection);
-		return JSON.stringify(jsonObject, null, 4);
+	 * Selected Column Index (0 - based)
+	 */
+	int getSelectedColumn() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.column;
+	*}
+
+	/**
+	 * Selected Value Content
+	 */
+	int getSelectedValue() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.value;
+	*}
+	
+	/**
+	 * Selection Space (Header, Data)
+	 */
+	String getSelectionSpace() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.value;
+	*}
+
+	/**
+	 * Return dimensions and corresponding members for the selection as array
+	 */
+	org.scn.community.shared.DimensionMemberArray getSelectionDimensionMembers() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		
+		var tempA = [];
+		
+		for(var i=0;i<jsonObject.rowDimensions.length;i++){
+			var itemDef = { 
+				"dimension": jsonObject.rowDimensions[i].key, 
+				"member": jsonObject.rowKeys[i]
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		if(jsonObject.columnDimensions) {
+			for(var i=0;i<jsonObject.columnDimensions.length;i++){
+				var itemDef = { 
+					"dimension": jsonObject.columnDimensions[i].key, 
+					"member": jsonObject.columnKeys[i]
+				};
+				
+				tempA.push(itemDef);
+			}
+		}
+		
+		return tempA;
+	*}
+
+	/**
+	 * Values of the Row
+	 */
+	StringArray getSelectionRowValues() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		
+	
+		var tempA = [];
+		for(var i=0;i<jsonObject.rowValues.length;i++){
+			var itemDef = jsonObject.rowValues[i];
+			
+			tempA.push(itemDef);
+		}
+
+		return tempA;
 	*}

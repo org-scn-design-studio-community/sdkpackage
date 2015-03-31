@@ -77,42 +77,42 @@ class org.scn.community.databound.ResultSetMixer extends org.scn.community.share
 	*}
 
 	/**
-	 * Sets Condition to Read Slave Result Set based on Content Property
+	 * Sets Content Condition to Read Slave Result Set Property
 	 */	
-	void setSlaveContentCondition( /* Under which condition should be the slave result set read (based on content) */  String slaveContentCondition){*
+	void setSlaveContentCondition( /* Under which condition should be the slave result set read (based on content or value) */  String slaveContentCondition){*
 		this.DSlaveContentCondition = slaveContentCondition;
 	*}
 
 	/**
-	 * Gets Condition to Read Slave Result Set based on Content Property
+	 * Gets Content Condition to Read Slave Result Set Property
 	 */	
 	String getSlaveContentCondition() {*
 		return this.DSlaveContentCondition;
 	*}
 
 	/**
-	 * Sets Condition to Read Slave Result Set based on header Row Content Property
+	 * Sets Row Condition to Read Slave Result Set Property
 	 */	
-	void setSlaveRowCondition( /* Under which condition should be the slave result set read (based on contnet of header row) */  String slaveRowCondition){*
+	void setSlaveRowCondition( /* Under which condition should be the slave result set read (based on contnet of header row key) */  String slaveRowCondition){*
 		this.DSlaveRowCondition = slaveRowCondition;
 	*}
 
 	/**
-	 * Gets Condition to Read Slave Result Set based on header Row Content Property
+	 * Gets Row Condition to Read Slave Result Set Property
 	 */	
 	String getSlaveRowCondition() {*
 		return this.DSlaveRowCondition;
 	*}
 
 	/**
-	 * Sets Condition to Read Slave Result Set based on header Column Content Property
+	 * Sets Column Condition to Read Slave Result Set Property
 	 */	
-	void setSlaveColumnCondition( /* Under which condition should be the slave result set read (based on contnet of header column) */  String slaveColumnCondition){*
+	void setSlaveColumnCondition( /* Under which condition should be the slave result set read (based on contnet of header column key) */  String slaveColumnCondition){*
 		this.DSlaveColumnCondition = slaveColumnCondition;
 	*}
 
 	/**
-	 * Gets Condition to Read Slave Result Set based on header Column Content Property
+	 * Gets Column Condition to Read Slave Result Set Property
 	 */	
 	String getSlaveColumnCondition() {*
 		return this.DSlaveColumnCondition;
