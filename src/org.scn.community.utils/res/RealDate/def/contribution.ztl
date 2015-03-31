@@ -47,12 +47,12 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 				}
 				that.currentCalculatedDate = currentDate;
 				
-				if(!that.days) {
-					that.days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];	
+				if(!that.dayNames) {
+					that.dayNames= ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];	
 				}
 
-				if(!that.months){
-					that.months = ['January','February','March','April','May','June','July','August','September','October','November','December'];	
+				if(!that.monthNames){
+					that.monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];	
 				}
 
 				that.firstJanuaryDate = new Date();
@@ -161,8 +161,8 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 				}
 				
 				// for now names only in EN
-				that.dayOfWeekName = that.days [that.getDayOfWeek()];
-				that.monthName = that.months [that.getMonth()];
+				that.dayOfWeekName = that.dayNames [that.getDayOfWeek()];
+				that.monthName = that.monthNames [that.getMonth()];
 				
 				// quarter
 				that.quarter = Math.ceil(that.getMonth() / 3);

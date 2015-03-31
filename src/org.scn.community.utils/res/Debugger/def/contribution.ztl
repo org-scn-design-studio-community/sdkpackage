@@ -243,7 +243,7 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 							continue;
 						}
 		
-						if(value.indexOf("{") == 0 || value.indexOf("[") == 0 || value.indexOf("object") > -1) {
+						if(value.indexOf("{") == 0 || value.indexOf("[") == 0 || value.indexOf("object") > -1|| value.indexOf("org.mozilla.javascript.NativeArray") > -1) {
 							var jValue = JSON.stringify(value);
 							this.toConsole("  " + name + "=" + jValue);
 							lVariables.push({"date":l.date, "name":name, "value":jValue, "type":"owner"});
@@ -266,7 +266,7 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 					try {
 						var value = locals[name];
 	
-						if(value.indexOf("{") == 0 || value.indexOf("[") == 0 || value.indexOf("object") > -1) {
+						if(value.indexOf("{") == 0 || value.indexOf("[") == 0 || value.indexOf("object") > -1 || value.indexOf("org.mozilla.javascript.NativeArray") > -1) {
 							var jValue = JSON.stringify(value);
 							this.toConsole("  " + name + "=" + jValue);
 							lVariables.push({"date":l.date, "name":name, "value":jValue, "type":"local"});
