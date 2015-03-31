@@ -596,6 +596,72 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/* STANDARD COMPONENT CASTS - MANUAL UPDATE REQUIRED */
 	
+	/*DATA BOUND*/
+	/**Cast to specific component*/
+	Chart returnAsChart (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Crosstab returnAsCrosstab (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Dimensionfilter returnAsDimensionfilter (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Filterline returnAsFilterline (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Filterpanel returnAsFilterpanel (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	GeoMap returnAsGeoMap (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Navigationpanel returnAsNavigationpanel (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	GeoMap returnAsGeoMap (Component inputComponent) {* return inputComponent; *}
+	
+	/*BASIC*/
+	/**Cast to specific component*/
+	Bookmarkfilter returnAsBookmarkfilter (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Button returnAsButton (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	ChartTypePicker returnAsChartTypePicker (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Checkbox returnAsCheckbox (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Checkboxgroup returnAsCheckboxgroup (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Datefield returnAsDatefield (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Dropdown returnAsCheckboxgroup (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	com.sap.ip.bi.FormattedTextView returnAsFormattedTextView (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	com.sap.ip.bi.FragmentGallery returnAsFragmentGallery (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Image returnAsImage (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Inputfield returnAsInputfield (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Listbox returnAsInputfield (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Radiobuttongroup returnAsRadiobuttongroup (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Text returnAsText (Component inputComponent) {* return inputComponent; *}
+	
+	/*CONTAINERS*/
+	/**Cast to specific component*/
+	Filterbar returnAsFilterbar (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	GridLayout returnAsGridLayout (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Pagebook returnAsPagebook (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Panel returnAsPanel (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Popup returnAsPopup (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Splitcellcontainer returnAsSplitcellcontainer (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Tabstrip returnAsTabstrip (Component inputComponent) {* return inputComponent; *}
+
+	
+	/* GENERATION PLACE BELOW - DO NOT DELETE THIS LINE ! */
 	/**Cast to Accordion component*/
 	org.scn.community.basics.Accordion returnAsScnAccordion (Component inputComponent) {* return inputComponent; *}
 
@@ -824,6 +890,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Aps Tester component*/
 	org.scn.community.prototypes.ApsTester returnAsScnApsTester (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Aps Tester UI5 component*/
+	org.scn.community.prototypes.ApsTesterUI5 returnAsScnApsTesterUI5 (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Progress Bar Set component*/
 	org.scn.community.prototypes.ProgressSet returnAsScnProgressSet (Component inputComponent) {* return inputComponent; *}
 
@@ -874,5 +943,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
+
 
 }

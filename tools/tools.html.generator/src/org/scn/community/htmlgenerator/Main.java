@@ -88,7 +88,18 @@ public class Main {
 		}
 
 		// C:\DEV\community.sdkpackage\src\org.scn.community.utils\res\ComponentManager\def\contribution.ztl
-		Helpers.string2File(mainSrcFolder.getAbsolutePath() + "\\org.scn.community.utils\\res\\ComponentManager\\def\\" + "cast.ztl_part", castString);
+		String realZtlFileForComponentManager = mainSrcFolder.getAbsolutePath() + "\\org.scn.community.utils\\res\\ComponentManager\\def\\" + "contribution.ztl";
+		String contentOfRealZtl = Helpers.file2String(realZtlFileForComponentManager);
+		int indexOfReplace = contentOfRealZtl.indexOf("/* GENERATION PLACE BELOW - DO NOT DELETE THIS LINE ! */");
+		
+		if(indexOfReplace == -1) {
+			throw new RuntimeException("Index of Replacement in ComponentManager ZTL not found");
+		}
+		contentOfRealZtl = contentOfRealZtl.substring(0, indexOfReplace + "/* GENERATION PLACE BELOW - DO NOT DELETE THIS LINE ! */".length());
+		contentOfRealZtl = contentOfRealZtl + "\r\n";
+		contentOfRealZtl = contentOfRealZtl + castString + "\r\n" + "}";
+
+		Helpers.string2File(realZtlFileForComponentManager, contentOfRealZtl);
 		
 		templateList = removeReplacements(templateList);
 		ui5TemplateList = removeReplacements(ui5TemplateList);
