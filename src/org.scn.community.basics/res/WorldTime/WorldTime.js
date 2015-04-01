@@ -22,18 +22,18 @@
  * World time display designed by Martin Pankraz 
  * 
  */
-sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", function() {
+sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /** @memberOf org.scn.community.basics.WorldTime*/ function() {
 	var offset 					= null;
 	var SaveLocale 				= null;
 	var saveDateFormat 			= null;
 	var saveTimeFormat			= null;
 	var saveShowTimeZoneName 	= null;
+	var saveDaylightSaving		= null;
 	var update_interval 		= null;
 	var $div 					= null;
 	
 	/**
 	 * @desc First function called during SAP Design Studio Plugin Lifecycle
-	 * @memberOf init
 	 */
 	this.init = function(){
 		
@@ -68,6 +68,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", fu
 	// given the city's UTC offset
 	/**
 	 * @function to calculate local time given the UTC offset
+	 * @memberOf org.scn.community.basics.WorldTime
 	 */
 	function calcTime(offset) {	
 		
@@ -80,6 +81,11 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", fu
 	    // add local time zone offset 
 	    // get UTC time in msec
 	    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+	    
+	    //handle daylight saving
+	    if (d.dst() && saveDaylightSaving){
+	    	offset += 1;
+	    }
 	    
 	    // create new Date object for different city
 	    // using supplied offset
@@ -118,7 +124,23 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", fu
 
 	}
 	/**
+	 * Code extracted from http://javascript.about.com/library/bldst.htm
+	 */
+    Date.prototype.stdTimezoneOffset = function() {
+        var jan = new Date(this.getFullYear(), 0, 1);
+        var jul = new Date(this.getFullYear(), 6, 1);
+        return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+    }
+    /**
+	 * Code extracted from http://javascript.about.com/library/bldst.htm
+	 */
+    Date.prototype.dst = function() {
+        return this.getTimezoneOffset() < this.stdTimezoneOffset();
+    }
+    
+	/**
 	 * @function generate a random id to distinguish several instances of this component in the same dashboard
+	 * @memberOf org.scn.community.basics.WorldTime
 	 */
 	function makeid()
 	{
@@ -130,7 +152,10 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", fu
 
 	    return text;
 	}
-	
+	/**
+	 * @function setup date display options
+	 * @memberOf org.scn.community.basics.WorldTime
+	 */
 	function getOptionsByParameters(){
 		var options = {};
 		
@@ -220,6 +245,15 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", fu
 			return saveShowTimeZoneName;
 		} else {
 			saveShowTimeZoneName = value;
+			return this;
+		}
+	};
+	
+	this.daylightsaving = function(value) {
+		if (value === undefined) {
+			return saveDaylightSaving;
+		} else {
+			saveDaylightSaving = value;
 			return this;
 		}
 	};

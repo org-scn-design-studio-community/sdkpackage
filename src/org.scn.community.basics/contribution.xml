@@ -3456,6 +3456,8 @@
 	</property>
 	<property type="boolean" title="Show Timezone name" id="showtimezonename">
 	</property>
+	<property type="boolean" title="Consider Daylight Saving" id="daylightsaving">
+	</property>
 	<property type="String" title="Date Format" id="dateformat">
 		<possibleValue>dd.mm.yy</possibleValue>
 		<possibleValue>dd.mm</possibleValue>
@@ -3479,6 +3481,7 @@
 		<defaultValue property="dateformat">dd.mm.yy</defaultValue>
 		<defaultValue property="timeformat">hh:mm:ss</defaultValue>
 		<defaultValue property="showtimezonename">true</defaultValue>
+		<defaultValue property="daylightsaving">true</defaultValue>
 		<defaultValue property="interval">5000</defaultValue>
 	</initialization>
 
