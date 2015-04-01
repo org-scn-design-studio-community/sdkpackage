@@ -96,7 +96,7 @@ var ResultSetInfo = {
 		dataSourceInfo.flatData = that._flatData;
 		
 		if(that.getDCentralProvisioning()) {
-			org_scn_community_databound.centralDataStorage[that.oComponentProperties.id] = dataSourceInfo;	
+			org_scn_community_databound.updateCentralDataStorage(that, dataSourceInfo);
 		}
 	},
 	

@@ -23,4 +23,8 @@
 	"DSlaveColumnCondition" : {
 		"gen-type":"String",
 	},
+	"DReloadTrigger" : {
+		"gen-type":"reload",
+		"gen-mode":"ztl",
+	},
 }

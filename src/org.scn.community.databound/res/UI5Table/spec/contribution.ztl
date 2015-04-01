@@ -23,6 +23,22 @@
 	*}
 
 	/**
+	 * Selected Visual Row Index (0 - based)
+	 */
+	int getSelectedVisualRow() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.visualRow;
+	*}
+	
+	/**
+	 * Selected Visual Column Index (0 - based)
+	 */
+	int getSelectedVisualColumn() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.visualColumn;
+	*}
+
+	/**
 	 * Selected Value Content
 	 */
 	int getSelectedValue() {*

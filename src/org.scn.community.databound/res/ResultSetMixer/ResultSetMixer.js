@@ -51,6 +51,12 @@ myComponentData.instance = {
 		that.reloadContent();
 	},
 	
+	onProvisionerDataChangeEvent: function () {
+		var that = this;
+		
+		that.afterDesignStudioUpdate();
+	},
+	
 	reloadContent: function() {
 		var that = this;
 		
@@ -108,7 +114,7 @@ myComponentData.instance = {
 			org_scn_community_databound.mixRows(that._masterData, that._slaveData, options);	
 		}
 		
-		org_scn_community_databound.centralDataStorage[that.oComponentProperties.id] = that._masterData;
+		org_scn_community_databound.updateCentralDataStorage(that, that._masterData);
 	},
 	
 	getPreparedData : function (afterPrepare) {
@@ -118,6 +124,7 @@ myComponentData.instance = {
 		var hasMasterDataProvisioner = false;
 		if(masterProvisioner != undefined && masterProvisioner.length != "") {
 			hasMasterDataProvisioner = (org_scn_community_databound.centralDataStorage[masterProvisioner] != undefined);
+			org_scn_community_databound.registerCentralEventReceiver(masterProvisioner, that);
 		}
 
 		if(hasMasterDataProvisioner) {
@@ -129,6 +136,7 @@ myComponentData.instance = {
 		var hasSlaveDataProvisioner = false;
 		if(slaveProvisioner != undefined && slaveProvisioner.length != "") {
 			hasSlaveDataProvisioner = (org_scn_community_databound.centralDataStorage[slaveProvisioner] != undefined);
+			org_scn_community_databound.registerCentralEventReceiver(slaveProvisioner, that);
 		}
 
 		if(hasSlaveDataProvisioner) {

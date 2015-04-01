@@ -61,7 +61,15 @@
 		group="Display"
 		visible="true">
 	</property>
-
+	
+	<property
+		id="DAllowFilter"
+		title="Allow Sort in Columns"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+	
 	<property
 		id="DAllowColumnReorder"
 		title="Allow Reorder of Columns"
@@ -96,7 +104,7 @@
 
 	<property
 		id="DDataColWidths"
-		title="Data Column Widths (JSON: [{'index':'index-0-based | *','width':'width in px'}])"
+		title="Data Column Widths"
 		type="String"
 		group="Display"
 		visible="false">
@@ -104,7 +112,7 @@
 
 	<property
 		id="DFormattingOperator"
-		title="Formatting Operator"
+		title="(non-stable) Formatting Operator"
 		type="String"
 		group="Display"
 		visible="true">
@@ -115,7 +123,7 @@
 
 	<property
 		id="DFormattingCondition"
-		title="Formatting Condition"
+		title="(non-stable) Formatting Condition"
 		type="String"
 		group="Display"
 		visible="true">
@@ -123,7 +131,7 @@
 
 	<property
 		id="DColumnFormattingCondition"
-		title="Column Based Formatting Condition"
+		title="(non-stable) Column Based Formatting Condition"
 		type="String"
 		group="Display"
 		visible="true">
@@ -187,8 +195,9 @@
 		<defaultValue property="DRowHeight">22</defaultValue>
 		<defaultValue property="DVisibleRowCount">12</defaultValue>
 		<defaultValue property="DHeaderColWidth">200</defaultValue>
-		<defaultValue property="DDataColWidths">[{"index":"*","width":""}]</defaultValue>
+		<defaultValue property="DDataColWidths">[]</defaultValue>
 		<defaultValue property="DAllowSort">true</defaultValue>
+		<defaultValue property="DAllowFilter">true</defaultValue>
 		<defaultValue property="DAllowColumnReorder">true</defaultValue>
 		<defaultValue property="DAllowSelection">false</defaultValue>
 		<defaultValue property="DFixedHeader">true</defaultValue>	

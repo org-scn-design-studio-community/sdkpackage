@@ -75,13 +75,14 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
               "DNavigationMode": {type: "string"},
               "DCustomDimensions": {type: "string"},
               "DHeaderColWidth": {type: "int"},
-              "DDataColWidths": {type: "String"},
+              "DDataColWidths": {type: "string"},
               "DDataProvisioner": {type: "string"},
               "DFormattingOperator": {type: "string"},
               "DFormattingCondition": {type: "string"},
               "DColumnFormattingCondition": {type: "string"},
               "DSelection": {type: "string"},
               "DAllowSort": {type: "boolean"},
+              "DAllowFilter": {type: "boolean"},
               "DAllowColumnReorder": {type: "boolean"},
               "DFixedHeader": {type: "boolean"},
               "DAllowSelection": {type: "boolean"},
@@ -101,6 +102,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		);
 		
 		this.addStyleClass("scn-pack-FullSizeChildren");
+		this.addStyleClass("scn-pack-UI5Table-Header");
 		
 		// set the model
 		that._oModel = new sap.ui.model.json.JSONModel(); 
@@ -162,8 +164,8 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 				that._vals = [];
 				try{
 					if(hasDataProvisioner) {
-						that._flatData = org_scn_community_databound.centralDataStorage[lDataProvisioner].flatData;
-						org_scn_community_databound.toRowTable(that._flatData,options);
+						that.onProvisionerDataChangeEvent();
+						org_scn_community_databound.registerCentralEventReceiver(lDataProvisioner, that);
 					} else {
 						that._flatData = org_scn_community_databound.flatten(lData,options);
 						org_scn_community_databound.toRowTable(that._flatData,options);
@@ -194,7 +196,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 			if(that._flatData) {
 				var lAllowSort = that.getDAllowSort();
 				var lAllowReorder = that.getDAllowColumnReorder();
-				var lAllowFilter = true;
+				var lAllowFilter = that.getDAllowFilter();
 				
 				var allowSelection = that.getDAllowSelection();;
 				var lPathPrefix = "";
@@ -211,15 +213,16 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 				if(hasFormattingCondition || allowSelection) {
 					that.addStyleClass("scn-pack-ActivateSimpleConditions");
 					that._table.bindRows("/data2D");
-					lAllowReorder = false;
-					lAllowSort = false;
-					lAllowFilter = false;
 					lPathPrefix = "values/";
 
-					options.formattingCondition.rules = JSON.parse(options.formattingCondition.rules);
+					if(options.formattingCondition.rules.length > 1) {
+						options.formattingCondition.rules = JSON.parse(options.formattingCondition.rules);
+					}
 				} else {
 					that._table.bindRows("/data2DPlain");
 				}
+				
+				that._table.setEnableColumnReordering(lAllowReorder);
 				
 				if(hasFormattingCondition) {
 					org_scn_community_databound.applyConditionalFormats(that._flatData, options);
@@ -238,22 +241,25 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 						
 						if(hasFormattingCondition) {
 							oItemTemplate.addCustomData (new sap.ui.core.CustomData({key:"condFormat", value:"{formats/" + colI + "}", writeToDom:true}));
-							oItemTemplate.addCustomData ( new sap.ui.core.CustomData({key:"realCol", value: colI, writeToDom:false}));
 						}
 						
-						that._table.addColumn(new sap.ui.table.Column({
+						var lColumn = new sap.ui.table.Column({
 							label: new sap.ui.commons.Label(
 							{
 								text: that._flatData.dimensionHeaders[colI],
 								design: sap.ui.commons.LabelDesign.Bold,
 							}),
 							template: oItemTemplate,
-							sortProperty: ""+colI,
-							filterProperty: ""+colI,
+							sortProperty: ""+ lPathPrefix+colI,
+							filterProperty: ""+ lPathPrefix+colI,
 							showSortMenuEntry: lAllowSort,
 							showFilterMenuEntry: lAllowFilter,
 							width: that.getDHeaderColWidth()+"px"
-						}));
+						});
+						
+						lColumn._dsRealColumnIndex = colI;
+						
+						that._table.addColumn(lColumn);
 					}
 					
 					var colWidthObject = [];
@@ -264,10 +270,10 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 					var allColWidth = undefined;
 					var colWidths = {};
 					for(index in colWidthObject) {
-						if(colWidthObject[index].index == "*") {
+						if(colWidthObject[index].key == "*") {
 							allColWidth = colWidthObject[index].width;
 						} else {
-							colWidths[index] = colWidthObject[index].width; 
+							colWidths[colWidthObject[index].key] = colWidthObject[index].width; 
 						}
 					}
 	
@@ -280,7 +286,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 	
 						if(hasFormattingCondition) {
 							oItemTemplate.addCustomData (new sap.ui.core.CustomData({key:"condFormat", value:"{formats/" + colI + "}", writeToDom:true}));
-							oItemTemplate.addCustomData ( new sap.ui.core.CustomData({key:"realCol", value: colI, writeToDom:false}));
 						}
 						
 						var colWidth = colWidths[colI];
@@ -288,15 +293,19 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 							colWidth = allColWidth || "";
 						}
 	
-						that._table.addColumn(new sap.ui.table.Column({
+						var lColumn = new sap.ui.table.Column({
 							label: new sap.ui.commons.Label({text: that._flatData.columnHeaders[dataColI]}),
 							template: oItemTemplate,
-							sortProperty: ""+colI,
-							filterProperty: ""+colI,
+							sortProperty: ""+ lPathPrefix+colI,
+							filterProperty: ""+ lPathPrefix+colI,
 							showSortMenuEntry: lAllowSort,
 							showFilterMenuEntry: lAllowFilter,
 							width: colWidth,
-						}));
+						});
+						
+						lColumn._dsRealColumnIndex = colI;
+						
+						that._table.addColumn(lColumn);
 						colI = colI+1;
 					}
 					
@@ -321,6 +330,18 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 			}
 		}
 	},
+	
+	onProvisionerDataChangeEvent: function(lDataProvisioner) {
+		var that = this;
+		var lDataProvisioner = that.getDDataProvisioner();
+		
+		// register for client side events
+		org_scn_community_databound.centralEventStorage[that.oComponentProperties.id] = that;
+		that._flatData = org_scn_community_databound.centralDataStorage[lDataProvisioner].flatData;
+		org_scn_community_databound.toRowTable(that._flatData,that._dsOptions);
+		
+		that._oModel.setData(that._flatData);
+	},
 
 	onCellClick : function (oEvent) {
 		var that = oEvent.oSource.getParent().getParent();
@@ -331,17 +352,19 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		}
 
 		var selection = {};
-		var rowSelection = that.getCorrectRow(oEvent);
 		
-		// this gets a visual row back, sorts are corrupting the index
-		selection.row = parseInt(oEvent.getParameters().rowIndex);
+		selection.visualRow = parseInt(oEvent.getParameters().rowIndex);
 		
-		// no better way for today
-		//var path = oEvent.getParameters().cellControl.mBindingInfos.text.binding.sPath;
-		//path = path.substring(1);
-		//selection.row = parseInt(path.substring(path.indexOf("/")+1));
+		// case for click on row w/o any data model
+		var ctx = that._table.getContextByIndex(selection.visualRow);
+		if(ctx==undefined) {return;}
 		
-		selection.column = parseInt(oEvent.getParameters().columnIndex);
+		selection.row = that.getCorrectRow(that, oEvent);
+
+		selection.visualColumn = parseInt(oEvent.getParameters().columnIndex);
+		var columnObject = that._table.getColumns()[selection.visualColumn];
+		selection.column = columnObject._dsRealColumnIndex;
+		
 		selection.value = that._flatData.data2D[selection.row]["values"][selection.column];
 
 		if(selection.column < that._flatData.geometry.headersLength) {
@@ -374,15 +397,14 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		}
 
 		var selection = {};
+
+		selection.visualRow = parseInt(oEvent.getParameters().rowIndex);
+
+		// case for click on row w/o any data model
+		var ctx = that._table.getContextByIndex(selection.visualRow);
+		if(ctx==undefined) {return;}
 		
-		var rowContext = oEvent.getParameters().rowContext
-		if(rowContext == undefined) {
-			return;
-		}
-		
-		var path = rowContext.sPath;
-		path = path.substring(1);
-		selection.row = parseInt(path.substring(path.indexOf("/")+1));
+		selection.row = that.getCorrectRow(that, oEvent);
 
 		selection.columnKeys = [];
 		selection.space = "Row";
@@ -399,15 +421,16 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		that.fireDesignStudioPropertiesChanged(["DSelection"]);
 		that.fireDesignStudioEvent("onRowSelected");
 	},
-	
-	getCorrectRow: function (oEvent) {
+
+	getCorrectRow: function (that, oEvent) {
 		var idx = oEvent.getParameter('rowIndex');
 		var cxt = that._table.getContextByIndex(idx);
+		
+		
 		var path = cxt.sPath;
 
 		var row_data = that._table.getModel().getProperty(path);
-		col_idx = parseInt(oEvent.getParameters().columnIndex);
-		return row_data[col_idx];
+		return row_data.index;
 	},
 	
 	_fakeData : function () {

@@ -1977,6 +1977,14 @@ __n__}
 	<jsInclude>res/ResultSetMixer/ResultSetMixerLoader.js</jsInclude>
 	
 	<property
+		id="DReloadTrigger"
+		title="Internal Property to Trigger the reload"
+		type="float"
+		group="Display"
+		visible="false">
+	</property>
+	
+	<property
 		id="DMasterProvisioner"
 		title="Master Central Data Provisioner"
 		tooltip="Result Set with Master Data"
@@ -2062,6 +2070,7 @@ __n__}
 		<defaultValue property="DMasterGeometry">RowBased</defaultValue>
 		<defaultValue property="DCollectMultipleMatches">Collect</defaultValue>
 		<defaultValue property="DSlaveColumnIndex">1</defaultValue>
+		<defaultValue property="DReloadTrigger">0.0</defaultValue>
 		
 	</initialization>
 
@@ -2842,7 +2851,15 @@ __n__}
 		group="Display"
 		visible="true">
 	</property>
-
+	
+	<property
+		id="DAllowFilter"
+		title="Allow Sort in Columns"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+	
 	<property
 		id="DAllowColumnReorder"
 		title="Allow Reorder of Columns"
@@ -2877,7 +2894,7 @@ __n__}
 
 	<property
 		id="DDataColWidths"
-		title="Data Column Widths (JSON: [{'index':'index-0-based | *','width':'width in px'}])"
+		title="Data Column Widths"
 		type="String"
 		group="Display"
 		visible="false">
@@ -2885,7 +2902,7 @@ __n__}
 
 	<property
 		id="DFormattingOperator"
-		title="Formatting Operator"
+		title="(non-stable) Formatting Operator"
 		type="String"
 		group="Display"
 		visible="true">
@@ -2896,7 +2913,7 @@ __n__}
 
 	<property
 		id="DFormattingCondition"
-		title="Formatting Condition"
+		title="(non-stable) Formatting Condition"
 		type="String"
 		group="Display"
 		visible="true">
@@ -2904,7 +2921,7 @@ __n__}
 
 	<property
 		id="DColumnFormattingCondition"
-		title="Column Based Formatting Condition"
+		title="(non-stable) Column Based Formatting Condition"
 		type="String"
 		group="Display"
 		visible="true">
@@ -2968,8 +2985,9 @@ __n__}
 		<defaultValue property="DRowHeight">22</defaultValue>
 		<defaultValue property="DVisibleRowCount">12</defaultValue>
 		<defaultValue property="DHeaderColWidth">200</defaultValue>
-		<defaultValue property="DDataColWidths">[{"index":"*","width":""}]</defaultValue>
+		<defaultValue property="DDataColWidths">[]</defaultValue>
 		<defaultValue property="DAllowSort">true</defaultValue>
+		<defaultValue property="DAllowFilter">true</defaultValue>
 		<defaultValue property="DAllowColumnReorder">true</defaultValue>
 		<defaultValue property="DAllowSelection">false</defaultValue>
 		<defaultValue property="DFixedHeader">true</defaultValue>	

@@ -63,6 +63,20 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
+	 * Sets Allow Sort in Columns Property
+	 */	
+	void setAllowFilter( /* &nbsp; */  boolean allowFilter){*
+		this.DAllowFilter = allowFilter;
+	*}
+
+	/**
+	 * Gets Allow Sort in Columns Property
+	 */	
+	boolean getAllowFilter() {*
+		return this.DAllowFilter;
+	*}
+
+	/**
 	 * Sets Allow Reorder of Columns Property
 	 */	
 	void setAllowColumnReorder( /* &nbsp; */  boolean allowColumnReorder){*
@@ -118,26 +132,26 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		return this.DHeaderColWidth;
 	*}
 
-	/** Adds a root element containing index [String], width [String].
+	/** Adds a root element containing key [String], width [String].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	UI5TABLE.addParameter(index [String], width [String]);<br>
-	UI5TABLE.addParameter(index [String], width [String]);<br>
+	UI5TABLE.addParameter(key [String], width [String]);<br>
+	UI5TABLE.addParameter(key [String], width [String]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void addParameter (
-			/**Data Column Index*/String index, 
-			/**Width*/String width
+			/**Column index (0-based)*/String key, 
+			/**Width with unit (e.g. 200px | 30%)*/String width
 			) {*		
 		
 		
 		var itemDef = {
 			leaf:true,
-			index:index, 
+			key:key, 
 			width:width
 			};
 	
@@ -167,13 +181,13 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
  	<example>
 	You want to remove root element
 	<code>
-	UI5TABLE.removeParameter();<br>
+	UI5TABLE.removeParameter(String key);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void removeParameter (
-			
+			String key
 			) {*		
 		
 		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
@@ -201,42 +215,42 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
-	 * Sets Formatting Operator Property
+	 * Sets (non-stable) Formatting Operator Property
 	 */	
 	void setFormattingOperator( /* &nbsp; */  choice formattingOperator){*
 		this.DFormattingOperator = formattingOperator;
 	*}
 
 	/**
-	 * Gets Formatting Operator Property
+	 * Gets (non-stable) Formatting Operator Property
 	 */	
 	choice getFormattingOperator() {*
 		return this.DFormattingOperator;
 	*}
 
 	/**
-	 * Sets Formatting Condition Property
+	 * Sets (non-stable) Formatting Condition Property
 	 */	
 	void setFormattingCondition( /* &nbsp; */  String formattingCondition){*
 		this.DFormattingCondition = formattingCondition;
 	*}
 
 	/**
-	 * Gets Formatting Condition Property
+	 * Gets (non-stable) Formatting Condition Property
 	 */	
 	String getFormattingCondition() {*
 		return this.DFormattingCondition;
 	*}
 
 	/**
-	 * Sets Column Based Formatting Condition Property
+	 * Sets (non-stable) Column Based Formatting Condition Property
 	 */	
 	void setColumnFormattingCondition( /* &nbsp; */  String columnFormattingCondition){*
 		this.DColumnFormattingCondition = columnFormattingCondition;
 	*}
 
 	/**
-	 * Gets Column Based Formatting Condition Property
+	 * Gets (non-stable) Column Based Formatting Condition Property
 	 */	
 	String getColumnFormattingCondition() {*
 		return this.DColumnFormattingCondition;
@@ -308,6 +322,22 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	int getSelectedColumn() {*
 		var jsonObject = JSON.parse(this.DSelection);
 		return jsonObject.column;
+	*}
+
+	/**
+	 * Selected Visual Row Index (0 - based)
+	 */
+	int getSelectedVisualRow() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.visualRow;
+	*}
+	
+	/**
+	 * Selected Visual Column Index (0 - based)
+	 */
+	int getSelectedVisualColumn() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.visualColumn;
 	*}
 
 	/**

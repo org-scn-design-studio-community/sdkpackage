@@ -12,6 +12,14 @@
 	<jsInclude>res/ResultSetMixer/ResultSetMixerLoader.js</jsInclude>
 	
 	<property
+		id="DReloadTrigger"
+		title="Internal Property to Trigger the reload"
+		type="float"
+		group="Display"
+		visible="false">
+	</property>
+	
+	<property
 		id="DMasterProvisioner"
 		title="Master Central Data Provisioner"
 		tooltip="Result Set with Master Data"
@@ -97,6 +105,7 @@
 		<defaultValue property="DMasterGeometry">RowBased</defaultValue>
 		<defaultValue property="DCollectMultipleMatches">Collect</defaultValue>
 		<defaultValue property="DSlaveColumnIndex">1</defaultValue>
+		<defaultValue property="DReloadTrigger">0.0</defaultValue>
 		
 	</initialization>
 

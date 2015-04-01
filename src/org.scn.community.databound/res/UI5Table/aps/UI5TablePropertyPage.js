@@ -17,6 +17,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		this.initDVisibleRowCount();
 		this.initDRowHeight();
 		this.initDAllowSort();
+		this.initDAllowFilter();
 		this.initDAllowColumnReorder();
 		this.initDAllowSelection();
 		this.initDFixedHeader();
@@ -36,6 +37,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		this.updateDVisibleRowCount();
 		this.updateDRowHeight();
 		this.updateDAllowSort();
+		this.updateDAllowFilter();
 		this.updateDAllowColumnReorder();
 		this.updateDAllowSelection();
 		this.updateDFixedHeader();
@@ -179,6 +181,39 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		}else{
 			this._DAllowSort = s;
 			this.updatePropertyDAllowSort();
+			return this;
+		}
+	};
+
+	this.updatePropertyDAllowFilter = function(){
+		this._inputDAllowFilter.setChecked(this._DAllowFilter);
+	};
+	
+	this.initDAllowFilter = function(){
+		this._labelDAllowFilter = new sap.ui.commons.Label({text: " Allow Sort in Columns"});
+		this._labelDAllowFilter.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._labelDAllowFilter);
+		
+		this._inputDAllowFilter = new sap.ui.commons.CheckBox({width: "300px", text: "Allow Sort in Columns"});
+		this._content.addContent(this._inputDAllowFilter);
+		this._inputDAllowFilter.attachChange(this.propertyChangedDAllowFilter, this);
+		this._inputDAllowFilter.addStyleClass("org-scn-ApsBoolean");
+		
+		this.updatePropertyDAllowFilter();
+	};
+
+	this.propertyChangedDAllowFilter = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		this._DAllowFilter = checked;
+		this.firePropertiesChanged(["DAllowFilter"]);
+	};
+	
+	this.DAllowFilter = function(s){
+		if( s === undefined){
+			return this._DAllowFilter;
+		}else{
+			this._DAllowFilter = s;
+			this.updatePropertyDAllowFilter();
 			return this;
 		}
 	};
@@ -378,7 +413,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		
 		var items = this.gatherItemsDDataColWidths(this._selectedElementKeyDDataColWidths);
 		
-		var sectionKey = new sap.ui.commons.TextView({text : ""});
+		var sectionKey = new sap.ui.commons.TextView({text : "Column index (0-based)"});
 		sectionKey.addStyleClass("org-scn-ApsLabelArray");
 		var txtElementKey = new sap.ui.commons.TextField({value : selectedElement.key, width: "180px"});
 		txtElementKey.addStyleClass("org-scn-ApsInputArray");
@@ -400,20 +435,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		this._sectionPropertyLayoutDDataColWidths.addContent(sectionKey);
 		this._sectionPropertyLayoutDDataColWidths.addContent(txtElementKey);
 
-		var sectionindex = new sap.ui.commons.TextView({text : "Data Column Index"});
-		sectionindex.addStyleClass("org-scn-ApsLabelArray");
-		var txtElementindex = new sap.ui.commons.TextField({value : selectedElement.index, width: "180px"});
-		txtElementindex.addStyleClass("org-scn-ApsInputArray");
-		txtElementindex.attachChange(function(oControlEvent){
-			var value = oControlEvent.getParameter("newValue");
-			var section = this.getElementDDataColWidths(this._listBuilderDDataColWidths.getSelectedKey());
-			section.index = value;
-			this.updateElementDDataColWidths(this._listBuilderDDataColWidths.getSelectedKey(),section);
-		}, this);
-		this._sectionPropertyLayoutDDataColWidths.addContent(sectionindex);
-		this._sectionPropertyLayoutDDataColWidths.addContent(txtElementindex);
-
-		var sectionwidth = new sap.ui.commons.TextView({text : "Width"});
+		var sectionwidth = new sap.ui.commons.TextView({text : "Width with unit (e.g. 200px | 30%)"});
 		sectionwidth.addStyleClass("org-scn-ApsLabelArray");
 		var txtElementwidth = new sap.ui.commons.TextField({value : selectedElement.width, width: "180px"});
 		txtElementwidth.addStyleClass("org-scn-ApsInputArray");
@@ -595,7 +617,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 			parentKey : "ROOT",
 			key : newKey,
 			leaf: false, 
-			index:"", 
 			width:""
 		};
 		this._listBuilderDDataColWidths.setSelectedKey(newKey);
@@ -679,7 +700,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 	 */
 	this.initDDataColWidths = function(){
 		
-		this._labelDDataColWidths = new sap.ui.commons.Label({text: " Data Column Widths (JSON: [{'index':'index-0-based | *','width':'width in px'}])"});
+		this._labelDDataColWidths = new sap.ui.commons.Label({text: " Data Column Widths"});
 		this._labelDDataColWidths.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDDataColWidths);
 		
@@ -729,7 +750,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 	};
 	
 	this.initDFormattingOperator = function(){
-		this._labelDFormattingOperator = new sap.ui.commons.Label({text: " Formatting Operator"});
+		this._labelDFormattingOperator = new sap.ui.commons.Label({text: " (non-stable) Formatting Operator"});
 		this._labelDFormattingOperator.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDFormattingOperator);
 		
@@ -766,7 +787,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 	};
 	
 	this.initDFormattingCondition = function(){
-		this._labelDFormattingCondition = new sap.ui.commons.Label({text: " Formatting Condition"});
+		this._labelDFormattingCondition = new sap.ui.commons.Label({text: " (non-stable) Formatting Condition"});
 		this._labelDFormattingCondition.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDFormattingCondition);
 		
@@ -799,7 +820,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 	};
 	
 	this.initDColumnFormattingCondition = function(){
-		this._labelDColumnFormattingCondition = new sap.ui.commons.Label({text: " Column Based Formatting Condition"});
+		this._labelDColumnFormattingCondition = new sap.ui.commons.Label({text: " (non-stable) Column Based Formatting Condition"});
 		this._labelDColumnFormattingCondition.addStyleClass("org-scn-ApsLabel");
 		this._content.addContent(this._labelDColumnFormattingCondition);
 		

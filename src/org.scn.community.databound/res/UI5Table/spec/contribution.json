@@ -16,14 +16,14 @@
 
       "parameter":{
          "gen-type":"Array",
-         "gen-sequence":"index,width",
+         "gen-sequence":"key,width",
          
-         "index": {
-         	"gen-desc": "Data Column Index",
+         "key": {
+         	"gen-desc": "Column index (0-based)",
          	"gen-type": "String",
          },
          "width": {
-         	"gen-desc": "Width",
+         	"gen-desc": "Width with unit (e.g. 200px | 30%)",
          	"gen-type": "String",
          },
       },
@@ -47,6 +47,9 @@
 		"gen-type":"String",
 	},
 	"DAllowSort" : {
+		"gen-type":"boolean",
+	},
+	"DAllowFilter" : {
 		"gen-type":"boolean",
 	},
 	"DAllowColumnReorder" : {

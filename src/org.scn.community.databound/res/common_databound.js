@@ -787,6 +787,8 @@ org_scn_community_databound.toRowTable = function (flatData, opts) {
 		var rowPlain = {};
 		var row = {};
 		row["values"] = [];
+		row["index"] = rI;
+		
 		for(var cI=0;cI<flatData.geometry.allColumnsLength;cI++){
 			if(cI < flatData.geometry.headersLength) {
 				var value = flatData.rowHeaders2D[rI][cI];
@@ -809,8 +811,31 @@ org_scn_community_databound.toRowTable = function (flatData, opts) {
 	flatData.headerDataPlain = headerDataPlain;
 	
 	flatData.data2DStructured = {};
-	flatData.data2DStructured["values"] = flatData.data2DPlain;
+	
+	if(options.structureRowData) {
+		// still in experimental
+		
+		flatData.data2DStructured = flatData.data2D;
+		
+		for (var i in flatData.data2DStructured) {
+			var values = flatData.data2DStructured[i].values;
+			flatData.data2DStructured[i].values = org_scn_community_databound.arrayToObject(values);
+		}
+		
+		// flatData.data2DStructured["values"] = com_schaeffler.arrayToObject(flatData.data2DPlain);
+	}
+	
 	return flatData;
+};
+
+org_scn_community_databound.arrayToObject = function (array) {
+	var obj = {}
+	
+	for (var i in array) {
+		obj[""+i] = array[i];
+	}
+	
+	return obj;
 };
 
 org_scn_community_databound.getSampleDataFlat = function (pathInfo, callBack, afterPrepare) {
@@ -1275,7 +1300,6 @@ org_scn_community_databound.applyConditionalFormats = function (flatData, opts) 
 	for(var mrI=0;mrI<flatData.data2D.length;mrI++){
 		flatData.data2DStructured["formats"].push(flatData.data2D[mrI]["formats"]);	
 	}
-	
 
 	return 0;
 };
@@ -1288,4 +1312,33 @@ org_scn_community_databound.checkSimpleFormatingRule = function (rule, content, 
 	}
 	
 	return "no";
+};
+
+org_scn_community_databound.updateCentralDataStorage = function (provisioner, data) {
+	org_scn_community_databound.centralDataStorage[provisioner.oComponentProperties.id] = data;
+	
+	// fire events..
+	var eventReceivers = org_scn_community_databound.centralEventStorage[provisioner.oComponentProperties.id]
+	if(eventReceivers) {
+		for (var i in eventReceivers) {
+			if(eventReceivers[i].onProvisionerDataChangeEvent) {
+				eventReceivers[i].onProvisionerDataChangeEvent();
+			}
+		}
+	}
+};
+
+org_scn_community_databound.registerCentralEventReceiver = function (provisionerName, receiverObject) {
+	if(!receiverObject.dataProvisioners) {
+		receiverObject.dataProvisioners = {};
+	}
+	
+	if(!receiverObject.dataProvisioners[provisionerName]) {
+		receiverObject.dataProvisioners[provisionerName] = true;
+		
+		if(org_scn_community_databound.centralEventStorage[provisionerName] == undefined) {
+			org_scn_community_databound.centralEventStorage[provisionerName] = [];
+		}
+		org_scn_community_databound.centralEventStorage[provisionerName].push(receiverObject);
+	}		
 };
