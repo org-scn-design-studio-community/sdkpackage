@@ -31,6 +31,8 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 	var saveDaylightSaving		= null;
 	var update_interval 		= null;
 	var $div 					= null;
+	var interval_id				= null;
+	var identifier				= null;
 	
 	/**
 	 * @desc First function called during SAP Design Studio Plugin Lifecycle
@@ -48,10 +50,10 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 	 */
 	this.afterUpdate = function(){
 		if($div === null){
-			var identifier = "convista_time_container_"+makeid();
+			identifier = "convista_time_container_"+makeid();
 			this.$().append('<div id="'+identifier+'">'+calcTime(offset)+'</div>');
 			$div = document.getElementById(identifier);
-			setInterval(function(){
+			interval_id = setInterval(function(){
 				$div.innerHTML = calcTime(offset);
 			}
 			, update_interval);
@@ -61,7 +63,11 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 	/**
 	 * @function componentDeleted
 	 */
-	this.componentDeleted = function(){};
+	this.componentDeleted = function(){
+		$div = null;
+		clearInterval(interval_id);
+		this.$().remove('#'+identifier);
+	};
 	
 	// function to calculate local time
 	// in a different city
@@ -84,7 +90,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 	    
 	    //handle daylight saving
 	    if (d.dst() && saveDaylightSaving){
-	    	offset += 1;
+	    	offset = parseInt(offset)+1;
 	    }
 	    
 	    // create new Date object for different city
