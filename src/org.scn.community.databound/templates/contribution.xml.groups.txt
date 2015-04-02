@@ -4,5 +4,5 @@
 		title="Scn Community Data Bound"/>
 
 	<group
-		id="ScnCommunityCharMaps"
-		title="Scn Community Charts & Maps"/>
+		id="ScnCommunityChartMaps"
+		title="Scn Community Charts and Maps"/>

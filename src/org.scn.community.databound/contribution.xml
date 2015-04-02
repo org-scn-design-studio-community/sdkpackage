@@ -191,6 +191,10 @@
 		id="ScnCommunityDataBound"
 		title="Scn Community Data Bound"/>
 
+	<group
+		id="ScnCommunityChartMaps"
+		title="Scn Community Charts and Maps"/>
+
 <component id="Choropleth" 
 	title="Choropleth Map"
 	icon="res/Choropleth/Choropleth.png"
@@ -1526,7 +1530,7 @@ __n__}
 <component
 	id="MultiLevelDropDown"
 	title="Multi Level DropDown Menu"
-	icon="res/MultiLevelDropDown/dp.gif"
+	icon="res/MultiLevelDropDown/MultiLevelDropDown.gif"
 	handlerType="div"
 	propertySheetPath="res/MultiLevelDropDown/aps/MultiLevelDropDown.html"
 	databound="true"
@@ -1634,7 +1638,7 @@ __n__}
 	title="Nice Chart"
 	icon="res/NiceChart/NiceChart.png"
 	handlerType="div"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityChartMaps"
 	propertySheetPath="res/NiceChart/aps/NiceChartPropertyPage.html"
 	databound="true"
 >	
@@ -2342,7 +2346,7 @@ __n__}
 		icon="res/Table2D/Table2D.png"
 		handlerType="div"
 		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
-		group="ScnCommunityChartMaps"
+		group="ScnCommunityDataBound"
 		databound="true"
 >
 	<jsInclude>res/require_loader.js</jsInclude>
