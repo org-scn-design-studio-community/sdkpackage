@@ -2,7 +2,7 @@
 <component
 	id="MultiLevelDropDown"
 	title="Multi Level DropDown Menu"
-	icon="res/MultiLevelDropDown/dp.gif"
+	icon="res/MultiLevelDropDown/MultiLevelDropDown.gif"
 	handlerType="div"
 	propertySheetPath="res/MultiLevelDropDown/aps/MultiLevelDropDown.html"
 	databound="true"

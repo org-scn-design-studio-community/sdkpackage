@@ -2,23 +2,38 @@
 <head>
 <link rel="stylesheet" type="text/css" href="../../doc.css">
 <link rel="stylesheet" type="text/css" href="../../tables.css">
+<script id="sap-ui-bootstrap" type="text/javascript" 
+      /*src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"*/
+      src="https://sapui5.hana.ondemand.com/sdk/resources/sap-ui-core.js"
+      data-sap-ui-theme="sap_bluecrystal" data-sap-ui-libs="sap.m,sap.ui.commons,sap.suite.ui.commons,sap.ui.ux3"></script>
+<script type="text/javascript" src="../js/ComponentMain.js"></script>
+
 <title>%COMPONENT_TITLE% - SCN Design Studio Community</title>
 </head>
 <body class="comp-body">
 <div class="comp-main">
 
-	<div class="component-back">
-		<a href="../index.html" target="_top">show list of all components</a>
-	</div>
-	<div class="component-name">
+ 	<div class="component-name">
 	%COMPONENT_NAME% [%COMPONENT_GROUP%]
 	</div>
 	<div class="component-title">
 	%COMPONENT_TITLE%
 	</div>
 
-	%CUSTOM_HTML%
+<div id="componentnav"></div>
 
+<!-- 	<div class="component-back">
+		<a href="../index.html" target="_top">show list of all components</a>
+	</div>
+ -->
+
+	<div id="intro">Work in progress ... Area of improvement.<br><br>%CUSTOM_HTML%</div>
+	<div id="blogs"hidden="true">Work In Progress .. here we get some Blogs with this component, start blogging on SCN already <br>and <br>
+	open an issue in the <a href="https://github.com/org-scn-design-studio-community/sdkhelp/issues">sdkhelp</a> repository with label <b>blog</b></div>
+	<div id="examples" hidden="true">Work In Progress .. here we get more Application examples with this component, do you have some?<br>and <br>
+	open an issue in the <a href="https://github.com/org-scn-design-studio-community/sdkhelp/issues">sdkhelp</a> repository with label <b>example</b></div>
+	<div id="about" hidden="true">this part will be later generated from component information</div>
+	<div id="technical" hidden="true">
 	<br/>
 	<div class="component-properties">VISIBLE PROPERTIES</div>
 
@@ -67,7 +82,7 @@
 	<TABLE width="100%" class="">
 	%FUNCTION_ENTRY_FULL%
 	</TABLE>
-
+	</div>
 </div>
 </body>
 
@@ -76,6 +91,13 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  function tOL(url, label) {
+	  if(ga) {ga('send', 'event', 'area', 'select', label, {'hitCallback':function () {
+		 // todo
+	     }});} else {
+	     // todo
+	     }};
 
   ga('create', 'UA-61231710-1', 'auto');
   ga('send', 'pageview');

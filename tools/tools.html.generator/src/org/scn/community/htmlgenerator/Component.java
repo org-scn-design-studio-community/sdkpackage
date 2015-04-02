@@ -451,4 +451,11 @@ public class Component {
 			Helpers.copyFileBin(new File(icon), targetFile);
 		}
 	}
+
+	public void createHelp(String iFileName) {
+		iFileName = iFileName.replace(".html", File.separator+"read.me");
+		iFileName = iFileName.replace("sdkinstall"+File.separator, "sdkhelp"+File.separator);
+		Helpers.string2File(iFileName, "Place Help Content Here\r\n"
+				+ "For details see blog http://scn.sap.com/community/businessobjects-design-studio/blog/2015/04/02/community-sdk--call-for-help-in-documentation");
+	}
 }

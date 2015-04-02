@@ -49,15 +49,13 @@ public class Main {
 		System.out.println("Components Count: " + allContributionXmls.size());
 
 		ArrayList<String> listEntries = new ArrayList<String>();
-		String template = Helpers.resource2String(Main.class, "list_entry.html");
-		String ui5Template = Helpers.resource2String(Main.class, "ui5list_entry.html");
+		String componentModelEntry = Helpers.resource2String(Main.class, "model_components_entry.tmpl");
 
 		String targetFolder = mainSrcFolder.getAbsolutePath().replace("src", "web");
 		targetFolder = targetFolder.replace("sdkpackage", "sdkinstall");
 		targetFolder = targetFolder + "/" + "components";
 
-		String templateList = Helpers.resource2String(Main.class, "list.html");
-		String ui5TemplateList = Helpers.resource2String(Main.class, "ui5list.html");
+		String componentModelTemplate = Helpers.resource2String(Main.class, "model_components.js.tmpl");
 		String castString = "";
 
 		for (Object element : allContributionXmls) {
@@ -74,22 +72,18 @@ public class Main {
 			iFileName = iFileName.toLowerCase(Locale.ENGLISH);
 
 			component.copyIcon(iFileName);
+			component.createHelp(iFileName);
 			
-			String templateCopy = template;
-			String ui5TemplateCopy = ui5Template;
-			templateCopy = templateCopy.replace("%COMPONENT_HTML_PACKAGE%", group);
-			templateCopy = templateCopy.replace("%COMPONENT_HTML_PAGE%", component.name.toLowerCase(Locale.ENGLISH));
-			templateCopy = templateCopy.replace("%COMPONENT_NAME%", component.title);
+			String componentModelEntryCopy = componentModelEntry;
 			
-			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_HTML_PACKAGE%", group);
-			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_HTML_PAGE%", group + "/" + component.name.toLowerCase(Locale.ENGLISH));
-			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_NAME%", component.name);
-			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_TITLE%", component.title);
-			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_ICON%", group + "/" + component.name.toLowerCase(Locale.ENGLISH) + ".png");
-			ui5TemplateCopy = ui5TemplateCopy.replace("%COMPONENT_PACKAGE%", group);
+			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_HTML_PACKAGE%", group);
+			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_HTML_PAGE%", group + "/" + component.name.toLowerCase(Locale.ENGLISH));
+			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_NAME%", component.name);
+			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_TITLE%", component.title);
+			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_ICON%", group + "/" + component.name.toLowerCase(Locale.ENGLISH) + ".png");
+			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_PACKAGE%", group);
 
-			templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%", templateCopy + "\r\n" + " %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%");
-			ui5TemplateList = ui5TemplateList.replace(" %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%", ui5TemplateCopy + "\r\n" + " %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%");
+			componentModelTemplate = componentModelTemplate.replace("%COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%", componentModelEntryCopy + "\r\n" + " %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%");
 			Helpers.string2File(iFileName, component.toHtml());
 
 			String castStringFromComponent = component.toCastString();
@@ -110,11 +104,9 @@ public class Main {
 
 		Helpers.string2File(realZtlFileForComponentManager, contentOfRealZtl);
 		
-		templateList = removeReplacements(templateList);
-		ui5TemplateList = removeReplacements(ui5TemplateList);
+		componentModelTemplate = removeReplacements(componentModelTemplate);
 
-		Helpers.string2File(targetFolder + "/index.html", templateList);
-		Helpers.string2File(targetFolder + "/list.html", ui5TemplateList);
+		Helpers.string2File(targetFolder + "/model/components.js", componentModelTemplate);
 
 		System.out.println();
 		System.out.println("---------------------------------------------------------");
