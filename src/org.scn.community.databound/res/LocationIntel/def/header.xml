@@ -5,7 +5,7 @@
 	handlerType="div"
 	propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
 	databound = "true"
-	group="ScnCommunitycomponent">
+	group="ScnCommunityChartMaps">
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>

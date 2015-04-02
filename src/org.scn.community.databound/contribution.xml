@@ -197,7 +197,7 @@
 	handlerType="div"
 	propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
 	databound = "true"
-	group="ScnCommunitycomponent">
+	group="ScnCommunityChartMaps">
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
@@ -872,7 +872,7 @@
 		icon="res/HexBin/HexBin.png"
 		handlerType="div"
 		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
-		group="ScnCommunitycomponent"
+		group="ScnCommunityChartMaps"
 		databound="true"
 >
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -1165,7 +1165,7 @@ __n__}
 	handlerType="div"
 	propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
 	databound = "true"
-	group="ScnCommunitycomponent">
+	group="ScnCommunityChartMaps">
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
@@ -1374,7 +1374,7 @@ __n__}
 		icon="res/MarimekkoChart/MarimekkoChart.png"
 		handlerType="div"
 		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
-		group="ScnCommunitycomponent"
+		group="ScnCommunityChartMaps"
 		databound="true"
 >
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -2081,7 +2081,7 @@ __n__}
 		icon="res/ScatterPlot/ScatterPlot.png"
 		handlerType="div"
 		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
-		group="ScnCommunitycomponent"
+		group="ScnCommunityChartMaps"
 		databound="true"
 >
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -2342,7 +2342,7 @@ __n__}
 		icon="res/Table2D/Table2D.png"
 		handlerType="div"
 		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
-		group="ScnCommunitycomponent"
+		group="ScnCommunityChartMaps"
 		databound="true"
 >
 	<jsInclude>res/require_loader.js</jsInclude>

@@ -5,7 +5,7 @@
 		icon="res/Table2D/Table2D.png"
 		handlerType="div"
 		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
-		group="ScnCommunitycomponent"
+		group="ScnCommunityDataBound"
 		databound="true"
 >
 	<jsInclude>res/require_loader.js</jsInclude>

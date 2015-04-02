@@ -5,7 +5,7 @@
 		icon="res/ScatterPlot/ScatterPlot.png"
 		handlerType="div"
 		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
-		group="ScnCommunitycomponent"
+		group="ScnCommunityChartMaps"
 		databound="true"
 >
 	<jsInclude>res/require_loader.js</jsInclude>

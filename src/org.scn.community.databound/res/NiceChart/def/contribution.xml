@@ -4,7 +4,7 @@
 	title="Nice Chart"
 	icon="res/NiceChart/NiceChart.png"
 	handlerType="div"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityChartMaps"
 	propertySheetPath="res/NiceChart/aps/NiceChartPropertyPage.html"
 	databound="true"
 >	
