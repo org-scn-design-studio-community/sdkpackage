@@ -617,7 +617,8 @@ public class Component {
 				changesEntry.put("filterValue", "change");
 
 				changesEntry.put("test-status", "untested");
-				changesEntry.put("test-comment", "some component content has been changed");
+				changesEntry.put("test-comment", "some component content has been changed, see details");
+				changesEntry.put("test-icon", "sap-icon://notification");
 				
 				JSONArray changesList = new JSONArray();
 			

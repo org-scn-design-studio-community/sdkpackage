@@ -214,7 +214,7 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		return this.date.getUTCDate();
 	*}
 
-	int getDayName() {*
+	String getDayName() {*
 		this.internal_initializeNow();
 
 		this.date.recalculate();
@@ -253,7 +253,7 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		return this.date.getUTCMonth() + 1;
 	*}
 
-	int getMonthName() {*
+	String getMonthName() {*
 		this.internal_initializeNow();
 
 		this.date.recalculate();
