@@ -54,7 +54,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
 		}
 		
 		// resize function
-		that.onAfterRendering = function() {
+		that.onAfterRendering = function(forcedReload) {
 			var jqThis = that.$();
 			var docJqThis = $( window );
 
@@ -65,7 +65,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
 			if(containerWidth == undefined && containerHeight == undefined) {
 				// probably not visible
 				
-				if(lVisibility != false) {
+				if(lVisibility != false || forcedReload) {
 					that.setHtmlVisible(false);
 					that.fireDesignStudioPropertiesChanged(["htmlVisible"]);
 					that.fireDesignStudioEvent("onSizeChanged");
@@ -75,7 +75,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
 			}
 			
 			var lVisibilityChanged = false;
-			if(lVisibility != true) {
+			if(lVisibility != true || forcedReload) {
 				that.setHtmlVisible(true);
 				lVisibilityChanged = true;
 			}
@@ -86,7 +86,8 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
 			if(containerWidth != that._containerWidth ||
 				containerHeight != that._containerHeight ||
 				windowWidth != that._windowWidth ||
-				windowHeight != that._windowHeight){
+				windowHeight != that._windowHeight
+				|| forcedReload == true){
 				
 				that._containerWidth = containerWidth;
 				that._containerHeight = containerHeight;
@@ -118,17 +119,19 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
 
 		var information = navigator;
 
+		var forcedReload = false;
 		var reloadRequest = this.getReloadRequest();
 		if(reloadRequest != "X") {
 			if(reloadRequest != that._oldReloadRequest) {
 				that._oldReloadRequest = reloadRequest;
-				that.onAfterRendering();
+				forcedReload = true;
+				that.onAfterRendering(forcedReload);
 			}
 		} else {
 			that._oldReloadRequest = "X";
 		}
 		
-		if(that.informationJson == undefined) {
+		if(that.informationJson == undefined || forcedReload) {
 			that.informationJson = {};
 
 			that.informationJson.appCodeName = information.appCodeName;
@@ -182,7 +185,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ClientInfo
 			that.fireDesignStudioEvent("onInformationAvailable");
 		}
 		
-		if(that.getReadLocation() && that.geoJson == undefined) {
+		if(that.getReadLocation() && (that.geoJson == undefined || forcedReload)) {
 			var options = {
 			  enableHighAccuracy: true,
 			  timeout: 5000,

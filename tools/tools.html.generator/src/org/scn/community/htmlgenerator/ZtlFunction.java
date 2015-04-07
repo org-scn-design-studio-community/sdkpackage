@@ -1,15 +1,18 @@
 package org.scn.community.htmlgenerator;
 
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.scn.community.utils.Helpers;
 
+import sun.security.provider.MD5;
+
 public class ZtlFunction {
 
 	private final String currentFunction;
 
-	private String name;
+	String name;
 
 	private String returnType;
 
@@ -195,4 +198,25 @@ public class ZtlFunction {
 		return template;
 	}
 
+	public String toPropertyValue() {
+		String value = "";
+		
+		value = value + this.returnType + "|";
+		if (this.parameters.size() > 0) {
+			value = value + "[";
+			for (ZtlParameter parameter : this.parameters) {
+				if (parameter.isOptional) {
+					value = value + "("+parameter.name+","+parameter.type + ");";
+				} else  {
+					value = value + parameter.name+","+parameter.type + ";";
+				}
+			}
+			value = value.substring(0, value.length()-1);
+			value = value + "]|";
+		}
+		
+		value = value + "CONT:" + Helpers.hashString(this.content) + "|";
+		
+		return value;
+	}
 }

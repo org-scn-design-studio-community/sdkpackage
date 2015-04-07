@@ -56,6 +56,7 @@ org_scn_community_databound.initializeOptions = function () {
 	options.allKeys = false;
 	options.idPrefix = "";
 	options.iDisplayText = "Text";
+	options.iNullValues = "Use";
 	options.ignoreResults = false;
 	options.ignoreExpandedNodes = false;
 	options.useMockData = true;
@@ -457,7 +458,12 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 								}
 							}
 
-							availableMembers = availableMembers + "|" + memberJson.name + "|";
+							if(options.iNullValues = "Hide" && memberJson.valueSign == "0") {
+								// no, this one is not available in this case
+							} else {
+								availableMembers = availableMembers + "|" + memberJson.name + "|";	
+							}
+							
 						} else {
 							// the member is not in the resultset, cannot be selected in drill down mode
 							memberJson.valueSign = "0";
@@ -477,8 +483,12 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 						memberJson.display = memberJson.text;
 					}
 
-					oData[name].items.push(memberJson);
-					oData[name].availableMembers = availableMembers;
+					if(options.iNullValues = "Hide" && memberJson.valueSign == "0") {
+						// skip this value in display
+					} else {
+						oData[name].items.push(memberJson);
+						oData[name].availableMembers = availableMembers;
+					}
 				}
 			}
 		}
@@ -487,36 +497,39 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 			brands: {
 				name: "BRANDS",
 				text: "Brands",
+				display: "Brands",
 				items: [
-				   {text : "BMW", name: "1", enabled: true, value: 30.45, valueS: "30.45", valueSign: "+"},
-			 	   {text : "AUDI", name: "2", enabled: true, value: -40.72, valueS: "-40.72", valueSign: "-"}
+				   {display : "BMW", text : "BMW", name: "1", enabled: true, value: 30.45, valueS: "30.45", valueSign: "+"},
+			 	   {display : "AUDI", text : "AUDI", name: "2", enabled: true, value: -40.72, valueS: "-40.72", valueSign: "-"}
 				]
 			}
  			,
  			models: {
 				name: "MODELS",
 				text: "Models",
+				display: "Models",
 				items: [
-	 				{text : "320d", name: "1", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
-	 				{text : "325i", name: "2", enabled: true, value: -6.43, valueS: "-6.43", valueSign: "-"},
-	 				{text : "330d", name: "3", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
-	 				{text : "330i", name: "4", enabled: true, value: 1.75, valueS: "1.75", valueSign: "+"},
-	 				{text : "335i", name: "5", enabled: true, value: -22.42, valueS: "-22.42", valueSign: "-"},
-	 				{text : "A1", name: "6", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
-	 				{text : "A3", name: "7", enabled: true, value: 18.32, valueS: "18.32", valueSign: "+"},
-	 				{text : "A4", name: "8", enabled: true, value: -7.01, valueS: "-7.01", valueSign: "-"},
-	 				{text : "A5", name: "9", enabled: true, value: 2.45, valueS: "2.45", valueSign: "+"},
-	 				{text : "A6", name: "10", enabled: true, value: 6.12, valueS: "6.12", valueSign: "+"}
+	 				{display : "320d", text : "320d", name: "1", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+	 				{display : "325i", text : "325i", name: "2", enabled: true, value: -6.43, valueS: "-6.43", valueSign: "-"},
+	 				{display : "330d", text : "330d", name: "3", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+	 				{display : "330i", text : "330i", name: "4", enabled: true, value: 1.75, valueS: "1.75", valueSign: "+"},
+	 				{display : "335i", text : "335i", name: "5", enabled: true, value: -22.42, valueS: "-22.42", valueSign: "-"},
+	 				{display : "A1", text : "A1", name: "6", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+	 				{display : "A3", text : "A3", name: "7", enabled: true, value: 18.32, valueS: "18.32", valueSign: "+"},
+	 				{display : "A4", text : "A4", name: "8", enabled: true, value: -7.01, valueS: "-7.01", valueSign: "-"},
+	 				{display : "A5", text : "A5", name: "9", enabled: true, value: 2.45, valueS: "2.45", valueSign: "+"},
+	 				{display : "A6", text : "A6", name: "10", enabled: true, value: 6.12, valueS: "6.12", valueSign: "+"}
 	 			]
 			}
  			,
  			types: {
 				name: "TYPES",
 				text: "Types",
+				display: "Types",
 				items: [
-					{text : "Limousine", name: "1", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
-					{text : "Coupé", name: "2", enabled: true, value: -19.54, valueS: "-19.54", valueSign: "-"},
-					{text : "Cabrio", name: "3", enabled: true, value: 2.42, valueS: "2.42", valueSign: "+"}
+					{display : "Limousine", text : "Limousine", name: "1", enabled: true, value: 0.00, valueS: "0.00", valueSign: "0"},
+					{display : "Coupé", text : "Coupé", name: "2", enabled: true, value: -19.54, valueS: "-19.54", valueSign: "-"},
+					{display : "Cabrio", text : "Cabrio", name: "3", enabled: true, value: 2.42, valueS: "2.42", valueSign: "+"}
 				]
  			}
  		};

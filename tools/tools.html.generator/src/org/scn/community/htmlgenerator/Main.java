@@ -83,8 +83,10 @@ public class Main {
 			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_ICON%", group + "/" + component.name.toLowerCase(Locale.ENGLISH) + ".png");
 			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_PACKAGE%", group);
 
+			component.serializeProperties(iFileName);
+
 			componentModelTemplate = componentModelTemplate.replace("%COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%", componentModelEntryCopy + "\r\n" + " %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%");
-			Helpers.string2File(iFileName, component.toHtml());
+			Helpers.string2File(iFileName, component.toHtml(iFileName));
 
 			String castStringFromComponent = component.toCastString();
 			castString = castString + castStringFromComponent + "\r\n";

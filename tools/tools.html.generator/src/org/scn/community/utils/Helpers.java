@@ -9,13 +9,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.nio.charset.Charset;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
 public class Helpers {
 
@@ -124,7 +128,7 @@ public class Helpers {
 		}
 		return iFileName;
 	}
-
+	
 	public static String fixToUtf8(String iText) {
 		if (iText == null) {
 			return null;
@@ -343,5 +347,96 @@ public class Helpers {
 
 	public static String makeFirstUpper(String value) {
 		return value.substring(0,1).toUpperCase(Locale.ENGLISH)  +value.substring(1);
+	}
+	
+	public static File[] listFiles(String iFilePath) {
+		File parent = new File(iFilePath);
+
+		if (parent.exists() && parent.canRead() && parent.isDirectory()) {
+			File[] children = parent.listFiles();
+			return children;
+		}
+		
+		return new File[0];
+	}
+	
+	public static String hashString(String message) {
+		try {
+			MessageDigest digest = MessageDigest.getInstance("MD5");
+			byte[] hashedBytes = digest.digest(message.getBytes("UTF-8"));
+	
+			return convertByteArrayToHexString(hashedBytes);
+		} catch (Exception ex) {
+			throw new RuntimeException("Could not generate hash from String", ex);
+		}
+	}
+	
+	public static String convertByteArrayToHexString(byte[] arrayBytes) {
+	    StringBuffer stringBuffer = new StringBuffer();
+	    for (int i = 0; i < arrayBytes.length; i++) {
+	        stringBuffer.append(Integer.toString((arrayBytes[i] & 0xff) + 0x100, 16)
+	                .substring(1));
+	    }
+	    return stringBuffer.toString();
+	}
+	
+	public static Properties loadProperties(String fileName) {
+		Properties result = new Properties();
+		try {
+			Reader reader = new InputStreamReader(new FileInputStream(fileName), "UTF-8"); //$NON-NLS-1$
+			result.load(reader);
+			reader.close();
+		} catch (IOException e) {
+			return null;
+		}
+		return result;
+	}
+
+	public static void saveProperties(String iFileName, Properties properties, boolean removeComments) {
+		iFileName = fixFileName(iFileName);
+
+		try {
+			File f = new File(iFileName);
+			if (!f.exists()) {
+				f.getParentFile().mkdirs();
+			}
+			OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(iFileName), "UTF-8"); //$NON-NLS-1$
+			properties.store(writer, "");
+			writer.close();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
+		if(removeComments) {
+			List<String> new2List = new ArrayList<String>();
+			List<String> file2List = file2List(iFileName);
+			for (String line : file2List) {
+				if(line.indexOf("#") != 0) {
+					new2List.add(line);
+				}
+			}
+			
+			Helpers.list2File(iFileName, new2List, "\r\n");
+		}
+	}
+	
+	public static void list2File(String absolutePath, List<String> contentOut, String separator) {
+		if (contentOut.size() == 0) {
+			string2File(absolutePath, "");
+			return;
+		}
+
+		StringBuffer buffer = new StringBuffer();
+
+		int lineNumber = 1;
+		for (String line : contentOut) {
+			if (lineNumber > 1) {
+				buffer.append(separator);
+			}
+			buffer.append(line);
+			lineNumber++;
+		}
+
+		string2File(absolutePath, buffer.toString());
 	}
 }

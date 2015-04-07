@@ -439,6 +439,21 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	*}
 	
 	/**
+	 * Resets the actual data of all dimensions (and causes reload of all members in "reloadDataSource" method.
+	 * Use it together like below
+	 * <example>
+	 * You want to reload actual members again
+	 * <code>
+	 * FACETFILTER_1.resetDimensions();
+	 * FACETFILTER_1.reloadSelection();
+	 * </code>
+	 * </example>
+	 */
+	void resetDimensions() {*
+		this.oldDimensionKeys = "";
+	*}
+	
+	/**
 	 * This function must be used for initialization and in case the drilldown structure has been changed.
 	 * You should trigger it once and ideally when filters are NOT set on dimensions, other case you will see only members which are available in resultset (depends on your setting "member selection" on dimension level).
 	 * When to use this method?
@@ -526,7 +541,7 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		}
 		/* exiting general block*/
 	*}
-	
+
 	/**
 	 * This function can be used after the filter in data source was changed to update the component.
 	 * You should be trigered every time the filter change occurs, therefore the event in Data Source -> onResultSetChanged() is a good place.

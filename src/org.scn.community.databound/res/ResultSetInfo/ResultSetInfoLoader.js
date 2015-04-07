@@ -18,6 +18,15 @@
  */
 
 (function() {
+
+	org_scn_community_require.knownComponents.databound.ResultSetInfo = {
+		name: "databound.ResultSetInfo",
+		requireName: "databoundresultsetinfo",
+		fullComponentName: "org.scn.community.databound.ResultSetInfo",
+		script: "org.scn.community.databound/res/ResultSetInfo/ResultSetInfo",
+		min: false
+	};
+		
 	 // this line below needs to be adjusted
 	 var myComponentData = org_scn_community_require.knownComponents.databound.ResultSetInfo;
 	 

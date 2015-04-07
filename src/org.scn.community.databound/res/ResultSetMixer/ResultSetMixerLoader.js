@@ -18,6 +18,15 @@
  */
 
 (function() {
+
+	org_scn_community_require.knownComponents.databound.ResultSetMixer = {
+		name: "databound.ResultSetMixer",
+		requireName: "databoundresultsetmixer",
+		fullComponentName: "org.scn.community.databound.ResultSetMixer",
+		script: "org.scn.community.databound/res/ResultSetMixer/ResultSetMixer",
+		min: false
+	};
+	
 	 // this line below needs to be adjusted
 	 var myComponentData = org_scn_community_require.knownComponents.databound.ResultSetMixer;
 	

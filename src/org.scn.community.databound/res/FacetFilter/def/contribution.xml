@@ -103,6 +103,16 @@
 	</property>
 
 	<property
+		id="DZeroValuesMode"
+		title="Zero-Values Mode"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Show</possibleValue>
+			<possibleValue>Hide</possibleValue>
+	</property>
+
+	<property
 		id="DCustomDimensions"
 		title="Custom Dimensions as Array [...]"
 		type="String"
@@ -141,6 +151,7 @@
 		<defaultValue property="DSortingType">Default</defaultValue>
 		<defaultValue property="DSortingDirection">Descending</defaultValue>
 		<defaultValue property="DClearOthers">true</defaultValue>
+		<defaultValue property="DZeroValuesMode">Show</defaultValue>
 		
 		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
 		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
