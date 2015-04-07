@@ -1,4 +1,7 @@
-class org.scn.community.prototypes.RapidPrototype extends Component {
+/**
+ * Class for RapidPrototype 
+ */
+class org.scn.community.prototypes.RapidPrototype extends org.scn.community.shared.Component {
 	/* Returns the current value */
 	String getHTML() {*
 		return this.HTML;

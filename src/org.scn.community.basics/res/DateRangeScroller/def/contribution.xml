@@ -1,0 +1,143 @@
+
+<component
+	id="DateRangeScroller"
+	title="Date Range Scroller"
+	handlerType="sapui5"
+	icon="res/DateRangeScroller/DateRangeScroller.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>os/sapui5/suite/mapping.js</jsInclude>
+	<jsInclude>os/date/DateFormat.js</jsInclude>
+	<jsInclude>res/DateRangeScroller/DateRangeScroller.js</jsInclude>
+	
+	<property
+		id="DDate"
+		title="Date (yyyymmdd)"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+
+  <property
+		id="DSpecialDuration"
+		title="Duration of Custom Range (Custom*)"
+		type="int"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="DSpecialDay"
+		title="Day of Week to Start (CustomWeek)"
+		tooltip="Week Day, 0 - Sunday to 6 - Saturday"
+		type="int"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="DStartDate"
+		title="Start Date (yyyymmdd)"
+		type="String"
+		group="Display" 
+		visible="false"
+	>
+	</property>
+
+	<property
+		id="DEndDate"
+		title="Date (yyyymmdd)"
+		type="String"
+		group="Display" 
+		visible="false"
+	>
+	</property>
+
+	<property
+		id="DViewType"
+		title="Range View Type"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+		<possibleValue>Day</possibleValue>
+		<possibleValue>Week</possibleValue>
+		<possibleValue>Month</possibleValue>
+		<possibleValue>Year</possibleValue>
+		<possibleValue>CustomWeek</possibleValue>
+		<possibleValue>CustomDuration</possibleValue>
+	</property>
+
+	<property
+		id="DLangFormat"
+		title="Language Dependent Format"
+		type="boolean"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+
+	<property
+		id="DLangPattern"
+		title="Custom Format Pattern"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="DLangStyle"
+		title="Custom Format Style"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+	  <possibleValue>short</possibleValue>
+		<possibleValue>medium</possibleValue>
+		<possibleValue>long</possibleValue>
+	</property>
+
+  <property
+		id="DLangRelative"
+		title="Custom Format Relative"
+		type="boolean"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="editable"
+		title="Editable"
+		type="boolean"
+		group="Display" 
+		visible="false"
+	>
+	</property>
+	
+	<property
+		id="onChange"
+		title="On Change"
+		type="ScriptText"
+		group="Events" 
+		visible="true"
+	>
+	</property>
+	
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">30</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
+		<defaultValue property="DViewType">Week</defaultValue>
+		<defaultValue property="DSpecialDay">0</defaultValue>
+		<defaultValue property="DSpecialDuration">14</defaultValue>
+		<defaultValue property="DLangFormat">false</defaultValue>
+		<defaultValue property="DLangStyle">short</defaultValue>
+		<defaultValue property="DLangRelative">false</defaultValue>
+	</initialization>
+</component>

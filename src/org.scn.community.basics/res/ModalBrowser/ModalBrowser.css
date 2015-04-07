@@ -1,0 +1,6 @@
+.utilPackBrowserPopup.invisible {
+	display : none;
+}
+.utilPackBrowserPopup.designTimeInvisible {
+	opacity : .4;
+}

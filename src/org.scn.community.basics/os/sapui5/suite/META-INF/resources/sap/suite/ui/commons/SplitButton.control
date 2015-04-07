@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>SplitButton</name>
+	<documentation>The Split Button Control is a composite control that consists of a default-action Button and a Menu Button control. 
+The default-action button control represents a simple push button. It is used for initiating actions, such as save or print. It can contain some text, an icon, or both; the order of the two can be configured. The action initiated by this button is considered to be the default action for the control, and it must be one of the selections defined in the Menu Button menu.
+The Menu Button control is a button that opens a menu upon user's click. MenuButton is a composition of the Menu control and the Button control and thus inheriting all features. When a menu item is selected by the user, MenuButton throws an event called itemSelected. The event transfers the itemId of the selected item. As an alternative, the button press event can be used which has a similar behavior.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="visible" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Invisible split buttons are not rendered</documentation>
+		</property>
+		<property group="Behavior" name="enabled" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Boolean property to enable the control (default is true). Buttons that are disabled have other colors than enabled ones, depending on custom settings.</documentation>
+		</property>
+		<property group="Appearance" name="lite" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>The split button is rendered as lite split button.</documentation>
+		</property>
+		<property group="Appearance" name="style" type="sap.ui.commons/ButtonStyle" defaultValue="sap.ui.commons.ButtonStyle.Default">
+			<documentation>Style of the control (e.g. emphasized, accept)</documentation>
+		</property>
+		<property group="Appearance" name="styled" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Indicatied if the button is styled. If not it is rendered as native HTML-button. In this case a custom styling can be added usig addStyleClass.</documentation>
+		</property>
+		<property group="Appearance" name="iconFirst" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>If set to true (default), the display sequence is 1. icon 2. control text .</documentation>
+		</property>
+		<property group="Appearance" name="text" type="sap.ui.core/string" defaultValue="''">
+			<documentation>Text to be displayed for the action button.</documentation>
+		</property>
+		<property group="Appearance" name="icon" type="sap.ui.core/URI" defaultValue="''">
+			<documentation>Icon to be displayed as graphical element within the action button.</documentation>
+		</property>
+	</properties>
+	<aggregations>
+		<aggregation cardinality="0..1" name="menu" type="sap.ui.commons/Menu">
+			<documentation>Menu that shall be opened when the menu part of the button is clicked</documentation>
+		</aggregation>
+	</aggregations>
+</control>

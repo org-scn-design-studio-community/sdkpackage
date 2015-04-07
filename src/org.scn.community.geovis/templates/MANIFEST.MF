@@ -1,0 +1,2 @@
+Bundle-Name: Design Studio SCN Community Geovisualizations
+Bundle-SymbolicName: org.scn.community.geovis;singleton:=true

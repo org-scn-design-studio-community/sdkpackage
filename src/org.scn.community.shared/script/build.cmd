@@ -13,11 +13,21 @@ del ..\contribution.ztl /q
 type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\templates\contribution.ztl.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.js.txt ^
+..\res\ComponentsArrays\contribution.ztl ^
+..\res\ConstBrowser\contribution.ztl ^
+..\res\ConstButtonStyle\contribution.ztl ^
+..\res\ConstContentMode\contribution.ztl ^
+..\res\ConstSelectionState\contribution.ztl ^
 ..\res\ConstSortDirection\contribution.ztl ^
+..\res\ConstSortType\contribution.ztl ^
+..\res\DimensionMember\contribution.ztl ^
 ..\res\KeyLabel\contribution.ztl ^
+..\res\KeyText\contribution.ztl ^
 ..\res\KeyLabelValue\contribution.ztl ^
 ..\res\KeyLabelValueProperty\contribution.ztl ^
+..\res\NameValue\contribution.ztl ^
 ..\res\ValueText\contribution.ztl ^
+..\def_shared\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 

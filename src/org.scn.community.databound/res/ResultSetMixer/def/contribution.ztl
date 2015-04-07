@@ -1,0 +1,131 @@
+
+/**
+ * Generated ZTL Class for Result Set Mixer (Test Phase)
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.ResultSetMixer extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Reloads the Component (with re-rendering)
+	 */	
+	void reload (){*
+		this.DReloadTrigger = this.DReloadTrigger + 0.0001;
+	*}
+
+	/**
+	 * Sets Master Central Data Provisioner Property
+	 */	
+	void setMasterProvisioner( /* Result Set with Master Data */  String masterProvisioner){*
+		this.DMasterProvisioner = masterProvisioner;
+	*}
+
+	/**
+	 * Gets Master Central Data Provisioner Property
+	 */	
+	String getMasterProvisioner() {*
+		return this.DMasterProvisioner;
+	*}
+
+	/**
+	 * Sets Geometry of the Master Result Set Property
+	 */	
+	void setMasterGeometry( /* &nbsp; */  choice masterGeometry){*
+		this.DMasterGeometry = masterGeometry;
+	*}
+
+	/**
+	 * Gets Geometry of the Master Result Set Property
+	 */	
+	choice getMasterGeometry() {*
+		return this.DMasterGeometry;
+	*}
+
+	/**
+	 * Sets Slave Central Data Provisioner Property
+	 */	
+	void setSlaveProvisioner( /* Result Set with Slave Data for Selection */  String slaveProvisioner){*
+		this.DSlaveProvisioner = slaveProvisioner;
+	*}
+
+	/**
+	 * Gets Slave Central Data Provisioner Property
+	 */	
+	String getSlaveProvisioner() {*
+		return this.DSlaveProvisioner;
+	*}
+
+	/**
+	 * Sets Column Index for the Selection from Slave Result Set Property
+	 */	
+	void setSlaveColumnIndex( /* Which column should be selected from the slave result set */  int slaveColumnIndex){*
+		this.DSlaveColumnIndex = slaveColumnIndex;
+	*}
+
+	/**
+	 * Gets Column Index for the Selection from Slave Result Set Property
+	 */	
+	int getSlaveColumnIndex() {*
+		return this.DSlaveColumnIndex;
+	*}
+
+	/**
+	 * Sets Collect Multiple Matches Property
+	 */	
+	void setCollectMultipleMatches( /* Procedure what should happen when multiple matches are available */  choice collectMultipleMatches){*
+		this.DCollectMultipleMatches = collectMultipleMatches;
+	*}
+
+	/**
+	 * Gets Collect Multiple Matches Property
+	 */	
+	choice getCollectMultipleMatches() {*
+		return this.DCollectMultipleMatches;
+	*}
+
+	/**
+	 * Sets Content Condition to Read Slave Result Set Property
+	 */	
+	void setSlaveContentCondition( /* Under which condition should be the slave result set read (based on content or value) */  String slaveContentCondition){*
+		this.DSlaveContentCondition = slaveContentCondition;
+	*}
+
+	/**
+	 * Gets Content Condition to Read Slave Result Set Property
+	 */	
+	String getSlaveContentCondition() {*
+		return this.DSlaveContentCondition;
+	*}
+
+	/**
+	 * Sets Row Condition to Read Slave Result Set Property
+	 */	
+	void setSlaveRowCondition( /* Under which condition should be the slave result set read (based on contnet of header row key) */  String slaveRowCondition){*
+		this.DSlaveRowCondition = slaveRowCondition;
+	*}
+
+	/**
+	 * Gets Row Condition to Read Slave Result Set Property
+	 */	
+	String getSlaveRowCondition() {*
+		return this.DSlaveRowCondition;
+	*}
+
+	/**
+	 * Sets Column Condition to Read Slave Result Set Property
+	 */	
+	void setSlaveColumnCondition( /* Under which condition should be the slave result set read (based on contnet of header column key) */  String slaveColumnCondition){*
+		this.DSlaveColumnCondition = slaveColumnCondition;
+	*}
+
+	/**
+	 * Gets Column Condition to Read Slave Result Set Property
+	 */	
+	String getSlaveColumnCondition() {*
+		return this.DSlaveColumnCondition;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}

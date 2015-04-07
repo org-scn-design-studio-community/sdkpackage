@@ -1,0 +1,34 @@
+
+/**
+ * Class for ApplicationHeader
+ */
+class org.scn.community.prototypes.ApplicationHeaderO extends org.scn.community.shared.Component {
+	
+	/** Sets the user name that is displayed beside the welcome text. */
+	void setUserName(
+		/** User name */ String userName) {*
+		this.userName = userName;	
+	*}
+	
+	/** Returns the user name that is displayed beside the welcome text. */
+	String getUserName() {*
+		return this.userName;	
+	*}
+
+	/** Sets the text that is displayed beside the logo in the application header. */
+	void setLogoText(
+		/** Logo text */ String logoText) {*
+		this.logoText = logoText;	
+	*}
+	
+	/** Returns the text that is displayed beside the logo in the application header. */
+	String getLogoText() {*
+		return this.logoText;	
+	*}
+	
+	// @Visibility(private)
+	void private_beforeRender() {*
+		// APPLICATION.createInfoMessage("Name: " + APPLICATION.getInfo().name);
+	    this.appName = "OnBeforeRender: " + APPLICATION.getInfo().name;
+	*}
+}

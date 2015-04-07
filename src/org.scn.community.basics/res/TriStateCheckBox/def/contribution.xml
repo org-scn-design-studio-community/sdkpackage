@@ -1,0 +1,73 @@
+
+<component
+	id="TriStateCheckBox"
+	title="Tri State CheckBox"
+	icon="res/TriStateCheckBox/TriStateCheckBox.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/TriStateCheckBox/TriStateCheckBox.js</jsInclude>
+	<cssInclude>res/TriStateCheckBox/TriStateCheckBox.css</cssInclude>
+
+	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		tooltip="Enabled"
+		group="Display"
+		visible="true" />
+	<property
+		id="editable"
+		type="boolean"
+		title="Editable"
+		tooltip="Editable"
+		group="Display"
+		visible="true" />
+	<property
+		id="text"
+		type="String"
+		title="Value"
+		tooltip="Value"
+		group="Display"
+		visible="true" />
+	<property
+		id="tooltip"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true" />
+	<property
+		id="selectionState"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true">
+		<possibleValue>Checked</possibleValue>
+		<possibleValue>Unchecked</possibleValue>
+		<possibleValue>Mixed</possibleValue>
+	</property>
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
+		<defaultValue property="text">tri state value</defaultValue>
+		<defaultValue property="selectionState">Unchecked</defaultValue>
+	</initialization>
+</component>

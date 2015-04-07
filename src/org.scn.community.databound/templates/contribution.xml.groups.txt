@@ -2,3 +2,7 @@
 	<group
 		id="ScnCommunityDataBound"
 		title="Scn Community Data Bound"/>
+
+	<group
+		id="ScnCommunityChartMaps"
+		title="Scn Community Charts and Maps"/>

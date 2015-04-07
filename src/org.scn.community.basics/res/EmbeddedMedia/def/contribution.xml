@@ -1,0 +1,41 @@
+
+<component
+	id="EmbeddedMedia"
+	title="Embedded Media"
+	handlerType="div"
+	icon="res/EmbeddedMedia/EmbeddedMedia.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/EmbeddedMedia/EmbeddedMedia.js</jsInclude>
+	
+	<property
+		id="url"
+		title="Content Url"
+		tooltip="Url to be embedded as content"
+		type="String" />
+
+	<property
+		id="tag"
+		title="Tag to write"
+		tooltip="HTML Tag to write"
+		type="String"
+		visible="true"
+	 >
+		<possibleValue>embed</possibleValue>
+		<possibleValue>object</possibleValue>
+	</property>
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="url"></defaultValue>
+		<defaultValue property="tag">embed</defaultValue>
+	</initialization>
+
+</component>

@@ -1,0 +1,55 @@
+
+<component
+	id="TextArea"
+	title="Text Area"
+	icon="res/TextArea/TextArea.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/TextArea/TextArea.js</jsInclude>
+	<cssInclude>res/TextArea/TextArea.css</cssInclude>
+	<property
+		id="value"
+		type="String"
+		title="Text Value"
+		tooltip="The text content of this text area"
+		group="Display"
+		visible="true" />
+	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		tooltip="Enabled"
+		group="Display"
+		visible="true" />
+	<property
+		id="editable"
+		type="boolean"
+		title="Editable"
+		tooltip="Editable"
+		group="Display"
+		visible="true" />
+	<property
+		id="maxLength"
+		title="Maximal Length"
+		tooltip="Teh Maximal Length in Characters"
+		type="int" />
+	<property
+		id="onValueChanged"
+		type="ScriptText"
+		title="Event for On Value Changed"
+		group="Events" />
+	<initialization>
+		<defaultValue property="WIDTH">230</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="value"></defaultValue>
+		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
+		<defaultValue property="maxLength">0</defaultValue>
+	</initialization>
+</component>

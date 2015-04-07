@@ -1,0 +1,39 @@
+/* ============================================================================== */
+/* CSS for sap.suite.ui.commons/ComparisonTile.control for 'sap_bluecrystal' theme*/
+/* ============================================================================== */
+
+.sapSuiteCmpTileItemValue.Neutral,
+.sapSuiteCmpTileItemScale.Neutral {
+    color: @sapUiChartNeutral;
+}
+
+.sapSuiteCmpTileItemValue.Good,
+.sapSuiteCmpTileItemScale.Good {
+    color: @sapUiChartGood;
+}
+
+.sapSuiteCmpTileItemValue.Critical,
+.sapSuiteCmpTileItemScale.Critical {
+    color: @sapUiChartCritical;
+}
+
+.sapSuiteCmpTileItemValue.Error,
+.sapSuiteCmpTileItemScale.Error {
+    color: @sapUiChartBad;
+}
+
+.sapSuiteCmpTileBarValue.Neutral {
+    background-color: @sapUiChartNeutral;
+}
+
+.sapSuiteCmpTileBarValue.Good {
+    background-color: @sapUiChartGood;
+}
+
+.sapSuiteCmpTileBarValue.Critical {
+    background-color: @sapUiChartCritical;
+}
+
+.sapSuiteCmpTileBarValue.Error {
+    background-color: @sapUiChartBad;
+}

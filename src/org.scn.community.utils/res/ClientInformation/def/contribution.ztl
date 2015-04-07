@@ -1,0 +1,171 @@
+/**
+ * Class for ClientInformation
+ */
+class org.scn.community.utils.ClientInformation extends org.scn.community.shared.Component {
+	
+	/**
+	 * Reload Explicit Position Data
+	 */
+	void reload() {*
+		if(this.reloadRequest != "+") {
+			this.reloadRequest = "+";	
+		} else {
+			this.reloadRequest = "-";
+		}
+	*}
+	
+	/**
+	 * Returns the width of the browser window
+	 */
+	int getWindowWidth () {*
+		return this.windowWidth;
+	*}
+	
+	/**
+	 * Returns the height of the browser window
+	 */
+	int getWindowHeight () {*
+		return this.windowHeight;
+	*}
+	
+	/**
+	 * Returns the width of the own size
+	 */
+	int getOwnWidth () {*
+		return this.ownWidth;
+	*}
+	
+	/**
+	 * Returns the height of the own size
+	 */
+	int getOwnHeight () {*
+		return this.ownHeight;
+	*}
+	
+	/**
+	 * Returns the html visibility
+	 */
+	boolean isHtmlVisible () {*
+		return this.htmlVisible;
+	*}
+	
+	/** Returns the information about appCodeName*/
+	String getAppCodeName () {*
+		return JSON.parse(this.information).appCodeName;
+	*}
+
+	/** Returns the information about appName*/
+	String getAppName () {*
+		return JSON.parse(this.information).appName;
+	*}
+
+	/** Returns the information about appVersion*/
+	String getAppVersion () {*
+		return JSON.parse(this.information).appVersion;
+	*}
+
+	/** Returns the information about language*/
+	String getLanguage () {*
+		return JSON.parse(this.information).language;
+	*}
+
+	/** Returns the information about platform*/
+	String getPlatform () {*
+		return JSON.parse(this.information).platform;
+	*}
+
+	/** Returns the information about product*/
+	String getProduct () {*
+		return JSON.parse(this.information).product;
+	*}
+
+	/** Returns the information about userAgent*/
+	String getUserAgent () {*
+		return JSON.parse(this.information).userAgent;
+	*}
+
+	/** Returns the information about verndor*/
+	String getVerndor () {*
+		return JSON.parse(this.information).verndor;
+	*}
+
+	/** Returns the information about Screen Width*/
+	int getScreenWidth () {*
+		return JSON.parse(this.information).width;
+	*}
+
+	/** Returns the information about Screen Height*/
+	int getScreenHeight () {*
+		return JSON.parse(this.information).height;
+	*}
+
+	/** Returns the information about Screen Colors Depth*/
+	int getScreenColorsDepth () {*
+		return JSON.parse(this.information).colors;
+	*}
+	
+	/** Returns the browser type (CHROME | SAFARI | MOZILLA | IE) */
+	org_scn_community_shared_BrowserEnumfield getBrowser () {*
+		var info = JSON.parse(this.information);
+		var browserInfo = info.browserInfo;
+		
+		return browserInfo.browser;
+	*}
+
+	/** Returns true if the browser is a mobile browser */
+	boolean isMobileBrowser () {*
+		var info = JSON.parse(this.information);
+		var browserInfo = info.browserInfo;
+		
+		return browserInfo.mobile;
+	*}
+
+	/** Returns the browser version */
+	String getBrowserVersion () {*
+		var info = JSON.parse(this.information);
+		var browserInfo = info.browserInfo;
+		
+		return browserInfo.version;
+	*}
+
+	/** Returns the full browser version */
+	String getBrowserFullVersion () {*
+		var info = JSON.parse(this.information);
+		var browserInfo = info.browserInfo;
+		
+		return browserInfo.fVersion;
+	*}
+
+	/** Returns the information about geo latitude*/
+	float getGeoLatitude () {*
+		var geo = JSON.parse(this.geoLocation);
+		
+		if(geo.ok) {
+			return geo.latitude;
+		} else {
+			return -999;
+		}
+	*}
+
+	/** Returns the information about geo longitude*/
+	float getGeoLongitude () {*
+		var geo = JSON.parse(this.geoLocation);
+	
+		if(geo.ok) {
+			return geo.longitude;
+		} else {
+			return -999;
+		}
+	*}
+
+	/** Returns the information about geo accuracy*/
+	int getGeoAccuracy () {*
+		var geo = JSON.parse(this.geoLocation);
+	
+		if(geo.ok) {
+			return geo.accuracy;
+		} else {
+			return -999;
+		}
+	*}
+}

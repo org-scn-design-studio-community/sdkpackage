@@ -1,0 +1,191 @@
+
+/**
+ * Generated ZTL Class for Segmented Button
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.Component {
+
+	/**
+	 * Remove All Buttons and Items from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DElementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/** Adds an element containing parentKey [String], key [String], text [String], image [String], selected [boolean] properties.
+	 * You need to specify a unique and existing parent element.
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	SEGMENTEDBUTTON.addItem(parentKey [String], key [String], text [String], image [String], selected [boolean]);<br>
+	SEGMENTEDBUTTON.addItem(parentKey [String], key [String], text [String], image [String], selected [boolean]);
+	</code>
+	</example>
+	 */
+	void addItem (
+			/**The key of the parent button*/String parentKey, 
+			/**Unique key of this item*/String key, 
+			/**Text for the item*/String text, 
+			/**Given image for the item*/optional String image, 
+			/**Selection state of the item*/optional boolean selected
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		if(image == undefined) { image = "";}
+		if(selected == undefined) { selected = false;}
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key, 
+			text:text, 
+			image:image, 
+			selected:selected 
+			};
+	
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], text [String], image [String], selected [boolean].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	SEGMENTEDBUTTON.addButton(key [String], text [String], image [String], selected [boolean]);<br>
+	SEGMENTEDBUTTON.addButton(key [String], text [String], image [String], selected [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addButton (
+			/**Unique key of this button*/String key, 
+			/**Text for the button*/String text, 
+			/**Given image for the button*/optional String image, 
+			/**Selection state of the button*/optional boolean selected
+			) {*		
+		
+		this.addItem("ROOT", key, 
+			text, 
+			image, 
+			selected);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	SEGMENTEDBUTTON.removeItem(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeItem (
+			String key
+			) {*		
+		
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	SEGMENTEDBUTTON.removeButton(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeButton (
+			String key
+			) {*		
+		
+		this.removeItem(key);
+	*}
+
+	/** Gets Technical property for selected keys Property as StringArray
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	SEGMENTEDBUTTON.getSelectedKeys();<br>
+	</code>
+	</example>
+	 */
+	StringArray getSelectedKeys () {*		
+		var elementsJson = JSON.parse(this.DSelectedKeys);
+		return elementsJson;
+	*}
+
+	/**
+	 * Gets Technical property for pressed button key Property
+	 */	
+	String getPressedButtonKey() {*
+		return this.DPressedButtonKey;
+	*}
+
+	/**
+	 * Gets Technical property for pressed item key Property
+	 */	
+	String getPressedItemKey() {*
+		return this.DPressedItemKey;
+	*}
+
+
+
+
+
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/* CUSTOM ZTL FUNCTIONS */
+}

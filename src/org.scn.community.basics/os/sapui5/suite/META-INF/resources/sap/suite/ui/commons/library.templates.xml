@@ -1,0 +1,2089 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Library name="sap.suite.ui.commons" xmlns="http://www.sap.com/ui5/ide/templates/xmlview">
+<Template name="sap.suite.ui.commons.BulletChart" alias="BulletChart,Chart">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.BulletChart({
+	id: "${id}", // sap.ui.core.ID
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	mode: sap.suite.ui.commons.BulletChartMode.Actual, // sap.suite.ui.commons.BulletChartMode
+	scale: undefined, // string
+	forecastValue: undefined, // float
+	targetValue: undefined, // float
+	minValue: undefined, // float
+	maxValue: undefined, // float
+	showActualValue: true, // boolean
+	showDeltaValue: false, // boolean
+	showTargetValue: true, // boolean
+	showValueMarker: false, // boolean
+	actualValueLabel: undefined, // string
+	deltaValueLabel: undefined, // string
+	targetValueLabel: undefined, // string
+	width: undefined, // string
+	scaleColor: sap.suite.ui.commons.CommonBackground.MediumLight, // sap.suite.ui.commons.CommonBackground
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	actual: undefined, // sap.suite.ui.commons.BulletChartData
+	thresholds: [], // sap.suite.ui.commons.BulletChartData
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<BulletChart xmlns="sap.suite.ui.commons"
+	id="${id}"
+	size="Auto"
+	mode="Actual"
+	scale=""
+	forecastValue=""
+	targetValue=""
+	minValue=""
+	maxValue=""
+	showActualValue="true"
+	showDeltaValue="false"
+	showTargetValue="true"
+	showValueMarker="false"
+	actualValueLabel=""
+	deltaValueLabel=""
+	targetValueLabel=""
+	width=""
+	scaleColor="MediumLight"
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<actual></actual> <!-- sap.suite.ui.commons.BulletChartData -->
+		<thresholds></thresholds> <!-- sap.suite.ui.commons.BulletChartData -->
+</BulletChart>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.BulletChartData" alias="BulletChartData,Data">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.BulletChartData({
+	id: "${id}", // sap.ui.core.ID
+	value: 0, // float
+	color: sap.suite.ui.commons.InfoTileValueColor.Neutral, // sap.suite.ui.commons.InfoTileValueColor
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [] // sap.ui.core.Control, since 1.19
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<BulletChartData xmlns="sap.suite.ui.commons"
+	id="${id}"
+	value="0"
+	color="Neutral">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</BulletChartData>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.BusinessCard" alias="BusinessCard,Card">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.BusinessCard({
+	id: "${id}", // sap.ui.core.ID
+	type: undefined, // string
+	iconPath: undefined, // sap.ui.core.URI
+	secondTitle: undefined, // string
+	width: undefined, // sap.ui.core.CSSSize
+	imageTooltip: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: undefined, // sap.ui.core.Control
+	firstTitle: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<BusinessCard xmlns="sap.suite.ui.commons"
+	id="${id}"
+	type=""
+	iconPath=""
+	secondTitle=""
+	width=""
+	imageTooltip="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.core.Control -->
+		<firstTitle></firstTitle> <!-- sap.ui.core.Control -->
+</BusinessCard>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ChartContainer" alias="ChartContainer,Container">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ChartContainer({
+	id: "${id}", // sap.ui.core.ID
+	showPersonalization: false, // boolean
+	showFullScreen: false, // boolean
+	fullScreen: false, // boolean
+	showLegend: true, // boolean
+	title: "", // string
+	selectorGroupLabel: undefined, // string
+	autoAdjustHeight: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	dimensionSelectors: [], // sap.m.Select
+	content: [], // sap.suite.ui.commons.ChartContainerContent
+	personalizationPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	contentChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ChartContainer xmlns="sap.suite.ui.commons"
+	id="${id}"
+	showPersonalization="false"
+	showFullScreen="false"
+	fullScreen="false"
+	showLegend="true"
+	title=""
+	selectorGroupLabel=""
+	autoAdjustHeight="false"
+	personalizationPress=""
+	contentChange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<dimensionSelectors></dimensionSelectors> <!-- sap.m.Select -->
+		<content></content> <!-- sap.suite.ui.commons.ChartContainerContent -->
+</ChartContainer>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ChartContainerContent" alias="ChartContainerContent,Content">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ChartContainerContent({
+	id: "${id}", // sap.ui.core.ID
+	icon: undefined, // string
+	title: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ChartContainerContent xmlns="sap.suite.ui.commons"
+	id="${id}"
+	icon=""
+	title="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.core.Control -->
+</ChartContainerContent>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ChartTile" alias="ChartTile,Tile">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ChartTile({
+	id: "${id}", // sap.ui.core.ID
+	description: undefined, // string
+	title: undefined, // string
+	footer: undefined, // string
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	state: sap.suite.ui.commons.LoadState.Loading, // sap.suite.ui.commons.LoadState
+	unit: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: undefined, // sap.ui.core.Control
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ChartTile xmlns="sap.suite.ui.commons"
+	id="${id}"
+	description=""
+	title=""
+	footer=""
+	size="Auto"
+	state="Loading"
+	unit=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.core.Control -->
+</ChartTile>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ColumnData" alias="ColumnData,Data">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ColumnData({
+	id: "${id}", // sap.ui.core.ID
+	label: undefined, // string
+	value: undefined, // float
+	color: sap.suite.ui.commons.InfoTileValueColor.Neutral, // sap.suite.ui.commons.InfoTileValueColor
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [] // sap.ui.core.Control, since 1.19
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ColumnData xmlns="sap.suite.ui.commons"
+	id="${id}"
+	label=""
+	value=""
+	color="Neutral">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</ColumnData>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ColumnMicroChart" alias="ColumnMicroChart,Chart">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ColumnMicroChart({
+	id: "${id}", // sap.ui.core.ID
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	width: undefined, // sap.ui.core.CSSSize
+	height: undefined, // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	columns: [], // sap.suite.ui.commons.ColumnData
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ColumnMicroChart xmlns="sap.suite.ui.commons"
+	id="${id}"
+	size="Auto"
+	width=""
+	height=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<columns></columns> <!-- sap.suite.ui.commons.ColumnData -->
+</ColumnMicroChart>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ComparisonChart" alias="ComparisonChart,Chart">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ComparisonChart({
+	id: "${id}", // sap.ui.core.ID
+	scale: undefined, // string
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	width: undefined, // sap.ui.core.CSSSize
+	colorPalette: [], // string[]
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	data: [], // sap.suite.ui.commons.ComparisonData
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ComparisonChart xmlns="sap.suite.ui.commons"
+	id="${id}"
+	scale=""
+	size="Auto"
+	width=""
+	colorPalette=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<data></data> <!-- sap.suite.ui.commons.ComparisonData -->
+</ComparisonChart>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ComparisonData" alias="ComparisonData,Data">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ComparisonData({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	value: 0, // float
+	color: sap.suite.ui.commons.InfoTileValueColor.Neutral, // sap.suite.ui.commons.InfoTileValueColor
+	displayValue: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [] // sap.ui.core.Control, since 1.19
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ComparisonData xmlns="sap.suite.ui.commons"
+	id="${id}"
+	title=""
+	value="0"
+	color="Neutral"
+	displayValue="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</ComparisonData>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.CountingNavigationItem" alias="CountingNavigationItem,Item">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.CountingNavigationItem({
+	id: "${id}", // sap.ui.core.ID
+	text: "", // string
+	enabled: true, // boolean
+	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
+	key: undefined, // string
+	visible: true, // boolean, since 1.9.0
+	href: undefined, // sap.ui.core.URI
+	quantity: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	subItems: [] // sap.ui.ux3.NavigationItem
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<CountingNavigationItem xmlns="sap.suite.ui.commons"
+	id="${id}"
+	text=""
+	enabled="true"
+	textDirection="Inherit"
+	key=""
+	visible="true"
+	href=""
+	quantity="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<subItems></subItems> <!-- sap.ui.ux3.NavigationItem -->
+</CountingNavigationItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.DateRangeScroller" alias="DateRangeScroller,Scroller">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.DateRangeScroller({
+	id: "${id}", // sap.ui.core.ID
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	ariaDescribedBy: [], // sap.ui.core.Control
+	ariaLabelledBy: [], // sap.ui.core.Control
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<DateRangeScroller xmlns="sap.suite.ui.commons"
+	id="${id}"
+	ariaDescribedBy=""
+	ariaLabelledBy=""
+	change="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</DateRangeScroller>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.DateRangeSlider" alias="DateRangeSlider,Slider">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.DateRangeSlider({
+	id: "${id}", // sap.ui.core.ID
+	width: "100%", // sap.ui.core.CSSSize
+	enabled: true, // boolean
+	editable: true, // boolean
+	visible: true, // boolean
+	showBubbles: true, // boolean
+	smallStepWidth: undefined, // float
+	totalUnits: undefined, // int
+	stepLabels: false, // boolean
+	labels: undefined, // string[]
+	min: undefined, // object
+	max: undefined, // object
+	value: undefined, // object
+	value2: undefined, // object
+	pinGrip: false, // boolean
+	pinGrip2: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<DateRangeSlider xmlns="sap.suite.ui.commons"
+	id="${id}"
+	width="100%"
+	enabled="true"
+	editable="true"
+	visible="true"
+	showBubbles="true"
+	smallStepWidth=""
+	totalUnits=""
+	stepLabels="false"
+	labels=""
+	min=""
+	max=""
+	value=""
+	value2=""
+	pinGrip="false"
+	pinGrip2="false"
+	change=""
+	liveChange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</DateRangeSlider>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.DateRangeSliderInternal" alias="DateRangeSliderInternal,Internal">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.DateRangeSliderInternal({
+	id: "${id}", // sap.ui.core.ID
+	width: "100%", // sap.ui.core.CSSSize
+	min: 0, // float
+	max: 100, // float
+	value: 50, // float
+	smallStepWidth: undefined, // float
+	totalUnits: undefined, // int
+	stepLabels: false, // boolean
+	visible: true, // boolean
+	editable: true, // boolean
+	enabled: true, // boolean
+	labels: undefined, // string[]
+	vertical: false, // boolean, since 1.7.1
+	height: "100%", // sap.ui.core.CSSSize, since 1.7.1
+	value2: 80, // float
+	showBubbles: true, // boolean
+	pinGrip: false, // boolean
+	pinGrip2: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	ariaDescribedBy: [], // sap.ui.core.Control
+	ariaLabelledBy: [], // sap.ui.core.Control
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	change: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	liveChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<DateRangeSliderInternal xmlns="sap.suite.ui.commons"
+	id="${id}"
+	width="100%"
+	min="0"
+	max="100"
+	value="50"
+	smallStepWidth=""
+	totalUnits=""
+	stepLabels="false"
+	visible="true"
+	editable="true"
+	enabled="true"
+	labels=""
+	vertical="false"
+	height="100%"
+	value2="80"
+	showBubbles="true"
+	pinGrip="false"
+	pinGrip2="false"
+	ariaDescribedBy=""
+	ariaLabelledBy=""
+	change=""
+	liveChange=""
+	change=""
+	liveChange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</DateRangeSliderInternal>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.DynamicContainer" alias="DynamicContainer,Container">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.DynamicContainer({
+	id: "${id}", // sap.ui.core.ID
+	displayTime: 5000, // int
+	transitionTime: 500, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	tiles: [] // sap.suite.ui.commons.GenericTile
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<DynamicContainer xmlns="sap.suite.ui.commons"
+	id="${id}"
+	displayTime="5000"
+	transitionTime="500">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<tiles></tiles> <!-- sap.suite.ui.commons.GenericTile -->
+</DynamicContainer>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.FacetOverview" alias="FacetOverview,Overview">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.FacetOverview({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	quantity: -1, // int
+	width: "auto", // sap.ui.core.CSSSize
+	height: "10rem", // sap.ui.core.CSSSize
+	rowSpan: 1, // int
+	heightType: sap.suite.ui.commons.FacetOverviewHeight.None, // sap.suite.ui.commons.FacetOverviewHeight
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: undefined, // sap.ui.core.Control
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	heightChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<FacetOverview xmlns="sap.suite.ui.commons"
+	id="${id}"
+	title=""
+	quantity="-1"
+	width="auto"
+	height="10rem"
+	rowSpan="1"
+	heightType="None"
+	press=""
+	heightChange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.core.Control -->
+</FacetOverview>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.FeedItem" alias="FeedItem,Item">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.FeedItem({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	image: undefined, // sap.ui.core.URI
+	link: undefined, // sap.ui.core.URI
+	source: undefined, // string
+	publicationDate: undefined, // object
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [] // sap.ui.core.Control, since 1.19
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<FeedItem xmlns="sap.suite.ui.commons"
+	id="${id}"
+	title=""
+	image=""
+	link=""
+	source=""
+	publicationDate="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</FeedItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.FeedItemHeader" alias="FeedItemHeader,Header">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.FeedItemHeader({
+	id: "${id}", // sap.ui.core.ID
+	type: sap.m.ListType.Inactive, // sap.m.ListType
+	visible: true, // boolean
+	unread: false, // boolean
+	selected: false, // boolean
+	counter: undefined, // int
+	title: undefined, // string
+	image: undefined, // sap.ui.core.URI
+	link: undefined, // sap.ui.core.URI
+	source: undefined, // string
+	publicationDate: undefined, // object
+	description: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	tap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	detailPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<FeedItemHeader xmlns="sap.suite.ui.commons"
+	id="${id}"
+	type="Inactive"
+	visible="true"
+	unread="false"
+	selected="false"
+	counter=""
+	title=""
+	image=""
+	link=""
+	source=""
+	publicationDate=""
+	description=""
+	tap=""
+	detailTap=""
+	press=""
+	detailPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</FeedItemHeader>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.FeedTile" alias="FeedTile,Tile">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.FeedTile({
+	id: "${id}", // sap.ui.core.ID
+	displayDuration: 5, // int
+	displayArticleImage: true, // boolean
+	source: undefined, // string
+	defaultImages: undefined, // sap.ui.core.URI[]
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	items: [], // sap.suite.ui.commons.FeedItem
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<FeedTile xmlns="sap.suite.ui.commons"
+	id="${id}"
+	displayDuration="5"
+	displayArticleImage="true"
+	source=""
+	defaultImages=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<items></items> <!-- sap.suite.ui.commons.FeedItem -->
+</FeedTile>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.GenericTile" alias="GenericTile,Tile">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.GenericTile({
+	id: "${id}", // sap.ui.core.ID
+	header: undefined, // string
+	subheader: undefined, // string
+	failedText: undefined, // string
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	frameType: sap.suite.ui.commons.FrameType.OneByOne, // sap.suite.ui.commons.FrameType
+	backgroundImage: undefined, // sap.ui.core.URI
+	headerImage: undefined, // sap.ui.core.URI
+	state: sap.suite.ui.commons.LoadState.Loaded, // sap.suite.ui.commons.LoadState
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	tileContent: [], // sap.suite.ui.commons.TileContent
+	icon: undefined, // sap.ui.core.Control
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<GenericTile xmlns="sap.suite.ui.commons"
+	id="${id}"
+	header=""
+	subheader=""
+	failedText=""
+	size="Auto"
+	frameType="OneByOne"
+	backgroundImage=""
+	headerImage=""
+	state="Loaded"
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<tileContent></tileContent> <!-- sap.suite.ui.commons.TileContent -->
+		<icon></icon> <!-- sap.ui.core.Control -->
+</GenericTile>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.HeaderCell" alias="HeaderCell,Cell">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.HeaderCell({
+	id: "${id}", // sap.ui.core.ID
+	heigth: "100px", // sap.ui.core.CSSSize
+	height: "106px", // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	west: undefined, // sap.suite.ui.commons.HeaderCellItem
+	north: undefined, // sap.suite.ui.commons.HeaderCellItem
+	east: undefined, // sap.suite.ui.commons.HeaderCellItem
+	south: undefined // sap.suite.ui.commons.HeaderCellItem
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<HeaderCell xmlns="sap.suite.ui.commons"
+	id="${id}"
+	heigth="100px"
+	height="106px">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<west></west> <!-- sap.suite.ui.commons.HeaderCellItem -->
+		<north></north> <!-- sap.suite.ui.commons.HeaderCellItem -->
+		<east></east> <!-- sap.suite.ui.commons.HeaderCellItem -->
+		<south></south> <!-- sap.suite.ui.commons.HeaderCellItem -->
+</HeaderCell>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.HeaderCellItem" alias="HeaderCellItem,Item">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.HeaderCellItem({
+	id: "${id}", // sap.ui.core.ID
+	height: undefined, // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<HeaderCellItem xmlns="sap.suite.ui.commons"
+	id="${id}"
+	height="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.core.Control -->
+</HeaderCellItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.HeaderContainer" alias="HeaderContainer,Container">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.HeaderContainer({
+	id: "${id}", // sap.ui.core.ID
+	scrollStep: 300, // int
+	scrollTime: 500, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	items: [] // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<HeaderContainer xmlns="sap.suite.ui.commons"
+	id="${id}"
+	scrollStep="300"
+	scrollTime="500">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<items></items> <!-- sap.ui.core.Control -->
+</HeaderContainer>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.InfoTile" alias="InfoTile,Tile">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.InfoTile({
+	id: "${id}", // sap.ui.core.ID
+	description: undefined, // string
+	title: undefined, // string
+	footer: undefined, // string
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	state: sap.suite.ui.commons.LoadState.Loading, // sap.suite.ui.commons.LoadState
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: undefined, // sap.ui.core.Control
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<InfoTile xmlns="sap.suite.ui.commons"
+	id="${id}"
+	description=""
+	title=""
+	footer=""
+	size="Auto"
+	state="Loading"
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.core.Control -->
+</InfoTile>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.JamContent" alias="JamContent,Content">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.JamContent({
+	id: "${id}", // sap.ui.core.ID
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	contentText: undefined, // string
+	subheader: undefined, // string
+	value: undefined, // string
+	valueColor: undefined, // sap.suite.ui.commons.InfoTileValueColor
+	truncateValueTo: 4, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<JamContent xmlns="sap.suite.ui.commons"
+	id="${id}"
+	size="Auto"
+	contentText=""
+	subheader=""
+	value=""
+	valueColor=""
+	truncateValueTo="4"
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</JamContent>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.KpiTile" alias="KpiTile,Tile">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.KpiTile({
+	id: "${id}", // sap.ui.core.ID
+	value: undefined, // string
+	description: undefined, // string
+	doubleFontSize: true, // boolean
+	valueUnit: undefined, // string
+	valueScale: undefined, // string
+	valueStatus: sap.suite.ui.commons.ValueStatus.Neutral, // sap.suite.ui.commons.ValueStatus
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [] // sap.ui.core.Control, since 1.19
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<KpiTile xmlns="sap.suite.ui.commons"
+	id="${id}"
+	value=""
+	description=""
+	doubleFontSize="true"
+	valueUnit=""
+	valueScale=""
+	valueStatus="Neutral">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</KpiTile>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.LaunchTile" alias="LaunchTile,Tile">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.LaunchTile({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	icon: undefined, // sap.ui.core.URI
+	link: undefined, // sap.ui.core.URI
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<LaunchTile xmlns="sap.suite.ui.commons"
+	id="${id}"
+	title=""
+	icon=""
+	link=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</LaunchTile>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.LinkActionSheet" alias="LinkActionSheet,Sheet">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.LinkActionSheet({
+	id: "${id}", // sap.ui.core.ID
+	placement: sap.m.PlacementType.Bottom, // sap.m.PlacementType
+	showCancelButton: true, // boolean
+	cancelButtonText: undefined, // string
+	title: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	buttons: [], // sap.m.Button
+	items: [], // sap.ui.core.Control
+	cancelButtonTap: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterOpen: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	beforeClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterClose: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	cancelButtonPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	itemPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<LinkActionSheet xmlns="sap.suite.ui.commons"
+	id="${id}"
+	placement="Bottom"
+	showCancelButton="true"
+	cancelButtonText=""
+	title=""
+	cancelButtonTap=""
+	beforeOpen=""
+	afterOpen=""
+	beforeClose=""
+	afterClose=""
+	cancelButtonPress=""
+	itemPress="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<buttons></buttons> <!-- sap.m.Button -->
+		<items></items> <!-- sap.ui.core.Control -->
+</LinkActionSheet>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.MicroAreaChart" alias="MicroAreaChart,Chart">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.MicroAreaChart({
+	id: "${id}", // sap.ui.core.ID
+	width: "200px", // sap.ui.core.CSSSize
+	height: "190px", // sap.ui.core.CSSSize
+	maxXValue: undefined, // float
+	minXValue: undefined, // float
+	maxYValue: undefined, // float
+	minYValue: undefined, // float
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	chart: undefined, // sap.suite.ui.commons.MicroAreaChartItem
+	maxThreshold: undefined, // sap.suite.ui.commons.MicroAreaChartItem
+	innerMaxThreshold: undefined, // sap.suite.ui.commons.MicroAreaChartItem
+	innerMinThreshold: undefined, // sap.suite.ui.commons.MicroAreaChartItem
+	minThreshold: undefined, // sap.suite.ui.commons.MicroAreaChartItem
+	target: undefined, // sap.suite.ui.commons.MicroAreaChartItem
+	firstXLabel: undefined, // sap.suite.ui.commons.MicroAreaChartLabel
+	firstYLabel: undefined, // sap.suite.ui.commons.MicroAreaChartLabel
+	lastXLabel: undefined, // sap.suite.ui.commons.MicroAreaChartLabel
+	lastYLabel: undefined, // sap.suite.ui.commons.MicroAreaChartLabel
+	maxLabel: undefined, // sap.suite.ui.commons.MicroAreaChartLabel
+	minLabel: undefined, // sap.suite.ui.commons.MicroAreaChartLabel
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<MicroAreaChart xmlns="sap.suite.ui.commons"
+	id="${id}"
+	width="200px"
+	height="190px"
+	maxXValue=""
+	minXValue=""
+	maxYValue=""
+	minYValue=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<chart></chart> <!-- sap.suite.ui.commons.MicroAreaChartItem -->
+		<maxThreshold></maxThreshold> <!-- sap.suite.ui.commons.MicroAreaChartItem -->
+		<innerMaxThreshold></innerMaxThreshold> <!-- sap.suite.ui.commons.MicroAreaChartItem -->
+		<innerMinThreshold></innerMinThreshold> <!-- sap.suite.ui.commons.MicroAreaChartItem -->
+		<minThreshold></minThreshold> <!-- sap.suite.ui.commons.MicroAreaChartItem -->
+		<target></target> <!-- sap.suite.ui.commons.MicroAreaChartItem -->
+		<firstXLabel></firstXLabel> <!-- sap.suite.ui.commons.MicroAreaChartLabel -->
+		<firstYLabel></firstYLabel> <!-- sap.suite.ui.commons.MicroAreaChartLabel -->
+		<lastXLabel></lastXLabel> <!-- sap.suite.ui.commons.MicroAreaChartLabel -->
+		<lastYLabel></lastYLabel> <!-- sap.suite.ui.commons.MicroAreaChartLabel -->
+		<maxLabel></maxLabel> <!-- sap.suite.ui.commons.MicroAreaChartLabel -->
+		<minLabel></minLabel> <!-- sap.suite.ui.commons.MicroAreaChartLabel -->
+</MicroAreaChart>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.MicroAreaChartItem" alias="MicroAreaChartItem,Item">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.MicroAreaChartItem({
+	id: "${id}", // sap.ui.core.ID
+	color: sap.suite.ui.commons.InfoTileValueColor.Neutral, // sap.suite.ui.commons.InfoTileValueColor
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	points: [] // sap.suite.ui.commons.MicroAreaChartPoint
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<MicroAreaChartItem xmlns="sap.suite.ui.commons"
+	id="${id}"
+	color="Neutral">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<points></points> <!-- sap.suite.ui.commons.MicroAreaChartPoint -->
+</MicroAreaChartItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.MicroAreaChartLabel" alias="MicroAreaChartLabel,Label">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.MicroAreaChartLabel({
+	id: "${id}", // sap.ui.core.ID
+	label: undefined, // string
+	color: sap.suite.ui.commons.InfoTileValueColor.Neutral, // sap.suite.ui.commons.InfoTileValueColor
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [] // sap.ui.core.Control, since 1.19
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<MicroAreaChartLabel xmlns="sap.suite.ui.commons"
+	id="${id}"
+	label=""
+	color="Neutral">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</MicroAreaChartLabel>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.MicroAreaChartPoint" alias="MicroAreaChartPoint,Point">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.MicroAreaChartPoint({
+	id: "${id}", // sap.ui.core.ID
+	x: undefined, // float
+	y: undefined, // float
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [] // sap.ui.core.Control, since 1.19
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<MicroAreaChartPoint xmlns="sap.suite.ui.commons"
+	id="${id}"
+	x=""
+	y="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</MicroAreaChartPoint>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.MonitoringContent" alias="MonitoringContent,Content">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.MonitoringContent({
+	id: "${id}", // sap.ui.core.ID
+	value: undefined, // string
+	iconSrc: undefined, // string
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	state: sap.suite.ui.commons.LoadState.Loaded, // sap.suite.ui.commons.LoadState
+	animateTextChange: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	icon: undefined, // sap.ui.core.Icon
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<MonitoringContent xmlns="sap.suite.ui.commons"
+	id="${id}"
+	value=""
+	iconSrc=""
+	size="Auto"
+	state="Loaded"
+	animateTextChange="true"
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<icon></icon> <!-- sap.ui.core.Icon -->
+</MonitoringContent>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.MonitoringTile" alias="MonitoringTile,Tile">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.MonitoringTile({
+	id: "${id}", // sap.ui.core.ID
+	description: undefined, // string
+	title: undefined, // string
+	footer: undefined, // string
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	state: sap.suite.ui.commons.LoadState.Loading, // sap.suite.ui.commons.LoadState
+	value: undefined, // string
+	iconSrc: undefined, // string
+	footerColor: sap.suite.ui.commons.InfoTileTextColor.Positive, // sap.suite.ui.commons.InfoTileTextColor
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: undefined, // sap.ui.core.Control
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<MonitoringTile xmlns="sap.suite.ui.commons"
+	id="${id}"
+	description=""
+	title=""
+	footer=""
+	size="Auto"
+	state="Loading"
+	value=""
+	iconSrc=""
+	footerColor="Positive"
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.core.Control -->
+</MonitoringTile>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.NewsContent" alias="NewsContent,Content">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.NewsContent({
+	id: "${id}", // sap.ui.core.ID
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	contentText: undefined, // string
+	subheader: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<NewsContent xmlns="sap.suite.ui.commons"
+	id="${id}"
+	size="Auto"
+	contentText=""
+	subheader=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</NewsContent>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.NoteTaker" alias="NoteTaker,Taker">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.NoteTaker({
+	id: "${id}", // sap.ui.core.ID
+	visibleNotes: 2, // int
+	cardViewAllTrigger: 1800, // int
+	filterCriteria: undefined, // object
+	attachmentUploadUrl: undefined, // string
+	attachmentName: "attachment", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	cards: [], // sap.suite.ui.commons.NoteTakerCard
+	addCard: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	deleteCard: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	editCard: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	attachmentSelect: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	attachmentUploadComplete: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	attachmentDelete: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	attachmentClick: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<NoteTaker xmlns="sap.suite.ui.commons"
+	id="${id}"
+	visibleNotes="2"
+	cardViewAllTrigger="1800"
+	filterCriteria=""
+	attachmentUploadUrl=""
+	attachmentName="attachment"
+	addCard=""
+	deleteCard=""
+	editCard=""
+	attachmentSelect=""
+	attachmentUploadComplete=""
+	attachmentDelete=""
+	attachmentClick="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<cards></cards> <!-- sap.suite.ui.commons.NoteTakerCard -->
+</NoteTaker>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.NoteTakerCard" alias="NoteTakerCard,Card">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.NoteTakerCard({
+	id: "${id}", // sap.ui.core.ID
+	header: undefined, // string
+	body: undefined, // string
+	timestamp: new Date(), // object
+	tags: [], // object
+	viewAllTrigger: 1800, // int
+	uid: undefined, // string
+	isFiltered: false, // boolean
+	thumbUp: undefined, // boolean
+	thumbDown: undefined, // boolean
+	allTags: [], // object
+	attachmentFilename: undefined, // string
+	attachmentUrl: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	editNote: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	deleteNote: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	attachmentClick: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<NoteTakerCard xmlns="sap.suite.ui.commons"
+	id="${id}"
+	header=""
+	body=""
+	timestamp="new Date()"
+	tags="[]"
+	viewAllTrigger="1800"
+	uid=""
+	isFiltered="false"
+	thumbUp=""
+	thumbDown=""
+	allTags="[]"
+	attachmentFilename=""
+	attachmentUrl=""
+	editNote=""
+	deleteNote=""
+	attachmentClick="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</NoteTakerCard>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.NoteTakerFeeder" alias="NoteTakerFeeder,Feeder">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.NoteTakerFeeder({
+	id: "${id}", // sap.ui.core.ID
+	body: undefined, // string
+	title: undefined, // string
+	tags: [], // object
+	thumbUp: undefined, // boolean
+	thumbDown: undefined, // boolean
+	attachmentUploadUrl: undefined, // string
+	attachmentName: "attachment", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	addNote: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	attachmentSelect: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	attachmentUploadComplete: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	attachmentDelete: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	attachmentClick: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<NoteTakerFeeder xmlns="sap.suite.ui.commons"
+	id="${id}"
+	body=""
+	title=""
+	tags="[]"
+	thumbUp=""
+	thumbDown=""
+	attachmentUploadUrl=""
+	attachmentName="attachment"
+	addNote=""
+	attachmentSelect=""
+	attachmentUploadComplete=""
+	attachmentDelete=""
+	attachmentClick="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</NoteTakerFeeder>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.NumericContent" alias="NumericContent,Content">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.NumericContent({
+	id: "${id}", // sap.ui.core.ID
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	value: undefined, // string
+	scale: undefined, // string
+	valueColor: sap.suite.ui.commons.InfoTileValueColor.Neutral, // sap.suite.ui.commons.InfoTileValueColor
+	indicator: undefined, // string
+	state: sap.suite.ui.commons.LoadState.Loaded, // sap.suite.ui.commons.LoadState
+	animateTextChange: true, // boolean
+	formatterValue: false, // boolean
+	truncateValueTo: 4, // int
+	icon: undefined, // sap.ui.core.URI
+	nullifyValue: true, // boolean
+	iconDescription: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<NumericContent xmlns="sap.suite.ui.commons"
+	id="${id}"
+	size="Auto"
+	value=""
+	scale=""
+	valueColor="Neutral"
+	indicator=""
+	state="Loaded"
+	animateTextChange="true"
+	formatterValue="false"
+	truncateValueTo="4"
+	icon=""
+	nullifyValue="true"
+	iconDescription=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</NumericContent>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.NumericTile" alias="NumericTile,Tile">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.NumericTile({
+	id: "${id}", // sap.ui.core.ID
+	description: undefined, // string
+	title: undefined, // string
+	footer: undefined, // string
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	state: sap.suite.ui.commons.LoadState.Loading, // sap.suite.ui.commons.LoadState
+	value: undefined, // string
+	scale: undefined, // string
+	unit: undefined, // string
+	valueColor: undefined, // sap.suite.ui.commons.InfoTileValueColor
+	indicator: undefined, // sap.suite.ui.commons.DeviationIndicator
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: undefined, // sap.ui.core.Control
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<NumericTile xmlns="sap.suite.ui.commons"
+	id="${id}"
+	description=""
+	title=""
+	footer=""
+	size="Auto"
+	state="Loading"
+	value=""
+	scale=""
+	unit=""
+	valueColor=""
+	indicator=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.core.Control -->
+</NumericTile>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.PictureZoomIn" alias="PictureZoomIn,In">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.PictureZoomIn({
+	id: "${id}", // sap.ui.core.ID
+	description: undefined, // string
+	imageSrc: undefined, // sap.ui.core.URI
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	busyIndicator: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<PictureZoomIn xmlns="sap.suite.ui.commons"
+	id="${id}"
+	description=""
+	imageSrc="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<busyIndicator></busyIndicator> <!-- sap.ui.core.Control -->
+</PictureZoomIn>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ProcessFlow" alias="ProcessFlow,Flow">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ProcessFlow({
+	id: "${id}", // sap.ui.core.ID
+	foldedCorners: false, // boolean
+	scrollable: true, // boolean
+	wheelZoomable: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	nodes: [], // sap.suite.ui.commons.ProcessFlowNode
+	lanes: [], // sap.suite.ui.commons.ProcessFlowLaneHeader
+	nodeTitlePress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	nodePress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	headerPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	onError: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ProcessFlow xmlns="sap.suite.ui.commons"
+	id="${id}"
+	foldedCorners="false"
+	scrollable="true"
+	wheelZoomable="true"
+	nodeTitlePress=""
+	nodePress=""
+	headerPress=""
+	onError="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<nodes></nodes> <!-- sap.suite.ui.commons.ProcessFlowNode -->
+		<lanes></lanes> <!-- sap.suite.ui.commons.ProcessFlowLaneHeader -->
+</ProcessFlow>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ProcessFlowConnection" alias="ProcessFlowConnection,Connection">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ProcessFlowConnection({
+	id: "${id}", // sap.ui.core.ID
+	drawData: undefined, // object[]
+	zoomLevel: sap.suite.ui.commons.ProcessFlowZoomLevel.Two, // sap.suite.ui.commons.ProcessFlowZoomLevel
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [] // sap.ui.core.Control, since 1.19
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ProcessFlowConnection xmlns="sap.suite.ui.commons"
+	id="${id}"
+	drawData=""
+	zoomLevel="Two">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</ProcessFlowConnection>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ProcessFlowLaneHeader" alias="ProcessFlowLaneHeader,Header">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ProcessFlowLaneHeader({
+	id: "${id}", // sap.ui.core.ID
+	text: undefined, // string
+	iconSrc: undefined, // sap.ui.core.URI
+	position: undefined, // int
+	laneId: undefined, // string
+	state: undefined, // object
+	zoomLevel: undefined, // sap.suite.ui.commons.ProcessFlowZoomLevel
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ProcessFlowLaneHeader xmlns="sap.suite.ui.commons"
+	id="${id}"
+	text=""
+	iconSrc=""
+	position=""
+	laneId=""
+	state=""
+	zoomLevel=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</ProcessFlowLaneHeader>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ProcessFlowNode" alias="ProcessFlowNode,Node">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ProcessFlowNode({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	isTitleClickable: false, // boolean
+	laneId: undefined, // string
+	nodeId: undefined, // string
+	state: sap.suite.ui.commons.ProcessFlowNodeState.Neutral, // sap.suite.ui.commons.ProcessFlowNodeState
+	children: undefined, // string[]
+	titleAbbreviation: undefined, // string
+	stateText: undefined, // string
+	texts: undefined, // string[]
+	highlighted: false, // boolean
+	focused: false, // boolean
+	tag: undefined, // object
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	titlePress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	press: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ProcessFlowNode xmlns="sap.suite.ui.commons"
+	id="${id}"
+	title=""
+	isTitleClickable="false"
+	laneId=""
+	nodeId=""
+	state="Neutral"
+	children=""
+	titleAbbreviation=""
+	stateText=""
+	texts=""
+	highlighted="false"
+	focused="false"
+	tag=""
+	titlePress=""
+	press="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</ProcessFlowNode>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.RepeaterViewConfiguration" alias="RepeaterViewConfiguration,Configuration">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.RepeaterViewConfiguration({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	icon: undefined, // sap.ui.core.URI
+	iconHovered: undefined, // sap.ui.core.URI
+	path: undefined, // string
+	itemMinWidth: -1, // int
+	numberOfTiles: -1, // int
+	responsive: false, // any
+	external: false, // boolean
+	iconSelected: undefined, // sap.ui.core.URI
+	itemHeight: undefined, // int
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	template: undefined, // sap.ui.core.Control
+	externalRepresentation: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<RepeaterViewConfiguration xmlns="sap.suite.ui.commons"
+	id="${id}"
+	title=""
+	icon=""
+	iconHovered=""
+	path=""
+	itemMinWidth="-1"
+	numberOfTiles="-1"
+	responsive="false"
+	external="false"
+	iconSelected=""
+	itemHeight="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<template></template> <!-- sap.ui.core.Control -->
+		<externalRepresentation></externalRepresentation> <!-- sap.ui.core.Control -->
+</RepeaterViewConfiguration>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.SplitButton" alias="SplitButton,Button">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.SplitButton({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	enabled: true, // boolean
+	lite: false, // boolean
+	style: sap.ui.commons.ButtonStyle.Default, // sap.ui.commons.ButtonStyle
+	styled: true, // boolean
+	iconFirst: true, // boolean
+	text: '', // string
+	icon: '', // sap.ui.core.URI
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	menu: undefined // sap.ui.commons.Menu
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<SplitButton xmlns="sap.suite.ui.commons"
+	id="${id}"
+	visible="true"
+	enabled="true"
+	lite="false"
+	style="Default"
+	styled="true"
+	iconFirst="true"
+	text=""
+	icon="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<menu></menu> <!-- sap.ui.commons.Menu -->
+</SplitButton>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ThingCollection" alias="ThingCollection,Collection">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ThingCollection({
+	id: "${id}", // sap.ui.core.ID
+	width: "100%", // sap.ui.core.CSSSize
+	height: "100%", // sap.ui.core.CSSSize
+	minWidth: undefined, // sap.ui.core.CSSSize
+	minHeight: undefined, // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: [] // sap.ui.ux3.ThingViewer
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ThingCollection xmlns="sap.suite.ui.commons"
+	id="${id}"
+	width="100%"
+	height="100%"
+	minWidth=""
+	minHeight="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.ux3.ThingViewer -->
+</ThingCollection>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ThreePanelThingInspector" alias="ThreePanelThingInspector,Inspector">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ThreePanelThingInspector({
+	id: "${id}", // sap.ui.core.ID
+	openButtonVisible: true, // boolean
+	closeButtonVisible: true, // boolean
+	firstTitle: undefined, // string
+	type: undefined, // string
+	icon: undefined, // sap.ui.core.URI
+	secondTitle: undefined, // string
+	followState: sap.ui.ux3.FollowActionState.Default, // sap.ui.ux3.FollowActionState
+	flagState: false, // boolean
+	favoriteState: false, // boolean
+	favoriteActionEnabled: true, // boolean
+	updateActionEnabled: true, // boolean
+	followActionEnabled: true, // boolean
+	flagActionEnabled: true, // boolean
+	headerType: sap.ui.ux3.ThingViewerHeaderType.Standard, // sap.ui.ux3.ThingViewerHeaderType, since 1.16.3
+	showHeader: true, // boolean
+	logo: undefined, // sap.ui.core.URI
+	sidebarWidth: "224px", // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	actions: [], // sap.ui.ux3.ThingAction
+	headerContent: [], // sap.ui.ux3.ThingGroup
+	facets: [], // sap.ui.ux3.NavigationItem
+	facetContent: [], // sap.ui.ux3.ThingGroup
+	actionBar: undefined, // sap.ui.ux3.ActionBar
+	menuContent: [], // sap.ui.commons.Link
+	selectedFacet: undefined, // sap.ui.ux3.NavigationItem
+	close: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	openNew: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	open: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	actionSelected: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	facetSelected: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	feedSubmit: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ThreePanelThingInspector xmlns="sap.suite.ui.commons"
+	id="${id}"
+	openButtonVisible="true"
+	closeButtonVisible="true"
+	firstTitle=""
+	type=""
+	icon=""
+	secondTitle=""
+	followState="Default"
+	flagState="false"
+	favoriteState="false"
+	favoriteActionEnabled="true"
+	updateActionEnabled="true"
+	followActionEnabled="true"
+	flagActionEnabled="true"
+	headerType="Standard"
+	showHeader="true"
+	logo=""
+	sidebarWidth="224px"
+	selectedFacet=""
+	close=""
+	openNew=""
+	open=""
+	actionSelected=""
+	facetSelected=""
+	feedSubmit="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<actions></actions> <!-- sap.ui.ux3.ThingAction -->
+		<headerContent></headerContent> <!-- sap.ui.ux3.ThingGroup -->
+		<facets></facets> <!-- sap.ui.ux3.NavigationItem -->
+		<facetContent></facetContent> <!-- sap.ui.ux3.ThingGroup -->
+		<actionBar></actionBar> <!-- sap.ui.ux3.ActionBar -->
+		<menuContent></menuContent> <!-- sap.ui.commons.Link -->
+</ThreePanelThingInspector>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ThreePanelThingViewer" alias="ThreePanelThingViewer,Viewer">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ThreePanelThingViewer({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	type: undefined, // string
+	icon: undefined, // sap.ui.core.URI
+	subtitle: undefined, // string
+	width: "100%", // sap.ui.core.CSSSize
+	height: "100%", // sap.ui.core.CSSSize
+	headerType: sap.ui.ux3.ThingViewerHeaderType.Standard, // sap.ui.ux3.ThingViewerHeaderType, since 1.16.3
+	logo: undefined, // sap.ui.core.URI
+	showHeader: undefined, // boolean
+	sidebarWidth: "244px", // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	headerContent: [], // sap.ui.ux3.ThingGroup
+	facets: [], // sap.ui.ux3.NavigationItem
+	facetContent: [], // sap.ui.ux3.ThingGroup
+	actionBar: undefined, // sap.ui.ux3.ActionBar
+	menuContent: [], // sap.ui.commons.Link
+	selectedFacet: undefined, // sap.ui.ux3.NavigationItem
+	facetSelected: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ThreePanelThingViewer xmlns="sap.suite.ui.commons"
+	id="${id}"
+	title=""
+	type=""
+	icon=""
+	subtitle=""
+	width="100%"
+	height="100%"
+	headerType="Standard"
+	logo=""
+	showHeader=""
+	sidebarWidth="244px"
+	selectedFacet=""
+	facetSelected="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<headerContent></headerContent> <!-- sap.ui.ux3.ThingGroup -->
+		<facets></facets> <!-- sap.ui.ux3.NavigationItem -->
+		<facetContent></facetContent> <!-- sap.ui.ux3.ThingGroup -->
+		<actionBar></actionBar> <!-- sap.ui.ux3.ActionBar -->
+		<menuContent></menuContent> <!-- sap.ui.commons.Link -->
+</ThreePanelThingViewer>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.TileContent" alias="TileContent,Content">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.TileContent({
+	id: "${id}", // sap.ui.core.ID
+	footer: undefined, // string
+	size: sap.suite.ui.commons.InfoTileSize.Auto, // sap.suite.ui.commons.InfoTileSize
+	unit: undefined, // string
+	disabled: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<TileContent xmlns="sap.suite.ui.commons"
+	id="${id}"
+	footer=""
+	size="Auto"
+	unit=""
+	disabled="false">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.core.Control -->
+</TileContent>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.Timeline" alias="Timeline">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.Timeline({
+	id: "${id}", // sap.ui.core.ID
+	data: undefined, // object
+	sortOldestFirst: false, // boolean
+	axisOrientation: sap.suite.ui.commons.TimelineAxisOrientation.Vertical, // sap.suite.ui.commons.TimelineAxisOrientation
+	alignment: sap.suite.ui.commons.TimelineAlignment.Right, // sap.suite.ui.commons.TimelineAlignment
+	showIcons: true, // boolean
+	noDataText: undefined, // string
+	width: "100%", // sap.ui.core.CSSSize
+	enableBusyIndicator: true, // boolean
+	showHeaderBar: true, // boolean
+	growing: true, // boolean
+	growingThreshold: 5, // int
+	visible: true, // boolean
+	enableBackendFilter: false, // boolean
+	enableAllInFilterItem: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: [], // sap.suite.ui.commons.TimelineItem
+	filterList: [], // sap.suite.ui.commons.TimelineFilterListItem
+	filterSelectionChange: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<Timeline xmlns="sap.suite.ui.commons"
+	id="${id}"
+	data=""
+	sortOldestFirst="false"
+	axisOrientation="Vertical"
+	alignment="Right"
+	showIcons="true"
+	noDataText=""
+	width="100%"
+	enableBusyIndicator="true"
+	showHeaderBar="true"
+	growing="true"
+	growingThreshold="5"
+	visible="true"
+	enableBackendFilter="false"
+	enableAllInFilterItem="true"
+	filterSelectionChange="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.suite.ui.commons.TimelineItem -->
+		<filterList></filterList> <!-- sap.suite.ui.commons.TimelineFilterListItem -->
+</Timeline>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.TimelineFilterListItem" alias="TimelineFilterListItem,Item">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.TimelineFilterListItem({
+	id: "${id}", // sap.ui.core.ID
+	key: undefined, // string
+	text: undefined, // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [] // sap.ui.core.Control, since 1.19
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<TimelineFilterListItem xmlns="sap.suite.ui.commons"
+	id="${id}"
+	key=""
+	text="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</TimelineFilterListItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.TimelineItem" alias="TimelineItem,Item">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.TimelineItem({
+	id: "${id}", // sap.ui.core.ID
+	dateTime: undefined, // any
+	userName: undefined, // string
+	title: undefined, // string
+	text: undefined, // string
+	icon: undefined, // string
+	filterValue: undefined, // string
+	userNameClickable: false, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	embeddedControl: undefined, // sap.ui.core.Control
+	userNameClicked: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<TimelineItem xmlns="sap.suite.ui.commons"
+	id="${id}"
+	dateTime=""
+	userName=""
+	title=""
+	text=""
+	icon=""
+	filterValue=""
+	userNameClickable="false"
+	userNameClicked="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<embeddedControl></embeddedControl> <!-- sap.ui.core.Control -->
+</TimelineItem>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.UnifiedThingGroup" alias="UnifiedThingGroup,Group">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.UnifiedThingGroup({
+	id: "${id}", // sap.ui.core.ID
+	title: undefined, // string
+	description: undefined, // string
+	design: sap.suite.ui.commons.ThingGroupDesign.ZeroIndent, // sap.suite.ui.commons.ThingGroupDesign
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	content: undefined // sap.ui.core.Control
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<UnifiedThingGroup xmlns="sap.suite.ui.commons"
+	id="${id}"
+	title=""
+	description=""
+	design="ZeroIndent">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.core.Control -->
+</UnifiedThingGroup>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.UnifiedThingInspector" alias="UnifiedThingInspector,Inspector">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.UnifiedThingInspector({
+	id: "${id}", // sap.ui.core.ID
+	height: "100%", // sap.ui.core.CSSSize
+	title: undefined, // string
+	name: undefined, // string
+	description: undefined, // string
+	icon: undefined, // sap.ui.core.URI
+	transactionsVisible: false, // boolean
+	actionsVisible: false, // boolean
+	destroyPageOnBack: true, // boolean
+	configurationVisible: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	facets: [], // sap.suite.ui.commons.FacetOverview
+	facetContent: [], // sap.ui.core.Control
+	kpis: [], // sap.suite.ui.commons.KpiTile
+	transactions: [], // sap.ui.core.Control
+	actions: [], // sap.m.Button
+	pages: [], // sap.ui.core.Control
+	backAction: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	transactionsButtonPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	actionsButtonPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	configurationButtonPress: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	navigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	afterNavigate: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<UnifiedThingInspector xmlns="sap.suite.ui.commons"
+	id="${id}"
+	height="100%"
+	title=""
+	name=""
+	description=""
+	icon=""
+	transactionsVisible="false"
+	actionsVisible="false"
+	destroyPageOnBack="true"
+	configurationVisible="true"
+	backAction=""
+	transactionsButtonPress=""
+	actionsButtonPress=""
+	configurationButtonPress=""
+	navigate=""
+	afterNavigate="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<facets></facets> <!-- sap.suite.ui.commons.FacetOverview -->
+		<facetContent></facetContent> <!-- sap.ui.core.Control -->
+		<kpis></kpis> <!-- sap.suite.ui.commons.KpiTile -->
+		<transactions></transactions> <!-- sap.ui.core.Control -->
+		<actions></actions> <!-- sap.m.Button -->
+		<pages></pages> <!-- sap.ui.core.Control -->
+</UnifiedThingInspector>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.VerticalNavigationBar" alias="VerticalNavigationBar,Bar">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.VerticalNavigationBar({
+	id: "${id}", // sap.ui.core.ID
+	toplevelVariant: false, // boolean
+	visible: true, // boolean
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	items: [], // sap.ui.ux3.NavigationItem
+	selectedItem: undefined, // sap.ui.ux3.NavigationItem
+	associatedItems: [], // sap.ui.ux3.NavigationItem
+	select: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<VerticalNavigationBar xmlns="sap.suite.ui.commons"
+	id="${id}"
+	toplevelVariant="false"
+	visible="true"
+	selectedItem=""
+	associatedItems=""
+	select="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<items></items> <!-- sap.ui.ux3.NavigationItem -->
+</VerticalNavigationBar>
+]]></xmlTemplate>
+</Template>
+<Template name="sap.suite.ui.commons.ViewRepeater" alias="ViewRepeater,Repeater">
+	<jsTemplate><![CDATA[new sap.suite.ui.commons.ViewRepeater({
+	id: "${id}", // sap.ui.core.ID
+	visible: true, // boolean
+	numberOfRows: 5, // int
+	currentPage: 1, // int
+	showMoreSteps: 0, // int
+	fixedRowHeight: "", // sap.ui.core.CSSSize
+	design: sap.ui.commons.RowRepeaterDesign.Standard, // sap.ui.commons.RowRepeaterDesign
+	threshold: undefined, // int
+	itemMinWidth: undefined, // int
+	responsive: false, // boolean
+	defaultViewIndex: 0, // int
+	showSearchField: true, // boolean
+	showViews: true, // boolean
+	external: false, // boolean
+	itemHeight: undefined, // int
+	height: "100%", // sap.ui.core.CSSSize
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	rows: [], // sap.ui.core.Control
+	title: undefined, // sap.ui.core.Title
+	filters: [], // sap.ui.commons.RowRepeaterFilter
+	sorters: [], // sap.ui.commons.RowRepeaterSorter
+	noData: undefined, // sap.ui.core.Control
+	views: [], // sap.suite.ui.commons.RepeaterViewConfiguration
+	externalRepresentation: undefined, // sap.ui.core.Control
+	filter: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	sort: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	page: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	resize: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	search: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
+	changeView: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<ViewRepeater xmlns="sap.suite.ui.commons"
+	id="${id}"
+	visible="true"
+	numberOfRows="5"
+	currentPage="1"
+	showMoreSteps="0"
+	fixedRowHeight=""
+	design="Standard"
+	threshold=""
+	itemMinWidth=""
+	responsive="false"
+	defaultViewIndex="0"
+	showSearchField="true"
+	showViews="true"
+	external="false"
+	itemHeight=""
+	height="100%"
+	externalRepresentation=""
+	filter=""
+	sort=""
+	page=""
+	resize=""
+	search=""
+	changeView="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<rows></rows> <!-- sap.ui.core.Control -->
+		<title></title> <!-- sap.ui.core.Title -->
+		<filters></filters> <!-- sap.ui.commons.RowRepeaterFilter -->
+		<sorters></sorters> <!-- sap.ui.commons.RowRepeaterSorter -->
+		<noData></noData> <!-- sap.ui.core.Control -->
+		<views></views> <!-- sap.suite.ui.commons.RepeaterViewConfiguration -->
+</ViewRepeater>
+]]></xmlTemplate>
+</Template>
+</Library>

@@ -1,0 +1,162 @@
+
+<component
+		id="HexBin"
+		title="Hexbin Chart"
+		icon="res/HexBin/HexBin.png"
+		handlerType="div"
+		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		group="ScnCommunityChartMaps"
+		databound="true"
+>
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.BaseViz.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.AxisChart.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.XYViz.js</jsInclude>
+	<jsInclude>res/HexBin/HexBin.js</jsInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<cssInclude>os/d3-tip.css</cssInclude>
+	<!-- Base Databound Properties -->
+	<property
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
+	<!-- End of Base Databound Properties -->
+	<!-- Base Viz Properties -->
+	<property id="showTitle" title="Show Title" type="boolean" visible="false" />
+	<property id="chartTitle" title="Chart Title" type="String" visible="false"/>
+	<property id="chartTitleStyle" title="Chart Title Style" type="String" visible="false"/>
+	<property id="chartValueSize" title="Chart Value Size (px)" type="float" visible="false"/>
+	<property id="chartValueWidthThreshold" title="Chart Value Width Visibility Threshold (%)" type="float" visible="false"/>
+	<!--
+	<property id="styleCSS" title="Style CSS" type="String"/>
+	<property id="legendTitleStyle" title="Legend Title Style" type="String"/>
+	<property id="chartValueStyle" title="Chart Value Style" type="String" visible="false"/>
+	 -->
+	<property id="selectedValue" type="float" title = "Selected Value" visible="false"/>
+	<property id="pollInterval" type="int" title = "Resize Poll Interval" visible="false"/>
+	<property id="ms" type="int" title = "Animation Duration (ms)" visible="false"/>
+	<property id="showValues" type="boolean" title = "Show Values" visible="false"/>
+	<property id="showTooltips" type="boolean" title = "Show Tooltips" visible="false"/>
+	<property id="tooltipPositioning" type="String" title = "Tooltip Positioning" visible="false"/>
+	<property id="tooltipLeft" type="String" title = "Tooltip Left" visible="false"/>
+	<property id="tooltipRight" type="String" title = "Tooltip Right" visible="false"/>
+	<property id="tooltipTop" type="String" title = "Tooltip Top" visible="false"/>
+	<property id="tooltipBottom" type="String" title = "Tooltip Bottom" visible="false"/>
+	<property id="legendOn" type="boolean" title = "Show Legend" visible="false"/>
+	<property id="legendTitle" title="Legend Title" type="String" visible="false"/>
+	<property id="legendWidth" title="Legend Width (px)" type="int" visible="false"/>
+	<property id="legendScale" title="Legend Scale" type="float" visible="false"/>
+	<property id="legendX" title="Legend Offset X" type="int" visible="false"/>
+	<property id="legendY" title="Legend Offset Y" type="int" visible="false"/>
+	<property id="plotAlpha" title="Plot Alpha" type="int" visible="false"/>
+	<property id="plotThickness" title="Plot Thickness" type="float" visible="false"/>
+	<property id="makeRoomX" title="Avoid Legend" type="boolean" visible="false" />
+	<property id="margin" type="int" title = "Margin Size" visible="false"/>
+	<property id="colorPalette" type="String" title = "Colour Palette" visible="false"/>
+	<property id="selectedColor" type="String" title = "Selection Colour" visible="false"/>
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="plotLeft" title="Plot Offset Left" type="int" visible="false"/>
+	<property id="plotRight" title="Plot Offset Right" type="int" visible="false"/>
+	<property id="plotTop" title="Plot Offset Top" type="int" visible="false"/>
+	<property id="plotBottom" title="Plot Offset Bottom" type="int" visible="false"/>
+	<property id="enableZoom" title="Enable Zoom" type="boolean" visible="false" />
+	<property id="minZoom" title="Minimum Zoom Scale" type="float" visible="false"/>
+	<property id="maxZoom" title="Maximum Zoom Scale" type="float" visible="false"/>
+	<!-- End of Base Viz Properties -->
+	<!-- BaseVizXY Properties -->
+	<property id="minX" title="Manual Min X" type="int" visible="false"/>
+	<property id="minY" title="Manual Min Y" type="int" visible="false"/>
+	<property id="maxX" title="Manual Max X" type="int" visible="false"/>
+	<property id="maxY" title="Manual Max Y" type="int" visible="false"/>
+	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String" visible="false"/>
+	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String" visible="false"/>
+	<!-- End of BaseVizXY Properties -->	
+	<!-- HexBin Properties -->
+	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
+	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
+	<property id="radius" type="int" title = "Hex Radius" visible="false"/>
+	<property id="tolerance" type="int" title = "Manual Tolerance" visible="false"/>
+	<property id="threshold" type="int" title = "Manual Threshold" visible="false"/>
+	<property id="thresholdMethod" type="String" title = "Threshold Method" visible="false">
+		<possibleValue>Max</possibleValue>
+		<possibleValue>Median</possibleValue>
+		<possibleValue>Mean</possibleValue>
+		<possibleValue>Manual</possibleValue>
+	</property>
+	<!-- End of HexBin Properties -->
+	<initialization>
+		<!-- Databound Defaults -->
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
+		<!-- End of Databound Defaults -->
+		<!-- Base Viz Defaults -->
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+		<defaultValue property="colorPalette">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
+		<defaultValue property="showTitle">true</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="showTooltips">true</defaultValue>
+		<defaultValue property="chartValueSize">10</defaultValue>
+		<defaultValue property="chartValueWidthThreshold">80</defaultValue>
+		<defaultValue property="ms">750</defaultValue>
+		<defaultValue property="pollInterval">250</defaultValue>
+		<defaultValue property="plotAlpha">95</defaultValue>
+		<defaultValue property="plotThickness">1.0</defaultValue>
+		<defaultValue property="showValues">true</defaultValue>
+		<defaultValue property="legendOn">true</defaultValue>
+		<defaultValue property="legendWidth">125</defaultValue>
+		<defaultValue property="legendTitle">Legend Title</defaultValue>
+		<defaultValue property="legendScale">1</defaultValue>
+		<defaultValue property="margin">20</defaultValue>
+		<defaultValue property="makeRoomX">true</defaultValue>
+		<defaultValue property="selectedColor">#009966</defaultValue>
+		<defaultValue property="tooltipPositioning">followmouse</defaultValue>
+		<defaultValue property="tooltipLeft">auto</defaultValue>
+		<defaultValue property="tooltipRight">0px</defaultValue>
+		<defaultValue property="tooltipTop">0px</defaultValue>
+		<defaultValue property="tooltipBottom">auto</defaultValue>
+		<defaultValue property="enableZoom">false</defaultValue>
+		<defaultValue property="minZoom">1</defaultValue>
+		<defaultValue property="maxZoom">1</defaultValue>
+		<!-- End of Base Defaults -->
+		<!-- BaseVizXY Defaults -->
+		<defaultValue property="maxX">0</defaultValue>
+		<defaultValue property="maxY">0</defaultValue>
+		<defaultValue property="minX">0</defaultValue>
+		<defaultValue property="minY">0</defaultValue>
+		<!-- End of BaseVizXY Defaults -->		<!-- HexBin Defaults -->
+		<defaultValue property="styleCSS">/*Default CSS*/
+__n__.hexagon {
+__n__  stroke: #303030;
+__n__  stroke-width: .75px;
+__n__  fill: none;
+__n__}
+__n__.hexagon:hover {
+__n__  stroke: #303030;
+__n__  stroke-width: 2px;
+__n__}
+		</defaultValue>
+		<defaultValue property="chartTitle">HexBin Chart</defaultValue>
+		<defaultValue property="radius">20</defaultValue>
+		<defaultValue property="tolerance">0</defaultValue>
+		<defaultValue property="thresholdMethod">Median</defaultValue>
+		<defaultValue property="threshold">20</defaultValue>
+		<defaultValue property="xAxisTickFormat">,n</defaultValue>
+		<defaultValue property="yAxisTickFormat">,n</defaultValue>
+		<!-- End of HexBin Defaults -->
+	</initialization>
+</component>

@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>BusinessCard</name>
+	<documentation>This control allows you to display business card information including an image, first title (either URL link or text), second title, and multiple text lines.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="type" type="sap.ui.core/string">
+			<documentation>Title of the BusinessCard that describes its type.</documentation>
+		</property>
+		<property group="Misc" name="iconPath" type="sap.ui.core/URI">
+			<documentation>A path to the BusinessCard icon.</documentation>
+		</property>
+		<property group="Misc" name="secondTitle" type="sap.ui.core/string">
+			<documentation>A short text line that describes this BusinessCard.</documentation>
+		</property>
+		<property group="Misc" name="width" type="sap.ui.core/CSSSize">
+			<documentation>Width of the BusinessCard. Alternatively, CSS size can be set in %, px, or em.</documentation>
+		</property>
+		<property group="Misc" name="imageTooltip" type="sap.ui.core/string">
+			<documentation>A tooltip that is set for an image.</documentation>
+		</property>
+	</properties>
+	<aggregations>
+		<aggregation cardinality="0..1" name="content" type="sap.ui.core/Control">
+			<documentation>The content of the BusinessCard body must be provided by the application developer.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="firstTitle" type="sap.ui.core/Control">
+			<documentation>Any control that can display a title. Content of this control appears at the first position in BusinessCard. Recomended controls: sap.ui.commons.Label and sap.ui.commons.Link.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

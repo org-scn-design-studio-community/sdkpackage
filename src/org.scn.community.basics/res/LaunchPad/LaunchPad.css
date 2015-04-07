@@ -1,0 +1,26 @@
+  /* Good Formatting */
+  .utilPackLaunchPad.RYG .good .sapMStdTileIconDiv,
+  .utilPackLaunchPad.RYG .good .sapMStdTileNumDiv .sapMStdTileNum,
+  .utilPackLaunchPad.RYG .good .sapMStdTileNumDiv .sapMStdTileNumS,
+  .utilPackLaunchPad.RYG .good .sapMStdTileNumDiv .sapMStdTileNumM, 
+  .utilPackLaunchPad.RYG .good .sapMStdTileNumDiv .sapMStdTileNumUnit
+  {
+    color : #009966;
+  }
+  /* Medium Formatting */
+  .utilPackLaunchPad.RYG .medium .sapMStdTileIconDiv,
+  .utilPackLaunchPad.RYG .medium .sapMStdTileNumDiv .sapMStdTileNum,
+  .utilPackLaunchPad.RYG .medium .sapMStdTileNumDiv .sapMStdTileNumS,
+  .utilPackLaunchPad.RYG .medium .sapMStdTileNumDiv .sapMStdTileNumM, 
+  .utilPackLaunchPad.RYG .medium .sapMStdTileNumDiv .sapMStdTileNumUnit
+  {
+    color : #EBAD00
+  }
+  /* Bad Formatting */
+  .utilPackLaunchPad.RYG .bad .sapMStdTileIconDiv,
+  .utilPackLaunchPad.RYG .bad .sapMStdTileNumDiv .sapMStdTileNum,
+  .utilPackLaunchPad.RYG .bad .sapMStdTileNumDiv .sapMStdTileNumS,
+  .utilPackLaunchPad.RYG .bad .sapMStdTileNumDiv .sapMStdTileNumM, 
+  .utilPackLaunchPad.RYG .bad .sapMStdTileNumDiv .sapMStdTileNumUnit  {
+    color : #FF0000
+  }

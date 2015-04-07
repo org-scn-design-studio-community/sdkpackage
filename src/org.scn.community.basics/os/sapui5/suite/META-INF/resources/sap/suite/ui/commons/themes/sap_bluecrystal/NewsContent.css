@@ -1,0 +1,45 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/NewsContent.control */
+/* ============================================= */
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNwCCTxt.Auto > .sapMText,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNwCCTxt.Auto > .sapMText,
+.sapSuiteUiCommonsNwCCTxt.L > .sapMText, .sapSuiteUiCommonsNwCCTxt.M > .sapMText{
+  	font-size: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNwCCTxt.Auto > .sapMText,
+.sapSuiteUiCommonsNwCCTxt.S > .sapMText, .sapSuiteUiCommonsNwCCTxt.XS > .sapMText {
+  	font-size: 10px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNwCSbh.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNwCSbh.Auto,
+.sapSuiteUiCommonsNwCSbh.L, .sapSuiteUiCommonsNwCSbh.M {
+  	font-size: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNwCSbh.Auto,
+.sapSuiteUiCommonsNwCSbh.S, .sapSuiteUiCommonsNwCSbh.XS {
+  	font-size: 10px;
+}
+
+.sapSuiteUiCommonsNwC {
+	color: @sapUiDarkText;
+	background-color: fade(@sapUiLightestBG, 60);
+}
+
+.sap-desktop .sapSuiteUiCommonsNwC:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+
+.sapSuiteUiCommonsNwC:focus:not([tabindex]) {
+	outline: none;
+}
+
+.sapSuiteUiCommonsNwCSbh {
+	color: @sapUiLightText;
+}

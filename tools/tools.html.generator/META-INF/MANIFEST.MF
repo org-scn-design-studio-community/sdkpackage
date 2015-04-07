@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SCN Design Studio Community
+Bundle-Name: Design Studio SCN Community HTML Generator
+Bundle-SymbolicName: org.scn.community.tools.html.generator;singleton:=true
+Main-Class: org.scn.community.htmlgenerator.Main
+Bundle-ClassPath: os/org.json-2.0.jar,
+ .

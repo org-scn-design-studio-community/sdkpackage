@@ -1,0 +1,13 @@
+
+	<!-- Begin of Location Intel Properties -->
+	<property id="selectedMarker" title="Selected Marker" type="String" visible = "false"/>
+	<property id="latitudeField" title="Latitude Field" type="String" visible="false"/>
+	<property id="longitudeField" title="Longitude Field" type="String" visible="false"/>
+	<property id="markerTitle" title="Marker Title Field" type="String" visible="false"/>
+	<property id="markerSize" title="Marker Title Field" type="String" visible="false"/>
+	<property id="markerAlpha" type="int" title = "Marker Alpha (0-100)" visible="false"/>
+	<property id="markerColor" type="String" title = "Marker Colour" visible="false"/>
+	<property id="markerSizeMeasure" title="Measure to use for Marker Size" type="String" visible="false"/>
+	<property id="markerMin" type="int" title = "Marker Min Radius" visible="false"/>
+	<property id="markerMax" type="int" title = "Marker Max Radius" visible="false"/>
+	<!-- End of Location Intel Properties -->

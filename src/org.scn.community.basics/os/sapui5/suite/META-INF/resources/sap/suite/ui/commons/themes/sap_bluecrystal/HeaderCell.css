@@ -1,0 +1,70 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/HeaderCell.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsHeaderCell{
+  width: 184px;
+  height: 106px;
+  box-sizing:border-box;
+  padding-bottom: 1.125rem;
+  padding-top: 0.875rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  display: inline-block;
+}
+
+.sapMOHR .sapSuiteUiCommonsHeaderCell {
+  padding: 0rem;
+}
+
+.WE.sapSuiteHdrCellWest {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+.WE.sapSuiteHdrCellEast {
+	float: right;
+	width: 50%;
+	height: 100%;
+}
+
+.WNS.sapSuiteHdrCellWest {
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+
+.WNES.sapSuiteHdrCellEast,
+.WNES.sapSuiteHdrCellNorth,
+.NES.sapSuiteHdrCellEast,
+.WNS.sapSuiteHdrCellNorth,
+.WNS.sapSuiteHdrCellSouth {
+	width: 50%;
+	height: 50%;
+	float: right;
+}
+
+.WNES.sapSuiteHdrCellSouth,
+.WNES.sapSuiteHdrCellWest,
+.NES.sapSuiteHdrCellSouth,
+.NES.sapSuiteHdrCellNorth {
+	width: 50%;
+	height: 50%;
+	float: left;
+}
+
+.NES.sapSuiteHdrCellEast {
+	width: 50%;
+	height: 100%;
+	float: right;
+}
+
+.S.sapSuiteHdrCellSouth,
+.E.sapSuiteHdrCellEast,
+.W.sapSuiteHdrCellWest,
+.N.sapSuiteHdrCellNorth {
+	width: 100%;
+	height: 100%;
+}

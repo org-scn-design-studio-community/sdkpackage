@@ -1,0 +1,374 @@
+
+/**
+ * Generated ZTL Class for Post Response Parser
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.utils.PostResponseParser extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Url To Send the Request Property
+	 */	
+	void setUrl( /* &nbsp; */  String url){*
+		this.DUrl = url;
+	*}
+
+	/**
+	 * Gets Url To Send the Request Property
+	 */	
+	String getUrl() {*
+		return this.DUrl;
+	*}
+
+	/**
+	 * Sets Request Type (JQuery | HTTP) Property
+	 */	
+	void setRequestType( /* &nbsp; */  choice requestType){*
+		this.DRequestType = requestType;
+	*}
+
+	/**
+	 * Gets Request Type (JQuery | HTTP) Property
+	 */	
+	choice getRequestType() {*
+		return this.DRequestType;
+	*}
+
+	/**
+	 * Sets Request Method (POST | GET | PUT) Property
+	 */	
+	void setRequestMethod( /* &nbsp; */  choice requestMethod){*
+		this.DRequestMethod = requestMethod;
+	*}
+
+	/**
+	 * Gets Request Method (POST | GET | PUT) Property
+	 */	
+	choice getRequestMethod() {*
+		return this.DRequestMethod;
+	*}
+
+	/**
+	 * Sets Is this Request Cross-Domain Property
+	 */	
+	void setCrossDomain( /* &nbsp; */  boolean crossDomain){*
+		this.DCrossDomain = crossDomain;
+	*}
+
+	/**
+	 * Gets Is this Request Cross-Domain Property
+	 */	
+	boolean getCrossDomain() {*
+		return this.DCrossDomain;
+	*}
+
+	/**
+	 * Sets Basic Authorization Content [Basic: GUID] Property
+	 */	
+	void setBasicAuthorisation( /* &nbsp; */  String basicAuthorisation){*
+		this.DBasicAuthorisation = basicAuthorisation;
+	*}
+
+	/**
+	 * Gets Basic Authorization Content [Basic: GUID] Property
+	 */	
+	String getBasicAuthorisation() {*
+		return this.DBasicAuthorisation;
+	*}
+
+	/**
+	 * Sets Content Type Property
+	 */	
+	void setContentType( /* &nbsp; */  String contentType){*
+		this.DContentType = contentType;
+	*}
+
+	/**
+	 * Gets Content Type Property
+	 */	
+	String getContentType() {*
+		return this.DContentType;
+	*}
+
+	/**
+	 * Sets Response Status for Good Response Property
+	 */	
+	void setExpectedResponseStatus( /* &nbsp; */  int expectedResponseStatus){*
+		this.DExpectedResponseStatus = expectedResponseStatus;
+	*}
+
+	/**
+	 * Gets Response Status for Good Response Property
+	 */	
+	int getExpectedResponseStatus() {*
+		return this.DExpectedResponseStatus;
+	*}
+
+	/**
+	 * Sets Expected Content Type Property
+	 */	
+	void setExpectedContentType( /* &nbsp; */  choice expectedContentType){*
+		this.DExpectedContentType = expectedContentType;
+	*}
+
+	/**
+	 * Gets Expected Content Type Property
+	 */	
+	choice getExpectedContentType() {*
+		return this.DExpectedContentType;
+	*}
+
+	/**
+	Returns the content of property Return Parameters as loopable name/value array.
+	<example>
+	You want to loop at values:
+	<code>
+	var content = POSTRESPONSEPARSER.getReturnParametersAsNameValueArray();<br>
+	<br>
+	// a loop for all entries<br>
+	content.forEach(function(element, index) {<br>
+		LISTBOX_1.addItem(element.name, element.value);<br>
+	});
+	</code>
+	This LISTBOX_1 has now following values entries:<br>
+		<ul>
+		<li>key: k1; value: v1</li>
+		<li>key: k2; value: v2</li>
+		<li>key: k3; value: v3</li></ul>
+	</example>
+	*/
+	org.scn.community.shared.NameValueArray getReturnParametersAsNameValueArray (
+			/**max members*/ optional int maxMembers) {*
+		var s = this.DReturnParameters;  
+		var a = []; 
+		if(s!="") a = JSON.parse(s);
+		
+		var tempA = [];
+		
+		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > a.length) {
+			maxMembers = a.length;
+		}
+		
+		for(var i=0;i<maxMembers;i++){
+			var itemDef = { 
+				"name": a[i].name, 
+				"value": a[i].value
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		return tempA;
+	*}
+
+	/**
+	 * Gets Return Response as String Property
+	 */	
+	String getReturnResponse() {*
+		return this.DReturnResponse;
+	*}
+
+	/**
+	 * Gets Return Status Property
+	 */	
+	int getReturnStatus() {*
+		return this.DReturnStatus;
+	*}
+
+	/**
+	 * Remove All Parameters from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DParameters = JSON.stringify(elementsArray);
+	*}
+
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addParameter (
+			/**Parameter Name*/String key, 
+			/**Parameter Value*/String value
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+	
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DParameters);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	POSTRESPONSEPARSER.removeParameter(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeParameter (
+			String key
+			) {*		
+		
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DParameters);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONSEPARSER.addHeader(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addHeader(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addHeader (
+			/**Header Name*/String key, 
+			/**Header Value*/String value
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+	
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DHeaders);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DHeaders = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	POSTRESPONSEPARSER.removeHeader(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeHeader (
+			String key
+			) {*		
+		
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DHeaders);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets Raw Parameters as String Content Property
+	 */	
+	void setRawParameters( /* &nbsp; */  String rawParameters){*
+		this.DRawParameters = rawParameters;
+	*}
+
+	/**
+	 * Gets Raw Parameters as String Content Property
+	 */	
+	String getRawParameters() {*
+		return this.DRawParameters;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Trigger Execution of the given URL and parameter list
+	 */
+	void triggerExecution () {*
+		this.DTrigger = "GO";
+	*}
+}

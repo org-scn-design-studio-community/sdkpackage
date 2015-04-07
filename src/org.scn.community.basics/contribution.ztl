@@ -22,7 +22,7 @@
 /**
  * Class for Accordion
  */
-class org.scn.community.basics.Accordion extends Component {
+class org.scn.community.basics.Accordion extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -31,7 +31,7 @@ class org.scn.community.basics.Accordion extends Component {
 			
 			this.cleanAll = true;
 	*}
-	
+
 	/** Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.
 	 * You need to specify a unique and existing parent element.
 	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.  
@@ -40,8 +40,7 @@ class org.scn.community.basics.Accordion extends Component {
 	You want to add 2 elements, second one is a child of first one
 	<code>
 	ACCORDION_1.addElement("KEY1", "First Element", "", "ROOT", true);<br>
-	ACCORDION_1.addElement("KEY2", "First Element Child", "", "KEY1", true);<br>
-	<br>
+	ACCORDION_1.addElement("KEY2", "First Element Child", "", "KEY1", true);
 	</code>
 	</example>
 	 */
@@ -134,11 +133,81 @@ class org.scn.community.basics.Accordion extends Component {
 		this.maxSectionHeight = height;	
 	*}
 }
+class org.scn.community.basics.ActionSheetButton extends org.scn.community.shared.Component {
+	/**
+	Gets Item Selected
+	*/
+	String getSelectedItem() {*
+		return this.selectedItem;
+	*}
+	/**
+	Gets Item Key Selected
+	*/
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+	/** Remove All Items
+ 	<example>
+	Remove all items
+	<code>
+	ACTIONSHEETBUTTON_1.removeAllItems();<br>
+	</code>
+	</example>
+	 */
+	void removeAllItems () {*		
+		this.items = "[]";
+	*}
+	/** Add an item
+ 	<example>
+	<code>
+	ACTIONSHEETBUTTON_1.addItem("delete", "Delete Bookmark", "sap-icon://delete");<br>
+	</code>
+	</example>
+	 */
+	void addItem (/*Key*/String key, /*Text*/String text, /*Icon*/String icon) {*		
+		var o = [];
+		if(this.items != "") o = eval(this.items);
+		var newItem = {
+			key : key,
+			text : text,
+			icon : icon
+		};
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			var item = o[i];
+			if(item.key == key) matchIndex = i;
+		}
+		if(matchIndex>-1) {
+			o[matchIndex] = newItem;
+		}else{
+			o.push(newItem);
+		}
+		this.items = JSON.stringify(o);
+	*}
+	/** Remove an item
+ 	<example>
+	<code>
+	ACTIONSHEETBUTTON_1.removeItem("delete");<br>
+	</code>
+	</example>
+	 */
+	void removeItem (/*Item*/String key) {*		
+		var o = [];
+		if(this.items != "") o = eval(this.items);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			var item = o[i];
+			if(item.key == key) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		this.items = JSON.stringify(o);
+	*}
+}
 
 /**
  * Class for ApplicationHeader
  */
-class org.scn.community.basics.ApplicationHeader extends Component {
+class org.scn.community.basics.ApplicationHeader extends org.scn.community.shared.Component {
 	
 	/** Sets the user name that is displayed beside the welcome text. */
 	void setUserName(
@@ -162,11 +231,24 @@ class org.scn.community.basics.ApplicationHeader extends Component {
 		return this.logoText;	
 	*}
 }
-
+class org.scn.community.basics.Base64Image extends org.scn.community.shared.Component {
+	/**
+	 * Sets Source URL Property
+	 */	
+	void setSrc( /* Source URL or Base-64 String */ String s){*
+		this.src = s;
+	*}
+	/**
+	 * Gets Source URL Property
+	 */	
+	String getSrc() {*
+		return this.src;
+	*}
+}
 /**
  * Class for BasicBusinessCard
  */
-class org.scn.community.basics.BasicBusinessCard extends Component {
+class org.scn.community.basics.BasicBusinessCard extends org.scn.community.shared.Component {
 
 	/** returns the image url */
 	String getImage () {*
@@ -200,9 +282,77 @@ class org.scn.community.basics.BasicBusinessCard extends Component {
 }
 
 /**
+ * Class for ValueHelpField
+ */
+class org.scn.community.basics.Calendar extends org.scn.community.shared.Component {
+	
+	/** Sets the enabled value */
+	void setEnabled(
+		/** Editable value */ boolean enabled) {*
+		this.enabled = enabled;
+	*}
+	
+	/** Returns the enabled value */
+	boolean isEnabled() {*
+		return this.enabled;
+	*}
+	
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+
+	/** returns current value */
+	String getCurrentDateValue () {*
+		return this.DCurrentValue;	
+	*}
+		
+	/** sets current value */
+	void setCurrentDateValue (String value) {*
+		this.DCurrentValue = value;	
+	*}
+	
+	/** returns single value */
+	String getSingleDateValue () {*
+		return this.DValue;	
+	*}
+		
+	/** sets single value */
+	void setSingleDateValue (String value) {*
+		this.DValue = value;	
+	*}
+
+	/** returns value from*/
+	String getRangeDateValueFrom () {*
+		return this.DValueF;	
+	*}
+		
+	/** sets value from*/
+	void setRangeDateValueFrom (String value) {*
+		this.DValueF = value;	
+	*}
+
+	/** returns value to*/
+	String getRangeDateValueTo () {*
+		return this.DValueT;	
+	*}
+		
+	/** sets value to*/
+	void setRangeDateValueTo (String value) {*
+		this.DValueT = value;	
+	*}
+}
+
+/**
  * Class for CheckBox Group
  */
-class org.scn.community.basics.CheckBoxGroup extends Component {
+class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -388,24 +538,172 @@ class org.scn.community.basics.CheckBoxGroup extends Component {
 /**
  * Class for ColorPicker
  */
-class org.scn.community.basics.ColorPicker extends Component {
+class org.scn.community.basics.ColorPicker extends org.scn.community.shared.Component {
 
 	/** Sets the color top be shown */
-	void setColor(
-			/** Color value */ String colorString) {*
+	void setColor( /** Color value */ String colorString) {*
 		this.colorString = colorString;
-			*}
+	*}
 
-	/** Returns the picked color */
+	/** Returns the picked color as RGB like: rgb(255,255,255) */
 	String getColor() {*
 		return this.colorString;
+	*}
+	
+	/** Returns the picked color as Hexadecimal string like: #FFFFFF */
+	String getColorAsHex() {*
+		return this.colorStringHex;
+	*}
+}
+
+/**
+ * Class for DateRangeScroller
+ */
+class org.scn.community.basics.DateRangeScroller extends org.scn.community.shared.Component {
+
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+	
+	/** Returns the start date */
+	String getStartDate() {*
+		return this.DStartDate;
+	*}
+	
+	/** Returns the end date */
+	String getEndDate() {*
+		return this.dEndDate;
+	*}
+
+}
+
+/**
+ * Class for DateRangeSlider
+ */
+class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.Component {
+
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+
+	/** Sets the minimum value. */
+	void setMinimumDate(
+		/** Minimum value */ String min) {*
+		this.DMin = min;
+	*}
+	
+	/** Returns the minimum value. */
+	String getMinimumDate() {*
+		return this.DMin;
+	*}
+
+	/** Sets the maximum value. */
+	void setMaximumDate(
+		/** Maximum value */ String max) {*
+		this.DMax = max;
+	*}
+	
+	/** Returns the maximum value. */
+	String getMaximumValueDate() {*
+		return this.DMax;
+	*}
+
+	/** Sets the value. */
+	void setStartDate(
+		/** Value */ String value) {*
+		this.DValue = value;
+	*}
+	
+	/** Returns the value. */
+	String getStartDate() {*
+		return this.DValue;
+	*}
+	
+	/** Sets the second value. */
+	void setEndDate(
+		/** Second value */ String value2) {*
+		this.DValue2 = value2;
+	*}
+	
+	/** Returns the second value. */
+	String getEndDate() {*
+		return this.DValue2;
+	*}
+
+	/** Sets the total units value. */
+	void setTotalUnits(
+		/** Total units value */ int totalUnits) {*
+		this.totalUnits = totalUnits;
+	*}
+	
+	/** Returns the total units value. */
+	int getTotalUnits() {*
+		return this.totalUnits;
+	*}
+
+	/** Sets the step labels value. */
+	void setStepLabels(
+		/** Step labels value */ boolean stepLabels) {*
+		this.stepLabels = stepLabels;
+	*}
+	
+	/** Returns the step labels value. */
+	boolean isStepLabels() {*
+		return this.stepLabels;
+	*}
+
+	/** Sets the vertical value. */
+	void setVertical(
+		/** Vertical value */ boolean vertical) {*
+		this.vertical = vertical;
+	*}
+	
+	/** Returns the vertical value. */
+	boolean isVertical() {*
+		return this.vertical;
+	*}
+
+	/** Sets the small step width value. */
+	void setSmallStepWidth(
+		/** Small step width value */ float smallStepWidth) {*
+		this.smallStepWidth = smallStepWidth;
+	*}
+	
+	/** Returns the small step width value. */
+	float getSmallStepWidth() {*
+		return this.smallStepWidth;
+	*}
+	
+	/** Sets the small step width value. */
+	void setShowBubbles(
+		/** Small step width value */ boolean showBubbles) {*
+		this.showBubbles = showBubbles;
+	*}
+	
+	/** Returns the small step width value. */
+	boolean getShowBubbles() {*
+		return this.showBubbles;
 	*}
 }
 
 /**
  * Class for DragDropArea
  */
-class org.scn.community.basics.DragDropArea extends Component {
+class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -442,6 +740,13 @@ class org.scn.community.basics.DragDropArea extends Component {
 		var elementsJson = JSON.parse(this.elements);
 		var newElementsJson = [];
 		
+		// special case 1
+		if(insertionIndex0based == 0 && elementsJson.length == 0) {
+			this.addElement(elementKey, elementText, imageUrl);
+			return;
+		}
+		
+		var found = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (i == insertionIndex0based) {
 				var itemDef = { 
@@ -451,11 +756,18 @@ class org.scn.community.basics.DragDropArea extends Component {
 						};
 				
 				newElementsJson.push(itemDef);
+				found = true;
 			}
 			
 			newElementsJson.push(elementsJson[i]);
 		}
-
+		
+		// special case 2
+		if(!found) {
+			this.addElement(elementKey, elementText, imageUrl);
+			return;
+		}
+		
 		this.elements = JSON.stringify(newElementsJson);
 	*}
 	
@@ -497,6 +809,39 @@ class org.scn.community.basics.DragDropArea extends Component {
 		}
 
 		this.elements = JSON.stringify(newElementsJson);
+	*}
+	
+	/**
+	Returns the content as key label array
+	<example>
+	You want to get the content of this area
+	<code>
+	var content = DRAGDROP.getAsKeyLabelArray();<br>
+	<br>
+	// a loop for all entries<br>
+	content.forEach(function(element, index) {<br>
+		LISTBOX_1.addItem(element.key, element.label);<br>
+	});
+	</code>
+	</example>
+	*/
+	org.scn.community.shared.KeyLabelArray getAsKeyLabelArray () {*
+		var s = this.elements;  
+		var a = []; 
+		if(s!="") a = JSON.parse(s);
+		
+		var tempA = [];
+		
+		for(var i=0;i<a.length;i++){
+			var itemDef = { 
+				"key": a[i].key, 
+				"label": a[i].text
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		return tempA;
 	*}
 	
 	/** returns key at given index */
@@ -554,9 +899,208 @@ class org.scn.community.basics.DragDropArea extends Component {
 }
 
 /**
+ * Class for EmbeddedFrame
+ */
+class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Component {
+	
+	/** Sets the content url which will be embedded */
+	void setURL(
+		/** text */ String text) {*
+		this.url = url;	
+	*}
+	
+	/** Returns the content url */
+	String getURL() {*
+		return this.url;	
+	*}
+}
+
+/**
+ * Class for EmbeddedMedia
+ */
+class org.scn.community.basics.EmbeddedMedia extends org.scn.community.shared.Component {
+	
+	/** Sets the content url which will be embedded */
+	void setURL(
+		/** text */ String text) {*
+		this.url = url;	
+	*}
+	
+	/** Returns the content url */
+	String getURL() {*
+		return this.url;	
+	*}
+}
+
+/**
+ * Class for FallbackPicture
+ */
+class org.scn.community.basics.FallbackPicture extends org.scn.community.shared.Component {
+	
+	/**
+	 * Setter for "normal case" picture
+	 */
+	void setPicture (
+			/** picture */
+			String pictureForNormalCase) {*
+		this.picture = pictureForNormalCase;
+	*}
+
+	/**
+	 * Setter for "fallback case" picture
+	 */
+	void setFallbackPicture (
+			/** fallback picture */
+			String pictureForFallbackCase) {*
+		this.fallbackPicture = pictureForFallbackCase;
+	*}
+}
+class org.scn.community.basics.FioriAppHeader extends org.scn.community.shared.Component {
+	/** Add a header button
+ 	<example>
+	Add a header button called 'Menu' with no label show and a menu icon.
+	<code>
+	FIORIAPPHEADER_1.addHeaderButton("Menu",false,"sap-icon://menu2");<br>
+	</code>
+	</example>
+	 */
+	void addHeaderButton (/*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon) {*		
+		var o = eval(this.itemConfig);
+		var sTitle = true;
+		if(showTitle!=undefined) sTitle = showTitle;
+		o.push({
+			title : buttonTitle,
+			showTitle : sTitle,
+			icon : icon,
+			items : []
+		});
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Remove All Button
+ 	<example>
+	Remove all button
+	<code>
+	FIORIAPPHEADER_1.removeAllButtons();<br>
+	</code>
+	</example>
+	 */
+	void removeAllButtons () {*		
+		itemConfig = JSON.stringify([]);
+	*}
+	/** Remove All Items in a header button
+ 	<example>
+	Remove all items in header button 'Menu'
+	<code>
+	FIORIAPPHEADER_1.removeAllItems("Menu");<br>
+	</code>
+	</example>
+	 */
+	void removeAllItems (/*Button Title*/String buttonTitle) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == buttonTitle) matchIndex = i;
+		}
+		if(matchIndex>-1) o[matchIndex].items = [];
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Remove a button
+ 	<example>
+	Remove a header button called 'Menu'
+	<code>
+	FIORIAPPHEADER_1.removeHeaderButton("Menu");<br>
+	</code>
+	</example>
+	 */
+	void removeHeaderButton (/*Button Title*/String buttonTitle) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == buttonTitle) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Add an item to a header button.  Will add the header button if it does not yet exist.
+ 	<example>
+	Add an item called 'Help' to header button called 'Menu' with an icon sys-help-2
+	<code>
+	FIORIAPPHEADER_1.addItem("Menu","sap-icon://sys-help-2|Help");<br>
+	</code>
+	</example>
+	 */
+	void addItem (/*Button Title*/String buttonTitle, /*Item Title*/String itemTitle) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == buttonTitle) matchIndex = i;
+		}
+		if(matchIndex == -1 ){	// Add section for the lazy
+			this.addHeaderButton(buttonTitle);
+			o = eval(this.itemConfig);
+			matchIndex = o.length-1;
+		}
+		o[matchIndex].items.push(itemTitle);
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Removes an item from a header button.
+ 	<example>
+	Remove an item called 'Help' from header button called 'Menu'
+	<code>
+	FIORIAPPHEADER_1.removeItem("Menu", "Help");<br>
+	</code>
+	</example>
+	 */
+	void removeItem (/*Button Title*/String buttonTitle, /*Item Title*/ String itemTitle) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == buttonTitle) matchIndex = i;
+		}
+		if(matchIndex != -1 ){
+			var items = o[matchIndex].items;
+			var itemIndex = -1;
+			for(var i=0;i<items.length;i++){
+				if(items[i]==itemTitle) itemIndex = i;
+			}
+			if(itemIndex>-1) items.splice(itemIndex,1);
+			itemConfig = JSON.stringify(o);
+		}		
+	*}
+	/**
+	Get item clicked.
+	*/
+	String getItemClicked() {*
+		return this.selectedItem;
+	*}
+	/**
+	Get header of and item clicked.
+	*/
+	String getHeaderClicked() {*
+		return this.selectedHeader;
+	*}
+
+	/* Shows or hides the back button. */
+	void setShowNavButton(/* If true, then the back button is shown, else it is hidden */ boolean visible) {*
+		this.showNavButton = visible;
+	*}
+	/* Returns true if the back button is shown, else false. */
+	boolean getShowNavButton() {*
+		return this.showNavButton;
+	*}
+	/* Sets the title. */
+	void setTitle(/* Title */ String title) {*
+		this.title = title;
+	*}	
+	/* Returns the title. */
+	String getTitle() {*
+		return this.title;
+	*}
+}
+/**
  * Class for FioriButton
  */
-class org.scn.community.basics.FioriButton extends Component {
+class org.scn.community.basics.FioriButton extends org.scn.community.shared.Component {
 
 	/** Sets the text that is displayed */
 	void setText(
@@ -579,12 +1123,178 @@ class org.scn.community.basics.FioriButton extends Component {
 	String getTooltip() {*
 		return this.dTooltip;	
 	*}
-}
+	
+	/** Sets the button style */
+	void setButtonStyle(
+			/** style */ org_scn_community_shared_ButtonStyleEnumfield style) {*
+		this.dStyle = style;	
+			*}
 
+	/** Returns the buttom style */
+	org_scn_community_shared_ButtonStyleEnumfield getButtonStyle() {*
+		return this.dStyle;	
+	*}
+}
+class org.scn.community.basics.FioriToolbar extends org.scn.community.shared.Component {
+	/** Add a header button
+ 	<example>
+	Add or update a header button by key 'MENU'.
+	<code>
+	FIORITOOLBAR_1.addHeaderButton("MENU","Menu",false,"sap-icon://menu2","Emphasized");<br>
+	</code>
+	</example>
+	 */
+	void addHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		var sTitle = true;
+		if(showTitle != undefined) sTitle = showTitle;
+		var h;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex==-1) {
+			o.push({
+				key : buttonKey,
+				text : buttonTitle,
+				showTitle : sTitle,
+				icon : icon,
+				items : [],
+				type : buttonType || "Default"
+			});
+		}else{	// Don't overwrite items
+			o[matchIndex].text = buttonTitle;
+			o[matchIndex].showTitle = sTitle;
+			o[matchIndex].icon = icon;
+			o[matchIndex].type = buttonType || "Default";
+		}		
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Remove All Button
+ 	<example>
+	Remove all button
+	<code>
+	FIORITOOLBAR_1.removeAllButtons();<br>
+	</code>
+	</example>
+	 */
+	void removeAllButtons () {*		
+		itemConfig = JSON.stringify([]);
+	*}
+	/** Remove All Items in a header button
+ 	<example>
+	Remove all items in header button 'MENU'
+	<code>
+	FIORITOOLBAR_1.removeAllItems("Menu");<br>
+	</code>
+	</example>
+	 */
+	void removeAllItems (/*Button Key*/String buttonKey) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex>-1) o[matchIndex].items = [];
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Remove a button
+ 	<example>
+	Remove a header button with key 'MENU'
+	<code>
+	FIORITOOLBAR_1.removeHeaderButton("MENU");<br>
+	</code>
+	</example>
+	 */
+	void removeHeaderButton (/*Button Key*/String buttonKey) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Add an item to a header button.  Will add the header button if it does not yet exist.
+ 	<example>
+	Add an item called 'Help' to header button with key 'MENU' with an icon sys-help-2
+	<code>
+	FIORITOOLBAR_1.addItem("MENU", "help", "Help", "sap-icon://sys-help-2");<br>
+	</code>
+	</example>
+	 */
+	void addItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex == -1 ){	// Add section for the lazy
+			this.addHeaderButton(buttonKey, buttonKey);
+			o = eval(this.itemConfig);
+			matchIndex = o.length-1;
+		}
+		o[matchIndex].items.push({
+			key : itemKey,
+			text : itemText,
+			icon : itemIcon || ""
+		});
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Removes an item from a header button.
+ 	<example>
+	Remove an item with key 'HELP' from header button with key 'MENU'
+	<code>
+	FIORITOOLBAR_1.removeItem("MENU", "HELP");<br>
+	</code>
+	</example>
+	 */
+	void removeItem (/*Button Key*/String buttonKey, /*Item Key*/ String itemKey) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex != -1 ){
+			var items = o[matchIndex].items;
+			var itemIndex = -1;
+			for(var i=0;i<items.length;i++){
+				if(items[i].key == itemKey) itemIndex = i;
+			}
+			if(itemIndex>-1) items.splice(itemIndex,1);
+			itemConfig = JSON.stringify(o);
+		}		
+	*}
+	/**
+	Get item clicked.
+	*/
+	String getItemClicked() {*
+		return this.selectedItem;
+	*}
+	/**
+	Get item key clicked.
+	*/
+	String getItemKeyClicked() {*
+		return this.selectedItemKey;
+	*}
+	/**
+	Get header of and item clicked.
+	*/
+	String getHeaderClicked() {*
+		return this.selectedHeader;
+	*}
+	/**
+	Get header key of and item clicked.
+	*/
+	String getHeaderKeyClicked() {*
+		return this.selectedHeaderKey;
+	*}
+	
+}
 /**
  * Class for FishEye
  */
-class org.scn.community.basics.FishEye extends Component {
+class org.scn.community.basics.FishEye extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -706,156 +1416,275 @@ class org.scn.community.basics.FishEye extends Component {
 		this.selectedKey = key;	
 	*}
 }
+
 /**
- * Copyright 2014 Scn Community Contributors
+ * Generated ZTL Class for Gauge (Speedometer)
  * 
- * Original Source Code Location:
- *  https://github.com/org-scn-design-studio-community/sdkpackage/
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- *  
- *  http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an "AS IS" BASIS, 
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and 
- * limitations under the License. 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
+class org.scn.community.basics.Gauge extends org.scn.community.shared.Component {
 
-/**
- * Class for NotificationBar
- */
-class org.scn.community.basics.NotificationBar extends Component {
-
-	/** 
-	 * Add Category
-	 * 
-	 */
-	void addCategory (
-			/**Category Key*/String categoryKey, 
-			/**Category Text*/String categoryText, 
-			/**Category Image*/String categoryImage)
-	{*
-
-		var categoryDef = {
-				"key": categoryKey,
-				"text": categoryText,
-				"image": categoryImage
-				};
-			
-		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
-			this.categories = "[]";
-		}
-
-		var caregoriesJson = JSON.parse(this.categories);
-		caregoriesJson.push(categoryDef);
-		
-		this.categories = JSON.stringify(caregoriesJson);
+	/**
+	 * Sets Show Number Property
+	 */	
+	void setHaveNumbers( /* &nbsp; */  boolean haveNumbers){*
+		this.haveNumbers = haveNumbers;
 	*}
 
 	/**
-	 * Add an Error Notification
-	 */
-	void addErrorNotification (
-			/**Notification Text */String notificationText,
-			/**Optional: Category Key as defined in addCategory*/optional String categoryKey 
-			)
-	{*
-		this.addNotification(notificationText, "ERROR", categoryKey, "");
-	*}
-			
-	/**
-	 * Add a Warning Notification
-	 */
-	void addWarningNotification (
-			/**Notification Text */String notificationText,
-			/**Optional: Category Key as defined in addCategory*/optional String categoryKey 
-			)
-	{*
-		this.addNotification(notificationText, "WARNING", categoryKey, "");
+	 * Gets Show Number Property
+	 */	
+	boolean getHaveNumbers() {*
+		return this.haveNumbers;
 	*}
 
 	/**
-	 * Add an Info Notification
-	 */
-	void addInfoNotification (
-			/**Notification Text */String notificationText,
-			/**Optional: Category Key as defined in addCategory*/optional String categoryKey 
-			)
-	{*
-		this.addNotification(notificationText, "INFO", categoryKey, "");
+	 * Sets Number of Big Ticks Property
+	 */	
+	void setNumOfBigTicks( /* &nbsp; */  int numOfBigTicks){*
+		this.numOfBigTicks = numOfBigTicks;
 	*}
 
 	/**
-	 * Add a Success Notification
-	 */
-	void addSuccessNotification (
-			/**Notification Text */String notificationText,
-			/**Optional: Category Key as defined in addCategory*/optional String categoryKey 
-			)
-	{*
-		this.addNotification(notificationText, "SUCCESS", categoryKey, "");
-	*}
-
-	/** 
-	 * Add Notification
-	 * 
-	 */
-	void addNotification (
-			/**Notification Text */String notificationText, 
-			/**Notification Level (ERROR|WARNING|INFO|SUCCESS) */String notificationLevel, 
-			/**Optional: Category Key as defined in addCategory*/optional String categoryKey, 
-			/**Optional: Notification Key */ optional String notificationKey)
-	{*
-		var itemDef = { 
-				"category": categoryKey,
-				"key": notificationKey, 
-				"text": notificationText, 
-				"level": notificationLevel
-				};
-
-		if (this.notifications === undefined || this.notifications === "" || this.notifications === "<delete>"){
-			this.notifications = "[]";
-		}
-		
-		var notificationsJson = JSON.parse(this.notifications);
-		notificationsJson.push(itemDef);
-
-		this.notifications = JSON.stringify(notificationsJson);
-	*}
-}
-
-/**
- * Class for FallbackPicture
- */
-class org.scn.community.basics.FallbackPicture extends Component {
-	
-	/**
-	 * Setter for "normal case" picture
-	 */
-	void setPicture (
-			/** picture */
-			String pictureForNormalCase) {*
-		this.picture = pictureForNormalCase;
+	 * Gets Number of Big Ticks Property
+	 */	
+	int getNumOfBigTicks() {*
+		return this.numOfBigTicks;
 	*}
 
 	/**
-	 * Setter for "fallback case" picture
-	 */
-	void setFallbackPicture (
-			/** fallback picture */
-			String pictureForFallbackCase) {*
-		this.fallbackPicture = pictureForFallbackCase;
+	 * Sets Number of Small Ticks Property
+	 */	
+	void setNumOfSmallTicks( /* &nbsp; */  int numOfSmallTicks){*
+		this.numOfSmallTicks = numOfSmallTicks;
 	*}
+
+	/**
+	 * Gets Number of Small Ticks Property
+	 */	
+	int getNumOfSmallTicks() {*
+		return this.numOfSmallTicks;
+	*}
+
+	/**
+	 * Sets Indicator Value Property
+	 */	
+	void setIndicatorValue( /* &nbsp; */  float indicatorValue){*
+		this.indicatorValue = indicatorValue;
+	*}
+
+	/**
+	 * Gets Indicator Value Property
+	 */	
+	float getIndicatorValue() {*
+		return this.indicatorValue;
+	*}
+
+	/**
+	 * Sets Show Value Property
+	 */	
+	void setShowValue( /* &nbsp; */  boolean showValue){*
+		this.showValue = showValue;
+	*}
+
+	/**
+	 * Gets Show Value Property
+	 */	
+	boolean getShowValue() {*
+		return this.showValue;
+	*}
+
+	/**
+	 * Sets Showed Value Property
+	 */	
+	void setShowedValue( /* &nbsp; */  String showedValue){*
+		this.showedValue = showedValue;
+	*}
+
+	/**
+	 * Gets Showed Value Property
+	 */	
+	String getShowedValue() {*
+		return this.showedValue;
+	*}
+
+	/**
+	 * Sets Needle Color Property
+	 */	
+	void setNeedleColor( /* &nbsp; */  String needleColor){*
+		this.needleColor = needleColor;
+	*}
+
+	/**
+	 * Gets Needle Color Property
+	 */	
+	String getNeedleColor() {*
+		return this.needleColor;
+	*}
+
+	/**
+	 * Sets Title Property
+	 */	
+	void setTitle( /* &nbsp; */  String title){*
+		this.title = title;
+	*}
+
+	/**
+	 * Gets Title Property
+	 */	
+	String getTitle() {*
+		return this.title;
+	*}
+
+	/**
+	 * Sets Start Value Property
+	 */	
+	void setStartValue( /* &nbsp; */  int startValue){*
+		this.startValue = startValue;
+	*}
+
+	/**
+	 * Gets Start Value Property
+	 */	
+	int getStartValue() {*
+		return this.startValue;
+	*}
+
+	/**
+	 * Sets End Value Property
+	 */	
+	void setEndValue( /* &nbsp; */  int endValue){*
+		this.endValue = endValue;
+	*}
+
+	/**
+	 * Gets End Value Property
+	 */	
+	int getEndValue() {*
+		return this.endValue;
+	*}
+
+	/**
+	 * Sets Gradient Color Property
+	 */	
+	void setGradientColor( /* &nbsp; */  boolean gradientColor){*
+		this.gradientColor = gradientColor;
+	*}
+
+	/**
+	 * Gets Gradient Color Property
+	 */	
+	boolean getGradientColor() {*
+		return this.gradientColor;
+	*}
+
+	/**
+	 * Sets First Color Property
+	 */	
+	void setFirstColor( /* &nbsp; */  String firstColor){*
+		this.firstColor = firstColor;
+	*}
+
+	/**
+	 * Gets First Color Property
+	 */	
+	String getFirstColor() {*
+		return this.firstColor;
+	*}
+
+	/**
+	 * Sets Second Color Property
+	 */	
+	void setSecondColor( /* &nbsp; */  String secondColor){*
+		this.secondColor = secondColor;
+	*}
+
+	/**
+	 * Gets Second Color Property
+	 */	
+	String getSecondColor() {*
+		return this.secondColor;
+	*}
+
+	/**
+	 * Sets Third Color Property
+	 */	
+	void setThirdColor( /* &nbsp; */  String thirdColor){*
+		this.thirdColor = thirdColor;
+	*}
+
+	/**
+	 * Gets Third Color Property
+	 */	
+	String getThirdColor() {*
+		return this.thirdColor;
+	*}
+
+	/**
+	 * Sets Start of Second Color Property
+	 */	
+	void setStartSecondColor( /* &nbsp; */  int startSecondColor){*
+		this.startSecondColor = startSecondColor;
+	*}
+
+	/**
+	 * Gets Start of Second Color Property
+	 */	
+	int getStartSecondColor() {*
+		return this.startSecondColor;
+	*}
+
+	/**
+	 * Sets Start of Third Color Property
+	 */	
+	void setStartThirdColor( /* &nbsp; */  int startThirdColor){*
+		this.startThirdColor = startThirdColor;
+	*}
+
+	/**
+	 * Gets Start of Third Color Property
+	 */	
+	int getStartThirdColor() {*
+		return this.startThirdColor;
+	*}
+
+	/**
+	 * Sets Main Color Property
+	 */	
+	void setMainColor( /* &nbsp; */  String mainColor){*
+		this.mainColor = mainColor;
+	*}
+
+	/**
+	 * Gets Main Color Property
+	 */	
+	String getMainColor() {*
+		return this.mainColor;
+	*}
+
+	/**
+	 * Sets Text and Ticks Color Property
+	 */	
+	void setTtColor( /* &nbsp; */  String ttColor){*
+		this.ttColor = ttColor;
+	*}
+
+	/**
+	 * Gets Text and Ticks Color Property
+	 */	
+	String getTtColor() {*
+		return this.ttColor;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/* CUSTOM ZTL FUNCTIONS */
 }
 
 /**
  * Class for ImageCarousel
  */
-class org.scn.community.basics.ImageCarousel extends Component {
+class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -978,1021 +1807,7 @@ class org.scn.community.basics.ImageCarousel extends Component {
 	*}
 }
 
-/**
- * Class for BasicBusinessCard
- */
-class org.scn.community.basics.BasicBusinessCard extends Component {
-
-	/** returns the image url */
-	String getImage () {*
-		return this.image;	
-	*}
-	
-	/** sets the image url */
-	void setImage (String imageUrl) {*
-		this.image = imageUrl;	
-	*}
-
-	/** returns the name */
-	String getName () {*
-		return this.name;	
-	*}
-	
-	/** sets the name */
-	void setName (String name) {*
-		this.name = name;	
-	*}
-
-	/** returns the title */
-	String getTitle () {*
-		return this.title;	
-	*}
-	
-	/** sets the title */
-	void setTitle (String title) {*
-		this.title = title;	
-	*}
-}
-
-/**
- * Class for FishEye
- */
-class org.scn.community.basics.FishEye extends Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elements = JSON.stringify(elementsArray);
-	*}
-	
-	/** add an element */
-	void addElement (String elementKey, String elementText, String imageUrl) {*		
-		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl
-			};
-	
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		elementsJson.push(itemDef);
-	
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** insert an element */
-	void insertElement (String elementKey, String elementText, String imageUrl, int insertionIndex0based) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (i == insertionIndex0based) {
-				var itemDef = { 
-						"key": elementKey, 
-						"text": elementText, 
-						"url": imageUrl
-						};
-				
-				newElementsJson.push(itemDef);
-			}
-			
-			newElementsJson.push(elementsJson[i]);
-		}
-
-		this.elements = JSON.stringify(newElementsJson);
-	*}
-	
-	/** update given element */
-	void updateElement (String elementKey, String elementText, String imageUrl) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
-				elementsJson[i].text = elementText;
-				elementsJson[i].url = imageUrl;
-				break;
-			}
-		}
-		
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** delete an element */
-	void deleteElement (String elementKey) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key != elementKey) {
-				newElementsJson.push(elementsJson[i]);
-			}
-		}
-
-		this.elements = JSON.stringify(newElementsJson);
-	*}
-	
-	/** returns key at given index */
-	String getKeyAtIndex (int index) {*		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (index == i) {
-				return elementsJson[i].key;
-			}
-		}
-		
-		return "";
-	*}
-	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
-	*}
-}
-
-/**
- * Component created with collaboration with Michael Howles
- * http://scn.sap.com/people/mike.howles4
- * 
- * based on the discussion thread http://scn.sap.com/community/businessobjects-design-studio/blog/2014/09/12/design-studio-sdk--get-topbottom-n-rankings-with-a-little-less-code
- * 
- * Authors: Michael Howles, Scn Community Contributors
- */
-class org.scn.community.basics.Collection extends Component {  
-	
-	/**
-	Returns the collection content as loopable array.
-	<example>
-	You want to loop at the "k1;k2;k3", "l1;l2;l3", "12.4;25.1;94.2" collection:
-	<code>
-	var content = COLLECTION_1.getAsKeyLabelValueArray();<br>
-	<br>
-	// a loop for all entries<br>
-	content.forEach(function(element, index) {<br>
-		LISTBOX_1.addItem(element.key, element.label + "( " + element.value + " )");<br>
-	});
-	</code>
-	This LISTBOX_1 has now following values entries:<br>
-		<ul><li>key: k1; value: l1 ( 12.4 )</li>
-		<li>key: k2; value: l2 ( 25.1 )</li>
-		<li>key: k3; value: l3 ( 94.2 )</li></ul>
-	</example>
-	*/
-	org.scn.pack.KeyLabelValueArray getAsKeyLabelValueArray (
-			/**max members*/ optional int maxMembers) {*
-		var s = this.items;  
-		var items = JSON.parse(s);
-		
-		var a = [];
-		
-		// APPLICATION.createInfoMessage("Max: " + maxMembers); // debug
-		
-		if(maxMembers == undefined || maxMembers <= 0) {
-			maxMembers = items.length;
-		}
-		
-		for(var i=0;i<maxMembers;i++){
-			var itemDef = { 
-				"key": items[i].key, 
-				"label": items[i].label,
-				"value": items[i].value
-			};
-			
-			a.push(itemDef);
-		}
-		
-		return a;
-	*}
-
-	/**
-	Returns the collection content as loopable array.
-	<example>
-	You want to loop at the "k1;k2;k3", "l1;l2;l3", "12.4;25.1;94.2" collection:
-	<code>
-	var content = COLLECTION_1.getAsKeyLabelValueArray();<br>
-	<br>
-	// a loop for all entries<br>
-	content.forEach(function(element, index) {<br>
-		LISTBOX_1.addItem(element.key, element.label + "( " + element.value + " )");<br>
-	});
-	</code>
-	This LISTBOX_1 has now following values entries:<br>
-		<ul><li>key: k1; value: l1 ( 12.4 )</li>
-		<li>key: k2; value: l2 ( 25.1 )</li>
-		<li>key: k3; value: l3 ( 94.2 )</li></ul>
-	</example>
-	*/
-	org.scn.pack.KeyLabelValueExtendedArray getAsKeyLabelValueExtendedArray (
-			/**max members*/ optional int maxMembers) {*
-		var s = this.items;  
-		var items = JSON.parse(s);
-		
-		var a = [];
-		
-		// APPLICATION.createInfoMessage("Max: " + maxMembers); // debug
-		
-		if(maxMembers == undefined || maxMembers <= 0) {
-			maxMembers = items.length;
-		}
-		
-		for(var i=0;i<maxMembers;i++){
-			var itemDef = { 
-				"key": items[i].key, 
-				"label": items[i].label,
-				"value": items[i].value,
-				"param1": items[i].param1,
-				"param2": items[i].param2,
-				"param3": items[i].param3
-			};
-			
-			a.push(itemDef);
-		}
-		
-		return a;
-	*}
-
-	/**
-	 * Removes all Items (clears the collection)
-	 */
-	void removeAllItems () {*
-		var items = [];
-		this.items = JSON.stringify(items);  
-	*}
-			
-	/**
-	Sets items of the array by 2 strings: for keys, labels, values. Optionally a given separator can be specified. This implementation of collection allows duplicate keys.
-	Values must be float numbers. The content length is equal with number of keys. in case labels or values are shorter, correspondingly an empty label or 0.0 will be inserted. 
-	<example>
-	You want to set the string "k1;k2;k3" array:
-	<code>
-	COLLECTION_1.setItems("k1;k2;k3", "l1;l2;l3", "12.4;25.1;94.2", ";");<br>
-	</code>
-	This array has now following values: k1,k2,k3
-	</example>
-	*/
-	void setItems (
-			/*keys*/ String keys, 
-			/*labels*/ String labels, 
-			/*values*/ String values,
-			/*separator*/ optional String separator,
-			/*optional param 1 array*/ optional String param1s,
-			/*optional param 2 array*/ optional String param2s,
-			/*optional param 3 array*/ optional String param3s) {*  
-		var items = [];
-	
-		if(separator == undefined) {
-			separator = ",";
-		}
-			
-		if(param1s == undefined) {
-			param1s = "";
-		}
-		if(param2s == undefined) {
-			param2s = "";
-		}
-		if(param3s == undefined) {
-			param3s = "";
-		}
-		
-		var k = keys.split(separator);  
-		var l = labels.split(separator);  
-		var v = values.split(separator);
-		
-		var p1 = param1s.split(separator);
-		var p2 = param2s.split(separator);
-		var p3 = param3s.split(separator);
-		
-		while(k.length>l.length) l.push("");  
-		while(k.length>v.length) v.push("0");
-		
-		while(k.length>p1.length) p1.push("");
-		while(k.length>p2.length) p2.push("");
-		while(k.length>p3.length) p3.push("");
-
-		for(var i=0; i<k.length; i++){
-			var itemDef = {
-				"key" : k[i],
-				"label" : l[i],  
-				"value" : v[i],
-				"param1": p1[i],
-				"param2": p2[i],
-				"param3": p3[i]
-			};
-			
-			items.push(itemDef);
-		}
-		
-		this.items = JSON.stringify(items);  
-	*}  
-
-	/**
-	Adds a value to new or existing array. This implementation of collection allows duplicate keys. 
-	<example>
-	You want to create an "k1,k2,k3" array:
-	<code>
-	COLLECTION_1.addItem("k1", "l1", 45.75);<br>
-	COLLECTION_1.addItem("k2", "l2", 11.21);<br>
-	COLLECTION_1.addItem("k3", "l3", 85.439);<br>
-	</code>
-	This array has now following elements with keys: k1,k2,k3
-	</example>
-	*/
-	void addItem (
-			/*key*/ String key, 
-			/*label*/ String label, 
-			/*value*/ float value,
-			/*optional param 1*/ optional String param1,
-			/*optional param 2*/ optional String param2,
-			/*optional param 3*/ optional String param3) {*  
-		
-		var s = this.items;  
-		var a = [];  
-		if(s!="") a = JSON.parse(s);
-		
-		if(param1 == undefined) {
-			param1 = "";
-		}
-		if(param2 == undefined) {
-			param2 = "";
-		}
-		if(param3 == undefined) {
-			param3 = "";
-		}
-		
-		var itemDef = {
-			"key" : key,
-			"label" : label,  
-			"value" : value,
-			"param1" : param1,
-			"param2" : param2,
-			"param3" : param3
-		};
-		
-		a.push(itemDef);
-		
-		this.items = JSON.stringify(a);  
-	*}
-
-	/**
-	Returns all keys as String separated by given optional separator. default separator is comma ,
-	<example>
-	You have an array with 3 elements with keys ["K1", "K2", "K3"]:
-	<code>
-	var keysAsString = COLLECTION_1.getKeys ("|");<br>
-	</code>
-	
-	The "keysAsString" has now "K1|K2|K3" as content.
-	</example>
-	*/
-	String getKeys(
-			/*separator*/ optional String separator) {*  
-		var s = this.items;  
-		var items = JSON.parse(s);
-		var a = [];
-		
-		for(var i=0;i<items.length;i++){  
-			a.push(items[i].key);  
-		}
-		
-		if(separator == undefined) {
-			separator = ",";
-		}
-		
-		return a.join(separator);  
-	*}
-
-	/**
-	Returns all labels as String separated by given optional separator. default separator is comma ,
-	<example>
-	You have an array with 3 elements with labels ["L1", "L2", "L3"]:
-	<code>
-	var labelsAsString = COLLECTION_1.getLabels ("|");<br>
-	</code>
-	
-	The "labelsAsString" has now "L1|L2|L3" as content.
-	</example>
-	*/
-	String getLabels(
-			/*separator*/ optional String separator) {*  
-		var s = this.items;  
-		var items = JSON.parse(s);  
-		var a = [];  
-		
-		for(var i=0;i<items.length;i++){  
-			a.push(items[i].label);  
-		}  
-		
-		if(separator == undefined) {
-			separator = ",";
-		}
-		
-		return a.join(separator);  
-	*}
-
-	/**
-	Returns all values as String separated by given optional separator. default separator is comma ,
-	<example>
-	You have an array with 3 elements with values ["11.4", "87.66", "147.41"]:
-	<code>
-	var valuesAsString = COLLECTION_1.getValues ("|");<br>
-	</code>
-	
-	The "valuesAsString" has now "11.4|87.66|147.41" as content.
-	</example>
-	*/
-	String getValues(
-			/*separator*/ optional String separator) {*  
-		var s = this.items;  
-		var items = JSON.parse(s);  
-		var a = [];  
-		
-		for(var i=0;i<items.length;i++){  
-			a.push(items[i].value);  
-		}  
-		
-		if(separator == undefined) {
-			separator = ",";
-		}
-		
-		return a.join(separator);  
-	*}
-
-	/**
-	 * Sorts the collection by values with optional parameter for direction (ascending is default)
-	 */
-	void sortByKey(optional org_scn_community_basics_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_basics_SortDirection.DESCENDING) {
-			this.sortByKeyDescending();
-			return;
-		}
-	
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		
-		a.sort(function(a,b){  
-			return a.key>b.key;  
-		});  
-		
-		this.items = JSON.stringify(a);  
-	*}  
-
-	/**
-	 * Sorts the collection by key (descending)
-	 */
-	void sortByKeyDescending() {*  
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		
-		a.sort(function(a,b){  
-			return (b.key>a.key);  
-		});  
-		
-		this.items = JSON.stringify(a);  
-	*}
-
-	/**
-	 * Sorts the collection by values with optional parameter for direction (ascending is default)
-	 */
-	void sortByLabel(optional org_scn_community_basics_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_basics_SortDirection.DESCENDING) {
-			this.sortByLabelDescending();
-			return;
-		}
-
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		
-		a.sort(function(a,b){  
-			return a.label>b.label;  
-		});  
-		
-		this.items = JSON.stringify(a);  
-	*}  
-		
-	/**
-	 * Sorts the collection by labels (descending)
-	 */
-	void sortByLabelDescending() {*  
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		
-		a.sort(function(a,b){  
-			return (b.label>a.label);  
-		});  
-		
-		this.items = JSON.stringify(a);  
-	*}
-		
-	/**
-	 * Sorts the collection by values with optional parameter for direction (ascending is default)
-	 */
-	void sortByValue(optional org_scn_community_basics_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_basics_SortDirection.DESCENDING) {
-			this.sortByValueDescending();
-			return;
-		}
-
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		
-		a.sort(function(a,b){  
-			var newA = parseFloat(a.value);  
-			var newB = parseFloat(b.value);  
-			return newA-newB;  
-		});
-		
-		this.items = JSON.stringify(a);  
-	*}  
-
-	/**
-	 * Sorts the collection by values (descending)
-	 */
-	void sortByValueDescending() {*  
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		
-		a.sort(function(a,b){  
-			var newA = parseFloat(a.value);  
-			var newB = parseFloat(b.value);  
-			return newB-newA;  
-		});
-		
-		this.items = JSON.stringify(a);  
-	*}  
-	
-	/**
-	 * Returns length of current collection
-	 */
-	int getLength() {*  
-		var s = this.items;  
-		var a = [];  
-		if(s!="") a = JSON.parse(s);
-		
-		return a.length;  
-	*}  
-
-	/**
-	Returns label by given index. Indices are 0-based. In case the index does not exist, "N/A" is given back.
-	<example>
-	You have a "k1,k2,k3" collection with label "Value for Key 2" at index 1 and want to get value at index 1:
-	<code>
-	var label1 = COLLECTION_1.getLabelByIndex(1);<br>
-	</code>
-	Now "label1" is set to String "Value for Key 2".
-	</example>
-	*/
-	String getLabelByIndex( 
-			/* index */ int index) {*  
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		var r = "N/A";
-		
-		if(a.length>index){  
-			r = a[index].label;  
-		}
-		
-		return r;  
-	*}
-
-	/**
-	Returns label by given key. In case the key does not exist, "N/A" is given back.
-	<example>
-	You have a "k1,k2,k3" collection with value "Value for Key 2" at index 1 (key == "k2") and want to get value at key "k2":
-	<code>
-	var label1 = COLLECTION_1.getLabelByKey("k2");<br>
-	</code>
-	Now "label1" is set to float "Value for Key 2".
-	</example>
-	*/
-	String getLabelByKey( 
-			/* index */ String key) {*  
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		var r = "N/A";
-		
-		for(var i=0;i<a.length;i++){
-			if(a[i].key == key) {
-				r = a[i].label;
-				break;
-			}
-		}
-		
-		return r;  
-	*}
-
-	/**
-	Returns value by given index. Indices are 0-based. In case the index does not exist, "NaN" is given back.
-	<example>
-	You have a "k1,k2,k3" collection with value "54.48" at index 1 and want to get value at index 1:
-	<code>
-	var value1 = COLLECTION_1.getValueByIndexAsString(1);<br>
-	</code>
-	Now "value1" is set to String "54.48".
-	</example>
-	*/
-	String getValueByIndexAsString( 
-			/* index */ int index) {*  
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		var r = "NaN";  
-		
-		if(a.length>index){  
-			r = a[index].value;  
-		}  
-		
-		return r;  
-	*}  
-
-	/**
-	Returns value by given index. Indices are 0-based. In case the index does not exist, "0.0" is given back.
-	<example>
-	You have a "k1,k2,k3" collection with value "54.48" at index 1 and want to get value at index 1:
-	<code>
-	var value1 = COLLECTION_1.getValueByIndex(1);<br>
-	</code>
-	Now "value1" is set to float "54.48".
-	</example>
-	*/
-	float getValueByIndex( 
-			/* index */ int index) {*  
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		
-		var r = 0.0;  
-		if(a.length>index){  
-			r = a[index].value;  
-		}
-		
-		return r;  
-	*}
-
-	/**
-	Returns value by given key. In case the index does not exist, "NaN" is given back.
-	<example>
-	You have a "k1,k2,k3" collection with value "54.48" at index 1 (key == "k2") and want to get value at key "k2":
-	<code>
-	var value1 = COLLECTION_1.getValueByKeyAsString("k2");<br>
-	</code>
-	Now "value1" is set to String "54.48".
-	</example>
-	*/
-	String getValueByKeyAsString( 
-			/* key */ String key) {*  
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		var r = "NaN";  
-		
-		for(var i=0;i<a.length;i++){
-			if(a[i].key == key) {
-				r = a[i].value;
-				break;
-			}
-		}
-		
-		return r;  
-	*}  
-
-	/**
-	Returns value by given key. In case the index does not exist, "0.0" is given back.
-	<example>
-	You have a "k1,k2,k3" collection with value "54.48" at index 1 (key == "k2") and want to get value at key "k2":
-	<code>
-	var value1 = COLLECTION_1.getValueByKey("k2");<br>
-	</code>
-	Now "value1" is set to float "54.48".
-	</example>
-	*/
-	float getValueByKey(
-			/* index */ String key) {*  
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		var r = 0.0;  
-		
-		for(var i=0;i<a.length;i++){
-			if(a[i].key == key) {
-				r = a[i].value;
-				break;
-			}
-		}
-		
-		return r;  
-	*}
-}
-
-/**
- * Component created with collaboration with Michael Howles
- * http://scn.sap.com/people/mike.howles4
- * 
- * based on the blog thread http://scn.sap.com/community/businessobjects-design-studio/blog/2014/09/16/design-studio-sdk--bial-fornext-loop-and-my-first-github-co-author-attempt
- * 
- * Authors: Michael Howles, Scn Community Contributors
- */
-class org.scn.community.basics.Array extends Component {  
-	
-	/**
-	Returns the array content as loopable array.
-	<example>
-	You want to loop at the "k1;k2;k3" array:
-	<code>
-	var content = ARRAY_1.getValuesAsStringArray();<br>
-	<br>
-	// a loop for all values<br>
-	content.forEach(function(element, index) {<br>
-		LISTBOX_1.addItem(""+ index, element.value + "( " + index + " )");<br>
-	});
-	</code>
-	This LISTBOX_1 has now following values entries:<br>
-		<ul><li>key: 0; value: k1 ( 0 )</li>
-		<<li>key: 1; value: k2 ( 1 )</li>
-		<li>key: 2; value: k3 ( 2 )</li></ul>
-	</example>
-	*/
-	org.scn.pack.StringArray getValuesAsStringArray (
-			/**max members*/ optional int maxMembers) {*
-		var s = this.items;  
-		var items = JSON.parse(s);
-		
-		var a = [];
-		
-		// APPLICATION.createInfoMessage("Max: " + maxMembers); // debug
-		
-		if(maxMembers == undefined || maxMembers <= 0) {
-			maxMembers = items.length;
-		}
-		
-		for(var i=0;i<maxMembers;i++){
-			var itemDef = { 
-				"value": items[i].value, 
-			};
-			
-			a.push(itemDef);
-		}
-		
-		return a;
-	*}
-
-	/**
-	Returns the array content as loopable array. The element is directly containing the string value.
-	Pro: compatible to the API in other scripts where object "StringArray" is expected.
-	<example>
-	You want to loop at the "k1;k2;k3" array:
-	<code>
-	var content = ARRAY_1.getValuesAsSimpleStringArray();<br>
-	<br>
-	// a loop for all values<br>
-	content.forEach(function(element, index) {<br>
-		LISTBOX_1.addItem(""+ index, element + "( " + index + " )");<br>
-	});
-	</code>
-	This LISTBOX_1 has now following values entries:<br>
-		<ul><li>key: 0; value: k1 ( 0 )</li>
-		<<li>key: 1; value: k2 ( 1 )</li>
-		<li>key: 2; value: k3 ( 2 )</li></ul>
-	</example>
-	
-	<example>
-	You want to pass the content of the array directly to chart selection.
-	<code>
-	var valuesAsArray = ARRAY_1.getValuesAsSimpleStringArray();<br>
-	CHART_1.setDataSelection( {<br>
- 		"<your dimension>": valuesAsArray<br>
-	});<br>
-	</code>
-	This CHART will get the corresponding selection<br>
-	</example>
-	*/
-	StringArray getValuesAsSimpleStringArray (
-			/**max members*/ optional int maxMembers) {*
-		var s = this.items;  
-		var items = JSON.parse(s);
-		
-		var a = [];
-		
-		// APPLICATION.createInfoMessage("Max: " + maxMembers); // debug
-		
-		if(maxMembers == undefined || maxMembers <= 0) {
-			maxMembers = items.length;
-		}
-		
-		for(var i=0;i<maxMembers;i++){
-			var itemDef = items[i].value;
-			
-			a.push(itemDef);
-		}
-		
-		return a;
-	*}
-	
-	/**
-	Generates an array of integers for use in BIAL forEach statement in order to emulate a traditional for loop.
-	<example>
-	Fill a list box with 10 values:
-	<code>ARRAY_1.eaches(0, 9, 1).forEach(function(element, index) {<br>
-	LISTBOX_1.addItem(element, "Item " + (element + "") );<br>
-	});</code>
-	This would be equivalent to a loop in JavaScript:
-	<code>
-	for(var element = 0;element<=9;element++){<br>
-		Your code here.<br>
-	}
-	</code>
-	</example>
-	*/
-	Array eaches(/*Starting int*/ int start, /* Ending int */ int finish, /* Interval increment */int interval) {*
-		var a = [];
-		for(var i=start;i<=finish;i+=interval){
-			a.push(i);
-		}
-		return a;
-	*}
-
-	/**
-	Returns all values as String separated by given optional separator. default separator is comma ,
-	<example>
-	You have an array with 3 values ["v1", "v2", "v3"]:
-	<code>
-	var valuesAsString = ARRAY_1.getValues ("|");<br>
-	</code>
-	
-	The "valuesAsString" has now "v1|v2|v3" as content.
-	</example>
-	*/
-	String getValues (
-			/*separator*/ optional String separator) {*  
-		var s = this.items;  
-		var items = JSON.parse(s);  
-		var a = [];  
-		
-		for(var i=0;i<items.length;i++){  
-			a.push(items[i].value);  
-		}  
-		
-		if(separator == undefined) {
-			separator = ",";
-		}
-		
-		return a.join(separator);  
-	*}
-	
-	/**
-	Creates an array of requested length with integers as values (starting at 0). 
-	<example>
-	You want an array with length 7:
-	<code>
-	ARRAY_1.createArray(7);<br>
-	</code>
-	This array has now following values: 0,1,2,3,4,5,6,7
-	</example>
-	*/
-	void createArray (
-			/**length*/ int lenght) {*
-		var items = [];
-			
-		for(var i=0; i<lenght; i++){
-			var itemDef = {
-				"value" : "" + i
-			};
-			
-			items.push(itemDef);
-		}
-		
-		this.items = JSON.stringify(items);  
-	*}
-	
-	/**
-	 * Removes all Values (clears the array)
-	 */
-	void removeAllValues () {*
-		var items = [];
-		this.items = JSON.stringify(items);  
-	*}
-
-	/**
-	Sets values of the array by string. Optionally a given separator can be specified. This implementation of array allows duplicate keys.
-	<example>
-	You want to set the string "k1;k2;k3" array:
-	<code>
-	ARRAY_1.setValues("k1;k2;k3", ";");<br>
-	</code>
-	This array has now following values: k1,k2,k3
-	</example>
-	*/
-	void setValues (
-			/**values*/ String values,
-			/**separator*/ optional String separator) {*  
-		var items = [];
-	
-		if(separator == undefined) {
-			separator = ",";
-		}
-			
-		var v = values.split(separator);
-		
-		for(var i=0; i<v.length; i++){
-			var itemDef = {
-				"value" : v[i]
-			};
-			
-			items.push(itemDef);
-		}
-		
-		this.items = JSON.stringify(items);  
-	*}
-
-	/**
-	Adds a value to new or existing array. This implementation of array allows duplicate keys.
-	<example>
-	You want to create an "k1,k2,k3" array:
-	<code>
-	ARRAY_1.addValue("k1");<br>
-	ARRAY_1.addValue("k2");<br>
-	ARRAY_1.addValue("k3");<br>
-	</code>
-	This array has now following values: k1,k2,k3
-	</example>
-	*/
-	void addValue (
-			/*value*/ String value) {*  
-		
-		var s = this.items;  
-		var a = [];  
-		if(s!="") a = JSON.parse(s);
-		
-		var itemDef = {
-			"value" : value
-		};
-		
-		a.push(itemDef);
-		
-		this.items = JSON.stringify(a);  
-	*}
-	
-	/**
-	 * Returns length of current array
-	 */
-	int getLength() {*  
-		var s = this.items;  
-		var a = [];  
-		if(s!="") a = JSON.parse(s);
-		
-		return a.length;  
-	*}  
-
-	/**
-	Returns value by given index. Indices are 0-based. In case the index does not exist, "N/A" is given back.
-	<example>
-	You have an "k1,k2,k3" array and want to get value at index 1:
-	<code>
-	var value1 = ARRAY_1.getValueByIndex(1);<br>
-	</code>
-	Now "value1" is set to "k2".
-	</example>
-	*/
-	String getValueByIndex ( 
-			/* index */ int index) {*  
-		var s = this.items;  
-		var a = JSON.parse(s);  
-		
-		var r = "N/A";  
-		if(a.length>index){  
-			r = a[index].value;  
-		}
-		
-		return r;  
-	*}
-}
-
-class org.scn.community.basics.KpiView extends Component {
+class org.scn.community.basics.KpiView extends org.scn.community.shared.Component {
 	
 	/* Sets the header text. */
 	void setHeaderText(/* Header text */ String text) {*
@@ -2074,6 +1889,16 @@ class org.scn.community.basics.KpiView extends Component {
 		return this.valueText;
 	*}
 
+	/* Sets the value number. */
+	void setValueFloat(/* Value number */ float number) {*
+		this.valueFloat = number;
+	*}	
+
+	/* Returns the value number. */
+	float getValueFloat() {*
+		return this.valueFloat;
+	*}
+	
 	/* Sets the value CSS class. */
 	void setValueCssClass(/* Value CSS class */ String cssClass) {*
 		this.valueCssClass = cssClass;
@@ -2149,1269 +1974,122 @@ class org.scn.community.basics.KpiView extends Component {
 		this.data = this.stringifySelection(cellSelection);
 	*}
 }
-
-/**
- * Class for DragDropArea
- */
-class org.scn.community.basics.DragDropArea extends Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elements = JSON.stringify(elementsArray);
+class org.scn.community.basics.TileProperty {
+  String title;
+  String info;
+  String icon;
+  String number;
+  String numberUnit;
+  String valueState;
+}
+class org.scn.community.basics.LaunchPad extends org.scn.community.shared.Component {
+	/**
+	Gets Tile Selected
+	*/
+	String getTileClicked() {*
+		return this.selectedTile;
+	*}
+	/** Remove All Tiles
+ 	<example>
+	Remove all tiles
+	<code>
+	LAUNCHPAD_1.removeAllTiles();<br>
+	</code>
+	</example>
+	 */
+	void removeAllTiles () {*		
+		this.tileConfig = JSON.stringify([]);
 	*}
 	
-	/** add an element */
-	void addElement (String elementKey, String elementText, String imageUrl) {*		
-		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl
-			};
-	
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
+	org.scn.community.basics.TileProperty getTileProperty(/*Title*/String title){*
+		var r = {
+			title : "",
+			info : "",
+			icon : "",
+			number : "",
+			numberUnit : "",
+			valueState : "",
+			styleClass : ""
 		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		elementsJson.push(itemDef);
-	
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** insert an element */
-	void insertElement (String elementKey, String elementText, String imageUrl, int insertionIndex0based) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
+		var o = eval(this.tileConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
 		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (i == insertionIndex0based) {
-				var itemDef = { 
-						"key": elementKey, 
-						"text": elementText, 
-						"url": imageUrl
-						};
-				
-				newElementsJson.push(itemDef);
-			}
-			
-			newElementsJson.push(elementsJson[i]);
+		if(matchIndex>-1){
+			var tileConf = o[matchIndex];
+			r.title = tileConf.title;
+			r.info = tileConf.info;
+			r.icon = tileConf.icon;
+			r.number = tileConf.number;
+			r.numberUnit = tileConf.numberUnit;
+			r.valueState = tileConf.valueState;
+			r.styleClass = tileConf.styleClass;
 		}
-
-		this.elements = JSON.stringify(newElementsJson);
+		return r;
 	*}
 	
-	/** update given element */
-	void updateElement (String elementKey, String elementText, String imageUrl) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
+	/** Adds or Updates a Tile (if title already exists)
+ 	<example>
+	Add/Update a tile called "Sales"
+	<code>
+	LAUNCHPAD_1.addTile("Sales", "YTD", "sap-icon://money-bills", "1234", "USD", "good");<br>
+	</code>
+	</example>
+	 */
+	void addTile (/*Title*/String title, 
+			/*Info*/optional String info, 
+			/*Icon*/optional String icon, 
+			/*Number*/optional String number, 
+			/*Number Unit*/optional String numberUnit,
+			/*Value State*/optional String valueState,
+			/*CSS Class*/optional String styleClass) {*		
+		var o = eval(this.tileConfig);
+		if(!o) o = [];
+		var tile = {
+			title: title,
+			info: info,
+			icon: icon,
+			number: number,
+			numberUnit: numberUnit,
+			valueState : valueState || "None",
+			styleClass : styleClass
+		};	
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
 		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
-				elementsJson[i].text = elementText;
-				elementsJson[i].url = imageUrl;
-				break;
-			}
+		if(matchIndex==-1){	// New Tile
+			o.push(tile);
+		}else{	// Update Tile
+			o[matchIndex] = tile;
 		}
-		
-		this.elements = JSON.stringify(elementsJson);
+		tileConfig = JSON.stringify(o);
 	*}
-	
-	/** delete an element */
-	void deleteElement (String elementKey) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
+	/** Remove a tile
+ 	<example>
+	Remove a tile titled "Sales"
+	<code>
+	LAUNCHPAD_1.removeTile("Sales");<br>
+	</code>
+	</example>
+	 */
+	void removeTile (/*Tile Title*/String title) {*		
+		var o = eval(this.tileConfig);
+		if(!o) o = [];
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
 		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key != elementKey) {
-				newElementsJson.push(elementsJson[i]);
-			}
-		}
-
-		this.elements = JSON.stringify(newElementsJson);
-	*}
-	
-	/** returns key at given index */
-	String getKeyAtIndex (int index) {*		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (index == i) {
-				return elementsJson[i].key;
-			}
-		}
-		
-		return "";
-	*}
-	
-	/* Returns the Drag Key. */
-	String getDropId () {*
-		return this.dropId;	
-	*}
-	
-	/* Returns the Drop Key. */
-	String getDropKey () {*
-		return this.dropKey;	
-	*}
-	
-	/* Returns the Drop Key. */
-	String getDropContext () {*
-		return this.dropContext;	
-	*}
-	
-	/* Returns the Drop After Key. */
-	String getDropAfterKey () {*
-		return this.dropAfterKey;	
-	*}
-	
-	/* Returns the Drop After Key. */
-	int getDropIndex () {*
-		return this.dropIndex;	
-	*}
-
-	/* Returns the Drag Key. */
-	String getDragKey () {*
-		return this.dragKey;	
-	*}
-	
-	/* Returns the Drag Key. */
-	String getDragContext () {*
-		return this.dragContext;	
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		tileConfig = JSON.stringify(o);
 	*}
 }
 
 /**
  * Class for LeaderBoard
  */
-class org.scn.community.basics.LeaderBoard extends Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elements = JSON.stringify(elementsArray);
-	*}
-	
-	/** add an element containing key, text, imageUrl, value (float) and value (Sting)*/
-	void addElement (String elementKey, String elementText, String imageUrl, float value, String valueAsString) {*		
-		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl,
-			"value": value,
-			"valueS": valueAsString
-			};
-	
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		elementsJson.push(itemDef);
-	
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** insert an element */
-	void insertElement (String elementKey, String elementText, String imageUrl, float value, String valueAsString, int insertionIndex0based) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (i == insertionIndex0based) {
-				var itemDef = { 
-						"key": elementKey, 
-						"text": elementText, 
-						"url": imageUrl,
-						"value": value,
-						"valueS": valueAsString
-						};
-				
-				newElementsJson.push(itemDef);
-			}
-			
-			newElementsJson.push(elementsJson[i]);
-		}
-
-		this.elements = JSON.stringify(newElementsJson);
-	*}
-	
-	/** update given element */
-	void updateElement (String elementKey, String elementText, String imageUrl, float value, String valueAsString) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
-				elementsJson[i].text = elementText;
-				elementsJson[i].url = imageUrl;
-				elementsJson[i].value = value;
-				elementsJson[i].valueS = valueAsString;
-				break;
-			}
-		}
-		
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** delete an element */
-	void deleteElement (String elementKey) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key != elementKey) {
-				newElementsJson.push(elementsJson[i]);
-			}
-		}
-
-		this.elements = JSON.stringify(newElementsJson);
-	*}
-	
-	/** returns key at given index */
-	String getKeyAtIndex (int index) {*		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (index == i) {
-				return elementsJson[i].key;
-			}
-		}
-		
-		return "";
-	*}
-	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
-	*}
-
-	/** returns the pressed key */
-	String getPressedKey () {*
-		return this.pressedKey;	
-	*}
-}
-
-/**
- * Class for CheckBox Group
- */
-class org.scn.community.basics.CheckBoxGroup extends Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elements = JSON.stringify(elementsArray);
-	*}
-	
-	/** add an element containing key, text, imageUrl, value (float) and value (Sting)*/
-	void addElement (String elementKey, String elementText, String imageUrl, boolean selected) {*		
-		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl,
-			"selected": selected
-			};
-	
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		elementsJson.push(itemDef);
-	
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** insert an element */
-	void insertElement (String elementKey, String elementText, String imageUrl, boolean selected, int insertionIndex0based) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (i == insertionIndex0based) {
-				var itemDef = { 
-						"key": elementKey, 
-						"text": elementText, 
-						"url": imageUrl,
-						"selected": selected
-						};
-				
-				newElementsJson.push(itemDef);
-			}
-			
-			newElementsJson.push(elementsJson[i]);
-		}
-
-		this.elements = JSON.stringify(newElementsJson);
-	*}
-	
-	/** update given element */
-	void updateElement (String elementKey, String elementText, String imageUrl, boolean selected) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
-				elementsJson[i].text = elementText;
-				elementsJson[i].url = imageUrl;
-				elementsJson[i].selected = selected;
-				break;
-			}
-		}
-		
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** delete an element */
-	void deleteElement (String elementKey) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key != elementKey) {
-				newElementsJson.push(elementsJson[i]);
-			}
-		}
-
-		this.elements = JSON.stringify(newElementsJson);
-	*}
-	
-	/** returns key at given index */
-	String getKeyAtIndex (int index) {*		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (index == i) {
-				return elementsJson[i].key;
-			}
-		}
-		
-		return "";
-	*}
-	
-	/** returns the selected key */
-	org.scn.pack.KeyLabelArray getSelectedElementsArray () {*
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			return [];
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		
-		var newElementsJson = [];
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].selected == true) {
-				newElementsJson.push(elementsJson[i]);
-			}
-		}
-		
-		return newElementsJson;
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key, boolean selected) {*
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			return;
-		}
-	
-		var elementsJson = JSON.parse(this.elements);
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].selected = selected;
-				break;
-			}
-		}
-		
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKeys (String keys, String separator) {*
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			return;
-		}
-	
-		var selectedKeys = keys.split(separator);  
-
-		var elementsJson = JSON.parse(this.elements);
-		
-		// unselect all
-		for (var i = 0; i < elementsJson.length ; i++){
-			elementsJson[i].selected = false;
-		}
-		
-		// loop and find and select
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < selectedKeys.length ; j++){
-				if (elementsJson[i].key == selectedKeys[j]) {
-					elementsJson[i].selected = true;
-					break;
-				}
-			}
-		}
-		
-		this.elements = JSON.stringify(elementsJson);
-	*}
-}
-
-/**
- * Class for Tree
- */
-class org.scn.community.basics.Tree extends Component {
-	
-	/** remove all nodes */
-	void removeAllNodes () {*		
-			var nodesArray = [];
-			this.nodesContent = JSON.stringify(nodesArray);
-			
-			this.cleanAll = true;
-	*}
-	
-	/** Adds a tree node containing Key, Text, Image Url, Parent Node and is Leaf information.
-	 * You need to specify a unique and existing parent node.
-	 * if Parent is set to "ROOT" then the node will be inserted into "ROOT". 
-
- 	<example>
-	You want to add 2 nodes, second one is a child of fist one
-	<code>
-	TREE_1.addNode("KEY1", "First Node", "", "ROOT", true);<br>
-	TREE_1.addNode("KEY2", "First Node", "", "KEY1", true);<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void addNode (
-			/**Node Key (must be unique)*/String nodeKey, 
-			/**Node text*/String nodeText, 
-			/**Image URL, if not set, no image*/String imageUrl, 
-			/**The Key of the parent Node*/String parentNodeKey, 
-			/**Leafs do not have expand option by default*/optional boolean isLeaf) {*		
-		
-		if(isLeaf == undefined) {
-			isLeaf = true;
-		}
-		
-		var itemDef = { 
-			"key": nodeKey, 
-			"text": nodeText, 
-			"url": imageUrl,
-			"parent": parentNodeKey,
-			"leaf": isLeaf
-			};
-	
-		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
-			this.nodesContent = "[]";
-		}
-		
-		var nodesJson = JSON.parse(this.nodesContent);
-		
-		var alreadyFound = false;
-		for (var i = 0; i < nodesJson.length ; i++){
-			if (nodesJson[i].key == nodeKey) {
-				alreadyFound = true;
-				break;
-			}
-		}
-		
-		if(!alreadyFound) {
-			nodesJson.push(itemDef);
-		}
-	
-		this.nodesContent = JSON.stringify(nodesJson);
-	*}
-	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
-	*}
-
-	/** returns the expanded key - can be used in onFirstExpand() event */
-	String getExpandedKey () {*
-		return this.expandedKey;	
-	*}
-
-	/** informs the UI that there is no note update (no children under given expanded key) */
-	void noNodeUpdate () {*
-		this.roundtrip = "-";	
-	*}
-
-}
-
-/**
- * Class for Accordion
- */
-class org.scn.community.basics.Accordion extends Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elementsContent = JSON.stringify(elementsArray);
-			
-			this.cleanAll = true;
-	*}
-	
-	/** Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.
-	 * You need to specify a unique and existing parent element.
-	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.  
-
- 	<example>
-	You want to add 2 elements, second one is a child of first one
-	<code>
-	ACCORDION_1.addElement("KEY1", "First Element", "", "ROOT", true);<br>
-	ACCORDION_1.addElement("KEY2", "First Element Child", "", "KEY1", true);<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void addElement (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl, 
-			/**The Key of the parent Element*/String parentElementKey, 
-			/**Leafs do not have expand option by default*/optional boolean isLeaf) {*		
-		
-		if(isLeaf == undefined) {
-			isLeaf = true;
-		}
-		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl,
-			"parent": parentElementKey,
-			"leaf": isLeaf
-			};
-	
-		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
-			this.elementsContent = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elementsContent);
-		
-		var alreadyFound = false;
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
-				alreadyFound = true;
-				break;
-			}
-		}
-		
-		if(!alreadyFound) {
-			elementsJson.push(itemDef);
-		}
-	
-		this.elementsContent = JSON.stringify(elementsJson);
-	*}
-	
-	/** Adds a root element containing Key, Text, Image Url information.
-
- 	<example>
-	You want to add 2 root elements, second one is a sibling of first one
-	<code>
-	ACCORDION_1.addSection("ROOT_KEY1", "First Root Element", "");<br>
-	ACCORDION_1.addSection("ROOT_KEY2", "Second Root Element", "");<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void addSection (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl) {*		
-		
-		this.addElement(elementKey, elementText, imageUrl, "ROOT", false);
-	*}
-	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
-	*}
-	
-	/** returns the expanded key - can be used in onFirstExpand() event */
-	String getExpandedKey () {*
-		return this.expandedKey;	
-	*}
-
-	/** sets the expanded key - the onFirstExpand event will be not triggered */
-	void setExpandedKey (String key) {*
-		this.expandedKey = key;	
-	*}
-	
-	/** returns the max section height */
-	String getMaxSectionHeight () {*
-		return this.maxSectionHeight;	
-	*}
-
-	/** sets the max section height */
-	void setMaxSectionHeight (String height) {*
-		this.maxSectionHeight = height;	
-	*}
-}
-
-/**
- * Class for MenuBar
- */
-class org.scn.community.basics.MenuBar extends Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elementsContent = JSON.stringify(elementsArray);
-			
-			this.cleanAll = true;
-	*}
-	
-	/** Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.
-	 * You need to specify a unique and existing parent element.
-	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.  
-
- 	<example>
-	You want to add 2 elements, second one is a child of first one
-	<code>
-	ACCORDION_1.addElement("KEY1", "First Element", "", "ROOT", true);<br>
-	ACCORDION_1.addElement("KEY2", "First Element Child", "", "KEY1", true);<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void addSubMenuItem (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl, 
-			/**The Key of the parent Element*/String parentElementKey, 
-			/**Leafs do not have expand option by default*/optional boolean isLeaf) {*		
-		
-		if(isLeaf == undefined) {
-			isLeaf = true;
-		}
-		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl,
-			"parent": parentElementKey,
-			"leaf": isLeaf
-			};
-	
-		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
-			this.elementsContent = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elementsContent);
-		
-		var alreadyFound = false;
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
-				alreadyFound = true;
-				break;
-			}
-		}
-		
-		if(!alreadyFound) {
-			elementsJson.push(itemDef);
-		}
-	
-		this.elementsContent = JSON.stringify(elementsJson);
-	*}
-	
-	/** Adds a root element containing Key, Text, Image Url information.
-
- 	<example>
-	You want to add 2 root elements, second one is a sibling of first one
-	<code>
-	ACCORDION_1.addSection("ROOT_KEY1", "First Root Element", "");<br>
-	ACCORDION_1.addSection("ROOT_KEY2", "Second Root Element", "");<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void addMenuItem (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl) {*		
-		
-		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", false);
-	*}
-	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-}
-
-/**
- * Class for Open Street Map
- */
-class org.scn.community.basics.OSMap extends Component {
-	
-	/**
-	 * Zooms in the map
-	 */
-	void zoomIn() {*
-		this.zoom = this.zoom + 1;
-	*}
-	
-	/**
-	 * Zooms out the map
-	 */
-	void zoomOut() {*
-		this.zoom = this.zoom - 1;
-	*}
-
-	/**
-	 * Moves the view on the map in the left direction
-	 */
-	void panLeft() {*
-		this.panAction = this.panAction + 1; 
-		this.pan = "0L00";
-	*}
-
-	/**
-	 * Moves the view on the map in the right direction
-	 */
-	void panRight() {*
-		this.panAction = this.panAction + 1; 
-		this.pan = "00R0";
-	*}
-	
-	/**
-	 * Moves the view on the map in the up direction
-	 */
-	void panUp() {*
-		this.panAction = this.panAction + 1; 
-		this.pan = "U000";
-	*}
-
-	/**
-	 * Moves the view on the map in the down direction
-	 */
-	void panDown() {*
-		this.panAction = this.panAction + 1; 
-		this.pan = "000D";
-	*}
-
-	/**
-	 * Adds a new location. Keep in mind key should be unique.
-	 * 
- 	<example>
-	You want to add 2 locations
-	<code>
-	OSMAP_1.addLocation("MADRIT", "Madrit", "", 40.4, -3.7);	<br>
-	OSMAP_1.addLocation("WALLDORF", "SAP SE Headquaters", "SAP.jpg", 49.293417, 8.642384);	<br>
-	</code>
-	</example>
-	 */
-	void addLocation (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl, 
-			/**Latitude (horizontal)*/float latitude,
-			/**Longitide (vertical)*/float longitude
-		) {*		
-		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl,
-			"lat": latitude,
-			"long": longitude
-			};
-	
-		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
-			this.elementsContent = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elementsContent);
-		
-		var alreadyFound = false;
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
-				alreadyFound = true;
-				break;
-			}
-		}
-		
-		if(!alreadyFound) {
-			elementsJson.push(itemDef);
-		}
-	
-		this.elementsContent = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Moves the map to the given location by key
-	 */
-	void moveTo (
-			/**key which schould be moved to*/String key) {*
-		this.moveAction = this.moveAction + 1;
-		this.moveTo = key
-	*}
-	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-}
-
-/**
- * Class for MenuButton
- */
-class org.scn.community.basics.MenuButton extends Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elementsContent = JSON.stringify(elementsArray);
-			
-			this.cleanAll = true;
-	*}
-	
-	/** Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.
-	 * You need to specify a unique and existing parent element.
-	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.  
-
- 	<example>
-	You want to add 2 items, second one is a child of first one
-	<code>
-	MENUBUTTON_1.addSubMenuItem("KEY1", "First Element", "", "ROOT", true);<br>
-	MENUBUTTON_1.addSubMenuItem("KEY2", "First Element Child", "", "KEY1", true);<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void addSubMenuItem (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl, 
-			/**The Key of the parent Element*/String parentElementKey, 
-			/**Leafs do not have expand option by default*/optional boolean isLeaf) {*		
-		
-		if(isLeaf == undefined) {
-			isLeaf = true;
-		}
-		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl,
-			"parent": parentElementKey,
-			"leaf": isLeaf
-			};
-	
-		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
-			this.elementsContent = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elementsContent);
-		
-		var alreadyFound = false;
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
-				alreadyFound = true;
-				break;
-			}
-		}
-		
-		if(!alreadyFound) {
-			elementsJson.push(itemDef);
-		}
-	
-		this.elementsContent = JSON.stringify(elementsJson);
-	*}
-	
-	/** Adds a root element containing Key, Text, Image Url information.
-
- 	<example>
-	You want to add 2 root elements, second one is a sibling of first one
-	<code>
-	MENUBUTTON_1.addMenuItem("ROOT_KEY1", "First Root Element", "");<br>
-	MENUBUTTON_1.addMenuItem("ROOT_KEY2", "Second Root Element", "");<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void addMenuItem (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl) {*		
-		
-		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", false);
-	*}
-	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-}
-
-/**
- * Class for ImageCarousel
- */
-class org.scn.community.basics.ImageCarousel extends Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elements = JSON.stringify(elementsArray);
-	*}
-	
-	/** add an element */
-	void addElement (String elementKey, String elementText, String imageUrl) {*		
-		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl
-			};
-	
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		elementsJson.push(itemDef);
-	
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** insert an element */
-	void insertElement (String elementKey, String elementText, String imageUrl, int insertionIndex0based) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (i == insertionIndex0based) {
-				var itemDef = { 
-						"key": elementKey, 
-						"text": elementText, 
-						"url": imageUrl
-						};
-				
-				newElementsJson.push(itemDef);
-			}
-			
-			newElementsJson.push(elementsJson[i]);
-		}
-
-		this.elements = JSON.stringify(newElementsJson);
-	*}
-	
-	/** update given element */
-	void updateElement (String elementKey, String elementText, String imageUrl) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
-				elementsJson[i].text = elementText;
-				elementsJson[i].url = imageUrl;
-				break;
-			}
-		}
-		
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** delete an element */
-	void deleteElement (String elementKey) {*
-		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key != elementKey) {
-				newElementsJson.push(elementsJson[i]);
-			}
-		}
-
-		this.elements = JSON.stringify(newElementsJson);
-	*}
-	
-	/** returns key at given index */
-	String getKeyAtIndex (int index) {*		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (index == i) {
-				return elementsJson[i].key;
-			}
-		}
-		
-		return "";
-	*}
-	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
-	*}
-}
-
-class org.scn.community.basics.KpiView extends Component {
-	
-	/* Sets the header text. */
-	void setHeaderText(/* Header text */ String text) {*
-		this.headerText = text;
-	*}	
-
-	/* Returns the header text. */
-	String getHeaderText() {*
-		return this.headerText;
-	*}
-
-	/* Shows or hides the header. */
-	void setHeaderVisible(/* If true, then the header is shown, else it is hidden */ boolean isHeaderVisible) {*
-		this.headerVisible = isHeaderVisible;
-	*}	
-
-	/* Returns true if the header is shown, else false. */
-	boolean isHeaderVisible() {*
-		return this.headerVisible;
-	*}
-
-	/* Sets the header CSS class. */
-	void setHeaderCssClass(/* Header CSS class */ String cssClass) {*
-		this.headerCssClass = cssClass;
-	*}	
-
-	/* Returns the header CSS class. */
-	String getHeaderCssClass() {*
-		return this.headerCssClass;
-	*}
-
-	/* Sets the title text. */
-	void setTitleText(/* Title text */ String text) {*
-		this.titleText = text;
-	*}	
-
-	/* Returns the title text. */
-	String getTitleText() {*
-		return this.titleText;
-	*}
-
-	/* Sets the title CSS class. */
-	void setTitleCssClass(/* Title CSS class */ String cssClass) {*
-		this.titleCssClass = cssClass;
-	*}	
-
-	/* Returns the title CSS class. */
-	String getTitleCssClass() {*
-		return this.titleCssClass;
-	*}
-
-	/* Sets the value prefix text. */
-	void setValuePrefixText(/* Value prefix text */ String text) {*
-		this.valuePrefixText = text;
-	*}	
-
-	/* Returns the value prefix text. */
-	String getValuePrefixText() {*
-		return this.valuePrefixText;
-	*}
-
-	/* Sets the value prefix CSS class. */
-	void setValuePrefixCssClass(/* Value prefix CSS class */ String cssClass) {*
-		this.valuePrefixCssClass = cssClass;
-	*}	
-
-	/* Returns the value prefix CSS class. */
-	String getValuePrefixCssClass() {*
-		return this.valuePrefixCssClass;
-	*}
-
-	/* Sets the value text. */
-	void setValueText(/* Value text */ String text) {*
-		this.valueText = text;
-	*}	
-
-	/* Returns the value text. */
-	String getValueText() {*
-		return this.valueText;
-	*}
-
-	/* Sets the value CSS class. */
-	void setValueCssClass(/* Value CSS class */ String cssClass) {*
-		this.valueCssClass = cssClass;
-	*}	
-
-	/* Returns the current value CSS class. */
-	String getValueCssClass() {*
-		return this.valueCssClass;
-	*}
-
-	/* Sets the value decimal places. */
-	void setValueDecimalPlaces(/* Number of decimal places */ int decimalPlaces) {*
-		this.valueDecimalPlaces = decimalPlaces;
-	*}
-
-	/* Returns the value decimal places. */
-	int getValueDecimalPlaces() {*
-		return this.valueDecimalPlaces;
-	*}
-
-	/* Sets the value suffix text. */
-	void setValueSuffixText(/* Value suffix text */ String text) {*
-		this.valueSuffixText = text;
-	*}	
-
-	/* Returns the value suffix text. */
-	String getValueSuffixText() {*
-		return this.valueSuffixText;
-	*}
-
-	/* Sets the value suffix CSS class. */
-	void setValueSuffixCssClass(/* Value suffix CSS class */ String cssClass) {*
-		this.valueSuffixCssClass = cssClass;
-	*}	
-
-	/* Returns the value suffix CSS class. */
-	String getValueSuffixCssClass() {*
-		return this.valueSuffixCssClass;
-	*}
-
-	/* Sets the footer text. */
-	void setFooterText(/* Footer text */ String text) {*
-		this.footerText = text;
-	*}	
-
-	/* Returns the footer text. */
-	String getFooterText() {*
-		return this.footerText;
-	*}
-
-	/* Sets the footer CSS class. */
-	void setFooterCssClass(/* Footer CSS class */ String cssClass) {*
-		this.footerCssClass = cssClass;
-	*}
-
-	/* Returns the footer CSS class. */
-	String getFooterCssClass() {*
-		return this.footerCssClass;
-	*}
-
-	/* Sets the image URL. */
-	void setImage(/* image url */ String image) {*
-		this.image = image;
-	*}
-
-	/* Returns the image URL. */
-	String getImage() {*
-		return this.image;
-	*}
-	
-	/* Sets the data cell whose value is displayed. */
-	void setDataSelection(/* Data cell tha tcontains the value displayed */ ResultCellSelection cellSelection) {*
-		this.data = this.stringifySelection(cellSelection);
-	*}
-}
-
-/**
- * Class for LeaderBoard
- */
-class org.scn.community.basics.LeaderBoard extends Component {
+class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -3548,7 +2226,7 @@ class org.scn.community.basics.LeaderBoard extends Component {
 /**
  * Class for Link
  */
-class org.scn.community.basics.Link extends Component {
+class org.scn.community.basics.Link extends org.scn.community.shared.Component {
 	
 	/** Sets the text that is displayed */
 	void setText(
@@ -3561,11 +2239,36 @@ class org.scn.community.basics.Link extends Component {
 		return this.text;	
 	*}
 }
-
+class org.scn.community.basics.ListSelector extends org.scn.community.shared.Component {
+	/**
+	Get last menu element title clicked.
+	<example><code>var itemSelected = LISTSELECTOR_1.getLabelClicked();</code></example>
+	<returns>Chart property as String type.</returns>
+	*/
+	String getLabelClicked() {*
+		return this.labelClicked;
+	*}
+	/**
+	Sets titles of your menu elements.
+	<example><code>LISTSELECTOR_1.setTitles("Google,Bing,Ask.com");</code></example>
+	<note>Seperate each entry by a comma.</note>
+	*/
+	void setTitles( /* Titles */ String titles){*
+		this.titles = titles;
+	*}
+	/**
+	Get list of menu element titles.
+	<example><code>var titles = LISTSELECTOR_1.Titles();</code></example>
+	<returns>Comma-seperated list of menu element titles</returns>
+	*/
+	String getTitles() {*
+		return this.titles;
+	*}
+}
 /**
  * Class for MenuBar
  */
-class org.scn.community.basics.MenuBar extends Component {
+class org.scn.community.basics.MenuBar extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -3593,7 +2296,8 @@ class org.scn.community.basics.MenuBar extends Component {
 			/**Element text*/String elementText, 
 			/**Image URL, if not set, no image*/String imageUrl, 
 			/**The Key of the parent Element*/String parentElementKey, 
-			/**Leafs do not have expand option by default*/optional boolean isLeaf) {*		
+			/**Leafs do not have expand option by default*/optional boolean isLeaf,
+			/**Element enabled status*/optional boolean isEnabled) {*		
 		
 		if(isLeaf == undefined) {
 			isLeaf = true;
@@ -3604,7 +2308,8 @@ class org.scn.community.basics.MenuBar extends Component {
 			"text": elementText, 
 			"url": imageUrl,
 			"parent": parentElementKey,
-			"leaf": isLeaf
+			"leaf": isLeaf,
+			"enabled": isEnabled
 			};
 	
 		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
@@ -3642,21 +2347,27 @@ class org.scn.community.basics.MenuBar extends Component {
 	void addMenuItem (
 			/**Element Key (must be unique)*/String elementKey, 
 			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl) {*		
+			/**Image URL, if not set, no image*/String imageUrl,
+			/**Element enabled status*/optional boolean isEnabled) {*		
 		
-		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", false);
+		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", false, isEnabled);
 	*}
 	
 	/** returns the selected key */
 	String getSelectedKey () {*
 		return this.selectedKey;	
 	*}
+	
+	/** returns the text of selected element (might not be unique) */
+	String getSelectedText () {*
+		return this.selectedText;	
+	*}
 }
 
 /**
  * Class for MenuButton
  */
-class org.scn.community.basics.MenuButton extends Component {
+class org.scn.community.basics.MenuButton extends org.scn.community.shared.Component {
 	
 	/** remove all elements */
 	void removeAllElements () {*		
@@ -3745,9 +2456,164 @@ class org.scn.community.basics.MenuButton extends Component {
 }
 
 /**
+ * Class for ModalBrowser
+ */
+class org.scn.community.basics.ModalBrowser extends org.scn.community.shared.Component {
+	
+	/**
+	Invoke Click event
+	*/
+	String click() {*
+		this.clickTrigger = Math.random();
+	*}
+	
+	/**
+	Sets URL
+	<example><code>BROWSERPOPUP_1.setURL("http://server.example.com/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=ABC123XYZ");</code></example>
+	<note>If opening a page in a Modal Browser Dialog, make sure that the page does not use a Frame Buster.</note>
+	*/
+	void setURL( /* URL */ String url){*
+		this.url = url;
+	*}
+	
+	/**
+	Gets URL
+	*/
+	String getURL() {*
+		return this.url;
+	*}
+}
+
+/**
+ * Class for NAVIGATIONBAR
+ */
+class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Component {
+	
+	/** remove all items */
+	void removeAllItems () {*		
+			var elementsArray = [];
+			this.DElementsContent = JSON.stringify(elementsArray);
+			
+			this.DCleanAll = true;
+	*}
+	
+	/** Adds an item containing Key, Text, Visible and Enable flags.
+
+ 	<example>
+	You want to add 2 items
+	<code>
+	NAVIGATIONBAR.addItem("ITEM1", "First Item", true, false);<br>
+	NAVIGATIONBAR.addItem("ITEM2", "Second Item", true, true);
+	</code>
+	</example>
+	 */
+	void addItem (
+			/**Item Key (must be unique)*/String itemKey, 
+			/**Item text*/String itemText, 
+			/**Visible*/boolean visible, 
+			/**Enabled*/boolean enabled) {*		
+
+		var itemDef = { 
+			"key": itemKey, 
+			"text": itemText, 
+			"visible": visible,
+			"enabled": enabled
+			};
+	
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == itemKey) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	<example>
+	You want to make the item visible
+	<code>
+	NAVIGATIONBAR.addItemVisible("ITEM1", true);<br>
+	</code>
+	</example>
+	 */
+	void setItemVisible (
+			/**Item Key (must be unique)*/String itemKey, 
+			/**Visible*/boolean visible) {*		
+
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == itemKey) {
+				elementsJson[i].visible = visible;
+				break;
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	<example>
+	You want to make the item enabled
+	<code>
+	NAVIGATIONBAR.addItemEnabled("ITEM1", true);<br>
+	</code>
+	</example>
+	 */
+	void setItemEnabled (
+			/**Item Key (must be unique)*/String itemKey, 
+			/**Enabled*/boolean enabled) {*		
+
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == itemKey) {
+				elementsJson[i].enabled = enabled;
+				break;
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/** returns the selected item */
+	String getSelectedItem () {*
+		return this.DSelectedKey;	
+	*}
+	
+	/** sets the selected item */
+	void setSelectedItem (String key) {*
+		this.DSelectedKey = key;	
+	*}
+}
+
+/**
  * Class for NotificationBar
  */
-class org.scn.community.basics.NotificationBar extends Component {
+class org.scn.community.basics.NotificationBar extends org.scn.community.shared.Component {
 
 	/** 
 	 * Add Category
@@ -3848,33 +2714,45 @@ class org.scn.community.basics.NotificationBar extends Component {
 }
 
 /**
- * Class for FallbackPicture
+ * Class for Notify
  */
-class org.scn.community.basics.FallbackPicture extends Component {
-	
-	/**
-	 * Setter for "normal case" picture
-	 */
-	void setPicture (
-			/** picture */
-			String pictureForNormalCase) {*
-		this.picture = pictureForNormalCase;
+class org.scn.community.basics.Notify extends org.scn.community.shared.Component {
+	void alert( /* Text to be shown */ String text){*
+		this["msgtype"] = "alert";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
 	*}
-
-	/**
-	 * Setter for "fallback case" picture
-	 */
-	void setFallbackPicture (
-			/** fallback picture */
-			String pictureForFallbackCase) {*
-		this.fallbackPicture = pictureForFallbackCase;
+	void information( /* Text to be shown */ String text){*
+		this["msgtype"] = "information";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
+	*}
+	void error( /* Text to be shown */ String text){*
+		this["msgtype"] = "error";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
+	*}
+	void warning( /* Text to be shown */ String text){*
+		this["msgtype"] = "warning";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
+	*}
+	void notification( /* Text to be shown */ String text){*
+		this["msgtype"] = "notification";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
+	*}
+	void success( /* Text to be shown */ String text){*
+		this["msgtype"] = "success";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
 	*}
 }
 
 /**
  * Class for Open Street Map
  */
-class org.scn.community.basics.OSMap extends Component {
+class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 	
 	/**
 	 * Zooms in the map
@@ -3988,7 +2866,7 @@ class org.scn.community.basics.OSMap extends Component {
 /**
  * Class for Paginator
  */
-class org.scn.community.basics.Paginator extends Component {
+class org.scn.community.basics.Paginator extends org.scn.community.shared.Component {
 	
 	/** Sets the current page number */
 	void setCurrentPage(
@@ -4014,9 +2892,57 @@ class org.scn.community.basics.Paginator extends Component {
 }
 
 /**
+ * Class for PasswordField
+ */
+class org.scn.community.basics.PasswordField extends org.scn.community.shared.Component {
+
+	/** Sets the enabled value */
+	void setEnabled(
+		/** Editable value */ boolean enabled) {*
+		this.enabled = enabled;
+	*}
+	
+	/** Returns the enabled value */
+	boolean isEnabled() {*
+		return this.enabled;
+	*}
+	
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+	
+	/** returns value */
+	String getValue () {*
+		return this.value;	
+	*}
+		
+	/** sets value */
+	void setValue (String value) {*
+		this.value = value;	
+	*}
+
+	/** returns tooltip */
+	String getTooltip () {*
+		return this.tooltip;	
+	*}
+	
+	/** sets the tooltip */
+	void setTooltip (String tooltip) {*
+		this.tooltip = tooltip;	
+	*}
+}
+
+/**
  * Class for ProgressIndicator
  */
-class org.scn.community.basics.ProgressIndicator extends Component {
+class org.scn.community.basics.ProgressIndicator extends org.scn.community.shared.Component {
 
 	/** Sets the percentage value of the progress bar */
 	void setPercentValue(
@@ -4040,39 +2966,84 @@ class org.scn.community.basics.ProgressIndicator extends Component {
 		return this.displayValue;	
 	*}
 }
-
-/**
- * Class for RatingIndicator
- */
-class org.scn.community.basics.RatingIndicator extends Component {
-
-	/** Sets the editable value */
-	void setEditable(
-		/** Editable value */ boolean editable) {*
-		this.editable = editable;
+class org.scn.community.basics.QRCode extends org.scn.community.shared.Component {
+	/**
+	 * Sets QRCode Text
+	 */	
+	void setText( /* Text */ String text){*
+		this.text = text;
 	*}
-	
-	/** Returns the editable value */
-	boolean isEditable() {*
-		return this.editable;
+	/**
+	 * Gets QRCode Text
+	 */	
+	String getText() {*
+		return this.text;
 	*}
-
-	/** Sets the rating value */
-	void setValue(
-		/** Rating value */ float value) {*
-		this.value = value;	
+	/**
+	 * Sets Fill Color
+	 */	
+	void setFill( /* Color */ String color){*
+		this.fill = color;
 	*}
-	
-	/** Returns the rating value */
-	float getValue() {*
-		return this.value;	
+	/**
+	 * Gets Fill Color
+	 */	
+	String getFill() {*
+		return this.fill;
+	*}
+	/**
+	 * Sets Background Color
+	 */	
+	void setBackground( /* Color */ String color){*
+		this.background = color;
+	*}
+	/**
+	 * Gets Background Color
+	 */	
+	String getBackground() {*
+		return this.background;
+	*}
+	/**
+	 * Sets Radius
+	 */	
+	void setRadius( /* Radius (0.0 - 0.5) */ float radius){*
+		this.radius = radius;
+	*}
+	/**
+	 * Gets Radius
+	 */	
+	float getRadius() {*
+		return this.fill;
+	*}
+	/**
+	 * Sets Quiet Amount
+	 */	
+	void setQuiet( /* Amount */ int amount){*
+		this.quiet = amount;
+	*}
+	/**
+	 * Gets Quiet Amount
+	 */	
+	int getQuiet() {*
+		return this.quiet;
+	*}
+	/**
+	 * Sets Print-Only
+	 */	
+	void setPrintOnly( /* Print Only (true/false) */ boolean printOnly){*
+		this.printOnly = printOnly;
+	*}
+	/**
+	 * Gets Print-Only
+	 */	
+	String getPrintOnly() {*
+		return this.printOnly;
 	*}
 }
-
 /**
  * Class for RangeSlider (extension of slider)
  */
-class org.scn.community.basics.RangeSlider extends Component {
+class org.scn.community.basics.RangeSlider extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(
@@ -4112,10 +3083,20 @@ class org.scn.community.basics.RangeSlider extends Component {
 		/** Value */ float value) {*
 		this.value = value;
 	*}
+	/** Sets the value from integer. */
+	void setValueAsInt(
+		/** Value */ int value) {*
+		this.value = parseFloat(value);
+	*}
 	
 	/** Returns the value. */
 	float getValue() {*
 		return this.value;
+	*}
+	
+	/** Returns the value as integer. */
+	int getValueAsInt() {*
+		return parseInt(Math.floor(this.value));
 	*}
 	
 	/** Sets the second value. */
@@ -4123,10 +3104,40 @@ class org.scn.community.basics.RangeSlider extends Component {
 		/** Second value */ float value2) {*
 		this.value2 = value2;
 	*}
-	
+	/** Sets the second value from integer. */
+	void setValue2AsInt(
+		/** Value */ int value) {*
+		this.value2 = parseFloat(value);
+	*}
+
 	/** Returns the second value. */
 	float getValue2() {*
 		return this.value2;
+	*}
+	
+	/** Returns the second value as integer. */
+	int getValue2AsInt() {*
+		return parseInt(Math.floor(this.value2));
+	*}
+
+	/** Returns the live value. */
+	float getLiveValue() {*
+		return this.liveValue;
+	*}
+	
+	/** Returns the live value as integer. */
+	int getLiveValueAsInt() {*
+		return parseInt(Math.floor(this.liveValue));
+	*}
+	
+	/** Returns the second live value. */
+	float getLiveValue2() {*
+		return this.liveValue2;
+	*}
+	
+	/** Returns the second live value as integer. */
+	int getLiveValue2AsInt() {*
+		return parseInt(Math.floor(this.liveValue2));
 	*}
 
 	/** Sets the total units value. */
@@ -4175,9 +3186,384 @@ class org.scn.community.basics.RangeSlider extends Component {
 }
 
 /**
+ * Class for RatingIndicator
+ */
+class org.scn.community.basics.RatingIndicator extends org.scn.community.shared.Component {
+
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+
+	/** Sets the rating value */
+	void setValue(
+		/** Rating value */ float value) {*
+		this.value = value;	
+	*}
+	
+	/** Returns the rating value */
+	float getValue() {*
+		return this.value;	
+	*}
+}
+
+/**
+ * Class for RoadMap
+ */
+class org.scn.community.basics.RoadMap extends org.scn.community.shared.Component {
+	
+	/** remove all steps */
+	void removeAllSteps () {*		
+			var elementsArray = [];
+			this.DElementsContent = JSON.stringify(elementsArray);
+			
+			this.DCleanAll = true;
+	*}
+	
+	/** Adds an step containing Key, Text, Visible and Enable flags.
+
+ 	<example>
+	You want to add 2 steps
+	<code>
+	ROADMAP.addStep("STEP1", "First Step", true, false);<br>
+	ROADMAP.addStep("STEP2", "Second Step", true, true);
+	</code>
+	</example>
+	 */
+	void addStep (
+			/**Step Key (must be unique)*/String stepKey, 
+			/**Step text*/String stepText, 
+			/**Visible*/boolean visible, 
+			/**Enabled*/boolean enabled) {*		
+
+		var itemDef = { 
+			"key": stepKey, 
+			"text": stepText, 
+			"visible": visible,
+			"enabled": enabled
+			};
+	
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == stepKey) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	<example>
+	You want to make the step visible
+	<code>
+	ROADMAP.addStepVisible("STEP1", true);<br>
+	</code>
+	</example>
+	 */
+	void setStepVisible (
+			/**Step Key (must be unique)*/String stepKey, 
+			/**Visible*/boolean visible) {*		
+
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == stepKey) {
+				elementsJson[i].visible = visible;
+				break;
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	<example>
+	You want to make the step enabled
+	<code>
+	ROADMAP.addStepEnabled("STEP1", true);<br>
+	</code>
+	</example>
+	 */
+	void setStepEnabled (
+			/**Step Key (must be unique)*/String stepKey, 
+			/**Enabled*/boolean enabled) {*		
+
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == stepKey) {
+				elementsJson[i].enabled = enabled;
+				break;
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/** returns the selected step */
+	String getSelectedStep () {*
+		return this.DSelectedKey;	
+	*}
+	
+	/** sets the selected step */
+	void setSelectedStep (String key) {*
+		this.DSelectedKey = key;	
+	*}
+}
+
+/**
+ * Class for RSSFeedReader
+ */
+class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Component {
+	
+	/** Set url of desired rss feed  
+
+ 	<example>
+	<code>
+	RSSFeedReader_1.setFeedUrl("http://cdn.eex.com/rss/de/market.rss").
+	</code>
+	</example>
+	 */
+	String setFeedUrl(String url_string){*
+		this.feedurldimension = url_string;
+	*}
+	
+	/** Set url of custom xsl sheet to parse rss feed. Be aware of cross origin browser policies.
+
+ 	<example>
+	<code>
+	RSSFeedReader_1.setXslUrl("http://www.someurl.com/yourxsl.xsl").
+	</code>
+	</example>
+	 */
+	String setXslUrl(String url_string){*
+		this.xslurldimension = url_string;
+	*}
+}
+
+/**
+ * Generated ZTL Class for Segmented Button
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.Component {
+
+	/**
+	 * Remove All Buttons and Items from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DElementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/** Adds an element containing parentKey [String], key [String], text [String], image [String], selected [boolean] properties.
+	 * You need to specify a unique and existing parent element.
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	SEGMENTEDBUTTON.addItem(parentKey [String], key [String], text [String], image [String], selected [boolean]);<br>
+	SEGMENTEDBUTTON.addItem(parentKey [String], key [String], text [String], image [String], selected [boolean]);
+	</code>
+	</example>
+	 */
+	void addItem (
+			/**The key of the parent button*/String parentKey, 
+			/**Unique key of this item*/String key, 
+			/**Text for the item*/String text, 
+			/**Given image for the item*/optional String image, 
+			/**Selection state of the item*/optional boolean selected
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		if(image == undefined) { image = "";}
+		if(selected == undefined) { selected = false;}
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key, 
+			text:text, 
+			image:image, 
+			selected:selected 
+			};
+	
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], text [String], image [String], selected [boolean].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	SEGMENTEDBUTTON.addButton(key [String], text [String], image [String], selected [boolean]);<br>
+	SEGMENTEDBUTTON.addButton(key [String], text [String], image [String], selected [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addButton (
+			/**Unique key of this button*/String key, 
+			/**Text for the button*/String text, 
+			/**Given image for the button*/optional String image, 
+			/**Selection state of the button*/optional boolean selected
+			) {*		
+		
+		this.addItem("ROOT", key, 
+			text, 
+			image, 
+			selected);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	SEGMENTEDBUTTON.removeItem(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeItem (
+			String key
+			) {*		
+		
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	SEGMENTEDBUTTON.removeButton(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeButton (
+			String key
+			) {*		
+		
+		this.removeItem(key);
+	*}
+
+	/** Gets Technical property for selected keys Property as StringArray
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	SEGMENTEDBUTTON.getSelectedKeys();<br>
+	</code>
+	</example>
+	 */
+	StringArray getSelectedKeys () {*		
+		var elementsJson = JSON.parse(this.DSelectedKeys);
+		return elementsJson;
+	*}
+
+	/**
+	 * Gets Technical property for pressed button key Property
+	 */	
+	String getPressedButtonKey() {*
+		return this.DPressedButtonKey;
+	*}
+
+	/**
+	 * Gets Technical property for pressed item key Property
+	 */	
+	String getPressedItemKey() {*
+		return this.DPressedItemKey;
+	*}
+
+
+
+
+
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/* CUSTOM ZTL FUNCTIONS */
+}
+
+/**
  * Class for Slider
  */
-class org.scn.community.basics.Slider extends Component {
+class org.scn.community.basics.Slider extends org.scn.community.shared.Component {
 
 	/** Sets the editable value */
 	void setEditable(
@@ -4217,12 +3603,31 @@ class org.scn.community.basics.Slider extends Component {
 		/** Value */ float value) {*
 		this.value = value;
 	*}
+	/** Sets the value from integer. */
+	void setValueAsInt(
+		/** Value */ int value) {*
+		this.value = parseFloat(value);
+	*}
 	
 	/** Returns the value. */
 	float getValue() {*
 		return this.value;
 	*}
+	/** Returns the value as an integer. */
+	int getValueAsInt() {*
+		return parseInt(Math.floor(this.value));
+	*}
 	
+	/** Returns the live value. */
+	float getLiveValue() {*
+		return this.liveValue;
+	*}
+	
+	/** Returns the live value as integer. */
+	int getLiveValueAsInt() {*
+		return parseInt(Math.floor(this.liveValue));
+	*}
+
 	/** Sets the total units value. */
 	void setTotalUnits(
 		/** Total units value */ int totalUnits) {*
@@ -4271,7 +3676,18 @@ class org.scn.community.basics.Slider extends Component {
 /**
  * Class for TextArea
  */
-class org.scn.community.basics.TextArea extends Component {
+class org.scn.community.basics.TextArea extends org.scn.community.shared.Component {
+	
+	/** Sets the enabled value */
+	void setEnabled(
+		/** Editable value */ boolean enabled) {*
+		this.enabled = enabled;
+	*}
+	
+	/** Returns the enabled value */
+	boolean isEnabled() {*
+		return this.enabled;
+	*}
 	
 	/** Sets the editable value */
 	void setEditable(
@@ -4298,7 +3714,7 @@ class org.scn.community.basics.TextArea extends Component {
 /**
  * Class for ToggleButton
  */
-class org.scn.community.basics.ToggleButton extends Component {
+class org.scn.community.basics.ToggleButton extends org.scn.community.shared.Component {
 	/** returns the pressed state 
     <example>
 	You want to get the pressed state to decide what to do
@@ -4333,12 +3749,22 @@ class org.scn.community.basics.ToggleButton extends Component {
 	boolean getEnabled () {*
 		return this.enabled;	
 	*}
+	
+	/** sets the text */
+	void setText (String text) {*
+		this.text = text;	
+	*}
+
+	/** returns the text */
+	String getText () {*
+		return this.text;	
+	*}
 }
 
 /**
  * Class for Tree
  */
-class org.scn.community.basics.Tree extends Component {
+class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	
 	/** remove all nodes */
 	void removeAllNodes () {*		
@@ -4424,9 +3850,94 @@ class org.scn.community.basics.Tree extends Component {
 }
 
 /**
+ * Class for ValueHelpField
+ */
+class org.scn.community.basics.TriStateCheckBox extends org.scn.community.shared.Component {
+	
+	/** Sets the enabled value */
+	void setEnabled(
+		/** Editable value */ boolean enabled) {*
+		this.enabled = enabled;
+	*}
+	
+	/** Returns the enabled value */
+	boolean isEnabled() {*
+		return this.enabled;
+	*}
+	
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+	
+	/** returns text */
+	String getText () {*
+		return this.text;	
+	*}
+		
+	/** sets text */
+	void setText (String value) {*
+		this.text = value;	
+	*}
+
+	/** returns tooltip */
+	String getTooltip () {*
+		return this.tooltip;	
+	*}
+	
+	/** sets the tooltip */
+	void setTooltip (String tooltip) {*
+		this.tooltip = tooltip;	
+	*}
+	
+	/**
+	 * Sets the selection state - CHECKED | UNCHECKED | MIXED
+	 */
+	void setSelectionState (org_scn_community_shared_SelectionStateEnumfield type) {*
+		if(type == org_scn_community_shared_SelectionState.CHECKED) {
+			this.selectionState = "Checked";
+			return;
+		}
+		if(type == org_scn_community_shared_SelectionState.UNCHECKED) {
+			this.selectionState = "Unchecked";
+			return;
+		}
+		if(type == org_scn_community_shared_SelectionState.MIXED) {
+			this.selectionState = "Mixed";
+			return;
+		}
+
+		this.selectionState = "Unchecked";
+	*}
+	
+	/**
+	 * Returns the selection state - CHECKED | UNCHECKED | MIXED
+	 */
+	org_scn_community_shared_SelectionStateEnumfield getSelectionState() {*
+		if(this.selectionState == "Checked") {
+			return org_scn_community_shared_SelectionState.CHECKED;
+		}
+		if(this.selectionState == "Unchecked") {
+			return org_scn_community_shared_SelectionState.UNCHECKED;
+		}
+		if(this.selectionState == "Mixed") {
+			return org_scn_community_shared_SelectionState.MIXED;
+		}
+
+		return org_scn_community_shared_SelectionState.UNCHECKED;
+	*}
+}
+
+/**
  * Class for ValiInput
  */
-class org.scn.community.basics.ValiInput extends Component {
+class org.scn.community.basics.ValiInput extends org.scn.community.shared.Component {
 	
 	/** returns value */
 	String getValue () {*
@@ -4463,3 +3974,68 @@ class org.scn.community.basics.ValiInput extends Component {
 	*}
 }
 
+/**
+ * Class for ValueHelpField
+ */
+class org.scn.community.basics.ValueHelpField extends org.scn.community.shared.Component {
+	
+	/** Sets the enabled value */
+	void setEnabled(
+		/** Editable value */ boolean enabled) {*
+		this.enabled = enabled;
+	*}
+	
+	/** Returns the enabled value */
+	boolean isEnabled() {*
+		return this.enabled;
+	*}
+	
+	/** Sets the editable value */
+	void setEditable(
+		/** Editable value */ boolean editable) {*
+		this.editable = editable;
+	*}
+	
+	/** Returns the editable value */
+	boolean isEditable() {*
+		return this.editable;
+	*}
+	
+	/** returns value */
+	String getValue () {*
+		return this.value;	
+	*}
+		
+	/** sets value */
+	void setValue (String value) {*
+		this.value = value;	
+	*}
+
+	/** returns tooltip */
+	String getTooltip () {*
+		return this.tooltip;	
+	*}
+	
+	/** sets the tooltip */
+	void setTooltip (String tooltip) {*
+		this.tooltip = tooltip;	
+	*}
+}
+
+/**
+ * Class for WorldTime
+ */
+class org.scn.community.basics.WorldTime extends org.scn.community.shared.Component {
+	
+	/** Set base timezone with given utc offset.  
+
+ 	<example>
+	<code>
+	TIME_1.setOffset("-2").
+	</code>
+	</example>
+	 */
+	void setOffset(String utc_offset) {*
+		this.utcoffset = utc_offset;
+	*}
+}

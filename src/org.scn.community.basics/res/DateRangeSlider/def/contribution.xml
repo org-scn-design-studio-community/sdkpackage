@@ -1,0 +1,122 @@
+
+<component
+	id="DateRangeSlider"
+	title="Date Range Slider"
+	handlerType="sapui5"
+	icon="res/DateRangeSlider/DateRangeSlider.png"
+	group="ScnCommunityBasics"
+>
+	
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>os/sapui5/suite/mapping.js</jsInclude>
+	<jsInclude>os/date/DateFormat.js</jsInclude>
+	<jsInclude>res/DateRangeSlider/DateRangeSlider.js</jsInclude>
+	
+	<property
+		id="DMin"
+		title="Minimum Date Value (yyyymmdd)"
+		type="String" />
+	<property
+		id="DMax"
+		title="Maximum Date Value (yyyymmdd)"
+		type="String" />
+	<property
+		id="DValue"
+		title="First Date Value (yyyymmdd)"
+		type="String" />
+	<property
+		id="DValue2"
+		title="Second Date Value (yyyymmdd)"
+		type="String" />
+	<property
+		id="totalUnits"
+		title="Total Units"
+		type="int" />
+	<property
+		id="stepLabels"
+		title="Step Labels"
+		type="boolean" />
+	<property
+		id="vertical"
+		title="Change to Vertical Orientation"
+		type="boolean" />
+	<property
+		id="smallStepWidth"
+		title="Small Step Width"
+		type="float" />
+	<property
+		id="showBubbles"
+		title="Show Bubbles"
+		type="boolean" />
+	<property
+		id="DLangFormat"
+		title="Language Dependent Format"
+		type="boolean"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+
+	<property
+		id="DLangPattern"
+		title="Custom Format Pattern"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="DLangStyle"
+		title="Custom Format Style"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+	  <possibleValue>short</possibleValue>
+		<possibleValue>medium</possibleValue>
+		<possibleValue>long</possibleValue>
+	</property>
+
+  <property
+		id="DLangRelative"
+		title="Custom Format Relative"
+		type="boolean"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="DGranulatiry"
+		title="Granularity"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+		<possibleValue>Day</possibleValue>
+		<possibleValue>Month</possibleValue>
+	</property>
+
+	<property
+		id="onChange"
+		title="On Change"
+		type="ScriptText"
+		group="Events" />
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">30</defaultValue>
+		<defaultValue property="Dmin"></defaultValue>
+		<defaultValue property="Dmax"></defaultValue>
+		<defaultValue property="Dvalue"></defaultValue>
+		<defaultValue property="Dvalue2"></defaultValue>
+		<defaultValue property="totalUnits">0</defaultValue>
+		<defaultValue property="vertical">false</defaultValue>
+		<defaultValue property="smallStepWidth">1</defaultValue>
+		<defaultValue property="showBubbles">true</defaultValue>
+		<defaultValue property="DLangFormat">false</defaultValue>
+		<defaultValue property="DLangStyle">short</defaultValue>
+		<defaultValue property="DLangRelative">false</defaultValue>
+		<defaultValue property="DGranulatiry">Day</defaultValue>
+	</initialization>
+</component>

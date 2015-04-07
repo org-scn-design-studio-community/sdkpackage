@@ -1,0 +1,19 @@
+
+<component
+		id="Table2D"
+		title="2D Crosstab"
+		icon="res/Table2D/Table2D.png"
+		handlerType="div"
+		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
+	<jsInclude>res/Table2D/Table2D.js</jsInclude>
+	<cssInclude>res/Table2D/Table2D.css</cssInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<cssInclude>os/d3-tip.css</cssInclude>

@@ -1,0 +1,103 @@
+
+/**
+ * Class for NotificationBar
+ */
+class org.scn.community.basics.NotificationBar extends org.scn.community.shared.Component {
+
+	/** 
+	 * Add Category
+	 * 
+	 */
+	void addCategory (
+			/**Category Key*/String categoryKey, 
+			/**Category Text*/String categoryText, 
+			/**Category Image*/String categoryImage)
+	{*
+
+		var categoryDef = {
+				"key": categoryKey,
+				"text": categoryText,
+				"image": categoryImage
+				};
+			
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			this.categories = "[]";
+		}
+
+		var caregoriesJson = JSON.parse(this.categories);
+		caregoriesJson.push(categoryDef);
+		
+		this.categories = JSON.stringify(caregoriesJson);
+	*}
+
+	/**
+	 * Add an Error Notification
+	 */
+	void addErrorNotification (
+			/**Notification Text */String notificationText,
+			/**Optional: Category Key as defined in addCategory*/optional String categoryKey 
+			)
+	{*
+		this.addNotification(notificationText, "ERROR", categoryKey, "");
+	*}
+			
+	/**
+	 * Add a Warning Notification
+	 */
+	void addWarningNotification (
+			/**Notification Text */String notificationText,
+			/**Optional: Category Key as defined in addCategory*/optional String categoryKey 
+			)
+	{*
+		this.addNotification(notificationText, "WARNING", categoryKey, "");
+	*}
+
+	/**
+	 * Add an Info Notification
+	 */
+	void addInfoNotification (
+			/**Notification Text */String notificationText,
+			/**Optional: Category Key as defined in addCategory*/optional String categoryKey 
+			)
+	{*
+		this.addNotification(notificationText, "INFO", categoryKey, "");
+	*}
+
+	/**
+	 * Add a Success Notification
+	 */
+	void addSuccessNotification (
+			/**Notification Text */String notificationText,
+			/**Optional: Category Key as defined in addCategory*/optional String categoryKey 
+			)
+	{*
+		this.addNotification(notificationText, "SUCCESS", categoryKey, "");
+	*}
+
+	/** 
+	 * Add Notification
+	 * 
+	 */
+	void addNotification (
+			/**Notification Text */String notificationText, 
+			/**Notification Level (ERROR|WARNING|INFO|SUCCESS) */String notificationLevel, 
+			/**Optional: Category Key as defined in addCategory*/optional String categoryKey, 
+			/**Optional: Notification Key */ optional String notificationKey)
+	{*
+		var itemDef = { 
+				"category": categoryKey,
+				"key": notificationKey, 
+				"text": notificationText, 
+				"level": notificationLevel
+				};
+
+		if (this.notifications === undefined || this.notifications === "" || this.notifications === "<delete>"){
+			this.notifications = "[]";
+		}
+		
+		var notificationsJson = JSON.parse(this.notifications);
+		notificationsJson.push(itemDef);
+
+		this.notifications = JSON.stringify(notificationsJson);
+	*}
+}

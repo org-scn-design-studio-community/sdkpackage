@@ -1,0 +1,156 @@
+class org.scn.community.basics.FioriToolbar extends org.scn.community.shared.Component {
+	/** Add a header button
+ 	<example>
+	Add or update a header button by key 'MENU'.
+	<code>
+	FIORITOOLBAR_1.addHeaderButton("MENU","Menu",false,"sap-icon://menu2","Emphasized");<br>
+	</code>
+	</example>
+	 */
+	void addHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		var sTitle = true;
+		if(showTitle != undefined) sTitle = showTitle;
+		var h;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex==-1) {
+			o.push({
+				key : buttonKey,
+				text : buttonTitle,
+				showTitle : sTitle,
+				icon : icon,
+				items : [],
+				type : buttonType || "Default"
+			});
+		}else{	// Don't overwrite items
+			o[matchIndex].text = buttonTitle;
+			o[matchIndex].showTitle = sTitle;
+			o[matchIndex].icon = icon;
+			o[matchIndex].type = buttonType || "Default";
+		}		
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Remove All Button
+ 	<example>
+	Remove all button
+	<code>
+	FIORITOOLBAR_1.removeAllButtons();<br>
+	</code>
+	</example>
+	 */
+	void removeAllButtons () {*		
+		itemConfig = JSON.stringify([]);
+	*}
+	/** Remove All Items in a header button
+ 	<example>
+	Remove all items in header button 'MENU'
+	<code>
+	FIORITOOLBAR_1.removeAllItems("Menu");<br>
+	</code>
+	</example>
+	 */
+	void removeAllItems (/*Button Key*/String buttonKey) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex>-1) o[matchIndex].items = [];
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Remove a button
+ 	<example>
+	Remove a header button with key 'MENU'
+	<code>
+	FIORITOOLBAR_1.removeHeaderButton("MENU");<br>
+	</code>
+	</example>
+	 */
+	void removeHeaderButton (/*Button Key*/String buttonKey) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Add an item to a header button.  Will add the header button if it does not yet exist.
+ 	<example>
+	Add an item called 'Help' to header button with key 'MENU' with an icon sys-help-2
+	<code>
+	FIORITOOLBAR_1.addItem("MENU", "help", "Help", "sap-icon://sys-help-2");<br>
+	</code>
+	</example>
+	 */
+	void addItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex == -1 ){	// Add section for the lazy
+			this.addHeaderButton(buttonKey, buttonKey);
+			o = eval(this.itemConfig);
+			matchIndex = o.length-1;
+		}
+		o[matchIndex].items.push({
+			key : itemKey,
+			text : itemText,
+			icon : itemIcon || ""
+		});
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Removes an item from a header button.
+ 	<example>
+	Remove an item with key 'HELP' from header button with key 'MENU'
+	<code>
+	FIORITOOLBAR_1.removeItem("MENU", "HELP");<br>
+	</code>
+	</example>
+	 */
+	void removeItem (/*Button Key*/String buttonKey, /*Item Key*/ String itemKey) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex != -1 ){
+			var items = o[matchIndex].items;
+			var itemIndex = -1;
+			for(var i=0;i<items.length;i++){
+				if(items[i].key == itemKey) itemIndex = i;
+			}
+			if(itemIndex>-1) items.splice(itemIndex,1);
+			itemConfig = JSON.stringify(o);
+		}		
+	*}
+	/**
+	Get item clicked.
+	*/
+	String getItemClicked() {*
+		return this.selectedItem;
+	*}
+	/**
+	Get item key clicked.
+	*/
+	String getItemKeyClicked() {*
+		return this.selectedItemKey;
+	*}
+	/**
+	Get header of and item clicked.
+	*/
+	String getHeaderClicked() {*
+		return this.selectedHeader;
+	*}
+	/**
+	Get header key of and item clicked.
+	*/
+	String getHeaderKeyClicked() {*
+		return this.selectedHeaderKey;
+	*}
+	
+}

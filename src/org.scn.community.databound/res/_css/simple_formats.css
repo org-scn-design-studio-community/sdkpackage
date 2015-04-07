@@ -1,0 +1,11 @@
+div[class~=scn-pack-ActivateSimpleConditions] td>div>label[data-condformat="red3"] {background-color: #d50000!important;}
+div[class~=scn-pack-ActivateSimpleConditions] td>div>label[data-condformat="red2"] {background-color: #ff4040!important;}
+div[class~=scn-pack-ActivateSimpleConditions] td>div>label[data-condformat="red1"] {background-color: #ffaaaa!important;}
+
+div[class~=scn-pack-ActivateSimpleConditions] td>div>label[data-condformat="yellow3"] {background-color: #eaea00!important;}
+div[class~=scn-pack-ActivateSimpleConditions] td>div>label[data-condformat="yellow2"] {background-color: #ffff5e!important;}
+div[class~=scn-pack-ActivateSimpleConditions] td>div>label[data-condformat="yellow1"] {background-color: #ffffbb!important;}
+
+div[class~=scn-pack-ActivateSimpleConditions] td>div>label[data-condformat="green3"] {background-color: #00a600!important;}
+div[class~=scn-pack-ActivateSimpleConditions] td>div>label[data-condformat="green2"] {background-color: #59ff59!important;}
+div[class~=scn-pack-ActivateSimpleConditions] td>div>label[data-condformat="green1"] {background-color: #9fff9f!important;}

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>TimelineAlignment</name>
+	<author></author>
+
+	<documentation>Where to align items with respect to the time line.</documentation>
+	<baseType>sap.ui.core/string</baseType>
+	<enumeration>
+		<value name="Right">
+			<documentation>Right</documentation>
+		</value>
+	</enumeration>
+</simple-type>

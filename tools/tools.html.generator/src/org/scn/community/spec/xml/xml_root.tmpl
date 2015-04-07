@@ -1,0 +1,22 @@
+
+<component
+	id="%COMP-id%"
+	title="%COMP-title%"
+	tooltip="%COMP-tooltip%"
+	icon="res/%COMP-id%/%COMP-id%.png"
+	handlerType="%COMP-handlerType%"
+	propertySheetPath="aps/org.scn.community.generic.PropertyPage.html"
+	group="%COMP-group%"
+	databound="%COMP-databound%"
+>
+
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/%COMP-id%/%COMP-id%Loader.js</jsInclude>
+
+%XML_PROPERTY_TEMPLATE%
+
+	<initialization>
+%XML_DEAFULT_TEMPLATE%
+	</initialization>
+
+</component>

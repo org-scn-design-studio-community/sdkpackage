@@ -1,0 +1,105 @@
+
+class org.scn.community.utils.CustomCssCollector extends org.scn.community.shared.Component {
+	
+	/**
+	 * Adds new CSS by with a key for later work on
+	 * 
+ 	<example>
+	You want to add a CSS link
+	<code>
+	CUSTOMCSSCOLLECTOR_1.addCss("BLUE", "blue_theme.css");	<br>
+	</code>
+	</example>
+ 	<example>
+	You want to add a disabled CSS link
+	<code>
+	CUSTOMCSSCOLLECTOR_1.updateCss("BLUE", "blue_theme.css", false);	<br>
+	</code>
+	</example>
+	 */
+	void addCss (
+			/**CSS Key (must be unique)*/String elementKey, 
+			/**CSS Url*/String elementUrl, 
+			/**If true (default) it will be loaded*/optional boolean isActive) {*		
+		
+		if(isActive == undefined) {
+			isActive = true;
+		}
+		
+		var itemDef = { 
+			"key": elementKey, 
+			"url": elementUrl, 
+			"act": isActive
+			};
+	
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Updates existing CSS by given key
+	 * 
+ 	<example>
+	You want to update a CSS url
+	<code>
+	CUSTOMCSSCOLLECTOR_1.updateCss("BLUE", "blue_theme.css");	<br>
+	</code>
+	</example>
+ 	<example>
+	You want to disable a css link
+	<code>
+	CUSTOMCSSCOLLECTOR_1.updateCss("BLUE", "", false);	<br>
+	</code>
+	</example>
+ 	<example>
+	You want to enable a css link
+	<code>
+	CUSTOMCSSCOLLECTOR_1.updateCss("BLUE", "", true);	<br>
+	</code>
+	</example>
+	 */
+	void updateCss (
+			/**CSS Key (must be unique)*/String elementKey, 
+			/**CSS Url*/optional String elementUrl, 
+			/**If true (default) it will be loaded*/optional boolean isActive) {*
+		
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				if(elementUrl != undefined && elementUrl != "") {
+					elementsJson[i].url = elementUrl;	
+				}
+				if(isActive != undefined) {
+					elementsJson[i].act = isActive;	
+				}
+				
+				break;
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+}

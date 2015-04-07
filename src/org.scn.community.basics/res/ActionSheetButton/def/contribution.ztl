@@ -1,0 +1,70 @@
+class org.scn.community.basics.ActionSheetButton extends org.scn.community.shared.Component {
+	/**
+	Gets Item Selected
+	*/
+	String getSelectedItem() {*
+		return this.selectedItem;
+	*}
+	/**
+	Gets Item Key Selected
+	*/
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+	/** Remove All Items
+ 	<example>
+	Remove all items
+	<code>
+	ACTIONSHEETBUTTON_1.removeAllItems();<br>
+	</code>
+	</example>
+	 */
+	void removeAllItems () {*		
+		this.items = "[]";
+	*}
+	/** Add an item
+ 	<example>
+	<code>
+	ACTIONSHEETBUTTON_1.addItem("delete", "Delete Bookmark", "sap-icon://delete");<br>
+	</code>
+	</example>
+	 */
+	void addItem (/*Key*/String key, /*Text*/String text, /*Icon*/String icon) {*		
+		var o = [];
+		if(this.items != "") o = eval(this.items);
+		var newItem = {
+			key : key,
+			text : text,
+			icon : icon
+		};
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			var item = o[i];
+			if(item.key == key) matchIndex = i;
+		}
+		if(matchIndex>-1) {
+			o[matchIndex] = newItem;
+		}else{
+			o.push(newItem);
+		}
+		this.items = JSON.stringify(o);
+	*}
+	/** Remove an item
+ 	<example>
+	<code>
+	ACTIONSHEETBUTTON_1.removeItem("delete");<br>
+	</code>
+	</example>
+	 */
+	void removeItem (/*Item*/String key) {*		
+		var o = [];
+		if(this.items != "") o = eval(this.items);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			var item = o[i];
+			if(item.key == key) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		this.items = JSON.stringify(o);
+	*}
+}

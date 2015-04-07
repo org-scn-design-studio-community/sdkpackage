@@ -1,0 +1,406 @@
+
+/**
+ * Generated ZTL Class for UI5 Table
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.UI5Table extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Central Data Provisioner for Result Set Property
+	 */	
+	void setDataProvisioner( /* Central Result Set with Data */  String dataProvisioner){*
+		this.DDataProvisioner = dataProvisioner;
+	*}
+
+	/**
+	 * Gets Central Data Provisioner for Result Set Property
+	 */	
+	String getDataProvisioner() {*
+		return this.DDataProvisioner;
+	*}
+
+	/**
+	 * Sets Visible Row Count Property
+	 */	
+	void setVisibleRowCount( /* &nbsp; */  int visibleRowCount){*
+		this.DVisibleRowCount = visibleRowCount;
+	*}
+
+	/**
+	 * Gets Visible Row Count Property
+	 */	
+	int getVisibleRowCount() {*
+		return this.DVisibleRowCount;
+	*}
+
+	/**
+	 * Sets Row Height in px Property
+	 */	
+	void setRowHeight( /* &nbsp; */  int rowHeight){*
+		this.DRowHeight = rowHeight;
+	*}
+
+	/**
+	 * Gets Row Height in px Property
+	 */	
+	int getRowHeight() {*
+		return this.DRowHeight;
+	*}
+
+	/**
+	 * Sets Allow Sort in Columns Property
+	 */	
+	void setAllowSort( /* &nbsp; */  boolean allowSort){*
+		this.DAllowSort = allowSort;
+	*}
+
+	/**
+	 * Gets Allow Sort in Columns Property
+	 */	
+	boolean getAllowSort() {*
+		return this.DAllowSort;
+	*}
+
+	/**
+	 * Sets Allow Sort in Columns Property
+	 */	
+	void setAllowFilter( /* &nbsp; */  boolean allowFilter){*
+		this.DAllowFilter = allowFilter;
+	*}
+
+	/**
+	 * Gets Allow Sort in Columns Property
+	 */	
+	boolean getAllowFilter() {*
+		return this.DAllowFilter;
+	*}
+
+	/**
+	 * Sets Allow Reorder of Columns Property
+	 */	
+	void setAllowColumnReorder( /* &nbsp; */  boolean allowColumnReorder){*
+		this.DAllowColumnReorder = allowColumnReorder;
+	*}
+
+	/**
+	 * Gets Allow Reorder of Columns Property
+	 */	
+	boolean getAllowColumnReorder() {*
+		return this.DAllowColumnReorder;
+	*}
+
+	/**
+	 * Sets Allow Selection in the Table Property
+	 */	
+	void setAllowSelection( /* &nbsp; */  boolean allowSelection){*
+		this.DAllowSelection = allowSelection;
+	*}
+
+	/**
+	 * Gets Allow Selection in the Table Property
+	 */	
+	boolean getAllowSelection() {*
+		return this.DAllowSelection;
+	*}
+
+	/**
+	 * Sets Fiexd Header Rows Property
+	 */	
+	void setFixedHeader( /* &nbsp; */  boolean fixedHeader){*
+		this.DFixedHeader = fixedHeader;
+	*}
+
+	/**
+	 * Gets Fiexd Header Rows Property
+	 */	
+	boolean getFixedHeader() {*
+		return this.DFixedHeader;
+	*}
+
+	/**
+	 * Sets Header Column Width in px Property
+	 */	
+	void setHeaderColWidth( /* &nbsp; */  int headerColWidth){*
+		this.DHeaderColWidth = headerColWidth;
+	*}
+
+	/**
+	 * Gets Header Column Width in px Property
+	 */	
+	int getHeaderColWidth() {*
+		return this.DHeaderColWidth;
+	*}
+
+	/** Adds a root element containing key [String], width [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	UI5TABLE.addParameter(key [String], width [String]);<br>
+	UI5TABLE.addParameter(key [String], width [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addParameter (
+			/**Column index (0-based)*/String key, 
+			/**Width with unit (e.g. 200px | 30%)*/String width
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			width:width
+			};
+	
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DDataColWidths);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	UI5TABLE.removeParameter(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeParameter (
+			String key
+			) {*		
+		
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DDataColWidths);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets (non-stable) Formatting Operator Property
+	 */	
+	void setFormattingOperator( /* &nbsp; */  choice formattingOperator){*
+		this.DFormattingOperator = formattingOperator;
+	*}
+
+	/**
+	 * Gets (non-stable) Formatting Operator Property
+	 */	
+	choice getFormattingOperator() {*
+		return this.DFormattingOperator;
+	*}
+
+	/**
+	 * Sets (non-stable) Formatting Condition Property
+	 */	
+	void setFormattingCondition( /* &nbsp; */  String formattingCondition){*
+		this.DFormattingCondition = formattingCondition;
+	*}
+
+	/**
+	 * Gets (non-stable) Formatting Condition Property
+	 */	
+	String getFormattingCondition() {*
+		return this.DFormattingCondition;
+	*}
+
+	/**
+	 * Sets (non-stable) Column Based Formatting Condition Property
+	 */	
+	void setColumnFormattingCondition( /* &nbsp; */  String columnFormattingCondition){*
+		this.DColumnFormattingCondition = columnFormattingCondition;
+	*}
+
+	/**
+	 * Gets (non-stable) Column Based Formatting Condition Property
+	 */	
+	String getColumnFormattingCondition() {*
+		return this.DColumnFormattingCondition;
+	*}
+
+	/**
+	 * Sets Empty Value For Header Cell Property
+	 */	
+	void setEmptyHeaderValue( /* &nbsp; */  String emptyHeaderValue){*
+		this.DEmptyHeaderValue = emptyHeaderValue;
+	*}
+
+	/**
+	 * Gets Empty Value For Header Cell Property
+	 */	
+	String getEmptyHeaderValue() {*
+		return this.DEmptyHeaderValue;
+	*}
+
+	/**
+	 * Sets Empty Value For Data Cell Property
+	 */	
+	void setEmptyDataValue( /* &nbsp; */  String emptyDataValue){*
+		this.DEmptyDataValue = emptyDataValue;
+	*}
+
+	/**
+	 * Gets Empty Value For Data Cell Property
+	 */	
+	String getEmptyDataValue() {*
+		return this.DEmptyDataValue;
+	*}
+
+	/**
+	 * Sets Navigation Mode Property
+	 */	
+	void setNavigationMode( /* &nbsp; */  choice navigationMode){*
+		this.DNavigationMode = navigationMode;
+	*}
+
+	/**
+	 * Gets Navigation Mode Property
+	 */	
+	choice getNavigationMode() {*
+		return this.DNavigationMode;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Gets Selection As JSON String
+	 */	
+	String getSelectionAsJSON() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Selected Row Index (0 - based)
+	 */
+	int getSelectedRow() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.row;
+	*}
+	
+	/**
+	 * Selected Column Index (0 - based)
+	 */
+	int getSelectedColumn() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.column;
+	*}
+
+	/**
+	 * Selected Visual Row Index (0 - based)
+	 */
+	int getSelectedVisualRow() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.visualRow;
+	*}
+	
+	/**
+	 * Selected Visual Column Index (0 - based)
+	 */
+	int getSelectedVisualColumn() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.visualColumn;
+	*}
+
+	/**
+	 * Selected Value Content
+	 */
+	int getSelectedValue() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.value;
+	*}
+	
+	/**
+	 * Selection Space (Header, Data)
+	 */
+	String getSelectionSpace() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.value;
+	*}
+
+	/**
+	 * Return dimensions and corresponding members for the selection as array
+	 */
+	org.scn.community.shared.DimensionMemberArray getSelectionDimensionMembers() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		
+		var tempA = [];
+		
+		for(var i=0;i<jsonObject.rowDimensions.length;i++){
+			var itemDef = { 
+				"dimension": jsonObject.rowDimensions[i].key, 
+				"member": jsonObject.rowKeys[i]
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		if(jsonObject.columnDimensions) {
+			for(var i=0;i<jsonObject.columnDimensions.length;i++){
+				var itemDef = { 
+					"dimension": jsonObject.columnDimensions[i].key, 
+					"member": jsonObject.columnKeys[i]
+				};
+				
+				tempA.push(itemDef);
+			}
+		}
+		
+		return tempA;
+	*}
+
+	/**
+	 * Values of the Row
+	 */
+	StringArray getSelectionRowValues() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		
+	
+		var tempA = [];
+		for(var i=0;i<jsonObject.rowValues.length;i++){
+			var itemDef = jsonObject.rowValues[i];
+			
+			tempA.push(itemDef);
+		}
+
+		return tempA;
+	*}
+}

@@ -1,0 +1,6 @@
+	/**
+	 * Trigger Execution of the given URL and parameter list
+	 */
+	void triggerExecution () {*
+		this.DTrigger = "GO";
+	*}

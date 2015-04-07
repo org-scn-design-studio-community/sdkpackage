@@ -1,0 +1,4 @@
+.scn-pack-SegmentedButton {
+}
+
+div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% !important;height: 100% !important;}

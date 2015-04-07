@@ -1,0 +1,163 @@
+
+<component
+	id="PostResponseParser"
+	title="Post Response Parser"
+	tooltip="Creates a Request and Parses the Response (Json)"
+	icon="res/PostResponseParser/PostResponseParser.png"
+	handlerType="sapui5"
+	propertySheetPath="res/PostResponseParser/aps/PostResponseParserPropertyPage.html"
+	group="ScnCommunityUtils"
+>
+
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/PostResponseParser/PostResponseParser.js</jsInclude>
+
+	<property
+		id="DUrl"
+		type="String"
+		title="Url To Send the Request"
+		group="Display"
+		visible="true" />
+		
+	<property
+		id="DRequestType"
+		type="String"
+		title="Request Type (JQuery | HTTP)"
+		group="Display"
+		visible="true">
+			<possibleValue>JQuery</possibleValue>
+			<possibleValue>HTTPRequest</possibleValue>
+	</property>
+	<property
+		id="DRequestMethod"
+		type="String"
+		title="Request Method (POST | GET | PUT)"
+		group="Display"
+		visible="true">
+			<possibleValue>POST</possibleValue>
+			<possibleValue>GET</possibleValue>
+			<possibleValue>PUT</possibleValue>
+	</property>
+	<property
+		id="DCrossDomain"
+		type="boolean"
+		title="Is this Request Cross-Domain"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DBasicAuthorisation"
+		type="String"
+		title="Basic Authorization Content [Basic: GUID]"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DContentType"
+		type="String"
+		title="Content Type"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DExpectedResponseStatus"
+		type="int"
+		title="Response Status for Good Response"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DExpectedContentType"
+		type="String"
+		title="Expected Content Type"
+		group="Display"
+		visible="true">
+			<possibleValue>text</possibleValue>
+			<possibleValue>json</possibleValue>
+	</property>
+
+	<property
+		id="DReturnParameters"
+		type="String"
+		title="Return Parameters"
+		group="Display"
+		visible="false">
+	</property>
+
+	<property
+		id="DReturnResponse"
+		type="String"
+		title="Return Response as String"
+		group="Display"
+		visible="false">
+	</property>
+
+	<property
+		id="DReturnStatus"
+		type="int"
+		title="Return Status"
+		group="Display"
+		visible="false">
+	</property>
+
+	<property
+		id="DTrigger"
+		type="String"
+		title="Just as Simple Triger"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DCleanAll"
+		type="String"
+		title="Clean All Parameters"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DParameters"
+		type="String"
+		title="List of Parameters (Name / Value)"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DHeaders"
+		type="String"
+		title="List of Headers (Name / Value)"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DRawParameters"
+		type="String"
+		title="Raw Parameters as String Content"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onResponse"
+		type="ScriptText"
+		title="Event for On Response"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="TOP_MARGIN">-2000</defaultValue>
+		<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="DUrl"></defaultValue>
+		<defaultValue property="DRequestType">JQuery</defaultValue>
+		<defaultValue property="DRequestMethod">POST</defaultValue>
+		
+		<defaultValue property="DParameters"></defaultValue>
+		<defaultValue property="DContentType">application/x-www-form-urlencoded</defaultValue>
+		<defaultValue property="DExpectedResponseStatus">200</defaultValue>
+		<defaultValue property="DDExpectedContentType">text</defaultValue>
+
+	</initialization>
+
+</component>

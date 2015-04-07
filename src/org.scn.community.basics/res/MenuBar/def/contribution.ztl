@@ -1,0 +1,99 @@
+
+/**
+ * Class for MenuBar
+ */
+class org.scn.community.basics.MenuBar extends org.scn.community.shared.Component {
+	
+	/** remove all elements */
+	void removeAllElements () {*		
+			var elementsArray = [];
+			this.elementsContent = JSON.stringify(elementsArray);
+			
+			this.cleanAll = true;
+	*}
+	
+	/** Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.
+	 * You need to specify a unique and existing parent element.
+	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.  
+
+ 	<example>
+	You want to add 2 elements, second one is a child of first one
+	<code>
+	ACCORDION_1.addElement("KEY1", "First Element", "", "ROOT", true);<br>
+	ACCORDION_1.addElement("KEY2", "First Element Child", "", "KEY1", true);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addSubMenuItem (
+			/**Element Key (must be unique)*/String elementKey, 
+			/**Element text*/String elementText, 
+			/**Image URL, if not set, no image*/String imageUrl, 
+			/**The Key of the parent Element*/String parentElementKey, 
+			/**Leafs do not have expand option by default*/optional boolean isLeaf,
+			/**Element enabled status*/optional boolean isEnabled) {*		
+		
+		if(isLeaf == undefined) {
+			isLeaf = true;
+		}
+		
+		var itemDef = { 
+			"key": elementKey, 
+			"text": elementText, 
+			"url": imageUrl,
+			"parent": parentElementKey,
+			"leaf": isLeaf,
+			"enabled": isEnabled
+			};
+	
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/** Adds a root element containing Key, Text, Image Url information.
+
+ 	<example>
+	You want to add 2 root elements, second one is a sibling of first one
+	<code>
+	ACCORDION_1.addSection("ROOT_KEY1", "First Root Element", "");<br>
+	ACCORDION_1.addSection("ROOT_KEY2", "Second Root Element", "");<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addMenuItem (
+			/**Element Key (must be unique)*/String elementKey, 
+			/**Element text*/String elementText, 
+			/**Image URL, if not set, no image*/String imageUrl,
+			/**Element enabled status*/optional boolean isEnabled) {*		
+		
+		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", false, isEnabled);
+	*}
+	
+	/** returns the selected key */
+	String getSelectedKey () {*
+		return this.selectedKey;	
+	*}
+	
+	/** returns the text of selected element (might not be unique) */
+	String getSelectedText () {*
+		return this.selectedText;	
+	*}
+}

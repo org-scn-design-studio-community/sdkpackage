@@ -1,0 +1,83 @@
+
+/**
+ * Class for ApplicationHeader
+ */
+class org.scn.community.prototypes.ApplicationHeaderE extends org.scn.community.shared.Component {
+	
+	/** Sets the user name that is displayed beside the welcome text. */
+	void setUserName(
+		/** User name */ String userName) {*
+		this.userName = userName;	
+	*}
+	
+	/** Returns the user name that is displayed beside the welcome text. */
+	String getUserName() {*
+		return this.userName;	
+	*}
+
+	/** Sets the text that is displayed beside the logo in the application header. */
+	void setLogoText(
+		/** Logo text */ String logoText) {*
+		this.logoText = logoText;	
+	*}
+	
+	/** Returns the text that is displayed beside the logo in the application header. */
+	String getLogoText() {*
+		return this.logoText;	
+	*}
+	
+	/* Sets the value of the invisible property appName to the application name */  
+	// @Visibility(private)
+	void private_setAppInfoName() {*
+		// APPLICATION.createInfoMessage("Name: " + APPLICATION.getInfo().name);
+	    this.appName = "Event: " + APPLICATION.getInfo().name;
+	*}
+	
+	/**
+	 * Just a show case, but this will never work - 
+	 * ValueTextList is just a representation for Java object which needs implementation of some interface
+	 * and will be passed directly through ZTL - cannot be coded via JSON.
+	 */
+	void setValues(ValueTextList list) {*
+		var that = this;
+	
+		var l = {};
+		l.value = list;
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		var string = list.toString();
+		l.string = string;
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+	*}
+	
+	org.scn.community.shared.ValueTextArray getValueTextList() {*
+		var myArray = [];
+		
+		myArray.push({"value": "A", "text": "A-T"});
+		myArray.push({"value": "B", "text": "C-T"});
+		myArray.push({"value": "C", "text": "B-T"});
+	
+		return myArray;  
+	*}
+	
+	void fillIntoSelectionComponent(SelectionComponent selectionComponent, org.scn.community.shared.ValueTextArray list) {*
+		selectionComponent.removeAllItems();
+		
+		var that = this;
+		
+		var l = {};
+		l.value = list;
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		for(var i=0;i<list.length;i++){
+			if(this.isDebug()) {	l[list[i].value] = list[i].value + ": " + list[i].text; }
+			selectionComponent.addItem(list[i].value, list[i].text);
+		}
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+	*}
+}
+

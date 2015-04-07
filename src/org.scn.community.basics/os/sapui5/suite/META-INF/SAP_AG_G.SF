@@ -1,0 +1,1989 @@
+Signature-Version: 1.0
+SHA1-Digest-Manifest-Main-Attributes: 8/I1jx1yYgC9rf/J745R9aFbjGw=
+Created-By: 1.6.0_45 (Sun Microsystems Inc.)
+SHA1-Digest-Manifest: fgQLN8KvBI6occrhi/DvuxcNmHE=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_iw.propert
+ ies
+SHA1-Digest: NBtp6gxiK/0yURFqsiVvWl4JdiE=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChartLabel-dbg.
+ js
+SHA1-Digest: OU8kQ3e4rVidxSPaREmU0DPPeBU=
+
+Name: META-INF/resources/sap/suite/ui/commons/ColumnData-dbg.js
+SHA1-Digest: 2Sqb6qKrSzeiaI2+bcPyboSkPFk=
+
+Name: META-INF/resources/sap/suite/ui/commons/BulletChart-dbg.js
+SHA1-Digest: mTMtaWqvE9Ozm/hmhEBvICY53e0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/library-para
+ meters.json
+SHA1-Digest: GQFKnvMr2AyFXxY71FWRNo4S/SY=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeSliderInternalR
+ enderer.js
+SHA1-Digest: BWK1L3F6o6BoUv9q4sfQ5vQIss8=
+
+Name: META-INF/resources/sap/suite/ui/commons/NumericContent.control
+SHA1-Digest: S2idO1awsGXOLRlmoCFIWgIFfXM=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/NoteTaker.css
+SHA1-Digest: axOd/iuFi6KhDTyDsvDdLwlLPGQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChartLabel.js
+SHA1-Digest: T9xQmG0CTyz1Gqv3WIDmWRa6pAs=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChartPoint.js
+SHA1-Digest: 00Rjt5w3OyhhY2Mdf7lnEH63wIY=
+
+Name: META-INF/resources/sap/suite/ui/commons/FrameType.type
+SHA1-Digest: DpPYiMJw6sfyXuTe1xZHgPd4wgs=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChart.js
+SHA1-Digest: PQGJxUJnabIFKXm/Rc1Nb800xc4=
+
+Name: META-INF/resources/sap/suite/ui/commons/InfoTileSize.type
+SHA1-Digest: Dga6ZoRwFLKkqzNzrG+CVwXC5Ig=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartContainerContent-db
+ g.js
+SHA1-Digest: f6W7YCgbw0/lEratCo/slaebb/4=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/library.c
+ ss
+SHA1-Digest: rdZjtThJ3KKpEnlzTUOCdiH8RZg=
+
+Name: META-INF/resources/sap/suite/ui/commons/VerticalNavigationBar-db
+ g.js
+SHA1-Digest: ORQ1KAdadC7CfeHJZVI84Uolths=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/K
+ piTile.css
+SHA1-Digest: 6b2CYipIz8+b9KQMBIdRZSKBUkw=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/FeedTile.
+ css
+SHA1-Digest: 8UwdXqs2h5fd9ZXiSeOx/7F9KEs=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlow.js
+SHA1-Digest: 1vK/QLKlc+gnN3DnA0ND+wq+RUM=
+
+Name: META-INF/resources/sap/suite/ui/commons/SplitButton.control
+SHA1-Digest: exJowatSA04WNe2lQ1Tnb9Bs73U=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/library-dbg.css
+SHA1-Digest: edOWABGo4WD1vmxYYziV9CHKPr8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/BulletChart.
+ css
+SHA1-Digest: L/OS+vEN5q7lv7kwCgSEOpRIex8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/PictureZoomI
+ n.css
+SHA1-Digest: AC/uU6vUvqEXRzAZPwYKgNLDVHE=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/library.less
+SHA1-Digest: 5k9UEdjHrFJ5wOD/OwKe3ej/YKI=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/thumb
+ Down_24.png
+SHA1-Digest: Mbv2RWmth5PHmRSOImachXVn8ss=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/.theming
+SHA1-Digest: 04BSebC1yWbOsKxmfhF/YeP48Nc=
+
+Name: META-INF/resources/sap/suite/ui/commons/InfoTileRenderer.js
+SHA1-Digest: NBFMUBSOy48r1D0enBq+acGkYLg=
+
+Name: META-INF/resources/sap/suite/ui/commons/ColumnMicroChart-dbg.js
+SHA1-Digest: t/2naXS3oRC8onBz/XRd1YOpTzI=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartTileRenderer.js
+SHA1-Digest: 4wgHDJR/0tfafahrJB8EghDWzZs=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/shared.css
+SHA1-Digest: 6kTdTI4/N+LCIduuZ5RquB0UYto=
+
+Name: META-INF/resources/sap/suite/ui/commons/ComparisonChart.js
+SHA1-Digest: y/8vtdn6APD3ECwlMJZp4X533wg=
+
+Name: META-INF/resources/sap/suite/ui/commons/library-preload.json
+SHA1-Digest: Ul/XLHsFU5/V41jhT1XHTpQlFlw=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/bubble.p
+ ng
+SHA1-Digest: clz+IeI8e2mOkvVWwqU9JrPlxF4=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/T
+ ileContent.css
+SHA1-Digest: 0ZZwMPsoYWGeA3fckHnVK/1xVLY=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/h
+ ome_24.png
+SHA1-Digest: RWbceXhsS8b4BLrlE07tJ3QXLN8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/thum
+ bDown_24.png
+SHA1-Digest: Nb34iGpr9pafqPYsRHV+kRyF48A=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineFilterListItemRe
+ nderer.js
+SHA1-Digest: ZkxrN8J9/ZT+GKN8a77Hp6NNgGA=
+
+Name: META-INF/resources/sap/suite/ui/commons/UnifiedThingGroup.js
+SHA1-Digest: uo0phBVZjuQwK/iB16QZ/DZTcHg=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_th.propert
+ ies
+SHA1-Digest: QTuvjonRgdeOjgBOkQTFBn0KaiY=
+
+Name: META-INF/resources/sap/suite/ui/commons/DynamicContainer.js
+SHA1-Digest: DKMvvW9TJaCJ5GvSnyyFIX4UGrM=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/a
+ rrow_left.png
+SHA1-Digest: GWZ4PQeBDCcLs3039hgSISwSLIQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/btn_nav_
+ right_a.png
+SHA1-Digest: UDroZrj4BOBFHLqu9XzWaJaUJuo=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThreePanelThingViewer-db
+ g.js
+SHA1-Digest: zisU8T69rQgb4HSDbvikLCH7OsQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/NumericTileRenderer.js
+SHA1-Digest: SOui/j5uE0b3Yw6ODLEOL8NBX00=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerCard.control
+SHA1-Digest: MBW9Dz0qUMd/gQBrqbxvpWd48BY=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/C
+ hartTile.css
+SHA1-Digest: x9Xi95lLCTrDdrchQiYcrNCdiV8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/LaunchTile.c
+ ss
+SHA1-Digest: YSQFf1/A3YGtqJ078Ieq73ZAA1o=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/btn_
+ nav_right_p.png
+SHA1-Digest: R+QMpkhfFzlbomunZSc88XvuSFs=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeSliderRenderer-
+ dbg.js
+SHA1-Digest: RuF64fLh1VZru3N9tYA2vOPC5Gg=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/LinkActionSh
+ eet.css
+SHA1-Digest: 519Wc9vLYbh2DwZ9/zX8YlvzNgk=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/attac
+ hment_16.png
+SHA1-Digest: USNGAeC7MB8qJUBMQqNcFJo2aU4=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThreePanelThingInspector
+ -dbg.js
+SHA1-Digest: w9YWUU98PwWr5cTknjO0CYMSEL8=
+
+Name: META-INF/resources/sap/suite/ui/commons/KpiTile.js
+SHA1-Digest: SXxO0s47e9GFNbRVWrFGRDLs66c=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChartPoint.cont
+ rol
+SHA1-Digest: VGlfdwSRtLpszeB9YNSE77j6qDo=
+
+Name: META-INF/resources/sap/suite/ui/commons/JamContent-dbg.js
+SHA1-Digest: +ikG3sJI9d2b4/4V2sngldTKD8g=
+
+Name: META-INF/resources/sap/suite/ui/commons/FacetOverview.control
+SHA1-Digest: KEbPaPhxukGL24yYS/xNPOO+d9g=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/library-RTL.
+ css
+SHA1-Digest: eiJshJ/CFci0L0TbJMSOTzuF+Hg=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/H
+ eaderContainer.css
+SHA1-Digest: KOVF92fsL0g6TNI9O0faEkhAoLE=
+
+Name: META-INF/resources/sap/suite/ui/commons/library.templates.xml
+SHA1-Digest: n2j5ij1sGpyTa8XLFPZAimTBWIg=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartContainerContent.js
+SHA1-Digest: k8n4DKm8mRlPBn0VH2tQjr+CgqQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/library.css
+SHA1-Digest: Kq0LTcdgDP1zYS9CLkkn3p1uQGI=
+
+Name: META-INF/resources/sap/suite/ui/commons/NewsContent.js
+SHA1-Digest: rX8zO3IFH/kwIkg3a2dYZP+zLIo=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedTile-dbg.js
+SHA1-Digest: GqXZkZC1GhUuedHa1Iwet1WRskE=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/shared.css
+SHA1-Digest: +JN6KOypUGMXdFvhCA5sNvc1ti0=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_ro.propert
+ ies
+SHA1-Digest: Tns0+fjxejJcwYJuGD6dTQ/gWcs=
+
+Name: META-INF/resources/sap/suite/ui/commons/RepeaterViewConfiguratio
+ n.js
+SHA1-Digest: 1RbnveqU59SwLxX5Rj/uW0KwO1E=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/sear
+ ch_24.png
+SHA1-Digest: FQM3GJrnSZLpJIT6mN8Isc844Dg=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/btn_acti
+ ons_regular.png
+SHA1-Digest: 4OWkF4iAdjUgQ4boUQAbiYVuc9E=
+
+Name: META-INF/resources/sap/suite/ui/commons/PictureZoomIn-dbg.js
+SHA1-Digest: nZ3av8PqMwKL0ogd3zQUIpZpPlA=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/attachme
+ nt_24.png
+SHA1-Digest: F9oMEZhwtfV8/5cLg32hsHKwHOs=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/d
+ elete_16.png
+SHA1-Digest: AFmh93nDq+jQOwxMX85fBWh4D8A=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/a
+ rrow_right.png
+SHA1-Digest: 0GB9FOplLhYBRgNUXfW07tGVYCU=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/TimelineFilt
+ erListItem.css
+SHA1-Digest: GZymKtzr3Ie6MWHID62iM6u4ACI=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/DynamicConta
+ iner.css
+SHA1-Digest: qPxf2E6kmA1BfaYx6zzwd62Nf1M=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_pl.propert
+ ies
+SHA1-Digest: I8egKpRQc5qgPQSuyqeFhN9fHEQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/btn_
+ nav_left_a.png
+SHA1-Digest: AsSfZf6Y13vb14IZu2pcaBCHpgY=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/arrow
+ _left.png
+SHA1-Digest: 6Po8Sjba16znyH0szGjxawcnVZI=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/library.s
+ ource.less
+SHA1-Digest: DrPQ9RErwu21pDqyka8amPZCPts=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineFilterListItem-d
+ bg.js
+SHA1-Digest: ERC51TKwmrLkE0UKTSCHYZCTbeo=
+
+Name: META-INF/resources/sap/suite/ui/commons/LaunchTile.js
+SHA1-Digest: jCkuw3oLYWvCjzZConVrv+01U8Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/thum
+ bUp_24.png
+SHA1-Digest: l3EaJYjI2vN9TSNhduB/tonJJdw=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/VerticalN
+ avigationBar.css
+SHA1-Digest: snoOHGqxuMAipk7w08xF3ZJUGMs=
+
+Name: META-INF/resources/sap/suite/ui/commons/ColumnData.js
+SHA1-Digest: /L+VJFeGorvQe/y3Eerp+Q1ejw4=
+
+Name: META-INF/resources/sap/suite/ui/commons/FacetOverviewRenderer-db
+ g.js
+SHA1-Digest: Yxhq17/p5lYK1ejraVq94SXyhcw=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerFeederRenderer-
+ dbg.js
+SHA1-Digest: 4Nxk5TN4a5AoHX9Eoi4RJ9WmQ84=
+
+Name: META-INF/resources/sap/suite/ui/commons/TileContent.js
+SHA1-Digest: lHb+SonAWX1kduFqQogoe26WCOA=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/arrow
+ _right.png
+SHA1-Digest: 87B9OTh13wYodQ1Q2O+6EcMMnh0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/arro
+ w_right_hover.png
+SHA1-Digest: rz0swpQQn13DPXZVypzU4atBYhI=
+
+Name: META-INF/resources/sap/suite/ui/commons/library-all-dbg.js
+SHA1-Digest: T/x0gUX0d1uSrqCwvXq2jYcGpFo=
+
+Name: META-INF/resources/sap/suite/ui/commons/UnifiedThingGroup-dbg.js
+SHA1-Digest: giZo3YnF8D5xcKS9ahQaYIwLFZ0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/D
+ ynamicContainer.css
+SHA1-Digest: ixggM2DUqiUk++D08Z36hFYfIRo=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineItem-dbg.js
+SHA1-Digest: 9j7DTbbP5Tfz97/D11s6N2XPveQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/InfoTile-dbg.js
+SHA1-Digest: Jr34kqmsYrSgR0K8wGLEHsQabPY=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartContainer.js
+SHA1-Digest: K3W+7G0d4y72lzkJKbMMY16f644=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/FeedItemHead
+ er.css
+SHA1-Digest: v5esFa9/ZvStFXxj4NKVD+OnGF0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/bubb
+ le.png
+SHA1-Digest: XfUpGrUhNghxOzhmleYC9jHhdCA=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ThingCollect
+ ion.css
+SHA1-Digest: qVvx9kdsCe2lDi5rzTkNJtLwqE0=
+
+Name: META-INF/resources/sap/suite/ui/commons/BulletChartData-dbg.js
+SHA1-Digest: bdGKfAqyGvQVamNRgbc4t/WqMCU=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/TimelineItem
+ .css
+SHA1-Digest: OQTvT9+yTNhwcClcBJwqIsL+bNU=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowConnectionRen
+ derer-dbg.js
+SHA1-Digest: 8/QMxypdQu0ypC22z3v+FAoQdaw=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerCard.js
+SHA1-Digest: cca5aLlvW2zszkXG6AsEw9pZZ6E=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThingCollection.control
+SHA1-Digest: WOVde7BjEiMYH3QZBIcXMFKvbkQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/ComparisonData.control
+SHA1-Digest: Xzh24Tpi6VsYdhVs+xs7BxB2TEQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/dele
+ te_16.png
+SHA1-Digest: RdMAE+GpMJIuzepbi0l7hQ/SJ8g=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderCell-dbg.js
+SHA1-Digest: mXVzJ+CPEMB9Lyn/yEpV9easmEs=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_nl.propert
+ ies
+SHA1-Digest: 7JFlorSn6wObIafSDDNlQW8zbfg=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/btn_n
+ av_right_p.png
+SHA1-Digest: 6X4Fc3vMN1knn0jj3CSnZzZrbs8=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTaker.js
+SHA1-Digest: 3KwNtkT1h9Mkb0QC+++enFSSVYY=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/C
+ omparisonChart.css
+SHA1-Digest: RGI4nkIp+xVcwSxpeRutZl0Etrs=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedItemHeader-dbg.js
+SHA1-Digest: GA16Qma3M/o6CTuuvNLk1NEnPPY=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderCellItem.js
+SHA1-Digest: V9xJN47i9WT4nkhUp/0qX0JoGfQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/MonitoringContent.js
+SHA1-Digest: 0xBw5fTSPGWJ01MzYtl+MR+8DzM=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowNodeState.typ
+ e
+SHA1-Digest: 8KSbcfjYTnySX3W8UpLptBHqOcE=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeSliderRenderer.
+ js
+SHA1-Digest: 1BiSmLMin2LAIdbmE+l43WKwsbk=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/library-R
+ TL-dbg.css
+SHA1-Digest: KDFTKtQQ1ugmpqI1Q79XJV1ndzo=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/bubble_1
+ .png
+SHA1-Digest: nxPVgZBG/ijtpZAkeiRmjgWCU4U=
+
+Name: META-INF/resources/sap/suite/ui/commons/library.dependencies.xml
+SHA1-Digest: zWlREcrj0jpafqH5Ml+/l5lDH/U=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/DateRangeSli
+ derInternal.css
+SHA1-Digest: fRo3rHoxmEqv2xXxz/Yu/HsNZPg=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerFeeder.control
+SHA1-Digest: LBTSc/7CZUYyUiMHFtnQayqURsE=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/e
+ dit_24.png
+SHA1-Digest: WD53X6M9KyqIUEsjDCRDn+vgao8=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerFeederRenderer.
+ js
+SHA1-Digest: fsXagK0Yl8T6IMt6xOcSQ9vvw60=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_pt.propert
+ ies
+SHA1-Digest: AnquvZ+4jg0XVAYI8ksBrUE6x10=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowConnection-db
+ g.js
+SHA1-Digest: gePKsTYE2+pLV4h8Lsp0+4Eyn6s=
+
+Name: META-INF/resources/sap/suite/ui/commons/GenericTile.control
+SHA1-Digest: Eu1PQf9px1TN+oK9GmDI2smFjiM=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedItemHeader.control
+SHA1-Digest: Mo6GYRnWYVToyXaSNBhHUzbQytY=
+
+Name: META-INF/resources/sap/suite/ui/commons/GenericTileRenderer.js
+SHA1-Digest: T1vK27JHbt1wI+Q5vwwJKffoytA=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/search_2
+ 4.png
+SHA1-Digest: S8cIXUJ/8VaHEf9V3QE/h7Pan4Y=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_et.propert
+ ies
+SHA1-Digest: ZQ7oOP9ZiPETMgcQr57ZThkrYrI=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ProcessFlowN
+ ode.css
+SHA1-Digest: 6LjN2/kWfy2B7iTRY24H9FANl50=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/thumbDow
+ n_24.png
+SHA1-Digest: GTBw4mcoFWj5ImvIv5SRg67jA+w=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_zh_CN.prop
+ erties
+SHA1-Digest: k2YQ43Jp6oISdg3NmxYspPNI/WU=
+
+Name: META-INF/resources/sap/suite/ui/commons/VerticalNavigationBarRen
+ derer-dbg.js
+SHA1-Digest: DkUHDAwBW2STgPQIjQTAnXQmJ8U=
+
+Name: META-INF/resources/sap/suite/ui/commons/Timeline.js
+SHA1-Digest: H5Ujw7IXgggdGn6wSGjcW7IXUkc=
+
+Name: META-INF/resources/sap/suite/ui/commons/ComparisonData.js
+SHA1-Digest: EkpkuunEPx85Ggj8GxulC/zWUsA=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/a
+ ttachment_24.png
+SHA1-Digest: YTEwnXk1Gi9gWLICK3QgspTPCrc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/ThingColl
+ ection.css
+SHA1-Digest: GIHELH02qwegW1q0yr94gc1roLA=
+
+Name: META-INF/resources/sap/suite/ui/commons/UnifiedThingGroupRendere
+ r-dbg.js
+SHA1-Digest: AlGfBUue+H4u/66XDrH3gXpT9Bg=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ProcessFlowC
+ onnection.css
+SHA1-Digest: S2gDxrsm7PihdJaf6pjHXEiKA74=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/InfoTileSize
+ .css
+SHA1-Digest: wNI0k+LwEAVXkgq5RZ3k52Syrvc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ChartTile.cs
+ s
+SHA1-Digest: sAlcTg8wPWRPe8ohpKDMZzVu6vg=
+
+Name: META-INF/resources/sap/suite/ui/commons/RepeaterViewConfiguratio
+ n-dbg.js
+SHA1-Digest: FDgwgwtaD6yoFIMxb/Cnx3SFHTc=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowLaneHeader-db
+ g.js
+SHA1-Digest: BLzJycmZWbYNc9q3oZxvOVLR4WE=
+
+Name: META-INF/resources/sap/suite/ui/commons/ComparisonChartRenderer-
+ dbg.js
+SHA1-Digest: iCLUZInItq18SV9YYI0JGXlV+hQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_lt.propert
+ ies
+SHA1-Digest: w//UHDUJTd/AFHb1aWjn0K4cLCQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/N
+ umericTile.css
+SHA1-Digest: szRD1KQdMpyaLDYvYQ7+cuF0y/4=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/bubb
+ le_1.png
+SHA1-Digest: WTkzeWECe1fIz7iFm7NyIiCD/Qg=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineItem.control
+SHA1-Digest: XYH/cLJwjbSDJ1JUV/PayPWyVNw=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/.theming
+SHA1-Digest: Sc8AFlNLa27+PK291okAjEwxyUc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/.
+ theming
+SHA1-Digest: QXYDMcatcjMp+2Nf6wpuUmZjmSA=
+
+Name: META-INF/resources/sap/suite/ui/commons/NumericTile.js
+SHA1-Digest: TfMNgGiDI4qF6ynJORDGsx71fJ0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/library.source.less
+SHA1-Digest: pmCCytrEK5m+NCh7ov9T4O+2UDI=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowRenderer.js
+SHA1-Digest: vNEB5iZqSOWCV+2dgBlElhgAtWc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ChartContain
+ erContent.css
+SHA1-Digest: FR99eLf+aMwBv4r8gEmW4oBaLDo=
+
+Name: META-INF/resources/sap/suite/ui/commons/util/DateUtils-dbg.js
+SHA1-Digest: p/XIsI74JVR5pLJueoQ3kxvaKkU=
+
+Name: META-INF/resources/sap/suite/ui/commons/MonitoringContentRendere
+ r.js
+SHA1-Digest: JUvMsTHzMzKkvrfDX2tGNwNaVU4=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/delete_1
+ 6.png
+SHA1-Digest: AZl6AmXT14uRGgdxCP9LhWWGxSE=
+
+Name: META-INF/resources/sap/suite/ui/commons/ColumnMicroChart.js
+SHA1-Digest: fkR8Atbk/Lp8gJfBsm2Wz44dgGU=
+
+Name: META-INF/resources/sap/suite/ui/commons/MonitoringTile-dbg.js
+SHA1-Digest: Y2EU2eC1AL6u35O9ViMx7OBpX+Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/InfoTileTextColor.type
+SHA1-Digest: Rzfsgf6AlYtILIjEEBQwex7+wSs=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/tag_
+ 24.png
+SHA1-Digest: bEGmni4JM2pDmVEqzNcSVF+a1f4=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedTileRenderer.js
+SHA1-Digest: vc9ZlJ2vadxmAj+LFH2R2Aw7GaA=
+
+Name: META-INF/resources/sap/suite/ui/commons/util/FeedAggregator.js
+SHA1-Digest: Tc5ytMvxZLY97sleiDuyRA09eBM=
+
+Name: META-INF/resources/sap/suite/ui/commons/VerticalNavigationBar.co
+ ntrol
+SHA1-Digest: H2DKYIDKP62kTmfOnN0yPozj8e0=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChartPoint-dbg.
+ js
+SHA1-Digest: Bn6qclq2RqlueQMpjaFFx6eJUU8=
+
+Name: META-INF/resources/sap/suite/ui/commons/CommonBackground.type
+SHA1-Digest: 0JFe5p1XOKbUex2dCIwCURHIHhc=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThingGroupDesign.type
+SHA1-Digest: WG6WORUApvU9nXjZX0NM56Z2USU=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_ar.propert
+ ies
+SHA1-Digest: jzCG55kdJPqRdbjJmIUcpXkKRwc=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThreePanelThingViewer.js
+SHA1-Digest: 1/GXdDjgVKiJgljp4q9K+93W7/I=
+
+Name: META-INF/resources/sap/suite/ui/commons/JamContent.js
+SHA1-Digest: 6VdXev7+KHsbS7lar7msiKup4sA=
+
+Name: META-INF/resources/sap/suite/ui/commons/PictureZoomInRenderer.js
+SHA1-Digest: tqu1az4AHWmsN4glo/36hLc/6QU=
+
+Name: META-INF/resources/sap/suite/ui/commons/BusinessCard-dbg.js
+SHA1-Digest: bs68aRcp7m/wLJGK9hy1ST4jszw=
+
+Name: META-INF/resources/sap/suite/ui/commons/PictureZoomIn.js
+SHA1-Digest: Ly3wQ7idYv21T8hOdYB0NjfKiKM=
+
+Name: META-INF/resources/sap/suite/ui/commons/DynamicContainerRenderer
+ -dbg.js
+SHA1-Digest: Tf9IVvpRLDaqwIqO89lh/SmbiUY=
+
+Name: libraries/sap.suite.ui.commons.xsd
+SHA1-Digest: DnanbVxXlHU0vc71hHtgzaffHjM=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChartItem.contr
+ ol
+SHA1-Digest: PL9uQAyfxoWuFIQv/K5BRfzBjRw=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowLaneState.typ
+ e
+SHA1-Digest: DQpVvocw6CLIpjcklvoKto1pvSo=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThreePanelThingInspector
+ Renderer-dbg.js
+SHA1-Digest: O8sTv0stNgYJ4t5NuveN9J4Lad8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/delet
+ e_16.png
+SHA1-Digest: L9EUQo0CbmnAwlsAUeZgLSJkMAE=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTaker-dbg.js
+SHA1-Digest: 2VOS4bX/mcED3i8Vx0abrvzoDq4=
+
+Name: META-INF/resources/sap/suite/ui/commons/BulletChartMode.type
+SHA1-Digest: J2tAsA6HuxEblDjH4CHkygRsi5A=
+
+Name: META-INF/resources/sap/suite/ui/commons/DeviationIndicator.type
+SHA1-Digest: hqZVw8hnpelQ7URGSuGdz1jXiHc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/FeedTile.css
+SHA1-Digest: 0cat+vDcnfWcwxsbok3TKX/GGYw=
+
+Name: META-INF/resources/sap/suite/ui/commons/PictureZoomInRenderer-db
+ g.js
+SHA1-Digest: WVZwV7E1lROXkFduRHwDsTb4gW4=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_el.propert
+ ies
+SHA1-Digest: imiQKo6igW+OCZglPYqvssdE9ak=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/UnifiedThing
+ Inspector.css
+SHA1-Digest: LYREzeXV54bMGn7q3DeixR4fa9A=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_fi.propert
+ ies
+SHA1-Digest: poiY7cdWL+hKHovA8hGf/ELktvk=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/.theming
+SHA1-Digest: lPeiXCpAkzTMBRyHks/kgbSIg9s=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeScroller.js
+SHA1-Digest: jseCHtIGHyMNesxNR4KX4cX4po8=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_sv.propert
+ ies
+SHA1-Digest: fHn82fjg4Clu7tpCJG4dANjIRcQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeScrollerRendere
+ r-dbg.js
+SHA1-Digest: wMBKZICuTLErfwlbpqEKtkYQiTg=
+
+Name: META-INF/resources/sap/suite/ui/commons/GenericTile-dbg.js
+SHA1-Digest: PZxsYoCk6F99f76tFs6IkqKwLs8=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_hu.propert
+ ies
+SHA1-Digest: j9wOWnWvnNOvcP50UjfhmWmVhpw=
+
+Name: META-INF/resources/sap/suite/ui/commons/NumericTile-dbg.js
+SHA1-Digest: KBERmXsDtirBidXzWRavifiE85A=
+
+Name: META-INF/resources/sap/suite/ui/commons/BusinessCard.control
+SHA1-Digest: ulp3Suko9GxVk99ARLkgTpESgcs=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerCardRenderer.js
+SHA1-Digest: CK9Q9UMd39wG3xD1FHD0Ui3u4Xw=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/library-R
+ TL.css
+SHA1-Digest: AYD9TfMYI0Gxf0sgnzgEOvPK2xE=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/G
+ enericTile.css
+SHA1-Digest: tSUlprRejyYkgPiQeSwTMRY/gjg=
+
+Name: META-INF/resources/sap/suite/ui/commons/NumericTileRenderer-dbg.
+ js
+SHA1-Digest: Je0p3iVdIWcK5rrv679DBgD7wBc=
+
+Name: META-INF/resources/sap/suite/ui/commons/MonitoringTile.control
+SHA1-Digest: RoxTfoIdVNhB7uJEDuzR42nnI1Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/NumericContent.js
+SHA1-Digest: 19X+Qh6WCL3NJ+T4V8TeM1Vj20k=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/arrow_le
+ ft_hover.png
+SHA1-Digest: ovIJnMbYlz1xzX8Ot/AxfwUCU1s=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/img_
+ bg.png
+SHA1-Digest: 8VhtBIWT65n2Xw7v4w6X6iqOyZ8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/TileContent.
+ css
+SHA1-Digest: CzYmzHHaiqKCq+omxKrSFPIJGD0=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeSlider-dbg.js
+SHA1-Digest: voz2KUlnUZEzBJngSOY9NsOw1E8=
+
+Name: META-INF/resources/sap/suite/ui/commons/BusinessCardRenderer.js
+SHA1-Digest: YcAx7KAxWSbAB5h3sfiJdDSWZ7k=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/thumbUp_
+ 24.png
+SHA1-Digest: g2WNf1Eka4khJmwpqARqqaHD20s=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/attachme
+ nt_16.png
+SHA1-Digest: Gk2j213ksnpNfqRfhXmNRvbzlHs=
+
+Name: META-INF/resources/sap/suite/ui/commons/GenericTileRenderer-dbg.
+ js
+SHA1-Digest: dhhfnbQdxZkMHg6m4n+nFlGdEAQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlow-dbg.js
+SHA1-Digest: Hkb9bhRLaVk+T/gyR7CU4yCOUeI=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowConnectionRen
+ derer.js
+SHA1-Digest: O2fzAMFfBUe4NDwRooLmp5MnP1Y=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/arro
+ w_left_hover.png
+SHA1-Digest: 1fFBCTf92jqfAV82hJheXb4IouI=
+
+Name: META-INF/resources/sap/suite/ui/commons/BulletChartRenderer-dbg.
+ js
+SHA1-Digest: e1WUtno4iBAesQTvrgb/AEEqx88=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineItemRenderer-dbg
+ .js
+SHA1-Digest: GYHcAou3bfsnk7f8Mh2x16XC+N8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/thumb
+ Up_24.png
+SHA1-Digest: ZwfjUqnfm2QcAscYRnGh4qlSyEY=
+
+Name: META-INF/resources/sap/suite/ui/commons/DynamicContainer.control
+SHA1-Digest: F5DFSEzd6tk8yNBbPS3LhOHAfRU=
+
+Name: META-INF/resources/sap/suite/ui/commons/LaunchTileRenderer-dbg.j
+ s
+SHA1-Digest: S8Xdjf4ARMlY7d+Yf54SKoGycIc=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeScroller-dbg.js
+SHA1-Digest: hjt+kpdrn3gApEVyMeWfTSqGI9g=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_da.propert
+ ies
+SHA1-Digest: 7INv92rDOStAxXwhSc7xSHlISUM=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartContainer-dbg.js
+SHA1-Digest: 1TRd8K2aK8dkyXmkaVzTUWnT588=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/t
+ humbUp_24.png
+SHA1-Digest: IAmN1nilw4jbNfKWRf5AcEs6UcQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_tr.propert
+ ies
+SHA1-Digest: k7NJBa0ZzDSTqtDef11JXqW3EVI=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerCardRenderer-db
+ g.js
+SHA1-Digest: y5sY3sU6ztg/LZmVxgQTO9Hvv9U=
+
+Name: META-INF/resources/sap/suite/ui/commons/util/FeedAggregator-dbg.
+ js
+SHA1-Digest: W8ecZ9tp8YbbuZTLx/8cuj+pvts=
+
+Name: META-INF/resources/sap/suite/ui/commons/VerticalNavigationBar.js
+SHA1-Digest: q9v/dj4nlR+hIyKTKHbV5VFKWYo=
+
+Name: META-INF/resources/sap/suite/ui/commons/SplitButton-dbg.js
+SHA1-Digest: 3f4MJY/HOTlpYXxR9dJIhmvKcoU=
+
+Name: META-INF/resources/sap/suite/ui/commons/util/DateUtils.js
+SHA1-Digest: DRS6apbeYOn3G2XOzBAppB3irI4=
+
+Name: META-INF/resources/sap/suite/ui/commons/SplitButtonRenderer.js
+SHA1-Digest: FRgBqUfM3syP3jCRrzfYTWUi81Y=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/NoteTaker
+ Feeder.css
+SHA1-Digest: TTwTsnf8QjSmAQtCje53yVriaNc=
+
+Name: META-INF/resources/sap/suite/ui/commons/MonitoringContentRendere
+ r-dbg.js
+SHA1-Digest: hxJOClcfkHjaF1A5mdlGSSPg5/w=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/P
+ rocessFlowNode.css
+SHA1-Digest: JYthd74KxQMh6m3TaPXzDPfsiwc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/L
+ inkActionSheet.css
+SHA1-Digest: jFTTRXUHqVyp7x1O97XTu+2snJU=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/GenericTile.
+ css
+SHA1-Digest: s5K/iCgGx4cAUTEoayDnBMsuISs=
+
+Name: META-INF/resources/sap/suite/ui/commons/util/FeedItemUtils-dbg.j
+ s
+SHA1-Digest: +uaATs11ZZBBjLSF0HSdAkzcQ1M=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/arro
+ w_right.png
+SHA1-Digest: 8PW3qDt56gMVlFcKfCyAcp2Ct/8=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderCellItem.control
+SHA1-Digest: dk8vV9GUUa/MClhCa+XKh/17LZQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedTile.js
+SHA1-Digest: bhFitU4axNF8R0KgrRt5/O8U9Ks=
+
+Name: META-INF/resources/sap/suite/ui/commons/JamContent.control
+SHA1-Digest: E+f3Fj/MDZ6JjTDB99bqQE0+xM8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/btn_
+ actions_hover.png
+SHA1-Digest: l5V/X7TVQ+OFcYFFNU3YsVBdltU=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/decl
+ ine_16.png
+SHA1-Digest: skTpJkPRO4mRdrpph3MAtsbs9Og=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThingCollection-dbg.js
+SHA1-Digest: fjhzEkL6R8nHOQPU2cdeuB4YRlo=
+
+Name: META-INF/resources/sap/suite/ui/commons/util/FeedItemUtils.js
+SHA1-Digest: 4V+XnxmizK47brL4vqspb5IJn1g=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedItemHeaderRenderer-d
+ bg.js
+SHA1-Digest: LJoEVffEzMomk39g3blTFy3uXOY=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerFeeder.js
+SHA1-Digest: NWtsNwN/PNlgtMEe9awRizbS2Vc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/s
+ earch_24.png
+SHA1-Digest: LMo9ca6xoIlCeG9FDNBIpfDQcng=
+
+Name: META-INF/resources/sap/suite/ui/commons/BusinessCard.js
+SHA1-Digest: xL7Nu3wIYgot/6J/FbQeOhIygjk=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineAxisOrientation.
+ type
+SHA1-Digest: HxEoz1BVbtx6AQHzEcPmO2UaqPg=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/J
+ amContent.css
+SHA1-Digest: ZFRJhE4f9F1Z+PYveFHO/9946t0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ProcessFlow.
+ css
+SHA1-Digest: pzcqwd4IZVTqPYsCjn9Aq0irqOo=
+
+Name: META-INF/resources/sap/suite/ui/commons/MonitoringContent.contro
+ l
+SHA1-Digest: MvmuuWIM0cPDRmHkncBwjwCZWP0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/library.l
+ ess
+SHA1-Digest: 0BXKf1IAbnvj8GIQSJr55PGbu4A=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_sl.propert
+ ies
+SHA1-Digest: ssl4n4M+3l+hcBghDTtluNg2Ir0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/home_
+ 24.png
+SHA1-Digest: I4fCONSEUUQ2rbbMdrk/cXecKmQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/ColumnMicroChartRenderer
+ -dbg.js
+SHA1-Digest: N794+TeqClflgRjoel2BMAWOA2c=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/home_24.
+ png
+SHA1-Digest: WWDznd0NZVlwO82O9ISITbwB/uM=
+
+Name: META-INF/resources/sap/suite/ui/commons/UnifiedThingInspector.co
+ ntrol
+SHA1-Digest: 7m6/wpF7jgww16PfEUSeMtjvaKo=
+
+Name: META-INF/resources/sap/suite/ui/commons/UnifiedThingGroupRendere
+ r.js
+SHA1-Digest: /3AqGHr9Q4Y4/LYOdE+Z6K0wXY8=
+
+Name: META-INF/resources/sap/suite/ui/commons/KpiTile.control
+SHA1-Digest: DvZFzjC+E8/mFbg/hF9ZvCwYQm8=
+
+Name: META-INF/resources/sap/suite/ui/commons/ViewRepeater.control
+SHA1-Digest: Ir1bYqBkvbOeTgEFsHd8ISbl+zM=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/NoteTakerFee
+ der.css
+SHA1-Digest: fyKZJ74HpBymFJKCmTlFaojyi1E=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/M
+ icroAreaChart.css
+SHA1-Digest: tZLhHDMXe/pElpK6riZRGcyg+HQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedItem-dbg.js
+SHA1-Digest: 80J0THpaOS5t7xz4J25LTg4mWAA=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowLaneHeaderRen
+ derer-dbg.js
+SHA1-Digest: K0VGeXkOPCCra91xf2mUVHuLZE4=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartContainerContentRen
+ derer-dbg.js
+SHA1-Digest: G1U8VB5szDFDr4lhFWG37zPiaeA=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_en.propert
+ ies
+SHA1-Digest: jP63Wx9bz5SWnpCcQ6fnOfobeww=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/btn_nav_
+ right_p.png
+SHA1-Digest: 3YWuNp6ryYZXT6+jAQvljDFMd8Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeSliderInternal-
+ dbg.js
+SHA1-Digest: KlIqjWMVPsdnrorsLoAfMFa6f8M=
+
+Name: META-INF/resources/sap/suite/ui/commons/LinkActionSheet.control
+SHA1-Digest: 4XTFmNDwAm0MtmlogHVYjToWQO4=
+
+Name: META-INF/resources/sap/suite/ui/commons/VerticalNavigationBarRen
+ derer.js
+SHA1-Digest: BZbLg6comp/rc/DOPsuAd4hdi2M=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/l
+ ibrary.source.less
+SHA1-Digest: Pw+CM0pam0UrdH0nupQJrVTsyBE=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartTile.control
+SHA1-Digest: 2DwC2Xivxj5u1KlpCX/pophQUUE=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeScrollerRendere
+ r.js
+SHA1-Digest: fKOKq4nyCcRhwdW0sse67T8F3T0=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerRenderer-dbg.js
+SHA1-Digest: 0P5W8m0nqu7jJwNsLbEYp8Ed1xA=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChart-dbg.js
+SHA1-Digest: xnZwnn3YFKAiOzd437UH1E1wZHw=
+
+Name: META-INF/resources/sap/suite/ui/commons/SelectionState.type
+SHA1-Digest: f/4I6NjZoJr2vuSf5kVBasRLZDU=
+
+Name: META-INF/resources/sap/suite/ui/commons/LinkActionSheet-dbg.js
+SHA1-Digest: UI5mSUTbdX/IHxQh/L3qU5tEKeo=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlow.control
+SHA1-Digest: qrp6c1zw2ms8s8D5KZrC6Sqqx0Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderCellRenderer-dbg.j
+ s
+SHA1-Digest: kkpGQwSb46C6uQlqY1q3FPMK/VQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineFilterListItemRe
+ nderer-dbg.js
+SHA1-Digest: QSwdpIpFChC9DAvmP1keVRy6oHY=
+
+Name: META-INF/resources/sap/suite/ui/commons/NumericContent-dbg.js
+SHA1-Digest: 5uLDNdMStYLiGu/2W4C57DDVh6E=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_no.propert
+ ies
+SHA1-Digest: KXW9YWv9E+qzlE4Z5q3LIbUjLEo=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/img_bg.p
+ ng
+SHA1-Digest: VEwnZQM7dYqkFE/KEzhbrZdYSfE=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/NewsContent.
+ css
+SHA1-Digest: OoblPZVOKvELoqaAtu0HZpIMSU8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/l
+ ibrary.less
+SHA1-Digest: 9g6jNaUhR2RX/APCA6OErp2kmJI=
+
+Name: META-INF/resources/sap/suite/ui/commons/library-all.js
+SHA1-Digest: 0Drzk+pNCyPX2no//VJrA2yP2tM=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/a
+ ttachment_16.png
+SHA1-Digest: V9A9mcbqZStlgPYjJU0bXVJsv1E=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedItemHeaderRenderer.j
+ s
+SHA1-Digest: xKKj/TABUsMZhI+4g1J6V/Io9XQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/FacetOvervie
+ w.css
+SHA1-Digest: DDVEjDLBz45+ykLdxURwJSu15xk=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/NoteTakerFeeder.css
+SHA1-Digest: CwwkPTAetdUI/UYJwh+b0YfOht0=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_ja.propert
+ ies
+SHA1-Digest: qurR4D7nzLDimfUg5SDpM/ZDxxE=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/C
+ olumnMicroChart.css
+SHA1-Digest: jRW4w8FEHUqQ34bgMa7SOqPkluM=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChartItem.js
+SHA1-Digest: SL4X8oUuW0HnMKH96T4t69vH+mA=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/N
+ ewsContent.css
+SHA1-Digest: yIhIoauf18QQZQ7xYkVXRhcoEfM=
+
+Name: META-INF/resources/sap/suite/ui/commons/UnifiedThingGroup.contro
+ l
+SHA1-Digest: 2Epv0LGM/j3KnIM8h54slUbKXHw=
+
+Name: META-INF/resources/sap/suite/ui/commons/MonitoringTileRenderer.j
+ s
+SHA1-Digest: lFwMmIopDUjY0xUZbCDU4Y9XEkE=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/MicroAreaCha
+ rt.css
+SHA1-Digest: rlOfHlL7aFVLdyOVoGk6YHifJM0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/VerticalNavigationBar.css
+SHA1-Digest: 6b0f5RojNgloroHC6Z60YoHKI3o=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartContainerRenderer.j
+ s
+SHA1-Digest: oeKyQgIwkBGAwU4jMjKBkpWA7AA=
+
+Name: META-INF/resources/sap/suite/ui/commons/BulletChartData.control
+SHA1-Digest: vO/2IJJ5CEMrUeXkT93f2nE2Xfg=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/DateRangeScroller.css
+SHA1-Digest: 0iD8l5uI9ccPSRO2vVtLhXRf2Vs=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/NoteTakerCard.css
+SHA1-Digest: qUx6ZQl0RStpPEvkjKe4oDhJ6CM=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThingCollectionRenderer.
+ js
+SHA1-Digest: EDAc8Vca8+ur/SeAifJiMK8JA10=
+
+Name: META-INF/resources/sap/suite/ui/commons/ColumnData.control
+SHA1-Digest: 81iI3+2WCdDNfiNwwtCZiOhIJWQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/library-parameters.json
+SHA1-Digest: WgZEgu3Dcjo5Hn/mj5DAJUiDK88=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowConnection.co
+ ntrol
+SHA1-Digest: xFokH/5IkgJXFAvyw1hwjcMvJDk=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/btn_
+ nav_right_a.png
+SHA1-Digest: vwG1pHZewYIzjuTGewR+NYJqvNI=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_ca.propert
+ ies
+SHA1-Digest: w7pJSigkCgyCM1ahy7LjSX5ZcZE=
+
+Name: META-INF/resources/sap/suite/ui/commons/DynamicContainer-dbg.js
+SHA1-Digest: ghPmDBCyj3xoEeNAXe+YvCgBIFo=
+
+Name: META-INF/resources/sap/suite/ui/commons/TileContentRenderer-dbg.
+ js
+SHA1-Digest: AGordLhYafuvtjSzYGI3wZe2E3U=
+
+Name: META-INF/resources/sap/suite/ui/commons/BusinessCardRenderer-dbg
+ .js
+SHA1-Digest: FrXN2SatYhLmff2A7AQQ/WwhXEk=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineRenderer.js
+SHA1-Digest: Lj7WIIC0P7OJEvneoM8LDgwDHKU=
+
+Name: META-INF/resources/sap/suite/ui/commons/PictureZoomIn.control
+SHA1-Digest: 6n+rxppE5LoqneUFK2PgoiOGW1U=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/btn_nav_
+ left_p.png
+SHA1-Digest: Pu7Yg5tovctZKkeph7Di5QcYSrU=
+
+Name: META-INF/resources/sap/suite/ui/commons/TileContent-dbg.js
+SHA1-Digest: xnsfy2YKdbkj8R/S7V8vkyPCmm8=
+
+Name: META-INF/resources/sap/suite/ui/commons/ViewRepeater-dbg.js
+SHA1-Digest: pled/WF813bXG3WdOvj92OuXvZc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/searc
+ h_24.png
+SHA1-Digest: 0Ykk6k3wQnMsjsh7o2ZVAciQXxg=
+
+Name: META-INF/resources/sap/suite/ui/commons/InfoTileValueColor.type
+SHA1-Digest: B4HagXQuZN9xYwEp7Kqm3K5JTsQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/GenericTile.js
+SHA1-Digest: owgcCDyX/qNBSbztk9DFJ/DY/q4=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartContainerContentRen
+ derer.js
+SHA1-Digest: iAeVEEgfcXhaQpqZEvKY9r+Dn6k=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/T
+ imeline.css
+SHA1-Digest: 4e9Z6jfsuEoHnqFoxbDEgjqw25k=
+
+Name: META-INF/resources/sap/suite/ui/commons/UnifiedThingInspectorRen
+ derer-dbg.js
+SHA1-Digest: k7aIYuPRUvA4CXYI5fjSJCNU22Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/btn_nav_
+ left_a.png
+SHA1-Digest: QXN0lblJ7DrpMFv3LMdpmFoblcY=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/M
+ onitoringTile.css
+SHA1-Digest: YcUGWsNZu/rU8vllKICTos2/qI8=
+
+Name: META-INF/resources/sap/suite/ui/commons/ViewRepeaterRenderer.js
+SHA1-Digest: JqkaWN5PbbbslIFAu4YnK5p+lbA=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineItemRenderer.js
+SHA1-Digest: qQ5bqe13cpY6gyER4rePh8byBfQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_vi.propert
+ ies
+SHA1-Digest: wvekSBCe63Huq1GeuSFa80zZjxM=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/ViewRepea
+ ter.css
+SHA1-Digest: y4RSrNUB+QsYSUa51VMtJwVn8GA=
+
+Name: META-INF/resources/sap/suite/ui/commons/KpiTileRenderer-dbg.js
+SHA1-Digest: Bhrl/PSRWP57L1XP0VhH4slcDy4=
+
+Name: META-INF/resources/sap/suite/ui/commons/Timeline-dbg.js
+SHA1-Digest: GV0TIBJp83AOfLUb0/GnDsX289Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowNodeRenderer-
+ dbg.js
+SHA1-Digest: haxF9AcI/aS9a3kr5M5fNkT8Io8=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowNode-dbg.js
+SHA1-Digest: G15LrT88WyX5u5KFOViPRePU3Fo=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_fr.propert
+ ies
+SHA1-Digest: ZRAT+He8D8ReOdSqV6ouMriMJNo=
+
+Name: META-INF/resources/sap/suite/ui/commons/LaunchTile-dbg.js
+SHA1-Digest: eJI/KfaygIjQ+B7+x1luInsPnGk=
+
+Name: META-INF/resources/sap/suite/ui/commons/NewsContentRenderer-dbg.
+ js
+SHA1-Digest: 1Y9kVHkdutdmnnpPRcIcPHyrYK0=
+
+Name: META-INF/resources/sap/suite/ui/commons/ViewRepeater.js
+SHA1-Digest: /NNjZf56On+mTT1gHoiLSpSY07M=
+
+Name: META-INF/resources/sap/suite/ui/commons/LaunchTileRenderer.js
+SHA1-Digest: aEPaloKSDYDwT+/zf3XPqCffY3A=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderCell.js
+SHA1-Digest: DtBYal2Mo6frzOo+Q44mXqgjogM=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineItemPosition.typ
+ e
+SHA1-Digest: Zw3kkdpzrMiTcUnqSIEu9344FHE=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/SplitButton.
+ css
+SHA1-Digest: wLoQPYvKBDqwOWJst6II3m4teCk=
+
+Name: META-INF/resources/sap/suite/ui/commons/SplitButtonRenderer-dbg.
+ js
+SHA1-Digest: wo1+NsHF1B7/bDpxpA3StC77iFs=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderContainer.js
+SHA1-Digest: 6uW3zXTtM34EfkyqN+Skpx14bIY=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/library-d
+ bg.css
+SHA1-Digest: wZH4YJPGXY1ux8f5o82mm3L0s3g=
+
+Name: META-INF/resources/sap/suite/ui/commons/JamContentRenderer-dbg.j
+ s
+SHA1-Digest: HI7CXC9Deh1dNp5Jp+U+EsthJBU=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/b
+ tn_nav_left_p.png
+SHA1-Digest: 1gCQUcwOnU4Iyunne1qVqCzDF7c=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/btn_
+ actions_regular.png
+SHA1-Digest: lqYj0Mp6azig2rpcqWYXesp9PgA=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/library-RTL-
+ dbg.css
+SHA1-Digest: SyTkZLnbrSWmgqna3hKt9hIzlyo=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/N
+ umericContent.css
+SHA1-Digest: cHhwnAirg4NVYlFftSiPZKgbckI=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineFilterListItem.c
+ ontrol
+SHA1-Digest: uSSWSc/GMHv/zVorrGKbmw93TUQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/shared.cs
+ s
+SHA1-Digest: jYVW5LiVZAtqyF1ph+e/oRmrhDE=
+
+Name: META-INF/resources/sap/suite/ui/commons/LinkActionSheetRenderer.
+ js
+SHA1-Digest: YO6WjibHaMKtqvzpBkOgmWfL/NA=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/DateRange
+ Scroller.css
+SHA1-Digest: cgBBf13bgUKCUpVEXcFm6aE9A8U=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/decline_
+ 16.png
+SHA1-Digest: b9FeVBRWPR0py1194KRIIFgDsFo=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedTile.control
+SHA1-Digest: 0xHDarPef8ilsKb3N2EdPy1Qnt0=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderCellItem-dbg.js
+SHA1-Digest: lCJOPH1xh2QUadEbBO8TNlcvNYI=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/tag_2
+ 4.png
+SHA1-Digest: pOk50OyadLyAmxeQs1k9XQmEGOY=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChartLabel.cont
+ rol
+SHA1-Digest: 5u8Fn21jh1Cax8Cog+Cgl208kVk=
+
+Name: META-INF/resources/sap/suite/ui/commons/InfoTile.control
+SHA1-Digest: 6iIwUGwXa5GTgONvHaCkKQ30J0o=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderCellRenderer.js
+SHA1-Digest: Q/iSUSRDi9G7Yyu3g0VtrEA7DVI=
+
+Name: META-INF/resources/sap/suite/ui/commons/BulletChartData.js
+SHA1-Digest: z9bC1idlXUr/rGVhrCn3fwvOCuk=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowZoomLevel.typ
+ e
+SHA1-Digest: hQroE+1vyifjMjuT5+QFfID26IY=
+
+Name: META-INF/resources/sap/suite/ui/commons/Timeline.control
+SHA1-Digest: s3Qvnv7PUBIXLT+yK7H/2qqFlqQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowNode.js
+SHA1-Digest: 0USE1+tAyxlAZEN4ERHRIp8Oaqo=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/t
+ ag_24.png
+SHA1-Digest: tINb/sC/QYYFgOQDJnhEY7miNc8=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChartRenderer-d
+ bg.js
+SHA1-Digest: POAPNKuTbK0bVfpTErb0CZEikec=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/atta
+ chment_16.png
+SHA1-Digest: P8ER5bhtZ87y74SO89mwxgXITxk=
+
+Name: META-INF/resources/sap/suite/ui/commons/LinkActionSheet.js
+SHA1-Digest: ShJRqDI/2U8OpkszvxjoNVgMdy4=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/l
+ ibrary-RTL.css
+SHA1-Digest: LJjKs3cQsGKIxL54nMvq2liUdso=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/KpiTile.css
+SHA1-Digest: Ak3grqEwJ8Xy6VSivX8O68Ykiy8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/U
+ nifiedThingInspector.css
+SHA1-Digest: 4ySYEEL82aAP/ZPGNGslyS9eDS8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/NoteTaker.cs
+ s
+SHA1-Digest: XNVEVEAH98tBMJAfh8/TDCSP3Tw=
+
+Name: META-INF/resources/sap/suite/ui/commons/KpiTileRenderer.js
+SHA1-Digest: +MKo3Gob3WMN5KwBFBfVjPXTShw=
+
+Name: META-INF/resources/sap/suite/ui/commons/BulletChart.js
+SHA1-Digest: q4HD61M+V/54xJ5jnfVNIS7z/1k=
+
+Name: META-INF/resources/sap/suite/ui/commons/.theming
+SHA1-Digest: tAjLbght/hWVHboQ2GDVngLkeIg=
+
+Name: META-INF/resources/sap/suite/ui/commons/ViewRepeaterRenderer-dbg
+ .js
+SHA1-Digest: 0B3S2rQ7iB/NOpaM643nT6yIm+c=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartTileRenderer-dbg.js
+SHA1-Digest: xla+7UdpLsifUWXMCWN/1lZ10k0=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowRenderer-dbg.
+ js
+SHA1-Digest: b/6vesvIUNXQ2Xo9gWDwUhIld/8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/Timeline.css
+SHA1-Digest: 8y2qc+mtvgH9WWYwBQVbPM/zJRg=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChart.control
+SHA1-Digest: Y1xc5TmEACYNB5vDqAtGYWDiz3k=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerFeeder-dbg.js
+SHA1-Digest: yWaYc/7DDYAW5d5/IVn5POLNC6c=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/UnifiedThing
+ Group.css
+SHA1-Digest: 6leSugZRUQmFuiCCZKBWcDYQRqQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_ru.propert
+ ies
+SHA1-Digest: MHWA1iEjJeiAr+KMUcDhQj7JoNQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle.properties
+SHA1-Digest: J+loJbcy1TR0Ey3+wzCop8Khq1Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/NewsContent-dbg.js
+SHA1-Digest: ThWPRo3N6AWGOUcP59ucdIplChw=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ChartContain
+ er.css
+SHA1-Digest: 7RFZUyp7Uxejfz1xXD5M1saHbKs=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_ko.propert
+ ies
+SHA1-Digest: etNZa8QdGKq5zfnWWeUrkPXX4cI=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThreePanelThingViewer.co
+ ntrol
+SHA1-Digest: elqv5qPC/Psm4zIqwydH1ttB+vQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderContainer.control
+SHA1-Digest: Jslx0+SMnciFQ9YMQBhaanZjStc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/home
+ _24.png
+SHA1-Digest: fvAvD9ZZje13UkOgK4bZiInc9uM=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/l
+ ibrary-dbg.css
+SHA1-Digest: 5lkiMtOFav+zAymL7VbHs1upWPQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/NumericConte
+ nt.css
+SHA1-Digest: PUQCaMkhh1NynFk4z33D2uO6Szs=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/l
+ ibrary.css
+SHA1-Digest: IT+xpTz+2tDrmaTw4q7tys633Tw=
+
+Name: META-INF/resources/sap/suite/ui/commons/NumericContentRenderer-d
+ bg.js
+SHA1-Digest: iHEgTfuIVZuW6+TrmmY2QM0AcRw=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_sk.propert
+ ies
+SHA1-Digest: 5dfnqMCUBxblvw0XbbrX7ZZAY1o=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_zh_TW.prop
+ erties
+SHA1-Digest: XOMoCTR4oxa1quVVMKRtBit2/iE=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowLaneHeaderRen
+ derer.js
+SHA1-Digest: ti/dQQ3HeObcF+CcrUG35LTZnrE=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_bg.propert
+ ies
+SHA1-Digest: uqCqn0k4TUl2m9RefFX49kIpVoc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/HeaderContai
+ ner.css
+SHA1-Digest: +817EDRKFaWjHhhy/sz6msiZ21Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/VerticalNavi
+ gationBar.css
+SHA1-Digest: 8NNBaRJYt0Dgl12hWNNlJVM4sl0=
+
+Name: libraries/sap.suite.ui.commons.js
+SHA1-Digest: dG47Gj8E9qOD4n9AYrBDtJZ/VNA=
+
+Name: META-INF/resources/sap/suite/ui/commons/library.properties
+SHA1-Digest: os0ZXP8yeOTUlf/Yngmu7KE/tLE=
+
+Name: META-INF/resources/sap/suite/ui/commons/LoadState.type
+SHA1-Digest: Ye2H3Wu8QP2TbvqBrcOccwLMeUQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/arrow_le
+ ft.png
+SHA1-Digest: 1F6JRzWmXLoFPZRuESFDJks1egs=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeScroller.contro
+ l
+SHA1-Digest: 6WrzWEnmz7e9sacRDxL6XZniw6Y=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/l
+ ibrary-parameters.json
+SHA1-Digest: s7R4xotnm+KN4AeP/2MCvydVnGA=
+
+Name: META-INF/resources/sap/suite/ui/commons/library.js
+SHA1-Digest: nyJxuWeh3JhtgDQnMShk9nhtdI4=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_lv.propert
+ ies
+SHA1-Digest: 7cnRDB2owAFHDC9OyQzX2t8LGTs=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/B
+ ulletChart.css
+SHA1-Digest: Vtnok/BhOYNJfRJ8udUxYXeXgeg=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeSlider.js
+SHA1-Digest: pD3ic1Y7fD+tM54uY5LpESaPpV8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ComparisonCh
+ art.css
+SHA1-Digest: hTVU0d20UdigJJHOd3CoRPeq1U0=
+
+Name: META-INF/resources/sap/suite/ui/commons/NewsContentRenderer.js
+SHA1-Digest: zLGNf2+6zQ3ZTUF4/tM44Lsk6go=
+
+Name: META-INF/resources/sap/suite/ui/commons/FacetOverviewRenderer.js
+SHA1-Digest: 24tRg1rDyNQy0gEVb7hkvq61NUE=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/ThreePanelThingViewer.css
+SHA1-Digest: fKtV+hsomzoHdv2FudSWnt9czfs=
+
+Name: META-INF/resources/sap/suite/ui/commons/UnifiedThingInspectorRen
+ derer.js
+SHA1-Digest: Wx552UMX43xDFjx1Flk4T6uE/XU=
+
+Name: META-INF/resources/sap/suite/ui/commons/NewsContent.control
+SHA1-Digest: Zngv0vrBO6eCqj9wBmZwmqknZ3I=
+
+Name: META-INF/resources/sap/suite/ui/commons/NumericContentRenderer.j
+ s
+SHA1-Digest: bixqaCssJkeCrbI1qxnCW86DrCw=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/DateRangeSli
+ der.css
+SHA1-Digest: UKGU//IAsnvnLvXk2jpNIHBNCGg=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/NoteTaker
+ Card.css
+SHA1-Digest: F5WwnjM1xpz9cIT21MvjnH+PxOo=
+
+Name: META-INF/resources/sap/suite/ui/commons/UnifiedThingInspector-db
+ g.js
+SHA1-Digest: zPdPFhUovcOL8OaoXbDikAfKrQo=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/library-dbg.
+ css
+SHA1-Digest: /ouriy6/efSgLd0IzsWoC7jwj80=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowNode.control
+SHA1-Digest: RpVcL7kDlN4qQuGYcCA+hjfWabA=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_de.propert
+ ies
+SHA1-Digest: j9R0DSFEEUDH6MQigWjWUMeZKlA=
+
+Name: META-INF/resources/sap/suite/ui/commons/BulletChart.control
+SHA1-Digest: VR1hdbr9jH9t1DELvraUWBKbBUE=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/HeaderCell.c
+ ss
+SHA1-Digest: /bEPfwdo/ANlGY6LA0rPBtNf+QA=
+
+Name: META-INF/resources/sap/suite/ui/commons/ColumnMicroChart.control
+SHA1-Digest: nFNzb5KGwLX8RXZpBAxffqTar/U=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowLaneHeader.co
+ ntrol
+SHA1-Digest: x18pb2M0wjKhjWtt7JBLi/YUYyI=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/attac
+ hment_24.png
+SHA1-Digest: ECo5La+MPH7oNrkdbvEwImmWJ1I=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/b
+ tn_nav_right_p.png
+SHA1-Digest: 8aCq6ubpIzCytvOi+SYR53FlpM8=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderContainerRenderer.
+ js
+SHA1-Digest: dOP89f+xE4W9JZZ0cZrRluUDPqE=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerCard-dbg.js
+SHA1-Digest: 6KrTpiIItH57s2iFADVZzMEwy44=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChartItem-dbg.j
+ s
+SHA1-Digest: dZrpjnqV5xXIvVkFUauDoFBM8dc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/atta
+ chment_24.png
+SHA1-Digest: 8l52ekaM3l9j9HE0uYlABoHesps=
+
+Name: META-INF/resources/sap/suite/ui/commons/FacetOverview.js
+SHA1-Digest: Lz3K7bzhRK2AncUt3cphfYnKsN8=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineFilterListItem.j
+ s
+SHA1-Digest: Y4uUxbfrwvUHYblkivnBKgrlu5A=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedItem.js
+SHA1-Digest: xGfoskiI2mcRiqJDJNFj2mfylNk=
+
+Name: META-INF/resources/sap/suite/ui/commons/ValueStatus.type
+SHA1-Digest: tXZbtnTsYqLGxF3NZElqws07zvE=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/BusinessCard
+ .css
+SHA1-Digest: R6UQOgClljOsJpUYysubAabbDQY=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/library-RTL-dbg.css
+SHA1-Digest: 7PmfVNHZ3WlDRNwy8Pf2RCr9emI=
+
+Name: META-INF/resources/sap/suite/ui/commons/MonitoringTileRenderer-d
+ bg.js
+SHA1-Digest: 2fp8i6FL4eZHtapEUAtpp5TXOjk=
+
+Name: META-INF/resources/sap/suite/ui/commons/TileContentRenderer.js
+SHA1-Digest: 577QfhIxDYOmqHSKMVF3T6c0088=
+
+Name: META-INF/resources/sap/suite/ui/commons/LinkActionSheetRenderer-
+ dbg.js
+SHA1-Digest: 37+n0IJwM6K0xBHb4fieCduUXp0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/btn_
+ nav_left_p.png
+SHA1-Digest: mA6gEXRGg04R+pZlorc55+GIYEQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThingCollection.js
+SHA1-Digest: /TeEfo0Kr0ISP223c9CzlgoYdII=
+
+Name: libraries/sap.suite.ui.commons.templates.xml
+SHA1-Digest: 80vgzYh2DmfNd0pi1TKDi4K58DI=
+
+Name: META-INF/resources/sap/suite/ui/commons/ComparisonChartRenderer.
+ js
+SHA1-Digest: 3xtVvzsonJS3acotfjApgJ4W45g=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/InfoTile.css
+SHA1-Digest: tIsl+KLovHYuKKk2CI+sbNFRZ90=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeSlider.control
+SHA1-Digest: is+++kYu9jcbGRTZk+b5PSRuvqw=
+
+Name: META-INF/resources/sap/suite/ui/commons/UnifiedThingInspector.js
+SHA1-Digest: GR+2Vt1CWM9/1ZcFomvOZxGZ0rw=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/s
+ hared.css
+SHA1-Digest: t0eq31P/9kGD/xgO7oQYr8qndDA=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/ThreePane
+ lThingViewer.css
+SHA1-Digest: en/4lBb8QOc1gxlcJvxVKPM5R9Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowNodeRenderer.
+ js
+SHA1-Digest: GPwBmmEHbjzaUx0mSarvI9W8BwM=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/library.css
+SHA1-Digest: Cb45fp0HGk7oniWLhczxg4xGdwM=
+
+Name: META-INF/resources/sap/suite/ui/commons/MicroAreaChartRenderer.j
+ s
+SHA1-Digest: hcVTVkzKfXtUVKeGSlaQvMQGl+4=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/U
+ nifiedThingGroup.css
+SHA1-Digest: VjQl/nUR3V2G1oI7kEwesJ8BGDY=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartContainer.control
+SHA1-Digest: MGGzB03lNdoNZCl2eNdW7soXKM4=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/btn_n
+ av_left_p.png
+SHA1-Digest: 07/pjEQuMp/+ejzHXMrbVcMhonI=
+
+Name: META-INF/resources/sap/suite/ui/commons/util/RenderUtils.js
+SHA1-Digest: kNHQZS13wYpKWJGVO/I1IlxI9xE=
+
+Name: META-INF/resources/sap/suite/ui/commons/SplitButton.js
+SHA1-Digest: 3JU+MjCa4WnS+zPhZl5Sl8DTdm4=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTakerRenderer.js
+SHA1-Digest: kVgvcQdYYcE3RwKMP1HBeQzv6+c=
+
+Name: META-INF/resources/sap/suite/ui/commons/DynamicContainerRenderer
+ .js
+SHA1-Digest: 1+eLW7uHsjVIN0T13LrJ7FXuHQY=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/NoteTaker
+ .css
+SHA1-Digest: A4ZA21sDnMTKnvlMP9TCAWNDfGo=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img/edit_
+ 24.png
+SHA1-Digest: l+0UEct9LtfO2iiMTHPMpQ2Ht18=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedItemHeader.js
+SHA1-Digest: cxEKF8M/ufjK+atxGfieFSLqi80=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/edit_24.
+ png
+SHA1-Digest: bQtWIvriOeS4E8k0Gv3Sg5/20QI=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/JamContent.c
+ ss
+SHA1-Digest: OBIFytZ60GKrilKVnXlHqx0tFtQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowLaneHeader.js
+SHA1-Digest: 0YkYn72rsItThIQLqAtAJ78UkUA=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineAlignment.type
+SHA1-Digest: /AugF3aTXkReC1hiF7qb61pdjWk=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThreePanelThingViewerRen
+ derer.js
+SHA1-Digest: H5gs3VKq4IUI18lo5LbdddEG3do=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/btn_acti
+ ons_hover.png
+SHA1-Digest: wFtjLixTmWbtPgArkCBgmmZ1lhg=
+
+Name: META-INF/resources/sap/suite/ui/commons/RepeaterViewConfiguratio
+ n.control
+SHA1-Digest: Z9hNwY0hj9SqhUUkKEVgPhKPvnI=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowConnection.js
+SHA1-Digest: y9xALL0MVtzkwEKxmM/ZxY7m8PM=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/l
+ ibrary-RTL-dbg.css
+SHA1-Digest: M5FOO/rPHV1tq/8Y2FUJWCNSbZw=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThreePanelThingViewerRen
+ derer-dbg.js
+SHA1-Digest: 7nxDhEaooWJbxBgNFA8jH3Lc+n4=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_hi.propert
+ ies
+SHA1-Digest: zhRD5+RJyLMeMlXkeP+snLx5Vj4=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/arro
+ w_left.png
+SHA1-Digest: aNWzQeipEZUTH/u74X9PeSybnpk=
+
+Name: META-INF/resources/sap/suite/ui/commons/ColumnMicroChartRenderer
+ .js
+SHA1-Digest: WfgPJLJrzqYk/wSFDtsIwiRpAqM=
+
+Name: META-INF/resources/sap/suite/ui/commons/LaunchTile.control
+SHA1-Digest: Qq7BA9z+euSFGjohaK/vS5wOqsI=
+
+Name: META-INF/resources/sap/suite/ui/commons/ProcessFlowDisplayState.
+ type
+SHA1-Digest: kU0gxCiekLUTvBbvnpQZ1EzqAD8=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeSliderInternalR
+ enderer-dbg.js
+SHA1-Digest: ioMLSSr/GbKH3AiSEiLN24k9+4Y=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedTileRenderer-dbg.js
+SHA1-Digest: fEIuRiJ9Dtf97bk6bu8WjNRtqm8=
+
+Name: META-INF/resources/sap/suite/ui/commons/FacetOverview-dbg.js
+SHA1-Digest: fEpSNXvZIWmFMGewk2ySm0hfeqQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThreePanelThingInspector
+ .control
+SHA1-Digest: wNkXNw+xeL6u7Ab25mvju3EYjyM=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderCell.control
+SHA1-Digest: WhED5HYRUJBygf0tRP/+oQIiF/c=
+
+Name: META-INF/resources/sap/suite/ui/commons/ComparisonChart-dbg.js
+SHA1-Digest: IK0g1Cz4jE64ueveYjdm5eMWBDw=
+
+Name: META-INF/resources/sap/suite/ui/commons/.library
+SHA1-Digest: a0bfN7b1uUigTENSYrKut8hNMAo=
+
+Name: META-INF/resources/sap/suite/ui/commons/NumericTile.control
+SHA1-Digest: iPJqHIRQgEinEovLDDb2pV87Htc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/T
+ imelineItem.css
+SHA1-Digest: 7J5iQZoyj8KM9no0hJnBsAFp6RI=
+
+Name: META-INF/resources/sap/suite/ui/commons/util/RenderUtils-dbg.js
+SHA1-Digest: 3zoYDpAWSktKNxj+pftLwcy8r7w=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartContainerRenderer-d
+ bg.js
+SHA1-Digest: BjtJ8w49jKGWJ2pdKsCj5AZlqdM=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_hr.propert
+ ies
+SHA1-Digest: SgIcoTcTAx32t3ie52CuScopZq8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ViewRepeater
+ .css
+SHA1-Digest: 499bIa7bYhhTbbIGLxCyxUDwl5w=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/library-p
+ arameters.json
+SHA1-Digest: gaSfWy82hrAbjbGZgvV941I4wY0=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_sh.propert
+ ies
+SHA1-Digest: 2e75DjrpHkOOx0gwcMlOxbM5GBg=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderContainer-dbg.js
+SHA1-Digest: MYv/8Jk01nOxlsu/t/0Hc9eVgcE=
+
+Name: META-INF/resources/sap/suite/ui/commons/TileContent.control
+SHA1-Digest: ZOXN+rQmzrc1xzg9j5SCusGsx/8=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_hcb/img-RTL/t
+ humbDown_24.png
+SHA1-Digest: FbRVEUb5ngY9wAwnI9g+giaxyDc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/img_
+ bg_ti.png
+SHA1-Digest: UiSkcU7dAl0XQvNA8w8T1F9Ir0c=
+
+Name: META-INF/resources/sap/suite/ui/commons/MonitoringTile.js
+SHA1-Digest: G9SZt8I1hmQdSg7uf0VMsrjli3M=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/arrow_ri
+ ght.png
+SHA1-Digest: rwNS5QmLVDEtttsToKKxhwYKyRU=
+
+Name: META-INF/resources/sap/suite/ui/commons/JamContentRenderer.js
+SHA1-Digest: 7YJSY5og7mjZbjkGWRAhc+e4+bU=
+
+Name: META-INF/resources/sap/suite/ui/commons/library.dependencies.jso
+ n
+SHA1-Digest: QBpK3aURO+Bn4nTE2ItT8gIHAE0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/library.less
+SHA1-Digest: uW8rcsIeIsFP6ey+d8y/5MJiSlQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/InfoTileRenderer-dbg.js
+SHA1-Digest: eLeGqQxWqwn3D8yUmJD60/VmXA0=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartContainerContent.co
+ ntrol
+SHA1-Digest: OriZm1rzMQDQniIa4TJCZ8wDwjk=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/img_bg_t
+ i.png
+SHA1-Digest: nKSMdfuH9vFBQCLOfKexP/6A+1c=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ProcessFlowL
+ aneHeader.css
+SHA1-Digest: ZGy9qu3dgXR2O7LKGmIvzRHZFBc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/NoteTakerCar
+ d.css
+SHA1-Digest: rUjx8ZraiLIwGTGeBydaLvg3XIA=
+
+Name: META-INF/resources/sap/suite/ui/commons/CountingNavigationItem.j
+ s
+SHA1-Digest: tf5qqeAaYX2ItSfi8YkYdVr9NMU=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_it.propert
+ ies
+SHA1-Digest: jLt2JsKFV+Mt0nGSEOvq+kyEzIg=
+
+Name: META-INF/resources/sap/suite/ui/commons/MonitoringContent-dbg.js
+SHA1-Digest: Jf4GKpLH3JtXmmFMUrcgjNKFc4w=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThreePanelThingInspector
+ .js
+SHA1-Digest: KMAtrXtsDAkWZ0Uj8InfVpphxY0=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ThreePanelTh
+ ingViewer.css
+SHA1-Digest: gzrw8CdJnDQ6HI7FHfUwdAiKWJk=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_uk.propert
+ ies
+SHA1-Digest: /KEQEGzj+OudKiWcfGFgMV7OOXs=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/MonitoringCo
+ ntent.css
+SHA1-Digest: oV3+WJs3wf7Z0bkpWBWCsPvyC5Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_goldreflectio
+ n/library-RTL.css
+SHA1-Digest: VQXn9dTlpS79GI2NrwOaP9h7Wes=
+
+Name: META-INF/resources/sap/suite/ui/commons/ComparisonChart.control
+SHA1-Digest: /huZ5ErCDf3tE16MzsQzdnKAmNY=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineItem.js
+SHA1-Digest: yZZE4DywrFs4vI0uEArno7z9maA=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/NumericTile.
+ css
+SHA1-Digest: w1x/rGyUsi4DzWyvuS37Npp+XGQ=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThingCollectionRenderer-
+ dbg.js
+SHA1-Digest: +b37Ww6SEZLQygaouXSBjf2YBPk=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/tag_24.p
+ ng
+SHA1-Digest: QeoIemigQNcuEbC3G3xyzRNyeDA=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/library.sour
+ ce.less
+SHA1-Digest: e1Hn4tcSHdMmpCmnYEMVz4jaFYw=
+
+Name: META-INF/resources/sap/suite/ui/commons/CountingNavigationItem.c
+ ontrol
+SHA1-Digest: bIcmlLamm2dTnIJJ1KrdoIk4fHc=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartTile.js
+SHA1-Digest: iQryahWF0B5vR6oq/kXhWZxloXg=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeSliderInternal.
+ control
+SHA1-Digest: 9yRIDirECqvtsTQrLKe9hu0pAOg=
+
+Name: META-INF/resources/sap/suite/ui/commons/NoteTaker.control
+SHA1-Digest: z8NaY9hvJWYO2rqWssBmt9yQBbU=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/fonts/Busine
+ ssSuiteInAppSymbols.ttf
+SHA1-Digest: PLRT7+mWz/dEfTGX29rSdigqEZ4=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/ColumnMicroC
+ hart.css
+SHA1-Digest: TiLjd4IMey4BYhQ7r86E9MalD40=
+
+Name: META-INF/resources/sap/suite/ui/commons/ThreePanelThingInspector
+ Renderer.js
+SHA1-Digest: aloi6olLdEM+PporKM6TEHFKB4k=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/arrow_ri
+ ght_hover.png
+SHA1-Digest: engcb/YyhbiqMazxIMfr3U8Vmxw=
+
+Name: META-INF/resources/sap/suite/ui/commons/HeaderContainerRenderer-
+ dbg.js
+SHA1-Digest: 9rt3G3q6IAox9qlN8nnhicnxTFA=
+
+Name: META-INF/resources/sap/suite/ui/commons/ChartTile-dbg.js
+SHA1-Digest: F/wrNKFewWIhJB2z5UyCHGM5ZI0=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_cs.propert
+ ies
+SHA1-Digest: 0laJ2ojRPHqFN8OMVqFySQzaabI=
+
+Name: META-INF/resources/sap/suite/ui/commons/BulletChartRenderer.js
+SHA1-Digest: x0Q7zF+xrYl16Tv6E5dKVeyw6/c=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/fonts/Busine
+ ssSuiteInAppSymbols.eot
+SHA1-Digest: Xxbp8ac5fbpuaTJpaO10OGHVp9U=
+
+Name: META-INF/resources/sap/suite/ui/commons/TimelineRenderer-dbg.js
+SHA1-Digest: qso8efIEEp2YzvSK3pGUz19kZfg=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/edit
+ _24.png
+SHA1-Digest: QTMB+mg5PtTuwzTfKP9tPyQQ0Rs=
+
+Name: META-INF/resources/sap/suite/ui/commons/ComparisonData-dbg.js
+SHA1-Digest: gwb/ydn9rXZBqJWgcW+7/0eQMas=
+
+Name: META-INF/resources/sap/suite/ui/commons/library-dbg.js
+SHA1-Digest: T+ENN3RtxMbZvwPxhag2xIrqg9Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/messagebundle_es.propert
+ ies
+SHA1-Digest: alZRT2rbspHx5fGVStesVu/WfYU=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/MonitoringTi
+ le.css
+SHA1-Digest: fq3+KT8zvIFixZX7KQp++ao8xOE=
+
+Name: META-INF/resources/sap/suite/ui/commons/CountingNavigationItem-d
+ bg.js
+SHA1-Digest: FETaoCnpVeVbxGPvlcM6sPpkOrs=
+
+Name: META-INF/resources/sap/suite/ui/commons/DateRangeSliderInternal.
+ js
+SHA1-Digest: cXE+0jPWMzE0wnIMdo8sHg9CnGM=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img-RTL/edit
+ _grey_24.png
+SHA1-Digest: 3Gc3u4xlLtuDoiL8PYtEziOyNjg=
+
+Name: META-INF/resources/sap/suite/ui/commons/FeedItem.control
+SHA1-Digest: fcT9g+RCdlBlcnJEmj68Scp4AlA=
+
+Name: META-INF/resources/sap/suite/ui/commons/KpiTile-dbg.js
+SHA1-Digest: EZ0cME09GxSwW11G4BeSY/VI48Q=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/img/edit_gre
+ y_24.png
+SHA1-Digest: YK01s+JtuJafAGx8Cbg+iG63zMc=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/base/DateRangeScr
+ oller.css
+SHA1-Digest: d5eEM5ps2G33sRXwhxAFxIFx64U=
+
+Name: META-INF/resources/sap/suite/ui/commons/InfoTile.js
+SHA1-Digest: aJt/wo04gzzROKMoQGAHNn7gEF4=
+
+Name: META-INF/resources/sap/suite/ui/commons/themes/sap_bluecrystal/F
+ acetOverview.css
+SHA1-Digest: XF6uo4mVTm2paN8AyxxI47XK/H0=
+
+Name: META-INF/resources/sap/suite/ui/commons/FacetOverviewHeight.type
+SHA1-Digest: ZstFxvw4m3V51tD/jkZrAKcbAVI=
+

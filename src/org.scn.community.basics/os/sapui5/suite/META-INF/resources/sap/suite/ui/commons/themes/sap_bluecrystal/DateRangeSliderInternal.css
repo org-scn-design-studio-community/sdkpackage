@@ -1,0 +1,54 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/DateRangeSliderInternal.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsDateRangeSlider{
+    position: relative;
+}
+
+.sapSuiteUiCommonsDateRangeSliderBubble {
+	position: absolute; 
+	height: 18px;
+	width: 102px;
+	top: 30px;
+	bottom: -15px;
+	background-image: url(img/bubble_1.png);
+	background-size: 102px 18px;
+}
+
+.sapSuiteUiCommonsDateRangeSliderBubbleLbl{
+	position: absolute; 
+	left: 0px;
+	width: 102px;
+	top: -14px;		
+	text-align:center;
+}
+
+.sapSuiteUiCommonsDateRangeSliderBubbleLblTxt {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align:center;
+}
+
+.sapUiSliHori.sapUiSli.sapUiSuiteDRSliBub{	
+	height: 55px;
+}
+
+ 
+.sapUiSliGrip.sapUiSliGripPin:link,
+.sapUiSliGrip.sapUiSliGripPin:visited,
+.sapUiSliGrip.sapUiSliGripPin:active, 
+.sapUiSliGrip.sapUiSliGripPin:hover,
+.sapUiSliGrip.sapUiSliGripPin:focus {
+	background-color: @sapUiExtraLightBG;
+    border-color: @sapUiTextDisabled;
+    outline: none;
+}  
+
+
+.sapUiSliGrip.sapUiSliGripPin {
+    border-color: @sapUiTextDisabled;
+    cursor: default;
+}

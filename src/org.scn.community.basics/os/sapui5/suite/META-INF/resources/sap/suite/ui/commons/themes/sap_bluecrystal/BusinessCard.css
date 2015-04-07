@@ -1,0 +1,53 @@
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/BusinessCard.control */
+/* ============================================= */
+
+.suiteUiCard {
+    border: solid @sapUiLightBorder 1px;
+    min-height: 43px;
+}
+
+.suiteUiCardContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+.suiteUiCardIcon {
+    width: 32px;
+    height: 32px;
+}
+
+.suiteUiCardTypeHolder {
+    margin-left: 5px;
+}
+
+.suiteUiCardIconHolder {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.suiteUiCardNameHolder {
+    margin-top: 3px;
+    margin-left: 47px;
+}
+
+.suiteUiCardDescHolder {
+    margin-left: 47px;
+}
+
+.suiteUiCardContent {
+    margin-left: 47px;
+}
+
+.suiteUiCardType {
+	width: 100%;
+}
+
+.suiteUiCardName {
+	width: 100%;
+}
+
+.suiteUiCardDesc {
+	width: 100%;
+}

@@ -1,0 +1,98 @@
+
+/* ============================================= */
+/* CSS base theme for control sap.suite.ui.commons/FeedTile.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsFeedTile{
+	height: 100%;
+	width: 100%;
+	position: relative; 
+	overflow: hidden;
+	border-radius: 8px;	
+}
+
+.sapSuiteUiCommonsFeedTileBackground{
+	height: 100%;
+	width: 100%;
+	background-size: 100%; 
+	background-repeat: no-repeat;
+	position: absolute;
+}
+
+.sapSuiteUiCommonsFeedTileText{
+	position: relative;
+	top: 53%;	
+	height: 47%; 
+	background-color: black; 
+	background-color: rgba(0, 0, 0, 0.65);
+	border-bottom-right-radius: 8px;
+ 	border-bottom-left-radius: 8px;	
+}
+
+.sapSuiteUiCommonsFeedTileTitle{
+	font-family: 'OpenSans-Semibold', sans-serif; /*TODO: Use LESS param*/
+	color: white; /*TODO: Use LESS param*/
+	font-size: 1.125rem; 
+	padding: 8px 15px 0px 15px;
+	word-wrap: break-word;
+	overflow: hidden;
+	height: 53%;		
+}
+
+.sapSuiteUiCommonsFeedTileLowerText {	
+	margin-top: 6px;
+	font-size: .875rem;
+	font-family: 'OpenSans-Regular', sans-serif; /*TODO: Use LESS param*/
+	color: #cccccc; /*TODO: Use LESS param*/
+	width: 100%;		
+}
+
+.sapSuiteUiCommonsFeedTileSource,
+.sapSuiteUiCommonsFeedTileAge{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	display: inline-block;
+	overflow: hidden; 
+	white-space: nowrap; 
+	text-overflow: ellipsis;
+}
+
+.sapSuiteUiCommonsFeedTileSource{
+	width: 50%;
+	padding-left: 15px; 
+}
+
+.sapSuiteUiCommonsFeedTileAge{
+	width: 50%;
+	padding-right: 15px;
+	text-align: end;
+}
+
+.sapSuiteFTItemHidden {
+	display: none;
+}
+
+/* for slide animation from NavContainer*/
+
+.sapSuiteFTItemCenter {
+	-webkit-transform: translate3d(0px, 0px, 0px);
+	transform: translate3d(0px, 0px, 0px);
+	border-radius: 8px;
+}
+.sapSuiteFTItemRight {
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transform: translate3d(100%, 0px, 0px);
+	transform: translate3d(100%, 0px, 0px);
+	transition-property: transform;
+}
+.sapSuiteFTItemLeft {
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transform: translate3d(-100%, 0px, 0px);
+	transition-property: transform;
+	transform: translate3d(-100%, 0px, 0px);
+}
+
+.sapSuiteFTItemSliding {
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+}

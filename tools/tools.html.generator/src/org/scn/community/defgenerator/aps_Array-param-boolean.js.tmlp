@@ -1,0 +1,10 @@
+		var item%PARAM_NAME% = new sap.ui.commons.TextView({text : "%PARAM_TITLE%"});
+		item%PARAM_NAME%.addStyleClass("org-scn-ApsLabelArray");
+		var txtItem%PARAM_NAME% = new sap.ui.commons.CheckBox({checked : this._currentItemConfig%PROPERTY_NAME%.%PARAM_NAME%, width: "300px", text: "%PARAM_TITLE%"});
+		txtItem%PARAM_NAME%.addStyleClass("org-scn-ApsInputArray");
+		txtItem%PARAM_NAME%.attachChange(function(oControlEvent){
+			var checked = oControlEvent.getParameter("checked");
+			this._currentItemConfig%PROPERTY_NAME%.%PARAM_NAME% = checked;		
+		}, this);
+		itemDetailLayout.addContent(item%PARAM_NAME%);
+		itemDetailLayout.addContent(txtItem%PARAM_NAME%);

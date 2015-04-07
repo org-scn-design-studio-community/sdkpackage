@@ -1,0 +1,82 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/MonitoringContent.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsMC {
+	position: relative;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsMC.Auto,
+.sapSuiteUiCommonsMC.L {
+	max-height: 90px;
+	width: 192px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsMC.Auto,
+.sapSuiteUiCommonsMC.M {
+	max-height: 60px;
+	width: 164px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsMC.Auto,
+.sapSuiteUiCommonsMC.S,
+.sapSuiteUiCommonsMC.XS {
+	max-height: 45px;
+	width: 128px;
+}
+
+.sapSuiteUiCommonsMCValue {
+    font-weight: bold;
+    display: inline-block;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsMCValue.Auto,
+.sapSuiteUiCommonsMCValue.S,
+.sapSuiteUiCommonsMCValue.XS {
+	font-size: 32px;
+	margin-right: 4px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsMCValue.Auto,
+.sapSuiteUiCommonsMCValue.M {
+	font-size: 48px;
+	margin-right: 6px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsMCValue.Auto,
+.sapSuiteUiCommonsMCValue.L {
+	font-size: 56px;
+	margin-right: 8px;
+}
+
+.sapSuiteUiCommonsMCIcon {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: blue;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsMCIcon.Auto,
+.sapSuiteUiCommonsMTIcon.S,
+.sapSuiteUiCommonsMTIcon.XS {
+	font-size: 24px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsMCIcon.Auto,
+.sapSuiteUiCommonsMCIcon.M {
+	font-size: 36px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsMCIcon.Auto,
+.sapSuiteUiCommonsMCIcon.L {
+	font-size: 40px;
+}
+
+.sapSuiteUiCommonsMCValue.Loading,
+.sapSuiteUiCommonsMCValue.Failed,
+.sapSuiteUiCommonsMCIcon.Loading,
+.sapSuiteUiCommonsMCIcon.Failed {
+    opacity: 0.25;
+}

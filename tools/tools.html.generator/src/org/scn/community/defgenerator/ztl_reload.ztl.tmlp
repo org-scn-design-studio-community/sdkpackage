@@ -1,0 +1,6 @@
+	/**
+	 * Reloads the Component (with re-rendering)
+	 */	
+	void reload (){*
+		this.%PROPERTY_CAPITAL% = this.%PROPERTY_CAPITAL% + 0.0001;
+	*}

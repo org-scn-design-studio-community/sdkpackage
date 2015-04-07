@@ -1,0 +1,43 @@
+
+class org.scn.community.databound.MultiLevelDropDown extends org.scn.community.shared.DataComponent {
+	Boolean getAddSingleRootNode() {*
+		return this.addSingleRootNode;
+	*}
+
+	void setAddSingleRootNode(Boolean value) {*
+		this.addSingleRootNode = value;
+	*}
+	
+	String getSingleRootName() {*
+		return this.singleRootName;
+	*}
+
+	void setSingleRootName(String newName) {*
+		this.singleRootName = newName;
+	*}
+	
+	String getClickedElemKey() {*
+		return this.clickedElemKey;
+	*}
+
+	void setClickedElemKey(String clicked) {*
+		this.clickedElemKey = clicked;
+	*}
+	
+	String getResetButton() {*
+		return this.resetButton;
+	*}
+
+	void setResetButton(String value) {*
+		this.resetButton = value;
+	*}
+
+	String getDimension() {*
+		return this.selChar;
+	*}
+
+	void setDimension(String value) {*
+		this.selChar = value;
+	*}
+
+}

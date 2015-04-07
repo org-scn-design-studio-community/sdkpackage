@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>InfoTileValueColor</name>
+	<author></author>
+
+	<documentation>Enumeration of possible InfoTile value color settings.</documentation>
+	<baseType>sap.ui.core/string</baseType>
+	<enumeration>
+		<value name="Neutral">
+			<documentation>Neutral InfoTile value color.</documentation>
+		</value>
+		<value name="Good">
+			<documentation>Good InfoTile value color.</documentation>
+		</value>
+		<value name="Critical">
+			<documentation>Critical InfoTile value color.</documentation>
+		</value>
+		<value name="Error">
+			<documentation>Error InfoTile value color.</documentation>
+		</value>
+	</enumeration>
+</simple-type>

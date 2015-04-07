@@ -1,0 +1,29 @@
+
+/**
+ * Class for ModalBrowser
+ */
+class org.scn.community.basics.ModalBrowser extends org.scn.community.shared.Component {
+	
+	/**
+	Invoke Click event
+	*/
+	String click() {*
+		this.clickTrigger = Math.random();
+	*}
+	
+	/**
+	Sets URL
+	<example><code>BROWSERPOPUP_1.setURL("http://server.example.com/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=ABC123XYZ");</code></example>
+	<note>If opening a page in a Modal Browser Dialog, make sure that the page does not use a Frame Buster.</note>
+	*/
+	void setURL( /* URL */ String url){*
+		this.url = url;
+	*}
+	
+	/**
+	Gets URL
+	*/
+	String getURL() {*
+		return this.url;
+	*}
+}

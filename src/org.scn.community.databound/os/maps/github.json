@@ -1,0 +1,7 @@
+{ "label" : "SCN Community Maps",
+  	"type" : "external",
+  	"indexUrl" : "https://api.github.com/repos/org-scn-design-studio-community/sdkcommunity/maps/contents/geojson/",
+  	"headers" : { 
+  		"accept":"application/vnd.github.v3.raw+json"
+  	}
+}

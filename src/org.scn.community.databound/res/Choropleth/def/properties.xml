@@ -1,0 +1,23 @@
+
+	<!-- Begin of Chropleth Properties -->
+	<property id="selectedFeature" title="Selected Feature" type="String" visible = "false"/>
+	<!-- <property id="centerFeature" title="Center to Feature" type="String" /> -->
+	<property id="styleClasses" title="CSS Classes" type="String" visible = "false"/>
+	<property id="featureProperty" title="Feature Property" type="String" visible = "false"/>
+	<property id="measureMember" title="Measure to Colour (Blank will take whatever is in first column)" type="String" visible="false"/>
+	<property id="bubbleMember" title="Measure to use as Bubble (Blank hide bubble)" type="String" visible="false"/>
+	<property id="bubbleMin" type="int" title = "Bubble Min Radius" visible="false"/>
+	<property id="bubbleMax" type="int" title = "Bubble Max Radius" visible="false"/>
+	<property id="bubbleAlpha" type="int" title = "Bubble Alpha (0-100)" visible="false"/>
+	<property id="bubbleColor" type="String" title = "Bubble Colour" visible="false"/>
+	<property id="backgroundColor" title="Background Colour" type="String" visible="false"/>
+	<property id="floor" title="Minimum Scale Value" type="float" visible="false"/>
+	<property id="gradientLeft" title="Horizontal Scale Left" type="int" visible="false"/>
+	<property id="gradientRight" title="Horizontal Scale Right" type="int" visible="false"/>
+	<property id="gradientBottom" title="Horizontal Scale Bottom" type="int" visible="false"/>
+	<property id="gradientHeight" title="Horizontal Scale Height" type="int" visible="false"/>
+	<property id="colorScale" title="Color Scale" type="String" visible="false">
+		<possibleValue>quantile</possibleValue>
+		<possibleValue>quantize</possibleValue>
+	</property>
+	<!-- End of Chropleth Properties -->

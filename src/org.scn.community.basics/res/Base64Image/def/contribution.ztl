@@ -1,0 +1,14 @@
+class org.scn.community.basics.Base64Image extends org.scn.community.shared.Component {
+	/**
+	 * Sets Source URL Property
+	 */	
+	void setSrc( /* Source URL or Base-64 String */ String s){*
+		this.src = s;
+	*}
+	/**
+	 * Gets Source URL Property
+	 */	
+	String getSrc() {*
+		return this.src;
+	*}
+}

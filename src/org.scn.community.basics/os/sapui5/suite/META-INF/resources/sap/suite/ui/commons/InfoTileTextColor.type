@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>InfoTileTextColor</name>
+	<author></author>
+
+	<documentation>Enumeration of possible InfoTile text color settings.</documentation>
+	<baseType>sap.ui.core/string</baseType>
+	<enumeration>
+		<value name="Positive">
+			<documentation>Positive InfoTile text color.</documentation>
+		</value>
+		<value name="Critical">
+			<documentation>Critical InfoTile text color.</documentation>
+		</value>
+		<value name="Negative">
+			<documentation>Negative InfoTile text color.</documentation>
+		</value>
+	</enumeration>
+</simple-type>

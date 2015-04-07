@@ -1,0 +1,29 @@
+
+<component
+	id="EmbeddedFrame"
+	title="Embedded Frame"
+	handlerType="div"
+	icon="res/EmbeddedFrame/EmbeddedFrame.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/EmbeddedFrame/EmbeddedFrame.js</jsInclude>
+	
+	<property
+		id="url"
+		title="Content Url"
+		tooltip="Url to be embedded as content"
+		type="String" />
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="url"></defaultValue>
+	</initialization>
+
+</component>

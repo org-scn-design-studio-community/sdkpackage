@@ -1,0 +1,26 @@
+class org.scn.community.basics.ListSelector extends org.scn.community.shared.Component {
+	/**
+	Get last menu element title clicked.
+	<example><code>var itemSelected = LISTSELECTOR_1.getLabelClicked();</code></example>
+	<returns>Chart property as String type.</returns>
+	*/
+	String getLabelClicked() {*
+		return this.labelClicked;
+	*}
+	/**
+	Sets titles of your menu elements.
+	<example><code>LISTSELECTOR_1.setTitles("Google,Bing,Ask.com");</code></example>
+	<note>Seperate each entry by a comma.</note>
+	*/
+	void setTitles( /* Titles */ String titles){*
+		this.titles = titles;
+	*}
+	/**
+	Get list of menu element titles.
+	<example><code>var titles = LISTSELECTOR_1.Titles();</code></example>
+	<returns>Comma-seperated list of menu element titles</returns>
+	*/
+	String getTitles() {*
+		return this.titles;
+	*}
+}

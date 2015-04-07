@@ -1,0 +1,14 @@
+	
+	<!-- HexBin Properties -->
+	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
+	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
+	<property id="radius" type="int" title = "Hex Radius" visible="false"/>
+	<property id="tolerance" type="int" title = "Manual Tolerance" visible="false"/>
+	<property id="threshold" type="int" title = "Manual Threshold" visible="false"/>
+	<property id="thresholdMethod" type="String" title = "Threshold Method" visible="false">
+		<possibleValue>Max</possibleValue>
+		<possibleValue>Median</possibleValue>
+		<possibleValue>Mean</possibleValue>
+		<possibleValue>Manual</possibleValue>
+	</property>
+	<!-- End of HexBin Properties -->

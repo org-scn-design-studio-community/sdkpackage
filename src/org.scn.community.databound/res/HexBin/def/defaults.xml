@@ -1,0 +1,20 @@
+		<!-- HexBin Defaults -->
+		<defaultValue property="styleCSS">/*Default CSS*/
+__n__.hexagon {
+__n__  stroke: #303030;
+__n__  stroke-width: .75px;
+__n__  fill: none;
+__n__}
+__n__.hexagon:hover {
+__n__  stroke: #303030;
+__n__  stroke-width: 2px;
+__n__}
+		</defaultValue>
+		<defaultValue property="chartTitle">HexBin Chart</defaultValue>
+		<defaultValue property="radius">20</defaultValue>
+		<defaultValue property="tolerance">0</defaultValue>
+		<defaultValue property="thresholdMethod">Median</defaultValue>
+		<defaultValue property="threshold">20</defaultValue>
+		<defaultValue property="xAxisTickFormat">,n</defaultValue>
+		<defaultValue property="yAxisTickFormat">,n</defaultValue>
+		<!-- End of HexBin Defaults -->

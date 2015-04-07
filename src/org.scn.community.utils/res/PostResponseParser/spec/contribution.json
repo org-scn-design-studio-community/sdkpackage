@@ -1,0 +1,98 @@
+{
+	"DUrl" : {
+		"gen-type":"String",
+	},
+	
+	"DRequestMethod" : {
+		"gen-type":"choice",
+	},
+	"DRequestType" : {
+		"gen-type":"choice",
+	},
+	"DCrossDomain" : {
+		"gen-type":"boolean",
+	},
+
+	"DBasicAuthorisation" : {
+		"gen-type":"String",
+	},
+
+	"DExpectedResponseStatus" : {
+		"gen-type":"int",
+	},
+
+	"DExpectedContentType" : {
+		"gen-type":"choice",
+	},
+
+	"DContentType" : {
+		"gen-type":"String",
+	},
+
+	"DReturnParameters" : {
+		"gen-type":"shared.NameValue",
+        "gen-mode":"ztl",
+        "gen-function":"-get"
+	},
+
+	"DReturnResponse" : {
+		"gen-type":"String",
+        "gen-mode":"ztl",
+        "gen-function":"-get"
+   	},
+
+	"DReturnStatus" : {
+		"gen-type":"int",
+        "gen-mode":"ztl",
+        "gen-function":"-get"
+   	},
+
+	"DParameters":{
+      "gen-type":"SingleArray",
+
+      "parameter":{
+         "gen-type":"Array",
+         "gen-sequence":"key,value",
+         
+         "key": {
+         	"gen-desc": "Parameter Name",
+         	"gen-type": "String",
+         },
+         "value": {
+         	"gen-desc": "Parameter Value",
+         	"gen-type": "String",
+         },
+      },
+   },
+   
+   	"DHeaders":{
+      "gen-type":"SingleArray",
+
+      "header":{
+         "gen-type":"Array",
+         "gen-sequence":"key,value",
+         
+         "key": {
+         	"gen-desc": "Header Name",
+         	"gen-type": "String",
+         },
+         "value": {
+         	"gen-desc": "Header Value",
+         	"gen-type": "String",
+         },
+      },
+   },
+   
+   "DCleanAll" : {
+   	  "gen-type":"boolean",
+   	  "gen-mode":"ztl",
+   	  "gen-function":"-clean",
+   	  "gen-refProperty":"DParameters",
+   	  "gen-refDesc":"Parameters",
+   	  "gen-refValue":"[]",
+   },
+   
+   "DRawParameters" : {
+		"gen-type":"String",
+   },
+}

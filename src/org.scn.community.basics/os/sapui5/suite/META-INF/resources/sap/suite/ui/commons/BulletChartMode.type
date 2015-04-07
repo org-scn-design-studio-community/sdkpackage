@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>BulletChartMode</name>
+	<author></author>
+
+	<documentation>Enumeration of possible BulletChart display modes.</documentation>
+	<baseType>sap.ui.core/string</baseType>
+	<enumeration>
+		<value name="Actual">
+			<documentation>Displays the Actual value.</documentation>
+		</value>
+		<value name="Delta">
+			<documentation>Displays delta between the Actual and Threshold values.</documentation>
+		</value>
+	</enumeration>
+</simple-type>

@@ -1,0 +1,42 @@
+	/**
+	Returns the content of property %NAME% as loopable name/value array.
+	<example>
+	You want to loop at values:
+	<code>
+	var content = %COMPONENT_NAME%.get%PROPERTY_CAPITAL_CUT%AsNameValueArray();<br>
+	<br>
+	// a loop for all entries<br>
+	content.forEach(function(element, index) {<br>
+		LISTBOX_1.addItem(element.name, element.value);<br>
+	});
+	</code>
+	This LISTBOX_1 has now following values entries:<br>
+		<ul>
+		<li>key: k1; value: v1</li>
+		<li>key: k2; value: v2</li>
+		<li>key: k3; value: v3</li></ul>
+	</example>
+	*/
+	org.scn.community.shared.NameValueArray get%PROPERTY_CAPITAL_CUT%AsNameValueArray (
+			/**max members*/ optional int maxMembers) {*
+		var s = this.%PROPERTY_CAPITAL%;  
+		var a = []; 
+		if(s!="") a = JSON.parse(s);
+		
+		var tempA = [];
+		
+		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > a.length) {
+			maxMembers = a.length;
+		}
+		
+		for(var i=0;i<maxMembers;i++){
+			var itemDef = { 
+				"name": a[i].name, 
+				"value": a[i].value
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		return tempA;
+	*}

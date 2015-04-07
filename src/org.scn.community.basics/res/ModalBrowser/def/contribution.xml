@@ -1,0 +1,52 @@
+
+<component id="ModalBrowser"
+	tooltip="In-App Modal Browser Pop-Up"
+	title="Modal Browser"
+	icon="res/ModalBrowser/ModalBrowser.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics">
+	
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/ModalBrowser/ModalBrowser.js</jsInclude>
+  	<cssInclude>res/ModalBrowser/ModalBrowser.css</cssInclude>
+  	
+  	<property type="String" title="URL" id="url"/>
+  	<property type="String" title="Open Method" id="openMethod">
+  		<possibleValue>New Window</possibleValue>
+  		<possibleValue>Modal Browser Dialog</possibleValue>
+  	</property>
+  	
+  	<property type="boolean" title="Show Button" id="showButton"/>
+  	<property type="String" title="Button Icon" id="icon"/>
+  	<property type="String" title="Button Text" id="text"/>
+  	<!-- <property type="boolean" title="Button Visible" id="visible"/> -->
+  	<property id="buttonType" type="String" title="Button Type">
+  		<possibleValue>Default</possibleValue>
+  		<possibleValue>Transparent</possibleValue>
+  		<possibleValue>Accept</possibleValue>
+  		<possibleValue>Back</possibleValue>
+  		<possibleValue>Emphasized</possibleValue>
+  		<possibleValue>Reject</possibleValue>
+  		<possibleValue>Up</possibleValue>
+  	</property>
+  	<property type="String" title="Modal Browser Title" id="title"/>
+  	<property type="String" title="Modal Browser Icon" id="browserIcon"/>
+  	<property type="boolean" title="Show Modal Browser Title" id="showHeader"/>
+  	<property type="boolean" title="Show Modal Browser Close Button" id="showCloseButton"/>
+  	<property type="String" title="Modal Browser Height" id="browserHeight"/>
+  	<property type="String" title="Modal Browser Width" id="browserWidth"/>
+  	<property type="float" title="Click Trigger for BIAL" id="clickTrigger" visible="false"/>
+  	<initialization>
+  		<defaultValue property="icon">sap-icon://action</defaultValue>
+  		<defaultValue property="title">Browser Dialog Title</defaultValue>
+  		<defaultValue property="browserIcon">sap-icon://business-objects-explorer</defaultValue>
+  		<defaultValue property="text">Details...</defaultValue>
+  		<defaultValue property="showButton">true</defaultValue>
+  		<defaultValue property="showHeader">false</defaultValue>
+  		<defaultValue property="showCloseButton">true</defaultValue>
+  		<defaultValue property="openMethod">Modal Browser Dialog</defaultValue>
+  		<defaultValue property="buttonType">Default</defaultValue>
+  		<defaultValue property="browserWidth">80%</defaultValue>
+  		<defaultValue property="browserHeight">80%</defaultValue>
+  	</initialization>
+</component>

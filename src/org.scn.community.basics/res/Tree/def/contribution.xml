@@ -1,0 +1,81 @@
+
+<component
+	id="Tree"
+	title="Tree"
+	icon="res/Tree/Tree.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/Tree/Tree.js</jsInclude>
+	<cssInclude>res/Tree/Tree.css</cssInclude>
+
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="expandedKey"
+		type="String"
+		title="Technical proprty for Expanded Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="cleanAll"
+		type="boolean"
+		title="Technical proprty for Clean All Nodes"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="nodesContent"
+		type="String"
+		title="Technical property for list of nodes"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="defaultImage"
+		title="Url for Default Picture"
+		tooltip="Url for Default Picture which should be shown"
+		type="Url"
+		visible="true" />
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<property
+		id="onFirstExpand"
+		type="ScriptText"
+		title="Event for On First Expand"
+		group="Events" />
+
+	<property
+		id="roundtrip"
+		type="String"
+		title="Technical proprty for roundtrip"
+		group="Display"
+		visible="false" />
+
+	<initialization>
+		<defaultValue property="WIDTH">230</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="fallbackPicture">true</defaultValue>
+		<defaultValue property="selectedKey"></defaultValue>
+		<defaultValue property="expandedKey"></defaultValue>
+		<defaultValue property="nodesContent"></defaultValue>
+
+	</initialization>
+
+</component>

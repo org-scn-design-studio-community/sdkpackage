@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>JamContent</name>
+	<documentation>This control displays the jam content text, subheader, and numeric value in a tile.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" type="sap.suite.ui.commons/InfoTileSize" name="size" defaultValue='Auto'>
+			<documentation>Updates the size of the chart. If not set then the default size is applied based on the device tile.</documentation>
+		</property>
+		<property group="Misc" name="contentText" type="sap.ui.core/string">
+			<documentation>The content text.</documentation>
+		</property>
+		<property group="Misc" name="subheader" type="sap.ui.core/string">
+			<documentation>The subheader.</documentation>
+		</property>
+		<property group="Misc" name="value" type="sap.ui.core/string">
+			<documentation>The actual value.</documentation>
+		</property>
+		<property group="Misc" name="valueColor" type="sap.suite.ui.commons/InfoTileValueColor">
+			<documentation>The semantic color of the value.</documentation>
+		</property>
+		<property group="Misc" name="truncateValueTo" type="sap.ui.core/int" defaultValue="4">
+			<documentation>The number of characters to display for the value property.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the jam content.</documentation>
+		</event>
+	</events>
+	<aggregations>
+			<aggregation name="contentTextAgr" type="sap.m/Text" visibility="hidden" cardinality="0..1">
+			<documentation>The hidden aggregation for the content text.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

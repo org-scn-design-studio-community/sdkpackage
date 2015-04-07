@@ -29,3 +29,8 @@ set module=org.scn.community.prototypes
 cd ..\src\%module%\script\
 call build.cmd
 cd %current%
+
+set module=org.scn.community.geovis
+cd ..\src\%module%\script\
+call build.cmd
+cd %current%

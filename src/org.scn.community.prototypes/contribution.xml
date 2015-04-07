@@ -192,9 +192,311 @@
 		title="Scn Community Prototypes"/>
 
 <component
+	id="ApsTester"
+	title="Aps Tester"
+	tooltip="Application Property Sheet Tester"
+	icon="res/ApsTester/ApsTester.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.generic.PropertyPage.html"
+	group="ScnCommunityPrototypes"
+	databound="true"
+>
+
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ApsTester/ApsTesterLoader.js</jsInclude>
+
+	<property
+		id="comboboxExample"
+		type="String"
+		title="Simple Choice"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="colorExample"
+		type="String"
+		title="Simple Color"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultSet"
+		title="Data"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="checkboxExample"
+		type="boolean"
+		title="Ignore Totals"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="checkboxOnlyGetterExample"
+		type="boolean"
+		title="Ignore Totals"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="paletteExample"
+		type="String"
+		title="Color Palette"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="textExample"
+		type="String"
+		title="A saple text"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="spinnerExample"
+		type="int"
+		title="Some numbers"
+		group="Display"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+
+	</initialization>
+
+</component>
+
+<component
+	id="ApsTesterUI5"
+	title="Aps Tester UI5"
+	tooltip="Application Property Sheet Tester UI5"
+	icon="res/ApsTesterUI5/ApsTesterUI5.png"
+	handlerType="sapui5"
+	propertySheetPath="aps/org.scn.community.generic.PropertyPage.html"
+	group="ScnCommunityPrototypes"
+	databound="true"
+>
+
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ApsTesterUI5/ApsTesterUI5Loader.js</jsInclude>
+
+	<property
+		id="comboboxExample"
+		type="String"
+		title="Simple Choice"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="colorExample"
+		type="String"
+		title="Simple Color"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultSet"
+		title="Data"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="checkboxExample"
+		type="boolean"
+		title="Ignore Totals"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="checkboxOnlyGetterExample"
+		type="boolean"
+		title="Ignore Totals"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="paletteExample"
+		type="String"
+		title="Color Palette"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="textExample"
+		type="String"
+		title="A saple text"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="spinnerExample"
+		type="int"
+		title="Some numbers"
+		group="Display"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+
+	</initialization>
+
+</component>
+
+<component
+	id="ApplicationHeaderE"
+	title="(PROTOTYPE!) Application Header (with Event)"
+	handlerType="sapui5"
+	icon="res/ApplicationHeaderEventTrigger/ApplicationHeader.png"
+	group="ScnCommunityPrototypes"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/ApplicationHeaderEventTrigger/ApplicationHeader.js</jsInclude>
+
+	<property
+		id="displayLogoff"
+		title="Display Logoff"
+		tooltip="If set to true, the logoff area will be displayed at the right hand side of the application header."
+		type="boolean" />
+	<property
+		id="displayWelcome"
+		title="Display Welcome"
+		tooltip="By default, set to true and dislpays the welcome text."
+		type="boolean" />
+	<property
+		id="logoSrc"
+		title="Logo Source"
+		tooltip="Path (src) to the logo icon to be displayed in the application header."
+		type="Url" />
+	<property
+		id="logoText"
+		title="Logo Text"
+		tooltip="The text that will be displayed beside the logo in the application header. This property is optional."
+		type="String" />
+	<property
+		id="userName"
+		title="User Name"
+		tooltip="User name that will be displayed beside the welcome text."
+		type="String" />
+	<property
+		id="onLogoff"
+		title="On Logoff"
+		tooltip="Fires an event to log off the user from the application."
+		group="Events"
+		type="ScriptText" />
+
+	<property  
+	  id="onSetAppName"  
+	  title="Set Application Name"  
+	  type="ScriptText"  
+    visible="false"/>  
+  <property  
+	  id="appName"  
+	  title="Application Name"  
+	  type="String"  
+	  visible="false"/>  
+   
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">0</defaultValue>
+		<defaultValue property="WIDTH">auto</defaultValue>
+		<defaultValue property="HEIGHT">38</defaultValue>
+		<defaultValue property="displayWelcome">true</defaultValue>
+  	<defaultValue property="onSetAppName">this.private_setAppInfoName();</defaultValue>
+	</initialization>
+</component>
+<component
+	id="ApplicationHeaderO"
+	title="(PROTOTYPE!) Application Header (OnBeforeRender)"
+	handlerType="sapui5"
+	icon="res/ApplicationHeaderOnBeforeRender/ApplicationHeader.png"
+	group="ScnCommunityPrototypes"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/ApplicationHeaderOnBeforeRender/ApplicationHeader.js</jsInclude>
+
+	<property
+		id="displayLogoff"
+		title="Display Logoff"
+		tooltip="If set to true, the logoff area will be displayed at the right hand side of the application header."
+		type="boolean" />
+	<property
+		id="displayWelcome"
+		title="Display Welcome"
+		tooltip="By default, set to true and dislpays the welcome text."
+		type="boolean" />
+	<property
+		id="logoSrc"
+		title="Logo Source"
+		tooltip="Path (src) to the logo icon to be displayed in the application header."
+		type="Url" />
+	<property
+		id="logoText"
+		title="Logo Text"
+		tooltip="The text that will be displayed beside the logo in the application header. This property is optional."
+		type="String" />
+	<property
+		id="userName"
+		title="User Name"
+		tooltip="User name that will be displayed beside the welcome text."
+		type="String" />
+	<property
+		id="onLogoff"
+		title="On Logoff"
+		tooltip="Fires an event to log off the user from the application."
+		group="Events"
+		type="ScriptText" />
+		
+	<property  
+	  id="onBeforeRender"  
+	  title="Set Application Name"  
+	  type="ScriptText"  
+    visible="false"/>  
+ 
+  <property  
+	  id="appName"  
+	  title="Application Name"  
+	  type="String"  
+	  visible="false"/>  
+	    
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">0</defaultValue>
+		<defaultValue property="WIDTH">auto</defaultValue>
+		<defaultValue property="HEIGHT">38</defaultValue>
+		<defaultValue property="displayWelcome">true</defaultValue>
+  	<defaultValue property="onBeforeRender">this.private_beforeRender();</defaultValue>
+	</initialization>
+</component>
+<component
 	id="ProgressSet" title="Progress Bar Set" handlerType="div" icon="res/ProgressSet/ProgressSet.png" group="ScnCommunityPrototypes"
 	propertySheetPath="res/ProgressSet/aps/ProgressSetPropertyPage.html">
 	<stdInclude kind="d3"/>
+	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ProgressSet/ProgressSet.js</jsInclude>
   	<cssInclude>res/ProgressSet/ProgressSet.css</cssInclude>
   	<property type="String" title="Bar Config" id="barConfig" visible="false"/>
@@ -234,6 +536,30 @@
   		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
   	</initialization>
+</component>
+<component
+	id="SapMList"
+	title="(PROTOTYPE!) Sap M List"
+	icon="res/SapMList/SapMList.png"
+	handlerType="sapui5"
+	group="ScnCommunityPrototypes"
+>
+
+	<jsInclude>os/iscroll-4/src/iscroll.js</jsInclude>
+	<jsInclude>os/sapui5/load.sap.m.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/SapMList/SapMList.js</jsInclude>
+	<cssInclude>res/SapMList/SapMList.css</cssInclude>
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">600</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+	
+	</initialization>	
 </component><component id="RapidPrototype"
 		title="Rapid Prototyping"
 		tooltip="Not recommended for production use!"
@@ -242,6 +568,7 @@
 		group="ScnCommunityPrototypes"
 		propertySheetPath="res/RapidPrototype/aps/RapidPrototypePropertyPage.html">
 		
+		<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/RapidPrototype/RapidPrototype.js</jsInclude>
 
 		<property id="HTML" type="String" title="HTML" group="Display" />

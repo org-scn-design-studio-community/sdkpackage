@@ -1,0 +1,48 @@
+
+<!-- List Selector -->
+	<component id="ListSelector" title="List Selector" 
+		handlerType="div"
+		icon="res/ListSelector/ListSelector.png"
+		propertySheetPath="res/ListSelector/aps/ListSelectorPropertyPage.html"
+		group="ScnCommunityBasics">
+	  	<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/ListSelector/ListSelector.js</jsInclude>
+	  	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
+	  	<property id="titles" type="String" title="Titles"/>
+	  	<property id="spriteIDs" type="String" title="Sprite IDs (Optional)"/>
+	  	<property id="visibilities" type="String" title="Visibilities (Optional)"/>
+	  	<property id="fixedWidth" type="String" title="Fixed Width (-1 for auto)"/>
+	  	<property id="spriteSheet" type="Url" title="Icon Sprite Sheet (Optional)"/>
+	  	<property id="labelClicked" type="String" title="Selected Label"/>
+	  	<property id="onclick" type="ScriptText" title="On Click..." group="Events"/>
+	  	<property id="labelPlacement" type="String" title="Label Placement (Relative to Icon)">
+	  		<possibleValue>After</possibleValue>
+	  		<possibleValue>Before</possibleValue>
+	  	</property>
+	  	<property id="labelOrientation" type="String" title="Label Orientation">
+	  		<possibleValue>horizontal</possibleValue>
+	  		<possibleValue>vertical</possibleValue>
+	  	</property>
+	  	<property id="textAlign" type="String" title="Text Alignment">
+	  		<possibleValue>left</possibleValue>
+	  		<possibleValue>center</possibleValue>
+	  		<possibleValue>right</possibleValue>
+	  	</property>
+	  	<property id="verticalAlign" type="String" title="Vertical Alignment">
+	  		<possibleValue>top</possibleValue>
+	  		<possibleValue>middle</possibleValue>
+	  		<possibleValue>bottom</possibleValue>
+	  	</property>
+	  	
+	  	<property id="spriteSheetPerRow" type="int" title="Icons Sprites Per Row"/>
+	  	<property id="iconWidth" type="int" title="Icon Width (px)"/>
+	  	<property id="iconHeight" type="int" title="Icon Height (px)"/>
+	  	<initialization>
+	  		<defaultValue property="titles">Facebook,YouTube,Twitter,SAP</defaultValue>
+	  		<defaultValue property="labelPlacement">After</defaultValue>
+	  		<defaultValue property="labelOrientation">vertical</defaultValue>
+	  		<defaultValue property="verticalAlign">top</defaultValue>
+	  		<defaultValue property="textAlign">center</defaultValue>
+	  		<defaultValue property="fixedWidth">-1</defaultValue>
+	  	</initialization>
+	  </component>

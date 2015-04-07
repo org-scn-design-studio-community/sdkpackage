@@ -1,0 +1,88 @@
+
+/**
+ * Class for D3Hier
+ */
+class org.scn.community.databound.jpd3hier extends org.scn.community.shared.DataComponent {
+
+	/* Returns the Key of the currently selected Tree Element. */
+	String getSelectedNodeKey() {*
+		return this.selectedNode;
+	*}
+	
+	/* Returns the Dimension Key containing the hierarchy of the datasource. */
+	String getHierarchyDimensionKey() {*
+		return this.dimHierarchy;
+	*}
+	
+	/* Returns the maximum Size of the Bubbles in Pixel */
+	String getBubbleSizeMaxSize() {*
+		return this.BubbleSizeMaxSize;
+	*}
+	
+	/* Sets the maximum Size of the Bubbles in Pixel */
+	void setBubbleSizeMaxSize(/* New maximum Bubble size in Pixel */ int newBubbleSize) {*
+		this.BubbleSizeMaxSize = newBubbleSize;
+	*}
+	
+	/* Sets the Bubble Size Keyfigure id during runtime */
+	void setkfBubbleSize(/* New id of a keyfigure column */ String newkfBubbleSizeId) {*
+		this.kfBubbleSize = newkfBubbleSizeId;
+	*}
+	
+	/* Gets the Bubble Size Keyfigure id during runtime */
+	void getkfBubbleSize() {*
+		return this.kfBubbleSize;
+	*}
+	
+	/* Sets the Bubble Alerter Keyfigure id during runtime */
+	void setkfBubbleAlerter(/* New id of a keyfigure column */ String newkfBubbleAlerterId) {*
+		this.kfColBub = newkfBubbleAlerterId;
+	*}
+	
+	/* Gets the Bubble Alerter Keyfigure id during runtime */
+	void getkfBubbleAlerter() {*
+		return this.kfColBub;
+	*}
+	
+	/* Sets the Bubble Alerter Color Value for Green during runtime */
+	void setAlerterColorGreenVal(/* New value for the Bubble color Green*/ int newAlerterColorGreenVal) {*
+		this.AlerterColorGreenVal = newAlerterColorGreenVal;
+	*}
+	
+	/* Sets the Bubble Alerter Color Value for Yellow during runtime */
+	void setAlerterColorYellowVal(/* New value for the Bubble color Yellow*/ int newAlerterColorYellowVal) {*
+		this.AlerterColorYellowVal = newAlerterColorYellowVal;
+	*}
+	
+	/* Returns the x-translation of the whole tree in Pixel */
+	String getBubbleRootXTranslation() {*
+		return this.BubbleRootXTranslation;
+	*}
+	/* Sets the x-translation of the whole tree in Pixel */
+	void setBubbleRootXTranslation(/* New x translation in Pixel -> positive = right, negative = left*/ int newXTranslation) {*
+		this.BubbleRootXTranslation = newXTranslation;
+	*}
+	
+	/* Expand the hierarchy (used for DS 1.4 private functionality) - it seems that the private call does not work */
+	@Visibility(private) 
+	void expandHierarchyNode() {*
+	    this.getDataSource().expandNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+	/* Collapse the hierarchy (used for DS 1.4 private functionality) - it seems that the private call does not work */
+	@Visibility(private) 
+	void collapseHierarchyNode() {*
+		this.getDataSource().collapseNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+	/* Expand the hierarchy */
+	void expandHierarchyNodes() {*
+	    this.getDataSource().expandNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+	/* Collapse the hierarchy */
+	void collapseHierarchyNodes() {*
+		this.getDataSource().collapseNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+}

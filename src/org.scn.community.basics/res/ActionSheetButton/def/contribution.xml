@@ -1,0 +1,54 @@
+
+<component id="ActionSheetButton" 
+		title="Action Sheet Button" 
+		tooltip="Fiori-Inspired Action Sheet Button menu"
+		icon="res/ActionSheetButton/ActionSheetButton.png" 
+		handlerType="sapui5" 
+		propertySheetPath="res/ActionSheetButton/aps/ActionSheetButtonPropertyPage.html"
+		group="ScnCommunityBasics">
+	  	
+		<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/ActionSheetButton/ActionSheetButton.js</jsInclude>
+	  	
+	  	<property id="text" type="String" title="Title"/>
+	  	<property id="items" type="String" title="Items" visible="false"/>
+	  	<!-- 
+	  	Switch to ActionSheet vs. PopOver makes these obsolete
+	  	
+	  	<property type="boolean" title="Show Title" id="showHeader"/>
+	  	<property type="String" title="Popover Width" id="popoverWidth"/>
+	  	<property type="String" title="Popover Height" id="popoverHeight"/>
+	  	-->
+	  	<property id="icon" type="String" title="Icon"/>
+	  	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
+	  	<property type="String" title="Selected Key" id="selectedKey" visible="false"/>
+	  	<property type="ScriptText" title="On Select" id="onPopoverSelect"/>
+	  	<property id="buttonType" type="String" title="Type">
+	  		<possibleValue>Default</possibleValue>
+	  		<possibleValue>Transparent</possibleValue>
+	  		<possibleValue>Accept</possibleValue>
+	  		<possibleValue>Back</possibleValue>
+	  		<possibleValue>Emphasized</possibleValue>
+	  		<possibleValue>Reject</possibleValue>
+	  		<possibleValue>Up</possibleValue>
+	  	</property>
+	  	<property id="placement" type="String" title="Placement">
+	  		<possibleValue>Auto</possibleValue>
+	  		<possibleValue>Horizontal</possibleValue>
+	  		<possibleValue>Vertical</possibleValue>
+	  		<possibleValue>Left</possibleValue>
+	  		<possibleValue>Right</possibleValue>
+	  		<possibleValue>Top</possibleValue>
+			<possibleValue>Bottom</possibleValue>
+	  	</property>
+	  	<initialization>
+	  		<defaultValue property="WIDTH">48</defaultValue>
+			<defaultValue property="HEIGHT">48</defaultValue>
+	  		<defaultValue property="showTitle">true</defaultValue>
+	  		<defaultValue property="icon">sap-icon://menu2</defaultValue>
+	  		<defaultValue property="buttonType">Default</defaultValue>
+	  		<defaultValue property="popoverWidth">auto</defaultValue>
+	  		<defaultValue property="popoverHeight">auto</defaultValue>
+	  		<defaultValue property="placement">Auto</defaultValue>
+	  	</initialization>
+	</component>

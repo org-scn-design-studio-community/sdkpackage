@@ -194,31 +194,33 @@
 <component
 	id="Accordion"
 	title="Accordion"
-	icon="res/ac/Accordion.png"
+	icon="res/Accordion/Accordion.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
->
-	<jsInclude>res/ac/Accordion.js</jsInclude>
-	<cssInclude>res/ac/Accordion.css</cssInclude>
+	propertySheetPath="res/Accordion/aps/AccordionPropertyPage.html">
+	
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/Accordion/Accordion.js</jsInclude>
+	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 
 	<property
 		id="selectedKey"
 		type="String"
-		title="Technical proprty for Selected Key"
+		title="Technical property for Selected Key"
 		group="Display"
 		visible="false" />
 
 	<property
 		id="expandedKey"
 		type="String"
-		title="Technical proprty for Expanded Key"
+		title="Technical property for Expanded Key"
 		group="Display"
 		visible="false" />
 
 	<property
 		id="cleanAll"
 		type="boolean"
-		title="Technical proprty for Clean All Nodes"
+		title="Technical property for Clean All Nodes"
 		group="Display"
 		visible="false" />
 
@@ -293,14 +295,69 @@
 
 </component>
 
+<component id="ActionSheetButton" 
+		title="Action Sheet Button" 
+		tooltip="Fiori-Inspired Action Sheet Button menu"
+		icon="res/ActionSheetButton/ActionSheetButton.png" 
+		handlerType="sapui5" 
+		propertySheetPath="res/ActionSheetButton/aps/ActionSheetButtonPropertyPage.html"
+		group="ScnCommunityBasics">
+	  	
+		<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/ActionSheetButton/ActionSheetButton.js</jsInclude>
+	  	
+	  	<property id="text" type="String" title="Title"/>
+	  	<property id="items" type="String" title="Items" visible="false"/>
+	  	<!-- 
+	  	Switch to ActionSheet vs. PopOver makes these obsolete
+	  	
+	  	<property type="boolean" title="Show Title" id="showHeader"/>
+	  	<property type="String" title="Popover Width" id="popoverWidth"/>
+	  	<property type="String" title="Popover Height" id="popoverHeight"/>
+	  	-->
+	  	<property id="icon" type="String" title="Icon"/>
+	  	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
+	  	<property type="String" title="Selected Key" id="selectedKey" visible="false"/>
+	  	<property type="ScriptText" title="On Select" id="onPopoverSelect"/>
+	  	<property id="buttonType" type="String" title="Type">
+	  		<possibleValue>Default</possibleValue>
+	  		<possibleValue>Transparent</possibleValue>
+	  		<possibleValue>Accept</possibleValue>
+	  		<possibleValue>Back</possibleValue>
+	  		<possibleValue>Emphasized</possibleValue>
+	  		<possibleValue>Reject</possibleValue>
+	  		<possibleValue>Up</possibleValue>
+	  	</property>
+	  	<property id="placement" type="String" title="Placement">
+	  		<possibleValue>Auto</possibleValue>
+	  		<possibleValue>Horizontal</possibleValue>
+	  		<possibleValue>Vertical</possibleValue>
+	  		<possibleValue>Left</possibleValue>
+	  		<possibleValue>Right</possibleValue>
+	  		<possibleValue>Top</possibleValue>
+			<possibleValue>Bottom</possibleValue>
+	  	</property>
+	  	<initialization>
+	  		<defaultValue property="WIDTH">48</defaultValue>
+			<defaultValue property="HEIGHT">48</defaultValue>
+	  		<defaultValue property="showTitle">true</defaultValue>
+	  		<defaultValue property="icon">sap-icon://menu2</defaultValue>
+	  		<defaultValue property="buttonType">Default</defaultValue>
+	  		<defaultValue property="popoverWidth">auto</defaultValue>
+	  		<defaultValue property="popoverHeight">auto</defaultValue>
+	  		<defaultValue property="placement">Auto</defaultValue>
+	  	</initialization>
+	</component>
 <component
 	id="ApplicationHeader"
 	title="Application Header"
 	handlerType="sapui5"
-	icon="res/ah/ApplicationHeader.png"
+	icon="res/ApplicationHeader/ApplicationHeader.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/ah/ApplicationHeader.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/ApplicationHeader/ApplicationHeader.js</jsInclude>
+
 	<property
 		id="displayLogoff"
 		title="Display Logoff"
@@ -342,16 +399,36 @@
 		<defaultValue property="displayWelcome">true</defaultValue>
 	</initialization>
 </component>
+<component id="Base64Image"
+	title="Base64 Image Encoder"
+	icon="res/Base64Image/Base64Image.png"
+	tooltip="Handy Base-64 encoder property sheet (requires IE10+ for design-time)"
+	handlerType="sapui5"
+	propertySheetPath="res/Base64Image/aps/Base64ImagePropertyPage.html"
+	group="ScnCommunityBasics">
+	
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/Base64Image/Base64Image.js</jsInclude>
+	
+	<property type="String" title="Image Source URI" id="src" />
+	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>			
+	<initialization>
+		<defaultValue property="HEIGHT">auto</defaultValue>
+		<defaultValue property="WIDTH">auto</defaultValue>
+		<defaultValue property="src">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAD6CAMAAAAss4rBAAAAOVBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMz////29vbS0tLr6+vPz8/8/PzY2Nje3t7x8fHk5OTyC+oUAAAACHRSTlMA8MDbbhc9lRRJIjQAAAacSURBVHja7NdLDsIwDEXRxPlCxf63i8gAUZRQvw6Y9J4lXNmpGz6V2sxSxxCt1bBSreOL5TBTSDWVJtOVOxZaCXutY8n2tVjBn1JhB0/Vqh0H7B2Ly+pYYwkFmcHyS4UXyy9zNvjF12jFDpfMFvolvoWCyl+hX+Z9d3s0riy/RCy/yOUgIBaxBmIJiCUgloBYAmIJiCUgloBYgr/G2u4XtJ2NdbsgYhFrIJaAWAJiCYglIJaAWAJiCYglIJaAWAJiCYglIJaAWAJiCYglINaTW3tZchSGoTC8PZJlyfb7P+xkprqo9ORi6ELhuL99Nn9AxpgDVo7laqP9ZV1lSZ+K5Ra4U0aX9XwmljY8KOaymIRY81RbLlnLB2INvFTWGl7psTTwzpCFZMfSgvearCM5llbMtHXmfG4srZiLZWqlxuoV+E21MmNpxT4hn6DUsQJ3Ll8Te3XiWAP7dcnmBY03luKA4pKsAVDaWIEjmuQy3ARrLMMxKnm2tcZIYxV8oVgRA/8Up4xlANGlNfBlUMYK3LBMrY6NEsZSHOeSxAs2QRhr4DiTJA13Ol+sghuSEW+4V+hiKUBzH2rFN4MtlmFz+Z4n8F11slgNPzEkwcD/GlmsApAMLcWjzhULP1LldF7wKIQplgIkE77hGfsNsVRO1vFUdaJYHaBYDr3iuUYUy0hiBV7R9WOZnMrwUqwfq8uZtOI1o4nFMbMCbxRniUWxGg68NVaP5XKejgkliUXwBO8FE8ES6/q9YcNUJ4l1+VsHw1whiWW49jFLK3YYHLGuflMa2KM6RayL38EP7NM4YmWe7kQ/7ZMUpYiVeG44UHX21LBXUMTKO5Hu071Kw35GEasn7XW0YlLLcEBxhlhSUi4sL7P7xyuOGBSxesqF1aZtA8coQyyJhH/Ypj8wHBQUsbRiv3L8ENBOWoU7Q6w/5N3bjtswDEXR12NKJCX9/8d2kAqFgzoXxxyJjPb7ANOF9pRx2smWrf8wSHr1q5SE0yUXWFsx/htccReTyS2M5gJLktW3eyyRxORxNosHrHe1yqePPlUOrobzFRdYGyWz75X45ZcqPqy6wHpHq524Rp9+ccanqQ+sTQqexvnaY+J88lQ5LvvA2rbMeJzS1cfEdespPo/FCdZGeuq31clbkzt3w5WKF6xtq4dc3MTgfa2uVXEtcoO1bVQY92m2eqSepHNeSR1h/UStJNxiLVkMH6lr3/9LZVdYnYzE/I14lIzLJfGHdT5iDKl9AZYoBkXxsQpGpeGxMsZVg2MRBpZiY0nCyFpoLMXQWAJjNQyuxMWqGF6NikWM4WlQLFFMKMfEKpgRS0SsjDm1gFiEWVE4LEmYlYbDUsyrBsNqmFiKhVUxtRYJixhTYwmEpZhciYNVML0aBStjfhoEixgOyiGwJMFDLBGwpo97rwTAanASk3usCjepdywf497LzrG8DNatJK6xHFyj+5pnLA/X6F00CYtarMG6pZOwFDnGNXpXnYKVAeRA495LM7CE8VMOcY3e1SZgFdzKIa7RfSzDsQi9Gmfce2U4lqLHNdBg/a0Oxsr4F1OEa3SfjsUSxl4rwjW6Lw/FKtjHFGew+sYPxCLclyjANbqvjME63u4kYQbrFo/DysD/Wv6v0SlYwjjScn+NTsEqLz5XVFyP+1gswnEq7q/R8ViKh1oxBmsgVsbD1P01Og7r9SAV79coeuzhpxwV79foUKyK58WwMsEK9i4gfGOFWG8nWAHOTT9Y3l8fe8Ly/5rPEdaXrLsR1hrrboS1xrr/xD4/8MNn7PTjr1xmgbXGuhthhftHHj6xvmndjbDWWHcjrDXW/bexgjymcoH1XetuhLXGuhthrbHuRlhrrLsR1hrrboS1xrobYa2x7kZYX/8C2hJrjXU3wlpj3Y2w1lh3IyxHP0vtrXxhfeW6G2Gtse5GWGusuxHWGutuhLXGuhthrbHuRlhrrLsRVqT/2PWnnXtLYRCIwSj8d+6Udv/b7cWHomhNwNLBOd8SDkn0QXzpJtZ5r/tBsca47gfFGuO6HxTrlB+u/SrWGNf96FjX28l1+f+s/hGLWG/EciCWA7EciOVALAdiOfQT6zqgnViYIRax9hDLgVgOxHIglgOxHIjlQCwHYv2TYoPRRaHBKKo2GFWlBqOk0mCUxYW3ChJ7aJUkZd60TKKeeB6aB4vR8gwWV8umaMJbvHEJWUSToI9Cra9iFrUcrahlE7IWMld+Q9WKxHCtiEWrciXXQkxZm0oNrOPkHkItmnkABXeOClysSuoAAAAASUVORK5CYII=</defaultValue>
+	</initialization>
+</component>
 <component
 	id="BasicBusinessCard"
 	title="Basic Business Card"
-	icon="res/bbc/BasicBusinessCard.png"
+	icon="res/BasicBusinessCard/BasicBusinessCard.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
-	<jsInclude>res/bbc/BasicBusinessCard.js</jsInclude>
-	<cssInclude>res/bbc/BasicBusinessCard.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/BasicBusinessCard/BasicBusinessCard.js</jsInclude>
+	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
 
 	<property
 		id="image"
@@ -401,14 +478,147 @@
 </component>
 
 <component
-	id="CheckBoxGroup"
-	title="Check Box Group"
-	icon="res/cbg/CheckBoxGroup.png"
+	id="Calendar"
+	title="Calendar"
+	icon="res/Calendar/Calendar.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/cbg/CheckBoxGroup.js</jsInclude>
-	<cssInclude>res/cbg/CheckBoxGroup.css</cssInclude>
+
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>os/sapui5/load.sap.m.js</jsInclude>
+	<jsInclude>os/date/DateFormat.js</jsInclude>
+	<jsInclude>res/Calendar/Calendar.js</jsInclude>
+	<cssInclude>res/Calendar/Calendar.css</cssInclude>
+
+	<property
+		id="DCurrentValue"
+		type="String"
+		title="Current Date Value YYYYMMDD"
+		tooltip="Current Date Value YYYYMMDD"
+		group="Display"
+		visible="true" />
+	<property
+		id="DValue"
+		type="String"
+		title="Date Single Value YYYYMMDD"
+		tooltip="Date Single Value YYYYMMDD"
+		group="Display"
+		visible="true" />
+	<property
+		id="DValueF"
+		type="String"
+		title="Date Value Range From YYYYMMDD"
+		tooltip="Date Value Range From YYYYMMDD"
+		group="Display"
+		visible="true" />
+	<property
+		id="DValueT"
+		type="String"
+		title="Date Value Range To YYYYMMDD"
+		tooltip="Date Value Range To YYYYMMDD"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="firstDayOffset"
+		type="int"
+		title="First Day Offset (0 == Sunday)"
+		tooltip="First Day Offset (0 == Sunday, 1 == Monday)"
+		group="Display"
+		visible="true" />
+	<property
+		id="singleRow"
+		type="boolean"
+		title="Single Row"
+		tooltip="Single Row"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="monthsToDisplay"
+		type="int"
+		title="Months To Display"
+		tooltip="Months  ToDisplay"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="weeksPerRow"
+		type="int"
+		title="Weeks Per Row"
+		tooltip="Weeks Per Row"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="monthsPerRow"
+		type="int"
+		title="Months Per Row"
+		tooltip="Months Per Row"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DSelectionType"
+		type="String"
+		title="Selection Type"
+		tooltip="Selection Type"
+		group="Display"
+		visible="true">
+		<possibleValue>Single Selection</possibleValue>
+		<possibleValue>Range Selection</possibleValue>
+	</property>
+
+	<property
+		id="onCurrentChanged"
+		type="ScriptText"
+		title="Event for On Current Value Changed"
+		group="Events" />
+
+	<property
+		id="onSingleChanged"
+		type="ScriptText"
+		title="Event for On Value Change with Single Date"
+		group="Events" />
+
+	<property
+		id="onRangeChanged"
+		type="ScriptText"
+		title="Event for On Value Change with Date Range"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="DCurrentValue">TODAY</defaultValue>
+		<defaultValue property="DValue">TODAY</defaultValue>
+		<defaultValue property="DValueF">TODAY</defaultValue>
+		<defaultValue property="DValueT">TODAY</defaultValue>
+	
+		<defaultValue property="firstDayOffset">1</defaultValue>
+		<defaultValue property="singleRow">false</defaultValue>
+		<defaultValue property="monthsToDisplay">1</defaultValue>
+		<defaultValue property="weeksPerRow">1</defaultValue>
+		<defaultValue property="monthsPerRow">1</defaultValue>
+	
+		<defaultValue property="DSelectionType">Single Selection</defaultValue>
+	</initialization>	
+</component>
+<component
+	id="CheckBoxGroup"
+	title="Check Box Group"
+	icon="res/CheckBoxGroup/CheckBoxGroup.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/CheckBoxGroup/CheckBoxGroup.js</jsInclude>
+	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 
 	<property
 		id="fallbackPicture"
@@ -468,15 +678,24 @@
 	id="ColorPicker"
 	title="Color Picker"
 	handlerType="sapui5"
-	icon="res/cp/ColorPicker.png"
+	icon="res/ColorPicker/ColorPicker.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/cp/ColorPicker.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/ColorPicker/ColorPicker.js</jsInclude>
+
 	<property
 		id="colorString"
 		title="Color"
 		type="Color"
 		tooltip="This is the import-parameter of the ColorPicker. As input-parameter, it can be a Hexadecimal string (#FFFFFF), a RGB-string rgb(255,255,255), a HSV-string hsv(360,100,100), or a CSS-colorname 'red'. As output-parameter it is a RGB-string containing the current color."
+	></property>
+	<property
+		id="colorStringHex"
+		title="Hex Color"
+		type="String"
+		visible="false"
+		tooltip="This is an export-parameter of the ColorPicker. It is a Hexadecimal string (#FFFFFF) containing the current color."
 	></property>
 	<property
 		id="onColorChange"
@@ -489,16 +708,280 @@
 	</initialization>
 </component>
 <component
+	id="DateRangeScroller"
+	title="Date Range Scroller"
+	handlerType="sapui5"
+	icon="res/DateRangeScroller/DateRangeScroller.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>os/sapui5/suite/mapping.js</jsInclude>
+	<jsInclude>os/date/DateFormat.js</jsInclude>
+	<jsInclude>res/DateRangeScroller/DateRangeScroller.js</jsInclude>
+	
+	<property
+		id="DDate"
+		title="Date (yyyymmdd)"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+
+  <property
+		id="DSpecialDuration"
+		title="Duration of Custom Range (Custom*)"
+		type="int"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="DSpecialDay"
+		title="Day of Week to Start (CustomWeek)"
+		tooltip="Week Day, 0 - Sunday to 6 - Saturday"
+		type="int"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="DStartDate"
+		title="Start Date (yyyymmdd)"
+		type="String"
+		group="Display" 
+		visible="false"
+	>
+	</property>
+
+	<property
+		id="DEndDate"
+		title="Date (yyyymmdd)"
+		type="String"
+		group="Display" 
+		visible="false"
+	>
+	</property>
+
+	<property
+		id="DViewType"
+		title="Range View Type"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+		<possibleValue>Day</possibleValue>
+		<possibleValue>Week</possibleValue>
+		<possibleValue>Month</possibleValue>
+		<possibleValue>Year</possibleValue>
+		<possibleValue>CustomWeek</possibleValue>
+		<possibleValue>CustomDuration</possibleValue>
+	</property>
+
+	<property
+		id="DLangFormat"
+		title="Language Dependent Format"
+		type="boolean"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+
+	<property
+		id="DLangPattern"
+		title="Custom Format Pattern"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="DLangStyle"
+		title="Custom Format Style"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+	  <possibleValue>short</possibleValue>
+		<possibleValue>medium</possibleValue>
+		<possibleValue>long</possibleValue>
+	</property>
+
+  <property
+		id="DLangRelative"
+		title="Custom Format Relative"
+		type="boolean"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="editable"
+		title="Editable"
+		type="boolean"
+		group="Display" 
+		visible="false"
+	>
+	</property>
+	
+	<property
+		id="onChange"
+		title="On Change"
+		type="ScriptText"
+		group="Events" 
+		visible="true"
+	>
+	</property>
+	
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">30</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
+		<defaultValue property="DViewType">Week</defaultValue>
+		<defaultValue property="DSpecialDay">0</defaultValue>
+		<defaultValue property="DSpecialDuration">14</defaultValue>
+		<defaultValue property="DLangFormat">false</defaultValue>
+		<defaultValue property="DLangStyle">short</defaultValue>
+		<defaultValue property="DLangRelative">false</defaultValue>
+	</initialization>
+</component>
+<component
+	id="DateRangeSlider"
+	title="Date Range Slider"
+	handlerType="sapui5"
+	icon="res/DateRangeSlider/DateRangeSlider.png"
+	group="ScnCommunityBasics"
+>
+	
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>os/sapui5/suite/mapping.js</jsInclude>
+	<jsInclude>os/date/DateFormat.js</jsInclude>
+	<jsInclude>res/DateRangeSlider/DateRangeSlider.js</jsInclude>
+	
+	<property
+		id="DMin"
+		title="Minimum Date Value (yyyymmdd)"
+		type="String" />
+	<property
+		id="DMax"
+		title="Maximum Date Value (yyyymmdd)"
+		type="String" />
+	<property
+		id="DValue"
+		title="First Date Value (yyyymmdd)"
+		type="String" />
+	<property
+		id="DValue2"
+		title="Second Date Value (yyyymmdd)"
+		type="String" />
+	<property
+		id="totalUnits"
+		title="Total Units"
+		type="int" />
+	<property
+		id="stepLabels"
+		title="Step Labels"
+		type="boolean" />
+	<property
+		id="vertical"
+		title="Change to Vertical Orientation"
+		type="boolean" />
+	<property
+		id="smallStepWidth"
+		title="Small Step Width"
+		type="float" />
+	<property
+		id="showBubbles"
+		title="Show Bubbles"
+		type="boolean" />
+	<property
+		id="DLangFormat"
+		title="Language Dependent Format"
+		type="boolean"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+
+	<property
+		id="DLangPattern"
+		title="Custom Format Pattern"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="DLangStyle"
+		title="Custom Format Style"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+	  <possibleValue>short</possibleValue>
+		<possibleValue>medium</possibleValue>
+		<possibleValue>long</possibleValue>
+	</property>
+
+  <property
+		id="DLangRelative"
+		title="Custom Format Relative"
+		type="boolean"
+		group="Display" 
+		visible="true"
+	>
+	</property>
+	
+	<property
+		id="DGranulatiry"
+		title="Granularity"
+		type="String"
+		group="Display" 
+		visible="true"
+	>
+		<possibleValue>Day</possibleValue>
+		<possibleValue>Month</possibleValue>
+	</property>
+
+	<property
+		id="onChange"
+		title="On Change"
+		type="ScriptText"
+		group="Events" />
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">30</defaultValue>
+		<defaultValue property="Dmin"></defaultValue>
+		<defaultValue property="Dmax"></defaultValue>
+		<defaultValue property="Dvalue"></defaultValue>
+		<defaultValue property="Dvalue2"></defaultValue>
+		<defaultValue property="totalUnits">0</defaultValue>
+		<defaultValue property="vertical">false</defaultValue>
+		<defaultValue property="smallStepWidth">1</defaultValue>
+		<defaultValue property="showBubbles">true</defaultValue>
+		<defaultValue property="DLangFormat">false</defaultValue>
+		<defaultValue property="DLangStyle">short</defaultValue>
+		<defaultValue property="DLangRelative">false</defaultValue>
+		<defaultValue property="DGranulatiry">Day</defaultValue>
+	</initialization>
+</component>
+<component
 	id="DragDropArea"
 	title="Drag Drop Area"
-	icon="res/dda/DragDropArea.png"
+	icon="res/DragDropArea/DragDropArea.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
-	<jsInclude>res/dda/jquery.ndd.js</jsInclude>
-	<jsInclude>res/dda/DragDropArea.js</jsInclude>
-	<cssInclude>res/dda/DragDropArea.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/DragDropArea/jquery.ndd.js</jsInclude>
+	<jsInclude>res/DragDropArea/DragDropArea.js</jsInclude>
+	<cssInclude>res/DragDropArea/DragDropArea.css</cssInclude>
 
 	<property
 		id="defaultImage"
@@ -598,7 +1081,7 @@
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="defaultImage"></defaultValue>
-		<defaultValue property="elements"></defaultValue>
+		<defaultValue property="elements">[]</defaultValue>
 		<defaultValue property="orientation">horizontal</defaultValue>
 		<defaultValue property="itemWidth">120</defaultValue>
 
@@ -606,15 +1089,147 @@
 
 </component>
 <component
-	id="FioriButton"
-	title="Fiori Button"
-	icon="res/fb/FioriButton.png"
+	id="EmbeddedFrame"
+	title="Embedded Frame"
+	handlerType="div"
+	icon="res/EmbeddedFrame/EmbeddedFrame.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/EmbeddedFrame/EmbeddedFrame.js</jsInclude>
+	
+	<property
+		id="url"
+		title="Content Url"
+		tooltip="Url to be embedded as content"
+		type="String" />
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="url"></defaultValue>
+	</initialization>
+
+</component>
+
+<component
+	id="EmbeddedMedia"
+	title="Embedded Media"
+	handlerType="div"
+	icon="res/EmbeddedMedia/EmbeddedMedia.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/EmbeddedMedia/EmbeddedMedia.js</jsInclude>
+	
+	<property
+		id="url"
+		title="Content Url"
+		tooltip="Url to be embedded as content"
+		type="String" />
+
+	<property
+		id="tag"
+		title="Tag to write"
+		tooltip="HTML Tag to write"
+		type="String"
+		visible="true"
+	 >
+		<possibleValue>embed</possibleValue>
+		<possibleValue>object</possibleValue>
+	</property>
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="url"></defaultValue>
+		<defaultValue property="tag">embed</defaultValue>
+	</initialization>
+
+</component>
+<component
+	id="FallbackPicture"
+	title="Fallback Picture"
+	icon="res/FallbackPicture/FallbackPicture.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
-	propertySheetPath="res/fb/aps/FioriButton.html"
 >
-	<jsInclude>res/fb/FioriButton.js</jsInclude>
-	<cssInclude>res/fb/FioriButton.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/FallbackPicture/FallbackPicture.js</jsInclude>
+	<cssInclude>res/FallbackPicture/FallbackPicture.css</cssInclude>
+
+	<property
+		id="picture"
+		title="Url for Picture"
+		tooltip="Url for Picture which should be shown"
+		type="Url"
+		visible="true" />
+
+	<property
+		id="fallbackPicture"
+		title="Url for Fallback Picture"
+		tooltip="Url for Fallback Picture which should be shown"
+		type="Url"
+		visible="true" />
+
+	<initialization>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="picture"></defaultValue>
+		<defaultValue property="fallbackPicture"></defaultValue>
+
+	</initialization>
+
+</component>
+<component id="FioriAppHeader" 
+	title="Fiori App Header"
+	icon="res/FioriAppHeader/FioriAppHeader.png"
+	handlerType="sapui5" 
+	propertySheetPath="res/FioriAppHeader/aps/FioriAppHeaderPropertyPage.html"
+	group="ScnCommunityBasics">
+  	
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
+  	
+  	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
+  	<property id="title" type="String" title="Title"/>
+  	<property id="itemConfig" type="String" title="Item Config" visible="false"/>
+  	<property id="showNavButton" type="boolean" title="Show Back Button"/>
+  	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
+  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false"/>
+  	<property type="ScriptText" title="On Item Select" id="onitemselect"/>  	
+  	<property type="ScriptText" title="On Back" id="onnav"/>
+ 	<initialization>
+ 		<defaultValue property="title">Page Title</defaultValue>
+ 		<defaultValue property="WIDTH">400</defaultValue>
+ 	</initialization>
+ </component>
+<component
+	id="FioriButton"
+	title="Fiori Button"
+	icon="res/FioriButton/FioriButton.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+	propertySheetPath="res/FioriButton/aps/FioriButton.html"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/FioriButton/FioriButton.js</jsInclude>
+	<cssInclude>res/FioriButton/FioriButton.css</cssInclude>
+	
 	<property
 		id="dIcon"
 		type="String"
@@ -691,16 +1306,52 @@
 		<defaultValue property="dStyle">Default</defaultValue>
 	</initialization>
 </component>
+<component id="FioriToolbar" 
+	title="Fiori Toolbar"
+	icon="res/FioriToolbar/FioriToolbar.png"
+	handlerType="sapui5" 
+	propertySheetPath="res/FioriToolbar/aps/FioriToolbarPropertyPage.html"
+	group="ScnCommunityBasics">
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/FioriToolbar/FioriToolbar.js</jsInclude>
+  	<cssInclude>res/FioriToolbar/FioriToolbar.css</cssInclude>
+  	<property id="itemConfig" type="String" title="Item Config" visible="false"/>
+  	<!--
+  	<property id="title" type="String" title="Title"/>
+  	<property id="showNavButton" type="boolean" title="Show Back Button"/>
+  	<property type="ScriptText" title="On Back" id="onnav"/>
+  	-->
+  	<property type="String" title="Design" id="design" visible="true">
+  		<possibleValue>Auto</possibleValue>
+  		<possibleValue>Info</possibleValue>
+  		<possibleValue>Solid</possibleValue>
+  		<possibleValue>Transparent</possibleValue>
+  	</property>
+  	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
+  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false"/>
+  	<property type="String" title="Selected Item Key" id="selectedItemKey" visible="false"/>
+  	<property type="String" title="Selected Header Key of Item" id="selectedHeaderKey" visible="false"/>
+  	<property type="ScriptText" title="On Item Select" id="onitemselect"/>  	
+ 	<initialization>
+ 		<!-- 
+ 		<defaultValue property="title">Page Title</defaultValue>
+ 		 -->
+ 		<defaultValue property="design">Auto</defaultValue>
+ 		<defaultValue property="WIDTH">400</defaultValue>
+ 		<defaultValue property="HEIGHT">48</defaultValue>
+ 	</initialization>
+ </component>
 <component
 	id="FishEye"
 	title="Fish Eye"
-	icon="res/fe/FishEye.png"
+	icon="res/FishEye/FishEye.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
-	<jsInclude>res/fe/FishEye.js</jsInclude>
-	<cssInclude>res/fe/FishEye.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/FishEye/FishEye.js</jsInclude>
+	<cssInclude>res/FishEye/FishEye.css</cssInclude>
 
 	<property
 		id="defaultImage"
@@ -756,52 +1407,75 @@
 
 	</initialization>
 
-</component><component
-	id="FallbackPicture"
-	title="Fallback Picture"
-	icon="res/fp/FallbackPicture.png"
-	handlerType="sapui5"
+</component>
+<component
+	id="Gauge"
+	title="Gauge (Speedometer)"
+	tooltip="Displays a Gauge (Speedometer)"
+	icon="res/Gauge/Gauge.png"
+	handlerType="div"
 	group="ScnCommunityBasics"
->
-	<jsInclude>res/fp/FallbackPicture.js</jsInclude>
-	<cssInclude>res/fp/FallbackPicture.css</cssInclude>
-
-	<property
-		id="picture"
-		title="Url for Picture"
-		tooltip="Url for Picture which should be shown"
-		type="Url"
-		visible="true" />
-
-	<property
-		id="fallbackPicture"
-		title="Url for Fallback Picture"
-		tooltip="Url for Fallback Picture which should be shown"
-		type="Url"
-		visible="true" />
+	propertySheetPath="res/Gauge/aps/GaugePropertyPage.html">
+		
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/Gauge/Gauge.js</jsInclude>
+		
+	<property id="haveNumbers" title="Show Number" type="boolean"/>
+	<property type="int" title="Number of Big Ticks" id="numOfBigTicks"/>
+	<property type="int" title="Number of Small Ticks" id="numOfSmallTicks"/>
+	<property type="float" title="Indicator Value" id="indicatorValue"/>
+	<property type="boolean" title="Show Value" id="showValue"/>
+	<property type="String" title="Showed Value" id="showedValue"/>
+	<property type="Color" title="Needle Color" id="needleColor"/>
+	<property type="String" title="Title" id="title"/>
+	<property type="int" title="Start Value" id="startValue"/>
+	<property type="int" title="End Value" id="endValue"/>
+	<property type="boolean" title="Gradient Color" id="gradientColor"/>
+	<property type="Color" title="First Color" id="firstColor"/>
+	<property type="Color" title="Second Color" id="secondColor"/>
+	<property type="Color" title="Third Color" id="thirdColor"/>
+	<property type="int" title="Start of Second Color" id="startSecondColor"/>
+	<property type="int" title="Start of Third Color" id="startThirdColor"/>
+	<property type="Color" title="Main Color" id="mainColor"/>
+	<property type="Color" title="Text and Ticks Color" id="ttColor"/>
 
 	<initialization>
-		<defaultValue property="WIDTH">100</defaultValue>
-		<defaultValue property="HEIGHT">100</defaultValue>
-		<defaultValue property="TOP_MARGIN">0</defaultValue>
-		<defaultValue property="LEFT_MARGIN">0</defaultValue>
-		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="picture"></defaultValue>
-		<defaultValue property="fallbackPicture"></defaultValue>
-
+		<defaultValue property="TOP">0</defaultValue>
+		<defaultValue property="LEFT">0</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+		<defaultValue property="showNumbers">true</defaultValue>
+		<defaultValue property="numOfBigTicks">5</defaultValue>
+		<defaultValue property="numOfSmallTicks">2</defaultValue>
+		<defaultValue property="indicatorValue">25</defaultValue>
+		<defaultValue property="showedValue">25 %</defaultValue>
+		<defaultValue property="needleColor">#D80000</defaultValue>
+		<defaultValue property="title">Insert Title Here</defaultValue>
+		<defaultValue property="showValue">true</defaultValue>
+		<defaultValue property="startValue">0</defaultValue>
+		<defaultValue property="endValue">100</defaultValue>
+		<defaultValue property="gredientColor">true</defaultValue>
+		<defaultValue property="firstColor">#FA1E1E</defaultValue>
+		<defaultValue property="secondColor">#FCFA4E</defaultValue>
+		<defaultValue property="thirdColor">#2BFC23</defaultValue>
+		<defaultValue property="startSecondColor">20</defaultValue>
+		<defaultValue property="startThirdColor">80</defaultValue>
+		<defaultValue property="mainColor">#EDEDED</defaultValue>
+		<defaultValue property="ttColor">#000000</defaultValue>
+		
+		
 	</initialization>
-
-</component>
+	</component>
 <component
 	id="ImageCarousel"
 	title="Image Carousel"
-	icon="res/ic/ImageCarousel.png"
+	icon="res/ImageCarousel/ImageCarousel.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/ic/ImageCarousel.js</jsInclude>
-	<cssInclude>res/ic/ImageCarousel.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/ImageCarousel/ImageCarousel.js</jsInclude>
+	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 
 	<property
 		id="defaultImage"
@@ -848,16 +1522,18 @@
 <component
 	id="KpiView"
 	title="Kpi View"
-	icon="res/kpi/KpiView.png"
+	icon="res/KpiView/KpiView.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 	databound="true"
 >
 
-	<stdInclude kind="cvom" />
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
 
-	<jsInclude>res/kpi/KpiView.js</jsInclude>
-	<cssInclude>res/kpi/KpiView.css</cssInclude>
+	<jsInclude>res/KpiView/KpiView.js</jsInclude>
+	<cssInclude>res/KpiView/KpiView.css</cssInclude>
 
 	<property
 		id="data"
@@ -900,6 +1576,11 @@
 		id="valueText"
 		title="Value"
 		type="String"
+		group="Display" />
+	<property
+		id="valueFloat"
+		title="Value as Float"
+		type="float"
 		group="Display" />
 	<property
 		id="valueHAlign"
@@ -1021,15 +1702,36 @@
 	</initialization>
 
 </component>
+<!-- Fiori LaunchPad Component -->
+<component id="LaunchPad"
+	title="Launch Pad"
+	tooltip="Fiori-Inspired LaunchPad/Tile Container"
+	icon="res/LaunchPad/LaunchPad.png"
+	handlerType="sapui5"
+	propertySheetPath="res/LaunchPad/aps/LaunchPadPropertyPage.html"
+	group="ScnCommunityBasics">
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/LaunchPad/LaunchPad.js</jsInclude>
+  	<cssInclude>res/LaunchPad/LaunchPad.css</cssInclude>
+  	<property type="String" title="Tile Config" id="tileConfig" visible="false"/>
+  	<property type="String" title="Selected Tile" id="selectedTile" visible="false"/>
+  	<property type="ScriptText" title="On Tile Select" id="onTileSelect"/>
+  	<initialization>
+  		<defaultValue property="WIDTH">575</defaultValue>
+		<defaultValue property="HEIGHT">575</defaultValue>
+  	</initialization>
+</component>
+
 <component
 	id="LeaderBoard"
 	title="Leader Board"
-	icon="res/lb/LeaderBoard.png"
+	icon="res/LeaderBoard/LeaderBoard.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/lb/LeaderBoard.js</jsInclude>
-	<cssInclude>res/lb/LeaderBoard.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/LeaderBoard/LeaderBoard.js</jsInclude>
+	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 
 	<property
 		id="fallbackPicture"
@@ -1112,10 +1814,11 @@
 	id="Link"
 	title="Link"
 	handlerType="sapui5"
-	icon="res/li/Link.png"
+	icon="res/Link/Link.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/li/Link.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/Link/Link.js</jsInclude>
 	<property
 		id="text"
 		title="Link Text"
@@ -1137,17 +1840,64 @@
 		<defaultValue property="text">Go Sap...</defaultValue>
 	</initialization>
 </component>
+<!-- List Selector -->
+	<component id="ListSelector" title="List Selector" 
+		handlerType="div"
+		icon="res/ListSelector/ListSelector.png"
+		propertySheetPath="res/ListSelector/aps/ListSelectorPropertyPage.html"
+		group="ScnCommunityBasics">
+	  	<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/ListSelector/ListSelector.js</jsInclude>
+	  	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
+	  	<property id="titles" type="String" title="Titles"/>
+	  	<property id="spriteIDs" type="String" title="Sprite IDs (Optional)"/>
+	  	<property id="visibilities" type="String" title="Visibilities (Optional)"/>
+	  	<property id="fixedWidth" type="String" title="Fixed Width (-1 for auto)"/>
+	  	<property id="spriteSheet" type="Url" title="Icon Sprite Sheet (Optional)"/>
+	  	<property id="labelClicked" type="String" title="Selected Label"/>
+	  	<property id="onclick" type="ScriptText" title="On Click..." group="Events"/>
+	  	<property id="labelPlacement" type="String" title="Label Placement (Relative to Icon)">
+	  		<possibleValue>After</possibleValue>
+	  		<possibleValue>Before</possibleValue>
+	  	</property>
+	  	<property id="labelOrientation" type="String" title="Label Orientation">
+	  		<possibleValue>horizontal</possibleValue>
+	  		<possibleValue>vertical</possibleValue>
+	  	</property>
+	  	<property id="textAlign" type="String" title="Text Alignment">
+	  		<possibleValue>left</possibleValue>
+	  		<possibleValue>center</possibleValue>
+	  		<possibleValue>right</possibleValue>
+	  	</property>
+	  	<property id="verticalAlign" type="String" title="Vertical Alignment">
+	  		<possibleValue>top</possibleValue>
+	  		<possibleValue>middle</possibleValue>
+	  		<possibleValue>bottom</possibleValue>
+	  	</property>
+	  	
+	  	<property id="spriteSheetPerRow" type="int" title="Icons Sprites Per Row"/>
+	  	<property id="iconWidth" type="int" title="Icon Width (px)"/>
+	  	<property id="iconHeight" type="int" title="Icon Height (px)"/>
+	  	<initialization>
+	  		<defaultValue property="titles">Facebook,YouTube,Twitter,SAP</defaultValue>
+	  		<defaultValue property="labelPlacement">After</defaultValue>
+	  		<defaultValue property="labelOrientation">vertical</defaultValue>
+	  		<defaultValue property="verticalAlign">top</defaultValue>
+	  		<defaultValue property="textAlign">center</defaultValue>
+	  		<defaultValue property="fixedWidth">-1</defaultValue>
+	  	</initialization>
+	  </component>
 <component
 	id="MenuBar"
 	title="Menu Bar (>= 1.4)"
-	icon="res/mb/MenuBar.png"
+	icon="res/MenuBar/MenuBar.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
-	<jsInclude>res/common.js</jsInclude>
-	<jsInclude>res/mb/MenuBar.js</jsInclude>
-	<cssInclude>res/mb/menuBar.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/MenuBar/MenuBar.js</jsInclude>
+	<cssInclude>res/MenuBar/MenuBar.css</cssInclude>
 
 	<property
 		id="selectedKey"
@@ -1155,6 +1905,13 @@
 		title="Technical proprty for Selected Key"
 		group="Display"
 		visible="false" />
+		
+	<property
+		id="selectedText"
+		type="String"
+		title="Technical proprty for Selected Text"
+		group="Display"
+		visible="false" />	
 
 	<property
 		id="cleanAll"
@@ -1200,14 +1957,14 @@
 <component
 	id="MenuButton"
 	title="Menu Button (>= 1.4)"
-	icon="res/mbt/MenuButton.png"
+	icon="res/MenuButton/MenuButton.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
-	<jsInclude>res/common.js</jsInclude>
-	<jsInclude>res/mbt/MenuButton.js</jsInclude>
-	<cssInclude>res/mbt/MenuButton.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/MenuButton/MenuButton.js</jsInclude>
+	<cssInclude>res/MenuButton/MenuButton.css</cssInclude>
 
 	<property
 		id="text"
@@ -1290,15 +2047,130 @@
 	</initialization>
 
 </component>
+<component id="ModalBrowser"
+	tooltip="In-App Modal Browser Pop-Up"
+	title="Modal Browser"
+	icon="res/ModalBrowser/ModalBrowser.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics">
+	
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/ModalBrowser/ModalBrowser.js</jsInclude>
+  	<cssInclude>res/ModalBrowser/ModalBrowser.css</cssInclude>
+  	
+  	<property type="String" title="URL" id="url"/>
+  	<property type="String" title="Open Method" id="openMethod">
+  		<possibleValue>New Window</possibleValue>
+  		<possibleValue>Modal Browser Dialog</possibleValue>
+  	</property>
+  	
+  	<property type="boolean" title="Show Button" id="showButton"/>
+  	<property type="String" title="Button Icon" id="icon"/>
+  	<property type="String" title="Button Text" id="text"/>
+  	<!-- <property type="boolean" title="Button Visible" id="visible"/> -->
+  	<property id="buttonType" type="String" title="Button Type">
+  		<possibleValue>Default</possibleValue>
+  		<possibleValue>Transparent</possibleValue>
+  		<possibleValue>Accept</possibleValue>
+  		<possibleValue>Back</possibleValue>
+  		<possibleValue>Emphasized</possibleValue>
+  		<possibleValue>Reject</possibleValue>
+  		<possibleValue>Up</possibleValue>
+  	</property>
+  	<property type="String" title="Modal Browser Title" id="title"/>
+  	<property type="String" title="Modal Browser Icon" id="browserIcon"/>
+  	<property type="boolean" title="Show Modal Browser Title" id="showHeader"/>
+  	<property type="boolean" title="Show Modal Browser Close Button" id="showCloseButton"/>
+  	<property type="String" title="Modal Browser Height" id="browserHeight"/>
+  	<property type="String" title="Modal Browser Width" id="browserWidth"/>
+  	<property type="float" title="Click Trigger for BIAL" id="clickTrigger" visible="false"/>
+  	<initialization>
+  		<defaultValue property="icon">sap-icon://action</defaultValue>
+  		<defaultValue property="title">Browser Dialog Title</defaultValue>
+  		<defaultValue property="browserIcon">sap-icon://business-objects-explorer</defaultValue>
+  		<defaultValue property="text">Details...</defaultValue>
+  		<defaultValue property="showButton">true</defaultValue>
+  		<defaultValue property="showHeader">false</defaultValue>
+  		<defaultValue property="showCloseButton">true</defaultValue>
+  		<defaultValue property="openMethod">Modal Browser Dialog</defaultValue>
+  		<defaultValue property="buttonType">Default</defaultValue>
+  		<defaultValue property="browserWidth">80%</defaultValue>
+  		<defaultValue property="browserHeight">80%</defaultValue>
+  	</initialization>
+</component>
+
 <component
-	id="NotificationBar"
-	title="Notification Bar"
-	icon="res/nb/NotificationBar.png"
+	id="NavigationBar"
+	title="Navigation Bar"
+	icon="res/NavigationBar/NavigationBar.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/nb/NotificationBar.js</jsInclude>
-	<cssInclude>res/nb/NotificationBar.css</cssInclude>
+
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/NavigationBar/NavigationBar.js</jsInclude>
+	<cssInclude>res/NavigationBar/NavigationBar.css</cssInclude>
+
+	<property
+		id="DSelectedKey"
+		type="String"
+		title="Selected Step Key"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="numberOfVisibleSteps"
+		type="String"
+		title="Number of Visible Steps"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="DCleanAll"
+		type="boolean"
+		title="Technical property for Clean All Nodes"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DElementsContent"
+		type="String"
+		title="Technical property for list of nodes"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="DCurrentValue">TODAY</defaultValue>
+		<defaultValue property="DValue">TODAY</defaultValue>
+		<defaultValue property="DValueF">TODAY</defaultValue>
+		<defaultValue property="DValueT">TODAY</defaultValue>
+	
+		<defaultValue property="DSelectedKey"></defaultValue>
+		<defaultValue property="DElementsContent">[]</defaultValue>
+	</initialization>	
+</component>
+<component
+	id="NotificationBar"
+	title="Notification Bar"
+	icon="res/NotificationBar/NotificationBar.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/NotificationBar/NotificationBar.js</jsInclude>
+	<cssInclude>res/NotificationBar/NotificationBar.css</cssInclude>
 
 	<property
 		id="defaultImage"
@@ -1382,10 +2254,48 @@
 		<defaultValue property="removeAllOnMinimize">false</defaultValue>
 	</initialization>
 </component>
+<component id="Notify"
+	title="Notify"
+	icon="res/Notify/Notify.png"
+	handlerType="div"
+	group="ScnCommunityBasics"
+  	tooltip="Notify - Leandro Cardoso" >
+	  	<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/Notify/Notify.js</jsInclude>
+    	<jsInclude>os/noty/packaged/jquery.noty.packaged.js</jsInclude>
+	  	<property type="String" title="msgtext" id="msgtext" visible="false" />
+		<property type="String" title="shownote" id="shownote" visible="false" />
+		<property type="String" title="msgtype" id="msgtype" visible="false" />
+		<property type="int" title="Delay(Seconds)" id="delay" group="Display"/>
+		<property type="String" title="Layout" id="layout" group="Display">
+		    <possibleValue>top</possibleValue>
+		       <possibleValue>topCenter</possibleValue>
+		       <possibleValue>topLeft</possibleValue>
+		       <possibleValue>topRight</possibleValue>
+		       <possibleValue>center</possibleValue>
+		       <possibleValue>centerLeft</possibleValue>
+		       <possibleValue>centerRight</possibleValue>
+		       <possibleValue>bottom</possibleValue>
+		       <possibleValue>bottomCenter</possibleValue>
+		       <possibleValue>bottomLeft</possibleValue>
+		       <possibleValue>bottomRight</possibleValue>
+			</property>
+			<property type="String" title="Modal" id="modal" group="Display"> 
+		       <possibleValue>true</possibleValue>
+		       <possibleValue>false</possibleValue>
+			</property>
+		   <initialization>
+		     <defaultValue property="WIDTH">100</defaultValue>
+		     <defaultValue property="HEIGHT">100</defaultValue>  
+		     <defaultValue property="layout">center</defaultValue>
+		     <defaultValue property="modal">false</defaultValue> 
+		     <defaultValue property="delay">3</defaultValue> 
+		   </initialization>
+	  </component>
 <component
 	id="Map"
-	title="Open Street Map"
-	icon="res/map/OSMap.png"
+	title="Open Street Map (Basic)"
+	icon="res/OSMap/OSMap.png"
 	handlerType="div"
 	group="ScnCommunityBasics"
 >
@@ -1393,8 +2303,9 @@
 	<jsInclude>os/mm/mm-min.js</jsInclude>
 	<jsInclude>os/mm/mm-follower.js</jsInclude>
 
-	<jsInclude>res/osm/OSMap.js</jsInclude>
-	<cssInclude>res/osm/OSMap.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/OSMap/OSMap.js</jsInclude>
+	<cssInclude>res/OSMap/OSMap.css</cssInclude>
 
 	<property
 		id="moveTo"
@@ -1461,14 +2372,16 @@
 	</initialization>
 
 </component>
+
 <component
 	id="Paginator"
 	title="Paginator"
 	handlerType="sapui5"
-	icon="res/pa/Paginator.png"
+	icon="res/Paginator/Paginator.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/pa/Paginator.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/Paginator/Paginator.js</jsInclude>
 	<property
 		id="currentPage"
 		title="Current Page"
@@ -1492,13 +2405,143 @@
 	</initialization>
 </component>
 <component
+	id="PasswordField"
+	title="Password Field"
+	icon="res/PasswordField/PasswordField.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/PasswordField/PasswordField.js</jsInclude>
+	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
+
+	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		tooltip="Enabled"
+		group="Display"
+		visible="true" />
+	<property
+		id="editable"
+		type="boolean"
+		title="Editable"
+		tooltip="Editable"
+		group="Display"
+		visible="true" />
+	<property
+		id="value"
+		type="String"
+		title="Value"
+		tooltip="Value"
+		group="Display"
+		visible="true" />
+	<property
+		id="tooltip"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="onChanged"
+		type="ScriptText"
+		title="Event for On Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="value"></defaultValue>
+		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
+	</initialization>
+</component>
+<component id="QRCode"
+	title="QRCode Generator"
+	icon="res/QRCode/QRCode.png"
+	tooltip="QRCode Generation"
+	handlerType="div"
+	group="ScnCommunityBasics">
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>os/jquery-qrcode/jquery.qrcode.min.js</jsInclude>
+	<jsInclude>res/QRCode/QRCode.js</jsInclude>
+	<cssInclude>res/QRCode/QRCode.css</cssInclude>
+	<property type="String" title="QR Code Text" id="text" />
+	<property type="String" title="Render Mode" id="render">
+		<possibleValue>canvas</possibleValue>
+		<possibleValue>div</possibleValue>
+		<possibleValue>image</possibleValue>
+	</property>
+	<property type="boolean" title="Only show on printouts" id="printOnly"/>
+	<property type="String" title="Error Correction Level" id="ecLevel">
+		<possibleValue>L</possibleValue>
+		<possibleValue>M</possibleValue>
+		<possibleValue>Q</possibleValue>
+		<possibleValue>H</possibleValue>
+	</property>
+	<property type="int" title="Min Version (1-40)" id="minVersion" />
+	<property type="int" title="Max Version (1-40)" id="maxVersion" />
+	<property type="Color" title="Fill Color" id="fill" />
+	<property type="Color" title="Background Color" id="background" />
+	<property type="float" title="Corner Radius (0.0 - 0.5)" id="radius" />
+	<property type="float" title="Quiet Zone" id="quiet" />
+	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>
+	<!-- THINGS THAT DO NOT WORK WELL 
+	<property type="int" title="Left Offset (px)" id="left" />
+	<property type="int" title="Top Offset (px)" id="top" />
+	<property type="int" title="Size (px) (-1 = auto)" id="size" />
+	<property type="String" title="Label" id="label" />
+	<property type="float" title="mSize" id="mSize" />
+	<property type="float" title="mPosX" id="mPosX" />
+	<property type="float" title="mPosY" id="mPosY" />
+	<property type="String" title="Label Font" id="fontname" />
+	<property type="Color" title="Label Color" id="fontcolor" />
+	<property type="String" title="Mode" id="mode">
+		<possibleValue>Normal</possibleValue>
+		<possibleValue>Label Strip</possibleValue>
+		<possibleValue>Label Box</possibleValue>
+		<possibleValue>Image Box</possibleValue>
+	</property>
+	-->
+	
+	<initialization>
+		<defaultValue property="HEIGHT">256</defaultValue>
+		<defaultValue property="WIDTH">256</defaultValue>
+		<defaultValue property="render">canvas</defaultValue>
+		<defaultValue property="ecLevel">L</defaultValue>
+		<defaultValue property="minVersion">1</defaultValue>
+		<defaultValue property="maxVersion">40</defaultValue>
+		<defaultValue property="radius">0</defaultValue>
+		<defaultValue property="quiet">0</defaultValue>
+		<defaultValue property="text">QRCode Text</defaultValue>
+		<!-- THINGS THAT DO NOT WORK WELL 
+		<defaultValue property="left">0</defaultValue>
+		<defaultValue property="top">0</defaultValue>
+		<defaultValue property="size">0</defaultValue>
+		<defaultValue property="mode">Normal</defaultValue>
+		<defaultValue property="label">Label</defaultValue>
+		<defaultValue property="mSize">0.1</defaultValue>
+		<defaultValue property="mPosX">0.5</defaultValue>
+		<defaultValue property="mPosY">0.5</defaultValue>
+		-->
+	</initialization>
+</component>
+<component
 	id="ProgressIndicator"
 	title="Progress Indicator"
 	handlerType="sapui5"
-	icon="res/pi/ProgressIndicator.png"
+	icon="res/ProgressIndicator/ProgressIndicator.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/pi/ProgressIndicator.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/ProgressIndicator/ProgressIndicator.js</jsInclude>
 	<property
 		id="barColor"
 		title="Bar Color"
@@ -1539,13 +2582,92 @@
 	</initialization>
 </component>
 <component
+	id="RangeSlider"
+	title="Range Slider"
+	handlerType="sapui5"
+	icon="res/RangeSlider/RangeSlider.png"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/RangeSlider/RangeSlider.js</jsInclude>
+	<property
+		id="min"
+		title="Minimum Value"
+		type="float" />
+	<property
+		id="max"
+		title="Maximum Value"
+		type="float" />
+	<property
+		id="value"
+		title="First Value"
+		type="float" />
+	<property
+		id="value2"
+		title="Second Value"
+		type="float" />
+	<property
+		id="liveValue"
+		title="First Value (Live)"
+		type="float" 
+		visible="false" />
+	<property
+		id="liveValue2"
+		title="Second Value (Live)"
+		type="float" 
+		visible="false" />
+	<property
+		id="totalUnits"
+		title="Total Units"
+		type="int" />
+	<property
+		id="stepLabels"
+		title="Step Labels"
+		type="boolean" />
+	<property
+		id="vertical"
+		title="Change to Vertical Orientation"
+		type="boolean" />
+	<property
+		id="smallStepWidth"
+		title="Small Step Width"
+		type="float" />
+	<property
+		id="onChange"
+		title="On Change"
+		type="ScriptText"
+		group="Events" />
+	<property
+		id="DLiveChangeActive"
+		title="Activate Live Change Event (prototype)"
+		type="boolean" />
+	<property
+		id="onLiveChange"
+		title="On Live Change"
+		type="ScriptText"
+		group="Events" />
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">30</defaultValue>
+		<defaultValue property="min">0.0</defaultValue>
+		<defaultValue property="max">100.0</defaultValue>
+		<defaultValue property="value">0.0</defaultValue>
+		<defaultValue property="value2">100.0</defaultValue>
+		<defaultValue property="totalUnits">10</defaultValue>
+		<defaultValue property="vertical">false</defaultValue>
+		<defaultValue property="smallStepWidth">10</defaultValue>
+		<defaultValue property="DLiveChangeActive">false</defaultValue>
+	</initialization>
+</component>
+<component
 	id="RatingIndicator"
 	title="Rating Indicator"
 	handlerType="sapui5"
-	icon="res/ri/RatingIndicator.png"
+	icon="res/RatingIndicator/RatingIndicator.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/ri/RatingIndicator.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/RatingIndicator/RatingIndicator.js</jsInclude>
 	<property
 		id="editable"
 		title="Editable"
@@ -1588,70 +2710,226 @@
 	</initialization>
 </component>
 <component
-	id="RangeSlider"
-	title="Range Slider"
+	id="RoadMap"
+	title="Road Map"
+	icon="res/RoadMap/RoadMap.png"
 	handlerType="sapui5"
-	icon="res/rsl/RangeSlider.png"
-	group="ScnCommunityBasics"
->
-	<jsInclude>res/rsl/RangeSlider.js</jsInclude>
+	group="ScnCommunityBasics">
+
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/RoadMap/RoadMap.js</jsInclude>
+	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
+
 	<property
-		id="min"
-		title="Minimum Value"
-		type="float" />
+		id="DSelectedKey"
+		type="String"
+		title="Selected Step Key"
+		group="Display"
+		visible="true" />
+
 	<property
-		id="max"
-		title="Maximum Value"
-		type="float" />
+		id="numberOfVisibleSteps"
+		type="String"
+		title="Number of Visible Steps"
+		group="Display"
+		visible="true" />
+
 	<property
-		id="value"
-		title="First Value"
-		type="float" />
+		id="DCleanAll"
+		type="boolean"
+		title="Technical property for Clean All Nodes"
+		group="Display"
+		visible="false" />
+
 	<property
-		id="value2"
-		title="Second Value"
-		type="float" />
+		id="DElementsContent"
+		type="String"
+		title="Technical property for list of nodes"
+		group="Display"
+		visible="false" />
+
 	<property
-		id="totalUnits"
-		title="Total Units"
-		type="int" />
-	<property
-		id="stepLabels"
-		title="Step Labels"
-		type="boolean" />
-	<property
-		id="vertical"
-		title="Change to Vertical Orientation"
-		type="boolean" />
-	<property
-		id="smallStepWidth"
-		title="Small Step Width"
-		type="float" />
-	<property
-		id="onChange"
-		title="On Change"
+		id="onSelectionChanged"
 		type="ScriptText"
+		title="Event for On Selection Changed"
 		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">230</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="DSelectedKey"></defaultValue>
+		<defaultValue property="DElementsContent">[]</defaultValue>
+	</initialization>
+
+</component>
+
+<component
+	id="RSSFeedReader"
+	title="RSSFeedReader"
+	icon="res/RSSFeedReader/RSSFeedReader.png"
+	handlerType="div"
+	group="ScnCommunityBasics">
+	
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/RSSFeedReader/RSSFeedReader.js</jsInclude>
+	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
+	<property type="String" title="RSS Feed URL"
+		id="feedurldimension">
+	</property>
+	<property type="String" title="XSL URL"
+		id="xslurldimension">
+	</property>
 	<initialization>
 		<defaultValue property="WIDTH">300</defaultValue>
-		<defaultValue property="HEIGHT">30</defaultValue>
-		<defaultValue property="min">0.0</defaultValue>
-		<defaultValue property="max">100.0</defaultValue>
-		<defaultValue property="value">0.0</defaultValue>
-		<defaultValue property="value2">100.0</defaultValue>
-		<defaultValue property="totalUnits">10</defaultValue>
-		<defaultValue property="vertical">false</defaultValue>
-		<defaultValue property="smallStepWidth">10</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+		<defaultValue property="runtimedata">{}</defaultValue>
+		<defaultValue property="feedurldimension">
+			http://cdn.eex.com/rss/de/market.rss
+		</defaultValue>
+		<defaultValue property="xslurldimension">
+			rss.xsl
+		</defaultValue>
 	</initialization>
+
 </component>
+
+<component
+	id="SegmentedButton"
+	title="Segmented Button"
+	icon="res/SegmentedButton/SegmentedButton.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+	propertySheetPath="res/SegmentedButton/aps/SegmentedButtonPropertyPage.html">
+	
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/SegmentedButton/SegmentedButton.js</jsInclude>
+	<cssInclude>res/SegmentedButton/SegmentedButton.css</cssInclude>
+
+	<property
+		id="DCleanAll"
+		type="boolean"
+		title="Technical property for Clean All Nodes"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DElementsContent"
+		type="String"
+		title="List of Buttons with Sub-Items"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DSelectedKeys"
+		type="String"
+		title="Technical property for selected keys"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DPressedButtonKey"
+		type="String"
+		title="Technical property for pressed button key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DPressedItemKey"
+		type="String"
+		title="Technical property for pressed item key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DSelectionType"
+		title="Selection Type"
+		tooltip="Selection Type SINGLE | MULTIPLE"
+		type="String"
+		visible="true"
+	>
+		<possibleValue>Single</possibleValue>
+		<possibleValue>Multiple</possibleValue>
+	</property>
+
+	<property
+		id="DDefaultImage"
+		title="Url for Default Image"
+		tooltip="Url for Default Image which should be shown in case no other is specified"
+		type="Url"
+		visible="true" />
+
+	<property
+		id="DWithImages"
+		title="Use Images"
+		type="boolean"
+		group="Display"
+	>
+	</property>
+
+	<property
+		id="DImageSize"
+		title="Size of the Image"
+		type="String"
+		group="Display"
+	>
+		<possibleValue>16px</possibleValue>
+		<possibleValue>32px</possibleValue>
+	</property>
+
+	<property
+		id="onSelected"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<property
+		id="onButtonPressed"
+		type="ScriptText"
+		title="Event for On Button Pressed"
+		group="Events" />
+
+	<property
+		id="onItemPressed"
+		type="ScriptText"
+		title="Event for On Item Pressed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="DElementsContent"></defaultValue>
+		<defaultValue property="DSelectionType">Single</defaultValue>
+		
+		<defaultValue property="DWithImage">false</defaultValue>
+		<defaultValue property="DDefaultImage"></defaultValue>
+		<defaultValue property="DImageSize">16px</defaultValue>
+
+		<defaultValue property="DSelectedKeys">[]</defaultValue>
+		<defaultValue property="DPressedButtonKey"></defaultValue>
+		<defaultValue property="DPressedItemKey"></defaultValue>
+	</initialization>
+
+</component>
+
 <component
 	id="Slider"
 	title="Slider"
 	handlerType="sapui5"
-	icon="res/sl/Slider.png"
+	icon="res/Slider/Slider.png"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/sl/Slider.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/Slider/Slider.js</jsInclude>
 	<property
 		id="min"
 		title="Minimum Value"
@@ -1665,6 +2943,11 @@
 		title="Value"
 		type="float" />
 	<property
+		id="liveValue"
+		title="First Value (Live)"
+		type="float" 
+		visible="false" />
+	<property
 		id="totalUnits"
 		title="Total Units"
 		type="int" />
@@ -1685,6 +2968,15 @@
 		title="On Change"
 		type="ScriptText"
 		group="Events" />
+	<property
+		id="DLiveChangeActive"
+		title="Activate Live Change Event (prototype)"
+		type="boolean" />
+	<property
+		id="onLiveChange"
+		title="On Live Change"
+		type="ScriptText"
+		group="Events" />
 	<initialization>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
@@ -1694,17 +2986,19 @@
 		<defaultValue property="totalUnits">10</defaultValue>
 		<defaultValue property="vertical">false</defaultValue>
 		<defaultValue property="smallStepWidth">10</defaultValue>
+		<defaultValue property="DLiveChangeActive">false</defaultValue>
 	</initialization>
 </component>
 <component
 	id="TextArea"
-	title="TextArea"
-	icon="res/ta/TextArea.png"
+	title="Text Area"
+	icon="res/TextArea/TextArea.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/ta/TextArea.js</jsInclude>
-	<cssInclude>res/ta/TextArea.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/TextArea/TextArea.js</jsInclude>
+	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	<property
 		id="value"
 		type="String"
@@ -1713,10 +3007,17 @@
 		group="Display"
 		visible="true" />
 	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		tooltip="Enabled"
+		group="Display"
+		visible="true" />
+	<property
 		id="editable"
 		type="boolean"
-		title="Editable flag"
-		tooltip="Editable flag"
+		title="Editable"
+		tooltip="Editable"
 		group="Display"
 		visible="true" />
 	<property
@@ -1737,6 +3038,7 @@
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="value"></defaultValue>
+		<defaultValue property="enabled">true</defaultValue>
 		<defaultValue property="editable">true</defaultValue>
 		<defaultValue property="maxLength">0</defaultValue>
 	</initialization>
@@ -1744,13 +3046,14 @@
 <component
 	id="ToggleButton"
 	title="Toggle Button"
-	icon="res/tb/ToggleButton.png"
+	icon="res/ToggleButton/ToggleButton.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
 
-	<jsInclude>res/tb/ToggleButton.js</jsInclude>
-	<cssInclude>res/tb/ToggleButton.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/ToggleButton/ToggleButton.js</jsInclude>
+	<cssInclude>res/ToggleButton/ToggleButton.css</cssInclude>
 
 	<property
 		id="text"
@@ -1824,12 +3127,13 @@
 <component
 	id="Tree"
 	title="Tree"
-	icon="res/tr/Tree.png"
+	icon="res/Tree/Tree.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/tr/Tree.js</jsInclude>
-	<cssInclude>res/tr/Tree.css</cssInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/Tree/Tree.js</jsInclude>
+	<cssInclude>res/Tree/Tree.css</cssInclude>
 
 	<property
 		id="selectedKey"
@@ -1901,15 +3205,88 @@
 
 </component>
 <component
-	id="ValiInput"
-	title="Validated Input Field"
-	icon="res/vif/ValiInput.png"
+	id="TriStateCheckBox"
+	title="Tri State CheckBox"
+	icon="res/TriStateCheckBox/TriStateCheckBox.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
-	<jsInclude>res/vif/validate.js</jsInclude>
-	<jsInclude>res/vif/ValiInput.js</jsInclude>
-	<cssInclude>res/vif/ValiInput.css</cssInclude>
+
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/TriStateCheckBox/TriStateCheckBox.js</jsInclude>
+	<cssInclude>res/TriStateCheckBox/TriStateCheckBox.css</cssInclude>
+
+	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		tooltip="Enabled"
+		group="Display"
+		visible="true" />
+	<property
+		id="editable"
+		type="boolean"
+		title="Editable"
+		tooltip="Editable"
+		group="Display"
+		visible="true" />
+	<property
+		id="text"
+		type="String"
+		title="Value"
+		tooltip="Value"
+		group="Display"
+		visible="true" />
+	<property
+		id="tooltip"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true" />
+	<property
+		id="selectionState"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true">
+		<possibleValue>Checked</possibleValue>
+		<possibleValue>Unchecked</possibleValue>
+		<possibleValue>Mixed</possibleValue>
+	</property>
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+
+		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
+		<defaultValue property="text">tri state value</defaultValue>
+		<defaultValue property="selectionState">Unchecked</defaultValue>
+	</initialization>
+</component>
+<component
+	id="ValiInput"
+	title="Validated Input Field"
+	icon="res/ValiInput/ValiInput.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>os/validate/validate.js</jsInclude>
+	<jsInclude>res/ValiInput/ValiInput.js</jsInclude>
+	<cssInclude>res/ValiInput/ValiInput.css</cssInclude>
 	<property
 		id="DValue"
 		type="String"
@@ -1986,8 +3363,8 @@
 		title="Event for On Changed"
 		group="Events" />
 	<initialization>
-		<defaultValue property="WIDTH">42</defaultValue>
-		<defaultValue property="HEIGHT">42</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
@@ -1996,4 +3373,118 @@
 		<defaultValue property="DValidState">None</defaultValue>
 	</initialization>
 </component>
+<component
+	id="ValueHelpField"
+	title="Value Help Field"
+	icon="res/ValueHelpField/ValueHelpField.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/ValueHelpField/ValueHelpField.js</jsInclude>
+	<cssInclude>res/ValueHelpField/ValueHelpField.css</cssInclude>
+
+	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		tooltip="Enabled"
+		group="Display"
+		visible="true" />
+	<property
+		id="editable"
+		type="boolean"
+		title="Editable"
+		tooltip="Editable"
+		group="Display"
+		visible="true" />
+	<property
+		id="value"
+		type="String"
+		title="Value"
+		tooltip="Value"
+		group="Display"
+		visible="true" />
+	<property
+		id="tooltip"
+		type="String"
+		title="Tooltip"
+		tooltip="Tooltip"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="onChanged"
+		type="ScriptText"
+		title="Event for On Changed"
+		group="Events" />
+
+	<property
+		id="onValueHelpRequest"
+		type="ScriptText"
+		title="Event for On Value Help Request"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
+		<defaultValue property="value">some value</defaultValue>
+	</initialization>
+</component>
+<component
+	id="WorldTime"
+	title="WorldTime"
+	icon="res/WorldTime/WorldTime.png"
+	handlerType="div"
+	group="ScnCommunityBasics">
+	
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/WorldTime/WorldTime.js</jsInclude>
+	<property type="String" title="UTC Offset" id="utcoffset">
+	</property>
+	<property type="String" title="Locale" id="locale">
+		<possibleValue>en-US</possibleValue>
+		<possibleValue>de-DE</possibleValue>
+		<possibleValue>default</possibleValue>
+	</property>
+	<property type="boolean" title="Show Timezone name" id="showtimezonename">
+	</property>
+	<property type="boolean" title="Consider Daylight Saving" id="daylightsaving">
+	</property>
+	<property type="String" title="Date Format" id="dateformat">
+		<possibleValue>dd.mm.yy</possibleValue>
+		<possibleValue>dd.mm</possibleValue>
+		<possibleValue>mm.yy</possibleValue>
+		<possibleValue>hide</possibleValue>
+		<possibleValue>default</possibleValue>
+	</property>
+	<property type="String" title="Time Format" id="timeformat">
+		<possibleValue>hh:mm:ss</possibleValue>
+		<possibleValue>hh:mm</possibleValue>
+		<possibleValue>hide</possibleValue>
+		<possibleValue>default</possibleValue>
+	</property>
+	<property type="int" title="Update Interval (in ms)" id="interval">
+	</property>
+	<initialization>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">40</defaultValue>
+		<defaultValue property="utcoffset">0</defaultValue>
+		<defaultValue property="locale">de-DE</defaultValue>
+		<defaultValue property="dateformat">dd.mm.yy</defaultValue>
+		<defaultValue property="timeformat">hh:mm:ss</defaultValue>
+		<defaultValue property="showtimezonename">true</defaultValue>
+		<defaultValue property="daylightsaving">true</defaultValue>
+		<defaultValue property="interval">5000</defaultValue>
+	</initialization>
+
+</component>
+
 </sdkExtension>

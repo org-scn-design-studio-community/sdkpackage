@@ -1,0 +1,18 @@
+
+/**
+ * Class for WorldTime
+ */
+class org.scn.community.basics.WorldTime extends org.scn.community.shared.Component {
+	
+	/** Set base timezone with given utc offset.  
+
+ 	<example>
+	<code>
+	TIME_1.setOffset("-2").
+	</code>
+	</example>
+	 */
+	void setOffset(String utc_offset) {*
+		this.utcoffset = utc_offset;
+	*}
+}

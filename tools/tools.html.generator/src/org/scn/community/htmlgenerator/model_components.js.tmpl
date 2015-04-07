@@ -1,0 +1,38 @@
+//1. Create a JSON sdkComponentModel (oModel).
+sdkComponentModel = {};
+
+sdkComponentModel["basics"] = [
+%COMPONENT_LIST_ENTRY_BASICS%
+	];
+sdkComponentModel["databound"] = [
+%COMPONENT_LIST_ENTRY_DATABOUND%
+                  ];
+sdkComponentModel["chartmaps"] = [
+%COMPONENT_LIST_ENTRY_CHARTMAPS%
+                  ];
+sdkComponentModel["datasource"] = [
+%COMPONENT_LIST_ENTRY_DATASOURCE%
+	];
+sdkComponentModel["geovis"] = [
+%COMPONENT_LIST_ENTRY_GEO%
+	];
+sdkComponentModel["utils"] = [
+%COMPONENT_LIST_ENTRY_UTILS%
+	];
+sdkComponentModel["prototypes"] = [
+%COMPONENT_LIST_ENTRY_PROTOTYPES%
+	];
+
+/* example
+sdkComponentModel["basics"] = [
+{
+    id: "idModelTile3",
+    title: "Todo",
+    info: "Tasks todo",
+    icon: "task",
+    activeIcon: "task",
+    number: 29,
+    numberUnit: "tasks"
+},
+];
+*/

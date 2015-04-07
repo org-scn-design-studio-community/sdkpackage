@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+  <name>ProcessFlowLaneState</name>
+  <author></author>
+
+  <documentation>[Enter description for ProcessFlowLaneState]</documentation>
+  <baseType>sap.ui.core/string</baseType>
+  <enumeration>
+    <value name="value">
+      <documentation>The percentage value from the entire 100 percent</documentation>
+    </value>
+    <value name="state">
+      <documentation>State associated to the given value</documentation>
+    </value>
+  </enumeration>
+</simple-type>

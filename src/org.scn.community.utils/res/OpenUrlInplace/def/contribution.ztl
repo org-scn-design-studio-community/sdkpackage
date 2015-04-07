@@ -1,0 +1,50 @@
+/**
+ * Class for OpenWindowPost
+ */
+class org.scn.community.utils.OpenUrlInplace extends org.scn.community.shared.Component {
+	
+	/**
+	 * Trigger Execution of the given URL and parameter list
+	 */
+	void triggerExecution () {*
+		this.trigger = "GO";
+	*}
+	
+	/**
+	 * Set URL 
+	 */
+	void setUrl (
+			/**url*/String url) {*
+		this.url = url;
+	*}
+
+	/** 
+	 * Add parameter
+	 * 
+	 */
+	void removeAllParameters () {*
+		this.parameters = "";
+	*}
+			
+	/** 
+	 * Add parameter
+	 * 
+	 */
+	void addParameter (
+			/**name*/String name, 
+			/**value*/String value) {*
+		var itemDef = { 
+				"name": name,
+				"value": value 
+				};
+	
+		if (this.parameters === undefined || this.parameters === "" || this.parameters === "<delete>"){
+			this.parameters = "[]";
+		}
+		
+		var parametersJson = JSON.parse(this.parameters);
+		parametersJson.push(itemDef)
+	
+		this.parameters = JSON.stringify(parametersJson);
+	*}
+}

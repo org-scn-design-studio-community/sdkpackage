@@ -1,0 +1,59 @@
+/* ============================================================================== */
+/* CSS for sap.suite.ui.commons/ComparisonChart.control for 'sap_bluecrystal' theme*/
+/* ============================================================================== */
+
+.sapSuiteCmpChartItemValue {
+	color: @sapUiDarkText;
+}
+
+.sapSuiteCmpChartItemValue.Neutral {
+    color: @sapUiLightText;
+}
+
+.sapSuiteCmpChartItemValue.Good {
+    color: @sapUiPositiveText;
+}
+
+.sapSuiteCmpChartItemValue.Critical {
+    color: @sapUiCriticalText;
+}
+
+.sapSuiteCmpChartItemValue.Error {
+    color: @sapUiNegativeText;
+}
+
+.sapSuiteCmpChartBarValue.Neutral {
+    background-color: @sapUiChartNeutral;
+}
+
+.sapSuiteCmpChartBarValue.Good {
+    background-color: @sapUiChartGood;
+}
+
+.sapSuiteCmpChartBarValue.Critical {
+    background-color: @sapUiChartCritical;
+}
+
+.sapSuiteCmpChartBarValue.Error {
+    background-color: @sapUiChartBad;
+}
+
+.sapSuiteCmpChartContent {
+    font-family: @sapUiFontHeaderFamily;
+	font-weight: @sapUiFontHeaderWeight; 
+	font-size: @sapMFontSmallSize;
+}
+
+.sapSuiteCmpChartContent.L {
+	font-size: @sapMFontMediumSize;
+}
+
+.sap-desktop .sapSuiteCmpChartContent:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+
+.sapSuiteCmpChartContent:focus:not([tabindex]) {
+	outline: none;
+}

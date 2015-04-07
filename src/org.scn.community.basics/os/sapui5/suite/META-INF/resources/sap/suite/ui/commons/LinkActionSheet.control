@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>LinkActionSheet</name>
+	<documentation>This control contains one or more sap.m.Button controls or sap.ui.commons.Link controls. The LinkActionSheet control is closed if the user chooses one of the buttons or links. It looks similar to sap.m.Dialog in iPhone and Android, and to sap.m.Popover in iPad.</documentation>
+
+	<baseType>sap.m/ActionSheet</baseType>
+	<events>
+		<event name="itemPress" allowPreventDefault="true">
+			<documentation>The event is fired when the user chooses any item.</documentation>
+			<parameters>
+				<parameter name="item" type="sap.ui.core/Control">
+					<documentation>The object that initiated the event.</documentation>
+				</parameter>
+			</parameters>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..n" name="items" type="sap.ui.core/Control">
+			<documentation>These buttons or links are added to the content area in the LinkActionSheet control. If the user chooses a button or a link, the LinkActionSheet is closed before the event listener is called.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

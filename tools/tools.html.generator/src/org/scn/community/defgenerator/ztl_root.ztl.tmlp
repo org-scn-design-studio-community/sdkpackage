@@ -1,0 +1,12 @@
+
+/**
+ * Generated ZTL Class for %TECH_DESCRIPTION%
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class %TECH_NAME% extends org.scn.community.shared.%TECH_EXTENSION% {
+
+%FUNCTION_ENTRY%
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+%CUSTOM_ENTRY%
+}

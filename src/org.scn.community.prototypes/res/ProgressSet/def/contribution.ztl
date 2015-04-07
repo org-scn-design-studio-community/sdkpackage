@@ -7,10 +7,11 @@ class org.scn.community.prototypes.BarProperty {
   String number;
   String numberUnit;
 }
+
 /**
  * Class for ProgressBar
  */
-class org.scn.community.prototypes.ProgressSet extends Component {
+class org.scn.community.prototypes.ProgressSet extends org.scn.community.shared.Component {
 	/**
 	Sets bar thickness (-1 = auto)
 	*/

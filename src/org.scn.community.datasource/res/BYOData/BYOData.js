@@ -32,14 +32,24 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 	_mutators = [];
 	_mutateString = "";
 	_dataString = "";
+	_sortMethod = "NONE";
 	_kfIndex = 0;
 	_swap = false;
 	
-	this.kfIndex = function(i){
-		if(i===undefined){
-			return _kfIndex;
+	this.kfIndex = function(s){
+		if(s===undefined){
+			return String(_kfIndex);
 		}else{
-			_kfIndex = i;
+			_kfIndex = parseInt(s);
+			this.recalculate();
+			return this;
+		}
+	};
+	this.sortMethod = function(s){
+		if(s===undefined){
+			return _sortMethod;
+		}else{
+			_sortMethod = s;
 			this.recalculate();
 			return this;
 		}
@@ -74,7 +84,7 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 			return d.join("\n");
 		}else{
 			_data = [];
-			_dataString = s.replace(/\|/g,"\n");
+			_dataString = s.replace(/~\|~/g,"\n");
 			var sd = _dataString.split("\n");
 			for(var i=0;i<sd.length;i++){
 				_data.push(sd[i].split(","));
@@ -92,12 +102,13 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 			this.fireUpdate();
 			return;
 		}
+		
 		var headers = _data[0].slice();							// Shallow Copy 1st row to get labels
 		var dataStart = 1;										// Account for header row
-		var kfIndex = this.kfIndex();							// Measure Starting Column
+		var kfIndex = _kfIndex;									// Measure Starting Column
 		var kfLength = headers.length - kfIndex;				// Get number of Measures
 		var dimNames = headers.slice(0,kfIndex);				// Get Dimensions Names
-		var kfNames = headers.splice(kfIndex,headers.length-1);	// Get Measure Names
+		var kfNames = headers.splice(kfIndex,headers.length);	// Get Measure Names
 		var measureAxis = "COLUMNS";
 		var dimensionAxis = "ROWS";
 		if(this.swap()==true){
@@ -114,26 +125,99 @@ sap.designstudio.sdk.DataBuffer.subclass("org.scn.community.datasource.BYOData",
 		}];
 		// Define Dimensions
 		for(var i=0;i<dimNames.length;i++){
-			dims.push({
+			var dim = {
 				key : dimNames[i],
 				text : dimNames[i],
 				axis : dimensionAxis
-			})
+			};
+			dims.push(dim)
 		}
 		this.defineDimensions(dims);
+		/*
+		 * Step 1:
+		 * Looks like setDataCell assumes coordinate will be a unique tuple, which may not be the case.
+		 * We will make sure each tuple is unique here.
+		 */ 
+		var uniques = {};
 		// Set data
 		for(var i=dataStart;i<_data.length;i++){
+			// Get dimensions
+			var coordinate = _data[i].slice(0,kfIndex);
 			for(var j=0;j<kfLength;j++){
-				var coordinate = _data[i].slice(0,kfIndex);
-				// Splice in measure member
+				if(j>0){	// Knock out prior Measure
+					coordinate.splice(0,1);
+				}
+				// Splice in measure member in first position.
 				coordinate.splice(0,0,kfNames[j]);
 				var d = _data[i][kfIndex+j];
+				if(isNaN(Number(d))) d = 0;
 				var mutate = 1;
-				if(_mutators.length>=j) mutate = parseFloat(_mutators[j]);
+				if(_mutators.length>j) mutate = parseFloat(_mutators[j]);
+				if(isNaN(mutate)) mutate = 1;
 				d = d * mutate;
-				this.setDataCell(coordinate,d);
+				var hash = coordinate.join("~");
+				if(!uniques[hash]){
+					if(coordinate) {
+						uniques[hash] = {
+							coordinate : coordinate.slice(),	// Shallow copy
+							data : d
+						};
+					}
+				}else{
+					// Summarize on duplicate
+					uniques[hash].data += d;
+				}
 			}
 		}
+		var payload = [];
+		for(var item in uniques){
+			payload.push({
+				key : item,
+				value : uniques[item]
+			});
+		}
+		/**
+		 * Fixed nasty sort bug!  Also sort Measure Members.
+		 */
+		if(this.sortMethod()=="Alphanumeric Ascending"){
+			payload.sort(function(a,b){
+				var coordA = a.value.coordinate.slice();
+				var coordB = b.value.coordinate.slice();
+				var i=coordA.length-1;	
+				while(i>=0){
+					if(coordA[i].toLowerCase() > coordB[i].toLowerCase()) return 1;
+					if(coordA[i].toLowerCase() < coordB[i].toLowerCase()) return -1;
+					i--;
+				}
+				return 0;
+			});
+		}
+		if(this.sortMethod()=="Alphanumeric Descending"){
+			payload.sort(function(a,b){
+				var coordA = a.value.coordinate.slice();
+				var coordB = b.value.coordinate.slice();
+				var i=coordA.length-1;	
+				while(i>=0){
+					if(coordA[i].toLowerCase() < coordB[i].toLowerCase()) return 1;
+					if(coordA[i].toLowerCase() > coordB[i].toLowerCase()) return -1;
+					i--;
+				}
+				return 0;
+			});
+		}
+		/*
+		 * Step 2 - Send unique over
+		 */
+		var errLog = "";
+		for(var i=0;i<payload.length;i++){
+			var item = payload[i];
+			try{
+				this.setDataCell(item.value.coordinate,item.value.data);				
+			}catch(e){
+				errLog+="\n"+i+":"+JSON.stringify(item)+e;
+			}
+		}
+		if(errLog) console.log(errLog);
 		this.firePropertiesChanged(["metadata"]);
 		this.fireUpdate();
 	};

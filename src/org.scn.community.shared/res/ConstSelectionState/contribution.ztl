@@ -1,0 +1,22 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_SelectionStateEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify field 
+ */
+class org_scn_community_shared_SelectionState extends Enum {
+
+	/** CHECKED */
+	org_scn_community_shared_SelectionStateEnumfield CHECKED;
+       
+	/** UNCHECKED */
+	org_scn_community_shared_SelectionStateEnumfield UNCHECKED;
+
+	/** MIXED */
+	org_scn_community_shared_SelectionStateEnumfield MIXED;
+}

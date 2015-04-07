@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>HeaderCell</name>
+	<documentation>This control contains 4 cells (West, North, East, South). It can display one or more controls in different layouts. Each aggregation must contain only one instance of HeaderCellItem.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="heigth" type="sap.ui.core/CSSSize" defaultValue="100px">
+			<documentation>Height of the HeaderCell control.</documentation>
+			<deprecation since="1.20.2">Wrong property name</deprecation>
+		</property>
+		<property group="Misc" name="height" type="sap.ui.core/CSSSize" defaultValue="106px">
+			<documentation>Height of the HeaderCell control.</documentation>
+		</property>
+	</properties>
+	<aggregations>
+		<aggregation cardinality="0..1" name="west" type="HeaderCellItem">
+			<documentation>Objecth that contains control to render in west area of the HeaderCell.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="north" type="HeaderCellItem">
+			<documentation>Objecth that contains control to render in north area of the HeaderCell.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="east" type="HeaderCellItem">
+			<documentation>Objecth that contains control to render in east area of the HeaderCell.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="south" type="HeaderCellItem">
+			<documentation>Objecth that contains control to render in south area of the HeaderCell.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

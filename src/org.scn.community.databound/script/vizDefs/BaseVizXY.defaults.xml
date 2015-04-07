@@ -1,0 +1,7 @@
+
+		<!-- BaseVizXY Defaults -->
+		<defaultValue property="maxX">0</defaultValue>
+		<defaultValue property="maxY">0</defaultValue>
+		<defaultValue property="minX">0</defaultValue>
+		<defaultValue property="minY">0</defaultValue>
+		<!-- End of BaseVizXY Defaults -->

@@ -1,0 +1,20 @@
+/*
+var style = document.createElement('style')
+style.type = 'text/css'
+style.innerHTML = 'content'
+document.getElementsByTagName('head')[0].appendChild(style)
+
+#FACETFILTER_1_control_loadingState {visibility: hidden !important;}
+#FACETFILTER_1_control_loadingStateBox {visibility: hidden !important;}
+#FACETFILTER_1_control_loadingState_message {visibility: hidden !important;}
+*/
+
+div[class~=scn-pack-FacetFilter-MarkPositiveValue] ul>li[data-valueSign="+"] {background-color: #8ff78c!important;}
+div[class~=scn-pack-FacetFilter-MarkNegativeValue] ul>li[data-valueSign="-"] {background-color: #f89b8b!important;}
+
+div[class~=scn-pack-FacetFilter-MarkAnyValue] ul>li[data-valueSign="+"] {background-color: #b9efff!important;}
+div[class~=scn-pack-FacetFilter-MarkAnyValue] ul>li[data-valueSign="-"] {background-color: #b9efff!important;}
+
+div[class~=scn-pack-FacetFilter-MarkAnyEmptyValue] ul>li[data-valueSign="0"] {background-color: #ffffb9!important;}
+
+div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% !important;height: 100% !important;}

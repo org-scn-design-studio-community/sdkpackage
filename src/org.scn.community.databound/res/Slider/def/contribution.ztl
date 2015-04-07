@@ -1,0 +1,31 @@
+
+/**
+ * Class for DataSlider
+ */
+class org.scn.community.databound.Slider extends org.scn.community.shared.DataComponent {
+
+	/** returns the selected key */
+	String getSelectedKey () {*
+		return this.selectedKey;	
+	*}
+	
+	/** sets the selected key */
+	void setSelectedKey (String key) {*
+		this.selectedKey = key;	
+	*}
+	
+	/** returns the selected text */
+	String getSelectedText () {*
+		return this.selectedText;	
+	*}
+	
+	/** sets the pause refresh flag */
+	void pauseRefresh () {*
+		this.doRefresh = false;	
+	*}
+
+	/** sets the pause refresh flag */
+	void allowRefresh () {*
+		this.doRefresh = true;	
+	*}
+}

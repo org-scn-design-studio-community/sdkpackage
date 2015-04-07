@@ -1,0 +1,106 @@
+
+<component
+	id="MultiLevelDropDown"
+	title="Multi Level DropDown Menu"
+	icon="res/MultiLevelDropDown/MultiLevelDropDown.gif"
+	handlerType="div"
+	propertySheetPath="res/MultiLevelDropDown/aps/MultiLevelDropDown.html"
+	databound="true"
+	group="ScnCommunityDataBound">
+	
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+
+	<jsInclude>res/MultiLevelDropDown/MultiLevelDropDown.js</jsInclude>
+	
+	<!--CSS adapted from http://codepen.io/philhoyt/pen/ujHzd-->
+	<cssInclude>res/MultiLevelDropDown/MultiLevelDropDown.css</cssInclude>
+	
+	<!-- Result set containing the data-->
+		<property 
+			type="ResultSet" 
+			title="Data" 
+			id="data"
+			group="DataBinding" 
+			visible="false">
+		</property>
+		
+		<!-- Selected menu, not used -->
+		<property 
+			type="String" 
+			title="selChar" 
+			id="selChar" 
+			visible="false">
+		</property>
+		
+		<!-- Add Single root node instead of all the first child of the hierarchy -->
+		<property 
+			type="boolean" 	
+			title="Add a single root node" 	
+			id="addSingleRootNode">
+		</property>
+		
+		<!-- Name of the Single root node-->
+		<property 
+			type="String" 	
+			title="Single root node name" 	
+			id="singleRootNodeName">
+		</property>
+		
+		<!-- On Click Event property -->
+		<property 
+			type="ScriptText"
+			title="On Click" 				
+			id="onClick" 				
+			group="Events">
+		</property>
+		
+		<!-- Menu that has been selected, "clicked" -->
+		<property 
+			type="String" 	
+			title="clicked Element Key" 	
+			id="clickedElemKey" 		
+			visible="false">
+		</property>
+		<property 
+			type="String" 	
+			title="clicked Element Text" 	
+			id="clickedElemText" 		
+			visible="false">
+		</property>
+		
+		<!-- Display reset button property-->
+		<property 
+			type="String" 	
+			title="Display Reset Button" 	
+			id="resetButton">
+			<possibleValue>None</possibleValue>
+			<possibleValue>Left</possibleValue>
+			<possibleValue>Right</possibleValue>
+		</property>
+		<!-- On Reset event property-->
+		<property 
+			type="ScriptText" 
+			title='onReset' 				
+			id="onReset"				
+			group="Events">
+		</property>
+
+		<initialization>
+			<!-- WIDTH -->
+			<defaultValue property="WIDTH">700</defaultValue>
+			<!-- HEIGHT -->
+			<defaultValue property="HEIGHT">200</defaultValue>
+			<!-- selChar (obsolete) -->
+			<defaultValue property="selChar"></defaultValue>
+			<!-- singleRootNodeName -->
+			<defaultValue property="singleRootNodeName">Root</defaultValue>
+			<!-- addSingleRootNodeName -->
+			<defaultValue property="addSingleRootNodeName">false</defaultValue>
+			<!-- clickedElemKey -->
+			<defaultValue property="clickedElemKey">INITIAL VALUE</defaultValue>
+			<!-- resetButton -->
+			<defaultValue property="resetButton">None</defaultValue>
+		</initialization>
+</component>

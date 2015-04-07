@@ -1,0 +1,245 @@
+
+/**
+ * Component Math
+ */
+class org.scn.community.utils.Math extends org.scn.community.shared.Component {  
+
+	/**
+	 * Returns the absolute value of x
+	 */
+	float abs (float value) {*
+		return Math.abs(value);
+	*}
+	
+	/**
+	 * Returns the arccosine of x, in radians
+	 */
+	float acos (float value) {*
+		return Math.acos(value);
+	*}
+	
+	/**
+	 * Returns the arcsine of x, in radians
+	 */
+	float asin (float value) {*
+		return Math.asin(value);
+	*}
+	
+	/**
+	 * Returns the arctangent of x as a numeric value between -PI/2 and PI/2 radians
+	 */
+	float atan (float value) {*
+		return Math.atan(value);
+	*}
+	
+	/**
+	 * Math.ceil() rounds a number up to the nearest integer
+	 */
+	float ceil (float value) {*
+		return Math.ceil(value);
+	*}
+	
+	/**
+	 * Returns the cosine of x (x is in radians)
+	 */
+	float cos (float value) {*
+		return Math.cos(value);
+	*}
+	
+	/**
+	 * Returns the value of E^x
+	 */
+	float exp (float value) {*
+		return Math.exp(value);
+	*}
+	
+	/**
+	 * Math.floor() rounds a number down to the nearest integer.
+	 * <example>
+	 * Math.floor() and Math.random() can be used together to return a random number between 0 and 10.
+	 * <code>
+	 * // returns a random number between 0 and 10
+	 * Math.floor(Math.random() * 11);
+	 * </code>
+	 * </example>
+	 */
+	float floor (float value) {*
+		return Math.floor(value);
+	*}
+	
+	/**
+	 * Returns the natural logarithm (base E) of x
+	 */
+	float log (float value) {*
+		return Math.log(value);
+	*}
+	
+	/**
+	 * Math.min() and Math.max() can be used to find the lowest or highest value in a list of arguments (min 2, max 4)
+	 */
+	float max (float value, float value2, optional float value3, optional float value4) {*
+		if(value4 == undefined) {
+			return Math.max(value, value2);
+			
+			if(value3 == undefined) {
+				return Math.max(value, value2);
+			}
+			
+			return Math.max(value, value2, value3);
+		}
+		return Math.max(value, value2, value3, value4);
+	*}
+	
+	/**
+	 * Math.min() and Math.max() can be used to find the lowest or highest value in a list of arguments (min 2, max 4)
+	 */
+	float min (float value, float value2, optional float value3, optional float value4) {*
+		if(value4 == undefined) {
+			return Math.min(value, value2);
+			
+			if(value3 == undefined) {
+				return Math.min(value, value2);
+			}
+			
+			return Math.min(value, value2, value3);
+		}
+		return Math.min(value, value2, value3, value4);
+	*}
+	
+	/**
+	 * Returns the value of x to the power of y
+	 */
+	float pow (float value, float value2) {*
+		return Math.pow(value, value2);
+	*}
+	
+	/**
+	 * Math.random() returns a random number between 0 and 1
+	 */
+	float random () {*
+		return Math.random();
+	*}
+	
+	/**
+	 * Math.round() rounds a number to the nearest integer
+	 */
+	float round (float value) {*
+		return Math.round(value);
+	*}
+	
+	/**
+	 * Returns the sine of x (x is in radians)
+	 */
+	float sin (float value) {*
+		return Math.sin(value);
+	*}
+	
+	/**
+	 * Returns the square root of x
+	 */
+	float sqrt (float value) {*
+		return Math.sqrt(value);
+	*}
+	
+	/**
+	 * Returns the tangent of an angle
+	 */
+	float tan (float value) {*
+		return Math.tan(value);
+	*}
+	
+	/**
+	 * Calculates sum of all given floats as StringArray
+	 */
+	float sum (StringArray elements) {*
+		var sum = 0;
+		for( var i = 0; i < elements.length; i++ ){
+		    sum += parseFloat( elements[i] ); //don't forget to add the base
+		}
+	
+		var avg = sum/elements.length;
+		
+		return sum;
+	*}
+	
+	/**
+	 * Calculates sum of all given floats as org.scn.community.shared.KeyLabelValueArray
+	 */
+	float sumV (org.scn.community.shared.KeyLabelValueArray elements) {*
+		var sum = 0;
+		for( var i = 0; i < elements.length; i++ ){
+		    sum += parseFloat( elements[i].value ); //don't forget to add the base
+		}
+	
+		var avg = sum/elements.length;
+		
+		return sum;
+	*}
+	
+	/**
+	 * Calculates average of all given floats as StringArray
+	 */
+	float average (StringArray elements) {*
+		var sum = 0;
+		for( var i = 0; i < elements.length; i++ ){
+		    sum += parseFloat( elements[i] ); //don't forget to add the base
+		}
+	
+		var avg = sum/elements.length;
+		
+		return avg;
+	*}
+	
+	/**
+	 * Calculates average of all given floats as org.scn.community.shared.KeyLabelValueArray
+	 */
+	float averageV (org.scn.community.shared.KeyLabelValueArray elements) {*
+		var sum = 0;
+		for( var i = 0; i < elements.length; i++ ){
+		    sum += parseFloat( elements[i].value ); //don't forget to add the base
+		}
+	
+		var avg = sum/elements.length;
+		
+		return avg;
+	*}
+	
+	/**
+	 * Calculates percentage of the number to the sum
+	 */
+	float percent (float number, float sum) {*
+		var perc = (number/sum) * 100;
+		
+		return perc ;
+	*}
+	
+	/**
+	 * Calculates median of all given floats as StringArray
+	 */
+	float median (StringArray elements) {*
+		elements.sort( function(a,b) {return parseFloat(a) - parseFloat(b);} );
+	    
+	    var half = Math.floor(elements.length/2);
+	    
+	    if (elements.length % 2 == 1) {
+	        return parseFloat(elements[half]);
+	    } else {
+	        return (parseFloat(elements[half-1]) + parseFloat(elements[half])) / 2.0;
+	    }
+	*}
+	
+	/**
+	 * Calculates median of all given floats as org.scn.community.shared.KeyLabelValueArray
+	 */
+	float medianV (org.scn.community.shared.KeyLabelValueArray elements) {*
+		elements.sort( function(a,b) {return a.value - b.value;} );
+	    
+	    var half = Math.floor(elements.length/2);
+	    
+	    if (elements.length % 2 == 1) {
+	        return elements[half].value;
+	    } else {
+	        return (elements[half-1].value + elements[half].value) / 2.0;
+	    }
+	*}
+}

@@ -1,0 +1,32 @@
+	this.updateProperty%PROPERTY_NAME% = function(){
+		this._input%PROPERTY_NAME%.setChecked(this._%PROPERTY_NAME%);
+	};
+	
+	this.init%PROPERTY_NAME% = function(){
+		this._label%PROPERTY_NAME% = new sap.ui.commons.Label({text: " %PROPERTY_DESCRIPTION%"});
+		this._label%PROPERTY_NAME%.addStyleClass("org-scn-ApsLabel");
+		this._content.addContent(this._label%PROPERTY_NAME%);
+		
+		this._input%PROPERTY_NAME% = new sap.ui.commons.CheckBox({width: "300px", text: "%PROPERTY_DESCRIPTION%"});
+		this._content.addContent(this._input%PROPERTY_NAME%);
+		this._input%PROPERTY_NAME%.attachChange(this.propertyChanged%PROPERTY_NAME%, this);
+		this._input%PROPERTY_NAME%.addStyleClass("org-scn-ApsBoolean");
+		
+		this.updateProperty%PROPERTY_NAME%();
+	};
+
+	this.propertyChanged%PROPERTY_NAME% = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		this._%PROPERTY_NAME% = checked;
+		this.firePropertiesChanged(["%PROPERTY_NAME%"]);
+	};
+	
+	this.%PROPERTY_NAME% = function(s){
+		if( s === undefined){
+			return this._%PROPERTY_NAME%;
+		}else{
+			this._%PROPERTY_NAME% = s;
+			this.updateProperty%PROPERTY_NAME%();
+			return this;
+		}
+	};

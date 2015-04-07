@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ValueStatus</name>
+	<author>SAP AG</author>
+	<documentation>Marker for the key value status.</documentation>
+	<baseType>sap.ui.core/string</baseType>
+	<enumeration>
+		<value name="Good">
+			<documentation>Good value.</documentation>
+		</value>
+		<value name="Neutral">
+			<documentation>Positive value.</documentation>
+		</value>
+		<value name="Critical">
+			<documentation>Critical value.</documentation>
+		</value>
+		<value name="Bad">
+			<documentation>Bad value.</documentation>
+		</value>
+	</enumeration>
+</simple-type>

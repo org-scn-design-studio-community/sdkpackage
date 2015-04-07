@@ -1,0 +1,160 @@
+
+<component
+	id="FacetFilter"
+	title="Facet Filter"
+	icon="res/FacetFilter/FacetFilter.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+
+	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
+	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+
+	<jsInclude>res/FacetFilter/FacetFilter.js</jsInclude>
+	<cssInclude>res/FacetFilter/FacetFilter.css</cssInclude>
+
+	<property
+		id="DElements"
+		title="Master Data Elements"
+		type="String"
+		group="DataBinding"
+		visible="false"
+	>
+	</property>
+
+	<property
+		id="DSelection"
+		title="Selected Elements"
+		type="String"
+		group="DataBinding"
+		visible="false"
+	>
+	</property>
+	
+	<property
+		id="data"
+		title="Data List"
+		type="ResultCellList"
+		group="DataBinding"
+		visible="true"
+	>
+	</property>
+
+	<property
+		id="DDisplayText"
+		title="Display Text"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Text</possibleValue>
+			<possibleValue>Text (Value)</possibleValue>
+	</property>
+
+	<property
+		id="DSortingType"
+		title="Member Sorting Type"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Default</possibleValue>
+			<possibleValue>Alphabetical</possibleValue>
+			<possibleValue>Selected</possibleValue>
+			<possibleValue>Value</possibleValue>
+	</property>
+
+	<property
+		id="DSortingDirection"
+		title="Member Sorting Direction"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Ascending</possibleValue>
+			<possibleValue>Descending</possibleValue>
+	</property>
+
+	<property
+		id="DMaxMembers"
+		title="Maximum Number of Members"
+		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DClearOthers"
+		title="Clear Selection of other dimensions when member value is 0"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DContentMode"
+		title="Content Mode (how much should be visualized)"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>All Dimensions</possibleValue>
+			<possibleValue>Only from Result Set</possibleValue>
+			<possibleValue>Custom Dimension Set</possibleValue>
+	</property>
+
+	<property
+		id="DZeroValuesMode"
+		title="Zero-Values Mode"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Show</possibleValue>
+			<possibleValue>Hide</possibleValue>
+	</property>
+
+	<property
+		id="DCustomDimensions"
+		title="Custom Dimensions as Array [...]"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property  
+	  id="onInternalSelectionChanged"  
+	  title="On User List Selection"  
+	  type="ScriptText"  
+    visible="false"
+    />  
+
+	<property
+		id="onBeforeRender"
+		type="ScriptText"
+		title="Event for On Before Render"
+		group="Events"
+		visible="false" 
+	/>
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="DElements"></defaultValue>
+		<defaultValue property="DMaxMembers">1000</defaultValue>
+		<defaultValue property="DContentMode">Only from Result Set</defaultValue>
+		<defaultValue property="DCustomDimensions">[]</defaultValue>
+		<defaultValue property="DDisplayText">Text (Value)</defaultValue>
+		<defaultValue property="DSortingType">Default</defaultValue>
+		<defaultValue property="DSortingDirection">Descending</defaultValue>
+		<defaultValue property="DClearOthers">true</defaultValue>
+		<defaultValue property="DZeroValuesMode">Show</defaultValue>
+		
+		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
+		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
+	</initialization>
+
+</component>

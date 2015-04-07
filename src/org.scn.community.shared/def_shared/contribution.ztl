@@ -1,0 +1,163 @@
+/**
+ * Class for reusable ZTL component methods
+ */
+class org.scn.community.shared.Component extends Component {
+	
+	void internalWriteLog(String log) {*
+		// only for debugging
+		var active = false;
+	
+		if(active) {
+			APPLICATION.log(log);
+		}
+	*}
+
+	/**
+	 * DO NOT USE, ONLY FOR DEBUG ACTIVATION
+	 */
+	@Visibility(private)
+	boolean isDebug(optional String componentName) {*
+		// quick check here
+		if(componentName == undefined) {
+			if(this._dbgDEBUG == "+") { return true; }
+			if(this._dbgDEBUG == "-") { return false; }
+			componentName = "DEBUG";
+		} else {
+			if(this["_dbg" + componentName] == "+") { return true; }
+			if(this["_dbg" + componentName] == "-") { return false; }
+		}
+	
+		internal_assureGlobalAccess ();
+		
+		var something = this.getGlobal()[componentName];
+		if(something != undefined) {
+			this["_dbg" + componentName] == "+";
+			return true;
+		} else {
+			this["_dbg" + componentName] == "-";
+			return false;
+		}
+	*}
+	
+	/**
+	 * Internal function to read return global scope
+	 * http://stackoverflow.com/questions/1162998/how-can-i-add-an-object-property-to-the-global-object-in-rhino-javascript
+	 */
+	@Visibility(private)
+	void internal_assureGlobalAccess () {*
+		if(this.getGlobal == undefined) {
+			this.getGlobal = function () {
+				return (function() {
+					return this;
+				}).call(null);
+			}
+		}
+	*}
+}
+
+/**
+ * Class for reusable ZTL data bound component methods
+ */
+class org.scn.community.shared.DataComponent extends org.scn.community.shared.Component {
+
+	String superReadMembers(
+			/**technical name of the dimension*/String dimensionName,
+			/**max members to load (optional, default 1000)*/optional int maxMembers
+			) {*
+		var ds = this.getDataSource();
+		
+		var membersArray = [];
+	
+		if(maxMembers == undefined) {
+			maxMembers = 1000;
+		}
+		
+		var members = ds.getMembers(dimensionName, maxMembers);
+
+		this.internalWriteLog("Load Members [length]: " + members.length);
+		
+		members.forEach(function(member, index) {
+			var memberEntry = {};
+			membersArray.push(memberEntry);
+			
+			memberEntry.key = member.internalKey;
+			// member.internalNoncompoundedKey;
+			memberEntry.keyExt = member.externalKey;
+			// member.externalNoncompoundedKey;
+			memberEntry.text = member.text;
+		});
+		
+		var membersMetaData = {};
+		membersMetaData.dimensionName = dimensionName;
+		membersMetaData.members = membersArray;
+		
+		var result = JSON.stringify(membersMetaData);
+		return result;
+	
+	*}
+	
+	String superReadMetaData() {*
+		// APPLICATION.createInfoMessage("_readMetaData");
+		
+		var ds = this.getDataSource();
+	  
+		var dimensionsArray = [];
+	
+		var dims = ds.getDimensions();
+		dims.forEach(function(element, index) {
+			var dimEntry = {};
+			dimensionsArray.push(dimEntry);
+			dimEntry.name = element.name;
+			dimEntry.text = element.text;
+			
+			if (element.isMeasuresDimension) {
+				var measuresArray = [];
+				var measures = ds.getMembers(element.name, 100);
+				measures.forEach(function(measure) {
+					var measureEntry = {};
+					measuresArray.push(measureEntry);
+
+					measureEntry.name = measure.internalKey;
+					measureEntry.text = measure.text;
+				});
+
+				dimEntry.measures = measuresArray;
+			} else {
+				dimEntry.memberDisplay = ds.getMemberDisplay(element.name);
+				dimEntry.showTotals = ds.getTotalsDisplay(element.name);
+				dimEntry.hierarchies =  ds.getHierarchies(element.name);
+				dimEntry.assignedHierarchy = ds.getAssignedHierarchy(element.name);
+			}
+		});
+
+		var conditionalFormatsJson = [];
+		var conditionalFormat = ds.getConditionalFormats();	// Issue Fix for Github Issue 22 reported by sschau
+		conditionalFormat.forEach(function(element, index) {
+		  var conditionalFormatJson = {};
+		  conditionalFormatJson.push(conditionalFormatJson);
+		  
+		  conditionalFormatJson.id = element;
+		  conditionalFormatJson.name = ds.getConditionalFormatName(element);
+		  conditionalFormatJson.active = ds.isConditionalFormatActive(element);
+		});
+		
+		var measureFiltersJson = [];
+		var measureFilters = ds.getMeasureFilters();
+		measureFilters.forEach(function(element, index) {
+		  var conditionJson = {};
+		  measureFiltersJson.push(conditionJson);
+		  
+		  measureFilterJson.id = element;
+		  measureFilterJson.name = ds.getMeasureFilterName(element);
+		  measureFilterJson.active = ds.isMeasureFilterActive(element);
+		});
+		
+		var dataSourceMetaData = {};
+		dataSourceMetaData.dimensions = dimensionsArray;
+		dataSourceMetaData.conditionalFormats = conditionalFormatsJson;
+		dataSourceMetaData.measureFilters = measureFiltersJson;
+		
+		var result = JSON.stringify(dataSourceMetaData);
+		return result;
+	*}
+}

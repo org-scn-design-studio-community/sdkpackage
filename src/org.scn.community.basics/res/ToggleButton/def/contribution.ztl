@@ -1,0 +1,50 @@
+
+/**
+ * Class for ToggleButton
+ */
+class org.scn.community.basics.ToggleButton extends org.scn.community.shared.Component {
+	/** returns the pressed state 
+    <example>
+	You want to get the pressed state to decide what to do
+	<code>
+    var pressed = TOGGLEBUTTON_1.getPressed();
+	
+	APPLICATION.createInfoMessage("Pressed: " + pressed);
+	
+	if(pressed) {
+		// do something
+	} else {
+		// do other something
+	}
+	</code>
+	</example>
+	*/
+	boolean getPressed () {*
+		return this.pressed;	
+	*}
+	
+	/** sets the pressed state */
+	void setPressed (boolean value) {*
+		this.pressed = value;	
+	*}
+	
+	/** sets the enabled flag */
+	void setEnabled (boolean value) {*
+		this.enabled = value;	
+	*}
+
+	/** returns the enabled flag */
+	boolean getEnabled () {*
+		return this.enabled;	
+	*}
+	
+	/** sets the text */
+	void setText (String text) {*
+		this.text = text;	
+	*}
+
+	/** returns the text */
+	String getText () {*
+		return this.text;	
+	*}
+}

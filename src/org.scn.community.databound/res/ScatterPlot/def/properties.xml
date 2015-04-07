@@ -1,0 +1,8 @@
+
+	<!-- ScatterPlot Properties -->
+	<property id="colorDimension" title="Dimension for Series" type="String"/>
+	<property id="radius" type="int" title = "Plot Radius" visible="true"/>
+	<property id="bubbleMin" type="int" title = "Bubble Min Radius" visible="true"/>
+	<property id="bubbleMax" type="int" title = "Bubble Max Radius" visible="true"/>
+	<property id="measureZ" title="Z-Axis Measure (Blank will disable)" type="String"/>
+	<!-- End of ScatterPlot Properties -->

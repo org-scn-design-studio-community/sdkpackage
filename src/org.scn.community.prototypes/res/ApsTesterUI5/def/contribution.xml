@@ -1,0 +1,86 @@
+
+<component
+	id="ApsTesterUI5"
+	title="Aps Tester UI5"
+	tooltip="Application Property Sheet Tester UI5"
+	icon="res/ApsTesterUI5/ApsTesterUI5.png"
+	handlerType="sapui5"
+	propertySheetPath="aps/org.scn.community.generic.PropertyPage.html"
+	group="ScnCommunityPrototypes"
+	databound="true"
+>
+
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ApsTesterUI5/ApsTesterUI5Loader.js</jsInclude>
+
+	<property
+		id="comboboxExample"
+		type="String"
+		title="Simple Choice"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="colorExample"
+		type="String"
+		title="Simple Color"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultSet"
+		title="Data"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="checkboxExample"
+		type="boolean"
+		title="Ignore Totals"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="checkboxOnlyGetterExample"
+		type="boolean"
+		title="Ignore Totals"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="paletteExample"
+		type="String"
+		title="Color Palette"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="textExample"
+		type="String"
+		title="A saple text"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="spinnerExample"
+		type="int"
+		title="Some numbers"
+		group="Display"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+
+	</initialization>
+
+</component>

@@ -1,0 +1,45 @@
+
+<component
+	id="ResultSetInfo"
+	title="Result Set Information (Test Phase)"
+	icon="res/ResultSetInfo/ResultSetInfo.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	propertySheetPath="res/ResultSetInfo/aps/ResultSetInfoPropertyPage.html"
+	databound="true"
+>	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ResultSetInfo/ResultSetInfoLoader.js</jsInclude>
+	
+	<cssInclude>res/ResultSetInfo/ResultSetInfo.css</cssInclude>
+	
+	<property
+		id="data"
+		title="Result Set"
+		type="ResultSet"
+		group="DataBinding"
+		visible="false"
+	>
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+	</property>
+
+	<property
+		id="DCentralProvisioning"
+		title="Central Data Provisioning"
+		tooltip="Provision Data Centrally for Component Access"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+	</initialization>
+
+</component>

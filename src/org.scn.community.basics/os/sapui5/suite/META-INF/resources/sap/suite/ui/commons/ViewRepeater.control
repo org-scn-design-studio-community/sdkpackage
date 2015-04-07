@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ViewRepeater</name>
+	<documentation>This control extends the sap.ui.commons.RowRepeater control providing an ability to change data representation by switching between a number of views. The data can be displayed not only in rows but also in tiles that are adjusted to fill the entire horizontal space in a row.</documentation>
+
+	<baseType>sap.ui.commons/RowRepeater</baseType>
+	<properties>
+		<property group="Misc" name="itemMinWidth" type="sap.ui.core/int">
+			<documentation>The minimal width of the tile for the current view. Only applicable if &quot;responsive&quot; property is set to true.</documentation>
+		</property>
+		<property group="Misc" name="responsive" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>This parameter indicates whether the content is shown in rows or tiles. If false, the content is shown in rows just like in core sap.ui.commons.RowRepeater. If true, the content is shown in tiles (similar to sap.ui.ux3.DataSet control) that have minimal width defined by the &quot;itemMinWidth&quot; property. The number of columns depends on the parent control's width. If you resize the control, the number of columns may change respectively so that the content tiles can fill the entire space of a row.</documentation>
+		</property>
+		<property group="Misc" name="defaultViewIndex" type="sap.ui.core/int" defaultValue="0">
+			<documentation>The index of the default view starting from 0. The view is selected on the initial rendering of the control. If the index is greater than the total quantity of the views, the last view is selected.</documentation>
+		</property>
+		<property group="Misc" name="showSearchField" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Indicates if the search field panel is shown.</documentation>
+		</property>
+		<property group="Misc" name="showViews" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Indicates if the view selector panel is shown.</documentation>
+		</property>
+		<property group="Misc" name="external" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>Indicates if the external representation of the current view is rendered.</documentation>
+		</property>
+		<property group="Misc" name="itemHeight" type="sap.ui.core/int">
+			<documentation>The height of the tile in the current view in pixels. Only applicable if the responsive property is set to true. This value is used for calculating the number of tile rows.</documentation>
+		</property>
+		<property group="Misc" name="height" type="sap.ui.core/CSSSize" defaultValue="100%">
+			<documentation>The height of the control. Only applicable if the responsive property is set to true.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="search">
+			<documentation>This event is fired when the user performs a search.</documentation>
+			<parameters>
+				<parameter name="query" type="sap.ui.core/string">
+					<documentation>The search query.</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="changeView">
+			<documentation>This event is fired when a user switches between views.</documentation>
+			<parameters>
+				<parameter name="oldViewIndex" type="sap.ui.core/int">
+					<documentation>Contains an index of the previous view in the Views aggregation.</documentation>
+				</parameter>
+				<parameter name="newViewIndex" type="sap.ui.core/int">
+					<documentation>Contains an index of the new view in the Views aggregation.</documentation>
+				</parameter>
+				<parameter name="filterId" type="sap.ui.core/string">
+					<documentation>Contains an ID of the filter in the Filters aggregation.</documentation>
+				</parameter>
+				<parameter name="sorterId" type="sap.ui.core/string">
+					<documentation>Contains an ID of the sorter in the Sorters aggregation.</documentation>
+				</parameter>
+				<parameter name="page" type="sap.ui.core/int">
+					<documentation>Contains a page number.</documentation>
+				</parameter>
+			</parameters>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..n" name="views" type="RepeaterViewConfiguration">
+			<documentation>The list of views for the data representation.</documentation>
+		</aggregation>
+	</aggregations>
+	<associations>
+		<association cardinality="0..1" name="externalRepresentation" type="sap.ui.core/Control">
+			<documentation>The control to be rendered instead of the repeater's own content.</documentation>
+		</association>
+	</associations>
+</control>

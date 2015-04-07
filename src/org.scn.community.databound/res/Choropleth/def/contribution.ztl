@@ -1,0 +1,56 @@
+class org.scn.community.databound.Choropleth extends org.scn.community.shared.Component {
+	/**
+	Get selected feature
+	*/
+	String getSelectedFeature() {*
+		return this.selectedFeature;
+	*}
+	/**
+	Set Measure to use for coloring
+	*/
+	void setMeasure(/*Measure*/String measure) {*
+		return this.measureMember = measure;
+	*}
+	/**
+	Set Bubble Measure to use for coloring
+	*/
+	void setBubbleMeasure(/*Measure*/String measure) {*
+		return this.bubbleMember = measure;
+	*}
+	/**
+	Set Projection Method
+	*/
+	void setProjection(/*Projection*/String projection) {*
+		this.projection = projection;
+	*}
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		return this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+	/**
+	Set Bubble Color
+	*/
+	void setBubbleColor(/*Color*/String color) {*
+		this.bubbleColor = color;
+	*}
+	/**
+	Set Feature Attribute from GeoJSON that matches values in rows
+	*/
+	void setFeatureProperty(/*Attribute*/String attribute) {*
+		this.featureProperty = attribute;
+	*}
+	/**
+	Set Label Attribute from GeoJSON that should be used for labeling
+	*/
+	void setLabelProperty(/*Attribute*/String attribute) {*
+		this.labelProperty = attribute;
+	*}
+}

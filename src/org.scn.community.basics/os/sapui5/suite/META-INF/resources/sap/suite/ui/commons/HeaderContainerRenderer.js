@@ -1,0 +1,5 @@
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+jQuery.sap.declare("sap.suite.ui.commons.HeaderContainerRenderer");sap.suite.ui.commons.HeaderContainerRenderer={};
+sap.suite.ui.commons.HeaderContainerRenderer.render=function(r,c){var t=c.getTooltip_AsString();r.write("<div");r.writeControlData(c);if(t){r.writeAttributeEscaped("title",t)}r.addClass("sapSuiteHdrCntr");r.writeClasses();r.write(">");if(c._oArrowPrev){r.write("<div");r.addClass("sapSuiteHdrCntrBtnCntr");r.addClass("sapSuiteHdrCntrLeft");r.writeClasses();r.write(">");r.renderControl(c._oArrowPrev);r.write("</div>")}r.write("<div");r.writeAttributeEscaped("id",c.getId()+"-scroll-area");r.addClass("sapSuiteHdrCntrCntr");r.writeClasses();r.write(">");r.renderControl(c._oScrollCntr);r.write("</div>");if(c._oArrowNext){r.write("<div");r.addClass("sapSuiteHdrCntrBtnCntr");r.addClass("sapSuiteHdrCntrRight");r.writeClasses();r.write(">");r.renderControl(c._oArrowNext);r.write("</div>")}r.write("</div>")};

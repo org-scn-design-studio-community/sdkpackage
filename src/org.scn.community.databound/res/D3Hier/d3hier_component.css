@@ -1,0 +1,60 @@
+/* Start - Canvas Properties - Start */
+
+.node circle {
+  cursor: pointer;
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font-size: 11px;
+}
+
+path.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.node {
+	pointer-events: all;
+}
+
+/* End - Canvas Properties - End */
+
+
+/* Start - Tooltip Div - Start */
+
+div.tooltip {   
+  position: absolute;           
+  /*text-align: center;*/
+  text-align: left;
+  /*width: 60px;                  
+  height: 28px;*/                 
+  padding: 2px;             
+  font: 12px sans-serif;        
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 8px;      
+  /* to instruct the mouse event to go "through" the element and target whatever is "underneath" that element instead (Read more here; https://developer.mozilla.org/en-US/docs/CSS/pointer-events). That means that even if the tooltip partly obscures the circle, the code will stll act as if the mouse is over only the circle */     
+  pointer-events: none; 
+  white-space:pre-wrap;        
+}
+
+div.tooltip {   
+  position: absolute;           
+  /*text-align: center;*/
+  text-align: left;
+  /*width: 60px;                  
+  height: 28px;*/                 
+  padding: 2px;             
+  font: 12px sans-serif;        
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 8px;       
+  white-space:pre-wrap;        
+}
+
+
+/* End - Tooltip Div - End */

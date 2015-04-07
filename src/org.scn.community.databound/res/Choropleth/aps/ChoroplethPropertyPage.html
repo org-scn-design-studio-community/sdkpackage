@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+<title>Properties</title>
+		
+<script src="/aad/resources/sap-ui-cachebuster/sap-ui-core-dbg.js"
+	id='sap-ui-bootstrap' type='text/javascript' data-sap-ui-theme='sap_bluecrystal' 
+	data-sap-ui-libs="sap.ui.ux3, sap.ui.commons, sap.ui.table, sap.ui.core"></script>
+<script	src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
+<script src="extensions.js" type="text/javascript"></script>
+<script src="os/d3.min.js"></script>
+<script src="os/topojson.js"></script>
+<script src="ChoroplethPropertyPage.js"></script>
+
+<script type="text/javascript">
+	
+	try {
+		var propertyPage = new org.scn.community.databound.ChoroplethPropertyPage();
+		//p.init();
+	} catch (e) {
+		alert(e);
+	}
+</script>
+</head>
+<body class="sapUiBody">
+	<div id="content" class="sapUiBody"></div>
+</body>
+</html>

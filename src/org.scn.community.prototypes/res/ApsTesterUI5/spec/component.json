@@ -1,0 +1,16 @@
+{
+	"id": "ApsTesterUI5",
+	"title": "Aps Tester UI5",
+	"tooltip": "Application Property Sheet Tester UI5",
+	"handlerType": "sapui5",
+	"group": "ScnCommunityPrototypes",
+	"package": "prototypes",
+	"extension": "Component",
+	"databound": true,
+	"require": 
+	[
+		{
+			"id" : "base"
+		}
+	]
+}

@@ -1,0 +1,112 @@
+
+<component
+	id="ResultSetMixer"
+	title="Result Set Mixer (Test Phase)"
+	icon="res/ResultSetMixer/ResultSetMixer.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	propertySheetPath="res/ResultSetMixer/aps/ResultSetMixerPropertyPage.html"
+	databound="false"
+>	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ResultSetMixer/ResultSetMixerLoader.js</jsInclude>
+	
+	<property
+		id="DReloadTrigger"
+		title="Internal Property to Trigger the reload"
+		type="float"
+		group="Display"
+		visible="false">
+	</property>
+	
+	<property
+		id="DMasterProvisioner"
+		title="Master Central Data Provisioner"
+		tooltip="Result Set with Master Data"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DMasterGeometry"
+		title="Geometry of the Master Result Set"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Structure</possibleValue>
+			<possibleValue>Rows</possibleValue>
+	</property>
+	
+	<property
+		id="DSlaveProvisioner"
+		title="Slave Central Data Provisioner"
+		tooltip="Result Set with Slave Data for Selection"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveColumnIndex"
+		title="Column Index for the Selection from Slave Result Set"
+		tooltip="Which column should be selected from the slave result set"
+		type="int"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DCollectMultipleMatches"
+		title="Collect Multiple Matches"
+		tooltip="Procedure what should happen when multiple matches are available"
+		type="String"
+		group="Display"
+		visible="true">
+			<possibleValue>Collect</possibleValue>
+			<possibleValue>UseLast</possibleValue>
+	</property>
+
+	<property
+		id="DSlaveContentCondition"
+		title="Content Condition to Read Slave Result Set"
+		tooltip="Under which condition should be the slave result set read (based on content or value)"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveRowCondition"
+		title="Row Condition to Read Slave Result Set"
+		tooltip="Under which condition should be the slave result set read (based on contnet of header row key)"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DSlaveColumnCondition"
+		title="Column Condition to Read Slave Result Set"
+		tooltip="Under which condition should be the slave result set read (based on contnet of header column key)"
+		type="String"
+		group="Display"
+		visible="true">
+	</property>
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="DMasterGeometry">RowBased</defaultValue>
+		<defaultValue property="DCollectMultipleMatches">Collect</defaultValue>
+		<defaultValue property="DSlaveColumnIndex">1</defaultValue>
+		<defaultValue property="DReloadTrigger">0.0</defaultValue>
+		
+	</initialization>
+
+</component>

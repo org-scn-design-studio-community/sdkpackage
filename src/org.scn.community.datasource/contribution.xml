@@ -186,15 +186,39 @@
       incurred by, or claims asserted against, such Contributor by reason
       of your accepting any such warranty or additional liability.
   </license>
-<component
+
+<component id="BYOData" 
+	title="Bring Your Own Data" 
+	handlerType="datasource"
+	icon="res/BYOData/BYOData.png"
+	propertySheetPath="res/BYOData/aps/BYODataPropertyPage.html"
+>
+	<jsInclude>res/BYOData/BYOData.js</jsInclude>
+	<property type="String" title="Data" id="data"/>
+	<property type="String" title="Mutators" id="mutators"/>
+	<property type="String" title="Number of Dimensions" id="kfIndex"/>
+	<property type="boolean" title="Measures in Rows" id="swap"/>
+	<property type="String" title="Sort Method" id="sortMethod">
+		<possibleValue>NONE</possibleValue>
+		<possibleValue>Alphanumeric Ascending</possibleValue>
+		<possibleValue>Alphanumeric Descending</possibleValue>
+	</property>
+	<initialization>
+		<defaultValue property="kfIndex">2</defaultValue>
+		<defaultValue property="swap">false</defaultValue>
+		<defaultValue property="sortMethod">Alphanumeric Ascending</defaultValue>
+		<defaultValue property="data">Region,Year,Sales,Quantity~|~East,2011,100,5~|~West,2011,75,7</defaultValue>
+		<defaultValue property="mutators">[1,1,1]</defaultValue>
+	</initialization>
+</component><component
 	id="DynCsvDataSource"
 	title="Dynamic Csv Data Source"
 	tooltip="Allows dynamic access to data from a CSV file stored in the application folder, or uploaded mynually"
-	icon="res/dcsv/DynCsvDataSource.png"
+	icon="res/DynCsvDataSource/DynCsvDataSource.png"
 	handlerType="datasource"
 >
 
-	<jsInclude>res/dcsv/DynCsvDataSource.js</jsInclude>
+	<jsInclude>res/DynCsvDataSource/DynCsvDataSource.js</jsInclude>
 
 	<property
 		id="csvfile"
@@ -210,23 +234,5 @@
 		id="hasHeaderColumn"
 		title="Has Header Column"
 		type="boolean" />
-</component>
-<component id="BYOData" 
-	title="Bring Your Own Data" 
-	handlerType="datasource"
-	icon="res/BYOData/BYOData.png"
-	propertySheetPath="res/BYOData/aps/BYODataPropertyPage.html"
->
-	<jsInclude>res/BYOData/BYOData.js</jsInclude>
-	<property type="String" title="Data" id="data"/>
-	<property type="String" title="Mutators" id="mutators"/>
-	<property type="int" title="Number of Dimensions" id="kfIndex"/>
-	<property type="boolean" title="Measures in Rows" id="swap"/>
-	<initialization>
-		<defaultValue property="kfIndex">2</defaultValue>
-		<defaultValue property="swap">false</defaultValue>
-		<defaultValue property="data">Region,Year,Sales,Quantity|East,2011,100,5|West,2011,75,7</defaultValue>
-		<defaultValue property="mutators">[1,1,1]</defaultValue>
-	</initialization>
 </component>
 </sdkExtension>

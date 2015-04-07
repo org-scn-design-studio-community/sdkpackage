@@ -18,6 +18,333 @@
  * limitations under the License. 
  */
 
+
+/**
+ * Generated ZTL Class for ApsTester
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Simple Choice Property
+	 */	
+	void setComboboxExample( /**Simple Choice*/ String comboboxExample){*
+		this.comboboxExample = comboboxExample;
+	*}
+
+	/**
+	 * Gets Simple Choice Property
+	 */	
+	String getComboboxExample() {*
+		return this.comboboxExample;
+	*}
+
+	/**
+	 * Sets Simple Color Property
+	 */	
+	void setColorExample( /**Simple Color*/ String colorExample){*
+		this.colorExample = colorExample;
+	*}
+
+	/**
+	 * Gets Simple Color Property
+	 */	
+	String getColorExample() {*
+		return this.colorExample;
+	*}
+
+
+
+	/**
+	 * Sets Ignore Totals Property
+	 */	
+	void setCheckboxExample( /**Ignore Totals*/ boolean checkboxExample){*
+		this.checkboxExample = checkboxExample;
+	*}
+
+	/**
+	 * Gets Ignore Totals Property
+	 */	
+	boolean isCheckboxExample() {*
+		return this.checkboxExample;
+	*}
+
+	/**
+	 * Gets Ignore Totals Property
+	 */	
+	boolean isCheckboxOnlyGetterExample() {*
+		return this.checkboxOnlyGetterExample;
+	*}
+
+	/**
+	 * Sets Color Palette Property
+	 */	
+	void setPaletteExample( /**Color Palette*/ String paletteExample){*
+		this.paletteExample = paletteExample;
+	*}
+
+	/**
+	 * Gets Color Palette Property
+	 */	
+	String getPaletteExample() {*
+		return this.paletteExample;
+	*}
+
+	/**
+	 * Sets A saple text Property
+	 */	
+	void setTextExample( /**A saple text*/ String textExample){*
+		this.textExample = textExample;
+	*}
+
+	/**
+	 * Gets A saple text Property
+	 */	
+	String getTextExample() {*
+		return this.textExample;
+	*}
+
+	/**
+	 * Sets Some numbers Property
+	 */	
+	void setSpinnerExample( /**Some numbers*/ int spinnerExample){*
+		this.spinnerExample = spinnerExample;
+	*}
+
+	/**
+	 * Gets Some numbers Property
+	 */	
+	int getSpinnerExample() {*
+		return this.spinnerExample;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Generated ZTL Class for ApsTesterUI5
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.prototypes.ApsTesterUI5 extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Simple Choice Property
+	 */	
+	void setComboboxExample( /**Simple Choice*/ String comboboxExample){*
+		this.comboboxExample = comboboxExample;
+	*}
+
+	/**
+	 * Gets Simple Choice Property
+	 */	
+	String getComboboxExample() {*
+		return this.comboboxExample;
+	*}
+
+	/**
+	 * Sets Simple Color Property
+	 */	
+	void setColorExample( /**Simple Color*/ String colorExample){*
+		this.colorExample = colorExample;
+	*}
+
+	/**
+	 * Gets Simple Color Property
+	 */	
+	String getColorExample() {*
+		return this.colorExample;
+	*}
+
+
+
+	/**
+	 * Sets Ignore Totals Property
+	 */	
+	void setCheckboxExample( /**Ignore Totals*/ boolean checkboxExample){*
+		this.checkboxExample = checkboxExample;
+	*}
+
+	/**
+	 * Gets Ignore Totals Property
+	 */	
+	boolean isCheckboxExample() {*
+		return this.checkboxExample;
+	*}
+
+	/**
+	 * Gets Ignore Totals Property
+	 */	
+	boolean isCheckboxOnlyGetterExample() {*
+		return this.checkboxOnlyGetterExample;
+	*}
+
+	/**
+	 * Sets Color Palette Property
+	 */	
+	void setPaletteExample( /**Color Palette*/ String paletteExample){*
+		this.paletteExample = paletteExample;
+	*}
+
+	/**
+	 * Gets Color Palette Property
+	 */	
+	String getPaletteExample() {*
+		return this.paletteExample;
+	*}
+
+	/**
+	 * Sets A saple text Property
+	 */	
+	void setTextExample( /**A saple text*/ String textExample){*
+		this.textExample = textExample;
+	*}
+
+	/**
+	 * Gets A saple text Property
+	 */	
+	String getTextExample() {*
+		return this.textExample;
+	*}
+
+	/**
+	 * Sets Some numbers Property
+	 */	
+	void setSpinnerExample( /**Some numbers*/ int spinnerExample){*
+		this.spinnerExample = spinnerExample;
+	*}
+
+	/**
+	 * Gets Some numbers Property
+	 */	
+	int getSpinnerExample() {*
+		return this.spinnerExample;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Class for ApplicationHeader
+ */
+class org.scn.community.prototypes.ApplicationHeaderE extends org.scn.community.shared.Component {
+	
+	/** Sets the user name that is displayed beside the welcome text. */
+	void setUserName(
+		/** User name */ String userName) {*
+		this.userName = userName;	
+	*}
+	
+	/** Returns the user name that is displayed beside the welcome text. */
+	String getUserName() {*
+		return this.userName;	
+	*}
+
+	/** Sets the text that is displayed beside the logo in the application header. */
+	void setLogoText(
+		/** Logo text */ String logoText) {*
+		this.logoText = logoText;	
+	*}
+	
+	/** Returns the text that is displayed beside the logo in the application header. */
+	String getLogoText() {*
+		return this.logoText;	
+	*}
+	
+	/* Sets the value of the invisible property appName to the application name */  
+	// @Visibility(private)
+	void private_setAppInfoName() {*
+		// APPLICATION.createInfoMessage("Name: " + APPLICATION.getInfo().name);
+	    this.appName = "Event: " + APPLICATION.getInfo().name;
+	*}
+	
+	/**
+	 * Just a show case, but this will never work - 
+	 * ValueTextList is just a representation for Java object which needs implementation of some interface
+	 * and will be passed directly through ZTL - cannot be coded via JSON.
+	 */
+	void setValues(ValueTextList list) {*
+		var that = this;
+	
+		var l = {};
+		l.value = list;
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		var string = list.toString();
+		l.string = string;
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+	*}
+	
+	org.scn.community.shared.ValueTextArray getValueTextList() {*
+		var myArray = [];
+		
+		myArray.push({"value": "A", "text": "A-T"});
+		myArray.push({"value": "B", "text": "C-T"});
+		myArray.push({"value": "C", "text": "B-T"});
+	
+		return myArray;  
+	*}
+	
+	void fillIntoSelectionComponent(SelectionComponent selectionComponent, org.scn.community.shared.ValueTextArray list) {*
+		selectionComponent.removeAllItems();
+		
+		var that = this;
+		
+		var l = {};
+		l.value = list;
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		for(var i=0;i<list.length;i++){
+			if(this.isDebug()) {	l[list[i].value] = list[i].value + ": " + list[i].text; }
+			selectionComponent.addItem(list[i].value, list[i].text);
+		}
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+	*}
+}
+
+
+/**
+ * Class for ApplicationHeader
+ */
+class org.scn.community.prototypes.ApplicationHeaderO extends org.scn.community.shared.Component {
+	
+	/** Sets the user name that is displayed beside the welcome text. */
+	void setUserName(
+		/** User name */ String userName) {*
+		this.userName = userName;	
+	*}
+	
+	/** Returns the user name that is displayed beside the welcome text. */
+	String getUserName() {*
+		return this.userName;	
+	*}
+
+	/** Sets the text that is displayed beside the logo in the application header. */
+	void setLogoText(
+		/** Logo text */ String logoText) {*
+		this.logoText = logoText;	
+	*}
+	
+	/** Returns the text that is displayed beside the logo in the application header. */
+	String getLogoText() {*
+		return this.logoText;	
+	*}
+	
+	// @Visibility(private)
+	void private_beforeRender() {*
+		// APPLICATION.createInfoMessage("Name: " + APPLICATION.getInfo().name);
+	    this.appName = "OnBeforeRender: " + APPLICATION.getInfo().name;
+	*}
+}
 /**
  * Class for ProgressBar Properties
  */
@@ -27,10 +354,11 @@ class org.scn.community.prototypes.BarProperty {
   String number;
   String numberUnit;
 }
+
 /**
  * Class for ProgressBar
  */
-class org.scn.community.prototypes.ProgressSet extends Component {
+class org.scn.community.prototypes.ProgressSet extends org.scn.community.shared.Component {
 	/**
 	Sets bar thickness (-1 = auto)
 	*/
@@ -144,7 +472,18 @@ class org.scn.community.prototypes.ProgressSet extends Component {
 		}
 		barConfig = JSON.stringify(o);
 	*}
-}class org.scn.community.prototypes.RapidPrototype extends Component {
+}
+
+/**
+ * Class for SapMList
+ */
+class org.scn.community.prototypes.SapMList extends org.scn.community.shared.Component {
+	
+}
+/**
+ * Class for RapidPrototype 
+ */
+class org.scn.community.prototypes.RapidPrototype extends org.scn.community.shared.Component {
 	/* Returns the current value */
 	String getHTML() {*
 		return this.HTML;
@@ -162,4 +501,3 @@ class org.scn.community.prototypes.ProgressSet extends Component {
 		this["replacement"+index] = replacement;
 	*}
 }
-

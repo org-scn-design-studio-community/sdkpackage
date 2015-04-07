@@ -1,0 +1,27 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/LaunchTile.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsLaunchTile{
+    height: 100%;
+	width: 100%;
+	background-color: #FFFFFF;
+	box-shadow: 0px 0px 5px #ccc;
+}
+
+.sapSuiteUiCommonsLaunchTileTitle{
+	padding: 15px 15px 0px 15px;
+	font-size: 20px;
+	line-height: 22px;
+	height: 44px;
+	word-wrap: break-word;
+	overflow: hidden;
+	font-family: 'OpenSans-Regular', sans-serif; 
+	color: #444444;
+}
+
+.sapSuiteUiCommonsLaunchTileIcon {	
+	text-align: center;	
+	margin-top: 15px;	
+}

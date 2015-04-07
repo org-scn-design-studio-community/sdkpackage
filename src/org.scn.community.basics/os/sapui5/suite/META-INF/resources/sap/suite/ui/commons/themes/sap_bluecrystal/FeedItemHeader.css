@@ -1,0 +1,85 @@
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/FeedItemHeader.control */
+/* ============================================= */
+.sapSuiteUiCommonsFeedItemHeader {
+	height: 100%;
+	width: 100%;
+	border: 0;
+}
+
+.sapSuiteUiCommonsFeedItemHeaderImage {
+	height: 7.5rem;
+	width: 18rem;
+	background-size: 90%;
+	background-repeat: no-repeat;
+	float: left;
+	background-position:2rem 2rem;
+}
+
+.sapSuiteUiCommonsFeedItemHeaderText {
+	height: 7.5rem;
+	width: 40rem;
+	padding-top: 2rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	overflow: hidden;
+}
+
+.sapSuiteUiCommonsFeedItemHeaderTitle {
+	font-family: Arial, Helvetica, sans-serif;   /*TODO: Use LESS param*/ 
+	font-size: 16px;  
+	font-weight: normal;  
+	color: #00679e;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-bottom: .3rem;
+	height: 2.4rem;
+}
+
+.sapSuiteUiCommonsFeedItemHeaderTitleMultiCol {
+	width: 20rem;
+}
+
+.sapSuiteUiCommonsFeedItemHeaderDescription  {
+	font-family: Arial, Helvetica, sans-serif; /*TODO: Use LESS param*/
+	font-size: 14px;
+	font-weight: normal;
+	color: #000000;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: normal;
+}
+
+.sapSuiteUiCommonsFeedItemHeaderDescriptionMultiCol {
+	column-count:2;
+	column-gap: 2rem;
+	-webkit-column-count:2;
+	-webkit-column-gap: 2rem;
+	-moz-column-count:2;
+	-moz-column-gap: 2rem;
+}
+
+.sapSuiteUiCommonsFeedItemHeaderLowerText {
+	font-family: Arial, Helvetica, sans-serif; /*TODO: Use LESS param*/
+	font-size: 14px;  
+	font-weight: normal;
+	color: #FFFFFF; /*TODO: Use LESS param*/
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	padding-top: 5.5rem;
+	padding-left: 2rem;
+	padding-bottom: 1.5rem;
+}
+
+.sapSuiteUiCommonsFeedItemHeaderSource,
+.sapSuiteUiCommonsFeedItemHeaderAge
+{
+	background-color: #808080;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding-left: .6rem;
+}
+
+.sapSuiteUiCommonsFeedItemHeaderHeight {
+	height: 9.5rem;
+}

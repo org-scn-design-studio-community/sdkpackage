@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>TimelineItemPosition</name>
+	<author></author>
+	<documentation>Position of TimelineItem</documentation>
+	<baseType>sap.ui.core/string</baseType>
+	<enumeration>
+		<value name="Top">
+			<documentation>[Enter description for newValue]</documentation>
+		</value>
+		<value name="Bottom">
+			<documentation>[Enter description for newValue]</documentation>
+		</value>
+		<value name="Middle">
+			<documentation>[Enter description for newValue]</documentation>
+		</value>
+	</enumeration>
+</simple-type>

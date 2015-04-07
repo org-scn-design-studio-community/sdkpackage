@@ -1,0 +1,89 @@
+
+<component
+	id="LeaderBoard"
+	title="Leader Board"
+	icon="res/LeaderBoard/LeaderBoard.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/LeaderBoard/LeaderBoard.js</jsInclude>
+	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
+
+	<property
+		id="fallbackPicture"
+		type="Url"
+		title="Fallback Picture Url"
+		tooltip="Url for Fallback Picture (must be set)"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="valuePrefix"
+		type="String"
+		title="Value Prefix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="valueSuffix"
+		type="String"
+		title="Value Suffix Text"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="addCounter"
+		type="boolean"
+		title="Add Counter"
+		group="Display"
+		visible="true" />
+
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="pressedKey"
+		type="String"
+		title="Technical proprty for Pressed Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="elements"
+		type="String"
+		title="Technical property for list of elements"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<property
+		id="onPress"
+		type="ScriptText"
+		title="Event for On Press"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="WIDTH">230</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="addCounter">true</defaultValue>
+		<defaultValue property="defaultImage"></defaultValue>
+		<defaultValue property="selectedKey"></defaultValue>
+		<defaultValue property="elements"></defaultValue>
+
+	</initialization>
+
+</component>

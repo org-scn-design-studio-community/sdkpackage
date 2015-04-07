@@ -5,13 +5,14 @@
       version="1.0.0.qualifier"
       provider-name="SCN Community Contributors">
 
-   <description url="https://github.com/KarolKalisz/DesignStudioSdkPack/blob/stable/README.md">
-      SCN Community Package with free SDK Components. Contains many components which can be used based on free Apache 2.0 license.
+   <description url="http://org-scn-design-studio-community.github.io/sdkinstall/web/components/index.html">
+      SCN Community Package with free SDK Data Sources. Contains many
+components which can be used based on free Apache 2.0 license.
    </description>
 
    <copyright url="https://github.com/org-scn-design-studio-community/sdkpackage//blob/master/COPYRIGHT">
       /**
- * Copyright 2014, SCN Community Contributors: Mike Howles, Karol Kalisz and others
+ * Copyright 2014, SCN Community Contributors
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/

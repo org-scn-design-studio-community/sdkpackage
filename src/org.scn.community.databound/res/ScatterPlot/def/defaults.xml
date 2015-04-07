@@ -1,0 +1,19 @@
+		
+		<!-- ScatterPlot Defaults -->
+		<defaultValue property="styleCSS">/*Default CSS*/
+__n__circle {
+__n__  stroke: #303030;
+__n__  stroke-width: .75px;
+__n__}
+__n__circle:hover {
+__n__  stroke: #303030;
+__n__  stroke-width: 2px;
+__n__}
+		</defaultValue>
+		<defaultValue property="chartTitle">Scatterplot Chart</defaultValue>
+		<defaultValue property="radius">5</defaultValue>
+		<defaultValue property="bubbleMin">3</defaultValue>
+		<defaultValue property="bubbleMax">50</defaultValue>
+		<defaultValue property="xAxisTickFormat">,n</defaultValue>
+		<defaultValue property="yAxisTickFormat">,n</defaultValue>
+		<!-- End of ScatterPlot Defaults -->

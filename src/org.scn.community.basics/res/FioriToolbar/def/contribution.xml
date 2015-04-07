@@ -1,0 +1,36 @@
+
+<component id="FioriToolbar" 
+	title="Fiori Toolbar"
+	icon="res/FioriToolbar/FioriToolbar.png"
+	handlerType="sapui5" 
+	propertySheetPath="res/FioriToolbar/aps/FioriToolbarPropertyPage.html"
+	group="ScnCommunityBasics">
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/FioriToolbar/FioriToolbar.js</jsInclude>
+  	<cssInclude>res/FioriToolbar/FioriToolbar.css</cssInclude>
+  	<property id="itemConfig" type="String" title="Item Config" visible="false"/>
+  	<!--
+  	<property id="title" type="String" title="Title"/>
+  	<property id="showNavButton" type="boolean" title="Show Back Button"/>
+  	<property type="ScriptText" title="On Back" id="onnav"/>
+  	-->
+  	<property type="String" title="Design" id="design" visible="true">
+  		<possibleValue>Auto</possibleValue>
+  		<possibleValue>Info</possibleValue>
+  		<possibleValue>Solid</possibleValue>
+  		<possibleValue>Transparent</possibleValue>
+  	</property>
+  	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
+  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false"/>
+  	<property type="String" title="Selected Item Key" id="selectedItemKey" visible="false"/>
+  	<property type="String" title="Selected Header Key of Item" id="selectedHeaderKey" visible="false"/>
+  	<property type="ScriptText" title="On Item Select" id="onitemselect"/>  	
+ 	<initialization>
+ 		<!-- 
+ 		<defaultValue property="title">Page Title</defaultValue>
+ 		 -->
+ 		<defaultValue property="design">Auto</defaultValue>
+ 		<defaultValue property="WIDTH">400</defaultValue>
+ 		<defaultValue property="HEIGHT">48</defaultValue>
+ 	</initialization>
+ </component>
