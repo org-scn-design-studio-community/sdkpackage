@@ -49,10 +49,14 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 	 * @function afterUpdate
 	 */
 	this.afterUpdate = function(){
-		if($div === null){
-			identifier = "convista_time_container_"+makeid();
-			this.$().append('<div id="'+identifier+'">'+calcTime(offset)+'</div>');
-			$div = document.getElementById(identifier);
+		//separate multiple world time instances from each other
+		identifier = "convista_time_container_"+makeid();
+		//add DIV
+		this.$().html('<div id="'+identifier+'">'+calcTime(offset)+'</div>');
+		//remember element
+		$div = document.getElementById(identifier);
+		//setup interval call only once in case of multiple update calls!
+		if(interval_id === null){
 			interval_id = setInterval(function(){
 				$div.innerHTML = calcTime(offset);
 			}
@@ -69,9 +73,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 		this.$().remove('#'+identifier);
 	};
 	
-	// function to calculate local time
-	// in a different city
-	// given the city's UTC offset
+
 	/**
 	 * @function to calculate local time given the UTC offset
 	 * @memberOf org.scn.community.basics.WorldTime
