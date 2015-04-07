@@ -3673,7 +3673,7 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 				
 				// for now names only in EN
 				that.dayOfWeekName = that.dayNames [that.getDayOfWeek()];
-				that.monthName = that.monthNames [that.getMonth()];
+				that.monthName = that.monthNames [that.getMonth()-1];
 				
 				// quarter
 				that.quarter = Math.ceil(that.getMonth() / 3);
