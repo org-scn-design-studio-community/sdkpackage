@@ -2302,6 +2302,10 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 		if(isLeaf == undefined) {
 			isLeaf = true;
 		}
+			
+		if(isEnabled == undefined){
+			isEnabled = true;
+		}
 		
 		var itemDef = { 
 			"key": elementKey, 
@@ -2394,11 +2398,16 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 			/**Element Key (must be unique)*/String elementKey, 
 			/**Element text*/String elementText, 
 			/**Image URL, if not set, no image*/String imageUrl, 
-			/**The Key of the parent Element*/String parentElementKey, 
-			/**Leafs do not have expand option by default*/optional boolean isLeaf) {*		
+			/**The Key of the parent Element*/String parentElementKey,
+			/**Leafs do not have expand option by default*/optional boolean isLeaf,
+			/**item enabled flag*/optional boolean isEnabled) {*		
 		
 		if(isLeaf == undefined) {
 			isLeaf = true;
+		}
+			
+		if(isEnabled == undefined){
+			isEnabled = true;
 		}
 		
 		var itemDef = { 
@@ -2406,7 +2415,8 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 			"text": elementText, 
 			"url": imageUrl,
 			"parent": parentElementKey,
-			"leaf": isLeaf
+			"leaf": isLeaf,
+			"enabled": isEnabled
 			};
 	
 		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
@@ -2444,14 +2454,21 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 	void addMenuItem (
 			/**Element Key (must be unique)*/String elementKey, 
 			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl) {*		
+			/**Image URL, if not set, no image*/String imageUrl,
+			/**Leafs do not have expand option by default*/optional boolean isLeaf,
+			/**item enabled flag*/optional boolean isEnabled) {*		
 		
-		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", false);
+		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", isLeaf, isEnabled);
 	*}
 	
 	/** returns the selected key */
 	String getSelectedKey () {*
 		return this.selectedKey;	
+	*}
+	
+	/** returns the text of selected element (might not be unique) */
+	String getSelectedText () {*
+		return this.selectedText;	
 	*}
 }
 

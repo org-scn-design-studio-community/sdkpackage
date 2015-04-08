@@ -47,6 +47,13 @@
 		title="Technical proprty for Selected Key"
 		group="Display"
 		visible="false" />
+		
+	<property
+		id="selectedText"
+		type="String"
+		title="Technical proprty for Selected Text"
+		group="Display"
+		visible="false" />
 
 	<property
 		id="cleanAll"
