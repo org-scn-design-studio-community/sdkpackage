@@ -18,6 +18,15 @@
  */
 
 (function() {
+
+	org_scn_community_require.knownComponents.databound.NiceChart = {
+		name: "databound.NiceChart",
+		requireName: "databoundnicechart",
+		fullComponentName: "org.scn.community.databound.NiceChart",
+		script: "org.scn.community.databound/res/NiceChart/NiceChart",
+		min: false
+	}
+	
 	 // this line below needs to be adjusted
 	 var myComponentData = org_scn_community_require.knownComponents.databound.NiceChart;
 	

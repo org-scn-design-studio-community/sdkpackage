@@ -46,7 +46,7 @@ myComponentData.instance = function () {
 			that._tool.style.position = 'absolute';
 			that._tool.style.left = '0px';
 			that._tool.style.top = '0px';
-			that._tool.style.width = '200px';
+			that._tool.style.width = '260px';
 			that._tool.style.height = '300px';
 			that._jqThis[0].appendChild(that._tool);
 			

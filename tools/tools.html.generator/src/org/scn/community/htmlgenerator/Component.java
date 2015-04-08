@@ -4,13 +4,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.Vector;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.scn.community.defgenerator.ParamSimpleSpec;
@@ -399,12 +407,16 @@ public class Component {
 		}
 	}
 
-	public String toHtml() {
+	public String toHtml(String iFileName) {
 		String template = Helpers.resource2String(this.getClass(), "component.html");
 
 		template = template.replace("%COMPONENT_NAME%", this.name);
 		template = template.replace("%COMPONENT_TITLE%", this.title);
 		template = template.replace("%COMPONENT_GROUP%", this.group);
+		String groupLower = group.replace("ScnCommunity", "");
+		groupLower = groupLower.toLowerCase(Locale.ENGLISH);
+		template = template.replace("%FULL_HTML_PATH_ACCESS%",  groupLower + "/" + this.name.toLowerCase(Locale.ENGLISH));
+		
 
 		for (Property property : this.properties) {
 			String html = property.toHtml();
@@ -433,10 +445,91 @@ public class Component {
 		template = template.replace("%FUNCTION_ENTRY_FULL%", "");
 
 		template = template.replace("%CUSTOM_HTML%", this.customHtmlContent);
+		
+		String changeLog = toChangeLog(iFileName);
 
-		return template; //replace(this.getClass().getResource("component.html").openStream().);
+		iFileName = iFileName.replace(".html", File.separator+"changes"+File.separator+"state.json");
+		iFileName = iFileName.replace("sdkinstall"+File.separator, "sdkhelp"+File.separator);
+		String changeJsonContent = Helpers.file2String(iFileName);
+
+		Calendar calendar = Calendar.getInstance();
+		String  date = "" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+
+		if(changeJsonContent == null) {
+			// create initial statement
+			changeJsonContent = "changeLog = [\r\n{"
+					+ "\r\n   \"date\":\""+date+"\","
+					+ "\r\n   \"title\":\"Start of Change Log\","
+					+ "\r\n   \"text\":\"Change Log has been started today, all changes in the component are now in the log\","
+					+ "\r\n   \"author\":\"n/a\","
+					+ "\r\n   \"icon\":\"sap-icon://notes\","
+					+ "\r\n   \"filterValue\":\"creation\","
+					+ "\r\n   \"test-status\":\"untested\","
+					+ "\r\n   \"test-comment\":\"Initial component status placement\"\r\n}\r\n]";
+			Helpers.string2File(iFileName, changeJsonContent);
+		}
+		
+		if(changeLog.length() > 0) {
+			// template = template.replace("<!-- CHANGE_LOG -->", "<!-- CHANGE_LOG --><br>Changes, "+date+"<br><ul>" + changeLog + "</ul>");
+			
+			// append
+			changeJsonContent = changeJsonContent.substring(changeJsonContent.indexOf("[")+1);
+			changeJsonContent = "changeLog = [\r\n" + changeLog + ", " + changeJsonContent;
+			
+			Helpers.string2File(iFileName, changeJsonContent);
+		}
+
+		return template;
 	}
 
+	public Properties toProperties() {
+		SortedProperties props = new SortedProperties();
+
+		Calendar calendar = Calendar.getInstance();
+		String  value = "" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+		props.put("Properties created at date", value);
+		
+		props.put("Component Name", this.name);
+		props.put("Component Title", this.title);
+		props.put("Component Group", this.group);
+
+		for (Property property : this.properties) {
+			props.put("Property " + property.name, property.type);
+		}
+
+		for (ZtlFunction function : this.functions) {
+			String propertyValue = function.toPropertyValue();
+			props.put("Ztl Function " + function.name, propertyValue);
+		}
+
+		// read all files in RES
+		File[] resFiles = Helpers.listFiles(contributionXml.getParentFile().getParentFile().getAbsolutePath());
+		for (File file : resFiles) {
+			String file2String = Helpers.file2String(file);
+			if(!file.isDirectory()) {
+				props.put("Resource " + file.getParentFile().getName() + " - " +file.getName(), file2String.length() + ";" + Helpers.hashString(file2String));	
+			}
+		}
+		
+		resFiles = Helpers.listFiles(contributionXml.getParentFile().getParentFile().getAbsolutePath() + File.separator + "def");
+		for (File file : resFiles) {
+			String file2String = Helpers.file2String(file);
+			if(!file.isDirectory()) {
+				props.put("Resource " + file.getParentFile().getName() + " - " +file.getName(), file2String.length() + ";" + Helpers.hashString(file2String));	
+			}
+		}
+		
+		resFiles = Helpers.listFiles(contributionXml.getParentFile().getParentFile().getAbsolutePath() + File.separator + "spec");
+		for (File file : resFiles) {
+			String file2String = Helpers.file2String(file);
+			if(!file.isDirectory()) {
+				props.put("Resource " + file.getParentFile().getName() + " - " +file.getName(), file2String.length() + ";" + Helpers.hashString(file2String));	
+			}
+		}
+
+		return props;
+	}
+	
 	public String toCastString() {
 		String output = "\t/**Cast to " + this.title + " component*/\r\n";
 		output = output + "\t" + this.fullName + " returnAsScn" + this.name + " (Component inputComponent) {* return inputComponent; *}\r\n";
@@ -458,4 +551,122 @@ public class Component {
 		Helpers.string2File(iFileName, "Place Help Content Here\r\n"
 				+ "For details see blog http://scn.sap.com/community/businessobjects-design-studio/blog/2015/04/02/community-sdk--call-for-help-in-documentation");
 	}
+
+	public void serializeProperties(String iFileName) {
+		iFileName = iFileName.replace(".html", File.separator+"changes"+File.separator+"state.properties");
+		iFileName = iFileName.replace("sdkinstall"+File.separator, "sdkhelp"+File.separator);
+		
+		// write only if not existing here, required for comparison
+		if(!(new File(iFileName).exists())) {
+			Helpers.saveProperties(iFileName, toProperties(), true);	
+		}
+	}
+	
+	public String toChangeLog(String iFileName) {
+		iFileName = iFileName.replace(".html", File.separator+"changes"+File.separator+"state.properties");
+		iFileName = iFileName.replace("sdkinstall"+File.separator, "sdkhelp"+File.separator);
+		
+		Calendar calendar = Calendar.getInstance();
+		String date = "" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+		
+		
+		ArrayList<String> changes = new ArrayList<String>();
+		
+		Properties currentProperties = toProperties();
+		Properties lastProperties = Helpers.loadProperties(iFileName);
+		
+		// check for add, change
+		Enumeration<Object> currentKeys = currentProperties.keys();
+		while (currentKeys.hasMoreElements()) {
+			String nextElement = (String) currentKeys.nextElement();
+			
+			String currentValue = (String) currentProperties.get(nextElement);
+			String lastValue = (String) lastProperties.get(nextElement);
+			
+			if(lastValue == null) {
+				changes.add("New_"+nextElement);
+			} else {
+				if(!currentValue.equals(lastValue)) {
+					changes.add(nextElement);
+				}
+			}
+		}
+		
+		// check for removal
+		Enumeration<Object> lastKeys = currentProperties.keys();
+		while (lastKeys.hasMoreElements()) {
+			String nextElement = (String) lastKeys.nextElement();
+			
+			String currentValue = (String) currentProperties.get(nextElement);
+			
+			if(currentValue == null) {
+				changes.add(nextElement);
+			}
+		}
+		
+		if(changes.size() > 0) {
+			Helpers.saveProperties(iFileName, currentProperties, true);
+
+			JSONObject changesEntry = new JSONObject();
+			try {
+				changesEntry.put("date", date);
+				
+				// properties which can be changed manually
+				changesEntry.put("author", "n/a");
+				changesEntry.put("icon", "sap-icon://notes");
+				changesEntry.put("filterValue", "change");
+
+				changesEntry.put("test-status", "untested");
+				changesEntry.put("test-comment", "some component content has been changed, see details");
+				changesEntry.put("test-icon", "sap-icon://notification");
+				
+				JSONArray changesList = new JSONArray();
+			
+				String changesSummary = "";
+				for (String line : changes) {
+					JSONObject fullEntry = new JSONObject();
+					line = line.replace("_", " ");
+					fullEntry.put("change", line);
+					fullEntry.put("status", "untested");
+					changesList.put(fullEntry);
+					
+					changesSummary = changesSummary + line + ";";
+				}
+				
+				changesEntry.put("title", "There were " + changes.size() + " changes in the component.");
+				changesEntry.put("text", "Changes: " + changesSummary);
+
+				changesEntry.put("changes", changesList);
+				return changesEntry.toString(3);
+			} catch (JSONException e) {
+				throw new RuntimeException("Json Issue");
+			}
+		}
+		
+		return "";
+	}
+
+	/**
+	 * http://stackoverflow.com/questions/10275862/how-to-sort-properties-in-java
+	 */
+	class SortedProperties extends Properties {
+		  public Enumeration keys() {
+		     Enumeration<Object> keysEnum = super.keys();
+		     Vector<String> keyList = new Vector<String>();
+		     while(keysEnum.hasMoreElements()){
+		       keyList.add((String)keysEnum.nextElement());
+		     }
+		     Collections.sort(keyList);
+		     return keyList.elements();
+		  }
+		  
+		  public Object put(Object key, Object value) {
+			  String correctedKey = (String) key;
+			  correctedKey = correctedKey.replace(" ", "_");
+			  
+			  super.put(correctedKey, value);
+			  
+			  return keys();
+		  }
+		}
 }

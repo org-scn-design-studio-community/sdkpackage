@@ -8,7 +8,7 @@ public class ZtlParameter {
 
 	private String docu;
 
-	private final String type;
+	final String type;
 
 	final String name;
 

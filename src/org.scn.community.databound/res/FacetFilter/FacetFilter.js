@@ -86,6 +86,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
         	  "DSortingDirection": {type: "string"},
         	  "DClearOthers": {type: "boolean"},
               "DMaxMembers": {type: "int"},
+        	  "DZeroValuesMode": {type: "string"},
         }
 	},
 
@@ -135,6 +136,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 			options.idPrefix = this.getId();
 			options.iDuplicates = "Sum";
 			options.iDisplayText = "Text";
+			options.iNullValues = this.getDZeroValuesMode();
 		
 			that._mixedData = org_scn_community_databound.getDataModelForDimensions(lData, lMetadata, lDimensions, options);
 			if(that._isInitialized == undefined) {
