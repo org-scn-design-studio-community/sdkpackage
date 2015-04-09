@@ -562,6 +562,26 @@ public class Component {
 		}
 	}
 	
+	public void checkBlogs(String iFileName) {
+		iFileName = iFileName.replace(".html", File.separator+"blogs.json");
+		iFileName = iFileName.replace("sdkinstall"+File.separator, "sdkhelp"+File.separator);
+		
+		if(!(new File(iFileName).exists())) {
+			String template = Helpers.resource2String(this.getClass(), "blog.json.tmpl");
+			Helpers.string2File(iFileName, template);	
+		}
+	}
+	
+	public void checkExamples(String iFileName) {
+		iFileName = iFileName.replace(".html", File.separator+"examples.json");
+		iFileName = iFileName.replace("sdkinstall"+File.separator, "sdkhelp"+File.separator);
+		
+		if(!(new File(iFileName).exists())) {
+			String template = Helpers.resource2String(this.getClass(), "example.json.tmpl");
+			Helpers.string2File(iFileName, template);	
+		}
+	}
+	
 	public String toChangeLog(String iFileName) {
 		iFileName = iFileName.replace(".html", File.separator+"changes"+File.separator+"state.properties");
 		iFileName = iFileName.replace("sdkinstall"+File.separator, "sdkhelp"+File.separator);
@@ -669,4 +689,6 @@ public class Component {
 			  return keys();
 		  }
 		}
+
+	
 }
