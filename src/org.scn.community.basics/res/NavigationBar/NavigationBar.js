@@ -36,6 +36,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
         properties: {
         	  "DElementsContent": {type: "string"},
         	  "DSelectedKey": {type: "string"},
+        	  "DSelectedText": {type: "string"},
               "DCleanAll": {type: "boolean"}
         }
 	},
@@ -113,14 +114,20 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 	
 	onSelected: function(oEvent) {
 		var that = this;
-		
 		var id = oEvent.mParameters.itemId;
-
 		var realKey = that._owningPanel._oElements[id];
-
-		that._owningPanel.setDSelectedKey(realKey);
-		that._owningPanel.fireDesignStudioPropertiesChanged(["DSelectedKey"]);
-		that._owningPanel.fireDesignStudioEvent(["onSelectionChanged"]);
+		var item = that._owningPanel._oItems[id];
+		
+		if (item.getEnabled()) {
+		
+			that._owningPanel.setDSelectedKey(realKey);
+			that._owningPanel.setDSelectedText(item.getText());
+			that._owningPanel.fireDesignStudioPropertiesChanged(["DSelectedKey"]);
+			that._owningPanel.fireDesignStudioPropertiesChanged(["DSelectedText"]);
+			that._owningPanel.fireDesignStudioEvent(["onSelectionChanged"]);
+		}else{
+			oEvent.preventDefault();
+		}
 	},
 	
 	addDummy: function() {
