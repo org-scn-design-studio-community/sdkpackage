@@ -58,10 +58,12 @@ var ResultSetInfo = {
 		// Destroy old content
 		that._lLayout.destroyContent();
 		
-		that._lLayout.addContent(that.createFlowPanel("Number of Data Cells", that._data.data.length));
-		that._lLayout.addContent(that.createFlowPanel("Number of Data Columns", that._flatData.geometry.colLength));
-		that._lLayout.addContent(that.createFlowPanel("Number of Header Columns", that._flatData.geometry.headersLength));
-		that._lLayout.addContent(that.createFlowPanel("Number of Rows", that._flatData.geometry.rowLength));
+		if(that._data != undefined && that._data != "") {
+			that._lLayout.addContent(that.createFlowPanel("Number of Data Cells", that._data.data.length));
+			that._lLayout.addContent(that.createFlowPanel("Number of Data Columns", that._flatData.geometry.colLength));
+			that._lLayout.addContent(that.createFlowPanel("Number of Header Columns", that._flatData.geometry.headersLength));
+			that._lLayout.addContent(that.createFlowPanel("Number of Rows", that._flatData.geometry.rowLength));
+		}
 	},
 	
 	createFlowPanel: function (label, value) {
@@ -92,7 +94,7 @@ var ResultSetInfo = {
 		var that = owner;
 		
 		var dataSourceInfo = {};
-		dataSourceInfo.plainData = that.getData();
+		dataSourceInfo.plainData = that.getData();	
 		dataSourceInfo.flatData = that._flatData;
 		
 		if(that.getDCentralProvisioning()) {
@@ -109,24 +111,26 @@ var ResultSetInfo = {
 		if(org_scn_community_databound.hasData(that.getData())) {
 			var options = org_scn_community_databound.initializeOptions();
 			options.ignoreResults = true;
-			flatData = org_scn_community_databound.flatten(that.getData(), options);
-			org_scn_community_databound.toRowTable(flatData,options);
+			that._flatData = org_scn_community_databound.flatten(that.getData(), options);
 
-			that.processData(flatData, afterPrepare);
+			that.processData(that._flatData, afterPrepare);
 			return;
 		} else {
-			flatData = org_scn_community_databound.getSampleDataFlat(pathInfo, that.processData, afterPrepare);
-			org_scn_community_databound.toRowTable(flatData, options);
-			
-			that.processData(flatData, afterPrepare);
+			that._flatData = org_scn_community_databound.getSampleDataFlat(that, that.processData, afterPrepare);
 			return;
 		}
 	},
 	
-	processData : function (flatData, afterPrepare) {
+	processData : function (flatData, afterPrepare, owner) {
 		var that = this;
+		if(owner) {that = owner;}
 		
 		that._flatData = flatData;
+		
+		var options = org_scn_community_databound.initializeOptions();
+		options.ignoreResults = true;
+		org_scn_community_databound.toRowTable(that._flatData,options);
+
 		afterPrepare(that);
 	},
 };

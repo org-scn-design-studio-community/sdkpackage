@@ -851,7 +851,7 @@ org_scn_community_databound.arrayToObject = function (array) {
 	return obj;
 };
 
-org_scn_community_databound.getSampleDataFlat = function (pathInfo, callBack, afterPrepare) {
+org_scn_community_databound.getSampleDataFlat = function (owner, callBack, afterPrepare) {
 	var requestForData = new XMLHttpRequest();
     var returnValue = undefined;
     
@@ -863,13 +863,13 @@ org_scn_community_databound.getSampleDataFlat = function (pathInfo, callBack, af
 				returnValue= {};
 			} else {
 				returnValue= requestForData.response;
-				callBack(JSON.parse(returnValue), afterPrepare);
+				callBack(JSON.parse(returnValue), afterPrepare, owner);
 			};
 		};
 	};
 	
 	// trigger ajax request
-	var dataUrl = pathInfo.mainSDKPath + "org.scn.community.databound/res/_data/data.flat.json";
+	var dataUrl = org_scn_community_require.scriptInfo.mainSDKPath + "org.scn.community.databound/res/_data/data.flat.json";
 	
 	requestForData.open("GET", dataUrl, true);
 	requestForData.send();

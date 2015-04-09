@@ -136,6 +136,8 @@ myComponentData.instance = function () {
 	}
 	
 	this.getPreparedData = function (afterPrepare) {
+		var that = this;
+		
 		var data = {};
 		
 		var realSample = false;
@@ -143,7 +145,7 @@ myComponentData.instance = function () {
 		if(org_scn_community_databound.hasData(that._data) || realSample) {
 			var flatData = {};
 			if(realSample) {
-				flatData = org_scn_community_databound.getSampleDataFlat(pathInfo, this.processData, afterPrepare);
+				flatData = org_scn_community_databound.getSampleDataFlat(that, this.processData, afterPrepare);
 				return;
 			} else {
 				var options = org_scn_community_databound.initializeOptions();
@@ -204,7 +206,10 @@ myComponentData.instance = function () {
 		afterPrepare();
 	}
 	
-	this.processData = function (flatData, afterPrepare) {
+	this.processData = function (flatData, afterPrepare, owner) {
+		var that = this;
+		if(owner) {that = owner;}
+		
 		var data = {};
 		var colors = that.simpleRandomColors();
 		
@@ -284,7 +289,7 @@ myComponentData.instance = function () {
 		}
 		
 		that._chartdata = data;
-		afterPrepare();
+		that.afterPrepare();
 	}
 	
 	this.getPreparedOptions = function () {
