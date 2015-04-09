@@ -1,282 +1,254 @@
 {
-   "geometry" : {
-   	  "rowLength" : "18",
-   	  "colLength" : "2",
-   	  "headersLength" : "2",
-   	  "allColumnsLength" : "4"
-   },
-   "columnHeaders":[
-      "0BC_TURN",
-      "0BC_COUNT"
+   "dimensionHeaders":[
+      "0BC_CUST",
+      "0BC_COUN"
    ],
+   "dimensionHeader":"",
+   "dimensionColHeaders":[
+
+   ],
+   "dimensionColHeader":"",
    "columnHeaders2D":[
       [
-         "0BC_TURN"
+         "0BC_AMT"
       ],
       [
-         "0BC_COUNT"
+         "Formula 1"
       ]
    ],
-   "rowHeaders":[
-      "2 2",
-      "2 3",
-      "2 8",
-      "2 Result",
-      "3 12",
-      "3 Result",
-      "7 3",
-      "7 8",
-      "7 12",
-      "7 Result",
-      "8 3",
-      "8 8",
-      "8 12",
-      "8 Result",
-      "9 3",
-      "9 12",
-      "9 Result",
-      "Overall Result Result"
+   "columnHeadersKeys2D":[
+      [
+         "4FLKK9EMG7QELNWIKQIPHVYAF"
+      ],
+      [
+         "4FLKK9MAZ6C44AFYQKL1RXX07"
+      ]
+   ],
+   "columnHeaders":[
+      "0BC_AMT",
+      "Formula 1"
+   ],
+   "columnHeadersKeys":[
+      "4FLKK9EMG7QELNWIKQIPHVYAF",
+      "4FLKK9MAZ6C44AFYQKL1RXX07"
    ],
    "rowHeaders2D":[
       [
-         "2",
-         "2"
+         "1",
+         "AUS|Australia"
       ],
       [
-         "2",
-         "3"
+         "1",
+         "DE|Germany"
       ],
       [
-         "2",
-         "8"
+         "10",
+         "AUS|Australia"
       ],
       [
-         "2",
-         "Result"
-      ],
-      [
-         "3",
-         "12"
+         "10",
+         "DE|Germany"
       ],
       [
          "3",
-         "Result"
-      ],
-      [
-         "7",
-         "3"
-      ],
-      [
-         "7",
-         "8"
-      ],
-      [
-         "7",
-         "12"
-      ],
-      [
-         "7",
-         "Result"
-      ],
-      [
-         "8",
-         "3"
-      ],
-      [
-         "8",
-         "8"
-      ],
-      [
-         "8",
-         "12"
-      ],
-      [
-         "8",
-         "Result"
-      ],
-      [
-         "9",
-         "3"
-      ],
-      [
-         "9",
-         "12"
-      ],
-      [
-         "9",
-         "Result"
-      ],
-      [
-         "Overall Result",
-         "Result"
+         "AUS|Australia"
       ]
+   ],
+   "rowHeadersKeys2D":[
+      [
+         "000001",
+         "AUS"
+      ],
+      [
+         "000001",
+         "DE"
+      ],
+      [
+         "000010",
+         "AUS"
+      ],
+      [
+         "000010",
+         "DE"
+      ],
+      [
+         "000003",
+         "AUS"
+      ]
+   ],
+   "rowHeaders":[
+      "1 | AUS|Australia",
+      "1 | DE|Germany",
+      "10 | AUS|Australia",
+      "10 | DE|Germany",
+      "3 | AUS|Australia"
+   ],
+   "rowHeadersKeys":[
+      "000001 | AUS",
+      "000001 | DE",
+      "000010 | AUS",
+      "000010 | DE",
+      "000003 | AUS"
    ],
    "values":[
       [
-         "52.72",
-         "1"
+         56.05,
+         59.19
       ],
       [
-         "30.27",
-         "1"
+         8877.92,
+         8881.06
       ],
       [
-         "43.41",
-         "1"
+         112.1,
+         115.24
       ],
       [
-         "126.40",
-         "3"
+         4438.96,
+         4442.1
       ],
       [
-         "71.08",
-         "1"
-      ],
-      [
-         "71.08",
-         "1"
-      ],
-      [
-         "89.23",
-         "2"
-      ],
-      [
-         "16.64",
-         "1"
-      ],
-      [
-         "58.19",
-         "1"
-      ],
-      [
-         "164.06",
-         "4"
-      ],
-      [
-         "29.93",
-         "1"
-      ],
-      [
-         "73.72",
-         "1"
-      ],
-      [
-         "95.55",
-         "2"
-      ],
-      [
-         "199.20",
-         "4"
-      ],
-      [
-         "60.91",
-         "2"
-      ],
-      [
-         "144.17",
-         "3"
-      ],
-      [
-         "205.08",
-         "5"
-      ],
-      [
-         "765.82",
-         "17"
+         112.1,
+         115.24
       ]
    ],
    "formattedValues":[
       [
-         "52.72 EUR",
-         "1"
+         "56.05 DM",
+         "59.1900000"
       ],
       [
-         "30.27 EUR",
-         "1"
+         "8,877.92 DM",
+         "8,881.0600000"
       ],
       [
-         "43.41 EUR",
-         "1"
+         "112.10 DM",
+         "115.2400000"
       ],
       [
-         "126.40 EUR",
-         "3"
+         "4,438.96 DM",
+         "4,442.1000000"
       ],
       [
-         "71.08 EUR",
-         "1"
-      ],
-      [
-         "71.08 EUR",
-         "1"
-      ],
-      [
-         "89.23 EUR",
-         "2"
-      ],
-      [
-         "16.64 EUR",
-         "1"
-      ],
-      [
-         "58.19 EUR",
-         "1"
-      ],
-      [
-         "164.06 EUR",
-         "4"
-      ],
-      [
-         "29.93 EUR",
-         "1"
-      ],
-      [
-         "73.72 EUR",
-         "1"
-      ],
-      [
-         "95.55 EUR",
-         "2"
-      ],
-      [
-         "199.20 EUR",
-         "4"
-      ],
-      [
-         "60.91 EUR",
-         "2"
-      ],
-      [
-         "144.17 EUR",
-         "3"
-      ],
-      [
-         "205.08 EUR",
-         "5"
-      ],
-      [
-         "765.82 EUR",
-         "17"
+         "112.10 DM",
+         "115.2400000"
       ]
    ],
    "hash":{
-      "2 2":0,
-      "2 3":1,
-      "2 8":2,
-      "2 Result":3,
-      "3 12":4,
-      "3 Result":5,
-      "7 3":6,
-      "7 8":7,
-      "7 12":8,
-      "7 Result":9,
-      "8 3":10,
-      "8 8":11,
-      "8 12":12,
-      "8 Result":13,
-      "9 3":14,
-      "9 12":15,
-      "9 Result":16,
-      "Overall Result Result":17
+      "1 | AUS|Australia":0,
+      "1 | DE|Germany":1,
+      "10 | AUS|Australia":3,
+      "10 | DE|Germany":4,
+      "3 | AUS|Australia":6
+   },
+   "geometry":{
+      "colLength":2,
+      "rowLength":5,
+      "headersLength":2,
+      "allColumnsLength":4
+   },
+   "dimensionCols":[
+      {
+         "key":"4FLKK96XX94P31D2EWGD7TZKN",
+         "text":"Key Figures"
+      }
+   ],
+   "dimensionRows":[
+      {
+         "key":"0BC_CUST",
+         "text":"0BC_CUST"
+      },
+      {
+         "key":"0BC_COUN",
+         "text":"0BC_COUN"
+      }
+   ],
+   "data2D":[
+      {
+         "values":[
+            "1",
+            "AUS|Australia",
+            "56.05 DM",
+            "59.1900000"
+         ],
+         "index":0
+      },
+      {
+         "values":[
+            "1",
+            "DE|Germany",
+            "8,877.92 DM",
+            "8,881.0600000"
+         ],
+         "index":1
+      },
+      {
+         "values":[
+            "10",
+            "AUS|Australia",
+            "112.10 DM",
+            "115.2400000"
+         ],
+         "index":2
+      },
+      {
+         "values":[
+            "10",
+            "DE|Germany",
+            "4,438.96 DM",
+            "4,442.1000000"
+         ],
+         "index":3
+      },
+      {
+         "values":[
+            "3",
+            "AUS|Australia",
+            "112.10 DM",
+            "115.2400000"
+         ],
+         "index":4
+      }
+   ],
+   "data2DPlain":[
+      {
+         "0":"1",
+         "1":"AUS|Australia",
+         "2":"56.05 DM",
+         "3":"59.1900000"
+      },
+      {
+         "0":"1",
+         "1":"DE|Germany",
+         "2":"8,877.92 DM",
+         "3":"8,881.0600000"
+      },
+      {
+         "0":"10",
+         "1":"AUS|Australia",
+         "2":"112.10 DM",
+         "3":"115.2400000"
+      },
+      {
+         "0":"10",
+         "1":"DE|Germany",
+         "2":"4,438.96 DM",
+         "3":"4,442.1000000"
+      },
+      {
+         "0":"3",
+         "1":"AUS|Australia",
+         "2":"112.10 DM",
+         "3":"115.2400000"
+      }
+   ],
+   "headerDataPlain":[
+      null,
+      null,
+      null,
+      null
+   ],
+   "data2DStructured":{
+
    }
 }
