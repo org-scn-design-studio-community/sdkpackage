@@ -123,4 +123,9 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 	void setSelectedItem (String key) {*
 		this.DSelectedKey = key;	
 	*}
+	
+	/** returns the selected item */
+	String getSelectedItemText () {*
+		return this.DSelectedText;	
+	*}
 }

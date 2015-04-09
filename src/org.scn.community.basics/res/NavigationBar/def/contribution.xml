@@ -17,13 +17,20 @@
 		title="Selected Step Key"
 		group="Display"
 		visible="true" />
+		
+	<property
+		id="DSelectedText"
+		type="String"
+		title="Selected Text"
+		group="Display"
+		visible="false" />
 
 	<property
 		id="numberOfVisibleSteps"
 		type="String"
 		title="Number of Visible Steps"
 		group="Display"
-		visible="true" />
+		visible="false" />
 
 	<property
 		id="DCleanAll"
