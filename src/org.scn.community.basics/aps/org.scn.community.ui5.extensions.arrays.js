@@ -218,9 +218,12 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 	rerenderComp : function(){
 		this._listBuilder.setList(this.gatherElements());
 		this.showElementProperties(this._listBuilder.getSelectedKey());
-		
-		// check mode...
-		
+	},
+	
+	/**
+	 * need to be called once after properties are set..
+	 */
+	afterInit : function () {
 		// mode: StringArray | OneLevelArray | TwoLevelArray
 		if(this.getMode() == "StringArray") {
 			this._sectionPropertyList.addStyleClass("org-scn-Aps-DetailList-SingleArray");
@@ -232,6 +235,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 			throw new Error("Unsupported Mode: " + this.getMode());
 		}
 	},
+	
 	/*
 	 * Fires when item delete button clicked
 	 */

@@ -188,9 +188,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 						this["cmp_"+property] = new org.scn.community.aps.ArrayList({
 							mode: propertyOptions.arrayMode
 						});
-						this["cmp_"+property].rerenderComp();
 						this["cmp_"+property].attachValueChange(f,this);
 					}
+					
+					// Step 3a, if component has afterInit method, call it!
+					if(this["cmp_"+property].afterInit) {
+						useLabel = this["cmp_"+property].afterInit();	
+					}
+					
 					// Step 4, add control to layout
 					//etcLayout.addContent(this.hLabel(property,this["cmp_"+property]));
 					var useLabel = true;
