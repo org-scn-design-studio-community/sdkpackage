@@ -84,6 +84,8 @@ public class Main {
 			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_PACKAGE%", group);
 
 			component.serializeProperties(iFileName);
+			component.checkBlogs(iFileName);
+			component.checkExamples(iFileName);
 
 			componentModelTemplate = componentModelTemplate.replace("%COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%", componentModelEntryCopy + "\r\n" + " %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%");
 			Helpers.string2File(iFileName, component.toHtml(iFileName));

@@ -28,6 +28,8 @@ import org.scn.community.utils.Helpers;
 
 public class Component {
 
+	private static final String PROPERTIES_CREATED_AT_DATE = "Properties created at date";
+
 	private final ArrayList<Property> properties;
 
 	String name;
@@ -469,6 +471,9 @@ public class Component {
 			Helpers.string2File(iFileName, changeJsonContent);
 		}
 		
+		//String bad = Helpers.resource2String(this.getClass(), "bad.log");
+		//changeJsonContent = changeJsonContent.replace(bad, "");
+		
 		if(changeLog.length() > 0) {
 			// template = template.replace("<!-- CHANGE_LOG -->", "<!-- CHANGE_LOG --><br>Changes, "+date+"<br><ul>" + changeLog + "</ul>");
 			
@@ -477,6 +482,8 @@ public class Component {
 			changeJsonContent = "changeLog = [\r\n" + changeLog + ", " + changeJsonContent;
 			
 			Helpers.string2File(iFileName, changeJsonContent);
+		} else {
+			//Helpers.string2File(iFileName, changeJsonContent);
 		}
 
 		return template;
@@ -487,7 +494,7 @@ public class Component {
 
 		Calendar calendar = Calendar.getInstance();
 		String  value = "" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
-		props.put("Properties created at date", value);
+		props.put(PROPERTIES_CREATED_AT_DATE, value);
 		
 		props.put("Component Name", this.name);
 		props.put("Component Title", this.title);
@@ -562,6 +569,26 @@ public class Component {
 		}
 	}
 	
+	public void checkBlogs(String iFileName) {
+		iFileName = iFileName.replace(".html", File.separator+"blogs.json");
+		iFileName = iFileName.replace("sdkinstall"+File.separator, "sdkhelp"+File.separator);
+		
+		if(!(new File(iFileName).exists())) {
+			String template = Helpers.resource2String(this.getClass(), "blog.json.tmpl");
+			Helpers.string2File(iFileName, template);	
+		}
+	}
+	
+	public void checkExamples(String iFileName) {
+		iFileName = iFileName.replace(".html", File.separator+"examples.json");
+		iFileName = iFileName.replace("sdkinstall"+File.separator, "sdkhelp"+File.separator);
+		
+		if(!(new File(iFileName).exists())) {
+			String template = Helpers.resource2String(this.getClass(), "example.json.tmpl");
+			Helpers.string2File(iFileName, template);	
+		}
+	}
+	
 	public String toChangeLog(String iFileName) {
 		iFileName = iFileName.replace(".html", File.separator+"changes"+File.separator+"state.properties");
 		iFileName = iFileName.replace("sdkinstall"+File.separator, "sdkhelp"+File.separator);
@@ -586,7 +613,7 @@ public class Component {
 			if(lastValue == null) {
 				changes.add("New_"+nextElement);
 			} else {
-				if(!currentValue.equals(lastValue)) {
+				if(!currentValue.equals(lastValue) && !nextElement.equals(PROPERTIES_CREATED_AT_DATE.replace(" ", "_"))) {
 					changes.add(nextElement);
 				}
 			}
@@ -669,4 +696,6 @@ public class Component {
 			  return keys();
 		  }
 		}
+
+	
 }

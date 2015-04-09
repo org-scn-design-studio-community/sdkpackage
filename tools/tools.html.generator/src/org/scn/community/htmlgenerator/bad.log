@@ -1,0 +1,15 @@
+{
+   "author": "n/a",
+   "changes": [{
+      "change": "Properties created at date",
+      "status": "untested"
+   }],
+   "date": "2015-4-8",
+   "filterValue": "change",
+   "icon": "sap-icon://notes",
+   "test-comment": "some component content has been changed, see details",
+   "test-icon": "sap-icon://notification",
+   "test-status": "untested",
+   "text": "Changes: Properties created at date;",
+   "title": "There were 1 changes in the component."
+}, 
