@@ -50,6 +50,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
         	  "withImage": {type: "boolean"},
               "imageSize": {type: "string"},
               "selectedKey": {type: "string"},
+              "selectedText": {type: "string"},
               "expandedKey": {type: "string"},
               "elementsContent": {type: "string"},
               "cleanAll": {type: "boolean"}
@@ -98,7 +99,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
 				if(this._oElements[element.key] == undefined) {
-					var lNewElement = this._createElement(i, element.key, element.text, element.url, element.parent, element.leaf);
+					var lNewElement = this._createElement(i, element.key, element.text, element.url, element.parent, element.enabled, element.leaf);
 					
 					this._oElements[element.key] = lNewElement;
 				}
@@ -148,8 +149,10 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			
 			var lElement = that._oElements[lElementKey];
 			that.setSelectedKey(lElement._Key);
+			that.setSelectedText(lElement.getText());
 			
 			that.fireDesignStudioPropertiesChanged(["selectedKey"]);
+			that.fireDesignStudioPropertiesChanged(["selectedText"]);
 			that.fireDesignStudioEvent("onSelectionChanged");
 		};
 
@@ -209,7 +212,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		iParent.addItem(iElement);
 	},
 
-	_createElement: function (index, iElementKey, iElementText, iImageUrl, iParentKey, isLeaf) {
+	_createElement: function (index, iElementKey, iElementText, iImageUrl, iParentKey, isEnabled, isLeaf) {
 		var that = this;
 		
 		// in case starts with http, keep as is 
@@ -228,13 +231,15 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			lElement = new sap.ui.unified.MenuItem({
 					id: this.getId() + "-sec-" +  iElementKey,
 					text: iElementText,
-					icon: iImageUrl
+					icon: iImageUrl,
+					enabled: isEnabled
 				});
 		} else {
 			lElement = new sap.ui.unified.MenuItem({
 					id: this.getId() + "-sec-" +  iElementKey,
 					text: iElementText,
-					icon: iImageUrl
+					icon: iImageUrl,
+					enabled: isEnabled
 				});
 		}
 		

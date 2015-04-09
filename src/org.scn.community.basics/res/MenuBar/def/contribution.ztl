@@ -36,6 +36,10 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 		if(isLeaf == undefined) {
 			isLeaf = true;
 		}
+			
+		if(isEnabled == undefined){
+			isEnabled = true;
+		}
 		
 		var itemDef = { 
 			"key": elementKey, 
