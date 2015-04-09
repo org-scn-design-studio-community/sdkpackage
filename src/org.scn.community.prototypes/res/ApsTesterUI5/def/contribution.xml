@@ -5,7 +5,7 @@
 	tooltip="Application Property Sheet Tester UI5"
 	icon="res/ApsTesterUI5/ApsTesterUI5.png"
 	handlerType="sapui5"
-	propertySheetPath="aps/org.scn.community.generic.PropertyPage.html"
+	propertySheetPath="aps/org.scn.community.PropertyPage.sapui5.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
 >

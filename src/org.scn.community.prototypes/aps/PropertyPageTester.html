@@ -18,8 +18,14 @@
 <script src="/aad/zen.res/zen.rt.components.sdk/resources/js/sdkui5_handler-min.js" type="text/javascript"></script>
 
 <script src="../res/require_loader.js" type="text/javascript"></script>
+
+<!--
 <script src="../res/ApsTester/ApsTesterLoader.js" type="text/javascript"></script>
 
+URL:
+http://localhost:7777/aad/zen/mimes/sdk_include/org.scn.community.prototypes/aps/PropertyPageTester.html?&testMode=X&component=org_scn_community_require.knownComponents.prototypes.ApsTester&loader=../res/ApsTester/ApsTesterLoader.js&designersessionid=11ca9df005bd4d32a91c8e7ed2519280
+-->
+ 
 <script type="text/javascript">
 
 /** RequireJS Config **/
@@ -29,9 +35,31 @@
 	        results = regex.exec(location.search);
 	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 	}
-
-	var myComponentData = eval(getUrlParameterByName("component"));
 	
+	// http://stackoverflow.com/questions/574944/how-to-load-up-css-files-using-javascript
+	var addScriptToHead = function (scriptId, scriptUrl) {
+		var $ = document; // shortcut
+		scriptId = "component_script"  + scriptId;
+		
+		var scritpElement = $.getElementById(scriptId);
+		
+		if (!scritpElement) {
+		    var head  = $.getElementsByTagName('head')[0];
+		    var script  = $.createElement('script');
+		    link.id   = scriptId;
+		    link.src  = scriptUrl;
+		    link.type = 'text/javascript';
+		    head.appendChild(script);
+		}
+	 };
+
+	var componentInfo = getUrlParameterByName("component");
+	var componentName = componentInfo.substring(0, componentInfo.indexOf(","));
+	var myComponentData = eval(componentName);
+	
+	var myLoaderData = componentInfo.substring(componentInfo.indexOf(",")+1);
+	addScriptToHead(myLoaderData);
+
 	var requireInfo1 = org_scn_community_require.collectRequire (
 	[
 	 	org_scn_community_require.knownModules.generic_aps.name,
