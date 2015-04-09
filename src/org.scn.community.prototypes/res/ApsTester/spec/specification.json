@@ -106,9 +106,52 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Simple Color",
-			"cat" : "Data",
+			"cat" : "Colors",
 			"tooltip" : "A color",
 			"apsControl" : "color"	
 		}
-	}
+	},
+	"stringarray" : {
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+		"opts" : {
+			"ztlType": "StringArray",
+			"ztlFunction": "",
+			"desc" : "Simple String Array",
+			"cat" : "Content-StringArray",
+			"tooltip" : "Simple Array with Key",
+			"apsControl" : "array",
+			"arrayMode" : "StringArray"
+		}
+	},
+	"singlearray" : {
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Simple Array",
+			"cat" : "Content-SingleArray",
+			"tooltip" : "Simple Array with Key and Value",
+			"apsControl" : "array",
+			"arrayMode" : "OneLevelArray"
+		}
+	},
+	"doublearray" : {
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Complex Array",
+			"cat" : "Content-TwoLevelArray",
+			"tooltip" : "Array with Key and Value and Second Level",
+			"apsControl" : "array",
+			"arrayMode" : "TwoLevelArray"
+		}
+	},
+	
 }

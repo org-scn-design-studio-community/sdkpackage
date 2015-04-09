@@ -7,647 +7,683 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.GaugePropertyPage",  function() {
 	var that = this;
 
-	this.init = function () {
-		this._content = new sap.ui.commons.layout.VerticalLayout({
+	that.init = function () {
+		that._content = new sap.ui.commons.layout.VerticalLayout({
 			width : "100%"
 		});
-		this._content.placeAt($("#content"));
+		that._content.placeAt($("#content"));
 
-		this.inithaveNumbers();
-		this.initnumOfBigTicks();
-		this.initnumOfSmallTicks();
-		this.initindicatorValue();
-		this.initshowValue();
-		this.initshowedValue();
-		this.initneedleColor();
-		this.inittitle();
-		this.initstartValue();
-		this.initendValue();
-		this.initgradientColor();
-		this.initfirstColor();
-		this.initsecondColor();
-		this.initthirdColor();
-		this.initstartSecondColor();
-		this.initstartThirdColor();
-		this.initmainColor();
-		this.initttColor();
+		that["fun_haveNumbers"].init();
+		that["fun_numOfBigTicks"].init();
+		that["fun_numOfSmallTicks"].init();
+		that["fun_indicatorValue"].init();
+		that["fun_showValue"].init();
+		that["fun_showedValue"].init();
+		that["fun_needleColor"].init();
+		that["fun_title"].init();
+		that["fun_startValue"].init();
+		that["fun_endValue"].init();
+		that["fun_gradientColor"].init();
+		that["fun_firstColor"].init();
+		that["fun_secondColor"].init();
+		that["fun_thirdColor"].init();
+		that["fun_startSecondColor"].init();
+		that["fun_startThirdColor"].init();
+		that["fun_mainColor"].init();
+		that["fun_ttColor"].init();
 		
 	};
 	
-	this.componentSelected = function(){
-		this.updatehaveNumbers();
-		this.updatenumOfBigTicks();
-		this.updatenumOfSmallTicks();
-		this.updateindicatorValue();
-		this.updateshowValue();
-		this.updateshowedValue();
-		this.updateneedleColor();
-		this.updatetitle();
-		this.updatestartValue();
-		this.updateendValue();
-		this.updategradientColor();
-		this.updatefirstColor();
-		this.updatesecondColor();
-		this.updatethirdColor();
-		this.updatestartSecondColor();
-		this.updatestartThirdColor();
-		this.updatemainColor();
-		this.updatettColor();
+	that.componentSelected = function(){
+		that["fun_haveNumbers"].update();
+		that["fun_numOfBigTicks"].update();
+		that["fun_numOfSmallTicks"].update();
+		that["fun_indicatorValue"].update();
+		that["fun_showValue"].update();
+		that["fun_showedValue"].update();
+		that["fun_needleColor"].update();
+		that["fun_title"].update();
+		that["fun_startValue"].update();
+		that["fun_endValue"].update();
+		that["fun_gradientColor"].update();
+		that["fun_firstColor"].update();
+		that["fun_secondColor"].update();
+		that["fun_thirdColor"].update();
+		that["fun_startSecondColor"].update();
+		that["fun_startThirdColor"].update();
+		that["fun_mainColor"].update();
+		that["fun_ttColor"].update();
 		
 	};
 	
 	
-	this.updatePropertyhaveNumbers = function(){
-		this._inputhaveNumbers.setChecked(this._haveNumbers);
+	that["fun_haveNumbers"] = {};
+	
+	that["fun_haveNumbers"].update = function(){
+		that["fun_haveNumbers"]._input.setChecked(that["fun_haveNumbers"]._);
 	};
 	
-	this.inithaveNumbers = function(){
-		this._labelhaveNumbers = new sap.ui.commons.Label({text: " Show Number"});
-		this._labelhaveNumbers.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelhaveNumbers);
+	that["fun_haveNumbers"].init = function(){
+		that["fun_haveNumbers"]._label = new sap.ui.commons.Label({text: " Show Number"});
+		that["fun_haveNumbers"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_haveNumbers"]._label);
 		
-		this._inputhaveNumbers = new sap.ui.commons.CheckBox({width: "300px", text: "Show Number"});
-		this._content.addContent(this._inputhaveNumbers);
-		this._inputhaveNumbers.attachChange(this.propertyChangedhaveNumbers, this);
-		this._inputhaveNumbers.addStyleClass("org-scn-ApsBoolean");
+		that["fun_haveNumbers"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Show Number"});
+		that._content.addContent(that["fun_haveNumbers"]._input);
+		that["fun_haveNumbers"]._input.attachChange(that["fun_haveNumbers"].propertyChanged, that);
+		that["fun_haveNumbers"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyhaveNumbers();
+		that["fun_haveNumbers"].update();
 	};
 
-	this.propertyChangedhaveNumbers = function(oControlEvent){
+	that["fun_haveNumbers"].propertyChanged = function(oControlEvent){
 		var checked = oControlEvent.getParameter("checked");
-		this._haveNumbers = checked;
-		this.firePropertiesChanged(["haveNumbers"]);
+		that["fun_haveNumbers"]._ = checked;
+		that.firePropertiesChanged(["haveNumbers"]);
 	};
 	
-	this.haveNumbers = function(s){
+	that.haveNumbers = function(s){
 		if( s === undefined){
-			return this._haveNumbers;
+			return that["fun_haveNumbers"]._;
 		}else{
-			this._haveNumbers = s;
-			this.updatePropertyhaveNumbers();
-			return this;
+			that["fun_haveNumbers"]._ = s;
+			that["fun_haveNumbers"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertynumOfBigTicks = function(){
-		this._inputnumOfBigTicks.setValue(this._numOfBigTicks);
+	that["fun_numOfBigTicks"] = {};
+	
+	that["fun_numOfBigTicks"].update = function(){
+		that["fun_numOfBigTicks"]._input.setValue(that["fun_numOfBigTicks"]._);
 	};
 	
-	this.initnumOfBigTicks = function(){
-		this._labelnumOfBigTicks = new sap.ui.commons.Label({text: " Number of Big Ticks"});
-		this._labelnumOfBigTicks.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelnumOfBigTicks);
+	that["fun_numOfBigTicks"].init = function(){
+		that["fun_numOfBigTicks"]._label = new sap.ui.commons.Label({text: " Number of Big Ticks"});
+		that["fun_numOfBigTicks"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_numOfBigTicks"]._label);
 		
-		this._inputnumOfBigTicks = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputnumOfBigTicks);
-		this._inputnumOfBigTicks.attachChange(this.propertyChangednumOfBigTicks, this);
-		this._inputnumOfBigTicks.addStyleClass("org-scn-ApsSimple");
+		that["fun_numOfBigTicks"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_numOfBigTicks"]._input);
+		that["fun_numOfBigTicks"]._input.attachChange(that["fun_numOfBigTicks"].propertyChanged, that);
+		that["fun_numOfBigTicks"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertynumOfBigTicks();
+		that["fun_numOfBigTicks"].update();
 	};
 
-	this.propertyChangednumOfBigTicks = function(oControlEvent){
+	that["fun_numOfBigTicks"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._numOfBigTicks = value;
-		this.firePropertiesChanged(["numOfBigTicks"]);
+		that["fun_numOfBigTicks"]._ = value;
+		that.firePropertiesChanged(["numOfBigTicks"]);
 	};
 	
-	this.numOfBigTicks = function(s){
+	that.numOfBigTicks = function(s){
 		if( s === undefined){
-			return this._numOfBigTicks;
+			return that["fun_numOfBigTicks"]._;
 		}else{
-			this._numOfBigTicks = s;
-			this.updatePropertynumOfBigTicks();
-			return this;
+			that["fun_numOfBigTicks"]._ = s;
+			that["fun_numOfBigTicks"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertynumOfSmallTicks = function(){
-		this._inputnumOfSmallTicks.setValue(this._numOfSmallTicks);
+	that["fun_numOfSmallTicks"] = {};
+	
+	that["fun_numOfSmallTicks"].update = function(){
+		that["fun_numOfSmallTicks"]._input.setValue(that["fun_numOfSmallTicks"]._);
 	};
 	
-	this.initnumOfSmallTicks = function(){
-		this._labelnumOfSmallTicks = new sap.ui.commons.Label({text: " Number of Small Ticks"});
-		this._labelnumOfSmallTicks.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelnumOfSmallTicks);
+	that["fun_numOfSmallTicks"].init = function(){
+		that["fun_numOfSmallTicks"]._label = new sap.ui.commons.Label({text: " Number of Small Ticks"});
+		that["fun_numOfSmallTicks"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_numOfSmallTicks"]._label);
 		
-		this._inputnumOfSmallTicks = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputnumOfSmallTicks);
-		this._inputnumOfSmallTicks.attachChange(this.propertyChangednumOfSmallTicks, this);
-		this._inputnumOfSmallTicks.addStyleClass("org-scn-ApsSimple");
+		that["fun_numOfSmallTicks"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_numOfSmallTicks"]._input);
+		that["fun_numOfSmallTicks"]._input.attachChange(that["fun_numOfSmallTicks"].propertyChanged, that);
+		that["fun_numOfSmallTicks"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertynumOfSmallTicks();
+		that["fun_numOfSmallTicks"].update();
 	};
 
-	this.propertyChangednumOfSmallTicks = function(oControlEvent){
+	that["fun_numOfSmallTicks"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._numOfSmallTicks = value;
-		this.firePropertiesChanged(["numOfSmallTicks"]);
+		that["fun_numOfSmallTicks"]._ = value;
+		that.firePropertiesChanged(["numOfSmallTicks"]);
 	};
 	
-	this.numOfSmallTicks = function(s){
+	that.numOfSmallTicks = function(s){
 		if( s === undefined){
-			return this._numOfSmallTicks;
+			return that["fun_numOfSmallTicks"]._;
 		}else{
-			this._numOfSmallTicks = s;
-			this.updatePropertynumOfSmallTicks();
-			return this;
+			that["fun_numOfSmallTicks"]._ = s;
+			that["fun_numOfSmallTicks"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyindicatorValue = function(){
-		this._inputindicatorValue.setValue(this._indicatorValue);
+	that["fun_indicatorValue"] = {};
+	
+	that["fun_indicatorValue"].update = function(){
+		that["fun_indicatorValue"]._input.setValue(that["fun_indicatorValue"]._);
 	};
 	
-	this.initindicatorValue = function(){
-		this._labelindicatorValue = new sap.ui.commons.Label({text: " Indicator Value"});
-		this._labelindicatorValue.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelindicatorValue);
+	that["fun_indicatorValue"].init = function(){
+		that["fun_indicatorValue"]._label = new sap.ui.commons.Label({text: " Indicator Value"});
+		that["fun_indicatorValue"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_indicatorValue"]._label);
 		
-		this._inputindicatorValue = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputindicatorValue);
-		this._inputindicatorValue.attachChange(this.propertyChangedindicatorValue, this);
-		this._inputindicatorValue.addStyleClass("org-scn-ApsSimple");
+		that["fun_indicatorValue"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_indicatorValue"]._input);
+		that["fun_indicatorValue"]._input.attachChange(that["fun_indicatorValue"].propertyChanged, that);
+		that["fun_indicatorValue"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyindicatorValue();
+		that["fun_indicatorValue"].update();
 	};
 
-	this.propertyChangedindicatorValue = function(oControlEvent){
+	that["fun_indicatorValue"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._indicatorValue = value;
-		this.firePropertiesChanged(["indicatorValue"]);
+		that["fun_indicatorValue"]._ = value;
+		that.firePropertiesChanged(["indicatorValue"]);
 	};
 	
-	this.indicatorValue = function(s){
+	that.indicatorValue = function(s){
 		if( s === undefined){
-			return this._indicatorValue;
+			return that["fun_indicatorValue"]._;
 		}else{
-			this._indicatorValue = s;
-			this.updatePropertyindicatorValue();
-			return this;
+			that["fun_indicatorValue"]._ = s;
+			that["fun_indicatorValue"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyshowValue = function(){
-		this._inputshowValue.setChecked(this._showValue);
+	that["fun_showValue"] = {};
+	
+	that["fun_showValue"].update = function(){
+		that["fun_showValue"]._input.setChecked(that["fun_showValue"]._);
 	};
 	
-	this.initshowValue = function(){
-		this._labelshowValue = new sap.ui.commons.Label({text: " Show Value"});
-		this._labelshowValue.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelshowValue);
+	that["fun_showValue"].init = function(){
+		that["fun_showValue"]._label = new sap.ui.commons.Label({text: " Show Value"});
+		that["fun_showValue"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_showValue"]._label);
 		
-		this._inputshowValue = new sap.ui.commons.CheckBox({width: "300px", text: "Show Value"});
-		this._content.addContent(this._inputshowValue);
-		this._inputshowValue.attachChange(this.propertyChangedshowValue, this);
-		this._inputshowValue.addStyleClass("org-scn-ApsBoolean");
+		that["fun_showValue"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Show Value"});
+		that._content.addContent(that["fun_showValue"]._input);
+		that["fun_showValue"]._input.attachChange(that["fun_showValue"].propertyChanged, that);
+		that["fun_showValue"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyshowValue();
+		that["fun_showValue"].update();
 	};
 
-	this.propertyChangedshowValue = function(oControlEvent){
+	that["fun_showValue"].propertyChanged = function(oControlEvent){
 		var checked = oControlEvent.getParameter("checked");
-		this._showValue = checked;
-		this.firePropertiesChanged(["showValue"]);
+		that["fun_showValue"]._ = checked;
+		that.firePropertiesChanged(["showValue"]);
 	};
 	
-	this.showValue = function(s){
+	that.showValue = function(s){
 		if( s === undefined){
-			return this._showValue;
+			return that["fun_showValue"]._;
 		}else{
-			this._showValue = s;
-			this.updatePropertyshowValue();
-			return this;
+			that["fun_showValue"]._ = s;
+			that["fun_showValue"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyshowedValue = function(){
-		this._inputshowedValue.setValue(this._showedValue);
+	that["fun_showedValue"] = {};
+	
+	that["fun_showedValue"].update = function(){
+		that["fun_showedValue"]._input.setValue(that["fun_showedValue"]._);
 	};
 	
-	this.initshowedValue = function(){
-		this._labelshowedValue = new sap.ui.commons.Label({text: " Showed Value"});
-		this._labelshowedValue.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelshowedValue);
+	that["fun_showedValue"].init = function(){
+		that["fun_showedValue"]._label = new sap.ui.commons.Label({text: " Showed Value"});
+		that["fun_showedValue"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_showedValue"]._label);
 		
-		this._inputshowedValue = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputshowedValue);
-		this._inputshowedValue.attachChange(this.propertyChangedshowedValue, this);
-		this._inputshowedValue.addStyleClass("org-scn-ApsSimple");
+		that["fun_showedValue"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_showedValue"]._input);
+		that["fun_showedValue"]._input.attachChange(that["fun_showedValue"].propertyChanged, that);
+		that["fun_showedValue"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyshowedValue();
+		that["fun_showedValue"].update();
 	};
 
-	this.propertyChangedshowedValue = function(oControlEvent){
+	that["fun_showedValue"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._showedValue = value;
-		this.firePropertiesChanged(["showedValue"]);
+		that["fun_showedValue"]._ = value;
+		that.firePropertiesChanged(["showedValue"]);
 	};
 	
-	this.showedValue = function(s){
+	that.showedValue = function(s){
 		if( s === undefined){
-			return this._showedValue;
+			return that["fun_showedValue"]._;
 		}else{
-			this._showedValue = s;
-			this.updatePropertyshowedValue();
-			return this;
+			that["fun_showedValue"]._ = s;
+			that["fun_showedValue"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyneedleColor = function(){
-		this._inputneedleColor.setValue(this._needleColor);
+	that["fun_needleColor"] = {};
+	
+	that["fun_needleColor"].update = function(){
+		that["fun_needleColor"]._input.setValue(that["fun_needleColor"]._);
 	};
 	
-	this.initneedleColor = function(){
-		this._labelneedleColor = new sap.ui.commons.Label({text: " Needle Color"});
-		this._labelneedleColor.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelneedleColor);
+	that["fun_needleColor"].init = function(){
+		that["fun_needleColor"]._label = new sap.ui.commons.Label({text: " Needle Color"});
+		that["fun_needleColor"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_needleColor"]._label);
 		
-		this._inputneedleColor = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputneedleColor);
-		this._inputneedleColor.attachChange(this.propertyChangedneedleColor, this);
-		this._inputneedleColor.addStyleClass("org-scn-ApsSimple");
+		that["fun_needleColor"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_needleColor"]._input);
+		that["fun_needleColor"]._input.attachChange(that["fun_needleColor"].propertyChanged, that);
+		that["fun_needleColor"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyneedleColor();
+		that["fun_needleColor"].update();
 	};
 
-	this.propertyChangedneedleColor = function(oControlEvent){
+	that["fun_needleColor"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._needleColor = value;
-		this.firePropertiesChanged(["needleColor"]);
+		that["fun_needleColor"]._ = value;
+		that.firePropertiesChanged(["needleColor"]);
 	};
 	
-	this.needleColor = function(s){
+	that.needleColor = function(s){
 		if( s === undefined){
-			return this._needleColor;
+			return that["fun_needleColor"]._;
 		}else{
-			this._needleColor = s;
-			this.updatePropertyneedleColor();
-			return this;
+			that["fun_needleColor"]._ = s;
+			that["fun_needleColor"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertytitle = function(){
-		this._inputtitle.setValue(this._title);
+	that["fun_title"] = {};
+	
+	that["fun_title"].update = function(){
+		that["fun_title"]._input.setValue(that["fun_title"]._);
 	};
 	
-	this.inittitle = function(){
-		this._labeltitle = new sap.ui.commons.Label({text: " Title"});
-		this._labeltitle.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labeltitle);
+	that["fun_title"].init = function(){
+		that["fun_title"]._label = new sap.ui.commons.Label({text: " Title"});
+		that["fun_title"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_title"]._label);
 		
-		this._inputtitle = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputtitle);
-		this._inputtitle.attachChange(this.propertyChangedtitle, this);
-		this._inputtitle.addStyleClass("org-scn-ApsSimple");
+		that["fun_title"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_title"]._input);
+		that["fun_title"]._input.attachChange(that["fun_title"].propertyChanged, that);
+		that["fun_title"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertytitle();
+		that["fun_title"].update();
 	};
 
-	this.propertyChangedtitle = function(oControlEvent){
+	that["fun_title"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._title = value;
-		this.firePropertiesChanged(["title"]);
+		that["fun_title"]._ = value;
+		that.firePropertiesChanged(["title"]);
 	};
 	
-	this.title = function(s){
+	that.title = function(s){
 		if( s === undefined){
-			return this._title;
+			return that["fun_title"]._;
 		}else{
-			this._title = s;
-			this.updatePropertytitle();
-			return this;
+			that["fun_title"]._ = s;
+			that["fun_title"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertystartValue = function(){
-		this._inputstartValue.setValue(this._startValue);
+	that["fun_startValue"] = {};
+	
+	that["fun_startValue"].update = function(){
+		that["fun_startValue"]._input.setValue(that["fun_startValue"]._);
 	};
 	
-	this.initstartValue = function(){
-		this._labelstartValue = new sap.ui.commons.Label({text: " Start Value"});
-		this._labelstartValue.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelstartValue);
+	that["fun_startValue"].init = function(){
+		that["fun_startValue"]._label = new sap.ui.commons.Label({text: " Start Value"});
+		that["fun_startValue"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_startValue"]._label);
 		
-		this._inputstartValue = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputstartValue);
-		this._inputstartValue.attachChange(this.propertyChangedstartValue, this);
-		this._inputstartValue.addStyleClass("org-scn-ApsSimple");
+		that["fun_startValue"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_startValue"]._input);
+		that["fun_startValue"]._input.attachChange(that["fun_startValue"].propertyChanged, that);
+		that["fun_startValue"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertystartValue();
+		that["fun_startValue"].update();
 	};
 
-	this.propertyChangedstartValue = function(oControlEvent){
+	that["fun_startValue"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._startValue = value;
-		this.firePropertiesChanged(["startValue"]);
+		that["fun_startValue"]._ = value;
+		that.firePropertiesChanged(["startValue"]);
 	};
 	
-	this.startValue = function(s){
+	that.startValue = function(s){
 		if( s === undefined){
-			return this._startValue;
+			return that["fun_startValue"]._;
 		}else{
-			this._startValue = s;
-			this.updatePropertystartValue();
-			return this;
+			that["fun_startValue"]._ = s;
+			that["fun_startValue"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyendValue = function(){
-		this._inputendValue.setValue(this._endValue);
+	that["fun_endValue"] = {};
+	
+	that["fun_endValue"].update = function(){
+		that["fun_endValue"]._input.setValue(that["fun_endValue"]._);
 	};
 	
-	this.initendValue = function(){
-		this._labelendValue = new sap.ui.commons.Label({text: " End Value"});
-		this._labelendValue.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelendValue);
+	that["fun_endValue"].init = function(){
+		that["fun_endValue"]._label = new sap.ui.commons.Label({text: " End Value"});
+		that["fun_endValue"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_endValue"]._label);
 		
-		this._inputendValue = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputendValue);
-		this._inputendValue.attachChange(this.propertyChangedendValue, this);
-		this._inputendValue.addStyleClass("org-scn-ApsSimple");
+		that["fun_endValue"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_endValue"]._input);
+		that["fun_endValue"]._input.attachChange(that["fun_endValue"].propertyChanged, that);
+		that["fun_endValue"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyendValue();
+		that["fun_endValue"].update();
 	};
 
-	this.propertyChangedendValue = function(oControlEvent){
+	that["fun_endValue"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._endValue = value;
-		this.firePropertiesChanged(["endValue"]);
+		that["fun_endValue"]._ = value;
+		that.firePropertiesChanged(["endValue"]);
 	};
 	
-	this.endValue = function(s){
+	that.endValue = function(s){
 		if( s === undefined){
-			return this._endValue;
+			return that["fun_endValue"]._;
 		}else{
-			this._endValue = s;
-			this.updatePropertyendValue();
-			return this;
+			that["fun_endValue"]._ = s;
+			that["fun_endValue"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertygradientColor = function(){
-		this._inputgradientColor.setChecked(this._gradientColor);
+	that["fun_gradientColor"] = {};
+	
+	that["fun_gradientColor"].update = function(){
+		that["fun_gradientColor"]._input.setChecked(that["fun_gradientColor"]._);
 	};
 	
-	this.initgradientColor = function(){
-		this._labelgradientColor = new sap.ui.commons.Label({text: " Gradient Color"});
-		this._labelgradientColor.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelgradientColor);
+	that["fun_gradientColor"].init = function(){
+		that["fun_gradientColor"]._label = new sap.ui.commons.Label({text: " Gradient Color"});
+		that["fun_gradientColor"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_gradientColor"]._label);
 		
-		this._inputgradientColor = new sap.ui.commons.CheckBox({width: "300px", text: "Gradient Color"});
-		this._content.addContent(this._inputgradientColor);
-		this._inputgradientColor.attachChange(this.propertyChangedgradientColor, this);
-		this._inputgradientColor.addStyleClass("org-scn-ApsBoolean");
+		that["fun_gradientColor"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Gradient Color"});
+		that._content.addContent(that["fun_gradientColor"]._input);
+		that["fun_gradientColor"]._input.attachChange(that["fun_gradientColor"].propertyChanged, that);
+		that["fun_gradientColor"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertygradientColor();
+		that["fun_gradientColor"].update();
 	};
 
-	this.propertyChangedgradientColor = function(oControlEvent){
+	that["fun_gradientColor"].propertyChanged = function(oControlEvent){
 		var checked = oControlEvent.getParameter("checked");
-		this._gradientColor = checked;
-		this.firePropertiesChanged(["gradientColor"]);
+		that["fun_gradientColor"]._ = checked;
+		that.firePropertiesChanged(["gradientColor"]);
 	};
 	
-	this.gradientColor = function(s){
+	that.gradientColor = function(s){
 		if( s === undefined){
-			return this._gradientColor;
+			return that["fun_gradientColor"]._;
 		}else{
-			this._gradientColor = s;
-			this.updatePropertygradientColor();
-			return this;
+			that["fun_gradientColor"]._ = s;
+			that["fun_gradientColor"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyfirstColor = function(){
-		this._inputfirstColor.setValue(this._firstColor);
+	that["fun_firstColor"] = {};
+	
+	that["fun_firstColor"].update = function(){
+		that["fun_firstColor"]._input.setValue(that["fun_firstColor"]._);
 	};
 	
-	this.initfirstColor = function(){
-		this._labelfirstColor = new sap.ui.commons.Label({text: " First Color"});
-		this._labelfirstColor.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelfirstColor);
+	that["fun_firstColor"].init = function(){
+		that["fun_firstColor"]._label = new sap.ui.commons.Label({text: " First Color"});
+		that["fun_firstColor"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_firstColor"]._label);
 		
-		this._inputfirstColor = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputfirstColor);
-		this._inputfirstColor.attachChange(this.propertyChangedfirstColor, this);
-		this._inputfirstColor.addStyleClass("org-scn-ApsSimple");
+		that["fun_firstColor"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_firstColor"]._input);
+		that["fun_firstColor"]._input.attachChange(that["fun_firstColor"].propertyChanged, that);
+		that["fun_firstColor"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyfirstColor();
+		that["fun_firstColor"].update();
 	};
 
-	this.propertyChangedfirstColor = function(oControlEvent){
+	that["fun_firstColor"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._firstColor = value;
-		this.firePropertiesChanged(["firstColor"]);
+		that["fun_firstColor"]._ = value;
+		that.firePropertiesChanged(["firstColor"]);
 	};
 	
-	this.firstColor = function(s){
+	that.firstColor = function(s){
 		if( s === undefined){
-			return this._firstColor;
+			return that["fun_firstColor"]._;
 		}else{
-			this._firstColor = s;
-			this.updatePropertyfirstColor();
-			return this;
+			that["fun_firstColor"]._ = s;
+			that["fun_firstColor"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertysecondColor = function(){
-		this._inputsecondColor.setValue(this._secondColor);
+	that["fun_secondColor"] = {};
+	
+	that["fun_secondColor"].update = function(){
+		that["fun_secondColor"]._input.setValue(that["fun_secondColor"]._);
 	};
 	
-	this.initsecondColor = function(){
-		this._labelsecondColor = new sap.ui.commons.Label({text: " Second Color"});
-		this._labelsecondColor.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelsecondColor);
+	that["fun_secondColor"].init = function(){
+		that["fun_secondColor"]._label = new sap.ui.commons.Label({text: " Second Color"});
+		that["fun_secondColor"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_secondColor"]._label);
 		
-		this._inputsecondColor = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputsecondColor);
-		this._inputsecondColor.attachChange(this.propertyChangedsecondColor, this);
-		this._inputsecondColor.addStyleClass("org-scn-ApsSimple");
+		that["fun_secondColor"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_secondColor"]._input);
+		that["fun_secondColor"]._input.attachChange(that["fun_secondColor"].propertyChanged, that);
+		that["fun_secondColor"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertysecondColor();
+		that["fun_secondColor"].update();
 	};
 
-	this.propertyChangedsecondColor = function(oControlEvent){
+	that["fun_secondColor"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._secondColor = value;
-		this.firePropertiesChanged(["secondColor"]);
+		that["fun_secondColor"]._ = value;
+		that.firePropertiesChanged(["secondColor"]);
 	};
 	
-	this.secondColor = function(s){
+	that.secondColor = function(s){
 		if( s === undefined){
-			return this._secondColor;
+			return that["fun_secondColor"]._;
 		}else{
-			this._secondColor = s;
-			this.updatePropertysecondColor();
-			return this;
+			that["fun_secondColor"]._ = s;
+			that["fun_secondColor"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertythirdColor = function(){
-		this._inputthirdColor.setValue(this._thirdColor);
+	that["fun_thirdColor"] = {};
+	
+	that["fun_thirdColor"].update = function(){
+		that["fun_thirdColor"]._input.setValue(that["fun_thirdColor"]._);
 	};
 	
-	this.initthirdColor = function(){
-		this._labelthirdColor = new sap.ui.commons.Label({text: " Third Color"});
-		this._labelthirdColor.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelthirdColor);
+	that["fun_thirdColor"].init = function(){
+		that["fun_thirdColor"]._label = new sap.ui.commons.Label({text: " Third Color"});
+		that["fun_thirdColor"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_thirdColor"]._label);
 		
-		this._inputthirdColor = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputthirdColor);
-		this._inputthirdColor.attachChange(this.propertyChangedthirdColor, this);
-		this._inputthirdColor.addStyleClass("org-scn-ApsSimple");
+		that["fun_thirdColor"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_thirdColor"]._input);
+		that["fun_thirdColor"]._input.attachChange(that["fun_thirdColor"].propertyChanged, that);
+		that["fun_thirdColor"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertythirdColor();
+		that["fun_thirdColor"].update();
 	};
 
-	this.propertyChangedthirdColor = function(oControlEvent){
+	that["fun_thirdColor"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._thirdColor = value;
-		this.firePropertiesChanged(["thirdColor"]);
+		that["fun_thirdColor"]._ = value;
+		that.firePropertiesChanged(["thirdColor"]);
 	};
 	
-	this.thirdColor = function(s){
+	that.thirdColor = function(s){
 		if( s === undefined){
-			return this._thirdColor;
+			return that["fun_thirdColor"]._;
 		}else{
-			this._thirdColor = s;
-			this.updatePropertythirdColor();
-			return this;
+			that["fun_thirdColor"]._ = s;
+			that["fun_thirdColor"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertystartSecondColor = function(){
-		this._inputstartSecondColor.setValue(this._startSecondColor);
+	that["fun_startSecondColor"] = {};
+	
+	that["fun_startSecondColor"].update = function(){
+		that["fun_startSecondColor"]._input.setValue(that["fun_startSecondColor"]._);
 	};
 	
-	this.initstartSecondColor = function(){
-		this._labelstartSecondColor = new sap.ui.commons.Label({text: " Start of Second Color"});
-		this._labelstartSecondColor.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelstartSecondColor);
+	that["fun_startSecondColor"].init = function(){
+		that["fun_startSecondColor"]._label = new sap.ui.commons.Label({text: " Start of Second Color"});
+		that["fun_startSecondColor"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_startSecondColor"]._label);
 		
-		this._inputstartSecondColor = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputstartSecondColor);
-		this._inputstartSecondColor.attachChange(this.propertyChangedstartSecondColor, this);
-		this._inputstartSecondColor.addStyleClass("org-scn-ApsSimple");
+		that["fun_startSecondColor"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_startSecondColor"]._input);
+		that["fun_startSecondColor"]._input.attachChange(that["fun_startSecondColor"].propertyChanged, that);
+		that["fun_startSecondColor"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertystartSecondColor();
+		that["fun_startSecondColor"].update();
 	};
 
-	this.propertyChangedstartSecondColor = function(oControlEvent){
+	that["fun_startSecondColor"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._startSecondColor = value;
-		this.firePropertiesChanged(["startSecondColor"]);
+		that["fun_startSecondColor"]._ = value;
+		that.firePropertiesChanged(["startSecondColor"]);
 	};
 	
-	this.startSecondColor = function(s){
+	that.startSecondColor = function(s){
 		if( s === undefined){
-			return this._startSecondColor;
+			return that["fun_startSecondColor"]._;
 		}else{
-			this._startSecondColor = s;
-			this.updatePropertystartSecondColor();
-			return this;
+			that["fun_startSecondColor"]._ = s;
+			that["fun_startSecondColor"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertystartThirdColor = function(){
-		this._inputstartThirdColor.setValue(this._startThirdColor);
+	that["fun_startThirdColor"] = {};
+	
+	that["fun_startThirdColor"].update = function(){
+		that["fun_startThirdColor"]._input.setValue(that["fun_startThirdColor"]._);
 	};
 	
-	this.initstartThirdColor = function(){
-		this._labelstartThirdColor = new sap.ui.commons.Label({text: " Start of Third Color"});
-		this._labelstartThirdColor.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelstartThirdColor);
+	that["fun_startThirdColor"].init = function(){
+		that["fun_startThirdColor"]._label = new sap.ui.commons.Label({text: " Start of Third Color"});
+		that["fun_startThirdColor"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_startThirdColor"]._label);
 		
-		this._inputstartThirdColor = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputstartThirdColor);
-		this._inputstartThirdColor.attachChange(this.propertyChangedstartThirdColor, this);
-		this._inputstartThirdColor.addStyleClass("org-scn-ApsSimple");
+		that["fun_startThirdColor"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_startThirdColor"]._input);
+		that["fun_startThirdColor"]._input.attachChange(that["fun_startThirdColor"].propertyChanged, that);
+		that["fun_startThirdColor"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertystartThirdColor();
+		that["fun_startThirdColor"].update();
 	};
 
-	this.propertyChangedstartThirdColor = function(oControlEvent){
+	that["fun_startThirdColor"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._startThirdColor = value;
-		this.firePropertiesChanged(["startThirdColor"]);
+		that["fun_startThirdColor"]._ = value;
+		that.firePropertiesChanged(["startThirdColor"]);
 	};
 	
-	this.startThirdColor = function(s){
+	that.startThirdColor = function(s){
 		if( s === undefined){
-			return this._startThirdColor;
+			return that["fun_startThirdColor"]._;
 		}else{
-			this._startThirdColor = s;
-			this.updatePropertystartThirdColor();
-			return this;
+			that["fun_startThirdColor"]._ = s;
+			that["fun_startThirdColor"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertymainColor = function(){
-		this._inputmainColor.setValue(this._mainColor);
+	that["fun_mainColor"] = {};
+	
+	that["fun_mainColor"].update = function(){
+		that["fun_mainColor"]._input.setValue(that["fun_mainColor"]._);
 	};
 	
-	this.initmainColor = function(){
-		this._labelmainColor = new sap.ui.commons.Label({text: " Main Color"});
-		this._labelmainColor.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelmainColor);
+	that["fun_mainColor"].init = function(){
+		that["fun_mainColor"]._label = new sap.ui.commons.Label({text: " Main Color"});
+		that["fun_mainColor"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_mainColor"]._label);
 		
-		this._inputmainColor = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputmainColor);
-		this._inputmainColor.attachChange(this.propertyChangedmainColor, this);
-		this._inputmainColor.addStyleClass("org-scn-ApsSimple");
+		that["fun_mainColor"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_mainColor"]._input);
+		that["fun_mainColor"]._input.attachChange(that["fun_mainColor"].propertyChanged, that);
+		that["fun_mainColor"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertymainColor();
+		that["fun_mainColor"].update();
 	};
 
-	this.propertyChangedmainColor = function(oControlEvent){
+	that["fun_mainColor"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._mainColor = value;
-		this.firePropertiesChanged(["mainColor"]);
+		that["fun_mainColor"]._ = value;
+		that.firePropertiesChanged(["mainColor"]);
 	};
 	
-	this.mainColor = function(s){
+	that.mainColor = function(s){
 		if( s === undefined){
-			return this._mainColor;
+			return that["fun_mainColor"]._;
 		}else{
-			this._mainColor = s;
-			this.updatePropertymainColor();
-			return this;
+			that["fun_mainColor"]._ = s;
+			that["fun_mainColor"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyttColor = function(){
-		this._inputttColor.setValue(this._ttColor);
+	that["fun_ttColor"] = {};
+	
+	that["fun_ttColor"].update = function(){
+		that["fun_ttColor"]._input.setValue(that["fun_ttColor"]._);
 	};
 	
-	this.initttColor = function(){
-		this._labelttColor = new sap.ui.commons.Label({text: " Text and Ticks Color"});
-		this._labelttColor.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelttColor);
+	that["fun_ttColor"].init = function(){
+		that["fun_ttColor"]._label = new sap.ui.commons.Label({text: " Text and Ticks Color"});
+		that["fun_ttColor"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_ttColor"]._label);
 		
-		this._inputttColor = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputttColor);
-		this._inputttColor.attachChange(this.propertyChangedttColor, this);
-		this._inputttColor.addStyleClass("org-scn-ApsSimple");
+		that["fun_ttColor"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_ttColor"]._input);
+		that["fun_ttColor"]._input.attachChange(that["fun_ttColor"].propertyChanged, that);
+		that["fun_ttColor"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyttColor();
+		that["fun_ttColor"].update();
 	};
 
-	this.propertyChangedttColor = function(oControlEvent){
+	that["fun_ttColor"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._ttColor = value;
-		this.firePropertiesChanged(["ttColor"]);
+		that["fun_ttColor"]._ = value;
+		that.firePropertiesChanged(["ttColor"]);
 	};
 	
-	this.ttColor = function(s){
+	that.ttColor = function(s){
 		if( s === undefined){
-			return this._ttColor;
+			return that["fun_ttColor"]._;
 		}else{
-			this._ttColor = s;
-			this.updatePropertyttColor();
-			return this;
+			that["fun_ttColor"]._ = s;
+			that["fun_ttColor"].update();
+			return that;
 		}
 	};
 

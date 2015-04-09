@@ -64,6 +64,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 								if(apsControl=="color"){
 									this["cmp_"+property].setBackgroundColor(value);
 								}
+								if(apsControl=="array"){
+									this["cmp_"+property].setValue(value);
+								}
 								return this;
 							}
 						};
@@ -95,6 +98,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 							}
 							if(apsControl=="color"){
 								newValue = oControlEvent.getSource().getBackgroundColor();
+							}
+							if(apsControl == "array"){
+								newValue = oControlEvent.getSource().getValue();
 							}
 							this.props[property].value = newValue;
 							if(!this.isTest) {
@@ -177,10 +183,20 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 						});
 						this["cmp_"+property].attachColorChange(f,this);
 					}
+					// try to add arrays
+					if(apsControl == "array"){
+						this["cmp_"+property] = new org.scn.community.aps.ArrayList({
+							mode: propertyOptions.arrayMode
+						});
+						this["cmp_"+property].rerenderComp();
+						this["cmp_"+property].attachValueChange(f,this);
+					}
 					// Step 4, add control to layout
 					//etcLayout.addContent(this.hLabel(property,this["cmp_"+property]));
 					var useLabel = true;
-					if(apsControl == "palette" || apsControl == "mapdownload") useLabel = false;
+					if(this["cmp_"+property].needsLabel) {
+						useLabel = this["cmp_"+property].needsLabel();	
+					}
 					if(useLabel){
 						node.ui.addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
 					}else{

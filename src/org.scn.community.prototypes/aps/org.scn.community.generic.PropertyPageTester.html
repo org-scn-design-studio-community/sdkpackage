@@ -7,7 +7,7 @@
 		
 <script src="/aad/resources/sap-ui-cachebuster/sap-ui-core-dbg.js"
 	id='sap-ui-bootstrap' type='text/javascript' data-sap-ui-theme='sap_bluecrystal' 
-	data-sap-ui-libs="sap.ui.ux3, sap.ui.commons, sap.ui.table, sap.ui.core"></script>
+	data-sap-ui-libs="sap.m, sap.ui.ux3, sap.ui.commons, sap.ui.table, sap.ui.core"></script>
 
 <link rel="stylesheet" type="text/css" href="org.scn.community.generic.PropertyPage.css">
 
@@ -36,6 +36,7 @@
 	[
 	 	org_scn_community_require.knownModules.generic_aps.name,
 	 	org_scn_community_require.knownModules.generic_aps_ui5.name,
+	 	org_scn_community_require.knownModules.generic_aps_arrays.name,
 	  	myComponentData.name
 	]);
 	
@@ -46,13 +47,16 @@
 	});
 	
 	sdkReqs(requireInfo1.plainNames, function() {
-		try {
+		// try {
 			var propertyPage = new org.scn.community.generic.PropertyPage();
 			myComponentData.instance();
 			propertyPage.init();
-		} catch (e) {
-			alert(e);
-		}
+			propertyPage.stringarray("[\"VAL_1\", \"VAL_2\"]");
+			propertyPage.singlearray("[{\"parentKey\":\"ROOT\",\"key\":\"Element\",\"leaf\":false,\"value\":\"P1\"},{\"parentKey\":\"ROOT\",\"key\":\"Element1\",\"leaf\":false,\"value\":\"P2\"}]");
+			propertyPage.doublearray("[{\"parentKey\":\"ROOT\",\"key\":\"Element\",\"leaf\":false,\"value\":\"P1\"},{\"parentKey\":\"ROOT\",\"key\":\"Element1\",\"leaf\":false,\"value\":\"p2\"},{\"parentKey\":\"Element\",\"key\":\"Item\",\"leaf\":true},{\"parentKey\":\"Element\",\"key\":\"Item1\",\"leaf\":true},{\"parentKey\":\"Element1\",\"key\":\"Item2\",\"leaf\":true},{\"parentKey\":\"Element1\",\"key\":\"Item3\",\"leaf\":true}]");
+		//} catch (e) {
+		//	alert(e);
+		//}
 	});//End of Require Callback
 	
 </script>

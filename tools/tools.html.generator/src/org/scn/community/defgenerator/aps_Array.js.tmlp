@@ -1,13 +1,15 @@
-	this._elementsContent%PROPERTY_NAME% = [];
-	this._selectedElementKey%PROPERTY_NAME% = "";
-	this._selectedItemKey%PROPERTY_NAME% = "";
-	this._currentItemConfig%PROPERTY_NAME% = {};
+	that["fun_%PROPERTY_NAME%"] = {};
+	
+	that["fun_%PROPERTY_NAME%"]._elementsContent = [];
+	that["fun_%PROPERTY_NAME%"]._selectedElementKey = "";
+	that["fun_%PROPERTY_NAME%"]._selectedItemKey = "";
+	that["fun_%PROPERTY_NAME%"]._currentItemConfig = {};
 
 	/*
 	 * Retrieves JSON for Element Entry
 	 */
-	this.getElement%PROPERTY_NAME% = function(key){
-		var sections = this.gatherElements%PROPERTY_NAME%();
+	that["fun_%PROPERTY_NAME%"].getElement = function(key){
+		var sections = that["fun_%PROPERTY_NAME%"].gatherElements();
 		for(var i=0;i<sections.length;i++){
 			if(sections[i].key == key) return sections[i];
 		}
@@ -15,51 +17,51 @@
 	/*
 	 * Retrieves JSON for Item Entry
 	 */
-	this.getItem%PROPERTY_NAME% = function(sectionKey,key){
-		for(var i=0;i<this._elementsContent%PROPERTY_NAME%.length;i++){
-			if(this._elementsContent%PROPERTY_NAME%[i].key == key && this._elementsContent%PROPERTY_NAME%[i].parentKey==sectionKey) return this._elementsContent%PROPERTY_NAME%[i];
+	that["fun_%PROPERTY_NAME%"].getItem = function(sectionKey,key){
+		for(var i=0;i<that["fun_%PROPERTY_NAME%"]._elementsContent.length;i++){
+			if(that["fun_%PROPERTY_NAME%"]._elementsContent[i].key == key && that["fun_%PROPERTY_NAME%"]._elementsContent[i].parentKey==sectionKey) return that["fun_%PROPERTY_NAME%"]._elementsContent[i];
 		}
 	};
 	/*
 	 * Update Element JSON and notify Design Studio IDE
 	 */
-	this.updateElement%PROPERTY_NAME% = function(key,section){
-		for(var i=0;i<this._elementsContent%PROPERTY_NAME%.length;i++){
-			var element = this._elementsContent%PROPERTY_NAME%[i];
+	that["fun_%PROPERTY_NAME%"].updateElement = function(key,section){
+		for(var i=0;i<that["fun_%PROPERTY_NAME%"]._elementsContent.length;i++){
+			var element = that["fun_%PROPERTY_NAME%"]._elementsContent[i];
 			if(!element.leaf && element.key==key){
-				this._elementsContent%PROPERTY_NAME%[i] = section;
+				that["fun_%PROPERTY_NAME%"]._elementsContent[i] = section;
 			}
 		}
-		this.firePropertiesChanged(["%PROPERTY_NAME%"]);
-		this.updateProperty%PROPERTY_NAME%();
+		that.firePropertiesChanged(["%PROPERTY_NAME%"]);
+		that["fun_%PROPERTY_NAME%"].update();
 	};
 	/*
 	 * Update Item JSON and notify Design Studio IDE
 	 */
-	this.updateItem%PROPERTY_NAME% = function(key){
-		for(var i=0;i<this._elementsContent%PROPERTY_NAME%.length;i++){
-			var element = this._elementsContent%PROPERTY_NAME%[i];
+	that["fun_%PROPERTY_NAME%"].updateItem = function(key){
+		for(var i=0;i<that["fun_%PROPERTY_NAME%"]._elementsContent.length;i++){
+			var element = that["fun_%PROPERTY_NAME%"]._elementsContent[i];
 			if(element.leaf && element.key==key){
-				this._elementsContent%PROPERTY_NAME%[i] = this._currentItemConfig%PROPERTY_NAME%;
+				that["fun_%PROPERTY_NAME%"]._elementsContent[i] = that["fun_%PROPERTY_NAME%"]._currentItemConfig;
 			}
 		}
-		this.firePropertiesChanged(["%PROPERTY_NAME%"]);
-		this.updateProperty%PROPERTY_NAME%();
-		this.closeDetail%PROPERTY_NAME%();
+		that.firePropertiesChanged(["%PROPERTY_NAME%"]);
+		that["fun_%PROPERTY_NAME%"].update();
+		that["fun_%PROPERTY_NAME%"].closeDetail();
 	};
 	/*
 	 * Displays Element Properties
 	 */
-	this.showElementProperties%PROPERTY_NAME% = function(){
-		this._sectionPropertyLayout%PROPERTY_NAME%.destroyContent();
-		this._sectionPropertyList%PROPERTY_NAME%.destroyContent();
+	that["fun_%PROPERTY_NAME%"].showElementProperties = function(){
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyLayout.destroyContent();
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyList.destroyContent();
 		
-		this._selectedElementKey%PROPERTY_NAME% = this._listBuilder%PROPERTY_NAME%.getSelectedKey();
-		if(!this._selectedElementKey%PROPERTY_NAME%) return;
-		var selectedElement = this.getElement%PROPERTY_NAME%(this._selectedElementKey%PROPERTY_NAME%);		
+		that["fun_%PROPERTY_NAME%"]._selectedElementKey = that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey();
+		if(!that["fun_%PROPERTY_NAME%"]._selectedElementKey) return;
+		var selectedElement = that["fun_%PROPERTY_NAME%"].getElement(that["fun_%PROPERTY_NAME%"]._selectedElementKey);		
 		if(!selectedElement) return;
 		
-		var items = this.gatherItems%PROPERTY_NAME%(this._selectedElementKey%PROPERTY_NAME%);
+		var items = that["fun_%PROPERTY_NAME%"].gatherItems(that["fun_%PROPERTY_NAME%"]._selectedElementKey);
 		
 		var sectionKey = new sap.ui.commons.TextView({text : "%ROOT_PROPERTY_DESCRIPTION%"});
 		sectionKey.addStyleClass("org-scn-ApsLabelArray");
@@ -68,20 +70,20 @@
 		txtElementKey.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
 			// Protect Key
-			value = this._listBuilder%PROPERTY_NAME%.generateKey(value);
-			var section = this.getElement%PROPERTY_NAME%(this._listBuilder%PROPERTY_NAME%.getSelectedKey());
+			value = that["fun_%PROPERTY_NAME%"]._listBuilder.generateKey(value);
+			var section = that["fun_%PROPERTY_NAME%"].getElement(that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey());
 			section.key = value;
 			// Update Parent Key references
-			for(var i=0;i<this._elementsContent%PROPERTY_NAME%.length;i++){
-				var element = this._elementsContent%PROPERTY_NAME%[i];
-				if(element.parentKey == this._listBuilder%PROPERTY_NAME%.getSelectedKey() && element.leaf) element.parentKey = value;
+			for(var i=0;i<that["fun_%PROPERTY_NAME%"]._elementsContent.length;i++){
+				var element = that["fun_%PROPERTY_NAME%"]._elementsContent[i];
+				if(element.parentKey == that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey() && element.leaf) element.parentKey = value;
 			}
-			this.updateElement%PROPERTY_NAME%(this._listBuilder%PROPERTY_NAME%.getSelectedKey(),section);
-			this._listBuilder%PROPERTY_NAME%.setSelectedKey(value);
-			this.showElementProperties%PROPERTY_NAME%();
-		}, this);
-		this._sectionPropertyLayout%PROPERTY_NAME%.addContent(sectionKey);
-		this._sectionPropertyLayout%PROPERTY_NAME%.addContent(txtElementKey);
+			that["fun_%PROPERTY_NAME%"].updateElement(that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey(),section);
+			that["fun_%PROPERTY_NAME%"]._listBuilder.setSelectedKey(value);
+			that["fun_%PROPERTY_NAME%"].showElementProperties();
+		}, that);
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyLayout.addContent(sectionKey);
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyLayout.addContent(txtElementKey);
 
 %SECTION_CONTENT_HANDLER%
 		var itemsLabel = new sap.ui.commons.TextView({text : "Items"});
@@ -90,27 +92,27 @@
 			width : "200px",
 			newKeyPrefix : "ITEM_",
 			newTextPrefix : "Item ",
-			list : this.gatherItems%PROPERTY_NAME%(this._listBuilder%PROPERTY_NAME%.getSelectedKey()),
+			list : that["fun_%PROPERTY_NAME%"].gatherItems(that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey()),
 			showDetail : true,
-			selectedKey : this._selectedItemKey%PROPERTY_NAME%
+			selectedKey : that["fun_%PROPERTY_NAME%"]._selectedItemKey
 		});
 		
-		itemsList.attachItemAdded(this.addItem%PROPERTY_NAME%,this);
-		itemsList.attachItemDeleted(this.delItem%PROPERTY_NAME%,this);
-		itemsList.attachItemDetail(this.showItemProperties%PROPERTY_NAME%,this);
-		itemsList.attachItemMoved(this.moveItem%PROPERTY_NAME%,this);
-		itemsList.attachItemSelected(this.itemSelected%PROPERTY_NAME%,this);
+		itemsList.attachItemAdded(that["fun_%PROPERTY_NAME%"].addItem,that);
+		itemsList.attachItemDeleted(that["fun_%PROPERTY_NAME%"].delItem,that);
+		itemsList.attachItemDetail(that["fun_%PROPERTY_NAME%"].showItemProperties,that);
+		itemsList.attachItemMoved(that["fun_%PROPERTY_NAME%"].moveItem,that);
+		itemsList.attachItemSelected(that["fun_%PROPERTY_NAME%"].itemSelected,that);
 		
-		this._sectionPropertyList%PROPERTY_NAME%.addContent(itemsLabel);
-		this._sectionPropertyList%PROPERTY_NAME%.addContent(itemsList);
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyList.addContent(itemsLabel);
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyList.addContent(itemsList);
 	};
 	/*
 	 * Displays Item Properties in a Popup Panel
 	 */
-	this.showItemProperties%PROPERTY_NAME% = function(oControlEvent){
+	that["fun_%PROPERTY_NAME%"].showItemProperties = function(oControlEvent){
 		var detailData = oControlEvent.getParameters();
-		this._currentItemConfig%PROPERTY_NAME% = this.getItem%PROPERTY_NAME%(this._listBuilder%PROPERTY_NAME%.getSelectedKey(),detailData.key);
-		if(!this._currentItemConfig%PROPERTY_NAME%) return;
+		that["fun_%PROPERTY_NAME%"]._currentItemConfig = that["fun_%PROPERTY_NAME%"].getItem(that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey(),detailData.key);
+		if(!that["fun_%PROPERTY_NAME%"]._currentItemConfig) return;
 		
 		var itemDetailPanel = new sap.ui.commons.Panel({
 			text : "Item Details",
@@ -124,17 +126,17 @@
 		
 		var itemKey = new sap.ui.commons.TextView({text : "%ITEM_PROPERTY_DESCRIPTION%"});
 		itemKey.addStyleClass("org-scn-ApsLabelArray");
-		var txtItemKey = new sap.ui.commons.TextField({value : this._currentItemConfig%PROPERTY_NAME%.key, width: "300px"});
+		var txtItemKey = new sap.ui.commons.TextField({value : that["fun_%PROPERTY_NAME%"]._currentItemConfig.key, width: "300px"});
 		txtItemKey.addStyleClass("org-scn-ApsInputArray");
 		txtItemKey.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
 			// Protect Key
 			var allItems = new org.scn.community.propertysheet.ListBuilder();		
-			allItems.setList(this._elementsContent%PROPERTY_NAME%);
+			allItems.setList(that["fun_%PROPERTY_NAME%"]._elementsContent);
 			var newItemKey = allItems.generateKey(value);
 			delete allItems;
-			this._currentItemConfig%PROPERTY_NAME%.key = newItemKey;		
-		}, this);
+			that["fun_%PROPERTY_NAME%"]._currentItemConfig.key = newItemKey;		
+		}, that);
 		itemDetailLayout.addContent(itemKey);
 		itemDetailLayout.addContent(txtItemKey);
 
@@ -147,8 +149,8 @@
 			text : "Update"
 		});
 		
-		closeButton.attachPress(this.closeDetail%PROPERTY_NAME%,this);
-		okButton.attachPress(this.updateItem%PROPERTY_NAME%,this);
+		closeButton.attachPress(that["fun_%PROPERTY_NAME%"].closeDetail,that);
+		okButton.attachPress(that["fun_%PROPERTY_NAME%"].updateItem,that);
 		
 		detailButtons.addContent(closeButton);
 		detailButtons.addContent(okButton);
@@ -157,225 +159,225 @@
 		itemDetailLayout.addContent(detailButtons);
 		itemDetailPanel.addContent(itemDetailLayout);
 		
-		if(!this._popup%PROPERTY_NAME%) this._popup%PROPERTY_NAME% = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
+		if(!that["fun_%PROPERTY_NAME%"]._popup) that["fun_%PROPERTY_NAME%"]._popup = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
 		
-		//this._popup%PROPERTY_NAME%.destroyContent();
-		this._popup%PROPERTY_NAME%.open(250,"center center", "center center", document.body, null);
+		//that["fun_%PROPERTY_NAME%"]._popup.destroyContent();
+		that["fun_%PROPERTY_NAME%"]._popup.open(250,"center center", "center center", document.body, null);
 	};
 	/*
 	 * Fires when Element Listbox is selected
 	 */
-	this.elementSelected%PROPERTY_NAME% = function(oControlEvent){
-		this._selectedElementKey%PROPERTY_NAME% = "";
-		if(oControlEvent.getParameters().key) this._selectedElementKey%PROPERTY_NAME% = oControlEvent.getParameters().key;
-		this.showElementProperties%PROPERTY_NAME%();
+	that["fun_%PROPERTY_NAME%"].elementSelected = function(oControlEvent){
+		that["fun_%PROPERTY_NAME%"]._selectedElementKey = "";
+		if(oControlEvent.getParameters().key) that["fun_%PROPERTY_NAME%"]._selectedElementKey = oControlEvent.getParameters().key;
+		that["fun_%PROPERTY_NAME%"].showElementProperties();
 	};
 	/*
 	 * Fires when Item Listbox is selected
 	 */
-	this.itemSelected%PROPERTY_NAME% = function(oControlEvent){
-		this._selectedItemKey%PROPERTY_NAME% = "";
-		if(oControlEvent.getParameters().key) this._selectedItemKey%PROPERTY_NAME% = oControlEvent.getParameters().key;
+	that["fun_%PROPERTY_NAME%"].itemSelected = function(oControlEvent){
+		that["fun_%PROPERTY_NAME%"]._selectedItemKey = "";
+		if(oControlEvent.getParameters().key) that["fun_%PROPERTY_NAME%"]._selectedItemKey = oControlEvent.getParameters().key;
 	};
 	/*
 	 * Fires when component is selected or when properties change to re-render
 	 */
-	this.updateProperty%PROPERTY_NAME% = function(){
-		this._listBuilder%PROPERTY_NAME%.setList(this.gatherElements%PROPERTY_NAME%());
-		this.showElementProperties%PROPERTY_NAME%(this._listBuilder%PROPERTY_NAME%.getSelectedKey());
+	that["fun_%PROPERTY_NAME%"].update = function(){
+		that["fun_%PROPERTY_NAME%"]._listBuilder.setList(that["fun_%PROPERTY_NAME%"].gatherElements());
+		that["fun_%PROPERTY_NAME%"].showElementProperties(that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey());
 	};
 	/*
 	 * Fires when item delete button clicked
 	 */
-	this.delItem%PROPERTY_NAME% = function(oControlEvent){
-		var sectionKey = this._listBuilder%PROPERTY_NAME%.getSelectedKey();
+	that["fun_%PROPERTY_NAME%"].delItem = function(oControlEvent){
+		var sectionKey = that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey();
 		var itemKey = oControlEvent.getParameter("key");
 		if(sectionKey && itemKey) {
-			for(var i=0;i<this._elementsContent%PROPERTY_NAME%.length;i++){
-				if(this._elementsContent%PROPERTY_NAME%[i].leaf == true && this._elementsContent%PROPERTY_NAME%[i].key == itemKey && this._elementsContent%PROPERTY_NAME%[i].parentKey==sectionKey) {
-					this._elementsContent%PROPERTY_NAME%.splice(i,1);
-					this.firePropertiesChanged(["%PROPERTY_NAME%"]);
-					this.updateProperty%PROPERTY_NAME%();
+			for(var i=0;i<that["fun_%PROPERTY_NAME%"]._elementsContent.length;i++){
+				if(that["fun_%PROPERTY_NAME%"]._elementsContent[i].leaf == true && that["fun_%PROPERTY_NAME%"]._elementsContent[i].key == itemKey && that["fun_%PROPERTY_NAME%"]._elementsContent[i].parentKey==sectionKey) {
+					that["fun_%PROPERTY_NAME%"]._elementsContent.splice(i,1);
+					that.firePropertiesChanged(["%PROPERTY_NAME%"]);
+					that["fun_%PROPERTY_NAME%"].update();
 				}
 			}
 		}
-		this.updateProperty%PROPERTY_NAME%();
+		that["fun_%PROPERTY_NAME%"].update();
 	}
 	/*
 	 * Fires when section delete button clicked
 	 */
-	this.delElement%PROPERTY_NAME% = function(oControlEvent){
+	that["fun_%PROPERTY_NAME%"].delElement = function(oControlEvent){
 		var key = oControlEvent.getParameter("key");
 		if(key) {
 			// Delete Element
-			for(var i=0;i<this._elementsContent%PROPERTY_NAME%.length;i++){
-				if(this._elementsContent%PROPERTY_NAME%[i].leaf == false && this._elementsContent%PROPERTY_NAME%[i].key == key) {
-					this._elementsContent%PROPERTY_NAME%.splice(i,1);
+			for(var i=0;i<that["fun_%PROPERTY_NAME%"]._elementsContent.length;i++){
+				if(that["fun_%PROPERTY_NAME%"]._elementsContent[i].leaf == false && that["fun_%PROPERTY_NAME%"]._elementsContent[i].key == key) {
+					that["fun_%PROPERTY_NAME%"]._elementsContent.splice(i,1);
 				}
 			}
 			// Delete Items under Element
-			for(var i=this._elementsContent%PROPERTY_NAME%.length-1;i>=0;i--){
-				if(this._elementsContent%PROPERTY_NAME%[i].leaf == true && this._elementsContent%PROPERTY_NAME%[i].parentKey == key) {
-					this._elementsContent%PROPERTY_NAME%.splice(i,1);
+			for(var i=that["fun_%PROPERTY_NAME%"]._elementsContent.length-1;i>=0;i--){
+				if(that["fun_%PROPERTY_NAME%"]._elementsContent[i].leaf == true && that["fun_%PROPERTY_NAME%"]._elementsContent[i].parentKey == key) {
+					that["fun_%PROPERTY_NAME%"]._elementsContent.splice(i,1);
 				}
 			}
-			this.firePropertiesChanged(["%PROPERTY_NAME%"]);
+			that.firePropertiesChanged(["%PROPERTY_NAME%"]);
 		}
-		this.updateProperty%PROPERTY_NAME%();
+		that["fun_%PROPERTY_NAME%"].update();
 	};
 	/*
 	 * Fires when item add button clicked
 	 */
-	this.addItem%PROPERTY_NAME% = function(oControlEvent){
+	that["fun_%PROPERTY_NAME%"].addItem = function(oControlEvent){
 		var allItems = new org.scn.community.propertysheet.ListBuilder();		
-		allItems.setList(this._elementsContent%PROPERTY_NAME%);
+		allItems.setList(that["fun_%PROPERTY_NAME%"]._elementsContent);
 		var newItemKey = allItems.generateKey("Item");
 		delete allItems;
 		var sectionItems = new org.scn.community.propertysheet.ListBuilder();
-		sectionItems.setList(this._elementsContent%PROPERTY_NAME%);
+		sectionItems.setList(that["fun_%PROPERTY_NAME%"]._elementsContent);
 		var newItem = { 
-			parentKey : this._listBuilder%PROPERTY_NAME%.getSelectedKey(),
+			parentKey : that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey(),
 			key : newItemKey, 
 			leaf: true, 
 			%PROPERTY_NEW_APS_JSON%
 		};
-		this._elementsContent%PROPERTY_NAME%.push(newItem);
-		this.firePropertiesChanged(["%PROPERTY_NAME%"]);
-		this.updateProperty%PROPERTY_NAME%();
+		that["fun_%PROPERTY_NAME%"]._elementsContent.push(newItem);
+		that.firePropertiesChanged(["%PROPERTY_NAME%"]);
+		that["fun_%PROPERTY_NAME%"].update();
 	}
 	/*
 	 * Fires when section add button clicked
 	 */
-	this.addElement%PROPERTY_NAME% = function(oControlEvent){
-		var newKey = this._listBuilder%PROPERTY_NAME%.generateKey("Element");
+	that["fun_%PROPERTY_NAME%"].addElement = function(oControlEvent){
+		var newKey = that["fun_%PROPERTY_NAME%"]._listBuilder.generateKey("Element");
 		var newElement = { 
 			parentKey : "ROOT",
 			key : newKey,
 			leaf: false, 
 			%ROOT_PROPERTY_NEW_APS_JSON%
 		};
-		this._listBuilder%PROPERTY_NAME%.setSelectedKey(newKey);
-		this._elementsContent%PROPERTY_NAME%.push(newElement);
-		this.firePropertiesChanged(["%PROPERTY_NAME%"]);
-		this.updateProperty%PROPERTY_NAME%();
+		that["fun_%PROPERTY_NAME%"]._listBuilder.setSelectedKey(newKey);
+		that["fun_%PROPERTY_NAME%"]._elementsContent.push(newElement);
+		that.firePropertiesChanged(["%PROPERTY_NAME%"]);
+		that["fun_%PROPERTY_NAME%"].update();
 	};
 	/*
 	 * Fires when section up or down button clicked
 	 */
-	this.moveElement%PROPERTY_NAME% = function(oControlEvent){
+	that["fun_%PROPERTY_NAME%"].moveElement = function(oControlEvent){
 		var movementData = oControlEvent.getParameters();
 		var targetIndex = -1;
 		var sourceIndex = -1;
-		for(var i=0;i<this._elementsContent%PROPERTY_NAME%.length;i++){
-			if(this._elementsContent%PROPERTY_NAME%[i].key == movementData.key && !this._elementsContent%PROPERTY_NAME%[i].leaf) sourceIndex = i;
-			if(this._elementsContent%PROPERTY_NAME%[i].key == movementData.targetKey && !this._elementsContent%PROPERTY_NAME%[i].leaf) targetIndex = i;
+		for(var i=0;i<that["fun_%PROPERTY_NAME%"]._elementsContent.length;i++){
+			if(that["fun_%PROPERTY_NAME%"]._elementsContent[i].key == movementData.key && !that["fun_%PROPERTY_NAME%"]._elementsContent[i].leaf) sourceIndex = i;
+			if(that["fun_%PROPERTY_NAME%"]._elementsContent[i].key == movementData.targetKey && !that["fun_%PROPERTY_NAME%"]._elementsContent[i].leaf) targetIndex = i;
 		}
 		if(targetIndex != -1 && sourceIndex != -1){
-			var temp = this._elementsContent%PROPERTY_NAME%[targetIndex];
-			this._elementsContent%PROPERTY_NAME%[targetIndex] = this._elementsContent%PROPERTY_NAME%[sourceIndex];
-			this._elementsContent%PROPERTY_NAME%[sourceIndex] = temp;
-			this.firePropertiesChanged(["%PROPERTY_NAME%"]);
-			this.updateProperty%PROPERTY_NAME%();
+			var temp = that["fun_%PROPERTY_NAME%"]._elementsContent[targetIndex];
+			that["fun_%PROPERTY_NAME%"]._elementsContent[targetIndex] = that["fun_%PROPERTY_NAME%"]._elementsContent[sourceIndex];
+			that["fun_%PROPERTY_NAME%"]._elementsContent[sourceIndex] = temp;
+			that.firePropertiesChanged(["%PROPERTY_NAME%"]);
+			that["fun_%PROPERTY_NAME%"].update();
 		}
 	};
 	/*
 	 * Close Item Properties Popup
 	 */
-	this.closeDetail%PROPERTY_NAME% = function(oControlEvent){
-		if(this._popup%PROPERTY_NAME%) {
-			this._popup%PROPERTY_NAME%.close();
-			this._popup%PROPERTY_NAME%.destroy();
-			delete this._popup%PROPERTY_NAME%;
+	that["fun_%PROPERTY_NAME%"].closeDetail = function(oControlEvent){
+		if(that["fun_%PROPERTY_NAME%"]._popup) {
+			that["fun_%PROPERTY_NAME%"]._popup.close();
+			that["fun_%PROPERTY_NAME%"]._popup.destroy();
+			delete that["fun_%PROPERTY_NAME%"]._popup;
 		}
 		
 	};
 	/*
 	 * Fires when item up or down button clicked
 	 */
-	this.moveItem%PROPERTY_NAME% = function(oControlEvent){
+	that["fun_%PROPERTY_NAME%"].moveItem = function(oControlEvent){
 		var movementData = oControlEvent.getParameters();
 		var targetIndex = -1;
 		var sourceIndex = -1;
-		var sectionKey = this._listBuilder%PROPERTY_NAME%.getSelectedKey();
+		var sectionKey = that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey();
 		var itemKey = oControlEvent.getParameter("key");
-		for(var i=0;i<this._elementsContent%PROPERTY_NAME%.length;i++){
-			if(this._elementsContent%PROPERTY_NAME%[i].key == itemKey && this._elementsContent%PROPERTY_NAME%[i].parentKey == sectionKey && this._elementsContent%PROPERTY_NAME%[i].leaf) sourceIndex = i;
-			if(this._elementsContent%PROPERTY_NAME%[i].key == movementData.targetKey && this._elementsContent%PROPERTY_NAME%[i].parentKey == sectionKey && this._elementsContent%PROPERTY_NAME%[i].leaf) targetIndex = i;
+		for(var i=0;i<that["fun_%PROPERTY_NAME%"]._elementsContent.length;i++){
+			if(that["fun_%PROPERTY_NAME%"]._elementsContent[i].key == itemKey && that["fun_%PROPERTY_NAME%"]._elementsContent[i].parentKey == sectionKey && that["fun_%PROPERTY_NAME%"]._elementsContent[i].leaf) sourceIndex = i;
+			if(that["fun_%PROPERTY_NAME%"]._elementsContent[i].key == movementData.targetKey && that["fun_%PROPERTY_NAME%"]._elementsContent[i].parentKey == sectionKey && that["fun_%PROPERTY_NAME%"]._elementsContent[i].leaf) targetIndex = i;
 		}
 		if(targetIndex != -1 && sourceIndex != -1){
-			var temp = this._elementsContent%PROPERTY_NAME%[targetIndex];
-			this._elementsContent%PROPERTY_NAME%[targetIndex] = this._elementsContent%PROPERTY_NAME%[sourceIndex];
-			this._elementsContent%PROPERTY_NAME%[sourceIndex] = temp;
-			this.firePropertiesChanged(["%PROPERTY_NAME%"]);
-			this.updateProperty%PROPERTY_NAME%();
+			var temp = that["fun_%PROPERTY_NAME%"]._elementsContent[targetIndex];
+			that["fun_%PROPERTY_NAME%"]._elementsContent[targetIndex] = that["fun_%PROPERTY_NAME%"]._elementsContent[sourceIndex];
+			that["fun_%PROPERTY_NAME%"]._elementsContent[sourceIndex] = temp;
+			that.firePropertiesChanged(["%PROPERTY_NAME%"]);
+			that["fun_%PROPERTY_NAME%"].update();
 		}
 	}
 	/*
 	 * Convenience Function to return only entries that are Elements
 	 */
-	this.gatherElements%PROPERTY_NAME% = function(){
+	that["fun_%PROPERTY_NAME%"].gatherElements = function(){
 		var sections = [];
-		for(var i=0;i<this._elementsContent%PROPERTY_NAME%.length;i++){
-			if(this._elementsContent%PROPERTY_NAME%[i].leaf==false) sections.push(this._elementsContent%PROPERTY_NAME%[i]);
+		for(var i=0;i<that["fun_%PROPERTY_NAME%"]._elementsContent.length;i++){
+			if(that["fun_%PROPERTY_NAME%"]._elementsContent[i].leaf==false) sections.push(that["fun_%PROPERTY_NAME%"]._elementsContent[i]);
 		}
 		return sections;
 	};
 	/*
 	 * Convenience Function to return only entries that are Items (Leafs)
 	 */
-	this.gatherItems%PROPERTY_NAME% = function(sectionKey){
+	that["fun_%PROPERTY_NAME%"].gatherItems = function(sectionKey){
 		var items = [];
-		for(var i=0;i<this._elementsContent%PROPERTY_NAME%.length;i++){
-			if(this._elementsContent%PROPERTY_NAME%[i].leaf==true && this._elementsContent%PROPERTY_NAME%[i].parentKey==sectionKey) items.push(this._elementsContent%PROPERTY_NAME%[i]);
+		for(var i=0;i<that["fun_%PROPERTY_NAME%"]._elementsContent.length;i++){
+			if(that["fun_%PROPERTY_NAME%"]._elementsContent[i].leaf==true && that["fun_%PROPERTY_NAME%"]._elementsContent[i].parentKey==sectionKey) items.push(that["fun_%PROPERTY_NAME%"]._elementsContent[i]);
 		}
 		return items;
 	};
 	/*
 	 * Property Sheet Initialization
 	 */
-	this.init%PROPERTY_NAME% = function(){
+	that["fun_%PROPERTY_NAME%"].init = function(){
 		
-		this._label%PROPERTY_NAME% = new sap.ui.commons.Label({text: " %PROPERTY_DESCRIPTION%"});
-		this._label%PROPERTY_NAME%.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._label%PROPERTY_NAME%);
+		that["fun_%PROPERTY_NAME%"]._label = new sap.ui.commons.Label({text: " %PROPERTY_DESCRIPTION%"});
+		that["fun_%PROPERTY_NAME%"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_%PROPERTY_NAME%"]._label);
 		
-		this._hLayout%PROPERTY_NAME% = new sap.ui.commons.layout.HorizontalLayout({ });
-		this._content.addContent(this._hLayout%PROPERTY_NAME%);
-		this._listBuilder%PROPERTY_NAME% = new org.scn.community.propertysheet.ListBuilder({
+		that["fun_%PROPERTY_NAME%"]._hLayout = new sap.ui.commons.layout.HorizontalLayout({ });
+		that._content.addContent(that["fun_%PROPERTY_NAME%"]._hLayout);
+		that["fun_%PROPERTY_NAME%"]._listBuilder = new org.scn.community.propertysheet.ListBuilder({
 			width : "200px"
 		});
 		
-		this._listBuilder%PROPERTY_NAME%.attachItemAdded(this.addElement%PROPERTY_NAME%,this);
-		this._listBuilder%PROPERTY_NAME%.attachItemDeleted(this.delElement%PROPERTY_NAME%,this);
-		this._listBuilder%PROPERTY_NAME%.attachItemMoved(this.moveElement%PROPERTY_NAME%,this);
-		this._listBuilder%PROPERTY_NAME%.attachItemSelected(this.elementSelected%PROPERTY_NAME%,this);
+		that["fun_%PROPERTY_NAME%"]._listBuilder.attachItemAdded(that["fun_%PROPERTY_NAME%"].addElement,that);
+		that["fun_%PROPERTY_NAME%"]._listBuilder.attachItemDeleted(that["fun_%PROPERTY_NAME%"].delElement,that);
+		that["fun_%PROPERTY_NAME%"]._listBuilder.attachItemMoved(that["fun_%PROPERTY_NAME%"].moveElement,that);
+		that["fun_%PROPERTY_NAME%"]._listBuilder.attachItemSelected(that["fun_%PROPERTY_NAME%"].elementSelected,that);
 		
-		this._sectionPropertyLayout%PROPERTY_NAME% = new sap.ui.commons.layout.VerticalLayout({
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyLayout = new sap.ui.commons.layout.VerticalLayout({
 			width : "200px"
 		});
-		this._sectionPropertyList%PROPERTY_NAME% = new sap.ui.commons.layout.VerticalLayout({
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyList = new sap.ui.commons.layout.VerticalLayout({
 			width : "200px"
 		});
-		this._sectionPropertyLayout%PROPERTY_NAME%.addStyleClass("org-scn-ApsDoubleArrayVertical");
-		this._sectionPropertyList%PROPERTY_NAME%.addStyleClass("org-scn-ApsDoubleArrayVertical");
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyLayout.addStyleClass("org-scn-ApsDoubleArrayVertical");
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyList.addStyleClass("org-scn-ApsDoubleArrayVertical");
 
-		this._hLayout%PROPERTY_NAME%.addContent(this._listBuilder%PROPERTY_NAME%);
-		this._hLayout%PROPERTY_NAME%.addContent(this._sectionPropertyLayout%PROPERTY_NAME%);
-		this._hLayout%PROPERTY_NAME%.addContent(this._sectionPropertyList%PROPERTY_NAME%);
-		this._sectionPropertyList%PROPERTY_NAME%.addStyleClass("%ROOT_ARRAY_TYPE_LIST_CSS%");
-		this._hLayout%PROPERTY_NAME%.addStyleClass("org-scn-ApsDoubleArray");
+		that["fun_%PROPERTY_NAME%"]._hLayout.addContent(that["fun_%PROPERTY_NAME%"]._listBuilder);
+		that["fun_%PROPERTY_NAME%"]._hLayout.addContent(that["fun_%PROPERTY_NAME%"]._sectionPropertyLayout);
+		that["fun_%PROPERTY_NAME%"]._hLayout.addContent(that["fun_%PROPERTY_NAME%"]._sectionPropertyList);
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyList.addStyleClass("%ROOT_ARRAY_TYPE_LIST_CSS%");
+		that["fun_%PROPERTY_NAME%"]._hLayout.addStyleClass("org-scn-ApsDoubleArray");
 		
-		this.updateProperty%PROPERTY_NAME%();
+		that["fun_%PROPERTY_NAME%"].update();
 	};
 
-	this.%PROPERTY_NAME% = function(s){
+	that.%PROPERTY_NAME% = function(s){
 		if( s === undefined){
-			return JSON.stringify(this._elementsContent%PROPERTY_NAME%);
+			return JSON.stringify(that["fun_%PROPERTY_NAME%"]._elementsContent);
 		}else{
 			var o = [];
 			if(s && s!="") o = jQuery.parseJSON(s);
-			this._elementsContent%PROPERTY_NAME% = o;
-			this.updateProperty%PROPERTY_NAME%();
-			return this;
+			that["fun_%PROPERTY_NAME%"]._elementsContent = o;
+			that["fun_%PROPERTY_NAME%"].update();
+			return that;
 		}
 	};

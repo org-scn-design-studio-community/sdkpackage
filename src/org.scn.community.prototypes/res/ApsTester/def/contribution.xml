@@ -30,6 +30,14 @@
 
 	</property>
 	<property
+		id="singlearray"
+		type="String"
+		title="Simple Array"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
 		id="data"
 		type="ResultSet"
 		title="Data"
@@ -54,6 +62,14 @@
 
 	</property>
 	<property
+		id="doublearray"
+		type="String"
+		title="Complex Array"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
 		id="paletteExample"
 		type="String"
 		title="Color Palette"
@@ -73,6 +89,14 @@
 		id="spinnerExample"
 		type="int"
 		title="Some numbers"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="stringarray"
+		type="String"
+		title="Simple String Array"
 		group="Display"
 		visible="true">
 

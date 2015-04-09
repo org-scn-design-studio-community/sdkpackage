@@ -1,32 +1,34 @@
-	this.updateProperty%PROPERTY_NAME% = function(){
-		this._input%PROPERTY_NAME%.setValue(this._%PROPERTY_NAME%);
+	that["fun_%PROPERTY_NAME%"] = {};
+	
+	that["fun_%PROPERTY_NAME%"].update = function(){
+		that["fun_%PROPERTY_NAME%"]._input.setValue(that["fun_%PROPERTY_NAME%"]._);
 	};
 	
-	this.init%PROPERTY_NAME% = function(){
-		this._label%PROPERTY_NAME% = new sap.ui.commons.Label({text: " %PROPERTY_DESCRIPTION%"});
-		this._label%PROPERTY_NAME%.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._label%PROPERTY_NAME%);
+	that["fun_%PROPERTY_NAME%"].init = function(){
+		that["fun_%PROPERTY_NAME%"]._label = new sap.ui.commons.Label({text: " %PROPERTY_DESCRIPTION%"});
+		that["fun_%PROPERTY_NAME%"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_%PROPERTY_NAME%"]._label);
 		
-		this._input%PROPERTY_NAME% = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._input%PROPERTY_NAME%);
-		this._input%PROPERTY_NAME%.attachChange(this.propertyChanged%PROPERTY_NAME%, this);
-		this._input%PROPERTY_NAME%.addStyleClass("org-scn-ApsSimple");
+		that["fun_%PROPERTY_NAME%"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_%PROPERTY_NAME%"]._input);
+		that["fun_%PROPERTY_NAME%"]._input.attachChange(that["fun_%PROPERTY_NAME%"].propertyChanged, that);
+		that["fun_%PROPERTY_NAME%"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updateProperty%PROPERTY_NAME%();
+		that["fun_%PROPERTY_NAME%"].update();
 	};
 
-	this.propertyChanged%PROPERTY_NAME% = function(oControlEvent){
+	that["fun_%PROPERTY_NAME%"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._%PROPERTY_NAME% = value;
-		this.firePropertiesChanged(["%PROPERTY_NAME%"]);
+		that["fun_%PROPERTY_NAME%"]._ = value;
+		that.firePropertiesChanged(["%PROPERTY_NAME%"]);
 	};
 	
-	this.%PROPERTY_NAME% = function(s){
+	that.%PROPERTY_NAME% = function(s){
 		if( s === undefined){
-			return this._%PROPERTY_NAME%;
+			return that["fun_%PROPERTY_NAME%"]._;
 		}else{
-			this._%PROPERTY_NAME% = s;
-			this.updateProperty%PROPERTY_NAME%();
-			return this;
+			that["fun_%PROPERTY_NAME%"]._ = s;
+			that["fun_%PROPERTY_NAME%"].update();
+			return that;
 		}
 	};

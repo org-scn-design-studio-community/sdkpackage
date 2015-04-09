@@ -7,42 +7,44 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedButtonPropertyPage",  function() {
 	var that = this;
 
-	this.init = function () {
-		this._content = new sap.ui.commons.layout.VerticalLayout({
+	that.init = function () {
+		that._content = new sap.ui.commons.layout.VerticalLayout({
 			width : "100%"
 		});
-		this._content.placeAt($("#content"));
+		that._content.placeAt($("#content"));
 
-		this.initDElementsContent();
-		this.initDSelectionType();
-		this.initDDefaultImage();
-		this.initDWithImages();
-		this.initDImageSize();
+		that["fun_DElementsContent"].init();
+		that["fun_DSelectionType"].init();
+		that["fun_DDefaultImage"].init();
+		that["fun_DWithImages"].init();
+		that["fun_DImageSize"].init();
 		
 	};
 	
-	this.componentSelected = function(){
-		this.updateDElementsContent();
-		this.updateDSelectionType();
-		this.updateDDefaultImage();
-		this.updateDWithImages();
-		this.updateDImageSize();
+	that.componentSelected = function(){
+		that["fun_DElementsContent"].update();
+		that["fun_DSelectionType"].update();
+		that["fun_DDefaultImage"].update();
+		that["fun_DWithImages"].update();
+		that["fun_DImageSize"].update();
 		
 	};
 	
 	
 
 
-	this._elementsContentDElementsContent = [];
-	this._selectedElementKeyDElementsContent = "";
-	this._selectedItemKeyDElementsContent = "";
-	this._currentItemConfigDElementsContent = {};
+	that["fun_DElementsContent"] = {};
+	
+	that["fun_DElementsContent"]._elementsContent = [];
+	that["fun_DElementsContent"]._selectedElementKey = "";
+	that["fun_DElementsContent"]._selectedItemKey = "";
+	that["fun_DElementsContent"]._currentItemConfig = {};
 
 	/*
 	 * Retrieves JSON for Element Entry
 	 */
-	this.getElementDElementsContent = function(key){
-		var sections = this.gatherElementsDElementsContent();
+	that["fun_DElementsContent"].getElement = function(key){
+		var sections = that["fun_DElementsContent"].gatherElements();
 		for(var i=0;i<sections.length;i++){
 			if(sections[i].key == key) return sections[i];
 		}
@@ -50,51 +52,51 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 	/*
 	 * Retrieves JSON for Item Entry
 	 */
-	this.getItemDElementsContent = function(sectionKey,key){
-		for(var i=0;i<this._elementsContentDElementsContent.length;i++){
-			if(this._elementsContentDElementsContent[i].key == key && this._elementsContentDElementsContent[i].parentKey==sectionKey) return this._elementsContentDElementsContent[i];
+	that["fun_DElementsContent"].getItem = function(sectionKey,key){
+		for(var i=0;i<that["fun_DElementsContent"]._elementsContent.length;i++){
+			if(that["fun_DElementsContent"]._elementsContent[i].key == key && that["fun_DElementsContent"]._elementsContent[i].parentKey==sectionKey) return that["fun_DElementsContent"]._elementsContent[i];
 		}
 	};
 	/*
 	 * Update Element JSON and notify Design Studio IDE
 	 */
-	this.updateElementDElementsContent = function(key,section){
-		for(var i=0;i<this._elementsContentDElementsContent.length;i++){
-			var element = this._elementsContentDElementsContent[i];
+	that["fun_DElementsContent"].updateElement = function(key,section){
+		for(var i=0;i<that["fun_DElementsContent"]._elementsContent.length;i++){
+			var element = that["fun_DElementsContent"]._elementsContent[i];
 			if(!element.leaf && element.key==key){
-				this._elementsContentDElementsContent[i] = section;
+				that["fun_DElementsContent"]._elementsContent[i] = section;
 			}
 		}
-		this.firePropertiesChanged(["DElementsContent"]);
-		this.updatePropertyDElementsContent();
+		that.firePropertiesChanged(["DElementsContent"]);
+		that["fun_DElementsContent"].update();
 	};
 	/*
 	 * Update Item JSON and notify Design Studio IDE
 	 */
-	this.updateItemDElementsContent = function(key){
-		for(var i=0;i<this._elementsContentDElementsContent.length;i++){
-			var element = this._elementsContentDElementsContent[i];
+	that["fun_DElementsContent"].updateItem = function(key){
+		for(var i=0;i<that["fun_DElementsContent"]._elementsContent.length;i++){
+			var element = that["fun_DElementsContent"]._elementsContent[i];
 			if(element.leaf && element.key==key){
-				this._elementsContentDElementsContent[i] = this._currentItemConfigDElementsContent;
+				that["fun_DElementsContent"]._elementsContent[i] = that["fun_DElementsContent"]._currentItemConfig;
 			}
 		}
-		this.firePropertiesChanged(["DElementsContent"]);
-		this.updatePropertyDElementsContent();
-		this.closeDetailDElementsContent();
+		that.firePropertiesChanged(["DElementsContent"]);
+		that["fun_DElementsContent"].update();
+		that["fun_DElementsContent"].closeDetail();
 	};
 	/*
 	 * Displays Element Properties
 	 */
-	this.showElementPropertiesDElementsContent = function(){
-		this._sectionPropertyLayoutDElementsContent.destroyContent();
-		this._sectionPropertyListDElementsContent.destroyContent();
+	that["fun_DElementsContent"].showElementProperties = function(){
+		that["fun_DElementsContent"]._sectionPropertyLayout.destroyContent();
+		that["fun_DElementsContent"]._sectionPropertyList.destroyContent();
 		
-		this._selectedElementKeyDElementsContent = this._listBuilderDElementsContent.getSelectedKey();
-		if(!this._selectedElementKeyDElementsContent) return;
-		var selectedElement = this.getElementDElementsContent(this._selectedElementKeyDElementsContent);		
+		that["fun_DElementsContent"]._selectedElementKey = that["fun_DElementsContent"]._listBuilder.getSelectedKey();
+		if(!that["fun_DElementsContent"]._selectedElementKey) return;
+		var selectedElement = that["fun_DElementsContent"].getElement(that["fun_DElementsContent"]._selectedElementKey);		
 		if(!selectedElement) return;
 		
-		var items = this.gatherItemsDElementsContent(this._selectedElementKeyDElementsContent);
+		var items = that["fun_DElementsContent"].gatherItems(that["fun_DElementsContent"]._selectedElementKey);
 		
 		var sectionKey = new sap.ui.commons.TextView({text : "Unique key of this button"});
 		sectionKey.addStyleClass("org-scn-ApsLabelArray");
@@ -103,20 +105,20 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		txtElementKey.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
 			// Protect Key
-			value = this._listBuilderDElementsContent.generateKey(value);
-			var section = this.getElementDElementsContent(this._listBuilderDElementsContent.getSelectedKey());
+			value = that["fun_DElementsContent"]._listBuilder.generateKey(value);
+			var section = that["fun_DElementsContent"].getElement(that["fun_DElementsContent"]._listBuilder.getSelectedKey());
 			section.key = value;
 			// Update Parent Key references
-			for(var i=0;i<this._elementsContentDElementsContent.length;i++){
-				var element = this._elementsContentDElementsContent[i];
-				if(element.parentKey == this._listBuilderDElementsContent.getSelectedKey() && element.leaf) element.parentKey = value;
+			for(var i=0;i<that["fun_DElementsContent"]._elementsContent.length;i++){
+				var element = that["fun_DElementsContent"]._elementsContent[i];
+				if(element.parentKey == that["fun_DElementsContent"]._listBuilder.getSelectedKey() && element.leaf) element.parentKey = value;
 			}
-			this.updateElementDElementsContent(this._listBuilderDElementsContent.getSelectedKey(),section);
-			this._listBuilderDElementsContent.setSelectedKey(value);
-			this.showElementPropertiesDElementsContent();
-		}, this);
-		this._sectionPropertyLayoutDElementsContent.addContent(sectionKey);
-		this._sectionPropertyLayoutDElementsContent.addContent(txtElementKey);
+			that["fun_DElementsContent"].updateElement(that["fun_DElementsContent"]._listBuilder.getSelectedKey(),section);
+			that["fun_DElementsContent"]._listBuilder.setSelectedKey(value);
+			that["fun_DElementsContent"].showElementProperties();
+		}, that);
+		that["fun_DElementsContent"]._sectionPropertyLayout.addContent(sectionKey);
+		that["fun_DElementsContent"]._sectionPropertyLayout.addContent(txtElementKey);
 
 		var sectiontext = new sap.ui.commons.TextView({text : "Text for the button"});
 		sectiontext.addStyleClass("org-scn-ApsLabelArray");
@@ -124,12 +126,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		txtElementtext.addStyleClass("org-scn-ApsInputArray");
 		txtElementtext.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
-			var section = this.getElementDElementsContent(this._listBuilderDElementsContent.getSelectedKey());
+			var section = that["fun_DElementsContent"].getElement(that["fun_DElementsContent"]._listBuilder.getSelectedKey());
 			section.text = value;
-			this.updateElementDElementsContent(this._listBuilderDElementsContent.getSelectedKey(),section);
-		}, this);
-		this._sectionPropertyLayoutDElementsContent.addContent(sectiontext);
-		this._sectionPropertyLayoutDElementsContent.addContent(txtElementtext);
+			that["fun_DElementsContent"].updateElement(that["fun_DElementsContent"]._listBuilder.getSelectedKey(),section);
+		}, that);
+		that["fun_DElementsContent"]._sectionPropertyLayout.addContent(sectiontext);
+		that["fun_DElementsContent"]._sectionPropertyLayout.addContent(txtElementtext);
 
 		var sectionimage = new sap.ui.commons.TextView({text : "Given image for the button"});
 		sectionimage.addStyleClass("org-scn-ApsLabelArray");
@@ -137,12 +139,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		txtElementimage.addStyleClass("org-scn-ApsInputArray");
 		txtElementimage.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
-			var section = this.getElementDElementsContent(this._listBuilderDElementsContent.getSelectedKey());
+			var section = that["fun_DElementsContent"].getElement(that["fun_DElementsContent"]._listBuilder.getSelectedKey());
 			section.image = value;
-			this.updateElementDElementsContent(this._listBuilderDElementsContent.getSelectedKey(),section);
-		}, this);
-		this._sectionPropertyLayoutDElementsContent.addContent(sectionimage);
-		this._sectionPropertyLayoutDElementsContent.addContent(txtElementimage);
+			that["fun_DElementsContent"].updateElement(that["fun_DElementsContent"]._listBuilder.getSelectedKey(),section);
+		}, that);
+		that["fun_DElementsContent"]._sectionPropertyLayout.addContent(sectionimage);
+		that["fun_DElementsContent"]._sectionPropertyLayout.addContent(txtElementimage);
 
 		var sectionselected = new sap.ui.commons.TextView({text : "Selection state of the button"});
 		sectionselected.addStyleClass("org-scn-ApsLabelArray");
@@ -150,12 +152,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		txtElementselected.addStyleClass("org-scn-ApsInputArray");
 		txtElementselected.attachChange(function(oControlEvent){
 			var checked = oControlEvent.getParameter("checked");
-			var section = this.getElementDElementsContent(this._listBuilderDElementsContent.getSelectedKey());
+			var section = that["fun_DElementsContent"].getElement(that["fun_DElementsContent"]._listBuilder.getSelectedKey());
 			section.selected = checked;
-			this.updateElementDElementsContent(this._listBuilderDElementsContent.getSelectedKey(),section);
-		}, this);
-		this._sectionPropertyLayoutDElementsContent.addContent(sectionselected);
-		this._sectionPropertyLayoutDElementsContent.addContent(txtElementselected);
+			that["fun_DElementsContent"].updateElement(that["fun_DElementsContent"]._listBuilder.getSelectedKey(),section);
+		}, that);
+		that["fun_DElementsContent"]._sectionPropertyLayout.addContent(sectionselected);
+		that["fun_DElementsContent"]._sectionPropertyLayout.addContent(txtElementselected);
 
 
 		var itemsLabel = new sap.ui.commons.TextView({text : "Items"});
@@ -164,27 +166,27 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 			width : "200px",
 			newKeyPrefix : "ITEM_",
 			newTextPrefix : "Item ",
-			list : this.gatherItemsDElementsContent(this._listBuilderDElementsContent.getSelectedKey()),
+			list : that["fun_DElementsContent"].gatherItems(that["fun_DElementsContent"]._listBuilder.getSelectedKey()),
 			showDetail : true,
-			selectedKey : this._selectedItemKeyDElementsContent
+			selectedKey : that["fun_DElementsContent"]._selectedItemKey
 		});
 		
-		itemsList.attachItemAdded(this.addItemDElementsContent,this);
-		itemsList.attachItemDeleted(this.delItemDElementsContent,this);
-		itemsList.attachItemDetail(this.showItemPropertiesDElementsContent,this);
-		itemsList.attachItemMoved(this.moveItemDElementsContent,this);
-		itemsList.attachItemSelected(this.itemSelectedDElementsContent,this);
+		itemsList.attachItemAdded(that["fun_DElementsContent"].addItem,that);
+		itemsList.attachItemDeleted(that["fun_DElementsContent"].delItem,that);
+		itemsList.attachItemDetail(that["fun_DElementsContent"].showItemProperties,that);
+		itemsList.attachItemMoved(that["fun_DElementsContent"].moveItem,that);
+		itemsList.attachItemSelected(that["fun_DElementsContent"].itemSelected,that);
 		
-		this._sectionPropertyListDElementsContent.addContent(itemsLabel);
-		this._sectionPropertyListDElementsContent.addContent(itemsList);
+		that["fun_DElementsContent"]._sectionPropertyList.addContent(itemsLabel);
+		that["fun_DElementsContent"]._sectionPropertyList.addContent(itemsList);
 	};
 	/*
 	 * Displays Item Properties in a Popup Panel
 	 */
-	this.showItemPropertiesDElementsContent = function(oControlEvent){
+	that["fun_DElementsContent"].showItemProperties = function(oControlEvent){
 		var detailData = oControlEvent.getParameters();
-		this._currentItemConfigDElementsContent = this.getItemDElementsContent(this._listBuilderDElementsContent.getSelectedKey(),detailData.key);
-		if(!this._currentItemConfigDElementsContent) return;
+		that["fun_DElementsContent"]._currentItemConfig = that["fun_DElementsContent"].getItem(that["fun_DElementsContent"]._listBuilder.getSelectedKey(),detailData.key);
+		if(!that["fun_DElementsContent"]._currentItemConfig) return;
 		
 		var itemDetailPanel = new sap.ui.commons.Panel({
 			text : "Item Details",
@@ -198,50 +200,50 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		
 		var itemKey = new sap.ui.commons.TextView({text : "Unique key of this item"});
 		itemKey.addStyleClass("org-scn-ApsLabelArray");
-		var txtItemKey = new sap.ui.commons.TextField({value : this._currentItemConfigDElementsContent.key, width: "300px"});
+		var txtItemKey = new sap.ui.commons.TextField({value : that["fun_DElementsContent"]._currentItemConfig.key, width: "300px"});
 		txtItemKey.addStyleClass("org-scn-ApsInputArray");
 		txtItemKey.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
 			// Protect Key
 			var allItems = new org.scn.community.propertysheet.ListBuilder();		
-			allItems.setList(this._elementsContentDElementsContent);
+			allItems.setList(that["fun_DElementsContent"]._elementsContent);
 			var newItemKey = allItems.generateKey(value);
 			delete allItems;
-			this._currentItemConfigDElementsContent.key = newItemKey;		
-		}, this);
+			that["fun_DElementsContent"]._currentItemConfig.key = newItemKey;		
+		}, that);
 		itemDetailLayout.addContent(itemKey);
 		itemDetailLayout.addContent(txtItemKey);
 
 		var itemtext = new sap.ui.commons.TextView({text : "Text for the item"});
 		itemtext.addStyleClass("org-scn-ApsLabelArray");
-		var txtItemtext = new sap.ui.commons.TextField({value : this._currentItemConfigDElementsContent.text, width: "300px"});
+		var txtItemtext = new sap.ui.commons.TextField({value : that["fun_DElementsContent"]._currentItemConfig.text, width: "300px"});
 		txtItemtext.addStyleClass("org-scn-ApsInputArray");
 		txtItemtext.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
-			this._currentItemConfigDElementsContent.text = value;		
-		}, this);
+			that["fun_DElementsContent"]._currentItemConfig.text = value;		
+		}, that);
 		itemDetailLayout.addContent(itemtext);
 		itemDetailLayout.addContent(txtItemtext);
 
 		var itemimage = new sap.ui.commons.TextView({text : "Given image for the item"});
 		itemimage.addStyleClass("org-scn-ApsLabelArray");
-		var txtItemimage = new sap.ui.commons.TextField({value : this._currentItemConfigDElementsContent.image, width: "300px"});
+		var txtItemimage = new sap.ui.commons.TextField({value : that["fun_DElementsContent"]._currentItemConfig.image, width: "300px"});
 		txtItemimage.addStyleClass("org-scn-ApsInputArray");
 		txtItemimage.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
-			this._currentItemConfigDElementsContent.image = value;		
-		}, this);
+			that["fun_DElementsContent"]._currentItemConfig.image = value;		
+		}, that);
 		itemDetailLayout.addContent(itemimage);
 		itemDetailLayout.addContent(txtItemimage);
 
 		var itemselected = new sap.ui.commons.TextView({text : "Selection state of the item"});
 		itemselected.addStyleClass("org-scn-ApsLabelArray");
-		var txtItemselected = new sap.ui.commons.CheckBox({checked : this._currentItemConfigDElementsContent.selected, width: "300px", text: "Selection state of the item"});
+		var txtItemselected = new sap.ui.commons.CheckBox({checked : that["fun_DElementsContent"]._currentItemConfig.selected, width: "300px", text: "Selection state of the item"});
 		txtItemselected.addStyleClass("org-scn-ApsInputArray");
 		txtItemselected.attachChange(function(oControlEvent){
 			var checked = oControlEvent.getParameter("checked");
-			this._currentItemConfigDElementsContent.selected = checked;		
-		}, this);
+			that["fun_DElementsContent"]._currentItemConfig.selected = checked;		
+		}, that);
 		itemDetailLayout.addContent(itemselected);
 		itemDetailLayout.addContent(txtItemselected);
 
@@ -254,8 +256,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 			text : "Update"
 		});
 		
-		closeButton.attachPress(this.closeDetailDElementsContent,this);
-		okButton.attachPress(this.updateItemDElementsContent,this);
+		closeButton.attachPress(that["fun_DElementsContent"].closeDetail,that);
+		okButton.attachPress(that["fun_DElementsContent"].updateItem,that);
 		
 		detailButtons.addContent(closeButton);
 		detailButtons.addContent(okButton);
@@ -264,99 +266,99 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		itemDetailLayout.addContent(detailButtons);
 		itemDetailPanel.addContent(itemDetailLayout);
 		
-		if(!this._popupDElementsContent) this._popupDElementsContent = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
+		if(!that["fun_DElementsContent"]._popup) that["fun_DElementsContent"]._popup = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
 		
-		//this._popupDElementsContent.destroyContent();
-		this._popupDElementsContent.open(250,"center center", "center center", document.body, null);
+		//that["fun_DElementsContent"]._popup.destroyContent();
+		that["fun_DElementsContent"]._popup.open(250,"center center", "center center", document.body, null);
 	};
 	/*
 	 * Fires when Element Listbox is selected
 	 */
-	this.elementSelectedDElementsContent = function(oControlEvent){
-		this._selectedElementKeyDElementsContent = "";
-		if(oControlEvent.getParameters().key) this._selectedElementKeyDElementsContent = oControlEvent.getParameters().key;
-		this.showElementPropertiesDElementsContent();
+	that["fun_DElementsContent"].elementSelected = function(oControlEvent){
+		that["fun_DElementsContent"]._selectedElementKey = "";
+		if(oControlEvent.getParameters().key) that["fun_DElementsContent"]._selectedElementKey = oControlEvent.getParameters().key;
+		that["fun_DElementsContent"].showElementProperties();
 	};
 	/*
 	 * Fires when Item Listbox is selected
 	 */
-	this.itemSelectedDElementsContent = function(oControlEvent){
-		this._selectedItemKeyDElementsContent = "";
-		if(oControlEvent.getParameters().key) this._selectedItemKeyDElementsContent = oControlEvent.getParameters().key;
+	that["fun_DElementsContent"].itemSelected = function(oControlEvent){
+		that["fun_DElementsContent"]._selectedItemKey = "";
+		if(oControlEvent.getParameters().key) that["fun_DElementsContent"]._selectedItemKey = oControlEvent.getParameters().key;
 	};
 	/*
 	 * Fires when component is selected or when properties change to re-render
 	 */
-	this.updatePropertyDElementsContent = function(){
-		this._listBuilderDElementsContent.setList(this.gatherElementsDElementsContent());
-		this.showElementPropertiesDElementsContent(this._listBuilderDElementsContent.getSelectedKey());
+	that["fun_DElementsContent"].update = function(){
+		that["fun_DElementsContent"]._listBuilder.setList(that["fun_DElementsContent"].gatherElements());
+		that["fun_DElementsContent"].showElementProperties(that["fun_DElementsContent"]._listBuilder.getSelectedKey());
 	};
 	/*
 	 * Fires when item delete button clicked
 	 */
-	this.delItemDElementsContent = function(oControlEvent){
-		var sectionKey = this._listBuilderDElementsContent.getSelectedKey();
+	that["fun_DElementsContent"].delItem = function(oControlEvent){
+		var sectionKey = that["fun_DElementsContent"]._listBuilder.getSelectedKey();
 		var itemKey = oControlEvent.getParameter("key");
 		if(sectionKey && itemKey) {
-			for(var i=0;i<this._elementsContentDElementsContent.length;i++){
-				if(this._elementsContentDElementsContent[i].leaf == true && this._elementsContentDElementsContent[i].key == itemKey && this._elementsContentDElementsContent[i].parentKey==sectionKey) {
-					this._elementsContentDElementsContent.splice(i,1);
-					this.firePropertiesChanged(["DElementsContent"]);
-					this.updatePropertyDElementsContent();
+			for(var i=0;i<that["fun_DElementsContent"]._elementsContent.length;i++){
+				if(that["fun_DElementsContent"]._elementsContent[i].leaf == true && that["fun_DElementsContent"]._elementsContent[i].key == itemKey && that["fun_DElementsContent"]._elementsContent[i].parentKey==sectionKey) {
+					that["fun_DElementsContent"]._elementsContent.splice(i,1);
+					that.firePropertiesChanged(["DElementsContent"]);
+					that["fun_DElementsContent"].update();
 				}
 			}
 		}
-		this.updatePropertyDElementsContent();
+		that["fun_DElementsContent"].update();
 	}
 	/*
 	 * Fires when section delete button clicked
 	 */
-	this.delElementDElementsContent = function(oControlEvent){
+	that["fun_DElementsContent"].delElement = function(oControlEvent){
 		var key = oControlEvent.getParameter("key");
 		if(key) {
 			// Delete Element
-			for(var i=0;i<this._elementsContentDElementsContent.length;i++){
-				if(this._elementsContentDElementsContent[i].leaf == false && this._elementsContentDElementsContent[i].key == key) {
-					this._elementsContentDElementsContent.splice(i,1);
+			for(var i=0;i<that["fun_DElementsContent"]._elementsContent.length;i++){
+				if(that["fun_DElementsContent"]._elementsContent[i].leaf == false && that["fun_DElementsContent"]._elementsContent[i].key == key) {
+					that["fun_DElementsContent"]._elementsContent.splice(i,1);
 				}
 			}
 			// Delete Items under Element
-			for(var i=this._elementsContentDElementsContent.length-1;i>=0;i--){
-				if(this._elementsContentDElementsContent[i].leaf == true && this._elementsContentDElementsContent[i].parentKey == key) {
-					this._elementsContentDElementsContent.splice(i,1);
+			for(var i=that["fun_DElementsContent"]._elementsContent.length-1;i>=0;i--){
+				if(that["fun_DElementsContent"]._elementsContent[i].leaf == true && that["fun_DElementsContent"]._elementsContent[i].parentKey == key) {
+					that["fun_DElementsContent"]._elementsContent.splice(i,1);
 				}
 			}
-			this.firePropertiesChanged(["DElementsContent"]);
+			that.firePropertiesChanged(["DElementsContent"]);
 		}
-		this.updatePropertyDElementsContent();
+		that["fun_DElementsContent"].update();
 	};
 	/*
 	 * Fires when item add button clicked
 	 */
-	this.addItemDElementsContent = function(oControlEvent){
+	that["fun_DElementsContent"].addItem = function(oControlEvent){
 		var allItems = new org.scn.community.propertysheet.ListBuilder();		
-		allItems.setList(this._elementsContentDElementsContent);
+		allItems.setList(that["fun_DElementsContent"]._elementsContent);
 		var newItemKey = allItems.generateKey("Item");
 		delete allItems;
 		var sectionItems = new org.scn.community.propertysheet.ListBuilder();
-		sectionItems.setList(this._elementsContentDElementsContent);
+		sectionItems.setList(that["fun_DElementsContent"]._elementsContent);
 		var newItem = { 
-			parentKey : this._listBuilderDElementsContent.getSelectedKey(),
+			parentKey : that["fun_DElementsContent"]._listBuilder.getSelectedKey(),
 			key : newItemKey, 
 			leaf: true, 
 			text:"", 
 			image:"", 
 			selected:false
 		};
-		this._elementsContentDElementsContent.push(newItem);
-		this.firePropertiesChanged(["DElementsContent"]);
-		this.updatePropertyDElementsContent();
+		that["fun_DElementsContent"]._elementsContent.push(newItem);
+		that.firePropertiesChanged(["DElementsContent"]);
+		that["fun_DElementsContent"].update();
 	}
 	/*
 	 * Fires when section add button clicked
 	 */
-	this.addElementDElementsContent = function(oControlEvent){
-		var newKey = this._listBuilderDElementsContent.generateKey("Element");
+	that["fun_DElementsContent"].addElement = function(oControlEvent){
+		var newKey = that["fun_DElementsContent"]._listBuilder.generateKey("Element");
 		var newElement = { 
 			parentKey : "ROOT",
 			key : newKey,
@@ -365,129 +367,129 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 			image:"", 
 			selected:false
 		};
-		this._listBuilderDElementsContent.setSelectedKey(newKey);
-		this._elementsContentDElementsContent.push(newElement);
-		this.firePropertiesChanged(["DElementsContent"]);
-		this.updatePropertyDElementsContent();
+		that["fun_DElementsContent"]._listBuilder.setSelectedKey(newKey);
+		that["fun_DElementsContent"]._elementsContent.push(newElement);
+		that.firePropertiesChanged(["DElementsContent"]);
+		that["fun_DElementsContent"].update();
 	};
 	/*
 	 * Fires when section up or down button clicked
 	 */
-	this.moveElementDElementsContent = function(oControlEvent){
+	that["fun_DElementsContent"].moveElement = function(oControlEvent){
 		var movementData = oControlEvent.getParameters();
 		var targetIndex = -1;
 		var sourceIndex = -1;
-		for(var i=0;i<this._elementsContentDElementsContent.length;i++){
-			if(this._elementsContentDElementsContent[i].key == movementData.key && !this._elementsContentDElementsContent[i].leaf) sourceIndex = i;
-			if(this._elementsContentDElementsContent[i].key == movementData.targetKey && !this._elementsContentDElementsContent[i].leaf) targetIndex = i;
+		for(var i=0;i<that["fun_DElementsContent"]._elementsContent.length;i++){
+			if(that["fun_DElementsContent"]._elementsContent[i].key == movementData.key && !that["fun_DElementsContent"]._elementsContent[i].leaf) sourceIndex = i;
+			if(that["fun_DElementsContent"]._elementsContent[i].key == movementData.targetKey && !that["fun_DElementsContent"]._elementsContent[i].leaf) targetIndex = i;
 		}
 		if(targetIndex != -1 && sourceIndex != -1){
-			var temp = this._elementsContentDElementsContent[targetIndex];
-			this._elementsContentDElementsContent[targetIndex] = this._elementsContentDElementsContent[sourceIndex];
-			this._elementsContentDElementsContent[sourceIndex] = temp;
-			this.firePropertiesChanged(["DElementsContent"]);
-			this.updatePropertyDElementsContent();
+			var temp = that["fun_DElementsContent"]._elementsContent[targetIndex];
+			that["fun_DElementsContent"]._elementsContent[targetIndex] = that["fun_DElementsContent"]._elementsContent[sourceIndex];
+			that["fun_DElementsContent"]._elementsContent[sourceIndex] = temp;
+			that.firePropertiesChanged(["DElementsContent"]);
+			that["fun_DElementsContent"].update();
 		}
 	};
 	/*
 	 * Close Item Properties Popup
 	 */
-	this.closeDetailDElementsContent = function(oControlEvent){
-		if(this._popupDElementsContent) {
-			this._popupDElementsContent.close();
-			this._popupDElementsContent.destroy();
-			delete this._popupDElementsContent;
+	that["fun_DElementsContent"].closeDetail = function(oControlEvent){
+		if(that["fun_DElementsContent"]._popup) {
+			that["fun_DElementsContent"]._popup.close();
+			that["fun_DElementsContent"]._popup.destroy();
+			delete that["fun_DElementsContent"]._popup;
 		}
 		
 	};
 	/*
 	 * Fires when item up or down button clicked
 	 */
-	this.moveItemDElementsContent = function(oControlEvent){
+	that["fun_DElementsContent"].moveItem = function(oControlEvent){
 		var movementData = oControlEvent.getParameters();
 		var targetIndex = -1;
 		var sourceIndex = -1;
-		var sectionKey = this._listBuilderDElementsContent.getSelectedKey();
+		var sectionKey = that["fun_DElementsContent"]._listBuilder.getSelectedKey();
 		var itemKey = oControlEvent.getParameter("key");
-		for(var i=0;i<this._elementsContentDElementsContent.length;i++){
-			if(this._elementsContentDElementsContent[i].key == itemKey && this._elementsContentDElementsContent[i].parentKey == sectionKey && this._elementsContentDElementsContent[i].leaf) sourceIndex = i;
-			if(this._elementsContentDElementsContent[i].key == movementData.targetKey && this._elementsContentDElementsContent[i].parentKey == sectionKey && this._elementsContentDElementsContent[i].leaf) targetIndex = i;
+		for(var i=0;i<that["fun_DElementsContent"]._elementsContent.length;i++){
+			if(that["fun_DElementsContent"]._elementsContent[i].key == itemKey && that["fun_DElementsContent"]._elementsContent[i].parentKey == sectionKey && that["fun_DElementsContent"]._elementsContent[i].leaf) sourceIndex = i;
+			if(that["fun_DElementsContent"]._elementsContent[i].key == movementData.targetKey && that["fun_DElementsContent"]._elementsContent[i].parentKey == sectionKey && that["fun_DElementsContent"]._elementsContent[i].leaf) targetIndex = i;
 		}
 		if(targetIndex != -1 && sourceIndex != -1){
-			var temp = this._elementsContentDElementsContent[targetIndex];
-			this._elementsContentDElementsContent[targetIndex] = this._elementsContentDElementsContent[sourceIndex];
-			this._elementsContentDElementsContent[sourceIndex] = temp;
-			this.firePropertiesChanged(["DElementsContent"]);
-			this.updatePropertyDElementsContent();
+			var temp = that["fun_DElementsContent"]._elementsContent[targetIndex];
+			that["fun_DElementsContent"]._elementsContent[targetIndex] = that["fun_DElementsContent"]._elementsContent[sourceIndex];
+			that["fun_DElementsContent"]._elementsContent[sourceIndex] = temp;
+			that.firePropertiesChanged(["DElementsContent"]);
+			that["fun_DElementsContent"].update();
 		}
 	}
 	/*
 	 * Convenience Function to return only entries that are Elements
 	 */
-	this.gatherElementsDElementsContent = function(){
+	that["fun_DElementsContent"].gatherElements = function(){
 		var sections = [];
-		for(var i=0;i<this._elementsContentDElementsContent.length;i++){
-			if(this._elementsContentDElementsContent[i].leaf==false) sections.push(this._elementsContentDElementsContent[i]);
+		for(var i=0;i<that["fun_DElementsContent"]._elementsContent.length;i++){
+			if(that["fun_DElementsContent"]._elementsContent[i].leaf==false) sections.push(that["fun_DElementsContent"]._elementsContent[i]);
 		}
 		return sections;
 	};
 	/*
 	 * Convenience Function to return only entries that are Items (Leafs)
 	 */
-	this.gatherItemsDElementsContent = function(sectionKey){
+	that["fun_DElementsContent"].gatherItems = function(sectionKey){
 		var items = [];
-		for(var i=0;i<this._elementsContentDElementsContent.length;i++){
-			if(this._elementsContentDElementsContent[i].leaf==true && this._elementsContentDElementsContent[i].parentKey==sectionKey) items.push(this._elementsContentDElementsContent[i]);
+		for(var i=0;i<that["fun_DElementsContent"]._elementsContent.length;i++){
+			if(that["fun_DElementsContent"]._elementsContent[i].leaf==true && that["fun_DElementsContent"]._elementsContent[i].parentKey==sectionKey) items.push(that["fun_DElementsContent"]._elementsContent[i]);
 		}
 		return items;
 	};
 	/*
 	 * Property Sheet Initialization
 	 */
-	this.initDElementsContent = function(){
+	that["fun_DElementsContent"].init = function(){
 		
-		this._labelDElementsContent = new sap.ui.commons.Label({text: " List of Buttons with Sub-Items"});
-		this._labelDElementsContent.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDElementsContent);
+		that["fun_DElementsContent"]._label = new sap.ui.commons.Label({text: " List of Buttons with Sub-Items"});
+		that["fun_DElementsContent"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DElementsContent"]._label);
 		
-		this._hLayoutDElementsContent = new sap.ui.commons.layout.HorizontalLayout({ });
-		this._content.addContent(this._hLayoutDElementsContent);
-		this._listBuilderDElementsContent = new org.scn.community.propertysheet.ListBuilder({
+		that["fun_DElementsContent"]._hLayout = new sap.ui.commons.layout.HorizontalLayout({ });
+		that._content.addContent(that["fun_DElementsContent"]._hLayout);
+		that["fun_DElementsContent"]._listBuilder = new org.scn.community.propertysheet.ListBuilder({
 			width : "200px"
 		});
 		
-		this._listBuilderDElementsContent.attachItemAdded(this.addElementDElementsContent,this);
-		this._listBuilderDElementsContent.attachItemDeleted(this.delElementDElementsContent,this);
-		this._listBuilderDElementsContent.attachItemMoved(this.moveElementDElementsContent,this);
-		this._listBuilderDElementsContent.attachItemSelected(this.elementSelectedDElementsContent,this);
+		that["fun_DElementsContent"]._listBuilder.attachItemAdded(that["fun_DElementsContent"].addElement,that);
+		that["fun_DElementsContent"]._listBuilder.attachItemDeleted(that["fun_DElementsContent"].delElement,that);
+		that["fun_DElementsContent"]._listBuilder.attachItemMoved(that["fun_DElementsContent"].moveElement,that);
+		that["fun_DElementsContent"]._listBuilder.attachItemSelected(that["fun_DElementsContent"].elementSelected,that);
 		
-		this._sectionPropertyLayoutDElementsContent = new sap.ui.commons.layout.VerticalLayout({
+		that["fun_DElementsContent"]._sectionPropertyLayout = new sap.ui.commons.layout.VerticalLayout({
 			width : "200px"
 		});
-		this._sectionPropertyListDElementsContent = new sap.ui.commons.layout.VerticalLayout({
+		that["fun_DElementsContent"]._sectionPropertyList = new sap.ui.commons.layout.VerticalLayout({
 			width : "200px"
 		});
-		this._sectionPropertyLayoutDElementsContent.addStyleClass("org-scn-ApsDoubleArrayVertical");
-		this._sectionPropertyListDElementsContent.addStyleClass("org-scn-ApsDoubleArrayVertical");
+		that["fun_DElementsContent"]._sectionPropertyLayout.addStyleClass("org-scn-ApsDoubleArrayVertical");
+		that["fun_DElementsContent"]._sectionPropertyList.addStyleClass("org-scn-ApsDoubleArrayVertical");
 
-		this._hLayoutDElementsContent.addContent(this._listBuilderDElementsContent);
-		this._hLayoutDElementsContent.addContent(this._sectionPropertyLayoutDElementsContent);
-		this._hLayoutDElementsContent.addContent(this._sectionPropertyListDElementsContent);
-		this._sectionPropertyListDElementsContent.addStyleClass("org-scn-Aps-DetailList-DoubleArray");
-		this._hLayoutDElementsContent.addStyleClass("org-scn-ApsDoubleArray");
+		that["fun_DElementsContent"]._hLayout.addContent(that["fun_DElementsContent"]._listBuilder);
+		that["fun_DElementsContent"]._hLayout.addContent(that["fun_DElementsContent"]._sectionPropertyLayout);
+		that["fun_DElementsContent"]._hLayout.addContent(that["fun_DElementsContent"]._sectionPropertyList);
+		that["fun_DElementsContent"]._sectionPropertyList.addStyleClass("org-scn-Aps-DetailList-DoubleArray");
+		that["fun_DElementsContent"]._hLayout.addStyleClass("org-scn-ApsDoubleArray");
 		
-		this.updatePropertyDElementsContent();
+		that["fun_DElementsContent"].update();
 	};
 
-	this.DElementsContent = function(s){
+	that.DElementsContent = function(s){
 		if( s === undefined){
-			return JSON.stringify(this._elementsContentDElementsContent);
+			return JSON.stringify(that["fun_DElementsContent"]._elementsContent);
 		}else{
 			var o = [];
 			if(s && s!="") o = jQuery.parseJSON(s);
-			this._elementsContentDElementsContent = o;
-			this.updatePropertyDElementsContent();
-			return this;
+			that["fun_DElementsContent"]._elementsContent = o;
+			that["fun_DElementsContent"].update();
+			return that;
 		}
 	};
 
@@ -497,141 +499,149 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 
 
 
-	this.updatePropertyDSelectionType = function(){
-		this._inputDSelectionType.setSelectedKey(this._DSelectionType);
+	that["fun_DSelectionType"] = {};
+	
+	that["fun_DSelectionType"].update = function(){
+		that["fun_DSelectionType"]._input.setSelectedKey(that["fun_DSelectionType"]._);
 	};
 	
-	this.initDSelectionType = function(){
-		this._labelDSelectionType = new sap.ui.commons.Label({text: " Selection Type"});
-		this._labelDSelectionType.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDSelectionType);
+	that["fun_DSelectionType"].init = function(){
+		that["fun_DSelectionType"]._label = new sap.ui.commons.Label({text: " Selection Type"});
+		that["fun_DSelectionType"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DSelectionType"]._label);
 		
-		this._inputDSelectionType = new sap.ui.commons.ComboBox({width: "300px"});
-		this._inputDSelectionType.addItem(new sap.ui.core.ListItem({key:"Single", text:"Single"}));
-		this._inputDSelectionType.addItem(new sap.ui.core.ListItem({key:"Multiple", text:"Multiple"}));
+		that["fun_DSelectionType"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DSelectionType"]._input.addItem(new sap.ui.core.ListItem({key:"Single", text:"Single"}));
+		that["fun_DSelectionType"]._input.addItem(new sap.ui.core.ListItem({key:"Multiple", text:"Multiple"}));
 		
-		this._content.addContent(this._inputDSelectionType);
-		this._inputDSelectionType.attachChange(this.propertyChangedDSelectionType, this);
-		this._inputDSelectionType.addStyleClass("org-scn-ApsBoolean");
+		that._content.addContent(that["fun_DSelectionType"]._input);
+		that["fun_DSelectionType"]._input.attachChange(that["fun_DSelectionType"].propertyChanged, that);
+		that["fun_DSelectionType"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDSelectionType();
+		that["fun_DSelectionType"].update();
 	};
 
-	this.propertyChangedDSelectionType = function(oControlEvent){
+	that["fun_DSelectionType"].propertyChanged = function(oControlEvent){
 		var newValue = oControlEvent.getParameter("newValue");
-		this._DSelectionType = newValue;
-		this.firePropertiesChanged(["DSelectionType"]);
+		that["fun_DSelectionType"]._ = newValue;
+		that.firePropertiesChanged(["DSelectionType"]);
 	};
 	
-	this.DSelectionType = function(s){
+	that.DSelectionType = function(s){
 		if( s === undefined){
-			return this._DSelectionType;
+			return that["fun_DSelectionType"]._;
 		}else{
-			this._DSelectionType = s;
-			this.updatePropertyDSelectionType();
-			return this;
+			that["fun_DSelectionType"]._ = s;
+			that["fun_DSelectionType"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDDefaultImage = function(){
-		this._inputDDefaultImage.setValue(this._DDefaultImage);
+	that["fun_DDefaultImage"] = {};
+	
+	that["fun_DDefaultImage"].update = function(){
+		that["fun_DDefaultImage"]._input.setValue(that["fun_DDefaultImage"]._);
 	};
 	
-	this.initDDefaultImage = function(){
-		this._labelDDefaultImage = new sap.ui.commons.Label({text: " Url for Default Image"});
-		this._labelDDefaultImage.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDDefaultImage);
+	that["fun_DDefaultImage"].init = function(){
+		that["fun_DDefaultImage"]._label = new sap.ui.commons.Label({text: " Url for Default Image"});
+		that["fun_DDefaultImage"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DDefaultImage"]._label);
 		
-		this._inputDDefaultImage = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDDefaultImage);
-		this._inputDDefaultImage.attachChange(this.propertyChangedDDefaultImage, this);
-		this._inputDDefaultImage.addStyleClass("org-scn-ApsSimple");
+		that["fun_DDefaultImage"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DDefaultImage"]._input);
+		that["fun_DDefaultImage"]._input.attachChange(that["fun_DDefaultImage"].propertyChanged, that);
+		that["fun_DDefaultImage"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDDefaultImage();
+		that["fun_DDefaultImage"].update();
 	};
 
-	this.propertyChangedDDefaultImage = function(oControlEvent){
+	that["fun_DDefaultImage"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DDefaultImage = value;
-		this.firePropertiesChanged(["DDefaultImage"]);
+		that["fun_DDefaultImage"]._ = value;
+		that.firePropertiesChanged(["DDefaultImage"]);
 	};
 	
-	this.DDefaultImage = function(s){
+	that.DDefaultImage = function(s){
 		if( s === undefined){
-			return this._DDefaultImage;
+			return that["fun_DDefaultImage"]._;
 		}else{
-			this._DDefaultImage = s;
-			this.updatePropertyDDefaultImage();
-			return this;
+			that["fun_DDefaultImage"]._ = s;
+			that["fun_DDefaultImage"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDWithImages = function(){
-		this._inputDWithImages.setChecked(this._DWithImages);
+	that["fun_DWithImages"] = {};
+	
+	that["fun_DWithImages"].update = function(){
+		that["fun_DWithImages"]._input.setChecked(that["fun_DWithImages"]._);
 	};
 	
-	this.initDWithImages = function(){
-		this._labelDWithImages = new sap.ui.commons.Label({text: " Use Images"});
-		this._labelDWithImages.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDWithImages);
+	that["fun_DWithImages"].init = function(){
+		that["fun_DWithImages"]._label = new sap.ui.commons.Label({text: " Use Images"});
+		that["fun_DWithImages"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DWithImages"]._label);
 		
-		this._inputDWithImages = new sap.ui.commons.CheckBox({width: "300px", text: "Use Images"});
-		this._content.addContent(this._inputDWithImages);
-		this._inputDWithImages.attachChange(this.propertyChangedDWithImages, this);
-		this._inputDWithImages.addStyleClass("org-scn-ApsBoolean");
+		that["fun_DWithImages"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Use Images"});
+		that._content.addContent(that["fun_DWithImages"]._input);
+		that["fun_DWithImages"]._input.attachChange(that["fun_DWithImages"].propertyChanged, that);
+		that["fun_DWithImages"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDWithImages();
+		that["fun_DWithImages"].update();
 	};
 
-	this.propertyChangedDWithImages = function(oControlEvent){
+	that["fun_DWithImages"].propertyChanged = function(oControlEvent){
 		var checked = oControlEvent.getParameter("checked");
-		this._DWithImages = checked;
-		this.firePropertiesChanged(["DWithImages"]);
+		that["fun_DWithImages"]._ = checked;
+		that.firePropertiesChanged(["DWithImages"]);
 	};
 	
-	this.DWithImages = function(s){
+	that.DWithImages = function(s){
 		if( s === undefined){
-			return this._DWithImages;
+			return that["fun_DWithImages"]._;
 		}else{
-			this._DWithImages = s;
-			this.updatePropertyDWithImages();
-			return this;
+			that["fun_DWithImages"]._ = s;
+			that["fun_DWithImages"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDImageSize = function(){
-		this._inputDImageSize.setSelectedKey(this._DImageSize);
+	that["fun_DImageSize"] = {};
+	
+	that["fun_DImageSize"].update = function(){
+		that["fun_DImageSize"]._input.setSelectedKey(that["fun_DImageSize"]._);
 	};
 	
-	this.initDImageSize = function(){
-		this._labelDImageSize = new sap.ui.commons.Label({text: " Size of the Image"});
-		this._labelDImageSize.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDImageSize);
+	that["fun_DImageSize"].init = function(){
+		that["fun_DImageSize"]._label = new sap.ui.commons.Label({text: " Size of the Image"});
+		that["fun_DImageSize"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DImageSize"]._label);
 		
-		this._inputDImageSize = new sap.ui.commons.ComboBox({width: "300px"});
-		this._inputDImageSize.addItem(new sap.ui.core.ListItem({key:"16px", text:"16px"}));
-		this._inputDImageSize.addItem(new sap.ui.core.ListItem({key:"32px", text:"32px"}));
+		that["fun_DImageSize"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DImageSize"]._input.addItem(new sap.ui.core.ListItem({key:"16px", text:"16px"}));
+		that["fun_DImageSize"]._input.addItem(new sap.ui.core.ListItem({key:"32px", text:"32px"}));
 		
-		this._content.addContent(this._inputDImageSize);
-		this._inputDImageSize.attachChange(this.propertyChangedDImageSize, this);
-		this._inputDImageSize.addStyleClass("org-scn-ApsBoolean");
+		that._content.addContent(that["fun_DImageSize"]._input);
+		that["fun_DImageSize"]._input.attachChange(that["fun_DImageSize"].propertyChanged, that);
+		that["fun_DImageSize"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDImageSize();
+		that["fun_DImageSize"].update();
 	};
 
-	this.propertyChangedDImageSize = function(oControlEvent){
+	that["fun_DImageSize"].propertyChanged = function(oControlEvent){
 		var newValue = oControlEvent.getParameter("newValue");
-		this._DImageSize = newValue;
-		this.firePropertiesChanged(["DImageSize"]);
+		that["fun_DImageSize"]._ = newValue;
+		that.firePropertiesChanged(["DImageSize"]);
 	};
 	
-	this.DImageSize = function(s){
+	that.DImageSize = function(s){
 		if( s === undefined){
-			return this._DImageSize;
+			return that["fun_DImageSize"]._;
 		}else{
-			this._DImageSize = s;
-			this.updatePropertyDImageSize();
-			return this;
+			that["fun_DImageSize"]._ = s;
+			that["fun_DImageSize"].update();
+			return that;
 		}
 	};
 

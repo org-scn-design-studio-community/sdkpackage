@@ -4,9 +4,9 @@
 		txtElement%PARAM_NAME%.addStyleClass("org-scn-ApsInputArray");
 		txtElement%PARAM_NAME%.attachChange(function(oControlEvent){
 			var checked = oControlEvent.getParameter("checked");
-			var section = this.getElement%PROPERTY_NAME%(this._listBuilder%PROPERTY_NAME%.getSelectedKey());
+			var section = that["fun_%PROPERTY_NAME%"].getElement(that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey());
 			section.%PARAM_NAME% = checked;
-			this.updateElement%PROPERTY_NAME%(this._listBuilder%PROPERTY_NAME%.getSelectedKey(),section);
-		}, this);
-		this._sectionPropertyLayout%PROPERTY_NAME%.addContent(section%PARAM_NAME%);
-		this._sectionPropertyLayout%PROPERTY_NAME%.addContent(txtElement%PARAM_NAME%);
+			that["fun_%PROPERTY_NAME%"].updateElement(that["fun_%PROPERTY_NAME%"]._listBuilder.getSelectedKey(),section);
+		}, that);
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyLayout.addContent(section%PARAM_NAME%);
+		that["fun_%PROPERTY_NAME%"]._sectionPropertyLayout.addContent(txtElement%PARAM_NAME%);

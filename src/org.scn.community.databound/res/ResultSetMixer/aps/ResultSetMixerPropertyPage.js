@@ -7,305 +7,321 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSetMixerPropertyPage",  function() {
 	var that = this;
 
-	this.init = function () {
-		this._content = new sap.ui.commons.layout.VerticalLayout({
+	that.init = function () {
+		that._content = new sap.ui.commons.layout.VerticalLayout({
 			width : "100%"
 		});
-		this._content.placeAt($("#content"));
+		that._content.placeAt($("#content"));
 
-		this.initDMasterProvisioner();
-		this.initDMasterGeometry();
-		this.initDSlaveProvisioner();
-		this.initDSlaveColumnIndex();
-		this.initDCollectMultipleMatches();
-		this.initDSlaveContentCondition();
-		this.initDSlaveRowCondition();
-		this.initDSlaveColumnCondition();
+		that["fun_DMasterProvisioner"].init();
+		that["fun_DMasterGeometry"].init();
+		that["fun_DSlaveProvisioner"].init();
+		that["fun_DSlaveColumnIndex"].init();
+		that["fun_DCollectMultipleMatches"].init();
+		that["fun_DSlaveContentCondition"].init();
+		that["fun_DSlaveRowCondition"].init();
+		that["fun_DSlaveColumnCondition"].init();
 		
 	};
 	
-	this.componentSelected = function(){
-		this.updateDMasterProvisioner();
-		this.updateDMasterGeometry();
-		this.updateDSlaveProvisioner();
-		this.updateDSlaveColumnIndex();
-		this.updateDCollectMultipleMatches();
-		this.updateDSlaveContentCondition();
-		this.updateDSlaveRowCondition();
-		this.updateDSlaveColumnCondition();
+	that.componentSelected = function(){
+		that["fun_DMasterProvisioner"].update();
+		that["fun_DMasterGeometry"].update();
+		that["fun_DSlaveProvisioner"].update();
+		that["fun_DSlaveColumnIndex"].update();
+		that["fun_DCollectMultipleMatches"].update();
+		that["fun_DSlaveContentCondition"].update();
+		that["fun_DSlaveRowCondition"].update();
+		that["fun_DSlaveColumnCondition"].update();
 		
 	};
 	
 	
 
 
-	this.updatePropertyDMasterProvisioner = function(){
-		this._inputDMasterProvisioner.setValue(this._DMasterProvisioner);
+	that["fun_DMasterProvisioner"] = {};
+	
+	that["fun_DMasterProvisioner"].update = function(){
+		that["fun_DMasterProvisioner"]._input.setValue(that["fun_DMasterProvisioner"]._);
 	};
 	
-	this.initDMasterProvisioner = function(){
-		this._labelDMasterProvisioner = new sap.ui.commons.Label({text: " Master Central Data Provisioner"});
-		this._labelDMasterProvisioner.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDMasterProvisioner);
+	that["fun_DMasterProvisioner"].init = function(){
+		that["fun_DMasterProvisioner"]._label = new sap.ui.commons.Label({text: " Master Central Data Provisioner"});
+		that["fun_DMasterProvisioner"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DMasterProvisioner"]._label);
 		
-		this._inputDMasterProvisioner = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDMasterProvisioner);
-		this._inputDMasterProvisioner.attachChange(this.propertyChangedDMasterProvisioner, this);
-		this._inputDMasterProvisioner.addStyleClass("org-scn-ApsSimple");
+		that["fun_DMasterProvisioner"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DMasterProvisioner"]._input);
+		that["fun_DMasterProvisioner"]._input.attachChange(that["fun_DMasterProvisioner"].propertyChanged, that);
+		that["fun_DMasterProvisioner"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDMasterProvisioner();
+		that["fun_DMasterProvisioner"].update();
 	};
 
-	this.propertyChangedDMasterProvisioner = function(oControlEvent){
+	that["fun_DMasterProvisioner"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DMasterProvisioner = value;
-		this.firePropertiesChanged(["DMasterProvisioner"]);
+		that["fun_DMasterProvisioner"]._ = value;
+		that.firePropertiesChanged(["DMasterProvisioner"]);
 	};
 	
-	this.DMasterProvisioner = function(s){
+	that.DMasterProvisioner = function(s){
 		if( s === undefined){
-			return this._DMasterProvisioner;
+			return that["fun_DMasterProvisioner"]._;
 		}else{
-			this._DMasterProvisioner = s;
-			this.updatePropertyDMasterProvisioner();
-			return this;
+			that["fun_DMasterProvisioner"]._ = s;
+			that["fun_DMasterProvisioner"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDMasterGeometry = function(){
-		this._inputDMasterGeometry.setSelectedKey(this._DMasterGeometry);
+	that["fun_DMasterGeometry"] = {};
+	
+	that["fun_DMasterGeometry"].update = function(){
+		that["fun_DMasterGeometry"]._input.setSelectedKey(that["fun_DMasterGeometry"]._);
 	};
 	
-	this.initDMasterGeometry = function(){
-		this._labelDMasterGeometry = new sap.ui.commons.Label({text: " Geometry of the Master Result Set"});
-		this._labelDMasterGeometry.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDMasterGeometry);
+	that["fun_DMasterGeometry"].init = function(){
+		that["fun_DMasterGeometry"]._label = new sap.ui.commons.Label({text: " Geometry of the Master Result Set"});
+		that["fun_DMasterGeometry"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DMasterGeometry"]._label);
 		
-		this._inputDMasterGeometry = new sap.ui.commons.ComboBox({width: "300px"});
-		this._inputDMasterGeometry.addItem(new sap.ui.core.ListItem({key:"Structure", text:"Structure"}));
-		this._inputDMasterGeometry.addItem(new sap.ui.core.ListItem({key:"Rows", text:"Rows"}));
+		that["fun_DMasterGeometry"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DMasterGeometry"]._input.addItem(new sap.ui.core.ListItem({key:"Structure", text:"Structure"}));
+		that["fun_DMasterGeometry"]._input.addItem(new sap.ui.core.ListItem({key:"Rows", text:"Rows"}));
 		
-		this._content.addContent(this._inputDMasterGeometry);
-		this._inputDMasterGeometry.attachChange(this.propertyChangedDMasterGeometry, this);
-		this._inputDMasterGeometry.addStyleClass("org-scn-ApsBoolean");
+		that._content.addContent(that["fun_DMasterGeometry"]._input);
+		that["fun_DMasterGeometry"]._input.attachChange(that["fun_DMasterGeometry"].propertyChanged, that);
+		that["fun_DMasterGeometry"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDMasterGeometry();
+		that["fun_DMasterGeometry"].update();
 	};
 
-	this.propertyChangedDMasterGeometry = function(oControlEvent){
+	that["fun_DMasterGeometry"].propertyChanged = function(oControlEvent){
 		var newValue = oControlEvent.getParameter("newValue");
-		this._DMasterGeometry = newValue;
-		this.firePropertiesChanged(["DMasterGeometry"]);
+		that["fun_DMasterGeometry"]._ = newValue;
+		that.firePropertiesChanged(["DMasterGeometry"]);
 	};
 	
-	this.DMasterGeometry = function(s){
+	that.DMasterGeometry = function(s){
 		if( s === undefined){
-			return this._DMasterGeometry;
+			return that["fun_DMasterGeometry"]._;
 		}else{
-			this._DMasterGeometry = s;
-			this.updatePropertyDMasterGeometry();
-			return this;
+			that["fun_DMasterGeometry"]._ = s;
+			that["fun_DMasterGeometry"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDSlaveProvisioner = function(){
-		this._inputDSlaveProvisioner.setValue(this._DSlaveProvisioner);
+	that["fun_DSlaveProvisioner"] = {};
+	
+	that["fun_DSlaveProvisioner"].update = function(){
+		that["fun_DSlaveProvisioner"]._input.setValue(that["fun_DSlaveProvisioner"]._);
 	};
 	
-	this.initDSlaveProvisioner = function(){
-		this._labelDSlaveProvisioner = new sap.ui.commons.Label({text: " Slave Central Data Provisioner"});
-		this._labelDSlaveProvisioner.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDSlaveProvisioner);
+	that["fun_DSlaveProvisioner"].init = function(){
+		that["fun_DSlaveProvisioner"]._label = new sap.ui.commons.Label({text: " Slave Central Data Provisioner"});
+		that["fun_DSlaveProvisioner"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DSlaveProvisioner"]._label);
 		
-		this._inputDSlaveProvisioner = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDSlaveProvisioner);
-		this._inputDSlaveProvisioner.attachChange(this.propertyChangedDSlaveProvisioner, this);
-		this._inputDSlaveProvisioner.addStyleClass("org-scn-ApsSimple");
+		that["fun_DSlaveProvisioner"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DSlaveProvisioner"]._input);
+		that["fun_DSlaveProvisioner"]._input.attachChange(that["fun_DSlaveProvisioner"].propertyChanged, that);
+		that["fun_DSlaveProvisioner"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDSlaveProvisioner();
+		that["fun_DSlaveProvisioner"].update();
 	};
 
-	this.propertyChangedDSlaveProvisioner = function(oControlEvent){
+	that["fun_DSlaveProvisioner"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DSlaveProvisioner = value;
-		this.firePropertiesChanged(["DSlaveProvisioner"]);
+		that["fun_DSlaveProvisioner"]._ = value;
+		that.firePropertiesChanged(["DSlaveProvisioner"]);
 	};
 	
-	this.DSlaveProvisioner = function(s){
+	that.DSlaveProvisioner = function(s){
 		if( s === undefined){
-			return this._DSlaveProvisioner;
+			return that["fun_DSlaveProvisioner"]._;
 		}else{
-			this._DSlaveProvisioner = s;
-			this.updatePropertyDSlaveProvisioner();
-			return this;
+			that["fun_DSlaveProvisioner"]._ = s;
+			that["fun_DSlaveProvisioner"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDSlaveColumnIndex = function(){
-		this._inputDSlaveColumnIndex.setValue(this._DSlaveColumnIndex);
+	that["fun_DSlaveColumnIndex"] = {};
+	
+	that["fun_DSlaveColumnIndex"].update = function(){
+		that["fun_DSlaveColumnIndex"]._input.setValue(that["fun_DSlaveColumnIndex"]._);
 	};
 	
-	this.initDSlaveColumnIndex = function(){
-		this._labelDSlaveColumnIndex = new sap.ui.commons.Label({text: " Column Index for the Selection from Slave Result Set"});
-		this._labelDSlaveColumnIndex.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDSlaveColumnIndex);
+	that["fun_DSlaveColumnIndex"].init = function(){
+		that["fun_DSlaveColumnIndex"]._label = new sap.ui.commons.Label({text: " Column Index for the Selection from Slave Result Set"});
+		that["fun_DSlaveColumnIndex"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DSlaveColumnIndex"]._label);
 		
-		this._inputDSlaveColumnIndex = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDSlaveColumnIndex);
-		this._inputDSlaveColumnIndex.attachChange(this.propertyChangedDSlaveColumnIndex, this);
-		this._inputDSlaveColumnIndex.addStyleClass("org-scn-ApsSimple");
+		that["fun_DSlaveColumnIndex"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DSlaveColumnIndex"]._input);
+		that["fun_DSlaveColumnIndex"]._input.attachChange(that["fun_DSlaveColumnIndex"].propertyChanged, that);
+		that["fun_DSlaveColumnIndex"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDSlaveColumnIndex();
+		that["fun_DSlaveColumnIndex"].update();
 	};
 
-	this.propertyChangedDSlaveColumnIndex = function(oControlEvent){
+	that["fun_DSlaveColumnIndex"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DSlaveColumnIndex = value;
-		this.firePropertiesChanged(["DSlaveColumnIndex"]);
+		that["fun_DSlaveColumnIndex"]._ = value;
+		that.firePropertiesChanged(["DSlaveColumnIndex"]);
 	};
 	
-	this.DSlaveColumnIndex = function(s){
+	that.DSlaveColumnIndex = function(s){
 		if( s === undefined){
-			return this._DSlaveColumnIndex;
+			return that["fun_DSlaveColumnIndex"]._;
 		}else{
-			this._DSlaveColumnIndex = s;
-			this.updatePropertyDSlaveColumnIndex();
-			return this;
+			that["fun_DSlaveColumnIndex"]._ = s;
+			that["fun_DSlaveColumnIndex"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDCollectMultipleMatches = function(){
-		this._inputDCollectMultipleMatches.setSelectedKey(this._DCollectMultipleMatches);
+	that["fun_DCollectMultipleMatches"] = {};
+	
+	that["fun_DCollectMultipleMatches"].update = function(){
+		that["fun_DCollectMultipleMatches"]._input.setSelectedKey(that["fun_DCollectMultipleMatches"]._);
 	};
 	
-	this.initDCollectMultipleMatches = function(){
-		this._labelDCollectMultipleMatches = new sap.ui.commons.Label({text: " Collect Multiple Matches"});
-		this._labelDCollectMultipleMatches.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDCollectMultipleMatches);
+	that["fun_DCollectMultipleMatches"].init = function(){
+		that["fun_DCollectMultipleMatches"]._label = new sap.ui.commons.Label({text: " Collect Multiple Matches"});
+		that["fun_DCollectMultipleMatches"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DCollectMultipleMatches"]._label);
 		
-		this._inputDCollectMultipleMatches = new sap.ui.commons.ComboBox({width: "300px"});
-		this._inputDCollectMultipleMatches.addItem(new sap.ui.core.ListItem({key:"Collect", text:"Collect"}));
-		this._inputDCollectMultipleMatches.addItem(new sap.ui.core.ListItem({key:"UseLast", text:"UseLast"}));
+		that["fun_DCollectMultipleMatches"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DCollectMultipleMatches"]._input.addItem(new sap.ui.core.ListItem({key:"Collect", text:"Collect"}));
+		that["fun_DCollectMultipleMatches"]._input.addItem(new sap.ui.core.ListItem({key:"UseLast", text:"UseLast"}));
 		
-		this._content.addContent(this._inputDCollectMultipleMatches);
-		this._inputDCollectMultipleMatches.attachChange(this.propertyChangedDCollectMultipleMatches, this);
-		this._inputDCollectMultipleMatches.addStyleClass("org-scn-ApsBoolean");
+		that._content.addContent(that["fun_DCollectMultipleMatches"]._input);
+		that["fun_DCollectMultipleMatches"]._input.attachChange(that["fun_DCollectMultipleMatches"].propertyChanged, that);
+		that["fun_DCollectMultipleMatches"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDCollectMultipleMatches();
+		that["fun_DCollectMultipleMatches"].update();
 	};
 
-	this.propertyChangedDCollectMultipleMatches = function(oControlEvent){
+	that["fun_DCollectMultipleMatches"].propertyChanged = function(oControlEvent){
 		var newValue = oControlEvent.getParameter("newValue");
-		this._DCollectMultipleMatches = newValue;
-		this.firePropertiesChanged(["DCollectMultipleMatches"]);
+		that["fun_DCollectMultipleMatches"]._ = newValue;
+		that.firePropertiesChanged(["DCollectMultipleMatches"]);
 	};
 	
-	this.DCollectMultipleMatches = function(s){
+	that.DCollectMultipleMatches = function(s){
 		if( s === undefined){
-			return this._DCollectMultipleMatches;
+			return that["fun_DCollectMultipleMatches"]._;
 		}else{
-			this._DCollectMultipleMatches = s;
-			this.updatePropertyDCollectMultipleMatches();
-			return this;
+			that["fun_DCollectMultipleMatches"]._ = s;
+			that["fun_DCollectMultipleMatches"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDSlaveContentCondition = function(){
-		this._inputDSlaveContentCondition.setValue(this._DSlaveContentCondition);
+	that["fun_DSlaveContentCondition"] = {};
+	
+	that["fun_DSlaveContentCondition"].update = function(){
+		that["fun_DSlaveContentCondition"]._input.setValue(that["fun_DSlaveContentCondition"]._);
 	};
 	
-	this.initDSlaveContentCondition = function(){
-		this._labelDSlaveContentCondition = new sap.ui.commons.Label({text: " Content Condition to Read Slave Result Set"});
-		this._labelDSlaveContentCondition.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDSlaveContentCondition);
+	that["fun_DSlaveContentCondition"].init = function(){
+		that["fun_DSlaveContentCondition"]._label = new sap.ui.commons.Label({text: " Content Condition to Read Slave Result Set"});
+		that["fun_DSlaveContentCondition"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DSlaveContentCondition"]._label);
 		
-		this._inputDSlaveContentCondition = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDSlaveContentCondition);
-		this._inputDSlaveContentCondition.attachChange(this.propertyChangedDSlaveContentCondition, this);
-		this._inputDSlaveContentCondition.addStyleClass("org-scn-ApsSimple");
+		that["fun_DSlaveContentCondition"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DSlaveContentCondition"]._input);
+		that["fun_DSlaveContentCondition"]._input.attachChange(that["fun_DSlaveContentCondition"].propertyChanged, that);
+		that["fun_DSlaveContentCondition"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDSlaveContentCondition();
+		that["fun_DSlaveContentCondition"].update();
 	};
 
-	this.propertyChangedDSlaveContentCondition = function(oControlEvent){
+	that["fun_DSlaveContentCondition"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DSlaveContentCondition = value;
-		this.firePropertiesChanged(["DSlaveContentCondition"]);
+		that["fun_DSlaveContentCondition"]._ = value;
+		that.firePropertiesChanged(["DSlaveContentCondition"]);
 	};
 	
-	this.DSlaveContentCondition = function(s){
+	that.DSlaveContentCondition = function(s){
 		if( s === undefined){
-			return this._DSlaveContentCondition;
+			return that["fun_DSlaveContentCondition"]._;
 		}else{
-			this._DSlaveContentCondition = s;
-			this.updatePropertyDSlaveContentCondition();
-			return this;
+			that["fun_DSlaveContentCondition"]._ = s;
+			that["fun_DSlaveContentCondition"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDSlaveRowCondition = function(){
-		this._inputDSlaveRowCondition.setValue(this._DSlaveRowCondition);
+	that["fun_DSlaveRowCondition"] = {};
+	
+	that["fun_DSlaveRowCondition"].update = function(){
+		that["fun_DSlaveRowCondition"]._input.setValue(that["fun_DSlaveRowCondition"]._);
 	};
 	
-	this.initDSlaveRowCondition = function(){
-		this._labelDSlaveRowCondition = new sap.ui.commons.Label({text: " Row Condition to Read Slave Result Set"});
-		this._labelDSlaveRowCondition.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDSlaveRowCondition);
+	that["fun_DSlaveRowCondition"].init = function(){
+		that["fun_DSlaveRowCondition"]._label = new sap.ui.commons.Label({text: " Row Condition to Read Slave Result Set"});
+		that["fun_DSlaveRowCondition"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DSlaveRowCondition"]._label);
 		
-		this._inputDSlaveRowCondition = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDSlaveRowCondition);
-		this._inputDSlaveRowCondition.attachChange(this.propertyChangedDSlaveRowCondition, this);
-		this._inputDSlaveRowCondition.addStyleClass("org-scn-ApsSimple");
+		that["fun_DSlaveRowCondition"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DSlaveRowCondition"]._input);
+		that["fun_DSlaveRowCondition"]._input.attachChange(that["fun_DSlaveRowCondition"].propertyChanged, that);
+		that["fun_DSlaveRowCondition"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDSlaveRowCondition();
+		that["fun_DSlaveRowCondition"].update();
 	};
 
-	this.propertyChangedDSlaveRowCondition = function(oControlEvent){
+	that["fun_DSlaveRowCondition"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DSlaveRowCondition = value;
-		this.firePropertiesChanged(["DSlaveRowCondition"]);
+		that["fun_DSlaveRowCondition"]._ = value;
+		that.firePropertiesChanged(["DSlaveRowCondition"]);
 	};
 	
-	this.DSlaveRowCondition = function(s){
+	that.DSlaveRowCondition = function(s){
 		if( s === undefined){
-			return this._DSlaveRowCondition;
+			return that["fun_DSlaveRowCondition"]._;
 		}else{
-			this._DSlaveRowCondition = s;
-			this.updatePropertyDSlaveRowCondition();
-			return this;
+			that["fun_DSlaveRowCondition"]._ = s;
+			that["fun_DSlaveRowCondition"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDSlaveColumnCondition = function(){
-		this._inputDSlaveColumnCondition.setValue(this._DSlaveColumnCondition);
+	that["fun_DSlaveColumnCondition"] = {};
+	
+	that["fun_DSlaveColumnCondition"].update = function(){
+		that["fun_DSlaveColumnCondition"]._input.setValue(that["fun_DSlaveColumnCondition"]._);
 	};
 	
-	this.initDSlaveColumnCondition = function(){
-		this._labelDSlaveColumnCondition = new sap.ui.commons.Label({text: " Column Condition to Read Slave Result Set"});
-		this._labelDSlaveColumnCondition.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDSlaveColumnCondition);
+	that["fun_DSlaveColumnCondition"].init = function(){
+		that["fun_DSlaveColumnCondition"]._label = new sap.ui.commons.Label({text: " Column Condition to Read Slave Result Set"});
+		that["fun_DSlaveColumnCondition"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DSlaveColumnCondition"]._label);
 		
-		this._inputDSlaveColumnCondition = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDSlaveColumnCondition);
-		this._inputDSlaveColumnCondition.attachChange(this.propertyChangedDSlaveColumnCondition, this);
-		this._inputDSlaveColumnCondition.addStyleClass("org-scn-ApsSimple");
+		that["fun_DSlaveColumnCondition"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DSlaveColumnCondition"]._input);
+		that["fun_DSlaveColumnCondition"]._input.attachChange(that["fun_DSlaveColumnCondition"].propertyChanged, that);
+		that["fun_DSlaveColumnCondition"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDSlaveColumnCondition();
+		that["fun_DSlaveColumnCondition"].update();
 	};
 
-	this.propertyChangedDSlaveColumnCondition = function(oControlEvent){
+	that["fun_DSlaveColumnCondition"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DSlaveColumnCondition = value;
-		this.firePropertiesChanged(["DSlaveColumnCondition"]);
+		that["fun_DSlaveColumnCondition"]._ = value;
+		that.firePropertiesChanged(["DSlaveColumnCondition"]);
 	};
 	
-	this.DSlaveColumnCondition = function(s){
+	that.DSlaveColumnCondition = function(s){
 		if( s === undefined){
-			return this._DSlaveColumnCondition;
+			return that["fun_DSlaveColumnCondition"]._;
 		}else{
-			this._DSlaveColumnCondition = s;
-			this.updatePropertyDSlaveColumnCondition();
-			return this;
+			that["fun_DSlaveColumnCondition"]._ = s;
+			that["fun_DSlaveColumnCondition"].update();
+			return that;
 		}
 	};
 

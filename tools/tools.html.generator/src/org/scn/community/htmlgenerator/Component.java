@@ -204,8 +204,8 @@ public class Component {
 				templateAps = templateAps.replace("%APS_ENTRY%", generatedZtlAndAps.getAps() + "\r\n\r\n%APS_ENTRY%");
 				
 				if(generatedZtlAndAps.getAps() != null && generatedZtlAndAps.getAps().length() > 0) {
-					templateAps = templateAps.replace("%INIT_PROPERTY%", "this.init"+property.getName() + "();\r\n\t\t%INIT_PROPERTY%");	
-					templateAps = templateAps.replace("%UPDATE_PROPERTY%", "this.update"+property.getName() + "();\r\n\t\t%UPDATE_PROPERTY%");
+					templateAps = templateAps.replace("%INIT_PROPERTY%", "that[\"fun_"+property.getName()+"\"].init();\r\n\t\t%INIT_PROPERTY%");	
+					templateAps = templateAps.replace("%UPDATE_PROPERTY%", "that[\"fun_"+property.getName()+"\"].update();\r\n\t\t%UPDATE_PROPERTY%");
 				}
 			}
 		}

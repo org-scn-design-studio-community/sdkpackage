@@ -368,7 +368,7 @@ public class ParamSimpleSpec {
 					 ArrayList<Value> values = this.parentProperty.getValues();
 					 
 					 for (Value value : values) {
-						 templateAps = templateAps.replace("%COMBO_ADD_ITEMS%", "this._input%PROPERTY_NAME%.addItem(new sap.ui.core.ListItem({key:\""+value.getName() + "\", text:\""+value.getName()+"\"}));\r\n\t\t%COMBO_ADD_ITEMS%");
+						 templateAps = templateAps.replace("%COMBO_ADD_ITEMS%", "that[\"fun_%PROPERTY_NAME%\"]._input.addItem(new sap.ui.core.ListItem({key:\""+value.getName() + "\", text:\""+value.getName()+"\"}));\r\n\t\t%COMBO_ADD_ITEMS%");
 					}
 					templateAps = templateAps.replace("%COMBO_ADD_ITEMS%", "");
 				 }

@@ -7,313 +7,329 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponseParserPropertyPage",  function() {
 	var that = this;
 
-	this.init = function () {
-		this._content = new sap.ui.commons.layout.VerticalLayout({
+	that.init = function () {
+		that._content = new sap.ui.commons.layout.VerticalLayout({
 			width : "100%"
 		});
-		this._content.placeAt($("#content"));
+		that._content.placeAt($("#content"));
 
-		this.initDUrl();
-		this.initDRequestType();
-		this.initDRequestMethod();
-		this.initDCrossDomain();
-		this.initDBasicAuthorisation();
-		this.initDContentType();
-		this.initDExpectedResponseStatus();
-		this.initDExpectedContentType();
-		this.initDParameters();
-		this.initDHeaders();
-		this.initDRawParameters();
+		that["fun_DUrl"].init();
+		that["fun_DRequestType"].init();
+		that["fun_DRequestMethod"].init();
+		that["fun_DCrossDomain"].init();
+		that["fun_DBasicAuthorisation"].init();
+		that["fun_DContentType"].init();
+		that["fun_DExpectedResponseStatus"].init();
+		that["fun_DExpectedContentType"].init();
+		that["fun_DParameters"].init();
+		that["fun_DHeaders"].init();
+		that["fun_DRawParameters"].init();
 		
 	};
 	
-	this.componentSelected = function(){
-		this.updateDUrl();
-		this.updateDRequestType();
-		this.updateDRequestMethod();
-		this.updateDCrossDomain();
-		this.updateDBasicAuthorisation();
-		this.updateDContentType();
-		this.updateDExpectedResponseStatus();
-		this.updateDExpectedContentType();
-		this.updateDParameters();
-		this.updateDHeaders();
-		this.updateDRawParameters();
+	that.componentSelected = function(){
+		that["fun_DUrl"].update();
+		that["fun_DRequestType"].update();
+		that["fun_DRequestMethod"].update();
+		that["fun_DCrossDomain"].update();
+		that["fun_DBasicAuthorisation"].update();
+		that["fun_DContentType"].update();
+		that["fun_DExpectedResponseStatus"].update();
+		that["fun_DExpectedContentType"].update();
+		that["fun_DParameters"].update();
+		that["fun_DHeaders"].update();
+		that["fun_DRawParameters"].update();
 		
 	};
 	
 	
-	this.updatePropertyDUrl = function(){
-		this._inputDUrl.setValue(this._DUrl);
+	that["fun_DUrl"] = {};
+	
+	that["fun_DUrl"].update = function(){
+		that["fun_DUrl"]._input.setValue(that["fun_DUrl"]._);
 	};
 	
-	this.initDUrl = function(){
-		this._labelDUrl = new sap.ui.commons.Label({text: " Url To Send the Request"});
-		this._labelDUrl.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDUrl);
+	that["fun_DUrl"].init = function(){
+		that["fun_DUrl"]._label = new sap.ui.commons.Label({text: " Url To Send the Request"});
+		that["fun_DUrl"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DUrl"]._label);
 		
-		this._inputDUrl = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDUrl);
-		this._inputDUrl.attachChange(this.propertyChangedDUrl, this);
-		this._inputDUrl.addStyleClass("org-scn-ApsSimple");
+		that["fun_DUrl"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DUrl"]._input);
+		that["fun_DUrl"]._input.attachChange(that["fun_DUrl"].propertyChanged, that);
+		that["fun_DUrl"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDUrl();
+		that["fun_DUrl"].update();
 	};
 
-	this.propertyChangedDUrl = function(oControlEvent){
+	that["fun_DUrl"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DUrl = value;
-		this.firePropertiesChanged(["DUrl"]);
+		that["fun_DUrl"]._ = value;
+		that.firePropertiesChanged(["DUrl"]);
 	};
 	
-	this.DUrl = function(s){
+	that.DUrl = function(s){
 		if( s === undefined){
-			return this._DUrl;
+			return that["fun_DUrl"]._;
 		}else{
-			this._DUrl = s;
-			this.updatePropertyDUrl();
-			return this;
+			that["fun_DUrl"]._ = s;
+			that["fun_DUrl"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDRequestType = function(){
-		this._inputDRequestType.setSelectedKey(this._DRequestType);
+	that["fun_DRequestType"] = {};
+	
+	that["fun_DRequestType"].update = function(){
+		that["fun_DRequestType"]._input.setSelectedKey(that["fun_DRequestType"]._);
 	};
 	
-	this.initDRequestType = function(){
-		this._labelDRequestType = new sap.ui.commons.Label({text: " Request Type (JQuery | HTTP)"});
-		this._labelDRequestType.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDRequestType);
+	that["fun_DRequestType"].init = function(){
+		that["fun_DRequestType"]._label = new sap.ui.commons.Label({text: " Request Type (JQuery | HTTP)"});
+		that["fun_DRequestType"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DRequestType"]._label);
 		
-		this._inputDRequestType = new sap.ui.commons.ComboBox({width: "300px"});
-		this._inputDRequestType.addItem(new sap.ui.core.ListItem({key:"JQuery", text:"JQuery"}));
-		this._inputDRequestType.addItem(new sap.ui.core.ListItem({key:"HTTPRequest", text:"HTTPRequest"}));
+		that["fun_DRequestType"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DRequestType"]._input.addItem(new sap.ui.core.ListItem({key:"JQuery", text:"JQuery"}));
+		that["fun_DRequestType"]._input.addItem(new sap.ui.core.ListItem({key:"HTTPRequest", text:"HTTPRequest"}));
 		
-		this._content.addContent(this._inputDRequestType);
-		this._inputDRequestType.attachChange(this.propertyChangedDRequestType, this);
-		this._inputDRequestType.addStyleClass("org-scn-ApsBoolean");
+		that._content.addContent(that["fun_DRequestType"]._input);
+		that["fun_DRequestType"]._input.attachChange(that["fun_DRequestType"].propertyChanged, that);
+		that["fun_DRequestType"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDRequestType();
+		that["fun_DRequestType"].update();
 	};
 
-	this.propertyChangedDRequestType = function(oControlEvent){
+	that["fun_DRequestType"].propertyChanged = function(oControlEvent){
 		var newValue = oControlEvent.getParameter("newValue");
-		this._DRequestType = newValue;
-		this.firePropertiesChanged(["DRequestType"]);
+		that["fun_DRequestType"]._ = newValue;
+		that.firePropertiesChanged(["DRequestType"]);
 	};
 	
-	this.DRequestType = function(s){
+	that.DRequestType = function(s){
 		if( s === undefined){
-			return this._DRequestType;
+			return that["fun_DRequestType"]._;
 		}else{
-			this._DRequestType = s;
-			this.updatePropertyDRequestType();
-			return this;
+			that["fun_DRequestType"]._ = s;
+			that["fun_DRequestType"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDRequestMethod = function(){
-		this._inputDRequestMethod.setSelectedKey(this._DRequestMethod);
+	that["fun_DRequestMethod"] = {};
+	
+	that["fun_DRequestMethod"].update = function(){
+		that["fun_DRequestMethod"]._input.setSelectedKey(that["fun_DRequestMethod"]._);
 	};
 	
-	this.initDRequestMethod = function(){
-		this._labelDRequestMethod = new sap.ui.commons.Label({text: " Request Method (POST | GET | PUT)"});
-		this._labelDRequestMethod.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDRequestMethod);
+	that["fun_DRequestMethod"].init = function(){
+		that["fun_DRequestMethod"]._label = new sap.ui.commons.Label({text: " Request Method (POST | GET | PUT)"});
+		that["fun_DRequestMethod"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DRequestMethod"]._label);
 		
-		this._inputDRequestMethod = new sap.ui.commons.ComboBox({width: "300px"});
-		this._inputDRequestMethod.addItem(new sap.ui.core.ListItem({key:"POST", text:"POST"}));
-		this._inputDRequestMethod.addItem(new sap.ui.core.ListItem({key:"GET", text:"GET"}));
-		this._inputDRequestMethod.addItem(new sap.ui.core.ListItem({key:"PUT", text:"PUT"}));
+		that["fun_DRequestMethod"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DRequestMethod"]._input.addItem(new sap.ui.core.ListItem({key:"POST", text:"POST"}));
+		that["fun_DRequestMethod"]._input.addItem(new sap.ui.core.ListItem({key:"GET", text:"GET"}));
+		that["fun_DRequestMethod"]._input.addItem(new sap.ui.core.ListItem({key:"PUT", text:"PUT"}));
 		
-		this._content.addContent(this._inputDRequestMethod);
-		this._inputDRequestMethod.attachChange(this.propertyChangedDRequestMethod, this);
-		this._inputDRequestMethod.addStyleClass("org-scn-ApsBoolean");
+		that._content.addContent(that["fun_DRequestMethod"]._input);
+		that["fun_DRequestMethod"]._input.attachChange(that["fun_DRequestMethod"].propertyChanged, that);
+		that["fun_DRequestMethod"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDRequestMethod();
+		that["fun_DRequestMethod"].update();
 	};
 
-	this.propertyChangedDRequestMethod = function(oControlEvent){
+	that["fun_DRequestMethod"].propertyChanged = function(oControlEvent){
 		var newValue = oControlEvent.getParameter("newValue");
-		this._DRequestMethod = newValue;
-		this.firePropertiesChanged(["DRequestMethod"]);
+		that["fun_DRequestMethod"]._ = newValue;
+		that.firePropertiesChanged(["DRequestMethod"]);
 	};
 	
-	this.DRequestMethod = function(s){
+	that.DRequestMethod = function(s){
 		if( s === undefined){
-			return this._DRequestMethod;
+			return that["fun_DRequestMethod"]._;
 		}else{
-			this._DRequestMethod = s;
-			this.updatePropertyDRequestMethod();
-			return this;
+			that["fun_DRequestMethod"]._ = s;
+			that["fun_DRequestMethod"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDCrossDomain = function(){
-		this._inputDCrossDomain.setChecked(this._DCrossDomain);
+	that["fun_DCrossDomain"] = {};
+	
+	that["fun_DCrossDomain"].update = function(){
+		that["fun_DCrossDomain"]._input.setChecked(that["fun_DCrossDomain"]._);
 	};
 	
-	this.initDCrossDomain = function(){
-		this._labelDCrossDomain = new sap.ui.commons.Label({text: " Is this Request Cross-Domain"});
-		this._labelDCrossDomain.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDCrossDomain);
+	that["fun_DCrossDomain"].init = function(){
+		that["fun_DCrossDomain"]._label = new sap.ui.commons.Label({text: " Is this Request Cross-Domain"});
+		that["fun_DCrossDomain"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DCrossDomain"]._label);
 		
-		this._inputDCrossDomain = new sap.ui.commons.CheckBox({width: "300px", text: "Is this Request Cross-Domain"});
-		this._content.addContent(this._inputDCrossDomain);
-		this._inputDCrossDomain.attachChange(this.propertyChangedDCrossDomain, this);
-		this._inputDCrossDomain.addStyleClass("org-scn-ApsBoolean");
+		that["fun_DCrossDomain"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Is this Request Cross-Domain"});
+		that._content.addContent(that["fun_DCrossDomain"]._input);
+		that["fun_DCrossDomain"]._input.attachChange(that["fun_DCrossDomain"].propertyChanged, that);
+		that["fun_DCrossDomain"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDCrossDomain();
+		that["fun_DCrossDomain"].update();
 	};
 
-	this.propertyChangedDCrossDomain = function(oControlEvent){
+	that["fun_DCrossDomain"].propertyChanged = function(oControlEvent){
 		var checked = oControlEvent.getParameter("checked");
-		this._DCrossDomain = checked;
-		this.firePropertiesChanged(["DCrossDomain"]);
+		that["fun_DCrossDomain"]._ = checked;
+		that.firePropertiesChanged(["DCrossDomain"]);
 	};
 	
-	this.DCrossDomain = function(s){
+	that.DCrossDomain = function(s){
 		if( s === undefined){
-			return this._DCrossDomain;
+			return that["fun_DCrossDomain"]._;
 		}else{
-			this._DCrossDomain = s;
-			this.updatePropertyDCrossDomain();
-			return this;
+			that["fun_DCrossDomain"]._ = s;
+			that["fun_DCrossDomain"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDBasicAuthorisation = function(){
-		this._inputDBasicAuthorisation.setValue(this._DBasicAuthorisation);
+	that["fun_DBasicAuthorisation"] = {};
+	
+	that["fun_DBasicAuthorisation"].update = function(){
+		that["fun_DBasicAuthorisation"]._input.setValue(that["fun_DBasicAuthorisation"]._);
 	};
 	
-	this.initDBasicAuthorisation = function(){
-		this._labelDBasicAuthorisation = new sap.ui.commons.Label({text: " Basic Authorization Content [Basic: GUID]"});
-		this._labelDBasicAuthorisation.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDBasicAuthorisation);
+	that["fun_DBasicAuthorisation"].init = function(){
+		that["fun_DBasicAuthorisation"]._label = new sap.ui.commons.Label({text: " Basic Authorization Content [Basic: GUID]"});
+		that["fun_DBasicAuthorisation"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DBasicAuthorisation"]._label);
 		
-		this._inputDBasicAuthorisation = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDBasicAuthorisation);
-		this._inputDBasicAuthorisation.attachChange(this.propertyChangedDBasicAuthorisation, this);
-		this._inputDBasicAuthorisation.addStyleClass("org-scn-ApsSimple");
+		that["fun_DBasicAuthorisation"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DBasicAuthorisation"]._input);
+		that["fun_DBasicAuthorisation"]._input.attachChange(that["fun_DBasicAuthorisation"].propertyChanged, that);
+		that["fun_DBasicAuthorisation"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDBasicAuthorisation();
+		that["fun_DBasicAuthorisation"].update();
 	};
 
-	this.propertyChangedDBasicAuthorisation = function(oControlEvent){
+	that["fun_DBasicAuthorisation"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DBasicAuthorisation = value;
-		this.firePropertiesChanged(["DBasicAuthorisation"]);
+		that["fun_DBasicAuthorisation"]._ = value;
+		that.firePropertiesChanged(["DBasicAuthorisation"]);
 	};
 	
-	this.DBasicAuthorisation = function(s){
+	that.DBasicAuthorisation = function(s){
 		if( s === undefined){
-			return this._DBasicAuthorisation;
+			return that["fun_DBasicAuthorisation"]._;
 		}else{
-			this._DBasicAuthorisation = s;
-			this.updatePropertyDBasicAuthorisation();
-			return this;
+			that["fun_DBasicAuthorisation"]._ = s;
+			that["fun_DBasicAuthorisation"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDContentType = function(){
-		this._inputDContentType.setValue(this._DContentType);
+	that["fun_DContentType"] = {};
+	
+	that["fun_DContentType"].update = function(){
+		that["fun_DContentType"]._input.setValue(that["fun_DContentType"]._);
 	};
 	
-	this.initDContentType = function(){
-		this._labelDContentType = new sap.ui.commons.Label({text: " Content Type"});
-		this._labelDContentType.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDContentType);
+	that["fun_DContentType"].init = function(){
+		that["fun_DContentType"]._label = new sap.ui.commons.Label({text: " Content Type"});
+		that["fun_DContentType"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DContentType"]._label);
 		
-		this._inputDContentType = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDContentType);
-		this._inputDContentType.attachChange(this.propertyChangedDContentType, this);
-		this._inputDContentType.addStyleClass("org-scn-ApsSimple");
+		that["fun_DContentType"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DContentType"]._input);
+		that["fun_DContentType"]._input.attachChange(that["fun_DContentType"].propertyChanged, that);
+		that["fun_DContentType"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDContentType();
+		that["fun_DContentType"].update();
 	};
 
-	this.propertyChangedDContentType = function(oControlEvent){
+	that["fun_DContentType"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DContentType = value;
-		this.firePropertiesChanged(["DContentType"]);
+		that["fun_DContentType"]._ = value;
+		that.firePropertiesChanged(["DContentType"]);
 	};
 	
-	this.DContentType = function(s){
+	that.DContentType = function(s){
 		if( s === undefined){
-			return this._DContentType;
+			return that["fun_DContentType"]._;
 		}else{
-			this._DContentType = s;
-			this.updatePropertyDContentType();
-			return this;
+			that["fun_DContentType"]._ = s;
+			that["fun_DContentType"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDExpectedResponseStatus = function(){
-		this._inputDExpectedResponseStatus.setValue(this._DExpectedResponseStatus);
+	that["fun_DExpectedResponseStatus"] = {};
+	
+	that["fun_DExpectedResponseStatus"].update = function(){
+		that["fun_DExpectedResponseStatus"]._input.setValue(that["fun_DExpectedResponseStatus"]._);
 	};
 	
-	this.initDExpectedResponseStatus = function(){
-		this._labelDExpectedResponseStatus = new sap.ui.commons.Label({text: " Response Status for Good Response"});
-		this._labelDExpectedResponseStatus.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDExpectedResponseStatus);
+	that["fun_DExpectedResponseStatus"].init = function(){
+		that["fun_DExpectedResponseStatus"]._label = new sap.ui.commons.Label({text: " Response Status for Good Response"});
+		that["fun_DExpectedResponseStatus"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DExpectedResponseStatus"]._label);
 		
-		this._inputDExpectedResponseStatus = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDExpectedResponseStatus);
-		this._inputDExpectedResponseStatus.attachChange(this.propertyChangedDExpectedResponseStatus, this);
-		this._inputDExpectedResponseStatus.addStyleClass("org-scn-ApsSimple");
+		that["fun_DExpectedResponseStatus"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DExpectedResponseStatus"]._input);
+		that["fun_DExpectedResponseStatus"]._input.attachChange(that["fun_DExpectedResponseStatus"].propertyChanged, that);
+		that["fun_DExpectedResponseStatus"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDExpectedResponseStatus();
+		that["fun_DExpectedResponseStatus"].update();
 	};
 
-	this.propertyChangedDExpectedResponseStatus = function(oControlEvent){
+	that["fun_DExpectedResponseStatus"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DExpectedResponseStatus = value;
-		this.firePropertiesChanged(["DExpectedResponseStatus"]);
+		that["fun_DExpectedResponseStatus"]._ = value;
+		that.firePropertiesChanged(["DExpectedResponseStatus"]);
 	};
 	
-	this.DExpectedResponseStatus = function(s){
+	that.DExpectedResponseStatus = function(s){
 		if( s === undefined){
-			return this._DExpectedResponseStatus;
+			return that["fun_DExpectedResponseStatus"]._;
 		}else{
-			this._DExpectedResponseStatus = s;
-			this.updatePropertyDExpectedResponseStatus();
-			return this;
+			that["fun_DExpectedResponseStatus"]._ = s;
+			that["fun_DExpectedResponseStatus"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDExpectedContentType = function(){
-		this._inputDExpectedContentType.setSelectedKey(this._DExpectedContentType);
+	that["fun_DExpectedContentType"] = {};
+	
+	that["fun_DExpectedContentType"].update = function(){
+		that["fun_DExpectedContentType"]._input.setSelectedKey(that["fun_DExpectedContentType"]._);
 	};
 	
-	this.initDExpectedContentType = function(){
-		this._labelDExpectedContentType = new sap.ui.commons.Label({text: " Expected Content Type"});
-		this._labelDExpectedContentType.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDExpectedContentType);
+	that["fun_DExpectedContentType"].init = function(){
+		that["fun_DExpectedContentType"]._label = new sap.ui.commons.Label({text: " Expected Content Type"});
+		that["fun_DExpectedContentType"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DExpectedContentType"]._label);
 		
-		this._inputDExpectedContentType = new sap.ui.commons.ComboBox({width: "300px"});
-		this._inputDExpectedContentType.addItem(new sap.ui.core.ListItem({key:"text", text:"text"}));
-		this._inputDExpectedContentType.addItem(new sap.ui.core.ListItem({key:"json", text:"json"}));
+		that["fun_DExpectedContentType"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DExpectedContentType"]._input.addItem(new sap.ui.core.ListItem({key:"text", text:"text"}));
+		that["fun_DExpectedContentType"]._input.addItem(new sap.ui.core.ListItem({key:"json", text:"json"}));
 		
-		this._content.addContent(this._inputDExpectedContentType);
-		this._inputDExpectedContentType.attachChange(this.propertyChangedDExpectedContentType, this);
-		this._inputDExpectedContentType.addStyleClass("org-scn-ApsBoolean");
+		that._content.addContent(that["fun_DExpectedContentType"]._input);
+		that["fun_DExpectedContentType"]._input.attachChange(that["fun_DExpectedContentType"].propertyChanged, that);
+		that["fun_DExpectedContentType"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDExpectedContentType();
+		that["fun_DExpectedContentType"].update();
 	};
 
-	this.propertyChangedDExpectedContentType = function(oControlEvent){
+	that["fun_DExpectedContentType"].propertyChanged = function(oControlEvent){
 		var newValue = oControlEvent.getParameter("newValue");
-		this._DExpectedContentType = newValue;
-		this.firePropertiesChanged(["DExpectedContentType"]);
+		that["fun_DExpectedContentType"]._ = newValue;
+		that.firePropertiesChanged(["DExpectedContentType"]);
 	};
 	
-	this.DExpectedContentType = function(s){
+	that.DExpectedContentType = function(s){
 		if( s === undefined){
-			return this._DExpectedContentType;
+			return that["fun_DExpectedContentType"]._;
 		}else{
-			this._DExpectedContentType = s;
-			this.updatePropertyDExpectedContentType();
-			return this;
+			that["fun_DExpectedContentType"]._ = s;
+			that["fun_DExpectedContentType"].update();
+			return that;
 		}
 	};
 
@@ -325,16 +341,18 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 
 
 
-	this._elementsContentDParameters = [];
-	this._selectedElementKeyDParameters = "";
-	this._selectedItemKeyDParameters = "";
-	this._currentItemConfigDParameters = {};
+	that["fun_DParameters"] = {};
+	
+	that["fun_DParameters"]._elementsContent = [];
+	that["fun_DParameters"]._selectedElementKey = "";
+	that["fun_DParameters"]._selectedItemKey = "";
+	that["fun_DParameters"]._currentItemConfig = {};
 
 	/*
 	 * Retrieves JSON for Element Entry
 	 */
-	this.getElementDParameters = function(key){
-		var sections = this.gatherElementsDParameters();
+	that["fun_DParameters"].getElement = function(key){
+		var sections = that["fun_DParameters"].gatherElements();
 		for(var i=0;i<sections.length;i++){
 			if(sections[i].key == key) return sections[i];
 		}
@@ -342,51 +360,51 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 	/*
 	 * Retrieves JSON for Item Entry
 	 */
-	this.getItemDParameters = function(sectionKey,key){
-		for(var i=0;i<this._elementsContentDParameters.length;i++){
-			if(this._elementsContentDParameters[i].key == key && this._elementsContentDParameters[i].parentKey==sectionKey) return this._elementsContentDParameters[i];
+	that["fun_DParameters"].getItem = function(sectionKey,key){
+		for(var i=0;i<that["fun_DParameters"]._elementsContent.length;i++){
+			if(that["fun_DParameters"]._elementsContent[i].key == key && that["fun_DParameters"]._elementsContent[i].parentKey==sectionKey) return that["fun_DParameters"]._elementsContent[i];
 		}
 	};
 	/*
 	 * Update Element JSON and notify Design Studio IDE
 	 */
-	this.updateElementDParameters = function(key,section){
-		for(var i=0;i<this._elementsContentDParameters.length;i++){
-			var element = this._elementsContentDParameters[i];
+	that["fun_DParameters"].updateElement = function(key,section){
+		for(var i=0;i<that["fun_DParameters"]._elementsContent.length;i++){
+			var element = that["fun_DParameters"]._elementsContent[i];
 			if(!element.leaf && element.key==key){
-				this._elementsContentDParameters[i] = section;
+				that["fun_DParameters"]._elementsContent[i] = section;
 			}
 		}
-		this.firePropertiesChanged(["DParameters"]);
-		this.updatePropertyDParameters();
+		that.firePropertiesChanged(["DParameters"]);
+		that["fun_DParameters"].update();
 	};
 	/*
 	 * Update Item JSON and notify Design Studio IDE
 	 */
-	this.updateItemDParameters = function(key){
-		for(var i=0;i<this._elementsContentDParameters.length;i++){
-			var element = this._elementsContentDParameters[i];
+	that["fun_DParameters"].updateItem = function(key){
+		for(var i=0;i<that["fun_DParameters"]._elementsContent.length;i++){
+			var element = that["fun_DParameters"]._elementsContent[i];
 			if(element.leaf && element.key==key){
-				this._elementsContentDParameters[i] = this._currentItemConfigDParameters;
+				that["fun_DParameters"]._elementsContent[i] = that["fun_DParameters"]._currentItemConfig;
 			}
 		}
-		this.firePropertiesChanged(["DParameters"]);
-		this.updatePropertyDParameters();
-		this.closeDetailDParameters();
+		that.firePropertiesChanged(["DParameters"]);
+		that["fun_DParameters"].update();
+		that["fun_DParameters"].closeDetail();
 	};
 	/*
 	 * Displays Element Properties
 	 */
-	this.showElementPropertiesDParameters = function(){
-		this._sectionPropertyLayoutDParameters.destroyContent();
-		this._sectionPropertyListDParameters.destroyContent();
+	that["fun_DParameters"].showElementProperties = function(){
+		that["fun_DParameters"]._sectionPropertyLayout.destroyContent();
+		that["fun_DParameters"]._sectionPropertyList.destroyContent();
 		
-		this._selectedElementKeyDParameters = this._listBuilderDParameters.getSelectedKey();
-		if(!this._selectedElementKeyDParameters) return;
-		var selectedElement = this.getElementDParameters(this._selectedElementKeyDParameters);		
+		that["fun_DParameters"]._selectedElementKey = that["fun_DParameters"]._listBuilder.getSelectedKey();
+		if(!that["fun_DParameters"]._selectedElementKey) return;
+		var selectedElement = that["fun_DParameters"].getElement(that["fun_DParameters"]._selectedElementKey);		
 		if(!selectedElement) return;
 		
-		var items = this.gatherItemsDParameters(this._selectedElementKeyDParameters);
+		var items = that["fun_DParameters"].gatherItems(that["fun_DParameters"]._selectedElementKey);
 		
 		var sectionKey = new sap.ui.commons.TextView({text : "Parameter Name"});
 		sectionKey.addStyleClass("org-scn-ApsLabelArray");
@@ -395,20 +413,20 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		txtElementKey.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
 			// Protect Key
-			value = this._listBuilderDParameters.generateKey(value);
-			var section = this.getElementDParameters(this._listBuilderDParameters.getSelectedKey());
+			value = that["fun_DParameters"]._listBuilder.generateKey(value);
+			var section = that["fun_DParameters"].getElement(that["fun_DParameters"]._listBuilder.getSelectedKey());
 			section.key = value;
 			// Update Parent Key references
-			for(var i=0;i<this._elementsContentDParameters.length;i++){
-				var element = this._elementsContentDParameters[i];
-				if(element.parentKey == this._listBuilderDParameters.getSelectedKey() && element.leaf) element.parentKey = value;
+			for(var i=0;i<that["fun_DParameters"]._elementsContent.length;i++){
+				var element = that["fun_DParameters"]._elementsContent[i];
+				if(element.parentKey == that["fun_DParameters"]._listBuilder.getSelectedKey() && element.leaf) element.parentKey = value;
 			}
-			this.updateElementDParameters(this._listBuilderDParameters.getSelectedKey(),section);
-			this._listBuilderDParameters.setSelectedKey(value);
-			this.showElementPropertiesDParameters();
-		}, this);
-		this._sectionPropertyLayoutDParameters.addContent(sectionKey);
-		this._sectionPropertyLayoutDParameters.addContent(txtElementKey);
+			that["fun_DParameters"].updateElement(that["fun_DParameters"]._listBuilder.getSelectedKey(),section);
+			that["fun_DParameters"]._listBuilder.setSelectedKey(value);
+			that["fun_DParameters"].showElementProperties();
+		}, that);
+		that["fun_DParameters"]._sectionPropertyLayout.addContent(sectionKey);
+		that["fun_DParameters"]._sectionPropertyLayout.addContent(txtElementKey);
 
 		var sectionvalue = new sap.ui.commons.TextView({text : "Parameter Value"});
 		sectionvalue.addStyleClass("org-scn-ApsLabelArray");
@@ -416,12 +434,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		txtElementvalue.addStyleClass("org-scn-ApsInputArray");
 		txtElementvalue.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
-			var section = this.getElementDParameters(this._listBuilderDParameters.getSelectedKey());
+			var section = that["fun_DParameters"].getElement(that["fun_DParameters"]._listBuilder.getSelectedKey());
 			section.value = value;
-			this.updateElementDParameters(this._listBuilderDParameters.getSelectedKey(),section);
-		}, this);
-		this._sectionPropertyLayoutDParameters.addContent(sectionvalue);
-		this._sectionPropertyLayoutDParameters.addContent(txtElementvalue);
+			that["fun_DParameters"].updateElement(that["fun_DParameters"]._listBuilder.getSelectedKey(),section);
+		}, that);
+		that["fun_DParameters"]._sectionPropertyLayout.addContent(sectionvalue);
+		that["fun_DParameters"]._sectionPropertyLayout.addContent(txtElementvalue);
 
 
 		var itemsLabel = new sap.ui.commons.TextView({text : "Items"});
@@ -430,27 +448,27 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 			width : "200px",
 			newKeyPrefix : "ITEM_",
 			newTextPrefix : "Item ",
-			list : this.gatherItemsDParameters(this._listBuilderDParameters.getSelectedKey()),
+			list : that["fun_DParameters"].gatherItems(that["fun_DParameters"]._listBuilder.getSelectedKey()),
 			showDetail : true,
-			selectedKey : this._selectedItemKeyDParameters
+			selectedKey : that["fun_DParameters"]._selectedItemKey
 		});
 		
-		itemsList.attachItemAdded(this.addItemDParameters,this);
-		itemsList.attachItemDeleted(this.delItemDParameters,this);
-		itemsList.attachItemDetail(this.showItemPropertiesDParameters,this);
-		itemsList.attachItemMoved(this.moveItemDParameters,this);
-		itemsList.attachItemSelected(this.itemSelectedDParameters,this);
+		itemsList.attachItemAdded(that["fun_DParameters"].addItem,that);
+		itemsList.attachItemDeleted(that["fun_DParameters"].delItem,that);
+		itemsList.attachItemDetail(that["fun_DParameters"].showItemProperties,that);
+		itemsList.attachItemMoved(that["fun_DParameters"].moveItem,that);
+		itemsList.attachItemSelected(that["fun_DParameters"].itemSelected,that);
 		
-		this._sectionPropertyListDParameters.addContent(itemsLabel);
-		this._sectionPropertyListDParameters.addContent(itemsList);
+		that["fun_DParameters"]._sectionPropertyList.addContent(itemsLabel);
+		that["fun_DParameters"]._sectionPropertyList.addContent(itemsList);
 	};
 	/*
 	 * Displays Item Properties in a Popup Panel
 	 */
-	this.showItemPropertiesDParameters = function(oControlEvent){
+	that["fun_DParameters"].showItemProperties = function(oControlEvent){
 		var detailData = oControlEvent.getParameters();
-		this._currentItemConfigDParameters = this.getItemDParameters(this._listBuilderDParameters.getSelectedKey(),detailData.key);
-		if(!this._currentItemConfigDParameters) return;
+		that["fun_DParameters"]._currentItemConfig = that["fun_DParameters"].getItem(that["fun_DParameters"]._listBuilder.getSelectedKey(),detailData.key);
+		if(!that["fun_DParameters"]._currentItemConfig) return;
 		
 		var itemDetailPanel = new sap.ui.commons.Panel({
 			text : "Item Details",
@@ -464,17 +482,17 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		
 		var itemKey = new sap.ui.commons.TextView({text : "%ITEM_PROPERTY_DESCRIPTION%"});
 		itemKey.addStyleClass("org-scn-ApsLabelArray");
-		var txtItemKey = new sap.ui.commons.TextField({value : this._currentItemConfigDParameters.key, width: "300px"});
+		var txtItemKey = new sap.ui.commons.TextField({value : that["fun_DParameters"]._currentItemConfig.key, width: "300px"});
 		txtItemKey.addStyleClass("org-scn-ApsInputArray");
 		txtItemKey.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
 			// Protect Key
 			var allItems = new org.scn.community.propertysheet.ListBuilder();		
-			allItems.setList(this._elementsContentDParameters);
+			allItems.setList(that["fun_DParameters"]._elementsContent);
 			var newItemKey = allItems.generateKey(value);
 			delete allItems;
-			this._currentItemConfigDParameters.key = newItemKey;		
-		}, this);
+			that["fun_DParameters"]._currentItemConfig.key = newItemKey;		
+		}, that);
 		itemDetailLayout.addContent(itemKey);
 		itemDetailLayout.addContent(txtItemKey);
 
@@ -487,8 +505,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 			text : "Update"
 		});
 		
-		closeButton.attachPress(this.closeDetailDParameters,this);
-		okButton.attachPress(this.updateItemDParameters,this);
+		closeButton.attachPress(that["fun_DParameters"].closeDetail,that);
+		okButton.attachPress(that["fun_DParameters"].updateItem,that);
 		
 		detailButtons.addContent(closeButton);
 		detailButtons.addContent(okButton);
@@ -497,239 +515,241 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		itemDetailLayout.addContent(detailButtons);
 		itemDetailPanel.addContent(itemDetailLayout);
 		
-		if(!this._popupDParameters) this._popupDParameters = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
+		if(!that["fun_DParameters"]._popup) that["fun_DParameters"]._popup = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
 		
-		//this._popupDParameters.destroyContent();
-		this._popupDParameters.open(250,"center center", "center center", document.body, null);
+		//that["fun_DParameters"]._popup.destroyContent();
+		that["fun_DParameters"]._popup.open(250,"center center", "center center", document.body, null);
 	};
 	/*
 	 * Fires when Element Listbox is selected
 	 */
-	this.elementSelectedDParameters = function(oControlEvent){
-		this._selectedElementKeyDParameters = "";
-		if(oControlEvent.getParameters().key) this._selectedElementKeyDParameters = oControlEvent.getParameters().key;
-		this.showElementPropertiesDParameters();
+	that["fun_DParameters"].elementSelected = function(oControlEvent){
+		that["fun_DParameters"]._selectedElementKey = "";
+		if(oControlEvent.getParameters().key) that["fun_DParameters"]._selectedElementKey = oControlEvent.getParameters().key;
+		that["fun_DParameters"].showElementProperties();
 	};
 	/*
 	 * Fires when Item Listbox is selected
 	 */
-	this.itemSelectedDParameters = function(oControlEvent){
-		this._selectedItemKeyDParameters = "";
-		if(oControlEvent.getParameters().key) this._selectedItemKeyDParameters = oControlEvent.getParameters().key;
+	that["fun_DParameters"].itemSelected = function(oControlEvent){
+		that["fun_DParameters"]._selectedItemKey = "";
+		if(oControlEvent.getParameters().key) that["fun_DParameters"]._selectedItemKey = oControlEvent.getParameters().key;
 	};
 	/*
 	 * Fires when component is selected or when properties change to re-render
 	 */
-	this.updatePropertyDParameters = function(){
-		this._listBuilderDParameters.setList(this.gatherElementsDParameters());
-		this.showElementPropertiesDParameters(this._listBuilderDParameters.getSelectedKey());
+	that["fun_DParameters"].update = function(){
+		that["fun_DParameters"]._listBuilder.setList(that["fun_DParameters"].gatherElements());
+		that["fun_DParameters"].showElementProperties(that["fun_DParameters"]._listBuilder.getSelectedKey());
 	};
 	/*
 	 * Fires when item delete button clicked
 	 */
-	this.delItemDParameters = function(oControlEvent){
-		var sectionKey = this._listBuilderDParameters.getSelectedKey();
+	that["fun_DParameters"].delItem = function(oControlEvent){
+		var sectionKey = that["fun_DParameters"]._listBuilder.getSelectedKey();
 		var itemKey = oControlEvent.getParameter("key");
 		if(sectionKey && itemKey) {
-			for(var i=0;i<this._elementsContentDParameters.length;i++){
-				if(this._elementsContentDParameters[i].leaf == true && this._elementsContentDParameters[i].key == itemKey && this._elementsContentDParameters[i].parentKey==sectionKey) {
-					this._elementsContentDParameters.splice(i,1);
-					this.firePropertiesChanged(["DParameters"]);
-					this.updatePropertyDParameters();
+			for(var i=0;i<that["fun_DParameters"]._elementsContent.length;i++){
+				if(that["fun_DParameters"]._elementsContent[i].leaf == true && that["fun_DParameters"]._elementsContent[i].key == itemKey && that["fun_DParameters"]._elementsContent[i].parentKey==sectionKey) {
+					that["fun_DParameters"]._elementsContent.splice(i,1);
+					that.firePropertiesChanged(["DParameters"]);
+					that["fun_DParameters"].update();
 				}
 			}
 		}
-		this.updatePropertyDParameters();
+		that["fun_DParameters"].update();
 	}
 	/*
 	 * Fires when section delete button clicked
 	 */
-	this.delElementDParameters = function(oControlEvent){
+	that["fun_DParameters"].delElement = function(oControlEvent){
 		var key = oControlEvent.getParameter("key");
 		if(key) {
 			// Delete Element
-			for(var i=0;i<this._elementsContentDParameters.length;i++){
-				if(this._elementsContentDParameters[i].leaf == false && this._elementsContentDParameters[i].key == key) {
-					this._elementsContentDParameters.splice(i,1);
+			for(var i=0;i<that["fun_DParameters"]._elementsContent.length;i++){
+				if(that["fun_DParameters"]._elementsContent[i].leaf == false && that["fun_DParameters"]._elementsContent[i].key == key) {
+					that["fun_DParameters"]._elementsContent.splice(i,1);
 				}
 			}
 			// Delete Items under Element
-			for(var i=this._elementsContentDParameters.length-1;i>=0;i--){
-				if(this._elementsContentDParameters[i].leaf == true && this._elementsContentDParameters[i].parentKey == key) {
-					this._elementsContentDParameters.splice(i,1);
+			for(var i=that["fun_DParameters"]._elementsContent.length-1;i>=0;i--){
+				if(that["fun_DParameters"]._elementsContent[i].leaf == true && that["fun_DParameters"]._elementsContent[i].parentKey == key) {
+					that["fun_DParameters"]._elementsContent.splice(i,1);
 				}
 			}
-			this.firePropertiesChanged(["DParameters"]);
+			that.firePropertiesChanged(["DParameters"]);
 		}
-		this.updatePropertyDParameters();
+		that["fun_DParameters"].update();
 	};
 	/*
 	 * Fires when item add button clicked
 	 */
-	this.addItemDParameters = function(oControlEvent){
+	that["fun_DParameters"].addItem = function(oControlEvent){
 		var allItems = new org.scn.community.propertysheet.ListBuilder();		
-		allItems.setList(this._elementsContentDParameters);
+		allItems.setList(that["fun_DParameters"]._elementsContent);
 		var newItemKey = allItems.generateKey("Item");
 		delete allItems;
 		var sectionItems = new org.scn.community.propertysheet.ListBuilder();
-		sectionItems.setList(this._elementsContentDParameters);
+		sectionItems.setList(that["fun_DParameters"]._elementsContent);
 		var newItem = { 
-			parentKey : this._listBuilderDParameters.getSelectedKey(),
+			parentKey : that["fun_DParameters"]._listBuilder.getSelectedKey(),
 			key : newItemKey, 
 			leaf: true, 
 			
 		};
-		this._elementsContentDParameters.push(newItem);
-		this.firePropertiesChanged(["DParameters"]);
-		this.updatePropertyDParameters();
+		that["fun_DParameters"]._elementsContent.push(newItem);
+		that.firePropertiesChanged(["DParameters"]);
+		that["fun_DParameters"].update();
 	}
 	/*
 	 * Fires when section add button clicked
 	 */
-	this.addElementDParameters = function(oControlEvent){
-		var newKey = this._listBuilderDParameters.generateKey("Element");
+	that["fun_DParameters"].addElement = function(oControlEvent){
+		var newKey = that["fun_DParameters"]._listBuilder.generateKey("Element");
 		var newElement = { 
 			parentKey : "ROOT",
 			key : newKey,
 			leaf: false, 
 			value:""
 		};
-		this._listBuilderDParameters.setSelectedKey(newKey);
-		this._elementsContentDParameters.push(newElement);
-		this.firePropertiesChanged(["DParameters"]);
-		this.updatePropertyDParameters();
+		that["fun_DParameters"]._listBuilder.setSelectedKey(newKey);
+		that["fun_DParameters"]._elementsContent.push(newElement);
+		that.firePropertiesChanged(["DParameters"]);
+		that["fun_DParameters"].update();
 	};
 	/*
 	 * Fires when section up or down button clicked
 	 */
-	this.moveElementDParameters = function(oControlEvent){
+	that["fun_DParameters"].moveElement = function(oControlEvent){
 		var movementData = oControlEvent.getParameters();
 		var targetIndex = -1;
 		var sourceIndex = -1;
-		for(var i=0;i<this._elementsContentDParameters.length;i++){
-			if(this._elementsContentDParameters[i].key == movementData.key && !this._elementsContentDParameters[i].leaf) sourceIndex = i;
-			if(this._elementsContentDParameters[i].key == movementData.targetKey && !this._elementsContentDParameters[i].leaf) targetIndex = i;
+		for(var i=0;i<that["fun_DParameters"]._elementsContent.length;i++){
+			if(that["fun_DParameters"]._elementsContent[i].key == movementData.key && !that["fun_DParameters"]._elementsContent[i].leaf) sourceIndex = i;
+			if(that["fun_DParameters"]._elementsContent[i].key == movementData.targetKey && !that["fun_DParameters"]._elementsContent[i].leaf) targetIndex = i;
 		}
 		if(targetIndex != -1 && sourceIndex != -1){
-			var temp = this._elementsContentDParameters[targetIndex];
-			this._elementsContentDParameters[targetIndex] = this._elementsContentDParameters[sourceIndex];
-			this._elementsContentDParameters[sourceIndex] = temp;
-			this.firePropertiesChanged(["DParameters"]);
-			this.updatePropertyDParameters();
+			var temp = that["fun_DParameters"]._elementsContent[targetIndex];
+			that["fun_DParameters"]._elementsContent[targetIndex] = that["fun_DParameters"]._elementsContent[sourceIndex];
+			that["fun_DParameters"]._elementsContent[sourceIndex] = temp;
+			that.firePropertiesChanged(["DParameters"]);
+			that["fun_DParameters"].update();
 		}
 	};
 	/*
 	 * Close Item Properties Popup
 	 */
-	this.closeDetailDParameters = function(oControlEvent){
-		if(this._popupDParameters) {
-			this._popupDParameters.close();
-			this._popupDParameters.destroy();
-			delete this._popupDParameters;
+	that["fun_DParameters"].closeDetail = function(oControlEvent){
+		if(that["fun_DParameters"]._popup) {
+			that["fun_DParameters"]._popup.close();
+			that["fun_DParameters"]._popup.destroy();
+			delete that["fun_DParameters"]._popup;
 		}
 		
 	};
 	/*
 	 * Fires when item up or down button clicked
 	 */
-	this.moveItemDParameters = function(oControlEvent){
+	that["fun_DParameters"].moveItem = function(oControlEvent){
 		var movementData = oControlEvent.getParameters();
 		var targetIndex = -1;
 		var sourceIndex = -1;
-		var sectionKey = this._listBuilderDParameters.getSelectedKey();
+		var sectionKey = that["fun_DParameters"]._listBuilder.getSelectedKey();
 		var itemKey = oControlEvent.getParameter("key");
-		for(var i=0;i<this._elementsContentDParameters.length;i++){
-			if(this._elementsContentDParameters[i].key == itemKey && this._elementsContentDParameters[i].parentKey == sectionKey && this._elementsContentDParameters[i].leaf) sourceIndex = i;
-			if(this._elementsContentDParameters[i].key == movementData.targetKey && this._elementsContentDParameters[i].parentKey == sectionKey && this._elementsContentDParameters[i].leaf) targetIndex = i;
+		for(var i=0;i<that["fun_DParameters"]._elementsContent.length;i++){
+			if(that["fun_DParameters"]._elementsContent[i].key == itemKey && that["fun_DParameters"]._elementsContent[i].parentKey == sectionKey && that["fun_DParameters"]._elementsContent[i].leaf) sourceIndex = i;
+			if(that["fun_DParameters"]._elementsContent[i].key == movementData.targetKey && that["fun_DParameters"]._elementsContent[i].parentKey == sectionKey && that["fun_DParameters"]._elementsContent[i].leaf) targetIndex = i;
 		}
 		if(targetIndex != -1 && sourceIndex != -1){
-			var temp = this._elementsContentDParameters[targetIndex];
-			this._elementsContentDParameters[targetIndex] = this._elementsContentDParameters[sourceIndex];
-			this._elementsContentDParameters[sourceIndex] = temp;
-			this.firePropertiesChanged(["DParameters"]);
-			this.updatePropertyDParameters();
+			var temp = that["fun_DParameters"]._elementsContent[targetIndex];
+			that["fun_DParameters"]._elementsContent[targetIndex] = that["fun_DParameters"]._elementsContent[sourceIndex];
+			that["fun_DParameters"]._elementsContent[sourceIndex] = temp;
+			that.firePropertiesChanged(["DParameters"]);
+			that["fun_DParameters"].update();
 		}
 	}
 	/*
 	 * Convenience Function to return only entries that are Elements
 	 */
-	this.gatherElementsDParameters = function(){
+	that["fun_DParameters"].gatherElements = function(){
 		var sections = [];
-		for(var i=0;i<this._elementsContentDParameters.length;i++){
-			if(this._elementsContentDParameters[i].leaf==false) sections.push(this._elementsContentDParameters[i]);
+		for(var i=0;i<that["fun_DParameters"]._elementsContent.length;i++){
+			if(that["fun_DParameters"]._elementsContent[i].leaf==false) sections.push(that["fun_DParameters"]._elementsContent[i]);
 		}
 		return sections;
 	};
 	/*
 	 * Convenience Function to return only entries that are Items (Leafs)
 	 */
-	this.gatherItemsDParameters = function(sectionKey){
+	that["fun_DParameters"].gatherItems = function(sectionKey){
 		var items = [];
-		for(var i=0;i<this._elementsContentDParameters.length;i++){
-			if(this._elementsContentDParameters[i].leaf==true && this._elementsContentDParameters[i].parentKey==sectionKey) items.push(this._elementsContentDParameters[i]);
+		for(var i=0;i<that["fun_DParameters"]._elementsContent.length;i++){
+			if(that["fun_DParameters"]._elementsContent[i].leaf==true && that["fun_DParameters"]._elementsContent[i].parentKey==sectionKey) items.push(that["fun_DParameters"]._elementsContent[i]);
 		}
 		return items;
 	};
 	/*
 	 * Property Sheet Initialization
 	 */
-	this.initDParameters = function(){
+	that["fun_DParameters"].init = function(){
 		
-		this._labelDParameters = new sap.ui.commons.Label({text: " List of Parameters (Name / Value)"});
-		this._labelDParameters.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDParameters);
+		that["fun_DParameters"]._label = new sap.ui.commons.Label({text: " List of Parameters (Name / Value)"});
+		that["fun_DParameters"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DParameters"]._label);
 		
-		this._hLayoutDParameters = new sap.ui.commons.layout.HorizontalLayout({ });
-		this._content.addContent(this._hLayoutDParameters);
-		this._listBuilderDParameters = new org.scn.community.propertysheet.ListBuilder({
+		that["fun_DParameters"]._hLayout = new sap.ui.commons.layout.HorizontalLayout({ });
+		that._content.addContent(that["fun_DParameters"]._hLayout);
+		that["fun_DParameters"]._listBuilder = new org.scn.community.propertysheet.ListBuilder({
 			width : "200px"
 		});
 		
-		this._listBuilderDParameters.attachItemAdded(this.addElementDParameters,this);
-		this._listBuilderDParameters.attachItemDeleted(this.delElementDParameters,this);
-		this._listBuilderDParameters.attachItemMoved(this.moveElementDParameters,this);
-		this._listBuilderDParameters.attachItemSelected(this.elementSelectedDParameters,this);
+		that["fun_DParameters"]._listBuilder.attachItemAdded(that["fun_DParameters"].addElement,that);
+		that["fun_DParameters"]._listBuilder.attachItemDeleted(that["fun_DParameters"].delElement,that);
+		that["fun_DParameters"]._listBuilder.attachItemMoved(that["fun_DParameters"].moveElement,that);
+		that["fun_DParameters"]._listBuilder.attachItemSelected(that["fun_DParameters"].elementSelected,that);
 		
-		this._sectionPropertyLayoutDParameters = new sap.ui.commons.layout.VerticalLayout({
+		that["fun_DParameters"]._sectionPropertyLayout = new sap.ui.commons.layout.VerticalLayout({
 			width : "200px"
 		});
-		this._sectionPropertyListDParameters = new sap.ui.commons.layout.VerticalLayout({
+		that["fun_DParameters"]._sectionPropertyList = new sap.ui.commons.layout.VerticalLayout({
 			width : "200px"
 		});
-		this._sectionPropertyLayoutDParameters.addStyleClass("org-scn-ApsDoubleArrayVertical");
-		this._sectionPropertyListDParameters.addStyleClass("org-scn-ApsDoubleArrayVertical");
+		that["fun_DParameters"]._sectionPropertyLayout.addStyleClass("org-scn-ApsDoubleArrayVertical");
+		that["fun_DParameters"]._sectionPropertyList.addStyleClass("org-scn-ApsDoubleArrayVertical");
 
-		this._hLayoutDParameters.addContent(this._listBuilderDParameters);
-		this._hLayoutDParameters.addContent(this._sectionPropertyLayoutDParameters);
-		this._hLayoutDParameters.addContent(this._sectionPropertyListDParameters);
-		this._sectionPropertyListDParameters.addStyleClass("org-scn-Aps-DetailList-SingleArray");
-		this._hLayoutDParameters.addStyleClass("org-scn-ApsDoubleArray");
+		that["fun_DParameters"]._hLayout.addContent(that["fun_DParameters"]._listBuilder);
+		that["fun_DParameters"]._hLayout.addContent(that["fun_DParameters"]._sectionPropertyLayout);
+		that["fun_DParameters"]._hLayout.addContent(that["fun_DParameters"]._sectionPropertyList);
+		that["fun_DParameters"]._sectionPropertyList.addStyleClass("org-scn-Aps-DetailList-SingleArray");
+		that["fun_DParameters"]._hLayout.addStyleClass("org-scn-ApsDoubleArray");
 		
-		this.updatePropertyDParameters();
+		that["fun_DParameters"].update();
 	};
 
-	this.DParameters = function(s){
+	that.DParameters = function(s){
 		if( s === undefined){
-			return JSON.stringify(this._elementsContentDParameters);
+			return JSON.stringify(that["fun_DParameters"]._elementsContent);
 		}else{
 			var o = [];
 			if(s && s!="") o = jQuery.parseJSON(s);
-			this._elementsContentDParameters = o;
-			this.updatePropertyDParameters();
-			return this;
+			that["fun_DParameters"]._elementsContent = o;
+			that["fun_DParameters"].update();
+			return that;
 		}
 	};
 
-	this._elementsContentDHeaders = [];
-	this._selectedElementKeyDHeaders = "";
-	this._selectedItemKeyDHeaders = "";
-	this._currentItemConfigDHeaders = {};
+	that["fun_DHeaders"] = {};
+	
+	that["fun_DHeaders"]._elementsContent = [];
+	that["fun_DHeaders"]._selectedElementKey = "";
+	that["fun_DHeaders"]._selectedItemKey = "";
+	that["fun_DHeaders"]._currentItemConfig = {};
 
 	/*
 	 * Retrieves JSON for Element Entry
 	 */
-	this.getElementDHeaders = function(key){
-		var sections = this.gatherElementsDHeaders();
+	that["fun_DHeaders"].getElement = function(key){
+		var sections = that["fun_DHeaders"].gatherElements();
 		for(var i=0;i<sections.length;i++){
 			if(sections[i].key == key) return sections[i];
 		}
@@ -737,51 +757,51 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 	/*
 	 * Retrieves JSON for Item Entry
 	 */
-	this.getItemDHeaders = function(sectionKey,key){
-		for(var i=0;i<this._elementsContentDHeaders.length;i++){
-			if(this._elementsContentDHeaders[i].key == key && this._elementsContentDHeaders[i].parentKey==sectionKey) return this._elementsContentDHeaders[i];
+	that["fun_DHeaders"].getItem = function(sectionKey,key){
+		for(var i=0;i<that["fun_DHeaders"]._elementsContent.length;i++){
+			if(that["fun_DHeaders"]._elementsContent[i].key == key && that["fun_DHeaders"]._elementsContent[i].parentKey==sectionKey) return that["fun_DHeaders"]._elementsContent[i];
 		}
 	};
 	/*
 	 * Update Element JSON and notify Design Studio IDE
 	 */
-	this.updateElementDHeaders = function(key,section){
-		for(var i=0;i<this._elementsContentDHeaders.length;i++){
-			var element = this._elementsContentDHeaders[i];
+	that["fun_DHeaders"].updateElement = function(key,section){
+		for(var i=0;i<that["fun_DHeaders"]._elementsContent.length;i++){
+			var element = that["fun_DHeaders"]._elementsContent[i];
 			if(!element.leaf && element.key==key){
-				this._elementsContentDHeaders[i] = section;
+				that["fun_DHeaders"]._elementsContent[i] = section;
 			}
 		}
-		this.firePropertiesChanged(["DHeaders"]);
-		this.updatePropertyDHeaders();
+		that.firePropertiesChanged(["DHeaders"]);
+		that["fun_DHeaders"].update();
 	};
 	/*
 	 * Update Item JSON and notify Design Studio IDE
 	 */
-	this.updateItemDHeaders = function(key){
-		for(var i=0;i<this._elementsContentDHeaders.length;i++){
-			var element = this._elementsContentDHeaders[i];
+	that["fun_DHeaders"].updateItem = function(key){
+		for(var i=0;i<that["fun_DHeaders"]._elementsContent.length;i++){
+			var element = that["fun_DHeaders"]._elementsContent[i];
 			if(element.leaf && element.key==key){
-				this._elementsContentDHeaders[i] = this._currentItemConfigDHeaders;
+				that["fun_DHeaders"]._elementsContent[i] = that["fun_DHeaders"]._currentItemConfig;
 			}
 		}
-		this.firePropertiesChanged(["DHeaders"]);
-		this.updatePropertyDHeaders();
-		this.closeDetailDHeaders();
+		that.firePropertiesChanged(["DHeaders"]);
+		that["fun_DHeaders"].update();
+		that["fun_DHeaders"].closeDetail();
 	};
 	/*
 	 * Displays Element Properties
 	 */
-	this.showElementPropertiesDHeaders = function(){
-		this._sectionPropertyLayoutDHeaders.destroyContent();
-		this._sectionPropertyListDHeaders.destroyContent();
+	that["fun_DHeaders"].showElementProperties = function(){
+		that["fun_DHeaders"]._sectionPropertyLayout.destroyContent();
+		that["fun_DHeaders"]._sectionPropertyList.destroyContent();
 		
-		this._selectedElementKeyDHeaders = this._listBuilderDHeaders.getSelectedKey();
-		if(!this._selectedElementKeyDHeaders) return;
-		var selectedElement = this.getElementDHeaders(this._selectedElementKeyDHeaders);		
+		that["fun_DHeaders"]._selectedElementKey = that["fun_DHeaders"]._listBuilder.getSelectedKey();
+		if(!that["fun_DHeaders"]._selectedElementKey) return;
+		var selectedElement = that["fun_DHeaders"].getElement(that["fun_DHeaders"]._selectedElementKey);		
 		if(!selectedElement) return;
 		
-		var items = this.gatherItemsDHeaders(this._selectedElementKeyDHeaders);
+		var items = that["fun_DHeaders"].gatherItems(that["fun_DHeaders"]._selectedElementKey);
 		
 		var sectionKey = new sap.ui.commons.TextView({text : "Header Name"});
 		sectionKey.addStyleClass("org-scn-ApsLabelArray");
@@ -790,20 +810,20 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		txtElementKey.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
 			// Protect Key
-			value = this._listBuilderDHeaders.generateKey(value);
-			var section = this.getElementDHeaders(this._listBuilderDHeaders.getSelectedKey());
+			value = that["fun_DHeaders"]._listBuilder.generateKey(value);
+			var section = that["fun_DHeaders"].getElement(that["fun_DHeaders"]._listBuilder.getSelectedKey());
 			section.key = value;
 			// Update Parent Key references
-			for(var i=0;i<this._elementsContentDHeaders.length;i++){
-				var element = this._elementsContentDHeaders[i];
-				if(element.parentKey == this._listBuilderDHeaders.getSelectedKey() && element.leaf) element.parentKey = value;
+			for(var i=0;i<that["fun_DHeaders"]._elementsContent.length;i++){
+				var element = that["fun_DHeaders"]._elementsContent[i];
+				if(element.parentKey == that["fun_DHeaders"]._listBuilder.getSelectedKey() && element.leaf) element.parentKey = value;
 			}
-			this.updateElementDHeaders(this._listBuilderDHeaders.getSelectedKey(),section);
-			this._listBuilderDHeaders.setSelectedKey(value);
-			this.showElementPropertiesDHeaders();
-		}, this);
-		this._sectionPropertyLayoutDHeaders.addContent(sectionKey);
-		this._sectionPropertyLayoutDHeaders.addContent(txtElementKey);
+			that["fun_DHeaders"].updateElement(that["fun_DHeaders"]._listBuilder.getSelectedKey(),section);
+			that["fun_DHeaders"]._listBuilder.setSelectedKey(value);
+			that["fun_DHeaders"].showElementProperties();
+		}, that);
+		that["fun_DHeaders"]._sectionPropertyLayout.addContent(sectionKey);
+		that["fun_DHeaders"]._sectionPropertyLayout.addContent(txtElementKey);
 
 		var sectionvalue = new sap.ui.commons.TextView({text : "Header Value"});
 		sectionvalue.addStyleClass("org-scn-ApsLabelArray");
@@ -811,12 +831,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		txtElementvalue.addStyleClass("org-scn-ApsInputArray");
 		txtElementvalue.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
-			var section = this.getElementDHeaders(this._listBuilderDHeaders.getSelectedKey());
+			var section = that["fun_DHeaders"].getElement(that["fun_DHeaders"]._listBuilder.getSelectedKey());
 			section.value = value;
-			this.updateElementDHeaders(this._listBuilderDHeaders.getSelectedKey(),section);
-		}, this);
-		this._sectionPropertyLayoutDHeaders.addContent(sectionvalue);
-		this._sectionPropertyLayoutDHeaders.addContent(txtElementvalue);
+			that["fun_DHeaders"].updateElement(that["fun_DHeaders"]._listBuilder.getSelectedKey(),section);
+		}, that);
+		that["fun_DHeaders"]._sectionPropertyLayout.addContent(sectionvalue);
+		that["fun_DHeaders"]._sectionPropertyLayout.addContent(txtElementvalue);
 
 
 		var itemsLabel = new sap.ui.commons.TextView({text : "Items"});
@@ -825,27 +845,27 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 			width : "200px",
 			newKeyPrefix : "ITEM_",
 			newTextPrefix : "Item ",
-			list : this.gatherItemsDHeaders(this._listBuilderDHeaders.getSelectedKey()),
+			list : that["fun_DHeaders"].gatherItems(that["fun_DHeaders"]._listBuilder.getSelectedKey()),
 			showDetail : true,
-			selectedKey : this._selectedItemKeyDHeaders
+			selectedKey : that["fun_DHeaders"]._selectedItemKey
 		});
 		
-		itemsList.attachItemAdded(this.addItemDHeaders,this);
-		itemsList.attachItemDeleted(this.delItemDHeaders,this);
-		itemsList.attachItemDetail(this.showItemPropertiesDHeaders,this);
-		itemsList.attachItemMoved(this.moveItemDHeaders,this);
-		itemsList.attachItemSelected(this.itemSelectedDHeaders,this);
+		itemsList.attachItemAdded(that["fun_DHeaders"].addItem,that);
+		itemsList.attachItemDeleted(that["fun_DHeaders"].delItem,that);
+		itemsList.attachItemDetail(that["fun_DHeaders"].showItemProperties,that);
+		itemsList.attachItemMoved(that["fun_DHeaders"].moveItem,that);
+		itemsList.attachItemSelected(that["fun_DHeaders"].itemSelected,that);
 		
-		this._sectionPropertyListDHeaders.addContent(itemsLabel);
-		this._sectionPropertyListDHeaders.addContent(itemsList);
+		that["fun_DHeaders"]._sectionPropertyList.addContent(itemsLabel);
+		that["fun_DHeaders"]._sectionPropertyList.addContent(itemsList);
 	};
 	/*
 	 * Displays Item Properties in a Popup Panel
 	 */
-	this.showItemPropertiesDHeaders = function(oControlEvent){
+	that["fun_DHeaders"].showItemProperties = function(oControlEvent){
 		var detailData = oControlEvent.getParameters();
-		this._currentItemConfigDHeaders = this.getItemDHeaders(this._listBuilderDHeaders.getSelectedKey(),detailData.key);
-		if(!this._currentItemConfigDHeaders) return;
+		that["fun_DHeaders"]._currentItemConfig = that["fun_DHeaders"].getItem(that["fun_DHeaders"]._listBuilder.getSelectedKey(),detailData.key);
+		if(!that["fun_DHeaders"]._currentItemConfig) return;
 		
 		var itemDetailPanel = new sap.ui.commons.Panel({
 			text : "Item Details",
@@ -859,17 +879,17 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		
 		var itemKey = new sap.ui.commons.TextView({text : "%ITEM_PROPERTY_DESCRIPTION%"});
 		itemKey.addStyleClass("org-scn-ApsLabelArray");
-		var txtItemKey = new sap.ui.commons.TextField({value : this._currentItemConfigDHeaders.key, width: "300px"});
+		var txtItemKey = new sap.ui.commons.TextField({value : that["fun_DHeaders"]._currentItemConfig.key, width: "300px"});
 		txtItemKey.addStyleClass("org-scn-ApsInputArray");
 		txtItemKey.attachChange(function(oControlEvent){
 			var value = oControlEvent.getParameter("newValue");
 			// Protect Key
 			var allItems = new org.scn.community.propertysheet.ListBuilder();		
-			allItems.setList(this._elementsContentDHeaders);
+			allItems.setList(that["fun_DHeaders"]._elementsContent);
 			var newItemKey = allItems.generateKey(value);
 			delete allItems;
-			this._currentItemConfigDHeaders.key = newItemKey;		
-		}, this);
+			that["fun_DHeaders"]._currentItemConfig.key = newItemKey;		
+		}, that);
 		itemDetailLayout.addContent(itemKey);
 		itemDetailLayout.addContent(txtItemKey);
 
@@ -882,8 +902,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 			text : "Update"
 		});
 		
-		closeButton.attachPress(this.closeDetailDHeaders,this);
-		okButton.attachPress(this.updateItemDHeaders,this);
+		closeButton.attachPress(that["fun_DHeaders"].closeDetail,that);
+		okButton.attachPress(that["fun_DHeaders"].updateItem,that);
 		
 		detailButtons.addContent(closeButton);
 		detailButtons.addContent(okButton);
@@ -892,259 +912,261 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		itemDetailLayout.addContent(detailButtons);
 		itemDetailPanel.addContent(itemDetailLayout);
 		
-		if(!this._popupDHeaders) this._popupDHeaders = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
+		if(!that["fun_DHeaders"]._popup) that["fun_DHeaders"]._popup = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
 		
-		//this._popupDHeaders.destroyContent();
-		this._popupDHeaders.open(250,"center center", "center center", document.body, null);
+		//that["fun_DHeaders"]._popup.destroyContent();
+		that["fun_DHeaders"]._popup.open(250,"center center", "center center", document.body, null);
 	};
 	/*
 	 * Fires when Element Listbox is selected
 	 */
-	this.elementSelectedDHeaders = function(oControlEvent){
-		this._selectedElementKeyDHeaders = "";
-		if(oControlEvent.getParameters().key) this._selectedElementKeyDHeaders = oControlEvent.getParameters().key;
-		this.showElementPropertiesDHeaders();
+	that["fun_DHeaders"].elementSelected = function(oControlEvent){
+		that["fun_DHeaders"]._selectedElementKey = "";
+		if(oControlEvent.getParameters().key) that["fun_DHeaders"]._selectedElementKey = oControlEvent.getParameters().key;
+		that["fun_DHeaders"].showElementProperties();
 	};
 	/*
 	 * Fires when Item Listbox is selected
 	 */
-	this.itemSelectedDHeaders = function(oControlEvent){
-		this._selectedItemKeyDHeaders = "";
-		if(oControlEvent.getParameters().key) this._selectedItemKeyDHeaders = oControlEvent.getParameters().key;
+	that["fun_DHeaders"].itemSelected = function(oControlEvent){
+		that["fun_DHeaders"]._selectedItemKey = "";
+		if(oControlEvent.getParameters().key) that["fun_DHeaders"]._selectedItemKey = oControlEvent.getParameters().key;
 	};
 	/*
 	 * Fires when component is selected or when properties change to re-render
 	 */
-	this.updatePropertyDHeaders = function(){
-		this._listBuilderDHeaders.setList(this.gatherElementsDHeaders());
-		this.showElementPropertiesDHeaders(this._listBuilderDHeaders.getSelectedKey());
+	that["fun_DHeaders"].update = function(){
+		that["fun_DHeaders"]._listBuilder.setList(that["fun_DHeaders"].gatherElements());
+		that["fun_DHeaders"].showElementProperties(that["fun_DHeaders"]._listBuilder.getSelectedKey());
 	};
 	/*
 	 * Fires when item delete button clicked
 	 */
-	this.delItemDHeaders = function(oControlEvent){
-		var sectionKey = this._listBuilderDHeaders.getSelectedKey();
+	that["fun_DHeaders"].delItem = function(oControlEvent){
+		var sectionKey = that["fun_DHeaders"]._listBuilder.getSelectedKey();
 		var itemKey = oControlEvent.getParameter("key");
 		if(sectionKey && itemKey) {
-			for(var i=0;i<this._elementsContentDHeaders.length;i++){
-				if(this._elementsContentDHeaders[i].leaf == true && this._elementsContentDHeaders[i].key == itemKey && this._elementsContentDHeaders[i].parentKey==sectionKey) {
-					this._elementsContentDHeaders.splice(i,1);
-					this.firePropertiesChanged(["DHeaders"]);
-					this.updatePropertyDHeaders();
+			for(var i=0;i<that["fun_DHeaders"]._elementsContent.length;i++){
+				if(that["fun_DHeaders"]._elementsContent[i].leaf == true && that["fun_DHeaders"]._elementsContent[i].key == itemKey && that["fun_DHeaders"]._elementsContent[i].parentKey==sectionKey) {
+					that["fun_DHeaders"]._elementsContent.splice(i,1);
+					that.firePropertiesChanged(["DHeaders"]);
+					that["fun_DHeaders"].update();
 				}
 			}
 		}
-		this.updatePropertyDHeaders();
+		that["fun_DHeaders"].update();
 	}
 	/*
 	 * Fires when section delete button clicked
 	 */
-	this.delElementDHeaders = function(oControlEvent){
+	that["fun_DHeaders"].delElement = function(oControlEvent){
 		var key = oControlEvent.getParameter("key");
 		if(key) {
 			// Delete Element
-			for(var i=0;i<this._elementsContentDHeaders.length;i++){
-				if(this._elementsContentDHeaders[i].leaf == false && this._elementsContentDHeaders[i].key == key) {
-					this._elementsContentDHeaders.splice(i,1);
+			for(var i=0;i<that["fun_DHeaders"]._elementsContent.length;i++){
+				if(that["fun_DHeaders"]._elementsContent[i].leaf == false && that["fun_DHeaders"]._elementsContent[i].key == key) {
+					that["fun_DHeaders"]._elementsContent.splice(i,1);
 				}
 			}
 			// Delete Items under Element
-			for(var i=this._elementsContentDHeaders.length-1;i>=0;i--){
-				if(this._elementsContentDHeaders[i].leaf == true && this._elementsContentDHeaders[i].parentKey == key) {
-					this._elementsContentDHeaders.splice(i,1);
+			for(var i=that["fun_DHeaders"]._elementsContent.length-1;i>=0;i--){
+				if(that["fun_DHeaders"]._elementsContent[i].leaf == true && that["fun_DHeaders"]._elementsContent[i].parentKey == key) {
+					that["fun_DHeaders"]._elementsContent.splice(i,1);
 				}
 			}
-			this.firePropertiesChanged(["DHeaders"]);
+			that.firePropertiesChanged(["DHeaders"]);
 		}
-		this.updatePropertyDHeaders();
+		that["fun_DHeaders"].update();
 	};
 	/*
 	 * Fires when item add button clicked
 	 */
-	this.addItemDHeaders = function(oControlEvent){
+	that["fun_DHeaders"].addItem = function(oControlEvent){
 		var allItems = new org.scn.community.propertysheet.ListBuilder();		
-		allItems.setList(this._elementsContentDHeaders);
+		allItems.setList(that["fun_DHeaders"]._elementsContent);
 		var newItemKey = allItems.generateKey("Item");
 		delete allItems;
 		var sectionItems = new org.scn.community.propertysheet.ListBuilder();
-		sectionItems.setList(this._elementsContentDHeaders);
+		sectionItems.setList(that["fun_DHeaders"]._elementsContent);
 		var newItem = { 
-			parentKey : this._listBuilderDHeaders.getSelectedKey(),
+			parentKey : that["fun_DHeaders"]._listBuilder.getSelectedKey(),
 			key : newItemKey, 
 			leaf: true, 
 			
 		};
-		this._elementsContentDHeaders.push(newItem);
-		this.firePropertiesChanged(["DHeaders"]);
-		this.updatePropertyDHeaders();
+		that["fun_DHeaders"]._elementsContent.push(newItem);
+		that.firePropertiesChanged(["DHeaders"]);
+		that["fun_DHeaders"].update();
 	}
 	/*
 	 * Fires when section add button clicked
 	 */
-	this.addElementDHeaders = function(oControlEvent){
-		var newKey = this._listBuilderDHeaders.generateKey("Element");
+	that["fun_DHeaders"].addElement = function(oControlEvent){
+		var newKey = that["fun_DHeaders"]._listBuilder.generateKey("Element");
 		var newElement = { 
 			parentKey : "ROOT",
 			key : newKey,
 			leaf: false, 
 			value:""
 		};
-		this._listBuilderDHeaders.setSelectedKey(newKey);
-		this._elementsContentDHeaders.push(newElement);
-		this.firePropertiesChanged(["DHeaders"]);
-		this.updatePropertyDHeaders();
+		that["fun_DHeaders"]._listBuilder.setSelectedKey(newKey);
+		that["fun_DHeaders"]._elementsContent.push(newElement);
+		that.firePropertiesChanged(["DHeaders"]);
+		that["fun_DHeaders"].update();
 	};
 	/*
 	 * Fires when section up or down button clicked
 	 */
-	this.moveElementDHeaders = function(oControlEvent){
+	that["fun_DHeaders"].moveElement = function(oControlEvent){
 		var movementData = oControlEvent.getParameters();
 		var targetIndex = -1;
 		var sourceIndex = -1;
-		for(var i=0;i<this._elementsContentDHeaders.length;i++){
-			if(this._elementsContentDHeaders[i].key == movementData.key && !this._elementsContentDHeaders[i].leaf) sourceIndex = i;
-			if(this._elementsContentDHeaders[i].key == movementData.targetKey && !this._elementsContentDHeaders[i].leaf) targetIndex = i;
+		for(var i=0;i<that["fun_DHeaders"]._elementsContent.length;i++){
+			if(that["fun_DHeaders"]._elementsContent[i].key == movementData.key && !that["fun_DHeaders"]._elementsContent[i].leaf) sourceIndex = i;
+			if(that["fun_DHeaders"]._elementsContent[i].key == movementData.targetKey && !that["fun_DHeaders"]._elementsContent[i].leaf) targetIndex = i;
 		}
 		if(targetIndex != -1 && sourceIndex != -1){
-			var temp = this._elementsContentDHeaders[targetIndex];
-			this._elementsContentDHeaders[targetIndex] = this._elementsContentDHeaders[sourceIndex];
-			this._elementsContentDHeaders[sourceIndex] = temp;
-			this.firePropertiesChanged(["DHeaders"]);
-			this.updatePropertyDHeaders();
+			var temp = that["fun_DHeaders"]._elementsContent[targetIndex];
+			that["fun_DHeaders"]._elementsContent[targetIndex] = that["fun_DHeaders"]._elementsContent[sourceIndex];
+			that["fun_DHeaders"]._elementsContent[sourceIndex] = temp;
+			that.firePropertiesChanged(["DHeaders"]);
+			that["fun_DHeaders"].update();
 		}
 	};
 	/*
 	 * Close Item Properties Popup
 	 */
-	this.closeDetailDHeaders = function(oControlEvent){
-		if(this._popupDHeaders) {
-			this._popupDHeaders.close();
-			this._popupDHeaders.destroy();
-			delete this._popupDHeaders;
+	that["fun_DHeaders"].closeDetail = function(oControlEvent){
+		if(that["fun_DHeaders"]._popup) {
+			that["fun_DHeaders"]._popup.close();
+			that["fun_DHeaders"]._popup.destroy();
+			delete that["fun_DHeaders"]._popup;
 		}
 		
 	};
 	/*
 	 * Fires when item up or down button clicked
 	 */
-	this.moveItemDHeaders = function(oControlEvent){
+	that["fun_DHeaders"].moveItem = function(oControlEvent){
 		var movementData = oControlEvent.getParameters();
 		var targetIndex = -1;
 		var sourceIndex = -1;
-		var sectionKey = this._listBuilderDHeaders.getSelectedKey();
+		var sectionKey = that["fun_DHeaders"]._listBuilder.getSelectedKey();
 		var itemKey = oControlEvent.getParameter("key");
-		for(var i=0;i<this._elementsContentDHeaders.length;i++){
-			if(this._elementsContentDHeaders[i].key == itemKey && this._elementsContentDHeaders[i].parentKey == sectionKey && this._elementsContentDHeaders[i].leaf) sourceIndex = i;
-			if(this._elementsContentDHeaders[i].key == movementData.targetKey && this._elementsContentDHeaders[i].parentKey == sectionKey && this._elementsContentDHeaders[i].leaf) targetIndex = i;
+		for(var i=0;i<that["fun_DHeaders"]._elementsContent.length;i++){
+			if(that["fun_DHeaders"]._elementsContent[i].key == itemKey && that["fun_DHeaders"]._elementsContent[i].parentKey == sectionKey && that["fun_DHeaders"]._elementsContent[i].leaf) sourceIndex = i;
+			if(that["fun_DHeaders"]._elementsContent[i].key == movementData.targetKey && that["fun_DHeaders"]._elementsContent[i].parentKey == sectionKey && that["fun_DHeaders"]._elementsContent[i].leaf) targetIndex = i;
 		}
 		if(targetIndex != -1 && sourceIndex != -1){
-			var temp = this._elementsContentDHeaders[targetIndex];
-			this._elementsContentDHeaders[targetIndex] = this._elementsContentDHeaders[sourceIndex];
-			this._elementsContentDHeaders[sourceIndex] = temp;
-			this.firePropertiesChanged(["DHeaders"]);
-			this.updatePropertyDHeaders();
+			var temp = that["fun_DHeaders"]._elementsContent[targetIndex];
+			that["fun_DHeaders"]._elementsContent[targetIndex] = that["fun_DHeaders"]._elementsContent[sourceIndex];
+			that["fun_DHeaders"]._elementsContent[sourceIndex] = temp;
+			that.firePropertiesChanged(["DHeaders"]);
+			that["fun_DHeaders"].update();
 		}
 	}
 	/*
 	 * Convenience Function to return only entries that are Elements
 	 */
-	this.gatherElementsDHeaders = function(){
+	that["fun_DHeaders"].gatherElements = function(){
 		var sections = [];
-		for(var i=0;i<this._elementsContentDHeaders.length;i++){
-			if(this._elementsContentDHeaders[i].leaf==false) sections.push(this._elementsContentDHeaders[i]);
+		for(var i=0;i<that["fun_DHeaders"]._elementsContent.length;i++){
+			if(that["fun_DHeaders"]._elementsContent[i].leaf==false) sections.push(that["fun_DHeaders"]._elementsContent[i]);
 		}
 		return sections;
 	};
 	/*
 	 * Convenience Function to return only entries that are Items (Leafs)
 	 */
-	this.gatherItemsDHeaders = function(sectionKey){
+	that["fun_DHeaders"].gatherItems = function(sectionKey){
 		var items = [];
-		for(var i=0;i<this._elementsContentDHeaders.length;i++){
-			if(this._elementsContentDHeaders[i].leaf==true && this._elementsContentDHeaders[i].parentKey==sectionKey) items.push(this._elementsContentDHeaders[i]);
+		for(var i=0;i<that["fun_DHeaders"]._elementsContent.length;i++){
+			if(that["fun_DHeaders"]._elementsContent[i].leaf==true && that["fun_DHeaders"]._elementsContent[i].parentKey==sectionKey) items.push(that["fun_DHeaders"]._elementsContent[i]);
 		}
 		return items;
 	};
 	/*
 	 * Property Sheet Initialization
 	 */
-	this.initDHeaders = function(){
+	that["fun_DHeaders"].init = function(){
 		
-		this._labelDHeaders = new sap.ui.commons.Label({text: " List of Headers (Name / Value)"});
-		this._labelDHeaders.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDHeaders);
+		that["fun_DHeaders"]._label = new sap.ui.commons.Label({text: " List of Headers (Name / Value)"});
+		that["fun_DHeaders"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DHeaders"]._label);
 		
-		this._hLayoutDHeaders = new sap.ui.commons.layout.HorizontalLayout({ });
-		this._content.addContent(this._hLayoutDHeaders);
-		this._listBuilderDHeaders = new org.scn.community.propertysheet.ListBuilder({
+		that["fun_DHeaders"]._hLayout = new sap.ui.commons.layout.HorizontalLayout({ });
+		that._content.addContent(that["fun_DHeaders"]._hLayout);
+		that["fun_DHeaders"]._listBuilder = new org.scn.community.propertysheet.ListBuilder({
 			width : "200px"
 		});
 		
-		this._listBuilderDHeaders.attachItemAdded(this.addElementDHeaders,this);
-		this._listBuilderDHeaders.attachItemDeleted(this.delElementDHeaders,this);
-		this._listBuilderDHeaders.attachItemMoved(this.moveElementDHeaders,this);
-		this._listBuilderDHeaders.attachItemSelected(this.elementSelectedDHeaders,this);
+		that["fun_DHeaders"]._listBuilder.attachItemAdded(that["fun_DHeaders"].addElement,that);
+		that["fun_DHeaders"]._listBuilder.attachItemDeleted(that["fun_DHeaders"].delElement,that);
+		that["fun_DHeaders"]._listBuilder.attachItemMoved(that["fun_DHeaders"].moveElement,that);
+		that["fun_DHeaders"]._listBuilder.attachItemSelected(that["fun_DHeaders"].elementSelected,that);
 		
-		this._sectionPropertyLayoutDHeaders = new sap.ui.commons.layout.VerticalLayout({
+		that["fun_DHeaders"]._sectionPropertyLayout = new sap.ui.commons.layout.VerticalLayout({
 			width : "200px"
 		});
-		this._sectionPropertyListDHeaders = new sap.ui.commons.layout.VerticalLayout({
+		that["fun_DHeaders"]._sectionPropertyList = new sap.ui.commons.layout.VerticalLayout({
 			width : "200px"
 		});
-		this._sectionPropertyLayoutDHeaders.addStyleClass("org-scn-ApsDoubleArrayVertical");
-		this._sectionPropertyListDHeaders.addStyleClass("org-scn-ApsDoubleArrayVertical");
+		that["fun_DHeaders"]._sectionPropertyLayout.addStyleClass("org-scn-ApsDoubleArrayVertical");
+		that["fun_DHeaders"]._sectionPropertyList.addStyleClass("org-scn-ApsDoubleArrayVertical");
 
-		this._hLayoutDHeaders.addContent(this._listBuilderDHeaders);
-		this._hLayoutDHeaders.addContent(this._sectionPropertyLayoutDHeaders);
-		this._hLayoutDHeaders.addContent(this._sectionPropertyListDHeaders);
-		this._sectionPropertyListDHeaders.addStyleClass("org-scn-Aps-DetailList-SingleArray");
-		this._hLayoutDHeaders.addStyleClass("org-scn-ApsDoubleArray");
+		that["fun_DHeaders"]._hLayout.addContent(that["fun_DHeaders"]._listBuilder);
+		that["fun_DHeaders"]._hLayout.addContent(that["fun_DHeaders"]._sectionPropertyLayout);
+		that["fun_DHeaders"]._hLayout.addContent(that["fun_DHeaders"]._sectionPropertyList);
+		that["fun_DHeaders"]._sectionPropertyList.addStyleClass("org-scn-Aps-DetailList-SingleArray");
+		that["fun_DHeaders"]._hLayout.addStyleClass("org-scn-ApsDoubleArray");
 		
-		this.updatePropertyDHeaders();
+		that["fun_DHeaders"].update();
 	};
 
-	this.DHeaders = function(s){
+	that.DHeaders = function(s){
 		if( s === undefined){
-			return JSON.stringify(this._elementsContentDHeaders);
+			return JSON.stringify(that["fun_DHeaders"]._elementsContent);
 		}else{
 			var o = [];
 			if(s && s!="") o = jQuery.parseJSON(s);
-			this._elementsContentDHeaders = o;
-			this.updatePropertyDHeaders();
-			return this;
+			that["fun_DHeaders"]._elementsContent = o;
+			that["fun_DHeaders"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDRawParameters = function(){
-		this._inputDRawParameters.setValue(this._DRawParameters);
+	that["fun_DRawParameters"] = {};
+	
+	that["fun_DRawParameters"].update = function(){
+		that["fun_DRawParameters"]._input.setValue(that["fun_DRawParameters"]._);
 	};
 	
-	this.initDRawParameters = function(){
-		this._labelDRawParameters = new sap.ui.commons.Label({text: " Raw Parameters as String Content"});
-		this._labelDRawParameters.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDRawParameters);
+	that["fun_DRawParameters"].init = function(){
+		that["fun_DRawParameters"]._label = new sap.ui.commons.Label({text: " Raw Parameters as String Content"});
+		that["fun_DRawParameters"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DRawParameters"]._label);
 		
-		this._inputDRawParameters = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDRawParameters);
-		this._inputDRawParameters.attachChange(this.propertyChangedDRawParameters, this);
-		this._inputDRawParameters.addStyleClass("org-scn-ApsSimple");
+		that["fun_DRawParameters"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DRawParameters"]._input);
+		that["fun_DRawParameters"]._input.attachChange(that["fun_DRawParameters"].propertyChanged, that);
+		that["fun_DRawParameters"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDRawParameters();
+		that["fun_DRawParameters"].update();
 	};
 
-	this.propertyChangedDRawParameters = function(oControlEvent){
+	that["fun_DRawParameters"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DRawParameters = value;
-		this.firePropertiesChanged(["DRawParameters"]);
+		that["fun_DRawParameters"]._ = value;
+		that.firePropertiesChanged(["DRawParameters"]);
 	};
 	
-	this.DRawParameters = function(s){
+	that.DRawParameters = function(s){
 		if( s === undefined){
-			return this._DRawParameters;
+			return that["fun_DRawParameters"]._;
 		}else{
-			this._DRawParameters = s;
-			this.updatePropertyDRawParameters();
-			return this;
+			that["fun_DRawParameters"]._ = s;
+			that["fun_DRawParameters"].update();
+			return that;
 		}
 	};
 

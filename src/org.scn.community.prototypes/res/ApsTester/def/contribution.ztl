@@ -34,6 +34,20 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		return this.colorExample;
 	*}
 
+	/**
+	 * Sets Simple Array Property
+	 */	
+	void setSinglearray( /**Simple Array*/ String singlearray){*
+		this.singlearray = singlearray;
+	*}
+
+	/**
+	 * Gets Simple Array Property
+	 */	
+	String getSinglearray() {*
+		return this.singlearray;
+	*}
+
 
 
 	/**
@@ -55,6 +69,20 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	 */	
 	boolean isCheckboxOnlyGetterExample() {*
 		return this.checkboxOnlyGetterExample;
+	*}
+
+	/**
+	 * Sets Complex Array Property
+	 */	
+	void setDoublearray( /**Complex Array*/ String doublearray){*
+		this.doublearray = doublearray;
+	*}
+
+	/**
+	 * Gets Complex Array Property
+	 */	
+	String getDoublearray() {*
+		return this.doublearray;
 	*}
 
 	/**
@@ -97,6 +125,20 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	 */	
 	int getSpinnerExample() {*
 		return this.spinnerExample;
+	*}
+
+	/**
+	 * Sets Simple String Array Property
+	 */	
+	void setStringarray( /**Simple String Array*/ String stringarray){*
+		this.stringarray = stringarray;
+	*}
+
+	/**
+	 * Gets Simple String Array Property
+	 */	
+	String getStringarray() {*
+		return this.stringarray;
 	*}
 
 

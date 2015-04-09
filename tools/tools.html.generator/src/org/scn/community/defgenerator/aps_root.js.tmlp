@@ -7,16 +7,16 @@
 sap.designstudio.sdk.PropertyPage.subclass("%TECH_NAME%PropertyPage",  function() {
 	var that = this;
 
-	this.init = function () {
-		this._content = new sap.ui.commons.layout.VerticalLayout({
+	that.init = function () {
+		that._content = new sap.ui.commons.layout.VerticalLayout({
 			width : "100%"
 		});
-		this._content.placeAt($("#content"));
+		that._content.placeAt($("#content"));
 
 		%INIT_PROPERTY%
 	};
 	
-	this.componentSelected = function(){
+	that.componentSelected = function(){
 		%UPDATE_PROPERTY%
 	};
 	

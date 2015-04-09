@@ -7,52 +7,54 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSetInfoPropertyPage",  function() {
 	var that = this;
 
-	this.init = function () {
-		this._content = new sap.ui.commons.layout.VerticalLayout({
+	that.init = function () {
+		that._content = new sap.ui.commons.layout.VerticalLayout({
 			width : "100%"
 		});
-		this._content.placeAt($("#content"));
+		that._content.placeAt($("#content"));
 
-		this.initDCentralProvisioning();
+		that["fun_DCentralProvisioning"].init();
 		
 	};
 	
-	this.componentSelected = function(){
-		this.updateDCentralProvisioning();
+	that.componentSelected = function(){
+		that["fun_DCentralProvisioning"].update();
 		
 	};
 	
 	
-	this.updatePropertyDCentralProvisioning = function(){
-		this._inputDCentralProvisioning.setChecked(this._DCentralProvisioning);
+	that["fun_DCentralProvisioning"] = {};
+	
+	that["fun_DCentralProvisioning"].update = function(){
+		that["fun_DCentralProvisioning"]._input.setChecked(that["fun_DCentralProvisioning"]._);
 	};
 	
-	this.initDCentralProvisioning = function(){
-		this._labelDCentralProvisioning = new sap.ui.commons.Label({text: " Central Data Provisioning"});
-		this._labelDCentralProvisioning.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDCentralProvisioning);
+	that["fun_DCentralProvisioning"].init = function(){
+		that["fun_DCentralProvisioning"]._label = new sap.ui.commons.Label({text: " Central Data Provisioning"});
+		that["fun_DCentralProvisioning"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DCentralProvisioning"]._label);
 		
-		this._inputDCentralProvisioning = new sap.ui.commons.CheckBox({width: "300px", text: "Central Data Provisioning"});
-		this._content.addContent(this._inputDCentralProvisioning);
-		this._inputDCentralProvisioning.attachChange(this.propertyChangedDCentralProvisioning, this);
-		this._inputDCentralProvisioning.addStyleClass("org-scn-ApsBoolean");
+		that["fun_DCentralProvisioning"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Central Data Provisioning"});
+		that._content.addContent(that["fun_DCentralProvisioning"]._input);
+		that["fun_DCentralProvisioning"]._input.attachChange(that["fun_DCentralProvisioning"].propertyChanged, that);
+		that["fun_DCentralProvisioning"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDCentralProvisioning();
+		that["fun_DCentralProvisioning"].update();
 	};
 
-	this.propertyChangedDCentralProvisioning = function(oControlEvent){
+	that["fun_DCentralProvisioning"].propertyChanged = function(oControlEvent){
 		var checked = oControlEvent.getParameter("checked");
-		this._DCentralProvisioning = checked;
-		this.firePropertiesChanged(["DCentralProvisioning"]);
+		that["fun_DCentralProvisioning"]._ = checked;
+		that.firePropertiesChanged(["DCentralProvisioning"]);
 	};
 	
-	this.DCentralProvisioning = function(s){
+	that.DCentralProvisioning = function(s){
 		if( s === undefined){
-			return this._DCentralProvisioning;
+			return that["fun_DCentralProvisioning"]._;
 		}else{
-			this._DCentralProvisioning = s;
-			this.updatePropertyDCentralProvisioning();
-			return this;
+			that["fun_DCentralProvisioning"]._ = s;
+			that["fun_DCentralProvisioning"].update();
+			return that;
 		}
 	};
 

@@ -289,7 +289,7 @@ myComponentData.instance = function () {
 		}
 		
 		that._chartdata = data;
-		that.afterPrepare();
+		afterPrepare();
 	}
 	
 	this.getPreparedOptions = function () {

@@ -7,349 +7,367 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.NiceChartPropertyPage",  function() {
 	var that = this;
 
-	this.init = function () {
-		this._content = new sap.ui.commons.layout.VerticalLayout({
+	that.init = function () {
+		that._content = new sap.ui.commons.layout.VerticalLayout({
 			width : "100%"
 		});
-		this._content.placeAt($("#content"));
+		that._content.placeAt($("#content"));
 
-		this.initDChartType();
-		this.initDSwapAxes();
-		this.initDColorHue();
-		this.initDColorDistance();
-		this.initDColorPalette();
-		this.initDShowLegend();
-		this.initDLegendPosition();
-		this.initDLegendWidth();
-		this.initDMaxDataPoints();
+		that["fun_DChartType"].init();
+		that["fun_DSwapAxes"].init();
+		that["fun_DColorHue"].init();
+		that["fun_DColorDistance"].init();
+		that["fun_DColorPalette"].init();
+		that["fun_DShowLegend"].init();
+		that["fun_DLegendPosition"].init();
+		that["fun_DLegendWidth"].init();
+		that["fun_DMaxDataPoints"].init();
 		
 	};
 	
-	this.componentSelected = function(){
-		this.updateDChartType();
-		this.updateDSwapAxes();
-		this.updateDColorHue();
-		this.updateDColorDistance();
-		this.updateDColorPalette();
-		this.updateDShowLegend();
-		this.updateDLegendPosition();
-		this.updateDLegendWidth();
-		this.updateDMaxDataPoints();
+	that.componentSelected = function(){
+		that["fun_DChartType"].update();
+		that["fun_DSwapAxes"].update();
+		that["fun_DColorHue"].update();
+		that["fun_DColorDistance"].update();
+		that["fun_DColorPalette"].update();
+		that["fun_DShowLegend"].update();
+		that["fun_DLegendPosition"].update();
+		that["fun_DLegendWidth"].update();
+		that["fun_DMaxDataPoints"].update();
 		
 	};
 	
 	
-	this.updatePropertyDChartType = function(){
-		this._inputDChartType.setSelectedKey(this._DChartType);
+	that["fun_DChartType"] = {};
+	
+	that["fun_DChartType"].update = function(){
+		that["fun_DChartType"]._input.setSelectedKey(that["fun_DChartType"]._);
 	};
 	
-	this.initDChartType = function(){
-		this._labelDChartType = new sap.ui.commons.Label({text: " Chart Type"});
-		this._labelDChartType.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDChartType);
+	that["fun_DChartType"].init = function(){
+		that["fun_DChartType"]._label = new sap.ui.commons.Label({text: " Chart Type"});
+		that["fun_DChartType"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DChartType"]._label);
 		
-		this._inputDChartType = new sap.ui.commons.ComboBox({width: "300px"});
-		this._inputDChartType.addItem(new sap.ui.core.ListItem({key:"Line", text:"Line"}));
-		this._inputDChartType.addItem(new sap.ui.core.ListItem({key:"Bar", text:"Bar"}));
-		this._inputDChartType.addItem(new sap.ui.core.ListItem({key:"Radar", text:"Radar"}));
-		this._inputDChartType.addItem(new sap.ui.core.ListItem({key:"PolarArea", text:"PolarArea"}));
-		this._inputDChartType.addItem(new sap.ui.core.ListItem({key:"Pie", text:"Pie"}));
-		this._inputDChartType.addItem(new sap.ui.core.ListItem({key:"Doughnut", text:"Doughnut"}));
+		that["fun_DChartType"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"Line", text:"Line"}));
+		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"Bar", text:"Bar"}));
+		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"Radar", text:"Radar"}));
+		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"PolarArea", text:"PolarArea"}));
+		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"Pie", text:"Pie"}));
+		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"Doughnut", text:"Doughnut"}));
 		
-		this._content.addContent(this._inputDChartType);
-		this._inputDChartType.attachChange(this.propertyChangedDChartType, this);
-		this._inputDChartType.addStyleClass("org-scn-ApsBoolean");
+		that._content.addContent(that["fun_DChartType"]._input);
+		that["fun_DChartType"]._input.attachChange(that["fun_DChartType"].propertyChanged, that);
+		that["fun_DChartType"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDChartType();
+		that["fun_DChartType"].update();
 	};
 
-	this.propertyChangedDChartType = function(oControlEvent){
+	that["fun_DChartType"].propertyChanged = function(oControlEvent){
 		var newValue = oControlEvent.getParameter("newValue");
-		this._DChartType = newValue;
-		this.firePropertiesChanged(["DChartType"]);
+		that["fun_DChartType"]._ = newValue;
+		that.firePropertiesChanged(["DChartType"]);
 	};
 	
-	this.DChartType = function(s){
+	that.DChartType = function(s){
 		if( s === undefined){
-			return this._DChartType;
+			return that["fun_DChartType"]._;
 		}else{
-			this._DChartType = s;
-			this.updatePropertyDChartType();
-			return this;
+			that["fun_DChartType"]._ = s;
+			that["fun_DChartType"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDSwapAxes = function(){
-		this._inputDSwapAxes.setChecked(this._DSwapAxes);
+	that["fun_DSwapAxes"] = {};
+	
+	that["fun_DSwapAxes"].update = function(){
+		that["fun_DSwapAxes"]._input.setChecked(that["fun_DSwapAxes"]._);
 	};
 	
-	this.initDSwapAxes = function(){
-		this._labelDSwapAxes = new sap.ui.commons.Label({text: " Swap Axes"});
-		this._labelDSwapAxes.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDSwapAxes);
+	that["fun_DSwapAxes"].init = function(){
+		that["fun_DSwapAxes"]._label = new sap.ui.commons.Label({text: " Swap Axes"});
+		that["fun_DSwapAxes"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DSwapAxes"]._label);
 		
-		this._inputDSwapAxes = new sap.ui.commons.CheckBox({width: "300px", text: "Swap Axes"});
-		this._content.addContent(this._inputDSwapAxes);
-		this._inputDSwapAxes.attachChange(this.propertyChangedDSwapAxes, this);
-		this._inputDSwapAxes.addStyleClass("org-scn-ApsBoolean");
+		that["fun_DSwapAxes"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Swap Axes"});
+		that._content.addContent(that["fun_DSwapAxes"]._input);
+		that["fun_DSwapAxes"]._input.attachChange(that["fun_DSwapAxes"].propertyChanged, that);
+		that["fun_DSwapAxes"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDSwapAxes();
+		that["fun_DSwapAxes"].update();
 	};
 
-	this.propertyChangedDSwapAxes = function(oControlEvent){
+	that["fun_DSwapAxes"].propertyChanged = function(oControlEvent){
 		var checked = oControlEvent.getParameter("checked");
-		this._DSwapAxes = checked;
-		this.firePropertiesChanged(["DSwapAxes"]);
+		that["fun_DSwapAxes"]._ = checked;
+		that.firePropertiesChanged(["DSwapAxes"]);
 	};
 	
-	this.DSwapAxes = function(s){
+	that.DSwapAxes = function(s){
 		if( s === undefined){
-			return this._DSwapAxes;
+			return that["fun_DSwapAxes"]._;
 		}else{
-			this._DSwapAxes = s;
-			this.updatePropertyDSwapAxes();
-			return this;
+			that["fun_DSwapAxes"]._ = s;
+			that["fun_DSwapAxes"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDColorHue = function(){
-		this._inputDColorHue.setValue(this._DColorHue);
+	that["fun_DColorHue"] = {};
+	
+	that["fun_DColorHue"].update = function(){
+		that["fun_DColorHue"]._input.setValue(that["fun_DColorHue"]._);
 	};
 	
-	this.initDColorHue = function(){
-		this._labelDColorHue = new sap.ui.commons.Label({text: " Starting Color Hue"});
-		this._labelDColorHue.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDColorHue);
+	that["fun_DColorHue"].init = function(){
+		that["fun_DColorHue"]._label = new sap.ui.commons.Label({text: " Starting Color Hue"});
+		that["fun_DColorHue"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DColorHue"]._label);
 		
-		this._inputDColorHue = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDColorHue);
-		this._inputDColorHue.attachChange(this.propertyChangedDColorHue, this);
-		this._inputDColorHue.addStyleClass("org-scn-ApsSimple");
+		that["fun_DColorHue"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DColorHue"]._input);
+		that["fun_DColorHue"]._input.attachChange(that["fun_DColorHue"].propertyChanged, that);
+		that["fun_DColorHue"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDColorHue();
+		that["fun_DColorHue"].update();
 	};
 
-	this.propertyChangedDColorHue = function(oControlEvent){
+	that["fun_DColorHue"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DColorHue = value;
-		this.firePropertiesChanged(["DColorHue"]);
+		that["fun_DColorHue"]._ = value;
+		that.firePropertiesChanged(["DColorHue"]);
 	};
 	
-	this.DColorHue = function(s){
+	that.DColorHue = function(s){
 		if( s === undefined){
-			return this._DColorHue;
+			return that["fun_DColorHue"]._;
 		}else{
-			this._DColorHue = s;
-			this.updatePropertyDColorHue();
-			return this;
+			that["fun_DColorHue"]._ = s;
+			that["fun_DColorHue"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDColorDistance = function(){
-		this._inputDColorDistance.setValue(this._DColorDistance);
+	that["fun_DColorDistance"] = {};
+	
+	that["fun_DColorDistance"].update = function(){
+		that["fun_DColorDistance"]._input.setValue(that["fun_DColorDistance"]._);
 	};
 	
-	this.initDColorDistance = function(){
-		this._labelDColorDistance = new sap.ui.commons.Label({text: " Starting Color Distance"});
-		this._labelDColorDistance.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDColorDistance);
+	that["fun_DColorDistance"].init = function(){
+		that["fun_DColorDistance"]._label = new sap.ui.commons.Label({text: " Starting Color Distance"});
+		that["fun_DColorDistance"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DColorDistance"]._label);
 		
-		this._inputDColorDistance = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDColorDistance);
-		this._inputDColorDistance.attachChange(this.propertyChangedDColorDistance, this);
-		this._inputDColorDistance.addStyleClass("org-scn-ApsSimple");
+		that["fun_DColorDistance"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DColorDistance"]._input);
+		that["fun_DColorDistance"]._input.attachChange(that["fun_DColorDistance"].propertyChanged, that);
+		that["fun_DColorDistance"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDColorDistance();
+		that["fun_DColorDistance"].update();
 	};
 
-	this.propertyChangedDColorDistance = function(oControlEvent){
+	that["fun_DColorDistance"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DColorDistance = value;
-		this.firePropertiesChanged(["DColorDistance"]);
+		that["fun_DColorDistance"]._ = value;
+		that.firePropertiesChanged(["DColorDistance"]);
 	};
 	
-	this.DColorDistance = function(s){
+	that.DColorDistance = function(s){
 		if( s === undefined){
-			return this._DColorDistance;
+			return that["fun_DColorDistance"]._;
 		}else{
-			this._DColorDistance = s;
-			this.updatePropertyDColorDistance();
-			return this;
+			that["fun_DColorDistance"]._ = s;
+			that["fun_DColorDistance"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDColorPalette = function(){
-		this._inputDColorPalette.setSelectedKey(this._DColorPalette);
+	that["fun_DColorPalette"] = {};
+	
+	that["fun_DColorPalette"].update = function(){
+		that["fun_DColorPalette"]._input.setSelectedKey(that["fun_DColorPalette"]._);
 	};
 	
-	this.initDColorPalette = function(){
-		this._labelDColorPalette = new sap.ui.commons.Label({text: " Starting Color Palette"});
-		this._labelDColorPalette.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDColorPalette);
+	that["fun_DColorPalette"].init = function(){
+		that["fun_DColorPalette"]._label = new sap.ui.commons.Label({text: " Starting Color Palette"});
+		that["fun_DColorPalette"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DColorPalette"]._label);
 		
-		this._inputDColorPalette = new sap.ui.commons.ComboBox({width: "300px"});
-		this._inputDColorPalette.addItem(new sap.ui.core.ListItem({key:"mono", text:"mono"}));
-		this._inputDColorPalette.addItem(new sap.ui.core.ListItem({key:"monochromatic", text:"monochromatic"}));
-		this._inputDColorPalette.addItem(new sap.ui.core.ListItem({key:"contrast", text:"contrast"}));
-		this._inputDColorPalette.addItem(new sap.ui.core.ListItem({key:"triade", text:"triade"}));
-		this._inputDColorPalette.addItem(new sap.ui.core.ListItem({key:"tetrade", text:"tetrade"}));
-		this._inputDColorPalette.addItem(new sap.ui.core.ListItem({key:"analogic", text:"analogic"}));
+		that["fun_DColorPalette"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DColorPalette"]._input.addItem(new sap.ui.core.ListItem({key:"mono", text:"mono"}));
+		that["fun_DColorPalette"]._input.addItem(new sap.ui.core.ListItem({key:"monochromatic", text:"monochromatic"}));
+		that["fun_DColorPalette"]._input.addItem(new sap.ui.core.ListItem({key:"contrast", text:"contrast"}));
+		that["fun_DColorPalette"]._input.addItem(new sap.ui.core.ListItem({key:"triade", text:"triade"}));
+		that["fun_DColorPalette"]._input.addItem(new sap.ui.core.ListItem({key:"tetrade", text:"tetrade"}));
+		that["fun_DColorPalette"]._input.addItem(new sap.ui.core.ListItem({key:"analogic", text:"analogic"}));
 		
-		this._content.addContent(this._inputDColorPalette);
-		this._inputDColorPalette.attachChange(this.propertyChangedDColorPalette, this);
-		this._inputDColorPalette.addStyleClass("org-scn-ApsBoolean");
+		that._content.addContent(that["fun_DColorPalette"]._input);
+		that["fun_DColorPalette"]._input.attachChange(that["fun_DColorPalette"].propertyChanged, that);
+		that["fun_DColorPalette"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDColorPalette();
+		that["fun_DColorPalette"].update();
 	};
 
-	this.propertyChangedDColorPalette = function(oControlEvent){
+	that["fun_DColorPalette"].propertyChanged = function(oControlEvent){
 		var newValue = oControlEvent.getParameter("newValue");
-		this._DColorPalette = newValue;
-		this.firePropertiesChanged(["DColorPalette"]);
+		that["fun_DColorPalette"]._ = newValue;
+		that.firePropertiesChanged(["DColorPalette"]);
 	};
 	
-	this.DColorPalette = function(s){
+	that.DColorPalette = function(s){
 		if( s === undefined){
-			return this._DColorPalette;
+			return that["fun_DColorPalette"]._;
 		}else{
-			this._DColorPalette = s;
-			this.updatePropertyDColorPalette();
-			return this;
+			that["fun_DColorPalette"]._ = s;
+			that["fun_DColorPalette"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDShowLegend = function(){
-		this._inputDShowLegend.setChecked(this._DShowLegend);
+	that["fun_DShowLegend"] = {};
+	
+	that["fun_DShowLegend"].update = function(){
+		that["fun_DShowLegend"]._input.setChecked(that["fun_DShowLegend"]._);
 	};
 	
-	this.initDShowLegend = function(){
-		this._labelDShowLegend = new sap.ui.commons.Label({text: " Show Legend"});
-		this._labelDShowLegend.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDShowLegend);
+	that["fun_DShowLegend"].init = function(){
+		that["fun_DShowLegend"]._label = new sap.ui.commons.Label({text: " Show Legend"});
+		that["fun_DShowLegend"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DShowLegend"]._label);
 		
-		this._inputDShowLegend = new sap.ui.commons.CheckBox({width: "300px", text: "Show Legend"});
-		this._content.addContent(this._inputDShowLegend);
-		this._inputDShowLegend.attachChange(this.propertyChangedDShowLegend, this);
-		this._inputDShowLegend.addStyleClass("org-scn-ApsBoolean");
+		that["fun_DShowLegend"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Show Legend"});
+		that._content.addContent(that["fun_DShowLegend"]._input);
+		that["fun_DShowLegend"]._input.attachChange(that["fun_DShowLegend"].propertyChanged, that);
+		that["fun_DShowLegend"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDShowLegend();
+		that["fun_DShowLegend"].update();
 	};
 
-	this.propertyChangedDShowLegend = function(oControlEvent){
+	that["fun_DShowLegend"].propertyChanged = function(oControlEvent){
 		var checked = oControlEvent.getParameter("checked");
-		this._DShowLegend = checked;
-		this.firePropertiesChanged(["DShowLegend"]);
+		that["fun_DShowLegend"]._ = checked;
+		that.firePropertiesChanged(["DShowLegend"]);
 	};
 	
-	this.DShowLegend = function(s){
+	that.DShowLegend = function(s){
 		if( s === undefined){
-			return this._DShowLegend;
+			return that["fun_DShowLegend"]._;
 		}else{
-			this._DShowLegend = s;
-			this.updatePropertyDShowLegend();
-			return this;
+			that["fun_DShowLegend"]._ = s;
+			that["fun_DShowLegend"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDLegendPosition = function(){
-		this._inputDLegendPosition.setSelectedKey(this._DLegendPosition);
+	that["fun_DLegendPosition"] = {};
+	
+	that["fun_DLegendPosition"].update = function(){
+		that["fun_DLegendPosition"]._input.setSelectedKey(that["fun_DLegendPosition"]._);
 	};
 	
-	this.initDLegendPosition = function(){
-		this._labelDLegendPosition = new sap.ui.commons.Label({text: " Legend Position"});
-		this._labelDLegendPosition.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDLegendPosition);
+	that["fun_DLegendPosition"].init = function(){
+		that["fun_DLegendPosition"]._label = new sap.ui.commons.Label({text: " Legend Position"});
+		that["fun_DLegendPosition"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DLegendPosition"]._label);
 		
-		this._inputDLegendPosition = new sap.ui.commons.ComboBox({width: "300px"});
-		this._inputDLegendPosition.addItem(new sap.ui.core.ListItem({key:"Left", text:"Left"}));
-		this._inputDLegendPosition.addItem(new sap.ui.core.ListItem({key:"Right", text:"Right"}));
+		that["fun_DLegendPosition"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DLegendPosition"]._input.addItem(new sap.ui.core.ListItem({key:"Left", text:"Left"}));
+		that["fun_DLegendPosition"]._input.addItem(new sap.ui.core.ListItem({key:"Right", text:"Right"}));
 		
-		this._content.addContent(this._inputDLegendPosition);
-		this._inputDLegendPosition.attachChange(this.propertyChangedDLegendPosition, this);
-		this._inputDLegendPosition.addStyleClass("org-scn-ApsBoolean");
+		that._content.addContent(that["fun_DLegendPosition"]._input);
+		that["fun_DLegendPosition"]._input.attachChange(that["fun_DLegendPosition"].propertyChanged, that);
+		that["fun_DLegendPosition"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		this.updatePropertyDLegendPosition();
+		that["fun_DLegendPosition"].update();
 	};
 
-	this.propertyChangedDLegendPosition = function(oControlEvent){
+	that["fun_DLegendPosition"].propertyChanged = function(oControlEvent){
 		var newValue = oControlEvent.getParameter("newValue");
-		this._DLegendPosition = newValue;
-		this.firePropertiesChanged(["DLegendPosition"]);
+		that["fun_DLegendPosition"]._ = newValue;
+		that.firePropertiesChanged(["DLegendPosition"]);
 	};
 	
-	this.DLegendPosition = function(s){
+	that.DLegendPosition = function(s){
 		if( s === undefined){
-			return this._DLegendPosition;
+			return that["fun_DLegendPosition"]._;
 		}else{
-			this._DLegendPosition = s;
-			this.updatePropertyDLegendPosition();
-			return this;
+			that["fun_DLegendPosition"]._ = s;
+			that["fun_DLegendPosition"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDLegendWidth = function(){
-		this._inputDLegendWidth.setValue(this._DLegendWidth);
+	that["fun_DLegendWidth"] = {};
+	
+	that["fun_DLegendWidth"].update = function(){
+		that["fun_DLegendWidth"]._input.setValue(that["fun_DLegendWidth"]._);
 	};
 	
-	this.initDLegendWidth = function(){
-		this._labelDLegendWidth = new sap.ui.commons.Label({text: " Width of Legend in px"});
-		this._labelDLegendWidth.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDLegendWidth);
+	that["fun_DLegendWidth"].init = function(){
+		that["fun_DLegendWidth"]._label = new sap.ui.commons.Label({text: " Width of Legend in px"});
+		that["fun_DLegendWidth"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DLegendWidth"]._label);
 		
-		this._inputDLegendWidth = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDLegendWidth);
-		this._inputDLegendWidth.attachChange(this.propertyChangedDLegendWidth, this);
-		this._inputDLegendWidth.addStyleClass("org-scn-ApsSimple");
+		that["fun_DLegendWidth"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DLegendWidth"]._input);
+		that["fun_DLegendWidth"]._input.attachChange(that["fun_DLegendWidth"].propertyChanged, that);
+		that["fun_DLegendWidth"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDLegendWidth();
+		that["fun_DLegendWidth"].update();
 	};
 
-	this.propertyChangedDLegendWidth = function(oControlEvent){
+	that["fun_DLegendWidth"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DLegendWidth = value;
-		this.firePropertiesChanged(["DLegendWidth"]);
+		that["fun_DLegendWidth"]._ = value;
+		that.firePropertiesChanged(["DLegendWidth"]);
 	};
 	
-	this.DLegendWidth = function(s){
+	that.DLegendWidth = function(s){
 		if( s === undefined){
-			return this._DLegendWidth;
+			return that["fun_DLegendWidth"]._;
 		}else{
-			this._DLegendWidth = s;
-			this.updatePropertyDLegendWidth();
-			return this;
+			that["fun_DLegendWidth"]._ = s;
+			that["fun_DLegendWidth"].update();
+			return that;
 		}
 	};
 
-	this.updatePropertyDMaxDataPoints = function(){
-		this._inputDMaxDataPoints.setValue(this._DMaxDataPoints);
+	that["fun_DMaxDataPoints"] = {};
+	
+	that["fun_DMaxDataPoints"].update = function(){
+		that["fun_DMaxDataPoints"]._input.setValue(that["fun_DMaxDataPoints"]._);
 	};
 	
-	this.initDMaxDataPoints = function(){
-		this._labelDMaxDataPoints = new sap.ui.commons.Label({text: " Maximum Number of Data Points"});
-		this._labelDMaxDataPoints.addStyleClass("org-scn-ApsLabel");
-		this._content.addContent(this._labelDMaxDataPoints);
+	that["fun_DMaxDataPoints"].init = function(){
+		that["fun_DMaxDataPoints"]._label = new sap.ui.commons.Label({text: " Maximum Number of Data Points"});
+		that["fun_DMaxDataPoints"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DMaxDataPoints"]._label);
 		
-		this._inputDMaxDataPoints = new sap.ui.commons.TextField({width: "300px"});
-		this._content.addContent(this._inputDMaxDataPoints);
-		this._inputDMaxDataPoints.attachChange(this.propertyChangedDMaxDataPoints, this);
-		this._inputDMaxDataPoints.addStyleClass("org-scn-ApsSimple");
+		that["fun_DMaxDataPoints"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DMaxDataPoints"]._input);
+		that["fun_DMaxDataPoints"]._input.attachChange(that["fun_DMaxDataPoints"].propertyChanged, that);
+		that["fun_DMaxDataPoints"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		this.updatePropertyDMaxDataPoints();
+		that["fun_DMaxDataPoints"].update();
 	};
 
-	this.propertyChangedDMaxDataPoints = function(oControlEvent){
+	that["fun_DMaxDataPoints"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		this._DMaxDataPoints = value;
-		this.firePropertiesChanged(["DMaxDataPoints"]);
+		that["fun_DMaxDataPoints"]._ = value;
+		that.firePropertiesChanged(["DMaxDataPoints"]);
 	};
 	
-	this.DMaxDataPoints = function(s){
+	that.DMaxDataPoints = function(s){
 		if( s === undefined){
-			return this._DMaxDataPoints;
+			return that["fun_DMaxDataPoints"]._;
 		}else{
-			this._DMaxDataPoints = s;
-			this.updatePropertyDMaxDataPoints();
-			return this;
+			that["fun_DMaxDataPoints"]._ = s;
+			that["fun_DMaxDataPoints"].update();
+			return that;
 		}
 	};
 

@@ -62,7 +62,7 @@ that.spec =
   "colorExample": {
     "opts": {
       "apsControl": "color",
-      "cat": "Data",
+      "cat": "Colors",
       "desc": "Simple Color",
       "tooltip": "A color",
       "ztlFunction": "",
@@ -111,6 +111,20 @@ that.spec =
     "value": "null",
     "visible": true
   },
+  "doublearray": {
+    "opts": {
+      "apsControl": "array",
+      "arrayMode": "TwoLevelArray",
+      "cat": "Content-TwoLevelArray",
+      "desc": "Complex Array",
+      "tooltip": "Array with Key and Value and Second Level",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "type": "String",
+    "value": "[]",
+    "visible": true
+  },
   "paletteExample": {
     "opts": {
       "apsControl": "palette",
@@ -124,6 +138,20 @@ that.spec =
     "value": "",
     "visible": true
   },
+  "singlearray": {
+    "opts": {
+      "apsControl": "array",
+      "arrayMode": "OneLevelArray",
+      "cat": "Content-SingleArray",
+      "desc": "Simple Array",
+      "tooltip": "Simple Array with Key and Value",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "type": "String",
+    "value": "[]",
+    "visible": true
+  },
   "spinnerExample": {
     "opts": {
       "apsControl": "spinner",
@@ -135,6 +163,20 @@ that.spec =
     },
     "type": "int",
     "value": "",
+    "visible": true
+  },
+  "stringarray": {
+    "opts": {
+      "apsControl": "array",
+      "arrayMode": "StringArray",
+      "cat": "Content-StringArray",
+      "desc": "Simple String Array",
+      "tooltip": "Simple Array with Key",
+      "ztlFunction": "",
+      "ztlType": "StringArray"
+    },
+    "type": "String",
+    "value": "[]",
     "visible": true
   },
   "textExample": {
