@@ -458,7 +458,7 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 								}
 							}
 
-							if(options.iNullValues = "Hide" && memberJson.valueSign == "0") {
+							if(options.iNullValues == "Hide" && memberJson.valueSign == "0") {
 								// no, this one is not available in this case
 							} else {
 								availableMembers = availableMembers + "|" + memberJson.name + "|";	
@@ -483,7 +483,7 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 						memberJson.display = memberJson.text;
 					}
 
-					if(options.iNullValues = "Hide" && memberJson.valueSign == "0") {
+					if(options.iNullValues == "Hide" && memberJson.valueSign == "0") {
 						// skip this value in display
 					} else {
 						oData[name].items.push(memberJson);
