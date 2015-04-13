@@ -582,6 +582,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 	var retObj = {
 		dimensionHeaders : [],		// ["Calendar Day", "Location", ...]
 		dimensionHeadersKeys : [],	// ["0CALDAY", "0LOCATION", ...]
+		dimensionHeader : "",		// "0CALDAY | 0LOCATION"
 		dimensionColHeaders : [],	// ["0SALESREP", "0MEASURES", ...]		(TODO)
 		dimensionColHeader : "",	// "0SALESREP | 0MEASURES"				(TODO)
 		columnHeaders2D : [],		// Two Dimensions in Columns example:
