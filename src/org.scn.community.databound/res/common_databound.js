@@ -580,8 +580,8 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 	}
 	// Create shell return object
 	var retObj = {
-		dimensionHeaders : [],		// ["0CALDAY", "0LOCATION", ...]
-		dimensionHeader : "",		// "0CALDAY | 0LOCATION"
+		dimensionHeaders : [],		// ["Calendar Day", "Location", ...]
+		dimensionHeadersKeys : [],	// ["0CALDAY", "0LOCATION", ...]
 		dimensionColHeaders : [],	// ["0SALESREP", "0MEASURES", ...]		(TODO)
 		dimensionColHeader : "",	// "0SALESREP | 0MEASURES"				(TODO)
 		columnHeaders2D : [],		// Two Dimensions in Columns example:
@@ -600,6 +600,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 									// ["001 | SALES", "001 | DISC", ...]
 									// Simple Example:
 									// ["SALES", "DISC", ...]
+		rowLevels2D : [],			// [[-1,0],[-1,1]]	- For hierarchies
 		rowHeaders2D : [],			// [["01/2015", "Memphis"],["01/2015", "Nashville"], ...]]
 		rowHeadersKeys2D : [],		// [["01.2015", "MEMPHIS"],["01.2015", "NASHVILLE"], ...]]
 		rowHeaders : [],			// ["01/2015 | Memphis", "01/2015 | Nashville", ...]
@@ -607,7 +608,10 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 		values : [],				// [[100, 50], [200, 250], ...]
 		formattedValues : [],		// [["100 USD", "50 USD"], ["200 USD", "250 USD"], ...]
 		hash : {},					// {"01/2015 | Memphis" : 0, "01/2015 | Nashville" : 1, ... }
-		geometry : {}				// {"rowLength" : "18", "colLength" : "2", "headersLength" : "2", "allColumnsLength" : "4" }
+		geometry : {},				// {"rowLength" : "18", "colLength" : "2", "headersLength" : "2", "allColumnsLength" : "4" },
+		hierarchies : []			// Registry of Hierarchies
+									// [{ key : "0PROFIT_CTR" }, { key : "0ORG_UNIT"} ... ]
+
 	};
 	if(!data || !data.dimensions || (!data.data && !data.formattedData)) {
 		if(!options.useMockData){
@@ -632,6 +636,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 		}
 	}
 	retObj.dimensionCols = [];
+	retObj.dimensionColsKeys = [];
 	retObj.dimensionRows = [];
 	retObj.dimensionHeaders = [];
 	
@@ -645,9 +650,11 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 		if(dim.axis == "ROWS") {
 			retObj.dimensionRows.push({key: dim.key, text: dim.text});
 			retObj.dimensionHeaders.push(dim.text);
+			retObj.dimensionHeadersKeys.push(dim.key);
 		}
 		if(dim.axis == "COLUMNS") {
 			retObj.dimensionCols.push({key: dim.key, text: dim.text});
+			retObj.dimensionColsKeys.push({key: dim.key, text: dim.key});
 		}
 	}
 	
@@ -660,25 +667,48 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 		var rowHeader = "";
 		var rowHeaderKey = "";
 		var rowHeader2D = [];
+		var rowLevel2D = [];
 		var rowHeaderKey2D = [];
 		var rowAxisTuple = data.axis_rows[row];
 		var sep = "";
 		var isResult = false;
 		var isExpanded = false;
 		for(var j=0;j<rowAxisTuple.length;j++){
+			var currentDimension = data.dimensions[j];
 			if(rowAxisTuple[j] != -1){
 				if(options.ignoreResults || options.ignoreExpandedNodes) {
-					var member = data.dimensions[j].members[rowAxisTuple[j]];
+					var member = currentDimension.members[rowAxisTuple[j]];
 					if(member.type == "RESULT") { isResult=true;}
-					if(member.nodeState && member.nodeState == "EXPANDED") { isExpanded=true;}
+					if(member.nodeState){
+						var dimFound = -1;
+						for(var h=0;h<retObj.hierarchies.length;h++){
+							if(retObj.hierarchies[h].key == currentDimension.key) {
+								dimFound = h;
+							}
+						}
+						if(dimFound == -1) {	// New Hierarchy registered
+							retObj.hierarchies.push({
+								key : currentDimension.key,
+								text : currentDimension.text,
+								deepestLevel : 0
+							});
+						}else{
+							var hier = retObj.hierarchies[dimFound];
+							if(member.level) {
+								if(member.level > hier.deepestLevel) hier.deepestLevel = member.level;
+							}
+						}
+						if(member.nodeState == "EXPANDED") { isExpanded=true;}
+					}
 					// also hierarchy nodes should be ignored, but this need more work, some code snippet
 					// if(member.type == "HIERARCHY_NODE" && member.level == 1 && member.nodeState == "EXPANDED") { isResult=true; break;}
 				}
 
-				rowHeader += sep + data.dimensions[j].members[rowAxisTuple[j]].text;
-				rowHeaderKey += sep + data.dimensions[j].members[rowAxisTuple[j]].key;
-				rowHeader2D.push(data.dimensions[j].members[rowAxisTuple[j]].text);
-				rowHeaderKey2D.push(data.dimensions[j].members[rowAxisTuple[j]].key);
+				rowHeader += sep + currentDimension.members[rowAxisTuple[j]].text;
+				rowHeaderKey += sep + currentDimension.members[rowAxisTuple[j]].key;
+				rowHeader2D.push(currentDimension.members[rowAxisTuple[j]].text);
+				rowLevel2D.push(currentDimension.members[rowAxisTuple[j]].level || 0);
+				rowHeaderKey2D.push(currentDimension.members[rowAxisTuple[j]].key);
 				
 				if(isResult || isExpanded) {
 					break;
@@ -699,6 +729,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 			retObj.rowHeadersKeys.push(rowHeaderKey);
 			retObj.rowHeaders2D.push(rowHeader2D);
 			retObj.rowHeadersKeys2D.push(rowHeaderKey2D);
+			retObj.rowLevels2D.push(rowLevel2D);
 		}
 		
 		for(var col=0;col<retObj.geometry.colLength;col++){
