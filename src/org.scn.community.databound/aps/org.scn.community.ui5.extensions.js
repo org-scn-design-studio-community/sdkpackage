@@ -295,7 +295,10 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 			alert("Problem with Map Downloader Init\n\n"+e);
 		}
 	},
-	renderer : {}
+	renderer : {},
+	needsLabel : function() {
+		return false;
+	}
 });
 /*
  * GeoCoder/Cache Component (Not finished)
@@ -3855,7 +3858,10 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.ColorBuilder",{
 			alert("Problem with Color Builder Init");
 		}
 	},
-	renderer : {}
+	renderer : {},
+	needsLabel : function() {
+		return false;
+	}
 });
 ;
 

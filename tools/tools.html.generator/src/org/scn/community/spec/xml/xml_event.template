@@ -1,0 +1,6 @@
+	<property
+		id="%EVENT_NAME%"
+		type="ScriptText"
+		title="%EVENT_TITLE%"
+		group="Events">
+	</property>

@@ -1,5 +1,6 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPage", function() {
 	var that = this;
+	
 	/**
 	 * Crawl Node config by node key to find its UI sheet.
 	 */
@@ -37,7 +38,11 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 								return this.props[property].value;
 							}else{
 								if(onSet) {
-									value = this.callRuntimeHandler("callOnSet",property,value.replace(/(\n|\r\n)/g,"__n__"));
+									if(that.componentInstance != undefined) {
+										value = that.componentInstance.callOnSet (property,value.replace(/(\n|\r\n)/g,"__n__"));
+									} else {
+										value = this.callRuntimeHandler("callOnSet",property,value.replace(/(\n|\r\n)/g,"__n__"));
+									}
 								}
 								this.props[property].value = value;
 								if(apsControl=="text" || !apsControl){
@@ -63,6 +68,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 								}
 								if(apsControl=="color"){
 									this["cmp_"+property].setBackgroundColor(value);
+								}
+								if(apsControl=="array"){
+									this["cmp_"+property].setValue(value);
 								}
 								return this;
 							}
@@ -95,6 +103,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 							}
 							if(apsControl=="color"){
 								newValue = oControlEvent.getSource().getBackgroundColor();
+							}
+							if(apsControl == "array"){
+								newValue = oControlEvent.getSource().getValue();
 							}
 							this.props[property].value = newValue;
 							if(!this.isTest) {
@@ -177,10 +188,25 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 						});
 						this["cmp_"+property].attachColorChange(f,this);
 					}
+					// try to add arrays
+					if(apsControl == "array"){
+						this["cmp_"+property] = new org.scn.community.aps.ArrayList({
+							mode: propertyOptions.arrayMode
+						});
+						this["cmp_"+property].attachValueChange(f,this);
+					}
+					
+					// Step 3a, if component has afterInit method, call it!
+					if(this["cmp_"+property].afterInit) {
+						useLabel = this["cmp_"+property].afterInit();	
+					}
+					
 					// Step 4, add control to layout
 					//etcLayout.addContent(this.hLabel(property,this["cmp_"+property]));
 					var useLabel = true;
-					if(apsControl == "palette" || apsControl == "mapdownload") useLabel = false;
+					if(this["cmp_"+property].needsLabel) {
+						useLabel = this["cmp_"+property].needsLabel();	
+					}
 					if(useLabel){
 						node.ui.addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
 					}else{
@@ -258,6 +284,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 	 * Design Studio Events
 	 */
 	this.init = function(){
+		try {
+		
+		if(global != undefined && global.component != undefined) {
+			this.componentInstance = global.component;
+		}
+		
 		this.appHeader = new sap.ui.commons.ApplicationHeader({
 			displayLogoff : false,
 			logoText : "Property Sheet",
@@ -278,14 +310,18 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 		// Get Property Metadata from Design Studio Component Runtime.
 		this.isTest = this.getUrlParameterByName("testMode") == "X";
 		var propMetadata = {};
-		if(!this.isTest){
-			propMetadata = this.callRuntimeHandler("getPropertyMetaData");	
-		} else {
-			var testComponent = this.getUrlParameterByName("component");
-			var componentObject = eval(testComponent);
-			
-			this.componentInstance = componentObject.instance();
+		if(this.componentInstance != undefined) {
 			propMetadata = this.componentInstance.getPropertyMetaData();
+		} else {
+			if(!this.isTest){
+				propMetadata = this.callRuntimeHandler("getPropertyMetaData");	
+			} else {
+				var testComponent = this.getUrlParameterByName("component");
+				var componentObject = eval(testComponent);
+				
+				this.componentInstance = componentObject.instance();
+				propMetadata = this.componentInstance.getPropertyMetaData();
+			}
 		}
 		
 		this.metaProps = jQuery.parseJSON(propMetadata);
@@ -335,13 +371,18 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 		// Pass 2 - Balance out nodes that contain nodes and leafs.
 		this.balance(this.tree);
 		// Pass 3 - Create UI Components
+
 		this.render(this.tree,this.mainLayout);
-		
+
 		var sComponentInfo = {};
-		if(!this.isTest){
-			sComponentInfo = this.callRuntimeHandler("getComponentInformation");	
-		} else {
+		if(this.componentInstance != undefined) {
 			sComponentInfo = this.componentInstance.getComponentInformation();
+		} else {
+			if(!this.isTest){
+				sComponentInfo = this.callRuntimeHandler("getComponentInformation");	
+			} else {
+				sComponentInfo = this.componentInstance.getComponentInformation();
+			}
 		}
 
 		var componentInfo = {};
@@ -382,7 +423,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 				alert(e);
 			}
 		}
-		
+		} catch(e2) {
+			alert(e);
+		}
 	};
 	this.hLabel = function(label,component){
 		var hLayout = new sap.ui.commons.layout.HorizontalLayout({})

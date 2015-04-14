@@ -1,6 +1,0 @@
-	/**
-	 * Gets %NAME% Property
-	 */	
-	%PROPERTY_TYPE% get%PROPERTY_CAPITAL_CUT%() {*
-		return this.%PROPERTY_CAPITAL%;
-	*}

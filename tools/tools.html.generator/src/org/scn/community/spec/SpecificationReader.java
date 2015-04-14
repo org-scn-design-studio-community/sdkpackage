@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import org.scn.community.defgenerator.ZtlAndAps;
 import org.scn.community.htmlgenerator.Component;
 import org.scn.community.htmlgenerator.Property;
+import org.scn.community.spec.aps.SpecificationApsTemplate;
 import org.scn.community.spec.js.SpecificationJsTemplate;
 import org.scn.community.spec.xml.SpecificationXmlTemplate;
 import org.scn.community.spec.ztl.SpecificationZtlTemplate;
@@ -33,6 +34,8 @@ public class SpecificationReader {
 	private HashMap<String, String> templates = new HashMap<String, String>();
 	private String componentName;
 	private String rootPath;
+	private String ApsJs;
+	private String ApsHtml;
 
 	public SpecificationReader(String pathToGenSpec, Component component) {
 		this.pathToGenSpec = pathToGenSpec;
@@ -66,8 +69,6 @@ public class SpecificationReader {
 	
 	public void generate() {
 		readSpecs();
-		
-		
 
 		for (Property property : this.specProperties) {
 			if(property.hasExtendSpec()) {
@@ -113,16 +114,25 @@ public class SpecificationReader {
 		HashMap<String, String> properties = compType.getExtendedFullSpec().getProperties();
 		String compTypeValue = this.getAdvancedProperty(properties, "handlerType");
 		
-		XmlTmpl = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_root.tmpl");
-		
-		JsLoaderTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.loader."+compTypeValue+".js.tmlp");
-		JsTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.component."+compTypeValue+".js.tmpl");
+		XmlTmpl = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_root.template");
+
+		JsLoaderTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.loader."+compTypeValue+".js.template");
+		JsTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.component."+compTypeValue+".js.template");
 		
 		if(JsLoaderTmpl == null || JsTmpl == null) {
 			throw new RuntimeException("'" + compTypeValue + "' is not a valid component type (div | sapui5)");
 		}
 		
-		ZtlTmpl = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_root.ztl.tmlp");
+		ZtlTmpl = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_root.ztl.template");
+		
+		if(compTypeValue.equals("sapui5")) {
+			ApsJs  = Helpers.resource2String(SpecificationApsTemplate.class, "PropertyPage."+compTypeValue+".def.js.template");
+			ApsHtml  = Helpers.resource2String(SpecificationApsTemplate.class, "PropertyPage."+compTypeValue+".html.template");
+
+			XmlTmpl = XmlTmpl.replace("%PROPERTY_PAGE_LINK%", "res/%COMP-id%/aps/PropertyPage.html");
+		} else {
+			XmlTmpl = XmlTmpl.replace("%PROPERTY_PAGE_LINK%", "aps/org.scn.community.PropertyPage."+compTypeValue+".html");
+		}
 	}
 
 	private String getAdvancedProperty(HashMap<String, String> properties,
@@ -242,7 +252,14 @@ public class SpecificationReader {
 		templates.put("%COMPONENT_NAME%Loader.js", JsLoaderTmpl);
 		templates.put("%COMPONENT_NAME%.js", JsTmpl);
 		templates.put("def"+File.separator+"contribution.ztl", ZtlTmpl);
-
+		
+		if(ApsHtml != null){
+			templates.put("aps"+File.separator+"PropertyPage.html", ApsHtml);	
+		}
+		
+		if(ApsJs != null){
+			templates.put("aps"+File.separator+"PropertyPage.def.js", ApsJs);
+		}
 		for (String templatePath : this.templates.keySet()) {
 			String content = templates.get(templatePath);
 			templatePath = templatePath.replace("%COMPONENT_NAME%", this.componentName);
@@ -255,11 +272,15 @@ public class SpecificationReader {
 			content = content.replace("%XML_PROPERTY_TEMPLATE%", "");
 			content = content.replace("%XML_EVENT_TEMPLATE%", "");
 			content = content.replace("%XML_DEAFULT_TEMPLATE%", "");
-
+			
 			try {
 				content = content.replace("%FULL_SPEC_DEFINITION%", "that.spec = \r\n" + jsonSpecification.toString(2) + ";");
 				// content = content.replace("%FULL_COMP_SPEC_DEFINITION%", "that.compSpec = \r\n" +jsonAbout.toString(2) + ";");
 				content = content.replace("%FULL_ABOUT_SPEC_DEFINITION%", "that.aboutSpec = \r\n" +jsonAbout.toString(2) + ";");
+
+				content = content.replace("%FULL_SPEC_DEFINITION_JSON%", jsonSpecification.toString(2));
+				content = content.replace("%FULL_COMP_SPEC_DEFINITION_JSON%", jsonAbout.toString(2));
+				content = content.replace("%FULL_ABOUT_SPEC_DEFINITION_JSON%", jsonAbout.toString(2));
 			} catch (JSONException e) {
 				throw new RuntimeException(e);
 			}

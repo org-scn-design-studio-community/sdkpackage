@@ -1,0 +1,6 @@
+	/**
+	 * Gets %NAME% Property
+	 */	
+	%PROPERTY_TYPE% is%PROPERTY_CAPITAL_CUT%() {*
+		return this.%PROPERTY_CAPITAL%;
+	*}

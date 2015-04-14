@@ -132,10 +132,10 @@ public class ParamFullSpec {
 
 		String xmlType = getPropertyValue("type");
 		
-		templateXml = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_prop."+xmlType+".tmlp");
+		templateXml = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_prop."+xmlType+".template");
 
 		if(templateXml == null) {
-			templateXml = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_prop.tmpl");
+			templateXml = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_prop.template");
 		}
 
 		options = getParameter("opts");
@@ -152,10 +152,10 @@ public class ParamFullSpec {
 			}
 			
 			if(type.equals("Array")) {
-				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+arraySubType+function+".ztl.tmlp");
+				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+arraySubType+function+".ztl.template");
 
 				if(template == null) {
-					template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+"simple"+".ztl.tmlp");
+					template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+"simple"+".ztl.template");
 				}
 				
 				ParamFullSpec paramFirstChild = this.parameters.get(0);
@@ -241,10 +241,10 @@ public class ParamFullSpec {
 													
 													// add param handler
 													String paramGenChild2Value = paramGenChild2.getType();
-													String paramGenChild2Template = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-param-"+paramGenChild2Value+".js.tmlp");
+													String paramGenChild2Template = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-param-"+paramGenChild2Value+".js.template");
 													
 													if(paramGenChild2Template == null){
-														paramGenChild2Template = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-param-"+"String"+".js.tmlp");
+														paramGenChild2Template = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-param-"+"String"+".js.template");
 													}
 													
 													paramGenChild2Template = paramGenChild2Template.replace("%PARAM_NAME%", paramGenChild2.getName());
@@ -299,10 +299,10 @@ public class ParamFullSpec {
 										
 										// add param handler
 										String paramGenChildValue = paramGenChild.getType();
-										String paramGenChildTemplate = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-section-"+paramGenChildValue+".js.tmlp");
+										String paramGenChildTemplate = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-section-"+paramGenChildValue+".js.template");
 										
 										if(paramGenChildTemplate == null){
-											paramGenChildTemplate = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-section-"+"String"+".js.tmlp");
+											paramGenChildTemplate = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-section-"+"String"+".js.template");
 										}
 										
 										paramGenChildTemplate = paramGenChildTemplate.replace("%PARAM_NAME%", paramGenChild.getName());
@@ -334,10 +334,10 @@ public class ParamFullSpec {
 				template = template.replace("%ROOT_PROPERTY_KEY%", ROOT_PROPERTY_KEY);
 				
 			} else {
-				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+type+function+".ztl.tmlp");
+				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+type+function+".ztl.template");
 				
 				if(template == null) {
-					template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+"simple"+".ztl.tmlp");
+					template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+"simple"+".ztl.template");
 				}
 				
 			template = exchangeTemplate(template, type, xmlType);

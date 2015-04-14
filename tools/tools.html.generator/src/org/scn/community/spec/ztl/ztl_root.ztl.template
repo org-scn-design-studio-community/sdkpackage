@@ -1,0 +1,12 @@
+
+/**
+ * Generated ZTL Class for %COMP-id%
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.%COMP-package%.%COMP-id% extends org.scn.community.shared.%COMP-extension% {
+
+%FUNCTION_ENTRY%
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+%CUSTOM_ENTRY%
+}
