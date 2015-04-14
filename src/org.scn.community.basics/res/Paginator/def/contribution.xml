@@ -6,6 +6,7 @@
 	icon="res/Paginator/Paginator.png"
 	group="ScnCommunityBasics"
 >
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Paginator/Paginator.js</jsInclude>
 	<property

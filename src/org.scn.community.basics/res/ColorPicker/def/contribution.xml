@@ -6,6 +6,8 @@
 	icon="res/ColorPicker/ColorPicker.png"
 	group="ScnCommunityBasics"
 >
+
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ColorPicker/ColorPicker.js</jsInclude>
 

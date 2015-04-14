@@ -434,6 +434,7 @@
 	databound="true"
 >
 
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/DataTable/DataTable.js</jsInclude>
 
@@ -495,6 +496,7 @@
 
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
 	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 
@@ -653,6 +655,7 @@
 		group="ScnCommunityDataBound"
 		databound="true">
 		<stdInclude kind="d3"/>
+		<jsInclude>res/require_loader.js</jsInclude>
 		<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/D3Hier/d3hier_component.js</jsInclude>
 		<cssInclude>res/D3Hier/d3hier_component.css</cssInclude>
@@ -733,6 +736,7 @@
 
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
 	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 
@@ -1053,6 +1057,7 @@ __n__}
 
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
 	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 
@@ -1549,6 +1554,7 @@ __n__}
 	
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
 	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 
 	<jsInclude>res/MultiLevelDropDown/MultiLevelDropDown.js</jsInclude>
@@ -1785,6 +1791,7 @@ __n__}
 >
 	<stdInclude kind="d3"/>
 	
+	<jsInclude>res/require_loader.js</jsInclude>
     <jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 	<jsInclude>res/Projector/Projector.js</jsInclude>
@@ -1818,6 +1825,7 @@ __n__}
 
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
 	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 
@@ -2255,6 +2263,7 @@ __n__}
 
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
 	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 

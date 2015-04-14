@@ -77,7 +77,8 @@ sap.designstudio.sdk.Component.subclass(ownComponentName, function() {
 
 	//FUNCTION CALLED AFTER RENDERING
 	this.afterUpdate = function() {
-		setTimeout(function(){speedoMeter()},250);
+		var script = _readScriptPath();
+		this.speedoMeter();
 	};
 
 
@@ -243,11 +244,9 @@ sap.designstudio.sdk.Component.subclass(ownComponentName, function() {
 			return this;
 		}
 	};		
-	
 
-	
 	//MAIN FUNCTION OF THE COMPONENT
-	function speedoMeter(){
+	this.speedoMeter = function (){
 		
 		//INITIALIZE VARIABLES
 		var DEG2RAD = Math.PI / 180;

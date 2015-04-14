@@ -394,6 +394,7 @@
 	icon="res/ApplicationHeaderEventTrigger/ApplicationHeader.png"
 	group="ScnCommunityPrototypes"
 >
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ApplicationHeaderEventTrigger/ApplicationHeader.js</jsInclude>
 
@@ -458,6 +459,7 @@
 	icon="res/ApplicationHeaderOnBeforeRender/ApplicationHeader.png"
 	group="ScnCommunityPrototypes"
 >
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ApplicationHeaderOnBeforeRender/ApplicationHeader.js</jsInclude>
 
@@ -520,6 +522,7 @@
 	id="ProgressSet" title="Progress Bar Set" handlerType="div" icon="res/ProgressSet/ProgressSet.png" group="ScnCommunityPrototypes"
 	propertySheetPath="res/ProgressSet/aps/ProgressSetPropertyPage.html">
 	<stdInclude kind="d3"/>
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ProgressSet/ProgressSet.js</jsInclude>
   	<cssInclude>res/ProgressSet/ProgressSet.css</cssInclude>
@@ -571,6 +574,7 @@
 
 	<jsInclude>os/iscroll-4/src/iscroll.js</jsInclude>
 	<jsInclude>os/sapui5/load.sap.m.js</jsInclude>
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/SapMList/SapMList.js</jsInclude>
 	<cssInclude>res/SapMList/SapMList.css</cssInclude>
@@ -592,6 +596,7 @@
 		group="ScnCommunityPrototypes"
 		propertySheetPath="res/RapidPrototype/aps/RapidPrototypePropertyPage.html">
 		
+		<jsInclude>res/require_loader.js</jsInclude>
 		<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/RapidPrototype/RapidPrototype.js</jsInclude>
 

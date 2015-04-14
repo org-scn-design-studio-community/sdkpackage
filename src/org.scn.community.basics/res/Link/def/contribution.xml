@@ -6,8 +6,11 @@
 	icon="res/Link/Link.png"
 	group="ScnCommunityBasics"
 >
+
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Link/Link.js</jsInclude>
+
 	<property
 		id="text"
 		title="Link Text"

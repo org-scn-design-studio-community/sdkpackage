@@ -7,6 +7,7 @@
 	group="ScnCommunityBasics"
 >
 
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/PasswordField/PasswordField.js</jsInclude>
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>

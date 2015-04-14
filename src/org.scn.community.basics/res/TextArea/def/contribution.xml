@@ -6,6 +6,8 @@
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 >
+
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/TextArea/TextArea.js</jsInclude>
 	<cssInclude>res/TextArea/TextArea.css</cssInclude>

@@ -9,6 +9,7 @@
 		group="ScnCommunityDataBound"
 		databound="true">
 		<stdInclude kind="d3"/>
+		<jsInclude>res/require_loader.js</jsInclude>
 		<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/D3Hier/d3hier_component.js</jsInclude>
 		<cssInclude>res/D3Hier/d3hier_component.css</cssInclude>

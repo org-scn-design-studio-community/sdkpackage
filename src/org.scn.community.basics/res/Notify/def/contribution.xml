@@ -5,6 +5,7 @@
 	handlerType="div"
 	group="ScnCommunityBasics"
   	tooltip="Notify - Leandro Cardoso" >
+		<jsInclude>res/require_loader.js</jsInclude>
 	  	<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/Notify/Notify.js</jsInclude>
     	<jsInclude>os/noty/packaged/jquery.noty.packaged.js</jsInclude>

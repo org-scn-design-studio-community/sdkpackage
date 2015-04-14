@@ -38,26 +38,47 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 	};
 
 	org_scn_community_basics.readGenericScriptAccess = function(scriptSrc, sctiptPath, packageName) {
-		if(scriptSrc) {
-			var myScriptSuffix = sctiptPath;
-			
-			var myPluginSuffix = "org.scn.community."
-			if(packageName != "") {
-				myPluginSuffix+packageName+"/";	
-			}
-			var mainScriptPathIndex = scriptSrc.indexOf(myScriptSuffix);
+
+		var myPluginSuffix = "org.scn.community."
+		if(packageName != "") {
+			packageName = myPluginSuffix+packageName;	
+		}
+		
+		if(packageName == "") {
+			packageName = myPluginSuffix+"basics";	
+		}
+
+		// this is in case 1.4
+		if(scriptSrc && sap.zen.createStaticSdkMimeUrl == undefined) {
+			var mainSDKPath = "";
+			var ownScriptPath = "";
+
+			var mainScriptPathIndex = scriptSrc.indexOf(sctiptPath);
 			var mainSDKPathIndex = scriptSrc.indexOf(myPluginSuffix);
-			if(packageName == "") {
-				myPluginSuffix+"basics"+"/";	
-			}
-			var mainSDKPath = scriptSrc.substring(0, mainSDKPathIndex);
-			var ownScriptPath = scriptSrc.substring(0, mainScriptPathIndex) + myScriptSuffix;
+
+			mainSDKPath = scriptSrc.substring(0, mainSDKPathIndex);
+			ownScriptPath = scriptSrc.substring(0, mainScriptPathIndex) + sctiptPath;
+
 			return {
 				myScriptPath : ownScriptPath,					// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/res/<component-name>/
 				myPackagePath: mainSDKPath + myPluginSuffix, 	// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/
 				mainSDKPath : mainSDKPath						// http://localhost:9091/aad/zen/mimes/sdk_include/
 			};
 		}
+		
+		// 1.5 api
+		if(sap.zen.createStaticSdkMimeUrl != undefined) {
+			var ownScriptPath = sap.zen.createStaticSdkMimeUrl(packageName, sctiptPath);
+			var mainPluginPath = sap.zen.createStaticSdkMimeUrl(packageName, "");
+			var mainSDKPath = sap.zen.createStaticSdkMimeUrl("", "").replace("//", "/");
+			
+			return {
+				myScriptPath : ownScriptPath,					// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/res/<component-name>/
+				myPackagePath: mainPluginPath, 					// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/
+				mainSDKPath : mainSDKPath						// http://localhost:9091/aad/zen/mimes/sdk_include/
+			};
+		}
+		
 		return {
 			// temporary hack for local mode in 1.5 release
 			myScriptPath: "/aad/zen/mimes/sdk_include/org.scn.community."+packageName+"/" + sctiptPath + "/",

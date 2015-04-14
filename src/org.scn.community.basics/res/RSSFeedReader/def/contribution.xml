@@ -6,6 +6,7 @@
 	handlerType="div"
 	group="ScnCommunityBasics">
 	
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/RSSFeedReader/RSSFeedReader.js</jsInclude>
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>

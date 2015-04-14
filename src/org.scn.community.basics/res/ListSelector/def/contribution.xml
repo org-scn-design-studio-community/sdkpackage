@@ -5,6 +5,8 @@
 		icon="res/ListSelector/ListSelector.png"
 		propertySheetPath="res/ListSelector/aps/ListSelectorPropertyPage.html"
 		group="ScnCommunityBasics">
+
+		<jsInclude>res/require_loader.js</jsInclude>
 	  	<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/ListSelector/ListSelector.js</jsInclude>
 	  	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
