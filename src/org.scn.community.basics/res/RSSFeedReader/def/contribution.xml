@@ -10,10 +10,10 @@
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/RSSFeedReader/RSSFeedReader.js</jsInclude>
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
-	<property type="String" title="RSS Feed URL"
+	<property group="Display" type="String" title="RSS Feed URL"
 		id="feedurldimension">
 	</property>
-	<property type="String" title="XSL URL"
+	<property group="Display" type="String" title="XSL URL"
 		id="xslurldimension">
 	</property>
 	<initialization>

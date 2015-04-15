@@ -57,7 +57,7 @@
 		title="Change to Vertical Orientation"
 		type="boolean"
 		group="Display"
-		visible="false" />
+		visible="true" />
 
 	<property
 		id="doRefresh"

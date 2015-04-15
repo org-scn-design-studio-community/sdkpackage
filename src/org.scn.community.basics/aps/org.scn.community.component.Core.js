@@ -70,8 +70,4 @@ org_scn_community_component_Core = function (owner, options){
 	that.getComponentInformation = function(){
 		return JSON.stringify(that.componentInfo);
 	}
-	that.init = function(){
-		that.$().addClass("DesignStudioSCN");
-		that.$().addClass("Core");
-	}
 };

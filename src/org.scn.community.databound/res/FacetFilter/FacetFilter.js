@@ -100,20 +100,17 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 		// set the model
 		that._oModel = new sap.ui.model.json.JSONModel(); 
 		that._facetFilter.setModel(that._oModel);
-		    	
-    	this.addContent(
-    		that._facetFilter,
-			{left: "0px", top: "0px"}
-		);
+		 
+		// resize function
+		that.onAfterRendering = function() {
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._facetFilter);
+		};
 
     	that.lists = {}; 
     	
     	that._facetFilter.setVisibleItemCountMode(sap.ui.ux3.VisibleItemCountMode.Auto);
     	
     	org_scn_community_basics.hideNoDataOverlay(this.getId(), true);
-    	
-    	that.onAfterRendering = function() {
-    	};
 	},
 	
 	renderer: {},

@@ -112,7 +112,17 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 		var lData = this._data;
 		var lMetadata = this._metadata;
 		
-		var lCurrentSelection = "Current Selection [" + this.getDSelectedKeyExtFull() + "]";
+		var selectionList = "";
+		if(this.getDSelectedKeyExtFull() != undefined && this.getDSelectedKeyExtFull().length > 0) {
+			var selection = this.getDSelectedKeyExtFull();
+			if(selection.length > 25) {
+				selection = selection.substring(0, 25) + " ( & more ... )";
+			}
+			selectionList = " [" + selection + "]";
+		} else {
+			selectionList = " [All Members Selected]";
+		}
+		var lCurrentSelection = "Current Selection" + selectionList;
 		
 		if(this.getDDoRefresh()){
 			var lDBindingMode = this.getDBindingMode();

@@ -10,38 +10,49 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Slider/Slider.js</jsInclude>
+
+	<cssInclude>res/Slider/Slider.css</cssInclude>
+
 	<property
 		id="min"
 		title="Minimum Value"
+		group="Display"
 		type="float" />
 	<property
 		id="max"
 		title="Maximum Value"
+		group="Display"
 		type="float" />
 	<property
 		id="value"
 		title="Value"
+		group="Display"
 		type="float" />
 	<property
 		id="liveValue"
 		title="First Value (Live)"
 		type="float" 
+		group="Display"
 		visible="false" />
 	<property
 		id="totalUnits"
 		title="Total Units"
+		group="Display"
 		type="int" />
 	<property
 		id="stepLabels"
 		title="Step Labels"
+		group="Display"
 		type="boolean" />
 	<property
 		id="vertical"
 		title="Change to Vertical Orientation"
+		group="Display"
 		type="boolean" />
 	<property
 		id="smallStepWidth"
 		title="Small Step Width"
+		group="Display"
 		type="float" />
 	<property
 		id="onChange"
@@ -51,6 +62,7 @@
 	<property
 		id="DLiveChangeActive"
 		title="Activate Live Change Event (prototype)"
+		group="Display"
 		type="boolean" />
 	<property
 		id="onLiveChange"

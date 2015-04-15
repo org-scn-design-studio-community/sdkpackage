@@ -80,24 +80,21 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		this._oElements = {};
 		
 		this.addStyleClass("scn-pack-DataLeaderBoard");
+		
+		that._lLayout = new sap.ui.layout.VerticalLayout({
+			
+		});
+		
+		// resize function
+		that.onAfterRendering = function() {
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout);
+		};
 	},
 	
 	renderer: {},
 	
 	afterDesignStudioUpdate : function() {
 		var that = this;
-		
-		if(!this._lLayout) {
-			this._lLayout = new sap.ui.layout.VerticalLayout({
-				
-			});
-
-			this.addContent(
-				this._lLayout,
-				{left: "0px", top: "2px"}	
-			);
-		}
-		
 		var propertiesNow = this._serializeProperites("selectedKey;pressedKey");
 
 		var rerender = false;

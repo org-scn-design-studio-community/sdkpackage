@@ -50,7 +50,7 @@ sap.ui.commons.Slider.extend("org.scn.community.databound.Slider", {
 	
 	initDesignStudio: function() {
 		var that = this;
-		
+
 		this.attachChange(function() {
 			var value = that.getValue();
 			
@@ -90,8 +90,14 @@ sap.ui.commons.Slider.extend("org.scn.community.databound.Slider", {
 		var lData = this._data;
 		var lMetadata = this._metadata;
 		
+		if(this.getVertical() == true) {
+			this.addStyleClass("scn-pack-DataSlider-Vertical");
+		} else {
+			this.removeStyleClass("scn-pack-DataSlider-Vertical");	
+		}
+
 		if(this.getDoRefresh()){
-var options = org_scn_community_databound.initializeOptions();
+			var options = org_scn_community_databound.initializeOptions();
 			
 			options.iMaxNumber = this.getMaxNumber();
 			options.iTopBottom = this.getTopBottom();

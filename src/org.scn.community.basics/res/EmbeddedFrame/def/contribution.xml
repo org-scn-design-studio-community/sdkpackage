@@ -15,6 +15,7 @@
 		id="url"
 		title="Content Url"
 		tooltip="Url to be embedded as content"
+		group="Display"
 		type="String" />
 
 	<initialization>

@@ -55,7 +55,13 @@ sap.ui.commons.Slider.extend("org.scn.community.basics.Slider", {
 		
 	afterDesignStudioUpdate: function() {
 		var that = this;
-		
+
+		if(this.getVertical() == true) {
+			this.addStyleClass("scn-pack-Slider-Vertical");
+		} else {
+			this.removeStyleClass("scn-pack-Slider-Vertical");	
+		}
+
 		var liveChangeActive = this.getDLiveChangeActive();
 		if(!that._liveEventCheck && liveChangeActive) {
 			this.attachLiveChange(function(oControlEvent) {

@@ -93,6 +93,15 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		this._oElements = {};
 
 		this.addStyleClass("scn-pack-DataTopFlopChart");
+		
+		that._lLayout = new sap.ui.layout.VerticalLayout({
+			
+		});
+		
+		// resize function
+		that.onAfterRendering = function() {
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout);
+		};
 	},
 	
 	renderer: {},
@@ -105,17 +114,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 	afterDesignStudioUpdate : function() {
 		var that = this;
 		this._valueStart = this.getValueStart();
-		
-		if(!this._lLayout) {
-			this._lLayout = new sap.ui.layout.VerticalLayout({
-				
-			});
-
-			this.addContent(
-				this._lLayout,
-				{left: "0px", top: "2px"}	
-			);
-		}
 		
 		var rerender = false;
 		var propertiesNow = this._serializeProperites("selectedKey;pressedKey");
@@ -173,10 +171,13 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			}
 
 			if(showAverage) {
+				var lMetaDataLocale = "en";
+				if(lMetadata) {lMetaDataLocale = lMetadata.locale;}
+				
 				// insert Average Information
 				var oTextValue = new sap.ui.commons.TextView();
 				oTextValue.addStyleClass("scn-pack-DataTopFlopChart-AverageText");
-				oTextValue.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(returnObject.average, this._metadata.locale, this.getValueDecimalPlaces()) + this.getAverageSuffix());
+				oTextValue.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(returnObject.average, lMetaDataLocale, this.getValueDecimalPlaces()) + this.getAverageSuffix());
 				this._lLayout.addContent(
 						oTextValue
 				);
@@ -421,7 +422,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			if(lAddCounter) {
 				oLayout.addContent(
 						oImage,
-						{left: "22px", top: "2px"}
+						{left: "26px", top: "2px"}
 				);
 			} else {
 				oLayout.addContent(
@@ -454,7 +455,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 				);
 			} else {
 				if(lSizeValue < 120) {
-					textDeltaPlace = baseStart + lSizeValue + 3;
+					textDeltaPlace = baseStart + lSizeValue + 120;
 					oLayout.addContent(
 							oTextDeltaValue,
 							{left: textDeltaPlace + "px", top: "0px"}

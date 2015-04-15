@@ -15,6 +15,7 @@
 		id="url"
 		title="Content Url"
 		tooltip="Url to be embedded as content"
+		group="Display"
 		type="String" />
 
 	<property
@@ -22,6 +23,7 @@
 		title="Tag to write"
 		tooltip="HTML Tag to write"
 		type="String"
+		group="Display"
 		visible="true"
 	 >
 		<possibleValue>embed</possibleValue>

@@ -71,16 +71,19 @@
 		id="DLength"
 		title="Length"
 		tooltip="Length (required for length validation)"
+		group="Display" 
 		type="int" />
 	<property
 		id="DNumber"
 		title="Number"
 		tooltip="Number (required for than validation)"
+		group="Display" 
 		type="float" />
 	<property
 		id="DDefault"
 		title="Default Value"
 		tooltip="Default Value (required for default validation)"
+		group="Display" 
 		type="String" />
 	<property
 		id="onChanged"

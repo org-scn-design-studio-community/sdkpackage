@@ -9,11 +9,11 @@
 	  	<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/Notify/Notify.js</jsInclude>
     	<jsInclude>os/noty/packaged/jquery.noty.packaged.js</jsInclude>
-	  	<property type="String" title="msgtext" id="msgtext" visible="false" />
-		<property type="String" title="shownote" id="shownote" visible="false" />
-		<property type="String" title="msgtype" id="msgtype" visible="false" />
-		<property type="int" title="Delay(Seconds)" id="delay" group="Display"/>
-		<property type="String" title="Layout" id="layout" group="Display">
+	  	<property group="Display" type="String" title="msgtext" id="msgtext" visible="false" />
+		<property group="Display" type="String" title="shownote" id="shownote" visible="false" />
+		<property group="Display" type="String" title="msgtype" id="msgtype" visible="false" />
+		<property group="Display" type="int" title="Delay(Seconds)" id="delay"/>
+		<property group="Display" type="String" title="Layout" id="layout">
 		    <possibleValue>top</possibleValue>
 		       <possibleValue>topCenter</possibleValue>
 		       <possibleValue>topLeft</possibleValue>
@@ -26,15 +26,15 @@
 		       <possibleValue>bottomLeft</possibleValue>
 		       <possibleValue>bottomRight</possibleValue>
 			</property>
-			<property type="String" title="Modal" id="modal" group="Display"> 
-		       <possibleValue>true</possibleValue>
-		       <possibleValue>false</possibleValue>
-			</property>
-		   <initialization>
-		     <defaultValue property="WIDTH">100</defaultValue>
-		     <defaultValue property="HEIGHT">100</defaultValue>  
-		     <defaultValue property="layout">center</defaultValue>
-		     <defaultValue property="modal">false</defaultValue> 
-		     <defaultValue property="delay">3</defaultValue> 
-		   </initialization>
+		<property group="Display" type="String" title="Modal" id="modal"> 
+	       <possibleValue>true</possibleValue>
+	       <possibleValue>false</possibleValue>
+		</property>
+	   <initialization>
+	     <defaultValue property="WIDTH">100</defaultValue>
+	     <defaultValue property="HEIGHT">100</defaultValue>  
+	     <defaultValue property="layout">center</defaultValue>
+	     <defaultValue property="modal">false</defaultValue> 
+	     <defaultValue property="delay">3</defaultValue> 
+	   </initialization>
 	  </component>

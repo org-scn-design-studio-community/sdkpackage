@@ -104,7 +104,7 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 			},
 			component_core: {
 				name: "component_core",
-				script: "org.scn.community.basics/res/org.scn.community.component.Core",
+				script: "org.scn.community.basics/aps/org.scn.community.component.Core",
 				min: false
 			},
 			generic_aps: {

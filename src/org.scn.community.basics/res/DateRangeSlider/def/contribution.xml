@@ -16,38 +16,47 @@
 	<property
 		id="DMin"
 		title="Minimum Date Value (yyyymmdd)"
+		group="Display"
 		type="String" />
 	<property
 		id="DMax"
 		title="Maximum Date Value (yyyymmdd)"
+		group="Display"
 		type="String" />
 	<property
 		id="DValue"
 		title="First Date Value (yyyymmdd)"
+		group="Display"
 		type="String" />
 	<property
 		id="DValue2"
 		title="Second Date Value (yyyymmdd)"
+		group="Display"
 		type="String" />
 	<property
 		id="totalUnits"
 		title="Total Units"
+		group="Display"
 		type="int" />
 	<property
 		id="stepLabels"
 		title="Step Labels"
+		group="Display"
 		type="boolean" />
 	<property
 		id="vertical"
 		title="Change to Vertical Orientation"
+		group="Display"
 		type="boolean" />
 	<property
 		id="smallStepWidth"
 		title="Small Step Width"
+		group="Display"
 		type="float" />
 	<property
 		id="showBubbles"
 		title="Show Bubbles"
+		group="Display"
 		type="boolean" />
 	<property
 		id="DLangFormat"

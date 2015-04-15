@@ -16,6 +16,7 @@
 		title="Url for Picture"
 		tooltip="Url for Picture which should be shown"
 		type="Url"
+		group="Display"
 		visible="true" />
 
 	<property
@@ -23,6 +24,7 @@
 		title="Url for Fallback Picture"
 		tooltip="Url for Fallback Picture which should be shown"
 		type="Url"
+		group="Display"
 		visible="true" />
 
 	<initialization>

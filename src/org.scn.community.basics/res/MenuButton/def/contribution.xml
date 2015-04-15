@@ -40,6 +40,7 @@
 		id="icon"
 		title="Icon"
 		tooltip="Icon to be displayed as graphical element within the button. This can be an URI to an image or an icon font URI"
+		group="Display" 
 		type="Url" />
 
 	<property
@@ -75,6 +76,7 @@
 		title="Url for Default Image"
 		tooltip="Url for Default Image which should be shown"
 		type="Url"
+		group="Display" 
 		visible="true" />
 
 	<property

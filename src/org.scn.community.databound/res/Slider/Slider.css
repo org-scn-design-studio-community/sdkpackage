@@ -3,3 +3,8 @@
 	background-color: transparent !important;
 	border-color: transparent !important;
 }
+
+.scn-pack-DataSlider-Vertical .sapUiSliText {
+  width: 200px;
+  text-align: right
+}

@@ -45,6 +45,7 @@
 		title="Url for Default Picture"
 		tooltip="Url for Default Picture which should be shown"
 		type="Url"
+		group="Display" 
 		visible="true" />
 
 	<property

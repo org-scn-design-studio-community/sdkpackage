@@ -66,6 +66,13 @@ sap.ui.commons.RangeSlider.extend("org.scn.community.basics.RangeSlider", {
 	afterDesignStudioUpdate: function() {
 		var that = this;
 		
+		
+		if(this.getVertical() == true) {
+			this.addStyleClass("scn-pack-RangeSlider-Vertical");
+		} else {
+			this.removeStyleClass("scn-pack-RangeSlider-Vertical");	
+		}
+
 		var liveChangeActive = this.getDLiveChangeActive();
 		if(!that._liveEventCheck && liveChangeActive) {
 			this.attachLiveChange(function(oControlEvent) {

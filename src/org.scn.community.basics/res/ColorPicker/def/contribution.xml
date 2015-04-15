@@ -15,6 +15,7 @@
 		id="colorString"
 		title="Color"
 		type="Color"
+		group="Display"
 		tooltip="This is the import-parameter of the ColorPicker. As input-parameter, it can be a Hexadecimal string (#FFFFFF), a RGB-string rgb(255,255,255), a HSV-string hsv(360,100,100), or a CSS-colorname 'red'. As output-parameter it is a RGB-string containing the current color."
 	></property>
 	<property
@@ -22,11 +23,13 @@
 		title="Hex Color"
 		type="String"
 		visible="false"
+		group="Display"
 		tooltip="This is an export-parameter of the ColorPicker. It is a Hexadecimal string (#FFFFFF) containing the current color."
 	></property>
 	<property
 		id="onColorChange"
 		title="On Color Change"
+		group="Events"
 		type="ScriptText" />
 	<initialization>
 		<defaultValue property="WIDTH">270</defaultValue>

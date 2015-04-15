@@ -237,6 +237,7 @@
 		title="Url for Default Image"
 		tooltip="Url for Default Image which should be shown"
 		type="Url"
+		group="Display"
 		visible="true" />
 
 	<property
@@ -308,8 +309,8 @@
 		<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/ActionSheetButton/ActionSheetButton.js</jsInclude>
 	  	
-	  	<property id="text" type="String" title="Title"/>
-	  	<property id="items" type="String" title="Items" visible="false"/>
+	  	<property id="text" type="String" title="Title" group="Display"/>
+	  	<property id="items" type="String" title="Items" visible="false" group="Display"/>
 	  	<!-- 
 	  	Switch to ActionSheet vs. PopOver makes these obsolete
 	  	
@@ -317,11 +318,11 @@
 	  	<property type="String" title="Popover Width" id="popoverWidth"/>
 	  	<property type="String" title="Popover Height" id="popoverHeight"/>
 	  	-->
-	  	<property id="icon" type="String" title="Icon"/>
-	  	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
-	  	<property type="String" title="Selected Key" id="selectedKey" visible="false"/>
-	  	<property type="ScriptText" title="On Select" id="onPopoverSelect"/>
-	  	<property id="buttonType" type="String" title="Type">
+	  	<property id="icon" type="String" title="Icon" group="Display"/>
+	  	<property type="String" title="Selected Item" id="selectedItem" visible="false" group="Display"/>
+	  	<property type="String" title="Selected Key" id="selectedKey" visible="false" group="Display"/>
+	  	<property type="ScriptText" title="On Select" id="onPopoverSelect" group="Display"/>
+	  	<property id="buttonType" type="String" title="Type" group="Display">
 	  		<possibleValue>Default</possibleValue>
 	  		<possibleValue>Transparent</possibleValue>
 	  		<possibleValue>Accept</possibleValue>
@@ -330,7 +331,7 @@
 	  		<possibleValue>Reject</possibleValue>
 	  		<possibleValue>Up</possibleValue>
 	  	</property>
-	  	<property id="placement" type="String" title="Placement">
+	  	<property id="placement" type="String" title="Placement" group="Display">
 	  		<possibleValue>Auto</possibleValue>
 	  		<possibleValue>Horizontal</possibleValue>
 	  		<possibleValue>Vertical</possibleValue>
@@ -366,26 +367,31 @@
 		id="displayLogoff"
 		title="Display Logoff"
 		tooltip="If set to true, the logoff area will be displayed at the right hand side of the application header."
+		group="Display"
 		type="boolean" />
 	<property
 		id="displayWelcome"
 		title="Display Welcome"
 		tooltip="By default, set to true and dislpays the welcome text."
+		group="Display"
 		type="boolean" />
 	<property
 		id="logoSrc"
 		title="Logo Source"
 		tooltip="Path (src) to the logo icon to be displayed in the application header."
+		group="Display"
 		type="Url" />
 	<property
 		id="logoText"
 		title="Logo Text"
 		tooltip="The text that will be displayed beside the logo in the application header. This property is optional."
+		group="Display"
 		type="String" />
 	<property
 		id="userName"
 		title="User Name"
 		tooltip="User name that will be displayed beside the welcome text."
+		group="Display"
 		type="String" />
 	<property
 		id="onLogoff"
@@ -415,7 +421,7 @@
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Base64Image/Base64Image.js</jsInclude>
 	
-	<property type="String" title="Image Source URI" id="src" />
+	<property type="String" title="Image Source URI" id="src" group="Display"/>
 	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>			
 	<initialization>
 		<defaultValue property="HEIGHT">auto</defaultValue>
@@ -698,6 +704,7 @@
 		id="colorString"
 		title="Color"
 		type="Color"
+		group="Display"
 		tooltip="This is the import-parameter of the ColorPicker. As input-parameter, it can be a Hexadecimal string (#FFFFFF), a RGB-string rgb(255,255,255), a HSV-string hsv(360,100,100), or a CSS-colorname 'red'. As output-parameter it is a RGB-string containing the current color."
 	></property>
 	<property
@@ -705,11 +712,13 @@
 		title="Hex Color"
 		type="String"
 		visible="false"
+		group="Display"
 		tooltip="This is an export-parameter of the ColorPicker. It is a Hexadecimal string (#FFFFFF) containing the current color."
 	></property>
 	<property
 		id="onColorChange"
 		title="On Color Change"
+		group="Events"
 		type="ScriptText" />
 	<initialization>
 		<defaultValue property="WIDTH">270</defaultValue>
@@ -878,38 +887,47 @@
 	<property
 		id="DMin"
 		title="Minimum Date Value (yyyymmdd)"
+		group="Display"
 		type="String" />
 	<property
 		id="DMax"
 		title="Maximum Date Value (yyyymmdd)"
+		group="Display"
 		type="String" />
 	<property
 		id="DValue"
 		title="First Date Value (yyyymmdd)"
+		group="Display"
 		type="String" />
 	<property
 		id="DValue2"
 		title="Second Date Value (yyyymmdd)"
+		group="Display"
 		type="String" />
 	<property
 		id="totalUnits"
 		title="Total Units"
+		group="Display"
 		type="int" />
 	<property
 		id="stepLabels"
 		title="Step Labels"
+		group="Display"
 		type="boolean" />
 	<property
 		id="vertical"
 		title="Change to Vertical Orientation"
+		group="Display"
 		type="boolean" />
 	<property
 		id="smallStepWidth"
 		title="Small Step Width"
+		group="Display"
 		type="float" />
 	<property
 		id="showBubbles"
 		title="Show Bubbles"
+		group="Display"
 		type="boolean" />
 	<property
 		id="DLangFormat"
@@ -1118,6 +1136,7 @@
 		id="url"
 		title="Content Url"
 		tooltip="Url to be embedded as content"
+		group="Display"
 		type="String" />
 
 	<initialization>
@@ -1149,6 +1168,7 @@
 		id="url"
 		title="Content Url"
 		tooltip="Url to be embedded as content"
+		group="Display"
 		type="String" />
 
 	<property
@@ -1156,6 +1176,7 @@
 		title="Tag to write"
 		tooltip="HTML Tag to write"
 		type="String"
+		group="Display"
 		visible="true"
 	 >
 		<possibleValue>embed</possibleValue>
@@ -1193,6 +1214,7 @@
 		title="Url for Picture"
 		tooltip="Url for Picture which should be shown"
 		type="Url"
+		group="Display"
 		visible="true" />
 
 	<property
@@ -1200,6 +1222,7 @@
 		title="Url for Fallback Picture"
 		tooltip="Url for Fallback Picture which should be shown"
 		type="Url"
+		group="Display"
 		visible="true" />
 
 	<initialization>
@@ -1227,13 +1250,13 @@
 	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
   	
   	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
-  	<property id="title" type="String" title="Title"/>
-  	<property id="itemConfig" type="String" title="Item Config" visible="false"/>
-  	<property id="showNavButton" type="boolean" title="Show Back Button"/>
-  	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
-  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false"/>
-  	<property type="ScriptText" title="On Item Select" id="onitemselect"/>  	
-  	<property type="ScriptText" title="On Back" id="onnav"/>
+  	<property id="title" type="String" title="Title" group="Display"/>
+  	<property id="itemConfig" type="String" title="Item Config" visible="false" group="Display"/>
+  	<property id="showNavButton" type="boolean" title="Show Back Button" group="Display"/>
+  	<property type="String" title="Selected Item" id="selectedItem" visible="false" group="Display"/>
+  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false" group="Display"/>
+  	<property type="ScriptText" title="On Item Select" id="onitemselect" group="Events"/>  	
+  	<property type="ScriptText" title="On Back" id="onnav" group="Events"/>
  	<initialization>
  		<defaultValue property="title">Page Title</defaultValue>
  		<defaultValue property="WIDTH">400</defaultValue>
@@ -1340,23 +1363,23 @@
   	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FioriToolbar/FioriToolbar.js</jsInclude>
   	<cssInclude>res/FioriToolbar/FioriToolbar.css</cssInclude>
-  	<property id="itemConfig" type="String" title="Item Config" visible="false"/>
+  	<property id="itemConfig" type="String" title="Item Config" visible="false" group="Display"/>
   	<!--
   	<property id="title" type="String" title="Title"/>
   	<property id="showNavButton" type="boolean" title="Show Back Button"/>
   	<property type="ScriptText" title="On Back" id="onnav"/>
   	-->
-  	<property type="String" title="Design" id="design" visible="true">
+  	<property type="String" title="Design" id="design" visible="true" group="Display">
   		<possibleValue>Auto</possibleValue>
   		<possibleValue>Info</possibleValue>
   		<possibleValue>Solid</possibleValue>
   		<possibleValue>Transparent</possibleValue>
   	</property>
-  	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
-  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false"/>
-  	<property type="String" title="Selected Item Key" id="selectedItemKey" visible="false"/>
-  	<property type="String" title="Selected Header Key of Item" id="selectedHeaderKey" visible="false"/>
-  	<property type="ScriptText" title="On Item Select" id="onitemselect"/>  	
+  	<property type="String" title="Selected Item" id="selectedItem" visible="false" group="Display"/>
+  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false" group="Display"/>
+  	<property type="String" title="Selected Item Key" id="selectedItemKey" visible="false" group="Display"/>
+  	<property type="String" title="Selected Header Key of Item" id="selectedHeaderKey" visible="false" group="Display"/>
+  	<property type="ScriptText" title="On Item Select" id="onitemselect" group="Events"/> 
  	<initialization>
  		<!-- 
  		<defaultValue property="title">Page Title</defaultValue>
@@ -1447,24 +1470,24 @@
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Gauge/Gauge.js</jsInclude>
 		
-	<property id="haveNumbers" title="Show Number" type="boolean"/>
-	<property type="int" title="Number of Big Ticks" id="numOfBigTicks"/>
-	<property type="int" title="Number of Small Ticks" id="numOfSmallTicks"/>
-	<property type="float" title="Indicator Value" id="indicatorValue"/>
-	<property type="boolean" title="Show Value" id="showValue"/>
-	<property type="String" title="Showed Value" id="showedValue"/>
-	<property type="Color" title="Needle Color" id="needleColor"/>
-	<property type="String" title="Title" id="title"/>
-	<property type="int" title="Start Value" id="startValue"/>
-	<property type="int" title="End Value" id="endValue"/>
-	<property type="boolean" title="Gradient Color" id="gradientColor"/>
-	<property type="Color" title="First Color" id="firstColor"/>
-	<property type="Color" title="Second Color" id="secondColor"/>
-	<property type="Color" title="Third Color" id="thirdColor"/>
-	<property type="int" title="Start of Second Color" id="startSecondColor"/>
-	<property type="int" title="Start of Third Color" id="startThirdColor"/>
-	<property type="Color" title="Main Color" id="mainColor"/>
-	<property type="Color" title="Text and Ticks Color" id="ttColor"/>
+	<property group="Display" id="haveNumbers" title="Show Number" type="boolean"/>
+	<property group="Display" type="int" title="Number of Big Ticks" id="numOfBigTicks"/>
+	<property group="Display" type="int" title="Number of Small Ticks" id="numOfSmallTicks"/>
+	<property group="Display" type="float" title="Indicator Value" id="indicatorValue"/>
+	<property group="Display" type="boolean" title="Show Value" id="showValue"/>
+	<property group="Display" type="String" title="Showed Value" id="showedValue"/>
+	<property group="Display" type="Color" title="Needle Color" id="needleColor"/>
+	<property group="Display" type="String" title="Title" id="title"/>
+	<property group="Display" type="int" title="Start Value" id="startValue"/>
+	<property group="Display" type="int" title="End Value" id="endValue"/>
+	<property group="Display" type="boolean" title="Gradient Color" id="gradientColor"/>
+	<property group="Display" type="Color" title="First Color" id="firstColor"/>
+	<property group="Display" type="Color" title="Second Color" id="secondColor"/>
+	<property group="Display" type="Color" title="Third Color" id="thirdColor"/>
+	<property group="Display" type="int" title="Start of Second Color" id="startSecondColor"/>
+	<property group="Display" type="int" title="Start of Third Color" id="startThirdColor"/>
+	<property group="Display" type="Color" title="Main Color" id="mainColor"/>
+	<property group="Display" type="Color" title="Text and Ticks Color" id="ttColor"/>
 
 	<initialization>
 		<defaultValue property="TOP">0</defaultValue>
@@ -1745,9 +1768,9 @@
   	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/LaunchPad/LaunchPad.js</jsInclude>
   	<cssInclude>res/LaunchPad/LaunchPad.css</cssInclude>
-  	<property type="String" title="Tile Config" id="tileConfig" visible="false"/>
-  	<property type="String" title="Selected Tile" id="selectedTile" visible="false"/>
-  	<property type="ScriptText" title="On Tile Select" id="onTileSelect"/>
+  	<property group="Display" type="String" title="Tile Config" id="tileConfig" visible="false"/>
+  	<property group="Display" type="String" title="Selected Tile" id="selectedTile" visible="false"/>
+  	<property group="Events" type="ScriptText" title="On Tile Select" id="onTileSelect"/>
   	<initialization>
   		<defaultValue property="WIDTH">575</defaultValue>
 		<defaultValue property="HEIGHT">575</defaultValue>
@@ -1860,6 +1883,7 @@
 		id="text"
 		title="Link Text"
 		tooltip="Link text to be displayed.."
+		group="Display" 
 		type="String" />
 	<property
 		id="onPress"
@@ -1888,35 +1912,35 @@
 	  	<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/ListSelector/ListSelector.js</jsInclude>
 	  	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
-	  	<property id="titles" type="String" title="Titles"/>
-	  	<property id="spriteIDs" type="String" title="Sprite IDs (Optional)"/>
-	  	<property id="visibilities" type="String" title="Visibilities (Optional)"/>
-	  	<property id="fixedWidth" type="String" title="Fixed Width (-1 for auto)"/>
-	  	<property id="spriteSheet" type="Url" title="Icon Sprite Sheet (Optional)"/>
-	  	<property id="labelClicked" type="String" title="Selected Label"/>
+	  	<property group="Display" id="titles" type="String" title="Titles"/>
+	  	<property group="Display" id="spriteIDs" type="String" title="Sprite IDs (Optional)"/>
+	  	<property group="Display" id="visibilities" type="String" title="Visibilities (Optional)"/>
+	  	<property group="Display" id="fixedWidth" type="String" title="Fixed Width (-1 for auto)"/>
+	  	<property group="Display" id="spriteSheet" type="Url" title="Icon Sprite Sheet (Optional)"/>
+	  	<property group="Display" id="labelClicked" type="String" title="Selected Label"/>
 	  	<property id="onclick" type="ScriptText" title="On Click..." group="Events"/>
-	  	<property id="labelPlacement" type="String" title="Label Placement (Relative to Icon)">
+	  	<property group="Display" id="labelPlacement" type="String" title="Label Placement (Relative to Icon)">
 	  		<possibleValue>After</possibleValue>
 	  		<possibleValue>Before</possibleValue>
 	  	</property>
-	  	<property id="labelOrientation" type="String" title="Label Orientation">
+	  	<property group="Display" id="labelOrientation" type="String" title="Label Orientation">
 	  		<possibleValue>horizontal</possibleValue>
 	  		<possibleValue>vertical</possibleValue>
 	  	</property>
-	  	<property id="textAlign" type="String" title="Text Alignment">
+	  	<property group="Display" id="textAlign" type="String" title="Text Alignment">
 	  		<possibleValue>left</possibleValue>
 	  		<possibleValue>center</possibleValue>
 	  		<possibleValue>right</possibleValue>
 	  	</property>
-	  	<property id="verticalAlign" type="String" title="Vertical Alignment">
+	  	<property group="Display" id="verticalAlign" type="String" title="Vertical Alignment">
 	  		<possibleValue>top</possibleValue>
 	  		<possibleValue>middle</possibleValue>
 	  		<possibleValue>bottom</possibleValue>
 	  	</property>
 	  	
-	  	<property id="spriteSheetPerRow" type="int" title="Icons Sprites Per Row"/>
-	  	<property id="iconWidth" type="int" title="Icon Width (px)"/>
-	  	<property id="iconHeight" type="int" title="Icon Height (px)"/>
+	  	<property group="Display" id="spriteSheetPerRow" type="int" title="Icons Sprites Per Row"/>
+	  	<property group="Display" id="iconWidth" type="int" title="Icon Width (px)"/>
+	  	<property group="Display" id="iconHeight" type="int" title="Icon Height (px)"/>
 	  	<initialization>
 	  		<defaultValue property="titles">Facebook,YouTube,Twitter,SAP</defaultValue>
 	  		<defaultValue property="labelPlacement">After</defaultValue>
@@ -1972,6 +1996,7 @@
 		title="Url for Default Image"
 		tooltip="Url for Default Image which should be shown"
 		type="Url"
+		group="Display" 
 		visible="true" />
 
 	<property
@@ -2035,6 +2060,7 @@
 		id="icon"
 		title="Icon"
 		tooltip="Icon to be displayed as graphical element within the button. This can be an URI to an image or an icon font URI"
+		group="Display" 
 		type="Url" />
 
 	<property
@@ -2070,6 +2096,7 @@
 		title="Url for Default Image"
 		tooltip="Url for Default Image which should be shown"
 		type="Url"
+		group="Display" 
 		visible="true" />
 
 	<property
@@ -2107,17 +2134,17 @@
 	<jsInclude>res/ModalBrowser/ModalBrowser.js</jsInclude>
   	<cssInclude>res/ModalBrowser/ModalBrowser.css</cssInclude>
   	
-  	<property type="String" title="URL" id="url"/>
-  	<property type="String" title="Open Method" id="openMethod">
+  	<property group="Display" type="String" title="URL" id="url"/>
+  	<property group="Display" type="String" title="Open Method" id="openMethod">
   		<possibleValue>New Window</possibleValue>
   		<possibleValue>Modal Browser Dialog</possibleValue>
   	</property>
   	
-  	<property type="boolean" title="Show Button" id="showButton"/>
-  	<property type="String" title="Button Icon" id="icon"/>
-  	<property type="String" title="Button Text" id="text"/>
+  	<property group="Display" type="boolean" title="Show Button" id="showButton"/>
+  	<property group="Display" type="String" title="Button Icon" id="icon"/>
+  	<property group="Display" type="String" title="Button Text" id="text"/>
   	<!-- <property type="boolean" title="Button Visible" id="visible"/> -->
-  	<property id="buttonType" type="String" title="Button Type">
+  	<property group="Display" id="buttonType" type="String" title="Button Type">
   		<possibleValue>Default</possibleValue>
   		<possibleValue>Transparent</possibleValue>
   		<possibleValue>Accept</possibleValue>
@@ -2126,13 +2153,13 @@
   		<possibleValue>Reject</possibleValue>
   		<possibleValue>Up</possibleValue>
   	</property>
-  	<property type="String" title="Modal Browser Title" id="title"/>
-  	<property type="String" title="Modal Browser Icon" id="browserIcon"/>
-  	<property type="boolean" title="Show Modal Browser Title" id="showHeader"/>
-  	<property type="boolean" title="Show Modal Browser Close Button" id="showCloseButton"/>
-  	<property type="String" title="Modal Browser Height" id="browserHeight"/>
-  	<property type="String" title="Modal Browser Width" id="browserWidth"/>
-  	<property type="float" title="Click Trigger for BIAL" id="clickTrigger" visible="false"/>
+  	<property group="Display" type="String" title="Modal Browser Title" id="title"/>
+  	<property group="Display" type="String" title="Modal Browser Icon" id="browserIcon"/>
+  	<property group="Display" type="boolean" title="Show Modal Browser Title" id="showHeader"/>
+  	<property group="Display" type="boolean" title="Show Modal Browser Close Button" id="showCloseButton"/>
+  	<property group="Display" type="String" title="Modal Browser Height" id="browserHeight"/>
+  	<property group="Display" type="String" title="Modal Browser Width" id="browserWidth"/>
+  	<property group="Display" type="float" title="Click Trigger for BIAL" id="clickTrigger" visible="false"/>
   	<initialization>
   		<defaultValue property="icon">sap-icon://action</defaultValue>
   		<defaultValue property="title">Browser Dialog Title</defaultValue>
@@ -2243,6 +2270,7 @@
 		title="Notifications"
 		tooltip="The Notifications Pushed to Client"
 		type="String"
+		group="Display" 
 		visible="false" />
 
 	<property
@@ -2250,6 +2278,7 @@
 		title="Categories"
 		tooltip="The Notifications Pushed to Client"
 		type="String"
+		group="Display" 
 		visible="false" />
 
 	<property
@@ -2323,11 +2352,11 @@
 	  	<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/Notify/Notify.js</jsInclude>
     	<jsInclude>os/noty/packaged/jquery.noty.packaged.js</jsInclude>
-	  	<property type="String" title="msgtext" id="msgtext" visible="false" />
-		<property type="String" title="shownote" id="shownote" visible="false" />
-		<property type="String" title="msgtype" id="msgtype" visible="false" />
-		<property type="int" title="Delay(Seconds)" id="delay" group="Display"/>
-		<property type="String" title="Layout" id="layout" group="Display">
+	  	<property group="Display" type="String" title="msgtext" id="msgtext" visible="false" />
+		<property group="Display" type="String" title="shownote" id="shownote" visible="false" />
+		<property group="Display" type="String" title="msgtype" id="msgtype" visible="false" />
+		<property group="Display" type="int" title="Delay(Seconds)" id="delay"/>
+		<property group="Display" type="String" title="Layout" id="layout">
 		    <possibleValue>top</possibleValue>
 		       <possibleValue>topCenter</possibleValue>
 		       <possibleValue>topLeft</possibleValue>
@@ -2340,17 +2369,17 @@
 		       <possibleValue>bottomLeft</possibleValue>
 		       <possibleValue>bottomRight</possibleValue>
 			</property>
-			<property type="String" title="Modal" id="modal" group="Display"> 
-		       <possibleValue>true</possibleValue>
-		       <possibleValue>false</possibleValue>
-			</property>
-		   <initialization>
-		     <defaultValue property="WIDTH">100</defaultValue>
-		     <defaultValue property="HEIGHT">100</defaultValue>  
-		     <defaultValue property="layout">center</defaultValue>
-		     <defaultValue property="modal">false</defaultValue> 
-		     <defaultValue property="delay">3</defaultValue> 
-		   </initialization>
+		<property group="Display" type="String" title="Modal" id="modal"> 
+	       <possibleValue>true</possibleValue>
+	       <possibleValue>false</possibleValue>
+		</property>
+	   <initialization>
+	     <defaultValue property="WIDTH">100</defaultValue>
+	     <defaultValue property="HEIGHT">100</defaultValue>  
+	     <defaultValue property="layout">center</defaultValue>
+	     <defaultValue property="modal">false</defaultValue> 
+	     <defaultValue property="delay">3</defaultValue> 
+	   </initialization>
 	  </component>
 <component
 	id="Map"
@@ -2411,6 +2440,7 @@
 		title="Url for Default Image"
 		tooltip="Url for Default Image which should be shown"
 		type="Url"
+		group="Display" 
 		visible="true" />
 
 	<property
@@ -2448,11 +2478,13 @@
 		id="currentPage"
 		title="Current Page"
 		tooltip="Represents the current page number."
+		group="Display" 
 		type="int" />
 	<property
 		id="numberOfPages"
 		title="Number of Pages"
 		tooltip="Represents the overall number of pages that are embedded into the parent control."
+		group="Display" 
 		type="int" />
 	<property
 		id="onPageChange"
@@ -2538,25 +2570,25 @@
 	<jsInclude>os/jquery-qrcode/jquery.qrcode.min.js</jsInclude>
 	<jsInclude>res/QRCode/QRCode.js</jsInclude>
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
-	<property type="String" title="QR Code Text" id="text" />
-	<property type="String" title="Render Mode" id="render">
+	<property group="Display" type="String" title="QR Code Text" id="text" />
+	<property group="Display" type="String" title="Render Mode" id="render">
 		<possibleValue>canvas</possibleValue>
 		<possibleValue>div</possibleValue>
 		<possibleValue>image</possibleValue>
 	</property>
-	<property type="boolean" title="Only show on printouts" id="printOnly"/>
-	<property type="String" title="Error Correction Level" id="ecLevel">
+	<property group="Display" type="boolean" title="Only show on printouts" id="printOnly"/>
+	<property group="Display" type="String" title="Error Correction Level" id="ecLevel">
 		<possibleValue>L</possibleValue>
 		<possibleValue>M</possibleValue>
 		<possibleValue>Q</possibleValue>
 		<possibleValue>H</possibleValue>
 	</property>
-	<property type="int" title="Min Version (1-40)" id="minVersion" />
-	<property type="int" title="Max Version (1-40)" id="maxVersion" />
-	<property type="Color" title="Fill Color" id="fill" />
-	<property type="Color" title="Background Color" id="background" />
-	<property type="float" title="Corner Radius (0.0 - 0.5)" id="radius" />
-	<property type="float" title="Quiet Zone" id="quiet" />
+	<property group="Display" type="int" title="Min Version (1-40)" id="minVersion" />
+	<property group="Display" type="int" title="Max Version (1-40)" id="maxVersion" />
+	<property group="Display" type="Color" title="Fill Color" id="fill" />
+	<property group="Display" type="Color" title="Background Color" id="background" />
+	<property group="Display" type="float" title="Corner Radius (0.0 - 0.5)" id="radius" />
+	<property group="Display" type="float" title="Quiet Zone" id="quiet" />
 	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>
 	<!-- THINGS THAT DO NOT WORK WELL 
 	<property type="int" title="Left Offset (px)" id="left" />
@@ -2613,6 +2645,7 @@
 		id="barColor"
 		title="Bar Color"
 		tooltip="The color of the bar."
+		group="Display" 
 		type="String"
 	>
 		<possibleValue>CRITICAL</possibleValue>
@@ -2624,21 +2657,25 @@
 		id="displayValue"
 		title="Display Value"
 		tooltip="The text value to be displayed in the bar."
+		group="Display" 
 		type="String" />
 	<property
 		id="enabled"
 		title="Enabled"
 		tooltip="Switches enabled state of the control. Disabled fields have different colors and can not be focused."
+		group="Display" 
 		type="boolean" />
 	<property
 		id="percentValue"
 		title="Percent Value"
 		tooltip="The numerical value for the displayed length of the progress bar."
+		group="Display" 
 		type="int" />
 	<property
 		id="showValue"
 		title="Show Value"
 		tooltip="Specifies whether the current value shall be rendered inside the bar."
+		group="Display" 
 		type="boolean" />
 	<initialization>
 		<defaultValue property="WIDTH">270</defaultValue>
@@ -2659,47 +2696,60 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/RangeSlider/RangeSlider.js</jsInclude>
+	
+	<cssInclude>res/RangeSlider/RangeSlider.css</cssInclude>
+	
 	<property
 		id="min"
 		title="Minimum Value"
+		group="Display"
 		type="float" />
 	<property
 		id="max"
 		title="Maximum Value"
+		group="Display"
 		type="float" />
 	<property
 		id="value"
 		title="First Value"
+		group="Display"
 		type="float" />
 	<property
 		id="value2"
 		title="Second Value"
+		group="Display"
 		type="float" />
 	<property
 		id="liveValue"
 		title="First Value (Live)"
 		type="float" 
+		group="Display"
 		visible="false" />
 	<property
 		id="liveValue2"
 		title="Second Value (Live)"
 		type="float" 
+		group="Display"
 		visible="false" />
 	<property
 		id="totalUnits"
 		title="Total Units"
+		group="Display"
 		type="int" />
 	<property
 		id="stepLabels"
 		title="Step Labels"
+		group="Display"
 		type="boolean" />
 	<property
 		id="vertical"
 		title="Change to Vertical Orientation"
+		group="Display"
 		type="boolean" />
 	<property
 		id="smallStepWidth"
 		title="Small Step Width"
+		group="Display"
 		type="float" />
 	<property
 		id="onChange"
@@ -2709,6 +2759,7 @@
 	<property
 		id="DLiveChangeActive"
 		title="Activate Live Change Event (prototype)"
+		group="Display"
 		type="boolean" />
 	<property
 		id="onLiveChange"
@@ -2743,31 +2794,37 @@
 		id="editable"
 		title="Editable"
 		tooltip="Value 'true' is required for changes on the rating symbols."
+		group="Display" 
 		type="boolean" />
 	<property
 		id="iconHovered"
 		title="Icon Hovered"
 		tooltip="The URI to the image which is displayed when the mouse hovers onto a rating symbol. If used, a requirement is that all custom icons need to have the same size. Note that when this attribute is used also the other icon attributes need to be set."
+		group="Display" 
 		type="Url" />
 	<property
 		id="iconSelected"
 		title="Icon Selected"
 		tooltip="The URI to the image which shall be displayed for all selected rating symbols. Note that when this attribute is used, also the other icon attributes need to be set."
+		group="Display" 
 		type="Url" />
 	<property
 		id="iconUnselected"
 		title="Icon Unselected"
 		tooltip="The URI to the image which shall be displayed for all unselected rating symbols. If this attribute is used, a requirement is that all custom icons need to have the same size. Note that when this attribute is used also the other icon attributes need to be set."
+		group="Display" 
 		type="Url" />
 	<property
 		id="maxValue"
 		title="Maximum Value"
 		tooltip="The number of displayed rating symbols"
+		group="Display" 
 		type="int" />
 	<property
 		id="value"
 		title="Value"
 		tooltip="The number of displayed rating symbols"
+		group="Display" 
 		type="float" />
 	<property
 		id="onChange"
@@ -2851,10 +2908,10 @@
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/RSSFeedReader/RSSFeedReader.js</jsInclude>
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
-	<property type="String" title="RSS Feed URL"
+	<property group="Display" type="String" title="RSS Feed URL"
 		id="feedurldimension">
 	</property>
-	<property type="String" title="XSL URL"
+	<property group="Display" type="String" title="XSL URL"
 		id="xslurldimension">
 	</property>
 	<initialization>
@@ -2923,6 +2980,7 @@
 		id="DSelectionType"
 		title="Selection Type"
 		tooltip="Selection Type SINGLE | MULTIPLE"
+		group="Display" 
 		type="String"
 		visible="true"
 	>
@@ -2934,6 +2992,7 @@
 		id="DDefaultImage"
 		title="Url for Default Image"
 		tooltip="Url for Default Image which should be shown in case no other is specified"
+		group="Display" 
 		type="Url"
 		visible="true" />
 
@@ -3006,38 +3065,49 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Slider/Slider.js</jsInclude>
+
+	<cssInclude>res/Slider/Slider.css</cssInclude>
+
 	<property
 		id="min"
 		title="Minimum Value"
+		group="Display"
 		type="float" />
 	<property
 		id="max"
 		title="Maximum Value"
+		group="Display"
 		type="float" />
 	<property
 		id="value"
 		title="Value"
+		group="Display"
 		type="float" />
 	<property
 		id="liveValue"
 		title="First Value (Live)"
 		type="float" 
+		group="Display"
 		visible="false" />
 	<property
 		id="totalUnits"
 		title="Total Units"
+		group="Display"
 		type="int" />
 	<property
 		id="stepLabels"
 		title="Step Labels"
+		group="Display"
 		type="boolean" />
 	<property
 		id="vertical"
 		title="Change to Vertical Orientation"
+		group="Display"
 		type="boolean" />
 	<property
 		id="smallStepWidth"
 		title="Small Step Width"
+		group="Display"
 		type="float" />
 	<property
 		id="onChange"
@@ -3047,6 +3117,7 @@
 	<property
 		id="DLiveChangeActive"
 		title="Activate Live Change Event (prototype)"
+		group="Display"
 		type="boolean" />
 	<property
 		id="onLiveChange"
@@ -3102,6 +3173,7 @@
 		id="maxLength"
 		title="Maximal Length"
 		tooltip="Teh Maximal Length in Characters"
+		group="Display" 
 		type="int" />
 	<property
 		id="onValueChanged"
@@ -3162,18 +3234,21 @@
 		id="icon"
 		title="Icon"
 		tooltip="Icon to be displayed as graphical element within the button. This can be an URI to an image or an icon font URI"
+		group="Display" 
 		type="Url" />
 
 	<property
 		id="iconHovered"
 		title="Icon Hovered"
 		tooltip="Icon to be displayed as graphical element within the button when it is hovered (only if also a base icon was specified). If not specified the base icon is used. If a icon font icon is used, this property is ignored"
+		group="Display" 
 		type="Url" />
 
 	<property
 		id="iconSelected"
 		title="Icon Selected"
 		tooltip="Icon to be displayed as graphical element within the button when it is selected (only if also a base icon was specified). If not specified the base or hovered icon is used. If a icon font icon is used, this property is ignored"
+		group="Display" 
 		type="Url" />
 
 	<property
@@ -3249,6 +3324,7 @@
 		title="Url for Default Picture"
 		tooltip="Url for Default Picture which should be shown"
 		type="Url"
+		group="Display" 
 		visible="true" />
 
 	<property
@@ -3430,16 +3506,19 @@
 		id="DLength"
 		title="Length"
 		tooltip="Length (required for length validation)"
+		group="Display" 
 		type="int" />
 	<property
 		id="DNumber"
 		title="Number"
 		tooltip="Number (required for than validation)"
+		group="Display" 
 		type="float" />
 	<property
 		id="DDefault"
 		title="Default Value"
 		tooltip="Default Value (required for default validation)"
+		group="Display" 
 		type="String" />
 	<property
 		id="onChanged"
@@ -3533,31 +3612,31 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/WorldTime/WorldTime.js</jsInclude>
-	<property type="String" title="UTC Offset" id="utcoffset">
+	<property group="Display" type="String" title="UTC Offset" id="utcoffset">
 	</property>
-	<property type="String" title="Locale" id="locale">
+	<property group="Display" type="String" title="Locale" id="locale">
 		<possibleValue>en-US</possibleValue>
 		<possibleValue>de-DE</possibleValue>
 		<possibleValue>default</possibleValue>
 	</property>
-	<property type="boolean" title="Show Timezone name" id="showtimezonename">
+	<property group="Display" type="boolean" title="Show Timezone name" id="showtimezonename">
 	</property>
-	<property type="boolean" title="Consider Daylight Saving" id="daylightsaving">
+	<property group="Display" type="boolean" title="Consider Daylight Saving" id="daylightsaving">
 	</property>
-	<property type="String" title="Date Format" id="dateformat">
+	<property group="Display" type="String" title="Date Format" id="dateformat">
 		<possibleValue>dd.mm.yy</possibleValue>
 		<possibleValue>dd.mm</possibleValue>
 		<possibleValue>mm.yy</possibleValue>
 		<possibleValue>hide</possibleValue>
 		<possibleValue>default</possibleValue>
 	</property>
-	<property type="String" title="Time Format" id="timeformat">
+	<property group="Display" type="String" title="Time Format" id="timeformat">
 		<possibleValue>hh:mm:ss</possibleValue>
 		<possibleValue>hh:mm</possibleValue>
 		<possibleValue>hide</possibleValue>
 		<possibleValue>default</possibleValue>
 	</property>
-	<property type="int" title="Update Interval (in ms)" id="interval">
+	<property group="Display" type="int" title="Update Interval (in ms)" id="interval">
 	</property>
 	<initialization>
 		<defaultValue property="WIDTH">150</defaultValue>

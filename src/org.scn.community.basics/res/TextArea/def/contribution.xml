@@ -36,6 +36,7 @@
 		id="maxLength"
 		title="Maximal Length"
 		tooltip="Teh Maximal Length in Characters"
+		group="Display" 
 		type="int" />
 	<property
 		id="onValueChanged"

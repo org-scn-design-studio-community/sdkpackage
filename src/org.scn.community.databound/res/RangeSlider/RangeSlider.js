@@ -112,6 +112,12 @@ sap.ui.commons.RangeSlider.extend("org.scn.community.databound.RangeSlider", {
 	afterDesignStudioUpdate: function() {
 		var that = this;
 		
+		if(this.getVertical() == true) {
+			this.addStyleClass("scn-pack-DataRangeSlider-Vertical");
+		} else {
+			this.removeStyleClass("scn-pack-DataRangeSlider-Vertical");	
+		}
+
 		var lData = this._data;
 		var lMetadata = this._metadata;
 		

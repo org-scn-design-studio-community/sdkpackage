@@ -15,26 +15,31 @@
 		id="displayLogoff"
 		title="Display Logoff"
 		tooltip="If set to true, the logoff area will be displayed at the right hand side of the application header."
+		group="Display"
 		type="boolean" />
 	<property
 		id="displayWelcome"
 		title="Display Welcome"
 		tooltip="By default, set to true and dislpays the welcome text."
+		group="Display"
 		type="boolean" />
 	<property
 		id="logoSrc"
 		title="Logo Source"
 		tooltip="Path (src) to the logo icon to be displayed in the application header."
+		group="Display"
 		type="Url" />
 	<property
 		id="logoText"
 		title="Logo Text"
 		tooltip="The text that will be displayed beside the logo in the application header. This property is optional."
+		group="Display"
 		type="String" />
 	<property
 		id="userName"
 		title="User Name"
 		tooltip="User name that will be displayed beside the welcome text."
+		group="Display"
 		type="String" />
 	<property
 		id="onLogoff"

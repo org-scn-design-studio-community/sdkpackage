@@ -4,12 +4,13 @@
 	title="Data Top FLop Chart"
 	icon="res/TopFlopChart/TopFlopChart.png"
 	handlerType="sapui5"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityChartMaps"
 	databound="true"
 >
 
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
 	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 

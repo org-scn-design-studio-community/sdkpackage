@@ -9,31 +9,31 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/WorldTime/WorldTime.js</jsInclude>
-	<property type="String" title="UTC Offset" id="utcoffset">
+	<property group="Display" type="String" title="UTC Offset" id="utcoffset">
 	</property>
-	<property type="String" title="Locale" id="locale">
+	<property group="Display" type="String" title="Locale" id="locale">
 		<possibleValue>en-US</possibleValue>
 		<possibleValue>de-DE</possibleValue>
 		<possibleValue>default</possibleValue>
 	</property>
-	<property type="boolean" title="Show Timezone name" id="showtimezonename">
+	<property group="Display" type="boolean" title="Show Timezone name" id="showtimezonename">
 	</property>
-	<property type="boolean" title="Consider Daylight Saving" id="daylightsaving">
+	<property group="Display" type="boolean" title="Consider Daylight Saving" id="daylightsaving">
 	</property>
-	<property type="String" title="Date Format" id="dateformat">
+	<property group="Display" type="String" title="Date Format" id="dateformat">
 		<possibleValue>dd.mm.yy</possibleValue>
 		<possibleValue>dd.mm</possibleValue>
 		<possibleValue>mm.yy</possibleValue>
 		<possibleValue>hide</possibleValue>
 		<possibleValue>default</possibleValue>
 	</property>
-	<property type="String" title="Time Format" id="timeformat">
+	<property group="Display" type="String" title="Time Format" id="timeformat">
 		<possibleValue>hh:mm:ss</possibleValue>
 		<possibleValue>hh:mm</possibleValue>
 		<possibleValue>hide</possibleValue>
 		<possibleValue>default</possibleValue>
 	</property>
-	<property type="int" title="Update Interval (in ms)" id="interval">
+	<property group="Display" type="int" title="Update Interval (in ms)" id="interval">
 	</property>
 	<initialization>
 		<defaultValue property="WIDTH">150</defaultValue>

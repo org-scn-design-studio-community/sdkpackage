@@ -13,11 +13,13 @@
 		id="currentPage"
 		title="Current Page"
 		tooltip="Represents the current page number."
+		group="Display" 
 		type="int" />
 	<property
 		id="numberOfPages"
 		title="Number of Pages"
 		tooltip="Represents the overall number of pages that are embedded into the parent control."
+		group="Display" 
 		type="int" />
 	<property
 		id="onPageChange"

@@ -51,6 +51,7 @@
 		id="DSelectionType"
 		title="Selection Type"
 		tooltip="Selection Type SINGLE | MULTIPLE"
+		group="Display" 
 		type="String"
 		visible="true"
 	>
@@ -62,6 +63,7 @@
 		id="DDefaultImage"
 		title="Url for Default Image"
 		tooltip="Url for Default Image which should be shown in case no other is specified"
+		group="Display" 
 		type="Url"
 		visible="true" />
 

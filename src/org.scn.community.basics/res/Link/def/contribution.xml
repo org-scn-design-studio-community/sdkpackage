@@ -15,6 +15,7 @@
 		id="text"
 		title="Link Text"
 		tooltip="Link text to be displayed.."
+		group="Display" 
 		type="String" />
 	<property
 		id="onPress"

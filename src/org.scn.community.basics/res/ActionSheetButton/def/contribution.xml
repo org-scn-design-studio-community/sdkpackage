@@ -11,8 +11,8 @@
 		<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/ActionSheetButton/ActionSheetButton.js</jsInclude>
 	  	
-	  	<property id="text" type="String" title="Title"/>
-	  	<property id="items" type="String" title="Items" visible="false"/>
+	  	<property id="text" type="String" title="Title" group="Display"/>
+	  	<property id="items" type="String" title="Items" visible="false" group="Display"/>
 	  	<!-- 
 	  	Switch to ActionSheet vs. PopOver makes these obsolete
 	  	
@@ -20,11 +20,11 @@
 	  	<property type="String" title="Popover Width" id="popoverWidth"/>
 	  	<property type="String" title="Popover Height" id="popoverHeight"/>
 	  	-->
-	  	<property id="icon" type="String" title="Icon"/>
-	  	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
-	  	<property type="String" title="Selected Key" id="selectedKey" visible="false"/>
-	  	<property type="ScriptText" title="On Select" id="onPopoverSelect"/>
-	  	<property id="buttonType" type="String" title="Type">
+	  	<property id="icon" type="String" title="Icon" group="Display"/>
+	  	<property type="String" title="Selected Item" id="selectedItem" visible="false" group="Display"/>
+	  	<property type="String" title="Selected Key" id="selectedKey" visible="false" group="Display"/>
+	  	<property type="ScriptText" title="On Select" id="onPopoverSelect" group="Display"/>
+	  	<property id="buttonType" type="String" title="Type" group="Display">
 	  		<possibleValue>Default</possibleValue>
 	  		<possibleValue>Transparent</possibleValue>
 	  		<possibleValue>Accept</possibleValue>
@@ -33,7 +33,7 @@
 	  		<possibleValue>Reject</possibleValue>
 	  		<possibleValue>Up</possibleValue>
 	  	</property>
-	  	<property id="placement" type="String" title="Placement">
+	  	<property id="placement" type="String" title="Placement" group="Display">
 	  		<possibleValue>Auto</possibleValue>
 	  		<possibleValue>Horizontal</possibleValue>
 	  		<possibleValue>Vertical</possibleValue>

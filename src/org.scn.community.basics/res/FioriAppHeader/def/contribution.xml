@@ -11,13 +11,13 @@
 	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
   	
   	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
-  	<property id="title" type="String" title="Title"/>
-  	<property id="itemConfig" type="String" title="Item Config" visible="false"/>
-  	<property id="showNavButton" type="boolean" title="Show Back Button"/>
-  	<property type="String" title="Selected Item" id="selectedItem" visible="false"/>
-  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false"/>
-  	<property type="ScriptText" title="On Item Select" id="onitemselect"/>  	
-  	<property type="ScriptText" title="On Back" id="onnav"/>
+  	<property id="title" type="String" title="Title" group="Display"/>
+  	<property id="itemConfig" type="String" title="Item Config" visible="false" group="Display"/>
+  	<property id="showNavButton" type="boolean" title="Show Back Button" group="Display"/>
+  	<property type="String" title="Selected Item" id="selectedItem" visible="false" group="Display"/>
+  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false" group="Display"/>
+  	<property type="ScriptText" title="On Item Select" id="onitemselect" group="Events"/>  	
+  	<property type="ScriptText" title="On Back" id="onnav" group="Events"/>
  	<initialization>
  		<defaultValue property="title">Page Title</defaultValue>
  		<defaultValue property="WIDTH">400</defaultValue>

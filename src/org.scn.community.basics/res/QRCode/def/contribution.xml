@@ -11,25 +11,25 @@
 	<jsInclude>os/jquery-qrcode/jquery.qrcode.min.js</jsInclude>
 	<jsInclude>res/QRCode/QRCode.js</jsInclude>
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
-	<property type="String" title="QR Code Text" id="text" />
-	<property type="String" title="Render Mode" id="render">
+	<property group="Display" type="String" title="QR Code Text" id="text" />
+	<property group="Display" type="String" title="Render Mode" id="render">
 		<possibleValue>canvas</possibleValue>
 		<possibleValue>div</possibleValue>
 		<possibleValue>image</possibleValue>
 	</property>
-	<property type="boolean" title="Only show on printouts" id="printOnly"/>
-	<property type="String" title="Error Correction Level" id="ecLevel">
+	<property group="Display" type="boolean" title="Only show on printouts" id="printOnly"/>
+	<property group="Display" type="String" title="Error Correction Level" id="ecLevel">
 		<possibleValue>L</possibleValue>
 		<possibleValue>M</possibleValue>
 		<possibleValue>Q</possibleValue>
 		<possibleValue>H</possibleValue>
 	</property>
-	<property type="int" title="Min Version (1-40)" id="minVersion" />
-	<property type="int" title="Max Version (1-40)" id="maxVersion" />
-	<property type="Color" title="Fill Color" id="fill" />
-	<property type="Color" title="Background Color" id="background" />
-	<property type="float" title="Corner Radius (0.0 - 0.5)" id="radius" />
-	<property type="float" title="Quiet Zone" id="quiet" />
+	<property group="Display" type="int" title="Min Version (1-40)" id="minVersion" />
+	<property group="Display" type="int" title="Max Version (1-40)" id="maxVersion" />
+	<property group="Display" type="Color" title="Fill Color" id="fill" />
+	<property group="Display" type="Color" title="Background Color" id="background" />
+	<property group="Display" type="float" title="Corner Radius (0.0 - 0.5)" id="radius" />
+	<property group="Display" type="float" title="Quiet Zone" id="quiet" />
 	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>
 	<!-- THINGS THAT DO NOT WORK WELL 
 	<property type="int" title="Left Offset (px)" id="left" />

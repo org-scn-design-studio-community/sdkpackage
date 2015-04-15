@@ -1872,7 +1872,7 @@ __n__}
 		title="Change to Vertical Orientation"
 		type="boolean"
 		group="Display"
-		visible="false" />
+		visible="true" />
 
 	<property
 		id="doRefresh"
@@ -2417,6 +2417,7 @@ __n__}
 	databound="true"
 >
 
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
 	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
@@ -2580,12 +2581,13 @@ __n__}
 	title="Data Top FLop Chart"
 	icon="res/TopFlopChart/TopFlopChart.png"
 	handlerType="sapui5"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityChartMaps"
 	databound="true"
 >
 
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
 	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 

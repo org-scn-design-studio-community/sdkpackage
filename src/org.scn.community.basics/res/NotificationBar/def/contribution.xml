@@ -24,6 +24,7 @@
 		title="Notifications"
 		tooltip="The Notifications Pushed to Client"
 		type="String"
+		group="Display" 
 		visible="false" />
 
 	<property
@@ -31,6 +32,7 @@
 		title="Categories"
 		tooltip="The Notifications Pushed to Client"
 		type="String"
+		group="Display" 
 		visible="false" />
 
 	<property
