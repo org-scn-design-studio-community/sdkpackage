@@ -2129,6 +2129,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to ActivityViewer component*/
+	org.scn.community.basics.ActivityViewer returnAsScnActivityViewer (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Aps Tester component*/
 	org.scn.community.prototypes.ApsTester returnAsScnApsTester (Component inputComponent) {* return inputComponent; *}
 

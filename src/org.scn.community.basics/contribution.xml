@@ -297,6 +297,36 @@
 
 </component>
 
+<component
+	id="ActivityViewer"
+	title="ActivityViewer"
+	tooltip="Viewer for Custom Activities"
+	icon="res/ActivityViewer/ActivityViewer.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	group="ScnCommunityBasics"
+	databound="false"
+>
+
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ActivityViewer/ActivityViewerLoader.js</jsInclude>
+
+	<property
+		id="%PROPERTY_NAME%"
+		type="%PROPERTY_TYPE%"
+		title="%PROPERTY_TITLE%"
+		group="Display"
+		visible="%PROPERTY_VISIBLE%">
+%XML_PROPERTY_POSSIBLE_VALUE%
+	</property>
+
+
+	<initialization>
+
+	</initialization>
+
+</component>
+
 <component id="ActionSheetButton" 
 		title="Action Sheet Button" 
 		tooltip="Fiori-Inspired Action Sheet Button menu"
