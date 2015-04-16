@@ -1853,6 +1853,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Action Sheet Button component*/
 	org.scn.community.basics.ActionSheetButton returnAsScnActionSheetButton (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to ActivityViewer component*/
+	org.scn.community.basics.ActivityViewer returnAsScnActivityViewer (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Application Header component*/
 	org.scn.community.basics.ApplicationHeader returnAsScnApplicationHeader (Component inputComponent) {* return inputComponent; *}
 

@@ -7,10 +7,16 @@
 	"package": "basics",
 	"extension": "Component",
 	"databound": false,
+
 	"require": 
 	[
 		{
-			"id" : "base"
+			"space" : "d3",
+			"id" : "d3",
+		},
+		{
+			"space" : "d3",
+			"id" : "d3plug_gantt",
 		}
-	]
+	],
 }

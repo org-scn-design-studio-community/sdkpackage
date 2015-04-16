@@ -86,7 +86,7 @@
       "value":"quantile",
       "visible":true,
       "opts":{
-         "ztlType":"choice",
+         "ztlType":"Choice",
          "ztlFunction":"",
          "desc":"Simple Choice",
          "cat":"Data",
@@ -118,7 +118,7 @@
       }
    },
    "stringarray":{
-      "type":"StringArray",
+      "type":"String",
       "value":"[]",
       "visible":true,
       "opts":{

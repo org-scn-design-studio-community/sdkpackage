@@ -33,10 +33,11 @@
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-	  	
-	  	org_scn_community_require.knownModules.common_basics.name,
-	  	org_scn_community_require.knownModules.common_databound.name,
-	  	org_scn_community_require.knownModules.component_core.name,
+		org_scn_community_require.knownModules.component_core.name,
+		org_scn_community_require.knownModules.common_basics.name,
+		org_scn_community_require.d3Modules.d3.name,
+		org_scn_community_require.d3Modules.d3plug_gantt.name,
+		
      ]);
 
 	 sap.zen.Dispatcher.instance.pauseDispatching();	 

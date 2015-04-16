@@ -12,7 +12,8 @@
 
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ApsTester/ApsTesterLoader.js</jsInclude>
-
+	<cssInclude>res/ApsTester/ApsTester.css</cssInclude>
+	
 	<property
 		id="comboboxExample"
 		type="String"
@@ -30,12 +31,12 @@
 
 	</property>
 	<property
-		id="%PROPERTY_NAME%"
-		type="%PROPERTY_TYPE%"
-		title="%PROPERTY_TITLE%"
+		id="singlearray"
+		type="String"
+		title="Single Array"
 		group="Display"
-		visible="%PROPERTY_VISIBLE%">
-%XML_PROPERTY_POSSIBLE_VALUE%
+		visible="true">
+
 	</property>
 	<property
 		id="data"
@@ -62,12 +63,12 @@
 
 	</property>
 	<property
-		id="%PROPERTY_NAME%"
-		type="%PROPERTY_TYPE%"
-		title="%PROPERTY_TITLE%"
+		id="doublearray"
+		type="String"
+		title="Complex Array"
 		group="Display"
-		visible="%PROPERTY_VISIBLE%">
-%XML_PROPERTY_POSSIBLE_VALUE%
+		visible="true">
+
 	</property>
 	<property
 		id="paletteExample"
@@ -95,7 +96,7 @@
 	</property>
 	<property
 		id="stringarray"
-		type="StringArray"
+		type="String"
 		title="Simple String Array"
 		group="Display"
 		visible="true">

@@ -78,7 +78,7 @@
       ],
       "tooltip": "Any choice",
       "ztlFunction": "",
-      "ztlType": "choice"
+      "ztlType": "Choice"
     },
     "type": "String",
     "value": "quantile",
@@ -229,7 +229,7 @@
       "ztlFunction": "",
       "ztlType": "StringArray"
     },
-    "type": "StringArray",
+    "type": "String",
     "value": "[]",
     "visible": true
   },
@@ -307,7 +307,7 @@
       ],
       "tooltip": "Any choice",
       "ztlFunction": "",
-      "ztlType": "choice"
+      "ztlType": "Choice"
     },
     "type": "String",
     "value": "quantile",
@@ -458,7 +458,7 @@
       "ztlFunction": "",
       "ztlType": "StringArray"
     },
-    "type": "StringArray",
+    "type": "String",
     "value": "[]",
     "visible": true
   },

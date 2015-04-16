@@ -37,6 +37,7 @@ public class SpecificationReader {
 	private String ApsJs;
 	private String ApsHtml;
 	private String JsSpecTmpl;
+	private ArrayList<String> componentRequries;
 
 	public SpecificationReader(String pathToGenSpec, Component component) {
 		this.pathToGenSpec = pathToGenSpec;
@@ -91,6 +92,8 @@ public class SpecificationReader {
 				}
 			}
 		}
+		
+		Property requrieSpec = this.getProperty(this.compProperties, "require");
 
 		writeBack();
 	}
@@ -105,19 +108,36 @@ public class SpecificationReader {
 			HashMap<String, String> modifiedProperties = new HashMap<String, String>();
 			HashMap<String, String> properties = extendedFullSpec.getProperties();
 
-			// add special properties
-			for (String extendedPropertyKey : properties.keySet()) {
-				String value = properties.get(extendedPropertyKey);
+			if(key.equals("require")) {
+				// special case, an array
 				
-				modifiedProperties.put(extendedPropertyKey + "(lower)", value.toLowerCase());
-			}
-			
-			for (String extendedPropertyKey : modifiedProperties.keySet()) {
-				String value = modifiedProperties.get(extendedPropertyKey);
+				componentRequries = new ArrayList<String>();
+				ParamFullSpec extendedFullSpecArray = property.getExtendedFullSpec();
 				
-				properties.put(extendedPropertyKey, value);
-			}
+				ArrayList<ParamFullSpec> parameters = extendedFullSpecArray.getParameters();
+				
+				for (ParamFullSpec paramFullSpec : parameters) {
+					String space = paramFullSpec.getProperties().get("space");
+					String id = paramFullSpec.getProperties().get("id");
+					
+					componentRequries.add("org_scn_community_require."+space+"Modules." + id + ".name");
+				}
+			} else {
+				// add special properties
+				for (String extendedPropertyKey : properties.keySet()) {
+					String value = properties.get(extendedPropertyKey);
+					
+					modifiedProperties.put(extendedPropertyKey + "(lower)", value.toLowerCase());
+				}
+				
+				for (String extendedPropertyKey : modifiedProperties.keySet()) {
+					String value = modifiedProperties.get(extendedPropertyKey);
+					
+					properties.put(extendedPropertyKey, value);
+				}
+			}			
 		}
+		
 		readSpecification(this.aboutProperties, this.jsonAbout);
 		
 		Property compType = this.getProperty(this.compProperties, "handlerType");
@@ -169,6 +189,8 @@ public class SpecificationReader {
 				Object object = (Object) jsonSpec.get(key);
 				if(object instanceof JSONObject) {
 					processJsonObjectReq(parameter, object);
+				} else if(object instanceof JSONArray) {
+					processJsonArrayReq(parameter, object);
 				} else {
 					insertParameter(parameter, key, object);
 				}
@@ -179,6 +201,17 @@ public class SpecificationReader {
 			Property prop = getProperty(properties, parameter.getKey());
 			parameter.setParent(prop);
 			prop.extendSpec(parameter);
+		}
+	}
+
+	private void processJsonArrayReq(ParamFullSpec parameter, Object object) 
+			throws JSONException {
+		JSONArray object1 = (JSONArray) object;
+		
+		for (int i = 0; i < object1.length(); i++) {
+			Object element = object1.get(i);
+			
+			insertParameter(parameter, ""+i, element);
 		}
 	}
 
@@ -222,7 +255,8 @@ public class SpecificationReader {
 		}
 	}
 	
-	private void insertParameter(ParamFullSpec parameterTo, String key, Object value) {
+	private void insertParameter(ParamFullSpec parameterTo, String key, Object value) 
+			throws JSONException {
 		if(!(value instanceof JSONObject) && !(value instanceof JSONArray)) {
 			String realKey = key.substring(key.indexOf("-")+1);
 			
@@ -236,7 +270,18 @@ public class SpecificationReader {
 		} else {
 			ParamFullSpec parameterNew = new ParamFullSpec();
 			parameterNew.setName(key);
-			// parameterNew.setValue((String) value);
+			
+			if(value instanceof JSONObject) {
+				JSONObject object2Array = (JSONObject) value;
+				
+				Iterator keys = object2Array.keys();
+				while (keys.hasNext()) {
+					String keyArray = (String) keys.next();
+					String valueArray = object2Array.getString(keyArray);
+					
+					parameterNew.addProperty(keyArray, valueArray);
+				}
+			}
 			
 			parameterTo.addParameter(parameterNew);
 		}
@@ -282,7 +327,7 @@ public class SpecificationReader {
 			// here we will generically clean up the replacement
 			content = content.replace("%FUNCTION_ENTRY%", "");
 			content = content.replace("%CUSTOM_ENTRY%", "");
-			content = content.replace("%COMPONENT_REQUIRE_SPEC%", "");
+			content = content.replace("%COMPONENT_REQUIRE_SPEC%", this.serializeRequires());
 			
 			content = content.replace("%XML_PROPERTY_TEMPLATE%", "");
 			content = content.replace("%XML_EVENT_TEMPLATE%", "");
@@ -333,5 +378,14 @@ public class SpecificationReader {
 				Helpers.string2File(iFileName, content);
 			}
 		}
+	}
+
+	private CharSequence serializeRequires() {
+		String requires = "";
+		
+		for (String require : componentRequries) {
+			requires = requires + require + ",\r\n\t\t";
+		}
+		return requires;
 	}
 }
