@@ -1,0 +1,16 @@
+{
+	"id": "ActivityViewer",
+	"title": "ActivityViewer",
+	"tooltip": "Viewer for Custom Activities",
+	"handlerType": "div",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+	"require": 
+	[
+		{
+			"id" : "base"
+		}
+	]
+}

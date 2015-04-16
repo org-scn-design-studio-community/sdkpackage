@@ -2,6 +2,7 @@ package org.scn.community.htmlgenerator;
 
 import java.util.ArrayList;
 
+import javax.management.RuntimeErrorException;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
@@ -69,7 +70,8 @@ public class Property {
 
 		if (this.group == null) {
 			System.out.println("ISSUE: " + componentName + " - PARAMETER  - property '" + this.name + "' is missing 'group'");
-			this.group = "&nbsp;";
+			// throw new RuntimeException("Group Must Be Assigned!");
+			this.group = "Display";
 		}
 	}
 

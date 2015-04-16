@@ -176,6 +176,13 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 
 	    	if(requireDefinition) {
 	    		plainNames.push(requireKey);
+	    		
+	    		if(requireDefinition.scriptSpec) {
+					plainNames.push(requireKey + "Spec");
+					definition[requireKey + "Spec"] = org_scn_community_require.scriptInfo.mainSDKPath + requireDefinition.script + "Spec" + minSuffix;
+					plainScripts.push(requireDefinition.scriptSpec);
+				}
+	    		
 	    		definition[requireKey] = org_scn_community_require.scriptInfo.mainSDKPath + requireDefinition.script + minSuffix;
 	    		moduleList.push(requireDefinition);
 	    		plainScripts.push(requireDefinition.script);

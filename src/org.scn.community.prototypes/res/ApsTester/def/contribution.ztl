@@ -34,18 +34,92 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		return this.colorExample;
 	*}
 
-	/**
-	 * Sets Simple Array Property
-	 */	
-	void setSinglearray( /**Simple Array*/ String singlearray){*
-		this.singlearray = singlearray;
-	*}
+	/** Adds a root element containing key [String], text [String], image [String], selected [boolean].
 
-	/**
-	 * Gets Simple Array Property
-	 */	
-	String getSinglearray() {*
-		return this.singlearray;
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	APSTESTER.addButton(key [String], text [String], image [String], selected [boolean]);<br>
+	APSTESTER.addButton(key [String], text [String], image [String], selected [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addButton (
+			/**Unique key of this button*/String key, 
+			/**Text for the button*/String text, 
+			/**Given image for the button*/optional String image, 
+			/**Selection state of the button*/optional boolean selected
+			) {*		
+		
+		if(image == undefined) { image = "";}
+		if(selected == undefined) { selected = false;}
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			image:image, 
+			selected:selected
+			};
+	
+		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
+			this.singlearray = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.singlearray);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.singlearray = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	APSTESTER.removeButton(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeButton (
+			String key
+			) {*		
+		
+		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
+			this.singlearray = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.singlearray);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.singlearray = JSON.stringify(elementsJson);
 	*}
 
 
@@ -71,18 +145,137 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		return this.checkboxOnlyGetterExample;
 	*}
 
-	/**
-	 * Sets Complex Array Property
-	 */	
-	void setDoublearray( /**Complex Array*/ String doublearray){*
-		this.doublearray = doublearray;
+	/** Adds an element containing parentKey [String], key [String], text [String], image [String], selected [boolean] properties.
+	 * You need to specify a unique and existing parent element.
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	APSTESTER.addItem(parentKey [String], key [String], text [String], image [String], selected [boolean]);<br>
+	APSTESTER.addItem(parentKey [String], key [String], text [String], image [String], selected [boolean]);
+	</code>
+	</example>
+	 */
+	void addItem (
+			/**The key of the parent button*/String parentKey, 
+			/**Unique key of this item*/String key, 
+			/**Text for the item*/String text, 
+			/**Given image for the item*/optional String image, 
+			/**Selection state of the item*/optional boolean selected
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		if(image == undefined) { image = "";}
+		if(selected == undefined) { selected = false;}
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key, 
+			text:text, 
+			image:image, 
+			selected:selected 
+			};
+	
+		if (this.doublearray === undefined || this.doublearray === "" || this.doublearray === "<delete>"){
+			this.doublearray = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.doublearray);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.doublearray = JSON.stringify(elementsJson);
 	*}
 
-	/**
-	 * Gets Complex Array Property
-	 */	
-	String getDoublearray() {*
-		return this.doublearray;
+	/** Adds a root element containing key [String], text [String], image [String], selected [boolean].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	APSTESTER.addButton(key [String], text [String], image [String], selected [boolean]);<br>
+	APSTESTER.addButton(key [String], text [String], image [String], selected [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addButton (
+			/**Unique key of this button*/String key, 
+			/**Text for the button*/String text, 
+			/**Given image for the button*/optional String image, 
+			/**Selection state of the button*/optional boolean selected
+			) {*		
+		
+		this.addItem("ROOT", key, 
+			text, 
+			image, 
+			selected);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	APSTESTER.removeItem(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeItem (
+			String key
+			) {*		
+		
+		if (this.doublearray === undefined || this.doublearray === "" || this.doublearray === "<delete>"){
+			this.doublearray = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.doublearray);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.doublearray = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	APSTESTER.removeButton(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeButton (
+			String key
+			) {*		
+		
+		this.removeItem(key);
 	*}
 
 	/**
@@ -128,20 +321,27 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 
 	/**
-	 * Sets Simple String Array Property
+	 * Sets Simple String Array Property as StringArray
 	 */	
-	void setStringarray( /**Simple String Array*/ String stringarray){*
+	void setStringarray( /**Simple String Array*/ StringArray stringarray){*
 		this.stringarray = stringarray;
 	*}
+	
+	/** Gets Simple String Array Property as StringArray
 
-	/**
-	 * Gets Simple String Array Property
-	 */	
-	String getStringarray() {*
-		return this.stringarray;
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	APSTESTER.getStringarray();<br>
+	</code>
+	</example>
+	 */
+	StringArray getStringarray () {*		
+		var elementsJson = JSON.parse(this.stringarray);
+		return elementsJson;
 	*}
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
-
+	// here is the place for other custom functions
 }

@@ -41,11 +41,17 @@ public class ParamFullSpec {
 	}
 	
 	public String getHelp() {
-		return "/**" + options.getPropertyValue("desc") + "*/";
+		if(options != null)
+			return "/**" + options.getPropertyValue("desc") + "*/";
+		else
+			return "/**" + this.getPropertyValue("desc") + "*/";
 	}
 	
 	public String getTitle() {
-		return options.getPropertyValue("desc");
+		if(options != null)
+			return options.getPropertyValue("desc");
+		else
+			return this.getPropertyValue("desc");
 	}
 
 	public void addParameter(ParamFullSpec parameter) {
@@ -66,20 +72,6 @@ public class ParamFullSpec {
 
 	public boolean isOptional() {
 		return properties.get("type").contains(",optional");
-	}
-	
-	private boolean isAps() {
-		String mode = options.getPropertyValue("noAps");
-		
-		if(mode == null || mode.length() == 0) {
-			return true;
-		}
-		
-		if(mode.contains("true")) {
-			return false;
-		}
-		
-		return false;
 	}
 
 	private boolean isZtl() {
@@ -158,12 +150,13 @@ public class ParamFullSpec {
 					template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+"simple"+".ztl.template");
 				}
 				
-				ParamFullSpec paramFirstChild = this.parameters.get(0);
-				String firstKey = paramFirstChild.getName();
-				String firstKeyUpper = Helpers.makeFirstUpper(firstKey); 
-				template = template.replace("%ROOT_CONTENT_NAME%", firstKeyUpper);
+				ParamFullSpec arrayFullSpec = options.getParameter("arrayDefinition").getParameters().get(0);
 				
-				String sequence = paramFirstChild.properties.get("sequence");
+				String arrayName = arrayFullSpec.getName();
+				String arrayNameUpper = Helpers.makeFirstUpper(arrayName); 
+				template = template.replace("%ROOT_CONTENT_NAME%", arrayNameUpper);
+				
+				String sequence = arrayFullSpec.getPropertyValue("sequence");
 				String[] splitSequence = sequence.split(",");
 				
 				String PROPERTY_FULL = "";
@@ -180,7 +173,7 @@ public class ParamFullSpec {
 				for (int i = 0; i < splitSequence.length; i++) {
 					String keySequence = splitSequence[i];
 					
-					ArrayList<ParamFullSpec> children = paramFirstChild.parameters;
+					ArrayList<ParamFullSpec> children = arrayFullSpec.parameters;
 					for (ParamFullSpec paramGenChild : children) {
 						String typeOfChild = paramGenChild.properties.get("type");
 						
@@ -230,27 +223,6 @@ public class ParamFullSpec {
 											if(paramGenChild2.getName().equals("key")) {
 												PROPERTY_DEFINITION_KEY = paramGenChild2.getType() + " " + paramGenChild2.getName();
 												ITEM_PROPERTY_DESCRIPTION = paramGenChild2.getTitle();
-											} else {
-												boolean isAps = paramGenChild2.isAps();
-												
-												if(isAps) {
-													if(PROPERTY_NEW_APS_JSON.length() > 0) {
-														PROPERTY_NEW_APS_JSON = PROPERTY_NEW_APS_JSON + ", "  + "\r\n\t\t\t";
-													}
-													PROPERTY_NEW_APS_JSON = PROPERTY_NEW_APS_JSON + paramGenChild2.getName() + ":" + initValue;
-													
-													// add param handler
-													String paramGenChild2Value = paramGenChild2.getType();
-													String paramGenChild2Template = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-param-"+paramGenChild2Value+".js.template");
-													
-													if(paramGenChild2Template == null){
-														paramGenChild2Template = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-param-"+"String"+".js.template");
-													}
-													
-													paramGenChild2Template = paramGenChild2Template.replace("%PARAM_NAME%", paramGenChild2.getName());
-													paramGenChild2Template = paramGenChild2Template.replace("%PARAM_TITLE%", paramGenChild2.getTitle());
-												}
-												break;
 											}
 										}
 									}
@@ -288,27 +260,8 @@ public class ParamFullSpec {
 									ROOT_PROPERTY_DEFINITION_KEY = paramGenChild.getType() + " " + paramGenChild.getName();
 									ROOT_PROPERTY_KEY = paramGenChild.getName();
 									ROOT_PROPERTY_DESCRIPTION = paramGenChild.getTitle();
-								} else {
-									boolean isAps = paramGenChild.isAps();
-									if(isAps) {
-										
-										if(ROOT_PROPERTY_NEW_APS_JSON.length() > 0) {
-											ROOT_PROPERTY_NEW_APS_JSON = ROOT_PROPERTY_NEW_APS_JSON + ", "  + "\r\n\t\t\t";
-										}
-										ROOT_PROPERTY_NEW_APS_JSON = ROOT_PROPERTY_NEW_APS_JSON + paramGenChild.getName() + ":" + initValue;
-										
-										// add param handler
-										String paramGenChildValue = paramGenChild.getType();
-										String paramGenChildTemplate = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-section-"+paramGenChildValue+".js.template");
-										
-										if(paramGenChildTemplate == null){
-											paramGenChildTemplate = Helpers.resource2String(SpecificationZtlTemplate.class, "aps_"+type+"-section-"+"String"+".js.template");
-										}
-										
-										paramGenChildTemplate = paramGenChildTemplate.replace("%PARAM_NAME%", paramGenChild.getName());
-										paramGenChildTemplate = paramGenChildTemplate.replace("%PARAM_TITLE%", paramGenChild.getTitle());
-									}
 								}
+								
 								break;
 							}
 						}
@@ -425,6 +378,9 @@ public class ParamFullSpec {
 
 	public HashMap<String, String> getProperties() {
 		return this.properties;
+	}
+	public ArrayList<ParamFullSpec> getParameters() {
+		return this.parameters;
 	}
 
 }

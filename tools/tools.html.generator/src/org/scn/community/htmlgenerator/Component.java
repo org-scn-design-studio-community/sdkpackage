@@ -450,7 +450,7 @@ public class Component {
 		
 		String changeLog = toChangeLog(iFileName);
 
-		iFileName = iFileName.replace(".html", File.separator+"changes"+File.separator+"state.json");
+		iFileName = iFileName.replace(".html", File.separator+"changes"+File.separator+"changelog.json");
 		iFileName = iFileName.replace("sdkinstall"+File.separator, "sdkhelp"+File.separator);
 		String changeJsonContent = Helpers.file2String(iFileName);
 
@@ -468,6 +468,13 @@ public class Component {
 					+ "\r\n   \"filterValue\":\"creation\","
 					+ "\r\n   \"test-status\":\"untested\","
 					+ "\r\n   \"test-comment\":\"Initial component status placement\"\r\n}\r\n]";
+			Helpers.string2File(iFileName, changeJsonContent);
+		}
+		
+		if (!changeJsonContent.startsWith("/")) {
+			String comments = Helpers.resource2String(this.getClass(), "changelog_comments.tmpl");
+			
+			changeJsonContent = comments + "\r\n" + changeJsonContent;
 			Helpers.string2File(iFileName, changeJsonContent);
 		}
 		

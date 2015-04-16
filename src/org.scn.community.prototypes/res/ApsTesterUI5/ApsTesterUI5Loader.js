@@ -24,6 +24,7 @@
 		requireName: "prototypesapstesterui5",
 		fullComponentName: "org.scn.community.prototypes.ApsTesterUI5",
 		script: "org.scn.community.prototypes/res/ApsTesterUI5/ApsTesterUI5",
+		scriptSpec: "org.scn.community.prototypes/res/ApsTesterUI5/ApsTesterUI5Spec",
 		min: false
 	};
 

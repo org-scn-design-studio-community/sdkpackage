@@ -8,11 +8,8 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 	
 	initDesignStudio: function() {
 		var that = this;
-		
-		that.readSpecification();
-		org_scn_community_component_Core(that, that.spec);
-		that.readAbout();
-		
+		org_scn_community_component_Core(that, myComponentData);
+
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
@@ -29,27 +26,6 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 	/* COMPONENT SPECIFIC CODE - START METHODS*/
 
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
-
-	readSpecification: function () {
-		var that = this;
-		
-		that.spec = {}; 
-%FULL_SPEC_DEFINITION%
-	},
-	
-	readAbout: function () {
-		var that = this;
-		
-		that.aboutSpec = {}; 
-%FULL_ABOUT_SPEC_DEFINITION%
-
-		that.componentInfo.title = that.aboutSpec.title;
-	    that.componentInfo.description = that.aboutSpec.description;
-	    
-	    for(var topic in that.aboutSpec.topics) {
-	    	this.componentInfo.topics.push(topic);
-	    }
-	},
 };
 
 define([myComponentData.requireName], function(%COMP-package%%COMP-id(lower)%){

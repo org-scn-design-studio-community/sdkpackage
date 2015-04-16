@@ -1,14 +1,8 @@
 (function(){
 
 var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
-	
-	 %COMP-id%.prototype = org_scn_community_component_Core;
-	 %COMP-id%.prototype.constructor = %COMP-id%;
-	 %COMP-id%.prototype.toString = function(){
-	 	 return myComponentData.fullComponentName;
-	 }
 
-function %COMP-id% () {
+%COMP-id% = function () {
 
 	var that = this;
 	
@@ -28,26 +22,7 @@ function %COMP-id% () {
 
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 
-	this.readSpecification = function () {
-		that.spec = {}; 
-%FULL_SPEC_DEFINITION%
-	};
-	
-	this.readAbout = function () {
-		that.aboutSpec = {}; 
-%FULL_ABOUT_SPEC_DEFINITION%
-
-		that.componentInfo.title = that.aboutSpec.title;
-	    that.componentInfo.description = that.aboutSpec.description;
-	    
-	    for(var index in that.aboutSpec.topics) {
-	    	that.componentInfo.topics.push(that.aboutSpec.topics[index]);
-	    }
-	};
-	
-	that.readSpecification();
-	org_scn_community_component_Core(that, that.spec);
-	that.readAbout();
+	org_scn_community_component_Core(that, myComponentData);
 	
 	return that;
 };

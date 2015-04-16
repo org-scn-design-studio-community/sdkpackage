@@ -19,21 +19,21 @@
 
 (function() {
 
-	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id% = {
-		name: "%COMP-package%.%COMP-id%",
-		requireName: "%COMP-package%%COMP-id(lower)%",
-		fullComponentName: "org.scn.community.%COMP-package%.%COMP-id%",
-		script: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%",
-		scriptSpec: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%Spec",
+	org_scn_community_require.knownComponents.basics.ActivityViewer = {
+		name: "basics.ActivityViewer",
+		requireName: "basicsactivityviewer",
+		fullComponentName: "org.scn.community.basics.ActivityViewer",
+		script: "org.scn.community.basics/res/ActivityViewer/ActivityViewer",
+		scriptSpec: "org.scn.community.basics/res/ActivityViewer/ActivityViewerSpec",
 		min: false
 	};
 
-	var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
+	var myComponentData = org_scn_community_require.knownComponents.basics.ActivityViewer;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-	  	%COMPONENT_REQUIRE_SPEC%
+	  	
 	  	org_scn_community_require.knownModules.common_basics.name,
 	  	org_scn_community_require.knownModules.common_databound.name,
 	  	org_scn_community_require.knownModules.component_core.name,
@@ -48,7 +48,7 @@
 	 });
 
 	 sdkReqs(requireInfo1.plainNames, function() {
-	     /** RequireJS Config **/
+		 /** RequireJS Config **/
 		 var requireInfo2 = org_scn_community_require.collectRequire (
 		 [
 		  	myComponentData.name
@@ -61,8 +61,8 @@
 		 });
 
 		 sdkReqs(requireInfo2.plainNames, function() {
-			 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-	     	 sap.zen.Dispatcher.instance.resumeDispatching();
+			 sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+		     sap.zen.Dispatcher.instance.resumeDispatching();
 		});//End of Require Callback Component
 	});//End of Require Callback
 })();// End of closure

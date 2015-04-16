@@ -1,7 +1,10 @@
 /**
  * Core Class
  */
-org_scn_community_component_Core = function (owner, options){
+org_scn_community_component_Core = function (owner, componentData){
+	var spec = componentData.spec;
+	var specAbout = componentData.specAbout;
+	
 	var that = owner;
 	that.componentInfo = {
 		visible : true,
@@ -14,11 +17,19 @@ org_scn_community_component_Core = function (owner, options){
 			content : "This component is an SDK Component.  Be sure you install the plugin to your server platform should you find it useful."
 		}]
 	};
+	
+	that.componentInfo.title = specAbout.title;
+    that.componentInfo.description = specAbout.description;
+    
+    for(var index in specAbout.topics) {
+    	that.componentInfo.topics.push(specAbout.topics[index]);
+    }
+    
 	that.props = {
 		// All properties from child classes always inherit properties.  Core class currently has no properties out of the gate.
 	};
-	for(property in options){
-		that.props[property] = options[property]
+	for(property in spec){
+		that.props[property] = spec[property]
 	};
 	/*
 	 * Create the aforementioned getter/setter and attach to 'this'.

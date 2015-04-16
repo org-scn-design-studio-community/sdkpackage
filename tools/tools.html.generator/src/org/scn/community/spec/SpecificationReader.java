@@ -36,6 +36,7 @@ public class SpecificationReader {
 	private String rootPath;
 	private String ApsJs;
 	private String ApsHtml;
+	private String JsSpecTmpl;
 
 	public SpecificationReader(String pathToGenSpec, Component component) {
 		this.pathToGenSpec = pathToGenSpec;
@@ -51,15 +52,15 @@ public class SpecificationReader {
 		} catch (JSONException e) {
 			throw new RuntimeException(e);
 		}
-		pathToGenSpec = pathToGenSpec.replace("specification.json", "component.json");
-		spec = Helpers.file2String(pathToGenSpec);
+		String pathToGenSpecCopy = pathToGenSpec.replace("specification.json", "component.json");
+		spec = Helpers.file2String(pathToGenSpecCopy);
 		try {
 			jsonComponent = new JSONObject(spec);
 		} catch (JSONException e) {
 			throw new RuntimeException(e);
 		}
-		pathToGenSpec = pathToGenSpec.replace("component.json", "about.json");
-		spec = Helpers.file2String(pathToGenSpec);
+		pathToGenSpecCopy = pathToGenSpec.replace("component.json", "about.json");
+		spec = Helpers.file2String(pathToGenSpecCopy);
 		try {
 			jsonAbout = new JSONObject(spec);
 		} catch (JSONException e) {
@@ -75,6 +76,15 @@ public class SpecificationReader {
 				ZtlAndAps generatedZtlAndAps = property.generateZtlAndAps();
 				
 				ZtlTmpl = ZtlTmpl.replace("%FUNCTION_ENTRY%", generatedZtlAndAps.getFunctions() + "\r\n\r\n%FUNCTION_ENTRY%");
+				
+				String pathToGenZtl = pathToGenSpec.replace("specification.json", "contribution.ztl");
+				pathToGenZtl = pathToGenZtl.replace(File.separator + "def" + File.separator, File.separator + "spec" + File.separator);
+				File fileGenZtl = new File(pathToGenZtl);
+				
+				if(fileGenZtl.exists()) {
+					String customZtl = Helpers.file2String(fileGenZtl);
+					ZtlTmpl = ZtlTmpl.replace("%CUSTOM_ENTRY%", customZtl);
+				}
 				
 				if(generatedZtlAndAps.getXml() != null && generatedZtlAndAps.getXml().length() > 0) {
 					XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");	
@@ -118,8 +128,9 @@ public class SpecificationReader {
 
 		JsLoaderTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.loader."+compTypeValue+".js.template");
 		JsTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.component."+compTypeValue+".js.template");
+		JsSpecTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.spec."+compTypeValue+".js.template");
 		
-		if(JsLoaderTmpl == null || JsTmpl == null) {
+		if(JsLoaderTmpl == null || JsTmpl == null || JsSpecTmpl == null) {
 			throw new RuntimeException("'" + compTypeValue + "' is not a valid component type (div | sapui5)");
 		}
 		
@@ -250,7 +261,10 @@ public class SpecificationReader {
 	private void writeBack() {
 		templates.put("def"+File.separator+"contribution.xml", XmlTmpl);
 		templates.put("%COMPONENT_NAME%Loader.js", JsLoaderTmpl);
+		templates.put("%COMPONENT_NAME%Spec.js", JsSpecTmpl);
+		
 		templates.put("%COMPONENT_NAME%.js", JsTmpl);
+		
 		templates.put("def"+File.separator+"contribution.ztl", ZtlTmpl);
 		
 		if(ApsHtml != null){
@@ -260,6 +274,7 @@ public class SpecificationReader {
 		if(ApsJs != null){
 			templates.put("aps"+File.separator+"PropertyPage.def.js", ApsJs);
 		}
+		
 		for (String templatePath : this.templates.keySet()) {
 			String content = templates.get(templatePath);
 			templatePath = templatePath.replace("%COMPONENT_NAME%", this.componentName);
@@ -274,9 +289,9 @@ public class SpecificationReader {
 			content = content.replace("%XML_DEAFULT_TEMPLATE%", "");
 			
 			try {
-				content = content.replace("%FULL_SPEC_DEFINITION%", "that.spec = \r\n" + jsonSpecification.toString(2) + ";");
-				// content = content.replace("%FULL_COMP_SPEC_DEFINITION%", "that.compSpec = \r\n" +jsonAbout.toString(2) + ";");
-				content = content.replace("%FULL_ABOUT_SPEC_DEFINITION%", "that.aboutSpec = \r\n" +jsonAbout.toString(2) + ";");
+				content = content.replace("%FULL_SPEC_DEFINITION%", jsonSpecification.toString(2) + ";");
+				// content = content.replace("%FULL_COMP_SPEC_DEFINITION%", jsonAbout.toString(2) + ";");
+				content = content.replace("%FULL_ABOUT_SPEC_DEFINITION%", jsonAbout.toString(2) + ";");
 
 				content = content.replace("%FULL_SPEC_DEFINITION_JSON%", jsonSpecification.toString(2));
 				content = content.replace("%FULL_COMP_SPEC_DEFINITION_JSON%", jsonAbout.toString(2));
@@ -308,10 +323,15 @@ public class SpecificationReader {
 			if(content.contains("%")) {
 				// throw new RuntimeException(content.substring(content.indexOf("%"), 10));
 			}
-			
+
 			String iFileName = this.rootPath + File.separator + templatePath;
-			Helpers.string2File(iFileName, content);
-			
+			if(templatePath.endsWith(this.componentName + ".js")) {
+				if(!new File(iFileName).exists()) {
+					Helpers.string2File(iFileName, content);
+				}
+			} else {
+				Helpers.string2File(iFileName, content);
+			}
 		}
 	}
 }

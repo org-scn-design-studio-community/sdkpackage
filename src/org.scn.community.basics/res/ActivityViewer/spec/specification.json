@@ -1,0 +1,47 @@
+{
+   "activities":{
+      "type":"String",
+      "value":"[]",
+      "visible":true,
+      
+      "opts":{
+         "ztlType":"SingleArray",
+         "ztlFunction":"",
+         
+         "arrayDefinition":{
+            "activity":{
+               "type":"Array",
+               "sequence":"key,text,category,startDate,endDate",
+               
+               "key":{
+                  "desc":"Unique key of this activity",
+                  "type":"String"
+               },
+               "text":{
+                  "desc":"Text for the activity",
+                  "type":"String"
+               },
+               "category":{
+                  "desc":"Given category for the activity",
+                  "type":"String"
+               },
+               "startDate":{
+                  "desc":"Start Date",
+                  "type":"String"
+               },
+               "endDate":{
+                   "desc":"End Date",
+                   "type":"String"
+                }
+            }
+         },
+         
+         "desc":"Activities",
+         "cat":"Content-Activities",
+         "tooltip":"List of Activities",
+         
+         "apsControl":"array",
+         "arrayMode":"OneLevelArray"
+      }
+   }
+}

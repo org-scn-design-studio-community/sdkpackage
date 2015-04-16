@@ -24,6 +24,7 @@
 		requireName: "%COMP-package%%COMP-id(lower)%",
 		fullComponentName: "org.scn.community.%COMP-package%.%COMP-id%",
 		script: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%",
+		scriptSpec: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%Spec",
 		min: false
 	};
 

@@ -24,6 +24,7 @@
 		requireName: "prototypesapstester",
 		fullComponentName: "org.scn.community.prototypes.ApsTester",
 		script: "org.scn.community.prototypes/res/ApsTester/ApsTester",
+		scriptSpec: "org.scn.community.prototypes/res/ApsTester/ApsTesterSpec",
 		min: false
 	};
 

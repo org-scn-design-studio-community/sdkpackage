@@ -1,8 +1,8 @@
 (function(){
 
-var myComponentData = org_scn_community_require.knownComponents.prototypes.ApsTester;
+var myComponentData = org_scn_community_require.knownComponents.basics.ActivityViewer;
 
-ApsTester = function () {
+ActivityViewer = function () {
 
 	var that = this;
 	
@@ -27,8 +27,8 @@ ApsTester = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(prototypesapstester){
-	myComponentData.instance = ApsTester;
+define([myComponentData.requireName], function(basicsactivityviewer){
+	myComponentData.instance = ActivityViewer;
 	return myComponentData.instance;
 });
 

@@ -1,0 +1,20 @@
+	/**
+	 * Sets %NAME% Property as %PROPERTY_TYPE_OVERLOAD%
+	 */	
+	void set%PROPERTY_CAPITAL_CUT%( %HELP% %PROPERTY_TYPE% %PROPERTY_SMALL_CUT%){*
+		this.%PROPERTY_CAPITAL% = %PROPERTY_SMALL_CUT%;
+	*}
+	
+	/** Gets %NAME% Property as %PROPERTY_TYPE_OVERLOAD%
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	%COMPONENT_NAME%.get%PROPERTY_CAPITAL_CUT%();<br>
+	</code>
+	</example>
+	 */
+	%PROPERTY_TYPE_OVERLOAD% get%PROPERTY_CAPITAL_CUT% () {*		
+		var elementsJson = JSON.parse(this.%PROPERTY_CAPITAL%);
+		return elementsJson;
+	*}

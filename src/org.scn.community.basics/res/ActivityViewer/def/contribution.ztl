@@ -1,0 +1,100 @@
+
+/**
+ * Generated ZTL Class for ActivityViewer
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.Component {
+
+	/** Adds a root element containing key [String], text [String], category [String], startDate [String], endDate [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	ACTIVITYVIEWER.addActivity(key [String], text [String], category [String], startDate [String], endDate [String]);<br>
+	ACTIVITYVIEWER.addActivity(key [String], text [String], category [String], startDate [String], endDate [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addActivity (
+			/**Unique key of this activity*/String key, 
+			/**Text for the activity*/String text, 
+			/**Given category for the activity*/String category, 
+			/**Start Date*/String startDate, 
+			/**End Date*/String endDate
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			category:category, 
+			startDate:startDate, 
+			endDate:endDate
+			};
+	
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			this.activities = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.activities);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.activities = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	ACTIVITYVIEWER.removeActivity(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeActivity (
+			String key
+			) {*		
+		
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			this.activities = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.activities);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.activities = JSON.stringify(elementsJson);
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
+}

@@ -1,0 +1,16 @@
+{
+	"title": "Activity Viewer",
+	"description": "Activity Viewer - Gantt Chart for Activities",
+	"icon": "ActivityViewer.png",
+	"topics": 
+	[
+		{
+			"title" : "Activity",
+			"content" : "Activity must have a start and end date, it must also have a name and category. The Activity Viewer is showing all activities for a category (like a Gantt Chart)."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component.  This means that you have control over cosmetic properties such as Legend, Margins, Plot positioning, zooming, among others."
+		},
+	]
+}
