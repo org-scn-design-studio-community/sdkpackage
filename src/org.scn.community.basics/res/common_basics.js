@@ -27,10 +27,12 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 	if(parent._oContentPlaced != true) {
 		var jqThis = parent.$();
 		
-		parent.addContent(
-				mainObject,
-				{left: "0px", top: "0px"}
-		);
+		if(parent.addContent) {
+			parent.addContent(
+					mainObject,
+					{left: "0px", top: "0px"}
+			);
+		}
 		
 		parent._oResize = function() {
 			parent._containerWidth = jqThis.outerWidth(true) + "px";
@@ -42,6 +44,14 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 			
 			if(mainObject.setHeight) {
 				mainObject.setHeight(parent._containerHeight);	
+			}
+			
+			if(mainObject.width) {
+				mainObject.width(parent._containerWidth);	
+			}
+			
+			if(mainObject.height) {
+				mainObject.height(parent._containerHeight);	
 			}
 		};
 		

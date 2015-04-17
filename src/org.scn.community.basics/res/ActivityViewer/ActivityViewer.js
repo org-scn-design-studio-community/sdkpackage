@@ -75,15 +75,24 @@ ActivityViewer = function () {
 	this.afterUpdate = function() {
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 
-		var gantt = d3plug.gantt();
+		if(!that._gantt) {
+			that._gantt = d3plug.gantt();
+		}
+
+		that._gantt.taskTypes(that.taskNames);
+		that._gantt.taskStatus(that.taskStatus);
+		that._gantt.tickFormat(that.timeFormat);
 		
-		var innerId = that.oControlProperties.id;
+		if(!that._drawn) {
+			var innerId = that.oControlProperties.id;
+			that._gantt.draw(innerId, that.tasks);
+			
+			org_scn_community_basics.resizeContentAbsoluteLayout (that, that._gantt);
+			that._drawn = true;
+		} else {
+			that._gantt.redraw(that.tasks);
+		}
 		
-		gantt.taskTypes(that.taskNames);
-		gantt.taskStatus(that.taskStatus);
-		gantt.tickFormat(that.timeFormat);
-		
-		setTimeout(function(){gantt.draw(innerId, that.tasks);},250);
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	};
 	

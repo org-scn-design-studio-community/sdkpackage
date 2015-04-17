@@ -150,7 +150,7 @@ myComponentData.instance = function () {
 			} else {
 				var options = org_scn_community_databound.initializeOptions();
 				options.ignoreResults = true;
-				var flatData = org_scn_community_databound.flatten(that._data, options);
+				flatData = org_scn_community_databound.flatten(that._data, options);
 			}
 			
 			this.processData(flatData, afterPrepare);

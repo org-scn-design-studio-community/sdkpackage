@@ -27,8 +27,6 @@ var _readScriptPath = function () {
 };
 /** end of path recognition */
 
-jQuery.sap.require(ownComponentName);
-
 sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.KpiView", {
 
 	metadata: {
