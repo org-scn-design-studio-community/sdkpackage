@@ -179,11 +179,13 @@ sap.ui.ux3.NotificationBar.extend(ownComponentName, {
 		this.__notifiersInitialized = false;
 		
 		this._oClickListener = function (oEvent) {
-			var oNotification = oEvent.getParameter("Notification");
+			var oNotification = oEvent.getParameter("message");
 			var oNotifier = oEvent.getParameter("notifier");
 			
-			if(that.DeleteNotificationOnClick) {
-				oNotifier.removeNotification(oNotification);			
+			if(that._DeleteNotificationOnClick) {
+				oNotifier.removeMessage(oNotification);	
+				//close popup upfront to prevent callout errors on last message delete
+				oNotifier._oCallout.closePopup();
 			}
 		};
 		
