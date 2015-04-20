@@ -3,7 +3,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 	renderer : {},
 	metadata : {                             
         properties : {
-        	"mode": {type: "string"}, // StringArray | OneLevelArray | TwoLevelArray 
+        	"mode": {type: "string"}, // StringArray | OneLevelArray | TwoLevelArray
         },
 	    events : {
 	    	valueChange : {}
@@ -19,6 +19,22 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 			if(sections[i].key == key) return sections[i];
 		}
 	},
+	
+	setSpecification : function (spec) {
+		this.specification = spec;
+		this.getSpecArrayName();
+	},
+	
+	getSpecArrayName : function () {
+		for(var name in this.specification) {
+			var firstChild = this.specification[name];
+			
+			this.specChild = firstChild;
+			this.specChildName = name.substring(0,1).toUpperCase() + name.substring(1);
+			return;
+		}
+	},
+	
 	/*
 	 * Retrieves JSON for Item Entry
 	 */
@@ -75,12 +91,13 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		var items = this.gatherItems(this._selectedElementKey);
 		
 		if(this.getMode() != "StringArray") {
-			var sectionKey = new sap.ui.commons.TextView({text : "Parameter Name"});
+			var sectionKey = new sap.ui.commons.TextView({text : that.specChild.key.desc});
 			sectionKey.addStyleClass("org-scn-ApsLabelArray");
 			this._sectionPropertyLayout.addContent(sectionKey);
 		} else {
 			// no description
 		}
+		
 		var txtElementKey = new sap.ui.commons.TextField({value : selectedElement.key, width: "180px"});
 		txtElementKey.addStyleClass("org-scn-ApsInputArray");
 		txtElementKey.attachChange(
@@ -102,19 +119,41 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		this._sectionPropertyLayout.addContent(txtElementKey);
 
 		if(this.getMode() != "StringArray") {
-			var sectionvalue = new sap.ui.commons.TextView({text : "Parameter Value"});
-			sectionvalue.addStyleClass("org-scn-ApsLabelArray");
-			var txtElementvalue = new sap.ui.commons.TextField({value : selectedElement.value, width: "180px"});
-			txtElementvalue.addStyleClass("org-scn-ApsInputArray");
-			txtElementvalue.attachChange(
-				function(oControlEvent){
-					var value = oControlEvent.getParameter("newValue");
-					var section = that.getElement(that._listBuilder.getSelectedKey());
-					section.value = value;
-					that.updateElement(that._listBuilder.getSelectedKey(),section);
-			}, that);
-			this._sectionPropertyLayout.addContent(sectionvalue);
-			this._sectionPropertyLayout.addContent(txtElementvalue);
+			var sequence = that.specChild.sequence.split(",");
+			for (var parameterIndex in sequence) {
+				var parameterName = sequence[parameterIndex];
+				
+				if(parameterName != "key") {
+					var parameterObject = that.specChild[parameterName];
+					
+					// no arrays here
+					if(parameterObject.type == "Array") {
+						continue;
+					}
+					
+					var sectionValue = new sap.ui.commons.TextView({text : parameterObject.desc});
+					sectionValue.addStyleClass("org-scn-ApsLabelArray");
+					
+					
+					var txtElementValue = new sap.ui.commons.TextField({value : selectedElement[parameterName], width: "180px"});
+					txtElementValue.addStyleClass("org-scn-ApsInputArray");
+					txtElementValue._key = parameterName;
+					txtElementValue.attachChange(
+						function(oControlEvent){
+							var value = oControlEvent.getParameter("newValue");
+							var key = oControlEvent.getSource()._key;
+							
+							var section = that.getElement(that._listBuilder.getSelectedKey());
+							section[key] = value;
+							
+							that.updateElement(that._listBuilder.getSelectedKey(),section);
+					}, that);
+					
+					this._sectionPropertyLayout.addContent(sectionValue);
+					this._sectionPropertyLayout.addContent(txtElementValue);
+				}
+			}
+			
 		}
 
 		var itemsLabel = new sap.ui.commons.TextView({text : "Items"});
@@ -157,10 +196,25 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 			width : "100%"
 		});
 		
-		var itemKey = new sap.ui.commons.TextView({text : "Item Key"});
+		var sequence = that.specChild.sequence.split(",");
+		var childParameterObject = undefined;
+		for (var parameterIndex in sequence) {
+			var parameterName = sequence[parameterIndex];
+			var parameterObject = that.specChild[parameterName];
+			
+			// no arrays here
+			if(parameterObject.type == "Array") {
+				childParameterObject = parameterObject;
+			}
+		}
+		sequence = childParameterObject.sequence.split(",");
+		
+		var itemKey = new sap.ui.commons.TextView({text : childParameterObject.key.desc});
 		itemKey.addStyleClass("org-scn-ApsLabelArray");
+		
 		var txtItemKey = new sap.ui.commons.TextField({value : this._currentItemConfig.key, width: "300px"});
 		txtItemKey.addStyleClass("org-scn-ApsInputArray");
+		
 		txtItemKey.attachChange(
 			function(oControlEvent){
 				var value = oControlEvent.getParameter("newValue");
@@ -171,8 +225,38 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 				delete allItems;
 				that._currentItemConfig.key = newItemKey;		
 		}, that);
+		
 		itemDetailLayout.addContent(itemKey);
 		itemDetailLayout.addContent(txtItemKey);
+		
+		for (var parameterIndex in sequence) {
+			var parameterName = sequence[parameterIndex];
+			
+			if(parameterName == "parentKey" || parameterName == "key") {
+				continue;
+			}
+			
+			var parameterObject = childParameterObject[parameterName];
+			
+			var itemValue = new sap.ui.commons.TextView({text : parameterObject.desc});
+			itemValue.addStyleClass("org-scn-ApsLabelArray");
+			
+			var txtItemValue = new sap.ui.commons.TextField({value : this._currentItemConfig[parameterName], width: "300px"});
+			txtItemValue.addStyleClass("org-scn-ApsInputArray");
+			txtItemValue._key = parameterName;
+			
+			txtItemValue.attachChange(
+				function(oControlEvent){
+					var value = oControlEvent.getParameter("newValue");
+					var key = oControlEvent.getSource()._key;
+
+					that._currentItemConfig[key] = value;		
+			}, that);
+			
+			itemDetailLayout.addContent(itemValue);
+			itemDetailLayout.addContent(txtItemValue);
+			
+		}
 
 		var detailButtons = new sap.ui.commons.layout.HorizontalLayout({ });
 		var closeButton = new sap.ui.commons.Button({

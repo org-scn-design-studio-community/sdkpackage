@@ -106,12 +106,14 @@ myComponentData.instance = {
 		options.collectMultiple = (collectMultiple == "Collect");
 		options.slaveColumnIndex = slaveColumnIndex;
 		
-		// mix data by keys
-		var masterGeometry = that.getDMasterGeometry();
-		if(masterGeometry == "Structure") {
-			org_scn_community_databound.mixStructure(that._masterData, that._slaveData, options);	
-		} else if(masterGeometry == "Rows") {
-			org_scn_community_databound.mixRows(that._masterData, that._slaveData, options);	
+		if(org_scn_community_databound.hasData(that._slaveData.plainData)) {
+			// mix data by keys
+			var masterGeometry = that.getDMasterGeometry();
+			if(masterGeometry == "Structure") {
+				org_scn_community_databound.mixStructure(that._masterData, that._slaveData, options);	
+			} else if(masterGeometry == "Rows") {
+				org_scn_community_databound.mixRows(that._masterData, that._slaveData, options);	
+			}
 		}
 		
 		org_scn_community_databound.updateCentralDataStorage(that, that._masterData);

@@ -113,9 +113,36 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 			{left: "0px", top: "0px"}
 		);
 
-    	that.onAfterRendering = function() {
+    	that.onResizeCallback = function(width, height) {
+    		var visibleRows = that.getDVisibleRowCount();
+    		
+    		// cut header
+    		height = height - 32;
+    		
+    		var lNavMode = that.getDNavigationMode();
+    		if(lNavMode == "Paginator") {
+    			height = height - 26;
+    		}
+    		
+    		if(height > 0) {
+    			var rowH = that.getDRowHeight();
+    			
+    			var maxNumber = height / rowH;
+    			maxNumber = Math.floor(maxNumber);
+    			
+    			if(visibleRows > maxNumber) {
+    				that._table.setVisibleRowCount(maxNumber);	
+    			} else {
+    				that._table.setVisibleRowCount(visibleRows);	
+    			}
+    		}
     	};
     	
+    	// resize function
+		that.onAfterRendering = function() {
+			org_scn_community_basics.resizeContentAbsoluteLayout (that, that._table, that.onResizeCallback);
+		}
+		
     	that._table.attachCellClick(that.onCellClick);
     	that._table.attachRowSelectionChange(that.onRowClick);
 	},

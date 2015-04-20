@@ -75,13 +75,26 @@ ActivityViewer = function () {
 	this.afterUpdate = function() {
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 
+		var owner = that.$();
+		var margin = {
+		     top : 20,
+		     right : 40,
+		     bottom : 20,
+		     left : 160
+		};
+		
 		if(!that._gantt) {
-			that._gantt = d3plug.gantt();
+			that._gantt = d3plug.gantt(owner, margin);
 		}
 
 		that._gantt.taskTypes(that.taskNames);
 		that._gantt.taskStatus(that.taskStatus);
 		that._gantt.tickFormat(that.timeFormat);
+		
+		
+		that._gantt.width(owner.outerWidth(true)-margin.left-margin.right);
+		that._gantt.height(owner.outerHeight(true)-margin.top-margin.bottom);
+		that._gantt.margin(margin);
 		
 		if(!that._drawn) {
 			var innerId = that.oControlProperties.id;

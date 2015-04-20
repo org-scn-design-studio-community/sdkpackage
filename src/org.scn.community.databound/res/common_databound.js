@@ -70,9 +70,9 @@ org_scn_community_databound.initializeOptions = function () {
 	options.emptyDataValue = "";
 	options.emptyHeaderValue = "";
 	
-	options.formattinCondition = {};
-	options.formattinCondition.operator = undefined;
-	options.formattinCondition.rules = [];
+	options.formattingCondition = {};
+	options.formattingCondition.operator = undefined;
+	options.formattingCondition.rules = [];
 
 	return options;
 }

@@ -190,9 +190,13 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 					}
 					// try to add arrays
 					if(apsControl == "array"){
+						var specification = propertyOptions.arrayDefinition;
+						if(!specification) {specification = {}};
+						
 						this["cmp_"+property] = new org.scn.community.aps.ArrayList({
-							mode: propertyOptions.arrayMode
+							mode: propertyOptions.arrayMode,
 						});
+						this["cmp_"+property].setSpecification(specification);
 						this["cmp_"+property].attachValueChange(f,this);
 					}
 					
@@ -317,6 +321,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 				propMetadata = this.callRuntimeHandler("getPropertyMetaData");	
 			} else {
 				var testComponent = this.getUrlParameterByName("component");
+				var testComponent = testComponent.substring(0, testComponent.indexOf(","));
 				var componentObject = eval(testComponent);
 				
 				this.componentInstance = componentObject.instance();
@@ -424,7 +429,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			}
 		}
 		} catch(e2) {
-			alert(e);
+			alert(e2);
 		}
 	};
 	this.hLabel = function(label,component){

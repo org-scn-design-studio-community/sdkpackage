@@ -8,25 +8,19 @@ var d3plug = d3plug || {};
 
 (function() {
 
-    d3plug.gantt = function() {
+    d3plug.gantt = function(owner, margin) {
         var gantt = this;
 
         var FIT_TIME_DOMAIN_MODE = "fit";
         var FIXED_TIME_DOMAIN_MODE = "fixed";
 
-        var margin = {
-            top: 20,
-            right: 40,
-            bottom: 20,
-            left: 150
-        };
         var timeDomainStart = d3.time.day.offset(new Date(), -3);
         var timeDomainEnd = d3.time.hour.offset(new Date(), +3);
         var timeDomainMode = FIT_TIME_DOMAIN_MODE; // fixed or fit
         var taskTypes = [];
         var taskStatus = [];
-        var height = document.body.clientHeight - margin.top - margin.bottom - 5;
-        var width = document.body.clientWidth - margin.right - margin.left - 5;
+        var height = owner.outerWidth(true) - margin.top - margin.bottom - 5;
+        var width = owner.outerHeight(true) - margin.right - margin.left - 5;
 
         var tickFormat = "%H:%M";
 
@@ -89,26 +83,28 @@ var d3plug = d3plug || {};
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom);
             
-			var g = svg.append("g")
-                .attr("class", "gantt-chart")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
+			var main = svg.append("g");
+			
+			main.attr("class", "gantt-chart")
+                .attr("width", width)
+                .attr("height", height)
                 .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
-            var select = g.selectAll(".chart")
+            var select = main.selectAll(".chart")
                 .data(tasks, keyFunction).enter();
             
-            select.append("rect")
+            var rect = select.append("rect")
                 .attr("rx", 5)
-                .attr("ry", 5)
-                .attr("class", function(d) {
+                .attr("ry", 5);
+
+            rect.attr("class", function(d) {
                     if (taskStatus[d.status] == null) {
                         return "bar";
                     }
                     return taskStatus[d.status];
                 })
-                .attr("y", 0)
-                .attr("transform", rectTransform)
+                .attr("y", 0);
+            rect.attr("transform", rectTransform)
                 .attr("height", function(d) {
                     return y.rangeBand();
                 })
@@ -116,14 +112,17 @@ var d3plug = d3plug || {};
                     return (x(d.endDate) - x(d.startDate));
                 });
 
-
             svg.append("g")
                 .attr("class", "x axis")
-                .attr("transform", "translate(0, " + (height - margin.top - margin.bottom) + ")")
+                .attr("transform", "translate("+ margin.left +", " + (height + margin.top - margin.bottom) + ")")
                 .transition()
                 .call(xAxis);
 
-            svg.append("g").attr("class", "y axis").transition().call(yAxis);
+            svg.append("g")
+            	.attr("class", "y axis")
+            	.attr("transform", "translate("+ margin.left +", " + margin.top + ")")
+            	.transition()
+            	.call(yAxis);
 
             return gantt;
 

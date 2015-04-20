@@ -1,19 +1,17 @@
 ApsContent = function () {
-	var that = {
-		"spec" : 
+	var that = this; 
+	
+	that.componentData = {
+
+"spec" : 
 %FULL_SPEC_DEFINITION_JSON%, 
-		"aboutSpec" : 
+
+"specAbout" : 
 %FULL_ABOUT_SPEC_DEFINITION_JSON%
-	};
 
-	org_scn_community_component_Core(that, that.spec);
+};
 
-	that.componentInfo.title = that.aboutSpec.title;
-    that.componentInfo.description = that.aboutSpec.description;
-
-    for(var index in that.aboutSpec.topics) {
-    	that.componentInfo.topics.push(that.aboutSpec.topics[index]);
-    }
+	org_scn_community_component_Core(that, that.componentData);
     
 	return that;
 };

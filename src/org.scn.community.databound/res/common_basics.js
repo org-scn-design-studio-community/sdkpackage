@@ -23,31 +23,62 @@
 
 var org_scn_community_basics = org_scn_community_basics || {};
 
-org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObject) {
+org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObject, callback) {
 	if(parent._oContentPlaced != true) {
-		var jqThis = parent.$();
-		
-		parent.addContent(
-				mainObject,
-				{left: "0px", top: "0px"}
-		);
+		if(parent.addContent) {
+			parent.addContent(
+					mainObject,
+					{left: "0px", top: "0px"}
+			);
+		}
 		
 		parent._oResize = function() {
-			parent._containerWidth = jqThis.outerWidth(true) + "px";
-			parent._containerHeight = jqThis.outerHeight(true) + "px";
+			var jqThis = parent.$();
+
+			parent._containerWidth = jqThis.outerWidth(true);
+			parent._containerHeight = jqThis.outerHeight(true);
+			
+			var myParent = parent;
+			while(parent._containerHeight == 0) {
+				myParent = myParent.getParent();
+				
+				parent._containerHeight = myParent.$().outerHeight(true);
+				
+				if(!myParent) {
+					break;
+				}
+			}
 
 			if(mainObject.setWidth) {
-				mainObject.setWidth(parent._containerWidth);	
+				mainObject.setWidth(parent._containerWidth + "px");	
 			}
 			
 			if(mainObject.setHeight) {
-				mainObject.setHeight(parent._containerHeight);	
+				mainObject.setHeight(parent._containerHeight + "px");	
+			}
+			
+			if(mainObject.width) {
+				mainObject.width(parent._containerWidth + "px");	
+			}
+			
+			if(mainObject.height) {
+				mainObject.height(parent._containerHeight + "px");	
+			}
+			
+			if(callback) {
+				callback(parent._containerWidth, parent._containerHeight);
 			}
 		};
 		
 		// attach resize handler
-		jqThis[0].onresize = parent._oResize;
-
+		org_scn_community_basics.addEvent(parent.$()[0], "resize", parent._oResize);
+		org_scn_community_basics.resizableComponents.push(parent);
+		
+		// attach resize handler
+		if(!org_scn_community_basics.onWindowResizeInserted) {
+			org_scn_community_basics.addEvent(window, "resize", org_scn_community_basics.onWindowResize);org_scn_community_basics.onWindowResizeInserted=true;
+		}
+		
 		// call resize handler
 		parent._oResize();	
 
@@ -76,6 +107,29 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 		
 		parent._oContentPlaced = true;
 	};
+};
+
+org_scn_community_basics.addEvent = function(elem, type, eventHandle) {
+    if (elem == null || typeof(elem) == 'undefined') return;
+    if ( elem.addEventListener ) {
+        elem.addEventListener( type, eventHandle, false );
+    } else if ( elem.attachEvent ) {
+        elem.attachEvent( "on" + type, eventHandle );
+    } else {
+        elem["on"+type]=eventHandle;
+    }
+};
+
+org_scn_community_basics.onWindowResizeInserted = false;
+org_scn_community_basics.resizableComponents = [];
+org_scn_community_basics.onWindowResize = function() {
+	for (var compIndex in org_scn_community_basics.resizableComponents) {
+		var component = org_scn_community_basics.resizableComponents[compIndex];
+		
+		if(component._oResize){
+			component._oResize();
+		}
+	}
 };
 
 /**

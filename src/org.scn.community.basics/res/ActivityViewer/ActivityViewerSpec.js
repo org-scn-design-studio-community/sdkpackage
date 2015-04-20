@@ -60,43 +60,20 @@
 }};
 
 	org_scn_community_require.knownComponents.basics.ActivityViewer.specAbout = 
-{"activities": {
-  "opts": {
-    "apsControl": "array",
-    "arrayDefinition": {"activity": {
-      "category": {
-        "desc": "Given category for the activity",
-        "type": "String"
-      },
-      "endDate": {
-        "desc": "End Date",
-        "type": "String"
-      },
-      "key": {
-        "desc": "Unique key of this activity",
-        "type": "String"
-      },
-      "sequence": "key,text,category,startDate,endDate",
-      "startDate": {
-        "desc": "Start Date",
-        "type": "String"
-      },
-      "text": {
-        "desc": "Text for the activity",
-        "type": "String"
-      },
-      "type": "Array"
-    }},
-    "arrayMode": "OneLevelArray",
-    "cat": "Content-Activities",
-    "desc": "Activities",
-    "tooltip": "List of Activities",
-    "ztlFunction": "",
-    "ztlType": "SingleArray"
-  },
-  "type": "String",
-  "value": "[]",
-  "visible": true
-}};
+{
+  "description": "Activity Viewer - Gantt Chart for Activities",
+  "icon": "ActivityViewer.png",
+  "title": "Activity Viewer",
+  "topics": [
+    {
+      "content": "Activity must have a start and end date, it must also have a name and category. The Activity Viewer is showing all activities for a category (like a Gantt Chart).",
+      "title": "Activity"
+    },
+    {
+      "content": "This component is a visualization component.  This means that you have control over cosmetic properties such as Legend, Margins, Plot positioning, zooming, among others.",
+      "title": "Visualization"
+    }
+  ]
+};
 
 })();// End of closure

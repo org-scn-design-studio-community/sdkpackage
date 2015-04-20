@@ -177,7 +177,7 @@
          "arrayDefinition":{
             "button":{
                "type":"Array",
-               "sequence":"key,text,image,selected",
+               "sequence":"key,text,image,selected,item",
                "key":{
                   "desc":"Unique key of this button",
                   "type":"String"

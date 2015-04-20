@@ -117,6 +117,11 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 				script: "org.scn.community.basics/aps/org.scn.community.ui5.extensions",
 				min: false
 			},	
+			generic_aps_arrays: {
+				name: "generic_aps_arrays",
+				script: "org.scn.community.basics/aps/org.scn.community.ui5.extensions.arrays",
+				min: false
+			},	
 			chartjs: {
 				name: "chartjs",
 				script: "org.scn.community.databound/os/chartjs/Chart",

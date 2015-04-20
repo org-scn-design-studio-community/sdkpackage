@@ -117,6 +117,11 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 				script: "org.scn.community.basics/aps/org.scn.community.ui5.extensions",
 				min: false
 			},	
+			generic_aps_arrays: {
+				name: "generic_aps_arrays",
+				script: "org.scn.community.basics/aps/org.scn.community.ui5.extensions.arrays",
+				min: false
+			},	
 			chartjs: {
 				name: "chartjs",
 				script: "org.scn.community.databound/os/chartjs/Chart",
@@ -139,6 +144,19 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 			},
 	};
 	
+	org_scn_community_require.d3Modules = {
+			d3: {
+				name: "d3/d3",
+				script: "org.scn.community.basics/os/d3/d3",
+				min: true
+			},
+			d3plug_gantt: {
+				name: "d3/d3plug_gantt",
+				script: "org.scn.community.basics/os/d3-plug/gantt-chart-d3v2",
+				min: false
+			},
+	};
+	
 	org_scn_community_require.knownComponents = org_scn_community_require.knownComponents || {};
 	org_scn_community_require.knownComponents.basics = org_scn_community_require.knownComponents.basics || {};
 	org_scn_community_require.knownComponents.databound = org_scn_community_require.knownComponents.databound || {};
@@ -146,7 +164,7 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 	
 	org_scn_community_require.collectRequire = function (arrayOfRequires) {
 		
-		org_scn_community_require.loadMinWHerePossible = true;
+		org_scn_community_require.loadMinWHerePossible = false;
 		
 		var retObject = {};
 		
@@ -160,7 +178,7 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 	    	
 	    	var requireDefinition = org_scn_community_require.knownModules[requireKey];
 	    	
-	    	if(!requireDefinition && requireKey.indexOf(".")) {
+	    	if(!requireDefinition && requireKey.indexOf(".") > -1) {
 	    		var packageName = requireKey.substring(0, requireKey.indexOf("."));
 	    		var componentName = requireKey.substring(requireKey.indexOf(".")+1);
 	    		
@@ -169,6 +187,15 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 	    		requireKey = requireKey.toLowerCase();
 	    	}
 	    	
+	    	if(!requireDefinition && requireKey.indexOf("/") > -1) {
+	    		var packageName = requireKey.substring(0, requireKey.indexOf("/"));
+	    		var moduleName = requireKey.substring(requireKey.indexOf("/")+1);
+	    		
+	    		requireDefinition = org_scn_community_require[packageName + "Modules"][moduleName];
+	    		requireKey = requireKey.replace(".", "");
+	    		requireKey = requireKey.toLowerCase();
+	    	}
+
 	    	var minSuffix = "";
 	    	if(org_scn_community_require.loadMinWHerePossible) {
 	    		minSuffix = (requireDefinition.min?"-min":"");	

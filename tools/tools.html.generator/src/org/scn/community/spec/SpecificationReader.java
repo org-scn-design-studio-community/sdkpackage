@@ -60,7 +60,7 @@ public class SpecificationReader {
 		} catch (JSONException e) {
 			throw new RuntimeException(e);
 		}
-		pathToGenSpecCopy = pathToGenSpec.replace("component.json", "about.json");
+		pathToGenSpecCopy = pathToGenSpecCopy.replace("component.json", "about.json");
 		spec = Helpers.file2String(pathToGenSpecCopy);
 		try {
 			jsonAbout = new JSONObject(spec);
@@ -339,7 +339,7 @@ public class SpecificationReader {
 				content = content.replace("%FULL_ABOUT_SPEC_DEFINITION%", jsonAbout.toString(2) + ";");
 
 				content = content.replace("%FULL_SPEC_DEFINITION_JSON%", jsonSpecification.toString(2));
-				content = content.replace("%FULL_COMP_SPEC_DEFINITION_JSON%", jsonAbout.toString(2));
+				// content = content.replace("%FULL_COMP_SPEC_DEFINITION_JSON%", jsonAbout.toString(2));
 				content = content.replace("%FULL_ABOUT_SPEC_DEFINITION_JSON%", jsonAbout.toString(2));
 			} catch (JSONException e) {
 				throw new RuntimeException(e);
