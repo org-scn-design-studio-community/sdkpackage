@@ -263,7 +263,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 		enableZoom : {
 			value : false,
 			opts : {
-				desc : "Enable Zooming",
+				desc : "Enable Zooming & Panning",
 				cat : "Cosmetics",
 				apsControl : "checkbox"	
 			}
@@ -524,8 +524,10 @@ function org_scn_community_databound_BaseViz(d3, options){
 		// TODO
 		//d3.event.stopPropagation();
 	}
-	// Semantic Zooming
+	// Semantic Zooming - Not using.
 	this.semanticZoomed = function(){
+		// For Joao: http://scn.sap.com/community/businessobjects-design-studio/blog/2015/03/20/sap-design-studio-sdk--choropleth-maps-refined-part-3#comment-582607
+		if(!that.enableZoom()) return;
 		that.moved = true;
 		//alert("X\n" + that.zoomXScale.domain() + "\n" + that.zoomXScale.range() + "\n\nY:\n" + that.zoomYScale.domain() + "\n" + that.zoomYScale.range());
 		that.zoomScale = d3.event.scale;
@@ -545,8 +547,9 @@ function org_scn_community_databound_BaseViz(d3, options){
 		});
 		*/
 	}
-	// Geometric Zooming - Not using.
+	// Geometric Zooming - Are using.
 	this.zoomed = function(d){
+		if(!that.enableZoom()) return;
 		//d3.select(this).selectAll(".hexagon").style("stroke-width", .25 / d3.event.scale);
 		/*function(d){
 				var sw = d3.select(this).style("stroke-width");
@@ -621,6 +624,7 @@ function org_scn_community_databound_BaseViz(d3, options){
 			this.zoom = d3.behavior.zoom()
 				.scaleExtent([this.minZoom(),this.maxZoom()])
 				.on("zoom",this.zoomed);
+			// TODO: Finish or remove.
 			this.semanticZoom = d3.behavior.zoom()
 				.scaleExtent([this.minZoom(),this.maxZoom()])
 				.x(this.zoomXScale)
