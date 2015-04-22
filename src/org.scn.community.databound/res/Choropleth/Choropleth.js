@@ -722,6 +722,8 @@
 			 */
 			var parentSemanticZoomed = this.semanticZoomed;
 			this.semanticZoomed = function(){
+				// For Joao: http://scn.sap.com/community/businessobjects-design-studio/blog/2015/03/20/sap-design-studio-sdk--choropleth-maps-refined-part-3#comment-582607
+				if(!that.enableZoom()) return;
 				// Hide tooltips because it's distracting.
 				tip.hide();
 				// Flag component as having moved so we can cancel any onclick listeners
