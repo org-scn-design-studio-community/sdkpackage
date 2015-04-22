@@ -4,6 +4,7 @@
 org_scn_community_component_Core = function (owner, componentData){
 	var spec = componentData.spec;
 	var specAbout = componentData.specAbout;
+	var specComp = componentData.specComp;
 	
 	var that = owner;
 	that.componentInfo = {
@@ -34,8 +35,9 @@ org_scn_community_component_Core = function (owner, componentData){
 	/*
 	 * Create the aforementioned getter/setter and attach to 'this'.
 	 */
+	if(specComp.handlerType == "div") {
 	for(var property in that.props){
-		this[property] = function(property){
+		that[property] = function(property){
 			return function(value){
 				if(value===undefined){
 					return that.props[property].value;
@@ -43,19 +45,44 @@ org_scn_community_component_Core = function (owner, componentData){
 					that.props[property].value = value;
 					that.props[property].changed = true;
 					if(that.props[property].onChange) {
-						if(typeof(this[that.props[property].onChange]) === 'function') {
-							this[that.props[property].onChange].call(this,that.props[property].value);
+						if(typeof(that[that.props[property].onChange]) === 'function') {
+							that[that.props[property].onChange].call(that,that.props[property].value);
 						}
 					}
-					return this;
+					return that;
 				}
 			};
 		}(property);
 	}
+	}
+	for(var property in that.props){
+		that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
+			// a setter
+			return function (value) {
+				that.props[property].value = value;
+				that.props[property].changed = true;
+				if(that.props[property].onChange) {
+					if(typeof(that[that.props[property].onChange]) === 'function') {
+						that[that.props[property].onChange].call(that,that.props[property].value);
+					}
+				}
+				return that;
+			};
+		}(property);
+	}
+	for(var property in that.props){
+		that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
+			// a setter
+			return function () {
+				return that.props[property].value;
+			};
+		}(property);
+	}
+
 	that.callOnSet = function(property,value){
 		if(that.props[property] && that.props[property].onSet){
-			if(typeof(this[that.props[property].onSet]) === 'function') {
-				this[that.props[property].onSet].call(this,that.props[property].value);
+			if(typeof(that[that.props[property].onSet]) === 'function') {
+				that[that.props[property].onSet].call(that,that.props[property].value);
 			}
 		}else{
 			return "ERROR";

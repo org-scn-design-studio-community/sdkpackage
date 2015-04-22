@@ -27,7 +27,8 @@ ActivityViewer = function () {
 		{"startDate":new Date("Sun Dec 09 03:00:03 EST 2012"),"endDate":new Date("Sun Dec 09 03:09:51 EST 2012"),"taskName":"D Job","status":"SUCCEEDED"},
 		{"startDate":new Date("Sun Dec 09 01:21:00 EST 2012"),"endDate":new Date("Sun Dec 09 02:51:42 EST 2012"),"taskName":"P Job","status":"SUCCEEDED"},
 		{"startDate":new Date("Sun Dec 09 01:08:42 EST 2012"),"endDate":new Date("Sun Dec 09 01:33:42 EST 2012"),"taskName":"N Job","status":"FAILED"},
-		{"startDate":new Date("Sat Dec 08 23:12:24 EST 2012"),"endDate":new Date("Sun Dec 9 12:26:13 EST 2012"),"taskName":"A Job","status":"SUCCEEDED"},{"startDate":new Date("Sun Dec 09 00:27:15 EST 2012"),"endDate":new Date("Sun Dec 09 00:54:56 EST 2012"),"taskName":"T Job","status":"SUCCEEDED"},
+		{"startDate":new Date("Sat Dec 08 23:12:24 EST 2012"),"endDate":new Date("Sun Dec 9 12:26:13 EST 2012"),"taskName":"A Job","status":"SUCCEEDED"},
+		{"startDate":new Date("Sun Dec 09 00:27:15 EST 2012"),"endDate":new Date("Sun Dec 09 00:54:56 EST 2012"),"taskName":"T Job","status":"SUCCEEDED"},
 		{"startDate":new Date("Sun Dec 09 00:29:48 EST 2012"),"endDate":new Date("Sun Dec 09 00:44:50 EST 2012"),"taskName":"D Job","status":"SUCCEEDED"},
 		{"startDate":new Date("Sun Dec 09 07:39:21 EST 2012"),"endDate":new Date("Sun Dec 09 07:43:22 EST 2012"),"taskName":"P Job","status":"RUNNING"},
 		{"startDate":new Date("Sun Dec 09 07:00:06 EST 2012"),"endDate":new Date("Sun Dec 09 07:05:07 EST 2012"),"taskName":"D Job","status":"RUNNING"},
@@ -58,18 +59,7 @@ ActivityViewer = function () {
 		};
 		
 		that.taskNames = [ "D Job", "P Job", "A Job", "N Job", "T Job" ];    // this array determines the order of the tasks
-		that.taskNames.splice(2,0, "T Job");
-		/*tasks.sort(function(a, b) {
-		    return a.endDate - b.endDate;
-		});*/                                               // is done by gantt chart.
-		// var maxDate = tasks[tasks.length - 1].endDate;   // never used
-		/*tasks.sort(function(a, b) {                       // is done by gantt chart.
-		    return a.startDate - b.startDate;
-		});*/
-		//var minDate = tasks[0].startDate;                 // never used
-		
-		that.timeFormat = "%b %d %H:%M";                         // Label format at the x-axis
-
+		that.timeFormat = "%d.%m.%y";                         // Label format at the x-axis
 	};
 
 	this.afterUpdate = function() {
@@ -79,28 +69,41 @@ ActivityViewer = function () {
 		var margin = {
 		     top : 20,
 		     right : 40,
-		     bottom : 20,
-		     left : 160
+		     bottom : 40,
+		     left : 120
 		};
 		
 		if(!that._gantt) {
-			that._gantt = d3plug.gantt(owner, margin);
+			org_scn_community_basics.determineOwnSize(that);
+			
+			that._gantt = d3plug.gantt(that._containerWidth, that._containerHeight, margin);
 		}
 
+		this.readRealData();
+		
 		that._gantt.taskTypes(that.taskNames);
 		that._gantt.taskStatus(that.taskStatus);
 		that._gantt.tickFormat(that.timeFormat);
 		
-		
-		that._gantt.width(owner.outerWidth(true)-margin.left-margin.right);
-		that._gantt.height(owner.outerHeight(true)-margin.top-margin.bottom);
 		that._gantt.margin(margin);
 		
 		if(!that._drawn) {
 			var innerId = that.oControlProperties.id;
 			that._gantt.draw(innerId, that.tasks);
-			
-			org_scn_community_basics.resizeContentAbsoluteLayout (that, that._gantt);
+
+			var callback = function(width, height) {
+				if(width > 0){
+					that._gantt.width(width-margin.left-margin.right-5);
+				}
+					
+				if(height > 0) {
+					that._gantt.height(height-margin.top-margin.bottom-5);
+				}
+
+				that._gantt.redraw(that.tasks);
+			}
+
+			org_scn_community_basics.resizeContentAbsoluteLayout (that, that._gantt, callback);
 			that._drawn = true;
 		} else {
 			that._gantt.redraw(that.tasks);
@@ -109,6 +112,73 @@ ActivityViewer = function () {
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	};
 	
+	this.readRealData = function() {
+		var activities = that.getActivities();
+		var categories = that.getCategories();
+		var states = that.getStates();
+
+		activities = JSON.parse(activities);
+		categories = JSON.parse(categories);
+		states = JSON.parse(states);
+		
+		if(activities.length == 0 || categories.length == 0 || states.length == 0) {
+			return;
+		}
+		
+		that.taskNames = [];
+		that.hashCategories = {};
+		for (var catI in categories) {
+			var cat = categories[catI];
+			
+			that.hashCategories[cat.key] = cat;
+			if(cat.visible != false) {
+				that.taskNames.push(cat.text);
+			}
+		}
+
+		that.taskStatus = {};
+		for (var staI in states) {
+			var sta = states[staI];
+
+			that.taskStatus[sta.key] = sta.style;
+		}
+		
+		that.tasks = [];
+		for (var actI in activities) {
+			var act = activities[actI];
+
+			if(that.hashCategories[act.category] == undefined) {
+				that.hashCategories[act.category] = {
+					key: act.category,
+					text: "Unknown" + act.category
+				};
+				that.taskNames.push(that.hashCategories[act.category].text);
+			}
+			
+			if(that.hashCategories[act.category].visible != false) {
+				var actO = {};
+				actO.taskName = that.hashCategories[act.category].text;
+				actO.taskDesc = act.text;
+				actO.startDate = that.makeDate(act.startDate);
+				actO.endDate = that.makeDate(act.endDate);
+				
+				if(that.taskStatus[act.state] == undefined) {
+					that.taskStatus[act.state] = act.state;
+				}
+				
+				actO.status = act.state;
+
+				that.tasks.push(actO);
+			}
+		}
+	};
+
+	this.makeDate = function (inputDate) {
+		var date = org_scn_community_basics.getDateValue (inputDate);
+		return date;
+	};
+	
+
 	/* COMPONENT SPECIFIC CODE - START METHODS*/
 
 	/* COMPONENT SPECIFIC CODE - END METHODS*/

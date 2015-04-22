@@ -44,7 +44,7 @@ sap.suite.ui.commons.DateRangeSlider.extend("org.scn.community.basics.DateRangeS
 				return;
 			}
 			
-			var startDate = that.getValue();
+			var startDate = that.getValue(); // 20120406
 			var endDate =  that.getValue2();
 			
 			startDate = "" + startDate.format(dateFormat.masks.technical);

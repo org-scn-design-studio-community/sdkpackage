@@ -123,6 +123,7 @@
             "type": "String"
           },
           "selected": {
+            "apsControl": "checkbox",
             "desc": "Selection state of the item",
             "type": "boolean,optional"
           },
@@ -138,6 +139,7 @@
           "type": "String"
         },
         "selected": {
+          "apsControl": "checkbox",
           "desc": "Selection state of the button",
           "type": "boolean,optional"
         },
@@ -185,6 +187,7 @@
           "type": "String"
         },
         "selected": {
+          "apsControl": "checkbox",
           "desc": "Selection state of the button",
           "type": "boolean,optional"
         },
@@ -257,6 +260,21 @@
     "content": "This component is a visualization component.  This means that you have control over cosmetic properties such as Legend, Margins, Plot positioning, zooming, among others.",
     "title": "Visualization"
   }]
+};
+
+	org_scn_community_require.knownComponents.prototypes.ApsTester.specComp = 
+{
+  "databound": true,
+  "extension": "Component",
+  "group": "ScnCommunityPrototypes",
+  "handlerType": "div",
+  "height": "200",
+  "id": "ApsTester",
+  "package": "prototypes",
+  "require": [],
+  "title": "Aps Tester",
+  "tooltip": "Application Property Sheet Tester",
+  "width": "200"
 };
 
 })();// End of closure

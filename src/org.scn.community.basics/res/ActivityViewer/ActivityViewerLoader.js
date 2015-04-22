@@ -37,6 +37,7 @@
 		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.d3Modules.d3.name,
 		org_scn_community_require.d3Modules.d3plug_gantt.name,
+		org_scn_community_require.knownModules.dateformatter.name,
 		
      ]);
 

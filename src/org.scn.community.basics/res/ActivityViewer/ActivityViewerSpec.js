@@ -20,44 +20,112 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.ActivityViewer.spec = 
-{"activities": {
-  "opts": {
-    "apsControl": "array",
-    "arrayDefinition": {"activity": {
-      "category": {
-        "desc": "Given category for the activity",
-        "type": "String"
-      },
-      "endDate": {
-        "desc": "End Date",
-        "type": "String"
-      },
-      "key": {
-        "desc": "Unique key of this activity",
-        "type": "String"
-      },
-      "sequence": "key,text,category,startDate,endDate",
-      "startDate": {
-        "desc": "Start Date",
-        "type": "String"
-      },
-      "text": {
-        "desc": "Text for the activity",
-        "type": "String"
-      },
-      "type": "Array"
-    }},
-    "arrayMode": "OneLevelArray",
-    "cat": "Content-Activities",
-    "desc": "Activities",
-    "tooltip": "List of Activities",
-    "ztlFunction": "",
-    "ztlType": "SingleArray"
+{
+  "activities": {
+    "opts": {
+      "apsControl": "array",
+      "arrayDefinition": {"activity": {
+        "category": {
+          "desc": "Assigned Category Key",
+          "type": "String"
+        },
+        "endDate": {
+          "desc": "End Date YYYYMMDD",
+          "type": "String"
+        },
+        "key": {
+          "desc": "Unique Activity Key",
+          "type": "String"
+        },
+        "sequence": "key,text,category,state,startDate,endDate",
+        "startDate": {
+          "desc": "Start Date YYYYMMDD",
+          "type": "String"
+        },
+        "state": {
+          "desc": "Assigned State Key",
+          "type": "String"
+        },
+        "text": {
+          "desc": "Activity Description",
+          "type": "String"
+        },
+        "type": "Array"
+      }},
+      "arrayMode": "OneLevelArray",
+      "cat": "Content-Activities",
+      "desc": "Activities",
+      "tooltip": "List of Activities",
+      "ztlFunction": "",
+      "ztlType": "SingleArray"
+    },
+    "type": "String",
+    "value": "[]",
+    "visible": true
   },
-  "type": "String",
-  "value": "[]",
-  "visible": true
-}};
+  "categories": {
+    "opts": {
+      "apsControl": "array",
+      "arrayDefinition": {"category": {
+        "key": {
+          "apsControl": "text",
+          "desc": "Unique Category Key",
+          "type": "String"
+        },
+        "sequence": "key,text,visible",
+        "text": {
+          "apsControl": "text",
+          "desc": "Category Description",
+          "type": "String"
+        },
+        "type": "Array",
+        "visible": {
+          "apsControl": "checkbox",
+          "desc": "Visibility",
+          "type": "boolean",
+          "value": true
+        }
+      }},
+      "arrayMode": "OneLevelArray",
+      "cat": "Content-Categories",
+      "desc": "Categories",
+      "tooltip": "List of Categories",
+      "ztlFunction": "",
+      "ztlType": "SingleArray"
+    },
+    "type": "String",
+    "value": "[]",
+    "visible": true
+  },
+  "states": {
+    "opts": {
+      "apsControl": "array",
+      "arrayDefinition": {"state": {
+        "key": {
+          "apsControl": "text",
+          "desc": "Unique State Key",
+          "type": "String"
+        },
+        "sequence": "key,style",
+        "style": {
+          "apsControl": "text",
+          "desc": "State CSS Style",
+          "type": "String"
+        },
+        "type": "Array"
+      }},
+      "arrayMode": "OneLevelArray",
+      "cat": "Content-States",
+      "desc": "States",
+      "tooltip": "List of States",
+      "ztlFunction": "",
+      "ztlType": "SingleArray"
+    },
+    "type": "String",
+    "value": "[]",
+    "visible": true
+  }
+};
 
 	org_scn_community_require.knownComponents.basics.ActivityViewer.specAbout = 
 {
@@ -74,6 +142,34 @@
       "title": "Visualization"
     }
   ]
+};
+
+	org_scn_community_require.knownComponents.basics.ActivityViewer.specComp = 
+{
+  "databound": false,
+  "extension": "Component",
+  "group": "ScnCommunityBasics",
+  "handlerType": "div",
+  "height": "200",
+  "id": "ActivityViewer",
+  "package": "basics",
+  "require": [
+    {
+      "id": "d3",
+      "space": "d3"
+    },
+    {
+      "id": "d3plug_gantt",
+      "space": "d3"
+    },
+    {
+      "id": "dateformatter",
+      "space": "known"
+    }
+  ],
+  "title": "Activity Viewer (Prototype)",
+  "tooltip": "Viewer for Custom Activities",
+  "width": "200"
 };
 
 })();// End of closure

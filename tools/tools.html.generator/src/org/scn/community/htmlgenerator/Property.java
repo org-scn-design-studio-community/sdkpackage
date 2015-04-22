@@ -193,6 +193,10 @@ public class Property {
 	public ArrayList<Value> getValues() {
 		return this.values;
 	}
+	
+	public String getDefaultValue() {
+		return this.defaultValue;
+	}
 
 	public ParamFullSpec getExtendedFullSpec() {
 		return this.extendedFullSpec;

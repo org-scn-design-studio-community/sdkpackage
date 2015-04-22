@@ -142,6 +142,11 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 				script: "org.scn.community.basics/os/jquery/numberformatter",
 				min: true
 			},
+			dateformatter: {
+				name: "dateformatter",
+				script: "org.scn.community.basics/os/date/DateFormat",
+				min: false
+			},
 	};
 	
 	org_scn_community_require.d3Modules = {

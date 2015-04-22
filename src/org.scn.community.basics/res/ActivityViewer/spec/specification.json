@@ -11,26 +11,30 @@
          "arrayDefinition":{
             "activity":{
                "type":"Array",
-               "sequence":"key,text,category,startDate,endDate",
+               "sequence":"key,text,category,state,startDate,endDate",
                
                "key":{
-                  "desc":"Unique key of this activity",
+                  "desc":"Unique Activity Key",
                   "type":"String"
                },
                "text":{
-                  "desc":"Text for the activity",
+                  "desc":"Activity Description",
                   "type":"String"
                },
                "category":{
-                  "desc":"Given category for the activity",
+                  "desc":"Assigned Category Key",
                   "type":"String"
                },
+               "state":{
+                   "desc":"Assigned State Key",
+                   "type":"String"
+               },
                "startDate":{
-                  "desc":"Start Date",
+                  "desc":"Start Date YYYYMMDD",
                   "type":"String"
                },
                "endDate":{
-                   "desc":"End Date",
+                   "desc":"End Date YYYYMMDD",
                    "type":"String"
                 }
             }
@@ -39,6 +43,82 @@
          "desc":"Activities",
          "cat":"Content-Activities",
          "tooltip":"List of Activities",
+         
+         "apsControl":"array",
+         "arrayMode":"OneLevelArray"
+      }
+   },
+   "categories":{
+      "type":"String",
+      "value":"[]",
+      "visible":true,
+      
+      "opts":{
+         "ztlType":"SingleArray",
+         "ztlFunction":"",
+         
+         "arrayDefinition":{
+            "category":{
+               "type":"Array",
+               "sequence":"key,text,visible",
+               
+               "key":{
+                  "desc":"Unique Category Key",
+                  "type":"String",
+                  "apsControl" : "text"
+               },
+               "text":{
+                  "desc":"Category Description",
+                  "type":"String",
+                  "apsControl" : "text"
+               },
+               "visible":{
+                   "desc":"Visibility",
+                   "type":"boolean",
+                   "value": true,
+                   "apsControl" : "checkbox"
+                },
+            }
+         },
+         
+         "desc":"Categories",
+         "cat":"Content-Categories",
+         "tooltip":"List of Categories",
+         
+         "apsControl":"array",
+         "arrayMode":"OneLevelArray"
+      }
+   },
+   "states":{
+      "type":"String",
+      "value":"[]",
+      "visible":true,
+      
+      "opts":{
+         "ztlType":"SingleArray",
+         "ztlFunction":"",
+         
+         "arrayDefinition":{
+            "state":{
+               "type":"Array",
+               "sequence":"key,style",
+               
+               "key":{
+                  "desc":"Unique State Key",
+                  "type":"String",
+                  "apsControl" : "text"
+               },
+               "style":{
+                  "desc":"State CSS Style",
+                  "type":"String",
+                  "apsControl" : "text"
+               },
+            }
+         },
+         
+         "desc":"States",
+         "cat":"Content-States",
+         "tooltip":"List of States",
          
          "apsControl":"array",
          "arrayMode":"OneLevelArray"

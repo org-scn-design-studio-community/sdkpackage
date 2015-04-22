@@ -25,4 +25,7 @@
 	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.specAbout = 
 %FULL_ABOUT_SPEC_DEFINITION%
 
+	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.specComp = 
+%FULL_COMP_SPEC_DEFINITION%
+
 })();// End of closure

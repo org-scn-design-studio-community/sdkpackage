@@ -141,23 +141,24 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
  */
 class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.Component {
 
-	/** Adds a root element containing key [String], text [String], category [String], startDate [String], endDate [String].
+	/** Adds a root element containing key [String], text [String], category [String], state [String], startDate [String], endDate [String].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	ACTIVITYVIEWER.addActivity(key [String], text [String], category [String], startDate [String], endDate [String]);<br>
-	ACTIVITYVIEWER.addActivity(key [String], text [String], category [String], startDate [String], endDate [String]);<br>
+	ACTIVITYVIEWER.addActivity(key [String], text [String], category [String], state [String], startDate [String], endDate [String]);<br>
+	ACTIVITYVIEWER.addActivity(key [String], text [String], category [String], state [String], startDate [String], endDate [String]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void addActivity (
-			/**Unique key of this activity*/String key, 
-			/**Text for the activity*/String text, 
-			/**Given category for the activity*/String category, 
-			/**Start Date*/String startDate, 
-			/**End Date*/String endDate
+			/**Unique Activity Key*/String key, 
+			/**Activity Description*/String text, 
+			/**Assigned Category Key*/String category, 
+			/**Assigned State Key*/String state, 
+			/**Start Date YYYYMMDD*/String startDate, 
+			/**End Date YYYYMMDD*/String endDate
 			) {*		
 		
 		
@@ -166,6 +167,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 			key:key, 
 			text:text, 
 			category:category, 
+			state:state, 
 			startDate:startDate, 
 			endDate:endDate
 			};
@@ -227,6 +229,172 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		}
 
 		this.activities = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], text [String], visible [boolean].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	ACTIVITYVIEWER.addCategory(key [String], text [String], visible [boolean]);<br>
+	ACTIVITYVIEWER.addCategory(key [String], text [String], visible [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addCategory (
+			/**Unique Category Key*/String key, 
+			/**Category Description*/String text, 
+			/**Visibility*/boolean visible
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible
+			};
+	
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			this.categories = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.categories);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.categories = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	ACTIVITYVIEWER.removeCategory(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeCategory (
+			String key
+			) {*		
+		
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			this.categories = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.categories);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.categories = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], style [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	ACTIVITYVIEWER.addState(key [String], style [String]);<br>
+	ACTIVITYVIEWER.addState(key [String], style [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addState (
+			/**Unique State Key*/String key, 
+			/**State CSS Style*/String style
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			style:style
+			};
+	
+		if (this.states === undefined || this.states === "" || this.states === "<delete>"){
+			this.states = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.states);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.states = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	ACTIVITYVIEWER.removeState(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeState (
+			String key
+			) {*		
+		
+		if (this.states === undefined || this.states === "" || this.states === "<delete>"){
+			this.states = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.states);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.states = JSON.stringify(elementsJson);
 	*}
 
 

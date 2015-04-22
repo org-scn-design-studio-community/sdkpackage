@@ -4,6 +4,8 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 	metadata : {                             
         properties : {
         	"mode": {type: "string"}, // StringArray | OneLevelArray | TwoLevelArray
+        	"desc": {type: "string"},
+        	"tooltip": {type: "string"}
         },
 	    events : {
 	    	valueChange : {}
@@ -240,20 +242,33 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 			
 			var itemValue = new sap.ui.commons.TextView({text : parameterObject.desc});
 			itemValue.addStyleClass("org-scn-ApsLabelArray");
+			itemDetailLayout.addContent(itemValue);
 			
-			var txtItemValue = new sap.ui.commons.TextField({value : this._currentItemConfig[parameterName], width: "300px"});
+			var txtItemValue = undefined;
+			if(parameterObject.apsControl == "checkbox") {
+				txtItemValue = new sap.ui.commons.CheckBox ({value : this._currentItemConfig[parameterName], width: "300px"});
+				
+				txtItemValue.attachChange(
+					function(oControlEvent){
+						var value = oControlEvent.getParameter("checked");
+						var key = oControlEvent.getSource()._key;
+
+						that._currentItemConfig[key] = value;		
+				}, that);
+			} else {
+				txtItemValue = new sap.ui.commons.TextField({value : this._currentItemConfig[parameterName], width: "300px"});
+				
+				txtItemValue.attachChange(
+					function(oControlEvent){
+						var value = oControlEvent.getParameter("newValue");
+						var key = oControlEvent.getSource()._key;
+
+						that._currentItemConfig[key] = value;		
+				}, that);
+			}
 			txtItemValue.addStyleClass("org-scn-ApsInputArray");
 			txtItemValue._key = parameterName;
 			
-			txtItemValue.attachChange(
-				function(oControlEvent){
-					var value = oControlEvent.getParameter("newValue");
-					var key = oControlEvent.getSource()._key;
-
-					that._currentItemConfig[key] = value;		
-			}, that);
-			
-			itemDetailLayout.addContent(itemValue);
 			itemDetailLayout.addContent(txtItemValue);
 			
 		}
@@ -493,7 +508,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		this._selectedItemKey = "";
 		this._currentItemConfig = {};
 
-		this._label = new sap.ui.commons.Label({text: " List of Parameters (Name / Value)"});
+		this._label = new sap.ui.commons.Label({text: that.getDesc()});
 		this._label.addStyleClass("org-scn-ApsLabel");
 		this.addContent(this._label);
 		

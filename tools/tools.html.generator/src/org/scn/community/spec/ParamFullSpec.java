@@ -53,6 +53,10 @@ public class ParamFullSpec {
 		else
 			return this.getPropertyValue("desc");
 	}
+	
+	public String getValue() {
+		return this.getPropertyValue("value");
+	}
 
 	public void addParameter(ParamFullSpec parameter) {
 		parameters.add(parameter);
@@ -382,6 +386,15 @@ public class ParamFullSpec {
 	}
 	public ArrayList<ParamFullSpec> getParameters() {
 		return this.parameters;
+	}
+
+	public String getValueXml() {
+		String template = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_default.template");
+		
+		template = template.replace("%PROPERTY_NAME%", this.getName());
+		template = template.replace("%PROPERTY_DEFAULT_VALUE%", this.getValue());
+		
+		return template;
 	}
 
 }

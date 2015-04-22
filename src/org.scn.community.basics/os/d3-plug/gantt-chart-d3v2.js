@@ -8,7 +8,7 @@ var d3plug = d3plug || {};
 
 (function() {
 
-    d3plug.gantt = function(owner, margin) {
+    d3plug.gantt = function(oWidth, oHeight, margin) {
         var gantt = this;
 
         var FIT_TIME_DOMAIN_MODE = "fit";
@@ -19,8 +19,8 @@ var d3plug = d3plug || {};
         var timeDomainMode = FIT_TIME_DOMAIN_MODE; // fixed or fit
         var taskTypes = [];
         var taskStatus = [];
-        var height = owner.outerWidth(true) - margin.top - margin.bottom - 5;
-        var width = owner.outerHeight(true) - margin.right - margin.left - 5;
+        var height = oHeight - margin.top - margin.bottom - 5;
+        var width = oWidth - margin.right - margin.left - 5;
 
         var tickFormat = "%H:%M";
 
@@ -78,17 +78,10 @@ var d3plug = d3plug || {};
 
             var parent = d3.select("#" + parentId);
 
-            var svg = parent.append("svg")
-                .attr("class", "chart")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom);
-            
+            var svg = parent.append("svg");
 			var main = svg.append("g");
 			
-			main.attr("class", "gantt-chart")
-                .attr("width", width)
-                .attr("height", height)
-                .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+			this.adjustContent(svg, main);
 
             var select = main.selectAll(".chart")
                 .data(tasks, keyFunction).enter();
@@ -103,40 +96,71 @@ var d3plug = d3plug || {};
                     }
                     return taskStatus[d.status];
                 })
-                .attr("y", 0);
-            rect.attr("transform", rectTransform)
+                .attr("y", 0)
+
+           rect.attr("transform", rectTransform)
                 .attr("height", function(d) {
                     return y.rangeBand();
                 })
                 .attr("width", function(d) {
                     return (x(d.endDate) - x(d.startDate));
-                });
+                })
+                .append("svg:title")
+            		.text(function(d, i) { 
+            			return d.taskDesc + " [ " + d.endDate + " - " + d.startDate + " ]"
+            		});  // Shows tool tip
+                
 
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate("+ margin.left +", " + (height + margin.top - margin.bottom) + ")")
-                .transition()
-                .call(xAxis);
+            var xa = svg.append("g");
+            var ya = svg.append("g");
 
-            svg.append("g")
-            	.attr("class", "y axis")
-            	.attr("transform", "translate("+ margin.left +", " + margin.top + ")")
-            	.transition()
-            	.call(yAxis);
+            this.adjustAxes(xa, ya);
 
             return gantt;
 
         };
+
+		this.adjustContent = function (svg, main) {
+		    svg.attr("class", "chart")
+            	.attr("width", width + margin.left + margin.right)
+            	.attr("height", height + margin.top + margin.bottom);
+			
+		    main.attr("class", "gantt-chart")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+		};
+		this.adjustAxes = function (xa, ya) {
+			xa.attr("class", "x axis")
+	            .attr("transform", "translate("+ margin.left +", " + (height + margin.top - margin.bottom - 20) + ")")
+	            .transition()
+	            .call(xAxis)
+		        .selectAll("text")  
+		            .style("text-anchor", "end")
+		            .attr("dx", "-.8em")
+		            .attr("dy", ".15em")
+		            .attr("transform", function(d) {
+		                return "rotate(-65)" 
+		              });
+	        	// http://www.d3noob.org/2013/01/how-to-rotate-text-labels-for-x-axis-of.html
+          	ya.attr("class", "y axis")
+            	.attr("transform", "translate("+ margin.left +", " + margin.top + ")")
+            	.transition()
+            	.call(yAxis);
+		};
 
         this.redraw = function(tasks) {
 
             this.initTimeDomain(tasks);
             this.initAxis();
 
-            var svg = d3.select("#" + this._parentId);
-
-            var ganttChartGroup = svg.select(".gantt-chart");
-            var rect = ganttChartGroup.selectAll("rect").data(tasks, keyFunction);
+            var parent = d3.select("#" + this._parentId);
+            var svg = parent.select(".chart");
+			var main = svg.select(".gantt-chart");
+			
+			this.adjustContent(svg, main);
+                
+            var rect = main.selectAll("rect").data(tasks, keyFunction);
 
             rect.enter()
                 .insert("rect", ":first-child")
@@ -148,15 +172,19 @@ var d3plug = d3plug || {};
                     }
                     return taskStatus[d.status];
                 })
+                .append("svg:title")
+                	.text(function(d, i) { 
+                		return d.taskDesc + " [ " + d.endDate + " - " + d.startDate + " ]"
+                	})  // Shows tool tip
                 .transition()
                 .attr("y", 0)
                 .attr("transform", rectTransform)
-                .attr("height", function(d) {
+            	.attr("height", function(d) {
                     return y.rangeBand();
                 })
                 .attr("width", function(d) {
                     return (x(d.endDate) - x(d.startDate));
-                });
+                })
 
             rect.transition()
                 .attr("transform", rectTransform)
@@ -165,12 +193,13 @@ var d3plug = d3plug || {};
                 })
                 .attr("width", function(d) {
                     return (x(d.endDate) - x(d.startDate));
-                });
-
+                })
             rect.exit().remove();
 
-            svg.select(".x").transition().call(xAxis);
-            svg.select(".y").transition().call(yAxis);
+            var xa = svg.select(".x");
+            var ya = svg.select(".y");
+            
+            this.adjustAxes(xa, ya);
 
             return gantt;
         };

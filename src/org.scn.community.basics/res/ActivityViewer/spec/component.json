@@ -17,6 +17,13 @@
 		{
 			"space" : "d3",
 			"id" : "d3plug_gantt",
-		}
+		},
+		{
+			"space" : "known",
+			"id" : "dateformatter",
+		},
 	],
+	
+	"width": "200",
+	"height": "200"
 }

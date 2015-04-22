@@ -138,6 +138,7 @@
       "opts":{
          "ztlType":"SingleArray",
          "ztlFunction":"",
+         
          "arrayDefinition":{
             "button":{
                "type":"Array",
@@ -156,10 +157,12 @@
                },
                "selected":{
                   "desc":"Selection state of the button",
-                  "type":"boolean,optional"
+                  "type":"boolean,optional",
+                  "apsControl":"checkbox"
                }
             }
          },
+         
          "desc":"Single Array",
          "cat":"Content-SingleArray",
          "tooltip":"Single Array with Key and Value",
@@ -174,6 +177,7 @@
       "opts":{
          "ztlType":"DoubleArray",
          "ztlFunction":"",
+         
          "arrayDefinition":{
             "button":{
                "type":"Array",
@@ -192,8 +196,10 @@
                },
                "selected":{
                   "desc":"Selection state of the button",
-                  "type":"boolean,optional"
+                  "type":"boolean,optional",
+                  "apsControl":"checkbox"
                },
+               
                "item":{
                   "type":"Array",
                   "sequence":"parentKey,key,text,image,selected",
@@ -216,11 +222,13 @@
                   },
                   "selected":{
                      "desc":"Selection state of the item",
-                     "type":"boolean,optional"
+                     "type":"boolean,optional",
+                     "apsControl":"checkbox"
                   }
                }
             }
          },
+         
          "desc":"Complex Array",
          "cat":"Content-TwoLevelArray",
          "tooltip":"Array with Key and Value and Second Level",

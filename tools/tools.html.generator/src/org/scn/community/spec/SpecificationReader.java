@@ -89,9 +89,20 @@ public class SpecificationReader {
 				
 				if(generatedZtlAndAps.getXml() != null && generatedZtlAndAps.getXml().length() > 0) {
 					XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");	
+					XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_TEMPLATE%", property.getExtendedFullSpec().getValueXml() + "\r\n%XML_DEAFULT_TEMPLATE%");
 				}
 			}
 		}
+		
+		Property widthProp = this.getProperty(this.compProperties, "width");
+		HashMap<String, String> widthProperties = widthProp.getExtendedFullSpec().getProperties();
+		String widthPropValue = this.getAdvancedProperty(widthProperties, "width");
+		XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_WIDTH%", widthPropValue);
+		
+		Property heightProp = this.getProperty(this.compProperties, "height");
+		HashMap<String, String> heightProperties = heightProp.getExtendedFullSpec().getProperties();
+		String heightPropValue = this.getAdvancedProperty(heightProperties, "height");
+		XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_HEIGHT%", heightPropValue);
 		
 		Property requrieSpec = this.getProperty(this.compProperties, "require");
 
@@ -335,11 +346,11 @@ public class SpecificationReader {
 			
 			try {
 				content = content.replace("%FULL_SPEC_DEFINITION%", jsonSpecification.toString(2) + ";");
-				// content = content.replace("%FULL_COMP_SPEC_DEFINITION%", jsonAbout.toString(2) + ";");
+				content = content.replace("%FULL_COMP_SPEC_DEFINITION%", jsonComponent.toString(2) + ";");
 				content = content.replace("%FULL_ABOUT_SPEC_DEFINITION%", jsonAbout.toString(2) + ";");
 
 				content = content.replace("%FULL_SPEC_DEFINITION_JSON%", jsonSpecification.toString(2));
-				// content = content.replace("%FULL_COMP_SPEC_DEFINITION_JSON%", jsonAbout.toString(2));
+				content = content.replace("%FULL_COMP_SPEC_DEFINITION_JSON%", jsonComponent.toString(2));
 				content = content.replace("%FULL_ABOUT_SPEC_DEFINITION_JSON%", jsonAbout.toString(2));
 			} catch (JSONException e) {
 				throw new RuntimeException(e);
