@@ -1,0 +1,12 @@
+{
+	"title": "Json Object",
+	"description": "A class for Json Object, small utilities in Json Format, like creation of JSON objects",
+	"icon": "JsonObject.png",
+	"topics": 
+	[
+		{
+			"title" : "Json object",
+			"content" : "Allows you to Create Json Objects by API and then setialize to String or simply return as Json Object and pass on other compatible API"
+		}
+	]
+}

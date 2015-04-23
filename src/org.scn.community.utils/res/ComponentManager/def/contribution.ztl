@@ -924,6 +924,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Flow Layouter component*/
 	org.scn.community.utils.FlowLayouter returnAsScnFlowLayouter (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Json Object component*/
+	org.scn.community.utils.JsonObject returnAsScnJsonObject (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Math Utility component*/
 	org.scn.community.utils.Math returnAsScnMath (Component inputComponent) {* return inputComponent; *}
 
@@ -953,6 +956,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Aps Tester UI5 component*/
 	org.scn.community.prototypes.ApsTesterUI5 returnAsScnApsTesterUI5 (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Json Object component*/
+	org.scn.community.utils.JsonObject returnAsScnJsonObject (Component inputComponent) {* return inputComponent; *}
 
 
 }

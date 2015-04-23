@@ -12,6 +12,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\ComponentManager\def\contribution.xml ^
 ..\res\CustomCssCollector\def\contribution.xml ^
 ..\res\FlowLayouter\def\contribution.xml ^
+..\res\JsonObject\def\contribution.xml ^
 ..\res\Math\def\contribution.xml ^
 ..\res\OpenUrlInplace\def\contribution.xml ^
 ..\res\OpenWindowPost\def\contribution.xml ^
@@ -34,6 +35,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\CustomCssCollector\def\contribution.ztl ^
 ..\res\Debugger\def\contribution.ztl ^
 ..\res\FlowLayouter\def\contribution.ztl ^
+..\res\JsonObject\def\contribution.ztl ^
 ..\res\Math\def\contribution.ztl ^
 ..\res\OpenUrlInplace\def\contribution.ztl ^
 ..\res\OpenWindowPost\def\contribution.ztl ^

@@ -1,0 +1,39 @@
+
+<component
+	id="JsonObject"
+	title="Json Object"
+	tooltip="Utility for work with Json Object"
+	icon="res/JsonObject/JsonObject.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	group="ScnCommunityUtils"
+	databound="false"
+>
+
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/JsonObject/JsonObjectLoader.js</jsInclude>
+	<cssInclude>res/JsonObject/JsonObject.css</cssInclude>
+	
+	<property
+		id="content"
+		type="String"
+		title="Properties"
+		group="Display"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		
+		<defaultValue property="content">{}</defaultValue>
+
+	</initialization>
+
+</component>

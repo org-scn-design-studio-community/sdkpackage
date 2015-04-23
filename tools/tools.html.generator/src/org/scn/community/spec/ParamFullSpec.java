@@ -143,7 +143,7 @@ public class ParamFullSpec {
 		}
 		
 		String arraySubType = "";
-		if(type.equals("DoubleArray") || type.equals("SingleArray")) {
+		if(type.equals("DoubleArray") || type.equals("SingleArray") || type.equals("JsonObject")) {
 			arraySubType = type;
 			type = "Array";
 		}

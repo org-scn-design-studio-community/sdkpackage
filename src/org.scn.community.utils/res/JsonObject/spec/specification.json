@@ -1,0 +1,35 @@
+{
+   "content":{
+      "type":"String",
+      "value":"{}",
+      "visible":true,
+      
+      "opts":{
+         "ztlType":"JsonObject",
+         "ztlFunction":"",
+         
+         "arrayDefinition":{
+            "property":{
+               "type":"Array",
+               "sequence":"key,value",
+               
+               "key":{
+                  "desc":"Unique Property Key",
+                  "type":"String"
+               },
+               "value":{
+                  "desc":"Property Value",
+                  "type":"String"
+               }
+            }
+         },
+         
+         "desc":"Properties",
+         "cat":"Content-properties",
+         "tooltip":"List of Properties",
+         
+         "apsControl":"array",
+         "arrayMode":"OneLevelArray"
+      }
+   }
+}

@@ -1,0 +1,66 @@
+	/** Adds a root element containing %ROOT_ALL_PROPERTIES%.
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	%COMPONENT_NAME%.add%ROOT_CONTENT_NAME%(%ROOT_ALL_PROPERTIES%);<br>
+	%COMPONENT_NAME%.add%ROOT_CONTENT_NAME%(%ROOT_ALL_PROPERTIES%);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void add%ROOT_CONTENT_NAME% (
+			%ROOT_PROPERTY_DEFINITION_FULL%
+			) {*		
+		
+		%ASSURE_OPTIONAL_ROOT_INITIALIZED%
+	
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			this.%PROPERTY_NAME% = "{}";
+		}
+		
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+		
+		var alreadyFound = false;
+		
+		if (elementsJson[key] == key) {
+			alreadyFound = true;
+		}
+
+		if(!alreadyFound) {
+			elementsJson[key] = value;
+		}
+	
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes an element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	%COMPONENT_NAME%.remove%ROOT_CONTENT_NAME%(%ROOT_PROPERTY_DEFINITION_KEY%);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void remove%ROOT_CONTENT_NAME% (
+			%ROOT_PROPERTY_DEFINITION_KEY%
+			) {*		
+		
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			this.%PROPERTY_NAME% = "{}";
+		}
+		
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+		
+		var alreadyFound = false;
+		for(var existingKey in elementsJson) {
+			if (existingKey == key) {
+				elementsJson.delete(existingKey);
+				break;
+			}
+		}
+
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}

@@ -1902,6 +1902,14 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
+	 * Gets Selection As JSON String
+	 */	
+	JSON getSelectionAsJSONObject() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
 	 * Selected Row Index (0 - based)
 	 */
 	int getSelectedRow() {*

@@ -1,0 +1,129 @@
+
+/**
+ * Generated ZTL Class for JsonObject
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.utils.JsonObject extends org.scn.community.shared.Component {
+
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	JSONOBJECT.addProperty(key [String], value [String]);<br>
+	JSONOBJECT.addProperty(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addProperty (
+			/**Unique Property Key*/String key, 
+			/**Property Value*/String value
+			) {*		
+		
+		
+	
+		if (this.content === undefined || this.content === "" || this.content === "<delete>"){
+			this.content = "{}";
+		}
+		
+		var elementsJson = JSON.parse(this.content);
+		
+		var alreadyFound = false;
+		
+		if (elementsJson[key] == key) {
+			alreadyFound = true;
+		}
+
+		if(!alreadyFound) {
+			elementsJson[key] = value;
+		}
+	
+		this.content = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes an element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	JSONOBJECT.removeProperty(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeProperty (
+			String key
+			) {*		
+		
+		if (this.content === undefined || this.content === "" || this.content === "<delete>"){
+			this.content = "{}";
+		}
+		
+		var elementsJson = JSON.parse(this.content);
+		
+		var alreadyFound = false;
+		for(var existingKey in elementsJson) {
+			if (existingKey == key) {
+				elementsJson.delete(existingKey);
+				break;
+			}
+		}
+
+		this.content = JSON.stringify(elementsJson);
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Returns as Json String (indented)
+	 */
+	String getAsJSON () {*
+		var jsonObject = JSON.parse(this.content);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Returns as Json String
+	 */
+	JSON getAsJSONObject () {*
+		return JSON.parse(this.content);
+	*}
+
+	/**
+	 * Returns casted to MultiDimFilter
+	 */
+	JSON getAsMultiDimFilter () {*
+		return JSON.parse(this.content);
+	*}
+	
+	/**
+	 * Returns casted to MultiDimFilterExt
+	 */
+	JSON getAsMultiDimFilterExt () {*
+		return JSON.parse(this.content);
+	*}
+	
+	/**
+	 * Creates from a string value in notation "{'key':'value', 'key2':'value2'}"
+	 */
+	void createFromValue (String jsonValue) {*
+		var js = JSON.parse(jsonValue);
+		this.content = JSON.stringify(js);
+	*}
+	
+	/**
+	 * Creates from different Json Object
+	 */
+	void createFromJSON (JSON json) {*
+		this.content = JSON.stringify(json);
+	*}
+	
+	/**
+	 * Clears the Json Object to empty object
+	 */
+	void clear () {*
+		this.content = "{}";
+	*}
+}

@@ -1,0 +1,50 @@
+	/**
+	 * Returns as Json String (indented)
+	 */
+	String getAsJSON () {*
+		var jsonObject = JSON.parse(this.content);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Returns as Json String
+	 */
+	JSON getAsJSONObject () {*
+		return JSON.parse(this.content);
+	*}
+
+	/**
+	 * Returns casted to MultiDimFilter
+	 */
+	JSON getAsMultiDimFilter () {*
+		return JSON.parse(this.content);
+	*}
+	
+	/**
+	 * Returns casted to MultiDimFilterExt
+	 */
+	JSON getAsMultiDimFilterExt () {*
+		return JSON.parse(this.content);
+	*}
+	
+	/**
+	 * Creates from a string value in notation "{'key':'value', 'key2':'value2'}"
+	 */
+	void createFromValue (String jsonValue) {*
+		var js = JSON.parse(jsonValue);
+		this.content = JSON.stringify(js);
+	*}
+	
+	/**
+	 * Creates from different Json Object
+	 */
+	void createFromJSON (JSON json) {*
+		this.content = JSON.stringify(json);
+	*}
+	
+	/**
+	 * Clears the Json Object to empty object
+	 */
+	void clear () {*
+		this.content = "{}";
+	*}

@@ -150,7 +150,7 @@
   "extension": "Component",
   "group": "ScnCommunityBasics",
   "handlerType": "div",
-  "height": "200",
+  "height": "400",
   "id": "ActivityViewer",
   "package": "basics",
   "require": [
@@ -169,7 +169,7 @@
   ],
   "title": "Activity Viewer (Prototype)",
   "tooltip": "Viewer for Custom Activities",
-  "width": "200"
+  "width": "600"
 };
 
 })();// End of closure
