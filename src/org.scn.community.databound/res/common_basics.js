@@ -33,21 +33,7 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 		}
 		
 		parent._oResize = function() {
-			var jqThis = parent.$();
-
-			parent._containerWidth = jqThis.outerWidth(true);
-			parent._containerHeight = jqThis.outerHeight(true);
-			
-			var myParent = parent;
-			while(parent._containerHeight == 0) {
-				myParent = myParent.getParent();
-				
-				parent._containerHeight = myParent.$().outerHeight(true);
-				
-				if(!myParent) {
-					break;
-				}
-			}
+			org_scn_community_basics.determineOwnSize(parent);
 
 			if(mainObject.setWidth) {
 				mainObject.setWidth(parent._containerWidth + "px");	
@@ -55,14 +41,6 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 			
 			if(mainObject.setHeight) {
 				mainObject.setHeight(parent._containerHeight + "px");	
-			}
-			
-			if(mainObject.width) {
-				mainObject.width(parent._containerWidth + "px");	
-			}
-			
-			if(mainObject.height) {
-				mainObject.height(parent._containerHeight + "px");	
 			}
 			
 			if(callback) {
@@ -107,6 +85,47 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 		
 		parent._oContentPlaced = true;
 	};
+};
+
+org_scn_community_basics.determineOwnSize = function(parent) {
+	var jqThis = parent.$();
+
+	parent._containerWidth = jqThis.outerWidth(true);
+	parent._containerHeight = jqThis.outerHeight(true);
+	
+	var realHeightIsCorrect = true;
+	if(parent._containerHeight == 0) {
+		realHeightIsCorrect = false;
+	}
+	
+	var myParent = parent;
+	while(parent._containerHeight == 0) {
+		myParentParent = undefined;
+		if(myParent.getParent != undefined) {
+			myParentParent = myParent.getParent();
+		}
+		if(myParentParent == undefined && myParent.owner != undefined) {
+			myParentParent = myParent.owner;
+		}
+		
+		if(myParentParent != undefined) {
+			myParent = myParentParent;
+			parent._containerHeight = myParent.$().outerHeight(true);	
+		}
+		
+		if(!myParent) {
+			break;
+		}
+	}
+
+	if(!realHeightIsCorrect) {
+		if (parent.oComponentProperties) {
+			if(parent.oComponentProperties.height == "auto") {
+				parent._containerHeight = parent._containerHeight - parent.oComponentProperties.topmargin;
+				parent._containerHeight = parent._containerHeight - parent.oComponentProperties.bottommargin;
+			}
+		}
+	}
 };
 
 org_scn_community_basics.addEvent = function(elem, type, eventHandle) {
@@ -182,3 +201,28 @@ org_scn_community_basics.cloneJson = function(json) {
 	
 	return JSON.clone(json);
 }
+
+/**
+ * Returns date object based on techncial date string, format YYYYMMDD
+ */
+org_scn_community_basics.getDateValue = function (inputDate) {
+	if(inputDate == undefined || inputDate.length != 8) {
+		inputDate = new Date();
+		inputDate = inputDate.format(dateFormat.masks.technical);
+	}
+	
+	var year = inputDate.substring(0,4);
+	var month = inputDate.substring(4,6);
+	if(month.indexOf(0) == "0") {
+		month = month.substring(1);
+	}
+	var day = inputDate.substring(6,8);
+	if(day.indexOf(0) == "0") {
+		day = day.substring(1);
+	}
+	
+	var date = new Date(year, month - 1, day);
+	date.formatted = date.format(dateFormat.masks.technical);
+	
+	return date;
+};
