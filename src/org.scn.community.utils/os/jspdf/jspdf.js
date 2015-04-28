@@ -53,7 +53,8 @@
  * @returns {jsPDF}
  * @name jsPDF
  */
-var jsPDF = (function(global) {
+var jsPDF = (
+		function(global) {
 	'use strict';
 	var pdfVersion = '1.3',
 		pageFormats = { // Size in pt of various paper formats

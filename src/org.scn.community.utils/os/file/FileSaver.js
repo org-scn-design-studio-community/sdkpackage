@@ -215,20 +215,17 @@ var saveAs = saveAs
 	FS_proto.onwriteend =
 		null;
 
+	if (typeof module !== "undefined" && module !== null) {
+		  module.exports = saveAs;
+	} else if ((typeof define !== "undefined" && define !== null) && (define.amd != null)) {
+		define('saveAs', function() {
+			return saveAs;
+		});
+	}
+	
 	return saveAs;
-}(
-	   typeof self !== "undefined" && self
-	|| typeof window !== "undefined" && window
-	|| this.content
-));
-// `self` is undefined in Firefox for Android content script context
-// while `this` is nsIContentFrameMessageManager
-// with an attribute `content` that corresponds to the window
 
-if (typeof module !== "undefined" && module !== null) {
-  module.exports = saveAs;
-} else if ((typeof define !== "undefined" && define !== null) && (define.amd != null)) {
-  define([], function() {
-    return saveAs;
-  });
-}
+	// self is undefined in Firefox for Android content script context
+	// while `this` is nsIContentFrameMessageManager
+	// with an attribute `content` that corresponds to the window
+}(typeof self !== "undefined" && self || typeof window !== "undefined" && window || this));

@@ -812,6 +812,16 @@
 	</property>
 
 	<property
+		id="svgMode"
+		title="SVG Conversion Mode"
+		type="String"
+		group="Behavior"
+	>
+		<possibleValue>Data Uri</possibleValue>
+		<possibleValue>Canvas</possibleValue>
+	</property>
+
+	<property
 		id="rootPanel"
 		title="Root Panel Name"
 		type="String"
@@ -901,6 +911,7 @@
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">20</defaultValue>
 		<defaultValue property="text">Export PDF</defaultValue>
+		<defaultValue property="svgMode">Data Uri</defaultValue>
 		<defaultValue property="pdfMethod">Save</defaultValue>
 		<defaultValue property="rootPanel"></defaultValue>
 		<defaultValue property="format">a4</defaultValue>

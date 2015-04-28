@@ -471,13 +471,6 @@ public class Component {
 			Helpers.string2File(iFileName, changeJsonContent);
 		}
 		
-		if (!changeJsonContent.startsWith("/")) {
-			String comments = Helpers.resource2String(this.getClass(), "changelog_comments.tmpl");
-			
-			changeJsonContent = comments + "\r\n" + changeJsonContent;
-			Helpers.string2File(iFileName, changeJsonContent);
-		}
-		
 		//String bad = Helpers.resource2String(this.getClass(), "bad.log");
 		//changeJsonContent = changeJsonContent.replace(bad, "");
 		
@@ -493,6 +486,13 @@ public class Component {
 			//Helpers.string2File(iFileName, changeJsonContent);
 		}
 
+		if (!changeJsonContent.startsWith("/")) {
+			String comments = Helpers.resource2String(this.getClass(), "changelog_comments.tmpl");
+			
+			changeJsonContent = comments + "\r\n" + changeJsonContent;
+			Helpers.string2File(iFileName, changeJsonContent);
+		}
+		
 		return template;
 	}
 

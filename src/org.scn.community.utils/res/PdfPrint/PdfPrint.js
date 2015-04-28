@@ -23,6 +23,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PdfPrint",
 	metadata: {
         properties: {
               "pdfMethod": {type: "string"},
+              "svgMode": {type: "string"},
               "trigger": {type: "string"},
               "rootPanel": {type: "string"},
               "format": {type: "string"},
@@ -49,19 +50,31 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PdfPrint",
 				var img = document.createElement("img");
 				img.className = "screenShotTempCanvas";
 	
-				svgAsDataUri(this,1,function(uri){
-
-					svg.className = "tempHide";
+				if(that.getSvgMode() == "Canvas") {
+					var oCanvas = document.createElement("canvas");
+					var svgData = new XMLSerializer().serializeToString(this);
+					canvg(oCanvas, svgData);
 					$(svg).hide();
+					img.src = oCanvas.toDataURL("image/png");
+					
 					var parent = svg.parentNode;
-					img.src=uri;
 					parent.appendChild(img);
+					img.onload = function(){};
+				}
+				
+				if(that.getSvgMode() == "Data Uri") {
+					svgAsDataUri(this,1,function(uri){
+						svg.className = "tempHide";
+						$(svg).hide();
+						var parent = svg.parentNode;
+						img.src=uri;
+						parent.appendChild(img);
 
-					img.onload = function(){
+						img.onload = function(){
 
-					};
-	
-				});
+						};
+					});
+				}
 			});
 
 			var areas = undefined;
