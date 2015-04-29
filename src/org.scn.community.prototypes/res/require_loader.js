@@ -27,6 +27,7 @@ var org_scn_community_components = org_scn_community_components || {};
 org_scn_community_components.basics = org_scn_community_components.basics || {};
 org_scn_community_components.databound = org_scn_community_components.databound || {};
 org_scn_community_components.prototypes = org_scn_community_components.prototypes || {};
+org_scn_community_components.utils = org_scn_community_components.utils || {};
 
 (function() {
 	
@@ -142,6 +143,11 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 				script: "org.scn.community.basics/os/jquery/numberformatter",
 				min: true
 			},
+			dateformatter: {
+				name: "dateformatter",
+				script: "org.scn.community.basics/os/date/DateFormat",
+				min: false
+			},
 	};
 	
 	org_scn_community_require.d3Modules = {
@@ -161,10 +167,11 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 	org_scn_community_require.knownComponents.basics = org_scn_community_require.knownComponents.basics || {};
 	org_scn_community_require.knownComponents.databound = org_scn_community_require.knownComponents.databound || {};
 	org_scn_community_require.knownComponents.prototypes = org_scn_community_require.knownComponents.prototypes || {};
+	org_scn_community_require.knownComponents.utils = org_scn_community_require.knownComponents.utils || {};
 	
 	org_scn_community_require.collectRequire = function (arrayOfRequires) {
 		
-		org_scn_community_require.loadMinWHerePossible = false;
+		org_scn_community_require.loadMinWHerePossible = true;
 		
 		var retObject = {};
 		

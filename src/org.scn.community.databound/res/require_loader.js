@@ -171,7 +171,7 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 	
 	org_scn_community_require.collectRequire = function (arrayOfRequires) {
 		
-		org_scn_community_require.loadMinWHerePossible = false;
+		org_scn_community_require.loadMinWHerePossible = true;
 		
 		var retObject = {};
 		

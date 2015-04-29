@@ -520,7 +520,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	</example>
 	*/
 	String getLabelByKey( 
-			/* index */ String key) {*  
+			/* key */ String key) {*  
 		var s = this.items;  
 		var a = [];
 		if(s!="") a = JSON.parse(s);  
@@ -534,6 +534,48 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		}
 		
 		return r;  
+	*}
+
+	/**
+	Returns the entry by given key. In case the key does not exist, key "N/A" is given back.
+	<example>
+	You have a "k1,k2,k3" collection with value "Value for Key 2" at index 1 (key == "k2") and want to get the entry at key "k2":
+	<code>
+	var entry = COLLECTION_1.getEntryByKey("k2");<br>
+	
+	var key = entry.key;
+	var label = entry.key;
+	var label = entry.label;
+	var value = entry.value;
+	var prop1 = entry.prop2;
+	var prop2 = entry.prop2;
+	var prop3 = entry.prop3;
+	</code>
+	Now "entry" is set to the entry "k2".
+	</example>
+	*/
+	org.scn.community.shared.KeyLabelValueProperty getEntryByKey ( 
+			/* key */ String key) {*  
+		var s = this.items;  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
+		var r = {
+			"key" : "N/A",
+			"label" : "",  
+			"value" : "",
+			"prop1" : "",
+			"prop2" : "",
+			"prop3" : ""
+		};
+		
+		for(var i=0;i<a.length;i++){
+			if(a[i].key == key) {
+				r = a[i];
+				break;
+			}
+		}
+		
+		return r;
 	*}
 
 	/**
