@@ -1,0 +1,19 @@
+	/** Returns the information about number of cells */
+	int getDataInfoNumberOfCells () {*
+		return JSON.parse(this.DDataInformation).dataCells;
+	*}
+
+	/** Returns the information about number of data columns */
+	int getDataInfoNumberOfDataColumns () {*
+		return JSON.parse(this.DDataInformation).dataColumns;
+	*}
+	
+	/** Returns the information about number of header columns */
+	int getDataInfoNumberOfHeaderColumns () {*
+		return JSON.parse(this.DDataInformation).headerColumns;
+	*}
+	
+	/** Returns the information about number of rows */
+	int getDataInfoNumberOfRows () {*
+		return JSON.parse(this.DDataInformation).rows;
+	*}

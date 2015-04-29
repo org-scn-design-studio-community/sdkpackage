@@ -31,6 +31,9 @@
 	"DNavigationMode" : {
 		"gen-type":"choice",
 	},
+	"DIgnoreResults" : {
+		"gen-type":"boolean",
+	},
 	"DEmptyHeaderValue" : {
 		"gen-type":"String",
 	},

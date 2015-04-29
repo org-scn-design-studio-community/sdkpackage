@@ -13,6 +13,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		});
 		that._content.placeAt($("#content"));
 
+		that["fun_DIgnoreResults"].init();
 		that["fun_DDataProvisioner"].init();
 		that["fun_DVisibleRowCount"].init();
 		that["fun_DRowHeight"].init();
@@ -33,6 +34,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 	};
 	
 	that.componentSelected = function(){
+		that["fun_DIgnoreResults"].update();
 		that["fun_DDataProvisioner"].update();
 		that["fun_DVisibleRowCount"].update();
 		that["fun_DRowHeight"].update();
@@ -53,6 +55,41 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 	};
 	
 	
+	that["fun_DIgnoreResults"] = {};
+	
+	that["fun_DIgnoreResults"].update = function(){
+		that["fun_DIgnoreResults"]._input.setChecked(that["fun_DIgnoreResults"]._);
+	};
+	
+	that["fun_DIgnoreResults"].init = function(){
+		that["fun_DIgnoreResults"]._label = new sap.ui.commons.Label({text: " Ignore Results Rows and Columns"});
+		that["fun_DIgnoreResults"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DIgnoreResults"]._label);
+		
+		that["fun_DIgnoreResults"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Ignore Results Rows and Columns"});
+		that._content.addContent(that["fun_DIgnoreResults"]._input);
+		that["fun_DIgnoreResults"]._input.attachChange(that["fun_DIgnoreResults"].propertyChanged, that);
+		that["fun_DIgnoreResults"]._input.addStyleClass("org-scn-ApsBoolean");
+		
+		that["fun_DIgnoreResults"].update();
+	};
+
+	that["fun_DIgnoreResults"].propertyChanged = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		that["fun_DIgnoreResults"]._ = checked;
+		that.firePropertiesChanged(["DIgnoreResults"]);
+	};
+	
+	that.DIgnoreResults = function(s){
+		if( s === undefined){
+			return that["fun_DIgnoreResults"]._;
+		}else{
+			that["fun_DIgnoreResults"]._ = s;
+			that["fun_DIgnoreResults"].update();
+			return that;
+		}
+	};
+
 	that["fun_DDataProvisioner"] = {};
 	
 	that["fun_DDataProvisioner"].update = function(){

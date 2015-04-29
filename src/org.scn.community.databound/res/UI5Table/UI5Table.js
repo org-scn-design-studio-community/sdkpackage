@@ -88,6 +88,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
               "DAllowSelection": {type: "boolean"},
               "DEmptyHeaderValue": {type: "string"},
               "DEmptyDataValue": {type: "string"},
+              "DIgnoreResults": {type: "boolean"},
         }
 	},
 
@@ -182,7 +183,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 				this._fakeData();
 			} else {
 				var options = org_scn_community_databound.initializeOptions();
-				options.ignoreResults = true;
+				options.ignoreResults = that.getDIgnoreResults();
 				options.emptyHeaderValue = that.getDEmptyHeaderValue();
 				options.emptyDataValue = that.getDEmptyDataValue();
 
@@ -233,7 +234,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		var that = this;
 		
 		var options = org_scn_community_databound.initializeOptions();
-		options.ignoreResults = true;
+		options.ignoreResults = that.getDIgnoreResults();
 		options.emptyHeaderValue = that.getDEmptyHeaderValue();
 		options.emptyDataValue = that.getDEmptyDataValue();
 		

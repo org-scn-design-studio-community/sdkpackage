@@ -1,7 +1,7 @@
 
 <component
 	id="ResultSetInfo"
-	title="Result Set Information (Test Phase)"
+	title="Result Set Information"
 	icon="res/ResultSetInfo/ResultSetInfo.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
@@ -33,6 +33,36 @@
 		visible="true">
 	</property>
 
+	<property
+		id="DInformationEventActive"
+		title="Information Event Active"
+		tooltip="Send Data Information Event when data is available"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DDataInformation"
+		type="String"
+		title="Technical Component for Data Information"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DIgnoreResults"
+		title="Ignore Results Rows and Columns"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="onDataAvailable"
+		type="ScriptText"
+		title="Event for On Data Available"
+		group="Events" />
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
@@ -40,6 +70,9 @@
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
+
+		<defaultValue property="DInformationEventActive">false</defaultValue>
+		<defaultValue property="DIgnoreResults">true</defaultValue>
 	</initialization>
 
 </component>

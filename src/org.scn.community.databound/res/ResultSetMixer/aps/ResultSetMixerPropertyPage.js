@@ -1,6 +1,6 @@
 
 /**
- * Generated ZTL Class for Result Set Mixer (Test Phase)
+ * Generated ZTL Class for Result Set Mixer
  * 
  * DO NOT EDIT
  */

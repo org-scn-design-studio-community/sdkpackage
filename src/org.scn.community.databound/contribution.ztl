@@ -1256,7 +1256,7 @@ class org.scn.community.databound.RangeSlider extends org.scn.community.shared.D
 }
 
 /**
- * Generated ZTL Class for Result Set Information (Test Phase)
+ * Generated ZTL Class for Result Set Information
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
@@ -1276,13 +1276,59 @@ class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared
 		return this.DCentralProvisioning;
 	*}
 
+	/**
+	 * Sets Information Event Active Property
+	 */	
+	void setInformationEventActive( /* Send Data Information Event when data is available */  boolean informationEventActive){*
+		this.DInformationEventActive = informationEventActive;
+	*}
+
+	/**
+	 * Gets Information Event Active Property
+	 */	
+	boolean getInformationEventActive() {*
+		return this.DInformationEventActive;
+	*}
+
+	/**
+	 * Sets Ignore Results Rows and Columns Property
+	 */	
+	void setIgnoreResults( /* &nbsp; */  boolean ignoreResults){*
+		this.DIgnoreResults = ignoreResults;
+	*}
+
+	/**
+	 * Gets Ignore Results Rows and Columns Property
+	 */	
+	boolean getIgnoreResults() {*
+		return this.DIgnoreResults;
+	*}
+
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/** Returns the information about number of cells */
+	int getDataInfoNumbertOfCells () {*
+		return JSON.parse(this.DDataInformation).dataCells;
+	*}
 
+	/** Returns the information about number of data columns */
+	int getDataInfoNumbertOfDataColumns () {*
+		return JSON.parse(this.DDataInformation).dataColumns;
+	*}
+	
+	/** Returns the information about number of header columns */
+	int getDataInfoNumbertOfHeaderColumns () {*
+		return JSON.parse(this.DDataInformation).headerColumns;
+	*}
+	
+	/** Returns the information about number of rows */
+	int getDataInfoNumbertOfRows () {*
+		return JSON.parse(this.DDataInformation).rows;
+	*}
 }
 
 /**
- * Generated ZTL Class for Result Set Mixer (Test Phase)
+ * Generated ZTL Class for Result Set Mixer
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
@@ -1598,6 +1644,20 @@ class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.databound.UI5Table extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Ignore Results Rows and Columns Property
+	 */	
+	void setIgnoreResults( /* &nbsp; */  boolean ignoreResults){*
+		this.DIgnoreResults = ignoreResults;
+	*}
+
+	/**
+	 * Gets Ignore Results Rows and Columns Property
+	 */	
+	boolean getIgnoreResults() {*
+		return this.DIgnoreResults;
+	*}
 
 	/**
 	 * Sets Central Data Provisioner for Result Set Property

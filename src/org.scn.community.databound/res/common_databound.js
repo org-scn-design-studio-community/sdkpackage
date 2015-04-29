@@ -18,6 +18,8 @@
  */
 
 var org_scn_community_databound = org_scn_community_databound || {};
+org_scn_community_databound.centralDataStorage = org_scn_community_databound.centralDataStorage || {}; 
+org_scn_community_databound.centralEventStorage = org_scn_community_databound.centralEventStorage || {};
 
 org_scn_community_databound.hasData = function (data) {
 	

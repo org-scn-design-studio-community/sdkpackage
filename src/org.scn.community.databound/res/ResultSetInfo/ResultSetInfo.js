@@ -10,6 +10,9 @@ var ResultSetInfo = {
 	metadata: {
         properties: {
               "DCentralProvisioning": {type: "boolean"},
+              "DInformationEventActive": {type: "boolean"},
+              "DDataInformation": {type: "string"},
+              "DIgnoreResults": {type: "boolean"},
         }
 	},
 
@@ -63,6 +66,38 @@ var ResultSetInfo = {
 			that._lLayout.addContent(that.createFlowPanel("Number of Data Columns", that._flatData.geometry.colLength));
 			that._lLayout.addContent(that.createFlowPanel("Number of Header Columns", that._flatData.geometry.headersLength));
 			that._lLayout.addContent(that.createFlowPanel("Number of Rows", that._flatData.geometry.rowLength));
+			
+			if(that.getDInformationEventActive()) {
+				var dataInfo = {};
+
+				dataInfo.dataCells = that._data.data.length;
+				dataInfo.dataColumns = that._flatData.geometry.colLength;
+				dataInfo.headerColumns = that._flatData.geometry.headersLength;
+				dataInfo.rows = that._flatData.geometry.rowLength;
+				
+				var dataInfoString = JSON.stringify(dataInfo);
+				
+				that.setDDataInformation(dataInfoString);
+
+				that.fireDesignStudioPropertiesChanged(["DDataInformation"]);
+				that.fireDesignStudioEvent("onDataAvailable");
+			}
+		} else {
+			if(that.getDInformationEventActive()) {
+				var dataInfo = {};
+
+				dataInfo.dataCells = 0;
+				dataInfo.dataColumns = 0;
+				dataInfo.headerColumns = 0;
+				dataInfo.rows = 0;
+				
+				var dataInfoString = JSON.stringify(dataInfo);
+				
+				that.setDDataInformation(dataInfoString);
+
+				that.fireDesignStudioPropertiesChanged(["DDataInformation"]);
+				that.fireDesignStudioEvent("onDataAvailable");
+			}
 		}
 	},
 	
@@ -110,7 +145,7 @@ var ResultSetInfo = {
 		
 		if(org_scn_community_databound.hasData(that.getData())) {
 			var options = org_scn_community_databound.initializeOptions();
-			options.ignoreResults = true;
+			options.ignoreResults = that.getDIgnoreResults();
 			that._flatData = org_scn_community_databound.flatten(that.getData(), options);
 
 			that.processData(that._flatData, afterPrepare);

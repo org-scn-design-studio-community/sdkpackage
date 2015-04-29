@@ -1,7 +1,7 @@
 
 <component
 	id="ResultSetMixer"
-	title="Result Set Mixer (Test Phase)"
+	title="Result Set Mixer"
 	icon="res/ResultSetMixer/ResultSetMixer.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"

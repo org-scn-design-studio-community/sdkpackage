@@ -28,6 +28,14 @@
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 	</property>
+	
+	<property
+		id="DIgnoreResults"
+		title="Ignore Results Rows and Columns"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
 
 	<property
 		id="DDataProvisioner"
@@ -191,6 +199,7 @@
 		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 
+		<defaultValue property="DIgnoreResults">true</defaultValue>
 		<defaultValue property="DNavigationMode">Paginator</defaultValue>
 		<defaultValue property="DRowHeight">22</defaultValue>
 		<defaultValue property="DVisibleRowCount">12</defaultValue>

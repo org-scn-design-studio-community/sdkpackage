@@ -1945,7 +1945,7 @@ __n__}
 </component>
 <component
 	id="ResultSetInfo"
-	title="Result Set Information (Test Phase)"
+	title="Result Set Information"
 	icon="res/ResultSetInfo/ResultSetInfo.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
@@ -1977,6 +1977,36 @@ __n__}
 		visible="true">
 	</property>
 
+	<property
+		id="DInformationEventActive"
+		title="Information Event Active"
+		tooltip="Send Data Information Event when data is available"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="DDataInformation"
+		type="String"
+		title="Technical Component for Data Information"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DIgnoreResults"
+		title="Ignore Results Rows and Columns"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
+		id="onDataAvailable"
+		type="ScriptText"
+		title="Event for On Data Available"
+		group="Events" />
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
@@ -1984,12 +2014,15 @@ __n__}
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
+
+		<defaultValue property="DInformationEventActive">false</defaultValue>
+		<defaultValue property="DIgnoreResults">true</defaultValue>
 	</initialization>
 
 </component>
 <component
 	id="ResultSetMixer"
-	title="Result Set Mixer (Test Phase)"
+	title="Result Set Mixer"
 	icon="res/ResultSetMixer/ResultSetMixer.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
@@ -2844,6 +2877,14 @@ __n__}
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 	</property>
+	
+	<property
+		id="DIgnoreResults"
+		title="Ignore Results Rows and Columns"
+		type="boolean"
+		group="Display"
+		visible="true">
+	</property>
 
 	<property
 		id="DDataProvisioner"
@@ -3007,6 +3048,7 @@ __n__}
 		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 
+		<defaultValue property="DIgnoreResults">true</defaultValue>
 		<defaultValue property="DNavigationMode">Paginator</defaultValue>
 		<defaultValue property="DRowHeight">22</defaultValue>
 		<defaultValue property="DVisibleRowCount">12</defaultValue>

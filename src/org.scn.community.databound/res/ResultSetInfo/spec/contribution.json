@@ -2,4 +2,10 @@
 	"DCentralProvisioning" : {
 		"gen-type":"boolean",
 	},
+	"DInformationEventActive" : {
+		"gen-type":"boolean",
+	},
+	"DIgnoreResults" : {
+		"gen-type":"boolean",
+	},
 }

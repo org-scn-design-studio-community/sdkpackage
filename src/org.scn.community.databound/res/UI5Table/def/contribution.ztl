@@ -7,6 +7,20 @@
 class org.scn.community.databound.UI5Table extends org.scn.community.shared.DataComponent {
 
 	/**
+	 * Sets Ignore Results Rows and Columns Property
+	 */	
+	void setIgnoreResults( /* &nbsp; */  boolean ignoreResults){*
+		this.DIgnoreResults = ignoreResults;
+	*}
+
+	/**
+	 * Gets Ignore Results Rows and Columns Property
+	 */	
+	boolean getIgnoreResults() {*
+		return this.DIgnoreResults;
+	*}
+
+	/**
 	 * Sets Central Data Provisioner for Result Set Property
 	 */	
 	void setDataProvisioner( /* Central Result Set with Data */  String dataProvisioner){*
