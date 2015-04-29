@@ -1307,22 +1307,22 @@ class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 	/** Returns the information about number of cells */
-	int getDataInfoNumbertOfCells () {*
+	int getDataInfoNumberOfCells () {*
 		return JSON.parse(this.DDataInformation).dataCells;
 	*}
 
 	/** Returns the information about number of data columns */
-	int getDataInfoNumbertOfDataColumns () {*
+	int getDataInfoNumberOfDataColumns () {*
 		return JSON.parse(this.DDataInformation).dataColumns;
 	*}
 	
 	/** Returns the information about number of header columns */
-	int getDataInfoNumbertOfHeaderColumns () {*
+	int getDataInfoNumberOfHeaderColumns () {*
 		return JSON.parse(this.DDataInformation).headerColumns;
 	*}
 	
 	/** Returns the information about number of rows */
-	int getDataInfoNumbertOfRows () {*
+	int getDataInfoNumberOfRows () {*
 		return JSON.parse(this.DDataInformation).rows;
 	*}
 }
