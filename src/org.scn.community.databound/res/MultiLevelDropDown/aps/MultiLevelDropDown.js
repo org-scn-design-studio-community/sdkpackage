@@ -2,10 +2,16 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 
 	var that = this;
 	
-	this._selChar 		= "";
-	this.comboSelChar 	= "";
-	this._content 		= "";
-	this._metadata 		= {};
+	this._selChar 			= "";
+	this._content 			= "";
+	this._metadata 			= {};
+	this._selWeight			= "";
+	this._colorClass		= "";
+	
+	this.comboSelWeight 	= "";
+	this.comboSelChar 		= "";
+	
+	var selKeyfigStruc		= "";
 	
 	this.componentSelected = function(){
 		this.updateProps();
@@ -18,10 +24,11 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 			width : "100%"
 		});
 
+//		--- Sel Char --
 		this.comboSelChar = new sap.ui.commons.ComboBox("comboSelChar");
 		
 		this.comboSelChar.attachChange(function(){
-			that._selChar = that.comboSelChar.getSelectedKey();
+			that.selChar(that.comboSelChar.getSelectedKey());
 			that.firePropertiesChanged(["selChar"]);
 		});
 		
@@ -29,37 +36,100 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 		
 		this.comboSelChar.setDisplaySecondaryValues(true);
 
-		this._content.addContent(new sap.ui.commons.TextView({text : "Source characteristic"}));
+		this._content.addContent(new sap.ui.commons.TextView({text : "Select the Dropdown characteristic"}));
 		this._content.addContent(this.comboSelChar);
 		
+//		--- Weight --
+		this.comboSelWeight = new sap.ui.commons.ComboBox("comboSelWeight");
+		
+		this.comboSelWeight.attachChange(function(){
+			that.selWeight(that.comboSelWeight.getSelectedKey());
+			that.firePropertiesChanged(["selWeight"]);
+		});
+		
+		this.comboSelWeight.setTooltip("Select the weight KF");
+		
+		this.comboSelWeight.setDisplaySecondaryValues(true);
+
+		this._content.addContent(new sap.ui.commons.TextView({text : "Select Weight"}));
+		this._content.addContent(this.comboSelWeight);
+		
+		this._content.addContent(new sap.ui.commons.TextView({text : "JSON Color Range"}));
+		this.textAreaColorClass = new sap.ui.commons.TextArea("textAreaColorClass");
+		this.textAreaColorClass.setCols(40);
+		this.textAreaColorClass.setRows(20);
+		
+		this.textAreaColorClass.attachChange(function(){
+			that.colorClass(that.textAreaColorClass.getValue());
+			that.firePropertiesChanged(["colorClass"]);
+		});
+		
+		this._content.addContent(this.textAreaColorClass);
+		
 		this._content.placeAt($("#content"));
+	
 		this.updateProps();
 	};
 	
 	this.updateProps = function(value){
+		var compMeta = this.callRuntimeHandler("getDimensions");
+		var dims = jQuery.parseJSON(compMeta);
+		
 		this.comboSelChar.removeAllItems();
 		this.comboSelChar.setSelectedKey(this._selChar);
 		
-		var compMeta = this.callRuntimeHandler("getDimensions");
+		this.comboSelWeight.removeAllItems();
+		this.comboSelWeight.setSelectedKey(this._selWeight);
+		
+		selKeyfigStruc = "";
 		
 		var dims = jQuery.parseJSON(compMeta);
 		for(var i=0;i<dims.length;i++){
 			var dim = dims[i];
 			
-			this.comboSelChar.addItem(new sap.ui.core.ListItem({
-				key : dim.key,
-				text: dim.text,
-				additionalText : dim.key 
-			}));
+			if (dim.hasOwnProperty('containsMeasures')) {
+				
+				selKeyfigStruc = dim.key;
+				this.callRuntimeHandler("setKeyFigStrucName", selKeyfigStruc);
+				
+				for(var j=0 ; j<dim.members.length ; j++){
+					var member = dim.members[j];
+					
+					this.comboSelWeight.addItem(new sap.ui.core.ListItem({
+						key : member.key,
+						text: member.text,
+						additionalText : member.key 
+					}));
+				}
+			} else {
+				this.comboSelChar.addItem(new sap.ui.core.ListItem({
+					key : dim.key,
+					text: dim.text,
+					additionalText : dim.key 
+				}));
+			}
 		}
 	}
 	
+	
 	this.selChar = function(value){
+		//alert("Prop.selChar()");
 		if( value === undefined){
 			return this._selChar;
-		} else {
+		}else{
 			this._selChar = value;
 			that.comboSelChar.setSelectedKey(value);
+			return this;
+		}
+	};
+	
+	this.selWeight = function(value){
+		//alert("Prop.selChar()");
+		if( value === undefined){
+			return this._selWeight;
+		}else{
+			this._selWeight = value;
+			that.comboSelWeight.setSelectedKey(value);
 			return this;
 		}
 	};
@@ -78,6 +148,16 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 			}
 		}catch(e){
 			alert(e);
+		}
+	};
+	
+	this.colorClass = function(value){
+		if(value===undefined){
+			return this._colorClass;
+		}else{
+			this._colorClass = value;
+			that.textAreaColorClass.setValue(value);
+			return this;
 		}
 	};
 	

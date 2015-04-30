@@ -1,16 +1,27 @@
-#primary_nav_wrap
+li.DD_YEL > div {
+	color:yellow; !important
+}
+li.DD_GREEN > div {
+	color:green; !important
+}
+li.DD_RED > div {
+	color:red; !important
+}
+
+.primary_nav_wrap
 {
 	margin-top:15px
 }
 
-#primary_nav_wrap span.left {
+.primary_nav_wrap span.DDP_TEXT {
 }
-#primary_nav_wrap span.right {
+
+.primary_nav_wrap span.DDP_WEIGHT {
 	float:right;
 	
 }
 
-#primary_nav_wrap ul
+.primary_nav_wrap ul
 {
 	list-style:none;
 	position:relative;
@@ -20,17 +31,17 @@
 	background-color:gray;
 }
 
-#primary_nav_wrap ul a
+.primary_nav_wrap ul div
 {
 	display:block;
-	color:#333;
+	/* color:#333; */
 	text-decoration:none;
 	font-size:12px;
 	line-height:32px;
 	font-family:"HelveticaNeue","Helvetica Neue","Helvetica\","Arial,sans-serif";
 }
 
-#primary_nav_wrap ul li
+.primary_nav_wrap ul li
 {
 	position:relative;
 	float:left;
@@ -40,16 +51,16 @@
 	padding:0 15px;
 }
 
-#primary_nav_wrap ul li.current-menu-item
+.primary_nav_wrap ul li.current-menu-item
 {
 }
 
-#selected-menu-item
+.selected-menu-item
 {
 	font-weight: bold !important;
 }
 
-#selected-menu-item:first-child:before
+.selected-menu-item:first-child:before
 {
 	content: "\a0";
 	padding-left:15px;
@@ -63,27 +74,28 @@
 	font-style: italic !important;
 }
 
-#primary_nav_wrap ul li:hover
+.primary_nav_wrap ul li:hover
 {
 	background:#f6f6f6;
 }
 
-#primary_nav_wrap ul li.submenu
+.primary_nav_wrap ul li.submenu
 {
 	border-bottom: gray 1px dotted;
+	background:#FFFFFF;
 }
 
-#primary_nav_wrap ul li.submenu:hover
+.primary_nav_wrap ul li.submenu:hover
 {
 	border-left: black 4px solid;
 }
 
-#primary_nav_wrap ul li.submenu div:hover
+.primary_nav_wrap ul li.submenu div:hover
 {
 	font-weight: bold;
 }
 
-#primary_nav_wrap ul ul
+.primary_nav_wrap ul ul
 {
 	display:none;
 	position:absolute;
@@ -93,25 +105,25 @@
 	padding:0
 }
 
-#primary_nav_wrap ul ul li
+.primary_nav_wrap ul ul li
 {
 	float:none;
 	width:200px
 }
 
-#primary_nav_wrap ul ul a
+.primary_nav_wrap ul ul a
 {
 	line-height:120%;
 	padding:10px 0px
 }
 
-#primary_nav_wrap ul ul ul
+.primary_nav_wrap ul ul ul
 {
 	top:0;
 	left:100%
 }
 
-#primary_nav_wrap ul li:hover > ul
+.primary_nav_wrap ul li:hover > ul
 {
 	display:block
 }
