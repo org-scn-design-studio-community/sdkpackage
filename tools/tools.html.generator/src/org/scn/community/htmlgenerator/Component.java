@@ -3,6 +3,7 @@ package org.scn.community.htmlgenerator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -55,6 +56,14 @@ public class Component {
 	private String pathToZtl;
 
 	private String packageName;
+
+	private String filterEnd;
+
+	private String filterStart;
+
+	private String icon;
+
+	private String path;
 
 	@SuppressWarnings("null")
 	Component(File contributionXml) {
@@ -362,7 +371,13 @@ public class Component {
 		this.title = reader.getAttributeValue("", "title");
 		this.tooltip = reader.getAttributeValue("", "tooltip");
 		this.group = reader.getAttributeValue("", "group");
-
+		this.icon = reader.getAttributeValue("", "icon");
+		
+		// special code for filter in ChangeLog components
+		this.filterEnd = reader.getAttributeValue("", "filterEnd");
+		this.filterStart = reader.getAttributeValue("", "filterStart");
+		this.path = reader.getAttributeValue("", "path");
+		
 		this.handlerType = reader.getAttributeValue("", "handlerType");
 
 		// read package from file
@@ -540,6 +555,23 @@ public class Component {
 				props.put("Resource " + file.getParentFile().getName() + " - " +file.getName(), file2String.length() + ";" + Helpers.hashString(file2String));	
 			}
 		}
+		
+		// special framework check
+		if(this.name.startsWith("ChangeLog_")) {
+			String parentFolder = contributionXml.getParentFile().getParentFile().getParentFile().getParentFile().getParentFile().getAbsolutePath();
+			
+			parentFolder = parentFolder.replace(".shared", "." + this.path);
+			
+			ComponentFilenameFilter filter = new ComponentFilenameFilter(this.filterStart, this.filterEnd);
+			
+			resFiles = Helpers.listFiles(parentFolder, filter);
+			for (File file : resFiles) {
+				String file2String = Helpers.file2String(file);
+				if(!file.isDirectory()) {
+					props.put("Resource " + file.getParentFile().getName() + " - " +file.getName(), file2String.length() + ";" + Helpers.hashString(file2String));	
+				}
+			}
+		}
 
 		return props;
 	}
@@ -703,6 +735,30 @@ public class Component {
 			  return keys();
 		  }
 		}
+	class ComponentFilenameFilter implements FilenameFilter {
+		
+		private String filterStart;
+		private String filterEnd;
 
+		public ComponentFilenameFilter(String filterStart, String filterEnd) {
+			this.filterStart = filterStart;
+			this.filterEnd = filterEnd;
+		}
+
+		@Override
+		public boolean accept(File dir, String name) {
+			if(filterEnd == null && filterStart == null) {
+				return true;
+			}
+			
+			if(this.filterEnd != null && name.endsWith(this.filterEnd)) {
+				return true;
+			}
+			if(this.filterStart != null && name.startsWith(this.filterStart)) {
+				return true;
+			}
+			return false;
+		}
+	};
 	
 }

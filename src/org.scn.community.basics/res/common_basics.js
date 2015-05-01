@@ -17,11 +17,9 @@
  * limitations under the License. 
  */
 
-/**
- * Global Functions for work with components
- */
-
 var org_scn_community_basics = org_scn_community_basics || {};
+
+/* IMPORTANT! ORIGINAL LOCATION - basics/res */
 
 org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObject, callback) {
 	if(parent._oContentPlaced != true) {

@@ -1,0 +1,11 @@
+
+<component
+	id="ChangeLog_basics_res_require"
+	title="Basics - Require"
+	path="basics/res"
+	handlerType="div"
+	group="ScnCommunityFramework"
+	filterStart="require"
+>
+
+</component>

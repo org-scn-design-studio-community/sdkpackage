@@ -90,8 +90,10 @@ public class Main {
 			componentModelTemplate = componentModelTemplate.replace("%COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%", componentModelEntryCopy + "\r\n" + " %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%");
 			Helpers.string2File(iFileName, component.toHtml(iFileName));
 
-			String castStringFromComponent = component.toCastString();
-			castString = castString + castStringFromComponent + "\r\n";
+			if(!component.name.startsWith("ChangeLog")) {
+				String castStringFromComponent = component.toCastString();
+				castString = castString + castStringFromComponent + "\r\n";
+			}
 		}
 
 		// C:\DEV\community.sdkpackage\src\org.scn.community.utils\res\ComponentManager\def\contribution.ztl
@@ -127,6 +129,7 @@ public class Main {
 		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_GEO%", "");
 		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_PROTOTYPES%", "");
 		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_UTILS%", "");
+		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_FRAMEWORK%", "");
 		return templateList;
 	}
 }

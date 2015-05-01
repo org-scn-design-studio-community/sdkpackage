@@ -21,6 +21,8 @@ var org_scn_community_databound = org_scn_community_databound || {};
 org_scn_community_databound.centralDataStorage = org_scn_community_databound.centralDataStorage || {}; 
 org_scn_community_databound.centralEventStorage = org_scn_community_databound.centralEventStorage || {};
 
+/* IMPORTANT! ORIGINAL LOCATION - databound/res */
+
 org_scn_community_databound.hasData = function (data) {
 	
 	if(!data || data == "" || data == undefined) {

@@ -17,37 +17,44 @@
  * limitations under the License. 
  */
 
-/**
- * Global Functions for work with components
- */
-
 var org_scn_community_basics = org_scn_community_basics || {};
 
-org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObject) {
+/* IMPORTANT! ORIGINAL LOCATION - basics/res */
+
+org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObject, callback) {
 	if(parent._oContentPlaced != true) {
-		var jqThis = parent.$();
-		
-		parent.addContent(
-				mainObject,
-				{left: "0px", top: "0px"}
-		);
+		if(parent.addContent) {
+			parent.addContent(
+					mainObject,
+					{left: "0px", top: "0px"}
+			);
+		}
 		
 		parent._oResize = function() {
-			parent._containerWidth = jqThis.outerWidth(true) + "px";
-			parent._containerHeight = jqThis.outerHeight(true) + "px";
+			org_scn_community_basics.determineOwnSize(parent);
 
 			if(mainObject.setWidth) {
-				mainObject.setWidth(parent._containerWidth);	
+				mainObject.setWidth(parent._containerWidth + "px");	
 			}
 			
 			if(mainObject.setHeight) {
-				mainObject.setHeight(parent._containerHeight);	
+				mainObject.setHeight(parent._containerHeight + "px");	
+			}
+			
+			if(callback) {
+				callback(parent._containerWidth, parent._containerHeight);
 			}
 		};
 		
 		// attach resize handler
-		jqThis[0].onresize = parent._oResize;
-
+		org_scn_community_basics.addEvent(parent.$()[0], "resize", parent._oResize);
+		org_scn_community_basics.resizableComponents.push(parent);
+		
+		// attach resize handler
+		if(!org_scn_community_basics.onWindowResizeInserted) {
+			org_scn_community_basics.addEvent(window, "resize", org_scn_community_basics.onWindowResize);org_scn_community_basics.onWindowResizeInserted=true;
+		}
+		
 		// call resize handler
 		parent._oResize();	
 
@@ -76,6 +83,70 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 		
 		parent._oContentPlaced = true;
 	};
+};
+
+org_scn_community_basics.determineOwnSize = function(parent) {
+	var jqThis = parent.$();
+
+	parent._containerWidth = jqThis.outerWidth(true);
+	parent._containerHeight = jqThis.outerHeight(true);
+	
+	var realHeightIsCorrect = true;
+	if(parent._containerHeight == 0) {
+		realHeightIsCorrect = false;
+	}
+	
+	var myParent = parent;
+	while(parent._containerHeight == 0) {
+		myParentParent = undefined;
+		if(myParent.getParent != undefined) {
+			myParentParent = myParent.getParent();
+		}
+		if(myParentParent == undefined && myParent.owner != undefined) {
+			myParentParent = myParent.owner;
+		}
+		
+		if(myParentParent != undefined) {
+			myParent = myParentParent;
+			parent._containerHeight = myParent.$().outerHeight(true);	
+		}
+		
+		if(!myParent) {
+			break;
+		}
+	}
+
+	if(!realHeightIsCorrect) {
+		if (parent.oComponentProperties) {
+			if(parent.oComponentProperties.height == "auto") {
+				parent._containerHeight = parent._containerHeight - parent.oComponentProperties.topmargin;
+				parent._containerHeight = parent._containerHeight - parent.oComponentProperties.bottommargin;
+			}
+		}
+	}
+};
+
+org_scn_community_basics.addEvent = function(elem, type, eventHandle) {
+    if (elem == null || typeof(elem) == 'undefined') return;
+    if ( elem.addEventListener ) {
+        elem.addEventListener( type, eventHandle, false );
+    } else if ( elem.attachEvent ) {
+        elem.attachEvent( "on" + type, eventHandle );
+    } else {
+        elem["on"+type]=eventHandle;
+    }
+};
+
+org_scn_community_basics.onWindowResizeInserted = false;
+org_scn_community_basics.resizableComponents = [];
+org_scn_community_basics.onWindowResize = function() {
+	for (var compIndex in org_scn_community_basics.resizableComponents) {
+		var component = org_scn_community_basics.resizableComponents[compIndex];
+		
+		if(component._oResize){
+			component._oResize();
+		}
+	}
 };
 
 /**
@@ -117,31 +188,39 @@ org_scn_community_basics.hideNoDataOverlay = function(componentId, includeFullSi
 	document.getElementsByTagName('head')[0].appendChild(style);
 };
 
-org_scn_community_basics.readOwnScriptAccess = function(scriptSrc, componentFullName) {
-	var packageAndName = componentFullName.substring("org.scn.community.".length);
-	var componentName = packageAndName.substring(packageAndName.indexOf(".") + 1);
-	var packageName = packageAndName.substring(0, packageAndName.indexOf("."));
-	return org_scn_community_basics.readGenericScriptAccess(scriptSrc, "res/"+componentName+"/", packageName);
+org_scn_community_basics.cloneJson = function(json) {
+	if (typeof JSON.clone !== "function")
+	{
+	    JSON.clone = function(obj)
+	    {
+	        return JSON.parse(JSON.stringify(obj));
+	    };
+	}
+	
+	return JSON.clone(json);
 }
 
-org_scn_community_basics.readGenericScriptAccess = function(scriptSrc, sctiptPath, packageName) {
-	if(scriptSrc) {
-		var myScriptSuffix = sctiptPath;
-		var myPluginSuffix = "org.scn.community."+packageName+"/";
-		var mainScriptPathIndex = scriptSrc.indexOf(myScriptSuffix);
-		var mainSDKPathIndex = scriptSrc.indexOf(myPluginSuffix);
-		var mainSDKPath = scriptSrc.substring(0, mainSDKPathIndex);
-		var ownScriptPath = scriptSrc.substring(0, mainScriptPathIndex) + myScriptSuffix;
-		return {
-			myScriptPath : ownScriptPath,					// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/res/<component-name>/
-			myPackagePath: mainSDKPath + myPluginSuffix, 	// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/
-			mainSDKPath : mainSDKPath						// http://localhost:9091/aad/zen/mimes/sdk_include/
-		};
+/**
+ * Returns date object based on techncial date string, format YYYYMMDD
+ */
+org_scn_community_basics.getDateValue = function (inputDate) {
+	if(inputDate == undefined || inputDate.length != 8) {
+		inputDate = new Date();
+		inputDate = inputDate.format(dateFormat.masks.technical);
 	}
-	return {
-		// temporary hack for local mode in 1.5 release
-		myScriptPath: "/aad/zen/mimes/sdk_include/org.scn.community."+packageName+"/" + sctiptPath + "/",
-		myPackagePath: "/aad/zen/mimes/sdk_include/org.scn.community."+packageName+"/",
- 		mainSDKPath: "/aad/zen/mimes/sdk_include/"
- 	};
-}
+	
+	var year = inputDate.substring(0,4);
+	var month = inputDate.substring(4,6);
+	if(month.indexOf(0) == "0") {
+		month = month.substring(1);
+	}
+	var day = inputDate.substring(6,8);
+	if(day.indexOf(0) == "0") {
+		day = day.substring(1);
+	}
+	
+	var date = new Date(year, month - 1, day);
+	date.formatted = date.format(dateFormat.masks.technical);
+	
+	return date;
+};

@@ -1,0 +1,11 @@
+
+<component
+	id="ChangeLog_basics_res_common"
+	title="Basics - Common (Res)"
+	path="basics/res"
+	handlerType="div"
+	group="ScnCommunityFramework"
+	filterStart="common_"
+>
+
+</component>

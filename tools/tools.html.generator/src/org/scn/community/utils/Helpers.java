@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -350,10 +351,14 @@ public class Helpers {
 	}
 	
 	public static File[] listFiles(String iFilePath) {
+		return listFiles(iFilePath, null);
+	}
+	
+	public static File[] listFiles(String iFilePath, FilenameFilter filter) {
 		File parent = new File(iFilePath);
 
 		if (parent.exists() && parent.canRead() && parent.isDirectory()) {
-			File[] children = parent.listFiles();
+			File[] children = parent.listFiles(filter);
 			return children;
 		}
 		

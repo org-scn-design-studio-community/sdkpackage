@@ -16,9 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
 var org_scn_community_basics = org_scn_community_basics || {};
 var org_scn_community_require = org_scn_community_require || {};
+
+/* IMPORTANT! ORIGINAL LOCATION - basics/res */
 
 // set the version to assure cache is cleared
 org_scn_community_require.jsVersion = "20140325";
@@ -171,7 +172,7 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 	
 	org_scn_community_require.collectRequire = function (arrayOfRequires) {
 		
-		org_scn_community_require.loadMinWHerePossible = false;
+		org_scn_community_require.loadMinWHerePossible = true;
 		
 		var retObject = {};
 		

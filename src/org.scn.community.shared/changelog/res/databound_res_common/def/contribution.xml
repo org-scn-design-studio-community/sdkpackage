@@ -1,0 +1,11 @@
+
+<component
+	id="ChangeLog_databound_common"
+	title="Databound - Common (Res)"
+	path="databound/res"
+	handlerType="div"
+	group="ScnCommunityFramework"
+	filterStart="common_data"
+>
+
+</component>
