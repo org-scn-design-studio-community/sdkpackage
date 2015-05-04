@@ -52,10 +52,11 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	var c_ValueDisplayType_KEY_TEXT	= "Key+Text";
 	var c_ValueDisplayType_TEXT_KEY	= "Text+Key";
 	
-	var c_DebugFlag					= true;
+	var c_DebugFlag					= false;
 	
 	var c_CSSClassSelectedItem		= "selected-menu-item";
 	var c_CSSClassSelectedParents	= "selected-menu-parents";
+	var c_CSSClassHasSubMenu		= "has-sub";
 	
 	/*
 	 * Others
@@ -258,162 +259,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	this.checkData = function() {
 		
 	}
-
-	/*
-	 * Method updateDisplay
-	 * 
-	 * Will update all the display and redraw the menu, using UL, LI and A
-	 */
-	this.updateDisplayFromDim = function() {
-
-		//var hasData = org_scn_community_databound.hasData(data);
-		
-		//if(!hasData) {
-		//	return;
-		//}
-		
-		this.debugConsoleDir(data, "this.updateDisplay / var data");
-		
-		var rootUL		= null;
-		var dim 		= null;
-		
-//		Look for the selected dimension
-		for(var i=0;i<data.dimensions.length;i++){
-			if (data.dimensions[i].key == _propSelChar) {
-				dimensionId = i;
-				
-				dim = data.dimensions[i];
-				break;
-			}
-		}
-		
-		if (dimensionId == -1) {
-			this.$().append($('<p>Please select a dimension</p>'));
-		} else {
-			
-			console.dir(dim);
-			//Should parse and display the member as list				
-			var curParent 	= null;
-			var curNode     = null;
-			
-//			Create the first node as NAV
-			var rootNav		= document.createElement("NAV");
-//			Set the ID for CSS purpose
-//			Please note that a correct HTML document should only have one occurence of an ID
-//			Therefore, if several dropdown menus are added in the document, the HTML would not be striclty correct.
-			rootNav.id 			= wrap_id;
-			rootNav.className 	= rootNav.className + " primary_nav_wrap";
-			
-//			Createt the first UL section
-			rootUL		= document.createElement("UL");
-			
-			rootNav.appendChild(rootUL);
-			
-			/*
-			 * If the user wanted to add a false first root node, we have to add it
-			 */
-			if (_propAddSingleRootNode) {
-				var newLI 	= this.createLIText(_propSingleRootNodeName);
-				var newUL	= document.createElement("UL");
-				newLI.appendChild(newUL);
-				
-				rootUL.appendChild(newLI);
-				
-				rootUL = newUL;
-			};
-			
-//			This table if a LIFO pile and will be used to track the parents
-			var trackPile	= [];
-			
-			//keep track of the UL parents all the time
-			trackPile.push(rootUL);
-			
-			curParent		= rootUL;
-			
-			var curLevel	= 0;
-			var lastLevel	= 0;
-			
-			var subMenu 	= false;
-			
-//			Loop at each member of the hierarchy
-			for(var j=0;j<dim.members.length;j++){
-				var mem = dim.members[j];
-				
-//				Ignore result lines
-				if (mem.type == "RESULT")
-					continue;
-				
-//				Keep track of the last level
-				lastLevel = curLevel;
-				
-//				The first node do not have a level property, therefore = 0
-				if (mem.hasOwnProperty('level')) {
-					curLevel = mem.level;
-				}
-				else {
-					curLevel = 0;
-				}
-				
-				if (curLevel == lastLevel) {
-					// on the same level, add a LI, no pile modification
-//					Only need to create a new LI, after the IF
-				} else if (curLevel > lastLevel) {
-					//We have gone one level under
-					//should pile, create a LI and a UL inside
-					
-					var newUL	= document.createElement("UL");
-					curNode.appendChild(newUL);
-					
-					trackPile.push(curParent);
-					
-					curParent 	= newUL;
-					
-				} else if (curLevel < lastLevel) {
-					//went back some level before
-					//need to depile
-					var nbPop 	= lastLevel - curLevel;
-					var curPop 	= 0;
-					do {
-						curParent = trackPile.pop();
-						curPop++;
-					} while (curPop < nbPop);
-				}
-				
-				if (_propAddSingleRootNode) {
-					subMenu = true;
-				} else {
-					subMenu = curLevel>0;
-				}
-				
-				curNode = this.createLI(mem, subMenu);
-				curParent.appendChild(curNode);
-			};
-			
-			var jqResButton = null;
-			if (_propResetButton != c_ResetButton_NODISP) {
-//				Create a JQuery element to make it easier to call a onClick method
-				jqResButton = jQuery(this.createLIText("X"));
-				jqResButton.click(actionOnReset);
-			}
-			
-			if (!!jqResButton) {
-				var rootULJq = jQuery(rootNav.firstChild);
-				
-//				Depending on where the root node should be added, get the first child and Prepand or append
-				switch (_propResetButton) {
-					case c_ResetButton_LEFT:
-						rootULJq.prepend(jqResButton);
-						break;
-					case c_ResetButton_RIGHT:
-						rootULJq.append(jqResButton);
-						break;
-				};
-			}
-			
-//			Append the list to the HTML
-			this.$().append(rootNav);
-		}
-	}
 	
 	/*
 	 * Method updateDisplay
@@ -422,12 +267,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	 */
 	this.updateDisplayFromData = function() {
 
-		//var hasData = org_scn_community_databound.hasData(data);
-		
-		//if(!hasData) {
-		//	return;
-		//}
-		
 		this.debugConsoleDir(data, "this.updateDisplayFromData / var data");
 		
 		//Convert the data to a 2D table, easily usable by code
@@ -456,27 +295,27 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			var curNode     = null;
 			
 //			Create the first node as NAV
-			var rootNav		= document.createElement("NAV");
+			var rootNav		= $('<nav/>');
 //			Set the ID for CSS purpose
 //			Please note that a correct HTML document should only have one occurence of an ID
 //			Therefore, if several dropdown menus are added in the document, the HTML would not be striclty correct.
-			rootNav.id 			= wrap_id;
-			rootNav.className 	= rootNav.className + " primary_nav_wrap";
+			rootNav.attr("id", wrap_id);
+			rootNav.addClass("primary_nav_wrap");
 			
 //			Createt the first UL section
-			rootUL		= document.createElement("UL");
+			rootUL		= $('<ul/>');
 			
-			rootNav.appendChild(rootUL);
+			rootNav.append(rootUL);
 			
 			/*
 			 * If the user wanted to add a false first root node, we have to add it
 			 */
 			if (_propAddSingleRootNode) {
 				var newLI 	= this.createLIText(_propSingleRootNodeName);
-				var newUL	= document.createElement("UL");
-				newLI.appendChild(newUL);
+				var newUL	= $('<ul/>');
+				newLI.append(newUL);
 				
-				rootUL.appendChild(newLI);
+				rootUL.append(newLI);
 				
 				rootUL = newUL;
 			};
@@ -492,7 +331,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			var curLevel	= 0;
 			var lastLevel	= 0;
 			
-			var subMenu 	= false;
+			var isSubMenu 	= false;
 			
 //			Loop at each member of the hierarchy
 			for(var i=0;i<transformedResultSet.length;i++){
@@ -513,6 +352,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 				
 //				Keep track of the last level
 				lastLevel = curLevel;
+			
 				
 //				The first node do not have a level property, therefore = 0
 				if (dim.hasOwnProperty('level')) {
@@ -530,8 +370,9 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 					//We have gone one level under
 					//should pile, create a LI and a UL inside
 					
-					var newUL	= document.createElement("UL");
-					curNode.appendChild(newUL);
+					var newUL	= $('<ul/>');
+					curNode.append(newUL);
+					curNode.addClass(c_CSSClassHasSubMenu);
 					
 					trackPile.push(curParent);
 					
@@ -549,24 +390,24 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 				}
 				
 				if (_propAddSingleRootNode) {
-					subMenu = true;
+					isSubMenu = true;
 				} else {
-					subMenu = curLevel>0;
+					isSubMenu = curLevel>0;
 				}
 				
-				curNode = this.createLI(dim, weight, subMenu);
-				curParent.appendChild(curNode);
+				curNode = this.createLI(dim, weight, isSubMenu);
+				curParent.append(curNode);
 			};
 			
 			var jqResButton = null;
 			if (_propResetButton != c_ResetButton_NODISP) {
 //				Create a JQuery element to make it easier to call a onClick method
-				jqResButton = jQuery(this.createLIText("X"));
+				jqResButton = this.createLIText("X");
 				jqResButton.click(actionOnReset);
 			}
 			
 			if (!!jqResButton) {
-				var rootULJq = jQuery(rootNav.firstChild);
+				var rootULJq = rootNav.children(":first")
 				
 //				Depending on where the root node should be added, get the first child and Prepand or append
 				switch (_propResetButton) {
@@ -584,29 +425,29 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 		}
 	}
 	
-	this.createLIBase = function(pKey, pText, pLevel, pWeight, activateSubMenu){
-		var node 		= document.createElement("LI");
+	this.createLIBase = function(pKey, pText, pLevel, pWeight, isSubMenu){
+		//var node 		= document.createElement("LI");
+		var node 		= $('<li/>');
 		
-		if (activateSubMenu)
-			node.className = node.className + " submenu";
+		if (isSubMenu)
+			node.addClass(isSubMenu);
+			//node.className = node.className + " isSubMenu";
 		
-		var genDiv 		= document.createElement("DIV");
+		var genDiv 		= $('<div/>');
+		//document.createElement("DIV");
 		
-		genDiv.setAttribute("valuekey", pKey );
-		genDiv.setAttribute("globdiv", "true" );
+		genDiv.attr("valuekey", pKey );
+		genDiv.attr("globdiv", "true" );
 //		genDiv.className 	= "content";
 		
-		genDiv.setAttribute("firstLink", "true");
+		genDiv.attr("firstLink", "true");
 		
 //		link.name 		= div_id + pKey + "LI";
 		
-		var genDivJq 		= jQuery(genDiv);
-		genDivJq.click(actionOnClick);
+		genDiv.click(actionOnClick);
 		
-		genDiv = genDivJq.get()[0];
-		
-		var divKey 		= document.createElement("SPAN");
-		divKey.className 	= "DDP_TEXT";
+		var divKey 		= $('<span/>');
+		divKey.addClass("DDP_TEXT");
 		
 //		var link		= document.createElement("A");
 		
@@ -631,22 +472,21 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 					break;
 			};
 		}
-		genDiv.setAttribute("valuetext", textTmp);
-		textNode 		= document.createTextNode(textTmp);
+		genDiv.attr("valuetext", textTmp);
+		//textNode 		= document.createTextNode(textTmp);
 		
-		divKey.appendChild(textNode);
-		genDiv.appendChild(divKey);
+		divKey.text(textTmp);
+		genDiv.append(divKey);
 		
 		//Check if the weight is filled
 		if (pWeight != "" && _propAddWeight) {
 			//Check if the value is present
 			if (pWeight.source != "") {
-				var divWeight 	= document.createElement("SPAN");
-				divWeight.className = "DDP_WEIGHT";
-				textNode 		= document.createTextNode(pWeight.formated);
+				var divWeight 	= $('<span/>');
+				divWeight.addClass("DDP_WEIGHT");
+				divWeight.text(pWeight.formated);
 				
-				divWeight.appendChild(textNode);
-				genDiv.appendChild(divWeight);
+				genDiv.append(divWeight);
 				
 				if (_colorClassArray.length > 0) {
 					
@@ -657,25 +497,25 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 						
 						if ((pWeight.source >= low && pWeight.source <= high)) {
 							//Apply CSS class
-							node.className 	= node.className + " " + cssClass;
+							node.addClass(cssClass);
 						}
 					}
 				}
 			}
 		}
 		
-		node.appendChild(genDiv);
+		node.append(genDiv);
 		
 		return node;
 	}
 	
-	this.createLI = function(mem, weight, activateSubMenu) {
+	this.createLI = function(mem, weight, isSubMenu) {
 		var lvl = 0;
 		
 		if (mem.hasOwnProperty('level')) {
 			lvl = mem.level;
 		}
-		return this.createLIBase(mem.key, mem.text, lvl, weight, activateSubMenu );
+		return this.createLIBase(mem.key, mem.text, lvl, weight, isSubMenu );
 	}
 	
 	this.createLIText = function(text) {
@@ -693,7 +533,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 //		link.appendChild(nodeText);
 //		node.appendChild(link);
 		
-		var node = this.createLIBase(text, text, "", "" );
+		var node = this.createLIBase(text, text, "", "", false );
 		
 		return node;
 	}
@@ -817,7 +657,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 		
 		transformedMetadata = rowDimSorted.concat(colMeasSorted);
 		
-		console.dir(transformedMetadata);
+		this.debugConsoleDir("transformedMetadata", transformedMetadata);
 		
 		for (var i = 0; i < numberOfDataTuples; i++) {
 			var rowTuple = [];
