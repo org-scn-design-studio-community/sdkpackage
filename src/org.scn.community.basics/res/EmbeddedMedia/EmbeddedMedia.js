@@ -63,8 +63,8 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.EmbeddedMedia"
 
 		// styles content
     	html = html.concat("style=\"");
-    	html = html.concat("width:",this.$().outerWidth(), "px",";");
-		html = html.concat("height:",height, "px",";");
+    	html = html.concat("width:100%",";");
+		html = html.concat("height:100%",";");
 		html = html.concat("margin:","none",";");
 		html = html.concat("padding:","none",";");
 		html = html.concat("border:","none",";");
