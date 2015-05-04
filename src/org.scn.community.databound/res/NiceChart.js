@@ -22,12 +22,11 @@ myComponentData.instance = function () {
     var that = this;
 	
 	this.init = function() {
-		that._oContentPlaced = false;
-		that._chart = undefined;
+		// nothing to do
 	};
 	
 	this.afterUpdate = function() {
-		if(!that._oContentPlaced) {
+		if(!that._afterRender) {
 			// Get the context of the canvas element we want to select
 			var $ = document; // shortcut
 			that._jqThis = that.$();
@@ -65,13 +64,14 @@ myComponentData.instance = function () {
 			that._ctx = that._canvas.getContext("2d");
 			that._chartInstance = new Chart(that._ctx);
 
-			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._canvas, this.onResize);
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._canvas, this.onSizeChanged);
+			
+			that._afterRender = true;
 		}
 
 		that._options = that.getPreparedOptions();
 		
 		org_scn_community_basics.determineOwnSize(that);
-		this.resetSizes();
 		
 		that.afterPrepare = function () {
 			if(that._chart) {
@@ -90,12 +90,7 @@ myComponentData.instance = function () {
 		that.getPreparedData(that.afterPrepare);
 	};
 	
-	this.onResize = function (width, height) {
-		that.resetSizes(width, height);
-		that.afterPrepare();
-	}
-	
-	this.resetSizes = function (width, height) {
+	this.onSizeChanged = function (width, height) {
 		if(!width) { width = that._containerWidth; }
 		if(!height) { height = that._containerHeight; }
 		
@@ -137,6 +132,8 @@ myComponentData.instance = function () {
 			that._overflow.style.height =  '0px';
 			that._overflow.style.display = "none";
 		}
+		
+		that.afterPrepare();
 	}
 	
 	this.getPreparedData = function (afterPrepare) {

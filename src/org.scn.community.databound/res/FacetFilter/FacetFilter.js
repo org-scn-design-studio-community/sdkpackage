@@ -92,6 +92,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.FacetFi
 
 	initDesignStudio: function() {
 		var that = this;
+		that._oContentPlaced = false;
 		
 		that._facetFilter = new sap.ui.ux3.FacetFilter(this.getId() + "_ff");
 		

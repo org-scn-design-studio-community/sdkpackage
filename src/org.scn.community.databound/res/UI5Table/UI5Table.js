@@ -109,11 +109,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		that._oModel = new sap.ui.model.json.JSONModel(); 
 		that._table.setModel(that._oModel);
 
-    	this.addContent(
-    		that._table,
-			{left: "0px", top: "0px"}
-		);
-
     	that.onResizeCallback = function(width, height) {
     		var visibleRows = that.getDVisibleRowCount();
     		

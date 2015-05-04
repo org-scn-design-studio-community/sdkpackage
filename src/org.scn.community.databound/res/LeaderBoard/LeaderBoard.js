@@ -75,6 +75,8 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
   
 	initDesignStudio: function() {
 		var that = this;
+		this._oContentPlaced = false;
+		
 		this._ownScript = _readScriptPath();
 		
 		this._oElements = {};

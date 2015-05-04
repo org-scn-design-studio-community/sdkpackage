@@ -9,8 +9,6 @@ var d3plug = d3plug || {};
 (function() {
 
     d3plug.gantt = function(oWidth, oHeight, margin) {
-        var gantt = this;
-
         var FIT_TIME_DOMAIN_MODE = "fit";
         var FIXED_TIME_DOMAIN_MODE = "fixed";
 
@@ -21,6 +19,8 @@ var d3plug = d3plug || {};
         var taskStatus = [];
         var height = oHeight - margin.top - margin.bottom - 5;
         var width = oWidth - margin.right - margin.left - 5;
+        
+        var ownId = "";
 
         var tickFormat = "%H:%M";
 
@@ -71,12 +71,12 @@ var d3plug = d3plug || {};
         };
 
         this.draw = function(parentId, tasks) {
-        	this._parentId = parentId;
+        	ownId = parentId;
         	
             this.initTimeDomain(tasks);
             this.initAxis();
 
-            var parent = d3.select("#" + parentId);
+            var parent = d3.select("#" + ownId);
 
             var svg = parent.append("svg");
 			var main = svg.append("g");
@@ -116,22 +116,25 @@ var d3plug = d3plug || {};
 
             this.adjustAxes(xa, ya);
 
-            return gantt;
+            return this;
 
         };
 
 		this.adjustContent = function (svg, main) {
-		    svg.attr("class", "chart")
+		    svg.attr("id", ownId + "_s")
+		    	.attr("class", "chart")
             	.attr("width", width + margin.left + margin.right)
             	.attr("height", height + margin.top + margin.bottom);
 			
-		    main.attr("class", "gantt-chart")
+		    main.attr("id", ownId + "_m")
+	    		.attr("class", "gantt-chart")
                 .attr("width", width)
                 .attr("height", height)
                 .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 		};
 		this.adjustAxes = function (xa, ya) {
-			xa.attr("class", "x axis")
+			xa.attr("id", ownId + "_x")
+	    		.attr("class", "x axis")
 	            .attr("transform", "translate("+ margin.left +", " + (height + margin.top - margin.bottom - 20) + ")")
 	            .transition()
 	            .call(xAxis)
@@ -143,7 +146,8 @@ var d3plug = d3plug || {};
 		                return "rotate(-65)" 
 		              });
 	        	// http://www.d3noob.org/2013/01/how-to-rotate-text-labels-for-x-axis-of.html
-          	ya.attr("class", "y axis")
+          	ya.attr("id", ownId + "_y")
+          		.attr("class", "y axis")
             	.attr("transform", "translate("+ margin.left +", " + margin.top + ")")
             	.transition()
             	.call(yAxis);
@@ -154,9 +158,9 @@ var d3plug = d3plug || {};
             this.initTimeDomain(tasks);
             this.initAxis();
 
-            var parent = d3.select("#" + this._parentId);
-            var svg = parent.select(".chart");
-			var main = svg.select(".gantt-chart");
+            var parent = d3.select("#" + ownId);
+            var svg = parent.select("#" + ownId + "_s");
+			var main = svg.select("#" + ownId + "_m");
 			
 			this.adjustContent(svg, main);
                 
@@ -196,26 +200,26 @@ var d3plug = d3plug || {};
                 })
             rect.exit().remove();
 
-            var xa = svg.select(".x");
-            var ya = svg.select(".y");
+            var xa = svg.select("#" + ownId + "_x");
+            var ya = svg.select("#" + ownId + "_y");
             
             this.adjustAxes(xa, ya);
 
-            return gantt;
+            return this;
         };
 
         this.margin = function(value) {
             if (!arguments.length)
                 return margin;
             margin = value;
-            return gantt;
+            return this;
         };
 
         this.timeDomain = function(value) {
             if (!arguments.length)
                 return [timeDomainStart, timeDomainEnd];
             timeDomainStart = +value[0], timeDomainEnd = +value[1];
-            return gantt;
+            return this;
         };
 
         /**
@@ -227,7 +231,7 @@ var d3plug = d3plug || {};
             if (!arguments.length)
                 return timeDomainMode;
             timeDomainMode = value;
-            return gantt;
+            return this;
 
         };
 
@@ -235,37 +239,37 @@ var d3plug = d3plug || {};
             if (!arguments.length)
                 return taskTypes;
             taskTypes = value;
-            return gantt;
+            return this;
         };
 
         this.taskStatus = function(value) {
             if (!arguments.length)
                 return taskStatus;
             taskStatus = value;
-            return gantt;
+            return this;
         };
 
         this.width = function(value) {
             if (!arguments.length)
                 return width;
             width = +value;
-            return gantt;
+            return this;
         };
 
         this.height = function(value) {
             if (!arguments.length)
                 return height;
             height = +value;
-            return gantt;
+            return this;
         };
 
         this.tickFormat = function(value) {
             if (!arguments.length)
                 return tickFormat;
             tickFormat = value;
-            return gantt;
+            return this;
         };
-
-        return gantt;
+        
+        return this;
     };
 })(); // End of closure

@@ -123,7 +123,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 	_initComponent : function() {
 		var that = this;
 		
-		this._oAccordion = new sap.ui.commons.Accordion();
+		that._oAccordion = new sap.ui.commons.Accordion();
 		
 		that._oAccordion.attachSectionOpen(function(oControlEvent, oControl) {
 			var lElementId = oControlEvent.getParameters().openSectionId;
@@ -146,21 +146,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		});
 		
 		this.onAfterRendering = function () {
-			if(that._oAccordionPlaced != true) {
-				var jqThis = that.$();
-				
-				that._containerWidth = (jqThis.outerWidth(true) - 6) + "px";
-				that._containerHeight = jqThis.outerHeight(true) + "px";
-
-				this.addContent(
-						this._oAccordion,
-						{left: "0px", top: "0px"}
-				);
-				
-				this._oAccordion.setWidth(that._containerWidth);
-				
-				that._oAccordionPlaced = true;
-			}
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oAccordion);
 		}
 	},
 	

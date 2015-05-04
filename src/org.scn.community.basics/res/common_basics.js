@@ -30,25 +30,41 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 			);
 		}
 		
-		parent._oResize = function() {
-			org_scn_community_basics.determineOwnSize(parent);
+		parent._oResize = function(ignoreOwner) {
+			var changed = org_scn_community_basics.determineOwnSize(parent, true);
 
-			if(mainObject.setWidth) {
-				mainObject.setWidth(parent._containerWidth + "px");	
-			}
-			
-			if(mainObject.setHeight) {
-				mainObject.setHeight(parent._containerHeight + "px");	
-			}
-			
-			if(callback) {
-				callback(parent._containerWidth, parent._containerHeight);
+			if(changed) {
+				if(mainObject.setWidth) {
+					mainObject.setWidth(parent._containerWidth-2 + "px");	
+				}
+				
+				if(mainObject.setHeight) {
+					mainObject.setHeight(parent._containerHeight-2 + "px");	
+				}
+				
+				if(!ignoreOwner) {
+					if(parent.setWidth) {
+						parent.setWidth(parent._containerWidth + "px", true);	
+					}
+					
+					if(parent.setHeight) {
+						parent.setHeight(parent._containerHeight + "px", true);	
+					}
+				}
+				
+				if(callback) {
+					callback(parent._containerWidth, parent._containerHeight);
+				}
 			}
 		};
 		
-		// attach resize handler
-		org_scn_community_basics.addEvent(parent.$()[0], "resize", parent._oResize);
-		org_scn_community_basics.resizableComponents.push(parent);
+		
+		if(!parent._oEventREgistered) {
+			// attach resize handler once
+			org_scn_community_basics.addEvent(parent.$()[0], "resize", parent._oResize);
+			org_scn_community_basics.resizableComponents.push(parent);
+			parent._oEventREgistered = true;
+		}
 		
 		// attach resize handler
 		if(!org_scn_community_basics.onWindowResizeInserted) {
@@ -56,28 +72,52 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 		}
 		
 		// call resize handler
-		parent._oResize();	
+		setTimeout(function() {
+			var myVar = parent;
+			myVar.$()[0].style.display = "block";
+			myVar._oResize();
+		}, 100);
 
+		// parent.$()[0].style.display = "none";
+		
 		// redefine the layout functions
 		var currentWidthFunction = parent.setWidth;
 		var currentHeightFunction = parent.setHeight;
 
 		if(currentWidthFunction) {
-			parent.setWidth = function (value) {
+			parent.setWidth = function (value, doNotResizeAgain) {
 				var r = currentWidthFunction.call(parent, value);
-				// always trigger resize
-				parent._oResize();
+				if(!doNotResizeAgain) {
+					parent._oResize(true);
+				}
 				
 				return r;
 			};
+		} else {
+			parent.setWidth = function (value, doNotResizeAgain) {
+				if(!doNotResizeAgain) {
+					parent._oResize(true);
+				}
+				
+				return parent;
+			};
 		}
 		if(currentHeightFunction) {
-			parent.setHeight = function (value) {
+			parent.setHeight = function (value, doNotResizeAgain) {
 				var r = currentHeightFunction.call(parent, value);
-				// always trigger resize
-				parent._oResize();
+				if(!doNotResizeAgain) {
+					parent._oResize(true);
+				}
 				
 				return r;
+			};
+		} else {
+			parent.setHeight = function (value, doNotResizeAgain) {
+				if(!doNotResizeAgain) {
+					parent._oResize(true);
+				}
+				
+				return parent;
 			};
 		}
 		
@@ -85,19 +125,13 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 	};
 };
 
-org_scn_community_basics.determineOwnSize = function(parent) {
-	var jqThis = parent.$();
-
-	parent._containerWidth = jqThis.outerWidth(true);
-	parent._containerHeight = jqThis.outerHeight(true);
-	
-	var realHeightIsCorrect = true;
-	if(parent._containerHeight == 0) {
-		realHeightIsCorrect = false;
-	}
-	
+org_scn_community_basics.findParentContainer = function(parent) {
 	var myParent = parent;
-	while(parent._containerHeight == 0) {
+	
+	var max = 25;
+	var counter = 0;
+	
+	while(myParent.zenControlType == undefined || myParent.zenControlType == "tab" ||  myParent.zenControlType.indexOf("sdk") == 0) {
 		myParentParent = undefined;
 		if(myParent.getParent != undefined) {
 			myParentParent = myParent.getParent();
@@ -108,22 +142,82 @@ org_scn_community_basics.determineOwnSize = function(parent) {
 		
 		if(myParentParent != undefined) {
 			myParent = myParentParent;
-			parent._containerHeight = myParent.$().outerHeight(true);	
 		}
 		
-		if(!myParent) {
+		if(!myParent || counter > max) {
 			break;
+		}
+		
+		counter = counter + 1;
+	}
+	
+	return myParent;
+};
+
+org_scn_community_basics.determineOwnSize = function(parent, resizeTrigger) {
+	var orgParent = parent;
+
+	var sizeChanged = false;
+
+	// in case the component is on auto resize mode
+	if(orgParent.oComponentProperties) {
+		if(orgParent.oComponentProperties.width == "auto" || orgParent.oComponentProperties.height == "auto") {
+			parent = org_scn_community_basics.findParentContainer(parent);	
+		}
+
+		var jqThis = parent.$();
+		
+		var outerSizeRead = "";
+		if(orgParent.oComponentProperties.width == "auto") {
+			orgParent._containerWidth = jqThis.outerWidth(true);
+			outerSizeRead = "W";
+		} else {
+			if(orgParent.oComponentProperties.width) {
+				orgParent._containerWidth = parseInt(orgParent.oComponentProperties.width);
+			}
+		}
+		
+		if(orgParent.oComponentProperties.height == "auto") {
+			orgParent._containerHeight = jqThis.outerHeight(true);
+			outerSizeRead = outerSizeRead + "H";
+		} else {
+			if(orgParent.oComponentProperties.height) {
+				orgParent._containerHeight = parseInt(orgParent.oComponentProperties.height);	
+			}
+		}
+		
+		if (orgParent.oComponentProperties && outerSizeRead.indexOf("W") > -1) {
+			if(orgParent.oComponentProperties.width == "auto") {
+				orgParent._containerWidth = orgParent._containerWidth - orgParent.oComponentProperties.leftmargin;
+				orgParent._containerWidth = orgParent._containerWidth - orgParent.oComponentProperties.rightmargin;
+			}	
+		}
+		
+		if (orgParent.oComponentProperties && outerSizeRead.indexOf("H") > -1) {
+			if(orgParent.oComponentProperties.height == "auto") {
+				orgParent._containerHeight = orgParent._containerHeight - orgParent.oComponentProperties.topmargin;
+				orgParent._containerHeight = orgParent._containerHeight - orgParent.oComponentProperties.bottommargin;
+			}
+		}
+
+		if(parent.zenControlType == "tabstrip") {
+			var line = jqThis.children()[0];
+			if(line) {
+				orgParent._containerHeight = orgParent._containerHeight-line.clientHeight;
+			}
+		}			
+
+		if(orgParent._oldContainerWidth != orgParent._containerWidth) {
+			sizeChanged = true;
+			if(resizeTrigger) orgParent._oldContainerWidth = orgParent._containerWidth;
+		}
+		if(orgParent._oldContainerHeight != orgParent._containerHeight) {
+			sizeChanged = true;
+			if(resizeTrigger) orgParent._oldContainerHeight = orgParent._containerHeight;
 		}
 	}
 
-	if(!realHeightIsCorrect) {
-		if (parent.oComponentProperties) {
-			if(parent.oComponentProperties.height == "auto") {
-				parent._containerHeight = parent._containerHeight - parent.oComponentProperties.topmargin;
-				parent._containerHeight = parent._containerHeight - parent.oComponentProperties.bottommargin;
-			}
-		}
-	}
+	return sizeChanged;
 };
 
 org_scn_community_basics.addEvent = function(elem, type, eventHandle) {
@@ -139,7 +233,18 @@ org_scn_community_basics.addEvent = function(elem, type, eventHandle) {
 
 org_scn_community_basics.onWindowResizeInserted = false;
 org_scn_community_basics.resizableComponents = [];
+
+org_scn_community_basics.resizeHolder = false;
+
 org_scn_community_basics.onWindowResize = function() {
+	if(org_scn_community_basics.resizeHolder !== false) {
+		clearTimeout(org_scn_community_basics.resizeHolder);
+	}
+    
+	org_scn_community_basics.resizeHolder = setTimeout(org_scn_community_basics.onWindowResizeExecutor, 200);
+};
+
+org_scn_community_basics.onWindowResizeExecutor = function() {
 	for (var compIndex in org_scn_community_basics.resizableComponents) {
 		var component = org_scn_community_basics.resizableComponents[compIndex];
 		
