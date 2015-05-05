@@ -1,22 +1,18 @@
 
 <component
 	id="MultiLevelDropDown"
-	title="Multi Level DropDown Menu"
-	icon="res/MultiLevelDropDown/MultiLevelDropDown.gif"
+	title="Hierarchical Menu"
+	icon="res/MultiLevelDropDown/tree_layout.png"
 	handlerType="div"
 	propertySheetPath="res/MultiLevelDropDown/aps/MultiLevelDropDown.html"
 	databound="true"
 	group="ScnCommunityDataBound">
 	
-	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
-	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-
+	<stdInclude kind="cvom"/>
 	<jsInclude>res/MultiLevelDropDown/MultiLevelDropDown.js</jsInclude>
 	
 	<!--CSS adapted from http://codepen.io/philhoyt/pen/ujHzd-->
-	<cssInclude>res/MultiLevelDropDown/MultiLevelDropDown.css</cssInclude>
+	<!--<cssInclude>res/MultiLevelDropDown/MultiLevelDropDown.css</cssInclude>-->
 	
 	<!-- Result set containing the data-->
 		<property 
@@ -27,12 +23,30 @@
 			visible="false">
 		</property>
 		
-		<!-- Selected menu, not used -->
+		<!-- Selected characteristic in the APS -->
 		<property 
 			type="String" 
 			title="selChar" 
 			id="selChar" 
 			visible="false">
+		</property>
+		
+		<!-- JSON colorClass in APS-->
+		<property 
+			type="String" 
+			title="colorClass" 
+			id="colorClass" 
+			visible="false">
+		</property>
+		
+		<!-- valueDisplayType -->
+		<property 
+			type="String" 
+			title="Value display type" 
+			id="valueDisplayType" >
+			<possibleValue>Key</possibleValue>
+			<possibleValue>Key+Text</possibleValue>
+			<possibleValue>Text+Key</possibleValue>
 		</property>
 		
 		<!-- Add Single root node instead of all the first child of the hierarchy -->
@@ -45,7 +59,7 @@
 		<!-- Name of the Single root node-->
 		<property 
 			type="String" 	
-			title="Single root node name" 	
+			title="Single Root Node Name" 	
 			id="singleRootNodeName">
 		</property>
 		
@@ -61,13 +75,14 @@
 		<property 
 			type="String" 	
 			title="clicked Element Key" 	
-			id="clickedElemKey" 		
+			id="selectedElemKey" 		
 			visible="false">
 		</property>
+		
 		<property 
 			type="String" 	
-			title="clicked Element Text" 	
-			id="clickedElemText" 		
+			title="Selected Element Text" 	
+			id="selectedElemText" 		
 			visible="false">
 		</property>
 		
@@ -83,9 +98,32 @@
 		<!-- On Reset event property-->
 		<property 
 			type="ScriptText" 
-			title='onReset' 				
+			title='On Reset' 				
 			id="onReset"				
 			group="Events">
+		</property>
+		
+		<!-- Choose to display weight -->
+		<property
+			type="boolean" 
+			title="Display a Weight" 	
+			id="addWeight">
+		</property>
+		
+		<!-- Selected Weight -->
+		<property 
+			type="String" 
+			title="Display Weight KF" 
+			id="selWeight"
+			visible="false">
+		</property>
+		
+		<!-- Color Coding Weight -->
+		<property 
+			type="String" 
+			title="Color Coding Weight" 
+			id="colorClassWeight"
+			visible="false">
 		</property>
 
 		<initialization>
@@ -103,5 +141,13 @@
 			<defaultValue property="clickedElemKey">INITIAL VALUE</defaultValue>
 			<!-- resetButton -->
 			<defaultValue property="resetButton">None</defaultValue>
+			<!-- addWeight -->
+			<defaultValue property="addWeight">false</defaultValue>
+			<!-- selWeight -->
+			<defaultValue property="selWeight"></defaultValue>
+			<!-- selWeight -->
+			<defaultValue property="valueDisplayType">Key+Text</defaultValue>
+			<defaultValue property="colorClassWeight"></defaultValue>
+			
 		</initialization>
 </component>

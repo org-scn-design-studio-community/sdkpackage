@@ -1,6 +1,7 @@
-
-class org.scn.community.databound.MultiLevelDropDown extends org.scn.community.shared.DataComponent {
-	Boolean getAddSingleRootNode() {*
+class org.scn.community.databound.MultiLevelDropDown extends Component {
+	
+	/** ------- Getter / Setter for addSingleRootNode ------ */
+	boolean getAddSingleRootNode() {*
 		return this.addSingleRootNode;
 	*}
 
@@ -8,22 +9,43 @@ class org.scn.community.databound.MultiLevelDropDown extends org.scn.community.s
 		this.addSingleRootNode = value;
 	*}
 	
-	String getSingleRootName() {*
-		return this.singleRootName;
+	/** ------- Getter / Setter for singleRootName ------ */
+	String getSingleRootNodeName() {*
+		return this.singleRootNodeName;
 	*}
 
-	void setSingleRootName(String newName) {*
-		this.singleRootName = newName;
+	void setSingleRootNodeName(String newName) {*
+		this.singleRootNodeName = newName;
 	*}
 	
-	String getClickedElemKey() {*
-		return this.clickedElemKey;
+	/** ------- Getter / Setter for selectedElemKey ------ */
+	String getSelectedElemKey() {*
+		return this.SelectedElemKey;
 	*}
 
-	void setClickedElemKey(String clicked) {*
-		this.clickedElemKey = clicked;
+	void setSelectedElemKey(String selectedKey) {*
+		this.SelectedElemKey = selectedKey;
 	*}
 	
+	/** ------- Getter / Setter for selectedElemKey ------ */
+	String getvalueDisplayType() {*
+		return this.valueDisplayType;
+	*}
+
+	void setvalueDisplayType(String value) {*
+		this.valueDisplayType = value;
+	*}
+	
+	/** ------- Getter / Setter for selectedElemKey ------ */
+	String getSelectedElemText() {*
+		return this.SelectedElemText;
+	*}
+
+	void setSelectedElemText(String selectedText) {*
+		this.SelectedElemText = selectedText;
+	*}
+	
+	/** ------- Getter / Setter for resetButton ------ */
 	String getResetButton() {*
 		return this.resetButton;
 	*}
@@ -32,6 +54,7 @@ class org.scn.community.databound.MultiLevelDropDown extends org.scn.community.s
 		this.resetButton = value;
 	*}
 
+	/** ------- Getter / Setter for singleRootName ------ */
 	String getDimension() {*
 		return this.selChar;
 	*}
@@ -39,5 +62,33 @@ class org.scn.community.databound.MultiLevelDropDown extends org.scn.community.s
 	void setDimension(String value) {*
 		this.selChar = value;
 	*}
+	
+	/** ------- Getter / Setter for addWeight ------ */
+	boolean getAddWeight() {*
+		return this.addWeight;
+	*}
 
+	void setAddWeight(Boolean value) {*
+		this.addWeight = value;
+	*}
+	
+	/** ------- Getter / Setter for selWeight ------ */
+	String getSelWeight() {*
+		return this.selWeight;
+	*}
+
+	void setSelWeight(String value) {*
+		this.selWeight = value;
+	*}
+	
+	/** ------- Getter / Setter for colorClass ------ */
+	String getColorClass() {*
+		return this.colorClass;
+	*}
+
+	void setColorClass(String value) {*
+		this.colorClass = value;
+	*}
+	
+	
 }
