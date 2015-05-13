@@ -1,0 +1,8 @@
+
+/**
+ * Class for BulletChart
+ */
+class org.scn.community.prototypes.BulletChart extends org.scn.community.shared.Component {
+	
+
+}

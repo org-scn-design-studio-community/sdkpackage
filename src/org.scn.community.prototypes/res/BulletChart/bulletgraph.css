@@ -1,0 +1,51 @@
+.bulletgraph { font: 9px sans-serif; }
+.headerlabel { font-size: 12px; font-weight: bold; }
+.subheaderlabel { fill: #999; }
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+.axis line.tick {
+  stroke: #ccc;
+  stroke-dasharray: 6 2;
+}
+
+.trendlinegraphdiv {
+  position: absolute;
+  background-color: #FFFFFF;
+}
+
+.thresh5 {fill: #e6e6e6; }
+.thresh4 {fill: #cccccc; }
+.thresh3 {fill: #b3b3b3; }
+.thresh2 {fill: #999999; }
+.thresh1 {fill: #666666; }
+.real {fill: #4682b4; }
+.compare {fill: #4682b4; }
+.extrapol{fill: #a2c0d9;}
+
+.alertgood {
+  fill: #AACB4F;
+  stroke: none;
+}
+.alertbad {
+  fill: #D96663;
+  stroke: none;
+}
+.alertnone {
+  fill: #fff;
+  stroke: none;
+  fill-opacity:0 ;
+  stroke-opacity:0;
+}
+.bulletgraphdiv {
+  position: absolute;
+  background-color: #FFFFFF;
+}
