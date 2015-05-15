@@ -10,7 +10,7 @@
 >
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
-	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>os/numberformat/numberformatter-min.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
 

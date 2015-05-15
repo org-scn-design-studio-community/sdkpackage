@@ -717,6 +717,14 @@ class org.scn.community.prototypes.ProgressSet extends org.scn.community.shared.
 }
 
 /**
+ * Class for BulletChart
+ */
+class org.scn.community.prototypes.BulletChart extends org.scn.community.shared.Component {
+	
+
+}
+
+/**
  * Class for SapMList
  */
 class org.scn.community.prototypes.SapMList extends org.scn.community.shared.Component {

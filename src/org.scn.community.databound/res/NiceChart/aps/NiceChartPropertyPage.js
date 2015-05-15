@@ -53,6 +53,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.NiceChar
 		that["fun_DChartType"]._input = new sap.ui.commons.ComboBox({width: "300px"});
 		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"Line", text:"Line"}));
 		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"Bar", text:"Bar"}));
+		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"LineBar", text:"LineBar"}));
 		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"Radar", text:"Radar"}));
 		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"PolarArea", text:"PolarArea"}));
 		that["fun_DChartType"]._input.addItem(new sap.ui.core.ListItem({key:"Pie", text:"Pie"}));

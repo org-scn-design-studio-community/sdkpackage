@@ -30,6 +30,7 @@
 		visible="true">
 			<possibleValue>Line</possibleValue>
 			<possibleValue>Bar</possibleValue>
+			<possibleValue>LineBar</possibleValue>
 			<possibleValue>Radar</possibleValue>
 			<possibleValue>PolarArea</possibleValue>
 			<possibleValue>Pie</possibleValue>

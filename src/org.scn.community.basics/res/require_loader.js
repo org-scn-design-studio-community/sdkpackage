@@ -141,7 +141,7 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 			},
 			numberformatter: {
 				name: "numberformatter",
-				script: "org.scn.community.basics/os/jquery/numberformatter",
+				script: "org.scn.community.basics/os/numberformat/numberformatter",
 				min: true
 			},
 			dateformatter: {

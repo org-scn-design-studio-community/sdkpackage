@@ -400,6 +400,10 @@
 	  	<initialization>
 	  		<defaultValue property="WIDTH">48</defaultValue>
 			<defaultValue property="HEIGHT">48</defaultValue>
+			<defaultValue property="TOP_MARGIN">0</defaultValue>
+			<defaultValue property="LEFT_MARGIN">0</defaultValue>
+			<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+			<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 	  		<defaultValue property="showTitle">true</defaultValue>
 	  		<defaultValue property="icon">sap-icon://menu2</defaultValue>
 	  		<defaultValue property="buttonType">Default</defaultValue>
@@ -481,6 +485,10 @@
 	<property type="String" title="Image Source URI" id="src" group="Display"/>
 	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>			
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="HEIGHT">auto</defaultValue>
 		<defaultValue property="WIDTH">auto</defaultValue>
 		<defaultValue property="src">data:image/png;base64,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</defaultValue>
@@ -778,6 +786,10 @@
 		group="Events"
 		type="ScriptText" />
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">270</defaultValue>
 		<defaultValue property="HEIGHT">134</defaultValue>
 		<defaultValue property="colorString">red</defaultValue>
@@ -916,6 +928,10 @@
 	</property>
 	
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
 		<defaultValue property="editable">true</defaultValue>
@@ -1042,6 +1058,10 @@
 		type="ScriptText"
 		group="Events" />
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
 		<defaultValue property="Dmin"></defaultValue>
@@ -1068,7 +1088,7 @@
 
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/DragDropArea/jquery.ndd.js</jsInclude>
+	<jsInclude>os/ndd/jq.ndd.js</jsInclude>
 	<jsInclude>res/DragDropArea/DragDropArea.js</jsInclude>
 	<cssInclude>res/DragDropArea/DragDropArea.css</cssInclude>
 
@@ -1163,6 +1183,10 @@
 		group="Events" />
 
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
@@ -1442,6 +1466,10 @@
  		<defaultValue property="title">Page Title</defaultValue>
  		 -->
  		<defaultValue property="design">Auto</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
  		<defaultValue property="WIDTH">400</defaultValue>
  		<defaultValue property="HEIGHT">48</defaultValue>
  	</initialization>
@@ -1547,8 +1575,10 @@
 	<property group="Display" type="Color" title="Text and Ticks Color" id="ttColor"/>
 
 	<initialization>
-		<defaultValue property="TOP">0</defaultValue>
-		<defaultValue property="LEFT">0</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">300</defaultValue>
 		<defaultValue property="showNumbers">true</defaultValue>
@@ -1640,7 +1670,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
-	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>os/numberformat/numberformatter-min.js</jsInclude>
 
 	<jsInclude>res/KpiView/KpiView.js</jsInclude>
 	<cssInclude>res/KpiView/KpiView.css</cssInclude>
@@ -1796,6 +1826,10 @@
 		group="Events" />
 
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">220</defaultValue>
 		<defaultValue property="HEIGHT">190</defaultValue>
 
@@ -1829,6 +1863,10 @@
   	<property group="Display" type="String" title="Selected Tile" id="selectedTile" visible="false"/>
   	<property group="Events" type="ScriptText" title="On Tile Select" id="onTileSelect"/>
   	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
   		<defaultValue property="WIDTH">575</defaultValue>
 		<defaultValue property="HEIGHT">575</defaultValue>
   	</initialization>
@@ -2408,7 +2446,7 @@
 		<jsInclude>res/require_loader.js</jsInclude>
 	  	<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/Notify/Notify.js</jsInclude>
-    	<jsInclude>os/noty/packaged/jquery.noty.packaged.js</jsInclude>
+    	<jsInclude>os/noty/packaged/jq.noty.packaged.js</jsInclude>
 	  	<property group="Display" type="String" title="msgtext" id="msgtext" visible="false" />
 		<property group="Display" type="String" title="shownote" id="shownote" visible="false" />
 		<property group="Display" type="String" title="msgtype" id="msgtype" visible="false" />
@@ -2431,6 +2469,10 @@
 	       <possibleValue>false</possibleValue>
 		</property>
 	   <initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 	     <defaultValue property="WIDTH">100</defaultValue>
 	     <defaultValue property="HEIGHT">100</defaultValue>  
 	     <defaultValue property="layout">center</defaultValue>
@@ -2514,6 +2556,10 @@
 		group="Events" />
 
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 
@@ -2550,6 +2596,10 @@
 		type="ScriptText"
 		group="Events" />
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">270</defaultValue>
 		<defaultValue property="HEIGHT">20</defaultValue>
 		<defaultValue property="numberOfPages">3</defaultValue>
@@ -2624,7 +2674,7 @@
 
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>os/jquery-qrcode/jquery.qrcode.min.js</jsInclude>
+	<jsInclude>os/qrcode/jq.qrcode.min.js</jsInclude>
 	<jsInclude>res/QRCode/QRCode.js</jsInclude>
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
 	<property group="Display" type="String" title="QR Code Text" id="text" />
@@ -2666,6 +2716,10 @@
 	-->
 	
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="HEIGHT">256</defaultValue>
 		<defaultValue property="WIDTH">256</defaultValue>
 		<defaultValue property="render">canvas</defaultValue>
@@ -2735,6 +2789,10 @@
 		group="Display" 
 		type="boolean" />
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">270</defaultValue>
 		<defaultValue property="HEIGHT">20</defaultValue>
 		<defaultValue property="barColor">NEUTRAL</defaultValue>
@@ -2824,6 +2882,10 @@
 		type="ScriptText"
 		group="Events" />
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
 		<defaultValue property="min">0.0</defaultValue>
@@ -2972,6 +3034,10 @@
 		id="xslurldimension">
 	</property>
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
 		<defaultValue property="runtimedata">{}</defaultValue>
@@ -3182,6 +3248,10 @@
 		type="ScriptText"
 		group="Events" />
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
 		<defaultValue property="min">0.0</defaultValue>
@@ -3696,6 +3766,10 @@
 	<property group="Display" type="int" title="Update Interval (in ms)" id="interval">
 	</property>
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">150</defaultValue>
 		<defaultValue property="HEIGHT">40</defaultValue>
 		<defaultValue property="utcoffset">0</defaultValue>

@@ -66,12 +66,12 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.KpiView", 
 	},
 	
 	setMetadata : function(value) {
-		this._meta_data = value;
+		this._metadata = value;
 		return this;
 	},
   
 	getMetadata : function() {
-		return this._meta_data;
+		return this._metadata;
 	},
 
 	initDesignStudio: function() {

@@ -1,4 +1,4 @@
-sap.designstudio.sdk.Component.subclass("com.interdobs.analyticcharts.BulletGraph", function() {
+sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChart", function() {
   "use strict";
 
   var that = this;
@@ -7,7 +7,7 @@ sap.designstudio.sdk.Component.subclass("com.interdobs.analyticcharts.BulletGrap
   var componentDimensions = {};
   var tooltip = undefined;
   var sourcedata = {};
-  var dataset = undefined;
+  var data = undefined;
   var commaFormat = d3.format('.');
   var clickProperties = ["clickedgraphkey","clickedgraphtext","clickedserieskey","clickedseriestext","clickedvalue","clickedaxiskey","clickedaxistext"];
   var clicked = {};
@@ -46,8 +46,8 @@ sap.designstudio.sdk.Component.subclass("com.interdobs.analyticcharts.BulletGrap
   this.clickedgraphtext = function(e) { if (e === undefined) {return clicked.graphtext;}else{clicked.graphtext = e;return this;}};
   
   
-  // getter/setter for the dataset
-  this.dataset = function(e) { if (e === undefined) {return sourcedata.factdata;}else{sourcedata.factdata = e;return this;}};
+  // getter/setter for the data
+  this.data = function(e) { if (e === undefined) {return sourcedata.factdata;}else{sourcedata.factdata = e;return this;}};
   this.metadata = function(e) { if (e === undefined) {return sourcedata.metadata;}else{sourcedata.metadata = e;return this;}};
   this.realization = function(e) { if (e === undefined) {return chartProperties.realization;}else{chartProperties.realization = e;return this;}};
   this.comparison = function(e) { if (e === undefined) {return chartProperties.comparison;}else{chartProperties.comparison = e;return this;}};
@@ -58,27 +58,27 @@ sap.designstudio.sdk.Component.subclass("com.interdobs.analyticcharts.BulletGrap
   this.threshold5 = function(e) { if (e === undefined) {return chartProperties.threshold5;}else{chartProperties.threshold5 = e;return this;}};
   
   this.afterUpdate = function() {
-	  dataset = returnData(sourcedata);
+	  data = returnData(sourcedata);
 	  
 	  componentDimensions.width = that.$().outerWidth(true);
 	  componentDimensions.height = that.$().outerHeight(true);
-	  componentDimensions.columnCutOff = Math.floor(dataset.length / chartProperties.numberofcolumns);
-	  componentDimensions.modulusgraphs =  dataset.length % chartProperties.numberofcolumns ;
+	  componentDimensions.columnCutOff = Math.floor(data.length / chartProperties.numberofcolumns);
+	  componentDimensions.modulusgraphs =  data.length % chartProperties.numberofcolumns ;
 	  componentDimensions.graphWidth = componentDimensions.width  / chartProperties.numberofcolumns - chartProperties.columnmargin;
-	  componentDimensions.maxRows = Math.ceil(dataset.length / chartProperties.numberofcolumns);
+	  componentDimensions.maxRows = Math.ceil(data.length / chartProperties.numberofcolumns);
 	  componentDimensions.graphHeight = componentDimensions.height / componentDimensions.maxRows - chartProperties.rowmargin;
 	  if (chartProperties.maxgraphheight>0){componentDimensions.graphHeight =Math.min(componentDimensions.graphHeight,chartProperties.maxgraphheight)} 
 	  if (chartProperties.mingraphheight>0){componentDimensions.graphHeight =Math.max(componentDimensions.graphHeight,chartProperties.mingraphheight)} 
 
 	  componentDimensions.position = $(that.$()[0].parentElement).position();
 	  chartProperties.positions = [];
-	  console.log(dataset);
-	  componentDimensions.titlelength = Math.max.apply(this,$.map(dataset, function(o){ return o.title.length; }))* 8;
+	  console.log(data);
+	  componentDimensions.titlelength = Math.max.apply(this,$.map(data, function(o){ return o.title.length; }))* 8;
 	  if (chartProperties.showalert!="none"){componentDimensions.titlelength+=5};
 	
 	var i=0, j=0;
 	for (i = 0; i < chartProperties.numberofcolumns; i++){for (j = 0; j < componentDimensions.maxRows; j++){chartProperties.positions.push({"x":i, "y":j});}}
-		chartComponents.graphs = chartComponents.chart .selectAll("div.bulletgraphdiv").data(dataset);
+		chartComponents.graphs = chartComponents.chart .selectAll("div.bulletgraphdiv").data(data);
 		chartComponents.graphs .enter()
 		.append("div")
 	   		.attr("class", "bulletgraphdiv");	
@@ -187,7 +187,7 @@ sap.designstudio.sdk.Component.subclass("com.interdobs.analyticcharts.BulletGrap
 			  		thresholds
 					   .attr("width", function(d,i) {var returnval = 0; if(i!=0){ returnval = data[0].threshholds[i-1]}; return xScale(d-returnval);})
 					   .attr("x", function(d,i){var returnval = 0; if(i!=0){ returnval = data[0].threshholds[i-1]}; return xScale(returnval);})
-					   .attr("y", 0).attr("height",barheight)					  		
+					   .attr("y", 0).attr("height",barheight * 0.9)					  		
 
 					realization
 					   .attr("width", function(d) {return xScale(d.real);})
@@ -230,7 +230,7 @@ sap.designstudio.sdk.Component.subclass("com.interdobs.analyticcharts.BulletGrap
 
 	function returnData(sourcedata){
 		var returndata = undefined;
-		if(sourcedata.factdata && sourcedata.metadata) 
+		if(sourcedata.factdata) 
 		{returndata = returnBoundData(sourcedata);} 
 		else 
 		{returndata = returnRandomData();}
@@ -240,12 +240,68 @@ sap.designstudio.sdk.Component.subclass("com.interdobs.analyticcharts.BulletGrap
 	function returnBoundData(sourcedata) {
 		var factNumbers = sourcedata.factdata.data;
 		var factTuples = sourcedata.factdata.tuples;
-		var dimensions = sourcedata.metadata.dimensions;
-		var newData = [];
 		
+		// move dimensions, as the flatten api requires this
+		sourcedata.factdata.dimensions = sourcedata.metadata ? sourcedata.metadata.dimensions: sourcedata.factdata.dimensions;
+		var newData = new Array;
+		
+		// missing code...
+		// try this method to make a simple view on result set
+		var options = org_scn_community_databound.initializeOptions();
+		
+		// flatten the data
+		that._flatData = org_scn_community_databound.flatten(sourcedata.factdata,options);
+		org_scn_community_databound.toRowTable(that._flatData,options);
+		
+		var makeDebugOne = false;
+		if(makeDebugOne) {
+			var singleGroup = {};
+			
+			singleGroup.title = "The Text M";
+			singleGroup.chartKey = "The Key M";
+			singleGroup.subtitle = "Subtitle M";
+			
+			singleGroup.real = 200; // the dark blue
+			singleGroup.extrap = 210; // the background light blue
+			singleGroup.compare = 150; // the | sign
+			
+			singleGroup.threshholds = [50,180,300]; // black to gray values
+			singleGroup.threshholds.sort(sortNumber);
+			
+			singleGroup.values = [singleGroup.real,singleGroup.extrap,singleGroup.compare];
+			singleGroup.values.push.apply(singleGroup.values,singleGroup.threshholds);
 
-		  
-		  return data;
+			newData.push(singleGroup);
+		} else {
+			for(var row = 0; row < that._flatData.rowHeaders.length; row++) {
+				var rowHeader = that._flatData.rowHeaders[row];
+				var values = that._flatData.values[row];
+
+				var singleGroup = {};
+			
+				singleGroup.title = rowHeader;
+				singleGroup.chartKey = "";
+				singleGroup.subtitle = "";
+
+				singleGroup.real = values[0]; // the dark blue
+				singleGroup.extrap = values[1]; // the background light blue
+				singleGroup.compare = values[2]; // the | sign
+
+				singleGroup.threshholds = []; // black to gray values
+				for(var trash = 3; trash < values.length; trash++) {
+					singleGroup.threshholds.push(values[trash]);
+				}
+				singleGroup.threshholds.sort(sortNumber);
+
+				singleGroup.values = [singleGroup.real,singleGroup.extrap,singleGroup.compare];
+				singleGroup.values.push.apply(singleGroup.values,singleGroup.threshholds);
+
+				newData.push(singleGroup);
+			}
+		}
+		
+		// now real mapping must come.
+		return newData;
 	};
 	function showAlert(currentGraphData){
 		var currentProp = chartProperties.showalert.slice(-1);

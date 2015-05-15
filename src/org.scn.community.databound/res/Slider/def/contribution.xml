@@ -9,7 +9,7 @@
 >
 
 	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
-	<jsInclude>os/jquery/numberformatter-min.js</jsInclude>
+	<jsInclude>os/numberformat/numberformatter-min.js</jsInclude>
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/common_databound.js</jsInclude>
@@ -93,8 +93,10 @@
 		group="Events" />
 
 	<initialization>
-		<defaultValue property="TOP">0</defaultValue>
-		<defaultValue property="LEFT">0</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">60</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 

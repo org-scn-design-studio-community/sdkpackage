@@ -32,6 +32,10 @@
  		<defaultValue property="title">Page Title</defaultValue>
  		 -->
  		<defaultValue property="design">Auto</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
  		<defaultValue property="WIDTH">400</defaultValue>
  		<defaultValue property="HEIGHT">48</defaultValue>
  	</initialization>

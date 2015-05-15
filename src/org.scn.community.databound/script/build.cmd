@@ -12,9 +12,9 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Choropleth\def\contribution.xml ^
 ..\res\DataTable\def\contribution.xml ^
 ..\res\DropDown\def\contribution.xml ^
-..\res\D3Hier\def\contribution.xml ^
 ..\res\FacetFilter\def\contribution.xml ^
 ..\res\HexBin\def\contribution.xml ^
+..\res\Hierarchy\def\contribution.xml ^
 ..\res\LeaderBoard\def\contribution.xml ^
 ..\res\LocationIntel\def\contribution.xml ^
 ..\res\MarimekkoChart\def\contribution.xml ^

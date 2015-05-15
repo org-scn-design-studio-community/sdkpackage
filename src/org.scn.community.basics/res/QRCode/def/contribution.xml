@@ -8,7 +8,7 @@
 
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>os/jquery-qrcode/jquery.qrcode.min.js</jsInclude>
+	<jsInclude>os/qrcode/jq.qrcode.min.js</jsInclude>
 	<jsInclude>res/QRCode/QRCode.js</jsInclude>
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
 	<property group="Display" type="String" title="QR Code Text" id="text" />
@@ -50,6 +50,10 @@
 	-->
 	
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="HEIGHT">256</defaultValue>
 		<defaultValue property="WIDTH">256</defaultValue>
 		<defaultValue property="render">canvas</defaultValue>

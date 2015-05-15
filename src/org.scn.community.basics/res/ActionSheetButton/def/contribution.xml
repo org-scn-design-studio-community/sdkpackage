@@ -45,6 +45,10 @@
 	  	<initialization>
 	  		<defaultValue property="WIDTH">48</defaultValue>
 			<defaultValue property="HEIGHT">48</defaultValue>
+			<defaultValue property="TOP_MARGIN">0</defaultValue>
+			<defaultValue property="LEFT_MARGIN">0</defaultValue>
+			<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+			<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 	  		<defaultValue property="showTitle">true</defaultValue>
 	  		<defaultValue property="icon">sap-icon://menu2</defaultValue>
 	  		<defaultValue property="buttonType">Default</defaultValue>

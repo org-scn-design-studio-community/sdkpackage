@@ -162,7 +162,7 @@ myComponentData.instance = function () {
 		} else {
 			var colors = this.simpleRandomColors();
 			
-			if (this._DChartType == "Line" || this._DChartType == "Bar" || this._DChartType == "Radar") {
+			if (this._DChartType == "Line" || this._DChartType == "Bar" || this._DChartType == "LineBar" || this._DChartType == "Radar") {
 				data = {};
 				data.labels = ["January", "February", "March", "April", "May", "June", "July"];
 				
@@ -180,6 +180,16 @@ myComponentData.instance = function () {
 					dataSet.pointHighlightFill= "#fff";
 					dataSet.pointHighlightStroke= "#"+colors.soft[iC];
 
+					if(this._DChartType == "LineBar") {
+						// for starting point, only the first one is line
+						if(iC % 2 == 1) {
+							dataSet.type = "line";
+							dataSet.fillColor = "#fff";
+						} else {
+							dataSet.fillColor = "#"+colors.hard[iC];
+						}
+					}
+					
 					dataSet.data = [];			
 					for (var iR = 0; iR < 7; iR++) {
 						dataSet.data.push(Math.random() * 100 * (iR+1) * reversIC);
@@ -217,7 +227,7 @@ myComponentData.instance = function () {
 		var data = {};
 		var colors = that.simpleRandomColors();
 		
-		if (that._DChartType == "Line" || that._DChartType == "Bar" || that._DChartType == "Radar") {
+		if (that._DChartType == "Line" || that._DChartType == "Bar" || that._DChartType == "LineBar" || that._DChartType == "Radar") {
 			data.labels = [];
 			var length = flatData.geometry.rowLength;
 			var headers = flatData.rowHeaders;
@@ -241,13 +251,23 @@ myComponentData.instance = function () {
 				var dataSet = {};
 				dataSet.label = otherHeaders[iC];
 				
-				dataSet.fillColor = "#"+colors.hard[iC];
+				dataSet.pointHighlightFill= "#fff";
+
 				dataSet.strokeColor= "#"+colors.pastel[iC];
 				dataSet.pointColor= "#"+colors.soft[iC];
 				dataSet.pointStrokeColor= "#"+colors.hard[iC];
-				dataSet.pointHighlightFill= "#fff";
 				dataSet.pointHighlightStroke= "#"+colors.soft[iC];
 
+				if(this._DChartType == "LineBar") {
+					// for starting point, only the first one is line
+					if(iC % 2 == 1) {
+						dataSet.type = "line";
+						dataSet.fillColor = "#fff";
+					} else {
+						dataSet.fillColor = "#"+colors.hard[iC];
+					}
+				}
+				
 				dataSet.data = [];			
 				for (var iR = 0; iR < length; iR++) {
 					if(that._DSwapAxes) {
@@ -412,8 +432,8 @@ myComponentData.instance = function () {
 	        	innerHtml += [
 	        		'<div class="chartjs-tooltip-section">',
 	        		'	<span class="chartjs-tooltip-key" style="background-color:' + tooltip.legendColors[i].fill + '"></span>',
-	        		'	<span class="chartjs-tooltip-text" style="width: '+((width-16)/2)+'px;">' + dataSetLabel + '</span>',
-	        		'	<span class="chartjs-tooltip-value" style="width: '+((width-16)/2)+'px;">' + tooltipValue + '</span>',
+	        		'	<span class="chartjs-tooltip-text" style="width: '+((width-16)/3*2)+'px;">' + dataSetLabel + '</span>',
+	        		'	<span class="chartjs-tooltip-value" style="width: '+((width-16)/3)+'px;">' + tooltipValue + '</span>',
 	        		'</div>'
 	        	].join('');
 	        }
@@ -437,8 +457,8 @@ myComponentData.instance = function () {
         	
 			innerHtml += [
 	        		'<div class="chartjs-tooltip-section">',
-	        		'	<span class="chartjs-tooltip-text" style="width: '+((width-16)/2)+'px;">' + textValue[0] + '</span>',
-	        		'	<span class="chartjs-tooltip-value" style="width: '+((width-16)/2)+'px;">' + tooltipValue + '</span>',
+	        		'	<span class="chartjs-tooltip-text" style="width: '+((width-16)/3*2)+'px;">' + textValue[0] + '</span>',
+	        		'	<span class="chartjs-tooltip-value" style="width: '+((width-16)/3)+'px;">' + tooltipValue + '</span>',
 	        		'</div>'
 	        	].join('');
         	

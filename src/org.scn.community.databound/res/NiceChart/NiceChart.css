@@ -49,6 +49,7 @@
         border: 1px solid #000000;
         color: white;
         margin: 2px;
+        width: 220px;
         padding: 3px;
         border-radius: 3px;
         -webkit-transition: all .1s ease;
@@ -77,6 +78,7 @@
  		margin-right: 0.5em;
  		-color: #ffffff;
  		color: #000000;
+ 		white-space:nowrap;
 }
 
 .chartjs-tooltip-value {

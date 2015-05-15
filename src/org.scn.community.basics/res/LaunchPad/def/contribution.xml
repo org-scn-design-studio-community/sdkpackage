@@ -16,6 +16,10 @@
   	<property group="Display" type="String" title="Selected Tile" id="selectedTile" visible="false"/>
   	<property group="Events" type="ScriptText" title="On Tile Select" id="onTileSelect"/>
   	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
   		<defaultValue property="WIDTH">575</defaultValue>
 		<defaultValue property="HEIGHT">575</defaultValue>
   	</initialization>
