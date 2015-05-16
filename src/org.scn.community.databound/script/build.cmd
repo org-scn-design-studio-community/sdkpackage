@@ -41,7 +41,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\Choropleth\def\contribution.ztl ^
 ..\res\DataTable\def\contribution.ztl ^
 ..\res\DropDown\def\contribution.ztl ^
-..\res\D3Hier\def\contribution.ztl ^
+..\res\Hierarchy\def\contribution.ztl ^
 ..\res\FacetFilter\def\contribution.ztl ^
 ..\res\HexBin\def\contribution.ztl ^
 ..\res\LeaderBoard\def\contribution.ztl ^

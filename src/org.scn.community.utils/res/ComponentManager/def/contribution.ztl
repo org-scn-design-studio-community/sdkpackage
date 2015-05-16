@@ -906,6 +906,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to (PROTOTYPE!) Sap M List component*/
 	org.scn.community.prototypes.SapMList returnAsScnSapMList (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Tag Cloud component*/
+	org.scn.community.prototypes.Tagcloud returnAsScnTagcloud (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Array Utility component*/
 	org.scn.community.utils.Array returnAsScnArray (Component inputComponent) {* return inputComponent; *}
 

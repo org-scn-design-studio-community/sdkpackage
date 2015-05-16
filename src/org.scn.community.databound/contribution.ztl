@@ -183,3 +183,1936 @@ class org.scn.community.databound.DropDown extends org.scn.community.shared.Data
 		this.DDoRefresh = true;	
 	*}
 }
+
+/**
+ * Class for D3Hier
+ */
+class org.scn.community.databound.jpd3hier extends org.scn.community.shared.DataComponent {
+
+	/* Returns the Key of the currently selected Tree Element. */
+	String getSelectedNodeKey() {*
+		return this.selectedNode;
+	*}
+	
+	/* Returns the Dimension Key containing the hierarchy of the datasource. */
+	String getHierarchyDimensionKey() {*
+		return this.dimHierarchy;
+	*}
+	
+	/* Returns the maximum Size of the Bubbles in Pixel */
+	String getBubbleSizeMaxSize() {*
+		return this.BubbleSizeMaxSize;
+	*}
+	
+	/* Sets the maximum Size of the Bubbles in Pixel */
+	void setBubbleSizeMaxSize(/* New maximum Bubble size in Pixel */ int newBubbleSize) {*
+		this.BubbleSizeMaxSize = newBubbleSize;
+	*}
+	
+	/* Sets the Bubble Size Keyfigure id during runtime */
+	void setkfBubbleSize(/* New id of a keyfigure column */ String newkfBubbleSizeId) {*
+		this.kfBubbleSize = newkfBubbleSizeId;
+	*}
+	
+	/* Gets the Bubble Size Keyfigure id during runtime */
+	void getkfBubbleSize() {*
+		return this.kfBubbleSize;
+	*}
+	
+	/* Sets the Bubble Alerter Keyfigure id during runtime */
+	void setkfBubbleAlerter(/* New id of a keyfigure column */ String newkfBubbleAlerterId) {*
+		this.kfColBub = newkfBubbleAlerterId;
+	*}
+	
+	/* Gets the Bubble Alerter Keyfigure id during runtime */
+	void getkfBubbleAlerter() {*
+		return this.kfColBub;
+	*}
+	
+	/* Sets the Bubble Alerter Color Value for Green during runtime */
+	void setAlerterColorGreenVal(/* New value for the Bubble color Green*/ int newAlerterColorGreenVal) {*
+		this.AlerterColorGreenVal = newAlerterColorGreenVal;
+	*}
+	
+	/* Sets the Bubble Alerter Color Value for Yellow during runtime */
+	void setAlerterColorYellowVal(/* New value for the Bubble color Yellow*/ int newAlerterColorYellowVal) {*
+		this.AlerterColorYellowVal = newAlerterColorYellowVal;
+	*}
+	
+	/* Returns the x-translation of the whole tree in Pixel */
+	String getBubbleRootXTranslation() {*
+		return this.BubbleRootXTranslation;
+	*}
+	/* Sets the x-translation of the whole tree in Pixel */
+	void setBubbleRootXTranslation(/* New x translation in Pixel -> positive = right, negative = left*/ int newXTranslation) {*
+		this.BubbleRootXTranslation = newXTranslation;
+	*}
+	
+	/* Expand the hierarchy (used for DS 1.4 private functionality) - it seems that the private call does not work */
+	@Visibility(private) 
+	void expandHierarchyNode() {*
+	    this.getDataSource().expandNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+	/* Collapse the hierarchy (used for DS 1.4 private functionality) - it seems that the private call does not work */
+	@Visibility(private) 
+	void collapseHierarchyNode() {*
+		this.getDataSource().collapseNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+	/* Expand the hierarchy */
+	void expandHierarchyNodes() {*
+	    this.getDataSource().expandNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+	/* Collapse the hierarchy */
+	void collapseHierarchyNodes() {*
+		this.getDataSource().collapseNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+}
+
+/**
+ * Class for DataDropDown
+ */
+class org.scn.community.databound.FacetFilter extends org.scn.community.shared.DataComponent {
+	
+	/**
+	 * Returns the value of max members property
+	 */
+	int getMaxMembers() {*
+		return this.DMaxMembers;
+	*}
+
+	/**
+	 * Sets the value of max members property
+	 */
+	void setMaxMembers(int value) {*
+		this.DMaxMembers = value;
+	*}
+	
+	/**
+	 * Returns the value of clear others
+	 */
+	boolean getClearOthers() {*
+		return this.DClearOthers;
+	*}
+
+	/**
+	 * Sets the value of clear others
+	 */
+	void setClearOthers(boolean value) {*
+		this.DClearOthers = value;
+	*}
+	
+	/**
+	 * Sets the value of max members property
+	 */
+	void setCustomDimensions(StringArray value) {*
+		this.DCustomDimensions = JSON.stringify(value);
+	*}
+
+	/**
+	 * DO NOT USE PRIVATE METHODS
+	 */
+	void private_onSelectionChanged () {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.selection = this.DSelection;
+	
+		l.selectionJson = JSON.parse(l.selection);
+		
+		l.dimensionName = l.selectionJson.dimension;
+		l.keys = l.selectionJson.keys;
+		
+		l.keysAsArray = [];
+
+		l.DS = this.getDataSource();
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		if(l.DS) {
+			if(l.selectionJson.clearOthers && that.getClearOthers()) {
+				this.private_readDimensions(l.DS);
+				l.dimensions = this._tempDimensions;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(this, l)};
+				
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						l.currentDimensionName = dimension.name
+						if(l.currentDimensionName != l.dimensionName) {
+							l.DS.clearFilter(l.currentDimensionName);
+						}
+					}
+				});
+			}
+			
+			if(l.keys.length == 1 && l.keys[0] == "-ALL-") {
+				l.DS.clearFilter(l.dimensionName);
+			} else {
+				for (var iK = 0; iK < l.keys.length; iK++) {
+					l.key = l.keys[iK];
+					
+					l.keysAsArray.push(l.key);
+				}
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+				
+				l.DS.setFilter(l.dimensionName, l.keysAsArray);
+			}
+		}
+		
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+	*}
+
+	/**
+	 * 
+	 */
+	void private_readDimensions (Object dataSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		if(this.DContentMode == "Only from Result Set") {
+			l.dimensionsRows = dataSource.getDimensions(Axis.ROWS);
+			l.dimensionsColumns = dataSource.getDimensions(Axis.COLUMNS);
+			
+			l.dimensions = [];
+
+			l.dimensionsRows.forEach(function(dimension, indexD) {
+				l.dimensions.push(dimension);
+			});	
+			l.dimensionsColumns.forEach(function(dimension, indexD) {
+				l.dimensions.push(dimension);
+			});
+			
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		} else if(this.DContentMode == "Custom Dimension Set") {
+			l.dimensionsAll = dataSource.getDimensions();
+			l.customDimensions = JSON.parse(that.DCustomDimensions);
+			
+			l.customDimensionsFlat = "|";
+			for (var iD = 0; iD < l.customDimensions.length; iD++) {
+				l.customDimensionsFlat = l.customDimensionsFlat + l.customDimensions[iD] + "|";
+			}
+			
+			l.dimensions = [];
+			
+			l.dimensionsAll.forEach(function(dimension, indexD) {
+				l.currentAvailableDimensionName = dimension.name; 
+				if(l.customDimensionsFlat.indexOf("|" + l.currentAvailableDimensionName + "|") > -1) {
+					l.dimensions.push(dimension);
+				}
+			});	
+		} else {
+			l.dimensions = dataSource.getDimensions();
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+		
+		this._tempDimensions = l.dimensions;
+	*}
+	
+	/**
+	 * DO NOT USE PRIVATE METHODS
+	 */
+	void private_onBeforeRender() {*
+	*}
+	
+	/**
+	 * Resets the actual data of all dimensions (and causes reload of all members in "reloadDataSource" method.
+	 * Use it together like below
+	 * <example>
+	 * You want to reload actual members again
+	 * <code>
+	 * FACETFILTER_1.resetDimensions();
+	 * FACETFILTER_1.reloadSelection();
+	 * </code>
+	 * </example>
+	 */
+	void resetDimensions() {*
+		this.oldDimensionKeys = "";
+	*}
+	
+	/**
+	 * This function must be used for initialization and in case the drilldown structure has been changed.
+	 * You should trigger it once and ideally when filters are NOT set on dimensions, other case you will see only members which are available in resultset (depends on your setting "member selection" on dimension level).
+	 * When to use this method?
+	 * - As soon the Data Source is initialized, either in "onStartup()" script or after loading in script.
+	 * <example>
+	 * You have loaded the data source and want to initialize.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACETFILTER_1.reloadDataSource();
+	 * FACETFILTER_1.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACETFILTER_1.reloadDataSource(DS_FULL);
+	 * FACETFILTER_1.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadDataSource(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.elementsJson = [];
+
+		l.DS = this.getDataSource();
+
+		if(!memberAccessSource) {
+			memberAccessSource = l.DS;
+		}
+
+		if(l.DS) {
+			this.private_readDimensions(memberAccessSource);
+			l.dimensions = this._tempDimensions;
+
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensionKeys = "";
+			l.dimensions.forEach(function(dimension, index) {
+				l.dimensionKeys = l.dimensionKeys + dimension.name;
+			});
+			
+			if(this.oldDimensionKeys != l.dimensionKeys) {
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						// warnings to assure query is ok
+						if(l.DS.isHierarchyActive(dimension)) {
+							APPLICATION.createWarningMessage("Data Source has an Active Hierarchy on Dimension: " + dimension.name);
+						}
+	
+						l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+	
+						l.dimensionJson = {};
+						l.dimensionJson.name = dimension.name;
+						l.dimensionJson.text = dimension.text;
+						l.dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
+	
+						l.dimensionJson.hierarchyActive = l.DS.isHierarchyActive(dimension);
+						l.dimensionJson.filterExt = ";" + l.DS.getFilterExt(dimension);
+						
+						l.dimensionJson.members = l.members;
+			
+						l.elementsJson.push(l.dimensionJson);
+					}
+				});
+
+				this.DElements = JSON.stringify(l.elementsJson);
+				this.oldDimensionKeys = l.dimensionKeys;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			}
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+	*}
+
+	/**
+	 * This function can be used after the filter in data source was changed to update the component.
+	 * You should be trigered every time the filter change occurs, therefore the event in Data Source -> onResultSetChanged() is a good place.
+	 * When to use this method?
+	 * - Always the filter is changed, also the "onResultSetChanged()" event is good for this.
+	 * <example>
+	 * You want to keep the selections with data source.
+	 * The code should be placed in "onResultSetChanged()" method.
+	 * <code>
+	 * // if you want to update also dimensions when drilldown is changed
+	 * FACETFILTER_1.reloadDataSource();
+	 * 
+	 * // every time 
+	 * FACETFILTER_1.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACETFILTER_1.reloadDataSource(DS_FULL);
+	 * FACETFILTER_1.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadSelection(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+	
+		l.elementsJson = {};
+
+		l.DS = this.getDataSource();
+
+		if(!memberAccessSource) {
+			memberAccessSource = l.DS;
+		}
+		
+		if(l.DS) {
+			this.private_readDimensions(memberAccessSource);
+			l.dimensions = this._tempDimensions;
+
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensions.forEach(function(dimension, indexD) {
+				l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+
+				l.dimensionJson = {};
+				l.dimensionJson.name = dimension.name;
+				l.dimensionJson.members = [];
+				l.dimensionJson.filterExt = "; " + l.DS.getFilterExt(dimension) + ";";
+
+				l.elementsJson[dimension.name] = l.dimensionJson;
+			});
+
+			this.DSelection = JSON.stringify(l.elementsJson);
+			
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug("DEBUG_2")) { DEBUG_2.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+	*}
+	
+	/**
+	 * Sets the sorting direction - ASCENDING | DESCENDING
+	 */
+	void setSortingDirection (org_scn_community_shared_SortDirectionEnumfield direction) {*
+		if(direction == org_scn_community_shared_SortDirection.ASCENDING) {
+			this.DSortingType = "Ascending";
+			return;
+		}
+		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+			this.DSortingType = "Descending";
+			return;
+		}
+		this.DSortingType = "Ascending";
+	*}
+	
+	/**
+	 * Sets the sorting type - DEFAULT | ALPHABETICAL | VALUE | SELECTED
+	 */
+	void setSortingType (org_scn_community_shared_SortTypeEnumfield type) {*
+		if(type == org_scn_community_shared_SortType.DEAFULT) {
+			this.DSortingType = "Default";
+			return;
+		}
+		if(type == org_scn_community_shared_SortType.VALUE) {
+			this.DSortingType = "Value";
+			return;
+		}
+		if(type == org_scn_community_shared_SortType.ALPHABETICAL) {
+			this.DSortingType = "Alphabetical";
+			return;
+		}
+		if(type == org_scn_community_shared_SortType.SELECTED) {
+			this.DSortingType = "Selected";
+			return;
+		}
+		this.DSortingType = "Default";
+	*}
+	
+	/**
+	 * Sets the sorting type - ALL | RESULTSET | CUSTOM
+	 */
+	void setContentMode (org_scn_community_shared_ContentModeEnumfield mode) {*
+		if(mode == org_scn_community_shared_ContentMode.ALL) {
+			this.DContentMode = "All Dimensions";
+			return;
+		}
+		if(mode == org_scn_community_shared_ContentMode.RESULTSET) {
+			this.DContentMode = "Only from Result Set";
+			return;
+		}
+		if(mode == org_scn_community_shared_ContentMode.CUSTOM) {
+			this.DContentMode = "Custom Dimension Set";
+			return;
+		}
+		this.DContentMode = "Only from Result Set";
+	*}
+	
+	void setCustomDimensions (StringArray dimensions) {*
+		this.DCustomDimensions = JSON.stringify(dimensions);
+	*}
+	
+	/**
+	 * Sets simple selection for dynamic use, you can place here some measure (member of measure dimension)
+	 */
+	void setSimpleSelection(String dimension, String member) {*
+		this.data = "{\""+dimension+"\": \""+member+"\"}";
+	*}
+}
+/**
+ * enum field definition
+ */
+class org_scn_community_shared_ThresholdMethod extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify field 
+ */
+class org_scn_community_shared_ThresholdMethodTypes extends Enum {
+
+	/** CHECKED */
+	org_scn_community_shared_ThresholdMethod CHECKED;
+       
+	/** UNCHECKED */
+	org_scn_community_shared_ThresholdMethod UNCHECKED;
+
+	/** MIXED */
+	org_scn_community_shared_ThresholdMethod MIXED;
+}
+
+
+class org.scn.community.databound.HexBin extends org.scn.community.shared.DataComponent {
+	/**
+	Set Threshold Method
+	*/
+	void setThresholdMethod(/*Method*/ String method) {*
+		this.thresholdMethod = method;
+	*}
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+	/**
+	Set Hexagon Radius
+	*/
+	void setRadius(/*Radius (px)*/int radius) {*
+		this.radius = radius;
+	*}
+	/**
+	Get Hexagon Radius
+	*/
+	int getRadius() {*
+		return this.radius;
+	*}
+	/**
+	Set Max Threshold
+	*/
+	void setThreshold(/*Threshold*/int threshold) {*
+		this.threshold = threshold;
+	*}
+	/**
+	Get Max Threshold
+	*/
+	int getThreshold() {*
+		return this.threshold;
+	*}
+	/**
+	Set Min Threshold (Tolerance)
+	*/
+	void setTolerance(/*Tolerance*/int tolerance) {*
+		this.tolerance = tolerance;
+	*}
+	/**
+	Get Min Threshold (Tolerance)
+	*/
+	int getTolerance() {*
+		return this.tolerance;
+	*}
+	/**
+	Set X-Axis Measure by text
+	*/
+	void setMeasureX(/*Measure*/String measure) {*
+		this.measureX = measure;
+	*}
+	/**
+	Get X-Axis Measure text
+	*/
+	String getMeasureX() {*
+		return this.measureX;
+	*}
+	/**
+	Set Y-Axis Measure by text
+	*/
+	void setMeasureY(/*Measure*/String measure) {*
+		this.measureY = measure;
+	*}
+	/**
+	Get Y-Axis Measure text
+	*/
+	String getMeasureY() {*
+		return this.measureY;
+	*}
+	/**
+	Set Y-Axis Min
+	*/
+	void setMinY(/*Minimume*/int min) {*
+		this.minY = min;
+	*}
+	/**
+	Get Y-Axis Min
+	*/
+	int getMinY() {*
+		return this.minY;
+	*}
+	/**
+	Set Y-Axis Max
+	*/
+	void setMaxY(/*Minimume*/int max) {*
+		this.maxY = max;
+	*}
+	/**
+	Get Y-Axis Max
+	*/
+	int getMaxY() {*
+		return this.maxY;
+	*}
+	/**
+	Set X-Axis Min
+	*/
+	void setMinX(/*Minimume*/int min) {*
+		this.minX = min;
+	*}
+	/**
+	Get X-Axis Min
+	*/
+	int getMinX() {*
+		return this.minX;
+	*}
+	/**
+	Set X-Axis Max
+	*/
+	void setMaxX(/*Minimume*/int max) {*
+		this.maxX = max;
+	*}
+	/**
+	Get X-Axis Max
+	*/
+	int getMaxX() {*
+		return this.maxX;
+	*}
+}
+
+/**
+ * Class for DataLeaderBoard
+ */
+class org.scn.community.databound.LeaderBoard extends org.scn.community.shared.DataComponent {
+
+	/** returns the selected key */
+	String getSelectedKey () {*
+		return this.selectedKey;	
+	*}
+	
+	/** sets the selected key */
+	void setSelectedKey (String key) {*
+		this.selectedKey = key;	
+	*}
+
+	/** returns the pressed key */
+	String getPressedKey () {*
+		return this.pressedKey;	
+	*}
+}
+class org.scn.community.databound.LocationIntel extends org.scn.community.shared.Component {
+	/**
+	Get selected feature
+	*/
+	String getSelectedMarker() {*
+		return this.selectedMarker;
+	*}
+	/**
+	Set Projection Method
+	*/
+	void setProjection(/*Projection*/String projection) {*
+		this.projection = projection;
+	*}
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		return this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+	/**
+	Set Marker Color
+	*/
+	void setMarkerColor(/*Color*/String color) {*
+		this.markerColor = color;
+	*}
+	/**
+	Set Marker Title Field
+	*/
+	void setMarkerTitle(/*Color*/String dimension) {*
+		this.markerTitle = dimension;
+	*}
+	/**
+	Set Marker Size Field
+	*/
+	void setMarkerSizeMeasure(/*Color*/String measure) {*
+		this.markerSizeMeasure = measure;
+	*}
+	/**
+	Set Label Attribute from GeoJSON that should be used for labeling
+	*/
+	void setLabelProperty(/*Attribute*/String attribute) {*
+		this.labelProperty = attribute;
+	*}
+}
+class org.scn.community.databound.MarimekkoChart extends org.scn.community.shared.DataComponent {
+	/**
+	Get selected row
+	*/
+	String getSelectedRow() {*
+		return this.selectedRow;
+	*}
+	/**
+	Get selected column
+	*/
+	String getSelectedColumn() {*
+		return this.selectedColumn;
+	*}
+	/**
+	Get selected value
+	*/
+	float getSelectedValue() {*
+		return this.selectedValue;
+	*}
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		return this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+}
+class org.scn.community.databound.MultiLevelDropDown extends Component {
+	
+	/** ------- Getter / Setter for addSingleRootNode ------ */
+	boolean getAddSingleRootNode() {*
+		return this.addSingleRootNode;
+	*}
+
+	void setAddSingleRootNode(Boolean value) {*
+		this.addSingleRootNode = value;
+	*}
+	
+	/** ------- Getter / Setter for singleRootName ------ */
+	String getSingleRootNodeName() {*
+		return this.singleRootNodeName;
+	*}
+
+	void setSingleRootNodeName(String newName) {*
+		this.singleRootNodeName = newName;
+	*}
+	
+	/** ------- Getter / Setter for selectedElemKey ------ */
+	String getSelectedElemKey() {*
+		return this.SelectedElemKey;
+	*}
+
+	void setSelectedElemKey(String selectedKey) {*
+		this.SelectedElemKey = selectedKey;
+	*}
+	
+	/** ------- Getter / Setter for selectedElemKey ------ */
+	String getvalueDisplayType() {*
+		return this.valueDisplayType;
+	*}
+
+	void setvalueDisplayType(String value) {*
+		this.valueDisplayType = value;
+	*}
+	
+	/** ------- Getter / Setter for selectedElemKey ------ */
+	String getSelectedElemText() {*
+		return this.SelectedElemText;
+	*}
+
+	void setSelectedElemText(String selectedText) {*
+		this.SelectedElemText = selectedText;
+	*}
+	
+	/** ------- Getter / Setter for resetButton ------ */
+	String getResetButton() {*
+		return this.resetButton;
+	*}
+
+	void setResetButton(String value) {*
+		this.resetButton = value;
+	*}
+
+	/** ------- Getter / Setter for singleRootName ------ */
+	String getDimension() {*
+		return this.selChar;
+	*}
+
+	void setDimension(String value) {*
+		this.selChar = value;
+	*}
+	
+	/** ------- Getter / Setter for addWeight ------ */
+	boolean getAddWeight() {*
+		return this.addWeight;
+	*}
+
+	void setAddWeight(Boolean value) {*
+		this.addWeight = value;
+	*}
+	
+	/** ------- Getter / Setter for selWeight ------ */
+	String getSelWeight() {*
+		return this.selWeight;
+	*}
+
+	void setSelWeight(String value) {*
+		this.selWeight = value;
+	*}
+	
+	/** ------- Getter / Setter for colorClass ------ */
+	String getColorClass() {*
+		return this.colorClass;
+	*}
+
+	void setColorClass(String value) {*
+		this.colorClass = value;
+	*}
+	
+	
+}
+
+/**
+ * Generated ZTL Class for Nice Chart
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.NiceChart extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Chart Type Property
+	 */	
+	void setChartType( /* &nbsp; */  choice chartType){*
+		this.DChartType = chartType;
+	*}
+
+	/**
+	 * Gets Chart Type Property
+	 */	
+	choice getChartType() {*
+		return this.DChartType;
+	*}
+
+	/**
+	 * Sets Swap Axes Property
+	 */	
+	void setSwapAxes( /* &nbsp; */  boolean swapAxes){*
+		this.DSwapAxes = swapAxes;
+	*}
+
+	/**
+	 * Gets Swap Axes Property
+	 */	
+	boolean getSwapAxes() {*
+		return this.DSwapAxes;
+	*}
+
+	/**
+	 * Sets Starting Color Hue Property
+	 */	
+	void setColorHue( /* &nbsp; */  int colorHue){*
+		this.DColorHue = colorHue;
+	*}
+
+	/**
+	 * Gets Starting Color Hue Property
+	 */	
+	int getColorHue() {*
+		return this.DColorHue;
+	*}
+
+	/**
+	 * Sets Starting Color Distance Property
+	 */	
+	void setColorDistance( /* &nbsp; */  float colorDistance){*
+		this.DColorDistance = colorDistance;
+	*}
+
+	/**
+	 * Gets Starting Color Distance Property
+	 */	
+	float getColorDistance() {*
+		return this.DColorDistance;
+	*}
+
+	/**
+	 * Sets Starting Color Palette Property
+	 */	
+	void setColorPalette( /* &nbsp; */  choice colorPalette){*
+		this.DColorPalette = colorPalette;
+	*}
+
+	/**
+	 * Gets Starting Color Palette Property
+	 */	
+	choice getColorPalette() {*
+		return this.DColorPalette;
+	*}
+
+	/**
+	 * Sets Show Legend Property
+	 */	
+	void setShowLegend( /* &nbsp; */  boolean showLegend){*
+		this.DShowLegend = showLegend;
+	*}
+
+	/**
+	 * Gets Show Legend Property
+	 */	
+	boolean getShowLegend() {*
+		return this.DShowLegend;
+	*}
+
+	/**
+	 * Sets Legend Position Property
+	 */	
+	void setLegendPosition( /* &nbsp; */  choice legendPosition){*
+		this.DLegendPosition = legendPosition;
+	*}
+
+	/**
+	 * Gets Legend Position Property
+	 */	
+	choice getLegendPosition() {*
+		return this.DLegendPosition;
+	*}
+
+	/**
+	 * Sets Width of Legend in px Property
+	 */	
+	void setLegendWidth( /* &nbsp; */  int legendWidth){*
+		this.DLegendWidth = legendWidth;
+	*}
+
+	/**
+	 * Gets Width of Legend in px Property
+	 */	
+	int getLegendWidth() {*
+		return this.DLegendWidth;
+	*}
+
+	/**
+	 * Sets Maximum Number of Data Points Property
+	 */	
+	void setMaxDataPoints( /* &nbsp; */  int maxDataPoints){*
+		this.DMaxDataPoints = maxDataPoints;
+	*}
+
+	/**
+	 * Gets Maximum Number of Data Points Property
+	 */	
+	int getMaxDataPoints() {*
+		return this.DMaxDataPoints;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+class org.scn.community.databound.Projector extends org.scn.community.shared.DataComponent {
+	/**
+	 * Sets data in serialized string form.  Meant to be used in conjunction with
+	 * SCN Community Projection data component or another BYO Data component.
+	 */
+	void setDataString(/*String*/ String dataString){*
+		this.data = dataString;
+	*}
+	/**
+	 * Returns serialized string representing data.  Meant to be used with another
+	 * SCN Community BYO Data component.
+	 */
+	String getDataString(){*
+		return this.data;
+	*}
+	/**
+	 * Returns projected serialized string representing data.  Meant to be used with another
+	 * SCN Community BYO Data component.
+	 */
+	String getProjectedData(){*
+		return this.projectedData;
+	*}
+	/**
+	 * Returns dimension key being projected
+	 */
+	String getProjectDimension(){*
+		return this.projectDimension;
+	*}
+	/**
+	 * Sets dimension to project/aggregate
+	 */
+	String setProjectDimension(/*String*/ String dimension){*
+		this.projectDimension = dimension;
+		return this.projectedData;
+	*}
+	/**
+	 * Returns projection/aggregation method
+	 */
+	String getProjectionMethod(){*
+		return this.projectionMethod;
+	*}
+	/**
+	 * Sets method to project/aggregate
+	 * Valid type: (SUM,MIN,MAX,COUNT,AVG)
+	 */
+	String setProjectionMethod(/*String*/ String method){*
+		this.projectionMethod = method;
+		return this.projectedData;
+	*}
+}
+
+/**
+ * Class for DataRangeSlider
+ */
+class org.scn.community.databound.RangeSlider extends org.scn.community.shared.DataComponent {
+
+	/** returns the selected key 
+    <example>
+	You want to get first and second selected key in the range
+	<code>
+    var selection1 = DATARANGESLIDER_1.getSelectedKey();
+	var selection2 = DATARANGESLIDER_1.getSelectedKey2();
+	
+	APPLICATION.createInfoMessage("Selected Range: " + selection1 + " - " + selection2);
+	APPLICATION.createInfoMessage("Selected Range Keys: " + DATARANGESLIDER_1.getSelectedKeys());
+	
+	if(selection1.indexOf("-N/A-") > -1 || selection2.indexOf("-N/A-") > -1) {
+		// do nothing
+	} else {
+		DS_1.setFilterExt("0BC_PERS1", "" + DATARANGESLIDER_1.getSelectedKey()  + " - " + DATARANGESLIDER_1.getSelectedKey2());
+	}
+	</code>
+	</example>
+	*/
+	String getSelectedKey () {*
+		return this.selectedKey;	
+	*}
+	
+	/** sets the selected key */
+	void setSelectedKey (String key) {*
+		this.selectedKey = key;	
+	*}
+
+	/** returns the selected key 2 */
+	String getSelectedKey2 () {*
+		return this.selectedKey2;	
+	*}
+	
+	/** sets the selected key 2 */
+	void setSelectedKey2 (String key2) {*
+		this.selectedKey2 = key2;	
+	*}
+	
+	/** sets the selected keys as String separated by ;
+	 * This is compatible with setFilterExt function
+	
+ 	<example>
+	You want to get all selected keys in the range
+	<code>
+	var selectedKeys = DATARANGESLIDER_2.getSelectedKeys();<br>
+
+	// remove the NAs, in this scenarios I do not care
+	selectedKeys = Convert.replaceAll(selectedKeys, "-N/A-1;", "");<br>
+	selectedKeys = Convert.replaceAll(selectedKeys, ";-N/A-2", "");<br>
+
+	APPLICATION.createInfoMessage("Selected Range Keys: " + selectedKeys);<br>
+
+	DS_1.setFilterExt("0BC_PERS1", selectedKeys);<br>
+	</code>
+	</example>
+	*/
+
+	String getSelectedKeys () {*
+		return this.selectedKeys;	
+	*}
+
+	/** returns the selected text */
+	String getSelectedText () {*
+		return this.selectedText;	
+	*}
+	
+	/** returns the selected text 2 */
+	String getSelectedText2 () {*
+		return this.selectedText2;	
+	*}
+	
+	/** sets the pause refresh flag */
+	void pauseRefresh () {*
+		this.doRefresh = false;	
+	*}
+
+	/** sets the pause refresh flag */
+	void allowRefresh () {*
+		this.doRefresh = true;	
+	*}
+}
+
+/**
+ * Generated ZTL Class for Result Set Information
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Central Data Provisioning Property
+	 */	
+	void setCentralProvisioning( /* Provision Data Centrally for Component Access */  boolean centralProvisioning){*
+		this.DCentralProvisioning = centralProvisioning;
+	*}
+
+	/**
+	 * Gets Central Data Provisioning Property
+	 */	
+	boolean getCentralProvisioning() {*
+		return this.DCentralProvisioning;
+	*}
+
+	/**
+	 * Sets Information Event Active Property
+	 */	
+	void setInformationEventActive( /* Send Data Information Event when data is available */  boolean informationEventActive){*
+		this.DInformationEventActive = informationEventActive;
+	*}
+
+	/**
+	 * Gets Information Event Active Property
+	 */	
+	boolean getInformationEventActive() {*
+		return this.DInformationEventActive;
+	*}
+
+	/**
+	 * Sets Ignore Results Rows and Columns Property
+	 */	
+	void setIgnoreResults( /* &nbsp; */  boolean ignoreResults){*
+		this.DIgnoreResults = ignoreResults;
+	*}
+
+	/**
+	 * Gets Ignore Results Rows and Columns Property
+	 */	
+	boolean getIgnoreResults() {*
+		return this.DIgnoreResults;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/** Returns the information about number of cells */
+	int getDataInfoNumberOfCells () {*
+		return JSON.parse(this.DDataInformation).dataCells;
+	*}
+
+	/** Returns the information about number of data columns */
+	int getDataInfoNumberOfDataColumns () {*
+		return JSON.parse(this.DDataInformation).dataColumns;
+	*}
+	
+	/** Returns the information about number of header columns */
+	int getDataInfoNumberOfHeaderColumns () {*
+		return JSON.parse(this.DDataInformation).headerColumns;
+	*}
+	
+	/** Returns the information about number of rows */
+	int getDataInfoNumberOfRows () {*
+		return JSON.parse(this.DDataInformation).rows;
+	*}
+}
+
+/**
+ * Generated ZTL Class for Result Set Mixer
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.ResultSetMixer extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Reloads the Component (with re-rendering)
+	 */	
+	void reload (){*
+		this.DReloadTrigger = this.DReloadTrigger + 0.0001;
+	*}
+
+	/**
+	 * Sets Master Central Data Provisioner Property
+	 */	
+	void setMasterProvisioner( /* Result Set with Master Data */  String masterProvisioner){*
+		this.DMasterProvisioner = masterProvisioner;
+	*}
+
+	/**
+	 * Gets Master Central Data Provisioner Property
+	 */	
+	String getMasterProvisioner() {*
+		return this.DMasterProvisioner;
+	*}
+
+	/**
+	 * Sets Geometry of the Master Result Set Property
+	 */	
+	void setMasterGeometry( /* &nbsp; */  choice masterGeometry){*
+		this.DMasterGeometry = masterGeometry;
+	*}
+
+	/**
+	 * Gets Geometry of the Master Result Set Property
+	 */	
+	choice getMasterGeometry() {*
+		return this.DMasterGeometry;
+	*}
+
+	/**
+	 * Sets Slave Central Data Provisioner Property
+	 */	
+	void setSlaveProvisioner( /* Result Set with Slave Data for Selection */  String slaveProvisioner){*
+		this.DSlaveProvisioner = slaveProvisioner;
+	*}
+
+	/**
+	 * Gets Slave Central Data Provisioner Property
+	 */	
+	String getSlaveProvisioner() {*
+		return this.DSlaveProvisioner;
+	*}
+
+	/**
+	 * Sets Column Index for the Selection from Slave Result Set Property
+	 */	
+	void setSlaveColumnIndex( /* Which column should be selected from the slave result set */  int slaveColumnIndex){*
+		this.DSlaveColumnIndex = slaveColumnIndex;
+	*}
+
+	/**
+	 * Gets Column Index for the Selection from Slave Result Set Property
+	 */	
+	int getSlaveColumnIndex() {*
+		return this.DSlaveColumnIndex;
+	*}
+
+	/**
+	 * Sets Collect Multiple Matches Property
+	 */	
+	void setCollectMultipleMatches( /* Procedure what should happen when multiple matches are available */  choice collectMultipleMatches){*
+		this.DCollectMultipleMatches = collectMultipleMatches;
+	*}
+
+	/**
+	 * Gets Collect Multiple Matches Property
+	 */	
+	choice getCollectMultipleMatches() {*
+		return this.DCollectMultipleMatches;
+	*}
+
+	/**
+	 * Sets Content Condition to Read Slave Result Set Property
+	 */	
+	void setSlaveContentCondition( /* Under which condition should be the slave result set read (based on content or value) */  String slaveContentCondition){*
+		this.DSlaveContentCondition = slaveContentCondition;
+	*}
+
+	/**
+	 * Gets Content Condition to Read Slave Result Set Property
+	 */	
+	String getSlaveContentCondition() {*
+		return this.DSlaveContentCondition;
+	*}
+
+	/**
+	 * Sets Row Condition to Read Slave Result Set Property
+	 */	
+	void setSlaveRowCondition( /* Under which condition should be the slave result set read (based on contnet of header row key) */  String slaveRowCondition){*
+		this.DSlaveRowCondition = slaveRowCondition;
+	*}
+
+	/**
+	 * Gets Row Condition to Read Slave Result Set Property
+	 */	
+	String getSlaveRowCondition() {*
+		return this.DSlaveRowCondition;
+	*}
+
+	/**
+	 * Sets Column Condition to Read Slave Result Set Property
+	 */	
+	void setSlaveColumnCondition( /* Under which condition should be the slave result set read (based on contnet of header column key) */  String slaveColumnCondition){*
+		this.DSlaveColumnCondition = slaveColumnCondition;
+	*}
+
+	/**
+	 * Gets Column Condition to Read Slave Result Set Property
+	 */	
+	String getSlaveColumnCondition() {*
+		return this.DSlaveColumnCondition;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+class org.scn.community.databound.ScatterPlot extends org.scn.community.shared.DataComponent {
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+	/**
+	Set Hexagon Radius
+	*/
+	void setRadius(/*Radius (px)*/int radius) {*
+		this.radius = radius;
+	*}
+	/**
+	Get Hexagon Radius
+	*/
+	int getRadius() {*
+		return this.radius;
+	*}
+	/**
+	Set X-Axis Measure by text
+	*/
+	void setMeasureX(/*Measure*/String measure) {*
+		this.measureX = measure;
+	*}
+	/**
+	Get X-Axis Measure text
+	*/
+	String getMeasureX() {*
+		return this.measureX;
+	*}
+	/**
+	Set Y-Axis Measure by text
+	*/
+	void setMeasureY(/*Measure*/String measure) {*
+		this.measureY = measure;
+	*}
+	/**
+	Get Y-Axis Measure text
+	*/
+	String getMeasureY() {*
+		return this.measureY;
+	*}
+	/**
+	Set Y-Axis Min
+	*/
+	void setMinY(/*Minimume*/int min) {*
+		this.minY = min;
+	*}
+	/**
+	Get Y-Axis Min
+	*/
+	int getMinY() {*
+		return this.minY;
+	*}
+	/**
+	Set Y-Axis Max
+	*/
+	void setMaxY(/*Minimume*/int max) {*
+		this.maxY = max;
+	*}
+	/**
+	Get Y-Axis Max
+	*/
+	int getMaxY() {*
+		return this.maxY;
+	*}
+	/**
+	Set X-Axis Min
+	*/
+	void setMinX(/*Minimume*/int min) {*
+		this.minX = min;
+	*}
+	/**
+	Get X-Axis Min
+	*/
+	int getMinX() {*
+		return this.minX;
+	*}
+	/**
+	Set X-Axis Max
+	*/
+	void setMaxX(/*Minimume*/int max) {*
+		this.maxX = max;
+	*}
+	/**
+	Get X-Axis Max
+	*/
+	int getMaxX() {*
+		return this.maxX;
+	*}
+}
+
+/**
+ * Class for DataSlider
+ */
+class org.scn.community.databound.Slider extends org.scn.community.shared.DataComponent {
+
+	/** returns the selected key */
+	String getSelectedKey () {*
+		return this.selectedKey;	
+	*}
+	
+	/** sets the selected key */
+	void setSelectedKey (String key) {*
+		this.selectedKey = key;	
+	*}
+	
+	/** returns the selected text */
+	String getSelectedText () {*
+		return this.selectedText;	
+	*}
+	
+	/** sets the pause refresh flag */
+	void pauseRefresh () {*
+		this.doRefresh = false;	
+	*}
+
+	/** sets the pause refresh flag */
+	void allowRefresh () {*
+		this.doRefresh = true;	
+	*}
+}
+
+class org.scn.community.databound.Table2D extends org.scn.community.shared.DataComponent {
+	
+	/** returns the data */
+	String getStringData () {*
+		return this.stringData;	
+	*}
+}
+
+/**
+ * Class for DataTopFlop
+ */
+class org.scn.community.databound.TopFlop extends org.scn.community.shared.DataComponent {
+
+	/** returns the selected key */
+	String getSelectedKey () {*
+		return this.selectedKey;	
+	*}
+	
+	/** sets the selected key */
+	void setSelectedKey (String key) {*
+		this.selectedKey = key;	
+	*}
+
+	/** returns the pressed key */
+	String getPressedKey () {*
+		return this.pressedKey;	
+	*}
+}
+
+/**
+ * Class for DataTopFlopChart
+ */
+class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.DataComponent {
+
+	/** returns the selected key */
+	String getSelectedKey () {*
+		return this.selectedKey;	
+	*}
+	
+	/** sets the selected key */
+	void setSelectedKey (String key) {*
+		this.selectedKey = key;	
+	*}
+
+	/** returns the pressed key */
+	String getPressedKey () {*
+		return this.pressedKey;	
+	*}
+}
+
+/**
+ * Generated ZTL Class for UI5 Table
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.UI5Table extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Ignore Results Rows and Columns Property
+	 */	
+	void setIgnoreResults( /* &nbsp; */  boolean ignoreResults){*
+		this.DIgnoreResults = ignoreResults;
+	*}
+
+	/**
+	 * Gets Ignore Results Rows and Columns Property
+	 */	
+	boolean getIgnoreResults() {*
+		return this.DIgnoreResults;
+	*}
+
+	/**
+	 * Sets Central Data Provisioner for Result Set Property
+	 */	
+	void setDataProvisioner( /* Central Result Set with Data */  String dataProvisioner){*
+		this.DDataProvisioner = dataProvisioner;
+	*}
+
+	/**
+	 * Gets Central Data Provisioner for Result Set Property
+	 */	
+	String getDataProvisioner() {*
+		return this.DDataProvisioner;
+	*}
+
+	/**
+	 * Sets Visible Row Count Property
+	 */	
+	void setVisibleRowCount( /* &nbsp; */  int visibleRowCount){*
+		this.DVisibleRowCount = visibleRowCount;
+	*}
+
+	/**
+	 * Gets Visible Row Count Property
+	 */	
+	int getVisibleRowCount() {*
+		return this.DVisibleRowCount;
+	*}
+
+	/**
+	 * Sets Row Height in px Property
+	 */	
+	void setRowHeight( /* &nbsp; */  int rowHeight){*
+		this.DRowHeight = rowHeight;
+	*}
+
+	/**
+	 * Gets Row Height in px Property
+	 */	
+	int getRowHeight() {*
+		return this.DRowHeight;
+	*}
+
+	/**
+	 * Sets Allow Sort in Columns Property
+	 */	
+	void setAllowSort( /* &nbsp; */  boolean allowSort){*
+		this.DAllowSort = allowSort;
+	*}
+
+	/**
+	 * Gets Allow Sort in Columns Property
+	 */	
+	boolean getAllowSort() {*
+		return this.DAllowSort;
+	*}
+
+	/**
+	 * Sets Allow Sort in Columns Property
+	 */	
+	void setAllowFilter( /* &nbsp; */  boolean allowFilter){*
+		this.DAllowFilter = allowFilter;
+	*}
+
+	/**
+	 * Gets Allow Sort in Columns Property
+	 */	
+	boolean getAllowFilter() {*
+		return this.DAllowFilter;
+	*}
+
+	/**
+	 * Sets Allow Reorder of Columns Property
+	 */	
+	void setAllowColumnReorder( /* &nbsp; */  boolean allowColumnReorder){*
+		this.DAllowColumnReorder = allowColumnReorder;
+	*}
+
+	/**
+	 * Gets Allow Reorder of Columns Property
+	 */	
+	boolean getAllowColumnReorder() {*
+		return this.DAllowColumnReorder;
+	*}
+
+	/**
+	 * Sets Allow Selection in the Table Property
+	 */	
+	void setAllowSelection( /* &nbsp; */  boolean allowSelection){*
+		this.DAllowSelection = allowSelection;
+	*}
+
+	/**
+	 * Gets Allow Selection in the Table Property
+	 */	
+	boolean getAllowSelection() {*
+		return this.DAllowSelection;
+	*}
+
+	/**
+	 * Sets Fiexd Header Rows Property
+	 */	
+	void setFixedHeader( /* &nbsp; */  boolean fixedHeader){*
+		this.DFixedHeader = fixedHeader;
+	*}
+
+	/**
+	 * Gets Fiexd Header Rows Property
+	 */	
+	boolean getFixedHeader() {*
+		return this.DFixedHeader;
+	*}
+
+	/**
+	 * Sets Header Column Width in px Property
+	 */	
+	void setHeaderColWidth( /* &nbsp; */  int headerColWidth){*
+		this.DHeaderColWidth = headerColWidth;
+	*}
+
+	/**
+	 * Gets Header Column Width in px Property
+	 */	
+	int getHeaderColWidth() {*
+		return this.DHeaderColWidth;
+	*}
+
+	/** Adds a root element containing key [String], width [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	UI5TABLE.addParameter(key [String], width [String]);<br>
+	UI5TABLE.addParameter(key [String], width [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addParameter (
+			/**Column index (0-based)*/String key, 
+			/**Width with unit (e.g. 200px | 30%)*/String width
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			width:width
+			};
+	
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DDataColWidths);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	UI5TABLE.removeParameter(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeParameter (
+			String key
+			) {*		
+		
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DDataColWidths);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets (non-stable) Formatting Operator Property
+	 */	
+	void setFormattingOperator( /* &nbsp; */  choice formattingOperator){*
+		this.DFormattingOperator = formattingOperator;
+	*}
+
+	/**
+	 * Gets (non-stable) Formatting Operator Property
+	 */	
+	choice getFormattingOperator() {*
+		return this.DFormattingOperator;
+	*}
+
+	/**
+	 * Sets (non-stable) Formatting Condition Property
+	 */	
+	void setFormattingCondition( /* &nbsp; */  String formattingCondition){*
+		this.DFormattingCondition = formattingCondition;
+	*}
+
+	/**
+	 * Gets (non-stable) Formatting Condition Property
+	 */	
+	String getFormattingCondition() {*
+		return this.DFormattingCondition;
+	*}
+
+	/**
+	 * Sets (non-stable) Column Based Formatting Condition Property
+	 */	
+	void setColumnFormattingCondition( /* &nbsp; */  String columnFormattingCondition){*
+		this.DColumnFormattingCondition = columnFormattingCondition;
+	*}
+
+	/**
+	 * Gets (non-stable) Column Based Formatting Condition Property
+	 */	
+	String getColumnFormattingCondition() {*
+		return this.DColumnFormattingCondition;
+	*}
+
+	/**
+	 * Sets Empty Value For Header Cell Property
+	 */	
+	void setEmptyHeaderValue( /* &nbsp; */  String emptyHeaderValue){*
+		this.DEmptyHeaderValue = emptyHeaderValue;
+	*}
+
+	/**
+	 * Gets Empty Value For Header Cell Property
+	 */	
+	String getEmptyHeaderValue() {*
+		return this.DEmptyHeaderValue;
+	*}
+
+	/**
+	 * Sets Empty Value For Data Cell Property
+	 */	
+	void setEmptyDataValue( /* &nbsp; */  String emptyDataValue){*
+		this.DEmptyDataValue = emptyDataValue;
+	*}
+
+	/**
+	 * Gets Empty Value For Data Cell Property
+	 */	
+	String getEmptyDataValue() {*
+		return this.DEmptyDataValue;
+	*}
+
+	/**
+	 * Sets Navigation Mode Property
+	 */	
+	void setNavigationMode( /* &nbsp; */  choice navigationMode){*
+		this.DNavigationMode = navigationMode;
+	*}
+
+	/**
+	 * Gets Navigation Mode Property
+	 */	
+	choice getNavigationMode() {*
+		return this.DNavigationMode;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Gets Selection As JSON String
+	 */	
+	String getSelectionAsJSON() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Gets Selection As JSON String
+	 */	
+	JSON getSelectionAsJSONObject() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Selected Row Index (0 - based)
+	 */
+	int getSelectedRow() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.row;
+	*}
+	
+	/**
+	 * Selected Column Index (0 - based)
+	 */
+	int getSelectedColumn() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.column;
+	*}
+
+	/**
+	 * Selected Visual Row Index (0 - based)
+	 */
+	int getSelectedVisualRow() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.visualRow;
+	*}
+	
+	/**
+	 * Selected Visual Column Index (0 - based)
+	 */
+	int getSelectedVisualColumn() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.visualColumn;
+	*}
+
+	/**
+	 * Selected Value Content
+	 */
+	int getSelectedValue() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.value;
+	*}
+	
+	/**
+	 * Selection Space (Header, Data)
+	 */
+	String getSelectionSpace() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.value;
+	*}
+
+	/**
+	 * Return dimensions and corresponding members for the selection as array
+	 */
+	org.scn.community.shared.DimensionMemberArray getSelectionDimensionMembers() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		
+		var tempA = [];
+		
+		for(var i=0;i<jsonObject.rowDimensions.length;i++){
+			var itemDef = { 
+				"dimension": jsonObject.rowDimensions[i].key, 
+				"member": jsonObject.rowKeys[i]
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		if(jsonObject.columnDimensions) {
+			for(var i=0;i<jsonObject.columnDimensions.length;i++){
+				var itemDef = { 
+					"dimension": jsonObject.columnDimensions[i].key, 
+					"member": jsonObject.columnKeys[i]
+				};
+				
+				tempA.push(itemDef);
+			}
+		}
+		
+		return tempA;
+	*}
+
+	/**
+	 * Values of the Row
+	 */
+	StringArray getSelectionRowValues() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		
+	
+		var tempA = [];
+		for(var i=0;i<jsonObject.rowValues.length;i++){
+			var itemDef = jsonObject.rowValues[i];
+			
+			tempA.push(itemDef);
+		}
+
+		return tempA;
+	*}
+}

@@ -515,8 +515,8 @@ public class Component {
 		SortedProperties props = new SortedProperties();
 
 		Calendar calendar = Calendar.getInstance();
-		String  value = "" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
-		props.put(PROPERTIES_CREATED_AT_DATE, value);
+		String  dateValue = "" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+		props.put(PROPERTIES_CREATED_AT_DATE, dateValue);
 		
 		props.put("Component Name", this.name);
 		props.put("Component Title", this.title);
@@ -567,6 +567,27 @@ public class Component {
 			resFiles = Helpers.listFiles(parentFolder, filter);
 			for (File file : resFiles) {
 				String file2String = Helpers.file2String(file);
+
+				int indexOfTimestamp = file2String.indexOf("/*%TIMESTAMP-START%*/");
+				int indexOfTimestampEnd = file2String.indexOf("/*%TIMESTAMP-END%*/");
+				if(indexOfTimestamp > -1) {
+					String file2StringTemp = file2String.substring(0, indexOfTimestamp + "/*%TIMESTAMP-START%*/".length());
+					file2StringTemp = file2StringTemp + "\"" + dateValue + "\"";
+					file2StringTemp = file2StringTemp + file2String.substring(indexOfTimestampEnd);
+					file2String = file2StringTemp;
+					
+					Helpers.string2File(file.getAbsolutePath(), file2String);
+				}
+
+				
+				int indexOfNoChangeLog = file2String.indexOf("/*NO DELTA CHECK START*/");
+				int indexOfNoChangeLogEnd = file2String.indexOf("/*NO DELTA CHECK END*/");
+				if(indexOfNoChangeLog > -1) {
+					String file2StringTemp = file2String.substring(0, indexOfNoChangeLog);
+					file2StringTemp = file2StringTemp+ file2String.substring(indexOfNoChangeLogEnd);
+					file2String = file2StringTemp;
+				}
+				
 				if(!file.isDirectory()) {
 					props.put("Resource " + file.getParentFile().getName() + " - " +file.getName(), file2String.length() + ";" + Helpers.hashString(file2String));	
 				}
