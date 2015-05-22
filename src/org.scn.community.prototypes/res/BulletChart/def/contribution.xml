@@ -36,7 +36,7 @@
 		</property>
 		<property id="showrealization" title= "show realization value" type="boolean"/>
 		<property id="maxgraphheight" title= "maximum height of single graph" type="int"/>
-		<property id="mingraphheight" title= "maximum height of single graph" type="int"/>
+		<property id="mingraphheight" title= "minimum height of single graph" type="int"/>
 		<property id="graphtitle" title= "Graph Title" type="String"/>
 		<property id="columnmargin" title="horizontal margin between graphs" type="int"/>
 		<property id="numberofcolumns" title="number of columns" type="int"/>

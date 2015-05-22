@@ -11,12 +11,14 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
   var commaFormat = d3.format('.');
   var clickProperties = ["clickedgraphkey","clickedgraphtext","clickedserieskey","clickedseriestext","clickedvalue","clickedaxiskey","clickedaxistext"];
   var clicked = {};
-  
+  var oldscrollval = 0;
+  var numberOfGraphs = 0;
   
   this.init = function(){
 	  chartComponents.container = this.$()[0];
 	  chartComponents.chart = d3.select(chartComponents.container);
-	  tooltip = d3.select(chartComponents.container).append("div").attr("class", "tooltip").style("opacity", 0);
+
+	  	
   };
   
   
@@ -59,38 +61,82 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
   
   this.afterUpdate = function() {
 	  data = returnData(sourcedata);
-	  
-	  componentDimensions.width = that.$().outerWidth(true);
-	  componentDimensions.height = that.$().outerHeight(true);
-	  componentDimensions.columnCutOff = Math.floor(data.length / chartProperties.numberofcolumns);
-	  componentDimensions.modulusgraphs =  data.length % chartProperties.numberofcolumns ;
+	  componentDimensions.numberOfGraphs = data.length;
+	  componentDimensions.width = that.$().outerWidth() - chartProperties.rightmargin - chartProperties.leftmargin;
+	  componentDimensions.height = that.$().outerHeight() - chartProperties.topmargin - chartProperties.bottommargin;
+	  componentDimensions.columnCutOff = Math.floor(componentDimensions.numberOfGraphs / chartProperties.numberofcolumns);
+	  componentDimensions.modulusgraphs =  componentDimensions.numberOfGraphs % chartProperties.numberofcolumns ;
 	  componentDimensions.graphWidth = componentDimensions.width  / chartProperties.numberofcolumns - chartProperties.columnmargin;
-	  componentDimensions.maxRows = Math.ceil(data.length / chartProperties.numberofcolumns);
+	  componentDimensions.maxRows = Math.ceil(componentDimensions.numberOfGraphs / chartProperties.numberofcolumns);
 	  componentDimensions.graphHeight = componentDimensions.height / componentDimensions.maxRows - chartProperties.rowmargin;
 	  if (chartProperties.maxgraphheight>0){componentDimensions.graphHeight =Math.min(componentDimensions.graphHeight,chartProperties.maxgraphheight)} 
 	  if (chartProperties.mingraphheight>0){componentDimensions.graphHeight =Math.max(componentDimensions.graphHeight,chartProperties.mingraphheight)} 
-
-	  componentDimensions.position = $(that.$()[0].parentElement).position();
 	  chartProperties.positions = [];
-	  console.log(data);
 	  componentDimensions.titlelength = Math.max.apply(this,$.map(data, function(o){ return o.title.length; }))* 8;
 	  if (chartProperties.showalert!="none"){componentDimensions.titlelength+=5};
 	
 	var i=0, j=0;
 	for (i = 0; i < chartProperties.numberofcolumns; i++){for (j = 0; j < componentDimensions.maxRows; j++){chartProperties.positions.push({"x":i, "y":j});}}
-		chartComponents.graphs = chartComponents.chart .selectAll("div.bulletgraphdiv").data(data);
-		chartComponents.graphs .enter()
+	
+	
+	chartComponents.chart
+		.style("overflow-y","auto")
+		.style("position", "relative")
+		.style("top", function() {return chartProperties.topmargin + "px";})
+		.style("height", function () {return  componentDimensions.height + "px";})
+	 	.on("scroll", function()
+	 			{
+	 			var scrollheight = chartComponents.chart.property("scrollHeight");
+	 			var scrolltop = chartComponents.chart.property("scrollTop");
+	 			// console.log(scrollheight);
+	 			console.log(scrolltop);
+	 			  chartComponents.graphs 
+	 			  	.transition().duration(500).delay(function(d,i)
+	 			  			{	
+	 			  				return oldscrollval<scrolltop?
+	 			  						(componentDimensions.numberOfGraphs - i)*30:
+	 			  						i * 30;
+
+	 			  			})
+	 			  	.style("opacity", function(d,i) 
+	 			  			{
+	 			  			 var calcpos = parseInt(d3.select(this).style("top").slice(0,-2));
+	 			  			 calcpos = calcpos - scrolltop;
+	 			  			 var result = 1;
+	 			  			 
+	 			  			 
+	 			  			 if (calcpos < 0 || calcpos > componentDimensions.height - componentDimensions.graphHeight )
+	 			  			 { 
+	 			  				 result = 0;
+	 			  			 }
+	 			  			 
+	 			  			
+	 			  			 return result;
+	 			  			});
+	 			
+	 			  			oldscrollval = scrolltop
+	 			});
+	            
+	chartComponents.graphs = chartComponents.chart.selectAll("div.bulletgraphdiv").data(data);
+	chartComponents.graphs .enter()
 		.append("div")
 	   		.attr("class", "bulletgraphdiv");	
-		chartComponents.graphs .exit()
+	chartComponents.graphs .exit()
 			.transition()
 			.delay(0)
 			.duration(375)
 			.style("opacity", 0)
 			.remove();
-		chartComponents.graphs 
+	chartComponents.graphs 
 		   	.style("left", function(d, i) { return chartProperties.positions[i].x * ( componentDimensions.graphWidth + chartProperties.columnmargin) + "px";})
 		   	.style("top", function(d, i) { return chartProperties.positions[i].y * ( componentDimensions.graphHeight + chartProperties.rowmargin) + "px";})
+		   	.style("opacity", function(d,i) 
+	 			  			{
+	 			  			 var calcpos = parseInt(d3.select(this).style("top").slice(0,-2));
+	 			  			 var result = 1;
+	 			  			 if (calcpos > componentDimensions.height - 50 ) { result = 0;}
+	 			  			 return result;
+	 			  			})
 		   	.each(function(d,i) { d3.select(this).call(bulletGraph);});
   };
 
@@ -208,7 +254,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 	function returnRandomData() {
 		var Group_Data = new Array;
 
-		for (var x = 0; x < Math.round(2 + Math.random() * 13); x++) {
+		for (var x = 0; x < Math.round(2 + Math.random() * 20); x++) {
 			var singleGroup = {};
 			singleGroup.title = "fakedata graph " + x;
 			singleGroup.chartKey = "fakedata" + x;
@@ -391,5 +437,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 				".");
 		return parts.join(",");
 	}
+
+	    
 
 });
