@@ -109,7 +109,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 	 			  			 { 
 	 			  				 result = 0;
 	 			  			 }
-	 			  			 
+	 			  			  
 	 			  			
 	 			  			 return result;
 	 			  			});
