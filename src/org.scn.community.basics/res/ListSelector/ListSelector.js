@@ -38,8 +38,10 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.ListSelector",
     	iconWidth : { value : -1 },
     	iconHeight : { value : -1 },
     	labelClicked : { value : "" },
-    	buttonClass : { redraw : true }
+    	buttonClass : { redraw : true },
+    	labelUnselect : {value : false}
     };
+    var list = null;
     /*
 	 * Create the aforementioned getter/setter and attach to 'this'.
 	 */
@@ -68,17 +70,28 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.ListSelector",
     		if(this.autoProperties[property].changed && this.autoProperties[property].redraw) redraw = true;
     	}
     	// Determine if a redraw is needed
-    	this.redraw();
+    	if(this.labelUnselect()){
+        	this.resetSelection();
+    	}else{
+        	this.redraw();	
+    	}
     	// Reset change flags
     	for(var property in this.autoProperties){
     		this.autoProperties[property].changed = false;
     	}
     };
     
+    this.resetSelection = function(){
+    	for(var i=0;i<list[0].children.length;i++){
+    		var child = list[0].children[i];
+    		child.className = '';
+    	}
+    };
+    
     this.redraw = function(){
     	var that = this;
     	this.$().empty();
-    	var list = $("<ul/>");
+    	list = $("<ul/>");
     	var t = [];
     	var ids = [];
     	var vis = [];
@@ -96,13 +109,15 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.ListSelector",
 				return function(){
 					$(this).addClass("selected");
 					that.labelClicked(text);
-					that.firePropertiesChanged(["labelClicked"]);
+					//make sure unselect function is reseted
+		    		that.labelUnselect(false);
+					that.firePropertiesChanged(["labelClicked", "labelUnselect"]);
 					that.fireEvent("onclick");
 				};
 			}(t[i]));
     		
     		if(this.buttonClass()) newItem.addClass(this.buttonClass());
-    		if(this.labelClicked()==t[i]){
+    		if(this.labelClicked()==t[i] && !this.labelUnselect()){
     			newItem.addClass("selected");
     		}
     		if(this.fixedWidth() != -1){

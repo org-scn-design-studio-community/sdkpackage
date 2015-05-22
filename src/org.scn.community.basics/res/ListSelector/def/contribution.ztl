@@ -17,10 +17,17 @@ class org.scn.community.basics.ListSelector extends org.scn.community.shared.Com
 	*}
 	/**
 	Get list of menu element titles.
-	<example><code>var titles = LISTSELECTOR_1.Titles();</code></example>
+	<example><code>var titles = LISTSELECTOR_1.getTitles();</code></example>
 	<returns>Comma-seperated list of menu element titles</returns>
 	*/
 	String getTitles() {*
 		return this.titles;
+	*}
+	/**
+	Reset selection of menu element titles for complex navigation scenarios
+	<example><code>LISTSELECTOR_1.resetSelection();</code></example>
+	 */
+	void resetSelection(){*
+		this.labelUnselect = true;
 	*}
 }

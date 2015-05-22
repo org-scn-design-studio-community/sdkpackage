@@ -16,6 +16,7 @@
 	  	<property group="Display" id="fixedWidth" type="String" title="Fixed Width (-1 for auto)"/>
 	  	<property group="Display" id="spriteSheet" type="Url" title="Icon Sprite Sheet (Optional)"/>
 	  	<property group="Display" id="labelClicked" type="String" title="Selected Label"/>
+	  	<property group="Display" id="labelUnselect" type="boolean" title="Unselect Label" visible="false"/>
 	  	<property id="onclick" type="ScriptText" title="On Click..." group="Events"/>
 	  	<property group="Display" id="labelPlacement" type="String" title="Label Placement (Relative to Icon)">
 	  		<possibleValue>After</possibleValue>
