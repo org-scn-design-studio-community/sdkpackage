@@ -95,7 +95,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 	 			  			{	
 	 			  				return oldscrollval<scrolltop?
 	 			  						(componentDimensions.numberOfGraphs - i)*30:
-	 			  						i * 30;
+	 			  		 				i * 30;
 
 	 			  			})
 	 			  	.style("opacity", function(d,i) 
