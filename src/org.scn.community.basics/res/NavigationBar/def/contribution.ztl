@@ -128,4 +128,9 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 	String getSelectedItemText () {*
 		return this.DSelectedText;	
 	*}
+	
+	/** resets item selection */
+	void resetItemSelection () {*
+		this.DSelectedKey = "invisible_dummy_select";
+	*}
 }

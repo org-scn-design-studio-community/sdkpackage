@@ -2532,6 +2532,12 @@ class org.scn.community.basics.ListSelector extends org.scn.community.shared.Com
 	String getTitles() {*
 		return this.titles;
 	*}
+	/**
+	 * 
+	 */
+	void resetSelection(){*
+		this.labelUnselect = true;
+	*}
 }
 /**
  * Class for MenuBar
@@ -2897,6 +2903,11 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 	/** returns the selected item */
 	String getSelectedItemText () {*
 		return this.DSelectedText;	
+	*}
+	
+	/** resets item selection */
+	void resetItemSelection () {*
+		this.DSelectedKey = "invisible_dummy_select";
 	*}
 }
 

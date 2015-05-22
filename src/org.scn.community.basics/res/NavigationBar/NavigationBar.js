@@ -82,6 +82,22 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 
 			if(lElementsToRenderArray.length == 0) {
 				that.addDummy();
+			}else{
+				//add an invisible dummy item to enable unselecting items at least visibly
+				var element_key = "invisible_dummy_select";
+				if(this._oElements[this.getId() + "_" + element_key]) {
+					this._oItems[this.getId() + "_" + element_key].setEnabled(false);
+					this._oItems[this.getId() + "_" + element_key].setVisible(false);
+				}else{
+					var Item = new sap.ui.ux3.NavigationItem(
+							this.getId() + "_" + element_key, {key: element_key, text: "I am invisible", enabled: false, visible: false});
+					Item._dsKey = element_key;
+					
+					this._oElements[this.getId() + "_" + element_key] = element_key;
+					this._oItems[this.getId() + "_" + element_key] = Item;
+					that._oNavBar.addItem(Item);	
+				}
+				//------------------------------------------------------------------------
 			}
 			
 			// distribute content
