@@ -1,0 +1,28 @@
+{
+	"id": "BulletChartGen",
+	"title": "Bullet Chart (Gen Prototype)",
+	"tooltip": "Bullet Chart Visualization",
+	"handlerType": "div",
+	"group": "ScnCommunityPrototypes",
+	"package": "prototypes",
+	"extension": "Component",
+	"databound": true,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_databound",
+		}
+	],
+	
+	"stdIncludes": 
+	[
+		{
+			"name" : "d3",
+		}
+	],
+	
+	"width": "600",
+	"height": "400"
+}

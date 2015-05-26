@@ -9,7 +9,7 @@
 	group="ScnCommunityBasics"
 	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ActivityViewer/ActivityViewerLoader.js</jsInclude>
 	<cssInclude>res/ActivityViewer/ActivityViewer.css</cssInclude>

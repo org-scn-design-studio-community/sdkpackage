@@ -201,7 +201,7 @@
 	group="ScnCommunityPrototypes"
 	databound="true"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ApsTester/ApsTesterLoader.js</jsInclude>
 	<cssInclude>res/ApsTester/ApsTester.css</cssInclude>
@@ -330,7 +330,7 @@
 	group="ScnCommunityPrototypes"
 	databound="true"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ApsTesterUI5/ApsTesterUI5Loader.js</jsInclude>
 	<cssInclude>res/ApsTesterUI5/ApsTesterUI5.css</cssInclude>
@@ -640,7 +640,7 @@
 		</property>
 		<property id="showrealization" title= "show realization value" type="boolean"/>
 		<property id="maxgraphheight" title= "maximum height of single graph" type="int"/>
-		<property id="mingraphheight" title= "maximum height of single graph" type="int"/>
+		<property id="mingraphheight" title= "minimum height of single graph" type="int"/>
 		<property id="graphtitle" title= "Graph Title" type="String"/>
 		<property id="columnmargin" title="horizontal margin between graphs" type="int"/>
 		<property id="numberofcolumns" title="number of columns" type="int"/>
@@ -664,6 +664,46 @@
 			<defaultValue property="HEIGHT">500</defaultValue>
 		</initialization>
 	</component>
+
+<component
+	id="BulletChartGen"
+	title="Bullet Chart (Gen Prototype)"
+	tooltip="Bullet Chart Visualization"
+	icon="res/BulletChartGen/BulletChartGen.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	group="ScnCommunityPrototypes"
+	databound="true"
+>
+	<stdInclude kind="d3"/>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/BulletChartGen/BulletChartGenLoader.js</jsInclude>
+	<cssInclude>res/BulletChartGen/BulletChartGen.css</cssInclude>
+	
+	<property
+		id="graphTitle"
+		type="String"
+		title="Graph Title"
+		group="Display"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="graphTitle"></defaultValue>
+
+	</initialization>
+
+</component>
 
 <component
 	id="SapMList"

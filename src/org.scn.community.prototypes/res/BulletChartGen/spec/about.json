@@ -1,0 +1,12 @@
+{
+	"title": "Bullet Chart (Gen)",
+	"description": "Bullet Chart",
+	"icon": "BulletChartGen.png",
+	"topics": 
+	[
+		{
+			"title" : "Bullet Chart",
+			"content" : "Allows view on data in form of a bullet chart."
+		}
+	]
+}

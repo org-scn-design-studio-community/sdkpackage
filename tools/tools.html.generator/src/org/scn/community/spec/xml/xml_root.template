@@ -9,7 +9,7 @@
 	group="%COMP-group%"
 	databound="%COMP-databound%"
 >
-
+	%COMPONENT_STD_INCLUDES_SPEC%
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/%COMP-id%/%COMP-id%Loader.js</jsInclude>
 	<cssInclude>res/%COMP-id%/%COMP-id%.css</cssInclude>

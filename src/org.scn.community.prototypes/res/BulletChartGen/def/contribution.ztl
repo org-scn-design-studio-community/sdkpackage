@@ -1,0 +1,26 @@
+
+/**
+ * Generated ZTL Class for BulletChartGen
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Graph Title Property
+	 */	
+	void setGraphTitle( /**Graph Title*/ String graphTitle){*
+		this.graphTitle = graphTitle;
+	*}
+
+	/**
+	 * Gets Graph Title Property
+	 */	
+	String getGraphTitle() {*
+		return this.graphTitle;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
+}

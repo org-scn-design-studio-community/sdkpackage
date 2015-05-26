@@ -588,7 +588,7 @@
 	group="ScnCommunityUtils"
 	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/JsonObject/JsonObjectLoader.js</jsInclude>
 	<cssInclude>res/JsonObject/JsonObject.css</cssInclude>

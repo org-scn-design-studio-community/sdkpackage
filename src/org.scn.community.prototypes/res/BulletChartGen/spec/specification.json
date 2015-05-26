@@ -1,0 +1,15 @@
+{
+   "graphTitle":{
+      "type":"String",
+      "value":"",
+      "visible":true,
+      "opts":{
+         "ztlType":"String",
+         "ztlFunction":"",
+         "desc":"Graph Title",
+         "cat":"Visualization",
+         "tooltip":"the title for the graph",
+         "apsControl":"text"
+      }
+   }
+}

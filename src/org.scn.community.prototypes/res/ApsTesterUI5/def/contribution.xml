@@ -9,7 +9,7 @@
 	group="ScnCommunityPrototypes"
 	databound="true"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ApsTesterUI5/ApsTesterUI5Loader.js</jsInclude>
 	<cssInclude>res/ApsTesterUI5/ApsTesterUI5.css</cssInclude>

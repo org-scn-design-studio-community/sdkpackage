@@ -37,7 +37,8 @@ public class SpecificationReader {
 	private String ApsJs;
 	private String ApsHtml;
 	private String JsSpecTmpl;
-	private ArrayList<String> componentRequries;
+	private ArrayList<String> componentRequries = new ArrayList<String>();
+	private ArrayList<String> componentStdIncludes = new ArrayList<String>();
 
 	public SpecificationReader(String pathToGenSpec, Component component) {
 		this.pathToGenSpec = pathToGenSpec;
@@ -132,6 +133,19 @@ public class SpecificationReader {
 					String id = paramFullSpec.getProperties().get("id");
 					
 					componentRequries.add("org_scn_community_require."+space+"Modules." + id + ".name");
+				}
+			} else if(key.equals("stdIncludes")) {
+				// special case, an array
+				
+				componentStdIncludes = new ArrayList<String>();
+				ParamFullSpec extendedFullSpecArray = property.getExtendedFullSpec();
+				
+				ArrayList<ParamFullSpec> parameters = extendedFullSpecArray.getParameters();
+				
+				for (ParamFullSpec paramFullSpec : parameters) {
+					String name = paramFullSpec.getProperties().get("name");
+					
+					componentStdIncludes.add("<stdInclude kind=\""+name+"\"/>");
 				}
 			} else {
 				// add special properties
@@ -339,6 +353,7 @@ public class SpecificationReader {
 			content = content.replace("%FUNCTION_ENTRY%", "");
 			content = content.replace("%CUSTOM_ENTRY%", "");
 			content = content.replace("%COMPONENT_REQUIRE_SPEC%", this.serializeRequires());
+			content = content.replace("%COMPONENT_STD_INCLUDES_SPEC%", this.serializeStdIncludes());
 			
 			content = content.replace("%XML_PROPERTY_TEMPLATE%", "");
 			content = content.replace("%XML_EVENT_TEMPLATE%", "");
@@ -396,6 +411,15 @@ public class SpecificationReader {
 		
 		for (String require : componentRequries) {
 			requires = requires + require + ",\r\n\t\t";
+		}
+		return requires;
+	}
+	
+	private CharSequence serializeStdIncludes() {
+		String requires = "";
+		
+		for (String require : componentStdIncludes) {
+			requires = requires + require + "\r\n\t";
 		}
 		return requires;
 	}

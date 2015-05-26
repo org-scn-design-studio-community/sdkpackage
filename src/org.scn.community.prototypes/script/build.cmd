@@ -11,6 +11,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\ApplicationHeaderOnBeforeRender\def\contribution.xml ^
 ..\res\ProgressSet\def\contribution.xml ^
 ..\res\BulletChart\def\contribution.xml ^
+..\res\BulletChartGen\def\contribution.xml ^
 ..\res\SapMList\def\contribution.xml ^
 ..\res\RapidPrototype\def\contribution.xml ^
 ..\res\TagCloud\def\contribution.xml ^
@@ -28,6 +29,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ApplicationHeaderOnBeforeRender\def\contribution.ztl ^
 ..\res\ProgressSet\def\contribution.ztl ^
 ..\res\BulletChart\def\contribution.ztl ^
+..\res\BulletChartGen\def\contribution.ztl ^
 ..\res\SapMList\def\contribution.ztl ^
 ..\res\RapidPrototype\def\contribution.ztl ^
 ..\res\TagCloud\def\contribution.ztl ^
