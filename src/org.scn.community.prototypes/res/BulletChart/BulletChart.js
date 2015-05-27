@@ -76,8 +76,8 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 	  if (chartProperties.maxgraphheight>0){componentDimensions.graphHeight =Math.min(componentDimensions.graphHeight,chartProperties.maxgraphheight)} 
 	  if (chartProperties.mingraphheight>0){componentDimensions.graphHeight =Math.max(componentDimensions.graphHeight,chartProperties.mingraphheight)} 
 	  chartProperties.positions = [];
-	  componentDimensions.titlelength = Math.max.apply(this,$.map(data, function(o){ return o.title.length; }))* 7;
-	  if (chartProperties.showalert!="none"){componentDimensions.titlelength+=5};
+	  componentDimensions.titlelength = Math.max.apply(this,$.map(data, function(o){ return o.title.length; }))* 6;
+	  if (chartProperties.showalert!="none"){componentDimensions.titlelength+=10};
 	
 	var i=0, j=0;
 	for (i = 0; i < chartProperties.numberofcolumns; i++){for (j = 0; j < componentDimensions.maxRows; j++){chartProperties.positions.push({"x":i, "y":j});}}
@@ -299,7 +299,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 		sourcedata.factdata.dimensions = sourcedata.metadata ? sourcedata.metadata.dimensions: sourcedata.factdata.dimensions;
 		var newData = new Array;
 		
-		// missing code...
 		// try this method to make a simple view on result set
 		var options = org_scn_community_databound.initializeOptions();
 		
