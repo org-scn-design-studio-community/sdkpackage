@@ -16,6 +16,7 @@
 		<cssInclude>res/BulletChart/BulletChart.css</cssInclude>
 
 		<property id="onclick" type="ScriptText" title="On Click" group="Events" />
+		<property id="clickedgraphkey" title="clickedgraphkey" type="String" visible="false"/>
 		<property id="data" title="Dataset"	type="ResultSet" group="DataBinding" visible="false"/>
 		<property id="realization" title="realization column" type="String"/>
 		<property id="extrapolation" title="expected realization outcome end of period column" type="String"/>

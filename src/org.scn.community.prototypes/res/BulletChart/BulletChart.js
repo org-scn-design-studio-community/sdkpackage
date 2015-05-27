@@ -10,7 +10,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
   var sourcedata = {};
   var data = undefined;
   var commaFormat = d3.format('.');
-  var clickProperties = ["clickedgraphkey","clickedgraphtext","clickedserieskey","clickedseriestext","clickedvalue","clickedaxiskey","clickedaxistext"];
   var clicked = {};
   var oldscrollval = 0;
   var numberOfGraphs = 0;
@@ -46,8 +45,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
   this.mingraphheight = function(e) { if (e === undefined) {return chartProperties.mingraphheight;}else{chartProperties.mingraphheight = e;return this;}};
   // getter/setter for clicked properties
   this.clickedgraphkey = function(e) { if (e === undefined) {return clicked.graphkey;}else{clicked.graphkey = e;return this;}};
-  this.clickedgraphtext = function(e) { if (e === undefined) {return clicked.graphtext;}else{clicked.graphtext = e;return this;}};
-  
+
   
   // getter/setter for the data
   this.data = function(e) { if (e === undefined) {return sourcedata.factdata;}else{sourcedata.factdata = e;return this;}};
@@ -78,7 +76,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 	  if (chartProperties.maxgraphheight>0){componentDimensions.graphHeight =Math.min(componentDimensions.graphHeight,chartProperties.maxgraphheight)} 
 	  if (chartProperties.mingraphheight>0){componentDimensions.graphHeight =Math.max(componentDimensions.graphHeight,chartProperties.mingraphheight)} 
 	  chartProperties.positions = [];
-	  componentDimensions.titlelength = Math.max.apply(this,$.map(data, function(o){ return o.title.length; }))* 8;
+	  componentDimensions.titlelength = Math.max.apply(this,$.map(data, function(o){ return o.title.length; }))* 7;
 	  if (chartProperties.showalert!="none"){componentDimensions.titlelength+=5};
 	
 	var i=0, j=0;
@@ -162,7 +160,11 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 			  		thisGraph.enter().append("svg").attr("class", "bulletgraph");
 			  		thisGraph
 			  			.attr("width", componentDimensions.graphWidth)
-			  			.attr("height", componentDimensions.graphHeight);
+			  			.attr("height", componentDimensions.graphHeight)
+			  			.on("click",function(d) {
+			  						clicked.graphkey = d.chartKey;
+									that.firePropertiesChanged(["clickedgraphkey"]);
+									that.fireEvent("onclick");});
 		
 			  		var labelgroup = thisGraph.selectAll("g.label").data(data);
 			  		var xaxisgroup = thisGraph.selectAll("g.x.axis").data(data);
