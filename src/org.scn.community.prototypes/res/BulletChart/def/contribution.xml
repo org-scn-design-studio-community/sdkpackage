@@ -18,13 +18,17 @@
 		<property id="onclick" type="ScriptText" title="On Click" group="Events" />
 		<property id="data" title="Dataset"	type="ResultSet" group="DataBinding" visible="false"/>
 		<property id="realization" title="realization column" type="String"/>
-		<property id="exprapolation" title="expected realization outcome end of period column" type="String"/>
+		<property id="extrapolation" title="expected realization outcome end of period column" type="String"/>
 		<property id="threshold1" title="first threshold column" type="String"/>
 		<property id="threshold2" title="second threshold column" type="String"/>
 		<property id="threshold3" title="third threshold column" type="String"/>
 		<property id="threshold4" title="second threshold column" type="String"/>
 		<property id="threshold5" title="third threshold column" type="String"/>
+		<property id="labeldimension" title="Row Dimension holding main label" type="String"/>
+		<property id="sublabeldimension" title="Row Dimension holding sub label" type="String"/>
+		<property id="keydimension" title="Row Dimension holding unique key for clicking through" type="String"/>
 		<property id="comparison" title="comparison column" type="String"/>
+		<property id="showaxis" title="Show X axis numbers" type="boolean"/>
 		<property id="showalert" title= "show alert" type="String">
 			<possibleValue>never</possibleValue>
 			<possibleValue>worse than comparison</possibleValue>

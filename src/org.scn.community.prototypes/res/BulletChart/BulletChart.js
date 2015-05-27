@@ -2,6 +2,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
   "use strict";
 
   var that = this;
+  var chartIndex = {};
   var chartComponents = {};
   var chartProperties = {};
   var componentDimensions = {};
@@ -39,7 +40,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
   this.headerypos = function(e) { if (e === undefined) {return chartProperties.headerypos;}else{chartProperties.headerypos = e;return this;}};
   this.showalert = function(e) { if (e === undefined) {return chartProperties.showalert;}else{chartProperties.showalert = e;return this;}};
   this.higherisbetter = function(e) { if (e === undefined) {return chartProperties.higherisbetter;}else{chartProperties.higherisbetter = e;return this;}};
-  
+  this.showaxis = function(e) { if (e === undefined) {return chartProperties.showaxis;}else{chartProperties.showaxis = e;return this;}};
   
   this.maxgraphheight = function(e) { if (e === undefined) {return chartProperties.maxgraphheight;}else{chartProperties.maxgraphheight = e;return this;}};
   this.mingraphheight = function(e) { if (e === undefined) {return chartProperties.mingraphheight;}else{chartProperties.mingraphheight = e;return this;}};
@@ -51,13 +52,18 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
   // getter/setter for the data
   this.data = function(e) { if (e === undefined) {return sourcedata.factdata;}else{sourcedata.factdata = e;return this;}};
   this.metadata = function(e) { if (e === undefined) {return sourcedata.metadata;}else{sourcedata.metadata = e;return this;}};
+  
   this.realization = function(e) { if (e === undefined) {return chartProperties.realization;}else{chartProperties.realization = e;return this;}};
+  this.extrapolation = function(e) { if (e === undefined) {return chartProperties.extrap;}else{chartProperties.extrap = e;return this;}};
   this.comparison = function(e) { if (e === undefined) {return chartProperties.comparison;}else{chartProperties.comparison = e;return this;}};
   this.threshold1 = function(e) { if (e === undefined) {return chartProperties.threshold1;}else{chartProperties.threshold1 = e;return this;}};
   this.threshold2 = function(e) { if (e === undefined) {return chartProperties.threshold2;}else{chartProperties.threshold2 = e;return this;}};
   this.threshold3 = function(e) { if (e === undefined) {return chartProperties.threshold3;}else{chartProperties.threshold3 = e;return this;}};
   this.threshold4 = function(e) { if (e === undefined) {return chartProperties.threshold4;}else{chartProperties.threshold4 = e;return this;}};
   this.threshold5 = function(e) { if (e === undefined) {return chartProperties.threshold5;}else{chartProperties.threshold5 = e;return this;}};
+  this.keydimension = function(e) { if (e === undefined) {return chartProperties.keydimension;}else{chartProperties.keydimension = e;return this;}};
+  this.sublabeldimension = function(e) { if (e === undefined) {return chartProperties.sublabeldimension;}else{chartProperties.sublabeldimension = e;return this;}};
+  this.labeldimension = function(e) { if (e === undefined) {return chartProperties.labeldimension;}else{chartProperties.labeldimension = e;return this;}};
   
   this.afterUpdate = function() {
 	  data = returnData(sourcedata);
@@ -89,7 +95,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 	 			var scrollheight = chartComponents.chart.property("scrollHeight");
 	 			var scrolltop = chartComponents.chart.property("scrollTop");
 	 			// console.log(scrollheight);
-	 			console.log(scrolltop);
 	 			  chartComponents.graphs 
 	 			  	.transition().duration(500).delay(function(d,i)
 	 			  			{	
@@ -229,6 +234,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 			  		xaxisgroup.call(xAxis);
 			  		xaxisgroup.select("path").remove();
 			  		
+			  		if (!chartProperties.showaxis) {xaxisgroup.selectAll("*").remove();}
 			  		
 			  		thresholds
 					   .attr("width", function(d,i) {var returnval = 0; if(i!=0){ returnval = data[0].threshholds[i-1]}; return xScale(d-returnval);})
@@ -321,24 +327,45 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 		} else {
 			for(var row = 0; row < that._flatData.rowHeaders.length; row++) {
 				var rowHeader = that._flatData.rowHeaders[row];
+				var columnHeaders = that._flatData.columnHeadersKeys;
 				var values = that._flatData.values[row];
-
+				var dimensionHeader = that._flatData.dimensionHeadersKeys
+				var rowheaderskeys = that._flatData.rowHeadersKeys2D[row];
+				var rowheadertexts = that._flatData.rowHeaders2D[row];
 				var singleGroup = {};
 			
-				singleGroup.title = rowHeader;
-				singleGroup.chartKey = "";
-				singleGroup.subtitle = "";
+				chartIndex.key = dimensionHeader.indexOf(chartProperties.keydimension);
+				chartIndex.sublabel = dimensionHeader.indexOf(chartProperties.sublabeldimension);
+				chartIndex.label = dimensionHeader.indexOf(chartProperties.labeldimension);
+		  
+				
+				
+				chartIndex.real = columnHeaders.indexOf(chartProperties.realization)
+				chartIndex.extrap = columnHeaders.indexOf(chartProperties.extrap)
+				chartIndex.compare = columnHeaders.indexOf(chartProperties.comparison)
+				chartIndex.thresh = [];
+				chartIndex.thresh.push (columnHeaders.indexOf(chartProperties.threshold1));
+				chartIndex.thresh.push (columnHeaders.indexOf(chartProperties.threshold2));
+				chartIndex.thresh.push (columnHeaders.indexOf(chartProperties.threshold3));
+				chartIndex.thresh.push (columnHeaders.indexOf(chartProperties.threshold4));
+				chartIndex.thresh.push (columnHeaders.indexOf(chartProperties.threshold5));
+				
+				singleGroup.title =  chartIndex.label == -1 ? "" : rowheadertexts[chartIndex.label];
+				singleGroup.subtitle =  chartIndex.sublabel == -1 ? "" : rowheadertexts[chartIndex.sublabel];
+				singleGroup.chartKey = chartIndex.key == -1 ? "" : rowheaderskeys[chartIndex.key];
 
-				singleGroup.real = values[0]; // the dark blue
-				singleGroup.extrap = values[1]; // the background light blue
-				singleGroup.compare = values[2]; // the | sign
+				
+				singleGroup.real = chartIndex.real == -1 ? 0 : values[chartIndex.real]; // the dark blue
+				singleGroup.extrap = chartIndex.extrap == -1 ? singleGroup.real : values[chartIndex.extrap]; // the background light blue
+				singleGroup.compare = chartIndex.compare == -1 ? 0 : values[chartIndex.compare]; // the | sign
 
+				
 				singleGroup.threshholds = []; // black to gray values
-				for(var trash = 3; trash < values.length; trash++) {
-					singleGroup.threshholds.push(values[trash]);
-				}
-				singleGroup.threshholds.sort(sortNumber);
+				for(var threshcolumn = 0; threshcolumn < chartIndex.thresh.length; threshcolumn++) {
+					var newValue = chartIndex.thresh[threshcolumn] != -1 ? values[chartIndex.thresh[threshcolumn]] : 0;
+					singleGroup.threshholds.push(newValue);}
 
+				singleGroup.threshholds.sort(sortNumber); // sort to avoid negative values;
 				singleGroup.values = [singleGroup.real,singleGroup.extrap,singleGroup.compare];
 				singleGroup.values.push.apply(singleGroup.values,singleGroup.threshholds);
 
@@ -346,7 +373,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 			}
 		}
 		
-		// now real mapping must come.
 		return newData;
 	};
 	function showAlert(currentGraphData){
