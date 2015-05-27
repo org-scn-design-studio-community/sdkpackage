@@ -1,15 +1,371 @@
 {
-   "graphTitle":{
-      "type":"String",
-      "value":"",
-      "visible":true,
-      "opts":{
-         "ztlType":"String",
-         "ztlFunction":"",
-         "desc":"Graph Title",
-         "cat":"Visualization",
-         "tooltip":"the title for the graph",
-         "apsControl":"text"
-      }
-   }
+    "data": {
+        "type": "ResultSet",
+        "value": "null",
+        "visible": true,
+        "onChange": "flattenData",
+        "opts": {
+            "type": "data",
+            "ztlFunction": "",
+            "desc": "Dataset",
+            "cat": "Data",
+            "tooltip": "Data from datasource",
+            "value": null,
+            "noAps": true,
+            "noZtl": true
+        }
+    },
+    "graphTitle": {
+        "type": "String",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "Graph Title",
+            "cat": "Visualization",
+            "tooltip": "the title for the graph",
+            "apsControl": "text"
+        }
+    },
+    "clickedgraphkey": {
+        "type": "String",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "Clicked Key",
+            "cat": "Visualization",
+            "tooltip": "the unique key of the clicked graph",
+            "noAps": true
+        }
+    },
+    "realization": {
+        "type": "String",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "Realization Column",
+            "cat": "Column Selection",
+            "tooltip": "The Column key value of the realization values",
+            "apsControl": "String"
+        }
+    },
+    "extrapolation": {
+        "type": "String",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "Extrapolation Values",
+            "cat": "Visualization",
+            "tooltip": "The Column key value of the extrapolation values",
+            "apsControl": "String"
+        }
+    },
+    "threshold1": {
+        "type": "String",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "threshold 1 values",
+            "cat": "Column Selection",
+            "tooltip": "first option to select threshold values",
+            "apsControl": "String"
+        }
+    },
+    "threshold2": {
+        "type": "String",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "threshold 2 values",
+            "cat": "Column Selection",
+            "tooltip": "second option to select threshold values",
+            "apsControl": "String"
+        }
+    },
+    "threshold3": {
+        "type": "String",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "threshold 3 values",
+            "cat": "Column Selection",
+            "tooltip": "third option to select threshold values",
+            "apsControl": "String"
+        }
+    },
+    "threshold4": {
+        "type": "true",
+        "value": "",
+        "visible": false,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "threshold 4 values",
+            "cat": "Column Selection",
+            "tooltip": "fourth option to select threshold values",
+            "apsControl": "String"
+        }
+    },
+    "threshold5": {
+        "type": "true",
+        "value": "",
+        "visible": false,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "threshold 5 values",
+            "cat": "Column Selection",
+            "tooltip": "fifth option to select threshold values",
+            "apsControl": "String"
+        }
+    },
+    "labeldimension": {
+        "type": "String",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "dimension holding label values",
+            "cat": "Label Settings",
+            "tooltip": "Dimension name of the column that holds label values",
+            "apsControl": ""
+        }
+    },
+    "sublabeldimension": {
+        "type": "String",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "Clicked Key",
+            "cat": "Label Settings",
+            "tooltip": "Dimension name of the column that holds sublabel values",
+            "apsControl": ""
+        }
+    },
+    "keydimension": {
+        "type": "String",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "Unique key values",
+            "cat": "Visualization",
+            "tooltip": "Dimension name of the column that holds unique key values for each graph",
+            "apsControl": ""
+        }
+    },
+    "comparison": {
+        "type": "true",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "ztlType": "String",
+            "ztlFunction": "",
+            "desc": "comparon values",
+            "cat": "Visualization",
+            "tooltip": "Column holding compare values",
+            "apsControl": "String"
+        }
+    },
+    "showaxis": {
+        "type": "boolean",
+        "onSet": "showAxis",
+        "value": true,
+        "visible": true,
+        "opts": {
+            "ztlType": "boolean",
+            "ztlFunction": "",
+            "desc": "Show X axis",
+            "cat": "Data",
+            "tooltip": "Whether to show the X axis numbers underneath the graph",
+            "apsControl": "checkbox"
+        }
+    },
+    "showalert": {
+        "type": "String",
+        "value": "worse than comparison",
+        "visible": true,
+        "opts": {
+            "ztlType": "Choice",
+            "ztlFunction": "",
+            "desc": "When to show an alert",
+            "cat": "Data",
+            "tooltip": "Choose situation when to show alert",
+            "apsControl": "combobox",
+            "options": [
+                {
+                    "key": "comparison",
+                    "text": "worse than comparison"
+                },
+                {
+                    "key": "thresh5",
+                    "text": "worse than threshold 5"
+                },
+                {
+                    "key": "thresh4",
+                    "text": "worse than threshold 5"
+                },
+                {
+                    "key": "thresh3",
+                    "text": "worse than threshold 5"
+                },
+                {
+                    "key": "thresh2",
+                    "text": "worse than threshold 5"
+                },
+                {
+                    "key": "thresh1",
+                    "text": "worse than threshold 1"
+                }
+            ]
+        }
+    },
+    "maxgraphheight": {
+        "type": "int",
+        "value": "40",
+        "visible": true,
+        "opts": {
+            "ztlType": "int",
+            "ztlFunction": "",
+            "desc": "max height ",
+            "cat": "Visualization",
+            "tooltip": "Maximum height of a single graph",
+            "apsControl": "String"
+        }
+    },
+    "mingraphheight": {
+        "type": "int",
+        "value": "40",
+        "visible": true,
+        "opts": {
+            "ztlType": "int",
+            "ztlFunction": "",
+            "desc": "Minimum Height",
+            "cat": "Visualization",
+            "tooltip": "Minimum height of a single graph",
+            "apsControl": "String"
+        },
+        "columnmargin": {
+            "type": "int",
+            "value": "40",
+            "visible": true,
+            "opts": {
+                "ztlType": "int",
+                "ztlFunction": "",
+                "desc": "horizontal margin between graphs",
+                "cat": "Visualization",
+                "tooltip": "horizontal margin between graphs",
+                "apsControl": "String"
+            }
+        },
+        "numberofcolumns": {
+            "type": "int",
+            "value": "40",
+            "visible": true,
+            "opts": {
+                "ztlType": "int",
+                "ztlFunction": "",
+                "desc": "number of columns",
+                "cat": "Visualization",
+                "tooltip": "number of columns for the graphs",
+                "apsControl": "String"
+            }
+        },
+        "rowmargin": {
+            "type": "int",
+            "value": "40",
+            "visible": true,
+            "opts": {
+                "ztlType": "int",
+                "ztlFunction": "",
+                "desc": "vertical margin between graphs",
+                "cat": "Visualization",
+                "tooltip": "vertical margin between graphs",
+                "apsControl": "String"
+            }
+        },
+        "charttopmargin": {
+            "type": "int",
+            "value": "40",
+            "visible": true,
+            "opts": {
+                "ztlType": "int",
+                "ztlFunction": "",
+                "desc": "Top Margin",
+                "cat": "Visualization",
+                "tooltip": "Top Margin",
+                "apsControl": "String"
+            }
+        },
+        "chartbottommargin": {
+            "type": "int",
+            "value": "40",
+            "visible": true,
+            "opts": {
+                "ztlType": "int",
+                "ztlFunction": "",
+                "desc": "Bottom Margin",
+                "cat": "Visualization",
+                "tooltip": "Bottom Margin",
+                "apsControl": "String"
+            }
+        },
+        "chartleftmargin": {
+            "type": "int",
+            "value": "40",
+            "visible": true,
+            "opts": {
+                "ztlType": "int",
+                "ztlFunction": "",
+                "desc": "Left Margin",
+                "cat": "Visualization",
+                "tooltip": "Left Margin",
+                "apsControl": "String"
+            }
+        },
+        "chartrightmargin": {
+            "type": "int",
+            "value": "40",
+            "visible": true,
+            "opts": {
+                "ztlType": "int",
+                "ztlFunction": "",
+                "desc": "Right Margin",
+                "cat": "Visualization",
+                "tooltip": "Right Margin",
+                "apsControl": "String"
+            }
+        },
+        "higherisbetter": {
+            "type": "boolean",
+            "onSet": "higherBetter",
+            "value": true,
+            "visible": true,
+            "opts": {
+                "ztlType": "boolean",
+                "ztlFunction": "",
+                "desc": "higher is better",
+                "cat": "Data",
+                "tooltip": "realization higher than target is better",
+                "apsControl": "checkbox"
+            }
+        }
+    }
 }
