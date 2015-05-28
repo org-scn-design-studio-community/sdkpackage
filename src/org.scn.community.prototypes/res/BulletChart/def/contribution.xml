@@ -30,6 +30,7 @@
 		<property id="keydimension" title="Row Dimension holding unique key for clicking through" type="String"/>
 		<property id="comparison" title="comparison column" type="String"/>
 		<property id="showaxis" title="Show X axis numbers" type="boolean"/>
+		<property id="tooltip" title="Show tooltip" type="boolean"/>
 		<property id="showalert" title= "show alert" type="String">
 			<possibleValue>never</possibleValue>
 			<possibleValue>worse than comparison</possibleValue>
@@ -42,20 +43,24 @@
 		<property id="showrealization" title= "show realization value" type="boolean"/>
 		<property id="maxgraphheight" title= "maximum height of single graph" type="int"/>
 		<property id="mingraphheight" title= "minimum height of single graph" type="int"/>
-		<property id="graphtitle" title= "Graph Title" type="String"/>
+		<property id="numberofticks" title= "number of ticks in the graph" type="int"/>
 		<property id="columnmargin" title="horizontal margin between graphs" type="int"/>
 		<property id="numberofcolumns" title="number of columns" type="int"/>
 		<property id="rowmargin" title="vertical margin between graphs" type="int"/>
-		<property id="charttopmargin" title="Top Margin" type="int"/>
-		<property id="chartbottommargin" title="Bottom Margin" type="int"/>
-		<property id="chartleftmargin" title="Left Margin" type="int"/>
-		<property id="chartrightmargin" title="Right Margin" type="int"/>
+		<property id="charttopmargin" title="Bullet Top Margin" type="int"/>
+		<property id="chartbottommargin" title="Bullet Bottom Margin" type="int"/>
+		<property id="chartleftmargin" title="Bullet Left Margin" type="int"/>
+		<property id="chartrightmargin" title="Bullet Right Margin" type="int"/>
 		<property id="higherisbetter" title="realization higher than target is better" type="boolean"/>
 		<initialization>
 			<defaultValue property="numberofcolumns">1</defaultValue>
 			<defaultValue property="maxgraphheight">70</defaultValue>
 			<defaultValue property="mingraphheight">50</defaultValue>
 			<defaultValue property="higherisbetter">true</defaultValue>
+			<defaultValue property="showaxis">true</defaultValue>
+			<defaultValue property="tooltip">false</defaultValue>
+			<defaultValue property="showalert">true</defaultValue>
+			<defaultValue property="numberofticks">4</defaultValue>
 			<defaultValue property="showalert">worse than comparison</defaultValue>
 			<defaultValue property="TOP_MARGIN">0</defaultValue>
 			<defaultValue property="LEFT_MARGIN">0</defaultValue>

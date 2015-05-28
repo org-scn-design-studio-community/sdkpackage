@@ -49,3 +49,14 @@
   position: absolute;
   background-color: #FFFFFF;
 }
+.tooltip {
+  position: absolute;
+  width: 200px;
+  height: 84px;
+  pointer-events: none;
+  background-color: #FFFFFF;
+  border-style: solid;
+  border-color: #99B2B7;
+  border-width: 1px;
+  z-index:10;
+}

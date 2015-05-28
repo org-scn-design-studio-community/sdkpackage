@@ -13,16 +13,16 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
   var clicked = {};
   var oldscrollval = 0;
   var numberOfGraphs = 0;
+  var tooltip = undefined;
+  
   
   this.init = function(){
 	  chartComponents.container = this.$()[0];
 	  chartComponents.chart = d3.select(chartComponents.container);
-
-	  	
+	  tooltip = d3.select(chartComponents.container).append("div").attr("class", "tooltip").style("opacity", 0);
   };
   
   
- 
   this.beforeUpdate = function() {};
   
   // getter/setters for properties 
@@ -33,14 +33,13 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
   this.chartleftmargin = function(e) { if (e === undefined) {return chartProperties.leftmargin;}else{chartProperties.leftmargin = e;return this;}};
   this.chartrightmargin = function(e) { if (e === undefined) {return chartProperties.rightmargin;}else{chartProperties.rightmargin = e;return this;}};
   this.numberofcolumns = function(e) { if (e === undefined) {return chartProperties.numberofcolumns;}else{chartProperties.numberofcolumns = e;return this;}};
-  this.graphtitle = function(e) { if (e === undefined) {return chartProperties.showgraphtitle;}else{chartProperties.showgraphtitle = e;return this;}};
   this.numberofticks = function(e) { if (e === undefined) {return chartProperties.ticks;}else{chartProperties.ticks = e;return this;}};
   this.headerxpos = function(e) { if (e === undefined) {return chartProperties.headerxpos;}else{chartProperties.headerxpos = e;return this;}};
   this.headerypos = function(e) { if (e === undefined) {return chartProperties.headerypos;}else{chartProperties.headerypos = e;return this;}};
   this.showalert = function(e) { if (e === undefined) {return chartProperties.showalert;}else{chartProperties.showalert = e;return this;}};
   this.higherisbetter = function(e) { if (e === undefined) {return chartProperties.higherisbetter;}else{chartProperties.higherisbetter = e;return this;}};
   this.showaxis = function(e) { if (e === undefined) {return chartProperties.showaxis;}else{chartProperties.showaxis = e;return this;}};
-  
+  this.tooltip = function(e){ if (e === undefined) {return chartProperties.tooltip;}else{chartProperties.tooltip = e;return this;}};
   this.maxgraphheight = function(e) { if (e === undefined) {return chartProperties.maxgraphheight;}else{chartProperties.maxgraphheight = e;return this;}};
   this.mingraphheight = function(e) { if (e === undefined) {return chartProperties.mingraphheight;}else{chartProperties.mingraphheight = e;return this;}};
   // getter/setter for clicked properties
@@ -76,8 +75,9 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 	  if (chartProperties.maxgraphheight>0){componentDimensions.graphHeight =Math.min(componentDimensions.graphHeight,chartProperties.maxgraphheight)} 
 	  if (chartProperties.mingraphheight>0){componentDimensions.graphHeight =Math.max(componentDimensions.graphHeight,chartProperties.mingraphheight)} 
 	  chartProperties.positions = [];
-	  componentDimensions.titlelength = Math.max.apply(this,$.map(data, function(o){ return o.title.length; }))* 6;
-	  if (chartProperties.showalert!="none"){componentDimensions.titlelength+=10};
+	  componentDimensions.position = $(that.$()[0].parentElement).position();
+	  componentDimensions.titlelength = Math.max.apply(this,$.map(data, function(o){var returnval = Math.max(o.subtitle.length* 4, o.title.length* 6);return returnval; }));
+	  if (chartProperties.showalert!="none"){componentDimensions.titlelength+=30};
 	
 	var i=0, j=0;
 	for (i = 0; i < chartProperties.numberofcolumns; i++){for (j = 0; j < componentDimensions.maxRows; j++){chartProperties.positions.push({"x":i, "y":j});}}
@@ -88,11 +88,11 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 		.style("position", "relative")
 		.style("top", function() {return chartProperties.topmargin + "px";})
 		.style("height", function () {return  componentDimensions.height + "px";})
+
 	 	.on("scroll", function()
 	 			{
 	 			var scrollheight = chartComponents.chart.property("scrollHeight");
 	 			var scrolltop = chartComponents.chart.property("scrollTop");
-	 			// console.log(scrollheight);
 	 			  chartComponents.graphs 
 	 			  	.transition().duration(500).delay(function(d,i)
 	 			  			{	
@@ -106,14 +106,11 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 	 			  			 var calcpos = parseInt(d3.select(this).style("top").slice(0,-2));
 	 			  			 calcpos = calcpos - scrolltop;
 	 			  			 var result = 1;
-	 			  			 
-	 			  			 
 	 			  			 if (calcpos < 0 || calcpos > componentDimensions.height - componentDimensions.graphHeight )
 	 			  			 { 
 	 			  				 result = 0;
 	 			  			 }
 	 			  			  
-	 			  			
 	 			  			 return result;
 	 			  			});
 	 			
@@ -164,7 +161,28 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 			  			.on("click",function(d) {
 			  						clicked.graphkey = d.chartKey;
 									that.firePropertiesChanged(["clickedgraphkey"]);
-									that.fireEvent("onclick");});
+									that.fireEvent("onclick");})
+					.on("mouseover",function(d) {
+								if (chartProperties.tooltip == true){
+								tooltip.transition()
+									.duration(500)
+									.style("opacity", 1);
+									var format = d3.format(",.2f");
+									var newHtml = "<br>Current Realization: "+  format(d.real) + "</br>";
+									if (d.extrap > d.real) {newHtml += "<br>Period End Prediction: "+  format(d.extrap) + "</br>"; }
+									newHtml += "<br>Comparison Value: "+  format(d.compare) + "</br>";
+									
+									tooltip.html(newHtml)
+									.style("left", (d3.event.pageX - componentDimensions.position.left) + "px")
+									.style("top", (d3.event.pageY - componentDimensions.position.top) + "px");}
+							})				
+					.on("mouseout",	function(d) {
+								tooltip.transition()
+								.duration(500)
+								.style("opacity", 0);
+							})
+									
+									;
 		
 			  		var labelgroup = thisGraph.selectAll("g.label").data(data);
 			  		var xaxisgroup = thisGraph.selectAll("g.x.axis").data(data);
@@ -232,14 +250,18 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 			  		var xScale = d3.scale.linear()
 			  			.range([0,maxBarWidth])
 			  			.domain([Math.min(0,d3.min(data[0].values, function(d) {return d;})),d3.max(data[0].values, function(d) {return d;})]);
-			  		var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+			  		var xAxis = d3.svg.axis()
+			  				.scale(xScale)
+			  				.ticks(chartProperties.ticks)
+			  				.orient("bottom")
+			  				.tickFormat(d3.format("s"));
 			  		xaxisgroup.call(xAxis);
 			  		xaxisgroup.select("path").remove();
 			  		
 			  		if (!chartProperties.showaxis) {xaxisgroup.selectAll("*").remove();}
 			  		
 			  		thresholds
-					   .attr("width", function(d,i) {var returnval = 0; if(i!=0){ returnval = data[0].threshholds[i-1]}; return xScale(d-returnval);})
+					   .attr("width", function(d,i) {var returnval = 0; if(i!=0){ returnval = data[0].threshholds[i-1]}; return Math.max(xScale(d-returnval),0);})
 					   .attr("x", function(d,i){var returnval = 0; if(i!=0){ returnval = data[0].threshholds[i-1]}; return xScale(returnval);})
 					   .attr("y", 0).attr("height",barheight * 0.9)					  		
 
@@ -247,7 +269,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChar
 					   .attr("width", function(d) {return xScale(d.real);})
 					   .attr("x", 0).attr("y", barheight * 0.35).attr("height", barheight * 0.3);
 			  		extrapolation
-					   .attr("width", function(d) {return xScale(d.extrap-d.real);})
+					   .attr("width", function(d) {return Math.max(xScale(d.extrap-d.real),0);})
 					   .attr("x", function(d) {return xScale(d.real);})
 					   .attr("y", barheight * 0.35).attr("height", barheight * 0.3);
 			  		comparison

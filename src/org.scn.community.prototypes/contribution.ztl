@@ -720,7 +720,10 @@ class org.scn.community.prototypes.ProgressSet extends org.scn.community.shared.
  * Class for BulletChart
  */
 class org.scn.community.prototypes.BulletChart extends org.scn.community.shared.Component {
-	
+	/* get the unique key for the clicked bullet chart */
+    String getClickedGraphKey() {*  
+    	return this.clickedgraphkey;
+    *}
 
 }
 
