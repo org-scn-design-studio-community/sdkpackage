@@ -735,6 +735,106 @@ class org.scn.community.prototypes.BulletChart extends org.scn.community.shared.
 class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shared.Component {
 
 	/**
+	 * Sets comparon values Property
+	 */	
+	void setComparison( /**comparon values*/ true comparison){*
+		this.comparison = comparison;
+	*}
+
+	/**
+	 * Gets comparon values Property
+	 */	
+	true getComparison() {*
+		return this.comparison;
+	*}
+
+
+
+	/**
+	 * Sets Unique key values Property
+	 */	
+	void setKeydimension( /**Unique key values*/ String keydimension){*
+		this.keydimension = keydimension;
+	*}
+
+	/**
+	 * Gets Unique key values Property
+	 */	
+	String getKeydimension() {*
+		return this.keydimension;
+	*}
+
+	/**
+	 * Sets Show X axis Property
+	 */	
+	void setShowaxis( /**Show X axis*/ boolean showaxis){*
+		this.showaxis = showaxis;
+	*}
+
+	/**
+	 * Gets Show X axis Property
+	 */	
+	boolean isShowaxis() {*
+		return this.showaxis;
+	*}
+
+	/**
+	 * Sets Realization Column Property
+	 */	
+	void setRealization( /**Realization Column*/ String realization){*
+		this.realization = realization;
+	*}
+
+	/**
+	 * Gets Realization Column Property
+	 */	
+	String getRealization() {*
+		return this.realization;
+	*}
+
+	/**
+	 * Sets Minimum Height Property
+	 */	
+	void setMingraphheight( /**Minimum Height*/ int mingraphheight){*
+		this.mingraphheight = mingraphheight;
+	*}
+
+	/**
+	 * Gets Minimum Height Property
+	 */	
+	int getMingraphheight() {*
+		return this.mingraphheight;
+	*}
+
+	/**
+	 * Sets Clicked Key Property
+	 */	
+	void setClickedgraphkey( /**Clicked Key*/ String clickedgraphkey){*
+		this.clickedgraphkey = clickedgraphkey;
+	*}
+
+	/**
+	 * Gets Clicked Key Property
+	 */	
+	String getClickedgraphkey() {*
+		return this.clickedgraphkey;
+	*}
+
+	/**
+	 * Sets threshold 5 values Property
+	 */	
+	void setThreshold5( /**threshold 5 values*/ true threshold5){*
+		this.threshold5 = threshold5;
+	*}
+
+	/**
+	 * Gets threshold 5 values Property
+	 */	
+	true getThreshold5() {*
+		return this.threshold5;
+	*}
+
+	/**
 	 * Sets Graph Title Property
 	 */	
 	void setGraphTitle( /**Graph Title*/ String graphTitle){*
@@ -746,6 +846,132 @@ class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shar
 	 */	
 	String getGraphTitle() {*
 		return this.graphTitle;
+	*}
+
+	/**
+	 * Sets Extrapolation Values Property
+	 */	
+	void setExtrapolation( /**Extrapolation Values*/ String extrapolation){*
+		this.extrapolation = extrapolation;
+	*}
+
+	/**
+	 * Gets Extrapolation Values Property
+	 */	
+	String getExtrapolation() {*
+		return this.extrapolation;
+	*}
+
+	/**
+	 * Sets threshold 3 values Property
+	 */	
+	void setThreshold3( /**threshold 3 values*/ String threshold3){*
+		this.threshold3 = threshold3;
+	*}
+
+	/**
+	 * Gets threshold 3 values Property
+	 */	
+	String getThreshold3() {*
+		return this.threshold3;
+	*}
+
+	/**
+	 * Sets threshold 4 values Property
+	 */	
+	void setThreshold4( /**threshold 4 values*/ true threshold4){*
+		this.threshold4 = threshold4;
+	*}
+
+	/**
+	 * Gets threshold 4 values Property
+	 */	
+	true getThreshold4() {*
+		return this.threshold4;
+	*}
+
+	/**
+	 * Sets Clicked Key Property
+	 */	
+	void setSublabeldimension( /**Clicked Key*/ String sublabeldimension){*
+		this.sublabeldimension = sublabeldimension;
+	*}
+
+	/**
+	 * Gets Clicked Key Property
+	 */	
+	String getSublabeldimension() {*
+		return this.sublabeldimension;
+	*}
+
+	/**
+	 * Sets max height  Property
+	 */	
+	void setMaxgraphheight( /**max height */ int maxgraphheight){*
+		this.maxgraphheight = maxgraphheight;
+	*}
+
+	/**
+	 * Gets max height  Property
+	 */	
+	int getMaxgraphheight() {*
+		return this.maxgraphheight;
+	*}
+
+	/**
+	 * Sets When to show an alert Property
+	 */	
+	void setShowalert( /**When to show an alert*/ String showalert){*
+		this.showalert = showalert;
+	*}
+
+	/**
+	 * Gets When to show an alert Property
+	 */	
+	String getShowalert() {*
+		return this.showalert;
+	*}
+
+	/**
+	 * Sets dimension holding label values Property
+	 */	
+	void setLabeldimension( /**dimension holding label values*/ String labeldimension){*
+		this.labeldimension = labeldimension;
+	*}
+
+	/**
+	 * Gets dimension holding label values Property
+	 */	
+	String getLabeldimension() {*
+		return this.labeldimension;
+	*}
+
+	/**
+	 * Sets threshold 1 values Property
+	 */	
+	void setThreshold1( /**threshold 1 values*/ String threshold1){*
+		this.threshold1 = threshold1;
+	*}
+
+	/**
+	 * Gets threshold 1 values Property
+	 */	
+	String getThreshold1() {*
+		return this.threshold1;
+	*}
+
+	/**
+	 * Sets threshold 2 values Property
+	 */	
+	void setThreshold2( /**threshold 2 values*/ String threshold2){*
+		this.threshold2 = threshold2;
+	*}
+
+	/**
+	 * Gets threshold 2 values Property
+	 */	
+	String getThreshold2() {*
+		return this.threshold2;
 	*}
 
 

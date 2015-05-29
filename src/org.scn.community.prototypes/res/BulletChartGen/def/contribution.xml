@@ -16,9 +16,145 @@
 	<cssInclude>res/BulletChartGen/BulletChartGen.css</cssInclude>
 	
 	<property
+		id="comparison"
+		type="true"
+		title="comparon values"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultSet"
+		title="Dataset"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="keydimension"
+		type="String"
+		title="Unique key values"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="showaxis"
+		type="boolean"
+		title="Show X axis"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="realization"
+		type="String"
+		title="Realization Column"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="mingraphheight"
+		type="int"
+		title="Minimum Height"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="clickedgraphkey"
+		type="String"
+		title="Clicked Key"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="threshold5"
+		type="true"
+		title="threshold 5 values"
+		group="Display"
+		visible="false">
+
+	</property>
+	<property
 		id="graphTitle"
 		type="String"
 		title="Graph Title"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="extrapolation"
+		type="String"
+		title="Extrapolation Values"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="threshold3"
+		type="String"
+		title="threshold 3 values"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="threshold4"
+		type="true"
+		title="threshold 4 values"
+		group="Display"
+		visible="false">
+
+	</property>
+	<property
+		id="sublabeldimension"
+		type="String"
+		title="Clicked Key"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="maxgraphheight"
+		type="int"
+		title="max height "
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="showalert"
+		type="String"
+		title="When to show an alert"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="labeldimension"
+		type="String"
+		title="dimension holding label values"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="threshold1"
+		type="String"
+		title="threshold 1 values"
+		group="Display"
+		visible="true">
+
+	</property>
+	<property
+		id="threshold2"
+		type="String"
+		title="threshold 2 values"
 		group="Display"
 		visible="true">
 
@@ -33,7 +169,24 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
+		<defaultValue property="comparison"></defaultValue>
+		<defaultValue property="data">null</defaultValue>
+		<defaultValue property="keydimension"></defaultValue>
+		<defaultValue property="showaxis">true</defaultValue>
+		<defaultValue property="realization"></defaultValue>
+		<defaultValue property="mingraphheight">40</defaultValue>
+		<defaultValue property="clickedgraphkey"></defaultValue>
+		<defaultValue property="threshold5"></defaultValue>
 		<defaultValue property="graphTitle"></defaultValue>
+		<defaultValue property="extrapolation"></defaultValue>
+		<defaultValue property="threshold3"></defaultValue>
+		<defaultValue property="threshold4"></defaultValue>
+		<defaultValue property="sublabeldimension"></defaultValue>
+		<defaultValue property="maxgraphheight">40</defaultValue>
+		<defaultValue property="showalert">worse than comparison</defaultValue>
+		<defaultValue property="labeldimension"></defaultValue>
+		<defaultValue property="threshold1"></defaultValue>
+		<defaultValue property="threshold2"></defaultValue>
 
 	</initialization>
 
