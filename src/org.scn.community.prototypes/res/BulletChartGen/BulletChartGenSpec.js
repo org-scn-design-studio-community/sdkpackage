@@ -43,7 +43,7 @@
       "ztlFunction": "",
       "ztlType": "String"
     },
-    "type": "true",
+    "type": "boolean",
     "value": "",
     "visible": true
   },
@@ -373,7 +373,7 @@
       "ztlFunction": "",
       "ztlType": "String"
     },
-    "type": "true",
+    "type": "String",
     "value": "",
     "visible": false
   },
@@ -386,7 +386,7 @@
       "ztlFunction": "",
       "ztlType": "String"
     },
-    "type": "true",
+    "type": "String",
     "value": "",
     "visible": false
   }

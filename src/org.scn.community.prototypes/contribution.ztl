@@ -737,14 +737,14 @@ class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shar
 	/**
 	 * Sets comparon values Property
 	 */	
-	void setComparison( /**comparon values*/ true comparison){*
+	void setComparison( /**comparon values*/ boolean comparison){*
 		this.comparison = comparison;
 	*}
 
 	/**
 	 * Gets comparon values Property
 	 */	
-	true getComparison() {*
+	boolean getComparison() {*
 		return this.comparison;
 	*}
 
@@ -823,14 +823,14 @@ class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shar
 	/**
 	 * Sets threshold 5 values Property
 	 */	
-	void setThreshold5( /**threshold 5 values*/ true threshold5){*
+	void setThreshold5( /**threshold 5 values*/ String threshold5){*
 		this.threshold5 = threshold5;
 	*}
 
 	/**
 	 * Gets threshold 5 values Property
 	 */	
-	true getThreshold5() {*
+	String getThreshold5() {*
 		return this.threshold5;
 	*}
 
@@ -879,14 +879,14 @@ class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shar
 	/**
 	 * Sets threshold 4 values Property
 	 */	
-	void setThreshold4( /**threshold 4 values*/ true threshold4){*
+	void setThreshold4( /**threshold 4 values*/ String threshold4){*
 		this.threshold4 = threshold4;
 	*}
 
 	/**
 	 * Gets threshold 4 values Property
 	 */	
-	true getThreshold4() {*
+	String getThreshold4() {*
 		return this.threshold4;
 	*}
 

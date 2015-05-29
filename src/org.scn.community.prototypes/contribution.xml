@@ -693,7 +693,7 @@
 	
 	<property
 		id="comparison"
-		type="true"
+		type="boolean"
 		title="comparon values"
 		group="Display"
 		visible="true">
@@ -749,7 +749,7 @@
 	</property>
 	<property
 		id="threshold5"
-		type="true"
+		type="String"
 		title="threshold 5 values"
 		group="Display"
 		visible="false">
@@ -781,7 +781,7 @@
 	</property>
 	<property
 		id="threshold4"
-		type="true"
+		type="String"
 		title="threshold 4 values"
 		group="Display"
 		visible="false">

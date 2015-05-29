@@ -6,7 +6,7 @@
         "onChange": "flattenData",
         "opts": {
             "type": "data",
-            "ztlFunction": "",
+            "ztlFunction": "",	
             "desc": "Dataset",
             "cat": "Data",
             "tooltip": "Data from datasource",
@@ -107,7 +107,7 @@
         }
     },
     "threshold4": {
-        "type": "true",
+        "type": "String",
         "value": "",
         "visible": false,
         "opts": {
@@ -120,7 +120,7 @@
         }
     },
     "threshold5": {
-        "type": "true",
+        "type": "String",
         "value": "",
         "visible": false,
         "opts": {
@@ -172,7 +172,7 @@
         }
     },
     "comparison": {
-        "type": "true",
+        "type": "boolean",
         "value": "",
         "visible": true,
         "opts": {
