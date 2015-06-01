@@ -1648,6 +1648,19 @@ class org.scn.community.databound.Table2D extends org.scn.community.shared.DataC
 }
 
 /**
+ * Class for Tag Cloud
+ */
+
+class org.scn.community.databound.tagCloud extends org.scn.community.shared.DataComponent {
+
+/* Returns the Key of the currently selected Tree Element. */
+	String getSelectedNodeKey() {*
+		return this.selectedNode;
+	*}
+	
+}
+
+/**
  * Class for DataTopFlop
  */
 class org.scn.community.databound.TopFlop extends org.scn.community.shared.DataComponent {

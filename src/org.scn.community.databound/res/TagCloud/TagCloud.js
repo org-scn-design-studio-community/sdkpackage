@@ -20,14 +20,14 @@
 (function() {
 /** code for recognition of script path */
 var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.prototypes.Tagcloud";
+var ownComponentName = "org.scn.community.databound.tagCloud";
 var _readScriptPath = function () {
 	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
 	return scriptInfo.myScriptPath;
 };
 /** end of path recognition */
 
-sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.Tagcloud", function() {
+sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", function() {
 
 	var that = this;
 	"use strict";

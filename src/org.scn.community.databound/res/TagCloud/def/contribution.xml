@@ -1,15 +1,16 @@
 
 <component
-		id="Tagcloud"
+		id="tagCloud"
 		title="Tag Cloud"
 		icon="res/TagCloud/TagCloud.png"
 		handlerType="div"
-		group="ScnCommunityPrototypes"
+		group="ScnCommunityDataBound"
 		databound="true"> <!-- This is set so that a data source can be assigned -->
 		<stdInclude kind="d3"/>
-		<jsInclude>res/TagCloud/tag.cloud.layout.js</jsInclude>
+		<jsInclude>res/TagCloud/d3.layout.cloud.js</jsInclude>
 		<jsInclude>res/TagCloud/TagCloud.js</jsInclude>
 		<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/require_loader.js</jsInclude>
 		<cssInclude>res/TagCloud/TagCloud.css</cssInclude>
 		<!-- This implicitly sets a metadata property -->
 		<property
