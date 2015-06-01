@@ -63,17 +63,17 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.ListSelector",
     	this.$().addClass("superList");
     	this.redraw();
     };
-    
+        
     this.afterUpdate = function() { 
     	var redraw = false;
     	for(var property in this.autoProperties){
     		if(this.autoProperties[property].changed && this.autoProperties[property].redraw) redraw = true;
     	}
     	// Determine if a redraw is needed
+    	this.redraw();
+    	// Unselect if necessary
     	if(this.labelUnselect()){
         	this.resetSelection();
-    	}else{
-        	this.redraw();	
     	}
     	// Reset change flags
     	for(var property in this.autoProperties){
