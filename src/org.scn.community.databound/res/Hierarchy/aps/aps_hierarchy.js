@@ -1,9 +1,10 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.jpd3hierPropertyPage",  function() {
 
-	var that = that;  // lazy loading
+	var that = this;  // lazy loading
 	"use strict";	// use HTML strict mode so that no variable can be used without declaring it !! Fault prevention
 	
 	that.rendered = false; // gives feedbaack of propertysheet is initialized
+	
 	
 	// local APS_variables - analog to contribution.xml properties
 	that.aps_s_dimHierarchy = ""; // what is the name/value of the dimension that hosts the Hierarchy
