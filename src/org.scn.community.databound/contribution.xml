@@ -2535,6 +2535,92 @@ __n__}
 	</initialization>
 </component>
 <component
+		id="tagCloud"
+		title="Tag Cloud"
+		icon="res/TagCloud/TagCloud.png"
+		handlerType="div"
+		group="ScnCommunityDataBound"
+		databound="true"> <!-- This is set so that a data source can be assigned -->
+		<stdInclude kind="d3"/>
+		<jsInclude>res/TagCloud/d3.layout.cloud.js</jsInclude>
+		<jsInclude>res/TagCloud/TagCloud.js</jsInclude>
+		<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/require_loader.js</jsInclude>
+		<cssInclude>res/TagCloud/TagCloud.css</cssInclude>
+		<!-- This implicitly sets a metadata property -->
+		<property
+			id="savedData"
+			title="Complete Data Source Result Set"
+			type="ResultSet"
+			tooltip="Holds a reference to a result set"
+			visible="false"
+			group="DataBinding"/>
+		<property
+			id="dimTag"
+			title="Tag Cloud Dimension"
+			type="String"
+			tooltip="Dimension containing text tokens for tag cloud"
+			visible="true"
+			group="Display"/>
+		<property
+			id="tagRotation"
+			title="Tag Rotation"
+			type="String"
+			tooltip="Set the rotation of text tags over 5 characters in length"
+			visible="true"
+			group="Display"
+			>
+			<possibleValue>None</possibleValue>
+			<possibleValue>90 degrees</possibleValue>
+			<possibleValue>Random</possibleValue>
+		</property>
+		<property
+			id="tagFont"
+			title="Tag Font"
+			type="String"
+			tooltip="Set the font of text tags"
+			visible="true"
+			group="Display"
+			>
+			<possibleValue>Impact</possibleValue>
+			<possibleValue>Lato Bold</possibleValue>
+			<possibleValue>Lucida Console</possibleValue>
+		</property>
+		<property
+			id="measureSize"
+			title="Tag Size"
+			type="ResultCellList"
+			tooltip="Measure to specify size of tags"
+			visible="true"
+			group="DataBinding"/>
+		<property
+			id="measureColor"
+			title="Tag Color"
+			type="ResultCellList"
+			tooltip="Measure to specify color of tags"
+			visible="true"
+			group="DataBinding"/>
+		<property
+			id="selectedNode"
+			title="selectedNode"
+			type="String"
+			tooltip="Returns a JSON object of the selected node"
+			visible="false"/>
+		<property 
+			id="onclick" 
+			type="ScriptText" 
+			title="On Click" 
+			group="Events" />
+		<initialization>
+			<defaultValue property="WIDTH">400</defaultValue>
+			<defaultValue property="HEIGHT">400</defaultValue>
+			<defaultValue property="selectedNode">InitialNode</defaultValue>
+			<defaultValue property="tagRotation">None</defaultValue>
+			<defaultValue property="tagFont">Impact</defaultValue>
+		</initialization>
+	</component>
+	
+<component
 	id="TopFlop"
 	title="Data Top Flop"
 	icon="res/TopFlop/TopFlop.png"
