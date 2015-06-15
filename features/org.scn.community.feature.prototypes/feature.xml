@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.scn.community.sdk.feature.prototypes"
-      label="SCN Community Free SDK Components for Design Studio"
+      label="SCN Community Free SDK Prototypes for Design Studio [Optional]"
       version="1.0.0.qualifier"
       provider-name="SCN Community Contributors">
 
    <description url="http://org-scn-design-studio-community.github.io/sdkinstall/web/components/index.html">
-      SCN Community Package with free SDK Components. Contains many
+      SCN Community Package with free SDK Prototypes. Contains many
 components which can be used based on free Apache 2.0 license.
    </description>
 
@@ -230,20 +230,6 @@ http://www.apache.org/licenses/
    </requires>
 
    <plugin
-         id="org.scn.community.basics"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.scn.community.databound"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.scn.community.prototypes"
          download-size="0"
          install-size="0"
@@ -252,13 +238,6 @@ http://www.apache.org/licenses/
 
    <plugin
          id="org.scn.community.shared"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.scn.community.utils"
          download-size="0"
          install-size="0"
          version="0.0.0"
