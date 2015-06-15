@@ -810,6 +810,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to WorldTime component*/
 	org.scn.community.basics.WorldTime returnAsScnWorldTime (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Bullet Chart component*/
+	org.scn.community.databound.BulletChart returnAsScnBulletChart (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Choropleth Map component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
@@ -864,6 +867,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to 2D Crosstab component*/
 	org.scn.community.databound.Table2D returnAsScnTable2D (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Tag Cloud component*/
+	org.scn.community.databound.tagCloud returnAsScntagCloud (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Top Flop component*/
 	org.scn.community.databound.TopFlop returnAsScnTopFlop (Component inputComponent) {* return inputComponent; *}
 
@@ -894,9 +900,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Aps Tester UI5 component*/
 	org.scn.community.prototypes.ApsTesterUI5 returnAsScnApsTesterUI5 (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Bullet Chart component*/
-	org.scn.community.prototypes.BulletChart returnAsScnBulletChart (Component inputComponent) {* return inputComponent; *}
-
 	/**Cast to Bullet Chart (Gen Prototype) component*/
 	org.scn.community.prototypes.BulletChartGen returnAsScnBulletChartGen (Component inputComponent) {* return inputComponent; *}
 
@@ -908,9 +911,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to (PROTOTYPE!) Sap M List component*/
 	org.scn.community.prototypes.SapMList returnAsScnSapMList (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Tag Cloud component*/
-	org.scn.community.prototypes.Tagcloud returnAsScnTagcloud (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Array Utility component*/
 	org.scn.community.utils.Array returnAsScnArray (Component inputComponent) {* return inputComponent; *}

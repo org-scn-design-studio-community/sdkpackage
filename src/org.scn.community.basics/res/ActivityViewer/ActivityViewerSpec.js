@@ -97,6 +97,18 @@
     "value": "[]",
     "visible": true
   },
+  "onSelectionChanged": {
+    "opts": {
+      "cat": "Events",
+      "desc": "On Selection Changed",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Event triggered on Selection Changed"
+    },
+    "type": "ScriptText",
+    "value": "",
+    "visible": true
+  },
   "states": {
     "opts": {
       "apsControl": "array",

@@ -18,6 +18,17 @@
  * limitations under the License. 
  */
 
+
+/**
+ * Class for BulletChart
+ */
+class org.scn.community.databound.BulletChart extends org.scn.community.shared.Component {
+	/* get the unique key for the clicked bullet chart */
+    String getClickedGraphKey() {*  
+    	return this.clickedgraphkey;
+    *}
+
+}
 class org.scn.community.databound.Choropleth extends org.scn.community.shared.Component {
 	/**
 	Get selected feature

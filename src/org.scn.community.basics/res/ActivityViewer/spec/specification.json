@@ -123,5 +123,17 @@
          "apsControl":"array",
          "arrayMode":"OneLevelArray"
       }
-   }
+   },
+   "onSelectionChanged": {
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Selection Changed",
+            "cat": "Events",
+            "tooltip": "Event triggered on Selection Changed",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
 }

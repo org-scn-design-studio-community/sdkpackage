@@ -231,6 +231,8 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		this.activities = JSON.stringify(elementsJson);
 	*}
 
+
+
 	/** Adds a root element containing key [String], text [String], visible [boolean].
 
  	<example>

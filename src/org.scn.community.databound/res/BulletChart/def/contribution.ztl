@@ -2,7 +2,7 @@
 /**
  * Class for BulletChart
  */
-class org.scn.community.prototypes.BulletChart extends org.scn.community.shared.Component {
+class org.scn.community.databound.BulletChart extends org.scn.community.shared.Component {
 	/* get the unique key for the clicked bullet chart */
     String getClickedGraphKey() {*  
     	return this.clickedgraphkey;

@@ -5,7 +5,7 @@
 		icon="res/BulletChart/BulletChart.png"
 		handlerType="div"
 		databound="true"
-		group="ScnCommunityPrototypes"
+		group="ScnCommunityChartMaps"
 		propertySheetPath="res/BulletChart/aps/BulletChart.html">
 
 		<stdInclude kind="d3"/>

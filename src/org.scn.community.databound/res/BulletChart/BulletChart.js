@@ -1,4 +1,4 @@
-sap.designstudio.sdk.Component.subclass("org.scn.community.prototypes.BulletChart", function() {
+sap.designstudio.sdk.Component.subclass("org.scn.community.databound.BulletChart", function() {
   "use strict";
 
   var that = this;
