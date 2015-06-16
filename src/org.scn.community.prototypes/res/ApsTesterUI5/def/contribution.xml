@@ -19,6 +19,7 @@
 		type="String"
 		title="Simple Choice"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -27,6 +28,7 @@
 		type="String"
 		title="Simple Color"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -35,6 +37,7 @@
 		type="ResultSet"
 		title="Data"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -43,6 +46,7 @@
 		type="boolean"
 		title="Ignore Totals"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -51,6 +55,7 @@
 		type="boolean"
 		title="Ignore Totals"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -59,6 +64,7 @@
 		type="String"
 		title="Color Palette"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -67,6 +73,7 @@
 		type="String"
 		title="A saple text"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -75,6 +82,7 @@
 		type="int"
 		title="Some numbers"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>

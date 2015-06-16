@@ -2,7 +2,7 @@
 <feature
       id="org.scn.community.sdk.feature.geovis"
       label="SCN Community Free SDK Geovisualization Content for Design Studio [Optional]"
-      version="1.0.0.qualifier"
+      version="2.0.0.qualifier"
       provider-name="SCN Community Contributors">
 
    <description url="http://org-scn-design-studio-community.github.io/sdkinstall/web/components/index.html">

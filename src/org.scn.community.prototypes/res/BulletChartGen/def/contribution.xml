@@ -20,6 +20,7 @@
 		type="boolean"
 		title="comparon values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -28,6 +29,7 @@
 		type="ResultSet"
 		title="Dataset"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -36,6 +38,7 @@
 		type="String"
 		title="Unique key values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -44,6 +47,7 @@
 		type="boolean"
 		title="Show X axis"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -52,6 +56,7 @@
 		type="String"
 		title="Realization Column"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -60,6 +65,7 @@
 		type="int"
 		title="Minimum Height"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -68,6 +74,7 @@
 		type="String"
 		title="Clicked Key"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -76,6 +83,7 @@
 		type="String"
 		title="threshold 5 values"
 		group="Display"
+		bindable="true"
 		visible="false">
 
 	</property>
@@ -84,6 +92,7 @@
 		type="String"
 		title="Graph Title"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -92,6 +101,7 @@
 		type="String"
 		title="Extrapolation Values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -100,6 +110,7 @@
 		type="String"
 		title="threshold 3 values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -108,6 +119,7 @@
 		type="String"
 		title="threshold 4 values"
 		group="Display"
+		bindable="true"
 		visible="false">
 
 	</property>
@@ -116,6 +128,7 @@
 		type="String"
 		title="Clicked Key"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -124,6 +137,7 @@
 		type="int"
 		title="max height "
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -132,6 +146,7 @@
 		type="String"
 		title="When to show an alert"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -140,6 +155,7 @@
 		type="String"
 		title="dimension holding label values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -148,6 +164,7 @@
 		type="String"
 		title="threshold 1 values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -156,6 +173,7 @@
 		type="String"
 		title="threshold 2 values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>

@@ -2,8 +2,7 @@
 		id="%PROPERTY_NAME%"
 		type="%PROPERTY_TYPE%"
 		title="%PROPERTY_TITLE%"
-		group="Display"
-		bindable="true"
+		group="Events"
 		visible="%PROPERTY_VISIBLE%">
 %XML_PROPERTY_POSSIBLE_VALUE%
 	</property>

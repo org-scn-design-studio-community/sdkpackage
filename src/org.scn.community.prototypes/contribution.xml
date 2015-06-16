@@ -5,7 +5,7 @@
 	title="Design Studio SCN Community Prototypes"
 
 	xmlns="http://www.sap.com/bi/zen/sdk"
-	version="1.0"
+	version="2.0"
 	vendor="SCN Design Studio Community"
 	eula="Content is free for use and distribution under Apache License Version 2.0. Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License. For details refer to https://github.com/org-scn-design-studio-community/sdkpackage//blob/master/LICENSE">
 
@@ -211,6 +211,7 @@
 		type="String"
 		title="Simple Choice"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -219,6 +220,7 @@
 		type="String"
 		title="Simple Color"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -227,6 +229,7 @@
 		type="String"
 		title="Single Array"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -235,6 +238,7 @@
 		type="ResultSet"
 		title="Data"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -243,6 +247,7 @@
 		type="boolean"
 		title="Ignore Totals"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -251,6 +256,7 @@
 		type="boolean"
 		title="Ignore Totals"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -259,6 +265,7 @@
 		type="String"
 		title="Complex Array"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -267,6 +274,7 @@
 		type="String"
 		title="Color Palette"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -275,6 +283,7 @@
 		type="String"
 		title="A saple text"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -283,6 +292,7 @@
 		type="int"
 		title="Some numbers"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -291,6 +301,7 @@
 		type="String"
 		title="Simple String Array"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -340,6 +351,7 @@
 		type="String"
 		title="Simple Choice"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -348,6 +360,7 @@
 		type="String"
 		title="Simple Color"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -356,6 +369,7 @@
 		type="ResultSet"
 		title="Data"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -364,6 +378,7 @@
 		type="boolean"
 		title="Ignore Totals"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -372,6 +387,7 @@
 		type="boolean"
 		title="Ignore Totals"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -380,6 +396,7 @@
 		type="String"
 		title="Color Palette"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -388,6 +405,7 @@
 		type="String"
 		title="A saple text"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -396,6 +414,7 @@
 		type="int"
 		title="Some numbers"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -624,6 +643,7 @@
 		type="boolean"
 		title="comparon values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -632,6 +652,7 @@
 		type="ResultSet"
 		title="Dataset"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -640,6 +661,7 @@
 		type="String"
 		title="Unique key values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -648,6 +670,7 @@
 		type="boolean"
 		title="Show X axis"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -656,6 +679,7 @@
 		type="String"
 		title="Realization Column"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -664,6 +688,7 @@
 		type="int"
 		title="Minimum Height"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -672,6 +697,7 @@
 		type="String"
 		title="Clicked Key"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -680,6 +706,7 @@
 		type="String"
 		title="threshold 5 values"
 		group="Display"
+		bindable="true"
 		visible="false">
 
 	</property>
@@ -688,6 +715,7 @@
 		type="String"
 		title="Graph Title"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -696,6 +724,7 @@
 		type="String"
 		title="Extrapolation Values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -704,6 +733,7 @@
 		type="String"
 		title="threshold 3 values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -712,6 +742,7 @@
 		type="String"
 		title="threshold 4 values"
 		group="Display"
+		bindable="true"
 		visible="false">
 
 	</property>
@@ -720,6 +751,7 @@
 		type="String"
 		title="Clicked Key"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -728,6 +760,7 @@
 		type="int"
 		title="max height "
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -736,6 +769,7 @@
 		type="String"
 		title="When to show an alert"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -744,6 +778,7 @@
 		type="String"
 		title="dimension holding label values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -752,6 +787,7 @@
 		type="String"
 		title="threshold 1 values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -760,6 +796,7 @@
 		type="String"
 		title="threshold 2 values"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>

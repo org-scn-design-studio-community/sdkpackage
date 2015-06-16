@@ -19,6 +19,7 @@
 		type="String"
 		title="Properties"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>

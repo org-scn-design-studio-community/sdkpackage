@@ -1,6 +1,6 @@
 {
 	"id": "ActivityViewer",
-	"title": "Activity Viewer (Prototype)",
+	"title": "Activity Viewer",
 	"tooltip": "Viewer for Custom Activities",
 	"handlerType": "div",
 	"group": "ScnCommunityBasics",

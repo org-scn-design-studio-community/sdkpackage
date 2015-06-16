@@ -1,7 +1,7 @@
 
 <component
 	id="ActivityViewer"
-	title="Activity Viewer (Prototype)"
+	title="Activity Viewer"
 	tooltip="Viewer for Custom Activities"
 	icon="res/ActivityViewer/ActivityViewer.png"
 	handlerType="div"
@@ -19,6 +19,7 @@
 		type="String"
 		title="Activities"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -26,7 +27,7 @@
 		id="onSelectionChanged"
 		type="ScriptText"
 		title="On Selection Changed"
-		group="Display"
+		group="Events"
 		visible="true">
 
 	</property>
@@ -35,6 +36,7 @@
 		type="String"
 		title="Categories"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>
@@ -43,6 +45,7 @@
 		type="String"
 		title="States"
 		group="Display"
+		bindable="true"
 		visible="true">
 
 	</property>

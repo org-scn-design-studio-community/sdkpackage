@@ -179,7 +179,7 @@
       "space": "known"
     }
   ],
-  "title": "Activity Viewer (Prototype)",
+  "title": "Activity Viewer",
   "tooltip": "Viewer for Custom Activities",
   "width": "600"
 };

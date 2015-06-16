@@ -48,10 +48,13 @@ public class ParamFullSpec {
 	}
 	
 	public String getTitle() {
+		String title = "";
 		if(options != null)
-			return options.getPropertyValue("desc");
+			title= options.getPropertyValue("desc");
 		else
-			return this.getPropertyValue("desc");
+			title= this.getPropertyValue("desc");
+	
+		return title;
 	}
 	
 	public String getValue() {
