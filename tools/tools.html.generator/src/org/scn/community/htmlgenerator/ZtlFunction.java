@@ -219,4 +219,8 @@ public class ZtlFunction {
 		
 		return value;
 	}
+
+	public String getName() {
+		return this.name;
+	}
 }

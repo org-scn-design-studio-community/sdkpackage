@@ -21,20 +21,6 @@ class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared
 	*}
 
 	/**
-	 * Sets Information Event Active Property
-	 */	
-	void setInformationEventActive( /* Send Data Information Event when data is available */  boolean informationEventActive){*
-		this.DInformationEventActive = informationEventActive;
-	*}
-
-	/**
-	 * Gets Information Event Active Property
-	 */	
-	boolean getInformationEventActive() {*
-		return this.DInformationEventActive;
-	*}
-
-	/**
 	 * Sets Ignore Results Rows and Columns Property
 	 */	
 	void setIgnoreResults( /* &nbsp; */  boolean ignoreResults){*
@@ -46,6 +32,20 @@ class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared
 	 */	
 	boolean getIgnoreResults() {*
 		return this.DIgnoreResults;
+	*}
+
+	/**
+	 * Sets Information Event Active Property
+	 */	
+	void setInformationEventActive( /* Send Data Information Event when data is available */  boolean informationEventActive){*
+		this.DInformationEventActive = informationEventActive;
+	*}
+
+	/**
+	 * Gets Information Event Active Property
+	 */	
+	boolean getInformationEventActive() {*
+		return this.DInformationEventActive;
 	*}
 
 

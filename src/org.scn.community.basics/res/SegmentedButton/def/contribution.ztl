@@ -16,6 +16,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		this.DElementsContent = JSON.stringify(elementsArray);
 	*}
 
+
+
 	/** Adds an element containing parentKey [String], key [String], text [String], image [String], selected [boolean] properties.
 	 * You need to specify a unique and existing parent element.
 
@@ -149,19 +151,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		this.removeItem(key);
 	*}
 
-	/** Gets Technical property for selected keys Property as StringArray
 
- 	<example>
-	You want to ask for the current property value
-	<code>
-	SEGMENTEDBUTTON.getSelectedKeys();<br>
-	</code>
-	</example>
-	 */
-	StringArray getSelectedKeys () {*		
-		var elementsJson = JSON.parse(this.DSelectedKeys);
-		return elementsJson;
-	*}
 
 	/**
 	 * Gets Technical property for pressed button key Property
@@ -177,9 +167,19 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		return this.DPressedItemKey;
 	*}
 
+	/** Gets Technical property for selected keys Property as StringArray
 
-
-
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	SEGMENTEDBUTTON.getSelectedKeys();<br>
+	</code>
+	</example>
+	 */
+	StringArray getSelectedKeys () {*		
+		var elementsJson = JSON.parse(this.DSelectedKeys);
+		return elementsJson;
+	*}
 
 
 

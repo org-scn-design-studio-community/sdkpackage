@@ -1,0 +1,16 @@
+{
+	"title": "Accordion 2.0",
+	"description": "Accordion - Dynamic List of Entries",
+	"icon": "Accordion.png",
+	"topics": 
+	[
+		{
+			"title" : "Accordion",
+			"content" : "Displays collapsible content panels for presenting information in a limited amount of space."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

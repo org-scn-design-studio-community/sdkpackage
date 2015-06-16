@@ -7,36 +7,6 @@
 class org.scn.community.prototypes.ApsTesterUI5 extends org.scn.community.shared.Component {
 
 	/**
-	 * Sets Simple Choice Property
-	 */	
-	void setComboboxExample( /**Simple Choice*/ String comboboxExample){*
-		this.comboboxExample = comboboxExample;
-	*}
-
-	/**
-	 * Gets Simple Choice Property
-	 */	
-	String getComboboxExample() {*
-		return this.comboboxExample;
-	*}
-
-	/**
-	 * Sets Simple Color Property
-	 */	
-	void setColorExample( /**Simple Color*/ String colorExample){*
-		this.colorExample = colorExample;
-	*}
-
-	/**
-	 * Gets Simple Color Property
-	 */	
-	String getColorExample() {*
-		return this.colorExample;
-	*}
-
-
-
-	/**
 	 * Sets Ignore Totals Property
 	 */	
 	void setCheckboxExample( /**Ignore Totals*/ boolean checkboxExample){*
@@ -58,6 +28,36 @@ class org.scn.community.prototypes.ApsTesterUI5 extends org.scn.community.shared
 	*}
 
 	/**
+	 * Sets Simple Color Property
+	 */	
+	void setColorExample( /**Simple Color*/ String colorExample){*
+		this.colorExample = colorExample;
+	*}
+
+	/**
+	 * Gets Simple Color Property
+	 */	
+	Color getColorExample() {*
+		return this.colorExample;
+	*}
+
+	/**
+	 * Sets Simple Choice Property
+	 */	
+	void setComboboxExample( /**Simple Choice*/ String comboboxExample){*
+		this.comboboxExample = comboboxExample;
+	*}
+
+	/**
+	 * Gets Simple Choice Property
+	 */	
+	String getComboboxExample() {*
+		return this.comboboxExample;
+	*}
+
+
+
+	/**
 	 * Sets Color Palette Property
 	 */	
 	void setPaletteExample( /**Color Palette*/ String paletteExample){*
@@ -72,20 +72,6 @@ class org.scn.community.prototypes.ApsTesterUI5 extends org.scn.community.shared
 	*}
 
 	/**
-	 * Sets A saple text Property
-	 */	
-	void setTextExample( /**A saple text*/ String textExample){*
-		this.textExample = textExample;
-	*}
-
-	/**
-	 * Gets A saple text Property
-	 */	
-	String getTextExample() {*
-		return this.textExample;
-	*}
-
-	/**
 	 * Sets Some numbers Property
 	 */	
 	void setSpinnerExample( /**Some numbers*/ int spinnerExample){*
@@ -97,6 +83,20 @@ class org.scn.community.prototypes.ApsTesterUI5 extends org.scn.community.shared
 	 */	
 	int getSpinnerExample() {*
 		return this.spinnerExample;
+	*}
+
+	/**
+	 * Sets A saple text Property
+	 */	
+	void setTextExample( /**A saple text*/ String textExample){*
+		this.textExample = textExample;
+	*}
+
+	/**
+	 * Gets A saple text Property
+	 */	
+	String getTextExample() {*
+		return this.textExample;
 	*}
 
 

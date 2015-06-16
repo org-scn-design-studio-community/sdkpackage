@@ -7,24 +7,17 @@
 class org.scn.community.databound.ResultSetMixer extends org.scn.community.shared.DataComponent {
 
 	/**
-	 * Reloads the Component (with re-rendering)
+	 * Sets Collect Multiple Matches Property
 	 */	
-	void reload (){*
-		this.DReloadTrigger = this.DReloadTrigger + 0.0001;
+	void setCollectMultipleMatches( /* Procedure what should happen when multiple matches are available */  choice collectMultipleMatches){*
+		this.DCollectMultipleMatches = collectMultipleMatches;
 	*}
 
 	/**
-	 * Sets Master Central Data Provisioner Property
+	 * Gets Collect Multiple Matches Property
 	 */	
-	void setMasterProvisioner( /* Result Set with Master Data */  String masterProvisioner){*
-		this.DMasterProvisioner = masterProvisioner;
-	*}
-
-	/**
-	 * Gets Master Central Data Provisioner Property
-	 */	
-	String getMasterProvisioner() {*
-		return this.DMasterProvisioner;
+	choice getCollectMultipleMatches() {*
+		return this.DCollectMultipleMatches;
 	*}
 
 	/**
@@ -42,17 +35,38 @@ class org.scn.community.databound.ResultSetMixer extends org.scn.community.share
 	*}
 
 	/**
-	 * Sets Slave Central Data Provisioner Property
+	 * Sets Master Central Data Provisioner Property
 	 */	
-	void setSlaveProvisioner( /* Result Set with Slave Data for Selection */  String slaveProvisioner){*
-		this.DSlaveProvisioner = slaveProvisioner;
+	void setMasterProvisioner( /* Result Set with Master Data */  String masterProvisioner){*
+		this.DMasterProvisioner = masterProvisioner;
 	*}
 
 	/**
-	 * Gets Slave Central Data Provisioner Property
+	 * Gets Master Central Data Provisioner Property
 	 */	
-	String getSlaveProvisioner() {*
-		return this.DSlaveProvisioner;
+	String getMasterProvisioner() {*
+		return this.DMasterProvisioner;
+	*}
+
+	/**
+	 * Reloads the Component (with re-rendering)
+	 */	
+	void reload (){*
+		this.DReloadTrigger = this.DReloadTrigger + 0.0001;
+	*}
+
+	/**
+	 * Sets Column Condition to Read Slave Result Set Property
+	 */	
+	void setSlaveColumnCondition( /* Under which condition should be the slave result set read (based on contnet of header column key) */  String slaveColumnCondition){*
+		this.DSlaveColumnCondition = slaveColumnCondition;
+	*}
+
+	/**
+	 * Gets Column Condition to Read Slave Result Set Property
+	 */	
+	String getSlaveColumnCondition() {*
+		return this.DSlaveColumnCondition;
 	*}
 
 	/**
@@ -70,20 +84,6 @@ class org.scn.community.databound.ResultSetMixer extends org.scn.community.share
 	*}
 
 	/**
-	 * Sets Collect Multiple Matches Property
-	 */	
-	void setCollectMultipleMatches( /* Procedure what should happen when multiple matches are available */  choice collectMultipleMatches){*
-		this.DCollectMultipleMatches = collectMultipleMatches;
-	*}
-
-	/**
-	 * Gets Collect Multiple Matches Property
-	 */	
-	choice getCollectMultipleMatches() {*
-		return this.DCollectMultipleMatches;
-	*}
-
-	/**
 	 * Sets Content Condition to Read Slave Result Set Property
 	 */	
 	void setSlaveContentCondition( /* Under which condition should be the slave result set read (based on content or value) */  String slaveContentCondition){*
@@ -98,6 +98,20 @@ class org.scn.community.databound.ResultSetMixer extends org.scn.community.share
 	*}
 
 	/**
+	 * Sets Slave Central Data Provisioner Property
+	 */	
+	void setSlaveProvisioner( /* Result Set with Slave Data for Selection */  String slaveProvisioner){*
+		this.DSlaveProvisioner = slaveProvisioner;
+	*}
+
+	/**
+	 * Gets Slave Central Data Provisioner Property
+	 */	
+	String getSlaveProvisioner() {*
+		return this.DSlaveProvisioner;
+	*}
+
+	/**
 	 * Sets Row Condition to Read Slave Result Set Property
 	 */	
 	void setSlaveRowCondition( /* Under which condition should be the slave result set read (based on contnet of header row key) */  String slaveRowCondition){*
@@ -109,20 +123,6 @@ class org.scn.community.databound.ResultSetMixer extends org.scn.community.share
 	 */	
 	String getSlaveRowCondition() {*
 		return this.DSlaveRowCondition;
-	*}
-
-	/**
-	 * Sets Column Condition to Read Slave Result Set Property
-	 */	
-	void setSlaveColumnCondition( /* Under which condition should be the slave result set read (based on contnet of header column key) */  String slaveColumnCondition){*
-		this.DSlaveColumnCondition = slaveColumnCondition;
-	*}
-
-	/**
-	 * Gets Column Condition to Read Slave Result Set Property
-	 */	
-	String getSlaveColumnCondition() {*
-		return this.DSlaveColumnCondition;
 	*}
 
 

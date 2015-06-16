@@ -13,219 +13,79 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		});
 		that._content.placeAt($("#content"));
 
-		that["fun_DIgnoreResults"].init();
-		that["fun_DDataProvisioner"].init();
-		that["fun_DVisibleRowCount"].init();
-		that["fun_DRowHeight"].init();
-		that["fun_DAllowSort"].init();
-		that["fun_DAllowFilter"].init();
 		that["fun_DAllowColumnReorder"].init();
+		that["fun_DAllowFilter"].init();
 		that["fun_DAllowSelection"].init();
-		that["fun_DFixedHeader"].init();
-		that["fun_DHeaderColWidth"].init();
-		that["fun_DDataColWidths"].init();
-		that["fun_DFormattingOperator"].init();
-		that["fun_DFormattingCondition"].init();
+		that["fun_DAllowSort"].init();
 		that["fun_DColumnFormattingCondition"].init();
-		that["fun_DEmptyHeaderValue"].init();
+		that["fun_DDataColWidths"].init();
+		that["fun_DDataProvisioner"].init();
 		that["fun_DEmptyDataValue"].init();
+		that["fun_DEmptyHeaderValue"].init();
+		that["fun_DFixedHeader"].init();
+		that["fun_DFormattingCondition"].init();
+		that["fun_DFormattingOperator"].init();
+		that["fun_DHeaderColWidth"].init();
+		that["fun_DIgnoreResults"].init();
 		that["fun_DNavigationMode"].init();
+		that["fun_DRowHeight"].init();
+		that["fun_DVisibleRowCount"].init();
 		
 	};
 	
 	that.componentSelected = function(){
-		that["fun_DIgnoreResults"].update();
-		that["fun_DDataProvisioner"].update();
-		that["fun_DVisibleRowCount"].update();
-		that["fun_DRowHeight"].update();
-		that["fun_DAllowSort"].update();
-		that["fun_DAllowFilter"].update();
 		that["fun_DAllowColumnReorder"].update();
+		that["fun_DAllowFilter"].update();
 		that["fun_DAllowSelection"].update();
-		that["fun_DFixedHeader"].update();
-		that["fun_DHeaderColWidth"].update();
-		that["fun_DDataColWidths"].update();
-		that["fun_DFormattingOperator"].update();
-		that["fun_DFormattingCondition"].update();
-		that["fun_DColumnFormattingCondition"].update();
-		that["fun_DEmptyHeaderValue"].update();
-		that["fun_DEmptyDataValue"].update();
-		that["fun_DNavigationMode"].update();
-		
-	};
-	
-	
-	that["fun_DIgnoreResults"] = {};
-	
-	that["fun_DIgnoreResults"].update = function(){
-		that["fun_DIgnoreResults"]._input.setChecked(that["fun_DIgnoreResults"]._);
-	};
-	
-	that["fun_DIgnoreResults"].init = function(){
-		that["fun_DIgnoreResults"]._label = new sap.ui.commons.Label({text: " Ignore Results Rows and Columns"});
-		that["fun_DIgnoreResults"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DIgnoreResults"]._label);
-		
-		that["fun_DIgnoreResults"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Ignore Results Rows and Columns"});
-		that._content.addContent(that["fun_DIgnoreResults"]._input);
-		that["fun_DIgnoreResults"]._input.attachChange(that["fun_DIgnoreResults"].propertyChanged, that);
-		that["fun_DIgnoreResults"]._input.addStyleClass("org-scn-ApsBoolean");
-		
-		that["fun_DIgnoreResults"].update();
-	};
-
-	that["fun_DIgnoreResults"].propertyChanged = function(oControlEvent){
-		var checked = oControlEvent.getParameter("checked");
-		that["fun_DIgnoreResults"]._ = checked;
-		that.firePropertiesChanged(["DIgnoreResults"]);
-	};
-	
-	that.DIgnoreResults = function(s){
-		if( s === undefined){
-			return that["fun_DIgnoreResults"]._;
-		}else{
-			that["fun_DIgnoreResults"]._ = s;
-			that["fun_DIgnoreResults"].update();
-			return that;
-		}
-	};
-
-	that["fun_DDataProvisioner"] = {};
-	
-	that["fun_DDataProvisioner"].update = function(){
-		that["fun_DDataProvisioner"]._input.setValue(that["fun_DDataProvisioner"]._);
-	};
-	
-	that["fun_DDataProvisioner"].init = function(){
-		that["fun_DDataProvisioner"]._label = new sap.ui.commons.Label({text: " Central Data Provisioner for Result Set"});
-		that["fun_DDataProvisioner"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DDataProvisioner"]._label);
-		
-		that["fun_DDataProvisioner"]._input = new sap.ui.commons.TextField({width: "300px"});
-		that._content.addContent(that["fun_DDataProvisioner"]._input);
-		that["fun_DDataProvisioner"]._input.attachChange(that["fun_DDataProvisioner"].propertyChanged, that);
-		that["fun_DDataProvisioner"]._input.addStyleClass("org-scn-ApsSimple");
-		
-		that["fun_DDataProvisioner"].update();
-	};
-
-	that["fun_DDataProvisioner"].propertyChanged = function(oControlEvent){
-		var value = oControlEvent.getParameter("newValue");
-		that["fun_DDataProvisioner"]._ = value;
-		that.firePropertiesChanged(["DDataProvisioner"]);
-	};
-	
-	that.DDataProvisioner = function(s){
-		if( s === undefined){
-			return that["fun_DDataProvisioner"]._;
-		}else{
-			that["fun_DDataProvisioner"]._ = s;
-			that["fun_DDataProvisioner"].update();
-			return that;
-		}
-	};
-
-	that["fun_DVisibleRowCount"] = {};
-	
-	that["fun_DVisibleRowCount"].update = function(){
-		that["fun_DVisibleRowCount"]._input.setValue(that["fun_DVisibleRowCount"]._);
-	};
-	
-	that["fun_DVisibleRowCount"].init = function(){
-		that["fun_DVisibleRowCount"]._label = new sap.ui.commons.Label({text: " Visible Row Count"});
-		that["fun_DVisibleRowCount"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DVisibleRowCount"]._label);
-		
-		that["fun_DVisibleRowCount"]._input = new sap.ui.commons.TextField({width: "300px"});
-		that._content.addContent(that["fun_DVisibleRowCount"]._input);
-		that["fun_DVisibleRowCount"]._input.attachChange(that["fun_DVisibleRowCount"].propertyChanged, that);
-		that["fun_DVisibleRowCount"]._input.addStyleClass("org-scn-ApsSimple");
-		
-		that["fun_DVisibleRowCount"].update();
-	};
-
-	that["fun_DVisibleRowCount"].propertyChanged = function(oControlEvent){
-		var value = oControlEvent.getParameter("newValue");
-		that["fun_DVisibleRowCount"]._ = value;
-		that.firePropertiesChanged(["DVisibleRowCount"]);
-	};
-	
-	that.DVisibleRowCount = function(s){
-		if( s === undefined){
-			return that["fun_DVisibleRowCount"]._;
-		}else{
-			that["fun_DVisibleRowCount"]._ = s;
-			that["fun_DVisibleRowCount"].update();
-			return that;
-		}
-	};
-
-	that["fun_DRowHeight"] = {};
-	
-	that["fun_DRowHeight"].update = function(){
-		that["fun_DRowHeight"]._input.setValue(that["fun_DRowHeight"]._);
-	};
-	
-	that["fun_DRowHeight"].init = function(){
-		that["fun_DRowHeight"]._label = new sap.ui.commons.Label({text: " Row Height in px"});
-		that["fun_DRowHeight"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DRowHeight"]._label);
-		
-		that["fun_DRowHeight"]._input = new sap.ui.commons.TextField({width: "300px"});
-		that._content.addContent(that["fun_DRowHeight"]._input);
-		that["fun_DRowHeight"]._input.attachChange(that["fun_DRowHeight"].propertyChanged, that);
-		that["fun_DRowHeight"]._input.addStyleClass("org-scn-ApsSimple");
-		
-		that["fun_DRowHeight"].update();
-	};
-
-	that["fun_DRowHeight"].propertyChanged = function(oControlEvent){
-		var value = oControlEvent.getParameter("newValue");
-		that["fun_DRowHeight"]._ = value;
-		that.firePropertiesChanged(["DRowHeight"]);
-	};
-	
-	that.DRowHeight = function(s){
-		if( s === undefined){
-			return that["fun_DRowHeight"]._;
-		}else{
-			that["fun_DRowHeight"]._ = s;
-			that["fun_DRowHeight"].update();
-			return that;
-		}
-	};
-
-	that["fun_DAllowSort"] = {};
-	
-	that["fun_DAllowSort"].update = function(){
-		that["fun_DAllowSort"]._input.setChecked(that["fun_DAllowSort"]._);
-	};
-	
-	that["fun_DAllowSort"].init = function(){
-		that["fun_DAllowSort"]._label = new sap.ui.commons.Label({text: " Allow Sort in Columns"});
-		that["fun_DAllowSort"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DAllowSort"]._label);
-		
-		that["fun_DAllowSort"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Allow Sort in Columns"});
-		that._content.addContent(that["fun_DAllowSort"]._input);
-		that["fun_DAllowSort"]._input.attachChange(that["fun_DAllowSort"].propertyChanged, that);
-		that["fun_DAllowSort"]._input.addStyleClass("org-scn-ApsBoolean");
-		
 		that["fun_DAllowSort"].update();
-	};
-
-	that["fun_DAllowSort"].propertyChanged = function(oControlEvent){
-		var checked = oControlEvent.getParameter("checked");
-		that["fun_DAllowSort"]._ = checked;
-		that.firePropertiesChanged(["DAllowSort"]);
+		that["fun_DColumnFormattingCondition"].update();
+		that["fun_DDataColWidths"].update();
+		that["fun_DDataProvisioner"].update();
+		that["fun_DEmptyDataValue"].update();
+		that["fun_DEmptyHeaderValue"].update();
+		that["fun_DFixedHeader"].update();
+		that["fun_DFormattingCondition"].update();
+		that["fun_DFormattingOperator"].update();
+		that["fun_DHeaderColWidth"].update();
+		that["fun_DIgnoreResults"].update();
+		that["fun_DNavigationMode"].update();
+		that["fun_DRowHeight"].update();
+		that["fun_DVisibleRowCount"].update();
+		
 	};
 	
-	that.DAllowSort = function(s){
+	
+	that["fun_DAllowColumnReorder"] = {};
+	
+	that["fun_DAllowColumnReorder"].update = function(){
+		that["fun_DAllowColumnReorder"]._input.setChecked(that["fun_DAllowColumnReorder"]._);
+	};
+	
+	that["fun_DAllowColumnReorder"].init = function(){
+		that["fun_DAllowColumnReorder"]._label = new sap.ui.commons.Label({text: " Allow Reorder of Columns"});
+		that["fun_DAllowColumnReorder"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DAllowColumnReorder"]._label);
+		
+		that["fun_DAllowColumnReorder"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Allow Reorder of Columns"});
+		that._content.addContent(that["fun_DAllowColumnReorder"]._input);
+		that["fun_DAllowColumnReorder"]._input.attachChange(that["fun_DAllowColumnReorder"].propertyChanged, that);
+		that["fun_DAllowColumnReorder"]._input.addStyleClass("org-scn-ApsBoolean");
+		
+		that["fun_DAllowColumnReorder"].update();
+	};
+
+	that["fun_DAllowColumnReorder"].propertyChanged = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		that["fun_DAllowColumnReorder"]._ = checked;
+		that.firePropertiesChanged(["DAllowColumnReorder"]);
+	};
+	
+	that.DAllowColumnReorder = function(s){
 		if( s === undefined){
-			return that["fun_DAllowSort"]._;
+			return that["fun_DAllowColumnReorder"]._;
 		}else{
-			that["fun_DAllowSort"]._ = s;
-			that["fun_DAllowSort"].update();
+			that["fun_DAllowColumnReorder"]._ = s;
+			that["fun_DAllowColumnReorder"].update();
 			return that;
 		}
 	};
@@ -265,41 +125,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		}
 	};
 
-	that["fun_DAllowColumnReorder"] = {};
-	
-	that["fun_DAllowColumnReorder"].update = function(){
-		that["fun_DAllowColumnReorder"]._input.setChecked(that["fun_DAllowColumnReorder"]._);
-	};
-	
-	that["fun_DAllowColumnReorder"].init = function(){
-		that["fun_DAllowColumnReorder"]._label = new sap.ui.commons.Label({text: " Allow Reorder of Columns"});
-		that["fun_DAllowColumnReorder"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DAllowColumnReorder"]._label);
-		
-		that["fun_DAllowColumnReorder"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Allow Reorder of Columns"});
-		that._content.addContent(that["fun_DAllowColumnReorder"]._input);
-		that["fun_DAllowColumnReorder"]._input.attachChange(that["fun_DAllowColumnReorder"].propertyChanged, that);
-		that["fun_DAllowColumnReorder"]._input.addStyleClass("org-scn-ApsBoolean");
-		
-		that["fun_DAllowColumnReorder"].update();
-	};
-
-	that["fun_DAllowColumnReorder"].propertyChanged = function(oControlEvent){
-		var checked = oControlEvent.getParameter("checked");
-		that["fun_DAllowColumnReorder"]._ = checked;
-		that.firePropertiesChanged(["DAllowColumnReorder"]);
-	};
-	
-	that.DAllowColumnReorder = function(s){
-		if( s === undefined){
-			return that["fun_DAllowColumnReorder"]._;
-		}else{
-			that["fun_DAllowColumnReorder"]._ = s;
-			that["fun_DAllowColumnReorder"].update();
-			return that;
-		}
-	};
-
 	that["fun_DAllowSelection"] = {};
 	
 	that["fun_DAllowSelection"].update = function(){
@@ -335,72 +160,72 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		}
 	};
 
-	that["fun_DFixedHeader"] = {};
+	that["fun_DAllowSort"] = {};
 	
-	that["fun_DFixedHeader"].update = function(){
-		that["fun_DFixedHeader"]._input.setChecked(that["fun_DFixedHeader"]._);
+	that["fun_DAllowSort"].update = function(){
+		that["fun_DAllowSort"]._input.setChecked(that["fun_DAllowSort"]._);
 	};
 	
-	that["fun_DFixedHeader"].init = function(){
-		that["fun_DFixedHeader"]._label = new sap.ui.commons.Label({text: " Fiexd Header Rows"});
-		that["fun_DFixedHeader"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DFixedHeader"]._label);
+	that["fun_DAllowSort"].init = function(){
+		that["fun_DAllowSort"]._label = new sap.ui.commons.Label({text: " Allow Sort in Columns"});
+		that["fun_DAllowSort"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DAllowSort"]._label);
 		
-		that["fun_DFixedHeader"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Fiexd Header Rows"});
-		that._content.addContent(that["fun_DFixedHeader"]._input);
-		that["fun_DFixedHeader"]._input.attachChange(that["fun_DFixedHeader"].propertyChanged, that);
-		that["fun_DFixedHeader"]._input.addStyleClass("org-scn-ApsBoolean");
+		that["fun_DAllowSort"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Allow Sort in Columns"});
+		that._content.addContent(that["fun_DAllowSort"]._input);
+		that["fun_DAllowSort"]._input.attachChange(that["fun_DAllowSort"].propertyChanged, that);
+		that["fun_DAllowSort"]._input.addStyleClass("org-scn-ApsBoolean");
 		
-		that["fun_DFixedHeader"].update();
+		that["fun_DAllowSort"].update();
 	};
 
-	that["fun_DFixedHeader"].propertyChanged = function(oControlEvent){
+	that["fun_DAllowSort"].propertyChanged = function(oControlEvent){
 		var checked = oControlEvent.getParameter("checked");
-		that["fun_DFixedHeader"]._ = checked;
-		that.firePropertiesChanged(["DFixedHeader"]);
+		that["fun_DAllowSort"]._ = checked;
+		that.firePropertiesChanged(["DAllowSort"]);
 	};
 	
-	that.DFixedHeader = function(s){
+	that.DAllowSort = function(s){
 		if( s === undefined){
-			return that["fun_DFixedHeader"]._;
+			return that["fun_DAllowSort"]._;
 		}else{
-			that["fun_DFixedHeader"]._ = s;
-			that["fun_DFixedHeader"].update();
+			that["fun_DAllowSort"]._ = s;
+			that["fun_DAllowSort"].update();
 			return that;
 		}
 	};
 
-	that["fun_DHeaderColWidth"] = {};
+	that["fun_DColumnFormattingCondition"] = {};
 	
-	that["fun_DHeaderColWidth"].update = function(){
-		that["fun_DHeaderColWidth"]._input.setValue(that["fun_DHeaderColWidth"]._);
+	that["fun_DColumnFormattingCondition"].update = function(){
+		that["fun_DColumnFormattingCondition"]._input.setValue(that["fun_DColumnFormattingCondition"]._);
 	};
 	
-	that["fun_DHeaderColWidth"].init = function(){
-		that["fun_DHeaderColWidth"]._label = new sap.ui.commons.Label({text: " Header Column Width in px"});
-		that["fun_DHeaderColWidth"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DHeaderColWidth"]._label);
+	that["fun_DColumnFormattingCondition"].init = function(){
+		that["fun_DColumnFormattingCondition"]._label = new sap.ui.commons.Label({text: " (non-stable) Column Based Formatting Condition"});
+		that["fun_DColumnFormattingCondition"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DColumnFormattingCondition"]._label);
 		
-		that["fun_DHeaderColWidth"]._input = new sap.ui.commons.TextField({width: "300px"});
-		that._content.addContent(that["fun_DHeaderColWidth"]._input);
-		that["fun_DHeaderColWidth"]._input.attachChange(that["fun_DHeaderColWidth"].propertyChanged, that);
-		that["fun_DHeaderColWidth"]._input.addStyleClass("org-scn-ApsSimple");
+		that["fun_DColumnFormattingCondition"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DColumnFormattingCondition"]._input);
+		that["fun_DColumnFormattingCondition"]._input.attachChange(that["fun_DColumnFormattingCondition"].propertyChanged, that);
+		that["fun_DColumnFormattingCondition"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		that["fun_DHeaderColWidth"].update();
+		that["fun_DColumnFormattingCondition"].update();
 	};
 
-	that["fun_DHeaderColWidth"].propertyChanged = function(oControlEvent){
+	that["fun_DColumnFormattingCondition"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		that["fun_DHeaderColWidth"]._ = value;
-		that.firePropertiesChanged(["DHeaderColWidth"]);
+		that["fun_DColumnFormattingCondition"]._ = value;
+		that.firePropertiesChanged(["DColumnFormattingCondition"]);
 	};
 	
-	that.DHeaderColWidth = function(s){
+	that.DColumnFormattingCondition = function(s){
 		if( s === undefined){
-			return that["fun_DHeaderColWidth"]._;
+			return that["fun_DColumnFormattingCondition"]._;
 		}else{
-			that["fun_DHeaderColWidth"]._ = s;
-			that["fun_DHeaderColWidth"].update();
+			that["fun_DColumnFormattingCondition"]._ = s;
+			that["fun_DColumnFormattingCondition"].update();
 			return that;
 		}
 	};
@@ -802,146 +627,37 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		}
 	};
 
-	that["fun_DFormattingOperator"] = {};
+	that["fun_DDataProvisioner"] = {};
 	
-	that["fun_DFormattingOperator"].update = function(){
-		that["fun_DFormattingOperator"]._input.setSelectedKey(that["fun_DFormattingOperator"]._);
+	that["fun_DDataProvisioner"].update = function(){
+		that["fun_DDataProvisioner"]._input.setValue(that["fun_DDataProvisioner"]._);
 	};
 	
-	that["fun_DFormattingOperator"].init = function(){
-		that["fun_DFormattingOperator"]._label = new sap.ui.commons.Label({text: " (non-stable) Formatting Operator"});
-		that["fun_DFormattingOperator"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DFormattingOperator"]._label);
+	that["fun_DDataProvisioner"].init = function(){
+		that["fun_DDataProvisioner"]._label = new sap.ui.commons.Label({text: " Central Data Provisioner for Result Set"});
+		that["fun_DDataProvisioner"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DDataProvisioner"]._label);
 		
-		that["fun_DFormattingOperator"]._input = new sap.ui.commons.ComboBox({width: "300px"});
-		that["fun_DFormattingOperator"]._input.addItem(new sap.ui.core.ListItem({key:"UseFirst", text:"UseFirst"}));
-		that["fun_DFormattingOperator"]._input.addItem(new sap.ui.core.ListItem({key:"UseLast", text:"UseLast"}));
-		that["fun_DFormattingOperator"]._input.addItem(new sap.ui.core.ListItem({key:"Collect", text:"Collect"}));
+		that["fun_DDataProvisioner"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DDataProvisioner"]._input);
+		that["fun_DDataProvisioner"]._input.attachChange(that["fun_DDataProvisioner"].propertyChanged, that);
+		that["fun_DDataProvisioner"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		that._content.addContent(that["fun_DFormattingOperator"]._input);
-		that["fun_DFormattingOperator"]._input.attachChange(that["fun_DFormattingOperator"].propertyChanged, that);
-		that["fun_DFormattingOperator"]._input.addStyleClass("org-scn-ApsBoolean");
-		
-		that["fun_DFormattingOperator"].update();
+		that["fun_DDataProvisioner"].update();
 	};
 
-	that["fun_DFormattingOperator"].propertyChanged = function(oControlEvent){
-		var newValue = oControlEvent.getParameter("newValue");
-		that["fun_DFormattingOperator"]._ = newValue;
-		that.firePropertiesChanged(["DFormattingOperator"]);
-	};
-	
-	that.DFormattingOperator = function(s){
-		if( s === undefined){
-			return that["fun_DFormattingOperator"]._;
-		}else{
-			that["fun_DFormattingOperator"]._ = s;
-			that["fun_DFormattingOperator"].update();
-			return that;
-		}
-	};
-
-	that["fun_DFormattingCondition"] = {};
-	
-	that["fun_DFormattingCondition"].update = function(){
-		that["fun_DFormattingCondition"]._input.setValue(that["fun_DFormattingCondition"]._);
-	};
-	
-	that["fun_DFormattingCondition"].init = function(){
-		that["fun_DFormattingCondition"]._label = new sap.ui.commons.Label({text: " (non-stable) Formatting Condition"});
-		that["fun_DFormattingCondition"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DFormattingCondition"]._label);
-		
-		that["fun_DFormattingCondition"]._input = new sap.ui.commons.TextField({width: "300px"});
-		that._content.addContent(that["fun_DFormattingCondition"]._input);
-		that["fun_DFormattingCondition"]._input.attachChange(that["fun_DFormattingCondition"].propertyChanged, that);
-		that["fun_DFormattingCondition"]._input.addStyleClass("org-scn-ApsSimple");
-		
-		that["fun_DFormattingCondition"].update();
-	};
-
-	that["fun_DFormattingCondition"].propertyChanged = function(oControlEvent){
+	that["fun_DDataProvisioner"].propertyChanged = function(oControlEvent){
 		var value = oControlEvent.getParameter("newValue");
-		that["fun_DFormattingCondition"]._ = value;
-		that.firePropertiesChanged(["DFormattingCondition"]);
+		that["fun_DDataProvisioner"]._ = value;
+		that.firePropertiesChanged(["DDataProvisioner"]);
 	};
 	
-	that.DFormattingCondition = function(s){
+	that.DDataProvisioner = function(s){
 		if( s === undefined){
-			return that["fun_DFormattingCondition"]._;
+			return that["fun_DDataProvisioner"]._;
 		}else{
-			that["fun_DFormattingCondition"]._ = s;
-			that["fun_DFormattingCondition"].update();
-			return that;
-		}
-	};
-
-	that["fun_DColumnFormattingCondition"] = {};
-	
-	that["fun_DColumnFormattingCondition"].update = function(){
-		that["fun_DColumnFormattingCondition"]._input.setValue(that["fun_DColumnFormattingCondition"]._);
-	};
-	
-	that["fun_DColumnFormattingCondition"].init = function(){
-		that["fun_DColumnFormattingCondition"]._label = new sap.ui.commons.Label({text: " (non-stable) Column Based Formatting Condition"});
-		that["fun_DColumnFormattingCondition"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DColumnFormattingCondition"]._label);
-		
-		that["fun_DColumnFormattingCondition"]._input = new sap.ui.commons.TextField({width: "300px"});
-		that._content.addContent(that["fun_DColumnFormattingCondition"]._input);
-		that["fun_DColumnFormattingCondition"]._input.attachChange(that["fun_DColumnFormattingCondition"].propertyChanged, that);
-		that["fun_DColumnFormattingCondition"]._input.addStyleClass("org-scn-ApsSimple");
-		
-		that["fun_DColumnFormattingCondition"].update();
-	};
-
-	that["fun_DColumnFormattingCondition"].propertyChanged = function(oControlEvent){
-		var value = oControlEvent.getParameter("newValue");
-		that["fun_DColumnFormattingCondition"]._ = value;
-		that.firePropertiesChanged(["DColumnFormattingCondition"]);
-	};
-	
-	that.DColumnFormattingCondition = function(s){
-		if( s === undefined){
-			return that["fun_DColumnFormattingCondition"]._;
-		}else{
-			that["fun_DColumnFormattingCondition"]._ = s;
-			that["fun_DColumnFormattingCondition"].update();
-			return that;
-		}
-	};
-
-	that["fun_DEmptyHeaderValue"] = {};
-	
-	that["fun_DEmptyHeaderValue"].update = function(){
-		that["fun_DEmptyHeaderValue"]._input.setValue(that["fun_DEmptyHeaderValue"]._);
-	};
-	
-	that["fun_DEmptyHeaderValue"].init = function(){
-		that["fun_DEmptyHeaderValue"]._label = new sap.ui.commons.Label({text: " Empty Value For Header Cell"});
-		that["fun_DEmptyHeaderValue"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DEmptyHeaderValue"]._label);
-		
-		that["fun_DEmptyHeaderValue"]._input = new sap.ui.commons.TextField({width: "300px"});
-		that._content.addContent(that["fun_DEmptyHeaderValue"]._input);
-		that["fun_DEmptyHeaderValue"]._input.attachChange(that["fun_DEmptyHeaderValue"].propertyChanged, that);
-		that["fun_DEmptyHeaderValue"]._input.addStyleClass("org-scn-ApsSimple");
-		
-		that["fun_DEmptyHeaderValue"].update();
-	};
-
-	that["fun_DEmptyHeaderValue"].propertyChanged = function(oControlEvent){
-		var value = oControlEvent.getParameter("newValue");
-		that["fun_DEmptyHeaderValue"]._ = value;
-		that.firePropertiesChanged(["DEmptyHeaderValue"]);
-	};
-	
-	that.DEmptyHeaderValue = function(s){
-		if( s === undefined){
-			return that["fun_DEmptyHeaderValue"]._;
-		}else{
-			that["fun_DEmptyHeaderValue"]._ = s;
-			that["fun_DEmptyHeaderValue"].update();
+			that["fun_DDataProvisioner"]._ = s;
+			that["fun_DDataProvisioner"].update();
 			return that;
 		}
 	};
@@ -981,6 +697,220 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		}
 	};
 
+	that["fun_DEmptyHeaderValue"] = {};
+	
+	that["fun_DEmptyHeaderValue"].update = function(){
+		that["fun_DEmptyHeaderValue"]._input.setValue(that["fun_DEmptyHeaderValue"]._);
+	};
+	
+	that["fun_DEmptyHeaderValue"].init = function(){
+		that["fun_DEmptyHeaderValue"]._label = new sap.ui.commons.Label({text: " Empty Value For Header Cell"});
+		that["fun_DEmptyHeaderValue"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DEmptyHeaderValue"]._label);
+		
+		that["fun_DEmptyHeaderValue"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DEmptyHeaderValue"]._input);
+		that["fun_DEmptyHeaderValue"]._input.attachChange(that["fun_DEmptyHeaderValue"].propertyChanged, that);
+		that["fun_DEmptyHeaderValue"]._input.addStyleClass("org-scn-ApsSimple");
+		
+		that["fun_DEmptyHeaderValue"].update();
+	};
+
+	that["fun_DEmptyHeaderValue"].propertyChanged = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		that["fun_DEmptyHeaderValue"]._ = value;
+		that.firePropertiesChanged(["DEmptyHeaderValue"]);
+	};
+	
+	that.DEmptyHeaderValue = function(s){
+		if( s === undefined){
+			return that["fun_DEmptyHeaderValue"]._;
+		}else{
+			that["fun_DEmptyHeaderValue"]._ = s;
+			that["fun_DEmptyHeaderValue"].update();
+			return that;
+		}
+	};
+
+	that["fun_DFixedHeader"] = {};
+	
+	that["fun_DFixedHeader"].update = function(){
+		that["fun_DFixedHeader"]._input.setChecked(that["fun_DFixedHeader"]._);
+	};
+	
+	that["fun_DFixedHeader"].init = function(){
+		that["fun_DFixedHeader"]._label = new sap.ui.commons.Label({text: " Fiexd Header Rows"});
+		that["fun_DFixedHeader"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DFixedHeader"]._label);
+		
+		that["fun_DFixedHeader"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Fiexd Header Rows"});
+		that._content.addContent(that["fun_DFixedHeader"]._input);
+		that["fun_DFixedHeader"]._input.attachChange(that["fun_DFixedHeader"].propertyChanged, that);
+		that["fun_DFixedHeader"]._input.addStyleClass("org-scn-ApsBoolean");
+		
+		that["fun_DFixedHeader"].update();
+	};
+
+	that["fun_DFixedHeader"].propertyChanged = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		that["fun_DFixedHeader"]._ = checked;
+		that.firePropertiesChanged(["DFixedHeader"]);
+	};
+	
+	that.DFixedHeader = function(s){
+		if( s === undefined){
+			return that["fun_DFixedHeader"]._;
+		}else{
+			that["fun_DFixedHeader"]._ = s;
+			that["fun_DFixedHeader"].update();
+			return that;
+		}
+	};
+
+	that["fun_DFormattingCondition"] = {};
+	
+	that["fun_DFormattingCondition"].update = function(){
+		that["fun_DFormattingCondition"]._input.setValue(that["fun_DFormattingCondition"]._);
+	};
+	
+	that["fun_DFormattingCondition"].init = function(){
+		that["fun_DFormattingCondition"]._label = new sap.ui.commons.Label({text: " (non-stable) Formatting Condition"});
+		that["fun_DFormattingCondition"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DFormattingCondition"]._label);
+		
+		that["fun_DFormattingCondition"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DFormattingCondition"]._input);
+		that["fun_DFormattingCondition"]._input.attachChange(that["fun_DFormattingCondition"].propertyChanged, that);
+		that["fun_DFormattingCondition"]._input.addStyleClass("org-scn-ApsSimple");
+		
+		that["fun_DFormattingCondition"].update();
+	};
+
+	that["fun_DFormattingCondition"].propertyChanged = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		that["fun_DFormattingCondition"]._ = value;
+		that.firePropertiesChanged(["DFormattingCondition"]);
+	};
+	
+	that.DFormattingCondition = function(s){
+		if( s === undefined){
+			return that["fun_DFormattingCondition"]._;
+		}else{
+			that["fun_DFormattingCondition"]._ = s;
+			that["fun_DFormattingCondition"].update();
+			return that;
+		}
+	};
+
+	that["fun_DFormattingOperator"] = {};
+	
+	that["fun_DFormattingOperator"].update = function(){
+		that["fun_DFormattingOperator"]._input.setSelectedKey(that["fun_DFormattingOperator"]._);
+	};
+	
+	that["fun_DFormattingOperator"].init = function(){
+		that["fun_DFormattingOperator"]._label = new sap.ui.commons.Label({text: " (non-stable) Formatting Operator"});
+		that["fun_DFormattingOperator"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DFormattingOperator"]._label);
+		
+		that["fun_DFormattingOperator"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DFormattingOperator"]._input.addItem(new sap.ui.core.ListItem({key:"UseFirst", text:"UseFirst"}));
+		that["fun_DFormattingOperator"]._input.addItem(new sap.ui.core.ListItem({key:"UseLast", text:"UseLast"}));
+		that["fun_DFormattingOperator"]._input.addItem(new sap.ui.core.ListItem({key:"Collect", text:"Collect"}));
+		
+		that._content.addContent(that["fun_DFormattingOperator"]._input);
+		that["fun_DFormattingOperator"]._input.attachChange(that["fun_DFormattingOperator"].propertyChanged, that);
+		that["fun_DFormattingOperator"]._input.addStyleClass("org-scn-ApsBoolean");
+		
+		that["fun_DFormattingOperator"].update();
+	};
+
+	that["fun_DFormattingOperator"].propertyChanged = function(oControlEvent){
+		var newValue = oControlEvent.getParameter("newValue");
+		that["fun_DFormattingOperator"]._ = newValue;
+		that.firePropertiesChanged(["DFormattingOperator"]);
+	};
+	
+	that.DFormattingOperator = function(s){
+		if( s === undefined){
+			return that["fun_DFormattingOperator"]._;
+		}else{
+			that["fun_DFormattingOperator"]._ = s;
+			that["fun_DFormattingOperator"].update();
+			return that;
+		}
+	};
+
+	that["fun_DHeaderColWidth"] = {};
+	
+	that["fun_DHeaderColWidth"].update = function(){
+		that["fun_DHeaderColWidth"]._input.setValue(that["fun_DHeaderColWidth"]._);
+	};
+	
+	that["fun_DHeaderColWidth"].init = function(){
+		that["fun_DHeaderColWidth"]._label = new sap.ui.commons.Label({text: " Header Column Width in px"});
+		that["fun_DHeaderColWidth"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DHeaderColWidth"]._label);
+		
+		that["fun_DHeaderColWidth"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DHeaderColWidth"]._input);
+		that["fun_DHeaderColWidth"]._input.attachChange(that["fun_DHeaderColWidth"].propertyChanged, that);
+		that["fun_DHeaderColWidth"]._input.addStyleClass("org-scn-ApsSimple");
+		
+		that["fun_DHeaderColWidth"].update();
+	};
+
+	that["fun_DHeaderColWidth"].propertyChanged = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		that["fun_DHeaderColWidth"]._ = value;
+		that.firePropertiesChanged(["DHeaderColWidth"]);
+	};
+	
+	that.DHeaderColWidth = function(s){
+		if( s === undefined){
+			return that["fun_DHeaderColWidth"]._;
+		}else{
+			that["fun_DHeaderColWidth"]._ = s;
+			that["fun_DHeaderColWidth"].update();
+			return that;
+		}
+	};
+
+	that["fun_DIgnoreResults"] = {};
+	
+	that["fun_DIgnoreResults"].update = function(){
+		that["fun_DIgnoreResults"]._input.setChecked(that["fun_DIgnoreResults"]._);
+	};
+	
+	that["fun_DIgnoreResults"].init = function(){
+		that["fun_DIgnoreResults"]._label = new sap.ui.commons.Label({text: " Ignore Results Rows and Columns"});
+		that["fun_DIgnoreResults"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DIgnoreResults"]._label);
+		
+		that["fun_DIgnoreResults"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Ignore Results Rows and Columns"});
+		that._content.addContent(that["fun_DIgnoreResults"]._input);
+		that["fun_DIgnoreResults"]._input.attachChange(that["fun_DIgnoreResults"].propertyChanged, that);
+		that["fun_DIgnoreResults"]._input.addStyleClass("org-scn-ApsBoolean");
+		
+		that["fun_DIgnoreResults"].update();
+	};
+
+	that["fun_DIgnoreResults"].propertyChanged = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		that["fun_DIgnoreResults"]._ = checked;
+		that.firePropertiesChanged(["DIgnoreResults"]);
+	};
+	
+	that.DIgnoreResults = function(s){
+		if( s === undefined){
+			return that["fun_DIgnoreResults"]._;
+		}else{
+			that["fun_DIgnoreResults"]._ = s;
+			that["fun_DIgnoreResults"].update();
+			return that;
+		}
+	};
+
 	that["fun_DNavigationMode"] = {};
 	
 	that["fun_DNavigationMode"].update = function(){
@@ -1015,6 +945,76 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.UI5Table
 		}else{
 			that["fun_DNavigationMode"]._ = s;
 			that["fun_DNavigationMode"].update();
+			return that;
+		}
+	};
+
+	that["fun_DRowHeight"] = {};
+	
+	that["fun_DRowHeight"].update = function(){
+		that["fun_DRowHeight"]._input.setValue(that["fun_DRowHeight"]._);
+	};
+	
+	that["fun_DRowHeight"].init = function(){
+		that["fun_DRowHeight"]._label = new sap.ui.commons.Label({text: " Row Height in px"});
+		that["fun_DRowHeight"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DRowHeight"]._label);
+		
+		that["fun_DRowHeight"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DRowHeight"]._input);
+		that["fun_DRowHeight"]._input.attachChange(that["fun_DRowHeight"].propertyChanged, that);
+		that["fun_DRowHeight"]._input.addStyleClass("org-scn-ApsSimple");
+		
+		that["fun_DRowHeight"].update();
+	};
+
+	that["fun_DRowHeight"].propertyChanged = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		that["fun_DRowHeight"]._ = value;
+		that.firePropertiesChanged(["DRowHeight"]);
+	};
+	
+	that.DRowHeight = function(s){
+		if( s === undefined){
+			return that["fun_DRowHeight"]._;
+		}else{
+			that["fun_DRowHeight"]._ = s;
+			that["fun_DRowHeight"].update();
+			return that;
+		}
+	};
+
+	that["fun_DVisibleRowCount"] = {};
+	
+	that["fun_DVisibleRowCount"].update = function(){
+		that["fun_DVisibleRowCount"]._input.setValue(that["fun_DVisibleRowCount"]._);
+	};
+	
+	that["fun_DVisibleRowCount"].init = function(){
+		that["fun_DVisibleRowCount"]._label = new sap.ui.commons.Label({text: " Visible Row Count"});
+		that["fun_DVisibleRowCount"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DVisibleRowCount"]._label);
+		
+		that["fun_DVisibleRowCount"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DVisibleRowCount"]._input);
+		that["fun_DVisibleRowCount"]._input.attachChange(that["fun_DVisibleRowCount"].propertyChanged, that);
+		that["fun_DVisibleRowCount"]._input.addStyleClass("org-scn-ApsSimple");
+		
+		that["fun_DVisibleRowCount"].update();
+	};
+
+	that["fun_DVisibleRowCount"].propertyChanged = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		that["fun_DVisibleRowCount"]._ = value;
+		that.firePropertiesChanged(["DVisibleRowCount"]);
+	};
+	
+	that.DVisibleRowCount = function(s){
+		if( s === undefined){
+			return that["fun_DVisibleRowCount"]._;
+		}else{
+			that["fun_DVisibleRowCount"]._ = s;
+			that["fun_DVisibleRowCount"].update();
 			return that;
 		}
 	};

@@ -1,46 +1,62 @@
 
 /**
- * Class for Accordion
+ * Generated ZTL Class for Accordion
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.Accordion extends org.scn.community.shared.Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elementsContent = JSON.stringify(elementsArray);
-			
-			this.cleanAll = true;
+
+	/**
+	 * Remove All Elements from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
 	*}
 
-	/** Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.
+	/**
+	 * Sets Default Image Property
+	 */	
+	void setDefaultImage( /**Default Image*/ String defaultImage){*
+		this.defaultImage = defaultImage;
+	*}
+
+	/**
+	 * Gets Default Image Property
+	 */	
+	Url getDefaultImage() {*
+		return this.defaultImage;
+	*}
+
+	/** Adds an element containing key [String], text [String], url [String], parentKey [String] properties.
 	 * You need to specify a unique and existing parent element.
-	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.  
 
  	<example>
-	You want to add 2 elements, second one is a child of first one
+	You want to add 2 elements
 	<code>
-	ACCORDION_1.addElement("KEY1", "First Element", "", "ROOT", true);<br>
-	ACCORDION_1.addElement("KEY2", "First Element Child", "", "KEY1", true);
+	ACCORDION.addElement(key [String], text [String], url [String], parentKey [String]);<br>
+	ACCORDION.addElement(key [String], text [String], url [String], parentKey [String]);
 	</code>
 	</example>
 	 */
 	void addElement (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl, 
-			/**The Key of the parent Element*/String parentElementKey, 
-			/**Leafs do not have expand option by default*/optional boolean isLeaf) {*		
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url, 
+			/**Parent Key*/String parentKey
+			) {*		
 		
-		if(isLeaf == undefined) {
-			isLeaf = true;
-		}
+		var leaf = (parentKey != "ROOT");
 		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl,
-			"parent": parentElementKey,
-			"leaf": isLeaf
+		
+		var itemDef = {
+			leaf:leaf,
+			key:key, 
+			text:text, 
+			url:url, 
+			parentKey:parentKey 
 			};
 	
 		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
@@ -51,7 +67,7 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
+			if (elementsJson[i].key == key) {
 				alreadyFound = true;
 				break;
 			}
@@ -63,53 +79,152 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	
 		this.elementsContent = JSON.stringify(elementsJson);
 	*}
-	
-	/** Adds a root element containing Key, Text, Image Url information.
+
+	/** Adds a root element containing key [String], text [String], url [String].
 
  	<example>
-	You want to add 2 root elements, second one is a sibling of first one
+	You want to add 2 root elements
 	<code>
-	ACCORDION_1.addSection("ROOT_KEY1", "First Root Element", "");<br>
-	ACCORDION_1.addSection("ROOT_KEY2", "Second Root Element", "");<br>
+	ACCORDION.addSection(key [String], text [String], url [String]);<br>
+	ACCORDION.addSection(key [String], text [String], url [String]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void addSection (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl) {*		
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) {*		
 		
-		this.addElement(elementKey, elementText, imageUrl, "ROOT", false);
+		this.addElement("ROOT", key, 
+			text, 
+			url);
 	*}
 	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
-	*}
-	
-	/** returns the expanded key - can be used in onFirstExpand() event */
-	String getExpandedKey () {*
-		return this.expandedKey;	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	ACCORDION.removeElement(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeElement (
+			String key
+			) {*		
+		
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
 	*}
 
-	/** sets the expanded key - the onFirstExpand event will be not triggered */
-	void setExpandedKey (String key) {*
-		this.expandedKey = key;	
-	*}
-	
-	/** returns the max section height */
-	String getMaxSectionHeight () {*
-		return this.maxSectionHeight;	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	ACCORDION.removeSection(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeSection (
+			String key
+			) {*		
+		
+		this.removeElement(key);
 	*}
 
-	/** sets the max section height */
-	void setMaxSectionHeight (String height) {*
-		this.maxSectionHeight = height;	
+	/**
+	 * Gets Expaned Key Property
+	 */	
+	String getExpandedKey() {*
+		return this.expandedKey;
 	*}
+
+	/**
+	 * Sets Size of the Image Property
+	 */	
+	void setImageSize( /**Size of the Image*/ String imageSize){*
+		this.imageSize = imageSize;
+	*}
+
+	/**
+	 * Gets Size of the Image Property
+	 */	
+	String getImageSize() {*
+		return this.imageSize;
+	*}
+
+	/**
+	 * Sets Max Height for Section Property
+	 */	
+	void setMaxSectionHeight( /**Max Height for Section*/ int maxSectionHeight){*
+		this.maxSectionHeight = maxSectionHeight;
+	*}
+
+	/**
+	 * Gets Max Height for Section Property
+	 */	
+	int getMaxSectionHeight() {*
+		return this.maxSectionHeight;
+	*}
+
+
+
+
+
+	/**
+	 * Sets Selected Key Property
+	 */	
+	void setSelectedKey( /**Selected Key*/ String selectedKey){*
+		this.selectedKey = selectedKey;
+	*}
+
+	/**
+	 * Gets Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Sets Use Images Property
+	 */	
+	void setWithImage( /**Use Images*/ boolean withImage){*
+		this.withImage = withImage;
+	*}
+
+	/**
+	 * Gets Use Images Property
+	 */	
+	boolean isWithImage() {*
+		return this.withImage;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
 }

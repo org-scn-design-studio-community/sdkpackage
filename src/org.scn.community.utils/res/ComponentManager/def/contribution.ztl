@@ -660,7 +660,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	
 	/* GENERATION PLACE BELOW - DO NOT DELETE THIS LINE ! */
-	/**Cast to Accordion component*/
+	/**Cast to Accordion 2.0 component*/
 	org.scn.community.basics.Accordion returnAsScnAccordion (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Action Sheet Button component*/
@@ -956,6 +956,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Accordion 2.0 component*/
+	org.scn.community.basics.Accordion returnAsScnAccordion (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Activity Viewer component*/
 	org.scn.community.basics.ActivityViewer returnAsScnActivityViewer (Component inputComponent) {* return inputComponent; *}

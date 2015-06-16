@@ -15,42 +15,6 @@
 	<cssInclude>res/ApsTester/ApsTester.css</cssInclude>
 	
 	<property
-		id="comboboxExample"
-		type="String"
-		title="Simple Choice"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
-		id="colorExample"
-		type="String"
-		title="Simple Color"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
-		id="singlearray"
-		type="String"
-		title="Single Array"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
-		id="data"
-		type="ResultSet"
-		title="Data"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
 		id="checkboxExample"
 		type="boolean"
 		title="Ignore Totals"
@@ -63,6 +27,33 @@
 		id="checkboxOnlyGetterExample"
 		type="boolean"
 		title="Ignore Totals"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="colorExample"
+		type="Color"
+		title="Simple Color"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="comboboxExample"
+		type="String"
+		title="Simple Choice"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultSet"
+		title="Data"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -87,9 +78,9 @@
 
 	</property>
 	<property
-		id="textExample"
+		id="singlearray"
 		type="String"
-		title="A saple text"
+		title="Single Array"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -113,6 +104,15 @@
 		visible="true">
 
 	</property>
+	<property
+		id="textExample"
+		type="String"
+		title="A saple text"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 
 
 	<initialization>
@@ -123,17 +123,17 @@
 		<defaultValue property="WIDTH">200</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
 		
-		<defaultValue property="comboboxExample">quantile</defaultValue>
-		<defaultValue property="colorExample"></defaultValue>
-		<defaultValue property="singlearray">[]</defaultValue>
-		<defaultValue property="data">null</defaultValue>
 		<defaultValue property="checkboxExample">true</defaultValue>
 		<defaultValue property="checkboxOnlyGetterExample">true</defaultValue>
+		<defaultValue property="colorExample"></defaultValue>
+		<defaultValue property="comboboxExample">quantile</defaultValue>
+		<defaultValue property="data">null</defaultValue>
 		<defaultValue property="doublearray">[]</defaultValue>
 		<defaultValue property="paletteExample"></defaultValue>
-		<defaultValue property="textExample">initial</defaultValue>
+		<defaultValue property="singlearray">[]</defaultValue>
 		<defaultValue property="spinnerExample"></defaultValue>
 		<defaultValue property="stringarray">[]</defaultValue>
+		<defaultValue property="textExample">initial</defaultValue>
 
 	</initialization>
 

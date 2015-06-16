@@ -37,6 +37,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
               "DReturnParameters": {type: "string"},
               "DReturnResponse": {type: "string"},
               "DReturnStatus": {type: "string"},
+              "DReturnHeaders": {type: "string"},
               
               "DRequestMethod": {type: "string"},
               "DRequestType": {type: "string"},
@@ -80,6 +81,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 		var url = this.getDUrl();
 		
 		var returnParameters = [];
+		var returnHeaders = [];
 		
 		var lHeadersObject = {};
 		var lHeaders = that.getDHeaders();
@@ -148,12 +150,29 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 		    		}
 		    		
 		    		returnParameters = JSON.stringify(returnParameters);
-		    		
 		    		that.setDReturnParameters(returnParameters);
+		    		
 		    		that.setDReturnResponse(response);
 		    		that.setDReturnStatus(status);
+
+					var headerStr = jqXHR.getAllResponseHeaders();
+
+					var headerPairs = headerStr.split('\u000d\u000a');
+					  for (var i = 0, len = headerPairs.length; i < len; i++) {
+						var headerPair = headerPairs[i];
+						var index = headerPair.indexOf('\u003a\u0020');
+						if (index > 0) {
+						  var lElementKey = headerPair.substring(0, index);
+						  var lElementValue = headerPair.substring(index + 2);
+						  
+						  returnHeaders.push({name: lElementKey, value: lElementValue});
+						}
+					}
 		    		
-		    		var changed = ["DReturnParameters", "DReturnResponse", "DReturnStatus"];
+					returnHeaders = JSON.stringify(returnHeaders);
+		    		that.setDReturnHeaders(returnHeaders);
+		    		
+		    		var changed = ["DReturnParameters", "DReturnResponse", "DReturnStatus", "DReturnHeaders"];
 					
 					that.fireDesignStudioPropertiesChanged(changed);
 					that.fireDesignStudioEvent("onResponse");

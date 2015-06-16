@@ -1,0 +1,21 @@
+{
+	"id": "Accordion",
+	"title": "Accordion 2.0",
+	"tooltip": "Accordion - Dynamic List of Entries",
+	"handlerType": "sapui5",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "260",
+	"height": "600"
+}

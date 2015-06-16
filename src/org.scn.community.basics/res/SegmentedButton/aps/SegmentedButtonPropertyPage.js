@@ -13,25 +13,60 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		});
 		that._content.placeAt($("#content"));
 
-		that["fun_DElementsContent"].init();
-		that["fun_DSelectionType"].init();
 		that["fun_DDefaultImage"].init();
-		that["fun_DWithImages"].init();
+		that["fun_DElementsContent"].init();
 		that["fun_DImageSize"].init();
+		that["fun_DSelectionType"].init();
+		that["fun_DWithImages"].init();
 		
 	};
 	
 	that.componentSelected = function(){
-		that["fun_DElementsContent"].update();
-		that["fun_DSelectionType"].update();
 		that["fun_DDefaultImage"].update();
-		that["fun_DWithImages"].update();
+		that["fun_DElementsContent"].update();
 		that["fun_DImageSize"].update();
+		that["fun_DSelectionType"].update();
+		that["fun_DWithImages"].update();
 		
 	};
 	
 	
 
+
+	that["fun_DDefaultImage"] = {};
+	
+	that["fun_DDefaultImage"].update = function(){
+		that["fun_DDefaultImage"]._input.setValue(that["fun_DDefaultImage"]._);
+	};
+	
+	that["fun_DDefaultImage"].init = function(){
+		that["fun_DDefaultImage"]._label = new sap.ui.commons.Label({text: " Url for Default Image"});
+		that["fun_DDefaultImage"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DDefaultImage"]._label);
+		
+		that["fun_DDefaultImage"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DDefaultImage"]._input);
+		that["fun_DDefaultImage"]._input.attachChange(that["fun_DDefaultImage"].propertyChanged, that);
+		that["fun_DDefaultImage"]._input.addStyleClass("org-scn-ApsSimple");
+		
+		that["fun_DDefaultImage"].update();
+	};
+
+	that["fun_DDefaultImage"].propertyChanged = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		that["fun_DDefaultImage"]._ = value;
+		that.firePropertiesChanged(["DDefaultImage"]);
+	};
+	
+	that.DDefaultImage = function(s){
+		if( s === undefined){
+			return that["fun_DDefaultImage"]._;
+		}else{
+			that["fun_DDefaultImage"]._ = s;
+			that["fun_DDefaultImage"].update();
+			return that;
+		}
+	};
 
 	that["fun_DElementsContent"] = {};
 	
@@ -493,6 +528,44 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		}
 	};
 
+	that["fun_DImageSize"] = {};
+	
+	that["fun_DImageSize"].update = function(){
+		that["fun_DImageSize"]._input.setSelectedKey(that["fun_DImageSize"]._);
+	};
+	
+	that["fun_DImageSize"].init = function(){
+		that["fun_DImageSize"]._label = new sap.ui.commons.Label({text: " Size of the Image"});
+		that["fun_DImageSize"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DImageSize"]._label);
+		
+		that["fun_DImageSize"]._input = new sap.ui.commons.ComboBox({width: "300px"});
+		that["fun_DImageSize"]._input.addItem(new sap.ui.core.ListItem({key:"16px", text:"16px"}));
+		that["fun_DImageSize"]._input.addItem(new sap.ui.core.ListItem({key:"32px", text:"32px"}));
+		
+		that._content.addContent(that["fun_DImageSize"]._input);
+		that["fun_DImageSize"]._input.attachChange(that["fun_DImageSize"].propertyChanged, that);
+		that["fun_DImageSize"]._input.addStyleClass("org-scn-ApsBoolean");
+		
+		that["fun_DImageSize"].update();
+	};
+
+	that["fun_DImageSize"].propertyChanged = function(oControlEvent){
+		var newValue = oControlEvent.getParameter("newValue");
+		that["fun_DImageSize"]._ = newValue;
+		that.firePropertiesChanged(["DImageSize"]);
+	};
+	
+	that.DImageSize = function(s){
+		if( s === undefined){
+			return that["fun_DImageSize"]._;
+		}else{
+			that["fun_DImageSize"]._ = s;
+			that["fun_DImageSize"].update();
+			return that;
+		}
+	};
+
 
 
 
@@ -537,41 +610,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		}
 	};
 
-	that["fun_DDefaultImage"] = {};
-	
-	that["fun_DDefaultImage"].update = function(){
-		that["fun_DDefaultImage"]._input.setValue(that["fun_DDefaultImage"]._);
-	};
-	
-	that["fun_DDefaultImage"].init = function(){
-		that["fun_DDefaultImage"]._label = new sap.ui.commons.Label({text: " Url for Default Image"});
-		that["fun_DDefaultImage"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DDefaultImage"]._label);
-		
-		that["fun_DDefaultImage"]._input = new sap.ui.commons.TextField({width: "300px"});
-		that._content.addContent(that["fun_DDefaultImage"]._input);
-		that["fun_DDefaultImage"]._input.attachChange(that["fun_DDefaultImage"].propertyChanged, that);
-		that["fun_DDefaultImage"]._input.addStyleClass("org-scn-ApsSimple");
-		
-		that["fun_DDefaultImage"].update();
-	};
-
-	that["fun_DDefaultImage"].propertyChanged = function(oControlEvent){
-		var value = oControlEvent.getParameter("newValue");
-		that["fun_DDefaultImage"]._ = value;
-		that.firePropertiesChanged(["DDefaultImage"]);
-	};
-	
-	that.DDefaultImage = function(s){
-		if( s === undefined){
-			return that["fun_DDefaultImage"]._;
-		}else{
-			that["fun_DDefaultImage"]._ = s;
-			that["fun_DDefaultImage"].update();
-			return that;
-		}
-	};
-
 	that["fun_DWithImages"] = {};
 	
 	that["fun_DWithImages"].update = function(){
@@ -603,44 +641,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.SegmentedBu
 		}else{
 			that["fun_DWithImages"]._ = s;
 			that["fun_DWithImages"].update();
-			return that;
-		}
-	};
-
-	that["fun_DImageSize"] = {};
-	
-	that["fun_DImageSize"].update = function(){
-		that["fun_DImageSize"]._input.setSelectedKey(that["fun_DImageSize"]._);
-	};
-	
-	that["fun_DImageSize"].init = function(){
-		that["fun_DImageSize"]._label = new sap.ui.commons.Label({text: " Size of the Image"});
-		that["fun_DImageSize"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DImageSize"]._label);
-		
-		that["fun_DImageSize"]._input = new sap.ui.commons.ComboBox({width: "300px"});
-		that["fun_DImageSize"]._input.addItem(new sap.ui.core.ListItem({key:"16px", text:"16px"}));
-		that["fun_DImageSize"]._input.addItem(new sap.ui.core.ListItem({key:"32px", text:"32px"}));
-		
-		that._content.addContent(that["fun_DImageSize"]._input);
-		that["fun_DImageSize"]._input.attachChange(that["fun_DImageSize"].propertyChanged, that);
-		that["fun_DImageSize"]._input.addStyleClass("org-scn-ApsBoolean");
-		
-		that["fun_DImageSize"].update();
-	};
-
-	that["fun_DImageSize"].propertyChanged = function(oControlEvent){
-		var newValue = oControlEvent.getParameter("newValue");
-		that["fun_DImageSize"]._ = newValue;
-		that.firePropertiesChanged(["DImageSize"]);
-	};
-	
-	that.DImageSize = function(s){
-		if( s === undefined){
-			return that["fun_DImageSize"]._;
-		}else{
-			that["fun_DImageSize"]._ = s;
-			that["fun_DImageSize"].update();
 			return that;
 		}
 	};

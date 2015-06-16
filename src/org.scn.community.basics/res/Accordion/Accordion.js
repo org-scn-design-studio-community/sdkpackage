@@ -1,74 +1,31 @@
-/**
- * Copyright 2014 Scn Community Contributors
- * 
- * Original Source Code Location:
- *  https://github.com/org-scn-design-studio-community/sdkpackage/
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- *  
- *  http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an "AS IS" BASIS, 
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and 
- * limitations under the License. 
- */
+(function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.Accordion";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.basics.Accordion;
 
-sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
+Accordion = {
 
-	setDefaultImage : function(value) {
-		this._DefaultImage = value;
-		
-		if(value != undefined && value != "")  {
-			this._pImagePrefix = value.substring(0, value.lastIndexOf("/") + 1);	
-		}
-	},
-
-	getDefaultImage : function() {
-		return this._DefaultImage;
-	},
+	renderer: {},
 	
-	metadata: {
-        properties: {
-        	  "withImage": {type: "boolean"},
-              "imageSize": {type: "string"},
-              "selectedKey": {type: "string"},
-              "expandedKey": {type: "string"},
-              "maxSectionHeight": {type: "int"},
-              "elementsContent": {type: "string"},
-              "cleanAll": {type: "boolean"}
-        }
-	},
-  
 	initDesignStudio: function() {
 		var that = this;
-		this._ownScript = _readScriptPath();
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		this._ownScript = org_scn_community_basics.readOwnScriptAccess
+			("", org_scn_community_require.knownComponents.basics.Accordion.fullComponentName).myScriptPath;
 		
 		this.addStyleClass("scn-pack-Accordion");
 		
 		this._oElements = {};
 		
 		this._initComponent();
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 	},
 	
-	renderer: {},
-	
-	afterDesignStudioUpdate : function() {
+	afterDesignStudioUpdate: function() {
 		var that = this;
 		
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 		if(this.getCleanAll()) {
 			this._destroyAll();
 			
@@ -86,7 +43,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
 				if(this._oElements[element.key] == undefined) {
-					var lNewElement = this._createElement(i, element.key, element.text, element.url, element.parent, element.leaf);
+					var lNewElement = this._createElement(i, element.key, element.text, element.url, element.parentKey, element.leaf);
 					
 					this._oElements[element.key] = lNewElement;
 				}
@@ -114,9 +71,10 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		}
 		
 		this._cleanUpAfterUpdate();
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	},
 	
-
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
 	/**
 	 * Specific Function for Initialization of the Content Component
 	 */
@@ -219,7 +177,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		var that = this;
 		
 		// in case starts with http, keep as is 
-		if(iImageUrl.indexOf("http") == 0) {
+		if(iImageUrl === undefined || iImageUrl.indexOf("http") == 0) {
 			// no nothing
 		} else {
 			// in case of repository, add the prefix from repository
@@ -361,5 +319,12 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			}
 		};
 	}
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+
+define([myComponentData.requireName], function(basicsaccordion){
+	myComponentData.instance = Accordion;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

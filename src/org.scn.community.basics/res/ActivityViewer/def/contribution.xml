@@ -24,19 +24,19 @@
 
 	</property>
 	<property
-		id="onSelectionChanged"
-		type="ScriptText"
-		title="On Selection Changed"
-		group="Events"
-		visible="true">
-
-	</property>
-	<property
 		id="categories"
 		type="String"
 		title="Categories"
 		group="Display"
 		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="On Selection Changed"
+		group="Events"
 		visible="true">
 
 	</property>
@@ -60,8 +60,8 @@
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
 		<defaultValue property="activities">[]</defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
 		<defaultValue property="categories">[]</defaultValue>
+		<defaultValue property="onSelectionChanged"></defaultValue>
 		<defaultValue property="states">[]</defaultValue>
 
 	</initialization>

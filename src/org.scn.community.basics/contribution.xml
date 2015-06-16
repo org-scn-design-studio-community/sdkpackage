@@ -193,105 +193,127 @@
 
 <component
 	id="Accordion"
-	title="Accordion"
+	title="Accordion 2.0"
+	tooltip="Accordion - Dynamic List of Entries"
 	icon="res/Accordion/Accordion.png"
 	handlerType="sapui5"
+	propertySheetPath="res/Accordion/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
-	propertySheetPath="res/Accordion/aps/AccordionPropertyPage.html">
+	databound="false"
+>
 	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/Accordion/Accordion.js</jsInclude>
+	<jsInclude>res/Accordion/AccordionLoader.js</jsInclude>
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
-
-	<property
-		id="selectedKey"
-		type="String"
-		title="Technical property for Selected Key"
-		group="Display"
-		visible="false" />
-
-	<property
-		id="expandedKey"
-		type="String"
-		title="Technical property for Expanded Key"
-		group="Display"
-		visible="false" />
-
+	
 	<property
 		id="cleanAll"
 		type="boolean"
-		title="Technical property for Clean All Nodes"
+		title="Clean All Nodes"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="false">
 
+	</property>
+	<property
+		id="defaultImage"
+		type="Url"
+		title="Default Image"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="elementsContent"
 		type="String"
-		title="Technical property for list of nodes"
+		title="Elements"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="true">
 
-	<property
-		id="defaultImage"
-		title="Url for Default Image"
-		tooltip="Url for Default Image which should be shown"
-		type="Url"
-		group="Display"
-		visible="true" />
-
-	<property
-		id="withImage"
-		title="Use Images"
-		type="boolean"
-		group="Display"
-	>
 	</property>
-
 	<property
-		id="maxSectionHeight"
-		title="Max Height for Section"
-		type="int"
+		id="expandedKey"
+		type="String"
+		title="Expaned Key"
 		group="Display"
-	>
-	</property>
+		bindable="true"
+		visible="false">
 
+	</property>
 	<property
 		id="imageSize"
-		title="Size of the Image"
 		type="String"
+		title="Size of the Image"
 		group="Display"
-	>
-		<possibleValue>16px</possibleValue>
-		<possibleValue>32px</possibleValue>
+		bindable="true"
+		visible="true">
+
 	</property>
-
 	<property
-		id="onSelectionChanged"
-		type="ScriptText"
-		title="Event for On Selection Changed"
-		group="Events" />
+		id="maxSectionHeight"
+		type="int"
+		title="Max Height for Section"
+		group="Display"
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
 		id="onFirstExpand"
 		type="ScriptText"
-		title="Event for On First Expand"
-		group="Events" />
+		title="On First Expand"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="On Selection Changed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="selectedKey"
+		type="String"
+		title="Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="withImage"
+		type="boolean"
+		title="Use Images"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
-		<defaultValue property="WIDTH">230</defaultValue>
-		<defaultValue property="HEIGHT">400</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="fallbackPicture">true</defaultValue>
-		<defaultValue property="selectedKey"></defaultValue>
+		<defaultValue property="WIDTH">260</defaultValue>
+		<defaultValue property="HEIGHT">600</defaultValue>
+		
+		<defaultValue property="cleanAll">false</defaultValue>
+		<defaultValue property="defaultImage"></defaultValue>
+		<defaultValue property="elementsContent">[]</defaultValue>
 		<defaultValue property="expandedKey"></defaultValue>
-		<defaultValue property="elementsContent"></defaultValue>
-		<defaultValue property="withImage">false</defaultValue>
 		<defaultValue property="imageSize">16px</defaultValue>
 		<defaultValue property="maxSectionHeight">200</defaultValue>
+		<defaultValue property="onFirstExpand"></defaultValue>
+		<defaultValue property="onSelectionChanged"></defaultValue>
+		<defaultValue property="selectedKey">-get</defaultValue>
+		<defaultValue property="withImage">true</defaultValue>
 
 	</initialization>
 
@@ -322,19 +344,19 @@
 
 	</property>
 	<property
-		id="onSelectionChanged"
-		type="ScriptText"
-		title="On Selection Changed"
-		group="Events"
-		visible="true">
-
-	</property>
-	<property
 		id="categories"
 		type="String"
 		title="Categories"
 		group="Display"
 		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="On Selection Changed"
+		group="Events"
 		visible="true">
 
 	</property>
@@ -358,8 +380,8 @@
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
 		<defaultValue property="activities">[]</defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
 		<defaultValue property="categories">[]</defaultValue>
+		<defaultValue property="onSelectionChanged"></defaultValue>
 		<defaultValue property="states">[]</defaultValue>
 
 	</initialization>

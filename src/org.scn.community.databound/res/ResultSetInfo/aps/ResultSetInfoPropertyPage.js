@@ -14,15 +14,15 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 		that._content.placeAt($("#content"));
 
 		that["fun_DCentralProvisioning"].init();
-		that["fun_DInformationEventActive"].init();
 		that["fun_DIgnoreResults"].init();
+		that["fun_DInformationEventActive"].init();
 		
 	};
 	
 	that.componentSelected = function(){
 		that["fun_DCentralProvisioning"].update();
-		that["fun_DInformationEventActive"].update();
 		that["fun_DIgnoreResults"].update();
+		that["fun_DInformationEventActive"].update();
 		
 	};
 	
@@ -62,41 +62,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 		}
 	};
 
-	that["fun_DInformationEventActive"] = {};
-	
-	that["fun_DInformationEventActive"].update = function(){
-		that["fun_DInformationEventActive"]._input.setChecked(that["fun_DInformationEventActive"]._);
-	};
-	
-	that["fun_DInformationEventActive"].init = function(){
-		that["fun_DInformationEventActive"]._label = new sap.ui.commons.Label({text: " Information Event Active"});
-		that["fun_DInformationEventActive"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DInformationEventActive"]._label);
-		
-		that["fun_DInformationEventActive"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Information Event Active"});
-		that._content.addContent(that["fun_DInformationEventActive"]._input);
-		that["fun_DInformationEventActive"]._input.attachChange(that["fun_DInformationEventActive"].propertyChanged, that);
-		that["fun_DInformationEventActive"]._input.addStyleClass("org-scn-ApsBoolean");
-		
-		that["fun_DInformationEventActive"].update();
-	};
-
-	that["fun_DInformationEventActive"].propertyChanged = function(oControlEvent){
-		var checked = oControlEvent.getParameter("checked");
-		that["fun_DInformationEventActive"]._ = checked;
-		that.firePropertiesChanged(["DInformationEventActive"]);
-	};
-	
-	that.DInformationEventActive = function(s){
-		if( s === undefined){
-			return that["fun_DInformationEventActive"]._;
-		}else{
-			that["fun_DInformationEventActive"]._ = s;
-			that["fun_DInformationEventActive"].update();
-			return that;
-		}
-	};
-
 	that["fun_DIgnoreResults"] = {};
 	
 	that["fun_DIgnoreResults"].update = function(){
@@ -128,6 +93,41 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.ResultSe
 		}else{
 			that["fun_DIgnoreResults"]._ = s;
 			that["fun_DIgnoreResults"].update();
+			return that;
+		}
+	};
+
+	that["fun_DInformationEventActive"] = {};
+	
+	that["fun_DInformationEventActive"].update = function(){
+		that["fun_DInformationEventActive"]._input.setChecked(that["fun_DInformationEventActive"]._);
+	};
+	
+	that["fun_DInformationEventActive"].init = function(){
+		that["fun_DInformationEventActive"]._label = new sap.ui.commons.Label({text: " Information Event Active"});
+		that["fun_DInformationEventActive"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DInformationEventActive"]._label);
+		
+		that["fun_DInformationEventActive"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Information Event Active"});
+		that._content.addContent(that["fun_DInformationEventActive"]._input);
+		that["fun_DInformationEventActive"]._input.attachChange(that["fun_DInformationEventActive"].propertyChanged, that);
+		that["fun_DInformationEventActive"]._input.addStyleClass("org-scn-ApsBoolean");
+		
+		that["fun_DInformationEventActive"].update();
+	};
+
+	that["fun_DInformationEventActive"].propertyChanged = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		that["fun_DInformationEventActive"]._ = checked;
+		that.firePropertiesChanged(["DInformationEventActive"]);
+	};
+	
+	that.DInformationEventActive = function(s){
+		if( s === undefined){
+			return that["fun_DInformationEventActive"]._;
+		}else{
+			that["fun_DInformationEventActive"]._ = s;
+			that["fun_DInformationEventActive"].update();
 			return that;
 		}
 	};

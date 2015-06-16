@@ -1,0 +1,197 @@
+{
+	"selectedKey" : {
+		"type" : "String",
+		"value" : "-get",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Selected Key",
+			"cat" : "Internal",
+			"tooltip" : "Selected Key",
+			"apsControl" : "text",
+			"noAps":true,
+			"noZtl":false
+		}
+	},
+	"expandedKey" : {
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Expaned Key",
+			"cat" : "Internal",
+			"tooltip" : "Expaned Key",
+			"apsControl" : "text",
+			"noAps":true,
+			"noZtl":false
+		}
+	},
+	"defaultImage" : {
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Default Image",
+			"cat" : "Image",
+			"tooltip" : "Default Image",
+			"apsControl" : "text",
+			"noAps":true,
+			"noZtl":false
+		}
+	},
+    "withImage":{
+	    "type":"boolean",
+	    "onSet":"flattenData",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Use Images",
+	         "cat":"Image",
+	         "tooltip":"Use Images",
+	         "apsControl":"checkbox"
+	    }
+	},
+    "maxSectionHeight":{
+	    "type":"int",
+	    "value":"200",
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"String",
+	         "ztlFunction":"",
+	         "desc":"Max Height for Section",
+	         "cat":"Image",
+	         "tooltip":"Max Height for Section",
+	         "apsControl":"spinner"
+		}
+    },
+    "imageSize":{
+        "type":"String",
+        "value":"16px",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"Size of the Image",
+           "cat":"Image",
+           "tooltip":"Size of the Image",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"16px",
+                 "text":"16x16 pixels"
+              },
+              {
+                 "key":"32px",
+                 "text":"32x32 pixels"
+              }
+           ]
+        }
+     },
+	"cleanAll" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Nodes",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Nodes",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"elementsContent",
+		   	"refDesc":"Elements",
+		   	"refValue":"[]",
+		}
+	},
+	"elementsContent": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"DoubleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "section":{
+	               "type":"Array",
+	               "sequence":"key,text,url,element",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "text":{
+	                  "desc":"Given Text",
+	                  "type":"String"
+	               },
+	               "url":{
+	                  "desc":"Given Url",
+	                  "type":"Url"
+	               },
+	               "element":{
+	                  "type":"Array",
+	                  "sequence":"key,text,url,parentKey",
+	                  "key":{
+	                     "desc":"Unique Key",
+	                     "type":"String"
+	                  },
+	                  "text":{
+	                     "desc":"Given Text",
+	                     "type":"String"
+	                  },
+	                  "url":{
+	                     "desc":"Given Url",
+	                     "type":"Url"
+	                  },
+	                  "parentKey":{
+		                "desc":"Parent Key",
+		                "type":"String",
+		              	"mode":"ztl"
+		              }
+	               }
+	            }
+	        },
+ 
+			"desc":"Elements",
+			"cat":"Content",
+			"tooltip":"List of Elements",
+
+			"apsControl":"array",
+			"arrayMode":"TwoLevelArray"
+		}
+	},
+	"onSelectionChanged": {
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Selection Changed",
+            "cat": "Events",
+            "tooltip": "Event triggered on Selection Changed",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+	"onFirstExpand": {
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On First Expand",
+            "cat": "Events",
+            "tooltip": "Event for On First Expand",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+}

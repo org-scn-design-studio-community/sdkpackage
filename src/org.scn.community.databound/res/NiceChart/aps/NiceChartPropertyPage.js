@@ -14,27 +14,27 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.NiceChar
 		that._content.placeAt($("#content"));
 
 		that["fun_DChartType"].init();
-		that["fun_DSwapAxes"].init();
-		that["fun_DColorHue"].init();
 		that["fun_DColorDistance"].init();
+		that["fun_DColorHue"].init();
 		that["fun_DColorPalette"].init();
-		that["fun_DShowLegend"].init();
 		that["fun_DLegendPosition"].init();
 		that["fun_DLegendWidth"].init();
 		that["fun_DMaxDataPoints"].init();
+		that["fun_DShowLegend"].init();
+		that["fun_DSwapAxes"].init();
 		
 	};
 	
 	that.componentSelected = function(){
 		that["fun_DChartType"].update();
-		that["fun_DSwapAxes"].update();
-		that["fun_DColorHue"].update();
 		that["fun_DColorDistance"].update();
+		that["fun_DColorHue"].update();
 		that["fun_DColorPalette"].update();
-		that["fun_DShowLegend"].update();
 		that["fun_DLegendPosition"].update();
 		that["fun_DLegendWidth"].update();
 		that["fun_DMaxDataPoints"].update();
+		that["fun_DShowLegend"].update();
+		that["fun_DSwapAxes"].update();
 		
 	};
 	
@@ -82,37 +82,37 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.NiceChar
 		}
 	};
 
-	that["fun_DSwapAxes"] = {};
+	that["fun_DColorDistance"] = {};
 	
-	that["fun_DSwapAxes"].update = function(){
-		that["fun_DSwapAxes"]._input.setChecked(that["fun_DSwapAxes"]._);
+	that["fun_DColorDistance"].update = function(){
+		that["fun_DColorDistance"]._input.setValue(that["fun_DColorDistance"]._);
 	};
 	
-	that["fun_DSwapAxes"].init = function(){
-		that["fun_DSwapAxes"]._label = new sap.ui.commons.Label({text: " Swap Axes"});
-		that["fun_DSwapAxes"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DSwapAxes"]._label);
+	that["fun_DColorDistance"].init = function(){
+		that["fun_DColorDistance"]._label = new sap.ui.commons.Label({text: " Starting Color Distance"});
+		that["fun_DColorDistance"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DColorDistance"]._label);
 		
-		that["fun_DSwapAxes"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Swap Axes"});
-		that._content.addContent(that["fun_DSwapAxes"]._input);
-		that["fun_DSwapAxes"]._input.attachChange(that["fun_DSwapAxes"].propertyChanged, that);
-		that["fun_DSwapAxes"]._input.addStyleClass("org-scn-ApsBoolean");
+		that["fun_DColorDistance"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DColorDistance"]._input);
+		that["fun_DColorDistance"]._input.attachChange(that["fun_DColorDistance"].propertyChanged, that);
+		that["fun_DColorDistance"]._input.addStyleClass("org-scn-ApsSimple");
 		
-		that["fun_DSwapAxes"].update();
+		that["fun_DColorDistance"].update();
 	};
 
-	that["fun_DSwapAxes"].propertyChanged = function(oControlEvent){
-		var checked = oControlEvent.getParameter("checked");
-		that["fun_DSwapAxes"]._ = checked;
-		that.firePropertiesChanged(["DSwapAxes"]);
+	that["fun_DColorDistance"].propertyChanged = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		that["fun_DColorDistance"]._ = value;
+		that.firePropertiesChanged(["DColorDistance"]);
 	};
 	
-	that.DSwapAxes = function(s){
+	that.DColorDistance = function(s){
 		if( s === undefined){
-			return that["fun_DSwapAxes"]._;
+			return that["fun_DColorDistance"]._;
 		}else{
-			that["fun_DSwapAxes"]._ = s;
-			that["fun_DSwapAxes"].update();
+			that["fun_DColorDistance"]._ = s;
+			that["fun_DColorDistance"].update();
 			return that;
 		}
 	};
@@ -148,41 +148,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.NiceChar
 		}else{
 			that["fun_DColorHue"]._ = s;
 			that["fun_DColorHue"].update();
-			return that;
-		}
-	};
-
-	that["fun_DColorDistance"] = {};
-	
-	that["fun_DColorDistance"].update = function(){
-		that["fun_DColorDistance"]._input.setValue(that["fun_DColorDistance"]._);
-	};
-	
-	that["fun_DColorDistance"].init = function(){
-		that["fun_DColorDistance"]._label = new sap.ui.commons.Label({text: " Starting Color Distance"});
-		that["fun_DColorDistance"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DColorDistance"]._label);
-		
-		that["fun_DColorDistance"]._input = new sap.ui.commons.TextField({width: "300px"});
-		that._content.addContent(that["fun_DColorDistance"]._input);
-		that["fun_DColorDistance"]._input.attachChange(that["fun_DColorDistance"].propertyChanged, that);
-		that["fun_DColorDistance"]._input.addStyleClass("org-scn-ApsSimple");
-		
-		that["fun_DColorDistance"].update();
-	};
-
-	that["fun_DColorDistance"].propertyChanged = function(oControlEvent){
-		var value = oControlEvent.getParameter("newValue");
-		that["fun_DColorDistance"]._ = value;
-		that.firePropertiesChanged(["DColorDistance"]);
-	};
-	
-	that.DColorDistance = function(s){
-		if( s === undefined){
-			return that["fun_DColorDistance"]._;
-		}else{
-			that["fun_DColorDistance"]._ = s;
-			that["fun_DColorDistance"].update();
 			return that;
 		}
 	};
@@ -225,41 +190,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.NiceChar
 		}else{
 			that["fun_DColorPalette"]._ = s;
 			that["fun_DColorPalette"].update();
-			return that;
-		}
-	};
-
-	that["fun_DShowLegend"] = {};
-	
-	that["fun_DShowLegend"].update = function(){
-		that["fun_DShowLegend"]._input.setChecked(that["fun_DShowLegend"]._);
-	};
-	
-	that["fun_DShowLegend"].init = function(){
-		that["fun_DShowLegend"]._label = new sap.ui.commons.Label({text: " Show Legend"});
-		that["fun_DShowLegend"]._label.addStyleClass("org-scn-ApsLabel");
-		that._content.addContent(that["fun_DShowLegend"]._label);
-		
-		that["fun_DShowLegend"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Show Legend"});
-		that._content.addContent(that["fun_DShowLegend"]._input);
-		that["fun_DShowLegend"]._input.attachChange(that["fun_DShowLegend"].propertyChanged, that);
-		that["fun_DShowLegend"]._input.addStyleClass("org-scn-ApsBoolean");
-		
-		that["fun_DShowLegend"].update();
-	};
-
-	that["fun_DShowLegend"].propertyChanged = function(oControlEvent){
-		var checked = oControlEvent.getParameter("checked");
-		that["fun_DShowLegend"]._ = checked;
-		that.firePropertiesChanged(["DShowLegend"]);
-	};
-	
-	that.DShowLegend = function(s){
-		if( s === undefined){
-			return that["fun_DShowLegend"]._;
-		}else{
-			that["fun_DShowLegend"]._ = s;
-			that["fun_DShowLegend"].update();
 			return that;
 		}
 	};
@@ -368,6 +298,76 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.NiceChar
 		}else{
 			that["fun_DMaxDataPoints"]._ = s;
 			that["fun_DMaxDataPoints"].update();
+			return that;
+		}
+	};
+
+	that["fun_DShowLegend"] = {};
+	
+	that["fun_DShowLegend"].update = function(){
+		that["fun_DShowLegend"]._input.setChecked(that["fun_DShowLegend"]._);
+	};
+	
+	that["fun_DShowLegend"].init = function(){
+		that["fun_DShowLegend"]._label = new sap.ui.commons.Label({text: " Show Legend"});
+		that["fun_DShowLegend"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DShowLegend"]._label);
+		
+		that["fun_DShowLegend"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Show Legend"});
+		that._content.addContent(that["fun_DShowLegend"]._input);
+		that["fun_DShowLegend"]._input.attachChange(that["fun_DShowLegend"].propertyChanged, that);
+		that["fun_DShowLegend"]._input.addStyleClass("org-scn-ApsBoolean");
+		
+		that["fun_DShowLegend"].update();
+	};
+
+	that["fun_DShowLegend"].propertyChanged = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		that["fun_DShowLegend"]._ = checked;
+		that.firePropertiesChanged(["DShowLegend"]);
+	};
+	
+	that.DShowLegend = function(s){
+		if( s === undefined){
+			return that["fun_DShowLegend"]._;
+		}else{
+			that["fun_DShowLegend"]._ = s;
+			that["fun_DShowLegend"].update();
+			return that;
+		}
+	};
+
+	that["fun_DSwapAxes"] = {};
+	
+	that["fun_DSwapAxes"].update = function(){
+		that["fun_DSwapAxes"]._input.setChecked(that["fun_DSwapAxes"]._);
+	};
+	
+	that["fun_DSwapAxes"].init = function(){
+		that["fun_DSwapAxes"]._label = new sap.ui.commons.Label({text: " Swap Axes"});
+		that["fun_DSwapAxes"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DSwapAxes"]._label);
+		
+		that["fun_DSwapAxes"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Swap Axes"});
+		that._content.addContent(that["fun_DSwapAxes"]._input);
+		that["fun_DSwapAxes"]._input.attachChange(that["fun_DSwapAxes"].propertyChanged, that);
+		that["fun_DSwapAxes"]._input.addStyleClass("org-scn-ApsBoolean");
+		
+		that["fun_DSwapAxes"].update();
+	};
+
+	that["fun_DSwapAxes"].propertyChanged = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		that["fun_DSwapAxes"]._ = checked;
+		that.firePropertiesChanged(["DSwapAxes"]);
+	};
+	
+	that.DSwapAxes = function(s){
+		if( s === undefined){
+			return that["fun_DSwapAxes"]._;
+		}else{
+			that["fun_DSwapAxes"]._ = s;
+			that["fun_DSwapAxes"].update();
 			return that;
 		}
 	};

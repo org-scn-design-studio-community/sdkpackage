@@ -3,6 +3,9 @@ ApsContent = function () {
 	
 	that.componentData = {
 
+"specComp" : 
+%FULL_COMP_SPEC_DEFINITION_JSON%,
+
 "spec" : 
 %FULL_SPEC_DEFINITION_JSON%, 
 

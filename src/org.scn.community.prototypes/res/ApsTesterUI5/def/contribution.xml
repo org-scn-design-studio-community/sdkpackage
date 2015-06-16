@@ -15,33 +15,6 @@
 	<cssInclude>res/ApsTesterUI5/ApsTesterUI5.css</cssInclude>
 	
 	<property
-		id="comboboxExample"
-		type="String"
-		title="Simple Choice"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
-		id="colorExample"
-		type="String"
-		title="Simple Color"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
-		id="data"
-		type="ResultSet"
-		title="Data"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
 		id="checkboxExample"
 		type="boolean"
 		title="Ignore Totals"
@@ -60,6 +33,33 @@
 
 	</property>
 	<property
+		id="colorExample"
+		type="Color"
+		title="Simple Color"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="comboboxExample"
+		type="String"
+		title="Simple Choice"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultSet"
+		title="Data"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="paletteExample"
 		type="String"
 		title="Color Palette"
@@ -69,18 +69,18 @@
 
 	</property>
 	<property
-		id="textExample"
-		type="String"
-		title="A saple text"
+		id="spinnerExample"
+		type="int"
+		title="Some numbers"
 		group="Display"
 		bindable="true"
 		visible="true">
 
 	</property>
 	<property
-		id="spinnerExample"
-		type="int"
-		title="Some numbers"
+		id="textExample"
+		type="String"
+		title="A saple text"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -96,14 +96,14 @@
 		<defaultValue property="WIDTH">200</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
 		
-		<defaultValue property="comboboxExample">quantile</defaultValue>
-		<defaultValue property="colorExample"></defaultValue>
-		<defaultValue property="data">null</defaultValue>
 		<defaultValue property="checkboxExample">true</defaultValue>
 		<defaultValue property="checkboxOnlyGetterExample">true</defaultValue>
+		<defaultValue property="colorExample"></defaultValue>
+		<defaultValue property="comboboxExample">quantile</defaultValue>
+		<defaultValue property="data">null</defaultValue>
 		<defaultValue property="paletteExample"></defaultValue>
-		<defaultValue property="textExample">initial</defaultValue>
 		<defaultValue property="spinnerExample"></defaultValue>
+		<defaultValue property="textExample">initial</defaultValue>
 
 	</initialization>
 

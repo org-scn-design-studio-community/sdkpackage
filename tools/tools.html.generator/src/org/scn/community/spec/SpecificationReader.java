@@ -2,6 +2,8 @@ package org.scn.community.spec;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -113,6 +115,7 @@ public class SpecificationReader {
 	private void readSpecs() {
 		readSpecification(this.specProperties, this.jsonSpecification);
 		readSpecification(this.compProperties, this.jsonComponent);
+		
 		for (Property property : compProperties) {
 			String key = property.getName();
 			ParamFullSpec extendedFullSpec = property.getExtendedFullSpec();
@@ -227,6 +230,14 @@ public class SpecificationReader {
 			parameter.setParent(prop);
 			prop.extendSpec(parameter);
 		}
+
+		// Sorting for better HTML
+		Collections.sort(properties, new Comparator<Property>() {
+			@Override
+			public int compare(Property o1, Property o2) {
+				 return  o1.getName().compareTo(o2.getName());
+			}
+		});
 	}
 
 	private void processJsonArrayReq(ParamFullSpec parameter, Object object) 

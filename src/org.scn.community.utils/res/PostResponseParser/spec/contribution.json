@@ -40,7 +40,13 @@
         "gen-mode":"ztl",
         "gen-function":"-get"
    	},
-
+   	
+	"DReturnHeaders" : {
+		"gen-type":"shared.NameValue",
+        "gen-mode":"ztl",
+        "gen-function":"-get"
+   	},
+	
 	"DReturnStatus" : {
 		"gen-type":"int",
         "gen-mode":"ztl",

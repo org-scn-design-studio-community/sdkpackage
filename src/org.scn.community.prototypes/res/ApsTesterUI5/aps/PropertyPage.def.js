@@ -3,6 +3,21 @@ ApsContent = function () {
 	
 	that.componentData = {
 
+"specComp" : 
+{
+  "databound": true,
+  "extension": "Component",
+  "group": "ScnCommunityPrototypes",
+  "handlerType": "sapui5",
+  "height": "200",
+  "id": "ApsTesterUI5",
+  "package": "prototypes",
+  "require": [],
+  "title": "Aps Tester UI5",
+  "tooltip": "Application Property Sheet Tester UI5",
+  "width": "200"
+},
+
 "spec" : 
 {
   "checkboxExample": {

@@ -7,6 +7,7 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -127,6 +128,14 @@ public class Component {
 
 		} while (hasNextTag(reader));
 
+		// Sorting for better HTML
+		Collections.sort(this.properties, new Comparator<Property>() {
+			@Override
+			public int compare(Property o1, Property o2) {
+				 return  o1.getName().compareTo(o2.getName());
+			}
+		});
+		
 		String pathToGenJson = contributionXml.getAbsolutePath().replace(".xml", ".json");
 		pathToGenJson = pathToGenJson.replace(File.separator + "def" + File.separator, File.separator + "spec" + File.separator);
 		File fileGenJson = new File(pathToGenJson);
@@ -176,6 +185,14 @@ public class Component {
 				}
 			}
 		}
+		
+		// Sorting for better HTML
+		Collections.sort(this.functions, new Comparator<ZtlFunction>() {
+			@Override
+			public int compare(ZtlFunction o1, ZtlFunction o2) {
+				 return  o1.getName().compareTo(o2.getName());
+			}
+		});
 
 		String pathToCustom = contributionXml.getAbsolutePath().replace("contribution.xml", "custom.html");
 		String customHtmlContent = Helpers.file2String(pathToCustom);
@@ -447,7 +464,7 @@ public class Component {
 				}
 			}
 		}
-
+		
 		for (ZtlFunction function : this.functions) {
 			String html = function.toHtml();
 			String shortHtml = function.toShortHtml();

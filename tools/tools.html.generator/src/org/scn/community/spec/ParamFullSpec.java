@@ -64,14 +64,16 @@ public class ParamFullSpec {
 		parameters.add(parameter);
 	}
 
-	public String getType() {
+	public String getType(boolean convertToZtlCompatibility) {
 		String type = properties.get("type");
 		if(type.contains(",")) {
 			type = type.substring(0, type.indexOf(","));
 		}
 		
-		if(type.equals("Url") || type.equals("Color") || type.equals("Choice")) {
-			type = "String";
+		if(convertToZtlCompatibility) {
+			if(type.equals("Url") || type.equals("Color") || type.equals("Choice")) {
+				type = "String";
+			}
 		}
 		return type;
 	}
@@ -91,7 +93,7 @@ public class ParamFullSpec {
 			return false;
 		}
 		
-		return false;
+		return true;
 	}
 
 	public String getKey() {
@@ -112,7 +114,7 @@ public class ParamFullSpec {
 			prefix = prefix + "\t";
 		}
 		
-		String content = prefix + this.getName() + ", " +this.getType()+ "\r\n";
+		String content = prefix + this.getName() + ", " +this.getType(false)+ "\r\n";
 		content = content + prefix + "PARAMETERS:\r\n";
 		for (ParamFullSpec paramGen : parameters) {
 			content = content + "\r\n" + prefix + "\t" + paramGen.toString(level+1);
@@ -217,18 +219,18 @@ public class ParamFullSpec {
 										
 										boolean optional = paramGenChild2.isOptional();
 										
-										String initValue = paramGenChild2.getType().equals("boolean")?"false":"\"\"";
+										String initValue = paramGenChild2.getType(true).equals("boolean")?"false":"\"\"";
 										if(optional) {
 											ASSURE_OPTIONAL_INITIALIZED = ASSURE_OPTIONAL_INITIALIZED + "if(" + paramGenChild2.getName() + " == undefined) { " + paramGenChild2.getName() + " = "+initValue+";}" + "\r\n\t\t";; 
 										}
 										
-										PROPERTY_DEFINITION_FULL = PROPERTY_DEFINITION_FULL + paramGenChild2.getHelp() + (optional?"optional ":"") + paramGenChild2.getType() + " " + paramGenChild2.getName();
+										PROPERTY_DEFINITION_FULL = PROPERTY_DEFINITION_FULL + paramGenChild2.getHelp() + (optional?"optional ":"") + paramGenChild2.getType(true) + " " + paramGenChild2.getName();
 										PROPERTY_DEFINITION_JSON = PROPERTY_DEFINITION_JSON + paramGenChild2.getName() + ":" + paramGenChild2.getName();
 										
-										ALL_PROPERTIES = ALL_PROPERTIES + paramGenChild2.getName() + " [" + paramGenChild2.getType() + "]"; 
+										ALL_PROPERTIES = ALL_PROPERTIES + paramGenChild2.getName() + " [" + paramGenChild2.getType(true) + "]"; 
 										
 										if(paramGenChild2.getName().equals("key")) {
-											PROPERTY_DEFINITION_KEY = paramGenChild2.getType() + " " + paramGenChild2.getName();
+											PROPERTY_DEFINITION_KEY = paramGenChild2.getType(true) + " " + paramGenChild2.getName();
 											ITEM_PROPERTY_DESCRIPTION = paramGenChild2.getTitle();
 										}
 									}
@@ -252,19 +254,19 @@ public class ParamFullSpec {
 							}
 							
 							boolean optional = paramGenChild.isOptional();
-							String initValue = paramGenChild.getType().equals("boolean")?"false":"\"\"";
+							String initValue = paramGenChild.getType(true).equals("boolean")?"false":"\"\"";
 							
 							if(optional) {
 								ASSURE_OPTIONAL_ROOT_INITIALIZED = ASSURE_OPTIONAL_ROOT_INITIALIZED + "if(" + paramGenChild.getName() + " == undefined) { " + paramGenChild.getName() + " = "+initValue+";}" + "\r\n\t\t";; 
 							}
 							
-							ROOT_PROPERTY_DEFINITION_FULL = ROOT_PROPERTY_DEFINITION_FULL + paramGenChild.getHelp() + (optional?"optional ":"") + paramGenChild.getType() + " " + paramGenChild.getName();
+							ROOT_PROPERTY_DEFINITION_FULL = ROOT_PROPERTY_DEFINITION_FULL + paramGenChild.getHelp() + (optional?"optional ":"") + paramGenChild.getType(true) + " " + paramGenChild.getName();
 							ROOT_PROPERTY_DEFINITION_JSON = ROOT_PROPERTY_DEFINITION_JSON + paramGenChild.getName() + ":" + paramGenChild.getName();
 							PROPERTY_FULL = PROPERTY_FULL + paramGenChild.getName();
-							ROOT_ALL_PROPERTIES = ROOT_ALL_PROPERTIES + paramGenChild.getName() + " [" + paramGenChild.getType() + "]";
+							ROOT_ALL_PROPERTIES = ROOT_ALL_PROPERTIES + paramGenChild.getName() + " [" + paramGenChild.getType(true) + "]";
 							
 							if(paramGenChild.getName().equals("key")) {
-								ROOT_PROPERTY_DEFINITION_KEY = paramGenChild.getType() + " " + paramGenChild.getName();
+								ROOT_PROPERTY_DEFINITION_KEY = paramGenChild.getType(true) + " " + paramGenChild.getName();
 								ROOT_PROPERTY_KEY = paramGenChild.getName();
 								ROOT_PROPERTY_DESCRIPTION = paramGenChild.getTitle();
 							}
@@ -319,7 +321,8 @@ public class ParamFullSpec {
 		 template = template.replace("%PROPERTY_CAPITAL_CUT%", nameCut);
 		 template = template.replace("%PROPERTY_SMALL_CUT%", nameCut.substring(0,1).toLowerCase(Locale.ENGLISH) + nameCut.substring(1));
 		 template = template.replace("%PROPERTY_CAPITAL%", this.parentProperty.getName());
-		 template = template.replace("%PROPERTY_TYPE%", this.getType());
+		 template = template.replace("%PROPERTY_TYPE%", this.getType(false));
+		 template = template.replace("%PROPERTY_TYPE_ZTL%", this.getType(true));
 		 template = template.replace("%PROPERTY_TYPE_OVERLOAD%", this.options.getPropertyValue("ztlType"));
 		 template = template.replace("%HELP%", getHelp());
 		 template = template.replace("%NAME%", getTitle());
@@ -330,9 +333,9 @@ public class ParamFullSpec {
 		template = template.replace("%PROPERTY_TITLE%", this.options.getPropertyValue("desc"));
 		template = template.replace("%PROPERTY_VISIBLE%", this.getPropertyValue("visible"));
 		
-		String refProp = this.properties.get("refProperty");
-		String refInitValue = this.properties.get("refValue");
-		String refDesc = this.properties.get("refDesc");
+		String refProp = this.options.getPropertyValue("refProperty");
+		String refInitValue = this.options.getPropertyValue("refValue");
+		String refDesc = this.options.getPropertyValue("refDesc");
 		 
 		if(refProp != null) {
 			template = template.replace("%PROPERTY_CAPITAL_REF%", refProp);
