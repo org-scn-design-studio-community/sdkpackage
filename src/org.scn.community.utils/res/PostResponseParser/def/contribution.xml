@@ -101,6 +101,14 @@
 	</property>
 
 	<property
+		id="DReturnHeaders"
+		type="String"
+		title="Return Headers"
+		group="Display"
+		visible="false">
+	</property>
+
+	<property
 		id="DTrigger"
 		type="String"
 		title="Just as Simple Triger"
