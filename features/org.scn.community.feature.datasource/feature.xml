@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.scn.community.sdk.feature.datasource"
-      label="SCN Community Free SDK Data Sources for Design Studio [rel. 1.4 or higher]"
+      label="SCN Community Free SDK Data Sources for Design Studio"
       version="2.0.0.qualifier"
       provider-name="SCN Community Contributors">
 

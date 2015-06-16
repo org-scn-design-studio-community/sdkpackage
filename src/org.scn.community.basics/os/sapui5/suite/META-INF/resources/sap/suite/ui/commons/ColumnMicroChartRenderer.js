@@ -1,5 +1,0 @@
-/*!
- * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
- */
-jQuery.sap.declare("sap.suite.ui.commons.ColumnMicroChartRenderer");sap.suite.ui.commons.ColumnMicroChartRenderer={};
-sap.suite.ui.commons.ColumnMicroChartRenderer.render=function(r,c){r.write("<div");r.writeControlData(c);r.addClass("sapSuiteCmc");r.addClass(c.getSize());r.writeAttributeEscaped("title",c.getTooltip_AsString());if(c.hasListeners("press")){r.addClass("sapSuiteUiCommonsPointer");r.writeAttribute("tabindex","0");r.writeAttribute("role","button")}else{r.writeAttribute("role","img")}r.writeClasses();r.addStyle("width",c.getWidth());r.addStyle("height",c.getHeight());r.writeStyles();r.write(">");r.write("<div");r.writeAttributeEscaped("id",c.getId()+"-content");r.addClass("sapSuiteCmcCnt");r.writeClasses();r.write(">");var C=c.getColumns().length;for(var i=0;i<C;i++){var o=c.getColumns()[i];r.write("<div");r.writeAttribute("id",c.getId()+"-bar-"+i);r.addClass("sapSuiteCmcBar");r.addClass(o.getColor());r.writeClasses();r.write(">");r.write("</div>")}r.write("</div>");r.write("</div>")};

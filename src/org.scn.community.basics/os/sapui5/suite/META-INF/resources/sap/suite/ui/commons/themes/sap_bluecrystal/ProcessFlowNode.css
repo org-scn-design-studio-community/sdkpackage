@@ -1,7 +1,0 @@
-/* Title */
-.sapSuiteUiCommonsProcessFlowNode3Title,
-.sapSuiteUiCommonsProcessFlowNode3Title > .sapMText,
-.sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxLine,
-.sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxWidth {
-    color: @sapUiHeaderText;
-}

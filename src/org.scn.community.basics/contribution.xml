@@ -299,7 +299,7 @@
 
 <component
 	id="ActivityViewer"
-	title="Activity Viewer (Prototype)"
+	title="Activity Viewer"
 	tooltip="Viewer for Custom Activities"
 	icon="res/ActivityViewer/ActivityViewer.png"
 	handlerType="div"
@@ -817,7 +817,6 @@
 
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>os/sapui5/suite/mapping.js</jsInclude>
 	<jsInclude>os/date/DateFormat.js</jsInclude>
 	<jsInclude>res/DateRangeScroller/DateRangeScroller.js</jsInclude>
 	
@@ -965,7 +964,6 @@
 	
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>os/sapui5/suite/mapping.js</jsInclude>
 	<jsInclude>os/date/DateFormat.js</jsInclude>
 	<jsInclude>res/DateRangeSlider/DateRangeSlider.js</jsInclude>
 	

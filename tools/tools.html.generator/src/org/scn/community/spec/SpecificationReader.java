@@ -383,7 +383,7 @@ public class SpecificationReader {
 					if(value == null) {
 						value = "";
 					}
-					
+
 					content = content.replace("%COMP-"+extendedPropertyKey+"%", value);
 				}
 			}

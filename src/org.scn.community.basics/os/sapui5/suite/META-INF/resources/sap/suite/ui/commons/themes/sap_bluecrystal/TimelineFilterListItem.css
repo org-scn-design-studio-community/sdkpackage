@@ -1,9 +1,0 @@
-
-/* ============================================= */
-/* CSS for control sap.suite.ui.commons/TimelineFilterListItem.control */
-/* ============================================= */
-
-.sapSuiteUiCommonsTimelineFilterListItem{
-  color: @sapUiTextColor;
-  border: 1px solid blue;
-}
