@@ -159,7 +159,7 @@
   "memberDisplay": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Image",
+      "cat": "Display",
       "desc": "Member Display",
       "options": [
         {

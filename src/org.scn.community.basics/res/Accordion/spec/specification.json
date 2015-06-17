@@ -81,7 +81,7 @@
            "ztlType":"Choice",
            "ztlFunction":"",
            "desc":"Member Display",
-           "cat":"Image",
+           "cat":"Display",
            "tooltip":"Member Display",
            "apsControl":"combobox",
            "options":[
