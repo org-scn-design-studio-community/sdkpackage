@@ -1291,7 +1291,7 @@ class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Co
 	/** Sets the content url which will be embedded */
 	void setURL(
 		/** text */ String text) {*
-		this.url = url;	
+		this.url = text;	
 	*}
 	
 	/** Returns the content url */
