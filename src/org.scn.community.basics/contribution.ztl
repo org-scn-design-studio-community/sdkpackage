@@ -50,22 +50,22 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		return this.defaultImage;
 	*}
 
-	/** Adds an element containing key [String], text [String], url [String], parentKey [String] properties.
+	/** Adds an element containing parentKey [String], key [String], text [String], url [String] properties.
 	 * You need to specify a unique and existing parent element.
 
  	<example>
 	You want to add 2 elements
 	<code>
-	ACCORDION.addElement(key [String], text [String], url [String], parentKey [String]);<br>
-	ACCORDION.addElement(key [String], text [String], url [String], parentKey [String]);
+	ACCORDION.addElement(parentKey [String], key [String], text [String], url [String]);<br>
+	ACCORDION.addElement(parentKey [String], key [String], text [String], url [String]);
 	</code>
 	</example>
 	 */
 	void addElement (
+			/**Parent Key*/String parentKey, 
 			/**Unique Key*/String key, 
 			/**Given Text*/String text, 
-			/**Given Url*/String url, 
-			/**Parent Key*/String parentKey
+			/**Given Url*/String url
 			) {*		
 		
 		var leaf = (parentKey != "ROOT");
@@ -73,10 +73,10 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		
 		var itemDef = {
 			leaf:leaf,
+			parentKey:parentKey, 
 			key:key, 
 			text:text, 
-			url:url, 
-			parentKey:parentKey 
+			url:url 
 			};
 	
 		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){

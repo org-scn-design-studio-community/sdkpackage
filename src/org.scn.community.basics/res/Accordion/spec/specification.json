@@ -178,7 +178,12 @@
 	               },
 	               "element":{
 	                  "type":"Array",
-	                  "sequence":"key,text,url,parentKey",
+	                  "sequence":"parentKey,key,text,url",
+	                  "parentKey":{
+		                "desc":"Parent Key",
+		                "type":"String",
+		              	"mode":"ztl"
+		              },
 	                  "key":{
 	                     "desc":"Unique Key",
 	                     "type":"String"
@@ -190,12 +195,7 @@
 	                  "url":{
 	                     "desc":"Given Url",
 	                     "type":"Url"
-	                  },
-	                  "parentKey":{
-		                "desc":"Parent Key",
-		                "type":"String",
-		              	"mode":"ztl"
-		              }
+	                  }
 	               }
 	            }
 	        },

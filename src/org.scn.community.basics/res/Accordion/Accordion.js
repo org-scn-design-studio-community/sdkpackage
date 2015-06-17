@@ -29,6 +29,9 @@ Accordion = {
 
 		// backup current nodes
 		this._oElementsTemp = this._oElements;
+		if(this._oElementsTemp == undefined) {
+			this._oElementsTemp = {};
+		}
 		this._oElements = {};
 
 		if(this.getCleanAll()) {

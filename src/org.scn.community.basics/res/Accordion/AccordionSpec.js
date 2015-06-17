@@ -68,7 +68,7 @@
             "mode": "ztl",
             "type": "String"
           },
-          "sequence": "key,text,url,parentKey",
+          "sequence": "parentKey,key,text,url",
           "text": {
             "desc": "Given Text",
             "type": "String"
