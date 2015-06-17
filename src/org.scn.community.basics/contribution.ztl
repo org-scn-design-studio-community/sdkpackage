@@ -1288,7 +1288,7 @@ class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Com
  */
 class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Component {
 	
-	/** Sets the content URL which will be embedded */
+	/** Sets the content URL which will be embedded. */
 	void setURL(
 		/** text */ String text) {*
 		this.url = text;	
