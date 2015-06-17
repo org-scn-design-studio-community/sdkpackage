@@ -103,6 +103,15 @@
 
 	</property>
 	<property
+		id="supportedContentNotation"
+		type="String"
+		title="Supported Content Notation"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
 		id="withImage"
 		type="boolean"
 		title="Use Images"
@@ -131,6 +140,7 @@
 		<defaultValue property="onFirstExpand"></defaultValue>
 		<defaultValue property="onSelectionChanged"></defaultValue>
 		<defaultValue property="selectedKey">-get</defaultValue>
+		<defaultValue property="supportedContentNotation">PARENT_CHILD_TEXT_URL</defaultValue>
 		<defaultValue property="withImage">true</defaultValue>
 
 	</initialization>

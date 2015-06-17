@@ -218,6 +218,21 @@
     "value": "-get",
     "visible": false
   },
+  "supportedContentNotation": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Internal",
+      "desc": "Supported Content Notation",
+      "noAps": true,
+      "noZtl": false,
+      "tooltip": "Supported Content Notation",
+      "ztlFunction": "-get",
+      "ztlType": "shared.ContentNotation"
+    },
+    "type": "String",
+    "value": "PARENT_CHILD_TEXT_URL",
+    "visible": false
+  },
   "withImage": {
     "onSet": "flattenData",
     "opts": {

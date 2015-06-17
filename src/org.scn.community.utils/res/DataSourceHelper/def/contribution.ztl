@@ -28,7 +28,7 @@ class org.scn.community.utils.DataSourceHelper extends org.scn.community.shared.
 	 * Returns the correct content for <maxMemberCount> members in all dimensions.
 	 * Can be passed into the property <Elements> as String - using the binding feature. 
 	 */
-	String getDataBindingMembersForAllDimensions (optional int maxMemberCount) {*
+	String getDataBindingMembersForAllDimensions (org_scn_community_shared_ContentNotationEnumfield notation, optional int maxMemberCount) {*
 		var DS = this.getDataSource();
 	
 		this.setupHolder();
@@ -51,9 +51,9 @@ class org.scn.community.utils.DataSourceHelper extends org.scn.community.shared.
 	        
 	        dimensionJObj.parentKey = "ROOT";
 	        dimensionJObj.key = dimension.name;
-	        dimensionJObj.leaf = false;
 	        dimensionJObj.text = dimension.text;
 	        dimensionJObj.url = "";
+	        dimensionJObj.leaf = false;
 	        
 	        dimensionJArr.push(dimensionJObj);
 	        elementsJArr.push(dimensionJObj);
@@ -77,10 +77,10 @@ class org.scn.community.utils.DataSourceHelper extends org.scn.community.shared.
 		        
 	            memberJObj.parentKey = dimension.name;
 	            memberJObj.key = dimension.name + "-" + intKey;
-	            memberJObj.leaf = true;
 	            memberJObj.text = member.text;
 	            memberJObj.url = "";
-		        
+	            memberJObj.leaf = true;
+
 	            dimensionJArr.push(memberJObj);
 	            elementsJArr.push(memberJObj);
 	            

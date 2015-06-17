@@ -225,6 +225,13 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 
 	/**
+	Returns the content of property Supported Content Notation as constant
+	*/
+	org_scn_community_shared_ContentNotationEnumfield getSupportedContentNotation () {*
+		return this.supportedContentNotation;
+	*}
+
+	/**
 	 * Sets Use Images Property
 	 */	
 	void setWithImage( /**Use Images*/ boolean withImage){*

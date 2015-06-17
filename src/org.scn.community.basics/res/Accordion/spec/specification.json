@@ -29,6 +29,21 @@
 			"noZtl":false
 		}
 	},
+	"supportedContentNotation" : {
+		"type" : "String",
+		"value" : "PARENT_CHILD_TEXT_URL",
+		"visible": false,
+		"opts" : {
+			"ztlType": "shared.ContentNotation",
+			"ztlFunction": "-get",
+			"desc" : "Supported Content Notation",
+			"cat" : "Internal",
+			"tooltip" : "Supported Content Notation",
+			"apsControl" : "text",
+			"noAps":true,
+			"noZtl":false
+		}
+	},
 	"defaultImage" : {
 		"type" : "Url",
 		"value" : "",
