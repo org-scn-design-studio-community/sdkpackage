@@ -1,0 +1,21 @@
+{
+	"id": "DataSourceHelper",
+	"title": "Data Source Helper 2.0",
+	"tooltip": "DataSourceHelper - Utilities for Data Sources",
+	"handlerType": "div",
+	"group": "ScnCommunityUtils",
+	"package": "utils",
+	"extension": "Component",
+	"databound": true,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "50",
+	"height": "50"
+}

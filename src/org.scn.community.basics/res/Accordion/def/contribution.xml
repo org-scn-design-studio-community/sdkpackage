@@ -69,6 +69,15 @@
 
 	</property>
 	<property
+		id="memberDisplay"
+		type="String"
+		title="Member Display"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="onFirstExpand"
 		type="ScriptText"
 		title="On First Expand"
@@ -118,6 +127,7 @@
 		<defaultValue property="expandedKey"></defaultValue>
 		<defaultValue property="imageSize">16px</defaultValue>
 		<defaultValue property="maxSectionHeight">200</defaultValue>
+		<defaultValue property="memberDisplay">text</defaultValue>
 		<defaultValue property="onFirstExpand"></defaultValue>
 		<defaultValue property="onSelectionChanged"></defaultValue>
 		<defaultValue property="selectedKey">-get</defaultValue>

@@ -1,35 +1,20 @@
-/**
- * Copyright 2014 Scn Community Contributors
- * 
- * Original Source Code Location:
- *  https://github.com/org-scn-design-studio-community/sdkpackage/
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- *  
- *  http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an "AS IS" BASIS, 
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and 
- * limitations under the License. 
- */
+(function(){
 
-sap.designstudio.sdk.Component.subclass("org.scn.community.basics.EmbeddedFrame", function() {
+var myComponentData = org_scn_community_require.knownComponents.basics.EmbeddedFrame;
 
-	this.url = function (value) {
-		if (value === undefined) {
-			return url;
-		} else {
-			url = value;
-			return this;
-		}
-	};
+EmbeddedFrame = function () {
+
+	var that = this;
 	
-    this.afterUpdate = function(){
-    	var html = "";
+	this.init = function() {
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+	};
+
+	this.afterUpdate = function() {
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+		var html = "";
     	
     	var isInDesignMode = (sap.zen.designmode != undefined);
     	
@@ -77,5 +62,21 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.EmbeddedFrame"
 		html = html.concat(">");
 		
 		this.$().html(html);
-    };
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+	};
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+
+	org_scn_community_component_Core(that, myComponentData);
+	
+	return that;
+};
+
+define([myComponentData.requireName], function(basicsembeddedframe){
+	myComponentData.instance = EmbeddedFrame;
+	return myComponentData.instance;
 });
+
+}).call(this);

@@ -185,16 +185,16 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 
 	/**
-	 * Sets Size of the Image Property
+	 * Sets Size of the Image Property by String
 	 */	
-	void setImageSize( /**Size of the Image*/ String imageSize){*
+	void setImageSizeByString( /**Size of the Image*/ String imageSize){*
 		this.imageSize = imageSize;
 	*}
 
 	/**
-	 * Gets Size of the Image Property
+	 * Gets Size of the Image Property as String
 	 */	
-	String getImageSize() {*
+	String getImageSizeAsString() {*
 		return this.imageSize;
 	*}
 
@@ -210,6 +210,20 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	 */	
 	int getMaxSectionHeight() {*
 		return this.maxSectionHeight;
+	*}
+
+	/**
+	 * Sets Member Display Property by String
+	 */	
+	void setMemberDisplayByString( /**Member Display*/ String memberDisplay){*
+		this.memberDisplay = memberDisplay;
+	*}
+
+	/**
+	 * Gets Member Display Property as String
+	 */	
+	String getMemberDisplayAsString() {*
+		return this.memberDisplay;
 	*}
 
 
@@ -1284,37 +1298,69 @@ class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Com
 }
 
 /**
- * Class for EmbeddedFrame
+ * Generated ZTL Class for EmbeddedFrame
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Component {
-	
-	/** Sets the content URL which will be embedded. */
-	void setURL(
-		/** text */ String text) {*
-		this.url = text;	
+
+	/**
+	 * Sets Url Property
+	 */	
+	void setUrl( /**Url*/ String url){*
+		this.url = url;
 	*}
-	
-	/** Returns the content url */
-	String getURL() {*
-		return this.url;	
+
+	/**
+	 * Gets Url Property
+	 */	
+	String getUrl() {*
+		return this.url;
 	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
 }
 
 /**
- * Class for EmbeddedMedia
+ * Generated ZTL Class for EmbeddedMedia
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.EmbeddedMedia extends org.scn.community.shared.Component {
-	
-	/** Sets the content url which will be embedded */
-	void setURL(
-		/** text */ String text) {*
-		this.url = url;	
+
+	/**
+	 * Sets Tag Property by String
+	 */	
+	void setTagByString( /**Tag*/ String tag){*
+		this.tag = tag;
 	*}
-	
-	/** Returns the content url */
-	String getURL() {*
-		return this.url;	
+
+	/**
+	 * Gets Tag Property as String
+	 */	
+	String getTagAsString() {*
+		return this.tag;
 	*}
+
+	/**
+	 * Sets Url Property
+	 */	
+	void setUrl( /**Url*/ String url){*
+		this.url = url;
+	*}
+
+	/**
+	 * Gets Url Property
+	 */	
+	String getUrl() {*
+		return this.url;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
 }
 
 /**

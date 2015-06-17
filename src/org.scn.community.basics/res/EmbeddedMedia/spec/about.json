@@ -1,0 +1,16 @@
+{
+	"title": "Embedded Media 2.0",
+	"description": "Embedded Media - Include external media directly in your application",
+	"icon": "EmbeddedMedia.png",
+	"topics": 
+	[
+		{
+			"title" : "Embedded Media",
+			"content" : "Includes external media directly in your application."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

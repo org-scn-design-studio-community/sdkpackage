@@ -1,0 +1,40 @@
+{
+	"url" : {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url",
+			"cat" : "Display",
+			"tooltip" : "Url to Embedd",
+			"apsControl" : "text",
+			"noAps":false,
+			"noZtl":false
+		}
+	},
+	"tag":{
+        "type":"String",
+        "value":"embed",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"Tag",
+           "cat":"Display",
+           "tooltip":"Tag to Embedd",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"embed",
+                 "text":"Tag 'embed'"
+              },
+              {
+                 "key":"object",
+                 "text":"Tag 'object'"
+              }
+           ]
+        }
+     },
+}

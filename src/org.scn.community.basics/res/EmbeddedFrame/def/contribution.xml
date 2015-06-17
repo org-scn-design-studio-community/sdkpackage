@@ -1,32 +1,40 @@
 
 <component
 	id="EmbeddedFrame"
-	title="Embedded Frame"
-	handlerType="div"
+	title="Embedded Frame 2.0"
+	tooltip="Embedded Frame - Include external web pages directly in your application"
 	icon="res/EmbeddedFrame/EmbeddedFrame.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/EmbeddedFrame/EmbeddedFrame.js</jsInclude>
+	<jsInclude>res/EmbeddedFrame/EmbeddedFrameLoader.js</jsInclude>
+	<cssInclude>res/EmbeddedFrame/EmbeddedFrame.css</cssInclude>
 	
 	<property
 		id="url"
-		title="Content Url"
-		tooltip="Url to be embedded as content"
+		type="String"
+		title="Url"
 		group="Display"
-		type="String" />
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
 		<defaultValue property="url"></defaultValue>
+
 	</initialization>
 
 </component>

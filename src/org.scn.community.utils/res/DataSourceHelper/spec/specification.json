@@ -1,0 +1,17 @@
+{
+	"cache" : {
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Activate Cache",
+			"cat" : "Data",
+			"tooltip" : "Activate Cache",
+			"apsControl" : "checkbox",
+			"noAps":false,
+			"noZtl":false
+		}
+	},
+}

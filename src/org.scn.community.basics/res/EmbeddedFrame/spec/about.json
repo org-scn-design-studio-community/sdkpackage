@@ -1,0 +1,16 @@
+{
+	"title": "Embedded Frame 2.0",
+	"description": "Embedded Frame - Include external web pages directly in your application",
+	"icon": "EmbeddedFrame.png",
+	"topics": 
+	[
+		{
+			"title" : "Embedded Frame",
+			"content" : "Includes external web pages directly in your application."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

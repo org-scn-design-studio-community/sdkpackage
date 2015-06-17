@@ -135,16 +135,16 @@ class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shar
 	*}
 
 	/**
-	 * Sets When to show an alert Property
+	 * Sets When to show an alert Property by String
 	 */	
-	void setShowalert( /**When to show an alert*/ String showalert){*
+	void setShowalertByString( /**When to show an alert*/ String showalert){*
 		this.showalert = showalert;
 	*}
 
 	/**
-	 * Gets When to show an alert Property
+	 * Gets When to show an alert Property as String
 	 */	
-	String getShowalert() {*
+	String getShowalertAsString() {*
 		return this.showalert;
 	*}
 

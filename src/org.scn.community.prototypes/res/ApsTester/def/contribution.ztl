@@ -42,16 +42,16 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 
 	/**
-	 * Sets Simple Choice Property
+	 * Sets Simple Choice Property by String
 	 */	
-	void setComboboxExample( /**Simple Choice*/ String comboboxExample){*
+	void setComboboxExampleByString( /**Simple Choice*/ String comboboxExample){*
 		this.comboboxExample = comboboxExample;
 	*}
 
 	/**
-	 * Gets Simple Choice Property
+	 * Gets Simple Choice Property as String
 	 */	
-	String getComboboxExample() {*
+	String getComboboxExampleAsString() {*
 		return this.comboboxExample;
 	*}
 

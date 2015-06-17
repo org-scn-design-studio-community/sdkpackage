@@ -1,0 +1,21 @@
+{
+	"id": "EmbeddedMedia",
+	"title": "Embedded Media 2.0",
+	"tooltip": "Embedded Media - Include external media directly in your application",
+	"handlerType": "div",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "600",
+	"height": "400"
+}

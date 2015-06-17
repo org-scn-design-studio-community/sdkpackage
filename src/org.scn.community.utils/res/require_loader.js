@@ -21,8 +21,8 @@ var org_scn_community_require = org_scn_community_require || {};
 
 /* IMPORTANT! ORIGINAL LOCATION - basics/res */
 
-// set the version to assure cache is cleared
-org_scn_community_require.jsVersion = "20140325";
+//set the version to assure cache is cleared
+/*NO DELTA CHECK START*/org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-6-17"/*%TIMESTAMP-END%*/;/*NO DELTA CHECK END*/
 
 var org_scn_community_components = org_scn_community_components || {};
 org_scn_community_components.basics = org_scn_community_components.basics || {};
@@ -141,7 +141,7 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 			},
 			numberformatter: {
 				name: "numberformatter",
-				script: "org.scn.community.basics/os/jquery/numberformatter",
+				script: "org.scn.community.basics/os/numberformat/numberformatter",
 				min: true
 			},
 			dateformatter: {

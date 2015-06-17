@@ -1,17 +1,40 @@
 
 /**
- * Class for EmbeddedMedia
+ * Generated ZTL Class for EmbeddedMedia
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.EmbeddedMedia extends org.scn.community.shared.Component {
-	
-	/** Sets the content url which will be embedded */
-	void setURL(
-		/** text */ String text) {*
-		this.url = url;	
+
+	/**
+	 * Sets Tag Property by String
+	 */	
+	void setTagByString( /**Tag*/ String tag){*
+		this.tag = tag;
 	*}
-	
-	/** Returns the content url */
-	String getURL() {*
-		return this.url;	
+
+	/**
+	 * Gets Tag Property as String
+	 */	
+	String getTagAsString() {*
+		return this.tag;
 	*}
+
+	/**
+	 * Sets Url Property
+	 */	
+	void setUrl( /**Url*/ String url){*
+		this.url = url;
+	*}
+
+	/**
+	 * Gets Url Property
+	 */	
+	String getUrl() {*
+		return this.url;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
 }

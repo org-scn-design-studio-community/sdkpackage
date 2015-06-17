@@ -158,6 +158,29 @@ ApsContent = function () {
     "value": "200",
     "visible": true
   },
+  "memberDisplay": {
+    "opts": {
+      "apsControl": "combobox",
+      "cat": "Image",
+      "desc": "Member Display",
+      "options": [
+        {
+          "key": "text",
+          "text": "Text Only"
+        },
+        {
+          "key": "text_key",
+          "text": "Text [KEY]"
+        }
+      ],
+      "tooltip": "Member Display",
+      "ztlFunction": "",
+      "ztlType": "Choice"
+    },
+    "type": "String",
+    "value": "text",
+    "visible": true
+  },
   "onFirstExpand": {
     "opts": {
       "cat": "Events",

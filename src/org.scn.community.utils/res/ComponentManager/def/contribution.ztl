@@ -696,10 +696,10 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Drag Drop Area component*/
 	org.scn.community.basics.DragDropArea returnAsScnDragDropArea (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Embedded Frame component*/
+	/**Cast to Embedded Frame 2.0 component*/
 	org.scn.community.basics.EmbeddedFrame returnAsScnEmbeddedFrame (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Embedded Media component*/
+	/**Cast to Embedded Media 2.0 component*/
 	org.scn.community.basics.EmbeddedMedia returnAsScnEmbeddedMedia (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Fallback Picture component*/
@@ -927,6 +927,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Custom Css Collector component*/
 	org.scn.community.utils.CustomCssCollector returnAsScnCustomCssCollector (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Data Source Helper 2.0 component*/
+	org.scn.community.utils.DataSourceHelper returnAsScnDataSourceHelper (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Debugger Code Inspector component*/
 	org.scn.community.utils.Debugger returnAsScnDebugger (Component inputComponent) {* return inputComponent; *}
 
@@ -963,6 +966,12 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Activity Viewer component*/
 	org.scn.community.basics.ActivityViewer returnAsScnActivityViewer (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Embedded Frame 2.0 component*/
+	org.scn.community.basics.EmbeddedFrame returnAsScnEmbeddedFrame (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Embedded Media 2.0 component*/
+	org.scn.community.basics.EmbeddedMedia returnAsScnEmbeddedMedia (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Aps Tester component*/
 	org.scn.community.prototypes.ApsTester returnAsScnApsTester (Component inputComponent) {* return inputComponent; *}
 
@@ -971,6 +980,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Bullet Chart (Gen Prototype) component*/
 	org.scn.community.prototypes.BulletChartGen returnAsScnBulletChartGen (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Data Source Helper 2.0 component*/
+	org.scn.community.utils.DataSourceHelper returnAsScnDataSourceHelper (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Json Object component*/
 	org.scn.community.utils.JsonObject returnAsScnJsonObject (Component inputComponent) {* return inputComponent; *}

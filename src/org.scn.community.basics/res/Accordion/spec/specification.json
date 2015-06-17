@@ -58,7 +58,30 @@
 	         "apsControl":"checkbox"
 	    }
 	},
-    "maxSectionHeight":{
+    "memberDisplay":{
+        "type":"String",
+        "value":"text",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"Member Display",
+           "cat":"Image",
+           "tooltip":"Member Display",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"text",
+                 "text":"Text Only"
+              },
+              {
+                 "key":"text_key",
+                 "text":"Text [KEY]"
+              }
+           ]
+        }
+     },
+	"maxSectionHeight":{
 	    "type":"int",
 	    "value":"200",
 	    "visible":true,
