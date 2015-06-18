@@ -2,6 +2,7 @@ package org.scn.community.htmlgenerator;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,14 +37,26 @@ public class Main {
 
 		List<File> allContributionXmls = new ArrayList<File>();
 		Helpers.findMatchingFiles(mainSrcFolder, "contribution.xml", "def", "component", allContributionXmls);
+		
 		List<File> allSpecifications = new ArrayList<File>();
 		Helpers.findMatchingFiles(mainSrcFolder, "component.json", "spec", "\"id\"", allSpecifications);
 
+		List<String> allComponents = new ArrayList<String>();
+		
+		for (File file : allContributionXmls) {
+			if(!allComponents.contains(file.getAbsolutePath())) {
+				allComponents.add(file.getAbsolutePath());	
+			}
+		}
+		
 		for (File file : allSpecifications) {
 			String pathSpec = file.getAbsolutePath();
 			pathSpec = pathSpec.replace("component.json", "contribution.xml");
 			pathSpec = pathSpec.replace(File.separator + "spec" + File.separator, File.separator + "def" + File.separator);
-			allContributionXmls.add(new File(pathSpec));
+			
+			if(!allComponents.contains(pathSpec)) {
+				allComponents.add(pathSpec);	
+			}
 		}
 		
 		System.out.println("Components Count: " + allContributionXmls.size());
@@ -58,8 +71,10 @@ public class Main {
 		String componentModelTemplate = Helpers.resource2String(Main.class, "model_components.js.tmpl");
 		String castString = "";
 
-		for (Object element : allContributionXmls) {
-			File contrXml = (File) element;
+		Collections.sort(allComponents);
+		
+		for (String element : allComponents) {
+			File contrXml = new File(element);
 
 			Component component = new Component(contrXml);
 			
