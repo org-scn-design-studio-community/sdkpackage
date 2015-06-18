@@ -1,6 +1,6 @@
 
 /**
- * Generated ZTL Class for UI5 Table
+ * Generated ZTL Class for UI5Table
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
@@ -9,71 +9,57 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Allow Reorder of Columns Property
 	 */	
-	void setAllowColumnReorder( /* &nbsp; */  boolean allowColumnReorder){*
+	void setAllowColumnReorder( /**Allow Reorder of Columns*/ boolean allowColumnReorder){*
 		this.DAllowColumnReorder = allowColumnReorder;
 	*}
 
 	/**
 	 * Gets Allow Reorder of Columns Property
 	 */	
-	boolean getAllowColumnReorder() {*
+	boolean isAllowColumnReorder() {*
 		return this.DAllowColumnReorder;
 	*}
 
 	/**
-	 * Sets Allow Sort in Columns Property
+	 * Sets Allow Filter in Columns Property
 	 */	
-	void setAllowFilter( /* &nbsp; */  boolean allowFilter){*
+	void setAllowFilter( /**Allow Filter in Columns*/ boolean allowFilter){*
 		this.DAllowFilter = allowFilter;
 	*}
 
 	/**
-	 * Gets Allow Sort in Columns Property
+	 * Gets Allow Filter in Columns Property
 	 */	
-	boolean getAllowFilter() {*
+	boolean isAllowFilter() {*
 		return this.DAllowFilter;
 	*}
 
 	/**
 	 * Sets Allow Selection in the Table Property
 	 */	
-	void setAllowSelection( /* &nbsp; */  boolean allowSelection){*
+	void setAllowSelection( /**Allow Selection in the Table*/ boolean allowSelection){*
 		this.DAllowSelection = allowSelection;
 	*}
 
 	/**
 	 * Gets Allow Selection in the Table Property
 	 */	
-	boolean getAllowSelection() {*
+	boolean isAllowSelection() {*
 		return this.DAllowSelection;
 	*}
 
 	/**
 	 * Sets Allow Sort in Columns Property
 	 */	
-	void setAllowSort( /* &nbsp; */  boolean allowSort){*
+	void setAllowSort( /**Allow Sort in Columns*/ boolean allowSort){*
 		this.DAllowSort = allowSort;
 	*}
 
 	/**
 	 * Gets Allow Sort in Columns Property
 	 */	
-	boolean getAllowSort() {*
+	boolean isAllowSort() {*
 		return this.DAllowSort;
-	*}
-
-	/**
-	 * Sets (non-stable) Column Based Formatting Condition Property
-	 */	
-	void setColumnFormattingCondition( /* &nbsp; */  String columnFormattingCondition){*
-		this.DColumnFormattingCondition = columnFormattingCondition;
-	*}
-
-	/**
-	 * Gets (non-stable) Column Based Formatting Condition Property
-	 */	
-	String getColumnFormattingCondition() {*
-		return this.DColumnFormattingCondition;
 	*}
 
 	/** Adds a root element containing key [String], width [String].
@@ -81,13 +67,13 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
  	<example>
 	You want to add 2 root elements
 	<code>
-	UI5TABLE.addParameter(key [String], width [String]);<br>
-	UI5TABLE.addParameter(key [String], width [String]);<br>
+	UI5TABLE.addColumnWidthEntry(key [String], width [String]);<br>
+	UI5TABLE.addColumnWidthEntry(key [String], width [String]);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void addParameter (
+	void addColumnWidthEntry (
 			/**Column index (0-based)*/String key, 
 			/**Width with unit (e.g. 200px | 30%)*/String width
 			) {*		
@@ -125,12 +111,12 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
  	<example>
 	You want to remove root element
 	<code>
-	UI5TABLE.removeParameter(String key);<br>
+	UI5TABLE.removeColumnWidthEntry(String key);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void removeParameter (
+	void removeColumnWidthEntry (
 			String key
 			) {*		
 		
@@ -159,14 +145,14 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
-	 * Sets Central Data Provisioner for Result Set Property
+	 * Sets Central Result Set with Data Property
 	 */	
-	void setDataProvisioner( /* Central Result Set with Data */  String dataProvisioner){*
+	void setDataProvisioner( /**Central Result Set with Data*/ String dataProvisioner){*
 		this.DDataProvisioner = dataProvisioner;
 	*}
 
 	/**
-	 * Gets Central Data Provisioner for Result Set Property
+	 * Gets Central Result Set with Data Property
 	 */	
 	String getDataProvisioner() {*
 		return this.DDataProvisioner;
@@ -175,7 +161,7 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Empty Value For Data Cell Property
 	 */	
-	void setEmptyDataValue( /* &nbsp; */  String emptyDataValue){*
+	void setEmptyDataValue( /**Empty Value For Data Cell*/ String emptyDataValue){*
 		this.DEmptyDataValue = emptyDataValue;
 	*}
 
@@ -189,7 +175,7 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Empty Value For Header Cell Property
 	 */	
-	void setEmptyHeaderValue( /* &nbsp; */  String emptyHeaderValue){*
+	void setEmptyHeaderValue( /**Empty Value For Header Cell*/ String emptyHeaderValue){*
 		this.DEmptyHeaderValue = emptyHeaderValue;
 	*}
 
@@ -201,23 +187,23 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
-	 * Sets Fiexd Header Rows Property
+	 * Sets Fix Header Rows Property
 	 */	
-	void setFixedHeader( /* &nbsp; */  boolean fixedHeader){*
+	void setFixedHeader( /**Fix Header Rows*/ boolean fixedHeader){*
 		this.DFixedHeader = fixedHeader;
 	*}
 
 	/**
-	 * Gets Fiexd Header Rows Property
+	 * Gets Fix Header Rows Property
 	 */	
-	boolean getFixedHeader() {*
+	boolean isFixedHeader() {*
 		return this.DFixedHeader;
 	*}
 
 	/**
 	 * Sets (non-stable) Formatting Condition Property
 	 */	
-	void setFormattingCondition( /* &nbsp; */  String formattingCondition){*
+	void setFormattingCondition( /**(non-stable) Formatting Condition*/ String formattingCondition){*
 		this.DFormattingCondition = formattingCondition;
 	*}
 
@@ -229,23 +215,23 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
-	 * Sets (non-stable) Formatting Operator Property
+	 * Sets (non-stable) Formatting Operator Property by String
 	 */	
-	void setFormattingOperator( /* &nbsp; */  choice formattingOperator){*
+	void setFormattingOperatorByString( /**(non-stable) Formatting Operator*/ String formattingOperator){*
 		this.DFormattingOperator = formattingOperator;
 	*}
 
 	/**
-	 * Gets (non-stable) Formatting Operator Property
+	 * Gets (non-stable) Formatting Operator Property as String
 	 */	
-	choice getFormattingOperator() {*
+	String getFormattingOperatorAsString() {*
 		return this.DFormattingOperator;
 	*}
 
 	/**
 	 * Sets Header Column Width in px Property
 	 */	
-	void setHeaderColWidth( /* &nbsp; */  int headerColWidth){*
+	void setHeaderColWidth( /**Header Column Width in px*/ int headerColWidth){*
 		this.DHeaderColWidth = headerColWidth;
 	*}
 
@@ -257,37 +243,37 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
-	 * Sets Ignore Results Rows and Columns Property
+	 * Sets Ignore Results Property
 	 */	
-	void setIgnoreResults( /* &nbsp; */  boolean ignoreResults){*
+	void setIgnoreResults( /**Ignore Results*/ boolean ignoreResults){*
 		this.DIgnoreResults = ignoreResults;
 	*}
 
 	/**
-	 * Gets Ignore Results Rows and Columns Property
+	 * Gets Ignore Results Property
 	 */	
-	boolean getIgnoreResults() {*
+	boolean isIgnoreResults() {*
 		return this.DIgnoreResults;
 	*}
 
 	/**
-	 * Sets Navigation Mode Property
+	 * Sets Navigation Mode Property by String
 	 */	
-	void setNavigationMode( /* &nbsp; */  choice navigationMode){*
+	void setNavigationModeByString( /**Navigation Mode*/ String navigationMode){*
 		this.DNavigationMode = navigationMode;
 	*}
 
 	/**
-	 * Gets Navigation Mode Property
+	 * Gets Navigation Mode Property as String
 	 */	
-	choice getNavigationMode() {*
+	String getNavigationModeAsString() {*
 		return this.DNavigationMode;
 	*}
 
 	/**
 	 * Sets Row Height in px Property
 	 */	
-	void setRowHeight( /* &nbsp; */  int rowHeight){*
+	void setRowHeight( /**Row Height in px*/ int rowHeight){*
 		this.DRowHeight = rowHeight;
 	*}
 
@@ -298,10 +284,12 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		return this.DRowHeight;
 	*}
 
+
+
 	/**
 	 * Sets Visible Row Count Property
 	 */	
-	void setVisibleRowCount( /* &nbsp; */  int visibleRowCount){*
+	void setVisibleRowCount( /**Visible Row Count*/ int visibleRowCount){*
 		this.DVisibleRowCount = visibleRowCount;
 	*}
 
@@ -311,6 +299,12 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	int getVisibleRowCount() {*
 		return this.DVisibleRowCount;
 	*}
+
+
+
+
+
+
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */

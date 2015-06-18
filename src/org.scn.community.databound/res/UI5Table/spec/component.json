@@ -1,0 +1,34 @@
+{
+	"id": "UI5Table",
+	"title": "UI5 Table 2.0",
+	"tooltip": "UI5 Table - A simple table with rows and columns",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityDataBound",
+	"package": "databound",
+	"extension": "DataComponent",
+	"databound": true,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "common_databound",
+		},
+		{
+			"space" : "known",
+			"id" : "jshashtable",
+		},
+		{
+			"space" : "known",
+			"id" : "numberformatter",
+		}
+	],
+	
+	"width": "800",
+	"height": "600"
+}

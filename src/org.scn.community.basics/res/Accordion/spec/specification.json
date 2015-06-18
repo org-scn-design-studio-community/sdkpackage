@@ -1,11 +1,11 @@
 {
 	"selectedKey" : {
 		"type" : "String",
-		"value" : "-get",
+		"value" : "",
 		"visible": false,
 		"opts" : {
 			"ztlType": "String",
-			"ztlFunction": "",
+			"ztlFunction": "-get",
 			"desc" : "Selected Key",
 			"cat" : "Internal",
 			"tooltip" : "Selected Key",
@@ -61,7 +61,6 @@
 	},
     "withImage":{
 	    "type":"boolean",
-	    "onSet":"flattenData",
 	    "value":true,
 	    "visible":true,
 	    "opts":{
@@ -101,7 +100,7 @@
 	    "value":"200",
 	    "visible":true,
 	    "opts":{
-	         "ztlType":"String",
+	         "ztlType":"int",
 	         "ztlFunction":"",
 	         "desc":"Max Height for Section",
 	         "cat":"Image",

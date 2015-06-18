@@ -331,7 +331,7 @@
 		<defaultValue property="memberDisplay">text</defaultValue>
 		<defaultValue property="onFirstExpand"></defaultValue>
 		<defaultValue property="onSelectionChanged"></defaultValue>
-		<defaultValue property="selectedKey">-get</defaultValue>
+		<defaultValue property="selectedKey"></defaultValue>
 		<defaultValue property="supportedContentNotation">PARENT_CHILD_TEXT_URL</defaultValue>
 		<defaultValue property="withImage">true</defaultValue>
 

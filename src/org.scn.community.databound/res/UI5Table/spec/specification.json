@@ -1,0 +1,319 @@
+{
+  "data":{
+      "type":"ResultSet",
+      "value":"null",
+      "visible":false,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Data",
+         "cat":"Data",
+         "tooltip":"Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+   "DIgnoreResults":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Ignore Results",
+	         "cat":"Data",
+	         "tooltip":"Ignore Results on Rows and Columns",
+	         "apsControl":"checkbox"
+	    }
+	},
+	"DDataProvisioner" : {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Central Result Set with Data",
+			"cat" : "Special",
+			"tooltip" : "Central Data Provisioner for Result Set",
+			"apsControl" : "text",
+			"noAps":false,
+			"noZtl":false
+		}
+	},
+    "DVisibleRowCount":{
+	    "type":"int",
+	    "value":"12",
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"int",
+	         "ztlFunction":"",
+	         "desc":"Visible Row Count",
+	         "cat":"Display",
+	         "tooltip":"Visible Row Count",
+	         "apsControl":"spinner"
+		}
+    },
+    "DRowHeight":{
+	    "type":"int",
+	    "value":"20",
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"int",
+	         "ztlFunction":"",
+	         "desc":"Row Height in px",
+	         "cat":"Display",
+	         "tooltip":"Row Height in px",
+	         "apsControl":"spinner"
+		}
+    },
+    "DAllowSort":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Allow Sort in Columns",
+	         "cat":"Interaction",
+	         "tooltip":"Allow Sort in Columns",
+	         "apsControl":"checkbox"
+	    }
+	},
+    "DAllowFilter":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Allow Filter in Columns",
+	         "cat":"Interaction",
+	         "tooltip":"Allow Filter in Columns",
+	         "apsControl":"checkbox"
+	    }
+	}, 
+	"DAllowColumnReorder":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Allow Reorder of Columns",
+	         "cat":"Interaction",
+	         "tooltip":"Allow Reorder of Columns",
+	         "apsControl":"checkbox"
+	    }
+	}, 
+	"DAllowSelection":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Allow Selection in the Table",
+	         "cat":"Interaction",
+	         "tooltip":"Allow Selection in the Table",
+	         "apsControl":"checkbox"
+	    }
+	}, 	
+	"DFixedHeader":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Fix Header Rows",
+	         "cat":"Interaction",
+	         "tooltip":"Fix Header Rows",
+	         "apsControl":"checkbox"
+	    }
+	}, 		
+    "DHeaderColWidth":{
+	    "type":"int",
+	    "value":"200",
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"int",
+	         "ztlFunction":"",
+	         "desc":"Header Column Width in px",
+	         "cat":"Display",
+	         "tooltip":"Header Column Width in px",
+	         "apsControl":"spinner"
+		}
+    },
+    "DDataColWidths": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "columnWidthEntry":{
+	               "type":"Array",
+	               "sequence":"key,width",
+	               "key":{
+	                  "desc":"Column index (0-based)",
+	                  "type":"String"
+	               },
+	               "width":{
+	                  "desc":"Width with unit (e.g. 200px | 30%)",
+	                  "type":"String"
+	               }
+	            }
+	        },
+ 
+			"desc":"Data Column Widths",
+			"cat":"Content-Columns",
+			"tooltip":"List of Elements",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray"
+		}
+	},
+    "DFormattingOperator":{
+        "type":"String",
+        "value":"UseFirst",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"(non-stable) Formatting Operator",
+           "cat":"Prototypes",
+           "tooltip":"(non-stable) Formatting Operator",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"UseFirst",
+                 "text":"Use First Matching Format"
+              },
+              {
+                 "key":"UseLast",
+                 "text":"Use Last Matching Format"
+              },
+              {
+                 "key":"Collect",
+                 "text":"Collect All Formats"
+              }
+           ]
+        }
+     },
+     "DFormattingCondition" : {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "(non-stable) Formatting Condition",
+			"cat" : "Prototypes",
+			"tooltip" : "(non-stable) Formatting Condition",
+			"apsControl" : "text",
+			"noAps":false,
+			"noZtl":false
+		}
+	},
+	"DEmptyHeaderValue" : {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Empty Value For Header Cell",
+			"cat" : "Data",
+			"tooltip" : "Empty Value For Header Cell",
+			"apsControl" : "text",
+			"noAps":false,
+			"noZtl":false
+		}
+	},	
+	"DEmptyDataValue" : {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Empty Value For Data Cell",
+			"cat" : "Data",
+			"tooltip" : "Empty Value For Data Cell",
+			"apsControl" : "text",
+			"noAps":false,
+			"noZtl":false
+		}
+	},		
+    "DNavigationMode":{
+        "type":"String",
+        "value":"Paginator",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"Navigation Mode",
+           "cat":"Display",
+           "tooltip":"Navigation Mode",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"Paginator",
+                 "text":"Use Page Paginator"
+              },
+              {
+                 "key":"Scrollbar",
+                 "text":"Use Scrollbar"
+              }
+           ]
+        }
+     },
+	"DSelection" : {
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Selection Content for Cell",
+			"cat" : "Display",
+			"tooltip" : "Selection Content for Cell",
+			"apsControl" : "text",
+			"noAps":true,
+			"noZtl":true
+		}
+	},		
+	"onCellSelected": {
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Cell Selected",
+            "cat": "Events",
+            "tooltip": "Event triggered on Cell Selected",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+	"onRowSelected": {
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Row Selected",
+            "cat": "Events",
+            "tooltip": "Event triggered on Row Selected",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+}

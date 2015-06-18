@@ -12,6 +12,7 @@ ApsContent = function () {
   "height": "600",
   "id": "Accordion",
   "package": "basics",
+  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -152,7 +153,7 @@ ApsContent = function () {
       "desc": "Max Height for Section",
       "tooltip": "Max Height for Section",
       "ztlFunction": "",
-      "ztlType": "String"
+      "ztlType": "int"
     },
     "type": "int",
     "value": "200",
@@ -213,11 +214,11 @@ ApsContent = function () {
       "noAps": true,
       "noZtl": false,
       "tooltip": "Selected Key",
-      "ztlFunction": "",
+      "ztlFunction": "-get",
       "ztlType": "String"
     },
     "type": "String",
-    "value": "-get",
+    "value": "",
     "visible": false
   },
   "supportedContentNotation": {
@@ -236,7 +237,6 @@ ApsContent = function () {
     "visible": false
   },
   "withImage": {
-    "onSet": "flattenData",
     "opts": {
       "apsControl": "checkbox",
       "cat": "Image",

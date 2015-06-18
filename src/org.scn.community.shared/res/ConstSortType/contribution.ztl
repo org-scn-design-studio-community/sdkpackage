@@ -17,6 +17,9 @@ class org_scn_community_shared_SortType extends Enum {
 	/** ALPHABETICAL */
 	org_scn_community_shared_SortTypeEnumfield ALPHABETICAL;
 
+	/** COUNT */
+	org_scn_community_shared_SortTypeEnumfield COUNT;
+	
 	/** SELECTED */
 	org_scn_community_shared_SortTypeEnumfield SELECTED;
 

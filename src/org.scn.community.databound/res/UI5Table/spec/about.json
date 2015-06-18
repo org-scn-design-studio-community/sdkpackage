@@ -1,0 +1,16 @@
+{
+	"title": "UI5 Table 2.0",
+	"description": "UI5 Table - A simple table with rows and columns",
+	"icon": "UI5Table.png",
+	"topics": 
+	[
+		{
+			"title" : "UI5 Table",
+			"content" : "Can display data in form of a normal table which is simplifying the multidimensional model into row/column visualization"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

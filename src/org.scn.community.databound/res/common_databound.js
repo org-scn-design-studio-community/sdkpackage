@@ -25,7 +25,7 @@ org_scn_community_databound.centralEventStorage = org_scn_community_databound.ce
 
 org_scn_community_databound.hasData = function (data) {
 	
-	if(!data || data == "" || data == undefined) {
+	if(!data || data == "" || data == "null" || data == undefined) {
 		return false;
 	}
 	
@@ -34,11 +34,11 @@ org_scn_community_databound.hasData = function (data) {
 
 org_scn_community_databound.hasDataAndMetadata = function (data, metadata) {
 	
-	if(!data || data == "" || data == undefined) {
+	if(!data || data == "" || data == "null" || data == undefined) {
 		return false;
 	}
 	
-	if(!metadata || metadata == "" || metadata == undefined) {
+	if(!metadata || metadata == "" || metadata == "null" || metadata == undefined) {
 		return false;
 	}
 	

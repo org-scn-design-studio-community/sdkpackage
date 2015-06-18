@@ -1,0 +1,253 @@
+{
+  "dataCellList":{
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Data List",
+         "cat":"Data",
+         "tooltip":"Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+	"DSelection" : {
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Selected Elements",
+			"cat" : "Data",
+			"tooltip" : "Selected Elements",
+			"apsControl" : "text",
+			"noAps":true,
+			"noZtl":true
+		}
+	},   
+ 	"DElements" : {
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Master Data Elements",
+			"cat" : "Data",
+			"tooltip" : "Master Data Elements",
+			"apsControl" : "text",
+			"noAps":true,
+			"noZtl":true
+		}
+	},    
+    "DDisplayText":{
+        "type":"String",
+        "value":"Text",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"Display Text",
+           "cat":"Display",
+           "tooltip":"Display Text",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"Text",
+                 "text":"Text Only"
+              },
+              {
+                 "key":"Text (Value)",
+                 "text":"Text And Value"
+              }
+           ]
+        }
+     },
+     "DSortingType":{
+        "type":"String",
+        "value":"Default",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"Member Sorting Type",
+           "cat":"Display",
+           "tooltip":"Member Sorting Type",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"Default",
+                 "text":"Default"
+              },
+              {
+                 "key":"Alphabetical",
+                 "text":"Alphabetical"
+              },
+              {
+                 "key":"Default",
+                 "text":"Default"
+              },
+              {
+                 "key":"Selected",
+                 "text":"Selected"
+              },
+              {
+                 "key":"Value",
+                 "text":"Value"
+              },
+              {
+                 "key":"Count",
+                 "text":"Count"
+              }
+           ]
+        }
+     },
+     "DSortingDirection":{
+        "type":"String",
+        "value":"Ascending",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"Member Sorting Direction",
+           "cat":"Display",
+           "tooltip":"Member Sorting Direction",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"Ascending",
+                 "text":"Ascending"
+              },
+              {
+                 "key":"Descending",
+                 "text":"Descending"
+              }
+           ]
+        }
+     },
+    "DMaxMembers":{
+	    "type":"int",
+	    "value":"5",
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"int",
+	         "ztlFunction":"",
+	         "desc":"Maximum Number of Members",
+	         "cat":"Display",
+	         "tooltip":"Maximum Number of Members",
+	         "apsControl":"spinner"
+		}
+    },
+	"DClearOthers":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Clear Selections if 0",
+	         "cat":"Interaction",
+	         "tooltip":"Clear Selection of other dimensions when member value is 0",
+	         "apsControl":"checkbox"
+	    }
+	},
+    "DContentMode":{
+        "type":"String",
+        "value":"Only from Result Set",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"Content Mode",
+           "cat":"Special",
+           "tooltip":"Content Mode (how much should be visualized)",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"All Dimensions",
+                 "text":"All Dimensions"
+              },
+              {
+                 "key":"Only from Result Set",
+                 "text":"Only from Result Set"
+              },
+              {
+                 "key":"Custom Dimension Set",
+                 "text":"Custom Dimension Set"
+              }
+           ]
+        }
+     },
+    "DZeroValuesMode":{
+        "type":"String",
+        "value":"Show",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"Zero Values Display Mode",
+           "cat":"Display",
+           "tooltip":"Display Mode for Members with Zero Values",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"Show",
+                 "text":"Show Members in the List"
+              },
+              {
+                 "key":"Hide",
+                 "text":"Hide Members"
+              }
+           ]
+        }
+     },
+	"DCustomDimensions": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"StringArray",
+	        "ztlFunction":"",
+	         
+			"desc":"Custom Dimensions",
+			"cat":"Special",
+			"tooltip":"List of Custom Dimensions",
+
+			"apsControl":"array",
+			"arrayMode":"StringArray"
+		}
+	},
+	"onInternalSelectionChanged": {
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On List Selection",
+            "cat": "Events",
+            "tooltip": "Event triggered on List Selection",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+	"onBeforeRender": {
+        "type": "ScriptText",
+        "value": "",
+        "visible": false,
+        "opts": {
+            "desc": "On Before Render",
+            "cat": "Events",
+            "tooltip": "Event triggered on Before Render",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+}

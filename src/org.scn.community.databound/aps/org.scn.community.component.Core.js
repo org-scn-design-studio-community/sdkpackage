@@ -31,6 +31,10 @@ org_scn_community_component_Core = function (owner, componentData){
 	};
 	for(property in spec){
 		that.props[property] = spec[property]
+		if(property.indexOf("data") == 0) {
+			that.props["meta_"+property] = spec[property];
+		}
+		
 	};
 	/*
 	 * Create the aforementioned getter/setter and attach to 'this'.
@@ -56,6 +60,17 @@ org_scn_community_component_Core = function (owner, componentData){
 	}
 	}
 	for(var property in that.props){
+		if(property.indexOf("data") == 0) {
+			that["setMeta" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
+				// a setter
+				return function (value) {
+					that.props["meta_"+ property].value = value;
+					that.props["meta_"+ property].changed = true;
+					return that;
+				};
+			}(property);
+		}
+		
 		that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
 			// a setter
 			return function (value) {
@@ -71,8 +86,17 @@ org_scn_community_component_Core = function (owner, componentData){
 		}(property);
 	}
 	for(var property in that.props){
+		if(property.indexOf("data") == 0) {
+			that["getMeta" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
+				// a getter
+				return function () {
+					return that.props["meta_"+ property].value;
+				};
+			}(property);
+		}
+		
 		that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
-			// a setter
+			// a getter
 			return function () {
 				return that.props[property].value;
 			};

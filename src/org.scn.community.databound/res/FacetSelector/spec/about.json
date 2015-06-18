@@ -1,0 +1,16 @@
+{
+	"title": "Facet Selector 2.0",
+	"description": "Facet Selector - A simple selector which is using the facet techniques",
+	"icon": "FacetSelector.png",
+	"topics": 
+	[
+		{
+			"title" : "Facet Selector",
+			"content" : "The component is grouping the members  of dimensions which are in result set, placing the counter and sorting them"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

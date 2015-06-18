@@ -19,23 +19,27 @@
 
 (function() {
 
-	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id% = {
-		name: "%COMP-package%.%COMP-id%",
-		requireName: "%COMP-package%%COMP-id(lower)%",
-		fullComponentName: "org.scn.community.%COMP-package%.%COMP-id%",
-		script: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%",
-		scriptSpec: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%Spec",
+	org_scn_community_require.knownComponents.databound.UI5Table = {
+		name: "databound.UI5Table",
+		requireName: "databoundui5table",
+		fullComponentName: "org.scn.community.databound.UI5Table",
+		script: "org.scn.community.databound/res/UI5Table/UI5Table",
+		scriptSpec: "org.scn.community.databound/res/UI5Table/UI5TableSpec",
 		min: false
 	};
 
-	var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
+	var myComponentData = org_scn_community_require.knownComponents.databound.UI5Table;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
 		org_scn_community_require.knownModules.component_core.name,
 		org_scn_community_require.knownModules.common_basics.name,
-		%COMPONENT_REQUIRE_SPEC%
+		org_scn_community_require.knownModules.common_basics.name,
+		org_scn_community_require.knownModules.common_databound.name,
+		org_scn_community_require.knownModules.jshashtable.name,
+		org_scn_community_require.knownModules.numberformatter.name,
+		
      ]);
 
 	 sap.zen.Dispatcher.instance.pauseDispatching();	 
@@ -60,7 +64,7 @@
 		 });
 
 		 sdkReqs(requireInfo2.plainNames, function() {
-			 %COMP-parentControl%.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+			 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 	     	 sap.zen.Dispatcher.instance.resumeDispatching();
 		});//End of Require Callback Component
 	});//End of Require Callback

@@ -3,6 +3,7 @@
 	"title": "Accordion 2.0",
 	"tooltip": "Accordion - Dynamic List of Entries",
 	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityBasics",
 	"package": "basics",
 	"extension": "Component",

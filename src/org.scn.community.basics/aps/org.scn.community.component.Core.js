@@ -31,31 +31,49 @@ org_scn_community_component_Core = function (owner, componentData){
 	};
 	for(property in spec){
 		that.props[property] = spec[property]
+		if(property.indexOf("data") == 0) {
+			that.props["meta_"+property] = spec[property];
+		}
+		
 	};
+	
 	/*
 	 * Create the aforementioned getter/setter and attach to 'this'.
 	 */
 	if(specComp.handlerType == "div") {
-	for(var property in that.props){
-		that[property] = function(property){
-			return function(value){
-				if(value===undefined){
-					return that.props[property].value;
-				}else{
-					that.props[property].value = value;
-					that.props[property].changed = true;
-					if(that.props[property].onChange) {
-						if(typeof(that[that.props[property].onChange]) === 'function') {
-							that[that.props[property].onChange].call(that,that.props[property].value);
+		for(var property in that.props){
+			that[property] = function(property){
+				return function(value){
+					if(value===undefined){
+						return that.props[property].value;
+					}else{
+						that.props[property].value = value;
+						that.props[property].changed = true;
+						if(that.props[property].onChange) {
+							if(typeof(that[that.props[property].onChange]) === 'function') {
+								that[that.props[property].onChange].call(that,that.props[property].value);
+							}
 						}
+						return that;
 					}
-					return that;
-				}
-			};
-		}(property);
-	}
+				};
+			}(property);
+		}
 	}
 	for(var property in that.props){
+		if(property.indexOf("data") == 0) {
+			if(that["setMetadata"] == undefined) {
+				that["setMetadata"] = function(property){
+					// a setter
+					return function (value) {
+						that.props["meta_data"].value = value;
+						that.props["meta_data"].changed = true;
+						return that;
+					};
+				}(property);
+			}
+		}
+		
 		that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
 			// a setter
 			return function (value) {
@@ -71,8 +89,19 @@ org_scn_community_component_Core = function (owner, componentData){
 		}(property);
 	}
 	for(var property in that.props){
+		if(property.indexOf("data") == 0) {
+			if(that["getMetadata"] == undefined) {
+				that["getMetadata"] = function(property){
+					// a setter
+					return function (value) {
+						return that.props["meta_data"].value;
+					};
+				}(property);
+			}
+		}
+		
 		that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
-			// a setter
+			// a getter
 			return function () {
 				return that.props[property].value;
 			};

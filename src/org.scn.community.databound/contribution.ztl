@@ -660,6 +660,10 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 			this.DSortingType = "Selected";
 			return;
 		}
+		if(type == org_scn_community_shared_SortType.COUNT) {
+			this.DSortingType = "Count";
+			return;
+		}
 		this.DSortingType = "Default";
 	*}
 	
@@ -691,6 +695,379 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 */
 	void setSimpleSelection(String dimension, String member) {*
 		this.data = "{\""+dimension+"\": \""+member+"\"}";
+	*}
+}
+
+/**
+ * Generated ZTL Class for FacetSelector
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.FacetSelector extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Clear Selections if 0 Property
+	 */	
+	void setClearOthers( /**Clear Selections if 0*/ boolean clearOthers){*
+		this.DClearOthers = clearOthers;
+	*}
+
+	/**
+	 * Gets Clear Selections if 0 Property
+	 */	
+	boolean isClearOthers() {*
+		return this.DClearOthers;
+	*}
+
+	/**
+	 * Sets Content Mode Property by String
+	 */	
+	void setContentModeByString( /**Content Mode*/ String contentMode){*
+		this.DContentMode = contentMode;
+	*}
+
+	/**
+	 * Gets Content Mode Property as String
+	 */	
+	String getContentModeAsString() {*
+		return this.DContentMode;
+	*}
+
+	/**
+	 * Sets Custom Dimensions Property as StringArray
+	 */	
+	void setCustomDimensions( /**Custom Dimensions*/ StringArray customDimensions){*
+		this.DCustomDimensions = customDimensions;
+	*}
+	
+	/** Gets Custom Dimensions Property as StringArray
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	FACETSELECTOR.getCustomDimensions();<br>
+	</code>
+	</example>
+	 */
+	StringArray getCustomDimensions () {*		
+		var elementsJson = JSON.parse(this.DCustomDimensions);
+		return elementsJson;
+	*}
+
+	/**
+	 * Sets Display Text Property by String
+	 */	
+	void setDisplayTextByString( /**Display Text*/ String displayText){*
+		this.DDisplayText = displayText;
+	*}
+
+	/**
+	 * Gets Display Text Property as String
+	 */	
+	String getDisplayTextAsString() {*
+		return this.DDisplayText;
+	*}
+
+
+
+	/**
+	 * Sets Maximum Number of Members Property
+	 */	
+	void setMaxMembers( /**Maximum Number of Members*/ int maxMembers){*
+		this.DMaxMembers = maxMembers;
+	*}
+
+	/**
+	 * Gets Maximum Number of Members Property
+	 */	
+	int getMaxMembers() {*
+		return this.DMaxMembers;
+	*}
+
+
+
+	/**
+	 * Sets Member Sorting Direction Property by String
+	 */	
+	void setSortingDirectionByString( /**Member Sorting Direction*/ String sortingDirection){*
+		this.DSortingDirection = sortingDirection;
+	*}
+
+	/**
+	 * Gets Member Sorting Direction Property as String
+	 */	
+	String getSortingDirectionAsString() {*
+		return this.DSortingDirection;
+	*}
+
+	/**
+	 * Sets Member Sorting Type Property by String
+	 */	
+	void setSortingTypeByString( /**Member Sorting Type*/ String sortingType){*
+		this.DSortingType = sortingType;
+	*}
+
+	/**
+	 * Gets Member Sorting Type Property as String
+	 */	
+	String getSortingTypeAsString() {*
+		return this.DSortingType;
+	*}
+
+	/**
+	 * Sets Zero Values Display Mode Property by String
+	 */	
+	void setZeroValuesModeByString( /**Zero Values Display Mode*/ String zeroValuesMode){*
+		this.DZeroValuesMode = zeroValuesMode;
+	*}
+
+	/**
+	 * Gets Zero Values Display Mode Property as String
+	 */	
+	String getZeroValuesModeAsString() {*
+		return this.DZeroValuesMode;
+	*}
+
+
+
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Reads the Dimensions from Data Source 
+	 */
+	@Visibility(private)
+	void private_readDimensions (Object dataSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		if(this.DContentMode == "Only from Result Set") {
+			l.dimensionsRows = dataSource.getDimensions(Axis.ROWS);
+			l.dimensionsColumns = dataSource.getDimensions(Axis.COLUMNS);
+			
+			l.dimensions = [];
+
+			l.dimensionsRows.forEach(function(dimension, indexD) {
+				l.dimensions.push(dimension);
+			});	
+			l.dimensionsColumns.forEach(function(dimension, indexD) {
+				l.dimensions.push(dimension);
+			});
+			
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		} else if(this.DContentMode == "Custom Dimension Set") {
+			l.dimensionsAll = dataSource.getDimensions();
+			l.customDimensions = JSON.parse(that.DCustomDimensions);
+			
+			l.customDimensionsFlat = "|";
+			for (var iD = 0; iD < l.customDimensions.length; iD++) {
+				l.customDimensionsFlat = l.customDimensionsFlat + l.customDimensions[iD] + "|";
+			}
+			
+			l.dimensions = [];
+			
+			l.dimensionsAll.forEach(function(dimension, indexD) {
+				l.currentAvailableDimensionName = dimension.name; 
+				if(l.customDimensionsFlat.indexOf("|" + l.currentAvailableDimensionName + "|") > -1) {
+					l.dimensions.push(dimension);
+				}
+			});	
+		} else {
+			l.dimensions = dataSource.getDimensions();
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+		
+		this._tempDimensions = l.dimensions;
+	*}
+
+	/**
+	 * Resets the actual data of all dimensions (and causes reload of all members in "reloadDataSource" method.
+	 * Use it together like below
+	 * <example>
+	 * You want to reload actual members again
+	 * <code>
+	 * FACET.resetDimensions();
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 */
+	void resetDimensions() {*
+		this.oldDimensionKeys = "";
+	*}
+
+	/**
+	 * This function must be used for initialization and in case the drilldown structure has been changed.
+	 * You should trigger it once and ideally when filters are NOT set on dimensions, other case you will see only members which are available in resultset (depends on your setting "member selection" on dimension level).
+	 * When to use this method?
+	 * - As soon the Data Source is initialized, either in "onStartup()" script or after loading in script.
+	 * <example>
+	 * You have loaded the data source and want to initialize.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource();
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource(DS_FULL);
+	 * FACET.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadDataSource(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.elementsJson = [];
+
+		l.DS = this.getDataSource();
+
+		if(!memberAccessSource) {
+			memberAccessSource = l.DS;
+		}
+
+		if(l.DS) {
+			this.private_readDimensions(memberAccessSource);
+			l.dimensions = this._tempDimensions;
+
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensionKeys = "";
+			l.dimensions.forEach(function(dimension, index) {
+				l.dimensionKeys = l.dimensionKeys + dimension.name;
+			});
+			
+			if(this.oldDimensionKeys != l.dimensionKeys) {
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						// warnings to assure query is ok
+						if(l.DS.isHierarchyActive(dimension)) {
+							APPLICATION.createWarningMessage("Data Source has an Active Hierarchy on Dimension: " + dimension.name);
+						}
+	
+						l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+	
+						l.dimensionJson = {};
+						l.dimensionJson.name = dimension.name;
+						l.dimensionJson.text = dimension.text;
+						l.dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
+	
+						l.dimensionJson.hierarchyActive = l.DS.isHierarchyActive(dimension);
+						l.dimensionJson.filterExt = ";" + l.DS.getFilterExt(dimension);
+						
+						l.dimensionJson.members = l.members;
+			
+						l.elementsJson.push(l.dimensionJson);
+					}
+				});
+
+				this.DElements = JSON.stringify(l.elementsJson);
+				this.oldDimensionKeys = l.dimensionKeys;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			}
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+	*}
+
+	/**
+	 * This function can be used after the filter in data source was changed to update the component.
+	 * You should be trigered every time the filter change occurs, therefore the event in Data Source -> onResultSetChanged() is a good place.
+	 * When to use this method?
+	 * - Always the filter is changed, also the "onResultSetChanged()" event is good for this.
+	 * <example>
+	 * You want to keep the selections with data source.
+	 * The code should be placed in "onResultSetChanged()" method.
+	 * <code>
+	 * // if you want to update also dimensions when drilldown is changed
+	 * FACET.reloadDataSource();
+	 * 
+	 * // every time 
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource(DS_FULL);
+	 * FACET.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadSelection(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+	
+		l.elementsJson = {};
+
+		l.DS = this.getDataSource();
+
+		if(!memberAccessSource) {
+			memberAccessSource = l.DS;
+		}
+		
+		if(l.DS) {
+			this.private_readDimensions(memberAccessSource);
+			l.dimensions = this._tempDimensions;
+
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensions.forEach(function(dimension, indexD) {
+				l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+
+				l.dimensionJson = {};
+				l.dimensionJson.name = dimension.name;
+				l.dimensionJson.members = [];
+				l.dimensionJson.filterExt = "; " + l.DS.getFilterExt(dimension) + ";";
+
+				l.elementsJson[dimension.name] = l.dimensionJson;
+			});
+
+			this.DSelection = JSON.stringify(l.elementsJson);
+			
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug("DEBUG_2")) { DEBUG_2.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
 	*}
 }
 /**
@@ -1714,7 +2091,7 @@ class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.
 }
 
 /**
- * Generated ZTL Class for UI5 Table
+ * Generated ZTL Class for UI5Table
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
@@ -1723,71 +2100,57 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Allow Reorder of Columns Property
 	 */	
-	void setAllowColumnReorder( /* &nbsp; */  boolean allowColumnReorder){*
+	void setAllowColumnReorder( /**Allow Reorder of Columns*/ boolean allowColumnReorder){*
 		this.DAllowColumnReorder = allowColumnReorder;
 	*}
 
 	/**
 	 * Gets Allow Reorder of Columns Property
 	 */	
-	boolean getAllowColumnReorder() {*
+	boolean isAllowColumnReorder() {*
 		return this.DAllowColumnReorder;
 	*}
 
 	/**
-	 * Sets Allow Sort in Columns Property
+	 * Sets Allow Filter in Columns Property
 	 */	
-	void setAllowFilter( /* &nbsp; */  boolean allowFilter){*
+	void setAllowFilter( /**Allow Filter in Columns*/ boolean allowFilter){*
 		this.DAllowFilter = allowFilter;
 	*}
 
 	/**
-	 * Gets Allow Sort in Columns Property
+	 * Gets Allow Filter in Columns Property
 	 */	
-	boolean getAllowFilter() {*
+	boolean isAllowFilter() {*
 		return this.DAllowFilter;
 	*}
 
 	/**
 	 * Sets Allow Selection in the Table Property
 	 */	
-	void setAllowSelection( /* &nbsp; */  boolean allowSelection){*
+	void setAllowSelection( /**Allow Selection in the Table*/ boolean allowSelection){*
 		this.DAllowSelection = allowSelection;
 	*}
 
 	/**
 	 * Gets Allow Selection in the Table Property
 	 */	
-	boolean getAllowSelection() {*
+	boolean isAllowSelection() {*
 		return this.DAllowSelection;
 	*}
 
 	/**
 	 * Sets Allow Sort in Columns Property
 	 */	
-	void setAllowSort( /* &nbsp; */  boolean allowSort){*
+	void setAllowSort( /**Allow Sort in Columns*/ boolean allowSort){*
 		this.DAllowSort = allowSort;
 	*}
 
 	/**
 	 * Gets Allow Sort in Columns Property
 	 */	
-	boolean getAllowSort() {*
+	boolean isAllowSort() {*
 		return this.DAllowSort;
-	*}
-
-	/**
-	 * Sets (non-stable) Column Based Formatting Condition Property
-	 */	
-	void setColumnFormattingCondition( /* &nbsp; */  String columnFormattingCondition){*
-		this.DColumnFormattingCondition = columnFormattingCondition;
-	*}
-
-	/**
-	 * Gets (non-stable) Column Based Formatting Condition Property
-	 */	
-	String getColumnFormattingCondition() {*
-		return this.DColumnFormattingCondition;
 	*}
 
 	/** Adds a root element containing key [String], width [String].
@@ -1795,13 +2158,13 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
  	<example>
 	You want to add 2 root elements
 	<code>
-	UI5TABLE.addParameter(key [String], width [String]);<br>
-	UI5TABLE.addParameter(key [String], width [String]);<br>
+	UI5TABLE.addColumnWidthEntry(key [String], width [String]);<br>
+	UI5TABLE.addColumnWidthEntry(key [String], width [String]);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void addParameter (
+	void addColumnWidthEntry (
 			/**Column index (0-based)*/String key, 
 			/**Width with unit (e.g. 200px | 30%)*/String width
 			) {*		
@@ -1839,12 +2202,12 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
  	<example>
 	You want to remove root element
 	<code>
-	UI5TABLE.removeParameter(String key);<br>
+	UI5TABLE.removeColumnWidthEntry(String key);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void removeParameter (
+	void removeColumnWidthEntry (
 			String key
 			) {*		
 		
@@ -1873,14 +2236,14 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
-	 * Sets Central Data Provisioner for Result Set Property
+	 * Sets Central Result Set with Data Property
 	 */	
-	void setDataProvisioner( /* Central Result Set with Data */  String dataProvisioner){*
+	void setDataProvisioner( /**Central Result Set with Data*/ String dataProvisioner){*
 		this.DDataProvisioner = dataProvisioner;
 	*}
 
 	/**
-	 * Gets Central Data Provisioner for Result Set Property
+	 * Gets Central Result Set with Data Property
 	 */	
 	String getDataProvisioner() {*
 		return this.DDataProvisioner;
@@ -1889,7 +2252,7 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Empty Value For Data Cell Property
 	 */	
-	void setEmptyDataValue( /* &nbsp; */  String emptyDataValue){*
+	void setEmptyDataValue( /**Empty Value For Data Cell*/ String emptyDataValue){*
 		this.DEmptyDataValue = emptyDataValue;
 	*}
 
@@ -1903,7 +2266,7 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Empty Value For Header Cell Property
 	 */	
-	void setEmptyHeaderValue( /* &nbsp; */  String emptyHeaderValue){*
+	void setEmptyHeaderValue( /**Empty Value For Header Cell*/ String emptyHeaderValue){*
 		this.DEmptyHeaderValue = emptyHeaderValue;
 	*}
 
@@ -1915,23 +2278,23 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
-	 * Sets Fiexd Header Rows Property
+	 * Sets Fix Header Rows Property
 	 */	
-	void setFixedHeader( /* &nbsp; */  boolean fixedHeader){*
+	void setFixedHeader( /**Fix Header Rows*/ boolean fixedHeader){*
 		this.DFixedHeader = fixedHeader;
 	*}
 
 	/**
-	 * Gets Fiexd Header Rows Property
+	 * Gets Fix Header Rows Property
 	 */	
-	boolean getFixedHeader() {*
+	boolean isFixedHeader() {*
 		return this.DFixedHeader;
 	*}
 
 	/**
 	 * Sets (non-stable) Formatting Condition Property
 	 */	
-	void setFormattingCondition( /* &nbsp; */  String formattingCondition){*
+	void setFormattingCondition( /**(non-stable) Formatting Condition*/ String formattingCondition){*
 		this.DFormattingCondition = formattingCondition;
 	*}
 
@@ -1943,23 +2306,23 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
-	 * Sets (non-stable) Formatting Operator Property
+	 * Sets (non-stable) Formatting Operator Property by String
 	 */	
-	void setFormattingOperator( /* &nbsp; */  choice formattingOperator){*
+	void setFormattingOperatorByString( /**(non-stable) Formatting Operator*/ String formattingOperator){*
 		this.DFormattingOperator = formattingOperator;
 	*}
 
 	/**
-	 * Gets (non-stable) Formatting Operator Property
+	 * Gets (non-stable) Formatting Operator Property as String
 	 */	
-	choice getFormattingOperator() {*
+	String getFormattingOperatorAsString() {*
 		return this.DFormattingOperator;
 	*}
 
 	/**
 	 * Sets Header Column Width in px Property
 	 */	
-	void setHeaderColWidth( /* &nbsp; */  int headerColWidth){*
+	void setHeaderColWidth( /**Header Column Width in px*/ int headerColWidth){*
 		this.DHeaderColWidth = headerColWidth;
 	*}
 
@@ -1971,37 +2334,37 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
-	 * Sets Ignore Results Rows and Columns Property
+	 * Sets Ignore Results Property
 	 */	
-	void setIgnoreResults( /* &nbsp; */  boolean ignoreResults){*
+	void setIgnoreResults( /**Ignore Results*/ boolean ignoreResults){*
 		this.DIgnoreResults = ignoreResults;
 	*}
 
 	/**
-	 * Gets Ignore Results Rows and Columns Property
+	 * Gets Ignore Results Property
 	 */	
-	boolean getIgnoreResults() {*
+	boolean isIgnoreResults() {*
 		return this.DIgnoreResults;
 	*}
 
 	/**
-	 * Sets Navigation Mode Property
+	 * Sets Navigation Mode Property by String
 	 */	
-	void setNavigationMode( /* &nbsp; */  choice navigationMode){*
+	void setNavigationModeByString( /**Navigation Mode*/ String navigationMode){*
 		this.DNavigationMode = navigationMode;
 	*}
 
 	/**
-	 * Gets Navigation Mode Property
+	 * Gets Navigation Mode Property as String
 	 */	
-	choice getNavigationMode() {*
+	String getNavigationModeAsString() {*
 		return this.DNavigationMode;
 	*}
 
 	/**
 	 * Sets Row Height in px Property
 	 */	
-	void setRowHeight( /* &nbsp; */  int rowHeight){*
+	void setRowHeight( /**Row Height in px*/ int rowHeight){*
 		this.DRowHeight = rowHeight;
 	*}
 
@@ -2012,10 +2375,12 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		return this.DRowHeight;
 	*}
 
+
+
 	/**
 	 * Sets Visible Row Count Property
 	 */	
-	void setVisibleRowCount( /* &nbsp; */  int visibleRowCount){*
+	void setVisibleRowCount( /**Visible Row Count*/ int visibleRowCount){*
 		this.DVisibleRowCount = visibleRowCount;
 	*}
 
@@ -2025,6 +2390,12 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	int getVisibleRowCount() {*
 		return this.DVisibleRowCount;
 	*}
+
+
+
+
+
+
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
