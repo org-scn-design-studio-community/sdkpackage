@@ -72,6 +72,34 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 
 
 	/**
+	 * Sets Facet Width in px Property
+	 */	
+	void setFacetWidth( /**Facet Width in px*/ int facetWidth){*
+		this.DFacetWidth = facetWidth;
+	*}
+
+	/**
+	 * Gets Facet Width in px Property
+	 */	
+	int getFacetWidth() {*
+		return this.DFacetWidth;
+	*}
+
+	/**
+	 * Sets Maximum Number of Members Property
+	 */	
+	void setMaxDisplayMembers( /**Maximum Number of Members*/ int maxDisplayMembers){*
+		this.DMaxDisplayMembers = maxDisplayMembers;
+	*}
+
+	/**
+	 * Gets Maximum Number of Members Property
+	 */	
+	int getMaxDisplayMembers() {*
+		return this.DMaxDisplayMembers;
+	*}
+
+	/**
 	 * Sets Maximum Number of Members Property
 	 */	
 	void setMaxMembers( /**Maximum Number of Members*/ int maxMembers){*
@@ -370,4 +398,69 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 		}
 		/* exiting general block*/
 	*}
+	
+	/**
+	 * DO NOT USE PRIVATE METHODS
+	 */
+	@Visibility(private)
+	void private_onSelectionChanged () {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.selection = this.DSelection;
+	
+		l.selectionJson = JSON.parse(l.selection);
+		
+		l.dimensionName = l.selectionJson.dimension;
+		l.keys = l.selectionJson.keys;
+		
+		l.keysAsArray = [];
+
+		l.DS = this.getDataSource();
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		if(l.DS) {
+			if(l.selectionJson.clearOthers && that.isClearOthers()) {
+				this.private_readDimensions(l.DS);
+				l.dimensions = this._tempDimensions;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(this, l)};
+				
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						l.currentDimensionName = dimension.name
+						if(l.currentDimensionName != l.dimensionName) {
+							l.DS.clearFilter(l.currentDimensionName);
+						}
+					}
+				});
+			}
+			
+			if(l.keys.length == 1 && l.keys[0] == "-ALL-") {
+				l.DS.clearFilter(l.dimensionName);
+			} else {
+				for (var iK = 0; iK < l.keys.length; iK++) {
+					l.key = l.keys[iK];
+					
+					l.keysAsArray.push(l.key);
+				}
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+				
+				l.DS.setFilter(l.dimensionName, l.keysAsArray);
+			}
+		}
+		
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+	*}
+
 }

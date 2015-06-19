@@ -32,7 +32,10 @@ org_scn_community_component_Core = function (owner, componentData){
 	for(property in spec){
 		that.props[property] = spec[property]
 		if(property.indexOf("data") == 0) {
-			that.props["meta_"+property] = spec[property];
+			if(that.props["meta_data"] == undefined) {
+				// clone the property
+				that.props["meta_data"] = JSON.parse(JSON.stringify(spec[property]));	
+			}
 		}
 		
 	};
@@ -90,10 +93,10 @@ org_scn_community_component_Core = function (owner, componentData){
 	}
 	for(var property in that.props){
 		if(property.indexOf("data") == 0) {
-			if(that["getMetadata"] == undefined) {
-				that["getMetadata"] = function(property){
+			if(that["getDSMetadata"] == undefined) {
+				that["getDSMetadata"] = function(property){
 					// a setter
-					return function (value) {
+					return function () {
 						return that.props["meta_data"].value;
 					};
 				}(property);

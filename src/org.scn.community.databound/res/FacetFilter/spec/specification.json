@@ -1,5 +1,5 @@
 {
-  "dataCellList":{
+  "data":{
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -189,7 +189,47 @@
 	         "apsControl":"checkbox"
 	    }
 	},
-    "DContentMode":{
+	"DShowSecondValue":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Show Second Value",
+	         "cat":"Display-Second Value",
+	         "tooltip":"Shows Second Value with Selected Content",
+	         "apsControl":"checkbox"
+	    }
+	},
+	"DSecondValueContent":{
+        "type":"String",
+        "value":"Value",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"Second Value Content",
+           "cat":"Display-Second Value",
+           "tooltip":"Second Value Content",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"Value",
+                 "text":"Value"
+              },
+              {
+                 "key":"Key",
+                 "text":"Key"
+              },
+              {
+                 "key":"Count",
+                 "text":"Count"
+              }
+           ]
+        }
+     },
+	"DContentMode":{
         "type":"String",
         "value":"Only from Result Set",
         "visible":true,

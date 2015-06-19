@@ -1,25 +1,42 @@
-/**
- * Copyright 2014 Scn Community Contributors
- * 
- * Original Source Code Location:
- *  https://github.com/org-scn-design-studio-community/sdkpackage/
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- *  
- *  http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an "AS IS" BASIS, 
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and 
- * limitations under the License. 
- */
+ApsContent = function () {
+	var that = this; 
+	
+	that.componentData = {
 
-(function() {
+"specComp" : 
+{
+  "databound": true,
+  "extension": "DataComponent",
+  "group": "ScnCommunityDataBound",
+  "handlerType": "sapui5",
+  "height": "400",
+  "id": "FacetFilter",
+  "package": "databound",
+  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "require": [
+    {
+      "id": "common_basics",
+      "space": "known"
+    },
+    {
+      "id": "common_databound",
+      "space": "known"
+    },
+    {
+      "id": "jshashtable",
+      "space": "known"
+    },
+    {
+      "id": "numberformatter",
+      "space": "known"
+    }
+  ],
+  "title": "Facet Filter 2.0 (In Work)",
+  "tooltip": "FacetFilter - A simple selector which is using the facet techniques",
+  "width": "800"
+},
 
-	org_scn_community_require.knownComponents.databound.FacetSelector.spec = 
+"spec" : 
 {
   "DClearOthers": {
     "opts": {
@@ -156,6 +173,33 @@
     "value": "1000",
     "visible": true
   },
+  "DSecondValueContent": {
+    "opts": {
+      "apsControl": "combobox",
+      "cat": "Display-Second Value",
+      "desc": "Second Value Content",
+      "options": [
+        {
+          "key": "Value",
+          "text": "Value"
+        },
+        {
+          "key": "Key",
+          "text": "Key"
+        },
+        {
+          "key": "Count",
+          "text": "Count"
+        }
+      ],
+      "tooltip": "Second Value Content",
+      "ztlFunction": "",
+      "ztlType": "Choice"
+    },
+    "type": "String",
+    "value": "Value",
+    "visible": true
+  },
   "DSelection": {
     "opts": {
       "apsControl": "text",
@@ -170,6 +214,19 @@
     "type": "String",
     "value": "",
     "visible": false
+  },
+  "DShowSecondValue": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Show Second Value",
+      "tooltip": "Shows Second Value with Selected Content",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
+    "visible": true
   },
   "DSortingDirection": {
     "opts": {
@@ -256,7 +313,7 @@
     "value": "Show",
     "visible": true
   },
-  "dataCellList": {
+  "data": {
     "options": {
       "includeData": "true",
       "includeFormattedData": "true"
@@ -299,56 +356,28 @@
     "value": "this.private_onSelectionChanged();",
     "visible": false
   }
-};
+}, 
 
-	org_scn_community_require.knownComponents.databound.FacetSelector.specAbout = 
+"specAbout" : 
 {
-  "description": "Facet Selector - A simple selector which is using the facet techniques",
-  "icon": "FacetSelector.png",
-  "title": "Facet Selector 2.0",
+  "description": "Facet Filter - A simple filter which is using the facet techniques",
+  "icon": "FacetFilter.png",
+  "title": "Facet Filter 2.0",
   "topics": [
     {
-      "content": "The component is grouping the members  of dimensions which are in result set, placing the counter and sorting them",
-      "title": "Facet Selector"
+      "content": "The component is grouping the members of dimensions which are in result set, placing the counter and sorting them",
+      "title": "Facet Filter"
     },
     {
       "content": "This component is a visualization component. It requires specific space in the application canvas.",
       "title": "Visualization"
     }
   ]
+}
+
 };
 
-	org_scn_community_require.knownComponents.databound.FacetSelector.specComp = 
-{
-  "databound": true,
-  "extension": "DataComponent",
-  "group": "ScnCommunityDataBound",
-  "handlerType": "sapui5",
-  "height": "400",
-  "id": "FacetSelector",
-  "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
-  "require": [
-    {
-      "id": "common_basics",
-      "space": "known"
-    },
-    {
-      "id": "common_databound",
-      "space": "known"
-    },
-    {
-      "id": "jshashtable",
-      "space": "known"
-    },
-    {
-      "id": "numberformatter",
-      "space": "known"
-    }
-  ],
-  "title": "Facet Selector 2.0 (In Work)",
-  "tooltip": "FacetSelector - A simple selector which is using the facet techniques",
-  "width": "800"
+	org_scn_community_component_Core(that, that.componentData);
+    
+	return that;
 };
-
-})();// End of closure

@@ -171,10 +171,11 @@
 		id="data"
 		type="ResultSet"
 		title="Data"
-		group="Display"
-		bindable="true"
+		group="Data"
 		visible="false">
 
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
 	</property>
 	<property
 		id="onCellSelected"

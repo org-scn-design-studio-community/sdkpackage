@@ -1,0 +1,23 @@
+div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% !important;height: 100% !important;}
+
+.scn-pack-5toRight {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.scn-pack-Bold {
+	font-weight: bold;
+}
+
+.scn-pack-FacetSelector {
+	
+}
+
+.scn-pack-FacetSelectorDim {
+	border-right: 0px solid #96a8c3;
+	margin-left: 5px;
+}
+
+.scn-pack-FacetSelectorMain {
+	
+}

@@ -729,164 +729,203 @@
 </component>
 <component
 	id="FacetFilter"
-	title="Facet Filter"
+	title="Facet Filter 2.0 (In Work)"
+	tooltip="FacetFilter - A simple selector which is using the facet techniques"
 	icon="res/FacetFilter/FacetFilter.png"
 	handlerType="sapui5"
+	propertySheetPath="res/FacetFilter/aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >
-
-	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
-	<jsInclude>os/numberformat/numberformatter-min.js</jsInclude>
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/common_databound.js</jsInclude>
-
-	<jsInclude>res/FacetFilter/FacetFilter.js</jsInclude>
+	<jsInclude>res/FacetFilter/FacetFilterLoader.js</jsInclude>
 	<cssInclude>res/FacetFilter/FacetFilter.css</cssInclude>
-
-	<property
-		id="DElements"
-		title="Master Data Elements"
-		type="String"
-		group="DataBinding"
-		visible="false"
-	>
-	</property>
-
-	<property
-		id="DSelection"
-		title="Selected Elements"
-		type="String"
-		group="DataBinding"
-		visible="false"
-	>
-	</property>
 	
 	<property
-		id="data"
-		title="Data List"
-		type="ResultCellList"
-		group="DataBinding"
-		visible="true"
-	>
-	</property>
-
-	<property
-		id="DDisplayText"
-		title="Display Text"
-		type="String"
-		group="Display"
-		visible="true">
-			<possibleValue>Text</possibleValue>
-			<possibleValue>Text (Value)</possibleValue>
-	</property>
-
-	<property
-		id="DSortingType"
-		title="Member Sorting Type"
-		type="String"
-		group="Display"
-		visible="true">
-			<possibleValue>Default</possibleValue>
-			<possibleValue>Alphabetical</possibleValue>
-			<possibleValue>Selected</possibleValue>
-			<possibleValue>Value</possibleValue>
-	</property>
-
-	<property
-		id="DSortingDirection"
-		title="Member Sorting Direction"
-		type="String"
-		group="Display"
-		visible="true">
-			<possibleValue>Ascending</possibleValue>
-			<possibleValue>Descending</possibleValue>
-	</property>
-
-	<property
-		id="DMaxMembers"
-		title="Maximum Number of Members"
-		type="int"
-		group="Display"
-		visible="true">
-	</property>
-
-	<property
 		id="DClearOthers"
-		title="Clear Selection of other dimensions when member value is 0"
 		type="boolean"
+		title="Clear Selections if 0"
 		group="Display"
+		bindable="true"
 		visible="true">
-	</property>
 
+	</property>
 	<property
 		id="DContentMode"
-		title="Content Mode (how much should be visualized)"
 		type="String"
+		title="Content Mode"
 		group="Display"
+		bindable="true"
 		visible="true">
-			<possibleValue>All Dimensions</possibleValue>
-			<possibleValue>Only from Result Set</possibleValue>
-			<possibleValue>Custom Dimension Set</possibleValue>
-	</property>
 
-	<property
-		id="DZeroValuesMode"
-		title="Zero-Values Mode"
-		type="String"
-		group="Display"
-		visible="true">
-			<possibleValue>Show</possibleValue>
-			<possibleValue>Hide</possibleValue>
 	</property>
-
 	<property
 		id="DCustomDimensions"
-		title="Custom Dimensions as Array [...]"
 		type="String"
+		title="Custom Dimensions"
 		group="Display"
+		bindable="true"
 		visible="true">
+
 	</property>
+	<property
+		id="DDisplayText"
+		type="String"
+		title="Display Text"
+		group="Display"
+		bindable="true"
+		visible="true">
 
-	<property  
-	  id="onInternalSelectionChanged"  
-	  title="On User List Selection"  
-	  type="ScriptText"  
-    visible="false"
-    />  
+	</property>
+	<property
+		id="DElements"
+		type="String"
+		title="Master Data Elements"
+		group="Display"
+		bindable="true"
+		visible="false">
 
+	</property>
+	<property
+		id="DFacetWidth"
+		type="int"
+		title="Facet Width in px"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DMaxDisplayMembers"
+		type="int"
+		title="Maximum Number of Members"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DMaxMembers"
+		type="int"
+		title="Maximum Number of Members"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DSecondValueContent"
+		type="String"
+		title="Second Value Content"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DSelection"
+		type="String"
+		title="Selected Elements"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DShowSecondValue"
+		type="boolean"
+		title="Show Second Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DSortingDirection"
+		type="String"
+		title="Member Sorting Direction"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DSortingType"
+		type="String"
+		title="Member Sorting Type"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DZeroValuesMode"
+		type="String"
+		title="Zero Values Display Mode"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultCellList"
+		title="Data List"
+		group="Data"
+		visible="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+	</property>
 	<property
 		id="onBeforeRender"
 		type="ScriptText"
-		title="Event for On Before Render"
+		title="On Before Render"
 		group="Events"
-		visible="false" 
-	/>
+		visible="false">
+
+	</property>
+	<property
+		id="onInternalSelectionChanged"
+		type="ScriptText"
+		title="On List Selection"
+		group="Events"
+		visible="false">
+
+	</property>
+
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
-		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="DElements"></defaultValue>
-		<defaultValue property="DMaxMembers">1000</defaultValue>
+		<defaultValue property="DClearOthers">true</defaultValue>
 		<defaultValue property="DContentMode">Only from Result Set</defaultValue>
 		<defaultValue property="DCustomDimensions">[]</defaultValue>
-		<defaultValue property="DDisplayText">Text (Value)</defaultValue>
+		<defaultValue property="DDisplayText">Text</defaultValue>
+		<defaultValue property="DElements"></defaultValue>
+		<defaultValue property="DFacetWidth">160</defaultValue>
+		<defaultValue property="DMaxDisplayMembers">5</defaultValue>
+		<defaultValue property="DMaxMembers">1000</defaultValue>
+		<defaultValue property="DSecondValueContent">Value</defaultValue>
+		<defaultValue property="DSelection"></defaultValue>
+		<defaultValue property="DShowSecondValue">false</defaultValue>
+		<defaultValue property="DSortingDirection">Ascending</defaultValue>
 		<defaultValue property="DSortingType">Default</defaultValue>
-		<defaultValue property="DSortingDirection">Descending</defaultValue>
-		<defaultValue property="DClearOthers">true</defaultValue>
 		<defaultValue property="DZeroValuesMode">Show</defaultValue>
-		
-		<defaultValue property="onBeforeRender">this.private_onBeforeRender();</defaultValue>
+		<defaultValue property="data">null</defaultValue>
+		<defaultValue property="onBeforeRender"></defaultValue>
 		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
+
 	</initialization>
 
 </component>
+
 <component
 	id="FacetSelector"
 	title="Facet Selector 2.0 (In Work)"
@@ -948,6 +987,24 @@
 
 	</property>
 	<property
+		id="DFacetWidth"
+		type="int"
+		title="Facet Width in px"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DMaxDisplayMembers"
+		type="int"
+		title="Maximum Number of Members"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="DMaxMembers"
 		type="int"
 		title="Maximum Number of Members"
@@ -996,10 +1053,11 @@
 		id="dataCellList"
 		type="ResultCellList"
 		title="Data List"
-		group="Display"
-		bindable="true"
+		group="Data"
 		visible="true">
 
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
 	</property>
 	<property
 		id="onBeforeRender"
@@ -1014,7 +1072,7 @@
 		type="ScriptText"
 		title="On List Selection"
 		group="Events"
-		visible="true">
+		visible="false">
 
 	</property>
 
@@ -1032,14 +1090,16 @@
 		<defaultValue property="DCustomDimensions">[]</defaultValue>
 		<defaultValue property="DDisplayText">Text</defaultValue>
 		<defaultValue property="DElements"></defaultValue>
-		<defaultValue property="DMaxMembers">5</defaultValue>
+		<defaultValue property="DFacetWidth">160</defaultValue>
+		<defaultValue property="DMaxDisplayMembers">5</defaultValue>
+		<defaultValue property="DMaxMembers">1000</defaultValue>
 		<defaultValue property="DSelection"></defaultValue>
 		<defaultValue property="DSortingDirection">Ascending</defaultValue>
 		<defaultValue property="DSortingType">Default</defaultValue>
 		<defaultValue property="DZeroValuesMode">Show</defaultValue>
 		<defaultValue property="dataCellList">null</defaultValue>
 		<defaultValue property="onBeforeRender"></defaultValue>
-		<defaultValue property="onInternalSelectionChanged"></defaultValue>
+		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
 
 	</initialization>
 
@@ -3437,10 +3497,11 @@ __n__}
 		id="data"
 		type="ResultSet"
 		title="Data"
-		group="Display"
-		bindable="true"
+		group="Data"
 		visible="false">
 
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
 	</property>
 	<property
 		id="onCellSelected"

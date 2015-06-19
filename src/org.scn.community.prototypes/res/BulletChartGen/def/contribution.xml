@@ -37,10 +37,11 @@
 		id="data"
 		type="ResultSet"
 		title="Dataset"
-		group="Display"
-		bindable="true"
+		group="Data"
 		visible="true">
 
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
 	</property>
 	<property
 		id="extrapolation"

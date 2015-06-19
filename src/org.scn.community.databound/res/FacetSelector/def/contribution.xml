@@ -60,6 +60,24 @@
 
 	</property>
 	<property
+		id="DFacetWidth"
+		type="int"
+		title="Facet Width in px"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DMaxDisplayMembers"
+		type="int"
+		title="Maximum Number of Members"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="DMaxMembers"
 		type="int"
 		title="Maximum Number of Members"
@@ -108,10 +126,11 @@
 		id="dataCellList"
 		type="ResultCellList"
 		title="Data List"
-		group="Display"
-		bindable="true"
+		group="Data"
 		visible="true">
 
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
 	</property>
 	<property
 		id="onBeforeRender"
@@ -126,7 +145,7 @@
 		type="ScriptText"
 		title="On List Selection"
 		group="Events"
-		visible="true">
+		visible="false">
 
 	</property>
 
@@ -144,14 +163,16 @@
 		<defaultValue property="DCustomDimensions">[]</defaultValue>
 		<defaultValue property="DDisplayText">Text</defaultValue>
 		<defaultValue property="DElements"></defaultValue>
-		<defaultValue property="DMaxMembers">5</defaultValue>
+		<defaultValue property="DFacetWidth">160</defaultValue>
+		<defaultValue property="DMaxDisplayMembers">5</defaultValue>
+		<defaultValue property="DMaxMembers">1000</defaultValue>
 		<defaultValue property="DSelection"></defaultValue>
 		<defaultValue property="DSortingDirection">Ascending</defaultValue>
 		<defaultValue property="DSortingType">Default</defaultValue>
 		<defaultValue property="DZeroValuesMode">Show</defaultValue>
 		<defaultValue property="dataCellList">null</defaultValue>
 		<defaultValue property="onBeforeRender"></defaultValue>
-		<defaultValue property="onInternalSelectionChanged"></defaultValue>
+		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
 
 	</initialization>
 

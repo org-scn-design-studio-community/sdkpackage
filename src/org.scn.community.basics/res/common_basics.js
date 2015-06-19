@@ -53,7 +53,7 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 				}
 				
 				if(callback) {
-					callback(parent._containerWidth, parent._containerHeight);
+					callback(parent._containerWidth, parent._containerHeight, parent);
 				}
 			}
 		};

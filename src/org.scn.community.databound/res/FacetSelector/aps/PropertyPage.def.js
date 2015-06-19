@@ -105,6 +105,10 @@ ApsContent = function () {
         {
           "key": "Text (Value)",
           "text": "Text And Value"
+        },
+        {
+          "key": "Text (Count)",
+          "text": "Text And Count"
         }
       ],
       "tooltip": "Display Text",
@@ -130,7 +134,20 @@ ApsContent = function () {
     "value": "",
     "visible": false
   },
-  "DMaxMembers": {
+  "DFacetWidth": {
+    "opts": {
+      "apsControl": "spinner",
+      "cat": "Display",
+      "desc": "Facet Width in px",
+      "tooltip": "Facet Width in px",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "type": "int",
+    "value": "160",
+    "visible": true
+  },
+  "DMaxDisplayMembers": {
     "opts": {
       "apsControl": "spinner",
       "cat": "Display",
@@ -141,6 +158,19 @@ ApsContent = function () {
     },
     "type": "int",
     "value": "5",
+    "visible": true
+  },
+  "DMaxMembers": {
+    "opts": {
+      "apsControl": "spinner",
+      "cat": "Data",
+      "desc": "Maximum Number of Members",
+      "tooltip": "Maximum Number of Members",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "type": "int",
+    "value": "1000",
     "visible": true
   },
   "DSelection": {
@@ -283,8 +313,8 @@ ApsContent = function () {
       "tooltip": "Event triggered on List Selection"
     },
     "type": "ScriptText",
-    "value": "",
-    "visible": true
+    "value": "this.private_onSelectionChanged();",
+    "visible": false
   }
 }, 
 

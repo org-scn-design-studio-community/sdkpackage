@@ -203,8 +203,13 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, metada
 	
 	for (var i = 0; i < data.data.length; i++) {
 		var tupel = data.tuples[i]; 
-		var isResult = metadata.dimensions[dimensionEndIndex].members[tupel[dimensionEndIndex]].type == "RESULT";
-		
+		var isResult = false;
+
+		// we have to loop on all tuples to assure there is no sum in any of them
+		for (iT in tupel) {
+			isResult = isResult ? isResult:metadata.dimensions[iT].members[tupel[iT]].type == "RESULT";	
+		}
+
 		if(!isResult) {
 			var key =  metadata.dimensions[dimensionEndIndex].members[tupel[dimensionEndIndex]].key;
 			var text =  metadata.dimensions[dimensionEndIndex].members[tupel[dimensionEndIndex]].text;
@@ -232,6 +237,7 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, metada
 				text: text, 
 				url: key,
 				value: value,
+				count: 1,
 				valueS: org_scn_community_basics.getFormattedValue(value, metadata.locale, options.iNumberOfDecimals),
 			};
 
@@ -242,6 +248,9 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, metada
 						for (var iL = 0; iL < list.length; iL++) {
 							if(list[iL].key == key){
 								list[iL].value = list[iL].value + value;
+
+								list[iL].count = list[iL].count + 1;
+
 								list[iL].valueS = org_scn_community_basics.getFormattedValue(list[iL].value, metadata.locale, options.iNumberOfDecimals);
 								lValues[iL] = list[iL].value;
 								break;
@@ -457,6 +466,7 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 										memberJson.valueSign = "0";	
 									}
 									
+									memberJson.count = dimensionData.list[iA].count;
 									memberJson.value = dimensionData.list[iA].value;
 									memberJson.valueS = dimensionData.list[iA].valueS;
 								}
@@ -481,7 +491,13 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 						memberJson.valueS = "";
 					}
 					
-					if(options.iDisplayText == "Text (Value)") {
+					if(options.iDisplayText == "Text (Count)") {
+						var counter = memberJson.count;
+						if(counter == undefined) {
+							counter = "?";
+						}
+						memberJson.display = memberJson.text + " (" + counter + ")";	
+					}else if(options.iDisplayText == "Text (Value)") {
 						memberJson.display = memberJson.text + " (" + memberJson.valueS + ")";	
 					} else {
 						memberJson.display = memberJson.text;
@@ -913,6 +929,24 @@ org_scn_community_databound.toRowTable = function (flatData, opts) {
 	return flatData;
 };
 
+org_scn_community_databound.sortByAttribute = function (prop, descending){
+
+	var result = 1;
+	
+	if(descending) {
+		result = -1;
+	}
+	
+	return function(a,b){
+	    if( a[prop] > b[prop]){
+	    	return result;
+	    } else if( a[prop] < b[prop] ){
+	    	return result * -1;
+	    }
+	    return 0;
+	}
+};
+
 org_scn_community_databound.arrayToObject = function (array) {
 	var obj = {}
 	
@@ -921,6 +955,25 @@ org_scn_community_databound.arrayToObject = function (array) {
 	}
 	
 	return obj;
+};
+
+org_scn_community_databound.fixMemberKey = function (mId, mKey, parent) {
+	if(parent._keyFixCounter == undefined) {
+		parent._keyFixCounter = 0;
+	}
+	parent._keyFixCounter = parent._keyFixCounter + 1;
+	mKey = mKey.replace("\"", ""+parent._keyFixCounter);
+
+	parent._keyFixCounter = parent._keyFixCounter + 1;
+	mKey = mKey.replace(" ", ""+parent._keyFixCounter);
+	
+	// add in case empty
+	if(mKey == "") {
+		parent._keyFixCounter = parent._keyFixCounter + 1;
+		mKey = mKey+""+parent._keyFixCounter;	
+	}
+
+	return mId + "_" + mKey;
 };
 
 org_scn_community_databound.getSampleDataFlat = function (owner, callBack, afterPrepare) {

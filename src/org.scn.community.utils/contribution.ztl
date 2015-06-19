@@ -2051,7 +2051,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Data Drop Down component*/
 	org.scn.community.databound.DropDown returnAsScnDropDown (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Facet Filter component*/
+	/**Cast to Facet Filter 2.0 (In Work) component*/
 	org.scn.community.databound.FacetFilter returnAsScnFacetFilter (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Facet Selector 2.0 (In Work) component*/

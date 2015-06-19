@@ -284,111 +284,203 @@ class org.scn.community.databound.jpd3hier extends org.scn.community.shared.Data
 }
 
 /**
- * Class for DataDropDown
+ * Generated ZTL Class for FacetFilter
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.databound.FacetFilter extends org.scn.community.shared.DataComponent {
-	
+
 	/**
-	 * Returns the value of max members property
+	 * Sets Clear Selections if 0 Property
+	 */	
+	void setClearOthers( /**Clear Selections if 0*/ boolean clearOthers){*
+		this.DClearOthers = clearOthers;
+	*}
+
+	/**
+	 * Gets Clear Selections if 0 Property
+	 */	
+	boolean isClearOthers() {*
+		return this.DClearOthers;
+	*}
+
+	/**
+	 * Sets Content Mode Property by String
+	 */	
+	void setContentModeByString( /**Content Mode*/ String contentMode){*
+		this.DContentMode = contentMode;
+	*}
+
+	/**
+	 * Gets Content Mode Property as String
+	 */	
+	String getContentModeAsString() {*
+		return this.DContentMode;
+	*}
+
+	/**
+	 * Sets Custom Dimensions Property as StringArray
+	 */	
+	void setCustomDimensions( /**Custom Dimensions*/ StringArray customDimensions){*
+		this.DCustomDimensions = customDimensions;
+	*}
+	
+	/** Gets Custom Dimensions Property as StringArray
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	FACETFILTER.getCustomDimensions();<br>
+	</code>
+	</example>
 	 */
+	StringArray getCustomDimensions () {*		
+		var elementsJson = JSON.parse(this.DCustomDimensions);
+		return elementsJson;
+	*}
+
+	/**
+	 * Sets Display Text Property by String
+	 */	
+	void setDisplayTextByString( /**Display Text*/ String displayText){*
+		this.DDisplayText = displayText;
+	*}
+
+	/**
+	 * Gets Display Text Property as String
+	 */	
+	String getDisplayTextAsString() {*
+		return this.DDisplayText;
+	*}
+
+
+
+	/**
+	 * Sets Facet Width in px Property
+	 */	
+	void setFacetWidth( /**Facet Width in px*/ int facetWidth){*
+		this.DFacetWidth = facetWidth;
+	*}
+
+	/**
+	 * Gets Facet Width in px Property
+	 */	
+	int getFacetWidth() {*
+		return this.DFacetWidth;
+	*}
+
+	/**
+	 * Sets Maximum Number of Members Property
+	 */	
+	void setMaxDisplayMembers( /**Maximum Number of Members*/ int maxDisplayMembers){*
+		this.DMaxDisplayMembers = maxDisplayMembers;
+	*}
+
+	/**
+	 * Gets Maximum Number of Members Property
+	 */	
+	int getMaxDisplayMembers() {*
+		return this.DMaxDisplayMembers;
+	*}
+
+	/**
+	 * Sets Maximum Number of Members Property
+	 */	
+	void setMaxMembers( /**Maximum Number of Members*/ int maxMembers){*
+		this.DMaxMembers = maxMembers;
+	*}
+
+	/**
+	 * Gets Maximum Number of Members Property
+	 */	
 	int getMaxMembers() {*
 		return this.DMaxMembers;
 	*}
 
 	/**
-	 * Sets the value of max members property
-	 */
-	void setMaxMembers(int value) {*
-		this.DMaxMembers = value;
-	*}
-	
-	/**
-	 * Returns the value of clear others
-	 */
-	boolean getClearOthers() {*
-		return this.DClearOthers;
+	 * Sets Second Value Content Property by String
+	 */	
+	void setSecondValueContentByString( /**Second Value Content*/ String secondValueContent){*
+		this.DSecondValueContent = secondValueContent;
 	*}
 
 	/**
-	 * Sets the value of clear others
-	 */
-	void setClearOthers(boolean value) {*
-		this.DClearOthers = value;
-	*}
-	
-	/**
-	 * Sets the value of max members property
-	 */
-	void setCustomDimensions(StringArray value) {*
-		this.DCustomDimensions = JSON.stringify(value);
+	 * Gets Second Value Content Property as String
+	 */	
+	String getSecondValueContentAsString() {*
+		return this.DSecondValueContent;
 	*}
 
+
+
 	/**
-	 * DO NOT USE PRIVATE METHODS
-	 */
-	void private_onSelectionChanged () {*
-		/* entering general block*/
-		var that = this;
-		var l = {};
-
-		try{
-		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
-		/* entering general block*/
-
-		l.selection = this.DSelection;
-	
-		l.selectionJson = JSON.parse(l.selection);
-		
-		l.dimensionName = l.selectionJson.dimension;
-		l.keys = l.selectionJson.keys;
-		
-		l.keysAsArray = [];
-
-		l.DS = this.getDataSource();
-		
-		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
-		
-		if(l.DS) {
-			if(l.selectionJson.clearOthers && that.getClearOthers()) {
-				this.private_readDimensions(l.DS);
-				l.dimensions = this._tempDimensions;
-				
-				if(this.isDebug()) {	DEBUG.inspectZtl(this, l)};
-				
-				l.dimensions.forEach(function(dimension, index) {
-					if(!dimension.isMeasuresDimension) {
-						l.currentDimensionName = dimension.name
-						if(l.currentDimensionName != l.dimensionName) {
-							l.DS.clearFilter(l.currentDimensionName);
-						}
-					}
-				});
-			}
-			
-			if(l.keys.length == 1 && l.keys[0] == "-ALL-") {
-				l.DS.clearFilter(l.dimensionName);
-			} else {
-				for (var iK = 0; iK < l.keys.length; iK++) {
-					l.key = l.keys[iK];
-					
-					l.keysAsArray.push(l.key);
-				}
-				
-				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
-				
-				l.DS.setFilter(l.dimensionName, l.keysAsArray);
-			}
-		}
-		
-		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
-		} catch (e) {
-			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
-		}
+	 * Sets Show Second Value Property
+	 */	
+	void setShowSecondValue( /**Show Second Value*/ boolean showSecondValue){*
+		this.DShowSecondValue = showSecondValue;
 	*}
 
 	/**
-	 * 
+	 * Gets Show Second Value Property
+	 */	
+	boolean isShowSecondValue() {*
+		return this.DShowSecondValue;
+	*}
+
+	/**
+	 * Sets Member Sorting Direction Property by String
+	 */	
+	void setSortingDirectionByString( /**Member Sorting Direction*/ String sortingDirection){*
+		this.DSortingDirection = sortingDirection;
+	*}
+
+	/**
+	 * Gets Member Sorting Direction Property as String
+	 */	
+	String getSortingDirectionAsString() {*
+		return this.DSortingDirection;
+	*}
+
+	/**
+	 * Sets Member Sorting Type Property by String
+	 */	
+	void setSortingTypeByString( /**Member Sorting Type*/ String sortingType){*
+		this.DSortingType = sortingType;
+	*}
+
+	/**
+	 * Gets Member Sorting Type Property as String
+	 */	
+	String getSortingTypeAsString() {*
+		return this.DSortingType;
+	*}
+
+	/**
+	 * Sets Zero Values Display Mode Property by String
+	 */	
+	void setZeroValuesModeByString( /**Zero Values Display Mode*/ String zeroValuesMode){*
+		this.DZeroValuesMode = zeroValuesMode;
+	*}
+
+	/**
+	 * Gets Zero Values Display Mode Property as String
+	 */	
+	String getZeroValuesModeAsString() {*
+		return this.DZeroValuesMode;
+	*}
+
+
+
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Reads the Dimensions from Data Source 
 	 */
+	@Visibility(private)
 	void private_readDimensions (Object dataSource) {*
 		/* entering general block*/
 		var that = this;
@@ -442,28 +534,22 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		
 		this._tempDimensions = l.dimensions;
 	*}
-	
-	/**
-	 * DO NOT USE PRIVATE METHODS
-	 */
-	void private_onBeforeRender() {*
-	*}
-	
+
 	/**
 	 * Resets the actual data of all dimensions (and causes reload of all members in "reloadDataSource" method.
 	 * Use it together like below
 	 * <example>
 	 * You want to reload actual members again
 	 * <code>
-	 * FACETFILTER_1.resetDimensions();
-	 * FACETFILTER_1.reloadSelection();
+	 * FACET.resetDimensions();
+	 * FACET.reloadSelection();
 	 * </code>
 	 * </example>
 	 */
 	void resetDimensions() {*
 		this.oldDimensionKeys = "";
 	*}
-	
+
 	/**
 	 * This function must be used for initialization and in case the drilldown structure has been changed.
 	 * You should trigger it once and ideally when filters are NOT set on dimensions, other case you will see only members which are available in resultset (depends on your setting "member selection" on dimension level).
@@ -473,16 +559,16 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * You have loaded the data source and want to initialize.
 	 * The code should be placed in "onStartup()" method.
 	 * <code>
-	 * FACETFILTER_1.reloadDataSource();
-	 * FACETFILTER_1.reloadSelection();
+	 * FACET.reloadDataSource();
+	 * FACET.reloadSelection();
 	 * </code>
 	 * </example>
 	 * <example>
 	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
 	 * The code should be placed in "onStartup()" method.
 	 * <code>
-	 * FACETFILTER_1.reloadDataSource(DS_FULL);
-	 * FACETFILTER_1.reloadSelection(DS_FULL);
+	 * FACET.reloadDataSource(DS_FULL);
+	 * FACET.reloadSelection(DS_FULL);
 	 * </code>
 	 * </example>
 	 */
@@ -563,18 +649,18 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * The code should be placed in "onResultSetChanged()" method.
 	 * <code>
 	 * // if you want to update also dimensions when drilldown is changed
-	 * FACETFILTER_1.reloadDataSource();
+	 * FACET.reloadDataSource();
 	 * 
 	 * // every time 
-	 * FACETFILTER_1.reloadSelection();
+	 * FACET.reloadSelection();
 	 * </code>
 	 * </example>
 	 * <example>
 	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
 	 * The code should be placed in "onStartup()" method.
 	 * <code>
-	 * FACETFILTER_1.reloadDataSource(DS_FULL);
-	 * FACETFILTER_1.reloadSelection(DS_FULL);
+	 * FACET.reloadDataSource(DS_FULL);
+	 * FACET.reloadSelection(DS_FULL);
 	 * </code>
 	 * </example>
 	 */
@@ -626,76 +712,69 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	*}
 	
 	/**
-	 * Sets the sorting direction - ASCENDING | DESCENDING
+	 * DO NOT USE PRIVATE METHODS
 	 */
-	void setSortingDirection (org_scn_community_shared_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_shared_SortDirection.ASCENDING) {
-			this.DSortingType = "Ascending";
-			return;
-		}
-		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
-			this.DSortingType = "Descending";
-			return;
-		}
-		this.DSortingType = "Ascending";
-	*}
+	@Visibility(private)
+	void private_onSelectionChanged () {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.selection = this.DSelection;
 	
-	/**
-	 * Sets the sorting type - DEFAULT | ALPHABETICAL | VALUE | SELECTED
-	 */
-	void setSortingType (org_scn_community_shared_SortTypeEnumfield type) {*
-		if(type == org_scn_community_shared_SortType.DEAFULT) {
-			this.DSortingType = "Default";
-			return;
+		l.selectionJson = JSON.parse(l.selection);
+		
+		l.dimensionName = l.selectionJson.dimension;
+		l.keys = l.selectionJson.keys;
+		
+		l.keysAsArray = [];
+
+		l.DS = this.getDataSource();
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		if(l.DS) {
+			if(l.selectionJson.clearOthers && that.isClearOthers()) {
+				this.private_readDimensions(l.DS);
+				l.dimensions = this._tempDimensions;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(this, l)};
+				
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						l.currentDimensionName = dimension.name
+						if(l.currentDimensionName != l.dimensionName) {
+							l.DS.clearFilter(l.currentDimensionName);
+						}
+					}
+				});
+			}
+			
+			if(l.keys.length == 1 && l.keys[0] == "-ALL-") {
+				l.DS.clearFilter(l.dimensionName);
+			} else {
+				for (var iK = 0; iK < l.keys.length; iK++) {
+					l.key = l.keys[iK];
+					
+					l.keysAsArray.push(l.key);
+				}
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+				
+				l.DS.setFilter(l.dimensionName, l.keysAsArray);
+			}
 		}
-		if(type == org_scn_community_shared_SortType.VALUE) {
-			this.DSortingType = "Value";
-			return;
+		
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
 		}
-		if(type == org_scn_community_shared_SortType.ALPHABETICAL) {
-			this.DSortingType = "Alphabetical";
-			return;
-		}
-		if(type == org_scn_community_shared_SortType.SELECTED) {
-			this.DSortingType = "Selected";
-			return;
-		}
-		if(type == org_scn_community_shared_SortType.COUNT) {
-			this.DSortingType = "Count";
-			return;
-		}
-		this.DSortingType = "Default";
 	*}
-	
-	/**
-	 * Sets the sorting type - ALL | RESULTSET | CUSTOM
-	 */
-	void setContentMode (org_scn_community_shared_ContentModeEnumfield mode) {*
-		if(mode == org_scn_community_shared_ContentMode.ALL) {
-			this.DContentMode = "All Dimensions";
-			return;
-		}
-		if(mode == org_scn_community_shared_ContentMode.RESULTSET) {
-			this.DContentMode = "Only from Result Set";
-			return;
-		}
-		if(mode == org_scn_community_shared_ContentMode.CUSTOM) {
-			this.DContentMode = "Custom Dimension Set";
-			return;
-		}
-		this.DContentMode = "Only from Result Set";
-	*}
-	
-	void setCustomDimensions (StringArray dimensions) {*
-		this.DCustomDimensions = JSON.stringify(dimensions);
-	*}
-	
-	/**
-	 * Sets simple selection for dynamic use, you can place here some measure (member of measure dimension)
-	 */
-	void setSimpleSelection(String dimension, String member) {*
-		this.data = "{\""+dimension+"\": \""+member+"\"}";
-	*}
+
 }
 
 /**
@@ -769,6 +848,34 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	*}
 
 
+
+	/**
+	 * Sets Facet Width in px Property
+	 */	
+	void setFacetWidth( /**Facet Width in px*/ int facetWidth){*
+		this.DFacetWidth = facetWidth;
+	*}
+
+	/**
+	 * Gets Facet Width in px Property
+	 */	
+	int getFacetWidth() {*
+		return this.DFacetWidth;
+	*}
+
+	/**
+	 * Sets Maximum Number of Members Property
+	 */	
+	void setMaxDisplayMembers( /**Maximum Number of Members*/ int maxDisplayMembers){*
+		this.DMaxDisplayMembers = maxDisplayMembers;
+	*}
+
+	/**
+	 * Gets Maximum Number of Members Property
+	 */	
+	int getMaxDisplayMembers() {*
+		return this.DMaxDisplayMembers;
+	*}
 
 	/**
 	 * Sets Maximum Number of Members Property
@@ -1069,6 +1176,71 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 		}
 		/* exiting general block*/
 	*}
+	
+	/**
+	 * DO NOT USE PRIVATE METHODS
+	 */
+	@Visibility(private)
+	void private_onSelectionChanged () {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.selection = this.DSelection;
+	
+		l.selectionJson = JSON.parse(l.selection);
+		
+		l.dimensionName = l.selectionJson.dimension;
+		l.keys = l.selectionJson.keys;
+		
+		l.keysAsArray = [];
+
+		l.DS = this.getDataSource();
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		if(l.DS) {
+			if(l.selectionJson.clearOthers && that.isClearOthers()) {
+				this.private_readDimensions(l.DS);
+				l.dimensions = this._tempDimensions;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(this, l)};
+				
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						l.currentDimensionName = dimension.name
+						if(l.currentDimensionName != l.dimensionName) {
+							l.DS.clearFilter(l.currentDimensionName);
+						}
+					}
+				});
+			}
+			
+			if(l.keys.length == 1 && l.keys[0] == "-ALL-") {
+				l.DS.clearFilter(l.dimensionName);
+			} else {
+				for (var iK = 0; iK < l.keys.length; iK++) {
+					l.key = l.keys[iK];
+					
+					l.keysAsArray.push(l.key);
+				}
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+				
+				l.DS.setFilter(l.dimensionName, l.keysAsArray);
+			}
+		}
+		
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+	*}
+
 }
 /**
  * enum field definition

@@ -18,3 +18,5 @@ div[class~=scn-pack-FacetFilter-MarkAnyValue] ul>li[data-valueSign="-"] {backgro
 div[class~=scn-pack-FacetFilter-MarkAnyEmptyValue] ul>li[data-valueSign="0"] {background-color: #ffffb9!important;}
 
 div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% !important;height: 100% !important;}
+
+div[class~=scn-pack-FacetFilter] span[class~=sapUiLbxISec] {text-align:right !important;}
