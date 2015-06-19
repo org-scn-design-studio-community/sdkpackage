@@ -31,7 +31,7 @@ ApsContent = function () {
       "space": "known"
     }
   ],
-  "title": "Facet Filter 2.0 (In Work)",
+  "title": "Facet Filter 2.0",
   "tooltip": "FacetFilter - A simple selector which is using the facet techniques",
   "width": "800"
 },
@@ -218,7 +218,7 @@ ApsContent = function () {
   "DShowSecondValue": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Display-Second Value",
       "desc": "Show Second Value",
       "tooltip": "Shows Second Value with Selected Content",
       "ztlFunction": "",

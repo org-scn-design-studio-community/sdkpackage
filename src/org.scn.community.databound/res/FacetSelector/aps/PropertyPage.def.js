@@ -31,7 +31,7 @@ ApsContent = function () {
       "space": "known"
     }
   ],
-  "title": "Facet Selector 2.0 (In Work)",
+  "title": "Facet Selector 2.0",
   "tooltip": "FacetSelector - A simple selector which is using the facet techniques",
   "width": "800"
 },

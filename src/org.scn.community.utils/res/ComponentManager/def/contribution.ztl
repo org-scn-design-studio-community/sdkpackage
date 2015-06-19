@@ -822,10 +822,10 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Data Drop Down component*/
 	org.scn.community.databound.DropDown returnAsScnDropDown (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Facet Filter 2.0 (In Work) component*/
+	/**Cast to Facet Filter 2.0 component*/
 	org.scn.community.databound.FacetFilter returnAsScnFacetFilter (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Facet Selector 2.0 (In Work) component*/
+	/**Cast to Facet Selector 2.0 component*/
 	org.scn.community.databound.FacetSelector returnAsScnFacetSelector (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Hexbin Chart component*/
