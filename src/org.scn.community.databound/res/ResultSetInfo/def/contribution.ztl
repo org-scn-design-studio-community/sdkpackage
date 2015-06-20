@@ -23,7 +23,7 @@ class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared
 	/**
 	 * Sets Ignore Results Rows and Columns Property
 	 */	
-	void setIgnoreResults( /* &nbsp; */  boolean ignoreResults){*
+	void setIgnoreResults( /* Ignore Results Rows and Columns */  boolean ignoreResults){*
 		this.DIgnoreResults = ignoreResults;
 	*}
 

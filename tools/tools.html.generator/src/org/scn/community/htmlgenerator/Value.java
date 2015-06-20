@@ -1,5 +1,6 @@
 package org.scn.community.htmlgenerator;
 
+import org.scn.community.spec.orgin.OrginSpec;
 import org.scn.community.utils.Helpers;
 
 public class Value {
@@ -23,6 +24,19 @@ public class Value {
 		templateValues = templateValues.replace("%DEFAULT%", this.isDefault ? "X" : "&nbsp;");
 
 		return templateValues;
+	}
+
+	public String toSpec20() {
+		String templateValues = Helpers.resource2String(OrginSpec.class, "org.Choice-Entry.tmpl");
+
+		templateValues = templateValues.replace("%VALUE%", this.name);
+		templateValues = templateValues.replace("%DEFAULT%", ""+this.isDefault);
+
+		return templateValues;
+	}
+
+	public boolean isDefault() {
+		return this.isDefault;
 	}
 
 }

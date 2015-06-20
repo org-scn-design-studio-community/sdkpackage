@@ -663,7 +663,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Accordion 2.0 component*/
 	org.scn.community.basics.Accordion returnAsScnAccordion (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Action Sheet Button component*/
+	/**Cast to Action Sheet Button 2.0 component*/
 	org.scn.community.basics.ActionSheetButton returnAsScnActionSheetButton (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Activity Viewer component*/

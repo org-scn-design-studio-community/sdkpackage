@@ -76,20 +76,22 @@ org_scn_community_component_Core = function (owner, componentData){
 				}(property);
 			}
 		}
-		
-		that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
-			// a setter
-			return function (value) {
-				that.props[property].value = value;
-				that.props[property].changed = true;
-				if(that.props[property].onChange) {
-					if(typeof(that[that.props[property].onChange]) === 'function') {
-						that[that.props[property].onChange].call(that,that.props[property].value);
+
+		if(that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] == undefined) {
+			that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
+				// a setter
+				return function (value) {
+					that.props[property].value = value;
+					that.props[property].changed = true;
+					if(that.props[property].onChange) {
+						if(typeof(that[that.props[property].onChange]) === 'function') {
+							that[that.props[property].onChange].call(that,that.props[property].value);
+						}
 					}
-				}
-				return that;
-			};
-		}(property);
+					return that;
+				};
+			}(property);
+		}
 	}
 	for(var property in that.props){
 		if(property.indexOf("data") == 0) {
@@ -102,13 +104,15 @@ org_scn_community_component_Core = function (owner, componentData){
 				}(property);
 			}
 		}
-		
-		that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
-			// a getter
-			return function () {
-				return that.props[property].value;
-			};
-		}(property);
+
+		if(that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] == undefined) {
+			that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
+				// a getter
+				return function () {
+					return that.props[property].value;
+				};
+			}(property);
+		}
 	}
 
 	that.callOnSet = function(property,value){

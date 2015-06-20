@@ -1,0 +1,221 @@
+{
+	"items" : {
+		"template" : "OneLevelArray",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+			
+			"arrayDefinition":{
+	            "item":{
+	               "type":"Array",
+	               "sequence":"key,text,icon",
+	               
+	               "key":{
+	                  "desc":"Unique Property Key",
+	                  "type":"String"
+	               },
+	               "text":{
+	                  "desc":"Text",
+	                  "type":"String"
+	               },
+	               "icon":{
+	                  "desc":"Icon",
+	                  "type":"String"
+	               }
+	            }
+         	},
+
+			"desc" : "Items",
+			"cat" : "Content",
+			"tooltip" : "Content Items for the Component",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray",
+			
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"selectedItem" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Selected Item",
+			"cat" : "Display",
+			"tooltip" : "Selected Item",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"selectedKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Selected Key",
+			"cat" : "Display",
+			"tooltip" : "Selected Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"buttonType" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Default",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"ztlFunction": "",
+			"desc" : "Type",
+			"cat" : "Unsorted",
+			"tooltip" : "Type",
+			"apsControl" : "combobox",
+			"options":[
+				{
+				"key" : "Default",
+				"text" : "Default"
+			},
+			{
+				"key" : "Transparent",
+				"text" : "Transparent"
+			},
+			{
+				"key" : "Accept",
+				"text" : "Accept"
+			},
+			{
+				"key" : "Back",
+				"text" : "Back"
+			},
+			{
+				"key" : "Emphasized",
+				"text" : "Emphasized"
+			},
+			{
+				"key" : "Reject",
+				"text" : "Reject"
+			},
+			{
+				"key" : "Up",
+				"text" : "Up"
+			},
+			
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"icon" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "sap-icon://menu2",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Icon",
+			"cat" : "Display",
+			"tooltip" : "Icon",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"placement" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Auto",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"ztlFunction": "",
+			"desc" : "Placement",
+			"cat" : "Unsorted",
+			"tooltip" : "Placement",
+			"apsControl" : "combobox",
+			"options":[
+				{
+				"key" : "Auto",
+				"text" : "Auto"
+			},
+			{
+				"key" : "Horizontal",
+				"text" : "Horizontal"
+			},
+			{
+				"key" : "Vertical",
+				"text" : "Vertical"
+			},
+			{
+				"key" : "Left",
+				"text" : "Left"
+			},
+			{
+				"key" : "Right",
+				"text" : "Right"
+			},
+			{
+				"key" : "Top",
+				"text" : "Top"
+			},
+			{
+				"key" : "Bottom",
+				"text" : "Bottom"
+			},
+			
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Title",
+			"cat" : "Display",
+			"tooltip" : "Title",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onPopoverSelect" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Select",
+			"cat" : "Events",
+			"tooltip" : "On Select",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

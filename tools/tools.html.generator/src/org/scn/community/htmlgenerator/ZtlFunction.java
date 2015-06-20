@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.scn.community.spec.orgin.OrginSpec;
 import org.scn.community.utils.Helpers;
 
 import sun.security.provider.MD5;
@@ -222,5 +223,79 @@ public class ZtlFunction {
 
 	public String getName() {
 		return this.name;
+	}
+
+	public String toSpec20() {
+		String template = Helpers.resource2String(OrginSpec.class, "org.ztl.function.ztl");
+		
+		String htmlFunction = "";
+		List<String> helpList = Helpers.stringToList(this.help);
+		for (int i = 0; i < helpList.size(); i++) {
+			String helpLine = helpList.get(i);
+			helpLine = helpLine.trim();
+
+			if (helpLine.trim().length() == 0) {
+				continue;
+			}
+
+			if (helpLine.trim().length() < 5 && helpLine.contains("br")) {
+				continue;
+			}
+
+			if (!helpLine.contains("<br") && !helpLine.contains("<ol") && !helpLine.contains("<ul") && !helpLine.contains("<li") && !helpLine.contains("example") && !helpLine.contains("code")) {
+				helpLine = helpLine + "<br/>";
+			}
+
+			if(!helpLine.trim().startsWith("*")) {
+				helpLine = "\t * " + helpLine;
+			}
+			if(helpLine.trim().contains("code>")) {
+				helpLine = helpLine + "<br/>";
+			}
+			if(helpLine.trim().contains("example>")) {
+				helpLine = helpLine + "<br/>";
+			}
+			
+			htmlFunction = htmlFunction + helpLine;
+		}
+
+		htmlFunction = htmlFunction.replace("<br/><br/>", "<br/>");
+		htmlFunction = htmlFunction.replace("<br/><br/>", "<br/>");
+		htmlFunction = htmlFunction.replace("<br/><br/>", "<br/>");
+		htmlFunction = htmlFunction.replace("<br>", "<br/>");
+		
+		htmlFunction = htmlFunction.replace("<br/>", "<br/>\r\n");
+		List<String> stringToList = Helpers.stringToList(this.content);
+		String contentNew = "";
+		for (String line : stringToList) {
+			if(line.indexOf(" ")  == 0) {
+				line =  line.replace("  ", "\t");	
+			}
+			// line = "\t" + line;
+			
+			if(contentNew.length() == 0) {
+				contentNew = line;
+			} else {
+				contentNew = contentNew + "\r\n" + line;
+			}
+		}
+		
+		template = template.replace("%CONTENT%", contentNew);
+
+		template = template.replace("%NAME%", this.name);
+		template = template.replace("%RETURN_TYPE%", this.returnType);
+
+		if(htmlFunction.endsWith("\r\n")) {
+			htmlFunction = htmlFunction.substring(0, htmlFunction.length()-2);
+		}
+		
+		template = template.replace("%HELP%", htmlFunction);
+
+		for (ZtlParameter parameter : this.parameters) {
+			template = template.replace("%PARAMETER%", parameter.toSpec20() + ",\r\n\t\t\t" + "%PARAMETER%");
+		}
+		template = template.replace("%PARAMETER%", "");
+
+		return template;
 	}
 }

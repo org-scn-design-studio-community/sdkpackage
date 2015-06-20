@@ -327,8 +327,7 @@ UI5Table = {
 		var selectionS = JSON.stringify(selection);
 		that.setDSelection(selectionS);
 		
-		that.fireDesignStudioPropertiesChanged(["DSelection"]);
-		that.fireDesignStudioEvent("onCellSelected");
+		that.fireDesignStudioPropertiesChangedAndEvent(["DSelection"], "onCellSelected");
 	},
 	
 	onRowClick : function (oEvent) {
@@ -361,8 +360,7 @@ UI5Table = {
 		var selectionS = JSON.stringify(selection);
 		that.setDSelection(selectionS);
 		
-		that.fireDesignStudioPropertiesChanged(["DSelection"]);
-		that.fireDesignStudioEvent("onRowSelected");
+		that.fireDesignStudioPropertiesChangedAndEvent(["DSelection"], "onRowSelected");
 	},
 
 	getCorrectRow: function (that, oEvent) {

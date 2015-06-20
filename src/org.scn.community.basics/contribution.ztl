@@ -532,75 +532,173 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 	// here is the place for other custom functions
 }
+
+/**
+ * Generated ZTL Class for ActionSheetButton
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
 class org.scn.community.basics.ActionSheetButton extends org.scn.community.shared.Component {
+
 	/**
-	Gets Item Selected
-	*/
+	 * Sets Type Property by String
+	 */	
+	void setButtonTypeByString( /**Type*/ String buttonType){*
+		this.buttonType = buttonType;
+	*}
+
+	/**
+	 * Gets Type Property as String
+	 */	
+	String getButtonTypeAsString() {*
+		return this.buttonType;
+	*}
+
+	/**
+	 * Sets Icon Property
+	 */	
+	void setIcon( /**Icon*/ String icon){*
+		this.icon = icon;
+	*}
+
+	/**
+	 * Gets Icon Property
+	 */	
+	String getIcon() {*
+		return this.icon;
+	*}
+
+	/** Adds a root element containing key [String], text [String], icon [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	ACTIONSHEETBUTTON.addItem(key [String], text [String], icon [String]);<br>
+	ACTIONSHEETBUTTON.addItem(key [String], text [String], icon [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addItem (
+			/**Unique Property Key*/String key, 
+			/**Text*/String text, 
+			/**Icon*/String icon
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			icon:icon
+			};
+	
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			this.items = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.items);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.items = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	ACTIONSHEETBUTTON.removeItem(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeItem (
+			String key
+			) {*		
+		
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			this.items = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.items);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+
+
+	/**
+	 * Sets Placement Property by String
+	 */	
+	void setPlacementByString( /**Placement*/ String placement){*
+		this.placement = placement;
+	*}
+
+	/**
+	 * Gets Placement Property as String
+	 */	
+	String getPlacementAsString() {*
+		return this.placement;
+	*}
+
+	/**
+	 * Gets Selected Item Property
+	 */	
 	String getSelectedItem() {*
 		return this.selectedItem;
 	*}
+
 	/**
-	Gets Item Key Selected
-	*/
+	 * Gets Selected Key Property
+	 */	
 	String getSelectedKey() {*
 		return this.selectedKey;
 	*}
-	/** Remove All Items
- 	<example>
-	Remove all items
-	<code>
-	ACTIONSHEETBUTTON_1.removeAllItems();<br>
-	</code>
-	</example>
-	 */
-	void removeAllItems () {*		
-		this.items = "[]";
+
+	/**
+	 * Sets Title Property
+	 */	
+	void setText( /**Title*/ String text){*
+		this.text = text;
 	*}
-	/** Add an item
- 	<example>
-	<code>
-	ACTIONSHEETBUTTON_1.addItem("delete", "Delete Bookmark", "sap-icon://delete");<br>
-	</code>
-	</example>
-	 */
-	void addItem (/*Key*/String key, /*Text*/String text, /*Icon*/String icon) {*		
-		var o = [];
-		if(this.items != "") o = eval(this.items);
-		var newItem = {
-			key : key,
-			text : text,
-			icon : icon
-		};
-		var matchIndex = -1;
-		for(var i=0;i<o.length;i++){
-			var item = o[i];
-			if(item.key == key) matchIndex = i;
-		}
-		if(matchIndex>-1) {
-			o[matchIndex] = newItem;
-		}else{
-			o.push(newItem);
-		}
-		this.items = JSON.stringify(o);
+
+	/**
+	 * Gets Title Property
+	 */	
+	String getText() {*
+		return this.text;
 	*}
-	/** Remove an item
- 	<example>
-	<code>
-	ACTIONSHEETBUTTON_1.removeItem("delete");<br>
-	</code>
-	</example>
-	 */
-	void removeItem (/*Item*/String key) {*		
-		var o = [];
-		if(this.items != "") o = eval(this.items);
-		var matchIndex = -1;
-		for(var i=0;i<o.length;i++){
-			var item = o[i];
-			if(item.key == key) matchIndex = i;
-		}
-		if(matchIndex>-1) o.splice(matchIndex,1);
-		this.items = JSON.stringify(o);
-	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
 
 /**
@@ -1858,7 +1956,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets End Value Property
 	 */	
-	void setEndValue( /* &nbsp; */  int endValue){*
+	void setEndValue( /* End Value */  int endValue){*
 		this.endValue = endValue;
 	*}
 
@@ -1872,7 +1970,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets First Color Property
 	 */	
-	void setFirstColor( /* &nbsp; */  String firstColor){*
+	void setFirstColor( /* First Color */  String firstColor){*
 		this.firstColor = firstColor;
 	*}
 
@@ -1886,7 +1984,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Gradient Color Property
 	 */	
-	void setGradientColor( /* &nbsp; */  boolean gradientColor){*
+	void setGradientColor( /* Gradient Color */  boolean gradientColor){*
 		this.gradientColor = gradientColor;
 	*}
 
@@ -1900,7 +1998,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Show Number Property
 	 */	
-	void setHaveNumbers( /* &nbsp; */  boolean haveNumbers){*
+	void setHaveNumbers( /* Show Number */  boolean haveNumbers){*
 		this.haveNumbers = haveNumbers;
 	*}
 
@@ -1914,7 +2012,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Indicator Value Property
 	 */	
-	void setIndicatorValue( /* &nbsp; */  float indicatorValue){*
+	void setIndicatorValue( /* Indicator Value */  float indicatorValue){*
 		this.indicatorValue = indicatorValue;
 	*}
 
@@ -1928,7 +2026,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Main Color Property
 	 */	
-	void setMainColor( /* &nbsp; */  String mainColor){*
+	void setMainColor( /* Main Color */  String mainColor){*
 		this.mainColor = mainColor;
 	*}
 
@@ -1942,7 +2040,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Needle Color Property
 	 */	
-	void setNeedleColor( /* &nbsp; */  String needleColor){*
+	void setNeedleColor( /* Needle Color */  String needleColor){*
 		this.needleColor = needleColor;
 	*}
 
@@ -1956,7 +2054,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Number of Big Ticks Property
 	 */	
-	void setNumOfBigTicks( /* &nbsp; */  int numOfBigTicks){*
+	void setNumOfBigTicks( /* Number of Big Ticks */  int numOfBigTicks){*
 		this.numOfBigTicks = numOfBigTicks;
 	*}
 
@@ -1970,7 +2068,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Number of Small Ticks Property
 	 */	
-	void setNumOfSmallTicks( /* &nbsp; */  int numOfSmallTicks){*
+	void setNumOfSmallTicks( /* Number of Small Ticks */  int numOfSmallTicks){*
 		this.numOfSmallTicks = numOfSmallTicks;
 	*}
 
@@ -1984,7 +2082,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Second Color Property
 	 */	
-	void setSecondColor( /* &nbsp; */  String secondColor){*
+	void setSecondColor( /* Second Color */  String secondColor){*
 		this.secondColor = secondColor;
 	*}
 
@@ -1998,7 +2096,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Show Value Property
 	 */	
-	void setShowValue( /* &nbsp; */  boolean showValue){*
+	void setShowValue( /* Show Value */  boolean showValue){*
 		this.showValue = showValue;
 	*}
 
@@ -2012,7 +2110,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Showed Value Property
 	 */	
-	void setShowedValue( /* &nbsp; */  String showedValue){*
+	void setShowedValue( /* Showed Value */  String showedValue){*
 		this.showedValue = showedValue;
 	*}
 
@@ -2026,7 +2124,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Start of Second Color Property
 	 */	
-	void setStartSecondColor( /* &nbsp; */  int startSecondColor){*
+	void setStartSecondColor( /* Start of Second Color */  int startSecondColor){*
 		this.startSecondColor = startSecondColor;
 	*}
 
@@ -2040,7 +2138,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Start of Third Color Property
 	 */	
-	void setStartThirdColor( /* &nbsp; */  int startThirdColor){*
+	void setStartThirdColor( /* Start of Third Color */  int startThirdColor){*
 		this.startThirdColor = startThirdColor;
 	*}
 
@@ -2054,7 +2152,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Start Value Property
 	 */	
-	void setStartValue( /* &nbsp; */  int startValue){*
+	void setStartValue( /* Start Value */  int startValue){*
 		this.startValue = startValue;
 	*}
 
@@ -2068,7 +2166,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Third Color Property
 	 */	
-	void setThirdColor( /* &nbsp; */  String thirdColor){*
+	void setThirdColor( /* Third Color */  String thirdColor){*
 		this.thirdColor = thirdColor;
 	*}
 
@@ -2082,7 +2180,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Title Property
 	 */	
-	void setTitle( /* &nbsp; */  String title){*
+	void setTitle( /* Title */  String title){*
 		this.title = title;
 	*}
 
@@ -2096,7 +2194,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Text and Ticks Color Property
 	 */	
-	void setTtColor( /* &nbsp; */  String ttColor){*
+	void setTtColor( /* Text and Ticks Color */  String ttColor){*
 		this.ttColor = ttColor;
 	*}
 

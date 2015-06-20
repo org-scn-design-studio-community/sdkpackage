@@ -339,8 +339,7 @@ Accordion = {
 				that.setSelectedKey(oLayout._Key);
 				that._updateSelection(oLayout._Key);
 				
-				that.fireDesignStudioPropertiesChanged(["selectedKey"]);
-				that.fireDesignStudioEvent("onSelectionChanged");
+				that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
 			}
 		});
 

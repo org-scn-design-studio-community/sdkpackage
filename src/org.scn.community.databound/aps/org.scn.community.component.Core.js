@@ -32,20 +32,55 @@ org_scn_community_component_Core = function (owner, componentData){
 	for(property in spec){
 		that.props[property] = spec[property]
 		if(property.indexOf("data") == 0) {
-			that.props["meta_"+property] = spec[property];
+			if(that.props["meta_data"] == undefined) {
+				// clone the property
+				that.props["meta_data"] = JSON.parse(JSON.stringify(spec[property]));	
+			}
 		}
 		
 	};
+	
 	/*
 	 * Create the aforementioned getter/setter and attach to 'this'.
 	 */
 	if(specComp.handlerType == "div") {
+		for(var property in that.props){
+			that[property] = function(property){
+				return function(value){
+					if(value===undefined){
+						return that.props[property].value;
+					}else{
+						that.props[property].value = value;
+						that.props[property].changed = true;
+						if(that.props[property].onChange) {
+							if(typeof(that[that.props[property].onChange]) === 'function') {
+								that[that.props[property].onChange].call(that,that.props[property].value);
+							}
+						}
+						return that;
+					}
+				};
+			}(property);
+		}
+	}
 	for(var property in that.props){
-		that[property] = function(property){
-			return function(value){
-				if(value===undefined){
-					return that.props[property].value;
-				}else{
+		if(property.indexOf("data") == 0) {
+			if(that["setMetadata"] == undefined) {
+				that["setMetadata"] = function(property){
+					// a setter
+					return function (value) {
+						that.props["meta_data"].value = value;
+						that.props["meta_data"].changed = true;
+						return that;
+					};
+				}(property);
+			}
+		}
+
+		if(that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] == undefined) {
+			that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
+				// a setter
+				return function (value) {
 					that.props[property].value = value;
 					that.props[property].changed = true;
 					if(that.props[property].onChange) {
@@ -54,53 +89,30 @@ org_scn_community_component_Core = function (owner, componentData){
 						}
 					}
 					return that;
-				}
-			};
-		}(property);
-	}
-	}
-	for(var property in that.props){
-		if(property.indexOf("data") == 0) {
-			that["setMeta" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
-				// a setter
-				return function (value) {
-					that.props["meta_"+ property].value = value;
-					that.props["meta_"+ property].changed = true;
-					return that;
 				};
 			}(property);
 		}
-		
-		that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
-			// a setter
-			return function (value) {
-				that.props[property].value = value;
-				that.props[property].changed = true;
-				if(that.props[property].onChange) {
-					if(typeof(that[that.props[property].onChange]) === 'function') {
-						that[that.props[property].onChange].call(that,that.props[property].value);
-					}
-				}
-				return that;
-			};
-		}(property);
 	}
 	for(var property in that.props){
 		if(property.indexOf("data") == 0) {
-			that["getMeta" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
+			if(that["getDSMetadata"] == undefined) {
+				that["getDSMetadata"] = function(property){
+					// a setter
+					return function () {
+						return that.props["meta_data"].value;
+					};
+				}(property);
+			}
+		}
+
+		if(that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] == undefined) {
+			that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
 				// a getter
 				return function () {
-					return that.props["meta_"+ property].value;
+					return that.props[property].value;
 				};
 			}(property);
 		}
-		
-		that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
-			// a getter
-			return function () {
-				return that.props[property].value;
-			};
-		}(property);
 	}
 
 	that.callOnSet = function(property,value){

@@ -1,0 +1,36 @@
+	"%NAME%" : {
+		"template" : "OneLevelArray",
+		"type" : "String",
+		"value" : "[]",
+		"visible": %VISIBLE%,
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+			
+			"arrayDefinition":{
+	            "item":{
+	               "type":"Array",
+	               "sequence":"key,value,",
+	               
+	               "key":{
+	                  "desc":"Unique Property Key",
+	                  "type":"String"
+	               },
+	               "value":{
+	                  "desc":"Property Value",
+	                  "type":"String"
+	               }
+	            }
+         	},
+
+			"desc" : "%DESCRIPTION%",
+			"cat" : "Content-%DESCRIPTION%",
+			"tooltip" : "%TOOLTIP%",
+			
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray",
+			
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}

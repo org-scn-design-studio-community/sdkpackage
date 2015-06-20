@@ -9,7 +9,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Basic Authorization Content [Basic: GUID] Property
 	 */	
-	void setBasicAuthorisation( /* &nbsp; */  String basicAuthorisation){*
+	void setBasicAuthorisation( /* Basic Authorization Content [Basic: GUID] */  String basicAuthorisation){*
 		this.DBasicAuthorisation = basicAuthorisation;
 	*}
 
@@ -33,7 +33,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Content Type Property
 	 */	
-	void setContentType( /* &nbsp; */  String contentType){*
+	void setContentType( /* Content Type */  String contentType){*
 		this.DContentType = contentType;
 	*}
 
@@ -47,7 +47,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Is this Request Cross-Domain Property
 	 */	
-	void setCrossDomain( /* &nbsp; */  boolean crossDomain){*
+	void setCrossDomain( /* Is this Request Cross-Domain */  boolean crossDomain){*
 		this.DCrossDomain = crossDomain;
 	*}
 
@@ -61,7 +61,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Expected Content Type Property
 	 */	
-	void setExpectedContentType( /* &nbsp; */  choice expectedContentType){*
+	void setExpectedContentType( /* Expected Content Type */  choice expectedContentType){*
 		this.DExpectedContentType = expectedContentType;
 	*}
 
@@ -75,7 +75,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Response Status for Good Response Property
 	 */	
-	void setExpectedResponseStatus( /* &nbsp; */  int expectedResponseStatus){*
+	void setExpectedResponseStatus( /* Response Status for Good Response */  int expectedResponseStatus){*
 		this.DExpectedResponseStatus = expectedResponseStatus;
 	*}
 
@@ -253,7 +253,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Raw Parameters as String Content Property
 	 */	
-	void setRawParameters( /* &nbsp; */  String rawParameters){*
+	void setRawParameters( /* Raw Parameters as String Content */  String rawParameters){*
 		this.DRawParameters = rawParameters;
 	*}
 
@@ -267,7 +267,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Request Method (POST | GET | PUT) Property
 	 */	
-	void setRequestMethod( /* &nbsp; */  choice requestMethod){*
+	void setRequestMethod( /* Request Method (POST | GET | PUT) */  choice requestMethod){*
 		this.DRequestMethod = requestMethod;
 	*}
 
@@ -281,7 +281,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Request Type (JQuery | HTTP) Property
 	 */	
-	void setRequestType( /* &nbsp; */  choice requestType){*
+	void setRequestType( /* Request Type (JQuery | HTTP) */  choice requestType){*
 		this.DRequestType = requestType;
 	*}
 
@@ -395,7 +395,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Url To Send the Request Property
 	 */	
-	void setUrl( /* &nbsp; */  String url){*
+	void setUrl( /* Url To Send the Request */  String url){*
 		this.DUrl = url;
 	*}
 
