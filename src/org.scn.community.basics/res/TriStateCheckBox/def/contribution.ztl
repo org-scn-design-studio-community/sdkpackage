@@ -50,36 +50,13 @@ class org.scn.community.basics.TriStateCheckBox extends org.scn.community.shared
 	 * Sets the selection state - CHECKED | UNCHECKED | MIXED
 	 */
 	void setSelectionState (org_scn_community_shared_SelectionStateEnumfield type) {*
-		if(type == org_scn_community_shared_SelectionState.CHECKED) {
-			this.selectionState = "Checked";
-			return;
-		}
-		if(type == org_scn_community_shared_SelectionState.UNCHECKED) {
-			this.selectionState = "Unchecked";
-			return;
-		}
-		if(type == org_scn_community_shared_SelectionState.MIXED) {
-			this.selectionState = "Mixed";
-			return;
-		}
-
-		this.selectionState = "Unchecked";
+		this.selectionState = type;
 	*}
 	
 	/**
 	 * Returns the selection state - CHECKED | UNCHECKED | MIXED
 	 */
 	org_scn_community_shared_SelectionStateEnumfield getSelectionState() {*
-		if(this.selectionState == "Checked") {
-			return org_scn_community_shared_SelectionState.CHECKED;
-		}
-		if(this.selectionState == "Unchecked") {
-			return org_scn_community_shared_SelectionState.UNCHECKED;
-		}
-		if(this.selectionState == "Mixed") {
-			return org_scn_community_shared_SelectionState.MIXED;
-		}
-
-		return org_scn_community_shared_SelectionState.UNCHECKED;
+		return this.selectionState;
 	*}
 }

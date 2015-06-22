@@ -19,6 +19,22 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	String getButtonTypeAsString() {*
 		return this.buttonType;
 	*}
+	
+	/**
+	 * Sets Type Property by Choice Option
+	 */	
+	void setButtonType( /**Type*/ org_scn_community_shared_ButtonTypeEnumfield buttonType){*
+		buttonType = buttonType.toUpperCase();
+		
+		this.buttonType = buttonType;
+	*}
+	
+	/**
+	 * Gets Type Property as Choice Option
+	 */	
+	org_scn_community_shared_ButtonTypeEnumfield getButtonType() {*
+		return this.buttonType;
+	*}
 
 	/**
 	 * Sets Icon Property
@@ -131,6 +147,22 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	 * Gets Placement Property as String
 	 */	
 	String getPlacementAsString() {*
+		return this.placement;
+	*}
+	
+	/**
+	 * Sets Placement Property by Choice Option
+	 */	
+	void setPlacement( /**Placement*/ org_scn_community_shared_PlacementEnumfield placement){*
+		placement = placement.toUpperCase();
+		
+		this.placement = placement;
+	*}
+	
+	/**
+	 * Gets Placement Property as Choice Option
+	 */	
+	org_scn_community_shared_PlacementEnumfield getPlacement() {*
 		return this.placement;
 	*}
 

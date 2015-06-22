@@ -20,6 +20,7 @@
         "visible":true,
         "opts":{
            "ztlType":"Choice",
+           "choiceType":"-",
            "ztlFunction":"",
            "desc":"Tag",
            "cat":"Display",

@@ -125,25 +125,36 @@ class org_scn_community_shared_ButtonStyle extends Enum {
 /**
  * enum filed definition
  */
-class org_scn_community_shared_ContentModeEnumfield extends Enumfield {
+class org_scn_community_shared_ButtonTypeEnumfield extends Enumfield {
        
 }
 
 /**
- * a set of constants to specify field 
+ * a set of constants to specify sort direction 
  */
-class org_scn_community_shared_ContentMode extends Enum {
+class org_scn_community_shared_ButtonType extends Enum {
 
-	/** ALL */
-	org_scn_community_shared_ContentModeEnumfield ALL;
+	/** Default */
+	org_scn_community_shared_ButtonTypeEnumfield Default;
        
-	/** RESULTSET */
-	org_scn_community_shared_ContentModeEnumfield RESULTSET;
+	/** Transparent */
+	org_scn_community_shared_ButtonTypeEnumfield Transparent;
 
-	/** CUSTOM */
-	org_scn_community_shared_ContentModeEnumfield CUSTOM;
+	/** Accept */
+	org_scn_community_shared_ButtonTypeEnumfield Accept;
+
+	/** Reject */
+	org_scn_community_shared_ButtonTypeEnumfield Reject;
+	
+	/** Back */
+	org_scn_community_shared_ButtonTypeEnumfield Back;
+	
+	/** Emphasized */
+	org_scn_community_shared_ButtonTypeEnumfield Emphasized;
+	
+	/** Up */
+	org_scn_community_shared_ButtonTypeEnumfield Up;
 }
-
 /**
  * enum filed definition
  */
@@ -163,6 +174,144 @@ class org_scn_community_shared_ContentNotation extends Enum {
 /**
  * enum filed definition
  */
+class org_scn_community_shared_DimensionSetEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort direction 
+ */
+class org_scn_community_shared_DimensionSet extends Enum {
+
+	/** ALL_DIMENSIONS */
+	org_scn_community_shared_DimensionSetEnumfield All;
+       
+	/** RESULT_SET_DIMENSIONS */
+	org_scn_community_shared_DimensionSetEnumfield Resultset;
+
+	/** CUSTOM_DIMENSIONS */
+	org_scn_community_shared_DimensionSetEnumfield Custom;
+}
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_FormattingOperatorEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_FormattingOperator extends Enum {
+
+	/** Use_First */
+	org_scn_community_shared_FormattingOperatorEnumfield Use_First;
+       
+	/** Use_Last */
+	org_scn_community_shared_FormattingOperatorEnumfield Use_Last;
+
+	/** Collect */
+	org_scn_community_shared_FormattingOperatorEnumfield Collect;
+}
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_ImageSizeEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify field 
+ */
+class org_scn_community_shared_ImageSize extends Enum {
+
+	/** 16x16 pixels */
+	org_scn_community_shared_ImageSizeEnumfield Size_16px;
+
+	/** 32x32 pixels */
+	org_scn_community_shared_ImageSizeEnumfield Size_32px;
+}
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_MemberDisplayEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_MemberDisplay extends Enum {
+
+	/** Text */
+	org_scn_community_shared_MemberDisplayEnumfield Text;
+       
+	/** Text Value */
+	org_scn_community_shared_MemberDisplayEnumfield Text_Value;
+
+	/** Text Key*/
+	org_scn_community_shared_MemberDisplayEnumfield Text_Key;
+
+	/** Text Count*/
+	org_scn_community_shared_MemberDisplayEnumfield Text_Count;
+}
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_NavigationTypeEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_NavigationType extends Enum {
+
+	/** PAGINATOR */
+	org_scn_community_shared_NavigationTypeEnumfield Paginator;
+       
+	/** SCROLLBAR */
+	org_scn_community_shared_NavigationTypeEnumfield Scrollbar;
+}
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_PlacementTypeEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort direction 
+ */
+class org_scn_community_shared_PlacementType extends Enum {
+
+	/** Auto */
+	org_scn_community_shared_PlacementTypeEnumfield Auto;
+       
+	/** Horizontal */
+	org_scn_community_shared_PlacementTypeEnumfield Horizontal;
+
+	/** Vertical */
+	org_scn_community_shared_PlacementTypeEnumfield Vertical;
+
+	/** Left */
+	org_scn_community_shared_PlacementTypeEnumfield Left;
+	
+	/** Right */
+	org_scn_community_shared_PlacementTypeEnumfield Right;
+	
+	/** Top */
+	org_scn_community_shared_PlacementTypeEnumfield Top;
+	
+	/** Bottom */
+	org_scn_community_shared_PlacementTypeEnumfield Bottom;
+}
+/**
+ * enum filed definition
+ */
 class org_scn_community_shared_SelectionStateEnumfield extends Enumfield {
        
 }
@@ -172,14 +321,36 @@ class org_scn_community_shared_SelectionStateEnumfield extends Enumfield {
  */
 class org_scn_community_shared_SelectionState extends Enum {
 
-	/** CHECKED */
-	org_scn_community_shared_SelectionStateEnumfield CHECKED;
+	/** Checked */
+	org_scn_community_shared_SelectionStateEnumfield Checked;
        
-	/** UNCHECKED */
-	org_scn_community_shared_SelectionStateEnumfield UNCHECKED;
+	/** Unchecked */
+	org_scn_community_shared_SelectionStateEnumfield Unchecked;
 
-	/** MIXED */
-	org_scn_community_shared_SelectionStateEnumfield MIXED;
+	/** Mixed */
+	org_scn_community_shared_SelectionStateEnumfield Mixed;
+}
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_SecondValueContentEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify field 
+ */
+class org_scn_community_shared_SecondValueContent extends Enum {
+
+	/** Value */
+	org_scn_community_shared_SecondValueContentEnumfield Value;
+       
+	/** Key */
+	org_scn_community_shared_SecondValueContentEnumfield Key;
+
+	/** Count */
+	org_scn_community_shared_SecondValueContentEnumfield Count;
 }
 
 /**
@@ -195,10 +366,10 @@ class org_scn_community_shared_SortDirectionEnumfield extends Enumfield {
 class org_scn_community_shared_SortDirection extends Enum {
 
 	/** ASCENDING */
-	org_scn_community_shared_SortDirectionEnumfield ASCENDING;
+	org_scn_community_shared_SortDirectionEnumfield Ascending;
        
 	/** DESCENDING */
-	org_scn_community_shared_SortDirectionEnumfield DESCENDING;
+	org_scn_community_shared_SortDirectionEnumfield Descending;
 }
 
 /**
@@ -213,20 +384,20 @@ class org_scn_community_shared_SortTypeEnumfield extends Enumfield {
  */
 class org_scn_community_shared_SortType extends Enum {
 
-	/** DEFAULT */
-	org_scn_community_shared_SortTypeEnumfield DEFAULT;
+	/** Default */
+	org_scn_community_shared_SortTypeEnumfield Default;
        
-	/** ALPHABETICAL */
-	org_scn_community_shared_SortTypeEnumfield ALPHABETICAL;
+	/** Alphabetical */
+	org_scn_community_shared_SortTypeEnumfield Alphabetical;
 
-	/** COUNT */
-	org_scn_community_shared_SortTypeEnumfield COUNT;
+	/** Count */
+	org_scn_community_shared_SortTypeEnumfield Count;
 	
-	/** SELECTED */
-	org_scn_community_shared_SortTypeEnumfield SELECTED;
+	/** Selected */
+	org_scn_community_shared_SortTypeEnumfield Selected;
 
-	/** VALUE */
-	org_scn_community_shared_SortTypeEnumfield VALUE;
+	/** Value */
+	org_scn_community_shared_SortTypeEnumfield Value;
 }
 
 /**
@@ -509,6 +680,7 @@ class org.scn.community.shared.ValueTextArray extends Array {
  */
 class org.scn.community.shared.Component extends Component {
 	
+	@Visibility(private)
 	void internalWriteLog(String log) {*
 		// only for debugging
 		var active = false;
@@ -559,6 +731,24 @@ class org.scn.community.shared.Component extends Component {
 			}
 		}
 	*}
+	
+	/**
+	 * Converts Choice values to Strings
+	 */
+	@Visibility(private)
+	String convertChoiceToString (String choice) {*
+		return choice;
+	*}
+
+	/**
+	 * Converts String values to Choices
+	 */
+	@Visibility(private)
+	String convertToStringChoice (String value) {*
+		value = value.toUpper();
+		value = value.replace(" ", "_");
+		return value;
+	*}
 }
 
 /**
@@ -566,6 +756,7 @@ class org.scn.community.shared.Component extends Component {
  */
 class org.scn.community.shared.DataComponent extends org.scn.community.shared.Component {
 
+	@Visibility(private)
 	String superReadMembers(
 			/**technical name of the dimension*/String dimensionName,
 			/**max members to load (optional, default 1000)*/optional int maxMembers
@@ -602,6 +793,7 @@ class org.scn.community.shared.DataComponent extends org.scn.community.shared.Co
 	
 	*}
 	
+	@Visibility(private)
 	String superReadMetaData() {*
 		// APPLICATION.createInfoMessage("_readMetaData");
 		

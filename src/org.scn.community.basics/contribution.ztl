@@ -197,6 +197,22 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	String getImageSizeAsString() {*
 		return this.imageSize;
 	*}
+	
+	/**
+	 * Sets Size of the Image Property by Choice Option
+	 */	
+	void setImageSize( /**Size of the Image*/ org_scn_community_shared_ImageSizeEnumfield imageSize){*
+		imageSize = imageSize.toUpperCase();
+		
+		this.imageSize = imageSize;
+	*}
+	
+	/**
+	 * Gets Size of the Image Property as Choice Option
+	 */	
+	org_scn_community_shared_ImageSizeEnumfield getImageSize() {*
+		return this.imageSize;
+	*}
 
 	/**
 	 * Sets Max Height for Section Property
@@ -223,6 +239,22 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	 * Gets Member Display Property as String
 	 */	
 	String getMemberDisplayAsString() {*
+		return this.memberDisplay;
+	*}
+	
+	/**
+	 * Sets Member Display Property by Choice Option
+	 */	
+	void setMemberDisplay( /**Member Display*/ org_scn_community_shared_MemberDisplayEnumfield memberDisplay){*
+		memberDisplay = memberDisplay.toUpperCase();
+		
+		this.memberDisplay = memberDisplay;
+	*}
+	
+	/**
+	 * Gets Member Display Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberDisplayEnumfield getMemberDisplay() {*
 		return this.memberDisplay;
 	*}
 
@@ -553,6 +585,22 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	String getButtonTypeAsString() {*
 		return this.buttonType;
 	*}
+	
+	/**
+	 * Sets Type Property by Choice Option
+	 */	
+	void setButtonType( /**Type*/ org_scn_community_shared_ButtonTypeEnumfield buttonType){*
+		buttonType = buttonType.toUpperCase();
+		
+		this.buttonType = buttonType;
+	*}
+	
+	/**
+	 * Gets Type Property as Choice Option
+	 */	
+	org_scn_community_shared_ButtonTypeEnumfield getButtonType() {*
+		return this.buttonType;
+	*}
 
 	/**
 	 * Sets Icon Property
@@ -667,6 +715,22 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	String getPlacementAsString() {*
 		return this.placement;
 	*}
+	
+	/**
+	 * Sets Placement Property by Choice Option
+	 */	
+	void setPlacement( /**Placement*/ org_scn_community_shared_PlacementEnumfield placement){*
+		placement = placement.toUpperCase();
+		
+		this.placement = placement;
+	*}
+	
+	/**
+	 * Gets Placement Property as Choice Option
+	 */	
+	org_scn_community_shared_PlacementEnumfield getPlacement() {*
+		return this.placement;
+	*}
 
 	/**
 	 * Gets Selected Item Property
@@ -728,6 +792,11 @@ class org.scn.community.basics.ApplicationHeader extends org.scn.community.share
 		return this.logoText;	
 	*}
 }
+
+/**
+ *	Class for Arrowed Line
+ */
+
 class org.scn.community.basics.ArrowedLine extends org.scn.community.shared.Component {
 	
 	/* Returns the current color of the line. */
@@ -1481,6 +1550,22 @@ class org.scn.community.basics.EmbeddedMedia extends org.scn.community.shared.Co
 	 * Gets Tag Property as String
 	 */	
 	String getTagAsString() {*
+		return this.tag;
+	*}
+	
+	/**
+	 * Sets Tag Property by Choice Option
+	 */	
+	void setTag( /**Tag*/ org_scn_community_shared_Enumfield tag){*
+		tag = tag.toUpperCase();
+		
+		this.tag = tag;
+	*}
+	
+	/**
+	 * Gets Tag Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getTag() {*
 		return this.tag;
 	*}
 
@@ -4505,37 +4590,14 @@ class org.scn.community.basics.TriStateCheckBox extends org.scn.community.shared
 	 * Sets the selection state - CHECKED | UNCHECKED | MIXED
 	 */
 	void setSelectionState (org_scn_community_shared_SelectionStateEnumfield type) {*
-		if(type == org_scn_community_shared_SelectionState.CHECKED) {
-			this.selectionState = "Checked";
-			return;
-		}
-		if(type == org_scn_community_shared_SelectionState.UNCHECKED) {
-			this.selectionState = "Unchecked";
-			return;
-		}
-		if(type == org_scn_community_shared_SelectionState.MIXED) {
-			this.selectionState = "Mixed";
-			return;
-		}
-
-		this.selectionState = "Unchecked";
+		this.selectionState = type;
 	*}
 	
 	/**
 	 * Returns the selection state - CHECKED | UNCHECKED | MIXED
 	 */
 	org_scn_community_shared_SelectionStateEnumfield getSelectionState() {*
-		if(this.selectionState == "Checked") {
-			return org_scn_community_shared_SelectionState.CHECKED;
-		}
-		if(this.selectionState == "Unchecked") {
-			return org_scn_community_shared_SelectionState.UNCHECKED;
-		}
-		if(this.selectionState == "Mixed") {
-			return org_scn_community_shared_SelectionState.MIXED;
-		}
-
-		return org_scn_community_shared_SelectionState.UNCHECKED;
+		return this.selectionState;
 	*}
 }
 

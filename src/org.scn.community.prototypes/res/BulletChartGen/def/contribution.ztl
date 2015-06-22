@@ -147,6 +147,22 @@ class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shar
 	String getShowalertAsString() {*
 		return this.showalert;
 	*}
+	
+	/**
+	 * Sets When to show an alert Property by Choice Option
+	 */	
+	void setShowalert( /**When to show an alert*/ org_scn_community_shared_Enumfield showalert){*
+		showalert = showalert.toUpperCase();
+		
+		this.showalert = showalert;
+	*}
+	
+	/**
+	 * Gets When to show an alert Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getShowalert() {*
+		return this.showalert;
+	*}
 
 	/**
 	 * Sets Show X axis Property

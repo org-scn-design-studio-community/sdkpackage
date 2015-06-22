@@ -11,18 +11,18 @@ class org_scn_community_shared_SortTypeEnumfield extends Enumfield {
  */
 class org_scn_community_shared_SortType extends Enum {
 
-	/** DEFAULT */
-	org_scn_community_shared_SortTypeEnumfield DEFAULT;
+	/** Default */
+	org_scn_community_shared_SortTypeEnumfield Default;
        
-	/** ALPHABETICAL */
-	org_scn_community_shared_SortTypeEnumfield ALPHABETICAL;
+	/** Alphabetical */
+	org_scn_community_shared_SortTypeEnumfield Alphabetical;
 
-	/** COUNT */
-	org_scn_community_shared_SortTypeEnumfield COUNT;
+	/** Count */
+	org_scn_community_shared_SortTypeEnumfield Count;
 	
-	/** SELECTED */
-	org_scn_community_shared_SortTypeEnumfield SELECTED;
+	/** Selected */
+	org_scn_community_shared_SortTypeEnumfield Selected;
 
-	/** VALUE */
-	org_scn_community_shared_SortTypeEnumfield VALUE;
+	/** Value */
+	org_scn_community_shared_SortTypeEnumfield Value;
 }

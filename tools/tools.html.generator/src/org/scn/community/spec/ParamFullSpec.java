@@ -82,6 +82,14 @@ public class ParamFullSpec {
 		if(options.getPropertyValue("ztlType").equals("Choice")) {
 			String choiceType = options.getPropertyValue("choiceType");
 
+			if(choiceType == null || choiceType.length() == 0) {
+				throw new RuntimeException("ChoiceType not specified in " + this.getName() + " (component: " + this.parentProperty.getComponent() + ")");
+			}
+			
+			if(choiceType.equals("-")) {
+				choiceType = "";
+			}
+			
 			return choiceType;
 		}
 		

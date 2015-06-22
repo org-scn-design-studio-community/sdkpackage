@@ -22,7 +22,8 @@ ActionSheetButton = {
 		var that = this;
 		
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
-
+		that.setType(sap.m.ButtonType[that.getButtonType()]);
+		
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	},
 	

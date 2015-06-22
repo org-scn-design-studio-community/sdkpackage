@@ -124,14 +124,15 @@
     "opts": {
       "apsControl": "combobox",
       "cat": "Image",
+      "choiceType": "ImageSize",
       "desc": "Size of the Image",
       "options": [
         {
-          "key": "16px",
+          "key": "Size_16px",
           "text": "16x16 pixels"
         },
         {
-          "key": "32px",
+          "key": "Size_32px",
           "text": "32x32 pixels"
         }
       ],
@@ -140,7 +141,7 @@
       "ztlType": "Choice"
     },
     "type": "String",
-    "value": "16px",
+    "value": "Size_16px",
     "visible": true
   },
   "maxSectionHeight": {
@@ -164,12 +165,12 @@
       "desc": "Member Display",
       "options": [
         {
-          "key": "TEXT",
+          "key": "Text",
           "text": "Text Only"
         },
         {
-          "key": "TEXT_KEY",
-          "text": "Text [KEY]"
+          "key": "Text_Key",
+          "text": "Text (Key)"
         }
       ],
       "tooltip": "Member Display",

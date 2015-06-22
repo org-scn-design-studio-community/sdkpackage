@@ -68,9 +68,9 @@ FacetSelector = {
 		options.idPrefix = that.getId();
 		options.iDuplicates = "Sum";
 		
-		if(that.getDDisplayText() == "Text (Value)") {
+		if(that.getDDisplayText() == "Text_Value") {
 			options.iDisplayText = "Text (Value)";
-		} else if(that.getDDisplayText() == "Text (Count)") {
+		} else if(that.getDDisplayText() == "Text_Count") {
 			options.iDisplayText = "Text (Count)";
 		} else {
 			options.iDisplayText = "Text";

@@ -905,19 +905,19 @@
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
 		<defaultValue property="DClearOthers">true</defaultValue>
-		<defaultValue property="DContentMode">Only from Result Set</defaultValue>
+		<defaultValue property="DContentMode">Resultset</defaultValue>
 		<defaultValue property="DCustomDimensions">[]</defaultValue>
 		<defaultValue property="DDisplayText">Text</defaultValue>
 		<defaultValue property="DElements"></defaultValue>
 		<defaultValue property="DFacetWidth">160</defaultValue>
 		<defaultValue property="DMaxDisplayMembers">5</defaultValue>
 		<defaultValue property="DMaxMembers">1000</defaultValue>
-		<defaultValue property="DSecondValueContent">Value</defaultValue>
+		<defaultValue property="DSecondValueContent">VALUE</defaultValue>
 		<defaultValue property="DSelection"></defaultValue>
 		<defaultValue property="DShowSecondValue">false</defaultValue>
 		<defaultValue property="DSortingDirection">Ascending</defaultValue>
 		<defaultValue property="DSortingType">Default</defaultValue>
-		<defaultValue property="DZeroValuesMode">Show</defaultValue>
+		<defaultValue property="DZeroValuesMode">SHOW</defaultValue>
 		<defaultValue property="data">null</defaultValue>
 		<defaultValue property="onBeforeRender"></defaultValue>
 		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
@@ -1086,7 +1086,7 @@
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
 		<defaultValue property="DClearOthers">true</defaultValue>
-		<defaultValue property="DContentMode">Only from Result Set</defaultValue>
+		<defaultValue property="DContentMode">Resultset</defaultValue>
 		<defaultValue property="DCustomDimensions">[]</defaultValue>
 		<defaultValue property="DDisplayText">Text</defaultValue>
 		<defaultValue property="DElements"></defaultValue>

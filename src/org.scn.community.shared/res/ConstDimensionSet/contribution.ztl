@@ -1,0 +1,22 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_DimensionSetEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort direction 
+ */
+class org_scn_community_shared_DimensionSet extends Enum {
+
+	/** ALL_DIMENSIONS */
+	org_scn_community_shared_DimensionSetEnumfield All;
+       
+	/** RESULT_SET_DIMENSIONS */
+	org_scn_community_shared_DimensionSetEnumfield Resultset;
+
+	/** CUSTOM_DIMENSIONS */
+	org_scn_community_shared_DimensionSetEnumfield Custom;
+}

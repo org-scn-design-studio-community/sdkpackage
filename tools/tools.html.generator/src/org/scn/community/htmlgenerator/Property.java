@@ -253,9 +253,10 @@ public class Property {
 			template = template.replace("%NO_ZTL%", "false");
 		}
 
+		int currentI = 0;
 		if (this.values.size() > 0) {
 			for (Value value : this.values) {
-				template = template.replace("%VALUE_ENTRY%", value.toSpec20() + ",\r\n\t\t\t%VALUE_ENTRY%");
+				template = template.replace("%VALUE_ENTRY%", value.toSpec20() + (++currentI < this.values.size() ? "," : "") + "\r\n\t\t\t\t%VALUE_ENTRY%");
 			}
 			template = template.replace("%VALUE_ENTRY%", "");
 		}

@@ -81,6 +81,7 @@
 		"visible": true,
 		"opts" : {
 			"ztlType": "Choice",
+			"choiceType":"ButtonType",
 			"ztlFunction": "",
 			"desc" : "Type",
 			"cat" : "Unsorted",
@@ -88,33 +89,33 @@
 			"apsControl" : "combobox",
 			"options":[
 				{
-				"key" : "Default",
-				"text" : "Default"
-			},
-			{
-				"key" : "Transparent",
-				"text" : "Transparent"
-			},
-			{
-				"key" : "Accept",
-				"text" : "Accept"
-			},
-			{
-				"key" : "Back",
-				"text" : "Back"
-			},
-			{
-				"key" : "Emphasized",
-				"text" : "Emphasized"
-			},
-			{
-				"key" : "Reject",
-				"text" : "Reject"
-			},
-			{
-				"key" : "Up",
-				"text" : "Up"
-			},
+					"key" : "Default",
+					"text" : "Default"
+				},
+				{
+					"key" : "Transparent",
+					"text" : "Transparent"
+				},
+				{
+					"key" : "Accept",
+					"text" : "Accept"
+				},
+				{
+					"key" : "Back",
+					"text" : "Back"
+				},
+				{
+					"key" : "Emphasized",
+					"text" : "Emphasized"
+				},
+				{
+					"key" : "Reject",
+					"text" : "Reject"
+				},
+				{
+					"key" : "Up",
+					"text" : "Up"
+				},
 			
             ],
 			"noAps" : false,
@@ -144,6 +145,7 @@
 		"visible": true,
 		"opts" : {
 			"ztlType": "Choice",
+			"choiceType":"Placement",
 			"ztlFunction": "",
 			"desc" : "Placement",
 			"cat" : "Unsorted",
@@ -151,33 +153,33 @@
 			"apsControl" : "combobox",
 			"options":[
 				{
-				"key" : "Auto",
-				"text" : "Auto"
-			},
-			{
-				"key" : "Horizontal",
-				"text" : "Horizontal"
-			},
-			{
-				"key" : "Vertical",
-				"text" : "Vertical"
-			},
-			{
-				"key" : "Left",
-				"text" : "Left"
-			},
-			{
-				"key" : "Right",
-				"text" : "Right"
-			},
-			{
-				"key" : "Top",
-				"text" : "Top"
-			},
-			{
-				"key" : "Bottom",
-				"text" : "Bottom"
-			},
+					"key" : "Auto",
+					"text" : "Auto"
+				},
+				{
+					"key" : "Horizontal",
+					"text" : "Horizontal"
+				},
+				{
+					"key" : "Vertical",
+					"text" : "Vertical"
+				},
+				{
+					"key" : "Left",
+					"text" : "Left"
+				},
+				{
+					"key" : "Right",
+					"text" : "Right"
+				},
+				{
+					"key" : "Top",
+					"text" : "Top"
+				},
+				{
+					"key" : "Bottom",
+					"text" : "Bottom"
+				},
 			
             ],
 			"noAps" : false,

@@ -821,7 +821,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	 * Sorts the collection by values with optional parameter for direction (ascending is default)
 	 */
 	void sortByKey(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+		if(direction == org_scn_community_shared_SortDirection.Descending) {
 			this.sortByKeyDescending();
 			return;
 		}
@@ -856,7 +856,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	 * Sorts the collection by values with optional parameter for direction (ascending is default)
 	 */
 	void sortByLabel(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+		if(direction == org_scn_community_shared_SortDirection.Descending) {
 			this.sortByLabelDescending();
 			return;
 		}
@@ -891,7 +891,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	 * Sorts the collection by values with optional parameter for direction (ascending is default)
 	 */
 	void sortByValue(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+		if(direction == org_scn_community_shared_SortDirection.Descending) {
 			this.sortByValueDescending();
 			return;
 		}
@@ -1900,6 +1900,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Application Header component*/
 	org.scn.community.basics.ApplicationHeader returnAsScnApplicationHeader (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Arrowed Line component*/
+	org.scn.community.basics.ArrowedLine returnAsScnArrowedLine (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Base64 Image Encoder component*/
 	org.scn.community.basics.Base64Image returnAsScnBase64Image (Component inputComponent) {* return inputComponent; *}

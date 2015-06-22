@@ -263,6 +263,7 @@
     "opts": {
       "apsControl": "combobox",
       "cat": "Data",
+      "choiceType": "-",
       "desc": "When to show an alert",
       "options": [
         {

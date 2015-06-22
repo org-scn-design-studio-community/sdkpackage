@@ -159,7 +159,7 @@
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
 		<defaultValue property="DClearOthers">true</defaultValue>
-		<defaultValue property="DContentMode">Only from Result Set</defaultValue>
+		<defaultValue property="DContentMode">Resultset</defaultValue>
 		<defaultValue property="DCustomDimensions">[]</defaultValue>
 		<defaultValue property="DDisplayText">Text</defaultValue>
 		<defaultValue property="DElements"></defaultValue>

@@ -204,6 +204,7 @@
         "visible": true,
         "opts": {
             "ztlType": "Choice",
+            "choiceType":"-",
             "ztlFunction": "",
             "desc": "When to show an alert",
             "cat": "Data",

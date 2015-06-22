@@ -1,0 +1,19 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_ImageSizeEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify field 
+ */
+class org_scn_community_shared_ImageSize extends Enum {
+
+	/** 16x16 pixels */
+	org_scn_community_shared_ImageSizeEnumfield Size_16px;
+
+	/** 32x32 pixels */
+	org_scn_community_shared_ImageSizeEnumfield Size_32px;
+}

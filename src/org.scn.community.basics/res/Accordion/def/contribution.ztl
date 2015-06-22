@@ -177,6 +177,22 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	String getImageSizeAsString() {*
 		return this.imageSize;
 	*}
+	
+	/**
+	 * Sets Size of the Image Property by Choice Option
+	 */	
+	void setImageSize( /**Size of the Image*/ org_scn_community_shared_ImageSizeEnumfield imageSize){*
+		imageSize = imageSize.toUpperCase();
+		
+		this.imageSize = imageSize;
+	*}
+	
+	/**
+	 * Gets Size of the Image Property as Choice Option
+	 */	
+	org_scn_community_shared_ImageSizeEnumfield getImageSize() {*
+		return this.imageSize;
+	*}
 
 	/**
 	 * Sets Max Height for Section Property
@@ -209,14 +225,16 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	/**
 	 * Sets Member Display Property by Choice Option
 	 */	
-	void setMemberDisplay( /**Member Display*/ org.scn.community.shared.MemberDisplayEnumfield memberDisplay){*
+	void setMemberDisplay( /**Member Display*/ org_scn_community_shared_MemberDisplayEnumfield memberDisplay){*
+		memberDisplay = memberDisplay.toUpperCase();
+		
 		this.memberDisplay = memberDisplay;
 	*}
 	
 	/**
 	 * Gets Member Display Property as Choice Option
 	 */	
-	org.scn.community.shared.MemberDisplay getMemberDisplay() {*
+	org_scn_community_shared_MemberDisplayEnumfield getMemberDisplay() {*
 		return this.memberDisplay;
 	*}
 

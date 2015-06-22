@@ -35,20 +35,24 @@ public class Value {
 		for (int i = 0; i < this.name.length(); i++) {
 			char c = this.name.charAt(i);
 			
-			if(Character.isUpperCase(c)) {
-				correctedName = correctedName + "_" + c;
-			}
-			
-			if(Character.isWhitespace(c)) {
-				correctedName = correctedName + "_";
-			}
-			
-			if(!Character.isAlphabetic(c) && !Character.isDigit(c)) {
-				correctedName = correctedName + "_";
+			if(Character.isAlphabetic(c) || Character.isDigit(c)) {
+				if(Character.isWhitespace(c)) {
+					correctedName = correctedName + "_";	
+				} else {
+					if(Character.isUpperCase(c)) {
+						if(i == 0) {
+							correctedName = correctedName + c;
+						} else {
+							correctedName = correctedName + "_" + c;
+						}
+					} else {
+						correctedName = correctedName + c;
+					}
+				}
 			}
 		}
 		
-		correctedName = correctedName.toUpperCase();
+		// correctedName = correctedName.toUpperCase();
 		
 		templateValues = templateValues.replace("%VALUE%", correctedName);
 		templateValues = templateValues.replace("%DEFAULT%", ""+this.isDefault);

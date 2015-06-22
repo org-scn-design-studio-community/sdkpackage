@@ -55,18 +55,19 @@ ApsContent = function () {
     "opts": {
       "apsControl": "combobox",
       "cat": "Special",
+      "choiceType": "DimensionSet",
       "desc": "Content Mode",
       "options": [
         {
-          "key": "All Dimensions",
+          "key": "All",
           "text": "All Dimensions"
         },
         {
-          "key": "Only from Result Set",
+          "key": "Resultset",
           "text": "Only from Result Set"
         },
         {
-          "key": "Custom Dimension Set",
+          "key": "Custom",
           "text": "Custom Dimension Set"
         }
       ],
@@ -75,7 +76,7 @@ ApsContent = function () {
       "ztlType": "Choice"
     },
     "type": "String",
-    "value": "Only from Result Set",
+    "value": "Resultset",
     "visible": true
   },
   "DCustomDimensions": {
@@ -100,16 +101,16 @@ ApsContent = function () {
       "desc": "Display Text",
       "options": [
         {
-          "key": "TEXT",
+          "key": "Text",
           "text": "Text Only"
         },
         {
-          "key": "TEXT_VALUE",
-          "text": "Text And Value"
+          "key": "Text_Value",
+          "text": "Text Value"
         },
         {
-          "key": "TEXT_COUNT",
-          "text": "Text And Count"
+          "key": "Text_Count",
+          "text": "Text Count"
         }
       ],
       "tooltip": "Display Text",
@@ -178,6 +179,7 @@ ApsContent = function () {
     "opts": {
       "apsControl": "combobox",
       "cat": "Display-Second Value",
+      "choiceType": "SecondValueContent",
       "desc": "Second Value Content",
       "options": [
         {
@@ -198,7 +200,7 @@ ApsContent = function () {
       "ztlType": "Choice"
     },
     "type": "String",
-    "value": "Value",
+    "value": "VALUE",
     "visible": true
   },
   "DSelection": {
@@ -233,6 +235,7 @@ ApsContent = function () {
     "opts": {
       "apsControl": "combobox",
       "cat": "Display",
+      "choiceType": "SortDirection",
       "desc": "Member Sorting Direction",
       "options": [
         {
@@ -256,6 +259,7 @@ ApsContent = function () {
     "opts": {
       "apsControl": "combobox",
       "cat": "Display",
+      "choiceType": "SortType",
       "desc": "Member Sorting Type",
       "options": [
         {
@@ -295,6 +299,7 @@ ApsContent = function () {
     "opts": {
       "apsControl": "combobox",
       "cat": "Display",
+      "choiceType": "-",
       "desc": "Zero Values Display Mode",
       "options": [
         {
@@ -311,7 +316,7 @@ ApsContent = function () {
       "ztlType": "Choice"
     },
     "type": "String",
-    "value": "Show",
+    "value": "SHOW",
     "visible": true
   },
   "data": {

@@ -12,8 +12,8 @@ class org_scn_community_shared_NavigationTypeEnumfield extends Enumfield {
 class org_scn_community_shared_NavigationType extends Enum {
 
 	/** PAGINATOR */
-	org_scn_community_shared_NavigationTypeEnumfield PAGINATOR;
+	org_scn_community_shared_NavigationTypeEnumfield Paginator;
        
 	/** SCROLLBAR */
-	org_scn_community_shared_NavigationTypeEnumfield SCROLLBAR;
+	org_scn_community_shared_NavigationTypeEnumfield Scrollbar;
 }

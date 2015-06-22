@@ -1,0 +1,34 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_PlacementTypeEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort direction 
+ */
+class org_scn_community_shared_PlacementType extends Enum {
+
+	/** Auto */
+	org_scn_community_shared_PlacementTypeEnumfield Auto;
+       
+	/** Horizontal */
+	org_scn_community_shared_PlacementTypeEnumfield Horizontal;
+
+	/** Vertical */
+	org_scn_community_shared_PlacementTypeEnumfield Vertical;
+
+	/** Left */
+	org_scn_community_shared_PlacementTypeEnumfield Left;
+	
+	/** Right */
+	org_scn_community_shared_PlacementTypeEnumfield Right;
+	
+	/** Top */
+	org_scn_community_shared_PlacementTypeEnumfield Top;
+	
+	/** Bottom */
+	org_scn_community_shared_PlacementTypeEnumfield Bottom;
+}

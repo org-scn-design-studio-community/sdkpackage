@@ -25,6 +25,7 @@
     "opts": {
       "apsControl": "combobox",
       "cat": "Unsorted",
+      "choiceType": "ButtonType",
       "desc": "Type",
       "noAps": false,
       "noZtl": false,
@@ -134,6 +135,7 @@
     "opts": {
       "apsControl": "combobox",
       "cat": "Unsorted",
+      "choiceType": "Placement",
       "desc": "Placement",
       "noAps": false,
       "noZtl": false,

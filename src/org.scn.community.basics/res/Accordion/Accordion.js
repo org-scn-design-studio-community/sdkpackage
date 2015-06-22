@@ -224,7 +224,7 @@ Accordion = {
 		
 		var lElement = undefined;
 		
-		if(that.getMemberDisplay() == "text_key") {
+		if(that.getMemberDisplay() == "Text_Key") {
 			iElementText = iElementText + " [" + iElementKey + "]";
 		}
 		

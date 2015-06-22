@@ -62,16 +62,16 @@
            "apsControl":"combobox",
            "options":[
               {
-                 "key":"TEXT",
+                 "key":"Text",
                  "text":"Text Only"
               },
               {
-                 "key":"TEXT_VALUE",
-                 "text":"Text And Value"
+                 "key":"Text_Value",
+                 "text":"Text Value"
               },
               {
-                 "key":"TEXT_COUNT",
-                 "text":"Text And Count"
+                 "key":"Text_Count",
+                 "text":"Text Count"
               }
            ]
         }
@@ -82,6 +82,7 @@
         "visible":true,
         "opts":{
            "ztlType":"Choice",
+           "choiceType":"SortType",
            "ztlFunction":"",
            "desc":"Member Sorting Type",
            "cat":"Display",
@@ -121,6 +122,7 @@
         "visible":true,
         "opts":{
            "ztlType":"Choice",
+           "choiceType":"SortDirection",
            "ztlFunction":"",
            "desc":"Member Sorting Direction",
            "cat":"Display",
@@ -205,10 +207,11 @@
 	},
 	"DSecondValueContent":{
         "type":"String",
-        "value":"Value",
+        "value":"VALUE",
         "visible":true,
         "opts":{
            "ztlType":"Choice",
+           "choiceType":"SecondValueContent",
            "ztlFunction":"",
            "desc":"Second Value Content",
            "cat":"Display-Second Value",
@@ -232,10 +235,11 @@
      },
 	"DContentMode":{
         "type":"String",
-        "value":"Only from Result Set",
+        "value":"Resultset",
         "visible":true,
         "opts":{
            "ztlType":"Choice",
+           "choiceType":"DimensionSet",
            "ztlFunction":"",
            "desc":"Content Mode",
            "cat":"Special",
@@ -243,15 +247,15 @@
            "apsControl":"combobox",
            "options":[
               {
-                 "key":"All Dimensions",
+                 "key":"All",
                  "text":"All Dimensions"
               },
               {
-                 "key":"Only from Result Set",
+                 "key":"Resultset",
                  "text":"Only from Result Set"
               },
               {
-                 "key":"Custom Dimension Set",
+                 "key":"Custom",
                  "text":"Custom Dimension Set"
               }
            ]
@@ -259,10 +263,11 @@
      },
     "DZeroValuesMode":{
         "type":"String",
-        "value":"Show",
+        "value":"SHOW",
         "visible":true,
         "opts":{
            "ztlType":"Choice",
+           "choiceType":"-",
            "ztlFunction":"",
            "desc":"Zero Values Display Mode",
            "cat":"Display",

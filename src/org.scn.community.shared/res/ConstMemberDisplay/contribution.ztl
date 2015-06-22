@@ -11,12 +11,15 @@ class org_scn_community_shared_MemberDisplayEnumfield extends Enumfield {
  */
 class org_scn_community_shared_MemberDisplay extends Enum {
 
-	/** TEXT */
-	org_scn_community_shared_MemberDisplayEnumfield TEXT;
+	/** Text */
+	org_scn_community_shared_MemberDisplayEnumfield Text;
        
-	/** TEXT_VALUE */
-	org_scn_community_shared_MemberDisplayEnumfield TEXT_VALUE;
+	/** Text Value */
+	org_scn_community_shared_MemberDisplayEnumfield Text_Value;
 
-	/** TEXT_KEY */
-	org_scn_community_shared_MemberDisplayEnumfield TEXT_KEY;
+	/** Text Key*/
+	org_scn_community_shared_MemberDisplayEnumfield Text_Key;
+
+	/** Text Count*/
+	org_scn_community_shared_MemberDisplayEnumfield Text_Count;
 }

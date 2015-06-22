@@ -318,7 +318,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	 * Sorts the collection by values with optional parameter for direction (ascending is default)
 	 */
 	void sortByKey(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+		if(direction == org_scn_community_shared_SortDirection.Descending) {
 			this.sortByKeyDescending();
 			return;
 		}
@@ -353,7 +353,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	 * Sorts the collection by values with optional parameter for direction (ascending is default)
 	 */
 	void sortByLabel(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+		if(direction == org_scn_community_shared_SortDirection.Descending) {
 			this.sortByLabelDescending();
 			return;
 		}
@@ -388,7 +388,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	 * Sorts the collection by values with optional parameter for direction (ascending is default)
 	 */
 	void sortByValue(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+		if(direction == org_scn_community_shared_SortDirection.Descending) {
 			this.sortByValueDescending();
 			return;
 		}

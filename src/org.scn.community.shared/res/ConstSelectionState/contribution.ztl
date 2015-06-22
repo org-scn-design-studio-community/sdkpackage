@@ -11,12 +11,12 @@ class org_scn_community_shared_SelectionStateEnumfield extends Enumfield {
  */
 class org_scn_community_shared_SelectionState extends Enum {
 
-	/** CHECKED */
-	org_scn_community_shared_SelectionStateEnumfield CHECKED;
+	/** Checked */
+	org_scn_community_shared_SelectionStateEnumfield Checked;
        
-	/** UNCHECKED */
-	org_scn_community_shared_SelectionStateEnumfield UNCHECKED;
+	/** Unchecked */
+	org_scn_community_shared_SelectionStateEnumfield Unchecked;
 
-	/** MIXED */
-	org_scn_community_shared_SelectionStateEnumfield MIXED;
+	/** Mixed */
+	org_scn_community_shared_SelectionStateEnumfield Mixed;
 }

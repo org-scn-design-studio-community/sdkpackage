@@ -25,6 +25,7 @@
     "opts": {
       "apsControl": "combobox",
       "cat": "Display",
+      "choiceType": "-",
       "desc": "Tag",
       "options": [
         {

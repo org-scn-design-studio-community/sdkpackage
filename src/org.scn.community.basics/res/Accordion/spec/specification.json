@@ -86,12 +86,12 @@
            "apsControl":"combobox",
            "options":[
               {
-                 "key":"TEXT",
+                 "key":"Text",
                  "text":"Text Only"
               },
               {
-                 "key":"TEXT_KEY",
-                 "text":"Text [KEY]"
+                 "key":"Text_Key",
+                 "text":"Text (Key)"
               }
            ]
         }
@@ -111,10 +111,11 @@
     },
     "imageSize":{
         "type":"String",
-        "value":"16px",
+        "value":"Size_16px",
         "visible":true,
         "opts":{
            "ztlType":"Choice",
+           "choiceType":"ImageSize",
            "ztlFunction":"",
            "desc":"Size of the Image",
            "cat":"Image",
@@ -122,11 +123,11 @@
            "apsControl":"combobox",
            "options":[
               {
-                 "key":"16px",
+                 "key":"Size_16px",
                  "text":"16x16 pixels"
               },
               {
-                 "key":"32px",
+                 "key":"Size_32px",
                  "text":"32x32 pixels"
               }
            ]

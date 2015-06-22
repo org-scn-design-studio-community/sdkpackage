@@ -87,6 +87,7 @@
       "visible":true,
       "opts":{
          "ztlType":"Choice",
+         "choiceType":"-",
          "ztlFunction":"",
          "desc":"Simple Choice",
          "cat":"Data",

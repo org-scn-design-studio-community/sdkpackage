@@ -317,6 +317,22 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	String getContentModeAsString() {*
 		return this.DContentMode;
 	*}
+	
+	/**
+	 * Sets Content Mode Property by Choice Option
+	 */	
+	void setContentMode( /**Content Mode*/ org_scn_community_shared_DimensionSetEnumfield contentMode){*
+		contentMode = contentMode.toUpperCase();
+		
+		this.DContentMode = contentMode;
+	*}
+	
+	/**
+	 * Gets Content Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_DimensionSetEnumfield getContentMode() {*
+		return this.DContentMode;
+	*}
 
 	/**
 	 * Sets Custom Dimensions Property as StringArray
@@ -350,6 +366,22 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * Gets Display Text Property as String
 	 */	
 	String getDisplayTextAsString() {*
+		return this.DDisplayText;
+	*}
+	
+	/**
+	 * Sets Display Text Property by Choice Option
+	 */	
+	void setDisplayText( /**Display Text*/ org_scn_community_shared_MemberDisplayEnumfield displayText){*
+		displayText = displayText.toUpperCase();
+		
+		this.DDisplayText = displayText;
+	*}
+	
+	/**
+	 * Gets Display Text Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberDisplayEnumfield getDisplayText() {*
 		return this.DDisplayText;
 	*}
 
@@ -410,6 +442,22 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	String getSecondValueContentAsString() {*
 		return this.DSecondValueContent;
 	*}
+	
+	/**
+	 * Sets Second Value Content Property by Choice Option
+	 */	
+	void setSecondValueContent( /**Second Value Content*/ org_scn_community_shared_SecondValueContentEnumfield secondValueContent){*
+		secondValueContent = secondValueContent.toUpperCase();
+		
+		this.DSecondValueContent = secondValueContent;
+	*}
+	
+	/**
+	 * Gets Second Value Content Property as Choice Option
+	 */	
+	org_scn_community_shared_SecondValueContentEnumfield getSecondValueContent() {*
+		return this.DSecondValueContent;
+	*}
 
 
 
@@ -440,6 +488,22 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	String getSortingDirectionAsString() {*
 		return this.DSortingDirection;
 	*}
+	
+	/**
+	 * Sets Member Sorting Direction Property by Choice Option
+	 */	
+	void setSortingDirection( /**Member Sorting Direction*/ org_scn_community_shared_SortDirectionEnumfield sortingDirection){*
+		sortingDirection = sortingDirection.toUpperCase();
+		
+		this.DSortingDirection = sortingDirection;
+	*}
+	
+	/**
+	 * Gets Member Sorting Direction Property as Choice Option
+	 */	
+	org_scn_community_shared_SortDirectionEnumfield getSortingDirection() {*
+		return this.DSortingDirection;
+	*}
 
 	/**
 	 * Sets Member Sorting Type Property by String
@@ -454,6 +518,22 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	String getSortingTypeAsString() {*
 		return this.DSortingType;
 	*}
+	
+	/**
+	 * Sets Member Sorting Type Property by Choice Option
+	 */	
+	void setSortingType( /**Member Sorting Type*/ org_scn_community_shared_SortTypeEnumfield sortingType){*
+		sortingType = sortingType.toUpperCase();
+		
+		this.DSortingType = sortingType;
+	*}
+	
+	/**
+	 * Gets Member Sorting Type Property as Choice Option
+	 */	
+	org_scn_community_shared_SortTypeEnumfield getSortingType() {*
+		return this.DSortingType;
+	*}
 
 	/**
 	 * Sets Zero Values Display Mode Property by String
@@ -466,6 +546,22 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * Gets Zero Values Display Mode Property as String
 	 */	
 	String getZeroValuesModeAsString() {*
+		return this.DZeroValuesMode;
+	*}
+	
+	/**
+	 * Sets Zero Values Display Mode Property by Choice Option
+	 */	
+	void setZeroValuesMode( /**Zero Values Display Mode*/ org_scn_community_shared_Enumfield zeroValuesMode){*
+		zeroValuesMode = zeroValuesMode.toUpperCase();
+		
+		this.DZeroValuesMode = zeroValuesMode;
+	*}
+	
+	/**
+	 * Gets Zero Values Display Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getZeroValuesMode() {*
 		return this.DZeroValuesMode;
 	*}
 
@@ -490,7 +586,7 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
 		/* entering general block*/
 
-		if(this.DContentMode == "Only from Result Set") {
+		if(this.DContentMode == "Resultset") {
 			l.dimensionsRows = dataSource.getDimensions(Axis.ROWS);
 			l.dimensionsColumns = dataSource.getDimensions(Axis.COLUMNS);
 			
@@ -504,7 +600,7 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 			});
 			
 			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
-		} else if(this.DContentMode == "Custom Dimension Set") {
+		} else if(this.DContentMode == "Custom") {
 			l.dimensionsAll = dataSource.getDimensions();
 			l.customDimensions = JSON.parse(that.DCustomDimensions);
 			
@@ -811,6 +907,22 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	String getContentModeAsString() {*
 		return this.DContentMode;
 	*}
+	
+	/**
+	 * Sets Content Mode Property by Choice Option
+	 */	
+	void setContentMode( /**Content Mode*/ org_scn_community_shared_DimensionSetEnumfield contentMode){*
+		contentMode = contentMode.toUpperCase();
+		
+		this.DContentMode = contentMode;
+	*}
+	
+	/**
+	 * Gets Content Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_DimensionSetEnumfield getContentMode() {*
+		return this.DContentMode;
+	*}
 
 	/**
 	 * Sets Custom Dimensions Property as StringArray
@@ -844,6 +956,22 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	 * Gets Display Text Property as String
 	 */	
 	String getDisplayTextAsString() {*
+		return this.DDisplayText;
+	*}
+	
+	/**
+	 * Sets Display Text Property by Choice Option
+	 */	
+	void setDisplayText( /**Display Text*/ org_scn_community_shared_MemberDisplayEnumfield displayText){*
+		displayText = displayText.toUpperCase();
+		
+		this.DDisplayText = displayText;
+	*}
+	
+	/**
+	 * Gets Display Text Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberDisplayEnumfield getDisplayText() {*
 		return this.DDisplayText;
 	*}
 
@@ -906,6 +1034,22 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	String getSortingDirectionAsString() {*
 		return this.DSortingDirection;
 	*}
+	
+	/**
+	 * Sets Member Sorting Direction Property by Choice Option
+	 */	
+	void setSortingDirection( /**Member Sorting Direction*/ org_scn_community_shared_SortDirectionEnumfield sortingDirection){*
+		sortingDirection = sortingDirection.toUpperCase();
+		
+		this.DSortingDirection = sortingDirection;
+	*}
+	
+	/**
+	 * Gets Member Sorting Direction Property as Choice Option
+	 */	
+	org_scn_community_shared_SortDirectionEnumfield getSortingDirection() {*
+		return this.DSortingDirection;
+	*}
 
 	/**
 	 * Sets Member Sorting Type Property by String
@@ -920,6 +1064,22 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	String getSortingTypeAsString() {*
 		return this.DSortingType;
 	*}
+	
+	/**
+	 * Sets Member Sorting Type Property by Choice Option
+	 */	
+	void setSortingType( /**Member Sorting Type*/ org_scn_community_shared_SortTypeEnumfield sortingType){*
+		sortingType = sortingType.toUpperCase();
+		
+		this.DSortingType = sortingType;
+	*}
+	
+	/**
+	 * Gets Member Sorting Type Property as Choice Option
+	 */	
+	org_scn_community_shared_SortTypeEnumfield getSortingType() {*
+		return this.DSortingType;
+	*}
 
 	/**
 	 * Sets Zero Values Display Mode Property by String
@@ -932,6 +1092,22 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	 * Gets Zero Values Display Mode Property as String
 	 */	
 	String getZeroValuesModeAsString() {*
+		return this.DZeroValuesMode;
+	*}
+	
+	/**
+	 * Sets Zero Values Display Mode Property by Choice Option
+	 */	
+	void setZeroValuesMode( /**Zero Values Display Mode*/ org_scn_community_shared_Enumfield zeroValuesMode){*
+		zeroValuesMode = zeroValuesMode.toUpperCase();
+		
+		this.DZeroValuesMode = zeroValuesMode;
+	*}
+	
+	/**
+	 * Gets Zero Values Display Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getZeroValuesMode() {*
 		return this.DZeroValuesMode;
 	*}
 
@@ -956,7 +1132,7 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
 		/* entering general block*/
 
-		if(this.DContentMode == "Only from Result Set") {
+		if(this.DContentMode == "Resultset") {
 			l.dimensionsRows = dataSource.getDimensions(Axis.ROWS);
 			l.dimensionsColumns = dataSource.getDimensions(Axis.COLUMNS);
 			
@@ -970,7 +1146,7 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 			});
 			
 			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
-		} else if(this.DContentMode == "Custom Dimension Set") {
+		} else if(this.DContentMode == "Custom") {
 			l.dimensionsAll = dataSource.getDimensions();
 			l.customDimensions = JSON.parse(that.DCustomDimensions);
 			
@@ -2490,6 +2666,22 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	String getFormattingOperatorAsString() {*
 		return this.DFormattingOperator;
 	*}
+	
+	/**
+	 * Sets (non-stable) Formatting Operator Property by Choice Option
+	 */	
+	void setFormattingOperator( /**(non-stable) Formatting Operator*/ org_scn_community_shared_FormattingOperatorEnumfield formattingOperator){*
+		formattingOperator = formattingOperator.toUpperCase();
+		
+		this.DFormattingOperator = formattingOperator;
+	*}
+	
+	/**
+	 * Gets (non-stable) Formatting Operator Property as Choice Option
+	 */	
+	org_scn_community_shared_FormattingOperatorEnumfield getFormattingOperator() {*
+		return this.DFormattingOperator;
+	*}
 
 	/**
 	 * Sets Header Column Width in px Property
@@ -2530,6 +2722,22 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	 * Gets Navigation Mode Property as String
 	 */	
 	String getNavigationModeAsString() {*
+		return this.DNavigationMode;
+	*}
+	
+	/**
+	 * Sets Navigation Mode Property by Choice Option
+	 */	
+	void setNavigationMode( /**Navigation Mode*/ org_scn_community_shared_NavigationModeEnumfield navigationMode){*
+		navigationMode = navigationMode.toUpperCase();
+		
+		this.DNavigationMode = navigationMode;
+	*}
+	
+	/**
+	 * Gets Navigation Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_NavigationModeEnumfield getNavigationMode() {*
 		return this.DNavigationMode;
 	*}
 

@@ -11,12 +11,12 @@ class org_scn_community_shared_FormattingOperatorEnumfield extends Enumfield {
  */
 class org_scn_community_shared_FormattingOperator extends Enum {
 
-	/** USE_FIRST */
-	org_scn_community_shared_FormattingOperatorEnumfield USE_FIRST;
+	/** Use_First */
+	org_scn_community_shared_FormattingOperatorEnumfield Use_First;
        
-	/** USE_LAST */
-	org_scn_community_shared_FormattingOperatorEnumfield USE_LAST;
+	/** Use_Last */
+	org_scn_community_shared_FormattingOperatorEnumfield Use_Last;
 
-	/** COLLECT */
-	org_scn_community_shared_FormattingOperatorEnumfield COLLECT;
+	/** Collect */
+	org_scn_community_shared_FormattingOperatorEnumfield Collect;
 }

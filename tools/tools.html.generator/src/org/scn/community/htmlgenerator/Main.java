@@ -61,7 +61,7 @@ public class Main {
 			}
 		}
 		
-		System.out.println("Components Count: " + allContributionXmls.size());
+		System.out.println("Components Count: " + allComponents.size());
 
 		ArrayList<String> listEntries = new ArrayList<String>();
 		String componentModelEntry = Helpers.resource2String(Main.class, "model_components_entry.tmpl");

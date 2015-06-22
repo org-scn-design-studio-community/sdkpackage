@@ -1,0 +1,22 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_SecondValueContentEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify field 
+ */
+class org_scn_community_shared_SecondValueContent extends Enum {
+
+	/** Value */
+	org_scn_community_shared_SecondValueContentEnumfield Value;
+       
+	/** Key */
+	org_scn_community_shared_SecondValueContentEnumfield Key;
+
+	/** Count */
+	org_scn_community_shared_SecondValueContentEnumfield Count;
+}

@@ -23,7 +23,7 @@ FacetFilter = {
 		jQuery.sap.require("sap.ui.ux3.VisibleItemCountMode");
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
-		that._facetFilter = new sap.ui.ux3.FacetFilter(this.getId() + "_ff");
+		that._facetFilter = new sap.ui.ux3.FacetFilter(that.getId() + "_ff");
 		
 		that.addStyleClass("scn-pack-FacetFilter");
 		that.addStyleClass("scn-pack-FullSizeChildren");
@@ -41,35 +41,62 @@ FacetFilter = {
     	
 		that._facetFilter.setVisibleItemCountMode(sap.ui.ux3.VisibleItemCountMode.Auto);
     	
-		org_scn_community_basics.hideNoDataOverlay(this.getId(), true);
+		org_scn_community_basics.hideNoDataOverlay(that.getId(), true);
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 	},
 	
 	afterDesignStudioUpdate: function() {
 		var that = this;
 		
+		var flatData = {};
+		
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
-		var lDimensions = this.getDElements();
+		if(!org_scn_community_databound.hasData(that.getData(), that.getMetadata())) {
+			flatData = org_scn_community_databound.getSampleDataFlat(that, that.processData, that.afterPrepare);
+			return;
+		} else {
+			var options = org_scn_community_databound.initializeOptions();
+			options.ignoreResults = true;
+			// flatData = org_scn_community_databound.flatten(that.getData(), options);
+			
+			that.processData(flatData, that.afterPrepare, that);
+			return;
+		}
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function(flatData, afterPrepare, owner) {
+		var that = owner;
+		
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+		var lDimensions = that.getDElements();
 
 		var options = org_scn_community_databound.initializeOptions();
 		options.iMaxNumber = that.getDMaxMembers();
 		options.allKeys = true;
-		options.idPrefix = this.getId();
+		options.idPrefix = that.getId();
 		options.iDuplicates = "Sum";
 
-		if(that.getDDisplayText() == "Text (Value)") {
+		if(that.getDDisplayText() == "Text_Value") {
 			options.iDisplayText = "Text (Value)";
-		} else if(that.getDDisplayText() == "Text (Count)") {
+		} else if(that.getDDisplayText() == "Text_Count") {
 			options.iDisplayText = "Text (Count)";
 		} else {
 			options.iDisplayText = "Text";
 		}
 		
-		options.iNullValues = this.getDZeroValuesMode();
+		options.iNullValues = that.getDZeroValuesMode();
 	
 		var dataList = that.getData();
 		var metaData = that.getDSMetadata();
 		that._mixedData = org_scn_community_databound.getDataModelForDimensions(dataList, metaData, lDimensions, options);
+		
+		afterPrepare(owner);
+	},
+	
+	afterPrepare: function(owner) {
+		var that = owner;
 		
 		that._facetFilter.removeAllLists();
 
@@ -138,9 +165,9 @@ FacetFilter = {
 			lDimList._dKey = dimensionKey;
 
 			that.lists[dimensionKey] = lDimList;
-			}
+		}
 		
-		var lSelection = this.getDSelection();
+		var lSelection = that.getDSelection();
 		if(lSelection != undefined && lSelection != "") {
 			var selectionJson = JSON.parse(lSelection);
 			
@@ -174,7 +201,7 @@ FacetFilter = {
 						that.lists[dimensionKey].setSelectedKeys([]);
 					}
 					
-					var lSortingType = this.getDSortingType();
+					var lSortingType = that.getDSortingType();
 					if(lSortingType != "Default") {						
 						var lSortingDirection = that.getDSortingDirection();
 						
@@ -199,7 +226,6 @@ FacetFilter = {
 		}
 
 		that._oModel.setData(that._mixedData);
-		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	},
 	
 	/* COMPONENT SPECIFIC CODE - START METHODS*/

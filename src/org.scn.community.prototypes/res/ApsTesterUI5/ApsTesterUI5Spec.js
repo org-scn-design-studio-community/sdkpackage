@@ -65,6 +65,7 @@
     "opts": {
       "apsControl": "combobox",
       "cat": "Data",
+      "choiceType": "-",
       "desc": "Simple Choice",
       "options": [
         {
@@ -78,7 +79,7 @@
       ],
       "tooltip": "Any choice",
       "ztlFunction": "",
-      "ztlType": "choice"
+      "ztlType": "Choice"
     },
     "type": "String",
     "value": "quantile",

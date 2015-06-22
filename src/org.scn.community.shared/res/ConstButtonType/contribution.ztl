@@ -1,0 +1,34 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_ButtonTypeEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort direction 
+ */
+class org_scn_community_shared_ButtonType extends Enum {
+
+	/** Default */
+	org_scn_community_shared_ButtonTypeEnumfield Default;
+       
+	/** Transparent */
+	org_scn_community_shared_ButtonTypeEnumfield Transparent;
+
+	/** Accept */
+	org_scn_community_shared_ButtonTypeEnumfield Accept;
+
+	/** Reject */
+	org_scn_community_shared_ButtonTypeEnumfield Reject;
+	
+	/** Back */
+	org_scn_community_shared_ButtonTypeEnumfield Back;
+	
+	/** Emphasized */
+	org_scn_community_shared_ButtonTypeEnumfield Emphasized;
+	
+	/** Up */
+	org_scn_community_shared_ButtonTypeEnumfield Up;
+}

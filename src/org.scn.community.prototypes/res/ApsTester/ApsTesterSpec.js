@@ -65,6 +65,7 @@
     "opts": {
       "apsControl": "combobox",
       "cat": "Data",
+      "choiceType": "-",
       "desc": "Simple Choice",
       "options": [
         {

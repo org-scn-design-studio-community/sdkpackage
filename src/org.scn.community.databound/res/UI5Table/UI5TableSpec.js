@@ -234,11 +234,11 @@
       "desc": "Navigation Mode",
       "options": [
         {
-          "key": "PAGINATOR",
+          "key": "Paginator",
           "text": "Use Page Paginator"
         },
         {
-          "key": "SCROLLBAR",
+          "key": "Scrollbar",
           "text": "Use Scrollbar"
         }
       ],

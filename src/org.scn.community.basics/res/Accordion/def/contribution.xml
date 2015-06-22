@@ -134,7 +134,7 @@
 		<defaultValue property="defaultImage"></defaultValue>
 		<defaultValue property="elementsContent">[]</defaultValue>
 		<defaultValue property="expandedKey"></defaultValue>
-		<defaultValue property="imageSize">16px</defaultValue>
+		<defaultValue property="imageSize">Size_16px</defaultValue>
 		<defaultValue property="maxSectionHeight">200</defaultValue>
 		<defaultValue property="memberDisplay">text</defaultValue>
 		<defaultValue property="onFirstExpand"></defaultValue>
