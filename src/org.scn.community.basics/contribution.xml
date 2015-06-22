@@ -575,6 +575,54 @@
 		<defaultValue property="displayWelcome">true</defaultValue>
 	</initialization>
 </component>
+<component
+	id="ArrowedLine"
+    title="Arrowed Line"
+    group="ScnCommunityBasics"
+    tooltip="Displays an arrowed line"
+    icon="res/ArrowedLine/ArrowedLine.png"
+    handlerType="div">
+
+    <jsInclude>res/ArrowedLine/ArrowedLine.js</jsInclude>
+
+    <property id="lineColor" type="Color" title="Line Color" group="Display" />
+    <property id="lineSize" type="int" title="Size" group="Display" />
+    <property id="lineType" type="String" title="Line Type" group="Display">      
+	    <possibleValue>1</possibleValue>
+		<possibleValue>2</possibleValue>
+		<possibleValue>3</possibleValue>
+		<possibleValue>4</possibleValue>
+		<possibleValue>5</possibleValue>
+		<possibleValue>6</possibleValue>
+		<possibleValue>7</possibleValue>
+		<possibleValue>8</possibleValue>
+		<possibleValue>9</possibleValue>
+		<possibleValue>10</possibleValue>
+		<possibleValue>11</possibleValue>
+		<possibleValue>12</possibleValue>
+		<possibleValue>13</possibleValue>
+		<possibleValue>14</possibleValue>
+	</property>
+    <property id="arrowPos" type="String" title="Arrow Position" group="Display">      
+	    <possibleValue>None</possibleValue>
+	    <possibleValue>Start</possibleValue>
+	    <possibleValue>End</possibleValue>
+		<possibleValue>Both</possibleValue>
+	</property>
+	<property id="visible" type="boolean" title="Visibility" group="Display" />
+        
+    <initialization>
+    	<defaultValue property="WIDTH">100</defaultValue>
+        <defaultValue property="HEIGHT">100</defaultValue>
+        <defaultValue property="TopMargin">0</defaultValue>
+        <defaultValue property="LeftMargin">0</defaultValue>
+        <defaultValue property="lineColor">Black</defaultValue>
+        <defaultValue property="lineSize">5</defaultValue>
+        <defaultValue property="lineType">1</defaultValue>
+        <defaultValue property="arrowPos">None</defaultValue>
+		<defaultValue property="visible">true</defaultValue>
+	</initialization>
+</component>
 <component id="Base64Image"
 	title="Base64 Image Encoder"
 	icon="res/Base64Image/Base64Image.png"

@@ -9,6 +9,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\ActivityViewer\def\contribution.xml ^
 ..\res\ActionSheetButton\def\contribution.xml ^
 ..\res\ApplicationHeader\def\contribution.xml ^
+..\res\ArrowedLine\def\contribution.xml ^
 ..\res\Base64Image\def\contribution.xml ^
 ..\res\BasicBusinessCard\def\contribution.xml ^
 ..\res\Calendar\def\contribution.xml ^
@@ -67,6 +68,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ActivityViewer\def\contribution.ztl ^
 ..\res\ActionSheetButton\def\contribution.ztl ^
 ..\res\ApplicationHeader\def\contribution.ztl ^
+..\res\ArrowedLine\def\contribution.ztl ^
 ..\res\Base64Image\def\contribution.ztl ^
 ..\res\BasicBusinessCard\def\contribution.ztl ^
 ..\res\Calendar\def\contribution.ztl ^

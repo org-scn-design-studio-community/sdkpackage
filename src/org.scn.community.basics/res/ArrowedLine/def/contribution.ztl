@@ -1,0 +1,47 @@
+
+/**
+ *	Class for Arrowed Line
+ */
+
+class org.scn.community.basics.ArrowedLine extends org.scn.community.shared.Component {
+	
+	/* Returns the current color of the line. */
+	String getLineColor() {*
+		return this.lineColor;
+	*}
+
+	/* Sets the current color of the line. */
+	void setLineColor(/* New Line Color */ String newLineColor) {*
+		this.lineColor = newLineColor;
+	*}
+	
+	/* Returns the current type of the line. */
+	String getLineType() {*
+		return this.lineType;
+	*}
+
+	/* Sets the current type of the line. */
+	void setLineType(/* New Line Type */ String newLineType) {*
+		this.lineType = newLineType;
+	*}
+	
+	/* Returns the current size of the line. */
+	String getLineSize() {*
+		return this.lineSize;
+	*}
+
+	/* Sets the current size of the line. */
+	void setLineSize(/* New Line Size */ int newLineSize) {*
+		this.lineSize = newLineSize;
+	*}	
+	
+	/* Returns the current arrow position of the line. */
+	String getArrowPos() {*
+		return this.arrowPos;
+	*}
+
+	/* Sets the current arrow position of the line. */
+	void setArrowPos(/* New Arrow Position */ String newArrowPos) {*
+		this.arrowPos = newArrowPos;
+	*}		
+}
