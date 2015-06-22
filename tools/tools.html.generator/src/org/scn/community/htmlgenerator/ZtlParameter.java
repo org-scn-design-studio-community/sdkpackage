@@ -1,5 +1,6 @@
 package org.scn.community.htmlgenerator;
 
+import org.scn.community.spec.orgin.OrginSpec;
 import org.scn.community.utils.Helpers;
 
 public class ZtlParameter {
@@ -44,6 +45,22 @@ public class ZtlParameter {
 
 	public String toHtml() {
 		String template = Helpers.resource2String(this.getClass(), "parameter.html");
+
+		template = template.replace("%NAME%", this.name);
+		String typeOptional = this.type;
+
+		if (this.isOptional) {
+			typeOptional = typeOptional + " [ optional ]";
+		}
+
+		template = template.replace("%TYPE%", typeOptional);
+		template = template.replace("%HELP%", this.docu);
+
+		return template;
+	}
+
+	public String toSpec20() {
+		String template = Helpers.resource2String(OrginSpec.class, "org.ztl.parameter.ztl");
 
 		template = template.replace("%NAME%", this.name);
 		String typeOptional = this.type;

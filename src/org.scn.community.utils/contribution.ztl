@@ -1892,7 +1892,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Accordion 2.0 component*/
 	org.scn.community.basics.Accordion returnAsScnAccordion (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Action Sheet Button component*/
+	/**Cast to Action Sheet Button 2.0 component*/
 	org.scn.community.basics.ActionSheetButton returnAsScnActionSheetButton (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Activity Viewer component*/
@@ -1925,10 +1925,10 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Drag Drop Area component*/
 	org.scn.community.basics.DragDropArea returnAsScnDragDropArea (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Embedded Frame component*/
+	/**Cast to Embedded Frame 2.0 component*/
 	org.scn.community.basics.EmbeddedFrame returnAsScnEmbeddedFrame (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Embedded Media component*/
+	/**Cast to Embedded Media 2.0 component*/
 	org.scn.community.basics.EmbeddedMedia returnAsScnEmbeddedMedia (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Fallback Picture component*/
@@ -2000,6 +2000,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to QRCode Generator component*/
 	org.scn.community.basics.QRCode returnAsScnQRCode (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to RSSFeedReader component*/
+	org.scn.community.basics.RSSFeedReader returnAsScnRSSFeedReader (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Range Slider component*/
 	org.scn.community.basics.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
 
@@ -2008,9 +2011,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Road Map component*/
 	org.scn.community.basics.RoadMap returnAsScnRoadMap (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to RSSFeedReader component*/
-	org.scn.community.basics.RSSFeedReader returnAsScnRSSFeedReader (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Segmented Button component*/
 	org.scn.community.basics.SegmentedButton returnAsScnSegmentedButton (Component inputComponent) {* return inputComponent; *}
@@ -2051,8 +2051,11 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Data Drop Down component*/
 	org.scn.community.databound.DropDown returnAsScnDropDown (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Facet Filter component*/
+	/**Cast to Facet Filter 2.0 component*/
 	org.scn.community.databound.FacetFilter returnAsScnFacetFilter (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Facet Selector 2.0 component*/
+	org.scn.community.databound.FacetSelector returnAsScnFacetSelector (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Hexbin Chart component*/
 	org.scn.community.databound.HexBin returnAsScnHexBin (Component inputComponent) {* return inputComponent; *}
@@ -2099,13 +2102,13 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Tag Cloud component*/
 	org.scn.community.databound.tagCloud returnAsScntagCloud (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Top Flop component*/
-	org.scn.community.databound.TopFlop returnAsScnTopFlop (Component inputComponent) {* return inputComponent; *}
-
 	/**Cast to Data Top FLop Chart component*/
 	org.scn.community.databound.TopFlopChart returnAsScnTopFlopChart (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to UI5 Table component*/
+	/**Cast to Data Top Flop component*/
+	org.scn.community.databound.TopFlop returnAsScnTopFlop (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to UI5 Table 2.0 component*/
 	org.scn.community.databound.UI5Table returnAsScnUI5Table (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Bring Your Own Data component*/
@@ -2123,11 +2126,11 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to (PROTOTYPE!) Application Header (OnBeforeRender) component*/
 	org.scn.community.prototypes.ApplicationHeaderO returnAsScnApplicationHeaderO (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Aps Tester component*/
-	org.scn.community.prototypes.ApsTester returnAsScnApsTester (Component inputComponent) {* return inputComponent; *}
-
 	/**Cast to Aps Tester UI5 component*/
 	org.scn.community.prototypes.ApsTesterUI5 returnAsScnApsTesterUI5 (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Aps Tester component*/
+	org.scn.community.prototypes.ApsTester returnAsScnApsTester (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Bullet Chart (Gen Prototype) component*/
 	org.scn.community.prototypes.BulletChartGen returnAsScnBulletChartGen (Component inputComponent) {* return inputComponent; *}
@@ -2155,6 +2158,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Custom Css Collector component*/
 	org.scn.community.utils.CustomCssCollector returnAsScnCustomCssCollector (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Data Source Helper 2.0 component*/
+	org.scn.community.utils.DataSourceHelper returnAsScnDataSourceHelper (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Debugger Code Inspector component*/
 	org.scn.community.utils.Debugger returnAsScnDebugger (Component inputComponent) {* return inputComponent; *}
@@ -2185,24 +2191,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Accordion 2.0 component*/
-	org.scn.community.basics.Accordion returnAsScnAccordion (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Activity Viewer component*/
-	org.scn.community.basics.ActivityViewer returnAsScnActivityViewer (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Aps Tester component*/
-	org.scn.community.prototypes.ApsTester returnAsScnApsTester (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Aps Tester UI5 component*/
-	org.scn.community.prototypes.ApsTesterUI5 returnAsScnApsTesterUI5 (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Bullet Chart (Gen Prototype) component*/
-	org.scn.community.prototypes.BulletChartGen returnAsScnBulletChartGen (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Json Object component*/
-	org.scn.community.utils.JsonObject returnAsScnJsonObject (Component inputComponent) {* return inputComponent; *}
 
 
 }
@@ -2696,6 +2684,144 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 		this.clearConsole();
 		this.DStack = "[]";
 		this.DVariables = "[]";
+	*}
+}
+
+/**
+ * Generated ZTL Class for DataSourceHelper
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.utils.DataSourceHelper extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Activate Cache Property
+	 */	
+	void setCache( /**Activate Cache*/ boolean cache){*
+		this.cache = cache;
+	*}
+
+	/**
+	 * Gets Activate Cache Property
+	 */	
+	boolean isCache() {*
+		return this.cache;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
+
+	/**
+	 * Returns the correct content for <maxMemberCount> members in all dimensions.
+	 * Can be passed into the property <Elements> as String - using the binding feature. 
+	 */
+	String getDataBindingMembersForAllDimensions (org_scn_community_shared_ContentNotationEnumfield notation, optional int maxMemberCount) {*
+		var DS = this.getDataSource();
+	
+		this.setupHolder();
+
+		if(maxMemberCount == undefined) {
+			maxMemberCount = 100;
+		}
+		
+		// read here the cache property, access in "forEach" is not possible because of different scope
+		var cacheActive = this.isCache();
+		var holder = this.runtimeHolder;
+		
+	    var dimensions = DS.getDimensions();
+
+	    var elementsJArr = [];
+
+	    dimensions.forEach(function(dimension, index) {
+	        var dimensionJObj = {};
+	        var dimensionJArr = [];
+	        
+	        dimensionJObj.parentKey = "ROOT";
+	        dimensionJObj.key = dimension.name;
+	        dimensionJObj.text = dimension.text;
+	        dimensionJObj.url = "";
+	        dimensionJObj.leaf = false;
+	        
+	        dimensionJArr.push(dimensionJObj);
+	        elementsJArr.push(dimensionJObj);
+
+	        var cacheKey = dimension.name + "-" + maxMemberCount;
+	        
+	        // check if cache is active or nothing in cache
+	        if(!cacheActive || holder.memberCache[cacheKey] == undefined) {
+	        	holder.memberCache[cacheKey] = DS.getMembers(dimension, maxMemberCount);	
+	        }
+
+	        holder.memberCache[cacheKey].forEach(function(member, index) {
+	            var intKey = member.internalKey;
+
+	            // hack for unassigned
+	            if (intKey == "") {
+	                intKey = "UNASSIGNED";
+	            }
+
+	            var memberJObj = {};
+		        
+	            memberJObj.parentKey = dimension.name;
+	            memberJObj.key = dimension.name + "-" + intKey;
+	            memberJObj.text = member.text;
+	            memberJObj.url = "";
+	            memberJObj.leaf = true;
+
+	            dimensionJArr.push(memberJObj);
+	            elementsJArr.push(memberJObj);
+	            
+	            holder.dimensionArrayCache[cacheKey] = dimensionJArr;
+	        });
+	    });
+
+	    this.runtimeHolder.dataSourceCache["ALL_MEMBERS"] = elementsJArr;
+	    elementsJArr = JSON.stringify(elementsJArr);
+
+	    return elementsJArr;
+	*}
+	
+	MemberArray getMembers(String dimension, optional int maxMemberCount) {*
+		var DS = this.getDataSource();
+	
+		this.setupHolder();
+		
+		if(maxMemberCount == undefined) {
+			maxMemberCount = 100;
+		}
+	
+		// read here the cache property, access in "forEach" is not possible because of different scope
+		var cacheActive = this.isCache();
+		var holder = this.runtimeHolder;
+		
+		var cacheKey = dimension + "-" + maxMemberCount;
+		
+		// check if cache is active or nothing in cache
+        if(!cacheActive || holder.memberCache[cacheKey] == undefined) {
+        	holder.memberCache[cacheKey] = DS.getMembers(dimension, maxMemberCount);	
+        }
+        
+        return holder.memberCache[cacheKey];
+	*}
+	
+	/**
+	 * Resets the Cached Content. You can place this in the Data Source -> onResultSetChanged() method
+	 */
+	void resetContent () {*
+		this.runtimeHolder = undefined;
+		this.setupHolder();
+	*}
+	
+	@Visibility(private)
+	void setupHolder() {*
+		if(this.runtimeHolder == undefined) {
+			this.runtimeHolder = {};
+			this.runtimeHolder.memberCache = {};
+			this.runtimeHolder.memberArrayCache = {};
+			this.runtimeHolder.dimensionArrayCache = {};
+			this.runtimeHolder.dataSourceCache = {};
+		}
 	*}
 }
 /**
@@ -3344,7 +3470,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Basic Authorization Content [Basic: GUID] Property
 	 */	
-	void setBasicAuthorisation( /* &nbsp; */  String basicAuthorisation){*
+	void setBasicAuthorisation( /* Basic Authorization Content [Basic: GUID] */  String basicAuthorisation){*
 		this.DBasicAuthorisation = basicAuthorisation;
 	*}
 
@@ -3368,7 +3494,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Content Type Property
 	 */	
-	void setContentType( /* &nbsp; */  String contentType){*
+	void setContentType( /* Content Type */  String contentType){*
 		this.DContentType = contentType;
 	*}
 
@@ -3382,7 +3508,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Is this Request Cross-Domain Property
 	 */	
-	void setCrossDomain( /* &nbsp; */  boolean crossDomain){*
+	void setCrossDomain( /* Is this Request Cross-Domain */  boolean crossDomain){*
 		this.DCrossDomain = crossDomain;
 	*}
 
@@ -3396,7 +3522,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Expected Content Type Property
 	 */	
-	void setExpectedContentType( /* &nbsp; */  choice expectedContentType){*
+	void setExpectedContentType( /* Expected Content Type */  choice expectedContentType){*
 		this.DExpectedContentType = expectedContentType;
 	*}
 
@@ -3410,7 +3536,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Response Status for Good Response Property
 	 */	
-	void setExpectedResponseStatus( /* &nbsp; */  int expectedResponseStatus){*
+	void setExpectedResponseStatus( /* Response Status for Good Response */  int expectedResponseStatus){*
 		this.DExpectedResponseStatus = expectedResponseStatus;
 	*}
 
@@ -3588,7 +3714,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Raw Parameters as String Content Property
 	 */	
-	void setRawParameters( /* &nbsp; */  String rawParameters){*
+	void setRawParameters( /* Raw Parameters as String Content */  String rawParameters){*
 		this.DRawParameters = rawParameters;
 	*}
 
@@ -3602,7 +3728,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Request Method (POST | GET | PUT) Property
 	 */	
-	void setRequestMethod( /* &nbsp; */  choice requestMethod){*
+	void setRequestMethod( /* Request Method (POST | GET | PUT) */  choice requestMethod){*
 		this.DRequestMethod = requestMethod;
 	*}
 
@@ -3616,7 +3742,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Request Type (JQuery | HTTP) Property
 	 */	
-	void setRequestType( /* &nbsp; */  choice requestType){*
+	void setRequestType( /* Request Type (JQuery | HTTP) */  choice requestType){*
 		this.DRequestType = requestType;
 	*}
 
@@ -3730,7 +3856,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Url To Send the Request Property
 	 */	
-	void setUrl( /* &nbsp; */  String url){*
+	void setUrl( /* Url To Send the Request */  String url){*
 		this.DUrl = url;
 	*}
 

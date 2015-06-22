@@ -1,11 +1,18 @@
-.-scn-pack-Accordion {
-	background: #FFFFFF !important;
-	border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
-	border: solid 1px #000000 !important;
+div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% !important;height: 100% !important;}
+
+.scn-pack-Accordion {
+	-background: #FFFFFF !important;
+	-border-radius: 3px 3px 3px 3px/3px 3px 3px 3px;
+	border: solid 1px transparent !important;
+}
+
+.scn-pack-Accordion-Main {
+	border: solid 0px transparent !important;
+	padding: 1px !important;
 }
 
 .scn-pack-Accordion-Layout {
-	border: solid 2px transparent !important;
+	border: solid 1px transparent !important;
 }
 
 .scn-pack-Accordion-SelectedValue {

@@ -12,6 +12,7 @@ ApsContent = function () {
   "height": "600",
   "id": "Accordion",
   "package": "basics",
+  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -70,7 +71,7 @@ ApsContent = function () {
             "mode": "ztl",
             "type": "String"
           },
-          "sequence": "key,text,url,parentKey",
+          "sequence": "parentKey,key,text,url",
           "text": {
             "desc": "Given Text",
             "type": "String"
@@ -152,10 +153,33 @@ ApsContent = function () {
       "desc": "Max Height for Section",
       "tooltip": "Max Height for Section",
       "ztlFunction": "",
-      "ztlType": "String"
+      "ztlType": "int"
     },
     "type": "int",
     "value": "200",
+    "visible": true
+  },
+  "memberDisplay": {
+    "opts": {
+      "apsControl": "combobox",
+      "cat": "Display",
+      "desc": "Member Display",
+      "options": [
+        {
+          "key": "text",
+          "text": "Text Only"
+        },
+        {
+          "key": "text_key",
+          "text": "Text [KEY]"
+        }
+      ],
+      "tooltip": "Member Display",
+      "ztlFunction": "",
+      "ztlType": "Choice"
+    },
+    "type": "String",
+    "value": "text",
     "visible": true
   },
   "onFirstExpand": {
@@ -190,15 +214,29 @@ ApsContent = function () {
       "noAps": true,
       "noZtl": false,
       "tooltip": "Selected Key",
-      "ztlFunction": "",
+      "ztlFunction": "-get",
       "ztlType": "String"
     },
     "type": "String",
-    "value": "-get",
+    "value": "",
+    "visible": false
+  },
+  "supportedContentNotation": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Internal",
+      "desc": "Supported Content Notation",
+      "noAps": true,
+      "noZtl": false,
+      "tooltip": "Supported Content Notation",
+      "ztlFunction": "-get",
+      "ztlType": "shared.ContentNotation"
+    },
+    "type": "String",
+    "value": "PARENT_CHILD_TEXT_URL",
     "visible": false
   },
   "withImage": {
-    "onSet": "flattenData",
     "opts": {
       "apsControl": "checkbox",
       "cat": "Image",

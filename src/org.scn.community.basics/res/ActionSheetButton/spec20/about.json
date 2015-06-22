@@ -1,0 +1,16 @@
+{
+	"title": "Action Sheet Button 2.0",
+	"description": "Fiori-Inspired Action Sheet Button menu",
+	"icon": "ActionSheetButton.png",
+	"topics": 
+	[
+		{
+			"title" : "Action Sheet Button",
+			"content" : "Fiori-Inspired Action Sheet Button menu"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

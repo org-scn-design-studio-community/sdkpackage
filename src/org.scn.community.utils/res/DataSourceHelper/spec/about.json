@@ -1,0 +1,16 @@
+{
+	"title": "Data Source Helper 2.0",
+	"description": "Data Source Helper - Utilities for work with Data Sources",
+	"icon": "DataSourceHelper.png",
+	"topics": 
+	[
+		{
+			"title" : "Data Source Helper",
+			"content" : "collects utility methods for better work with data sources"
+		},
+		{
+			"title" : "Utility Component",
+			"content" : "This component does not have any visualization, it can act as an utility component."
+		},
+	]
+}

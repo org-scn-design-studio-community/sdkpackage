@@ -1,0 +1,93 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Add an item<br/>
+	 * <example><br/>
+	 * <code><br/>
+	 * ACTIONSHEETBUTTON_1.addItem("delete", "Delete Bookmark", "sap-icon://delete");<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void addItem (
+			String /*Key*/ key,
+			String /*Text*/ text,
+			String /*Icon*/ icon,
+			
+			) 
+	{*
+		var o = [];
+		if(this.items != "") o = eval(this.items);
+		var newItem = {
+			key : key,
+			text : text,
+			icon : icon
+		};
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			var item = o[i];
+			if(item.key == key) matchIndex = i;
+		}
+		if(matchIndex>-1) {
+			o[matchIndex] = newItem;
+		}else{
+			o.push(newItem);
+		}
+		this.items = JSON.stringify(o);
+	*}
+	/**
+	 * Gets Item Selected<br/>
+	 */
+	String getSelectedItem (
+			
+			) 
+	{*
+		return this.selectedItem;
+	*}
+	/**
+	 * Gets Item Key Selected<br/>
+	 */
+	String getSelectedKey (
+			
+			) 
+	{*
+		return this.selectedKey;
+	*}
+	/**
+	 * Remove All Items<br/>
+	 * <example><br/>
+	 * Remove all items<br/>
+	 * <code><br/>
+	 * ACTIONSHEETBUTTON_1.removeAllItems();<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void removeAllItems (
+			
+			) 
+	{*
+		this.items = "[]";
+	*}
+	/**
+	 * Remove an item<br/>
+	 * <example><br/>
+	 * <code><br/>
+	 * ACTIONSHEETBUTTON_1.removeItem("delete");<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void removeItem (
+			String /*Item*/ key,
+			
+			) 
+	{*
+		var o = [];
+		if(this.items != "") o = eval(this.items);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			var item = o[i];
+			if(item.key == key) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		this.items = JSON.stringify(o);
+	*}
+	

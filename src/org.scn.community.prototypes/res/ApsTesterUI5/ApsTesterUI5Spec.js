@@ -161,6 +161,7 @@
   "height": "200",
   "id": "ApsTesterUI5",
   "package": "prototypes",
+  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
   "require": [],
   "title": "Aps Tester UI5",
   "tooltip": "Application Property Sheet Tester UI5",

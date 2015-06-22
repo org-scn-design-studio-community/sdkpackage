@@ -1,0 +1,16 @@
+{
+	"title": "%COMPONENT_TITLE% 2.0",
+	"description": "%COMPONENT_TOOLTIP%",
+	"icon": "%COMPONENT_NAME%.png",
+	"topics": 
+	[
+		{
+			"title" : "%COMPONENT_TITLE%",
+			"content" : "%COMPONENT_TOOLTIP%"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

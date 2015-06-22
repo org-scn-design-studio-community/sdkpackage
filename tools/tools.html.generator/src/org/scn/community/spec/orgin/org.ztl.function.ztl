@@ -1,0 +1,9 @@
+/**
+%HELP%
+	 */
+	%RETURN_TYPE% %NAME% (
+			%PARAMETER%
+			) 
+	{*
+		%CONTENT%
+	*}

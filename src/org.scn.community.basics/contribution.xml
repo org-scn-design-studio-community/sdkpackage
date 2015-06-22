@@ -261,6 +261,15 @@
 
 	</property>
 	<property
+		id="memberDisplay"
+		type="String"
+		title="Member Display"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="onFirstExpand"
 		type="ScriptText"
 		title="On First Expand"
@@ -280,6 +289,15 @@
 		id="selectedKey"
 		type="String"
 		title="Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="supportedContentNotation"
+		type="String"
+		title="Supported Content Notation"
 		group="Display"
 		bindable="true"
 		visible="false">
@@ -310,9 +328,11 @@
 		<defaultValue property="expandedKey"></defaultValue>
 		<defaultValue property="imageSize">16px</defaultValue>
 		<defaultValue property="maxSectionHeight">200</defaultValue>
+		<defaultValue property="memberDisplay">text</defaultValue>
 		<defaultValue property="onFirstExpand"></defaultValue>
 		<defaultValue property="onSelectionChanged"></defaultValue>
-		<defaultValue property="selectedKey">-get</defaultValue>
+		<defaultValue property="selectedKey"></defaultValue>
+		<defaultValue property="supportedContentNotation">PARENT_CHILD_TEXT_URL</defaultValue>
 		<defaultValue property="withImage">true</defaultValue>
 
 	</initialization>
@@ -388,64 +408,115 @@
 
 </component>
 
-<component id="ActionSheetButton" 
-		title="Action Sheet Button" 
-		tooltip="Fiori-Inspired Action Sheet Button menu"
-		icon="res/ActionSheetButton/ActionSheetButton.png" 
-		handlerType="sapui5" 
-		propertySheetPath="res/ActionSheetButton/aps/ActionSheetButtonPropertyPage.html"
-		group="ScnCommunityBasics">
-	  	
-		<jsInclude>res/require_loader.js</jsInclude>
-		<jsInclude>res/common_basics.js</jsInclude>
-		<jsInclude>res/ActionSheetButton/ActionSheetButton.js</jsInclude>
-	  	
-	  	<property id="text" type="String" title="Title" group="Display"/>
-	  	<property id="items" type="String" title="Items" visible="false" group="Display"/>
-	  	<!-- 
-	  	Switch to ActionSheet vs. PopOver makes these obsolete
-	  	
-	  	<property type="boolean" title="Show Title" id="showHeader"/>
-	  	<property type="String" title="Popover Width" id="popoverWidth"/>
-	  	<property type="String" title="Popover Height" id="popoverHeight"/>
-	  	-->
-	  	<property id="icon" type="String" title="Icon" group="Display"/>
-	  	<property type="String" title="Selected Item" id="selectedItem" visible="false" group="Display"/>
-	  	<property type="String" title="Selected Key" id="selectedKey" visible="false" group="Display"/>
-	  	<property type="ScriptText" title="On Select" id="onPopoverSelect" group="Display"/>
-	  	<property id="buttonType" type="String" title="Type" group="Display">
-	  		<possibleValue>Default</possibleValue>
-	  		<possibleValue>Transparent</possibleValue>
-	  		<possibleValue>Accept</possibleValue>
-	  		<possibleValue>Back</possibleValue>
-	  		<possibleValue>Emphasized</possibleValue>
-	  		<possibleValue>Reject</possibleValue>
-	  		<possibleValue>Up</possibleValue>
-	  	</property>
-	  	<property id="placement" type="String" title="Placement" group="Display">
-	  		<possibleValue>Auto</possibleValue>
-	  		<possibleValue>Horizontal</possibleValue>
-	  		<possibleValue>Vertical</possibleValue>
-	  		<possibleValue>Left</possibleValue>
-	  		<possibleValue>Right</possibleValue>
-	  		<possibleValue>Top</possibleValue>
-			<possibleValue>Bottom</possibleValue>
-	  	</property>
-	  	<initialization>
-	  		<defaultValue property="WIDTH">48</defaultValue>
-			<defaultValue property="HEIGHT">48</defaultValue>
-			<defaultValue property="TOP_MARGIN">0</defaultValue>
-			<defaultValue property="LEFT_MARGIN">0</defaultValue>
-			<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-			<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-	  		<defaultValue property="showTitle">true</defaultValue>
-	  		<defaultValue property="icon">sap-icon://menu2</defaultValue>
-	  		<defaultValue property="buttonType">Default</defaultValue>
-	  		<defaultValue property="popoverWidth">auto</defaultValue>
-	  		<defaultValue property="popoverHeight">auto</defaultValue>
-	  		<defaultValue property="placement">Auto</defaultValue>
-	  	</initialization>
-	</component>
+<component
+	id="ActionSheetButton"
+	title="Action Sheet Button 2.0"
+	tooltip="Fiori-Inspired Action Sheet Button menu"
+	icon="res/ActionSheetButton/ActionSheetButton.png"
+	handlerType="sapui5"
+	propertySheetPath="res/ActionSheetButton/aps/PropertyPage.html"
+	group="ScnCommunityBasics"
+	databound="false"
+>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ActionSheetButton/ActionSheetButtonLoader.js</jsInclude>
+	<cssInclude>res/ActionSheetButton/ActionSheetButton.css</cssInclude>
+	
+	<property
+		id="buttonType"
+		type="String"
+		title="Type"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="icon"
+		type="String"
+		title="Icon"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="items"
+		type="String"
+		title="Items"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onPopoverSelect"
+		type="ScriptText"
+		title="On Select"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="placement"
+		type="String"
+		title="Placement"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="selectedItem"
+		type="String"
+		title="Selected Item"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="selectedKey"
+		type="String"
+		title="Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="text"
+		type="String"
+		title="Title"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">48</defaultValue>
+		<defaultValue property="HEIGHT">48</defaultValue>
+		
+		<defaultValue property="buttonType">Default</defaultValue>
+		<defaultValue property="icon">sap-icon://menu2</defaultValue>
+		<defaultValue property="items">[]</defaultValue>
+		<defaultValue property="onPopoverSelect"></defaultValue>
+		<defaultValue property="placement">Auto</defaultValue>
+		<defaultValue property="selectedItem"></defaultValue>
+		<defaultValue property="selectedKey"></defaultValue>
+		<defaultValue property="text"></defaultValue>
+
+	</initialization>
+
+</component>
+
 <component
 	id="ApplicationHeader"
 	title="Application Header"
@@ -1283,77 +1354,90 @@
 </component>
 <component
 	id="EmbeddedFrame"
-	title="Embedded Frame"
-	handlerType="div"
+	title="Embedded Frame 2.0"
+	tooltip="Embedded Frame - Include external web pages directly in your application"
 	icon="res/EmbeddedFrame/EmbeddedFrame.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/EmbeddedFrame/EmbeddedFrame.js</jsInclude>
+	<jsInclude>res/EmbeddedFrame/EmbeddedFrameLoader.js</jsInclude>
+	<cssInclude>res/EmbeddedFrame/EmbeddedFrame.css</cssInclude>
 	
 	<property
 		id="url"
-		title="Content Url"
-		tooltip="Url to be embedded as content"
+		type="String"
+		title="Url"
 		group="Display"
-		type="String" />
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
 		<defaultValue property="url"></defaultValue>
+
 	</initialization>
 
 </component>
 
 <component
 	id="EmbeddedMedia"
-	title="Embedded Media"
-	handlerType="div"
+	title="Embedded Media 2.0"
+	tooltip="Embedded Media - Include external media directly in your application"
 	icon="res/EmbeddedMedia/EmbeddedMedia.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/EmbeddedMedia/EmbeddedMedia.js</jsInclude>
+	<jsInclude>res/EmbeddedMedia/EmbeddedMediaLoader.js</jsInclude>
+	<cssInclude>res/EmbeddedMedia/EmbeddedMedia.css</cssInclude>
 	
 	<property
-		id="url"
-		title="Content Url"
-		tooltip="Url to be embedded as content"
-		group="Display"
-		type="String" />
-
-	<property
 		id="tag"
-		title="Tag to write"
-		tooltip="HTML Tag to write"
 		type="String"
+		title="Tag"
 		group="Display"
-		visible="true"
-	 >
-		<possibleValue>embed</possibleValue>
-		<possibleValue>object</possibleValue>
+		bindable="true"
+		visible="true">
+
 	</property>
+	<property
+		id="url"
+		type="String"
+		title="Url"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="url"></defaultValue>
 		<defaultValue property="tag">embed</defaultValue>
+		<defaultValue property="url"></defaultValue>
+
 	</initialization>
 
 </component>

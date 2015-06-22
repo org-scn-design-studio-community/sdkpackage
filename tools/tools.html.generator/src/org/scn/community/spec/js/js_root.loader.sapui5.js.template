@@ -60,7 +60,7 @@
 		 });
 
 		 sdkReqs(requireInfo2.plainNames, function() {
-			 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+			 %COMP-parentControl%.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 	     	 sap.zen.Dispatcher.instance.resumeDispatching();
 		});//End of Require Callback Component
 	});//End of Require Callback

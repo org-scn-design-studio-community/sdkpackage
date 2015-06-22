@@ -26,10 +26,19 @@ Accordion = {
 		var that = this;
 		
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+
+		// backup current nodes
+		this._oElementsTemp = this._oElements;
+		if(this._oElementsTemp == undefined) {
+			this._oElementsTemp = {};
+		}
+		this._oElements = {};
+
 		if(this.getCleanAll()) {
 			this._destroyAll();
 			
 			this._oElements = {};
+			this._oElementsTemp = {};
 			
 			this.setCleanAll(false);
 			that.fireDesignStudioPropertiesChanged(["cleanAll"]);
@@ -42,14 +51,37 @@ Accordion = {
 			// distribute content
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
+				
 				if(this._oElements[element.key] == undefined) {
-					var lNewElement = this._createElement(i, element.key, element.text, element.url, element.parentKey, element.leaf);
+					var lNewElement = undefined;
+					
+					// new or the same?
+					if(this._oElementsTemp[element.key] == undefined) {
+						lNewElement = this._createElement(i, element.key, element.text, element.url, element.parentKey, element.leaf);	
+					} else {
+						lNewElement = this._oElementsTemp[element.key];
+					}
 					
 					this._oElements[element.key] = lNewElement;
 				}
 			}
 		}
 		
+		for (lElementKey in this._oElementsTemp) {
+			if(this._oElements[lElementKey] == undefined) {
+				// it means the key is now removed, we have to update the component
+				var elemToRemove = this._oElementsTemp[lElementKey];
+				
+				// it has a parent
+				if(elemToRemove._realParent) {
+					elemToRemove._realParent.removeContent(elemToRemove);
+				} else {
+					this.removeContent(elemToRemove);
+				}
+				elemToRemove.destroy();
+			}
+		}
+
 		for (lElementKey in this._oElements) {
 			var lElement = this._oElements[lElementKey];
 			if(lElement._Placed != true) {
@@ -60,6 +92,8 @@ Accordion = {
 				} else {
 					var parentElement = this._oElements[parentKey];
 					if(parentElement != undefined) {
+						lElement._realParent = parentElement;
+
 						this._addChild(parentElement, lElement);
 					}
 				}
@@ -82,6 +116,8 @@ Accordion = {
 		var that = this;
 		
 		that._oAccordion = new sap.ui.commons.Accordion();
+		that.addStyleClass("scn-pack-FullSizeChildren");
+		that._oAccordion.addStyleClass("scn-pack-Accordion-Main");
 		
 		that._oAccordion.attachSectionOpen(function(oControlEvent, oControl) {
 			var lElementId = oControlEvent.getParameters().openSectionId;
@@ -169,7 +205,7 @@ Accordion = {
 				this._oAccordion.setOpenedSectionsId(this.getExpandedKey());	
 			}
 		}
-		
+	
 		this._lastExpanded = this.getExpandedKey();
 	},
 
@@ -187,6 +223,10 @@ Accordion = {
 		}
 		
 		var lElement = undefined;
+		
+		if(that.getMemberDisplay() == "text_key") {
+			iElementText = iElementText + " [" + iElementKey + "]";
+		}
 		
 		if(isLeaf){
 			lElement = this._creatLabelElement(iElementKey, iElementText, iImageUrl);
@@ -266,11 +306,11 @@ Accordion = {
 				{left: leftText, top: topText}
 		);
 		
+		if(this.getSelectedKey() == iKey) {
+			oLayout.addStyleClass("scn-pack-Accordion-SelectedValue");
+		}
+		
 		if(withImage) {
-			if(this.getSelectedKey() == iKey) {
-				oLayout.addStyleClass("scn-pack-Accordion-SelectedValue");
-			}
-			
 			oImage.setSrc(iImageUrl);
 		}
 
@@ -299,8 +339,7 @@ Accordion = {
 				that.setSelectedKey(oLayout._Key);
 				that._updateSelection(oLayout._Key);
 				
-				that.fireDesignStudioPropertiesChanged(["selectedKey"]);
-				that.fireDesignStudioEvent("onSelectionChanged");
+				that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
 			}
 		});
 

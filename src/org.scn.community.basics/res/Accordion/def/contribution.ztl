@@ -30,22 +30,22 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		return this.defaultImage;
 	*}
 
-	/** Adds an element containing key [String], text [String], url [String], parentKey [String] properties.
+	/** Adds an element containing parentKey [String], key [String], text [String], url [String] properties.
 	 * You need to specify a unique and existing parent element.
 
  	<example>
 	You want to add 2 elements
 	<code>
-	ACCORDION.addElement(key [String], text [String], url [String], parentKey [String]);<br>
-	ACCORDION.addElement(key [String], text [String], url [String], parentKey [String]);
+	ACCORDION.addElement(parentKey [String], key [String], text [String], url [String]);<br>
+	ACCORDION.addElement(parentKey [String], key [String], text [String], url [String]);
 	</code>
 	</example>
 	 */
 	void addElement (
+			/**Parent Key*/String parentKey, 
 			/**Unique Key*/String key, 
 			/**Given Text*/String text, 
-			/**Given Url*/String url, 
-			/**Parent Key*/String parentKey
+			/**Given Url*/String url
 			) {*		
 		
 		var leaf = (parentKey != "ROOT");
@@ -53,10 +53,10 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		
 		var itemDef = {
 			leaf:leaf,
+			parentKey:parentKey, 
 			key:key, 
 			text:text, 
-			url:url, 
-			parentKey:parentKey 
+			url:url 
 			};
 	
 		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
@@ -165,16 +165,16 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 
 	/**
-	 * Sets Size of the Image Property
+	 * Sets Size of the Image Property by String
 	 */	
-	void setImageSize( /**Size of the Image*/ String imageSize){*
+	void setImageSizeByString( /**Size of the Image*/ String imageSize){*
 		this.imageSize = imageSize;
 	*}
 
 	/**
-	 * Gets Size of the Image Property
+	 * Gets Size of the Image Property as String
 	 */	
-	String getImageSize() {*
+	String getImageSizeAsString() {*
 		return this.imageSize;
 	*}
 
@@ -192,22 +192,36 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		return this.maxSectionHeight;
 	*}
 
-
-
-
+	/**
+	 * Sets Member Display Property by String
+	 */	
+	void setMemberDisplayByString( /**Member Display*/ String memberDisplay){*
+		this.memberDisplay = memberDisplay;
+	*}
 
 	/**
-	 * Sets Selected Key Property
+	 * Gets Member Display Property as String
 	 */	
-	void setSelectedKey( /**Selected Key*/ String selectedKey){*
-		this.selectedKey = selectedKey;
+	String getMemberDisplayAsString() {*
+		return this.memberDisplay;
 	*}
+
+
+
+
 
 	/**
 	 * Gets Selected Key Property
 	 */	
 	String getSelectedKey() {*
 		return this.selectedKey;
+	*}
+
+	/**
+	Returns the content of property Supported Content Notation as constant
+	*/
+	org_scn_community_shared_ContentNotationEnumfield getSupportedContentNotation () {*
+		return this.supportedContentNotation;
 	*}
 
 	/**

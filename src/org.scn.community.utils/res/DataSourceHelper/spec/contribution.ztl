@@ -1,0 +1,113 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Returns the correct content for <maxMemberCount> members in all dimensions.
+	 * Can be passed into the property <Elements> as String - using the binding feature. 
+	 */
+	String getDataBindingMembersForAllDimensions (org_scn_community_shared_ContentNotationEnumfield notation, optional int maxMemberCount) {*
+		var DS = this.getDataSource();
+	
+		this.setupHolder();
+
+		if(maxMemberCount == undefined) {
+			maxMemberCount = 100;
+		}
+		
+		// read here the cache property, access in "forEach" is not possible because of different scope
+		var cacheActive = this.isCache();
+		var holder = this.runtimeHolder;
+		
+	    var dimensions = DS.getDimensions();
+
+	    var elementsJArr = [];
+
+	    dimensions.forEach(function(dimension, index) {
+	        var dimensionJObj = {};
+	        var dimensionJArr = [];
+	        
+	        dimensionJObj.parentKey = "ROOT";
+	        dimensionJObj.key = dimension.name;
+	        dimensionJObj.text = dimension.text;
+	        dimensionJObj.url = "";
+	        dimensionJObj.leaf = false;
+	        
+	        dimensionJArr.push(dimensionJObj);
+	        elementsJArr.push(dimensionJObj);
+
+	        var cacheKey = dimension.name + "-" + maxMemberCount;
+	        
+	        // check if cache is active or nothing in cache
+	        if(!cacheActive || holder.memberCache[cacheKey] == undefined) {
+	        	holder.memberCache[cacheKey] = DS.getMembers(dimension, maxMemberCount);	
+	        }
+
+	        holder.memberCache[cacheKey].forEach(function(member, index) {
+	            var intKey = member.internalKey;
+
+	            // hack for unassigned
+	            if (intKey == "") {
+	                intKey = "UNASSIGNED";
+	            }
+
+	            var memberJObj = {};
+		        
+	            memberJObj.parentKey = dimension.name;
+	            memberJObj.key = dimension.name + "-" + intKey;
+	            memberJObj.text = member.text;
+	            memberJObj.url = "";
+	            memberJObj.leaf = true;
+
+	            dimensionJArr.push(memberJObj);
+	            elementsJArr.push(memberJObj);
+	            
+	            holder.dimensionArrayCache[cacheKey] = dimensionJArr;
+	        });
+	    });
+
+	    this.runtimeHolder.dataSourceCache["ALL_MEMBERS"] = elementsJArr;
+	    elementsJArr = JSON.stringify(elementsJArr);
+
+	    return elementsJArr;
+	*}
+	
+	MemberArray getMembers(String dimension, optional int maxMemberCount) {*
+		var DS = this.getDataSource();
+	
+		this.setupHolder();
+		
+		if(maxMemberCount == undefined) {
+			maxMemberCount = 100;
+		}
+	
+		// read here the cache property, access in "forEach" is not possible because of different scope
+		var cacheActive = this.isCache();
+		var holder = this.runtimeHolder;
+		
+		var cacheKey = dimension + "-" + maxMemberCount;
+		
+		// check if cache is active or nothing in cache
+        if(!cacheActive || holder.memberCache[cacheKey] == undefined) {
+        	holder.memberCache[cacheKey] = DS.getMembers(dimension, maxMemberCount);	
+        }
+        
+        return holder.memberCache[cacheKey];
+	*}
+	
+	/**
+	 * Resets the Cached Content. You can place this in the Data Source -> onResultSetChanged() method
+	 */
+	void resetContent () {*
+		this.runtimeHolder = undefined;
+		this.setupHolder();
+	*}
+	
+	@Visibility(private)
+	void setupHolder() {*
+		if(this.runtimeHolder == undefined) {
+			this.runtimeHolder = {};
+			this.runtimeHolder.memberCache = {};
+			this.runtimeHolder.memberArrayCache = {};
+			this.runtimeHolder.dimensionArrayCache = {};
+			this.runtimeHolder.dataSourceCache = {};
+		}
+	*}

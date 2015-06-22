@@ -211,7 +211,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 					if(this["cmp_"+property].needsLabel) {
 						useLabel = this["cmp_"+property].needsLabel();	
 					}
+					
 					if(useLabel){
+						// set width to 320px
+						if(this["cmp_"+property].setWidth) {
+							this["cmp_"+property].setWidth("320px");
+						}
 						node.ui.addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
 					}else{
 						node.ui.addContent(this["cmp_"+property]);
@@ -330,6 +335,23 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 		}
 		
 		this.metaProps = jQuery.parseJSON(propMetadata);
+		
+		this.getIndexForCategory = function (cat) {
+			if(cat == "Data") {return 10;}
+			if(cat == "Display") {return 20;}
+			if(cat == "Interaction") {return 30;}
+			if(cat == "Image") {return 40;}
+			if(cat == "Content") {return 50;}
+			if(cat == "Special") {return 60;}
+			if(cat == "Prototypes") {return 70;}
+			return 100;
+		};
+		var that = this;
+		
+		this.metaProps.sort(function(a, b){
+			return that.getIndexForCategory(a.opts.cat)-that.getIndexForCategory(b.opts.cat);
+		});
+		
 		this.props = {};
 		// Pass 1 - Create tree.
 		this.tree = {
@@ -434,7 +456,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 	};
 	this.hLabel = function(label,component){
 		var hLayout = new sap.ui.commons.layout.HorizontalLayout({})
-		hLayout.addContent(new sap.ui.commons.TextView({ text : label, width : "150px"}));
+		hLayout.addContent(new sap.ui.commons.TextView({ text : label, width : "180px"}));
 		hLayout.addContent(component);
 		return hLayout;
 	}

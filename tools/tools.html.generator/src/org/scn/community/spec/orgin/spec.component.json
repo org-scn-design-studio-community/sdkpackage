@@ -1,0 +1,22 @@
+{
+	"id": "%COMPONENT_NAME%",
+	"title": "%COMPONENT_TITLE% 2.0",
+	"tooltip": "%COMPONENT_TOOLTIP%",
+	"handlerType": "%COMPONENT_TYPE%",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "%COMPONENT_GROUP%",
+	"package": "%COMPONENT_PACKAGE%",
+	"extension": "Component",
+	"databound": %COMPONENT_DATABOUND%,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "%COMPONENT_WIDTH%",
+	"height": "%COMPONENT_HEIGHT%"
+}

@@ -62,16 +62,16 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 
 	/**
-	 * Sets Simple Choice Property
+	 * Sets Simple Choice Property by String
 	 */	
-	void setComboboxExample( /**Simple Choice*/ String comboboxExample){*
+	void setComboboxExampleByString( /**Simple Choice*/ String comboboxExample){*
 		this.comboboxExample = comboboxExample;
 	*}
 
 	/**
-	 * Gets Simple Choice Property
+	 * Gets Simple Choice Property as String
 	 */	
-	String getComboboxExample() {*
+	String getComboboxExampleAsString() {*
 		return this.comboboxExample;
 	*}
 
@@ -409,16 +409,16 @@ class org.scn.community.prototypes.ApsTesterUI5 extends org.scn.community.shared
 	*}
 
 	/**
-	 * Sets Simple Choice Property
+	 * Sets Simple Choice Property by String
 	 */	
-	void setComboboxExample( /**Simple Choice*/ String comboboxExample){*
+	void setComboboxExampleByString( /**Simple Choice*/ String comboboxExample){*
 		this.comboboxExample = comboboxExample;
 	*}
 
 	/**
-	 * Gets Simple Choice Property
+	 * Gets Simple Choice Property as String
 	 */	
-	String getComboboxExample() {*
+	String getComboboxExampleAsString() {*
 		return this.comboboxExample;
 	*}
 
@@ -852,16 +852,16 @@ class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shar
 	*}
 
 	/**
-	 * Sets When to show an alert Property
+	 * Sets When to show an alert Property by String
 	 */	
-	void setShowalert( /**When to show an alert*/ String showalert){*
+	void setShowalertByString( /**When to show an alert*/ String showalert){*
 		this.showalert = showalert;
 	*}
 
 	/**
-	 * Gets When to show an alert Property
+	 * Gets When to show an alert Property as String
 	 */	
-	String getShowalert() {*
+	String getShowalertAsString() {*
 		return this.showalert;
 	*}
 

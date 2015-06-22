@@ -1,11 +1,11 @@
 {
 	"selectedKey" : {
 		"type" : "String",
-		"value" : "-get",
+		"value" : "",
 		"visible": false,
 		"opts" : {
 			"ztlType": "String",
-			"ztlFunction": "",
+			"ztlFunction": "-get",
 			"desc" : "Selected Key",
 			"cat" : "Internal",
 			"tooltip" : "Selected Key",
@@ -29,6 +29,21 @@
 			"noZtl":false
 		}
 	},
+	"supportedContentNotation" : {
+		"type" : "String",
+		"value" : "PARENT_CHILD_TEXT_URL",
+		"visible": false,
+		"opts" : {
+			"ztlType": "shared.ContentNotation",
+			"ztlFunction": "-get",
+			"desc" : "Supported Content Notation",
+			"cat" : "Internal",
+			"tooltip" : "Supported Content Notation",
+			"apsControl" : "text",
+			"noAps":true,
+			"noZtl":false
+		}
+	},
 	"defaultImage" : {
 		"type" : "Url",
 		"value" : "",
@@ -46,7 +61,6 @@
 	},
     "withImage":{
 	    "type":"boolean",
-	    "onSet":"flattenData",
 	    "value":true,
 	    "visible":true,
 	    "opts":{
@@ -58,12 +72,35 @@
 	         "apsControl":"checkbox"
 	    }
 	},
-    "maxSectionHeight":{
+    "memberDisplay":{
+        "type":"String",
+        "value":"text",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "ztlFunction":"",
+           "desc":"Member Display",
+           "cat":"Display",
+           "tooltip":"Member Display",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"text",
+                 "text":"Text Only"
+              },
+              {
+                 "key":"text_key",
+                 "text":"Text [KEY]"
+              }
+           ]
+        }
+     },
+	"maxSectionHeight":{
 	    "type":"int",
 	    "value":"200",
 	    "visible":true,
 	    "opts":{
-	         "ztlType":"String",
+	         "ztlType":"int",
 	         "ztlFunction":"",
 	         "desc":"Max Height for Section",
 	         "cat":"Image",
@@ -140,7 +177,12 @@
 	               },
 	               "element":{
 	                  "type":"Array",
-	                  "sequence":"key,text,url,parentKey",
+	                  "sequence":"parentKey,key,text,url",
+	                  "parentKey":{
+		                "desc":"Parent Key",
+		                "type":"String",
+		              	"mode":"ztl"
+		              },
 	                  "key":{
 	                     "desc":"Unique Key",
 	                     "type":"String"
@@ -152,12 +194,7 @@
 	                  "url":{
 	                     "desc":"Given Url",
 	                     "type":"Url"
-	                  },
-	                  "parentKey":{
-		                "desc":"Parent Key",
-		                "type":"String",
-		              	"mode":"ztl"
-		              }
+	                  }
 	               }
 	            }
 	        },

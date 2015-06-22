@@ -9,6 +9,7 @@ import javax.xml.stream.XMLStreamReader;
 import org.scn.community.defgenerator.ZtlAndAps;
 import org.scn.community.defgenerator.ParamSimpleSpec;
 import org.scn.community.spec.ParamFullSpec;
+import org.scn.community.spec.orgin.OrginSpec;
 import org.scn.community.utils.Helpers;
 
 public class Property {
@@ -53,19 +54,19 @@ public class Property {
 
 		if (this.name == null) {
 			System.out.println("ISSUE: " + componentName + " - PARAMETER - property '" + this.name + "' is missing 'name'");
-			this.name = "&nbsp;";
+			this.name = "";
 		}
 		if (this.title == null) {
 			System.out.println("ISSUE: " + componentName + " - PARAMETER  - property '" + this.name + "' is missing 'title'");
-			this.title = "&nbsp;";
+			this.title = "";
 		}
 		if (this.tooltip == null) {
 			// System.out.println("ISSUE: " + componentName + "Property '" + this.name + "' is missing 'tooltip'");
-			this.tooltip = "&nbsp;";
+			this.tooltip = this.title;
 		}
 		if (this.type == null) {
 			System.out.println("ISSUE: " + componentName + " - PARAMETER  - property '" + this.name + "' is missing 'type'");
-			this.type = "&nbsp;";
+			this.type = "";
 		}
 
 		if (this.group == null) {
@@ -95,12 +96,13 @@ public class Property {
 		template = template.replace("%PROPERTY_GROUP%", this.group);
 		template = template.replace("%VISIBLE_FLAG%", this.visible);
 
-		if (this.defaultValue == "") {
-			this.defaultValue = "&nbsp;";
+		String htmlDefault = this.defaultValue; 
+		if (htmlDefault == "") {
+			htmlDefault = "&nbsp;";
 		}
 
 		// cut default value in case too long
-		template = template.replace("%DEFAULT_VALUE%", this.defaultValue.length() < 100 ? this.defaultValue : this.defaultValue.substring(0, 100) + " ... truncated");
+		template = template.replace("%DEFAULT_VALUE%", htmlDefault.length() < 100 ? htmlDefault : htmlDefault.substring(0, 100) + " ... truncated");
 
 		if (this.values.size() > 0) {
 			for (Value value : this.values) {
@@ -200,5 +202,82 @@ public class Property {
 
 	public ParamFullSpec getExtendedFullSpec() {
 		return this.extendedFullSpec;
+	}
+
+	public String toSpec20() {
+		boolean invisible = false;
+		if(!this.visible.equals("true")) {
+			// special case for invisible properties
+			
+			invisible = true;
+		}
+		
+		String template = Helpers.resource2String(OrginSpec.class, "org."+this.getType()+".tmpl");
+		
+		if(this.values.size() > 0) {
+			template = Helpers.resource2String(OrginSpec.class, "org.Choice.tmpl");
+		}
+		
+		
+		if(template == null) {
+			template = Helpers.resource2String(OrginSpec.class, "org.default.tmpl");
+		}
+		
+		template = template.replace("%NAME%", this.name);
+		template = template.replace("%DESCRIPTION%", this.title);
+		template = template.replace("%TOOLTIP%", this.tooltip == "" ? this.title : this.tooltip);
+		template = template.replace("%ZTL_TYPE%", this.getType(true));
+		template = template.replace("%CATEGORY%", this.group);
+		template = template.replace("%VISIBLE%", this.visible);
+		
+		if(invisible) {
+			if(this.name.endsWith("s")) {
+				// plural case -> a list?
+				
+			}
+			
+			template = template.replace("%NO_APS%", "true");
+			template = template.replace("%NO_ZTL%", "false");
+			template = template.replace("%ZTL_FUNCTION%", "-get");
+		} else {
+			template = template.replace("%ZTL_FUNCTION%", "");
+			template = template.replace("%NO_APS%", "false");
+			template = template.replace("%NO_ZTL%", "false");
+		}
+
+		if (this.values.size() > 0) {
+			for (Value value : this.values) {
+				template = template.replace("%VALUE_ENTRY%", value.toSpec20() + ",\r\n\t\t\t%VALUE_ENTRY%");
+			}
+			template = template.replace("%VALUE_ENTRY%", "");
+		}
+		template = template.replace("%VALUE_ENTRY%", "");
+
+		if (this.values.size() > 0) {
+			for (Value value : this.values) {
+				if(value.isDefault()) {
+					this.defaultValue = value.getName();
+				}
+			}
+		}
+		
+		// cut default value in case too long
+		template = template.replace("%DEFAULT%", this.defaultValue);
+
+		return template;
+	}
+
+	public String getType(boolean convertToZtlCompatibility) {
+		String type = this.type;
+		if(type.contains(",")) {
+			type = type.substring(0, type.indexOf(","));
+		}
+		
+		if(convertToZtlCompatibility) {
+			if(type.equals("Url") || type.equals("Color") || type.equals("Choice")) {
+				type = "String";
+			}
+		}
+		return type;
 	}
 }

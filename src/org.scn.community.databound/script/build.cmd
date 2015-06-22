@@ -14,6 +14,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\DataTable\def\contribution.xml ^
 ..\res\DropDown\def\contribution.xml ^
 ..\res\FacetFilter\def\contribution.xml ^
+..\res\FacetSelector\def\contribution.xml ^
 ..\res\HexBin\def\contribution.xml ^
 ..\res\Hierarchy\def\contribution.xml ^
 ..\res\LeaderBoard\def\contribution.xml ^
@@ -46,6 +47,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\DropDown\def\contribution.ztl ^
 ..\res\Hierarchy\def\contribution.ztl ^
 ..\res\FacetFilter\def\contribution.ztl ^
+..\res\FacetSelector\def\contribution.ztl ^
 ..\res\HexBin\def\contribution.ztl ^
 ..\res\LeaderBoard\def\contribution.ztl ^
 ..\res\LocationIntel\def\contribution.ztl ^

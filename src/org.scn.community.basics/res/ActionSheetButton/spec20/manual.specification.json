@@ -1,0 +1,40 @@
+	"items" : {
+		"template" : "OneLevelArray",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+			
+			"arrayDefinition":{
+	            "item":{
+	               "type":"Array",
+	               "sequence":"key,value,",
+	               
+	               "key":{
+	                  "desc":"Unique Property Key",
+	                  "type":"String"
+	               },
+	               "text":{
+	                  "desc":"Text",
+	                  "type":"String"
+	               },
+	               "icon":{
+	                  "desc":"Icon",
+	                  "type":"String"
+	               }
+	            }
+         	},
+
+			"desc" : "Items",
+			"cat" : "Content",
+			"tooltip" : "Content Items for the Component",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray",
+			
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},

@@ -1,0 +1,6 @@
+	/**
+	Returns the content of property %NAME% as constant
+	*/
+	org_scn_community_shared_ContentNotationEnumfield get%PROPERTY_CAPITAL_CUT% () {*
+		return this.%PROPERTY_CAPITAL%;
+	*}

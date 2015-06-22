@@ -1,17 +1,26 @@
 
 /**
- * Class for EmbeddedFrame
+ * Generated ZTL Class for EmbeddedFrame
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Component {
-	
-	/** Sets the content url which will be embedded */
-	void setURL(
-		/** text */ String text) {*
-		this.url = url;	
+
+	/**
+	 * Sets Url Property
+	 */	
+	void setUrl( /**Url*/ String url){*
+		this.url = url;
 	*}
-	
-	/** Returns the content url */
-	String getURL() {*
-		return this.url;	
+
+	/**
+	 * Gets Url Property
+	 */	
+	String getUrl() {*
+		return this.url;
 	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
 }

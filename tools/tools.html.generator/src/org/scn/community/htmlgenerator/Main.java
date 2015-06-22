@@ -2,10 +2,13 @@ package org.scn.community.htmlgenerator;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 import org.scn.community.utils.Helpers;
+
+import com.sun.xml.internal.messaging.saaj.soap.ver1_1.HeaderElement1_1Impl;
 
 public class Main {
 
@@ -36,14 +39,26 @@ public class Main {
 
 		List<File> allContributionXmls = new ArrayList<File>();
 		Helpers.findMatchingFiles(mainSrcFolder, "contribution.xml", "def", "component", allContributionXmls);
+		
 		List<File> allSpecifications = new ArrayList<File>();
 		Helpers.findMatchingFiles(mainSrcFolder, "component.json", "spec", "\"id\"", allSpecifications);
 
+		List<String> allComponents = new ArrayList<String>();
+		
+		for (File file : allContributionXmls) {
+			if(!allComponents.contains(file.getAbsolutePath())) {
+				allComponents.add(file.getAbsolutePath());	
+			}
+		}
+		
 		for (File file : allSpecifications) {
 			String pathSpec = file.getAbsolutePath();
 			pathSpec = pathSpec.replace("component.json", "contribution.xml");
 			pathSpec = pathSpec.replace(File.separator + "spec" + File.separator, File.separator + "def" + File.separator);
-			allContributionXmls.add(new File(pathSpec));
+			
+			if(!allComponents.contains(pathSpec)) {
+				allComponents.add(pathSpec);	
+			}
 		}
 		
 		System.out.println("Components Count: " + allContributionXmls.size());
@@ -58,8 +73,10 @@ public class Main {
 		String componentModelTemplate = Helpers.resource2String(Main.class, "model_components.js.tmpl");
 		String castString = "";
 
-		for (Object element : allContributionXmls) {
-			File contrXml = (File) element;
+		Collections.sort(allComponents);
+		
+		for (String element : allComponents) {
+			File contrXml = new File(element);
 
 			Component component = new Component(contrXml);
 			
@@ -89,6 +106,30 @@ public class Main {
 
 			componentModelTemplate = componentModelTemplate.replace("%COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%", componentModelEntryCopy + "\r\n" + " %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%");
 			Helpers.string2File(iFileName, component.toHtml(iFileName));
+			
+			String makeSpec = element.replace("def\\contribution.xml", "make.spec");
+			if(new File(makeSpec).exists()) {
+				String content = Helpers.file2String(makeSpec);
+				
+				if(!content.contains("lock")) {
+					String[] spec20 = component.toSpec20();
+					for (int i = 0; i < spec20.length; i++) {
+						String specContent = spec20[i];
+						
+						if(i == 0) {
+							iFileName = element.replace("def\\contribution.xml", "spec20/component.json");
+						} else if(i == 1) {
+							iFileName = element.replace("def\\contribution.xml", "spec20/specification.json");
+						} else if(i == 2) {
+							iFileName = element.replace("def\\contribution.xml", "spec20/about.json");
+						} else if(i == 3) {
+							iFileName = element.replace("def\\contribution.xml", "spec20/contribution.ztl");
+						}
+
+						Helpers.string2File(iFileName, specContent);	
+					}
+				}
+			}
 
 			if(!component.name.startsWith("ChangeLog")) {
 				String castStringFromComponent = component.toCastString();

@@ -1,100 +1,18 @@
-/**
- * Copyright 2014 SCN SDK Community
- * 
- * Original Source Code Location:
- *  https://github.com/org-scn-design-studio-community/sdkpackage/
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- *  
- *  http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an "AS IS" BASIS, 
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and 
- * limitations under the License. 
- */
+(function(){
 
-jQuery.sap.require("sap.ui.table.Table");
+var myComponentData = org_scn_community_require.knownComponents.databound.UI5Table;
 
-sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Table", {
+UI5Table = {
 
-	setData : function(value) {
-		var that = this;
-		
-		this._data = value;
-
-		// clean mixed Data
-		that._flatData = undefined;
-		return this;
-	},
+	renderer: {},
 	
-	getData : function(value) {
-		return this._data;
-	},
-	
-	setMetadata : function(value) {
-		this._metadata = value;
-		return this;
-	},
-
-	getMetadata : function() {
-		return this._metadata;
-	},
-	
-	/* special code as we want to reset */
-	setDElements : function(value) { 
-		this.DElements = value;		
-		this._isInitialized = undefined;
-		this._flatData = undefined;
-		return this;
-	},
-	
-	getDElements : function() {
-		return this.DElements;
-	},
-	
-	/* special code as we want to reset */
-	setDContentMode : function(value) { 
-		this.DContentMode = value;		
-		this._isInitialized = undefined;
-		this._flatData = undefined;
-		return this;
-	},
-	
-	getDContentMode : function() {
-		return this.DContentMode;
-	},
-	
-	metadata: {
-        properties: {
-              "DVisibleRowCount": {type: "int"},
-              "DRowHeight": {type: "int"},
-              "DNavigationMode": {type: "string"},
-              "DCustomDimensions": {type: "string"},
-              "DHeaderColWidth": {type: "int"},
-              "DDataColWidths": {type: "string"},
-              "DDataProvisioner": {type: "string"},
-              "DFormattingOperator": {type: "string"},
-              "DFormattingCondition": {type: "string"},
-              "DColumnFormattingCondition": {type: "string"},
-              "DSelection": {type: "string"},
-              "DAllowSort": {type: "boolean"},
-              "DAllowFilter": {type: "boolean"},
-              "DAllowColumnReorder": {type: "boolean"},
-              "DFixedHeader": {type: "boolean"},
-              "DAllowSelection": {type: "boolean"},
-              "DEmptyHeaderValue": {type: "string"},
-              "DEmptyDataValue": {type: "string"},
-              "DIgnoreResults": {type: "boolean"},
-        }
-	},
-
 	initDesignStudio: function() {
-		var that = this;
+		jQuery.sap.require("sap.ui.table.Table");
 		
+		var that = this;
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		that._table = new sap.ui.table.Table(this.getId() + "_ta",
 		{
 			selectionMode: sap.ui.table.SelectionMode.Single,
@@ -141,12 +59,13 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		
     	that._table.attachCellClick(that.onCellClick);
     	that._table.attachRowSelectionChange(that.onRowClick);
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 	},
 	
-	renderer: {},
-		
 	afterDesignStudioUpdate: function() {
 		var that = this;
+		
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 		that._table.setVisibleRowCount(this.getDVisibleRowCount());
 		that._table.setRowHeight(this.getDRowHeight());
 		
@@ -158,15 +77,9 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		}
 
 		// define model
-		if(that._flatData == undefined) {
+		//if(that._flatData == undefined) {
 			
-			var lData = this._data;
-			var lMetadata = this._metadata;
-			var lDimensions = this.getDElements();
-
-			if(lMetadata == undefined) {
-				lMetadata = lData;
-			}
+			var lData = this.getData();
 			
 			var lDataProvisioner = that.getDDataProvisioner();
 			var hasDataProvisioner = false;
@@ -174,7 +87,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 				hasDataProvisioner = (org_scn_community_databound.centralDataStorage[lDataProvisioner] != undefined);
 			}
 			
-			if(lData == "" && !hasDataProvisioner) {
+			if(lData == undefined || lData == "" && !hasDataProvisioner) {
 				this._fakeData();
 			} else {
 				var options = org_scn_community_databound.initializeOptions();
@@ -213,9 +126,11 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 			if(that._flatData) {
 				that.reloadFlatDataAgain();
 			}
-		}
+		//}
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	},
 	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
 	onProvisionerDataChangeEvent: function(lDataProvisioner) {
 		var that = this;
 		
@@ -250,7 +165,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		options.formattingCondition.rules = that.getDFormattingCondition();
 		options.formattingCondition.operator = that.getDFormattingOperator();
 
-		options.conditionColumns = that.getDColumnFormattingCondition();
+		options.conditionColumns = "";//that.getDColumnFormattingCondition();
 		
 		var hasFormattingCondition = (options.formattingCondition.rules.length > 1);
 		
@@ -412,8 +327,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		var selectionS = JSON.stringify(selection);
 		that.setDSelection(selectionS);
 		
-		that.fireDesignStudioPropertiesChanged(["DSelection"]);
-		that.fireDesignStudioEvent("onCellSelected");
+		that.fireDesignStudioPropertiesChangedAndEvent(["DSelection"], "onCellSelected");
 	},
 	
 	onRowClick : function (oEvent) {
@@ -446,8 +360,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 		var selectionS = JSON.stringify(selection);
 		that.setDSelection(selectionS);
 		
-		that.fireDesignStudioPropertiesChanged(["DSelection"]);
-		that.fireDesignStudioEvent("onRowSelected");
+		that.fireDesignStudioPropertiesChangedAndEvent(["DSelection"], "onRowSelected");
 	},
 
 	getCorrectRow: function (that, oEvent) {
@@ -464,4 +377,12 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.databound.UI5Tabl
 	_fakeData : function () {
 		
 	}
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+
+define([myComponentData.requireName], function(databoundui5table){
+	myComponentData.instance = UI5Table;
+	return myComponentData.instance;
 });
+
+}).call(this);

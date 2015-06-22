@@ -1,0 +1,16 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_ContentNotationEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify field 
+ */
+class org_scn_community_shared_ContentNotation extends Enum {
+
+	/** PARENT_CHILD_TEXT_URL, for components which are supporting this notation */
+	org_scn_community_shared_ContentNotationEnumfield PARENT_CHILD_TEXT_URL;
+}

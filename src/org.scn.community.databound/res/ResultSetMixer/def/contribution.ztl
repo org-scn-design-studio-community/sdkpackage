@@ -23,7 +23,7 @@ class org.scn.community.databound.ResultSetMixer extends org.scn.community.share
 	/**
 	 * Sets Geometry of the Master Result Set Property
 	 */	
-	void setMasterGeometry( /* &nbsp; */  choice masterGeometry){*
+	void setMasterGeometry( /* Geometry of the Master Result Set */  choice masterGeometry){*
 		this.DMasterGeometry = masterGeometry;
 	*}
 

@@ -1,0 +1,17 @@
+{
+	"url" : {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url",
+			"cat" : "Display",
+			"tooltip" : "Url to Embedd",
+			"apsControl" : "text",
+			"noAps":false,
+			"noZtl":false
+		}
+	},
+}

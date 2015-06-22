@@ -1,0 +1,466 @@
+
+/**
+ * Generated ZTL Class for FacetSelector
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.FacetSelector extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Clear Selections if 0 Property
+	 */	
+	void setClearOthers( /**Clear Selections if 0*/ boolean clearOthers){*
+		this.DClearOthers = clearOthers;
+	*}
+
+	/**
+	 * Gets Clear Selections if 0 Property
+	 */	
+	boolean isClearOthers() {*
+		return this.DClearOthers;
+	*}
+
+	/**
+	 * Sets Content Mode Property by String
+	 */	
+	void setContentModeByString( /**Content Mode*/ String contentMode){*
+		this.DContentMode = contentMode;
+	*}
+
+	/**
+	 * Gets Content Mode Property as String
+	 */	
+	String getContentModeAsString() {*
+		return this.DContentMode;
+	*}
+
+	/**
+	 * Sets Custom Dimensions Property as StringArray
+	 */	
+	void setCustomDimensions( /**Custom Dimensions*/ StringArray customDimensions){*
+		this.DCustomDimensions = customDimensions;
+	*}
+	
+	/** Gets Custom Dimensions Property as StringArray
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	FACETSELECTOR.getCustomDimensions();<br>
+	</code>
+	</example>
+	 */
+	StringArray getCustomDimensions () {*		
+		var elementsJson = JSON.parse(this.DCustomDimensions);
+		return elementsJson;
+	*}
+
+	/**
+	 * Sets Display Text Property by String
+	 */	
+	void setDisplayTextByString( /**Display Text*/ String displayText){*
+		this.DDisplayText = displayText;
+	*}
+
+	/**
+	 * Gets Display Text Property as String
+	 */	
+	String getDisplayTextAsString() {*
+		return this.DDisplayText;
+	*}
+
+
+
+	/**
+	 * Sets Facet Width in px Property
+	 */	
+	void setFacetWidth( /**Facet Width in px*/ int facetWidth){*
+		this.DFacetWidth = facetWidth;
+	*}
+
+	/**
+	 * Gets Facet Width in px Property
+	 */	
+	int getFacetWidth() {*
+		return this.DFacetWidth;
+	*}
+
+	/**
+	 * Sets Maximum Number of Members Property
+	 */	
+	void setMaxDisplayMembers( /**Maximum Number of Members*/ int maxDisplayMembers){*
+		this.DMaxDisplayMembers = maxDisplayMembers;
+	*}
+
+	/**
+	 * Gets Maximum Number of Members Property
+	 */	
+	int getMaxDisplayMembers() {*
+		return this.DMaxDisplayMembers;
+	*}
+
+	/**
+	 * Sets Maximum Number of Members Property
+	 */	
+	void setMaxMembers( /**Maximum Number of Members*/ int maxMembers){*
+		this.DMaxMembers = maxMembers;
+	*}
+
+	/**
+	 * Gets Maximum Number of Members Property
+	 */	
+	int getMaxMembers() {*
+		return this.DMaxMembers;
+	*}
+
+
+
+	/**
+	 * Sets Member Sorting Direction Property by String
+	 */	
+	void setSortingDirectionByString( /**Member Sorting Direction*/ String sortingDirection){*
+		this.DSortingDirection = sortingDirection;
+	*}
+
+	/**
+	 * Gets Member Sorting Direction Property as String
+	 */	
+	String getSortingDirectionAsString() {*
+		return this.DSortingDirection;
+	*}
+
+	/**
+	 * Sets Member Sorting Type Property by String
+	 */	
+	void setSortingTypeByString( /**Member Sorting Type*/ String sortingType){*
+		this.DSortingType = sortingType;
+	*}
+
+	/**
+	 * Gets Member Sorting Type Property as String
+	 */	
+	String getSortingTypeAsString() {*
+		return this.DSortingType;
+	*}
+
+	/**
+	 * Sets Zero Values Display Mode Property by String
+	 */	
+	void setZeroValuesModeByString( /**Zero Values Display Mode*/ String zeroValuesMode){*
+		this.DZeroValuesMode = zeroValuesMode;
+	*}
+
+	/**
+	 * Gets Zero Values Display Mode Property as String
+	 */	
+	String getZeroValuesModeAsString() {*
+		return this.DZeroValuesMode;
+	*}
+
+
+
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Reads the Dimensions from Data Source 
+	 */
+	@Visibility(private)
+	void private_readDimensions (Object dataSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		if(this.DContentMode == "Only from Result Set") {
+			l.dimensionsRows = dataSource.getDimensions(Axis.ROWS);
+			l.dimensionsColumns = dataSource.getDimensions(Axis.COLUMNS);
+			
+			l.dimensions = [];
+
+			l.dimensionsRows.forEach(function(dimension, indexD) {
+				l.dimensions.push(dimension);
+			});	
+			l.dimensionsColumns.forEach(function(dimension, indexD) {
+				l.dimensions.push(dimension);
+			});
+			
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		} else if(this.DContentMode == "Custom Dimension Set") {
+			l.dimensionsAll = dataSource.getDimensions();
+			l.customDimensions = JSON.parse(that.DCustomDimensions);
+			
+			l.customDimensionsFlat = "|";
+			for (var iD = 0; iD < l.customDimensions.length; iD++) {
+				l.customDimensionsFlat = l.customDimensionsFlat + l.customDimensions[iD] + "|";
+			}
+			
+			l.dimensions = [];
+			
+			l.dimensionsAll.forEach(function(dimension, indexD) {
+				l.currentAvailableDimensionName = dimension.name; 
+				if(l.customDimensionsFlat.indexOf("|" + l.currentAvailableDimensionName + "|") > -1) {
+					l.dimensions.push(dimension);
+				}
+			});	
+		} else {
+			l.dimensions = dataSource.getDimensions();
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+		
+		this._tempDimensions = l.dimensions;
+	*}
+
+	/**
+	 * Resets the actual data of all dimensions (and causes reload of all members in "reloadDataSource" method.
+	 * Use it together like below
+	 * <example>
+	 * You want to reload actual members again
+	 * <code>
+	 * FACET.resetDimensions();
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 */
+	void resetDimensions() {*
+		this.oldDimensionKeys = "";
+	*}
+
+	/**
+	 * This function must be used for initialization and in case the drilldown structure has been changed.
+	 * You should trigger it once and ideally when filters are NOT set on dimensions, other case you will see only members which are available in resultset (depends on your setting "member selection" on dimension level).
+	 * When to use this method?
+	 * - As soon the Data Source is initialized, either in "onStartup()" script or after loading in script.
+	 * <example>
+	 * You have loaded the data source and want to initialize.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource();
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource(DS_FULL);
+	 * FACET.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadDataSource(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.elementsJson = [];
+
+		l.DS = this.getDataSource();
+
+		if(!memberAccessSource) {
+			memberAccessSource = l.DS;
+		}
+
+		if(l.DS) {
+			this.private_readDimensions(memberAccessSource);
+			l.dimensions = this._tempDimensions;
+
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensionKeys = "";
+			l.dimensions.forEach(function(dimension, index) {
+				l.dimensionKeys = l.dimensionKeys + dimension.name;
+			});
+			
+			if(this.oldDimensionKeys != l.dimensionKeys) {
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						// warnings to assure query is ok
+						if(l.DS.isHierarchyActive(dimension)) {
+							APPLICATION.createWarningMessage("Data Source has an Active Hierarchy on Dimension: " + dimension.name);
+						}
+	
+						l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+	
+						l.dimensionJson = {};
+						l.dimensionJson.name = dimension.name;
+						l.dimensionJson.text = dimension.text;
+						l.dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
+	
+						l.dimensionJson.hierarchyActive = l.DS.isHierarchyActive(dimension);
+						l.dimensionJson.filterExt = ";" + l.DS.getFilterExt(dimension);
+						
+						l.dimensionJson.members = l.members;
+			
+						l.elementsJson.push(l.dimensionJson);
+					}
+				});
+
+				this.DElements = JSON.stringify(l.elementsJson);
+				this.oldDimensionKeys = l.dimensionKeys;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			}
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+	*}
+
+	/**
+	 * This function can be used after the filter in data source was changed to update the component.
+	 * You should be trigered every time the filter change occurs, therefore the event in Data Source -> onResultSetChanged() is a good place.
+	 * When to use this method?
+	 * - Always the filter is changed, also the "onResultSetChanged()" event is good for this.
+	 * <example>
+	 * You want to keep the selections with data source.
+	 * The code should be placed in "onResultSetChanged()" method.
+	 * <code>
+	 * // if you want to update also dimensions when drilldown is changed
+	 * FACET.reloadDataSource();
+	 * 
+	 * // every time 
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource(DS_FULL);
+	 * FACET.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadSelection(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+	
+		l.elementsJson = {};
+
+		l.DS = this.getDataSource();
+
+		if(!memberAccessSource) {
+			memberAccessSource = l.DS;
+		}
+		
+		if(l.DS) {
+			this.private_readDimensions(memberAccessSource);
+			l.dimensions = this._tempDimensions;
+
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensions.forEach(function(dimension, indexD) {
+				l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+
+				l.dimensionJson = {};
+				l.dimensionJson.name = dimension.name;
+				l.dimensionJson.members = [];
+				l.dimensionJson.filterExt = "; " + l.DS.getFilterExt(dimension) + ";";
+
+				l.elementsJson[dimension.name] = l.dimensionJson;
+			});
+
+			this.DSelection = JSON.stringify(l.elementsJson);
+			
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug("DEBUG_2")) { DEBUG_2.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+	*}
+	
+	/**
+	 * DO NOT USE PRIVATE METHODS
+	 */
+	@Visibility(private)
+	void private_onSelectionChanged () {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.selection = this.DSelection;
+	
+		l.selectionJson = JSON.parse(l.selection);
+		
+		l.dimensionName = l.selectionJson.dimension;
+		l.keys = l.selectionJson.keys;
+		
+		l.keysAsArray = [];
+
+		l.DS = this.getDataSource();
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		if(l.DS) {
+			if(l.selectionJson.clearOthers && that.isClearOthers()) {
+				this.private_readDimensions(l.DS);
+				l.dimensions = this._tempDimensions;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(this, l)};
+				
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						l.currentDimensionName = dimension.name
+						if(l.currentDimensionName != l.dimensionName) {
+							l.DS.clearFilter(l.currentDimensionName);
+						}
+					}
+				});
+			}
+			
+			if(l.keys.length == 1 && l.keys[0] == "-ALL-") {
+				l.DS.clearFilter(l.dimensionName);
+			} else {
+				for (var iK = 0; iK < l.keys.length; iK++) {
+					l.key = l.keys[iK];
+					
+					l.keysAsArray.push(l.key);
+				}
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+				
+				l.DS.setFilter(l.dimensionName, l.keysAsArray);
+			}
+		}
+		
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+	*}
+
+}

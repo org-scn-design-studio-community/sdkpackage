@@ -9,7 +9,7 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Chart Type Property
 	 */	
-	void setChartType( /* &nbsp; */  choice chartType){*
+	void setChartType( /* Chart Type */  choice chartType){*
 		this.DChartType = chartType;
 	*}
 
@@ -23,7 +23,7 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Starting Color Distance Property
 	 */	
-	void setColorDistance( /* &nbsp; */  float colorDistance){*
+	void setColorDistance( /* Starting Color Distance */  float colorDistance){*
 		this.DColorDistance = colorDistance;
 	*}
 
@@ -37,7 +37,7 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Starting Color Hue Property
 	 */	
-	void setColorHue( /* &nbsp; */  int colorHue){*
+	void setColorHue( /* Starting Color Hue */  int colorHue){*
 		this.DColorHue = colorHue;
 	*}
 
@@ -51,7 +51,7 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Starting Color Palette Property
 	 */	
-	void setColorPalette( /* &nbsp; */  choice colorPalette){*
+	void setColorPalette( /* Starting Color Palette */  choice colorPalette){*
 		this.DColorPalette = colorPalette;
 	*}
 
@@ -65,7 +65,7 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Legend Position Property
 	 */	
-	void setLegendPosition( /* &nbsp; */  choice legendPosition){*
+	void setLegendPosition( /* Legend Position */  choice legendPosition){*
 		this.DLegendPosition = legendPosition;
 	*}
 
@@ -79,7 +79,7 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Width of Legend in px Property
 	 */	
-	void setLegendWidth( /* &nbsp; */  int legendWidth){*
+	void setLegendWidth( /* Width of Legend in px */  int legendWidth){*
 		this.DLegendWidth = legendWidth;
 	*}
 
@@ -93,7 +93,7 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Maximum Number of Data Points Property
 	 */	
-	void setMaxDataPoints( /* &nbsp; */  int maxDataPoints){*
+	void setMaxDataPoints( /* Maximum Number of Data Points */  int maxDataPoints){*
 		this.DMaxDataPoints = maxDataPoints;
 	*}
 
@@ -107,7 +107,7 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Show Legend Property
 	 */	
-	void setShowLegend( /* &nbsp; */  boolean showLegend){*
+	void setShowLegend( /* Show Legend */  boolean showLegend){*
 		this.DShowLegend = showLegend;
 	*}
 
@@ -121,7 +121,7 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 	/**
 	 * Sets Swap Axes Property
 	 */	
-	void setSwapAxes( /* &nbsp; */  boolean swapAxes){*
+	void setSwapAxes( /* Swap Axes */  boolean swapAxes){*
 		this.DSwapAxes = swapAxes;
 	*}
 

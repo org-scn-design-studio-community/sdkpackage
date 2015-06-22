@@ -8,6 +8,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Array\def\contribution.xml ^
 ..\res\ClientInformation\def\contribution.xml ^
 ..\res\Collection\def\contribution.xml ^
+..\res\DataSourceHelper\def\contribution.xml ^
 ..\res\Debugger\def\contribution.xml ^
 ..\res\ComponentManager\def\contribution.xml ^
 ..\res\CustomCssCollector\def\contribution.xml ^
@@ -34,6 +35,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ComponentManager\def\contribution.ztl ^
 ..\res\CustomCssCollector\def\contribution.ztl ^
 ..\res\Debugger\def\contribution.ztl ^
+..\res\DataSourceHelper\def\contribution.ztl ^
 ..\res\FlowLayouter\def\contribution.ztl ^
 ..\res\JsonObject\def\contribution.ztl ^
 ..\res\Math\def\contribution.ztl ^
