@@ -152,8 +152,6 @@ class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shar
 	 * Sets When to show an alert Property by Choice Option
 	 */	
 	void setShowalert( /**When to show an alert*/ org_scn_community_shared_Enumfield showalert){*
-		showalert = showalert.toUpperCase();
-		
 		this.showalert = showalert;
 	*}
 	

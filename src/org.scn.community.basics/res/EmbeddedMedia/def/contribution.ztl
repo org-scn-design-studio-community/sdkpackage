@@ -24,8 +24,6 @@ class org.scn.community.basics.EmbeddedMedia extends org.scn.community.shared.Co
 	 * Sets Tag Property by Choice Option
 	 */	
 	void setTag( /**Tag*/ org_scn_community_shared_Enumfield tag){*
-		tag = tag.toUpperCase();
-		
 		this.tag = tag;
 	*}
 	

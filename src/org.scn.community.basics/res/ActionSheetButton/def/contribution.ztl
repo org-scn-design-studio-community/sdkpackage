@@ -24,8 +24,6 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	 * Sets Type Property by Choice Option
 	 */	
 	void setButtonType( /**Type*/ org_scn_community_shared_ButtonTypeEnumfield buttonType){*
-		buttonType = buttonType.toUpperCase();
-		
 		this.buttonType = buttonType;
 	*}
 	
@@ -154,8 +152,6 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	 * Sets Placement Property by Choice Option
 	 */	
 	void setPlacement( /**Placement*/ org_scn_community_shared_PlacementEnumfield placement){*
-		placement = placement.toUpperCase();
-		
 		this.placement = placement;
 	*}
 	

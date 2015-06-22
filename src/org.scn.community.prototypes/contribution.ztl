@@ -79,8 +79,6 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	 * Sets Simple Choice Property by Choice Option
 	 */	
 	void setComboboxExample( /**Simple Choice*/ org_scn_community_shared_Enumfield comboboxExample){*
-		comboboxExample = comboboxExample.toUpperCase();
-		
 		this.comboboxExample = comboboxExample;
 	*}
 	
@@ -442,8 +440,6 @@ class org.scn.community.prototypes.ApsTesterUI5 extends org.scn.community.shared
 	 * Sets Simple Choice Property by Choice Option
 	 */	
 	void setComboboxExample( /**Simple Choice*/ org_scn_community_shared_Enumfield comboboxExample){*
-		comboboxExample = comboboxExample.toUpperCase();
-		
 		this.comboboxExample = comboboxExample;
 	*}
 	
@@ -901,8 +897,6 @@ class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shar
 	 * Sets When to show an alert Property by Choice Option
 	 */	
 	void setShowalert( /**When to show an alert*/ org_scn_community_shared_Enumfield showalert){*
-		showalert = showalert.toUpperCase();
-		
 		this.showalert = showalert;
 	*}
 	

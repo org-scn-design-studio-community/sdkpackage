@@ -38,8 +38,6 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * Sets Content Mode Property by Choice Option
 	 */	
 	void setContentMode( /**Content Mode*/ org_scn_community_shared_DimensionSetEnumfield contentMode){*
-		contentMode = contentMode.toUpperCase();
-		
 		this.DContentMode = contentMode;
 	*}
 	
@@ -89,8 +87,6 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * Sets Display Text Property by Choice Option
 	 */	
 	void setDisplayText( /**Display Text*/ org_scn_community_shared_MemberDisplayEnumfield displayText){*
-		displayText = displayText.toUpperCase();
-		
 		this.DDisplayText = displayText;
 	*}
 	
@@ -163,8 +159,6 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * Sets Second Value Content Property by Choice Option
 	 */	
 	void setSecondValueContent( /**Second Value Content*/ org_scn_community_shared_SecondValueContentEnumfield secondValueContent){*
-		secondValueContent = secondValueContent.toUpperCase();
-		
 		this.DSecondValueContent = secondValueContent;
 	*}
 	
@@ -209,8 +203,6 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * Sets Member Sorting Direction Property by Choice Option
 	 */	
 	void setSortingDirection( /**Member Sorting Direction*/ org_scn_community_shared_SortDirectionEnumfield sortingDirection){*
-		sortingDirection = sortingDirection.toUpperCase();
-		
 		this.DSortingDirection = sortingDirection;
 	*}
 	
@@ -239,8 +231,6 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * Sets Member Sorting Type Property by Choice Option
 	 */	
 	void setSortingType( /**Member Sorting Type*/ org_scn_community_shared_SortTypeEnumfield sortingType){*
-		sortingType = sortingType.toUpperCase();
-		
 		this.DSortingType = sortingType;
 	*}
 	
@@ -269,8 +259,6 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	 * Sets Zero Values Display Mode Property by Choice Option
 	 */	
 	void setZeroValuesMode( /**Zero Values Display Mode*/ org_scn_community_shared_Enumfield zeroValuesMode){*
-		zeroValuesMode = zeroValuesMode.toUpperCase();
-		
 		this.DZeroValuesMode = zeroValuesMode;
 	*}
 	

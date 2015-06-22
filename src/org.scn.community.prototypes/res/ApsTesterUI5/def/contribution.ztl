@@ -59,8 +59,6 @@ class org.scn.community.prototypes.ApsTesterUI5 extends org.scn.community.shared
 	 * Sets Simple Choice Property by Choice Option
 	 */	
 	void setComboboxExample( /**Simple Choice*/ org_scn_community_shared_Enumfield comboboxExample){*
-		comboboxExample = comboboxExample.toUpperCase();
-		
 		this.comboboxExample = comboboxExample;
 	*}
 	

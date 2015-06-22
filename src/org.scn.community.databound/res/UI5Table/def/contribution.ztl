@@ -232,8 +232,6 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	 * Sets (non-stable) Formatting Operator Property by Choice Option
 	 */	
 	void setFormattingOperator( /**(non-stable) Formatting Operator*/ org_scn_community_shared_FormattingOperatorEnumfield formattingOperator){*
-		formattingOperator = formattingOperator.toUpperCase();
-		
 		this.DFormattingOperator = formattingOperator;
 	*}
 	
@@ -290,8 +288,6 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	 * Sets Navigation Mode Property by Choice Option
 	 */	
 	void setNavigationMode( /**Navigation Mode*/ org_scn_community_shared_NavigationModeEnumfield navigationMode){*
-		navigationMode = navigationMode.toUpperCase();
-		
 		this.DNavigationMode = navigationMode;
 	*}
 	
