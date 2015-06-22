@@ -79,18 +79,19 @@
     "opts": {
       "apsControl": "combobox",
       "cat": "Display",
+      "choiceType": "MemberDisplay",
       "desc": "Display Text",
       "options": [
         {
-          "key": "Text",
+          "key": "TEXT",
           "text": "Text Only"
         },
         {
-          "key": "Text (Value)",
+          "key": "TEXT_VALUE",
           "text": "Text And Value"
         },
         {
-          "key": "Text (Count)",
+          "key": "TEXT_COUNT",
           "text": "Text And Count"
         }
       ],

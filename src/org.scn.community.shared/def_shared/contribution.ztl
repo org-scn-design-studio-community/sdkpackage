@@ -3,6 +3,7 @@
  */
 class org.scn.community.shared.Component extends Component {
 	
+	@Visibility(private)
 	void internalWriteLog(String log) {*
 		// only for debugging
 		var active = false;
@@ -53,6 +54,24 @@ class org.scn.community.shared.Component extends Component {
 			}
 		}
 	*}
+	
+	/**
+	 * Converts Choice values to Strings
+	 */
+	@Visibility(private)
+	String convertChoiceToString (String choice) {*
+		return choice;
+	*}
+
+	/**
+	 * Converts String values to Choices
+	 */
+	@Visibility(private)
+	String convertToStringChoice (String value) {*
+		value = value.toUpper();
+		value = value.replace(" ", "_");
+		return value;
+	*}
 }
 
 /**
@@ -60,6 +79,7 @@ class org.scn.community.shared.Component extends Component {
  */
 class org.scn.community.shared.DataComponent extends org.scn.community.shared.Component {
 
+	@Visibility(private)
 	String superReadMembers(
 			/**technical name of the dimension*/String dimensionName,
 			/**max members to load (optional, default 1000)*/optional int maxMembers
@@ -96,6 +116,7 @@ class org.scn.community.shared.DataComponent extends org.scn.community.shared.Co
 	
 	*}
 	
+	@Visibility(private)
 	String superReadMetaData() {*
 		// APPLICATION.createInfoMessage("_readMetaData");
 		

@@ -1,5 +1,7 @@
 package org.scn.community.htmlgenerator;
 
+import java.util.Locale;
+
 import org.scn.community.spec.orgin.OrginSpec;
 import org.scn.community.utils.Helpers;
 
@@ -29,7 +31,26 @@ public class Value {
 	public String toSpec20() {
 		String templateValues = Helpers.resource2String(OrginSpec.class, "org.Choice-Entry.tmpl");
 
-		templateValues = templateValues.replace("%VALUE%", this.name);
+		String correctedName = "";
+		for (int i = 0; i < this.name.length(); i++) {
+			char c = this.name.charAt(i);
+			
+			if(Character.isUpperCase(c)) {
+				correctedName = correctedName + "_" + c;
+			}
+			
+			if(Character.isWhitespace(c)) {
+				correctedName = correctedName + "_";
+			}
+			
+			if(!Character.isAlphabetic(c) && !Character.isDigit(c)) {
+				correctedName = correctedName + "_";
+			}
+		}
+		
+		correctedName = correctedName.toUpperCase();
+		
+		templateValues = templateValues.replace("%VALUE%", correctedName);
 		templateValues = templateValues.replace("%DEFAULT%", ""+this.isDefault);
 
 		return templateValues;

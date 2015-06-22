@@ -625,9 +625,10 @@ public class Component {
 		}
 		
 		boolean hasSpec = new File(contributionXml.getParentFile().getParentFile().getAbsolutePath() + File.separator + "spec").exists();
+		boolean isComponentManager = this.name.equals("ComponentManager");
 		
 		// do not monitor def filder in case it is fully generated
-		if(!hasSpec) {
+		if(!hasSpec && !isComponentManager) {
 			resFiles = Helpers.listFiles(contributionXml.getParentFile().getParentFile().getAbsolutePath() + File.separator + "def");
 			for (File file : resFiles) {
 				String file2String = Helpers.file2String(file);

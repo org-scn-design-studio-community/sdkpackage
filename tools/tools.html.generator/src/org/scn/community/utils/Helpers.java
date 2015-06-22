@@ -347,7 +347,32 @@ public class Helpers {
 
 
 	public static String makeFirstUpper(String value) {
+		if(value.length() == 0) {
+			return value;
+		}
+		
+		if(value.length() == 1) {
+			return value.toUpperCase(Locale.ENGLISH);	
+		}
 		return value.substring(0,1).toUpperCase(Locale.ENGLISH)  +value.substring(1);
+	}
+	
+	public static String makeAllUpper(String value) {
+		String sentence = "";
+		String [] splitWords = value.split(" ");
+		for (int i = 0; i < splitWords.length; i++) {
+			String word = splitWords[i];
+			
+			word = makeFirstUpper(word);
+			
+			if(sentence.length()>0) {
+				sentence = sentence + " ";
+			}
+			
+			sentence = sentence + word;
+		}
+		
+		return sentence;
 	}
 	
 	public static File[] listFiles(String iFilePath) {
@@ -444,4 +469,5 @@ public class Helpers {
 
 		string2File(absolutePath, buffer.toString());
 	}
+
 }

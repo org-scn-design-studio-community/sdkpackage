@@ -77,6 +77,16 @@ public class ParamFullSpec {
 		}
 		return type;
 	}
+	
+	public String getChoiceType() {
+		if(options.getPropertyValue("ztlType").equals("Choice")) {
+			String choiceType = options.getPropertyValue("choiceType");
+
+			return choiceType;
+		}
+		
+		return "";
+	}
 
 	public boolean isOptional() {
 		return properties.get("type").contains(",optional");
@@ -142,6 +152,9 @@ public class ParamFullSpec {
 
 		String type = options.getPropertyValue("ztlType");
 		String function = options.getPropertyValue("ztlFunction");
+		
+		String choiceType = options.getPropertyValue("choiceType");
+		
 		if(function == null) {
 			function = "";
 		}
@@ -294,9 +307,14 @@ public class ParamFullSpec {
 			template = template.replace("%PROPERTY_NAME%", this.parentProperty.getName());
 			template = template.replace("%ROOT_PROPERTY_DEFINITION_KEY%", ROOT_PROPERTY_DEFINITION_KEY);
 			template = template.replace("%ROOT_PROPERTY_KEY%", ROOT_PROPERTY_KEY);
-			
+		
 		} else {
-			template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+type+function+".ztl.template");
+			
+			if(choiceType != null && choiceType.length() > 0) {
+				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+type+function+"."+"shared"+".ztl.template");
+			} else {
+				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+type+function+".ztl.template");	
+			}
 			
 			if(template == null) {
 				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+"simple"+".ztl.template");
@@ -319,6 +337,7 @@ public class ParamFullSpec {
 		String nameCut = this.parentProperty.getNameCut();
 		 nameCut = Helpers.makeFirstUpper(nameCut);
 		 template = template.replace("%PROPERTY_CAPITAL_CUT%", nameCut);
+		 template = template.replace("%PROPERTY_TYPE_CHOICE%", this.getChoiceType());
 		 template = template.replace("%PROPERTY_SMALL_CUT%", nameCut.substring(0,1).toLowerCase(Locale.ENGLISH) + nameCut.substring(1));
 		 template = template.replace("%PROPERTY_CAPITAL%", this.parentProperty.getName());
 		 template = template.replace("%PROPERTY_TYPE%", this.getType(false));

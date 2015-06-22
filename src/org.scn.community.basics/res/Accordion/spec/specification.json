@@ -78,6 +78,7 @@
         "visible":true,
         "opts":{
            "ztlType":"Choice",
+           "choiceType":"MemberDisplay",
            "ztlFunction":"",
            "desc":"Member Display",
            "cat":"Display",
@@ -85,11 +86,11 @@
            "apsControl":"combobox",
            "options":[
               {
-                 "key":"text",
+                 "key":"TEXT",
                  "text":"Text Only"
               },
               {
-                 "key":"text_key",
+                 "key":"TEXT_KEY",
                  "text":"Text [KEY]"
               }
            ]

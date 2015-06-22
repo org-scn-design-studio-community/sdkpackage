@@ -205,6 +205,20 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	String getMemberDisplayAsString() {*
 		return this.memberDisplay;
 	*}
+	
+	/**
+	 * Sets Member Display Property by Choice Option
+	 */	
+	void setMemberDisplay( /**Member Display*/ org.scn.community.shared.MemberDisplayEnumfield memberDisplay){*
+		this.memberDisplay = memberDisplay;
+	*}
+	
+	/**
+	 * Gets Member Display Property as Choice Option
+	 */	
+	org.scn.community.shared.MemberDisplay getMemberDisplay() {*
+		return this.memberDisplay;
+	*}
 
 
 

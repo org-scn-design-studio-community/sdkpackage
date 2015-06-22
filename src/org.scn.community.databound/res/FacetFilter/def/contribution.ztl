@@ -68,6 +68,20 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	String getDisplayTextAsString() {*
 		return this.DDisplayText;
 	*}
+	
+	/**
+	 * Sets Display Text Property by Choice Option
+	 */	
+	void setDisplayText( /**Display Text*/ org.scn.community.shared.MemberDisplayEnumfield displayText){*
+		this.DDisplayText = displayText;
+	*}
+	
+	/**
+	 * Gets Display Text Property as Choice Option
+	 */	
+	org.scn.community.shared.MemberDisplay getDisplayText() {*
+		return this.DDisplayText;
+	*}
 
 
 

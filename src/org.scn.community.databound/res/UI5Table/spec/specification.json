@@ -188,6 +188,7 @@
         "visible":true,
         "opts":{
            "ztlType":"Choice",
+           "choiceType":"FormattingOperator",
            "ztlFunction":"",
            "desc":"(non-stable) Formatting Operator",
            "cat":"Prototypes",
@@ -195,15 +196,15 @@
            "apsControl":"combobox",
            "options":[
               {
-                 "key":"UseFirst",
+                 "key":"USE_FIRST",
                  "text":"Use First Matching Format"
               },
               {
-                 "key":"UseLast",
+                 "key":"USE_LAST",
                  "text":"Use Last Matching Format"
               },
               {
-                 "key":"Collect",
+                 "key":"COLLECT",
                  "text":"Collect All Formats"
               }
            ]
@@ -260,6 +261,7 @@
         "visible":true,
         "opts":{
            "ztlType":"Choice",
+           "choiceType":"NavigationMode",
            "ztlFunction":"",
            "desc":"Navigation Mode",
            "cat":"Display",
@@ -267,11 +269,11 @@
            "apsControl":"combobox",
            "options":[
               {
-                 "key":"Paginator",
+                 "key":"PAGINATOR",
                  "text":"Use Page Paginator"
               },
               {
-                 "key":"Scrollbar",
+                 "key":"SCROLLBAR",
                  "text":"Use Scrollbar"
               }
            ]

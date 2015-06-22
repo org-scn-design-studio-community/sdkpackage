@@ -54,6 +54,7 @@
         "visible":true,
         "opts":{
            "ztlType":"Choice",
+           "choiceType":"MemberDisplay",
            "ztlFunction":"",
            "desc":"Display Text",
            "cat":"Display",
@@ -61,15 +62,15 @@
            "apsControl":"combobox",
            "options":[
               {
-                 "key":"Text",
+                 "key":"TEXT",
                  "text":"Text Only"
               },
               {
-                 "key":"Text (Value)",
+                 "key":"TEXT_VALUE",
                  "text":"Text And Value"
               },
               {
-                 "key":"Text (Count)",
+                 "key":"TEXT_COUNT",
                  "text":"Text And Count"
               }
            ]

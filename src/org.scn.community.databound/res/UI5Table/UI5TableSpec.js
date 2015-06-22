@@ -176,18 +176,19 @@
     "opts": {
       "apsControl": "combobox",
       "cat": "Prototypes",
+      "choiceType": "FormattingOperator",
       "desc": "(non-stable) Formatting Operator",
       "options": [
         {
-          "key": "UseFirst",
+          "key": "USE_FIRST",
           "text": "Use First Matching Format"
         },
         {
-          "key": "UseLast",
+          "key": "USE_LAST",
           "text": "Use Last Matching Format"
         },
         {
-          "key": "Collect",
+          "key": "COLLECT",
           "text": "Collect All Formats"
         }
       ],
@@ -229,14 +230,15 @@
     "opts": {
       "apsControl": "combobox",
       "cat": "Display",
+      "choiceType": "NavigationMode",
       "desc": "Navigation Mode",
       "options": [
         {
-          "key": "Paginator",
+          "key": "PAGINATOR",
           "text": "Use Page Paginator"
         },
         {
-          "key": "Scrollbar",
+          "key": "SCROLLBAR",
           "text": "Use Scrollbar"
         }
       ],

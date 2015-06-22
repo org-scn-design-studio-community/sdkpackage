@@ -163,14 +163,15 @@ ApsContent = function () {
     "opts": {
       "apsControl": "combobox",
       "cat": "Display",
+      "choiceType": "MemberDisplay",
       "desc": "Member Display",
       "options": [
         {
-          "key": "text",
+          "key": "TEXT",
           "text": "Text Only"
         },
         {
-          "key": "text_key",
+          "key": "TEXT_KEY",
           "text": "Text [KEY]"
         }
       ],

@@ -1,0 +1,22 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_MemberDisplayEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_MemberDisplay extends Enum {
+
+	/** TEXT */
+	org_scn_community_shared_MemberDisplayEnumfield TEXT;
+       
+	/** TEXT_VALUE */
+	org_scn_community_shared_MemberDisplayEnumfield TEXT_VALUE;
+
+	/** TEXT_KEY */
+	org_scn_community_shared_MemberDisplayEnumfield TEXT_KEY;
+}

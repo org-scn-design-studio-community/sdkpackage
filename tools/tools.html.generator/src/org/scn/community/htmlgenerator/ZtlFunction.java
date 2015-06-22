@@ -246,9 +246,14 @@ public class ZtlFunction {
 				helpLine = helpLine + "<br/>";
 			}
 
+			if(helpLine.trim().startsWith("/")) {
+				helpLine = helpLine.substring(1);
+			}
+
 			if(!helpLine.trim().startsWith("*")) {
 				helpLine = "\t * " + helpLine;
 			}
+			
 			if(helpLine.trim().contains("code>")) {
 				helpLine = helpLine + "<br/>";
 			}

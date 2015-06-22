@@ -1,0 +1,27 @@
+	/**
+	 * Sets %NAME% Property by String
+	 */	
+	void set%PROPERTY_CAPITAL_CUT%ByString( %HELP% %PROPERTY_TYPE_ZTL% %PROPERTY_SMALL_CUT%){*
+		this.%PROPERTY_CAPITAL% = %PROPERTY_SMALL_CUT%;
+	*}
+
+	/**
+	 * Gets %NAME% Property as String
+	 */	
+	%PROPERTY_TYPE% get%PROPERTY_CAPITAL_CUT%AsString() {*
+		return this.%PROPERTY_CAPITAL%;
+	*}
+	
+	/**
+	 * Sets %NAME% Property by Choice Option
+	 */	
+	void set%PROPERTY_CAPITAL_CUT%( %HELP% org.scn.community.shared.%PROPERTY_TYPE_CHOICE%Enumfield %PROPERTY_SMALL_CUT%){*
+		this.%PROPERTY_CAPITAL% = %PROPERTY_SMALL_CUT%;
+	*}
+	
+	/**
+	 * Gets %NAME% Property as Choice Option
+	 */	
+	org.scn.community.shared.%PROPERTY_TYPE_CHOICE% get%PROPERTY_CAPITAL_CUT%() {*
+		return this.%PROPERTY_CAPITAL%;
+	*}

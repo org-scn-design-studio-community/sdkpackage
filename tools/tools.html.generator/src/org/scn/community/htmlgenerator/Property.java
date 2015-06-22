@@ -36,6 +36,10 @@ public class Property {
 
 	private String componentName;
 
+	private String titleBig;
+
+	private String tooltipBig;
+
 	@SuppressWarnings("nls")
 	public Property(XMLStreamReader reader, String componentName) {
 		this.componentName = componentName;
@@ -74,6 +78,9 @@ public class Property {
 			// throw new RuntimeException("Group Must Be Assigned!");
 			this.group = "Display";
 		}
+		
+		this.titleBig = Helpers.makeAllUpper(this.title);
+		this.tooltipBig = Helpers.makeAllUpper(this.tooltip);
 	}
 
 	public Property(String componentName, String propertyName) {
@@ -224,8 +231,9 @@ public class Property {
 		}
 		
 		template = template.replace("%NAME%", this.name);
-		template = template.replace("%DESCRIPTION%", this.title);
-		template = template.replace("%TOOLTIP%", this.tooltip == "" ? this.title : this.tooltip);
+		
+		template = template.replace("%DESCRIPTION%", this.titleBig);
+		template = template.replace("%TOOLTIP%", this.tooltip == "" ? this.titleBig : this.tooltipBig);
 		template = template.replace("%ZTL_TYPE%", this.getType(true));
 		template = template.replace("%CATEGORY%", this.group);
 		template = template.replace("%VISIBLE%", this.visible);

@@ -1,0 +1,22 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_FormattingOperatorEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_FormattingOperator extends Enum {
+
+	/** USE_FIRST */
+	org_scn_community_shared_FormattingOperatorEnumfield USE_FIRST;
+       
+	/** USE_LAST */
+	org_scn_community_shared_FormattingOperatorEnumfield USE_LAST;
+
+	/** COLLECT */
+	org_scn_community_shared_FormattingOperatorEnumfield COLLECT;
+}
