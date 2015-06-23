@@ -1,0 +1,16 @@
+.DesignStudioSCN.Table2D table {
+	width:100%;
+}
+.DesignStudioSCN.Table2D .row{
+	background : #ffffff;
+}
+.DesignStudioSCN.Table2D .row.row-secondary{
+	background : #efffff;
+}
+.DesignStudioSCN.Table2D .row-header, .DesignStudioSCN.Table2D th {
+	background: #efefef;
+}
+
+.DesignStudioSCN.Table2D th {
+	white-space: nowrap;
+}

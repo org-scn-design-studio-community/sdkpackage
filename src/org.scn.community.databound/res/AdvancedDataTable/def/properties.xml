@@ -1,0 +1,12 @@
+
+	<!-- Begin of AdvancedDataTable Properties -->
+	<property id="displayLength" title="Display Length" type="int" visible="false"/>
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="formatting" title="Formatting Rules" type="String" visible="false"/>
+	<property id="paging" title="Paging" type="boolean" visible="false"/>
+	<property id="pagingType" title="Paging Type" type="String" visible="false"/>
+	<property id="searching" title="Searching" type="boolean" visible="false"/>
+	<property id="ordering" title="Ordering" type="boolean" visible="false"/>
+	<property id="info" title="Info" type="boolean" visible="false"/>
+	<!-- <property id="concatenateDimensions" type="boolean" title = "Concatenate Dimensions"/> -->
+	<!-- End of AdvancedDataTable Properties -->

@@ -19,6 +19,14 @@
  */
 
 
+class org.scn.community.databound.AdvancedDataTable extends org.scn.community.shared.DataComponent {
+	
+	/** returns the data */
+	String getStringData () {*
+		return this.stringData;	
+	*}
+}
+
 /**
  * Class for BulletChart
  */
@@ -2350,14 +2358,6 @@ class org.scn.community.databound.Slider extends org.scn.community.shared.DataCo
 	/** sets the pause refresh flag */
 	void allowRefresh () {*
 		this.doRefresh = true;	
-	*}
-}
-
-class org.scn.community.databound.Table2D extends org.scn.community.shared.DataComponent {
-	
-	/** returns the data */
-	String getStringData () {*
-		return this.stringData;	
 	*}
 }
 

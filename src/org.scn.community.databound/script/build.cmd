@@ -9,6 +9,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\..\org.scn.community.shared\templates.main\eula.xml.txt ^
 ..\..\org.scn.community.shared\templates.main\license.xml.txt ^
 ..\templates\contribution.xml.groups.txt ^
+..\res\AdvancedDataTable\def\contribution.xml ^
 ..\res\BulletChart\def\contribution.xml ^
 ..\res\Choropleth\def\contribution.xml ^
 ..\res\DataTable\def\contribution.xml ^
@@ -41,6 +42,7 @@ del ..\contribution.ztl /q
 type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\templates\contribution.ztl.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.js.txt ^
+..\res\AdvancedDataTable\def\contribution.ztl ^
 ..\res\BulletChart\def\contribution.ztl ^
 ..\res\Choropleth\def\contribution.ztl ^
 ..\res\DataTable\def\contribution.ztl ^
@@ -60,7 +62,6 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ResultSetMixer\def\contribution.ztl ^
 ..\res\ScatterPlot\def\contribution.ztl ^
 ..\res\Slider\def\contribution.ztl ^
-..\res\Table2D\def\contribution.ztl ^
 ..\res\TagCloud\def\contribution.ztl ^
 ..\res\TopFlop\def\contribution.ztl ^
 ..\res\TopFlopChart\def\contribution.ztl ^

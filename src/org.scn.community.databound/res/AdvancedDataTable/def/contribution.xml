@@ -1,0 +1,64 @@
+
+<component
+		id="AdvancedDataTable"
+		title="Advanced Data Table"
+		icon="res/AdvancedDataTable/AdvancedDataTable.png"
+		handlerType="div"
+		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>os/jquery-datatables/js/jquery.dataTables.js</jsInclude>
+	<jsInclude>res/AdvancedDataTable/AdvancedDataTable.js</jsInclude>
+	<cssInclude>os/jquery-datatables/css/jquery.dataTables.css</cssInclude>
+	<cssInclude>res/AdvancedDataTable/AdvancedDataTable.css</cssInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<!-- Base Databound Properties -->
+	<property
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
+	<!-- End of Base Databound Properties -->
+	<!-- Begin of AdvancedDataTable Properties -->
+	<property id="displayLength" title="Display Length" type="int" visible="false"/>
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="formatting" title="Formatting Rules" type="String" visible="false"/>
+	<property id="paging" title="Paging" type="boolean" visible="false"/>
+	<property id="pagingType" title="Paging Type" type="String" visible="false"/>
+	<property id="searching" title="Searching" type="boolean" visible="false"/>
+	<property id="ordering" title="Ordering" type="boolean" visible="false"/>
+	<property id="info" title="Info" type="boolean" visible="false"/>
+	<!-- <property id="concatenateDimensions" type="boolean" title = "Concatenate Dimensions"/> -->
+	<!-- End of AdvancedDataTable Properties -->
+	<initialization>
+		<!-- Databound Defaults -->
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
+		<!-- End of Databound Defaults -->
+		<!-- Begin of AdvancedDataTable Defaults -->
+		<defaultValue property="formatting">[]</defaultValue>
+		<defaultValue property="paging">true</defaultValue>
+		<defaultValue property="pagingType">simple_numbers</defaultValue>
+		<defaultValue property="ordering">true</defaultValue>
+		<defaultValue property="searching">true</defaultValue>
+		<defaultValue property="info">true</defaultValue>
+		<defaultValue property="displayLength">10</defaultValue>
+		<!-- End of AdvancedDataTable Defaults -->
+	</initialization>
+</component>
