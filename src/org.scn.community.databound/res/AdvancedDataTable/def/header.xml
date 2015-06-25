@@ -25,6 +25,6 @@
 	<cssInclude>os/jquery-datatables/plugins/dataTables.jqueryui.css</cssInclude>
 	<cssInclude>os/jquery-datatables/plugins/dataTables.responsive.css</cssInclude>
 	<cssInclude>os/jquery-datatables/plugins/dataTables.colVis.css</cssInclude>
-	<cssInclude>os/jquery-datatables/plugins/dataTables.colVis.jqueryui.css</cssInclude>
+	<cssInclude>os/jquery-datatables/plugins/dataTables.colvis.jqueryui.css</cssInclude>
 	<cssInclude>res/AdvancedDataTable/AdvancedDataTable.css</cssInclude>
 	<cssInclude>res/Viz.css</cssInclude>
