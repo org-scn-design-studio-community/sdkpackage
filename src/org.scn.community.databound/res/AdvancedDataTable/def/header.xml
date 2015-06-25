@@ -15,11 +15,16 @@
 	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
 	<jsInclude>os/jquery-datatables/js/jquery.dataTables.js</jsInclude>
+	<jsInclude>os/jquery-datatables/plugins/dataTables.jqueryui.js</jsInclude>
+	<jsInclude>os/jquery-datatables/plugins/dataTables.pageResize.js</jsInclude>
 	<jsInclude>os/jquery-datatables/plugins/dataTables.responsive.js</jsInclude>
 	<jsInclude>os/jquery-datatables/plugins/dataTables.colVis.js</jsInclude>
 	<jsInclude>res/AdvancedDataTable/AdvancedDataTable.js</jsInclude>
-	<cssInclude>os/jquery-datatables/css/jquery.dataTables.css</cssInclude>
+	<!-- <cssInclude>os/jquery-datatables/css/jquery.dataTables.css</cssInclude> -->
+	<cssInclude>os/jqueryui/smoothness.css</cssInclude>
+	<cssInclude>os/jquery-datatables/plugins/dataTables.jqueryui.css</cssInclude>
 	<cssInclude>os/jquery-datatables/plugins/dataTables.responsive.css</cssInclude>
 	<cssInclude>os/jquery-datatables/plugins/dataTables.colVis.css</cssInclude>
+	<cssInclude>os/jquery-datatables/plugins/dataTables.colVis.jqueryui.css</cssInclude>
 	<cssInclude>res/AdvancedDataTable/AdvancedDataTable.css</cssInclude>
 	<cssInclude>res/Viz.css</cssInclude>

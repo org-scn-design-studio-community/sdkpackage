@@ -63,8 +63,8 @@ ul.ColVis_collection li:hover {
 }
 
 button.ColVis_Button {
-	height: 30px;
-	padding: 3px 8px;
+	/*height: 30px;
+	padding: 3px 8px;*/
 }
 
 button.ColVis_Button::-moz-focus-inner { 

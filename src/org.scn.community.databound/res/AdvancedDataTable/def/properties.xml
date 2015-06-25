@@ -12,6 +12,7 @@
 	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
 	<property id="ordering" title="Ordering" type="boolean" visible="false"/>
 	<property id="paging" title="Paging" type="boolean" visible="false"/>
+	<property id="pageResize" title="Paging Resize" type="boolean" visible="false"/>
 	<property id="pagingType" title="Paging Type" type="String" visible="false"/>	
 	<property id="responsive" title="Responsive" type="boolean" visible="false"/>
 	<property id="scrollCollapse" title="Vertical Scroll Collapse" type="boolean" visible="false"/>

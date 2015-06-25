@@ -96,14 +96,24 @@
 	    				tooltip : "Selected Value",
 	    				noAps : true
 	    			}
-	    		},paging : { 
+	    		}
+	    		,paging : { 
 	    			opts : {
 	    				desc : "Enable Pagination",
 	    				cat : "Behavior",
 	    				tooltip : "Enable Pagination",
 	    				apsControl : "checkbox"
 	    			}
-	    		},pagingType : {
+	    		},
+	    		pageResize : { 
+	    			opts : {
+	    				desc : "Enable Pagination Resize",
+	    				cat : "Behavior",
+	    				tooltip : "Enable Pagination Resize",
+	    				apsControl : "checkbox"
+	    			}
+	    		},
+	    		pagingType : {
 	    			opts : {
 	    				apsControl : "combobox",
 	    				desc : "Paginaton Type",
@@ -129,7 +139,8 @@
 	    				tooltip : "Enable Responsive behavior",
 	    				apsControl : "checkbox"
 	    			}
-	    		},scrollX : { 
+	    		},
+	    		/*scrollX : { 
 	    			opts : {
 	    				desc : "Horizontal Scroll Width",
 	    				cat : "Behavior",
@@ -150,7 +161,8 @@
 	    				tooltip : "Vertical Scroll Collapse",
 	    				apsControl : "checkbox"
 	    			}
-	    		},searching : { 
+	    		},*/
+	    		searching : { 
 	    			opts : {
 		    			order : 1,
 	    				desc : "Enable Searching",
@@ -260,9 +272,6 @@
 					search.regex = this.searchRegex();
 					search.caseInsensitive = this.searchCaseInsensitive();
 					var colVis = {};
-					if(this.colVis()){
-						dom = 'C<"clear">lfrtip';
-					}
 					if(this.colVisShowAll()){
 						colVis.showAll = "Show All";
 					}
@@ -276,19 +285,20 @@
 						colVis : colVis,
 						displayLength : this.displayLength(),
 						displayStart : this.displayStart(),
+						pageResize : this.pageResize(),
 						paging : this.paging(),
 						pagingType : this.pagingType(),
 						responsive : this.responsive(),
 						order : [],
 						ordering : this.ordering(),
-						scrollX : this.scrollX(),
-						scrollY : this.scrollY(),
-						scrollCollapse : this.scrollCollapse(),
+						//scrollX : this.scrollX(),
+						//scrollY : this.scrollY(),
+						//scrollCollapse : this.scrollCollapse(),
 						search : search,
 						searching : this.searching(),
 						info : this.info(),
 						columnDefs : columnDefs,
-						dom: dom
+						// dom: dom
 					};
 					// alert(JSON.stringify(options));
 					var table = "<table id='" + this.$().attr("id") + "_table' class='display'>"+
@@ -318,7 +328,10 @@
 					}
 					table+="</tbody></table>";
 					this.$().html(table);
-					$("#" + this.$().attr("id") + "_table").dataTable(options);
+					var table = $("#" + this.$().attr("id") + "_table").dataTable(options);
+					//colVis.buttonText = this.$().attr("id");
+					var colvis = new $.fn.dataTable.ColVis( table, colVis );
+					$( colvis.button() ).insertBefore(this.$().find('div.dataTables_length'));
 				}catch(e){
 					alert(e);
 				}

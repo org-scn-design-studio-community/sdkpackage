@@ -211,12 +211,17 @@
 	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
 	<jsInclude>os/jquery-datatables/js/jquery.dataTables.js</jsInclude>
+	<jsInclude>os/jquery-datatables/plugins/dataTables.jqueryui.js</jsInclude>
+	<jsInclude>os/jquery-datatables/plugins/dataTables.pageResize.js</jsInclude>
 	<jsInclude>os/jquery-datatables/plugins/dataTables.responsive.js</jsInclude>
 	<jsInclude>os/jquery-datatables/plugins/dataTables.colVis.js</jsInclude>
 	<jsInclude>res/AdvancedDataTable/AdvancedDataTable.js</jsInclude>
-	<cssInclude>os/jquery-datatables/css/jquery.dataTables.css</cssInclude>
+	<!-- <cssInclude>os/jquery-datatables/css/jquery.dataTables.css</cssInclude> -->
+	<cssInclude>os/jqueryui/smoothness.css</cssInclude>
+	<cssInclude>os/jquery-datatables/plugins/dataTables.jqueryui.css</cssInclude>
 	<cssInclude>os/jquery-datatables/plugins/dataTables.responsive.css</cssInclude>
 	<cssInclude>os/jquery-datatables/plugins/dataTables.colVis.css</cssInclude>
+	<cssInclude>os/jquery-datatables/plugins/dataTables.colVis.jqueryui.css</cssInclude>
 	<cssInclude>res/AdvancedDataTable/AdvancedDataTable.css</cssInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<!-- Base Databound Properties -->
@@ -246,6 +251,7 @@
 	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
 	<property id="ordering" title="Ordering" type="boolean" visible="false"/>
 	<property id="paging" title="Paging" type="boolean" visible="false"/>
+	<property id="pageResize" title="Paging Resize" type="boolean" visible="false"/>
 	<property id="pagingType" title="Paging Type" type="String" visible="false"/>	
 	<property id="responsive" title="Responsive" type="boolean" visible="false"/>
 	<property id="scrollCollapse" title="Vertical Scroll Collapse" type="boolean" visible="false"/>
@@ -275,14 +281,17 @@
 		<defaultValue property="paging">true</defaultValue>
 		<defaultValue property="pagingType">simple_numbers</defaultValue>
 		<defaultValue property="ordering">true</defaultValue>
+		<defaultValue property="pageResize">true</defaultValue>
 		<defaultValue property="searchCaseInsensitive">true</defaultValue>
 		<defaultValue property="searching">true</defaultValue>
 		<defaultValue property="info">true</defaultValue>
 		<defaultValue property="columns">[]</defaultValue>
 		<defaultValue property="displayLength">10</defaultValue>
 		<defaultValue property="displayStart">0</defaultValue>
+		<!-- 
 		<defaultValue property="scrollX">100%</defaultValue>
 		<defaultValue property="scrollY">100%</defaultValue>
+		 -->
 		<!-- End of AdvancedDataTable Defaults -->
 	</initialization>
 </component>

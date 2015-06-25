@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="designstudio" sequenceNumber="42">
+<?pde version="3.8"?><target name="designstudio" sequenceNumber="57">
 <locations>
-<location path="C:\Program Files (x86)\SAP BusinessObjects\Design Studio 1.4 x86" type="Profile"/>
+<location path="C:\Program Files (x86)\SAP BusinessObjects\Design Studio" type="Profile"/>
 </locations>
 <environment>
 <os>win32</os>
