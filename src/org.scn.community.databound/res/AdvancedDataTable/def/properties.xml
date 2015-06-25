@@ -1,12 +1,27 @@
 
 	<!-- Begin of AdvancedDataTable Properties -->
+	<property id="columns" title="Column Configuration" type="String" visible="false"/>
+	<property id="colVis" title="Allow Column Vis Toggle" type="boolean" visible="false"/>
+	<property id="colVisRestore" title="Enable ColVis Restore" type="boolean" visible="false"/>
+	<property id="colVisShowAll" title="Enable ColVis ShowAll" type="boolean" visible="false"/>
+	<property id="colVisShowNone" title="Enable ColVis ShowNone" type="boolean" visible="false"/>
 	<property id="displayLength" title="Display Length" type="int" visible="false"/>
-	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="displayStart" title="Display Start" type="int" visible="false"/>
 	<property id="formatting" title="Formatting Rules" type="String" visible="false"/>
-	<property id="paging" title="Paging" type="boolean" visible="false"/>
-	<property id="pagingType" title="Paging Type" type="String" visible="false"/>
-	<property id="searching" title="Searching" type="boolean" visible="false"/>
-	<property id="ordering" title="Ordering" type="boolean" visible="false"/>
 	<property id="info" title="Info" type="boolean" visible="false"/>
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="ordering" title="Ordering" type="boolean" visible="false"/>
+	<property id="paging" title="Paging" type="boolean" visible="false"/>
+	<property id="pagingType" title="Paging Type" type="String" visible="false"/>	
+	<property id="responsive" title="Responsive" type="boolean" visible="false"/>
+	<property id="scrollCollapse" title="Vertical Scroll Collapse" type="boolean" visible="false"/>
+	<property id="scrollX" title="Horizontal Scrolling" type="String" visible="false"/>
+	<property id="scrollY" title="Vertical Scrolling Height" type="String" visible="false"/>
+	<property id="searchCaseInsensitive" title="Search - Case-Insensitive" type="boolean" visible="false"/>
+	<property id="searchRegex" title="Search - Regular Expressions" type="boolean" visible="false"/>
+	<property id="searchSmart" title="Search - Smart Search" type="boolean" visible="false"/>
+	<property id="searchTerm" title="Search - Initial Search Term" type="String" visible="false"/>
+	<property id="searching" title="Searching" type="boolean" visible="false"/>
+	
 	<!-- <property id="concatenateDimensions" type="boolean" title = "Concatenate Dimensions"/> -->
 	<!-- End of AdvancedDataTable Properties -->

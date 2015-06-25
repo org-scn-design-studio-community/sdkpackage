@@ -211,8 +211,12 @@
 	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
 	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
 	<jsInclude>os/jquery-datatables/js/jquery.dataTables.js</jsInclude>
+	<jsInclude>os/jquery-datatables/plugins/dataTables.responsive.js</jsInclude>
+	<jsInclude>os/jquery-datatables/plugins/dataTables.colVis.js</jsInclude>
 	<jsInclude>res/AdvancedDataTable/AdvancedDataTable.js</jsInclude>
 	<cssInclude>os/jquery-datatables/css/jquery.dataTables.css</cssInclude>
+	<cssInclude>os/jquery-datatables/plugins/dataTables.responsive.css</cssInclude>
+	<cssInclude>os/jquery-datatables/plugins/dataTables.colVis.css</cssInclude>
 	<cssInclude>res/AdvancedDataTable/AdvancedDataTable.css</cssInclude>
 	<cssInclude>res/Viz.css</cssInclude>
 	<!-- Base Databound Properties -->
@@ -230,14 +234,29 @@
 	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
 	<!-- End of Base Databound Properties -->
 	<!-- Begin of AdvancedDataTable Properties -->
+	<property id="columns" title="Column Configuration" type="String" visible="false"/>
+	<property id="colVis" title="Allow Column Vis Toggle" type="boolean" visible="false"/>
+	<property id="colVisRestore" title="Enable ColVis Restore" type="boolean" visible="false"/>
+	<property id="colVisShowAll" title="Enable ColVis ShowAll" type="boolean" visible="false"/>
+	<property id="colVisShowNone" title="Enable ColVis ShowNone" type="boolean" visible="false"/>
 	<property id="displayLength" title="Display Length" type="int" visible="false"/>
-	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="displayStart" title="Display Start" type="int" visible="false"/>
 	<property id="formatting" title="Formatting Rules" type="String" visible="false"/>
-	<property id="paging" title="Paging" type="boolean" visible="false"/>
-	<property id="pagingType" title="Paging Type" type="String" visible="false"/>
-	<property id="searching" title="Searching" type="boolean" visible="false"/>
-	<property id="ordering" title="Ordering" type="boolean" visible="false"/>
 	<property id="info" title="Info" type="boolean" visible="false"/>
+	<property id="onSelect"	title="On Select" type="ScriptText"	group="Events"/>
+	<property id="ordering" title="Ordering" type="boolean" visible="false"/>
+	<property id="paging" title="Paging" type="boolean" visible="false"/>
+	<property id="pagingType" title="Paging Type" type="String" visible="false"/>	
+	<property id="responsive" title="Responsive" type="boolean" visible="false"/>
+	<property id="scrollCollapse" title="Vertical Scroll Collapse" type="boolean" visible="false"/>
+	<property id="scrollX" title="Horizontal Scrolling" type="String" visible="false"/>
+	<property id="scrollY" title="Vertical Scrolling Height" type="String" visible="false"/>
+	<property id="searchCaseInsensitive" title="Search - Case-Insensitive" type="boolean" visible="false"/>
+	<property id="searchRegex" title="Search - Regular Expressions" type="boolean" visible="false"/>
+	<property id="searchSmart" title="Search - Smart Search" type="boolean" visible="false"/>
+	<property id="searchTerm" title="Search - Initial Search Term" type="String" visible="false"/>
+	<property id="searching" title="Searching" type="boolean" visible="false"/>
+	
 	<!-- <property id="concatenateDimensions" type="boolean" title = "Concatenate Dimensions"/> -->
 	<!-- End of AdvancedDataTable Properties -->
 	<initialization>
@@ -248,13 +267,22 @@
 		<defaultValue property="useMockData">true</defaultValue>
 		<!-- End of Databound Defaults -->
 		<!-- Begin of AdvancedDataTable Defaults -->
+		<defaultValue property="colVis">false</defaultValue>
+		<defaultValue property="colVisRestore">false</defaultValue>
+		<defaultValue property="colVisShowAll">true</defaultValue>
+		<defaultValue property="colVisShowNone">true</defaultValue>
 		<defaultValue property="formatting">[]</defaultValue>
 		<defaultValue property="paging">true</defaultValue>
 		<defaultValue property="pagingType">simple_numbers</defaultValue>
 		<defaultValue property="ordering">true</defaultValue>
+		<defaultValue property="searchCaseInsensitive">true</defaultValue>
 		<defaultValue property="searching">true</defaultValue>
 		<defaultValue property="info">true</defaultValue>
+		<defaultValue property="columns">[]</defaultValue>
 		<defaultValue property="displayLength">10</defaultValue>
+		<defaultValue property="displayStart">0</defaultValue>
+		<defaultValue property="scrollX">100%</defaultValue>
+		<defaultValue property="scrollY">100%</defaultValue>
 		<!-- End of AdvancedDataTable Defaults -->
 	</initialization>
 </component>

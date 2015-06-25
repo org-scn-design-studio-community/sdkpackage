@@ -1,5 +1,6 @@
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.aps.PropertyPage", function() {
 	var that = this;
+
 	/**
 	 * Crawl Node config by node key to find its UI sheet.
 	 */
@@ -64,6 +65,10 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.aps.PropertyPage",
 								if(apsControl=="color"){
 									this["cmp_"+property].setBackgroundColor(value);
 								}
+								if(apsControl=="columnconfig"){
+									var newValue = jQuery.parseJSON(value);
+									this["cmp_"+property].setValue(newValue);
+								}
 								return this;
 							}
 						};
@@ -95,6 +100,10 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.aps.PropertyPage",
 							}
 							if(apsControl=="color"){
 								newValue = oControlEvent.getSource().getBackgroundColor();
+							}
+							if(apsControl=="columnconfig"){
+								var arrayValue = oControlEvent.getSource().getValue();
+								newValue = JSON.stringify(arrayValue);
 							}
 							this.props[property].value = newValue;
 							this.firePropertiesChanged([property]);
@@ -153,6 +162,16 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.aps.PropertyPage",
 						}
 						this["cmp_"+property].attachChange(f,this);
 					}
+					if(apsControl == "columnconfig"){
+						this["cmp_"+property] = new org.scn.community.aps.TableColumns({
+							width : "100%",
+							title : new sap.ui.commons.Title({
+								text: propertyOptions.desc
+							}),
+							showCollapseIcon : false
+						});
+						this["cmp_"+property].attachValueChange(f,this);
+					}
 					if(apsControl == "palette"){
 						this["cmp_"+property] = new org.scn.community.aps.ColorBuilder({
 							width : "100%",
@@ -175,7 +194,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.aps.PropertyPage",
 					// Step 4, add control to layout
 					//etcLayout.addContent(this.hLabel(property,this["cmp_"+property]));
 					var useLabel = true;
-					if(apsControl == "palette" || apsControl == "mapdownload") useLabel = false;
+					if(apsControl == "palette" || apsControl == "mapdownload" || apsControl == "columnconfig") useLabel = false;
 					if(useLabel){
 						node.ui.addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
 					}else{
@@ -253,6 +272,77 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.aps.PropertyPage",
 	 * Design Studio Events
 	 */
 	this.init = function(){
+		var sComponentInfo = this.callRuntimeHandler("getComponentInformation");
+		var componentInfo = {};
+		if(sComponentInfo && sComponentInfo != "") {
+			try{
+			componentInfo = jQuery.parseJSON(sComponentInfo);
+			}catch(e){
+				alert("Bad Component Info found.")
+			}
+		}
+		/**
+		 * Attach additional handlers, depending on component capabilities
+		 */
+		if(componentInfo && componentInfo.supportsFlatData){
+			var that = this;
+			this.dataPropertyListeners = [];
+			if(!this.DATA_SOURCE_ALIAS_REF) this.DATA_SOURCE_ALIAS_REF = function(v){
+				if(v===undefined){
+					return this._dsr;
+				}else{
+					this._dsr = v;
+					if(this.dsPoll) window.clearTimeout(this.dsPoll);
+					this.dsPoll = window.setTimeout(function(){that.updateDataInfo("DATA_SOURCE_ALIAS_REF changed");}, 1500);
+					return this;
+				}
+			}
+			this.componentSelected = function(){
+				if(this.dsPoll) window.clearTimeout(this.dsPoll);
+				this.updateDataInfo("Component Selected");
+				//alert(JSON.stringify(ds_getDataJSON()));
+				//alert(ds_getMetadataPropertiesAsJSON());
+			}
+			this.registerDataComponent = function(cmp){
+				this.dataPropertyListeners.push(cmp);
+			};
+			/**
+			 * Get Data Source Metadata
+			 */
+			this.updateDataInfo = function(reason){
+				jQuery.sap.log.info("Updating Data Source Info because: " + reason);
+				var that = this;
+				// Get Property Metadata from Design Studio Component Runtime.
+				try{
+					var dsm = this.callRuntimeHandler("getAPSMetaData");
+					var fd = this.callRuntimeHandler("getAPSFlatData");
+					// If both values are the same, don't bother updating APS components
+					if(dsm == this.oldDSM && fd == this.oldFD) return;
+					this.oldDSM = dsm;
+					this.oldFD = fd;
+					var fdMeta = {
+						msg : "Not loaded",
+						data : null
+					}
+					delete this.dsMetadata;
+					delete this.flatData;
+					if(dsm && dsm != "") {
+						this.dsMetadata = jQuery.parseJSON(dsm);
+					}
+					if(fd && fd != "") {
+						fdMeta = jQuery.parseJSON(fd);
+						if(fdMeta && fdMeta.data) this.flatData = fdMeta.data;
+					}
+					// Update data-sensitive components to metadata or flatdata changes.
+					for(var i=0;i<this.dataPropertyListeners.length;i++){
+						var cmp = this.dataPropertyListeners[i];
+						if(cmp !=undefined && cmp.notifyDataChange) cmp.notifyDataChange();
+					}
+				}catch(e){
+					alert("An error occured with APS communicating with the Design Studio runtime.  Please try reloading your dashboard.\n\n"+e);
+				}
+			};
+		}
 		this.appHeader = new sap.ui.commons.ApplicationHeader({
 			displayLogoff : false,
 			logoText : "Property Sheet",
@@ -317,47 +407,36 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.aps.PropertyPage",
 		this.balance(this.tree);
 		// Pass 3 - Create UI Components
 		this.render(this.tree,this.mainLayout);
-		
-		var sComponentInfo = this.callRuntimeHandler("getComponentInformation");
-		var componentInfo = {};
-		if(sComponentInfo && sComponentInfo != "") {
-			try{
-			componentInfo = jQuery.parseJSON(sComponentInfo);
-			if(componentInfo && componentInfo.visible){
-				this.aboutLayout = new sap.ui.commons.layout.VerticalLayout({
-					width : "100%"
-				});
-				this.tree.strip.addItem(new sap.ui.ux3.NavigationItem({
-					key:"ABOUT",
-					text:"About",
-				}));
-				aboutPanel = new sap.ui.commons.Panel({
-					text : componentInfo.title,
-					width : "100%"
-				});
-				this.appHeader.setLogoText("  " + componentInfo.title);
-				if(componentInfo.icon) this.appHeader.setLogoSrc(componentInfo.icon);
-				//var aboutDescription = new sap.ui.commons.TextView({ text : componentInfo.description});
-				var aboutDescription = new sap.ui.core.HTML({ content : "<div>" + componentInfo.description + "</div>"});
-				aboutPanel.addContent(aboutDescription);
-				this.aboutLayout.addContent(aboutPanel);
-				if(componentInfo.topics){
-					for(var i=0;i<componentInfo.topics.length;i++){
-						var topicPanel = new sap.ui.commons.Panel({
-							text : componentInfo.topics[i].title,
-							width : "100%"
-						});
-						var topicContent = new sap.ui.core.HTML({ content : "<div>" + componentInfo.topics[i].content + "</div>"});
-						topicPanel.addContent(topicContent);
-						this.aboutLayout.addContent(topicPanel);
-					}
+		if(componentInfo && componentInfo.visible){
+			this.aboutLayout = new sap.ui.commons.layout.VerticalLayout({
+				width : "100%"
+			});
+			this.tree.strip.addItem(new sap.ui.ux3.NavigationItem({
+				key:"ABOUT",
+				text:"About",
+			}));
+			aboutPanel = new sap.ui.commons.Panel({
+				text : componentInfo.title,
+				width : "100%"
+			});
+			this.appHeader.setLogoText("  " + componentInfo.title);
+			if(componentInfo.icon) this.appHeader.setLogoSrc(componentInfo.icon);
+			//var aboutDescription = new sap.ui.commons.TextView({ text : componentInfo.description});
+			var aboutDescription = new sap.ui.core.HTML({ content : "<div>" + componentInfo.description + "</div>"});
+			aboutPanel.addContent(aboutDescription);
+			this.aboutLayout.addContent(aboutPanel);
+			if(componentInfo.topics){
+				for(var i=0;i<componentInfo.topics.length;i++){
+					var topicPanel = new sap.ui.commons.Panel({
+						text : componentInfo.topics[i].title,
+						width : "100%"
+					});
+					var topicContent = new sap.ui.core.HTML({ content : "<div>" + componentInfo.topics[i].content + "</div>"});
+					topicPanel.addContent(topicContent);
+					this.aboutLayout.addContent(topicPanel);
 				}
 			}
-			}catch(e){
-				alert(e);
-			}
 		}
-		
 	};
 	this.hLabel = function(label,component){
 		var hLayout = new sap.ui.commons.layout.HorizontalLayout({})

@@ -88,6 +88,43 @@ function org_scn_community_databound_Base(options){
 		"<li>Swap Axes - Interpret Rows as Columns, and Columns as Rows.</li>"+
 		"</ul>"
 	});
+	this.componentInfo.supportsFlatData = true;
+	/**
+	 * Relays Data Source Metadata over to Additional Properties Sheet.
+	 */
+	this.getAPSMetaData = function(){
+		try{
+			return JSON.stringify({
+    			msg : "Success",
+    			data : this.data()
+    		});	
+		}catch(e){
+			var errMsg = "Component error in getAPSMetaData:\n\n" + e;
+    		return JSON.stringify({
+    			msg : errMsg,
+    			data : {}
+    		})
+			alert(errMsg);
+		}
+	}
+	/**
+	 * Relays Flattened Data to Additional Properties Sheet.
+	 */
+	this.getAPSFlatData = function(){
+		try{
+			return JSON.stringify({
+    			msg : "Success",
+    			data : this.flatData
+    		});
+    	}catch(e){
+    		var errMsg = "Problem returning flattened data to APS.\n\n" + e;
+    		return JSON.stringify({
+    			msg : errMsg,
+    			data : {}
+    		})
+			alert(errMsg);
+		}
+	}
 	var parentInit = this.init;
 	this.init = function(){
 		parentInit.apply(this);

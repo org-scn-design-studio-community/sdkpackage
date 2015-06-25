@@ -1,10 +1,19 @@
 
 		<!-- Begin of AdvancedDataTable Defaults -->
+		<defaultValue property="colVis">false</defaultValue>
+		<defaultValue property="colVisRestore">false</defaultValue>
+		<defaultValue property="colVisShowAll">true</defaultValue>
+		<defaultValue property="colVisShowNone">true</defaultValue>
 		<defaultValue property="formatting">[]</defaultValue>
 		<defaultValue property="paging">true</defaultValue>
 		<defaultValue property="pagingType">simple_numbers</defaultValue>
 		<defaultValue property="ordering">true</defaultValue>
+		<defaultValue property="searchCaseInsensitive">true</defaultValue>
 		<defaultValue property="searching">true</defaultValue>
 		<defaultValue property="info">true</defaultValue>
+		<defaultValue property="columns">[]</defaultValue>
 		<defaultValue property="displayLength">10</defaultValue>
+		<defaultValue property="displayStart">0</defaultValue>
+		<defaultValue property="scrollX">100%</defaultValue>
+		<defaultValue property="scrollY">100%</defaultValue>
 		<!-- End of AdvancedDataTable Defaults -->

@@ -12,7 +12,10 @@ var org_scn_community_databound_Core = function(options){
 		topics : [{
 			title : "SDK Component",
 			content : "This component is an SDK Component.  Be sure you install the plugin to your server platform should you find it useful."
-		}]
+		},{
+    		title : "SCN SDK Components License",
+    		content : "SCN SDK Components License is released under the Apache 2.0 License. Please refer to the licenses for the full copyright restrictions placed on this software.  (<a target='_blank' href='http://www.apache.org/licenses/LICENSE-2.0'>Apache 2.0 License</a>)"
+    	}]
 	};
 	this.props = {
 		// All properties from child classes always inherit properties.  Core class currently has no properties out of the gate.
