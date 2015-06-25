@@ -202,7 +202,7 @@
 	    		},info : { 
 	    			opts : {
 	    				desc : "Enable Info",
-	    				cat : "Behavior-Search",
+	    				cat : "Behavior",
 	    				tooltip : "Enable Info",
 	    				apsControl : "checkbox"
 	    			}
@@ -330,8 +330,10 @@
 					this.$().html(table);
 					var table = $("#" + this.$().attr("id") + "_table").dataTable(options);
 					//colVis.buttonText = this.$().attr("id");
-					var colvis = new $.fn.dataTable.ColVis( table, colVis );
-					$( colvis.button() ).insertBefore(this.$().find('div.dataTables_length'));
+					if(this.colVis()){
+						var colvis = new $.fn.dataTable.ColVis( table, colVis );
+						$( colvis.button() ).insertBefore(this.$().find('div.dataTables_length'));	
+					}					
 				}catch(e){
 					alert(e);
 				}
