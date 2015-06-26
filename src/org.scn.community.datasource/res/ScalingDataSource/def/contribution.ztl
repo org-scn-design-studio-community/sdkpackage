@@ -1,0 +1,30 @@
+
+/**
+ * Generated ZTL Class for ScalingDataSource
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.datasource.ScalingDataSource extends org.scn.community.shared.BufferDataSource {
+
+
+
+	/**
+	 * Sets Scaling Factor Property
+	 */	
+	void setScalingFactor( /**Scaling Factor*/ float scalingFactor){*
+		this.scalingFactor = scalingFactor;
+	*}
+
+	/**
+	 * Gets Scaling Factor Property
+	 */	
+	float getScalingFactor() {*
+		return this.scalingFactor;
+	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}

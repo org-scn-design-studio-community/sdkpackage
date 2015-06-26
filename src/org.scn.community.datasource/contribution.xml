@@ -235,4 +235,70 @@
 		title="Has Header Column"
 		type="boolean" />
 </component>
+<component
+	id="ScalingDataSource"
+	title="Scaling Data Source 2.0"
+	tooltip="Scaling Data Source - Data Source with Scaling on Selection"
+	icon="res/ScalingDataSource/ScalingDataSource.png"
+	handlerType="datasource"
+	propertySheetPath="aps/org.scn.community.PropertyPage.datasource.html"
+	group="ScnCommunityDatasource"
+	databound="false"
+>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ScalingDataSource/ScalingDataSourceLoader.js</jsInclude>
+	<cssInclude>res/ScalingDataSource/ScalingDataSource.css</cssInclude>
+	
+	<property
+		id="data"
+		type="ResultCellSet"
+		title="Data"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="scalingFactor"
+		type="float"
+		title="Scaling Factor"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="scalingSelection"
+		type="ResultCellList"
+		title="Data Range to Scale"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">260</defaultValue>
+		<defaultValue property="HEIGHT">600</defaultValue>
+		
+		<defaultValue property="data"></defaultValue>
+		<defaultValue property="scalingFactor">1.0</defaultValue>
+		<defaultValue property="scalingSelection"></defaultValue>
+
+	</initialization>
+
+</component>
+
 </sdkExtension>

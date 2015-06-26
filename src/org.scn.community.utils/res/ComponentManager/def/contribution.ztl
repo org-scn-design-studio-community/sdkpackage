@@ -813,6 +813,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to WorldTime component*/
 	org.scn.community.basics.WorldTime returnAsScnWorldTime (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Advanced Data Table component*/
+	org.scn.community.databound.AdvancedDataTable returnAsScnAdvancedDataTable (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Bullet Chart component*/
 	org.scn.community.databound.BulletChart returnAsScnBulletChart (Component inputComponent) {* return inputComponent; *}
 
@@ -890,6 +893,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Dynamic Csv Data Source component*/
 	org.scn.community.datasource.DynCsvDataSource returnAsScnDynCsvDataSource (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Scaling Data Source 2.0 component*/
+	org.scn.community.datasource.ScalingDataSource returnAsScnScalingDataSource (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Maps component*/
 	org.scn.community.geovis.Maps returnAsScnMaps (Component inputComponent) {* return inputComponent; *}

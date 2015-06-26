@@ -1,0 +1,53 @@
+{
+  "data":{
+      "type":"ResultCellSet",
+      "value":"",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Data",
+         "cat":"Data",
+         "tooltip":"Data",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+   "scalingSelection":{
+      "type":"ResultCellList",
+      "value":"",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Data Range to Scale",
+         "cat":"Data",
+         "tooltip":"Data Range to Scale",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+   "scalingFactor":{
+	    "type":"float",
+	    "value":"1.0",
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"float",
+	         "ztlFunction":"",
+	         "desc":"Scaling Factor",
+	         "cat":"Data",
+	         "tooltip":"Scaling Factor",
+	         "apsControl":"text"
+		}
+    }
+}

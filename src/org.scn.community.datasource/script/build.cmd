@@ -7,6 +7,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\templates\contribution.xml.groups.txt ^
 ..\res\BYOData\def\contribution.xml ^
 ..\res\DynCsvDataSource\def\contribution.xml ^
+..\res\ScalingDataSource\def\contribution.xml ^
 ..\..\org.scn.community.shared\templates.main\contribution.xml.close.txt > ^
 ..\contribution.xml
 
@@ -17,6 +18,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.js.txt ^
 ..\res\BYOData\def\contribution.ztl ^
 ..\res\DynCsvDataSource\def\contribution.ztl ^
+..\res\ScalingDataSource\def\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 

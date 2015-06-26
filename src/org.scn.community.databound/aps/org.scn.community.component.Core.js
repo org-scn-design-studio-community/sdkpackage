@@ -43,7 +43,7 @@ org_scn_community_component_Core = function (owner, componentData){
 	/*
 	 * Create the aforementioned getter/setter and attach to 'this'.
 	 */
-	if(specComp.handlerType == "div") {
+	if(specComp.handlerType == "div" || specComp.handlerType == "datasource") {
 		for(var property in that.props){
 			that[property] = function(property){
 				return function(value){

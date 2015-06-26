@@ -859,3 +859,7 @@ class org.scn.community.shared.DataComponent extends org.scn.community.shared.Co
 		return result;
 	*}
 }
+
+class org.scn.community.shared.BufferDataSource extends SdkDataBuffer {
+	
+}

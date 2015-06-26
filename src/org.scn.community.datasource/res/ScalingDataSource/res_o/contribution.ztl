@@ -1,0 +1,8 @@
+class com.sap.sample.scalingdatasource.ScalingDataSource extends SdkDataBuffer {
+	// needed for inheriting parent class methods
+
+	/* Sets the factor to scale data from the source result set. */
+	void setScalingFactor(/* The scaling factor */ float factor) {*
+		this.scalingFactor = factor;
+	*}
+}

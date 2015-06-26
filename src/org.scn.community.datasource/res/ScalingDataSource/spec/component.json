@@ -1,0 +1,22 @@
+{
+	"id": "ScalingDataSource",
+	"title": "Scaling Data Source 2.0",
+	"tooltip": "Scaling Data Source - Data Source with Scaling on Selection",
+	"handlerType": "datasource",
+	"parentControl": "sap.designstudio.sdk.DataBuffer",
+	"group": "ScnCommunityDatasource",
+	"package": "datasource",
+	"extension": "BufferDataSource",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "260",
+	"height": "600"
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdkExtension
+	xmlns="http://www.sap.com/bi/zen/sdk"
+	id="com.sap.sample.scalingdatasource"
+	title="Design Studio SDK Extension Sample Scaling Data Source"
+	version="1.0"
+	vendor="SAP">
+	<component
+		id="ScalingDataSource"
+		title="Scaling Data Source"
+		tooltip="Scales data cells from a data source"
+		icon="res/icon.png"
+		handlerType="datasource">
+		
+		<jsInclude>res/js/component.js</jsInclude>
+		
+		<property
+			id="data"
+			title="Data"
+			type="ResultCellSet"
+			visible="true"
+			bindable="true">
+			<option name="includeTuples" value="false"/>
+			<option name="includeAxesTuples" value="true"/>
+			<option name="includeMetadata" value="true"/>
+			<option name="fillMetadataProperty" value="false"/>
+		</property>
+		<property
+			id="scalingSelection"
+			title="Data Range to Scale"
+			type="ResultCellSet"
+			visible="true"
+			bindable="true">
+			<option name="includeTuples" value="false"/>
+			<option name="includeAxesTuples" value="false"/>
+			<option name="includeMetadata" value="false"/>
+			<option name="includeData" value="false"/>
+			<option name="includeFormattedData" value="false"/>
+			<option name="fillMetadataProperty" value="false"/>
+		</property>
+		<property type="float" title="Scaling Factor" id="scalingFactor"/>
+		<initialization>
+			<defaultValue property="scalingFactor">1.0</defaultValue>
+		</initialization>
+	</component>
+</sdkExtension>

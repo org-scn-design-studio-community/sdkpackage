@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+<title>Additional Properties</title>
+		
+<script src="/aad/resources/sap-ui-cachebuster/sap-ui-core-dbg.js"
+	id='sap-ui-bootstrap' type='text/javascript' data-sap-ui-theme='sap_bluecrystal' 
+	data-sap-ui-libs="sap.m, sap.ui.ux3, sap.ui.commons, sap.ui.table, sap.ui.core"></script>
+
+<link rel="stylesheet" type="text/css" href="org.scn.community.generic.PropertyPage.css">
+
+<script	src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
+
+<script src="/aad/zen/mimes/combined_static_includes_1.js" type="text/javascript"></script>
+<script src="/aad/zen.res/zen.rt.components.sdk/resources/js/sdk_handler-min.js" type="text/javascript"></script>
+<script src="/aad/zen.res/zen.rt.components.sdk/resources/js/sdkui5_handler-min.js" type="text/javascript"></script>
+
+<script src="../res/require_loader.js" type="text/javascript"></script>
+
+<!--
+<script src="../res/ApsTester/ApsTesterLoader.js" type="text/javascript"></script>
+
+URL:
+http://localhost:7777/aad/zen/mimes/sdk_include/org.scn.community.prototypes/aps/PropertyPageTester.html?&testMode=X&component=org_scn_community_require.knownComponents.prototypes.ApsTester&loader=../res/ApsTester/ApsTesterLoader.js&designersessionid=11ca9df005bd4d32a91c8e7ed2519280
+http://localhost:7777/aad/zen/mimes/sdk_include/org.scn.community.prototypes/aps/PropertyPageTester.html?&testMode=X&component=org_scn_community_require.knownComponents.prototypes.ApsTesterUI5,loader=../res/ApsTesterUI5/ApsTesterUI5Loader.js&designersessionid=327b1c4da794475ba3f34ed5e7f8feef
+-->
+ 
+<script type="text/javascript">
+
+/** RequireJS Config **/
+	var getUrlParameterByName = function (name) {
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	        results = regex.exec(location.search);
+	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+	
+	// http://stackoverflow.com/questions/574944/how-to-load-up-css-files-using-javascript
+	var addScriptToHead = function (scriptId, scriptUrl) {
+		var $ = document; // shortcut
+		scriptId = "component_script"  + scriptId;
+		
+		var scritpElement = $.getElementById(scriptId);
+		
+		if (!scritpElement) {
+		    var head  = $.getElementsByTagName('head')[0];
+		    var script  = $.createElement('script');
+		    script.id   = scriptId;
+		    script.src  = scriptUrl;
+		    script.type = 'text/javascript';
+		    head.appendChild(script);
+		}
+	 };
+
+	var componentInfo = getUrlParameterByName("component");
+	var componentName = componentInfo.substring(0, componentInfo.indexOf(","));
+	
+	var myLoaderData = componentInfo.substring(componentInfo.indexOf(",")+1);
+	myLoaderData = myLoaderData.substring(myLoaderData.indexOf("=")+1);
+	addScriptToHead("loader", myLoaderData);
+
+	var requireInfo1 = org_scn_community_require.collectRequire (
+	[
+	 	org_scn_community_require.knownModules.generic_aps.name,
+	 	org_scn_community_require.knownModules.generic_aps_ui5.name,
+	 	org_scn_community_require.knownModules.generic_aps_arrays.name,
+	]);
+	
+	var sdkReqs = require.config({
+		 context : "sdk",
+		 paths: requireInfo1.definition,
+		 urlArgs: "v=" + org_scn_community_require.jsVersion,
+	});
+	
+	sdkReqs(requireInfo1.plainNames, function() {
+		var myComponentData = eval(componentName);
+		
+		/** RequireJS Config **/
+		 var requireInfo2 = org_scn_community_require.collectRequire (
+		 [
+		  	myComponentData.name
+	     ]);
+		 
+		 var sdkReqs2 = require.config({
+			 context : "sdk",
+			 paths: requireInfo2.definition,
+			 urlArgs: "v=" + org_scn_community_require.jsVersion,
+		 });
+
+		 sdkReqs(requireInfo2.plainNames, function() {
+			 	var instance = myComponentData.instance;
+			 	instance.initDesignStudio();
+			 	
+				var propertyPage = new org.scn.community.generic.PropertyPage();
+				propertyPage.setComponentInstance(instance);
+				
+				propertyPage.init();
+				/* propertyPage.stringarray("");
+				propertyPage.singlearray("");
+				propertyPage.doublearray(""); */
+
+				// propertyPage.stringarray("[\"VAL_1\", \"VAL_2\"]");
+				// propertyPage.singlearray("[{\"parentKey\":\"ROOT\",\"key\":\"Element\",\"leaf\":false,\"value\":\"P1\"},{\"parentKey\":\"ROOT\",\"key\":\"Element1\",\"leaf\":false,\"value\":\"P2\"}]");
+				// propertyPage.doublearray("[{\"parentKey\":\"ROOT\",\"key\":\"Element\",\"leaf\":false,\"value\":\"P1\"},{\"parentKey\":\"ROOT\",\"key\":\"Element1\",\"leaf\":false,\"value\":\"p2\"},{\"parentKey\":\"Element\",\"key\":\"Item\",\"leaf\":true},{\"parentKey\":\"Element\",\"key\":\"Item1\",\"leaf\":true},{\"parentKey\":\"Element1\",\"key\":\"Item2\",\"leaf\":true},{\"parentKey\":\"Element1\",\"key\":\"Item3\",\"leaf\":true}]");
+		});//End of Require Callback Component
+		
+		// try {
+		//} catch (e) {
+		//	alert(e);
+		//}
+	});//End of Require Callback
+	
+</script>
+<style>
+	.sapUiAppHdr .sapUiImg{
+		margin-right : 5px;
+	}
+</style>
+</head>
+<body class="sapUiBody" style="background-color:#ffffff !important">
+	<div id="content" class="xsapUiBody" style="background-color:#ffffff !important"></div>
+</body>
+</html>

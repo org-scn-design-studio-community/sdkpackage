@@ -899,8 +899,8 @@ org_scn_community_databound.toRowTable = function (flatData, opts) {
 				var valueArray = flatData.formattedValues ? flatData.formattedValues : flatData.values;
 				var value = valueArray[rI][cI-flatData.geometry.headersLength];
 				if(value == undefined || value == "") {value = options.emptyDataValue};
-				row["values"].push(value);
-				rowPlain[cI] = value;
+				row["values"].push(""+value);
+				rowPlain[cI] = ""+value;
 			}
 		}
 		rowsData.push(row);

@@ -1,0 +1,12 @@
+{
+	"title": "Scaling Data Source 2.0",
+	"description": "Scaling Data Source - Scales a selection by given factor",
+	"icon": "ScalingDataSource.png",
+	"topics": 
+	[
+		{
+			"title" : "Data Source",
+			"content" : "Data Source Component"
+		},
+	]
+}

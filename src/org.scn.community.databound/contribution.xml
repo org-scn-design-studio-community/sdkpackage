@@ -973,10 +973,12 @@
 		type="ResultCellList"
 		title="Data List"
 		group="Data"
-		visible="true">
+		visible="true"
+		bindable="true">
 
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
 		id="onBeforeRender"
@@ -1154,10 +1156,12 @@
 		type="ResultCellList"
 		title="Data List"
 		group="Data"
-		visible="true">
+		visible="true"
+		bindable="true">
 
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
 		id="onBeforeRender"
