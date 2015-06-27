@@ -276,6 +276,8 @@ Accordion = {
 		oLayout.addStyleClass("scn-pack-Accordion-Layout");
 		oLayout._Key = iKey;
 
+		imageSize = imageSize.replace("Size_", "");
+		
 		var oImage = new sap.ui.commons.Image ({
 			src : iImageUrl,
 			width : imageSize,
