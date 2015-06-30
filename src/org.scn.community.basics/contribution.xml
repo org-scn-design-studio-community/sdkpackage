@@ -1643,104 +1643,30 @@
 
 </component>
 
-<component
-	id="FioriAppHeader"
-	title="Fiori App Header 2.0"
-	tooltip="Fiori App Header"
+<component id="FioriAppHeader" 
+	title="Fiori App Header"
 	icon="res/FioriAppHeader/FioriAppHeader.png"
-	handlerType="sapui5"
-	propertySheetPath="res/FioriAppHeader/aps/PropertyPage.html"
-	group="ScnCommunityBasics"
-	databound="false"
->
-	
+	handlerType="sapui5" 
+	propertySheetPath="res/FioriAppHeader/aps/FioriAppHeaderPropertyPage.html"
+	group="ScnCommunityBasics">
+  	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/FioriAppHeader/FioriAppHeaderLoader.js</jsInclude>
-	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
-	
-	<property
-		id="itemConfig"
-		type="String"
-		title="Item Config"
-		group="Display"
-		bindable="true"
-		visible="false">
-
-	</property>
-	<property
-		id="onitemselect"
-		type="ScriptText"
-		title="On Item Select"
-		group="Events"
-		visible="true">
-
-	</property>
-	<property
-		id="onnav"
-		type="ScriptText"
-		title="On Back"
-		group="Events"
-		visible="true">
-
-	</property>
-	<property
-		id="selectedHeader"
-		type="String"
-		title="Selected Header Of Item"
-		group="Display"
-		bindable="true"
-		visible="false">
-
-	</property>
-	<property
-		id="selectedItem"
-		type="String"
-		title="Selected Item"
-		group="Display"
-		bindable="true"
-		visible="false">
-
-	</property>
-	<property
-		id="showNavButton"
-		type="boolean"
-		title="Show Back Button"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
-		id="title"
-		type="String"
-		title="Title"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-
-
-	<initialization>
-		<defaultValue property="TOP_MARGIN">0</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="LEFT_MARGIN">0</defaultValue>
-		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="WIDTH">400</defaultValue>
-		<defaultValue property="HEIGHT">400</defaultValue>
-		
-		<defaultValue property="itemConfig"></defaultValue>
-		<defaultValue property="onitemselect"></defaultValue>
-		<defaultValue property="onnav"></defaultValue>
-		<defaultValue property="selectedHeader"></defaultValue>
-		<defaultValue property="selectedItem"></defaultValue>
-		<defaultValue property="showNavButton"></defaultValue>
-		<defaultValue property="title">Page Title</defaultValue>
-
-	</initialization>
-
-</component>
-
+  	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
+  	
+  	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
+  	<property id="title" type="String" title="Title" group="Display"/>
+  	<property id="itemConfig" type="String" title="Item Config" visible="false" group="Display"/>
+  	<property id="showNavButton" type="boolean" title="Show Back Button" group="Display"/>
+  	<property type="String" title="Selected Item" id="selectedItem" visible="false" group="Display"/>
+  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false" group="Display"/>
+  	<property type="ScriptText" title="On Item Select" id="onitemselect" group="Events"/>  	
+  	<property type="ScriptText" title="On Back" id="onnav" group="Events"/>
+ 	<initialization>
+ 		<defaultValue property="title">Page Title</defaultValue>
+ 		<defaultValue property="WIDTH">400</defaultValue>
+ 	</initialization>
+ </component>
 <component
 	id="FioriButton"
 	title="Fiori Button"

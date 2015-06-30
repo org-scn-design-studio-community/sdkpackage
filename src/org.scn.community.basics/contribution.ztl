@@ -2792,72 +2792,148 @@ class org.scn.community.basics.FallbackPicture extends org.scn.community.shared.
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
 }
-
-/**
- * Generated ZTL Class for FioriAppHeader
- * 
- * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
- */
 class org.scn.community.basics.FioriAppHeader extends org.scn.community.shared.Component {
-
-	/**
-	 * Gets Item Config Property
-	 */	
-	String getItemConfig() {*
-		return this.itemConfig;
+	/** Add a header button
+ 	<example>
+	Add a header button called 'Menu' with no label show and a menu icon.
+	<code>
+	FIORIAPPHEADER_1.addHeaderButton("Menu",false,"sap-icon://menu2");<br>
+	</code>
+	</example>
+	 */
+	void addHeaderButton (/*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon) {*		
+		var o = eval(this.itemConfig);
+		var sTitle = true;
+		if(showTitle!=undefined) sTitle = showTitle;
+		o.push({
+			title : buttonTitle,
+			showTitle : sTitle,
+			icon : icon,
+			items : []
+		});
+		itemConfig = JSON.stringify(o);
 	*}
-
-
-
-
-
+	/** Remove All Button
+ 	<example>
+	Remove all button
+	<code>
+	FIORIAPPHEADER_1.removeAllButtons();<br>
+	</code>
+	</example>
+	 */
+	void removeAllButtons () {*		
+		itemConfig = JSON.stringify([]);
+	*}
+	/** Remove All Items in a header button
+ 	<example>
+	Remove all items in header button 'Menu'
+	<code>
+	FIORIAPPHEADER_1.removeAllItems("Menu");<br>
+	</code>
+	</example>
+	 */
+	void removeAllItems (/*Button Title*/String buttonTitle) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == buttonTitle) matchIndex = i;
+		}
+		if(matchIndex>-1) o[matchIndex].items = [];
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Remove a button
+ 	<example>
+	Remove a header button called 'Menu'
+	<code>
+	FIORIAPPHEADER_1.removeHeaderButton("Menu");<br>
+	</code>
+	</example>
+	 */
+	void removeHeaderButton (/*Button Title*/String buttonTitle) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == buttonTitle) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Add an item to a header button.  Will add the header button if it does not yet exist.
+ 	<example>
+	Add an item called 'Help' to header button called 'Menu' with an icon sys-help-2
+	<code>
+	FIORIAPPHEADER_1.addItem("Menu","sap-icon://sys-help-2|Help");<br>
+	</code>
+	</example>
+	 */
+	void addItem (/*Button Title*/String buttonTitle, /*Item Title*/String itemTitle) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == buttonTitle) matchIndex = i;
+		}
+		if(matchIndex == -1 ){	// Add section for the lazy
+			this.addHeaderButton(buttonTitle);
+			o = eval(this.itemConfig);
+			matchIndex = o.length-1;
+		}
+		o[matchIndex].items.push(itemTitle);
+		itemConfig = JSON.stringify(o);
+	*}
+	/** Removes an item from a header button.
+ 	<example>
+	Remove an item called 'Help' from header button called 'Menu'
+	<code>
+	FIORIAPPHEADER_1.removeItem("Menu", "Help");<br>
+	</code>
+	</example>
+	 */
+	void removeItem (/*Button Title*/String buttonTitle, /*Item Title*/ String itemTitle) {*		
+		var o = eval(this.itemConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == buttonTitle) matchIndex = i;
+		}
+		if(matchIndex != -1 ){
+			var items = o[matchIndex].items;
+			var itemIndex = -1;
+			for(var i=0;i<items.length;i++){
+				if(items[i]==itemTitle) itemIndex = i;
+			}
+			if(itemIndex>-1) items.splice(itemIndex,1);
+			itemConfig = JSON.stringify(o);
+		}		
+	*}
 	/**
-	 * Gets Selected Header Of Item Property
-	 */	
-	String getSelectedHeader() {*
+	Get item clicked.
+	*/
+	String getItemClicked() {*
+		return this.selectedItem;
+	*}
+	/**
+	Get header of and item clicked.
+	*/
+	String getHeaderClicked() {*
 		return this.selectedHeader;
 	*}
 
-	/**
-	 * Gets Selected Item Property
-	 */	
-	String getSelectedItem() {*
-		return this.selectedItem;
+	/* Shows or hides the back button. */
+	void setShowNavButton(/* If true, then the back button is shown, else it is hidden */ boolean visible) {*
+		this.showNavButton = visible;
 	*}
-
-	/**
-	 * Sets Show Back Button Property
-	 */	
-	void setShowNavButton( /**Show Back Button*/ boolean showNavButton){*
-		this.showNavButton = showNavButton;
-	*}
-
-	/**
-	 * Gets Show Back Button Property
-	 */	
-	boolean isShowNavButton() {*
+	/* Returns true if the back button is shown, else false. */
+	boolean getShowNavButton() {*
 		return this.showNavButton;
 	*}
-
-	/**
-	 * Sets Title Property
-	 */	
-	void setTitle( /**Title*/ String title){*
+	/* Sets the title. */
+	void setTitle(/* Title */ String title) {*
 		this.title = title;
-	*}
-
-	/**
-	 * Gets Title Property
-	 */	
+	*}	
+	/* Returns the title. */
 	String getTitle() {*
 		return this.title;
 	*}
-
-
-	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
-
 }
-
 /**
  * Class for FioriButton
  */

@@ -1937,7 +1937,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Fallback Picture 2.0 component*/
 	org.scn.community.basics.FallbackPicture returnAsScnFallbackPicture (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Fiori App Header 2.0 component*/
+	/**Cast to Fiori App Header component*/
 	org.scn.community.basics.FioriAppHeader returnAsScnFioriAppHeader (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Fiori Button component*/
