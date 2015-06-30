@@ -1,0 +1,22 @@
+{
+	"id": "ApplicationHeader",
+	"title": "Application Header 2.0",
+	"tooltip": "Application Header",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.ApplicationHeader",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "auto",
+	"height": "38"
+}

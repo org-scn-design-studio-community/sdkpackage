@@ -24,7 +24,7 @@
   "buttonType": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Unsorted",
+      "cat": "Display",
       "choiceType": "ButtonType",
       "desc": "Type",
       "noAps": false,
@@ -71,7 +71,7 @@
   "icon": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Icon",
       "desc": "Icon",
       "noAps": false,
       "noZtl": false,
@@ -134,7 +134,7 @@
   "placement": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Unsorted",
+      "cat": "Display",
       "choiceType": "Placement",
       "desc": "Placement",
       "noAps": false,

@@ -2493,21 +2493,21 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	void addColumnWidthEntry (
 			/**Column index (0-based)*/String key, 
 			/**Width with unit (e.g. 200px | 30%)*/String width
-			) {*		
-		
+			) {*
+
 		
 		var itemDef = {
 			leaf:true,
 			key:key, 
 			width:width
 			};
-	
+
 		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
 			this.DDataColWidths = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.DDataColWidths);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -2515,11 +2515,11 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 				break;
 			}
 		}
-		
+
 		if(!alreadyFound) {
 			elementsJson.push(itemDef);
 		}
-	
+
 		this.DDataColWidths = JSON.stringify(elementsJson);
 	*}
 	
@@ -2535,14 +2535,14 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	 */
 	void removeColumnWidthEntry (
 			String key
-			) {*		
-		
+			) {*
+
 		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
 			this.DDataColWidths = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.DDataColWidths);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -2560,6 +2560,102 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 
 		this.DDataColWidths = JSON.stringify(elementsJson);
 	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	UI5TABLE.insertColumnWidthEntry(index [int], key [String], width [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertColumnWidthEntry (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Column index (0-based)*/String key, 
+			/**Width with unit (e.g. 200px | 30%)*/String width
+			) {*
+
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DDataColWidths);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			width:width
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DDataColWidths = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given ColumnWidthEntry<br/>
+	 */
+	void updateColumnWidthEntry (
+			/**Column index (0-based)*/String key, 
+			/**Width with unit (e.g. 200px | 30%)*/String width
+			) 
+	{*
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			width:width
+		};
+
+		var elementsJson = JSON.parse(this.DDataColWidths);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getKeyAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DDataColWidths);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+	
+
+
 
 	/**
 	 * Sets Central Result Set with Data Property

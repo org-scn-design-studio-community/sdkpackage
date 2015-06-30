@@ -1,0 +1,30 @@
+{
+	"id": "Calendar",
+	"title": "Calendar 2.0",
+	"tooltip": "Calendar",
+	"handlerType": "sapui5",
+	"parentControl": "sap.me.Calendar",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": true,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "dateformatter",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_m_loader",
+		},
+	],
+	
+	"width": "300",
+	"height": "300"
+}

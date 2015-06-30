@@ -4,7 +4,7 @@
 		title="2D Crosstab"
 		icon="res/Table2D/Table2D.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 		group="ScnCommunityDataBound"
 		databound="true"
 >

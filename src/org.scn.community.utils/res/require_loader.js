@@ -22,11 +22,12 @@ var org_scn_community_require = org_scn_community_require || {};
 /* IMPORTANT! ORIGINAL LOCATION - basics/res */
 
 //set the version to assure cache is cleared
-/*NO DELTA CHECK START*/org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-6-17"/*%TIMESTAMP-END%*/;/*NO DELTA CHECK END*/
+/*NO DELTA CHECK START*/org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-6-30"/*%TIMESTAMP-END%*/;/*NO DELTA CHECK END*/
 
 var org_scn_community_components = org_scn_community_components || {};
 org_scn_community_components.basics = org_scn_community_components.basics || {};
 org_scn_community_components.databound = org_scn_community_components.databound || {};
+org_scn_community_components.datasource = org_scn_community_components.datasource || {};
 org_scn_community_components.prototypes = org_scn_community_components.prototypes || {};
 org_scn_community_components.utils = org_scn_community_components.utils || {};
 
@@ -149,6 +150,11 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 				script: "org.scn.community.basics/os/date/DateFormat",
 				min: false
 			},
+			sap_m_loader: {
+				name: "sap_m_loader",
+				script: "org.scn.community.basics/os/sapui5/sap_m_loader",
+				min: false
+			},
 	};
 	
 	org_scn_community_require.d3Modules = {
@@ -167,6 +173,7 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 	org_scn_community_require.knownComponents = org_scn_community_require.knownComponents || {};
 	org_scn_community_require.knownComponents.basics = org_scn_community_require.knownComponents.basics || {};
 	org_scn_community_require.knownComponents.databound = org_scn_community_require.knownComponents.databound || {};
+	org_scn_community_require.knownComponents.datasource = org_scn_community_require.knownComponents.datasource || {};
 	org_scn_community_require.knownComponents.prototypes = org_scn_community_require.knownComponents.prototypes || {};
 	org_scn_community_require.knownComponents.utils = org_scn_community_require.knownComponents.utils || {};
 	

@@ -1,0 +1,16 @@
+{
+	"title": "RSSFeedReader 2.0",
+	"description": "RSSFeedReader",
+	"icon": "RSSFeedReader.png",
+	"topics": 
+	[
+		{
+			"title" : "RSSFeedReader",
+			"content" : "RSSFeedReader"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

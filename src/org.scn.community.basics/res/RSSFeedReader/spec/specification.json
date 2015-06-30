@@ -1,0 +1,57 @@
+{
+
+
+
+	"feedUrl" : {
+		"template" : "String",
+		"type" : "Url",
+		"value" : "http://cdn.eex.com/rss/de/market.rss",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "RSS Feed URL",
+			"cat" : "Display-RSS",
+			"tooltip" : "RSS Feed URL",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"useBuildInXsl" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Single Row",
+			"cat" : "Display-Xsl",
+			"tooltip" : "Single Row",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"xslUrl" : {
+		"template" : "String",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "XSL URL",
+			"cat" : "Display-Xsl",
+			"tooltip" : "XSL URL",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

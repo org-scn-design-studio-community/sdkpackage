@@ -52,7 +52,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Default Image",
-			"cat" : "Image",
+			"cat" : "Display-Image",
 			"tooltip" : "Default Image",
 			"apsControl" : "text",
 			"noAps":true,
@@ -67,7 +67,7 @@
 	         "ztlType":"boolean",
 	         "ztlFunction":"",
 	         "desc":"Use Images",
-	         "cat":"Image",
+	         "cat":"Display-Image",
 	         "tooltip":"Use Images",
 	         "apsControl":"checkbox"
 	    }
@@ -81,7 +81,7 @@
            "choiceType":"MemberDisplay",
            "ztlFunction":"",
            "desc":"Member Display",
-           "cat":"Display",
+           "cat":"Display-Members",
            "tooltip":"Member Display",
            "apsControl":"combobox",
            "options":[
@@ -104,7 +104,7 @@
 	         "ztlType":"int",
 	         "ztlFunction":"",
 	         "desc":"Max Height for Section",
-	         "cat":"Image",
+	         "cat":"Display-Section",
 	         "tooltip":"Max Height for Section",
 	         "apsControl":"spinner"
 		}
@@ -118,7 +118,7 @@
            "choiceType":"ImageSize",
            "ztlFunction":"",
            "desc":"Size of the Image",
-           "cat":"Image",
+           "cat":"Display-Image",
            "tooltip":"Size of the Image",
            "apsControl":"combobox",
            "options":[

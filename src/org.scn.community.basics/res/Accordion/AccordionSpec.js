@@ -42,7 +42,7 @@
   "defaultImage": {
     "opts": {
       "apsControl": "text",
-      "cat": "Image",
+      "cat": "Display-Image",
       "desc": "Default Image",
       "noAps": true,
       "noZtl": false,
@@ -123,7 +123,7 @@
   "imageSize": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Image",
+      "cat": "Display-Image",
       "choiceType": "ImageSize",
       "desc": "Size of the Image",
       "options": [
@@ -147,7 +147,7 @@
   "maxSectionHeight": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "Image",
+      "cat": "Display-Section",
       "desc": "Max Height for Section",
       "tooltip": "Max Height for Section",
       "ztlFunction": "",
@@ -160,7 +160,7 @@
   "memberDisplay": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Display",
+      "cat": "Display-Members",
       "choiceType": "MemberDisplay",
       "desc": "Member Display",
       "options": [
@@ -238,7 +238,7 @@
   "withImage": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Image",
+      "cat": "Display-Image",
       "desc": "Use Images",
       "tooltip": "Use Images",
       "ztlFunction": "",

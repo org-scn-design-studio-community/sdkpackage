@@ -1,52 +1,74 @@
 
 <component
 	id="ApplicationHeader"
-	title="Application Header"
-	handlerType="sapui5"
+	title="Application Header 2.0"
+	tooltip="Application Header"
 	icon="res/ApplicationHeader/ApplicationHeader.png"
+	handlerType="sapui5"
+	propertySheetPath="res/ApplicationHeader/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/ApplicationHeader/ApplicationHeader.js</jsInclude>
-
+	<jsInclude>res/ApplicationHeader/ApplicationHeaderLoader.js</jsInclude>
+	<cssInclude>res/ApplicationHeader/ApplicationHeader.css</cssInclude>
+	
 	<property
 		id="displayLogoff"
+		type="boolean"
 		title="Display Logoff"
-		tooltip="If set to true, the logoff area will be displayed at the right hand side of the application header."
 		group="Display"
-		type="boolean" />
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="displayWelcome"
+		type="boolean"
 		title="Display Welcome"
-		tooltip="By default, set to true and dislpays the welcome text."
 		group="Display"
-		type="boolean" />
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="logoSrc"
+		type="String"
 		title="Logo Source"
-		tooltip="Path (src) to the logo icon to be displayed in the application header."
 		group="Display"
-		type="Url" />
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="logoText"
+		type="String"
 		title="Logo Text"
-		tooltip="The text that will be displayed beside the logo in the application header. This property is optional."
 		group="Display"
-		type="String" />
-	<property
-		id="userName"
-		title="User Name"
-		tooltip="User name that will be displayed beside the welcome text."
-		group="Display"
-		type="String" />
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="onLogoff"
+		type="ScriptText"
 		title="On Logoff"
-		tooltip="Fires an event to log off the user from the application."
 		group="Events"
-		type="ScriptText" />
+		visible="true">
+
+	</property>
+	<property
+		id="userName"
+		type="String"
+		title="User Name"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
@@ -54,6 +76,14 @@
 		<defaultValue property="RIGHT_MARGIN">0</defaultValue>
 		<defaultValue property="WIDTH">auto</defaultValue>
 		<defaultValue property="HEIGHT">38</defaultValue>
+		
+		<defaultValue property="displayLogoff"></defaultValue>
 		<defaultValue property="displayWelcome">true</defaultValue>
+		<defaultValue property="logoSrc"></defaultValue>
+		<defaultValue property="logoText"></defaultValue>
+		<defaultValue property="onLogoff"></defaultValue>
+		<defaultValue property="userName"></defaultValue>
+
 	</initialization>
+
 </component>

@@ -2,11 +2,14 @@
  * Core Class
  */
 org_scn_community_component_Core = function (owner, componentData){
-	var spec = componentData.spec;
-	var specAbout = componentData.specAbout;
-	var specComp = componentData.specComp;
-	
 	var that = owner;
+
+	that.componentData = componentData;
+
+	that.spec = componentData.spec;
+	that.specAbout = componentData.specAbout;
+	that.specComp = componentData.specComp;
+
 	that.componentInfo = {
 		visible : true,
 		title : "Core Component",
@@ -19,22 +22,22 @@ org_scn_community_component_Core = function (owner, componentData){
 		}]
 	};
 	
-	that.componentInfo.title = specAbout.title;
-    that.componentInfo.description = specAbout.description;
+	that.componentInfo.title = that.specAbout.title;
+    that.componentInfo.description = that.specAbout.description;
     
-    for(var index in specAbout.topics) {
-    	that.componentInfo.topics.push(specAbout.topics[index]);
+    for(var index in that.specAbout.topics) {
+    	that.componentInfo.topics.push(that.specAbout.topics[index]);
     }
     
 	that.props = {
 		// All properties from child classes always inherit properties.  Core class currently has no properties out of the gate.
 	};
-	for(property in spec){
-		that.props[property] = spec[property]
+	for(property in that.spec){
+		that.props[property] = that.spec[property];
 		if(property.indexOf("data") == 0) {
 			if(that.props["meta_data"] == undefined) {
 				// clone the property
-				that.props["meta_data"] = JSON.parse(JSON.stringify(spec[property]));	
+				that.props["meta_data"] = JSON.parse(JSON.stringify(that.spec[property]));	
 			}
 		}
 		
@@ -43,7 +46,7 @@ org_scn_community_component_Core = function (owner, componentData){
 	/*
 	 * Create the aforementioned getter/setter and attach to 'this'.
 	 */
-	if(specComp.handlerType == "div") {
+	if(that.specComp.handlerType == "div" || that.specComp.handlerType == "datasource") {
 		for(var property in that.props){
 			that[property] = function(property){
 				return function(value){

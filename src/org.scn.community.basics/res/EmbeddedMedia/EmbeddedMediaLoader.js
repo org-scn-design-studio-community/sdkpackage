@@ -23,6 +23,7 @@
 		name: "basics.EmbeddedMedia",
 		requireName: "basicsembeddedmedia",
 		fullComponentName: "org.scn.community.basics.EmbeddedMedia",
+		fullComponentPackage: "org.scn.community.basics/res/EmbeddedMedia",
 		script: "org.scn.community.basics/res/EmbeddedMedia/EmbeddedMedia",
 		scriptSpec: "org.scn.community.basics/res/EmbeddedMedia/EmbeddedMediaSpec",
 		min: false

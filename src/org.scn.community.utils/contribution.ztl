@@ -1898,7 +1898,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Activity Viewer component*/
 	org.scn.community.basics.ActivityViewer returnAsScnActivityViewer (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Application Header component*/
+	/**Cast to Application Header 2.0 component*/
 	org.scn.community.basics.ApplicationHeader returnAsScnApplicationHeader (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Arrowed Line component*/
@@ -1907,13 +1907,13 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Base64 Image Encoder component*/
 	org.scn.community.basics.Base64Image returnAsScnBase64Image (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Basic Business Card component*/
+	/**Cast to Basic Business Card 2.0 component*/
 	org.scn.community.basics.BasicBusinessCard returnAsScnBasicBusinessCard (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Calendar component*/
+	/**Cast to Calendar 2.0 component*/
 	org.scn.community.basics.Calendar returnAsScnCalendar (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Check Box Group component*/
+	/**Cast to Check Box Group 2.0 component*/
 	org.scn.community.basics.CheckBoxGroup returnAsScnCheckBoxGroup (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Color Picker component*/
@@ -2003,7 +2003,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to QRCode Generator component*/
 	org.scn.community.basics.QRCode returnAsScnQRCode (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to RSSFeedReader component*/
+	/**Cast to RSSFeedReader 2.0 component*/
 	org.scn.community.basics.RSSFeedReader returnAsScnRSSFeedReader (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Range Slider component*/

@@ -2,18 +2,18 @@
 /**
  * enum filed definition
  */
-class org_scn_community_shared_NavigationTypeEnumfield extends Enumfield {
+class org_scn_community_shared_SelectionTypeEnumfield extends Enumfield {
        
 }
 
 /**
  * a set of constants to specify sort type 
  */
-class org_scn_community_shared_NavigationType extends Enum {
+class org_scn_community_shared_SelectionType extends Enum {
 
-	/** PAGINATOR */
-	org_scn_community_shared_NavigationTypeEnumfield Paginator;
+	/** Single */
+	org_scn_community_shared_SelectionTypeEnumfield Single;
        
-	/** SCROLLBAR */
-	org_scn_community_shared_NavigationTypeEnumfield Scrollbar;
+	/** Range */
+	org_scn_community_shared_SelectionTypeEnumfield Range;
 }

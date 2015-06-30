@@ -4,7 +4,7 @@
 		title="Marimekko Chart"
 		icon="res/MarimekkoChart/MarimekkoChart.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 		group="ScnCommunityChartMaps"
 		databound="true"
 >

@@ -1,124 +1,302 @@
 
 /**
- * Class for CheckBox Group
+ * Generated ZTL Class for CheckBoxGroup
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elements = JSON.stringify(elementsArray);
+
+	/**
+	 * Clean All Elements from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elements = JSON.stringify(elementsArray);
 	*}
-	
-	/** add an element containing key, text, imageUrl, value (float) and value (Sting)*/
-	void addElement (String elementKey, String elementText, String imageUrl, boolean selected) {*		
+
+	/**
+	 * Remove All Elements from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elements = JSON.stringify(elementsArray);
+	*}
+
+	/** Adds a root element containing key [String], text [String], url [String], selected [boolean].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	CHECKBOXGROUP.addElement(key [String], text [String], url [String], selected [boolean]);<br>
+	CHECKBOXGROUP.addElement(key [String], text [String], url [String], selected [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addElement (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url, 
+			/**Selected*/boolean selected
+			) {*
+
 		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl,
-			"selected": selected
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url, 
+			selected:selected
 			};
-	
+
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.elements);
-		elementsJson.push(itemDef);
-	
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
 		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** insert an element */
-	void insertElement (String elementKey, String elementText, String imageUrl, boolean selected, int insertionIndex0based) {*
-		
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	CHECKBOXGROUP.removeElement(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeElement (
+			String key
+			) {*
+
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	CHECKBOXGROUP.insertElement(index [int], key [String], text [String], url [String], selected [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertElement (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url, 
+			/**Selected*/boolean selected
+			) {*
+
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
 		
 		var elementsJson = JSON.parse(this.elements);
 		var newElementsJson = [];
-		
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url, 
+			selected:selected
+		};
+
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (i == insertionIndex0based) {
-				var itemDef = { 
-						"key": elementKey, 
-						"text": elementText, 
-						"url": imageUrl,
-						"selected": selected
-						};
-				
 				newElementsJson.push(itemDef);
 			}
-			
+
 			newElementsJson.push(elementsJson[i]);
 		}
 
 		this.elements = JSON.stringify(newElementsJson);
 	*}
-	
-	/** update given element */
-	void updateElement (String elementKey, String elementText, String imageUrl, boolean selected) {*
-		
+
+	/**
+	 * Updates given Element<br/>
+	 */
+	void updateElement (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url, 
+			/**Selected*/boolean selected
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
-		
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url, 
+			selected:selected
+		};
+
 		var elementsJson = JSON.parse(this.elements);
-		
+
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == elementKey) {
-				elementsJson[i].text = elementText;
-				elementsJson[i].url = imageUrl;
-				elementsJson[i].selected = selected;
+				elementsJson[i] = itemDef;
 				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getKeyAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+	
+	/**
+	 * Sets the Selected keys<br/>
+	 */
+	void setSelectedKeys (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].selected = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].selected = true;
+					break;
+				}
 			}
 		}
 		
 		this.elements = JSON.stringify(elementsJson);
 	*}
-	
-	/** delete an element */
-	void deleteElement (String elementKey) {*
-		
+
+	/**
+	 * Sets the Selected Key<br/>
+	 */
+	void setSelectedKey (
+			/**/ String key,
+			/**/ boolean selected
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
+			return;
 		}
-		
+
 		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
+
+		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key != elementKey) {
-				newElementsJson.push(elementsJson[i]);
+			if (elementsJson[i].key == key) {
+				elementsJson[i].selected = selected;
+				break;
 			}
 		}
 
-		this.elements = JSON.stringify(newElementsJson);
+		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** returns key at given index */
-	String getKeyAtIndex (int index) {*		
+	/**
+	 * Clean all Selected keys<br/>
+	 */
+	void cleanAllSelectedKeys (
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
+			return;
 		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (index == i) {
-				return elementsJson[i].key;
-			}
-		}
-		
-		return "";
-	*}
 	
-	/** returns the selected key */
-	org.scn.pack.KeyLabelArray getSelectedElementsArray () {*
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].selected = false;
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns the Selected keys<br/>
+	 */
+	org.scn.pack.KeyArray getSelectedElementsArray (
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			return [];
 		}
@@ -136,51 +314,67 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 		
 		return newElementsJson;
 	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key, boolean selected) {*
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			return;
-		}
-	
-		var elementsJson = JSON.parse(this.elements);
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].selected = selected;
-				break;
-			}
-		}
-		
-		this.elements = JSON.stringify(elementsJson);
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKeys (String keys, String separator) {*
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			return;
-		}
-	
-		var selectedKeys = keys.split(separator);  
 
-		var elementsJson = JSON.parse(this.elements);
-		
-		// unselect all
-		for (var i = 0; i < elementsJson.length ; i++){
-			elementsJson[i].selected = false;
-		}
-		
-		// loop and find and select
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < selectedKeys.length ; j++){
-				if (elementsJson[i].key == selectedKeys[j]) {
-					elementsJson[i].selected = true;
-					break;
-				}
-			}
-		}
-		
-		this.elements = JSON.stringify(elementsJson);
+
+	/**
+	 * Sets Fallback Picture Url Property
+	 */	
+	void setFallbackPicture( /**Fallback Picture Url*/ String fallbackPicture){*
+		this.fallbackPicture = fallbackPicture;
 	*}
+
+	/**
+	 * Gets Fallback Picture Url Property
+	 */	
+	String getFallbackPicture() {*
+		return this.fallbackPicture;
+	*}
+
+
+
+	/**
+	 * Sets Size Of The Picture Property by String
+	 */	
+	void setPictureSizeByString( /**Size Of The Picture*/ String pictureSize){*
+		this.pictureSize = pictureSize;
+	*}
+
+	/**
+	 * Gets Size Of The Picture Property as String
+	 */	
+	String getPictureSizeAsString() {*
+		return this.pictureSize;
+	*}
+	
+	/**
+	 * Sets Size Of The Picture Property by Choice Option
+	 */	
+	void setPictureSize( /**Size Of The Picture*/ org_scn_community_shared_ConstImageSizeEnumfield pictureSize){*
+		this.pictureSize = pictureSize;
+	*}
+	
+	/**
+	 * Gets Size Of The Picture Property as Choice Option
+	 */	
+	org_scn_community_shared_ConstImageSizeEnumfield getPictureSize() {*
+		return this.pictureSize;
+	*}
+
+	/**
+	 * Sets Use Pictures Property
+	 */	
+	void setWithPicture( /**Use Pictures*/ boolean withPicture){*
+		this.withPicture = withPicture;
+	*}
+
+	/**
+	 * Gets Use Pictures Property
+	 */	
+	boolean isWithPicture() {*
+		return this.withPicture;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

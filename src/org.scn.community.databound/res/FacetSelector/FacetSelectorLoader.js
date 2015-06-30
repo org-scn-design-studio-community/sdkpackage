@@ -23,6 +23,7 @@
 		name: "databound.FacetSelector",
 		requireName: "databoundfacetselector",
 		fullComponentName: "org.scn.community.databound.FacetSelector",
+		fullComponentPackage: "org.scn.community.databound/res/FacetSelector",
 		script: "org.scn.community.databound/res/FacetSelector/FacetSelector",
 		scriptSpec: "org.scn.community.databound/res/FacetSelector/FacetSelectorSpec",
 		min: false
@@ -64,6 +65,8 @@
 		 });
 
 		 sdkReqs(requireInfo2.plainNames, function() {
+		 	 jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+
 			 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 	     	 sap.zen.Dispatcher.instance.resumeDispatching();
 		});//End of Require Callback Component

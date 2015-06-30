@@ -1,0 +1,99 @@
+	/**
+	 * Sets the %NAME_CAPITAL% keys<br/>
+	 */
+	void set%NAME_CAPITAL%Keys (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].%NAME% = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].%NAME% = true;
+					break;
+				}
+			}
+		}
+		
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the %NAME_CAPITAL% Key<br/>
+	 */
+	void set%NAME_CAPITAL%Key (
+			/**/ String key,
+			/**/ boolean %NAME%
+			) 
+	{*
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].%NAME% = selected;
+				break;
+			}
+		}
+
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Clean all %NAME_CAPITAL% keys<br/>
+	 */
+	void cleanAll%NAME_CAPITAL%Keys (
+			) 
+	{*
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].%NAME% = false;
+		}
+		
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns the %NAME_CAPITAL% keys<br/>
+	 */
+	org.scn.pack.KeyArray get%NAME_CAPITAL%%PROPERTY_CAPITAL_CUT%Array (
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].selected == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}

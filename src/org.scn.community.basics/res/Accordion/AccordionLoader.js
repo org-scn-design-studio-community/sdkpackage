@@ -23,6 +23,7 @@
 		name: "basics.Accordion",
 		requireName: "basicsaccordion",
 		fullComponentName: "org.scn.community.basics.Accordion",
+		fullComponentPackage: "org.scn.community.basics/res/Accordion",
 		script: "org.scn.community.basics/res/Accordion/Accordion",
 		scriptSpec: "org.scn.community.basics/res/Accordion/AccordionSpec",
 		min: false
@@ -61,6 +62,8 @@
 		 });
 
 		 sdkReqs(requireInfo2.plainNames, function() {
+		 	 jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+
 			 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 	     	 sap.zen.Dispatcher.instance.resumeDispatching();
 		});//End of Require Callback Component

@@ -23,6 +23,7 @@
 		name: "utils.JsonObject",
 		requireName: "utilsjsonobject",
 		fullComponentName: "org.scn.community.utils.JsonObject",
+		fullComponentPackage: "org.scn.community.utils/res/JsonObject",
 		script: "org.scn.community.utils/res/JsonObject/JsonObject",
 		scriptSpec: "org.scn.community.utils/res/JsonObject/JsonObjectSpec",
 		min: false

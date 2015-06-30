@@ -25,10 +25,12 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ConstNavigationType\contribution.ztl ^
 ..\res\ConstPlacementType\contribution.ztl ^
 ..\res\ConstSelectionState\contribution.ztl ^
+..\res\ConstSelectionType\contribution.ztl ^
 ..\res\ConstSecondValueContent\contribution.ztl ^
 ..\res\ConstSortDirection\contribution.ztl ^
 ..\res\ConstSortType\contribution.ztl ^
 ..\res\DimensionMember\contribution.ztl ^
+..\res\Key\contribution.ztl ^
 ..\res\KeyLabel\contribution.ztl ^
 ..\res\KeyText\contribution.ztl ^
 ..\res\KeyLabelValue\contribution.ztl ^

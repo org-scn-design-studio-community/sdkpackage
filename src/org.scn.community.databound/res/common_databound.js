@@ -66,6 +66,8 @@ org_scn_community_databound.initializeOptions = function () {
 	options.useMockData = true;
 	options.dimensionSeparator = " | ";
 	options.createHaderRow = true;
+	options.swapAxes = false;
+	
 	options.conditionColumns = undefined; // JSON condition definition, work in progress, eg. {"operator": "and", "rules": [{"condition": "contains", "members": ["AUSC", "AUSA"]}]}
 	options.conditionRows = undefined; // JSON condition definition, work in progress
 	options.conditionContent = undefined; // JSON condition definition, work in progress

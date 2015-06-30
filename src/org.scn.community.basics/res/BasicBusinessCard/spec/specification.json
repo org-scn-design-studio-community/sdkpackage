@@ -1,0 +1,71 @@
+{
+
+
+
+	"image" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Image Url",
+			"cat" : "Display-Image",
+			"tooltip" : "Url For Image",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"name" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Last, First",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Name",
+			"cat" : "Display-Texts",
+			"tooltip" : "Name",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"title" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Expert for All Issues",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Title",
+			"cat" : "Display-Texts",
+			"tooltip" : "Title Below The Name",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onPress" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Press",
+			"cat" : "Events",
+			"tooltip" : "Event For On Press",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

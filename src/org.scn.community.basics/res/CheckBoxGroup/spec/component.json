@@ -1,0 +1,22 @@
+{
+	"id": "CheckBoxGroup",
+	"title": "Check Box Group 2.0",
+	"tooltip": "Check Box Group",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "230",
+	"height": "400"
+}

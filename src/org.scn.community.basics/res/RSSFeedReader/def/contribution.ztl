@@ -1,30 +1,54 @@
 
 /**
- * Class for RSSFeedReader
+ * Generated ZTL Class for RSSFeedReader
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Component {
-	
-	/** Set url of desired rss feed  
 
- 	<example>
-	<code>
-	RSSFeedReader_1.setFeedUrl("http://cdn.eex.com/rss/de/market.rss").
-	</code>
-	</example>
-	 */
-	String setFeedUrl(String url_string){*
-		this.feedurldimension = url_string;
+	/**
+	 * Sets RSS Feed URL Property
+	 */	
+	void setFeedUrl( /**RSS Feed URL*/ String feedUrl){*
+		this.feedUrl = feedUrl;
 	*}
-	
-	/** Set url of custom xsl sheet to parse rss feed. Be aware of cross origin browser policies.
 
- 	<example>
-	<code>
-	RSSFeedReader_1.setXslUrl("http://www.someurl.com/yourxsl.xsl").
-	</code>
-	</example>
-	 */
-	String setXslUrl(String url_string){*
-		this.xslurldimension = url_string;
+	/**
+	 * Gets RSS Feed URL Property
+	 */	
+	Url getFeedUrl() {*
+		return this.feedUrl;
 	*}
+
+	/**
+	 * Sets Single Row Property
+	 */	
+	void setUseBuildInXsl( /**Single Row*/ boolean useBuildInXsl){*
+		this.useBuildInXsl = useBuildInXsl;
+	*}
+
+	/**
+	 * Gets Single Row Property
+	 */	
+	boolean isUseBuildInXsl() {*
+		return this.useBuildInXsl;
+	*}
+
+	/**
+	 * Sets XSL URL Property
+	 */	
+	void setXslUrl( /**XSL URL*/ String xslUrl){*
+		this.xslUrl = xslUrl;
+	*}
+
+	/**
+	 * Gets XSL URL Property
+	 */	
+	Url getXslUrl() {*
+		return this.xslUrl;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

@@ -1,0 +1,16 @@
+{
+	"title": "Basic Business Card 2.0",
+	"description": "Basic Business Card",
+	"icon": "BasicBusinessCard.png",
+	"topics": 
+	[
+		{
+			"title" : "Basic Business Card",
+			"content" : "Basic Business Card"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

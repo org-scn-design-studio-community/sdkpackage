@@ -23,6 +23,7 @@
 		name: "databound.UI5Table",
 		requireName: "databoundui5table",
 		fullComponentName: "org.scn.community.databound.UI5Table",
+		fullComponentPackage: "org.scn.community.databound/res/UI5Table",
 		script: "org.scn.community.databound/res/UI5Table/UI5Table",
 		scriptSpec: "org.scn.community.databound/res/UI5Table/UI5TableSpec",
 		min: false
@@ -64,6 +65,8 @@
 		 });
 
 		 sdkReqs(requireInfo2.plainNames, function() {
+		 	 jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+
 			 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 	     	 sap.zen.Dispatcher.instance.resumeDispatching();
 		});//End of Require Callback Component

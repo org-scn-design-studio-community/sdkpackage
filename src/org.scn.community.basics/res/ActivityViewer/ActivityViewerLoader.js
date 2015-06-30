@@ -23,6 +23,7 @@
 		name: "basics.ActivityViewer",
 		requireName: "basicsactivityviewer",
 		fullComponentName: "org.scn.community.basics.ActivityViewer",
+		fullComponentPackage: "org.scn.community.basics/res/ActivityViewer",
 		script: "org.scn.community.basics/res/ActivityViewer/ActivityViewer",
 		scriptSpec: "org.scn.community.basics/res/ActivityViewer/ActivityViewerSpec",
 		min: false

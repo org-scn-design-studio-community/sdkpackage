@@ -1,0 +1,16 @@
+{
+	"title": "Application Header 2.0",
+	"description": "Application Header",
+	"icon": "ApplicationHeader.png",
+	"topics": 
+	[
+		{
+			"title" : "Application Header",
+			"content" : "Application Header"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

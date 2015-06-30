@@ -24,8 +24,8 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 			/**Assigned State Key*/String state, 
 			/**Start Date YYYYMMDD*/String startDate, 
 			/**End Date YYYYMMDD*/String endDate
-			) {*		
-		
+			) {*
+
 		
 		var itemDef = {
 			leaf:true,
@@ -36,13 +36,13 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 			startDate:startDate, 
 			endDate:endDate
 			};
-	
+
 		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
 			this.activities = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.activities);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -50,11 +50,11 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 				break;
 			}
 		}
-		
+
 		if(!alreadyFound) {
 			elementsJson.push(itemDef);
 		}
-	
+
 		this.activities = JSON.stringify(elementsJson);
 	*}
 	
@@ -70,14 +70,14 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	 */
 	void removeActivity (
 			String key
-			) {*		
-		
+			) {*
+
 		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
 			this.activities = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.activities);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -95,6 +95,118 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		this.activities = JSON.stringify(elementsJson);
 	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	ACTIVITYVIEWER.insertActivity(index [int], key [String], text [String], category [String], state [String], startDate [String], endDate [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertActivity (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Activity Key*/String key, 
+			/**Activity Description*/String text, 
+			/**Assigned Category Key*/String category, 
+			/**Assigned State Key*/String state, 
+			/**Start Date YYYYMMDD*/String startDate, 
+			/**End Date YYYYMMDD*/String endDate
+			) {*
+
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			this.activities = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.activities);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			category:category, 
+			state:state, 
+			startDate:startDate, 
+			endDate:endDate
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.activities = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Activity<br/>
+	 */
+	void updateActivity (
+			/**Unique Activity Key*/String key, 
+			/**Activity Description*/String text, 
+			/**Assigned Category Key*/String category, 
+			/**Assigned State Key*/String state, 
+			/**Start Date YYYYMMDD*/String startDate, 
+			/**End Date YYYYMMDD*/String endDate
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			this.activities = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			category:category, 
+			state:state, 
+			startDate:startDate, 
+			endDate:endDate
+		};
+
+		var elementsJson = JSON.parse(this.activities);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.activities = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getKeyAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			this.activities = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.activities);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+	
+
+
 
 	/** Adds a root element containing key [String], text [String], visible [boolean].
 
@@ -111,8 +223,8 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 			/**Unique Category Key*/String key, 
 			/**Category Description*/String text, 
 			/**Visibility*/boolean visible
-			) {*		
-		
+			) {*
+
 		
 		var itemDef = {
 			leaf:true,
@@ -120,13 +232,13 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 			text:text, 
 			visible:visible
 			};
-	
+
 		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
 			this.categories = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.categories);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -134,11 +246,11 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 				break;
 			}
 		}
-		
+
 		if(!alreadyFound) {
 			elementsJson.push(itemDef);
 		}
-	
+
 		this.categories = JSON.stringify(elementsJson);
 	*}
 	
@@ -154,14 +266,14 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	 */
 	void removeCategory (
 			String key
-			) {*		
-		
+			) {*
+
 		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
 			this.categories = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.categories);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -179,6 +291,204 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		this.categories = JSON.stringify(elementsJson);
 	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	ACTIVITYVIEWER.insertCategory(index [int], key [String], text [String], visible [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertCategory (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Category Key*/String key, 
+			/**Category Description*/String text, 
+			/**Visibility*/boolean visible
+			) {*
+
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			this.categories = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.categories);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.categories = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Category<br/>
+	 */
+	void updateCategory (
+			/**Unique Category Key*/String key, 
+			/**Category Description*/String text, 
+			/**Visibility*/boolean visible
+			) 
+	{*
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			this.categories = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible
+		};
+
+		var elementsJson = JSON.parse(this.categories);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.categories = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getKeyAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			this.categories = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.categories);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+	
+	/**
+	 * Sets the Visible keys<br/>
+	 */
+	void setVisibleKeys (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.categories);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].visible = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].visible = true;
+					break;
+				}
+			}
+		}
+		
+		this.categories = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Visible Key<br/>
+	 */
+	void setVisibleKey (
+			/**/ String key,
+			/**/ boolean visible
+			) 
+	{*
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.categories);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].visible = selected;
+				break;
+			}
+		}
+
+		this.categories = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Clean all Visible keys<br/>
+	 */
+	void cleanAllVisibleKeys (
+			) 
+	{*
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].visible = false;
+		}
+		
+		this.categories = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns the Visible keys<br/>
+	 */
+	org.scn.pack.KeyArray getVisibleCategoriesArray (
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].selected == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+
 
 
 
@@ -196,21 +506,21 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	void addState (
 			/**Unique State Key*/String key, 
 			/**State CSS Style*/String style
-			) {*		
-		
+			) {*
+
 		
 		var itemDef = {
 			leaf:true,
 			key:key, 
 			style:style
 			};
-	
+
 		if (this.states === undefined || this.states === "" || this.states === "<delete>"){
 			this.states = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.states);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -218,11 +528,11 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 				break;
 			}
 		}
-		
+
 		if(!alreadyFound) {
 			elementsJson.push(itemDef);
 		}
-	
+
 		this.states = JSON.stringify(elementsJson);
 	*}
 	
@@ -238,14 +548,14 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	 */
 	void removeState (
 			String key
-			) {*		
-		
+			) {*
+
 		if (this.states === undefined || this.states === "" || this.states === "<delete>"){
 			this.states = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.states);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -263,6 +573,102 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		this.states = JSON.stringify(elementsJson);
 	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	ACTIVITYVIEWER.insertState(index [int], key [String], style [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertState (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique State Key*/String key, 
+			/**State CSS Style*/String style
+			) {*
+
+		if (this.states === undefined || this.states === "" || this.states === "<delete>"){
+			this.states = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.states);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			style:style
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.states = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given State<br/>
+	 */
+	void updateState (
+			/**Unique State Key*/String key, 
+			/**State CSS Style*/String style
+			) 
+	{*
+		if (this.states === undefined || this.states === "" || this.states === "<delete>"){
+			this.states = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			style:style
+		};
+
+		var elementsJson = JSON.parse(this.states);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.states = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getKeyAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.states === undefined || this.states === "" || this.states === "<delete>"){
+			this.states = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.states);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+	
+
+
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */

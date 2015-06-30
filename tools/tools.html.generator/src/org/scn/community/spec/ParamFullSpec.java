@@ -39,6 +39,15 @@ public class ParamFullSpec {
 		
 		return key;
 	}
+
+	public String getCorrectName() {
+		String correctName = properties.get("correctName");
+		if(correctName == null || correctName.length() == 0) {
+			return this.getName();
+		}
+		
+		return correctName;
+	}
 	
 	public String getHelp() {
 		if(options != null)
@@ -240,9 +249,15 @@ public class ParamFullSpec {
 										
 										boolean optional = paramGenChild2.isOptional();
 										
-										String initValue = paramGenChild2.getType(true).equals("boolean")?"false":"\"\"";
+										boolean isBoolean = paramGenChild2.getType(true).equals("boolean");
+										String initValue = isBoolean?"false":"\"\"";
+										
 										if(optional) {
 											ASSURE_OPTIONAL_INITIALIZED = ASSURE_OPTIONAL_INITIALIZED + "if(" + paramGenChild2.getName() + " == undefined) { " + paramGenChild2.getName() + " = "+initValue+";}" + "\r\n\t\t";; 
+										}
+										
+										if(isBoolean) {
+											template = extendForBoolean(template, paramGenChild);
 										}
 										
 										PROPERTY_DEFINITION_FULL = PROPERTY_DEFINITION_FULL + paramGenChild2.getHelp() + (optional?"optional ":"") + paramGenChild2.getType(true) + " " + paramGenChild2.getName();
@@ -275,10 +290,16 @@ public class ParamFullSpec {
 							}
 							
 							boolean optional = paramGenChild.isOptional();
-							String initValue = paramGenChild.getType(true).equals("boolean")?"false":"\"\"";
 							
+							boolean isBoolean = paramGenChild.getType(true).equals("boolean");
+							String initValue = isBoolean?"false":"\"\"";
+
 							if(optional) {
 								ASSURE_OPTIONAL_ROOT_INITIALIZED = ASSURE_OPTIONAL_ROOT_INITIALIZED + "if(" + paramGenChild.getName() + " == undefined) { " + paramGenChild.getName() + " = "+initValue+";}" + "\r\n\t\t";; 
+							}
+							
+							if(isBoolean) {
+								template = extendForBoolean(template, paramGenChild);
 							}
 							
 							ROOT_PROPERTY_DEFINITION_FULL = ROOT_PROPERTY_DEFINITION_FULL + paramGenChild.getHelp() + (optional?"optional ":"") + paramGenChild.getType(true) + " " + paramGenChild.getName();
@@ -303,6 +324,8 @@ public class ParamFullSpec {
 			template = template.replace("%PROPERTY_FULL%", PROPERTY_FULL);
 			template = template.replace("%ROOT_ALL_PROPERTIES%", ROOT_ALL_PROPERTIES);
 			template = template.replace("%ASSURE_OPTIONAL_ROOT_INITIALIZED%", ASSURE_OPTIONAL_ROOT_INITIALIZED);
+			
+			template = template.replace("%BOOLEAN_EXTENSION_PROPERTY%", "");
 			
 			if(CONTENT_NAME != null && CONTENT_NAME.length() > 0) {
 				template = template.replace("%CONTENT_NAME%", Helpers.makeFirstUpper(CONTENT_NAME));	
@@ -339,6 +362,22 @@ public class ParamFullSpec {
 		}
 		faa.setXml(templateXml);
 		return faa;
+	}
+
+	private String extendForBoolean(String template, ParamFullSpec paramGenChild) {
+		String templateBoolean = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_ArrayBooleanSwitch.ztl.template");
+		
+		templateBoolean = templateBoolean.replace("%NAME%", paramGenChild.getName());
+		
+		String nameCut = paramGenChild.getName();
+		nameCut = Helpers.makeFirstUpper(nameCut);
+		templateBoolean = templateBoolean.replace("%NAME_CAPITAL%", nameCut);
+		
+		String nameCutParent = this.parentProperty.getNameCut();
+		nameCutParent = Helpers.makeFirstUpper(nameCutParent);
+		templateBoolean = templateBoolean.replace("%PROPERTY_CAPITAL_CUT%", nameCutParent);
+		 
+		return template.replace("%BOOLEAN_EXTENSION_PROPERTY%", templateBoolean);
 	}
 
 	private String exchangeTemplate (String template, String type, String xmlType) {
@@ -428,5 +467,4 @@ public class ParamFullSpec {
 		
 		return template;
 	}
-
 }

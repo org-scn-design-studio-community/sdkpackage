@@ -260,20 +260,20 @@ class org_scn_community_shared_MemberDisplay extends Enum {
 /**
  * enum filed definition
  */
-class org_scn_community_shared_NavigationTypeEnumfield extends Enumfield {
+class org_scn_community_shared_SelectionTypeEnumfield extends Enumfield {
        
 }
 
 /**
  * a set of constants to specify sort type 
  */
-class org_scn_community_shared_NavigationType extends Enum {
+class org_scn_community_shared_SelectionType extends Enum {
 
-	/** PAGINATOR */
-	org_scn_community_shared_NavigationTypeEnumfield Paginator;
+	/** Single */
+	org_scn_community_shared_SelectionTypeEnumfield Single;
        
-	/** SCROLLBAR */
-	org_scn_community_shared_NavigationTypeEnumfield Scrollbar;
+	/** Range */
+	org_scn_community_shared_SelectionTypeEnumfield Range;
 }
 
 /**
@@ -329,6 +329,25 @@ class org_scn_community_shared_SelectionState extends Enum {
 
 	/** Mixed */
 	org_scn_community_shared_SelectionStateEnumfield Mixed;
+}
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_NavigationTypeEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_NavigationType extends Enum {
+
+	/** PAGINATOR */
+	org_scn_community_shared_NavigationTypeEnumfield Paginator;
+       
+	/** SCROLLBAR */
+	org_scn_community_shared_NavigationTypeEnumfield Scrollbar;
 }
 
 /**
@@ -435,6 +454,40 @@ class org.scn.community.shared.DimensionMember {
  */
 class org.scn.community.shared.DimensionMemberArray extends Array {
 	org.scn.community.shared.DimensionMemberArray (org.scn.community.shared.DimensionMember b);
+}
+
+/**
+	Holder for Key, Text. You can access the content as in below example.
+	<br>
+	var content = COMPONENT.getSelectedElementsArray();<br>
+	
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.KeyArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.Key<br>
+		var elKey = element.key;<br>
+	});
+ */
+class org.scn.community.shared.Key {
+  String key;
+}
+
+/**
+	Array for org.scn.community.shared.KeyText. You can use this array as in below example.
+	<br>
+	var content = COMPONENT.getSelectedElementsArray();<br>
+	<br>
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.KeyArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.KeyValue<br>
+		var elKey = element.key;<br>
+	});
+ */
+class org.scn.community.shared.KeyArray extends Array {
+	org.scn.community.shared.KeyArray (org.scn.community.shared.Key b);
 }
 
 /**

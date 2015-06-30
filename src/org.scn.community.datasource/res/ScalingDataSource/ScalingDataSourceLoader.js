@@ -23,6 +23,7 @@
 		name: "datasource.ScalingDataSource",
 		requireName: "datasourcescalingdatasource",
 		fullComponentName: "org.scn.community.datasource.ScalingDataSource",
+		fullComponentPackage: "org.scn.community.datasource/res/ScalingDataSource",
 		script: "org.scn.community.datasource/res/ScalingDataSource/ScalingDataSource",
 		scriptSpec: "org.scn.community.datasource/res/ScalingDataSource/ScalingDataSourceSpec",
 		min: false

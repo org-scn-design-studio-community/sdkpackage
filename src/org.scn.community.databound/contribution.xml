@@ -200,7 +200,7 @@
 		title="Advanced Data Table"
 		icon="res/AdvancedDataTable/AdvancedDataTable.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 		group="ScnCommunityDataBound"
 		databound="true"
 >
@@ -371,7 +371,7 @@
 	title="Choropleth Map"
 	icon="res/Choropleth/Choropleth.png"
 	handlerType="div"
-	propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 	databound = "true"
 	group="ScnCommunityChartMaps">
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -1214,7 +1214,7 @@
 		title="Hexbin Chart"
 		icon="res/HexBin/HexBin.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 		group="ScnCommunityChartMaps"
 		databound="true"
 >
@@ -1599,7 +1599,7 @@ __n__}
 	title="Location Intelligence"
 	icon="res/LocationIntel/LocationIntel.png"
 	handlerType="div"
-	propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 	databound = "true"
 	group="ScnCommunityChartMaps">
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -1813,7 +1813,7 @@ __n__}
 		title="Marimekko Chart"
 		icon="res/MarimekkoChart/MarimekkoChart.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 		group="ScnCommunityChartMaps"
 		databound="true"
 >
@@ -2617,7 +2617,7 @@ __n__}
 		title="Scatter Plot Chart"
 		icon="res/ScatterPlot/ScatterPlot.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 		group="ScnCommunityChartMaps"
 		databound="true"
 >
@@ -2885,7 +2885,7 @@ __n__}
 		title="2D Crosstab"
 		icon="res/Table2D/Table2D.png"
 		handlerType="div"
-		propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 		group="ScnCommunityDataBound"
 		databound="true"
 >

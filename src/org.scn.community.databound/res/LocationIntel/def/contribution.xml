@@ -3,7 +3,7 @@
 	title="Location Intelligence"
 	icon="res/LocationIntel/LocationIntel.png"
 	handlerType="div"
-	propertySheetPath="res/org.scn.community.aps.PropertyPage.html"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 	databound = "true"
 	group="ScnCommunityChartMaps">
 	<jsInclude>res/require_loader.js</jsInclude>

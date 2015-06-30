@@ -23,6 +23,7 @@
 		name: "prototypes.ApsTester",
 		requireName: "prototypesapstester",
 		fullComponentName: "org.scn.community.prototypes.ApsTester",
+		fullComponentPackage: "org.scn.community.prototypes/res/ApsTester",
 		script: "org.scn.community.prototypes/res/ApsTester/ApsTester",
 		scriptSpec: "org.scn.community.prototypes/res/ApsTester/ApsTesterSpec",
 		min: false

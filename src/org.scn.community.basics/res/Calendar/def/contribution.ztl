@@ -1,68 +1,172 @@
 
 /**
- * Class for ValueHelpField
+ * Generated ZTL Class for Calendar
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.Calendar extends org.scn.community.shared.Component {
-	
-	/** Sets the enabled value */
-	void setEnabled(
-		/** Editable value */ boolean enabled) {*
-		this.enabled = enabled;
-	*}
-	
-	/** Returns the enabled value */
-	boolean isEnabled() {*
-		return this.enabled;
-	*}
-	
-	/** Sets the editable value */
-	void setEditable(
-		/** Editable value */ boolean editable) {*
-		this.editable = editable;
-	*}
-	
-	/** Returns the editable value */
-	boolean isEditable() {*
-		return this.editable;
+
+	/**
+	 * Sets Current Date Value YYYYMMDD Property
+	 */	
+	void setCurrentValue( /**Current Date Value YYYYMMDD*/ String currentValue){*
+		this.DCurrentValue = currentValue;
 	*}
 
-	/** returns current value */
-	String getCurrentDateValue () {*
-		return this.DCurrentValue;	
+	/**
+	 * Gets Current Date Value YYYYMMDD Property
+	 */	
+	String getCurrentValue() {*
+		return this.DCurrentValue;
 	*}
-		
-	/** sets current value */
-	void setCurrentDateValue (String value) {*
-		this.DCurrentValue = value;	
+
+	/**
+	 * Sets Selection Type Property by String
+	 */	
+	void setSelectionTypeByString( /**Selection Type*/ String selectionType){*
+		this.DSelectionType = selectionType;
+	*}
+
+	/**
+	 * Gets Selection Type Property as String
+	 */	
+	String getSelectionTypeAsString() {*
+		return this.DSelectionType;
 	*}
 	
-	/** returns single value */
-	String getSingleDateValue () {*
-		return this.DValue;	
+	/**
+	 * Sets Selection Type Property by Choice Option
+	 */	
+	void setSelectionType( /**Selection Type*/ org_scn_community_shared_SelectionTypeEnumfield selectionType){*
+		this.DSelectionType = selectionType;
 	*}
-		
-	/** sets single value */
-	void setSingleDateValue (String value) {*
-		this.DValue = value;	
-	*}
-
-	/** returns value from*/
-	String getRangeDateValueFrom () {*
-		return this.DValueF;	
-	*}
-		
-	/** sets value from*/
-	void setRangeDateValueFrom (String value) {*
-		this.DValueF = value;	
+	
+	/**
+	 * Gets Selection Type Property as Choice Option
+	 */	
+	org_scn_community_shared_SelectionTypeEnumfield getSelectionType() {*
+		return this.DSelectionType;
 	*}
 
-	/** returns value to*/
-	String getRangeDateValueTo () {*
-		return this.DValueT;	
+	/**
+	 * Sets Date Single Value YYYYMMDD Property
+	 */	
+	void setValue( /**Date Single Value YYYYMMDD*/ String value){*
+		this.DValue = value;
 	*}
-		
-	/** sets value to*/
-	void setRangeDateValueTo (String value) {*
-		this.DValueT = value;	
+
+	/**
+	 * Gets Date Single Value YYYYMMDD Property
+	 */	
+	String getValue() {*
+		return this.DValue;
 	*}
+
+	/**
+	 * Sets Date Value Range From YYYYMMDD Property
+	 */	
+	void setValueF( /**Date Value Range From YYYYMMDD*/ String valueF){*
+		this.DValueF = valueF;
+	*}
+
+	/**
+	 * Gets Date Value Range From YYYYMMDD Property
+	 */	
+	String getValueF() {*
+		return this.DValueF;
+	*}
+
+	/**
+	 * Sets Date Value Range To YYYYMMDD Property
+	 */	
+	void setValueT( /**Date Value Range To YYYYMMDD*/ String valueT){*
+		this.DValueT = valueT;
+	*}
+
+	/**
+	 * Gets Date Value Range To YYYYMMDD Property
+	 */	
+	String getValueT() {*
+		return this.DValueT;
+	*}
+
+	/**
+	 * Sets First Day Offset (0 == Sunday) Property
+	 */	
+	void setFirstDayOffset( /**First Day Offset (0 == Sunday)*/ int firstDayOffset){*
+		this.firstDayOffset = firstDayOffset;
+	*}
+
+	/**
+	 * Gets First Day Offset (0 == Sunday) Property
+	 */	
+	int getFirstDayOffset() {*
+		return this.firstDayOffset;
+	*}
+
+	/**
+	 * Sets Months Per Row Property
+	 */	
+	void setMonthsPerRow( /**Months Per Row*/ int monthsPerRow){*
+		this.monthsPerRow = monthsPerRow;
+	*}
+
+	/**
+	 * Gets Months Per Row Property
+	 */	
+	int getMonthsPerRow() {*
+		return this.monthsPerRow;
+	*}
+
+	/**
+	 * Sets Months To Display Property
+	 */	
+	void setMonthsToDisplay( /**Months To Display*/ int monthsToDisplay){*
+		this.monthsToDisplay = monthsToDisplay;
+	*}
+
+	/**
+	 * Gets Months To Display Property
+	 */	
+	int getMonthsToDisplay() {*
+		return this.monthsToDisplay;
+	*}
+
+
+
+
+
+
+
+	/**
+	 * Sets Single Row Property
+	 */	
+	void setSingleRow( /**Single Row*/ boolean singleRow){*
+		this.singleRow = singleRow;
+	*}
+
+	/**
+	 * Gets Single Row Property
+	 */	
+	boolean isSingleRow() {*
+		return this.singleRow;
+	*}
+
+	/**
+	 * Sets Weeks Per Row Property
+	 */	
+	void setWeeksPerRow( /**Weeks Per Row*/ int weeksPerRow){*
+		this.weeksPerRow = weeksPerRow;
+	*}
+
+	/**
+	 * Gets Weeks Per Row Property
+	 */	
+	int getWeeksPerRow() {*
+		return this.weeksPerRow;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

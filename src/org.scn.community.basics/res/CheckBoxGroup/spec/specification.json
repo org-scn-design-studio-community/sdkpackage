@@ -1,0 +1,142 @@
+{
+	"elements": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "element":{
+	               "type":"Array",
+	               "sequence":"key,text,url,selected",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "text":{
+	                  "desc":"Given Text",
+	                  "type":"String"
+	               },
+	               "url":{
+	                  "desc":"Given Url",
+	                  "type":"Url"
+	               },
+	               "selected":{
+	                  "desc":"Selected",
+	                  "type":"boolean"
+	               }
+	            }
+	        },
+ 
+			"desc":"Elements",
+			"cat":"Content",
+			"tooltip":"List of Elements",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray"
+		}
+	},
+	"cleanAll" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Elements",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Elements",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"elements",
+		   	"refDesc":"Elements",
+		   	"refValue":"[]",
+		}
+	},
+
+
+
+	"fallbackPicture" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Fallback Picture Url",
+			"cat" : "Display-Image",
+			"tooltip" : "Url For Fallback Picture (must Be Set)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"pictureSize" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Size_16px",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "ConstImageSize",
+			"ztlFunction": "",
+			"desc" : "Size Of The Picture",
+			"cat" : "Display-Image",
+			"tooltip" : "Size Of The Picture",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Size_16px",
+					"text" : "Size_16px"
+				},
+				{
+					"key" : "Size_32px",
+					"text" : "Size_32px"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"withPicture" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Pictures",
+			"cat" : "Display-Image",
+			"tooltip" : "Use Pictures",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onSelectionChanged" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Selection Changed",
+			"cat" : "Events",
+			"tooltip" : "Event For On Selection Changed",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

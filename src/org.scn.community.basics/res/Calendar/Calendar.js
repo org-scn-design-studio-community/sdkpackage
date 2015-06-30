@@ -16,55 +16,54 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.Calendar";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
 
-var oCore = sap.ui.getCore();
-oCore.loadLibrary("sap.me");
+(function(){
 
-jQuery.sap.require("sap.me.Calendar");
-jQuery.sap.require("sap.m.Button");
+var myComponentData = org_scn_community_require.knownComponents.basics.Calendar;
 
-sap.me.Calendar.extend(ownComponentName, {
+Calendar = {
 
-	metadata: {
-        properties: {
-        	  "DCurrentValue": {type: "string"},
-        	  "DValue": {type: "string"},
-        	  "DValueF": {type: "string"},
-        	  "DValueT": {type: "string"},
-        	  "DSelectionType": {type: "string"},
-        }
-	},
+	renderer: {},
 	
-  	initDesignStudio: function() {
+	initDesignStudio: function() {
 		var that = this;
-		this._ownScript = _readScriptPath();
-		
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		this.addStyleClass("scn-pack-Calendar");
-		this.addStyleClass(this.getId());
         
 		this.attachTapOnDate(this._tapOnDate);
 		this.attachChangeCurrentDate(this._changeCurrentDate);
 		this.attachChangeRange(this._attachChangeRange);
-  	},
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		this.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		}
+	},
 	
-	renderer: {},
-	
-	afterDesignStudioUpdate : function() {
+	afterDesignStudioUpdate: function() {
 		var that = this;
 		
-		var currentDate = that.getDateValue(that.getDCurrentValue(), dateFormat);
-		var singleDate = that.getDateValue(that.getDValue(), dateFormat);
-		var fromDate = that.getDateValue(that.getDValueF(), dateFormat);
-		var toDate = that.getDateValue(that.getDValueT(), dateFormat);
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		var currentDate = org_scn_community_basics.getDateValue(that.getDCurrentValue());
+		var singleDate = org_scn_community_basics.getDateValue(that.getDValue());
+		var fromDate = org_scn_community_basics.getDateValue(that.getDValueF());
+		var toDate = org_scn_community_basics.getDateValue(that.getDValueT());
 
 		var selectionType = this.getDSelectionType();
 		if(selectionType == "Single Selection") {
@@ -117,7 +116,11 @@ sap.me.Calendar.extend(ownComponentName, {
 		}
 		that._deactivateEvent = false;
 	},
-
+	
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
+	
 	_changeCurrentDate: function(oEvent) {
 		var that = this;
 		if(that._deactivateEvent) {
@@ -176,21 +179,12 @@ sap.me.Calendar.extend(ownComponentName, {
         that.fireDesignStudioPropertiesChanged(["DValueF", "DValueT"]);
 		that.fireDesignStudioEvent("onRangeChanged");
     },
-    
-	getDateValue: function (inputDate, dateFormat) {
-		if(inputDate == "TODAY" || inputDate.length != 8) {
-			inputDate = new Date();
-			inputDate = inputDate.format(dateFormat.masks.technical);
-		}
-		
-		var year = inputDate.substring(0,4);
-		var month = inputDate.substring(4,6);
-		var day = inputDate.substring(6,8);
-		
-		var date = new Date(year, month - 1, day);
-		date.formatted = date.format(dateFormat.masks.technical);
-		
-		return date;
-	},
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+
+define([myComponentData.requireName], function(basicscalendar){
+	myComponentData.instance = Calendar;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

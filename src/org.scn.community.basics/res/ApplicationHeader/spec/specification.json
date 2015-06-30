@@ -1,0 +1,103 @@
+{
+
+
+
+	"displayLogoff" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Display Logoff",
+			"cat" : "Display-Texts",
+			"tooltip" : "If Set To True, The Logoff Area Will Be Displayed At The Right Hand Side Of The Application Header.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"displayWelcome" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Display Welcome",
+			"cat" : "Display-Texts",
+			"tooltip" : "By Default, Set To True And Dislpays The Welcome Text.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"logoSrc" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Logo Source",
+			"cat" : "Display-Logo",
+			"tooltip" : "Path (src) To The Logo Icon To Be Displayed In The Application Header.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"logoText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Logo Text",
+			"cat" : "Display-Logo",
+			"tooltip" : "The Text That Will Be Displayed Beside The Logo In The Application Header. This Property Is Optional.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"userName" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "User Name",
+			"cat" : "Display-Texts",
+			"tooltip" : "User Name That Will Be Displayed Beside The Welcome Text.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onLogoff" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Logoff",
+			"cat" : "Events",
+			"tooltip" : "Fires An Event To Log Off The User From The Application.",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

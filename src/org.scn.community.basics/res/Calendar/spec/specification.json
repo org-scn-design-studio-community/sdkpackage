@@ -1,0 +1,223 @@
+{
+
+
+
+	"DCurrentValue" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "TODAY",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Current Date Value YYYYMMDD",
+			"cat" : "Display-Value",
+			"tooltip" : "Current Date Value YYYYMMDD",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DSelectionType" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Single",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "SelectionType",
+			"ztlFunction": "",
+			"desc" : "Selection Type",
+			"cat" : "Interaction",
+			"tooltip" : "Selection Type",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Single",
+					"text" : "Single Selection"
+				},
+				{
+					"key" : "Range",
+					"text" : "Range Selection"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DValue" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "TODAY",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Date Single Value YYYYMMDD",
+			"cat" : "Display-Value",
+			"tooltip" : "Date Single Value YYYYMMDD",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DValueF" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "TODAY",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Date Value Range From YYYYMMDD",
+			"cat" : "Display-Value",
+			"tooltip" : "Date Value Range From YYYYMMDD",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DValueT" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "TODAY",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Date Value Range To YYYYMMDD",
+			"cat" : "Display-Value",
+			"tooltip" : "Date Value Range To YYYYMMDD",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"firstDayOffset" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "1",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "First Day Offset (0 == Sunday)",
+			"cat" : "Display-Visualization",
+			"tooltip" : "First Day Offset (0 == Sunday, 1 == Monday)",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"monthsPerRow" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "1",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Months Per Row",
+			"cat" : "Display-Visualization",
+			"tooltip" : "Months Per Row",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"monthsToDisplay" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "1",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Months To Display",
+			"cat" : "Display-Visualization",
+			"tooltip" : "Months  ToDisplay",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"singleRow" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "false",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Single Row",
+			"cat" : "Display-Visualization",
+			"tooltip" : "Single Row",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"weeksPerRow" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "1",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Weeks Per Row",
+			"cat" : "Display-Visualization",
+			"tooltip" : "Weeks Per Row",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onCurrentChanged" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Current Value Changed",
+			"cat" : "Events",
+			"tooltip" : "Event For On Current Value Changed",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onRangeChanged" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Value Change With Date Range",
+			"cat" : "Events",
+			"tooltip" : "Event For On Value Change With Date Range",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onSingleChanged" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Value Change With Single Date",
+			"cat" : "Events",
+			"tooltip" : "Event For On Value Change With Single Date",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

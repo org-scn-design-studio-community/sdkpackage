@@ -254,8 +254,8 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 			/**Text for the button*/String text, 
 			/**Given image for the button*/optional String image, 
 			/**Selection state of the button*/optional boolean selected
-			) {*		
-		
+			) {*
+
 		if(image == undefined) { image = "";}
 		if(selected == undefined) { selected = false;}
 		
@@ -266,13 +266,13 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 			image:image, 
 			selected:selected
 			};
-	
+
 		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
 			this.singlearray = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.singlearray);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -280,11 +280,11 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 				break;
 			}
 		}
-		
+
 		if(!alreadyFound) {
 			elementsJson.push(itemDef);
 		}
-	
+
 		this.singlearray = JSON.stringify(elementsJson);
 	*}
 	
@@ -300,14 +300,14 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	 */
 	void removeButton (
 			String key
-			) {*		
-		
+			) {*
+
 		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
 			this.singlearray = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.singlearray);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -325,6 +325,208 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		this.singlearray = JSON.stringify(elementsJson);
 	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	APSTESTER.insertButton(index [int], key [String], text [String], image [String], selected [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertButton (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique key of this button*/String key, 
+			/**Text for the button*/String text, 
+			/**Given image for the button*/optional String image, 
+			/**Selection state of the button*/optional boolean selected
+			) {*
+
+		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
+			this.singlearray = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.singlearray);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			image:image, 
+			selected:selected
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.singlearray = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Button<br/>
+	 */
+	void updateButton (
+			/**Unique key of this button*/String key, 
+			/**Text for the button*/String text, 
+			/**Given image for the button*/optional String image, 
+			/**Selection state of the button*/optional boolean selected
+			) 
+	{*
+		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
+			this.singlearray = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			image:image, 
+			selected:selected
+		};
+
+		var elementsJson = JSON.parse(this.singlearray);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.singlearray = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getKeyAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
+			this.singlearray = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.singlearray);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+	
+	/**
+	 * Sets the Selected keys<br/>
+	 */
+	void setSelectedKeys (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.singlearray);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].selected = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].selected = true;
+					break;
+				}
+			}
+		}
+		
+		this.singlearray = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Selected Key<br/>
+	 */
+	void setSelectedKey (
+			/**/ String key,
+			/**/ boolean selected
+			) 
+	{*
+		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.singlearray);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].selected = selected;
+				break;
+			}
+		}
+
+		this.singlearray = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Clean all Selected keys<br/>
+	 */
+	void cleanAllSelectedKeys (
+			) 
+	{*
+		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].selected = false;
+		}
+		
+		this.singlearray = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns the Selected keys<br/>
+	 */
+	org.scn.pack.KeyArray getSelectedSinglearrayArray (
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].selected == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+
 
 	/**
 	 * Sets Some numbers Property

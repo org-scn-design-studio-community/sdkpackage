@@ -107,6 +107,9 @@ public class SpecificationReader {
 		String heightPropValue = this.getAdvancedProperty(heightProperties, "height");
 		XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_HEIGHT%", heightPropValue);
 		
+		XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_RIGHT%", widthPropValue.equals("auto")?"0":"auto");
+		XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_BOTTOM%", heightPropValue.equals("auto")?"0":"auto");
+		
 		Property requrieSpec = this.getProperty(this.compProperties, "require");
 
 		writeBack();
@@ -169,13 +172,18 @@ public class SpecificationReader {
 		readSpecification(this.aboutProperties, this.jsonAbout);
 		
 		Property compType = this.getProperty(this.compProperties, "handlerType");
+		Property databound = this.getProperty(this.compProperties, "databound");
+		
 		HashMap<String, String> properties = compType.getExtendedFullSpec().getProperties();
 		String compTypeValue = this.getAdvancedProperty(properties, "handlerType");
+		
+		HashMap<String, String> propertiesDb = databound.getExtendedFullSpec().getProperties();
+		String databoundTamplate = this.getAdvancedProperty(propertiesDb, "databound").equals("true") ? ".databound":"";
 		
 		XmlTmpl = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_root.template");
 
 		JsLoaderTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.loader."+compTypeValue+".js.template");
-		JsTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.component."+compTypeValue+".js.template");
+		JsTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.component."+compTypeValue+databoundTamplate+".js.template");
 		JsSpecTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.spec."+compTypeValue+".js.template");
 		
 		if(JsLoaderTmpl == null || JsTmpl == null || JsSpecTmpl == null) {

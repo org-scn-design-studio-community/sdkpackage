@@ -23,6 +23,7 @@
 		name: "databound.FacetFilter",
 		requireName: "databoundfacetfilter",
 		fullComponentName: "org.scn.community.databound.FacetFilter",
+		fullComponentPackage: "org.scn.community.databound/res/FacetFilter",
 		script: "org.scn.community.databound/res/FacetFilter/FacetFilter",
 		scriptSpec: "org.scn.community.databound/res/FacetFilter/FacetFilterSpec",
 		min: false
@@ -64,6 +65,8 @@
 		 });
 
 		 sdkReqs(requireInfo2.plainNames, function() {
+		 	 jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+
 			 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 	     	 sap.zen.Dispatcher.instance.resumeDispatching();
 		});//End of Require Callback Component

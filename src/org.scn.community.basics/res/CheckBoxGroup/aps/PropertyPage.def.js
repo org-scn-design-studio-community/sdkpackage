@@ -1,0 +1,176 @@
+ApsContent = function () {
+	var that = this; 
+	
+	that.componentData = {
+
+"specComp" : 
+{
+  "databound": false,
+  "extension": "Component",
+  "group": "ScnCommunityBasics",
+  "handlerType": "sapui5",
+  "height": "400",
+  "id": "CheckBoxGroup",
+  "package": "basics",
+  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "require": [{
+    "id": "common_basics",
+    "space": "known"
+  }],
+  "title": "Check Box Group 2.0",
+  "tooltip": "Check Box Group",
+  "width": "230"
+},
+
+"spec" : 
+{
+  "cleanAll": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Internal",
+      "desc": "Clean All Elements",
+      "noAps": true,
+      "noZtl": false,
+      "refDesc": "Elements",
+      "refProperty": "elements",
+      "refValue": "[]",
+      "tooltip": "Clean All Elements",
+      "ztlFunction": "-clean",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
+    "visible": false
+  },
+  "elements": {
+    "opts": {
+      "apsControl": "array",
+      "arrayDefinition": {"element": {
+        "key": {
+          "desc": "Unique Key",
+          "type": "String"
+        },
+        "selected": {
+          "desc": "Selected",
+          "type": "boolean"
+        },
+        "sequence": "key,text,url,selected",
+        "text": {
+          "desc": "Given Text",
+          "type": "String"
+        },
+        "type": "Array",
+        "url": {
+          "desc": "Given Url",
+          "type": "Url"
+        }
+      }},
+      "arrayMode": "OneLevelArray",
+      "cat": "Content",
+      "desc": "Elements",
+      "tooltip": "List of Elements",
+      "ztlFunction": "",
+      "ztlType": "SingleArray"
+    },
+    "type": "String",
+    "value": "[]",
+    "visible": true
+  },
+  "fallbackPicture": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display-Image",
+      "desc": "Fallback Picture Url",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Url For Fallback Picture (must Be Set)",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "default",
+    "type": "String",
+    "value": "",
+    "visible": true
+  },
+  "onSelectionChanged": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Events",
+      "desc": "Event For On Selection Changed",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Event For On Selection Changed"
+    },
+    "template": "Event",
+    "type": "ScriptText",
+    "value": "",
+    "visible": true
+  },
+  "pictureSize": {
+    "opts": {
+      "apsControl": "combobox",
+      "cat": "Display-Image",
+      "choiceType": "ConstImageSize",
+      "desc": "Size Of The Picture",
+      "noAps": false,
+      "noZtl": false,
+      "options": [
+        {
+          "key": "Size_16px",
+          "text": "Size_16px"
+        },
+        {
+          "key": "Size_32px",
+          "text": "Size_32px"
+        }
+      ],
+      "tooltip": "Size Of The Picture",
+      "ztlFunction": "",
+      "ztlType": "Choice"
+    },
+    "template": "Choice",
+    "type": "String",
+    "value": "Size_16px",
+    "visible": true
+  },
+  "withPicture": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display-Image",
+      "desc": "Use Pictures",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Use Pictures",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "boolean",
+    "type": "boolean",
+    "value": "true",
+    "visible": true
+  }
+}, 
+
+"specAbout" : 
+{
+  "description": "Check Box Group",
+  "icon": "CheckBoxGroup.png",
+  "title": "Check Box Group 2.0",
+  "topics": [
+    {
+      "content": "Check Box Group",
+      "title": "Check Box Group"
+    },
+    {
+      "content": "This component is a visualization component. It requires specific space in the application canvas.",
+      "title": "Visualization"
+    }
+  ]
+}
+
+};
+
+	org_scn_community_component_Core(that, that.componentData);
+    
+	return that;
+};

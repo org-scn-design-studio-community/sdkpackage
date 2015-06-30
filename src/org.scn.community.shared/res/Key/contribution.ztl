@@ -1,0 +1,34 @@
+
+/**
+	Holder for Key, Text. You can access the content as in below example.
+	<br>
+	var content = COMPONENT.getSelectedElementsArray();<br>
+	
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.KeyArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.Key<br>
+		var elKey = element.key;<br>
+	});
+ */
+class org.scn.community.shared.Key {
+  String key;
+}
+
+/**
+	Array for org.scn.community.shared.KeyText. You can use this array as in below example.
+	<br>
+	var content = COMPONENT.getSelectedElementsArray();<br>
+	<br>
+	// a loop for all entries<br>
+	// content is of type org.scn.community.shared.KeyArray<br>
+	content.forEach(function(element, index) {<br>
+	
+		// element is of type org.scn.community.shared.KeyValue<br>
+		var elKey = element.key;<br>
+	});
+ */
+class org.scn.community.shared.KeyArray extends Array {
+	org.scn.community.shared.KeyArray (org.scn.community.shared.Key b);
+}

@@ -1,0 +1,16 @@
+{
+	"title": "Calendar 2.0",
+	"description": "Calendar",
+	"icon": "Calendar.png",
+	"topics": 
+	[
+		{
+			"title" : "Calendar",
+			"content" : "Calendar"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

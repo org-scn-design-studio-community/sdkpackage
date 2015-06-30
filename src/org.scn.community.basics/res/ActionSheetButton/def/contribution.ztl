@@ -63,8 +63,8 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 			/**Unique Property Key*/String key, 
 			/**Text*/String text, 
 			/**Icon*/String icon
-			) {*		
-		
+			) {*
+
 		
 		var itemDef = {
 			leaf:true,
@@ -72,13 +72,13 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 			text:text, 
 			icon:icon
 			};
-	
+
 		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
 			this.items = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.items);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -86,11 +86,11 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 				break;
 			}
 		}
-		
+
 		if(!alreadyFound) {
 			elementsJson.push(itemDef);
 		}
-	
+
 		this.items = JSON.stringify(elementsJson);
 	*}
 	
@@ -106,14 +106,14 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	 */
 	void removeItem (
 			String key
-			) {*		
-		
+			) {*
+
 		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
 			this.items = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.items);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
@@ -131,6 +131,106 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 
 		this.items = JSON.stringify(elementsJson);
 	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	ACTIONSHEETBUTTON.insertItem(index [int], key [String], text [String], icon [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertItem (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Property Key*/String key, 
+			/**Text*/String text, 
+			/**Icon*/String icon
+			) {*
+
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			this.items = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.items);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			icon:icon
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.items = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Item<br/>
+	 */
+	void updateItem (
+			/**Unique Property Key*/String key, 
+			/**Text*/String text, 
+			/**Icon*/String icon
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			this.items = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			icon:icon
+		};
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getKeyAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			this.items = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+	
+
+
 
 
 

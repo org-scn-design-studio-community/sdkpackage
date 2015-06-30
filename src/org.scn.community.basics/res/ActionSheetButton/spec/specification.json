@@ -84,7 +84,7 @@
 			"choiceType":"ButtonType",
 			"ztlFunction": "",
 			"desc" : "Type",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Type",
 			"apsControl" : "combobox",
 			"options":[
@@ -131,7 +131,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Icon",
-			"cat" : "Display",
+			"cat" : "Display-Icon",
 			"tooltip" : "Icon",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -148,7 +148,7 @@
 			"choiceType":"Placement",
 			"ztlFunction": "",
 			"desc" : "Placement",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Placement",
 			"apsControl" : "combobox",
 			"options":[

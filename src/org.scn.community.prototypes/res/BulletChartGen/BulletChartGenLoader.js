@@ -23,6 +23,7 @@
 		name: "prototypes.BulletChartGen",
 		requireName: "prototypesbulletchartgen",
 		fullComponentName: "org.scn.community.prototypes.BulletChartGen",
+		fullComponentPackage: "org.scn.community.prototypes/res/BulletChartGen",
 		script: "org.scn.community.prototypes/res/BulletChartGen/BulletChartGen",
 		scriptSpec: "org.scn.community.prototypes/res/BulletChartGen/BulletChartGenSpec",
 		min: false

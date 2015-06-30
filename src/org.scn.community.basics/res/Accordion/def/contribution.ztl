@@ -7,9 +7,21 @@
 class org.scn.community.basics.Accordion extends org.scn.community.shared.Component {
 
 	/**
-	 * Remove All Elements from the Array.
+	 * Clean All Elements from the Array.
 	 */	
 	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Elements from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
 		this.cleanAll = true;
 
 		var elementsArray = [];

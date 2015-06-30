@@ -23,6 +23,7 @@
 		name: "basics.ActionSheetButton",
 		requireName: "basicsactionsheetbutton",
 		fullComponentName: "org.scn.community.basics.ActionSheetButton",
+		fullComponentPackage: "org.scn.community.basics/res/ActionSheetButton",
 		script: "org.scn.community.basics/res/ActionSheetButton/ActionSheetButton",
 		scriptSpec: "org.scn.community.basics/res/ActionSheetButton/ActionSheetButtonSpec",
 		min: false
@@ -62,6 +63,8 @@
 		 });
 
 		 sdkReqs(requireInfo2.plainNames, function() {
+		 	 jQuery.sap.require("sap.m.Button");
+
 			 sap.m.Button.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 	     	 sap.zen.Dispatcher.instance.resumeDispatching();
 		});//End of Require Callback Component

@@ -2,11 +2,14 @@
  * Core Class
  */
 org_scn_community_component_Core = function (owner, componentData){
-	var spec = componentData.spec;
-	var specAbout = componentData.specAbout;
-	var specComp = componentData.specComp;
-	
 	var that = owner;
+
+	that.componentData = componentData;
+
+	that.spec = componentData.spec;
+	that.specAbout = componentData.specAbout;
+	that.specComp = componentData.specComp;
+
 	that.componentInfo = {
 		visible : true,
 		title : "Core Component",
@@ -19,29 +22,68 @@ org_scn_community_component_Core = function (owner, componentData){
 		}]
 	};
 	
-	that.componentInfo.title = specAbout.title;
-    that.componentInfo.description = specAbout.description;
+	that.componentInfo.title = that.specAbout.title;
+    that.componentInfo.description = that.specAbout.description;
     
-    for(var index in specAbout.topics) {
-    	that.componentInfo.topics.push(specAbout.topics[index]);
+    for(var index in that.specAbout.topics) {
+    	that.componentInfo.topics.push(that.specAbout.topics[index]);
     }
     
 	that.props = {
 		// All properties from child classes always inherit properties.  Core class currently has no properties out of the gate.
 	};
-	for(property in spec){
-		that.props[property] = spec[property]
+	for(property in that.spec){
+		that.props[property] = that.spec[property];
+		if(property.indexOf("data") == 0) {
+			if(that.props["meta_data"] == undefined) {
+				// clone the property
+				that.props["meta_data"] = JSON.parse(JSON.stringify(that.spec[property]));	
+			}
+		}
+		
 	};
+	
 	/*
 	 * Create the aforementioned getter/setter and attach to 'this'.
 	 */
-	if(specComp.handlerType == "div") {
+	if(that.specComp.handlerType == "div" || that.specComp.handlerType == "datasource") {
+		for(var property in that.props){
+			that[property] = function(property){
+				return function(value){
+					if(value===undefined){
+						return that.props[property].value;
+					}else{
+						that.props[property].value = value;
+						that.props[property].changed = true;
+						if(that.props[property].onChange) {
+							if(typeof(that[that.props[property].onChange]) === 'function') {
+								that[that.props[property].onChange].call(that,that.props[property].value);
+							}
+						}
+						return that;
+					}
+				};
+			}(property);
+		}
+	}
 	for(var property in that.props){
-		that[property] = function(property){
-			return function(value){
-				if(value===undefined){
-					return that.props[property].value;
-				}else{
+		if(property.indexOf("data") == 0) {
+			if(that["setMetadata"] == undefined) {
+				that["setMetadata"] = function(property){
+					// a setter
+					return function (value) {
+						that.props["meta_data"].value = value;
+						that.props["meta_data"].changed = true;
+						return that;
+					};
+				}(property);
+			}
+		}
+
+		if(that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] == undefined) {
+			that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
+				// a setter
+				return function (value) {
 					that.props[property].value = value;
 					that.props[property].changed = true;
 					if(that.props[property].onChange) {
@@ -50,33 +92,30 @@ org_scn_community_component_Core = function (owner, componentData){
 						}
 					}
 					return that;
-				}
-			};
-		}(property);
-	}
-	}
-	for(var property in that.props){
-		that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
-			// a setter
-			return function (value) {
-				that.props[property].value = value;
-				that.props[property].changed = true;
-				if(that.props[property].onChange) {
-					if(typeof(that[that.props[property].onChange]) === 'function') {
-						that[that.props[property].onChange].call(that,that.props[property].value);
-					}
-				}
-				return that;
-			};
-		}(property);
+				};
+			}(property);
+		}
 	}
 	for(var property in that.props){
-		that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
-			// a setter
-			return function () {
-				return that.props[property].value;
-			};
-		}(property);
+		if(property.indexOf("data") == 0) {
+			if(that["getDSMetadata"] == undefined) {
+				that["getDSMetadata"] = function(property){
+					// a setter
+					return function () {
+						return that.props["meta_data"].value;
+					};
+				}(property);
+			}
+		}
+
+		if(that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] == undefined) {
+			that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
+				// a getter
+				return function () {
+					return that.props[property].value;
+				};
+			}(property);
+		}
 	}
 
 	that.callOnSet = function(property,value){

@@ -1,58 +1,68 @@
 
 <component
 	id="BasicBusinessCard"
-	title="Basic Business Card"
+	title="Basic Business Card 2.0"
+	tooltip="Basic Business Card"
 	icon="res/BasicBusinessCard/BasicBusinessCard.png"
 	handlerType="sapui5"
+	propertySheetPath="res/BasicBusinessCard/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/BasicBusinessCard/BasicBusinessCard.js</jsInclude>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/BasicBusinessCard/BasicBusinessCardLoader.js</jsInclude>
 	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
-
+	
 	<property
 		id="image"
-		type="Url"
+		type="String"
 		title="Image Url"
-		tooltip="Url for Image"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
 		id="name"
 		type="String"
 		title="Name"
-		tooltip="Name"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
-	<property
-		id="title"
-		type="String"
-		title="Title"
-		tooltip="Title below the name"
-		group="Display"
-		visible="true" />
-
+	</property>
 	<property
 		id="onPress"
 		type="ScriptText"
 		title="On Press"
-		tooltip="Event for On Press"
-		group="Events" />
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="title"
+		type="String"
+		title="Title"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
-		<defaultValue property="WIDTH">300</defaultValue>
-		<defaultValue property="HEIGHT">100</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		
 		<defaultValue property="image"></defaultValue>
 		<defaultValue property="name">Last, First</defaultValue>
-		<defaultValue property="title">Expert for All Issues
-		</defaultValue>
+		<defaultValue property="onPress"></defaultValue>
+		<defaultValue property="title">Expert for All Issues</defaultValue>
 
 	</initialization>
 

@@ -53,7 +53,7 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 				}
 				
 				if(callback) {
-					callback(parent._containerWidth, parent._containerHeight);
+					callback(parent._containerWidth, parent._containerHeight, parent);
 				}
 			}
 		};
@@ -328,4 +328,35 @@ org_scn_community_basics.getDateValue = function (inputDate) {
 	date.formatted = date.format(dateFormat.masks.technical);
 	
 	return date;
+};
+
+/**
+ * Fills dummy data based on the component spec
+ */
+org_scn_community_basics.fillDummyData = function (owner, callBack, afterPrepare) {
+	// uses directly setters for the settings
+	callBack(undefined, afterPrepare, owner);
+};
+
+org_scn_community_basics.getRepositoryImageUrlPrefix = function (owner, componentUrl, imageUrl, componentFileName) {
+	var that = owner;
+
+	var correctUrl = "";
+
+	if(imageUrl == undefined || imageUrl == "") {
+		correctUrl = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage, componentFileName);
+	} else {
+		if(imageUrl.indexOf("http://") !== -1 || imageUrl.indexOf("https://") !== -1){
+			correctUrl = imageUrl;
+		} else {
+			if(componentUrl != undefined && componentUrl.length() > 0) {
+				correctUrl =  componentUrl.substring(0, value.lastIndexOf("/") + 1);
+				correctUrl = correctUrl + imageUrl;
+			} else {
+				correctUrl = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage, componentFileName);
+			}
+		}
+	}
+
+	return correctUrl;
 };

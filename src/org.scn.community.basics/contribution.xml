@@ -519,52 +519,74 @@
 
 <component
 	id="ApplicationHeader"
-	title="Application Header"
-	handlerType="sapui5"
+	title="Application Header 2.0"
+	tooltip="Application Header"
 	icon="res/ApplicationHeader/ApplicationHeader.png"
+	handlerType="sapui5"
+	propertySheetPath="res/ApplicationHeader/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/ApplicationHeader/ApplicationHeader.js</jsInclude>
-
+	<jsInclude>res/ApplicationHeader/ApplicationHeaderLoader.js</jsInclude>
+	<cssInclude>res/ApplicationHeader/ApplicationHeader.css</cssInclude>
+	
 	<property
 		id="displayLogoff"
+		type="boolean"
 		title="Display Logoff"
-		tooltip="If set to true, the logoff area will be displayed at the right hand side of the application header."
 		group="Display"
-		type="boolean" />
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="displayWelcome"
+		type="boolean"
 		title="Display Welcome"
-		tooltip="By default, set to true and dislpays the welcome text."
 		group="Display"
-		type="boolean" />
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="logoSrc"
+		type="String"
 		title="Logo Source"
-		tooltip="Path (src) to the logo icon to be displayed in the application header."
 		group="Display"
-		type="Url" />
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="logoText"
+		type="String"
 		title="Logo Text"
-		tooltip="The text that will be displayed beside the logo in the application header. This property is optional."
 		group="Display"
-		type="String" />
-	<property
-		id="userName"
-		title="User Name"
-		tooltip="User name that will be displayed beside the welcome text."
-		group="Display"
-		type="String" />
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="onLogoff"
+		type="ScriptText"
 		title="On Logoff"
-		tooltip="Fires an event to log off the user from the application."
 		group="Events"
-		type="ScriptText" />
+		visible="true">
+
+	</property>
+	<property
+		id="userName"
+		type="String"
+		title="User Name"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
@@ -572,9 +594,18 @@
 		<defaultValue property="RIGHT_MARGIN">0</defaultValue>
 		<defaultValue property="WIDTH">auto</defaultValue>
 		<defaultValue property="HEIGHT">38</defaultValue>
+		
+		<defaultValue property="displayLogoff"></defaultValue>
 		<defaultValue property="displayWelcome">true</defaultValue>
+		<defaultValue property="logoSrc"></defaultValue>
+		<defaultValue property="logoText"></defaultValue>
+		<defaultValue property="onLogoff"></defaultValue>
+		<defaultValue property="userName"></defaultValue>
+
 	</initialization>
+
 </component>
+
 <component
 	id="ArrowedLine"
     title="Arrowed Line"
@@ -649,58 +680,68 @@
 </component>
 <component
 	id="BasicBusinessCard"
-	title="Basic Business Card"
+	title="Basic Business Card 2.0"
+	tooltip="Basic Business Card"
 	icon="res/BasicBusinessCard/BasicBusinessCard.png"
 	handlerType="sapui5"
+	propertySheetPath="res/BasicBusinessCard/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/BasicBusinessCard/BasicBusinessCard.js</jsInclude>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/BasicBusinessCard/BasicBusinessCardLoader.js</jsInclude>
 	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
-
+	
 	<property
 		id="image"
-		type="Url"
+		type="String"
 		title="Image Url"
-		tooltip="Url for Image"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
 		id="name"
 		type="String"
 		title="Name"
-		tooltip="Name"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
-	<property
-		id="title"
-		type="String"
-		title="Title"
-		tooltip="Title below the name"
-		group="Display"
-		visible="true" />
-
+	</property>
 	<property
 		id="onPress"
 		type="ScriptText"
 		title="On Press"
-		tooltip="Event for On Press"
-		group="Events" />
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="title"
+		type="String"
+		title="Title"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
-		<defaultValue property="WIDTH">300</defaultValue>
-		<defaultValue property="HEIGHT">100</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		
 		<defaultValue property="image"></defaultValue>
 		<defaultValue property="name">Last, First</defaultValue>
-		<defaultValue property="title">Expert for All Issues
-		</defaultValue>
+		<defaultValue property="onPress"></defaultValue>
+		<defaultValue property="title">Expert for All Issues</defaultValue>
 
 	</initialization>
 
@@ -708,204 +749,250 @@
 
 <component
 	id="Calendar"
-	title="Calendar"
+	title="Calendar 2.0"
+	tooltip="Calendar"
 	icon="res/Calendar/Calendar.png"
 	handlerType="sapui5"
+	propertySheetPath="res/Calendar/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="true"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>os/sapui5/load.sap.m.js</jsInclude>
-	<jsInclude>os/date/DateFormat.js</jsInclude>
-	<jsInclude>res/Calendar/Calendar.js</jsInclude>
+	<jsInclude>res/Calendar/CalendarLoader.js</jsInclude>
 	<cssInclude>res/Calendar/Calendar.css</cssInclude>
-
+	
 	<property
 		id="DCurrentValue"
 		type="String"
 		title="Current Date Value YYYYMMDD"
-		tooltip="Current Date Value YYYYMMDD"
 		group="Display"
-		visible="true" />
-	<property
-		id="DValue"
-		type="String"
-		title="Date Single Value YYYYMMDD"
-		tooltip="Date Single Value YYYYMMDD"
-		group="Display"
-		visible="true" />
-	<property
-		id="DValueF"
-		type="String"
-		title="Date Value Range From YYYYMMDD"
-		tooltip="Date Value Range From YYYYMMDD"
-		group="Display"
-		visible="true" />
-	<property
-		id="DValueT"
-		type="String"
-		title="Date Value Range To YYYYMMDD"
-		tooltip="Date Value Range To YYYYMMDD"
-		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
-	<property
-		id="firstDayOffset"
-		type="int"
-		title="First Day Offset (0 == Sunday)"
-		tooltip="First Day Offset (0 == Sunday, 1 == Monday)"
-		group="Display"
-		visible="true" />
-	<property
-		id="singleRow"
-		type="boolean"
-		title="Single Row"
-		tooltip="Single Row"
-		group="Display"
-		visible="true" />
-
-	<property
-		id="monthsToDisplay"
-		type="int"
-		title="Months To Display"
-		tooltip="Months  ToDisplay"
-		group="Display"
-		visible="true" />
-
-	<property
-		id="weeksPerRow"
-		type="int"
-		title="Weeks Per Row"
-		tooltip="Weeks Per Row"
-		group="Display"
-		visible="true" />
-
-	<property
-		id="monthsPerRow"
-		type="int"
-		title="Months Per Row"
-		tooltip="Months Per Row"
-		group="Display"
-		visible="true" />
-
+	</property>
 	<property
 		id="DSelectionType"
 		type="String"
 		title="Selection Type"
-		tooltip="Selection Type"
 		group="Display"
+		bindable="true"
 		visible="true">
-		<possibleValue>Single Selection</possibleValue>
-		<possibleValue>Range Selection</possibleValue>
-	</property>
 
+	</property>
+	<property
+		id="DValue"
+		type="String"
+		title="Date Single Value YYYYMMDD"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DValueF"
+		type="String"
+		title="Date Value Range From YYYYMMDD"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DValueT"
+		type="String"
+		title="Date Value Range To YYYYMMDD"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="firstDayOffset"
+		type="int"
+		title="First Day Offset (0 == Sunday)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="monthsPerRow"
+		type="int"
+		title="Months Per Row"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="monthsToDisplay"
+		type="int"
+		title="Months To Display"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="onCurrentChanged"
 		type="ScriptText"
-		title="Event for On Current Value Changed"
-		group="Events" />
+		title="Event For On Current Value Changed"
+		group="Events"
+		visible="true">
 
-	<property
-		id="onSingleChanged"
-		type="ScriptText"
-		title="Event for On Value Change with Single Date"
-		group="Events" />
-
+	</property>
 	<property
 		id="onRangeChanged"
 		type="ScriptText"
-		title="Event for On Value Change with Date Range"
-		group="Events" />
+		title="Event For On Value Change With Date Range"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onSingleChanged"
+		type="ScriptText"
+		title="Event For On Value Change With Single Date"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="singleRow"
+		type="boolean"
+		title="Single Row"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="weeksPerRow"
+		type="int"
+		title="Weeks Per Row"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
-		<defaultValue property="WIDTH">300</defaultValue>
-		<defaultValue property="HEIGHT">22</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+		
 		<defaultValue property="DCurrentValue">TODAY</defaultValue>
+		<defaultValue property="DSelectionType">Single</defaultValue>
 		<defaultValue property="DValue">TODAY</defaultValue>
 		<defaultValue property="DValueF">TODAY</defaultValue>
 		<defaultValue property="DValueT">TODAY</defaultValue>
-	
 		<defaultValue property="firstDayOffset">1</defaultValue>
-		<defaultValue property="singleRow">false</defaultValue>
-		<defaultValue property="monthsToDisplay">1</defaultValue>
-		<defaultValue property="weeksPerRow">1</defaultValue>
 		<defaultValue property="monthsPerRow">1</defaultValue>
-	
-		<defaultValue property="DSelectionType">Single Selection</defaultValue>
-	</initialization>	
-</component>
-<component
-	id="CheckBoxGroup"
-	title="Check Box Group"
-	icon="res/CheckBoxGroup/CheckBoxGroup.png"
-	handlerType="sapui5"
-	group="ScnCommunityBasics"
->
-
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/CheckBoxGroup/CheckBoxGroup.js</jsInclude>
-	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
-
-	<property
-		id="fallbackPicture"
-		type="Url"
-		title="Fallback Picture Url"
-		tooltip="Url for Fallback Picture (must be set)"
-		group="Display"
-		visible="true" />
-
-	<property
-		id="withPicture"
-		title="Use Pictures"
-		type="boolean"
-		group="Display"
-	>
-	</property>
-
-	<property
-		id="pictureSize"
-		title="Size of the Picture"
-		type="String"
-		group="Display"
-	>
-		<possibleValue>16px</possibleValue>
-		<possibleValue>32px</possibleValue>
-	</property>
-
-	<property
-		id="elements"
-		type="String"
-		title="Technical property for list of elements"
-		group="Display"
-		visible="false" />
-
-	<property
-		id="onSelectionChanged"
-		type="ScriptText"
-		title="Event for On Selection Changed"
-		group="Events" />
-
-	<initialization>
-		<defaultValue property="WIDTH">230</defaultValue>
-		<defaultValue property="HEIGHT">400</defaultValue>
-		<defaultValue property="TOP_MARGIN">0</defaultValue>
-		<defaultValue property="LEFT_MARGIN">0</defaultValue>
-		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="fallbackPicture"></defaultValue>
-		<defaultValue property="withPicture">true</defaultValue>
-		<defaultValue property="pictureSize">16px</defaultValue>
-		<defaultValue property="elements"></defaultValue>
+		<defaultValue property="monthsToDisplay">1</defaultValue>
+		<defaultValue property="onCurrentChanged"></defaultValue>
+		<defaultValue property="onRangeChanged"></defaultValue>
+		<defaultValue property="onSingleChanged"></defaultValue>
+		<defaultValue property="singleRow">false</defaultValue>
+		<defaultValue property="weeksPerRow">1</defaultValue>
 
 	</initialization>
 
 </component>
+
+<component
+	id="CheckBoxGroup"
+	title="Check Box Group 2.0"
+	tooltip="Check Box Group"
+	icon="res/CheckBoxGroup/CheckBoxGroup.png"
+	handlerType="sapui5"
+	propertySheetPath="res/CheckBoxGroup/aps/PropertyPage.html"
+	group="ScnCommunityBasics"
+	databound="false"
+>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/CheckBoxGroup/CheckBoxGroupLoader.js</jsInclude>
+	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
+	
+	<property
+		id="cleanAll"
+		type="boolean"
+		title="Clean All Elements"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="elements"
+		type="String"
+		title="Elements"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="fallbackPicture"
+		type="String"
+		title="Fallback Picture Url"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event For On Selection Changed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="pictureSize"
+		type="String"
+		title="Size Of The Picture"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="withPicture"
+		type="boolean"
+		title="Use Pictures"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">230</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="cleanAll">false</defaultValue>
+		<defaultValue property="elements">[]</defaultValue>
+		<defaultValue property="fallbackPicture"></defaultValue>
+		<defaultValue property="onSelectionChanged"></defaultValue>
+		<defaultValue property="pictureSize">Size_16px</defaultValue>
+		<defaultValue property="withPicture">true</defaultValue>
+
+	</initialization>
+
+</component>
+
 <component
 	id="ColorPicker"
 	title="Color Picker"
@@ -3183,35 +3270,60 @@
 
 <component
 	id="RSSFeedReader"
-	title="RSSFeedReader"
+	title="RSSFeedReader 2.0"
+	tooltip="RSSFeedReader"
 	icon="res/RSSFeedReader/RSSFeedReader.png"
 	handlerType="div"
-	group="ScnCommunityBasics">
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	group="ScnCommunityBasics"
+	databound="false"
+>
 	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/RSSFeedReader/RSSFeedReader.js</jsInclude>
+	<jsInclude>res/RSSFeedReader/RSSFeedReaderLoader.js</jsInclude>
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
-	<property group="Display" type="String" title="RSS Feed URL"
-		id="feedurldimension">
+	
+	<property
+		id="feedUrl"
+		type="Url"
+		title="RSS Feed URL"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
-	<property group="Display" type="String" title="XSL URL"
-		id="xslurldimension">
+	<property
+		id="useBuildInXsl"
+		type="boolean"
+		title="Single Row"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
+	<property
+		id="xslUrl"
+		type="Url"
+		title="XSL URL"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
-		<defaultValue property="runtimedata">{}</defaultValue>
-		<defaultValue property="feedurldimension">
-			http://cdn.eex.com/rss/de/market.rss
-		</defaultValue>
-		<defaultValue property="xslurldimension">
-			rss.xsl
-		</defaultValue>
+		
+		<defaultValue property="feedUrl">http://cdn.eex.com/rss/de/market.rss</defaultValue>
+		<defaultValue property="useBuildInXsl">true</defaultValue>
+		<defaultValue property="xslUrl"></defaultValue>
+
 	</initialization>
 
 </component>

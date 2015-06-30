@@ -23,6 +23,7 @@
 		name: "basics.EmbeddedFrame",
 		requireName: "basicsembeddedframe",
 		fullComponentName: "org.scn.community.basics.EmbeddedFrame",
+		fullComponentPackage: "org.scn.community.basics/res/EmbeddedFrame",
 		script: "org.scn.community.basics/res/EmbeddedFrame/EmbeddedFrame",
 		scriptSpec: "org.scn.community.basics/res/EmbeddedFrame/EmbeddedFrameSpec",
 		min: false

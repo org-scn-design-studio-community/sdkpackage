@@ -23,6 +23,7 @@
 		name: "prototypes.ApsTesterUI5",
 		requireName: "prototypesapstesterui5",
 		fullComponentName: "org.scn.community.prototypes.ApsTesterUI5",
+		fullComponentPackage: "org.scn.community.prototypes/res/ApsTesterUI5",
 		script: "org.scn.community.prototypes/res/ApsTesterUI5/ApsTesterUI5",
 		scriptSpec: "org.scn.community.prototypes/res/ApsTesterUI5/ApsTesterUI5Spec",
 		min: false
@@ -60,6 +61,8 @@
 		 });
 
 		 sdkReqs(requireInfo2.plainNames, function() {
+		 	 jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+
 			 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 	     	 sap.zen.Dispatcher.instance.resumeDispatching();
 		});//End of Require Callback Component

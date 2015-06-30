@@ -23,6 +23,7 @@
 		name: "utils.DataSourceHelper",
 		requireName: "utilsdatasourcehelper",
 		fullComponentName: "org.scn.community.utils.DataSourceHelper",
+		fullComponentPackage: "org.scn.community.utils/res/DataSourceHelper",
 		script: "org.scn.community.utils/res/DataSourceHelper/DataSourceHelper",
 		scriptSpec: "org.scn.community.utils/res/DataSourceHelper/DataSourceHelperSpec",
 		min: false

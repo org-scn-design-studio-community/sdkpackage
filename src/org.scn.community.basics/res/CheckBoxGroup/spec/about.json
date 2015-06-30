@@ -1,0 +1,16 @@
+{
+	"title": "Check Box Group 2.0",
+	"description": "Check Box Group",
+	"icon": "CheckBoxGroup.png",
+	"topics": 
+	[
+		{
+			"title" : "Check Box Group",
+			"content" : "Check Box Group"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

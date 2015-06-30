@@ -414,7 +414,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		
 		var allItems = new org.scn.community.propertysheet.ListBuilder();		
 		allItems.setList(this._elementsContent);
-		var newItemKey = allItems.generateKey("Item");
+		var newItemKey = allItems.generateKey("ITEM_KEY");
 		delete allItems;
 		var sectionItems = new org.scn.community.propertysheet.ListBuilder();
 		sectionItems.setList(this._elementsContent);
@@ -433,7 +433,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 	addElement : function(oControlEvent){
 		var that = this;
 		
-		var newKey = this._listBuilder.generateKey("Element");
+		var newKey = this._listBuilder.generateKey("ElEMENT_KEY");
 		var newElement = { 
 			parentKey : "ROOT",
 			key : newKey,

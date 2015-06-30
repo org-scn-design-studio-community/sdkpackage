@@ -40,6 +40,8 @@ public class Property {
 
 	private String tooltipBig;
 
+	private String correctName;
+
 	@SuppressWarnings("nls")
 	public Property(XMLStreamReader reader, String componentName) {
 		this.componentName = componentName;
@@ -172,11 +174,17 @@ public class Property {
 	}
 
 	public String getNameCut() {
-		if(!this.name.startsWith("D")) {
-			return this.name;
+		String name = this.name;
+		
+		if (this.extendedFullSpec != null){
+			name = this.extendedFullSpec.getCorrectName();
+		}
+
+		if(!name.startsWith("D")) {
+			return name;
 		}
 		
-		return this.name.substring(1);
+		return name.substring(1);
 	}
 
 	public String getName() {
