@@ -1,0 +1,79 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Returns the current arrow position of the line.<br/>
+	 */
+	String getArrowPos (
+			
+			) 
+	{*
+		return this.arrowPos;
+	*}
+	/**
+	 * Returns the current color of the line.<br/>
+	 */
+	String getLineColor (
+			
+			) 
+	{*
+		return this.lineColor;
+	*}
+	/**
+	 * Returns the current size of the line.<br/>
+	 */
+	String getLineSize (
+			
+			) 
+	{*
+		return this.lineSize;
+	*}
+	/**
+	 * Returns the current type of the line.<br/>
+	 */
+	String getLineType (
+			
+			) 
+	{*
+		return this.lineType;
+	*}
+	/**
+	 * Sets the current arrow position of the line.<br/>
+	 */
+	void setArrowPos (
+			/* New Arrow Position */ String newArrowPos,
+			
+			) 
+	{*
+		this.arrowPos = newArrowPos;
+	*}
+	/**
+	 * Sets the current color of the line.<br/>
+	 */
+	void setLineColor (
+			/* New Line Color */ String newLineColor,
+			
+			) 
+	{*
+		this.lineColor = newLineColor;
+	*}
+	/**
+	 * Sets the current size of the line.<br/>
+	 */
+	void setLineSize (
+			/* New Line Size */ int newLineSize,
+			
+			) 
+	{*
+		this.lineSize = newLineSize;
+	*}
+	/**
+	 * Sets the current type of the line.<br/>
+	 */
+	void setLineType (
+			/* New Line Type */ String newLineType,
+			
+			) 
+	{*
+		this.lineType = newLineType;
+	*}
+	

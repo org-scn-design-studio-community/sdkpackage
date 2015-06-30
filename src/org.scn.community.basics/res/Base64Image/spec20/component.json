@@ -1,0 +1,22 @@
+{
+	"id": "Base64Image",
+	"title": "Base64 Image Encoder 2.0",
+	"tooltip": "Handy Base-64 encoder property sheet (requires IE10+ for design-time)",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "auto",
+	"height": "auto"
+}

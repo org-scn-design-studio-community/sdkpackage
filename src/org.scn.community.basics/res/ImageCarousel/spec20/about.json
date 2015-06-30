@@ -1,0 +1,16 @@
+{
+	"title": "Image Carousel 2.0",
+	"description": "Image Carousel",
+	"icon": "ImageCarousel.png",
+	"topics": 
+	[
+		{
+			"title" : "Image Carousel",
+			"content" : "Image Carousel"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

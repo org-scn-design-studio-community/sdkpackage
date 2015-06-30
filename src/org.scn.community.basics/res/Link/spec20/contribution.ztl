@@ -1,0 +1,22 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Returns the text that is displayed<br/>
+	 */
+	String getText (
+			
+			) 
+	{*
+		return this.text;
+	*}
+	/**
+	 * Sets the text that is displayed<br/>
+	 */
+	void setText (
+			/* text */ String text,
+			
+			) 
+	{*
+		this.text = text;
+	*}
+	

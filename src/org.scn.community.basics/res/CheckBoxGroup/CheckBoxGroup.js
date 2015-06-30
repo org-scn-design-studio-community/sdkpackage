@@ -27,18 +27,26 @@ CheckBoxGroup = {
 	
 	initDesignStudio: function() {
 		var that = this;
-		org_scn_community_component_Core(that, myComponentData);
 
-		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
-		that.addStyleClass("scn-pack-CheckBoxGroup");
-		
-		that._lLayout = new sap.ui.layout.VerticalLayout({
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+
+		if(that._lLayout == undefined) {
+			org_scn_community_component_Core(that, myComponentData);
+			/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+			that.addStyleClass("scn-pack-CheckBoxGroup");
 			
-		});
-		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
-		
-		this.onAfterRendering = function () {
-			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout, that.onResize);
+			that._lLayout = new sap.ui.layout.VerticalLayout({
+				
+			});
+			/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+			
+			that.onAfterRendering = function () {
+				org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout, that.onResize);
+			}
 		}
 	},
 	
@@ -52,6 +60,8 @@ CheckBoxGroup = {
 	processData: function (flatData, afterPrepare, owner) {
 		var that = owner;
 
+		that.initAsync(owner);
+		
 		// processing on data
 		that.afterPrepare(that);
 	},
@@ -60,18 +70,18 @@ CheckBoxGroup = {
 		var that = owner;
 			
 		// visualization on processed data
-		var lElementsToRender = this.getElements();
+		var lElementsToRender = that.getElements();
 		if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != "") {
 			var lElementsToRenderArray = JSON.parse(lElementsToRender);
 
 			// Destroy old content
-			this._lLayout.destroyContent();
+			that._lLayout.destroyContent();
 			
 			// distribute content
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
-				var lImageElement = this.createCheckBoxElement(i, element.key, element.text, element.url, element.selected);
-				this._lLayout.addContent(lImageElement);
+				var lImageElement = that.createCheckBoxElement(owner, i, element.key, element.text, element.url, element.selected);
+				that._lLayout.addContent(lImageElement);
 			}
 		}
 	},
@@ -80,8 +90,8 @@ CheckBoxGroup = {
 		// in case special resize code is required
 	},
 	
-	createCheckBoxElement: function (index, iKey, iText, iImageUrl, selected) {
-		var that = this;
+	createCheckBoxElement: function (owner, index, iKey, iText, iImageUrl, selected) {
+		var that = owner;
 		
 		if(iImageUrl == undefined) {iImageUrl = ""};
 		
@@ -93,10 +103,10 @@ CheckBoxGroup = {
 			iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getFallbackPicture(), iImageUrl, "CheckBoxGroup.png");
 		}
 
-		var pictureSize = this.getPictureSize();
+		var pictureSize = that.getPictureSize();
 		pictureSize = pictureSize.replace("Size_", "");
 		
-		var withPicture = this.getWithPicture();
+		var withPicture = that.getWithPicture();
 
 		var height = "20px";
 		var topImage = "5px";

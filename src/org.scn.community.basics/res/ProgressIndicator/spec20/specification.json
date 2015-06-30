@@ -1,0 +1,109 @@
+{
+
+
+
+	"barColor" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "NEUTRAL",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Bar Color",
+			"cat" : "Unsorted",
+			"tooltip" : "The Color Of The Bar.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "C_R_I_T_I_C_A_L",
+					"text" : "C_R_I_T_I_C_A_L"
+				},
+				{
+					"key" : "N_E_G_A_T_I_V_E",
+					"text" : "N_E_G_A_T_I_V_E"
+				},
+				{
+					"key" : "N_E_U_T_R_A_L",
+					"text" : "N_E_U_T_R_A_L"
+				},
+				{
+					"key" : "P_O_S_I_T_I_V_E",
+					"text" : "P_O_S_I_T_I_V_E"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"displayValue" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Display Value",
+			"cat" : "Display",
+			"tooltip" : "The Text Value To Be Displayed In The Bar.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"enabled" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Enabled",
+			"cat" : "Display",
+			"tooltip" : "Switches Enabled State Of The Control. Disabled Fields Have Different Colors And Can Not Be Focused.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"percentValue" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Percent Value",
+			"cat" : "Display",
+			"tooltip" : "The Numerical Value For The Displayed Length Of The Progress Bar.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showValue" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Value",
+			"cat" : "Display",
+			"tooltip" : "Specifies Whether The Current Value Shall Be Rendered Inside The Bar.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

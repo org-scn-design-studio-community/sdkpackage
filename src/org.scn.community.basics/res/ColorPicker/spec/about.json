@@ -1,0 +1,16 @@
+{
+	"title": "Color Picker 2.0",
+	"description": "Color Picker",
+	"icon": "ColorPicker.png",
+	"topics": 
+	[
+		{
+			"title" : "Color Picker",
+			"content" : "Color Picker"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

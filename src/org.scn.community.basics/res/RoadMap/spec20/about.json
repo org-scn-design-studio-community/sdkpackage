@@ -1,0 +1,16 @@
+{
+	"title": "Road Map 2.0",
+	"description": "Road Map",
+	"icon": "RoadMap.png",
+	"topics": 
+	[
+		{
+			"title" : "Road Map",
+			"content" : "Road Map"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

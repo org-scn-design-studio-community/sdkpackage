@@ -1,0 +1,22 @@
+{
+	"id": "ListSelector",
+	"title": "List Selector 2.0",
+	"tooltip": "List Selector",
+	"handlerType": "div",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "200",
+	"height": "200"
+}

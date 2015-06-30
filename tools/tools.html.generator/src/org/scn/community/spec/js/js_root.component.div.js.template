@@ -27,7 +27,13 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 	
 	that.init = function() {
 		// define root component
-		that._oRoot = {};
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	};
+	
+	that.initAsync = function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
 	
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		// this.addStyleClass("scn-pack-?");
@@ -47,10 +53,6 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 
 	that.processData = function (flatData, afterPrepare, owner) {
 		var that = owner;
-
-		if(flatData != undefined) {
-			that._flatData = flatData;
-		}
 		
 		// processing on data
 		that.afterPrepare(that);
@@ -59,7 +61,8 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 	that.afterPrepare = function (owner) {
 		var that = owner;
 			
-		// visualization on processed data 
+		// visualization on processed data
+		
 	};
 
 	that.onResize = function (width, height, parent) {
@@ -67,9 +70,6 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 	};
 
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
-
-	org_scn_community_component_Core(that, myComponentData);
-	
 	return that;
 };
 

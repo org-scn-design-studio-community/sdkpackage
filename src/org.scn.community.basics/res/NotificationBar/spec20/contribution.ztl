@@ -1,0 +1,99 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Add Category<br/>
+	 */
+	void addCategory (
+			/*Category Key*/ String categoryKey,
+			/*Category Text*/ String categoryText,
+			/*Category Image*/ String categoryImage,
+			
+			) 
+	{*
+		var categoryDef = {
+				"key": categoryKey,
+				"text": categoryText,
+				"image": categoryImage
+				};
+			
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			this.categories = "[]";
+		}
+
+		var caregoriesJson = JSON.parse(this.categories);
+		caregoriesJson.push(categoryDef);
+		
+		this.categories = JSON.stringify(caregoriesJson);
+	*}
+	/**
+	 * Add an Error Notification<br/>
+	 */
+	void addErrorNotification (
+			/*Notification Text */ String notificationText,
+			/*Optional: Category Key as defined in addCategory*/ String [ optional ] categoryKey,
+			
+			) 
+	{*
+		this.addNotification(notificationText, "ERROR", categoryKey, "");
+	*}
+	/**
+	 * Add an Info Notification<br/>
+	 */
+	void addInfoNotification (
+			/*Notification Text */ String notificationText,
+			/*Optional: Category Key as defined in addCategory*/ String [ optional ] categoryKey,
+			
+			) 
+	{*
+		this.addNotification(notificationText, "INFO", categoryKey, "");
+	*}
+	/**
+	 * Add Notification<br/>
+	 */
+	void addNotification (
+			/*Notification Text */ String notificationText,
+			/*Notification Level (ERROR|WARNING|INFO|SUCCESS) */ String notificationLevel,
+			/*Optional: Category Key as defined in addCategory*/ String [ optional ] categoryKey,
+			/*Optional: Notification Key */ String [ optional ] notificationKey,
+			
+			) 
+	{*
+		var itemDef = { 
+				"category": categoryKey,
+				"key": notificationKey, 
+				"text": notificationText, 
+				"level": notificationLevel
+				};
+
+		if (this.notifications === undefined || this.notifications === "" || this.notifications === "<delete>"){
+			this.notifications = "[]";
+		}
+		
+		var notificationsJson = JSON.parse(this.notifications);
+		notificationsJson.push(itemDef);
+
+		this.notifications = JSON.stringify(notificationsJson);
+	*}
+	/**
+	 * Add a Success Notification<br/>
+	 */
+	void addSuccessNotification (
+			/*Notification Text */ String notificationText,
+			/*Optional: Category Key as defined in addCategory*/ String [ optional ] categoryKey,
+			
+			) 
+	{*
+		this.addNotification(notificationText, "SUCCESS", categoryKey, "");
+	*}
+	/**
+	 * Add a Warning Notification<br/>
+	 */
+	void addWarningNotification (
+			/*Notification Text */ String notificationText,
+			/*Optional: Category Key as defined in addCategory*/ String [ optional ] categoryKey,
+			
+			) 
+	{*
+		this.addNotification(notificationText, "WARNING", categoryKey, "");
+	*}
+	

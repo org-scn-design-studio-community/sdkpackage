@@ -1,0 +1,180 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Adds a root element containing key [String], text [String], image [String], selected [boolean].<br/>
+	 * <example><br/>
+	 * You want to add 2 root elements<br/>
+	 * <code><br/>
+	 * SEGMENTEDBUTTON.addButton(key [String], text [String], image [String], selected [boolean]);<br/>
+	 * SEGMENTEDBUTTON.addButton(key [String], text [String], image [String], selected [boolean]);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void addButton (
+			/*Unique key of this button*/ String key,
+			/*Text for the button*/ String text,
+			/*Given image for the button*/ String [ optional ] image,
+			/*Selection state of the button*/ boolean [ optional ] selected,
+			
+			) 
+	{*
+		this.addItem("ROOT", key, 
+			text, 
+			image, 
+			selected);
+	*}
+	/**
+	 * Adds an element containing parentKey [String], key [String], text [String], image [String], selected [boolean] properties.<br/>
+	 * You need to specify a unique and existing parent element.<br/>
+	 * <example><br/>
+	 * You want to add 2 elements<br/>
+	 * <code><br/>
+	 * SEGMENTEDBUTTON.addItem(parentKey [String], key [String], text [String], image [String], selected [boolean]);<br/>
+	 * SEGMENTEDBUTTON.addItem(parentKey [String], key [String], text [String], image [String], selected [boolean]);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void addItem (
+			/*The key of the parent button*/ String parentKey,
+			/*Unique key of this item*/ String key,
+			/*Text for the item*/ String text,
+			/*Given image for the item*/ String [ optional ] image,
+			/*Selection state of the item*/ boolean [ optional ] selected,
+			
+			) 
+	{*
+		var leaf = (parentKey != "ROOT");
+		
+		if(image == undefined) { image = "";}
+		if(selected == undefined) { selected = false;}
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key, 
+			text:text, 
+			image:image, 
+			selected:selected 
+			};
+	
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Remove All Buttons and Items from the Array.<br/>
+	 */
+	void cleanAllElements (
+			
+			) 
+	{*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DElementsContent = JSON.stringify(elementsArray);
+	*}
+	/**
+	 * Gets Technical property for pressed button key Property<br/>
+	 */
+	String getPressedButtonKey (
+			
+			) 
+	{*
+		return this.DPressedButtonKey;
+	*}
+	/**
+	 * Gets Technical property for pressed item key Property<br/>
+	 */
+	String getPressedItemKey (
+			
+			) 
+	{*
+		return this.DPressedItemKey;
+	*}
+	/**
+	 * Gets Technical property for selected keys Property as StringArray<br/>
+	 * <example><br/>
+	 * You want to ask for the current property value<br/>
+	 * <code><br/>
+	 * SEGMENTEDBUTTON.getSelectedKeys();<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	StringArray getSelectedKeys (
+			
+			) 
+	{*
+		var elementsJson = JSON.parse(this.DSelectedKeys);
+		return elementsJson;
+	*}
+	/**
+	 * Removes a root element by key.<br/>
+	 * <example><br/>
+	 * You want to remove root element<br/>
+	 * <code><br/>
+	 * SEGMENTEDBUTTON.removeButton(String key);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void removeButton (
+			/**/ String key,
+			
+			) 
+	{*
+		this.removeItem(key);
+	*}
+	/**
+	 * removes an element by String key properties.<br/>
+	 * You need to specify a unique and existing key.<br/>
+	 * <example><br/>
+	 * You want to remove element<br/>
+	 * <code><br/>
+	 * SEGMENTEDBUTTON.removeItem(String key);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void removeItem (
+			/**/ String key,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	

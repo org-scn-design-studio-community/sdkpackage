@@ -47,5 +47,7 @@
 	  		<defaultValue property="verticalAlign">top</defaultValue>
 	  		<defaultValue property="textAlign">center</defaultValue>
 	  		<defaultValue property="fixedWidth">-1</defaultValue>
+	  		<defaultValue property="WIDTH">200</defaultValue>
+	  		<defaultValue property="HEIGHT">200</defaultValue>
 	  	</initialization>
 	  </component>

@@ -1,0 +1,16 @@
+{
+	"title": "Range Slider 2.0",
+	"description": "Range Slider",
+	"icon": "RangeSlider.png",
+	"topics": 
+	[
+		{
+			"title" : "Range Slider",
+			"content" : "Range Slider"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

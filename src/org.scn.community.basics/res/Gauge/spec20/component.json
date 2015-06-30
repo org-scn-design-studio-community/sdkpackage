@@ -1,0 +1,22 @@
+{
+	"id": "Gauge",
+	"title": "Gauge (Speedometer) 2.0",
+	"tooltip": "Displays a Gauge (Speedometer)",
+	"handlerType": "div",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "300"
+}

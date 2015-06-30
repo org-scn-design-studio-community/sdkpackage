@@ -8,6 +8,13 @@ ActionSheetButton = {
 	
 	initDesignStudio: function() {
 		var that = this;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+
 		org_scn_community_component_Core(that, myComponentData);
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/

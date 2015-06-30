@@ -1,0 +1,16 @@
+{
+	"title": "Validated Input Field 2.0",
+	"description": "Validated Input Field",
+	"icon": "ValiInput.png",
+	"topics": 
+	[
+		{
+			"title" : "Validated Input Field",
+			"content" : "Validated Input Field"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

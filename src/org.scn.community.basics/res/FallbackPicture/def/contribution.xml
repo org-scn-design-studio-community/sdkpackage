@@ -1,41 +1,49 @@
+
 <component
 	id="FallbackPicture"
-	title="Fallback Picture"
+	title="Fallback Picture 2.0"
+	tooltip="Fallback Picture"
 	icon="res/FallbackPicture/FallbackPicture.png"
 	handlerType="sapui5"
+	propertySheetPath="res/FallbackPicture/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/FallbackPicture/FallbackPicture.js</jsInclude>
+	<jsInclude>res/FallbackPicture/FallbackPictureLoader.js</jsInclude>
 	<cssInclude>res/FallbackPicture/FallbackPicture.css</cssInclude>
-
-	<property
-		id="picture"
-		title="Url for Picture"
-		tooltip="Url for Picture which should be shown"
-		type="Url"
-		group="Display"
-		visible="true" />
-
+	
 	<property
 		id="fallbackPicture"
-		title="Url for Fallback Picture"
-		tooltip="Url for Fallback Picture which should be shown"
 		type="Url"
+		title="Url For Fallback Picture"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="picture"
+		type="Url"
+		title="Url For Picture"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
-		<defaultValue property="WIDTH">100</defaultValue>
-		<defaultValue property="HEIGHT">100</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="picture"></defaultValue>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		
 		<defaultValue property="fallbackPicture"></defaultValue>
+		<defaultValue property="picture"></defaultValue>
 
 	</initialization>
 

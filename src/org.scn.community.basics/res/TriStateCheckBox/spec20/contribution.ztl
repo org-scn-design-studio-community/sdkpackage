@@ -1,0 +1,98 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Returns the selection state - CHECKED | UNCHECKED | MIXED<br/>
+	 */
+	org_scn_community_shared_SelectionStateEnumfield getSelectionState (
+			
+			) 
+	{*
+		return this.selectionState;
+	*}
+	/**
+	 * returns text<br/>
+	 */
+	String getText (
+			
+			) 
+	{*
+		return this.text;
+	*}
+	/**
+	 * returns tooltip<br/>
+	 */
+	String getTooltip (
+			
+			) 
+	{*
+		return this.tooltip;
+	*}
+	/**
+	 * Returns the editable value<br/>
+	 */
+	boolean isEditable (
+			
+			) 
+	{*
+		return this.editable;
+	*}
+	/**
+	 * Returns the enabled value<br/>
+	 */
+	boolean isEnabled (
+			
+			) 
+	{*
+		return this.enabled;
+	*}
+	/**
+	 * Sets the editable value<br/>
+	 */
+	void setEditable (
+			/* Editable value */ boolean editable,
+			
+			) 
+	{*
+		this.editable = editable;
+	*}
+	/**
+	 * Sets the enabled value<br/>
+	 */
+	void setEnabled (
+			/* Editable value */ boolean enabled,
+			
+			) 
+	{*
+		this.enabled = enabled;
+	*}
+	/**
+	 * Sets the selection state - CHECKED | UNCHECKED | MIXED<br/>
+	 */
+	void setSelectionState (
+			/**/ org_scn_community_shared_SelectionStateEnumfield type,
+			
+			) 
+	{*
+		this.selectionState = type;
+	*}
+	/**
+	 * sets text<br/>
+	 */
+	void setText (
+			/**/ String value,
+			
+			) 
+	{*
+		this.text = value;
+	*}
+	/**
+	 * sets the tooltip<br/>
+	 */
+	void setTooltip (
+			/**/ String tooltip,
+			
+			) 
+	{*
+		this.tooltip = tooltip;
+	*}
+	

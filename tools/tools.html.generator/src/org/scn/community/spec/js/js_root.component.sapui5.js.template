@@ -27,17 +27,21 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 	
 	initDesignStudio: function() {
 		var that = this;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
 		org_scn_community_component_Core(that, myComponentData);
-		
-		that._oRoot = {};
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
-		this.onAfterRendering = function () {
-			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
-		}
+		// this.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
 	},
 	
 	afterDesignStudioUpdate: function() {
@@ -57,7 +61,8 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 	afterPrepare: function (owner) {
 		var that = owner;
 			
-		// visualization on processed data 
+		// visualization on processed data
+		
 	},
 	
 	onResize: function(width, height, parent) {

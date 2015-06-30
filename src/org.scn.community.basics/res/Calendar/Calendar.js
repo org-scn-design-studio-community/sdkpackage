@@ -27,17 +27,24 @@ Calendar = {
 	
 	initDesignStudio: function() {
 		var that = this;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+
 		org_scn_community_component_Core(that, myComponentData);
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
-		this.addStyleClass("scn-pack-Calendar");
+		that.addStyleClass("scn-pack-Calendar");
         
-		this.attachTapOnDate(this._tapOnDate);
-		this.attachChangeCurrentDate(this._changeCurrentDate);
-		this.attachChangeRange(this._attachChangeRange);
+		that.attachTapOnDate(that._tapOnDate);
+		that.attachChangeCurrentDate(that._changeCurrentDate);
+		that.attachChangeRange(that._attachChangeRange);
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
-		this.onAfterRendering = function () {
+		that.onAfterRendering = function () {
 			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
 		}
 	},
@@ -65,11 +72,11 @@ Calendar = {
 		var fromDate = org_scn_community_basics.getDateValue(that.getDValueF());
 		var toDate = org_scn_community_basics.getDateValue(that.getDValueT());
 
-		var selectionType = this.getDSelectionType();
+		var selectionType = that.getDSelectionType();
 		if(selectionType == "Single Selection") {
-			this.setSelectionMode(sap.me.CalendarSelectionMode.SINGLE);
+			that.setSelectionMode(sap.me.CalendarSelectionMode.SINGLE);
 		} else if(selectionType == "Range Selection") { 
-			this.setSelectionMode(sap.me.CalendarSelectionMode.RANGE);
+			that.setSelectionMode(sap.me.CalendarSelectionMode.RANGE);
 		}
 
 		that._deactivateEvent = true;
@@ -86,7 +93,7 @@ Calendar = {
 			
 			var selectedDates = that.getSelectedDates();
 			
-			if(this.getSelectionMode() == sap.me.CalendarSelectionMode.SINGLE) {
+			if(that.getSelectionMode() == sap.me.CalendarSelectionMode.SINGLE) {
 				if(selectedDates.length == 1) {
 					var curSelected = selectedDates[0];
 					var dateO = new Date(curSelected);
@@ -97,7 +104,7 @@ Calendar = {
 						that.toggleDatesRangeSelection(singleDate, singleDate, true);
 					}
 				}
-			} else if(this.getSelectionMode() == sap.me.CalendarSelectionMode.RANGE) {
+			} else if(that.getSelectionMode() == sap.me.CalendarSelectionMode.RANGE) {
 				if(selectedDates.length >= 2) {
 					var fromSelected = selectedDates[0];
 					var dateF = new Date(fromSelected);
@@ -123,6 +130,7 @@ Calendar = {
 	
 	_changeCurrentDate: function(oEvent) {
 		var that = this;
+		
 		if(that._deactivateEvent) {
 			// endless loop...
 			return;
@@ -131,7 +139,7 @@ Calendar = {
     	var date = oEvent.getParameters().currentDate;
 		var dateO = new Date(date);
 		var techDate = "" + dateO.format(dateFormat.masks.technical);
-    	this.setDCurrentValue(techDate);
+    	that.setDCurrentValue(techDate);
     	
         that.fireDesignStudioPropertiesChanged(["DCurrentValue"]);
 		that.fireDesignStudioEvent("onCurrentChanged");
@@ -139,6 +147,7 @@ Calendar = {
 	
 	_tapOnDate: function (oEvent) {
 		var that = this;
+		
 		if(that._deactivateEvent) {
 			// endless loop...
 			return;
@@ -151,7 +160,7 @@ Calendar = {
     	var date = oEvent.getParameters().date;
 		var dateO = new Date(date);
 		var techDate = "" + dateO.format(dateFormat.masks.technical);
-    	this.setDValue(techDate);
+    	that.setDValue(techDate);
     	
         that.fireDesignStudioPropertiesChanged(["DValue"]);
 		that.fireDesignStudioEvent("onSingleChanged");
@@ -159,6 +168,7 @@ Calendar = {
     
     _attachChangeRange: function (oEvent) {
     	var that = this;
+    	
 		if(that._deactivateEvent) {
 			// endless loop...
 			return;
@@ -169,12 +179,12 @@ Calendar = {
     	var date = oEvent.getParameters().fromDate;
 		var dateO = new Date(date);
 		var techDate = "" + dateO.format(dateFormat.masks.technical);
-    	this.setDValueF(techDate);
+    	that.setDValueF(techDate);
 
     	date = oEvent.getParameters().toDate;
 		dateO = new Date(date);
 		techDate = "" + dateO.format(dateFormat.masks.technical);
-    	this.setDValueT(techDate);
+    	that.setDValueT(techDate);
     	
         that.fireDesignStudioPropertiesChanged(["DValueF", "DValueT"]);
 		that.fireDesignStudioEvent("onRangeChanged");

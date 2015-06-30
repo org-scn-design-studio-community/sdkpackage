@@ -1,0 +1,297 @@
+{
+
+
+
+	"endValue" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "100",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "End Value",
+			"cat" : "Display",
+			"tooltip" : "End Value",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"firstColor" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "#FA1E1E",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "First Color",
+			"cat" : "Display",
+			"tooltip" : "First Color",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"gradientColor" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Gradient Color",
+			"cat" : "Display",
+			"tooltip" : "Gradient Color",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"haveNumbers" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Number",
+			"cat" : "Display",
+			"tooltip" : "Show Number",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"indicatorValue" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "25",
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Indicator Value",
+			"cat" : "Display",
+			"tooltip" : "Indicator Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"mainColor" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "#EDEDED",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Main Color",
+			"cat" : "Display",
+			"tooltip" : "Main Color",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"needleColor" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "#D80000",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Needle Color",
+			"cat" : "Display",
+			"tooltip" : "Needle Color",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"numOfBigTicks" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "5",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Number Of Big Ticks",
+			"cat" : "Display",
+			"tooltip" : "Number Of Big Ticks",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"numOfSmallTicks" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "2",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Number Of Small Ticks",
+			"cat" : "Display",
+			"tooltip" : "Number Of Small Ticks",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"secondColor" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "#FCFA4E",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Second Color",
+			"cat" : "Display",
+			"tooltip" : "Second Color",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showValue" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Value",
+			"cat" : "Display",
+			"tooltip" : "Show Value",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showedValue" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "25 %",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Showed Value",
+			"cat" : "Display",
+			"tooltip" : "Showed Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"startSecondColor" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "20",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Start Of Second Color",
+			"cat" : "Display",
+			"tooltip" : "Start Of Second Color",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"startThirdColor" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "80",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Start Of Third Color",
+			"cat" : "Display",
+			"tooltip" : "Start Of Third Color",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"startValue" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "0",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Start Value",
+			"cat" : "Display",
+			"tooltip" : "Start Value",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"thirdColor" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "#2BFC23",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Third Color",
+			"cat" : "Display",
+			"tooltip" : "Third Color",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"title" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Insert Title Here",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Title",
+			"cat" : "Display",
+			"tooltip" : "Title",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"ttColor" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "#000000",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Text And Ticks Color",
+			"cat" : "Display",
+			"tooltip" : "Text And Ticks Color",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

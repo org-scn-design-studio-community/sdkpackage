@@ -19,6 +19,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ConstButtonType\contribution.ztl ^
 ..\res\ConstContentNotation\contribution.ztl ^
 ..\res\ConstDimensionSet\contribution.ztl ^
+..\res\ConstFormatStyle\contribution.ztl ^
 ..\res\ConstFormattingOperator\contribution.ztl ^
 ..\res\ConstImageSize\contribution.ztl ^
 ..\res\ConstMemberDisplay\contribution.ztl ^

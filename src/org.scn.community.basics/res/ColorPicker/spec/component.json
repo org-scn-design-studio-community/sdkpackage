@@ -1,0 +1,22 @@
+{
+	"id": "ColorPicker",
+	"title": "Color Picker 2.0",
+	"tooltip": "Color Picker",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.ColorPicker",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "270",
+	"height": "134"
+}

@@ -1,0 +1,31 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_DateViewTypeEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_DateViewType extends Enum {
+
+	/** Day */
+	org_scn_community_shared_DateViewTypeEnumfield Day;
+       
+	/** Week */
+	org_scn_community_shared_DateViewTypeEnumfield Week;
+
+	/** Month */
+	org_scn_community_shared_DateViewTypeEnumfield Month;
+
+	/** Year */
+	org_scn_community_shared_DateViewTypeEnumfield Year;
+
+	/** Custom_Week */
+	org_scn_community_shared_DateViewTypeEnumfield Custom_Week;
+
+	/** Custom_Duration */
+	org_scn_community_shared_DateViewTypeEnumfield Custom_Duration;
+}

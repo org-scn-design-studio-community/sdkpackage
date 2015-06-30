@@ -1,0 +1,461 @@
+{
+
+
+
+	"data" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "ResultCell",
+			"ztlFunction": "",
+			"desc" : "Data Value",
+			"cat" : "DataBinding",
+			"tooltip" : "Data Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"footerCssClass" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Footer CSS Class",
+			"cat" : "Display",
+			"tooltip" : "Footer CSS Class",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"footerHAlign" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "left",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Footer Horizontal Alignment",
+			"cat" : "Unsorted",
+			"tooltip" : "Footer Horizontal Alignment",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "left",
+					"text" : "left"
+				},
+				{
+					"key" : "right",
+					"text" : "right"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"footerText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Footer",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Footer",
+			"cat" : "Display",
+			"tooltip" : "Footer",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"headerCssClass" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Header CSS Class",
+			"cat" : "Display",
+			"tooltip" : "Header CSS Class",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"headerText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Header",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Header",
+			"cat" : "Display",
+			"tooltip" : "Header",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"image" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url For The Image",
+			"cat" : "Display",
+			"tooltip" : "Url For The Image",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"imageSize" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Size Of The Image",
+			"cat" : "Unsorted",
+			"tooltip" : "Size Of The Image",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "16px",
+					"text" : "16px"
+				},
+				{
+					"key" : "32px",
+					"text" : "32px"
+				},
+				{
+					"key" : "64px",
+					"text" : "64px"
+				},
+				{
+					"key" : "128px",
+					"text" : "128px"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"linkText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Text For The Link",
+			"cat" : "Display",
+			"tooltip" : "Text For The Link",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"linkTooltip" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Tooltip For The Link",
+			"cat" : "Display",
+			"tooltip" : "Tooltip For The Link",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"titleCssClass" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Title CSS Class",
+			"cat" : "Display",
+			"tooltip" : "Title CSS Class",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"titleText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Title",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Title",
+			"cat" : "Display",
+			"tooltip" : "Title",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valueCssClass" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Value CSS Class",
+			"cat" : "Display",
+			"tooltip" : "Value CSS Class",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valueDecimalPlaces" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "0",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Value Decimal Places",
+			"cat" : "Unsorted",
+			"tooltip" : "Value Decimal Places",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "0",
+					"text" : "0"
+				},
+				{
+					"key" : "1",
+					"text" : "1"
+				},
+				{
+					"key" : "2",
+					"text" : "2"
+				},
+				{
+					"key" : "3",
+					"text" : "3"
+				},
+				{
+					"key" : "4",
+					"text" : "4"
+				},
+				{
+					"key" : "5",
+					"text" : "5"
+				},
+				{
+					"key" : "6",
+					"text" : "6"
+				},
+				{
+					"key" : "7",
+					"text" : "7"
+				},
+				{
+					"key" : "8",
+					"text" : "8"
+				},
+				{
+					"key" : "9",
+					"text" : "9"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valueFloat" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Value As Float",
+			"cat" : "Display",
+			"tooltip" : "Value As Float",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valueHAlign" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "left",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Value Horizontal Alignment",
+			"cat" : "Unsorted",
+			"tooltip" : "Value Horizontal Alignment",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "left",
+					"text" : "left"
+				},
+				{
+					"key" : "right",
+					"text" : "right"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valuePrefixCssClass" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Value Prefix CSS Class",
+			"cat" : "Display",
+			"tooltip" : "Value Prefix CSS Class",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valuePrefixText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Value Prefix",
+			"cat" : "Display",
+			"tooltip" : "Value Prefix",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valueSuffixCssClass" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Value Suffix CSS Class",
+			"cat" : "Display",
+			"tooltip" : "Value Suffix CSS Class",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valueSuffixText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : " M$",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Value Suffix",
+			"cat" : "Display",
+			"tooltip" : "Value Suffix",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valueText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Value",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Value",
+			"cat" : "Display",
+			"tooltip" : "Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onClick" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Click",
+			"cat" : "Events",
+			"tooltip" : "On Click",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onLinkClick" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Click",
+			"cat" : "Events",
+			"tooltip" : "On Click",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

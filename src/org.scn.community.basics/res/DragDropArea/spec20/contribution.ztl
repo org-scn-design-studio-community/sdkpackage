@@ -1,0 +1,256 @@
+	// here is the place for other custom functions
+
+	/**
+	 * add an element<br/>
+	 */
+	void addElement (
+			/**/ String elementKey,
+			/**/ String elementText,
+			/**/ String imageUrl,
+			
+			) 
+	{*
+		var itemDef = { 
+			"key": elementKey, 
+			"text": elementText, 
+			"url": imageUrl
+			};
+	
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		elementsJson.push(itemDef);
+	
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * delete an element<br/>
+	 */
+	void deleteElement (
+			/**/ String elementKey,
+			
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		var newElementsJson = [];
+		
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key != elementKey) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+
+		this.elements = JSON.stringify(newElementsJson);
+	*}
+	/**
+	 * Returns the content as key label array<br/>
+	 * <example><br/>
+	 * You want to get the content of this area<br/>
+	 * <code><br/>
+	 * var content = DRAGDROP.getAsKeyLabelArray();<br/>
+	 * / a loop for all entries<br/>
+	 * content.forEach(function(element, index) {<br/>
+	 * LISTBOX_1.addItem(element.key, element.label);<br/>
+	 * });<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	org.scn.community.shared.KeyLabelArray getAsKeyLabelArray (
+			
+			) 
+	{*
+		var s = this.elements;  
+		var a = []; 
+		if(s!="") a = JSON.parse(s);
+		
+		var tempA = [];
+		
+		for(var i=0;i<a.length;i++){
+			var itemDef = { 
+				"key": a[i].key, 
+				"label": a[i].text
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		return tempA;
+	*}
+	/**
+	 * Returns the Drag Key.<br/>
+	 */
+	String getDragContext (
+			
+			) 
+	{*
+		return this.dragContext;
+	*}
+	/**
+	 * Returns the Drag Key.<br/>
+	 */
+	String getDragKey (
+			
+			) 
+	{*
+		return this.dragKey;
+	*}
+	/**
+	 * Returns the Drop After Key.<br/>
+	 */
+	String getDropAfterKey (
+			
+			) 
+	{*
+		return this.dropAfterKey;
+	*}
+	/**
+	 * Returns the Drop Key.<br/>
+	 */
+	String getDropContext (
+			
+			) 
+	{*
+		return this.dropContext;
+	*}
+	/**
+	 * Returns the Drag Key.<br/>
+	 */
+	String getDropId (
+			
+			) 
+	{*
+		return this.dropId;
+	*}
+	/**
+	 * Returns the Drop After Key.<br/>
+	 */
+	int getDropIndex (
+			
+			) 
+	{*
+		return this.dropIndex;
+	*}
+	/**
+	 * Returns the Drop Key.<br/>
+	 */
+	String getDropKey (
+			
+			) 
+	{*
+		return this.dropKey;
+	*}
+	/**
+	 * returns key at given index<br/>
+	 */
+	String getKeyAtIndex (
+			/**/ int index,
+			
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		var newElementsJson = [];
+		
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index == i) {
+				return elementsJson[i].key;
+			}
+		}
+		
+		return "";
+	*}
+	/**
+	 * insert an element<br/>
+	 */
+	void insertElement (
+			/**/ String elementKey,
+			/**/ String elementText,
+			/**/ String imageUrl,
+			/**/ int insertionIndex0based,
+			
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		var newElementsJson = [];
+		
+		// special case 1
+		if(insertionIndex0based == 0 && elementsJson.length == 0) {
+			this.addElement(elementKey, elementText, imageUrl);
+			return;
+		}
+		
+		var found = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				var itemDef = { 
+						"key": elementKey, 
+						"text": elementText, 
+						"url": imageUrl
+						};
+				
+				newElementsJson.push(itemDef);
+				found = true;
+			}
+			
+			newElementsJson.push(elementsJson[i]);
+		}
+		
+		// special case 2
+		if(!found) {
+			this.addElement(elementKey, elementText, imageUrl);
+			return;
+		}
+		
+		this.elements = JSON.stringify(newElementsJson);
+	*}
+	/**
+	 * remove all elements<br/>
+	 */
+	void removeAllElements (
+			
+			) 
+	{*
+		var elementsArray = [];
+			this.elements = JSON.stringify(elementsArray);
+	*}
+	/**
+	 * update given element<br/>
+	 */
+	void updateElement (
+			/**/ String elementKey,
+			/**/ String elementText,
+			/**/ String imageUrl,
+			
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i].text = elementText;
+				elementsJson[i].url = imageUrl;
+				break;
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	

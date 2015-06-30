@@ -1,0 +1,22 @@
+{
+	"id": "DateRangeScroller",
+	"title": "Date Range Scroller 2.0",
+	"tooltip": "Date Range Scroller",
+	"handlerType": "sapui5",
+	"parentControl": "sap.suite.ui.commons.DateRangeScroller",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "30"
+}

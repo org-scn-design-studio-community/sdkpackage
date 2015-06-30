@@ -58,7 +58,7 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	/**
 	 * Gets Default Image Property
 	 */	
-	Url getDefaultImage() {*
+	String getDefaultImage() {*
 		return this.defaultImage;
 	*}
 
@@ -2028,168 +2028,451 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 }
 
 /**
- * Class for ColorPicker
+ * Generated ZTL Class for ColorPicker
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.ColorPicker extends org.scn.community.shared.Component {
 
-	/** Sets the color top be shown */
-	void setColor( /** Color value */ String colorString) {*
+	/**
+	 * Sets Color Property
+	 */	
+	void setColorString( /**Color*/ String colorString){*
 		this.colorString = colorString;
 	*}
 
-	/** Returns the picked color as RGB like: rgb(255,255,255) */
-	String getColor() {*
+	/**
+	 * Gets Color Property
+	 */	
+	String getColorString() {*
 		return this.colorString;
 	*}
-	
-	/** Returns the picked color as Hexadecimal string like: #FFFFFF */
-	String getColorAsHex() {*
+
+	/**
+	 * Gets Hex Color Property
+	 */	
+	String getColorStringHex() {*
 		return this.colorStringHex;
 	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
 
 /**
- * Class for DateRangeScroller
+ * Generated ZTL Class for DateRangeScroller
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.DateRangeScroller extends org.scn.community.shared.Component {
 
-	/** Sets the editable value */
-	void setEditable(
-		/** Editable value */ boolean editable) {*
-		this.editable = editable;
+	/**
+	 * Sets Date (yyyymmdd) Property
+	 */	
+	void setDate( /**Date (yyyymmdd)*/ String date){*
+		this.DDate = date;
+	*}
+
+	/**
+	 * Gets Date (yyyymmdd) Property
+	 */	
+	String getDate() {*
+		return this.DDate;
+	*}
+
+	/**
+	 * Gets Date (yyyymmdd) Property
+	 */	
+	String getEndDate() {*
+		return this.DEndDate;
+	*}
+
+	/**
+	 * Sets Language Dependent Format Property
+	 */	
+	void setLangFormat( /**Language Dependent Format*/ boolean langFormat){*
+		this.DLangFormat = langFormat;
+	*}
+
+	/**
+	 * Gets Language Dependent Format Property
+	 */	
+	boolean isLangFormat() {*
+		return this.DLangFormat;
+	*}
+
+	/**
+	 * Sets Custom Format Pattern Property
+	 */	
+	void setLangPattern( /**Custom Format Pattern*/ String langPattern){*
+		this.DLangPattern = langPattern;
+	*}
+
+	/**
+	 * Gets Custom Format Pattern Property
+	 */	
+	String getLangPattern() {*
+		return this.DLangPattern;
+	*}
+
+	/**
+	 * Sets Custom Format Relative Property
+	 */	
+	void setLangRelative( /**Custom Format Relative*/ boolean langRelative){*
+		this.DLangRelative = langRelative;
+	*}
+
+	/**
+	 * Gets Custom Format Relative Property
+	 */	
+	boolean isLangRelative() {*
+		return this.DLangRelative;
+	*}
+
+	/**
+	 * Sets Custom Format Style Property by String
+	 */	
+	void setLangStyleByString( /**Custom Format Style*/ String langStyle){*
+		this.DLangStyle = langStyle;
+	*}
+
+	/**
+	 * Gets Custom Format Style Property as String
+	 */	
+	String getLangStyleAsString() {*
+		return this.DLangStyle;
 	*}
 	
-	/** Returns the editable value */
-	boolean isEditable() {*
-		return this.editable;
+	/**
+	 * Sets Custom Format Style Property by Choice Option
+	 */	
+	void setLangStyle( /**Custom Format Style*/ org_scn_community_shared_FormatStyleEnumfield langStyle){*
+		this.DLangStyle = langStyle;
 	*}
 	
-	/** Returns the start date */
+	/**
+	 * Gets Custom Format Style Property as Choice Option
+	 */	
+	org_scn_community_shared_FormatStyleEnumfield getLangStyle() {*
+		return this.DLangStyle;
+	*}
+
+	/**
+	 * Sets Day Of Week To Start (CustomWeek) Property
+	 */	
+	void setSpecialDay( /**Day Of Week To Start (CustomWeek)*/ int specialDay){*
+		this.DSpecialDay = specialDay;
+	*}
+
+	/**
+	 * Gets Day Of Week To Start (CustomWeek) Property
+	 */	
+	int getSpecialDay() {*
+		return this.DSpecialDay;
+	*}
+
+	/**
+	 * Sets Duration Of Custom Range (Custom*) Property
+	 */	
+	void setSpecialDuration( /**Duration Of Custom Range (Custom*)*/ int specialDuration){*
+		this.DSpecialDuration = specialDuration;
+	*}
+
+	/**
+	 * Gets Duration Of Custom Range (Custom*) Property
+	 */	
+	int getSpecialDuration() {*
+		return this.DSpecialDuration;
+	*}
+
+	/**
+	 * Gets Start Date (yyyymmdd) Property
+	 */	
 	String getStartDate() {*
 		return this.DStartDate;
 	*}
-	
-	/** Returns the end date */
-	String getEndDate() {*
-		return this.dEndDate;
+
+	/**
+	 * Sets Range View Type Property by String
+	 */	
+	void setViewTypeByString( /**Range View Type*/ String viewType){*
+		this.DViewType = viewType;
 	*}
+
+	/**
+	 * Gets Range View Type Property as String
+	 */	
+	String getViewTypeAsString() {*
+		return this.DViewType;
+	*}
+	
+	/**
+	 * Sets Range View Type Property by Choice Option
+	 */	
+	void setViewType( /**Range View Type*/ org_scn_community_shared_DateViewTypeEnumfield viewType){*
+		this.DViewType = viewType;
+	*}
+	
+	/**
+	 * Gets Range View Type Property as Choice Option
+	 */	
+	org_scn_community_shared_DateViewTypeEnumfield getViewType() {*
+		return this.DViewType;
+	*}
+
+	/**
+	 * Gets Editable Property
+	 */	
+	boolean isEditable() {*
+		return this.editable;
+	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
 }
 
 /**
- * Class for DateRangeSlider
+ * Generated ZTL Class for DateRangeSlider
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.Component {
 
-	/** Sets the editable value */
-	void setEditable(
-		/** Editable value */ boolean editable) {*
-		this.editable = editable;
-	*}
-	
-	/** Returns the editable value */
-	boolean isEditable() {*
-		return this.editable;
+	/**
+	 * Sets Granularity Property by String
+	 */	
+	void setGranulatiryByString( /**Granularity*/ String granulatiry){*
+		this.DGranulatiry = granulatiry;
 	*}
 
-	/** Sets the minimum value. */
-	void setMinimumDate(
-		/** Minimum value */ String min) {*
-		this.DMin = min;
+	/**
+	 * Gets Granularity Property as String
+	 */	
+	String getGranulatiryAsString() {*
+		return this.DGranulatiry;
 	*}
 	
-	/** Returns the minimum value. */
-	String getMinimumDate() {*
-		return this.DMin;
+	/**
+	 * Sets Granularity Property by Choice Option
+	 */	
+	void setGranulatiry( /**Granularity*/ org_scn_community_shared_DateViewTypeEnumfield granulatiry){*
+		this.DGranulatiry = granulatiry;
+	*}
+	
+	/**
+	 * Gets Granularity Property as Choice Option
+	 */	
+	org_scn_community_shared_DateViewTypeEnumfield getGranulatiry() {*
+		return this.DGranulatiry;
 	*}
 
-	/** Sets the maximum value. */
-	void setMaximumDate(
-		/** Maximum value */ String max) {*
+	/**
+	 * Sets Language Dependent Format Property
+	 */	
+	void setLangFormat( /**Language Dependent Format*/ boolean langFormat){*
+		this.DLangFormat = langFormat;
+	*}
+
+	/**
+	 * Gets Language Dependent Format Property
+	 */	
+	boolean isLangFormat() {*
+		return this.DLangFormat;
+	*}
+
+	/**
+	 * Sets Custom Format Pattern Property
+	 */	
+	void setLangPattern( /**Custom Format Pattern*/ String langPattern){*
+		this.DLangPattern = langPattern;
+	*}
+
+	/**
+	 * Gets Custom Format Pattern Property
+	 */	
+	String getLangPattern() {*
+		return this.DLangPattern;
+	*}
+
+	/**
+	 * Sets Custom Format Relative Property
+	 */	
+	void setLangRelative( /**Custom Format Relative*/ boolean langRelative){*
+		this.DLangRelative = langRelative;
+	*}
+
+	/**
+	 * Gets Custom Format Relative Property
+	 */	
+	boolean isLangRelative() {*
+		return this.DLangRelative;
+	*}
+
+	/**
+	 * Sets Custom Format Style Property by String
+	 */	
+	void setLangStyleByString( /**Custom Format Style*/ String langStyle){*
+		this.DLangStyle = langStyle;
+	*}
+
+	/**
+	 * Gets Custom Format Style Property as String
+	 */	
+	String getLangStyleAsString() {*
+		return this.DLangStyle;
+	*}
+	
+	/**
+	 * Sets Custom Format Style Property by Choice Option
+	 */	
+	void setLangStyle( /**Custom Format Style*/ org_scn_community_shared_FormatStyleEnumfield langStyle){*
+		this.DLangStyle = langStyle;
+	*}
+	
+	/**
+	 * Gets Custom Format Style Property as Choice Option
+	 */	
+	org_scn_community_shared_FormatStyleEnumfield getLangStyle() {*
+		return this.DLangStyle;
+	*}
+
+	/**
+	 * Sets Maximum Date Value (yyyymmdd) Property
+	 */	
+	void setMax( /**Maximum Date Value (yyyymmdd)*/ String max){*
 		this.DMax = max;
 	*}
-	
-	/** Returns the maximum value. */
-	String getMaximumValueDate() {*
+
+	/**
+	 * Gets Maximum Date Value (yyyymmdd) Property
+	 */	
+	String getMax() {*
 		return this.DMax;
 	*}
 
-	/** Sets the value. */
-	void setStartDate(
-		/** Value */ String value) {*
+	/**
+	 * Sets Minimum Date Value (yyyymmdd) Property
+	 */	
+	void setMin( /**Minimum Date Value (yyyymmdd)*/ String min){*
+		this.DMin = min;
+	*}
+
+	/**
+	 * Gets Minimum Date Value (yyyymmdd) Property
+	 */	
+	String getMin() {*
+		return this.DMin;
+	*}
+
+	/**
+	 * Sets First Date Value (yyyymmdd) Property
+	 */	
+	void setValue( /**First Date Value (yyyymmdd)*/ String value){*
 		this.DValue = value;
 	*}
-	
-	/** Returns the value. */
-	String getStartDate() {*
+
+	/**
+	 * Gets First Date Value (yyyymmdd) Property
+	 */	
+	String getValue() {*
 		return this.DValue;
 	*}
-	
-	/** Sets the second value. */
-	void setEndDate(
-		/** Second value */ String value2) {*
+
+	/**
+	 * Sets Second Date Value (yyyymmdd) Property
+	 */	
+	void setValue2( /**Second Date Value (yyyymmdd)*/ String value2){*
 		this.DValue2 = value2;
 	*}
-	
-	/** Returns the second value. */
-	String getEndDate() {*
+
+	/**
+	 * Gets Second Date Value (yyyymmdd) Property
+	 */	
+	String getValue2() {*
 		return this.DValue2;
 	*}
 
-	/** Sets the total units value. */
-	void setTotalUnits(
-		/** Total units value */ int totalUnits) {*
-		this.totalUnits = totalUnits;
-	*}
-	
-	/** Returns the total units value. */
-	int getTotalUnits() {*
-		return this.totalUnits;
+
+
+	/**
+	 * Sets Show Bubbles Property
+	 */	
+	void setShowBubbles( /**Show Bubbles*/ boolean showBubbles){*
+		this.showBubbles = showBubbles;
 	*}
 
-	/** Sets the step labels value. */
-	void setStepLabels(
-		/** Step labels value */ boolean stepLabels) {*
+	/**
+	 * Gets Show Bubbles Property
+	 */	
+	boolean isShowBubbles() {*
+		return this.showBubbles;
+	*}
+
+	/**
+	 * Sets Small Step Width Property
+	 */	
+	void setSmallStepWidth( /**Small Step Width*/ String smallStepWidth){*
+		this.smallStepWidth = smallStepWidth;
+	*}
+
+	/**
+	 * Gets Small Step Width Property
+	 */	
+	String getSmallStepWidth() {*
+		return this.smallStepWidth;
+	*}
+
+	/**
+	 * Sets Step Labels Property
+	 */	
+	void setStepLabels( /**Step Labels*/ boolean stepLabels){*
 		this.stepLabels = stepLabels;
 	*}
-	
-	/** Returns the step labels value. */
+
+	/**
+	 * Gets Step Labels Property
+	 */	
 	boolean isStepLabels() {*
 		return this.stepLabels;
 	*}
 
-	/** Sets the vertical value. */
-	void setVertical(
-		/** Vertical value */ boolean vertical) {*
+	/**
+	 * Sets Total Units Property
+	 */	
+	void setTotalUnits( /**Total Units*/ int totalUnits){*
+		this.totalUnits = totalUnits;
+	*}
+
+	/**
+	 * Gets Total Units Property
+	 */	
+	int getTotalUnits() {*
+		return this.totalUnits;
+	*}
+
+	/**
+	 * Sets Change To Vertical Orientation Property
+	 */	
+	void setVertical( /**Change To Vertical Orientation*/ boolean vertical){*
 		this.vertical = vertical;
 	*}
-	
-	/** Returns the vertical value. */
+
+	/**
+	 * Gets Change To Vertical Orientation Property
+	 */	
 	boolean isVertical() {*
 		return this.vertical;
 	*}
 
-	/** Sets the small step width value. */
-	void setSmallStepWidth(
-		/** Small step width value */ float smallStepWidth) {*
-		this.smallStepWidth = smallStepWidth;
-	*}
-	
-	/** Returns the small step width value. */
-	float getSmallStepWidth() {*
-		return this.smallStepWidth;
-	*}
-	
-	/** Sets the small step width value. */
-	void setShowBubbles(
-		/** Small step width value */ boolean showBubbles) {*
-		this.showBubbles = showBubbles;
-	*}
-	
-	/** Returns the small step width value. */
-	boolean getShowBubbles() {*
-		return this.showBubbles;
-	*}
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
 
 /**
@@ -2471,170 +2754,110 @@ class org.scn.community.basics.EmbeddedMedia extends org.scn.community.shared.Co
 }
 
 /**
- * Class for FallbackPicture
+ * Generated ZTL Class for FallbackPicture
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.FallbackPicture extends org.scn.community.shared.Component {
-	
+
 	/**
-	 * Setter for "normal case" picture
-	 */
-	void setPicture (
-			/** picture */
-			String pictureForNormalCase) {*
-		this.picture = pictureForNormalCase;
+	 * Sets Url For Fallback Picture Property
+	 */	
+	void setFallbackPicture( /**Url For Fallback Picture*/ String fallbackPicture){*
+		this.fallbackPicture = fallbackPicture;
 	*}
 
 	/**
-	 * Setter for "fallback case" picture
-	 */
-	void setFallbackPicture (
-			/** fallback picture */
-			String pictureForFallbackCase) {*
-		this.fallbackPicture = pictureForFallbackCase;
+	 * Gets Url For Fallback Picture Property
+	 */	
+	String getFallbackPicture() {*
+		return this.fallbackPicture;
 	*}
+
+	/**
+	 * Sets Url For Picture Property
+	 */	
+	void setPicture( /**Url For Picture*/ String picture){*
+		this.picture = picture;
+	*}
+
+	/**
+	 * Gets Url For Picture Property
+	 */	
+	String getPicture() {*
+		return this.picture;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
+
+/**
+ * Generated ZTL Class for FioriAppHeader
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
 class org.scn.community.basics.FioriAppHeader extends org.scn.community.shared.Component {
-	/** Add a header button
- 	<example>
-	Add a header button called 'Menu' with no label show and a menu icon.
-	<code>
-	FIORIAPPHEADER_1.addHeaderButton("Menu",false,"sap-icon://menu2");<br>
-	</code>
-	</example>
-	 */
-	void addHeaderButton (/*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon) {*		
-		var o = eval(this.itemConfig);
-		var sTitle = true;
-		if(showTitle!=undefined) sTitle = showTitle;
-		o.push({
-			title : buttonTitle,
-			showTitle : sTitle,
-			icon : icon,
-			items : []
-		});
-		itemConfig = JSON.stringify(o);
-	*}
-	/** Remove All Button
- 	<example>
-	Remove all button
-	<code>
-	FIORIAPPHEADER_1.removeAllButtons();<br>
-	</code>
-	</example>
-	 */
-	void removeAllButtons () {*		
-		itemConfig = JSON.stringify([]);
-	*}
-	/** Remove All Items in a header button
- 	<example>
-	Remove all items in header button 'Menu'
-	<code>
-	FIORIAPPHEADER_1.removeAllItems("Menu");<br>
-	</code>
-	</example>
-	 */
-	void removeAllItems (/*Button Title*/String buttonTitle) {*		
-		var o = eval(this.itemConfig);
-		var matchIndex = -1;
-		for(var i=0;i<o.length;i++){
-			if(o[i].title == buttonTitle) matchIndex = i;
-		}
-		if(matchIndex>-1) o[matchIndex].items = [];
-		itemConfig = JSON.stringify(o);
-	*}
-	/** Remove a button
- 	<example>
-	Remove a header button called 'Menu'
-	<code>
-	FIORIAPPHEADER_1.removeHeaderButton("Menu");<br>
-	</code>
-	</example>
-	 */
-	void removeHeaderButton (/*Button Title*/String buttonTitle) {*		
-		var o = eval(this.itemConfig);
-		var matchIndex = -1;
-		for(var i=0;i<o.length;i++){
-			if(o[i].title == buttonTitle) matchIndex = i;
-		}
-		if(matchIndex>-1) o.splice(matchIndex,1);
-		itemConfig = JSON.stringify(o);
-	*}
-	/** Add an item to a header button.  Will add the header button if it does not yet exist.
- 	<example>
-	Add an item called 'Help' to header button called 'Menu' with an icon sys-help-2
-	<code>
-	FIORIAPPHEADER_1.addItem("Menu","sap-icon://sys-help-2|Help");<br>
-	</code>
-	</example>
-	 */
-	void addItem (/*Button Title*/String buttonTitle, /*Item Title*/String itemTitle) {*		
-		var o = eval(this.itemConfig);
-		var matchIndex = -1;
-		for(var i=0;i<o.length;i++){
-			if(o[i].title == buttonTitle) matchIndex = i;
-		}
-		if(matchIndex == -1 ){	// Add section for the lazy
-			this.addHeaderButton(buttonTitle);
-			o = eval(this.itemConfig);
-			matchIndex = o.length-1;
-		}
-		o[matchIndex].items.push(itemTitle);
-		itemConfig = JSON.stringify(o);
-	*}
-	/** Removes an item from a header button.
- 	<example>
-	Remove an item called 'Help' from header button called 'Menu'
-	<code>
-	FIORIAPPHEADER_1.removeItem("Menu", "Help");<br>
-	</code>
-	</example>
-	 */
-	void removeItem (/*Button Title*/String buttonTitle, /*Item Title*/ String itemTitle) {*		
-		var o = eval(this.itemConfig);
-		var matchIndex = -1;
-		for(var i=0;i<o.length;i++){
-			if(o[i].title == buttonTitle) matchIndex = i;
-		}
-		if(matchIndex != -1 ){
-			var items = o[matchIndex].items;
-			var itemIndex = -1;
-			for(var i=0;i<items.length;i++){
-				if(items[i]==itemTitle) itemIndex = i;
-			}
-			if(itemIndex>-1) items.splice(itemIndex,1);
-			itemConfig = JSON.stringify(o);
-		}		
-	*}
+
 	/**
-	Get item clicked.
-	*/
-	String getItemClicked() {*
-		return this.selectedItem;
+	 * Gets Item Config Property
+	 */	
+	String getItemConfig() {*
+		return this.itemConfig;
 	*}
+
+
+
+
+
 	/**
-	Get header of and item clicked.
-	*/
-	String getHeaderClicked() {*
+	 * Gets Selected Header Of Item Property
+	 */	
+	String getSelectedHeader() {*
 		return this.selectedHeader;
 	*}
 
-	/* Shows or hides the back button. */
-	void setShowNavButton(/* If true, then the back button is shown, else it is hidden */ boolean visible) {*
-		this.showNavButton = visible;
+	/**
+	 * Gets Selected Item Property
+	 */	
+	String getSelectedItem() {*
+		return this.selectedItem;
 	*}
-	/* Returns true if the back button is shown, else false. */
-	boolean getShowNavButton() {*
+
+	/**
+	 * Sets Show Back Button Property
+	 */	
+	void setShowNavButton( /**Show Back Button*/ boolean showNavButton){*
+		this.showNavButton = showNavButton;
+	*}
+
+	/**
+	 * Gets Show Back Button Property
+	 */	
+	boolean isShowNavButton() {*
 		return this.showNavButton;
 	*}
-	/* Sets the title. */
-	void setTitle(/* Title */ String title) {*
+
+	/**
+	 * Sets Title Property
+	 */	
+	void setTitle( /**Title*/ String title){*
 		this.title = title;
-	*}	
-	/* Returns the title. */
+	*}
+
+	/**
+	 * Gets Title Property
+	 */	
 	String getTitle() {*
 		return this.title;
 	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
+
 /**
  * Class for FioriButton
  */
@@ -4928,7 +5151,7 @@ class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Co
 	/**
 	 * Gets RSS Feed URL Property
 	 */	
-	Url getFeedUrl() {*
+	String getFeedUrl() {*
 		return this.feedUrl;
 	*}
 
@@ -4956,7 +5179,7 @@ class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Co
 	/**
 	 * Gets XSL URL Property
 	 */	
-	Url getXslUrl() {*
+	String getXslUrl() {*
 		return this.xslUrl;
 	*}
 

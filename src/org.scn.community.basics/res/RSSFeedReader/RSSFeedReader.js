@@ -27,7 +27,12 @@ RSSFeedReader = function () {
 	
 	that.init = function() {
 		// define root component
-		that._oRoot = {};
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	};
+	
+	that.initAsync = function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
 	
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		// this.addStyleClass("scn-pack-?");
@@ -67,14 +72,14 @@ RSSFeedReader = function () {
 		var xslLocation = "";
 		
 		if(useBuildIn) {
-			xslLocation = org_scn_community_basics.getRepositoryImageUrlPrefix(that, xslFile, "", "xss.xsl");
+			xslLocation = org_scn_community_basics.getRepositoryImageUrlPrefix(that, xslFile, "", "rss.xsl");
 			// need to make the "upper-folder" logic to match the call from the inner HTML iframe
 			xslLocation = "../../../../../../" + xslLocation;
 		} else {
-			xslLocation = org_scn_community_basics.getRepositoryImageUrlPrefix(that, xslFile, xslFile, "xss.xsl");
+			xslLocation = org_scn_community_basics.getRepositoryImageUrlPrefix(that, xslFile, xslFile, "rss.xsl");
 		}
 
-		var containerUrl = xslLocation = org_scn_community_basics.getRepositoryImageUrlPrefix(that, "", "", that.rss_container);
+		var containerUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, "", "", that.rss_container);
 		
 		var url_string = encodeURI(containerUrl
 				+ 'feed=' + that.getFeedUrl() +"&"
@@ -90,9 +95,6 @@ RSSFeedReader = function () {
 	};
 
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
-
-	org_scn_community_component_Core(that, myComponentData);
-	
 	return that;
 };
 

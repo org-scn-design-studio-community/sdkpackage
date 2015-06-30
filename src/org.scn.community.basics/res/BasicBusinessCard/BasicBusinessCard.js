@@ -8,51 +8,58 @@ BasicBusinessCard = {
 	
 	initDesignStudio: function() {
 		var that = this;
+		
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+
 		org_scn_community_component_Core(that, myComponentData);
 		
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
-		this.addStyleClass("scn-pack-BasicBusinessCard-Card");
+		that.addStyleClass("scn-pack-BasicBusinessCard-Card");
 		
-		this._lNameLink = new sap.ui.commons.Link();
+		that._lNameLink = new sap.ui.commons.Link();
 
-		this._lNameLink.attachBrowserEvent('click', function() {
+		that._lNameLink.attachBrowserEvent('click', function() {
 			that.fireDesignStudioEvent("onPress");
 			}
 		);
 		
-		this._lNameLink.addStyleClass("scn-pack-BasicBusinessCard-NameLink");
+		that._lNameLink.addStyleClass("scn-pack-BasicBusinessCard-NameLink");
 
-		this.addContent(
-				this._lNameLink,
+		that.addContent(
+				that._lNameLink,
 				{left: "42px", top: "2px"}	
 		);
 
-		this._lImage = new sap.ui.commons.Image({
+		that._lImage = new sap.ui.commons.Image({
 			width: "32px",
 			height: "32px"
 			}
 		);
 
-		this._lImage.addStyleClass("scn-pack-BasicBusinessCard-Image");
+		that._lImage.addStyleClass("scn-pack-BasicBusinessCard-Image");
 		
-		this.addContent(
-				this._lImage,
+		that.addContent(
+				that._lImage,
 				{left: "5px", top: "5px"}
 		);
 
-		this._lText = new sap.ui.commons.TextView();
+		that._lText = new sap.ui.commons.TextView();
 
-		this._lText.addStyleClass("scn-pack-BasicBusinessCard-Title");
+		that._lText.addStyleClass("scn-pack-BasicBusinessCard-Title");
 		
-		this.addContent(
-				this._lText,
+		that.addContent(
+				that._lText,
 				{left: "42px", top: "20px"}
 		);
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
-		this.onAfterRendering = function () {
+		// that.onAfterRendering = function () {
 			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
-		}
+		// }
 	},
 	
 	afterDesignStudioUpdate: function() {
@@ -73,12 +80,12 @@ BasicBusinessCard = {
 		var that = owner;
 			
 		// visualization on processed data
-		this._lNameLink.setText (this.getName());
-		this._lNameLink.setTooltip (this.getName());
+		that._lNameLink.setText (that.getName());
+		that._lNameLink.setTooltip (that.getName());
 
-		this._lImage.setSrc (this.getImage());
+		that._lImage.setSrc (that.getImage());
 
-		this._lText.setText (this.getTitle());
+		that._lText.setText (that.getTitle());
 	},
 	
 	onResize: function(width, height, parent) {

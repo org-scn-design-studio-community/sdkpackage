@@ -1,0 +1,22 @@
+{
+	"id": "LaunchPad",
+	"title": "Launch Pad 2.0",
+	"tooltip": "Fiori-Inspired LaunchPad/Tile Container",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "575",
+	"height": "575"
+}

@@ -4,7 +4,7 @@
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 	
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
  * You may obtain a copy of the License at 
  *  
@@ -16,30 +16,28 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-jQuery.sap.require("sap.suite.ui.commons.DateRangeScroller");
+var myComponentData = org_scn_community_require.knownComponents.basics.DateRangeScroller;
 
-sap.suite.ui.commons.DateRangeScroller.extend("org.scn.community.basics.DateRangeScroller", {
-	
-	metadata: {
-        properties: {
-              "DStartDate": {type: "string"},
-              "DEndDate": {type: "string"},
-              "DViewType": {type: "string"},
-              "DDate": {type: "string"},
-              "DSpecialDay": {type: "int"},
-              "DSpecialDuration": {type: "int"},
-              "DLangFormat": {type: "boolean"},
-              "DLangPattern": {type: "string"},
-              "DLangStyle": {type: "string"},
-              "DLangRelative": {type: "boolean"},
-        }
-	},
+DateRangeScroller = {
+
+	renderer: {},
 	
 	initDesignStudio: function() {
 		var that = this;
 		
-		this.attachChange(function(oEvent) {
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+
+		org_scn_community_component_Core(that, myComponentData);
+		
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that.attachChange(function(oEvent) {
 
 	        var oDateRange = that.getDateRange();
 			
@@ -65,17 +63,34 @@ sap.suite.ui.commons.DateRangeScroller.extend("org.scn.community.basics.DateRang
 				that.setDStartDate(startDate);
 				that.setDEndDate(endDate);
 				
-				that.fireDesignStudioPropertiesChanged(["DStartDate", "DEndDate"]);
-				that.fireDesignStudioEvent("onChange");
+				that.fireDesignStudioPropertiesChangedAndEvent(["DStartDate", "DEndDate"], "onChange");
 			}
 		});
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
 	},
 	
-	renderer: {},
-		
 	afterDesignStudioUpdate: function() {
 		var that = this;
 		
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
 		var date = that.getDDate();
 		
 		if(date.length != 8) {
@@ -127,19 +142,31 @@ sap.suite.ui.commons.DateRangeScroller.extend("org.scn.community.basics.DateRang
 					that.setDateRangeMonth(initDate);
 				} else if(viewType == "Year") {
 					that.setDateRangeYear(initDate);
-				} else if(viewType == "CustomWeek") {
+				} else if(viewType == "Custom_Week") {
 					var specialStart = that.getDSpecialDay();
 					var specialDuration = that.getDSpecialDuration();
 					
 					 var oSpecialWeek = { duration: specialDuration, firstDayOfWeek: specialStart};
 					 that.setDateRangeWeek(initDate, oSpecialWeek);
 					 
-				} else if(viewType == "CustomDuration") {
+				} else if(viewType == "Custom_Duration") {
 					var specialDuration = that.getDSpecialDuration();
 					
 					that.setDateRangeCustom(initDate, specialDuration);
 				}
 			}
 		}
-	}
+	},
+	
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+
+define([myComponentData.requireName], function(basicsdaterangescroller){
+	myComponentData.instance = DateRangeScroller;
+	return myComponentData.instance;
 });
+
+}).call(this);

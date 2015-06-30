@@ -1,0 +1,242 @@
+{
+	"DEndDate" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Date (yyyymmdd)",
+			"cat" : "Display-Date",
+			"tooltip" : "Date (yyyymmdd)",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DStartDate" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Start Date (yyyymmdd)",
+			"cat" : "Display-Date",
+			"tooltip" : "Start Date (yyyymmdd)",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"editable" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-get",
+			"desc" : "Editable",
+			"cat" : "Behavior",
+			"tooltip" : "Editable",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"DDate" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Date (yyyymmdd)",
+			"cat" : "Display-Date",
+			"tooltip" : "Date (yyyymmdd)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DLangFormat" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "false",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Language Dependent Format",
+			"cat" : "Display-Format",
+			"tooltip" : "Language Dependent Format",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DLangPattern" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Custom Format Pattern",
+			"cat" : "Display-Format",
+			"tooltip" : "Custom Format Pattern",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DLangRelative" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "false",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Custom Format Relative",
+			"cat" : "Display-Format",
+			"tooltip" : "Custom Format Relative",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DLangStyle" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Short",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "FormatStyle",
+			"ztlFunction": "",
+			"desc" : "Custom Format Style",
+			"cat" : "Display-Format",
+			"tooltip" : "Custom Format Style",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Short",
+					"text" : "Short"
+				},
+				{
+					"key" : "Medium",
+					"text" : "Medium"
+				},
+				{
+					"key" : "Long",
+					"text" : "Long"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DViewType" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Week",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "DateViewType",
+			"ztlFunction": "",
+			"desc" : "Range View Type",
+			"cat" : "Display-Date",
+			"tooltip" : "Range View Type",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Day",
+					"text" : "Day"
+				},
+				{
+					"key" : "Week",
+					"text" : "Week"
+				},
+				{
+					"key" : "Month",
+					"text" : "Month"
+				},
+				{
+					"key" : "Year",
+					"text" : "Year"
+				},
+				{
+					"key" : "Custom_Week",
+					"text" : "Custom Week"
+				},
+				{
+					"key" : "Custom_Duration",
+					"text" : "Custom Duration"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DSpecialDay" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "0",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Day Of Week To Start (CustomWeek)",
+			"cat" : "Display-Date",
+			"tooltip" : "Week Day, 0 - Sunday To 6 - Saturday",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DSpecialDuration" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "14",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Duration Of Custom Range (Custom*)",
+			"cat" : "Display-Date",
+			"tooltip" : "Duration Of Custom Range (Custom*)",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+	"onChange" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Change",
+			"cat" : "Events",
+			"tooltip" : "On Change",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

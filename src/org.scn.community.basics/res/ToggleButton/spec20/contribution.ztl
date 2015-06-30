@@ -1,0 +1,72 @@
+	// here is the place for other custom functions
+
+	/**
+	 * returns the enabled flag<br/>
+	 */
+	boolean getEnabled (
+			
+			) 
+	{*
+		return this.enabled;
+	*}
+	/**
+	 * returns the pressed state<br/>
+	 * <example><br/>
+	 * You want to get the pressed state to decide what to do<br/>
+	 * <code><br/>
+	 * var pressed = TOGGLEBUTTON_1.getPressed();<br/>
+	 * APPLICATION.createInfoMessage("Pressed: " + pressed);<br/>
+	 * if(pressed) {<br/>
+	 * / do something<br/>
+	 * } else {<br/>
+	 * / do other something<br/>
+	 * }<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	boolean getPressed (
+			
+			) 
+	{*
+		return this.pressed;
+	*}
+	/**
+	 * returns the text<br/>
+	 */
+	String getText (
+			
+			) 
+	{*
+		return this.text;
+	*}
+	/**
+	 * sets the enabled flag<br/>
+	 */
+	void setEnabled (
+			/**/ boolean value,
+			
+			) 
+	{*
+		this.enabled = value;
+	*}
+	/**
+	 * sets the pressed state<br/>
+	 */
+	void setPressed (
+			/**/ boolean value,
+			
+			) 
+	{*
+		this.pressed = value;
+	*}
+	/**
+	 * sets the text<br/>
+	 */
+	void setText (
+			/**/ String text,
+			
+			) 
+	{*
+		this.text = text;
+	*}
+	

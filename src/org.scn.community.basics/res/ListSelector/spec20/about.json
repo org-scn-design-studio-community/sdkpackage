@@ -1,0 +1,16 @@
+{
+	"title": "List Selector 2.0",
+	"description": "List Selector",
+	"icon": "ListSelector.png",
+	"topics": 
+	[
+		{
+			"title" : "List Selector",
+			"content" : "List Selector"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

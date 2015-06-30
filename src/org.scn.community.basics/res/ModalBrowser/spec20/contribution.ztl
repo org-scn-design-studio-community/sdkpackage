@@ -1,0 +1,33 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Invoke Click event<br/>
+	 */
+	String click (
+			
+			) 
+	{*
+		this.clickTrigger = Math.random();
+	*}
+	/**
+	 * Gets URL<br/>
+	 */
+	String getURL (
+			
+			) 
+	{*
+		return this.url;
+	*}
+	/**
+	 * Sets URL<br/>
+	 * <example><code>BROWSERPOPUP_1.setURL("http://server.example.com/BOE/OpenDocument/opendoc/openDocument.jsp?sIDType=CUID&iDocID=ABC123XYZ");</code></example><br/>
+	 * <note>If opening a page in a Modal Browser Dialog, make sure that the page does not use a Frame Buster.</note><br/>
+	 */
+	void setURL (
+			/* URL */ String url,
+			
+			) 
+	{*
+		this.url = url;
+	*}
+	

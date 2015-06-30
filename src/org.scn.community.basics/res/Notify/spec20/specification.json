@@ -1,0 +1,165 @@
+{
+	"msgtext" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Msgtext",
+			"cat" : "Display",
+			"tooltip" : "Msgtext",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"msgtype" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Msgtype",
+			"cat" : "Display",
+			"tooltip" : "Msgtype",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"shownote" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Shownote",
+			"cat" : "Display",
+			"tooltip" : "Shownote",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"delay" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "3",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Delay(Seconds)",
+			"cat" : "Display",
+			"tooltip" : "Delay(Seconds)",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"layout" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "center",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Layout",
+			"cat" : "Unsorted",
+			"tooltip" : "Layout",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "top",
+					"text" : "top"
+				},
+				{
+					"key" : "top_Center",
+					"text" : "top_Center"
+				},
+				{
+					"key" : "top_Left",
+					"text" : "top_Left"
+				},
+				{
+					"key" : "top_Right",
+					"text" : "top_Right"
+				},
+				{
+					"key" : "center",
+					"text" : "center"
+				},
+				{
+					"key" : "center_Left",
+					"text" : "center_Left"
+				},
+				{
+					"key" : "center_Right",
+					"text" : "center_Right"
+				},
+				{
+					"key" : "bottom",
+					"text" : "bottom"
+				},
+				{
+					"key" : "bottom_Center",
+					"text" : "bottom_Center"
+				},
+				{
+					"key" : "bottom_Left",
+					"text" : "bottom_Left"
+				},
+				{
+					"key" : "bottom_Right",
+					"text" : "bottom_Right"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"modal" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "false",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Modal",
+			"cat" : "Unsorted",
+			"tooltip" : "Modal",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "true",
+					"text" : "true"
+				},
+				{
+					"key" : "false",
+					"text" : "false"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

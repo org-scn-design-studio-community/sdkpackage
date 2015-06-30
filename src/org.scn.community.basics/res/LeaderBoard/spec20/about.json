@@ -1,0 +1,16 @@
+{
+	"title": "Leader Board 2.0",
+	"description": "Leader Board",
+	"icon": "LeaderBoard.png",
+	"topics": 
+	[
+		{
+			"title" : "Leader Board",
+			"content" : "Leader Board"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

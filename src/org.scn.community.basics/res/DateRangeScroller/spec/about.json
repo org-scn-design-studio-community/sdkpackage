@@ -1,0 +1,16 @@
+{
+	"title": "Date Range Scroller 2.0",
+	"description": "Date Range Scroller",
+	"icon": "DateRangeScroller.png",
+	"topics": 
+	[
+		{
+			"title" : "Date Range Scroller",
+			"content" : "Date Range Scroller"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

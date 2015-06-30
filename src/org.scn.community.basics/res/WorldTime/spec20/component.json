@@ -1,0 +1,22 @@
+{
+	"id": "WorldTime",
+	"title": "WorldTime 2.0",
+	"tooltip": "WorldTime",
+	"handlerType": "div",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "150",
+	"height": "40"
+}

@@ -1,0 +1,169 @@
+{
+
+
+
+	"arrowPos" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "None",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Arrow Position",
+			"cat" : "Unsorted",
+			"tooltip" : "Arrow Position",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "None",
+					"text" : "None"
+				},
+				{
+					"key" : "Start",
+					"text" : "Start"
+				},
+				{
+					"key" : "End",
+					"text" : "End"
+				},
+				{
+					"key" : "Both",
+					"text" : "Both"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"lineColor" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "Black",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Line Color",
+			"cat" : "Display",
+			"tooltip" : "Line Color",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"lineSize" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "5",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Size",
+			"cat" : "Display",
+			"tooltip" : "Size",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"lineType" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "1",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Line Type",
+			"cat" : "Unsorted",
+			"tooltip" : "Line Type",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "1",
+					"text" : "1"
+				},
+				{
+					"key" : "2",
+					"text" : "2"
+				},
+				{
+					"key" : "3",
+					"text" : "3"
+				},
+				{
+					"key" : "4",
+					"text" : "4"
+				},
+				{
+					"key" : "5",
+					"text" : "5"
+				},
+				{
+					"key" : "6",
+					"text" : "6"
+				},
+				{
+					"key" : "7",
+					"text" : "7"
+				},
+				{
+					"key" : "8",
+					"text" : "8"
+				},
+				{
+					"key" : "9",
+					"text" : "9"
+				},
+				{
+					"key" : "10",
+					"text" : "10"
+				},
+				{
+					"key" : "11",
+					"text" : "11"
+				},
+				{
+					"key" : "12",
+					"text" : "12"
+				},
+				{
+					"key" : "13",
+					"text" : "13"
+				},
+				{
+					"key" : "14",
+					"text" : "14"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"visible" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Visibility",
+			"cat" : "Display",
+			"tooltip" : "Visibility",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

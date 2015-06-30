@@ -1,0 +1,16 @@
+{
+	"title": "Base64 Image Encoder 2.0",
+	"description": "Handy Base-64 encoder property sheet (requires IE10+ for design-time)",
+	"icon": "Base64Image.png",
+	"topics": 
+	[
+		{
+			"title" : "Base64 Image Encoder",
+			"content" : "Handy Base-64 encoder property sheet (requires IE10+ for design-time)"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

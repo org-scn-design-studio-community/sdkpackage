@@ -1,0 +1,192 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Returns the live value.<br/>
+	 */
+	float getLiveValue (
+			
+			) 
+	{*
+		return this.liveValue;
+	*}
+	/**
+	 * Returns the live value as integer.<br/>
+	 */
+	int getLiveValueAsInt (
+			
+			) 
+	{*
+		return parseInt(Math.floor(this.liveValue));
+	*}
+	/**
+	 * Returns the maximum value.<br/>
+	 */
+	float getMaximumValue (
+			
+			) 
+	{*
+		return this.max;
+	*}
+	/**
+	 * Returns the minimum value.<br/>
+	 */
+	float getMinimumValue (
+			
+			) 
+	{*
+		return this.min;
+	*}
+	/**
+	 * Returns the small step width value.<br/>
+	 */
+	float getSmallStepWidth (
+			
+			) 
+	{*
+		return this.smallStepWidth;
+	*}
+	/**
+	 * Returns the total units value.<br/>
+	 */
+	int getTotalUnits (
+			
+			) 
+	{*
+		return this.totalUnits;
+	*}
+	/**
+	 * Returns the value.<br/>
+	 */
+	float getValue (
+			
+			) 
+	{*
+		return this.value;
+	*}
+	/**
+	 * Returns the value as an integer.<br/>
+	 */
+	int getValueAsInt (
+			
+			) 
+	{*
+		return parseInt(Math.floor(this.value));
+	*}
+	/**
+	 * Returns the editable value<br/>
+	 */
+	boolean isEditable (
+			
+			) 
+	{*
+		return this.editable;
+	*}
+	/**
+	 * Returns the step labels value.<br/>
+	 */
+	boolean isStepLabels (
+			
+			) 
+	{*
+		return this.stepLabels;
+	*}
+	/**
+	 * Returns the vertical value.<br/>
+	 */
+	boolean isVertical (
+			
+			) 
+	{*
+		return this.vertical;
+	*}
+	/**
+	 * Sets the editable value<br/>
+	 */
+	void setEditable (
+			/* Editable value */ boolean editable,
+			
+			) 
+	{*
+		this.editable = editable;
+	*}
+	/**
+	 * Sets the maximum value.<br/>
+	 */
+	void setMaximumValue (
+			/* Maximum value */ float max,
+			
+			) 
+	{*
+		this.max = max;
+	*}
+	/**
+	 * Sets the minimum value.<br/>
+	 */
+	void setMinimumValue (
+			/* Minimum value */ float min,
+			
+			) 
+	{*
+		this.min = min;
+	*}
+	/**
+	 * Sets the small step width value.<br/>
+	 */
+	void setSmallStepWidth (
+			/* Small step width value */ float smallStepWidth,
+			
+			) 
+	{*
+		this.smallStepWidth = smallStepWidth;
+	*}
+	/**
+	 * Sets the step labels value.<br/>
+	 */
+	void setStepLabels (
+			/* Step labels value */ boolean stepLabels,
+			
+			) 
+	{*
+		this.stepLabels = stepLabels;
+	*}
+	/**
+	 * Sets the total units value.<br/>
+	 */
+	void setTotalUnits (
+			/* Total units value */ int totalUnits,
+			
+			) 
+	{*
+		this.totalUnits = totalUnits;
+	*}
+	/**
+	 * Sets the value.<br/>
+	 */
+	void setValue (
+			/* Value */ float value,
+			
+			) 
+	{*
+		this.value = value;
+	*}
+	/**
+	 * Sets the value from integer.<br/>
+	 */
+	void setValueAsInt (
+			/* Value */ int value,
+			
+			) 
+	{*
+		this.value = parseFloat(value);
+	*}
+	/**
+	 * Sets the vertical value.<br/>
+	 */
+	void setVertical (
+			/* Vertical value */ boolean vertical,
+			
+			) 
+	{*
+		this.vertical = vertical;
+	*}
+	

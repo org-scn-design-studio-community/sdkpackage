@@ -1,0 +1,55 @@
+{
+	"colorStringHex" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Hex Color",
+			"cat" : "Display",
+			"tooltip" : "This Is An Export-parameter Of The ColorPicker. It Is A Hexadecimal String (#FFFFFF) Containing The Current Color.",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"colorString" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "red",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Color",
+			"cat" : "Display",
+			"tooltip" : "This Is The Import-parameter Of The ColorPicker. As Input-parameter, It Can Be A Hexadecimal String (#FFFFFF), A RGB-string Rgb(255,255,255), A HSV-string Hsv(360,100,100), Or A CSS-colorname 'red'. As Output-parameter It Is A RGB-string Containing The Current Color.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onColorChange" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Color Change",
+			"cat" : "Events",
+			"tooltip" : "On Color Change",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

@@ -1,21 +1,35 @@
 
 /**
- * Class for ColorPicker
+ * Generated ZTL Class for ColorPicker
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.ColorPicker extends org.scn.community.shared.Component {
 
-	/** Sets the color top be shown */
-	void setColor( /** Color value */ String colorString) {*
+	/**
+	 * Sets Color Property
+	 */	
+	void setColorString( /**Color*/ String colorString){*
 		this.colorString = colorString;
 	*}
 
-	/** Returns the picked color as RGB like: rgb(255,255,255) */
-	String getColor() {*
+	/**
+	 * Gets Color Property
+	 */	
+	String getColorString() {*
 		return this.colorString;
 	*}
-	
-	/** Returns the picked color as Hexadecimal string like: #FFFFFF */
-	String getColorAsHex() {*
+
+	/**
+	 * Gets Hex Color Property
+	 */	
+	String getColorStringHex() {*
 		return this.colorStringHex;
 	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

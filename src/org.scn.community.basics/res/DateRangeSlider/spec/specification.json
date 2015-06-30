@@ -1,0 +1,275 @@
+{
+
+
+
+	"DGranulatiry" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Day",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "DateViewType",
+			"ztlFunction": "",
+			"desc" : "Granularity",
+			"cat" : "Display-Date",
+			"tooltip" : "Granularity",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Day",
+					"text" : "Day"
+				},
+				{
+					"key" : "Month",
+					"text" : "Month"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DLangFormat" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "false",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Language Dependent Format",
+			"cat" : "Display-Format",
+			"tooltip" : "Language Dependent Format",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DLangPattern" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Custom Format Pattern",
+			"cat" : "Display-Format",
+			"tooltip" : "Custom Format Pattern",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DLangRelative" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "false",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Custom Format Relative",
+			"cat" : "Display-Format",
+			"tooltip" : "Custom Format Relative",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DLangStyle" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Short",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "FormatStyle",
+			"ztlFunction": "",
+			"desc" : "Custom Format Style",
+			"cat" : "Display-Format",
+			"tooltip" : "Custom Format Style",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Short",
+					"text" : "Short"
+				},
+				{
+					"key" : "Medium",
+					"text" : "Medium"
+				},
+				{
+					"key" : "Long",
+					"text" : "Long"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DMax" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Maximum Date Value (yyyymmdd)",
+			"cat" : "Display-Date",
+			"tooltip" : "Maximum Date Value (yyyymmdd)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DMin" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Minimum Date Value (yyyymmdd)",
+			"cat" : "Display-Date",
+			"tooltip" : "Minimum Date Value (yyyymmdd)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DValue" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "First Date Value (yyyymmdd)",
+			"cat" : "Display-Date",
+			"tooltip" : "First Date Value (yyyymmdd)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DValue2" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Second Date Value (yyyymmdd)",
+			"cat" : "Display-Date",
+			"tooltip" : "Second Date Value (yyyymmdd)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showBubbles" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Bubbles",
+			"cat" : "Display-Visualization",
+			"tooltip" : "Show Bubbles",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"smallStepWidth" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "1",
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Small Step Width",
+			"cat" : "Display-Visualization",
+			"tooltip" : "Small Step Width",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"stepLabels" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Step Labels",
+			"cat" : "Display-Visualization",
+			"tooltip" : "Step Labels",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"totalUnits" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "0",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Total Units",
+			"cat" : "Display-Visualization",
+			"tooltip" : "Total Units",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"vertical" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "false",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Change To Vertical Orientation",
+			"cat" : "Display-Visualization",
+			"tooltip" : "Change To Vertical Orientation",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onChange" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Change",
+			"cat" : "Events",
+			"tooltip" : "On Change",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

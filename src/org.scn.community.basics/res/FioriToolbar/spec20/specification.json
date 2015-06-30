@@ -1,0 +1,139 @@
+{
+	"itemConfig" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Item Config",
+			"cat" : "Display",
+			"tooltip" : "Item Config",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"selectedHeader" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Selected Header Of Item",
+			"cat" : "Display",
+			"tooltip" : "Selected Header Of Item",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"selectedHeaderKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Selected Header Key Of Item",
+			"cat" : "Display",
+			"tooltip" : "Selected Header Key Of Item",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"selectedItem" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Selected Item",
+			"cat" : "Display",
+			"tooltip" : "Selected Item",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"selectedItemKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Selected Item Key",
+			"cat" : "Display",
+			"tooltip" : "Selected Item Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"design" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Auto",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Design",
+			"cat" : "Unsorted",
+			"tooltip" : "Design",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Auto",
+					"text" : "Auto"
+				},
+				{
+					"key" : "Info",
+					"text" : "Info"
+				},
+				{
+					"key" : "Solid",
+					"text" : "Solid"
+				},
+				{
+					"key" : "Transparent",
+					"text" : "Transparent"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onitemselect" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Item Select",
+			"cat" : "Events",
+			"tooltip" : "On Item Select",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

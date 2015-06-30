@@ -1,0 +1,181 @@
+{
+
+
+
+	"dateformat" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "dd.mm.yy",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Date Format",
+			"cat" : "Unsorted",
+			"tooltip" : "Date Format",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "ddmmyy",
+					"text" : "ddmmyy"
+				},
+				{
+					"key" : "ddmm",
+					"text" : "ddmm"
+				},
+				{
+					"key" : "mmyy",
+					"text" : "mmyy"
+				},
+				{
+					"key" : "hide",
+					"text" : "hide"
+				},
+				{
+					"key" : "default",
+					"text" : "default"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"daylightsaving" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Consider Daylight Saving",
+			"cat" : "Display",
+			"tooltip" : "Consider Daylight Saving",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"interval" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "5000",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Update Interval (in Ms)",
+			"cat" : "Display",
+			"tooltip" : "Update Interval (in Ms)",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"locale" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "de-DE",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Locale",
+			"cat" : "Unsorted",
+			"tooltip" : "Locale",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "en_U_S",
+					"text" : "en_U_S"
+				},
+				{
+					"key" : "de_D_E",
+					"text" : "de_D_E"
+				},
+				{
+					"key" : "default",
+					"text" : "default"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showtimezonename" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Timezone Name",
+			"cat" : "Display",
+			"tooltip" : "Show Timezone Name",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"timeformat" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "hh:mm:ss",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Time Format",
+			"cat" : "Unsorted",
+			"tooltip" : "Time Format",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "hhmmss",
+					"text" : "hhmmss"
+				},
+				{
+					"key" : "hhmm",
+					"text" : "hhmm"
+				},
+				{
+					"key" : "hide",
+					"text" : "hide"
+				},
+				{
+					"key" : "default",
+					"text" : "default"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"utcoffset" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "0",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "UTC Offset",
+			"cat" : "Display",
+			"tooltip" : "UTC Offset",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

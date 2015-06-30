@@ -996,7 +996,7 @@ org_scn_community_databound.getSampleDataFlat = function (owner, callBack, after
 	};
 	
 	// trigger ajax request
-	var dataUrl = org_scn_community_require.scriptInfo.mainSDKPath + "org.scn.community.databound/res/_data/data.flat.json";
+	var dataUrl = org_scn_community_require.scriptInfo.mainSDKPath + "org.scn.community.databound/res/_data/data.flat.json?v=" + org_scn_community_require.jsVersion;
 	
 	requestForData.open("GET", dataUrl, true);
 	requestForData.send();

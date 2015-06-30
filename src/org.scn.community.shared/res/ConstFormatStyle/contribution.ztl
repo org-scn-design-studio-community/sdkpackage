@@ -1,0 +1,22 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_FormatStyleEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_FormatStyle extends Enum {
+
+	/** Short */
+	org_scn_community_shared_FormatStyleEnumfield Short;
+       
+	/** Medium */
+	org_scn_community_shared_FormatStyleEnumfield Medium;
+
+	/** Long */
+	org_scn_community_shared_FormatStyleEnumfield Long;
+}

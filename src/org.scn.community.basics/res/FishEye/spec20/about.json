@@ -1,0 +1,16 @@
+{
+	"title": "Fish Eye 2.0",
+	"description": "Fish Eye",
+	"icon": "FishEye.png",
+	"topics": 
+	[
+		{
+			"title" : "Fish Eye",
+			"content" : "Fish Eye"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

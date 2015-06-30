@@ -995,327 +995,391 @@
 
 <component
 	id="ColorPicker"
-	title="Color Picker"
-	handlerType="sapui5"
+	title="Color Picker 2.0"
+	tooltip="Color Picker"
 	icon="res/ColorPicker/ColorPicker.png"
+	handlerType="sapui5"
+	propertySheetPath="res/ColorPicker/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/ColorPicker/ColorPicker.js</jsInclude>
-
+	<jsInclude>res/ColorPicker/ColorPickerLoader.js</jsInclude>
+	<cssInclude>res/ColorPicker/ColorPicker.css</cssInclude>
+	
 	<property
 		id="colorString"
+		type="String"
 		title="Color"
-		type="Color"
 		group="Display"
-		tooltip="This is the import-parameter of the ColorPicker. As input-parameter, it can be a Hexadecimal string (#FFFFFF), a RGB-string rgb(255,255,255), a HSV-string hsv(360,100,100), or a CSS-colorname 'red'. As output-parameter it is a RGB-string containing the current color."
-	></property>
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="colorStringHex"
-		title="Hex Color"
 		type="String"
-		visible="false"
+		title="Hex Color"
 		group="Display"
-		tooltip="This is an export-parameter of the ColorPicker. It is a Hexadecimal string (#FFFFFF) containing the current color."
-	></property>
+		bindable="true"
+		visible="false">
+
+	</property>
 	<property
 		id="onColorChange"
+		type="ScriptText"
 		title="On Color Change"
 		group="Events"
-		type="ScriptText" />
+		visible="true">
+
+	</property>
+
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">270</defaultValue>
 		<defaultValue property="HEIGHT">134</defaultValue>
+		
 		<defaultValue property="colorString">red</defaultValue>
+		<defaultValue property="colorStringHex"></defaultValue>
+		<defaultValue property="onColorChange"></defaultValue>
+
 	</initialization>
+
 </component>
+
 <component
 	id="DateRangeScroller"
-	title="Date Range Scroller"
-	handlerType="sapui5"
+	title="Date Range Scroller 2.0"
+	tooltip="Date Range Scroller"
 	icon="res/DateRangeScroller/DateRangeScroller.png"
+	handlerType="sapui5"
+	propertySheetPath="res/DateRangeScroller/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>os/date/DateFormat.js</jsInclude>
-	<jsInclude>res/DateRangeScroller/DateRangeScroller.js</jsInclude>
+	<jsInclude>res/DateRangeScroller/DateRangeScrollerLoader.js</jsInclude>
+	<cssInclude>res/DateRangeScroller/DateRangeScroller.css</cssInclude>
 	
 	<property
 		id="DDate"
+		type="String"
 		title="Date (yyyymmdd)"
-		type="String"
-		group="Display" 
-		visible="true"
-	>
-	</property>
+		group="Display"
+		bindable="true"
+		visible="true">
 
-  <property
-		id="DSpecialDuration"
-		title="Duration of Custom Range (Custom*)"
-		type="int"
-		group="Display" 
-		visible="true"
-	>
 	</property>
-	
-	<property
-		id="DSpecialDay"
-		title="Day of Week to Start (CustomWeek)"
-		tooltip="Week Day, 0 - Sunday to 6 - Saturday"
-		type="int"
-		group="Display" 
-		visible="true"
-	>
-	</property>
-	
-	<property
-		id="DStartDate"
-		title="Start Date (yyyymmdd)"
-		type="String"
-		group="Display" 
-		visible="false"
-	>
-	</property>
-
 	<property
 		id="DEndDate"
+		type="String"
 		title="Date (yyyymmdd)"
-		type="String"
-		group="Display" 
-		visible="false"
-	>
-	</property>
+		group="Display"
+		bindable="true"
+		visible="false">
 
-	<property
-		id="DViewType"
-		title="Range View Type"
-		type="String"
-		group="Display" 
-		visible="true"
-	>
-		<possibleValue>Day</possibleValue>
-		<possibleValue>Week</possibleValue>
-		<possibleValue>Month</possibleValue>
-		<possibleValue>Year</possibleValue>
-		<possibleValue>CustomWeek</possibleValue>
-		<possibleValue>CustomDuration</possibleValue>
 	</property>
-
 	<property
 		id="DLangFormat"
-		title="Language Dependent Format"
 		type="boolean"
-		group="Display" 
-		visible="true"
-	>
-	</property>
+		title="Language Dependent Format"
+		group="Display"
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
 		id="DLangPattern"
-		title="Custom Format Pattern"
 		type="String"
-		group="Display" 
-		visible="true"
-	>
+		title="Custom Format Pattern"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
-	
+	<property
+		id="DLangRelative"
+		type="boolean"
+		title="Custom Format Relative"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="DLangStyle"
-		title="Custom Format Style"
 		type="String"
-		group="Display" 
-		visible="true"
-	>
-	  <possibleValue>short</possibleValue>
-		<possibleValue>medium</possibleValue>
-		<possibleValue>long</possibleValue>
-	</property>
+		title="Custom Format Style"
+		group="Display"
+		bindable="true"
+		visible="true">
 
-  <property
-		id="DLangRelative"
-		title="Custom Format Relative"
-		type="boolean"
-		group="Display" 
-		visible="true"
-	>
 	</property>
-	
+	<property
+		id="DSpecialDay"
+		type="int"
+		title="Day Of Week To Start (CustomWeek)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DSpecialDuration"
+		type="int"
+		title="Duration Of Custom Range (Custom*)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DStartDate"
+		type="String"
+		title="Start Date (yyyymmdd)"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DViewType"
+		type="String"
+		title="Range View Type"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="editable"
-		title="Editable"
 		type="boolean"
-		group="Display" 
-		visible="false"
-	>
+		title="Editable"
+		group="Display"
+		bindable="true"
+		visible="false">
+
 	</property>
-	
 	<property
 		id="onChange"
-		title="On Change"
 		type="ScriptText"
-		group="Events" 
-		visible="true"
-	>
+		title="On Change"
+		group="Events"
+		visible="true">
+
 	</property>
-	
+
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
-		<defaultValue property="editable">true</defaultValue>
-		<defaultValue property="DViewType">Week</defaultValue>
+		
+		<defaultValue property="DDate"></defaultValue>
+		<defaultValue property="DEndDate"></defaultValue>
+		<defaultValue property="DLangFormat">false</defaultValue>
+		<defaultValue property="DLangPattern"></defaultValue>
+		<defaultValue property="DLangRelative">false</defaultValue>
+		<defaultValue property="DLangStyle">Short</defaultValue>
 		<defaultValue property="DSpecialDay">0</defaultValue>
 		<defaultValue property="DSpecialDuration">14</defaultValue>
-		<defaultValue property="DLangFormat">false</defaultValue>
-		<defaultValue property="DLangStyle">short</defaultValue>
-		<defaultValue property="DLangRelative">false</defaultValue>
+		<defaultValue property="DStartDate"></defaultValue>
+		<defaultValue property="DViewType">Week</defaultValue>
+		<defaultValue property="editable">true</defaultValue>
+		<defaultValue property="onChange"></defaultValue>
+
 	</initialization>
+
 </component>
+
 <component
 	id="DateRangeSlider"
-	title="Date Range Slider"
-	handlerType="sapui5"
+	title="Date Range Slider 2.0"
+	tooltip="Date Range Slider"
 	icon="res/DateRangeSlider/DateRangeSlider.png"
+	handlerType="sapui5"
+	propertySheetPath="res/DateRangeSlider/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
 	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>os/date/DateFormat.js</jsInclude>
-	<jsInclude>res/DateRangeSlider/DateRangeSlider.js</jsInclude>
-	
-	<property
-		id="DMin"
-		title="Minimum Date Value (yyyymmdd)"
-		group="Display"
-		type="String" />
-	<property
-		id="DMax"
-		title="Maximum Date Value (yyyymmdd)"
-		group="Display"
-		type="String" />
-	<property
-		id="DValue"
-		title="First Date Value (yyyymmdd)"
-		group="Display"
-		type="String" />
-	<property
-		id="DValue2"
-		title="Second Date Value (yyyymmdd)"
-		group="Display"
-		type="String" />
-	<property
-		id="totalUnits"
-		title="Total Units"
-		group="Display"
-		type="int" />
-	<property
-		id="stepLabels"
-		title="Step Labels"
-		group="Display"
-		type="boolean" />
-	<property
-		id="vertical"
-		title="Change to Vertical Orientation"
-		group="Display"
-		type="boolean" />
-	<property
-		id="smallStepWidth"
-		title="Small Step Width"
-		group="Display"
-		type="float" />
-	<property
-		id="showBubbles"
-		title="Show Bubbles"
-		group="Display"
-		type="boolean" />
-	<property
-		id="DLangFormat"
-		title="Language Dependent Format"
-		type="boolean"
-		group="Display" 
-		visible="true"
-	>
-	</property>
-
-	<property
-		id="DLangPattern"
-		title="Custom Format Pattern"
-		type="String"
-		group="Display" 
-		visible="true"
-	>
-	</property>
-	
-	<property
-		id="DLangStyle"
-		title="Custom Format Style"
-		type="String"
-		group="Display" 
-		visible="true"
-	>
-	  <possibleValue>short</possibleValue>
-		<possibleValue>medium</possibleValue>
-		<possibleValue>long</possibleValue>
-	</property>
-
-  <property
-		id="DLangRelative"
-		title="Custom Format Relative"
-		type="boolean"
-		group="Display" 
-		visible="true"
-	>
-	</property>
+	<jsInclude>res/DateRangeSlider/DateRangeSliderLoader.js</jsInclude>
+	<cssInclude>res/DateRangeSlider/DateRangeSlider.css</cssInclude>
 	
 	<property
 		id="DGranulatiry"
-		title="Granularity"
 		type="String"
-		group="Display" 
-		visible="true"
-	>
-		<possibleValue>Day</possibleValue>
-		<possibleValue>Month</possibleValue>
-	</property>
+		title="Granularity"
+		group="Display"
+		bindable="true"
+		visible="true">
 
+	</property>
+	<property
+		id="DLangFormat"
+		type="boolean"
+		title="Language Dependent Format"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DLangPattern"
+		type="String"
+		title="Custom Format Pattern"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DLangRelative"
+		type="boolean"
+		title="Custom Format Relative"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DLangStyle"
+		type="String"
+		title="Custom Format Style"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DMax"
+		type="String"
+		title="Maximum Date Value (yyyymmdd)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DMin"
+		type="String"
+		title="Minimum Date Value (yyyymmdd)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DValue"
+		type="String"
+		title="First Date Value (yyyymmdd)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DValue2"
+		type="String"
+		title="Second Date Value (yyyymmdd)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="onChange"
-		title="On Change"
 		type="ScriptText"
-		group="Events" />
+		title="On Change"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="showBubbles"
+		type="boolean"
+		title="Show Bubbles"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="smallStepWidth"
+		type="String"
+		title="Small Step Width"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="stepLabels"
+		type="boolean"
+		title="Step Labels"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="totalUnits"
+		type="int"
+		title="Total Units"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="vertical"
+		type="boolean"
+		title="Change To Vertical Orientation"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
-		<defaultValue property="Dmin"></defaultValue>
-		<defaultValue property="Dmax"></defaultValue>
-		<defaultValue property="Dvalue"></defaultValue>
-		<defaultValue property="Dvalue2"></defaultValue>
+		
+		<defaultValue property="DGranulatiry">Day</defaultValue>
+		<defaultValue property="DLangFormat">false</defaultValue>
+		<defaultValue property="DLangPattern"></defaultValue>
+		<defaultValue property="DLangRelative">false</defaultValue>
+		<defaultValue property="DLangStyle">Short</defaultValue>
+		<defaultValue property="DMax"></defaultValue>
+		<defaultValue property="DMin"></defaultValue>
+		<defaultValue property="DValue"></defaultValue>
+		<defaultValue property="DValue2"></defaultValue>
+		<defaultValue property="onChange"></defaultValue>
+		<defaultValue property="showBubbles">true</defaultValue>
+		<defaultValue property="smallStepWidth">1</defaultValue>
+		<defaultValue property="stepLabels"></defaultValue>
 		<defaultValue property="totalUnits">0</defaultValue>
 		<defaultValue property="vertical">false</defaultValue>
-		<defaultValue property="smallStepWidth">1</defaultValue>
-		<defaultValue property="showBubbles">true</defaultValue>
-		<defaultValue property="DLangFormat">false</defaultValue>
-		<defaultValue property="DLangStyle">short</defaultValue>
-		<defaultValue property="DLangRelative">false</defaultValue>
-		<defaultValue property="DGranulatiry">Day</defaultValue>
+
 	</initialization>
+
 </component>
+
 <component
 	id="DragDropArea"
 	title="Drag Drop Area"
@@ -1528,72 +1592,155 @@
 	</initialization>
 
 </component>
+
 <component
 	id="FallbackPicture"
-	title="Fallback Picture"
+	title="Fallback Picture 2.0"
+	tooltip="Fallback Picture"
 	icon="res/FallbackPicture/FallbackPicture.png"
 	handlerType="sapui5"
+	propertySheetPath="res/FallbackPicture/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/FallbackPicture/FallbackPicture.js</jsInclude>
+	<jsInclude>res/FallbackPicture/FallbackPictureLoader.js</jsInclude>
 	<cssInclude>res/FallbackPicture/FallbackPicture.css</cssInclude>
-
-	<property
-		id="picture"
-		title="Url for Picture"
-		tooltip="Url for Picture which should be shown"
-		type="Url"
-		group="Display"
-		visible="true" />
-
+	
 	<property
 		id="fallbackPicture"
-		title="Url for Fallback Picture"
-		tooltip="Url for Fallback Picture which should be shown"
 		type="Url"
+		title="Url For Fallback Picture"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="picture"
+		type="Url"
+		title="Url For Picture"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
-		<defaultValue property="WIDTH">100</defaultValue>
-		<defaultValue property="HEIGHT">100</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="picture"></defaultValue>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">100</defaultValue>
+		
 		<defaultValue property="fallbackPicture"></defaultValue>
+		<defaultValue property="picture"></defaultValue>
 
 	</initialization>
 
 </component>
-<component id="FioriAppHeader" 
-	title="Fiori App Header"
+
+<component
+	id="FioriAppHeader"
+	title="Fiori App Header 2.0"
+	tooltip="Fiori App Header"
 	icon="res/FioriAppHeader/FioriAppHeader.png"
-	handlerType="sapui5" 
-	propertySheetPath="res/FioriAppHeader/aps/FioriAppHeaderPropertyPage.html"
-	group="ScnCommunityBasics">
-  	
+	handlerType="sapui5"
+	propertySheetPath="res/FioriAppHeader/aps/PropertyPage.html"
+	group="ScnCommunityBasics"
+	databound="false"
+>
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
-  	
-  	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
-  	<property id="title" type="String" title="Title" group="Display"/>
-  	<property id="itemConfig" type="String" title="Item Config" visible="false" group="Display"/>
-  	<property id="showNavButton" type="boolean" title="Show Back Button" group="Display"/>
-  	<property type="String" title="Selected Item" id="selectedItem" visible="false" group="Display"/>
-  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false" group="Display"/>
-  	<property type="ScriptText" title="On Item Select" id="onitemselect" group="Events"/>  	
-  	<property type="ScriptText" title="On Back" id="onnav" group="Events"/>
- 	<initialization>
- 		<defaultValue property="title">Page Title</defaultValue>
- 		<defaultValue property="WIDTH">400</defaultValue>
- 	</initialization>
- </component>
+	<jsInclude>res/FioriAppHeader/FioriAppHeaderLoader.js</jsInclude>
+	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
+	
+	<property
+		id="itemConfig"
+		type="String"
+		title="Item Config"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="onitemselect"
+		type="ScriptText"
+		title="On Item Select"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onnav"
+		type="ScriptText"
+		title="On Back"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="selectedHeader"
+		type="String"
+		title="Selected Header Of Item"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="selectedItem"
+		type="String"
+		title="Selected Item"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="showNavButton"
+		type="boolean"
+		title="Show Back Button"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="title"
+		type="String"
+		title="Title"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="itemConfig"></defaultValue>
+		<defaultValue property="onitemselect"></defaultValue>
+		<defaultValue property="onnav"></defaultValue>
+		<defaultValue property="selectedHeader"></defaultValue>
+		<defaultValue property="selectedItem"></defaultValue>
+		<defaultValue property="showNavButton"></defaultValue>
+		<defaultValue property="title">Page Title</defaultValue>
+
+	</initialization>
+
+</component>
+
 <component
 	id="FioriButton"
 	title="Fiori Button"
@@ -2295,6 +2442,8 @@
 	  		<defaultValue property="verticalAlign">top</defaultValue>
 	  		<defaultValue property="textAlign">center</defaultValue>
 	  		<defaultValue property="fixedWidth">-1</defaultValue>
+	  		<defaultValue property="WIDTH">200</defaultValue>
+	  		<defaultValue property="HEIGHT">200</defaultValue>
 	  	</initialization>
 	  </component>
 <component
@@ -2519,6 +2668,8 @@
   		<defaultValue property="buttonType">Default</defaultValue>
   		<defaultValue property="browserWidth">80%</defaultValue>
   		<defaultValue property="browserHeight">80%</defaultValue>
+  		<defaultValue property="WIDTH">200</defaultValue>
+	  	<defaultValue property="HEIGHT">200</defaultValue>
   	</initialization>
 </component>
 
@@ -3206,6 +3357,8 @@
 	<initialization>
 		<defaultValue property="editable">true</defaultValue>
 		<defaultValue property="maxValue">5</defaultValue>
+		<defaultValue property="WIDTH">200</defaultValue>
+	  		<defaultValue property="HEIGHT">40</defaultValue>
 	</initialization>
 </component>
 <component

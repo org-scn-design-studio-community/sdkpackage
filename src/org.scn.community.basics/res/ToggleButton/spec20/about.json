@@ -1,0 +1,16 @@
+{
+	"title": "Toggle Button 2.0",
+	"description": "Toggle Button",
+	"icon": "ToggleButton.png",
+	"topics": 
+	[
+		{
+			"title" : "Toggle Button",
+			"content" : "Toggle Button"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

@@ -1,0 +1,16 @@
+{
+	"title": "Fiori Toolbar 2.0",
+	"description": "Fiori Toolbar",
+	"icon": "FioriToolbar.png",
+	"topics": 
+	[
+		{
+			"title" : "Fiori Toolbar",
+			"content" : "Fiori Toolbar"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

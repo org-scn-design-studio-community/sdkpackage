@@ -1,0 +1,16 @@
+{
+	"title": "Rating Indicator 2.0",
+	"description": "Rating Indicator",
+	"icon": "RatingIndicator.png",
+	"topics": 
+	[
+		{
+			"title" : "Rating Indicator",
+			"content" : "Rating Indicator"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

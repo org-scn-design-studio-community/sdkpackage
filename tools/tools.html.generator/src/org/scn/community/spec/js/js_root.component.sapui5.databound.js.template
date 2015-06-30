@@ -35,9 +35,9 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 		
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
-		this.onAfterRendering = function () {
-			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
-		}
+		// this.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
 	},
 	
 	afterDesignStudioUpdate: function() {

@@ -1,0 +1,16 @@
+{
+	"title": "Kpi View 2.0",
+	"description": "Kpi View",
+	"icon": "KpiView.png",
+	"topics": 
+	[
+		{
+			"title" : "Kpi View",
+			"content" : "Kpi View"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

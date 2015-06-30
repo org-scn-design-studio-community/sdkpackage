@@ -1,0 +1,167 @@
+{
+
+
+
+	"dBackColor" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Background Color",
+			"cat" : "Display",
+			"tooltip" : "Background Color For This Button",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dFontColor" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Font Color",
+			"cat" : "Display",
+			"tooltip" : "Font Color For This Button",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dIcon" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "e03e",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Icon",
+			"cat" : "Display",
+			"tooltip" : "Icon For This Button",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dSize" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "L",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Size M (16px) | L (22px)",
+			"cat" : "Unsorted",
+			"tooltip" : "The Size Of The Content",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "M",
+					"text" : "M"
+				},
+				{
+					"key" : "L",
+					"text" : "L"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dStyle" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Default",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Button Style",
+			"cat" : "Unsorted",
+			"tooltip" : "Predefined Style For This Button",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Default",
+					"text" : "Default"
+				},
+				{
+					"key" : "Emph",
+					"text" : "Emph"
+				},
+				{
+					"key" : "Accept",
+					"text" : "Accept"
+				},
+				{
+					"key" : "Reject",
+					"text" : "Reject"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Text",
+			"cat" : "Display",
+			"tooltip" : "Text For This Button",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dTooltip" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Tooltip",
+			"cat" : "Display",
+			"tooltip" : "Tooltip For This Button",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onClick" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Click",
+			"cat" : "Events",
+			"tooltip" : "Event For On Click",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

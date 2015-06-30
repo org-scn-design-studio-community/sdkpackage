@@ -1,0 +1,157 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Adds an item containing Key, Text, Visible and Enable flags.<br/>
+	 * <example><br/>
+	 * You want to add 2 items<br/>
+	 * <code><br/>
+	 * NAVIGATIONBAR.addItem("ITEM1", "First Item", true, false);<br/>
+	 * NAVIGATIONBAR.addItem("ITEM2", "Second Item", true, true);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void addItem (
+			/*Item Key (must be unique)*/ String itemKey,
+			/*Item text*/ String itemText,
+			/*Visible*/ boolean visible,
+			/*Enabled*/ boolean enabled,
+			
+			) 
+	{*
+		var itemDef = { 
+			"key": itemKey, 
+			"text": itemText, 
+			"visible": visible,
+			"enabled": enabled
+			};
+	
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == itemKey) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * returns the selected item<br/>
+	 */
+	String getSelectedItem (
+			
+			) 
+	{*
+		return this.DSelectedKey;
+	*}
+	/**
+	 * returns the selected item<br/>
+	 */
+	String getSelectedItemText (
+			
+			) 
+	{*
+		return this.DSelectedText;
+	*}
+	/**
+	 * remove all items<br/>
+	 */
+	void removeAllItems (
+			
+			) 
+	{*
+		var elementsArray = [];
+			this.DElementsContent = JSON.stringify(elementsArray);
+			
+			this.DCleanAll = true;
+	*}
+	/**
+	 * resets item selection<br/>
+	 */
+	void resetItemSelection (
+			
+			) 
+	{*
+		this.DSelectedKey = "invisible_dummy_select";
+	*}
+	/**
+	 * <example><br/>
+	 * You want to make the item enabled<br/>
+	 * <code><br/>
+	 * NAVIGATIONBAR.addItemEnabled("ITEM1", true);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void setItemEnabled (
+			/*Item Key (must be unique)*/ String itemKey,
+			/*Enabled*/ boolean enabled,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == itemKey) {
+				elementsJson[i].enabled = enabled;
+				break;
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * <example><br/>
+	 * You want to make the item visible<br/>
+	 * <code><br/>
+	 * NAVIGATIONBAR.addItemVisible("ITEM1", true);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void setItemVisible (
+			/*Item Key (must be unique)*/ String itemKey,
+			/*Visible*/ boolean visible,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == itemKey) {
+				elementsJson[i].visible = visible;
+				break;
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * sets the selected item<br/>
+	 */
+	void setSelectedItem (
+			/**/ String key,
+			
+			) 
+	{*
+		this.DSelectedKey = key;
+	*}
+	

@@ -1,0 +1,16 @@
+{
+	"title": "Paginator 2.0",
+	"description": "Paginator",
+	"icon": "Paginator.png",
+	"topics": 
+	[
+		{
+			"title" : "Paginator",
+			"content" : "Paginator"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

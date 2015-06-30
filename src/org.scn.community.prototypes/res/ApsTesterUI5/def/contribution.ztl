@@ -37,7 +37,7 @@ class org.scn.community.prototypes.ApsTesterUI5 extends org.scn.community.shared
 	/**
 	 * Gets Simple Color Property
 	 */	
-	Color getColorExample() {*
+	String getColorExample() {*
 		return this.colorExample;
 	*}
 

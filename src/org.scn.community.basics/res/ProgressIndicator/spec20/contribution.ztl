@@ -1,0 +1,41 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Returns the text value displayed in the bar<br/>
+	 */
+	String getDisplayValue (
+			
+			) 
+	{*
+		return this.displayValue;
+	*}
+	/**
+	 * Returns the percentage value of the progress bar<br/>
+	 */
+	int getPercentValue (
+			
+			) 
+	{*
+		return this.percentValue;
+	*}
+	/**
+	 * Sets the text value displayed in the bar<br/>
+	 */
+	void setDisplayValue (
+			/* Display value */ String displayValue,
+			
+			) 
+	{*
+		this.displayValue = displayValue;
+	*}
+	/**
+	 * Sets the percentage value of the progress bar<br/>
+	 */
+	void setPercentValue (
+			/* Percent value */ int percentValue,
+			
+			) 
+	{*
+		this.percentValue = percentValue;
+	*}
+	

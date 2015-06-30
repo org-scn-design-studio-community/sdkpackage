@@ -1,0 +1,16 @@
+{
+	"title": "Notification Bar 2.0",
+	"description": "Notification Bar",
+	"icon": "NotificationBar.png",
+	"topics": 
+	[
+		{
+			"title" : "Notification Bar",
+			"content" : "Notification Bar"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

@@ -1,0 +1,16 @@
+{
+	"title": "QRCode Generator 2.0",
+	"description": "QRCode Generation",
+	"icon": "QRCode.png",
+	"topics": 
+	[
+		{
+			"title" : "QRCode Generator",
+			"content" : "QRCode Generation"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

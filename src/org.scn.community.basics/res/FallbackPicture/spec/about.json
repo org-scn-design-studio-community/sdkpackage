@@ -1,0 +1,16 @@
+{
+	"title": "Fallback Picture 2.0",
+	"description": "Fallback Picture",
+	"icon": "FallbackPicture.png",
+	"topics": 
+	[
+		{
+			"title" : "Fallback Picture",
+			"content" : "Fallback Picture"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

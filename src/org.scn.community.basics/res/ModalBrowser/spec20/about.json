@@ -1,0 +1,16 @@
+{
+	"title": "Modal Browser 2.0",
+	"description": "In-App Modal Browser Pop-Up",
+	"icon": "ModalBrowser.png",
+	"topics": 
+	[
+		{
+			"title" : "Modal Browser",
+			"content" : "In-App Modal Browser Pop-Up"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

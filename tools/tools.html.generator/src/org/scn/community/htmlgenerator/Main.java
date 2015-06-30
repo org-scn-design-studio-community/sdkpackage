@@ -131,6 +131,11 @@ public class Main {
 				}
 			}
 
+			String cssFile = element.replace("def\\contribution.xml", component.getName() + ".css");
+			if(!new File(cssFile).exists()) {
+				Helpers.string2File(cssFile, "");
+			}
+
 			if(!component.name.startsWith("ChangeLog")) {
 				String castStringFromComponent = component.toCastString();
 				castString = castString + castStringFromComponent + "\r\n";

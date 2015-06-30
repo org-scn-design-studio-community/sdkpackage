@@ -1,0 +1,16 @@
+{
+	"title": "Tri State CheckBox 2.0",
+	"description": "Tri State CheckBox",
+	"icon": "TriStateCheckBox.png",
+	"topics": 
+	[
+		{
+			"title" : "Tri State CheckBox",
+			"content" : "Tri State CheckBox"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

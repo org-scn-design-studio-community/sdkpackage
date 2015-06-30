@@ -1,0 +1,47 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Get last menu element title clicked.<br/>
+	 * <example><code>var itemSelected = LISTSELECTOR_1.getLabelClicked();</code></example><br/>
+	 * <returns>Chart property as String type.</returns><br/>
+	 */
+	String getLabelClicked (
+			
+			) 
+	{*
+		return this.labelClicked;
+	*}
+	/**
+	 * Get list of menu element titles.<br/>
+	 * <example><code>var titles = LISTSELECTOR_1.getTitles();</code></example><br/>
+	 * <returns>Comma-seperated list of menu element titles</returns><br/>
+	 */
+	String getTitles (
+			
+			) 
+	{*
+		return this.titles;
+	*}
+	/**
+	 * Reset selection of menu element titles for complex navigation scenarios<br/>
+	 * <example><code>LISTSELECTOR_1.resetSelection();</code></example><br/>
+	 */
+	void resetSelection (
+			
+			) 
+	{*
+		this.labelUnselect = true;
+	*}
+	/**
+	 * Sets titles of your menu elements.<br/>
+	 * <example><code>LISTSELECTOR_1.setTitles("Google,Bing,Ask.com");</code></example><br/>
+	 * <note>Seperate each entry by a comma.</note><br/>
+	 */
+	void setTitles (
+			/* Titles */ String titles,
+			
+			) 
+	{*
+		this.titles = titles;
+	*}
+	

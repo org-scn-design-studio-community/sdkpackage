@@ -1,0 +1,22 @@
+{
+	"id": "FallbackPicture",
+	"title": "Fallback Picture 2.0",
+	"tooltip": "Fallback Picture",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.Image",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "100",
+	"height": "100"
+}

@@ -16,33 +16,68 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-sap.ui.commons.ColorPicker.extend("org.scn.community.basics.ColorPicker", {
-	_hexColor : "",
-	metadata : {
-		properties : {
-			colorStringHex : "string"
-		}
-	},
-	getColorStringHex : function(){
-		return this._hexColor;
-	},
-	setColorStringHex : function(s){
-		// Do nothing.
-	},
-	initDesignStudio: function() {
-		var that = this;
-		
-		this.attachChange(function(oControlEvent) {
-			that._hexColor = oControlEvent.getParameters().hex;
-			that.fireDesignStudioPropertiesChanged(["colorString","colorStringHex"]);
-			that.fireDesignStudioEvent("onColorChange");
-		});
-	},
+var myComponentData = org_scn_community_require.knownComponents.basics.ColorPicker;
+
+ColorPicker = {
 
 	renderer: {},
+	
+	initDesignStudio: function() {
+		var that = this;
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
 
+		org_scn_community_component_Core(that, myComponentData);
+		
+		that._oRoot = {};
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that.attachChange(function(oControlEvent) {
+			that.setColorStringHex(oControlEvent.getParameters().hex);
+			that.fireDesignStudioPropertiesChangedAndEvent(["colorString","colorStringHex"], "onColorChange");
+		});
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// this.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
+	},
+	
 	afterDesignStudioUpdate: function() {
-		// empty for now
-	}
+		var that = this;
+		
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data 
+	},
+	
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+
+define([myComponentData.requireName], function(basicscolorpicker){
+	myComponentData.instance = ColorPicker;
+	return myComponentData.instance;
 });
+
+}).call(this);

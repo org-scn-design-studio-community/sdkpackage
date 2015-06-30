@@ -8,43 +8,64 @@ Accordion = {
 	
 	initDesignStudio: function() {
 		var that = this;
+		
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
 		org_scn_community_component_Core(that, myComponentData);
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
-		this._ownScript = org_scn_community_basics.readOwnScriptAccess
+		that._ownScript = org_scn_community_basics.readOwnScriptAccess
 			("", org_scn_community_require.knownComponents.basics.Accordion.fullComponentName).myScriptPath;
 		
-		this.addStyleClass("scn-pack-Accordion");
+		that.addStyleClass("scn-pack-Accordion");
 		
-		this._oElements = {};
+		that._oElements = {};
 		
-		this._initComponent();
+		that._initComponent(owner);
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 	},
 	
 	afterDesignStudioUpdate: function() {
 		var that = this;
 		
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 
 		// backup current nodes
-		this._oElementsTemp = this._oElements;
-		if(this._oElementsTemp == undefined) {
-			this._oElementsTemp = {};
+		that._oElementsTemp = that._oElements;
+		if(that._oElementsTemp == undefined) {
+			that._oElementsTemp = {};
 		}
-		this._oElements = {};
+		that._oElements = {};
 
-		if(this.getCleanAll()) {
-			this._destroyAll();
+		if(that.getCleanAll()) {
+			that._destroyAll();
 			
-			this._oElements = {};
-			this._oElementsTemp = {};
+			that._oElements = {};
+			that._oElementsTemp = {};
 			
-			this.setCleanAll(false);
+			that.setCleanAll(false);
 			that.fireDesignStudioPropertiesChanged(["cleanAll"]);
 		}
 		
-		var lElementsToRender = this.getElementsContent();
+		var lElementsToRender = that.getElementsContent();
 		if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != ""){
 			var lElementsToRenderArray = JSON.parse(lElementsToRender);
 
@@ -52,49 +73,49 @@ Accordion = {
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
 				
-				if(this._oElements[element.key] == undefined) {
+				if(that._oElements[element.key] == undefined) {
 					var lNewElement = undefined;
 					
 					// new or the same?
-					if(this._oElementsTemp[element.key] == undefined) {
-						lNewElement = this._createElement(i, element.key, element.text, element.url, element.parentKey, element.leaf);	
+					if(that._oElementsTemp[element.key] == undefined) {
+						lNewElement = that._createElement(owner, i, element.key, element.text, element.url, element.parentKey, element.leaf);	
 					} else {
-						lNewElement = this._oElementsTemp[element.key];
+						lNewElement = that._oElementsTemp[element.key];
 					}
 					
-					this._oElements[element.key] = lNewElement;
+					that._oElements[element.key] = lNewElement;
 				}
 			}
 		}
 		
-		for (lElementKey in this._oElementsTemp) {
-			if(this._oElements[lElementKey] == undefined) {
+		for (lElementKey in that._oElementsTemp) {
+			if(that._oElements[lElementKey] == undefined) {
 				// it means the key is now removed, we have to update the component
-				var elemToRemove = this._oElementsTemp[lElementKey];
+				var elemToRemove = that._oElementsTemp[lElementKey];
 				
 				// it has a parent
 				if(elemToRemove._realParent) {
 					elemToRemove._realParent.removeContent(elemToRemove);
 				} else {
-					this.removeContent(elemToRemove);
+					that.removeContent(elemToRemove);
 				}
 				elemToRemove.destroy();
 			}
 		}
 
-		for (lElementKey in this._oElements) {
-			var lElement = this._oElements[lElementKey];
+		for (lElementKey in that._oElements) {
+			var lElement = that._oElements[lElementKey];
 			if(lElement._Placed != true) {
 				var parentKey = lElement._ParentKey;
 				
 				if(parentKey == "ROOT") {
-					this._addRoot(lElement);
+					that._addRoot(lElement);
 				} else {
-					var parentElement = this._oElements[parentKey];
+					var parentElement = that._oElements[parentKey];
 					if(parentElement != undefined) {
 						lElement._realParent = parentElement;
 
-						this._addChild(parentElement, lElement);
+						that._addChild(parentElement, lElement);
 					}
 				}
 				
@@ -104,16 +125,20 @@ Accordion = {
 			}
 		}
 		
-		this._cleanUpAfterUpdate();
+		that._cleanUpAfterUpdate();
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	},
 	
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
+
 	/* COMPONENT SPECIFIC CODE - START METHODS*/
 	/**
 	 * Specific Function for Initialization of the Content Component
 	 */
-	_initComponent : function() {
-		var that = this;
+	_initComponent : function(owner) {
+		var that = owner;
 		
 		that._oAccordion = new sap.ui.commons.Accordion();
 		that.addStyleClass("scn-pack-FullSizeChildren");
@@ -139,7 +164,7 @@ Accordion = {
 			}
 		});
 		
-		this.onAfterRendering = function () {
+		that.onAfterRendering = function () {
 			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oAccordion);
 		}
 	},
@@ -148,22 +173,26 @@ Accordion = {
 	 * Specific Function for Destroy All
 	 */
 	_destroyAll : function () {
-		for (lElementKey in this._oElements) {
-			var lElement = this._oElements[lElementKey];
+		var that = this;
+		
+		for (lElementKey in that._oElements) {
+			var lElement = that._oElements[lElementKey];
 			lElement.destroy();
 		}
 		
-		this._oAccordion.removeAllSections();
-		this._oAccordion.destroySections();
+		that._oAccordion.removeAllSections();
+		that._oAccordion.destroySections();
 		
-		this._oElements = {};
+		that._oElements = {};
 	},
 	
 	/**
 	 * Specific Function for Adding Root Elements
 	 */
 	_addRoot : function(iElement) {
-		this._oAccordion.addSection(iElement);
+		var that = this;
+		
+		that._oAccordion.addSection(iElement);
 	},
 	
 	/**
@@ -177,9 +206,11 @@ Accordion = {
 	 * Specific Function for CleanUp (if required)
 	 */
 	_cleanUpAfterUpdate : function () {
+		var that = this;
+		
 		// clean up "loading" element
-		for (lElementKey in this._oElements) {
-			var lElement = this._oElements[lElementKey];
+		for (lElementKey in that._oElements) {
+			var lElement = that._oElements[lElementKey];
 			if(lElement._childrenRequested) {
 				var elements = lElement.getContent();
 				// lElement.removeContent(elements[0]);
@@ -190,8 +221,8 @@ Accordion = {
 		}
 		
 		// make once
-		if(this.getExpandedKey() != this._lastExpanded) {
-			var lElement = this._oElements[this.getExpandedKey()];
+		if(that.getExpandedKey() != that._lastExpanded) {
+			var lElement = that._oElements[that.getExpandedKey()];
 			if(lElement) {
 				if(lElement._childrenRequested == undefined) {
 					var elements = lElement.getContent();
@@ -202,23 +233,23 @@ Accordion = {
 				}
 				
 				lElement.setCollapsed(false);
-				this._oAccordion.setOpenedSectionsId(this.getExpandedKey());	
+				that._oAccordion.setOpenedSectionsId(that.getExpandedKey());	
 			}
 		}
 	
-		this._lastExpanded = this.getExpandedKey();
+		that._lastExpanded = that.getExpandedKey();
 	},
 
-	_createElement: function (index, iElementKey, iElementText, iImageUrl, iParentKey, isLeaf) {
-		var that = this;
+	_createElement: function (owner, index, iElementKey, iElementText, iImageUrl, iParentKey, isLeaf) {
+		var that = owner;
 		
 		// in case starts with http, keep as is 
 		if(iImageUrl === undefined || iImageUrl.indexOf("http") == 0) {
 			// no nothing
 		} else {
 			// in case of repository, add the prefix from repository
-			if(iImageUrl != "" && this._pImagePrefix != undefined && this._pImagePrefix != ""){
-				iImageUrl = this._pImagePrefix + iImageUrl;
+			if(iImageUrl != "" && that._pImagePrefix != undefined && that._pImagePrefix != ""){
+				iImageUrl = that._pImagePrefix + iImageUrl;
 			}
 		}
 		
@@ -229,10 +260,10 @@ Accordion = {
 		}
 		
 		if(isLeaf){
-			lElement = this._creatLabelElement(iElementKey, iElementText, iImageUrl);
+			lElement = that._creatLabelElement(owner, iElementKey, iElementText, iImageUrl);
 		} else {
 			lElement = new sap.ui.commons.AccordionSection({
-					id: this.getId() + "-sec-" +  iElementKey,
+					id: that.getId() + "-sec-" +  iElementKey,
 					title: iElementText,
 					tooltip: iElementText,
 					collapsed: true});
@@ -246,11 +277,11 @@ Accordion = {
 		return lElement;
 	},
 	
-	_creatLabelElement: function (iKey, iText, iImageUrl) {
-		var that = this;
+	_creatLabelElement: function (owner, iKey, iText, iImageUrl) {
+		var that = owner;
 
-		var imageSize = this.getImageSize();
-		var withImage = this.getWithImage();
+		var imageSize = that.getImageSize();
+		var withImage = that.getWithImage();
 
 		var height = "20px";
 		var topImage = "5px";
@@ -308,7 +339,7 @@ Accordion = {
 				{left: leftText, top: topText}
 		);
 		
-		if(this.getSelectedKey() == iKey) {
+		if(that.getSelectedKey() == iKey) {
 			oLayout.addStyleClass("scn-pack-Accordion-SelectedValue");
 		}
 		
@@ -349,8 +380,9 @@ Accordion = {
 	},
 	
 	_updateSelection : function (iSelectedKey) {
-		for (lElementKey in this._oElements) {
-			var lElement = this._oElements[lElementKey];
+		var that = this;
+		for (lElementKey in that._oElements) {
+			var lElement = that._oElements[lElementKey];
 			if(lElement.addStyleClass) {
 				if(iSelectedKey == lElement._Key){
 					lElement.addStyleClass("scn-pack-Accordion-SelectedValue");

@@ -1,0 +1,16 @@
+{
+	"title": "Drag Drop Area 2.0",
+	"description": "Drag Drop Area",
+	"icon": "DragDropArea.png",
+	"topics": 
+	[
+		{
+			"title" : "Drag Drop Area",
+			"content" : "Drag Drop Area"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

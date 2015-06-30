@@ -870,6 +870,9 @@ public class Component {
 			}
 			return false;
 		}
+	}
+	public String getName() {
+		return this.name;
 	};
 	
 }

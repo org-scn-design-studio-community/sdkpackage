@@ -55,5 +55,7 @@
 	<initialization>
 		<defaultValue property="editable">true</defaultValue>
 		<defaultValue property="maxValue">5</defaultValue>
+		<defaultValue property="WIDTH">200</defaultValue>
+	  		<defaultValue property="HEIGHT">40</defaultValue>
 	</initialization>
 </component>

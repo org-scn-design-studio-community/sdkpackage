@@ -1,0 +1,16 @@
+{
+	"title": "Progress Indicator 2.0",
+	"description": "Progress Indicator",
+	"icon": "ProgressIndicator.png",
+	"topics": 
+	[
+		{
+			"title" : "Progress Indicator",
+			"content" : "Progress Indicator"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

@@ -1,0 +1,219 @@
+{
+
+
+
+	"background" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Background Color",
+			"cat" : "Display",
+			"tooltip" : "Background Color",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"ecLevel" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "L",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Error Correction Level",
+			"cat" : "Unsorted",
+			"tooltip" : "Error Correction Level",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "L",
+					"text" : "L"
+				},
+				{
+					"key" : "M",
+					"text" : "M"
+				},
+				{
+					"key" : "Q",
+					"text" : "Q"
+				},
+				{
+					"key" : "H",
+					"text" : "H"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"fill" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Fill Color",
+			"cat" : "Display",
+			"tooltip" : "Fill Color",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"maxVersion" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "40",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Max Version (1-40)",
+			"cat" : "Display",
+			"tooltip" : "Max Version (1-40)",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"minVersion" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : "1",
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Min Version (1-40)",
+			"cat" : "Display",
+			"tooltip" : "Min Version (1-40)",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"printOnly" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Only Show On Printouts",
+			"cat" : "Display",
+			"tooltip" : "Only Show On Printouts",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"quiet" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "0",
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Quiet Zone",
+			"cat" : "Display",
+			"tooltip" : "Quiet Zone",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"radius" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "0",
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Corner Radius (0.0 - 0.5)",
+			"cat" : "Display",
+			"tooltip" : "Corner Radius (0.0 - 0.5)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"render" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "canvas",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Render Mode",
+			"cat" : "Unsorted",
+			"tooltip" : "Render Mode",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "canvas",
+					"text" : "canvas"
+				},
+				{
+					"key" : "div",
+					"text" : "div"
+				},
+				{
+					"key" : "image",
+					"text" : "image"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "QRCode Text",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "QR Code Text",
+			"cat" : "Display",
+			"tooltip" : "QR Code Text",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onclick" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Click",
+			"cat" : "Events",
+			"tooltip" : "On Click",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

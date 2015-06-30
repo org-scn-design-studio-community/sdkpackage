@@ -1,0 +1,16 @@
+{
+	"title": "Slider 2.0",
+	"description": "Slider",
+	"icon": "Slider.png",
+	"topics": 
+	[
+		{
+			"title" : "Slider",
+			"content" : "Slider"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

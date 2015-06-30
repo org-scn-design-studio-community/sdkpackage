@@ -1,0 +1,16 @@
+{
+	"title": "Link 2.0",
+	"description": "Link",
+	"icon": "Link.png",
+	"topics": 
+	[
+		{
+			"title" : "Link",
+			"content" : "Link"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

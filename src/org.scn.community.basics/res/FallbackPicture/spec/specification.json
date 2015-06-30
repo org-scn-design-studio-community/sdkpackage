@@ -1,0 +1,41 @@
+{
+
+
+
+	"fallbackPicture" : {
+		"template" : "default",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url For Fallback Picture",
+			"cat" : "Display",
+			"tooltip" : "Url For Fallback Picture Which Should Be Shown",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"picture" : {
+		"template" : "default",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url For Picture",
+			"cat" : "Display",
+			"tooltip" : "Url For Picture Which Should Be Shown",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

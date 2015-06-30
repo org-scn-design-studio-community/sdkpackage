@@ -1,24 +1,40 @@
 
 /**
- * Class for FallbackPicture
+ * Generated ZTL Class for FallbackPicture
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.FallbackPicture extends org.scn.community.shared.Component {
-	
+
 	/**
-	 * Setter for "normal case" picture
-	 */
-	void setPicture (
-			/** picture */
-			String pictureForNormalCase) {*
-		this.picture = pictureForNormalCase;
+	 * Sets Url For Fallback Picture Property
+	 */	
+	void setFallbackPicture( /**Url For Fallback Picture*/ String fallbackPicture){*
+		this.fallbackPicture = fallbackPicture;
 	*}
 
 	/**
-	 * Setter for "fallback case" picture
-	 */
-	void setFallbackPicture (
-			/** fallback picture */
-			String pictureForFallbackCase) {*
-		this.fallbackPicture = pictureForFallbackCase;
+	 * Gets Url For Fallback Picture Property
+	 */	
+	String getFallbackPicture() {*
+		return this.fallbackPicture;
 	*}
+
+	/**
+	 * Sets Url For Picture Property
+	 */	
+	void setPicture( /**Url For Picture*/ String picture){*
+		this.picture = picture;
+	*}
+
+	/**
+	 * Gets Url For Picture Property
+	 */	
+	String getPicture() {*
+		return this.picture;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

@@ -1,0 +1,16 @@
+{
+	"title": "WorldTime 2.0",
+	"description": "WorldTime",
+	"icon": "WorldTime.png",
+	"topics": 
+	[
+		{
+			"title" : "WorldTime",
+			"content" : "WorldTime"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

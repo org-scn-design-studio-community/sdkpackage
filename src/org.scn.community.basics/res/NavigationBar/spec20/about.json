@@ -1,0 +1,16 @@
+{
+	"title": "Navigation Bar 2.0",
+	"description": "Navigation Bar",
+	"icon": "NavigationBar.png",
+	"topics": 
+	[
+		{
+			"title" : "Navigation Bar",
+			"content" : "Navigation Bar"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

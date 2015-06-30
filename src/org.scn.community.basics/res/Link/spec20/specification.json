@@ -1,0 +1,39 @@
+{
+
+
+
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Go Sap...",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Link Text",
+			"cat" : "Display",
+			"tooltip" : "Link Text To Be Displayed..",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onPress" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Press",
+			"cat" : "Events",
+			"tooltip" : "Fires The Event When The User Clicks The Control.",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

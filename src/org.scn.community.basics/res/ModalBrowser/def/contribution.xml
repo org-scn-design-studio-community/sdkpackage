@@ -49,5 +49,7 @@
   		<defaultValue property="buttonType">Default</defaultValue>
   		<defaultValue property="browserWidth">80%</defaultValue>
   		<defaultValue property="browserHeight">80%</defaultValue>
+  		<defaultValue property="WIDTH">200</defaultValue>
+	  	<defaultValue property="HEIGHT">200</defaultValue>
   	</initialization>
 </component>

@@ -1,0 +1,16 @@
+{
+	"title": "Value Help Field 2.0",
+	"description": "Value Help Field",
+	"icon": "ValueHelpField.png",
+	"topics": 
+	[
+		{
+			"title" : "Value Help Field",
+			"content" : "Value Help Field"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

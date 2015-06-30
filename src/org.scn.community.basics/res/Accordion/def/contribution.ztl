@@ -38,7 +38,7 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	/**
 	 * Gets Default Image Property
 	 */	
-	Url getDefaultImage() {*
+	String getDefaultImage() {*
 		return this.defaultImage;
 	*}
 

@@ -1,0 +1,261 @@
+{
+	"clickTrigger" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "-get",
+			"desc" : "Click Trigger For BIAL",
+			"cat" : "Display",
+			"tooltip" : "Click Trigger For BIAL",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"browserHeight" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "80%",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Modal Browser Height",
+			"cat" : "Display",
+			"tooltip" : "Modal Browser Height",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"browserIcon" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "sap-icon://business-objects-explorer",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Modal Browser Icon",
+			"cat" : "Display",
+			"tooltip" : "Modal Browser Icon",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"browserWidth" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "80%",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Modal Browser Width",
+			"cat" : "Display",
+			"tooltip" : "Modal Browser Width",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"buttonType" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Default",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Button Type",
+			"cat" : "Unsorted",
+			"tooltip" : "Button Type",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Default",
+					"text" : "Default"
+				},
+				{
+					"key" : "Transparent",
+					"text" : "Transparent"
+				},
+				{
+					"key" : "Accept",
+					"text" : "Accept"
+				},
+				{
+					"key" : "Back",
+					"text" : "Back"
+				},
+				{
+					"key" : "Emphasized",
+					"text" : "Emphasized"
+				},
+				{
+					"key" : "Reject",
+					"text" : "Reject"
+				},
+				{
+					"key" : "Up",
+					"text" : "Up"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"icon" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "sap-icon://action",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Button Icon",
+			"cat" : "Display",
+			"tooltip" : "Button Icon",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"openMethod" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Modal Browser Dialog",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "",
+			"ztlFunction": "",
+			"desc" : "Open Method",
+			"cat" : "Unsorted",
+			"tooltip" : "Open Method",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "New_Window",
+					"text" : "New_Window"
+				},
+				{
+					"key" : "Modal_Browser_Dialog",
+					"text" : "Modal_Browser_Dialog"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showButton" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Button",
+			"cat" : "Display",
+			"tooltip" : "Show Button",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showCloseButton" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "true",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Modal Browser Close Button",
+			"cat" : "Display",
+			"tooltip" : "Show Modal Browser Close Button",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showHeader" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "false",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Modal Browser Title",
+			"cat" : "Display",
+			"tooltip" : "Show Modal Browser Title",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Details...",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Button Text",
+			"cat" : "Display",
+			"tooltip" : "Button Text",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"title" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Browser Dialog Title",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Modal Browser Title",
+			"cat" : "Display",
+			"tooltip" : "Modal Browser Title",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"url" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "URL",
+			"cat" : "Display",
+			"tooltip" : "URL",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

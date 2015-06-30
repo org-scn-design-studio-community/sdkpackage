@@ -17,6 +17,13 @@ FacetFilter = {
 	
 	initDesignStudio: function() {
 		var that = this;
+		
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+
 		org_scn_community_component_Core(that, myComponentData);
 
 		jQuery.sap.require("sap.ui.ux3.FacetFilter");
@@ -55,11 +62,7 @@ FacetFilter = {
 			flatData = org_scn_community_databound.getSampleDataFlat(that, that.processData, that.afterPrepare);
 			return;
 		} else {
-			var options = org_scn_community_databound.initializeOptions();
-			options.ignoreResults = true;
-			// flatData = org_scn_community_databound.flatten(that.getData(), options);
-			
-			that.processData(flatData, that.afterPrepare, that);
+			org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
 			return;
 		}
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/

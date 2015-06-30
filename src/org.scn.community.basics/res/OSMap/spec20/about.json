@@ -1,0 +1,16 @@
+{
+	"title": "Open Street Map (Basic) 2.0",
+	"description": "Open Street Map (Basic)",
+	"icon": "Map.png",
+	"topics": 
+	[
+		{
+			"title" : "Open Street Map (Basic)",
+			"content" : "Open Street Map (Basic)"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

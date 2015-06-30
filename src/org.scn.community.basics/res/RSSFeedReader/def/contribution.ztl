@@ -16,7 +16,7 @@ class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Co
 	/**
 	 * Gets RSS Feed URL Property
 	 */	
-	Url getFeedUrl() {*
+	String getFeedUrl() {*
 		return this.feedUrl;
 	*}
 
@@ -44,7 +44,7 @@ class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Co
 	/**
 	 * Gets XSL URL Property
 	 */	
-	Url getXslUrl() {*
+	String getXslUrl() {*
 		return this.xslUrl;
 	*}
 

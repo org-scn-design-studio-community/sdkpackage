@@ -1916,13 +1916,13 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Check Box Group 2.0 component*/
 	org.scn.community.basics.CheckBoxGroup returnAsScnCheckBoxGroup (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Color Picker component*/
+	/**Cast to Color Picker 2.0 component*/
 	org.scn.community.basics.ColorPicker returnAsScnColorPicker (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Date Range Scroller component*/
+	/**Cast to Date Range Scroller 2.0 component*/
 	org.scn.community.basics.DateRangeScroller returnAsScnDateRangeScroller (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Date Range Slider component*/
+	/**Cast to Date Range Slider 2.0 component*/
 	org.scn.community.basics.DateRangeSlider returnAsScnDateRangeSlider (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Drag Drop Area component*/
@@ -1934,10 +1934,10 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Embedded Media 2.0 component*/
 	org.scn.community.basics.EmbeddedMedia returnAsScnEmbeddedMedia (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Fallback Picture component*/
+	/**Cast to Fallback Picture 2.0 component*/
 	org.scn.community.basics.FallbackPicture returnAsScnFallbackPicture (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Fiori App Header component*/
+	/**Cast to Fiori App Header 2.0 component*/
 	org.scn.community.basics.FioriAppHeader returnAsScnFioriAppHeader (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Fiori Button component*/
