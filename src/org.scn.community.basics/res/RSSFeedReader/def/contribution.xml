@@ -26,7 +26,7 @@
 	<property
 		id="useBuildInXsl"
 		type="boolean"
-		title="Single Row"
+		title="Use Build-In Xsl File"
 		group="Display"
 		bindable="true"
 		visible="true">

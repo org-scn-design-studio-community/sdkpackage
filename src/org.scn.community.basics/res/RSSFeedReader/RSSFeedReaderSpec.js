@@ -41,10 +41,10 @@
     "opts": {
       "apsControl": "checkbox",
       "cat": "Display-Xsl",
-      "desc": "Single Row",
+      "desc": "Use Build-In Xsl File",
       "noAps": false,
       "noZtl": false,
-      "tooltip": "Single Row",
+      "tooltip": "Use Build-In Xsl File",
       "ztlFunction": "",
       "ztlType": "boolean"
     },

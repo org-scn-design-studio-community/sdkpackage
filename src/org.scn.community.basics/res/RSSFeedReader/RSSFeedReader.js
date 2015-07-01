@@ -68,9 +68,9 @@ RSSFeedReader = function () {
 
 		var xslFile = that.getXslUrl();
 		var useBuildIn = that.getUseBuildInXsl();
-		
+
 		var xslLocation = "";
-		
+
 		if(useBuildIn) {
 			xslLocation = org_scn_community_basics.getRepositoryImageUrlPrefix(that, xslFile, "", "rss.xsl");
 			// need to make the "upper-folder" logic to match the call from the inner HTML iframe
@@ -79,14 +79,21 @@ RSSFeedReader = function () {
 			xslLocation = org_scn_community_basics.getRepositoryImageUrlPrefix(that, xslFile, xslFile, "rss.xsl");
 		}
 
-		var containerUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, "", "", that.rss_container);
+		var containerUrl = org_scn_community_basics.getRepositoryImageUrlPrefix (that, "", "", that.rss_container);
 		
-		var url_string = encodeURI(containerUrl
-				+ 'feed=' + that.getFeedUrl() +"&"
-				+ 'xsl=' + xslLocation);
+//		var urlEncodedFeed = that.getFeedUrl().replace("&", "%26");
+//		urlEncodedFeed = urlEncodedFeed.replace("?", "%3F");
+//		urlEncodedFeed = urlEncodedFeed.replace("=", "%3D");
+
+		var urlEncodedFeed = encodeURIComponent(that.getFeedUrl());
+		var urlEncodedXsl = encodeURIComponent(xslLocation);
 		
+		var url_string = encodeURI(containerUrl) 
+				+ 'feed=' + urlEncodedFeed +"&"
+				+ 'xsl=' + urlEncodedXsl;
+
 		var html = '<iframe src="'+url_string+'" width="auto" height="auto"></iframe>';
-		
+
 		this.$().html(html);
 	};
 

@@ -36,8 +36,15 @@
 		var params = getSearchParameters();
 
 	  	var feedUrl = params['feed'];
-	  	var xsl = loadXMLDoc(params['xsl']);      
-	  	var feed = new google.feeds.Feed(feedUrl);
+		var decodeUri = decodeURIComponent (feedUrl);
+	  	
+		var xslUrl = params['xsl'];
+		var decodeXsl = decodeURIComponent (xslUrl);
+	  	var xsl = loadXMLDoc(decodeXsl);
+
+	  	alert(decodeXsl + "\r\n" + xslUrl);
+	  	
+	  	var feed = new google.feeds.Feed(decodeUri);
 	  	feed.setResultFormat(google.feeds.Feed.XML_FORMAT);
       	feed.load(function(result) {
 	    try {

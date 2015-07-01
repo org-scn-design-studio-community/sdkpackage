@@ -26,9 +26,9 @@
 		"opts" : {
 			"ztlType": "boolean",
 			"ztlFunction": "",
-			"desc" : "Single Row",
+			"desc" : "Use Build-In Xsl File",
 			"cat" : "Display-Xsl",
-			"tooltip" : "Single Row",
+			"tooltip" : "Use Build-In Xsl File",
 			"apsControl" : "checkbox",
 			"noAps" : false,
 			"noZtl" : false

@@ -21,14 +21,14 @@ class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Co
 	*}
 
 	/**
-	 * Sets Single Row Property
+	 * Sets Use Build-In Xsl File Property
 	 */	
-	void setUseBuildInXsl( /**Single Row*/ boolean useBuildInXsl){*
+	void setUseBuildInXsl( /**Use Build-In Xsl File*/ boolean useBuildInXsl){*
 		this.useBuildInXsl = useBuildInXsl;
 	*}
 
 	/**
-	 * Gets Single Row Property
+	 * Gets Use Build-In Xsl File Property
 	 */	
 	boolean isUseBuildInXsl() {*
 		return this.useBuildInXsl;
