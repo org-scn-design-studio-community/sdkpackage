@@ -46,7 +46,7 @@
 	        "arrayDefinition":{
 	            "node":{
 	               "type":"Array",
-	               "sequence":"key,text,url,subnode",
+	               "sequence":"key,text,url,subNode",
 	               "key":{
 	                  "desc":"Unique Key",
 	                  "type":"String"

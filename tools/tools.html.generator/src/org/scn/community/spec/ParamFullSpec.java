@@ -216,103 +216,109 @@ public class ParamFullSpec {
 				for (ParamFullSpec paramGenChild : children) {
 					String typeOfChild = paramGenChild.properties.get("type");
 					
-					if(typeOfChild != null && typeOfChild.equals("Array")) {
-						CONTENT_NAME = paramGenChild.getName();
-						
-						// now parse the array down...
-						String sequence2 = paramGenChild.properties.get("sequence");
-						String[] splitSequence2 = sequence2.split(",");
-						
-						String PROPERTY_DEFINITION_FULL = "";
-						String PROPERTY_DEFINITION_JSON = "";
-						String PROPERTY_NEW_APS_JSON = "";
-						String ALL_PROPERTIES = "";
-						String PROPERTY_DEFINITION_KEY = "";
-						String ASSURE_OPTIONAL_INITIALIZED = "";
-						String ITEM_PROPERTY_DESCRIPTION = "";
+					String nameRoot = paramGenChild.getName();
+					if(keySequence.equals(nameRoot)) {
+						if(typeOfChild != null && typeOfChild.equals("Array")) {
+							CONTENT_NAME = nameRoot;
 							
-						for (int i2 = 0; i2 < splitSequence2.length; i2++) {
-							String keySequence2 = splitSequence2[i2];
-							ArrayList<ParamFullSpec> children2 = paramGenChild.parameters;
-							for (ParamFullSpec paramGenChild2 : children2) {
-								String typeOfChild2 = paramGenChild2.properties.get("type");
+							// now parse the array down...
+							String sequence2 = paramGenChild.properties.get("sequence");
+							String[] splitSequence2 = sequence2.split(",");
+							
+							String PROPERTY_DEFINITION_FULL = "";
+							String PROPERTY_DEFINITION_JSON = "";
+							String PROPERTY_NEW_APS_JSON = "";
+							String ALL_PROPERTIES = "";
+							String PROPERTY_DEFINITION_KEY = "";
+							String ASSURE_OPTIONAL_INITIALIZED = "";
+							String ITEM_PROPERTY_DESCRIPTION = "";
 								
-								if(typeOfChild2 != null && typeOfChild2.equals("Array")) {
-									throw new RuntimeException("unexpected");
-								} else {
-									if(keySequence2.equals(paramGenChild2.getName())) {
-										if(PROPERTY_DEFINITION_FULL.length() > 0) {
-											PROPERTY_DEFINITION_FULL = PROPERTY_DEFINITION_FULL + ", "  + "\r\n\t\t\t";
-											PROPERTY_DEFINITION_JSON = PROPERTY_DEFINITION_JSON + ", "  + "\r\n\t\t\t";
-											ALL_PROPERTIES = ALL_PROPERTIES + ", ";
-										}
-										
-										boolean optional = paramGenChild2.isOptional();
-										
-										boolean isBoolean = paramGenChild2.getType(true).equals("boolean");
-										String initValue = isBoolean?"false":"\"\"";
-										
-										if(optional) {
-											ASSURE_OPTIONAL_INITIALIZED = ASSURE_OPTIONAL_INITIALIZED + "if(" + paramGenChild2.getName() + " == undefined) { " + paramGenChild2.getName() + " = "+initValue+";}" + "\r\n\t\t";; 
-										}
-										
-										String subArrayName = arrayFullSpec.getName();
-										String subArrayNameUpper = Helpers.makeFirstUpper(subArrayName); 
-										
-										template = extendFor(paramGenChild2.getType(true), template, paramGenChild2, subArrayNameUpper);
-										
-										PROPERTY_DEFINITION_FULL = PROPERTY_DEFINITION_FULL + paramGenChild2.getHelp() + (optional?"optional ":"") + paramGenChild2.getType(true) + " " + paramGenChild2.getName();
-										PROPERTY_DEFINITION_JSON = PROPERTY_DEFINITION_JSON + paramGenChild2.getName() + ":" + paramGenChild2.getName();
-										
-										ALL_PROPERTIES = ALL_PROPERTIES + paramGenChild2.getName() + " [" + paramGenChild2.getType(true) + "]"; 
-										
-										if(paramGenChild2.getName().equals("key")) {
-											PROPERTY_DEFINITION_KEY = paramGenChild2.getType(true) + " " + paramGenChild2.getName();
-											ITEM_PROPERTY_DESCRIPTION = paramGenChild2.getTitle();
+							for (int i2 = 0; i2 < splitSequence2.length; i2++) {
+								String keySequence2 = splitSequence2[i2];
+								ArrayList<ParamFullSpec> children2 = paramGenChild.parameters;
+								for (ParamFullSpec paramGenChild2 : children2) {
+									String typeOfChild2 = paramGenChild2.properties.get("type");
+									
+									if(typeOfChild2 != null && typeOfChild2.equals("Array")) {
+										throw new RuntimeException("unexpected");
+									} else {
+										String nameChild = paramGenChild2.getName();
+										if(keySequence2.equals(nameChild)) {
+											if(PROPERTY_DEFINITION_FULL.length() > 0) {
+												PROPERTY_DEFINITION_FULL = PROPERTY_DEFINITION_FULL + ", "  + "\r\n\t\t\t";
+												PROPERTY_DEFINITION_JSON = PROPERTY_DEFINITION_JSON + ", "  + "\r\n\t\t\t";
+												ALL_PROPERTIES = ALL_PROPERTIES + ", ";
+											}
+											
+											boolean optional = paramGenChild2.isOptional();
+											
+											boolean isBoolean = paramGenChild2.getType(true).equals("boolean");
+											String initValue = isBoolean?"false":"\"\"";
+											
+											if(optional) {
+												ASSURE_OPTIONAL_INITIALIZED = ASSURE_OPTIONAL_INITIALIZED + "if(" + nameChild + " == undefined) { " + nameChild + " = "+initValue+";}" + "\r\n\t\t";; 
+											}
+											
+											String subArrayName = nameRoot;
+											String subArrayNameUpper = Helpers.makeFirstUpper(subArrayName); 
+											
+											PROPERTY_DEFINITION_FULL = PROPERTY_DEFINITION_FULL + paramGenChild2.getHelp() + (optional?"optional ":"") + paramGenChild2.getType(true) + " " + nameChild;
+											PROPERTY_DEFINITION_JSON = PROPERTY_DEFINITION_JSON + nameChild + ":" + nameChild;
+											
+											ALL_PROPERTIES = ALL_PROPERTIES + nameChild + " [" + paramGenChild2.getType(true) + "]"; 
+											
+											if(nameChild.equals("key")) {
+												PROPERTY_DEFINITION_KEY = paramGenChild2.getType(true) + " " + nameChild;
+												ITEM_PROPERTY_DESCRIPTION = paramGenChild2.getTitle();
+											} else {
+												if(!nameChild.equals("parentKey") && !nameChild.equals("leaf")) {
+													template = extendFor(paramGenChild2.getType(true), template, paramGenChild2, subArrayNameUpper);	
+												}
+											}
 										}
 									}
 								}
 							}
-						}
-						
-						template = template.replace("%PROPERTY_DEFINITION_FULL%", PROPERTY_DEFINITION_FULL);
-						template = template.replace("%PROPERTY_DEFINITION_JSON%", PROPERTY_DEFINITION_JSON);
-						template = template.replace("%ALL_PROPERTIES%", ALL_PROPERTIES);
-						template = template.replace("%PROPERTY_DEFINITION_KEY%", PROPERTY_DEFINITION_KEY);
-						template = template.replace("%ASSURE_OPTIONAL_INITIALIZED%", ASSURE_OPTIONAL_INITIALIZED);
-						
-					} else {
-						if(keySequence.equals(paramGenChild.getName())) {
-							if(ROOT_PROPERTY_DEFINITION_FULL.length() > 0) {
-								ROOT_PROPERTY_DEFINITION_FULL = ROOT_PROPERTY_DEFINITION_FULL + ", " + "\r\n\t\t\t";
-								PROPERTY_FULL = PROPERTY_FULL + ", " + "\r\n\t\t\t";
-								ROOT_ALL_PROPERTIES = ROOT_ALL_PROPERTIES + ", ";
-								ROOT_PROPERTY_DEFINITION_JSON = ROOT_PROPERTY_DEFINITION_JSON + ", "  + "\r\n\t\t\t";
+							
+							template = template.replace("%PROPERTY_DEFINITION_FULL%", PROPERTY_DEFINITION_FULL);
+							template = template.replace("%PROPERTY_DEFINITION_JSON%", PROPERTY_DEFINITION_JSON);
+							template = template.replace("%ALL_PROPERTIES%", ALL_PROPERTIES);
+							template = template.replace("%PROPERTY_DEFINITION_KEY%", PROPERTY_DEFINITION_KEY);
+							template = template.replace("%ASSURE_OPTIONAL_INITIALIZED%", ASSURE_OPTIONAL_INITIALIZED);
+							
+						} else {
+							if(keySequence.equals(nameRoot)) {
+								if(ROOT_PROPERTY_DEFINITION_FULL.length() > 0) {
+									ROOT_PROPERTY_DEFINITION_FULL = ROOT_PROPERTY_DEFINITION_FULL + ", " + "\r\n\t\t\t";
+									PROPERTY_FULL = PROPERTY_FULL + ", " + "\r\n\t\t\t";
+									ROOT_ALL_PROPERTIES = ROOT_ALL_PROPERTIES + ", ";
+									ROOT_PROPERTY_DEFINITION_JSON = ROOT_PROPERTY_DEFINITION_JSON + ", "  + "\r\n\t\t\t";
+								}
+								
+								boolean optional = paramGenChild.isOptional();
+								
+								boolean isBoolean = paramGenChild.getType(true).equals("boolean");
+								String initValue = isBoolean?"false":"\"\"";
+	
+								if(optional) {
+									ASSURE_OPTIONAL_ROOT_INITIALIZED = ASSURE_OPTIONAL_ROOT_INITIALIZED + "if(" + nameRoot + " == undefined) { " + nameRoot + " = "+initValue+";}" + "\r\n\t\t";; 
+								}
+								
+								ROOT_PROPERTY_DEFINITION_FULL = ROOT_PROPERTY_DEFINITION_FULL + paramGenChild.getHelp() + (optional?"optional ":"") + paramGenChild.getType(true) + " " + nameRoot;
+								ROOT_PROPERTY_DEFINITION_JSON = ROOT_PROPERTY_DEFINITION_JSON + nameRoot + ":" + nameRoot;
+								PROPERTY_FULL = PROPERTY_FULL + nameRoot;
+								ROOT_ALL_PROPERTIES = ROOT_ALL_PROPERTIES + nameRoot + " [" + paramGenChild.getType(true) + "]";
+								
+								if(nameRoot.equals("key")) {
+									ROOT_PROPERTY_DEFINITION_KEY = paramGenChild.getType(true) + " " + nameRoot;
+									ROOT_PROPERTY_KEY = nameRoot;
+									ROOT_PROPERTY_DESCRIPTION = paramGenChild.getTitle();
+								} else {
+									if(!nameRoot.equals("parentKey") && !nameRoot.equals("leaf")) {
+										template = extendFor(paramGenChild.getType(true), template, paramGenChild, arrayNameUpper);	
+									}
+								}
 							}
-							
-							boolean optional = paramGenChild.isOptional();
-							
-							boolean isBoolean = paramGenChild.getType(true).equals("boolean");
-							String initValue = isBoolean?"false":"\"\"";
-
-							if(optional) {
-								ASSURE_OPTIONAL_ROOT_INITIALIZED = ASSURE_OPTIONAL_ROOT_INITIALIZED + "if(" + paramGenChild.getName() + " == undefined) { " + paramGenChild.getName() + " = "+initValue+";}" + "\r\n\t\t";; 
-							}
-							
-							template = extendFor(paramGenChild.getType(true), template, paramGenChild, arrayNameUpper);
-
-							ROOT_PROPERTY_DEFINITION_FULL = ROOT_PROPERTY_DEFINITION_FULL + paramGenChild.getHelp() + (optional?"optional ":"") + paramGenChild.getType(true) + " " + paramGenChild.getName();
-							ROOT_PROPERTY_DEFINITION_JSON = ROOT_PROPERTY_DEFINITION_JSON + paramGenChild.getName() + ":" + paramGenChild.getName();
-							PROPERTY_FULL = PROPERTY_FULL + paramGenChild.getName();
-							ROOT_ALL_PROPERTIES = ROOT_ALL_PROPERTIES + paramGenChild.getName() + " [" + paramGenChild.getType(true) + "]";
-							
-							if(paramGenChild.getName().equals("key")) {
-								ROOT_PROPERTY_DEFINITION_KEY = paramGenChild.getType(true) + " " + paramGenChild.getName();
-								ROOT_PROPERTY_KEY = paramGenChild.getName();
-								ROOT_PROPERTY_DESCRIPTION = paramGenChild.getTitle();
-							}
-							
-							break;
 						}
 					}
 				}
@@ -324,7 +330,7 @@ public class ParamFullSpec {
 			template = template.replace("%ROOT_ALL_PROPERTIES%", ROOT_ALL_PROPERTIES);
 			template = template.replace("%ASSURE_OPTIONAL_ROOT_INITIALIZED%", ASSURE_OPTIONAL_ROOT_INITIALIZED);
 			
-			template = template.replace("%BOOLEAN_EXTENSION_PROPERTY%", "");
+			template = template.replace("%CUSTOM_EXTENSION_PROPERTY%", "");
 			
 			if(CONTENT_NAME != null && CONTENT_NAME.length() > 0) {
 				template = template.replace("%CONTENT_NAME%", Helpers.makeFirstUpper(CONTENT_NAME));	
@@ -375,13 +381,10 @@ public class ParamFullSpec {
 		String nameCut = paramGenChild.getName();
 		nameCut = Helpers.makeFirstUpper(nameCut);
 		templateCustom = templateCustom.replace("%NAME_CAPITAL%", nameCut);
-		
-		String nameCutParent = this.parentProperty.getNameCut();
-		nameCutParent = Helpers.makeFirstUpper(nameCutParent);
-		templateCustom = templateCustom.replace("%PROPERTY_CAPITAL_CUT%", nameCutParent);
-		templateCustom = templateCustom.replace("%ROOT_CONTENT_NAME%", arrayNameUpper);
+
+		templateCustom = templateCustom.replace("%PROPERTY_CAPITAL_CUT%", arrayNameUpper);
 		 
-		return template.replace("%BOOLEAN_EXTENSION_PROPERTY%", templateCustom);
+		return template.replace("%CUSTOM_EXTENSION_PROPERTY%", templateCustom + "\r\n" + "%CUSTOM_EXTENSION_PROPERTY%");
 	}
 
 	private String exchangeTemplate (String template, String type, String xmlType) {

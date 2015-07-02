@@ -166,7 +166,7 @@
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets %ROOT_CONTENT_NAME%s As JSON String
 	 */	
@@ -175,4 +175,4 @@
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
-%BOOLEAN_EXTENSION_PROPERTY%
+%CUSTOM_EXTENSION_PROPERTY%

@@ -175,7 +175,7 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 		
 		this.removeSubNode(key);
 	*}
-	
+
 	/**
 	 * Gets Nodes As JSON String
 	 */	
@@ -183,6 +183,8 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 		var jsonObject = JSON.parse(this.nodesContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+	
+
 
 
 

@@ -168,7 +168,7 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		
 		this.removeElement(key);
 	*}
-	
+
 	/**
 	 * Gets Sections As JSON String
 	 */	
@@ -176,6 +176,8 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		var jsonObject = JSON.parse(this.elementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+	
+
 
 	/**
 	 * Gets Expaned Key Property

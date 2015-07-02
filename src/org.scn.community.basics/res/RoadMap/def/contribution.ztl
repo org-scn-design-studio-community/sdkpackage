@@ -214,7 +214,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets Steps As JSON String
 	 */	
@@ -226,7 +226,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Sets the Visible keys<br/>
 	 */
-	void setVisibleSteps (
+	void setVisibleStepKeys (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -258,7 +258,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Sets the Visible Key<br/>
 	 */
-	void setVisibleStep (
+	void setVisibleStepKey (
 			/**/ String key,
 			/**/ boolean visible
 			) 
@@ -279,11 +279,12 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		this.DElementsContent = JSON.stringify(elementsJson);
 	*}
-	
+
+		
 	/**
 	 * Clean all Visible keys<br/>
 	 */
-	void cleanAllVisibleSteps (
+	void cleanAllVisibleStepKeys (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -302,26 +303,127 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Visible keys<br/>
 	 */
-	org.scn.pack.KeyArray getVisibleElementsContentArray (
+	org.scn.pack.KeyArray getVisibleStepKeysArray (
 			) 
 	{*
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
 			return [];
 		}
 		
-		var elementsJson = JSON.parse(this.elements);
+		var elementsJson = JSON.parse(this.DElementsContent);
 		
 		var newElementsJson = [];
 		
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].selected == true) {
+			if (elementsJson[i].visible == true) {
 				newElementsJson.push(elementsJson[i]);
 			}
 		}
 		
 		return newElementsJson;
 	*}
+	/**
+	 * Sets the Enabled keys<br/>
+	 */
+	void setEnabledStepKeys (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].enabled = true;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Enabled Key<br/>
+	 */
+	void setEnabledStepKey (
+			/**/ String key,
+			/**/ boolean enabled
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].enabled = selected;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Enabled keys<br/>
+	 */
+	void cleanAllEnabledStepKeys (
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns the Enabled keys<br/>
+	 */
+	org.scn.pack.KeyArray getEnabledStepKeysArray (
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].enabled == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+
 
 
 	/**

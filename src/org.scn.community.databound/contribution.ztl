@@ -2653,7 +2653,7 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets ColumnWidthEntrys As JSON String
 	 */	

@@ -3428,126 +3428,147 @@
 
 <component
 	id="SegmentedButton"
-	title="Segmented Button"
+	title="Segmented Button 2.0"
+	tooltip="Segmented Button"
 	icon="res/SegmentedButton/SegmentedButton.png"
 	handlerType="sapui5"
+	propertySheetPath="res/SegmentedButton/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
-	propertySheetPath="res/SegmentedButton/aps/SegmentedButtonPropertyPage.html">
+	databound="false"
+>
 	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/SegmentedButton/SegmentedButton.js</jsInclude>
+	<jsInclude>res/SegmentedButton/SegmentedButtonLoader.js</jsInclude>
 	<cssInclude>res/SegmentedButton/SegmentedButton.css</cssInclude>
-
+	
 	<property
 		id="DCleanAll"
 		type="boolean"
-		title="Technical property for Clean All Nodes"
+		title="Clean All Nodes"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="false">
 
+	</property>
+	<property
+		id="DDefaultImage"
+		type="Url"
+		title="Url For Default Image"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="DElementsContent"
 		type="String"
-		title="List of Buttons with Sub-Items"
+		title="Buttons"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
-		id="DSelectedKeys"
+		id="DImageSize"
 		type="String"
-		title="Technical property for selected keys"
+		title="Size Of The Image"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
 		id="DPressedButtonKey"
 		type="String"
-		title="Technical property for pressed button key"
+		title="Technical Property For Pressed Button Key"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="false">
 
+	</property>
 	<property
 		id="DPressedItemKey"
 		type="String"
-		title="Technical property for pressed item key"
+		title="Technical Property For Pressed Item Key"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="false">
 
+	</property>
+	<property
+		id="DSelectedKeys"
+		type="String"
+		title="Technical Property For Selected Keys"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
 	<property
 		id="DSelectionType"
-		title="Selection Type"
-		tooltip="Selection Type SINGLE | MULTIPLE"
-		group="Display" 
 		type="String"
-		visible="true"
-	>
-		<possibleValue>Single</possibleValue>
-		<possibleValue>Multiple</possibleValue>
+		title="Selection Type"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
-
-	<property
-		id="DDefaultImage"
-		title="Url for Default Image"
-		tooltip="Url for Default Image which should be shown in case no other is specified"
-		group="Display" 
-		type="Url"
-		visible="true" />
-
 	<property
 		id="DWithImages"
-		title="Use Images"
 		type="boolean"
+		title="Use Images"
 		group="Display"
-	>
+		bindable="true"
+		visible="true">
+
 	</property>
-
-	<property
-		id="DImageSize"
-		title="Size of the Image"
-		type="String"
-		group="Display"
-	>
-		<possibleValue>16px</possibleValue>
-		<possibleValue>32px</possibleValue>
-	</property>
-
-	<property
-		id="onSelected"
-		type="ScriptText"
-		title="Event for On Selection Changed"
-		group="Events" />
-
 	<property
 		id="onButtonPressed"
 		type="ScriptText"
-		title="Event for On Button Pressed"
-		group="Events" />
+		title="Event For On Button Pressed"
+		group="Events"
+		visible="true">
 
+	</property>
 	<property
 		id="onItemPressed"
 		type="ScriptText"
-		title="Event for On Item Pressed"
-		group="Events" />
+		title="Event For On Item Pressed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onSelected"
+		type="ScriptText"
+		title="Event For On Selection Changed"
+		group="Events"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
-		<defaultValue property="WIDTH">300</defaultValue>
-		<defaultValue property="HEIGHT">22</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-
-		<defaultValue property="DElementsContent"></defaultValue>
-		<defaultValue property="DSelectionType">Single</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
 		
-		<defaultValue property="DWithImage">false</defaultValue>
+		<defaultValue property="DCleanAll">false</defaultValue>
 		<defaultValue property="DDefaultImage"></defaultValue>
+		<defaultValue property="DElementsContent">[]</defaultValue>
 		<defaultValue property="DImageSize">16px</defaultValue>
-
-		<defaultValue property="DSelectedKeys">[]</defaultValue>
 		<defaultValue property="DPressedButtonKey"></defaultValue>
 		<defaultValue property="DPressedItemKey"></defaultValue>
+		<defaultValue property="DSelectedKeys">[]</defaultValue>
+		<defaultValue property="DSelectionType">Single</defaultValue>
+		<defaultValue property="DWithImages"></defaultValue>
+		<defaultValue property="onButtonPressed"></defaultValue>
+		<defaultValue property="onItemPressed"></defaultValue>
+		<defaultValue property="onSelected"></defaultValue>
+
 	</initialization>
 
 </component>

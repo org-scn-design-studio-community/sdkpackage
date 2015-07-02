@@ -1,0 +1,22 @@
+{
+	"id": "SegmentedButton",
+	"title": "Segmented Button 2.0",
+	"tooltip": "Segmented Button",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "22"
+}

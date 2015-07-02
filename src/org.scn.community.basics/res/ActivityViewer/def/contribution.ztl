@@ -204,7 +204,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets Activitys As JSON String
 	 */	
@@ -396,7 +396,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets Categorys As JSON String
 	 */	
@@ -408,7 +408,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Sets the Visible keys<br/>
 	 */
-	void setVisibleCategorys (
+	void setVisibleCategoryKeys (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -440,7 +440,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Sets the Visible Key<br/>
 	 */
-	void setVisibleCategory (
+	void setVisibleCategoryKey (
 			/**/ String key,
 			/**/ boolean visible
 			) 
@@ -461,11 +461,12 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		this.categories = JSON.stringify(elementsJson);
 	*}
-	
+
+		
 	/**
 	 * Clean all Visible keys<br/>
 	 */
-	void cleanAllVisibleCategorys (
+	void cleanAllVisibleCategoryKeys (
 			) 
 	{*
 		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
@@ -484,26 +485,27 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Returns the Visible keys<br/>
 	 */
-	org.scn.pack.KeyArray getVisibleCategoriesArray (
+	org.scn.pack.KeyArray getVisibleCategoryKeysArray (
 			) 
 	{*
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
 			return [];
 		}
 		
-		var elementsJson = JSON.parse(this.elements);
+		var elementsJson = JSON.parse(this.categories);
 		
 		var newElementsJson = [];
 		
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].selected == true) {
+			if (elementsJson[i].visible == true) {
 				newElementsJson.push(elementsJson[i]);
 			}
 		}
 		
 		return newElementsJson;
 	*}
+
 
 
 
@@ -682,7 +684,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets States As JSON String
 	 */	

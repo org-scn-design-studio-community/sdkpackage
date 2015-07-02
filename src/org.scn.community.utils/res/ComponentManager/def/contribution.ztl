@@ -786,7 +786,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Road Map 2.0 component*/
 	org.scn.community.basics.RoadMap returnAsScnRoadMap (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Segmented Button component*/
+	/**Cast to Segmented Button 2.0 component*/
 	org.scn.community.basics.SegmentedButton returnAsScnSegmentedButton (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Slider component*/

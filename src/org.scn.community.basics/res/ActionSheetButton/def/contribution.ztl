@@ -228,7 +228,7 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets Items As JSON String
 	 */	

@@ -79,7 +79,7 @@
           "desc": "Unique Key",
           "type": "String"
         },
-        "sequence": "key,text,url,subnode",
+        "sequence": "key,text,url,subNode",
         "subNode": {
           "key": {
             "desc": "Unique Key",

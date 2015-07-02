@@ -1,0 +1,16 @@
+{
+	"title": "Segmented Button 2.0",
+	"description": "Segmented Button",
+	"icon": "SegmentedButton.png",
+	"topics": 
+	[
+		{
+			"title" : "Segmented Button",
+			"content" : "Segmented Button"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

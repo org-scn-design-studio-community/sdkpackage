@@ -1,7 +1,7 @@
 	/**
 	 * Sets the %NAME_CAPITAL% keys<br/>
 	 */
-	void set%NAME_CAPITAL%%ROOT_CONTENT_NAME%s (
+	void set%NAME_CAPITAL%%PROPERTY_CAPITAL_CUT%Keys (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -33,7 +33,7 @@
 	/**
 	 * Sets the %NAME_CAPITAL% Key<br/>
 	 */
-	void set%NAME_CAPITAL%%ROOT_CONTENT_NAME% (
+	void set%NAME_CAPITAL%%PROPERTY_CAPITAL_CUT%Key (
 			/**/ String key,
 			/**/ boolean %NAME%
 			) 
@@ -54,11 +54,12 @@
 
 		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
 	*}
-	
+
+		
 	/**
 	 * Clean all %NAME_CAPITAL% keys<br/>
 	 */
-	void cleanAll%NAME_CAPITAL%%ROOT_CONTENT_NAME%s (
+	void cleanAll%NAME_CAPITAL%%PROPERTY_CAPITAL_CUT%Keys (
 			) 
 	{*
 		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
@@ -77,20 +78,20 @@
 	/**
 	 * Returns the %NAME_CAPITAL% keys<br/>
 	 */
-	org.scn.pack.KeyArray get%NAME_CAPITAL%%PROPERTY_CAPITAL_CUT%Array (
+	org.scn.pack.KeyArray get%NAME_CAPITAL%%PROPERTY_CAPITAL_CUT%KeysArray (
 			) 
 	{*
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
 			return [];
 		}
 		
-		var elementsJson = JSON.parse(this.elements);
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
 		
 		var newElementsJson = [];
 		
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].selected == true) {
+			if (elementsJson[i].%NAME% == true) {
 				newElementsJson.push(elementsJson[i]);
 			}
 		}

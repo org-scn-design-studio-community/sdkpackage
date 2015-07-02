@@ -214,7 +214,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets Elements As JSON String
 	 */	
@@ -226,7 +226,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Sets the Selected keys<br/>
 	 */
-	void setSelectedElements (
+	void setSelectedElementKeys (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -258,7 +258,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Sets the Selected Key<br/>
 	 */
-	void setSelectedElement (
+	void setSelectedElementKey (
 			/**/ String key,
 			/**/ boolean selected
 			) 
@@ -279,11 +279,12 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 
 		this.elements = JSON.stringify(elementsJson);
 	*}
-	
+
+		
 	/**
 	 * Clean all Selected keys<br/>
 	 */
-	void cleanAllSelectedElements (
+	void cleanAllSelectedElementKeys (
 			) 
 	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
@@ -302,7 +303,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getSelectedElementsArray (
+	org.scn.pack.KeyArray getSelectedElementKeysArray (
 			) 
 	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
@@ -322,6 +323,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 		
 		return newElementsJson;
 	*}
+
 
 
 	/**

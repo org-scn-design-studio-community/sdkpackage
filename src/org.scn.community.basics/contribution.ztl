@@ -188,7 +188,7 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		
 		this.removeElement(key);
 	*}
-	
+
 	/**
 	 * Gets Sections As JSON String
 	 */	
@@ -196,6 +196,8 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		var jsonObject = JSON.parse(this.elementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+	
+
 
 	/**
 	 * Gets Expaned Key Property
@@ -516,7 +518,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets Activitys As JSON String
 	 */	
@@ -708,7 +710,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets Categorys As JSON String
 	 */	
@@ -720,7 +722,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Sets the Visible keys<br/>
 	 */
-	void setVisibleCategorys (
+	void setVisibleCategoryKeys (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -752,7 +754,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Sets the Visible Key<br/>
 	 */
-	void setVisibleCategory (
+	void setVisibleCategoryKey (
 			/**/ String key,
 			/**/ boolean visible
 			) 
@@ -773,11 +775,12 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		this.categories = JSON.stringify(elementsJson);
 	*}
-	
+
+		
 	/**
 	 * Clean all Visible keys<br/>
 	 */
-	void cleanAllVisibleCategorys (
+	void cleanAllVisibleCategoryKeys (
 			) 
 	{*
 		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
@@ -796,26 +799,27 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Returns the Visible keys<br/>
 	 */
-	org.scn.pack.KeyArray getVisibleCategoriesArray (
+	org.scn.pack.KeyArray getVisibleCategoryKeysArray (
 			) 
 	{*
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
 			return [];
 		}
 		
-		var elementsJson = JSON.parse(this.elements);
+		var elementsJson = JSON.parse(this.categories);
 		
 		var newElementsJson = [];
 		
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].selected == true) {
+			if (elementsJson[i].visible == true) {
 				newElementsJson.push(elementsJson[i]);
 			}
 		}
 		
 		return newElementsJson;
 	*}
+
 
 
 
@@ -994,7 +998,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets States As JSON String
 	 */	
@@ -1240,7 +1244,7 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets Items As JSON String
 	 */	
@@ -1902,7 +1906,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets Elements As JSON String
 	 */	
@@ -1914,7 +1918,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Sets the Selected keys<br/>
 	 */
-	void setSelectedElements (
+	void setSelectedElementKeys (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -1946,7 +1950,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Sets the Selected Key<br/>
 	 */
-	void setSelectedElement (
+	void setSelectedElementKey (
 			/**/ String key,
 			/**/ boolean selected
 			) 
@@ -1967,11 +1971,12 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 
 		this.elements = JSON.stringify(elementsJson);
 	*}
-	
+
+		
 	/**
 	 * Clean all Selected keys<br/>
 	 */
-	void cleanAllSelectedElements (
+	void cleanAllSelectedElementKeys (
 			) 
 	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
@@ -1990,7 +1995,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getSelectedElementsArray (
+	org.scn.pack.KeyArray getSelectedElementKeysArray (
 			) 
 	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
@@ -2010,6 +2015,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 		
 		return newElementsJson;
 	*}
+
 
 
 	/**
@@ -5347,7 +5353,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		return "";
 	*}
-	
+
 	/**
 	 * Gets Steps As JSON String
 	 */	
@@ -5359,7 +5365,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Sets the Visible keys<br/>
 	 */
-	void setVisibleSteps (
+	void setVisibleStepKeys (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -5391,7 +5397,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Sets the Visible Key<br/>
 	 */
-	void setVisibleStep (
+	void setVisibleStepKey (
 			/**/ String key,
 			/**/ boolean visible
 			) 
@@ -5412,11 +5418,12 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		this.DElementsContent = JSON.stringify(elementsJson);
 	*}
-	
+
+		
 	/**
 	 * Clean all Visible keys<br/>
 	 */
-	void cleanAllVisibleSteps (
+	void cleanAllVisibleStepKeys (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -5435,26 +5442,127 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Visible keys<br/>
 	 */
-	org.scn.pack.KeyArray getVisibleElementsContentArray (
+	org.scn.pack.KeyArray getVisibleStepKeysArray (
 			) 
 	{*
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
 			return [];
 		}
 		
-		var elementsJson = JSON.parse(this.elements);
+		var elementsJson = JSON.parse(this.DElementsContent);
 		
 		var newElementsJson = [];
 		
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].selected == true) {
+			if (elementsJson[i].visible == true) {
 				newElementsJson.push(elementsJson[i]);
 			}
 		}
 		
 		return newElementsJson;
 	*}
+	/**
+	 * Sets the Enabled keys<br/>
+	 */
+	void setEnabledStepKeys (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].enabled = true;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Enabled Key<br/>
+	 */
+	void setEnabledStepKey (
+			/**/ String key,
+			/**/ boolean enabled
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].enabled = selected;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Enabled keys<br/>
+	 */
+	void cleanAllEnabledStepKeys (
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns the Enabled keys<br/>
+	 */
+	org.scn.pack.KeyArray getEnabledStepKeysArray (
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].enabled == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+
 
 
 	/**
@@ -5547,14 +5655,14 @@ class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Co
 }
 
 /**
- * Generated ZTL Class for Segmented Button
+ * Generated ZTL Class for SegmentedButton
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.Component {
 
 	/**
-	 * Remove All Buttons and Items from the Array.
+	 * Clean All Nodes from the Array.
 	 */	
 	void cleanAllElements (){*
 		this.DCleanAll = true;
@@ -5563,7 +5671,31 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		this.DElementsContent = JSON.stringify(elementsArray);
 	*}
 
+	/**
+	 * Remove All Nodes from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.DCleanAll = true;
 
+		var elementsArray = [];
+		this.DElementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Url For Default Image Property
+	 */	
+	void setDefaultImage( /**Url For Default Image*/ String defaultImage){*
+		this.DDefaultImage = defaultImage;
+	*}
+
+	/**
+	 * Gets Url For Default Image Property
+	 */	
+	String getDefaultImage() {*
+		return this.DDefaultImage;
+	*}
 
 	/** Adds an element containing parentKey [String], key [String], text [String], image [String], selected [boolean] properties.
 	 * You need to specify a unique and existing parent element.
@@ -5577,17 +5709,15 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	</example>
 	 */
 	void addItem (
-			/**The key of the parent button*/String parentKey, 
-			/**Unique key of this item*/String key, 
-			/**Text for the item*/String text, 
-			/**Given image for the item*/optional String image, 
-			/**Selection state of the item*/optional boolean selected
+			/**Parent Key*/String parentKey, 
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Image*/String image, 
+			/**Selected*/boolean selected
 			) {*		
 		
 		var leaf = (parentKey != "ROOT");
 		
-		if(image == undefined) { image = "";}
-		if(selected == undefined) { selected = false;}
 		
 		var itemDef = {
 			leaf:leaf,
@@ -5631,10 +5761,10 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	</example>
 	 */
 	void addButton (
-			/**Unique key of this button*/String key, 
-			/**Text for the button*/String text, 
-			/**Given image for the button*/optional String image, 
-			/**Selection state of the button*/optional boolean selected
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Image*/String image, 
+			/**Selected*/boolean selected
 			) {*		
 		
 		this.addItem("ROOT", key, 
@@ -5698,35 +5828,308 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		this.removeItem(key);
 	*}
 
+	/**
+	 * Gets Buttons As JSON String
+	 */	
+	String getButtonsAsJSON() {*
+		var jsonObject = JSON.parse(this.DElementsContent);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Selected keys<br/>
+	 */
+	void setSelectedButtonKeys (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].selected = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].selected = true;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Selected Key<br/>
+	 */
+	void setSelectedButtonKey (
+			/**/ String key,
+			/**/ boolean selected
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].selected = selected;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Selected keys<br/>
+	 */
+	void cleanAllSelectedButtonKeys (
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].selected = false;
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns the Selected keys<br/>
+	 */
+	org.scn.pack.KeyArray getSelectedButtonKeysArray (
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].selected == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the Selected keys<br/>
+	 */
+	void setSelectedItemKeys (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].selected = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].selected = true;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Selected Key<br/>
+	 */
+	void setSelectedItemKey (
+			/**/ String key,
+			/**/ boolean selected
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].selected = selected;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Selected keys<br/>
+	 */
+	void cleanAllSelectedItemKeys (
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].selected = false;
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns the Selected keys<br/>
+	 */
+	org.scn.pack.KeyArray getSelectedItemKeysArray (
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].selected == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
 
 
 	/**
-	 * Gets Technical property for pressed button key Property
+	 * Sets Size Of The Image Property by String
+	 */	
+	void setImageSizeByString( /**Size Of The Image*/ String imageSize){*
+		this.DImageSize = imageSize;
+	*}
+
+	/**
+	 * Gets Size Of The Image Property as String
+	 */	
+	String getImageSizeAsString() {*
+		return this.DImageSize;
+	*}
+	
+	/**
+	 * Sets Size Of The Image Property by Choice Option
+	 */	
+	void setImageSize( /**Size Of The Image*/ org_scn_community_shared_ImageSizeEnumfield imageSize){*
+		this.DImageSize = imageSize;
+	*}
+	
+	/**
+	 * Gets Size Of The Image Property as Choice Option
+	 */	
+	org_scn_community_shared_ImageSizeEnumfield getImageSize() {*
+		return this.DImageSize;
+	*}
+
+	/**
+	 * Gets Technical Property For Pressed Button Key Property
 	 */	
 	String getPressedButtonKey() {*
 		return this.DPressedButtonKey;
 	*}
 
 	/**
-	 * Gets Technical property for pressed item key Property
+	 * Gets Technical Property For Pressed Item Key Property
 	 */	
 	String getPressedItemKey() {*
 		return this.DPressedItemKey;
 	*}
 
-	/** Gets Technical property for selected keys Property as StringArray
-
- 	<example>
-	You want to ask for the current property value
-	<code>
-	SEGMENTEDBUTTON.getSelectedKeys();<br>
-	</code>
-	</example>
-	 */
-	StringArray getSelectedKeys () {*		
-		var elementsJson = JSON.parse(this.DSelectedKeys);
-		return elementsJson;
+	/**
+	 * Gets Technical Property For Selected Keys Property
+	 */	
+	String getSelectedKeys() {*
+		return this.DSelectedKeys;
 	*}
+
+	/**
+	 * Sets Selection Type Property by String
+	 */	
+	void setSelectionTypeByString( /**Selection Type*/ String selectionType){*
+		this.DSelectionType = selectionType;
+	*}
+
+	/**
+	 * Gets Selection Type Property as String
+	 */	
+	String getSelectionTypeAsString() {*
+		return this.DSelectionType;
+	*}
+	
+	/**
+	 * Sets Selection Type Property by Choice Option
+	 */	
+	void setSelectionType( /**Selection Type*/ org_scn_community_shared_SelectionTypeEnumfield selectionType){*
+		this.DSelectionType = selectionType;
+	*}
+	
+	/**
+	 * Gets Selection Type Property as Choice Option
+	 */	
+	org_scn_community_shared_SelectionTypeEnumfield getSelectionType() {*
+		return this.DSelectionType;
+	*}
+
+	/**
+	 * Sets Use Images Property
+	 */	
+	void setWithImages( /**Use Images*/ boolean withImages){*
+		this.DWithImages = withImages;
+	*}
+
+	/**
+	 * Gets Use Images Property
+	 */	
+	boolean isWithImages() {*
+		return this.DWithImages;
+	*}
+
+
 
 
 
@@ -5734,7 +6137,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
-	/* CUSTOM ZTL FUNCTIONS */
+
 }
 
 /**
@@ -6114,7 +6517,7 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 		
 		this.removeSubNode(key);
 	*}
-	
+
 	/**
 	 * Gets Nodes As JSON String
 	 */	
@@ -6122,6 +6525,8 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 		var jsonObject = JSON.parse(this.nodesContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+	
+
 
 
 
