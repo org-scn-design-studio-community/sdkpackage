@@ -1,3 +1,4 @@
+var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
 /**
  * Extension-less Handlers (Regular SAPUI5 Components)
  */

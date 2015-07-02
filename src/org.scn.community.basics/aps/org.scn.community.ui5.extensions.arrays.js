@@ -1,3 +1,4 @@
+var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
 /**
  * Register Handler
  */

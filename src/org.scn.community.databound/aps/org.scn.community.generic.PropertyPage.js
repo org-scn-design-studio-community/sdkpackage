@@ -1,3 +1,4 @@
+var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPage", function() {
 	var that = this;
 	

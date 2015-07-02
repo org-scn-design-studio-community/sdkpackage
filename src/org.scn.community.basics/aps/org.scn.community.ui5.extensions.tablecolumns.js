@@ -4,7 +4,7 @@
  * Based on a work at http://github.com/org-scn-design-studio-community/sdkpackage/tree/master/src/org.scn.community.databound/res/AdvancedDataTable 
  *
  */
-
+var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
 /**
  * Register Handler
  */
