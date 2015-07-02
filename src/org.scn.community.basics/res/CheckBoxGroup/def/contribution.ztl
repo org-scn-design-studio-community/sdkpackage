@@ -196,7 +196,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getElementAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -216,9 +216,17 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	*}
 	
 	/**
+	 * Gets Elements As JSON String
+	 */	
+	String getElementsAsJSON() {*
+		var jsonObject = JSON.parse(this.elements);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
 	 * Sets the Selected keys<br/>
 	 */
-	void setSelectedKeys (
+	void setSelectedElements (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -250,7 +258,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Sets the Selected Key<br/>
 	 */
-	void setSelectedKey (
+	void setSelectedElement (
 			/**/ String key,
 			/**/ boolean selected
 			) 
@@ -275,7 +283,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Clean all Selected keys<br/>
 	 */
-	void cleanAllSelectedKeys (
+	void cleanAllSelectedElements (
 			) 
 	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){

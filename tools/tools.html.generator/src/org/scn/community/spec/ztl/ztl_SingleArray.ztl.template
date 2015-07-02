@@ -148,7 +148,7 @@
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String get%ROOT_CONTENT_NAME%AtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -165,6 +165,14 @@
 		}
 
 		return "";
+	*}
+	
+	/**
+	 * Gets %ROOT_CONTENT_NAME%s As JSON String
+	 */	
+	String get%ROOT_CONTENT_NAME%sAsJSON() {*
+		var jsonObject = JSON.parse(this.%PROPERTY_NAME%);
+		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
 %BOOLEAN_EXTENSION_PROPERTY%

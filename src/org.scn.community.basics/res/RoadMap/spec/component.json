@@ -1,0 +1,22 @@
+{
+	"id": "RoadMap",
+	"title": "Road Map 2.0",
+	"tooltip": "Road Map",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.RoadMap",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "230",
+	"height": "400"
+}

@@ -327,8 +327,16 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s);  
 		
-		a.sort(function(a,b){  
-			return a.key>b.key;  
+		a.sort(function(p,m){
+		     var A = p.key.toLowerCase();
+		     var B = m.key.toLowerCase();
+		     if (A < B){
+		        return -1;
+		     }else if (A > B){
+		       return  1;
+		     }else{
+		       return 0;
+		     }
 		});  
 		
 		this.items = JSON.stringify(a);  
@@ -342,9 +350,17 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s);  
 		
-		a.sort(function(a,b){  
-			return (b.key>a.key);  
-		});  
+		a.sort(function(p,m){  
+		     var A = p.key.toLowerCase();
+		     var B = m.key.toLowerCase();
+		     if (A < B){
+		        return 1;
+		     }else if (A > B){
+		       return  -1;
+		     }else{
+		       return 0;
+		     } 
+		});   
 		
 		this.items = JSON.stringify(a);  
 	*}
@@ -362,9 +378,17 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s);  
 		
-		a.sort(function(a,b){  
-			return a.label>b.label;  
-		});  
+		a.sort(function(p,m){  
+		     var A = p.label.toLowerCase();
+		     var B = m.label.toLowerCase();
+		     if (A < B){
+		        return -1;
+		     }else if (A > B){
+		       return  1;
+		     }else{
+		       return 0;
+		     }
+		}); 
 		
 		this.items = JSON.stringify(a);  
 	*}  
@@ -377,9 +401,17 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s); 
 		
-		a.sort(function(a,b){  
-			return (b.label>a.label);  
-		});  
+		a.sort(function(p,m){  
+		     var A = p.label.toLowerCase();
+		     var B = m.label.toLowerCase();
+		     if (A < B){
+		        return 1;
+		     }else if (A > B){
+		       return  -1;
+		     }else{
+		       return 0;
+		     }
+		});   
 		
 		this.items = JSON.stringify(a);  
 	*}
@@ -397,9 +429,9 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s); 
 		
-		a.sort(function(a,b){  
-			var newA = parseFloat(a.value);  
-			var newB = parseFloat(b.value);  
+		a.sort(function(p,m){  
+			var newA = parseFloat(p.value);  
+			var newB = parseFloat(m.value);  
 			return newA-newB;  
 		});
 		
@@ -414,9 +446,9 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s);  
 		
-		a.sort(function(a,b){  
-			var newA = parseFloat(a.value);  
-			var newB = parseFloat(b.value);  
+		a.sort(function(p,m){  
+			var newA = parseFloat(p.value);  
+			var newB = parseFloat(m.value);  
 			return newB-newA;  
 		});
 		
@@ -723,4 +755,13 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		
 		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
 	*}
+	
+	/**
+	 * Gets Collection As JSON String
+	 */	
+	String getCollectionAsJSON() {*
+		var jsonObject = JSON.parse(this.items);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+
 }

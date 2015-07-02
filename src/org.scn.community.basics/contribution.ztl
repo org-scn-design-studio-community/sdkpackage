@@ -188,6 +188,14 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		
 		this.removeElement(key);
 	*}
+	
+	/**
+	 * Gets Sections As JSON String
+	 */	
+	String getSectionsAsJSON() {*
+		var jsonObject = JSON.parse(this.elementsContent);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
 
 	/**
 	 * Gets Expaned Key Property
@@ -490,7 +498,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getActivityAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -507,6 +515,14 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		}
 
 		return "";
+	*}
+	
+	/**
+	 * Gets Activitys As JSON String
+	 */	
+	String getActivitysAsJSON() {*
+		var jsonObject = JSON.parse(this.activities);
+		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
 
@@ -674,7 +690,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getCategoryAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -694,9 +710,17 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
+	 * Gets Categorys As JSON String
+	 */	
+	String getCategorysAsJSON() {*
+		var jsonObject = JSON.parse(this.categories);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
 	 * Sets the Visible keys<br/>
 	 */
-	void setVisibleKeys (
+	void setVisibleCategorys (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -728,7 +752,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Sets the Visible Key<br/>
 	 */
-	void setVisibleKey (
+	void setVisibleCategory (
 			/**/ String key,
 			/**/ boolean visible
 			) 
@@ -753,7 +777,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Clean all Visible keys<br/>
 	 */
-	void cleanAllVisibleKeys (
+	void cleanAllVisibleCategorys (
 			) 
 	{*
 		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
@@ -952,7 +976,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getStateAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -969,6 +993,14 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		}
 
 		return "";
+	*}
+	
+	/**
+	 * Gets States As JSON String
+	 */	
+	String getStatesAsJSON() {*
+		var jsonObject = JSON.parse(this.states);
+		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
 
@@ -1190,7 +1222,7 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getItemAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -1207,6 +1239,14 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 		}
 
 		return "";
+	*}
+	
+	/**
+	 * Gets Items As JSON String
+	 */	
+	String getItemsAsJSON() {*
+		var jsonObject = JSON.parse(this.items);
+		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
 
@@ -1844,7 +1884,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getElementAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -1864,9 +1904,17 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	*}
 	
 	/**
+	 * Gets Elements As JSON String
+	 */	
+	String getElementsAsJSON() {*
+		var jsonObject = JSON.parse(this.elements);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
 	 * Sets the Selected keys<br/>
 	 */
-	void setSelectedKeys (
+	void setSelectedElements (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -1898,7 +1946,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Sets the Selected Key<br/>
 	 */
-	void setSelectedKey (
+	void setSelectedElement (
 			/**/ String key,
 			/**/ boolean selected
 			) 
@@ -1923,7 +1971,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Clean all Selected keys<br/>
 	 */
-	void cleanAllSelectedKeys (
+	void cleanAllSelectedElements (
 			) 
 	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
@@ -5085,129 +5133,363 @@ class org.scn.community.basics.RatingIndicator extends org.scn.community.shared.
 }
 
 /**
- * Class for RoadMap
+ * Generated ZTL Class for RoadMap
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.RoadMap extends org.scn.community.shared.Component {
-	
-	/** remove all steps */
-	void removeAllSteps () {*		
-			var elementsArray = [];
-			this.DElementsContent = JSON.stringify(elementsArray);
-			
-			this.DCleanAll = true;
+
+	/**
+	 * Clean All Elements from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DElementsContent = JSON.stringify(elementsArray);
 	*}
-	
-	/** Adds an step containing Key, Text, Visible and Enable flags.
+
+	/**
+	 * Remove All Elements from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DElementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/** Adds a root element containing key [String], text [String], visible [boolean], enabled [boolean].
 
  	<example>
-	You want to add 2 steps
+	You want to add 2 root elements
 	<code>
-	ROADMAP.addStep("STEP1", "First Step", true, false);<br>
-	ROADMAP.addStep("STEP2", "Second Step", true, true);
+	ROADMAP.addStep(key [String], text [String], visible [boolean], enabled [boolean]);<br>
+	ROADMAP.addStep(key [String], text [String], visible [boolean], enabled [boolean]);<br>
+	<br>
 	</code>
 	</example>
 	 */
 	void addStep (
-			/**Step Key (must be unique)*/String stepKey, 
-			/**Step text*/String stepText, 
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
 			/**Visible*/boolean visible, 
-			/**Enabled*/boolean enabled) {*		
+			/**Enabled*/boolean enabled
+			) {*
 
-		var itemDef = { 
-			"key": stepKey, 
-			"text": stepText, 
-			"visible": visible,
-			"enabled": enabled
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible, 
+			enabled:enabled
 			};
-	
+
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
 			this.DElementsContent = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.DElementsContent);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == stepKey) {
+			if (elementsJson[i].key == key) {
 				alreadyFound = true;
 				break;
 			}
 		}
-		
+
 		if(!alreadyFound) {
 			elementsJson.push(itemDef);
 		}
-	
+
 		this.DElementsContent = JSON.stringify(elementsJson);
 	*}
 	
-	/**
-	<example>
-	You want to make the step visible
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
 	<code>
-	ROADMAP.addStepVisible("STEP1", true);<br>
+	ROADMAP.removeStep(String key);<br>
+	<br>
 	</code>
 	</example>
 	 */
-	void setStepVisible (
-			/**Step Key (must be unique)*/String stepKey, 
-			/**Visible*/boolean visible) {*		
+	void removeStep (
+			String key
+			) {*
+
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	ROADMAP.insertStep(index [int], key [String], text [String], visible [boolean], enabled [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertStep (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Visible*/boolean visible, 
+			/**Enabled*/boolean enabled
+			) {*
 
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
 			this.DElementsContent = "[]";
 		}
 		
 		var elementsJson = JSON.parse(this.DElementsContent);
-		
-		var alreadyFound = false;
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible, 
+			enabled:enabled
+		};
+
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == stepKey) {
-				elementsJson[i].visible = visible;
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DElementsContent = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Step<br/>
+	 */
+	void updateStep (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Visible*/boolean visible, 
+			/**Enabled*/boolean enabled
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible, 
+			enabled:enabled
+		};
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
 				break;
 			}
 		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getStepAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+	
+	/**
+	 * Gets Steps As JSON String
+	 */	
+	String getStepsAsJSON() {*
+		var jsonObject = JSON.parse(this.DElementsContent);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Visible keys<br/>
+	 */
+	void setVisibleSteps (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].visible = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].visible = true;
+					break;
+				}
+			}
+		}
 		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Visible Key<br/>
+	 */
+	void setVisibleStep (
+			/**/ String key,
+			/**/ boolean visible
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].visible = selected;
+				break;
+			}
+		}
+
 		this.DElementsContent = JSON.stringify(elementsJson);
 	*}
 	
 	/**
-	<example>
-	You want to make the step enabled
-	<code>
-	ROADMAP.addStepEnabled("STEP1", true);<br>
-	</code>
-	</example>
+	 * Clean all Visible keys<br/>
 	 */
-	void setStepEnabled (
-			/**Step Key (must be unique)*/String stepKey, 
-			/**Enabled*/boolean enabled) {*		
-
+	void cleanAllVisibleSteps (
+			) 
+	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
-			this.DElementsContent = "[]";
+			return;
 		}
-		
-		var elementsJson = JSON.parse(this.DElementsContent);
-		
-		var alreadyFound = false;
+	
+		// loop and find and change
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == stepKey) {
-				elementsJson[i].enabled = enabled;
-				break;
-			}
+			// clean all
+			elementsJson[i].visible = false;
 		}
 		
 		this.DElementsContent = JSON.stringify(elementsJson);
 	*}
-	
-	/** returns the selected step */
-	String getSelectedStep () {*
-		return this.DSelectedKey;	
+
+	/**
+	 * Returns the Visible keys<br/>
+	 */
+	org.scn.pack.KeyArray getVisibleElementsContentArray (
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].selected == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
 	*}
-	
-	/** sets the selected step */
-	void setSelectedStep (String key) {*
-		this.DSelectedKey = key;	
+
+
+	/**
+	 * Sets Selected Step Key Property
+	 */	
+	void setSelectedKey( /**Selected Step Key*/ String selectedKey){*
+		this.DSelectedKey = selectedKey;
 	*}
+
+	/**
+	 * Gets Selected Step Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.DSelectedKey;
+	*}
+
+	/**
+	 * Sets Number Of Visible Steps Property
+	 */	
+	void setNumberOfVisibleSteps( /**Number Of Visible Steps*/ String numberOfVisibleSteps){*
+		this.numberOfVisibleSteps = numberOfVisibleSteps;
+	*}
+
+	/**
+	 * Gets Number Of Visible Steps Property
+	 */	
+	String getNumberOfVisibleSteps() {*
+		return this.numberOfVisibleSteps;
+	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
 
 /**
@@ -5657,38 +5939,232 @@ class org.scn.community.basics.ToggleButton extends org.scn.community.shared.Com
 }
 
 /**
- * Class for Tree
+ * Generated ZTL Class for Tree
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
-	
-	/** remove all nodes */
-	void removeAllNodes () {*		
-			var nodesArray = [];
-			this.nodesContent = JSON.stringify(nodesArray);
-			
-			this.cleanAll = true;
+
+	/**
+	 * Clean All Nodes from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.nodesContent = JSON.stringify(elementsArray);
 	*}
-	
-	/** Adds a tree node containing Key, Text, Image Url, Parent Node and is Leaf information.
-	 * You need to specify a unique and existing parent node.
-	 * if Parent is set to "ROOT" then the node will be inserted into "ROOT". 
+
+	/**
+	 * Remove All Nodes from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.nodesContent = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Url For Default Picture Property
+	 */	
+	void setDefaultImage( /**Url For Default Picture*/ String defaultImage){*
+		this.defaultImage = defaultImage;
+	*}
+
+	/**
+	 * Gets Url For Default Picture Property
+	 */	
+	String getDefaultImage() {*
+		return this.defaultImage;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Expanded Key Property
+	 */	
+	String getExpandedKey() {*
+		return this.expandedKey;
+	*}
+
+	/** Adds an element containing parentKey [String], key [String], text [String], url [String] properties.
+	 * You need to specify a unique and existing parent element.
 
  	<example>
-	You want to add 2 nodes, second one is a child of fist one
+	You want to add 2 elements
 	<code>
-	TREE_1.addNode("KEY1", "First Node", "", "ROOT", true);<br>
-	TREE_1.addNode("KEY2", "First Node", "", "KEY1", true);<br>
+	TREE.addSubNode(parentKey [String], key [String], text [String], url [String]);<br>
+	TREE.addSubNode(parentKey [String], key [String], text [String], url [String]);
+	</code>
+	</example>
+	 */
+	void addSubNode (
+			/**Parent Key*/String parentKey, 
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key, 
+			text:text, 
+			url:url 
+			};
+	
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			this.nodesContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.nodesContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], text [String], url [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	TREE.addNode(key [String], text [String], url [String]);<br>
+	TREE.addNode(key [String], text [String], url [String]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void addNode (
-			/**Node Key (must be unique)*/String nodeKey, 
-			/**Node text*/String nodeText, 
-			/**Image URL, if not set, no image*/String imageUrl, 
-			/**The Key of the parent Node*/String parentNodeKey, 
-			/**Leafs do not have expand option by default*/optional boolean isLeaf) {*		
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) {*		
 		
+		this.addSubNode("ROOT", key, 
+			text, 
+			url);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	TREE.removeSubNode(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeSubNode (
+			String key
+			) {*		
+		
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			this.nodesContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.nodesContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	TREE.removeNode(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeNode (
+			String key
+			) {*		
+		
+		this.removeSubNode(key);
+	*}
+	
+	/**
+	 * Gets Nodes As JSON String
+	 */	
+	String getNodesAsJSON() {*
+		var jsonObject = JSON.parse(this.nodesContent);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Roundtrip Property
+	 */	
+	String getRoundtrip() {*
+		return this.roundtrip;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
+
+	/**
+	 * Adds a tree node containing Key, Text, Image Url, Parent Node and is Leaf information.<br/>
+	 * You need to specify a unique and existing parent node.<br/>
+	 * if Parent is set to "ROOT" then the node will be inserted into "ROOT".<br/>
+	 * <example><br/>
+	 * You want to add 2 nodes, second one is a child of fist one<br/>
+	 * <code><br/>
+	 * TREE_1.addNode("KEY1", "First Node", "", "ROOT", true);<br/>
+	 * TREE_1.addNode("KEY2", "First Node", "", "KEY1", true);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void addNode (
+			/*Node Key (must be unique)*/ String nodeKey,
+			/*Node text*/ String nodeText,
+			/*Image URL if not set no image*/ String imageUrl,
+			/*The Key of the parent Node*/ String parentNodeKey,
+			/*Leafs do not have expand option by default*/ optional boolean isLeaf
+			)
+	{*
 		if(isLeaf == undefined) {
 			isLeaf = true;
 		}
@@ -5721,27 +6197,6 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	
 		this.nodesContent = JSON.stringify(nodesJson);
 	*}
-	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
-	*}
-
-	/** returns the expanded key - can be used in onFirstExpand() event */
-	String getExpandedKey () {*
-		return this.expandedKey;	
-	*}
-
-	/** informs the UI that there is no note update (no children under given expanded key) */
-	void noNodeUpdate () {*
-		this.roundtrip = "-";	
-	*}
-
 }
 
 /**

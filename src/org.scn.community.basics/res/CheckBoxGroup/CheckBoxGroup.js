@@ -172,8 +172,7 @@ CheckBoxGroup = {
 					that.setElements(lElementsToRender);
 				}
 				
-				that.fireDesignStudioPropertiesChanged(["elements"]);
-				that.fireDesignStudioEvent("onSelectionChanged");
+				that.fireDesignStudioPropertiesChangedAndEvent(["elements"], "onSelectionChanged");
 			}
 		});
 		

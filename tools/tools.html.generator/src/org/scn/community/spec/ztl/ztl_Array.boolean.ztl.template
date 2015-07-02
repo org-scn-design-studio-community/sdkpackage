@@ -1,7 +1,7 @@
 	/**
 	 * Sets the %NAME_CAPITAL% keys<br/>
 	 */
-	void set%NAME_CAPITAL%Keys (
+	void set%NAME_CAPITAL%%ROOT_CONTENT_NAME%s (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -33,7 +33,7 @@
 	/**
 	 * Sets the %NAME_CAPITAL% Key<br/>
 	 */
-	void set%NAME_CAPITAL%Key (
+	void set%NAME_CAPITAL%%ROOT_CONTENT_NAME% (
 			/**/ String key,
 			/**/ boolean %NAME%
 			) 
@@ -58,7 +58,7 @@
 	/**
 	 * Clean all %NAME_CAPITAL% keys<br/>
 	 */
-	void cleanAll%NAME_CAPITAL%Keys (
+	void cleanAll%NAME_CAPITAL%%ROOT_CONTENT_NAME%s (
 			) 
 	{*
 		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){

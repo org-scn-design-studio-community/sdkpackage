@@ -1,0 +1,16 @@
+{
+	"title": "Tree 2.0",
+	"description": "Tree",
+	"icon": "Tree.png",
+	"topics": 
+	[
+		{
+			"title" : "Tree",
+			"content" : "Tree"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

@@ -186,7 +186,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getActivityAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -203,6 +203,14 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		}
 
 		return "";
+	*}
+	
+	/**
+	 * Gets Activitys As JSON String
+	 */	
+	String getActivitysAsJSON() {*
+		var jsonObject = JSON.parse(this.activities);
+		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
 
@@ -370,7 +378,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getCategoryAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -390,9 +398,17 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
+	 * Gets Categorys As JSON String
+	 */	
+	String getCategorysAsJSON() {*
+		var jsonObject = JSON.parse(this.categories);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
 	 * Sets the Visible keys<br/>
 	 */
-	void setVisibleKeys (
+	void setVisibleCategorys (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -424,7 +440,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Sets the Visible Key<br/>
 	 */
-	void setVisibleKey (
+	void setVisibleCategory (
 			/**/ String key,
 			/**/ boolean visible
 			) 
@@ -449,7 +465,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Clean all Visible keys<br/>
 	 */
-	void cleanAllVisibleKeys (
+	void cleanAllVisibleCategorys (
 			) 
 	{*
 		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
@@ -648,7 +664,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getStateAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -665,6 +681,14 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		}
 
 		return "";
+	*}
+	
+	/**
+	 * Gets States As JSON String
+	 */	
+	String getStatesAsJSON() {*
+		var jsonObject = JSON.parse(this.states);
+		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
 

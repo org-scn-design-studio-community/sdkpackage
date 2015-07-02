@@ -1,0 +1,22 @@
+{
+	"id": "Tree",
+	"title": "Tree 2.0",
+	"tooltip": "Tree",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.Tree",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "230",
+	"height": "400"
+}

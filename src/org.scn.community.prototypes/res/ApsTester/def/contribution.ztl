@@ -203,6 +203,14 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		
 		this.removeItem(key);
 	*}
+	
+	/**
+	 * Gets Buttons As JSON String
+	 */	
+	String getButtonsAsJSON() {*
+		var jsonObject = JSON.parse(this.doublearray);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
 
 	/**
 	 * Sets Color Palette Property
@@ -388,7 +396,7 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getButtonAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -408,9 +416,17 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 	
 	/**
+	 * Gets Buttons As JSON String
+	 */	
+	String getButtonsAsJSON() {*
+		var jsonObject = JSON.parse(this.singlearray);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
 	 * Sets the Selected keys<br/>
 	 */
-	void setSelectedKeys (
+	void setSelectedButtons (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -442,7 +458,7 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	/**
 	 * Sets the Selected Key<br/>
 	 */
-	void setSelectedKey (
+	void setSelectedButton (
 			/**/ String key,
 			/**/ boolean selected
 			) 
@@ -467,7 +483,7 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	/**
 	 * Clean all Selected keys<br/>
 	 */
-	void cleanAllSelectedKeys (
+	void cleanAllSelectedButtons (
 			) 
 	{*
 		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){

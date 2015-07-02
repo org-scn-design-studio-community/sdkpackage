@@ -2635,7 +2635,7 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getColumnWidthEntryAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -2652,6 +2652,14 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		}
 
 		return "";
+	*}
+	
+	/**
+	 * Gets ColumnWidthEntrys As JSON String
+	 */	
+	String getColumnWidthEntrysAsJSON() {*
+		var jsonObject = JSON.parse(this.DDataColWidths);
+		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
 

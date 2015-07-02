@@ -783,7 +783,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Rating Indicator component*/
 	org.scn.community.basics.RatingIndicator returnAsScnRatingIndicator (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Road Map component*/
+	/**Cast to Road Map 2.0 component*/
 	org.scn.community.basics.RoadMap returnAsScnRoadMap (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Segmented Button component*/
@@ -798,7 +798,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Toggle Button component*/
 	org.scn.community.basics.ToggleButton returnAsScnToggleButton (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Tree component*/
+	/**Cast to Tree 2.0 component*/
 	org.scn.community.basics.Tree returnAsScnTree (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Tri State CheckBox component*/

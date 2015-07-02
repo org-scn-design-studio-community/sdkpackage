@@ -54,11 +54,13 @@ Accordion = {
 			that._oElementsTemp = {};
 		}
 		that._oElements = {};
+		that._oElementsArray = [];
 
 		if(that.getCleanAll()) {
 			that._destroyAll();
 			
 			that._oElements = {};
+			that._oElementsArray = [];
 			that._oElementsTemp = {};
 			
 			that.setCleanAll(false);
@@ -83,7 +85,9 @@ Accordion = {
 						lNewElement = that._oElementsTemp[element.key];
 					}
 					
+					lNewElement.index = that._oElementsArray.length;
 					that._oElements[element.key] = lNewElement;
+					that._oElementsArray.push(lNewElement);
 				}
 			}
 		}
@@ -103,8 +107,8 @@ Accordion = {
 			}
 		}
 
-		for (lElementKey in that._oElements) {
-			var lElement = that._oElements[lElementKey];
+		for (lNodeInd in that._oElementsArray) {
+			var lElement = that._oElementsArray[lNodeInd];
 			if(lElement._Placed != true) {
 				var parentKey = lElement._ParentKey;
 				

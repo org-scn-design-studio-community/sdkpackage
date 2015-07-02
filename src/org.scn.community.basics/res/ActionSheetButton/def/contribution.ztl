@@ -210,7 +210,7 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getKeyAtIndex (
+	String getItemAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -227,6 +227,14 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 		}
 
 		return "";
+	*}
+	
+	/**
+	 * Gets Items As JSON String
+	 */	
+	String getItemsAsJSON() {*
+		var jsonObject = JSON.parse(this.items);
+		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
 

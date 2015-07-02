@@ -16,78 +16,95 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.RoadMap";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.basics.RoadMap;
 
-sap.ui.commons.RoadMap.extend(ownComponentName, {
+RoadMap = {
 
-	metadata: {
-        properties: {
-        	  "DElementsContent": {type: "string"},
-        	  "DSelectedKey": {type: "string"},
-              "DCleanAll": {type: "boolean"}
-        }
-	},
-  
-	initDesignStudio: function() {
-		var that = this;
-		this._ownScript = _readScriptPath();
-		
-		this.addStyleClass("scn-pack-RoadMap");
-		
-		this._oElements = {};
-		this._oSteps = {};
-		
-		this.attachStepSelected(that.onSelected);
-	},
-	
 	renderer: {},
 	
-	afterDesignStudioUpdate : function() {
+	initDesignStudio: function() {
+		var that = this;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that.addStyleClass("scn-pack-RoadMap");
+		
+		that._oElements = {};
+		that._oSteps = {};
+		
+		that.attachStepSelected(that.onSelected);
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
+	},
+	
+	afterDesignStudioUpdate: function() {
 		var that = this;
 		
-		if(this.getDCleanAll()) {
-			this.destroySteps();
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
 			
-			this._oElements = {};
-			this._oSteps = {};
+		// visualization on processed data
+
+		if(that.getDCleanAll()) {
+			that.destroySteps();
 			
-			this.setDCleanAll(false);
+			that._oElements = {};
+			that._oSteps = {};
+			
+			that.setDCleanAll(false);
 			that.fireDesignStudioPropertiesChanged(["cleanAll"]);
 		}
 		
-		var lElementsToRender = this.getDElementsContent();
+		var lElementsToRender = that.getDElementsContent();
 		if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != ""){
 			var lElementsToRenderArray = JSON.parse(lElementsToRender);
 
 			if(lElementsToRenderArray.length == 0) {
-				that.addDummy();
+				that.addDummy(owner);
 			}
 			
 			// distribute content
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
+			
+				if(element.enabled == undefined) { element.enabled = true; }
+				if(element.visible == undefined) { element.visible = true; }
 				
-				if(this._oElements[this.getId() + "_" + element.key]) {
-					this._oSteps[this.getId() + "_" + element.key].setEnabled(element.enabled);
-					this._oSteps[this.getId() + "_" + element.key].setVisible(element.visible);
+				if(that._oElements[that.getId() + "_" + element.key]) {
+					that._oSteps[that.getId() + "_" + element.key].setEnabled(element.enabled);
+					that._oSteps[that.getId() + "_" + element.key].setVisible(element.visible);
 					continue;
 				}
 				
 				var step = new sap.ui.commons.RoadMapStep(
-						this.getId() + "_" + element.key, {label: element.text, enabled: element.enabled, visible: element.visible});
+						that.getId() + "_" + element.key, {label: element.text, enabled: element.enabled, visible: element.visible});
 				step._dsKey = element.key;
 				
-				this._oElements[this.getId() + "_" + element.key] = element.key;
-				this._oSteps[this.getId() + "_" + element.key] = step;
+				that._oElements[that.getId() + "_" + element.key] = element.key;
+				that._oSteps[that.getId() + "_" + element.key] = step;
 				
 				that.addStep(step);
 			}
@@ -95,23 +112,26 @@ sap.ui.commons.RoadMap.extend(ownComponentName, {
 			that.addDummy();
 		}
 
-		if(this._oSteps[this.getId() + "_" + that.getDSelectedKey()] != undefined) {
-			that.setSelectedStep(this._oSteps[this.getId() + "_" + that.getDSelectedKey()]);	
+		if(that._oSteps[that.getId() + "_" + that.getDSelectedKey()] != undefined) {
+			that.setSelectedStep(that._oSteps[that.getId() + "_" + that.getDSelectedKey()]);	
 		}
 	},
 	
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
 	onSelected: function(oEvent) {
 		var id = oEvent.mParameters.stepId;
+		var that = oEvent.oSource;
+		
+		var realKey = that._oElements[id];
 
-		var realKey = this._oElements[id];
-
-		this.setDSelectedKey(realKey);
-		this.fireDesignStudioPropertiesChanged(["DSelectedKey"]);
-		this.fireDesignStudioEvent(["onSelectionChanged"]);
+		that.setDSelectedKey(realKey);
+		that.fireDesignStudioPropertiesChangedAndEvent(["DSelectedKey"], "onSelectionChanged");
 	},
 	
-	addDummy: function() {
-		var that = this;
+	addDummy: function(owner) {
+		var that = owner;
 		
 		//create the RoadMap steps
 		var oStep1 = new sap.ui.commons.RoadMapStep({label: "Step 1"});
@@ -120,10 +140,17 @@ sap.ui.commons.RoadMap.extend(ownComponentName, {
 		var oStep4 = new sap.ui.commons.RoadMapStep({label: "Step 4"});
 	
 		//add steps to the RoadMap
-		this.addStep(oStep1);
-		this.addStep(oStep2);
-		this.addStep(oStep3);
-		this.addStep(oStep4);
+		that.addStep(oStep1);
+		that.addStep(oStep2);
+		that.addStep(oStep3);
+		that.addStep(oStep4);
 	},
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+
+define([myComponentData.requireName], function(basicsroadmap){
+	myComponentData.instance = RoadMap;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

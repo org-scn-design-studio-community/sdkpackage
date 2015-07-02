@@ -51,7 +51,23 @@
 					if (typeof (xml.transformNode) != "undefined") {
 			  			var ex = xml.transformNode(xsl);
 						document.getElementById("feed").innerHTML = ex;
-				  	}//IE10
+				  	}
+					// IE11
+					if (window.ActiveXObject || window.ActiveXObject !== undefined) {
+						var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+						xmlDoc.async=false;
+						var xmlAsString = (new XMLSerializer()).serializeToString(xml);
+						xmlDoc.loadXML(xmlAsString);
+						
+						var xslDoc = new ActiveXObject("Microsoft.XMLDOM");
+						xslDoc.async=false;
+						var xslAsString = (new XMLSerializer()).serializeToString(xsl);
+						xslDoc.loadXML(xslAsString);
+						
+						var result = xmlDoc.transformNode(xslDoc);
+						document.getElementById("feed").innerHTML = result;
+			  		}
+					//IE10
 					else if(ActiveXObject){
 						var xslt = new ActiveXObject("Msxml2.XSLTemplate");
 						var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
@@ -63,18 +79,36 @@
 						document.getElementById("feed").innerHTML = xslProc.output;
 				  	}
 			  	}
-				// code for Chrome, Firefox, Opera, etc.
+				// code for Chrome, Firefox, Opera, etc. Also IE 11
 				else if (document.implementation && document.implementation.createDocument) {
-					var xsltProcessor = new XSLTProcessor();
-					xsltProcessor.importStylesheet(xsl);
-					var resultDocument = xsltProcessor.transformToFragment(xml, document);
-					document.getElementById("feed").appendChild(resultDocument);
+					//IE11
+					if (window.ActiveXObject || window.ActiveXObject !== undefined) {
+						var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+						xmlDoc.async=false;
+						var xmlAsString = (new XMLSerializer()).serializeToString(xml);
+						xmlDoc.loadXML(xmlAsString);
+						
+						var xslDoc = new ActiveXObject("Microsoft.XMLDOM");
+						xslDoc.async=false;
+						var xslAsString = (new XMLSerializer()).serializeToString(xsl);
+						xslDoc.loadXML(xslAsString);
+						
+						var result = xmlDoc.transformNode(xslDoc);
+						document.getElementById("feed").innerHTML = result;
+			  		}
+					// others
+					else {
+						var xsltProcessor = new XSLTProcessor();
+						xsltProcessor.importStylesheet(xsl);
+						var resultDocument = xsltProcessor.transformToFragment(xml, document);
+						document.getElementById("feed").appendChild(resultDocument);
+					}
 				}
 	        }
 	    }
         catch (e) {
             // 4
-            document.getElementById("feed").innerHTML = "The type [XSLTProcessor] is not supported by this browser, can't transform XML document to HTML string! Probably Design Studios IE implementation is currently broken! Other browsers should be fine.";
+            document.getElementById("feed").innerHTML = "The type [XSLTProcessor] is not supported by this browser, can't transform XML document to HTML string! Probably Design Studios IE implementation is currently broken! Other browsers should be fine.<br>" + e.toString();
             // Browser alerts were painful.  :)
             // alert("The type [XSLTProcessor] is not supported by this browser, can't transform XML document to HTML string! Probably Design Studios IE implementation is currently broken! Other browsers should be fine.");
             return null;

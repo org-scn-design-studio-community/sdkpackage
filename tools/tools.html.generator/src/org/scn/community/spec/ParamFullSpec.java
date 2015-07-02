@@ -256,9 +256,10 @@ public class ParamFullSpec {
 											ASSURE_OPTIONAL_INITIALIZED = ASSURE_OPTIONAL_INITIALIZED + "if(" + paramGenChild2.getName() + " == undefined) { " + paramGenChild2.getName() + " = "+initValue+";}" + "\r\n\t\t";; 
 										}
 										
-										if(isBoolean) {
-											template = extendForBoolean(template, paramGenChild);
-										}
+										String subArrayName = arrayFullSpec.getName();
+										String subArrayNameUpper = Helpers.makeFirstUpper(subArrayName); 
+										
+										template = extendFor(paramGenChild2.getType(true), template, paramGenChild2, subArrayNameUpper);
 										
 										PROPERTY_DEFINITION_FULL = PROPERTY_DEFINITION_FULL + paramGenChild2.getHelp() + (optional?"optional ":"") + paramGenChild2.getType(true) + " " + paramGenChild2.getName();
 										PROPERTY_DEFINITION_JSON = PROPERTY_DEFINITION_JSON + paramGenChild2.getName() + ":" + paramGenChild2.getName();
@@ -298,10 +299,8 @@ public class ParamFullSpec {
 								ASSURE_OPTIONAL_ROOT_INITIALIZED = ASSURE_OPTIONAL_ROOT_INITIALIZED + "if(" + paramGenChild.getName() + " == undefined) { " + paramGenChild.getName() + " = "+initValue+";}" + "\r\n\t\t";; 
 							}
 							
-							if(isBoolean) {
-								template = extendForBoolean(template, paramGenChild);
-							}
-							
+							template = extendFor(paramGenChild.getType(true), template, paramGenChild, arrayNameUpper);
+
 							ROOT_PROPERTY_DEFINITION_FULL = ROOT_PROPERTY_DEFINITION_FULL + paramGenChild.getHelp() + (optional?"optional ":"") + paramGenChild.getType(true) + " " + paramGenChild.getName();
 							ROOT_PROPERTY_DEFINITION_JSON = ROOT_PROPERTY_DEFINITION_JSON + paramGenChild.getName() + ":" + paramGenChild.getName();
 							PROPERTY_FULL = PROPERTY_FULL + paramGenChild.getName();
@@ -364,20 +363,25 @@ public class ParamFullSpec {
 		return faa;
 	}
 
-	private String extendForBoolean(String template, ParamFullSpec paramGenChild) {
-		String templateBoolean = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_ArrayBooleanSwitch.ztl.template");
+	private String extendFor(String type, String template, ParamFullSpec paramGenChild, String arrayNameUpper) {
+		String templateCustom = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_Array."+type+".ztl.template");
 		
-		templateBoolean = templateBoolean.replace("%NAME%", paramGenChild.getName());
+		if(templateCustom == null) {
+			return template;
+		}
+		
+		templateCustom = templateCustom.replace("%NAME%", paramGenChild.getName());
 		
 		String nameCut = paramGenChild.getName();
 		nameCut = Helpers.makeFirstUpper(nameCut);
-		templateBoolean = templateBoolean.replace("%NAME_CAPITAL%", nameCut);
+		templateCustom = templateCustom.replace("%NAME_CAPITAL%", nameCut);
 		
 		String nameCutParent = this.parentProperty.getNameCut();
 		nameCutParent = Helpers.makeFirstUpper(nameCutParent);
-		templateBoolean = templateBoolean.replace("%PROPERTY_CAPITAL_CUT%", nameCutParent);
+		templateCustom = templateCustom.replace("%PROPERTY_CAPITAL_CUT%", nameCutParent);
+		templateCustom = templateCustom.replace("%ROOT_CONTENT_NAME%", arrayNameUpper);
 		 
-		return template.replace("%BOOLEAN_EXTENSION_PROPERTY%", templateBoolean);
+		return template.replace("%BOOLEAN_EXTENSION_PROPERTY%", templateCustom);
 	}
 
 	private String exchangeTemplate (String template, String type, String xmlType) {

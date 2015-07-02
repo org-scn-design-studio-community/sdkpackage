@@ -1,126 +1,360 @@
 
 /**
- * Class for RoadMap
+ * Generated ZTL Class for RoadMap
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.RoadMap extends org.scn.community.shared.Component {
-	
-	/** remove all steps */
-	void removeAllSteps () {*		
-			var elementsArray = [];
-			this.DElementsContent = JSON.stringify(elementsArray);
-			
-			this.DCleanAll = true;
+
+	/**
+	 * Clean All Elements from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DElementsContent = JSON.stringify(elementsArray);
 	*}
-	
-	/** Adds an step containing Key, Text, Visible and Enable flags.
+
+	/**
+	 * Remove All Elements from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DElementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/** Adds a root element containing key [String], text [String], visible [boolean], enabled [boolean].
 
  	<example>
-	You want to add 2 steps
+	You want to add 2 root elements
 	<code>
-	ROADMAP.addStep("STEP1", "First Step", true, false);<br>
-	ROADMAP.addStep("STEP2", "Second Step", true, true);
+	ROADMAP.addStep(key [String], text [String], visible [boolean], enabled [boolean]);<br>
+	ROADMAP.addStep(key [String], text [String], visible [boolean], enabled [boolean]);<br>
+	<br>
 	</code>
 	</example>
 	 */
 	void addStep (
-			/**Step Key (must be unique)*/String stepKey, 
-			/**Step text*/String stepText, 
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
 			/**Visible*/boolean visible, 
-			/**Enabled*/boolean enabled) {*		
+			/**Enabled*/boolean enabled
+			) {*
 
-		var itemDef = { 
-			"key": stepKey, 
-			"text": stepText, 
-			"visible": visible,
-			"enabled": enabled
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible, 
+			enabled:enabled
 			};
-	
+
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
 			this.DElementsContent = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.DElementsContent);
-		
+
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == stepKey) {
+			if (elementsJson[i].key == key) {
 				alreadyFound = true;
 				break;
 			}
 		}
-		
+
 		if(!alreadyFound) {
 			elementsJson.push(itemDef);
 		}
-	
+
 		this.DElementsContent = JSON.stringify(elementsJson);
 	*}
 	
-	/**
-	<example>
-	You want to make the step visible
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
 	<code>
-	ROADMAP.addStepVisible("STEP1", true);<br>
+	ROADMAP.removeStep(String key);<br>
+	<br>
 	</code>
 	</example>
 	 */
-	void setStepVisible (
-			/**Step Key (must be unique)*/String stepKey, 
-			/**Visible*/boolean visible) {*		
+	void removeStep (
+			String key
+			) {*
+
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	ROADMAP.insertStep(index [int], key [String], text [String], visible [boolean], enabled [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertStep (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Visible*/boolean visible, 
+			/**Enabled*/boolean enabled
+			) {*
 
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
 			this.DElementsContent = "[]";
 		}
 		
 		var elementsJson = JSON.parse(this.DElementsContent);
-		
-		var alreadyFound = false;
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible, 
+			enabled:enabled
+		};
+
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == stepKey) {
-				elementsJson[i].visible = visible;
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DElementsContent = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Step<br/>
+	 */
+	void updateStep (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Visible*/boolean visible, 
+			/**Enabled*/boolean enabled
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible, 
+			enabled:enabled
+		};
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
 				break;
 			}
 		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getStepAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+	
+	/**
+	 * Gets Steps As JSON String
+	 */	
+	String getStepsAsJSON() {*
+		var jsonObject = JSON.parse(this.DElementsContent);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Visible keys<br/>
+	 */
+	void setVisibleSteps (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].visible = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].visible = true;
+					break;
+				}
+			}
+		}
 		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Visible Key<br/>
+	 */
+	void setVisibleStep (
+			/**/ String key,
+			/**/ boolean visible
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].visible = selected;
+				break;
+			}
+		}
+
 		this.DElementsContent = JSON.stringify(elementsJson);
 	*}
 	
 	/**
-	<example>
-	You want to make the step enabled
-	<code>
-	ROADMAP.addStepEnabled("STEP1", true);<br>
-	</code>
-	</example>
+	 * Clean all Visible keys<br/>
 	 */
-	void setStepEnabled (
-			/**Step Key (must be unique)*/String stepKey, 
-			/**Enabled*/boolean enabled) {*		
-
+	void cleanAllVisibleSteps (
+			) 
+	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
-			this.DElementsContent = "[]";
+			return;
 		}
-		
-		var elementsJson = JSON.parse(this.DElementsContent);
-		
-		var alreadyFound = false;
+	
+		// loop and find and change
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == stepKey) {
-				elementsJson[i].enabled = enabled;
-				break;
-			}
+			// clean all
+			elementsJson[i].visible = false;
 		}
 		
 		this.DElementsContent = JSON.stringify(elementsJson);
 	*}
-	
-	/** returns the selected step */
-	String getSelectedStep () {*
-		return this.DSelectedKey;	
+
+	/**
+	 * Returns the Visible keys<br/>
+	 */
+	org.scn.pack.KeyArray getVisibleElementsContentArray (
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.elements);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].selected == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
 	*}
-	
-	/** sets the selected step */
-	void setSelectedStep (String key) {*
-		this.DSelectedKey = key;	
+
+
+	/**
+	 * Sets Selected Step Key Property
+	 */	
+	void setSelectedKey( /**Selected Step Key*/ String selectedKey){*
+		this.DSelectedKey = selectedKey;
 	*}
+
+	/**
+	 * Gets Selected Step Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.DSelectedKey;
+	*}
+
+	/**
+	 * Sets Number Of Visible Steps Property
+	 */	
+	void setNumberOfVisibleSteps( /**Number Of Visible Steps*/ String numberOfVisibleSteps){*
+		this.numberOfVisibleSteps = numberOfVisibleSteps;
+	*}
+
+	/**
+	 * Gets Number Of Visible Steps Property
+	 */	
+	String getNumberOfVisibleSteps() {*
+		return this.numberOfVisibleSteps;
+	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
