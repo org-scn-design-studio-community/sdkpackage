@@ -115,7 +115,7 @@
 	    		},
 	    		pagingType : {
 	    			opts : {
-	    				apsControl : "combobox",
+	    				apsControl : "segmentedbutton",
 	    				desc : "Paginaton Type",
 	    				cat : "Behavior",
 	    				options : [
