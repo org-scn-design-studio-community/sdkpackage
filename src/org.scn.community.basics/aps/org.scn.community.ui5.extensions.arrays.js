@@ -1,4 +1,28 @@
-
+/**
+ * Register Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "array",
+	setter : function(property, value){
+		this["cmp_"+property].setValue(value);
+	},
+	getter : function(property, control){
+		return control.getValue();
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var specification = propertyOptions.arrayDefinition;
+		if(!specification) {specification = {}};		
+		var component = new org.scn.community.aps.ArrayList({
+			mode: propertyOptions.arrayMode,
+		});
+		component.setSpecification(specification);
+		component.attachValueChange(changeHandler,this);
+		return component;
+	}
+});
+/**
+ * Create UI5 Extension
+ */
 sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 	renderer : {},
 	metadata : {                             
