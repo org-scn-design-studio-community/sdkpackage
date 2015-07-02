@@ -1,5 +1,116 @@
-/*
- * Map Downloader
+/**
+ * Extension-less Handlers (Regular SAPUI5 Components)
+ */
+/**
+ * Register TextField Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "text",
+	setter : function(property, value){
+		this["cmp_"+property].setValue(value);
+	},
+	getter : function(property, control){
+		return control.getValue();
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var component = new sap.ui.commons.TextField({
+			value : ""
+		});
+		component.attachChange(changeHandler,this);
+		return component;
+	}
+});
+/**
+ * Register TextBox Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "textbox",
+	setter : function(property, value){
+		this["cmp_"+property].setValue(value);
+	},
+	getter : function(property, control){
+		return control.getValue();
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var component = new sap.ui.commons.TextArea({
+			design : sap.ui.core.Design.Monospace,
+			rows : 20,
+			width : "100%",
+			wrapping : sap.ui.core.Wrapping.Off
+		});
+		component.attachChange(changeHandler,this);
+		return component;
+	}
+});
+/**
+ * Register CheckBox Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "checkbox",
+	setter : function(property, value){
+		this["cmp_"+property].setChecked(Boolean(value));
+	},
+	getter : function(property, control){
+		return control.getChecked();
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var component = new sap.ui.commons.CheckBox();
+		component.attachChange(changeHandler,this);
+		return component;
+	}
+});
+/**
+ * Register ComboBox Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "combobox",
+	setter : function(property, value){
+		this["cmp_"+property].setSelectedKey(value);
+	},
+	getter : function(property, control){
+		return control.getSelectedKey();
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var component = new sap.ui.commons.ComboBox({});
+		if(propertyOptions.options && propertyOptions.options.length>0){
+			for(var i=0;i<propertyOptions.options.length;i++){
+				var option = propertyOptions.options[i];
+				component.addItem(new sap.ui.core.ListItem({
+					key : option.key,
+					text : option.text || option.key
+				}));
+			}
+		}
+		component.attachChange(changeHandler,this);
+		return component;
+	}
+});
+/**
+ * Register Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "mapdownload",
+	setter : function(property, value){
+		this["cmp_"+property].setMapData(value);
+	},
+	getter : function(property, control){
+		return control.getMapData();
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var component = new org.scn.community.aps.MapDownloader({
+			width : "100%",
+			title : new sap.ui.commons.Title({
+				text: propertyOptions.desc
+			}),
+			//tooltip: this.metaProps[prop].tooltip,
+			showCollapseIcon : false
+		});
+		component.attachMapDataChange(changeHandler,this);
+		return component;
+	}
+});
+/**
+ * Create Map Downloader Extension
  */
 sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 	_mapData : "",
@@ -371,8 +482,28 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.GeoCache",{
 
 
 
-/*
- * Spinner Control
+/**
+ * Register Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "spinner",
+	setter : function(property, value){
+		this["cmp_"+property].setValue(value);
+	},
+	getter : function(property, control){
+		return control.getValue();
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var component = new org.scn.community.aps.Spinner({
+			min : 0,
+			max : 100
+		});
+		component.attachValueChange(changeHandler,this);
+		return component;
+	}
+});
+/**
+ * Create Spinner Extension
  */
 sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.GeoLookup",{
 	metadata : {                             
@@ -3110,7 +3241,35 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.PolyLayer",{
 ;
 
 
-
+/**
+ * Register Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "palette",
+	setter : function(property, value){
+		this["cmp_"+property].setColors(value);
+	},
+	getter : function(property, control){
+		return control.getColors();
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var component = new org.scn.community.aps.ColorBuilder({
+			width : "100%",
+			title : new sap.ui.commons.Title({
+				text: propertyOptions.desc
+			}),
+			//tooltip: this.metaProps[prop].tooltip,
+			showCollapseIcon : false,
+			showAlpha : false,
+			showRatios : false
+		});
+		component.attachColorChange(changeHandler,this);
+		return component;
+	}
+});
+/**
+ * Create ColorBuilder Extension
+ */
 sap.ui.commons.Panel.extend("org.scn.community.aps.ColorBuilder",{
 	_pickerColors : "", 
 	_pickerAlphas : "",
@@ -3911,8 +4070,27 @@ sap.ui.commons.ColorPicker.extend("org.scn.community.aps.ColorPickerUI5",{
 		if(!this.getShowAlpha()) this._oldParent.removeContent(this._vLayout);
 	}
 });
-/*
- * Color Picker for picking a single color
+/**
+ * Register Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "color",
+	setter : function(property, value){
+		this["cmp_"+property].setBackgroundColor(value);
+	},
+	getter : function(property, control){
+		return control.getBackgroundColor();
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var component = new org.scn.community.aps.ColorPicker({
+			showAlpha : false
+		});
+		component.attachColorChange(changeHandler,this);
+		return component;
+	}
+});
+/**
+ * Create ColorBuilder Extension
  */
 sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ColorPicker",{
 	_colorPicker : null,
