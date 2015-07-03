@@ -1,7 +1,7 @@
 var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPage", function() {
 	var that = this;
-	
+	this.rendered = false;
 	/**
 	 * Crawl Node config by node key to find its UI sheet.
 	 */
@@ -164,6 +164,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			ui.addContent(stageUI);
 			stageUI.addContent(firstChildUI);
 		}
+		this.rendered = true;
 	};
 	/**
 	 * Balances out hierarchy to not allow for cases where a node has nodes AND leafs.

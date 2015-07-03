@@ -228,7 +228,8 @@
 		<defaultValue property="bubbleMax">50</defaultValue>
 		<defaultValue property="bubbleAlpha">50</defaultValue>
 		<defaultValue property="bubbleColor">#006699</defaultValue>
-		
+		<defaultValue property="measureMember">{}</defaultValue>
+		<defaultValue property="bubbleMember">{}</defaultValue>
 		<!-- End of Choropleth Defaults -->
 	</initialization>
 </component>
