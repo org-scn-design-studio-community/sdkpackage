@@ -357,6 +357,19 @@ public class SpecificationReader {
 		templates.put("def"+File.separator+"contribution.ztl", ZtlTmpl);
 		
 		if(ApsHtml != null){
+			ApsHtml = ApsHtml.replace("<!-- %PART_USED_AS_TEMPLATE%", "");
+			ApsHtml = ApsHtml.replace("%PART_USED_AS_TEMPLATE% -->", "");
+
+			ApsHtml = ApsHtml.replace("src=\"/", "src=|\"/");
+			ApsHtml = ApsHtml.replace("src=\"PropertyPage", "src=|\"PropertyPage");
+			ApsHtml = ApsHtml.replace("href=\"/", "href=|\"/");
+			
+			ApsHtml = ApsHtml.replace("src=\"", "src=\"../../../aps/");
+			ApsHtml = ApsHtml.replace("href=\"", "href=\"../../../aps/");
+			
+			ApsHtml = ApsHtml.replace("src=|", "src=");
+			ApsHtml = ApsHtml.replace("href=|", "href=");
+
 			templates.put("aps"+File.separator+"PropertyPage.html", ApsHtml);	
 		}
 		
