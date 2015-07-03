@@ -4,6 +4,36 @@
  * Based on a work at http://github.com/org-scn-design-studio-community/sdkpackage/tree/master/src/org.scn.community.databound/res/AdvancedDataTable 
  *
  */
+var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
+/**
+ * Register Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "columnconfig",
+	setter : function(property, value){
+		var newValue = jQuery.parseJSON(value);
+		this["cmp_"+property].setValue(newValue);
+	},
+	getter : function(property, control){
+		var arrayValue = control.getValue();
+		newValue = JSON.stringify(arrayValue);
+		return newValue;
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var component = new org.scn.community.aps.TableColumns({
+			width : "100%",
+			title : new sap.ui.commons.Title({
+				text: propertyOptions.desc
+			}),
+			showCollapseIcon : false
+		});
+		component.attachValueChange(changeHandler ,this);
+		return component;
+	}
+});
+/**
+ * Create UI5 Extension
+ */
 sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.TableColumns", {
 	renderer : {},
 	metadata : {                             

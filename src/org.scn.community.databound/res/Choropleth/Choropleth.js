@@ -35,7 +35,13 @@
 			 	.attr('class', 'd3-tip')
 			 	.html(function(d) { 
 			 		var html = "<span>";
-			 		var mm = that.measureMember();
+			 		var mm;
+	    			var mmObj = jQuery.parseJSON(this.measureMember());
+	    			if(typeof mmObj == "object"){
+	    				mm = this.determineMeasureName(mmObj);
+	    			}else{
+	    				mm = mmObj;
+	    			}
 			 		if(!mm){
 			 			if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
 			 		}
@@ -77,7 +83,7 @@
 					opts : {
 						desc : "Choropleth Measure",
 						cat : "Data",
-						apsControl : "text"
+						apsControl : "measureselector"
 					}					
 				},
 				bubbleMember :  { 
@@ -85,7 +91,7 @@
 					opts : {
 						desc : "Bubble Measure",
 						cat : "Data",
-						apsControl : "text"
+						apsControl : "measureselector"
 					}					
 				},
 				bubbleColor :  { 
@@ -240,6 +246,7 @@
 									var measures = {};
 									for (var i=0;i<flatData.columnHeaders.length;i++){
 										measures[flatData.columnHeaders[i]] = flatData.values[rowIndex][i];
+										measures[flatData.columnHeadersKeys[i]] = flatData.values[rowIndex][i];
 									}
 									//alert("Match found on " + rowIndex + currentPropertyValue + "\n\nAttaching " + JSON.stringify(measures));
 									feature.properties.designStudioMeasures = measures;
@@ -276,7 +283,13 @@
 				that.lastHover = d.properties[that.featureProperty()];
 				if(that.showTooltips()){
 					var html = "<span>";
-			 		var mm = that.measureMember();
+					var mm;
+	    			var mmObj = jQuery.parseJSON(that.measureMember());
+	    			if(typeof mmObj == "object"){
+	    				mm = that.determineMeasureName(mmObj);
+	    			}else{
+	    				mm = mmObj;
+	    			}
 			 		if(!mm){
 			 			if(that._flatData && that._flatData.columnHeaders && that._flatData.columnHeaders.length > 1) mm = that._flatData.columnHeaders[0];
 			 		}
@@ -421,18 +434,30 @@
 		        var d, domain;
 		        this.valuesSet = [this.floor()];
 		        this.bubbleSet = [this.floor()];
+		        var mm;
+    			var bm;
+    			var mmObj = jQuery.parseJSON(this.measureMember());
+    			var bmObj = jQuery.parseJSON(this.bubbleMember());
+    			if(typeof mmObj == "object"){
+    				mm = this.determineMeasureName(mmObj);
+    			}else{
+    				mm = mmObj;			// Backwards compat
+    			}
+    			if(typeof bmObj == "object"){
+    				bm = this.determineMeasureName(bmObj);
+    			}else{
+    				bm = bmObj;			// Backwards compat
+    			}
 	        	// Get values for range
 		        for (d = 0; d < this._mapJSON.features.length; d++) {
 	        		if(this._mapJSON.features[d].properties.designStudioMeasures){
-	        			var mm = this.measureMember();
-	        			var bm = this.bubbleMember();
 						if(!mm){
 							if(this.flatData && this.flatData.columnHeaders && this.flatData.columnHeaders.length > 0) mm = this.flatData.columnHeaders[0];
 						}
 	        			if(bm && this._mapJSON.features[d].properties.designStudioMeasures[bm]){
 	        				this.bubbleSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[bm]));
 	        			}
-						this.valuesSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[mm]));	
+						this.valuesSet.push(parseFloat(this._mapJSON.features[d].properties.designStudioMeasures[mm]));
 	        		}else{
 	        			this.valuesSet.push(null);
 	        			this.bubbleSet.push(null);
@@ -464,7 +489,13 @@
 					if(d.properties[that.featureProperty()]==that.selectedFeature() && that.selectedColor()) return that.selectedColor();
 				}
 				if(d.properties && d.properties.designStudioMeasures){
-					var mm = that.measureMember();
+					var mm;
+	    			var mmObj = jQuery.parseJSON(that.measureMember());
+	    			if(typeof mmObj == "object"){
+	    				mm = that.determineMeasureName(mmObj);
+	    			}else{
+	    				mm = mmObj;
+	    			}
 					if(!mm){
 						if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 0) mm = that.flatData.columnHeaders[0];
 					}
@@ -517,7 +548,13 @@
 						.attr("transform", function(d) { return "translate(" + that.projPath.centroid(d) + ")"; })
 						.attr("r", function(d,i){
 							if(d.properties && d.properties.designStudioMeasures){
-								var bm = that.bubbleMember();
+								var bm;
+				    			var bmObj = jQuery.parseJSON(that.bubbleMember());
+				    			if(typeof bmObj == "object"){
+				    				bm = that.determineMeasureName(bmObj);
+				    			}else{
+				    				bm = bmObj;
+				    			}
 								if(bm){
 									if(d.properties.designStudioMeasures[bm]){
 										return that.bubbleScale(d.properties.designStudioMeasures[bm]);
@@ -673,7 +710,13 @@
 				        .attr('x', (unit * 1))
 				        .attr('y', (unit * 2))
 				        .text(function(){
-				        	var mm = that.measureMember();
+							var mm;
+			    			var mmObj = jQuery.parseJSON(that.measureMember());
+			    			if(typeof mmObj == "object"){
+			    				mm = that.determineMeasureName(mmObj);
+			    			}else{
+			    				mm = mmObj;
+			    			}
 							if(!mm){
 								if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 1) mm = that.flatData.columnHeaders[0];
 							}
@@ -747,7 +790,13 @@
 				var selectedFeature = this.findFeature(this.selectedFeature());
 				var hoverFeature = this.findFeature(this.lastHover);
 				if(selectedFeature) {
-					var mm = that.measureMember();
+					var mm;
+	    			var mmObj = jQuery.parseJSON(this.measureMember());
+	    			if(typeof mmObj == "object"){
+	    				mm = this.determineMeasureName(mmObj);
+	    			}else{
+	    				mm = mmObj;
+	    			}
 					if(!mm){
 						if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 1) mm = that.flatData.columnHeaders[0];
 					}
@@ -771,7 +820,13 @@
 						.attr("transform", "translate(0,"+(0-that.dimensions.gradientHeight)+")");
 				}
 				if(hoverFeature){
-					var mm = that.measureMember();
+					var mm;
+	    			var mmObj = jQuery.parseJSON(this.measureMember());
+	    			if(typeof mmObj == "object"){
+	    				mm = this.determineMeasureName(mmObj);
+	    			}else{
+	    				mm = mmObj;
+	    			}
 					if(!mm){
 						if(that.flatData && that.flatData.columnHeaders && that.flatData.columnHeaders.length > 1) mm = that.flatData.columnHeaders[0];
 					}

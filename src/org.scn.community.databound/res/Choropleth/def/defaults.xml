@@ -15,5 +15,6 @@
 		<defaultValue property="bubbleMax">50</defaultValue>
 		<defaultValue property="bubbleAlpha">50</defaultValue>
 		<defaultValue property="bubbleColor">#006699</defaultValue>
-		
+		<defaultValue property="measureMember">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}</defaultValue>
+		<defaultValue property="bubbleMember">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:1}</defaultValue>
 		<!-- End of Choropleth Defaults -->

@@ -125,6 +125,27 @@ function org_scn_community_databound_Base(options){
 			alert(errMsg);
 		}
 	}
+	/**
+	 * Determine Field Name
+	 */
+	this.determineMeasureName = function(measureObj){
+		if(typeof measureObj === "string") return measureObj;
+		var fieldName = "UNKNOWN";
+		if(!measureObj) return null;
+		if(measureObj.fieldType=="unassigned"){
+			fieldName = null;
+		}
+		if(measureObj.fieldType=="name"){
+			fieldName = measureObj.fieldName;
+		}
+		if(measureObj.fieldType=="position"){
+			var fieldPosition = measureObj.fieldPosition;
+			if(this.flatData.columnHeadersKeys.length>=fieldPosition-1){
+				fieldName = this.flatData.columnHeadersKeys[fieldPosition];
+			}
+		}
+		return fieldName;
+	}
 	var parentInit = this.init;
 	this.init = function(){
 		parentInit.apply(this);
