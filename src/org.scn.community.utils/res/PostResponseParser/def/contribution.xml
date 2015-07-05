@@ -164,7 +164,7 @@
 		<defaultValue property="DParameters"></defaultValue>
 		<defaultValue property="DContentType">application/x-www-form-urlencoded</defaultValue>
 		<defaultValue property="DExpectedResponseStatus">200</defaultValue>
-		<defaultValue property="DDExpectedContentType">text</defaultValue>
+		<defaultValue property="DExpectedContentType">text</defaultValue>
 
 	</initialization>
 

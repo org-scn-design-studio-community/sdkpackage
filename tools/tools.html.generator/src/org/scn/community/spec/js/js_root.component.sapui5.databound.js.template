@@ -27,10 +27,14 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 	
 	initDesignStudio: function() {
 		var that = this;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
 		org_scn_community_component_Core(that, myComponentData);
 		
-		that._oRoot = {};
-
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
@@ -44,32 +48,40 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 		var that = this;
 		
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
-		var data = that.getDataCellList();
-		var metadata = that.getMetadata();
+		var loadingResultset = "%COMP-dataType%";
+		
+		var data = undefined;		
+		if(loadingResultset == "ResultSet" || loadingResultset == "ResultCell"){
+			data = that.getData();
+		} else if(loadingREsultset == "DataCellList"){
+			data = that.getDataCellList();
+		}
+
+		var metadata = that.getDSMetadata();
 
 		if(!org_scn_community_databound.hasData (data, metadata)) {
-			that.flatData = org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare);
-			return;
+			org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare);
 		} else {
-			that.processData (undefined, that.afterPrepare, that);
-			return;
+			org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
 		}
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	},
 	
 	/* COMPONENT SPECIFIC CODE - START METHODS*/
-	processData = function (flatData, afterPrepare, owner) {
+	processData: function (flatData, afterPrepare, owner) {
 		var that = owner;
 
 		if(flatData == undefined) {
-			var loadingResultset = %RESULT_SET_OR_DIMENSIONS%;
+			var loadingResultset = "%COMP-dataType%";
 				
-			if(loadingREsultset){
+			if(loadingResultset == "ResultSet"){
 				var options = org_scn_community_databound.initializeOptions();
 				options.swapAxes = that.getSwapAxes();
 				
 				that._flatData = org_scn_community_databound.flatten(that.getData(), options);
-			} else {
+			} else if(loadingResultset == "ResultCell"){
+				that._flatData = this.getData();
+			} else if(loadingResultset == "DataCellList"){
 				var lDimensions = that.getDElements();
 		
 				var options = org_scn_community_databound.initializeOptions();
@@ -101,7 +113,7 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 		that.afterPrepare(that);
 	},
 
-	afterPrepare = function (owner) {
+	afterPrepare: function (owner) {
 		var that = owner;
 			
 		// visualization on processed data 

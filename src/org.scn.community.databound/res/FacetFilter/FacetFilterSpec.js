@@ -183,7 +183,7 @@
       "ztlType": "Choice"
     },
     "type": "String",
-    "value": "VALUE",
+    "value": "Value",
     "visible": true
   },
   "DSelection": {
@@ -299,7 +299,7 @@
       "ztlType": "Choice"
     },
     "type": "String",
-    "value": "SHOW",
+    "value": "Show",
     "visible": true
   },
   "data": {

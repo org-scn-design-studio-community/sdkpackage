@@ -1,170 +1,237 @@
 
 <component
 	id="KpiView"
-	title="Kpi View"
+	title="Kpi View 2.0"
+	tooltip="Kpi View"
 	icon="res/KpiView/KpiView.png"
 	handlerType="sapui5"
+	propertySheetPath="res/KpiView/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
-	<jsInclude>os/numberformat/numberformatter-min.js</jsInclude>
-
-	<jsInclude>res/KpiView/KpiView.js</jsInclude>
+	<jsInclude>res/KpiView/KpiViewLoader.js</jsInclude>
 	<cssInclude>res/KpiView/KpiView.css</cssInclude>
-
+	
 	<property
 		id="data"
-		title="Data Value"
 		type="ResultCell"
-		group="DataBinding"
-	>
-	</property>
-	<property
-		id="headerText"
-		title="Header"
-		type="String"
-		group="Display" />
-	<property
-		id="headerCssClass"
-		title="Header CSS Class"
-		type="String"
-		group="Display" />
-	<property
-		id="titleText"
-		title="Title"
-		type="String"
-		group="Display" />
-	<property
-		id="titleCssClass"
-		title="Title CSS Class"
-		type="String"
-		group="Display" />
-	<property
-		id="valuePrefixText"
-		title="Value Prefix"
-		type="String"
-		group="Display" />
-	<property
-		id="valuePrefixCssClass"
-		title="Value Prefix CSS Class"
-		type="String"
-		group="Display" />
-	<property
-		id="valueText"
-		title="Value"
-		type="String"
-		group="Display" />
-	<property
-		id="valueFloat"
-		title="Value as Float"
-		type="float"
-		group="Display" />
-	<property
-		id="valueHAlign"
-		title="Value Horizontal Alignment"
-		type="String"
-		group="Display"
-	>
-		<possibleValue>left</possibleValue>
-		<possibleValue>right</possibleValue>
-	</property>
-	<property
-		id="valueCssClass"
-		title="Value CSS Class"
-		type="String"
-		group="Display" />
-	<property
-		id="valueDecimalPlaces"
-		title="Value Decimal Places"
-		type="int"
-		group="Display"
-	>
-		<possibleValue>0</possibleValue>
-		<possibleValue>1</possibleValue>
-		<possibleValue>2</possibleValue>
-		<possibleValue>3</possibleValue>
-		<possibleValue>4</possibleValue>
-		<possibleValue>5</possibleValue>
-		<possibleValue>6</possibleValue>
-		<possibleValue>7</possibleValue>
-		<possibleValue>8</possibleValue>
-		<possibleValue>9</possibleValue>
-	</property>
-	<property
-		id="valueSuffixText"
-		title="Value Suffix"
-		type="String"
-		group="Display" />
-	<property
-		id="valueSuffixCssClass"
-		title="Value Suffix CSS Class"
-		type="String"
-		group="Display" />
-	<property
-		id="footerText"
-		title="Footer"
-		type="String"
-		group="Display" />
-	<property
-		id="footerHAlign"
-		title="Footer Horizontal Alignment"
-		type="String"
-		group="Display"
-	>
-		<possibleValue>left</possibleValue>
-		<possibleValue>right</possibleValue>
+		title="Data Value"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
 		id="footerCssClass"
+		type="String"
 		title="Footer CSS Class"
-		type="String"
-		group="Display" />
-	<property
-		id="linkText"
-		title="Text for the Link"
-		type="String"
 		group="Display"
-	>
+		bindable="true"
+		visible="true">
+
 	</property>
 	<property
-		id="linkTooltip"
-		title="Tooltip for the Link"
+		id="footerHAlign"
 		type="String"
+		title="Footer Horizontal Alignment"
 		group="Display"
-	>
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="footerText"
+		type="String"
+		title="Footer"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="headerCssClass"
+		type="String"
+		title="Header CSS Class"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="headerHAlign"
+		type="String"
+		title="Header Horizontal Alignment"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="headerText"
+		type="String"
+		title="Header"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
 	<property
 		id="image"
-		title="Url for the Image"
 		type="Url"
+		title="Url For The Image"
 		group="Display"
-	>
+		bindable="true"
+		visible="true">
+
 	</property>
 	<property
 		id="imageSize"
-		title="Size of the Image"
 		type="String"
+		title="Size Of The Image"
 		group="Display"
-	>
-		<possibleValue>16px</possibleValue>
-		<possibleValue>32px</possibleValue>
-		<possibleValue>64px</possibleValue>
-		<possibleValue>128px</possibleValue>
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="linkText"
+		type="String"
+		title="Text For The Link"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="linkTooltip"
+		type="String"
+		title="Tooltip For The Link"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
 	<property
 		id="onClick"
-		title="On Click"
 		type="ScriptText"
-		group="Events" />
+		title="On Click"
+		group="Events"
+		visible="true">
+
+	</property>
 	<property
 		id="onLinkClick"
-		title="On Click"
 		type="ScriptText"
-		group="Events" />
+		title="On Click"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="titleCssClass"
+		type="String"
+		title="Title CSS Class"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="titleText"
+		type="String"
+		title="Title"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="valueCssClass"
+		type="String"
+		title="Value CSS Class"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="valueDecimalPlaces"
+		type="String"
+		title="Value Decimal Places"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="valueFloat"
+		type="String"
+		title="Value As Float"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="valueHAlign"
+		type="String"
+		title="Value Horizontal Alignment"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="valuePrefixCssClass"
+		type="String"
+		title="Value Prefix CSS Class"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="valuePrefixText"
+		type="String"
+		title="Value Prefix"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="valueSuffixCssClass"
+		type="String"
+		title="Value Suffix CSS Class"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="valueSuffixText"
+		type="String"
+		title="Value Suffix"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="valueText"
+		type="String"
+		title="Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
@@ -173,17 +240,32 @@
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">220</defaultValue>
 		<defaultValue property="HEIGHT">190</defaultValue>
-
-		<defaultValue property="headerText">Header</defaultValue>
-		<defaultValue property="headerVisible">true</defaultValue>
-		<defaultValue property="titleText">Title</defaultValue>
-		<defaultValue property="valuePrefixText"></defaultValue>
-		<defaultValue property="valueText">Value</defaultValue>
-		<defaultValue property="valueSuffixText"> M$</defaultValue>
-		<defaultValue property="valueHAlign">left</defaultValue>
-		<defaultValue property="valueDecimalPlaces">0</defaultValue>
+		
+		<defaultValue property="data"></defaultValue>
+		<defaultValue property="footerCssClass"></defaultValue>
+		<defaultValue property="footerHAlign">Left</defaultValue>
 		<defaultValue property="footerText">Footer</defaultValue>
-		<defaultValue property="footerHAlign">left</defaultValue>
+		<defaultValue property="headerCssClass"></defaultValue>
+		<defaultValue property="headerHAlign">Left</defaultValue>
+		<defaultValue property="headerText">Header</defaultValue>
+		<defaultValue property="image"></defaultValue>
+		<defaultValue property="imageSize">Size_16px</defaultValue>
+		<defaultValue property="linkText"></defaultValue>
+		<defaultValue property="linkTooltip"></defaultValue>
+		<defaultValue property="onClick"></defaultValue>
+		<defaultValue property="onLinkClick"></defaultValue>
+		<defaultValue property="titleCssClass"></defaultValue>
+		<defaultValue property="titleText">Title</defaultValue>
+		<defaultValue property="valueCssClass"></defaultValue>
+		<defaultValue property="valueDecimalPlaces">D0</defaultValue>
+		<defaultValue property="valueFloat"></defaultValue>
+		<defaultValue property="valueHAlign">Left</defaultValue>
+		<defaultValue property="valuePrefixCssClass"></defaultValue>
+		<defaultValue property="valuePrefixText"></defaultValue>
+		<defaultValue property="valueSuffixCssClass"></defaultValue>
+		<defaultValue property="valueSuffixText"> M$</defaultValue>
+		<defaultValue property="valueText">Value</defaultValue>
+
 	</initialization>
 
 </component>

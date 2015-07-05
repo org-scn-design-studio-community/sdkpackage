@@ -224,9 +224,117 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Sets the Selected keys<br/>
+	 * Sets the Text for Element keys<br/>
 	 */
-	void setSelectedElementKeys (
+	void setElementTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Element Key<br/>
+	 */
+	void setElementText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Url for Element keys<br/>
+	 */
+	void setElementUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Element Key<br/>
+	 */
+	void setElementUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Selected for Element keys<br/>
+	 */
+	void setElementSelecteds (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -256,9 +364,9 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	*}
 
 	/**
-	 * Sets the Selected Key<br/>
+	 * Sets the Selected for Element Key<br/>
 	 */
-	void setSelectedElementKey (
+	void setElementSelected (
 			/**/ String key,
 			/**/ boolean selected
 			) 
@@ -282,9 +390,9 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 
 		
 	/**
-	 * Clean all Selected keys<br/>
+	 * Clean all Selected of Element keys<br/>
 	 */
-	void cleanAllSelectedElementKeys (
+	void cleanAllElementSelecteds (
 			) 
 	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
@@ -303,7 +411,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getSelectedElementKeysArray (
+	org.scn.pack.KeyArray getElementSelectedKeysArray (
 			) 
 	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){

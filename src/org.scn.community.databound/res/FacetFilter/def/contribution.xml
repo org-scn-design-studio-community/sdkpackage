@@ -186,12 +186,12 @@
 		<defaultValue property="DFacetWidth">160</defaultValue>
 		<defaultValue property="DMaxDisplayMembers">5</defaultValue>
 		<defaultValue property="DMaxMembers">1000</defaultValue>
-		<defaultValue property="DSecondValueContent">VALUE</defaultValue>
+		<defaultValue property="DSecondValueContent">Value</defaultValue>
 		<defaultValue property="DSelection"></defaultValue>
 		<defaultValue property="DShowSecondValue">false</defaultValue>
 		<defaultValue property="DSortingDirection">Ascending</defaultValue>
 		<defaultValue property="DSortingType">Default</defaultValue>
-		<defaultValue property="DZeroValuesMode">SHOW</defaultValue>
+		<defaultValue property="DZeroValuesMode">Show</defaultValue>
 		<defaultValue property="data">null</defaultValue>
 		<defaultValue property="onBeforeRender"></defaultValue>
 		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>

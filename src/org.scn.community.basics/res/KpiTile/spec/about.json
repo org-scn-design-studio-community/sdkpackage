@@ -1,0 +1,12 @@
+{
+	"title": "Kpi Tile 2.0",
+	"description": "Kpi Tile",
+	"icon": "KpiTile.png",
+	"topics": 
+	[
+		{
+			"title" : "Kpi Tile",
+			"content" : "Kpi Tile - Custom Tile Component based on UI5 Specification. Allows you to build own Tiles."
+		}
+	]
+}

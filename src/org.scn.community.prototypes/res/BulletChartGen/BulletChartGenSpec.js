@@ -296,7 +296,7 @@
       "ztlType": "Choice"
     },
     "type": "String",
-    "value": "worse than comparison",
+    "value": "comparison",
     "visible": true
   },
   "showaxis": {

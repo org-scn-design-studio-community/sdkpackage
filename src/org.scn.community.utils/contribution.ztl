@@ -1996,7 +1996,10 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Image Carousel component*/
 	org.scn.community.basics.ImageCarousel returnAsScnImageCarousel (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Kpi View component*/
+	/**Cast to Kpi Tile 2.0 component*/
+	org.scn.community.basics.KpiTile returnAsScnKpiTile (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Kpi View 2.0 component*/
 	org.scn.community.basics.KpiView returnAsScnKpiView (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Launch Pad component*/

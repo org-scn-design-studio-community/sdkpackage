@@ -132,7 +132,7 @@
 		<defaultValue property="DCleanAll">false</defaultValue>
 		<defaultValue property="DDefaultImage"></defaultValue>
 		<defaultValue property="DElementsContent">[]</defaultValue>
-		<defaultValue property="DImageSize">16px</defaultValue>
+		<defaultValue property="DImageSize">Size_16px</defaultValue>
 		<defaultValue property="DPressedButtonKey"></defaultValue>
 		<defaultValue property="DPressedItemKey"></defaultValue>
 		<defaultValue property="DSelectedKeys">[]</defaultValue>

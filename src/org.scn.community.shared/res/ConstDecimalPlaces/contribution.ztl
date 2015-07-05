@@ -1,0 +1,44 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_DecimalPlacesEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants definition 
+ */
+class org_scn_community_shared_DecimalPlaces extends Enum {
+
+	/** 0 */
+	org_scn_community_shared_DecimalPlacesEnumfield D0;
+       
+	/** 1 */
+	org_scn_community_shared_DecimalPlacesEnumfield D1;
+
+	/** 2 */
+	org_scn_community_shared_DecimalPlacesEnumfield D2;
+
+	/** 3 */
+	org_scn_community_shared_DecimalPlacesEnumfield D3;
+
+	/** 4 */
+	org_scn_community_shared_DecimalPlacesEnumfield D4;
+
+	/** 5 */
+	org_scn_community_shared_DecimalPlacesEnumfield D5;
+
+	/** 6 */
+	org_scn_community_shared_DecimalPlacesEnumfield D6;
+
+	/** 7 */
+	org_scn_community_shared_DecimalPlacesEnumfield D7;
+
+	/** 8 */
+	org_scn_community_shared_DecimalPlacesEnumfield D8;
+
+	/** 9 */
+	org_scn_community_shared_DecimalPlacesEnumfield D9;
+
+}

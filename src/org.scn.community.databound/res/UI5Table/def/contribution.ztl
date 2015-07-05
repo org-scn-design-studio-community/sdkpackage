@@ -245,6 +245,60 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the Width for ColumnWidthEntry keys<br/>
+	 */
+	void setColumnWidthEntryWidths (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Width */ String width
+			) 
+	{*
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DDataColWidths);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].width = width;
+					break;
+				}
+			}
+		}
+		
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Width for ColumnWidthEntry Key<br/>
+	 */
+	void setColumnWidthEntryWidth (
+			/**/ String key,
+			/**/ String width
+			) 
+	{*
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DDataColWidths);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].width = width;
+				break;
+			}
+		}
+
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
 
 
 

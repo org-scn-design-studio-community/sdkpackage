@@ -74,7 +74,7 @@
 	},
     "memberDisplay":{
         "type":"String",
-        "value":"text",
+        "value":"Text",
         "visible":true,
         "opts":{
            "ztlType":"Choice",

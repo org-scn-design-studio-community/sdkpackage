@@ -18,9 +18,12 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ConstButtonStyle\contribution.ztl ^
 ..\res\ConstButtonType\contribution.ztl ^
 ..\res\ConstContentNotation\contribution.ztl ^
+..\res\ConstDateViewType\contribution.ztl ^
 ..\res\ConstDimensionSet\contribution.ztl ^
+..\res\ConstDecimalPlaces\contribution.ztl ^
 ..\res\ConstFormatStyle\contribution.ztl ^
 ..\res\ConstFormattingOperator\contribution.ztl ^
+..\res\ConstHorizontalAlign\contribution.ztl ^
 ..\res\ConstImageSize\contribution.ztl ^
 ..\res\ConstMemberDisplay\contribution.ztl ^
 ..\res\ConstNavigationType\contribution.ztl ^
@@ -29,6 +32,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ConstSelectionType\contribution.ztl ^
 ..\res\ConstSecondValueContent\contribution.ztl ^
 ..\res\ConstSortDirection\contribution.ztl ^
+..\res\ConstSelctionType\contribution.ztl ^
 ..\res\ConstSortType\contribution.ztl ^
 ..\res\DimensionMember\contribution.ztl ^
 ..\res\Key\contribution.ztl ^

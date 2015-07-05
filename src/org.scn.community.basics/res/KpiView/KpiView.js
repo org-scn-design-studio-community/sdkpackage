@@ -16,72 +16,30 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.KpiView";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.basics.KpiView;
 
-sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.KpiView", {
+KpiView = {
 
-	metadata: {
-        properties: {
-        	"headerText": {type: "string"},
-        	"headerVisible": {type: "boolean"},
-        	"headerCssClass": {type: "string"},
-        	"titleText": {type: "string"},
-        	"titleCssClass": {type: "string"},
-        	"valuePrefixText": {type: "string"},
-        	"valuePrefixCssClass": {type: "string"},
-        	"valueText": {type: "string"},
-        	"valueFloat": {type: "string"},
-        	"valueHAlign": {type: "string"},
-        	"footerHAlign": {type: "string"},
-        	"valueCssClass": {type: "string"},
-        	"valueDecimalPlaces": {type: "int"},
-        	"valueSuffixText": {type: "string"},
-        	"valueSuffixCssClass": {type: "string"},
-        	"footerText": {type: "string"},
-        	"footerCssClass": {type: "string"},
-        	
-        	"linkText": {type: "string"},
-        	"linkTooltip": {type: "string"},
-        	"image": {type: "string"},
-        	"imageSize": {type: "string"}
-        }
-	},
+	renderer: {},
 	
-	setData : function(value) {
-		this._data = value;
-		return this;
-	},
-
-	getData : function() {
-		return this._data;
-	},
-	
-	setMetadata : function(value) {
-		this._metadata = value;
-		return this;
-	},
-  
-	getMetadata : function() {
-		return this._metadata;
-	},
-
 	initDesignStudio: function() {
 		var that = this;
-		this._ownScript = _readScriptPath();
 
-		this.addStyleClass("scn-pack-KpiView");
-		this.addStyleClass("scn-pack-KpiView-Bottom");
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
 		
-		this.attachBrowserEvent('click', function() {
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that.addStyleClass("scn-pack-KpiView");
+		that.addStyleClass("scn-pack-KpiView-Bottom");
+		
+		that.attachBrowserEvent('click', function() {
 			if(that._linkEvent == true) {
 				that._linkEvent = false;
 			} else {
@@ -90,184 +48,302 @@ sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.basics.KpiView", 
 		});
 		
 		// header
-		this._lTextHeader = new sap.ui.commons.TextView();
+		that._lTextHeader = new sap.ui.commons.TextView();
 
-		this._lTextHeader.addStyleClass("scn-pack-KpiView-Header");
-		
-		this.addContent(
-				this._lTextHeader,
-				{left: "10px", top: "10px"}
-		);
+		that._lTextHeader.addStyleClass("scn-pack-KpiView-Header");
 
 		// title
-		this._lTextTitle = new sap.ui.commons.TextView();
+		that._lTextTitle = new sap.ui.commons.TextView();
 
-		this._lTextTitle.addStyleClass("scn-pack-KpiView-Title");
+		that._lTextTitle.addStyleClass("scn-pack-KpiView-Title");
 		
-		this.addContent(
-				this._lTextTitle,
+		that.addContent(
+				that._lTextTitle,
 				{left: "10px", top: "30px"}
 		);
 		
 		// optional link
-		this._lLink = new sap.ui.commons.Link();
+		that._lLink = new sap.ui.commons.Link();
 
-		this._lLink.attachBrowserEvent('click', function() {
+		that._lLink.attachBrowserEvent('click', function() {
 			that._linkEvent = true;
 			that.fireDesignStudioEvent("onLinkClick");
 		});
 		
-		this._lLink.addStyleClass("scn-pack-KpiView-Link");
+		that._lLink.addStyleClass("scn-pack-KpiView-Link");
 
-		this.addContent(
-				this._lLink,
+		that.addContent(
+				that._lLink,
 				{left: "10px", top: "50px"}	
 		);
 
 		// optional image
-		this._lImage = new sap.ui.commons.Image({
+		that._lImage = new sap.ui.commons.Image({
 			width: "32px",
 			height: "32px"
 			}
 		);
 
-		this._lImage.addStyleClass("scn-pack-KpiView-Image");
+		that._lImage.addStyleClass("scn-pack-KpiView-Image");
 		
-		this.addContent(
-				this._lImage,
+		that.addContent(
+				that._lImage,
 				{right: "10px", top: "10px"}
 		);
 		
 		// value
-		this._lLayout = new sap.ui.layout.HorizontalLayout({
+		that._lLayout = new sap.ui.layout.HorizontalLayout({
 			
 		});
 
-		this._lLayout.addStyleClass("scn-pack-KpiView-Bottom");
+		that._lLayout.addStyleClass("scn-pack-KpiView-Bottom");
 		
-		this._lTextValuePrefix = new sap.ui.commons.TextView();
+		that._lTextValuePrefix = new sap.ui.commons.TextView();
 
-		this._lTextValuePrefix.addStyleClass("scn-pack-KpiView-ValuePrefix");
+		that._lTextValuePrefix.addStyleClass("scn-pack-KpiView-ValuePrefix");
 		
-		this._lLayout.addContent(
-				this._lTextValuePrefix
+		that._lLayout.addContent(
+				that._lTextValuePrefix
 		);
 		
-		this._lTextValue = new sap.ui.commons.TextView();
+		that._lTextValue = new sap.ui.commons.TextView();
 
-		this._lTextValue.addStyleClass("scn-pack-KpiView-Value");
+		that._lTextValue.addStyleClass("scn-pack-KpiView-Value");
 		
-		this._lLayout.addContent(
-				this._lTextValue
+		that._lLayout.addContent(
+				that._lTextValue
 		);
 
-		this._lTextValueSuffix = new sap.ui.commons.TextView();
+		that._lTextValueSuffix = new sap.ui.commons.TextView();
 
-		this._lTextValueSuffix.addStyleClass("scn-pack-KpiView-ValueSuffix");
+		that._lTextValueSuffix.addStyleClass("scn-pack-KpiView-ValueSuffix");
 		
-		this._lLayout.addContent(
-				this._lTextValueSuffix
+		that._lLayout.addContent(
+				that._lTextValueSuffix
 		);
 
 		// footer
-		this._lTextFooter = new sap.ui.commons.TextView();
+		that._lTextFooter = new sap.ui.commons.TextView();
 
-		this._lTextFooter.addStyleClass("scn-pack-KpiView-Footer");
+		that._lTextFooter.addStyleClass("scn-pack-KpiView-Footer");
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
 	},
 	
-	renderer: {},
-	
-	afterDesignStudioUpdate : function() {
+	afterDesignStudioUpdate: function() {
 		var that = this;
 		
-    	this._lTextHeader.setText (this.getHeaderText());
-		var cssClasss = this.getHeaderCssClass();
-    	if(cssClasss != "") {
-    		this._lTextHeader.addStyleClass(cssClasss);
-    	}
-    	
-		this._lTextTitle.setText (this.getTitleText());
-		var cssClasss = this.getTitleCssClass();
-    	if(cssClasss != "") {
-    		this._lTextTitle.addStyleClass(cssClasss);
-    	}
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+		var loadingResultset = "ResultCell";
 		
-		this._lTextValuePrefix.setText (this.getValuePrefixText());
-		var cssClasss = this.getValuePrefixCssClass();
-    	if(cssClasss != "") {
-    		this._lTextValuePrefix.addStyleClass(cssClasss);
-    	}
-    	
-    	// value processing
-    	var lValue = "";
-    	
-		if (this._data && this._data.data.length > 0) {
-			lValue = this._data.data[0];
-			lValue = org_scn_community_basics.getFormattedValue (lValue, this._metadata.locale, this.getValueDecimalPlaces());
+		var data = undefined;		
+		if(loadingResultset == "ResultSet" || loadingResultset == "ResultCell"){
+			data = that.getData();
+		} else if(loadingREsultset == "DataCellList"){
+			data = that.getDataCellList();
 		}
 
-		if (lValue == "" && this.getValueText() !== "") {
-			lValue = this.getValueText();
+		var metadata = that.getDSMetadata();
+
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+		var metaData = that.getDSMetadata();
+
+		if(flatData == undefined) {
+			var loadingResultset = "ResultCell";
+				
+			if(loadingResultset == "ResultSet"){
+				var options = org_scn_community_databound.initializeOptions();
+				options.swapAxes = that.getSwapAxes();
+				
+				that._flatData = org_scn_community_databound.flatten(that.getData(), options);
+			} else if(loadingResultset == "ResultCell"){
+				that._flatData = that.getData();
+			} else if(loadingResultset == "DataCellList"){
+				var lDimensions = that.getDElements();
+		
+				var options = org_scn_community_databound.initializeOptions();
+				options.iMaxNumber = that.getDMaxMembers();
+				options.allKeys = true;
+				options.idPrefix = that.getId();
+				options.iDuplicates = "Sum";
+				
+				if(that.getDDisplayText() == "Text_Value") {
+					options.iDisplayText = "Text (Value)";
+				} else if(that.getDDisplayText() == "Text_Count") {
+					options.iDisplayText = "Text (Count)";
+				} else {
+					options.iDisplayText = "Text";
+				}
+				
+				options.iNullValues = that.getDZeroValuesMode();
+			
+				var dataList = that.getDataCellList();
+				that._flatData = org_scn_community_databound.getDataModelForDimensions(dataList, metaData, lDimensions, options);
+			}
+		} else {
+			that._flatData = flatData;
+		}
+		
+    	// value processing
+    	var lValue = "";
+    	var lDecimals = that.getValueDecimalPlaces().replace("D", "");
+    	
+		if (that.getData() && that.getData().data.length > 0) {
+			lValue = that.getData().data[0];
+			lValue = org_scn_community_basics.getFormattedValue (lValue, metaData.locale, lDecimals);
+		}
+
+		if (lValue == "" && that.getValueText() !== "") {
+			lValue = that.getValueText();
     	}
     	
 		if (lValue == "") {
-    		lValue = this.getValueFloat();
+    		lValue = that.getValueFloat();
     		// value as float number given directly is formatted
-        	lValue = org_scn_community_basics.getFormattedValue (this.getValueFloat(), undefined, this.getValueDecimalPlaces());
+        	lValue = org_scn_community_basics.getFormattedValue (that.getValueFloat(), undefined, lDecimals);
     	}
+		
+		that._lValue = lValue;
 
-		this._lTextValue.setText (lValue);
+		// processing on data
+		that.afterPrepare(that);
+	},
 
-		if(this._inittLayoutOnce != true) {
-			var lValueTextAlign = sap.ui.core.TextAlign.Left;
-			var positionAlignValue = {left: "10px", bottom: "30px"};
+	afterPrepare: function (owner) {
+		var that = owner;
 			
-			if(this.getValueHAlign() == "right") {
-				lValueTextAlign = sap.ui.core.TextAlign.Right;
-				positionAlignValue = {right: "10px", bottom: "30px"};
-			}
-			
-			this._lTextValue.setTextAlign(lValueTextAlign);
-			this.addContent(
-					this._lLayout,
+		// visualization on processed data
+    	that._lTextHeader.setText (that.getHeaderText());
+		var cssClasss = that.getHeaderCssClass();
+    	if(cssClasss != "") {
+    		that._lTextHeader.addStyleClass(cssClasss);
+    	}
+    	
+		that._lTextTitle.setText (that.getTitleText());
+		var cssClasss = that.getTitleCssClass();
+    	if(cssClasss != "") {
+    		that._lTextTitle.addStyleClass(cssClasss);
+    	}
+		
+		that._lTextValuePrefix.setText (that.getValuePrefixText());
+		var cssClasss = that.getValuePrefixCssClass();
+    	if(cssClasss != "") {
+    		that._lTextValuePrefix.addStyleClass(cssClasss);
+    	}
+    	
+		that._lTextValue.setText (that._lValue);
+
+		var lValueTextAlign = sap.ui.core.TextAlign.Left;
+		var positionAlignValue = {left: "10px", bottom: "30px"};
+
+		if(that.getValueHAlign().toLowerCase() == "right") {
+			lValueTextAlign = sap.ui.core.TextAlign.Right;
+			positionAlignValue = {right: "10px", bottom: "30px"};
+		}
+
+		that._lTextValue.setTextAlign(lValueTextAlign);
+
+		var positionHeaderAlign = {left: "10px", top: "10px", width: "100%"};
+		if(that.getHeaderHAlign().toLowerCase() == "right") {
+			positionHeaderAlign = {right: "10px", top: "10px", width: "100%"};
+		}
+
+		var positionFooterAlign = {left: "10px", bottom: "10px", width: "100%"};
+		if(that.getFooterHAlign().toLowerCase() == "right") {
+			positionFooterAlign = {right: "10px", bottom: "10px", width: "100%"};
+		}
+		if(that._inittLayoutOnce && !(JSON.stringify(that._positionHeaderAlign) == JSON.stringify(positionHeaderAlign))) {
+			that.removeContent(
+					that._lTextHeader
+			);
+			that.addContent(
+					that._lTextHeader,
+					positionHeaderAlign
+			);
+		}
+		if(that._inittLayoutOnce && !(JSON.stringify(that._positionAlignValue) == JSON.stringify(positionAlignValue))) {
+			that.removeContent(
+					that._lLayout
+			);
+			that.addContent(
+					that._lLayout,
 					positionAlignValue
 			);
-			
-			var positionFooterAlign = {left: "10px", bottom: "10px", width: "100%"};
-			if(this.getFooterHAlign() == "right") {
-				positionFooterAlign = {right: "10px", bottom: "10px", width: "100%"};
-			}
-			this.addContent(
-					this._lTextFooter,
+		}
+		if(that._inittLayoutOnce && !(JSON.stringify(that._positionFooterAlign) == JSON.stringify(positionFooterAlign))) {
+			that.removeContent(
+					that._lTextFooter
+			);
+			that.addContent(
+					that._lTextFooter,
+					positionFooterAlign
+			);
+		}
+		that._positionHeaderAlign = positionHeaderAlign;
+		that._positionAlignValue = positionAlignValue;
+		that._positionFooterAlign = positionFooterAlign;
+
+		if(that._inittLayoutOnce != true) {
+			that.addContent(
+					that._lTextHeader,
+					positionHeaderAlign
+			);
+			that.addContent(
+					that._lLayout,
+					positionAlignValue
+			);
+			that.addContent(
+					that._lTextFooter,
 					positionFooterAlign
 			);
 
-			this._inittLayoutOnce = true;
+			that._inittLayoutOnce = true;
 		}
 		
-		this._lTextValueSuffix.setText (this.getValueSuffixText());
-		var cssClasss = this.getValueSuffixCssClass();
+		that._lTextValueSuffix.setText (that.getValueSuffixText());
+		var cssClasss = that.getValueSuffixCssClass();
     	if(cssClasss != "") {
-    		this._lTextValueSuffix.addStyleClass(cssClasss);
+    		that._lTextValueSuffix.addStyleClass(cssClasss);
     	}
 
-		this._lTextFooter.setText (this.getFooterText());
+		that._lTextFooter.setText (that.getFooterText());
 		
-		var cssClasss = this.getFooterCssClass();
+		var cssClasss = that.getFooterCssClass();
     	if(cssClasss != "") {
-    		this._lTextFooter.addStyleClass(cssClasss);
+    		that._lTextFooter.addStyleClass(cssClasss);
     	}
     	
-		this._lLink.setText (this.getLinkText());
-		this._lLink.setTooltip (this.getTooltip());
+		that._lLink.setText (that.getLinkText());
+		that._lLink.setTooltip (that.getTooltip());
 
-		this._lImage.setSrc(this.getImage());
+		that._lImage.setSrc(that.getImage());
 		
-		var imageSize = this.getImageSize();
+		var imageSize = that.getImageSize();
+		imageSize = imageSize.replace("Size_", "");
 		if(imageSize != "") {
-			this._lImage.setWidth(imageSize);
-			this._lImage.setHeight(imageSize);
+			that._lImage.setWidth(imageSize);
+			that._lImage.setHeight(imageSize);
 		}
 	},
+	
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+
+define([myComponentData.requireName], function(basicskpiview){
+	myComponentData.instance = KpiView;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

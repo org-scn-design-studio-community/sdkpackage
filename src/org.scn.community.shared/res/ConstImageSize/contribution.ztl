@@ -16,4 +16,10 @@ class org_scn_community_shared_ImageSize extends Enum {
 
 	/** 32x32 pixels */
 	org_scn_community_shared_ImageSizeEnumfield Size_32px;
+
+	/** 64x64 pixels */
+	org_scn_community_shared_ImageSizeEnumfield Size_64px;
+	
+	/** 128x128 pixels */
+	org_scn_community_shared_ImageSizeEnumfield Size_128px;
 }

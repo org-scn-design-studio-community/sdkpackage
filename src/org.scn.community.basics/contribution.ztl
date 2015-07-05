@@ -197,6 +197,222 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the Text for Section keys<br/>
+	 */
+	void setSectionTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Section Key<br/>
+	 */
+	void setSectionText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Url for Section keys<br/>
+	 */
+	void setSectionUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Section Key<br/>
+	 */
+	void setSectionUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Text for Element keys<br/>
+	 */
+	void setElementTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Element Key<br/>
+	 */
+	void setElementText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Url for Element keys<br/>
+	 */
+	void setElementUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Element Key<br/>
+	 */
+	void setElementUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
 
 
 	/**
@@ -527,6 +743,276 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the Text for Activity keys<br/>
+	 */
+	void setActivityTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.activities);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.activities = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Activity Key<br/>
+	 */
+	void setActivityText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.activities);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.activities = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Category for Activity keys<br/>
+	 */
+	void setActivityCategorys (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Category */ String category
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.activities);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].category = category;
+					break;
+				}
+			}
+		}
+		
+		this.activities = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Category for Activity Key<br/>
+	 */
+	void setActivityCategory (
+			/**/ String key,
+			/**/ String category
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.activities);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].category = category;
+				break;
+			}
+		}
+
+		this.activities = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the State for Activity keys<br/>
+	 */
+	void setActivityStates (
+			/**/ String keys,
+			/**/ String separator,
+	        /* State */ String state
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.activities);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].state = state;
+					break;
+				}
+			}
+		}
+		
+		this.activities = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the State for Activity Key<br/>
+	 */
+	void setActivityState (
+			/**/ String key,
+			/**/ String state
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.activities);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].state = state;
+				break;
+			}
+		}
+
+		this.activities = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the StartDate for Activity keys<br/>
+	 */
+	void setActivityStartDates (
+			/**/ String keys,
+			/**/ String separator,
+	        /* StartDate */ String startDate
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.activities);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].startDate = startDate;
+					break;
+				}
+			}
+		}
+		
+		this.activities = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the StartDate for Activity Key<br/>
+	 */
+	void setActivityStartDate (
+			/**/ String key,
+			/**/ String startDate
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.activities);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].startDate = startDate;
+				break;
+			}
+		}
+
+		this.activities = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the EndDate for Activity keys<br/>
+	 */
+	void setActivityEndDates (
+			/**/ String keys,
+			/**/ String separator,
+	        /* EndDate */ String endDate
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.activities);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].endDate = endDate;
+					break;
+				}
+			}
+		}
+		
+		this.activities = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the EndDate for Activity Key<br/>
+	 */
+	void setActivityEndDate (
+			/**/ String key,
+			/**/ String endDate
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.activities);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].endDate = endDate;
+				break;
+			}
+		}
+
+		this.activities = JSON.stringify(elementsJson);
+	*}
 
 
 
@@ -720,9 +1206,63 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Sets the Visible keys<br/>
+	 * Sets the Text for Category keys<br/>
 	 */
-	void setVisibleCategoryKeys (
+	void setCategoryTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.categories);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.categories = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Category Key<br/>
+	 */
+	void setCategoryText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.categories);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.categories = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Visible for Category keys<br/>
+	 */
+	void setCategoryVisibles (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -752,9 +1292,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 
 	/**
-	 * Sets the Visible Key<br/>
+	 * Sets the Visible for Category Key<br/>
 	 */
-	void setVisibleCategoryKey (
+	void setCategoryVisible (
 			/**/ String key,
 			/**/ boolean visible
 			) 
@@ -768,7 +1308,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				elementsJson[i].visible = selected;
+				elementsJson[i].visible = visible;
 				break;
 			}
 		}
@@ -778,9 +1318,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		
 	/**
-	 * Clean all Visible keys<br/>
+	 * Clean all Visible of Category keys<br/>
 	 */
-	void cleanAllVisibleCategoryKeys (
+	void cleanAllCategoryVisibles (
 			) 
 	{*
 		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
@@ -799,7 +1339,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Returns the Visible keys<br/>
 	 */
-	org.scn.pack.KeyArray getVisibleCategoryKeysArray (
+	org.scn.pack.KeyArray getCategoryVisibleKeysArray (
 			) 
 	{*
 		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
@@ -1007,6 +1547,60 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the Style for State keys<br/>
+	 */
+	void setStateStyles (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Style */ String style
+			) 
+	{*
+		if (this.states === undefined || this.states === "" || this.states === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.states);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].style = style;
+					break;
+				}
+			}
+		}
+		
+		this.states = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Style for State Key<br/>
+	 */
+	void setStateStyle (
+			/**/ String key,
+			/**/ String style
+			) 
+	{*
+		if (this.states === undefined || this.states === "" || this.states === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.states);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].style = style;
+				break;
+			}
+		}
+
+		this.states = JSON.stringify(elementsJson);
+	*}
 
 
 
@@ -1253,6 +1847,114 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the Text for Item keys<br/>
+	 */
+	void setItemTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Item Key<br/>
+	 */
+	void setItemText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Icon for Item keys<br/>
+	 */
+	void setItemIcons (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Icon */ String icon
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].icon = icon;
+					break;
+				}
+			}
+		}
+		
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Icon for Item Key<br/>
+	 */
+	void setItemIcon (
+			/**/ String key,
+			/**/ String icon
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].icon = icon;
+				break;
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
 
 
 
@@ -1916,9 +2618,117 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Sets the Selected keys<br/>
+	 * Sets the Text for Element keys<br/>
 	 */
-	void setSelectedElementKeys (
+	void setElementTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Element Key<br/>
+	 */
+	void setElementText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Url for Element keys<br/>
+	 */
+	void setElementUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Element Key<br/>
+	 */
+	void setElementUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Selected for Element keys<br/>
+	 */
+	void setElementSelecteds (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -1948,9 +2758,9 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	*}
 
 	/**
-	 * Sets the Selected Key<br/>
+	 * Sets the Selected for Element Key<br/>
 	 */
-	void setSelectedElementKey (
+	void setElementSelected (
 			/**/ String key,
 			/**/ boolean selected
 			) 
@@ -1974,9 +2784,9 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 
 		
 	/**
-	 * Clean all Selected keys<br/>
+	 * Clean all Selected of Element keys<br/>
 	 */
-	void cleanAllSelectedElementKeys (
+	void cleanAllElementSelecteds (
 			) 
 	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
@@ -1995,7 +2805,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getSelectedElementKeysArray (
+	org.scn.pack.KeyArray getElementSelectedKeysArray (
 			) 
 	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
@@ -3698,172 +4508,1057 @@ class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Co
 	*}
 }
 
+/**
+ * Generated ZTL Class for KpiTile
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.basics.KpiTile extends org.scn.community.shared.Component {
+
+	/** Adds an element containing parentKey [String], key [String], value [String] properties.
+	 * You need to specify a unique and existing parent element.
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	KPITILE.addProperty(parentKey [String], key [String], value [String]);<br>
+	KPITILE.addProperty(parentKey [String], key [String], value [String]);
+	</code>
+	</example>
+	 */
+	void addProperty (
+			/**Parent Key*/String parentKey, 
+			/**Property Name*/String key, 
+			/**Property Value*/String value
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key, 
+			value:value 
+			};
+	
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			this.componentsSpec = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.componentsSpec);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], componentType [String], top [int], bottom [int], left [int], right [int], width [int], height [int], specification [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	KPITILE.addComponent(key [String], componentType [String], top [int], bottom [int], left [int], right [int], width [int], height [int], specification [String]);<br>
+	KPITILE.addComponent(key [String], componentType [String], top [int], bottom [int], left [int], right [int], width [int], height [int], specification [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addComponent (
+			/**Unique Key*/String key, 
+			/**Component Type*/String componentType, 
+			/**Top Position (-1 if bottom margin is set)*/int top, 
+			/**Bottom Position*/int bottom, 
+			/**Left Position (-1 if right margin is set)*/int left, 
+			/**Rigth Position*/int right, 
+			/**Width in Px*/int width, 
+			/**Height in Px*/int height, 
+			/**Full Specification*/String specification
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:leaf,
+			key:key, 
+			componentType:componentType, 
+			top:top, 
+			bottom:bottom, 
+			left:left, 
+			right:right, 
+			width:width, 
+			height:height, 
+			specification:specification 
+			};
+	
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			this.componentsSpec = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.componentsSpec);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	KPITILE.removeProperty(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeProperty (
+			String key
+			) {*		
+		
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			this.componentsSpec = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.componentsSpec);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	KPITILE.removeComponent(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeComponent (
+			String key
+			) {*		
+		
+		this.removeProperty(key);
+	*}
+
+	/**
+	 * Gets Components As JSON String
+	 */	
+	String getComponentsAsJSON() {*
+		var jsonObject = JSON.parse(this.componentsSpec);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the ComponentType for Component keys<br/>
+	 */
+	void setComponentComponentTypes (
+			/**/ String keys,
+			/**/ String separator,
+	        /* ComponentType */ String componentType
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].componentType = componentType;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the ComponentType for Component Key<br/>
+	 */
+	void setComponentComponentType (
+			/**/ String key,
+			/**/ String componentType
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].componentType = componentType;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Top for Component keys<br/>
+	 */
+	void setComponentTops (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Top */ int top
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].top = top;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Top for Component Key<br/>
+	 */
+	void setComponentTop (
+			/**/ String key,
+			/**/ int top
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].top = top;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Bottom for Component keys<br/>
+	 */
+	void setComponentBottoms (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Bottom */ int bottom
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].bottom = bottom;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Bottom for Component Key<br/>
+	 */
+	void setComponentBottom (
+			/**/ String key,
+			/**/ int bottom
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].bottom = bottom;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Left for Component keys<br/>
+	 */
+	void setComponentLefts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Left */ int left
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].left = left;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Left for Component Key<br/>
+	 */
+	void setComponentLeft (
+			/**/ String key,
+			/**/ int left
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].left = left;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Right for Component keys<br/>
+	 */
+	void setComponentRights (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Right */ int right
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].right = right;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Right for Component Key<br/>
+	 */
+	void setComponentRight (
+			/**/ String key,
+			/**/ int right
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].right = right;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Width for Component keys<br/>
+	 */
+	void setComponentWidths (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Width */ int width
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].width = width;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Width for Component Key<br/>
+	 */
+	void setComponentWidth (
+			/**/ String key,
+			/**/ int width
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].width = width;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Height for Component keys<br/>
+	 */
+	void setComponentHeights (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Height */ int height
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].height = height;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Height for Component Key<br/>
+	 */
+	void setComponentHeight (
+			/**/ String key,
+			/**/ int height
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].height = height;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Specification for Component keys<br/>
+	 */
+	void setComponentSpecifications (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Specification */ String specification
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].specification = specification;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Specification for Component Key<br/>
+	 */
+	void setComponentSpecification (
+			/**/ String key,
+			/**/ String specification
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].specification = specification;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Value for Property keys<br/>
+	 */
+	void setPropertyValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Property Key<br/>
+	 */
+	void setPropertyValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Generated ZTL Class for KpiView
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
 class org.scn.community.basics.KpiView extends org.scn.community.shared.Component {
-	
-	/* Sets the header text. */
-	void setHeaderText(/* Header text */ String text) {*
-		this.headerText = text;
-	*}	
 
-	/* Returns the header text. */
-	String getHeaderText() {*
-		return this.headerText;
+
+
+	/**
+	 * Sets Footer CSS Class Property
+	 */	
+	void setFooterCssClass( /**Footer CSS Class*/ String footerCssClass){*
+		this.footerCssClass = footerCssClass;
 	*}
 
-	/* Shows or hides the header. */
-	void setHeaderVisible(/* If true, then the header is shown, else it is hidden */ boolean isHeaderVisible) {*
-		this.headerVisible = isHeaderVisible;
-	*}	
-
-	/* Returns true if the header is shown, else false. */
-	boolean isHeaderVisible() {*
-		return this.headerVisible;
-	*}
-
-	/* Sets the header CSS class. */
-	void setHeaderCssClass(/* Header CSS class */ String cssClass) {*
-		this.headerCssClass = cssClass;
-	*}	
-
-	/* Returns the header CSS class. */
-	String getHeaderCssClass() {*
-		return this.headerCssClass;
-	*}
-
-	/* Sets the title text. */
-	void setTitleText(/* Title text */ String text) {*
-		this.titleText = text;
-	*}	
-
-	/* Returns the title text. */
-	String getTitleText() {*
-		return this.titleText;
-	*}
-
-	/* Sets the title CSS class. */
-	void setTitleCssClass(/* Title CSS class */ String cssClass) {*
-		this.titleCssClass = cssClass;
-	*}	
-
-	/* Returns the title CSS class. */
-	String getTitleCssClass() {*
-		return this.titleCssClass;
-	*}
-
-	/* Sets the value prefix text. */
-	void setValuePrefixText(/* Value prefix text */ String text) {*
-		this.valuePrefixText = text;
-	*}	
-
-	/* Returns the value prefix text. */
-	String getValuePrefixText() {*
-		return this.valuePrefixText;
-	*}
-
-	/* Sets the value prefix CSS class. */
-	void setValuePrefixCssClass(/* Value prefix CSS class */ String cssClass) {*
-		this.valuePrefixCssClass = cssClass;
-	*}	
-
-	/* Returns the value prefix CSS class. */
-	String getValuePrefixCssClass() {*
-		return this.valuePrefixCssClass;
-	*}
-
-	/* Sets the value text. */
-	void setValueText(/* Value text */ String text) {*
-		this.valueText = text;
-	*}	
-
-	/* Returns the value text. */
-	String getValueText() {*
-		return this.valueText;
-	*}
-
-	/* Sets the value number. */
-	void setValueFloat(/* Value number */ float number) {*
-		this.valueFloat = number;
-	*}	
-
-	/* Returns the value number. */
-	float getValueFloat() {*
-		return this.valueFloat;
-	*}
-	
-	/* Sets the value CSS class. */
-	void setValueCssClass(/* Value CSS class */ String cssClass) {*
-		this.valueCssClass = cssClass;
-	*}	
-
-	/* Returns the current value CSS class. */
-	String getValueCssClass() {*
-		return this.valueCssClass;
-	*}
-
-	/* Sets the value decimal places. */
-	void setValueDecimalPlaces(/* Number of decimal places */ int decimalPlaces) {*
-		this.valueDecimalPlaces = decimalPlaces;
-	*}
-
-	/* Returns the value decimal places. */
-	int getValueDecimalPlaces() {*
-		return this.valueDecimalPlaces;
-	*}
-
-	/* Sets the value suffix text. */
-	void setValueSuffixText(/* Value suffix text */ String text) {*
-		this.valueSuffixText = text;
-	*}	
-
-	/* Returns the value suffix text. */
-	String getValueSuffixText() {*
-		return this.valueSuffixText;
-	*}
-
-	/* Sets the value suffix CSS class. */
-	void setValueSuffixCssClass(/* Value suffix CSS class */ String cssClass) {*
-		this.valueSuffixCssClass = cssClass;
-	*}	
-
-	/* Returns the value suffix CSS class. */
-	String getValueSuffixCssClass() {*
-		return this.valueSuffixCssClass;
-	*}
-
-	/* Sets the footer text. */
-	void setFooterText(/* Footer text */ String text) {*
-		this.footerText = text;
-	*}	
-
-	/* Returns the footer text. */
-	String getFooterText() {*
-		return this.footerText;
-	*}
-
-	/* Sets the footer CSS class. */
-	void setFooterCssClass(/* Footer CSS class */ String cssClass) {*
-		this.footerCssClass = cssClass;
-	*}
-
-	/* Returns the footer CSS class. */
+	/**
+	 * Gets Footer CSS Class Property
+	 */	
 	String getFooterCssClass() {*
 		return this.footerCssClass;
 	*}
 
-	/* Sets the image URL. */
-	void setImage(/* image url */ String image) {*
+	/**
+	 * Sets Footer Horizontal Alignment Property by String
+	 */	
+	void setFooterHAlignByString( /**Footer Horizontal Alignment*/ String footerHAlign){*
+		this.footerHAlign = footerHAlign;
+	*}
+
+	/**
+	 * Gets Footer Horizontal Alignment Property as String
+	 */	
+	String getFooterHAlignAsString() {*
+		return this.footerHAlign;
+	*}
+	
+	/**
+	 * Sets Footer Horizontal Alignment Property by Choice Option
+	 */	
+	void setFooterHAlign( /**Footer Horizontal Alignment*/ org_scn_community_shared_HorizontalAlignEnumfield footerHAlign){*
+		this.footerHAlign = footerHAlign;
+	*}
+	
+	/**
+	 * Gets Footer Horizontal Alignment Property as Choice Option
+	 */	
+	org_scn_community_shared_HorizontalAlignEnumfield getFooterHAlign() {*
+		return this.footerHAlign;
+	*}
+
+	/**
+	 * Sets Footer Property
+	 */	
+	void setFooterText( /**Footer*/ String footerText){*
+		this.footerText = footerText;
+	*}
+
+	/**
+	 * Gets Footer Property
+	 */	
+	String getFooterText() {*
+		return this.footerText;
+	*}
+
+	/**
+	 * Sets Header CSS Class Property
+	 */	
+	void setHeaderCssClass( /**Header CSS Class*/ String headerCssClass){*
+		this.headerCssClass = headerCssClass;
+	*}
+
+	/**
+	 * Gets Header CSS Class Property
+	 */	
+	String getHeaderCssClass() {*
+		return this.headerCssClass;
+	*}
+
+	/**
+	 * Sets Header Horizontal Alignment Property by String
+	 */	
+	void setHeaderHAlignByString( /**Header Horizontal Alignment*/ String headerHAlign){*
+		this.headerHAlign = headerHAlign;
+	*}
+
+	/**
+	 * Gets Header Horizontal Alignment Property as String
+	 */	
+	String getHeaderHAlignAsString() {*
+		return this.headerHAlign;
+	*}
+	
+	/**
+	 * Sets Header Horizontal Alignment Property by Choice Option
+	 */	
+	void setHeaderHAlign( /**Header Horizontal Alignment*/ org_scn_community_shared_HorizontalAlignEnumfield headerHAlign){*
+		this.headerHAlign = headerHAlign;
+	*}
+	
+	/**
+	 * Gets Header Horizontal Alignment Property as Choice Option
+	 */	
+	org_scn_community_shared_HorizontalAlignEnumfield getHeaderHAlign() {*
+		return this.headerHAlign;
+	*}
+
+	/**
+	 * Sets Header Property
+	 */	
+	void setHeaderText( /**Header*/ String headerText){*
+		this.headerText = headerText;
+	*}
+
+	/**
+	 * Gets Header Property
+	 */	
+	String getHeaderText() {*
+		return this.headerText;
+	*}
+
+	/**
+	 * Sets Url For The Image Property
+	 */	
+	void setImage( /**Url For The Image*/ String image){*
 		this.image = image;
 	*}
 
-	/* Returns the image URL. */
+	/**
+	 * Gets Url For The Image Property
+	 */	
 	String getImage() {*
 		return this.image;
 	*}
-	
-	/* Sets the data cell whose value is displayed. */
-	void setDataSelection(/* Data cell tha tcontains the value displayed */ ResultCellSelection cellSelection) {*
-		this.data = this.stringifySelection(cellSelection);
+
+	/**
+	 * Sets Size Of The Image Property by String
+	 */	
+	void setImageSizeByString( /**Size Of The Image*/ String imageSize){*
+		this.imageSize = imageSize;
 	*}
+
+	/**
+	 * Gets Size Of The Image Property as String
+	 */	
+	String getImageSizeAsString() {*
+		return this.imageSize;
+	*}
+	
+	/**
+	 * Sets Size Of The Image Property by Choice Option
+	 */	
+	void setImageSize( /**Size Of The Image*/ org_scn_community_shared_ImageSizeEnumfield imageSize){*
+		this.imageSize = imageSize;
+	*}
+	
+	/**
+	 * Gets Size Of The Image Property as Choice Option
+	 */	
+	org_scn_community_shared_ImageSizeEnumfield getImageSize() {*
+		return this.imageSize;
+	*}
+
+	/**
+	 * Sets Text For The Link Property
+	 */	
+	void setLinkText( /**Text For The Link*/ String linkText){*
+		this.linkText = linkText;
+	*}
+
+	/**
+	 * Gets Text For The Link Property
+	 */	
+	String getLinkText() {*
+		return this.linkText;
+	*}
+
+	/**
+	 * Sets Tooltip For The Link Property
+	 */	
+	void setLinkTooltip( /**Tooltip For The Link*/ String linkTooltip){*
+		this.linkTooltip = linkTooltip;
+	*}
+
+	/**
+	 * Gets Tooltip For The Link Property
+	 */	
+	String getLinkTooltip() {*
+		return this.linkTooltip;
+	*}
+
+
+
+
+
+	/**
+	 * Sets Title CSS Class Property
+	 */	
+	void setTitleCssClass( /**Title CSS Class*/ String titleCssClass){*
+		this.titleCssClass = titleCssClass;
+	*}
+
+	/**
+	 * Gets Title CSS Class Property
+	 */	
+	String getTitleCssClass() {*
+		return this.titleCssClass;
+	*}
+
+	/**
+	 * Sets Title Property
+	 */	
+	void setTitleText( /**Title*/ String titleText){*
+		this.titleText = titleText;
+	*}
+
+	/**
+	 * Gets Title Property
+	 */	
+	String getTitleText() {*
+		return this.titleText;
+	*}
+
+	/**
+	 * Sets Value CSS Class Property
+	 */	
+	void setValueCssClass( /**Value CSS Class*/ String valueCssClass){*
+		this.valueCssClass = valueCssClass;
+	*}
+
+	/**
+	 * Gets Value CSS Class Property
+	 */	
+	String getValueCssClass() {*
+		return this.valueCssClass;
+	*}
+
+	/**
+	 * Sets Value Decimal Places Property by Int
+	 */	
+	void setValueDecimalPlacesByInt( /**Value Decimal Places*/ int valueDecimalPlaces){*
+		this.valueDecimalPlaces = valueDecimalPlaces;
+	*}
+
+	/**
+	 * Gets Value Decimal Places Property as Int
+	 */	
+	int getValueDecimalPlacesAsInt() {*
+		return this.valueDecimalPlaces;
+	*}
+	
+	/**
+	 * Sets Value Decimal Places Property by Choice Option
+	 */	
+	void setValueDecimalPlaces( /**Value Decimal Places*/ org_scn_community_shared_DecimalPlacesEnumfield valueDecimalPlaces){*
+		this.valueDecimalPlaces = parseInt(valueDecimalPlaces.replace("D", ""));
+	*}
+	
+	/**
+	 * Gets Value Decimal Places Property as Choice Option
+	 */	
+	org_scn_community_shared_DecimalPlacesEnumfield getValueDecimalPlaces() {*
+		return "D" + this.valueDecimalPlaces;
+	*}
+
+	/**
+	 * Sets Value As Float Property
+	 */	
+	void setValueFloat( /**Value As Float*/ String valueFloat){*
+		this.valueFloat = valueFloat;
+	*}
+
+	/**
+	 * Gets Value As Float Property
+	 */	
+	String getValueFloat() {*
+		return this.valueFloat;
+	*}
+
+	/**
+	 * Sets Value Horizontal Alignment Property by String
+	 */	
+	void setValueHAlignByString( /**Value Horizontal Alignment*/ String valueHAlign){*
+		this.valueHAlign = valueHAlign;
+	*}
+
+	/**
+	 * Gets Value Horizontal Alignment Property as String
+	 */	
+	String getValueHAlignAsString() {*
+		return this.valueHAlign;
+	*}
+	
+	/**
+	 * Sets Value Horizontal Alignment Property by Choice Option
+	 */	
+	void setValueHAlign( /**Value Horizontal Alignment*/ org_scn_community_shared_HorizontalAlignEnumfield valueHAlign){*
+		this.valueHAlign = valueHAlign;
+	*}
+	
+	/**
+	 * Gets Value Horizontal Alignment Property as Choice Option
+	 */	
+	org_scn_community_shared_HorizontalAlignEnumfield getValueHAlign() {*
+		return this.valueHAlign;
+	*}
+
+	/**
+	 * Sets Value Prefix CSS Class Property
+	 */	
+	void setValuePrefixCssClass( /**Value Prefix CSS Class*/ String valuePrefixCssClass){*
+		this.valuePrefixCssClass = valuePrefixCssClass;
+	*}
+
+	/**
+	 * Gets Value Prefix CSS Class Property
+	 */	
+	String getValuePrefixCssClass() {*
+		return this.valuePrefixCssClass;
+	*}
+
+	/**
+	 * Sets Value Prefix Property
+	 */	
+	void setValuePrefixText( /**Value Prefix*/ String valuePrefixText){*
+		this.valuePrefixText = valuePrefixText;
+	*}
+
+	/**
+	 * Gets Value Prefix Property
+	 */	
+	String getValuePrefixText() {*
+		return this.valuePrefixText;
+	*}
+
+	/**
+	 * Sets Value Suffix CSS Class Property
+	 */	
+	void setValueSuffixCssClass( /**Value Suffix CSS Class*/ String valueSuffixCssClass){*
+		this.valueSuffixCssClass = valueSuffixCssClass;
+	*}
+
+	/**
+	 * Gets Value Suffix CSS Class Property
+	 */	
+	String getValueSuffixCssClass() {*
+		return this.valueSuffixCssClass;
+	*}
+
+	/**
+	 * Sets Value Suffix Property
+	 */	
+	void setValueSuffixText( /**Value Suffix*/ String valueSuffixText){*
+		this.valueSuffixText = valueSuffixText;
+	*}
+
+	/**
+	 * Gets Value Suffix Property
+	 */	
+	String getValueSuffixText() {*
+		return this.valueSuffixText;
+	*}
+
+	/**
+	 * Sets Value Property
+	 */	
+	void setValueText( /**Value*/ String valueText){*
+		this.valueText = valueText;
+	*}
+
+	/**
+	 * Gets Value Property
+	 */	
+	String getValueText() {*
+		return this.valueText;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
 class org.scn.community.basics.TileProperty {
   String title;
@@ -5363,9 +7058,63 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Sets the Visible keys<br/>
+	 * Sets the Text for Step keys<br/>
 	 */
-	void setVisibleStepKeys (
+	void setStepTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Step Key<br/>
+	 */
+	void setStepText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Visible for Step keys<br/>
+	 */
+	void setStepVisibles (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -5395,9 +7144,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	*}
 
 	/**
-	 * Sets the Visible Key<br/>
+	 * Sets the Visible for Step Key<br/>
 	 */
-	void setVisibleStepKey (
+	void setStepVisible (
 			/**/ String key,
 			/**/ boolean visible
 			) 
@@ -5411,7 +7160,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				elementsJson[i].visible = selected;
+				elementsJson[i].visible = visible;
 				break;
 			}
 		}
@@ -5421,9 +7170,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		
 	/**
-	 * Clean all Visible keys<br/>
+	 * Clean all Visible of Step keys<br/>
 	 */
-	void cleanAllVisibleStepKeys (
+	void cleanAllStepVisibles (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -5442,7 +7191,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Visible keys<br/>
 	 */
-	org.scn.pack.KeyArray getVisibleStepKeysArray (
+	org.scn.pack.KeyArray getStepVisibleKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -5463,9 +7212,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		return newElementsJson;
 	*}
 	/**
-	 * Sets the Enabled keys<br/>
+	 * Sets the Enabled for Step keys<br/>
 	 */
-	void setEnabledStepKeys (
+	void setStepEnableds (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -5495,9 +7244,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	*}
 
 	/**
-	 * Sets the Enabled Key<br/>
+	 * Sets the Enabled for Step Key<br/>
 	 */
-	void setEnabledStepKey (
+	void setStepEnabled (
 			/**/ String key,
 			/**/ boolean enabled
 			) 
@@ -5511,7 +7260,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				elementsJson[i].enabled = selected;
+				elementsJson[i].enabled = enabled;
 				break;
 			}
 		}
@@ -5521,9 +7270,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		
 	/**
-	 * Clean all Enabled keys<br/>
+	 * Clean all Enabled of Step keys<br/>
 	 */
-	void cleanAllEnabledStepKeys (
+	void cleanAllStepEnableds (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -5542,7 +7291,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getEnabledStepKeysArray (
+	org.scn.pack.KeyArray getStepEnabledKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -5837,9 +7586,117 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	*}
 	
 	/**
-	 * Sets the Selected keys<br/>
+	 * Sets the Text for Button keys<br/>
 	 */
-	void setSelectedButtonKeys (
+	void setButtonTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Button Key<br/>
+	 */
+	void setButtonText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Image for Button keys<br/>
+	 */
+	void setButtonImages (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Image */ String image
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].image = image;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Image for Button Key<br/>
+	 */
+	void setButtonImage (
+			/**/ String key,
+			/**/ String image
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].image = image;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Selected for Button keys<br/>
+	 */
+	void setButtonSelecteds (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -5869,9 +7726,9 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	*}
 
 	/**
-	 * Sets the Selected Key<br/>
+	 * Sets the Selected for Button Key<br/>
 	 */
-	void setSelectedButtonKey (
+	void setButtonSelected (
 			/**/ String key,
 			/**/ boolean selected
 			) 
@@ -5895,9 +7752,9 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 
 		
 	/**
-	 * Clean all Selected keys<br/>
+	 * Clean all Selected of Button keys<br/>
 	 */
-	void cleanAllSelectedButtonKeys (
+	void cleanAllButtonSelecteds (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -5916,7 +7773,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getSelectedButtonKeysArray (
+	org.scn.pack.KeyArray getButtonSelectedKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -5937,9 +7794,117 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		return newElementsJson;
 	*}
 	/**
-	 * Sets the Selected keys<br/>
+	 * Sets the Text for Item keys<br/>
 	 */
-	void setSelectedItemKeys (
+	void setItemTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Item Key<br/>
+	 */
+	void setItemText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Image for Item keys<br/>
+	 */
+	void setItemImages (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Image */ String image
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].image = image;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Image for Item Key<br/>
+	 */
+	void setItemImage (
+			/**/ String key,
+			/**/ String image
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].image = image;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Selected for Item keys<br/>
+	 */
+	void setItemSelecteds (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -5969,9 +7934,9 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	*}
 
 	/**
-	 * Sets the Selected Key<br/>
+	 * Sets the Selected for Item Key<br/>
 	 */
-	void setSelectedItemKey (
+	void setItemSelected (
 			/**/ String key,
 			/**/ boolean selected
 			) 
@@ -5995,9 +7960,9 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 
 		
 	/**
-	 * Clean all Selected keys<br/>
+	 * Clean all Selected of Item keys<br/>
 	 */
-	void cleanAllSelectedItemKeys (
+	void cleanAllItemSelecteds (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -6016,7 +7981,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getSelectedItemKeysArray (
+	org.scn.pack.KeyArray getItemSelectedKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -6526,6 +8491,222 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the Text for Node keys<br/>
+	 */
+	void setNodeTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Node Key<br/>
+	 */
+	void setNodeText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Url for Node keys<br/>
+	 */
+	void setNodeUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Node Key<br/>
+	 */
+	void setNodeUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Text for SubNode keys<br/>
+	 */
+	void setSubNodeTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for SubNode Key<br/>
+	 */
+	void setSubNodeText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Url for SubNode keys<br/>
+	 */
+	void setSubNodeUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for SubNode Key<br/>
+	 */
+	void setSubNodeUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
 
 
 

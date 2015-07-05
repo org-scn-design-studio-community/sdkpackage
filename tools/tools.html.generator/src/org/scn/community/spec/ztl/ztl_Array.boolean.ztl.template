@@ -1,7 +1,7 @@
 	/**
-	 * Sets the %NAME_CAPITAL% keys<br/>
+	 * Sets the %NAME_CAPITAL% for %PROPERTY_CAPITAL_CUT% keys<br/>
 	 */
-	void set%NAME_CAPITAL%%PROPERTY_CAPITAL_CUT%Keys (
+	void set%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL%s (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -31,9 +31,9 @@
 	*}
 
 	/**
-	 * Sets the %NAME_CAPITAL% Key<br/>
+	 * Sets the %NAME_CAPITAL% for %PROPERTY_CAPITAL_CUT% Key<br/>
 	 */
-	void set%NAME_CAPITAL%%PROPERTY_CAPITAL_CUT%Key (
+	void set%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL% (
 			/**/ String key,
 			/**/ boolean %NAME%
 			) 
@@ -47,7 +47,7 @@
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				elementsJson[i].%NAME% = selected;
+				elementsJson[i].%NAME% = %NAME%;
 				break;
 			}
 		}
@@ -57,9 +57,9 @@
 
 		
 	/**
-	 * Clean all %NAME_CAPITAL% keys<br/>
+	 * Clean all %NAME_CAPITAL% of %PROPERTY_CAPITAL_CUT% keys<br/>
 	 */
-	void cleanAll%NAME_CAPITAL%%PROPERTY_CAPITAL_CUT%Keys (
+	void cleanAll%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL%s (
 			) 
 	{*
 		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
@@ -78,7 +78,7 @@
 	/**
 	 * Returns the %NAME_CAPITAL% keys<br/>
 	 */
-	org.scn.pack.KeyArray get%NAME_CAPITAL%%PROPERTY_CAPITAL_CUT%KeysArray (
+	org.scn.pack.KeyArray get%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL%KeysArray (
 			) 
 	{*
 		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){

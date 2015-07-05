@@ -3,19 +3,19 @@
 
 
 	"data" : {
-		"template" : "default",
-		"type" : "String",
+		"template" : "ResultCell",
+		"type" : "ResultCell",
 		"value" : "",
 		"visible": true,
 		"opts" : {
 			"ztlType": "ResultCell",
 			"ztlFunction": "",
 			"desc" : "Data Value",
-			"cat" : "DataBinding",
+			"cat" : "Data",
 			"tooltip" : "Data Value",
 			"apsControl" : "text",
-			"noAps" : false,
-			"noZtl" : false
+			"noAps" : true,
+			"noZtl" : true
 		}
 	},
 	"footerCssClass" : {
@@ -27,7 +27,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Footer CSS Class",
-			"cat" : "Display",
+			"cat" : "Display-Footer And Header",
 			"tooltip" : "Footer CSS Class",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -37,24 +37,24 @@
 	"footerHAlign" : {
 		"template" : "Choice",
 		"type" : "String",
-		"value" : "left",
+		"value" : "Left",
 		"visible": true,
 		"opts" : {
 			"ztlType": "Choice",
-			"choiceType": "",
+			"choiceType": "HorizontalAlign",
 			"ztlFunction": "",
 			"desc" : "Footer Horizontal Alignment",
-			"cat" : "Unsorted",
+			"cat" : "Display-Footer And Header",
 			"tooltip" : "Footer Horizontal Alignment",
 			"apsControl" : "combobox",
 			"options":[
 				{
-					"key" : "left",
-					"text" : "left"
+					"key" : "Left",
+					"text" : "Left Align"
 				},
 				{
-					"key" : "right",
-					"text" : "right"
+					"key" : "Right",
+					"text" : "Right Align"
 				}
 				
             ],
@@ -71,7 +71,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Footer",
-			"cat" : "Display",
+			"cat" : "Display-Footer And Header",
 			"tooltip" : "Footer",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -87,7 +87,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Header CSS Class",
-			"cat" : "Display",
+			"cat" : "Display-Footer And Header",
 			"tooltip" : "Header CSS Class",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -103,9 +103,37 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Header",
-			"cat" : "Display",
+			"cat" : "Display-Footer And Header",
 			"tooltip" : "Header",
 			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"headerHAlign" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Left",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "HorizontalAlign",
+			"ztlFunction": "",
+			"desc" : "Header Horizontal Alignment",
+			"cat" : "Display-Footer And Header",
+			"tooltip" : "Header Horizontal Alignment",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Left",
+					"text" : "Left Align"
+				},
+				{
+					"key" : "Right",
+					"text" : "Right Align"
+				}
+				
+            ],
 			"noAps" : false,
 			"noZtl" : false
 		}
@@ -119,7 +147,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Url For The Image",
-			"cat" : "Display",
+			"cat" : "Display-Image",
 			"tooltip" : "Url For The Image",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -129,31 +157,31 @@
 	"imageSize" : {
 		"template" : "Choice",
 		"type" : "String",
-		"value" : "",
+		"value" : "Size_16px",
 		"visible": true,
 		"opts" : {
 			"ztlType": "Choice",
-			"choiceType": "",
+			"choiceType": "ImageSize",
 			"ztlFunction": "",
 			"desc" : "Size Of The Image",
-			"cat" : "Unsorted",
+			"cat" : "Display-Image",
 			"tooltip" : "Size Of The Image",
 			"apsControl" : "combobox",
 			"options":[
 				{
-					"key" : "16px",
+					"key" : "Size_16px",
 					"text" : "16px"
 				},
 				{
-					"key" : "32px",
+					"key" : "Size_32px",
 					"text" : "32px"
 				},
 				{
-					"key" : "64px",
+					"key" : "Size_64px",
 					"text" : "64px"
 				},
 				{
-					"key" : "128px",
+					"key" : "Size_128px",
 					"text" : "128px"
 				}
 				
@@ -171,7 +199,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Text For The Link",
-			"cat" : "Display",
+			"cat" : "Display-Text",
 			"tooltip" : "Text For The Link",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -187,7 +215,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Tooltip For The Link",
-			"cat" : "Display",
+			"cat" : "Display-Text",
 			"tooltip" : "Tooltip For The Link",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -203,7 +231,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Title CSS Class",
-			"cat" : "Display",
+			"cat" : "Display-Title",
 			"tooltip" : "Title CSS Class",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -219,7 +247,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Title",
-			"cat" : "Display",
+			"cat" : "Display-Title",
 			"tooltip" : "Title",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -235,7 +263,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Value CSS Class",
-			"cat" : "Display",
+			"cat" : "Display-Value",
 			"tooltip" : "Value CSS Class",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -245,55 +273,55 @@
 	"valueDecimalPlaces" : {
 		"template" : "Choice",
 		"type" : "String",
-		"value" : "0",
+		"value" : "D0",
 		"visible": true,
 		"opts" : {
 			"ztlType": "Choice",
-			"choiceType": "",
-			"ztlFunction": "",
+			"choiceType": "DecimalPlaces",
+			"ztlFunction": "-int",
 			"desc" : "Value Decimal Places",
-			"cat" : "Unsorted",
+			"cat" : "Display-Value",
 			"tooltip" : "Value Decimal Places",
 			"apsControl" : "combobox",
 			"options":[
 				{
-					"key" : "0",
+					"key" : "D0",
 					"text" : "0"
 				},
 				{
-					"key" : "1",
+					"key" : "D1",
 					"text" : "1"
 				},
 				{
-					"key" : "2",
+					"key" : "D2",
 					"text" : "2"
 				},
 				{
-					"key" : "3",
+					"key" : "D3",
 					"text" : "3"
 				},
 				{
-					"key" : "4",
+					"key" : "D4",
 					"text" : "4"
 				},
 				{
-					"key" : "5",
+					"key" : "D5",
 					"text" : "5"
 				},
 				{
-					"key" : "6",
+					"key" : "D6",
 					"text" : "6"
 				},
 				{
-					"key" : "7",
+					"key" : "D7",
 					"text" : "7"
 				},
 				{
-					"key" : "8",
+					"key" : "D8",
 					"text" : "8"
 				},
 				{
-					"key" : "9",
+					"key" : "D9",
 					"text" : "9"
 				}
 				
@@ -311,7 +339,7 @@
 			"ztlType": "float",
 			"ztlFunction": "",
 			"desc" : "Value As Float",
-			"cat" : "Display",
+			"cat" : "Display-Value",
 			"tooltip" : "Value As Float",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -321,24 +349,24 @@
 	"valueHAlign" : {
 		"template" : "Choice",
 		"type" : "String",
-		"value" : "left",
+		"value" : "Left",
 		"visible": true,
 		"opts" : {
 			"ztlType": "Choice",
-			"choiceType": "",
+			"choiceType": "HorizontalAlign",
 			"ztlFunction": "",
 			"desc" : "Value Horizontal Alignment",
-			"cat" : "Unsorted",
+			"cat" : "Display-Value",
 			"tooltip" : "Value Horizontal Alignment",
 			"apsControl" : "combobox",
 			"options":[
 				{
-					"key" : "left",
-					"text" : "left"
+					"key" : "Left",
+					"text" : "Left Align"
 				},
 				{
-					"key" : "right",
-					"text" : "right"
+					"key" : "Right",
+					"text" : "Right Align"
 				}
 				
             ],
@@ -355,7 +383,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Value Prefix CSS Class",
-			"cat" : "Display",
+			"cat" : "Display-Value",
 			"tooltip" : "Value Prefix CSS Class",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -371,7 +399,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Value Prefix",
-			"cat" : "Display",
+			"cat" : "Display-Value",
 			"tooltip" : "Value Prefix",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -387,7 +415,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Value Suffix CSS Class",
-			"cat" : "Display",
+			"cat" : "Display-Value",
 			"tooltip" : "Value Suffix CSS Class",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -403,7 +431,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Value Suffix",
-			"cat" : "Display",
+			"cat" : "Display-Value",
 			"tooltip" : "Value Suffix",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -419,7 +447,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Value",
-			"cat" : "Display",
+			"cat" : "Display-Value",
 			"tooltip" : "Value",
 			"apsControl" : "text",
 			"noAps" : false,

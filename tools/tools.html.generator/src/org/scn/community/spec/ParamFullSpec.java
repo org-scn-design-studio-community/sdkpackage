@@ -172,6 +172,37 @@ public class ParamFullSpec {
 		
 		String choiceType = options.getPropertyValue("choiceType");
 		
+		ParamFullSpec valueOptions = options.getParameter("options");
+		
+		boolean defaultInValues = false;
+		
+		String defaultValue = this.getPropertyValue("value");
+		String valueList = "";
+		if(valueOptions != null) {
+			ArrayList<ParamFullSpec> valueParameters = valueOptions.getParameters();
+			
+			for (ParamFullSpec paramFullSpec : valueParameters) {
+				String name = paramFullSpec.getPropertyValue("key");
+				String text = paramFullSpec.getPropertyValue("text");
+
+				if(name.equals(defaultValue)) {
+					defaultInValues = true;
+				}
+
+				if(valueList.length()>0){
+					valueList = valueList + " | " + name;	
+				}else {
+					valueList = name;
+				}
+			}
+		} else {
+			defaultInValues = true;
+		}
+		
+		if(!defaultInValues) {
+			throw new RuntimeException("default "+defaultValue+" is not in value list ["+valueList+"]! " + this.getName() + ", in component " + this.parentProperty.getComponent());
+		}
+		
 		if(function == null) {
 			function = "";
 		}
@@ -347,11 +378,15 @@ public class ParamFullSpec {
 		} else {
 			
 			if(choiceType != null && choiceType.length() > 0) {
-				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+type+function+"."+"shared"+".ztl.template");
+				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+type+function+"."+"shared"+"."+xmlType+".ztl.template");
 			} else {
-				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+type+function+".ztl.template");	
+				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+type+function+"."+xmlType+".ztl.template");	
 			}
 			
+			if(template == null) {
+				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+type+function+".ztl.template");
+			}
+
 			if(template == null) {
 				template = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_"+"simple"+".ztl.template");
 			}

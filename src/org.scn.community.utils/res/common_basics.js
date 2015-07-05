@@ -333,9 +333,55 @@ org_scn_community_basics.getDateValue = function (inputDate) {
 /**
  * Fills dummy data based on the component spec
  */
-org_scn_community_basics.fillDummyData = function (owner, callBack, afterPrepare) {
+org_scn_community_basics.fillDummyDataInit = function (owner, callBack) {
 	// uses directly setters for the settings
+	callBack(owner);
+};
+
+org_scn_community_basics.fillDummyDataInitAsync = function (owner, callBack) {
+	var requestForData = new XMLHttpRequest();
+	var returnValue = undefined;
+
+	requestForData.onreadystatechange = function() {
+		// check status and react
+		if (requestForData.readyState == 4){
+			// status and content does not matter
+			callBack(owner);
+		};
+	};
+
+	// trigger ajax request
+	var dataUrl = org_scn_community_require.scriptInfo.mainSDKPath + "org.scn.community.basics/res/_data/empty.json?v=" + org_scn_community_require.jsVersion;
+
+	requestForData.open("GET", dataUrl, true);
+	requestForData.send();
+};
+
+org_scn_community_basics.fillDummyData = function (owner, callBack, afterPrepare) {
 	callBack(undefined, afterPrepare, owner);
+};
+
+org_scn_community_basics.fillDummyDataAsync = function (owner, callBack, afterPrepare) {
+	var requestForData = new XMLHttpRequest();
+	var returnValue = undefined;
+
+	var target = owner;
+	var callTarget = callBack;
+	var afterTarget = afterPrepare;
+	
+	requestForData.onreadystatechange = function() {
+		// check status and react
+		if (requestForData.readyState == 4){
+			// status and content does not matter
+			callTarget(undefined, afterTarget, target);
+		};
+	};
+
+	// trigger ajax request
+	var dataUrl = org_scn_community_require.scriptInfo.mainSDKPath + "org.scn.community.basics/res/_data/empty.json?v=" + org_scn_community_require.jsVersion;
+
+	requestForData.open("GET", dataUrl, true);
+	requestForData.send();
 };
 
 org_scn_community_basics.getRepositoryImageUrlPrefix = function (owner, componentUrl, imageUrl, componentFileName) {

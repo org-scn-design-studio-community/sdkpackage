@@ -184,6 +184,222 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the Text for Node keys<br/>
+	 */
+	void setNodeTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Node Key<br/>
+	 */
+	void setNodeText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Url for Node keys<br/>
+	 */
+	void setNodeUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Node Key<br/>
+	 */
+	void setNodeUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Text for SubNode keys<br/>
+	 */
+	void setSubNodeTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for SubNode Key<br/>
+	 */
+	void setSubNodeText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Url for SubNode keys<br/>
+	 */
+	void setSubNodeUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for SubNode Key<br/>
+	 */
+	void setSubNodeUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.nodesContent = JSON.stringify(elementsJson);
+	*}
 
 
 

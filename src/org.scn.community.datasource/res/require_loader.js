@@ -22,7 +22,7 @@ var org_scn_community_require = org_scn_community_require || {};
 /* IMPORTANT! ORIGINAL LOCATION - basics/res */
 
 //set the version to assure cache is cleared
-/*NO DELTA CHECK START*/org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-6-30"/*%TIMESTAMP-END%*/;/*NO DELTA CHECK END*/
+/*NO DELTA CHECK START*/org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-5"/*%TIMESTAMP-END%*/;/*NO DELTA CHECK END*/
 
 var org_scn_community_components = org_scn_community_components || {};
 org_scn_community_components.basics = org_scn_community_components.basics || {};
@@ -153,6 +153,11 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 			sap_m_loader: {
 				name: "sap_m_loader",
 				script: "org.scn.community.basics/os/sapui5/sap_m_loader",
+				min: false
+			},
+			x2js: {
+				name: "x2js",
+				script: "org.scn.community.basics/os/x2js/xml2json",
 				min: false
 			},
 	};

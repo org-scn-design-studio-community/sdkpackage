@@ -174,6 +174,37 @@ class org_scn_community_shared_ContentNotation extends Enum {
 /**
  * enum filed definition
  */
+class org_scn_community_shared_DateViewTypeEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_DateViewType extends Enum {
+
+	/** Day */
+	org_scn_community_shared_DateViewTypeEnumfield Day;
+       
+	/** Week */
+	org_scn_community_shared_DateViewTypeEnumfield Week;
+
+	/** Month */
+	org_scn_community_shared_DateViewTypeEnumfield Month;
+
+	/** Year */
+	org_scn_community_shared_DateViewTypeEnumfield Year;
+
+	/** Custom_Week */
+	org_scn_community_shared_DateViewTypeEnumfield Custom_Week;
+
+	/** Custom_Duration */
+	org_scn_community_shared_DateViewTypeEnumfield Custom_Duration;
+}
+
+/**
+ * enum filed definition
+ */
 class org_scn_community_shared_DimensionSetEnumfield extends Enumfield {
        
 }
@@ -192,6 +223,50 @@ class org_scn_community_shared_DimensionSet extends Enum {
 	/** CUSTOM_DIMENSIONS */
 	org_scn_community_shared_DimensionSetEnumfield Custom;
 }
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_DecimalPlacesEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants definition 
+ */
+class org_scn_community_shared_DecimalPlaces extends Enum {
+
+	/** 0 */
+	org_scn_community_shared_DecimalPlacesEnumfield D0;
+       
+	/** 1 */
+	org_scn_community_shared_DecimalPlacesEnumfield D1;
+
+	/** 2 */
+	org_scn_community_shared_DecimalPlacesEnumfield D2;
+
+	/** 3 */
+	org_scn_community_shared_DecimalPlacesEnumfield D3;
+
+	/** 4 */
+	org_scn_community_shared_DecimalPlacesEnumfield D4;
+
+	/** 5 */
+	org_scn_community_shared_DecimalPlacesEnumfield D5;
+
+	/** 6 */
+	org_scn_community_shared_DecimalPlacesEnumfield D6;
+
+	/** 7 */
+	org_scn_community_shared_DecimalPlacesEnumfield D7;
+
+	/** 8 */
+	org_scn_community_shared_DecimalPlacesEnumfield D8;
+
+	/** 9 */
+	org_scn_community_shared_DecimalPlacesEnumfield D9;
+
+}
+
 /**
  * enum filed definition
  */
@@ -239,6 +314,25 @@ class org_scn_community_shared_FormattingOperator extends Enum {
 /**
  * enum filed definition
  */
+class org_scn_community_shared_HorizontalAlignEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_HorizontalAlign extends Enum {
+
+	/** Left */
+	org_scn_community_shared_HorizontalAlignEnumfield Left;
+       
+	/** Right */
+	org_scn_community_shared_HorizontalAlignEnumfield Right;
+}
+
+/**
+ * enum filed definition
+ */
 class org_scn_community_shared_ImageSizeEnumfield extends Enumfield {
        
 }
@@ -253,6 +347,12 @@ class org_scn_community_shared_ImageSize extends Enum {
 
 	/** 32x32 pixels */
 	org_scn_community_shared_ImageSizeEnumfield Size_32px;
+
+	/** 64x64 pixels */
+	org_scn_community_shared_ImageSizeEnumfield Size_64px;
+	
+	/** 128x128 pixels */
+	org_scn_community_shared_ImageSizeEnumfield Size_128px;
 }
 /**
  * enum filed definition
@@ -414,530 +514,4 @@ class org_scn_community_shared_SortDirection extends Enum {
        
 	/** DESCENDING */
 	org_scn_community_shared_SortDirectionEnumfield Descending;
-}
-
-/**
- * enum filed definition
- */
-class org_scn_community_shared_SortTypeEnumfield extends Enumfield {
-       
-}
-
-/**
- * a set of constants to specify sort type 
- */
-class org_scn_community_shared_SortType extends Enum {
-
-	/** Default */
-	org_scn_community_shared_SortTypeEnumfield Default;
-       
-	/** Alphabetical */
-	org_scn_community_shared_SortTypeEnumfield Alphabetical;
-
-	/** Count */
-	org_scn_community_shared_SortTypeEnumfield Count;
-	
-	/** Selected */
-	org_scn_community_shared_SortTypeEnumfield Selected;
-
-	/** Value */
-	org_scn_community_shared_SortTypeEnumfield Value;
-}
-
-/**
-	Holder for Dimension, Member. You can access the content as in below example.
-	<br>
-	var content = COMPONENT.getSelectedElementsArray();<br>
-	
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.DimensionMemberArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.DimensionMember<br>
-		var elDimension = element.dimension;<br>
-		var elMember = element.member;<br>
-	});
- */
-class org.scn.community.shared.DimensionMember {
-  String dimension;
-  String member;
-}
-
-/**
-	Array for org.scn.community.shared.DimensionMember. You can use this array as in below example.
-	<br>
-	var content = COMPONENT.getSelectedElementsArray();<br>
-	<br>
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.DimensionMemberArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.DimensionMemberValue<br>
-		var elDimension = element.dimension;<br>
-		var elMember = element.member;<br>
-	});
- */
-class org.scn.community.shared.DimensionMemberArray extends Array {
-	org.scn.community.shared.DimensionMemberArray (org.scn.community.shared.DimensionMember b);
-}
-
-/**
-	Holder for Key, Text. You can access the content as in below example.
-	<br>
-	var content = COMPONENT.getSelectedElementsArray();<br>
-	
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.KeyArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.Key<br>
-		var elKey = element.key;<br>
-	});
- */
-class org.scn.community.shared.Key {
-  String key;
-}
-
-/**
-	Array for org.scn.community.shared.KeyText. You can use this array as in below example.
-	<br>
-	var content = COMPONENT.getSelectedElementsArray();<br>
-	<br>
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.KeyArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.KeyValue<br>
-		var elKey = element.key;<br>
-	});
- */
-class org.scn.community.shared.KeyArray extends Array {
-	org.scn.community.shared.KeyArray (org.scn.community.shared.Key b);
-}
-
-/**
-	Holder for Key, Label. You can access the content as in below example.
-	<br>
-	var content = COMPONENT.getSelectedElementsArray();<br>
-	
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.KeyLabelArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.KeyLabel<br>
-		var elKey = element.key;<br>
-		var elLabel = element.label;<br>
-	});
- */
-class org.scn.community.shared.KeyLabel {
-  String key;
-  String label;
-}
-
-/**
-	Array for org.scn.community.shared.KeyLabel. You can use this array as in below example.
-	<br>
-	var content = COMPONENT.getSelectedElementsArray();<br>
-	<br>
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.KeyLabelArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.KeyLabelValue<br>
-		var elKey = element.key;<br>
-		var elLabel = element.label;<br>
-	});
- */
-class org.scn.community.shared.KeyLabelArray extends Array {
-	org.scn.community.shared.KeyLabelArray (org.scn.community.shared.KeyLabel b);
-}
-
-/**
-	Holder for Key, Text. You can access the content as in below example.
-	<br>
-	var content = COMPONENT.getSelectedElementsArray();<br>
-	
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.KeyTextArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.KeyText<br>
-		var elKey = element.key;<br>
-		var elText = element.text;<br>
-	});
- */
-class org.scn.community.shared.KeyText {
-  String key;
-  String text;
-}
-
-/**
-	Array for org.scn.community.shared.KeyText. You can use this array as in below example.
-	<br>
-	var content = COMPONENT.getSelectedElementsArray();<br>
-	<br>
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.KeyTextArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.KeyTextValue<br>
-		var elKey = element.key;<br>
-		var elText = element.text;<br>
-	});
- */
-class org.scn.community.shared.KeyTextArray extends Array {
-	org.scn.community.shared.KeyTextArray (org.scn.community.shared.KeyText b);
-}
-
-/**
-	Holder for Key, Label, Value. You can access the content as in below example.
-	<br>
-	var content = COLLECTION_1.getAsKeyLabelValueArray();<br>
-	
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.KeyLabelValueArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.KeyLabelValue<br>
-		var elKey = element.key;<br>
-		var elLabel = element.label;<br>
-	 	var elValue = "( " + element.value + " )");<br>
-	});
- */
-class org.scn.community.shared.KeyLabelValue {
-  String key;
-  String label;
-  float value;
-}
-
-/**
-	Array for org.scn.community.shared.KeyLabelValue. You can use this array as in below example.
-	<br>
-	var content = COLLECTION_1.getAsKeyLabelValueArray();<br>
-	<br>
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.KeyLabelValueArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.KeyLabelValue<br>
-		var elKey = element.key;<br>
-		var elLabel = element.label;<br>
-	 	var elValue = "( " + element.value + " )");<br>
-	});
- */
-class org.scn.community.shared.KeyLabelValueArray extends Array {
-	org.scn.community.shared.KeyLabelValueArray (org.scn.community.shared.KeyLabelValue b);
-}
-
-/**
-	Holder for Key, Label, Value + param1, param2, param3. You can access the content as in below example.
-	<br>
-	var content = COLLECTION_1.getAsKeyLabelValueProperty();<br>
-	
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.KeyLabelValuePropertyArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.KeyLabelValueProperty<br>
-		var elKey = element.key;<br>
-		var elLabel = element.label;<br>
-	 	var elValue = "( " + element.value + " )");<br>
-	 	<br>
-	 	var param1 = element.property1;<br>
-	 	var param2 = element.property2;<br>
-	 	var param3 = element.property3;<br>
-	});
- */
-class org.scn.community.shared.KeyLabelValueProperty {
-	String key;
-	String label;
-	float value;
-	String prop1;
-	String prop2;
-	String prop3;
-}
-
-/**
-Array for org.scn.community.shared.KeyLabelValueProperty. You can use this array as in below example.
-<br>
-var content = COLLECTION_1.getAsKeyLabelValuePropertyArray();<br>
-<br>
-// a loop for all entries<br>
-// content is of type org.scn.community.shared.KeyLabelValuePropertyArray<br>
-content.forEach(function(element, index) {<br>
-
-	// element is of type org.scn.community.shared.KeyLabelValueProperty<br>
-	var elKey = element.key;<br>
-	var elLabel = element.label;<br>
- 	var elValue = "( " + element.value + " )");<br>
- 	<br>
- 	var param1 = element.prop1;<br>
- 	var param2 = element.prop2;<br>
- 	var param3 = element.prop3;<br>
- });
-*/
-class org.scn.community.shared.KeyLabelValuePropertyArray extends Array {
-	org.scn.community.shared.KeyLabelValuePropertyArray (org.scn.community.shared.KeyLabelValueProperty b);
-}
-
-/**
-	Holder for Name, Value. You can access the content as in below example.
-	<br>
-	var content = COMPONENT.getSelectedElementsArray();<br>
-	
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.NameValueArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.NameValue<br>
-		var elName = element.name;<br>
-		var elValue = element.value;<br>
-	});
- */
-class org.scn.community.shared.NameValue {
-  String name;
-  String value;
-}
-
-/**
-	Array for org.scn.community.shared.NameValue. You can use this array as in below example.
-	<br>
-	var content = COMPONENT.getSelectedElementsArray();<br>
-	<br>
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.NameValueArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.NameValueValue<br>
-		var elName = element.name;<br>
-		var elValue = element.value;<br>
-	});
- */
-class org.scn.community.shared.NameValueArray extends Array {
-	org.scn.community.shared.NameValueArray (org.scn.community.shared.NameValue b);
-}
-
-/**
-	Holder for value. You can use the content as in below example.
-	<br>
-	var content = COLLECTION_1.getAsValueTextArray();<br>
-	<br>
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.ValueTextArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.ValueText<br>
-		var elValue = element.value;<br>
-		var elText = element.text;<br>
-	});
-*/
-class org.scn.community.shared.ValueText {
-  String value;
-  String text;
-}
-
-/**
-	Array for org.scn.community.shared.ValueText. You can use this array as in below example.
-	<br>
-	var content = ARRAY_1.getAsValueTextArray();<br>
-	<br>
-	// a loop for all entries<br>
-	// content is of type org.scn.community.shared.ValueTextArray<br>
-	content.forEach(function(element, index) {<br>
-	
-		// element is of type org.scn.community.shared.ValueText<br>
-		var elValue = element.value;<br>
-		var elText = element.text;<br>
-	});
-*/
-class org.scn.community.shared.ValueTextArray extends Array {
-	org.scn.community.shared.ValueTextArray (org.scn.community.shared.ValueText b);
-}
-/**
- * Class for reusable ZTL component methods
- */
-class org.scn.community.shared.Component extends Component {
-	
-	@Visibility(private)
-	void internalWriteLog(String log) {*
-		// only for debugging
-		var active = false;
-	
-		if(active) {
-			APPLICATION.log(log);
-		}
-	*}
-
-	/**
-	 * DO NOT USE, ONLY FOR DEBUG ACTIVATION
-	 */
-	@Visibility(private)
-	boolean isDebug(optional String componentName) {*
-		// quick check here
-		if(componentName == undefined) {
-			if(this._dbgDEBUG == "+") { return true; }
-			if(this._dbgDEBUG == "-") { return false; }
-			componentName = "DEBUG";
-		} else {
-			if(this["_dbg" + componentName] == "+") { return true; }
-			if(this["_dbg" + componentName] == "-") { return false; }
-		}
-	
-		internal_assureGlobalAccess ();
-		
-		var something = this.getGlobal()[componentName];
-		if(something != undefined) {
-			this["_dbg" + componentName] == "+";
-			return true;
-		} else {
-			this["_dbg" + componentName] == "-";
-			return false;
-		}
-	*}
-	
-	/**
-	 * Internal function to read return global scope
-	 * http://stackoverflow.com/questions/1162998/how-can-i-add-an-object-property-to-the-global-object-in-rhino-javascript
-	 */
-	@Visibility(private)
-	void internal_assureGlobalAccess () {*
-		if(this.getGlobal == undefined) {
-			this.getGlobal = function () {
-				return (function() {
-					return this;
-				}).call(null);
-			}
-		}
-	*}
-	
-	/**
-	 * Converts Choice values to Strings
-	 */
-	@Visibility(private)
-	String convertChoiceToString (String choice) {*
-		return choice;
-	*}
-
-	/**
-	 * Converts String values to Choices
-	 */
-	@Visibility(private)
-	String convertToStringChoice (String value) {*
-		value = value.toUpper();
-		value = value.replace(" ", "_");
-		return value;
-	*}
-}
-
-/**
- * Class for reusable ZTL data bound component methods
- */
-class org.scn.community.shared.DataComponent extends org.scn.community.shared.Component {
-
-	@Visibility(private)
-	String superReadMembers(
-			/**technical name of the dimension*/String dimensionName,
-			/**max members to load (optional, default 1000)*/optional int maxMembers
-			) {*
-		var ds = this.getDataSource();
-		
-		var membersArray = [];
-	
-		if(maxMembers == undefined) {
-			maxMembers = 1000;
-		}
-		
-		var members = ds.getMembers(dimensionName, maxMembers);
-
-		this.internalWriteLog("Load Members [length]: " + members.length);
-		
-		members.forEach(function(member, index) {
-			var memberEntry = {};
-			membersArray.push(memberEntry);
-			
-			memberEntry.key = member.internalKey;
-			// member.internalNoncompoundedKey;
-			memberEntry.keyExt = member.externalKey;
-			// member.externalNoncompoundedKey;
-			memberEntry.text = member.text;
-		});
-		
-		var membersMetaData = {};
-		membersMetaData.dimensionName = dimensionName;
-		membersMetaData.members = membersArray;
-		
-		var result = JSON.stringify(membersMetaData);
-		return result;
-	
-	*}
-	
-	@Visibility(private)
-	String superReadMetaData() {*
-		// APPLICATION.createInfoMessage("_readMetaData");
-		
-		var ds = this.getDataSource();
-	  
-		var dimensionsArray = [];
-	
-		var dims = ds.getDimensions();
-		dims.forEach(function(element, index) {
-			var dimEntry = {};
-			dimensionsArray.push(dimEntry);
-			dimEntry.name = element.name;
-			dimEntry.text = element.text;
-			
-			if (element.isMeasuresDimension) {
-				var measuresArray = [];
-				var measures = ds.getMembers(element.name, 100);
-				measures.forEach(function(measure) {
-					var measureEntry = {};
-					measuresArray.push(measureEntry);
-
-					measureEntry.name = measure.internalKey;
-					measureEntry.text = measure.text;
-				});
-
-				dimEntry.measures = measuresArray;
-			} else {
-				dimEntry.memberDisplay = ds.getMemberDisplay(element.name);
-				dimEntry.showTotals = ds.getTotalsDisplay(element.name);
-				dimEntry.hierarchies =  ds.getHierarchies(element.name);
-				dimEntry.assignedHierarchy = ds.getAssignedHierarchy(element.name);
-			}
-		});
-
-		var conditionalFormatsJson = [];
-		var conditionalFormat = ds.getConditionalFormats();	// Issue Fix for Github Issue 22 reported by sschau
-		conditionalFormat.forEach(function(element, index) {
-		  var conditionalFormatJson = {};
-		  conditionalFormatJson.push(conditionalFormatJson);
-		  
-		  conditionalFormatJson.id = element;
-		  conditionalFormatJson.name = ds.getConditionalFormatName(element);
-		  conditionalFormatJson.active = ds.isConditionalFormatActive(element);
-		});
-		
-		var measureFiltersJson = [];
-		var measureFilters = ds.getMeasureFilters();
-		measureFilters.forEach(function(element, index) {
-		  var conditionJson = {};
-		  measureFiltersJson.push(conditionJson);
-		  
-		  measureFilterJson.id = element;
-		  measureFilterJson.name = ds.getMeasureFilterName(element);
-		  measureFilterJson.active = ds.isMeasureFilterActive(element);
-		});
-		
-		var dataSourceMetaData = {};
-		dataSourceMetaData.dimensions = dimensionsArray;
-		dataSourceMetaData.conditionalFormats = conditionalFormatsJson;
-		dataSourceMetaData.measureFilters = measureFiltersJson;
-		
-		var result = JSON.stringify(dataSourceMetaData);
-		return result;
-	*}
-}
-
-class org.scn.community.shared.BufferDataSource extends SdkDataBuffer {
-	
 }

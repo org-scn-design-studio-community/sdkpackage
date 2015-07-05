@@ -1,0 +1,19 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_HorizontalAlignEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_HorizontalAlign extends Enum {
+
+	/** Left */
+	org_scn_community_shared_HorizontalAlignEnumfield Left;
+       
+	/** Right */
+	org_scn_community_shared_HorizontalAlignEnumfield Right;
+}

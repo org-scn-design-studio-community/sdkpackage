@@ -6,7 +6,7 @@
 		<defaultValue property="graticuleThickness">.5</defaultValue>
 		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>
 		<defaultValue property="labelProperty">NAME_1</defaultValue>
-		<defaultValue property="projection">equirectangular</defaultValue>
+		<defaultValue property="projection">Equirectangular (Plate Carrée)</defaultValue>
 		<defaultValue property="yaw">0.0</defaultValue>
 		<defaultValue property="pitch">0.0</defaultValue>
 		<defaultValue property="roll">0.0</defaultValue>

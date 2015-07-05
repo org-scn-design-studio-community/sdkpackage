@@ -1,6 +1,7 @@
+var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPage", function() {
 	var that = this;
-	
+	this.rendered = false;
 	/**
 	 * Crawl Node config by node key to find its UI sheet.
 	 */
@@ -28,6 +29,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 				var property = node.leafs[leaf].name;
 				var propertyOptions = node.leafs[leaf].opts;
 				var apsControl = propertyOptions.apsControl;
+				if(!apsControl) apsControl = "text";
 				this.props[property] = {
 						value : null
 					};
@@ -45,32 +47,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 									}
 								}
 								this.props[property].value = value;
-								if(apsControl=="text" || !apsControl){
-									this["cmp_"+property].setValue(value);	
-								}
-								if(apsControl=="textbox"){
-									this["cmp_"+property].setValue(value);	
-								}
-								if(apsControl=="mapdownload"){
-									this["cmp_"+property].setMapData(value);	
-								}
-								if(apsControl=="checkbox"){
-									this["cmp_"+property].setChecked(Boolean(value));	
-								}
-								if(apsControl=="spinner"){
-									this["cmp_"+property].setValue(value);
-								}
-								if(apsControl=="palette"){
-									this["cmp_"+property].setColors(value);
-								}
-								if(apsControl=="combobox"){
-									this["cmp_"+property].setSelectedKey(value);
-								}
-								if(apsControl=="color"){
-									this["cmp_"+property].setBackgroundColor(value);
-								}
-								if(apsControl=="array"){
-									this["cmp_"+property].setValue(value);
+								/**
+								 * Scan handler registry
+								 */
+								for(var i=0;i<propertyPageHandlerRegistry.length;i++){
+									var handler = propertyPageHandlerRegistry[i];
+									if(handler.id == apsControl) {
+										handler.setter.call(this, property, value);
+									}
 								}
 								return this;
 							}
@@ -80,32 +64,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 					var f = function(property,apsControl){
 						return function(oControlEvent){
 							var newValue;
-							if(apsControl=="text" || apsControl==null){
-								newValue = oControlEvent.getSource().getValue();
-							}
-							if(apsControl=="textbox"){
-								newValue = oControlEvent.getSource().getValue();
-							}
-							if(apsControl=="mapdownload"){
-								newValue = oControlEvent.getSource().getMapData();
-							}
-							if(apsControl=="checkbox"){
-								newValue = oControlEvent.getSource().getChecked();
-							}
-							if(apsControl=="spinner"){
-								newValue = oControlEvent.getSource().getValue();
-							}
-							if(apsControl=="palette"){
-								newValue = oControlEvent.getSource().getColors();
-							}
-							if(apsControl=="combobox"){
-								newValue = oControlEvent.getSource().getSelectedKey();
-							}
-							if(apsControl=="color"){
-								newValue = oControlEvent.getSource().getBackgroundColor();
-							}
-							if(apsControl == "array"){
-								newValue = oControlEvent.getSource().getValue();
+							/**
+							 * Scan handler registry
+							 */
+							for(var i=0;i<propertyPageHandlerRegistry.length;i++){
+								var handler = propertyPageHandlerRegistry[i];
+								if(handler.id == apsControl) {
+									newValue = handler.getter.call(this, property, oControlEvent.getSource());
+								}
 							}
 							this.props[property].value = newValue;
 							if(!this.isTest) {
@@ -116,14 +82,17 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 							
 						};
 					}(property,apsControl);
-					// Step 3, create component
-					if(apsControl == "text" || !apsControl){
-						this["cmp_"+property] = new sap.ui.commons.TextField({
-							value : ""
-						});
-						this["cmp_"+property].attachChange(f,this);
+					/**
+					 * Scan handler registry
+					 */
+					for(var i=0;i<propertyPageHandlerRegistry.length;i++){
+						var handler = propertyPageHandlerRegistry[i];
+						if(handler.id == apsControl) {
+							this["cmp_"+property] = handler.createComponent.call(this, property, propertyOptions, f);
+						}
 					}
-					if(apsControl == "textbox"){
+					// assure there is a control! Make text Area
+					if(this["cmp_"+property] == undefined){
 						this["cmp_"+property] = new sap.ui.commons.TextArea({
 							design : sap.ui.core.Design.Monospace,
 							rows : 20,
@@ -132,77 +101,11 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 						});
 						this["cmp_"+property].attachChange(f,this);
 					}
-					if(apsControl == "mapdownload"){
-						this["cmp_"+property] = new org.scn.community.aps.MapDownloader({
-							width : "100%",
-							title : new sap.ui.commons.Title({
-								text: propertyOptions.desc
-							}),
-							//tooltip: this.metaProps[prop].tooltip,
-							showCollapseIcon : false,
-							showAlpha : false,
-							showRatios : false
-						});
-						this["cmp_"+property].attachMapDataChange(f,this);
-					}
-					if(apsControl == "checkbox"){
-						this["cmp_"+property] = new sap.ui.commons.CheckBox();
-						this["cmp_"+property].attachChange(f,this);
-					}
-					if(apsControl == "spinner"){
-						this["cmp_"+property] = new org.scn.community.aps.Spinner({
-							min : 0,
-							max : 100
-						 });
-						this["cmp_"+property].attachValueChange(f,this);
-					}
-					if(apsControl == "combobox"){
-						this["cmp_"+property] = new sap.ui.commons.ComboBox({});
-						if(propertyOptions.options && propertyOptions.options.length>0){
-							for(var i=0;i<propertyOptions.options.length;i++){
-								var option = propertyOptions.options[i];
-								this["cmp_"+property].addItem(new sap.ui.core.ListItem({
-									key : option.key,
-									text : option.text || option.key
-								 }));
-							}
-						}
-						this["cmp_"+property].attachChange(f,this);
-					}
-					if(apsControl == "palette"){
-						this["cmp_"+property] = new org.scn.community.aps.ColorBuilder({
-							width : "100%",
-							title : new sap.ui.commons.Title({
-								text: propertyOptions.desc
-							}),
-							//tooltip: this.metaProps[prop].tooltip,
-							showCollapseIcon : false,
-							showAlpha : false,
-							showRatios : false
-						});
-						this["cmp_"+property].attachColorChange(f,this);
-					}
-					if(apsControl == "color"){
-						this["cmp_"+property] = new org.scn.community.aps.ColorPicker({
-							showAlpha : false
-						});
-						this["cmp_"+property].attachColorChange(f,this);
-					}
-					// try to add arrays
-					if(apsControl == "array"){
-						var specification = propertyOptions.arrayDefinition;
-						if(!specification) {specification = {}};
-						
-						this["cmp_"+property] = new org.scn.community.aps.ArrayList({
-							mode: propertyOptions.arrayMode,
-						});
-						this["cmp_"+property].setSpecification(specification);
-						this["cmp_"+property].attachValueChange(f,this);
-					}
 					
 					// Step 3a, if component has afterInit method, call it!
+					
 					if(this["cmp_"+property].afterInit) {
-						useLabel = this["cmp_"+property].afterInit();	
+						this["cmp_"+property].afterInit();	
 					}
 					
 					// Step 4, add control to layout
@@ -211,7 +114,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 					if(this["cmp_"+property].needsLabel) {
 						useLabel = this["cmp_"+property].needsLabel();	
 					}
+					
 					if(useLabel){
+						// set width to 320px
+						if(this["cmp_"+property].setWidth) {
+							this["cmp_"+property].setWidth("320px");
+						}
 						node.ui.addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
 					}else{
 						node.ui.addContent(this["cmp_"+property]);
@@ -256,6 +164,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			ui.addContent(stageUI);
 			stageUI.addContent(firstChildUI);
 		}
+		this.rendered = true;
 	};
 	/**
 	 * Balances out hierarchy to not allow for cases where a node has nodes AND leafs.
@@ -293,7 +202,97 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 		if(global != undefined && global.component != undefined) {
 			this.componentInstance = global.component;
 		}
-		
+
+		var componentInfo = {};
+		if(this.componentInstance != undefined) {
+			componentInfo = this.componentInstance.getComponentInformation();
+		} else {
+			if(!this.isTest){
+				componentInfo = this.callRuntimeHandler("getComponentInformation");	
+			} else {
+				var testComponent = this.getUrlParameterByName("component");
+				var testComponent = testComponent.substring(0, testComponent.indexOf(","));
+				var componentObject = eval(testComponent);
+				
+				this.componentInstance = componentObject.instance();
+				componentInfo = this.componentInstance.getComponentInformation();
+			}
+		}
+
+		if(componentInfo && componentInfo != "") {
+			try{
+			componentInfo = jQuery.parseJSON(componentInfo);
+			}catch(e){
+				alert("Bad Component Info found.")
+			}
+		}
+
+		// alert("Component Info." + componentInfo);
+		/**
+		 * Attach additional handlers, depending on component capabilities
+		 */
+		if(componentInfo && componentInfo.supportsFlatData){
+			var that = this;
+			this.dataPropertyListeners = [];
+			if(!this.DATA_SOURCE_ALIAS_REF) this.DATA_SOURCE_ALIAS_REF = function(v){
+				if(v===undefined){
+					return this._dsr;
+				}else{
+					this._dsr = v;
+					if(this.dsPoll) window.clearTimeout(this.dsPoll);
+					this.dsPoll = window.setTimeout(function(){that.updateDataInfo("DATA_SOURCE_ALIAS_REF changed");}, 1500);
+					return this;
+				}
+			}
+			this.componentSelected = function(){
+				if(this.dsPoll) window.clearTimeout(this.dsPoll);
+				this.updateDataInfo("Component Selected");
+				//alert(JSON.stringify(ds_getDataJSON()));
+				//alert(ds_getMetadataPropertiesAsJSON());
+			}
+
+			this.registerDataComponent = function(cmp){
+				this.dataPropertyListeners.push(cmp);
+			};
+
+			/**
+			 * Get Data Source Metadata
+			 */
+			this.updateDataInfo = function(reason){
+				jQuery.sap.log.info("Updating Data Source Info because: " + reason);
+				var that = this;
+				// Get Property Metadata from Design Studio Component Runtime.
+				try{
+					var dsm = this.callRuntimeHandler("getAPSMetaData");
+					var fd = this.callRuntimeHandler("getAPSFlatData");
+					// If both values are the same, don't bother updating APS components
+					if(dsm == this.oldDSM && fd == this.oldFD) return;
+					this.oldDSM = dsm;
+					this.oldFD = fd;
+					var fdMeta = {
+						msg : "Not loaded",
+						data : null
+					}
+					delete this.dsMetadata;
+					delete this.flatData;
+					if(dsm && dsm != "") {
+						this.dsMetadata = jQuery.parseJSON(dsm);
+					}
+					if(fd && fd != "") {
+						fdMeta = jQuery.parseJSON(fd);
+						if(fdMeta && fdMeta.data) this.flatData = fdMeta.data;
+					}
+					// Update data-sensitive components to metadata or flatdata changes.
+					for(var i=0;i<this.dataPropertyListeners.length;i++){
+						var cmp = this.dataPropertyListeners[i];
+						if(cmp !=undefined && cmp.notifyDataChange) cmp.notifyDataChange();
+					}
+				}catch(e){
+					alert("An error occured with APS communicating with the Design Studio runtime.  Please try reloading your dashboard.\n\n"+e);
+				}
+			};
+		}
+
 		this.appHeader = new sap.ui.commons.ApplicationHeader({
 			displayLogoff : false,
 			logoText : "Property Sheet",
@@ -330,6 +329,23 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 		}
 		
 		this.metaProps = jQuery.parseJSON(propMetadata);
+		
+		this.getIndexForCategory = function (cat) {
+			if(cat == "Data") {return 10;}
+			if(cat == "Display") {return 20;}
+			if(cat == "Interaction") {return 30;}
+			if(cat == "Image") {return 40;}
+			if(cat == "Content") {return 50;}
+			if(cat == "Special") {return 60;}
+			if(cat == "Prototypes") {return 70;}
+			return 100;
+		};
+		var that = this;
+		
+		this.metaProps.sort(function(a, b){
+			return that.getIndexForCategory(a.opts.cat)-that.getIndexForCategory(b.opts.cat);
+		});
+		
 		this.props = {};
 		// Pass 1 - Create tree.
 		this.tree = {
@@ -379,62 +395,45 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 
 		this.render(this.tree,this.mainLayout);
 
-		var sComponentInfo = {};
-		if(this.componentInstance != undefined) {
-			sComponentInfo = this.componentInstance.getComponentInformation();
-		} else {
-			if(!this.isTest){
-				sComponentInfo = this.callRuntimeHandler("getComponentInformation");	
-			} else {
-				sComponentInfo = this.componentInstance.getComponentInformation();
+		if(componentInfo && componentInfo.visible){
+			this.aboutLayout = new sap.ui.commons.layout.VerticalLayout({
+				width : "100%"
+			});
+			this.tree.strip.addItem(new sap.ui.ux3.NavigationItem({
+				key:"ABOUT",
+				text:"About",
+			}));
+			aboutPanel = new sap.ui.commons.Panel({
+				text : componentInfo.title,
+				width : "100%"
+			});
+
+			this.appHeader.setLogoText("  " + componentInfo.title);
+			if(componentInfo.icon) this.appHeader.setLogoSrc(componentInfo.icon);
+			//var aboutDescription = new sap.ui.commons.TextView({ text : componentInfo.description});
+			var aboutDescription = new sap.ui.core.HTML({ content : "<div>" + componentInfo.description + "</div>"});
+			aboutPanel.addContent(aboutDescription);
+			this.aboutLayout.addContent(aboutPanel);
+			if(componentInfo.topics){
+				for(var i=0;i<componentInfo.topics.length;i++){
+					var topicPanel = new sap.ui.commons.Panel({
+						text : componentInfo.topics[i].title,
+						width : "100%"
+					});
+					var topicContent = new sap.ui.core.HTML({ content : "<div>" + componentInfo.topics[i].content + "</div>"});
+					topicPanel.addContent(topicContent);
+					this.aboutLayout.addContent(topicPanel);
+				}
 			}
 		}
 
-		var componentInfo = {};
-		if(sComponentInfo && sComponentInfo != "") {
-			try{
-			componentInfo = jQuery.parseJSON(sComponentInfo);
-			if(componentInfo && componentInfo.visible){
-				this.aboutLayout = new sap.ui.commons.layout.VerticalLayout({
-					width : "100%"
-				});
-				this.tree.strip.addItem(new sap.ui.ux3.NavigationItem({
-					key:"ABOUT",
-					text:"About",
-				}));
-				aboutPanel = new sap.ui.commons.Panel({
-					text : componentInfo.title,
-					width : "100%"
-				});
-				this.appHeader.setLogoText("  " + componentInfo.title);
-				if(componentInfo.icon) this.appHeader.setLogoSrc(componentInfo.icon);
-				//var aboutDescription = new sap.ui.commons.TextView({ text : componentInfo.description});
-				var aboutDescription = new sap.ui.core.HTML({ content : "<div>" + componentInfo.description + "</div>"});
-				aboutPanel.addContent(aboutDescription);
-				this.aboutLayout.addContent(aboutPanel);
-				if(componentInfo.topics){
-					for(var i=0;i<componentInfo.topics.length;i++){
-						var topicPanel = new sap.ui.commons.Panel({
-							text : componentInfo.topics[i].title,
-							width : "100%"
-						});
-						var topicContent = new sap.ui.core.HTML({ content : "<div>" + componentInfo.topics[i].content + "</div>"});
-						topicPanel.addContent(topicContent);
-						this.aboutLayout.addContent(topicPanel);
-					}
-				}
-			}
-			}catch(e){
-				alert(e);
-			}
-		}
 		} catch(e2) {
 			alert(e2);
 		}
 	};
 	this.hLabel = function(label,component){
 		var hLayout = new sap.ui.commons.layout.HorizontalLayout({})
-		hLayout.addContent(new sap.ui.commons.TextView({ text : label, width : "150px"}));
+		hLayout.addContent(new sap.ui.commons.TextView({ text : label, width : "180px"}));
 		hLayout.addContent(component);
 		return hLayout;
 	}

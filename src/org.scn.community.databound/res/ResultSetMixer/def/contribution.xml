@@ -102,7 +102,7 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="DMasterGeometry">RowBased</defaultValue>
+		<defaultValue property="DMasterGeometry">Rows</defaultValue>
 		<defaultValue property="DCollectMultipleMatches">Collect</defaultValue>
 		<defaultValue property="DSlaveColumnIndex">1</defaultValue>
 		<defaultValue property="DReloadTrigger">0.0</defaultValue>

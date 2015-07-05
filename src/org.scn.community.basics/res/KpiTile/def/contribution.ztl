@@ -1,0 +1,671 @@
+
+/**
+ * Generated ZTL Class for KpiTile
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.basics.KpiTile extends org.scn.community.shared.Component {
+
+	/** Adds an element containing parentKey [String], key [String], value [String] properties.
+	 * You need to specify a unique and existing parent element.
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	KPITILE.addProperty(parentKey [String], key [String], value [String]);<br>
+	KPITILE.addProperty(parentKey [String], key [String], value [String]);
+	</code>
+	</example>
+	 */
+	void addProperty (
+			/**Parent Key*/String parentKey, 
+			/**Property Name*/String key, 
+			/**Property Value*/String value
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key, 
+			value:value 
+			};
+	
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			this.componentsSpec = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.componentsSpec);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], componentType [String], top [int], bottom [int], left [int], right [int], width [int], height [int], specification [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	KPITILE.addComponent(key [String], componentType [String], top [int], bottom [int], left [int], right [int], width [int], height [int], specification [String]);<br>
+	KPITILE.addComponent(key [String], componentType [String], top [int], bottom [int], left [int], right [int], width [int], height [int], specification [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addComponent (
+			/**Unique Key*/String key, 
+			/**Component Type*/String componentType, 
+			/**Top Position (-1 if bottom margin is set)*/int top, 
+			/**Bottom Position*/int bottom, 
+			/**Left Position (-1 if right margin is set)*/int left, 
+			/**Rigth Position*/int right, 
+			/**Width in Px*/int width, 
+			/**Height in Px*/int height, 
+			/**Full Specification*/String specification
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:leaf,
+			key:key, 
+			componentType:componentType, 
+			top:top, 
+			bottom:bottom, 
+			left:left, 
+			right:right, 
+			width:width, 
+			height:height, 
+			specification:specification 
+			};
+	
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			this.componentsSpec = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.componentsSpec);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	KPITILE.removeProperty(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeProperty (
+			String key
+			) {*		
+		
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			this.componentsSpec = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.componentsSpec);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	KPITILE.removeComponent(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeComponent (
+			String key
+			) {*		
+		
+		this.removeProperty(key);
+	*}
+
+	/**
+	 * Gets Components As JSON String
+	 */	
+	String getComponentsAsJSON() {*
+		var jsonObject = JSON.parse(this.componentsSpec);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the ComponentType for Component keys<br/>
+	 */
+	void setComponentComponentTypes (
+			/**/ String keys,
+			/**/ String separator,
+	        /* ComponentType */ String componentType
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].componentType = componentType;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the ComponentType for Component Key<br/>
+	 */
+	void setComponentComponentType (
+			/**/ String key,
+			/**/ String componentType
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].componentType = componentType;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Top for Component keys<br/>
+	 */
+	void setComponentTops (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Top */ int top
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].top = top;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Top for Component Key<br/>
+	 */
+	void setComponentTop (
+			/**/ String key,
+			/**/ int top
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].top = top;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Bottom for Component keys<br/>
+	 */
+	void setComponentBottoms (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Bottom */ int bottom
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].bottom = bottom;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Bottom for Component Key<br/>
+	 */
+	void setComponentBottom (
+			/**/ String key,
+			/**/ int bottom
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].bottom = bottom;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Left for Component keys<br/>
+	 */
+	void setComponentLefts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Left */ int left
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].left = left;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Left for Component Key<br/>
+	 */
+	void setComponentLeft (
+			/**/ String key,
+			/**/ int left
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].left = left;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Right for Component keys<br/>
+	 */
+	void setComponentRights (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Right */ int right
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].right = right;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Right for Component Key<br/>
+	 */
+	void setComponentRight (
+			/**/ String key,
+			/**/ int right
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].right = right;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Width for Component keys<br/>
+	 */
+	void setComponentWidths (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Width */ int width
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].width = width;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Width for Component Key<br/>
+	 */
+	void setComponentWidth (
+			/**/ String key,
+			/**/ int width
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].width = width;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Height for Component keys<br/>
+	 */
+	void setComponentHeights (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Height */ int height
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].height = height;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Height for Component Key<br/>
+	 */
+	void setComponentHeight (
+			/**/ String key,
+			/**/ int height
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].height = height;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Specification for Component keys<br/>
+	 */
+	void setComponentSpecifications (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Specification */ String specification
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].specification = specification;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Specification for Component Key<br/>
+	 */
+	void setComponentSpecification (
+			/**/ String key,
+			/**/ String specification
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].specification = specification;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Value for Property keys<br/>
+	 */
+	void setPropertyValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Property Key<br/>
+	 */
+	void setPropertyValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}

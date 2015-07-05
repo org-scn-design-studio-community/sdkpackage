@@ -237,6 +237,114 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the Text for Item keys<br/>
+	 */
+	void setItemTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Item Key<br/>
+	 */
+	void setItemText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Icon for Item keys<br/>
+	 */
+	void setItemIcons (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Icon */ String icon
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].icon = icon;
+					break;
+				}
+			}
+		}
+		
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Icon for Item Key<br/>
+	 */
+	void setItemIcon (
+			/**/ String key,
+			/**/ String icon
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].icon = icon;
+				break;
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
 
 
 

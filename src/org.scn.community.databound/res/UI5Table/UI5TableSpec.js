@@ -180,15 +180,15 @@
       "desc": "(non-stable) Formatting Operator",
       "options": [
         {
-          "key": "USE_FIRST",
+          "key": "UseFirst",
           "text": "Use First Matching Format"
         },
         {
-          "key": "USE_LAST",
+          "key": "UseLast",
           "text": "Use Last Matching Format"
         },
         {
-          "key": "COLLECT",
+          "key": "Collect",
           "text": "Collect All Formats"
         }
       ],

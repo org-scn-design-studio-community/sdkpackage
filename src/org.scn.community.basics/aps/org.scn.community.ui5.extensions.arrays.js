@@ -170,7 +170,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 					
 					var txtElementValue = undefined;
 					if(parameterObject.apsControl == "checkbox") {
-						txtElementValue = new sap.ui.commons.CheckBox ({checked : targetValue, width: "180px"});
+						txtElementValue = new sap.ui.commons.CheckBox ({checked : targetValue, width: "280px"});
 						
 						txtElementValue.attachChange(
 							function(oControlEvent){
@@ -182,8 +182,27 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 								
 								that.updateElement(that._listBuilder.getSelectedKey(),section);		
 						}, that);
+					} else if(parameterObject.apsControl == "textarea") {
+						txtElementValue = new sap.ui.commons.TextArea({
+							// design : sap.ui.core.Design.Monospace,
+							rows : 20,
+							width : "280px",
+							wrapping : sap.ui.core.Wrapping.Off,
+							value: targetValue
+						});
+			
+						txtElementValue.attachChange(
+								function(oControlEvent){
+									var value = oControlEvent.getParameter("newValue");
+									var key = oControlEvent.getSource()._key;
+
+									var section = that.getElement(that._listBuilder.getSelectedKey());
+									section[key] = value;
+									
+									that.updateElement(that._listBuilder.getSelectedKey(),section);
+							}, that);
 					} else {
-						txtElementValue = new sap.ui.commons.TextField ({value : targetValue, width: "180px"});
+						txtElementValue = new sap.ui.commons.TextField ({value : targetValue, width: "280px"});
 						
 						txtElementValue.attachChange(
 							function(oControlEvent){
@@ -308,8 +327,24 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 
 						that._currentItemConfig[key] = value;		
 				}, that);
+			} else if(parameterObject.apsControl == "textarea") {
+				txtItemValue = new sap.ui.commons.TextArea({
+					// design : sap.ui.core.Design.Monospace,
+					rows : 20,
+					width : "90%",
+					wrapping : sap.ui.core.Wrapping.Off,
+					value: targetValue
+				});
+	
+				txtItemValue.attachChange(
+					function(oControlEvent){
+						var value = oControlEvent.getParameter("newValue");
+						var key = oControlEvent.getSource()._key;
+
+						that._currentItemConfig[key] = value;		
+				}, that);
 			} else {
-				txtItemValue = new sap.ui.commons.TextField ({value : targetValue, width: "300px"});
+				txtItemValue = new sap.ui.commons.TextField ({value : targetValue, width: "90%"});
 				
 				txtItemValue.attachChange(
 					function(oControlEvent){
@@ -575,7 +610,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		this._listBuilder.attachItemSelected(this.elementSelected,that);
 		
 		this._sectionPropertyLayout = new sap.ui.commons.layout.VerticalLayout({
-			width : "200px"
+			width : "300px"
 		});
 		this._sectionPropertyList = new sap.ui.commons.layout.VerticalLayout({
 			width : "200px"

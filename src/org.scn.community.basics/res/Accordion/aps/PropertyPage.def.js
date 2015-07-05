@@ -181,7 +181,7 @@ ApsContent = function () {
       "ztlType": "Choice"
     },
     "type": "String",
-    "value": "text",
+    "value": "Text",
     "visible": true
   },
   "onFirstExpand": {

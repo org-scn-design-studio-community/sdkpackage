@@ -1,0 +1,13 @@
+	/**
+	 * Sets %NAME% Property by Int
+	 */	
+	void set%PROPERTY_CAPITAL_CUT%ByInt( %HELP% %PROPERTY_TYPE_ZTL% %PROPERTY_SMALL_CUT%){*
+		this.%PROPERTY_CAPITAL% = %PROPERTY_SMALL_CUT%;
+	*}
+
+	/**
+	 * Gets %NAME% Property as Int
+	 */	
+	%PROPERTY_TYPE% get%PROPERTY_CAPITAL_CUT%AsInt() {*
+		return this.%PROPERTY_CAPITAL%;
+	*}

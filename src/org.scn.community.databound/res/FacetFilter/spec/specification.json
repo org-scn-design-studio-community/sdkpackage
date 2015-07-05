@@ -207,7 +207,7 @@
 	},
 	"DSecondValueContent":{
         "type":"String",
-        "value":"VALUE",
+        "value":"Value",
         "visible":true,
         "opts":{
            "ztlType":"Choice",
@@ -263,7 +263,7 @@
      },
     "DZeroValuesMode":{
         "type":"String",
-        "value":"SHOW",
+        "value":"Show",
         "visible":true,
         "opts":{
            "ztlType":"Choice",

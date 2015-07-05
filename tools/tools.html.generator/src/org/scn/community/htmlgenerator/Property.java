@@ -113,12 +113,22 @@ public class Property {
 		// cut default value in case too long
 		template = template.replace("%DEFAULT_VALUE%", htmlDefault.length() < 100 ? htmlDefault : htmlDefault.substring(0, 100) + " ... truncated");
 
+		boolean defaltInList = false;
 		if (this.values.size() > 0) {
 			for (Value value : this.values) {
 				templateValuesList = templateValuesList.replace("%VALUE_ENTRY%", value.toHtml() + "\r\n" + "%VALUE_ENTRY%");
+				if(this.defaultValue.equals(value.getName())) {
+					defaltInList = true;	
+				}
 			}
 			templateValuesList = templateValuesList.replace("%VALUE_ENTRY%", "");
 			template = template.replace("%VALUES_LIST%", templateValuesList);
+		} else {
+			defaltInList = true;
+		}
+		
+		if(!defaltInList) {
+			throw new RuntimeException("default "+this.defaultValue+" is not in value list! " + this.name + ", in component " + this.componentName);
 		}
 		template = template.replace("%VALUES_LIST%", "");
 
@@ -262,14 +272,25 @@ public class Property {
 		}
 
 		int currentI = 0;
+		boolean defaultIsInValues = false;
+		
 		if (this.values.size() > 0) {
 			for (Value value : this.values) {
 				template = template.replace("%VALUE_ENTRY%", value.toSpec20() + (++currentI < this.values.size() ? "," : "") + "\r\n\t\t\t\t%VALUE_ENTRY%");
+				if(value.getName().equals(this.defaultValue)) {
+					defaultIsInValues = true;
+				}
 			}
 			template = template.replace("%VALUE_ENTRY%", "");
+		} else {
+			defaultIsInValues = true;
 		}
 		template = template.replace("%VALUE_ENTRY%", "");
 
+		if(!defaultIsInValues) {
+			throw new RuntimeException("default "+this.defaultValue+" is not in value list! " + this.name + ", in component " + this.componentName);
+		}
+		
 		if (this.values.size() > 0) {
 			for (Value value : this.values) {
 				if(value.isDefault()) {

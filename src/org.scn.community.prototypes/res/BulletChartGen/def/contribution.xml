@@ -198,7 +198,7 @@
 		<defaultValue property="maxgraphheight">40</defaultValue>
 		<defaultValue property="mingraphheight">40</defaultValue>
 		<defaultValue property="realization"></defaultValue>
-		<defaultValue property="showalert">worse than comparison</defaultValue>
+		<defaultValue property="showalert">comparison</defaultValue>
 		<defaultValue property="showaxis">true</defaultValue>
 		<defaultValue property="sublabeldimension"></defaultValue>
 		<defaultValue property="threshold1"></defaultValue>

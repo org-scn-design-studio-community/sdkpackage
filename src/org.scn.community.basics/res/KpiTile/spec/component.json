@@ -1,0 +1,39 @@
+{
+	"id": "KpiTile",
+	"title": "Kpi Tile 2.0",
+	"tooltip": "Kpi Tile - Custom KPI Visualization",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+	"dataType": "-",
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "jshashtable",
+		},
+		{
+			"space" : "known",
+			"id" : "numberformatter",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_m_loader",
+		},
+		{
+			"space" : "known",
+			"id" : "x2js",
+		}
+	],
+	
+	"width": "220",
+	"height": "190"
+}

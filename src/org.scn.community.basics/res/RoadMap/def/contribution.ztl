@@ -224,9 +224,63 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Sets the Visible keys<br/>
+	 * Sets the Text for Step keys<br/>
 	 */
-	void setVisibleStepKeys (
+	void setStepTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Step Key<br/>
+	 */
+	void setStepText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Visible for Step keys<br/>
+	 */
+	void setStepVisibles (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -256,9 +310,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	*}
 
 	/**
-	 * Sets the Visible Key<br/>
+	 * Sets the Visible for Step Key<br/>
 	 */
-	void setVisibleStepKey (
+	void setStepVisible (
 			/**/ String key,
 			/**/ boolean visible
 			) 
@@ -272,7 +326,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				elementsJson[i].visible = selected;
+				elementsJson[i].visible = visible;
 				break;
 			}
 		}
@@ -282,9 +336,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		
 	/**
-	 * Clean all Visible keys<br/>
+	 * Clean all Visible of Step keys<br/>
 	 */
-	void cleanAllVisibleStepKeys (
+	void cleanAllStepVisibles (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -303,7 +357,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Visible keys<br/>
 	 */
-	org.scn.pack.KeyArray getVisibleStepKeysArray (
+	org.scn.pack.KeyArray getStepVisibleKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -324,9 +378,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		return newElementsJson;
 	*}
 	/**
-	 * Sets the Enabled keys<br/>
+	 * Sets the Enabled for Step keys<br/>
 	 */
-	void setEnabledStepKeys (
+	void setStepEnableds (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -356,9 +410,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	*}
 
 	/**
-	 * Sets the Enabled Key<br/>
+	 * Sets the Enabled for Step Key<br/>
 	 */
-	void setEnabledStepKey (
+	void setStepEnabled (
 			/**/ String key,
 			/**/ boolean enabled
 			) 
@@ -372,7 +426,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				elementsJson[i].enabled = selected;
+				elementsJson[i].enabled = enabled;
 				break;
 			}
 		}
@@ -382,9 +436,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		
 	/**
-	 * Clean all Enabled keys<br/>
+	 * Clean all Enabled of Step keys<br/>
 	 */
-	void cleanAllEnabledStepKeys (
+	void cleanAllStepEnableds (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -403,7 +457,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getEnabledStepKeysArray (
+	org.scn.pack.KeyArray getStepEnabledKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){

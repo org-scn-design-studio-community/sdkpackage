@@ -575,7 +575,7 @@
 		<defaultValue property="graticuleThickness">.5</defaultValue>
 		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>
 		<defaultValue property="labelProperty">NAME_1</defaultValue>
-		<defaultValue property="projection">equirectangular</defaultValue>
+		<defaultValue property="projection">Equirectangular (Plate Carrée)</defaultValue>
 		<defaultValue property="yaw">0.0</defaultValue>
 		<defaultValue property="pitch">0.0</defaultValue>
 		<defaultValue property="roll">0.0</defaultValue>
@@ -1015,12 +1015,12 @@
 		<defaultValue property="DFacetWidth">160</defaultValue>
 		<defaultValue property="DMaxDisplayMembers">5</defaultValue>
 		<defaultValue property="DMaxMembers">1000</defaultValue>
-		<defaultValue property="DSecondValueContent">VALUE</defaultValue>
+		<defaultValue property="DSecondValueContent">Value</defaultValue>
 		<defaultValue property="DSelection"></defaultValue>
 		<defaultValue property="DShowSecondValue">false</defaultValue>
 		<defaultValue property="DSortingDirection">Ascending</defaultValue>
 		<defaultValue property="DSortingType">Default</defaultValue>
-		<defaultValue property="DZeroValuesMode">SHOW</defaultValue>
+		<defaultValue property="DZeroValuesMode">Show</defaultValue>
 		<defaultValue property="data">null</defaultValue>
 		<defaultValue property="onBeforeRender"></defaultValue>
 		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
@@ -1593,6 +1593,8 @@ __n__}
 		<defaultValue property="maxNumber">10</defaultValue>
 		<defaultValue property="addCounter">true</defaultValue>
 		<defaultValue property="usePictures">true</defaultValue>
+		<defaultValue property="valueDecimalPlaces">0</defaultValue>
+		
 	</initialization>
 
 </component>
@@ -1794,7 +1796,7 @@ __n__}
 		<defaultValue property="graticuleThickness">.5</defaultValue>
 		<defaultValue property="colorPalette">#EFF3FF,#BDD7E7,#6BAED6,#3182BD,#08519C</defaultValue>
 		<defaultValue property="labelProperty">NAME_1</defaultValue>
-		<defaultValue property="projection">equirectangular</defaultValue>
+		<defaultValue property="projection">Equirectangular (Plate Carrée)</defaultValue>
 		<defaultValue property="yaw">0.0</defaultValue>
 		<defaultValue property="pitch">0.0</defaultValue>
 		<defaultValue property="roll">0.0</defaultValue>
@@ -2605,7 +2607,7 @@ __n__}
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="DMasterGeometry">RowBased</defaultValue>
+		<defaultValue property="DMasterGeometry">Rows</defaultValue>
 		<defaultValue property="DCollectMultipleMatches">Collect</defaultValue>
 		<defaultValue property="DSlaveColumnIndex">1</defaultValue>
 		<defaultValue property="DReloadTrigger">0.0</defaultValue>

@@ -8,13 +8,22 @@
 	"package": "basics",
 	"extension": "Component",
 	"databound": true,
+	"dataType": "ResultCell",
 
 	"require": 
 	[
 		{
 			"space" : "known",
 			"id" : "common_basics",
-		}
+		},
+		{
+			"space" : "known",
+			"id" : "jshashtable",
+		},
+		{
+			"space" : "known",
+			"id" : "numberformatter",
+		}		
 	],
 	
 	"width": "220",

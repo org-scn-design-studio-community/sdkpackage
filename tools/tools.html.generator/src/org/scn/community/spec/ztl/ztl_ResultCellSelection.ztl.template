@@ -1,0 +1,10 @@
+	/**
+	 * Sets the %NAME% Selection which value is displayed.<br/>
+	 */
+	void set%NAME%Selection (
+			/* %NAME% cell that contains the value displayed */ ResultCellSelection cellSelection,
+			
+			) 
+	{*
+		this.%PROPERTY_CAPITAL% = this.stringifySelection(cellSelection);
+	*}

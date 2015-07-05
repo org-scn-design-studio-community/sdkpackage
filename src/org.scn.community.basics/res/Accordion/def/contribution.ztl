@@ -177,6 +177,222 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the Text for Section keys<br/>
+	 */
+	void setSectionTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Section Key<br/>
+	 */
+	void setSectionText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Url for Section keys<br/>
+	 */
+	void setSectionUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Section Key<br/>
+	 */
+	void setSectionUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Text for Element keys<br/>
+	 */
+	void setElementTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Element Key<br/>
+	 */
+	void setElementText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Url for Element keys<br/>
+	 */
+	void setElementUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Element Key<br/>
+	 */
+	void setElementUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
 
 
 	/**

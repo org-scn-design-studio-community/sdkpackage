@@ -1,0 +1,12 @@
+	<property
+		id="%PROPERTY_NAME%"
+		type="%PROPERTY_TYPE%"
+		title="%PROPERTY_TITLE%"
+		group="Data"
+		visible="%PROPERTY_VISIBLE%"
+		bindable="true">
+%XML_PROPERTY_POSSIBLE_VALUE%
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>

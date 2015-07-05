@@ -138,7 +138,7 @@
     },
     "template": "Choice",
     "type": "String",
-    "value": "16px",
+    "value": "Size_16px",
     "visible": true
   },
   "DPressedButtonKey": {

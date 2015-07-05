@@ -200,7 +200,7 @@ ApsContent = function () {
       "ztlType": "Choice"
     },
     "type": "String",
-    "value": "VALUE",
+    "value": "Value",
     "visible": true
   },
   "DSelection": {
@@ -316,7 +316,7 @@ ApsContent = function () {
       "ztlType": "Choice"
     },
     "type": "String",
-    "value": "SHOW",
+    "value": "Show",
     "visible": true
   },
   "data": {

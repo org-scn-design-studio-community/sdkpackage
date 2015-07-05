@@ -76,10 +76,10 @@ public class Main {
 		Collections.sort(allComponents);
 		
 		for (String element : allComponents) {
+			System.out.println("\r\nReading Component Spec: " + element.substring(element.indexOf("res")+4).replace("\\def\\contribution.xml", ""));
 			File contrXml = new File(element);
 
 			Component component = new Component(contrXml);
-			
 
 			String group = component.group;
 			group = group.replace("ScnCommunity", "");
@@ -106,7 +106,7 @@ public class Main {
 
 			componentModelTemplate = componentModelTemplate.replace("%COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%", componentModelEntryCopy + "\r\n" + " %COMPONENT_LIST_ENTRY_" + group.toUpperCase() + "%");
 			Helpers.string2File(iFileName, component.toHtml(iFileName));
-			
+
 			String makeSpec = element.replace("def\\contribution.xml", "make.spec");
 			if(new File(makeSpec).exists()) {
 				String content = Helpers.file2String(makeSpec);

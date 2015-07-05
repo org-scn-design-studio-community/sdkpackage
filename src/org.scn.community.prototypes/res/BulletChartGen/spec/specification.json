@@ -200,7 +200,7 @@
     },
     "showalert": {
         "type": "String",
-        "value": "worse than comparison",
+        "value": "comparison",
         "visible": true,
         "opts": {
             "ztlType": "Choice",

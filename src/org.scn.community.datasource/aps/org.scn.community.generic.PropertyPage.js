@@ -1,6 +1,7 @@
+var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPage", function() {
 	var that = this;
-	
+	this.rendered = false;
 	/**
 	 * Crawl Node config by node key to find its UI sheet.
 	 */
@@ -28,6 +29,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 				var property = node.leafs[leaf].name;
 				var propertyOptions = node.leafs[leaf].opts;
 				var apsControl = propertyOptions.apsControl;
+				if(!apsControl) apsControl = "text";
 				this.props[property] = {
 						value : null
 					};
@@ -45,36 +47,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 									}
 								}
 								this.props[property].value = value;
-								if(apsControl=="text" || !apsControl){
-									this["cmp_"+property].setValue(value);	
-								}
-								if(apsControl=="textbox"){
-									this["cmp_"+property].setValue(value);	
-								}
-								if(apsControl=="mapdownload"){
-									this["cmp_"+property].setMapData(value);	
-								}
-								if(apsControl=="checkbox"){
-									this["cmp_"+property].setChecked(Boolean(value));	
-								}
-								if(apsControl=="spinner"){
-									this["cmp_"+property].setValue(value);
-								}
-								if(apsControl=="palette"){
-									this["cmp_"+property].setColors(value);
-								}
-								if(apsControl=="combobox"){
-									this["cmp_"+property].setSelectedKey(value);
-								}
-								if(apsControl=="color"){
-									this["cmp_"+property].setBackgroundColor(value);
-								}
-								if(apsControl=="array"){
-									this["cmp_"+property].setValue(value);
-								}
-								if(apsControl=="columnconfig"){
-									var newValue = jQuery.parseJSON(value);
-									this["cmp_"+property].setValue(newValue);
+								/**
+								 * Scan handler registry
+								 */
+								for(var i=0;i<propertyPageHandlerRegistry.length;i++){
+									var handler = propertyPageHandlerRegistry[i];
+									if(handler.id == apsControl) {
+										handler.setter.call(this, property, value);
+									}
 								}
 								return this;
 							}
@@ -84,36 +64,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 					var f = function(property,apsControl){
 						return function(oControlEvent){
 							var newValue;
-							if(apsControl=="text" || apsControl==null){
-								newValue = oControlEvent.getSource().getValue();
-							}
-							if(apsControl=="textbox"){
-								newValue = oControlEvent.getSource().getValue();
-							}
-							if(apsControl=="mapdownload"){
-								newValue = oControlEvent.getSource().getMapData();
-							}
-							if(apsControl=="checkbox"){
-								newValue = oControlEvent.getSource().getChecked();
-							}
-							if(apsControl=="spinner"){
-								newValue = oControlEvent.getSource().getValue();
-							}
-							if(apsControl=="palette"){
-								newValue = oControlEvent.getSource().getColors();
-							}
-							if(apsControl=="combobox"){
-								newValue = oControlEvent.getSource().getSelectedKey();
-							}
-							if(apsControl=="color"){
-								newValue = oControlEvent.getSource().getBackgroundColor();
-							}
-							if(apsControl == "array"){
-								newValue = oControlEvent.getSource().getValue();
-							}
-							if(apsControl=="columnconfig"){
-								var arrayValue = oControlEvent.getSource().getValue();
-								newValue = JSON.stringify(arrayValue);
+							/**
+							 * Scan handler registry
+							 */
+							for(var i=0;i<propertyPageHandlerRegistry.length;i++){
+								var handler = propertyPageHandlerRegistry[i];
+								if(handler.id == apsControl) {
+									newValue = handler.getter.call(this, property, oControlEvent.getSource());
+								}
 							}
 							this.props[property].value = newValue;
 							if(!this.isTest) {
@@ -124,14 +82,17 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 							
 						};
 					}(property,apsControl);
-					// Step 3, create component
-					if(apsControl == "text" || !apsControl){
-						this["cmp_"+property] = new sap.ui.commons.TextField({
-							value : ""
-						});
-						this["cmp_"+property].attachChange(f,this);
+					/**
+					 * Scan handler registry
+					 */
+					for(var i=0;i<propertyPageHandlerRegistry.length;i++){
+						var handler = propertyPageHandlerRegistry[i];
+						if(handler.id == apsControl) {
+							this["cmp_"+property] = handler.createComponent.call(this, property, propertyOptions, f);
+						}
 					}
-					if(apsControl == "textbox"){
+					// assure there is a control! Make text Area
+					if(this["cmp_"+property] == undefined){
 						this["cmp_"+property] = new sap.ui.commons.TextArea({
 							design : sap.ui.core.Design.Monospace,
 							rows : 20,
@@ -140,86 +101,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 						});
 						this["cmp_"+property].attachChange(f,this);
 					}
-					if(apsControl == "mapdownload"){
-						this["cmp_"+property] = new org.scn.community.aps.MapDownloader({
-							width : "100%",
-							title : new sap.ui.commons.Title({
-								text: propertyOptions.desc
-							}),
-							//tooltip: this.metaProps[prop].tooltip,
-							showCollapseIcon : false,
-							showAlpha : false,
-							showRatios : false
-						});
-						this["cmp_"+property].attachMapDataChange(f,this);
-					}
-					if(apsControl == "checkbox"){
-						this["cmp_"+property] = new sap.ui.commons.CheckBox();
-						this["cmp_"+property].attachChange(f,this);
-					}
-					if(apsControl == "spinner"){
-						this["cmp_"+property] = new org.scn.community.aps.Spinner({
-							min : 0,
-							max : 100
-						 });
-						this["cmp_"+property].attachValueChange(f,this);
-					}
-					if(apsControl == "combobox"){
-						this["cmp_"+property] = new sap.ui.commons.ComboBox({});
-						if(propertyOptions.options && propertyOptions.options.length>0){
-							for(var i=0;i<propertyOptions.options.length;i++){
-								var option = propertyOptions.options[i];
-								this["cmp_"+property].addItem(new sap.ui.core.ListItem({
-									key : option.key,
-									text : option.text || option.key
-								 }));
-							}
-						}
-						this["cmp_"+property].attachChange(f,this);
-					}
-					if(apsControl == "columnconfig"){
-						this["cmp_"+property] = new org.scn.community.aps.TableColumns({
-							width : "100%",
-							title : new sap.ui.commons.Title({
-								text: propertyOptions.desc
-							}),
-							showCollapseIcon : false
-						});
-						this["cmp_"+property].attachValueChange(f,this);
-					}
-					if(apsControl == "palette"){
-						this["cmp_"+property] = new org.scn.community.aps.ColorBuilder({
-							width : "100%",
-							title : new sap.ui.commons.Title({
-								text: propertyOptions.desc
-							}),
-							//tooltip: this.metaProps[prop].tooltip,
-							showCollapseIcon : false,
-							showAlpha : false,
-							showRatios : false
-						});
-						this["cmp_"+property].attachColorChange(f,this);
-					}
-					if(apsControl == "color"){
-						this["cmp_"+property] = new org.scn.community.aps.ColorPicker({
-							showAlpha : false
-						});
-						this["cmp_"+property].attachColorChange(f,this);
-					}
-					// try to add arrays
-					if(apsControl == "array"){
-						var specification = propertyOptions.arrayDefinition;
-						if(!specification) {specification = {}};
-						
-						this["cmp_"+property] = new org.scn.community.aps.ArrayList({
-							mode: propertyOptions.arrayMode,
-						});
-						this["cmp_"+property].setSpecification(specification);
-						this["cmp_"+property].attachValueChange(f,this);
-					}
 					
 					// Step 3a, if component has afterInit method, call it!
-					alert("Property: " + "cmp_"+property);
 					
 					if(this["cmp_"+property].afterInit) {
 						this["cmp_"+property].afterInit();	
@@ -281,6 +164,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			ui.addContent(stageUI);
 			stageUI.addContent(firstChildUI);
 		}
+		this.rendered = true;
 	};
 	/**
 	 * Balances out hierarchy to not allow for cases where a node has nodes AND leafs.

@@ -358,14 +358,22 @@ org_scn_community_basics.fillDummyDataInitAsync = function (owner, callBack) {
 };
 
 org_scn_community_basics.fillDummyData = function (owner, callBack, afterPrepare) {
+	callBack(undefined, afterPrepare, owner);
+};
+
+org_scn_community_basics.fillDummyDataAsync = function (owner, callBack, afterPrepare) {
 	var requestForData = new XMLHttpRequest();
 	var returnValue = undefined;
 
+	var target = owner;
+	var callTarget = callBack;
+	var afterTarget = afterPrepare;
+	
 	requestForData.onreadystatechange = function() {
 		// check status and react
 		if (requestForData.readyState == 4){
 			// status and content does not matter
-			callBack(undefined, afterPrepare, owner);
+			callTarget(undefined, afterTarget, target);
 		};
 	};
 

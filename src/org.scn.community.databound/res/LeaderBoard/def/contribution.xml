@@ -133,6 +133,8 @@
 		<defaultValue property="maxNumber">10</defaultValue>
 		<defaultValue property="addCounter">true</defaultValue>
 		<defaultValue property="usePictures">true</defaultValue>
+		<defaultValue property="valueDecimalPlaces">0</defaultValue>
+		
 	</initialization>
 
 </component>

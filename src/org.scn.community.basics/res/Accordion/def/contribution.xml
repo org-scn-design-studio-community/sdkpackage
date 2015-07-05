@@ -136,7 +136,7 @@
 		<defaultValue property="expandedKey"></defaultValue>
 		<defaultValue property="imageSize">Size_16px</defaultValue>
 		<defaultValue property="maxSectionHeight">200</defaultValue>
-		<defaultValue property="memberDisplay">text</defaultValue>
+		<defaultValue property="memberDisplay">Text</defaultValue>
 		<defaultValue property="onFirstExpand"></defaultValue>
 		<defaultValue property="onSelectionChanged"></defaultValue>
 		<defaultValue property="selectedKey"></defaultValue>

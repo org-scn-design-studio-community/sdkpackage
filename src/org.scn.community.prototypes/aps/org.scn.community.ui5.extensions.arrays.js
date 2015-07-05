@@ -1,4 +1,29 @@
-
+var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
+/**
+ * Register Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "array",
+	setter : function(property, value){
+		this["cmp_"+property].setValue(value);
+	},
+	getter : function(property, control){
+		return control.getValue();
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var specification = propertyOptions.arrayDefinition;
+		if(!specification) {specification = {}};		
+		var component = new org.scn.community.aps.ArrayList({
+			mode: propertyOptions.arrayMode,
+		});
+		component.setSpecification(specification);
+		component.attachValueChange(changeHandler,this);
+		return component;
+	}
+});
+/**
+ * Create UI5 Extension
+ */
 sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 	renderer : {},
 	metadata : {                             
@@ -135,23 +160,65 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 					
 					var sectionValue = new sap.ui.commons.TextView({text : parameterObject.desc});
 					sectionValue.addStyleClass("org-scn-ApsLabelArray");
+					this._sectionPropertyLayout.addContent(sectionValue);
 					
+					//
+					var targetValue = selectedElement[parameterName];
+					if(targetValue == undefined) {
+						targetValue = parameterObject.value;
+					}
 					
-					var txtElementValue = new sap.ui.commons.TextField({value : selectedElement[parameterName], width: "180px"});
+					var txtElementValue = undefined;
+					if(parameterObject.apsControl == "checkbox") {
+						txtElementValue = new sap.ui.commons.CheckBox ({checked : targetValue, width: "280px"});
+						
+						txtElementValue.attachChange(
+							function(oControlEvent){
+								var value = oControlEvent.getParameter("checked");
+								var key = oControlEvent.getSource()._key;
+
+								var section = that.getElement(that._listBuilder.getSelectedKey());
+								section[key] = value;
+								
+								that.updateElement(that._listBuilder.getSelectedKey(),section);		
+						}, that);
+					} else if(parameterObject.apsControl == "textarea") {
+						txtElementValue = new sap.ui.commons.TextArea({
+							// design : sap.ui.core.Design.Monospace,
+							rows : 20,
+							width : "280px",
+							wrapping : sap.ui.core.Wrapping.Off,
+							value: targetValue
+						});
+			
+						txtElementValue.attachChange(
+								function(oControlEvent){
+									var value = oControlEvent.getParameter("newValue");
+									var key = oControlEvent.getSource()._key;
+
+									var section = that.getElement(that._listBuilder.getSelectedKey());
+									section[key] = value;
+									
+									that.updateElement(that._listBuilder.getSelectedKey(),section);
+							}, that);
+					} else {
+						txtElementValue = new sap.ui.commons.TextField ({value : targetValue, width: "280px"});
+						
+						txtElementValue.attachChange(
+							function(oControlEvent){
+								var value = oControlEvent.getParameter("newValue");
+								var key = oControlEvent.getSource()._key;
+
+								var section = that.getElement(that._listBuilder.getSelectedKey());
+								section[key] = value;
+								
+								that.updateElement(that._listBuilder.getSelectedKey(),section);
+						}, that);
+					}
 					txtElementValue.addStyleClass("org-scn-ApsInputArray");
 					txtElementValue._key = parameterName;
-					txtElementValue.attachChange(
-						function(oControlEvent){
-							var value = oControlEvent.getParameter("newValue");
-							var key = oControlEvent.getSource()._key;
-							
-							var section = that.getElement(that._listBuilder.getSelectedKey());
-							section[key] = value;
-							
-							that.updateElement(that._listBuilder.getSelectedKey(),section);
-					}, that);
+					//
 					
-					this._sectionPropertyLayout.addContent(sectionValue);
 					this._sectionPropertyLayout.addContent(txtElementValue);
 				}
 			}
@@ -245,8 +312,13 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 			itemDetailLayout.addContent(itemValue);
 			
 			var txtItemValue = undefined;
+			
+			var targetValue = this._currentItemConfig[parameterName];
+			if(targetValue == undefined) {
+				targetValue = parameterObject.value;
+			}
 			if(parameterObject.apsControl == "checkbox") {
-				txtItemValue = new sap.ui.commons.CheckBox ({value : this._currentItemConfig[parameterName], width: "300px"});
+				txtItemValue = new sap.ui.commons.CheckBox ({checked : targetValue, width: "300px"});
 				
 				txtItemValue.attachChange(
 					function(oControlEvent){
@@ -255,8 +327,24 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 
 						that._currentItemConfig[key] = value;		
 				}, that);
+			} else if(parameterObject.apsControl == "textarea") {
+				txtItemValue = new sap.ui.commons.TextArea({
+					// design : sap.ui.core.Design.Monospace,
+					rows : 20,
+					width : "90%",
+					wrapping : sap.ui.core.Wrapping.Off,
+					value: targetValue
+				});
+	
+				txtItemValue.attachChange(
+					function(oControlEvent){
+						var value = oControlEvent.getParameter("newValue");
+						var key = oControlEvent.getSource()._key;
+
+						that._currentItemConfig[key] = value;		
+				}, that);
 			} else {
-				txtItemValue = new sap.ui.commons.TextField({value : this._currentItemConfig[parameterName], width: "300px"});
+				txtItemValue = new sap.ui.commons.TextField ({value : targetValue, width: "90%"});
 				
 				txtItemValue.attachChange(
 					function(oControlEvent){
@@ -386,15 +474,14 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		
 		var allItems = new org.scn.community.propertysheet.ListBuilder();		
 		allItems.setList(this._elementsContent);
-		var newItemKey = allItems.generateKey("Item");
+		var newItemKey = allItems.generateKey("ITEM_KEY");
 		delete allItems;
 		var sectionItems = new org.scn.community.propertysheet.ListBuilder();
 		sectionItems.setList(this._elementsContent);
 		var newItem = { 
 			parentKey : this._listBuilder.getSelectedKey(),
 			key : newItemKey, 
-			leaf: true, 
-			
+			leaf: true 
 		};
 		this._elementsContent.push(newItem);
 		that.fireValueChange();
@@ -406,12 +493,11 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 	addElement : function(oControlEvent){
 		var that = this;
 		
-		var newKey = this._listBuilder.generateKey("Element");
+		var newKey = this._listBuilder.generateKey("ElEMENT_KEY");
 		var newElement = { 
 			parentKey : "ROOT",
 			key : newKey,
-			leaf: false, 
-			value:""
+			leaf: false 
 		};
 		this._listBuilder.setSelectedKey(newKey);
 		this._elementsContent.push(newElement);
@@ -524,7 +610,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		this._listBuilder.attachItemSelected(this.elementSelected,that);
 		
 		this._sectionPropertyLayout = new sap.ui.commons.layout.VerticalLayout({
-			width : "200px"
+			width : "300px"
 		});
 		this._sectionPropertyList = new sap.ui.commons.layout.VerticalLayout({
 			width : "200px"
