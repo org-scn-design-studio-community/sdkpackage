@@ -279,15 +279,8 @@ KpiTile = {
 					} else {
 						if(!isJsonArray & content == undefined) {content = {}};
 						// simple text
-						if(entryArrayId.indexOf("-") == 0 || entryArrayId.indexOf("_") == 0) {
-							entryArrayId = entryArrayId.substring(1);
-						}
-						var intValue = parseInt(entryArray, 10);
-						if(!isNaN(intValue)) {
-							entryArray = intValue;
-						}
-
-						content[entryArrayId] = entryArray;
+						var valueRet = that.fixValue(entryArrayId, entryArray);
+						content[valueRet.entryArrayId] = valueRet.entryArray;
 					}
 				}
 			}
@@ -295,6 +288,26 @@ KpiTile = {
 		}
 
 		return propValue;
+	},
+
+	fixValue: function (entryArrayId, entryArray) {
+		if(entryArrayId.indexOf("-") == 0 || entryArrayId.indexOf("_") == 0) {
+			entryArrayId = entryArrayId.substring(1);
+		}
+		var intValue = parseInt(entryArray, 10);
+		if(!isNaN(intValue)) {
+			entryArray = intValue;
+		}
+
+		if(entryArray == "true" || entryArray == "false") {
+			entryArray = (entryArray == "true");
+		}
+
+		var valueRet = {};
+		valueRet.entryArrayId = entryArrayId;
+		valueRet.entryArray = entryArray;
+
+		return valueRet;
 	},
 
 	createComponentByJson: function (owner, name, jsonDef, createUnique) {
