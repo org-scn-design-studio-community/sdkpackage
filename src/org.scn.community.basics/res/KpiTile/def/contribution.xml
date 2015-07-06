@@ -24,6 +24,15 @@
 
 	</property>
 	<property
+		id="layoutSpec"
+		type="String"
+		title="Layout Properties"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="onClick"
 		type="ScriptText"
 		title="On Click"
@@ -42,6 +51,7 @@
 		<defaultValue property="HEIGHT">190</defaultValue>
 		
 		<defaultValue property="componentsSpec">[]</defaultValue>
+		<defaultValue property="layoutSpec">[]</defaultValue>
 		<defaultValue property="onClick"></defaultValue>
 
 	</initialization>

@@ -32,6 +32,10 @@ ApsContent = function () {
       "space": "known"
     },
     {
+      "id": "sap_suite_loader",
+      "space": "known"
+    },
+    {
       "id": "x2js",
       "space": "known"
     }
@@ -106,11 +110,38 @@ ApsContent = function () {
         }
       }},
       "arrayMode": "TwoLevelArray",
-      "cat": "Content",
+      "cat": "Content-Components",
       "desc": "Components",
       "tooltip": "List of Components",
       "ztlFunction": "-unique",
       "ztlType": "DoubleArray"
+    },
+    "type": "String",
+    "value": "[]",
+    "visible": true
+  },
+  "layoutSpec": {
+    "opts": {
+      "apsControl": "array",
+      "arrayDefinition": {"layout": {
+        "key": {
+          "desc": "Property Name",
+          "type": "String"
+        },
+        "sequence": "key,value",
+        "type": "Array",
+        "value": {
+          "apsControl": "textarea",
+          "desc": "Property Value",
+          "type": "String"
+        }
+      }},
+      "arrayMode": "OneLevelArray",
+      "cat": "Content-Layout",
+      "desc": "Layout Properties",
+      "tooltip": "Layout Properties",
+      "ztlFunction": "",
+      "ztlType": "SingleArray"
     },
     "type": "String",
     "value": "[]",

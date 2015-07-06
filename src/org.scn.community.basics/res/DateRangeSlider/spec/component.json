@@ -14,7 +14,11 @@
 		{
 			"space" : "known",
 			"id" : "common_basics",
-		}
+		},
+		{
+			"space" : "known",
+			"id" : "dateformatter",
+		},		
 	],
 	
 	"width": "300",

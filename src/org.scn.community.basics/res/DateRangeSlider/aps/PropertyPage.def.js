@@ -13,10 +13,16 @@ ApsContent = function () {
   "id": "DateRangeSlider",
   "package": "basics",
   "parentControl": "sap.suite.ui.commons.DateRangeSlider",
-  "require": [{
-    "id": "common_basics",
-    "space": "known"
-  }],
+  "require": [
+    {
+      "id": "common_basics",
+      "space": "known"
+    },
+    {
+      "id": "dateformatter",
+      "space": "known"
+    }
+  ],
   "title": "Date Range Slider 2.0",
   "tooltip": "Date Range Slider",
   "width": "300"

@@ -663,6 +663,246 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 
 
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	KPITILE.addLayout(key [String], value [String]);<br>
+	KPITILE.addLayout(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addLayout (
+			/**Property Name*/String key, 
+			/**Property Value*/String value
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+
+		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
+			this.layoutSpec = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.layoutSpec);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.layoutSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	KPITILE.removeLayout(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeLayout (
+			String key
+			) {*
+
+		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
+			this.layoutSpec = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.layoutSpec);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.layoutSpec = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	KPITILE.insertLayout(index [int], key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertLayout (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Property Name*/String key, 
+			/**Property Value*/String value
+			) {*
+
+		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
+			this.layoutSpec = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.layoutSpec);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.layoutSpec = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Layout<br/>
+	 */
+	void updateLayout (
+			/**Property Name*/String key, 
+			/**Property Value*/String value
+			) 
+	{*
+		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
+			this.layoutSpec = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		var elementsJson = JSON.parse(this.layoutSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.layoutSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getLayoutAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
+			this.layoutSpec = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.layoutSpec);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Layouts As JSON String
+	 */	
+	String getLayoutsAsJSON() {*
+		var jsonObject = JSON.parse(this.layoutSpec);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Value for Layout keys<br/>
+	 */
+	void setLayoutValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.layoutSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.layoutSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Layout Key<br/>
+	 */
+	void setLayoutValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.layoutSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.layoutSpec = JSON.stringify(elementsJson);
+	*}
+
+
+
 
 
 

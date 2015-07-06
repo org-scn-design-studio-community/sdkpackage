@@ -229,7 +229,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		itemsLabel.addStyleClass("org-scn-ApsLabelArray");
 		var itemsList = new org.scn.community.propertysheet.ListBuilder({
 			width : "200px",
-			newKeyPrefix : "ITEM_",
+			newKeyPrefix : "ITEM",
 			newTextPrefix : "Item ",
 			list : this.gatherItems(this._listBuilder.getSelectedKey()),
 			showDetail : true,
@@ -474,7 +474,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		
 		var allItems = new org.scn.community.propertysheet.ListBuilder();		
 		allItems.setList(this._elementsContent);
-		var newItemKey = allItems.generateKey("ITEM_KEY");
+		var newItemKey = allItems.generateKey(this._listBuilder.getSelectedKey() + "_ITEM");
 		delete allItems;
 		var sectionItems = new org.scn.community.propertysheet.ListBuilder();
 		sectionItems.setList(this._elementsContent);
@@ -493,7 +493,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 	addElement : function(oControlEvent){
 		var that = this;
 		
-		var newKey = this._listBuilder.generateKey("ElEMENT_KEY");
+		var newKey = this._listBuilder.generateKey("ELEMENT");
 		var newElement = { 
 			parentKey : "ROOT",
 			key : newKey,

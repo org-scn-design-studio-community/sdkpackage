@@ -1,12 +1,13 @@
 
 // load sap.m and sap.me
 var oCore = sap.ui.getCore();
-oCore.loadLibrary("sap.m");
 
 // mark forced re-load of sap.m events bundle
 oCfgData = window["sap-ui-config"]
 
 if(oCfgData.libs.indexOf("sap.m") == -1) {
+	oCore.loadLibrary("sap.m");
+
 	oCfgData.libs = oCfgData.libs + ",sap.m";
 	
 	if(!sap.ui.Device.support.touch) {

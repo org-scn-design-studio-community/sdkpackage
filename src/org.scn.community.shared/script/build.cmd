@@ -32,7 +32,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ConstSelectionType\contribution.ztl ^
 ..\res\ConstSecondValueContent\contribution.ztl ^
 ..\res\ConstSortDirection\contribution.ztl ^
-..\res\ConstSelctionType\contribution.ztl ^
+..\res\ConstSelectionType\contribution.ztl ^
 ..\res\ConstSortType\contribution.ztl ^
 ..\res\DimensionMember\contribution.ztl ^
 ..\res\Key\contribution.ztl ^

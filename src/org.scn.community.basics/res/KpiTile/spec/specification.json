@@ -1,5 +1,38 @@
 {
-		"componentsSpec": {
+	"layoutSpec": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "layout":{
+	               "type":"Array",
+                   "sequence":"key,value",
+                   "key":{
+                     "desc":"Property Name",
+                     "type":"String"
+                   },
+               	   "value":{
+                     "desc":"Property Value",
+                     "type":"String",
+                     "apsControl": "textarea"
+               	   },
+	            }
+	        },
+ 
+			"desc":"Layout Properties",
+			"cat":"Content-Layout",
+			"tooltip":"Layout Properties",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray"
+		}
+	},
+	"componentsSpec": {
 		"type":"String",
 		"value":"[]",
 		"visible":true,
@@ -71,7 +104,7 @@
 	        },
  
 			"desc":"Components",
-			"cat":"Content",
+			"cat":"Content-Components",
 			"tooltip":"List of Components",
 
 			"apsControl":"array",

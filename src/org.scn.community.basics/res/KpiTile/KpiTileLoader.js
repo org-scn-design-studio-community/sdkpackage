@@ -40,6 +40,7 @@
 		org_scn_community_require.knownModules.jshashtable.name,
 		org_scn_community_require.knownModules.numberformatter.name,
 		org_scn_community_require.knownModules.sap_m_loader.name,
+		org_scn_community_require.knownModules.sap_suite_loader.name,
 		org_scn_community_require.knownModules.x2js.name,
 		
      ]);

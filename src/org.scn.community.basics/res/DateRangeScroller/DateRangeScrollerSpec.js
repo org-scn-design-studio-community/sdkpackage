@@ -282,10 +282,16 @@
   "id": "DateRangeScroller",
   "package": "basics",
   "parentControl": "sap.suite.ui.commons.DateRangeScroller",
-  "require": [{
-    "id": "common_basics",
-    "space": "known"
-  }],
+  "require": [
+    {
+      "id": "common_basics",
+      "space": "known"
+    },
+    {
+      "id": "dateformatter",
+      "space": "known"
+    }
+  ],
   "title": "Date Range Scroller 2.0",
   "tooltip": "Date Range Scroller",
   "width": "300"

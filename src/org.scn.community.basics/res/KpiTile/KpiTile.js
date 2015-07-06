@@ -35,14 +35,18 @@ KpiTile = {
 		var that = owner;
 		org_scn_community_component_Core(that, myComponentData);
 
+		that._oRoot = {}; // dummy root for API
+		that._oRoot.dummy = true;
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that.addStyleClass("scn-pack-KpiTile");
+		
 		that._oComponents = {};
 		that.nextKey = 1;
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
-		// this.onAfterRendering = function () {
-			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
-		// }
+		that.onAfterRendering = function () {
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		}
 	},
 	
 	afterDesignStudioUpdate: function() {
@@ -57,12 +61,14 @@ KpiTile = {
 
 		var spec = that.getComponentsSpec();
 		spec = JSON.parse(spec);
-
 		spec = that.buildTree (spec);
 
-		var idPrefix = that.getId();
+		var layout = that.getLayoutSpec();
+		layout = JSON.parse(layout);
+		layout = that.buildTree (layout);
 
-		that._content = that.calculateContent(owner, spec, idPrefix);
+		var idPrefix = that.getId();
+		that._content = that.calculateContent(owner, spec, layout, idPrefix);
 
 		// processing on data
 		that.afterPrepare(that);
@@ -73,7 +79,7 @@ KpiTile = {
 		var specHelper = {};
 		var specHelperRoot = {};
 		
-		for (compSpecInt in spec) {
+		for (var compSpecInt in spec) {
 			var compSpec = spec[compSpecInt];
 
 			if(compSpec.parentKey != "ROOT") {
@@ -91,22 +97,31 @@ KpiTile = {
 			}
 		}
 
-		for (compSpecKey in specHelperRoot) {
+		for (var compSpecKey in specHelperRoot) {
 			var content = specHelper[compSpecKey];
 			specTree.push(content);
 		}
 		return specTree;
 	},
 
-	calculateContent: function (owner, spec, idPrefix) {
+	calculateContent: function (owner, spec, layout, idPrefix) {
 		var that = owner;
 		var componentInstances = [];
 
-		for (compSpecInt in spec) {
+		for (var compSpecInt in spec) {
 			var compSpec = spec[compSpecInt];
 
 			var componentInstance = that.createComponent(owner, compSpec, idPrefix);
 			if(componentInstance != undefined) {
+				componentInstances.push(componentInstance);
+			}
+		}
+		
+		if(layout.length > 0) {
+			layout[0].properties = layout;
+			var componentInstance = that.createComponent(owner, layout[0], idPrefix);
+			if(componentInstance != undefined) {
+				componentInstance.__techKey = "__LAYOUT__";
 				componentInstances.push(componentInstance);
 			}
 		}
@@ -117,82 +132,97 @@ KpiTile = {
 	createComponent: function(owner, spec, idPrefix) {
 		var that = owner;
 
-		if(spec.key == "LAYOUT") {
+		spec = that.assureSpecIsCorrect(that, spec);
 
-		} else {
-			var properties = {};
-			
-			var finalProperties = {};
-			if(spec.specification && spec.specification.length > 0) {
-				specProperties = that.readFullSpec(that, spec.specification);
+		var properties = {};
 
-				var content = specProperties[spec.componentType];
-				for (prName in content) {
-					var propDef = {};
-					propDef.key = prName;
-					propDef.value = content[prName];
+		var finalProperties = {};
+		if(spec.specification && spec.specification.length > 0) {
+			specProperties = that.readFullSpec(that, spec.specification);
 
-					if(typeof propDef.value == "Array") {
+			var content = specProperties[spec.componentType];
+			for (var prName in content) {
+				var propDef = {};
+				propDef.key = prName;
+				propDef.value = content[prName];
 
-					}
-					finalProperties[prName] = propDef;
+				if(typeof propDef.value == "Array") {
+
 				}
+				finalProperties[prName] = propDef;
 			}
-			for (prName in spec.properties) {
-				var prop = spec.properties[prName];
-				finalProperties[prName] = prop;
-
-				if(prop.value.indexOf("[") == 0 || prop.value.indexOf("/") == 0) {
-					var realValue = prop.value;
-					if(realValue.indexOf("/") == 0) {
-						realValue = realValue.substring(1);
-					}
-					realValue = JSON.parse(realValue);
-					prop.value = realValue;
-				}
-			}
-			for (prName in finalProperties) {
-				var prop = finalProperties[prName];
-				prop.key = prop.key.replace(spec.key + "-", "")
-
-				var process = {};
-				process[prop.key] = prop.value;
-				var ret = that.processContentJson(that, process);
-				
-				// return always first if length = 1;
-				if(ret.length == 1) {
-					ret[prop.key] = ret[0];	
-				} else {
-					ret = ret;
-				}
-				
-				prop.value = ret;
-				
-				properties[prop.key] = prop.value[prop.key];
-			}
-
-			properties["width"] = spec.width + "px";
-			properties["height"] = spec.height + "px";
-
-			var comp = {};
-			comp.__specification = properties;
-
-			comp.__layoutSettings = {};
-			if(spec.left == -1) {
-				comp.__layoutSettings.right = parseInt(spec.right) + "px";
-			} else {
-				comp.__layoutSettings.left = parseInt(spec.left) + "px";
-			}
-			if(spec.top == -1) {
-				comp.__layoutSettings.bottom = parseInt(spec.bottom) + "px";
-			} else {
-				comp.__layoutSettings.top = parseInt(spec.top) + "px";
-			}
-
-			comp.__techKey = spec.key;
-			comp.__componentType = spec.componentType;
-			return comp;
 		}
+		for (var prName in spec.properties) {
+			var prop = spec.properties[prName];
+			finalProperties[prName] = prop;
+
+			if(!prop.value) {
+				prop.value = "";
+			}
+
+			if(prop.value.indexOf("[") == 0 || prop.value.indexOf("/") == 0) {
+				var realValue = prop.value;
+				if(realValue.indexOf("/") == 0) {
+					realValue = realValue.substring(1);
+				}
+				realValue = JSON.parse(realValue);
+				prop.value = realValue;
+			}
+		}
+		for (var prName in finalProperties) {
+			var prop = finalProperties[prName];
+			prop.key = prop.key.replace(spec.key + "/", "");
+
+			var process = {};
+			process[prop.key] = prop.value;
+			var ret = that.processContentJson(that, process);
+
+			// return always first if length = 1;
+			if(ret.length == 1) {
+				ret[prop.key] = ret[0];	
+			} else {
+				ret = ret;
+			}
+
+			prop.value = ret;
+
+			properties[prop.key] = prop.value[prop.key];
+		}
+
+		properties["width"] = spec.width + "px";
+		properties["height"] = spec.height + "px";
+
+		var comp = {};
+		comp.__specification = properties;
+
+		comp.__layoutSettings = {};
+		if(spec.left == "-1") {
+			comp.__layoutSettings.right = parseInt(spec.right) + "px";
+		} else {
+			comp.__layoutSettings.left = parseInt(spec.left) + "px";
+		}
+		if(spec.top == "-1") {
+			comp.__layoutSettings.bottom = parseInt(spec.bottom) + "px";
+		} else {
+			comp.__layoutSettings.top = parseInt(spec.top) + "px";
+		}
+
+		comp.__techKey = spec.key;
+		comp.__componentType = spec.componentType;
+		return comp;
+	},
+
+	assureSpecIsCorrect: function (that, spec) {
+		if(!spec.componentType) {spec.componentType = ""};
+		if(!spec.top || spec.top == "") {spec.top = "10"};
+		if(!spec.bottom || spec.bottom == "") {spec.bottom = "10"};
+		if(!spec.left || spec.left == "") {spec.left = "10"};
+		if(!spec.right || spec.right == "") {spec.right = "10"};
+		if(!spec.width || spec.width == "") {spec.width = "100"};
+		if(!spec.height || spec.height == "") {spec.height = "25"};
+		if(!spec.specification || spec.specification == "") {spec.specification = ""};
+
+		return spec;
 	},
 
 	readFullSpec: function (that, fullSpec) {
@@ -213,7 +243,8 @@ KpiTile = {
 		return spec;
 	},
 
-	processContentJson: function (owner, propValue) {
+	processContentJson: function (owner, iPropValue) {
+		var propValue = iPropValue;
 		var that = owner;
 
 		var isJson = (typeof propValue == "object");
@@ -235,9 +266,9 @@ KpiTile = {
 					obj[entryArrayId] = output;
 					return obj;
 				} else {
-					if(!isJsonArray & content == undefined) {content = []};
 					var isJsonObject = (typeof entryArray == "object");
 					if(isJsonObject) {
+						if(content == undefined) {content = []};
 						// create object here;
 						var properties = {}
 						for (var loopOnIndexEntry in entryArray) {
@@ -256,7 +287,7 @@ KpiTile = {
 								}
 								entryObject = newArray;
 								var output = that.processContentJson(that, entryObject);
-								for(compInd in output) {
+								for (var compInd in output) {
 									content.push(output[compInd]);
 								}
 
@@ -277,9 +308,9 @@ KpiTile = {
 							}
 						}
 					} else {
-						if(!isJsonArray & content == undefined) {content = {}};
+						if(content == undefined) {content = {}};
 						// simple text
-						var valueRet = that.fixValue(entryArrayId, entryArray);
+						var valueRet = that.fixValue(that, entryArrayId, entryArray);
 						content[valueRet.entryArrayId] = valueRet.entryArray;
 					}
 				}
@@ -290,18 +321,33 @@ KpiTile = {
 		return propValue;
 	},
 
-	fixValue: function (entryArrayId, entryArray) {
+	fixValue: function (owner, entryArrayId, entryArray) {
+		var that = owner;
+
 		if(entryArrayId.indexOf("-") == 0 || entryArrayId.indexOf("_") == 0) {
 			entryArrayId = entryArrayId.substring(1);
 		}
-		var intValue = parseInt(entryArray, 10);
-		if(!isNaN(intValue)) {
-			entryArray = intValue;
-		}
 
-		if(entryArray == "true" || entryArray == "false") {
-			entryArray = (entryArray == "true");
-		}
+		if(entryArray.indexOf("<") == 0) {
+			entryArray = that.readFullSpec(owner, entryArray);
+			var parsedValue = that.processContentJson (owner, entryArray);
+			entryArray = parsedValue;
+		} else {
+			if(entryArray.indexOf("sap.") == 0) {
+				// a class
+				entryArray = eval(entryArray);
+			} else {
+				// boolean or value?
+				if(entryArray == "true" || entryArray == "false") {
+					entryArray = (entryArray == "true");
+				} else {
+					var intValue = parseInt(entryArray, 10);
+					if(!isNaN(intValue)) {
+						entryArray = intValue;
+					}
+				}
+			}
+		} 
 
 		var valueRet = {};
 		valueRet.entryArrayId = entryArrayId;
@@ -320,36 +366,34 @@ KpiTile = {
 		}
 
 		if(sap.m[name] != undefined) {
-			jQuery.sap.require("sap.m." + name);
-			loopObject = new sap.m[name](jsonDef)
-		} else {
-			jQuery.sap.require("sap.suite.ui.commons." + name);
+			loopObject = new sap.m[name](jsonDef);
+		} else if(sap.suite.ui.commons[name] != undefined) {
 			loopObject = new sap.suite.ui.commons[name](jsonDef);
 		}
+
 		return loopObject;
 	},
 
 	afterPrepare: function (owner) {
 		var that = owner;
 
-		// for (lComponentKey in that._oComponents) {
-		//	var lComponent = that._oComponents[lComponentKey];
-		//	lComponent.destroy();
-		//}
-		
-		//that._oComponents = [];
-		//that.removeAllContent();
-		//that.destroyContent();
-
 		// visualization on processed data
-		for (compIndex in that._content) {
+		for (var compIndex in that._content) {
 			var comp = that._content[compIndex];
-			
-			var compObj = that._oComponents[comp.__techKey];
-			if(compObj != null) {
-				compObj.init(comp.__specification);
 
+			if(comp.__techKey == "__LAYOUT__") {
+				// special case, niy
+				var compObj = that;
+				
 				for (var o in comp.__specification) {
+					if(o == "press") {
+						// for event there will be special logic
+						continue;
+					}
+					if(o == "width" || o == "height" || o == "top"  || o == "bottom"  || o == "left"  || o == "right") {
+						// for layout we have to ignore all properties which are originally in ds runtime
+						continue;
+					}
 					var propValue = comp.__specification[o];
 					var propKey = o;
 
@@ -364,18 +408,54 @@ KpiTile = {
 					if(compObj[propKeySetter]) {compObj[propKeySetter](propValue);}
 				}
 			} else {
-				compObj = that.createComponentByJson(that, comp.__componentType, comp.__specification, false);
-				compObj.__specification = comp;
+				if(comp.__componentType == "") {
+					continue;
+				}
+				var compObj = that._oComponents[comp.__techKey];
+				if(compObj != null) {
+					for (var o in comp.__specification) {
+						if(o == "press") {
+							// for event there will be special logic
+							continue;
+						}
+						var propValue = comp.__specification[o];
+						var propKey = o;
 
-				if(compObj != undefined) {
-					that.addContent(compObj, comp.__layoutSettings);
-					that._oComponents[comp.__techKey] = compObj;
+						var propKeySetter = "set" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
+						var propKeyGetter = "get" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
+						if(compObj[propKeyGetter]) {
+							var old = compObj[propKeyGetter]();
+							if(old.destroy) {
+								old.destroy();
+							}
+						}
+						if(compObj[propKeySetter]) {compObj[propKeySetter](propValue);}
+					}
+
+					that.setPositionOfChild(compObj, comp.__layoutSettings);
+				} else {
+					compObj = that.createComponentByJson(that, comp.__componentType, comp.__specification, false);
+					if(compObj != undefined) {
+						compObj.__specification = comp;
+
+						that.addContent(compObj, comp.__layoutSettings);
+						that._oComponents[comp.__techKey] = compObj;
+					}
 				}
 			}
 
+			// modify the custom style classes
 			if(comp.__specification.styleClass) {
+				var customStyles = compObj.aCustomStyleClasses;
+				if(customStyles) {
+					for (var stClInt in customStyles) {
+						if(customStyles[stClInt].indexOf("scn-pack-") == -1) {
+							compObj.removeStyleClass(customStyles[stClInt]);
+						}
+					}
+				}
 				var classes = comp.__specification.styleClass.split(" ");
-				for (classInd in classes) {
+				for (var classInd in classes) {
 					compObj.addStyleClass(classes[classInd]);
 				}
 			}
@@ -384,6 +464,7 @@ KpiTile = {
 	
 	onResize: function(width, height, parent) {
 		// in case special resize code is required
+		var k = 0;
 	},
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };

@@ -30,6 +30,10 @@
 		},
 		{
 			"space" : "known",
+			"id" : "sap_suite_loader",
+		},
+		{
+			"space" : "known",
 			"id" : "x2js",
 		}
 	],
