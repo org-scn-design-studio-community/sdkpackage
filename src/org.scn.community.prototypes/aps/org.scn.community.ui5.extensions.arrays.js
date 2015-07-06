@@ -185,7 +185,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 					} else if(parameterObject.apsControl == "textarea") {
 						txtElementValue = new sap.ui.commons.TextArea({
 							// design : sap.ui.core.Design.Monospace,
-							rows : 20,
+							rows : 8,
 							width : "280px",
 							wrapping : sap.ui.core.Wrapping.Off,
 							value: targetValue
@@ -330,7 +330,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 			} else if(parameterObject.apsControl == "textarea") {
 				txtItemValue = new sap.ui.commons.TextArea({
 					// design : sap.ui.core.Design.Monospace,
-					rows : 20,
+					rows : 8,
 					width : "90%",
 					wrapping : sap.ui.core.Wrapping.Off,
 					value: targetValue
@@ -382,7 +382,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		if(!this._popup) this._popup = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
 		
 		//this._popup.destroyContent();
-		this._popup.open(250,"center center", "center center", document.body, null);
+		this._popup.open(250,"center top", "center top", document.body, null);
 	},
 	/*
 	 * Fires when Element Listbox is selected

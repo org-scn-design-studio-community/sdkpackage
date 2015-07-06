@@ -331,7 +331,7 @@ KpiTile = {
 		if(entryArray.indexOf("<") == 0) {
 			entryArray = that.readFullSpec(owner, entryArray);
 			var parsedValue = that.processContentJson (owner, entryArray);
-			entryArray = parsedValue;
+			entryArray = parsedValue[0];
 		} else {
 			if(entryArray.indexOf("sap.") == 0) {
 				// a class
@@ -405,7 +405,9 @@ KpiTile = {
 							old.destroy();
 						}
 					}
-					if(compObj[propKeySetter]) {compObj[propKeySetter](propValue);}
+					if(propValue != "-clean-") {
+						if(compObj[propKeySetter]) {compObj[propKeySetter](propValue);}	
+					}
 				}
 			} else {
 				if(comp.__componentType == "") {
@@ -425,11 +427,13 @@ KpiTile = {
 						var propKeyGetter = "get" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
 						if(compObj[propKeyGetter]) {
 							var old = compObj[propKeyGetter]();
-							if(old.destroy) {
+							if(old && old.destroy) {
 								old.destroy();
 							}
 						}
-						if(compObj[propKeySetter]) {compObj[propKeySetter](propValue);}
+						if(propValue != "-clean-") {
+							if(compObj[propKeySetter]) {compObj[propKeySetter](propValue);}
+						}
 					}
 
 					that.setPositionOfChild(compObj, comp.__layoutSettings);
