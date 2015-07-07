@@ -40,6 +40,9 @@ function X2JS(config) {
 		if(config.skipEmptyTextNodesForObj === undefined) {
 			config.skipEmptyTextNodesForObj = true;
 		}
+		if(config.mixedArrays === undefined) {
+			config.mixedArrays = false;
+		}
 		if(config.stripWhitespaces === undefined) {
 			config.stripWhitespaces = true;
 		}
@@ -234,19 +237,34 @@ function X2JS(config) {
 				
 				if(child.nodeType!= DOMNodeTypes.COMMENT_NODE) {
 					result.__cnt++;
-					if(result[childName] == null) {
-						result[childName] = parseDOMChildren(child, path+"."+childName);
+					
+					var arrayKey = childName;
+
+					if(result[arrayKey] == null) {
+						var parsedChild = parseDOMChildren(child, path+"."+childName);
+						if(config.mixedArrays && child.nodeType== DOMNodeTypes.ELEMENT_NODE) {
+							if(parsedChild == "") {parsedChild = {};}
+							parsedChild.__arrayIndex = cidx;	
+						}
+						result[arrayKey] = parsedChild;
 						toArrayAccessForm(result, childName, path+"."+childName);					
 					}
 					else {
-						if(result[childName] != null) {
-							if( !(result[childName] instanceof Array)) {
-								result[childName] = [result[childName]];
+						if(result[arrayKey] != null) {
+							if( !(result[arrayKey] instanceof Array)) {
+								result[arrayKey] = [result[arrayKey]];
 								toArrayAccessForm(result, childName, path+"."+childName);
 							}
 						}
-						(result[childName])[result[childName].length] = parseDOMChildren(child, path+"."+childName);
+						var parsedChild = parseDOMChildren(child, path+"."+childName);
+						if(config.mixedArrays && child.nodeType== DOMNodeTypes.ELEMENT_NODE) {
+							if(parsedChild == "") {parsedChild = {};}
+							parsedChild.__arrayIndex = cidx;
+						}
+						(result[arrayKey])[result[arrayKey].length] = parsedChild;
 					}
+					
+
 				}								
 			}
 			

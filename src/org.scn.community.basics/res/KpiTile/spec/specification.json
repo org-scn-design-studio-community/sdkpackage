@@ -113,7 +113,39 @@
 			"arrayMode":"TwoLevelArray"
 		}
 	},
-	
+	"selectedKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Selected Key",
+			"cat" : "Internal",
+			"tooltip" : "Selected Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"clickedComponent" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Clicked Component",
+			"cat" : "Internal",
+			"tooltip" : "Clicked Component",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
 	"onClick" : {
 		"template" : "Event",
 		"type" : "ScriptText",
@@ -127,5 +159,19 @@
 			"noAps" : true,
 			"noZtl" : true
 		}
-	}
+	},
+	"onSelect" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Select",
+			"cat" : "Events",
+			"tooltip" : "On Select",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
 }

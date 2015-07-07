@@ -21,6 +21,22 @@
 
 	org_scn_community_require.knownComponents.basics.KpiTile.spec = 
 {
+  "clickedComponent": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Internal",
+      "desc": "Clicked Component",
+      "noAps": true,
+      "noZtl": false,
+      "tooltip": "Clicked Component",
+      "ztlFunction": "-get",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+  },
   "componentsSpec": {
     "opts": {
       "apsControl": "array",
@@ -136,6 +152,36 @@
     "type": "ScriptText",
     "value": "",
     "visible": true
+  },
+  "onSelect": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Events",
+      "desc": "On Select",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "On Select"
+    },
+    "template": "Event",
+    "type": "ScriptText",
+    "value": "",
+    "visible": true
+  },
+  "selectedKey": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Internal",
+      "desc": "Selected Key",
+      "noAps": true,
+      "noZtl": false,
+      "tooltip": "Selected Key",
+      "ztlFunction": "-get",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
   }
 };
 

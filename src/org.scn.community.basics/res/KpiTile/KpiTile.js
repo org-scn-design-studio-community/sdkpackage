@@ -189,6 +189,10 @@ KpiTile = {
 			properties[prop.key] = prop.value[prop.key];
 		}
 
+		// special overwrite for events
+		properties.press = that.contentOnPress;
+		properties.select = that.contentOnSelect;
+
 		properties.leftI = parseInt(spec.left);
 		properties.rightI = parseInt(spec.right);
 		properties.topI = parseInt(spec.top);
@@ -248,7 +252,8 @@ KpiTile = {
 		if(spec.indexOf("<") == 0) {
 			// xml
 			var converter = new X2JS({
-				 attributePrefix : ""
+				 attributePrefix : "",
+				 mixedArrays: true
 			});
 			specJ = converter.xml_str2json(spec);
 
@@ -288,6 +293,8 @@ KpiTile = {
 						if(content == undefined) {content = []};
 						// create object here;
 						var properties = {}
+
+						var oneWasAnArray = false;
 						for (var loopOnIndexEntry in entryArray) {
 							var entryObjectId = loopOnIndexEntry;
 							var entryObject = entryArray[entryObjectId];
@@ -308,24 +315,38 @@ KpiTile = {
 									content.push(output[compInd]);
 								}
 
-								var mixedContent = {};
-								mixedContent[loopOnIndex] = content;
-
-								content = mixedContent;
+								oneWasAnArray = true;
 							} else {
 								var properties = {};
 								var output = that.processContentJson(that, entryObject);
 								for (var outputEntryIndex in output) {
 									properties[outputEntryIndex] = output[outputEntryIndex];
 								}
-
-								var comp = that.createComponentByJson(that, entryObjectId, properties, true);
-								comp.__clName = entryObjectId;
-								content.push(comp);
+								
+								if(entryObjectId != "__arrayIndex") {
+									var comp = that.createComponentByJson(that, entryObjectId, properties, true);
+									comp.__clName = entryObjectId;
+									comp.__arrayIndex = properties._arrayIndex;
+									content.push(comp);
+								}
 							}
+						}
+
+						if(oneWasAnArray) {
+							var mixedContent = {};
+
+							function compareFn(a, b) {
+							    return a.__arrayIndex - b.__arrayIndex;
+							}
+							content.sort(compareFn);
+
+							mixedContent[loopOnIndex] = content;
+
+							content = mixedContent;
 						}
 					} else {
 						if(content == undefined) {content = {}};
+
 						// simple text
 						var valueRet = that.fixValue(that, entryArrayId, entryArray);
 						content[valueRet.entryArrayId] = valueRet.entryArray;
@@ -345,26 +366,32 @@ KpiTile = {
 			entryArrayId = entryArrayId.substring(1);
 		}
 
-		if(entryArray.indexOf("<") == 0) {
-			entryArray = that.readFullSpec(owner, entryArray);
-			var parsedValue = that.processContentJson (owner, entryArray);
-			entryArray = parsedValue[0];
-		} else {
-			if(entryArray.indexOf("sap.") == 0) {
-				// a class
-				entryArray = eval(entryArray);
-			} else {
-				// boolean or value?
-				if(entryArray == "true" || entryArray == "false") {
-					entryArray = (entryArray == "true");
+		var specialProcessing = false;
+
+		if(!specialProcessing) {
+			if(entryArray.indexOf) {
+				if(entryArray.indexOf("<") == 0) {
+					entryArray = that.readFullSpec(owner, entryArray);
+					var parsedValue = that.processContentJson (owner, entryArray);
+					entryArray = parsedValue[0];
 				} else {
-					var intValue = parseInt(entryArray, 10);
-					if(!isNaN(intValue)) {
-						entryArray = intValue;
+					if(entryArray.indexOf("sap.") == 0) {
+						// a class
+						entryArray = eval(entryArray);
+					} else {
+						// boolean or value?
+						if(entryArray == "true" || entryArray == "false") {
+							entryArray = (entryArray == "true");
+						} else {
+							var intValue = parseInt(entryArray, 10);
+							if(!isNaN(intValue)) {
+								entryArray = intValue;
+							}
+						}
 					}
-				}
+				} 
 			}
-		} 
+		}
 
 		var valueRet = {};
 		valueRet.entryArrayId = entryArrayId;
@@ -394,10 +421,12 @@ KpiTile = {
 	afterPrepare: function (owner) {
 		var that = owner;
 
+		var allKeysForDeleteCheck = "";
+
 		// visualization on processed data
 		for (var compIndex in that._content) {
 			var comp = that._content[compIndex];
-
+			allKeysForDeleteCheck = allKeysForDeleteCheck + "|" + comp.__techKey + "|";
 			if(comp.__techKey == "__LAYOUT__") {
 				// special case, niy
 				var compObj = that;
@@ -432,35 +461,20 @@ KpiTile = {
 				}
 				var compObj = that._oComponents[comp.__techKey];
 				if(compObj != null) {
-					for (var o in comp.__specification) {
-						if(o == "press") {
-							// for event there will be special logic
-							continue;
-						}
-						var propValue = comp.__specification[o];
-						var propKey = o;
-
-						var propKeySetter = "set" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
-						var propKeyGetter = "get" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
-						if(compObj[propKeyGetter]) {
-							var old = compObj[propKeyGetter]();
-							if(old && old.destroy) {
-								old.destroy();
-							}
-						}
-						if(propValue != "-clean-") {
-							if(compObj[propKeySetter]) {compObj[propKeySetter](propValue);}
-						}
-					}
+					that.forwardProperties(that, compObj, comp, true);
 
 					that.setPositionOfChild(compObj, comp.__layoutSettings);
 				} else {
 					compObj = that.createComponentByJson(that, comp.__componentType, comp.__specification, false);
 					if(compObj != undefined) {
 						compObj.__specification = comp;
+						compObj.__componentType = comp.__componentType;
+						compObj.__owner = that;
 
 						that.addContent(compObj, comp.__layoutSettings);
 						that._oComponents[comp.__techKey] = compObj;
+
+						that.forwardProperties(that, compObj, comp, false);
 					}
 				}
 			}
@@ -482,9 +496,107 @@ KpiTile = {
 			}
 		}
 
+		for (var compIndex in that._oComponents) {
+			if(allKeysForDeleteCheck.indexOf("|" + that._oComponents[compIndex].__specification.__techKey + "|") == -1) {
+				that.removeContent(that._oComponents[compIndex]);
+				that._oComponents[compIndex].destroy();
+			}
+		}
+
 		if(that._oResize) {that._oResize(that, true);}
 	},
+
+	forwardProperties: function (owner, compObj, comp, isAll) {
+		var that = owner;
+		
+		for (var o in comp.__specification) {
+			if(o == "press" || o == "click") {
+				// for event there will be special logic
+				continue;
+			}
+
+			var propKey = o;
+			if(isAll == true || propKey.indexOf("/") > -1) {
+				var propValue = comp.__specification[o];
+
+				if(propKey.indexOf("/") > -1) {
+					var parts = propKey.split("/");
+					var currentObject = compObj;
+					for (var propPart in parts) {
+						propPart = parts[propPart];
+
+						// last part in the property?
+						if(propKey.indexOf(propPart) == propKey.length - propPart.length) {
+							that.setFinalProperty(that, currentObject, propPart, propValue);
+						} else {
+							if(propPart.indexOf("[") == 0) {
+								propPart = propPart.substring(1).replace("]", "");
+								currentObject = currentObject[propPart];
+							} else {
+								currentObject = that.getCurrentObject(that, currentObject, propPart);
+								if(currentObject == undefined) {
+									break;
+								}
+							}							
+						}
+					}
+				} else {
+					that.setFinalProperty(that, compObj, propKey, propValue);
+				}
+			}
+		}
+	},
+
+	getCurrentObject: function(that, currentObject, propKey) {
+		var propKeySetter = "set" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
+		var propKeyGetter = "get" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
+
+		if(currentObject[propKeyGetter]) {
+			currentObject = currentObject[propKeyGetter]();
+		}
+
+		return currentObject;
+	},
+
+	setFinalProperty: function (owner, compObj, propKey, propValue) {
+		var that = owner;
+
+		var propKeySetter = "set" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
+		var propKeyGetter = "get" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
+		if(compObj[propKeyGetter]) {
+			var old = compObj[propKeyGetter]();
+			if(old && old.destroy) {
+				old.destroy();
+			}
+		}
+		if(propValue != "-clean-") {
+			if(compObj[propKeySetter]) {compObj[propKeySetter](propValue);}
+		}
 	
+	},
+	
+	contentOnPress: function (oEvent) {
+		var that = oEvent.getSource().__owner;
+
+		var componentId = oEvent.getSource().__specification.__techKey;
+
+		that.setClickedComponent(componentId);
+		that.setSelectedKey("");
+		that.fireDesignStudioPropertiesChangedAndEvent(["clickedComponent", "selectedKey"], "onClick");
+		
+	},
+
+	contentOnSelect: function (oEvent) {
+		var that = oEvent.getSource().__owner;
+
+		var componentId = oEvent.getSource().__specification.__techKey;
+		var selectedKey = oEvent.getParameters().selectedKey;
+
+		that.setClickedComponent(componentId);
+		that.setSelectedKey(selectedKey);
+		that.fireDesignStudioPropertiesChangedAndEvent(["clickedComponent", "selectedKey"], "onSelect");
+		
+	},
 	onResize: function(width, height, parent) {
 		var that = parent;
 		// in case special resize code is required
@@ -498,9 +610,9 @@ KpiTile = {
 				}
 			}
 			if(isNaN(compObj.__specification.__specification.heightI)) {
-				var newWidth = width - compObj.__specification.__specification.topI - compObj.__specification.__specification.bottomI;
+				var newHeight = height - compObj.__specification.__specification.topI - compObj.__specification.__specification.bottomI;
 				if(compObj.setHeight) {
-					compObj.setWidth(newHeight +"px");
+					compObj.setHeight(newHeight +"px");
 				}
 			}
 		}

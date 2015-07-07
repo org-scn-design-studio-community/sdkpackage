@@ -6,6 +6,13 @@
  */
 class org.scn.community.basics.KpiTile extends org.scn.community.shared.Component {
 
+	/**
+	 * Gets Clicked Component Property
+	 */	
+	String getClickedComponent() {*
+		return this.clickedComponent;
+	*}
+
 	/** Adds an element containing parentKey [String], key [String], value [String] properties.
 	 * You need to specify a unique and existing parent element.
 
@@ -666,6 +673,15 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 
 
+
+
+
+	/**
+	 * Gets Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
