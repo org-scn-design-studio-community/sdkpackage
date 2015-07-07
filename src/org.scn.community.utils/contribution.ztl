@@ -502,6 +502,7 @@ class org.scn.community.utils.ClientInformation extends org.scn.community.shared
 		}
 	*}
 }
+
 /**
  * Component created with collaboration with Michael Howles
  * http://scn.sap.com/people/mike.howles4
@@ -821,7 +822,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	 * Sorts the collection by values with optional parameter for direction (ascending is default)
 	 */
 	void sortByKey(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+		if(direction == org_scn_community_shared_SortDirection.Descending) {
 			this.sortByKeyDescending();
 			return;
 		}
@@ -830,8 +831,16 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s);  
 		
-		a.sort(function(a,b){  
-			return a.key>b.key;  
+		a.sort(function(p,m){
+		     var A = p.key.toLowerCase();
+		     var B = m.key.toLowerCase();
+		     if (A < B){
+		        return 1;
+		     }else if (A > B){
+		       return  -1;
+		     }else{
+		       return 0;
+		     }
 		});  
 		
 		this.items = JSON.stringify(a);  
@@ -845,9 +854,17 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s);  
 		
-		a.sort(function(a,b){  
-			return (b.key>a.key);  
-		});  
+		a.sort(function(p,m){  
+		     var A = p.key.toLowerCase();
+		     var B = m.key.toLowerCase();
+		     if (A > B){
+		        return 1;
+		     }else if (A < B){
+		       return  -1;
+		     }else{
+		       return 0;
+		     } 
+		});   
 		
 		this.items = JSON.stringify(a);  
 	*}
@@ -856,7 +873,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	 * Sorts the collection by values with optional parameter for direction (ascending is default)
 	 */
 	void sortByLabel(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+		if(direction == org_scn_community_shared_SortDirection.Descending) {
 			this.sortByLabelDescending();
 			return;
 		}
@@ -865,9 +882,17 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s);  
 		
-		a.sort(function(a,b){  
-			return a.label>b.label;  
-		});  
+		a.sort(function(p,m){  
+		     var A = p.label.toLowerCase();
+		     var B = m.label.toLowerCase();
+		     if (A < B){
+		        return 1;
+		     }else if (A > B){
+		       return  -1;
+		     }else{
+		       return 0;
+		     }
+		}); 
 		
 		this.items = JSON.stringify(a);  
 	*}  
@@ -880,9 +905,17 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s); 
 		
-		a.sort(function(a,b){  
-			return (b.label>a.label);  
-		});  
+		a.sort(function(p,m){  
+		     var A = p.label.toLowerCase();
+		     var B = m.label.toLowerCase();
+		     if (A > B){
+		        return 1;
+		     }else if (A < B){
+		       return  -1;
+		     }else{
+		       return 0;
+		     }
+		});   
 		
 		this.items = JSON.stringify(a);  
 	*}
@@ -891,7 +924,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	 * Sorts the collection by values with optional parameter for direction (ascending is default)
 	 */
 	void sortByValue(optional org_scn_community_shared_SortDirectionEnumfield direction) {*
-		if(direction == org_scn_community_shared_SortDirection.DESCENDING) {
+		if(direction == org_scn_community_shared_SortDirection.Descending) {
 			this.sortByValueDescending();
 			return;
 		}
@@ -900,10 +933,10 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s); 
 		
-		a.sort(function(a,b){  
-			var newA = parseFloat(a.value);  
-			var newB = parseFloat(b.value);  
-			return newA-newB;  
+		a.sort(function(p,m){  
+			var newA = parseFloat(p.value);  
+			var newB = parseFloat(m.value);  
+			return newB-newA;  
 		});
 		
 		this.items = JSON.stringify(a);  
@@ -917,10 +950,10 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		var a = [];
 		if(s!="") a = JSON.parse(s);  
 		
-		a.sort(function(a,b){  
-			var newA = parseFloat(a.value);  
-			var newB = parseFloat(b.value);  
-			return newB-newA;  
+		a.sort(function(p,m){  
+			var newA = parseFloat(p.value);  
+			var newB = parseFloat(m.value);  
+			return newA-newB;  
 		});
 		
 		this.items = JSON.stringify(a);  
@@ -1226,6 +1259,15 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		
 		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
 	*}
+	
+	/**
+	 * Gets Collection As JSON String
+	 */	
+	String getCollectionAsJSON() {*
+		var jsonObject = JSON.parse(this.items);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+
 }
 
 /**
