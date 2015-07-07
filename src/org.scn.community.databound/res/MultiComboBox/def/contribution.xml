@@ -1,0 +1,58 @@
+
+<component
+	id="MultiComboBox"
+	title="Multi ComboBox"
+	icon="res/MultiComboBox/MultiComboBox.png"
+	handlerType="sapui5"
+	group="ScnCommunityDataBound"
+	databound="true">
+	<jsInclude>res/MultiComboBox/MultiComboBox.js</jsInclude>
+	<cssInclude>res/MultiComboBox/MultiComboBox.css</cssInclude>
+
+	<property
+		id="data"
+		title="Data List"
+		type="ResultCellList"
+		group="DataBinding"
+	>
+	</property>
+
+	<property
+		id="DDimension"
+		title="Selected Dimension"
+		type="String"
+		group="DataBinding"
+	>
+	</property>
+
+	<property
+		id="DSelectedKey"
+		type="String"
+		title="Technical proprty for Selected Key"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="DSelectedText"
+		type="String"
+		title="Technical proprty for Selected Text"
+		group="Display"
+		visible="false" />
+
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event for On Selection Changed"
+		group="Events" />
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">100</defaultValue>
+		<defaultValue property="HEIGHT">26</defaultValue>
+
+	</initialization>
+
+</component>
