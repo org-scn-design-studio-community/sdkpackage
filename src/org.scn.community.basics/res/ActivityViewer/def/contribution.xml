@@ -59,10 +59,10 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="activities">[]</defaultValue>
-		<defaultValue property="categories">[]</defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
-		<defaultValue property="states">[]</defaultValue>
+		<defaultValue property="activities"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="categories"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="states"><![CDATA[[]]]></defaultValue>
 
 	</initialization>
 

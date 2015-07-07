@@ -402,7 +402,7 @@
 		<defaultValue property="WIDTH">50</defaultValue>
 		<defaultValue property="HEIGHT">50</defaultValue>
 		
-		<defaultValue property="cache">true</defaultValue>
+		<defaultValue property="cache"><![CDATA[true]]></defaultValue>
 
 	</initialization>
 
@@ -652,7 +652,7 @@
 		<defaultValue property="WIDTH">10</defaultValue>
 		<defaultValue property="HEIGHT">10</defaultValue>
 		
-		<defaultValue property="content">{}</defaultValue>
+		<defaultValue property="content"><![CDATA[{}]]></defaultValue>
 
 	</initialization>
 

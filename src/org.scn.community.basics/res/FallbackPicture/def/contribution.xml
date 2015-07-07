@@ -42,8 +42,8 @@
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
 		
-		<defaultValue property="fallbackPicture"></defaultValue>
-		<defaultValue property="picture"></defaultValue>
+		<defaultValue property="fallbackPicture"><![CDATA[]]></defaultValue>
+		<defaultValue property="picture"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

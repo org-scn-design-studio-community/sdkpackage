@@ -293,9 +293,9 @@
 		<defaultValue property="WIDTH">260</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 		
-		<defaultValue property="data"></defaultValue>
-		<defaultValue property="scalingFactor">1.0</defaultValue>
-		<defaultValue property="scalingSelection"></defaultValue>
+		<defaultValue property="data"><![CDATA[]]></defaultValue>
+		<defaultValue property="scalingFactor"><![CDATA[1.0]]></defaultValue>
+		<defaultValue property="scalingSelection"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

@@ -42,8 +42,8 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="tag">embed</defaultValue>
-		<defaultValue property="url"></defaultValue>
+		<defaultValue property="tag"><![CDATA[embed]]></defaultValue>
+		<defaultValue property="url"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

@@ -7,21 +7,21 @@
 class org.scn.community.basics.DateRangeScroller extends org.scn.community.shared.Component {
 
 	/**
-	 * Sets Date (yyyymmdd) Property
+	 * Sets Date Property
 	 */	
-	void setDate( /**Date (yyyymmdd)*/ String date){*
+	void setDate( /**Date*/ String date){*
 		this.DDate = date;
 	*}
 
 	/**
-	 * Gets Date (yyyymmdd) Property
+	 * Gets Date Property
 	 */	
 	String getDate() {*
 		return this.DDate;
 	*}
 
 	/**
-	 * Gets Date (yyyymmdd) Property
+	 * Gets End Date Property
 	 */	
 	String getEndDate() {*
 		return this.DEndDate;
@@ -42,91 +42,91 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	*}
 
 	/**
-	 * Sets Custom Format Pattern Property
+	 * Sets Custom Pattern Property
 	 */	
-	void setLangPattern( /**Custom Format Pattern*/ String langPattern){*
+	void setLangPattern( /**Custom Pattern*/ String langPattern){*
 		this.DLangPattern = langPattern;
 	*}
 
 	/**
-	 * Gets Custom Format Pattern Property
+	 * Gets Custom Pattern Property
 	 */	
 	String getLangPattern() {*
 		return this.DLangPattern;
 	*}
 
 	/**
-	 * Sets Custom Format Relative Property
+	 * Sets Custom Relative Property
 	 */	
-	void setLangRelative( /**Custom Format Relative*/ boolean langRelative){*
+	void setLangRelative( /**Custom Relative*/ boolean langRelative){*
 		this.DLangRelative = langRelative;
 	*}
 
 	/**
-	 * Gets Custom Format Relative Property
+	 * Gets Custom Relative Property
 	 */	
 	boolean isLangRelative() {*
 		return this.DLangRelative;
 	*}
 
 	/**
-	 * Sets Custom Format Style Property by String
+	 * Sets Custom Style Property by String
 	 */	
-	void setLangStyleByString( /**Custom Format Style*/ String langStyle){*
+	void setLangStyleByString( /**Custom Style*/ String langStyle){*
 		this.DLangStyle = langStyle;
 	*}
 
 	/**
-	 * Gets Custom Format Style Property as String
+	 * Gets Custom Style Property as String
 	 */	
 	String getLangStyleAsString() {*
 		return this.DLangStyle;
 	*}
 	
 	/**
-	 * Sets Custom Format Style Property by Choice Option
+	 * Sets Custom Style Property by Choice Option
 	 */	
-	void setLangStyle( /**Custom Format Style*/ org_scn_community_shared_FormatStyleEnumfield langStyle){*
+	void setLangStyle( /**Custom Style*/ org_scn_community_shared_FormatStyleEnumfield langStyle){*
 		this.DLangStyle = langStyle;
 	*}
 	
 	/**
-	 * Gets Custom Format Style Property as Choice Option
+	 * Gets Custom Style Property as Choice Option
 	 */	
 	org_scn_community_shared_FormatStyleEnumfield getLangStyle() {*
 		return this.DLangStyle;
 	*}
 
 	/**
-	 * Sets Day Of Week To Start (CustomWeek) Property
+	 * Sets Day Of Week To Start Property
 	 */	
-	void setSpecialDay( /**Day Of Week To Start (CustomWeek)*/ int specialDay){*
+	void setSpecialDay( /**Day Of Week To Start*/ int specialDay){*
 		this.DSpecialDay = specialDay;
 	*}
 
 	/**
-	 * Gets Day Of Week To Start (CustomWeek) Property
+	 * Gets Day Of Week To Start Property
 	 */	
 	int getSpecialDay() {*
 		return this.DSpecialDay;
 	*}
 
 	/**
-	 * Sets Duration Of Custom Range (Custom*) Property
+	 * Sets Duration Of Custom Range Property
 	 */	
-	void setSpecialDuration( /**Duration Of Custom Range (Custom*)*/ int specialDuration){*
+	void setSpecialDuration( /**Duration Of Custom Range*/ int specialDuration){*
 		this.DSpecialDuration = specialDuration;
 	*}
 
 	/**
-	 * Gets Duration Of Custom Range (Custom*) Property
+	 * Gets Duration Of Custom Range Property
 	 */	
 	int getSpecialDuration() {*
 		return this.DSpecialDuration;
 	*}
 
 	/**
-	 * Gets Start Date (yyyymmdd) Property
+	 * Gets Start Date Property
 	 */	
 	String getStartDate() {*
 		return this.DStartDate;

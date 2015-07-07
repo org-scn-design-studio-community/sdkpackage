@@ -110,22 +110,6 @@
 			"noZtl" : false
 		}
 	},
-	"DMax" : {
-		"template" : "String",
-		"type" : "String",
-		"value" : "",
-		"visible": true,
-		"opts" : {
-			"ztlType": "String",
-			"ztlFunction": "",
-			"desc" : "Maximum Date Value (yyyymmdd)",
-			"cat" : "Display-Date",
-			"tooltip" : "Maximum Date Value (yyyymmdd)",
-			"apsControl" : "text",
-			"noAps" : false,
-			"noZtl" : false
-		}
-	},
 	"DMin" : {
 		"template" : "String",
 		"type" : "String",
@@ -134,9 +118,25 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Minimum Date Value (yyyymmdd)",
+			"desc" : "Minimum Date",
 			"cat" : "Display-Date",
 			"tooltip" : "Minimum Date Value (yyyymmdd)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DMax" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Maximum Date",
+			"cat" : "Display-Date",
+			"tooltip" : "Maximum Date Value (yyyymmdd)",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
@@ -150,7 +150,7 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "First Date Value (yyyymmdd)",
+			"desc" : "First Date",
 			"cat" : "Display-Date",
 			"tooltip" : "First Date Value (yyyymmdd)",
 			"apsControl" : "text",
@@ -166,7 +166,7 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Second Date Value (yyyymmdd)",
+			"desc" : "Second Date",
 			"cat" : "Display-Date",
 			"tooltip" : "Second Date Value (yyyymmdd)",
 			"apsControl" : "text",

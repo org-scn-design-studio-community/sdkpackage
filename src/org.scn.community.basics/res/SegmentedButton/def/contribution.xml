@@ -129,18 +129,18 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">22</defaultValue>
 		
-		<defaultValue property="DCleanAll">false</defaultValue>
-		<defaultValue property="DDefaultImage"></defaultValue>
-		<defaultValue property="DElementsContent">[]</defaultValue>
-		<defaultValue property="DImageSize">Size_16px</defaultValue>
-		<defaultValue property="DPressedButtonKey"></defaultValue>
-		<defaultValue property="DPressedItemKey"></defaultValue>
-		<defaultValue property="DSelectedKeys">[]</defaultValue>
-		<defaultValue property="DSelectionType">Single</defaultValue>
-		<defaultValue property="DWithImages"></defaultValue>
-		<defaultValue property="onButtonPressed"></defaultValue>
-		<defaultValue property="onItemPressed"></defaultValue>
-		<defaultValue property="onSelected"></defaultValue>
+		<defaultValue property="DCleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DDefaultImage"><![CDATA[]]></defaultValue>
+		<defaultValue property="DElementsContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DImageSize"><![CDATA[Size_16px]]></defaultValue>
+		<defaultValue property="DPressedButtonKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="DPressedItemKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSelectedKeys"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DSelectionType"><![CDATA[Single]]></defaultValue>
+		<defaultValue property="DWithImages"><![CDATA[]]></defaultValue>
+		<defaultValue property="onButtonPressed"><![CDATA[]]></defaultValue>
+		<defaultValue property="onItemPressed"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelected"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

@@ -77,12 +77,12 @@
 		<defaultValue property="WIDTH">auto</defaultValue>
 		<defaultValue property="HEIGHT">38</defaultValue>
 		
-		<defaultValue property="displayLogoff"></defaultValue>
-		<defaultValue property="displayWelcome">true</defaultValue>
-		<defaultValue property="logoSrc"></defaultValue>
-		<defaultValue property="logoText"></defaultValue>
-		<defaultValue property="onLogoff"></defaultValue>
-		<defaultValue property="userName"></defaultValue>
+		<defaultValue property="displayLogoff"><![CDATA[]]></defaultValue>
+		<defaultValue property="displayWelcome"><![CDATA[true]]></defaultValue>
+		<defaultValue property="logoSrc"><![CDATA[]]></defaultValue>
+		<defaultValue property="logoText"><![CDATA[]]></defaultValue>
+		<defaultValue property="onLogoff"><![CDATA[]]></defaultValue>
+		<defaultValue property="userName"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

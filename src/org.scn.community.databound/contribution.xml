@@ -1007,23 +1007,23 @@
 		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="DClearOthers">true</defaultValue>
-		<defaultValue property="DContentMode">Resultset</defaultValue>
-		<defaultValue property="DCustomDimensions">[]</defaultValue>
-		<defaultValue property="DDisplayText">Text</defaultValue>
-		<defaultValue property="DElements"></defaultValue>
-		<defaultValue property="DFacetWidth">160</defaultValue>
-		<defaultValue property="DMaxDisplayMembers">5</defaultValue>
-		<defaultValue property="DMaxMembers">1000</defaultValue>
-		<defaultValue property="DSecondValueContent">Value</defaultValue>
-		<defaultValue property="DSelection"></defaultValue>
-		<defaultValue property="DShowSecondValue">false</defaultValue>
-		<defaultValue property="DSortingDirection">Ascending</defaultValue>
-		<defaultValue property="DSortingType">Default</defaultValue>
-		<defaultValue property="DZeroValuesMode">Show</defaultValue>
-		<defaultValue property="data">null</defaultValue>
-		<defaultValue property="onBeforeRender"></defaultValue>
-		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
+		<defaultValue property="DClearOthers"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DContentMode"><![CDATA[Resultset]]></defaultValue>
+		<defaultValue property="DCustomDimensions"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DDisplayText"><![CDATA[Text]]></defaultValue>
+		<defaultValue property="DElements"><![CDATA[]]></defaultValue>
+		<defaultValue property="DFacetWidth"><![CDATA[160]]></defaultValue>
+		<defaultValue property="DMaxDisplayMembers"><![CDATA[5]]></defaultValue>
+		<defaultValue property="DMaxMembers"><![CDATA[1000]]></defaultValue>
+		<defaultValue property="DSecondValueContent"><![CDATA[Value]]></defaultValue>
+		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
+		<defaultValue property="DShowSecondValue"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DSortingDirection"><![CDATA[Ascending]]></defaultValue>
+		<defaultValue property="DSortingType"><![CDATA[Default]]></defaultValue>
+		<defaultValue property="DZeroValuesMode"><![CDATA[Show]]></defaultValue>
+		<defaultValue property="data"><![CDATA[null]]></defaultValue>
+		<defaultValue property="onBeforeRender"><![CDATA[]]></defaultValue>
+		<defaultValue property="onInternalSelectionChanged"><![CDATA[this.private_onSelectionChanged();]]></defaultValue>
 
 	</initialization>
 
@@ -1190,21 +1190,21 @@
 		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="DClearOthers">true</defaultValue>
-		<defaultValue property="DContentMode">Resultset</defaultValue>
-		<defaultValue property="DCustomDimensions">[]</defaultValue>
-		<defaultValue property="DDisplayText">Text</defaultValue>
-		<defaultValue property="DElements"></defaultValue>
-		<defaultValue property="DFacetWidth">160</defaultValue>
-		<defaultValue property="DMaxDisplayMembers">5</defaultValue>
-		<defaultValue property="DMaxMembers">1000</defaultValue>
-		<defaultValue property="DSelection"></defaultValue>
-		<defaultValue property="DSortingDirection">Ascending</defaultValue>
-		<defaultValue property="DSortingType">Default</defaultValue>
-		<defaultValue property="DZeroValuesMode">Show</defaultValue>
-		<defaultValue property="dataCellList">null</defaultValue>
-		<defaultValue property="onBeforeRender"></defaultValue>
-		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
+		<defaultValue property="DClearOthers"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DContentMode"><![CDATA[Resultset]]></defaultValue>
+		<defaultValue property="DCustomDimensions"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DDisplayText"><![CDATA[Text]]></defaultValue>
+		<defaultValue property="DElements"><![CDATA[]]></defaultValue>
+		<defaultValue property="DFacetWidth"><![CDATA[160]]></defaultValue>
+		<defaultValue property="DMaxDisplayMembers"><![CDATA[5]]></defaultValue>
+		<defaultValue property="DMaxMembers"><![CDATA[1000]]></defaultValue>
+		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSortingDirection"><![CDATA[Ascending]]></defaultValue>
+		<defaultValue property="DSortingType"><![CDATA[Default]]></defaultValue>
+		<defaultValue property="DZeroValuesMode"><![CDATA[Show]]></defaultValue>
+		<defaultValue property="dataCellList"><![CDATA[null]]></defaultValue>
+		<defaultValue property="onBeforeRender"><![CDATA[]]></defaultValue>
+		<defaultValue property="onInternalSelectionChanged"><![CDATA[this.private_onSelectionChanged();]]></defaultValue>
 
 	</initialization>
 
@@ -3636,26 +3636,26 @@ __n__}
 		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 		
-		<defaultValue property="DAllowColumnReorder">true</defaultValue>
-		<defaultValue property="DAllowFilter">true</defaultValue>
-		<defaultValue property="DAllowSelection">false</defaultValue>
-		<defaultValue property="DAllowSort">true</defaultValue>
-		<defaultValue property="DDataColWidths">[]</defaultValue>
-		<defaultValue property="DDataProvisioner"></defaultValue>
-		<defaultValue property="DEmptyDataValue"></defaultValue>
-		<defaultValue property="DEmptyHeaderValue"></defaultValue>
-		<defaultValue property="DFixedHeader">true</defaultValue>
-		<defaultValue property="DFormattingCondition"></defaultValue>
-		<defaultValue property="DFormattingOperator">UseFirst</defaultValue>
-		<defaultValue property="DHeaderColWidth">200</defaultValue>
-		<defaultValue property="DIgnoreResults">true</defaultValue>
-		<defaultValue property="DNavigationMode">Paginator</defaultValue>
-		<defaultValue property="DRowHeight">20</defaultValue>
-		<defaultValue property="DSelection"></defaultValue>
-		<defaultValue property="DVisibleRowCount">12</defaultValue>
-		<defaultValue property="data">null</defaultValue>
-		<defaultValue property="onCellSelected"></defaultValue>
-		<defaultValue property="onRowSelected"></defaultValue>
+		<defaultValue property="DAllowColumnReorder"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DAllowFilter"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DAllowSelection"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DAllowSort"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DDataColWidths"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DDataProvisioner"><![CDATA[]]></defaultValue>
+		<defaultValue property="DEmptyDataValue"><![CDATA[]]></defaultValue>
+		<defaultValue property="DEmptyHeaderValue"><![CDATA[]]></defaultValue>
+		<defaultValue property="DFixedHeader"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DFormattingCondition"><![CDATA[]]></defaultValue>
+		<defaultValue property="DFormattingOperator"><![CDATA[UseFirst]]></defaultValue>
+		<defaultValue property="DHeaderColWidth"><![CDATA[200]]></defaultValue>
+		<defaultValue property="DIgnoreResults"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DNavigationMode"><![CDATA[Paginator]]></defaultValue>
+		<defaultValue property="DRowHeight"><![CDATA[20]]></defaultValue>
+		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
+		<defaultValue property="DVisibleRowCount"><![CDATA[12]]></defaultValue>
+		<defaultValue property="data"><![CDATA[null]]></defaultValue>
+		<defaultValue property="onCellSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="onRowSelected"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

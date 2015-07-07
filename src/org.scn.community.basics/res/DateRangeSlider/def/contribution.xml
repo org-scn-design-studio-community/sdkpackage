@@ -62,7 +62,7 @@
 	<property
 		id="DMax"
 		type="String"
-		title="Maximum Date Value (yyyymmdd)"
+		title="Maximum Date"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -71,7 +71,7 @@
 	<property
 		id="DMin"
 		type="String"
-		title="Minimum Date Value (yyyymmdd)"
+		title="Minimum Date"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -80,7 +80,7 @@
 	<property
 		id="DValue"
 		type="String"
-		title="First Date Value (yyyymmdd)"
+		title="First Date"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -89,7 +89,7 @@
 	<property
 		id="DValue2"
 		type="String"
-		title="Second Date Value (yyyymmdd)"
+		title="Second Date"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -158,21 +158,21 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
 		
-		<defaultValue property="DGranulatiry">Day</defaultValue>
-		<defaultValue property="DLangFormat">false</defaultValue>
-		<defaultValue property="DLangPattern"></defaultValue>
-		<defaultValue property="DLangRelative">false</defaultValue>
-		<defaultValue property="DLangStyle">Short</defaultValue>
-		<defaultValue property="DMax"></defaultValue>
-		<defaultValue property="DMin"></defaultValue>
-		<defaultValue property="DValue"></defaultValue>
-		<defaultValue property="DValue2"></defaultValue>
-		<defaultValue property="onChange"></defaultValue>
-		<defaultValue property="showBubbles">true</defaultValue>
-		<defaultValue property="smallStepWidth">1</defaultValue>
-		<defaultValue property="stepLabels"></defaultValue>
-		<defaultValue property="totalUnits">0</defaultValue>
-		<defaultValue property="vertical">false</defaultValue>
+		<defaultValue property="DGranulatiry"><![CDATA[Day]]></defaultValue>
+		<defaultValue property="DLangFormat"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DLangPattern"><![CDATA[]]></defaultValue>
+		<defaultValue property="DLangRelative"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DLangStyle"><![CDATA[Short]]></defaultValue>
+		<defaultValue property="DMax"><![CDATA[]]></defaultValue>
+		<defaultValue property="DMin"><![CDATA[]]></defaultValue>
+		<defaultValue property="DValue"><![CDATA[]]></defaultValue>
+		<defaultValue property="DValue2"><![CDATA[]]></defaultValue>
+		<defaultValue property="onChange"><![CDATA[]]></defaultValue>
+		<defaultValue property="showBubbles"><![CDATA[true]]></defaultValue>
+		<defaultValue property="smallStepWidth"><![CDATA[1]]></defaultValue>
+		<defaultValue property="stepLabels"><![CDATA[]]></defaultValue>
+		<defaultValue property="totalUnits"><![CDATA[0]]></defaultValue>
+		<defaultValue property="vertical"><![CDATA[false]]></defaultValue>
 
 	</initialization>
 

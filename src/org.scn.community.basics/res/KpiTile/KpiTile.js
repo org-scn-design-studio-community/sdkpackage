@@ -189,9 +189,25 @@ KpiTile = {
 			properties[prop.key] = prop.value[prop.key];
 		}
 
-		properties["width"] = spec.width + "px";
-		properties["height"] = spec.height + "px";
+		properties.leftI = parseInt(spec.left);
+		properties.rightI = parseInt(spec.right);
+		properties.topI = parseInt(spec.top);
+		properties.bottomI = parseInt(spec.bottom);
 
+		var intValue = parseInt(spec.width, 10);
+		properties["widthI"] = intValue;
+		if(isNaN(intValue)) {
+			intValue = 200;
+		}
+		properties["width"] = intValue+"px";
+		
+		intValue = parseInt(spec.height, 10);
+		properties["heightI"] = intValue;
+		if(isNaN(intValue)) {
+			intValue = 40;
+		}
+		properties["height"] = intValue + "px";
+		
 		var comp = {};
 		comp.__specification = properties;
 
@@ -201,6 +217,7 @@ KpiTile = {
 		} else {
 			comp.__layoutSettings.left = parseInt(spec.left) + "px";
 		}
+
 		if(spec.top == "-1") {
 			comp.__layoutSettings.bottom = parseInt(spec.bottom) + "px";
 		} else {
@@ -464,11 +481,29 @@ KpiTile = {
 				}
 			}
 		}
+
+		if(that._oResize) {that._oResize(that, true);}
 	},
 	
 	onResize: function(width, height, parent) {
+		var that = parent;
 		// in case special resize code is required
-		var k = 0;
+		for (var compId in that._oComponents) {
+			var compObj = that._oComponents[compId];
+
+			if(isNaN(compObj.__specification.__specification.widthI)) {
+				var newWidth = width - compObj.__specification.__specification.leftI - compObj.__specification.__specification.rightI;
+				if(compObj.setWidth) {
+					compObj.setWidth(newWidth +"px");
+				}
+			}
+			if(isNaN(compObj.__specification.__specification.heightI)) {
+				var newWidth = width - compObj.__specification.__specification.topI - compObj.__specification.__specification.bottomI;
+				if(compObj.setHeight) {
+					compObj.setWidth(newHeight +"px");
+				}
+			}
+		}
 	},
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };

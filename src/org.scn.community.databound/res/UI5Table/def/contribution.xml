@@ -203,26 +203,26 @@
 		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 		
-		<defaultValue property="DAllowColumnReorder">true</defaultValue>
-		<defaultValue property="DAllowFilter">true</defaultValue>
-		<defaultValue property="DAllowSelection">false</defaultValue>
-		<defaultValue property="DAllowSort">true</defaultValue>
-		<defaultValue property="DDataColWidths">[]</defaultValue>
-		<defaultValue property="DDataProvisioner"></defaultValue>
-		<defaultValue property="DEmptyDataValue"></defaultValue>
-		<defaultValue property="DEmptyHeaderValue"></defaultValue>
-		<defaultValue property="DFixedHeader">true</defaultValue>
-		<defaultValue property="DFormattingCondition"></defaultValue>
-		<defaultValue property="DFormattingOperator">UseFirst</defaultValue>
-		<defaultValue property="DHeaderColWidth">200</defaultValue>
-		<defaultValue property="DIgnoreResults">true</defaultValue>
-		<defaultValue property="DNavigationMode">Paginator</defaultValue>
-		<defaultValue property="DRowHeight">20</defaultValue>
-		<defaultValue property="DSelection"></defaultValue>
-		<defaultValue property="DVisibleRowCount">12</defaultValue>
-		<defaultValue property="data">null</defaultValue>
-		<defaultValue property="onCellSelected"></defaultValue>
-		<defaultValue property="onRowSelected"></defaultValue>
+		<defaultValue property="DAllowColumnReorder"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DAllowFilter"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DAllowSelection"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DAllowSort"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DDataColWidths"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DDataProvisioner"><![CDATA[]]></defaultValue>
+		<defaultValue property="DEmptyDataValue"><![CDATA[]]></defaultValue>
+		<defaultValue property="DEmptyHeaderValue"><![CDATA[]]></defaultValue>
+		<defaultValue property="DFixedHeader"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DFormattingCondition"><![CDATA[]]></defaultValue>
+		<defaultValue property="DFormattingOperator"><![CDATA[UseFirst]]></defaultValue>
+		<defaultValue property="DHeaderColWidth"><![CDATA[200]]></defaultValue>
+		<defaultValue property="DIgnoreResults"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DNavigationMode"><![CDATA[Paginator]]></defaultValue>
+		<defaultValue property="DRowHeight"><![CDATA[20]]></defaultValue>
+		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
+		<defaultValue property="DVisibleRowCount"><![CDATA[12]]></defaultValue>
+		<defaultValue property="data"><![CDATA[null]]></defaultValue>
+		<defaultValue property="onCellSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="onRowSelected"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

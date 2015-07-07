@@ -50,9 +50,9 @@
 		<defaultValue property="WIDTH">270</defaultValue>
 		<defaultValue property="HEIGHT">134</defaultValue>
 		
-		<defaultValue property="colorString">red</defaultValue>
-		<defaultValue property="colorStringHex"></defaultValue>
-		<defaultValue property="onColorChange"></defaultValue>
+		<defaultValue property="colorString"><![CDATA[red]]></defaultValue>
+		<defaultValue property="colorStringHex"><![CDATA[]]></defaultValue>
+		<defaultValue property="onColorChange"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

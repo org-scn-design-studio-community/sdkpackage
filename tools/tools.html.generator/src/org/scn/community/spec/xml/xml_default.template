@@ -1,1 +1,1 @@
-		<defaultValue property="%PROPERTY_NAME%">%PROPERTY_DEFAULT_VALUE%</defaultValue>
+		<defaultValue property="%PROPERTY_NAME%"><![CDATA[%PROPERTY_DEFAULT_VALUE%]]></defaultValue>

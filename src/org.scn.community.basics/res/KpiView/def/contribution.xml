@@ -241,30 +241,30 @@
 		<defaultValue property="WIDTH">220</defaultValue>
 		<defaultValue property="HEIGHT">190</defaultValue>
 		
-		<defaultValue property="data"></defaultValue>
-		<defaultValue property="footerCssClass"></defaultValue>
-		<defaultValue property="footerHAlign">Left</defaultValue>
-		<defaultValue property="footerText">Footer</defaultValue>
-		<defaultValue property="headerCssClass"></defaultValue>
-		<defaultValue property="headerHAlign">Left</defaultValue>
-		<defaultValue property="headerText">Header</defaultValue>
-		<defaultValue property="image"></defaultValue>
-		<defaultValue property="imageSize">Size_16px</defaultValue>
-		<defaultValue property="linkText"></defaultValue>
-		<defaultValue property="linkTooltip"></defaultValue>
-		<defaultValue property="onClick"></defaultValue>
-		<defaultValue property="onLinkClick"></defaultValue>
-		<defaultValue property="titleCssClass"></defaultValue>
-		<defaultValue property="titleText">Title</defaultValue>
-		<defaultValue property="valueCssClass"></defaultValue>
-		<defaultValue property="valueDecimalPlaces">D0</defaultValue>
-		<defaultValue property="valueFloat"></defaultValue>
-		<defaultValue property="valueHAlign">Left</defaultValue>
-		<defaultValue property="valuePrefixCssClass"></defaultValue>
-		<defaultValue property="valuePrefixText"></defaultValue>
-		<defaultValue property="valueSuffixCssClass"></defaultValue>
-		<defaultValue property="valueSuffixText"> M$</defaultValue>
-		<defaultValue property="valueText">Value</defaultValue>
+		<defaultValue property="data"><![CDATA[]]></defaultValue>
+		<defaultValue property="footerCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="footerHAlign"><![CDATA[Left]]></defaultValue>
+		<defaultValue property="footerText"><![CDATA[Footer]]></defaultValue>
+		<defaultValue property="headerCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="headerHAlign"><![CDATA[Left]]></defaultValue>
+		<defaultValue property="headerText"><![CDATA[Header]]></defaultValue>
+		<defaultValue property="image"><![CDATA[]]></defaultValue>
+		<defaultValue property="imageSize"><![CDATA[Size_16px]]></defaultValue>
+		<defaultValue property="linkText"><![CDATA[]]></defaultValue>
+		<defaultValue property="linkTooltip"><![CDATA[]]></defaultValue>
+		<defaultValue property="onClick"><![CDATA[]]></defaultValue>
+		<defaultValue property="onLinkClick"><![CDATA[]]></defaultValue>
+		<defaultValue property="titleCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="titleText"><![CDATA[Title]]></defaultValue>
+		<defaultValue property="valueCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="valueDecimalPlaces"><![CDATA[D0]]></defaultValue>
+		<defaultValue property="valueFloat"><![CDATA[]]></defaultValue>
+		<defaultValue property="valueHAlign"><![CDATA[Left]]></defaultValue>
+		<defaultValue property="valuePrefixCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="valuePrefixText"><![CDATA[]]></defaultValue>
+		<defaultValue property="valueSuffixCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="valueSuffixText"><![CDATA[ M$]]></defaultValue>
+		<defaultValue property="valueText"><![CDATA[Value]]></defaultValue>
 
 	</initialization>
 

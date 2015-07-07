@@ -505,7 +505,7 @@ public class ParamFullSpec {
 		String template = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_default.template");
 		
 		template = template.replace("%PROPERTY_NAME%", this.getName());
-		template = template.replace("%PROPERTY_DEFAULT_VALUE%", this.getValue());
+		template = template.replace("%PROPERTY_DEFAULT_VALUE%", this.getValue().replace("\\\"", "\""));
 		
 		return template;
 	}

@@ -97,14 +97,14 @@
 		<defaultValue property="WIDTH">200</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
 		
-		<defaultValue property="checkboxExample">true</defaultValue>
-		<defaultValue property="checkboxOnlyGetterExample">true</defaultValue>
-		<defaultValue property="colorExample"></defaultValue>
-		<defaultValue property="comboboxExample">quantile</defaultValue>
-		<defaultValue property="data">null</defaultValue>
-		<defaultValue property="paletteExample"></defaultValue>
-		<defaultValue property="spinnerExample"></defaultValue>
-		<defaultValue property="textExample">initial</defaultValue>
+		<defaultValue property="checkboxExample"><![CDATA[true]]></defaultValue>
+		<defaultValue property="checkboxOnlyGetterExample"><![CDATA[true]]></defaultValue>
+		<defaultValue property="colorExample"><![CDATA[]]></defaultValue>
+		<defaultValue property="comboboxExample"><![CDATA[quantile]]></defaultValue>
+		<defaultValue property="data"><![CDATA[null]]></defaultValue>
+		<defaultValue property="paletteExample"><![CDATA[]]></defaultValue>
+		<defaultValue property="spinnerExample"><![CDATA[]]></defaultValue>
+		<defaultValue property="textExample"><![CDATA[initial]]></defaultValue>
 
 	</initialization>
 

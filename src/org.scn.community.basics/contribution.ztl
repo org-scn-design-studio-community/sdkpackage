@@ -2934,21 +2934,21 @@ class org.scn.community.basics.ColorPicker extends org.scn.community.shared.Comp
 class org.scn.community.basics.DateRangeScroller extends org.scn.community.shared.Component {
 
 	/**
-	 * Sets Date (yyyymmdd) Property
+	 * Sets Date Property
 	 */	
-	void setDate( /**Date (yyyymmdd)*/ String date){*
+	void setDate( /**Date*/ String date){*
 		this.DDate = date;
 	*}
 
 	/**
-	 * Gets Date (yyyymmdd) Property
+	 * Gets Date Property
 	 */	
 	String getDate() {*
 		return this.DDate;
 	*}
 
 	/**
-	 * Gets Date (yyyymmdd) Property
+	 * Gets End Date Property
 	 */	
 	String getEndDate() {*
 		return this.DEndDate;
@@ -2969,91 +2969,91 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	*}
 
 	/**
-	 * Sets Custom Format Pattern Property
+	 * Sets Custom Pattern Property
 	 */	
-	void setLangPattern( /**Custom Format Pattern*/ String langPattern){*
+	void setLangPattern( /**Custom Pattern*/ String langPattern){*
 		this.DLangPattern = langPattern;
 	*}
 
 	/**
-	 * Gets Custom Format Pattern Property
+	 * Gets Custom Pattern Property
 	 */	
 	String getLangPattern() {*
 		return this.DLangPattern;
 	*}
 
 	/**
-	 * Sets Custom Format Relative Property
+	 * Sets Custom Relative Property
 	 */	
-	void setLangRelative( /**Custom Format Relative*/ boolean langRelative){*
+	void setLangRelative( /**Custom Relative*/ boolean langRelative){*
 		this.DLangRelative = langRelative;
 	*}
 
 	/**
-	 * Gets Custom Format Relative Property
+	 * Gets Custom Relative Property
 	 */	
 	boolean isLangRelative() {*
 		return this.DLangRelative;
 	*}
 
 	/**
-	 * Sets Custom Format Style Property by String
+	 * Sets Custom Style Property by String
 	 */	
-	void setLangStyleByString( /**Custom Format Style*/ String langStyle){*
+	void setLangStyleByString( /**Custom Style*/ String langStyle){*
 		this.DLangStyle = langStyle;
 	*}
 
 	/**
-	 * Gets Custom Format Style Property as String
+	 * Gets Custom Style Property as String
 	 */	
 	String getLangStyleAsString() {*
 		return this.DLangStyle;
 	*}
 	
 	/**
-	 * Sets Custom Format Style Property by Choice Option
+	 * Sets Custom Style Property by Choice Option
 	 */	
-	void setLangStyle( /**Custom Format Style*/ org_scn_community_shared_FormatStyleEnumfield langStyle){*
+	void setLangStyle( /**Custom Style*/ org_scn_community_shared_FormatStyleEnumfield langStyle){*
 		this.DLangStyle = langStyle;
 	*}
 	
 	/**
-	 * Gets Custom Format Style Property as Choice Option
+	 * Gets Custom Style Property as Choice Option
 	 */	
 	org_scn_community_shared_FormatStyleEnumfield getLangStyle() {*
 		return this.DLangStyle;
 	*}
 
 	/**
-	 * Sets Day Of Week To Start (CustomWeek) Property
+	 * Sets Day Of Week To Start Property
 	 */	
-	void setSpecialDay( /**Day Of Week To Start (CustomWeek)*/ int specialDay){*
+	void setSpecialDay( /**Day Of Week To Start*/ int specialDay){*
 		this.DSpecialDay = specialDay;
 	*}
 
 	/**
-	 * Gets Day Of Week To Start (CustomWeek) Property
+	 * Gets Day Of Week To Start Property
 	 */	
 	int getSpecialDay() {*
 		return this.DSpecialDay;
 	*}
 
 	/**
-	 * Sets Duration Of Custom Range (Custom*) Property
+	 * Sets Duration Of Custom Range Property
 	 */	
-	void setSpecialDuration( /**Duration Of Custom Range (Custom*)*/ int specialDuration){*
+	void setSpecialDuration( /**Duration Of Custom Range*/ int specialDuration){*
 		this.DSpecialDuration = specialDuration;
 	*}
 
 	/**
-	 * Gets Duration Of Custom Range (Custom*) Property
+	 * Gets Duration Of Custom Range Property
 	 */	
 	int getSpecialDuration() {*
 		return this.DSpecialDuration;
 	*}
 
 	/**
-	 * Gets Start Date (yyyymmdd) Property
+	 * Gets Start Date Property
 	 */	
 	String getStartDate() {*
 		return this.DStartDate;
@@ -3207,56 +3207,56 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	*}
 
 	/**
-	 * Sets Maximum Date Value (yyyymmdd) Property
+	 * Sets Maximum Date Property
 	 */	
-	void setMax( /**Maximum Date Value (yyyymmdd)*/ String max){*
+	void setMax( /**Maximum Date*/ String max){*
 		this.DMax = max;
 	*}
 
 	/**
-	 * Gets Maximum Date Value (yyyymmdd) Property
+	 * Gets Maximum Date Property
 	 */	
 	String getMax() {*
 		return this.DMax;
 	*}
 
 	/**
-	 * Sets Minimum Date Value (yyyymmdd) Property
+	 * Sets Minimum Date Property
 	 */	
-	void setMin( /**Minimum Date Value (yyyymmdd)*/ String min){*
+	void setMin( /**Minimum Date*/ String min){*
 		this.DMin = min;
 	*}
 
 	/**
-	 * Gets Minimum Date Value (yyyymmdd) Property
+	 * Gets Minimum Date Property
 	 */	
 	String getMin() {*
 		return this.DMin;
 	*}
 
 	/**
-	 * Sets First Date Value (yyyymmdd) Property
+	 * Sets First Date Property
 	 */	
-	void setValue( /**First Date Value (yyyymmdd)*/ String value){*
+	void setValue( /**First Date*/ String value){*
 		this.DValue = value;
 	*}
 
 	/**
-	 * Gets First Date Value (yyyymmdd) Property
+	 * Gets First Date Property
 	 */	
 	String getValue() {*
 		return this.DValue;
 	*}
 
 	/**
-	 * Sets Second Date Value (yyyymmdd) Property
+	 * Sets Second Date Property
 	 */	
-	void setValue2( /**Second Date Value (yyyymmdd)*/ String value2){*
+	void setValue2( /**Second Date*/ String value2){*
 		this.DValue2 = value2;
 	*}
 
 	/**
-	 * Gets Second Date Value (yyyymmdd) Property
+	 * Gets Second Date Property
 	 */	
 	String getValue2() {*
 		return this.DValue2;
@@ -4513,7 +4513,7 @@ class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Co
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
-class org.scn.community.basics.KpiTile extends Component {
+class org.scn.community.basics.KpiTile extends org.scn.community.shared.Component {
 
 	/** Adds an element containing parentKey [String], key [String], value [String] properties.
 	 * You need to specify a unique and existing parent element.
@@ -5171,244 +5171,6 @@ class org.scn.community.basics.KpiTile extends Component {
 		this.componentsSpec = JSON.stringify(elementsJson);
 	*}
 
-
-	/** Adds a root element containing key [String], value [String].
-
- 	<example>
-	You want to add 2 root elements
-	<code>
-	KPITILE.addLayout(key [String], value [String]);<br>
-	KPITILE.addLayout(key [String], value [String]);<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void addLayout (
-			/**Property Name*/String key, 
-			/**Property Value*/String value
-			) {*
-
-		
-		var itemDef = {
-			leaf:true,
-			key:key, 
-			value:value
-			};
-
-		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
-			this.layoutSpec = "[]";
-		}
-
-		var elementsJson = JSON.parse(this.layoutSpec);
-
-		var alreadyFound = false;
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				alreadyFound = true;
-				break;
-			}
-		}
-
-		if(!alreadyFound) {
-			elementsJson.push(itemDef);
-		}
-
-		this.layoutSpec = JSON.stringify(elementsJson);
-	*}
-	
-	/** Removes a root element by key.
-
- 	<example>
-	You want to remove root element
-	<code>
-	KPITILE.removeLayout(String key);<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void removeLayout (
-			String key
-			) {*
-
-		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
-			this.layoutSpec = "[]";
-		}
-
-		var elementsJson = JSON.parse(this.layoutSpec);
-
-		var alreadyFound = false;
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson.splice(i,1);
-				break;
-			}
-		}
-
-		// remove all items with this parent
-		for (var i = elementsJson.length - 1; i >= 0; i--){
-			if (elementsJson[i].parentKey == key) {
-				elementsJson.splice(i,1);
-			}
-		}
-
-		this.layoutSpec = JSON.stringify(elementsJson);
-	*}
-
-	/** Insert a root element by index.
-
- 	<example>
-	You want to insert a root element
-	<code>
-	KPITILE.insertLayout(index [int], key [String], value [String]);<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void insertLayout (
-			/**Index to Insert (0-based)*/int insertionIndex0based,
-			/**Property Name*/String key, 
-			/**Property Value*/String value
-			) {*
-
-		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
-			this.layoutSpec = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.layoutSpec);
-		var newElementsJson = [];
-
-		var itemDef = {
-			leaf:true,
-			key:key, 
-			value:value
-		};
-
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (i == insertionIndex0based) {
-				newElementsJson.push(itemDef);
-			}
-
-			newElementsJson.push(elementsJson[i]);
-		}
-
-		this.layoutSpec = JSON.stringify(newElementsJson);
-	*}
-
-	/**
-	 * Updates given Layout<br/>
-	 */
-	void updateLayout (
-			/**Property Name*/String key, 
-			/**Property Value*/String value
-			) 
-	{*
-		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
-			this.layoutSpec = "[]";
-		}
-
-		var itemDef = {
-			leaf:true,
-			key:key, 
-			value:value
-		};
-
-		var elementsJson = JSON.parse(this.layoutSpec);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == elementKey) {
-				elementsJson[i] = itemDef;
-				break;
-			}
-		}
-
-		this.layoutSpec = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Returns Key at given Index<br/>
-	 */
-	String getLayoutAtIndex (
-			/**Index to pick the key*/ int index0based
-			) 
-	{*
-		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
-			this.layoutSpec = "[]";
-		}
-
-		var elementsJson = JSON.parse(this.layoutSpec);
-
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (index0based == i) {
-				return elementsJson[i].key;
-			}
-		}
-
-		return "";
-	*}
-
-	/**
-	 * Gets Layouts As JSON String
-	 */	
-	String getLayoutsAsJSON() {*
-		var jsonObject = JSON.parse(this.layoutSpec);
-		return JSON.stringify(jsonObject, null, 4);
-	*}
-	
-	/**
-	 * Sets the Value for Layout keys<br/>
-	 */
-	void setLayoutValues (
-			/**/ String keys,
-			/**/ String separator,
-	        /* Value */ String value
-			) 
-	{*
-		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.layoutSpec);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].value = value;
-					break;
-				}
-			}
-		}
-		
-		this.layoutSpec = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Value for Layout Key<br/>
-	 */
-	void setLayoutValue (
-			/**/ String key,
-			/**/ String value
-			) 
-	{*
-		if (this.layoutSpec === undefined || this.layoutSpec === "" || this.layoutSpec === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.layoutSpec);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].value = value;
-				break;
-			}
-		}
-
-		this.layoutSpec = JSON.stringify(elementsJson);
-	*}
 
 
 

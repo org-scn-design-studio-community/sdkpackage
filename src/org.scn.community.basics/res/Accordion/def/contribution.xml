@@ -130,18 +130,18 @@
 		<defaultValue property="WIDTH">260</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 		
-		<defaultValue property="cleanAll">false</defaultValue>
-		<defaultValue property="defaultImage"></defaultValue>
-		<defaultValue property="elementsContent">[]</defaultValue>
-		<defaultValue property="expandedKey"></defaultValue>
-		<defaultValue property="imageSize">Size_16px</defaultValue>
-		<defaultValue property="maxSectionHeight">200</defaultValue>
-		<defaultValue property="memberDisplay">Text</defaultValue>
-		<defaultValue property="onFirstExpand"></defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
-		<defaultValue property="selectedKey"></defaultValue>
-		<defaultValue property="supportedContentNotation">PARENT_CHILD_TEXT_URL</defaultValue>
-		<defaultValue property="withImage">true</defaultValue>
+		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="defaultImage"><![CDATA[]]></defaultValue>
+		<defaultValue property="elementsContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="expandedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="imageSize"><![CDATA[Size_16px]]></defaultValue>
+		<defaultValue property="maxSectionHeight"><![CDATA[200]]></defaultValue>
+		<defaultValue property="memberDisplay"><![CDATA[Text]]></defaultValue>
+		<defaultValue property="onFirstExpand"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="supportedContentNotation"><![CDATA[PARENT_CHILD_TEXT_URL]]></defaultValue>
+		<defaultValue property="withImage"><![CDATA[true]]></defaultValue>
 
 	</initialization>
 

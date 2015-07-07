@@ -322,18 +322,18 @@
 		<defaultValue property="WIDTH">260</defaultValue>
 		<defaultValue property="HEIGHT">600</defaultValue>
 		
-		<defaultValue property="cleanAll">false</defaultValue>
-		<defaultValue property="defaultImage"></defaultValue>
-		<defaultValue property="elementsContent">[]</defaultValue>
-		<defaultValue property="expandedKey"></defaultValue>
-		<defaultValue property="imageSize">Size_16px</defaultValue>
-		<defaultValue property="maxSectionHeight">200</defaultValue>
-		<defaultValue property="memberDisplay">Text</defaultValue>
-		<defaultValue property="onFirstExpand"></defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
-		<defaultValue property="selectedKey"></defaultValue>
-		<defaultValue property="supportedContentNotation">PARENT_CHILD_TEXT_URL</defaultValue>
-		<defaultValue property="withImage">true</defaultValue>
+		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="defaultImage"><![CDATA[]]></defaultValue>
+		<defaultValue property="elementsContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="expandedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="imageSize"><![CDATA[Size_16px]]></defaultValue>
+		<defaultValue property="maxSectionHeight"><![CDATA[200]]></defaultValue>
+		<defaultValue property="memberDisplay"><![CDATA[Text]]></defaultValue>
+		<defaultValue property="onFirstExpand"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="supportedContentNotation"><![CDATA[PARENT_CHILD_TEXT_URL]]></defaultValue>
+		<defaultValue property="withImage"><![CDATA[true]]></defaultValue>
 
 	</initialization>
 
@@ -399,10 +399,10 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="activities">[]</defaultValue>
-		<defaultValue property="categories">[]</defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
-		<defaultValue property="states">[]</defaultValue>
+		<defaultValue property="activities"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="categories"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="states"><![CDATA[[]]]></defaultValue>
 
 	</initialization>
 
@@ -504,14 +504,14 @@
 		<defaultValue property="WIDTH">48</defaultValue>
 		<defaultValue property="HEIGHT">48</defaultValue>
 		
-		<defaultValue property="buttonType">Default</defaultValue>
-		<defaultValue property="icon">sap-icon://menu2</defaultValue>
-		<defaultValue property="items">[]</defaultValue>
-		<defaultValue property="onPopoverSelect"></defaultValue>
-		<defaultValue property="placement">Auto</defaultValue>
-		<defaultValue property="selectedItem"></defaultValue>
-		<defaultValue property="selectedKey"></defaultValue>
-		<defaultValue property="text"></defaultValue>
+		<defaultValue property="buttonType"><![CDATA[Default]]></defaultValue>
+		<defaultValue property="icon"><![CDATA[sap-icon://menu2]]></defaultValue>
+		<defaultValue property="items"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="onPopoverSelect"><![CDATA[]]></defaultValue>
+		<defaultValue property="placement"><![CDATA[Auto]]></defaultValue>
+		<defaultValue property="selectedItem"><![CDATA[]]></defaultValue>
+		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="text"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -595,12 +595,12 @@
 		<defaultValue property="WIDTH">auto</defaultValue>
 		<defaultValue property="HEIGHT">38</defaultValue>
 		
-		<defaultValue property="displayLogoff"></defaultValue>
-		<defaultValue property="displayWelcome">true</defaultValue>
-		<defaultValue property="logoSrc"></defaultValue>
-		<defaultValue property="logoText"></defaultValue>
-		<defaultValue property="onLogoff"></defaultValue>
-		<defaultValue property="userName"></defaultValue>
+		<defaultValue property="displayLogoff"><![CDATA[]]></defaultValue>
+		<defaultValue property="displayWelcome"><![CDATA[true]]></defaultValue>
+		<defaultValue property="logoSrc"><![CDATA[]]></defaultValue>
+		<defaultValue property="logoText"><![CDATA[]]></defaultValue>
+		<defaultValue property="onLogoff"><![CDATA[]]></defaultValue>
+		<defaultValue property="userName"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -738,10 +738,10 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
 		
-		<defaultValue property="image"></defaultValue>
-		<defaultValue property="name">Last, First</defaultValue>
-		<defaultValue property="onPress"></defaultValue>
-		<defaultValue property="title">Expert for All Issues</defaultValue>
+		<defaultValue property="image"><![CDATA[]]></defaultValue>
+		<defaultValue property="name"><![CDATA[Last, First]]></defaultValue>
+		<defaultValue property="onPress"><![CDATA[]]></defaultValue>
+		<defaultValue property="title"><![CDATA[Expert for All Issues]]></defaultValue>
 
 	</initialization>
 
@@ -886,19 +886,19 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">300</defaultValue>
 		
-		<defaultValue property="DCurrentValue">TODAY</defaultValue>
-		<defaultValue property="DSelectionType">Single</defaultValue>
-		<defaultValue property="DValue">TODAY</defaultValue>
-		<defaultValue property="DValueF">TODAY</defaultValue>
-		<defaultValue property="DValueT">TODAY</defaultValue>
-		<defaultValue property="firstDayOffset">1</defaultValue>
-		<defaultValue property="monthsPerRow">1</defaultValue>
-		<defaultValue property="monthsToDisplay">1</defaultValue>
-		<defaultValue property="onCurrentChanged"></defaultValue>
-		<defaultValue property="onRangeChanged"></defaultValue>
-		<defaultValue property="onSingleChanged"></defaultValue>
-		<defaultValue property="singleRow">false</defaultValue>
-		<defaultValue property="weeksPerRow">1</defaultValue>
+		<defaultValue property="DCurrentValue"><![CDATA[TODAY]]></defaultValue>
+		<defaultValue property="DSelectionType"><![CDATA[Single]]></defaultValue>
+		<defaultValue property="DValue"><![CDATA[TODAY]]></defaultValue>
+		<defaultValue property="DValueF"><![CDATA[TODAY]]></defaultValue>
+		<defaultValue property="DValueT"><![CDATA[TODAY]]></defaultValue>
+		<defaultValue property="firstDayOffset"><![CDATA[1]]></defaultValue>
+		<defaultValue property="monthsPerRow"><![CDATA[1]]></defaultValue>
+		<defaultValue property="monthsToDisplay"><![CDATA[1]]></defaultValue>
+		<defaultValue property="onCurrentChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="onRangeChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSingleChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="singleRow"><![CDATA[false]]></defaultValue>
+		<defaultValue property="weeksPerRow"><![CDATA[1]]></defaultValue>
 
 	</initialization>
 
@@ -982,12 +982,12 @@
 		<defaultValue property="WIDTH">230</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="cleanAll">false</defaultValue>
-		<defaultValue property="elements">[]</defaultValue>
-		<defaultValue property="fallbackPicture"></defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
-		<defaultValue property="pictureSize">Size_16px</defaultValue>
-		<defaultValue property="withPicture">true</defaultValue>
+		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="elements"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="fallbackPicture"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="pictureSize"><![CDATA[Size_16px]]></defaultValue>
+		<defaultValue property="withPicture"><![CDATA[true]]></defaultValue>
 
 	</initialization>
 
@@ -1044,9 +1044,9 @@
 		<defaultValue property="WIDTH">270</defaultValue>
 		<defaultValue property="HEIGHT">134</defaultValue>
 		
-		<defaultValue property="colorString">red</defaultValue>
-		<defaultValue property="colorStringHex"></defaultValue>
-		<defaultValue property="onColorChange"></defaultValue>
+		<defaultValue property="colorString"><![CDATA[red]]></defaultValue>
+		<defaultValue property="colorStringHex"><![CDATA[]]></defaultValue>
+		<defaultValue property="onColorChange"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -1070,7 +1070,7 @@
 	<property
 		id="DDate"
 		type="String"
-		title="Date (yyyymmdd)"
+		title="Date"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1079,7 +1079,7 @@
 	<property
 		id="DEndDate"
 		type="String"
-		title="Date (yyyymmdd)"
+		title="End Date"
 		group="Display"
 		bindable="true"
 		visible="false">
@@ -1097,7 +1097,7 @@
 	<property
 		id="DLangPattern"
 		type="String"
-		title="Custom Format Pattern"
+		title="Custom Pattern"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1106,7 +1106,7 @@
 	<property
 		id="DLangRelative"
 		type="boolean"
-		title="Custom Format Relative"
+		title="Custom Relative"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1115,7 +1115,7 @@
 	<property
 		id="DLangStyle"
 		type="String"
-		title="Custom Format Style"
+		title="Custom Style"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1124,7 +1124,7 @@
 	<property
 		id="DSpecialDay"
 		type="int"
-		title="Day Of Week To Start (CustomWeek)"
+		title="Day Of Week To Start"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1133,7 +1133,7 @@
 	<property
 		id="DSpecialDuration"
 		type="int"
-		title="Duration Of Custom Range (Custom*)"
+		title="Duration Of Custom Range"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1142,7 +1142,7 @@
 	<property
 		id="DStartDate"
 		type="String"
-		title="Start Date (yyyymmdd)"
+		title="Start Date"
 		group="Display"
 		bindable="true"
 		visible="false">
@@ -1184,18 +1184,18 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
 		
-		<defaultValue property="DDate"></defaultValue>
-		<defaultValue property="DEndDate"></defaultValue>
-		<defaultValue property="DLangFormat">false</defaultValue>
-		<defaultValue property="DLangPattern"></defaultValue>
-		<defaultValue property="DLangRelative">false</defaultValue>
-		<defaultValue property="DLangStyle">Short</defaultValue>
-		<defaultValue property="DSpecialDay">0</defaultValue>
-		<defaultValue property="DSpecialDuration">14</defaultValue>
-		<defaultValue property="DStartDate"></defaultValue>
-		<defaultValue property="DViewType">Week</defaultValue>
-		<defaultValue property="editable">true</defaultValue>
-		<defaultValue property="onChange"></defaultValue>
+		<defaultValue property="DDate"><![CDATA[]]></defaultValue>
+		<defaultValue property="DEndDate"><![CDATA[]]></defaultValue>
+		<defaultValue property="DLangFormat"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DLangPattern"><![CDATA[]]></defaultValue>
+		<defaultValue property="DLangRelative"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DLangStyle"><![CDATA[Short]]></defaultValue>
+		<defaultValue property="DSpecialDay"><![CDATA[0]]></defaultValue>
+		<defaultValue property="DSpecialDuration"><![CDATA[14]]></defaultValue>
+		<defaultValue property="DStartDate"><![CDATA[]]></defaultValue>
+		<defaultValue property="DViewType"><![CDATA[Week]]></defaultValue>
+		<defaultValue property="editable"><![CDATA[true]]></defaultValue>
+		<defaultValue property="onChange"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -1264,7 +1264,7 @@
 	<property
 		id="DMax"
 		type="String"
-		title="Maximum Date Value (yyyymmdd)"
+		title="Maximum Date"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1273,7 +1273,7 @@
 	<property
 		id="DMin"
 		type="String"
-		title="Minimum Date Value (yyyymmdd)"
+		title="Minimum Date"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1282,7 +1282,7 @@
 	<property
 		id="DValue"
 		type="String"
-		title="First Date Value (yyyymmdd)"
+		title="First Date"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1291,7 +1291,7 @@
 	<property
 		id="DValue2"
 		type="String"
-		title="Second Date Value (yyyymmdd)"
+		title="Second Date"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1360,21 +1360,21 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
 		
-		<defaultValue property="DGranulatiry">Day</defaultValue>
-		<defaultValue property="DLangFormat">false</defaultValue>
-		<defaultValue property="DLangPattern"></defaultValue>
-		<defaultValue property="DLangRelative">false</defaultValue>
-		<defaultValue property="DLangStyle">Short</defaultValue>
-		<defaultValue property="DMax"></defaultValue>
-		<defaultValue property="DMin"></defaultValue>
-		<defaultValue property="DValue"></defaultValue>
-		<defaultValue property="DValue2"></defaultValue>
-		<defaultValue property="onChange"></defaultValue>
-		<defaultValue property="showBubbles">true</defaultValue>
-		<defaultValue property="smallStepWidth">1</defaultValue>
-		<defaultValue property="stepLabels"></defaultValue>
-		<defaultValue property="totalUnits">0</defaultValue>
-		<defaultValue property="vertical">false</defaultValue>
+		<defaultValue property="DGranulatiry"><![CDATA[Day]]></defaultValue>
+		<defaultValue property="DLangFormat"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DLangPattern"><![CDATA[]]></defaultValue>
+		<defaultValue property="DLangRelative"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DLangStyle"><![CDATA[Short]]></defaultValue>
+		<defaultValue property="DMax"><![CDATA[]]></defaultValue>
+		<defaultValue property="DMin"><![CDATA[]]></defaultValue>
+		<defaultValue property="DValue"><![CDATA[]]></defaultValue>
+		<defaultValue property="DValue2"><![CDATA[]]></defaultValue>
+		<defaultValue property="onChange"><![CDATA[]]></defaultValue>
+		<defaultValue property="showBubbles"><![CDATA[true]]></defaultValue>
+		<defaultValue property="smallStepWidth"><![CDATA[1]]></defaultValue>
+		<defaultValue property="stepLabels"><![CDATA[]]></defaultValue>
+		<defaultValue property="totalUnits"><![CDATA[0]]></defaultValue>
+		<defaultValue property="vertical"><![CDATA[false]]></defaultValue>
 
 	</initialization>
 
@@ -1537,7 +1537,7 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="url"></defaultValue>
+		<defaultValue property="url"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -1586,8 +1586,8 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="tag">embed</defaultValue>
-		<defaultValue property="url"></defaultValue>
+		<defaultValue property="tag"><![CDATA[embed]]></defaultValue>
+		<defaultValue property="url"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -1636,8 +1636,8 @@
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
 		
-		<defaultValue property="fallbackPicture"></defaultValue>
-		<defaultValue property="picture"></defaultValue>
+		<defaultValue property="fallbackPicture"><![CDATA[]]></defaultValue>
+		<defaultValue property="picture"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -2012,7 +2012,7 @@
 		title="Layout Properties"
 		group="Display"
 		bindable="true"
-		visible="true">
+		visible="false">
 
 	</property>
 	<property
@@ -2030,12 +2030,12 @@
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="WIDTH">220</defaultValue>
-		<defaultValue property="HEIGHT">190</defaultValue>
+		<defaultValue property="WIDTH">260</defaultValue>
+		<defaultValue property="HEIGHT">240</defaultValue>
 		
-		<defaultValue property="componentsSpec">[]</defaultValue>
-		<defaultValue property="layoutSpec">[]</defaultValue>
-		<defaultValue property="onClick"></defaultValue>
+		<defaultValue property="componentsSpec"><![CDATA[[{"parentKey":"ROOT","key":"HEADER","leaf":false,"componentType":"Label","top":"10","left":"10","width":"200","height":"20"},{"parentKey":"ROOT","key":"TITLE","leaf":false,"componentType":"Label","top":"40","left":"10","width":"200","height":"20"},{"parentKey":"ROOT","key":"VALUE","leaf":false,"componentType":"Label","top":"60","left":"-1","right":"10","width":"200","height":"40"},{"parentKey":"ROOT","key":"CHART","leaf":false,"specification":"<MicroAreaChart minXValue='0' maxXValue='100' minYValue='0' maxYValue='100' class='marginTopLeft' press='press'>\n       <firstXLabel>\n         <MicroAreaChartLabel label='June 1' color='Good'/>\n       </firstXLabel>\n       <lastXLabel>\n         <MicroAreaChartLabel label='June 30' color='Critical'/>\n       </lastXLabel>\n       <firstYLabel>\n         <MicroAreaChartLabel label='0M' color='Good'/>\n       </firstYLabel>\n       <lastYLabel>\n         <MicroAreaChartLabel label='80M' color='Critical'/>\n       </lastYLabel>\n       <chart>\n         <MicroAreaChartItem>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='20' />\n            <MicroAreaChartPoint x='60' y='20' />\n            <MicroAreaChartPoint x='100' y='80' />\n          </points>\n         </MicroAreaChartItem>\n       </chart>\n       <target>\n         <MicroAreaChartItem>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='30' />\n            <MicroAreaChartPoint x='60' y='40' />\n            <MicroAreaChartPoint x='100' y='90' />\n          </points>\n         </MicroAreaChartItem>\n       </target>\n\n       <minThreshold>\n         <MicroAreaChartItem color='Error'>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='20' />\n            <MicroAreaChartPoint x='60' y='30' />\n            <MicroAreaChartPoint x='100' y='70' />\n          </points>\n         </MicroAreaChartItem>\n       </minThreshold>\n       </MicroAreaChart>","componentType":"MicroAreaChart","bottom":"40","top":"-1","left":"10","right":"10","width":"auto","height":"80"},{"parentKey":"ROOT","key":"FOOTER","leaf":false,"componentType":"Label","top":"-1","bottom":"10"},{"parentKey":"HEADER","key":"HEADER/text","leaf":true,"value":"Header"},{"parentKey":"HEADER","key":"HEADER/styleClass","leaf":true,"value":"scn-pack-KpiTile-Header"},{"parentKey":"TITLE","key":"TITLE/text","leaf":true,"value":"Title"},{"parentKey":"TITLE","key":"TITLE/styleClass","leaf":true,"value":"scn-pack-KpiTile-Title"},{"parentKey":"VALUE","key":"VALUE/text","leaf":true,"value":"Value"},{"parentKey":"VALUE","key":"VALUE/styleClass","leaf":true,"value":"scn-pack-KpiTile-Value"},{"parentKey":"VALUE","key":"VALUE/textAlign","leaf":true,"value":"sap.ui.core.TextAlign.Right"},{"parentKey":"FOOTER","key":"FOOTER/text","leaf":true,"value":"Footer"}]]]></defaultValue>
+		<defaultValue property="layoutSpec"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="onClick"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -2283,30 +2283,30 @@
 		<defaultValue property="WIDTH">220</defaultValue>
 		<defaultValue property="HEIGHT">190</defaultValue>
 		
-		<defaultValue property="data"></defaultValue>
-		<defaultValue property="footerCssClass"></defaultValue>
-		<defaultValue property="footerHAlign">Left</defaultValue>
-		<defaultValue property="footerText">Footer</defaultValue>
-		<defaultValue property="headerCssClass"></defaultValue>
-		<defaultValue property="headerHAlign">Left</defaultValue>
-		<defaultValue property="headerText">Header</defaultValue>
-		<defaultValue property="image"></defaultValue>
-		<defaultValue property="imageSize">Size_16px</defaultValue>
-		<defaultValue property="linkText"></defaultValue>
-		<defaultValue property="linkTooltip"></defaultValue>
-		<defaultValue property="onClick"></defaultValue>
-		<defaultValue property="onLinkClick"></defaultValue>
-		<defaultValue property="titleCssClass"></defaultValue>
-		<defaultValue property="titleText">Title</defaultValue>
-		<defaultValue property="valueCssClass"></defaultValue>
-		<defaultValue property="valueDecimalPlaces">D0</defaultValue>
-		<defaultValue property="valueFloat"></defaultValue>
-		<defaultValue property="valueHAlign">Left</defaultValue>
-		<defaultValue property="valuePrefixCssClass"></defaultValue>
-		<defaultValue property="valuePrefixText"></defaultValue>
-		<defaultValue property="valueSuffixCssClass"></defaultValue>
-		<defaultValue property="valueSuffixText"> M$</defaultValue>
-		<defaultValue property="valueText">Value</defaultValue>
+		<defaultValue property="data"><![CDATA[]]></defaultValue>
+		<defaultValue property="footerCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="footerHAlign"><![CDATA[Left]]></defaultValue>
+		<defaultValue property="footerText"><![CDATA[Footer]]></defaultValue>
+		<defaultValue property="headerCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="headerHAlign"><![CDATA[Left]]></defaultValue>
+		<defaultValue property="headerText"><![CDATA[Header]]></defaultValue>
+		<defaultValue property="image"><![CDATA[]]></defaultValue>
+		<defaultValue property="imageSize"><![CDATA[Size_16px]]></defaultValue>
+		<defaultValue property="linkText"><![CDATA[]]></defaultValue>
+		<defaultValue property="linkTooltip"><![CDATA[]]></defaultValue>
+		<defaultValue property="onClick"><![CDATA[]]></defaultValue>
+		<defaultValue property="onLinkClick"><![CDATA[]]></defaultValue>
+		<defaultValue property="titleCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="titleText"><![CDATA[Title]]></defaultValue>
+		<defaultValue property="valueCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="valueDecimalPlaces"><![CDATA[D0]]></defaultValue>
+		<defaultValue property="valueFloat"><![CDATA[]]></defaultValue>
+		<defaultValue property="valueHAlign"><![CDATA[Left]]></defaultValue>
+		<defaultValue property="valuePrefixCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="valuePrefixText"><![CDATA[]]></defaultValue>
+		<defaultValue property="valueSuffixCssClass"><![CDATA[]]></defaultValue>
+		<defaultValue property="valueSuffixText"><![CDATA[ M$]]></defaultValue>
+		<defaultValue property="valueText"><![CDATA[Value]]></defaultValue>
 
 	</initialization>
 
@@ -3498,11 +3498,11 @@
 		<defaultValue property="WIDTH">230</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="DCleanAll">false</defaultValue>
-		<defaultValue property="DElementsContent">[]</defaultValue>
-		<defaultValue property="DSelectedKey"></defaultValue>
-		<defaultValue property="numberOfVisibleSteps"></defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
+		<defaultValue property="DCleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DElementsContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DSelectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="numberOfVisibleSteps"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -3560,9 +3560,9 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
 		
-		<defaultValue property="feedUrl">http://cdn.eex.com/rss/de/market.rss</defaultValue>
-		<defaultValue property="useBuildInXsl">true</defaultValue>
-		<defaultValue property="xslUrl"></defaultValue>
+		<defaultValue property="feedUrl"><![CDATA[http://cdn.eex.com/rss/de/market.rss]]></defaultValue>
+		<defaultValue property="useBuildInXsl"><![CDATA[true]]></defaultValue>
+		<defaultValue property="xslUrl"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -3698,18 +3698,18 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">22</defaultValue>
 		
-		<defaultValue property="DCleanAll">false</defaultValue>
-		<defaultValue property="DDefaultImage"></defaultValue>
-		<defaultValue property="DElementsContent">[]</defaultValue>
-		<defaultValue property="DImageSize">Size_16px</defaultValue>
-		<defaultValue property="DPressedButtonKey"></defaultValue>
-		<defaultValue property="DPressedItemKey"></defaultValue>
-		<defaultValue property="DSelectedKeys">[]</defaultValue>
-		<defaultValue property="DSelectionType">Single</defaultValue>
-		<defaultValue property="DWithImages"></defaultValue>
-		<defaultValue property="onButtonPressed"></defaultValue>
-		<defaultValue property="onItemPressed"></defaultValue>
-		<defaultValue property="onSelected"></defaultValue>
+		<defaultValue property="DCleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DDefaultImage"><![CDATA[]]></defaultValue>
+		<defaultValue property="DElementsContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DImageSize"><![CDATA[Size_16px]]></defaultValue>
+		<defaultValue property="DPressedButtonKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="DPressedItemKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSelectedKeys"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DSelectionType"><![CDATA[Single]]></defaultValue>
+		<defaultValue property="DWithImages"><![CDATA[]]></defaultValue>
+		<defaultValue property="onButtonPressed"><![CDATA[]]></defaultValue>
+		<defaultValue property="onItemPressed"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelected"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -4038,14 +4038,14 @@
 		<defaultValue property="WIDTH">230</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="cleanAll">false</defaultValue>
-		<defaultValue property="defaultImage"></defaultValue>
-		<defaultValue property="expandedKey"></defaultValue>
-		<defaultValue property="nodesContent">[]</defaultValue>
-		<defaultValue property="onFirstExpand"></defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
-		<defaultValue property="roundtrip"></defaultValue>
-		<defaultValue property="selectedKey"></defaultValue>
+		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="defaultImage"><![CDATA[]]></defaultValue>
+		<defaultValue property="expandedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="nodesContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="onFirstExpand"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="roundtrip"><![CDATA[]]></defaultValue>
+		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

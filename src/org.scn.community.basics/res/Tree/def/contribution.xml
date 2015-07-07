@@ -94,14 +94,14 @@
 		<defaultValue property="WIDTH">230</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="cleanAll">false</defaultValue>
-		<defaultValue property="defaultImage"></defaultValue>
-		<defaultValue property="expandedKey"></defaultValue>
-		<defaultValue property="nodesContent">[]</defaultValue>
-		<defaultValue property="onFirstExpand"></defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
-		<defaultValue property="roundtrip"></defaultValue>
-		<defaultValue property="selectedKey"></defaultValue>
+		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="defaultImage"><![CDATA[]]></defaultValue>
+		<defaultValue property="expandedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="nodesContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="onFirstExpand"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="roundtrip"><![CDATA[]]></defaultValue>
+		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

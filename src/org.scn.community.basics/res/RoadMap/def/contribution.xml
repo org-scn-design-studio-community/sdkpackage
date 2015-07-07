@@ -68,11 +68,11 @@
 		<defaultValue property="WIDTH">230</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="DCleanAll">false</defaultValue>
-		<defaultValue property="DElementsContent">[]</defaultValue>
-		<defaultValue property="DSelectedKey"></defaultValue>
-		<defaultValue property="numberOfVisibleSteps"></defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
+		<defaultValue property="DCleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DElementsContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DSelectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="numberOfVisibleSteps"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

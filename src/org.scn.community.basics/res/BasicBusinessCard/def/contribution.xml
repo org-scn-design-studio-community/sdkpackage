@@ -59,10 +59,10 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
 		
-		<defaultValue property="image"></defaultValue>
-		<defaultValue property="name">Last, First</defaultValue>
-		<defaultValue property="onPress"></defaultValue>
-		<defaultValue property="title">Expert for All Issues</defaultValue>
+		<defaultValue property="image"><![CDATA[]]></defaultValue>
+		<defaultValue property="name"><![CDATA[Last, First]]></defaultValue>
+		<defaultValue property="onPress"><![CDATA[]]></defaultValue>
+		<defaultValue property="title"><![CDATA[Expert for All Issues]]></defaultValue>
 
 	</initialization>
 

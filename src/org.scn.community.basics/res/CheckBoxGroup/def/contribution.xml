@@ -77,12 +77,12 @@
 		<defaultValue property="WIDTH">230</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="cleanAll">false</defaultValue>
-		<defaultValue property="elements">[]</defaultValue>
-		<defaultValue property="fallbackPicture"></defaultValue>
-		<defaultValue property="onSelectionChanged"></defaultValue>
-		<defaultValue property="pictureSize">Size_16px</defaultValue>
-		<defaultValue property="withPicture">true</defaultValue>
+		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="elements"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="fallbackPicture"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="pictureSize"><![CDATA[Size_16px]]></defaultValue>
+		<defaultValue property="withPicture"><![CDATA[true]]></defaultValue>
 
 	</initialization>
 

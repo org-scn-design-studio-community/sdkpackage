@@ -160,21 +160,21 @@
 		<defaultValue property="WIDTH">800</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="DClearOthers">true</defaultValue>
-		<defaultValue property="DContentMode">Resultset</defaultValue>
-		<defaultValue property="DCustomDimensions">[]</defaultValue>
-		<defaultValue property="DDisplayText">Text</defaultValue>
-		<defaultValue property="DElements"></defaultValue>
-		<defaultValue property="DFacetWidth">160</defaultValue>
-		<defaultValue property="DMaxDisplayMembers">5</defaultValue>
-		<defaultValue property="DMaxMembers">1000</defaultValue>
-		<defaultValue property="DSelection"></defaultValue>
-		<defaultValue property="DSortingDirection">Ascending</defaultValue>
-		<defaultValue property="DSortingType">Default</defaultValue>
-		<defaultValue property="DZeroValuesMode">Show</defaultValue>
-		<defaultValue property="dataCellList">null</defaultValue>
-		<defaultValue property="onBeforeRender"></defaultValue>
-		<defaultValue property="onInternalSelectionChanged">this.private_onSelectionChanged();</defaultValue>
+		<defaultValue property="DClearOthers"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DContentMode"><![CDATA[Resultset]]></defaultValue>
+		<defaultValue property="DCustomDimensions"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DDisplayText"><![CDATA[Text]]></defaultValue>
+		<defaultValue property="DElements"><![CDATA[]]></defaultValue>
+		<defaultValue property="DFacetWidth"><![CDATA[160]]></defaultValue>
+		<defaultValue property="DMaxDisplayMembers"><![CDATA[5]]></defaultValue>
+		<defaultValue property="DMaxMembers"><![CDATA[1000]]></defaultValue>
+		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSortingDirection"><![CDATA[Ascending]]></defaultValue>
+		<defaultValue property="DSortingType"><![CDATA[Default]]></defaultValue>
+		<defaultValue property="DZeroValuesMode"><![CDATA[Show]]></defaultValue>
+		<defaultValue property="dataCellList"><![CDATA[null]]></defaultValue>
+		<defaultValue property="onBeforeRender"><![CDATA[]]></defaultValue>
+		<defaultValue property="onInternalSelectionChanged"><![CDATA[this.private_onSelectionChanged();]]></defaultValue>
 
 	</initialization>
 

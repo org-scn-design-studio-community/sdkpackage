@@ -17,7 +17,7 @@
 	<property
 		id="DDate"
 		type="String"
-		title="Date (yyyymmdd)"
+		title="Date"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -26,7 +26,7 @@
 	<property
 		id="DEndDate"
 		type="String"
-		title="Date (yyyymmdd)"
+		title="End Date"
 		group="Display"
 		bindable="true"
 		visible="false">
@@ -44,7 +44,7 @@
 	<property
 		id="DLangPattern"
 		type="String"
-		title="Custom Format Pattern"
+		title="Custom Pattern"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -53,7 +53,7 @@
 	<property
 		id="DLangRelative"
 		type="boolean"
-		title="Custom Format Relative"
+		title="Custom Relative"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -62,7 +62,7 @@
 	<property
 		id="DLangStyle"
 		type="String"
-		title="Custom Format Style"
+		title="Custom Style"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -71,7 +71,7 @@
 	<property
 		id="DSpecialDay"
 		type="int"
-		title="Day Of Week To Start (CustomWeek)"
+		title="Day Of Week To Start"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -80,7 +80,7 @@
 	<property
 		id="DSpecialDuration"
 		type="int"
-		title="Duration Of Custom Range (Custom*)"
+		title="Duration Of Custom Range"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -89,7 +89,7 @@
 	<property
 		id="DStartDate"
 		type="String"
-		title="Start Date (yyyymmdd)"
+		title="Start Date"
 		group="Display"
 		bindable="true"
 		visible="false">
@@ -131,18 +131,18 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
 		
-		<defaultValue property="DDate"></defaultValue>
-		<defaultValue property="DEndDate"></defaultValue>
-		<defaultValue property="DLangFormat">false</defaultValue>
-		<defaultValue property="DLangPattern"></defaultValue>
-		<defaultValue property="DLangRelative">false</defaultValue>
-		<defaultValue property="DLangStyle">Short</defaultValue>
-		<defaultValue property="DSpecialDay">0</defaultValue>
-		<defaultValue property="DSpecialDuration">14</defaultValue>
-		<defaultValue property="DStartDate"></defaultValue>
-		<defaultValue property="DViewType">Week</defaultValue>
-		<defaultValue property="editable">true</defaultValue>
-		<defaultValue property="onChange"></defaultValue>
+		<defaultValue property="DDate"><![CDATA[]]></defaultValue>
+		<defaultValue property="DEndDate"><![CDATA[]]></defaultValue>
+		<defaultValue property="DLangFormat"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DLangPattern"><![CDATA[]]></defaultValue>
+		<defaultValue property="DLangRelative"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DLangStyle"><![CDATA[Short]]></defaultValue>
+		<defaultValue property="DSpecialDay"><![CDATA[0]]></defaultValue>
+		<defaultValue property="DSpecialDuration"><![CDATA[14]]></defaultValue>
+		<defaultValue property="DStartDate"><![CDATA[]]></defaultValue>
+		<defaultValue property="DViewType"><![CDATA[Week]]></defaultValue>
+		<defaultValue property="editable"><![CDATA[true]]></defaultValue>
+		<defaultValue property="onChange"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

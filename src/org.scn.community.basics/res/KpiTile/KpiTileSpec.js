@@ -91,7 +91,7 @@
       "ztlType": "DoubleArray"
     },
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"HEADER\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"10\",\"left\":\"10\",\"width\":\"200\",\"height\":\"20\"},{\"parentKey\":\"ROOT\",\"key\":\"TITLE\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"40\",\"left\":\"10\",\"width\":\"200\",\"height\":\"20\"},{\"parentKey\":\"ROOT\",\"key\":\"VALUE\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"60\",\"left\":\"-1\",\"right\":\"10\",\"width\":\"200\",\"height\":\"40\"},{\"parentKey\":\"ROOT\",\"key\":\"CHART\",\"leaf\":false,\"specification\":\"<MicroAreaChart minXValue='0' maxXValue='100' minYValue='0' maxYValue='100' class='marginTopLeft' press='press'>\\n       <firstXLabel>\\n         <MicroAreaChartLabel label='June 1' color='Good'/>\\n       <\/firstXLabel>\\n       <lastXLabel>\\n         <MicroAreaChartLabel label='June 30' color='Critical'/>\\n       <\/lastXLabel>\\n       <firstYLabel>\\n         <MicroAreaChartLabel label='0M' color='Good'/>\\n       <\/firstYLabel>\\n       <lastYLabel>\\n         <MicroAreaChartLabel label='80M' color='Critical'/>\\n       <\/lastYLabel>\\n       <chart>\\n         <MicroAreaChartItem>\\n           <points>\\n            <MicroAreaChartPoint x='0' y='0' />\\n            <MicroAreaChartPoint x='30' y='20' />\\n            <MicroAreaChartPoint x='60' y='20' />\\n            <MicroAreaChartPoint x='100' y='80' />\\n          <\/points>\\n         <\/MicroAreaChartItem>\\n       <\/chart>\\n       <target>\\n         <MicroAreaChartItem>\\n           <points>\\n            <MicroAreaChartPoint x='0' y='0' />\\n            <MicroAreaChartPoint x='30' y='30' />\\n            <MicroAreaChartPoint x='60' y='40' />\\n            <MicroAreaChartPoint x='100' y='90' />\\n          <\/points>\\n         <\/MicroAreaChartItem>\\n       <\/target>\\n\\n       <minThreshold>\\n         <MicroAreaChartItem color='Error'>\\n           <points>\\n            <MicroAreaChartPoint x='0' y='0' />\\n            <MicroAreaChartPoint x='30' y='20' />\\n            <MicroAreaChartPoint x='60' y='30' />\\n            <MicroAreaChartPoint x='100' y='70' />\\n          <\/points>\\n         <\/MicroAreaChartItem>\\n       <\/minThreshold>\\n       <\/MicroAreaChart>\",\"componentType\":\"MicroAreaChart\",\"bottom\":\"40\",\"top\":\"-1\",\"left\":\"10\",\"right\":\"10\",\"width\":\"auto\",\"height\":\"80\"},{\"parentKey\":\"ROOT\",\"key\":\"FOOTER\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"-1\",\"bottom\":\"10\"},{\"parentKey\":\"HEADER\",\"key\":\"HEADER/text\",\"leaf\":true,\"value\":\"Header\"},{\"parentKey\":\"HEADER\",\"key\":\"HEADER/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Header\"},{\"parentKey\":\"TITLE\",\"key\":\"TITLE/text\",\"leaf\":true,\"value\":\"Title\"},{\"parentKey\":\"TITLE\",\"key\":\"TITLE/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Title\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/text\",\"leaf\":true,\"value\":\"Value\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Value\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/textAlign\",\"leaf\":true,\"value\":\"sap.ui.core.TextAlign.Right\"},{\"parentKey\":\"FOOTER\",\"key\":\"FOOTER/text\",\"leaf\":true,\"value\":\"Footer\"}]",
     "visible": true
   },
   "layoutSpec": {
@@ -113,13 +113,15 @@
       "arrayMode": "OneLevelArray",
       "cat": "Content-Layout",
       "desc": "Layout Properties",
+      "noAps": true,
+      "noZtl": true,
       "tooltip": "Layout Properties",
       "ztlFunction": "",
       "ztlType": "SingleArray"
     },
     "type": "String",
     "value": "[]",
-    "visible": true
+    "visible": false
   },
   "onClick": {
     "opts": {
@@ -155,7 +157,7 @@
   "extension": "Component",
   "group": "ScnCommunityBasics",
   "handlerType": "sapui5",
-  "height": "190",
+  "height": "240",
   "id": "KpiTile",
   "package": "basics",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
@@ -187,7 +189,7 @@
   ],
   "title": "Kpi Tile 2.0",
   "tooltip": "Kpi Tile - Custom KPI Visualization",
-  "width": "220"
+  "width": "260"
 };
 
 })();// End of closure

@@ -33,7 +33,7 @@
 		<defaultValue property="WIDTH">10</defaultValue>
 		<defaultValue property="HEIGHT">10</defaultValue>
 		
-		<defaultValue property="content">{}</defaultValue>
+		<defaultValue property="content"><![CDATA[{}]]></defaultValue>
 
 	</initialization>
 

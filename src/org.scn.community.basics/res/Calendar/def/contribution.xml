@@ -138,19 +138,19 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">300</defaultValue>
 		
-		<defaultValue property="DCurrentValue">TODAY</defaultValue>
-		<defaultValue property="DSelectionType">Single</defaultValue>
-		<defaultValue property="DValue">TODAY</defaultValue>
-		<defaultValue property="DValueF">TODAY</defaultValue>
-		<defaultValue property="DValueT">TODAY</defaultValue>
-		<defaultValue property="firstDayOffset">1</defaultValue>
-		<defaultValue property="monthsPerRow">1</defaultValue>
-		<defaultValue property="monthsToDisplay">1</defaultValue>
-		<defaultValue property="onCurrentChanged"></defaultValue>
-		<defaultValue property="onRangeChanged"></defaultValue>
-		<defaultValue property="onSingleChanged"></defaultValue>
-		<defaultValue property="singleRow">false</defaultValue>
-		<defaultValue property="weeksPerRow">1</defaultValue>
+		<defaultValue property="DCurrentValue"><![CDATA[TODAY]]></defaultValue>
+		<defaultValue property="DSelectionType"><![CDATA[Single]]></defaultValue>
+		<defaultValue property="DValue"><![CDATA[TODAY]]></defaultValue>
+		<defaultValue property="DValueF"><![CDATA[TODAY]]></defaultValue>
+		<defaultValue property="DValueT"><![CDATA[TODAY]]></defaultValue>
+		<defaultValue property="firstDayOffset"><![CDATA[1]]></defaultValue>
+		<defaultValue property="monthsPerRow"><![CDATA[1]]></defaultValue>
+		<defaultValue property="monthsToDisplay"><![CDATA[1]]></defaultValue>
+		<defaultValue property="onCurrentChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="onRangeChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSingleChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="singleRow"><![CDATA[false]]></defaultValue>
+		<defaultValue property="weeksPerRow"><![CDATA[1]]></defaultValue>
 
 	</initialization>
 

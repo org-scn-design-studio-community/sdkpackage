@@ -34,10 +34,10 @@ ApsContent = function () {
     "opts": {
       "apsControl": "text",
       "cat": "Display-Date",
-      "desc": "Date (yyyymmdd)",
+      "desc": "Date",
       "noAps": false,
       "noZtl": false,
-      "tooltip": "Date (yyyymmdd)",
+      "tooltip": "Date Value (yyyymmdd)",
       "ztlFunction": "",
       "ztlType": "String"
     },
@@ -50,10 +50,10 @@ ApsContent = function () {
     "opts": {
       "apsControl": "text",
       "cat": "Display-Date",
-      "desc": "Date (yyyymmdd)",
+      "desc": "End Date",
       "noAps": true,
       "noZtl": false,
-      "tooltip": "Date (yyyymmdd)",
+      "tooltip": "End Date Value (yyyymmdd)",
       "ztlFunction": "-get",
       "ztlType": "String"
     },
@@ -81,8 +81,8 @@ ApsContent = function () {
   "DLangPattern": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display-Format",
-      "desc": "Custom Format Pattern",
+      "cat": "Display-Custom",
+      "desc": "Custom Pattern",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Custom Format Pattern",
@@ -97,8 +97,8 @@ ApsContent = function () {
   "DLangRelative": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display-Format",
-      "desc": "Custom Format Relative",
+      "cat": "Display-Custom",
+      "desc": "Custom Relative",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Custom Format Relative",
@@ -113,9 +113,9 @@ ApsContent = function () {
   "DLangStyle": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Display-Format",
+      "cat": "Display-Custom",
       "choiceType": "FormatStyle",
-      "desc": "Custom Format Style",
+      "desc": "Custom Style",
       "noAps": false,
       "noZtl": false,
       "options": [
@@ -144,8 +144,8 @@ ApsContent = function () {
   "DSpecialDay": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "Display-Date",
-      "desc": "Day Of Week To Start (CustomWeek)",
+      "cat": "Display-Custom",
+      "desc": "Day Of Week To Start",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Week Day, 0 - Sunday To 6 - Saturday",
@@ -160,8 +160,8 @@ ApsContent = function () {
   "DSpecialDuration": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "Display-Date",
-      "desc": "Duration Of Custom Range (Custom*)",
+      "cat": "Display-Custom",
+      "desc": "Duration Of Custom Range",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Duration Of Custom Range (Custom*)",
@@ -177,10 +177,10 @@ ApsContent = function () {
     "opts": {
       "apsControl": "text",
       "cat": "Display-Date",
-      "desc": "Start Date (yyyymmdd)",
+      "desc": "Start Date",
       "noAps": true,
       "noZtl": false,
-      "tooltip": "Start Date (yyyymmdd)",
+      "tooltip": "Start Date Value (yyyymmdd)",
       "ztlFunction": "-get",
       "ztlType": "String"
     },

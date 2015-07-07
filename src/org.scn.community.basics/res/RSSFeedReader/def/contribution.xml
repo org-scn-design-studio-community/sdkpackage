@@ -51,9 +51,9 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
 		
-		<defaultValue property="feedUrl">http://cdn.eex.com/rss/de/market.rss</defaultValue>
-		<defaultValue property="useBuildInXsl">true</defaultValue>
-		<defaultValue property="xslUrl"></defaultValue>
+		<defaultValue property="feedUrl"><![CDATA[http://cdn.eex.com/rss/de/market.rss]]></defaultValue>
+		<defaultValue property="useBuildInXsl"><![CDATA[true]]></defaultValue>
+		<defaultValue property="xslUrl"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

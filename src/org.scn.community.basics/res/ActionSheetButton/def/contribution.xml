@@ -95,14 +95,14 @@
 		<defaultValue property="WIDTH">48</defaultValue>
 		<defaultValue property="HEIGHT">48</defaultValue>
 		
-		<defaultValue property="buttonType">Default</defaultValue>
-		<defaultValue property="icon">sap-icon://menu2</defaultValue>
-		<defaultValue property="items">[]</defaultValue>
-		<defaultValue property="onPopoverSelect"></defaultValue>
-		<defaultValue property="placement">Auto</defaultValue>
-		<defaultValue property="selectedItem"></defaultValue>
-		<defaultValue property="selectedKey"></defaultValue>
-		<defaultValue property="text"></defaultValue>
+		<defaultValue property="buttonType"><![CDATA[Default]]></defaultValue>
+		<defaultValue property="icon"><![CDATA[sap-icon://menu2]]></defaultValue>
+		<defaultValue property="items"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="onPopoverSelect"><![CDATA[]]></defaultValue>
+		<defaultValue property="placement"><![CDATA[Auto]]></defaultValue>
+		<defaultValue property="selectedItem"><![CDATA[]]></defaultValue>
+		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="text"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

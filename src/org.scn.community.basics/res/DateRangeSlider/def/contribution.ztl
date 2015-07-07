@@ -105,56 +105,56 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	*}
 
 	/**
-	 * Sets Maximum Date Value (yyyymmdd) Property
+	 * Sets Maximum Date Property
 	 */	
-	void setMax( /**Maximum Date Value (yyyymmdd)*/ String max){*
+	void setMax( /**Maximum Date*/ String max){*
 		this.DMax = max;
 	*}
 
 	/**
-	 * Gets Maximum Date Value (yyyymmdd) Property
+	 * Gets Maximum Date Property
 	 */	
 	String getMax() {*
 		return this.DMax;
 	*}
 
 	/**
-	 * Sets Minimum Date Value (yyyymmdd) Property
+	 * Sets Minimum Date Property
 	 */	
-	void setMin( /**Minimum Date Value (yyyymmdd)*/ String min){*
+	void setMin( /**Minimum Date*/ String min){*
 		this.DMin = min;
 	*}
 
 	/**
-	 * Gets Minimum Date Value (yyyymmdd) Property
+	 * Gets Minimum Date Property
 	 */	
 	String getMin() {*
 		return this.DMin;
 	*}
 
 	/**
-	 * Sets First Date Value (yyyymmdd) Property
+	 * Sets First Date Property
 	 */	
-	void setValue( /**First Date Value (yyyymmdd)*/ String value){*
+	void setValue( /**First Date*/ String value){*
 		this.DValue = value;
 	*}
 
 	/**
-	 * Gets First Date Value (yyyymmdd) Property
+	 * Gets First Date Property
 	 */	
 	String getValue() {*
 		return this.DValue;
 	*}
 
 	/**
-	 * Sets Second Date Value (yyyymmdd) Property
+	 * Sets Second Date Property
 	 */	
-	void setValue2( /**Second Date Value (yyyymmdd)*/ String value2){*
+	void setValue2( /**Second Date*/ String value2){*
 		this.DValue2 = value2;
 	*}
 
 	/**
-	 * Gets Second Date Value (yyyymmdd) Property
+	 * Gets Second Date Property
 	 */	
 	String getValue2() {*
 		return this.DValue2;

@@ -1,20 +1,4 @@
 {
-	"DEndDate" : {
-		"template" : "String",
-		"type" : "String",
-		"value" : "",
-		"visible": false,
-		"opts" : {
-			"ztlType": "String",
-			"ztlFunction": "-get",
-			"desc" : "Date (yyyymmdd)",
-			"cat" : "Display-Date",
-			"tooltip" : "Date (yyyymmdd)",
-			"apsControl" : "text",
-			"noAps" : true,
-			"noZtl" : false
-		}
-	},
 	"DStartDate" : {
 		"template" : "String",
 		"type" : "String",
@@ -23,9 +7,25 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "-get",
-			"desc" : "Start Date (yyyymmdd)",
+			"desc" : "Start Date",
 			"cat" : "Display-Date",
-			"tooltip" : "Start Date (yyyymmdd)",
+			"tooltip" : "Start Date Value (yyyymmdd)",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DEndDate" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "End Date",
+			"cat" : "Display-Date",
+			"tooltip" : "End Date Value (yyyymmdd)",
 			"apsControl" : "text",
 			"noAps" : true,
 			"noZtl" : false
@@ -58,9 +58,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Date (yyyymmdd)",
+			"desc" : "Date",
 			"cat" : "Display-Date",
-			"tooltip" : "Date (yyyymmdd)",
+			"tooltip" : "Date Value (yyyymmdd)",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
@@ -90,8 +90,8 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Custom Format Pattern",
-			"cat" : "Display-Format",
+			"desc" : "Custom Pattern",
+			"cat" : "Display-Custom",
 			"tooltip" : "Custom Format Pattern",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -106,8 +106,8 @@
 		"opts" : {
 			"ztlType": "boolean",
 			"ztlFunction": "",
-			"desc" : "Custom Format Relative",
-			"cat" : "Display-Format",
+			"desc" : "Custom Relative",
+			"cat" : "Display-Custom",
 			"tooltip" : "Custom Format Relative",
 			"apsControl" : "checkbox",
 			"noAps" : false,
@@ -123,8 +123,8 @@
 			"ztlType": "Choice",
 			"choiceType": "FormatStyle",
 			"ztlFunction": "",
-			"desc" : "Custom Format Style",
-			"cat" : "Display-Format",
+			"desc" : "Custom Style",
+			"cat" : "Display-Custom",
 			"tooltip" : "Custom Format Style",
 			"apsControl" : "combobox",
 			"options":[
@@ -198,8 +198,8 @@
 		"opts" : {
 			"ztlType": "int",
 			"ztlFunction": "",
-			"desc" : "Day Of Week To Start (CustomWeek)",
-			"cat" : "Display-Date",
+			"desc" : "Day Of Week To Start",
+			"cat" : "Display-Custom",
 			"tooltip" : "Week Day, 0 - Sunday To 6 - Saturday",
 			"apsControl" : "spinner",
 			"noAps" : false,
@@ -214,8 +214,8 @@
 		"opts" : {
 			"ztlType": "int",
 			"ztlFunction": "",
-			"desc" : "Duration Of Custom Range (Custom*)",
-			"cat" : "Display-Date",
+			"desc" : "Duration Of Custom Range",
+			"cat" : "Display-Custom",
 			"tooltip" : "Duration Of Custom Range (Custom*)",
 			"apsControl" : "spinner",
 			"noAps" : false,

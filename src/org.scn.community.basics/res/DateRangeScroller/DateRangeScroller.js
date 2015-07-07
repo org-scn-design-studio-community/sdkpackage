@@ -130,8 +130,9 @@ DateRangeScroller = {
 			}
 		}
 		
-		if(that._oldRange != viewType) {
+		if(that._oldRange != viewType || that._oldDate != date) {
 			that._oldRange = viewType;
+			that._oldDate = date;
 		
 			if(that._oldInitDate != initDateFormat) {
 				if(viewType == "Day") {

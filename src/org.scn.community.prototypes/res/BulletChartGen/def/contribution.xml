@@ -188,24 +188,24 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="clickedgraphkey"></defaultValue>
-		<defaultValue property="comparison"></defaultValue>
-		<defaultValue property="data">null</defaultValue>
-		<defaultValue property="extrapolation"></defaultValue>
-		<defaultValue property="graphTitle"></defaultValue>
-		<defaultValue property="keydimension"></defaultValue>
-		<defaultValue property="labeldimension"></defaultValue>
-		<defaultValue property="maxgraphheight">40</defaultValue>
-		<defaultValue property="mingraphheight">40</defaultValue>
-		<defaultValue property="realization"></defaultValue>
-		<defaultValue property="showalert">comparison</defaultValue>
-		<defaultValue property="showaxis">true</defaultValue>
-		<defaultValue property="sublabeldimension"></defaultValue>
-		<defaultValue property="threshold1"></defaultValue>
-		<defaultValue property="threshold2"></defaultValue>
-		<defaultValue property="threshold3"></defaultValue>
-		<defaultValue property="threshold4"></defaultValue>
-		<defaultValue property="threshold5"></defaultValue>
+		<defaultValue property="clickedgraphkey"><![CDATA[]]></defaultValue>
+		<defaultValue property="comparison"><![CDATA[]]></defaultValue>
+		<defaultValue property="data"><![CDATA[null]]></defaultValue>
+		<defaultValue property="extrapolation"><![CDATA[]]></defaultValue>
+		<defaultValue property="graphTitle"><![CDATA[]]></defaultValue>
+		<defaultValue property="keydimension"><![CDATA[]]></defaultValue>
+		<defaultValue property="labeldimension"><![CDATA[]]></defaultValue>
+		<defaultValue property="maxgraphheight"><![CDATA[40]]></defaultValue>
+		<defaultValue property="mingraphheight"><![CDATA[40]]></defaultValue>
+		<defaultValue property="realization"><![CDATA[]]></defaultValue>
+		<defaultValue property="showalert"><![CDATA[comparison]]></defaultValue>
+		<defaultValue property="showaxis"><![CDATA[true]]></defaultValue>
+		<defaultValue property="sublabeldimension"><![CDATA[]]></defaultValue>
+		<defaultValue property="threshold1"><![CDATA[]]></defaultValue>
+		<defaultValue property="threshold2"><![CDATA[]]></defaultValue>
+		<defaultValue property="threshold3"><![CDATA[]]></defaultValue>
+		<defaultValue property="threshold4"><![CDATA[]]></defaultValue>
+		<defaultValue property="threshold5"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

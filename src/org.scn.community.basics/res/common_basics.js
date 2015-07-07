@@ -30,10 +30,10 @@ org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObj
 			);
 		}
 		
-		parent._oResize = function(ignoreOwner) {
+		parent._oResize = function(ignoreOwner, forced) {
 			var changed = org_scn_community_basics.determineOwnSize(parent, true);
 
-			if(changed) {
+			if(changed || forced) {
 				if(mainObject.setWidth) {
 					mainObject.setWidth(parent._containerWidth-2 + "px");	
 				}
