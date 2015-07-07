@@ -331,9 +331,9 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		     var A = p.key.toLowerCase();
 		     var B = m.key.toLowerCase();
 		     if (A < B){
-		        return -1;
+		        return 1;
 		     }else if (A > B){
-		       return  1;
+		       return  -1;
 		     }else{
 		       return 0;
 		     }
@@ -353,9 +353,9 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		a.sort(function(p,m){  
 		     var A = p.key.toLowerCase();
 		     var B = m.key.toLowerCase();
-		     if (A < B){
+		     if (A > B){
 		        return 1;
-		     }else if (A > B){
+		     }else if (A < B){
 		       return  -1;
 		     }else{
 		       return 0;
@@ -382,9 +382,9 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		     var A = p.label.toLowerCase();
 		     var B = m.label.toLowerCase();
 		     if (A < B){
-		        return -1;
+		        return 1;
 		     }else if (A > B){
-		       return  1;
+		       return  -1;
 		     }else{
 		       return 0;
 		     }
@@ -404,9 +404,9 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		a.sort(function(p,m){  
 		     var A = p.label.toLowerCase();
 		     var B = m.label.toLowerCase();
-		     if (A < B){
+		     if (A > B){
 		        return 1;
-		     }else if (A > B){
+		     }else if (A < B){
 		       return  -1;
 		     }else{
 		       return 0;
@@ -432,7 +432,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		a.sort(function(p,m){  
 			var newA = parseFloat(p.value);  
 			var newB = parseFloat(m.value);  
-			return newA-newB;  
+			return newB-newA;  
 		});
 		
 		this.items = JSON.stringify(a);  
@@ -449,7 +449,7 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		a.sort(function(p,m){  
 			var newA = parseFloat(p.value);  
 			var newB = parseFloat(m.value);  
-			return newB-newA;  
+			return newA-newB;  
 		});
 		
 		this.items = JSON.stringify(a);  
