@@ -32,7 +32,7 @@ if(oCfgData.libs.indexOf("sap.m") == -1) {
     // reload events bundle to assure that sap.m events are active  
     jQuery.sap.require("jquery.sap.events");  
   }  
-}
+}  
 sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 
 //	setData : function(value) {
