@@ -759,7 +759,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Notification Bar component*/
 	org.scn.community.basics.NotificationBar returnAsScnNotificationBar (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Notify component*/
+	/**Cast to Notify 2.0 component*/
 	org.scn.community.basics.Notify returnAsScnNotify (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Open Street Map (Basic) component*/

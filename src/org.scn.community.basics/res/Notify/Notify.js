@@ -16,113 +16,90 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-/**
- * Based on from original version by Leandro Cardoso, blogged here: 
- * (http://scn.sap.com/docs/DOC-56356)
- * 
- */
-sap.designstudio.sdk.Component
-		.subclass(
-				"org.scn.community.basics.Notify",
-				function() {
+ 
+ (function(){
 
-					var _url = null;
-					var _layout = null;
-					var _modal = null;
-					var _show = "N";
-					var _msgText = "";
-					var _delay = null;
-					var _msgtype = null;
+var myComponentData = org_scn_community_require.knownComponents.basics.Notify;
 
-					this.init = function() {
-						// this.$().addClass(STYLE_DIV);
-					};
+Notify = function () {
 
-					this.afterUpdate = function() {
-						if( _show == "Y"){
-							this.genarate();
-							this.shownote("N");
-							this.msgtext("");
-							this.firePropertiesChanged( [ "msgtext","shownote"]);
-						}
-					};
+	var that = this;
+	
+	that.init = function() {
+		// define root component
 
-					this.genarate = function() {
-				        var n = noty({
-				            text        : _msgText,
-				            type        : _msgtype,
-				            dismissQueue: true,
-				            modal		: _modal,
-				            layout      : _layout,
-				            theme       : 'defaultTheme'
-				        });
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	};
+	
+	that.initAsync = function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+	
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		// this.addStyleClass("scn-pack-?");
+			
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+	};
 
-				        setTimeout(function () {
-				            $.noty.close(n.options.id);
-				        }, _delay*1000);
+	that.afterUpdate = function() {
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 
-				    };
+		// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
 
-				    this.msgtype = function(value){
-				    	if (value === undefined) {
-							return _msgtype;
-						} else {
-							_msgtype = value;
-							return this;
-						}
-				    }; 
-				    this.shownote = function(value){
-				    	if (value === undefined) {
-							return _show;
-						} else {
-							_show = value;
-							return this;
-						}
-				    };
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	};
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
 
-				    this.delay = function(value){
-				    	if (value === undefined) {
-							return _delay;
-						} else {
-							_delay = value;
-							return this;
-						}
-				    };
+	that.processData = function (flatData, afterPrepare, owner) {
+		var that = owner;
+		
+		if( that.getShownote() == "Y"){
+			that.genarate(that);
+			that.setShownote("N");
+			that.setMsgtext("");
+			that.firePropertiesChanged( [ "msgtext","shownote"]);
+		}
+		
+		// processing on data
+		that.afterPrepare(that);
+	};
 
-				    this.msgtext = function(value){
-				    	if (value === undefined) {
-							return _msgText;
-						} else {
-							_msgText = value;
-							return this;
-						}
-				    };
+	that.afterPrepare = function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		
+	};
 
+	that.onResize = function (width, height, parent) {
+		// in case special resize code is required
+	};
+	
+	that.genarate = function(owner) {
+		var that = owner;
+		
+        var n = noty({
+            text        : that.getMsgtext(),
+            type        : that.getMsgtype(),
+            dismissQueue: true,
+            modal		: that.getModal(),
+            layout      : that.getLayout(),
+            theme       : 'defaultTheme'
+        });
 
+        setTimeout(function () {
+            $.noty.close(n.options.id);
+        }, that.getDelay()*1000);
+    };
 
-				    this.layout = function(value) {
-						if (value === undefined) {
-							return _layout;
-						} else {
-							_layout = value;
-							return this;
-						}
-					};
-					 this.modal = function(value) {
-							if (value === undefined) {
-								return _modal?"true":"false";
-							} else {
-								_modal = value == "true" ?true:false;
-								return this;
-							}
-						};
-					this.url = function(value) {
-						if (value === undefined) {
-							return _url;
-						} else {
-							_url = value;
-							return this;
-						}
-					};					
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+	return that;
+};
 
-				});
+define([myComponentData.requireName], function(basicsnotify){
+	myComponentData.instance = Notify;
+	return myComponentData.instance;
+});
+
+}).call(this);

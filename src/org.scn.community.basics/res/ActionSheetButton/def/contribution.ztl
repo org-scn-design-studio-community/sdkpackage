@@ -291,6 +291,31 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 
 		this.items = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Text for Item Key<br/>
+	 */
+	boolean hasItemText (
+			/**/ String key
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Icon for Item keys<br/>
 	 */
@@ -344,6 +369,31 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 		}
 
 		this.items = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Icon for Item Key<br/>
+	 */
+	boolean hasItemIcon (
+			/**/ String key
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 

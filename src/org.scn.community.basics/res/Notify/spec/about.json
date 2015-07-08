@@ -1,0 +1,16 @@
+{
+	"title": "Notify 2.0",
+	"description": "Notify - Leandro Cardoso",
+	"icon": "Notify.png",
+	"topics": 
+	[
+		{
+			"title" : "Notify",
+			"content" : "Notify - Leandro Cardoso"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

@@ -152,21 +152,23 @@ KpiTile = {
 				finalProperties[prName] = propDef;
 			}
 		}
-		for (var prName in spec.properties) {
-			var prop = spec.properties[prName];
-			finalProperties[prName] = prop;
+		for (var prIndex in spec.properties) {
+			var prop = spec.properties[prIndex];
+			prop.key = prop.key.replace(spec.key + "/", "");
+			
+			finalProperties[prop.key] = prop;
 
 			if(!prop.value) {
 				prop.value = "";
 			}
 
-			if(prop.value.indexOf("[") == 0 || prop.value.indexOf("/") == 0) {
+			if(prop.value.indexOf("[") == 0 || prop.value.indexOf("/") == 0 || prop.value.indexOf("{") == 0) {
 				var realValue = prop.value;
 				if(realValue.indexOf("/") == 0) {
 					realValue = realValue.substring(1);
 				}
 				realValue = JSON.parse(realValue);
-				prop.value = realValue;
+				prop.value = realValue[prop.key];
 			}
 		}
 		for (var prName in finalProperties) {
@@ -295,6 +297,7 @@ KpiTile = {
 						var properties = {}
 
 						var oneWasAnArray = false;
+						var onlySimpleStrings = true;
 						for (var loopOnIndexEntry in entryArray) {
 							var entryObjectId = loopOnIndexEntry;
 							var entryObject = entryArray[entryObjectId];
@@ -315,7 +318,11 @@ KpiTile = {
 									content.push(output[compInd]);
 								}
 
+								onlySimpleStrings = (false && onlySimpleStrings);
 								oneWasAnArray = true;
+							} else if (typeof entryObject == "string") {
+								// processing later
+								var k = 0;
 							} else {
 								var properties = {};
 								var output = that.processContentJson(that, entryObject);
@@ -329,7 +336,21 @@ KpiTile = {
 									comp.__arrayIndex = properties._arrayIndex;
 									content.push(comp);
 								}
+
+								onlySimpleStrings = (false && onlySimpleStrings);
 							}
+						}
+
+						if(onlySimpleStrings) {
+							var properties = {};
+							var output = that.processContentJson(that, entryArray);
+							for (var outputEntryIndex in output) {
+								properties[outputEntryIndex] = output[outputEntryIndex];
+							}
+							var comp = that.createComponentByJson(that, entryArrayId, properties, true);
+							comp.__clName = entryArrayId;
+							comp.__arrayIndex = 0;
+							content.push(comp);
 						}
 
 						if(oneWasAnArray) {
@@ -527,7 +548,14 @@ KpiTile = {
 
 						// last part in the property?
 						if(propKey.indexOf(propPart) == propKey.length - propPart.length) {
-							that.setFinalProperty(that, currentObject, propPart, propValue);
+							if(propPart.indexOf("[") == 0) {
+								propPart = propPart.substring(1).replace("]", "");
+								objectToDestroy = currentObject[propPart];
+								objectToDestroy.destroy();
+								currentObject[propPart] = propValue;
+							} else {
+								that.setFinalProperty(that, currentObject, propPart, propValue);	
+							}
 						} else {
 							if(propPart.indexOf("[") == 0) {
 								propPart = propPart.substring(1).replace("]", "");

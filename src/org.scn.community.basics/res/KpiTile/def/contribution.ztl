@@ -237,6 +237,31 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		this.componentsSpec = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of ComponentType for Component Key<br/>
+	 */
+	boolean hasComponentComponentType (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Top for Component keys<br/>
 	 */
@@ -290,6 +315,31 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 		}
 
 		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Top for Component Key<br/>
+	 */
+	boolean hasComponentTop (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 	/**
 	 * Sets the Bottom for Component keys<br/>
@@ -345,6 +395,31 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		this.componentsSpec = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Bottom for Component Key<br/>
+	 */
+	boolean hasComponentBottom (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Left for Component keys<br/>
 	 */
@@ -398,6 +473,31 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 		}
 
 		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Left for Component Key<br/>
+	 */
+	boolean hasComponentLeft (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 	/**
 	 * Sets the Right for Component keys<br/>
@@ -453,6 +553,31 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		this.componentsSpec = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Right for Component Key<br/>
+	 */
+	boolean hasComponentRight (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Width for Component keys<br/>
 	 */
@@ -506,6 +631,31 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 		}
 
 		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Width for Component Key<br/>
+	 */
+	boolean hasComponentWidth (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 	/**
 	 * Sets the Height for Component keys<br/>
@@ -561,6 +711,31 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		this.componentsSpec = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Height for Component Key<br/>
+	 */
+	boolean hasComponentHeight (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Specification for Component keys<br/>
 	 */
@@ -615,6 +790,31 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		this.componentsSpec = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Specification for Component Key<br/>
+	 */
+	boolean hasComponentSpecification (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Value for Property keys<br/>
 	 */
@@ -668,6 +868,31 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 		}
 
 		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Value for Property Key<br/>
+	 */
+	boolean hasPropertyValue (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 

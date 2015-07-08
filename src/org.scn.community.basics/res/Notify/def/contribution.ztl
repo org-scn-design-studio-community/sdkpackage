@@ -1,36 +1,163 @@
 
 /**
- * Class for Notify
+ * Generated ZTL Class for Notify
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.Notify extends org.scn.community.shared.Component {
-	void alert( /* Text to be shown */ String text){*
+
+	/**
+	 * Sets Delay(Seconds) Property
+	 */	
+	void setDelay( /**Delay(Seconds)*/ int delay){*
+		this.delay = delay;
+	*}
+
+	/**
+	 * Gets Delay(Seconds) Property
+	 */	
+	int getDelay() {*
+		return this.delay;
+	*}
+
+	/**
+	 * Sets Layout Property by String
+	 */	
+	void setLayoutByString( /**Layout*/ String layout){*
+		this.layout = layout;
+	*}
+
+	/**
+	 * Gets Layout Property as String
+	 */	
+	String getLayoutAsString() {*
+		return this.layout;
+	*}
+	
+	/**
+	 * Sets Layout Property by Choice Option
+	 */	
+	void setLayout( /**Layout*/ org_scn_community_shared_Enumfield layout){*
+		this.layout = layout;
+	*}
+	
+	/**
+	 * Gets Layout Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getLayout() {*
+		return this.layout;
+	*}
+
+	/**
+	 * Sets Modal Property
+	 */	
+	void setModal( /**Modal*/ boolean modal){*
+		this.modal = modal;
+	*}
+
+	/**
+	 * Gets Modal Property
+	 */	
+	boolean isModal() {*
+		return this.modal;
+	*}
+
+	/**
+	 * Gets Msgtext Property
+	 */	
+	String getMsgtext() {*
+		return this.msgtext;
+	*}
+
+	/**
+	 * Gets Msgtype Property
+	 */	
+	String getMsgtype() {*
+		return this.msgtype;
+	*}
+
+	/**
+	 * Gets Shownote Property
+	 */	
+	String getShownote() {*
+		return this.shownote;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
+
+	/**
+
+	 */
+	void alert (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
 		this["msgtype"] = "alert";
 		this["msgtext"] = text;
 		this["shownote"] = "Y";
 	*}
-	void information( /* Text to be shown */ String text){*
-		this["msgtype"] = "information";
-		this["msgtext"] = text;
-		this["shownote"] = "Y";
-	*}
-	void error( /* Text to be shown */ String text){*
+	/**
+
+	 */
+	void error (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
 		this["msgtype"] = "error";
 		this["msgtext"] = text;
 		this["shownote"] = "Y";
 	*}
-	void warning( /* Text to be shown */ String text){*
-		this["msgtype"] = "warning";
+	/**
+
+	 */
+	void information (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
+		this["msgtype"] = "information";
 		this["msgtext"] = text;
 		this["shownote"] = "Y";
 	*}
-	void notification( /* Text to be shown */ String text){*
+	/**
+
+	 */
+	void notification (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
 		this["msgtype"] = "notification";
 		this["msgtext"] = text;
 		this["shownote"] = "Y";
 	*}
-	void success( /* Text to be shown */ String text){*
+	/**
+
+	 */
+	void success (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
 		this["msgtype"] = "success";
 		this["msgtext"] = text;
 		this["shownote"] = "Y";
 	*}
+	/**
+
+	 */
+	void warning (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
+		this["msgtype"] = "warning";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
+	*}
+	
 }

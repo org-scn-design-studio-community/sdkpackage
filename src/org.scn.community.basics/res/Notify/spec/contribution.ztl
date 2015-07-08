@@ -1,0 +1,75 @@
+	// here is the place for other custom functions
+
+	/**
+
+	 */
+	void alert (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
+		this["msgtype"] = "alert";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
+	*}
+	/**
+
+	 */
+	void error (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
+		this["msgtype"] = "error";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
+	*}
+	/**
+
+	 */
+	void information (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
+		this["msgtype"] = "information";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
+	*}
+	/**
+
+	 */
+	void notification (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
+		this["msgtype"] = "notification";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
+	*}
+	/**
+
+	 */
+	void success (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
+		this["msgtype"] = "success";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
+	*}
+	/**
+
+	 */
+	void warning (
+			/* Text to be shown */ String text
+			
+			) 
+	{*
+		this["msgtype"] = "warning";
+		this["msgtext"] = text;
+		this["shownote"] = "Y";
+	*}
+	

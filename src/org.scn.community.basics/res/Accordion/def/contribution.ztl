@@ -231,6 +231,31 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 
 		this.elementsContent = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Text for Section Key<br/>
+	 */
+	boolean hasSectionText (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Url for Section keys<br/>
 	 */
@@ -284,6 +309,31 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		}
 
 		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Url for Section Key<br/>
+	 */
+	boolean hasSectionUrl (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 	/**
 	 * Sets the Text for Element keys<br/>
@@ -339,6 +389,31 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 
 		this.elementsContent = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Text for Element Key<br/>
+	 */
+	boolean hasElementText (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Url for Element keys<br/>
 	 */
@@ -392,6 +467,31 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		}
 
 		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Url for Element Key<br/>
+	 */
+	boolean hasElementUrl (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 

@@ -267,6 +267,31 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		this.activities = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Text for Activity Key<br/>
+	 */
+	boolean hasActivityText (
+			/**/ String key
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.activities);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Category for Activity keys<br/>
 	 */
@@ -320,6 +345,31 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		}
 
 		this.activities = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Category for Activity Key<br/>
+	 */
+	boolean hasActivityCategory (
+			/**/ String key
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.activities);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 	/**
 	 * Sets the State for Activity keys<br/>
@@ -375,6 +425,31 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		this.activities = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of State for Activity Key<br/>
+	 */
+	boolean hasActivityState (
+			/**/ String key
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.activities);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the StartDate for Activity keys<br/>
 	 */
@@ -429,6 +504,31 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		this.activities = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of StartDate for Activity Key<br/>
+	 */
+	boolean hasActivityStartDate (
+			/**/ String key
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.activities);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the EndDate for Activity keys<br/>
 	 */
@@ -482,6 +582,31 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		}
 
 		this.activities = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of EndDate for Activity Key<br/>
+	 */
+	boolean hasActivityEndDate (
+			/**/ String key
+			) 
+	{*
+		if (this.activities === undefined || this.activities === "" || this.activities === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.activities);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 
@@ -729,6 +854,31 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		this.categories = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Text for Category Key<br/>
+	 */
+	boolean hasCategoryText (
+			/**/ String key
+			) 
+	{*
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.categories);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Visible for Category keys<br/>
 	 */
@@ -804,6 +954,31 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		}
 		
 		this.categories = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Visible for Category Key<br/>
+	 */
+	boolean hasCategoryVisible (
+			/**/ String key
+			) 
+	{*
+		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.categories);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 	/**
@@ -1070,6 +1245,31 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		}
 
 		this.states = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Style for State Key<br/>
+	 */
+	boolean hasStateStyle (
+			/**/ String key
+			) 
+	{*
+		if (this.states === undefined || this.states === "" || this.states === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.states);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 

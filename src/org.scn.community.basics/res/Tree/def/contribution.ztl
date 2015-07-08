@@ -238,6 +238,31 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 		this.nodesContent = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Text for Node Key<br/>
+	 */
+	boolean hasNodeText (
+			/**/ String key
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Url for Node keys<br/>
 	 */
@@ -291,6 +316,31 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 		}
 
 		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Url for Node Key<br/>
+	 */
+	boolean hasNodeUrl (
+			/**/ String key
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 	/**
 	 * Sets the Text for SubNode keys<br/>
@@ -346,6 +396,31 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 		this.nodesContent = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Text for SubNode Key<br/>
+	 */
+	boolean hasSubNodeText (
+			/**/ String key
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Url for SubNode keys<br/>
 	 */
@@ -399,6 +474,31 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 		}
 
 		this.nodesContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Url for SubNode Key<br/>
+	 */
+	boolean hasSubNodeUrl (
+			/**/ String key
+			) 
+	{*
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodesContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 

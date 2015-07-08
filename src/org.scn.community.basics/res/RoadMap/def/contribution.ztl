@@ -277,6 +277,31 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		this.DElementsContent = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Text for Step Key<br/>
+	 */
+	boolean hasStepText (
+			/**/ String key
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Visible for Step keys<br/>
 	 */
@@ -352,6 +377,31 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		}
 		
 		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Visible for Step Key<br/>
+	 */
+	boolean hasStepVisible (
+			/**/ String key
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 	/**
@@ -452,6 +502,31 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		}
 		
 		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Enabled for Step Key<br/>
+	 */
+	boolean hasStepEnabled (
+			/**/ String key
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 	/**

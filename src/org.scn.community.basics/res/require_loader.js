@@ -165,6 +165,11 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 				script: "org.scn.community.basics/os/x2js/xml2json",
 				min: false
 			},
+			noty: {
+				name: "noty",
+				script: "org.scn.community.basics/os/noty/packaged/noty",
+				min: false
+			}
 	};
 	
 	org_scn_community_require.d3Modules = {

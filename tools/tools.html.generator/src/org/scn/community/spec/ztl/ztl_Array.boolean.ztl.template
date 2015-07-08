@@ -74,6 +74,31 @@
 		
 		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of %NAME_CAPITAL% for %PROPERTY_CAPITAL_CUT% Key<br/>
+	 */
+	boolean has%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL% (
+			/**/ String key
+			) 
+	{*
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 
 	/**
 	 * Returns the %NAME_CAPITAL% keys<br/>

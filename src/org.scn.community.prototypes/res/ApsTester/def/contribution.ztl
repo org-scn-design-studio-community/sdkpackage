@@ -266,6 +266,31 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		this.doublearray = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Text for Button Key<br/>
+	 */
+	boolean hasButtonText (
+			/**/ String key
+			) 
+	{*
+		if (this.doublearray === undefined || this.doublearray === "" || this.doublearray === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.doublearray);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Image for Button keys<br/>
 	 */
@@ -319,6 +344,31 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		}
 
 		this.doublearray = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Image for Button Key<br/>
+	 */
+	boolean hasButtonImage (
+			/**/ String key
+			) 
+	{*
+		if (this.doublearray === undefined || this.doublearray === "" || this.doublearray === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.doublearray);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 	/**
 	 * Sets the Selected for Button keys<br/>
@@ -395,6 +445,31 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		}
 		
 		this.doublearray = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Selected for Button Key<br/>
+	 */
+	boolean hasButtonSelected (
+			/**/ String key
+			) 
+	{*
+		if (this.doublearray === undefined || this.doublearray === "" || this.doublearray === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.doublearray);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 	/**
@@ -474,6 +549,31 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		this.doublearray = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Text for Item Key<br/>
+	 */
+	boolean hasItemText (
+			/**/ String key
+			) 
+	{*
+		if (this.doublearray === undefined || this.doublearray === "" || this.doublearray === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.doublearray);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Image for Item keys<br/>
 	 */
@@ -527,6 +627,31 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		}
 
 		this.doublearray = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Image for Item Key<br/>
+	 */
+	boolean hasItemImage (
+			/**/ String key
+			) 
+	{*
+		if (this.doublearray === undefined || this.doublearray === "" || this.doublearray === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.doublearray);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 	/**
 	 * Sets the Selected for Item keys<br/>
@@ -603,6 +728,31 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		}
 		
 		this.doublearray = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Selected for Item Key<br/>
+	 */
+	boolean hasItemSelected (
+			/**/ String key
+			) 
+	{*
+		if (this.doublearray === undefined || this.doublearray === "" || this.doublearray === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.doublearray);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 	/**
@@ -895,6 +1045,31 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		this.singlearray = JSON.stringify(elementsJson);
 	*}
+	
+	/**
+	 * Checks Existence of Text for Button Key<br/>
+	 */
+	boolean hasButtonText (
+			/**/ String key
+			) 
+	{*
+		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.singlearray);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
 	/**
 	 * Sets the Image for Button keys<br/>
 	 */
@@ -948,6 +1123,31 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		}
 
 		this.singlearray = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Image for Button Key<br/>
+	 */
+	boolean hasButtonImage (
+			/**/ String key
+			) 
+	{*
+		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.singlearray);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 	/**
 	 * Sets the Selected for Button keys<br/>
@@ -1024,6 +1224,31 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		}
 		
 		this.singlearray = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Selected for Button Key<br/>
+	 */
+	boolean hasButtonSelected (
+			/**/ String key
+			) 
+	{*
+		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.singlearray);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
 
 	/**
