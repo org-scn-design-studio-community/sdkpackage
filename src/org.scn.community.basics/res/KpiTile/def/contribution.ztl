@@ -86,7 +86,8 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 		
 		
 		var itemDef = {
-			leaf:leaf,
+			leaf:false,
+			parentKey:"ROOT",
 			key:key, 
 			componentType:componentType, 
 			top:top, 

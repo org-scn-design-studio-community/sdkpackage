@@ -379,10 +379,12 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		itemDetailLayout.addContent(detailButtons);
 		itemDetailPanel.addContent(itemDetailLayout);
 		
-		if(!this._popup) this._popup = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
+		if(!this._popup) {
+			this._popup = new sap.ui.core.Popup(itemDetailPanel, true, true, true);
+		}
 		
-		//this._popup.destroyContent();
-		this._popup.open(250,"center top", "center top", document.body, null);
+		this._popup.setPosition(sap.ui.core.Popup.Dock.CenterTop, sap.ui.core.Popup.Dock.CenterTop, this, "0 0", "fit");
+		this._popup.open(250);
 	},
 	/*
 	 * Fires when Element Listbox is selected

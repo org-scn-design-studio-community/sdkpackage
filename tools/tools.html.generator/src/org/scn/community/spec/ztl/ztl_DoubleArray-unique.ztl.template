@@ -59,7 +59,8 @@
 		
 		%ASSURE_OPTIONAL_ROOT_INITIALIZED%
 		var itemDef = {
-			leaf:leaf,
+			leaf:false,
+			parentKey:"ROOT",
 			%ROOT_PROPERTY_DEFINITION_JSON% 
 			};
 	
