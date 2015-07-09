@@ -227,7 +227,7 @@ ApsContent = function () {
       "ztlType": "int"
     },
     "type": "int",
-    "value": "200",
+    "value": 200,
     "visible": true
   },
   "DIgnoreResults": {
@@ -277,7 +277,7 @@ ApsContent = function () {
       "ztlType": "int"
     },
     "type": "int",
-    "value": "20",
+    "value": 20,
     "visible": true
   },
   "DSelection": {
@@ -305,7 +305,7 @@ ApsContent = function () {
       "ztlType": "int"
     },
     "type": "int",
-    "value": "12",
+    "value": 12,
     "visible": true
   },
   "data": {

@@ -9,29 +9,29 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Granularity Property by String
 	 */	
-	void setGranulatiryByString( /**Granularity*/ String granulatiry){*
-		this.DGranulatiry = granulatiry;
+	void setGranularityByString( /**Granularity*/ String granularity){*
+		this.DGranularity = granularity;
 	*}
 
 	/**
 	 * Gets Granularity Property as String
 	 */	
-	String getGranulatiryAsString() {*
-		return this.DGranulatiry;
+	String getGranularityAsString() {*
+		return this.DGranularity;
 	*}
 	
 	/**
 	 * Sets Granularity Property by Choice Option
 	 */	
-	void setGranulatiry( /**Granularity*/ org_scn_community_shared_DateViewTypeEnumfield granulatiry){*
-		this.DGranulatiry = granulatiry;
+	void setGranularity( /**Granularity*/ org_scn_community_shared_DateViewTypeEnumfield granularity){*
+		this.DGranularity = granularity;
 	*}
 	
 	/**
 	 * Gets Granularity Property as Choice Option
 	 */	
-	org_scn_community_shared_DateViewTypeEnumfield getGranulatiry() {*
-		return this.DGranulatiry;
+	org_scn_community_shared_DateViewTypeEnumfield getGranularity() {*
+		return this.DGranularity;
 	*}
 
 	/**

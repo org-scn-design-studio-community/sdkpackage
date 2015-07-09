@@ -15,7 +15,7 @@
 	<cssInclude>res/DateRangeSlider/DateRangeSlider.css</cssInclude>
 	
 	<property
-		id="DGranulatiry"
+		id="DGranularity"
 		type="String"
 		title="Granularity"
 		group="Display"
@@ -158,7 +158,7 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">30</defaultValue>
 		
-		<defaultValue property="DGranulatiry"><![CDATA[Day]]></defaultValue>
+		<defaultValue property="DGranularity"><![CDATA[Day]]></defaultValue>
 		<defaultValue property="DLangFormat"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DLangPattern"><![CDATA[]]></defaultValue>
 		<defaultValue property="DLangRelative"><![CDATA[false]]></defaultValue>

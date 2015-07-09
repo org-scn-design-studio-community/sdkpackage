@@ -2,7 +2,7 @@
 
 
 
-	"DGranulatiry" : {
+	"DGranularity" : {
 		"template" : "Choice",
 		"type" : "String",
 		"value" : "Day",

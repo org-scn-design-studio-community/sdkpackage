@@ -30,7 +30,7 @@ ApsContent = function () {
 
 "spec" : 
 {
-  "DGranulatiry": {
+  "DGranularity": {
     "opts": {
       "apsControl": "combobox",
       "cat": "Display-Date",

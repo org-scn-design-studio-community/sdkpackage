@@ -21,6 +21,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\LeaderBoard\def\contribution.xml ^
 ..\res\LocationIntel\def\contribution.xml ^
 ..\res\MarimekkoChart\def\contribution.xml ^
+..\res\MicroChart\def\contribution.xml ^
 ..\res\MultiComboBox\def\contribution.xml ^
 ..\res\MultiLevelDropDown\def\contribution.xml ^
 ..\res\NiceChart\def\contribution.xml ^
@@ -55,6 +56,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\LeaderBoard\def\contribution.ztl ^
 ..\res\LocationIntel\def\contribution.ztl ^
 ..\res\MarimekkoChart\def\contribution.ztl ^
+..\res\MicroChart\def\contribution.ztl ^
 ..\res\MultiComboBox\def\contribution.ztl ^
 ..\res\MultiLevelDropDown\def\contribution.ztl ^
 ..\res\NiceChart\def\contribution.ztl ^

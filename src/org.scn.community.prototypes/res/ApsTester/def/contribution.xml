@@ -132,7 +132,7 @@
 		<defaultValue property="doublearray"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="paletteExample"><![CDATA[]]></defaultValue>
 		<defaultValue property="singlearray"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="spinnerExample"><![CDATA[]]></defaultValue>
+		<defaultValue property="spinnerExample"><![CDATA[0]]></defaultValue>
 		<defaultValue property="stringarray"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="textExample"><![CDATA[initial]]></defaultValue>
 

@@ -57,7 +57,7 @@
    },
    "spinnerExample":{
       "type":"int",
-      "value":"",
+      "value":0,
       "visible":true,
       "opts":{
          "ztlType":"String",

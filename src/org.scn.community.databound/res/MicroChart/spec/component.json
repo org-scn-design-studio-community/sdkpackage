@@ -1,0 +1,36 @@
+{
+	"id": "MicroChart",
+	"title": "Micro Chart 2.0",
+	"tooltip": "Micro Chart - Component for VIsualization of Data on small areas",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityDataBound",
+	"package": "databound",
+	"extension": "DataComponent",
+	"databound": true,
+	"dataType": "DataCellList",
+	"ui5specification": "BulletChart",
+	
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "common_databound",
+		},
+		{
+			"space" : "known",
+			"id" : "jshashtable",
+		},
+		{
+			"space" : "known",
+			"id" : "numberformatter",
+		}
+	],
+	
+	"width": "400",
+	"height": "200"
+}

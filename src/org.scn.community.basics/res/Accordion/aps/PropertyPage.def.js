@@ -157,7 +157,7 @@ ApsContent = function () {
       "ztlType": "int"
     },
     "type": "int",
-    "value": "200",
+    "value": 200,
     "visible": true
   },
   "memberDisplay": {

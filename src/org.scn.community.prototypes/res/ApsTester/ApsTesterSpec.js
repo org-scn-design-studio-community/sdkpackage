@@ -220,7 +220,7 @@
       "ztlType": "String"
     },
     "type": "int",
-    "value": "",
+    "value": 0,
     "visible": true
   },
   "stringarray": {

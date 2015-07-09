@@ -1,0 +1,29 @@
+<core:View
+  xmlns="sap.suite.ui.commons"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  >
+  <l:VerticalLayout
+    width="100%" content="{/}">
+    <l:content>
+      <BulletChart 
+        size="{size}" 
+        scale="{scale}" 
+        targetValue="{targetValue}" 
+        forecastValue="{forecastValue}" 
+        class="{styleClass}" 
+        press="{press}"
+
+        thresholds="{thresholds}"
+        >
+
+        <actual>
+          <BulletChartData value="{actual/value}" color="{actual/color}"/>
+        </actual>
+        <thresholds>
+          <BulletChartData value="{value}" color="{color}"/>
+        </thresholds>
+      </BulletChart>
+    </l:content>
+  </l:VerticalLayout> 
+</core:View>

@@ -436,6 +436,8 @@ org_scn_community_databound.getDataModelForDimensions = function (data, metadata
 				var members = dimension.members;
 				
 				oData[name] = {};
+				
+				oData[name].index = iD;
 				oData[name].name = name;
 				oData[name].text = text;
 				oData[name].items = [];

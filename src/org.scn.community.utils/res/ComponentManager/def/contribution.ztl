@@ -852,6 +852,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Marimekko Chart component*/
 	org.scn.community.databound.MarimekkoChart returnAsScnMarimekkoChart (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Micro Chart 2.0 component*/
+	org.scn.community.databound.MicroChart returnAsScnMicroChart (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Multi ComboBox component*/
 	org.scn.community.databound.MultiComboBox returnAsScnMultiComboBox (Component inputComponent) {* return inputComponent; *}
 

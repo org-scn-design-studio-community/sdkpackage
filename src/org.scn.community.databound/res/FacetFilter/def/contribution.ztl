@@ -308,19 +308,14 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 			l.dimensionsAll = dataSource.getDimensions();
 			l.customDimensions = JSON.parse(that.DCustomDimensions);
 			
-			l.customDimensionsFlat = "|";
-			for (var iD = 0; iD < l.customDimensions.length; iD++) {
-				l.customDimensionsFlat = l.customDimensionsFlat + l.customDimensions[iD] + "|";
-			}
-			
 			l.dimensions = [];
-			
-			l.dimensionsAll.forEach(function(dimension, indexD) {
-				l.currentAvailableDimensionName = dimension.name; 
-				if(l.customDimensionsFlat.indexOf("|" + l.currentAvailableDimensionName + "|") > -1) {
-					l.dimensions.push(dimension);
-				}
-			});	
+			for (var iD = 0; iD < l.customDimensions.length; iD++) {
+				l.dimensionsAll.forEach(function(dimension, indexD) {
+					if(dimension.name == l.customDimensions[iD]) {
+						l.dimensions.push(dimension);
+					}
+				});
+			}
 		} else {
 			l.dimensions = dataSource.getDimensions();
 		}

@@ -21,8 +21,23 @@ var org_scn_community_require = org_scn_community_require || {};
 
 /* IMPORTANT! ORIGINAL LOCATION - basics/res */
 
+org_scn_community_basics.getUrlParameterByName = function (name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 //set the version to assure cache is cleared
-/*NO DELTA CHECK START*/org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-7"/*%TIMESTAMP-END%*/;/*NO DELTA CHECK END*/
+/*NO DELTA CHECK START*/
+org_scn_community_basics.isDebug = org_scn_community_basics.getUrlParameterByName("d") == "X";
+if(org_scn_community_basics.isDebug) {
+	org_scn_community_require.jsVersion = "0000-0-0";	
+} else {
+	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-9"/*%TIMESTAMP-END%*/;
+}
+
+/*NO DELTA CHECK END*/
 
 var org_scn_community_components = org_scn_community_components || {};
 org_scn_community_components.basics = org_scn_community_components.basics || {};
@@ -32,7 +47,7 @@ org_scn_community_components.prototypes = org_scn_community_components.prototype
 org_scn_community_components.utils = org_scn_community_components.utils || {};
 
 (function() {
-	
+
 	org_scn_community_basics.readOwnScriptAccess = function(scriptSrc, componentFullName) {
 		var packageAndName = componentFullName.substring("org.scn.community.".length);
 		var componentName = packageAndName.substring(packageAndName.indexOf(".") + 1);
@@ -165,6 +180,11 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 				script: "org.scn.community.basics/os/x2js/xml2json",
 				min: false
 			},
+			noty: {
+				name: "noty",
+				script: "org.scn.community.basics/os/noty/packaged/noty",
+				min: false
+			}
 	};
 	
 	org_scn_community_require.d3Modules = {

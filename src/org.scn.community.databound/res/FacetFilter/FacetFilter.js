@@ -103,8 +103,15 @@ FacetFilter = {
 		
 		that._facetFilter.removeAllLists();
 
+		var sortedDimensions = [];
 		for (dimensionKey in that._mixedData) {
 			var lDimension = that._mixedData[dimensionKey];
+
+			sortedDimensions[lDimension.index] = lDimension;
+		}
+
+		for (dimensionIndex in sortedDimensions) {
+			var lDimension = sortedDimensions[dimensionIndex];
 
 			var name = lDimension.name;
 			var text = lDimension.text;
@@ -130,7 +137,7 @@ FacetFilter = {
 
 			var lDimList = new sap.ui.ux3.FacetFilterList({
 				title: text,
-				items : {path : "/" + dimensionKey + "/items", template : oItemTemplate},
+				items : {path : "/" + dimensionIndex + "/items", template : oItemTemplate},
 				showCounter: true,
 				displaySecondaryValues: displaySecondaryValues,
 			});
@@ -164,10 +171,9 @@ FacetFilter = {
 
 			that._facetFilter.addList(lDimList);
 
-			lDimList._dName = name;
-			lDimList._dKey = dimensionKey;
+			lDimList._dKey = name;
 
-			that.lists[dimensionKey] = lDimList;
+			that.lists[name] = lDimList;
 		}
 		
 		var lSelection = that.getDSelection();
@@ -175,11 +181,13 @@ FacetFilter = {
 			var selectionJson = JSON.parse(lSelection);
 			
 			if(selectionJson.keys == undefined) {
-				for (dimensionKey in that._mixedData) {
-					var lDimension = that._mixedData[dimensionKey];
+				for (dimensionIndex in sortedDimensions) {
+					var lDimension = sortedDimensions[dimensionIndex];
 
+					var name = lDimension.name;
+					var text = lDimension.text;
 					var members = lDimension.items;
-					var selectionInDimension = selectionJson[lDimension.name];
+					var selectionInDimension = selectionJson[name];
 					
 					if(selectionInDimension == undefined) {
 						continue;
@@ -228,7 +236,7 @@ FacetFilter = {
 			}
 		}
 
-		that._oModel.setData(that._mixedData);
+		that._oModel.setData(sortedDimensions);
 	},
 	
 	/* COMPONENT SPECIFIC CODE - START METHODS*/

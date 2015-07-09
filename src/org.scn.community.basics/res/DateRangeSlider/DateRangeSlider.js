@@ -113,7 +113,6 @@ DateRangeSlider = {
 			that.setValue(valueDate);
 			that.setValue2(value2Date);
 		}
-		that._deactivateEvent = false;
 		
 		var langFormat = that.getDLangFormat();
 		var pattern = that.getDLangPattern();
@@ -138,7 +137,7 @@ DateRangeSlider = {
 			}
 		}
 		
-		var granularity = that.getDGranulatiry();
+		var granularity = that.getDGranularity();
 		
 		if(that._oldGranualarity != granularity) {
 			that._oldGranualarity = granularity;
@@ -149,6 +148,8 @@ DateRangeSlider = {
 				that.setDayGranularity();
 			}
 		}
+
+		that._deactivateEvent = false;
 	},
 	
 	onResize: function(width, height, parent) {

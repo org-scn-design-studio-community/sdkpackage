@@ -260,7 +260,9 @@ KpiTile = {
 			specJ = converter.xml_str2json(spec);
 
 			spec = specJ;
-		} else {
+		} else if(spec.indexOf("{") == 0) {
+			spec = JSON.parse(spec);
+		} else if(spec == undefined || spec.length == 0) {
 			spec = {};
 		}
 
@@ -543,25 +545,30 @@ KpiTile = {
 				if(propKey.indexOf("/") > -1) {
 					var parts = propKey.split("/");
 					var currentObject = compObj;
-					for (var propPart in parts) {
-						propPart = parts[propPart];
+					var ret = {};
+					for (var propPartInt in parts) {
+						var propPart = parts[propPartInt];
 
 						// last part in the property?
 						if(propKey.indexOf(propPart) == propKey.length - propPart.length) {
 							if(propPart.indexOf("[") == 0) {
 								propPart = propPart.substring(1).replace("]", "");
+
 								objectToDestroy = currentObject[propPart];
 								objectToDestroy.destroy();
 								currentObject[propPart] = propValue;
+
+								that.setFinalProperty(that, ret.parent, parts[propPartInt-1], currentObject);
 							} else {
-								that.setFinalProperty(that, currentObject, propPart, propValue);	
+								that.setFinalProperty(that, currentObject, propPart, propValue);
 							}
 						} else {
 							if(propPart.indexOf("[") == 0) {
 								propPart = propPart.substring(1).replace("]", "");
 								currentObject = currentObject[propPart];
 							} else {
-								currentObject = that.getCurrentObject(that, currentObject, propPart);
+								ret = that.getCurrentObject(that, currentObject, propPart);
+								currentObject = ret.current;
 								if(currentObject == undefined) {
 									break;
 								}
@@ -579,28 +586,60 @@ KpiTile = {
 		var propKeySetter = "set" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
 		var propKeyGetter = "get" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
 
+		var ret = {};
+		ret.parent = currentObject;
 		if(currentObject[propKeyGetter]) {
 			currentObject = currentObject[propKeyGetter]();
 		}
+		ret.current = currentObject;
 
-		return currentObject;
+		return ret;
 	},
 
 	setFinalProperty: function (owner, compObj, propKey, propValue) {
 		var that = owner;
 
-		var propKeySetter = "set" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
-		var propKeyGetter = "get" + propKey.substring(0,1).toUpperCase() + propKey.substring(1);
-		if(compObj[propKeyGetter]) {
-			var old = compObj[propKeyGetter]();
-			if(old && old.destroy) {
-				old.destroy();
+		var functionName = propKey.substring(0,1).toUpperCase() + propKey.substring(1);
+		var propKeySetter = "set" + functionName;
+		var propKeyGetter = "get" + functionName;
+
+		var propKeyAdd = "add" + functionName;
+		if(propKeyAdd.substring(propKeyAdd.length-1) == "s") {
+			propKeyAdd = propKeyAdd.substring(0, propKeyAdd.length-1);
+		}
+		var propKeyRemoveAll = "removeAll" + functionName;
+
+		if(compObj[propKeySetter]) {
+			if(compObj[propKeyGetter]) {
+				var old = compObj[propKeyGetter]();
+				if(old && old.destroy) {
+					old.destroy();
+				}
+			}
+
+			if(propValue != "-clean-") {
+				compObj[propKeySetter](propValue);
+			} else {
+				compObj[propKeySetter](undefined);
+			}
+		} else {
+			if(compObj[propKeyRemoveAll]) {
+				compObj[propKeyRemoveAll]();
+			}
+
+			var isArray = propValue instanceof Array;
+			if(isArray) {
+				for (var arrIn in propValue) {
+					var arrObj = propValue[arrIn];
+
+					compObj[propKeyAdd](arrObj);
+				}
+			} else {
+				if(compObj[propKeyAdd]) {
+					compObj[propKeyAdd](propValue);	
+				}
 			}
 		}
-		if(propValue != "-clean-") {
-			if(compObj[propKeySetter]) {compObj[propKeySetter](propValue);}
-		}
-	
 	},
 	
 	contentOnPress: function (oEvent) {

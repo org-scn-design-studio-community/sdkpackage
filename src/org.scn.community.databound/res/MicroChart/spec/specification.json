@@ -1,0 +1,154 @@
+{
+  "dataCellListActual":{
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Actual Data List",
+         "cat":"Data",
+         "tooltip":"Actual Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+   "dataCellListThreshold1":{
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Treshold 2 Data List",
+         "cat":"Data",
+         "tooltip":"Treshold 1 Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+   "dataCellListThreshold2":{
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Treshold 2 Data List",
+         "cat":"Data",
+         "tooltip":"Treshold 2 Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+   "dataCellListThreshold3":{
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Treshold 3 Data List",
+         "cat":"Data",
+         "tooltip":"Treshold 3 Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+   "dataCellListThreshold4":{
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Treshold 4 Data List",
+         "cat":"Data",
+         "tooltip":"Treshold 4 Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+   "dataCellListThreshold5":{
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Treshold 5 Data List",
+         "cat":"Data",
+         "tooltip":"Treshold 5 Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+   "dataCellListTarget":{
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Target Data List",
+         "cat":"Data",
+         "tooltip":"Target Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+   "dataCellListForecast":{
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Forecast Data List",
+         "cat":"Data",
+         "tooltip":"Forecast Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   }
+}

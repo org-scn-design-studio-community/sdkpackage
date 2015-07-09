@@ -91,7 +91,7 @@ public class SpecificationReader {
 				}
 				
 				if(generatedZtlAndAps.getXml() != null && generatedZtlAndAps.getXml().length() > 0) {
-					XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");	
+					XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");
 					XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_TEMPLATE%", property.getExtendedFullSpec().getValueXml() + "\r\n%XML_DEAFULT_TEMPLATE%");
 				}
 			}
@@ -305,11 +305,13 @@ public class SpecificationReader {
 			String realKey = key.substring(key.indexOf("-")+1);
 			
 			if(value instanceof Boolean) {
-				parameterTo.addProperty(realKey, ""+((Boolean) value).booleanValue());				
+				parameterTo.addProperty(realKey, ""+((Boolean) value).booleanValue());
 			} else if(value.getClass().getCanonicalName().equals("org.json.JSONObject.Null")) {
 				parameterTo.addProperty(realKey, "");
+			} else if(value instanceof Integer) {
+				parameterTo.addProperty(realKey, ""+((Integer) value).intValue());
 			} else {
-				parameterTo.addProperty(realKey, (String) value);	
+				parameterTo.addProperty(realKey, (String) value);
 			}
 		} else {
 			ParamFullSpec parameterNew = new ParamFullSpec();
@@ -370,7 +372,7 @@ public class SpecificationReader {
 			ApsHtml = ApsHtml.replace("src=|", "src=");
 			ApsHtml = ApsHtml.replace("href=|", "href=");
 
-			templates.put("aps"+File.separator+"PropertyPage.html", ApsHtml);	
+			templates.put("aps"+File.separator+"PropertyPage.html", ApsHtml);
 		}
 		
 		if(ApsJs != null){

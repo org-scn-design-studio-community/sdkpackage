@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>BulletChart</name>
+	<documentation>This control shows a bullet chart.</documentation>
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="size" type="sap.suite.ui.commons/InfoTileSize" defaultValue="Auto">
+			<documentation>Updates the size of the chart. If not set then the default size is applied based on the device tile.</documentation>
+		</property>
+		<property group="Misc" name="mode" type="sap.suite.ui.commons/BulletChartMode" defaultValue="Actual">
+			<documentation>Specifies whether to display the actual value itself or delta between the actual value and the target value. If not set, the default mode displays the actual value.</documentation>
+		</property>
+		<property group="Misc" name="scale" type="sap.ui.core/string">
+			<documentation>The scaling suffix.</documentation>
+		</property>
+		<property group="Misc" name="forecastValue" type="sap.ui.core/float">
+			<documentation>The forecast value.</documentation>
+		</property>
+		<property group="Misc" name="targetValue" type="sap.ui.core/float">
+			<documentation>The target value.</documentation>
+		</property>
+		<property group="Misc" name="minValue" type="sap.ui.core/float">
+			<documentation>If set, defines the left scale value for the bar chart.</documentation>
+		</property>
+		<property group="Misc" name="maxValue" type="sap.ui.core/float">
+			<documentation>If set, defines the right scale value for the bar chart.</documentation>
+		</property>
+		<property group="Misc" name="showActualValue" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>If set to true, shows numeric actual value. This property only works in Actual mode.</documentation>
+		</property>
+		<property group="Misc" name="showDeltaValue" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>If set to true, shows the calculated delta value instead of the numeric actual value regardless of the showActualValue setting. This property works only in the Delta mode.</documentation>
+		</property>
+		<property group="Misc" name="showTargetValue" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>If set to true, shows numeric target value.</documentation>
+		</property>
+		<property group="Misc" name="showValueMarker" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>If set to true, shows the value marker.</documentation>
+		</property>
+		<property group="Misc" name="actualValueLabel" type="sap.ui.core/string">
+			<documentation>If set, displays a specified label instead of the numeric actual value.</documentation>
+		</property>
+		<property group="Misc" name="deltaValueLabel" type="sap.ui.core/string">
+			<documentation>If set, displays a specified label instead of the calculated numeric delta value.</documentation>
+		</property>
+		<property group="Misc" name="targetValueLabel" type="sap.ui.core/string">
+			<documentation>If set, displays a specified label instead of the numeric target value.</documentation>
+		</property>
+		<property group="Misc" name="width" type="sap.ui.core/string">
+			<documentation>The width of the chart. If it is not set, the size of the control is defined by the size property.</documentation>
+		</property>
+		<property group="Misc" name="scaleColor" type="sap.suite.ui.commons/CommonBackground" defaultValue="MediumLight">
+			<documentation>Background color of the scale.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the bullet chart.</documentation>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..1" name="actual" type="BulletChartData">
+			<documentation>The bullet chart actual data.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..n" name="thresholds" type="BulletChartData">
+			<documentation>The bullet chart thresholds data.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

@@ -129,7 +129,7 @@
       "ztlType": "int"
     },
     "type": "int",
-    "value": "160",
+    "value": 160,
     "visible": true
   },
   "DMaxDisplayMembers": {
@@ -142,7 +142,7 @@
       "ztlType": "int"
     },
     "type": "int",
-    "value": "5",
+    "value": 5,
     "visible": true
   },
   "DMaxMembers": {
@@ -155,7 +155,7 @@
       "ztlType": "int"
     },
     "type": "int",
-    "value": "1000",
+    "value": 1000,
     "visible": true
   },
   "DSelection": {

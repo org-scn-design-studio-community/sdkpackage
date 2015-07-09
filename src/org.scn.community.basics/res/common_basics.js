@@ -358,7 +358,21 @@ org_scn_community_basics.fillDummyDataInitAsync = function (owner, callBack) {
 };
 
 org_scn_community_basics.fillDummyData = function (owner, callBack, afterPrepare) {
-	callBack(undefined, afterPrepare, owner);
+	var changed = false;
+	if(owner.props) {
+		// check if something changed
+		for (var propI in owner.props) {
+			var prop  = owner.props[propI];
+			
+			if(prop.changed) {
+				changed = true;
+				break;
+			}
+		}
+	}
+	if(changed) {
+		callBack(undefined, afterPrepare, owner);	
+	}
 };
 
 org_scn_community_basics.fillDummyDataAsync = function (owner, callBack, afterPrepare) {

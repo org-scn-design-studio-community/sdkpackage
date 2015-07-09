@@ -32,6 +32,18 @@ org_scn_community_component_Core = function (owner, componentData){
 	that.props = {
 		// All properties from child classes always inherit properties.  Core class currently has no properties out of the gate.
 	};
+	
+	that.beforeDesignStudioUpdate = function () {
+		// check if something changed
+		for (var propI in owner.props) {
+			var prop  = owner.props[propI];
+			
+			if(prop.changed) {
+				prop.changed = false;
+			}
+		}
+	}
+	
 	for(property in that.spec){
 		that.props[property] = that.spec[property];
 		if(property.indexOf("data") == 0) {
@@ -51,9 +63,13 @@ org_scn_community_component_Core = function (owner, componentData){
 			that[property] = function(property){
 				return function(value){
 					if(value===undefined){
-						return that.props[property].value;
+						return that.props[property].actualValue;
 					}else{
-						that.props[property].value = value;
+						if(that.props[property].actualValue==value) {
+							// ignore setting of same value
+							return;
+						}
+						that.props[property].actualValue = value;
 						that.props[property].changed = true;
 						if(that.props[property].onChange) {
 							if(typeof(that[that.props[property].onChange]) === 'function') {
@@ -72,7 +88,11 @@ org_scn_community_component_Core = function (owner, componentData){
 				that["setMetadata"] = function(property){
 					// a setter
 					return function (value) {
-						that.props["meta_data"].value = value;
+						if(that.props["meta_data"].actualValue==value) {
+							// ignore setting of same value
+							return;
+						}
+						that.props["meta_data"].actualValue = value;
 						that.props["meta_data"].changed = true;
 						return that;
 					};
@@ -84,11 +104,15 @@ org_scn_community_component_Core = function (owner, componentData){
 			that["set" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
 				// a setter
 				return function (value) {
-					that.props[property].value = value;
+					if(that.props[property].actualValue==value) {
+						// ignore setting of same value
+						return;
+					}
+					that.props[property].actualValue = value;
 					that.props[property].changed = true;
 					if(that.props[property].onChange) {
 						if(typeof(that[that.props[property].onChange]) === 'function') {
-							that[that.props[property].onChange].call(that,that.props[property].value);
+							that[that.props[property].onChange].call(that,that.props[property].actualValue);
 						}
 					}
 					return that;
@@ -102,7 +126,7 @@ org_scn_community_component_Core = function (owner, componentData){
 				that["getDSMetadata"] = function(property){
 					// a setter
 					return function () {
-						return that.props["meta_data"].value;
+						return that.props["meta_data"].actualValue;
 					};
 				}(property);
 			}
@@ -112,7 +136,7 @@ org_scn_community_component_Core = function (owner, componentData){
 			that["get" + property.substring(0,1).toUpperCase() + property.substring(1)] = function(property){
 				// a getter
 				return function () {
-					return that.props[property].value;
+					return that.props[property].actualValue;
 				};
 			}(property);
 		}
