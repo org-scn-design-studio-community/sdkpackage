@@ -12,37 +12,78 @@
 	<property
 		id="data"
 		title="Data List"
-		type="ResultCellList"
+		type="ResultSet"
 		group="DataBinding"
-	>
-	</property>
+		visible="false" />
 
 	<property
 		id="DDimension"
 		title="Selected Dimension"
 		type="String"
-		group="DataBinding"
-	>
-	</property>
+		group="DataBinding" />
 
 	<property
 		id="DSelectedKey"
 		type="String"
-		title="Technical proprty for Selected Key"
+		title="Technical property for Selected Key"
 		group="Display"
 		visible="false" />
 
 	<property
 		id="DSelectedText"
 		type="String"
-		title="Technical proprty for Selected Text"
+		title="Technical property for Selected Text"
+		group="Display"
+		visible="false" />
+		
+	<property
+		id="DSorting"
+		title="Sorting By Key | Text"
+		type="String"
+		group="Display">
+		<possibleValue>By Key</possibleValue>
+		<possibleValue>By Text</possibleValue>
+	</property>
+	
+	<property
+		id="DSkipResultRow"
+		title="Skip RESULT row"
+		type="boolean"
+		group="Display">
+	</property>
+	
+	<property
+		id="DSortingDirection"
+		title="Sorting ascending | descending"
+		type="String"
+		group="Display">
+		<possibleValue>Ascending</possibleValue>
+		<possibleValue>Descending</possibleValue>
+	</property>
+	
+	<property
+		id="DSelectAllText"
+		title="Text for select all"
+		type="String"
+		group="Display" />
+		
+	<property
+		id="DSelectNoText"
+		title="Text for clear selection"
+		type="String"
+		group="Display" />
+		
+	<property
+		id="DSelectedKeyBexReady"
+		type="String"
+		title="Technical property for Selected Key (seperated by ';')"
 		group="Display"
 		visible="false" />
 
 	<property
-		id="onSelectionChanged"
+		id="onSelectionFinished"
 		type="ScriptText"
-		title="Event for On Selection Changed"
+		title="Event for On Selection Finished"
 		group="Events" />
 
 	<initialization>
@@ -52,7 +93,12 @@
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">26</defaultValue>
-
+		<defaultValue property="data">{}</defaultValue>
+		<defaultValue property="DSorting">By Text</defaultValue>
+		<defaultValue property="DSortingDirection">Ascending</defaultValue>
+		<defaultValue property="DSkipResultRow">true</defaultValue>
+		<defaultValue property="DSelectAllText">&lt;select all&gt;</defaultValue>
+		<defaultValue property="DSelectNoText">&lt;clear&gt;</defaultValue>
 	</initialization>
 
 </component>

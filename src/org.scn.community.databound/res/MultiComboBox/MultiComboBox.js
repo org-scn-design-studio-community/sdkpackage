@@ -35,31 +35,28 @@ if(oCfgData.libs.indexOf("sap.m") == -1) {
 }  
 sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 
-//	setData : function(value) {
-//		this._data = value;
-//		return this;
-//	},
-//	
-//	getData : function(value) {
-//		return this._data;
-//	},
-//	
-//	setMetadata : function(value) {
-//		this._metadata = value;
-//		return this;
-//	},
-//
-//	getMetadata : function(value) {
-//		return this._metadata;
-//	},
-//	
-//	metadata: {
-//        properties: {
-//              "DDimension": {type: "string"},
-//              "DSelectedKey": {type: "string"},
-//              "DSelectedText": {type: "string"},
-//        }
-//	},
+	setData : function(value) {
+		this._data = value;
+		return this;
+	},
+	
+	getData : function(value) {
+		return this._data;
+	},
+	
+	metadata: {
+        properties: {
+              "DDimension": {type: "string"},
+              "DSelectedKey": {type: "string"},
+              "DSelectedText": {type: "string"},
+              "DSelectedKeyBexReady" : {type: "string"},
+              "DSorting": {type: "string"},
+              "DSortingDirection": {type: "string"},
+              "DSkipResultRow": {type: "boolean"}, 
+              "DSelectAllText": {type: "string"},
+              "DSelectNoText": {type: "string"}
+        }
+	},
 
 	initDesignStudio: function() {
 		var that = this;
@@ -67,49 +64,158 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 		this.className = ('scn-pack-multiComboBox');
 		
 //		// Create JSON data model
-		var mData = {  
-				  selected: ["0","1"],  
-				  items:[  
-				    {key:"0",text:"Tomorro"},  
-				    {key:"1",text:"Next Week"},  
-				    {key:"2",text:"Next Month"},  
-				    {key:"3",text:"Pick a range..."}  
-				  ]  
-				};  
-		this._oModel = new sap.ui.model.json.JSONModel(mData);
+//		var mData = {  
+//				  selected: ["0","1"],  
+//				  items:[  
+//				    {key:"0",text:"Tomorro"},  
+//				    {key:"1",text:"Next Week"},  
+//				    {key:"2",text:"Next Month"},  
+//				    {key:"3",text:"Pick a range..."}  
+//				  ]  
+//				};  
+		this._oModel = new sap.ui.model.json.JSONModel(/*mData*/);
 		sap.ui.getCore().setModel(this._oModel);
 		this.setModel(this._oModel);
 		
 		this.bindProperty("tooltip", "/tooltip");
 		this.bindProperty("editable", "/editable");
-//		this.bindItems("/hardware", oItemTemplate1); That doesn't work according to https://github.com/SAP/openui5/issues/121
+//		this.bindItems("/items", oItemTemplate); That doesn't work according to https://github.com/SAP/openui5/issues/121
 		
 		var oItemTemplate = new sap.ui.core.Item();
 		oItemTemplate.bindProperty("text", "text");
 		oItemTemplate.bindProperty("key", "key"); 
+		//workaround for bindItems according to https://github.com/SAP/openui5/issues/121
 		this.bindAggregation('items', '/items', oItemTemplate);
 		
-		var onChange = function(oControlEvent) {
+		var onSelectionFinish = function(oControlEvent) {
+			var selection = oControlEvent.getParameter("selectedItems");
+			var keys = [];
+			var texts = [];
+			for(var i=0;i<selection.length;i++){
+				keys.push(selection[i].getKey());
+				texts.push(selection[i].getText());
+			}
+			//get values bex variable ready (has to be seperated by semicolons!)
+			var keysBexReady = JSON.stringify(keys)
+			keysBexReady = keysBexReady.substring(2,keysBexReady.length-2);
+			keysBexReady = this.replaceAll(keysBexReady,",",";")
+			keysBexReady = this.replaceAll(keysBexReady,'"',"");
+			this.setDSelectedKey(keys);
+			this.setDSelectedText(texts);
+			this.setDSelectedKeyBexReady(keysBexReady);
+			
+			//unselect CLEAR to clean up selection
+			this.removeSelectedKeys(["CLEAR"]);
+			//unselect ALL to clean up selection
+			this.removeSelectedKeys(["ALL"]);
+			
+			that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText", "DSelectedKeyBexReady"]);
+			that.fireDesignStudioEvent("onSelectionFinished");
+		};
+		
+		var onChange = function(oControlEvent){
 			var selection = oControlEvent.getParameter("value");
-			console.log(selection);
+			if(selection === this.getDSelectAllText()){
+				var items = this._oModel.oData.items;
+				var selectedKeys = [];
+				for(var i=0;i<items.length;i++){
+					if(items[i].key !== "ALL" && items[i].key !== "CLEAR"){
+						selectedKeys.push(items[i].key);
+					}
+				}
+				//assign every key to be marked as selected
+				this.setSelectedKeys(selectedKeys);
+
+			}else if(selection === this.getDSelectNoText()){
+				var items = this._oModel.oData.items;
+				var selectedKeys = [];
+				for(var i=0;i<items.length;i++){
+					if(items[i].key !== "ALL" && items[i].key !== "CLEAR"){
+						selectedKeys.push(items[i].key);
+					}
+				}
+
+				//assign every key to be marked as selected
+				this.removeSelectedKeys(selectedKeys);
+			}
 		};
 		this.attachChange(onChange);
+		this.attachSelectionFinish(onSelectionFinish);
 		
+		this.setPlaceholder("choose value");
 	},
 	
 	renderer: {},
 		
 	afterDesignStudioUpdate: function() {
-	    var selectedKeys = this._oModel.getProperty('/selected');
-	    if (selectedKeys) {
-	      this.setSelectedKeys(selectedKeys);
-	    }
-	    //That doesn't work
-		this.setPlaceholder("choose value");
+//	    var selectedKeys = this._oModel.getProperty('/selected');
+//	    if (selectedKeys) {
+//	      this.setSelectedKeys(selectedKeys);
+//	    }
 		
 		var that = this;
 		
 		var lData = this._data;
-		var lMetadata = this._metadata;
+		this._content = [];
+		var dimension_found = false;
+		if(lData.dimensions !== undefined){
+			for(var i=0;i<lData.dimensions.length;i++){
+				if(lData.dimensions[i].key === this.getDDimension()){
+					var members = lData.dimensions[i].members;
+					if(!this.getDSkipResultRow()){
+						this._content = lData.dimensions[i].members;
+					}
+					else{
+						for(var j=0;j<members.length;j++){
+							if(members[j].type !== 'RESULT'){
+								this._content.push(members[j]);	
+							}
+						}
+					}
+					dimension_found = true;
+				}
+			}
+			if(!dimension_found){
+				this.setPlaceholder("Dimension "+this.getDDimension()+" doesn't match on DataSource!");
+			}
+		}else{
+			this.setPlaceholder("No DataSource assigned!");
+		}
+		
+		//apply sorting
+		if(this.getDSorting() === "By Key"){
+			if(this.getDSortingDirection() === "Ascending"){
+				this._content.sort(function(a,b){
+					return a.key > b.key;
+				});
+			}else{
+				this._content.sort(function(a,b){
+					return a.key < b.key;
+				});
+			}
+		}else{
+			if(this.getDSortingDirection() === "Ascending"){
+				this._content.sort(function(a,b){
+					return a.text > b.text;
+				});
+			}else{
+				this._content.sort(function(a,b){
+					return a.text < b.text;
+				});
+			}		
+		}
+		//put default values to handle selection (everything selected or nothing) more gracefully
+		this._content.unshift({"key":"CLEAR","text":this.getDSelectNoText()},{"key":"ALL","text":this.getDSelectAllText()});
+		// define model
+		this._oModel.setData({
+			items: this._content,
+			editable: true
+		});
 	},
+	replaceAll: function(string, find, replace) {
+		  return string.replace(new RegExp(this.escapeRegExp(find), 'g'), replace);
+	},
+	escapeRegExp: function(string) {
+	    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+	}
 });
