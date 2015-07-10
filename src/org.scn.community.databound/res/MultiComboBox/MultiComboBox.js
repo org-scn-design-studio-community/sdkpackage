@@ -148,10 +148,13 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 	renderer: {},
 		
 	afterDesignStudioUpdate: function() {
-//	    var selectedKeys = this._oModel.getProperty('/selected');
-//	    if (selectedKeys) {
-//	      this.setSelectedKeys(selectedKeys);
-//	    }
+		//make sure of showing formerly selected items when afterUpdate gets triggered from another context
+		var t = this.getSelectedKeys();
+	    if (this.getSelectedKeys().length === 0) {
+		  var selectedKeys = this.getProperty('DSelectedKey');
+		  var keys = selectedKeys.split(",");
+	      this.setSelectedKeys(keys);
+	    }
 		
 		var that = this;
 		
