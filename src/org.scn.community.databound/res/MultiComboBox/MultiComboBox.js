@@ -60,17 +60,17 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 
 	initDesignStudio: function() {
 		var that = this;
-		
-		this.className = ('scn-pack-multiComboBox');
+		//add default css class to be assigned with the combobox. That way you can override specific layout more gracefully.
+		this.addStyleClass('scn-pack-multiComboBox');
 		
 //		// Create JSON data model
 //		var mData = {  
 //				  selected: ["0","1"],  
 //				  items:[  
-//				    {key:"0",text:"Tomorro"},  
-//				    {key:"1",text:"Next Week"},  
-//				    {key:"2",text:"Next Month"},  
-//				    {key:"3",text:"Pick a range..."}  
+//				    {key:"0",text:"first"},  
+//				    {key:"1",text:"second"},  
+//				    {key:"2",text:"third"},  
+//				    {key:"3",text:"fourth"}  
 //				  ]  
 //				};  
 		this._oModel = new sap.ui.model.json.JSONModel(/*mData*/);
