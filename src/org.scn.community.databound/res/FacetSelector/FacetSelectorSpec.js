@@ -306,6 +306,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.databound.FacetSelector.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.databound.FacetSelector.specAbout = 
 {
   "description": "Facet Selector - A simple selector which is using the facet techniques",

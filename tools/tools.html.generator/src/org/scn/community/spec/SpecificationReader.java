@@ -19,6 +19,8 @@ import org.scn.community.spec.xml.SpecificationXmlTemplate;
 import org.scn.community.spec.ztl.SpecificationZtlTemplate;
 import org.scn.community.utils.Helpers;
 
+import com.sun.xml.internal.messaging.saaj.soap.ver1_1.HeaderElement1_1Impl;
+
 import sun.org.mozilla.javascript.internal.json.JsonParser;
 
 public class SpecificationReader {
@@ -26,6 +28,7 @@ public class SpecificationReader {
 	private String pathToGenSpec;
 	private Component component;
 	private JSONObject jsonSpecification;
+	private JSONObject jsonIncludeSpecification;
 	private JSONObject jsonComponent;
 	private JSONObject jsonAbout;
 	private String XmlTmpl;
@@ -97,12 +100,25 @@ public class SpecificationReader {
 			}
 		}
 		
-		Property widthProp = this.getProperty(this.compProperties, "width");
+		for (Property property : this.specExtendedProperties) {
+			if(property.hasExtendSpec()) {
+				ZtlAndAps generatedZtlAndAps = property.generateZtlAndAps();
+				
+				if(generatedZtlAndAps.getXml() != null && generatedZtlAndAps.getXml().length() > 0) {
+					XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");
+					XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_TEMPLATE%", property.getExtendedFullSpec().getValueXml() + "\r\n%XML_DEAFULT_TEMPLATE%");
+				}
+			}
+		}
+
+		SpecHelper helper = new SpecHelper(this.componentName);
+		
+		Property widthProp = helper.getProperty(this.compProperties, "width");
 		HashMap<String, String> widthProperties = widthProp.getExtendedFullSpec().getProperties();
 		String widthPropValue = this.getAdvancedProperty(widthProperties, "width");
 		XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_WIDTH%", widthPropValue);
 		
-		Property heightProp = this.getProperty(this.compProperties, "height");
+		Property heightProp = helper.getProperty(this.compProperties, "height");
 		HashMap<String, String> heightProperties = heightProp.getExtendedFullSpec().getProperties();
 		String heightPropValue = this.getAdvancedProperty(heightProperties, "height");
 		XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_HEIGHT%", heightPropValue);
@@ -110,14 +126,16 @@ public class SpecificationReader {
 		XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_RIGHT%", widthPropValue.equals("auto")?"0":"auto");
 		XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_BOTTOM%", heightPropValue.equals("auto")?"0":"auto");
 		
-		Property requrieSpec = this.getProperty(this.compProperties, "require");
+		Property requrieSpec = helper.getProperty(this.compProperties, "require");
 
 		writeBack();
 	}
 	
 	private void readSpecs() {
-		readSpecification(this.specProperties, this.jsonSpecification);
-		readSpecification(this.compProperties, this.jsonComponent);
+		SpecHelper helper = new SpecHelper(this.componentName);
+		
+		helper.readSpecification(this.specProperties, this.jsonSpecification);
+		helper.readSpecification(this.compProperties, this.jsonComponent);
 		
 		for (Property property : compProperties) {
 			String key = property.getName();
@@ -153,6 +171,18 @@ public class SpecificationReader {
 					
 					componentStdIncludes.add("<stdInclude kind=\""+name+"\"/>");
 				}
+			} else if(key.equals("extends")) {
+				String newFile = pathToGenSpec.substring(0, pathToGenSpec.indexOf("org.scn.community."));
+				String specName = property.getExtendedFullSpec().getPropertyValue("extends");
+				
+				newFile = newFile + "org.scn.community.shared\\ui5spec\\control\\" + specName + ".spec.json";
+				String includeSpec = Helpers.file2String(newFile);
+				try {
+					jsonIncludeSpecification = new JSONObject(includeSpec);
+				} catch (JSONException e) {
+					throw new RuntimeException(e);
+				}
+				helper.readSpecification(this.specExtendedProperties, this.jsonIncludeSpecification);
 			} else {
 				// add special properties
 				for (String extendedPropertyKey : properties.keySet()) {
@@ -169,10 +199,10 @@ public class SpecificationReader {
 			}			
 		}
 		
-		readSpecification(this.aboutProperties, this.jsonAbout);
+		helper.readSpecification(this.aboutProperties, this.jsonAbout);
 		
-		Property compType = this.getProperty(this.compProperties, "handlerType");
-		Property databound = this.getProperty(this.compProperties, "databound");
+		Property compType = helper.getProperty(this.compProperties, "handlerType");
+		Property databound = helper.getProperty(this.compProperties, "databound");
 		
 		HashMap<String, String> properties = compType.getExtendedFullSpec().getProperties();
 		String compTypeValue = this.getAdvancedProperty(properties, "handlerType");
@@ -200,6 +230,10 @@ public class SpecificationReader {
 		} else {
 			XmlTmpl = XmlTmpl.replace("%PROPERTY_PAGE_LINK%", "aps/org.scn.community.PropertyPage."+compTypeValue+".html");
 		}
+		
+		if(jsonIncludeSpecification == null) {
+			jsonIncludeSpecification = new JSONObject();
+		}
 	}
 
 	private String getAdvancedProperty(HashMap<String, String> properties,
@@ -213,140 +247,13 @@ public class SpecificationReader {
 		return "";
 	}
 
-	private void readSpecification(ArrayList<Property> properties, JSONObject jsonSpec) {
-		Iterator keys = jsonSpec.keys();
-		while (keys.hasNext()) {
-			String key = (String) keys.next();
-			
-			ParamFullSpec parameter = new ParamFullSpec();
-			parameter.setName(key);
-			
-			try {
-				Object object = (Object) jsonSpec.get(key);
-				if(object instanceof JSONObject) {
-					processJsonObjectReq(parameter, object);
-				} else if(object instanceof JSONArray) {
-					processJsonArrayReq(parameter, object);
-				} else {
-					insertParameter(parameter, key, object);
-				}
-			} catch (JSONException e) {
-				throw new RuntimeException(e);
-			}
-			
-			Property prop = getProperty(properties, parameter.getKey());
-			parameter.setParent(prop);
-			prop.extendSpec(parameter);
-		}
-
-		// Sorting for better HTML
-		Collections.sort(properties, new Comparator<Property>() {
-			@Override
-			public int compare(Property o1, Property o2) {
-				 return  o1.getName().compareTo(o2.getName());
-			}
-		});
-	}
-
-	private void processJsonArrayReq(ParamFullSpec parameter, Object object) 
-			throws JSONException {
-		JSONArray object1 = (JSONArray) object;
-		
-		for (int i = 0; i < object1.length(); i++) {
-			Object element = object1.get(i);
-			
-			insertParameter(parameter, ""+i, element);
-		}
-	}
-
-	private void processJsonObjectReq(ParamFullSpec parameter, Object object)
-			throws JSONException {
-		JSONObject object1 = (JSONObject) object;
-		
-		Iterator keys2 = object1.keys();
-		while (keys2.hasNext()) {
-			String key2 = (String) keys2.next();
-			
-			Object object2 = (Object) object1.get(key2);
-			
-			if(object2 instanceof JSONObject) {
-				
-				ParamFullSpec parameter2 = new ParamFullSpec();
-				parameter2.setName(key2);
-				
-				parameter.addParameter(parameter2);
-				
-				processJsonObjectReq (parameter2, object2);
-			} else if(object2 instanceof JSONArray) {
-				ParamFullSpec parameter2 = new ParamFullSpec();
-				parameter2.setName(key2);
-				
-				JSONArray object2Array = (JSONArray) object2;
-				for (int i = 0; i < object2Array.length(); i++) {
-					JSONObject element = (JSONObject) object2Array.get(i);
-					
-					ParamFullSpec parameterArray = new ParamFullSpec();
-					parameterArray.setName(""+i);
-					
-					parameterArray.addEntry(i, element);
-					parameter2.addParameter(parameterArray);
-				}
-				
-				parameter.addParameter(parameter2);
-			} else {
-				insertParameter(parameter, key2, object2);
-			}
-		}
-	}
 	
-	private void insertParameter(ParamFullSpec parameterTo, String key, Object value) 
-			throws JSONException {
-		if(!(value instanceof JSONObject) && !(value instanceof JSONArray)) {
-			String realKey = key.substring(key.indexOf("-")+1);
-			
-			if(value instanceof Boolean) {
-				parameterTo.addProperty(realKey, ""+((Boolean) value).booleanValue());
-			} else if(value.getClass().getCanonicalName().equals("org.json.JSONObject.Null")) {
-				parameterTo.addProperty(realKey, "");
-			} else if(value instanceof Integer) {
-				parameterTo.addProperty(realKey, ""+((Integer) value).intValue());
-			} else {
-				parameterTo.addProperty(realKey, (String) value);
-			}
-		} else {
-			ParamFullSpec parameterNew = new ParamFullSpec();
-			parameterNew.setName(key);
-			
-			if(value instanceof JSONObject) {
-				JSONObject object2Array = (JSONObject) value;
-				
-				Iterator keys = object2Array.keys();
-				while (keys.hasNext()) {
-					String keyArray = (String) keys.next();
-					String valueArray = object2Array.getString(keyArray);
-					
-					parameterNew.addProperty(keyArray, valueArray);
-				}
-			}
-			
-			parameterTo.addParameter(parameterNew);
-		}
-	}
 	private final ArrayList<Property> specProperties = new ArrayList<Property>();
+	private final ArrayList<Property> specExtendedProperties = new ArrayList<Property>();
 	private final ArrayList<Property> compProperties = new ArrayList<Property>();
 	private final ArrayList<Property> aboutProperties = new ArrayList<Property>();
 	
-	private Property getProperty(ArrayList<Property> properties, String propertyName) {
-		for (Property property : properties) {
-			if (property.getName().equals(propertyName)) {
-				return property;
-			}
-		}
-		Property prop = new Property(this.componentName, propertyName);
-		properties.add(prop);
-		
-		return prop;
-	}
+	
 	
 	@SuppressWarnings("unused")
 	private void writeBack() {
@@ -395,10 +302,12 @@ public class SpecificationReader {
 			
 			try {
 				content = content.replace("%FULL_SPEC_DEFINITION%", jsonSpecification.toString(2) + ";");
+				content = content.replace("%FULL_SPEC_INCLUDE_DEFINITION%", jsonIncludeSpecification.toString(2) + ";");
 				content = content.replace("%FULL_COMP_SPEC_DEFINITION%", jsonComponent.toString(2) + ";");
 				content = content.replace("%FULL_ABOUT_SPEC_DEFINITION%", jsonAbout.toString(2) + ";");
 
 				content = content.replace("%FULL_SPEC_DEFINITION_JSON%", jsonSpecification.toString(2));
+				content = content.replace("%FULL_SPEC_INCLUDE_DEFINITION_JSON%", jsonIncludeSpecification.toString(2));
 				content = content.replace("%FULL_COMP_SPEC_DEFINITION_JSON%", jsonComponent.toString(2));
 				content = content.replace("%FULL_ABOUT_SPEC_DEFINITION_JSON%", jsonAbout.toString(2));
 			} catch (JSONException e) {

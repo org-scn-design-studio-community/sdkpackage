@@ -148,6 +148,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.CheckBoxGroup.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.CheckBoxGroup.specAbout = 
 {
   "description": "Check Box Group",

@@ -47,6 +47,9 @@
   "visible": true
 }};
 
+	org_scn_community_require.knownComponents.utils.JsonObject.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.utils.JsonObject.specAbout = 
 {
   "description": "A class for Json Object, small utilities in Json Format, like creation of JSON objects",

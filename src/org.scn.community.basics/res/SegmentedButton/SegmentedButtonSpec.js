@@ -276,6 +276,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.SegmentedButton.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.SegmentedButton.specAbout = 
 {
   "description": "Segmented Button",

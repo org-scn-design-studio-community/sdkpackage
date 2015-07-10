@@ -36,6 +36,9 @@
   "visible": true
 }};
 
+	org_scn_community_require.knownComponents.basics.EmbeddedFrame.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.EmbeddedFrame.specAbout = 
 {
   "description": "Embedded Frame - Include external web pages directly in your application",

@@ -2,7 +2,7 @@
 	"labelUnselect" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "",
+		"value" : ,
 		"visible": false,
 		"opts" : {
 			"ztlType": "boolean",
@@ -37,7 +37,7 @@
 	"iconHeight" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "",
+		"value" : ,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -53,7 +53,7 @@
 	"iconWidth" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "",
+		"value" : ,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -173,7 +173,7 @@
 	"spriteSheetPerRow" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "",
+		"value" : ,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",

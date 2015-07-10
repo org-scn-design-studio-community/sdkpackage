@@ -347,6 +347,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.databound.FacetFilter.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.databound.FacetFilter.specAbout = 
 {
   "description": "Facet Filter - A simple filter which is using the facet techniques",

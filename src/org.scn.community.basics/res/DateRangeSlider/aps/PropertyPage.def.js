@@ -140,6 +140,7 @@ ApsContent = function () {
     "opts": {
       "apsControl": "text",
       "cat": "Display-Date",
+      "correctName": "maximumDate",
       "desc": "Maximum Date",
       "noAps": false,
       "noZtl": false,
@@ -156,6 +157,7 @@ ApsContent = function () {
     "opts": {
       "apsControl": "text",
       "cat": "Display-Date",
+      "correctName": "minimumDate",
       "desc": "Minimum Date",
       "noAps": false,
       "noZtl": false,
@@ -172,6 +174,7 @@ ApsContent = function () {
     "opts": {
       "apsControl": "text",
       "cat": "Display-Date",
+      "correctName": "firstDate",
       "desc": "First Date",
       "noAps": false,
       "noZtl": false,
@@ -188,6 +191,7 @@ ApsContent = function () {
     "opts": {
       "apsControl": "text",
       "cat": "Display-Date",
+      "correctName": "secondDate",
       "desc": "Second Date",
       "noAps": false,
       "noZtl": false,
@@ -295,6 +299,9 @@ ApsContent = function () {
     "visible": true
   }
 }, 
+
+"specInclude" : 
+{}, 
 
 "specAbout" : 
 {

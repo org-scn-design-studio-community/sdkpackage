@@ -1,0 +1,15 @@
+{
+	"name": "BulletChartMode",
+	"docu": "Enumeration of possible BulletChart display modes.",
+
+	values: [
+	{	
+		"name": "Actual",
+		"value": "Displays the Actual value."	
+	},
+	{	
+		"name": "Delta",
+		"value": "Displays delta between the Actual and Threshold values."	
+	}
+	]
+}

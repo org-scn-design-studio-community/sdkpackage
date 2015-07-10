@@ -50,7 +50,7 @@
 	"dropIndex" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "",
+		"value" : ,
 		"visible": false,
 		"opts" : {
 			"ztlType": "int",
@@ -149,7 +149,7 @@
 	"itemWidth" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "120",
+		"value" : 120,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",

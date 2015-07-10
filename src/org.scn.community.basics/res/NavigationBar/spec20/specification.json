@@ -2,7 +2,7 @@
 	"DCleanAll" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "",
+		"value" : ,
 		"visible": false,
 		"opts" : {
 			"ztlType": "boolean",

@@ -36,6 +36,9 @@
   "visible": true
 }};
 
+	org_scn_community_require.knownComponents.utils.DataSourceHelper.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.utils.DataSourceHelper.specAbout = 
 {
   "description": "Data Source Helper - Utilities for work with Data Sources",

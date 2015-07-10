@@ -166,6 +166,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.Notify.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.Notify.specAbout = 
 {
   "description": "Notify - Leandro Cardoso",

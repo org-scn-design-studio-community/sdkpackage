@@ -69,6 +69,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.ColorPicker.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.ColorPicker.specAbout = 
 {
   "description": "Color Picker",

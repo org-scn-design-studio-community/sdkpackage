@@ -18,15 +18,15 @@
 			"options":[
 				{
 					"key" : "ddmmyy",
-					"text" : "ddmmyy"
+					"text" : "dd.mm.yy"
 				},
 				{
 					"key" : "ddmm",
-					"text" : "ddmm"
+					"text" : "dd.mm"
 				},
 				{
 					"key" : "mmyy",
-					"text" : "mmyy"
+					"text" : "mm.yy"
 				},
 				{
 					"key" : "hide",
@@ -45,7 +45,7 @@
 	"daylightsaving" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "true",
+		"value" : true,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
@@ -61,7 +61,7 @@
 	"interval" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "5000",
+		"value" : 5000,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -89,12 +89,12 @@
 			"apsControl" : "combobox",
 			"options":[
 				{
-					"key" : "en_U_S",
-					"text" : "en_U_S"
+					"key" : "enUS",
+					"text" : "en-US"
 				},
 				{
-					"key" : "de_D_E",
-					"text" : "de_D_E"
+					"key" : "deDE",
+					"text" : "de-DE"
 				},
 				{
 					"key" : "default",
@@ -109,7 +109,7 @@
 	"showtimezonename" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "true",
+		"value" : true,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
@@ -138,11 +138,11 @@
 			"options":[
 				{
 					"key" : "hhmmss",
-					"text" : "hhmmss"
+					"text" : "hh:mm:ss"
 				},
 				{
 					"key" : "hhmm",
-					"text" : "hhmm"
+					"text" : "hh:mm"
 				},
 				{
 					"key" : "hide",

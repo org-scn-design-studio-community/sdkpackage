@@ -10,9 +10,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Background Color",
+			"desc" : "Background Colour",
 			"cat" : "Display",
-			"tooltip" : "Background Color",
+			"tooltip" : "Background Colour",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
@@ -62,9 +62,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Fill Color",
+			"desc" : "Fill Colour",
 			"cat" : "Display",
-			"tooltip" : "Fill Color",
+			"tooltip" : "Fill Colour",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
@@ -73,7 +73,7 @@
 	"maxVersion" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "40",
+		"value" : 40,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -89,7 +89,7 @@
 	"minVersion" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "1",
+		"value" : 1,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -105,7 +105,7 @@
 	"printOnly" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "",
+		"value" : ,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
@@ -119,9 +119,9 @@
 		}
 	},
 	"quiet" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "0",
+		"template" : "float",
+		"type" : "float",
+		"value" : 0,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -135,9 +135,9 @@
 		}
 	},
 	"radius" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "0",
+		"template" : "float",
+		"type" : "float",
+		"value" : 0,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",

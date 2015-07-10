@@ -1,0 +1,124 @@
+	/** Adds a root element containing %ROOT_ALL_PROPERTIES%.
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	%COMPONENT_NAME%.add%ROOT_CONTENT_NAME%(%ROOT_ALL_PROPERTIES%);<br>
+	%COMPONENT_NAME%.add%ROOT_CONTENT_NAME%(%ROOT_ALL_PROPERTIES%);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void set%ROOT_CONTENT_NAME% (
+			%ROOT_PROPERTY_DEFINITION_FULL%
+			) {*
+
+		%ASSURE_OPTIONAL_ROOT_INITIALIZED%
+		var itemDef = {
+			leaf:true,
+			%ROOT_PROPERTY_DEFINITION_JSON%
+			};
+
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			this.%PROPERTY_NAME% = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+
+		// clear always
+		if(elementsJson.length == 1) {
+			elementsJson = [];
+		}
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	%COMPONENT_NAME%.remove%ROOT_CONTENT_NAME%(%ROOT_PROPERTY_DEFINITION_KEY%);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void clear%ROOT_CONTENT_NAME% (
+			
+			) {*
+
+		this.%PROPERTY_NAME% = "[]";
+	*}
+
+	/**
+	 * Updates given %ROOT_CONTENT_NAME%<br/>
+	 */
+	void update%ROOT_CONTENT_NAME% (
+			%ROOT_PROPERTY_DEFINITION_FULL%
+			) 
+	{*
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			this.%PROPERTY_NAME% = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			%ROOT_PROPERTY_DEFINITION_JSON%
+		};
+
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String get%ROOT_CONTENT_NAME% (
+			
+			) 
+	{*
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			this.%PROPERTY_NAME% = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == 0) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets %ROOT_CONTENT_NAME%s As JSON String
+	 */	
+	String get%ROOT_CONTENT_NAME%sAsJSON() {*
+		var jsonObject = JSON.parse(this.%PROPERTY_NAME%);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+%CUSTOM_EXTENSION_PROPERTY%

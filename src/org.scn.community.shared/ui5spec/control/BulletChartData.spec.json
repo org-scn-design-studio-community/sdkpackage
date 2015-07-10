@@ -1,0 +1,55 @@
+{
+
+	"value" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Value",
+			"cat" : "UI5",
+			"tooltip" : "The actual value.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"color" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Neutral",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "InfoTileValueColor",
+			"ztlFunction": "",
+			"desc" : "Colour",
+			"cat" : "Unsorted",
+			"tooltip" : "The semantic color of the actual value.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Neutral",
+					"text" : "Neutral InfoTile value color"
+				},
+				{
+					"key" : "Good",
+					"text" : "Good InfoTile value color"
+				},
+				{
+					"key" : "Critical",
+					"text" : "Critical InfoTile value color"
+				},
+				{
+					"key" : "Error",
+					"text" : "Error InfoTile value color"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

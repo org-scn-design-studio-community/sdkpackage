@@ -512,6 +512,9 @@ ApsContent = function () {
   }
 }, 
 
+"specInclude" : 
+{}, 
+
 "specAbout" : 
 {
   "description": "Kpi View",

@@ -22,6 +22,9 @@
 	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.spec = 
 %FULL_SPEC_DEFINITION%
 
+	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.specInclude = 
+%FULL_SPEC_INCLUDE_DEFINITION%
+
 	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.specAbout = 
 %FULL_ABOUT_SPEC_DEFINITION%
 

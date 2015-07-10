@@ -10,9 +10,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Background Color",
+			"desc" : "Background Colour",
 			"cat" : "Display",
-			"tooltip" : "Background Color For This Button",
+			"tooltip" : "Background Colour For This Button",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
@@ -26,9 +26,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Font Color",
+			"desc" : "Font Colour",
 			"cat" : "Display",
-			"tooltip" : "Font Color For This Button",
+			"tooltip" : "Font Colour For This Button",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false

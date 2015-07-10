@@ -5,7 +5,7 @@
 	"endValue" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "100",
+		"value" : 100,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -26,9 +26,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "First Color",
+			"desc" : "First Colour",
 			"cat" : "Display",
-			"tooltip" : "First Color",
+			"tooltip" : "First Colour",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
@@ -37,14 +37,14 @@
 	"gradientColor" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "",
+		"value" : ,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
 			"ztlFunction": "",
-			"desc" : "Gradient Color",
+			"desc" : "Gradient Colour",
 			"cat" : "Display",
-			"tooltip" : "Gradient Color",
+			"tooltip" : "Gradient Colour",
 			"apsControl" : "checkbox",
 			"noAps" : false,
 			"noZtl" : false
@@ -53,7 +53,7 @@
 	"haveNumbers" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "",
+		"value" : ,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
@@ -67,9 +67,9 @@
 		}
 	},
 	"indicatorValue" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "25",
+		"template" : "float",
+		"type" : "float",
+		"value" : 25,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -90,9 +90,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Main Color",
+			"desc" : "Main Colour",
 			"cat" : "Display",
-			"tooltip" : "Main Color",
+			"tooltip" : "Main Colour",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
@@ -106,9 +106,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Needle Color",
+			"desc" : "Needle Colour",
 			"cat" : "Display",
-			"tooltip" : "Needle Color",
+			"tooltip" : "Needle Colour",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
@@ -117,7 +117,7 @@
 	"numOfBigTicks" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "5",
+		"value" : 5,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -133,7 +133,7 @@
 	"numOfSmallTicks" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "2",
+		"value" : 2,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -154,9 +154,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Second Color",
+			"desc" : "Second Colour",
 			"cat" : "Display",
-			"tooltip" : "Second Color",
+			"tooltip" : "Second Colour",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
@@ -165,7 +165,7 @@
 	"showValue" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "true",
+		"value" : true,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
@@ -197,14 +197,14 @@
 	"startSecondColor" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "20",
+		"value" : 20,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
 			"ztlFunction": "",
-			"desc" : "Start Of Second Color",
+			"desc" : "Start Of Second Colour",
 			"cat" : "Display",
-			"tooltip" : "Start Of Second Color",
+			"tooltip" : "Start Of Second Colour",
 			"apsControl" : "spinner",
 			"noAps" : false,
 			"noZtl" : false
@@ -213,14 +213,14 @@
 	"startThirdColor" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "80",
+		"value" : 80,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
 			"ztlFunction": "",
-			"desc" : "Start Of Third Color",
+			"desc" : "Start Of Third Colour",
 			"cat" : "Display",
-			"tooltip" : "Start Of Third Color",
+			"tooltip" : "Start Of Third Colour",
 			"apsControl" : "spinner",
 			"noAps" : false,
 			"noZtl" : false
@@ -229,7 +229,7 @@
 	"startValue" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "0",
+		"value" : 0,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -250,9 +250,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Third Color",
+			"desc" : "Third Colour",
 			"cat" : "Display",
-			"tooltip" : "Third Color",
+			"tooltip" : "Third Colour",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
@@ -282,9 +282,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Text And Ticks Color",
+			"desc" : "Text And Ticks Colour",
 			"cat" : "Display",
-			"tooltip" : "Text And Ticks Color",
+			"tooltip" : "Text And Ticks Colour",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false

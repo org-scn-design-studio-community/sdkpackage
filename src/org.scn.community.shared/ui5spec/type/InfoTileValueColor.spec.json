@@ -1,0 +1,23 @@
+{
+	"name": "InfoTileValueColor",
+	"docu": "Enumeration of possible InfoTile value color settings.",
+
+	values: [
+	{	
+		"name": "Neutral",
+		"value": "Neutral InfoTile value color."	
+	},
+	{	
+		"name": "Good",
+		"value": "Good InfoTile value color."	
+	},
+	{	
+		"name": "Critical",
+		"value": "Critical InfoTile value color."	
+	},
+	{	
+		"name": "Error",
+		"value": "Error InfoTile value color."	
+	}
+	]
+}

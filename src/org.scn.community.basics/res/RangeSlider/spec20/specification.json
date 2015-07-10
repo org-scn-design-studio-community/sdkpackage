@@ -1,8 +1,8 @@
 {
 	"liveValue" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "",
+		"template" : "float",
+		"type" : "float",
+		"value" : ,
 		"visible": false,
 		"opts" : {
 			"ztlType": "float",
@@ -16,9 +16,9 @@
 		}
 	},
 	"liveValue2" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "",
+		"template" : "float",
+		"type" : "float",
+		"value" : ,
 		"visible": false,
 		"opts" : {
 			"ztlType": "float",
@@ -37,7 +37,7 @@
 	"DLiveChangeActive" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "false",
+		"value" : false,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
@@ -51,9 +51,9 @@
 		}
 	},
 	"max" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "100.0",
+		"template" : "float",
+		"type" : "float",
+		"value" : 100.0,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -67,9 +67,9 @@
 		}
 	},
 	"min" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "0.0",
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -83,9 +83,9 @@
 		}
 	},
 	"smallStepWidth" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "10",
+		"template" : "float",
+		"type" : "float",
+		"value" : 10,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -101,7 +101,7 @@
 	"stepLabels" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "",
+		"value" : ,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
@@ -117,7 +117,7 @@
 	"totalUnits" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "10",
+		"value" : 10,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -131,9 +131,9 @@
 		}
 	},
 	"value" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "0.0",
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -147,9 +147,9 @@
 		}
 	},
 	"value2" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "100.0",
+		"template" : "float",
+		"type" : "float",
+		"value" : 100.0,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -165,7 +165,7 @@
 	"vertical" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "false",
+		"value" : false,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",

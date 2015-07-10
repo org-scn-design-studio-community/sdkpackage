@@ -323,6 +323,9 @@ ApsContent = function () {
   }
 }, 
 
+"specInclude" : 
+{}, 
+
 "specAbout" : 
 {
   "description": "Facet Selector - A simple selector which is using the facet techniques",

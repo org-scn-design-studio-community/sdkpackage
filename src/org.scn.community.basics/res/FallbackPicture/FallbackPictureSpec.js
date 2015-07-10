@@ -55,6 +55,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.FallbackPicture.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.FallbackPicture.specAbout = 
 {
   "description": "Fallback Picture",

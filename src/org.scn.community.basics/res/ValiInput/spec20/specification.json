@@ -21,7 +21,7 @@
 	"DLength" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "",
+		"value" : ,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -35,9 +35,9 @@
 		}
 	},
 	"DNumber" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "",
+		"template" : "float",
+		"type" : "float",
+		"value" : ,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -142,23 +142,23 @@
 				},
 				{
 					"key" : "maxlength",
-					"text" : "maxlength"
+					"text" : "max_length"
 				},
 				{
 					"key" : "minlength",
-					"text" : "minlength"
+					"text" : "min_length"
 				},
 				{
 					"key" : "exactlength",
-					"text" : "exactlength"
+					"text" : "exact_length"
 				},
 				{
 					"key" : "greaterthan",
-					"text" : "greaterthan"
+					"text" : "greater_than"
 				},
 				{
 					"key" : "lessthan",
-					"text" : "lessthan"
+					"text" : "less_than"
 				},
 				{
 					"key" : "alpha",
@@ -166,31 +166,31 @@
 				},
 				{
 					"key" : "alphanumeric",
-					"text" : "alphanumeric"
+					"text" : "alpha_numeric"
 				},
 				{
 					"key" : "alphadash",
-					"text" : "alphadash"
+					"text" : "alpha_dash"
 				},
 				{
 					"key" : "isnatural",
-					"text" : "isnatural"
+					"text" : "is_natural"
 				},
 				{
 					"key" : "isnaturalnozero",
-					"text" : "isnaturalnozero"
+					"text" : "is_natural_no_zero"
 				},
 				{
 					"key" : "validip",
-					"text" : "validip"
+					"text" : "valid_ip"
 				},
 				{
 					"key" : "validbase64",
-					"text" : "validbase64"
+					"text" : "valid_base64"
 				},
 				{
 					"key" : "validurl",
-					"text" : "validurl"
+					"text" : "valid_url"
 				}
 				
             ],

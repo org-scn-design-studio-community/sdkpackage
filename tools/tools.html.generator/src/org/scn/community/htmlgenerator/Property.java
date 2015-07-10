@@ -10,6 +10,7 @@ import org.scn.community.defgenerator.ZtlAndAps;
 import org.scn.community.defgenerator.ParamSimpleSpec;
 import org.scn.community.spec.ParamFullSpec;
 import org.scn.community.spec.orgin.OrginSpec;
+import org.scn.community.ui5.UI5Property;
 import org.scn.community.utils.Helpers;
 
 public class Property {
@@ -90,8 +91,58 @@ public class Property {
 		this.name = propertyName;
 	}
 
+	public Property(UI5Property ui5property) {
+		this.componentName = ui5property.getComponentName();
+		
+		this.name = ui5property.getAttr("name");
+		this.title = ui5property.getAttr("name");
+		this.tooltip = ui5property.getAttr("name");
+		this.type = ui5property.getAttr("name");
+
+		this.visible = "true";
+		this.group = "Ui5";
+		this.defaultValue = "";
+
+		if (this.visible == null) {
+			this.visible = "true";
+		}
+
+		if (this.name == null) {
+			System.out.println("ISSUE: " + componentName + " - PARAMETER - property '" + this.name + "' is missing 'name'");
+			this.name = "";
+		}
+		if (this.title == null) {
+			System.out.println("ISSUE: " + componentName + " - PARAMETER  - property '" + this.name + "' is missing 'title'");
+			this.title = "";
+		}
+		if (this.tooltip == null) {
+			// System.out.println("ISSUE: " + componentName + "Property '" + this.name + "' is missing 'tooltip'");
+			this.tooltip = this.title;
+		}
+		if (this.type == null) {
+			System.out.println("ISSUE: " + componentName + " - PARAMETER  - property '" + this.name + "' is missing 'type'");
+			this.type = "";
+		}
+
+		if (this.group == null) {
+			System.out.println("ISSUE: " + componentName + " - PARAMETER  - property '" + this.name + "' is missing 'group'");
+			// throw new RuntimeException("Group Must Be Assigned!");
+			this.group = "Display";
+		}
+		
+		this.titleBig = Helpers.makeAllUpper(this.title);
+		this.tooltipBig = Helpers.makeAllUpper(this.tooltip);
+	}
+
+	@Override
 	public String toString() {
-		return toHtml();
+		return "Property  \r\n\t[\r\n\t\tname=" + name + ", \r\n\t\ttitle=" + title + ", \r\n\t\ttooltip="
+				+ tooltip + ", \r\n\t\ttype=" + type + ", \r\n\t\tvisible=" + visible
+				+ ", \r\n\t\tgroup=" + group + ", \r\n\t\tvalues=" + values + ", \r\n\t\tdefaultValue="
+				+ defaultValue + ", \r\n\t\textendedSimpleSpec=" + extendedSimpleSpec
+				+ ", \r\n\t\textendedFullSpec=" + extendedFullSpec + ", \r\n\t\tcomponentName="
+				+ componentName + ", \r\n\t\ttitleBig=" + titleBig + ", \r\n\t\ttooltipBig="
+				+ tooltipBig + ", \r\n\t\tcorrectName=" + correctName + "]";
 	}
 
 	public String toHtml() {
@@ -138,7 +189,7 @@ public class Property {
 	public void addValue(XMLStreamReader reader) {
 		try {
 			String elementText = reader.getElementText();
-			this.values.add(new Value(elementText));
+			this.values.add(new Value(elementText, elementText));
 		} catch (XMLStreamException e) {
 			// TODO Auto-generated catch block
 

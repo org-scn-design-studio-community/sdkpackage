@@ -66,11 +66,11 @@
 			"options":[
 				{
 					"key" : "horizontaltop",
-					"text" : "horizontaltop"
+					"text" : "horizontal-top"
 				},
 				{
 					"key" : "horizontalbottom",
-					"text" : "horizontalbottom"
+					"text" : "horizontal-bottom"
 				}
 				
             ],

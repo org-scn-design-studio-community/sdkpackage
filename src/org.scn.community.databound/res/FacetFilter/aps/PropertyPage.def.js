@@ -364,6 +364,9 @@ ApsContent = function () {
   }
 }, 
 
+"specInclude" : 
+{}, 
+
 "specAbout" : 
 {
   "description": "Facet Filter - A simple filter which is using the facet techniques",

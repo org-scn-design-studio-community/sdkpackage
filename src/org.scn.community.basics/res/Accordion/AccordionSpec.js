@@ -250,6 +250,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.Accordion.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.Accordion.specAbout = 
 {
   "description": "Accordion - Dynamic List of Entries",

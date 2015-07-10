@@ -117,6 +117,7 @@
 		"visible": true,
 		"opts" : {
 			"ztlType": "String",
+			"correctName": "minimumDate",
 			"ztlFunction": "",
 			"desc" : "Minimum Date",
 			"cat" : "Display-Date",
@@ -134,6 +135,7 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
+			"correctName": "maximumDate",
 			"desc" : "Maximum Date",
 			"cat" : "Display-Date",
 			"tooltip" : "Maximum Date Value (yyyymmdd)",
@@ -150,6 +152,7 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
+			"correctName": "firstDate",
 			"desc" : "First Date",
 			"cat" : "Display-Date",
 			"tooltip" : "First Date Value (yyyymmdd)",
@@ -166,6 +169,7 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
+			"correctName": "secondDate",
 			"desc" : "Second Date",
 			"cat" : "Display-Date",
 			"tooltip" : "Second Date Value (yyyymmdd)",

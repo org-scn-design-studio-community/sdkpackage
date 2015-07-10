@@ -121,6 +121,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.RoadMap.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.RoadMap.specAbout = 
 {
   "description": "Road Map",

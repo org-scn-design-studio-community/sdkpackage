@@ -184,6 +184,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.Tree.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.Tree.specAbout = 
 {
   "description": "Tree",

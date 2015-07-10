@@ -372,6 +372,11 @@ public class Helpers {
 			sentence = sentence + word;
 		}
 		
+		if(sentence.contains("Color")) {
+			// hack for designer bug which takes Color as type
+			sentence = sentence.replace("Color", "Colour");
+		}
+		
 		return sentence;
 	}
 	

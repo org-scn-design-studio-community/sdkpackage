@@ -5,7 +5,7 @@
 	"editable" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "true",
+		"value" : true,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
@@ -21,7 +21,7 @@
 	"enabled" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "true",
+		"value" : true,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",

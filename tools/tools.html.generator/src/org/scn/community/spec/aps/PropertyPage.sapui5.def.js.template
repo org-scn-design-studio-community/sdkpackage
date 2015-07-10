@@ -9,6 +9,9 @@ ApsContent = function () {
 "spec" : 
 %FULL_SPEC_DEFINITION_JSON%, 
 
+"specInclude" : 
+%FULL_SPEC_INCLUDE_DEFINITION_JSON%, 
+
 "specAbout" : 
 %FULL_ABOUT_SPEC_DEFINITION_JSON%
 

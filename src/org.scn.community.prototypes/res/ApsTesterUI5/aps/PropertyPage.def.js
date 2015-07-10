@@ -142,6 +142,9 @@ ApsContent = function () {
   }
 }, 
 
+"specInclude" : 
+{}, 
+
 "specAbout" : 
 {
   "description": "Application Property Sheet Tester UI5",

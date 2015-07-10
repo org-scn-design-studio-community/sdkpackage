@@ -18,7 +18,7 @@
 	"moveAction" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "",
+		"value" : ,
 		"visible": false,
 		"opts" : {
 			"ztlType": "int",
@@ -66,7 +66,7 @@
 	"panAction" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "",
+		"value" : ,
 		"visible": false,
 		"opts" : {
 			"ztlType": "int",
@@ -98,7 +98,7 @@
 	"zoom" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "",
+		"value" : ,
 		"visible": false,
 		"opts" : {
 			"ztlType": "int",

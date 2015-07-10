@@ -185,6 +185,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.KpiTile.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.KpiTile.specAbout = 
 {
   "description": "Kpi Tile",

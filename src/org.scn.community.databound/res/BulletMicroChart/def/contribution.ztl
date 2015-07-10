@@ -1,0 +1,42 @@
+
+/**
+ * Generated ZTL Class for BulletMicroChart
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.BulletMicroChart extends org.scn.community.shared.ui5.BulletChart {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Sets Actual Value Label Property
+	 */	
+	void setSmallTest( /**Actual Value Label*/ String smallTest){*
+		this.smallTest = smallTest;
+	*}
+
+	/**
+	 * Gets Actual Value Label Property
+	 */	
+	String getSmallTest() {*
+		return this.smallTest;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}

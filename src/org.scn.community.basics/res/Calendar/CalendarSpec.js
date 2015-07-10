@@ -236,6 +236,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.Calendar.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.Calendar.specAbout = 
 {
   "description": "Calendar",

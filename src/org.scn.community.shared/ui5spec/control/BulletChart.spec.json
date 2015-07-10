@@ -1,0 +1,411 @@
+{
+
+	"size" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Auto",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "InfoTileSize",
+			"ztlFunction": "",
+			"desc" : "Size",
+			"cat" : "Unsorted",
+			"tooltip" : "Updates the size of the chart. If not set then the default size is applied based on the device tile.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "XS",
+					"text" : "Extra small size"
+				},
+				{
+					"key" : "S",
+					"text" : "Small size"
+				},
+				{
+					"key" : "M",
+					"text" : "Medium size"
+				},
+				{
+					"key" : "L",
+					"text" : "Large size"
+				},
+				{
+					"key" : "Auto",
+					"text" : "The size of the tile depends on the device it is running on. It is large on desktop, medium on tablet and small on phone"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"mode" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Actual",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "BulletChartMode",
+			"ztlFunction": "",
+			"desc" : "Mode",
+			"cat" : "Unsorted",
+			"tooltip" : "Specifies whether to display the actual value itself or delta between the actual value and the target value. If not set, the default mode displays the actual value.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Actual",
+					"text" : "Displays the Actual value"
+				},
+				{
+					"key" : "Delta",
+					"text" : "Displays delta between the Actual and Threshold values"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"scale" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Scale",
+			"cat" : "UI5",
+			"tooltip" : "The scaling suffix.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"forecastValue" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Forecast Value",
+			"cat" : "UI5",
+			"tooltip" : "The forecast value.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"targetValue" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Target Value",
+			"cat" : "UI5",
+			"tooltip" : "The target value.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"minValue" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Min Value",
+			"cat" : "UI5",
+			"tooltip" : "If set, defines the left scale value for the bar chart.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"maxValue" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Max Value",
+			"cat" : "UI5",
+			"tooltip" : "If set, defines the right scale value for the bar chart.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showActualValue" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Actual Value",
+			"cat" : "UI5",
+			"tooltip" : "If set to true, shows numeric actual value. This property only works in Actual mode.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showDeltaValue" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Delta Value",
+			"cat" : "UI5",
+			"tooltip" : "If set to true, shows the calculated delta value instead of the numeric actual value regardless of the showActualValue setting. This property works only in the Delta mode.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showTargetValue" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Target Value",
+			"cat" : "UI5",
+			"tooltip" : "If set to true, shows numeric target value.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showValueMarker" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Value Marker",
+			"cat" : "UI5",
+			"tooltip" : "If set to true, shows the value marker.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"actualValueLabel" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Actual Value Label",
+			"cat" : "UI5",
+			"tooltip" : "If set, displays a specified label instead of the numeric actual value.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"deltaValueLabel" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Delta Value Label",
+			"cat" : "UI5",
+			"tooltip" : "If set, displays a specified label instead of the calculated numeric delta value.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"targetValueLabel" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Target Value Label",
+			"cat" : "UI5",
+			"tooltip" : "If set, displays a specified label instead of the numeric target value.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"contentWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Width",
+			"cat" : "UI5",
+			"tooltip" : "The width of the chart. If it is not set, the size of the control is defined by the size property.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"scaleColor" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "MediumLight",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "CommonBackground",
+			"ztlFunction": "",
+			"desc" : "Scale Colour",
+			"cat" : "Unsorted",
+			"tooltip" : "Background color of the scale.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Lightest",
+					"text" : "The lightest background color"
+				},
+				{
+					"key" : "ExtraLight",
+					"text" : "Extra light background color"
+				},
+				{
+					"key" : "Light",
+					"text" : "Light background color"
+				},
+				{
+					"key" : "MediumLight",
+					"text" : "Medium light background color"
+				},
+				{
+					"key" : "Medium",
+					"text" : "Medium background color"
+				},
+				{
+					"key" : "Dark",
+					"text" : "Dark background color"
+				},
+				{
+					"key" : "ExtraDark",
+					"text" : "Extra dark background color"
+				},
+				{
+					"key" : "Darkest",
+					"text" : "The darkest background color"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"actual" : {
+		"template" : "ObjectSingle",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "Actual",
+			"cat" : "UI5",
+			"tooltip" : "The bullet chart actual data.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"actual": {
+					"type": "Array",
+			        "sequence": "key,color,value",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "color",
+					  "type": "String"
+					},
+					"value": {
+					  "desc": "value",
+					  "type": "String"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"threshold" : {
+		"template" : "ObjectArray",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+
+			"desc" : "Thresholds",
+			"cat" : "UI5",
+			"tooltip" : "The bullet chart thresholds data.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"threshold": {
+					"type": "Array",
+			        "sequence": "key,color,value",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "color",
+					  "type": "String"
+					},
+					"value": {
+					  "desc": "value",
+					  "type": "String"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

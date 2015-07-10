@@ -142,6 +142,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.prototypes.ApsTesterUI5.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.prototypes.ApsTesterUI5.specAbout = 
 {
   "description": "Application Property Sheet Tester UI5",

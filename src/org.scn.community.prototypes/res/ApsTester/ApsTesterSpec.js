@@ -252,6 +252,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.prototypes.ApsTester.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.prototypes.ApsTester.specAbout = 
 {
   "description": "Application Property Sheet Tester",

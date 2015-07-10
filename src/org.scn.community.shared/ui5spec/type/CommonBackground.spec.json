@@ -1,0 +1,39 @@
+{
+	"name": "CommonBackground",
+	"docu": "Enumeration of possible theme specific background colors.",
+
+	values: [
+	{	
+		"name": "Lightest",
+		"value": "The lightest background color."	
+	},
+	{	
+		"name": "ExtraLight",
+		"value": "Extra light background color."	
+	},
+	{	
+		"name": "Light",
+		"value": "Light background color."	
+	},
+	{	
+		"name": "MediumLight",
+		"value": "Medium light background color."	
+	},
+	{	
+		"name": "Medium",
+		"value": "Medium background color."	
+	},
+	{	
+		"name": "Dark",
+		"value": "Dark background color."	
+	},
+	{	
+		"name": "ExtraDark",
+		"value": "Extra dark background color."	
+	},
+	{	
+		"name": "Darkest",
+		"value": "The darkest background color."	
+	}
+	]
+}

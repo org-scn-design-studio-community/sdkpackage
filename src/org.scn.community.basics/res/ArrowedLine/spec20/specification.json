@@ -46,9 +46,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Line Color",
+			"desc" : "Line Colour",
 			"cat" : "Display",
-			"tooltip" : "Line Color",
+			"tooltip" : "Line Colour",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
@@ -57,7 +57,7 @@
 	"lineSize" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "5",
+		"value" : 5,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -149,7 +149,7 @@
 	"visible" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "true",
+		"value" : true,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",

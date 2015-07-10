@@ -336,6 +336,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.databound.UI5Table.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.databound.UI5Table.specAbout = 
 {
   "description": "UI5 Table - A simple table with rows and columns",

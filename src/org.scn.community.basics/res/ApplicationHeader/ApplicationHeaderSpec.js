@@ -117,6 +117,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.ApplicationHeader.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.ApplicationHeader.specAbout = 
 {
   "description": "Application Header",

@@ -393,6 +393,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.prototypes.BulletChartGen.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.prototypes.BulletChartGen.specAbout = 
 {
   "description": "Bullet Chart",

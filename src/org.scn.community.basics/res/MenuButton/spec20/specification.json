@@ -2,7 +2,7 @@
 	"cleanAll" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "",
+		"value" : ,
 		"visible": false,
 		"opts" : {
 			"ztlType": "boolean",
@@ -85,14 +85,14 @@
 	"enabled" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "true",
+		"value" : true,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Enabled",
 			"cat" : "Display",
-			"tooltip" : "Switches Enabled State Of The Control. Disabled Fields Have Different Colors And Can Not Be Focused.",
+			"tooltip" : "Switches Enabled State Of The Control. Disabled Fields Have Different Colours And Can Not Be Focused.",
 			"apsControl" : "checkbox",
 			"noAps" : false,
 			"noZtl" : false

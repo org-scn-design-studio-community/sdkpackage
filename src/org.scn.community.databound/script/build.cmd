@@ -21,7 +21,6 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\LeaderBoard\def\contribution.xml ^
 ..\res\LocationIntel\def\contribution.xml ^
 ..\res\MarimekkoChart\def\contribution.xml ^
-..\res\MicroChart\def\contribution.xml ^
 ..\res\MultiComboBox\def\contribution.xml ^
 ..\res\MultiLevelDropDown\def\contribution.xml ^
 ..\res\NiceChart\def\contribution.xml ^
@@ -36,6 +35,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\TopFlop\def\contribution.xml ^
 ..\res\TopFlopChart\def\contribution.xml ^
 ..\res\UI5Table\def\contribution.xml ^
+..\res\BulletMicroChart\def\contribution.xml ^
 ..\..\org.scn.community.shared\templates.main\contribution.xml.close.txt > ^
 ..\contribution.xml
 

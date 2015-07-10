@@ -11,26 +11,26 @@
 			"ztlType": "Choice",
 			"choiceType": "",
 			"ztlFunction": "",
-			"desc" : "Bar Color",
+			"desc" : "Bar Colour",
 			"cat" : "Unsorted",
-			"tooltip" : "The Color Of The Bar.",
+			"tooltip" : "The Colour Of The Bar.",
 			"apsControl" : "combobox",
 			"options":[
 				{
-					"key" : "C_R_I_T_I_C_A_L",
-					"text" : "C_R_I_T_I_C_A_L"
+					"key" : "CRITICAL",
+					"text" : "CRITICAL"
 				},
 				{
-					"key" : "N_E_G_A_T_I_V_E",
-					"text" : "N_E_G_A_T_I_V_E"
+					"key" : "NEGATIVE",
+					"text" : "NEGATIVE"
 				},
 				{
-					"key" : "N_E_U_T_R_A_L",
-					"text" : "N_E_U_T_R_A_L"
+					"key" : "NEUTRAL",
+					"text" : "NEUTRAL"
 				},
 				{
-					"key" : "P_O_S_I_T_I_V_E",
-					"text" : "P_O_S_I_T_I_V_E"
+					"key" : "POSITIVE",
+					"text" : "POSITIVE"
 				}
 				
             ],
@@ -57,14 +57,14 @@
 	"enabled" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "true",
+		"value" : true,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Enabled",
 			"cat" : "Display",
-			"tooltip" : "Switches Enabled State Of The Control. Disabled Fields Have Different Colors And Can Not Be Focused.",
+			"tooltip" : "Switches Enabled State Of The Control. Disabled Fields Have Different Colours And Can Not Be Focused.",
 			"apsControl" : "checkbox",
 			"noAps" : false,
 			"noZtl" : false
@@ -73,7 +73,7 @@
 	"percentValue" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : "",
+		"value" : ,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -89,7 +89,7 @@
 	"showValue" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "true",
+		"value" : true,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",

@@ -1,0 +1,27 @@
+{
+	"name": "InfoTileSize",
+	"docu": "Enumeration of possible PointTile size settings.",
+
+	values: [
+	{	
+		"name": "XS",
+		"value": "Extra small size."	
+	},
+	{	
+		"name": "S",
+		"value": "Small size."	
+	},
+	{	
+		"name": "M",
+		"value": "Medium size."	
+	},
+	{	
+		"name": "L",
+		"value": "Large size."	
+	},
+	{	
+		"name": "Auto",
+		"value": "The size of the tile depends on the device it is running on. It is large on desktop, medium on tablet and small on phone."	
+	}
+	]
+}

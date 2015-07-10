@@ -19,17 +19,17 @@
 
 (function() {
 
-	org_scn_community_require.knownComponents.databound.MicroChart = {
-		name: "databound.MicroChart",
-		requireName: "databoundmicrochart",
-		fullComponentName: "org.scn.community.databound.MicroChart",
-		fullComponentPackage: "org.scn.community.databound/res/MicroChart",
-		script: "org.scn.community.databound/res/MicroChart/MicroChart",
-		scriptSpec: "org.scn.community.databound/res/MicroChart/MicroChartSpec",
+	org_scn_community_require.knownComponents.databound.BulletMicroChart = {
+		name: "databound.BulletMicroChart",
+		requireName: "databoundbulletmicrochart",
+		fullComponentName: "org.scn.community.databound.BulletMicroChart",
+		fullComponentPackage: "org.scn.community.databound/res/BulletMicroChart",
+		script: "org.scn.community.databound/res/BulletMicroChart/BulletMicroChart",
+		scriptSpec: "org.scn.community.databound/res/BulletMicroChart/BulletMicroChartSpec",
 		min: false
 	};
 
-	var myComponentData = org_scn_community_require.knownComponents.databound.MicroChart;
+	var myComponentData = org_scn_community_require.knownComponents.databound.BulletMicroChart;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (

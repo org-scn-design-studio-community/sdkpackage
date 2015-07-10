@@ -1,0 +1,324 @@
+
+<component
+	id="BulletMicroChart"
+	title="Bullet Micro Chart 2.0"
+	tooltip="Bullet Micro Chart - Component for visualization of data on small areas."
+	icon="res/BulletMicroChart/BulletMicroChart.png"
+	handlerType="sapui5"
+	propertySheetPath="res/BulletMicroChart/aps/PropertyPage.html"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/BulletMicroChart/BulletMicroChartLoader.js</jsInclude>
+	<cssInclude>res/BulletMicroChart/BulletMicroChart.css</cssInclude>
+	
+	<property
+		id="dataCellListActual"
+		type="ResultCellList"
+		title="Actual Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListForecast"
+		type="ResultCellList"
+		title="Forecast Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListTarget"
+		type="ResultCellList"
+		title="Target Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListThreshold1"
+		type="ResultCellList"
+		title="Treshold 2 Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListThreshold2"
+		type="ResultCellList"
+		title="Treshold 2 Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListThreshold3"
+		type="ResultCellList"
+		title="Treshold 3 Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListThreshold4"
+		type="ResultCellList"
+		title="Treshold 4 Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListThreshold5"
+		type="ResultCellList"
+		title="Treshold 5 Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="smallTest"
+		type="String"
+		title="Actual Value Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="actual"
+		type="String"
+		title="Actual"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="actualValueLabel"
+		type="String"
+		title="Actual Value Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="contentWidth"
+		type="int"
+		title="Content Width"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="deltaValueLabel"
+		type="String"
+		title="Delta Value Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="forecastValue"
+		type="float"
+		title="Forecast Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="maxValue"
+		type="float"
+		title="Max Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="minValue"
+		type="float"
+		title="Min Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="mode"
+		type="String"
+		title="Mode"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="scale"
+		type="String"
+		title="Scale"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="scaleColor"
+		type="String"
+		title="Scale Colour"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="showActualValue"
+		type="boolean"
+		title="Show Actual Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="showDeltaValue"
+		type="boolean"
+		title="Show Delta Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="showTargetValue"
+		type="boolean"
+		title="Show Target Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="showValueMarker"
+		type="boolean"
+		title="Show Value Marker"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="size"
+		type="String"
+		title="Size"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="targetValue"
+		type="float"
+		title="Target Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="targetValueLabel"
+		type="String"
+		title="Target Value Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="threshold"
+		type="String"
+		title="Thresholds"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+		
+		<defaultValue property="dataCellListActual"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListForecast"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListTarget"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListThreshold1"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListThreshold2"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListThreshold3"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListThreshold4"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListThreshold5"><![CDATA[null]]></defaultValue>
+		<defaultValue property="smallTest"><![CDATA[Karol]]></defaultValue>
+		<defaultValue property="actual"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="actualValueLabel"><![CDATA[]]></defaultValue>
+		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
+		<defaultValue property="deltaValueLabel"><![CDATA[]]></defaultValue>
+		<defaultValue property="forecastValue"><![CDATA[0.0]]></defaultValue>
+		<defaultValue property="maxValue"><![CDATA[0.0]]></defaultValue>
+		<defaultValue property="minValue"><![CDATA[0.0]]></defaultValue>
+		<defaultValue property="mode"><![CDATA[Actual]]></defaultValue>
+		<defaultValue property="scale"><![CDATA[]]></defaultValue>
+		<defaultValue property="scaleColor"><![CDATA[MediumLight]]></defaultValue>
+		<defaultValue property="showActualValue"><![CDATA[true]]></defaultValue>
+		<defaultValue property="showDeltaValue"><![CDATA[false]]></defaultValue>
+		<defaultValue property="showTargetValue"><![CDATA[true]]></defaultValue>
+		<defaultValue property="showValueMarker"><![CDATA[false]]></defaultValue>
+		<defaultValue property="size"><![CDATA[Auto]]></defaultValue>
+		<defaultValue property="targetValue"><![CDATA[0.0]]></defaultValue>
+		<defaultValue property="targetValueLabel"><![CDATA[]]></defaultValue>
+		<defaultValue property="threshold"><![CDATA[[]]]></defaultValue>
+
+	</initialization>
+
+</component>

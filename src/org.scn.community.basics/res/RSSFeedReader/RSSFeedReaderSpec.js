@@ -71,6 +71,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.RSSFeedReader.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.RSSFeedReader.specAbout = 
 {
   "description": "RSSFeedReader",

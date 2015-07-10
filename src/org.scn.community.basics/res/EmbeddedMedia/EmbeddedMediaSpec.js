@@ -62,6 +62,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.EmbeddedMedia.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.EmbeddedMedia.specAbout = 
 {
   "description": "Embedded Media - Include external media directly in your application",

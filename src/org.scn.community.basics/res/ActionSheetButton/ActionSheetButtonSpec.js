@@ -228,6 +228,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.ActionSheetButton.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.ActionSheetButton.specAbout = 
 {
   "description": "Fiori-Inspired Action Sheet Button menu",

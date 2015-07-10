@@ -255,6 +255,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.DateRangeScroller.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.DateRangeScroller.specAbout = 
 {
   "description": "Date Range Scroller",

@@ -353,6 +353,9 @@ ApsContent = function () {
   }
 }, 
 
+"specInclude" : 
+{}, 
+
 "specAbout" : 
 {
   "description": "UI5 Table - A simple table with rows and columns",

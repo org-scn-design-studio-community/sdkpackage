@@ -498,6 +498,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.KpiView.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.KpiView.specAbout = 
 {
   "description": "Kpi View",

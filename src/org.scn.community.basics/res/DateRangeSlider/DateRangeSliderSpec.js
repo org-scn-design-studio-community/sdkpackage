@@ -131,6 +131,7 @@
     "opts": {
       "apsControl": "text",
       "cat": "Display-Date",
+      "correctName": "maximumDate",
       "desc": "Maximum Date",
       "noAps": false,
       "noZtl": false,
@@ -147,6 +148,7 @@
     "opts": {
       "apsControl": "text",
       "cat": "Display-Date",
+      "correctName": "minimumDate",
       "desc": "Minimum Date",
       "noAps": false,
       "noZtl": false,
@@ -163,6 +165,7 @@
     "opts": {
       "apsControl": "text",
       "cat": "Display-Date",
+      "correctName": "firstDate",
       "desc": "First Date",
       "noAps": false,
       "noZtl": false,
@@ -179,6 +182,7 @@
     "opts": {
       "apsControl": "text",
       "cat": "Display-Date",
+      "correctName": "secondDate",
       "desc": "Second Date",
       "noAps": false,
       "noZtl": false,
@@ -286,6 +290,9 @@
     "visible": true
   }
 };
+
+	org_scn_community_require.knownComponents.basics.DateRangeSlider.specInclude = 
+{};
 
 	org_scn_community_require.knownComponents.basics.DateRangeSlider.specAbout = 
 {

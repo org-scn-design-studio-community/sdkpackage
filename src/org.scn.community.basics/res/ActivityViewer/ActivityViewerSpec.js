@@ -139,6 +139,9 @@
   }
 };
 
+	org_scn_community_require.knownComponents.basics.ActivityViewer.specInclude = 
+{};
+
 	org_scn_community_require.knownComponents.basics.ActivityViewer.specAbout = 
 {
   "description": "Activity Viewer - Gantt Chart for Activities",

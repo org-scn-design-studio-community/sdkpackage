@@ -1,5 +1,21 @@
 {
-  "dataCellListActual":{
+    "smallTest": {
+	    "opts": {
+	      "apsControl": "text",
+	      "cat": "UI5",
+	      "desc": "Actual Value Label",
+	      "noAps": false,
+	      "noZtl": false,
+	      "tooltip": "If set, displays a specified label instead of the numeric actual value.",
+	      "ztlFunction": "",
+	      "ztlType": "String"
+	    },
+	    "template": "String",
+	    "type": "String",
+	    "value": "Karol",
+	    "visible": true
+	},
+	"dataCellListActual":{
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -151,4 +167,5 @@
          "noZtl":true
       }
    }
+   
 }

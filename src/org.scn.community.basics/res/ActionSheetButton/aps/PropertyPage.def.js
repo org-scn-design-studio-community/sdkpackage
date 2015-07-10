@@ -237,6 +237,9 @@ ApsContent = function () {
   }
 }, 
 
+"specInclude" : 
+{}, 
+
 "specAbout" : 
 {
   "description": "Fiori-Inspired Action Sheet Button menu",

@@ -1,15 +1,16 @@
 {
-	"id": "MicroChart",
-	"title": "Micro Chart 2.0",
-	"tooltip": "Micro Chart - Component for VIsualization of Data on small areas",
+	"id": "BulletMicroChart",
+	"title": "Bullet Micro Chart 2.0",
+	"tooltip": "Bullet Micro Chart - Component for visualization of data on small areas.",
 	"handlerType": "sapui5",
 	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityDataBound",
 	"package": "databound",
-	"extension": "DataComponent",
+	"extension": "ui5.BulletChart",
+	"extends": "BulletChart",
+
 	"databound": true,
 	"dataType": "DataCellList",
-	"ui5specification": "BulletChart",
 	
 	"require": 
 	[

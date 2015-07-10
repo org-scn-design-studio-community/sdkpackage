@@ -20,6 +20,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 	 * Render either a Nav Sheet or a Property Sheet, depending on the node config passed.
 	 */
 	this.render = function(node,ui){
+		try{
 		var sheet = false;
 		var leafcount = 0;
 		for(var leaf in node.leafs) leafcount++;
@@ -165,6 +166,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			stageUI.addContent(firstChildUI);
 		}
 		this.rendered = true;
+		} catch (e) {
+			alert (e);
+		}
 	};
 	/**
 	 * Balances out hierarchy to not allow for cases where a node has nodes AND leafs.

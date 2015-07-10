@@ -69,6 +69,10 @@ public class ParamFullSpec {
 		return this.getPropertyValue("value");
 	}
 
+	public String getPropertyName() {
+		return this.getPropertyValue("name");
+	}
+
 	public void addParameter(ParamFullSpec parameter) {
 		parameters.add(parameter);
 	}
@@ -131,10 +135,14 @@ public class ParamFullSpec {
 		properties.put(key,  value);
 	}
 
-	public String toString() {
-		return toString(0);
-	}
+
 	
+	@Override
+	public String toString() {
+		return "\r\nParamFullSpec \r\n\t[\r\n\t\tkey=" + key + ", \r\n\t\tparameters=" + parameters
+				+ ", \r\n\t\tproperties=" + properties + ", \r\n\t\toptions=" + options + "]";
+	}
+
 	public String toString(int level) {
 		String prefix = "";
 		for (int i = 0; i <= level; i++) {
@@ -143,12 +151,17 @@ public class ParamFullSpec {
 		
 		String content = prefix + this.getName() + ", " +this.getType(false)+ "\r\n";
 		content = content + prefix + "PARAMETERS:\r\n";
-		for (ParamFullSpec paramGen : parameters) {
-			content = content + "\r\n" + prefix + "\t" + paramGen.toString(level+1);
+		if(parameters != null) {
+			for (ParamFullSpec paramGen : parameters) {
+				content = content + "\r\n" + prefix + "\t" + paramGen.toString(level+1);
+			}
+			content = content + prefix + "PROPERTIES:\r\n";
 		}
-		content = content + prefix + "PROPERTIES:\r\n";
-		for (String propKey : properties.keySet()) {
-			content = content +  "\r\n" + prefix + "\t" + propKey + "=" + properties.get(propKey);
+		if(properties != null){
+			for (String propKey : properties.keySet()) {
+				content = content +  "\r\n" + prefix + "\t" + propKey + "=" + properties.get(propKey);
+			}
+			
 		}
 		return  content;
 	}
@@ -456,7 +469,7 @@ public class ParamFullSpec {
 		return template;
 	}
 
-	private String getPropertyValue(String name) {
+	String getPropertyValue(String name) {
 		for (String key : properties.keySet()) {
 			if(key.equals(name)) {
 				return properties.get(key);

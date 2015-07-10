@@ -1,8 +1,8 @@
 {
 	"clickTrigger" : {
-		"template" : "default",
-		"type" : "String",
-		"value" : "",
+		"template" : "float",
+		"type" : "float",
+		"value" : ,
 		"visible": false,
 		"opts" : {
 			"ztlType": "float",
@@ -145,12 +145,12 @@
 			"apsControl" : "combobox",
 			"options":[
 				{
-					"key" : "New_Window",
-					"text" : "New_Window"
+					"key" : "NewWindow",
+					"text" : "New Window"
 				},
 				{
-					"key" : "Modal_Browser_Dialog",
-					"text" : "Modal_Browser_Dialog"
+					"key" : "ModalBrowserDialog",
+					"text" : "Modal Browser Dialog"
 				}
 				
             ],
@@ -161,7 +161,7 @@
 	"showButton" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "true",
+		"value" : true,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
@@ -177,7 +177,7 @@
 	"showCloseButton" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "true",
+		"value" : true,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
@@ -193,7 +193,7 @@
 	"showHeader" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : "false",
+		"value" : false,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
