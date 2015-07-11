@@ -160,7 +160,7 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 		  var selectedKeys = this.getProperty('DSelectedKey');
 		  var keys = selectedKeys.split(",");
 		  //avoid allways setting unassigned as preselected key
-	      if(keys !== "" && keys !== undefined){
+	      if(keys[0] !== "" && keys !== undefined){
 			  this.setSelectedKeys(keys);  
 	      }
 	    }
