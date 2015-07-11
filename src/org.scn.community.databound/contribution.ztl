@@ -1653,3 +1653,68 @@ class org.scn.community.databound.MarimekkoChart extends org.scn.community.share
 		this.colorPalette = palette;
 	*}
 }
+
+/**
+ * Class for MultiComboBox
+ */
+class org.scn.community.databound.MultiComboBox extends org.scn.community.shared.DataComponent {
+
+	/** returns the selected key 
+    <example>
+	
+	<code>
+    
+	</code>
+	</example>
+	*/
+	String getSelectedKey () {*
+		return this.DSelectedKey;	
+	*}
+	/** returns the selected key 
+    <example>
+	
+	<code>
+    
+	</code>
+	</example>
+	*/
+	String getSelectedKeyBexReady () {*
+		return this.DSelectedKeyBexReady;	
+	*}
+
+	/** returns the selected text */
+	String getSelectedText () {*
+		return this.DSelectedText;	
+	*}
+	
+	/** gest the dimension */
+	String getDimension () {*
+		return this.DDimension;	
+	*}
+	
+	/** sets the dimension */
+	void setDimension (String dimension) {*
+		this.DDimension = dimension;	
+	*}
+	/**
+	 * Set to true to enable Ascending sorting, false for the opposite
+	 */
+	void setSortingDirection (boolean direction) {* 
+		if(direction){
+			this.DSortingDirection = "Ascending";	
+		}else{
+			this.DSortingDirection = "Descending";
+		}
+	*}
+	/**
+	 * 
+	 */
+	void setSkipResult (boolean skip) {* 
+		this.DSkipResultRow = skip;
+	*}
+	
+	void setItems (String itemList) {*
+		this.DItemList = itemList;
+	*}
+	
+}
