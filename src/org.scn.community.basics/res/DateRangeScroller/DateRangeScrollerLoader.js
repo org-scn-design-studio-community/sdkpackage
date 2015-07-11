@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.DateRangeScroller = {
+		id: "DateRangeScroller",
 		name: "basics.DateRangeScroller",
 		requireName: "basicsdaterangescroller",
 		fullComponentName: "org.scn.community.basics.DateRangeScroller",

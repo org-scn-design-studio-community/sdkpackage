@@ -335,7 +335,15 @@ org_scn_community_basics.getDateValue = function (inputDate) {
  */
 org_scn_community_basics.fillDummyDataInit = function (owner, callBack) {
 	// uses directly setters for the settings
-	callBack(owner);
+	if(org_scn_community_require.jsVersion == "0000-0-0") {
+		callBack(owner);	
+	} else {
+		try {
+			callBack(owner);	
+		} catch (e) {
+			alert("Initialization issue in " + owner + ". \r\n" + e);
+		}
+	}
 };
 
 org_scn_community_basics.fillDummyDataInitAsync = function (owner, callBack) {

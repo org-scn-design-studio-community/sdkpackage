@@ -32,7 +32,7 @@ org_scn_community_basics.getUrlParameterByName = function (name) {
 /*NO DELTA CHECK START*/
 org_scn_community_basics.isDebug = org_scn_community_basics.getUrlParameterByName("d") == "X";
 if(org_scn_community_basics.isDebug) {
-	org_scn_community_require.jsVersion = "0000-0-0";	
+	org_scn_community_require.jsVersion = "0000-0-0";
 } else {
 	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-9"/*%TIMESTAMP-END%*/;
 }

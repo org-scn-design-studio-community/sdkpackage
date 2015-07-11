@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.prototypes.ApsTester = {
+		id: "ApsTester",
 		name: "prototypes.ApsTester",
 		requireName: "prototypesapstester",
 		fullComponentName: "org.scn.community.prototypes.ApsTester",

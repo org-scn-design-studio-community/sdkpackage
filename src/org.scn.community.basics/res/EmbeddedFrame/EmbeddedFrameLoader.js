@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.EmbeddedFrame = {
+		id: "EmbeddedFrame",
 		name: "basics.EmbeddedFrame",
 		requireName: "basicsembeddedframe",
 		fullComponentName: "org.scn.community.basics.EmbeddedFrame",

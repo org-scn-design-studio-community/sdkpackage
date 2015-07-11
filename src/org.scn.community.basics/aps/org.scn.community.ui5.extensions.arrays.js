@@ -169,7 +169,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 						continue;
 					}
 					
-					var rootElementValue = new sap.ui.commons.Label({text : "Elements for " + this.getDescription()});
+					var rootElementValue = new sap.ui.commons.Label({text : parameterObject.desc});
 					rootElementValue.addStyleClass("org-scn-ApsLabelArray");
 					this._rootElementPropertyLayout.addContent(rootElementValue);
 					

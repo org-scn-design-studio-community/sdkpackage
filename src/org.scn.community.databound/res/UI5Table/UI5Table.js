@@ -143,12 +143,12 @@ UI5Table = {
 	reloadFlatDataAgain: function() {
 		var that = this;
 		
-		var options = org_scn_community_databound.initializeOptions();
-		options.ignoreResults = that.getDIgnoreResults();
-		options.emptyHeaderValue = that.getDEmptyHeaderValue();
-		options.emptyDataValue = that.getDEmptyDataValue();
-		
-		org_scn_community_databound.toRowTable(that._flatData,options);
+			var options = org_scn_community_databound.initializeOptions();
+			options.ignoreResults = that.getDIgnoreResults();
+			options.emptyHeaderValue = that.getDEmptyHeaderValue();
+			options.emptyDataValue = that.getDEmptyDataValue();
+			
+			org_scn_community_databound.toRowTable(that._flatData,options);
 		
 		that._table.removeAllColumns();
 		var colI=0;

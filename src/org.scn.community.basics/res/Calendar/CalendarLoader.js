@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.Calendar = {
+		id: "Calendar",
 		name: "basics.Calendar",
 		requireName: "basicscalendar",
 		fullComponentName: "org.scn.community.basics.Calendar",

@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.Tree = {
+		id: "Tree",
 		name: "basics.Tree",
 		requireName: "basicstree",
 		fullComponentName: "org.scn.community.basics.Tree",

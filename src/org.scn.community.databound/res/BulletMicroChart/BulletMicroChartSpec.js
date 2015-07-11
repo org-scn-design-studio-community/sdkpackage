@@ -85,7 +85,7 @@
     },
     "opts": {
       "cat": "Data",
-      "desc": "Treshold 2 Data List",
+      "desc": "Treshold 1 Data List",
       "noAps": true,
       "noZtl": true,
       "tooltip": "Treshold 1 Data List",
@@ -171,22 +171,6 @@
     },
     "type": "ResultCellList",
     "value": "null",
-    "visible": true
-  },
-  "smallTest": {
-    "opts": {
-      "apsControl": "text",
-      "cat": "UI5",
-      "desc": "Actual Value Label",
-      "noAps": false,
-      "noZtl": false,
-      "tooltip": "If set, displays a specified label instead of the numeric actual value.",
-      "ztlFunction": "",
-      "ztlType": "String"
-    },
-    "template": "String",
-    "type": "String",
-    "value": "Karol",
     "visible": true
   }
 };
@@ -630,6 +614,14 @@
     },
     {
       "id": "numberformatter",
+      "space": "known"
+    },
+    {
+      "id": "sap_m_loader",
+      "space": "known"
+    },
+    {
+      "id": "sap_suite_loader",
       "space": "known"
     }
   ],

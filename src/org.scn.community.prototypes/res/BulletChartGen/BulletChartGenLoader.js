@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.prototypes.BulletChartGen = {
+		id: "BulletChartGen",
 		name: "prototypes.BulletChartGen",
 		requireName: "prototypesbulletchartgen",
 		fullComponentName: "org.scn.community.prototypes.BulletChartGen",

@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.ApplicationHeader = {
+		id: "ApplicationHeader",
 		name: "basics.ApplicationHeader",
 		requireName: "basicsapplicationheader",
 		fullComponentName: "org.scn.community.basics.ApplicationHeader",

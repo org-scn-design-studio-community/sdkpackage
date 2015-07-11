@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.KpiView = {
+		id: "KpiView",
 		name: "basics.KpiView",
 		requireName: "basicskpiview",
 		fullComponentName: "org.scn.community.basics.KpiView",

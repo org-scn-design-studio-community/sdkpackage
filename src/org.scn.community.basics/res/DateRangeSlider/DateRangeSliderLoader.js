@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.DateRangeSlider = {
+		id: "DateRangeSlider",
 		name: "basics.DateRangeSlider",
 		requireName: "basicsdaterangeslider",
 		fullComponentName: "org.scn.community.basics.DateRangeSlider",

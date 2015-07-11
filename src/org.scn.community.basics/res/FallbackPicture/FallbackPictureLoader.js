@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.FallbackPicture = {
+		id: "FallbackPicture",
 		name: "basics.FallbackPicture",
 		requireName: "basicsfallbackpicture",
 		fullComponentName: "org.scn.community.basics.FallbackPicture",

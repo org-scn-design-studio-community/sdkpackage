@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.ActionSheetButton = {
+		id: "ActionSheetButton",
 		name: "basics.ActionSheetButton",
 		requireName: "basicsactionsheetbutton",
 		fullComponentName: "org.scn.community.basics.ActionSheetButton",

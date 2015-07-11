@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.BasicBusinessCard = {
+		id: "BasicBusinessCard",
 		name: "basics.BasicBusinessCard",
 		requireName: "basicsbasicbusinesscard",
 		fullComponentName: "org.scn.community.basics.BasicBusinessCard",

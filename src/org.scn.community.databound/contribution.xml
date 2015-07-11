@@ -3772,7 +3772,7 @@ __n__}
 	<property
 		id="dataCellListThreshold1"
 		type="ResultCellList"
-		title="Treshold 2 Data List"
+		title="Treshold 1 Data List"
 		group="Data"
 		visible="true"
 		bindable="true">
@@ -3828,15 +3828,6 @@ __n__}
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 		<option name="includeMetadata" value="true"/>
-	</property>
-	<property
-		id="smallTest"
-		type="String"
-		title="Actual Value Label"
-		group="Display"
-		bindable="true"
-		visible="true">
-
 	</property>
 	<property
 		id="actual"
@@ -4018,7 +4009,6 @@ __n__}
 		<defaultValue property="dataCellListThreshold3"><![CDATA[null]]></defaultValue>
 		<defaultValue property="dataCellListThreshold4"><![CDATA[null]]></defaultValue>
 		<defaultValue property="dataCellListThreshold5"><![CDATA[null]]></defaultValue>
-		<defaultValue property="smallTest"><![CDATA[Karol]]></defaultValue>
 		<defaultValue property="actual"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="actualValueLabel"><![CDATA[]]></defaultValue>
 		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>

@@ -22,20 +22,6 @@ class org.scn.community.databound.BulletMicroChart extends org.scn.community.sha
 
 
 
-	/**
-	 * Sets Actual Value Label Property
-	 */	
-	void setSmallTest( /**Actual Value Label*/ String smallTest){*
-		this.smallTest = smallTest;
-	*}
-
-	/**
-	 * Gets Actual Value Label Property
-	 */	
-	String getSmallTest() {*
-		return this.smallTest;
-	*}
-
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 

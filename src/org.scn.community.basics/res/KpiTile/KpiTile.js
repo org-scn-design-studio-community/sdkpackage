@@ -526,7 +526,7 @@ KpiTile = {
 			}
 		}
 
-		if(that._oResize) {that._oResize(that, true);}
+		if(that._oResize) {that._oResize(true, true);}
 	},
 
 	forwardProperties: function (owner, compObj, comp, isAll) {

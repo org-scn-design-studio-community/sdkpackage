@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.datasource.ScalingDataSource = {
+		id: "ScalingDataSource",
 		name: "datasource.ScalingDataSource",
 		requireName: "datasourcescalingdatasource",
 		fullComponentName: "org.scn.community.datasource.ScalingDataSource",

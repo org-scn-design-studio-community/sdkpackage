@@ -75,6 +75,7 @@ public class Helpers {
 	}
 
 	public static List<String> stringToList(String content) {
+		if(content == null) {return new ArrayList<String>();}
 		content = content.replace("\r", "");
 		String[] listArray = content.split("\n");
 

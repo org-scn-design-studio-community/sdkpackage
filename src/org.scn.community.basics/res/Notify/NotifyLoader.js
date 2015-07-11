@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.Notify = {
+		id: "Notify",
 		name: "basics.Notify",
 		requireName: "basicsnotify",
 		fullComponentName: "org.scn.community.basics.Notify",

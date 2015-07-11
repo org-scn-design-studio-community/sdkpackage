@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.utils.DataSourceHelper = {
+		id: "DataSourceHelper",
 		name: "utils.DataSourceHelper",
 		requireName: "utilsdatasourcehelper",
 		fullComponentName: "org.scn.community.utils.DataSourceHelper",

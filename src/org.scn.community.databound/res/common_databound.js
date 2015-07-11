@@ -25,7 +25,7 @@ org_scn_community_databound.centralEventStorage = org_scn_community_databound.ce
 
 org_scn_community_databound.hasData = function (data) {
 	
-	if(!data || data == "" || data == "null" || data == undefined) {
+	if(!data || data == "" || data == "null" || data == undefined || data.data == undefined) {
 		return false;
 	}
 	
@@ -992,7 +992,15 @@ org_scn_community_databound.getSampleDataFlat = function (owner, callBack, after
 				returnValue= {};
 			} else {
 				returnValue= requestForData.response;
-				callBack(JSON.parse(returnValue), afterPrepare, owner);
+				if(org_scn_community_require.jsVersion == "0000-0-0") {
+						callBack(JSON.parse(returnValue), afterPrepare, owner);	
+				} else {
+					try {
+						callBack(JSON.parse(returnValue), afterPrepare, owner);	
+					} catch (e) {
+						alert("Update issue in " + owner + ". \r\n" + e);
+					}
+				}
 			};
 		};
 	};

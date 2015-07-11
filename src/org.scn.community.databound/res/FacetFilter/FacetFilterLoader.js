@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.databound.FacetFilter = {
+		id: "FacetFilter",
 		name: "databound.FacetFilter",
 		requireName: "databoundfacetfilter",
 		fullComponentName: "org.scn.community.databound.FacetFilter",

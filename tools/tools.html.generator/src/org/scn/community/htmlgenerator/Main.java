@@ -12,6 +12,7 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
+import org.scn.community.spec.SpecHelper;
 import org.scn.community.ui5.UI5Control;
 import org.scn.community.ui5.UI5Type;
 import org.scn.community.utils.Helpers;
@@ -83,8 +84,13 @@ public class Main {
 
 		Collections.sort(allComponents);
 		
-		updateUI5TypeSpecs(mainSrcFolder);
-		updateUI5Specs(mainSrcFolder);
+		SpecHelper specHelper = new SpecHelper("");
+		String check = specHelper.sendGet("https://sapui5.hana.ondemand.com/");
+		
+		if(check != null && check.length() > 0) {
+			updateUI5TypeSpecs(mainSrcFolder);
+			updateUI5Specs(mainSrcFolder);
+		}
 		
 		for (String element : allComponents) {
 			System.out.println("\r\nReading Component Spec: " + element.substring(element.indexOf("res")+4).replace("\\def\\contribution.xml", ""));

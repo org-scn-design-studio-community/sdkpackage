@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.utils.JsonObject = {
+		id: "JsonObject",
 		name: "utils.JsonObject",
 		requireName: "utilsjsonobject",
 		fullComponentName: "org.scn.community.utils.JsonObject",

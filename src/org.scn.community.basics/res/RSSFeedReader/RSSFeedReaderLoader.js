@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.RSSFeedReader = {
+		id: "RSSFeedReader",
 		name: "basics.RSSFeedReader",
 		requireName: "basicsrssfeedreader",
 		fullComponentName: "org.scn.community.basics.RSSFeedReader",

@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.databound.UI5Table = {
+		id: "UI5Table",
 		name: "databound.UI5Table",
 		requireName: "databoundui5table",
 		fullComponentName: "org.scn.community.databound.UI5Table",

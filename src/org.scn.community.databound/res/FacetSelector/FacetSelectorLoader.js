@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.databound.FacetSelector = {
+		id: "FacetSelector",
 		name: "databound.FacetSelector",
 		requireName: "databoundfacetselector",
 		fullComponentName: "org.scn.community.databound.FacetSelector",

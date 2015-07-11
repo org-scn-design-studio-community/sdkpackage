@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.ActivityViewer = {
+		id: "ActivityViewer",
 		name: "basics.ActivityViewer",
 		requireName: "basicsactivityviewer",
 		fullComponentName: "org.scn.community.basics.ActivityViewer",

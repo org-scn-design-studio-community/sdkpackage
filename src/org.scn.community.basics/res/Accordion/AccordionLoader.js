@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.Accordion = {
+		id: "Accordion",
 		name: "basics.Accordion",
 		requireName: "basicsaccordion",
 		fullComponentName: "org.scn.community.basics.Accordion",

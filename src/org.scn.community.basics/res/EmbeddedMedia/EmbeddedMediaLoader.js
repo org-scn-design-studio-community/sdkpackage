@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.EmbeddedMedia = {
+		id: "EmbeddedMedia",
 		name: "basics.EmbeddedMedia",
 		requireName: "basicsembeddedmedia",
 		fullComponentName: "org.scn.community.basics.EmbeddedMedia",

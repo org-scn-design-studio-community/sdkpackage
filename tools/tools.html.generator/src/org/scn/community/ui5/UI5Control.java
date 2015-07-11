@@ -109,6 +109,12 @@ public class UI5Control {
 		spec = spec.substring(0, spec.length()-1);
 		spec = spec + "\r\n}";
 		
+		String newSpec = ui5spec.getAbsolutePath().replace(".control", ".spec.json").replace("\\xml", "\\control");
+		File specFile = new File(newSpec);
+		if(!specFile.exists()) {
+			Helpers.string2File(newSpec, spec);
+		}
+
 		String ztl = this.generateZtl();
 		
 		return new String[] {spec, ztl};

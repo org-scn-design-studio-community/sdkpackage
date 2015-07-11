@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.ColorPicker = {
+		id: "ColorPicker",
 		name: "basics.ColorPicker",
 		requireName: "basicscolorpicker",
 		fullComponentName: "org.scn.community.basics.ColorPicker",

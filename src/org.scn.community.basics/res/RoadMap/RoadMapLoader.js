@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.RoadMap = {
+		id: "RoadMap",
 		name: "basics.RoadMap",
 		requireName: "basicsroadmap",
 		fullComponentName: "org.scn.community.basics.RoadMap",

@@ -29,6 +29,14 @@
 		{
 			"space" : "known",
 			"id" : "numberformatter",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_m_loader",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_suite_loader",
 		}
 	],
 	

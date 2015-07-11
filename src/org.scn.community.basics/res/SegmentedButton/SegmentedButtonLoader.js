@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.SegmentedButton = {
+		id: "SegmentedButton",
 		name: "basics.SegmentedButton",
 		requireName: "basicssegmentedbutton",
 		fullComponentName: "org.scn.community.basics.SegmentedButton",

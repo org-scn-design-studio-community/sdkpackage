@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.xml.stream.XMLStreamReader;
 
@@ -183,9 +184,16 @@ public class SpecHelper {
 
 		try {
 
-			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy", 8080));
+			URLConnection openConnection = null;
+
+			List<String> file2List = Helpers.file2List("c:\\DEV\\proxy.txt");
+			if(file2List.size() == 2) {
+				Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy", 8080));
+				openConnection = new URL(url).openConnection(proxy);
+			} else {
+				openConnection = new URL(url).openConnection();
+			}
 			
-			URLConnection openConnection = new URL(url).openConnection(proxy);
 			HttpURLConnection con = (HttpURLConnection) openConnection;
 
 			// optional default is GET

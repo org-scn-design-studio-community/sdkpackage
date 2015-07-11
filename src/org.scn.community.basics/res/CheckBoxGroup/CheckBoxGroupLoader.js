@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.CheckBoxGroup = {
+		id: "CheckBoxGroup",
 		name: "basics.CheckBoxGroup",
 		requireName: "basicscheckboxgroup",
 		fullComponentName: "org.scn.community.basics.CheckBoxGroup",

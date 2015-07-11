@@ -20,6 +20,7 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.KpiTile = {
+		id: "KpiTile",
 		name: "basics.KpiTile",
 		requireName: "basicskpitile",
 		fullComponentName: "org.scn.community.basics.KpiTile",
