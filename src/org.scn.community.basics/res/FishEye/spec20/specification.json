@@ -60,7 +60,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Technical Proprty For Selected Key",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Technical Proprty For Selected Key",
 			"apsControl" : "combobox",
 			"options":[

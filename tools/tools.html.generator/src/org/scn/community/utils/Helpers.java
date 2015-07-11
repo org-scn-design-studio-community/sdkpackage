@@ -476,4 +476,27 @@ public class Helpers {
 		string2File(absolutePath, buffer.toString());
 	}
 
+	public static String makeDescription(String name) {
+		String description = "";
+		
+		for (int i = 0; i < name.length(); i++) {
+			char n = name.charAt(i);
+			
+			if(Character.isUpperCase(n)) {
+				description = description + " ";
+			}
+			
+			if(i == 0) {
+				n = new Character(n).toUpperCase(n);
+			}
+			description = description + n;
+		}
+
+		if(description.contains("Color")) {
+			// need a hack as the description with "Color" is taking it as type
+			description = description.replace("Color", "Colour");
+		}
+		return description;
+	}
+
 }

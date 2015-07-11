@@ -76,7 +76,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Button Type",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Button Type",
 			"apsControl" : "combobox",
 			"options":[
@@ -140,7 +140,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Open Method",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Open Method",
 			"apsControl" : "combobox",
 			"options":[

@@ -105,14 +105,15 @@ BulletMicroChart = {
 		//options.ignoreResults = that.getDIgnoreResults();
 		//options.emptyHeaderValue = that.getDEmptyHeaderValue();
 		//options.emptyDataValue = that.getDEmptyDataValue();
-	
+
 		var dataCellListActual = that.getDataCellListActual();
-		
+		if(org_scn_community_databound.hasData (dataCellListActual)) {dataCellListActual = org_scn_community_databound.flatten (dataCellListActual,options);}
 		if(!org_scn_community_databound.hasData (dataCellListActual)) {
 			dataCellListActual = that._flatData;
 		} else {
 			dataCellListActual = org_scn_community_databound.flatten (dataCellListActual,options);
 		}
+
 		var dataCellListThreshold1 = that.getDataCellListThreshold1();
 		if(org_scn_community_databound.hasData (dataCellListThreshold1)) {dataCellListThreshold1 = org_scn_community_databound.flatten (dataCellListThreshold1,options);}
 		var dataCellListThreshold2 = that.getDataCellListThreshold2();
@@ -124,43 +125,116 @@ BulletMicroChart = {
 		var dataCellListThreshold5 = that.getDataCellListThreshold5();
 		if(org_scn_community_databound.hasData (dataCellListThreshold5)) {dataCellListThreshold5 = org_scn_community_databound.flatten (dataCellListThreshold5,options);}
 
+		var dataCellListTarget = that.getDataCellListTarget();
+		if(org_scn_community_databound.hasData (dataCellListTarget)) {dataCellListTarget = org_scn_community_databound.flatten (dataCellListTarget,options);}
+		var dataCellListForecast = that.getDataCellListForecast();
+		if(org_scn_community_databound.hasData (dataCellListForecast)) {dataCellListForecast = org_scn_community_databound.flatten (dataCellListForecast,options);}
+
 		that._specialDataModel = [];
+
+		var targetValue =that.getTargetValue();
+		var forecastValue =that.getForecastValue();
+		var minValue =that.getMinValue();
+		var maxValue =that.getMaxValue();
+
+		var size = that.getSize();
+		var scale = that.getScale();
+		var actualValueLabel = that.getActualValueLabel();
+		var contentWidth = that.getContentWidth();
+		var withLabel = true; // that.getWithLabel();
+
+		/* Object Single */
+		var actual = that.getActual();
+		actual = org_scn_community_basics.parseJson(actual, "A");
+
+		var actualValue = actual.value;
+		var actualColor = actual.color;
+
+		if(!that.getUseActual()) {
+			actualValue = 0;
+			actualColor = "Good";
+		}
+		/* Object Single */
+
+		/* Object Array */
+		var thresholds = that.getThresholds();
+		thresholds = org_scn_community_basics.parseJson(thresholds, "A");
+
+		/* Object Array */
 
 		for(var rowI in that._flatData.rowHeaders) {
 			var row = dataCellListActual.rowHeaders[rowI];
 
+			/* Object Single */
+			if(!that.getUseActual()) {
+				if(org_scn_community_databound.hasData (dataCellListActual)) actualValue = dataCellListActual.values[rowI][0];
+			}
+			/* Object Single */
+
+			/* Properties float */
+			if(!that.getUseTargetValue()) {
+				if(org_scn_community_databound.hasData (dataCellListTarget)) targetValue = dataCellListTarget.values[rowI][0];
+			}
+
+			if(!that.getUseForecastValue()) {
+				if(org_scn_community_databound.hasData (dataCellListForecast)) forecastValue = dataCellListForecast.values[rowI][0];
+			}
+
+			if(!that.getUseMinValue()) {
+				if(org_scn_community_databound.hasData (dataCellListMin)) minValue = dataCellListMin.values[rowI][0];
+			}
+
+			if(!that.getUseMaxValue()) {
+				if(org_scn_community_databound.hasData (dataCellListMax)) minValue = dataCellListMax.values[rowI][0];
+			}
+			/* Properties float */
+
 			var customData = {
-				size: that.getSize(),
-				scale: that.getScale(),
-				targetValue: that.getTargetValue(),
-				forecastValue: that.getForecastValue(),
-				minValue: that.getMinValue(),
-				maxValue: that.getMaxValue(),
-				actualValueLabel: that.getActualValueLabel(),
-				width: (that.getContentWidth() - 20) +"px",
+				size: size,
+				scale: scale,
+
+				targetValue: targetValue,
+				forecastValue: forecastValue,
+				minValue: minValue,
+				maxValue: maxValue,
+				actualValueLabel: actualValueLabel,
+				width: contentWidth +"px",
 				dimensionText: row,
-				withLabel: false,
+				withLabel: withLabel,
 				"class": "",
 			};
 			
-			// create actual
-			actual = {
-				value: dataCellListActual.values[rowI][0],
+			/* Object Single */
+			actualJson = {
+				value: actualValue,
 				color: "Good",
 				label: row
 			}
+			customData.actual = actualJson;
+			/* Object Single */
 
-			// create tresholds
-			thresholds = [];
-			
-			if(org_scn_community_databound.hasData (dataCellListThreshold1)) thresholds.push({value:  dataCellListThreshold1.values[rowI][0], color: "Good"});
-			if(org_scn_community_databound.hasData (dataCellListThreshold2)) thresholds.push({value:  dataCellListThreshold2.values[rowI][0], color: "Good"});
-			if(org_scn_community_databound.hasData (dataCellListThreshold3)) thresholds.push({value:  dataCellListThreshold3.values[rowI][0], color: "Good"});
-			if(org_scn_community_databound.hasData (dataCellListThreshold4)) thresholds.push({value:  dataCellListThreshold4.values[rowI][0], color: "Good"});
-			if(org_scn_community_databound.hasData (dataCellListThreshold5)) thresholds.push({value:  dataCellListThreshold5.values[rowI][0], color: "Good"});
+			/* Object Array */
+			thresholdsJson = [];
 
-			customData.actual = actual;
-			customData.thresholds = thresholds;
+			if(!that.getUseThreshold()) {
+				if(org_scn_community_databound.hasData (dataCellListThreshold1)) thresholdsJson.push({value:  dataCellListThreshold1.values[rowI][0], color: "Good"});
+				if(org_scn_community_databound.hasData (dataCellListThreshold2)) thresholdsJson.push({value:  dataCellListThreshold2.values[rowI][0], color: "Good"});
+				if(org_scn_community_databound.hasData (dataCellListThreshold3)) thresholdsJson.push({value:  dataCellListThreshold3.values[rowI][0], color: "Good"});
+				if(org_scn_community_databound.hasData (dataCellListThreshold4)) thresholdsJson.push({value:  dataCellListThreshold4.values[rowI][0], color: "Good"});
+				if(org_scn_community_databound.hasData (dataCellListThreshold5)) thresholdsJson.push({value:  dataCellListThreshold5.values[rowI][0], color: "Good"});
+			} else {
+				for (var thresI in thresholds) {
+					var thresO = thresholds[thresI];
+					
+					var thresPropO = {};
+					for (var thresPropI in thresO) {
+						thresPropO[thresPropI] = thresO[thresPropI];
+					}
+					thresholdsJson.push(thresPropO);
+				}
+			}
+			customData.thresholds = thresholdsJson;
+			/* Object Array */
 
 			that._specialDataModel.push(customData);
 		}
@@ -180,13 +254,15 @@ BulletMicroChart = {
 		var that = parent;
 		// in case special resize code is required
 
-		for(entryI in that._specialDataModel) {
-			var entry = that._specialDataModel[entryI];
+		if(!that.getUseContentWidth() || that.getContentWidth() <= 0) {
+			for(entryI in that._specialDataModel) {
+				var entry = that._specialDataModel[entryI];
 
-			{entry.width = (width - 20) + "px"};
+				{entry.width = (width - 20) + "px"};
+			}
+
+			that._oModel.setData(that._specialDataModel);
 		}
-
-		that._oModel.setData(that._specialDataModel);
 	},
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };

@@ -172,7 +172,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Orientation",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Orientation",
 			"apsControl" : "combobox",
 			"options":[

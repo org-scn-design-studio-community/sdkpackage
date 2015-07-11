@@ -60,7 +60,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Size M (16px) | L (22px)",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "The Size Of The Content",
 			"apsControl" : "combobox",
 			"options":[
@@ -88,7 +88,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Button Style",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Predefined Style For This Button",
 			"apsControl" : "combobox",
 			"options":[

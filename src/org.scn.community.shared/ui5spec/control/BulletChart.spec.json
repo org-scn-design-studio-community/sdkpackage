@@ -10,7 +10,7 @@
 			"choiceType": "InfoTileSize",
 			"ztlFunction": "",
 			"desc" : "Size",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Updates the size of the chart. If not set then the default size is applied based on the device tile.",
 			"apsControl" : "combobox",
 			"options":[
@@ -50,7 +50,7 @@
 			"choiceType": "BulletChartMode",
 			"ztlFunction": "",
 			"desc" : "Mode",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Specifies whether to display the actual value itself or delta between the actual value and the target value. If not set, the default mode displays the actual value.",
 			"apsControl" : "combobox",
 			"options":[
@@ -77,7 +77,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Scale",
-			"cat" : "UI5",
+			"cat" : "Display",
 			"tooltip" : "The scaling suffix.",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -93,7 +93,7 @@
 			"ztlType": "float",
 			"ztlFunction": "",
 			"desc" : "Forecast Value",
-			"cat" : "UI5",
+			"cat" : "Data-Values",
 			"tooltip" : "The forecast value.",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -109,7 +109,7 @@
 			"ztlType": "float",
 			"ztlFunction": "",
 			"desc" : "Target Value",
-			"cat" : "UI5",
+			"cat" : "Data-Values",
 			"tooltip" : "The target value.",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -125,7 +125,7 @@
 			"ztlType": "float",
 			"ztlFunction": "",
 			"desc" : "Min Value",
-			"cat" : "UI5",
+			"cat" : "Data-Values",
 			"tooltip" : "If set, defines the left scale value for the bar chart.",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -141,7 +141,7 @@
 			"ztlType": "float",
 			"ztlFunction": "",
 			"desc" : "Max Value",
-			"cat" : "UI5",
+			"cat" : "Data-Values",
 			"tooltip" : "If set, defines the right scale value for the bar chart.",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -157,7 +157,7 @@
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Show Actual Value",
-			"cat" : "UI5",
+			"cat" : "Data-Values",
 			"tooltip" : "If set to true, shows numeric actual value. This property only works in Actual mode.",
 			"apsControl" : "checkbox",
 			"noAps" : false,
@@ -173,7 +173,7 @@
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Show Delta Value",
-			"cat" : "UI5",
+			"cat" : "Data-Values",
 			"tooltip" : "If set to true, shows the calculated delta value instead of the numeric actual value regardless of the showActualValue setting. This property works only in the Delta mode.",
 			"apsControl" : "checkbox",
 			"noAps" : false,
@@ -189,7 +189,7 @@
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Show Target Value",
-			"cat" : "UI5",
+			"cat" : "Data-Values",
 			"tooltip" : "If set to true, shows numeric target value.",
 			"apsControl" : "checkbox",
 			"noAps" : false,
@@ -205,7 +205,7 @@
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Show Value Marker",
-			"cat" : "UI5",
+			"cat" : "Data-Values",
 			"tooltip" : "If set to true, shows the value marker.",
 			"apsControl" : "checkbox",
 			"noAps" : false,
@@ -221,7 +221,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Actual Value Label",
-			"cat" : "UI5",
+			"cat" : "Data-Labels",
 			"tooltip" : "If set, displays a specified label instead of the numeric actual value.",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -237,7 +237,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Delta Value Label",
-			"cat" : "UI5",
+			"cat" : "Data-Labels",
 			"tooltip" : "If set, displays a specified label instead of the calculated numeric delta value.",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -253,7 +253,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Target Value Label",
-			"cat" : "UI5",
+			"cat" : "Data-Labels",
 			"tooltip" : "If set, displays a specified label instead of the numeric target value.",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -269,7 +269,7 @@
 			"ztlType": "int",
 			"ztlFunction": "",
 			"desc" : "Content Width",
-			"cat" : "UI5",
+			"cat" : "Display",
 			"tooltip" : "The width of the chart. If it is not set, the size of the control is defined by the size property.",
 			"apsControl" : "spinner",
 			"noAps" : false,
@@ -286,7 +286,7 @@
 			"choiceType": "CommonBackground",
 			"ztlFunction": "",
 			"desc" : "Scale Colour",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Background color of the scale.",
 			"apsControl" : "combobox",
 			"options":[
@@ -339,7 +339,7 @@
 			"ztlFunction": "-single",
 
 			"desc" : "Actual",
-			"cat" : "UI5",
+			"cat" : "Content-Actual",
 			"tooltip" : "The bullet chart actual data.",
 
 			"apsControl" : "array",
@@ -355,11 +355,11 @@
 			          "type": "String"
 					},
 					"color": {
-					  "desc": "color",
+					  "desc": "Colour",
 					  "type": "String"
 					},
 					"value": {
-					  "desc": "value",
+					  "desc": "Value",
 					  "type": "String"
 					}
 		      	}
@@ -379,7 +379,7 @@
 			"ztlFunction": "",
 
 			"desc" : "Thresholds",
-			"cat" : "UI5",
+			"cat" : "Content-Thresholds",
 			"tooltip" : "The bullet chart thresholds data.",
 
 			"apsControl" : "array",
@@ -395,11 +395,11 @@
 			          "type": "String"
 					},
 					"color": {
-					  "desc": "color",
+					  "desc": "Colour",
 					  "type": "String"
 					},
 					"value": {
-					  "desc": "value",
+					  "desc": "Value",
 					  "type": "String"
 					}
 		      	}

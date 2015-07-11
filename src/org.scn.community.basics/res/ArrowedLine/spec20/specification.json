@@ -12,7 +12,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Arrow Position",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Arrow Position",
 			"apsControl" : "combobox",
 			"options":[
@@ -80,7 +80,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Line Type",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Line Type",
 			"apsControl" : "combobox",
 			"options":[

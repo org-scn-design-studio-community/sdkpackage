@@ -305,6 +305,14 @@ org_scn_community_basics.cloneJson = function(json) {
 	return JSON.clone(json);
 }
 
+org_scn_community_basics.parseJson = function(json, typeNull) {
+	if(json == undefined || json == "") {
+		return typeNull == "A" ? [] : {};
+	}
+	
+	return JSON.parse(json);
+}
+
 /**
  * Returns date object based on techncial date string, format YYYYMMDD
  */

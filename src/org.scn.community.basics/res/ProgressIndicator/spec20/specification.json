@@ -12,7 +12,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Bar Colour",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "The Colour Of The Bar.",
 			"apsControl" : "combobox",
 			"options":[

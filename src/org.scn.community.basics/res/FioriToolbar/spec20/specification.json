@@ -92,7 +92,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Design",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Design",
 			"apsControl" : "combobox",
 			"options":[

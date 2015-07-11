@@ -28,7 +28,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Error Correction Level",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Error Correction Level",
 			"apsControl" : "combobox",
 			"options":[
@@ -160,7 +160,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Render Mode",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Render Mode",
 			"apsControl" : "combobox",
 			"options":[

@@ -44,7 +44,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Tooltip",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Tooltip",
 			"apsControl" : "combobox",
 			"options":[

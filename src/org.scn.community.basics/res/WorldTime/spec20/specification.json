@@ -12,7 +12,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Date Format",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Date Format",
 			"apsControl" : "combobox",
 			"options":[
@@ -84,7 +84,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Locale",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Locale",
 			"apsControl" : "combobox",
 			"options":[
@@ -132,7 +132,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Time Format",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Time Format",
 			"apsControl" : "combobox",
 			"options":[

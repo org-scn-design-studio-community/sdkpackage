@@ -20,8 +20,8 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	 */
 	void setActual (
 			/**Unique Property Key*/String key, 
-			/**color*/String color, 
-			/**value*/String value
+			/**Colour*/String color, 
+			/**Value*/String value
 			) {*
 
 		
@@ -80,8 +80,8 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	 */
 	void updateActual (
 			/**Unique Property Key*/String key, 
-			/**color*/String color, 
-			/**value*/String value
+			/**Colour*/String color, 
+			/**Value*/String value
 			) 
 	{*
 		if (this.actual === undefined || this.actual === "" || this.actual === "<delete>"){
@@ -578,8 +578,8 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	 */
 	void addThreshold (
 			/**Unique Property Key*/String key, 
-			/**color*/String color, 
-			/**value*/String value
+			/**Colour*/String color, 
+			/**Value*/String value
 			) {*
 
 		
@@ -662,8 +662,8 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	void insertThreshold (
 			/**Index to Insert (0-based)*/int insertionIndex0based,
 			/**Unique Property Key*/String key, 
-			/**color*/String color, 
-			/**value*/String value
+			/**Colour*/String color, 
+			/**Value*/String value
 			) {*
 
 		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
@@ -696,8 +696,8 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	 */
 	void updateThreshold (
 			/**Unique Property Key*/String key, 
-			/**color*/String color, 
-			/**value*/String value
+			/**Colour*/String color, 
+			/**Value*/String value
 			) 
 	{*
 		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){

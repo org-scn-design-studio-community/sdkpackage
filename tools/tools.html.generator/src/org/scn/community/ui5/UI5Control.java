@@ -99,22 +99,36 @@ public class UI5Control {
 	}
 	public String[] toSpec20() {
 		String spec = "{\r\n";
+		String specDs = "{\r\n";
 		
 		for (UI5Property ui5Property : properties) {
-			String propSpec = ui5Property.toSpec20();
+			String[] propSpec = ui5Property.toSpec20();
 			
-			spec = spec + "\r\n" + propSpec + ",";
+			spec = spec + "\r\n" + propSpec[0] + ",";
+			
+			if(!propSpec[1].isEmpty()) {
+				specDs = specDs + "\r\n" + propSpec[1] + ",";	
+			}
 		}
 		
 		spec = spec.substring(0, spec.length()-1);
 		spec = spec + "\r\n}";
+		
+		specDs = specDs.substring(0, specDs.length()-1);
+		specDs = specDs + "\r\n}";
 		
 		String newSpec = ui5spec.getAbsolutePath().replace(".control", ".spec.json").replace("\\xml", "\\control");
 		File specFile = new File(newSpec);
 		if(!specFile.exists()) {
 			Helpers.string2File(newSpec, spec);
 		}
-
+		
+		newSpec = newSpec.replace(".spec.json", ".ds.spec.json");
+		specFile = new File(newSpec);
+		if(!specFile.exists()) {
+			Helpers.string2File(newSpec, specDs);
+		}
+		
 		String ztl = this.generateZtl();
 		
 		return new String[] {spec, ztl};

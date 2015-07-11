@@ -44,6 +44,7 @@ public class SpecificationReader {
 	private String JsSpecTmpl;
 	private ArrayList<String> componentRequries = new ArrayList<String>();
 	private ArrayList<String> componentStdIncludes = new ArrayList<String>();
+	private String includeSpec;
 
 	public SpecificationReader(String pathToGenSpec, Component component) {
 		this.pathToGenSpec = pathToGenSpec;
@@ -171,18 +172,31 @@ public class SpecificationReader {
 					
 					componentStdIncludes.add("<stdInclude kind=\""+name+"\"/>");
 				}
-			} else if(key.equals("extends")) {
+			} else if(key.startsWith("extends")) {
 				String newFile = pathToGenSpec.substring(0, pathToGenSpec.indexOf("org.scn.community."));
-				String specName = property.getExtendedFullSpec().getPropertyValue("extends");
+				String specName = property.getExtendedFullSpec().getPropertyValue(key);
 				
 				newFile = newFile + "org.scn.community.shared\\ui5spec\\control\\" + specName + ".spec.json";
-				String includeSpec = Helpers.file2String(newFile);
+				String includeSpecN = Helpers.file2String(newFile);
+				if(includeSpec != null) {
+					includeSpec = includeSpec.substring(0, includeSpec.length() - 1);
+					includeSpec = includeSpec + ",\r\n" + includeSpecN.substring(1);
+				} else {
+					includeSpec = includeSpecN;
+				}
+				
+				try {
+					jsonIncludeSpecification = new JSONObject(includeSpecN);
+				} catch (JSONException e) {
+					throw new RuntimeException(e);
+				}
+				helper.readSpecification(this.specExtendedProperties, this.jsonIncludeSpecification);
+				
 				try {
 					jsonIncludeSpecification = new JSONObject(includeSpec);
 				} catch (JSONException e) {
 					throw new RuntimeException(e);
 				}
-				helper.readSpecification(this.specExtendedProperties, this.jsonIncludeSpecification);
 			} else {
 				// add special properties
 				for (String extendedPropertyKey : properties.keySet()) {

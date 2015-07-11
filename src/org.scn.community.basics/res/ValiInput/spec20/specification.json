@@ -76,7 +76,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Valid State (for Custom)",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Valid State, Only For Custom Validation",
 			"apsControl" : "combobox",
 			"options":[
@@ -112,7 +112,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Validation Type",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Predefined Typs Of Input Validation",
 			"apsControl" : "combobox",
 			"options":[

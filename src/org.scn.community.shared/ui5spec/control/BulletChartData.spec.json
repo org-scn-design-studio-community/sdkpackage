@@ -9,7 +9,7 @@
 			"ztlType": "float",
 			"ztlFunction": "",
 			"desc" : "Value",
-			"cat" : "UI5",
+			"cat" : "Data-Values",
 			"tooltip" : "The actual value.",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -26,7 +26,7 @@
 			"choiceType": "InfoTileValueColor",
 			"ztlFunction": "",
 			"desc" : "Colour",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "The semantic color of the actual value.",
 			"apsControl" : "combobox",
 			"options":[

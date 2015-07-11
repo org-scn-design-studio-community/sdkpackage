@@ -79,31 +79,70 @@ public class UI5Property {
 				+ ", \r\n\r\n\tdocu=" + docu + "]";
 	}
 	
-	public String toSpec20() {
+	public String[] toSpec20() {
 		String compatibleType = this.getType();
-		
+		String originalType = this.getAttr("type");
+		originalType = originalType.substring(originalType.indexOf("/") + 1);
+
 		String template = Helpers.resource2String(OrginSpec.class, "org."+compatibleType+".tmpl");
 		
 		if(template == null) {
 			template = Helpers.resource2String(OrginSpec.class, "org.default.tmpl");
 		}
 		
-		String nameOfProperty = getName();
-		template = template.replace("%NAME%", nameOfProperty);
+		String templateDs = Helpers.resource2String(OrginSpec.class, "ds."+compatibleType+".tmpl");
+
+		if(templateDs == null) {
+			templateDs = Helpers.resource2String(OrginSpec.class, "ds.simple.tmpl");
+		}
+
+		String category = "Display";
+		String categoryDs = "Display";
 		
-		template = template.replace("%DESCRIPTION%", this.createDesctiption());
+		String nameOfProperty = getName();
+		String desctiptionOfProperty = this.createDesctiption();
+		
+		if(desctiptionOfProperty.contains("Value")) {
+			category = "Data-Values";
+			categoryDs = "Display-Values";
+		}
+		if(desctiptionOfProperty.contains("Label")) {
+			category = "Data-Labels";
+			categoryDs = "Display-Labels";
+		}
+		
+		if(compatibleType.equals("ObjectArray") || compatibleType.equals("ObjectSingle")) {
+			category = "Content-" + desctiptionOfProperty;
+			categoryDs = "Content-" + desctiptionOfProperty;
+		}
+		
+		template = template.replace("%NAME%", nameOfProperty);
+		template = template.replace("%DESCRIPTION%", desctiptionOfProperty);
 		template = template.replace("%TOOLTIP%", this.docu);
 		template = template.replace("%ZTL_TYPE%", compatibleType);
-		template = template.replace("%CATEGORY%", "UI5");
+		template = template.replace("%CATEGORY%", category);
 		template = template.replace("%VISIBLE%", "true");
 		
 		template = template.replace("%ZTL_FUNCTION%", "");
 		template = template.replace("%NO_APS%", "false");
 		template = template.replace("%NO_ZTL%", "false");
+
+		// DS
+		templateDs = templateDs.replace("%NAME%", Helpers.makeFirstUpper(nameOfProperty));
+		templateDs = templateDs.replace("%DESCRIPTION%", Helpers.makeDescription(nameOfProperty));
+		templateDs = templateDs.replace("%TOOLTIP%", this.docu);
+		templateDs = templateDs.replace("%CATEGORY%", categoryDs);
+		templateDs = templateDs.replace("%VISIBLE%", "true");
 		
-		String originalType = this.getAttr("type");
-		originalType = originalType.substring(originalType.indexOf("/") + 1);
+		templateDs = templateDs.replace("%ZTL_FUNCTION%", "");
+		templateDs = templateDs.replace("%NO_APS%", "false");
+		templateDs = templateDs.replace("%NO_ZTL%", "false");
 		
+		if(compatibleType.equals("boolean") || compatibleType.equals("String") || compatibleType.equals("Choice")) {
+			// no need for booleans
+			templateDs = "";
+		}
+
 		template = template.replace("\"choiceType\": \"\",", "\"choiceType\": \""+originalType+"\",");
 
 		String defaultValue = this.getAttr("defaultValue");
@@ -182,7 +221,7 @@ public class UI5Property {
 					String nameChild = propertyChild.getName();
 					
 					String propDef = "\""+nameChild+"\": {\r\n\t\t\t\t\t";
-					propDef = propDef + "  \"desc\": \""+nameChild+"\",\r\n\t\t\t\t\t";
+					propDef = propDef + "  \"desc\": \""+Helpers.makeDescription(nameChild)+"\",\r\n\t\t\t\t\t";
 					propDef = propDef + "  \"type\": \""+typeChild+"\"\r\n\t\t\t\t\t";
 					propDef = propDef + "}";
 					
@@ -236,7 +275,7 @@ public class UI5Property {
 		
 		template = template.replace("%DEFAULT%", defaultValue);
 
-		return template;
+		return new String[]{template, templateDs};
 	}
 
 	private String createDesctiption() {

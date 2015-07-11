@@ -7,7 +7,8 @@ ApsContent = function () {
 {
   "dataType": "DataCellList",
   "databound": true,
-  "extends": "BulletChart",
+  "extends1ControlDs": "BulletChart.ds",
+  "extends2Control": "BulletChart",
   "extension": "ui5.BulletChart",
   "group": "ScnCommunityDataBound",
   "handlerType": "sapui5",
@@ -48,25 +49,6 @@ ApsContent = function () {
 
 "spec" : 
 {
-  "dataCellListActual": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "Actual Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "Actual Data List",
-      "type": "data",
-      "value": null,
-      "ztlFunction": ""
-    },
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
-  },
   "dataCellListForecast": {
     "options": {
       "includeData": "true",
@@ -104,101 +86,6 @@ ApsContent = function () {
     "type": "ResultCellList",
     "value": "null",
     "visible": true
-  },
-  "dataCellListThreshold1": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "Treshold 1 Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "Treshold 1 Data List",
-      "type": "data",
-      "value": null,
-      "ztlFunction": ""
-    },
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
-  },
-  "dataCellListThreshold2": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "Treshold 2 Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "Treshold 2 Data List",
-      "type": "data",
-      "value": null,
-      "ztlFunction": ""
-    },
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
-  },
-  "dataCellListThreshold3": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "Treshold 3 Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "Treshold 3 Data List",
-      "type": "data",
-      "value": null,
-      "ztlFunction": ""
-    },
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
-  },
-  "dataCellListThreshold4": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "Treshold 4 Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "Treshold 4 Data List",
-      "type": "data",
-      "value": null,
-      "ztlFunction": ""
-    },
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
-  },
-  "dataCellListThreshold5": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "Treshold 5 Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "Treshold 5 Data List",
-      "type": "data",
-      "value": null,
-      "ztlFunction": ""
-    },
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
   }
 }, 
 
@@ -209,7 +96,7 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"actual": {
         "color": {
-          "desc": "color",
+          "desc": "Colour",
           "type": "String"
         },
         "key": {
@@ -219,12 +106,12 @@ ApsContent = function () {
         "sequence": "key,color,value",
         "type": "Array",
         "value": {
-          "desc": "value",
+          "desc": "Value",
           "type": "String"
         }
       }},
       "arrayMode": "OneLevelArray",
-      "cat": "UI5",
+      "cat": "Content-Actual",
       "desc": "Actual",
       "noAps": false,
       "noZtl": false,
@@ -240,7 +127,7 @@ ApsContent = function () {
   "actualValueLabel": {
     "opts": {
       "apsControl": "text",
-      "cat": "UI5",
+      "cat": "Data-Labels",
       "desc": "Actual Value Label",
       "noAps": false,
       "noZtl": false,
@@ -256,7 +143,7 @@ ApsContent = function () {
   "contentWidth": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "UI5",
+      "cat": "Display",
       "desc": "Content Width",
       "noAps": false,
       "noZtl": false,
@@ -269,10 +156,200 @@ ApsContent = function () {
     "value": 0,
     "visible": true
   },
+  "dataCellListActual": {
+    "options": {
+      "includeData": "true",
+      "includeFormattedData": "true"
+    },
+    "opts": {
+      "cat": "Content-Actual",
+      "desc": "Actual Data List",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Actual Data List",
+      "type": "data",
+      "value": "null",
+      "ztlFunction": ""
+    },
+    "type": "ResultCellList",
+    "value": "null",
+    "visible": true
+  },
+  "dataCellListForecastValue": {
+    "options": {
+      "includeData": "true",
+      "includeFormattedData": "true"
+    },
+    "opts": {
+      "cat": "Display-Values",
+      "desc": "Forecast Value Data List",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Forecast Value Data List",
+      "type": "data",
+      "value": "null",
+      "ztlFunction": ""
+    },
+    "type": "ResultCellList",
+    "value": "null",
+    "visible": true
+  },
+  "dataCellListMaxValue": {
+    "options": {
+      "includeData": "true",
+      "includeFormattedData": "true"
+    },
+    "opts": {
+      "cat": "Display-Values",
+      "desc": "Max Value Data List",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Max Value Data List",
+      "type": "data",
+      "value": "null",
+      "ztlFunction": ""
+    },
+    "type": "ResultCellList",
+    "value": "null",
+    "visible": true
+  },
+  "dataCellListMinValue": {
+    "options": {
+      "includeData": "true",
+      "includeFormattedData": "true"
+    },
+    "opts": {
+      "cat": "Display-Values",
+      "desc": "Min Value Data List",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Min Value Data List",
+      "type": "data",
+      "value": "null",
+      "ztlFunction": ""
+    },
+    "type": "ResultCellList",
+    "value": "null",
+    "visible": true
+  },
+  "dataCellListTargetValue": {
+    "options": {
+      "includeData": "true",
+      "includeFormattedData": "true"
+    },
+    "opts": {
+      "cat": "Display-Values",
+      "desc": "Target Value Data List",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Target Value Data List",
+      "type": "data",
+      "value": "null",
+      "ztlFunction": ""
+    },
+    "type": "ResultCellList",
+    "value": "null",
+    "visible": true
+  },
+  "dataCellListThreshold1": {
+    "options": {
+      "includeData": "true",
+      "includeFormattedData": "true"
+    },
+    "opts": {
+      "cat": "Content-Thresholds",
+      "desc": "Threshold 1 Data List",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Threshold 1 Data List",
+      "type": "data",
+      "value": "null",
+      "ztlFunction": ""
+    },
+    "type": "ResultCellList",
+    "value": "null",
+    "visible": true
+  },
+  "dataCellListThreshold2": {
+    "options": {
+      "includeData": "true",
+      "includeFormattedData": "true"
+    },
+    "opts": {
+      "cat": "Content-Thresholds",
+      "desc": "Threshold 2 Data List",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Threshold 2 Data List",
+      "type": "data",
+      "value": "null",
+      "ztlFunction": ""
+    },
+    "type": "ResultCellList",
+    "value": "null",
+    "visible": true
+  },
+  "dataCellListThreshold3": {
+    "options": {
+      "includeData": "true",
+      "includeFormattedData": "true"
+    },
+    "opts": {
+      "cat": "Content-Thresholds",
+      "desc": "Threshold 3 Data List",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Threshold 3 Data List",
+      "type": "data",
+      "value": "null",
+      "ztlFunction": ""
+    },
+    "type": "ResultCellList",
+    "value": "null",
+    "visible": true
+  },
+  "dataCellListThreshold4": {
+    "options": {
+      "includeData": "true",
+      "includeFormattedData": "true"
+    },
+    "opts": {
+      "cat": "Content-Thresholds",
+      "desc": "Threshold 4 Data List",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Threshold 4 Data List",
+      "type": "data",
+      "value": "null",
+      "ztlFunction": ""
+    },
+    "type": "ResultCellList",
+    "value": "null",
+    "visible": true
+  },
+  "dataCellListThreshold5": {
+    "options": {
+      "includeData": "true",
+      "includeFormattedData": "true"
+    },
+    "opts": {
+      "cat": "Content-Thresholds",
+      "desc": "Threshold 5 Data List",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Threshold 5 Data List",
+      "type": "data",
+      "value": "null",
+      "ztlFunction": ""
+    },
+    "type": "ResultCellList",
+    "value": "null",
+    "visible": true
+  },
   "deltaValueLabel": {
     "opts": {
       "apsControl": "text",
-      "cat": "UI5",
+      "cat": "Data-Labels",
       "desc": "Delta Value Label",
       "noAps": false,
       "noZtl": false,
@@ -288,7 +365,7 @@ ApsContent = function () {
   "forecastValue": {
     "opts": {
       "apsControl": "text",
-      "cat": "UI5",
+      "cat": "Data-Values",
       "desc": "Forecast Value",
       "noAps": false,
       "noZtl": false,
@@ -304,7 +381,7 @@ ApsContent = function () {
   "maxValue": {
     "opts": {
       "apsControl": "text",
-      "cat": "UI5",
+      "cat": "Data-Values",
       "desc": "Max Value",
       "noAps": false,
       "noZtl": false,
@@ -320,7 +397,7 @@ ApsContent = function () {
   "minValue": {
     "opts": {
       "apsControl": "text",
-      "cat": "UI5",
+      "cat": "Data-Values",
       "desc": "Min Value",
       "noAps": false,
       "noZtl": false,
@@ -336,7 +413,7 @@ ApsContent = function () {
   "mode": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Unsorted",
+      "cat": "Display",
       "choiceType": "BulletChartMode",
       "desc": "Mode",
       "noAps": false,
@@ -363,7 +440,7 @@ ApsContent = function () {
   "scale": {
     "opts": {
       "apsControl": "text",
-      "cat": "UI5",
+      "cat": "Display",
       "desc": "Scale",
       "noAps": false,
       "noZtl": false,
@@ -379,7 +456,7 @@ ApsContent = function () {
   "scaleColor": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Unsorted",
+      "cat": "Display",
       "choiceType": "CommonBackground",
       "desc": "Scale Colour",
       "noAps": false,
@@ -430,7 +507,7 @@ ApsContent = function () {
   "showActualValue": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "UI5",
+      "cat": "Data-Values",
       "desc": "Show Actual Value",
       "noAps": false,
       "noZtl": false,
@@ -446,7 +523,7 @@ ApsContent = function () {
   "showDeltaValue": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "UI5",
+      "cat": "Data-Values",
       "desc": "Show Delta Value",
       "noAps": false,
       "noZtl": false,
@@ -462,7 +539,7 @@ ApsContent = function () {
   "showTargetValue": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "UI5",
+      "cat": "Data-Values",
       "desc": "Show Target Value",
       "noAps": false,
       "noZtl": false,
@@ -478,7 +555,7 @@ ApsContent = function () {
   "showValueMarker": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "UI5",
+      "cat": "Data-Values",
       "desc": "Show Value Marker",
       "noAps": false,
       "noZtl": false,
@@ -494,7 +571,7 @@ ApsContent = function () {
   "size": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Unsorted",
+      "cat": "Display",
       "choiceType": "InfoTileSize",
       "desc": "Size",
       "noAps": false,
@@ -533,7 +610,7 @@ ApsContent = function () {
   "targetValue": {
     "opts": {
       "apsControl": "text",
-      "cat": "UI5",
+      "cat": "Data-Values",
       "desc": "Target Value",
       "noAps": false,
       "noZtl": false,
@@ -549,7 +626,7 @@ ApsContent = function () {
   "targetValueLabel": {
     "opts": {
       "apsControl": "text",
-      "cat": "UI5",
+      "cat": "Data-Labels",
       "desc": "Target Value Label",
       "noAps": false,
       "noZtl": false,
@@ -567,7 +644,7 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"threshold": {
         "color": {
-          "desc": "color",
+          "desc": "Colour",
           "type": "String"
         },
         "key": {
@@ -577,12 +654,12 @@ ApsContent = function () {
         "sequence": "key,color,value",
         "type": "Array",
         "value": {
-          "desc": "value",
+          "desc": "Value",
           "type": "String"
         }
       }},
       "arrayMode": "OneLevelArray",
-      "cat": "UI5",
+      "cat": "Content-Thresholds",
       "desc": "Thresholds",
       "noAps": false,
       "noZtl": false,
@@ -593,6 +670,118 @@ ApsContent = function () {
     "template": "ObjectArray",
     "type": "String",
     "value": "[]",
+    "visible": true
+  },
+  "useActual": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Content-Actual",
+      "desc": "Use Manual 'Actual'",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "If checked, the property 'Actual' will be used.",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "ds-boolean",
+    "type": "boolean",
+    "value": true,
+    "visible": true
+  },
+  "useContentWidth": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Use Manual 'Content Width'",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "If checked, the property 'Content Width' will be used.",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "ds-boolean",
+    "type": "boolean",
+    "value": true,
+    "visible": true
+  },
+  "useForecastValue": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display-Values",
+      "desc": "Use Manual 'Forecast Value'",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "If checked, the property 'Forecast Value' will be used.",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "ds-boolean",
+    "type": "boolean",
+    "value": true,
+    "visible": true
+  },
+  "useMaxValue": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display-Values",
+      "desc": "Use Manual 'Max Value'",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "If checked, the property 'Max Value' will be used.",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "ds-boolean",
+    "type": "boolean",
+    "value": true,
+    "visible": true
+  },
+  "useMinValue": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display-Values",
+      "desc": "Use Manual 'Min Value'",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "If checked, the property 'Min Value' will be used.",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "ds-boolean",
+    "type": "boolean",
+    "value": true,
+    "visible": true
+  },
+  "useTargetValue": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display-Values",
+      "desc": "Use Manual 'Target Value'",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "If checked, the property 'Target Value' will be used.",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "ds-boolean",
+    "type": "boolean",
+    "value": true,
+    "visible": true
+  },
+  "useThreshold": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Content-Thresholds",
+      "desc": "Use Manual 'Threshold'",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "If checked, the property 'Threshold' will be used.",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "ds-boolean",
+    "type": "boolean",
+    "value": true,
     "visible": true
   }
 }, 

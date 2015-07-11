@@ -92,7 +92,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Label Orientation",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Label Orientation",
 			"apsControl" : "combobox",
 			"options":[
@@ -120,7 +120,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Label Placement (Relative To Icon)",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Label Placement (Relative To Icon)",
 			"apsControl" : "combobox",
 			"options":[
@@ -196,7 +196,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Text Alignment",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Text Alignment",
 			"apsControl" : "combobox",
 			"options":[
@@ -244,7 +244,7 @@
 			"choiceType": "",
 			"ztlFunction": "",
 			"desc" : "Vertical Alignment",
-			"cat" : "Unsorted",
+			"cat" : "Display",
 			"tooltip" : "Vertical Alignment",
 			"apsControl" : "combobox",
 			"options":[
