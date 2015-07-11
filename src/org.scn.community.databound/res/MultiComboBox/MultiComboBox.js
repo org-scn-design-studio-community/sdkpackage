@@ -15,6 +15,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
+ * 
+ * Author: Martin Pankraz
+ * 
+ * Thanks to Karol and Mustafa for pointing out how to integrate with sap.m
  */
 jQuery.sap.require("sap.m.MultiComboBox");
 //mark forced re-load of sap.m events bundle  
@@ -54,7 +58,8 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
               "DSortingDirection": {type: "string"},
               "DSkipResultRow": {type: "boolean"}, 
               "DSelectAllText": {type: "string"},
-              "DSelectNoText": {type: "string"}
+              "DSelectNoText": {type: "string"},
+              "DItemList": {type: "string"}
         }
 	},
 
@@ -142,7 +147,8 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 		this.attachChange(onChange);
 		this.attachSelectionFinish(onSelectionFinish);
 		
-		this.setPlaceholder("choose value");
+		this.setPlaceholder("choose value...");
+		this.DItemList = [];
 	},
 	
 	renderer: {},
@@ -153,7 +159,10 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 	    if (this.getSelectedKeys().length === 0) {
 		  var selectedKeys = this.getProperty('DSelectedKey');
 		  var keys = selectedKeys.split(",");
-	      this.setSelectedKeys(keys);
+		  //avoid allways setting unassigned as preselected key
+	      if(keys !== "" && keys !== undefined){
+			  this.setSelectedKeys(keys);  
+	      }
 	    }
 		
 		var that = this;
@@ -182,7 +191,20 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 				this.setPlaceholder("Dimension "+this.getDDimension()+" doesn't match on DataSource!");
 			}
 		}else{
-			this.setPlaceholder("No DataSource assigned!");
+			this.setPlaceholder("choose value...");
+			//try to extract values from Item list setter
+			try{
+				var list = JSON.parse(this.getDItemList());
+				for(var i=0;i<list.length;i++){
+					//convert Collection object key "label" to match the data model ("text")
+					list[i].text = list[i].label; 
+					this._content.push(list[i]);
+				}
+			}catch (err){
+				if(window.console){
+					console.log(err);
+				}
+			}
 		}
 		
 		//apply sorting

@@ -79,6 +79,13 @@
 		title="Technical property for Selected Key (seperated by ';')"
 		group="Display"
 		visible="false" />
+		
+	<property
+		id="DItemList"
+		type="String"
+		title="Technical property for list of items"
+		group="Display"
+		visible="false" />
 
 	<property
 		id="onSelectionFinished"

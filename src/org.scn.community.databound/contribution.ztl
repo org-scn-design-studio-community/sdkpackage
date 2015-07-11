@@ -1007,6 +1007,10 @@ class org.scn.community.databound.MultiComboBox extends org.scn.community.shared
 		this.DSkipResultRow = skip;
 	*}
 	
+	void setItems (String itemList) {*
+		this.DItemList = itemList;
+	*}
+	
 }
 class org.scn.community.databound.MultiLevelDropDown extends Component {
 	
