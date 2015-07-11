@@ -56,8 +56,8 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\LeaderBoard\def\contribution.ztl ^
 ..\res\LocationIntel\def\contribution.ztl ^
 ..\res\MarimekkoChart\def\contribution.ztl ^
-..\res\MicroChart\def\contribution.ztl ^
 ..\res\MultiComboBox\def\contribution.ztl ^
+..\res\MicroChart\def\contribution.ztl ^
 ..\res\MultiLevelDropDown\def\contribution.ztl ^
 ..\res\NiceChart\def\contribution.ztl ^
 ..\res\Projector\def\contribution.ztl ^

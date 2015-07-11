@@ -1,29 +1,30 @@
 
 /**
- * Class for DataDropDown
+ * Class for MultiComboBox
  */
 class org.scn.community.databound.MultiComboBox extends org.scn.community.shared.DataComponent {
 
 	/** returns the selected key 
     <example>
-	You want to get first and second selected key in the range
+	
 	<code>
-    var selection1 = DATARANGESLIDER_1.getSelectedKey();
-	var selection2 = DATARANGESLIDER_1.getSelectedKey2();
-	
-	APPLICATION.createInfoMessage("Selected Range: " + selection1 + " - " + selection2);
-	APPLICATION.createInfoMessage("Selected Range Keys: " + DATARANGESLIDER_1.getSelectedKeys());
-	
-	if(selection1.indexOf("-N/A-") > -1 || selection2.indexOf("-N/A-") > -1) {
-		// do nothing
-	} else {
-		DS_1.setFilterExt("0BC_PERS1", "" + DATARANGESLIDER_1.getSelectedKey()  + " - " + DATARANGESLIDER_1.getSelectedKey2());
-	}
+    
 	</code>
 	</example>
 	*/
 	String getSelectedKey () {*
 		return this.DSelectedKey;	
+	*}
+	/** returns the selected key 
+    <example>
+	
+	<code>
+    
+	</code>
+	</example>
+	*/
+	String getSelectedKeyBexReady () {*
+		return this.DSelectedKeyBexReady;	
 	*}
 
 	/** returns the selected text */
@@ -39,6 +40,26 @@ class org.scn.community.databound.MultiComboBox extends org.scn.community.shared
 	/** sets the dimension */
 	void setDimension (String dimension) {*
 		this.DDimension = dimension;	
+	*}
+	/**
+	 * Set to true to enable Ascending sorting, false for the opposite
+	 */
+	void setSortingDirection (boolean direction) {* 
+		if(direction){
+			this.DSortingDirection = "Ascending";	
+		}else{
+			this.DSortingDirection = "Descending";
+		}
+	*}
+	/**
+	 * 
+	 */
+	void setSkipResult (boolean skip) {* 
+		this.DSkipResultRow = skip;
+	*}
+	
+	void setItems (String itemList) {*
+		this.DItemList = itemList;
 	*}
 	
 }
