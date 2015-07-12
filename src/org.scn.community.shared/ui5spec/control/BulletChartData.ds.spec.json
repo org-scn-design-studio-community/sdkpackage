@@ -1,4 +1,6 @@
-	"use%NAME%":{
+{
+
+	"useValue":{
 		"template" : "ds-boolean",
 		"type" : "boolean",
 		"value" : true,
@@ -6,15 +8,15 @@
 		"opts" : {
 			"ztlType": "boolean",
 			"ztlFunction": "",
-			"desc" : "Use Manual '%DESCRIPTION%'",
-			"cat" : "%CATEGORY%",
-			"tooltip" : "If checked, the property '%DESCRIPTION%' will be used.",
+			"desc" : "Use Manual 'Value'",
+			"cat" : "Display-Values",
+			"tooltip" : "If checked, the property 'Value' will be used.",
 			"apsControl" : "checkbox",
 			"noAps" : false,
 			"noZtl" : false
 		}
 	},
-	"dataCellList%NAME%":{
+	"dataCellListValue":{
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -25,11 +27,12 @@
       "opts":{
          "type":"data",
          "ztlFunction":"",
-         "desc":"%DESCRIPTION% Data List",
-         "cat":"Data",
-         "tooltip":"%DESCRIPTION% Data List",
+         "desc":"Value Data List",
+         "cat":"Display-Values",
+         "tooltip":"Value Data List",
          "value":"null",
          "noAps":true,
          "noZtl":true
       }
     }
+}

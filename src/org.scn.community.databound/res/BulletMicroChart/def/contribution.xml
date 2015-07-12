@@ -15,30 +15,6 @@
 	<cssInclude>res/BulletMicroChart/BulletMicroChart.css</cssInclude>
 	
 	<property
-		id="dataCellListForecast"
-		type="ResultCellList"
-		title="Forecast Data List"
-		group="Data"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
-	</property>
-	<property
-		id="dataCellListTarget"
-		type="ResultCellList"
-		title="Target Data List"
-		group="Data"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
-	</property>
-	<property
 		id="actual"
 		type="String"
 		title="Actual"
@@ -126,9 +102,9 @@
 		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
-		id="dataCellListThreshold1"
+		id="dataCellListThresholds1"
 		type="ResultCellList"
-		title="Threshold 1 Data List"
+		title="1st Thresholds Data List"
 		group="Data"
 		visible="true"
 		bindable="true">
@@ -138,9 +114,9 @@
 		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
-		id="dataCellListThreshold2"
+		id="dataCellListThresholds2"
 		type="ResultCellList"
-		title="Threshold 2 Data List"
+		title="2nd Thresholds Data List"
 		group="Data"
 		visible="true"
 		bindable="true">
@@ -150,9 +126,9 @@
 		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
-		id="dataCellListThreshold3"
+		id="dataCellListThresholds3"
 		type="ResultCellList"
-		title="Threshold 3 Data List"
+		title="3rd Thresholds Data List"
 		group="Data"
 		visible="true"
 		bindable="true">
@@ -162,9 +138,9 @@
 		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
-		id="dataCellListThreshold4"
+		id="dataCellListThresholds4"
 		type="ResultCellList"
-		title="Threshold 4 Data List"
+		title="4th Thresholds Data List"
 		group="Data"
 		visible="true"
 		bindable="true">
@@ -174,9 +150,9 @@
 		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
-		id="dataCellListThreshold5"
+		id="dataCellListThresholds5"
 		type="ResultCellList"
-		title="Threshold 5 Data List"
+		title="5th Thresholds Data List"
 		group="Data"
 		visible="true"
 		bindable="true">
@@ -312,7 +288,7 @@
 
 	</property>
 	<property
-		id="threshold"
+		id="thresholds"
 		type="String"
 		title="Thresholds"
 		group="Display"
@@ -375,9 +351,9 @@
 
 	</property>
 	<property
-		id="useThreshold"
+		id="useThresholds"
 		type="boolean"
-		title="Use Manual 'Threshold'"
+		title="Use Manual 'Thresholds'"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -393,8 +369,6 @@
 		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
 		
-		<defaultValue property="dataCellListForecast"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListTarget"><![CDATA[null]]></defaultValue>
 		<defaultValue property="actual"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="actualValueLabel"><![CDATA[]]></defaultValue>
 		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
@@ -403,11 +377,11 @@
 		<defaultValue property="dataCellListMaxValue"><![CDATA[null]]></defaultValue>
 		<defaultValue property="dataCellListMinValue"><![CDATA[null]]></defaultValue>
 		<defaultValue property="dataCellListTargetValue"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListThreshold1"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListThreshold2"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListThreshold3"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListThreshold4"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListThreshold5"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListThresholds1"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListThresholds2"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListThresholds3"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListThresholds4"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListThresholds5"><![CDATA[null]]></defaultValue>
 		<defaultValue property="deltaValueLabel"><![CDATA[]]></defaultValue>
 		<defaultValue property="forecastValue"><![CDATA[0.0]]></defaultValue>
 		<defaultValue property="maxValue"><![CDATA[0.0]]></defaultValue>
@@ -422,14 +396,14 @@
 		<defaultValue property="size"><![CDATA[Auto]]></defaultValue>
 		<defaultValue property="targetValue"><![CDATA[0.0]]></defaultValue>
 		<defaultValue property="targetValueLabel"><![CDATA[]]></defaultValue>
-		<defaultValue property="threshold"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="thresholds"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="useActual"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useForecastValue"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useMaxValue"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useMinValue"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useTargetValue"><![CDATA[true]]></defaultValue>
-		<defaultValue property="useThreshold"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useThresholds"><![CDATA[true]]></defaultValue>
 
 	</initialization>
 

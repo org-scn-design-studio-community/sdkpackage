@@ -302,7 +302,7 @@ public class UI5Property {
 		return description;
 	}
 
-	private String getType() {
+	String getType() {
 		String type = this.getAttr("type");
 		
 		if(type.endsWith("string")) {
@@ -356,11 +356,11 @@ public class UI5Property {
 		
 		String name = this.getAttr("name");
 		
-		if(type != null && type.equals("ObjectArray")) {
-			if(name.charAt(name.length()-1) == 's') {
-				name = name.substring(0, name.length()-1);
-			}
-		}
+//		if(type != null && type.equals("ObjectArray")) {
+//			if(name.charAt(name.length()-1) == 's') {
+//				name = name.substring(0, name.length()-1);
+//			}
+//		}
 
 		return name;
 	}

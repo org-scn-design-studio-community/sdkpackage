@@ -48,46 +48,7 @@ ApsContent = function () {
 },
 
 "spec" : 
-{
-  "dataCellListForecast": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "Forecast Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "Forecast Data List",
-      "type": "data",
-      "value": null,
-      "ztlFunction": ""
-    },
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
-  },
-  "dataCellListTarget": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "Target Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "Target Data List",
-      "type": "data",
-      "value": null,
-      "ztlFunction": ""
-    },
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
-  }
-}, 
+{}, 
 
 "specInclude" : 
 {
@@ -251,17 +212,17 @@ ApsContent = function () {
     "value": "null",
     "visible": true
   },
-  "dataCellListThreshold1": {
+  "dataCellListThresholds1": {
     "options": {
       "includeData": "true",
       "includeFormattedData": "true"
     },
     "opts": {
       "cat": "Content-Thresholds",
-      "desc": "Threshold 1 Data List",
+      "desc": "1st Thresholds Data List",
       "noAps": true,
       "noZtl": true,
-      "tooltip": "Threshold 1 Data List",
+      "tooltip": "1st Thresholds Data List",
       "type": "data",
       "value": "null",
       "ztlFunction": ""
@@ -270,17 +231,17 @@ ApsContent = function () {
     "value": "null",
     "visible": true
   },
-  "dataCellListThreshold2": {
+  "dataCellListThresholds2": {
     "options": {
       "includeData": "true",
       "includeFormattedData": "true"
     },
     "opts": {
       "cat": "Content-Thresholds",
-      "desc": "Threshold 2 Data List",
+      "desc": "2nd Thresholds Data List",
       "noAps": true,
       "noZtl": true,
-      "tooltip": "Threshold 2 Data List",
+      "tooltip": "2nd Thresholds Data List",
       "type": "data",
       "value": "null",
       "ztlFunction": ""
@@ -289,17 +250,17 @@ ApsContent = function () {
     "value": "null",
     "visible": true
   },
-  "dataCellListThreshold3": {
+  "dataCellListThresholds3": {
     "options": {
       "includeData": "true",
       "includeFormattedData": "true"
     },
     "opts": {
       "cat": "Content-Thresholds",
-      "desc": "Threshold 3 Data List",
+      "desc": "3rd Thresholds Data List",
       "noAps": true,
       "noZtl": true,
-      "tooltip": "Threshold 3 Data List",
+      "tooltip": "3rd Thresholds Data List",
       "type": "data",
       "value": "null",
       "ztlFunction": ""
@@ -308,17 +269,17 @@ ApsContent = function () {
     "value": "null",
     "visible": true
   },
-  "dataCellListThreshold4": {
+  "dataCellListThresholds4": {
     "options": {
       "includeData": "true",
       "includeFormattedData": "true"
     },
     "opts": {
       "cat": "Content-Thresholds",
-      "desc": "Threshold 4 Data List",
+      "desc": "4th Thresholds Data List",
       "noAps": true,
       "noZtl": true,
-      "tooltip": "Threshold 4 Data List",
+      "tooltip": "4th Thresholds Data List",
       "type": "data",
       "value": "null",
       "ztlFunction": ""
@@ -327,17 +288,17 @@ ApsContent = function () {
     "value": "null",
     "visible": true
   },
-  "dataCellListThreshold5": {
+  "dataCellListThresholds5": {
     "options": {
       "includeData": "true",
       "includeFormattedData": "true"
     },
     "opts": {
       "cat": "Content-Thresholds",
-      "desc": "Threshold 5 Data List",
+      "desc": "5th Thresholds Data List",
       "noAps": true,
       "noZtl": true,
-      "tooltip": "Threshold 5 Data List",
+      "tooltip": "5th Thresholds Data List",
       "type": "data",
       "value": "null",
       "ztlFunction": ""
@@ -639,10 +600,10 @@ ApsContent = function () {
     "value": "",
     "visible": true
   },
-  "threshold": {
+  "thresholds": {
     "opts": {
       "apsControl": "array",
-      "arrayDefinition": {"threshold": {
+      "arrayDefinition": {"thresholds": {
         "color": {
           "desc": "Colour",
           "type": "String"
@@ -768,14 +729,14 @@ ApsContent = function () {
     "value": true,
     "visible": true
   },
-  "useThreshold": {
+  "useThresholds": {
     "opts": {
       "apsControl": "checkbox",
       "cat": "Content-Thresholds",
-      "desc": "Use Manual 'Threshold'",
+      "desc": "Use Manual 'Thresholds'",
       "noAps": false,
       "noZtl": false,
-      "tooltip": "If checked, the property 'Threshold' will be used.",
+      "tooltip": "If checked, the property 'Thresholds' will be used.",
       "ztlFunction": "",
       "ztlType": "boolean"
     },

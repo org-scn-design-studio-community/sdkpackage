@@ -151,6 +151,11 @@ public class UI5Control {
 		ArrayList<Property> genProperties = new ArrayList<Property>();
 		for (UI5Property ui5property : this.properties) {
 			Property property = new Property(ui5property);
+			
+//			if(ui5property.getType().equals("ObjectArray")) {
+//				property.setName(Helpers.cutLastS(ui5property.getName()));
+//			}
+			
 			genProperties.add(property);
 		}
 

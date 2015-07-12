@@ -499,4 +499,11 @@ public class Helpers {
 		return description;
 	}
 
+	public static String cutLastS(String name) {
+		if(name.charAt(name.length()-1) == 's') {
+			name = name.substring(0, name.length() - 1);
+		}
+		return name;
+	}
+
 }

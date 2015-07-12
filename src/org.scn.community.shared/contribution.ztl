@@ -1588,11 +1588,11 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			value:value
 			};
 
-		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
-			this.threshold = "[]";
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
+			this.thresholds = "[]";
 		}
 
-		var elementsJson = JSON.parse(this.threshold);
+		var elementsJson = JSON.parse(this.thresholds);
 
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
@@ -1606,7 +1606,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			elementsJson.push(itemDef);
 		}
 
-		this.threshold = JSON.stringify(elementsJson);
+		this.thresholds = JSON.stringify(elementsJson);
 	*}
 	
 	/** Removes a root element by key.
@@ -1623,11 +1623,11 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			String key
 			) {*
 
-		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
-			this.threshold = "[]";
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
+			this.thresholds = "[]";
 		}
 
-		var elementsJson = JSON.parse(this.threshold);
+		var elementsJson = JSON.parse(this.thresholds);
 
 		var alreadyFound = false;
 		for (var i = 0; i < elementsJson.length ; i++){
@@ -1644,7 +1644,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			}
 		}
 
-		this.threshold = JSON.stringify(elementsJson);
+		this.thresholds = JSON.stringify(elementsJson);
 	*}
 
 	/** Insert a root element by index.
@@ -1664,11 +1664,11 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			/**Value*/String value
 			) {*
 
-		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
-			this.threshold = "[]";
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
+			this.thresholds = "[]";
 		}
 		
-		var elementsJson = JSON.parse(this.threshold);
+		var elementsJson = JSON.parse(this.thresholds);
 		var newElementsJson = [];
 
 		var itemDef = {
@@ -1686,7 +1686,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			newElementsJson.push(elementsJson[i]);
 		}
 
-		this.threshold = JSON.stringify(newElementsJson);
+		this.thresholds = JSON.stringify(newElementsJson);
 	*}
 
 	/**
@@ -1698,8 +1698,8 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			/**Value*/String value
 			) 
 	{*
-		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
-			this.threshold = "[]";
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
+			this.thresholds = "[]";
 		}
 
 		var itemDef = {
@@ -1709,7 +1709,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			value:value
 		};
 
-		var elementsJson = JSON.parse(this.threshold);
+		var elementsJson = JSON.parse(this.thresholds);
 
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
@@ -1719,7 +1719,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			}
 		}
 
-		this.threshold = JSON.stringify(elementsJson);
+		this.thresholds = JSON.stringify(elementsJson);
 	*}
 
 	/**
@@ -1729,11 +1729,11 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
-		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
-			this.threshold = "[]";
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
+			this.thresholds = "[]";
 		}
 
-		var elementsJson = JSON.parse(this.threshold);
+		var elementsJson = JSON.parse(this.thresholds);
 
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (index0based == i) {
@@ -1748,7 +1748,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	 * Gets Thresholds As JSON String
 	 */	
 	String getThresholdsAsJSON() {*
-		var jsonObject = JSON.parse(this.threshold);
+		var jsonObject = JSON.parse(this.thresholds);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
@@ -1761,13 +1761,13 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	        /* Color */ String color
 			) 
 	{*
-		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
 			return;
 		}
 	
 		var changeKeys = keys.split(separator);	
 
-		var elementsJson = JSON.parse(this.threshold);
+		var elementsJson = JSON.parse(this.thresholds);
 
 		// loop and find and change
 		for (var i = 0; i < elementsJson.length ; i++){
@@ -1779,7 +1779,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			}
 		}
 		
-		this.threshold = JSON.stringify(elementsJson);
+		this.thresholds = JSON.stringify(elementsJson);
 	*}
 
 	/**
@@ -1790,11 +1790,11 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			/**/ String color
 			) 
 	{*
-		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
 			return;
 		}
 
-		var elementsJson = JSON.parse(this.threshold);
+		var elementsJson = JSON.parse(this.thresholds);
 
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
@@ -1804,7 +1804,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			}
 		}
 
-		this.threshold = JSON.stringify(elementsJson);
+		this.thresholds = JSON.stringify(elementsJson);
 	*}
 	
 	/**
@@ -1814,11 +1814,11 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			/**/ String key
 			) 
 	{*
-		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
 			return;
 		}
 
-		var elementsJson = JSON.parse(this.threshold);
+		var elementsJson = JSON.parse(this.thresholds);
 
 		var exists = false;
 		// loop and find and update
@@ -1840,13 +1840,13 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	        /* Value */ String value
 			) 
 	{*
-		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
 			return;
 		}
 	
 		var changeKeys = keys.split(separator);	
 
-		var elementsJson = JSON.parse(this.threshold);
+		var elementsJson = JSON.parse(this.thresholds);
 
 		// loop and find and change
 		for (var i = 0; i < elementsJson.length ; i++){
@@ -1858,7 +1858,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			}
 		}
 		
-		this.threshold = JSON.stringify(elementsJson);
+		this.thresholds = JSON.stringify(elementsJson);
 	*}
 
 	/**
@@ -1869,11 +1869,11 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			/**/ String value
 			) 
 	{*
-		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
 			return;
 		}
 
-		var elementsJson = JSON.parse(this.threshold);
+		var elementsJson = JSON.parse(this.thresholds);
 
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
@@ -1883,7 +1883,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			}
 		}
 
-		this.threshold = JSON.stringify(elementsJson);
+		this.thresholds = JSON.stringify(elementsJson);
 	*}
 	
 	/**
@@ -1893,11 +1893,11 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			/**/ String key
 			) 
 	{*
-		if (this.threshold === undefined || this.threshold === "" || this.threshold === "<delete>"){
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
 			return;
 		}
 
-		var elementsJson = JSON.parse(this.threshold);
+		var elementsJson = JSON.parse(this.thresholds);
 
 		var exists = false;
 		// loop and find and update

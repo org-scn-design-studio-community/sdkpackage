@@ -7,10 +7,6 @@
 class org.scn.community.databound.BulletMicroChart extends org.scn.community.shared.ui5.BulletChart {
 
 
-
-
-
-
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
 }

@@ -58,6 +58,12 @@ org_scn_community_component_Core = function (owner, componentData){
 	if(that.specInclude) {
 		for(property in that.specInclude){
 			that.props[property] = that.specInclude[property];
+			if(property.indexOf("data") == 0) {
+				if(that.props["meta_data"] == undefined) {
+					// clone the property
+					that.props["meta_data"] = JSON.parse(JSON.stringify(that.specInclude[property]));	
+				}
+			}
 		};
 	}
 

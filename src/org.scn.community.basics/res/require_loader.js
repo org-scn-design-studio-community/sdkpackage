@@ -34,7 +34,7 @@ org_scn_community_basics.isDebug = org_scn_community_basics.getUrlParameterByNam
 if(org_scn_community_basics.isDebug) {
 	org_scn_community_require.jsVersion = "0000-0-0";	
 } else {
-	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-11"/*%TIMESTAMP-END%*/;
+	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-12"/*%TIMESTAMP-END%*/;
 }
 
 /*NO DELTA CHECK END*/

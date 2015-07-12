@@ -236,7 +236,9 @@ public class ParamFullSpec {
 			ParamFullSpec arrayFullSpec = options.getParameter("arrayDefinition").getParameters().get(0);
 			
 			String arrayName = arrayFullSpec.getName();
-			String arrayNameUpper = Helpers.makeFirstUpper(arrayName); 
+			arrayName = Helpers.cutLastS(arrayName);
+
+			String arrayNameUpper = Helpers.makeFirstUpper(arrayName);
 			template = template.replace("%ROOT_CONTENT_NAME%", arrayNameUpper);
 			
 			String sequence = arrayFullSpec.getPropertyValue("sequence");

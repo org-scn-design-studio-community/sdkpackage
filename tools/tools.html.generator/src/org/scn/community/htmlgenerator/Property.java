@@ -369,4 +369,8 @@ public class Property {
 		}
 		return type;
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

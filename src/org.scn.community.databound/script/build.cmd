@@ -70,6 +70,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\TopFlop\def\contribution.ztl ^
 ..\res\TopFlopChart\def\contribution.ztl ^
 ..\res\UI5Table\def\contribution.ztl ^
+..\res\BulletMicroChart\def\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 

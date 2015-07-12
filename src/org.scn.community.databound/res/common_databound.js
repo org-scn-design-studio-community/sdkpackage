@@ -25,10 +25,14 @@ org_scn_community_databound.centralEventStorage = org_scn_community_databound.ce
 
 org_scn_community_databound.hasData = function (data) {
 	
-	if(!data || data == "" || data == "null" || data == undefined || data.data == undefined) {
+	if(!data || data == "" || data == "null" || data == undefined) {
 		return false;
 	}
 	
+	if(data.values == undefined && data.data == undefined) {
+		return false;
+	}
+
 	return true;
 };
 

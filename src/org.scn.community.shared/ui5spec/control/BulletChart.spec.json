@@ -368,7 +368,7 @@
 			"noZtl" : false
 		}
 	},
-	"threshold" : {
+	"thresholds" : {
 		"template" : "ObjectArray",
 		"type" : "String",
 		"value" : "[]",
@@ -386,7 +386,7 @@
 			"arrayMode": "OneLevelArray",
 			
 			"arrayDefinition": {
-				"threshold": {
+				"thresholds": {
 					"type": "Array",
 			        "sequence": "key,color,value",
 			        
