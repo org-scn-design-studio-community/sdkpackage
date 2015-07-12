@@ -15,6 +15,7 @@ import org.scn.community.htmlgenerator.Component;
 import org.scn.community.htmlgenerator.Property;
 import org.scn.community.spec.aps.SpecificationApsTemplate;
 import org.scn.community.spec.js.SpecificationJsTemplate;
+import org.scn.community.spec.ui5.Ui5JsSpec;
 import org.scn.community.spec.xml.SpecificationXmlTemplate;
 import org.scn.community.spec.ztl.SpecificationZtlTemplate;
 import org.scn.community.utils.Helpers;
@@ -45,6 +46,7 @@ public class SpecificationReader {
 	private ArrayList<String> componentRequries = new ArrayList<String>();
 	private ArrayList<String> componentStdIncludes = new ArrayList<String>();
 	private String includeSpec;
+	private boolean hasUi5Spec;
 
 	public SpecificationReader(String pathToGenSpec, Component component) {
 		this.pathToGenSpec = pathToGenSpec;
@@ -94,10 +96,7 @@ public class SpecificationReader {
 					ZtlTmpl = ZtlTmpl.replace("%CUSTOM_ENTRY%", customZtl);
 				}
 				
-				if(generatedZtlAndAps.getXml() != null && generatedZtlAndAps.getXml().length() > 0) {
-					XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");
-					XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_TEMPLATE%", property.getExtendedFullSpec().getValueXml() + "\r\n%XML_DEAFULT_TEMPLATE%");
-				}
+				processPropertyExtension(property, generatedZtlAndAps);
 			}
 		}
 		
@@ -105,14 +104,17 @@ public class SpecificationReader {
 			if(property.hasExtendSpec()) {
 				ZtlAndAps generatedZtlAndAps = property.generateZtlAndAps();
 				
-				if(generatedZtlAndAps.getXml() != null && generatedZtlAndAps.getXml().length() > 0) {
-					XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");
-					XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_TEMPLATE%", property.getExtendedFullSpec().getValueXml() + "\r\n%XML_DEAFULT_TEMPLATE%");
-				}
+				processPropertyExtension(property, generatedZtlAndAps);
+			}
+		}
+		
+		if(hasUi5Spec) {
+			for (String templateName : Ui5JsContent.templatesStatic.keySet()) {
+				JsTmpl = JsTmpl.replace("%"+templateName+"%", "");	
 			}
 		}
 
-		SpecHelper helper = new SpecHelper(this.componentName);
+		SpecHelper helper = new SpecHelper(this.componentName, new File(pathToGenSpec));
 		
 		Property widthProp = helper.getProperty(this.compProperties, "width");
 		HashMap<String, String> widthProperties = widthProp.getExtendedFullSpec().getProperties();
@@ -131,9 +133,23 @@ public class SpecificationReader {
 
 		writeBack();
 	}
+
+	private void processPropertyExtension(Property property, ZtlAndAps generatedZtlAndAps) {
+		if(generatedZtlAndAps.getXml() != null && generatedZtlAndAps.getXml().length() > 0) {
+			XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");
+			XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_TEMPLATE%", property.getExtendedFullSpec().getValueXml() + "\r\n%XML_DEAFULT_TEMPLATE%");
+
+			if(hasUi5Spec) {
+				if(property.hasExtendSpec() && !property.getExtendedFullSpec().getTemplateName().startsWith("ds-")) {
+					Ui5JsContent jsContent = property.getExtendedFullSpec().getJsContent();
+					JsTmpl = jsContent.replaceTemplate(JsTmpl);
+				}
+			}
+		}
+	}
 	
 	private void readSpecs() {
-		SpecHelper helper = new SpecHelper(this.componentName);
+		SpecHelper helper = new SpecHelper(this.componentName, new File(pathToGenSpec));
 		
 		helper.readSpecification(this.specProperties, this.jsonSpecification);
 		helper.readSpecification(this.compProperties, this.jsonComponent);
@@ -217,6 +233,10 @@ public class SpecificationReader {
 		
 		Property compType = helper.getProperty(this.compProperties, "handlerType");
 		Property databound = helper.getProperty(this.compProperties, "databound");
+		Property extendsUi = null;
+		if(helper.hasProperty(this.compProperties, "extension")){
+			extendsUi = helper.getProperty(this.compProperties, "extension");
+		}
 		
 		HashMap<String, String> properties = compType.getExtendedFullSpec().getProperties();
 		String compTypeValue = this.getAdvancedProperty(properties, "handlerType");
@@ -227,7 +247,18 @@ public class SpecificationReader {
 		XmlTmpl = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_root.template");
 
 		JsLoaderTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.loader."+compTypeValue+".js.template");
-		JsTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.component."+compTypeValue+databoundTamplate+".js.template");
+		
+		hasUi5Spec = false;
+		if(extendsUi != null) {
+			HashMap<String, String> propertiesEx = extendsUi.getExtendedFullSpec().getProperties();
+			String advancedPropertyExtansion = this.getAdvancedProperty(propertiesEx, "extension");
+			hasUi5Spec = advancedPropertyExtansion != null && advancedPropertyExtansion.contains("ui5");
+		}
+		if(hasUi5Spec) {
+			JsTmpl = Helpers.resource2String(Ui5JsSpec.class, "root.js.tmpl");	
+		} else {
+			JsTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.component."+compTypeValue+databoundTamplate+".js.template");	
+		}
 		JsSpecTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.spec."+compTypeValue+".js.template");
 		
 		if(JsLoaderTmpl == null || JsTmpl == null || JsSpecTmpl == null) {

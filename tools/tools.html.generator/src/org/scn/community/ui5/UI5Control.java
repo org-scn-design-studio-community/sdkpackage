@@ -150,7 +150,7 @@ public class UI5Control {
 	public String generateZtl () {
 		ArrayList<Property> genProperties = new ArrayList<Property>();
 		for (UI5Property ui5property : this.properties) {
-			Property property = new Property(ui5property);
+			Property property = new Property(ui5property, ui5spec);
 			
 //			if(ui5property.getType().equals("ObjectArray")) {
 //				property.setName(Helpers.cutLastS(ui5property.getName()));
@@ -159,7 +159,7 @@ public class UI5Control {
 			genProperties.add(property);
 		}
 
-		SpecHelper helper = new SpecHelper(this.name);
+		SpecHelper helper = new SpecHelper(this.name, this.ui5spec);
 		String newSpec = ui5spec.getAbsolutePath().replace(".control", ".spec.json").replace("\\xml", "\\control");
 		String jsonSpecContent = Helpers.file2String(newSpec);
 		

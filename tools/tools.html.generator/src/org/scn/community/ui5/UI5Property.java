@@ -164,7 +164,7 @@ public class UI5Property {
 			
 			String jsonSpec = Helpers.file2String(typeFile);
 
-			SpecHelper helper = new SpecHelper(this.componentName);
+			SpecHelper helper = new SpecHelper(this.componentName, this.root);
 
 			if(jsonSpec == null) {
 				String url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/suite/ui/commons/"+originalType + "." +suffix;

@@ -17,6 +17,7 @@
 		}
 	},
 	"dataCellListValue":{
+      "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -28,7 +29,7 @@
          "type":"data",
          "ztlFunction":"",
          "desc":"Value Data List",
-         "cat":"Display-Values",
+         "cat":"Data",
          "tooltip":"Value Data List",
          "value":"null",
          "noAps":true,

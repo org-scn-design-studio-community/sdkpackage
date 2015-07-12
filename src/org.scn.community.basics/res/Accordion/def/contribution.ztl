@@ -584,7 +584,7 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 
 	/**
-	Returns the content of property Supported Content Notation as constant
+	Returns the content of property supportedContentNotation as constant
 	*/
 	org_scn_community_shared_ContentNotationEnumfield getSupportedContentNotation () {*
 		return this.supportedContentNotation;

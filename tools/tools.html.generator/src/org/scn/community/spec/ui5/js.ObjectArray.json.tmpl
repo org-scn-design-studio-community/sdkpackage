@@ -1,0 +1,21 @@
+			var l_%NAME%Json = [];
+
+			if(!that.getUse%PROPERTY_CAPITAL_CUT%()) {
+				if(useDataCellList%PROPERTY_CAPITAL_CUT%1) l_%NAME%Json.push({
+					value:  dataCellList%PROPERTY_CAPITAL_CUT%1.values[rowI][0], 
+					color: "Good"
+					}
+				);
+			} else {
+				for (var %NAME%I in l_%PROPERTY_CAPITAL_CUT%) {
+					var %NAME%O = l_%PROPERTY_CAPITAL_CUT%[%NAME%I];
+					
+					var %NAME%PropO = {};
+					for (var %NAME%PropI in %NAME%O) {
+						if(%NAME%PropI == "parentKey" || %NAME%PropI == "leaf" || %NAME%PropI == "key") continue;
+						%NAME%PropO[%NAME%PropI] = %NAME%O[%NAME%PropI];
+					}
+					l_%NAME%Json.push(%NAME%PropO);
+				}
+			}
+			customData.%NAME% = l_%NAME%Json;

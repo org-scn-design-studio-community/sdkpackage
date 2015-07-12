@@ -84,7 +84,7 @@ public class Main {
 
 		Collections.sort(allComponents);
 		
-		SpecHelper specHelper = new SpecHelper("");
+		SpecHelper specHelper = new SpecHelper("", mainSrcFolder);
 		String check = specHelper.sendGet("https://sapui5.hana.ondemand.com/");
 		
 		if(check != null && check.length() > 0) {

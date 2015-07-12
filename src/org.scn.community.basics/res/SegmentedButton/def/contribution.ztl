@@ -31,8 +31,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Url For Default Image Property
 	 */	
-	void setDefaultImage( /**Url For Default Image*/ String defaultImage){*
-		this.DDefaultImage = defaultImage;
+	void setDefaultImage( /**Url For Default Image*/ String DefaultImage){*
+		this.DDefaultImage = DefaultImage;
 	*}
 
 	/**
@@ -752,8 +752,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Size Of The Image Property by String
 	 */	
-	void setImageSizeByString( /**Size Of The Image*/ String imageSize){*
-		this.DImageSize = imageSize;
+	void setImageSizeByString( /**Size Of The Image*/ String ImageSize){*
+		this.DImageSize = ImageSize;
 	*}
 
 	/**
@@ -766,8 +766,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Size Of The Image Property by Choice Option
 	 */	
-	void setImageSize( /**Size Of The Image*/ org_scn_community_shared_ImageSizeEnumfield imageSize){*
-		this.DImageSize = imageSize;
+	void setImageSize( /**Size Of The Image*/ org_scn_community_shared_ImageSizeEnumfield ImageSize){*
+		this.DImageSize = ImageSize;
 	*}
 	
 	/**
@@ -801,8 +801,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Selection Type Property by String
 	 */	
-	void setSelectionTypeByString( /**Selection Type*/ String selectionType){*
-		this.DSelectionType = selectionType;
+	void setSelectionTypeByString( /**Selection Type*/ String SelectionType){*
+		this.DSelectionType = SelectionType;
 	*}
 
 	/**
@@ -815,8 +815,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Selection Type Property by Choice Option
 	 */	
-	void setSelectionType( /**Selection Type*/ org_scn_community_shared_SelectionTypeEnumfield selectionType){*
-		this.DSelectionType = selectionType;
+	void setSelectionType( /**Selection Type*/ org_scn_community_shared_SelectionTypeEnumfield SelectionType){*
+		this.DSelectionType = SelectionType;
 	*}
 	
 	/**
@@ -829,8 +829,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Use Images Property
 	 */	
-	void setWithImages( /**Use Images*/ boolean withImages){*
-		this.DWithImages = withImages;
+	void setWithImages( /**Use Images*/ boolean WithImages){*
+		this.DWithImages = WithImages;
 	*}
 
 	/**

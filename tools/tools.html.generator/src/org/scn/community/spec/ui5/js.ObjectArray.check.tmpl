@@ -1,0 +1,11 @@
+		/* Object Array */
+		var dataCellList%PROPERTY_CAPITAL_CUT%1 = that.getDataCellList%PROPERTY_CAPITAL_CUT%1();
+		var useDataCellListThreshold1 = false;
+		if(org_scn_community_databound.hasData (dataCellList%PROPERTY_CAPITAL_CUT%1)) {
+			dataCellList%PROPERTY_CAPITAL_CUT%1 = org_scn_community_databound.flatten (dataCellList%PROPERTY_CAPITAL_CUT%1,options);
+			useDataCellList%PROPERTY_CAPITAL_CUT%1 = true;
+		}
+
+		var l_%PROPERTY_CAPITAL_CUT% = that.get%PROPERTY_CAPITAL_CUT%();
+		l_%PROPERTY_CAPITAL_CUT% = org_scn_community_basics.parseJson(l_%PROPERTY_CAPITAL_CUT%, "A");
+		/* Object Array */

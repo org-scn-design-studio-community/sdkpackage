@@ -123,7 +123,7 @@ ApsContent = function () {
       "includeFormattedData": "true"
     },
     "opts": {
-      "cat": "Content-Actual",
+      "cat": "Data",
       "desc": "Actual Data List",
       "noAps": true,
       "noZtl": true,
@@ -132,6 +132,7 @@ ApsContent = function () {
       "value": "null",
       "ztlFunction": ""
     },
+    "template": "ds-DataCellList",
     "type": "ResultCellList",
     "value": "null",
     "visible": true
@@ -142,7 +143,7 @@ ApsContent = function () {
       "includeFormattedData": "true"
     },
     "opts": {
-      "cat": "Display-Values",
+      "cat": "Data",
       "desc": "Forecast Value Data List",
       "noAps": true,
       "noZtl": true,
@@ -151,6 +152,7 @@ ApsContent = function () {
       "value": "null",
       "ztlFunction": ""
     },
+    "template": "ds-DataCellList",
     "type": "ResultCellList",
     "value": "null",
     "visible": true
@@ -161,7 +163,7 @@ ApsContent = function () {
       "includeFormattedData": "true"
     },
     "opts": {
-      "cat": "Display-Values",
+      "cat": "Data",
       "desc": "Max Value Data List",
       "noAps": true,
       "noZtl": true,
@@ -170,6 +172,7 @@ ApsContent = function () {
       "value": "null",
       "ztlFunction": ""
     },
+    "template": "ds-DataCellList",
     "type": "ResultCellList",
     "value": "null",
     "visible": true
@@ -180,7 +183,7 @@ ApsContent = function () {
       "includeFormattedData": "true"
     },
     "opts": {
-      "cat": "Display-Values",
+      "cat": "Data",
       "desc": "Min Value Data List",
       "noAps": true,
       "noZtl": true,
@@ -189,6 +192,7 @@ ApsContent = function () {
       "value": "null",
       "ztlFunction": ""
     },
+    "template": "ds-DataCellList",
     "type": "ResultCellList",
     "value": "null",
     "visible": true
@@ -199,7 +203,7 @@ ApsContent = function () {
       "includeFormattedData": "true"
     },
     "opts": {
-      "cat": "Display-Values",
+      "cat": "Data",
       "desc": "Target Value Data List",
       "noAps": true,
       "noZtl": true,
@@ -208,6 +212,7 @@ ApsContent = function () {
       "value": "null",
       "ztlFunction": ""
     },
+    "template": "ds-DataCellList",
     "type": "ResultCellList",
     "value": "null",
     "visible": true
@@ -218,7 +223,7 @@ ApsContent = function () {
       "includeFormattedData": "true"
     },
     "opts": {
-      "cat": "Content-Thresholds",
+      "cat": "Data",
       "desc": "1st Thresholds Data List",
       "noAps": true,
       "noZtl": true,
@@ -227,6 +232,7 @@ ApsContent = function () {
       "value": "null",
       "ztlFunction": ""
     },
+    "template": "ds-DataCellList",
     "type": "ResultCellList",
     "value": "null",
     "visible": true
@@ -237,7 +243,7 @@ ApsContent = function () {
       "includeFormattedData": "true"
     },
     "opts": {
-      "cat": "Content-Thresholds",
+      "cat": "Data",
       "desc": "2nd Thresholds Data List",
       "noAps": true,
       "noZtl": true,
@@ -246,6 +252,7 @@ ApsContent = function () {
       "value": "null",
       "ztlFunction": ""
     },
+    "template": "ds-DataCellList",
     "type": "ResultCellList",
     "value": "null",
     "visible": true
@@ -256,7 +263,7 @@ ApsContent = function () {
       "includeFormattedData": "true"
     },
     "opts": {
-      "cat": "Content-Thresholds",
+      "cat": "Data",
       "desc": "3rd Thresholds Data List",
       "noAps": true,
       "noZtl": true,
@@ -265,6 +272,7 @@ ApsContent = function () {
       "value": "null",
       "ztlFunction": ""
     },
+    "template": "ds-DataCellList",
     "type": "ResultCellList",
     "value": "null",
     "visible": true
@@ -275,7 +283,7 @@ ApsContent = function () {
       "includeFormattedData": "true"
     },
     "opts": {
-      "cat": "Content-Thresholds",
+      "cat": "Data",
       "desc": "4th Thresholds Data List",
       "noAps": true,
       "noZtl": true,
@@ -284,6 +292,7 @@ ApsContent = function () {
       "value": "null",
       "ztlFunction": ""
     },
+    "template": "ds-DataCellList",
     "type": "ResultCellList",
     "value": "null",
     "visible": true
@@ -294,7 +303,7 @@ ApsContent = function () {
       "includeFormattedData": "true"
     },
     "opts": {
-      "cat": "Content-Thresholds",
+      "cat": "Data",
       "desc": "5th Thresholds Data List",
       "noAps": true,
       "noZtl": true,
@@ -303,6 +312,7 @@ ApsContent = function () {
       "value": "null",
       "ztlFunction": ""
     },
+    "template": "ds-DataCellList",
     "type": "ResultCellList",
     "value": "null",
     "visible": true

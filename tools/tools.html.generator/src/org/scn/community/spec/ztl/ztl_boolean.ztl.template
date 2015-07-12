@@ -1,12 +1,12 @@
 	/**
-	 * Sets %NAME% Property
+	 * Sets %TITLE% Property
 	 */	
 	void set%PROPERTY_CAPITAL_CUT%( %HELP% %PROPERTY_TYPE% %PROPERTY_SMALL_CUT%){*
 		this.%PROPERTY_CAPITAL% = %PROPERTY_SMALL_CUT%;
 	*}
 
 	/**
-	 * Gets %NAME% Property
+	 * Gets %TITLE% Property
 	 */	
 	%PROPERTY_TYPE% is%PROPERTY_CAPITAL_CUT%() {*
 		return this.%PROPERTY_CAPITAL%;

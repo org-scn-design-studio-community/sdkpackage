@@ -1,5 +1,6 @@
 package org.scn.community.htmlgenerator;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.management.RuntimeErrorException;
@@ -43,9 +44,12 @@ public class Property {
 
 	private String correctName;
 
+	private File specFile;
+
 	@SuppressWarnings("nls")
-	public Property(XMLStreamReader reader, String componentName) {
+	public Property(XMLStreamReader reader, String componentName, File specFile) {
 		this.componentName = componentName;
+		this.specFile = specFile;
 		
 		this.name = reader.getAttributeValue("", "id");
 		this.title = reader.getAttributeValue("", "title");
@@ -86,13 +90,15 @@ public class Property {
 		this.tooltipBig = Helpers.makeAllUpper(this.tooltip);
 	}
 
-	public Property(String componentName, String propertyName) {
+	public Property(String componentName, String propertyName, File specFile) {
 		this.componentName = componentName;
 		this.name = propertyName;
+		this.specFile = specFile;
 	}
 
-	public Property(UI5Property ui5property) {
+	public Property(UI5Property ui5property, File specFile) {
 		this.componentName = ui5property.getComponentName();
+		this.specFile = specFile;
 		
 		this.name = ui5property.getAttr("name");
 		this.title = ui5property.getAttr("name");
@@ -372,5 +378,9 @@ public class Property {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSpecFile() {
+		return specFile.getAbsolutePath();
 	}
 }

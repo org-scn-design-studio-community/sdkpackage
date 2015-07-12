@@ -1,0 +1,15 @@
+		var dataCellList%PROPERTY_CAPITAL_CUT% = that.getDataCellList%PROPERTY_CAPITAL_CUT%();
+		var useDataCellList%PROPERTY_CAPITAL_CUT% = false;
+		if(org_scn_community_databound.hasData (dataCellList%PROPERTY_CAPITAL_CUT%)) {
+			dataCellList%PROPERTY_CAPITAL_CUT% = org_scn_community_databound.flatten (dataCellList%PROPERTY_CAPITAL_CUT%,options);
+			if(!that.getUse%PROPERTY_CAPITAL_CUT%()) {
+				useDataCellList%PROPERTY_CAPITAL_CUT% = true;
+			}
+		}
+
+		var l_%PROPERTY_CAPITAL_CUT% = that.get%PROPERTY_CAPITAL_CUT%();
+		l_%PROPERTY_CAPITAL_CUT% = org_scn_community_basics.parseJson(l_%PROPERTY_CAPITAL_CUT%, "A");
+
+		if(that.getUse%PROPERTY_CAPITAL_CUT%() && l%PROPERTY_CAPITAL_CUT%[0]) {
+			l_%PROPERTY_CAPITAL_CUT% = l_%PROPERTY_CAPITAL_CUT%[0];
+		}

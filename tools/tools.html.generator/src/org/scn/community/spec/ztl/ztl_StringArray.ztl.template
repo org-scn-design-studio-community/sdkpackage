@@ -1,11 +1,11 @@
 	/**
-	 * Sets %NAME% Property as %PROPERTY_TYPE_OVERLOAD%
+	 * Sets %TITLE% Property as %PROPERTY_TYPE_OVERLOAD%
 	 */	
 	void set%PROPERTY_CAPITAL_CUT%( %HELP% %PROPERTY_TYPE_OVERLOAD% %PROPERTY_SMALL_CUT%){*
 		this.%PROPERTY_CAPITAL% = %PROPERTY_SMALL_CUT%;
 	*}
 	
-	/** Gets %NAME% Property as %PROPERTY_TYPE_OVERLOAD%
+	/** Gets %TITLE% Property as %PROPERTY_TYPE_OVERLOAD%
 
  	<example>
 	You want to ask for the current property value

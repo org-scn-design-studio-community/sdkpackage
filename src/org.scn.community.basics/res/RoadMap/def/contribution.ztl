@@ -558,8 +558,8 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Sets Selected Step Key Property
 	 */	
-	void setSelectedKey( /**Selected Step Key*/ String selectedKey){*
-		this.DSelectedKey = selectedKey;
+	void setSelectedKey( /**Selected Step Key*/ String SelectedKey){*
+		this.DSelectedKey = SelectedKey;
 	*}
 
 	/**

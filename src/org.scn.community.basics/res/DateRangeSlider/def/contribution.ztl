@@ -9,8 +9,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Granularity Property by String
 	 */	
-	void setGranularityByString( /**Granularity*/ String granularity){*
-		this.DGranularity = granularity;
+	void setGranularityByString( /**Granularity*/ String Granularity){*
+		this.DGranularity = Granularity;
 	*}
 
 	/**
@@ -23,8 +23,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Granularity Property by Choice Option
 	 */	
-	void setGranularity( /**Granularity*/ org_scn_community_shared_DateViewTypeEnumfield granularity){*
-		this.DGranularity = granularity;
+	void setGranularity( /**Granularity*/ org_scn_community_shared_DateViewTypeEnumfield Granularity){*
+		this.DGranularity = Granularity;
 	*}
 	
 	/**
@@ -37,8 +37,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Language Dependent Format Property
 	 */	
-	void setLangFormat( /**Language Dependent Format*/ boolean langFormat){*
-		this.DLangFormat = langFormat;
+	void setLangFormat( /**Language Dependent Format*/ boolean LangFormat){*
+		this.DLangFormat = LangFormat;
 	*}
 
 	/**
@@ -51,8 +51,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Custom Format Pattern Property
 	 */	
-	void setLangPattern( /**Custom Format Pattern*/ String langPattern){*
-		this.DLangPattern = langPattern;
+	void setLangPattern( /**Custom Format Pattern*/ String LangPattern){*
+		this.DLangPattern = LangPattern;
 	*}
 
 	/**
@@ -65,8 +65,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Custom Format Relative Property
 	 */	
-	void setLangRelative( /**Custom Format Relative*/ boolean langRelative){*
-		this.DLangRelative = langRelative;
+	void setLangRelative( /**Custom Format Relative*/ boolean LangRelative){*
+		this.DLangRelative = LangRelative;
 	*}
 
 	/**
@@ -79,8 +79,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Custom Format Style Property by String
 	 */	
-	void setLangStyleByString( /**Custom Format Style*/ String langStyle){*
-		this.DLangStyle = langStyle;
+	void setLangStyleByString( /**Custom Format Style*/ String LangStyle){*
+		this.DLangStyle = LangStyle;
 	*}
 
 	/**
@@ -93,8 +93,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Custom Format Style Property by Choice Option
 	 */	
-	void setLangStyle( /**Custom Format Style*/ org_scn_community_shared_FormatStyleEnumfield langStyle){*
-		this.DLangStyle = langStyle;
+	void setLangStyle( /**Custom Format Style*/ org_scn_community_shared_FormatStyleEnumfield LangStyle){*
+		this.DLangStyle = LangStyle;
 	*}
 	
 	/**
@@ -107,8 +107,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Maximum Date Property
 	 */	
-	void setMax( /**Maximum Date*/ String max){*
-		this.DMax = max;
+	void setMax( /**Maximum Date*/ String Max){*
+		this.DMax = Max;
 	*}
 
 	/**
@@ -121,8 +121,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Minimum Date Property
 	 */	
-	void setMin( /**Minimum Date*/ String min){*
-		this.DMin = min;
+	void setMin( /**Minimum Date*/ String Min){*
+		this.DMin = Min;
 	*}
 
 	/**
@@ -135,8 +135,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets First Date Property
 	 */	
-	void setValue( /**First Date*/ String value){*
-		this.DValue = value;
+	void setValue( /**First Date*/ String Value){*
+		this.DValue = Value;
 	*}
 
 	/**
@@ -149,8 +149,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Second Date Property
 	 */	
-	void setValue2( /**Second Date*/ String value2){*
-		this.DValue2 = value2;
+	void setValue2( /**Second Date*/ String Value2){*
+		this.DValue2 = Value2;
 	*}
 
 	/**

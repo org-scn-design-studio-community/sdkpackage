@@ -17,6 +17,7 @@
 		}
 	},
 	"dataCellListForecastValue":{
+      "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -28,7 +29,7 @@
          "type":"data",
          "ztlFunction":"",
          "desc":"Forecast Value Data List",
-         "cat":"Display-Values",
+         "cat":"Data",
          "tooltip":"Forecast Value Data List",
          "value":"null",
          "noAps":true,
@@ -52,6 +53,7 @@
 		}
 	},
 	"dataCellListTargetValue":{
+      "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -63,7 +65,7 @@
          "type":"data",
          "ztlFunction":"",
          "desc":"Target Value Data List",
-         "cat":"Display-Values",
+         "cat":"Data",
          "tooltip":"Target Value Data List",
          "value":"null",
          "noAps":true,
@@ -87,6 +89,7 @@
 		}
 	},
 	"dataCellListMinValue":{
+      "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -98,7 +101,7 @@
          "type":"data",
          "ztlFunction":"",
          "desc":"Min Value Data List",
-         "cat":"Display-Values",
+         "cat":"Data",
          "tooltip":"Min Value Data List",
          "value":"null",
          "noAps":true,
@@ -122,6 +125,7 @@
 		}
 	},
 	"dataCellListMaxValue":{
+      "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -133,7 +137,7 @@
          "type":"data",
          "ztlFunction":"",
          "desc":"Max Value Data List",
-         "cat":"Display-Values",
+         "cat":"Data",
          "tooltip":"Max Value Data List",
          "value":"null",
          "noAps":true,
@@ -173,6 +177,7 @@
 		}
 	},
 	"dataCellListActual":{
+	  "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -184,7 +189,7 @@
          "type":"data",
          "ztlFunction":"",
          "desc":"Actual Data List",
-         "cat":"Content-Actual",
+         "cat":"Data",
          "tooltip":"Actual Data List",
          "value":"null",
          "noAps":true,
@@ -208,6 +213,7 @@
 		}
 	},
 	"dataCellListThresholds1":{
+      "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -219,7 +225,7 @@
          "type":"data",
          "ztlFunction":"",
          "desc":"1st Thresholds Data List",
-         "cat":"Content-Thresholds",
+         "cat":"Data",
          "tooltip":"1st Thresholds Data List",
          "value":"null",
          "noAps":true,
@@ -227,6 +233,7 @@
       }
     },
 	"dataCellListThresholds2":{
+      "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -238,7 +245,7 @@
          "type":"data",
          "ztlFunction":"",
          "desc":"2nd Thresholds Data List",
-         "cat":"Content-Thresholds",
+         "cat":"Data",
          "tooltip":"2nd Thresholds Data List",
          "value":"null",
          "noAps":true,
@@ -246,6 +253,7 @@
       }
     },
 	"dataCellListThresholds3":{
+      "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -257,7 +265,7 @@
          "type":"data",
          "ztlFunction":"",
          "desc":"3rd Thresholds Data List",
-         "cat":"Content-Thresholds",
+         "cat":"Data",
          "tooltip":"3rd Thresholds Data List",
          "value":"null",
          "noAps":true,
@@ -265,6 +273,7 @@
       }
     },
 	"dataCellListThresholds4":{
+      "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -276,7 +285,7 @@
          "type":"data",
          "ztlFunction":"",
          "desc":"4th Thresholds Data List",
-         "cat":"Content-Thresholds",
+         "cat":"Data",
          "tooltip":"4th Thresholds Data List",
          "value":"null",
          "noAps":true,
@@ -284,6 +293,7 @@
       }
     },
 	"dataCellListThresholds5":{
+      "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -295,7 +305,7 @@
          "type":"data",
          "ztlFunction":"",
          "desc":"5th Thresholds Data List",
-         "cat":"Content-Thresholds",
+         "cat":"Data",
          "tooltip":"5th Thresholds Data List",
          "value":"null",
          "noAps":true,

@@ -38,9 +38,11 @@ import sun.org.mozilla.javascript.internal.json.JsonParser;
 public class SpecHelper {
 
 	public String componentName;
+	private File specFile;
 
-	public SpecHelper(String componentName) {
+	public SpecHelper(String componentName, File specFile) {
 		this.componentName = componentName;
+		this.specFile = specFile;
 	}
 
 	public void readSpecification(ArrayList<Property> properties, JSONObject jsonSpec) {
@@ -165,13 +167,23 @@ public class SpecHelper {
 		}
 	}
 	
+	public boolean hasProperty(ArrayList<Property> properties, String propertyName) {
+		for (Property property : properties) {
+			if (property.getName().equals(propertyName)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	public Property getProperty(ArrayList<Property> properties, String propertyName) {
 		for (Property property : properties) {
 			if (property.getName().equals(propertyName)) {
 				return property;
 			}
 		}
-		Property prop = new Property(this.componentName, propertyName);
+		Property prop = new Property(this.componentName, propertyName, this.specFile);
 		properties.add(prop);
 		
 		return prop;

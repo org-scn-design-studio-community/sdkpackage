@@ -49,6 +49,15 @@ public class ParamFullSpec {
 		return correctName;
 	}
 	
+	public String getTemplateName() {
+		String correctName = properties.get("template");
+		if(correctName == null || correctName.length() == 0) {
+			return "none";
+		}
+		
+		return correctName;
+	}
+	
 	public String getHelp() {
 		if(options != null)
 			return "/**" + options.getPropertyValue("desc") + "*/";
@@ -407,8 +416,8 @@ public class ParamFullSpec {
 			}
 		}
 	
-		template = exchangeTemplate(template, type, xmlType);
-		templateXml = exchangeTemplate(templateXml, type, xmlType);
+		template = exchangeTemplate(template);
+		templateXml = exchangeTemplate(templateXml);
 
 		ZtlAndAps faa = new ZtlAndAps();
 		
@@ -437,18 +446,19 @@ public class ParamFullSpec {
 		return template.replace("%CUSTOM_EXTENSION_PROPERTY%", templateCustom + "\r\n" + "%CUSTOM_EXTENSION_PROPERTY%");
 	}
 
-	private String exchangeTemplate (String template, String type, String xmlType) {
+	public String exchangeTemplate (String template) {
 		String nameCut = this.parentProperty.getNameCut();
-		 nameCut = Helpers.makeFirstUpper(nameCut);
-		 template = template.replace("%PROPERTY_CAPITAL_CUT%", nameCut);
+		 String nameCutCapital = Helpers.makeFirstUpper(nameCut);
+		 template = template.replace("%PROPERTY_CAPITAL_CUT%", nameCutCapital);
 		 template = template.replace("%PROPERTY_TYPE_CHOICE%", this.getChoiceType());
-		 template = template.replace("%PROPERTY_SMALL_CUT%", nameCut.substring(0,1).toLowerCase(Locale.ENGLISH) + nameCut.substring(1));
+		 template = template.replace("%PROPERTY_SMALL_CUT%", nameCut);
 		 template = template.replace("%PROPERTY_CAPITAL%", this.parentProperty.getName());
 		 template = template.replace("%PROPERTY_TYPE%", this.getType(false));
 		 template = template.replace("%PROPERTY_TYPE_ZTL%", this.getType(true));
 		 template = template.replace("%PROPERTY_TYPE_OVERLOAD%", this.options.getPropertyValue("ztlType"));
 		 template = template.replace("%HELP%", getHelp());
-		 template = template.replace("%NAME%", getTitle());
+		 template = template.replace("%NAME%", nameCut);
+		 template = template.replace("%TITLE%", getTitle());
 		 template = template.replace("%COMPONENT_NAME%", this.parentProperty.getComponent().toUpperCase(Locale.ENGLISH));
 		 
 		template = template.replace("%COMPONENT_NAME%", this.parentProperty.getComponent().toUpperCase(Locale.ENGLISH));
@@ -523,5 +533,15 @@ public class ParamFullSpec {
 		template = template.replace("%PROPERTY_DEFAULT_VALUE%", this.getValue().replace("\\\"", "\""));
 		
 		return template;
+	}
+
+	public Ui5JsContent getJsContent() {
+		Ui5JsContent content = new Ui5JsContent(this);
+		content.calculate();
+		return content;
+	}
+
+	public Property getParentProperty() {
+		return this.parentProperty;
 	}
 }

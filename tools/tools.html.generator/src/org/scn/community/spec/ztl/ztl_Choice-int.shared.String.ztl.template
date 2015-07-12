@@ -1,26 +1,26 @@
 	/**
-	 * Sets %NAME% Property by Int
+	 * Sets %TITLE% Property by Int
 	 */	
 	void set%PROPERTY_CAPITAL_CUT%ByInt( %HELP% int %PROPERTY_SMALL_CUT%){*
 		this.%PROPERTY_CAPITAL% = %PROPERTY_SMALL_CUT%;
 	*}
 
 	/**
-	 * Gets %NAME% Property as Int
+	 * Gets %TITLE% Property as Int
 	 */	
 	int get%PROPERTY_CAPITAL_CUT%AsInt() {*
 		return this.%PROPERTY_CAPITAL%;
 	*}
 	
 	/**
-	 * Sets %NAME% Property by Choice Option
+	 * Sets %TITLE% Property by Choice Option
 	 */	
 	void set%PROPERTY_CAPITAL_CUT%( %HELP% org_scn_community_shared_%PROPERTY_TYPE_CHOICE%Enumfield %PROPERTY_SMALL_CUT%){*
 		this.%PROPERTY_CAPITAL% = parseInt(%PROPERTY_SMALL_CUT%.replace("D", ""));
 	*}
 	
 	/**
-	 * Gets %NAME% Property as Choice Option
+	 * Gets %TITLE% Property as Choice Option
 	 */	
 	org_scn_community_shared_%PROPERTY_TYPE_CHOICE%Enumfield get%PROPERTY_CAPITAL_CUT%() {*
 		return "D" + this.%PROPERTY_CAPITAL%;

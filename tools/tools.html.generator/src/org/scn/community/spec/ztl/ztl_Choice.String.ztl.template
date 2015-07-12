@@ -1,12 +1,12 @@
 	/**
-	 * Sets %NAME% Property by String
+	 * Sets %TITLE% Property by String
 	 */	
 	void set%PROPERTY_CAPITAL_CUT%ByString( %HELP% %PROPERTY_TYPE_ZTL% %PROPERTY_SMALL_CUT%){*
 		this.%PROPERTY_CAPITAL% = %PROPERTY_SMALL_CUT%;
 	*}
 
 	/**
-	 * Gets %NAME% Property as String
+	 * Gets %TITLE% Property as String
 	 */	
 	%PROPERTY_TYPE% get%PROPERTY_CAPITAL_CUT%AsString() {*
 		return this.%PROPERTY_CAPITAL%;

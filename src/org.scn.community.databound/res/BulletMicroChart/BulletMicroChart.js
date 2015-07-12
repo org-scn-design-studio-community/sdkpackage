@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
- 
+
  (function(){
 
 var myComponentData = org_scn_community_require.knownComponents.databound.BulletMicroChart;
@@ -24,27 +24,27 @@ var myComponentData = org_scn_community_require.knownComponents.databound.Bullet
 BulletMicroChart = {
 
 	renderer: {},
-	
+
 	initDesignStudio: function() {
 		var that = this;
 
 		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
 	},
-	
+
 	initAsync: function (owner) {
 		var that = owner;
 		org_scn_community_component_Core(that, myComponentData);
 		
 		that.addStyleClass("scn-pack-BulletMicroChart");
 		that.addStyleClass("scn-pack-FullSizeChildren");
-		
+
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		var componentPath = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage , "");
 		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.BulletMicroChart.name, componentPath);
 
 		sap.ui.controller(org_scn_community_require.knownComponents.databound.BulletMicroChart.fullComponentName, {
 			owner: that,
-			
+
 			// implement an event handler in the Controller
 			doSomething: function() {
 				alert("Hello World!");
@@ -71,7 +71,7 @@ BulletMicroChart = {
 		var that = this;
 		
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
-		that._data = that.getDataCellListActual();
+		that._data = undefined;
 		that._metadata = that.getDSMetadata();
 
 		if(!org_scn_community_databound.hasData (that._data, that._metadata)) {
@@ -106,162 +106,178 @@ BulletMicroChart = {
 		//options.emptyHeaderValue = that.getDEmptyHeaderValue();
 		//options.emptyDataValue = that.getDEmptyDataValue();
 
-		/* Object Single */
-		var dataCellListActual = that.getDataCellListActual();
-		if(org_scn_community_databound.hasData (dataCellListActual)) {dataCellListActual = org_scn_community_databound.flatten (dataCellListActual,options);}
-
-		var actual = that.getActual();
-		actual = org_scn_community_basics.parseJson(actual, "A");
-
-		actualValue = 0;
-		actualColor = "Good";
-		actualKey = "Description";
-
-		if(that.getUseActual() && actual[0]) {
-			var actualValue = actual[0].value;
-			var actualColor = actual[0].color;
-			var actualKey = actual[0].key;
-		}
-		/* Object Single */
-
-		// if(!org_scn_community_databound.hasData (dataCellListActual)) {
-		//	dataCellListActual = that._flatData;
-		// } else {
-		// 	dataCellListActual = org_scn_community_databound.flatten (dataCellListActual,options);
-		// }
-
-		/* float property */
-		var dataCellListTarget = that.getDataCellListTargetValue();
-		var hasDataCellListTarget = false;
-		if(org_scn_community_databound.hasData (dataCellListTarget)) {
-			dataCellListTarget = org_scn_community_databound.flatten (dataCellListTarget,options);
-			if(that.getUseTargetValue()) {
-				useDataCellListTarget = true;
-			}
-		}
-		var targetValue = that.getTargetValue();
-		/* float property */
-
-		var dataCellListForecast = that.getDataCellListForecast();
-		if(org_scn_community_databound.hasData (dataCellListForecast)) {dataCellListForecast = org_scn_community_databound.flatten (dataCellListForecast,options);}
-		var forecastValue = that.getForecastValue();
-
 		that._specialDataModel = [];
 
-		var minValue =that.getMinValue();
-		var maxValue =that.getMaxValue();
+		var dataCellListActual = that.getDataCellListActual();
+		var useDataCellListActual = false;
+		if(org_scn_community_databound.hasData (dataCellListActual)) {
+			dataCellListActual = org_scn_community_databound.flatten (dataCellListActual,options);
+			if(!that.getUseActual()) {
+				useDataCellListActual = true;
+			}
+		}
 
-		var size = that.getSize();
-		var scale = that.getScale();
-		var actualValueLabel = that.getActualValueLabel();
-		var contentWidth = that.getContentWidth();
+		var l_Actual = that.getActual();
+		l_Actual = org_scn_community_basics.parseJson(l_Actual, "A");
 
-		var withLabel = true; // that.getWithLabel();
+		if(that.getUseActual() && lActual[0]) {
+			l_Actual = l_Actual[0];
+		}
+			
+		var dataCellListForecastValue = that.getDataCellListForecastValue();
+		var useDataCellListForecastValue = false;
+		if(org_scn_community_databound.hasData (dataCellListForecastValue)) {
+			dataCellListForecastValue = org_scn_community_databound.flatten (dataCellListForecastValue,options);
+			if(that.getUseForecastValue()) {
+				useDataCellListForecastValue = true;
+			}
+		}
+		var l_ForecastValue = that.getForecastValue();
+		
+					var dataCellListMaxValue = that.getDataCellListMaxValue();
+		var useDataCellListMaxValue = false;
+		if(org_scn_community_databound.hasData (dataCellListMaxValue)) {
+			dataCellListMaxValue = org_scn_community_databound.flatten (dataCellListMaxValue,options);
+			if(that.getUseMaxValue()) {
+				useDataCellListMaxValue = true;
+			}
+		}
+		var l_MaxValue = that.getMaxValue();
+		
+					var dataCellListMinValue = that.getDataCellListMinValue();
+		var useDataCellListMinValue = false;
+		if(org_scn_community_databound.hasData (dataCellListMinValue)) {
+			dataCellListMinValue = org_scn_community_databound.flatten (dataCellListMinValue,options);
+			if(that.getUseMinValue()) {
+				useDataCellListMinValue = true;
+			}
+		}
+		var l_MinValue = that.getMinValue();
+		
+					var dataCellListTargetValue = that.getDataCellListTargetValue();
+		var useDataCellListTargetValue = false;
+		if(org_scn_community_databound.hasData (dataCellListTargetValue)) {
+			dataCellListTargetValue = org_scn_community_databound.flatten (dataCellListTargetValue,options);
+			if(that.getUseTargetValue()) {
+				useDataCellListTargetValue = true;
+			}
+		}
+		var l_TargetValue = that.getTargetValue();
+		
+			
 
 		/* Object Array */
-		var dataCellListThreshold1 = that.getDataCellListThresholds1();
-		if(org_scn_community_databound.hasData (dataCellListThreshold1)) {dataCellListThreshold1 = org_scn_community_databound.flatten (dataCellListThreshold1,options);}
-		var dataCellListThreshold2 = that.getDataCellListThresholds2();
-		if(org_scn_community_databound.hasData (dataCellListThreshold2)) {dataCellListThreshold2 = org_scn_community_databound.flatten (dataCellListThreshold2,options);}
-		var dataCellListThreshold3 = that.getDataCellListThresholds3();
-		if(org_scn_community_databound.hasData (dataCellListThreshold3)) {dataCellListThreshold3 = org_scn_community_databound.flatten (dataCellListThreshold3,options);}
-		var dataCellListThreshold4 = that.getDataCellListThresholds4();
-		if(org_scn_community_databound.hasData (dataCellListThreshold4)) {dataCellListThreshold4 = org_scn_community_databound.flatten (dataCellListThreshold4,options);}
-		var dataCellListThreshold5 = that.getDataCellListThresholds5();
-		if(org_scn_community_databound.hasData (dataCellListThreshold5)) {dataCellListThreshold5 = org_scn_community_databound.flatten (dataCellListThreshold5,options);}
+		var dataCellListThresholds1 = that.getDataCellListThresholds1();
+		var useDataCellListThreshold1 = false;
+		if(org_scn_community_databound.hasData (dataCellListThresholds1)) {
+			dataCellListThresholds1 = org_scn_community_databound.flatten (dataCellListThresholds1,options);
+			useDataCellListThresholds1 = true;
+		}
 
-		var thresholds = that.getThresholds();
-		thresholds = org_scn_community_basics.parseJson(thresholds, "A");
-
+		var l_Thresholds = that.getThresholds();
+		l_Thresholds = org_scn_community_basics.parseJson(l_Thresholds, "A");
 		/* Object Array */
+
+			
+		var l_ActualValueLabel = that.getActualValueLabel();
+					var l_ContentWidth = that.getContentWidth();
+					var l_DeltaValueLabel = that.getDeltaValueLabel();
+					var l_Mode = that.getMode();
+					var l_Scale = that.getScale();
+					var l_ScaleColor = that.getScaleColor();
+					var l_ShowActualValue = that.getShowActualValue();
+					var l_ShowDeltaValue = that.getShowDeltaValue();
+					var l_ShowTargetValue = that.getShowTargetValue();
+					var l_ShowValueMarker = that.getShowValueMarker();
+					var l_Size = that.getSize();
+					var l_TargetValueLabel = that.getTargetValueLabel();
+			
 
 		var rowI = 0;
 		var counterI = 1;
 
-		if(!that.getUseActual()) {
-			if(org_scn_community_databound.hasData (dataCellListActual)) counterI = dataCellListActual.rowHeaders.length;
-		}
-			
 		for(rowI=0;rowI<counterI;rowI++){
-			var rowHeaderName = "";
+			var rowHeaderName = "NONE";
 
-			/* Object Single */
-			if(!that.getUseActual()) {
-				if(org_scn_community_databound.hasData (dataCellListActual)) actualValue = dataCellListActual.values[rowI][0];
+			if(useDataCellListActual) {
+				actualValue = dataCellListActual.values[rowI][0];
 				rowHeaderName = dataCellListActual.rowHeaders[rowI];
 			} else {
-				rowHeaderName = actualKey;	
+				rowHeaderName = l_ActualKey;	
 			}
-			/* Object Single */
-
-			/* Properties float */
-			if(useDataCellListTarget) {
-				targetValue = dataCellListTarget.values[rowI][0];
-			}
-
-			if(!that.getUseForecastValue()) {
-				if(org_scn_community_databound.hasData (dataCellListForecast)) forecastValue = dataCellListForecast.values[rowI][0];
-			}
-
-			if(!that.getUseMinValue()) {
-				if(org_scn_community_databound.hasData (dataCellListMin)) minValue = dataCellListMin.values[rowI][0];
-			}
-
-			if(!that.getUseMaxValue()) {
-				if(org_scn_community_databound.hasData (dataCellListMax)) minValue = dataCellListMax.values[rowI][0];
-			}
-			/* Properties float */
-
-			var customData = {
-				size: size,
-				scale: scale,
-
-				targetValue: targetValue,
-				forecastValue: forecastValue,
-				minValue: minValue,
-				maxValue: maxValue,
-				actualValueLabel: actualValueLabel,
-				width: contentWidth +"px",
-				dimensionText: rowHeaderName,
-				withLabel: withLabel,
-				"class": "",
-			};
 			
-			/* Object Single */
-			actualJson = {
-				value: actualValue,
-				color: actualColor,
-				label: rowHeaderName
-			}
-			customData.actual = actualJson;
-			/* Object Single */
+		if(useDataCellListForecastValue) {
+			l_ForecastValue = dataCellListForecastValue.values[rowI][0];
+		}
+					if(useDataCellListMaxValue) {
+			l_MaxValue = dataCellListMaxValue.values[rowI][0];
+		}
+					if(useDataCellListMinValue) {
+			l_MinValue = dataCellListMinValue.values[rowI][0];
+		}
+					if(useDataCellListTargetValue) {
+			l_TargetValue = dataCellListTargetValue.values[rowI][0];
+		}
+			
 
-			/* Object Array */
-			thresholdsJson = [];
+
+			
+
+			var customData = {};
+			
+			customData.actualValueLabel = l_ActualValueLabel;
+						customData.contentWidth = l_ContentWidth;
+						customData.deltaValueLabel = l_DeltaValueLabel;
+						customData.mode = l_Mode;
+						customData.scale = l_Scale;
+						customData.scaleColor = l_ScaleColor;
+						customData.showActualValue = l_ShowActualValue;
+						customData.showDeltaValue = l_ShowDeltaValue;
+						customData.showTargetValue = l_ShowTargetValue;
+						customData.showValueMarker = l_ShowValueMarker;
+						customData.size = l_Size;
+						customData.targetValueLabel = l_TargetValueLabel;
+			
+			customData.forecastValue = l_ForecastValue;
+						customData.maxValue = l_MaxValue;
+						customData.minValue = l_MinValue;
+						customData.targetValue = l_TargetValue;
+			
+
+			var actualJson = {};
+			for (var actualPropI in l_Actual) {
+				if(actualPropI == "parentKey" || actualPropI == "leaf" || actualPropI == "key") continue;
+				actualJson[actualPropI] = l_Actual[actualPropI];
+			}
+			customData.actual	 = actualJson;
+			
+			var l_thresholdsJson = [];
 
 			if(!that.getUseThresholds()) {
-				if(org_scn_community_databound.hasData (dataCellListThreshold1)) thresholdsJson.push({value:  dataCellListThreshold1.values[rowI][0], color: "Good"});
-				if(org_scn_community_databound.hasData (dataCellListThreshold2)) thresholdsJson.push({value:  dataCellListThreshold2.values[rowI][0], color: "Good"});
-				if(org_scn_community_databound.hasData (dataCellListThreshold3)) thresholdsJson.push({value:  dataCellListThreshold3.values[rowI][0], color: "Good"});
-				if(org_scn_community_databound.hasData (dataCellListThreshold4)) thresholdsJson.push({value:  dataCellListThreshold4.values[rowI][0], color: "Good"});
-				if(org_scn_community_databound.hasData (dataCellListThreshold5)) thresholdsJson.push({value:  dataCellListThreshold5.values[rowI][0], color: "Good"});
-			} else {
-				for (var thresI in thresholds) {
-					var thresO = thresholds[thresI];
-					
-					var thresPropO = {};
-					for (var thresPropI in thresO) {
-						thresPropO[thresPropI] = thresO[thresPropI];
+				if(useDataCellListThresholds1) l_thresholdsJson.push({
+					value:  dataCellListThresholds1.values[rowI][0], 
+					color: "Good"
 					}
-					thresholdsJson.push(thresPropO);
+				);
+			} else {
+				for (var thresholdsI in l_Thresholds) {
+					var thresholdsO = l_Thresholds[thresholdsI];
+					
+					var thresholdsPropO = {};
+					for (var thresholdsPropI in thresholdsO) {
+						if(thresholdsPropI == "parentKey" || thresholdsPropI == "leaf" || thresholdsPropI == "key") continue;
+						thresholdsPropO[thresholdsPropI] = thresholdsO[thresholdsPropI];
+					}
+					l_thresholdsJson.push(thresholdsPropO);
 				}
 			}
-			customData.thresholds = thresholdsJson;
-			/* Object Array */
+			customData.thresholds = l_thresholdsJson;
+
+			
 
 			that._specialDataModel.push(customData);
 		}
-		
+
 		that._oModel.setData(that._specialDataModel);
 
 		if(that._oResize) {that._oResize(true, true);}
@@ -269,22 +285,36 @@ BulletMicroChart = {
 
 	afterPrepare: function (owner) {
 		var that = owner;
-			
+
 		// visualization on processed data 
 	},
-	
+
 	onResize: function(width, height, parent) {
 		var that = parent;
 		// in case special resize code is required
 
-		if(!that.getUseContentWidth() || that.getContentWidth() <= 0) {
-			for(entryI in that._specialDataModel) {
-				var entry = that._specialDataModel[entryI];
-
-				{entry.width = (width - 20) + "px"};
+		if(that.getUseContentWidth) {
+			if(!that.getUseContentWidth() || that.getContentWidth() <= 0) {
+				for(entryI in that._specialDataModel) {
+					var entry = that._specialDataModel[entryI];
+	
+					{entry.width = (width - 20) + "px"};
+				}
+	
+				that._oModel.setData(that._specialDataModel);
 			}
+		}
 
-			that._oModel.setData(that._specialDataModel);
+		if(that.getUseContentHeight) {
+			if(!that.getUseContentHeight() || that.getContentHeight() <= 0) {
+				for(entryI in that._specialDataModel) {
+					var entry = that._specialDataModel[entryI];
+	
+					{entry.height = (width - 20) + "px"};
+				}
+	
+				that._oModel.setData(that._specialDataModel);
+			}
 		}
 	},
 	/* COMPONENT SPECIFIC CODE - END METHODS*/

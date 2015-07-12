@@ -119,7 +119,7 @@ public class Component {
 			if (localName.equals("component")) {
 				setComponent(reader);
 			} else if (localName.equals("property")) {
-				currentProperty = new Property(reader, this.name);
+				currentProperty = new Property(reader, this.name, this.contributionXml);
 				this.properties.add(currentProperty);
 			} else if (localName.equals("possibleValue")) {
 				currentProperty.addValue(reader);
