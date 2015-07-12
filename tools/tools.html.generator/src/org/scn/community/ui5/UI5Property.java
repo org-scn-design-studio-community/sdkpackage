@@ -215,9 +215,6 @@ public class UI5Property {
 				for (Property propertyChild : this.valueProperties) {
 					String typeChild = propertyChild.getExtendedFullSpec().getType(true);
 					
-					if(typeChild.equals("float") || typeChild.equals("int")) {
-						typeChild = "String";
-					}
 					String nameChild = propertyChild.getName();
 					
 					String propDef = "\""+nameChild+"\": {\r\n\t\t\t\t\t";

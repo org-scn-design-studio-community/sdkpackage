@@ -69,7 +69,7 @@ ApsContent = function () {
         "type": "Array",
         "value": {
           "desc": "Value",
-          "type": "String"
+          "type": "float"
         }
       }},
       "arrayMode": "OneLevelArray",
@@ -547,7 +547,7 @@ ApsContent = function () {
         "type": "Array",
         "value": {
           "desc": "Value",
-          "type": "String"
+          "type": "float"
         }
       }},
       "arrayMode": "OneLevelArray",

@@ -360,7 +360,7 @@
 					},
 					"value": {
 					  "desc": "Value",
-					  "type": "String"
+					  "type": "float"
 					}
 		      	}
 	      	},
@@ -400,7 +400,7 @@
 					},
 					"value": {
 					  "desc": "Value",
-					  "type": "String"
+					  "type": "float"
 					}
 		      	}
 	      	},

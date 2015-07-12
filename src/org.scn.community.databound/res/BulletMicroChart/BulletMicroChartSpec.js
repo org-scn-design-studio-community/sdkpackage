@@ -40,7 +40,7 @@
         "type": "Array",
         "value": {
           "desc": "Value",
-          "type": "String"
+          "type": "float"
         }
       }},
       "arrayMode": "OneLevelArray",
@@ -518,7 +518,7 @@
         "type": "Array",
         "value": {
           "desc": "Value",
-          "type": "String"
+          "type": "float"
         }
       }},
       "arrayMode": "OneLevelArray",

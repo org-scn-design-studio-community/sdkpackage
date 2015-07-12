@@ -7,13 +7,13 @@
  */
 class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.DataComponent {
 
-	/** Adds a root element containing key [String], color [String], value [String].
+	/** Adds a root element containing key [String], color [String], value [float].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	BULLETCHART.addActual(key [String], color [String], value [String]);<br>
-	BULLETCHART.addActual(key [String], color [String], value [String]);<br>
+	BULLETCHART.addActual(key [String], color [String], value [float]);<br>
+	BULLETCHART.addActual(key [String], color [String], value [float]);<br>
 	<br>
 	</code>
 	</example>
@@ -21,7 +21,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	void setActual (
 			/**Unique Property Key*/String key, 
 			/**Colour*/String color, 
-			/**Value*/String value
+			/**Value*/float value
 			) {*
 
 		
@@ -81,7 +81,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	void updateActual (
 			/**Unique Property Key*/String key, 
 			/**Colour*/String color, 
-			/**Value*/String value
+			/**Value*/float value
 			) 
 	{*
 		if (this.actual === undefined || this.actual === "" || this.actual === "<delete>"){
@@ -197,85 +197,6 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	 * Checks Existence of Color for Actual Key<br/>
 	 */
 	boolean hasActualColor (
-			/**/ String key
-			) 
-	{*
-		if (this.actual === undefined || this.actual === "" || this.actual === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.actual);
-
-		var exists = false;
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				exists = true;
-				break;
-			}
-		}
-		
-		return exists;
-	*}
-	/**
-	 * Sets the Value for Actual keys<br/>
-	 */
-	void setActualValues (
-			/**/ String keys,
-			/**/ String separator,
-	        /* Value */ String value
-			) 
-	{*
-		if (this.actual === undefined || this.actual === "" || this.actual === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.actual);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].value = value;
-					break;
-				}
-			}
-		}
-		
-		this.actual = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Value for Actual Key<br/>
-	 */
-	void setActualValue (
-			/**/ String key,
-			/**/ String value
-			) 
-	{*
-		if (this.actual === undefined || this.actual === "" || this.actual === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.actual);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].value = value;
-				break;
-			}
-		}
-
-		this.actual = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Checks Existence of Value for Actual Key<br/>
-	 */
-	boolean hasActualValue (
 			/**/ String key
 			) 
 	{*
@@ -565,13 +486,13 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 		return this.targetValueLabel;
 	*}
 
-	/** Adds a root element containing key [String], color [String], value [String].
+	/** Adds a root element containing key [String], color [String], value [float].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	BULLETCHART.addThreshold(key [String], color [String], value [String]);<br>
-	BULLETCHART.addThreshold(key [String], color [String], value [String]);<br>
+	BULLETCHART.addThreshold(key [String], color [String], value [float]);<br>
+	BULLETCHART.addThreshold(key [String], color [String], value [float]);<br>
 	<br>
 	</code>
 	</example>
@@ -579,7 +500,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	void addThreshold (
 			/**Unique Property Key*/String key, 
 			/**Colour*/String color, 
-			/**Value*/String value
+			/**Value*/float value
 			) {*
 
 		
@@ -654,7 +575,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
  	<example>
 	You want to insert a root element
 	<code>
-	BULLETCHART.insertThreshold(index [int], key [String], color [String], value [String]);<br>
+	BULLETCHART.insertThreshold(index [int], key [String], color [String], value [float]);<br>
 	<br>
 	</code>
 	</example>
@@ -663,7 +584,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 			/**Index to Insert (0-based)*/int insertionIndex0based,
 			/**Unique Property Key*/String key, 
 			/**Colour*/String color, 
-			/**Value*/String value
+			/**Value*/float value
 			) {*
 
 		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
@@ -697,7 +618,7 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	void updateThreshold (
 			/**Unique Property Key*/String key, 
 			/**Colour*/String color, 
-			/**Value*/String value
+			/**Value*/float value
 			) 
 	{*
 		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
@@ -813,85 +734,6 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	 * Checks Existence of Color for Threshold Key<br/>
 	 */
 	boolean hasThresholdColor (
-			/**/ String key
-			) 
-	{*
-		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.thresholds);
-
-		var exists = false;
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				exists = true;
-				break;
-			}
-		}
-		
-		return exists;
-	*}
-	/**
-	 * Sets the Value for Threshold keys<br/>
-	 */
-	void setThresholdValues (
-			/**/ String keys,
-			/**/ String separator,
-	        /* Value */ String value
-			) 
-	{*
-		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.thresholds);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].value = value;
-					break;
-				}
-			}
-		}
-		
-		this.thresholds = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Value for Threshold Key<br/>
-	 */
-	void setThresholdValue (
-			/**/ String key,
-			/**/ String value
-			) 
-	{*
-		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.thresholds);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].value = value;
-				break;
-			}
-		}
-
-		this.thresholds = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Checks Existence of Value for Threshold Key<br/>
-	 */
-	boolean hasThresholdValue (
 			/**/ String key
 			) 
 	{*

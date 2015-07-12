@@ -212,6 +212,23 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 									
 									that.updateElement(that._listBuilder.getSelectedKey(),rootElement);
 							}, that);
+					} else if(parameterObject.type == "float" || parameterObject.type == "int") {
+						txtElementValue = new sap.ui.commons.TextField ({value : targetValue, width: "90%", textAlign: "Right"});
+						
+						txtElementValue.attachChange(
+								function(oControlEvent){
+									var value = oControlEvent.getParameter("newValue");
+									var key = oControlEvent.getSource()._key;
+
+									var rootElement = that.getElement(that._listBuilder.getSelectedKey());
+									
+									if(!isNaN(value)) {
+										rootElement[key] = parseInt(value);	
+									} else {
+										rootElement[key] = value;
+									}
+									that.updateElement(that._listBuilder.getSelectedKey(),rootElement);
+							}, that);
 					} else {
 						txtElementValue = new sap.ui.commons.TextField ({value : targetValue, width: "280px"});
 						
@@ -364,6 +381,19 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 						var key = oControlEvent.getSource()._key;
 
 						that._currentItemConfig[key] = value;		
+				}, that);
+			} else if(parameterObject.apsControl == "float" || parameterObject.apsControl == "int") {
+				txtItemValue = new sap.ui.commons.TextField ({value : targetValue, width: "90%", textAlign: "Right"});
+				
+				txtItemValue.attachChange(
+					function(oControlEvent){
+						var value = oControlEvent.getParameter("newValue");
+						var key = oControlEvent.getSource()._key;
+						if(!isNaN(value)) {
+							that._currentItemConfig[key] = parseInt(value);	
+						} else {
+							that._currentItemConfig[key] = value;
+						}
 				}, that);
 			} else {
 				txtItemValue = new sap.ui.commons.TextField ({value : targetValue, width: "90%"});
