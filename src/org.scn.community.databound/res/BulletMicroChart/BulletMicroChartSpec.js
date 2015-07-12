@@ -189,97 +189,17 @@
     "value": "null",
     "visible": true
   },
-  "dataCellListThresholds1": {
+  "dataCellListThresholds": {
     "options": {
       "includeData": "true",
       "includeFormattedData": "true"
     },
     "opts": {
       "cat": "Data",
-      "desc": "1st Thresholds Data List",
+      "desc": "Thresholds Data List [Multiple]",
       "noAps": true,
       "noZtl": true,
-      "tooltip": "1st Thresholds Data List",
-      "type": "data",
-      "value": "null",
-      "ztlFunction": ""
-    },
-    "template": "ds-DataCellList",
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
-  },
-  "dataCellListThresholds2": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "2nd Thresholds Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "2nd Thresholds Data List",
-      "type": "data",
-      "value": "null",
-      "ztlFunction": ""
-    },
-    "template": "ds-DataCellList",
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
-  },
-  "dataCellListThresholds3": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "3rd Thresholds Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "3rd Thresholds Data List",
-      "type": "data",
-      "value": "null",
-      "ztlFunction": ""
-    },
-    "template": "ds-DataCellList",
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
-  },
-  "dataCellListThresholds4": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "4th Thresholds Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "4th Thresholds Data List",
-      "type": "data",
-      "value": "null",
-      "ztlFunction": ""
-    },
-    "template": "ds-DataCellList",
-    "type": "ResultCellList",
-    "value": "null",
-    "visible": true
-  },
-  "dataCellListThresholds5": {
-    "options": {
-      "includeData": "true",
-      "includeFormattedData": "true"
-    },
-    "opts": {
-      "cat": "Data",
-      "desc": "5th Thresholds Data List",
-      "noAps": true,
-      "noZtl": true,
-      "tooltip": "5th Thresholds Data List",
+      "tooltip": "Thresholds Data List [Multiple]",
       "type": "data",
       "value": "null",
       "ztlFunction": ""
@@ -759,6 +679,7 @@
   "id": "BulletMicroChart",
   "package": "databound",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "repeaterProperty": "actual",
   "require": [
     {
       "id": "common_basics",

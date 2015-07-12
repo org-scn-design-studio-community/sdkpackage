@@ -1,6 +1,6 @@
 			if(useDataCellList%PROPERTY_CAPITAL_CUT%) {
-				actualValue = dataCellList%PROPERTY_CAPITAL_CUT%.values[rowI][0];
-				rowHeaderName = dataCellList%PROPERTY_CAPITAL_CUT%.rowHeaders[rowI];
+				l_%PROPERTY_CAPITAL_CUT%.label = dataCellList%PROPERTY_CAPITAL_CUT%.rowHeaders[rowI];
+				l_%PROPERTY_CAPITAL_CUT%.value = dataCellListActual.values[rowI][0];
 			} else {
-				rowHeaderName = l_%PROPERTY_CAPITAL_CUT%Key;	
+				l_%PROPERTY_CAPITAL_CUT%.label = l_%PROPERTY_CAPITAL_CUT%.key;	
 			}

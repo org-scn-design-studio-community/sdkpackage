@@ -3874,57 +3874,9 @@ __n__}
 		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
-		id="dataCellListThresholds1"
+		id="dataCellListThresholds"
 		type="ResultCellList"
-		title="1st Thresholds Data List"
-		group="Data"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
-	</property>
-	<property
-		id="dataCellListThresholds2"
-		type="ResultCellList"
-		title="2nd Thresholds Data List"
-		group="Data"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
-	</property>
-	<property
-		id="dataCellListThresholds3"
-		type="ResultCellList"
-		title="3rd Thresholds Data List"
-		group="Data"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
-	</property>
-	<property
-		id="dataCellListThresholds4"
-		type="ResultCellList"
-		title="4th Thresholds Data List"
-		group="Data"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
-	</property>
-	<property
-		id="dataCellListThresholds5"
-		type="ResultCellList"
-		title="5th Thresholds Data List"
+		title="Thresholds Data List [Multiple]"
 		group="Data"
 		visible="true"
 		bindable="true">
@@ -4149,11 +4101,7 @@ __n__}
 		<defaultValue property="dataCellListMaxValue"><![CDATA[null]]></defaultValue>
 		<defaultValue property="dataCellListMinValue"><![CDATA[null]]></defaultValue>
 		<defaultValue property="dataCellListTargetValue"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListThresholds1"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListThresholds2"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListThresholds3"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListThresholds4"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListThresholds5"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListThresholds"><![CDATA[null]]></defaultValue>
 		<defaultValue property="deltaValueLabel"><![CDATA[]]></defaultValue>
 		<defaultValue property="forecastValue"><![CDATA[0.0]]></defaultValue>
 		<defaultValue property="maxValue"><![CDATA[0.0]]></defaultValue>

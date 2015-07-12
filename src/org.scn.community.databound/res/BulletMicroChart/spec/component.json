@@ -9,6 +9,7 @@
 	"extension": "ui5.BulletChart",
 	"extends1ControlDs": "BulletChart.ds",
 	"extends2Control": "BulletChart",
+	"repeaterProperty": "actual",
 
 	"databound": true,
 	"dataType": "DataCellList",

@@ -1,6 +1,1 @@
-			var %NAME%Json = {};
-			for (var %NAME%PropI in l_%PROPERTY_CAPITAL_CUT%) {
-				if(%NAME%PropI == "parentKey" || %NAME%PropI == "leaf" || %NAME%PropI == "key") continue;
-				%NAME%Json[%NAME%PropI] = l_%PROPERTY_CAPITAL_CUT%[%NAME%PropI];
-			}
-			customData.%NAME% = %NAME%Json;
+			customData.%NAME% = %NAME%JsonTemplate;

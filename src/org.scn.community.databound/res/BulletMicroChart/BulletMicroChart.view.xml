@@ -16,7 +16,7 @@
 	      width="{width}"
 	      >
 	  	  <m:Label
-	      	text="{dimensionText}"
+	      	text="{actual/label}"
 	      	visible="{withLabel}" 
 	      	>
 	      </m:Label>
@@ -36,7 +36,7 @@
 	        >
 	
 	        <actual>
-	          <BulletChartData value="{actual/value}" color="{actual/color}"/>
+	          <BulletChartData value="{actual/value}" color="{actual/color}" label="{actual/label}"/>
 	        </actual>
 	        <thresholds>
 	          <BulletChartData value="{value}" color="{color}"/>

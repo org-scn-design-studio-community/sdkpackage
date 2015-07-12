@@ -2,7 +2,7 @@
 		var useDataCellList%PROPERTY_CAPITAL_CUT% = false;
 		if(org_scn_community_databound.hasData (dataCellList%PROPERTY_CAPITAL_CUT%)) {
 			dataCellList%PROPERTY_CAPITAL_CUT% = org_scn_community_databound.flatten (dataCellList%PROPERTY_CAPITAL_CUT%,options);
-			if(that.getUse%PROPERTY_CAPITAL_CUT%()) {
+			if(!that.getUse%PROPERTY_CAPITAL_CUT%()) {
 				useDataCellList%PROPERTY_CAPITAL_CUT% = true;
 			}
 		}

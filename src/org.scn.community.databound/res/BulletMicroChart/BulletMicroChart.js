@@ -120,160 +120,167 @@ BulletMicroChart = {
 		var l_Actual = that.getActual();
 		l_Actual = org_scn_community_basics.parseJson(l_Actual, "A");
 
-		if(that.getUseActual() && lActual[0]) {
+		if(that.getUseActual() && l_Actual[0]) {
 			l_Actual = l_Actual[0];
 		}
-			
+		var actualJsonTemplate = {};
+		for (var actualPropI in l_Actual) {
+			if(actualPropI == "parentKey" || actualPropI == "leaf" || actualPropI == "key") continue;
+			actualJsonTemplate[actualPropI] = l_Actual[actualPropI];
+		}
+
 		var dataCellListForecastValue = that.getDataCellListForecastValue();
 		var useDataCellListForecastValue = false;
 		if(org_scn_community_databound.hasData (dataCellListForecastValue)) {
 			dataCellListForecastValue = org_scn_community_databound.flatten (dataCellListForecastValue,options);
-			if(that.getUseForecastValue()) {
+			if(!that.getUseForecastValue()) {
 				useDataCellListForecastValue = true;
 			}
 		}
 		var l_ForecastValue = that.getForecastValue();
 		
-					var dataCellListMaxValue = that.getDataCellListMaxValue();
+		var dataCellListMaxValue = that.getDataCellListMaxValue();
 		var useDataCellListMaxValue = false;
 		if(org_scn_community_databound.hasData (dataCellListMaxValue)) {
 			dataCellListMaxValue = org_scn_community_databound.flatten (dataCellListMaxValue,options);
-			if(that.getUseMaxValue()) {
+			if(!that.getUseMaxValue()) {
 				useDataCellListMaxValue = true;
 			}
 		}
 		var l_MaxValue = that.getMaxValue();
 		
-					var dataCellListMinValue = that.getDataCellListMinValue();
+		var dataCellListMinValue = that.getDataCellListMinValue();
 		var useDataCellListMinValue = false;
 		if(org_scn_community_databound.hasData (dataCellListMinValue)) {
 			dataCellListMinValue = org_scn_community_databound.flatten (dataCellListMinValue,options);
-			if(that.getUseMinValue()) {
+			if(!that.getUseMinValue()) {
 				useDataCellListMinValue = true;
 			}
 		}
 		var l_MinValue = that.getMinValue();
 		
-					var dataCellListTargetValue = that.getDataCellListTargetValue();
+		var dataCellListTargetValue = that.getDataCellListTargetValue();
 		var useDataCellListTargetValue = false;
 		if(org_scn_community_databound.hasData (dataCellListTargetValue)) {
 			dataCellListTargetValue = org_scn_community_databound.flatten (dataCellListTargetValue,options);
-			if(that.getUseTargetValue()) {
+			if(!that.getUseTargetValue()) {
 				useDataCellListTargetValue = true;
 			}
 		}
 		var l_TargetValue = that.getTargetValue();
 		
-			
 
-		/* Object Array */
-		var dataCellListThresholds1 = that.getDataCellListThresholds1();
-		var useDataCellListThreshold1 = false;
-		if(org_scn_community_databound.hasData (dataCellListThresholds1)) {
-			dataCellListThresholds1 = org_scn_community_databound.flatten (dataCellListThresholds1,options);
-			useDataCellListThresholds1 = true;
+
+		var dataCellListThresholds = that.getDataCellListThresholds();
+		var useDataCellListThresholds = false;
+		if(org_scn_community_databound.hasData (dataCellListThresholds)) {
+			dataCellListThresholds = org_scn_community_databound.flatten (dataCellListThresholds,options);
+			useDataCellListThresholds = true;
 		}
 
 		var l_Thresholds = that.getThresholds();
 		l_Thresholds = org_scn_community_basics.parseJson(l_Thresholds, "A");
-		/* Object Array */
+		
+		var l_thresholdsJsonTemplate = [];
+		for (var thresholdsI in l_Thresholds) {
+			var thresholdsO = l_Thresholds[thresholdsI];
+			
+			var thresholdsPropO = {};
+			for (var thresholdsPropI in thresholdsO) {
+				if(thresholdsPropI == "parentKey" || thresholdsPropI == "leaf" || thresholdsPropI == "key") continue;
+				thresholdsPropO[thresholdsPropI] = thresholdsO[thresholdsPropI];
+			}
+			l_thresholdsJsonTemplate.push(thresholdsPropO);
+		}
 
-			
+
 		var l_ActualValueLabel = that.getActualValueLabel();
-					var l_ContentWidth = that.getContentWidth();
-					var l_DeltaValueLabel = that.getDeltaValueLabel();
-					var l_Mode = that.getMode();
-					var l_Scale = that.getScale();
-					var l_ScaleColor = that.getScaleColor();
-					var l_ShowActualValue = that.getShowActualValue();
-					var l_ShowDeltaValue = that.getShowDeltaValue();
-					var l_ShowTargetValue = that.getShowTargetValue();
-					var l_ShowValueMarker = that.getShowValueMarker();
-					var l_Size = that.getSize();
-					var l_TargetValueLabel = that.getTargetValueLabel();
-			
+		var l_ContentWidth = that.getContentWidth();
+		var l_DeltaValueLabel = that.getDeltaValueLabel();
+		var l_Mode = that.getMode();
+		var l_Scale = that.getScale();
+		var l_ScaleColor = that.getScaleColor();
+		var l_ShowActualValue = that.getShowActualValue();
+		var l_ShowDeltaValue = that.getShowDeltaValue();
+		var l_ShowTargetValue = that.getShowTargetValue();
+		var l_ShowValueMarker = that.getShowValueMarker();
+		var l_Size = that.getSize();
+		var l_TargetValueLabel = that.getTargetValueLabel();
+
 
 		var rowI = 0;
 		var counterI = 1;
+
+		if(useDataCellListActual) {
+			counterI = dataCellListActual.values.length;
+		}
+
 
 		for(rowI=0;rowI<counterI;rowI++){
 			var rowHeaderName = "NONE";
 
 			if(useDataCellListActual) {
-				actualValue = dataCellListActual.values[rowI][0];
-				rowHeaderName = dataCellListActual.rowHeaders[rowI];
+				l_Actual.label = dataCellListActual.rowHeaders[rowI];
+				l_Actual.value = dataCellListActual.values[rowI][0];
 			} else {
-				rowHeaderName = l_ActualKey;	
+				l_Actual.label = l_Actual.key;	
 			}
-			
-		if(useDataCellListForecastValue) {
-			l_ForecastValue = dataCellListForecastValue.values[rowI][0];
-		}
-					if(useDataCellListMaxValue) {
-			l_MaxValue = dataCellListMaxValue.values[rowI][0];
-		}
-					if(useDataCellListMinValue) {
-			l_MinValue = dataCellListMinValue.values[rowI][0];
-		}
-					if(useDataCellListTargetValue) {
-			l_TargetValue = dataCellListTargetValue.values[rowI][0];
-		}
-			
+
+			if(useDataCellListForecastValue) {
+				l_ForecastValue = dataCellListForecastValue.values[rowI][0];
+			}
+			if(useDataCellListMaxValue) {
+				l_MaxValue = dataCellListMaxValue.values[rowI][0];
+			}
+			if(useDataCellListMinValue) {
+				l_MinValue = dataCellListMinValue.values[rowI][0];
+			}
+			if(useDataCellListTargetValue) {
+				l_TargetValue = dataCellListTargetValue.values[rowI][0];
+			}
 
 
-			
+
+
 
 			var customData = {};
 			
 			customData.actualValueLabel = l_ActualValueLabel;
-						customData.contentWidth = l_ContentWidth;
-						customData.deltaValueLabel = l_DeltaValueLabel;
-						customData.mode = l_Mode;
-						customData.scale = l_Scale;
-						customData.scaleColor = l_ScaleColor;
-						customData.showActualValue = l_ShowActualValue;
-						customData.showDeltaValue = l_ShowDeltaValue;
-						customData.showTargetValue = l_ShowTargetValue;
-						customData.showValueMarker = l_ShowValueMarker;
-						customData.size = l_Size;
-						customData.targetValueLabel = l_TargetValueLabel;
-			
-			customData.forecastValue = l_ForecastValue;
-						customData.maxValue = l_MaxValue;
-						customData.minValue = l_MinValue;
-						customData.targetValue = l_TargetValue;
-			
+			customData.contentWidth = l_ContentWidth;
+			customData.deltaValueLabel = l_DeltaValueLabel;
+			customData.mode = l_Mode;
+			customData.scale = l_Scale;
+			customData.scaleColor = l_ScaleColor;
+			customData.showActualValue = l_ShowActualValue;
+			customData.showDeltaValue = l_ShowDeltaValue;
+			customData.showTargetValue = l_ShowTargetValue;
+			customData.showValueMarker = l_ShowValueMarker;
+			customData.size = l_Size;
+			customData.targetValueLabel = l_TargetValueLabel;
 
-			var actualJson = {};
-			for (var actualPropI in l_Actual) {
-				if(actualPropI == "parentKey" || actualPropI == "leaf" || actualPropI == "key") continue;
-				actualJson[actualPropI] = l_Actual[actualPropI];
-			}
-			customData.actual	 = actualJson;
-			
+			customData.forecastValue = l_ForecastValue;
+			customData.maxValue = l_MaxValue;
+			customData.minValue = l_MinValue;
+			customData.targetValue = l_TargetValue;
+
+
+			customData.actual = actualJsonTemplate;
+
 			var l_thresholdsJson = [];
 
-			if(!that.getUseThresholds()) {
-				if(useDataCellListThresholds1) l_thresholdsJson.push({
-					value:  dataCellListThresholds1.values[rowI][0], 
-					color: "Good"
-					}
-				);
-			} else {
-				for (var thresholdsI in l_Thresholds) {
-					var thresholdsO = l_Thresholds[thresholdsI];
-					
-					var thresholdsPropO = {};
-					for (var thresholdsPropI in thresholdsO) {
-						if(thresholdsPropI == "parentKey" || thresholdsPropI == "leaf" || thresholdsPropI == "key") continue;
-						thresholdsPropO[thresholdsPropI] = thresholdsO[thresholdsPropI];
-					}
-					l_thresholdsJson.push(thresholdsPropO);
+			if(!that.getUseThresholds() && useDataCellListThresholds) {
+				for (var cellI in dataCellListThresholds.values[rowI]) {
+					l_thresholdsJson.push({
+						value:  dataCellListThresholds.values[rowI][cellI], 
+						color: "Good"
+					});
 				}
+			} else {
+				l_thresholdsJson = l_thresholdsJsonTemplate;
 			}
 			customData.thresholds = l_thresholdsJson;
 
-			
+
 
 			that._specialDataModel.push(customData);
 		}

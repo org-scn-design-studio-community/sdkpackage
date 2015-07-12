@@ -60,7 +60,7 @@ public class Ui5JsContent {
 	public String replaceTemplate(String jsTmpl) {
 		for (String templateName : templates.keySet()) {
 			String template = templates.get(templateName);
-			jsTmpl = jsTmpl.replace("%"+templateName+"%", template + "\r\n\t\t\t" + "%"+templateName+"%");
+			jsTmpl = jsTmpl.replace("%"+templateName+"%", template + "\r\n" + "%"+templateName+"%");
 		}
 		return jsTmpl;
 	}
@@ -71,6 +71,18 @@ public class Ui5JsContent {
 			template = spec.exchangeTemplate(template);
 			templates.put(templateName, template);
 		}
+	}
+
+	public String replaceRepeater(String jsTmpl) {
+		for (String templateName : templatesStatic.keySet()) {
+			if(templateName.equals("root.repeater.js.tmpl")) {
+				String template = new String(templatesStatic.get(templateName));
+				template = spec.exchangeTemplate(template);
+				jsTmpl = jsTmpl.replace("%"+templateName+"%", template + "\r\n" + "%"+templateName+"%");
+				break;
+			}
+		}
+		return jsTmpl;
 	}
 
 }

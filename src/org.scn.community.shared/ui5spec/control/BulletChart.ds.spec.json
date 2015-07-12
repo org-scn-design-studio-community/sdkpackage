@@ -212,7 +212,7 @@
 			"noZtl" : false
 		}
 	},
-	"dataCellListThresholds1":{
+	"dataCellListThresholds":{
       "template": "ds-DataCellList",
       "type":"ResultCellList",
       "value":"null",
@@ -224,89 +224,9 @@
       "opts":{
          "type":"data",
          "ztlFunction":"",
-         "desc":"1st Thresholds Data List",
+         "desc":"Thresholds Data List [Multiple]",
          "cat":"Data",
-         "tooltip":"1st Thresholds Data List",
-         "value":"null",
-         "noAps":true,
-         "noZtl":true
-      }
-    },
-	"dataCellListThresholds2":{
-      "template": "ds-DataCellList",
-      "type":"ResultCellList",
-      "value":"null",
-      "visible":true,
-      "options":{
-      	"includeFormattedData":"true",
-      	"includeData":"true"
-      },
-      "opts":{
-         "type":"data",
-         "ztlFunction":"",
-         "desc":"2nd Thresholds Data List",
-         "cat":"Data",
-         "tooltip":"2nd Thresholds Data List",
-         "value":"null",
-         "noAps":true,
-         "noZtl":true
-      }
-    },
-	"dataCellListThresholds3":{
-      "template": "ds-DataCellList",
-      "type":"ResultCellList",
-      "value":"null",
-      "visible":true,
-      "options":{
-      	"includeFormattedData":"true",
-      	"includeData":"true"
-      },
-      "opts":{
-         "type":"data",
-         "ztlFunction":"",
-         "desc":"3rd Thresholds Data List",
-         "cat":"Data",
-         "tooltip":"3rd Thresholds Data List",
-         "value":"null",
-         "noAps":true,
-         "noZtl":true
-      }
-    },
-	"dataCellListThresholds4":{
-      "template": "ds-DataCellList",
-      "type":"ResultCellList",
-      "value":"null",
-      "visible":true,
-      "options":{
-      	"includeFormattedData":"true",
-      	"includeData":"true"
-      },
-      "opts":{
-         "type":"data",
-         "ztlFunction":"",
-         "desc":"4th Thresholds Data List",
-         "cat":"Data",
-         "tooltip":"4th Thresholds Data List",
-         "value":"null",
-         "noAps":true,
-         "noZtl":true
-      }
-    },
-	"dataCellListThresholds5":{
-      "template": "ds-DataCellList",
-      "type":"ResultCellList",
-      "value":"null",
-      "visible":true,
-      "options":{
-      	"includeFormattedData":"true",
-      	"includeData":"true"
-      },
-      "opts":{
-         "type":"data",
-         "ztlFunction":"",
-         "desc":"5th Thresholds Data List",
-         "cat":"Data",
-         "tooltip":"5th Thresholds Data List",
+         "tooltip":"Thresholds Data List [Multiple]",
          "value":"null",
          "noAps":true,
          "noZtl":true

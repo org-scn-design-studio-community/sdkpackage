@@ -47,6 +47,7 @@ public class SpecificationReader {
 	private ArrayList<String> componentStdIncludes = new ArrayList<String>();
 	private String includeSpec;
 	private boolean hasUi5Spec;
+	private String repeaterSpec;
 
 	public SpecificationReader(String pathToGenSpec, Component component) {
 		this.pathToGenSpec = pathToGenSpec;
@@ -109,6 +110,12 @@ public class SpecificationReader {
 		}
 		
 		if(hasUi5Spec) {
+			for (Property property : this.specExtendedProperties) {
+				if(property.getName().equals(repeaterSpec)){
+					Ui5JsContent jsContent = property.getExtendedFullSpec().getJsContent();
+					JsTmpl = jsContent.replaceRepeater(JsTmpl);
+				}
+			}
 			for (String templateName : Ui5JsContent.templatesStatic.keySet()) {
 				JsTmpl = JsTmpl.replace("%"+templateName+"%", "");	
 			}
@@ -233,11 +240,7 @@ public class SpecificationReader {
 		
 		Property compType = helper.getProperty(this.compProperties, "handlerType");
 		Property databound = helper.getProperty(this.compProperties, "databound");
-		Property extendsUi = null;
-		if(helper.hasProperty(this.compProperties, "extension")){
-			extendsUi = helper.getProperty(this.compProperties, "extension");
-		}
-		
+
 		HashMap<String, String> properties = compType.getExtendedFullSpec().getProperties();
 		String compTypeValue = this.getAdvancedProperty(properties, "handlerType");
 		
@@ -249,7 +252,9 @@ public class SpecificationReader {
 		JsLoaderTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.loader."+compTypeValue+".js.template");
 		
 		hasUi5Spec = false;
-		if(extendsUi != null) {
+		if(helper.hasProperty(this.compProperties, "extension")){
+			Property extendsUi = null;
+			extendsUi = helper.getProperty(this.compProperties, "extension");
 			HashMap<String, String> propertiesEx = extendsUi.getExtendedFullSpec().getProperties();
 			String advancedPropertyExtansion = this.getAdvancedProperty(propertiesEx, "extension");
 			hasUi5Spec = advancedPropertyExtansion != null && advancedPropertyExtansion.contains("ui5");
@@ -260,6 +265,15 @@ public class SpecificationReader {
 			JsTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.component."+compTypeValue+databoundTamplate+".js.template");	
 		}
 		JsSpecTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.spec."+compTypeValue+".js.template");
+		
+		repeaterSpec = "";
+		if(helper.hasProperty(this.compProperties, "repeaterProperty")) {
+			Property repeaterProp = null;
+			repeaterProp = helper.getProperty(this.compProperties, "repeaterProperty");
+			HashMap<String, String> propertiesEx = repeaterProp.getExtendedFullSpec().getProperties();
+			String advancedPropertyExtansion = this.getAdvancedProperty(propertiesEx, "repeaterProperty");
+			repeaterSpec = advancedPropertyExtansion;
+		}
 		
 		if(JsLoaderTmpl == null || JsTmpl == null || JsSpecTmpl == null) {
 			throw new RuntimeException("'" + compTypeValue + "' is not a valid component type (div | sapui5)");
