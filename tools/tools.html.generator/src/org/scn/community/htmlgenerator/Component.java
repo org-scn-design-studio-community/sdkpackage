@@ -615,20 +615,24 @@ public class Component {
 			props.put("Ztl Function " + function.name, propertyValue);
 		}
 
-		// read all files in RES
+		boolean hasSpec = new File(contributionXml.getParentFile().getParentFile().getAbsolutePath() + File.separator + "spec").exists();
+		boolean isComponentManager = this.name.equals("ComponentManager");
+		
 		File[] resFiles = Helpers.listFiles(contributionXml.getParentFile().getParentFile().getAbsolutePath());
+		
 		for (File file : resFiles) {
 			String file2String = Helpers.file2String(file);
 			if(!file.isDirectory()) {
+				if(file.getName().endsWith("Loader.js") || file.getName().endsWith("Spec.js")) {
+					continue;
+				}
 				props.put("Resource " + file.getParentFile().getName() + " - " +file.getName(), file2String.length() + ";" + Helpers.hashString(file2String));	
 			}
 		}
 		
-		boolean hasSpec = new File(contributionXml.getParentFile().getParentFile().getAbsolutePath() + File.separator + "spec").exists();
-		boolean isComponentManager = this.name.equals("ComponentManager");
-		
 		// do not monitor def filder in case it is fully generated
 		if(!hasSpec && !isComponentManager) {
+			// read all files in RES
 			resFiles = Helpers.listFiles(contributionXml.getParentFile().getParentFile().getAbsolutePath() + File.separator + "def");
 			for (File file : resFiles) {
 				String file2String = Helpers.file2String(file);

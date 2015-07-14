@@ -9,8 +9,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Clear Selections if 0 Property
 	 */	
-	void setClearOthers( /**Clear Selections if 0*/ boolean ClearOthers){*
-		this.DClearOthers = ClearOthers;
+	void setClearOthers( /**Clear Selections if 0*/ boolean clearOthers){*
+		this.DClearOthers = clearOthers;
 	*}
 
 	/**
@@ -23,8 +23,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Content Mode Property by String
 	 */	
-	void setContentModeByString( /**Content Mode*/ String ContentMode){*
-		this.DContentMode = ContentMode;
+	void setContentModeByString( /**Content Mode*/ String contentMode){*
+		this.DContentMode = contentMode;
 	*}
 
 	/**
@@ -37,8 +37,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Content Mode Property by Choice Option
 	 */	
-	void setContentMode( /**Content Mode*/ org_scn_community_shared_DimensionSetEnumfield ContentMode){*
-		this.DContentMode = ContentMode;
+	void setContentMode( /**Content Mode*/ org_scn_community_shared_DimensionSetEnumfield contentMode){*
+		this.DContentMode = contentMode;
 	*}
 	
 	/**
@@ -51,8 +51,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Custom Dimensions Property as StringArray
 	 */	
-	void setCustomDimensions( /**Custom Dimensions*/ StringArray CustomDimensions){*
-		this.DCustomDimensions = CustomDimensions;
+	void setCustomDimensions( /**Custom Dimensions*/ StringArray customDimensions){*
+		this.DCustomDimensions = customDimensions;
 	*}
 	
 	/** Gets Custom Dimensions Property as StringArray
@@ -72,8 +72,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Display Text Property by String
 	 */	
-	void setDisplayTextByString( /**Display Text*/ String DisplayText){*
-		this.DDisplayText = DisplayText;
+	void setDisplayTextByString( /**Display Text*/ String displayText){*
+		this.DDisplayText = displayText;
 	*}
 
 	/**
@@ -86,8 +86,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Display Text Property by Choice Option
 	 */	
-	void setDisplayText( /**Display Text*/ org_scn_community_shared_MemberDisplayEnumfield DisplayText){*
-		this.DDisplayText = DisplayText;
+	void setDisplayText( /**Display Text*/ org_scn_community_shared_MemberDisplayEnumfield displayText){*
+		this.DDisplayText = displayText;
 	*}
 	
 	/**
@@ -102,8 +102,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Facet Width in px Property
 	 */	
-	void setFacetWidth( /**Facet Width in px*/ int FacetWidth){*
-		this.DFacetWidth = FacetWidth;
+	void setFacetWidth( /**Facet Width in px*/ int facetWidth){*
+		this.DFacetWidth = facetWidth;
 	*}
 
 	/**
@@ -116,8 +116,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Maximum Number of Members Property
 	 */	
-	void setMaxDisplayMembers( /**Maximum Number of Members*/ int MaxDisplayMembers){*
-		this.DMaxDisplayMembers = MaxDisplayMembers;
+	void setMaxDisplayMembers( /**Maximum Number of Members*/ int maxDisplayMembers){*
+		this.DMaxDisplayMembers = maxDisplayMembers;
 	*}
 
 	/**
@@ -130,8 +130,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Maximum Number of Members Property
 	 */	
-	void setMaxMembers( /**Maximum Number of Members*/ int MaxMembers){*
-		this.DMaxMembers = MaxMembers;
+	void setMaxMembers( /**Maximum Number of Members*/ int maxMembers){*
+		this.DMaxMembers = maxMembers;
 	*}
 
 	/**
@@ -146,8 +146,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Member Sorting Direction Property by String
 	 */	
-	void setSortingDirectionByString( /**Member Sorting Direction*/ String SortingDirection){*
-		this.DSortingDirection = SortingDirection;
+	void setSortingDirectionByString( /**Member Sorting Direction*/ String sortingDirection){*
+		this.DSortingDirection = sortingDirection;
 	*}
 
 	/**
@@ -160,8 +160,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Member Sorting Direction Property by Choice Option
 	 */	
-	void setSortingDirection( /**Member Sorting Direction*/ org_scn_community_shared_SortDirectionEnumfield SortingDirection){*
-		this.DSortingDirection = SortingDirection;
+	void setSortingDirection( /**Member Sorting Direction*/ org_scn_community_shared_SortDirectionEnumfield sortingDirection){*
+		this.DSortingDirection = sortingDirection;
 	*}
 	
 	/**
@@ -174,8 +174,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Member Sorting Type Property by String
 	 */	
-	void setSortingTypeByString( /**Member Sorting Type*/ String SortingType){*
-		this.DSortingType = SortingType;
+	void setSortingTypeByString( /**Member Sorting Type*/ String sortingType){*
+		this.DSortingType = sortingType;
 	*}
 
 	/**
@@ -188,8 +188,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Member Sorting Type Property by Choice Option
 	 */	
-	void setSortingType( /**Member Sorting Type*/ org_scn_community_shared_SortTypeEnumfield SortingType){*
-		this.DSortingType = SortingType;
+	void setSortingType( /**Member Sorting Type*/ org_scn_community_shared_SortTypeEnumfield sortingType){*
+		this.DSortingType = sortingType;
 	*}
 	
 	/**
@@ -202,8 +202,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Zero Values Display Mode Property by String
 	 */	
-	void setZeroValuesModeByString( /**Zero Values Display Mode*/ String ZeroValuesMode){*
-		this.DZeroValuesMode = ZeroValuesMode;
+	void setZeroValuesModeByString( /**Zero Values Display Mode*/ String zeroValuesMode){*
+		this.DZeroValuesMode = zeroValuesMode;
 	*}
 
 	/**
@@ -216,8 +216,8 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	/**
 	 * Sets Zero Values Display Mode Property by Choice Option
 	 */	
-	void setZeroValuesMode( /**Zero Values Display Mode*/ org_scn_community_shared_Enumfield ZeroValuesMode){*
-		this.DZeroValuesMode = ZeroValuesMode;
+	void setZeroValuesMode( /**Zero Values Display Mode*/ org_scn_community_shared_Enumfield zeroValuesMode){*
+		this.DZeroValuesMode = zeroValuesMode;
 	*}
 	
 	/**

@@ -9,8 +9,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Current Date Value YYYYMMDD Property
 	 */	
-	void setCurrentValue( /**Current Date Value YYYYMMDD*/ String CurrentValue){*
-		this.DCurrentValue = CurrentValue;
+	void setCurrentValue( /**Current Date Value YYYYMMDD*/ String currentValue){*
+		this.DCurrentValue = currentValue;
 	*}
 
 	/**
@@ -23,8 +23,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Selection Type Property by String
 	 */	
-	void setSelectionTypeByString( /**Selection Type*/ String SelectionType){*
-		this.DSelectionType = SelectionType;
+	void setSelectionTypeByString( /**Selection Type*/ String selectionType){*
+		this.DSelectionType = selectionType;
 	*}
 
 	/**
@@ -37,8 +37,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Selection Type Property by Choice Option
 	 */	
-	void setSelectionType( /**Selection Type*/ org_scn_community_shared_SelectionTypeEnumfield SelectionType){*
-		this.DSelectionType = SelectionType;
+	void setSelectionType( /**Selection Type*/ org_scn_community_shared_SelectionTypeEnumfield selectionType){*
+		this.DSelectionType = selectionType;
 	*}
 	
 	/**
@@ -51,8 +51,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Date Single Value YYYYMMDD Property
 	 */	
-	void setValue( /**Date Single Value YYYYMMDD*/ String Value){*
-		this.DValue = Value;
+	void setValue( /**Date Single Value YYYYMMDD*/ String value){*
+		this.DValue = value;
 	*}
 
 	/**
@@ -65,8 +65,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Date Value Range From YYYYMMDD Property
 	 */	
-	void setValueF( /**Date Value Range From YYYYMMDD*/ String ValueF){*
-		this.DValueF = ValueF;
+	void setValueF( /**Date Value Range From YYYYMMDD*/ String valueF){*
+		this.DValueF = valueF;
 	*}
 
 	/**
@@ -79,8 +79,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Date Value Range To YYYYMMDD Property
 	 */	
-	void setValueT( /**Date Value Range To YYYYMMDD*/ String ValueT){*
-		this.DValueT = ValueT;
+	void setValueT( /**Date Value Range To YYYYMMDD*/ String valueT){*
+		this.DValueT = valueT;
 	*}
 
 	/**

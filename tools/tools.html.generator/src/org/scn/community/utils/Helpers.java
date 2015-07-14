@@ -358,6 +358,17 @@ public class Helpers {
 		return value.substring(0,1).toUpperCase(Locale.ENGLISH)  +value.substring(1);
 	}
 	
+	public static String makeFirstLower(String value) {
+		if(value.length() == 0) {
+			return value;
+		}
+		
+		if(value.length() == 1) {
+			return value.toLowerCase(Locale.ENGLISH);	
+		}
+		return value.substring(0,1).toLowerCase(Locale.ENGLISH)  +value.substring(1);
+	}
+
 	public static String makeAllUpper(String value) {
 		String sentence = "";
 		String [] splitWords = value.split(" ");

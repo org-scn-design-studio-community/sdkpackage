@@ -467,11 +467,11 @@ public class ParamFullSpec {
 	}
 
 	public String exchangeTemplate (String template) {
-		String nameCut = this.parentProperty.getNameCut();
+		 String nameCut = this.parentProperty.getNameCut();
 		 String nameCutCapital = Helpers.makeFirstUpper(nameCut);
 		 template = template.replace("%PROPERTY_CAPITAL_CUT%", nameCutCapital);
 		 template = template.replace("%PROPERTY_TYPE_CHOICE%", this.getChoiceType());
-		 template = template.replace("%PROPERTY_SMALL_CUT%", nameCut);
+		 template = template.replace("%PROPERTY_SMALL_CUT%", Helpers.makeFirstLower(nameCut));
 		 template = template.replace("%PROPERTY_CAPITAL%", this.parentProperty.getName());
 		 template = template.replace("%PROPERTY_TYPE%", this.getType(false));
 		 template = template.replace("%PROPERTY_TYPE_ZTL%", this.getType(true));

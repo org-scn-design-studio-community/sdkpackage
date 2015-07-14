@@ -9,8 +9,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Allow Reorder of Columns Property
 	 */	
-	void setAllowColumnReorder( /**Allow Reorder of Columns*/ boolean AllowColumnReorder){*
-		this.DAllowColumnReorder = AllowColumnReorder;
+	void setAllowColumnReorder( /**Allow Reorder of Columns*/ boolean allowColumnReorder){*
+		this.DAllowColumnReorder = allowColumnReorder;
 	*}
 
 	/**
@@ -23,8 +23,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Allow Filter in Columns Property
 	 */	
-	void setAllowFilter( /**Allow Filter in Columns*/ boolean AllowFilter){*
-		this.DAllowFilter = AllowFilter;
+	void setAllowFilter( /**Allow Filter in Columns*/ boolean allowFilter){*
+		this.DAllowFilter = allowFilter;
 	*}
 
 	/**
@@ -37,8 +37,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Allow Selection in the Table Property
 	 */	
-	void setAllowSelection( /**Allow Selection in the Table*/ boolean AllowSelection){*
-		this.DAllowSelection = AllowSelection;
+	void setAllowSelection( /**Allow Selection in the Table*/ boolean allowSelection){*
+		this.DAllowSelection = allowSelection;
 	*}
 
 	/**
@@ -51,8 +51,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Allow Sort in Columns Property
 	 */	
-	void setAllowSort( /**Allow Sort in Columns*/ boolean AllowSort){*
-		this.DAllowSort = AllowSort;
+	void setAllowSort( /**Allow Sort in Columns*/ boolean allowSort){*
+		this.DAllowSort = allowSort;
 	*}
 
 	/**
@@ -330,8 +330,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Central Result Set with Data Property
 	 */	
-	void setDataProvisioner( /**Central Result Set with Data*/ String DataProvisioner){*
-		this.DDataProvisioner = DataProvisioner;
+	void setDataProvisioner( /**Central Result Set with Data*/ String dataProvisioner){*
+		this.DDataProvisioner = dataProvisioner;
 	*}
 
 	/**
@@ -344,8 +344,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Empty Value For Data Cell Property
 	 */	
-	void setEmptyDataValue( /**Empty Value For Data Cell*/ String EmptyDataValue){*
-		this.DEmptyDataValue = EmptyDataValue;
+	void setEmptyDataValue( /**Empty Value For Data Cell*/ String emptyDataValue){*
+		this.DEmptyDataValue = emptyDataValue;
 	*}
 
 	/**
@@ -358,8 +358,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Empty Value For Header Cell Property
 	 */	
-	void setEmptyHeaderValue( /**Empty Value For Header Cell*/ String EmptyHeaderValue){*
-		this.DEmptyHeaderValue = EmptyHeaderValue;
+	void setEmptyHeaderValue( /**Empty Value For Header Cell*/ String emptyHeaderValue){*
+		this.DEmptyHeaderValue = emptyHeaderValue;
 	*}
 
 	/**
@@ -372,8 +372,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Fix Header Rows Property
 	 */	
-	void setFixedHeader( /**Fix Header Rows*/ boolean FixedHeader){*
-		this.DFixedHeader = FixedHeader;
+	void setFixedHeader( /**Fix Header Rows*/ boolean fixedHeader){*
+		this.DFixedHeader = fixedHeader;
 	*}
 
 	/**
@@ -386,8 +386,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets (non-stable) Formatting Condition Property
 	 */	
-	void setFormattingCondition( /**(non-stable) Formatting Condition*/ String FormattingCondition){*
-		this.DFormattingCondition = FormattingCondition;
+	void setFormattingCondition( /**(non-stable) Formatting Condition*/ String formattingCondition){*
+		this.DFormattingCondition = formattingCondition;
 	*}
 
 	/**
@@ -400,8 +400,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets (non-stable) Formatting Operator Property by String
 	 */	
-	void setFormattingOperatorByString( /**(non-stable) Formatting Operator*/ String FormattingOperator){*
-		this.DFormattingOperator = FormattingOperator;
+	void setFormattingOperatorByString( /**(non-stable) Formatting Operator*/ String formattingOperator){*
+		this.DFormattingOperator = formattingOperator;
 	*}
 
 	/**
@@ -414,8 +414,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets (non-stable) Formatting Operator Property by Choice Option
 	 */	
-	void setFormattingOperator( /**(non-stable) Formatting Operator*/ org_scn_community_shared_FormattingOperatorEnumfield FormattingOperator){*
-		this.DFormattingOperator = FormattingOperator;
+	void setFormattingOperator( /**(non-stable) Formatting Operator*/ org_scn_community_shared_FormattingOperatorEnumfield formattingOperator){*
+		this.DFormattingOperator = formattingOperator;
 	*}
 	
 	/**
@@ -428,8 +428,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Header Column Width in px Property
 	 */	
-	void setHeaderColWidth( /**Header Column Width in px*/ int HeaderColWidth){*
-		this.DHeaderColWidth = HeaderColWidth;
+	void setHeaderColWidth( /**Header Column Width in px*/ int headerColWidth){*
+		this.DHeaderColWidth = headerColWidth;
 	*}
 
 	/**
@@ -442,8 +442,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Ignore Results Property
 	 */	
-	void setIgnoreResults( /**Ignore Results*/ boolean IgnoreResults){*
-		this.DIgnoreResults = IgnoreResults;
+	void setIgnoreResults( /**Ignore Results*/ boolean ignoreResults){*
+		this.DIgnoreResults = ignoreResults;
 	*}
 
 	/**
@@ -456,8 +456,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Navigation Mode Property by String
 	 */	
-	void setNavigationModeByString( /**Navigation Mode*/ String NavigationMode){*
-		this.DNavigationMode = NavigationMode;
+	void setNavigationModeByString( /**Navigation Mode*/ String navigationMode){*
+		this.DNavigationMode = navigationMode;
 	*}
 
 	/**
@@ -470,8 +470,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Navigation Mode Property by Choice Option
 	 */	
-	void setNavigationMode( /**Navigation Mode*/ org_scn_community_shared_NavigationModeEnumfield NavigationMode){*
-		this.DNavigationMode = NavigationMode;
+	void setNavigationMode( /**Navigation Mode*/ org_scn_community_shared_NavigationModeEnumfield navigationMode){*
+		this.DNavigationMode = navigationMode;
 	*}
 	
 	/**
@@ -484,8 +484,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Row Height in px Property
 	 */	
-	void setRowHeight( /**Row Height in px*/ int RowHeight){*
-		this.DRowHeight = RowHeight;
+	void setRowHeight( /**Row Height in px*/ int rowHeight){*
+		this.DRowHeight = rowHeight;
 	*}
 
 	/**
@@ -500,8 +500,8 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Sets Visible Row Count Property
 	 */	
-	void setVisibleRowCount( /**Visible Row Count*/ int VisibleRowCount){*
-		this.DVisibleRowCount = VisibleRowCount;
+	void setVisibleRowCount( /**Visible Row Count*/ int visibleRowCount){*
+		this.DVisibleRowCount = visibleRowCount;
 	*}
 
 	/**

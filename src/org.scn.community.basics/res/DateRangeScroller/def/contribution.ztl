@@ -9,8 +9,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Date Property
 	 */	
-	void setDate( /**Date*/ String Date){*
-		this.DDate = Date;
+	void setDate( /**Date*/ String date){*
+		this.DDate = date;
 	*}
 
 	/**
@@ -30,8 +30,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Language Dependent Format Property
 	 */	
-	void setLangFormat( /**Language Dependent Format*/ boolean LangFormat){*
-		this.DLangFormat = LangFormat;
+	void setLangFormat( /**Language Dependent Format*/ boolean langFormat){*
+		this.DLangFormat = langFormat;
 	*}
 
 	/**
@@ -44,8 +44,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Custom Pattern Property
 	 */	
-	void setLangPattern( /**Custom Pattern*/ String LangPattern){*
-		this.DLangPattern = LangPattern;
+	void setLangPattern( /**Custom Pattern*/ String langPattern){*
+		this.DLangPattern = langPattern;
 	*}
 
 	/**
@@ -58,8 +58,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Custom Relative Property
 	 */	
-	void setLangRelative( /**Custom Relative*/ boolean LangRelative){*
-		this.DLangRelative = LangRelative;
+	void setLangRelative( /**Custom Relative*/ boolean langRelative){*
+		this.DLangRelative = langRelative;
 	*}
 
 	/**
@@ -72,8 +72,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Custom Style Property by String
 	 */	
-	void setLangStyleByString( /**Custom Style*/ String LangStyle){*
-		this.DLangStyle = LangStyle;
+	void setLangStyleByString( /**Custom Style*/ String langStyle){*
+		this.DLangStyle = langStyle;
 	*}
 
 	/**
@@ -86,8 +86,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Custom Style Property by Choice Option
 	 */	
-	void setLangStyle( /**Custom Style*/ org_scn_community_shared_FormatStyleEnumfield LangStyle){*
-		this.DLangStyle = LangStyle;
+	void setLangStyle( /**Custom Style*/ org_scn_community_shared_FormatStyleEnumfield langStyle){*
+		this.DLangStyle = langStyle;
 	*}
 	
 	/**
@@ -100,8 +100,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Day Of Week To Start Property
 	 */	
-	void setSpecialDay( /**Day Of Week To Start*/ int SpecialDay){*
-		this.DSpecialDay = SpecialDay;
+	void setSpecialDay( /**Day Of Week To Start*/ int specialDay){*
+		this.DSpecialDay = specialDay;
 	*}
 
 	/**
@@ -114,8 +114,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Duration Of Custom Range Property
 	 */	
-	void setSpecialDuration( /**Duration Of Custom Range*/ int SpecialDuration){*
-		this.DSpecialDuration = SpecialDuration;
+	void setSpecialDuration( /**Duration Of Custom Range*/ int specialDuration){*
+		this.DSpecialDuration = specialDuration;
 	*}
 
 	/**
@@ -135,8 +135,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Range View Type Property by String
 	 */	
-	void setViewTypeByString( /**Range View Type*/ String ViewType){*
-		this.DViewType = ViewType;
+	void setViewTypeByString( /**Range View Type*/ String viewType){*
+		this.DViewType = viewType;
 	*}
 
 	/**
@@ -149,8 +149,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Range View Type Property by Choice Option
 	 */	
-	void setViewType( /**Range View Type*/ org_scn_community_shared_DateViewTypeEnumfield ViewType){*
-		this.DViewType = ViewType;
+	void setViewType( /**Range View Type*/ org_scn_community_shared_DateViewTypeEnumfield viewType){*
+		this.DViewType = viewType;
 	*}
 	
 	/**
