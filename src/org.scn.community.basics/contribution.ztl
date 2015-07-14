@@ -2581,8 +2581,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Current Date Value YYYYMMDD Property
 	 */	
-	void setCurrentValue( /**Current Date Value YYYYMMDD*/ String CurrentValue){*
-		this.DCurrentValue = CurrentValue;
+	void setCurrentValue( /**Current Date Value YYYYMMDD*/ String currentValue){*
+		this.DCurrentValue = currentValue;
 	*}
 
 	/**
@@ -2595,8 +2595,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Selection Type Property by String
 	 */	
-	void setSelectionTypeByString( /**Selection Type*/ String SelectionType){*
-		this.DSelectionType = SelectionType;
+	void setSelectionTypeByString( /**Selection Type*/ String selectionType){*
+		this.DSelectionType = selectionType;
 	*}
 
 	/**
@@ -2609,8 +2609,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Selection Type Property by Choice Option
 	 */	
-	void setSelectionType( /**Selection Type*/ org_scn_community_shared_SelectionTypeEnumfield SelectionType){*
-		this.DSelectionType = SelectionType;
+	void setSelectionType( /**Selection Type*/ org_scn_community_shared_SelectionTypeEnumfield selectionType){*
+		this.DSelectionType = selectionType;
 	*}
 	
 	/**
@@ -2623,8 +2623,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Date Single Value YYYYMMDD Property
 	 */	
-	void setValue( /**Date Single Value YYYYMMDD*/ String Value){*
-		this.DValue = Value;
+	void setValue( /**Date Single Value YYYYMMDD*/ String value){*
+		this.DValue = value;
 	*}
 
 	/**
@@ -2637,8 +2637,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Date Value Range From YYYYMMDD Property
 	 */	
-	void setValueF( /**Date Value Range From YYYYMMDD*/ String ValueF){*
-		this.DValueF = ValueF;
+	void setValueF( /**Date Value Range From YYYYMMDD*/ String valueF){*
+		this.DValueF = valueF;
 	*}
 
 	/**
@@ -2651,8 +2651,8 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	/**
 	 * Sets Date Value Range To YYYYMMDD Property
 	 */	
-	void setValueT( /**Date Value Range To YYYYMMDD*/ String ValueT){*
-		this.DValueT = ValueT;
+	void setValueT( /**Date Value Range To YYYYMMDD*/ String valueT){*
+		this.DValueT = valueT;
 	*}
 
 	/**
@@ -3361,8 +3361,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Date Property
 	 */	
-	void setDate( /**Date*/ String Date){*
-		this.DDate = Date;
+	void setDate( /**Date*/ String date){*
+		this.DDate = date;
 	*}
 
 	/**
@@ -3382,8 +3382,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Language Dependent Format Property
 	 */	
-	void setLangFormat( /**Language Dependent Format*/ boolean LangFormat){*
-		this.DLangFormat = LangFormat;
+	void setLangFormat( /**Language Dependent Format*/ boolean langFormat){*
+		this.DLangFormat = langFormat;
 	*}
 
 	/**
@@ -3396,8 +3396,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Custom Pattern Property
 	 */	
-	void setLangPattern( /**Custom Pattern*/ String LangPattern){*
-		this.DLangPattern = LangPattern;
+	void setLangPattern( /**Custom Pattern*/ String langPattern){*
+		this.DLangPattern = langPattern;
 	*}
 
 	/**
@@ -3410,8 +3410,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Custom Relative Property
 	 */	
-	void setLangRelative( /**Custom Relative*/ boolean LangRelative){*
-		this.DLangRelative = LangRelative;
+	void setLangRelative( /**Custom Relative*/ boolean langRelative){*
+		this.DLangRelative = langRelative;
 	*}
 
 	/**
@@ -3424,8 +3424,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Custom Style Property by String
 	 */	
-	void setLangStyleByString( /**Custom Style*/ String LangStyle){*
-		this.DLangStyle = LangStyle;
+	void setLangStyleByString( /**Custom Style*/ String langStyle){*
+		this.DLangStyle = langStyle;
 	*}
 
 	/**
@@ -3438,8 +3438,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Custom Style Property by Choice Option
 	 */	
-	void setLangStyle( /**Custom Style*/ org_scn_community_shared_FormatStyleEnumfield LangStyle){*
-		this.DLangStyle = LangStyle;
+	void setLangStyle( /**Custom Style*/ org_scn_community_shared_FormatStyleEnumfield langStyle){*
+		this.DLangStyle = langStyle;
 	*}
 	
 	/**
@@ -3452,8 +3452,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Day Of Week To Start Property
 	 */	
-	void setSpecialDay( /**Day Of Week To Start*/ int SpecialDay){*
-		this.DSpecialDay = SpecialDay;
+	void setSpecialDay( /**Day Of Week To Start*/ int specialDay){*
+		this.DSpecialDay = specialDay;
 	*}
 
 	/**
@@ -3466,8 +3466,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Duration Of Custom Range Property
 	 */	
-	void setSpecialDuration( /**Duration Of Custom Range*/ int SpecialDuration){*
-		this.DSpecialDuration = SpecialDuration;
+	void setSpecialDuration( /**Duration Of Custom Range*/ int specialDuration){*
+		this.DSpecialDuration = specialDuration;
 	*}
 
 	/**
@@ -3487,8 +3487,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Range View Type Property by String
 	 */	
-	void setViewTypeByString( /**Range View Type*/ String ViewType){*
-		this.DViewType = ViewType;
+	void setViewTypeByString( /**Range View Type*/ String viewType){*
+		this.DViewType = viewType;
 	*}
 
 	/**
@@ -3501,8 +3501,8 @@ class org.scn.community.basics.DateRangeScroller extends org.scn.community.share
 	/**
 	 * Sets Range View Type Property by Choice Option
 	 */	
-	void setViewType( /**Range View Type*/ org_scn_community_shared_DateViewTypeEnumfield ViewType){*
-		this.DViewType = ViewType;
+	void setViewType( /**Range View Type*/ org_scn_community_shared_DateViewTypeEnumfield viewType){*
+		this.DViewType = viewType;
 	*}
 	
 	/**
@@ -3536,8 +3536,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Granularity Property by String
 	 */	
-	void setGranularityByString( /**Granularity*/ String Granularity){*
-		this.DGranularity = Granularity;
+	void setGranularityByString( /**Granularity*/ String granularity){*
+		this.DGranularity = granularity;
 	*}
 
 	/**
@@ -3550,8 +3550,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Granularity Property by Choice Option
 	 */	
-	void setGranularity( /**Granularity*/ org_scn_community_shared_DateViewTypeEnumfield Granularity){*
-		this.DGranularity = Granularity;
+	void setGranularity( /**Granularity*/ org_scn_community_shared_DateViewTypeEnumfield granularity){*
+		this.DGranularity = granularity;
 	*}
 	
 	/**
@@ -3564,8 +3564,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Language Dependent Format Property
 	 */	
-	void setLangFormat( /**Language Dependent Format*/ boolean LangFormat){*
-		this.DLangFormat = LangFormat;
+	void setLangFormat( /**Language Dependent Format*/ boolean langFormat){*
+		this.DLangFormat = langFormat;
 	*}
 
 	/**
@@ -3578,8 +3578,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Custom Format Pattern Property
 	 */	
-	void setLangPattern( /**Custom Format Pattern*/ String LangPattern){*
-		this.DLangPattern = LangPattern;
+	void setLangPattern( /**Custom Format Pattern*/ String langPattern){*
+		this.DLangPattern = langPattern;
 	*}
 
 	/**
@@ -3592,8 +3592,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Custom Format Relative Property
 	 */	
-	void setLangRelative( /**Custom Format Relative*/ boolean LangRelative){*
-		this.DLangRelative = LangRelative;
+	void setLangRelative( /**Custom Format Relative*/ boolean langRelative){*
+		this.DLangRelative = langRelative;
 	*}
 
 	/**
@@ -3606,8 +3606,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Custom Format Style Property by String
 	 */	
-	void setLangStyleByString( /**Custom Format Style*/ String LangStyle){*
-		this.DLangStyle = LangStyle;
+	void setLangStyleByString( /**Custom Format Style*/ String langStyle){*
+		this.DLangStyle = langStyle;
 	*}
 
 	/**
@@ -3620,8 +3620,8 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Custom Format Style Property by Choice Option
 	 */	
-	void setLangStyle( /**Custom Format Style*/ org_scn_community_shared_FormatStyleEnumfield LangStyle){*
-		this.DLangStyle = LangStyle;
+	void setLangStyle( /**Custom Format Style*/ org_scn_community_shared_FormatStyleEnumfield langStyle){*
+		this.DLangStyle = langStyle;
 	*}
 	
 	/**
@@ -8188,8 +8188,8 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Sets Selected Step Key Property
 	 */	
-	void setSelectedKey( /**Selected Step Key*/ String SelectedKey){*
-		this.DSelectedKey = SelectedKey;
+	void setSelectedKey( /**Selected Step Key*/ String selectedKey){*
+		this.DSelectedKey = selectedKey;
 	*}
 
 	/**
@@ -8306,8 +8306,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Url For Default Image Property
 	 */	
-	void setDefaultImage( /**Url For Default Image*/ String DefaultImage){*
-		this.DDefaultImage = DefaultImage;
+	void setDefaultImage( /**Url For Default Image*/ String defaultImage){*
+		this.DDefaultImage = defaultImage;
 	*}
 
 	/**
@@ -9027,8 +9027,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Size Of The Image Property by String
 	 */	
-	void setImageSizeByString( /**Size Of The Image*/ String ImageSize){*
-		this.DImageSize = ImageSize;
+	void setImageSizeByString( /**Size Of The Image*/ String imageSize){*
+		this.DImageSize = imageSize;
 	*}
 
 	/**
@@ -9041,8 +9041,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Size Of The Image Property by Choice Option
 	 */	
-	void setImageSize( /**Size Of The Image*/ org_scn_community_shared_ImageSizeEnumfield ImageSize){*
-		this.DImageSize = ImageSize;
+	void setImageSize( /**Size Of The Image*/ org_scn_community_shared_ImageSizeEnumfield imageSize){*
+		this.DImageSize = imageSize;
 	*}
 	
 	/**
@@ -9076,8 +9076,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Selection Type Property by String
 	 */	
-	void setSelectionTypeByString( /**Selection Type*/ String SelectionType){*
-		this.DSelectionType = SelectionType;
+	void setSelectionTypeByString( /**Selection Type*/ String selectionType){*
+		this.DSelectionType = selectionType;
 	*}
 
 	/**
@@ -9090,8 +9090,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Selection Type Property by Choice Option
 	 */	
-	void setSelectionType( /**Selection Type*/ org_scn_community_shared_SelectionTypeEnumfield SelectionType){*
-		this.DSelectionType = SelectionType;
+	void setSelectionType( /**Selection Type*/ org_scn_community_shared_SelectionTypeEnumfield selectionType){*
+		this.DSelectionType = selectionType;
 	*}
 	
 	/**
@@ -9104,8 +9104,8 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Sets Use Images Property
 	 */	
-	void setWithImages( /**Use Images*/ boolean WithImages){*
-		this.DWithImages = WithImages;
+	void setWithImages( /**Use Images*/ boolean withImages){*
+		this.DWithImages = withImages;
 	*}
 
 	/**
