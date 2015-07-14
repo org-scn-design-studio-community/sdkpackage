@@ -1,0 +1,88 @@
+/* =========================================================================== */
+/* CSS for sap.suite.ui.commons/NumericContent.control for 'sap_bluecrystal' theme*/
+/* =========================================================================== */
+.sapSuiteUiCommonsNCIconImage {
+    font-family: @sapUiFontHeaderFamily;
+	font-weight: @sapUiFontHeaderWeight;
+	color: @sapUiHighlight;
+}
+
+.sapSuiteUiCommonsNCScale {
+    font-family: @sapUiFontHeaderFamily;
+	font-weight: @sapUiFontHeaderWeight;
+	font-size: @sapMFontMediumSize;
+    display: block;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNCScale.Auto,
+.sapSuiteUiCommonsNCScale.S,
+.sapSuiteUiCommonsNCScale.XS {
+    font-size: 0.75rem;
+}
+
+.sapSuiteUiCommonsNCValue {
+  	font-family: @sapUiFontHeaderFamily;
+    font-weight: @sapUiFontHeaderWeight;
+}
+
+.sapSuiteUiCommonsNCScale.L {
+	font-size: @sapMFontHeader5Size;
+}
+
+.sapSuiteUiCommonsNCValue.Neutral,
+.sapSuiteUiCommonsNCIndicator.Neutral {
+	color: @sapUiChartNeutral;	
+}
+
+.sapSuiteUiCommonsNCValue.Good,
+.sapSuiteUiCommonsNCIndicator.Good {
+	color: @sapUiPositiveText;	
+}
+
+.sapSuiteUiCommonsNCValue.Critical,
+.sapSuiteUiCommonsNCIndicator.Critical {
+	color: @sapUiCriticalText;	
+}
+
+.sapSuiteUiCommonsNCValue.Error,
+.sapSuiteUiCommonsNCIndicator.Error {
+	color: @sapUiNegativeText;	
+}
+
+.sapSuiteUiCommonsNCScale.Neutral {
+	color: @sapUiLightText;	
+}
+
+.sapSuiteUiCommonsNCScale.Good {
+	color: @sapUiPositiveText;	
+}
+
+.sapSuiteUiCommonsNCScale.Critical {
+	color: @sapUiCriticalText;	
+}
+
+.sapSuiteUiCommonsNCScale.Error {
+	color: @sapUiNegativeText;	
+}
+
+.sapSuiteUiCommonsNCIndicator.Loading,
+.sapSuiteUiCommonsNCValue.Loading,
+.sapSuiteUiCommonsNCScale.Loading,
+.sapSuiteUiCommonsNCIconImage.Loading,
+.sapSuiteUiCommonsNCIndicator.Failed,
+.sapSuiteUiCommonsNCValue.Failed,
+.sapSuiteUiCommonsNCScale.Failed,
+.sapSuiteUiCommonsNCIconImage.Failed {
+    color: @sapUiLightText;
+    opacity: 0.25;
+}
+
+.sap-desktop .sapSuiteUiCommonsNC:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+
+.sapSuiteUiCommonsNC:focus:not([tabindex]) {
+	outline: none;
+}

@@ -1,0 +1,265 @@
+/* ================================================================== */
+/* CSS for control sap.suite.ui.commons/ProcessFlowLaneHeader.control */
+/* ================================================================== */
+
+.suiteUiProcessFlowLaneHeaderContainer {
+  width: 100%;
+  min-width: 96px;
+}
+
+.suiteUiProcessFlowLaneHeaderBodyContainer {
+  position: relative;
+  height: 68px;
+  width: 100%;
+  top: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.suiteUiProcessFlowLaneHeaderTextContainer {
+  position: relative;
+  height: 32px; /* 2 rem */
+  padding: 0 16px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.suiteUiProcessFlowLaneHeaderText {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 16px;
+
+  font-family: Arial, Helvetica, sans-serif; @sapUiFontFamily;
+  font-size: 12px; @sapMFontSmallSize;
+  font-weight: normal;
+/*   color: #333333; @sapUiDarkText */
+
+  word-wrap: break-word;
+  word-break: normal;
+  text-overflow: ellipsis;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  max-height: 32px;
+  min-height: 32px;
+  height: 32px;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+.suiteUiProcessFlowLaneHeaderDonutSvg {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  left: 50%;
+  top: 50%;
+  margin-top: -34px;
+  margin-left: -34px;
+  padding: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+/*   -webkit-tap-highlight-color: transparent; */
+  -webkit-transition: -webkit-transform 0ms;
+/*   -webkit-transform: translate3d(0,0,0); */
+  -ms-touch-select: none;
+  touch-action: manipulation;
+  text-size-adjust: none;
+  -ms-text-autospace: none;
+  -ms-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+}
+
+.suiteUiProcessFlowLaneHeaderIconContainer {
+  position:absolute;
+  top:   50%;
+  left:  50%;
+  margin-left: -10px;
+  margin-top: -13px;
+  font-size: 22px;
+/*   color: #999999; lighten(@sapUiElement, 20); */
+  text-align:center;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+/*   -webkit-tap-highlight-color: transparent; */
+  -webkit-transition: -webkit-transform 0ms;
+/*   -webkit-transform: translate3d(0,0,0); */
+  -ms-touch-select: none;
+  touch-action: manipulation;
+  text-size-adjust: none;
+  -ms-text-autospace: none;
+  -ms-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+}
+
+.suiteUiProcessFlowLaneHeaderHorizontalLine {
+  position: absolute;
+  width: 100%;
+  height:1px;
+  top: 50%;
+/*   background-color: @sapUiLightBorder; #dddddd; @SAPUILightBorder; */
+}
+
+.suiteUiProcessFlowLaneHeaderStartEndSymbolContainer {
+  position: relative;
+  width: 16px;
+  height: 112px;
+/*   border: none; */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+/*   -webkit-tap-highlight-color: transparent; */
+  -webkit-transition: -webkit-transform 0ms;
+/*   -webkit-transform: translate3d(0,0,0); */
+  -ms-touch-select: none;
+  touch-action: manipulation;
+  text-size-adjust: none;
+  -ms-text-autospace: none;
+  -ms-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+}
+
+.suiteUiProcessFlowLaneHeaderStartEndSymbol {
+  position: absolute;
+  top: 34px; /* 2 rem from top of the container + 2px */
+  width: 3px;
+  height: 12px;
+/*   background-color: #999999; lighten (@SAPUIElement, 20);  = #999999 */
+}
+
+.suiteUiProcessFlowLaneHeaderStartSymbol {
+  left: 0;
+}
+
+.suiteUiProcessFlowLaneHeaderEndSymbol {
+  right: 0;
+}
+
+.suiteUiProcessFlowLaneHeaderProcessSymbolContainer {
+  position: relative;
+  width: 32px;
+  height: 112px;
+/*   border: none; */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+/*   -webkit-tap-highlight-color: transparent; */
+  -webkit-transition: -webkit-transform 0ms;
+/*   -webkit-transform: translate3d(0,0,0); */
+  -ms-touch-select: none;
+  touch-action: manipulation;
+  text-size-adjust: none;
+  -ms-text-autospace: none;
+  -ms-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+}
+
+.suiteUiProcessFlowLaneHeaderProcessSymbol {
+  position: absolute;
+  top: 32px; /* 2 rem from top of the container */
+  left: 50%;
+  margin: 0 -8px;
+  font-size: 16px;
+/*   color: #999999; lighten (@SAPUIElement, 20);  = #999999 */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+/*   -webkit-tap-highlight-color: transparent; */
+  -webkit-transition: -webkit-transform 0ms;
+/*   -webkit-transform: translate3d(0,0,0); */
+  -ms-touch-select: none;
+  touch-action: manipulation;
+  text-size-adjust: none;
+  -ms-text-autospace: none;
+  -ms-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  overflow: hidden;
+}
+
+.suiteUiProcessFlowLaneHeaderProcessSymbolIcon,
+.suiteUiProcessFlowLaneHeaderProcessSymbolIcon > .sapUiIcon,
+.suiteUiProcessFlowLaneHeaderProcessSymbolIcon > .sapUiIcon:before {
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+/*   color: #999999; lighten (@SAPUIElement, 20);  = #999999 */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+/*   -webkit-tap-highlight-color: transparent; */
+  -webkit-transition: -webkit-transform 0ms;
+/*   -webkit-transform: translate3d(0,0,0); */
+  -ms-touch-select: none;
+  touch-action: manipulation;
+  text-size-adjust: none;
+  -ms-text-autospace: none;
+  -ms-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  overflow: hidden;
+}
+
+.suiteUiProcessFlowLaneHeaderPointer {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.suiteUiProcessFlowLaneHeaderNoSelection {
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+/*   -webkit-tap-highlight-color: transparent; */
+  -webkit-transition: -webkit-transform 0ms;
+/*   -webkit-transform: translate3d(0,0,0); */
+  -ms-touch-select: none;
+  touch-action: manipulation;
+}

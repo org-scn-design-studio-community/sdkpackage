@@ -30,12 +30,25 @@ org_scn_community_basics.getUrlParameterByName = function (name) {
 
 //set the version to assure cache is cleared
 /*NO DELTA CHECK START*/
-org_scn_community_basics.isDebug = org_scn_community_basics.getUrlParameterByName("d") == "X";
+org_scn_community_basics.isDebug = org_scn_community_basics.getUrlParameterByName("d").toLowerCase() == "x";
 if(org_scn_community_basics.isDebug) {
 	org_scn_community_require.jsVersion = "0000-0-0";	
 } else {
-	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-12"/*%TIMESTAMP-END%*/;
+	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-14"/*%TIMESTAMP-END%*/;
 }
+
+org_scn_community_basics.isHana = false;
+if(sap.firefly != undefined) {
+	org_scn_community_basics.isHana = true;
+}
+
+//hana runtime case, no . in folder names!
+if(!org_scn_community_basics.isHana) {
+	C_ORG_SCN_COMMUNITY_ = "org.scn.community.";	
+} else {
+	C_ORG_SCN_COMMUNITY_ = "org_scn_community_";
+}
+
 
 /*NO DELTA CHECK END*/
 
@@ -57,7 +70,7 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 
 	org_scn_community_basics.readGenericScriptAccess = function(scriptSrc, sctiptPath, packageName) {
 
-		var myPluginSuffix = "org.scn.community."
+		var myPluginSuffix = C_ORG_SCN_COMMUNITY_ + ""
 		if(packageName != "") {
 			packageName = myPluginSuffix+packageName;	
 		}
@@ -78,8 +91,8 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 			ownScriptPath = scriptSrc.substring(0, mainScriptPathIndex) + sctiptPath;
 
 			return {
-				myScriptPath : ownScriptPath,					// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/res/<component-name>/
-				myPackagePath: mainSDKPath + myPluginSuffix, 	// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/
+				myScriptPath : ownScriptPath,					// http://localhost:9091/aad/zen/mimes/sdk_include/C_ORG_SCN_COMMUNITY_<packageName>/res/<component-name>/
+				myPackagePath: mainSDKPath + myPluginSuffix, 	// http://localhost:9091/aad/zen/mimes/sdk_include/C_ORG_SCN_COMMUNITY_<packageName>/
 				mainSDKPath : mainSDKPath						// http://localhost:9091/aad/zen/mimes/sdk_include/
 			};
 		}
@@ -91,16 +104,16 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 			var mainSDKPath = sap.zen.createStaticSdkMimeUrl("", "").replace("//", "/");
 			
 			return {
-				myScriptPath : ownScriptPath,					// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/res/<component-name>/
-				myPackagePath: mainPluginPath, 					// http://localhost:9091/aad/zen/mimes/sdk_include/org.scn.community.<packageName>/
+				myScriptPath : ownScriptPath,					// http://localhost:9091/aad/zen/mimes/sdk_include/C_ORG_SCN_COMMUNITY_<packageName>/res/<component-name>/
+				myPackagePath: mainPluginPath, 					// http://localhost:9091/aad/zen/mimes/sdk_include/C_ORG_SCN_COMMUNITY_<packageName>/
 				mainSDKPath : mainSDKPath						// http://localhost:9091/aad/zen/mimes/sdk_include/
 			};
 		}
 		
 		return {
 			// temporary hack for local mode in 1.5 release
-			myScriptPath: "/aad/zen/mimes/sdk_include/org.scn.community."+packageName+"/" + sctiptPath + "/",
-			myPackagePath: "/aad/zen/mimes/sdk_include/org.scn.community."+packageName+"/",
+			myScriptPath: "/aad/zen/mimes/sdk_include/"+C_ORG_SCN_COMMUNITY_+packageName+"/" + sctiptPath + "/",
+			myPackagePath: "/aad/zen/mimes/sdk_include/"+C_ORG_SCN_COMMUNITY_+packageName+"/",
 	 		mainSDKPath: "/aad/zen/mimes/sdk_include/"
 	 	};
 	};
@@ -112,77 +125,77 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 	org_scn_community_require.knownModules = {
 			common_basics: {
 				name: "common_basics",
-				script: "org.scn.community.basics/res/common_basics",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/res/common_basics",
 				min: false
 			},
 			common_databound: {
 				name: "common_databound",
-				script: "org.scn.community.databound/res/common_databound",
+				script: C_ORG_SCN_COMMUNITY_ + "databound/res/common_databound",
 				min: false
 			},
 			component_core: {
 				name: "component_core",
-				script: "org.scn.community.basics/aps/org.scn.community.component.Core",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/aps/org.scn.community.component.Core",
 				min: false
 			},
 			generic_aps: {
 				name: "generic_aps",
-				script: "org.scn.community.basics/aps/org.scn.community.generic.PropertyPage",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/aps/org.scn.community.generic.PropertyPage",
 				min: false
 			},
 			generic_aps_ui5: {
 				name: "generic_aps_ui5",
-				script: "org.scn.community.basics/aps/org.scn.community.ui5.extensions",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/aps/org.scn.community.ui5.extensions",
 				min: false
 			},	
 			generic_aps_arrays: {
 				name: "generic_aps_arrays",
-				script: "org.scn.community.basics/aps/org.scn.community.ui5.extensions.arrays",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/aps/org.scn.community.ui5.extensions.arrays",
 				min: false
 			},	
 			chartjs: {
 				name: "chartjs",
-				script: "org.scn.community.databound/os/chartjs/Chart",
+				script: C_ORG_SCN_COMMUNITY_ + "databound/os/chartjs/Chart",
 				min: true
 			},
 			scheme: {
 				name: "scheme",
-				script: "org.scn.community.databound/os/color/scheme",
+				script: C_ORG_SCN_COMMUNITY_ + "databound/os/color/scheme",
 				min: true
 			},
 			jshashtable: {
 				name: "jshashtable",
-				script: "org.scn.community.basics/os/jshashtable/jshashtable",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/jshashtable/jshashtable",
 				min: true
 			},
 			numberformatter: {
 				name: "numberformatter",
-				script: "org.scn.community.basics/os/numberformat/numberformatter",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/numberformat/numberformatter",
 				min: true
 			},
 			dateformatter: {
 				name: "dateformatter",
-				script: "org.scn.community.basics/os/date/DateFormat",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/date/DateFormat",
 				min: false
 			},
 			sap_m_loader: {
 				name: "sap_m_loader",
-				script: "org.scn.community.basics/os/sapui5/sap_m_loader",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/sapui5/sap_m_loader",
 				min: false
 			},
 			sap_suite_loader: {
 				name: "sap_suite_loader",
-				script: "org.scn.community.basics/os/sapui5/sap_suite_loader",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/sapui5/sap_suite_loader",
 				min: false
 			},
 			x2js: {
 				name: "x2js",
-				script: "org.scn.community.basics/os/x2js/xml2json",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/x2js/xml2json",
 				min: false
 			},
 			noty: {
 				name: "noty",
-				script: "org.scn.community.basics/os/noty/packaged/noty",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/noty/packaged/noty",
 				min: false
 			}
 	};
@@ -190,12 +203,12 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 	org_scn_community_require.d3Modules = {
 			d3: {
 				name: "d3/d3",
-				script: "org.scn.community.basics/os/d3/d3",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/d3/d3",
 				min: true
 			},
 			d3plug_gantt: {
 				name: "d3/d3plug_gantt",
-				script: "org.scn.community.basics/os/d3-plug/gantt-chart-d3v2",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/d3-plug/gantt-chart-d3v2",
 				min: false
 			},
 	};
@@ -249,13 +262,19 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 	    	if(requireDefinition) {
 	    		plainNames.push(requireKey);
 	    		
+	    		// hana runtime does not support . in folder names
+	    		var lScriptPlatform = requireDefinition.script;
+	    		if(org_scn_community_basics.isHana && lScriptPlatform.indexOf("org.scn.community.") == 0) {
+	    			lScriptPlatform = lScriptPlatform.replace("org.scn.community.", "org_scn_community_");
+	    		}
+
 	    		if(requireDefinition.scriptSpec) {
 					plainNames.push(requireKey + "Spec");
-					definition[requireKey + "Spec"] = org_scn_community_require.scriptInfo.mainSDKPath + requireDefinition.script + "Spec" + minSuffix;
+					definition[requireKey + "Spec"] = org_scn_community_require.scriptInfo.mainSDKPath + lScriptPlatform + "Spec" + minSuffix;
 					plainScripts.push(requireDefinition.scriptSpec);
 				}
 	    		
-	    		definition[requireKey] = org_scn_community_require.scriptInfo.mainSDKPath + requireDefinition.script + minSuffix;
+	    		definition[requireKey] = org_scn_community_require.scriptInfo.mainSDKPath + lScriptPlatform + minSuffix;
 	    		moduleList.push(requireDefinition);
 	    		plainScripts.push(requireDefinition.script);
 	    	} else {

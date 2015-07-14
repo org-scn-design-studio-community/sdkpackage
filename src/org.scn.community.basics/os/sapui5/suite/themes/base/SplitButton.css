@@ -1,0 +1,78 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/SplitButton.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsSplitButton {
+  color: @sapUiBaseText;
+  white-space: nowrap;
+}
+
+.sapSuiteUiCommonsSplitButton > .sapUiBtnS { 
+	-moz-border-radius: 2px 0 0 2px;
+	border-radius:  2px 0 0 2px;
+}
+ 
+
+.sapUiMenuButton.sapUiBtnS.sapSuiteUiCommonsSplitButton-menuButton {
+	border-radius:  0 2px 2px 0; 
+	-moz-border-radius: 0 2px 2px 0;
+	border-left-width: 0;
+}
+
+
+.sapUiMenuButton.sapUiBtnS.sapUiBtnNorm.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton {
+	box-shadow: 0 1px 0 0 #FEFEFE inset, 1px 0 0 0 #FEFEFE inset;
+}
+
+
+.sapUiMenuButton.sapUiBtnS.sapUiBtnNorm.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton:focus,
+.sapUiMenuButton.sapUiBtnS.sapUiBtnNorm.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton:hover {
+	box-shadow: 0 1px 0 0 #83b9d6 inset;
+}
+
+
+.sapUiMenuButton.sapUiBtnS.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton.sapUiBtnAccept {
+	box-shadow: 0 1px 0 0 #5bc88a inset, 1px 0 0 0 #5bc88a inset;
+}
+
+.sapUiMenuButton.sapUiBtnS.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton.sapUiBtnAccept:hover,
+.sapUiMenuButton.sapUiBtnS.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton.sapUiBtnAccept:focus {
+	box-shadow: 0 1px 0 0 #5bc88a inset;
+}
+
+.sapUiMenuButton.sapUiBtnS.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton.sapUiBtnEmph {
+	box-shadow: 0 1px 0 0 #FFFFFF inset, 1px 0 0 0 #FEF0C2 inset;
+}
+
+.sapUiMenuButton.sapUiBtnS.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton.sapUiBtnEmph:hover,
+.sapUiMenuButton.sapUiBtnS.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton.sapUiBtnEmph:focus {
+	box-shadow: 0 1px 0 0 #FFFFFF inset;
+}
+
+.sapUiMenuButton.sapUiBtnS.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton.sapUiBtnReject {
+	box-shadow: 0 1px 0 0 #e0c7c7 inset, 1px 0 0 0 #e0c7c7 inset;
+}
+
+.sapUiMenuButton.sapUiBtnS.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton.sapUiBtnReject:hover,
+.sapUiMenuButton.sapUiBtnS.sapUiBtnStd.sapSuiteUiCommonsSplitButton-menuButton.sapUiBtnReject:focus {
+	box-shadow: 0 1px 0 0 #e0c7c7 inset;
+}
+
+.sapSuiteUiCommonsSplitButton > .sapUiMenuButton > .sapUiMenuButtonIco {	
+	margin-right: -1px; 
+	margin-bottom: -2px;
+}
+ 
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsSplitButton > .sapUiMenuButton > .sapUiMenuButtonIco {	
+	margin-right: -1px; 
+	margin-bottom: -1px;
+}
+
+
+.sapUiMenuButton.sapUiBtnS.sapSuiteUiCommonsSplitButton-menuButton,
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsSplitButton-menuButton.sapUiBtnS.sapUiBtnAct,
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsSplitButton-menuButton.sapUiBtnS.sapUiBtnDsbl:active {
+    padding-left: 5.5px;
+    padding-right: 5.5px;
+} 

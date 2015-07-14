@@ -1,0 +1,9 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/InfoTileSize.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsInfoTileSize{
+  color: @sapUiTextColor;
+  border: 1px solid blue;
+}

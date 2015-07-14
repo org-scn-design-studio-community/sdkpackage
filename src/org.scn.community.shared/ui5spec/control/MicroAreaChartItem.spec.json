@@ -1,0 +1,79 @@
+{
+
+	"color" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Neutral",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "InfoTileValueColor",
+			"ztlFunction": "",
+			"desc" : "Colour",
+			"cat" : "Display",
+			"tooltip" : "The graphic element color.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Neutral",
+					"text" : "Neutral InfoTile value color"
+				},
+				{
+					"key" : "Good",
+					"text" : "Good InfoTile value color"
+				},
+				{
+					"key" : "Critical",
+					"text" : "Critical InfoTile value color"
+				},
+				{
+					"key" : "Error",
+					"text" : "Error InfoTile value color"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"points" : {
+		"template" : "ObjectArray",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+
+			"desc" : "Points",
+			"cat" : "Content-Points",
+			"tooltip" : "The set of points for this graphic element.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"points": {
+					"type": "Array",
+			        "sequence": "key,x,y",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"x": {
+					  "desc": "X",
+					  "type": "float"
+					},
+					"y": {
+					  "desc": "Y",
+					  "type": "float"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

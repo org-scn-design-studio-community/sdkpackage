@@ -1,0 +1,155 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/HeaderContainer.control */
+/* ============================================= */
+.sapSuiteHdrCntr {
+	position: relative;
+	background: @sapUiWhite;
+}
+
+.sapSuiteHdrCntr.Horizontal {
+  	width: 100%;
+}
+
+.sapSuiteHdrCntr.Vertical {
+  	display: inline-block;
+}
+
+.sapSuiteHdrCntrBtnCntr.Horizontal {
+	position: absolute; 
+	top:0px;
+	bottom:0px;
+	min-width: 1.375rem;
+}
+
+.Horizontal > .sapSuiteHdrCntrLeft {
+	left: 0rem;
+}
+
+.Horizontal > .sapSuiteHdrCntrRight {
+	right: 0rem;
+}
+
+.sapSuiteHdrCntrBtnCntr.Vertical {
+	position: absolute; 
+	left: 0px;
+	right: 0px;
+	min-height: 1.375rem;
+}
+.sapSuiteHdrCntrLeft.Vertical {
+	top: 0rem;
+}
+
+.sapSuiteHdrCntrRight.Vertical {
+	bottom: 0rem;
+}
+
+.sapSuiteHdrCntrBtnCntr.Horizontal >.sapSuiteHdrCntrBtn {
+	position: absolute;
+	top:50%;
+	margin-top: -1.5rem;
+	min-width: 1.375rem;
+	display: inline-table;
+}
+
+.sapSuiteHdrCntrBtnCntr.Vertical >.sapSuiteHdrCntrBtn {
+	position: absolute;
+	left: 50%;
+	margin-left: -1.5rem;
+	height: 2.5rem;
+	padding: 0px;
+}
+
+.sapSuiteHdrCntrBtnCntr.Vertical >.sapSuiteHdrCntrBtn.sapSuiteHdrCntrRight {
+	bottom: 0px;
+}
+
+/*
+.sap-desktop .sapSuiteHdrCntrCntr.Horizontal {
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+*/
+
+.sapSuiteHdrCntrCntr.Horizontal {
+	white-space: nowrap;
+}
+
+.sapSuiteHdrCntrCntr.Vertical {
+	height: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+/*
+.sapMScrollContScroll>.sapSuiteHrdrCntrInner:first-child:after {
+	content:"";
+	width:0px;
+	border:none;
+}
+
+.sapMScrollContScroll>.sapSuiteHrdrCntrInner:first-child {
+	margin-left: 0rem;
+}
+*/
+.sapSuiteHrdrCntrInner {
+	position:relative;
+	vertical-align: bottom;
+	display: inline-table;
+	-webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+}
+
+.sapSuiteHdrCntrCntr.Vertical .sapSuiteHrdrCntrInner {
+	float: left;
+	clear: left;
+}
+
+.sapSuiteHdrCntrCntr.Horizontal .sapSuiteHrdrCntrInner:not(:first-child) {
+	margin-left: 1rem;
+}
+
+.sapSuiteHdrCntrCntr.Vertical .sapSuiteHrdrCntrInner:not(:first-child) {
+	margin-top: .5rem;
+}
+
+.sapSuiteHrdrCntrDvdrs .sapSuiteHrdrCntrInner:not(:first-child)::after {
+	content:"";
+	position:absolute;
+	box-sizing:border-box;
+	display:inline-block;	
+}
+
+.sapSuiteHrdrCntrDvdrs.Horizontal .sapSuiteHrdrCntrInner::after {
+	top:10px;
+	bottom:10px;
+	left:-9px;
+	border-left:1px solid @sapUiFieldBorderColor;
+}
+
+.sapSuiteHrdrCntrDvdrs.Vertical .sapSuiteHrdrCntrInner::after {
+	left:10px;
+	right:10px;
+	top:-9px;
+	border-top: 1px solid @sapUiFieldBorderColor;
+}
+
+.sapSuiteKTileBorder {
+	display: none;
+} 
+
+.sapSuiteHdrPddngRight2 {
+	padding-right: 2rem;
+}
+
+.sapSuiteHdrPddngRight0 {
+	padding-right: 0rem;
+}
+
+.sapSuiteHdrPddngLeft2 {
+    padding-left: 2rem;
+}
+
+.sapSuiteHdrPddngleft0 {
+    padding-left: 0rem;
+}

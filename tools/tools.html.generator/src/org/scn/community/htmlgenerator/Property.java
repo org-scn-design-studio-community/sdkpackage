@@ -142,7 +142,7 @@ public class Property {
 
 	@Override
 	public String toString() {
-		return "Property  \r\n\t[\r\n\t\tname=" + name + ", \r\n\t\ttitle=" + title + ", \r\n\t\ttooltip="
+		return "\r\nProperty  \r\n\t[\r\n\t\tname=" + name + ", \r\n\t\ttitle=" + title + ", \r\n\t\ttooltip="
 				+ tooltip + ", \r\n\t\ttype=" + type + ", \r\n\t\tvisible=" + visible
 				+ ", \r\n\t\tgroup=" + group + ", \r\n\t\tvalues=" + values + ", \r\n\t\tdefaultValue="
 				+ defaultValue + ", \r\n\t\textendedSimpleSpec=" + extendedSimpleSpec
@@ -382,5 +382,41 @@ public class Property {
 
 	public String getSpecFile() {
 		return specFile.getAbsolutePath();
+	}
+
+	public String[] getSubArraySpec20() {
+		ParamFullSpec spec = this.getExtendedFullSpec();
+		
+		String parametersJson = "%ENTRY%\r\n";
+		String parametersList = "";
+		
+		ParamFullSpec parameter = spec.getParameter("opts").getParameter("arrayDefinition").getParameter(0);
+		String sequence = parameter.getPropertyValue("sequence");
+		
+		String[] params = sequence.split(",");
+		ArrayList<ParamFullSpec> parameters = parameter.getParameters();
+		
+		for (int i = 0; i < params.length; i++) {
+			String nameRequested = params[i];
+			if(nameRequested.equals("key") || nameRequested.equals("parentKey") || nameRequested.equals("leaf")) {
+				continue;
+			}
+			
+			for (ParamFullSpec paramFullSpec : parameters) {
+				String nameChild = paramFullSpec.getName();
+				if(nameChild.equals(nameRequested)) {
+					String json = paramFullSpec.getJson();
+					parametersJson = parametersJson.replace("%ENTRY%", json + "\r\n%ENTRY%");
+					
+					parametersList = parametersList + nameChild + ",";
+					break;
+				}
+			}
+		}
+
+		parametersJson = parametersJson.replace(",\r\n%ENTRY%", "");
+		parametersList = parametersList.substring(0, parametersList.length()-1);
+		
+		return new String[]{parametersList, parametersJson};
 	}
 }

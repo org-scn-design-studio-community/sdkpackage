@@ -1,0 +1,36 @@
+.sapSuiteUtgTitle {
+	font-size: @sapMFontHeader2Size;
+}
+
+.sap-phone .sapSuiteUtgTitle {
+	font-size: @sapMFontHeader3Size;
+}
+
+.sapSuiteUtgDesc {
+    font-size: @sapMFontLargeSize;
+}
+
+.sap-phone .sapSuiteUtg {
+	background-color: @sapUiWhite;
+}
+
+.sapSuiteUtgHeader {
+    border-bottom : 1px solid @sapUiMediumBorder;
+}
+
+.sapSuiteUtgTitle {
+    color: @sapUiDarkText;
+	font-family: @sapUiFontFamily;
+}
+
+.sap-phone .sapSuiteUtgTitle {
+	color: @sapUiText;
+}
+
+.sap-phone .sapSuiteUtgDesc {
+	color: @sapUiDarkText;
+}
+
+.sap-phone .sapSuiteUtgContent {
+	background-color: @sapUiWhite;
+}

@@ -119,3 +119,25 @@ class org_scn_community_shared_InfoTileValueColor extends Enum {
 
 
 }
+
+
+/**
+ * The list of possible MicroAreaChart views.
+ */
+class org_scn_community_shared_MicroAreaChartViewEnumfield extends Enumfield {
+       
+}
+
+/**
+ * The list of possible MicroAreaChart views. 
+ */
+class org_scn_community_shared_MicroAreaChartView extends Enum {
+
+	/** The view with labels on the top and bottom. */
+	org_scn_community_shared_MicroAreaChartViewEnumfield Normal;
+
+	/** The view with labels on the left and right. */
+	org_scn_community_shared_MicroAreaChartViewEnumfield Wide;
+
+
+}

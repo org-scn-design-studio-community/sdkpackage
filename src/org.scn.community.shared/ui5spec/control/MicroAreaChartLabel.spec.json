@@ -1,0 +1,55 @@
+{
+
+	"label" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Label",
+			"cat" : "Display-Labels",
+			"tooltip" : "The text of the label.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"color" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Neutral",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "InfoTileValueColor",
+			"ztlFunction": "",
+			"desc" : "Colour",
+			"cat" : "Display",
+			"tooltip" : "The color of the label.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Neutral",
+					"text" : "Neutral InfoTile value color"
+				},
+				{
+					"key" : "Good",
+					"text" : "Good InfoTile value color"
+				},
+				{
+					"key" : "Critical",
+					"text" : "Critical InfoTile value color"
+				},
+				{
+					"key" : "Error",
+					"text" : "Error InfoTile value color"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

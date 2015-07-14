@@ -1,0 +1,106 @@
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/UnifiedThingInspector.control */
+/* ============================================= */
+
+.sapSuiteUti {
+    margin: 0 auto;
+}
+
+.sapSuiteUtiKpiBox {
+	padding: 0 0 1rem 0;
+	white-space: nowrap;
+	float: right;
+	text-align: right;
+}
+
+.sap-phone .sapSuiteUtiKpiBox {
+	float: none;
+	padding: 0 0 1rem 0;
+}
+
+.sapSuiteUtiFacetLeft {
+	clear: left;
+}
+
+/* sap.m.Page header restyling */
+/* removes blue line */
+.sap-desktop .sapSuiteUti .sapMBar.sapMPageHeader:before {
+    display: none;
+}
+
+/* changes header buttons style for desktop*/
+.sap-desktop .sapSuiteUti .sapMBar.sapMPageHeader .sapMBtn {
+	border-image: none;
+}
+
+/* Internal Header object styles*/
+.sapSuiteUtiHeader {
+    position: relative;
+    height: 64px;
+    margin: 16px;
+}
+
+.sapSuiteUtiHeaderContent > .sapMOH.sapMOHC {
+	padding-left: 0;
+	padding-top: 0.3rem;
+}
+/*To overwrite internal ObjectHeader's .sap-phone CSS.*/
+.sap-phone .sapSuiteUtiHeaderContent > .sapMOH.sapMOHC {
+	padding-left: 0;
+	padding-top: 0.3rem;
+}
+
+.sapSuiteUtiHeaderIconImage {
+    width: 48px;
+    height: 48px;
+}
+
+.sapSuiteUtiHeaderContentWithIcon {
+    position: absolute;
+    left: 27px;
+    top: -16px;
+    right: 0;
+}
+
+.sap-phone .sapSuiteUtiHeaderContentWithIcon {
+	left: 40px;
+}
+
+/* End of internal Header object styles*/
+
+@media screen and (min-width:30px) and (max-width:1024px) {
+	.sapSuiteUtiKpiBox .sapMScrollContScroll {
+		float: left;
+	}
+}
+
+@media screen and (min-width:1024px) {
+	.sapSuiteUtiKpiBox.sapSuiteUtiKpiLT3 .sapMScrollContScroll {
+		clear: both;
+		float: right;
+	}
+}
+
+.sapSuiteUtiFacetGrid > .sapUiRespGridSpanL6 {
+	box-shadow: 0px 0px 4px rgba(0,0,0,0.1);
+}
+
+.sapSuiteUtiKpiBox .sapSuiteKTile {
+	margin: 0 0.5rem;
+}
+
+.sap-phone .sapSuiteUtiKpiBox>.sapMScrollContScroll {
+    margin-left: 0;
+}
+
+.sapSuiteUtiScOne .sapSuiteKTile {
+	width: 100%;
+}
+
+.sapSuiteUtiScTwo .sapSuiteKTile {
+	width: 50%;
+}
+
+.sapSuiteUtiScThree .sapSuiteKTile {
+	width: 33.33%;
+}

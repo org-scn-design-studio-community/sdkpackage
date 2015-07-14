@@ -1,0 +1,4 @@
+						"%PROPERTY_NAME%":{
+						   "desc":"%PROPERTY_DESCRIPTION%",
+						   "type":"%PROPERTY_TYPE%"
+						},

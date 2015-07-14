@@ -1,0 +1,47 @@
+	"%NAME%" : {
+		"template" : "ObjectSingle-double",
+		"type" : "String",
+		"value" : "%DEFAULT%",
+		"visible": %VISIBLE%,
+
+		"opts" : {
+			"ztlType": "DoubleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "%DESCRIPTION%",
+			"cat" : "%CATEGORY%",
+			"tooltip" : "%TOOLTIP%",
+
+			"apsControl" : "array",
+			"arrayMode": "TwoLevelArray",
+			
+			"arrayDefinition": {
+				"%NAME%": {
+					"type": "Array",
+			        "sequence": "key,%ARRAY_PROPERTY_SEQUENCE%,%SUB_NAME%",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					%ARRAY_PROPERTY_VALUE%,
+					"%SUB_NAME%":{
+						"type":"Array",
+						"sequence":"parentKey,key,%SUB_ARRAY_PROPERTY_SEQUENCE%",
+						"parentKey":{
+			                "desc":"Parent Key",
+			                "type":"String",
+			              	"mode":"ztl"
+						},
+						"key":{
+						   "desc":"Unique Key",
+						   "type":"String"
+						},
+%SUB_ARRAY_PROPERTY_VALUE%
+	               }
+		      	}
+	      	},
+			"noAps" : %NO_APS%,
+			"noZtl" : %NO_ZTL%
+		}
+	}

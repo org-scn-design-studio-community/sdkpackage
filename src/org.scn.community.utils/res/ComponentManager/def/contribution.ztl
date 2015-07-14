@@ -819,6 +819,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Advanced Data Table component*/
 	org.scn.community.databound.AdvancedDataTable returnAsScnAdvancedDataTable (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Area Micro Chart 2.0 component*/
+	org.scn.community.databound.AreaMicroChart returnAsScnAreaMicroChart (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Bullet Chart component*/
 	org.scn.community.databound.BulletChart returnAsScnBulletChart (Component inputComponent) {* return inputComponent; *}
 

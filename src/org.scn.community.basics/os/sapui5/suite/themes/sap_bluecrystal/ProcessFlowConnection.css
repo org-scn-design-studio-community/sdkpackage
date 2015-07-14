@@ -1,0 +1,56 @@
+/* ====================================================================================== */
+/* CSS for control sap.suite.ui.commons/ProcessFlowConnection.control (bluecrystal theme) */
+/* ====================================================================================== */
+.borderLeft {
+  border-left-width: 2px;
+}
+.borderBottom {
+  border-bottom-width: 2px;
+}
+.borderLeftStateCreated {
+  border-left-style: solid;
+}
+.borderLeftStatePlanned {
+  border-left-style: dashed;
+}
+.borderBottomStateCreated {
+  border-bottom-style: solid;
+}
+.borderBottomStatePlanned {
+  border-bottom-style: dashed;
+}
+.borderLeftDisplayRegular {
+  border-left-color:@sapUiExtraDarkBorder;
+}
+.borderLeftDisplayHighlighted {
+  border-left-color: @sapUiHighlight;
+}
+.borderLeftDisplayDimmed {
+  border-left-color: @sapUiExtraDarkBorder;
+}
+.borderBottomDisplayRegular {
+  border-bottom-color: @sapUiExtraDarkBorder;
+}
+.borderBottomDisplayHighlighted {
+  border-bottom-color: @sapUiHighlight;
+}
+.borderBottomDisplayDimmed {
+  border-bottom-color: @sapUiExtraDarkBorder;
+}
+.displayRegular {
+  opacity: 0.8;
+}
+.displayHighlighted {
+  opacity: 1;
+}
+.displayDimmed {
+  opacity: 0.5;
+}
+
+.arrowRight {
+  border-style: solid;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-width: 4px 8px 4px 8px;
+}

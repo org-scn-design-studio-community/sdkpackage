@@ -1,0 +1,75 @@
+.sapSuiteMacTarget.Good,
+.sapSuiteMacChart.Good {
+	color: @sapUiChartGood;	
+}
+
+.sapSuiteMacTarget.Critical,
+.sapSuiteMacChart.Critical {
+	color: @sapUiChartCritical;	
+}
+
+.sapSuiteMacTarget.Error,
+.sapSuiteMacChart.Error {
+	color: @sapUiChartBad;	
+}
+
+.sapSuiteMacChart {
+	width: 2px;
+}
+
+.sapSuiteMacLbl {
+	font-family: @sapUiFontFamily;
+	font-size: @sapMFontMediumSize;
+}
+
+.sapSuiteMacLbl.Neutral {
+	color: @sapUiLightText;	
+}
+
+.sapSuiteMacLbl.Good {
+	color: @sapUiPositiveText;	
+}
+
+.sapSuiteMacLbl.Critical {
+	color: @sapUiCriticalText;	
+}
+
+.sapSuiteMacLbl.Error {
+	color: @sapUiNegativeText;	
+}
+
+.sapSuiteMacThreshold {
+	color: @sapUiLightestBG;
+}
+
+.sapSuiteMacThreshold.Error {
+	background-color: lighten(@sapUiChartBad, 20);
+}
+
+.sapSuiteMacThreshold.Good {
+	background-color: lighten(@sapUiChartGood, 20);
+}
+
+.sapSuiteMacThreshold.Critical {
+	background-color: lighten(@sapUiChartCritical, 20);
+}
+
+.sapSuiteMacTarget {
+	outline-style: dotted;
+	outline-width: 2px;
+	width: 2px;
+}
+
+.sapSuiteMacTarget.Neutral {
+	color: @sapUiStandardText;
+}
+
+.sapSuiteMacChart.Neutral {
+	color: darken(@sapUiChartNeutral, 20);	
+}
+
+.sap-desktop .sapSuiteMac:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}

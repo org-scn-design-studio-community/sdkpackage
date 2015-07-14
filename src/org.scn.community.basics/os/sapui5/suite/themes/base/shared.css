@@ -1,0 +1,33 @@
+/* This CSS shares it rules with all other CSS of this library */
+
+.sapSuiteUiCommonsPlaceholder
+{
+    color: #999999;
+}
+
+.sapSuiteUiCommonsNoteTakerThumbUpBtn {
+    background-image: url(img/thumbUp_24.png);
+}
+
+.sapSuiteUiCommonsNoteTakerThumbDownBtn {
+    background-image: url(img/thumbDown_24.png);
+    background-position: left bottom;
+}
+
+.sapSuiteUiCommonsNtAttachIcon {
+	background-image: url(img/attachment_24.png);
+	background-position: center center;
+}
+
+.sapSuiteUiCommonsNtDsblAttachIcon {
+	background-image: url(img/attachment_24.png);
+	background-position: center center;
+}
+
+// Taken from Gold Reflection
+@sapUiPositiveBorder: darken(@sapUiGreen, 3.5%); // #007833;
+@sapUiErrorBorder: darken(@sapUiRed, 8%);   // #cc1919;
+
+.sapSuiteUiCommonsPointer {
+	cursor: pointer;
+}

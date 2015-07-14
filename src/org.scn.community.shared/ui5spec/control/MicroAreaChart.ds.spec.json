@@ -1,0 +1,611 @@
+{
+
+	"useContentWidth":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Content Width'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Content Width' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"useContentHeight":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Content Height'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Content Height' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"useMaxXValue":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Max X Value'",
+			"cat" : "Data-Values",
+			"tooltip" : "If checked, the property 'Max X Value' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListMaxXValue":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Max X Value Data List",
+         "cat":"Data",
+         "tooltip":"Max X Value Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useMinXValue":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Min X Value'",
+			"cat" : "Data-Values",
+			"tooltip" : "If checked, the property 'Min X Value' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListMinXValue":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Min X Value Data List",
+         "cat":"Data",
+         "tooltip":"Min X Value Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useMaxYValue":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Max Y Value'",
+			"cat" : "Data-Values",
+			"tooltip" : "If checked, the property 'Max Y Value' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListMaxYValue":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Max Y Value Data List",
+         "cat":"Data",
+         "tooltip":"Max Y Value Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useMinYValue":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Min Y Value'",
+			"cat" : "Data-Values",
+			"tooltip" : "If checked, the property 'Min Y Value' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListMinYValue":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Min Y Value Data List",
+         "cat":"Data",
+         "tooltip":"Min Y Value Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useChart":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Chart'",
+			"cat" : "Content-Chart",
+			"tooltip" : "If checked, the property 'Chart' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListChart":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Chart Data List",
+         "cat":"Data",
+         "tooltip":"Chart Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useMaxThreshold":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Max Threshold'",
+			"cat" : "Content-Thresholds-Max Threshold",
+			"tooltip" : "If checked, the property 'Max Threshold' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListMaxThreshold":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Max Threshold Data List",
+         "cat":"Data",
+         "tooltip":"Max Threshold Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useInnerMaxThreshold":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Inner Max Threshold'",
+			"cat" : "Content-Thresholds-Inner Max Threshold",
+			"tooltip" : "If checked, the property 'Inner Max Threshold' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListInnerMaxThreshold":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Inner Max Threshold Data List",
+         "cat":"Data",
+         "tooltip":"Inner Max Threshold Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useInnerMinThreshold":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Inner Min Threshold'",
+			"cat" : "Content-Thresholds-Inner Min Threshold",
+			"tooltip" : "If checked, the property 'Inner Min Threshold' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListInnerMinThreshold":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Inner Min Threshold Data List",
+         "cat":"Data",
+         "tooltip":"Inner Min Threshold Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useMinThreshold":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Min Threshold'",
+			"cat" : "Content-Thresholds-Min Threshold",
+			"tooltip" : "If checked, the property 'Min Threshold' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListMinThreshold":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Min Threshold Data List",
+         "cat":"Data",
+         "tooltip":"Min Threshold Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useTarget":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Target'",
+			"cat" : "Content-Target",
+			"tooltip" : "If checked, the property 'Target' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListTarget":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Target Data List",
+         "cat":"Data",
+         "tooltip":"Target Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useFirstXLabel":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'First X Label'",
+			"cat" : "Content-Labels-First X Label",
+			"tooltip" : "If checked, the property 'First X Label' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListFirstXLabel":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"First X Label Data List",
+         "cat":"Data",
+         "tooltip":"First X Label Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useFirstYLabel":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'First Y Label'",
+			"cat" : "Content-Labels-First Y Label",
+			"tooltip" : "If checked, the property 'First Y Label' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListFirstYLabel":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"First Y Label Data List",
+         "cat":"Data",
+         "tooltip":"First Y Label Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useLastXLabel":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Last X Label'",
+			"cat" : "Content-Labels-Last X Label",
+			"tooltip" : "If checked, the property 'Last X Label' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListLastXLabel":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Last X Label Data List",
+         "cat":"Data",
+         "tooltip":"Last X Label Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useLastYLabel":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Last Y Label'",
+			"cat" : "Content-Labels-Last Y Label",
+			"tooltip" : "If checked, the property 'Last Y Label' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListLastYLabel":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Last Y Label Data List",
+         "cat":"Data",
+         "tooltip":"Last Y Label Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useMaxLabel":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Max Label'",
+			"cat" : "Content-Labels-Max Label",
+			"tooltip" : "If checked, the property 'Max Label' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListMaxLabel":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Max Label Data List",
+         "cat":"Data",
+         "tooltip":"Max Label Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useMinLabel":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Min Label'",
+			"cat" : "Content-Labels-Min Label",
+			"tooltip" : "If checked, the property 'Min Label' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListMinLabel":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Min Label Data List",
+         "cat":"Data",
+         "tooltip":"Min Label Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    }
+}

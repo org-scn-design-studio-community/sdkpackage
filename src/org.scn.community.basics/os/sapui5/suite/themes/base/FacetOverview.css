@@ -1,0 +1,67 @@
+/* ========================================================== */
+/* CSS for control sap.suite.ui.commons/FacetOverview.control */
+/* ========================================================== */
+
+.sapSuiteFov {
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    overflow: hidden;
+}
+
+.sapSuiteFovTitle {
+    margin-top: 13px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    height: 34px;
+    font-size: 18px;
+    font-family: @sapUiFontFamily;
+}
+
+.sapSuiteFovContent {
+    position: relative;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: -47px;
+    height: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding-bottom: 1rem;
+    padding-top: 47px;
+}
+
+.sapSuiteFovQty {
+    display: inline;
+    float: left;
+    padding-left: 0.25rem;
+}
+
+.sapSuiteFovHoverIcon {
+	font-size: 21px;
+	opacity: 0.6;
+	text-align: right;
+	display: none;
+	padding-left: 0.25rem;
+}
+
+html[dir=rtl] .sapSuiteFovHoverIcon {
+	text-align: left;
+}
+
+.sapSuiteFovTitleText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;	
+    float: left;
+}
+
+.sapSuiteFovClickable,
+.sapSuiteFovClickable .sapMLabel {
+	cursor: pointer;
+}
+
+.sapSuiteFovClickable:focus .sapSuiteFovHoverIcon,
+.sapSuiteFovClickable:hover .sapSuiteFovHoverIcon {
+	display: block;
+}
+

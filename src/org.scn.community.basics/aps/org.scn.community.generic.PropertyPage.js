@@ -352,14 +352,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			    } else {
 			       return 1;
 			    }
-			
-			    if (a.type.indexOf("boolean") == 0) {
-			       return -1;
+
+				if (a.type == "boolean"){
+				   return -1;
 			    } else {
 			       return 1;
 			    }
-			
-			    // alphabet
+
+				// alphabet
 				 var A = a.opts.desc.toLowerCase();
 			     var B = a.opts.desc.toLowerCase();
 			     
@@ -457,7 +457,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 		}
 
 		} catch(e2) {
-			alert(e2);
+			alert(e2.stack);
 		}
 	};
 	this.hLabel = function(label,component){

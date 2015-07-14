@@ -1,0 +1,22 @@
+.sap-desktop .sapUILinkActionSheetLink:focus {
+	outline-color: @sapUiInvertedFocus;
+}
+
+.sap-desktop[data-sap-ui-browser^="ie"]
+    .sapUILinkActionSheetLink:focus:before {
+        border-color: @sapUiInvertedFocus;
+    }
+
+.sapUILinkActionSheet > {
+	.sapUILinkActionSheetLink, 
+	.sapUILinkActionSheetLink:visited,
+	.sapUILinkActionSheetLink:active {
+		border-top: 0.0625rem solid fade(@sapUiLightestBorder, 20%);
+		text-shadow: 0 -0.0625rem 0 fade(@sapUiDarkShadowTint, 60%);
+        font-size: @sapMFontMediumSize;
+	}
+}
+
+.sap-desktop .sapUILinkActionSheetLink:hover {
+	background-color: @sapUiBtnFooterBGStandardHover;
+}

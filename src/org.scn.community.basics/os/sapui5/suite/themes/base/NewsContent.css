@@ -1,0 +1,64 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/NewsContent.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsNwC {
+	display: inline-block;
+	outline: none;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNwC.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNwC.Auto,
+.sapSuiteUiCommonsNwC.L, .sapSuiteUiCommonsNwC.M {
+	width: 22.5rem;
+	height: 4.5rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNwC.Auto,
+.sapSuiteUiCommonsNwC.S, .sapSuiteUiCommonsNwC.XS {
+	width: 18rem;
+	height: 3.5rem;
+}
+
+.sapSuiteUiCommonsNwCCTxt {
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+  	font-family: Arial, Helvetica, sans-serif;
+  	font-weight: normal;
+  	padding: 0.25rem 0;
+  	max-width: 22.5rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNwCCTxt.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNwCCTxt.Auto,
+.sapSuiteUiCommonsNwCCTxt.L, .sapSuiteUiCommonsNwCCTxt.M {
+	height: 2.1rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNwCCTxt.Auto,
+.sapSuiteUiCommonsNwCCTxt.S, .sapSuiteUiCommonsNwCCTxt.XS {
+	height: 1.7rem;
+}
+
+.sapSuiteUiCommonsNwCSbh {
+	height: 1rem;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	white-space: nowrap;
+  	font-family: @sapUiFontFamily;
+  	font-weight: normal;
+  	max-width: 22.5rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNwCSbh.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNwCSbh.Auto,
+.sapSuiteUiCommonsNwCSbh.L, .sapSuiteUiCommonsNwCSbh.M {
+	height: 1rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNwCSbh.Auto,
+.sapSuiteUiCommonsNwCSbh.S, .sapSuiteUiCommonsNwCSbh.XS {
+	height: 0.78rem;
+}

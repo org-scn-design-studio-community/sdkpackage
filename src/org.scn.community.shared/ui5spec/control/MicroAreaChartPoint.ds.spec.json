@@ -1,0 +1,75 @@
+{
+
+	"useX":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'X'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'X' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListX":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"X Data List",
+         "cat":"Data",
+         "tooltip":"X Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useY":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Y'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Y' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListY":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Y Data List",
+         "cat":"Data",
+         "tooltip":"Y Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    }
+}

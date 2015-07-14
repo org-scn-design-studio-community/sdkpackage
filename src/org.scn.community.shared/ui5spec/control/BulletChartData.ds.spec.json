@@ -9,7 +9,7 @@
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Use Manual 'Value'",
-			"cat" : "Display-Values",
+			"cat" : "Data-Values",
 			"tooltip" : "If checked, the property 'Value' will be used.",
 			"apsControl" : "checkbox",
 			"noAps" : false,

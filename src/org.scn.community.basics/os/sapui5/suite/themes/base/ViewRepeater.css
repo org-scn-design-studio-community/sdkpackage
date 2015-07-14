@@ -1,0 +1,56 @@
+/* ========================================================= */
+/* CSS for control sap.suite.ui.commons/ViewRepeater.control */
+/* ========================================================= */
+
+.suiteUiVrViewSwHolder {
+    background-color: @sapUiLightBG;
+    padding: 3px;
+    margin-bottom: 2px;
+    overflow: auto;
+}
+
+.suiteUiVr.suiteUiVrResp {
+	position: relative;
+}
+
+.suiteUiVrViewSw {
+    float: left;
+}
+
+.suiteUiVrSearchFld {
+    float: right;
+}
+
+.suiteUiVr.suiteUiVrResp .sapUiRrBody {
+	position: absolute;
+}
+
+.suiteUiVr.suiteUiVrResp .sapUiRrFtr {
+	position: absolute;
+	bottom: 0px;
+}
+
+.suiteUiVr .sapUiRrBody ul {
+    width: 100%;
+    max-width: 100%;
+}
+
+.suiteUiVr .sapUiRrBody li {
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.suiteUiVrViewSw>.sapUiSegmentedButton>span:first-of-type>.sapUiBtnS {
+    border-radius: 0;
+    -moz-border-radius: 0;
+}
+
+.suiteUiVr .sapUiRrDesignTransparent>.sapUiRrFtr {
+    width: auto;
+    border: 1px solid @sapUiMediumBorder;
+    height: 26px;
+    margin-top: 3px;
+}

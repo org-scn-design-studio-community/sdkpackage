@@ -1,0 +1,27 @@
+.sapSuiteKTileStatusGood {
+    color: @sapUiPositiveText;
+}
+
+.sapSuiteKTileStatusNeutral {
+    color: @sapUiExtraLightText;
+}
+
+.sapSuiteKTileStatusCritical {
+    color: @sapUiCriticalText;
+}
+
+.sapSuiteKTileStatusBad {
+    color: @sapUiNegativeText;
+}
+
+.sapSuiteKTileValueSmallText {
+    font-size: @sapMFontLargeSize;
+}
+
+.sapSuiteKTileScale {
+    font-size: @sapMFontMediumSize;
+}
+
+.sapSuiteKTileDesc{
+    font-size: @sapMFontSmallSize;
+}

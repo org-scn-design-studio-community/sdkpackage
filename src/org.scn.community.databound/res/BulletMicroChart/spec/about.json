@@ -1,11 +1,11 @@
 {
 	"title": "Bullet Micro Chart 2.0",
-	"description": "Bukket Micro Chart - Component for VIsualization of Data on small areas",
-	"icon": "MicroChart.png",
+	"description": "Bullet Micro Chart - Component for Visualization of Data on small areas",
+	"icon": "BulletMicroChart.png",
 	"topics": 
 	[
 		{
-			"title" : "Bukket Micro Chart",
+			"title" : "Bullet Micro Chart",
 			"content" : "This component can visualize the data on small area as bullet chart."
 		},
 		{

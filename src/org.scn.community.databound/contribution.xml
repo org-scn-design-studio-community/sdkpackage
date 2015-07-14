@@ -3772,6 +3772,614 @@ __n__}
 </component>
 
 <component
+	id="AreaMicroChart"
+	title="Area Micro Chart 2.0"
+	tooltip="Area Micro Chart - Component for visualization of data on small areas."
+	icon="res/AreaMicroChart/AreaMicroChart.png"
+	handlerType="sapui5"
+	propertySheetPath="res/AreaMicroChart/aps/PropertyPage.html"
+	group="ScnCommunityDataBound"
+	databound="true"
+>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/AreaMicroChart/AreaMicroChartLoader.js</jsInclude>
+	<cssInclude>res/AreaMicroChart/AreaMicroChart.css</cssInclude>
+	
+	<property
+		id="chart"
+		type="String"
+		title="Chart"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="contentHeight"
+		type="int"
+		title="Content Height"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="contentWidth"
+		type="int"
+		title="Content Width"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="dataCellListChart"
+		type="ResultCellList"
+		title="Chart Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListFirstXLabel"
+		type="ResultCellList"
+		title="First X Label Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListFirstYLabel"
+		type="ResultCellList"
+		title="First Y Label Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListInnerMaxThreshold"
+		type="ResultCellList"
+		title="Inner Max Threshold Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListInnerMinThreshold"
+		type="ResultCellList"
+		title="Inner Min Threshold Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListLastXLabel"
+		type="ResultCellList"
+		title="Last X Label Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListLastYLabel"
+		type="ResultCellList"
+		title="Last Y Label Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListMaxLabel"
+		type="ResultCellList"
+		title="Max Label Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListMaxThreshold"
+		type="ResultCellList"
+		title="Max Threshold Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListMaxXValue"
+		type="ResultCellList"
+		title="Max X Value Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListMaxYValue"
+		type="ResultCellList"
+		title="Max Y Value Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListMinLabel"
+		type="ResultCellList"
+		title="Min Label Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListMinThreshold"
+		type="ResultCellList"
+		title="Min Threshold Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListMinXValue"
+		type="ResultCellList"
+		title="Min X Value Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListMinYValue"
+		type="ResultCellList"
+		title="Min Y Value Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListTarget"
+		type="ResultCellList"
+		title="Target Data List"
+		group="Data"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="firstXLabel"
+		type="String"
+		title="First X Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="firstYLabel"
+		type="String"
+		title="First Y Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="innerMaxThreshold"
+		type="String"
+		title="Inner Max Threshold"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="innerMinThreshold"
+		type="String"
+		title="Inner Min Threshold"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="lastXLabel"
+		type="String"
+		title="Last X Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="lastYLabel"
+		type="String"
+		title="Last Y Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="maxLabel"
+		type="String"
+		title="Max Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="maxThreshold"
+		type="String"
+		title="Max Threshold"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="maxXValue"
+		type="float"
+		title="Max X Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="maxYValue"
+		type="float"
+		title="Max Y Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="minLabel"
+		type="String"
+		title="Min Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="minThreshold"
+		type="String"
+		title="Min Threshold"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="minXValue"
+		type="float"
+		title="Min X Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="minYValue"
+		type="float"
+		title="Min Y Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="target"
+		type="String"
+		title="Target"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useChart"
+		type="boolean"
+		title="Use Manual 'Chart'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useContentHeight"
+		type="boolean"
+		title="Use Manual 'Content Height'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useContentWidth"
+		type="boolean"
+		title="Use Manual 'Content Width'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useFirstXLabel"
+		type="boolean"
+		title="Use Manual 'First X Label'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useFirstYLabel"
+		type="boolean"
+		title="Use Manual 'First Y Label'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useInnerMaxThreshold"
+		type="boolean"
+		title="Use Manual 'Inner Max Threshold'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useInnerMinThreshold"
+		type="boolean"
+		title="Use Manual 'Inner Min Threshold'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useLastXLabel"
+		type="boolean"
+		title="Use Manual 'Last X Label'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useLastYLabel"
+		type="boolean"
+		title="Use Manual 'Last Y Label'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useMaxLabel"
+		type="boolean"
+		title="Use Manual 'Max Label'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useMaxThreshold"
+		type="boolean"
+		title="Use Manual 'Max Threshold'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useMaxXValue"
+		type="boolean"
+		title="Use Manual 'Max X Value'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useMaxYValue"
+		type="boolean"
+		title="Use Manual 'Max Y Value'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useMinLabel"
+		type="boolean"
+		title="Use Manual 'Min Label'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useMinThreshold"
+		type="boolean"
+		title="Use Manual 'Min Threshold'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useMinXValue"
+		type="boolean"
+		title="Use Manual 'Min X Value'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useMinYValue"
+		type="boolean"
+		title="Use Manual 'Min Y Value'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useTarget"
+		type="boolean"
+		title="Use Manual 'Target'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="view"
+		type="String"
+		title="View"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+		
+		<defaultValue property="chart"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="contentHeight"><![CDATA[190]]></defaultValue>
+		<defaultValue property="contentWidth"><![CDATA[200]]></defaultValue>
+		<defaultValue property="dataCellListChart"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListFirstXLabel"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListFirstYLabel"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListInnerMaxThreshold"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListInnerMinThreshold"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListLastXLabel"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListLastYLabel"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListMaxLabel"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListMaxThreshold"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListMaxXValue"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListMaxYValue"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListMinLabel"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListMinThreshold"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListMinXValue"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListMinYValue"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListTarget"><![CDATA[null]]></defaultValue>
+		<defaultValue property="firstXLabel"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="firstYLabel"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="innerMaxThreshold"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="innerMinThreshold"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="lastXLabel"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="lastYLabel"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="maxLabel"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="maxThreshold"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="maxXValue"><![CDATA[0.0]]></defaultValue>
+		<defaultValue property="maxYValue"><![CDATA[0.0]]></defaultValue>
+		<defaultValue property="minLabel"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="minThreshold"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="minXValue"><![CDATA[0.0]]></defaultValue>
+		<defaultValue property="minYValue"><![CDATA[0.0]]></defaultValue>
+		<defaultValue property="target"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="useChart"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useContentHeight"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useFirstXLabel"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useFirstYLabel"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useInnerMaxThreshold"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useInnerMinThreshold"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useLastXLabel"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useLastYLabel"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useMaxLabel"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useMaxThreshold"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useMaxXValue"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useMaxYValue"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useMinLabel"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useMinThreshold"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useMinXValue"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useMinYValue"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useTarget"><![CDATA[true]]></defaultValue>
+		<defaultValue property="view"><![CDATA[Normal]]></defaultValue>
+
+	</initialization>
+
+</component>
+
+<component
 	id="BulletMicroChart"
 	title="Bullet Micro Chart 2.0"
 	tooltip="Bullet Micro Chart - Component for visualization of data on small areas."

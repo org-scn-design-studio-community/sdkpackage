@@ -1,0 +1,155 @@
+	/** Adds an element containing %ALL_PROPERTIES% properties.
+	 * You need to specify a unique and existing parent element.
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	%COMPONENT_NAME%.add%CONTENT_NAME%(%ALL_PROPERTIES%);<br>
+	%COMPONENT_NAME%.add%CONTENT_NAME%(%ALL_PROPERTIES%);
+	</code>
+	</example>
+	 */
+	void add%CONTENT_NAME% (
+			%PROPERTY_DEFINITION_FULL%
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		%ASSURE_OPTIONAL_INITIALIZED%
+		var itemDef = {
+			leaf:leaf,
+			%PROPERTY_DEFINITION_JSON% 
+			};
+	
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			this.%PROPERTY_NAME% = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}
+	
+	/** Sets an element containing %ROOT_ALL_PROPERTIES% properties.
+	 * You need to specify a unique and existing parent element.
+
+ 	<example>
+	You want to set the element
+	<code>
+	%COMPONENT_NAME%.set%ROOT_CONTENT_NAME%(%ROOT_ALL_PROPERTIES%);<br>
+	</code>
+	</example>
+	 */
+	void set%ROOT_CONTENT_NAME% (
+			%ROOT_PROPERTY_DEFINITION_FULL%
+			) {*		
+		
+		%ASSURE_OPTIONAL_ROOT_INITIALIZED%
+		var itemDef = {
+			leaf:false,
+			parentKey:"ROOT",
+			%ROOT_PROPERTY_DEFINITION_JSON% 
+			};
+	
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			this.%PROPERTY_NAME% = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+
+		// clear always
+		if(elementsJson.length == 1) {
+			elementsJson = [];
+		}
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}
+
+	/** removes an element by %PROPERTY_DEFINITION_KEY% properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	%COMPONENT_NAME%.remove%CONTENT_NAME%(%PROPERTY_DEFINITION_KEY%);<br>
+	</code>
+	</example>
+	 */
+	void remove%CONTENT_NAME% (
+			%PROPERTY_DEFINITION_KEY%
+			) {*		
+		
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			this.%PROPERTY_NAME% = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	%COMPONENT_NAME%.clear%ROOT_CONTENT_NAME%();<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void clear%ROOT_CONTENT_NAME% (
+			
+			) {*		
+		
+		this.%PROPERTY_NAME% = "[]";
+	*}
+
+	/**
+	 * Gets %ROOT_CONTENT_NAME%s As JSON String
+	 */	
+	String get%ROOT_CONTENT_NAME%sAsJSON() {*
+		var jsonObject = JSON.parse(this.%PROPERTY_NAME%);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+%CUSTOM_EXTENSION_PROPERTY%

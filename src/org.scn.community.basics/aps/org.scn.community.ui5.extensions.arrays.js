@@ -213,7 +213,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 									that.updateElement(that._listBuilder.getSelectedKey(),rootElement);
 							}, that);
 					} else if(parameterObject.type == "float" || parameterObject.type == "int") {
-						txtElementValue = new sap.ui.commons.TextField ({value : targetValue, width: "90%", textAlign: "Right"});
+						txtElementValue = new sap.ui.commons.TextField ({value : targetValue, width: "200px", textAlign: "Right"});
 						
 						txtElementValue.attachChange(
 								function(oControlEvent){
@@ -382,13 +382,14 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 
 						that._currentItemConfig[key] = value;		
 				}, that);
-			} else if(parameterObject.apsControl == "float" || parameterObject.apsControl == "int") {
-				txtItemValue = new sap.ui.commons.TextField ({value : targetValue, width: "90%", textAlign: "Right"});
+			} else if(parameterObject.type == "float" || parameterObject.type == "int") {
+				txtItemValue = new sap.ui.commons.TextField ({value : targetValue, width: "200px", textAlign: "Right"});
 				
 				txtItemValue.attachChange(
 					function(oControlEvent){
 						var value = oControlEvent.getParameter("newValue");
 						var key = oControlEvent.getSource()._key;
+
 						if(!isNaN(value)) {
 							that._currentItemConfig[key] = parseInt(value);	
 						} else {

@@ -1,0 +1,951 @@
+/* ============================================================ */
+/* CSS for control sap.suite.ui.commons/ProcessFlowNode.control */
+/* ============================================================ */
+
+/*-----------------------------------------------------------------*/
+/* font faces */
+/*-----------------------------------------------------------------*/
+@font-face {
+/* used for folded corner */
+  font-family: 'PFBusinessSuiteInAppSymbols';
+  src: url('fonts/PFBusinessSuiteInAppSymbols.eot');
+  src: url('fonts/PFBusinessSuiteInAppSymbols.eot?#iefix') format('embedded-opentype'),
+       url('fonts/PFBusinessSuiteInAppSymbols.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+/* node general settings */
+.sapSuiteUiCommonsProcessFlowNode0,
+.sapSuiteUiCommonsProcessFlowNode0 *,
+.sapSuiteUiCommonsProcessFlowNode1,
+.sapSuiteUiCommonsProcessFlowNode1 *,
+.sapSuiteUiCommonsProcessFlowFoldedCornerNode1,
+.sapSuiteUiCommonsProcessFlowFoldedCornerNode1 *,
+.sapSuiteUiCommonsProcessFlowNode2,
+.sapSuiteUiCommonsProcessFlowNode2 *,
+.sapSuiteUiCommonsProcessFlowNode3,
+.sapSuiteUiCommonsProcessFlowNode3 * {
+  clear: none;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+/*   background-color: transparent; */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-transition: -webkit-transform 0ms;
+  -ms-touch-select: none;
+  touch-action: manipulation;
+  text-size-adjust: none;
+  -ms-text-autospace: none;
+  -ms-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+}
+
+/* ----- */
+/* node0 */
+/* ----- */
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel1 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 176px;
+  min-width: 176px;
+  max-width: 176px;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel2 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 144px;
+  min-width: 144px;
+  max-width: 144px;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel3 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 104px;
+  min-width: 104px;
+  max-width: 104px;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel4 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin-bottom: 5px;
+  padding: 0px;
+  width: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  height: 60px;
+  min-height: 60px;
+  max-height: 60px;
+  line-height: 60px;
+}
+
+
+
+
+/* ----- */
+/* node1 */
+/* ----- */
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel1,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel2,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel1 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel2 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel1 > .sapUiIcon:before,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel2 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+/*   background-color: transparent; */
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  vertical-align: middle;
+  width: 16px;
+  min-width: 16px;
+  max-width: 16px;
+  height: 16px;
+  min-height: 16px;
+  max-height: 16px;
+  line-height: 16px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel3,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel4,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel3 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel4 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel3 > .sapUiIcon:before,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel4 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+/*   background-color: transparent; */
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  vertical-align: middle;
+  width: 12px;
+  min-width: 12px;
+  max-width: 12px;
+  height: 12px;
+  min-height: 12px;
+  max-height: 12px;
+  line-height: 12px;
+  overflow: hidden;
+}
+
+/* ----- */
+/* node2 */
+/* ----- */
+.sapSuiteUiCommonsProcessFlowNode2ZoomLevel1 {
+  clear: none;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 160px;
+  min-width: 160px;
+  max-width: 160px;
+  height: 16px;
+  min-height: 16px;
+  max-height: 16px;
+  line-height: 16px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode2ZoomLevel2 {
+  clear: none;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 128px;
+  min-width: 128px;
+  max-width: 128px;
+  height: 16px;
+  min-height: 16px;
+  max-height: 16px;
+  line-height: 16px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode2ZoomLevel3 {
+  clear: none;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 92px;
+  min-width: 92px;
+  max-width: 92px;
+  height: 12px;
+  min-height: 12px;
+  max-height: 12px;
+  line-height: 12px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode2ZoomLevel4 {
+  clear: none;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 36px;
+  min-width: 36px;
+  max-width: 36px;
+  height: 12px;
+  min-height: 12px;
+  max-height: 12px;
+  line-height: 12px;
+  overflow: hidden;
+}
+
+/* ----- */
+/* node3 */
+/* ----- */
+.sapSuiteUiCommonsProcessFlowNode3ZoomLevel1 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px 15px 15px 15px;
+  width: 176px;
+  min-width: 176px;
+  max-width: 176px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3ZoomLevel2 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px 15px 15px 15px;
+  width: 144px;
+  min-width: 144px;
+  max-width: 144px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3ZoomLevel3 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px 11px 11px 11px;
+  width: 104px;
+  min-width: 104px;
+  max-width: 104px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3ZoomLevel4 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  height: 48px;
+  min-height: 48px;
+  max-height: 48px;
+  line-height: 48px;
+  overflow: hidden;
+}
+
+/*---------------*/
+/* folded corner */
+/*---------------*/
+.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel1,
+.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel2 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 16px;
+  min-width: 16px;
+  max-width: 16px;
+  height: 16px;
+  min-height: 16px;
+  max-height: 16px;
+  line-height: 16px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel3,
+.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel4 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 12px;
+  min-width: 12px;
+  max-width: 12px;
+  height: 12px;
+  min-height: 12px;
+  max-height: 12px;
+  line-height: 12px;
+  overflow: hidden;
+}
+
+/* Title */
+.sapSuiteUiCommonsProcessFlowNode3Title,
+.sapSuiteUiCommonsProcessFlowNode3Title > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: top;
+  font-family: @sapUiFontFamily;
+  font-weight: normal;
+  font-stretch: normal;
+  font-size: 16px;
+  letter-spacing: normal;
+  overflow: hidden;
+}
+
+.sapSuiteUiCommonsProcessFlowNode3TitleClickable:hover,
+.sapSuiteUiCommonsProcessFlowNode3TitleClickable:hover > .sapMTextMaxLine {
+  cursor: pointer;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 {
+  clear: both;
+  float: left;
+  display: table-row;
+  position: relative;
+  text-align: left;
+  vertical-align: top;
+  margin: 0px;
+  margin-bottom: 0.5rem;
+  padding: 0px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: top;
+  font-size: 16px;
+  width: 140px;
+  min-width: 140px;
+  max-width: 140px;
+  height: 57px;
+  min-height: 57px;
+  max-height: 57px;
+  line-height: 19px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 {
+  clear: both;
+  float: left;
+  display: table-row;
+  position: relative;
+  text-align: left;
+  vertical-align: top;
+  font-size: 14px;
+  margin: 0px;
+  margin-bottom: 8px;
+  padding: 0px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: top;
+  font-size: 14px;
+  width: 108px;
+  min-width: 108px;
+  max-width: 108px;
+  height: 51px;
+  min-height: 51px;
+  max-height: 51px;
+  line-height: 17px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 {
+  clear: both;
+  float: left;
+  display: table-row;
+  position: relative;
+  margin: 0px;
+  margin-bottom: 4px;
+  padding: 0px;
+  text-align: center;
+  vertical-align: top;
+  width: 76px;
+  max-width: 76px;
+  height: 34px;
+  min-height: 34px;
+  max-height: 34px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  vertical-align: top;
+  font-size: 14px;
+  width: 76px;
+  max-width: 76px;
+  height: 34px;
+  min-height: 34px;
+  max-height: 34px;
+  line-height: 17px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel4 {
+  clear: both;
+  float: left;
+  display: none;
+  position: relative;
+  width: 0px;
+  min-width: 0px;
+  max-width: 0px;
+  height: 0px;
+  min-height: 0px;
+  max-height: 0px;
+  line-height: 0px;
+  overflow: hidden;
+}
+
+/* State area */
+.sapSuiteUiCommonsProcessFlowNode3State {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateZoomLevel1 {
+  clear: both;
+  float: left;
+  display: table;
+  position: relative;
+  margin: 0px;
+  margin-bottom: 0.5rem;
+  padding: 0px;
+  font-size: 14px;
+  width: 140px;
+  min-width: 140px;
+  max-width: 140px;
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateZoomLevel2 {
+  clear: both;
+  float: left;
+  display: table;
+  position: relative;
+  margin: 0px;
+  margin-bottom: 0.5rem;
+  padding: 0px;
+  width: 108px;
+  min-width: 108px;
+  max-width: 108px;
+  font-size: 12px;
+  height: 32px;
+  min-height: 32px;
+  max-height: 32px;
+  line-height: 32px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateZoomLevel3 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 76px;
+  min-width: 76px;
+  max-width: 76px;
+  height: 66px;
+  min-height: 66px;
+  max-height: 66px;
+  line-height: 66px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateZoomLevel4 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 46px;
+  min-width: 46px;
+  max-width: 46px;
+  height: 46px;
+  min-height: 46px;
+  max-height: 46px;
+  line-height: 46px;
+  overflow: hidden;
+}
+
+/* State icon */
+.sapSuiteUiCommonsProcessFlowNode3StateIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIcon > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIcon > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconLeft {
+  text-align: left;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconRight {
+  text-align: right;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconCenter {
+  text-align: center;
+}
+
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel1 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  width: 32px;
+  min-width: 32px;
+  max-width: 32px;
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel1 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel1 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  font-size: 20px;
+  width: 32px;
+  min-width: 32px;
+  max-width: 32px;
+  height: 34px;
+  min-height: 34px;
+  max-height: 34px;
+  line-height: 34px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel2 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  height: 32px;
+  min-height: 32px;
+  max-height: 32px;
+  line-height: 32px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel2 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel2 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  font-size: 16px;
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  height: 32px;
+  min-height: 32px;
+  max-height: 32px;
+  line-height: 32px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel3 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  width: 76px;
+  min-width: 76px;
+  max-width: 76px;
+  height: 32px;
+  min-height: 32px;
+  max-height: 32px;
+  line-height: 32px;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel3 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel3 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  font-size: 20px;
+  width: 76px;
+  min-width: 76px;
+  max-width: 76px;
+  height: 32px;
+  min-height: 32px;
+  max-height: 32px;
+  line-height: 32px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel4 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: absolute;
+  top: -2px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  width: 46px;
+  min-width: 46px;
+  max-width: 46px;
+  height: 46px;
+  min-height: 46px;
+  max-height: 46px;
+  line-height: 46px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel4 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel4 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: absolute;
+  top: -2px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  font-size: 22px;
+  width: 46px;
+  min-width: 46px;
+  max-width: 46px;
+  height: 46px;
+  min-height: 46px;
+  max-height: 46px;
+  line-height: 46px;
+  overflow: hidden;
+}
+
+/* State text */
+.sapSuiteUiCommonsProcessFlowNode3StateText,
+.sapSuiteUiCommonsProcessFlowNode3StateText > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3StateText > .sapMTextMaxWidth {
+  clear: both;
+  float: none;
+  display: block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  font-family: @sapUiFontFamily;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 {
+  clear: both;
+  float: none;
+  display: table-cell;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  font-size: 14px;
+  width: 102px;
+  min-width: 102px;
+  max-width: 102px;
+  max-height: 34px;
+  line-height: 17px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 {
+  clear: both;
+  float: none;
+  display: table-cell;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  font-size: 12px;
+  width: 78px;
+  min-width: 78px;
+  max-width: 78px;
+  max-height: 32px;
+  line-height: 15px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 {
+  clear: both;
+  float: none;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 12px;
+  width: 72px;
+  max-width: 72px;
+  height: 30px;
+  min-height: 30px;
+  max-height: 30px;
+  line-height: 15px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel4 {
+  clear: both;
+  float: none;
+  display: none;
+  position: relative;
+  width: 0px;
+  min-width: 0px;
+  max-width: 0px;
+  height: 0px;
+  min-height: 0px;
+  max-height: 0px;
+  line-height: 0px;
+  overflow: hidden;
+}
+
+/* Text area */
+.sapSuiteUiCommonsProcessFlowNode3Text,
+.sapSuiteUiCommonsProcessFlowNode3Text > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3Text > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3Text > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  padding: 0px;
+  vertical-align: top;
+  font-family: @sapUiFontFamily;
+  font-weight: normal;
+  font-stretch: normal;
+  font-size: 12px;
+  letter-spacing: normal;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 {
+  clear: both;
+  float: left;
+  display: table-row;
+  position: relative;
+  text-align: left;
+  vertical-align: top;
+  padding: 0px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  padding: 0px;
+  vertical-align: top;
+  font-size: 14px;
+  width: 140px;
+  min-width: 140px;
+  max-width: 140px;
+  height: 34px;
+  min-height: 34px;
+  max-height: 34px;
+  line-height: 17px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 {
+  clear: both;
+  float: left;
+  display: table-row;
+  position: relative;
+  text-align: left;
+  vertical-align: top;
+  padding: 0px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  padding: 0px;
+  vertical-align: top;
+  font-size: 12px;
+  width: 108px;
+  min-width: 108px;
+  max-width: 108px;
+  height: 30px;
+  min-height: 30px;
+  max-height: 30px;
+  line-height: 15px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel3,
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel4 {
+  clear: both;
+  float: left;
+  display: none;
+  position: relative;
+  width: 0px;
+  min-width: 0px;
+  max-width: 0px;
+  height: 0px;
+  min-height: 0px;
+  max-height: 0px;
+  line-height: 0px;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextWithGapZoomLevel1 {
+  padding-bottom: 8px;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextWithGapZoomLevel2 {
+  padding-bottom: 4px;
+}
+
+/* special effects */
+.sapSuiteUiCommonsProcessFlowFoldedCornerNodeHover {
+  cursor: pointer;
+}
+.sapSuiteUiCommonsProcessFlowFoldedCornerNodeIconHover {
+  cursor: pointer;
+}
+.sapSuiteUiCommonsProcessFlowNodeHover {
+  cursor: pointer;
+}
+
+.sapSuiteUiCommonsProcessFlowFoldedCornerNodeActive {
+  cursor: pointer;
+}
+.sapSuiteUiCommonsProcessFlowNodeActive {
+  cursor: pointer;
+}

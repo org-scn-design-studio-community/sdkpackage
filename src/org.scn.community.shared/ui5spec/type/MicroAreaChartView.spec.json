@@ -1,0 +1,15 @@
+{
+	"name": "MicroAreaChartView",
+	"docu": "The list of possible MicroAreaChart views.",
+
+	values: [
+	{	
+		"name": "Normal",
+		"value": "The view with labels on the top and bottom."	
+	},
+	{	
+		"name": "Wide",
+		"value": "The view with labels on the left and right."	
+	}
+	]
+}

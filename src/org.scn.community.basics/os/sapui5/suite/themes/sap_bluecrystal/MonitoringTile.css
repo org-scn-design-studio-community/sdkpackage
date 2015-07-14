@@ -1,0 +1,14 @@
+/* ============================================================================== */
+/* CSS for sap.suite.ui.commons/MonitoringTile.control for 'sap_bluecrystal' theme*/
+/* ============================================================================== */
+.sapSuiteUiCommonsMTFooterText.Positive {
+	color: @sapUiPositive;	
+}
+
+.sapSuiteUiCommonsMTFooterText.Critical {
+	color: @sapUiCritical;	
+}
+
+.sapSuiteUiCommonsMTFooterText.Negative {
+	color: @sapUiNegative;	
+}

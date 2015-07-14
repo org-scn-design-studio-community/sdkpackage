@@ -1,0 +1,129 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/NumericTile.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsNTIndicator.Up {
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	border-bottom: 10px solid;
+	display: inline-block;
+}
+
+.sapSuiteUiCommonsNTIndicator.Down {
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	border-top: 10px solid;
+	display: inline-block;
+}
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNTIndicator.Auto,
+.sapSuiteUiCommonsNTIndicator.S {
+	margin-right: 4px;
+}
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNTIndicator.Auto,
+.sapSuiteUiCommonsNTIndicator.L,
+.sapUiMedia-Std-Tablel .sapSuiteUiCommonsNTIndicator.Auto,
+.sapSuiteUiCommonsNTIndicator.M {
+	margin-right: 6px;
+}
+/*
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNTIndicator.Auto,
+.sapSuiteUiCommonsNTIndicator.L {
+	margin-right: 8px;
+}
+*/
+.sapSuiteUiCommonsNTValue {
+    font-weight: bold;
+    display: inline-block;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNTValue.Auto,
+.sapSuiteUiCommonsNTValue.S {
+	font-size: 32px;
+	margin-right: 4px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNTValue.Auto,
+.sapSuiteUiCommonsNTValue.L,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNTValue.Auto,
+.sapSuiteUiCommonsNTValue.M {
+	font-size: 48px;
+	margin-right: 6px;
+}
+/*
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNTValue.Auto,
+.sapSuiteUiCommonsNTValue.L {
+	font-size: 56px;
+	margin-right: 8px;
+}
+*/
+.sapSuiteUiCommonsNTScale {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNTScale.Auto,
+.sapSuiteUiCommonsNTScale.S {
+	font-size: 14px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNTScale.Auto,
+.sapSuiteUiCommonsNTScale.L,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNTScale.Auto,
+.sapSuiteUiCommonsNTScale.M {
+	font-size: 16px;
+}
+
+/*
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNTScale.Auto,
+.sapSuiteUiCommonsNTScale.L {
+	font-size: 18px;
+}
+*/
+
+.sapSuiteUiCommonsNTUnit {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNTUnit.Auto,
+.sapSuiteUiCommonsNTUnit.S {
+	font-size: 14px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNTUnit.Auto,
+.sapSuiteUiCommonsNTUnit.L,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNTUnit.Auto,
+.sapSuiteUiCommonsNTUnit.M {
+	font-size: 16px;
+}
+
+/*
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNTUnit.Auto,
+.sapSuiteUiCommonsNTUnit.L {
+	font-size: 18px;
+}
+*/
+
+.sapSuiteUiCommonsNTIndicator.Up {
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	border-bottom: 10px solid;
+	display: inline-block;
+}
+
+.sapSuiteUiCommonsNTIndicator.Down {
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	border-top: 10px solid;
+	display: inline-block;
+}
+
+.sapSuiteUiCommonsNTIndicator.Loading,
+.sapSuiteUiCommonsNTValue.Loading,
+.sapSuiteUiCommonsNTScale.Loading,
+.sapSuiteUiCommonsNTIndicator.Failed,
+.sapSuiteUiCommonsNTValue.Failed,
+.sapSuiteUiCommonsNTScale.Failed {
+    color: @sapUiLightText;
+}

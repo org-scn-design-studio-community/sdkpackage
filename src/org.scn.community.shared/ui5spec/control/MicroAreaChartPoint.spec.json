@@ -1,0 +1,35 @@
+{
+
+	"x" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "X",
+			"cat" : "Display",
+			"tooltip" : "X value for the given point.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"y" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Y",
+			"cat" : "Display",
+			"tooltip" : "Y value for the given point.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

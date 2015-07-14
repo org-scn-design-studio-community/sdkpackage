@@ -1,0 +1,16 @@
+{
+	"title": "Area Micro Chart 2.0",
+	"description": "Area Micro Chart - Component for Visualization of Data on small areas",
+	"icon": "AreaMicroChart.png",
+	"topics": 
+	[
+		{
+			"title" : "Area Micro Chart",
+			"content" : "This component can visualize the data on small area as area or line chart."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

@@ -60,7 +60,7 @@
   "actualValueLabel": {
     "opts": {
       "apsControl": "text",
-      "cat": "Data-Labels",
+      "cat": "Display-Labels",
       "desc": "Actual Value Label",
       "noAps": false,
       "noZtl": false,
@@ -212,7 +212,7 @@
   "deltaValueLabel": {
     "opts": {
       "apsControl": "text",
-      "cat": "Data-Labels",
+      "cat": "Display-Labels",
       "desc": "Delta Value Label",
       "noAps": false,
       "noZtl": false,
@@ -489,7 +489,7 @@
   "targetValueLabel": {
     "opts": {
       "apsControl": "text",
-      "cat": "Data-Labels",
+      "cat": "Display-Labels",
       "desc": "Target Value Label",
       "noAps": false,
       "noZtl": false,
@@ -570,7 +570,7 @@
   "useForecastValue": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display-Values",
+      "cat": "Data-Values",
       "desc": "Use Manual 'Forecast Value'",
       "noAps": false,
       "noZtl": false,
@@ -586,7 +586,7 @@
   "useMaxValue": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display-Values",
+      "cat": "Data-Values",
       "desc": "Use Manual 'Max Value'",
       "noAps": false,
       "noZtl": false,
@@ -602,7 +602,7 @@
   "useMinValue": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display-Values",
+      "cat": "Data-Values",
       "desc": "Use Manual 'Min Value'",
       "noAps": false,
       "noZtl": false,
@@ -618,7 +618,7 @@
   "useTargetValue": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display-Values",
+      "cat": "Data-Values",
       "desc": "Use Manual 'Target Value'",
       "noAps": false,
       "noZtl": false,
@@ -634,7 +634,7 @@
   "useThresholds": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Content-Thresholds",
+      "cat": "Content-Thresholds-Thresholds",
       "desc": "Use Manual 'Thresholds'",
       "noAps": false,
       "noZtl": false,
@@ -651,13 +651,13 @@
 
 	org_scn_community_require.knownComponents.databound.BulletMicroChart.specAbout = 
 {
-  "description": "Bukket Micro Chart - Component for VIsualization of Data on small areas",
-  "icon": "MicroChart.png",
+  "description": "Bullet Micro Chart - Component for Visualization of Data on small areas",
+  "icon": "BulletMicroChart.png",
   "title": "Bullet Micro Chart 2.0",
   "topics": [
     {
       "content": "This component can visualize the data on small area as bullet chart.",
-      "title": "Bukket Micro Chart"
+      "title": "Bullet Micro Chart"
     },
     {
       "content": "This component is a visualization component. It requires specific space in the application canvas.",

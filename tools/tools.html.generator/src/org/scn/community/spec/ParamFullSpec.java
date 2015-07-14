@@ -12,6 +12,8 @@ import org.json.JSONObject;
 import org.scn.community.defgenerator.ZtlAndAps;
 import org.scn.community.htmlgenerator.Property;
 import org.scn.community.htmlgenerator.Value;
+import org.scn.community.spec.js.SpecificationJsTemplate;
+import org.scn.community.spec.ui5.Ui5JsSpec;
 import org.scn.community.spec.xml.SpecificationXmlTemplate;
 import org.scn.community.spec.ztl.SpecificationZtlTemplate;
 import org.scn.community.utils.Helpers;
@@ -116,6 +118,18 @@ public class ParamFullSpec {
 		}
 		
 		return "";
+	}
+
+	public boolean isArrayType() {
+		if(options == null) {
+			options = getParameter("opts");
+		}
+		String ztlType = options.getPropertyValue("ztlType");
+		if(ztlType != null && ztlType.contains("Array")) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	public boolean isOptional() {
@@ -457,7 +471,7 @@ public class ParamFullSpec {
 		 template = template.replace("%PROPERTY_TYPE_ZTL%", this.getType(true));
 		 template = template.replace("%PROPERTY_TYPE_OVERLOAD%", this.options.getPropertyValue("ztlType"));
 		 template = template.replace("%HELP%", getHelp());
-		 template = template.replace("%NAME%", nameCut);
+		 template = template.replace("%NAME%", this.getCorrectName());
 		 template = template.replace("%TITLE%", getTitle());
 		 template = template.replace("%COMPONENT_NAME%", this.parentProperty.getComponent().toUpperCase(Locale.ENGLISH));
 		 
@@ -481,7 +495,7 @@ public class ParamFullSpec {
 		return template;
 	}
 
-	String getPropertyValue(String name) {
+	public String getPropertyValue(String name) {
 		for (String key : properties.keySet()) {
 			if(key.equals(name)) {
 				return properties.get(key);
@@ -490,13 +504,17 @@ public class ParamFullSpec {
 		return "";
 	}
 
-	private ParamFullSpec getParameter(String name) {
+	public ParamFullSpec getParameter(String name) {
 		for (ParamFullSpec paramFullSpec : parameters) {
 			if(paramFullSpec.getName().equals(name)) {
 				return paramFullSpec;
 			}
 		}
 		return null;
+	}
+	
+	public ParamFullSpec getParameter(int i) {
+		return parameters.get(i);
 	}
 
 	public void setParent(Property parentProperty) {
@@ -531,6 +549,17 @@ public class ParamFullSpec {
 		
 		template = template.replace("%PROPERTY_NAME%", this.getName());
 		template = template.replace("%PROPERTY_DEFAULT_VALUE%", this.getValue().replace("\\\"", "\""));
+		
+		return template;
+	}
+	
+	public String getJson() {
+		String template = Helpers.resource2String(Ui5JsSpec.class, "json_parameter.template");
+		
+		template = template.replace("%PROPERTY_NAME%", this.getName());
+		template = template.replace("%PROPERTY_DEFAULT_VALUE%", this.getValue().replace("\\\"", "\""));
+		template = template.replace("%PROPERTY_DESCRIPTION%", this.getPropertyValue("desc"));
+		template = template.replace("%PROPERTY_TYPE%", this.getPropertyValue("type"));
 		
 		return template;
 	}

@@ -102,7 +102,7 @@ public class UI5Control {
 		String specDs = "{\r\n";
 		
 		for (UI5Property ui5Property : properties) {
-			String[] propSpec = ui5Property.toSpec20();
+			String[] propSpec = ui5Property.toSpec20("");
 			
 			spec = spec + "\r\n" + propSpec[0] + ",";
 			
@@ -192,5 +192,17 @@ public class UI5Control {
 		template = template.replace("for custom functions in /spec/contribution.ztl", "is based on SAP UI5 specification");
 		
 		return template;
+	}
+	public boolean is2notSimple() {
+		for (UI5Property ui5property : this.properties) {
+			String typeChild = ui5property.getType();
+			
+			if(typeChild.equals("String") || typeChild.equals("int") || typeChild.equals("Choice") || typeChild.equals("float")) {
+				// those we accept in single array
+			} else {
+				return true;
+			}
+		}
+		return false;
 	}
 }

@@ -1,0 +1,31 @@
+/* ===========================================================================*/
+/* CSS for control sap.suite.ui.commons/ProcessFlow.control bluecrystal theme */
+/* ===========================================================================*/
+
+	/* Common styles */
+table.sapSuiteUiCommonsPF {
+  color: @sapUiDarkText;
+  border-spacing: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-transform: translate3d(0,0,0);
+}
+
+table.sapSuiteUiCommonsPF td, table.sapSuiteUiCommonsPF th {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-transform: translate3d(0,0,0);
+}
+
+.sapSuiteUiScrollContainerPF {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sapSuiteUiScrollContainerPF > * {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-transform: translate3d(0,0,0);
+}
+
+thead.sapSuiteUiCommonsPFHeaderFocused {
+  outline-color: @sapUiFocus;
+  outline-style: dotted;
+  outline-width: 0.063rem;
+}

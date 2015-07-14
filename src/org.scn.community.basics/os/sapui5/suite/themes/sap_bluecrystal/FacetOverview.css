@@ -1,0 +1,74 @@
+.sapSuiteFovHoverIcon {
+	color: @sapUiElement;
+}
+
+.sapSuiteFov {
+	background-color: fade(@sapUiLightestBG, 80%);
+}
+
+.sapSuiteFovSelected {
+	background-color: @sapUiHighlight;
+	color: @sapUiTextInverted;
+}
+
+.sap-desktop .sapSuiteFovActiveCont:focus,
+.sap-desktop .sapSuiteFovClickable:focus {
+	outline-color: @sapUiFocus;
+}
+
+.sapSuiteFovTitle {
+    font-size: @sapMFontHeader4Size;
+}
+
+.sapSuiteFov > .sapSuiteFovContent .sapMLabel {
+    color: @sapUiLightText;
+}
+
+.sapSuiteFov.sapSuiteFovSelected {
+    .sapSuiteFovHoverIcon,
+    .sapMLabel {
+        color: @sapUiTextInverted;
+    }
+}
+
+.sapSuiteFov.sapSuiteFovSelected > .sapSuiteFovContent {
+    .sapMLabel,
+    .sapMText,
+    .sapMLnk {
+        color: @sapUiTextInverted;
+   }
+}
+
+.sapSuiteFovSelected .sapUiForm {
+    background-color: transparent;
+}
+
+.sap-desktop .sapSuiteFov:focus {
+	outline-color: @sapUiBlackBorder;
+	outline: 1px dotted;
+	outline-offset: -1px;
+}
+
+/*IE does not support outline-offset. So we have to add overlay*/
+.sap-desktop[data-sap-ui-browser^="ie"]{
+	.sapSuiteFov:focus {
+		outline: none;
+		position: relative;
+	}
+	.sapSuiteFov:focus:before {
+		border: 1px dotted @sapUiBlackBorder;
+		content: " ";
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+}
+
+.sapSuiteFovClickable:focus .sapSuiteFovHoverIcon,
+.sapSuiteFovClickable:hover .sapSuiteFovHoverIcon {
+	display: block;
+}
+

@@ -1,0 +1,715 @@
+{
+
+	"contentWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 200,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Width",
+			"cat" : "Display",
+			"tooltip" : "The width of the chart.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"contentHeight" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 190,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Height",
+			"cat" : "Display",
+			"tooltip" : "The height of the chart.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"maxXValue" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Max X Value",
+			"cat" : "Data-Values",
+			"tooltip" : "If this property is set it indicates the value X axis ends with.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"minXValue" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Min X Value",
+			"cat" : "Data-Values",
+			"tooltip" : "If this property is set it indicates the value X axis starts with.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"maxYValue" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Max Y Value",
+			"cat" : "Data-Values",
+			"tooltip" : "If this property is set it indicates the value Y axis ends with.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"minYValue" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Min Y Value",
+			"cat" : "Data-Values",
+			"tooltip" : "If this property is set it indicates the value Y axis starts with.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"view" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Normal",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "MicroAreaChartView",
+			"ztlFunction": "",
+			"desc" : "View",
+			"cat" : "Display",
+			"tooltip" : "The view of the chart.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Normal",
+					"text" : "The view with labels on the top and bottom"
+				},
+				{
+					"key" : "Wide",
+					"text" : "The view with labels on the left and right"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"chart" : {
+		"template" : "ObjectSingle-double",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "DoubleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "Chart",
+			"cat" : "Content-Chart",
+			"tooltip" : "The configuration of the actual values line. The color property defines the color of the line. Points are rendered in the same sequence as in this aggregation.",
+
+			"apsControl" : "array",
+			"arrayMode": "TwoLevelArray",
+			
+			"arrayDefinition": {
+				"chart": {
+					"type": "Array",
+			        "sequence": "key,color,points",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"points":{
+						"type":"Array",
+						"sequence":"parentKey,key,x,y",
+						"parentKey":{
+			                "desc":"Parent Key",
+			                "type":"String",
+			              	"mode":"ztl"
+						},
+						"key":{
+						   "desc":"Unique Key",
+						   "type":"String"
+						},
+						"x":{
+						   "desc":"X",
+						   "type":"float"
+						},
+						"y":{
+						   "desc":"Y",
+						   "type":"float"
+						}
+
+	               }
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"maxThreshold" : {
+		"template" : "ObjectSingle-double",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "DoubleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "Max Threshold",
+			"cat" : "Content-Thresholds-Max Threshold",
+			"tooltip" : "The configuration of the max threshold area. The color property defines the color of the area above the max threshold line. Points are rendered in the same sequence as in this aggregation.",
+
+			"apsControl" : "array",
+			"arrayMode": "TwoLevelArray",
+			
+			"arrayDefinition": {
+				"maxThreshold": {
+					"type": "Array",
+			        "sequence": "key,color,points",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"points":{
+						"type":"Array",
+						"sequence":"parentKey,key,x,y",
+						"parentKey":{
+			                "desc":"Parent Key",
+			                "type":"String",
+			              	"mode":"ztl"
+						},
+						"key":{
+						   "desc":"Unique Key",
+						   "type":"String"
+						},
+						"x":{
+						   "desc":"X",
+						   "type":"float"
+						},
+						"y":{
+						   "desc":"Y",
+						   "type":"float"
+						}
+
+	               }
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"innerMaxThreshold" : {
+		"template" : "ObjectSingle-double",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "DoubleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "Inner Max Threshold",
+			"cat" : "Content-Thresholds-Inner Max Threshold",
+			"tooltip" : "The configuration of the upper line of the inner threshold area. The color property defines the color of the area between inner thresholds. For rendering of the inner threshold area, both innerMaxThreshold and innerMinThreshold aggregations must be defined. Points are rendered in the same sequence as in this aggregation.",
+
+			"apsControl" : "array",
+			"arrayMode": "TwoLevelArray",
+			
+			"arrayDefinition": {
+				"innerMaxThreshold": {
+					"type": "Array",
+			        "sequence": "key,color,points",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"points":{
+						"type":"Array",
+						"sequence":"parentKey,key,x,y",
+						"parentKey":{
+			                "desc":"Parent Key",
+			                "type":"String",
+			              	"mode":"ztl"
+						},
+						"key":{
+						   "desc":"Unique Key",
+						   "type":"String"
+						},
+						"x":{
+						   "desc":"X",
+						   "type":"float"
+						},
+						"y":{
+						   "desc":"Y",
+						   "type":"float"
+						}
+
+	               }
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"innerMinThreshold" : {
+		"template" : "ObjectSingle-double",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "DoubleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "Inner Min Threshold",
+			"cat" : "Content-Thresholds-Inner Min Threshold",
+			"tooltip" : "The configuration of the bottom line of the inner threshold area. The color property is ignored. For rendering of the inner threshold area, both innerMaxThreshold and innerMinThreshold aggregations must be defined. Points are rendered in the same sequence as in this aggregation.",
+
+			"apsControl" : "array",
+			"arrayMode": "TwoLevelArray",
+			
+			"arrayDefinition": {
+				"innerMinThreshold": {
+					"type": "Array",
+			        "sequence": "key,color,points",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"points":{
+						"type":"Array",
+						"sequence":"parentKey,key,x,y",
+						"parentKey":{
+			                "desc":"Parent Key",
+			                "type":"String",
+			              	"mode":"ztl"
+						},
+						"key":{
+						   "desc":"Unique Key",
+						   "type":"String"
+						},
+						"x":{
+						   "desc":"X",
+						   "type":"float"
+						},
+						"y":{
+						   "desc":"Y",
+						   "type":"float"
+						}
+
+	               }
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"minThreshold" : {
+		"template" : "ObjectSingle-double",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "DoubleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "Min Threshold",
+			"cat" : "Content-Thresholds-Min Threshold",
+			"tooltip" : "The configuration of the min threshold area. The color property defines the color of the area below the min threshold line. Points are rendered in the same sequence as in this aggregation.",
+
+			"apsControl" : "array",
+			"arrayMode": "TwoLevelArray",
+			
+			"arrayDefinition": {
+				"minThreshold": {
+					"type": "Array",
+			        "sequence": "key,color,points",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"points":{
+						"type":"Array",
+						"sequence":"parentKey,key,x,y",
+						"parentKey":{
+			                "desc":"Parent Key",
+			                "type":"String",
+			              	"mode":"ztl"
+						},
+						"key":{
+						   "desc":"Unique Key",
+						   "type":"String"
+						},
+						"x":{
+						   "desc":"X",
+						   "type":"float"
+						},
+						"y":{
+						   "desc":"Y",
+						   "type":"float"
+						}
+
+	               }
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"target" : {
+		"template" : "ObjectSingle-double",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "DoubleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "Target",
+			"cat" : "Content-Target",
+			"tooltip" : "The configuration of the target values line. The color property defines the color of the line. Points are rendered in the same sequence as in this aggregation.",
+
+			"apsControl" : "array",
+			"arrayMode": "TwoLevelArray",
+			
+			"arrayDefinition": {
+				"target": {
+					"type": "Array",
+			        "sequence": "key,color,points",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"points":{
+						"type":"Array",
+						"sequence":"parentKey,key,x,y",
+						"parentKey":{
+			                "desc":"Parent Key",
+			                "type":"String",
+			              	"mode":"ztl"
+						},
+						"key":{
+						   "desc":"Unique Key",
+						   "type":"String"
+						},
+						"x":{
+						   "desc":"X",
+						   "type":"float"
+						},
+						"y":{
+						   "desc":"Y",
+						   "type":"float"
+						}
+
+	               }
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"firstXLabel" : {
+		"template" : "ObjectSingle",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "First X Label",
+			"cat" : "Content-Labels-First X Label",
+			"tooltip" : "The label on X axis for the first point of the chart.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"firstXLabel": {
+					"type": "Array",
+			        "sequence": "key,color,label",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"label": {
+					  "desc": "Label",
+					  "type": "String"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"firstYLabel" : {
+		"template" : "ObjectSingle",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "First Y Label",
+			"cat" : "Content-Labels-First Y Label",
+			"tooltip" : "The label on Y axis for the first point of the chart.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"firstYLabel": {
+					"type": "Array",
+			        "sequence": "key,color,label",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"label": {
+					  "desc": "Label",
+					  "type": "String"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"lastXLabel" : {
+		"template" : "ObjectSingle",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "Last X Label",
+			"cat" : "Content-Labels-Last X Label",
+			"tooltip" : "The label on X axis for the last point of the chart.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"lastXLabel": {
+					"type": "Array",
+			        "sequence": "key,color,label",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"label": {
+					  "desc": "Label",
+					  "type": "String"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"lastYLabel" : {
+		"template" : "ObjectSingle",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "Last Y Label",
+			"cat" : "Content-Labels-Last Y Label",
+			"tooltip" : "The label on Y axis for the last point of the chart.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"lastYLabel": {
+					"type": "Array",
+			        "sequence": "key,color,label",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"label": {
+					  "desc": "Label",
+					  "type": "String"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"maxLabel" : {
+		"template" : "ObjectSingle",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "Max Label",
+			"cat" : "Content-Labels-Max Label",
+			"tooltip" : "The label for the maximum point of the chart.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"maxLabel": {
+					"type": "Array",
+			        "sequence": "key,color,label",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"label": {
+					  "desc": "Label",
+					  "type": "String"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"minLabel" : {
+		"template" : "ObjectSingle",
+		"type" : "String",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "-single",
+
+			"desc" : "Min Label",
+			"cat" : "Content-Labels-Min Label",
+			"tooltip" : "The label for the minimum point of the chart.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"minLabel": {
+					"type": "Array",
+			        "sequence": "key,color,label",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"color": {
+					  "desc": "Colour",
+					  "type": "String"
+					},
+					"label": {
+					  "desc": "Label",
+					  "type": "String"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

@@ -152,7 +152,7 @@ org_scn_community_component_Core = function (owner, componentData){
 				};
 			}(property);
 		}
-	}
+	};
 
 	that.callOnSet = function(property,value){
 		if(that.props[property] && that.props[property].onSet){
@@ -162,7 +162,7 @@ org_scn_community_component_Core = function (owner, componentData){
 		}else{
 			return "ERROR";
 		}
-	}
+	};
 	/**
 	 * Relays Design Studio Property Information over to Additional Properties Sheet.
 	 */
@@ -176,11 +176,25 @@ org_scn_community_component_Core = function (owner, componentData){
 			if(!o.opts.noAps) r.push(o);				
 		}
 		return JSON.stringify(r);
-	}
+	};
 	/**
 	 * Component Information
 	 */
 	that.getComponentInformation = function(){
 		return JSON.stringify(that.componentInfo);
-	}
+	};
+	
+	that.getSpecSubArrayName = function(property) {
+		var correctSpec = that.spec; 
+		if(correctSpec[property] == undefined) {
+			correctSpec = that.specInclude;
+		}
+
+		if(!correctSpec[property].arraySequence) {
+			var arraySequence = correctSpec[property]["opts"]["arrayDefinition"][property]["sequence"].split(",");
+			correctSpec[property].arraySequence = arraySequence;
+		}
+		
+		return correctSpec[property].arraySequence[correctSpec[property].arraySequence.length-1];
+	};
 };

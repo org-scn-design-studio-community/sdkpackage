@@ -1,0 +1,47 @@
+{
+	"id": "AreaMicroChart",
+	"title": "Area Micro Chart 2.0",
+	"tooltip": "Area Micro Chart - Component for visualization of data on small areas.",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityDataBound",
+	"package": "databound",
+	"extension": "ui5.MicroAreaChart",
+	"extends1ControlDs": "MicroAreaChart.ds",
+	"extends2Control": "MicroAreaChart",
+	"repeaterProperty": "target",
+
+	"databound": true,
+	"dataType": "DataCellList",
+	
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "common_databound",
+		},
+		{
+			"space" : "known",
+			"id" : "jshashtable",
+		},
+		{
+			"space" : "known",
+			"id" : "numberformatter",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_m_loader",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_suite_loader",
+		}
+	],
+	
+	"width": "400",
+	"height": "200"
+}

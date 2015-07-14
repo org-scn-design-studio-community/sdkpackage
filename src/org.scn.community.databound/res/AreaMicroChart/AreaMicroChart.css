@@ -1,0 +1,8 @@
+div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% !important;height: 100% !important;}
+
+div.scn-pack-BulletMicroChart {  
+  /* allow X scroll */  
+  overflow-x: auto !important;  
+  /* allow Y scroll */ 
+  overflow-y: auto !important;  
+}

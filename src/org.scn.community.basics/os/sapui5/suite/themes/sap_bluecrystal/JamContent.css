@@ -1,0 +1,40 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/JamContent.control */
+/* ============================================= */
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsJCCTxt.Auto > .sapMText,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsJCCTxt.Auto > .sapMText,
+.sapSuiteUiCommonsJCCTxt.L > .sapMText, .sapSuiteUiCommonsJCCTxt.M > .sapMText,
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsJCSbh.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsJCSbh.Auto,
+.sapSuiteUiCommonsJCSbh.L, .sapSuiteUiCommonsJCSbh.M {
+  	font-size: @sapMFontMediumSize;
+}
+
+.sapSuiteUiCommonsJCValue {
+  	font-family: @sapUiFontHeaderFamily;
+  	font-weight: @sapUiFontHeaderWeight;
+}
+
+.sapSuiteUiCommonsJCValue.Neutral {
+	color: @sapUiChartNeutral;	
+}
+
+.sapSuiteUiCommonsJCValue.Good {
+	color: @sapUiChartGood;	
+}
+
+.sapSuiteUiCommonsJCValue.Critical {
+	color: @sapUiChartCritical;	
+}
+
+.sapSuiteUiCommonsJCValue.Error {
+	color: @sapUiChartBad;	
+}
+
+.sap-desktop .sapSuiteUiCommonsJC:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
+}

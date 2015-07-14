@@ -1,0 +1,132 @@
+/* ============================================================================== */
+/* CSS for sap.suite.ui.commons/BulletChart.control for 'sap_bluecrystal' theme*/
+/* ============================================================================== */
+.sapSuiteBCContent {
+	font-family: @sapUiFontHeaderFamily;
+}
+
+.sap-desktop .sapSuiteBCContent:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: .0625rem;
+}
+
+.sapSuiteBCContent:focus:not([tabindex]) {
+	outline: none;
+}
+
+.sap-desktop .XS.sapSuiteBCContent:focus {
+	outline: none;
+} 
+
+.sap-desktop .XS.sapSuiteBCContent:focus::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: -.3125rem;
+    left: -.125rem;
+    right: -.125rem;
+    bottom: -.75rem;
+    border: .0625rem dotted @sapUiFocus;
+}
+
+.sapSuiteBCBarValue.Neutral,
+.sapSuiteBCBarValueMarker.Neutral,
+.sapSuiteBCThreshold.Neutral {
+    background-color: @sapUiChartNeutral;
+}
+
+.sapSuiteBCBarValue.Good,
+.sapSuiteBCBarValueMarker.Good,
+.sapSuiteBCThreshold.Good {
+    background-color: @sapUiChartGood;
+}
+
+.sapSuiteBCBarValue.Critical,
+.sapSuiteBCBarValueMarker.Critical,
+.sapSuiteBCThreshold.Critical {
+    background-color: @sapUiChartCritical;
+}
+
+.sapSuiteBCBarValue.Error,
+.sapSuiteBCBarValueMarker.Error,
+.sapSuiteBCThreshold.Error {
+    background-color: @sapUiChartBad;
+}
+
+.sapSuiteBCItemValue.Neutral {
+    color: @sapUiLightText;
+}
+
+.sapSuiteBCItemValue.Good {
+    color: @sapUiPositiveText;
+}
+
+.sapSuiteBCItemValue.Critical {
+    color: @sapUiCriticalText;
+}
+
+.sapSuiteBCItemValue.Error {
+    color: @sapUiNegativeText;
+}
+
+.sapSuiteBCTargetBarValue {
+	border-left: .0625rem solid @sapUiLightestBorder;
+	background-color: darken(@sapUiExtraDarkBorder,33);
+}
+
+.sapSuiteBCTargetValue {
+    color: @sapUiDarkText;
+}
+
+.sapSuiteBCDiamond {
+    background-color: @sapUiChartBad;
+}
+
+.sapSuiteBCForecastBarValue.Neutral {
+    background-color: lighten(@sapUiChartNeutral,30);
+}
+
+.sapSuiteBCForecastBarValue.Good {
+    background-color: lighten(@sapUiChartGood,30);
+}
+
+.sapSuiteBCForecastBarValue.Critical {
+    background-color: lighten(@sapUiChartCritical,30);
+}
+
+.sapSuiteBCForecastBarValue.Error {
+    background-color: lighten(@sapUiChartBad,35);
+}
+
+.sapSuiteBCBar.Lightest {
+    background-color: @sapUiLightestBG;
+}
+
+.sapSuiteBCBar.ExtraLight {
+    background-color: @sapUiExtraLightBG;
+}
+
+.sapSuiteBCBar.Light {
+    background-color: @sapUiLightBG;
+}
+
+.sapSuiteBCBar.Medium {
+    background-color: @sapUiMediumBG;
+}
+
+.sapSuiteBCBar.MediumLight {
+    background-color: lighten(@sapUiChartNeutral,38.5);
+}
+
+.sapSuiteBCBar.Dark {
+    background-color: @sapUiDarkBG;
+}
+
+.sapSuiteBCBar.ExtraDark {
+    background-color: @sapUiExtraDarkBG;
+}
+
+.sapSuiteBCBar.Darkest {
+    background-color: @sapUiDarkestBG;
+}

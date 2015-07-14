@@ -1,0 +1,215 @@
+/* ======================================================== */
+/* CSS for control sap.suite.ui.commons/ProcessFlow.control */
+/* ======================================================== */
+
+/* Common styles */
+table.sapSuiteUiCommonsPF {
+/*   color: @sapUiLightText; */
+/*   border-spacing: 0; */
+  padding: 16px 16px 32px 16px;
+  table-layout: fixed;
+  /*border: 1px solid blue;*/
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+/*   -webkit-tap-highlight-color: transparent; */
+  -webkit-transition: -webkit-transform 0ms;
+/*   -webkit-transform: translate3d(0,0,0); */
+  -ms-touch-select: none;
+  touch-action: manipulation;
+}
+
+table.sapSuiteUiCommonsPF td, table.sapSuiteUiCommonsPF th {
+  vertical-align: top;
+  padding: 0;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+/*   -webkit-tap-highlight-color: transparent; */
+  -webkit-transition: -webkit-transform 0ms;
+/*   -webkit-transform: translate3d(0,0,0); */
+  -ms-touch-select: none;
+  touch-action: manipulation;
+}
+
+tr.sapSuiteUiCommonsPFHeaderHidden {
+  visibility: hidden;
+}
+
+tr.sapSuiteUiCommonsPFHeader > th:first-child,
+tr.sapSuiteUiCommonsPFHeader > th:last-child {
+  width: 16px;
+  min-width: 16px;
+  max-width: 16px;
+}
+
+tr.sapSuiteUiCommonsPFHeader > th:nth-child(5n+5) {
+  width: 16px;
+  min-width: 16px;
+  max-width: 16px;
+}
+
+tr.sapSuiteUiCommonsPFHeader > th:nth-child(5n+6) {
+  width: 16px;
+  min-width: 16px;
+  max-width: 16px;
+}
+
+/* Styles for zoom level 1 */
+table.sapSuiteUiCommonsPFZoomLevel1 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+2),
+table.sapSuiteUiCommonsPFZoomLevel1 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+4) {
+  width: 16px;
+  min-width: 16px;
+  max-width: 16px;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel1 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+3) {
+  width: 176px;
+  min-width: 176px;
+  max-width: 176px;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel1 > thead > tr.sapSuiteUiCommonsPFHeaderRow > th:nth-child(2n+2) {
+  max-width: 208px;
+}
+
+
+/* Styles for zoom level 2 */
+table.sapSuiteUiCommonsPFZoomLevel2 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+2),
+table.sapSuiteUiCommonsPFZoomLevel2 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+4) {
+  width: 8px;
+  min-width: 8px;
+  max-width: 8px;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel2 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+3) {
+  width: 144px;
+  min-width: 144px;
+  max-width: 144px;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel2 > thead > tr.sapSuiteUiCommonsPFHeaderRow > th:nth-child(2n+2) {
+  max-width: 160px;
+}
+
+
+/* Styles for zoom level 3 */
+table.sapSuiteUiCommonsPFZoomLevel3 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+2),
+table.sapSuiteUiCommonsPFZoomLevel3 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+4) {
+  width: 16px;
+  min-width: 16px;
+  max-width: 16px;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel3 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+3) {
+  width: 104px;
+  min-width: 104px;
+  max-width: 104px;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel3 > thead > tr.sapSuiteUiCommonsPFHeaderRow > th:nth-child(2n+2) {
+  max-width: 136px;
+}
+
+
+/* Styles for zoom level 4 */
+table.sapSuiteUiCommonsPFZoomLevel4 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+2),
+table.sapSuiteUiCommonsPFZoomLevel4 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+4) {
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel4 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+3) {
+  width: 48px;
+  min-width: 48px;
+  max-width: 48px;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel4 > thead > tr.sapSuiteUiCommonsPFHeaderRow > th:nth-child(2n+2) {
+  max-width: 96px;
+}
+
+
+/* Table cell paddings for flow nodes table body */
+table.sapSuiteUiCommonsPF > tbody div.sapSuiteUiCommonsProcessFlowNode {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.sapSuiteUiScrollContainerPF {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+/*   -webkit-tap-highlight-color: transparent; */
+  -ms-touch-select: none;
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  min-height: 112px;
+  width: 100%;
+  min-width: 208px;
+  overflow: hidden;
+}
+.sapSuiteUiScrollContainerPF::-webkit-scrollbar {
+  display: none;
+  overflow: hidden;
+}
+
+.sapSuiteUiScrollContainerPF > * {
+  clear: both;
+  float: none;
+  display: inline-block;
+  position: relative;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+/*   -webkit-tap-highlight-color: transparent; */
+  -ms-touch-select: none;
+  -webkit-transition: -webkit-transform 0ms;
+  -webkit-transform-origin: 0px 0px;
+/*   -webkit-transform: translate3d(0,0,0); */
+  overflow: hidden;
+}
+
+.sapSuiteUiGrabCursorPF, .sapSuiteUiGrabCursorPF .sapMText {
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+}
+
+.sapSuiteUiGrabbingCursorPF, .sapSuiteUiGrabbingCursorPF .sapMText {
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+}
+
+.sapSuiteUiGrabCursorIEPF, .sapSuiteUiGrabCursorIEPF .sapMText {
+  cursor: all-croll;
+}
+
+.sapSuiteUiGrabbingCursorIEPF, .sapSuiteUiGrabbingCursorIEPF .sapMText {
+  cursor: all-croll;
+}
+
+.sapSuiteUiDefaultCursorPF, .sapSuiteUiDefaultCursorPF .sapMText {
+  cursor: default;
+}
+
+table.sapSuiteUiCommonsPF > tbody > tr:first-child {
+  height : 8px;
+}

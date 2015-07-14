@@ -1,0 +1,47 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/UnifiedThingGroup.control */
+/* ============================================= */
+
+.sapSuiteUtg {
+	padding: 20px 32px;
+}
+.sap-phone .sapSuiteUtg {
+	margin: 0;
+}
+
+.sapSuiteUtgHeader {
+    padding: 0 0 4px 0;
+	margin: 0;
+}
+
+.sapSuiteUtgTitle {
+	font-size: 24px;
+	font-weight: normal;
+    line-height: 2em;
+    text-overflow : ellipsis;
+    margin-bottom: 12px;
+}
+
+.sap-phone .sapSuiteUtgTitle {
+	padding: 1rem 1rem 0 1rem;
+	font-size: 1.25rem;
+}
+
+.sapSuiteUtgDesc {
+    font-size: 16px;
+    font-weight: normal;
+    text-overflow : ellipsis;
+}
+
+.sap-phone .sapSuiteUtgDesc {
+	padding: 1rem 1rem 0.5rem 1rem;
+}
+
+.sapSuiteUtgContent {
+}
+
+.sapSuiteUtgContentTopIndent {
+    padding-top: 1.5rem;
+}
+

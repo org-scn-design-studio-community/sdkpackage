@@ -79,12 +79,12 @@ public class UI5Property {
 				+ ", \r\n\r\n\tdocu=" + docu + "]";
 	}
 	
-	public String[] toSpec20() {
+	public String[] toSpec20(String arrayTypeOptional) {
 		String compatibleType = this.getType();
 		String originalType = this.getAttr("type");
 		originalType = originalType.substring(originalType.indexOf("/") + 1);
 
-		String template = Helpers.resource2String(OrginSpec.class, "org."+compatibleType+".tmpl");
+		String template = Helpers.resource2String(OrginSpec.class, "org."+compatibleType+arrayTypeOptional+".tmpl");
 		
 		if(template == null) {
 			template = Helpers.resource2String(OrginSpec.class, "org.default.tmpl");
@@ -104,16 +104,23 @@ public class UI5Property {
 		
 		if(desctiptionOfProperty.contains("Value")) {
 			category = "Data-Values";
-			categoryDs = "Display-Values";
+			categoryDs = "Data-Values";
 		}
 		if(desctiptionOfProperty.contains("Label")) {
-			category = "Data-Labels";
+			category = "Display-Labels";
 			categoryDs = "Display-Labels";
 		}
 		
 		if(compatibleType.equals("ObjectArray") || compatibleType.equals("ObjectSingle")) {
-			category = "Content-" + desctiptionOfProperty;
-			categoryDs = "Content-" + desctiptionOfProperty;
+			String addSub = "";
+			if(desctiptionOfProperty.contains("Label") && !desctiptionOfProperty.equals("Labels")) {
+				addSub = "Labels-";
+			}
+			if(desctiptionOfProperty.contains("Threshold") && !desctiptionOfProperty.equals("Thresholds")) {
+				addSub = "Thresholds-";
+			}
+			category = "Content-" + addSub + desctiptionOfProperty.replace("-", ">");
+			categoryDs = "Content-" + addSub + desctiptionOfProperty.replace("-", ">");
 		}
 		
 		template = template.replace("%NAME%", nameOfProperty);
@@ -146,6 +153,27 @@ public class UI5Property {
 		template = template.replace("\"choiceType\": \"\",", "\"choiceType\": \""+originalType+"\",");
 
 		String defaultValue = this.getAttr("defaultValue");
+		// cut default value in case too long
+		if(defaultValue == null) {
+			defaultValue = "";
+		}		
+		if(compatibleType.equals("int") && defaultValue.length() == 0) {
+			defaultValue = "0";
+		}
+		
+		if(compatibleType.equals("float") && defaultValue.length() == 0) {
+			defaultValue = "0.0";
+		}
+		if(defaultValue.indexOf("\"")  == 0) {
+			defaultValue = defaultValue.substring(1);
+		}
+		if(defaultValue.length() > 0 && defaultValue.indexOf("\"")  == defaultValue.length()-1) {
+			defaultValue = defaultValue.substring(0, defaultValue.length()-1);
+		}
+		
+		if(defaultValue.endsWith("px") && compatibleType.equals("int")) {
+			defaultValue = defaultValue.replace("px", "");
+		}
 
 		int currentI = 0;
 		boolean defaultIsInValues = false;
@@ -181,9 +209,13 @@ public class UI5Property {
 					jsonSpec = ui5Type.updateSpecAndZtlSingle();
 				} else {
 					Helpers.string2File(xmlSpecFile, onlineSpec);
-					UI5Control ui5Type = new UI5Control(new File(xmlSpecFile));
-					ui5Type.generateSpec();
-					jsonSpec = ui5Type.updateSpecSingle();
+					UI5Control ui5Control = new UI5Control(new File(xmlSpecFile));
+					ui5Control.generateSpec();
+					jsonSpec = ui5Control.updateSpecSingle();
+					
+					if(ui5Control.is2notSimple()) {
+						return this.toSpec20("-double");
+					}
 				}
 			}
 			
@@ -211,23 +243,49 @@ public class UI5Property {
 				}
 			} else {
 				helper.readSpecification(this.valueProperties, jsonIncludeSpecification);
-				
+
 				for (Property propertyChild : this.valueProperties) {
 					String typeChild = propertyChild.getExtendedFullSpec().getType(true);
+					boolean typeIsArray = propertyChild.getExtendedFullSpec().isArrayType();
 					
 					String nameChild = propertyChild.getName();
 					
-					String propDef = "\""+nameChild+"\": {\r\n\t\t\t\t\t";
-					propDef = propDef + "  \"desc\": \""+Helpers.makeDescription(nameChild)+"\",\r\n\t\t\t\t\t";
-					propDef = propDef + "  \"type\": \""+typeChild+"\"\r\n\t\t\t\t\t";
-					propDef = propDef + "}";
+					String keyAddition = "";
+					String tabs = "\t\t\t\t\t";
 					
-					template = template.replace("%ARRAY_PROPERTY_SEQUENCE%", nameChild + ",%ARRAY_PROPERTY_SEQUENCE%");
-					template = template.replace("%ARRAY_PROPERTY_VALUE%", propDef + ",\r\n\t\t\t\t\t%ARRAY_PROPERTY_VALUE%");
+					String propDef = "";
+					
+					if(typeIsArray) {
+						keyAddition = "SUB_";
+						tabs = tabs + "\t";
+						
+						String[] propSubDef = propertyChild.getSubArraySpec20();
+						
+						template = template.replace("%"+keyAddition+"ARRAY_PROPERTY_SEQUENCE%", propSubDef[0] + ",%"+keyAddition+"ARRAY_PROPERTY_SEQUENCE%");
+						template = template.replace("%"+keyAddition+"ARRAY_PROPERTY_VALUE%", propSubDef[1] + ",\r\n"+tabs+"%"+keyAddition+"ARRAY_PROPERTY_VALUE%");
+						template = template.replace("%SUB_NAME%", nameChild);
+						
+						if(arrayTypeOptional.length() == 0) {
+							return this.toSpec20("-double");
+						}
+					} else {
+						propDef = "\""+nameChild+"\": {\r\n" + tabs;
+						propDef = propDef + "  \"desc\": \""+Helpers.makeDescription(nameChild)+"\",\r\n" + tabs;
+						propDef = propDef + "  \"type\": \""+typeChild+"\"\r\n" + tabs;
+						propDef = propDef + "}";
+
+						template = template.replace("%"+keyAddition+"ARRAY_PROPERTY_SEQUENCE%", nameChild + ",%"+keyAddition+"ARRAY_PROPERTY_SEQUENCE%");
+						template = template.replace("%"+keyAddition+"ARRAY_PROPERTY_VALUE%", propDef + ",\r\n"+tabs+"%"+keyAddition+"ARRAY_PROPERTY_VALUE%");
+					}
 				}
 
 				template = template.replace(",%ARRAY_PROPERTY_SEQUENCE%", "");
 				template = template.replace(",\r\n\t\t\t\t\t%ARRAY_PROPERTY_VALUE%", "");
+				
+				template = template.replace(",%SUB_ARRAY_PROPERTY_SEQUENCE%", "");
+				template = template.replace("%SUB_ARRAY_PROPERTY_SEQUENCE%", "");
+				template = template.replace(",\r\n\t\t\t\t\t\t%SUB_ARRAY_PROPERTY_VALUE%", "");
+				template = template.replace("\r\n\t\t\t\t\t\t%SUB_ARRAY_PROPERTY_VALUE%", "");
 			}
 		}
 		
@@ -245,7 +303,7 @@ public class UI5Property {
 		template = template.replace("%VALUE_ENTRY%", "");
 
 		if(!defaultIsInValues) {
-			throw new RuntimeException("default "+this.getAttr("defaultValue")+" is not in value list! " + nameOfProperty + ", in component " + this.componentName);
+			throw new RuntimeException("default "+this.getAttr("defaultValue")+" is not in value list of " + nameOfProperty + ", in component " + this.componentName);
 		}
 		
 		if (this.values.size() > 0) {
@@ -254,20 +312,6 @@ public class UI5Property {
 					defaultValue = value.getName();
 				}
 			}
-		}
-		
-		// cut default value in case too long
-		if(defaultValue == null) {
-			defaultValue = "";
-		}
-		
-		
-		if(compatibleType.equals("int") && defaultValue.length() == 0) {
-			defaultValue = "0";
-		}
-		
-		if(compatibleType.equals("float") && defaultValue.length() == 0) {
-			defaultValue = "0.0";
 		}
 		
 		template = template.replace("%DEFAULT%", defaultValue);
@@ -302,19 +346,19 @@ public class UI5Property {
 	String getType() {
 		String type = this.getAttr("type");
 		
-		if(type.endsWith("string")) {
+		if(type.endsWith("/string") || type.equals("string")) {
 			return "String";
 		}
 		
-		if(type.endsWith("float")) {
+		if(type.endsWith("/float") || type.equals("float")) {
 			return "float";
 		}
 		
-		if(type.endsWith("int")) {
+		if(type.endsWith("/int") || type.equals("int")) {
 			return "int";
 		}
 		
-		if(type.endsWith("boolean")) {
+		if(type.endsWith("/boolean") || type.equals("boolean")) {
 			return "boolean";
 		}
 		

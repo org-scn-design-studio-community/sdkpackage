@@ -1,0 +1,221 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/NumericContent.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsNC {
+	position: relative;
+	box-sizing: border-box;
+	outline: none;
+}
+
+.sapSuiteUiCommonsNC.L {
+	height: 5.625rem;
+	width: 12rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNC.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNC.Auto,
+.sapSuiteUiCommonsNC.M {
+	height: 4.5rem;
+	width: 10.5rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNC.Auto,
+.sapSuiteUiCommonsNC.S,
+.sapSuiteUiCommonsNC.XS {
+	height: 3.5rem;
+	width: 8.25rem;
+}
+
+.sapSuiteUiCommonsNCInner {
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNCInner.Auto,
+.sapSuiteUiCommonsNCInner.S,
+.sapSuiteUiCommonsNCInner.XS {
+	top: 1.0625rem;
+	bottom: -.0625rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNCInner.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNCInner.Auto,
+.sapSuiteUiCommonsNCInner.M {
+	top: 1.25rem;
+	bottom: -.125rem;
+}
+
+.sapSuiteUiCommonsNCInner.L {
+	top: 1.9rem;
+	bottom: 0;
+}
+
+.sapSuiteUiCommonsNCIconImage {
+	position: relative;
+	float: left;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNCIconImage.Auto,
+.sapSuiteUiCommonsNCIconImage.S,
+.sapSuiteUiCommonsNCIconImage.XS {
+	font-size: 24px;
+	height: 24px;
+	width: 24px;
+    margin-top: .375rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNCIconImage.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNCIconImage.Auto,
+.sapSuiteUiCommonsNCIconImage.M {
+	font-size: 34px;
+	height: 34px;
+	width: 34px;
+    margin-top: .625rem;
+}
+
+.sapSuiteUiCommonsNCIconImage.L {
+	font-size: 42px;
+	height: 44px;
+	width: 44px;
+    margin-top: .1rem;
+}
+
+.sapSuiteUiCommonsNCValueScr {
+    overflow: hidden;
+    left: 0;
+    width: 100%;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNCValueScr.Auto,
+.sapSuiteUiCommonsNCValueScr.S,
+.sapSuiteUiCommonsNCValueScr.XS {
+    margin-top: -.075rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNCValueScr.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNCValueScr.Auto,
+.sapSuiteUiCommonsNCValueScr.M {
+    margin-top: -.045rem;
+}
+.sapSuiteUiCommonsNCValueScr.L {
+    margin-top: -.6rem;
+}	
+
+.sapSuiteUiCommonsNCValue {
+ 	position: relative;
+	text-align: right;
+	width: auto;
+  	overflow: hidden;
+  	white-space: nowrap;
+  	text-overflow: ellipsis;
+}
+
+html[dir=rtl] .sapSuiteUiCommonsNCValue {
+	text-align: left;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNCValue.Auto,
+.sapSuiteUiCommonsNCValue.S,
+.sapSuiteUiCommonsNCValue.XS {
+	font-size: 34px;
+	height: 2.5rem;
+    padding-right: .375rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNCValue.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNCValue.Auto,
+.sapSuiteUiCommonsNCValue.M {
+	font-size: 48px;
+    padding-right: .5rem;
+    line-height: 54px;
+}
+
+.sapSuiteUiCommonsNCValue.L {
+	font-size: 56px;
+    height: 3.5rem;
+    padding-right: .5rem;
+}
+
+.sapSuiteUiCommonsNCIndScale {
+   	position: relative;
+  	float: right;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	min-width: 14px;
+  	text-align: center;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNCIndScale.Auto,
+.sapSuiteUiCommonsNCIndScale.S,
+.sapSuiteUiCommonsNCIndScale.XS {
+    height: 2rem;
+    max-width: 8.25rem;
+    margin-top: .375rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNCIndScale.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNCIndScale.Auto,
+.sapSuiteUiCommonsNCIndScale.M {
+    height: 2.875rem;
+    max-width: 10.5rem;
+    margin-top: .5rem;
+}
+
+.sapSuiteUiCommonsNCIndScale.L {
+    height: 2.75rem;
+    max-width: 12.75rem;
+    margin-top: .3rem;
+}
+
+.sapSuiteUiCommonsNCIndicator{
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 0;
+	margin: 0 auto;
+	display: block;
+}
+
+.sapSuiteUiCommonsNCIndicator.Up {
+	border-bottom: 7px solid;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+}
+
+.sapSuiteUiCommonsNCIndicator.Down {
+	border-top: 7px solid;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+}
+
+.sapSuiteUiCommonsNCScale {
+    display: block;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNCScale.Auto,
+.sapSuiteUiCommonsNCScale.S,
+.sapSuiteUiCommonsNCScale.XS {
+    height: 17px;
+    margin-top: 0.8rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiCommonsNCScale.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteUiCommonsNCScale.Auto,
+.sapSuiteUiCommonsNCScale.M {
+    height: 18px;
+    margin-top: 1.3rem;
+}
+
+.sapSuiteUiCommonsNCScale.L {
+    height: 19px;
+    margin-top: 1.45rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiCommonsNCScale.Auto,
+.sapSuiteUiCommonsNCScale.S,
+.sapSuiteUiCommonsNCScale.XS {
+    font-size: 0.75rem;
+}
