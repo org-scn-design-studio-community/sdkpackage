@@ -41,7 +41,7 @@ public class Ui5JsContent {
 		
 		boolean found = false;
 		for (String templateName : templatesStatic.keySet()) {
-			if(templateName.contains("js." +this.type)) {
+			if(templateName.contains("js." +this.type + ".")) {
 				templates.put(templateName, new String(templatesStatic.get(templateName)));
 				found = true;
 			}
@@ -50,7 +50,7 @@ public class Ui5JsContent {
 		if(!found) {
 			this.type = "simple";
 			for (String templateName : templatesStatic.keySet()) {
-				if(templateName.contains("js." +this.type)) {
+				if(templateName.contains("js." +this.type + ".")) {
 					templates.put(templateName, new String(templatesStatic.get(templateName)));
 				}
 			}

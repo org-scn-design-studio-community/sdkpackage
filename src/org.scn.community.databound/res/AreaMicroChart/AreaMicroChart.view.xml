@@ -32,19 +32,19 @@
 				>
 
 		       <firstXLabel>
-		         <MicroAreaChartLabel label="{lastYLabel/label}" color="{lastYLabel/color}"/>
+		         <MicroAreaChartLabel label="{firstXLabel/label}" color="{firstXLabel/color}"/>
 		       </firstXLabel>
 		       <lastXLabel>
-		         <MicroAreaChartLabel label="{lastYLabel/label}" color="{lastYLabel/color}"/>
+		         <MicroAreaChartLabel label="{lastXLabel/label}" color="{lastXLabel/color}"/>
 		       </lastXLabel>
 		       <firstYLabel>
-		         <MicroAreaChartLabel label="{lastYLabel/label}" color="{lastYLabel/color}"/>
+		         <MicroAreaChartLabel label="{firstYLabel/label}" color="{firstYLabel/color}"/>
 		       </firstYLabel>
 		       <lastYLabel>
 		         <MicroAreaChartLabel label="{lastYLabel/label}" color="{lastYLabel/color}"/>
 		       </lastYLabel>
 		       <minLabel>
-		         <MicroAreaChartLabel label="{lastYLabel/label}" color="{lastYLabel/color}"/>
+		         <MicroAreaChartLabel label="{minLabel/label}" color="{minLabel/color}"/>
 		       </minLabel>
 		       <maxLabel>
 		         <MicroAreaChartLabel label="{maxLabel/label}" color="{maxLabel/color}"/>

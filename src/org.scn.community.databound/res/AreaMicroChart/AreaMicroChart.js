@@ -152,94 +152,6 @@ AreaMicroChart = {
 				chartJsonTemplate[chartPropI] = l_Chart[chartPropI];	
 			}
 		}
-		var dataCellListFirstXLabel = that.getDataCellListFirstXLabel();
-		var useDataCellListFirstXLabel = false;
-		if(org_scn_community_databound.hasData (dataCellListFirstXLabel)) {
-			dataCellListFirstXLabel = org_scn_community_databound.flatten (dataCellListFirstXLabel,options);
-			if(!that.getUseFirstXLabel()) {
-				useDataCellListFirstXLabel = true;
-			}
-		}
-		var l_FirstXLabel = that.getFirstXLabel();
-		l_FirstXLabel = org_scn_community_basics.parseJson(l_FirstXLabel, "A");
-
-		if(that.getUseFirstXLabel() && l_FirstXLabel[0]) {
-			var l_FirstXLabelRoot = l_FirstXLabel[0];
-			l_FirstXLabelRoot.__children = [];
-			for(var contentI in l_FirstXLabel) {
-				var contentO = l_FirstXLabel[contentI];
-
-				if(contentO.parentKey != "ROOT") {
-					l_FirstXLabelRoot.__children.push(contentO);
-				}
-			}
-			l_FirstXLabel = l_FirstXLabelRoot;
-		}
-
-		var firstXLabelJsonTemplate = {};
-		for (var firstXLabelPropI in l_FirstXLabel) {
-			if(firstXLabelPropI == "parentKey" || firstXLabelPropI == "leaf" || firstXLabelPropI == "key") continue;
-			if(firstXLabelPropI == "__children") {
-				var subArrayName = that.getSpecSubArrayName("firstXLabel");
-				firstXLabelJsonTemplate[subArrayName] = [];
-				
-				for (var firstXLabelPropChildI in l_FirstXLabel[firstXLabelPropI]) {
-					var firstXLabelPropChildO = l_FirstXLabel[firstXLabelPropI][firstXLabelPropChildI];
-					var firstXLabelSubPropO = {};
-					for (var firstXLabelPropChildPropI in firstXLabelPropChildO) {
-						if(firstXLabelPropChildPropI == "parentKey" || firstXLabelPropChildPropI == "leaf" || firstXLabelPropChildPropI == "key") continue;
-						firstXLabelSubPropO[firstXLabelPropChildPropI] = firstXLabelPropChildO[firstXLabelPropChildPropI];
-					}
-					firstXLabelJsonTemplate[subArrayName].push(firstXLabelSubPropO);
-				}
-			} else {
-				firstXLabelJsonTemplate[firstXLabelPropI] = l_FirstXLabel[firstXLabelPropI];	
-			}
-		}
-		var dataCellListFirstYLabel = that.getDataCellListFirstYLabel();
-		var useDataCellListFirstYLabel = false;
-		if(org_scn_community_databound.hasData (dataCellListFirstYLabel)) {
-			dataCellListFirstYLabel = org_scn_community_databound.flatten (dataCellListFirstYLabel,options);
-			if(!that.getUseFirstYLabel()) {
-				useDataCellListFirstYLabel = true;
-			}
-		}
-		var l_FirstYLabel = that.getFirstYLabel();
-		l_FirstYLabel = org_scn_community_basics.parseJson(l_FirstYLabel, "A");
-
-		if(that.getUseFirstYLabel() && l_FirstYLabel[0]) {
-			var l_FirstYLabelRoot = l_FirstYLabel[0];
-			l_FirstYLabelRoot.__children = [];
-			for(var contentI in l_FirstYLabel) {
-				var contentO = l_FirstYLabel[contentI];
-
-				if(contentO.parentKey != "ROOT") {
-					l_FirstYLabelRoot.__children.push(contentO);
-				}
-			}
-			l_FirstYLabel = l_FirstYLabelRoot;
-		}
-
-		var firstYLabelJsonTemplate = {};
-		for (var firstYLabelPropI in l_FirstYLabel) {
-			if(firstYLabelPropI == "parentKey" || firstYLabelPropI == "leaf" || firstYLabelPropI == "key") continue;
-			if(firstYLabelPropI == "__children") {
-				var subArrayName = that.getSpecSubArrayName("firstYLabel");
-				firstYLabelJsonTemplate[subArrayName] = [];
-				
-				for (var firstYLabelPropChildI in l_FirstYLabel[firstYLabelPropI]) {
-					var firstYLabelPropChildO = l_FirstYLabel[firstYLabelPropI][firstYLabelPropChildI];
-					var firstYLabelSubPropO = {};
-					for (var firstYLabelPropChildPropI in firstYLabelPropChildO) {
-						if(firstYLabelPropChildPropI == "parentKey" || firstYLabelPropChildPropI == "leaf" || firstYLabelPropChildPropI == "key") continue;
-						firstYLabelSubPropO[firstYLabelPropChildPropI] = firstYLabelPropChildO[firstYLabelPropChildPropI];
-					}
-					firstYLabelJsonTemplate[subArrayName].push(firstYLabelSubPropO);
-				}
-			} else {
-				firstYLabelJsonTemplate[firstYLabelPropI] = l_FirstYLabel[firstYLabelPropI];	
-			}
-		}
 		var dataCellListInnerMaxThreshold = that.getDataCellListInnerMaxThreshold();
 		var useDataCellListInnerMaxThreshold = false;
 		if(org_scn_community_databound.hasData (dataCellListInnerMaxThreshold)) {
@@ -328,138 +240,6 @@ AreaMicroChart = {
 				innerMinThresholdJsonTemplate[innerMinThresholdPropI] = l_InnerMinThreshold[innerMinThresholdPropI];	
 			}
 		}
-		var dataCellListLastXLabel = that.getDataCellListLastXLabel();
-		var useDataCellListLastXLabel = false;
-		if(org_scn_community_databound.hasData (dataCellListLastXLabel)) {
-			dataCellListLastXLabel = org_scn_community_databound.flatten (dataCellListLastXLabel,options);
-			if(!that.getUseLastXLabel()) {
-				useDataCellListLastXLabel = true;
-			}
-		}
-		var l_LastXLabel = that.getLastXLabel();
-		l_LastXLabel = org_scn_community_basics.parseJson(l_LastXLabel, "A");
-
-		if(that.getUseLastXLabel() && l_LastXLabel[0]) {
-			var l_LastXLabelRoot = l_LastXLabel[0];
-			l_LastXLabelRoot.__children = [];
-			for(var contentI in l_LastXLabel) {
-				var contentO = l_LastXLabel[contentI];
-
-				if(contentO.parentKey != "ROOT") {
-					l_LastXLabelRoot.__children.push(contentO);
-				}
-			}
-			l_LastXLabel = l_LastXLabelRoot;
-		}
-
-		var lastXLabelJsonTemplate = {};
-		for (var lastXLabelPropI in l_LastXLabel) {
-			if(lastXLabelPropI == "parentKey" || lastXLabelPropI == "leaf" || lastXLabelPropI == "key") continue;
-			if(lastXLabelPropI == "__children") {
-				var subArrayName = that.getSpecSubArrayName("lastXLabel");
-				lastXLabelJsonTemplate[subArrayName] = [];
-				
-				for (var lastXLabelPropChildI in l_LastXLabel[lastXLabelPropI]) {
-					var lastXLabelPropChildO = l_LastXLabel[lastXLabelPropI][lastXLabelPropChildI];
-					var lastXLabelSubPropO = {};
-					for (var lastXLabelPropChildPropI in lastXLabelPropChildO) {
-						if(lastXLabelPropChildPropI == "parentKey" || lastXLabelPropChildPropI == "leaf" || lastXLabelPropChildPropI == "key") continue;
-						lastXLabelSubPropO[lastXLabelPropChildPropI] = lastXLabelPropChildO[lastXLabelPropChildPropI];
-					}
-					lastXLabelJsonTemplate[subArrayName].push(lastXLabelSubPropO);
-				}
-			} else {
-				lastXLabelJsonTemplate[lastXLabelPropI] = l_LastXLabel[lastXLabelPropI];	
-			}
-		}
-		var dataCellListLastYLabel = that.getDataCellListLastYLabel();
-		var useDataCellListLastYLabel = false;
-		if(org_scn_community_databound.hasData (dataCellListLastYLabel)) {
-			dataCellListLastYLabel = org_scn_community_databound.flatten (dataCellListLastYLabel,options);
-			if(!that.getUseLastYLabel()) {
-				useDataCellListLastYLabel = true;
-			}
-		}
-		var l_LastYLabel = that.getLastYLabel();
-		l_LastYLabel = org_scn_community_basics.parseJson(l_LastYLabel, "A");
-
-		if(that.getUseLastYLabel() && l_LastYLabel[0]) {
-			var l_LastYLabelRoot = l_LastYLabel[0];
-			l_LastYLabelRoot.__children = [];
-			for(var contentI in l_LastYLabel) {
-				var contentO = l_LastYLabel[contentI];
-
-				if(contentO.parentKey != "ROOT") {
-					l_LastYLabelRoot.__children.push(contentO);
-				}
-			}
-			l_LastYLabel = l_LastYLabelRoot;
-		}
-
-		var lastYLabelJsonTemplate = {};
-		for (var lastYLabelPropI in l_LastYLabel) {
-			if(lastYLabelPropI == "parentKey" || lastYLabelPropI == "leaf" || lastYLabelPropI == "key") continue;
-			if(lastYLabelPropI == "__children") {
-				var subArrayName = that.getSpecSubArrayName("lastYLabel");
-				lastYLabelJsonTemplate[subArrayName] = [];
-				
-				for (var lastYLabelPropChildI in l_LastYLabel[lastYLabelPropI]) {
-					var lastYLabelPropChildO = l_LastYLabel[lastYLabelPropI][lastYLabelPropChildI];
-					var lastYLabelSubPropO = {};
-					for (var lastYLabelPropChildPropI in lastYLabelPropChildO) {
-						if(lastYLabelPropChildPropI == "parentKey" || lastYLabelPropChildPropI == "leaf" || lastYLabelPropChildPropI == "key") continue;
-						lastYLabelSubPropO[lastYLabelPropChildPropI] = lastYLabelPropChildO[lastYLabelPropChildPropI];
-					}
-					lastYLabelJsonTemplate[subArrayName].push(lastYLabelSubPropO);
-				}
-			} else {
-				lastYLabelJsonTemplate[lastYLabelPropI] = l_LastYLabel[lastYLabelPropI];	
-			}
-		}
-		var dataCellListMaxLabel = that.getDataCellListMaxLabel();
-		var useDataCellListMaxLabel = false;
-		if(org_scn_community_databound.hasData (dataCellListMaxLabel)) {
-			dataCellListMaxLabel = org_scn_community_databound.flatten (dataCellListMaxLabel,options);
-			if(!that.getUseMaxLabel()) {
-				useDataCellListMaxLabel = true;
-			}
-		}
-		var l_MaxLabel = that.getMaxLabel();
-		l_MaxLabel = org_scn_community_basics.parseJson(l_MaxLabel, "A");
-
-		if(that.getUseMaxLabel() && l_MaxLabel[0]) {
-			var l_MaxLabelRoot = l_MaxLabel[0];
-			l_MaxLabelRoot.__children = [];
-			for(var contentI in l_MaxLabel) {
-				var contentO = l_MaxLabel[contentI];
-
-				if(contentO.parentKey != "ROOT") {
-					l_MaxLabelRoot.__children.push(contentO);
-				}
-			}
-			l_MaxLabel = l_MaxLabelRoot;
-		}
-
-		var maxLabelJsonTemplate = {};
-		for (var maxLabelPropI in l_MaxLabel) {
-			if(maxLabelPropI == "parentKey" || maxLabelPropI == "leaf" || maxLabelPropI == "key") continue;
-			if(maxLabelPropI == "__children") {
-				var subArrayName = that.getSpecSubArrayName("maxLabel");
-				maxLabelJsonTemplate[subArrayName] = [];
-				
-				for (var maxLabelPropChildI in l_MaxLabel[maxLabelPropI]) {
-					var maxLabelPropChildO = l_MaxLabel[maxLabelPropI][maxLabelPropChildI];
-					var maxLabelSubPropO = {};
-					for (var maxLabelPropChildPropI in maxLabelPropChildO) {
-						if(maxLabelPropChildPropI == "parentKey" || maxLabelPropChildPropI == "leaf" || maxLabelPropChildPropI == "key") continue;
-						maxLabelSubPropO[maxLabelPropChildPropI] = maxLabelPropChildO[maxLabelPropChildPropI];
-					}
-					maxLabelJsonTemplate[subArrayName].push(maxLabelSubPropO);
-				}
-			} else {
-				maxLabelJsonTemplate[maxLabelPropI] = l_MaxLabel[maxLabelPropI];	
-			}
-		}
 		var dataCellListMaxThreshold = that.getDataCellListMaxThreshold();
 		var useDataCellListMaxThreshold = false;
 		if(org_scn_community_databound.hasData (dataCellListMaxThreshold)) {
@@ -502,50 +282,6 @@ AreaMicroChart = {
 				}
 			} else {
 				maxThresholdJsonTemplate[maxThresholdPropI] = l_MaxThreshold[maxThresholdPropI];	
-			}
-		}
-		var dataCellListMinLabel = that.getDataCellListMinLabel();
-		var useDataCellListMinLabel = false;
-		if(org_scn_community_databound.hasData (dataCellListMinLabel)) {
-			dataCellListMinLabel = org_scn_community_databound.flatten (dataCellListMinLabel,options);
-			if(!that.getUseMinLabel()) {
-				useDataCellListMinLabel = true;
-			}
-		}
-		var l_MinLabel = that.getMinLabel();
-		l_MinLabel = org_scn_community_basics.parseJson(l_MinLabel, "A");
-
-		if(that.getUseMinLabel() && l_MinLabel[0]) {
-			var l_MinLabelRoot = l_MinLabel[0];
-			l_MinLabelRoot.__children = [];
-			for(var contentI in l_MinLabel) {
-				var contentO = l_MinLabel[contentI];
-
-				if(contentO.parentKey != "ROOT") {
-					l_MinLabelRoot.__children.push(contentO);
-				}
-			}
-			l_MinLabel = l_MinLabelRoot;
-		}
-
-		var minLabelJsonTemplate = {};
-		for (var minLabelPropI in l_MinLabel) {
-			if(minLabelPropI == "parentKey" || minLabelPropI == "leaf" || minLabelPropI == "key") continue;
-			if(minLabelPropI == "__children") {
-				var subArrayName = that.getSpecSubArrayName("minLabel");
-				minLabelJsonTemplate[subArrayName] = [];
-				
-				for (var minLabelPropChildI in l_MinLabel[minLabelPropI]) {
-					var minLabelPropChildO = l_MinLabel[minLabelPropI][minLabelPropChildI];
-					var minLabelSubPropO = {};
-					for (var minLabelPropChildPropI in minLabelPropChildO) {
-						if(minLabelPropChildPropI == "parentKey" || minLabelPropChildPropI == "leaf" || minLabelPropChildPropI == "key") continue;
-						minLabelSubPropO[minLabelPropChildPropI] = minLabelPropChildO[minLabelPropChildPropI];
-					}
-					minLabelJsonTemplate[subArrayName].push(minLabelSubPropO);
-				}
-			} else {
-				minLabelJsonTemplate[minLabelPropI] = l_MinLabel[minLabelPropI];	
 			}
 		}
 		var dataCellListMinThreshold = that.getDataCellListMinThreshold();
@@ -823,18 +559,6 @@ AreaMicroChart = {
 			} else {
 				l_Chart.label = l_Chart.key;	
 			}
-			if(useDataCellListFirstXLabel) {
-				l_FirstXLabel.label = dataCellListFirstXLabel.rowHeaders[rowI];
-				l_FirstXLabel.value = dataCellListActual.values[rowI][0];
-			} else {
-				l_FirstXLabel.label = l_FirstXLabel.key;	
-			}
-			if(useDataCellListFirstYLabel) {
-				l_FirstYLabel.label = dataCellListFirstYLabel.rowHeaders[rowI];
-				l_FirstYLabel.value = dataCellListActual.values[rowI][0];
-			} else {
-				l_FirstYLabel.label = l_FirstYLabel.key;	
-			}
 			if(useDataCellListInnerMaxThreshold) {
 				l_InnerMaxThreshold.label = dataCellListInnerMaxThreshold.rowHeaders[rowI];
 				l_InnerMaxThreshold.value = dataCellListActual.values[rowI][0];
@@ -847,35 +571,11 @@ AreaMicroChart = {
 			} else {
 				l_InnerMinThreshold.label = l_InnerMinThreshold.key;	
 			}
-			if(useDataCellListLastXLabel) {
-				l_LastXLabel.label = dataCellListLastXLabel.rowHeaders[rowI];
-				l_LastXLabel.value = dataCellListActual.values[rowI][0];
-			} else {
-				l_LastXLabel.label = l_LastXLabel.key;	
-			}
-			if(useDataCellListLastYLabel) {
-				l_LastYLabel.label = dataCellListLastYLabel.rowHeaders[rowI];
-				l_LastYLabel.value = dataCellListActual.values[rowI][0];
-			} else {
-				l_LastYLabel.label = l_LastYLabel.key;	
-			}
-			if(useDataCellListMaxLabel) {
-				l_MaxLabel.label = dataCellListMaxLabel.rowHeaders[rowI];
-				l_MaxLabel.value = dataCellListActual.values[rowI][0];
-			} else {
-				l_MaxLabel.label = l_MaxLabel.key;	
-			}
 			if(useDataCellListMaxThreshold) {
 				l_MaxThreshold.label = dataCellListMaxThreshold.rowHeaders[rowI];
 				l_MaxThreshold.value = dataCellListActual.values[rowI][0];
 			} else {
 				l_MaxThreshold.label = l_MaxThreshold.key;	
-			}
-			if(useDataCellListMinLabel) {
-				l_MinLabel.label = dataCellListMinLabel.rowHeaders[rowI];
-				l_MinLabel.value = dataCellListActual.values[rowI][0];
-			} else {
-				l_MinLabel.label = l_MinLabel.key;	
 			}
 			if(useDataCellListMinThreshold) {
 				l_MinThreshold.label = dataCellListMinThreshold.rowHeaders[rowI];
@@ -956,15 +656,9 @@ AreaMicroChart = {
 
 
 			customData.chart = chartJsonTemplate;
-			customData.firstXLabel = firstXLabelJsonTemplate;
-			customData.firstYLabel = firstYLabelJsonTemplate;
 			customData.innerMaxThreshold = innerMaxThresholdJsonTemplate;
 			customData.innerMinThreshold = innerMinThresholdJsonTemplate;
-			customData.lastXLabel = lastXLabelJsonTemplate;
-			customData.lastYLabel = lastYLabelJsonTemplate;
-			customData.maxLabel = maxLabelJsonTemplate;
 			customData.maxThreshold = maxThresholdJsonTemplate;
-			customData.minLabel = minLabelJsonTemplate;
 			customData.minThreshold = minThresholdJsonTemplate;
 			customData.target = targetJsonTemplate;
 
@@ -1012,7 +706,7 @@ AreaMicroChart = {
 				for(entryI in that._specialDataModel) {
 					var entry = that._specialDataModel[entryI];
 	
-					{entry.height = (width - 20) + "px"};
+					{entry.height = (height - 20) + "px"};
 				}
 	
 				that._oModel.setData(that._specialDataModel);

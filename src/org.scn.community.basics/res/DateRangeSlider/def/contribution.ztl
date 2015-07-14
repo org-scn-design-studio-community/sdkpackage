@@ -107,56 +107,56 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 	/**
 	 * Sets Maximum Date Property
 	 */	
-	void setMax( /**Maximum Date*/ String Max){*
-		this.DMax = Max;
+	void setMaximumDate( /**Maximum Date*/ String maximumDate){*
+		this.DMax = maximumDate;
 	*}
 
 	/**
 	 * Gets Maximum Date Property
 	 */	
-	String getMax() {*
+	String getMaximumDate() {*
 		return this.DMax;
 	*}
 
 	/**
 	 * Sets Minimum Date Property
 	 */	
-	void setMin( /**Minimum Date*/ String Min){*
-		this.DMin = Min;
+	void setMinimumDate( /**Minimum Date*/ String minimumDate){*
+		this.DMin = minimumDate;
 	*}
 
 	/**
 	 * Gets Minimum Date Property
 	 */	
-	String getMin() {*
+	String getMinimumDate() {*
 		return this.DMin;
 	*}
 
 	/**
 	 * Sets First Date Property
 	 */	
-	void setValue( /**First Date*/ String Value){*
-		this.DValue = Value;
+	void setFirstDate( /**First Date*/ String firstDate){*
+		this.DValue = firstDate;
 	*}
 
 	/**
 	 * Gets First Date Property
 	 */	
-	String getValue() {*
+	String getFirstDate() {*
 		return this.DValue;
 	*}
 
 	/**
 	 * Sets Second Date Property
 	 */	
-	void setValue2( /**Second Date*/ String Value2){*
-		this.DValue2 = Value2;
+	void setSecondDate( /**Second Date*/ String secondDate){*
+		this.DValue2 = secondDate;
 	*}
 
 	/**
 	 * Gets Second Date Property
 	 */	
-	String getValue2() {*
+	String getSecondDate() {*
 		return this.DValue2;
 	*}
 

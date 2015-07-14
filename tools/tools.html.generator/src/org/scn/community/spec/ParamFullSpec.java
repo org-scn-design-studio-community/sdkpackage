@@ -43,7 +43,13 @@ public class ParamFullSpec {
 	}
 
 	public String getCorrectName() {
-		String correctName = properties.get("correctName");
+		if(options == null) {
+			options = getParameter("opts");
+		}
+		if(options == null) {
+			return this.getName();
+		}
+		String correctName = options.getPropertyValue("correctName");
 		if(correctName == null || correctName.length() == 0) {
 			return this.getName();
 		}

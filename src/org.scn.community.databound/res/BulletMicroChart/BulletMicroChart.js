@@ -317,7 +317,7 @@ BulletMicroChart = {
 				for(entryI in that._specialDataModel) {
 					var entry = that._specialDataModel[entryI];
 	
-					{entry.height = (width - 20) + "px"};
+					{entry.height = (height - 20) + "px"};
 				}
 	
 				that._oModel.setData(that._specialDataModel);
