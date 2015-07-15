@@ -21,13 +21,20 @@
 	      	>
 	      </m:Label>
 	      <BulletChart 
+	        mode="{mode}"
+	        scale="{scale}"
+	        scaleColor="{scaleColor}"
 	        size="{size}" 
-	        scale="{scale}" 
-	        targetValue="{targetValue}" 
-	        forecastValue="{forecastValue}"
+	        
+	        actualValueLabel="{actualValueLabel}"
+	        deltaValueLabel="{deltaValueLabel}"
+	        targetValueLabel="{targetValueLabel}"
+
 	        minValue="{minValue}" 
 	        maxValue="{maxValue}" 
-	        actualValueLabel="{actualValueLabel}"
+	        forecastValue="{forecastValue}"
+			targetValue="{targetValue}"
+
 	        class="{styleClass}" 
 	        width="{width}"
 	        press="{press}"

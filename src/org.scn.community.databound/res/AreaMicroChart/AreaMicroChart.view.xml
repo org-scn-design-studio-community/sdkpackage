@@ -23,10 +23,12 @@
 	       <MicroAreaChart 
 	        	width="{width}"
 				height="{height}" 
+
 				minXValue="{minXValue}" 
 				maxXValue="{maxXValue}" 
 				minYValue="{minYValue}" 
 				maxYValue="{maxYValue}"
+
 				view="{view}" 
 				class="{class}" 
 				press="{press}"
