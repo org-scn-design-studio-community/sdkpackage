@@ -973,7 +973,7 @@
 		id="data"
 		type="ResultCellList"
 		title="Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -1156,7 +1156,7 @@
 		id="dataCellList"
 		type="ResultCellList"
 		title="Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3714,7 +3714,7 @@ __n__}
 		id="data"
 		type="ResultSet"
 		title="Data"
-		group="Data"
+		group="DataBinding"
 		visible="false">
 
 		<option name="includeFormattedData" value="true"/>
@@ -3817,7 +3817,7 @@ __n__}
 		id="dataCellListChart"
 		type="ResultCellList"
 		title="Chart Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3829,7 +3829,7 @@ __n__}
 		id="dataCellListFirstXLabel"
 		type="ResultCellList"
 		title="First X Label Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3841,7 +3841,7 @@ __n__}
 		id="dataCellListFirstYLabel"
 		type="ResultCellList"
 		title="First Y Label Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3853,7 +3853,7 @@ __n__}
 		id="dataCellListInnerMaxThreshold"
 		type="ResultCellList"
 		title="Inner Max Threshold Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3865,7 +3865,7 @@ __n__}
 		id="dataCellListInnerMinThreshold"
 		type="ResultCellList"
 		title="Inner Min Threshold Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3877,7 +3877,7 @@ __n__}
 		id="dataCellListLastXLabel"
 		type="ResultCellList"
 		title="Last X Label Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3889,7 +3889,7 @@ __n__}
 		id="dataCellListLastYLabel"
 		type="ResultCellList"
 		title="Last Y Label Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3901,7 +3901,7 @@ __n__}
 		id="dataCellListMaxLabel"
 		type="ResultCellList"
 		title="Max Label Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3913,7 +3913,7 @@ __n__}
 		id="dataCellListMaxThreshold"
 		type="ResultCellList"
 		title="Max Threshold Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3925,7 +3925,7 @@ __n__}
 		id="dataCellListMaxXValue"
 		type="ResultCellList"
 		title="Max X Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3937,7 +3937,7 @@ __n__}
 		id="dataCellListMaxYValue"
 		type="ResultCellList"
 		title="Max Y Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3949,7 +3949,7 @@ __n__}
 		id="dataCellListMinLabel"
 		type="ResultCellList"
 		title="Min Label Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3961,7 +3961,7 @@ __n__}
 		id="dataCellListMinThreshold"
 		type="ResultCellList"
 		title="Min Threshold Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3973,7 +3973,7 @@ __n__}
 		id="dataCellListMinXValue"
 		type="ResultCellList"
 		title="Min X Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3985,7 +3985,7 @@ __n__}
 		id="dataCellListMinYValue"
 		type="ResultCellList"
 		title="Min Y Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -3997,7 +3997,7 @@ __n__}
 		id="dataCellListTarget"
 		type="ResultCellList"
 		title="Target Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -4425,7 +4425,7 @@ __n__}
 		id="dataCellListActual"
 		type="ResultCellList"
 		title="Actual Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -4437,7 +4437,7 @@ __n__}
 		id="dataCellListForecastValue"
 		type="ResultCellList"
 		title="Forecast Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -4449,7 +4449,7 @@ __n__}
 		id="dataCellListMaxValue"
 		type="ResultCellList"
 		title="Max Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -4461,7 +4461,7 @@ __n__}
 		id="dataCellListMinValue"
 		type="ResultCellList"
 		title="Min Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -4473,7 +4473,7 @@ __n__}
 		id="dataCellListTargetValue"
 		type="ResultCellList"
 		title="Target Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -4485,7 +4485,7 @@ __n__}
 		id="dataCellListThresholds"
 		type="ResultCellList"
 		title="Thresholds Data List [Multiple]"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 

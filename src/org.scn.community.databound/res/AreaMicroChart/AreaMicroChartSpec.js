@@ -69,6 +69,7 @@
       "ztlFunction": "-single",
       "ztlType": "DoubleArray"
     },
+    "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
     "value": "[]",
@@ -454,6 +455,7 @@
       "ztlFunction": "-single",
       "ztlType": "SingleArray"
     },
+    "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
     "value": "[]",
@@ -487,6 +489,7 @@
       "ztlFunction": "-single",
       "ztlType": "SingleArray"
     },
+    "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
     "value": "[]",
@@ -537,6 +540,7 @@
       "ztlFunction": "-single",
       "ztlType": "DoubleArray"
     },
+    "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
     "value": "[]",
@@ -587,6 +591,7 @@
       "ztlFunction": "-single",
       "ztlType": "DoubleArray"
     },
+    "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
     "value": "[]",
@@ -620,6 +625,7 @@
       "ztlFunction": "-single",
       "ztlType": "SingleArray"
     },
+    "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
     "value": "[]",
@@ -653,6 +659,7 @@
       "ztlFunction": "-single",
       "ztlType": "SingleArray"
     },
+    "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
     "value": "[]",
@@ -686,6 +693,7 @@
       "ztlFunction": "-single",
       "ztlType": "SingleArray"
     },
+    "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
     "value": "[]",
@@ -736,6 +744,7 @@
       "ztlFunction": "-single",
       "ztlType": "DoubleArray"
     },
+    "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
     "value": "[]",
@@ -801,6 +810,7 @@
       "ztlFunction": "-single",
       "ztlType": "SingleArray"
     },
+    "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
     "value": "[]",
@@ -851,6 +861,7 @@
       "ztlFunction": "-single",
       "ztlType": "DoubleArray"
     },
+    "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
     "value": "[]",
@@ -933,6 +944,7 @@
       "ztlFunction": "-single",
       "ztlType": "DoubleArray"
     },
+    "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
     "value": "[]",
@@ -1279,13 +1291,13 @@
   "extends1ControlDs": "MicroAreaChart.ds",
   "extends2Control": "MicroAreaChart",
   "extension": "ui5.MicroAreaChart",
+  "generatedJsFile": "true",
   "group": "ScnCommunityDataBound",
   "handlerType": "sapui5",
   "height": "200",
   "id": "AreaMicroChart",
   "package": "databound",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
-  "repeaterProperty": "target",
   "require": [
     {
       "id": "common_basics",
@@ -1293,6 +1305,10 @@
     },
     {
       "id": "common_databound",
+      "space": "known"
+    },
+    {
+      "id": "common_unified",
       "space": "known"
     },
     {

@@ -26,7 +26,8 @@
 				minXValue="{minXValue}" 
 				maxXValue="{maxXValue}" 
 				minYValue="{minYValue}" 
-				maxYValue="{maxYValue}" 
+				maxYValue="{maxYValue}"
+				view="{view}" 
 				class="{class}" 
 				press="{press}"
 				>

@@ -144,7 +144,7 @@
 		id="data"
 		type="ResultCellList"
 		title="Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 

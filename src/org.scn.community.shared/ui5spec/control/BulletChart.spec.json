@@ -331,6 +331,7 @@
 	"actual" : {
 		"template" : "ObjectSingle",
 		"type" : "String",
+		"origType": "BulletChartData";
 		"value" : "[]",
 		"visible": true,
 
@@ -371,6 +372,7 @@
 	"thresholds" : {
 		"template" : "ObjectArray",
 		"type" : "String",
+		"origType": "BulletChartData";
 		"value" : "[]",
 		"visible": true,
 

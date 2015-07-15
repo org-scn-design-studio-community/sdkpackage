@@ -15,13 +15,15 @@ public class Ui5JsContent {
 	public static TreeMap<String, String> templatesStatic = new TreeMap<String, String>();   
 	private TreeMap<String, String> templates = new TreeMap<String, String>();
 	private String type;
-	private String name;   
+	private String name;
+	private String origType;   
 
 	public Ui5JsContent(ParamFullSpec paramFullSpec) {
 		this.spec = paramFullSpec;
 		
 		this.name = paramFullSpec.getName();
 		this.type = paramFullSpec.getTemplateName();
+		this.origType = paramFullSpec.getOriginalType();
 		
 		if(templatesStatic.size() == 0) {
 			String specFile = spec.getParentProperty().getSpecFile();
@@ -40,17 +42,37 @@ public class Ui5JsContent {
 		}
 		
 		boolean found = false;
+		ArrayList<String> replacedTemplates = new ArrayList<String>();
 		for (String templateName : templatesStatic.keySet()) {
-			if(templateName.contains("js." +this.type + ".")) {
-				templates.put(templateName, new String(templatesStatic.get(templateName)));
+			if(templateName.contains("js.special." + this.origType + ".")) {
+				String replacedName = templateName.replace("special."+this.origType, this.type);
+
+				templates.put(replacedName, new String(templatesStatic.get(templateName)));
+				replacedTemplates.add(replacedName);
 				found = true;
 			}
 		}
-		
+
+		for (String templateName : templatesStatic.keySet()) {
+			if(templateName.contains("js." + this.type + ".")) {
+				boolean replaced = false;
+				for (String replacedTemplate : replacedTemplates) {
+					if(templateName.equals(replacedTemplate)) {
+						// already replaced
+						replaced = true;
+					}
+				}
+				if(!replaced) {
+					templates.put(templateName, new String(templatesStatic.get(templateName)));
+					found = true;
+				}
+			}
+		}
+
 		if(!found) {
 			this.type = "simple";
 			for (String templateName : templatesStatic.keySet()) {
-				if(templateName.contains("js." +this.type + ".")) {
+				if(templateName.contains("js." + this.type + ".")) {
 					templates.put(templateName, new String(templatesStatic.get(templateName)));
 				}
 			}

@@ -18,7 +18,7 @@
 		id="data"
 		type="ResultCell"
 		title="Data Value"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 

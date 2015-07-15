@@ -127,6 +127,7 @@
 	"chart" : {
 		"template" : "ObjectSingle-double",
 		"type" : "String",
+		"origType": "MicroAreaChartItem";
 		"value" : "[]",
 		"visible": true,
 
@@ -185,6 +186,7 @@
 	"maxThreshold" : {
 		"template" : "ObjectSingle-double",
 		"type" : "String",
+		"origType": "MicroAreaChartItem";
 		"value" : "[]",
 		"visible": true,
 
@@ -243,6 +245,7 @@
 	"innerMaxThreshold" : {
 		"template" : "ObjectSingle-double",
 		"type" : "String",
+		"origType": "MicroAreaChartItem";
 		"value" : "[]",
 		"visible": true,
 
@@ -301,6 +304,7 @@
 	"innerMinThreshold" : {
 		"template" : "ObjectSingle-double",
 		"type" : "String",
+		"origType": "MicroAreaChartItem";
 		"value" : "[]",
 		"visible": true,
 
@@ -359,6 +363,7 @@
 	"minThreshold" : {
 		"template" : "ObjectSingle-double",
 		"type" : "String",
+		"origType": "MicroAreaChartItem";
 		"value" : "[]",
 		"visible": true,
 
@@ -417,6 +422,7 @@
 	"target" : {
 		"template" : "ObjectSingle-double",
 		"type" : "String",
+		"origType": "MicroAreaChartItem";
 		"value" : "[]",
 		"visible": true,
 
@@ -475,6 +481,7 @@
 	"firstXLabel" : {
 		"template" : "ObjectSingle",
 		"type" : "String",
+		"origType": "MicroAreaChartLabel";
 		"value" : "[]",
 		"visible": true,
 
@@ -515,6 +522,7 @@
 	"firstYLabel" : {
 		"template" : "ObjectSingle",
 		"type" : "String",
+		"origType": "MicroAreaChartLabel";
 		"value" : "[]",
 		"visible": true,
 
@@ -555,6 +563,7 @@
 	"lastXLabel" : {
 		"template" : "ObjectSingle",
 		"type" : "String",
+		"origType": "MicroAreaChartLabel";
 		"value" : "[]",
 		"visible": true,
 
@@ -595,6 +604,7 @@
 	"lastYLabel" : {
 		"template" : "ObjectSingle",
 		"type" : "String",
+		"origType": "MicroAreaChartLabel";
 		"value" : "[]",
 		"visible": true,
 
@@ -635,6 +645,7 @@
 	"maxLabel" : {
 		"template" : "ObjectSingle",
 		"type" : "String",
+		"origType": "MicroAreaChartLabel";
 		"value" : "[]",
 		"visible": true,
 
@@ -675,6 +686,7 @@
 	"minLabel" : {
 		"template" : "ObjectSingle",
 		"type" : "String",
+		"origType": "MicroAreaChartLabel";
 		"value" : "[]",
 		"visible": true,
 

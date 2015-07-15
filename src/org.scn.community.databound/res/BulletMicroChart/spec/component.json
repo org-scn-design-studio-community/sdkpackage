@@ -10,6 +10,7 @@
 	"extends1ControlDs": "BulletChart.ds",
 	"extends2Control": "BulletChart",
 	"repeaterProperty": "actual",
+	"generatedJsFile":"true",
 
 	"databound": true,
 	"dataType": "DataCellList",
@@ -23,6 +24,10 @@
 		{
 			"space" : "known",
 			"id" : "common_databound",
+		},
+		{
+			"space" : "known",
+			"id" : "common_unified",
 		},
 		{
 			"space" : "known",

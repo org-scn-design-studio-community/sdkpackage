@@ -102,9 +102,9 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 		var that = owner;
 
 		var options = org_scn_community_databound.initializeOptions();
-		//options.ignoreResults = that.getDIgnoreResults();
-		//options.emptyHeaderValue = that.getDEmptyHeaderValue();
-		//options.emptyDataValue = that.getDEmptyDataValue();
+
+		options.ignoreResults = true;
+		options.keepDataArray = true;
 
 		that._specialDataModel = [];
 
@@ -150,6 +150,25 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 		var that = owner;
 
 		// visualization on processed data 
+	},
+	
+	getObjectArrayContent: function (owner, name, options) {
+		var that = owner;
+		var propertyObject = that.getObjectContent(that, name, options);
+
+		propertyObject.jsonTemplate = [];
+		for (var jI in propertyObject.value) {
+			var jO = propertyObject.value[jI];
+			
+			var pO = {};
+			for (var pI in jO) {
+				if(pI == "parentKey" || pI == "leaf" || pI == "key") continue;
+				pO[pI] = jO[pI];
+			}
+			propertyObject.jsonTemplate.push(pO);
+		}
+		
+		return propertyObject;
 	},
 
 	onResize: function(width, height, parent) {

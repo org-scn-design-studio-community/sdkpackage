@@ -119,15 +119,15 @@ public class UI5Control {
 		
 		String newSpec = ui5spec.getAbsolutePath().replace(".control", ".spec.json").replace("\\xml", "\\control");
 		File specFile = new File(newSpec);
-		if(!specFile.exists()) {
+		//if(!specFile.exists()) {
 			Helpers.string2File(newSpec, spec);
-		}
+		//}
 		
 		newSpec = newSpec.replace(".spec.json", ".ds.spec.json");
 		specFile = new File(newSpec);
-		if(!specFile.exists()) {
+		//if(!specFile.exists()) {
 			Helpers.string2File(newSpec, specDs);
-		}
+		//}
 		
 		String ztl = this.generateZtl();
 		
@@ -204,5 +204,8 @@ public class UI5Control {
 			}
 		}
 		return false;
+	}
+	public String getName() {
+		return this.name;
 	}
 }

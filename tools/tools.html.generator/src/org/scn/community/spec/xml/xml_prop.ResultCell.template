@@ -2,7 +2,7 @@
 		id="%PROPERTY_NAME%"
 		type="%PROPERTY_TYPE%"
 		title="%PROPERTY_TITLE%"
-		group="Data"
+		group="DataBinding"
 		visible="%PROPERTY_VISIBLE%"
 		bindable="true">
 %XML_PROPERTY_POSSIBLE_VALUE%

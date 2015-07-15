@@ -45,7 +45,7 @@
 		id="dataCellListActual"
 		type="ResultCellList"
 		title="Actual Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -57,7 +57,7 @@
 		id="dataCellListForecastValue"
 		type="ResultCellList"
 		title="Forecast Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -69,7 +69,7 @@
 		id="dataCellListMaxValue"
 		type="ResultCellList"
 		title="Max Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -81,7 +81,7 @@
 		id="dataCellListMinValue"
 		type="ResultCellList"
 		title="Min Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -93,7 +93,7 @@
 		id="dataCellListTargetValue"
 		type="ResultCellList"
 		title="Target Value Data List"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -105,7 +105,7 @@
 		id="dataCellListThresholds"
 		type="ResultCellList"
 		title="Thresholds Data List [Multiple]"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 

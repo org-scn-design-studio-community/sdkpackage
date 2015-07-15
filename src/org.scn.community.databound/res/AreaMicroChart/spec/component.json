@@ -9,7 +9,7 @@
 	"extension": "ui5.MicroAreaChart",
 	"extends1ControlDs": "MicroAreaChart.ds",
 	"extends2Control": "MicroAreaChart",
-	"repeaterProperty": "target",
+	"generatedJsFile":"true",
 
 	"databound": true,
 	"dataType": "DataCellList",
@@ -23,6 +23,10 @@
 		{
 			"space" : "known",
 			"id" : "common_databound",
+		},
+		{
+			"space" : "known",
+			"id" : "common_unified",
 		},
 		{
 			"space" : "known",

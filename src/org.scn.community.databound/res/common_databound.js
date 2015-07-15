@@ -84,6 +84,8 @@ org_scn_community_databound.initializeOptions = function () {
 	options.formattingCondition.operator = undefined;
 	options.formattingCondition.rules = [];
 
+	options.keepDataArray = false;
+
 	return options;
 }
 
@@ -642,6 +644,7 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 									// [{ key : "0PROFIT_CTR" }, { key : "0ORG_UNIT"} ... ]
 
 	};
+
 	if(!data || !data.dimensions || (!data.data && !data.formattedData)) {
 		if(!options.useMockData){
 			throw("Incomplete data given.\n\n" + JSON.stringify(data));	
@@ -868,6 +871,9 @@ org_scn_community_databound.flatten = function (designStudioData, opts) {
 	
 	retObj.geometry.allColumnsLength = retObj.geometry.headersLength + retObj.geometry.colLength;
 
+	if(options.keepDataArray){
+		retObj.data = data.data;
+	}
 	return retObj;
 };
 

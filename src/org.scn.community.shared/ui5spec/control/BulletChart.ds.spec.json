@@ -205,7 +205,7 @@
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Use Manual 'Thresholds'",
-			"cat" : "Content-Thresholds-Thresholds",
+			"cat" : "Content-Thresholds",
 			"tooltip" : "If checked, the property 'Thresholds' will be used.",
 			"apsControl" : "checkbox",
 			"noAps" : false,

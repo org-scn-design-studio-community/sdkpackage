@@ -27,7 +27,7 @@ import sun.org.mozilla.javascript.internal.json.JsonParser;
 public class SpecificationReader {
 
 	private String pathToGenSpec;
-	private Component component;
+
 	private JSONObject jsonSpecification;
 	private JSONObject jsonIncludeSpecification;
 	private JSONObject jsonComponent;
@@ -345,6 +345,12 @@ public class SpecificationReader {
 			templates.put("aps"+File.separator+"PropertyPage.def.js", ApsJs);
 		}
 		
+		SpecHelper helper = new SpecHelper(this.componentName, new File(pathToGenSpec));
+		Property generatedJs = null;
+		if(helper.hasProperty(this.compProperties, "generatedJsFile")) {
+			generatedJs = helper.getProperty(this.compProperties, "generatedJsFile");
+		}
+
 		for (String templatePath : this.templates.keySet()) {
 			String content = templates.get(templatePath);
 			templatePath = templatePath.replace("%COMPONENT_NAME%", this.componentName);
@@ -399,7 +405,7 @@ public class SpecificationReader {
 
 			String iFileName = this.rootPath + File.separator + templatePath;
 			if(templatePath.endsWith(this.componentName + ".js")) {
-				if(!new File(iFileName).exists()) {
+				if(!new File(iFileName).exists() || (generatedJs != null && generatedJs.getExtendedFullSpec().getPropertyValue("generatedJsFile").equals("true"))) {
 					Helpers.string2File(iFileName, content);
 				}
 			} else {

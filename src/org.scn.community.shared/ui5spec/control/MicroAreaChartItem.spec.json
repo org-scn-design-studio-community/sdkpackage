@@ -39,6 +39,7 @@
 	"points" : {
 		"template" : "ObjectArray",
 		"type" : "String",
+		"origType": "MicroAreaChartPoint";
 		"value" : "[]",
 		"visible": true,
 

@@ -1,13 +1,1 @@
-			var l_%NAME%Json = [];
-
-			if(!that.getUse%PROPERTY_CAPITAL_CUT%() && useDataCellList%PROPERTY_CAPITAL_CUT%) {
-				for (var cellI in dataCellList%PROPERTY_CAPITAL_CUT%.values[rowI]) {
-					l_%NAME%Json.push({
-						value:  dataCellList%PROPERTY_CAPITAL_CUT%.values[rowI][cellI], 
-						color: "Good"
-					});
-				}
-			} else {
-				l_%NAME%Json = l_%NAME%JsonTemplate;
-			}
-			customData.%NAME% = l_%NAME%Json;
+			customData[l_%PROPERTY_CAPITAL_CUT%.name] = l_%PROPERTY_CAPITAL_CUT%.json;

@@ -579,4 +579,8 @@ public class ParamFullSpec {
 	public Property getParentProperty() {
 		return this.parentProperty;
 	}
+
+	public String getOriginalType() {
+		return getPropertyValue("origType");
+	}
 }

@@ -18,7 +18,7 @@
 		id="data"
 		type="ResultCellSet"
 		title="Data"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 
@@ -39,7 +39,7 @@
 		id="scalingSelection"
 		type="ResultCellList"
 		title="Data Range to Scale"
-		group="Data"
+		group="DataBinding"
 		visible="true"
 		bindable="true">
 

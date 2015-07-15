@@ -102,97 +102,22 @@ BulletMicroChart = {
 		var that = owner;
 
 		var options = org_scn_community_databound.initializeOptions();
-		//options.ignoreResults = that.getDIgnoreResults();
-		//options.emptyHeaderValue = that.getDEmptyHeaderValue();
-		//options.emptyDataValue = that.getDEmptyDataValue();
+
+		options.ignoreResults = true;
+		options.keepDataArray = true;
 
 		that._specialDataModel = [];
 
-		var dataCellListActual = that.getDataCellListActual();
-		var useDataCellListActual = false;
-		if(org_scn_community_databound.hasData (dataCellListActual)) {
-			dataCellListActual = org_scn_community_databound.flatten (dataCellListActual,options);
-			if(!that.getUseActual()) {
-				useDataCellListActual = true;
-			}
-		}
 
-		var l_Actual = that.getActual();
-		l_Actual = org_scn_community_basics.parseJson(l_Actual, "A");
+		var l_Actual = org_scn_community_unified.getObjectSingleContent(that, "actual", options);
 
-		if(that.getUseActual() && l_Actual[0]) {
-			l_Actual = l_Actual[0];
-		}
-		var actualJsonTemplate = {};
-		for (var actualPropI in l_Actual) {
-			if(actualPropI == "parentKey" || actualPropI == "leaf" || actualPropI == "key") continue;
-			actualJsonTemplate[actualPropI] = l_Actual[actualPropI];
-		}
-
-		var dataCellListForecastValue = that.getDataCellListForecastValue();
-		var useDataCellListForecastValue = false;
-		if(org_scn_community_databound.hasData (dataCellListForecastValue)) {
-			dataCellListForecastValue = org_scn_community_databound.flatten (dataCellListForecastValue,options);
-			if(!that.getUseForecastValue()) {
-				useDataCellListForecastValue = true;
-			}
-		}
-		var l_ForecastValue = that.getForecastValue();
-		
-		var dataCellListMaxValue = that.getDataCellListMaxValue();
-		var useDataCellListMaxValue = false;
-		if(org_scn_community_databound.hasData (dataCellListMaxValue)) {
-			dataCellListMaxValue = org_scn_community_databound.flatten (dataCellListMaxValue,options);
-			if(!that.getUseMaxValue()) {
-				useDataCellListMaxValue = true;
-			}
-		}
-		var l_MaxValue = that.getMaxValue();
-		
-		var dataCellListMinValue = that.getDataCellListMinValue();
-		var useDataCellListMinValue = false;
-		if(org_scn_community_databound.hasData (dataCellListMinValue)) {
-			dataCellListMinValue = org_scn_community_databound.flatten (dataCellListMinValue,options);
-			if(!that.getUseMinValue()) {
-				useDataCellListMinValue = true;
-			}
-		}
-		var l_MinValue = that.getMinValue();
-		
-		var dataCellListTargetValue = that.getDataCellListTargetValue();
-		var useDataCellListTargetValue = false;
-		if(org_scn_community_databound.hasData (dataCellListTargetValue)) {
-			dataCellListTargetValue = org_scn_community_databound.flatten (dataCellListTargetValue,options);
-			if(!that.getUseTargetValue()) {
-				useDataCellListTargetValue = true;
-			}
-		}
-		var l_TargetValue = that.getTargetValue();
-		
+		var l_ForecastValue = org_scn_community_unified.getObjectSingleContent(that, "forecastValue", options, true);
+		var l_MaxValue = org_scn_community_unified.getObjectSingleContent(that, "maxValue", options, true);
+		var l_MinValue = org_scn_community_unified.getObjectSingleContent(that, "minValue", options, true);
+		var l_TargetValue = org_scn_community_unified.getObjectSingleContent(that, "targetValue", options, true);
 
 
-		var dataCellListThresholds = that.getDataCellListThresholds();
-		var useDataCellListThresholds = false;
-		if(org_scn_community_databound.hasData (dataCellListThresholds)) {
-			dataCellListThresholds = org_scn_community_databound.flatten (dataCellListThresholds,options);
-			useDataCellListThresholds = true;
-		}
-
-		var l_Thresholds = that.getThresholds();
-		l_Thresholds = org_scn_community_basics.parseJson(l_Thresholds, "A");
-		
-		var l_thresholdsJsonTemplate = [];
-		for (var thresholdsI in l_Thresholds) {
-			var thresholdsO = l_Thresholds[thresholdsI];
-			
-			var thresholdsPropO = {};
-			for (var thresholdsPropI in thresholdsO) {
-				if(thresholdsPropI == "parentKey" || thresholdsPropI == "leaf" || thresholdsPropI == "key") continue;
-				thresholdsPropO[thresholdsPropI] = thresholdsO[thresholdsPropI];
-			}
-			l_thresholdsJsonTemplate.push(thresholdsPropO);
-		}
-
+		var l_Thresholds = org_scn_community_unified.getObjectArrayContent(that, "thresholds", options);
 
 		var l_ActualValueLabel = that.getActualValueLabel();
 		var l_ContentWidth = that.getContentWidth();
@@ -211,36 +136,24 @@ BulletMicroChart = {
 		var rowI = 0;
 		var counterI = 1;
 
-		if(useDataCellListActual) {
-			counterI = dataCellListActual.values.length;
+		if(l_Actual.useDataCellList) {
+			counterI = l_Actual.dataCellList.values.length;
 		}
 
 
 		for(rowI=0;rowI<counterI;rowI++){
 			var rowHeaderName = "NONE";
 
-			if(useDataCellListActual) {
-				l_Actual.label = dataCellListActual.rowHeaders[rowI];
-				l_Actual.value = dataCellListActual.values[rowI][0];
-			} else {
-				l_Actual.label = l_Actual.key;	
-			}
 
-			if(useDataCellListForecastValue) {
-				l_ForecastValue = dataCellListForecastValue.values[rowI][0];
-			}
-			if(useDataCellListMaxValue) {
-				l_MaxValue = dataCellListMaxValue.values[rowI][0];
-			}
-			if(useDataCellListMinValue) {
-				l_MinValue = dataCellListMinValue.values[rowI][0];
-			}
-			if(useDataCellListTargetValue) {
-				l_TargetValue = dataCellListTargetValue.values[rowI][0];
-			}
+			l_Actual = org_scn_community_unified.loopObjectSingle(that, l_Actual, rowI);
+
+			l_ForecastValue = org_scn_community_unified.loopFloat(that, l_ForecastValue, rowI);
+			l_MaxValue = org_scn_community_unified.loopFloat(that, l_MaxValue, rowI);
+			l_MinValue = org_scn_community_unified.loopFloat(that, l_MinValue, rowI);
+			l_TargetValue = org_scn_community_unified.loopFloat(that, l_TargetValue, rowI);
 
 
-
+			l_Thresholds = org_scn_community_unified.loopObjectArray(that, l_Thresholds, rowI);
 
 
 			var customData = {};
@@ -258,27 +171,16 @@ BulletMicroChart = {
 			customData.size = l_Size;
 			customData.targetValueLabel = l_TargetValueLabel;
 
-			customData.forecastValue = l_ForecastValue;
-			customData.maxValue = l_MaxValue;
-			customData.minValue = l_MinValue;
-			customData.targetValue = l_TargetValue;
+			customData[l_ForecastValue.name] = l_ForecastValue.value;
+			customData[l_MaxValue.name] = l_MaxValue.value;
+			customData[l_MinValue.name] = l_MinValue.value;
+			customData[l_TargetValue.name] = l_TargetValue.value;
 
 
-			customData.actual = actualJsonTemplate;
 
-			var l_thresholdsJson = [];
+			customData[l_Actual.name] = l_Actual.json;
 
-			if(!that.getUseThresholds() && useDataCellListThresholds) {
-				for (var cellI in dataCellListThresholds.values[rowI]) {
-					l_thresholdsJson.push({
-						value:  dataCellListThresholds.values[rowI][cellI], 
-						color: "Good"
-					});
-				}
-			} else {
-				l_thresholdsJson = l_thresholdsJsonTemplate;
-			}
-			customData.thresholds = l_thresholdsJson;
+			customData[l_Thresholds.name] = l_Thresholds.json;
 
 
 
@@ -294,6 +196,25 @@ BulletMicroChart = {
 		var that = owner;
 
 		// visualization on processed data 
+	},
+	
+	getObjectArrayContent: function (owner, name, options) {
+		var that = owner;
+		var propertyObject = that.getObjectContent(that, name, options);
+
+		propertyObject.jsonTemplate = [];
+		for (var jI in propertyObject.value) {
+			var jO = propertyObject.value[jI];
+			
+			var pO = {};
+			for (var pI in jO) {
+				if(pI == "parentKey" || pI == "leaf" || pI == "key") continue;
+				pO[pI] = jO[pI];
+			}
+			propertyObject.jsonTemplate.push(pO);
+		}
+		
+		return propertyObject;
 	},
 
 	onResize: function(width, height, parent) {

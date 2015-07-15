@@ -39,6 +39,7 @@
 		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.common_databound.name,
+		org_scn_community_require.knownModules.common_unified.name,
 		org_scn_community_require.knownModules.jshashtable.name,
 		org_scn_community_require.knownModules.numberformatter.name,
 		org_scn_community_require.knownModules.sap_m_loader.name,

@@ -52,6 +52,7 @@
       "ztlFunction": "-single",
       "ztlType": "SingleArray"
     },
+    "origType": "BulletChartData",
     "template": "ObjectSingle",
     "type": "String",
     "value": "[]",
@@ -530,6 +531,7 @@
       "ztlFunction": "",
       "ztlType": "SingleArray"
     },
+    "origType": "BulletChartData",
     "template": "ObjectArray",
     "type": "String",
     "value": "[]",
@@ -634,7 +636,7 @@
   "useThresholds": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Content-Thresholds-Thresholds",
+      "cat": "Content-Thresholds",
       "desc": "Use Manual 'Thresholds'",
       "noAps": false,
       "noZtl": false,
@@ -673,6 +675,7 @@
   "extends1ControlDs": "BulletChart.ds",
   "extends2Control": "BulletChart",
   "extension": "ui5.BulletChart",
+  "generatedJsFile": "true",
   "group": "ScnCommunityDataBound",
   "handlerType": "sapui5",
   "height": "200",
@@ -687,6 +690,10 @@
     },
     {
       "id": "common_databound",
+      "space": "known"
+    },
+    {
+      "id": "common_unified",
       "space": "known"
     },
     {

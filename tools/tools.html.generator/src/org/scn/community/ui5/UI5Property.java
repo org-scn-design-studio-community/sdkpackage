@@ -86,6 +86,10 @@ public class UI5Property {
 
 		String template = Helpers.resource2String(OrginSpec.class, "org."+compatibleType+arrayTypeOptional+".tmpl");
 		
+		if(template == null && arrayTypeOptional.length() > 0) {
+			template = Helpers.resource2String(OrginSpec.class, "org."+compatibleType+"-double"+".tmpl");
+		}
+
 		if(template == null) {
 			template = Helpers.resource2String(OrginSpec.class, "org.default.tmpl");
 		}
@@ -124,6 +128,7 @@ public class UI5Property {
 		}
 		
 		template = template.replace("%NAME%", nameOfProperty);
+		template = template.replace("%ORGINAL_TYPE%", originalType);
 		template = template.replace("%DESCRIPTION%", desctiptionOfProperty);
 		template = template.replace("%TOOLTIP%", this.docu);
 		template = template.replace("%ZTL_TYPE%", compatibleType);
@@ -214,7 +219,7 @@ public class UI5Property {
 					jsonSpec = ui5Control.updateSpecSingle();
 					
 					if(ui5Control.is2notSimple()) {
-						return this.toSpec20("-double");
+						return this.toSpec20("-"+ui5Control.getName());
 					}
 				}
 			}
@@ -247,6 +252,7 @@ public class UI5Property {
 				for (Property propertyChild : this.valueProperties) {
 					String typeChild = propertyChild.getExtendedFullSpec().getType(true);
 					boolean typeIsArray = propertyChild.getExtendedFullSpec().isArrayType();
+					String originalTypeProp = propertyChild.getExtendedFullSpec().getOriginalType();
 					
 					String nameChild = propertyChild.getName();
 					
@@ -266,7 +272,7 @@ public class UI5Property {
 						template = template.replace("%SUB_NAME%", nameChild);
 						
 						if(arrayTypeOptional.length() == 0) {
-							return this.toSpec20("-double");
+							return this.toSpec20("-"+originalTypeProp);
 						}
 					} else {
 						propDef = "\""+nameChild+"\": {\r\n" + tabs;

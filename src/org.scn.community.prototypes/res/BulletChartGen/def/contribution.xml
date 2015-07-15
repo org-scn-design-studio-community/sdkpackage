@@ -37,7 +37,7 @@
 		id="data"
 		type="ResultSet"
 		title="Dataset"
-		group="Data"
+		group="DataBinding"
 		visible="true">
 
 		<option name="includeFormattedData" value="true"/>
