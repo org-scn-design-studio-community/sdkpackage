@@ -368,6 +368,10 @@ public class UI5Property {
 			return "boolean";
 		}
 		
+		if(type.endsWith("/string[]") || type.equals("string[]")) {
+			return "StringArray";
+		}
+		
 		if(type.endsWith("CSSSize")) {
 			return "int";
 		}

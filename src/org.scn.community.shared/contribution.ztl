@@ -1839,6 +1839,835 @@ class org.scn.community.shared.ui5.BulletChartData extends org.scn.community.sha
 
 
 /**
+ * Generated ZTL Class for HarveyBallMicroChart
+ * 
+ * DO NOT EDIT, ROOT SOURCE is based on SAP UI5 specification
+ */
+class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Colour Palette Property as StringArray
+	 */	
+	void setColorPalette( /**Colour Palette*/ StringArray colorPalette){*
+		this.colorPalette = colorPalette;
+	*}
+	
+	/** Gets Colour Palette Property as StringArray
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	HARVEYBALLMICROCHART.getColorPalette();<br>
+	</code>
+	</example>
+	 */
+	StringArray getColorPalette () {*		
+		var elementsJson = JSON.parse(this.colorPalette);
+		return elementsJson;
+	*}
+
+	/**
+	 * Sets Content Width Property
+	 */	
+	void setContentWidth( /**Content Width*/ int contentWidth){*
+		this.contentWidth = contentWidth;
+	*}
+
+	/**
+	 * Gets Content Width Property
+	 */	
+	int getContentWidth() {*
+		return this.contentWidth;
+	*}
+
+	/**
+	 * Sets Formatted Label Property
+	 */	
+	void setFormattedLabel( /**Formatted Label*/ boolean formattedLabel){*
+		this.formattedLabel = formattedLabel;
+	*}
+
+	/**
+	 * Gets Formatted Label Property
+	 */	
+	boolean isFormattedLabel() {*
+		return this.formattedLabel;
+	*}
+
+	/** Adds a root element containing key [String], color [String], formattedLabel [boolean], fraction [float], fractionLabel [String], fractionScale [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	HARVEYBALLMICROCHART.addItem(key [String], color [String], formattedLabel [boolean], fraction [float], fractionLabel [String], fractionScale [String]);<br>
+	HARVEYBALLMICROCHART.addItem(key [String], color [String], formattedLabel [boolean], fraction [float], fractionLabel [String], fractionScale [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addItem (
+			/**Unique Property Key*/String key, 
+			/**Colour*/String color, 
+			/**Formatted Label*/boolean formattedLabel, 
+			/**Fraction*/float fraction, 
+			/**Fraction Label*/String fractionLabel, 
+			/**Fraction Scale*/String fractionScale
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			color:color, 
+			formattedLabel:formattedLabel, 
+			fraction:fraction, 
+			fractionLabel:fractionLabel, 
+			fractionScale:fractionScale
+			};
+
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			this.items = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	HARVEYBALLMICROCHART.removeItem(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeItem (
+			String key
+			) {*
+
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			this.items = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	HARVEYBALLMICROCHART.insertItem(index [int], key [String], color [String], formattedLabel [boolean], fraction [float], fractionLabel [String], fractionScale [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertItem (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Property Key*/String key, 
+			/**Colour*/String color, 
+			/**Formatted Label*/boolean formattedLabel, 
+			/**Fraction*/float fraction, 
+			/**Fraction Label*/String fractionLabel, 
+			/**Fraction Scale*/String fractionScale
+			) {*
+
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			this.items = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.items);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			color:color, 
+			formattedLabel:formattedLabel, 
+			fraction:fraction, 
+			fractionLabel:fractionLabel, 
+			fractionScale:fractionScale
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.items = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Item<br/>
+	 */
+	void updateItem (
+			/**Unique Property Key*/String key, 
+			/**Colour*/String color, 
+			/**Formatted Label*/boolean formattedLabel, 
+			/**Fraction*/float fraction, 
+			/**Fraction Label*/String fractionLabel, 
+			/**Fraction Scale*/String fractionScale
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			this.items = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			color:color, 
+			formattedLabel:formattedLabel, 
+			fraction:fraction, 
+			fractionLabel:fractionLabel, 
+			fractionScale:fractionScale
+		};
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getItemAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			this.items = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Items As JSON String
+	 */	
+	String getItemsAsJSON() {*
+		var jsonObject = JSON.parse(this.items);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Color for Item keys<br/>
+	 */
+	void setItemColors (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Color */ String color
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].color = color;
+					break;
+				}
+			}
+		}
+		
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Color for Item Key<br/>
+	 */
+	void setItemColor (
+			/**/ String key,
+			/**/ String color
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].color = color;
+				break;
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Color for Item Key<br/>
+	 */
+	boolean hasItemColor (
+			/**/ String key
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Sets the FormattedLabel for Item keys<br/>
+	 */
+	void setItemFormattedLabels (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].formattedLabel = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].formattedLabel = true;
+					break;
+				}
+			}
+		}
+		
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the FormattedLabel for Item Key<br/>
+	 */
+	void setItemFormattedLabel (
+			/**/ String key,
+			/**/ boolean formattedLabel
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].formattedLabel = formattedLabel;
+				break;
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all FormattedLabel of Item keys<br/>
+	 */
+	void cleanAllItemFormattedLabels (
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].formattedLabel = false;
+		}
+		
+		this.items = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of FormattedLabel for Item Key<br/>
+	 */
+	boolean hasItemFormattedLabel (
+			/**/ String key
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+	/**
+	 * Returns the FormattedLabel keys<br/>
+	 */
+	org.scn.pack.KeyArray getItemFormattedLabelKeysArray (
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.items);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].formattedLabel == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the FractionLabel for Item keys<br/>
+	 */
+	void setItemFractionLabels (
+			/**/ String keys,
+			/**/ String separator,
+	        /* FractionLabel */ String fractionLabel
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].fractionLabel = fractionLabel;
+					break;
+				}
+			}
+		}
+		
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the FractionLabel for Item Key<br/>
+	 */
+	void setItemFractionLabel (
+			/**/ String key,
+			/**/ String fractionLabel
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].fractionLabel = fractionLabel;
+				break;
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of FractionLabel for Item Key<br/>
+	 */
+	boolean hasItemFractionLabel (
+			/**/ String key
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Sets the FractionScale for Item keys<br/>
+	 */
+	void setItemFractionScales (
+			/**/ String keys,
+			/**/ String separator,
+	        /* FractionScale */ String fractionScale
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].fractionScale = fractionScale;
+					break;
+				}
+			}
+		}
+		
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the FractionScale for Item Key<br/>
+	 */
+	void setItemFractionScale (
+			/**/ String key,
+			/**/ String fractionScale
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].fractionScale = fractionScale;
+				break;
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of FractionScale for Item Key<br/>
+	 */
+	boolean hasItemFractionScale (
+			/**/ String key
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+
+
+	/**
+	 * Sets Show Fractions Property
+	 */	
+	void setShowFractions( /**Show Fractions*/ boolean showFractions){*
+		this.showFractions = showFractions;
+	*}
+
+	/**
+	 * Gets Show Fractions Property
+	 */	
+	boolean isShowFractions() {*
+		return this.showFractions;
+	*}
+
+	/**
+	 * Sets Show Total Property
+	 */	
+	void setShowTotal( /**Show Total*/ boolean showTotal){*
+		this.showTotal = showTotal;
+	*}
+
+	/**
+	 * Gets Show Total Property
+	 */	
+	boolean isShowTotal() {*
+		return this.showTotal;
+	*}
+
+	/**
+	 * Sets Size Property by String
+	 */	
+	void setSizeByString( /**Size*/ String size){*
+		this.size = size;
+	*}
+
+	/**
+	 * Gets Size Property as String
+	 */	
+	String getSizeAsString() {*
+		return this.size;
+	*}
+	
+	/**
+	 * Sets Size Property by Choice Option
+	 */	
+	void setSize( /**Size*/ org_scn_community_shared_InfoTileSizeEnumfield size){*
+		this.size = size;
+	*}
+	
+	/**
+	 * Gets Size Property as Choice Option
+	 */	
+	org_scn_community_shared_InfoTileSizeEnumfield getSize() {*
+		return this.size;
+	*}
+
+	/**
+	 * Sets Total Property
+	 */	
+	void setTotal( /**Total*/ float total){*
+		this.total = total;
+	*}
+
+	/**
+	 * Gets Total Property
+	 */	
+	float getTotal() {*
+		return this.total;
+	*}
+
+	/**
+	 * Sets Total Label Property
+	 */	
+	void setTotalLabel( /**Total Label*/ String totalLabel){*
+		this.totalLabel = totalLabel;
+	*}
+
+	/**
+	 * Gets Total Label Property
+	 */	
+	String getTotalLabel() {*
+		return this.totalLabel;
+	*}
+
+	/**
+	 * Sets Total Scale Property
+	 */	
+	void setTotalScale( /**Total Scale*/ String totalScale){*
+		this.totalScale = totalScale;
+	*}
+
+	/**
+	 * Gets Total Scale Property
+	 */	
+	String getTotalScale() {*
+		return this.totalScale;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+
+/**
+ * Generated ZTL Class for HarveyBallMicroChartItem
+ * 
+ * DO NOT EDIT, ROOT SOURCE is based on SAP UI5 specification
+ */
+class org.scn.community.shared.ui5.HarveyBallMicroChartItem extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Colour Property by String
+	 */	
+	void setColorByString( /**Colour*/ String color){*
+		this.color = color;
+	*}
+
+	/**
+	 * Gets Colour Property as String
+	 */	
+	String getColorAsString() {*
+		return this.color;
+	*}
+	
+	/**
+	 * Sets Colour Property by Choice Option
+	 */	
+	void setColor( /**Colour*/ org_scn_community_shared_InfoTileValueColorEnumfield color){*
+		this.color = color;
+	*}
+	
+	/**
+	 * Gets Colour Property as Choice Option
+	 */	
+	org_scn_community_shared_InfoTileValueColorEnumfield getColor() {*
+		return this.color;
+	*}
+
+	/**
+	 * Sets Formatted Label Property
+	 */	
+	void setFormattedLabel( /**Formatted Label*/ boolean formattedLabel){*
+		this.formattedLabel = formattedLabel;
+	*}
+
+	/**
+	 * Gets Formatted Label Property
+	 */	
+	boolean isFormattedLabel() {*
+		return this.formattedLabel;
+	*}
+
+	/**
+	 * Sets Fraction Property
+	 */	
+	void setFraction( /**Fraction*/ float fraction){*
+		this.fraction = fraction;
+	*}
+
+	/**
+	 * Gets Fraction Property
+	 */	
+	float getFraction() {*
+		return this.fraction;
+	*}
+
+	/**
+	 * Sets Fraction Label Property
+	 */	
+	void setFractionLabel( /**Fraction Label*/ String fractionLabel){*
+		this.fractionLabel = fractionLabel;
+	*}
+
+	/**
+	 * Gets Fraction Label Property
+	 */	
+	String getFractionLabel() {*
+		return this.fractionLabel;
+	*}
+
+	/**
+	 * Sets Fraction Scale Property
+	 */	
+	void setFractionScale( /**Fraction Scale*/ String fractionScale){*
+		this.fractionScale = fractionScale;
+	*}
+
+	/**
+	 * Gets Fraction Scale Property
+	 */	
+	String getFractionScale() {*
+		return this.fractionScale;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+
+/**
  * Generated ZTL Class for MicroAreaChart
  * 
  * DO NOT EDIT, ROOT SOURCE is based on SAP UI5 specification

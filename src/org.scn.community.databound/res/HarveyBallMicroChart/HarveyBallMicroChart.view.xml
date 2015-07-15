@@ -1,0 +1,102 @@
+<core:View
+  xmlns="sap.suite.ui.commons"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:m="sap.m"
+  >
+  <l:VerticalLayout
+    width="100%" content="{/}">
+    <l:content
+      width="{width}"
+      >
+      
+      <l:VerticalLayout
+	    width="100%">
+	    <l:content
+	      width="{width}"
+	      >
+	  	  <m:Label
+	      	text="{actual/label}"
+	      	visible="{withLabel}" 
+	      	>
+	      </m:Label>
+	       <MicroAreaChart 
+	        	width="{width}"
+				height="{height}" 
+
+				minXValue="{minXValue}" 
+				maxXValue="{maxXValue}" 
+				minYValue="{minYValue}" 
+				maxYValue="{maxYValue}"
+
+				view="{view}" 
+				class="{class}" 
+				press="{press}"
+				>
+
+		       <firstXLabel>
+		         <MicroAreaChartLabel label="{firstXLabel/label}" color="{firstXLabel/color}"/>
+		       </firstXLabel>
+		       <lastXLabel>
+		         <MicroAreaChartLabel label="{lastXLabel/label}" color="{lastXLabel/color}"/>
+		       </lastXLabel>
+		       <firstYLabel>
+		         <MicroAreaChartLabel label="{firstYLabel/label}" color="{firstYLabel/color}"/>
+		       </firstYLabel>
+		       <lastYLabel>
+		         <MicroAreaChartLabel label="{lastYLabel/label}" color="{lastYLabel/color}"/>
+		       </lastYLabel>
+		       <minLabel>
+		         <MicroAreaChartLabel label="{minLabel/label}" color="{minLabel/color}"/>
+		       </minLabel>
+		       <maxLabel>
+		         <MicroAreaChartLabel label="{maxLabel/label}" color="{maxLabel/color}"/>
+		       </maxLabel>
+		       <chart>
+		         <MicroAreaChartItem points="{chart/points}" color="{chart/color}">
+		           <points>
+		            <MicroAreaChartPoint x="{x}" y="{y}" />
+		          </points>
+		         </MicroAreaChartItem>
+		       </chart>
+		       <target>
+		         <MicroAreaChartItem points="{target/points}" color="{target/color}">
+		           <points>
+		            <MicroAreaChartPoint x="{x}" y="{y}" />
+		          </points>
+		         </MicroAreaChartItem>
+		       </target>
+		       <maxThreshold>
+		         <MicroAreaChartItem points="{maxThreshold/points}" color="{maxThreshold/color}">
+		           <points>
+		            <MicroAreaChartPoint x="{x}" y="{y}" />
+		          </points>
+		         </MicroAreaChartItem>
+		       </maxThreshold>
+		       <minThreshold>
+		         <MicroAreaChartItem points="{minThreshold/points}" color="{minThreshold/color}">
+		           <points>
+		            <MicroAreaChartPoint x="{x}" y="{y}" />
+		          </points>
+		         </MicroAreaChartItem>
+		       </minThreshold>
+		       <innerMaxThreshold>
+		         <MicroAreaChartItem points="{innerMaxThreshold/points}" color="{innerMaxThreshold/color}">
+		           <points>
+		            <MicroAreaChartPoint x="{x}" y="{y}" />
+		          </points>
+		         </MicroAreaChartItem>
+		       </innerMaxThreshold>
+		       <innerMinThreshold>
+		         <MicroAreaChartItem points="{innerMinThreshold/points}" color="{innerMinThreshold/color}">
+		           <points>
+		            <MicroAreaChartPoint x="{x}" y="{y}" />
+		          </points>
+		         </MicroAreaChartItem>
+		       </innerMinThreshold>
+		    </MicroAreaChart>
+	    </l:content>
+	  </l:VerticalLayout> 
+    </l:content>
+  </l:VerticalLayout> 
+</core:View>

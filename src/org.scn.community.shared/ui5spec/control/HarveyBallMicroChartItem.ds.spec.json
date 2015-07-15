@@ -1,0 +1,39 @@
+{
+
+	"useFraction":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Fraction'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Fraction' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListFraction":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Fraction Data List",
+         "cat":"Data",
+         "tooltip":"Fraction Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    }
+}

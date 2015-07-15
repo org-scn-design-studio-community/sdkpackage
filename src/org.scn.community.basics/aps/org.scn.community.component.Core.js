@@ -171,6 +171,7 @@ org_scn_community_component_Core = function (owner, componentData){
 		for(var prop in that.props){
 			var o = {
 				name : prop,
+				type : that.props[prop].type,
 				opts : that.props[prop].opts || {}
 			}
 			if(!o.opts.noAps) r.push(o);				

@@ -4,7 +4,7 @@
 	"tooltip": "Area Micro Chart - Component for visualization of data on small areas.",
 	"handlerType": "sapui5",
 	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
-	"group": "ScnCommunityDataBound",
+	"group": "ScnCommunityUnified",
 	"package": "databound",
 	"extension": "ui5.MicroAreaChart",
 	"extends1ControlDs": "MicroAreaChart.ds",

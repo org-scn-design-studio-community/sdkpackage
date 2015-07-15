@@ -141,10 +141,15 @@ public class UI5Type {
 		String fileZtl = ui5spec.getAbsolutePath().substring(0, ui5spec.getAbsolutePath().indexOf("\\org.scn.community")) + "\\org.scn.community.shared\\ui5spec\\const\\contribution.ztl";
 		String content = Helpers.file2String(fileZtl);
 		content = content + "\r\n" + spec20[1];
-		Helpers.string2File(fileZtl, content);
-		
+		if(!new File(fileZtl).exists()) {
+			Helpers.string2File(fileZtl, content);
+		}
+
 		String newSpec = ui5spec.getAbsolutePath().replace(".type", ".spec.json").replace("\\xml", "\\type");
-		Helpers.string2File(newSpec, spec20[0]);
+		if(!new File(newSpec).exists()) {
+			Helpers.string2File(newSpec, spec20[0]);	
+		}
+		
 		
 		return spec20[0];
 	}

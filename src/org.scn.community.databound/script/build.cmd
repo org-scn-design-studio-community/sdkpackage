@@ -37,6 +37,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\UI5Table\def\contribution.xml ^
 ..\res\AreaMicroChart\def\contribution.xml ^
 ..\res\BulletMicroChart\def\contribution.xml ^
+..\res\HarveyBallMicroChart\def\contribution.xml ^
 ..\..\org.scn.community.shared\templates.main\contribution.xml.close.txt > ^
 ..\contribution.xml
 
@@ -58,7 +59,6 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\LocationIntel\def\contribution.ztl ^
 ..\res\MarimekkoChart\def\contribution.ztl ^
 ..\res\MultiComboBox\def\contribution.ztl ^
-..\res\MicroChart\def\contribution.ztl ^
 ..\res\MultiLevelDropDown\def\contribution.ztl ^
 ..\res\NiceChart\def\contribution.ztl ^
 ..\res\Projector\def\contribution.ztl ^
@@ -73,6 +73,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\UI5Table\def\contribution.ztl ^
 ..\res\AreaMicroChart\def\contribution.ztl ^
 ..\res\BulletMicroChart\def\contribution.ztl ^
+..\res\HarveyBallMicroChart\def\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 

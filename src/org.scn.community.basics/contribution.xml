@@ -190,7 +190,9 @@
 	<group
 		id="ScnCommunityBasics"
 		title="Scn Community Basics"/>
-
+	<group
+		id="ScnCommunityUnified"
+		title="Scn Community Unified"/>
 <component
 	id="Accordion"
 	title="Accordion 2.0"
@@ -1989,7 +1991,7 @@
 	icon="res/KpiTile/KpiTile.png"
 	handlerType="sapui5"
 	propertySheetPath="res/KpiTile/aps/PropertyPage.html"
-	group="ScnCommunityBasics"
+	group="ScnCommunityUnified"
 	databound="false"
 >
 	

@@ -171,6 +171,7 @@ org_scn_community_component_Core = function (owner, componentData){
 		for(var prop in that.props){
 			var o = {
 				name : prop,
+				type : that.props[prop].type,
 				opts : that.props[prop].opts || {}
 			}
 			if(!o.opts.noAps) r.push(o);				
@@ -196,5 +197,45 @@ org_scn_community_component_Core = function (owner, componentData){
 		}
 		
 		return correctSpec[property].arraySequence[correctSpec[property].arraySequence.length-1];
+	};
+
+	that.getSpecIsArraySingle = function(property) {
+		var correctSpec = that.spec; 
+		if(correctSpec[property] == undefined) {
+			correctSpec = that.specInclude;
+		}
+
+		if(correctSpec[property]["opts"]["arrayDefinition"]) {
+			return correctSpec[property]["opts"]["ztlFunction"] == "-single";	
+		}
+		
+		return false;
+	};
+
+	that.getSpecIsArray = function(property) {
+		var correctSpec = that.spec; 
+		if(correctSpec[property] == undefined) {
+			correctSpec = that.specInclude;
+		}
+
+		return correctSpec[property]["opts"]["arrayDefinition"] != undefined;
+	};
+
+	that.getSpecOrigType = function(property) {
+		var correctSpec = that.spec; 
+		if(correctSpec[property] == undefined) {
+			correctSpec = that.specInclude;
+		}
+
+		return correctSpec[property]["origType"];
+	};
+
+	that.getSpecType = function(property) {
+		var correctSpec = that.spec; 
+		if(correctSpec[property] == undefined) {
+			correctSpec = that.specInclude;
+		}
+
+		return correctSpec[property]["type"];
 	};
 };

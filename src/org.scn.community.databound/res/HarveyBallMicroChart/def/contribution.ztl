@@ -1,0 +1,12 @@
+
+/**
+ * Generated ZTL Class for HarveyBallMicroChart
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.HarveyBallMicroChart extends org.scn.community.shared.ui5.HarveyBallMicroChart {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}

@@ -195,6 +195,9 @@
 		id="ScnCommunityChartMaps"
 		title="Scn Community Charts and Maps"/>
 
+	<group
+		id="ScnCommunityUnified"
+		title="Scn Community Unified"/>		
 <component
 		id="AdvancedDataTable"
 		title="Advanced Data Table"
@@ -3778,7 +3781,7 @@ __n__}
 	icon="res/AreaMicroChart/AreaMicroChart.png"
 	handlerType="sapui5"
 	propertySheetPath="res/AreaMicroChart/aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityUnified"
 	databound="true"
 >
 	
@@ -4386,7 +4389,7 @@ __n__}
 	icon="res/BulletMicroChart/BulletMicroChart.png"
 	handlerType="sapui5"
 	propertySheetPath="res/BulletMicroChart/aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityUnified"
 	databound="true"
 >
 	
@@ -4732,6 +4735,202 @@ __n__}
 		<defaultValue property="useMinValue"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useTargetValue"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useThresholds"><![CDATA[true]]></defaultValue>
+
+	</initialization>
+
+</component>
+
+<component
+	id="HarveyBallMicroChart"
+	title="Harvey Ball Micro Chart2.0"
+	tooltip="Harvey Ball Micro Chart- Component for visualization of data on small areas."
+	icon="res/HarveyBallMicroChart/HarveyBallMicroChart.png"
+	handlerType="sapui5"
+	propertySheetPath="res/HarveyBallMicroChart/aps/PropertyPage.html"
+	group="ScnCommunityUnified"
+	databound="true"
+>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/HarveyBallMicroChart/HarveyBallMicroChartLoader.js</jsInclude>
+	<cssInclude>res/HarveyBallMicroChart/HarveyBallMicroChart.css</cssInclude>
+	
+	<property
+		id="colorPalette"
+		type="String"
+		title="Colour Palette"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="contentWidth"
+		type="int"
+		title="Content Width"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="dataCellListItems"
+		type="ResultCellList"
+		title="Items Data List [Multiple]"
+		group="DataBinding"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListTotal"
+		type="ResultCellList"
+		title="Total Data List"
+		group="DataBinding"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="formattedLabel"
+		type="boolean"
+		title="Formatted Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="items"
+		type="String"
+		title="Items"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="showFractions"
+		type="boolean"
+		title="Show Fractions"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="showTotal"
+		type="boolean"
+		title="Show Total"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="size"
+		type="String"
+		title="Size"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="total"
+		type="float"
+		title="Total"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="totalLabel"
+		type="String"
+		title="Total Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="totalScale"
+		type="String"
+		title="Total Scale"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useColorPalette"
+		type="boolean"
+		title="Use Manual 'Colour Palette'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useContentWidth"
+		type="boolean"
+		title="Use Manual 'Content Width'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useItems"
+		type="boolean"
+		title="Use Manual 'Items'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useTotal"
+		type="boolean"
+		title="Use Manual 'Total'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+		
+		<defaultValue property="colorPalette"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
+		<defaultValue property="dataCellListItems"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListTotal"><![CDATA[null]]></defaultValue>
+		<defaultValue property="formattedLabel"><![CDATA[false]]></defaultValue>
+		<defaultValue property="items"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="showFractions"><![CDATA[true]]></defaultValue>
+		<defaultValue property="showTotal"><![CDATA[true]]></defaultValue>
+		<defaultValue property="size"><![CDATA[Auto]]></defaultValue>
+		<defaultValue property="total"><![CDATA[0]]></defaultValue>
+		<defaultValue property="totalLabel"><![CDATA[]]></defaultValue>
+		<defaultValue property="totalScale"><![CDATA[]]></defaultValue>
+		<defaultValue property="useColorPalette"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useItems"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useTotal"><![CDATA[true]]></defaultValue>
 
 	</initialization>
 

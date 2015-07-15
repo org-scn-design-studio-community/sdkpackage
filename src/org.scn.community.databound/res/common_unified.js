@@ -107,9 +107,10 @@ org_scn_community_unified.getObjectContent= function (owner, name, options) {
 	propertyObject.useDataCellList = false;
 
 	propertyObject.hasData = org_scn_community_databound.hasData (propertyObject.dataCellList);
-	propertyObject.originMappings = org_scn_community_unified.getOriginMappings(that, propertyObject);
 	propertyObject.isArray = that.getSpecIsArray(propertyObject.name);
 	propertyObject.isArraySingle = that.getSpecIsArraySingle(propertyObject.name);
+
+	org_scn_community_unified.getOriginMappings(that, propertyObject);
 
 	if(propertyObject.hasData) {
 		propertyObject.dataCellList = org_scn_community_databound.flatten (propertyObject.dataCellList,options);
@@ -134,10 +135,16 @@ org_scn_community_unified.loopObjectArray= function (owner, propertyObject, rowI
 
 	if(propertyObject.useDataCellList) {
 		for (var cellI in propertyObject.dataCellList.values[rowI]) {
-			propertyObject.json.push({
-				value:  propertyObject.dataCellList.values[rowI][cellI], 
-				color: "Good"
-			});
+			var cellO = {};
+			if(propertyObject.origMappingMain) {
+				for (var nI in propertyObject.origMappingMain) {
+					var d = propertyObject.origMappingMain[nI];
+					v = org_scn_community_unified.loadDataValueForSpec(d, rowI, cellI, propertyObject);
+					cellO[d["n"]] = v;
+
+				}
+			};
+			propertyObject.json.push(cellO);
 		}
 	} else {
 		if(propertyObject.useManual) {
@@ -153,7 +160,7 @@ org_scn_community_unified.loopFloat= function (owner, propertyObject, rowI) {
 		if(propertyObject.origMappingMain) {
 			for (var nI in propertyObject.origMappingMain) {
 				var d = propertyObject.origMappingMain[nI];
-				v = org_scn_community_unified.loadDataValueForSpec(d, rowI, propertyObject);
+				v = org_scn_community_unified.loadDataValueForSpec(d, rowI, 0, propertyObject);
 				propertyObject.value = v;
 			}
 		}
@@ -174,7 +181,7 @@ org_scn_community_unified.loopObjectSingle= function (owner, propertyObject, row
 		if(propertyObject.origMappingMain) {
 			for (var nI in propertyObject.origMappingMain) {
 				var d = propertyObject.origMappingMain[nI];
-				v = org_scn_community_unified.loadDataValueForSpec(d, rowI, propertyObject);
+				v = org_scn_community_unified.loadDataValueForSpec(d, rowI, 0, propertyObject);
 				propertyObject.json[d["n"]] = v;
 			}
 		}
@@ -198,7 +205,7 @@ org_scn_community_unified.loopObjectSingleDouble= function (owner, propertyObjec
 			if(propertyObject.origMappingMain) {
 				for (var nI in propertyObject.origMappingMain) {
 					var d = propertyObject.origMappingMain[nI];
-					v = org_scn_community_unified.loadDataValueForSpec(d, rowIN, propertyObject);
+					v = org_scn_community_unified.loadDataValueForSpec(d, rowIN, 0, propertyObject);
 					propertyObject.json[d["n"]] = v;
 				}
 			}
@@ -218,7 +225,7 @@ org_scn_community_unified.loopObjectSingleDouble= function (owner, propertyObjec
 
 				for (var nI in propertyObject.origMappingChild) {
 					var d = propertyObject.origMappingChild[nI];
-					v = org_scn_community_unified.loadDataValueForSpec(d, rowIN, propertyObject);
+					v = org_scn_community_unified.loadDataValueForSpec(d, rowIN, 0, propertyObject);
 					propertyObject.json[propertyObject.subArrayName][rowIN][d["n"]] = v;
 				}
 			}
@@ -231,27 +238,39 @@ org_scn_community_unified.loopObjectSingleDouble= function (owner, propertyObjec
 	return propertyObject;
 };
 
-org_scn_community_unified.loadDataValueForSpec = function (d, rowI, propertyObject) {
+org_scn_community_unified.loadDataValueForSpec = function (d, rowI, cellI, propertyObject) {
 	var n = d["n"];
 	var s = d["s"];
 	var v = d["v"];
 	var f = d["f"];
 	if(v == undefined) {
 		if(s.length == 4) {
-			v = propertyObject[s[0]][s[1]][(s[2]=="<INDEX>"?rowI:s[2])][s[3]];
+			v = propertyObject[s[0]][s[1]][(s[2]=="<INDEX>"?rowI:s[2])][s[3]=="<CELL-INDEX>"?cellI:s[3]];
 		} else if(s.length == 3) {
-			v = propertyObject[s[0]][s[1]][(s[2]=="<INDEX>"?rowI:s[2])];
+			if(s[1] == "<INDEX>") {
+				if(propertyObject[s[0]][s[1]=="<INDEX>"?rowI:s[1]]) {
+					v = propertyObject[s[0]][s[1]=="<INDEX>"?rowI:s[1]][(s[2]=="<INDEX>"?rowI:s[2])];	
+				} else {
+					v = propertyObject[s[0]][0][(s[2]=="<INDEX>"?rowI:s[2])];	
+				}
+			} else if(s[1] == "<CELL-INDEX>") {
+				if(propertyObject[s[0]][s[1]=="<CELL-INDEX>"?cellI:s[1]]) {
+					v = propertyObject[s[0]][s[1]=="<CELL-INDEX>"?cellI:s[1]][s[2]];	
+				} else {
+					v = propertyObject[s[0]][0][s[2]];	
+				}
+			}
 		} else if(s.length == 1 && s[0] == "<INDEX>") {
 			v = parseInt(rowI);
 		} else {
 			v = propertyObject[s[0]][s[1]];						
 		}
 
+
 		if(f != undefined) {
 			v = f(v);
 		}
 	}
-
 	return v;
 };
 
@@ -311,9 +330,22 @@ org_scn_community_unified.getOriginMappings = function (owner, propertyObject) {
 		propertyObject.origMappingChild = [];
 
 	} else if(type == "BulletChartData") {
+		if(propertyObject.isArray && propertyObject.isArraySingle) {
+			propertyObject.origMappingMain = [
+				 {"n":"color","s":["jsonTemplate", "color"]},
+				 {"n":"value","s":["dataCellList","values", "<INDEX>", "0"]}]; 
+		} else {
+			propertyObject.origMappingMain = [
+				 {"n":"color","s":["jsonTemplate","<CELL-INDEX>", "color"]},
+				 {"n":"value","s":["dataCellList","values", "<INDEX>", "<CELL-INDEX>"]}]; 
+		}
+
+		propertyObject.origMappingChild = [];
+
+	} else if(type == "HarveyBallMicroChartItem") {
 		propertyObject.origMappingMain = [
-	         {"n":"color","s":["jsonTemplate","color"]},
-	         {"n":"value","s":["dataCellList","values", "<INDEX>", "0"]}]; 
+			 {"n":"fractionScale","s":["jsonTemplate", "fractionScale"]},
+			 {"n":"fraction","s":["dataCellList","values", "<INDEX>", "0"]}]; 
 
 		propertyObject.origMappingChild = [];
 

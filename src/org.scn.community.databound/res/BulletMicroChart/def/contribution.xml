@@ -6,7 +6,7 @@
 	icon="res/BulletMicroChart/BulletMicroChart.png"
 	handlerType="sapui5"
 	propertySheetPath="res/BulletMicroChart/aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityUnified"
 	databound="true"
 >
 	

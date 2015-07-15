@@ -331,19 +331,52 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 		this.metaProps = jQuery.parseJSON(propMetadata);
 		
 		this.getIndexForCategory = function (cat) {
-			if(cat == "Data") {return 10;}
-			if(cat == "Display") {return 20;}
-			if(cat == "Interaction") {return 30;}
-			if(cat == "Image") {return 40;}
-			if(cat == "Content") {return 50;}
-			if(cat == "Special") {return 60;}
-			if(cat == "Prototypes") {return 70;}
+			if(cat.indexOf("Data") == 0) {return 10;}
+			if(cat.indexOf("Display") == 0) {return 20;}
+			if(cat.indexOf("Interaction") == 0) {return 30;}
+			if(cat.indexOf("Image") == 0) {return 40;}
+			if(cat.indexOf("Content") == 0) {return 50;}
+			if(cat.indexOf("Special") == 0) {return 60;}
+			if(cat.indexOf("Prototypes") == 0) {return 70;}
 			return 100;
 		};
 		var that = this;
 		
-		this.metaProps.sort(function(a, b){
-			return that.getIndexForCategory(a.opts.cat)-that.getIndexForCategory(b.opts.cat);
+		this.metaProps.sort(function(a, b) {
+			var res = that.getIndexForCategory(a.opts.cat)-that.getIndexForCategory(b.opts.cat);
+
+			if(res == 0) {
+				// then sort placing boolean "Use" first
+				if (a.opts.desc.indexOf("Use") == 0 && b.opts.desc.indexOf("Use") == 0){
+					// continue
+				} else if (a.opts.desc.indexOf("Use") == 0){
+				   return -1;
+			    } else if (b.opts.desc.indexOf("Use") == 0){
+				   return 1;
+			    }
+
+				if (a.type.indexOf("bool") == 0 && b.type.indexOf("bool") == 0){
+					// continue
+				} else if (a.type.indexOf("bool") == 0){
+				   return -1;
+			    } else if (b.type.indexOf("bool") == 0){
+				   return 1;
+			    }
+
+				// alphabet
+				 var A = a.opts.desc.toLowerCase();
+			     var B = a.opts.desc.toLowerCase();
+
+			     if (A > B){
+			        return 1;
+			     }else if (A < B){
+			    	res = -1;
+			     } else{
+			    	res = 0;
+			     }
+			}
+
+			 return res;
 		});
 		
 		this.props = {};
@@ -428,7 +461,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 		}
 
 		} catch(e2) {
-			alert(e2);
+			alert(e2.stack);
 		}
 	};
 	this.hLabel = function(label,component){

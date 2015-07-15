@@ -1,0 +1,16 @@
+{
+	"title": "Harvey Ball Micro Chart 2.0",
+	"description": "Harvey Ball Micro Chart - Component for Visualization of Data on small areas",
+	"icon": "HarveyBallMicroChart.png",
+	"topics": 
+	[
+		{
+			"title" : "Harvey Ball Micro Chart",
+			"content" : "This component can visualize the data on small area as harvey ball chart."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

@@ -18,6 +18,8 @@ import org.scn.community.spec.js.SpecificationJsTemplate;
 import org.scn.community.spec.ui5.Ui5JsSpec;
 import org.scn.community.spec.xml.SpecificationXmlTemplate;
 import org.scn.community.spec.ztl.SpecificationZtlTemplate;
+import org.scn.community.ui5.UI5Control;
+import org.scn.community.ui5.UI5Type;
 import org.scn.community.utils.Helpers;
 
 import com.sun.xml.internal.messaging.saaj.soap.ver1_1.HeaderElement1_1Impl;
@@ -208,6 +210,29 @@ public class SpecificationReader {
 					includeSpec = includeSpecN;
 				}
 				
+				if(includeSpecN == null) {
+					String url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/suite/ui/commons/" + specName.replace(".ds",  "") + ".control";
+					String onlineSpec = helper.sendGet(url);
+					
+					if(onlineSpec == null || onlineSpec.length() == 0) {
+						throw new RuntimeException("UI5 Type/Control " + specName + " is missing spec. Url " + url + " does not have spec.");	
+					}
+
+					String replaceDXmlFile = newFile.replace(".ds", "").replace(".spec.json", ".control").replace("control\\", "xml\\");
+					Helpers.string2File(replaceDXmlFile, onlineSpec);
+					UI5Control ui5Control = new UI5Control(new File(replaceDXmlFile));
+					ui5Control.generateSpec();
+					ui5Control.updateSpecSingle();
+					
+					includeSpecN = Helpers.file2String(newFile);
+					if(includeSpec != null) {
+						includeSpec = includeSpec.substring(0, includeSpec.length() - 1);
+						includeSpec = includeSpec + ",\r\n" + includeSpecN.substring(1);
+					} else {
+						includeSpec = includeSpecN;
+					}
+				}
+
 				try {
 					jsonIncludeSpecification = new JSONObject(includeSpecN);
 				} catch (JSONException e) {

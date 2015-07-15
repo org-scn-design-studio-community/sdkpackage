@@ -11,7 +11,7 @@ ApsContent = function () {
   "extends2Control": "BulletChart",
   "extension": "ui5.BulletChart",
   "generatedJsFile": "true",
-  "group": "ScnCommunityDataBound",
+  "group": "ScnCommunityUnified",
   "handlerType": "sapui5",
   "height": "200",
   "id": "BulletMicroChart",

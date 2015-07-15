@@ -6,3 +6,7 @@
 	<group
 		id="ScnCommunityChartMaps"
 		title="Scn Community Charts and Maps"/>
+
+	<group
+		id="ScnCommunityUnified"
+		title="Scn Community Unified"/>		

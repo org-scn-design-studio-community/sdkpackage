@@ -8,7 +8,7 @@ ApsContent = function () {
   "dataType": "-",
   "databound": false,
   "extension": "Component",
-  "group": "ScnCommunityBasics",
+  "group": "ScnCommunityUnified",
   "handlerType": "sapui5",
   "height": "240",
   "id": "KpiTile",

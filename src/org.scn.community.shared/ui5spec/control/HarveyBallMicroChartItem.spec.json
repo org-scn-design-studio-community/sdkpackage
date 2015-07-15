@@ -1,0 +1,103 @@
+{
+
+	"color" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Neutral",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "InfoTileValueColor",
+			"ztlFunction": "",
+			"desc" : "Colour",
+			"cat" : "Display",
+			"tooltip" : "The slice color.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Neutral",
+					"text" : "Neutral InfoTile value color"
+				},
+				{
+					"key" : "Good",
+					"text" : "Good InfoTile value color"
+				},
+				{
+					"key" : "Critical",
+					"text" : "Critical InfoTile value color"
+				},
+				{
+					"key" : "Error",
+					"text" : "Error InfoTile value color"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"fraction" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Fraction",
+			"cat" : "Display",
+			"tooltip" : "The fraction value.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"fractionLabel" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Fraction Label",
+			"cat" : "Display-Labels",
+			"tooltip" : "The fraction label. If specified, it is displayed instead of the fraction value.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"fractionScale" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Fraction Scale",
+			"cat" : "Display",
+			"tooltip" : "The scaling factor that is displayed after the fraction value.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"formattedLabel" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Formatted Label",
+			"cat" : "Display-Labels",
+			"tooltip" : "If set to true, the fractionLabel parameter is considered as the combination of the fraction value and scaling factor. The default value is false. It means that the fraction value and the scaling factor are defined separately by the fraction and the fractionScale properties accordingly.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

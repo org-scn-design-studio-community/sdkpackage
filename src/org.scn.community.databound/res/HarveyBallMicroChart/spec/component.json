@@ -1,0 +1,51 @@
+{
+	"id": "HarveyBallMicroChart",
+	"title": "Harvey Ball Micro Chart2.0",
+	"tooltip": "Harvey Ball Micro Chart- Component for visualization of data on small areas.",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityUnified",
+	"package": "databound",
+	"extension": "ui5.HarveyBallMicroChart",
+	"extends1ControlDs": "HarveyBallMicroChart.ds",
+	"extends2Control": "HarveyBallMicroChart",
+	"generatedJsFile":"true",
+
+	"databound": true,
+	"dataType": "DataCellList",
+	
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "common_databound",
+		},
+		{
+			"space" : "known",
+			"id" : "common_unified",
+		},
+		{
+			"space" : "known",
+			"id" : "jshashtable",
+		},
+		{
+			"space" : "known",
+			"id" : "numberformatter",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_m_loader",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_suite_loader",
+		}
+	],
+	
+	"width": "400",
+	"height": "200"
+}
