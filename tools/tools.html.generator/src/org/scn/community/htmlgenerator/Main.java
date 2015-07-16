@@ -232,6 +232,7 @@ public class Main {
 		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_BASICS%", "");
 		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_DATABOUND%", "");
 		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_CHARTMAPS%", "");
+		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_UNIFIED%", "");
 		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_DATASOURCE%", "");
 		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_GEO%", "");
 		templateList = templateList.replace(" %COMPONENT_LIST_ENTRY_PROTOTYPES%", "");
