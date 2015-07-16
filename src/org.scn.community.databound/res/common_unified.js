@@ -344,7 +344,10 @@ org_scn_community_unified.getOriginMappings = function (owner, propertyObject) {
 
 	} else if(type == "HarveyBallMicroChartItem") {
 		propertyObject.origMappingMain = [
-			 {"n":"fractionScale","s":["jsonTemplate", "fractionScale"]},
+			 {"n":"color","s":["jsonTemplate", "<INDEX>", "color"]},
+			 {"n":"fractionLabel","s":["jsonTemplate", "<INDEX>", "fractionLabel"]},
+			 {"n":"fractionScale","s":["jsonTemplate", "<INDEX>", "fractionScale"]},
+			 {"n":"formattedLabel","s":["jsonTemplate", "<INDEX>", "formattedLabel"]},
 			 {"n":"fraction","s":["dataCellList","values", "<INDEX>", "0"]}]; 
 
 		propertyObject.origMappingChild = [];

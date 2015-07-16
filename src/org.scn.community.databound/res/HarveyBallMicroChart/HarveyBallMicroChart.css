@@ -6,3 +6,16 @@ div.scn-pack-HarveyBallMicroChart {
   /* allow Y scroll */ 
   overflow-y: auto !important;  
 }
+
+.suiteHBMCSgmnt.Good {fill: #61a656;}
+.suiteHBMCSgmnt.Error {fill: #d32030;}
+.suiteHBMCSgmnt.Neutral {fill: #5cbae6;}
+
+.suiteHBMCSBall {
+	fill: #d6dadb;
+}
+
+.suiteHBMCSgmnt {
+	stroke: #ffffff;
+	stroke-width: 1.5;
+}

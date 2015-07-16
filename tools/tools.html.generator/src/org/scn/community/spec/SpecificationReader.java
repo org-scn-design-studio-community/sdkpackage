@@ -24,8 +24,6 @@ import org.scn.community.utils.Helpers;
 
 import com.sun.xml.internal.messaging.saaj.soap.ver1_1.HeaderElement1_1Impl;
 
-import sun.org.mozilla.javascript.internal.json.JsonParser;
-
 public class SpecificationReader {
 
 	private String pathToGenSpec;

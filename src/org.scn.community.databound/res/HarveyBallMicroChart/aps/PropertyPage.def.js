@@ -13,10 +13,11 @@ ApsContent = function () {
   "generatedJsFile": "true",
   "group": "ScnCommunityUnified",
   "handlerType": "sapui5",
-  "height": "200",
+  "height": "100",
   "id": "HarveyBallMicroChart",
   "package": "databound",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "repeaterProperty": "items",
   "require": [
     {
       "id": "common_basics",
@@ -49,7 +50,7 @@ ApsContent = function () {
   ],
   "title": "Harvey Ball Micro Chart2.0",
   "tooltip": "Harvey Ball Micro Chart- Component for visualization of data on small areas.",
-  "width": "400"
+  "width": "200"
 },
 
 "spec" : 
@@ -189,7 +190,7 @@ ApsContent = function () {
     "origType": "HarveyBallMicroChartItem",
     "template": "ObjectArray",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"formattedLabel\":false,\"color\":\"Good\",\"fraction\":20,\"fractionLabel\":\"sold \",\"fractionScale\":\"20T\"}]",
     "visible": true
   },
   "showFractions": {
@@ -276,7 +277,7 @@ ApsContent = function () {
     },
     "template": "float",
     "type": "float",
-    "value": 0,
+    "value": 100,
     "visible": true
   },
   "totalLabel": {
@@ -308,7 +309,7 @@ ApsContent = function () {
     },
     "template": "String",
     "type": "String",
-    "value": "",
+    "value": "M",
     "visible": true
   },
   "useColorPalette": {

@@ -128,6 +128,9 @@ HarveyBallMicroChart = {
 		var rowI = 0;
 		var counterI = 1;
 
+		if(l_Items.useDataCellList) {
+			counterI = l_Items.dataCellList.values.length;
+		}
 
 
 		for(rowI=0;rowI<counterI;rowI++){

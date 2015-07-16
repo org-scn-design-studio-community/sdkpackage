@@ -9,6 +9,7 @@
 	"extension": "ui5.HarveyBallMicroChart",
 	"extends1ControlDs": "HarveyBallMicroChart.ds",
 	"extends2Control": "HarveyBallMicroChart",
+	"repeaterProperty": "items",
 	"generatedJsFile":"true",
 
 	"databound": true,
@@ -46,6 +47,6 @@
 		}
 	],
 	
-	"width": "400",
-	"height": "200"
+	"width": "200",
+	"height": "100"
 }

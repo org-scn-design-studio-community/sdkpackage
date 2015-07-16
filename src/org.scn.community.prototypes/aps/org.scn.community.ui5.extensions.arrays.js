@@ -180,7 +180,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 					}
 					
 					var txtElementValue = undefined;
-					if(parameterObject.apsControl == "checkbox") {
+					if(parameterObject.apsControl == "checkbox" || parameterObject.type == "boolean") {
 						txtElementValue = new sap.ui.commons.CheckBox ({checked : targetValue, width: "280px"});
 						
 						txtElementValue.attachChange(
@@ -356,7 +356,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 			if(targetValue == undefined) {
 				targetValue = parameterObject.value;
 			}
-			if(parameterObject.apsControl == "checkbox") {
+			if(parameterObject.apsControl == "checkbox" || parameterObject.type == "boolean") {
 				txtItemValue = new sap.ui.commons.CheckBox ({checked : targetValue, width: "300px"});
 				
 				txtItemValue.attachChange(
