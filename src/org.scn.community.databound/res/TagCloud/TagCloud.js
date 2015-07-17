@@ -38,6 +38,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
 	this._previousHeight = -1;
 	
 	var svg,
+		svgNode,
 		tagIndex,
 		tagMember,
 		tags,
@@ -96,6 +97,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
     this.init = function() {
     	container = this.$();
         svg = initSvg(container);
+        svgNode = svg.append("g");
         this._ownScript = _readScriptPath();
         };
 
@@ -121,7 +123,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
             	tags.push(tag);
             });
           
-          this.drawCloud();
+          that.drawCloud();
           
     		}
     	};
@@ -132,7 +134,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
 		var height = that.$().innerHeight(); 
 		
 		d3.layout.cloud().size([width, height])
-	  	  .timeInterval(10)
 	      .words(tags)
 	      .padding(2)
 	      //.rotate(function(d) { return d.text.length > 5 ? 0 : 90; })
@@ -158,16 +159,22 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
         var svgWidth = that.$().innerWidth();
         var svgHeight = that.$().innerHeight();
         
-    	var tagNodes = svg.attr("width", svgWidth)
+        //handle responsive component resize
+        var svgResize = svg.attr("width", svgWidth)
     	.attr("height", svgHeight);
-    		
-    	var tagGroup = tagNodes.select("g");
-        if(tagGroup.empty()) tagGroup = svg.append("g");
-        //tagGroup.selectAll("text").remove();
         
-    	var tagEnter = tagGroup.attr("transform", "translate(" + (svgWidth/2) + "," + (svgHeight/2) + ")")
-    	.selectAll("text")
-    	.data(words)
+        var gResize = svgResize.selectAll("g")
+        .attr("transform", "translate(" + (svgWidth/2) + "," + (svgHeight/2) + ")");
+    	//var tagNodes = svg.attr("width", svgWidth)
+    	//.attr("height", svgHeight);
+    		
+    	var cloud = gResize.selectAll("g text")
+    	.data(words, function(d) { return d.text; });
+        //if(tagGroup.empty()) tagGroup = svg.append("g");
+        //tagGroup.selectAll("text").remove();
+        console.log("debug");
+    	//Enter new words
+    	var cloudEnter = cloud 
     	.enter().append("text")
     	.attr("class", "wordcloud")
         .style("font-size", function(d) { return wordScale(d.frequency) + "px"; })
@@ -179,6 +186,24 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
         })
         .text(function(d) { return d.text; })
         .on("click", function(d) { click(d); });
+    	
+    	//Transition existing words
+        var cloudTransition = cloud
+            .transition()
+                .duration(600)
+                .style("font-size", function(d) { return d.size + "px"; })
+                .attr("transform", function(d) {
+                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                })
+                .style("fill-opacity", 1);
+        
+        //Exit departing or filtered words
+        var cloudExit = cloud.exit()
+        .transition()
+            .duration(200)
+            .style('fill-opacity', 1e-6)
+            .attr('font-size', 1)
+            .remove();
     	
     	this._poller = window.setTimeout(function(){that.detectSize(that)},that._pollInterval);
     	
@@ -209,7 +234,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
 	
 	function getColor(colorValue){
 		
-		if (colorValue !== "") {
+		if (colorValue !== "gray") {
 		var colorScale = d3.scale.linear()
 	    	.domain([-2, 0, 2])
 	    	.range(["red", "#5D6770", "green"]);
