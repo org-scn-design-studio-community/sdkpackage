@@ -1,0 +1,119 @@
+{
+
+
+
+	"editable" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Editable",
+			"cat" : "Display",
+			"tooltip" : "Value 'true' Is Required For Changes On The Rating Symbols.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"iconHovered" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Icon Hovered",
+			"cat" : "Display",
+			"tooltip" : "The URI To The Image Which Is Displayed When The Mouse Hovers Onto A Rating Symbol. If Used, A Requirement Is That All Custom Icons Need To Have The Same Size. Note That When This Attribute Is Used Also The Other Icon Attributes Need To Be Set.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"iconSelected" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Icon Selected",
+			"cat" : "Display",
+			"tooltip" : "The URI To The Image Which Shall Be Displayed For All Selected Rating Symbols. Note That When This Attribute Is Used, Also The Other Icon Attributes Need To Be Set.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"iconUnselected" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Icon Unselected",
+			"cat" : "Display",
+			"tooltip" : "The URI To The Image Which Shall Be Displayed For All Unselected Rating Symbols. If This Attribute Is Used, A Requirement Is That All Custom Icons Need To Have The Same Size. Note That When This Attribute Is Used Also The Other Icon Attributes Need To Be Set.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"maxValue" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 5,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Maximum Value",
+			"cat" : "Display",
+			"tooltip" : "The Number Of Displayed Rating Symbols",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"value" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 3.5,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Value",
+			"cat" : "Display",
+			"tooltip" : "The Number Of Displayed Rating Symbols",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onChange" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Change",
+			"cat" : "Events",
+			"tooltip" : "The Event Is Fired When The User Has Done A Rating.",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

@@ -34,7 +34,7 @@ org_scn_community_basics.isDebug = org_scn_community_basics.getUrlParameterByNam
 if(org_scn_community_basics.isDebug) {
 	org_scn_community_require.jsVersion = "0000-0-0";	
 } else {
-	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-16"/*%TIMESTAMP-END%*/;
+	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-17"/*%TIMESTAMP-END%*/;
 }
 
 org_scn_community_basics.isHana = false;
@@ -201,6 +201,21 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 			noty: {
 				name: "noty",
 				script: C_ORG_SCN_COMMUNITY_ + "basics/os/noty/packaged/noty",
+				min: false
+			},
+			validate: {
+				name: "validate",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/validate/validate",
+				min: false
+			},
+			mm: {
+				name: "mm",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/mm/mm",
+				min: true
+			},
+			mmfollower: {
+				name: "mmfollower",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/mm/mm-follower",
 				min: false
 			}
 	};

@@ -1,54 +1,100 @@
 
 <component
 	id="WorldTime"
-	title="WorldTime"
+	title="WorldTime 2.0"
+	tooltip="WorldTime"
 	icon="res/WorldTime/WorldTime.png"
 	handlerType="div"
-	group="ScnCommunityBasics">
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	group="ScnCommunityBasics"
+	databound="false"
+>
 	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/WorldTime/WorldTime.js</jsInclude>
-	<property group="Display" type="String" title="UTC Offset" id="utcoffset">
+	<jsInclude>res/WorldTime/WorldTimeLoader.js</jsInclude>
+	<cssInclude>res/WorldTime/WorldTime.css</cssInclude>
+	
+	<property
+		id="dateformat"
+		type="String"
+		title="Date Format"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
-	<property group="Display" type="String" title="Locale" id="locale">
-		<possibleValue>en-US</possibleValue>
-		<possibleValue>de-DE</possibleValue>
-		<possibleValue>default</possibleValue>
+	<property
+		id="daylightsaving"
+		type="boolean"
+		title="Consider Daylight Saving"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
-	<property group="Display" type="boolean" title="Show Timezone name" id="showtimezonename">
+	<property
+		id="interval"
+		type="int"
+		title="Update Interval (in Ms)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
-	<property group="Display" type="boolean" title="Consider Daylight Saving" id="daylightsaving">
+	<property
+		id="locale"
+		type="String"
+		title="Locale"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
-	<property group="Display" type="String" title="Date Format" id="dateformat">
-		<possibleValue>dd.mm.yy</possibleValue>
-		<possibleValue>dd.mm</possibleValue>
-		<possibleValue>mm.yy</possibleValue>
-		<possibleValue>hide</possibleValue>
-		<possibleValue>default</possibleValue>
+	<property
+		id="showtimezonename"
+		type="boolean"
+		title="Show Timezone Name"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
-	<property group="Display" type="String" title="Time Format" id="timeformat">
-		<possibleValue>hh:mm:ss</possibleValue>
-		<possibleValue>hh:mm</possibleValue>
-		<possibleValue>hide</possibleValue>
-		<possibleValue>default</possibleValue>
+	<property
+		id="timeformat"
+		type="String"
+		title="Time Format"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
-	<property group="Display" type="int" title="Update Interval (in ms)" id="interval">
+	<property
+		id="utcoffset"
+		type="String"
+		title="UTC Offset"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
+
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">150</defaultValue>
 		<defaultValue property="HEIGHT">40</defaultValue>
-		<defaultValue property="utcoffset">0</defaultValue>
-		<defaultValue property="locale">de-DE</defaultValue>
-		<defaultValue property="dateformat">dd.mm.yy</defaultValue>
-		<defaultValue property="timeformat">hh:mm:ss</defaultValue>
-		<defaultValue property="showtimezonename">true</defaultValue>
-		<defaultValue property="daylightsaving">true</defaultValue>
-		<defaultValue property="interval">5000</defaultValue>
+		
+		<defaultValue property="dateformat"><![CDATA[ddmmyy]]></defaultValue>
+		<defaultValue property="daylightsaving"><![CDATA[true]]></defaultValue>
+		<defaultValue property="interval"><![CDATA[5000]]></defaultValue>
+		<defaultValue property="locale"><![CDATA[deDE]]></defaultValue>
+		<defaultValue property="showtimezonename"><![CDATA[true]]></defaultValue>
+		<defaultValue property="timeformat"><![CDATA[hhmmss]]></defaultValue>
+		<defaultValue property="utcoffset"><![CDATA[0]]></defaultValue>
+
 	</initialization>
 
 </component>

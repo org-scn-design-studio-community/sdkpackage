@@ -55,7 +55,7 @@
     "origType": "BulletChartData",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"value\":1500}]",
+    "value": "[]",
     "visible": true
   },
   "actualValueLabel": {
@@ -534,7 +534,7 @@
     "origType": "BulletChartData",
     "template": "ObjectArray",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Critical\",\"value\":100},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT1\",\"leaf\":false,\"color\":\"Good\",\"value\":600},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT2\",\"leaf\":false,\"color\":\"Neutral\",\"value\":1200},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT3\",\"leaf\":false,\"color\":\"Neutral\",\"value\":1800}]",
+    "value": "[]",
     "visible": true
   },
   "useActual": {

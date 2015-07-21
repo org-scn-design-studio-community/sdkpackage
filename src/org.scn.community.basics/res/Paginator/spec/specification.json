@@ -1,0 +1,55 @@
+{
+
+
+
+	"currentPage" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Current Page",
+			"cat" : "Display",
+			"tooltip" : "Represents The Current Page Number.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"numberOfPages" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 3,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Number Of Pages",
+			"cat" : "Display",
+			"tooltip" : "Represents The Overall Number Of Pages That Are Embedded Into The Parent Control.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onPageChange" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Page Change",
+			"cat" : "Events",
+			"tooltip" : "Event Is Fired When The User Navigates To Another Page By Selecting It Directly, Or By Jumping Forward Or Backward.",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

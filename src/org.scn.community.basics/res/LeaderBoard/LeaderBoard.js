@@ -16,126 +16,144 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.LeaderBoard";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.basics.LeaderBoard;
 
-sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
+LeaderBoard = {
 
-	setFallbackPicture : function(value) {
-		this._FallbackPicture = value;
-		
-		if(value != undefined && value != "")  {
-			this._pImagePrefix = value.substring(0, value.lastIndexOf("/") + 1);	
-		}
-	},
-
-	getFallbackPicture : function() {
-		return this._FallbackPicture;
-	},
-
-	metadata: {
-        properties: {
-              "selectedKey": {type: "string"},
-              "pressedKey": {type: "string"},
-              "addCounter": {type: "boolean"},
-              "elements": {type: "string"},
-              "valuePrefix": {type: "string"},
-              "valueSuffix": {type: "string"}
-        }
-	},
-  
-	initDesignStudio: function() {
-		var that = this;
-		this._ownScript = _readScriptPath();
-		
-		this.addStyleClass("scn-pack-LeaderBoard");
-	},
-	
 	renderer: {},
 	
-	afterDesignStudioUpdate : function() {
+	initDesignStudio: function() {
 		var that = this;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that.addStyleClass("scn-pack-LeaderBoard");
 		
-		if(!this._lLayout) {
-			this._lLayout = new sap.ui.layout.VerticalLayout({
+		if(!that._lLayout) {
+			that._lLayout = new sap.ui.layout.VerticalLayout({
 				
 			});
-
-			this.addContent(
-				this._lLayout,
-				{left: "0px", top: "2px"}	
-			);
 		}
+
+		that._content = [];
+		that._contentValue = [];
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
-		this._maxValue = undefined;
+		that.onAfterRendering = function () {
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout, that.onResize);
+		}
+	},
+	
+	afterDesignStudioUpdate: function() {
+		var that = this;
 		
-		var lElementsToRender = this.getElements();
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		that._maxValue = undefined;
+		
+		var lElementsToRender = that.getElements();
 		if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != ""){
 			var lElementsToRenderArray = JSON.parse(lElementsToRender);
 
 			// Destroy old content
-			this._lLayout.destroyContent();
+			that._lLayout.destroyContent();
+			that._content = [];
+			that._contentValue = [];
 
 			// find highest value
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
-				if(this._maxValue == undefined) {
-					this._maxValue = element.value;
+				if(that._maxValue == undefined) {
+					that._maxValue = element.value;
 				}
-				if(element.value > this._maxValue) {
-					this._maxValue = element.value;
+				if(element.value > that._maxValue) {
+					that._maxValue = element.value;
 				}
 			}
 			
-			if(this._maxValue == 0) {
-				this._maxValue = 1;
+			if(that._maxValue == 0) {
+				that._maxValue = 1;
 			}
 			
 			// distribute content
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
-				var lImageElement = this.createLeaderElement(i, element.key, element.text, element.url, element.value, element.valueS);
-				this._lLayout.addContent(lImageElement);
+				var lImageElement = that.createLeaderElement(that, i, element.key, element.text, element.url, element.value, element.valueS);
+				that._content.push(lImageElement);
+
+				that._lLayout.addContent(lImageElement);
 			}
+		}
+
+		if(parent._oResize) {parent._oResize(true, true);}
+	},
+	
+	onResize: function(width, height, parent) {
+		var that = parent;
+		
+		var content = that._content;
+		for (var elementI in content) {
+			var elementO = content[elementI];
 			
+			elementO.setWidth(width + "px");
+		}
+		var content = that._contentValue;
+		for (var elementI in content) {
+			var elementO = content[elementI];
+
+			var value = elementO._realValue;
+			var nWidth = width * value / that._maxValue;
+			elementO.setWidth(nWidth + "px");
 		}
 	},
 	
-	createLeaderElement: function (index, iImageKey, iImageText, iImageUrl, value, valueAsString) {
-		var that = this;
+	createLeaderElement: function (owner, index, iImageKey, iImageText, iImageUrl, value, valueAsString) {
+		var that = owner;
 		
-		// in case starts with http, keep as is 
-		if(iImageUrl.indexOf("http") == 0) {
-			// no nothing
-		} else {
-			// in case of repository, add the prefix from repository
-			if(this._pImagePrefix != undefined && this._pImagePrefix != ""){
-				iImageUrl = this._pImagePrefix + iImageUrl;
-			} else {
-				iImageUrl = this._ownScript + "LeaderBoard.png";
-			}
-		}
+		if(iImageText == undefined) {iImageText = "";}
+		if(value == undefined) {value = 0.0;}
+		if(valueAsString == undefined) {valueAsString = "" + value;}
+
+		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getFallbackPicture(), iImageUrl, "LeaderBoard.png");
 
 		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
 			width: "225px",
 			height: "40px"
 		});
+		that._content.push(oLayout);
 		
-		value = 225 * value / this._maxValue;
+		var realValue = value;
+		value = 225 * value / that._maxValue;
 		
 		var oValueLayout = new sap.ui.commons.layout.AbsoluteLayout ({
 			width: value + "px",
 			height: "40px"
 		});
-		
+		oValueLayout._realValue = realValue;
+		that._contentValue.push(oValueLayout);
+
 		oValueLayout.addStyleClass("scn-pack-LeaderBoard-ValueLayout");
 
 		oLayout.addContent(
@@ -146,14 +164,14 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		oLayout.addStyleClass("scn-pack-LeaderBoard-Layout");
 		oLayout.internalKey = iImageKey;
 
-		if(this.getAddCounter()) {
+		if(that.getAddCounter()) {
 			var oIndexText = new sap.ui.commons.TextView();
 			oIndexText.addStyleClass("scn-pack-LeaderBoard-IndexText");
 			oIndexText.setText((index+1) + ".");
 			
 			oLayout.addContent(
 					oIndexText,
-					{right: "200px", top: "10px"}
+					{left: "10px", top: "10px"}
 			);
 		}
 		
@@ -189,7 +207,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 				{left: "82px", top: "20px"}
 		);
 		
-		if(this.getSelectedKey() == iImageKey) {
+		if(that.getSelectedKey() == iImageKey) {
 			oLayout.addStyleClass("scn-pack-LeaderBoard-SelectedValue");
 		}
 		
@@ -206,10 +224,9 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 				that._linkEvent = false;
 			} else {
 				that.setSelectedKey(oImage.internalKey);
-				that.updateSelection(oImage.internalKey);
+				that.updateSelection(that, oImage.internalKey);
 				
-				that.fireDesignStudioPropertiesChanged(["selectedKey"]);
-				that.fireDesignStudioEvent("onSelectionChanged");
+				that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
 			}
 		});
 		
@@ -240,13 +257,15 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			requestForPicture.send();
 		}
 		
-		oText.setText (this.getValuePrefix() + valueAsString + this.getValueSuffix());
+		oText.setText (that.getValuePrefix() + valueAsString + that.getValueSuffix());
 		
 		return oLayout;
 	},
 	
-	updateSelection : function (iSelectedKey) {
-		var lContent = this._lLayout.getContent();
+	updateSelection : function (owner, iSelectedKey) {
+		var that = owner;
+
+		var lContent = that._lLayout.getContent();
 		
 		for (var i = 0; i < lContent.length; i++) {
 			var lLayout = lContent [i];
@@ -258,6 +277,12 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			};
 		};
 	}
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
 
+define([myComponentData.requireName], function(basicsleaderboard){
+	myComponentData.instance = LeaderBoard;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

@@ -1,0 +1,137 @@
+{
+	"categories" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Categories",
+			"cat" : "Display",
+			"tooltip" : "The Notifications Pushed To Client",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"notifications" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Notifications",
+			"cat" : "Display",
+			"tooltip" : "The Notifications Pushed To Client",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+
+
+	"connectToCommonMessages" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Connect To Common Messages",
+			"cat" : "Display",
+			"tooltip" : "Setting This To TRUE Also The Common Messages From Messages Popup Will Be Handover To This Notification Bar",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"defaultImage" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url For Default Image",
+			"cat" : "Display",
+			"tooltip" : "Default Image - Needed For Calculation Of The Url Prefix For Repository",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"deleteNotificationOnClick" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Delete Notification When Clicked",
+			"cat" : "Display",
+			"tooltip" : "Setting This To TRUE Deletes The Notification On Click Event",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"removeAllOnMinimize" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Remove All Notifications When Minimized",
+			"cat" : "Display",
+			"tooltip" : "Setting This To TRUE Deletes All Notifications On Minimize Event",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showOnNewNotifications" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Notification Bar When New Notifications Are Available",
+			"cat" : "Display",
+			"tooltip" : "Setting This To TRUE Shows Always Notification Bar When New Notifications Are Available",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"splitNotificationsByPriority" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Split Notifications By Priority",
+			"cat" : "Display",
+			"tooltip" : "Setting This To TRUE The Notifications Will Be Displayed In Categories By Priority",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

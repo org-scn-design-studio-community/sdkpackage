@@ -1,0 +1,22 @@
+{
+	"id": "Slider",
+	"title": "Slider 2.0",
+	"tooltip": "Slider",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.Slider",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "30"
+}

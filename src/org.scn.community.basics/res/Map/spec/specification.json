@@ -1,0 +1,214 @@
+{
+	"cleanAll" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Locations",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Locations",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"elementsContent",
+		   	"refDesc":"Locations",
+		   	"refValue":"[]",
+		}
+	},
+	"elementsContent": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "location":{
+	               "type":"Array",
+	               "sequence":"key,text,url,lat,long",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "text":{
+	                  "desc":"Given Text",
+	                  "type":"String"
+	               },
+	               "url":{
+	                  "desc":"Image Url",
+	                  "type":"string"
+	               },
+	               "lat":{
+	                  "desc":"Latitude",
+	                  "type":"float"
+	               },
+	               "long":{
+	                  "desc":"Longitude",
+	                  "type":"float"
+	               }
+	            }
+	        },
+ 
+			"desc":"Locations",
+			"cat":"Content",
+			"tooltip":"List of Locations",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray"
+		}
+	},
+	"moveAction" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "-get",
+			"desc" : "Technical Property For Move Action",
+			"cat" : "Display",
+			"tooltip" : "Technical Property For Move Action",
+			"apsControl" : "spinner",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"moveTo" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Property For Move To",
+			"cat" : "Display",
+			"tooltip" : "Technical Property For Move To",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"mapUrl" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "http://tile.openstreetmap.org/{Z}/{X}/{Y}.png",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url to Use for the Map",
+			"cat" : "Display",
+			"tooltip" : "Url to Use for the Map",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"pan" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Property For Pan",
+			"cat" : "Display",
+			"tooltip" : "Technical Property For Pan",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"panAction" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "-get",
+			"desc" : "Technical Property For Pan Action",
+			"cat" : "Display",
+			"tooltip" : "Technical Property For Pan Action",
+			"apsControl" : "spinner",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"selectedKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Proprty For Selected Key",
+			"cat" : "Display",
+			"tooltip" : "Technical Proprty For Selected Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"zoom" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "-get",
+			"desc" : "Technical Property For Zoom",
+			"cat" : "Display",
+			"tooltip" : "Technical Property For Zoom",
+			"apsControl" : "spinner",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+
+
+	"defaultImage" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url For Default Image",
+			"cat" : "Display",
+			"tooltip" : "Url For Default Image Which Should Be Shown",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onSelectionChanged" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Selection Changed",
+			"cat" : "Events",
+			"tooltip" : "Event For On Selection Changed",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

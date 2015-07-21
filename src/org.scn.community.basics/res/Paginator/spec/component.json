@@ -1,0 +1,22 @@
+{
+	"id": "Paginator",
+	"title": "Paginator 2.0",
+	"tooltip": "Paginator",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.Paginator",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "270",
+	"height": "20"
+}

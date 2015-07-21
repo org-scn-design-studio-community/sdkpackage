@@ -10,6 +10,8 @@
 
 	<jsInclude>res/require_loader.js</jsInclude>
   	<jsInclude>res/common_basics.js</jsInclude>
+  	<jsInclude>os/sapui5/sap_m_loader.js</jsInclude>
+  	
 	<jsInclude>res/LaunchPad/LaunchPad.js</jsInclude>
   	<cssInclude>res/LaunchPad/LaunchPad.css</cssInclude>
   	<property group="Display" type="String" title="Tile Config" id="tileConfig" visible="false"/>

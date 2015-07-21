@@ -25,7 +25,7 @@ propertyPageHandlerRegistry.push({
  * Register TextBox Handler
  */
 propertyPageHandlerRegistry.push({
-	id : "textbox",
+	id : "textarea",
 	setter : function(property, value){
 		this["cmp_"+property].setValue(value);
 	},

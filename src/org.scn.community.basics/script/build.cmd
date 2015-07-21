@@ -39,7 +39,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\NavigationBar\def\contribution.xml ^
 ..\res\NotificationBar\def\contribution.xml ^
 ..\res\Notify\def\contribution.xml ^
-..\res\OSMap\def\contribution.xml ^
+..\res\Map\def\contribution.xml ^
 ..\res\Paginator\def\contribution.xml ^
 ..\res\PasswordField\def\contribution.xml ^
 ..\res\QRCode\def\contribution.xml ^
@@ -99,7 +99,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\NavigationBar\def\contribution.ztl ^
 ..\res\NotificationBar\def\contribution.ztl ^
 ..\res\Notify\def\contribution.ztl ^
-..\res\OSMap\def\contribution.ztl ^
+..\res\Map\def\contribution.ztl ^
 ..\res\Paginator\def\contribution.ztl ^
 ..\res\PasswordField\def\contribution.ztl ^
 ..\res\ProgressIndicator\def\contribution.ztl ^

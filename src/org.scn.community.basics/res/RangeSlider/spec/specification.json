@@ -1,0 +1,213 @@
+{
+	"liveValue" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "-get",
+			"desc" : "First Value (Live)",
+			"cat" : "Display",
+			"tooltip" : "First Value (Live)",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"liveValue2" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "-get",
+			"desc" : "Second Value (Live)",
+			"cat" : "Display",
+			"tooltip" : "Second Value (Live)",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"DLiveChangeActive" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Activate Live Change Event (prototype)",
+			"cat" : "Display",
+			"tooltip" : "Activate Live Change Event (prototype)",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"max" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 100.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Maximum Value",
+			"cat" : "Display",
+			"tooltip" : "Maximum Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"min" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Minimum Value",
+			"cat" : "Display",
+			"tooltip" : "Minimum Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"smallStepWidth" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 10,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Small Step Width",
+			"cat" : "Display",
+			"tooltip" : "Small Step Width",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"stepLabels" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : 100,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Step Labels",
+			"cat" : "Display",
+			"tooltip" : "Step Labels",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"totalUnits" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 10,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Total Units",
+			"cat" : "Display",
+			"tooltip" : "Total Units",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"value" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "First Value",
+			"cat" : "Display",
+			"tooltip" : "First Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"value2" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 100.0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Second Value",
+			"cat" : "Display",
+			"tooltip" : "Second Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"vertical" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Change To Vertical Orientation",
+			"cat" : "Display",
+			"tooltip" : "Change To Vertical Orientation",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onChange" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Change",
+			"cat" : "Events",
+			"tooltip" : "On Change",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onLiveChange" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Live Change",
+			"cat" : "Events",
+			"tooltip" : "On Live Change",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

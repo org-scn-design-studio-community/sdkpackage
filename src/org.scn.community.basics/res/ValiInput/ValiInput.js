@@ -16,51 +16,38 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.ValiInput";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.basics.ValiInput;
 
-sap.ui.commons.TextField.extend(ownComponentName, {
+ValiInput = {
 
-	metadata: {
-        properties: {
-              "DValue": {type: "string"},
-              "DValidState": {type: "string"},
-              "DTooltip": {type: "string"},
-              "DValidation": {type: "string"},
-              "DLength": {type: "int"},
-              "DNumber": {type: "float"},
-              "DDefault": {type: "String"},
-        }
+	renderer: {},
+	
+	initDesignStudio: function() {
+		var that = this;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
 	},
 	
-  	initDesignStudio: function() {
-		var that = this;
-		this._ownScript = _readScriptPath();
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that.addStyleClass("scn-pack-ValiField");
 		
-		this.addStyleClass("scn-pack-ValiField");
-		
-		this.attachChange(function() {
+		that.attachChange(function() {
 			if(that.getDValidation() == "custom") {
 				that.setDValue(that.getValue());
-				that.fireDesignStudioPropertiesChanged(["DValue"]);
-
-				that.fireDesignStudioEvent("onChanged");	
+				that.fireDesignStudioPropertiesChangedAndEvent(["DValue"], "onChanged");	
 			} else {
 				that._validatePrivate(that.getValue());
 
 				if(that._DValid == "None") {
 					that.setDValue(that.getValue());
-					that.fireDesignStudioPropertiesChanged(["DValue"]);
-	
-					that.fireDesignStudioEvent("onChanged");	
+					that.fireDesignStudioPropertiesChangedAndEvent(["DValue"], "onChanged");	
 				}
 			}
 		});
@@ -68,17 +55,23 @@ sap.ui.commons.TextField.extend(ownComponentName, {
 		that.formValidator = new FormValidator("", []);
 		that.formValidator._fillDefaults();
 		
-		this.attachLiveChange(that._validate);
+		that.attachLiveChange(that._validate);
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
-		this.onAfterRendering = function() {
-			var jqThis = that.$();
-		};
-  	},
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
+	},
 	
-	renderer: {},
-	
-	afterDesignStudioUpdate : function() {
+	afterDesignStudioUpdate: function() {
 		var that = this;
+		
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
 		
 		var value = that.getDValue();
 		var tooltip = that.getDTooltip();
@@ -92,7 +85,7 @@ sap.ui.commons.TextField.extend(ownComponentName, {
 			that.setValueState(sap.ui.core.ValueState[validState]);
 		}
 		
-		this.setValue(value);
+		that.setValue(value);
 		
 		var validationInfo = that._getMessage();
 		
@@ -101,12 +94,23 @@ sap.ui.commons.TextField.extend(ownComponentName, {
 		} else {
 			that.setTooltip(validationInfo);
 		}
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		
 	},
 	
 	_validate : function (oEvent) {
+		var that = oEvent.getSource();
+		
 		var liveValue = oEvent.getParameters().liveValue;
 		
-		this._validatePrivate(liveValue);
+		that._validatePrivate(liveValue);
 	},
 	
 	_validatePrivate : function (iValue) {
@@ -123,11 +127,11 @@ sap.ui.commons.TextField.extend(ownComponentName, {
 				that._DValid = "None";
 				// nothing to do
 			} else if(validationMode.indexOf("length") > -1){
-				valid = that.formValidator._hooks[validationMode](preparedHook, this.getDLength());
+				valid = that.formValidator._hooks[validationMode](preparedHook, that.getDLength());
 			} else if(validationMode.indexOf("than") > -1){
-				valid = that.formValidator._hooks[validationMode](preparedHook, this.getDNumber());
+				valid = that.formValidator._hooks[validationMode](preparedHook, that.getDNumber());
 			} else if(validationMode.indexOf("default") > -1){
-				valid = that.formValidator._hooks[validationMode](preparedHook, this.getDDefault());
+				valid = that.formValidator._hooks[validationMode](preparedHook, that.getDDefault());
 			} else if(validationMode == "custom") {
 				// nothing to do
 			} else {
@@ -164,15 +168,25 @@ sap.ui.commons.TextField.extend(ownComponentName, {
 		validationMessage = validationMessage.replace("%s field ", "value ");
 	
 		if(validationMode.indexOf("length") > -1){
-			validationMessage = validationMessage.replace("%s", this.getDLength());
+			validationMessage = validationMessage.replace("%s", that.getDLength());
 		} else if(validationMode.indexOf("than") > -1){
-			validationMessage = validationMessage.replace("%s", this.getDNumber());
+			validationMessage = validationMessage.replace("%s", that.getDNumber());
 		} else if(validationMode.indexOf("default") > -1){
-			validationMessage = validationMessage.replace("%s", this.getDefault());
+			validationMessage = validationMessage.replace("%s", that.getDefault());
 		}
 
 		return validationMessage;
 	},
+	
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
 
+define([myComponentData.requireName], function(basicsvaliinput){
+	myComponentData.instance = ValiInput;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

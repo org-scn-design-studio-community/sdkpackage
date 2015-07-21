@@ -1,145 +1,170 @@
 
 /**
- * Class for RangeSlider (extension of slider)
+ * Generated ZTL Class for RangeSlider
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.RangeSlider extends org.scn.community.shared.Component {
 
-	/** Sets the editable value */
-	void setEditable(
-		/** Editable value */ boolean editable) {*
-		this.editable = editable;
-	*}
-	
-	/** Returns the editable value */
-	boolean isEditable() {*
-		return this.editable;
+	/**
+	 * Sets Activate Live Change Event (prototype) Property
+	 */	
+	void setLiveChangeActive( /**Activate Live Change Event (prototype)*/ boolean liveChangeActive){*
+		this.DLiveChangeActive = liveChangeActive;
 	*}
 
-	/** Sets the minimum value. */
-	void setMinimumValue(
-		/** Minimum value */ float min) {*
-		this.min = min;
-	*}
-	
-	/** Returns the minimum value. */
-	float getMinimumValue() {*
-		return this.min;
+	/**
+	 * Gets Activate Live Change Event (prototype) Property
+	 */	
+	boolean isLiveChangeActive() {*
+		return this.DLiveChangeActive;
 	*}
 
-	/** Sets the maximum value. */
-	void setMaximumValue(
-		/** Maximum value */ float max) {*
-		this.max = max;
-	*}
-	
-	/** Returns the maximum value. */
-	float getMaximumValue() {*
-		return this.max;
+	/**
+	 * Sets First Value (Live) Property
+	 */	
+	void setLiveValue( /**First Value (Live)*/ float liveValue){*
+		this.liveValue = liveValue;
 	*}
 
-	/** Sets the value. */
-	void setValue(
-		/** Value */ float value) {*
-		this.value = value;
-	*}
-	/** Sets the value from integer. */
-	void setValueAsInt(
-		/** Value */ int value) {*
-		this.value = parseFloat(value);
-	*}
-	
-	/** Returns the value. */
-	float getValue() {*
-		return this.value;
-	*}
-	
-	/** Returns the value as integer. */
-	int getValueAsInt() {*
-		return parseInt(Math.floor(this.value));
-	*}
-	
-	/** Sets the second value. */
-	void setValue2(
-		/** Second value */ float value2) {*
-		this.value2 = value2;
-	*}
-	/** Sets the second value from integer. */
-	void setValue2AsInt(
-		/** Value */ int value) {*
-		this.value2 = parseFloat(value);
-	*}
-
-	/** Returns the second value. */
-	float getValue2() {*
-		return this.value2;
-	*}
-	
-	/** Returns the second value as integer. */
-	int getValue2AsInt() {*
-		return parseInt(Math.floor(this.value2));
-	*}
-
-	/** Returns the live value. */
+	/**
+	 * Gets First Value (Live) Property
+	 */	
 	float getLiveValue() {*
 		return this.liveValue;
 	*}
-	
-	/** Returns the live value as integer. */
-	int getLiveValueAsInt() {*
-		return parseInt(Math.floor(this.liveValue));
+
+	/**
+	 * Sets Second Value (Live) Property
+	 */	
+	void setLiveValue2( /**Second Value (Live)*/ float liveValue2){*
+		this.liveValue2 = liveValue2;
 	*}
-	
-	/** Returns the second live value. */
+
+	/**
+	 * Gets Second Value (Live) Property
+	 */	
 	float getLiveValue2() {*
 		return this.liveValue2;
 	*}
-	
-	/** Returns the second live value as integer. */
-	int getLiveValue2AsInt() {*
-		return parseInt(Math.floor(this.liveValue2));
+
+	/**
+	 * Sets Maximum Value Property
+	 */	
+	void setMax( /**Maximum Value*/ float max){*
+		this.max = max;
 	*}
 
-	/** Sets the total units value. */
-	void setTotalUnits(
-		/** Total units value */ int totalUnits) {*
-		this.totalUnits = totalUnits;
-	*}
-	
-	/** Returns the total units value. */
-	int getTotalUnits() {*
-		return this.totalUnits;
+	/**
+	 * Gets Maximum Value Property
+	 */	
+	float getMax() {*
+		return this.max;
 	*}
 
-	/** Sets the step labels value. */
-	void setStepLabels(
-		/** Step labels value */ boolean stepLabels) {*
+	/**
+	 * Sets Minimum Value Property
+	 */	
+	void setMin( /**Minimum Value*/ float min){*
+		this.min = min;
+	*}
+
+	/**
+	 * Gets Minimum Value Property
+	 */	
+	float getMin() {*
+		return this.min;
+	*}
+
+
+
+
+
+	/**
+	 * Sets Small Step Width Property
+	 */	
+	void setSmallStepWidth( /**Small Step Width*/ float smallStepWidth){*
+		this.smallStepWidth = smallStepWidth;
+	*}
+
+	/**
+	 * Gets Small Step Width Property
+	 */	
+	float getSmallStepWidth() {*
+		return this.smallStepWidth;
+	*}
+
+	/**
+	 * Sets Step Labels Property
+	 */	
+	void setStepLabels( /**Step Labels*/ boolean stepLabels){*
 		this.stepLabels = stepLabels;
 	*}
-	
-	/** Returns the step labels value. */
+
+	/**
+	 * Gets Step Labels Property
+	 */	
 	boolean isStepLabels() {*
 		return this.stepLabels;
 	*}
 
-	/** Sets the vertical value. */
-	void setVertical(
-		/** Vertical value */ boolean vertical) {*
+	/**
+	 * Sets Total Units Property
+	 */	
+	void setTotalUnits( /**Total Units*/ int totalUnits){*
+		this.totalUnits = totalUnits;
+	*}
+
+	/**
+	 * Gets Total Units Property
+	 */	
+	int getTotalUnits() {*
+		return this.totalUnits;
+	*}
+
+	/**
+	 * Sets First Value Property
+	 */	
+	void setValue( /**First Value*/ float value){*
+		this.value = value;
+	*}
+
+	/**
+	 * Gets First Value Property
+	 */	
+	float getValue() {*
+		return this.value;
+	*}
+
+	/**
+	 * Sets Second Value Property
+	 */	
+	void setValue2( /**Second Value*/ float value2){*
+		this.value2 = value2;
+	*}
+
+	/**
+	 * Gets Second Value Property
+	 */	
+	float getValue2() {*
+		return this.value2;
+	*}
+
+	/**
+	 * Sets Change To Vertical Orientation Property
+	 */	
+	void setVertical( /**Change To Vertical Orientation*/ boolean vertical){*
 		this.vertical = vertical;
 	*}
-	
-	/** Returns the vertical value. */
+
+	/**
+	 * Gets Change To Vertical Orientation Property
+	 */	
 	boolean isVertical() {*
 		return this.vertical;
 	*}
 
-	/** Sets the small step width value. */
-	void setSmallStepWidth(
-		/** Small step width value */ float smallStepWidth) {*
-		this.smallStepWidth = smallStepWidth;
-	*}
-	
-	/** Returns the small step width value. */
-	float getSmallStepWidth() {*
-		return this.smallStepWidth;
-	*}
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

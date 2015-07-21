@@ -1,0 +1,25 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_ValidationStateEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify field 
+ */
+class org_scn_community_shared_ValidationState extends Enum {
+
+	/** None */
+	org_scn_community_shared_ValidationStateEnumfield None;
+       
+	/** Error */
+	org_scn_community_shared_ValidationStateEnumfield Error;
+
+	/** Success */
+	org_scn_community_shared_ValidationStateEnumfield Success;
+	
+	/** Warning */
+	org_scn_community_shared_ValidationStateEnumfield Warning;
+}

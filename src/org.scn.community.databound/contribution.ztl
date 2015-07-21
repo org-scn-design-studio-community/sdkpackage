@@ -3144,3 +3144,4 @@ class org.scn.community.databound.HarveyBallMicroChart extends org.scn.community
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
 }
+/* ZTL END */

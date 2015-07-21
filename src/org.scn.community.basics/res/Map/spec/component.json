@@ -1,0 +1,31 @@
+{
+	"id": "Map",
+	"title": "Open Street Map (Basic) 2.0",
+	"tooltip": "Open Street Map (Basic)",
+	"handlerType": "div",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "mm",
+		},
+		{
+			"space" : "known",
+			"id" : "mmfollower",
+			"ind" : "2"
+		}
+	],
+
+	"width": "600",
+	"height": "400"
+}

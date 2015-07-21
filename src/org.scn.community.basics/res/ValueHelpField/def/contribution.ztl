@@ -1,48 +1,72 @@
 
 /**
- * Class for ValueHelpField
+ * Generated ZTL Class for ValueHelpField
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.ValueHelpField extends org.scn.community.shared.Component {
-	
-	/** Sets the enabled value */
-	void setEnabled(
-		/** Editable value */ boolean enabled) {*
-		this.enabled = enabled;
-	*}
-	
-	/** Returns the enabled value */
-	boolean isEnabled() {*
-		return this.enabled;
-	*}
-	
-	/** Sets the editable value */
-	void setEditable(
-		/** Editable value */ boolean editable) {*
+
+	/**
+	 * Sets Editable Property
+	 */	
+	void setEditable( /**Editable*/ boolean editable){*
 		this.editable = editable;
 	*}
-	
-	/** Returns the editable value */
+
+	/**
+	 * Gets Editable Property
+	 */	
 	boolean isEditable() {*
 		return this.editable;
 	*}
-	
-	/** returns value */
-	String getValue () {*
-		return this.value;	
-	*}
-		
-	/** sets value */
-	void setValue (String value) {*
-		this.value = value;	
+
+	/**
+	 * Sets Enabled Property
+	 */	
+	void setEnabled( /**Enabled*/ boolean enabled){*
+		this.enabled = enabled;
 	*}
 
-	/** returns tooltip */
-	String getTooltip () {*
-		return this.tooltip;	
+	/**
+	 * Gets Enabled Property
+	 */	
+	boolean isEnabled() {*
+		return this.enabled;
 	*}
-	
-	/** sets the tooltip */
-	void setTooltip (String tooltip) {*
-		this.tooltip = tooltip;	
+
+
+
+
+
+	/**
+	 * Sets Tooltip Property
+	 */	
+	void setTooltip( /**Tooltip*/ String tooltip){*
+		this.tooltip = tooltip;
 	*}
+
+	/**
+	 * Gets Tooltip Property
+	 */	
+	String getTooltip() {*
+		return this.tooltip;
+	*}
+
+	/**
+	 * Sets Value Property
+	 */	
+	void setValue( /**Value*/ String value){*
+		this.value = value;
+	*}
+
+	/**
+	 * Gets Value Property
+	 */	
+	String getValue() {*
+		return this.value;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

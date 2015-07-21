@@ -321,7 +321,7 @@
 		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
 		
-		<defaultValue property="actual"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Good","value":1500}]]]></defaultValue>
+		<defaultValue property="actual"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="actualValueLabel"><![CDATA[]]></defaultValue>
 		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
 		<defaultValue property="dataCellListActual"><![CDATA[null]]></defaultValue>
@@ -344,7 +344,7 @@
 		<defaultValue property="size"><![CDATA[Auto]]></defaultValue>
 		<defaultValue property="targetValue"><![CDATA[0.0]]></defaultValue>
 		<defaultValue property="targetValueLabel"><![CDATA[]]></defaultValue>
-		<defaultValue property="thresholds"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Critical","value":100},{"parentKey":"ROOT","key":"ELEMENT1","leaf":false,"color":"Good","value":600},{"parentKey":"ROOT","key":"ELEMENT2","leaf":false,"color":"Neutral","value":1200},{"parentKey":"ROOT","key":"ELEMENT3","leaf":false,"color":"Neutral","value":1800}]]]></defaultValue>
+		<defaultValue property="thresholds"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="useActual"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useForecastValue"><![CDATA[true]]></defaultValue>

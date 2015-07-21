@@ -1,0 +1,22 @@
+{
+	"id": "RatingIndicator",
+	"title": "Rating Indicator 2.0",
+	"tooltip": "Rating Indicator",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.RatingIndicator",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "200",
+	"height": "40"
+}

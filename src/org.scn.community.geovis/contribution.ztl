@@ -20,4 +20,4 @@
 
 class org.scn.community.geovis.Maps extends org.scn.community.shared.Component {
 	
-}
+}/* ZTL END */

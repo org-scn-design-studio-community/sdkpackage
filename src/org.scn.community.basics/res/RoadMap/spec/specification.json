@@ -76,16 +76,16 @@
 	},
 	"numberOfVisibleSteps" : {
 		"template" : "String",
-		"type" : "String",
+		"type" : "int",
 		"value" : "",
 		"visible": true,
 		"opts" : {
-			"ztlType": "String",
+			"ztlType": "int",
 			"ztlFunction": "",
 			"desc" : "Number Of Visible Steps",
 			"cat" : "Display",
 			"tooltip" : "Number Of Visible Steps",
-			"apsControl" : "text",
+			"apsControl" : "spinner",
 			"noAps" : false,
 			"noZtl" : false
 		}

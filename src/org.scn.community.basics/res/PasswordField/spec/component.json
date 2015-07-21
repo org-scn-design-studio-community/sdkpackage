@@ -1,0 +1,22 @@
+{
+	"id": "PasswordField",
+	"title": "Password Field 2.0",
+	"tooltip": "Password Field",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.PasswordField",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "22"
+}

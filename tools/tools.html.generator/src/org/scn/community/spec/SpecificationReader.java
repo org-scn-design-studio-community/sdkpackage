@@ -44,6 +44,7 @@ public class SpecificationReader {
 	private String ApsHtml;
 	private String JsSpecTmpl;
 	private ArrayList<String> componentRequries = new ArrayList<String>();
+	private ArrayList<String> componentRequries2 = new ArrayList<String>();
 	private ArrayList<String> componentStdIncludes = new ArrayList<String>();
 	private String includeSpec;
 	private boolean hasUi5Spec;
@@ -179,8 +180,13 @@ public class SpecificationReader {
 				for (ParamFullSpec paramFullSpec : parameters) {
 					String space = paramFullSpec.getProperties().get("space");
 					String id = paramFullSpec.getProperties().get("id");
+					String ind = paramFullSpec.getProperties().get("ind");
 					
-					componentRequries.add("org_scn_community_require."+space+"Modules." + id + ".name");
+					if(ind == null || ind.equals("1")) {
+						componentRequries.add("org_scn_community_require."+space+"Modules." + id + ".name");	
+					} else {
+						componentRequries2.add("org_scn_community_require."+space+"Modules." + id + ".name");
+					}
 				}
 			} else if(key.equals("stdIncludes")) {
 				// special case, an array
@@ -382,6 +388,7 @@ public class SpecificationReader {
 			content = content.replace("%FUNCTION_ENTRY%", "");
 			content = content.replace("%CUSTOM_ENTRY%", "");
 			content = content.replace("%COMPONENT_REQUIRE_SPEC%", this.serializeRequires());
+			content = content.replace("%COMPONENT_REQUIRE_SPEC2%", this.serializeRequires2());
 			content = content.replace("%COMPONENT_STD_INCLUDES_SPEC%", this.serializeStdIncludes());
 			
 			content = content.replace("%XML_PROPERTY_TEMPLATE%", "");
@@ -446,6 +453,15 @@ public class SpecificationReader {
 		return requires;
 	}
 	
+	private CharSequence serializeRequires2() {
+		String requires = "";
+		
+		for (String require : componentRequries2) {
+			requires = requires + require + ",\r\n\t\t";
+		}
+		return requires;
+	}
+
 	private CharSequence serializeStdIncludes() {
 		String requires = "";
 		

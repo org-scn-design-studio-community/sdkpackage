@@ -1,0 +1,22 @@
+{
+	"id": "RangeSlider",
+	"title": "Range Slider 2.0",
+	"tooltip": "Range Slider",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.RangeSlider",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "30"
+}

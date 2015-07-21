@@ -16,67 +16,76 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.NavigationBar";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.basics.NavigationBar;
 
-jQuery.sap.require("sap.ui.ux3.NavigationBar");
-jQuery.sap.require("sap.ui.ux3.NavigationItem");
+NavigationBar = {
 
-sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
-
-	metadata: {
-        properties: {
-        	  "DElementsContent": {type: "string"},
-        	  "DSelectedKey": {type: "string"},
-        	  "DSelectedText": {type: "string"},
-              "DCleanAll": {type: "boolean"}
-        }
-	},
-  
+	renderer: {},
+	
 	initDesignStudio: function() {
 		var that = this;
-		this._ownScript = _readScriptPath();
-		
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		that._oNavBar = new sap.ui.ux3.NavigationBar();
-		that._oNavBar._owningPanel = this;
-		this.addContent(
+		that.addContent(
 				that._oNavBar,
 				{left: "0px", top: "0px"}	
 		);
 		
-		this.addStyleClass("scn-pack-NavigationBar");
-		this.addStyleClass("scn-pack-FullSizeChildren");
+		that.addStyleClass("scn-pack-NavigationBar");
+		that.addStyleClass("scn-pack-FullSizeChildren");
 		
-		this._oElements = {};
-		this._oItems = {};
+		that._oElements = {};
+		that._oItems = {};
 		
+		that._oNavBar._owner = that;
 		that._oNavBar.attachSelect(that.onSelected);
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
 	},
 	
-	renderer: {},
-	
-	afterDesignStudioUpdate : function() {
+	afterDesignStudioUpdate: function() {
 		var that = this;
 		
-		if(this.getDCleanAll()) {
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		if(that.getDCleanAll()) {
 			that._oNavBar.destroyItems();
 			
-			this._oElements = {};
-			this._oItems = {};
+			that._oElements = {};
+			that._oItems = {};
 			
-			this.setDCleanAll(false);
+			that.setDCleanAll(false);
 			that.fireDesignStudioPropertiesChanged(["cleanAll"]);
 		}
 		
-		var lElementsToRender = this.getDElementsContent();
+		var lElementsToRender = that.getDElementsContent();
 		if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != ""){
 			var lElementsToRenderArray = JSON.parse(lElementsToRender);
 
@@ -85,16 +94,17 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			}else{
 				//add an invisible dummy item to enable unselecting items at least visibly
 				var element_key = "invisible_dummy_select";
-				if(this._oElements[this.getId() + "_" + element_key]) {
-					this._oItems[this.getId() + "_" + element_key].setEnabled(false);
-					this._oItems[this.getId() + "_" + element_key].setVisible(false);
+				if(that._oElements[that.getId() + "_" + element_key]) {
+					that._oItems[that.getId() + "_" + element_key].setEnabled(false);
+					that._oItems[that.getId() + "_" + element_key].setVisible(false);
 				}else{
 					var Item = new sap.ui.ux3.NavigationItem(
-							this.getId() + "_" + element_key, {key: element_key, text: "I am invisible", enabled: false, visible: false});
+							that.getId() + "_" + element_key, {key: element_key, text: "I am invisible", enabled: false, visible: false});
+					Item._owner = that;
 					Item._dsKey = element_key;
 					
-					this._oElements[this.getId() + "_" + element_key] = element_key;
-					this._oItems[this.getId() + "_" + element_key] = Item;
+					that._oElements[that.getId() + "_" + element_key] = element_key;
+					that._oItems[that.getId() + "_" + element_key] = Item;
 					that._oNavBar.addItem(Item);	
 				}
 				//------------------------------------------------------------------------
@@ -104,18 +114,19 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
 				
-				if(this._oElements[this.getId() + "_" + element.key]) {
-					this._oItems[this.getId() + "_" + element.key].setEnabled(element.enabled);
-					this._oItems[this.getId() + "_" + element.key].setVisible(element.visible);
+				if(that._oElements[that.getId() + "_" + element.key]) {
+					that._oItems[that.getId() + "_" + element.key].setEnabled(element.enabled);
+					that._oItems[that.getId() + "_" + element.key].setVisible(element.visible);
 					continue;
 				}
 				
 				var Item = new sap.ui.ux3.NavigationItem(
-						this.getId() + "_" + element.key, {key: element.key, text: element.text, enabled: element.enabled, visible: element.visible});
+						that.getId() + "_" + element.key, {key: element.key, text: element.text, enabled: element.enabled, visible: element.visible});
+				Item._owner = that;
 				Item._dsKey = element.key;
 				
-				this._oElements[this.getId() + "_" + element.key] = element.key;
-				this._oItems[this.getId() + "_" + element.key] = Item;
+				that._oElements[that.getId() + "_" + element.key] = element.key;
+				that._oItems[that.getId() + "_" + element.key] = Item;
 				
 				that._oNavBar.addItem(Item);
 			}
@@ -123,24 +134,25 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			that.addDummy();
 		}
 		
-		if(this._oItems[this.getId() + "_" + that.getDSelectedKey()] != undefined) {
-			that._oNavBar.setSelectedItem(this._oItems[this.getId() + "_" + that.getDSelectedKey()]);	
+		if(that._oItems[that.getId() + "_" + that.getDSelectedKey()] != undefined) {
+			that._oNavBar.setSelectedItem(that._oItems[that.getId() + "_" + that.getDSelectedKey()]);	
 		}
 	},
 	
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
 	onSelected: function(oEvent) {
-		var that = this;
+		var that = oEvent.getSource()._owner;
 		var id = oEvent.mParameters.itemId;
-		var realKey = that._owningPanel._oElements[id];
-		var item = that._owningPanel._oItems[id];
+
+		var realKey = that._oElements[id];
+		var item = that._oItems[id];
 		
 		if (item.getEnabled()) {
-		
-			that._owningPanel.setDSelectedKey(realKey);
-			that._owningPanel.setDSelectedText(item.getText());
-			that._owningPanel.fireDesignStudioPropertiesChanged(["DSelectedKey"]);
-			that._owningPanel.fireDesignStudioPropertiesChanged(["DSelectedText"]);
-			that._owningPanel.fireDesignStudioEvent(["onSelectionChanged"]);
+			that.setDSelectedKey(realKey);
+			that.setDSelectedText(item.getText());
+			that.fireDesignStudioPropertiesChangedAndEvent(["DSelectedKey", "DSelectedText"], "onSelectionChanged");
 		}else{
 			oEvent.preventDefault();
 		}
@@ -161,5 +173,12 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		that._oNavBar.addItem(oItem3);
 		that._oNavBar.addItem(oItem4);
 	},
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+
+define([myComponentData.requireName], function(basicsnavigationbar){
+	myComponentData.instance = NavigationBar;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

@@ -1,0 +1,22 @@
+{
+	"id": "Link",
+	"title": "Link 2.0",
+	"tooltip": "Link",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.Link",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "100",
+	"height": "20"
+}

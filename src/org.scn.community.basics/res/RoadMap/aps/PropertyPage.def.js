@@ -94,17 +94,17 @@ ApsContent = function () {
   },
   "numberOfVisibleSteps": {
     "opts": {
-      "apsControl": "text",
+      "apsControl": "spinner",
       "cat": "Display",
       "desc": "Number Of Visible Steps",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Number Of Visible Steps",
       "ztlFunction": "",
-      "ztlType": "String"
+      "ztlType": "int"
     },
     "template": "String",
-    "type": "String",
+    "type": "int",
     "value": "",
     "visible": true
   },

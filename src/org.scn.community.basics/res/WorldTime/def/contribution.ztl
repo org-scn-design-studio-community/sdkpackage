@@ -1,18 +1,152 @@
 
 /**
- * Class for WorldTime
+ * Generated ZTL Class for WorldTime
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.WorldTime extends org.scn.community.shared.Component {
-	
-	/** Set base timezone with given utc offset.  
 
- 	<example>
-	<code>
-	TIME_1.setOffset("-2").
-	</code>
-	</example>
-	 */
-	void setOffset(String utc_offset) {*
-		this.utcoffset = utc_offset;
+	/**
+	 * Sets Date Format Property by String
+	 */	
+	void setDateformatByString( /**Date Format*/ String dateformat){*
+		this.dateformat = dateformat;
 	*}
+
+	/**
+	 * Gets Date Format Property as String
+	 */	
+	String getDateformatAsString() {*
+		return this.dateformat;
+	*}
+	
+	/**
+	 * Sets Date Format Property by Choice Option
+	 */	
+	void setDateformat( /**Date Format*/ org_scn_community_shared_Enumfield dateformat){*
+		this.dateformat = dateformat;
+	*}
+	
+	/**
+	 * Gets Date Format Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getDateformat() {*
+		return this.dateformat;
+	*}
+
+	/**
+	 * Sets Consider Daylight Saving Property
+	 */	
+	void setDaylightsaving( /**Consider Daylight Saving*/ boolean daylightsaving){*
+		this.daylightsaving = daylightsaving;
+	*}
+
+	/**
+	 * Gets Consider Daylight Saving Property
+	 */	
+	boolean isDaylightsaving() {*
+		return this.daylightsaving;
+	*}
+
+	/**
+	 * Sets Update Interval (in Ms) Property
+	 */	
+	void setInterval( /**Update Interval (in Ms)*/ int interval){*
+		this.interval = interval;
+	*}
+
+	/**
+	 * Gets Update Interval (in Ms) Property
+	 */	
+	int getInterval() {*
+		return this.interval;
+	*}
+
+	/**
+	 * Sets Locale Property by String
+	 */	
+	void setLocaleByString( /**Locale*/ String locale){*
+		this.locale = locale;
+	*}
+
+	/**
+	 * Gets Locale Property as String
+	 */	
+	String getLocaleAsString() {*
+		return this.locale;
+	*}
+	
+	/**
+	 * Sets Locale Property by Choice Option
+	 */	
+	void setLocale( /**Locale*/ org_scn_community_shared_Enumfield locale){*
+		this.locale = locale;
+	*}
+	
+	/**
+	 * Gets Locale Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getLocale() {*
+		return this.locale;
+	*}
+
+	/**
+	 * Sets Show Timezone Name Property
+	 */	
+	void setShowtimezonename( /**Show Timezone Name*/ boolean showtimezonename){*
+		this.showtimezonename = showtimezonename;
+	*}
+
+	/**
+	 * Gets Show Timezone Name Property
+	 */	
+	boolean isShowtimezonename() {*
+		return this.showtimezonename;
+	*}
+
+	/**
+	 * Sets Time Format Property by String
+	 */	
+	void setTimeformatByString( /**Time Format*/ String timeformat){*
+		this.timeformat = timeformat;
+	*}
+
+	/**
+	 * Gets Time Format Property as String
+	 */	
+	String getTimeformatAsString() {*
+		return this.timeformat;
+	*}
+	
+	/**
+	 * Sets Time Format Property by Choice Option
+	 */	
+	void setTimeformat( /**Time Format*/ org_scn_community_shared_Enumfield timeformat){*
+		this.timeformat = timeformat;
+	*}
+	
+	/**
+	 * Gets Time Format Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getTimeformat() {*
+		return this.timeformat;
+	*}
+
+	/**
+	 * Sets UTC Offset Property
+	 */	
+	void setUtcoffset( /**UTC Offset*/ String utcoffset){*
+		this.utcoffset = utcoffset;
+	*}
+
+	/**
+	 * Gets UTC Offset Property
+	 */	
+	String getUtcoffset() {*
+		return this.utcoffset;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

@@ -16,259 +16,166 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.NotificationBar";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.basics.NotificationBar;
 
-jQuery.sap.require("sap.ui.ux3.NotificationBar");
+NotificationBar = {
 
-sap.ui.ux3.NotificationBar.extend(ownComponentName, {
-
-	metadata: {
-        properties: {
-              "width": {type: "string"},
-              "height": {type: "string"},
-              "leftMargin": {type: "string"},
-              "rightMargin": {type: "string"},
-              "topMargin": {type: "string"},
-              "bottomMargin": {type: "string"}
-        }
-	},
-	
-	setCategories : function(value) {
-		if(this._Categories == value) {
-			return;
-		} else {
-			this._Categories = value;
-		}
-	},
-
-	getCategories : function() {
-		return this._Categories;
-	},
-	
-	setNotifications : function(value) {
-		if(this._Notifications == value) {
-			return;
-		} else {
-			this._Notifications = value;
-		}
-	},
-
-	getNotifications : function() {
-		return this._Notifications;
-	},
-	
-	setDefaultImage : function(value) {
-		if(this._DefaultImage == value) {
-			return;
-		} else {
-			this._DefaultImage = value;
-			this._pImagePrefix = value.substring(0, value.lastIndexOf("/") + 1);			
-		}
-	},
-
-	getDefaultImage : function() {
-		return this._DefaultImage;
-	},
-	
-	setConnectToCommonMessages : function(value) {
-		if(this._ConnectToCommonMessages == value) {
-			return;
-		} else {
-			this._ConnectToCommonMessages = value;
-		}
-	},
-
-	getConnectToCommonMessages : function() {
-		return this._ConnectToCommonMessages;
-	},
-	
-	setSplitNotificationsByPriority : function(value) {
-		if(this._SplitNotificationsByPriority == value) {
-			return;
-		} else {
-			this._SplitNotificationsByPriority = value;
-		}
-	},
-
-	getSplitNotificationsByPriority : function() {
-		return this._SplitNotificationsByPriority;
-	},
-	
-	setShowOnNewNotifications : function(value) {
-		if(this._ShowOnNewNotifications == value) {
-			return;
-		} else {
-			this._ShowOnNewNotifications = value;
-		}
-	},
-
-	getShowOnNewNotifications : function() {
-		return this._ShowOnNewNotifications;
-	},
-	
-	setDeleteNotificationOnClick : function(value) {
-		if(this._DeleteNotificationOnClick == value) {
-			return;
-		} else {
-			this._DeleteNotificationOnClick = value;
-		}
-	},
-
-	getDeleteNotificationOnClick : function() {
-		return this._DeleteNotificationOnClick;
-	},
-	
-	setRemoveAllOnMinimize : function(value) {
-		if(this._RemoveAllOnMinimize == value) {
-			return;
-		} else {
-			this._RemoveAllOnMinimize = value;
-		}
-	},
-
-	getRemoveAllOnMinimize : function() {
-		return this._RemoveAllOnMinimize;
-	},
-	
-	/* END OF SETTERS / GETTERS */
-	
 	renderer: {},
+	
+	initDesignStudio: function() {
+		var that = this;
 
-	initDesignStudio : function() {
-		this._oNotificationBar = this;
-		var that = this._oNotificationBar;
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that._pAccessPath = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getDefaultImage(), "", "");
 		
-		this._ownScript = _readScriptPath();
-		
-		this._pAccessPath = this._ownScript;
-		
-		this._oCommonNotifier = new sap.ui.ux3.Notifier({
+		that._oCommonNotifier = new sap.ui.ux3.Notifier({
 			title : "Common Notifications",
-			icon: this._pAccessPath + "scat_public.png"
+			icon: that._pAccessPath + "scat_public.png"
 		});
 		
-		this._oPrivateNotifier = new sap.ui.ux3.Notifier({
+		that._oPrivateNotifier = new sap.ui.ux3.Notifier({
 			title : "Private Notifications",
-			icon : this._pAccessPath + "scat_private.png"
+			icon : that._pAccessPath + "scat_private.png"
 		});
 		
-		this._oErrorNotifier = new sap.ui.ux3.Notifier({
+		that._oErrorNotifier = new sap.ui.ux3.Notifier({
 			title : "Eror Notifications",
-			icon : this._pAccessPath + "s_error.png"
+			icon : that._pAccessPath + "s_error.png"
 		});
 
-		this._oWarningNotifier = new sap.ui.ux3.Notifier({
+		that._oWarningNotifier = new sap.ui.ux3.Notifier({
 			title : "Warning Notifications",
-			icon : this._pAccessPath + "s_warning.png"
+			icon : that._pAccessPath + "s_warning.png"
 		});
 
-		this._oInfoNotifier = new sap.ui.ux3.Notifier({
+		that._oInfoNotifier = new sap.ui.ux3.Notifier({
 			title : "Information Notifications",
-			icon : this._pAccessPath + "s_info.png"
+			icon : that._pAccessPath + "s_info.png"
 		});
 
-		this.__notifiersInitialized = false;
+		that.__notifiersInitialized = false;
 		
-		this._oClickListener = function (oEvent) {
+		that._oClickListener = function (oEvent) {
 			var oNotification = oEvent.getParameter("message");
 			var oNotifier = oEvent.getParameter("notifier");
 			
-			if(that._DeleteNotificationOnClick) {
+			if(that.getDeleteNotificationOnClick()) {
 				oNotifier.removeMessage(oNotification);	
 				//close popup upfront to prevent callout errors on last message delete
 				oNotifier._oCallout.closePopup();
 			}
 		};
 		
-		this._oResizeListener = function (oEvent) {
+		that._oResizeListener = function (oEvent) {
 			var bShow = oEvent.getParameter("status");
 			
-			if (bShow == "Min" && this._RemoveAllOnMinimize) {
-				this._oErrorNotifier.destroyMessages();
-				this._oErrorNotifier.removeAllMessages();
-				this._oWarningNotifier.destroyMessages();
-				this._oWarningNotifier.removeAllMessages();
-				this._oInfoNotifier.destroyMessages();
-				this._oInfoNotifier.removeAllMessages();
-				this._oPrivateNotifier.destroyMessages();
-				this._oPrivateNotifier.removeAllMessages();
-				this._oCommonNotifier.destroyMessages();
-				this._oCommonNotifier.removeAllMessages();
+			if (bShow == "Min" && that._RemoveAllOnMinimize) {
+				that._oErrorNotifier.destroyMessages();
+				that._oErrorNotifier.removeAllMessages();
+				that._oWarningNotifier.destroyMessages();
+				that._oWarningNotifier.removeAllMessages();
+				that._oInfoNotifier.destroyMessages();
+				that._oInfoNotifier.removeAllMessages();
+				that._oPrivateNotifier.destroyMessages();
+				that._oPrivateNotifier.removeAllMessages();
+				that._oCommonNotifier.destroyMessages();
+				that._oCommonNotifier.removeAllMessages();
 				
-				for(item in this._oWCustomCategoryNotifier) { 
-					this._oWCustomCategoryNotifier[item].destroyMessages();
-					this._oWCustomCategoryNotifier[item].removeAllMessages();
+				for(item in that._oWCustomCategoryNotifier) { 
+					that._oWCustomCategoryNotifier[item].destroyMessages();
+					that._oWCustomCategoryNotifier[item].removeAllMessages();
 				}
 			}
 		};
 		
-		this._oCommonNotifier.attachMessageSelected(this._oClickListener);
-		this._oPrivateNotifier.attachMessageSelected(this._oClickListener);
-		this._oErrorNotifier.attachMessageSelected(this._oClickListener);
-		this._oWarningNotifier.attachMessageSelected(this._oClickListener);
-		this._oInfoNotifier.attachMessageSelected(this._oClickListener);
+		that._oCommonNotifier.attachMessageSelected(that._oClickListener);
+		that._oPrivateNotifier.attachMessageSelected(that._oClickListener);
+		that._oErrorNotifier.attachMessageSelected(that._oClickListener);
+		that._oWarningNotifier.attachMessageSelected(that._oClickListener);
+		that._oInfoNotifier.attachMessageSelected(that._oClickListener);
 		
 		// initilize on Min Status * 1.0.1
 		that.setVisibleStatus(sap.ui.ux3.NotificationBarStatus.Min);
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
 	},
 	
-	afterDesignStudioUpdate : function() {
-		var that = this._oNotificationBar;
+	afterDesignStudioUpdate: function() {
+		var that = this;
 		
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
 		// reset new Notifications flag
-		this._pNewNotificationsAvailable = false;
+		that._pNewNotificationsAvailable = false;
 		
 		// 
-		if(!this.__notifiersInitialized) {
-			if(this._SplitNotificationsByPriority) {
-				that.addNotifier(this._oErrorNotifier);
-				that.addNotifier(this._oWarningNotifier);
-				that.addNotifier(this._oInfoNotifier);
+		if(!that.__notifiersInitialized) {
+			if(that.getSplitNotificationsByPriority()) {
+				that.addNotifier(that._oErrorNotifier);
+				that.addNotifier(that._oWarningNotifier);
+				that.addNotifier(that._oInfoNotifier);
 			} else {
-				that.addNotifier(this._oCommonNotifier);
-				that.addNotifier(this._oPrivateNotifier);
+				that.addNotifier(that._oCommonNotifier);
+				that.addNotifier(that._oPrivateNotifier);
 			}
 
-			that.attachResize(this._oResizeListener);
+			that.attachResize(that._oResizeListener);
 			
-			this.__notifiersInitialized = true;
+			that.__notifiersInitialized = true;
 		}
 		
 		// resize fix, not active yet
 		var tryToFixResize = false;
 		if(tryToFixResize) {
-			this.oComponentProperties.height = "40";
-			this.oComponentProperties.width = "auto";
-			this.oComponentProperties.rightmargin = "0";
-			this.oComponentProperties.leftmargin = "0";
-			this.oComponentProperties.bottommargin = "0";
-			this.oComponentProperties.topmargin = "auto";
+			that.oComponentProperties.height = "40";
+			that.oComponentProperties.width = "auto";
+			that.oComponentProperties.rightmargin = "0";
+			that.oComponentProperties.leftmargin = "0";
+			that.oComponentProperties.bottommargin = "0";
+			that.oComponentProperties.topmargin = "auto";
 			
-			this.setHeight("40");
-			this.setWidth("auto");
-			this.setRightMargin("0");
-			this.setLeftMargin("0");
-			this.setBottomMargin("0");
-			this.setTopMargin("auto");
+			that.setHeight("40");
+			that.setWidth("auto");
+			that.setRightMargin("0");
+			that.setLeftMargin("0");
+			that.setBottomMargin("0");
+			that.setTopMargin("auto");
 			
-			this.fireDesignStudioPropertiesChanged(["width", "height", "topMargin", "bottomMargin", "leftMargin", "rightMargin"]);
+			that.fireDesignStudioPropertiesChanged(["width", "height", "topMargin", "bottomMargin", "leftMargin", "rightMargin"]);
 		}
 		
-		if(!this._oWCustomCategoryNotifier) {
-			this._oWCustomCategoryNotifier = new Array();
+		if(!that._oWCustomCategoryNotifier) {
+			that._oWCustomCategoryNotifier = new Array();
 		}
 		
 		// read local created new Notifications
-		var newCategories = this._Categories;
+		var newCategories = that.getCategories();
 		if((newCategories != undefined || newCategories != undefined) && newCategories != "" && newCategories != "<delete>"){
 			var CategoriesArray = JSON.parse(newCategories);
 			
@@ -278,36 +185,36 @@ sap.ui.ux3.NotificationBar.extend(ownComponentName, {
 				var image = CategoriesArray[i].image;
 				
 				// in case image is not given, use standard image
-				if(image == "")  {
-					icon = this._pAccessPath + "scat_private.png";
+				if(image == undefined || image == "")  {
+					icon = that._pAccessPath + "scat_private.png";
 				} else {
-					icon = this._pImagePrefix + image;
+					icon = that._pImagePrefix + image;
 				}
 				
-				if(!this._oWCustomCategoryNotifier[key]) {
-					this._oWCustomCategoryNotifier[key] = new sap.ui.ux3.Notifier({
+				if(!that._oWCustomCategoryNotifier[key]) {
+					that._oWCustomCategoryNotifier[key] = new sap.ui.ux3.Notifier({
 						title : text,
 						icon : icon
 					});
 					
-					that.addNotifier(this._oWCustomCategoryNotifier[key]);
+					that.addNotifier(that._oWCustomCategoryNotifier[key]);
 				}
 			}
 			
 			// clean up
-			this._Categories = "<delete>";
+			that.setCategories("<delete>");
 			
 			// fire event to rerender
-			this.fireDesignStudioPropertiesChanged(["categories"]);
+			that.fireDesignStudioPropertiesChanged(["categories"]);
 		}
 		
 		// read local created new Notifications
-		var newNotifications = this._Notifications;
+		var newNotifications = that.getNotifications();
 		if((newNotifications != undefined || newNotifications != undefined) && newNotifications != "" && newNotifications != "<delete>"){
 			var NotificationsArray = JSON.parse(newNotifications);
 
 			if(NotificationsArray.length > 0) {
-				this._pNewNotificationsAvailable = true;
+				that._pNewNotificationsAvailable = true;
 			}
 			
 			for (var i = 0; i < NotificationsArray.length; i++) {
@@ -335,38 +242,38 @@ sap.ui.ux3.NotificationBar.extend(ownComponentName, {
 				var categoryNotifier = undefined;
 				
 				if(category != undefined && category != "") {
-					categoryNotifier = this._oWCustomCategoryNotifier[category];
+					categoryNotifier = that._oWCustomCategoryNotifier[category];
 				}
 
 				switch (NotificationsArray[i].level) {
 					case "SUCCESS":
 						oNotification.setLevel(sap.ui.core.MessageType.Success);
-						oNotification.setIcon(this._pAccessPath + "s_success.png");
-						if(!categoryNotifier) potentialPriorityNotifier = this._oInfoNotifier;
+						oNotification.setIcon(that._pAccessPath + "s_success.png");
+						if(!categoryNotifier) potentialPriorityNotifier = that._oInfoNotifier;
 						break;
 					case "INFO":
 						oNotification.setLevel(sap.ui.core.MessageType.Information);
-						oNotification.setIcon(this._pAccessPath + "s_info.png");
-						if(!categoryNotifier) potentialPriorityNotifier = this._oInfoNotifier;
+						oNotification.setIcon(that._pAccessPath + "s_info.png");
+						if(!categoryNotifier) potentialPriorityNotifier = that._oInfoNotifier;
 						break;
 					case "WARNING":
 						oNotification.setLevel(sap.ui.core.MessageType.Warning);
-						oNotification.setIcon(this._pAccessPath + "s_warning.png");
-						if(!categoryNotifier) potentialPriorityNotifier = this._oWarningNotifier;
+						oNotification.setIcon(that._pAccessPath + "s_warning.png");
+						if(!categoryNotifier) potentialPriorityNotifier = that._oWarningNotifier;
 						break;
 					case "ERROR":
 					default:
 						oNotification.setLevel(sap.ui.core.MessageType.Error);
-						oNotification.setIcon(this._pAccessPath + "s_error.png");
-						if(!categoryNotifier) potentialPriorityNotifier = this._oErrorNotifier;
+						oNotification.setIcon(that._pAccessPath + "s_error.png");
+						if(!categoryNotifier) potentialPriorityNotifier = that._oErrorNotifier;
 						break;
 				}
 				
 				if(categoryNotifier) {
 					categoryNotifier.addMessage(oNotification);
 				} else {
-					if(!this._SplitNotificationsByPriority) {
-						this._oPrivateNotifier.addMessage(oNotification);
+					if(!that.getSplitNotificationsByPriority()) {
+						that._oPrivateNotifier.addMessage(oNotification);
 					} else {
 						potentialPriorityNotifier.addMessage(oNotification);
 					}
@@ -375,34 +282,38 @@ sap.ui.ux3.NotificationBar.extend(ownComponentName, {
 			}
 
 			// clean up
-			this._Notifications = "<delete>";
+			that.setNotifications("<delete>");
 			
 			// fire event to rerender
-			this.fireDesignStudioPropertiesChanged(["notifications"]);
+			that.fireDesignStudioPropertiesChanged(["notifications"]);
 		}
 		
-		if(!this._pInitilized) {
-			if(this._ConnectToCommonMessages) {
+		if(!that._pInitilized) {
+			if(that.getConnectToCommonMessages()) {
 				// register to normal handler
-				this.registerToMessageHandler();
+				that.registerToMessageHandler(that);
 			}
 			
-			this._pInitilized = true;
+			that._pInitilized = true;
 		}
 		
-		if(this._ShowOnNewNotifications && this._pNewNotificationsAvailable) {
+		if(that.getShowOnNewNotifications() && that._pNewNotificationsAvailable) {
 			that.setVisibleStatus(sap.ui.ux3.NotificationBarStatus.Default);
 		}
 	},
 	
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
+	
 	/* ACCESS TO MESSAGE HANDLER (not an official SDK API) */
 	
-	registerToMessageHandler : function () {
-		var that = this._oNotificationBar;
+	registerToMessageHandler : function (owner) {
+		var that = owner;
 		
-		this._oMessageBarHandler = sap.zen.Dispatcher.instance.getHandlers("messageview")[0];
-		if (this._oMessageBarHandler) {
-			this._oMessageBarHandler.setMessagePosition = function (oComponentProperties) {
+		that._oMessageBarHandler = sap.zen.Dispatcher.instance.getHandlers("messageview")[0];
+		if (that._oMessageBarHandler) {
+			that._oMessageBarHandler.setMessagePosition = function (oComponentProperties) {
 				
 				oComponentProperties.width = "0";
 				oComponentProperties.height = "0";
@@ -411,13 +322,13 @@ sap.ui.ux3.NotificationBar.extend(ownComponentName, {
 				oComponentProperties.bottommargin = "auto";
 				oComponentProperties.rightmargin = "auto";
 				
-				that.fillInAllCommonMessages();
+				that.fillInAllCommonMessages(that);
 			};
 		}
 	},
 	
-	fillInAllCommonMessages : function (){
-		var that = this._oNotificationBar;
+	fillInAllCommonMessages : function (owner){
+		var that = owner;
 		
 		// pass the official Messages from MessageHandler Model
 		var MessagesModel= sap.zen.MessageViewHandler.JSMessageHandler.oDataModel;
@@ -430,7 +341,7 @@ sap.ui.ux3.NotificationBar.extend(ownComponentName, {
 				if(MessageData) {
 
 					if(MessageData.length > 0) {
-						this._pNewNotificationsAvailable = true;
+						that._pNewNotificationsAvailable = true;
 					}
 					
 					for (var i = 0; i < MessageData.length; i++) {
@@ -457,27 +368,27 @@ sap.ui.ux3.NotificationBar.extend(ownComponentName, {
 						
 						if(level == "SUCCESS") {
 							oNotification.setLevel(sap.ui.core.MessageType.Success);
-							oNotification.setIcon(this._pAccessPath + "s_success.png");
-							potentialPriorityNotifier = this._oInfoNotifier;
+							oNotification.setIcon(that._pAccessPath + "s_success.png");
+							potentialPriorityNotifier = that._oInfoNotifier;
 						} else if(level == "INFO") {
 							oNotification.setLevel(sap.ui.core.MessageType.Information);
-							oNotification.setIcon(this._pAccessPath + "s_info.png");
-							potentialPriorityNotifier = this._oInfoNotifier;
+							oNotification.setIcon(that._pAccessPath + "s_info.png");
+							potentialPriorityNotifier = that._oInfoNotifier;
 						} else if(level == "WARNING") {
 							oNotification.setLevel(sap.ui.core.MessageType.Warning);
-							oNotification.setIcon(this._pAccessPath + "s_warning.png");
-							potentialPriorityNotifier = this._oWarningNotifier;
+							oNotification.setIcon(that._pAccessPath + "s_warning.png");
+							potentialPriorityNotifier = that._oWarningNotifier;
 						} else if(level == "ERROR") {
 							oNotification.setLevel(sap.ui.core.MessageType.Error);
-							oNotification.setIcon(this._pAccessPath + "s_error.png");
-							potentialPriorityNotifier = this._oErrorNotifier;
+							oNotification.setIcon(that._pAccessPath + "s_error.png");
+							potentialPriorityNotifier = that._oErrorNotifier;
 						} else {
 							oNotification.setLevel(sap.ui.core.MessageType.Error);
-							oNotification.setIcon(this._pAccessPath + "s_error.png");
+							oNotification.setIcon(that._pAccessPath + "s_error.png");
 						}
 						
-						if(!this._SplitNotificationsByPriority) {
-							this._oCommonNotifier.addMessage(oNotification);
+						if(!that.getSplitNotificationsByPriority()) {
+							that._oCommonNotifier.addMessage(oNotification);
 						} else {
 							potentialPriorityNotifier.addMessage(oNotification);
 						}
@@ -488,9 +399,16 @@ sap.ui.ux3.NotificationBar.extend(ownComponentName, {
 			MessagesModel.removeAll();
 		}
 		
-		if(this._ShowOnNewNotifications && this._pNewNotificationsAvailable) {
+		if(that.getShowOnNewNotifications() && that._pNewNotificationsAvailable) {
 			that.setVisibleStatus(sap.ui.ux3.NotificationBarStatus.Default);
 		}
 	}
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+
+define([myComponentData.requireName], function(basicsnotificationbar){
+	myComponentData.instance = NotificationBar;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

@@ -1,0 +1,22 @@
+{
+	"id": "ValueHelpField",
+	"title": "Value Help Field 2.0",
+	"tooltip": "Value Help Field",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.ValueHelpField",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "22"
+}

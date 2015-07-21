@@ -1,0 +1,54 @@
+	/**
+	 * Zooms in the map
+	 */
+	void zoomIn() {*
+		this.zoom = this.zoom + 1;
+	*}
+	
+	/**
+	 * Zooms out the map
+	 */
+	void zoomOut() {*
+		this.zoom = this.zoom - 1;
+	*}
+
+	/**
+	 * Moves the view on the map in the left direction
+	 */
+	void panLeft() {*
+		this.panAction = this.panAction + 1; 
+		this.pan = "0L00";
+	*}
+
+	/**
+	 * Moves the view on the map in the right direction
+	 */
+	void panRight() {*
+		this.panAction = this.panAction + 1; 
+		this.pan = "00R0";
+	*}
+	
+	/**
+	 * Moves the view on the map in the up direction
+	 */
+	void panUp() {*
+		this.panAction = this.panAction + 1; 
+		this.pan = "U000";
+	*}
+
+	/**
+	 * Moves the view on the map in the down direction
+	 */
+	void panDown() {*
+		this.panAction = this.panAction + 1; 
+		this.pan = "000D";
+	*}
+
+	/**
+	 * Moves the map to the given location by key
+	 */
+	void moveTo (
+			/**key which schould be moved to*/String key) {*
+		this.moveAction = this.moveAction + 1;
+		this.moveTo = key
+	*}

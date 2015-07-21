@@ -1,28 +1,42 @@
 
 /**
- * Class for Paginator
+ * Generated ZTL Class for Paginator
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.Paginator extends org.scn.community.shared.Component {
-	
-	/** Sets the current page number */
-	void setCurrentPage(
-		/** Current page number */ int currentPage) {*
-		this.currentPage = currentPage;	
-	*}
-	
-	/** Returns the current page number */
-	int getCurrentPage() {*
-		return this.currentPage;	
+
+	/**
+	 * Sets Current Page Property
+	 */	
+	void setCurrentPage( /**Current Page*/ int currentPage){*
+		this.currentPage = currentPage;
 	*}
 
-	/** Sets the overall number of pages that are embedded into the parent control */
-	void setNumberOfPages(
-		/** Overall number of pages */ int numberOfPages) {*
-		this.numberOfPages = numberOfPages;	
+	/**
+	 * Gets Current Page Property
+	 */	
+	int getCurrentPage() {*
+		return this.currentPage;
 	*}
-	
-	/** Returns the overall number of pages that are embedded into the parent control */
+
+	/**
+	 * Sets Number Of Pages Property
+	 */	
+	void setNumberOfPages( /**Number Of Pages*/ int numberOfPages){*
+		this.numberOfPages = numberOfPages;
+	*}
+
+	/**
+	 * Gets Number Of Pages Property
+	 */	
 	int getNumberOfPages() {*
-		return this.numberOfPages;	
+		return this.numberOfPages;
 	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

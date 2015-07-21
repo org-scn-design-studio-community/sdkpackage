@@ -43,7 +43,7 @@
 	</property>
 	<property
 		id="numberOfVisibleSteps"
-		type="String"
+		type="int"
 		title="Number Of Visible Steps"
 		group="Display"
 		bindable="true"

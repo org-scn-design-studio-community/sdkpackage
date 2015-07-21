@@ -3,7 +3,7 @@
 	"total" : {
 		"template" : "float",
 		"type" : "float",
-		"value" : 100,
+		"value" : 0,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -35,7 +35,7 @@
 	"totalScale" : {
 		"template" : "String",
 		"type" : "String",
-		"value" : "M",
+		"value" : "",
 		"visible": true,
 		"opts" : {
 			"ztlType": "String",
@@ -176,7 +176,7 @@
 		"template" : "ObjectArray",
 		"type" : "String",
 		"origType": "HarveyBallMicroChartItem";
-		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"formattedLabel\":false,\"color\":\"Good\",\"fraction\":20,\"fractionLabel\":\"sold \",\"fractionScale\":\"20T\"}]",
+		"value" : "[]",
 		"visible": true,
 
 		"opts" : {

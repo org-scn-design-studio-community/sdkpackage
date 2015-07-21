@@ -1,40 +1,140 @@
 
 /**
- * Class for ValiInput
+ * Generated ZTL Class for ValiInput
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.ValiInput extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Default Value Property
+	 */	
+	void setDefault( /**Default Value*/ String default){*
+		this.DDefault = default;
+	*}
+
+	/**
+	 * Gets Default Value Property
+	 */	
+	String getDefault() {*
+		return this.DDefault;
+	*}
+
+	/**
+	 * Sets Length Property
+	 */	
+	void setLength( /**Length*/ int length){*
+		this.DLength = length;
+	*}
+
+	/**
+	 * Gets Length Property
+	 */	
+	int getLength() {*
+		return this.DLength;
+	*}
+
+	/**
+	 * Sets Number Property
+	 */	
+	void setNumber( /**Number*/ float number){*
+		this.DNumber = number;
+	*}
+
+	/**
+	 * Gets Number Property
+	 */	
+	float getNumber() {*
+		return this.DNumber;
+	*}
+
+	/**
+	 * Sets Tooltip Property
+	 */	
+	void setTooltip( /**Tooltip*/ String tooltip){*
+		this.DTooltip = tooltip;
+	*}
+
+	/**
+	 * Gets Tooltip Property
+	 */	
+	String getTooltip() {*
+		return this.DTooltip;
+	*}
+
+	/**
+	 * Sets Valid State (for Custom) Property by String
+	 */	
+	void setValidStateByString( /**Valid State (for Custom)*/ String validState){*
+		this.DValidState = validState;
+	*}
+
+	/**
+	 * Gets Valid State (for Custom) Property as String
+	 */	
+	String getValidStateAsString() {*
+		return this.DValidState;
+	*}
 	
-	/** returns value */
-	String getValue () {*
-		return this.DValue;	
-	*}
-		
-	/** sets value */
-	void setValue (String value) {*
-		this.DValue = value;	
-	*}
-
-	/** returns tooltip */
-	String getTooltip () {*
-		return this.DTooltip;	
+	/**
+	 * Sets Valid State (for Custom) Property by Choice Option
+	 */	
+	void setValidState( /**Valid State (for Custom)*/ org_scn_community_shared_ValidationStateEnumfield validState){*
+		this.DValidState = validState;
 	*}
 	
-	/** sets the tooltip */
-	void setTooltip (String tooltip) {*
-		this.DTooltip = tooltip;	
+	/**
+	 * Gets Valid State (for Custom) Property as Choice Option
+	 */	
+	org_scn_community_shared_ValidationStateEnumfield getValidState() {*
+		return this.DValidState;
 	*}
 
-	/** sets the valid flag */
-	void setValidState (String value) {*
-		if(value == "None" || value == "Error" || value == "Success" || value == "Warning") {
-			this.DValidState = value;	
-		} else {
-			this.DValidState = "None";	
-		}
+	/**
+	 * Sets Validation Type Property by String
+	 */	
+	void setValidationByString( /**Validation Type*/ String validation){*
+		this.DValidation = validation;
 	*}
 
-	/** returns the valid flag */
-	String getValidState () {*
-		return this.DValidState;	
+	/**
+	 * Gets Validation Type Property as String
+	 */	
+	String getValidationAsString() {*
+		return this.DValidation;
 	*}
+	
+	/**
+	 * Sets Validation Type Property by Choice Option
+	 */	
+	void setValidation( /**Validation Type*/ org_scn_community_shared_Enumfield validation){*
+		this.DValidation = validation;
+	*}
+	
+	/**
+	 * Gets Validation Type Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getValidation() {*
+		return this.DValidation;
+	*}
+
+	/**
+	 * Sets Value Property
+	 */	
+	void setValue( /**Value*/ String value){*
+		this.DValue = value;
+	*}
+
+	/**
+	 * Gets Value Property
+	 */	
+	String getValue() {*
+		return this.DValue;
+	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

@@ -1,0 +1,25 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_BarColorEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort direction 
+ */
+class org_scn_community_shared_BarColor extends Enum {
+
+	/** Critical */
+	org_scn_community_shared_BarColorEnumfield Critical;
+       
+	/** Negative */
+	org_scn_community_shared_BarColorEnumfield Negative;
+
+	/** Neutral */
+	org_scn_community_shared_BarColorEnumfield Neutral;
+
+	/** Positive */
+	org_scn_community_shared_BarColorEnumfield Positive;
+}

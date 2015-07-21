@@ -1,12 +1,103 @@
 
 /**
- * Class for NotificationBar
+ * Generated ZTL Class for NotificationBar
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.NotificationBar extends org.scn.community.shared.Component {
 
+
+
+	/**
+	 * Sets Connect To Common Messages Property
+	 */	
+	void setConnectToCommonMessages( /**Connect To Common Messages*/ boolean connectToCommonMessages){*
+		this.connectToCommonMessages = connectToCommonMessages;
+	*}
+
+	/**
+	 * Gets Connect To Common Messages Property
+	 */	
+	boolean isConnectToCommonMessages() {*
+		return this.connectToCommonMessages;
+	*}
+
+	/**
+	 * Sets Url For Default Image Property
+	 */	
+	void setDefaultImage( /**Url For Default Image*/ String defaultImage){*
+		this.defaultImage = defaultImage;
+	*}
+
+	/**
+	 * Gets Url For Default Image Property
+	 */	
+	String getDefaultImage() {*
+		return this.defaultImage;
+	*}
+
+	/**
+	 * Sets Delete Notification When Clicked Property
+	 */	
+	void setDeleteNotificationOnClick( /**Delete Notification When Clicked*/ boolean deleteNotificationOnClick){*
+		this.deleteNotificationOnClick = deleteNotificationOnClick;
+	*}
+
+	/**
+	 * Gets Delete Notification When Clicked Property
+	 */	
+	boolean isDeleteNotificationOnClick() {*
+		return this.deleteNotificationOnClick;
+	*}
+
+
+
+	/**
+	 * Sets Remove All Notifications When Minimized Property
+	 */	
+	void setRemoveAllOnMinimize( /**Remove All Notifications When Minimized*/ boolean removeAllOnMinimize){*
+		this.removeAllOnMinimize = removeAllOnMinimize;
+	*}
+
+	/**
+	 * Gets Remove All Notifications When Minimized Property
+	 */	
+	boolean isRemoveAllOnMinimize() {*
+		return this.removeAllOnMinimize;
+	*}
+
+	/**
+	 * Sets Show Notification Bar When New Notifications Are Available Property
+	 */	
+	void setShowOnNewNotifications( /**Show Notification Bar When New Notifications Are Available*/ boolean showOnNewNotifications){*
+		this.showOnNewNotifications = showOnNewNotifications;
+	*}
+
+	/**
+	 * Gets Show Notification Bar When New Notifications Are Available Property
+	 */	
+	boolean isShowOnNewNotifications() {*
+		return this.showOnNewNotifications;
+	*}
+
+	/**
+	 * Sets Split Notifications By Priority Property
+	 */	
+	void setSplitNotificationsByPriority( /**Split Notifications By Priority*/ boolean splitNotificationsByPriority){*
+		this.splitNotificationsByPriority = splitNotificationsByPriority;
+	*}
+
+	/**
+	 * Gets Split Notifications By Priority Property
+	 */	
+	boolean isSplitNotificationsByPriority() {*
+		return this.splitNotificationsByPriority;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 	/** 
 	 * Add Category
-	 * 
 	 */
 	void addCategory (
 			/**Category Key*/String categoryKey, 

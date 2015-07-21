@@ -2005,14 +2005,17 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Launch Pad component*/
 	org.scn.community.basics.LaunchPad returnAsScnLaunchPad (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Leader Board component*/
+	/**Cast to Leader Board 2.0 component*/
 	org.scn.community.basics.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Link component*/
+	/**Cast to Link 2.0 component*/
 	org.scn.community.basics.Link returnAsScnLink (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to List Selector component*/
 	org.scn.community.basics.ListSelector returnAsScnListSelector (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Open Street Map (Basic) 2.0 component*/
+	org.scn.community.basics.Map returnAsScnMap (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Menu Bar (>= 1.4) component*/
 	org.scn.community.basics.MenuBar returnAsScnMenuBar (Component inputComponent) {* return inputComponent; *}
@@ -2023,25 +2026,22 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Modal Browser component*/
 	org.scn.community.basics.ModalBrowser returnAsScnModalBrowser (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Navigation Bar component*/
+	/**Cast to Navigation Bar 2.0 component*/
 	org.scn.community.basics.NavigationBar returnAsScnNavigationBar (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Notification Bar component*/
+	/**Cast to Notification Bar 2.0 component*/
 	org.scn.community.basics.NotificationBar returnAsScnNotificationBar (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Notify 2.0 component*/
 	org.scn.community.basics.Notify returnAsScnNotify (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Open Street Map (Basic) component*/
-	org.scn.community.basics.Map returnAsScnMap (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Paginator component*/
+	/**Cast to Paginator 2.0 component*/
 	org.scn.community.basics.Paginator returnAsScnPaginator (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Password Field component*/
+	/**Cast to Password Field 2.0 component*/
 	org.scn.community.basics.PasswordField returnAsScnPasswordField (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Progress Indicator component*/
+	/**Cast to Progress Indicator 2.0 component*/
 	org.scn.community.basics.ProgressIndicator returnAsScnProgressIndicator (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to QRCode Generator component*/
@@ -2050,10 +2050,10 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to RSSFeedReader 2.0 component*/
 	org.scn.community.basics.RSSFeedReader returnAsScnRSSFeedReader (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Range Slider component*/
+	/**Cast to Range Slider 2.0 component*/
 	org.scn.community.basics.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Rating Indicator component*/
+	/**Cast to Rating Indicator 2.0 component*/
 	org.scn.community.basics.RatingIndicator returnAsScnRatingIndicator (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Road Map 2.0 component*/
@@ -2062,28 +2062,28 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Segmented Button 2.0 component*/
 	org.scn.community.basics.SegmentedButton returnAsScnSegmentedButton (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Slider component*/
+	/**Cast to Slider 2.0 component*/
 	org.scn.community.basics.Slider returnAsScnSlider (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Text Area component*/
+	/**Cast to Text Area 2.0 component*/
 	org.scn.community.basics.TextArea returnAsScnTextArea (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Toggle Button component*/
+	/**Cast to Toggle Button 2.0 component*/
 	org.scn.community.basics.ToggleButton returnAsScnToggleButton (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Tree 2.0 component*/
 	org.scn.community.basics.Tree returnAsScnTree (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Tri State CheckBox component*/
+	/**Cast to Tri State CheckBox 2.0 component*/
 	org.scn.community.basics.TriStateCheckBox returnAsScnTriStateCheckBox (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Validated Input Field component*/
+	/**Cast to Validated Input Field 2.0 component*/
 	org.scn.community.basics.ValiInput returnAsScnValiInput (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Value Help Field component*/
+	/**Cast to Value Help Field 2.0 component*/
 	org.scn.community.basics.ValueHelpField returnAsScnValueHelpField (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to WorldTime component*/
+	/**Cast to WorldTime 2.0 component*/
 	org.scn.community.basics.WorldTime returnAsScnWorldTime (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Advanced Data Table component*/
@@ -10421,3 +10421,4 @@ class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Compon
 	*}
 
 }
+/* ZTL END */

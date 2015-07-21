@@ -18,7 +18,11 @@
 		{
 			"space" : "known",
 			"id" : "dateformatter",
-		},		
+		},
+		{
+			"space" : "known",
+			"id" : "sap_suite_loader",
+		}		
 	],
 	
 	"width": "300",

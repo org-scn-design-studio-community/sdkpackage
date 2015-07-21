@@ -54,6 +54,7 @@
 		 /** RequireJS Config **/
 		 var requireInfo2 = org_scn_community_require.collectRequire (
 		 [
+		 	
 		  	myComponentData.name
 	     ]);
 		 

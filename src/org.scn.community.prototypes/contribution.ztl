@@ -2008,3 +2008,4 @@ class org.scn.community.prototypes.RapidPrototype extends org.scn.community.shar
 		this["replacement"+index] = replacement;
 	*}
 }
+/* ZTL END */

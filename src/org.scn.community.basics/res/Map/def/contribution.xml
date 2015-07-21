@@ -1,0 +1,139 @@
+
+<component
+	id="Map"
+	title="Open Street Map (Basic) 2.0"
+	tooltip="Open Street Map (Basic)"
+	icon="res/Map/Map.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	group="ScnCommunityBasics"
+	databound="false"
+>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/Map/MapLoader.js</jsInclude>
+	<cssInclude>res/Map/Map.css</cssInclude>
+	
+	<property
+		id="cleanAll"
+		type="boolean"
+		title="Clean All Locations"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="defaultImage"
+		type="Url"
+		title="Url For Default Image"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="elementsContent"
+		type="String"
+		title="Locations"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="mapUrl"
+		type="String"
+		title="Url to Use for the Map"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="moveAction"
+		type="int"
+		title="Technical Property For Move Action"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="moveTo"
+		type="String"
+		title="Technical Property For Move To"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event For On Selection Changed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="pan"
+		type="String"
+		title="Technical Property For Pan"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="panAction"
+		type="int"
+		title="Technical Property For Pan Action"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical Proprty For Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="zoom"
+		type="int"
+		title="Technical Property For Zoom"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="defaultImage"><![CDATA[]]></defaultValue>
+		<defaultValue property="elementsContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="mapUrl"><![CDATA[http://tile.openstreetmap.org/{Z}/{X}/{Y}.png]]></defaultValue>
+		<defaultValue property="moveAction"><![CDATA[0]]></defaultValue>
+		<defaultValue property="moveTo"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="pan"><![CDATA[]]></defaultValue>
+		<defaultValue property="panAction"><![CDATA[0]]></defaultValue>
+		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="zoom"><![CDATA[0]]></defaultValue>
+
+	</initialization>
+
+</component>

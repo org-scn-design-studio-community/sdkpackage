@@ -1,0 +1,22 @@
+{
+	"id": "ProgressIndicator",
+	"title": "Progress Indicator 2.0",
+	"tooltip": "Progress Indicator",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.ProgressIndicator",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "270",
+	"height": "20"
+}

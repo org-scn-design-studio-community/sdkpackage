@@ -1,0 +1,135 @@
+{
+
+
+
+	"enabled" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Enabled",
+			"cat" : "Display",
+			"tooltip" : "Switches Enabled State Of The Control. Disabled Fields Have Different Colours And Can Not Be Focused.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"icon" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Icon",
+			"cat" : "Display",
+			"tooltip" : "Icon To Be Displayed As Graphical Element Within The Button. This Can Be An URI To An Image Or An Icon Font URI",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"iconHovered" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Icon Hovered",
+			"cat" : "Display",
+			"tooltip" : "Icon To Be Displayed As Graphical Element Within The Button When It Is Hovered (only If Also A Base Icon Was Specified). If Not Specified The Base Icon Is Used. If A Icon Font Icon Is Used, This Property Is Ignored",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"iconSelected" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Icon Selected",
+			"cat" : "Display",
+			"tooltip" : "Icon To Be Displayed As Graphical Element Within The Button When It Is Selected (only If Also A Base Icon Was Specified). If Not Specified The Base Or Hovered Icon Is Used. If A Icon Font Icon Is Used, This Property Is Ignored",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"pressed" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Pressed",
+			"cat" : "Display",
+			"tooltip" : "The Property Is True When The Control Is Toggled. The Default State Of This Property Is False",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Text Value",
+			"cat" : "Display",
+			"tooltip" : "Button Text Displayed At Runtime",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"tooltip" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Tooltip Value",
+			"cat" : "Display",
+			"tooltip" : "Button Tooltip Displayed At Runtime",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onPress" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Press",
+			"cat" : "Events",
+			"tooltip" : "Event For On Press",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

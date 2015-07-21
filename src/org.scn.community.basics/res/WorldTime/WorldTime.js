@@ -1,8 +1,8 @@
 /**
- * Copyright 2014 SCN Community Contributors
+ * Copyright 2014 Scn Community Contributors
  * 
  * Original Source Code Location:
- *  https://github.com/sap-design-studio-free-addons/sdk-package
+ *  https://github.com/org-scn-design-studio-community/sdkpackage/
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -15,62 +15,82 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
- * 
  */
+ 
+ (function(){
 
-/**
- * World time display designed by Martin Pankraz 
- * 
- */
-sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /** @memberOf org.scn.community.basics.WorldTime*/ function() {
-	var offset 					= null;
-	var SaveLocale 				= null;
-	var saveDateFormat 			= null;
-	var saveTimeFormat			= null;
-	var saveShowTimeZoneName 	= null;
-	var saveDaylightSaving		= null;
-	var update_interval 		= null;
-	var $div 					= null;
-	var interval_id				= null;
-	var identifier				= null;
+var myComponentData = org_scn_community_require.knownComponents.basics.WorldTime;
+
+WorldTime = function () {
+
+	var that = this;
 	
-	/**
-	 * @desc First function called during SAP Design Studio Plugin Lifecycle
-	 */
-	this.init = function(){
+	that.init = function() {
+		// define root component
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	};
+	
+	that.initAsync = function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+	
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		// that.addStyleClass("scn-pack-?");
+		that._jqThis = that.$();
+		that.interval_id = undefined;
 		
-	}
-	/**
-	 * @function beforeUpdate
-	 */
-	this.beforeUpdate = function(){};
+		that._ownid = that._jqThis[0].id + "_c";
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+	};
+
+	that.afterUpdate = function() {
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+
+		// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	};
 	
-	/**
-	 * @function afterUpdate
-	 */
-	this.afterUpdate = function(){
-		//separate multiple world time instances from each other
-		identifier = "convista_time_container_"+makeid();
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+
+	that.processData = function (flatData, afterPrepare, owner) {
+		var that = owner;
+		
+		// processing on data
+		that.afterPrepare(that);
+	};
+
+	that.afterPrepare = function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		
 		//add DIV
-		this.$().html('<div id="'+identifier+'">'+calcTime(offset)+'</div>');
+		that.$().html('<div id="'+that._ownid+'">'+calcTime(that, that.getUtcoffset())+'</div>');
 		//remember element
-		$div = document.getElementById(identifier);
+		$div = document.getElementById(that._ownid);
+		
 		//setup interval call only once in case of multiple update calls!
-		if(interval_id === null){
-			interval_id = setInterval(function(){
-				$div.innerHTML = calcTime(offset);
+		if(that.interval_id === undefined){
+			that.interval_id = setInterval(function(){
+				$div.innerHTML = calcTime(that, that.getUtcoffset());
 			}
-			, update_interval);
+			, that.getInterval());
 		}
-	}
-	
+	};
+
+	that.onResize = function (width, height, parent) {
+		// in case special resize code is required
+	};
+
 	/**
 	 * @function componentDeleted
 	 */
-	this.componentDeleted = function(){
+	that.componentDeleted = function(){
 		$div = null;
-		clearInterval(interval_id);
-		this.$().remove('#'+identifier);
+		clearInterval(that.interval_id);
+		that.$().remove('#'+that._ownid);
 	};
 	
 
@@ -78,7 +98,8 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 	 * @function to calculate local time given the UTC offset
 	 * @memberOf org.scn.community.basics.WorldTime
 	 */
-	function calcTime(offset) {	
+	function calcTime(owner, offset) {	
+		var that = owner;
 		
 		var result = null;
 
@@ -91,7 +112,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 	    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
 	    
 	    //handle daylight saving
-	    if (d.dst() && saveDaylightSaving){
+	    if (d.dst() && that.getDaylightsaving()){
 	    	offset = parseInt(offset)+1;
 	    }
 	    
@@ -99,7 +120,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 	    // using supplied offset
 	    nd = new Date(utc + (3600000*offset));
 	    
-	    var options = getOptionsByParameters();
+	    var options = that.getOptionsByParameters(that);
 	    
 	    // return time as a string
 	    if(options.defTime === true){
@@ -107,13 +128,14 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 	    }else if(options.defDate === true){
 	    	result = nd.toLocaleString();
 	    }else{
-	    	if(SaveLocale === 'en-US'){
+	    	var saveLocale = that.getLocale();
+	    	if(saveLocale === 'enUS' || saveLocale === 'en-US'){
 	    		if(options.hideTime === true){
 			    	result = nd.toLocaleString('en-US', options);
 	    		}else{
 			    	result = nd.toLocaleTimeString('en-US', options);	
 	    		}
-		    }else if(SaveLocale === 'de-DE'){
+		    }else if(saveLocale === 'deDE' || saveLocale === 'de-DE'){
 		    	if(options.hideTime === true){
 			    	result = nd.toLocalString('de-DE', options);
 		    	}else{
@@ -145,29 +167,17 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
     Date.prototype.dst = function() {
         return this.getTimezoneOffset() < this.stdTimezoneOffset();
     }
-    
-	/**
-	 * @function generate a random id to distinguish several instances of this component in the same dashboard
-	 * @memberOf org.scn.community.basics.WorldTime
-	 */
-	function makeid()
-	{
-	    var text = "";
-	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-	    for( var i=0; i < 5; i++ )
-	        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-	    return text;
-	}
 	/**
 	 * @function setup date display options
 	 * @memberOf org.scn.community.basics.WorldTime
 	 */
-	function getOptionsByParameters(){
+	that.getOptionsByParameters = function (owner){
+		var that = owner;
 		var options = {};
 		
-		if(saveDateFormat === 'dd.mm.yy'){
+		var saveDateFormat = that.getDateformat().replace(".", "");
+		if(saveDateFormat === 'ddmmyy'){
 	    	options.day = '2-digit';
 	    	options.month = '2-digit';
 	    	options.year = '2-digit';
@@ -187,11 +197,13 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 	    	}
 	    }
 	    
-	    if(saveTimeFormat === 'hh:mm:ss'){
+		var saveTimeFormat = that.getTimeformat().replace(":", "");
+		
+	    if(saveTimeFormat === 'hhmmss'){
 	    	options.hour = '2-digit';
 	    	options.minute = '2-digit';
 	    	options.second = '2-digit';
-	    }else if(saveTimeFormat === 'hh:mm'){
+	    }else if(saveTimeFormat === 'hhmm'){
 	    	options.hour = '2-digit';
 	    	options.minute = '2-digit';
 	    }else if(saveTimeFormat === 'hide'){
@@ -204,75 +216,21 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.WorldTime", /*
 	    	}
 	    }
 	    
-	    if(saveShowTimeZoneName === true){
+	    if(that.getShowtimezonename() === true){
 	    	options.timeZone = 'UTC';
 	    	options.timeZoneName = 'short';
 	    }
 		
 		return options;
 	}
-	
-	this.utcoffset = function(value) {
-		if (value === undefined) {
-			return offset;
-		} else {
-			offset = value;
-			return this;
-		}
-	};
-	
-	this.locale = function(value) {
-		if (value === undefined) {
-			return SaveLocale;
-		} else {
-			SaveLocale = value;
-			return this;
-		}
-	};
-	
-	this.dateformat = function(value) {
-		if (value === undefined) {
-			return saveDateFormat;
-		} else {
-			saveDateFormat = value;
-			return this;
-		}
-	};
-	
-	this.timeformat = function(value) {
-		if (value === undefined) {
-			return saveTimeFormat;
-		} else {
-			saveTimeFormat = value;
-			return this;
-		}
-	};
-	
-	this.showtimezonename = function(value) {
-		if (value === undefined) {
-			return saveShowTimeZoneName;
-		} else {
-			saveShowTimeZoneName = value;
-			return this;
-		}
-	};
-	
-	this.daylightsaving = function(value) {
-		if (value === undefined) {
-			return saveDaylightSaving;
-		} else {
-			saveDaylightSaving = value;
-			return this;
-		}
-	};
-	
-	this.interval = function(value) {
-		if (value === undefined) {
-			return update_interval;
-		} else {
-			update_interval = value;
-			return this;
-		}
-	};
-	
+
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+	return that;
+};
+
+define([myComponentData.requireName], function(basicsworldtime){
+	myComponentData.instance = WorldTime;
+	return myComponentData.instance;
 });
+
+}).call(this);

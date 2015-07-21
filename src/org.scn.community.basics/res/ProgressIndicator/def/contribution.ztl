@@ -1,28 +1,96 @@
 
 /**
- * Class for ProgressIndicator
+ * Generated ZTL Class for ProgressIndicator
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.ProgressIndicator extends org.scn.community.shared.Component {
 
-	/** Sets the percentage value of the progress bar */
-	void setPercentValue(
-		/** Percent value */ int percentValue) {*
-		this.percentValue = percentValue;	
+	/**
+	 * Sets Bar Colour Property by String
+	 */	
+	void setBarColorByString( /**Bar Colour*/ String barColor){*
+		this.barColor = barColor;
+	*}
+
+	/**
+	 * Gets Bar Colour Property as String
+	 */	
+	String getBarColorAsString() {*
+		return this.barColor;
 	*}
 	
-	/** Returns the percentage value of the progress bar */
-	int getPercentValue() {*
-		return this.percentValue;	
+	/**
+	 * Sets Bar Colour Property by Choice Option
+	 */	
+	void setBarColor( /**Bar Colour*/ org_scn_community_shared_BarColorEnumfield barColor){*
+		this.barColor = barColor;
 	*}
 	
-	/** Sets the text value displayed in the bar */
-	void setDisplayValue(
-		/** Display value */ String displayValue) {*
-		this.displayValue = displayValue;	
+	/**
+	 * Gets Bar Colour Property as Choice Option
+	 */	
+	org_scn_community_shared_BarColorEnumfield getBarColor() {*
+		return this.barColor;
 	*}
-	
-	/** Returns the text value displayed in the bar */
+
+	/**
+	 * Sets Display Value Property
+	 */	
+	void setDisplayValue( /**Display Value*/ String displayValue){*
+		this.displayValue = displayValue;
+	*}
+
+	/**
+	 * Gets Display Value Property
+	 */	
 	String getDisplayValue() {*
-		return this.displayValue;	
+		return this.displayValue;
 	*}
+
+	/**
+	 * Sets Enabled Property
+	 */	
+	void setEnabled( /**Enabled*/ boolean enabled){*
+		this.enabled = enabled;
+	*}
+
+	/**
+	 * Gets Enabled Property
+	 */	
+	boolean isEnabled() {*
+		return this.enabled;
+	*}
+
+	/**
+	 * Sets Percent Value Property
+	 */	
+	void setPercentValue( /**Percent Value*/ int percentValue){*
+		this.percentValue = percentValue;
+	*}
+
+	/**
+	 * Gets Percent Value Property
+	 */	
+	int getPercentValue() {*
+		return this.percentValue;
+	*}
+
+	/**
+	 * Sets Show Value Property
+	 */	
+	void setShowValue( /**Show Value*/ boolean showValue){*
+		this.showValue = showValue;
+	*}
+
+	/**
+	 * Gets Show Value Property
+	 */	
+	boolean isShowValue() {*
+		return this.showValue;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

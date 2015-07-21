@@ -156,7 +156,7 @@
     "origType": "HarveyBallMicroChartItem",
     "template": "ObjectArray",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"formattedLabel\":false,\"color\":\"Good\",\"fraction\":20,\"fractionLabel\":\"sold \",\"fractionScale\":\"20T\"}]",
+    "value": "[]",
     "visible": true
   },
   "showFractions": {
@@ -243,7 +243,7 @@
     },
     "template": "float",
     "type": "float",
-    "value": 100,
+    "value": 0,
     "visible": true
   },
   "totalLabel": {
@@ -275,7 +275,7 @@
     },
     "template": "String",
     "type": "String",
-    "value": "M",
+    "value": "",
     "visible": true
   },
   "useColorPalette": {

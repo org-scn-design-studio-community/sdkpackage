@@ -197,3 +197,4 @@ class org.scn.community.datasource.ScalingDataSource extends org.scn.community.s
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
 }
+/* ZTL END */

@@ -1,17 +1,28 @@
 
 /**
- * Class for Link
+ * Generated ZTL Class for Link
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.Link extends org.scn.community.shared.Component {
-	
-	/** Sets the text that is displayed */
-	void setText(
-		/** text */ String text) {*
-		this.text = text;	
+
+
+
+	/**
+	 * Sets Link Text Property
+	 */	
+	void setText( /**Link Text*/ String text){*
+		this.text = text;
 	*}
-	
-	/** Returns the text that is displayed */
+
+	/**
+	 * Gets Link Text Property
+	 */	
 	String getText() {*
-		return this.text;	
+		return this.text;
 	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

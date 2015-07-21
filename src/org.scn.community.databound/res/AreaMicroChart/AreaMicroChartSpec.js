@@ -72,7 +72,7 @@
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Neutral\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":40},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":90},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":40}]",
+    "value": "[]",
     "visible": true
   },
   "contentHeight": {
@@ -458,7 +458,7 @@
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"First X\"}]",
+    "value": "[]",
     "visible": true
   },
   "firstYLabel": {
@@ -492,7 +492,7 @@
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"First Y\"}]",
+    "value": "[]",
     "visible": true
   },
   "innerMaxThreshold": {
@@ -543,7 +543,7 @@
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Neutral\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":70},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":60},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":80}]",
+    "value": "[]",
     "visible": true
   },
   "innerMinThreshold": {
@@ -594,7 +594,7 @@
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Error\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":40},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":40},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":60}]",
+    "value": "[]",
     "visible": true
   },
   "lastXLabel": {
@@ -628,7 +628,7 @@
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Last X\"}]",
+    "value": "[]",
     "visible": true
   },
   "lastYLabel": {
@@ -662,7 +662,7 @@
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Last Y\"}]",
+    "value": "[]",
     "visible": true
   },
   "maxLabel": {
@@ -696,7 +696,7 @@
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Max\"}]",
+    "value": "[]",
     "visible": true
   },
   "maxThreshold": {
@@ -747,7 +747,7 @@
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":30},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":20},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":10}]",
+    "value": "[]",
     "visible": true
   },
   "maxXValue": {
@@ -763,7 +763,7 @@
     },
     "template": "float",
     "type": "float",
-    "value": 30,
+    "value": 0,
     "visible": true
   },
   "maxYValue": {
@@ -779,7 +779,7 @@
     },
     "template": "float",
     "type": "float",
-    "value": 100,
+    "value": 0,
     "visible": true
   },
   "minLabel": {
@@ -813,7 +813,7 @@
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Min\"}]",
+    "value": "[]",
     "visible": true
   },
   "minThreshold": {
@@ -864,7 +864,7 @@
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Error\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":30},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":20},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":10}]",
+    "value": "[]",
     "visible": true
   },
   "minXValue": {
@@ -880,7 +880,7 @@
     },
     "template": "float",
     "type": "float",
-    "value": 10,
+    "value": 0,
     "visible": true
   },
   "minYValue": {
@@ -947,7 +947,7 @@
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":20},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":80},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":55}]",
+    "value": "[]",
     "visible": true
   },
   "useChart": {

@@ -179,13 +179,13 @@
 		<defaultValue property="dataCellListItems"><![CDATA[null]]></defaultValue>
 		<defaultValue property="dataCellListTotal"><![CDATA[null]]></defaultValue>
 		<defaultValue property="formattedLabel"><![CDATA[false]]></defaultValue>
-		<defaultValue property="items"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"formattedLabel":false,"color":"Good","fraction":20,"fractionLabel":"sold ","fractionScale":"20T"}]]]></defaultValue>
+		<defaultValue property="items"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="showFractions"><![CDATA[true]]></defaultValue>
 		<defaultValue property="showTotal"><![CDATA[true]]></defaultValue>
 		<defaultValue property="size"><![CDATA[Auto]]></defaultValue>
-		<defaultValue property="total"><![CDATA[100]]></defaultValue>
+		<defaultValue property="total"><![CDATA[0]]></defaultValue>
 		<defaultValue property="totalLabel"><![CDATA[]]></defaultValue>
-		<defaultValue property="totalScale"><![CDATA[M]]></defaultValue>
+		<defaultValue property="totalScale"><![CDATA[]]></defaultValue>
 		<defaultValue property="useColorPalette"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useItems"><![CDATA[true]]></defaultValue>

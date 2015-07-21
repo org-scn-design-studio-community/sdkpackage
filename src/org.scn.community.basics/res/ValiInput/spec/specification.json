@@ -1,0 +1,235 @@
+{
+
+
+
+	"DDefault" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Default Value",
+			"cat" : "Display",
+			"tooltip" : "Default Value (required For Default Validation)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DLength" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 10,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Length",
+			"cat" : "Display",
+			"tooltip" : "Length (required For Length Validation)",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DNumber" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 10,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Number",
+			"cat" : "Display",
+			"tooltip" : "Number (required For Than Validation)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DTooltip" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Tooltip",
+			"cat" : "Display",
+			"tooltip" : "Tooltip",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DValidState" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "None",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "ValidationState",
+			"ztlFunction": "",
+			"desc" : "Valid State (for Custom)",
+			"cat" : "Display",
+			"tooltip" : "Valid State, Only For Custom Validation",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "None",
+					"text" : "None"
+				},
+				{
+					"key" : "Error",
+					"text" : "Error"
+				},
+				{
+					"key" : "Success",
+					"text" : "Success"
+				},
+				{
+					"key" : "Warning",
+					"text" : "Warning"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DValidation" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "none",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "Validation Type",
+			"cat" : "Display",
+			"tooltip" : "Predefined Typs Of Input Validation",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "none",
+					"text" : "none"
+				},
+				{
+					"key" : "default",
+					"text" : "default"
+				},
+				{
+					"key" : "custom",
+					"text" : "custom"
+				},
+				{
+					"key" : "numeric",
+					"text" : "numeric"
+				},
+				{
+					"key" : "integer",
+					"text" : "integer"
+				},
+				{
+					"key" : "decimal",
+					"text" : "decimal"
+				},
+				{
+					"key" : "maxlength",
+					"text" : "max_length"
+				},
+				{
+					"key" : "minlength",
+					"text" : "min_length"
+				},
+				{
+					"key" : "exactlength",
+					"text" : "exact_length"
+				},
+				{
+					"key" : "greaterthan",
+					"text" : "greater_than"
+				},
+				{
+					"key" : "lessthan",
+					"text" : "less_than"
+				},
+				{
+					"key" : "alpha",
+					"text" : "alpha"
+				},
+				{
+					"key" : "alphanumeric",
+					"text" : "alpha_numeric"
+				},
+				{
+					"key" : "alphadash",
+					"text" : "alpha_dash"
+				},
+				{
+					"key" : "isnatural",
+					"text" : "is_natural"
+				},
+				{
+					"key" : "isnaturalnozero",
+					"text" : "is_natural_no_zero"
+				},
+				{
+					"key" : "validip",
+					"text" : "valid_ip"
+				},
+				{
+					"key" : "validbase64",
+					"text" : "valid_base64"
+				},
+				{
+					"key" : "validurl",
+					"text" : "valid_url"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DValue" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Value",
+			"cat" : "Display",
+			"tooltip" : "Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onChanged" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Changed",
+			"cat" : "Events",
+			"tooltip" : "Event For On Changed",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

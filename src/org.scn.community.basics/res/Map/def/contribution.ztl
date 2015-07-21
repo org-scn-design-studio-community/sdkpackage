@@ -1,0 +1,496 @@
+
+/**
+ * Generated ZTL Class for Map
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.basics.Map extends org.scn.community.shared.Component {
+
+	/**
+	 * Clean All Locations from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Locations from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Url For Default Image Property
+	 */	
+	void setDefaultImage( /**Url For Default Image*/ String defaultImage){*
+		this.defaultImage = defaultImage;
+	*}
+
+	/**
+	 * Gets Url For Default Image Property
+	 */	
+	String getDefaultImage() {*
+		return this.defaultImage;
+	*}
+
+	/** Adds a root element containing key [String], text [String], url [string], lat [float], long [float].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	MAP.addLocation(key [String], text [String], url [string], lat [float], long [float]);<br>
+	MAP.addLocation(key [String], text [String], url [string], lat [float], long [float]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addLocation (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Image Url*/string url, 
+			/**Latitude*/float lat, 
+			/**Longitude*/float long
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url, 
+			lat:lat, 
+			long:long
+			};
+
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	MAP.removeLocation(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeLocation (
+			String key
+			) {*
+
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	MAP.insertLocation(index [int], key [String], text [String], url [string], lat [float], long [float]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertLocation (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Image Url*/string url, 
+			/**Latitude*/float lat, 
+			/**Longitude*/float long
+			) {*
+
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url, 
+			lat:lat, 
+			long:long
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.elementsContent = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Location<br/>
+	 */
+	void updateLocation (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Image Url*/string url, 
+			/**Latitude*/float lat, 
+			/**Longitude*/float long
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url, 
+			lat:lat, 
+			long:long
+		};
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getLocationAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Locations As JSON String
+	 */	
+	String getLocationsAsJSON() {*
+		var jsonObject = JSON.parse(this.elementsContent);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Text for Location keys<br/>
+	 */
+	void setLocationTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Location Key<br/>
+	 */
+	void setLocationText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Text for Location Key<br/>
+	 */
+	boolean hasLocationText (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Sets the Url for Location keys<br/>
+	 */
+	void setLocationUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Location Key<br/>
+	 */
+	void setLocationUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Url for Location Key<br/>
+	 */
+	boolean hasLocationUrl (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+
+
+	/**
+	 * Sets Url to Use for the Map Property
+	 */	
+	void setMapUrl( /**Url to Use for the Map*/ String mapUrl){*
+		this.mapUrl = mapUrl;
+	*}
+
+	/**
+	 * Gets Url to Use for the Map Property
+	 */	
+	String getMapUrl() {*
+		return this.mapUrl;
+	*}
+
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Zooms in the map
+	 */
+	void zoomIn() {*
+		this.zoom = this.zoom + 1;
+	*}
+	
+	/**
+	 * Zooms out the map
+	 */
+	void zoomOut() {*
+		this.zoom = this.zoom - 1;
+	*}
+
+	/**
+	 * Moves the view on the map in the left direction
+	 */
+	void panLeft() {*
+		this.panAction = this.panAction + 1; 
+		this.pan = "0L00";
+	*}
+
+	/**
+	 * Moves the view on the map in the right direction
+	 */
+	void panRight() {*
+		this.panAction = this.panAction + 1; 
+		this.pan = "00R0";
+	*}
+	
+	/**
+	 * Moves the view on the map in the up direction
+	 */
+	void panUp() {*
+		this.panAction = this.panAction + 1; 
+		this.pan = "U000";
+	*}
+
+	/**
+	 * Moves the view on the map in the down direction
+	 */
+	void panDown() {*
+		this.panAction = this.panAction + 1; 
+		this.pan = "000D";
+	*}
+
+	/**
+	 * Moves the map to the given location by key
+	 */
+	void moveTo (
+			/**key which schould be moved to*/String key) {*
+		this.moveAction = this.moveAction + 1;
+		this.moveTo = key
+	*}
+}

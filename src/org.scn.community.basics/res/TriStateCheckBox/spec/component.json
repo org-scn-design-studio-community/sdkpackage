@@ -1,0 +1,22 @@
+{
+	"id": "TriStateCheckBox",
+	"title": "Tri State CheckBox 2.0",
+	"tooltip": "Tri State CheckBox",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.TriStateCheckBox",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "22"
+}

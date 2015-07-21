@@ -1,50 +1,112 @@
 
 /**
- * Class for ToggleButton
+ * Generated ZTL Class for ToggleButton
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.ToggleButton extends org.scn.community.shared.Component {
-	/** returns the pressed state 
-    <example>
-	You want to get the pressed state to decide what to do
-	<code>
-    var pressed = TOGGLEBUTTON_1.getPressed();
-	
-	APPLICATION.createInfoMessage("Pressed: " + pressed);
-	
-	if(pressed) {
-		// do something
-	} else {
-		// do other something
-	}
-	</code>
-	</example>
-	*/
-	boolean getPressed () {*
-		return this.pressed;	
-	*}
-	
-	/** sets the pressed state */
-	void setPressed (boolean value) {*
-		this.pressed = value;	
-	*}
-	
-	/** sets the enabled flag */
-	void setEnabled (boolean value) {*
-		this.enabled = value;	
+
+	/**
+	 * Sets Enabled Property
+	 */	
+	void setEnabled( /**Enabled*/ boolean enabled){*
+		this.enabled = enabled;
 	*}
 
-	/** returns the enabled flag */
-	boolean getEnabled () {*
-		return this.enabled;	
-	*}
-	
-	/** sets the text */
-	void setText (String text) {*
-		this.text = text;	
+	/**
+	 * Gets Enabled Property
+	 */	
+	boolean isEnabled() {*
+		return this.enabled;
 	*}
 
-	/** returns the text */
-	String getText () {*
-		return this.text;	
+	/**
+	 * Sets Icon Property
+	 */	
+	void setIcon( /**Icon*/ String icon){*
+		this.icon = icon;
 	*}
+
+	/**
+	 * Gets Icon Property
+	 */	
+	String getIcon() {*
+		return this.icon;
+	*}
+
+	/**
+	 * Sets Icon Hovered Property
+	 */	
+	void setIconHovered( /**Icon Hovered*/ String iconHovered){*
+		this.iconHovered = iconHovered;
+	*}
+
+	/**
+	 * Gets Icon Hovered Property
+	 */	
+	String getIconHovered() {*
+		return this.iconHovered;
+	*}
+
+	/**
+	 * Sets Icon Selected Property
+	 */	
+	void setIconSelected( /**Icon Selected*/ String iconSelected){*
+		this.iconSelected = iconSelected;
+	*}
+
+	/**
+	 * Gets Icon Selected Property
+	 */	
+	String getIconSelected() {*
+		return this.iconSelected;
+	*}
+
+
+
+	/**
+	 * Sets Pressed Property
+	 */	
+	void setPressed( /**Pressed*/ boolean pressed){*
+		this.pressed = pressed;
+	*}
+
+	/**
+	 * Gets Pressed Property
+	 */	
+	boolean isPressed() {*
+		return this.pressed;
+	*}
+
+	/**
+	 * Sets Text Value Property
+	 */	
+	void setText( /**Text Value*/ String text){*
+		this.text = text;
+	*}
+
+	/**
+	 * Gets Text Value Property
+	 */	
+	String getText() {*
+		return this.text;
+	*}
+
+	/**
+	 * Sets Tooltip Value Property
+	 */	
+	void setTooltip( /**Tooltip Value*/ String tooltip){*
+		this.tooltip = tooltip;
+	*}
+
+	/**
+	 * Gets Tooltip Value Property
+	 */	
+	String getTooltip() {*
+		return this.tooltip;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

@@ -1,0 +1,26 @@
+{
+	"id": "ValiInput",
+	"title": "Validated Input Field 2.0",
+	"tooltip": "Validated Input Field",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.TextField",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "validate",
+		}
+	],
+	
+	"width": "300",
+	"height": "22"
+}

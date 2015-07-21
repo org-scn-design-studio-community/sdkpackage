@@ -1,0 +1,22 @@
+{
+	"id": "NotificationBar",
+	"title": "Notification Bar 2.0",
+	"tooltip": "Notification Bar",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.ux3.NotificationBar",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "auto",
+	"height": "40"
+}

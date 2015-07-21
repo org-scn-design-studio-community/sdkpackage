@@ -1,0 +1,119 @@
+{
+
+
+
+	"editable" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Editable",
+			"cat" : "Display",
+			"tooltip" : "Editable",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"enabled" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Enabled",
+			"cat" : "Display",
+			"tooltip" : "Enabled",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"selectionState" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Unchecked",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "SelectionsState",
+			"ztlFunction": "",
+			"desc" : "Tooltip",
+			"cat" : "Display",
+			"tooltip" : "Tooltip",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Checked",
+					"text" : "Checked"
+				},
+				{
+					"key" : "Unchecked",
+					"text" : "Unchecked"
+				},
+				{
+					"key" : "Mixed",
+					"text" : "Mixed"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "tri state value",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Value",
+			"cat" : "Display",
+			"tooltip" : "Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"tooltip" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Tooltip",
+			"cat" : "Display",
+			"tooltip" : "Tooltip",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onSelectionChanged" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Selection Changed",
+			"cat" : "Events",
+			"tooltip" : "Event For On Selection Changed",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

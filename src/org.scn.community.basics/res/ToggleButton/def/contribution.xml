@@ -1,85 +1,109 @@
 
 <component
 	id="ToggleButton"
-	title="Toggle Button"
+	title="Toggle Button 2.0"
+	tooltip="Toggle Button"
 	icon="res/ToggleButton/ToggleButton.png"
 	handlerType="sapui5"
+	propertySheetPath="res/ToggleButton/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/ToggleButton/ToggleButton.js</jsInclude>
+	<jsInclude>res/ToggleButton/ToggleButtonLoader.js</jsInclude>
 	<cssInclude>res/ToggleButton/ToggleButton.css</cssInclude>
+	
+	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		group="Display"
+		bindable="true"
+		visible="true">
 
+	</property>
+	<property
+		id="icon"
+		type="Url"
+		title="Icon"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="iconHovered"
+		type="Url"
+		title="Icon Hovered"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="iconSelected"
+		type="Url"
+		title="Icon Selected"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onPress"
+		type="ScriptText"
+		title="Event For On Press"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="pressed"
+		type="boolean"
+		title="Pressed"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="text"
 		type="String"
 		title="Text Value"
-		tooltip="Button text displayed at runtime"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
 		id="tooltip"
 		type="String"
 		title="Tooltip Value"
-		tooltip="Button tooltip displayed at runtime"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
-	<property
-		id="enabled"
-		title="Enabled"
-		tooltip="Switches enabled state of the control. Disabled fields have different colors and can not be focused."
-		type="boolean"
-		group="Display"
-		visible="true" />
+	</property>
 
-	<property
-		id="icon"
-		title="Icon"
-		tooltip="Icon to be displayed as graphical element within the button. This can be an URI to an image or an icon font URI"
-		group="Display" 
-		type="Url" />
-
-	<property
-		id="iconHovered"
-		title="Icon Hovered"
-		tooltip="Icon to be displayed as graphical element within the button when it is hovered (only if also a base icon was specified). If not specified the base icon is used. If a icon font icon is used, this property is ignored"
-		group="Display" 
-		type="Url" />
-
-	<property
-		id="iconSelected"
-		title="Icon Selected"
-		tooltip="Icon to be displayed as graphical element within the button when it is selected (only if also a base icon was specified). If not specified the base or hovered icon is used. If a icon font icon is used, this property is ignored"
-		group="Display" 
-		type="Url" />
-
-	<property
-		id="pressed"
-		title="Pressed"
-		tooltip="The property is true when the control is toggled. The default state of this property is false"
-		type="boolean"
-		group="Display"
-		visible="true" />
-
-	<property
-		id="onPress"
-		type="ScriptText"
-		title="Event for On Press"
-		group="Events" />
 
 	<initialization>
-		<defaultValue property="WIDTH">80</defaultValue>
-		<defaultValue property="HEIGHT">22</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-
-		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="WIDTH">80</defaultValue>
+		<defaultValue property="HEIGHT">22</defaultValue>
+		
+		<defaultValue property="enabled"><![CDATA[true]]></defaultValue>
+		<defaultValue property="icon"><![CDATA[]]></defaultValue>
+		<defaultValue property="iconHovered"><![CDATA[]]></defaultValue>
+		<defaultValue property="iconSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="onPress"><![CDATA[]]></defaultValue>
+		<defaultValue property="pressed"><![CDATA[false]]></defaultValue>
+		<defaultValue property="text"><![CDATA[]]></defaultValue>
+		<defaultValue property="tooltip"><![CDATA[]]></defaultValue>
 
 	</initialization>
+
 </component>

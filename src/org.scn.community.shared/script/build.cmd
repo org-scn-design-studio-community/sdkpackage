@@ -13,6 +13,7 @@ del ..\contribution.ztl /q
 type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\templates\contribution.ztl.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.js.txt ^
+..\res\ConstBarColor\contribution.ztl ^
 ..\res\ComponentsArrays\contribution.ztl ^
 ..\res\ConstBrowser\contribution.ztl ^
 ..\res\ConstButtonStyle\contribution.ztl ^
@@ -41,6 +42,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\KeyLabelValue\contribution.ztl ^
 ..\res\KeyLabelValueProperty\contribution.ztl ^
 ..\res\NameValue\contribution.ztl ^
+..\res\ValidatonState\contribution.ztl ^
 ..\res\ValueText\contribution.ztl ^
 ..\ui5spec\const\contribution.ztl ^
 ..\ui5spec\extensions\contribution.ztl ^

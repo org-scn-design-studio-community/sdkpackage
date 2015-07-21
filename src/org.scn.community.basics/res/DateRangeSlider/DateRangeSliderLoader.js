@@ -39,6 +39,7 @@
 		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.dateformatter.name,
+		org_scn_community_require.knownModules.sap_suite_loader.name,
 		
      ]);
 

@@ -329,6 +329,10 @@
     {
       "id": "dateformatter",
       "space": "known"
+    },
+    {
+      "id": "sap_suite_loader",
+      "space": "known"
     }
   ],
   "title": "Date Range Slider 2.0",

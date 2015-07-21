@@ -1,0 +1,109 @@
+{
+
+
+
+	"barColor" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Neutral",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "BarColor",
+			"ztlFunction": "",
+			"desc" : "Bar Colour",
+			"cat" : "Display",
+			"tooltip" : "The Colour Of The Bar.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Critical",
+					"text" : "Critical"
+				},
+				{
+					"key" : "Negative",
+					"text" : "Negative"
+				},
+				{
+					"key" : "Neutral",
+					"text" : "Neutral"
+				},
+				{
+					"key" : "Positive",
+					"text" : "Positive"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"displayValue" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Display Value",
+			"cat" : "Display",
+			"tooltip" : "The Text Value To Be Displayed In The Bar.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"enabled" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Enabled",
+			"cat" : "Display",
+			"tooltip" : "Switches Enabled State Of The Control. Disabled Fields Have Different Colours And Can Not Be Focused.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"percentValue" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 50,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Percent Value",
+			"cat" : "Display",
+			"tooltip" : "The Numerical Value For The Displayed Length Of The Progress Bar.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showValue" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Value",
+			"cat" : "Display",
+			"tooltip" : "Specifies Whether The Current Value Shall Be Rendered Inside The Bar.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

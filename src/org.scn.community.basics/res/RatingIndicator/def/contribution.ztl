@@ -1,28 +1,98 @@
 
 /**
- * Class for RatingIndicator
+ * Generated ZTL Class for RatingIndicator
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.RatingIndicator extends org.scn.community.shared.Component {
 
-	/** Sets the editable value */
-	void setEditable(
-		/** Editable value */ boolean editable) {*
+	/**
+	 * Sets Editable Property
+	 */	
+	void setEditable( /**Editable*/ boolean editable){*
 		this.editable = editable;
 	*}
-	
-	/** Returns the editable value */
+
+	/**
+	 * Gets Editable Property
+	 */	
 	boolean isEditable() {*
 		return this.editable;
 	*}
 
-	/** Sets the rating value */
-	void setValue(
-		/** Rating value */ float value) {*
-		this.value = value;	
+	/**
+	 * Sets Icon Hovered Property
+	 */	
+	void setIconHovered( /**Icon Hovered*/ String iconHovered){*
+		this.iconHovered = iconHovered;
 	*}
-	
-	/** Returns the rating value */
+
+	/**
+	 * Gets Icon Hovered Property
+	 */	
+	String getIconHovered() {*
+		return this.iconHovered;
+	*}
+
+	/**
+	 * Sets Icon Selected Property
+	 */	
+	void setIconSelected( /**Icon Selected*/ String iconSelected){*
+		this.iconSelected = iconSelected;
+	*}
+
+	/**
+	 * Gets Icon Selected Property
+	 */	
+	String getIconSelected() {*
+		return this.iconSelected;
+	*}
+
+	/**
+	 * Sets Icon Unselected Property
+	 */	
+	void setIconUnselected( /**Icon Unselected*/ String iconUnselected){*
+		this.iconUnselected = iconUnselected;
+	*}
+
+	/**
+	 * Gets Icon Unselected Property
+	 */	
+	String getIconUnselected() {*
+		return this.iconUnselected;
+	*}
+
+	/**
+	 * Sets Maximum Value Property
+	 */	
+	void setMaxValue( /**Maximum Value*/ int maxValue){*
+		this.maxValue = maxValue;
+	*}
+
+	/**
+	 * Gets Maximum Value Property
+	 */	
+	int getMaxValue() {*
+		return this.maxValue;
+	*}
+
+
+
+	/**
+	 * Sets Value Property
+	 */	
+	void setValue( /**Value*/ float value){*
+		this.value = value;
+	*}
+
+	/**
+	 * Gets Value Property
+	 */	
 	float getValue() {*
-		return this.value;	
+		return this.value;
 	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

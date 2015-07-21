@@ -572,14 +572,14 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Sets Number Of Visible Steps Property
 	 */	
-	void setNumberOfVisibleSteps( /**Number Of Visible Steps*/ String numberOfVisibleSteps){*
+	void setNumberOfVisibleSteps( /**Number Of Visible Steps*/ int numberOfVisibleSteps){*
 		this.numberOfVisibleSteps = numberOfVisibleSteps;
 	*}
 
 	/**
 	 * Gets Number Of Visible Steps Property
 	 */	
-	String getNumberOfVisibleSteps() {*
+	int getNumberOfVisibleSteps() {*
 		return this.numberOfVisibleSteps;
 	*}
 

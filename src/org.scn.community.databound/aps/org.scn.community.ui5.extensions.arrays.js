@@ -223,7 +223,11 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 									var rootElement = that.getElement(that._listBuilder.getSelectedKey());
 									
 									if(!isNaN(value)) {
-										rootElement[key] = parseInt(value);	
+										if(parameterObject.type == "float") {
+											rootElement[key] = parseFloat(value);	
+										} else {
+											rootElement[key] = parseInt(value);	
+										}
 									} else {
 										rootElement[key] = value;
 									}
@@ -391,7 +395,11 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 						var key = oControlEvent.getSource()._key;
 
 						if(!isNaN(value)) {
-							that._currentItemConfig[key] = parseInt(value);	
+							if(parameterObject.type == "float") {
+								that._currentItemConfig[key] = parseFloat(value);
+							} else {
+								that._currentItemConfig[key] = parseInt(value);	
+							}
 						} else {
 							that._currentItemConfig[key] = value;
 						}

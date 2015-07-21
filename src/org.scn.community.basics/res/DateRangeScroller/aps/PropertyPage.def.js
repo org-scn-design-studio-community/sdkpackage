@@ -21,6 +21,10 @@ ApsContent = function () {
     {
       "id": "dateformatter",
       "space": "known"
+    },
+    {
+      "id": "sap_suite_loader",
+      "space": "known"
     }
   ],
   "title": "Date Range Scroller 2.0",

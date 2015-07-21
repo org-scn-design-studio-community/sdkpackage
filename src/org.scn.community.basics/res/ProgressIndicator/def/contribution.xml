@@ -1,60 +1,80 @@
 
 <component
 	id="ProgressIndicator"
-	title="Progress Indicator"
-	handlerType="sapui5"
+	title="Progress Indicator 2.0"
+	tooltip="Progress Indicator"
 	icon="res/ProgressIndicator/ProgressIndicator.png"
+	handlerType="sapui5"
+	propertySheetPath="res/ProgressIndicator/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/ProgressIndicator/ProgressIndicator.js</jsInclude>
+	<jsInclude>res/ProgressIndicator/ProgressIndicatorLoader.js</jsInclude>
+	<cssInclude>res/ProgressIndicator/ProgressIndicator.css</cssInclude>
+	
 	<property
 		id="barColor"
-		title="Bar Color"
-		tooltip="The color of the bar."
-		group="Display" 
 		type="String"
-	>
-		<possibleValue>CRITICAL</possibleValue>
-		<possibleValue>NEGATIVE</possibleValue>
-		<possibleValue>NEUTRAL</possibleValue>
-		<possibleValue>POSITIVE</possibleValue>
+		title="Bar Colour"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
 	<property
 		id="displayValue"
+		type="String"
 		title="Display Value"
-		tooltip="The text value to be displayed in the bar."
-		group="Display" 
-		type="String" />
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="enabled"
+		type="boolean"
 		title="Enabled"
-		tooltip="Switches enabled state of the control. Disabled fields have different colors and can not be focused."
-		group="Display" 
-		type="boolean" />
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="percentValue"
+		type="int"
 		title="Percent Value"
-		tooltip="The numerical value for the displayed length of the progress bar."
-		group="Display" 
-		type="int" />
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="showValue"
+		type="boolean"
 		title="Show Value"
-		tooltip="Specifies whether the current value shall be rendered inside the bar."
-		group="Display" 
-		type="boolean" />
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">270</defaultValue>
 		<defaultValue property="HEIGHT">20</defaultValue>
-		<defaultValue property="barColor">NEUTRAL</defaultValue>
-		<defaultValue property="enabled">true</defaultValue>
-		<defaultValue property="showValue">true</defaultValue>
+		
+		<defaultValue property="barColor"><![CDATA[Neutral]]></defaultValue>
+		<defaultValue property="displayValue"><![CDATA[]]></defaultValue>
+		<defaultValue property="enabled"><![CDATA[true]]></defaultValue>
+		<defaultValue property="percentValue"><![CDATA[50]]></defaultValue>
+		<defaultValue property="showValue"><![CDATA[true]]></defaultValue>
+
 	</initialization>
+
 </component>

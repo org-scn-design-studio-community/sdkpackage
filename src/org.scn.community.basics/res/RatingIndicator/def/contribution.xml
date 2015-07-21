@@ -1,61 +1,99 @@
 
 <component
 	id="RatingIndicator"
-	title="Rating Indicator"
-	handlerType="sapui5"
+	title="Rating Indicator 2.0"
+	tooltip="Rating Indicator"
 	icon="res/RatingIndicator/RatingIndicator.png"
+	handlerType="sapui5"
+	propertySheetPath="res/RatingIndicator/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/RatingIndicator/RatingIndicator.js</jsInclude>
+	<jsInclude>res/RatingIndicator/RatingIndicatorLoader.js</jsInclude>
+	<cssInclude>res/RatingIndicator/RatingIndicator.css</cssInclude>
+	
 	<property
 		id="editable"
+		type="boolean"
 		title="Editable"
-		tooltip="Value 'true' is required for changes on the rating symbols."
-		group="Display" 
-		type="boolean" />
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="iconHovered"
+		type="Url"
 		title="Icon Hovered"
-		tooltip="The URI to the image which is displayed when the mouse hovers onto a rating symbol. If used, a requirement is that all custom icons need to have the same size. Note that when this attribute is used also the other icon attributes need to be set."
-		group="Display" 
-		type="Url" />
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="iconSelected"
+		type="Url"
 		title="Icon Selected"
-		tooltip="The URI to the image which shall be displayed for all selected rating symbols. Note that when this attribute is used, also the other icon attributes need to be set."
-		group="Display" 
-		type="Url" />
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="iconUnselected"
+		type="Url"
 		title="Icon Unselected"
-		tooltip="The URI to the image which shall be displayed for all unselected rating symbols. If this attribute is used, a requirement is that all custom icons need to have the same size. Note that when this attribute is used also the other icon attributes need to be set."
-		group="Display" 
-		type="Url" />
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="maxValue"
+		type="int"
 		title="Maximum Value"
-		tooltip="The number of displayed rating symbols"
-		group="Display" 
-		type="int" />
-	<property
-		id="value"
-		title="Value"
-		tooltip="The number of displayed rating symbols"
-		group="Display" 
-		type="float" />
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="onChange"
-		title="On Change"
-		tooltip="The event is fired when the user has done a rating."
 		type="ScriptText"
-		group="Events" />
+		title="On Change"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="value"
+		type="float"
+		title="Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
 	<initialization>
-		<defaultValue property="editable">true</defaultValue>
-		<defaultValue property="maxValue">5</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">200</defaultValue>
-	  		<defaultValue property="HEIGHT">40</defaultValue>
+		<defaultValue property="HEIGHT">40</defaultValue>
+		
+		<defaultValue property="editable"><![CDATA[true]]></defaultValue>
+		<defaultValue property="iconHovered"><![CDATA[]]></defaultValue>
+		<defaultValue property="iconSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="iconUnselected"><![CDATA[]]></defaultValue>
+		<defaultValue property="maxValue"><![CDATA[5]]></defaultValue>
+		<defaultValue property="onChange"><![CDATA[]]></defaultValue>
+		<defaultValue property="value"><![CDATA[3.5]]></defaultValue>
+
 	</initialization>
+
 </component>

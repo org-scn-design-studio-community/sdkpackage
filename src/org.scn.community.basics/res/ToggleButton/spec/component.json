@@ -1,0 +1,22 @@
+{
+	"id": "ToggleButton",
+	"title": "Toggle Button 2.0",
+	"tooltip": "Toggle Button",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.ToggleButton",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "80",
+	"height": "22"
+}
