@@ -1,7 +1,7 @@
 {
-	"id": "Gauge",
-	"title": "Gauge (Speedometer) 2.0",
-	"tooltip": "Displays a Gauge (Speedometer)",
+	"id": "QRCode",
+	"title": "QRCode Generator 2.0",
+	"tooltip": "QRCode Generation",
 	"handlerType": "div",
 	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityBasics",
@@ -14,9 +14,13 @@
 		{
 			"space" : "known",
 			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "qrcode",
 		}
 	],
 	
-	"width": "300",
-	"height": "300"
+	"width": "256",
+	"height": "256"
 }

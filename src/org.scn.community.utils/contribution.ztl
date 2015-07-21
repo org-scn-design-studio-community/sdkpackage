@@ -2044,7 +2044,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Progress Indicator 2.0 component*/
 	org.scn.community.basics.ProgressIndicator returnAsScnProgressIndicator (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to QRCode Generator component*/
+	/**Cast to QRCode Generator 2.0 component*/
 	org.scn.community.basics.QRCode returnAsScnQRCode (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to RSSFeedReader 2.0 component*/

@@ -25,7 +25,7 @@
 		"visible": true,
 		"opts" : {
 			"ztlType": "Choice",
-			"choiceType": "",
+			"choiceType": "-",
 			"ztlFunction": "",
 			"desc" : "Error Correction Level",
 			"cat" : "Display",
@@ -105,7 +105,7 @@
 	"printOnly" : {
 		"template" : "boolean",
 		"type" : "boolean",
-		"value" : ,
+		"value" : false,
 		"visible": true,
 		"opts" : {
 			"ztlType": "boolean",
@@ -157,7 +157,7 @@
 		"visible": true,
 		"opts" : {
 			"ztlType": "Choice",
-			"choiceType": "",
+			"choiceType": "-",
 			"ztlFunction": "",
 			"desc" : "Render Mode",
 			"cat" : "Display",

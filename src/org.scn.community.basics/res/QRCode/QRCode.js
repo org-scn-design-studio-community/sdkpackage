@@ -1,8 +1,8 @@
 /**
- * Copyright 2014 SCN Community Contributors
+ * Copyright 2014 Scn Community Contributors
  * 
  * Original Source Code Location:
- *  https://github.com/sap-design-studio-free-addons/sdk-package
+ *  https://github.com/org-scn-design-studio-community/sdkpackage/
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -15,76 +15,70 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
- * 
  */
+ 
+ (function(){
 
-/**
- * Based on from original version by Mike Howles, blogged here: 
- * (TBD)
- * 
- */
-sap.designstudio.sdk.Component.subclass("org.scn.community.basics.QRCode", function() {
-	this.props = {
-		render : { value : "canvas" },
-		minVersion : { value : 1 },
-		maxVersion : { value : 40 },
-		ecLevel : { value : "L" },
-		fill : { value : "#000000" },
-		background : { value : null },
-		text : { value : "" },
-		radius : { value : 0 },
-		quiet : { value : 0 },
-		printOnly : {value : false},
-		// These are set but not exposed for changing in Design Studio
-		left : { value : 0 },
-		top : { value : 0 },
-		size : { value : -1 },
-		mode : { value : "Normal" },
-		mSize : { value : 0.1 },
-		mPosX : { value : 0.5 },
-		mPosY : { value : 0.5 },
-		label : { value : "no label" },
-		fontname : { value : "sans" },
-		fontcolor : { value : "#000000" },
-		image : {value : null}
+var myComponentData = org_scn_community_require.knownComponents.basics.QRCode;
+
+QRCode = function () {
+
+	var that = this;
+	
+	that.init = function() {
+		// define root component
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
 	};
-	/*
-	 * Create the aforementioned getter/setter and attach to 'this'.
-	 */
-	for(var property in this.props){
-		this[property] = function(property){
-			return function(value){
-				if(value===undefined){
-					return this.props[property].value;
-				}else{
-					this.props[property].value = value;
-					this.props[property].changed = true;
-					return this;
-				}
-			};
-		}(property);
-	}
-	this.init = function(){
-		this.$().addClass("DesignStudioSCN");
-		this.$().addClass("QRCode");
-	}
-	this.afterUpdate = function(){
-		if(this.printOnly()){
+	
+	that.initAsync = function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+	
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that.$().addClass("DesignStudioSCN");
+		that.$().addClass("QRCode");
+			
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+	};
+
+	that.afterUpdate = function() {
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+
+		// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	};
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+
+	that.processData = function (flatData, afterPrepare, owner) {
+		var that = owner;
+		
+		// processing on data
+		that.afterPrepare(that);
+	};
+
+	that.afterPrepare = function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		if(that.getPrintOnly()){
 			if(!(sap && sap.zen && sap.zen.designmode)){
-				this.$().addClass("printOnly");
+				that.$().addClass("printOnly");
 			}else{
-				this.$().addClass("designTimePrintOnly");
+				that.$().addClass("designTimePrintOnly");
 			}
 		}else{
-			this.$().removeClass("printOnly");
-			this.$().removeClass("designTimePrintOnly");
+			that.$().removeClass("printOnly");
+			that.$().removeClass("designTimePrintOnly");
 		}
-		var size = this.size();
+		var size = -1;
 		if(size==-1){	// Auto
-			size = this.$().width();
-			if(this.$().height()<size) size = this.$().height();
+			size = that.$().width();
+			if(that.$().height()<size) size = that.$().height();
 		}		
-		var mode_text = this.mode();
+		var mode_text = "Normal";
 		var mode = 0;
 		switch(mode_text){
 			case "Normal" :
@@ -104,29 +98,44 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.basics.QRCode", funct
 				break;
 		}
 		
-		this.$().empty();
-		this.$().qrcode({
-		    render: this.render(),
-		    minVersion: this.minVersion(),
-		    maxVersion: this.maxVersion(),
-		    fill: this.fill(),
-		    background: this.background(),
-		    text : this.text(),
-		    radius: this.radius(),
-		    quiet: this.quiet(),
-		    ecLevel: this.ecLevel(),
+		that.$().empty();
+		that.$().qrcode({
+		    render: that.render(),
+		    minVersion: that.getMinVersion(),
+		    maxVersion: that.getMaxVersion(),
+		    fill: that.getFill(),
+		    background: that.getBackground(),
+		    text : that.getText(),
+		    radius: that.getRadius(),
+		    quiet: that.getQuiet(),
+		    ecLevel: that.getEcLevel(),
 		    // The following are not exposed in Design Studio Property Sheet:
-		    left: this.left(),
-		    top: this.top(),
+		    left: 0,
+		    top: 0,
 		    size : size,
 		    mode: mode,
-		    mSize: this.mSize(),
-		    mPosX: this.mPosX(),
-		    mPosY: this.mPosY(),
-		    label: this.label(),
-		    fontname: this.fontname(),
-		    fontcolor: this.fontcolor(),
-		    image: this.image()	
+		    mSize: 0.1,
+		    mPosX: 0.5,
+		    mPosY: 0.5,
+		    label: "no label",
+		    fontname: "sans",
+		    fontcolor: "#000000",
+		    image: null	
 		});
-	}
+
+	};
+
+	that.onResize = function (width, height, parent) {
+		// in case special resize code is required
+	};
+
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+	return that;
+};
+
+define([myComponentData.requireName], function(basicsqrcode){
+	myComponentData.instance = QRCode;
+	return myComponentData.instance;
 });
+
+}).call(this);

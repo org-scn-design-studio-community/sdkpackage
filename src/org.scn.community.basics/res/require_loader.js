@@ -222,6 +222,11 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 				name: "ndd",
 				script: C_ORG_SCN_COMMUNITY_ + "basics/os/ndd/jq-ndd",
 				min: false
+			},
+			qrcode: {
+				name: "qrcode",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/qrcode/qrcode",
+				min: true
 			}
 	};
 	

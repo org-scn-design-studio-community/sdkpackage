@@ -1,74 +1,182 @@
+
+/**
+ * Generated ZTL Class for QRCode
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
 class org.scn.community.basics.QRCode extends org.scn.community.shared.Component {
+
 	/**
-	 * Sets QRCode Text
+	 * Sets Background Colour Property
 	 */	
-	void setText( /* Text */ String text){*
-		this.text = text;
+	void setBackground( /**Background Colour*/ String background){*
+		this.background = background;
 	*}
+
 	/**
-	 * Gets QRCode Text
-	 */	
-	String getText() {*
-		return this.text;
-	*}
-	/**
-	 * Sets Fill Color
-	 */	
-	void setFill( /* Color */ String color){*
-		this.fill = color;
-	*}
-	/**
-	 * Gets Fill Color
-	 */	
-	String getFill() {*
-		return this.fill;
-	*}
-	/**
-	 * Sets Background Color
-	 */	
-	void setBackground( /* Color */ String color){*
-		this.background = color;
-	*}
-	/**
-	 * Gets Background Color
+	 * Gets Background Colour Property
 	 */	
 	String getBackground() {*
 		return this.background;
 	*}
+
 	/**
-	 * Sets Radius
+	 * Sets Error Correction Level Property by String
 	 */	
-	void setRadius( /* Radius (0.0 - 0.5) */ float radius){*
-		this.radius = radius;
+	void setEcLevelByString( /**Error Correction Level*/ String ecLevel){*
+		this.ecLevel = ecLevel;
 	*}
+
 	/**
-	 * Gets Radius
+	 * Gets Error Correction Level Property as String
 	 */	
-	float getRadius() {*
+	String getEcLevelAsString() {*
+		return this.ecLevel;
+	*}
+	
+	/**
+	 * Sets Error Correction Level Property by Choice Option
+	 */	
+	void setEcLevel( /**Error Correction Level*/ org_scn_community_shared_Enumfield ecLevel){*
+		this.ecLevel = ecLevel;
+	*}
+	
+	/**
+	 * Gets Error Correction Level Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getEcLevel() {*
+		return this.ecLevel;
+	*}
+
+	/**
+	 * Sets Fill Colour Property
+	 */	
+	void setFill( /**Fill Colour*/ String fill){*
+		this.fill = fill;
+	*}
+
+	/**
+	 * Gets Fill Colour Property
+	 */	
+	String getFill() {*
 		return this.fill;
 	*}
+
 	/**
-	 * Sets Quiet Amount
+	 * Sets Max Version (1-40) Property
 	 */	
-	void setQuiet( /* Amount */ int amount){*
-		this.quiet = amount;
+	void setMaxVersion( /**Max Version (1-40)*/ int maxVersion){*
+		this.maxVersion = maxVersion;
 	*}
+
 	/**
-	 * Gets Quiet Amount
+	 * Gets Max Version (1-40) Property
 	 */	
-	int getQuiet() {*
-		return this.quiet;
+	int getMaxVersion() {*
+		return this.maxVersion;
 	*}
+
 	/**
-	 * Sets Print-Only
+	 * Sets Min Version (1-40) Property
 	 */	
-	void setPrintOnly( /* Print Only (true/false) */ boolean printOnly){*
+	void setMinVersion( /**Min Version (1-40)*/ int minVersion){*
+		this.minVersion = minVersion;
+	*}
+
+	/**
+	 * Gets Min Version (1-40) Property
+	 */	
+	int getMinVersion() {*
+		return this.minVersion;
+	*}
+
+
+
+	/**
+	 * Sets Only Show On Printouts Property
+	 */	
+	void setPrintOnly( /**Only Show On Printouts*/ boolean printOnly){*
 		this.printOnly = printOnly;
 	*}
+
 	/**
-	 * Gets Print-Only
+	 * Gets Only Show On Printouts Property
 	 */	
-	String getPrintOnly() {*
+	boolean isPrintOnly() {*
 		return this.printOnly;
 	*}
+
+	/**
+	 * Sets Quiet Zone Property
+	 */	
+	void setQuiet( /**Quiet Zone*/ float quiet){*
+		this.quiet = quiet;
+	*}
+
+	/**
+	 * Gets Quiet Zone Property
+	 */	
+	float getQuiet() {*
+		return this.quiet;
+	*}
+
+	/**
+	 * Sets Corner Radius (0.0 - 0.5) Property
+	 */	
+	void setRadius( /**Corner Radius (0.0 - 0.5)*/ float radius){*
+		this.radius = radius;
+	*}
+
+	/**
+	 * Gets Corner Radius (0.0 - 0.5) Property
+	 */	
+	float getRadius() {*
+		return this.radius;
+	*}
+
+	/**
+	 * Sets Render Mode Property by String
+	 */	
+	void setRenderByString( /**Render Mode*/ String render){*
+		this.render = render;
+	*}
+
+	/**
+	 * Gets Render Mode Property as String
+	 */	
+	String getRenderAsString() {*
+		return this.render;
+	*}
+	
+	/**
+	 * Sets Render Mode Property by Choice Option
+	 */	
+	void setRender( /**Render Mode*/ org_scn_community_shared_Enumfield render){*
+		this.render = render;
+	*}
+	
+	/**
+	 * Gets Render Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getRender() {*
+		return this.render;
+	*}
+
+	/**
+	 * Sets QR Code Text Property
+	 */	
+	void setText( /**QR Code Text*/ String text){*
+		this.text = text;
+	*}
+
+	/**
+	 * Gets QR Code Text Property
+	 */	
+	String getText() {*
+		return this.text;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
