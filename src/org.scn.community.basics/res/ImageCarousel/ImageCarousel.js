@@ -16,99 +16,82 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.ImageCarousel";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
+var myComponentData = org_scn_community_require.knownComponents.basics.ImageCarousel;
 
-jQuery.sap.require("sap.ui.commons.Carousel");
+ImageCarousel = {
 
-/** end of path recognition */
-sap.ui.commons.Carousel.extend(ownComponentName, {
-
-	setDefaultImage : function(value) {
-		this._DefaultImage = value;
-		
-		if(value != undefined && value != "")  {
-			this._pImagePrefix = value.substring(0, value.lastIndexOf("/") + 1);	
-		}
-	},
-
-	getDefaultImage : function() {
-		return this._DefaultImage;
-	},
-
-	setSelectedKey : function(value) {		
-		if (value !== undefined || value !== "") {
-			this._SelectedKey = value;
-		}
-	},
-
-	getSelectedKey : function() {
-		return this._SelectedKey;
-	},
-
-	setElements : function(value) {
-		if(this._Elements == value) {
-			return;
-		} else {
-			this._Elements = value;
-		}
-	},
-
-	getElements : function() {
-		return this._Elements;
-	},
+	renderer: {},
 	
 	initDesignStudio: function() {
 		var that = this;
-		this._ownScript = _readScriptPath();
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
 	},
 	
-	renderer: {},
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
+	},
 	
-	afterDesignStudioUpdate : function() {
+	afterDesignStudioUpdate: function() {
 		var that = this;
 		
-		var lElementsToRender = this.getElements();
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		var lElementsToRender = that.getElements();
 		if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != ""){
 			var lElementsToRenderArray = JSON.parse(lElementsToRender);
 
 			// Destroy old content
-			this.destroyContent();
+			that.destroyContent();
+			that.removeContent();
 
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
-				var lImageElement = this.createImageElement(lElementsToRenderArray[i].key, lElementsToRenderArray[i].text, lElementsToRenderArray[i].url);
-				this.addContent(lImageElement);
+				var lImageElement = that.createImageElement(that, lElementsToRenderArray[i].key, lElementsToRenderArray[i].text, lElementsToRenderArray[i].url);
+				that.addContent(lImageElement);
 			}
-			
 		}
 	},
 	
-	createImageElement: function (iImageKey, iImageText, iImageUrl) {
-		var that = this;
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
+	
+	createImageElement: function (owner, iImageKey, iImageText, iImageUrl) {
+		var that = owner;
 		
-		// in case starts with http, keep as is 
-		if(iImageUrl.indexOf("http") == 0) {
-			// no nothing
-		} else {
-			// in case of repository, add the prefix from repository
-			if(this._pImagePrefix != undefined && this._pImagePrefix != ""){
-				iImageUrl = this._pImagePrefix + iImageUrl;
-			} else {
-				iImageUrl = this._ownScript + "ImageCarousel.png";
-			}
-		}
+		if(iImageText == undefined) {iImageText = ""};
+		if(iImageUrl == undefined) {iImageUrl = ""};
+		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getDefaultImage(), iImageUrl, "ImageCarousel.png");
 
 		var oImage = new sap.ui.commons.Image ({
 			src : iImageUrl,
-			width : "100%",
-			height : "100%",
+			width : "96%",
+			height : "96%",
 			alt : iImageText,
 			tooltip : iImageText,
 		});
@@ -117,25 +100,25 @@ sap.ui.commons.Carousel.extend(ownComponentName, {
 		
 		oImage.internalKey = iImageKey;
 		
-		if(this.getSelectedKey() == iImageKey) {
+		if(that.getSelectedKey() == iImageKey) {
 			oImage.addStyleClass("scn-pack-ImageCarousel-SelectedImage");
 		}
 		
 		oImage.attachBrowserEvent('click', function() {
 			that.setSelectedKey(oImage.internalKey);
 			
-			that.updateSelection(oImage.internalKey);
+			that.updateSelection(that, oImage.internalKey);
 			
-			that.fireDesignStudioPropertiesChanged(["selectedKey"]);
-			that.fireDesignStudioEvent("onSelectionChanged");
+			that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
 			}
 		);
 		
 		return oImage;
 	},
 	
-	updateSelection: function (iSelectedKey) {
-		var lContent = this.getContent();
+	updateSelection: function (owner, iSelectedKey) {
+		var that = owner;
+		var lContent = that.getContent();
 		
 		for (var i = 0; i < lContent.length; i++) {
 			var lImage = lContent [i];
@@ -147,6 +130,12 @@ sap.ui.commons.Carousel.extend(ownComponentName, {
 			};
 		};
 	}
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
 
+define([myComponentData.requireName], function(basicsimagecarousel){
+	myComponentData.instance = ImageCarousel;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

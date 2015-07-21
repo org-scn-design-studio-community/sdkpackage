@@ -1,0 +1,589 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Adds a root element containing key [String], text [String], visible [boolean], enabled [boolean].<br/>
+	 * <example><br/>
+	 * You want to add 2 root elements<br/>
+	 * <code><br/>
+	 * NAVIGATIONBAR.addStep(key [String], text [String], visible [boolean], enabled [boolean]);<br/>
+	 * NAVIGATIONBAR.addStep(key [String], text [String], visible [boolean], enabled [boolean]);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void addStep (
+			/*Unique Key*/ String key,
+			/*Given Text*/ String text,
+			/*Visible*/ boolean visible,
+			/*Enabled*/ boolean enabled,
+			
+			) 
+	{*
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible, 
+			enabled:enabled
+			};
+
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Clean All Elements from the Array.<br/>
+	 */
+	void cleanAllElements (
+			
+			) 
+	{*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DElementsContent = JSON.stringify(elementsArray);
+	*}
+	/**
+	 * Clean all Enabled of Step keys<br/>
+	 */
+	void cleanAllStepEnableds (
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Clean all Visible of Step keys<br/>
+	 */
+	void cleanAllStepVisibles (
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].visible = false;
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Gets Number Of Visible Steps Property<br/>
+	 */
+	String getNumberOfVisibleSteps (
+			
+			) 
+	{*
+		return this.numberOfVisibleSteps;
+	*}
+	/**
+	 * Gets Selected Step Key Property<br/>
+	 */
+	String getSelectedKey (
+			
+			) 
+	{*
+		return this.DSelectedKey;
+	*}
+	/**
+	 * Gets Selected Text Property<br/>
+	 */
+	String getSelectedText (
+			
+			) 
+	{*
+		return this.DSelectedText;
+	*}
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getStepAtIndex (
+			/*Index to pick the key*/ int index0based,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+	/**
+	 * Returns the Enabled keys<br/>
+	 */
+	org.scn.pack.KeyArray getStepEnabledKeysArray (
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].enabled == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Returns the Visible keys<br/>
+	 */
+	org.scn.pack.KeyArray getStepVisibleKeysArray (
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].visible == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Gets Steps As JSON String<br/>
+	 */
+	String getStepsAsJSON (
+			
+			) 
+	{*
+		var jsonObject = JSON.parse(this.DElementsContent);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	/**
+	 * Checks Existence of Enabled for Step Key<br/>
+	 */
+	boolean hasStepEnabled (
+			/**/ String key,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Checks Existence of Text for Step Key<br/>
+	 */
+	boolean hasStepText (
+			/**/ String key,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Checks Existence of Visible for Step Key<br/>
+	 */
+	boolean hasStepVisible (
+			/**/ String key,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Insert a root element by index.<br/>
+	 * <example><br/>
+	 * You want to insert a root element<br/>
+	 * <code><br/>
+	 * NAVIGATIONBAR.insertStep(index [int], key [String], text [String], visible [boolean], enabled [boolean]);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void insertStep (
+			/*Index to Insert (0-based)*/ int insertionIndex0based,
+			/*Unique Key*/ String key,
+			/*Given Text*/ String text,
+			/*Visible*/ boolean visible,
+			/*Enabled*/ boolean enabled,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DElementsContent);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible, 
+			enabled:enabled
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DElementsContent = JSON.stringify(newElementsJson);
+	*}
+	/**
+	 * Remove All Elements from the Array.<br/>
+	 * You can use also <code>cleanAllElements()</code><br/>
+	 * @Visibility(deprecated)<br/>
+	 */
+	void removeAllElements (
+			
+			) 
+	{*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DElementsContent = JSON.stringify(elementsArray);
+	*}
+	/**
+	 * Removes a root element by key.<br/>
+	 * <example><br/>
+	 * You want to remove root element<br/>
+	 * <code><br/>
+	 * NAVIGATIONBAR.removeStep(String key);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void removeStep (
+			/**/ String key,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets Selected Step Key Property<br/>
+	 */
+	void setSelectedKey (
+			/*Selected Step Key*/ String selectedKey,
+			
+			) 
+	{*
+		this.DSelectedKey = selectedKey;
+	*}
+	/**
+	 * Sets the Enabled for Step Key<br/>
+	 */
+	void setStepEnabled (
+			/**/ String key,
+			/**/ boolean enabled,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].enabled = enabled;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Enabled for Step keys<br/>
+	 */
+	void setStepEnableds (
+			/**/ String keys,
+			/**/ String separator,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].enabled = true;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Text for Step Key<br/>
+	 */
+	void setStepText (
+			/**/ String key,
+			/**/ String text,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Text for Step keys<br/>
+	 */
+	void setStepTexts (
+			/**/ String keys,
+			/**/ String separator,
+			/* Text */ String text,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Visible for Step Key<br/>
+	 */
+	void setStepVisible (
+			/**/ String key,
+			/**/ boolean visible,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].visible = visible;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Sets the Visible for Step keys<br/>
+	 */
+	void setStepVisibles (
+			/**/ String keys,
+			/**/ String separator,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].visible = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].visible = true;
+					break;
+				}
+			}
+		}
+		
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	/**
+	 * Updates given Step<br/>
+	 */
+	void updateStep (
+			/*Unique Key*/ String key,
+			/*Given Text*/ String text,
+			/*Visible*/ boolean visible,
+			/*Enabled*/ boolean enabled,
+			
+			) 
+	{*
+		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
+			this.DElementsContent = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			visible:visible, 
+			enabled:enabled
+		};
+
+		var elementsJson = JSON.parse(this.DElementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.DElementsContent = JSON.stringify(elementsJson);
+	*}
+	

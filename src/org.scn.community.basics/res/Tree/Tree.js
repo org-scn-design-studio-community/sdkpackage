@@ -137,6 +137,7 @@ Tree = {
 	createNode: function (owner, index, iNodeKey, iNodeText, iImageUrl, iParentKey, isLeaf) {
 		var that = owner;
 		
+		if(iNodeText == undefined) {iNodeText = ""};
 		if(iImageUrl == undefined) {iImageUrl = ""};
 		
 		// in case starts with http, keep as is 

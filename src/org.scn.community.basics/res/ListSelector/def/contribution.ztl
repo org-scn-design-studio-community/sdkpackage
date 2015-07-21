@@ -1,33 +1,553 @@
+
+/**
+ * Generated ZTL Class for ListSelector
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
 class org.scn.community.basics.ListSelector extends org.scn.community.shared.Component {
+
 	/**
-	Get last menu element title clicked.
-	<example><code>var itemSelected = LISTSELECTOR_1.getLabelClicked();</code></example>
-	<returns>Chart property as String type.</returns>
-	*/
+	 * Clean All Titles from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.titles = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Titles from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.titles = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Fixed Width (-1 For Auto) Property
+	 */	
+	void setFixedWidth( /**Fixed Width (-1 For Auto)*/ int fixedWidth){*
+		this.fixedWidth = fixedWidth;
+	*}
+
+	/**
+	 * Gets Fixed Width (-1 For Auto) Property
+	 */	
+	int getFixedWidth() {*
+		return this.fixedWidth;
+	*}
+
+	/**
+	 * Sets Icon Height (px) Property
+	 */	
+	void setIconHeight( /**Icon Height (px)*/ int iconHeight){*
+		this.iconHeight = iconHeight;
+	*}
+
+	/**
+	 * Gets Icon Height (px) Property
+	 */	
+	int getIconHeight() {*
+		return this.iconHeight;
+	*}
+
+	/**
+	 * Sets Icon Width (px) Property
+	 */	
+	void setIconWidth( /**Icon Width (px)*/ int iconWidth){*
+		this.iconWidth = iconWidth;
+	*}
+
+	/**
+	 * Gets Icon Width (px) Property
+	 */	
+	int getIconWidth() {*
+		return this.iconWidth;
+	*}
+
+	/**
+	 * Gets Selected Key Property
+	 */	
+	String getKeyClicked() {*
+		return this.keyClicked;
+	*}
+
+	/**
+	 * Gets Selected Label Property
+	 */	
 	String getLabelClicked() {*
 		return this.labelClicked;
 	*}
+
 	/**
-	Sets titles of your menu elements.
-	<example><code>LISTSELECTOR_1.setTitles("Google,Bing,Ask.com");</code></example>
-	<note>Seperate each entry by a comma.</note>
-	*/
-	void setTitles( /* Titles */ String titles){*
-		this.titles = titles;
+	 * Sets Label Orientation Property by String
+	 */	
+	void setLabelOrientationByString( /**Label Orientation*/ String labelOrientation){*
+		this.labelOrientation = labelOrientation;
 	*}
+
 	/**
-	Get list of menu element titles.
-	<example><code>var titles = LISTSELECTOR_1.getTitles();</code></example>
-	<returns>Comma-seperated list of menu element titles</returns>
-	*/
-	String getTitles() {*
-		return this.titles;
+	 * Gets Label Orientation Property as String
+	 */	
+	String getLabelOrientationAsString() {*
+		return this.labelOrientation;
 	*}
+	
 	/**
-	Reset selection of menu element titles for complex navigation scenarios
-	<example><code>LISTSELECTOR_1.resetSelection();</code></example>
+	 * Sets Label Orientation Property by Choice Option
+	 */	
+	void setLabelOrientation( /**Label Orientation*/ org_scn_community_shared_OrientationEnumfield labelOrientation){*
+		this.labelOrientation = labelOrientation;
+	*}
+	
+	/**
+	 * Gets Label Orientation Property as Choice Option
+	 */	
+	org_scn_community_shared_OrientationEnumfield getLabelOrientation() {*
+		return this.labelOrientation;
+	*}
+
+	/**
+	 * Sets Label Placement (Relative To Icon) Property by String
+	 */	
+	void setLabelPlacementByString( /**Label Placement (Relative To Icon)*/ String labelPlacement){*
+		this.labelPlacement = labelPlacement;
+	*}
+
+	/**
+	 * Gets Label Placement (Relative To Icon) Property as String
+	 */	
+	String getLabelPlacementAsString() {*
+		return this.labelPlacement;
+	*}
+	
+	/**
+	 * Sets Label Placement (Relative To Icon) Property by Choice Option
+	 */	
+	void setLabelPlacement( /**Label Placement (Relative To Icon)*/ org_scn_community_shared_PlacementTypeEnumfield labelPlacement){*
+		this.labelPlacement = labelPlacement;
+	*}
+	
+	/**
+	 * Gets Label Placement (Relative To Icon) Property as Choice Option
+	 */	
+	org_scn_community_shared_PlacementTypeEnumfield getLabelPlacement() {*
+		return this.labelPlacement;
+	*}
+
+	/**
+	 * Gets Unselect Label Property
+	 */	
+	boolean isLabelUnselect() {*
+		return this.labelUnselect;
+	*}
+
+
+
+	/**
+	 * Sets Sprite IDs (Optional) Property
+	 */	
+	void setSpriteIDs( /**Sprite IDs (Optional)*/ String spriteIDs){*
+		this.spriteIDs = spriteIDs;
+	*}
+
+	/**
+	 * Gets Sprite IDs (Optional) Property
+	 */	
+	String getSpriteIDs() {*
+		return this.spriteIDs;
+	*}
+
+	/**
+	 * Sets Icon Sprite Sheet (Optional) Property
+	 */	
+	void setSpriteSheet( /**Icon Sprite Sheet (Optional)*/ String spriteSheet){*
+		this.spriteSheet = spriteSheet;
+	*}
+
+	/**
+	 * Gets Icon Sprite Sheet (Optional) Property
+	 */	
+	String getSpriteSheet() {*
+		return this.spriteSheet;
+	*}
+
+	/**
+	 * Sets Icons Sprites Per Row Property
+	 */	
+	void setSpriteSheetPerRow( /**Icons Sprites Per Row*/ int spriteSheetPerRow){*
+		this.spriteSheetPerRow = spriteSheetPerRow;
+	*}
+
+	/**
+	 * Gets Icons Sprites Per Row Property
+	 */	
+	int getSpriteSheetPerRow() {*
+		return this.spriteSheetPerRow;
+	*}
+
+	/**
+	 * Sets Text Alignment Property by String
+	 */	
+	void setTextAlignByString( /**Text Alignment*/ String textAlign){*
+		this.textAlign = textAlign;
+	*}
+
+	/**
+	 * Gets Text Alignment Property as String
+	 */	
+	String getTextAlignAsString() {*
+		return this.textAlign;
+	*}
+	
+	/**
+	 * Sets Text Alignment Property by Choice Option
+	 */	
+	void setTextAlign( /**Text Alignment*/ org_scn_community_shared_PlacementTypeEnumfield textAlign){*
+		this.textAlign = textAlign;
+	*}
+	
+	/**
+	 * Gets Text Alignment Property as Choice Option
+	 */	
+	org_scn_community_shared_PlacementTypeEnumfield getTextAlign() {*
+		return this.textAlign;
+	*}
+
+	/** Adds a root element containing key [String], text [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	LISTSELECTOR.addTitle(key [String], text [String]);<br>
+	LISTSELECTOR.addTitle(key [String], text [String]);<br>
+	<br>
+	</code>
+	</example>
 	 */
-	void resetSelection(){*
-		this.labelUnselect = true;
+	void addTitle (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text
+			};
+
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			this.titles = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.titles);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.titles = JSON.stringify(elementsJson);
 	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	LISTSELECTOR.removeTitle(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeTitle (
+			String key
+			) {*
+
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			this.titles = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.titles);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.titles = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	LISTSELECTOR.insertTitle(index [int], key [String], text [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertTitle (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Text*/String text
+			) {*
+
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			this.titles = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.titles);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.titles = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Title<br/>
+	 */
+	void updateTitle (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text
+			) 
+	{*
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			this.titles = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text
+		};
+
+		var elementsJson = JSON.parse(this.titles);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.titles = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getTitleAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			this.titles = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.titles);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Titles As JSON String
+	 */	
+	String getTitlesAsJSON() {*
+		var jsonObject = JSON.parse(this.titles);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Text for Title keys<br/>
+	 */
+	void setTitleTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.titles);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.titles = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Title Key<br/>
+	 */
+	void setTitleText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.titles);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.titles = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Text for Title Key<br/>
+	 */
+	boolean hasTitleText (
+			/**/ String key
+			) 
+	{*
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.titles);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+
+
+	/**
+	 * Sets Vertical Alignment Property by String
+	 */	
+	void setVerticalAlignByString( /**Vertical Alignment*/ String verticalAlign){*
+		this.verticalAlign = verticalAlign;
+	*}
+
+	/**
+	 * Gets Vertical Alignment Property as String
+	 */	
+	String getVerticalAlignAsString() {*
+		return this.verticalAlign;
+	*}
+	
+	/**
+	 * Sets Vertical Alignment Property by Choice Option
+	 */	
+	void setVerticalAlign( /**Vertical Alignment*/ org_scn_community_shared_PlacementTypeEnumfield verticalAlign){*
+		this.verticalAlign = verticalAlign;
+	*}
+	
+	/**
+	 * Gets Vertical Alignment Property as Choice Option
+	 */	
+	org_scn_community_shared_PlacementTypeEnumfield getVerticalAlign() {*
+		return this.verticalAlign;
+	*}
+
+	/**
+	 * Sets Visibilities (Optional) Property
+	 */	
+	void setVisibilities( /**Visibilities (Optional)*/ String visibilities){*
+		this.visibilities = visibilities;
+	*}
+
+	/**
+	 * Gets Visibilities (Optional) Property
+	 */	
+	String getVisibilities() {*
+		return this.visibilities;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Sets titles of your menu elements.<br/>
+	 * <example><code>LISTSELECTOR_1.setTitles("Google,Bing,Ask.com");</code></example><br/>
+	 * <note>Seperate each entry by a comma.</note><br/>
+	 */
+	void setTitles (
+			/* Titles */ String titles,
+			/* Separator*/ optional String separator
+			
+			) 
+	{*
+		if(separator == undefined) separator = ",";
+		var titlesSplit = titles.split(separator);
+		var that = this;
+		
+		for(var labelI in titlesSplit) {
+			var labelO = titlesSplit[labelI];
+			
+			that.addTitle(labelO, labelO);
+		}
+	*}
+	
 }

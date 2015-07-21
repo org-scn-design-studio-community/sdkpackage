@@ -1,0 +1,16 @@
+{
+	"title": "Launch Pad 2.0",
+	"description": "Fiori-Inspired LaunchPad/Tile Container",
+	"icon": "LaunchPad.png",
+	"topics": 
+	[
+		{
+			"title" : "Launch Pad",
+			"content" : "Fiori-Inspired LaunchPad/Tile Container"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

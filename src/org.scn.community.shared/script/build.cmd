@@ -28,6 +28,8 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ConstImageSize\contribution.ztl ^
 ..\res\ConstMemberDisplay\contribution.ztl ^
 ..\res\ConstNavigationType\contribution.ztl ^
+..\res\Orientation\contribution.ztl ^
+..\res\OrientationType\contribution.ztl ^
 ..\res\ConstPlacementType\contribution.ztl ^
 ..\res\ConstSelectionState\contribution.ztl ^
 ..\res\ConstSelectionType\contribution.ztl ^

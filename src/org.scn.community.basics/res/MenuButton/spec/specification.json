@@ -1,0 +1,219 @@
+{
+	"cleanAll" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Buttons",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Buttons",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"elementsContent",
+		   	"refDesc":"Buttons",
+		   	"refValue":"[]",
+		}
+	},
+	"elementsContent": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"DoubleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "item":{
+	               "type":"Array",
+	               "sequence":"key,text,url,enabled,subItem",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "text":{
+	                  "desc":"Given Text",
+	                  "type":"String"
+	               },
+	               "url":{
+	                  "desc":"Given Url",
+	                  "type":"Url,optional"
+	               },
+	               "enabled":{
+	                  "desc":"Enabled",
+	                  "type":"boolean,optional"
+	               },
+	               "subItem":{
+	                  "type":"Array",
+	                  "sequence":"parentKey,key,text,url,enabled",
+	                  "parentKey":{
+		                "desc":"Parent Key",
+		                "type":"String",
+		              	"mode":"ztl"
+		              },
+	                  "key":{
+	                     "desc":"Unique Key",
+	                     "type":"String"
+	                  },
+	                  "text":{
+	                     "desc":"Given Text",
+	                     "type":"String"
+	                  },
+	                  "url":{
+	                     "desc":"Given Url",
+	                     "type":"Url,optional"
+	                  },
+	                  "enabled":{
+		                  "desc":"Enabled",
+		                  "type":"boolean,optional"
+		               },
+	               }
+	            }
+	        },
+ 
+			"desc":"Buttons",
+			"cat":"Content",
+			"tooltip":"List of Buttons",
+
+			"apsControl":"array",
+			"arrayMode":"TwoLevelArray"
+		}
+	},
+	"selectedKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Proprty For Selected Key",
+			"cat" : "Display",
+			"tooltip" : "Technical Proprty For Selected Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"selectedText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Proprty For Selected Text",
+			"cat" : "Display",
+			"tooltip" : "Technical Proprty For Selected Text",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"defaultImage" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url For Default Image",
+			"cat" : "Display",
+			"tooltip" : "Url For Default Image Which Should Be Shown",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"enabled" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Enabled",
+			"cat" : "Display",
+			"tooltip" : "Switches Enabled State Of The Control. Disabled Fields Have Different Colours And Can Not Be Focused.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"icon" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Icon",
+			"cat" : "Display",
+			"tooltip" : "Icon To Be Displayed As Graphical Element Within The Button. This Can Be An URI To An Image Or An Icon Font URI",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Text Value",
+			"cat" : "Display",
+			"tooltip" : "Button Text Displayed At Runtime",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"tooltip" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Tooltip Value",
+			"cat" : "Display",
+			"tooltip" : "Button Tooltip Displayed At Runtime",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onSelectionChanged" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Selection Changed",
+			"cat" : "Events",
+			"tooltip" : "Event For On Selection Changed",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

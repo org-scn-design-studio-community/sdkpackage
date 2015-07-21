@@ -1,53 +1,199 @@
 
-<!-- List Selector -->
-	<component id="ListSelector" title="List Selector" 
-		handlerType="div"
-		icon="res/ListSelector/ListSelector.png"
-		propertySheetPath="res/ListSelector/aps/ListSelectorPropertyPage.html"
-		group="ScnCommunityBasics">
+<component
+	id="ListSelector"
+	title="List Selector 2.0"
+	tooltip="List Selector"
+	icon="res/ListSelector/ListSelector.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	group="ScnCommunityBasics"
+	databound="false"
+>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ListSelector/ListSelectorLoader.js</jsInclude>
+	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
+	
+	<property
+		id="cleanAll"
+		type="boolean"
+		title="Clean All Elements"
+		group="Display"
+		bindable="true"
+		visible="false">
 
-		<jsInclude>res/require_loader.js</jsInclude>
-	  	<jsInclude>res/common_basics.js</jsInclude>
-		<jsInclude>res/ListSelector/ListSelector.js</jsInclude>
-	  	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
-	  	<property group="Display" id="titles" type="String" title="Titles"/>
-	  	<property group="Display" id="spriteIDs" type="String" title="Sprite IDs (Optional)"/>
-	  	<property group="Display" id="visibilities" type="String" title="Visibilities (Optional)"/>
-	  	<property group="Display" id="fixedWidth" type="String" title="Fixed Width (-1 for auto)"/>
-	  	<property group="Display" id="spriteSheet" type="Url" title="Icon Sprite Sheet (Optional)"/>
-	  	<property group="Display" id="labelClicked" type="String" title="Selected Label"/>
-	  	<property group="Display" id="labelUnselect" type="boolean" title="Unselect Label" visible="false"/>
-	  	<property id="onclick" type="ScriptText" title="On Click..." group="Events"/>
-	  	<property group="Display" id="labelPlacement" type="String" title="Label Placement (Relative to Icon)">
-	  		<possibleValue>After</possibleValue>
-	  		<possibleValue>Before</possibleValue>
-	  	</property>
-	  	<property group="Display" id="labelOrientation" type="String" title="Label Orientation">
-	  		<possibleValue>horizontal</possibleValue>
-	  		<possibleValue>vertical</possibleValue>
-	  	</property>
-	  	<property group="Display" id="textAlign" type="String" title="Text Alignment">
-	  		<possibleValue>left</possibleValue>
-	  		<possibleValue>center</possibleValue>
-	  		<possibleValue>right</possibleValue>
-	  	</property>
-	  	<property group="Display" id="verticalAlign" type="String" title="Vertical Alignment">
-	  		<possibleValue>top</possibleValue>
-	  		<possibleValue>middle</possibleValue>
-	  		<possibleValue>bottom</possibleValue>
-	  	</property>
-	  	
-	  	<property group="Display" id="spriteSheetPerRow" type="int" title="Icons Sprites Per Row"/>
-	  	<property group="Display" id="iconWidth" type="int" title="Icon Width (px)"/>
-	  	<property group="Display" id="iconHeight" type="int" title="Icon Height (px)"/>
-	  	<initialization>
-	  		<defaultValue property="titles">Facebook,YouTube,Twitter,SAP</defaultValue>
-	  		<defaultValue property="labelPlacement">After</defaultValue>
-	  		<defaultValue property="labelOrientation">vertical</defaultValue>
-	  		<defaultValue property="verticalAlign">top</defaultValue>
-	  		<defaultValue property="textAlign">center</defaultValue>
-	  		<defaultValue property="fixedWidth">-1</defaultValue>
-	  		<defaultValue property="WIDTH">200</defaultValue>
-	  		<defaultValue property="HEIGHT">200</defaultValue>
-	  	</initialization>
-	  </component>
+	</property>
+	<property
+		id="fixedWidth"
+		type="int"
+		title="Fixed Width (-1 For Auto)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="iconHeight"
+		type="int"
+		title="Icon Height (px)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="iconWidth"
+		type="int"
+		title="Icon Width (px)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="keyClicked"
+		type="String"
+		title="Selected Key"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="labelClicked"
+		type="String"
+		title="Selected Label"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="labelOrientation"
+		type="String"
+		title="Label Orientation"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="labelPlacement"
+		type="String"
+		title="Label Placement (Relative To Icon)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="labelUnselect"
+		type="boolean"
+		title="Unselect Label"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="onclick"
+		type="ScriptText"
+		title="On Click..."
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="spriteIDs"
+		type="String"
+		title="Sprite IDs (Optional)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="spriteSheet"
+		type="Url"
+		title="Icon Sprite Sheet (Optional)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="spriteSheetPerRow"
+		type="int"
+		title="Icons Sprites Per Row"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="textAlign"
+		type="String"
+		title="Text Alignment"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="titles"
+		type="String"
+		title="Titles"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="verticalAlign"
+		type="String"
+		title="Vertical Alignment"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="visibilities"
+		type="String"
+		title="Visibilities (Optional)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">200</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+		
+		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="fixedWidth"><![CDATA[-1]]></defaultValue>
+		<defaultValue property="iconHeight"><![CDATA[16]]></defaultValue>
+		<defaultValue property="iconWidth"><![CDATA[16]]></defaultValue>
+		<defaultValue property="keyClicked"><![CDATA[]]></defaultValue>
+		<defaultValue property="labelClicked"><![CDATA[]]></defaultValue>
+		<defaultValue property="labelOrientation"><![CDATA[Vertical]]></defaultValue>
+		<defaultValue property="labelPlacement"><![CDATA[After]]></defaultValue>
+		<defaultValue property="labelUnselect"><![CDATA[false]]></defaultValue>
+		<defaultValue property="onclick"><![CDATA[]]></defaultValue>
+		<defaultValue property="spriteIDs"><![CDATA[]]></defaultValue>
+		<defaultValue property="spriteSheet"><![CDATA[]]></defaultValue>
+		<defaultValue property="spriteSheetPerRow"><![CDATA[1]]></defaultValue>
+		<defaultValue property="textAlign"><![CDATA[Center]]></defaultValue>
+		<defaultValue property="titles"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="verticalAlign"><![CDATA[Top]]></defaultValue>
+		<defaultValue property="visibilities"><![CDATA[]]></defaultValue>
+
+	</initialization>
+
+</component>

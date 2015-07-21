@@ -1,0 +1,99 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Adds a root element containing Key, Text, Image Url information.<br/>
+	 * <example><br/>
+	 * You want to add 2 root elements, second one is a sibling of first one<br/>
+	 * <code><br/>
+	 * MENUBUTTON_1.addMenuItem("ROOT_KEY1", "First Root Element", "");<br/>
+	 * MENUBUTTON_1.addMenuItem("ROOT_KEY2", "Second Root Element", "");<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	@Visibility(deprecated)
+	void addMenuItem (
+			/*Element Key (must be unique)*/ String elementKey,
+			/*Element text*/ String elementText,
+			/*Image URL if not set no image*/ String imageUrl,
+			/*Leafs do not have expand option by default*/ optional boolean isLeaf,
+			/*item enabled flag*/ optional boolean isEnabled
+			
+			) 
+	{*
+		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", isLeaf, isEnabled);
+	*}
+	/**
+	 * Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.<br/>
+	 * You need to specify a unique and existing parent element.<br/>
+	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.<br/>
+	 * <example><br/>
+	 * You want to add 2 items, second one is a child of first one<br/>
+	 * <code><br/>
+	 * MENUBUTTON_1.addSubMenuItem("KEY1", "First Element", "", "ROOT", true);<br/>
+	 * MENUBUTTON_1.addSubMenuItem("KEY2", "First Element Child", "", "KEY1", true);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	@Visibility(deprecated)
+	void addSubMenuItem (
+			/*Element Key (must be unique)*/ String elementKey,
+			/*Element text*/ String elementText,
+			/*Image URL if not set no image*/ String imageUrl,
+			/*The Key of the parent Element*/ String parentElementKey,
+			/*Leafs do not have expand option by default*/ optional boolean isLeaf,
+			/*item enabled flag*/ optional boolean isEnabled
+			
+			) 
+	{*
+		if(isLeaf == undefined) {
+			isLeaf = true;
+		}
+			
+		if(isEnabled == undefined){
+			isEnabled = true;
+		}
+		
+		var itemDef = { 
+			"key": elementKey, 
+			"text": elementText, 
+			"url": imageUrl,
+			"parentKey": parentElementKey,
+			"leaf": isLeaf,
+			"enabled": isEnabled
+			};
+	
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Remove all Buttons<br/>
+	 */
+	@Visibility(deprecated)
+	void removeAllElements (
+			
+			) 
+	{*
+		var elementsArray = [];
+			this.elementsContent = JSON.stringify(elementsArray);
+			
+			this.cleanAll = true;
+	*}
+	

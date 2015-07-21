@@ -154,17 +154,20 @@ Accordion = {
 			
 			var lElement = that._oElements[lElementId];
 			
+			var changedProperties = [];
 			if(that.getExpandedKey() != lElement._Key) {
 				that.setExpandedKey(lElement._Key);
 				that._lastExpanded = that.getExpandedKey();
-
-				that.fireDesignStudioPropertiesChanged(["expandedKey"]);
+				
+				changedProperties = ["expandedKey"];
 			}
 			
 			if(lElement._childrenRequested == undefined) {
 				lElement._childrenRequested = true;
 
-				that.fireDesignStudioEvent("onFirstExpand");
+				that.fireDesignStudioPropertiesChangedAndEvent(changedProperties, "onFirstExpand");
+			} else {
+				that.fireDesignStudioPropertiesChanged(changedProperties);
 			}
 		});
 		
@@ -356,8 +359,7 @@ Accordion = {
 				that.setSelectedKey(oLayout._Key);
 				that._updateSelection(oLayout._Key);
 				
-				that.fireDesignStudioPropertiesChanged(["selectedKey"]);
-				that.fireDesignStudioEvent("onSelectionChanged");
+				that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
 			}
 		});
 		
@@ -366,8 +368,7 @@ Accordion = {
 				that.setSelectedKey(oLayout._Key);
 				that._updateSelection(oLayout._Key);
 				
-				that.fireDesignStudioPropertiesChanged(["selectedKey"]);
-				that.fireDesignStudioEvent("onSelectionChanged");
+				that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
 			}
 		});
 		

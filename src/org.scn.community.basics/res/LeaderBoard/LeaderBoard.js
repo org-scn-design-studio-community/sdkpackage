@@ -215,8 +215,7 @@ LeaderBoard = {
 			that._linkEvent = true;
 			that.setPressedKey(oImage.internalKey);
 			
-			that.fireDesignStudioPropertiesChanged(["pressedKey"]);
-			that.fireDesignStudioEvent("onPress");
+			that.fireDesignStudioPropertiesChangedAndEvent(["pressedKey"],"onPress");
 		});
 
 		oLayout.attachBrowserEvent('click', function () {

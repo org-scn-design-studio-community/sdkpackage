@@ -71,8 +71,7 @@ DateRangeSlider = {
 				that.setDValue(startDate);
 				that.setDValue2(endDate);
 				
-				that.fireDesignStudioPropertiesChanged(["DValue", "DValue2"]);
-				that.fireDesignStudioEvent("onChange");
+				that.fireDesignStudioPropertiesChangedAndEvent(["DValue", "DValue2"], "onChange");
 			}
 		});
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/

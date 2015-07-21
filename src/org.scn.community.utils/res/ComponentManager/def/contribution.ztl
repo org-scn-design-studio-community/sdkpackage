@@ -696,7 +696,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Date Range Slider 2.0 component*/
 	org.scn.community.basics.DateRangeSlider returnAsScnDateRangeSlider (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Drag Drop Area component*/
+	/**Cast to Drag Drop Area 2.0 component*/
 	org.scn.community.basics.DragDropArea returnAsScnDragDropArea (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Embedded Frame 2.0 component*/
@@ -717,13 +717,13 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Fiori Toolbar component*/
 	org.scn.community.basics.FioriToolbar returnAsScnFioriToolbar (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Fish Eye component*/
+	/**Cast to Fish Eye 2.0 component*/
 	org.scn.community.basics.FishEye returnAsScnFishEye (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Gauge (Speedometer) component*/
 	org.scn.community.basics.Gauge returnAsScnGauge (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Image Carousel component*/
+	/**Cast to Image Carousel 2.0 component*/
 	org.scn.community.basics.ImageCarousel returnAsScnImageCarousel (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Kpi Tile 2.0 component*/
@@ -741,16 +741,16 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Link 2.0 component*/
 	org.scn.community.basics.Link returnAsScnLink (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to List Selector component*/
+	/**Cast to List Selector 2.0 component*/
 	org.scn.community.basics.ListSelector returnAsScnListSelector (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Open Street Map (Basic) 2.0 component*/
 	org.scn.community.basics.Map returnAsScnMap (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Menu Bar (>= 1.4) component*/
+	/**Cast to Menu Bar 2.0 component*/
 	org.scn.community.basics.MenuBar returnAsScnMenuBar (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Menu Button (>= 1.4) component*/
+	/**Cast to Menu Button 2.0 component*/
 	org.scn.community.basics.MenuButton returnAsScnMenuButton (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Modal Browser component*/

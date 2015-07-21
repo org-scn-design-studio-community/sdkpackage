@@ -97,8 +97,7 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 						this._selectedItemKey = o.headerKey;
 						this._selectedHeader = o.headerTitle;
 						this._selectedHeaderKey = o.headerKey;
-						this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem","selectedHeaderKey","selectedItemKey"]);
-						this.fireDesignStudioEvent("onitemselect");
+						this.fireDesignStudioPropertiesChangedAndEvent(["selectedHeader","selectedItem","selectedHeaderKey","selectedItemKey"],"onitemselect");
 					};
 				}({
 					headerTitle : actualTitle,
@@ -128,8 +127,7 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 									this._selectedHeader = section.text;
 									this._selectedHeaderKey = section.key;
 									as.close();
-									this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem","selectedHeaderKey","selectedItemKey"]);
-									this.fireDesignStudioEvent("onitemselect");
+									this.fireDesignStudioPropertiesChangedAndEvent(["selectedHeader","selectedItem","selectedHeaderKey","selectedItemKey"],"onitemselect");
 								};
 							}(item,this._itemConfig[index],actionSheet);
 							// Desktop Support

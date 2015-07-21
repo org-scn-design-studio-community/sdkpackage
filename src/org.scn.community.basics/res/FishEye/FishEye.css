@@ -40,18 +40,42 @@
 
 .scn-pack-FishEye-ChildrenBottom .sapUiHLayoutChildWrapper {
 	vertical-align: bottom;
+	bottom: 0px !important;
+	top: initial !important;
+}
+
+.scn-pack-FishEye-ChildrenBottom .sapUiLayoutAbsPos {
+	vertical-align: bottom;
+	bottom: 4px !important;
+	top: initial !important;
+}
+
+.scn-pack-FishEye-ChildrenBottom .sapUiHLayout {
+	vertical-align: bottom;
+	bottom: 0px !important;
+	top: initial !important;
 }
 
 .scn-pack-FishEye-Image {
-	border: solid 3px transparent !important;
+	border: solid 2px transparent;
 }
 
 .scn-pack-FishEye-SelectedImage {
-	border: solid 3px #000000 !important;
+	border: solid 2px #000000 !important;
+}
+
+.scn-pack-FishEye-Content {
+	margin: 2px !important;
 }
 
 .scn-pack-FishEye-Text {
-	background-color: #ffffff !important;
 	opacity: 0.9 !important;
 	text-align: center !important;
+	background-color: white !important;
+	margin: 2px;
+	border: 2px;
+	width: 96%;
+	height: 96%;
 }
+
+div[class~=scn-pack-FullSizeChildren]>div[class=sapUiLayoutAbsPos] {width: 100% !important;height: 100% !important;}

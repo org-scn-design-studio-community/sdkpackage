@@ -1,0 +1,22 @@
+{
+	"id": "NavigationBar",
+	"title": "Navigation Bar 2.0 2.0",
+	"tooltip": "Navigation Bar",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": true,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "22"
+}

@@ -1,0 +1,212 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Gets First Value (Live) Property<br/>
+	 */
+	float getLiveValue (
+			
+			) 
+	{*
+		return this.liveValue;
+	*}
+	/**
+	 * Gets Second Value (Live) Property<br/>
+	 */
+	float getLiveValue2 (
+			
+			) 
+	{*
+		return this.liveValue2;
+	*}
+	/**
+	 * Gets Maximum Value Property<br/>
+	 */
+	float getMax (
+			
+			) 
+	{*
+		return this.max;
+	*}
+	/**
+	 * Gets Minimum Value Property<br/>
+	 */
+	float getMin (
+			
+			) 
+	{*
+		return this.min;
+	*}
+	/**
+	 * Gets Small Step Width Property<br/>
+	 */
+	float getSmallStepWidth (
+			
+			) 
+	{*
+		return this.smallStepWidth;
+	*}
+	/**
+	 * Gets Total Units Property<br/>
+	 */
+	int getTotalUnits (
+			
+			) 
+	{*
+		return this.totalUnits;
+	*}
+	/**
+	 * Gets First Value Property<br/>
+	 */
+	float getValue (
+			
+			) 
+	{*
+		return this.value;
+	*}
+	/**
+	 * Gets Second Value Property<br/>
+	 */
+	float getValue2 (
+			
+			) 
+	{*
+		return this.value2;
+	*}
+	/**
+	 * Gets Activate Live Change Event (prototype) Property<br/>
+	 */
+	boolean isLiveChangeActive (
+			
+			) 
+	{*
+		return this.DLiveChangeActive;
+	*}
+	/**
+	 * Gets Step Labels Property<br/>
+	 */
+	boolean isStepLabels (
+			
+			) 
+	{*
+		return this.stepLabels;
+	*}
+	/**
+	 * Gets Change To Vertical Orientation Property<br/>
+	 */
+	boolean isVertical (
+			
+			) 
+	{*
+		return this.vertical;
+	*}
+	/**
+	 * Sets Activate Live Change Event (prototype) Property<br/>
+	 */
+	void setLiveChangeActive (
+			/*Activate Live Change Event (prototype)*/ boolean liveChangeActive,
+			
+			) 
+	{*
+		this.DLiveChangeActive = liveChangeActive;
+	*}
+	/**
+	 * Sets First Value (Live) Property<br/>
+	 */
+	void setLiveValue (
+			/*First Value (Live)*/ float liveValue,
+			
+			) 
+	{*
+		this.liveValue = liveValue;
+	*}
+	/**
+	 * Sets Second Value (Live) Property<br/>
+	 */
+	void setLiveValue2 (
+			/*Second Value (Live)*/ float liveValue2,
+			
+			) 
+	{*
+		this.liveValue2 = liveValue2;
+	*}
+	/**
+	 * Sets Maximum Value Property<br/>
+	 */
+	void setMax (
+			/*Maximum Value*/ float max,
+			
+			) 
+	{*
+		this.max = max;
+	*}
+	/**
+	 * Sets Minimum Value Property<br/>
+	 */
+	void setMin (
+			/*Minimum Value*/ float min,
+			
+			) 
+	{*
+		this.min = min;
+	*}
+	/**
+	 * Sets Small Step Width Property<br/>
+	 */
+	void setSmallStepWidth (
+			/*Small Step Width*/ float smallStepWidth,
+			
+			) 
+	{*
+		this.smallStepWidth = smallStepWidth;
+	*}
+	/**
+	 * Sets Step Labels Property<br/>
+	 */
+	void setStepLabels (
+			/*Step Labels*/ boolean stepLabels,
+			
+			) 
+	{*
+		this.stepLabels = stepLabels;
+	*}
+	/**
+	 * Sets Total Units Property<br/>
+	 */
+	void setTotalUnits (
+			/*Total Units*/ int totalUnits,
+			
+			) 
+	{*
+		this.totalUnits = totalUnits;
+	*}
+	/**
+	 * Sets First Value Property<br/>
+	 */
+	void setValue (
+			/*First Value*/ float value,
+			
+			) 
+	{*
+		this.value = value;
+	*}
+	/**
+	 * Sets Second Value Property<br/>
+	 */
+	void setValue2 (
+			/*Second Value*/ float value2,
+			
+			) 
+	{*
+		this.value2 = value2;
+	*}
+	/**
+	 * Sets Change To Vertical Orientation Property<br/>
+	 */
+	void setVertical (
+			/*Change To Vertical Orientation*/ boolean vertical,
+			
+			) 
+	{*
+		this.vertical = vertical;
+	*}
+	

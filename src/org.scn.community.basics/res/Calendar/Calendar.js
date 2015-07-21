@@ -141,8 +141,7 @@ Calendar = {
 		var techDate = "" + dateO.format(dateFormat.masks.technical);
     	that.setDCurrentValue(techDate);
     	
-        that.fireDesignStudioPropertiesChanged(["DCurrentValue"]);
-		that.fireDesignStudioEvent("onCurrentChanged");
+        that.fireDesignStudioPropertiesChangedAndEvent(["DCurrentValue"], "onCurrentChanged");
 	},
 	
 	_tapOnDate: function (oEvent) {
@@ -162,8 +161,7 @@ Calendar = {
 		var techDate = "" + dateO.format(dateFormat.masks.technical);
     	that.setDValue(techDate);
     	
-        that.fireDesignStudioPropertiesChanged(["DValue"]);
-		that.fireDesignStudioEvent("onSingleChanged");
+        that.fireDesignStudioPropertiesChangedAndEvent(["DValue"], "onSingleChanged");
     },
     
     _attachChangeRange: function (oEvent) {
@@ -186,8 +184,7 @@ Calendar = {
 		techDate = "" + dateO.format(dateFormat.masks.technical);
     	that.setDValueT(techDate);
     	
-        that.fireDesignStudioPropertiesChanged(["DValueF", "DValueT"]);
-		that.fireDesignStudioEvent("onRangeChanged");
+        that.fireDesignStudioPropertiesChangedAndEvent(["DValueF", "DValueT"], "onRangeChanged");
     },
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };

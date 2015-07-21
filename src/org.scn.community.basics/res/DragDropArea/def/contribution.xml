@@ -1,123 +1,158 @@
 
 <component
 	id="DragDropArea"
-	title="Drag Drop Area"
+	title="Drag Drop Area 2.0"
+	tooltip="Drag Drop Area"
 	icon="res/DragDropArea/DragDropArea.png"
 	handlerType="sapui5"
+	propertySheetPath="res/DragDropArea/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>os/ndd/jq.ndd.js</jsInclude>
-	<jsInclude>res/DragDropArea/DragDropArea.js</jsInclude>
+	<jsInclude>res/DragDropArea/DragDropAreaLoader.js</jsInclude>
 	<cssInclude>res/DragDropArea/DragDropArea.css</cssInclude>
+	
+	<property
+		id="cleanAll"
+		type="boolean"
+		title="Clean All Elements"
+		group="Display"
+		bindable="true"
+		visible="false">
 
+	</property>
 	<property
 		id="defaultImage"
 		type="Url"
 		title="Default Image Url"
-		tooltip="Url for Default Image (must be set)"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
-	<property
-		id="orientation"
-		type="String"
-		title="Orientation"
-		group="Display"
-		visible="true"
-	>
-		<possibleValue>horizontal</possibleValue>
-		<possibleValue>vertical</possibleValue>
 	</property>
-
-	<property
-		id="itemWidth"
-		type="int"
-		title="Width of the Item"
-		group="Display"
-		visible="true"
-	>
-	</property>
-
-	<property
-		id="elements"
-		type="String"
-		title="Technical proprty for list of elements"
-		group="Display"
-		visible="false" />
-
-	<property
-		id="dragKey"
-		type="String"
-		title="Drag Drop Key"
-		group="Display"
-		visible="true" />
-
 	<property
 		id="dragContext"
 		type="String"
 		title="Drag Drop Context"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
-		id="dropId"
+		id="dragKey"
 		type="String"
-		title="Drop Id"
+		title="Drag Drop Key"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
-		id="dropKey"
+		id="dropAfterKey"
 		type="String"
-		title="Drop Key"
+		title="Technical Proprty For Drop After Key"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="false">
 
+	</property>
 	<property
 		id="dropContext"
 		type="String"
 		title="Drop Context"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="false">
 
+	</property>
 	<property
-		id="dropAfterKey"
+		id="dropId"
 		type="String"
-		title="Technical proprty for Drop After Key"
+		title="Drop Id"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="false">
 
+	</property>
 	<property
 		id="dropIndex"
 		type="int"
-		title="Technical proprty for Drop Index"
+		title="Technical Proprty For Drop Index"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="false">
 
+	</property>
+	<property
+		id="dropKey"
+		type="String"
+		title="Drop Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="elements"
+		type="String"
+		title="Elements"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="itemWidth"
+		type="int"
+		title="Width Of The Item"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="onDrop"
 		type="ScriptText"
-		title="Event for On Drop Event"
-		group="Events" />
+		title="Event For On Drop Event"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="orientation"
+		type="String"
+		title="Orientation"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
-		<defaultValue property="TOP_MARGIN">0</defaultValue>
-		<defaultValue property="LEFT_MARGIN">0</defaultValue>
-		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="defaultImage"></defaultValue>
-		<defaultValue property="elements">[]</defaultValue>
-		<defaultValue property="orientation">horizontal</defaultValue>
-		<defaultValue property="itemWidth">120</defaultValue>
+		
+		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="defaultImage"><![CDATA[]]></defaultValue>
+		<defaultValue property="dragContext"><![CDATA[]]></defaultValue>
+		<defaultValue property="dragKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="dropAfterKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="dropContext"><![CDATA[]]></defaultValue>
+		<defaultValue property="dropId"><![CDATA[]]></defaultValue>
+		<defaultValue property="dropIndex"><![CDATA[0]]></defaultValue>
+		<defaultValue property="dropKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="elements"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="itemWidth"><![CDATA[120]]></defaultValue>
+		<defaultValue property="onDrop"><![CDATA[]]></defaultValue>
+		<defaultValue property="orientation"><![CDATA[Horizontal]]></defaultValue>
 
 	</initialization>
 

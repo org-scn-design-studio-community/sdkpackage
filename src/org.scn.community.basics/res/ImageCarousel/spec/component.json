@@ -1,0 +1,22 @@
+{
+	"id": "ImageCarousel",
+	"title": "Image Carousel 2.0",
+	"tooltip": "Image Carousel",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.Carousel",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "100"
+}

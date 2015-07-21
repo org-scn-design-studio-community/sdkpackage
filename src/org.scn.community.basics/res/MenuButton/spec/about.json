@@ -1,0 +1,16 @@
+{
+	"title": "Menu Button 2.0",
+	"description": "Menu Button (>= 1.4)",
+	"icon": "MenuButton.png",
+	"topics": 
+	[
+		{
+			"title" : "Menu Button (>= 1.4)",
+			"content" : "Menu Button (>= 1.4)"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

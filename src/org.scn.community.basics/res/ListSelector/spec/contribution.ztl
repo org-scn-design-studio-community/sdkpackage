@@ -1,0 +1,22 @@
+	/**
+	 * Sets titles of your menu elements.<br/>
+	 * <example><code>LISTSELECTOR_1.setTitles("Google,Bing,Ask.com");</code></example><br/>
+	 * <note>Seperate each entry by a comma.</note><br/>
+	 */
+	void setTitles (
+			/* Titles */ String titles,
+			/* Separator*/ optional String separator
+			
+			) 
+	{*
+		if(separator == undefined) separator = ",";
+		var titlesSplit = titles.split(separator);
+		var that = this;
+		
+		for(var labelI in titlesSplit) {
+			var labelO = titlesSplit[labelI];
+			
+			that.addTitle(labelO, labelO);
+		}
+	*}
+	

@@ -1,8 +1,8 @@
 /**
- * Copyright 2014 SCN Community Contributors
+ * Copyright 2014 Scn Community Contributors
  * 
  * Original Source Code Location:
- *  https://github.com/sap-design-studio-free-addons/sdk-package
+ *  https://github.com/org-scn-design-studio-community/sdkpackage/
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -15,180 +15,196 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
- * 
  */
-/**
- * Based on from original version by Mike Howles, blogged here: 
- * (http://scn.sap.com/community/businessobjects-design-studio/blog/2014/08/08/design-studio-sdk--a-tab-strip-toolbar-segmented-button-a-list-box-or-a-tile-group)
- * 
- */
-sap.designstudio.sdk.Component.subclass("org.scn.community.basics.ListSelector", function() {
-	// Property setter/getter functions	
-    this.autoProperties = {
-    	titles : {value : ""},
-		spriteIDs : {value : ""},
-		visibilities : {value : "" },
-		fixedWidth : {value : -1 },
-    	spriteSheet : {value : "" },
-    	spriteSheetPerRow : { value : 0 },
-    	verticalAlign : { value : "top" },
-    	textAlign : { value : "center" },
-    	labelOrientation : { value : "vertical" },
-    	labelPlacement : {value : "After" },
-    	iconWidth : { value : -1 },
-    	iconHeight : { value : -1 },
-    	labelClicked : { value : "" },
-    	buttonClass : { redraw : true },
-    	labelUnselect : {value : false}
+(function() {
+
+    var myComponentData = org_scn_community_require.knownComponents.basics.ListSelector;
+
+    ListSelector = function() {
+
+        var that = this;
+
+        that.init = function() {
+            // define root component
+
+            org_scn_community_basics.fillDummyDataInit(that, that.initAsync);
+        };
+
+        that.initAsync = function(owner) {
+            var that = owner;
+            org_scn_community_component_Core(that, myComponentData);
+
+            /* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+            that.$().addClass("superList");
+            that.redraw(that);
+
+            /* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+        };
+
+        that.afterUpdate = function() {
+            /* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+
+            // org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+
+            org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+        };
+
+        /* COMPONENT SPECIFIC CODE - START METHODS*/
+
+        that.processData = function(flatData, afterPrepare, owner) {
+            var that = owner;
+
+            // processing on data
+            that.afterPrepare(that);
+        };
+
+        that.afterPrepare = function(owner) {
+            var that = owner;
+
+            // visualization on processed data
+
+            // Determine if a redraw is needed
+            that.redraw(that);
+            
+            // Unselect if necessary
+            if (that.getLabelUnselect()) {
+                that.resetSelection();
+            }
+        };
+
+        that.onResize = function(width, height, parent) {
+            // in case special resize code is required
+        };
+
+        that.resetSelection = function(owner) {
+            var that = owner;
+            for (var i = 0; i < list[0].children.length; i++) {
+                var child = list[0].children[i];
+                child.className = '';
+            }
+        };
+
+        that.redraw = function(owner) {
+            var that = owner;
+
+            that.$().empty();
+            list = $("<ul/>");
+            var t = [];
+            var ids = [];
+            var vis = [];
+            
+            if (that.getTitles()) t = JSON.parse(that.getTitles());
+            
+            if (that.getSpriteIDs()) ids = that.getSpriteIDs().split(",");
+            if (that.getVisibilities()) vis = that.getVisibilities().split(",");
+            while (ids.length < t.length) ids.push(undefined);
+            while (vis.length < t.length) vis.push(undefined);
+            for (var i = 0; i < t.length; i++) {
+                var newItem = $("<li/>").css({
+                    textAlign: that.getTextAlign().toLowerCase(),
+                    verticalAlign: that.getVerticalAlign().toLowerCase()
+                });
+
+                if(t[i].text == undefined) {
+                        t[i].text = t[i].key;
+                }
+                
+                newItem.click(function(element) {
+                    return function() {
+                    	newItem.addClass("selected");
+                        
+                        that.setLabelClicked(element.text);
+                        that.setKeyClicked(element.key);
+
+                        //make sure unselect function is reseted
+                        that.setLabelUnselect(false);
+                        that.firePropertiesChangedAndEvent(["keyClicked", "labelClicked", "labelUnselect"], "onclick");
+                    };
+                }(t[i]));
+
+                // if (that.getButtonClass()) newItem.addClass(that.getButtonClass());
+                if (that.getLabelClicked() == t[i].text && !that.getLabelUnselect()) {
+                    newItem.addClass("selected");
+                }
+                if (that.getFixedWidth() != -1) {
+                    newItem.css({
+                        width: that.getFixedWidth()
+                    });
+                }
+                if (that.getSpriteSheet() != "") {
+                    var icon = $("<DIV/>")
+                        .addClass("icon")
+                        .css({
+                            background: "url('" + that.getSpriteSheet() + "')",
+                            display: "inline-block",
+                            verticalAlign: that.getVerticalAlign()
+                        });
+                    if (that.getIconWidth()) {
+                        var col;
+                        var spriteIndex = i;
+                        if (ids[i]) spriteIndex = ids[i];
+                        var rowOffset = 0;
+                        var rowHeight = that.getIconHeight() || 0;
+                        if (that.getSpriteSheetPerRow() && that.getSpriteSheetPerRow() != 0) {
+                            if (spriteIndex >= that.getSpriteSheetPerRow()) {
+                                col = spriteIndex % that.getSpriteSheetPerRow();
+                                //alert(col);
+                                rowOffset = Math.floor(spriteIndex / that.getSpriteSheetPerRow());
+                            } else {
+                                col = spriteIndex;
+                            }
+                        }
+                        icon.css({
+                            backgroundPositionX: -1 * (parseInt(that.getIconWidth()) * col) + "px",
+                            width: parseInt(that.getIconWidth())
+                        });
+                        if (rowOffset) {
+                            icon.css({
+                                backgroundPositionY: -1 * (rowOffset * that.getIconHeight())
+                            });
+                        }
+                    }
+                    if (that.getIconHeight()) {
+                        icon.css({
+                            height: parseInt(that.getIconHeight())
+                        });
+                    }
+                }
+                var buttonLabel = $("<SPAN>" + t[i].text + "</SPAN>")
+                    .addClass("label")
+                    .css({
+                        verticalAlign: that.getVerticalAlign()
+                    });
+
+
+
+                switch (that.getLabelPlacement()) {
+                    case "After":
+                        {
+                            newItem.append(icon);
+                            if (that.getLabelOrientation() == "Vertical") newItem.append("<br/>");
+                            newItem.append(buttonLabel);
+                            break;
+                        }
+                    case "Before":
+                        {
+                            newItem.append(buttonLabel);
+                            if (that.getLabelOrientation() == "Vertical") newItem.append("<br/>");
+                            newItem.append(icon);
+                            break;
+                        }
+                }
+                if (vis[i] != "H") list.append(newItem);
+            }
+            that.$().append(list);
+        };
+        /* COMPONENT SPECIFIC CODE - END METHODS*/
+        return that;
     };
-    var list = null;
-    /*
-	 * Create the aforementioned getter/setter and attach to 'this'.
-	 */
-	for(var property in this.autoProperties){
-		this[property] = function(property){
-			return function(value){
-				if(value===undefined){
-					return this.autoProperties[property].value;
-				}else{
-					this.autoProperties[property].value = value;
-					this.autoProperties[property].changed = true;
-					return this;
-				}
-			};
-		}(property);
-	}	
-	
-	this.init = function() { 
-    	this.$().addClass("superList");
-    	this.redraw();
-    };
-        
-    this.afterUpdate = function() { 
-    	var redraw = false;
-    	for(var property in this.autoProperties){
-    		if(this.autoProperties[property].changed && this.autoProperties[property].redraw) redraw = true;
-    	}
-    	// Determine if a redraw is needed
-    	this.redraw();
-    	// Unselect if necessary
-    	if(this.labelUnselect()){
-        	this.resetSelection();
-    	}
-    	// Reset change flags
-    	for(var property in this.autoProperties){
-    		this.autoProperties[property].changed = false;
-    	}
-    };
-    
-    this.resetSelection = function(){
-    	for(var i=0;i<list[0].children.length;i++){
-    		var child = list[0].children[i];
-    		child.className = '';
-    	}
-    };
-    
-    this.redraw = function(){
-    	var that = this;
-    	this.$().empty();
-    	list = $("<ul/>");
-    	var t = [];
-    	var ids = [];
-    	var vis = [];
-    	if(this.titles()) t = this.titles().split(",");
-    	if(this.spriteIDs()) ids = this.spriteIDs().split(",");
-    	if(this.visibilities()) vis = this.visibilities().split(",");
-    	while(ids.length<t.length) ids.push(undefined);
-    	while(vis.length<t.length) vis.push(undefined);
-    	for(var i=0;i<t.length;i++){
-    		var newItem = $("<li/>").css({
-    			textAlign : this.textAlign(),
-    			verticalAlign : this.verticalAlign()
-    		});
-    		newItem.click(function(text){
-				return function(){
-					$(this).addClass("selected");
-					that.labelClicked(text);
-					//make sure unselect function is reseted
-		    		that.labelUnselect(false);
-					that.firePropertiesChanged(["labelClicked", "labelUnselect"]);
-					that.fireEvent("onclick");
-				};
-			}(t[i]));
-    		
-    		if(this.buttonClass()) newItem.addClass(this.buttonClass());
-    		if(this.labelClicked()==t[i] && !this.labelUnselect()){
-    			newItem.addClass("selected");
-    		}
-    		if(this.fixedWidth() != -1){
-    			newItem.css({
-        			width : this.fixedWidth()
-        		});
-    		}
-    		if(this.spriteSheet() != ""){
-    			var icon = $("<DIV/>")
-    			.addClass("icon")
-    			.css({
-    				background : "url('" + this.spriteSheet() + "')",
-    				display : "inline-block",
-    				verticalAlign : this.verticalAlign()
-    			});
-    			if(this.iconWidth()){
-    				var col;
-    				var spriteIndex = i;
-    				if(ids[i]) spriteIndex = ids[i];
-    				var rowOffset = 0;
-    				var rowHeight = this.iconHeight() || 0;
-    				if(this.spriteSheetPerRow() && this.spriteSheetPerRow() != 0){
-    					if(spriteIndex >= this.spriteSheetPerRow()){
-    						col = spriteIndex % this.spriteSheetPerRow();
-    						//alert(col);
-    						rowOffset = Math.floor(spriteIndex / this.spriteSheetPerRow());
-    					}else{
-    						col = spriteIndex;
-    					}
-    				}
-    				icon.css({
-    					backgroundPositionX : -1 * (parseInt(this.iconWidth()) * col) + "px",
-    					width : parseInt(this.iconWidth())
-    				});
-    				if(rowOffset){
-    					icon.css({
-    						backgroundPositionY : -1 * (rowOffset * this.iconHeight())
-        				});
-    				}
-    			}
-    			if(this.iconHeight()){
-    				icon.css({
-    					height : parseInt(this.iconHeight())
-    				});
-    			}
-    		}
-    		var buttonLabel = $("<SPAN>" + t[i] + "</SPAN>")
-    			.addClass("label")
-    			.css({
-    				verticalAlign : this.verticalAlign()
-    			});
-    		
-			
-        			
-    		switch(this.labelPlacement()){
-    			case "After" :{
-    				newItem.append(icon);
-    				if(this.labelOrientation()=="vertical") newItem.append("<br/>");
-    				newItem.append(buttonLabel);
-    				break;
-    			}
-    			case "Before" :{
-    				newItem.append(buttonLabel);
-    				if(this.labelOrientation()=="vertical") newItem.append("<br/>");
-    				newItem.append(icon);
-    				break;
-    			}
-    		}   		
-    		if(vis[i]!="H") list.append(newItem);
-    	}
-    	this.$().append(list);
-    };
-    
-});
+
+    define([myComponentData.requireName], function(basicslistselector) {
+        myComponentData.instance = ListSelector;
+        return myComponentData.instance;
+    });
+
+}).call(this);

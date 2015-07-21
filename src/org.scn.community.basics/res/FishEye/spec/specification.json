@@ -1,0 +1,138 @@
+{
+	"cleanAll" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Elements",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Elements",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"elements",
+		   	"refDesc":"Elements",
+		   	"refValue":"[]",
+		}
+	},
+	"elements": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "element":{
+	               "type":"Array",
+	               "sequence":"key,text,url",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "text":{
+	                  "desc":"Given Text",
+	                  "type":"String"
+	               },
+	               "url":{
+	                  "desc":"Given Url",
+	                  "type":"Url"
+	               }
+	            }
+	        },
+ 
+			"desc":"Elements",
+			"cat":"Content",
+			"tooltip":"List of Elements",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray"
+		}
+	},
+	"selectedKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Property For Selected Key",
+			"cat" : "Display",
+			"tooltip" : "Technical Property For Selected Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"defaultImage" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Default Image Url",
+			"cat" : "Display",
+			"tooltip" : "Url For Default Image (must Be Set)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"orientation" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "HorizontalBottom",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "OrientationType",
+			"ztlFunction": "",
+			"desc" : "Orientation",
+			"cat" : "Display",
+			"tooltip" : "Orientation",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "HorizontalTop",
+					"text" : "Horizontal & Top"
+				},
+				{
+					"key" : "HorizontalBottom",
+					"text" : "Horizontal & Bottom"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onSelectionChanged" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Selection Changed",
+			"cat" : "Events",
+			"tooltip" : "Event For On Selection Changed",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

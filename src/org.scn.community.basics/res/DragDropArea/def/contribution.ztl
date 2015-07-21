@@ -1,198 +1,505 @@
 
 /**
- * Class for DragDropArea
+ * Generated ZTL Class for DragDropArea
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elements = JSON.stringify(elementsArray);
+
+	/**
+	 * Clean All Elements from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
 	*}
-	
-	/** add an element */
-	void addElement (String elementKey, String elementText, String imageUrl) {*		
+
+	/**
+	 * Remove All Elements from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Default Image Url Property
+	 */	
+	void setDefaultImage( /**Default Image Url*/ String defaultImage){*
+		this.defaultImage = defaultImage;
+	*}
+
+	/**
+	 * Gets Default Image Url Property
+	 */	
+	String getDefaultImage() {*
+		return this.defaultImage;
+	*}
+
+	/**
+	 * Sets Drag Drop Context Property
+	 */	
+	void setDragContext( /**Drag Drop Context*/ String dragContext){*
+		this.dragContext = dragContext;
+	*}
+
+	/**
+	 * Gets Drag Drop Context Property
+	 */	
+	String getDragContext() {*
+		return this.dragContext;
+	*}
+
+	/**
+	 * Sets Drag Drop Key Property
+	 */	
+	void setDragKey( /**Drag Drop Key*/ String dragKey){*
+		this.dragKey = dragKey;
+	*}
+
+	/**
+	 * Gets Drag Drop Key Property
+	 */	
+	String getDragKey() {*
+		return this.dragKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Drop After Key Property
+	 */	
+	String getDropAfterKey() {*
+		return this.dropAfterKey;
+	*}
+
+	/**
+	 * Gets Drop Context Property
+	 */	
+	String getDropContext() {*
+		return this.dropContext;
+	*}
+
+	/**
+	 * Gets Drop Id Property
+	 */	
+	String getDropId() {*
+		return this.dropId;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Drop Index Property
+	 */	
+	int getDropIndex() {*
+		return this.dropIndex;
+	*}
+
+	/**
+	 * Gets Drop Key Property
+	 */	
+	String getDropKey() {*
+		return this.dropKey;
+	*}
+
+	/** Adds a root element containing key [String], text [String], url [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	DRAGDROPAREA.addElement(key [String], text [String], url [String]);<br>
+	DRAGDROPAREA.addElement(key [String], text [String], url [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addElement (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) {*
+
 		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
 			};
-	
+
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.elements);
-		elementsJson.push(itemDef);
-	
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
 		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** insert an element */
-	void insertElement (String elementKey, String elementText, String imageUrl, int insertionIndex0based) {*
-		
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	DRAGDROPAREA.removeElement(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeElement (
+			String key
+			) {*
+
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	DRAGDROPAREA.insertElement(index [int], key [String], text [String], url [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertElement (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) {*
+
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
 		
 		var elementsJson = JSON.parse(this.elements);
 		var newElementsJson = [];
-		
-		// special case 1
-		if(insertionIndex0based == 0 && elementsJson.length == 0) {
-			this.addElement(elementKey, elementText, imageUrl);
-			return;
-		}
-		
-		var found = false;
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
+		};
+
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (i == insertionIndex0based) {
-				var itemDef = { 
-						"key": elementKey, 
-						"text": elementText, 
-						"url": imageUrl
-						};
-				
 				newElementsJson.push(itemDef);
-				found = true;
 			}
-			
+
 			newElementsJson.push(elementsJson[i]);
 		}
-		
-		// special case 2
-		if(!found) {
-			this.addElement(elementKey, elementText, imageUrl);
-			return;
-		}
-		
+
 		this.elements = JSON.stringify(newElementsJson);
 	*}
-	
-	/** update given element */
-	void updateElement (String elementKey, String elementText, String imageUrl) {*
-		
+
+	/**
+	 * Updates given Element<br/>
+	 */
+	void updateElement (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
-		
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
+		};
+
 		var elementsJson = JSON.parse(this.elements);
-		
+
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == elementKey) {
-				elementsJson[i].text = elementText;
-				elementsJson[i].url = imageUrl;
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getElementAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Elements As JSON String
+	 */	
+	String getElementsAsJSON() {*
+		var jsonObject = JSON.parse(this.elements);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Text for Element keys<br/>
+	 */
+	void setElementTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Element Key<br/>
+	 */
+	void setElementText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Text for Element Key<br/>
+	 */
+	boolean hasElementText (
+			/**/ String key
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
 				break;
 			}
 		}
 		
+		return exists;
+	*}
+	/**
+	 * Sets the Url for Element keys<br/>
+	 */
+	void setElementUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Element Key<br/>
+	 */
+	void setElementUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
 		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** delete an element */
-	void deleteElement (String elementKey) {*
-		
+	/**
+	 * Checks Existence of Url for Element Key<br/>
+	 */
+	boolean hasElementUrl (
+			/**/ String key
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key != elementKey) {
-				newElementsJson.push(elementsJson[i]);
-			}
+			return;
 		}
 
-		this.elements = JSON.stringify(newElementsJson);
+		var elementsJson = JSON.parse(this.elements);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+
+
+	/**
+	 * Sets Width Of The Item Property
+	 */	
+	void setItemWidth( /**Width Of The Item*/ int itemWidth){*
+		this.itemWidth = itemWidth;
+	*}
+
+	/**
+	 * Gets Width Of The Item Property
+	 */	
+	int getItemWidth() {*
+		return this.itemWidth;
+	*}
+
+
+
+	/**
+	 * Sets Orientation Property by String
+	 */	
+	void setOrientationByString( /**Orientation*/ String orientation){*
+		this.orientation = orientation;
+	*}
+
+	/**
+	 * Gets Orientation Property as String
+	 */	
+	String getOrientationAsString() {*
+		return this.orientation;
 	*}
 	
 	/**
-	Returns the content as key label array
-	<example>
-	You want to get the content of this area
-	<code>
-	var content = DRAGDROP.getAsKeyLabelArray();<br>
-	<br>
-	// a loop for all entries<br>
-	content.forEach(function(element, index) {<br>
-		LISTBOX_1.addItem(element.key, element.label);<br>
-	});
-	</code>
-	</example>
-	*/
-	org.scn.community.shared.KeyLabelArray getAsKeyLabelArray () {*
-		var s = this.elements;  
-		var a = []; 
-		if(s!="") a = JSON.parse(s);
-		
-		var tempA = [];
-		
-		for(var i=0;i<a.length;i++){
-			var itemDef = { 
-				"key": a[i].key, 
-				"label": a[i].text
-			};
-			
-			tempA.push(itemDef);
-		}
-		
-		return tempA;
+	 * Sets Orientation Property by Choice Option
+	 */	
+	void setOrientation( /**Orientation*/ org_scn_community_shared_OrientationEnumfield orientation){*
+		this.orientation = orientation;
 	*}
 	
-	/** returns key at given index */
-	String getKeyAtIndex (int index) {*		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (index == i) {
-				return elementsJson[i].key;
-			}
-		}
-		
-		return "";
-	*}
-	
-	/* Returns the Drag Key. */
-	String getDropId () {*
-		return this.dropId;	
-	*}
-	
-	/* Returns the Drop Key. */
-	String getDropKey () {*
-		return this.dropKey;	
-	*}
-	
-	/* Returns the Drop Key. */
-	String getDropContext () {*
-		return this.dropContext;	
-	*}
-	
-	/* Returns the Drop After Key. */
-	String getDropAfterKey () {*
-		return this.dropAfterKey;	
-	*}
-	
-	/* Returns the Drop After Key. */
-	int getDropIndex () {*
-		return this.dropIndex;	
+	/**
+	 * Gets Orientation Property as Choice Option
+	 */	
+	org_scn_community_shared_OrientationEnumfield getOrientation() {*
+		return this.orientation;
 	*}
 
-	/* Returns the Drag Key. */
-	String getDragKey () {*
-		return this.dragKey;	
-	*}
-	
-	/* Returns the Drag Key. */
-	String getDragContext () {*
-		return this.dragContext;	
-	*}
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

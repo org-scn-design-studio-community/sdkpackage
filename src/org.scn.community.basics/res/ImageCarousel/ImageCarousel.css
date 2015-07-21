@@ -1,3 +1,7 @@
 .scn-pack-ImageCarousel-SelectedImage {
-	border: solid 3px #000000 !important;
+	border: solid 2px #000000 !important;
+}
+
+.scn-pack-ImageCarousel-Image {
+	border: solid 2px transparent;
 }

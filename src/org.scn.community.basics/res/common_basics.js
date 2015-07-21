@@ -425,8 +425,8 @@ org_scn_community_basics.getRepositoryImageUrlPrefix = function (owner, componen
 		if(imageUrl.indexOf("http://") !== -1 || imageUrl.indexOf("https://") !== -1){
 			correctUrl = imageUrl;
 		} else {
-			if(componentUrl != undefined && componentUrl.length() > 0) {
-				correctUrl =  componentUrl.substring(0, value.lastIndexOf("/") + 1);
+			if(componentUrl != undefined && componentUrl.length > 0) {
+				correctUrl =  componentUrl.substring(0, componentUrl.lastIndexOf("/") + 1);
 				correctUrl = correctUrl + imageUrl;
 			} else {
 				correctUrl = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage, componentFileName);

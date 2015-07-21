@@ -1,103 +1,128 @@
 
 <component
 	id="MenuButton"
-	title="Menu Button (>= 1.4)"
+	title="Menu Button 2.0"
+	tooltip="Menu Button"
 	icon="res/MenuButton/MenuButton.png"
 	handlerType="sapui5"
+	propertySheetPath="res/MenuButton/aps/PropertyPage.html"
 	group="ScnCommunityBasics"
+	databound="false"
 >
-
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/MenuButton/MenuButton.js</jsInclude>
+	<jsInclude>res/MenuButton/MenuButtonLoader.js</jsInclude>
 	<cssInclude>res/MenuButton/MenuButton.css</cssInclude>
+	
+	<property
+		id="cleanAll"
+		type="boolean"
+		title="Clean All Buttons"
+		group="Display"
+		bindable="true"
+		visible="false">
 
+	</property>
+	<property
+		id="defaultImage"
+		type="Url"
+		title="Url For Default Image"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="elementsContent"
+		type="String"
+		title="Buttons"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="icon"
+		type="Url"
+		title="Icon"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event For On Selection Changed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical Proprty For Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="selectedText"
+		type="String"
+		title="Technical Proprty For Selected Text"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
 	<property
 		id="text"
 		type="String"
 		title="Text Value"
-		tooltip="Button text displayed at runtime"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
 		id="tooltip"
 		type="String"
 		title="Tooltip Value"
-		tooltip="Button tooltip displayed at runtime"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
-	<property
-		id="enabled"
-		title="Enabled"
-		tooltip="Switches enabled state of the control. Disabled fields have different colors and can not be focused."
-		type="boolean"
-		group="Display"
-		visible="true" />
+	</property>
 
-	<property
-		id="icon"
-		title="Icon"
-		tooltip="Icon to be displayed as graphical element within the button. This can be an URI to an image or an icon font URI"
-		group="Display" 
-		type="Url" />
-
-	<property
-		id="selectedKey"
-		type="String"
-		title="Technical proprty for Selected Key"
-		group="Display"
-		visible="false" />
-		
-	<property
-		id="selectedText"
-		type="String"
-		title="Technical proprty for Selected Text"
-		group="Display"
-		visible="false" />
-
-	<property
-		id="cleanAll"
-		type="boolean"
-		title="Technical proprty for Clean All Nodes"
-		group="Display"
-		visible="false" />
-
-	<property
-		id="elementsContent"
-		type="String"
-		title="Technical property for list of nodes"
-		group="Display"
-		visible="false" />
-
-	<property
-		id="defaultImage"
-		title="Url for Default Image"
-		tooltip="Url for Default Image which should be shown"
-		type="Url"
-		group="Display" 
-		visible="true" />
-
-	<property
-		id="onSelectionChanged"
-		type="ScriptText"
-		title="Event for On Selection Changed"
-		group="Events" />
 
 	<initialization>
-		<defaultValue property="WIDTH">400</defaultValue>
-		<defaultValue property="HEIGHT">29</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-
-		<defaultValue property="enabled">true</defaultValue>
-
-		<defaultValue property="defauleImage"></defaultValue>
-		<defaultValue property="selectedKey"></defaultValue>
-		<defaultValue property="elementsContent"></defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">29</defaultValue>
+		
+		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="defaultImage"><![CDATA[]]></defaultValue>
+		<defaultValue property="elementsContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="enabled"><![CDATA[true]]></defaultValue>
+		<defaultValue property="icon"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="selectedText"><![CDATA[]]></defaultValue>
+		<defaultValue property="text"><![CDATA[]]></defaultValue>
+		<defaultValue property="tooltip"><![CDATA[]]></defaultValue>
 
 	</initialization>
 

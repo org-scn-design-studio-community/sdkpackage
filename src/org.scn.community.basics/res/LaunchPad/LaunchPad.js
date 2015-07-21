@@ -54,8 +54,7 @@ sap.m.TileContainer.extend("org.scn.community.basics.LaunchPad", {
 	},
 	tileSelect : function(title,oControlEvent){
 		this._selectedTile = title;
-		this.fireDesignStudioPropertiesChanged(["selectedTile"]);
-		this.fireDesignStudioEvent("onTileSelect");
+		this.fireDesignStudioPropertiesChangedAndEvent(["selectedTile"],"onTileSelect");
 	},
 	drawTiles : function(){
 		this.destroyTiles();

@@ -31,4 +31,10 @@ class org_scn_community_shared_PlacementType extends Enum {
 	
 	/** Bottom */
 	org_scn_community_shared_PlacementTypeEnumfield Bottom;
+	
+	/** After */
+	org_scn_community_shared_PlacementTypeEnumfield After;
+	
+	/** Before */
+	org_scn_community_shared_PlacementTypeEnumfield Before;
 }

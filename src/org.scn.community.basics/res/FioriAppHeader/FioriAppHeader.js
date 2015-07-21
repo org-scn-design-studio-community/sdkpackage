@@ -87,8 +87,7 @@ sap.m.Page.extend("org.scn.community.basics.FioriAppHeader", {
 					return function(oControlEvent){
 						this._selectedItem = title;
 						this._selectedHeader = title;
-						this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem"]);
-						this.fireDesignStudioEvent("onitemselect");
+						this.fireDesignStudioPropertiesChangedAndEvent(["selectedHeader","selectedItem"],"onitemselect");
 					};
 				}(actualTitle),this);
 			}else{	// Action Sheet
@@ -111,8 +110,7 @@ sap.m.Page.extend("org.scn.community.basics.FioriAppHeader", {
 									this._selectedItem = it.key;
 									this._selectedHeader = section.key;
 									as.close();
-									this.fireDesignStudioPropertiesChanged(["selectedHeader","selectedItem"]);
-									this.fireDesignStudioEvent("onitemselect");
+									this.fireDesignStudioPropertiesChangedAndEvent(["selectedHeader","selectedItem"],"onitemselect");
 								};
 							}(item,this._itemConfig[index],actionSheet);
 							// Desktop Support

@@ -1,0 +1,250 @@
+{
+	"dropAfterKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Proprty For Drop After Key",
+			"cat" : "Display",
+			"tooltip" : "Technical Proprty For Drop After Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"dropContext" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Drop Context",
+			"cat" : "Display",
+			"tooltip" : "Drop Context",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"dropId" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Drop Id",
+			"cat" : "Display",
+			"tooltip" : "Drop Id",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"dropIndex" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "-get",
+			"desc" : "Technical Proprty For Drop Index",
+			"cat" : "Display",
+			"tooltip" : "Technical Proprty For Drop Index",
+			"apsControl" : "spinner",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"dropKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Drop Key",
+			"cat" : "Display",
+			"tooltip" : "Drop Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"cleanAll" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Elements",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Elements",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"elementsContent",
+		   	"refDesc":"Elements",
+		   	"refValue":"[]",
+		}
+	},
+	"elements": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "element":{
+	               "type":"Array",
+	               "sequence":"key,text,url",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "text":{
+	                  "desc":"Given Text",
+	                  "type":"String"
+	               },
+	               "url":{
+	                  "desc":"Given Url",
+	                  "type":"Url"
+	               }
+	            }
+	        },
+ 
+			"desc":"Elements",
+			"cat":"Content",
+			"tooltip":"List of Elements",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray"
+		}
+	},
+
+
+
+	"defaultImage" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Default Image Url",
+			"cat" : "Display",
+			"tooltip" : "Url For Default Image (must Be Set)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dragContext" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Drag Drop Context",
+			"cat" : "Display",
+			"tooltip" : "Drag Drop Context",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dragKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Drag Drop Key",
+			"cat" : "Display",
+			"tooltip" : "Drag Drop Key",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"itemWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 120,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Width Of The Item",
+			"cat" : "Display",
+			"tooltip" : "Width Of The Item",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"orientation" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Horizontal",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "Orientation",
+			"ztlFunction": "",
+			"desc" : "Orientation",
+			"cat" : "Display",
+			"tooltip" : "Orientation",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Horizontal",
+					"text" : "Horizontal"
+				},
+				{
+					"key" : "Vertical",
+					"text" : "Vertical"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onDrop" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Drop Event",
+			"cat" : "Events",
+			"tooltip" : "Event For On Drop Event",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

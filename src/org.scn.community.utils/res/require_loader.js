@@ -34,7 +34,7 @@ org_scn_community_basics.isDebug = org_scn_community_basics.getUrlParameterByNam
 if(org_scn_community_basics.isDebug) {
 	org_scn_community_require.jsVersion = "0000-0-0";	
 } else {
-	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-17"/*%TIMESTAMP-END%*/;
+	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-7-21"/*%TIMESTAMP-END%*/;
 }
 
 org_scn_community_basics.isHana = false;
@@ -216,6 +216,11 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 			mmfollower: {
 				name: "mmfollower",
 				script: C_ORG_SCN_COMMUNITY_ + "basics/os/mm/mm-follower",
+				min: false
+			},
+			ndd: {
+				name: "ndd",
+				script: C_ORG_SCN_COMMUNITY_ + "basics/os/ndd/jq-ndd",
 				min: false
 			}
 	};

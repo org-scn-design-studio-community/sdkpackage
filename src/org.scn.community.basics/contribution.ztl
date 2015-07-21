@@ -3765,201 +3765,508 @@ class org.scn.community.basics.DateRangeSlider extends org.scn.community.shared.
 }
 
 /**
- * Class for DragDropArea
+ * Generated ZTL Class for DragDropArea
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elements = JSON.stringify(elementsArray);
+
+	/**
+	 * Clean All Elements from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
 	*}
-	
-	/** add an element */
-	void addElement (String elementKey, String elementText, String imageUrl) {*		
+
+	/**
+	 * Remove All Elements from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Default Image Url Property
+	 */	
+	void setDefaultImage( /**Default Image Url*/ String defaultImage){*
+		this.defaultImage = defaultImage;
+	*}
+
+	/**
+	 * Gets Default Image Url Property
+	 */	
+	String getDefaultImage() {*
+		return this.defaultImage;
+	*}
+
+	/**
+	 * Sets Drag Drop Context Property
+	 */	
+	void setDragContext( /**Drag Drop Context*/ String dragContext){*
+		this.dragContext = dragContext;
+	*}
+
+	/**
+	 * Gets Drag Drop Context Property
+	 */	
+	String getDragContext() {*
+		return this.dragContext;
+	*}
+
+	/**
+	 * Sets Drag Drop Key Property
+	 */	
+	void setDragKey( /**Drag Drop Key*/ String dragKey){*
+		this.dragKey = dragKey;
+	*}
+
+	/**
+	 * Gets Drag Drop Key Property
+	 */	
+	String getDragKey() {*
+		return this.dragKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Drop After Key Property
+	 */	
+	String getDropAfterKey() {*
+		return this.dropAfterKey;
+	*}
+
+	/**
+	 * Gets Drop Context Property
+	 */	
+	String getDropContext() {*
+		return this.dropContext;
+	*}
+
+	/**
+	 * Gets Drop Id Property
+	 */	
+	String getDropId() {*
+		return this.dropId;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Drop Index Property
+	 */	
+	int getDropIndex() {*
+		return this.dropIndex;
+	*}
+
+	/**
+	 * Gets Drop Key Property
+	 */	
+	String getDropKey() {*
+		return this.dropKey;
+	*}
+
+	/** Adds a root element containing key [String], text [String], url [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	DRAGDROPAREA.addElement(key [String], text [String], url [String]);<br>
+	DRAGDROPAREA.addElement(key [String], text [String], url [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addElement (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) {*
+
 		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
 			};
-	
+
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.elements);
-		elementsJson.push(itemDef);
-	
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
 		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** insert an element */
-	void insertElement (String elementKey, String elementText, String imageUrl, int insertionIndex0based) {*
-		
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	DRAGDROPAREA.removeElement(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeElement (
+			String key
+			) {*
+
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	DRAGDROPAREA.insertElement(index [int], key [String], text [String], url [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertElement (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) {*
+
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
 		
 		var elementsJson = JSON.parse(this.elements);
 		var newElementsJson = [];
-		
-		// special case 1
-		if(insertionIndex0based == 0 && elementsJson.length == 0) {
-			this.addElement(elementKey, elementText, imageUrl);
-			return;
-		}
-		
-		var found = false;
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
+		};
+
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (i == insertionIndex0based) {
-				var itemDef = { 
-						"key": elementKey, 
-						"text": elementText, 
-						"url": imageUrl
-						};
-				
 				newElementsJson.push(itemDef);
-				found = true;
 			}
-			
+
 			newElementsJson.push(elementsJson[i]);
 		}
-		
-		// special case 2
-		if(!found) {
-			this.addElement(elementKey, elementText, imageUrl);
-			return;
-		}
-		
+
 		this.elements = JSON.stringify(newElementsJson);
 	*}
-	
-	/** update given element */
-	void updateElement (String elementKey, String elementText, String imageUrl) {*
-		
+
+	/**
+	 * Updates given Element<br/>
+	 */
+	void updateElement (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
-		
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
+		};
+
 		var elementsJson = JSON.parse(this.elements);
-		
+
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == elementKey) {
-				elementsJson[i].text = elementText;
-				elementsJson[i].url = imageUrl;
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getElementAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Elements As JSON String
+	 */	
+	String getElementsAsJSON() {*
+		var jsonObject = JSON.parse(this.elements);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Text for Element keys<br/>
+	 */
+	void setElementTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Element Key<br/>
+	 */
+	void setElementText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Text for Element Key<br/>
+	 */
+	boolean hasElementText (
+			/**/ String key
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
 				break;
 			}
 		}
 		
+		return exists;
+	*}
+	/**
+	 * Sets the Url for Element keys<br/>
+	 */
+	void setElementUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Element Key<br/>
+	 */
+	void setElementUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
 		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** delete an element */
-	void deleteElement (String elementKey) {*
-		
+	/**
+	 * Checks Existence of Url for Element Key<br/>
+	 */
+	boolean hasElementUrl (
+			/**/ String key
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key != elementKey) {
-				newElementsJson.push(elementsJson[i]);
-			}
+			return;
 		}
 
-		this.elements = JSON.stringify(newElementsJson);
+		var elementsJson = JSON.parse(this.elements);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+
+
+	/**
+	 * Sets Width Of The Item Property
+	 */	
+	void setItemWidth( /**Width Of The Item*/ int itemWidth){*
+		this.itemWidth = itemWidth;
+	*}
+
+	/**
+	 * Gets Width Of The Item Property
+	 */	
+	int getItemWidth() {*
+		return this.itemWidth;
+	*}
+
+
+
+	/**
+	 * Sets Orientation Property by String
+	 */	
+	void setOrientationByString( /**Orientation*/ String orientation){*
+		this.orientation = orientation;
+	*}
+
+	/**
+	 * Gets Orientation Property as String
+	 */	
+	String getOrientationAsString() {*
+		return this.orientation;
 	*}
 	
 	/**
-	Returns the content as key label array
-	<example>
-	You want to get the content of this area
-	<code>
-	var content = DRAGDROP.getAsKeyLabelArray();<br>
-	<br>
-	// a loop for all entries<br>
-	content.forEach(function(element, index) {<br>
-		LISTBOX_1.addItem(element.key, element.label);<br>
-	});
-	</code>
-	</example>
-	*/
-	org.scn.community.shared.KeyLabelArray getAsKeyLabelArray () {*
-		var s = this.elements;  
-		var a = []; 
-		if(s!="") a = JSON.parse(s);
-		
-		var tempA = [];
-		
-		for(var i=0;i<a.length;i++){
-			var itemDef = { 
-				"key": a[i].key, 
-				"label": a[i].text
-			};
-			
-			tempA.push(itemDef);
-		}
-		
-		return tempA;
+	 * Sets Orientation Property by Choice Option
+	 */	
+	void setOrientation( /**Orientation*/ org_scn_community_shared_OrientationEnumfield orientation){*
+		this.orientation = orientation;
 	*}
 	
-	/** returns key at given index */
-	String getKeyAtIndex (int index) {*		
-		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (index == i) {
-				return elementsJson[i].key;
-			}
-		}
-		
-		return "";
-	*}
-	
-	/* Returns the Drag Key. */
-	String getDropId () {*
-		return this.dropId;	
-	*}
-	
-	/* Returns the Drop Key. */
-	String getDropKey () {*
-		return this.dropKey;	
-	*}
-	
-	/* Returns the Drop Key. */
-	String getDropContext () {*
-		return this.dropContext;	
-	*}
-	
-	/* Returns the Drop After Key. */
-	String getDropAfterKey () {*
-		return this.dropAfterKey;	
-	*}
-	
-	/* Returns the Drop After Key. */
-	int getDropIndex () {*
-		return this.dropIndex;	
+	/**
+	 * Gets Orientation Property as Choice Option
+	 */	
+	org_scn_community_shared_OrientationEnumfield getOrientation() {*
+		return this.orientation;
 	*}
 
-	/* Returns the Drag Key. */
-	String getDragKey () {*
-		return this.dragKey;	
-	*}
-	
-	/* Returns the Drag Key. */
-	String getDragContext () {*
-		return this.dragContext;	
-	*}
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
 
 /**
@@ -4418,129 +4725,438 @@ class org.scn.community.basics.FioriToolbar extends org.scn.community.shared.Com
 	
 }
 /**
- * Class for FishEye
+ * Generated ZTL Class for FishEye
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.FishEye extends org.scn.community.shared.Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elements = JSON.stringify(elementsArray);
+
+	/**
+	 * Clean All Elements from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elements = JSON.stringify(elementsArray);
 	*}
-	
-	/** add an element */
-	void addElement (String elementKey, String elementText, String imageUrl) {*		
+
+	/**
+	 * Remove All Elements from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elements = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Default Image Url Property
+	 */	
+	void setDefaultImage( /**Default Image Url*/ String defaultImage){*
+		this.defaultImage = defaultImage;
+	*}
+
+	/**
+	 * Gets Default Image Url Property
+	 */	
+	String getDefaultImage() {*
+		return this.defaultImage;
+	*}
+
+	/** Adds a root element containing key [String], text [String], url [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	FISHEYE.addElement(key [String], text [String], url [String]);<br>
+	FISHEYE.addElement(key [String], text [String], url [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addElement (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) {*
+
 		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
 			};
-	
+
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.elements);
-		elementsJson.push(itemDef);
-	
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
 		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** insert an element */
-	void insertElement (String elementKey, String elementText, String imageUrl, int insertionIndex0based) {*
-		
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	FISHEYE.removeElement(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeElement (
+			String key
+			) {*
+
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	FISHEYE.insertElement(index [int], key [String], text [String], url [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertElement (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) {*
+
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
 		
 		var elementsJson = JSON.parse(this.elements);
 		var newElementsJson = [];
-		
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
+		};
+
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (i == insertionIndex0based) {
-				var itemDef = { 
-						"key": elementKey, 
-						"text": elementText, 
-						"url": imageUrl
-						};
-				
 				newElementsJson.push(itemDef);
 			}
-			
+
 			newElementsJson.push(elementsJson[i]);
 		}
 
 		this.elements = JSON.stringify(newElementsJson);
 	*}
-	
-	/** update given element */
-	void updateElement (String elementKey, String elementText, String imageUrl) {*
-		
+
+	/**
+	 * Updates given Element<br/>
+	 */
+	void updateElement (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
-		
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
+		};
+
 		var elementsJson = JSON.parse(this.elements);
-		
+
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == elementKey) {
-				elementsJson[i].text = elementText;
-				elementsJson[i].url = imageUrl;
+				elementsJson[i] = itemDef;
 				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getElementAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Elements As JSON String
+	 */	
+	String getElementsAsJSON() {*
+		var jsonObject = JSON.parse(this.elements);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Text for Element keys<br/>
+	 */
+	void setElementTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
 			}
 		}
 		
 		this.elements = JSON.stringify(elementsJson);
 	*}
-	
-	/** delete an element */
-	void deleteElement (String elementKey) {*
-		
+
+	/**
+	 * Sets the Text for Element Key<br/>
+	 */
+	void setElementText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
+			return;
 		}
-		
+
 		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
+
+		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key != elementKey) {
-				newElementsJson.push(elementsJson[i]);
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
 			}
 		}
 
-		this.elements = JSON.stringify(newElementsJson);
+		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** returns key at given index */
-	String getKeyAtIndex (int index) {*		
+	/**
+	 * Checks Existence of Text for Element Key<br/>
+	 */
+	boolean hasElementText (
+			/**/ String key
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
+			return;
 		}
-		
+
 		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
+
+		var exists = false;
+		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (index == i) {
-				return elementsJson[i].key;
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
 			}
 		}
 		
-		return "";
+		return exists;
+	*}
+	/**
+	 * Sets the Url for Element keys<br/>
+	 */
+	void setElementUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Element Key<br/>
+	 */
+	void setElementUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
+	/**
+	 * Checks Existence of Url for Element Key<br/>
+	 */
+	boolean hasElementUrl (
+			/**/ String key
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+
+
+
+
+	/**
+	 * Sets Orientation Property by String
+	 */	
+	void setOrientationByString( /**Orientation*/ String orientation){*
+		this.orientation = orientation;
+	*}
+
+	/**
+	 * Gets Orientation Property as String
+	 */	
+	String getOrientationAsString() {*
+		return this.orientation;
 	*}
 	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
+	/**
+	 * Sets Orientation Property by Choice Option
+	 */	
+	void setOrientation( /**Orientation*/ org_scn_community_shared_OrientationTypeEnumfield orientation){*
+		this.orientation = orientation;
 	*}
+	
+	/**
+	 * Gets Orientation Property as Choice Option
+	 */	
+	org_scn_community_shared_OrientationTypeEnumfield getOrientation() {*
+		return this.orientation;
+	*}
+
+	/**
+	 * Gets Technical Property For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
 
 /**
@@ -4808,129 +5424,410 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 }
 
 /**
- * Class for ImageCarousel
+ * Generated ZTL Class for ImageCarousel
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elements = JSON.stringify(elementsArray);
+
+	/**
+	 * Clean All Elements from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elements = JSON.stringify(elementsArray);
 	*}
-	
-	/** add an element */
-	void addElement (String elementKey, String elementText, String imageUrl) {*		
+
+	/**
+	 * Remove All Elements from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elements = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Default Image Url Property
+	 */	
+	void setDefaultImage( /**Default Image Url*/ String defaultImage){*
+		this.defaultImage = defaultImage;
+	*}
+
+	/**
+	 * Gets Default Image Url Property
+	 */	
+	String getDefaultImage() {*
+		return this.defaultImage;
+	*}
+
+	/** Adds a root element containing key [String], text [String], url [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	IMAGECAROUSEL.addElement(key [String], text [String], url [String]);<br>
+	IMAGECAROUSEL.addElement(key [String], text [String], url [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addElement (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) {*
+
 		
-		var itemDef = { 
-			"key": elementKey, 
-			"text": elementText, 
-			"url": imageUrl
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
 			};
-	
+
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
-		
+
 		var elementsJson = JSON.parse(this.elements);
-		elementsJson.push(itemDef);
-	
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
 		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** insert an element */
-	void insertElement (String elementKey, String elementText, String imageUrl, int insertionIndex0based) {*
-		
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	IMAGECAROUSEL.removeElement(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeElement (
+			String key
+			) {*
+
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	IMAGECAROUSEL.insertElement(index [int], key [String], text [String], url [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertElement (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) {*
+
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
 		
 		var elementsJson = JSON.parse(this.elements);
 		var newElementsJson = [];
-		
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
+		};
+
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (i == insertionIndex0based) {
-				var itemDef = { 
-						"key": elementKey, 
-						"text": elementText, 
-						"url": imageUrl
-						};
-				
 				newElementsJson.push(itemDef);
 			}
-			
+
 			newElementsJson.push(elementsJson[i]);
 		}
 
 		this.elements = JSON.stringify(newElementsJson);
 	*}
-	
-	/** update given element */
-	void updateElement (String elementKey, String elementText, String imageUrl) {*
-		
+
+	/**
+	 * Updates given Element<br/>
+	 */
+	void updateElement (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/String url
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
 			this.elements = "[]";
 		}
-		
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			url:url
+		};
+
 		var elementsJson = JSON.parse(this.elements);
-		
+
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == elementKey) {
-				elementsJson[i].text = elementText;
-				elementsJson[i].url = imageUrl;
+				elementsJson[i] = itemDef;
 				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getElementAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			this.elements = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Elements As JSON String
+	 */	
+	String getElementsAsJSON() {*
+		var jsonObject = JSON.parse(this.elements);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Text for Element keys<br/>
+	 */
+	void setElementTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
 			}
 		}
 		
 		this.elements = JSON.stringify(elementsJson);
 	*}
-	
-	/** delete an element */
-	void deleteElement (String elementKey) {*
-		
+
+	/**
+	 * Sets the Text for Element Key<br/>
+	 */
+	void setElementText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
+			return;
 		}
-		
+
 		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
+
+		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key != elementKey) {
-				newElementsJson.push(elementsJson[i]);
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
 			}
 		}
 
-		this.elements = JSON.stringify(newElementsJson);
+		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** returns key at given index */
-	String getKeyAtIndex (int index) {*		
+	/**
+	 * Checks Existence of Text for Element Key<br/>
+	 */
+	boolean hasElementText (
+			/**/ String key
+			) 
+	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
-			this.elements = "[]";
+			return;
 		}
-		
+
 		var elementsJson = JSON.parse(this.elements);
-		var newElementsJson = [];
-		
+
+		var exists = false;
+		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
-			if (index == i) {
-				return elementsJson[i].key;
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
 			}
 		}
 		
-		return "";
+		return exists;
+	*}
+	/**
+	 * Sets the Url for Element keys<br/>
+	 */
+	void setElementUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Element Key<br/>
+	 */
+	void setElementUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
 	*}
 	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
+	/**
+	 * Checks Existence of Url for Element Key<br/>
+	 */
+	boolean hasElementUrl (
+			/**/ String key
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
 	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
+
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
 	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
 
 /**
@@ -6917,73 +7814,1377 @@ class org.scn.community.basics.Link extends org.scn.community.shared.Component {
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
 }
+
+/**
+ * Generated ZTL Class for ListSelector
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
 class org.scn.community.basics.ListSelector extends org.scn.community.shared.Component {
+
 	/**
-	Get last menu element title clicked.
-	<example><code>var itemSelected = LISTSELECTOR_1.getLabelClicked();</code></example>
-	<returns>Chart property as String type.</returns>
-	*/
+	 * Clean All Titles from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.titles = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Titles from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.titles = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Fixed Width (-1 For Auto) Property
+	 */	
+	void setFixedWidth( /**Fixed Width (-1 For Auto)*/ int fixedWidth){*
+		this.fixedWidth = fixedWidth;
+	*}
+
+	/**
+	 * Gets Fixed Width (-1 For Auto) Property
+	 */	
+	int getFixedWidth() {*
+		return this.fixedWidth;
+	*}
+
+	/**
+	 * Sets Icon Height (px) Property
+	 */	
+	void setIconHeight( /**Icon Height (px)*/ int iconHeight){*
+		this.iconHeight = iconHeight;
+	*}
+
+	/**
+	 * Gets Icon Height (px) Property
+	 */	
+	int getIconHeight() {*
+		return this.iconHeight;
+	*}
+
+	/**
+	 * Sets Icon Width (px) Property
+	 */	
+	void setIconWidth( /**Icon Width (px)*/ int iconWidth){*
+		this.iconWidth = iconWidth;
+	*}
+
+	/**
+	 * Gets Icon Width (px) Property
+	 */	
+	int getIconWidth() {*
+		return this.iconWidth;
+	*}
+
+	/**
+	 * Gets Selected Key Property
+	 */	
+	String getKeyClicked() {*
+		return this.keyClicked;
+	*}
+
+	/**
+	 * Gets Selected Label Property
+	 */	
 	String getLabelClicked() {*
 		return this.labelClicked;
 	*}
+
 	/**
-	Sets titles of your menu elements.
-	<example><code>LISTSELECTOR_1.setTitles("Google,Bing,Ask.com");</code></example>
-	<note>Seperate each entry by a comma.</note>
-	*/
-	void setTitles( /* Titles */ String titles){*
-		this.titles = titles;
+	 * Sets Label Orientation Property by String
+	 */	
+	void setLabelOrientationByString( /**Label Orientation*/ String labelOrientation){*
+		this.labelOrientation = labelOrientation;
 	*}
+
 	/**
-	Get list of menu element titles.
-	<example><code>var titles = LISTSELECTOR_1.getTitles();</code></example>
-	<returns>Comma-seperated list of menu element titles</returns>
-	*/
-	String getTitles() {*
-		return this.titles;
+	 * Gets Label Orientation Property as String
+	 */	
+	String getLabelOrientationAsString() {*
+		return this.labelOrientation;
 	*}
+	
 	/**
-	Reset selection of menu element titles for complex navigation scenarios
-	<example><code>LISTSELECTOR_1.resetSelection();</code></example>
+	 * Sets Label Orientation Property by Choice Option
+	 */	
+	void setLabelOrientation( /**Label Orientation*/ org_scn_community_shared_OrientationEnumfield labelOrientation){*
+		this.labelOrientation = labelOrientation;
+	*}
+	
+	/**
+	 * Gets Label Orientation Property as Choice Option
+	 */	
+	org_scn_community_shared_OrientationEnumfield getLabelOrientation() {*
+		return this.labelOrientation;
+	*}
+
+	/**
+	 * Sets Label Placement (Relative To Icon) Property by String
+	 */	
+	void setLabelPlacementByString( /**Label Placement (Relative To Icon)*/ String labelPlacement){*
+		this.labelPlacement = labelPlacement;
+	*}
+
+	/**
+	 * Gets Label Placement (Relative To Icon) Property as String
+	 */	
+	String getLabelPlacementAsString() {*
+		return this.labelPlacement;
+	*}
+	
+	/**
+	 * Sets Label Placement (Relative To Icon) Property by Choice Option
+	 */	
+	void setLabelPlacement( /**Label Placement (Relative To Icon)*/ org_scn_community_shared_PlacementTypeEnumfield labelPlacement){*
+		this.labelPlacement = labelPlacement;
+	*}
+	
+	/**
+	 * Gets Label Placement (Relative To Icon) Property as Choice Option
+	 */	
+	org_scn_community_shared_PlacementTypeEnumfield getLabelPlacement() {*
+		return this.labelPlacement;
+	*}
+
+	/**
+	 * Gets Unselect Label Property
+	 */	
+	boolean isLabelUnselect() {*
+		return this.labelUnselect;
+	*}
+
+
+
+	/**
+	 * Sets Sprite IDs (Optional) Property
+	 */	
+	void setSpriteIDs( /**Sprite IDs (Optional)*/ String spriteIDs){*
+		this.spriteIDs = spriteIDs;
+	*}
+
+	/**
+	 * Gets Sprite IDs (Optional) Property
+	 */	
+	String getSpriteIDs() {*
+		return this.spriteIDs;
+	*}
+
+	/**
+	 * Sets Icon Sprite Sheet (Optional) Property
+	 */	
+	void setSpriteSheet( /**Icon Sprite Sheet (Optional)*/ String spriteSheet){*
+		this.spriteSheet = spriteSheet;
+	*}
+
+	/**
+	 * Gets Icon Sprite Sheet (Optional) Property
+	 */	
+	String getSpriteSheet() {*
+		return this.spriteSheet;
+	*}
+
+	/**
+	 * Sets Icons Sprites Per Row Property
+	 */	
+	void setSpriteSheetPerRow( /**Icons Sprites Per Row*/ int spriteSheetPerRow){*
+		this.spriteSheetPerRow = spriteSheetPerRow;
+	*}
+
+	/**
+	 * Gets Icons Sprites Per Row Property
+	 */	
+	int getSpriteSheetPerRow() {*
+		return this.spriteSheetPerRow;
+	*}
+
+	/**
+	 * Sets Text Alignment Property by String
+	 */	
+	void setTextAlignByString( /**Text Alignment*/ String textAlign){*
+		this.textAlign = textAlign;
+	*}
+
+	/**
+	 * Gets Text Alignment Property as String
+	 */	
+	String getTextAlignAsString() {*
+		return this.textAlign;
+	*}
+	
+	/**
+	 * Sets Text Alignment Property by Choice Option
+	 */	
+	void setTextAlign( /**Text Alignment*/ org_scn_community_shared_PlacementTypeEnumfield textAlign){*
+		this.textAlign = textAlign;
+	*}
+	
+	/**
+	 * Gets Text Alignment Property as Choice Option
+	 */	
+	org_scn_community_shared_PlacementTypeEnumfield getTextAlign() {*
+		return this.textAlign;
+	*}
+
+	/** Adds a root element containing key [String], text [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	LISTSELECTOR.addTitle(key [String], text [String]);<br>
+	LISTSELECTOR.addTitle(key [String], text [String]);<br>
+	<br>
+	</code>
+	</example>
 	 */
-	void resetSelection(){*
-		this.labelUnselect = true;
+	void addTitle (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text
+			};
+
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			this.titles = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.titles);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.titles = JSON.stringify(elementsJson);
 	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	LISTSELECTOR.removeTitle(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeTitle (
+			String key
+			) {*
+
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			this.titles = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.titles);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.titles = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	LISTSELECTOR.insertTitle(index [int], key [String], text [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertTitle (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Text*/String text
+			) {*
+
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			this.titles = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.titles);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.titles = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Title<br/>
+	 */
+	void updateTitle (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text
+			) 
+	{*
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			this.titles = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text
+		};
+
+		var elementsJson = JSON.parse(this.titles);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.titles = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getTitleAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			this.titles = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.titles);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Titles As JSON String
+	 */	
+	String getTitlesAsJSON() {*
+		var jsonObject = JSON.parse(this.titles);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Text for Title keys<br/>
+	 */
+	void setTitleTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.titles);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.titles = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Title Key<br/>
+	 */
+	void setTitleText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.titles);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.titles = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Text for Title Key<br/>
+	 */
+	boolean hasTitleText (
+			/**/ String key
+			) 
+	{*
+		if (this.titles === undefined || this.titles === "" || this.titles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.titles);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+
+
+	/**
+	 * Sets Vertical Alignment Property by String
+	 */	
+	void setVerticalAlignByString( /**Vertical Alignment*/ String verticalAlign){*
+		this.verticalAlign = verticalAlign;
+	*}
+
+	/**
+	 * Gets Vertical Alignment Property as String
+	 */	
+	String getVerticalAlignAsString() {*
+		return this.verticalAlign;
+	*}
+	
+	/**
+	 * Sets Vertical Alignment Property by Choice Option
+	 */	
+	void setVerticalAlign( /**Vertical Alignment*/ org_scn_community_shared_PlacementTypeEnumfield verticalAlign){*
+		this.verticalAlign = verticalAlign;
+	*}
+	
+	/**
+	 * Gets Vertical Alignment Property as Choice Option
+	 */	
+	org_scn_community_shared_PlacementTypeEnumfield getVerticalAlign() {*
+		return this.verticalAlign;
+	*}
+
+	/**
+	 * Sets Visibilities (Optional) Property
+	 */	
+	void setVisibilities( /**Visibilities (Optional)*/ String visibilities){*
+		this.visibilities = visibilities;
+	*}
+
+	/**
+	 * Gets Visibilities (Optional) Property
+	 */	
+	String getVisibilities() {*
+		return this.visibilities;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Sets titles of your menu elements.<br/>
+	 * <example><code>LISTSELECTOR_1.setTitles("Google,Bing,Ask.com");</code></example><br/>
+	 * <note>Seperate each entry by a comma.</note><br/>
+	 */
+	void setTitles (
+			/* Titles */ String titles,
+			/* Separator*/ optional String separator
+			
+			) 
+	{*
+		if(separator == undefined) separator = ",";
+		var titlesSplit = titles.split(separator);
+		var that = this;
+		
+		for(var labelI in titlesSplit) {
+			var labelO = titlesSplit[labelI];
+			
+			that.addTitle(labelO, labelO);
+		}
+	*}
+	
 }
+
 /**
- * Class for MenuBar
+ * Generated ZTL Class for MenuBar
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.MenuBar extends org.scn.community.shared.Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elementsContent = JSON.stringify(elementsArray);
-			
-			this.cleanAll = true;
+
+	/**
+	 * Clean All Buttons from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
 	*}
-	
-	/** Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.
+
+	/**
+	 * Remove All Buttons from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Url For Default Image Property
+	 */	
+	void setDefaultImage( /**Url For Default Image*/ String defaultImage){*
+		this.defaultImage = defaultImage;
+	*}
+
+	/**
+	 * Gets Url For Default Image Property
+	 */	
+	String getDefaultImage() {*
+		return this.defaultImage;
+	*}
+
+	/** Adds an element containing parentKey [String], key [String], text [String], url [String], enabled [boolean] properties.
 	 * You need to specify a unique and existing parent element.
-	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.  
 
  	<example>
-	You want to add 2 elements, second one is a child of first one
+	You want to add 2 elements
 	<code>
-	ACCORDION_1.addElement("KEY1", "First Element", "", "ROOT", true);<br>
-	ACCORDION_1.addElement("KEY2", "First Element Child", "", "KEY1", true);<br>
+	MENUBAR.addSubItem(parentKey [String], key [String], text [String], url [String], enabled [boolean]);<br>
+	MENUBAR.addSubItem(parentKey [String], key [String], text [String], url [String], enabled [boolean]);
+	</code>
+	</example>
+	 */
+	void addSubItem (
+			/**Parent Key*/String parentKey, 
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/optional String url, 
+			/**Enabled*/optional boolean enabled
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		if(url == undefined) { url = "";}
+		if(enabled == undefined) { enabled = false;}
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key, 
+			text:text, 
+			url:url, 
+			enabled:enabled 
+			};
+	
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], text [String], url [String], enabled [boolean].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	MENUBAR.addItem(key [String], text [String], url [String], enabled [boolean]);<br>
+	MENUBAR.addItem(key [String], text [String], url [String], enabled [boolean]);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void addSubMenuItem (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl, 
-			/**The Key of the parent Element*/String parentElementKey, 
-			/**Leafs do not have expand option by default*/optional boolean isLeaf,
-			/**Element enabled status*/optional boolean isEnabled) {*		
+	void addItem (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/optional String url, 
+			/**Enabled*/optional boolean enabled
+			) {*		
 		
+		this.addSubItem("ROOT", key, 
+			text, 
+			url, 
+			enabled);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	MENUBAR.removeSubItem(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeSubItem (
+			String key
+			) {*		
+		
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	MENUBAR.removeItem(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeItem (
+			String key
+			) {*		
+		
+		this.removeSubItem(key);
+	*}
+
+	/**
+	 * Gets Items As JSON String
+	 */	
+	String getItemsAsJSON() {*
+		var jsonObject = JSON.parse(this.elementsContent);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Text for Item keys<br/>
+	 */
+	void setItemTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Item Key<br/>
+	 */
+	void setItemText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Text for Item Key<br/>
+	 */
+	boolean hasItemText (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Sets the Url for Item keys<br/>
+	 */
+	void setItemUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Item Key<br/>
+	 */
+	void setItemUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Url for Item Key<br/>
+	 */
+	boolean hasItemUrl (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Sets the Enabled for Item keys<br/>
+	 */
+	void setItemEnableds (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].enabled = true;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Enabled for Item Key<br/>
+	 */
+	void setItemEnabled (
+			/**/ String key,
+			/**/ boolean enabled
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].enabled = enabled;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Enabled of Item keys<br/>
+	 */
+	void cleanAllItemEnableds (
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Enabled for Item Key<br/>
+	 */
+	boolean hasItemEnabled (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+	/**
+	 * Returns the Enabled keys<br/>
+	 */
+	org.scn.pack.KeyArray getItemEnabledKeysArray (
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].enabled == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the Text for SubItem keys<br/>
+	 */
+	void setSubItemTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for SubItem Key<br/>
+	 */
+	void setSubItemText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Text for SubItem Key<br/>
+	 */
+	boolean hasSubItemText (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Sets the Url for SubItem keys<br/>
+	 */
+	void setSubItemUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for SubItem Key<br/>
+	 */
+	void setSubItemUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Url for SubItem Key<br/>
+	 */
+	boolean hasSubItemUrl (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Sets the Enabled for SubItem keys<br/>
+	 */
+	void setSubItemEnableds (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].enabled = true;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Enabled for SubItem Key<br/>
+	 */
+	void setSubItemEnabled (
+			/**/ String key,
+			/**/ boolean enabled
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].enabled = enabled;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Enabled of SubItem keys<br/>
+	 */
+	void cleanAllSubItemEnableds (
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Enabled for SubItem Key<br/>
+	 */
+	boolean hasSubItemEnabled (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+	/**
+	 * Returns the Enabled keys<br/>
+	 */
+	org.scn.pack.KeyArray getSubItemEnabledKeysArray (
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].enabled == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Text Property
+	 */	
+	String getSelectedText() {*
+		return this.selectedText;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
+
+	/**
+	 * Adds a root element containing Key, Text, Image Url information.<br/>
+	 * <example><br/>
+	 * You want to add 2 root elements, second one is a sibling of first one<br/>
+	 * <code><br/>
+	 * MENUBUTTON_1.addMenuItem("ROOT_KEY1", "First Root Element", "");<br/>
+	 * MENUBUTTON_1.addMenuItem("ROOT_KEY2", "Second Root Element", "");<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	@Visibility(deprecated)
+	void addMenuItem (
+			/*Element Key (must be unique)*/ String elementKey,
+			/*Element text*/ String elementText,
+			/*Image URL if not set no image*/ String imageUrl,
+			/*Leafs do not have expand option by default*/ optional boolean isLeaf,
+			/*item enabled flag*/ optional boolean isEnabled
+			
+			) 
+	{*
+		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", isLeaf, isEnabled);
+	*}
+	/**
+	 * Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.<br/>
+	 * You need to specify a unique and existing parent element.<br/>
+	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.<br/>
+	 * <example><br/>
+	 * You want to add 2 items, second one is a child of first one<br/>
+	 * <code><br/>
+	 * MENUBUTTON_1.addSubMenuItem("KEY1", "First Element", "", "ROOT", true);<br/>
+	 * MENUBUTTON_1.addSubMenuItem("KEY2", "First Element Child", "", "KEY1", true);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	@Visibility(deprecated)
+	void addSubMenuItem (
+			/*Element Key (must be unique)*/ String elementKey,
+			/*Element text*/ String elementText,
+			/*Image URL if not set no image*/ String imageUrl,
+			/*The Key of the parent Element*/ String parentElementKey,
+			/*Leafs do not have expand option by default*/ optional boolean isLeaf,
+			/*item enabled flag*/ optional boolean isEnabled
+			
+			) 
+	{*
 		if(isLeaf == undefined) {
 			isLeaf = true;
 		}
@@ -6996,7 +9197,7 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 			"key": elementKey, 
 			"text": elementText, 
 			"url": imageUrl,
-			"parent": parentElementKey,
+			"parentKey": parentElementKey,
 			"leaf": isLeaf,
 			"enabled": isEnabled
 			};
@@ -7021,72 +9222,896 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	
 		this.elementsContent = JSON.stringify(elementsJson);
 	*}
-	
-	/** Adds a root element containing Key, Text, Image Url information.
 
- 	<example>
-	You want to add 2 root elements, second one is a sibling of first one
-	<code>
-	ACCORDION_1.addSection("ROOT_KEY1", "First Root Element", "");<br>
-	ACCORDION_1.addSection("ROOT_KEY2", "Second Root Element", "");<br>
-	<br>
-	</code>
-	</example>
+	/**
+	 * Remove all Buttons<br/>
 	 */
-	void addMenuItem (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl,
-			/**Element enabled status*/optional boolean isEnabled) {*		
-		
-		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", false, isEnabled);
+	@Visibility(deprecated)
+	void removeAllElements (
+			
+			) 
+	{*
+		var elementsArray = [];
+			this.elementsContent = JSON.stringify(elementsArray);
+			
+			this.cleanAll = true;
 	*}
 	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** returns the text of selected element (might not be unique) */
-	String getSelectedText () {*
-		return this.selectedText;	
-	*}
 }
 
 /**
- * Class for MenuButton
+ * Generated ZTL Class for MenuButton
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.MenuButton extends org.scn.community.shared.Component {
-	
-	/** remove all elements */
-	void removeAllElements () {*		
-			var elementsArray = [];
-			this.elementsContent = JSON.stringify(elementsArray);
-			
-			this.cleanAll = true;
+
+	/**
+	 * Clean All Buttons from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
 	*}
-	
-	/** Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.
+
+	/**
+	 * Remove All Buttons from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.elementsContent = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Url For Default Image Property
+	 */	
+	void setDefaultImage( /**Url For Default Image*/ String defaultImage){*
+		this.defaultImage = defaultImage;
+	*}
+
+	/**
+	 * Gets Url For Default Image Property
+	 */	
+	String getDefaultImage() {*
+		return this.defaultImage;
+	*}
+
+	/** Adds an element containing parentKey [String], key [String], text [String], url [String], enabled [boolean] properties.
 	 * You need to specify a unique and existing parent element.
-	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.  
 
  	<example>
-	You want to add 2 items, second one is a child of first one
+	You want to add 2 elements
 	<code>
-	MENUBUTTON_1.addSubMenuItem("KEY1", "First Element", "", "ROOT", true);<br>
-	MENUBUTTON_1.addSubMenuItem("KEY2", "First Element Child", "", "KEY1", true);<br>
+	MENUBUTTON.addSubItem(parentKey [String], key [String], text [String], url [String], enabled [boolean]);<br>
+	MENUBUTTON.addSubItem(parentKey [String], key [String], text [String], url [String], enabled [boolean]);
+	</code>
+	</example>
+	 */
+	void addSubItem (
+			/**Parent Key*/String parentKey, 
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/optional String url, 
+			/**Enabled*/optional boolean enabled
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		if(url == undefined) { url = "";}
+		if(enabled == undefined) { enabled = false;}
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key, 
+			text:text, 
+			url:url, 
+			enabled:enabled 
+			};
+	
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], text [String], url [String], enabled [boolean].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	MENUBUTTON.addItem(key [String], text [String], url [String], enabled [boolean]);<br>
+	MENUBUTTON.addItem(key [String], text [String], url [String], enabled [boolean]);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void addSubMenuItem (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl, 
-			/**The Key of the parent Element*/String parentElementKey,
-			/**Leafs do not have expand option by default*/optional boolean isLeaf,
-			/**item enabled flag*/optional boolean isEnabled) {*		
+	void addItem (
+			/**Unique Key*/String key, 
+			/**Given Text*/String text, 
+			/**Given Url*/optional String url, 
+			/**Enabled*/optional boolean enabled
+			) {*		
 		
+		this.addSubItem("ROOT", key, 
+			text, 
+			url, 
+			enabled);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	MENUBUTTON.removeSubItem(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeSubItem (
+			String key
+			) {*		
+		
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			this.elementsContent = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	MENUBUTTON.removeItem(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeItem (
+			String key
+			) {*		
+		
+		this.removeSubItem(key);
+	*}
+
+	/**
+	 * Gets Items As JSON String
+	 */	
+	String getItemsAsJSON() {*
+		var jsonObject = JSON.parse(this.elementsContent);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Text for Item keys<br/>
+	 */
+	void setItemTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Item Key<br/>
+	 */
+	void setItemText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Text for Item Key<br/>
+	 */
+	boolean hasItemText (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Sets the Url for Item keys<br/>
+	 */
+	void setItemUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for Item Key<br/>
+	 */
+	void setItemUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Url for Item Key<br/>
+	 */
+	boolean hasItemUrl (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Sets the Enabled for Item keys<br/>
+	 */
+	void setItemEnableds (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].enabled = true;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Enabled for Item Key<br/>
+	 */
+	void setItemEnabled (
+			/**/ String key,
+			/**/ boolean enabled
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].enabled = enabled;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Enabled of Item keys<br/>
+	 */
+	void cleanAllItemEnableds (
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Enabled for Item Key<br/>
+	 */
+	boolean hasItemEnabled (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+	/**
+	 * Returns the Enabled keys<br/>
+	 */
+	org.scn.pack.KeyArray getItemEnabledKeysArray (
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].enabled == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the Text for SubItem keys<br/>
+	 */
+	void setSubItemTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for SubItem Key<br/>
+	 */
+	void setSubItemText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Text for SubItem Key<br/>
+	 */
+	boolean hasSubItemText (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Sets the Url for SubItem keys<br/>
+	 */
+	void setSubItemUrls (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Url */ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].url = url;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Url for SubItem Key<br/>
+	 */
+	void setSubItemUrl (
+			/**/ String key,
+			/**/ String url
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].url = url;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Url for SubItem Key<br/>
+	 */
+	boolean hasSubItemUrl (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+	/**
+	 * Sets the Enabled for SubItem keys<br/>
+	 */
+	void setSubItemEnableds (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].enabled = true;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Enabled for SubItem Key<br/>
+	 */
+	void setSubItemEnabled (
+			/**/ String key,
+			/**/ boolean enabled
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].enabled = enabled;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Enabled of SubItem keys<br/>
+	 */
+	void cleanAllSubItemEnableds (
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Checks Existence of Enabled for SubItem Key<br/>
+	 */
+	boolean hasSubItemEnabled (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var exists = false;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+	*}
+
+	/**
+	 * Returns the Enabled keys<br/>
+	 */
+	org.scn.pack.KeyArray getSubItemEnabledKeysArray (
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.elementsContent);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].enabled == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+
+
+	/**
+	 * Sets Enabled Property
+	 */	
+	void setEnabled( /**Enabled*/ boolean enabled){*
+		this.enabled = enabled;
+	*}
+
+	/**
+	 * Gets Enabled Property
+	 */	
+	boolean isEnabled() {*
+		return this.enabled;
+	*}
+
+	/**
+	 * Sets Icon Property
+	 */	
+	void setIcon( /**Icon*/ String icon){*
+		this.icon = icon;
+	*}
+
+	/**
+	 * Gets Icon Property
+	 */	
+	String getIcon() {*
+		return this.icon;
+	*}
+
+
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Text Property
+	 */	
+	String getSelectedText() {*
+		return this.selectedText;
+	*}
+
+	/**
+	 * Sets Text Value Property
+	 */	
+	void setText( /**Text Value*/ String text){*
+		this.text = text;
+	*}
+
+	/**
+	 * Gets Text Value Property
+	 */	
+	String getText() {*
+		return this.text;
+	*}
+
+	/**
+	 * Sets Tooltip Value Property
+	 */	
+	void setTooltip( /**Tooltip Value*/ String tooltip){*
+		this.tooltip = tooltip;
+	*}
+
+	/**
+	 * Gets Tooltip Value Property
+	 */	
+	String getTooltip() {*
+		return this.tooltip;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
+
+	/**
+	 * Adds a root element containing Key, Text, Image Url information.<br/>
+	 * <example><br/>
+	 * You want to add 2 root elements, second one is a sibling of first one<br/>
+	 * <code><br/>
+	 * MENUBUTTON_1.addMenuItem("ROOT_KEY1", "First Root Element", "");<br/>
+	 * MENUBUTTON_1.addMenuItem("ROOT_KEY2", "Second Root Element", "");<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	@Visibility(deprecated)
+	void addMenuItem (
+			/*Element Key (must be unique)*/ String elementKey,
+			/*Element text*/ String elementText,
+			/*Image URL if not set no image*/ String imageUrl,
+			/*Leafs do not have expand option by default*/ optional boolean isLeaf,
+			/*item enabled flag*/ optional boolean isEnabled
+			
+			) 
+	{*
+		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", isLeaf, isEnabled);
+	*}
+	/**
+	 * Adds an element containing Key, Text, Image Url, Parent Element and is Leaf information.<br/>
+	 * You need to specify a unique and existing parent element.<br/>
+	 * if Parent Element is set to "ROOT" then the element will be inserted as root element.<br/>
+	 * <example><br/>
+	 * You want to add 2 items, second one is a child of first one<br/>
+	 * <code><br/>
+	 * MENUBUTTON_1.addSubMenuItem("KEY1", "First Element", "", "ROOT", true);<br/>
+	 * MENUBUTTON_1.addSubMenuItem("KEY2", "First Element Child", "", "KEY1", true);<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	@Visibility(deprecated)
+	void addSubMenuItem (
+			/*Element Key (must be unique)*/ String elementKey,
+			/*Element text*/ String elementText,
+			/*Image URL if not set no image*/ String imageUrl,
+			/*The Key of the parent Element*/ String parentElementKey,
+			/*Leafs do not have expand option by default*/ optional boolean isLeaf,
+			/*item enabled flag*/ optional boolean isEnabled
+			
+			) 
+	{*
 		if(isLeaf == undefined) {
 			isLeaf = true;
 		}
@@ -7099,7 +10124,7 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 			"key": elementKey, 
 			"text": elementText, 
 			"url": imageUrl,
-			"parent": parentElementKey,
+			"parentKey": parentElementKey,
 			"leaf": isLeaf,
 			"enabled": isEnabled
 			};
@@ -7124,37 +10149,21 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 	
 		this.elementsContent = JSON.stringify(elementsJson);
 	*}
-	
-	/** Adds a root element containing Key, Text, Image Url information.
 
- 	<example>
-	You want to add 2 root elements, second one is a sibling of first one
-	<code>
-	MENUBUTTON_1.addMenuItem("ROOT_KEY1", "First Root Element", "");<br>
-	MENUBUTTON_1.addMenuItem("ROOT_KEY2", "Second Root Element", "");<br>
-	<br>
-	</code>
-	</example>
+	/**
+	 * Remove all Buttons<br/>
 	 */
-	void addMenuItem (
-			/**Element Key (must be unique)*/String elementKey, 
-			/**Element text*/String elementText, 
-			/**Image URL, if not set, no image*/String imageUrl,
-			/**Leafs do not have expand option by default*/optional boolean isLeaf,
-			/**item enabled flag*/optional boolean isEnabled) {*		
-		
-		this.addSubMenuItem(elementKey, elementText, imageUrl, "ROOT", isLeaf, isEnabled);
+	@Visibility(deprecated)
+	void removeAllElements (
+			
+			) 
+	{*
+		var elementsArray = [];
+			this.elementsContent = JSON.stringify(elementsArray);
+			
+			this.cleanAll = true;
 	*}
 	
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** returns the text of selected element (might not be unique) */
-	String getSelectedText () {*
-		return this.selectedText;	
-	*}
 }
 
 /**

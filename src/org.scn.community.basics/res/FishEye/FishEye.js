@@ -14,124 +14,113 @@
  * distributed under the License is distributed on an "AS IS" BASIS, 
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
  * See the License for the specific language governing permissions and 
- * limitations under the License.
- * 
- * Used code from Marc Grabanski, adjusted to SAPUI5 controls.
- *
- * Fisheye Menu
- * Copyright 2007-2009 Marc Grabanski (m@marcgrabanski.com) http://marcgrabanski.com
- * Project Page: http://marcgrabanski.com/pages/code/fisheye-menu
- * Source Code: https://github.com/1Marc/javascript-fisheye-menu/blob/master/fisheye.js
- * Under the MIT License
- * 
+ * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.FishEye";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.basics.FishEye;
 
-jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+FishEye = {
 
-sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
-
-	setDefaultImage : function(value) {
-		this._DefaultImage = value;
-		
-		if(value != undefined && value != "")  {
-			this._pImagePrefix = value.substring(0, value.lastIndexOf("/") + 1);	
-		}
-	},
-
-	getDefaultImage : function() {
-		return this._DefaultImage;
-	},
-
-	metadata: {
-        properties: {
-              "selectedKey": {type: "string"},
-              "orientation": {type: "string"},
-              "elements": {type: "string"}
-        }
-	},
-  
+	renderer: {},
+	
 	initDesignStudio: function() {
 		var that = this;
-		this._ownScript = _readScriptPath();
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
 	},
-		
-	renderer: {},
-		
-	afterDesignStudioUpdate : function() {
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that._lLayout = new sap.ui.layout.HorizontalLayout({
+
+		});
+		that.addStyleClass("scn-pack-FullSizeChildren");
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+	},
+	
+	afterDesignStudioUpdate: function() {
 		var that = this;
+		
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
 			
-		var lElementsToRender = this.getElements();
+		// visualization on processed data
+		var lElementsToRender = that.getElements();
 		
 		var position = undefined;
-		var lOrientation = this.getOrientation();
+		var lOrientation = that.getOrientation();
 		
-		if(lOrientation == "horizontal-bottom") {
+		if(lOrientation == "HorizontalTop") {
 			position = {left: "0px", top: "0px"};
 		} else {
 			position = {left: "0px", bottom: "0px"};
-			this.addStyleClass("scn-pack-FishEye-ChildrenBottom");
+			that.addStyleClass("scn-pack-FishEye-ChildrenBottom");
 		}
 		
-		if(!this._lLayout) {
-			this._lLayout = new sap.ui.layout.HorizontalLayout({
-				
-			});
-
-			this.addContent(
-				this._lLayout,
-				position
-			);
-		}
-		
-		if(this._lastElements == lElementsToRender) {
+		if(that._lastElements == lElementsToRender) {
 			return;
 		}
 		
-		this._lastElements = lElementsToRender;
+		that._lastElements = lElementsToRender;
 		
 		if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != ""){
 			var lElementsToRenderArray = JSON.parse(lElementsToRender);
 	
 			// Destroy old content
-			this._lLayout.destroyContent();
-			this._lLayout.removeContent();
+			that._lLayout.destroyContent();
+			that._lLayout.removeContent();
 	
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
-				var lContentPanel = this.createImageElement(lElementsToRenderArray[i].key, lElementsToRenderArray[i].text, lElementsToRenderArray[i].url);
+				var lContentPanel = that.createImageElement(owner, lElementsToRenderArray[i].key, lElementsToRenderArray[i].text, lElementsToRenderArray[i].url);
 				
-				this._lLayout.addContent(
+				that._lLayout.addContent(
 					lContentPanel,
 					position
 				);
 			}
+
+			that._lContentBig = new sap.ui.commons.layout.AbsoluteLayout ({
+				width : "0px",
+				height : "100%",
+			});
+				
+			that._lLayout.addContent(
+				that._lContentBig,
+				position
+			);
 		}
 	},
 	
-	createImageElement: function (iImageKey, iImageText, iImageUrl) {
-		var that = this;
-		
-		// in case starts with http, keep as is 
-		if(iImageUrl.indexOf("http") == 0) {
-			// no nothing
-		} else {
-			// in case of repository, add the prefix from repository
-			if(this._pImagePrefix != undefined && this._pImagePrefix != ""){
-				iImageUrl = this._pImagePrefix + iImageUrl;
-			} else {
-				iImageUrl = this._ownScript + "FishEye.png";
-			}
-		}
+	onResize: function(width, height, parent) {
+		var that = parent;
+		// in case special resize code is required
+
+		that._lContentBig.setHeight(height + "px");
+	},
 	
+	createImageElement: function (owner, iImageKey, iImageText, iImageUrl) {
+		var that = owner;
+		
+		if(iImageText == undefined) {iImageText = ""};
+		if(iImageUrl == undefined) {iImageUrl = ""};
+		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getDefaultImage(), iImageUrl, "ImageCarousel.png");
+
 		var oImage = new sap.ui.commons.Image ({
 			src : iImageUrl,
 			width : "96%",
@@ -142,40 +131,43 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 	
 		oImage.addStyleClass("scn-pack-FishEye-Image");
 		
-		oImage.attachBrowserEvent('click', function() {
+		var clickFunction = function() {
 			that.setSelectedKey(oImage._oContent.internalKey);
 			
-			that.updateSelection(oImage._oContent.internalKey);
+			that.updateSelection(that, oImage._oContent.internalKey);
 			
-			that.fireDesignStudioPropertiesChanged(["selectedKey"]);
-			that.fireDesignStudioEvent("onSelectionChanged");
-		});
+			that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
+		};
+
+		// oImage.attachBrowserEvent('click', clickFunction);
 		
 		var oTextView = new sap.ui.commons.TextView({
-			width : "100%",
-			height : "20%",
+			width : "96%",
+			height : "25%",
 			text : iImageText,
 			tooltip : iImageText,
 		});
 
 		oTextView.addStyleClass("scn-pack-FishEye-Text");
-		
+		// oTextView.attachBrowserEvent('click', clickFunction);
+
 		var oCcontentPanel = new sap.ui.commons.layout.AbsoluteLayout ({
 			width : "100%",
 			height : "100%",
 		});
 		
 		oCcontentPanel.addStyleClass("scn-pack-FishEye-Content");
+		oCcontentPanel.attachBrowserEvent('click', clickFunction);
 
-		var lOrientation = this.getOrientation();
-		if(lOrientation == "horizontal-bottom") {
+		var lOrientation = that.getOrientation();
+		if(lOrientation == "HorizontalBottom") {
 			// create a panel
-			oCcontentPanel.addContent(oImage, {left: "0px", top: "0px"});
+			oCcontentPanel.addContent(oImage, {left: "0px", bottom: "0px"});
 			oCcontentPanel.addContent(oTextView, {left: "0px", bottom: "0px"});
 		} else {
 			// create a panel
+			oCcontentPanel.addContent(oImage, {left: "0px", top: "0px"});
 			oCcontentPanel.addContent(oTextView, {left: "0px", top: "0px"});
-			oCcontentPanel.addContent(oImage, {left: "0px", bottom: "0px"});
 		}
 		
 		
@@ -187,7 +179,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		
 		oCcontentPanel.internalKey = iImageKey;
 		
-		if(this.getSelectedKey() == iImageKey) {
+		if(that.getSelectedKey() == iImageKey) {
 			oCcontentPanel.addStyleClass("scn-pack-FishEye-SelectedContent");
 			oCcontentPanel._oImage.addStyleClass("scn-pack-FishEye-SelectedImage");
 			oCcontentPanel._oTextView.addStyleClass("scn-pack-FishEye-SelectedText");
@@ -198,66 +190,63 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			that._fResizeAnimation(oCcontentPanel, oCcontentPanel.currentWidth,that._fGetEndSize(),that._fGetAnimationSteps(),10,0.333);			
 		}
 		
-		this._fInitFishEye(oCcontentPanel, oImage, oTextView);
+		that._fInitFishEye(that, oCcontentPanel, oImage, oTextView);
 		
 		return oCcontentPanel;
 	},
 	
-	updateSelection: function (iSelectedKey) {
-		var that = this;
+	updateSelection: function (owner, iSelectedKey) {
+		var that = owner;
 		
 		var contentPanelExistingArray = that._lLayout.getContent();
 		
 		for (var i = 0; i < contentPanelExistingArray.length; i++) {
 			var lCcontentPanel = contentPanelExistingArray[i];
 			
-			if(iSelectedKey == lCcontentPanel.internalKey){
-				lCcontentPanel.addStyleClass("scn-pack-FishEye-SelectedContent");
-				lCcontentPanel._oImage.addStyleClass("scn-pack-FishEye-SelectedImage");
-				lCcontentPanel._oTextView.addStyleClass("scn-pack-FishEye-SelectedText");
-			} else {
-				lCcontentPanel.removeStyleClass("scn-pack-FishEye-SelectedContent");
-				lCcontentPanel._oImage.removeStyleClass("scn-pack-FishEye-SelectedImage");
-				lCcontentPanel._oTextView.removeStyleClass("scn-pack-FishEye-SelectedText");
-			};
+			if(lCcontentPanel._oImage) {
+				if(iSelectedKey == lCcontentPanel.internalKey){
+					lCcontentPanel.addStyleClass("scn-pack-FishEye-SelectedContent");
+					lCcontentPanel._oImage.addStyleClass("scn-pack-FishEye-SelectedImage");
+					lCcontentPanel._oTextView.addStyleClass("scn-pack-FishEye-SelectedText");
+				} else {
+					lCcontentPanel.removeStyleClass("scn-pack-FishEye-SelectedContent");
+					lCcontentPanel._oImage.removeStyleClass("scn-pack-FishEye-SelectedImage");
+					lCcontentPanel._oTextView.removeStyleClass("scn-pack-FishEye-SelectedText");
+				};
+			}
 		};
 	},
-
-	_fGetStartSize : function() {
-		return this.$().outerHeight() * 0.7;
+	
+	_fGetStartSize : function(owner) {
+		var that = owner;
+		return that.$().outerHeight() * 0.7;
 	},
 	
-	_fGetEndSize : function() {
-		return this.$().outerHeight() * 1.0;
+	_fGetEndSize : function(owner) {
+		var that = owner;
+		return that.$().outerHeight() * 0.98;
 	},
 
-	_fGetAnimationSteps : function() {
+	_fGetAnimationSteps : function(owner) {
 		return 15;
 	},
 	
 	/** 
 	 * Code  
 	 */
-	_fInitFishEye : function (lCcontentPanel, image, text) {
-		var that = this;
+	_fInitFishEye : function (owner, lCcontentPanel, image, text) {
+		var that = owner;
 		
 		text.setVisible(false);
 
 		var fOnCompleteOut = function () {
-			var contentPanelExistingArray = that._lLayout.getContent();
-            for (var i = 0; i < contentPanelExistingArray.length; i++) {
-            	var content = contentPanelExistingArray[i];
-                  if(content != lCcontentPanel) {
-                      content._oTextView.setVisible(false);
-                      that._fResizeAnimation(contentPanelExistingArray[i], contentPanelExistingArray[i].currentWidth,that._fGetStartSize(),that._fGetAnimationSteps(),10,0.5);
-                  }
-            }
+			
 		};
 
 		var fOnOver = function () {
 			text.setVisible(true);
 		
-			that._fResizeAnimation(lCcontentPanel, lCcontentPanel.currentWidth,that._fGetEndSize(),that._fGetAnimationSteps(),10,0.333);
+			that._fResizeAnimation(that, lCcontentPanel, lCcontentPanel.currentWidth,that._fGetEndSize(that),that._fGetAnimationSteps(that),10,0.333);
 			
 			fOnCompleteOut();
 		};
@@ -266,17 +255,18 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			text.setVisible(false);
 			if (!lCcontentPanel.currentWidth) return;
 		
-			that._fResizeAnimation(lCcontentPanel, lCcontentPanel.currentWidth,that._fGetStartSize(),15,10,0.5);
+			that._fResizeAnimation(that, lCcontentPanel, lCcontentPanel.currentWidth,that._fGetStartSize(that),15,10,0.5);
 		};
 		
 		lCcontentPanel.onAfterRendering = function () {
 			var jqThis = lCcontentPanel.$();
 			jqThis.hover(fOnOver, fOnOut);
 
-			lCcontentPanel.setWidth(that._fGetStartSize()+"px");
-			lCcontentPanel.setHeight(that._fGetStartSize()+"px");
+			var start = that._fGetStartSize(that);
+			lCcontentPanel.setWidth(start+"px");
+			lCcontentPanel.setHeight(start+"px");
 			
-			if (!lCcontentPanel.currentWidth) lCcontentPanel.currentWidth = that._fGetStartSize();
+			if (!lCcontentPanel.currentWidth) lCcontentPanel.currentWidth = start;
 
 			// image.attachBrowserEvent('hoover', fOnOver, fOnOut);
 			// image.attachBrowserEvent('mouseover', fOnOver);
@@ -285,7 +275,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		
 		image.onAfterRendering = function () {
 			var jqThis = image.$();
-			jqThis.hover(fOnOver, fOnOut);
+			// jqThis.hover(fOnOver, fOnOut);
 			
 			// image.attachBrowserEvent('hoover', fOnOver, fOnOut);
 			// image.attachBrowserEvent('mouseover', fOnOver);
@@ -304,11 +294,14 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			// that.attachBrowserEvent('mouseout', fOnCompleteOut);
 			
 			var jqThis = that.$();
-			jqThis.hover(undefined, fOnCompleteOut);
+			// jqThis.hover(fOnOver, fOnOut);
+			
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout, that.onResize);
 		};
 	},
 
-	_fResizeAnimation : function (lCcontentPanel, startWidth,endWidth,steps,intervals,powr) {
+	_fResizeAnimation : function (owner, lCcontentPanel, startWidth,endWidth,steps,intervals,powr) {
+		var that = owner;
 		if(startWidth == endWidth) {
 			return;
 		}
@@ -318,10 +311,12 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		var active = undefined;
 		if (lCcontentPanel._activeInterval) window.clearInterval(lCcontentPanel._activeInterval);
 		
+		// lCcontentPanel._oTextView.setVisible(true);
+
 		var actStep = 0;
 		
 		lCcontentPanel._fWidthChangeMemInt = function() {
-			lCcontentPanel.currentWidth = that._fEaseInOut(startWidth,endWidth,steps,actStep,powr);
+			lCcontentPanel.currentWidth = that._fEaseInOut(that, startWidth,endWidth,steps,actStep,powr);
 			lCcontentPanel.setWidth(lCcontentPanel.currentWidth+"px");
 			lCcontentPanel.setHeight(lCcontentPanel.currentWidth+"px");
 			actStep++;
@@ -334,13 +329,20 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		lCcontentPanel._activeInterval = window.setInterval(lCcontentPanel._fWidthChangeMemInt, intervals);
 	},
 
-	_fEaseInOut : function (minValue,maxValue,totalSteps,actualStep,powr) {
+	_fEaseInOut : function (owner, minValue,maxValue,totalSteps,actualStep,powr) {
+		var that = owner;
 		//Generic Animation Step Value Generator By www.hesido.com
 		var delta = maxValue - minValue;
 		var change = (Math.pow(((1 / totalSteps)*actualStep),powr)*delta);
 		var stepp = minValue + change;
 		return Math.ceil(stepp);
 	}
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
 
-})
-})();
+define([myComponentData.requireName], function(basicsfisheye){
+	myComponentData.instance = FishEye;
+	return myComponentData.instance;
+});
+
+}).call(this);

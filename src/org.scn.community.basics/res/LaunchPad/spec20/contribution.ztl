@@ -1,0 +1,126 @@
+	// here is the place for other custom functions
+
+	/**
+	 * Adds or Updates a Tile (if title already exists)<br/>
+	 * <example><br/>
+	 * Add/Update a tile called "Sales"<br/>
+	 * <code><br/>
+	 * LAUNCHPAD_1.addTile("Sales", "YTD", "sap-icon://money-bills", "1234", "USD", "good");<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void addTile (
+			/*Title*/ String title,
+			/*Info*/ String [ optional ] info,
+			/*Icon*/ String [ optional ] icon,
+			/*Number*/ String [ optional ] number,
+			/*Number Unit*/ String [ optional ] numberUnit,
+			/*Value State*/ String [ optional ] valueState,
+			/*CSS Class*/ String [ optional ] styleClass,
+			
+			) 
+	{*
+		var o = eval(this.tileConfig);
+		if(!o) o = [];
+		var tile = {
+			title: title,
+			info: info,
+			icon: icon,
+			number: number,
+			numberUnit: numberUnit,
+			valueState : valueState || "None",
+			styleClass : styleClass
+		};	
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex==-1){	// New Tile
+			o.push(tile);
+		}else{	// Update Tile
+			o[matchIndex] = tile;
+		}
+		tileConfig = JSON.stringify(o);
+	*}
+	/**
+	 * Gets Tile Selected<br/>
+	 */
+	String getTileClicked (
+			
+			) 
+	{*
+		return this.selectedTile;
+	*}
+	/**
+
+	 */
+	org.scn.community.basics.TileProperty getTileProperty (
+			/*Title*/ String title,
+			
+			) 
+	{*
+		var r = {
+			title : "",
+			info : "",
+			icon : "",
+			number : "",
+			numberUnit : "",
+			valueState : "",
+			styleClass : ""
+		}
+		var o = eval(this.tileConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex>-1){
+			var tileConf = o[matchIndex];
+			r.title = tileConf.title;
+			r.info = tileConf.info;
+			r.icon = tileConf.icon;
+			r.number = tileConf.number;
+			r.numberUnit = tileConf.numberUnit;
+			r.valueState = tileConf.valueState;
+			r.styleClass = tileConf.styleClass;
+		}
+		return r;
+	*}
+	/**
+	 * Remove All Tiles<br/>
+	 * <example><br/>
+	 * Remove all tiles<br/>
+	 * <code><br/>
+	 * LAUNCHPAD_1.removeAllTiles();<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void removeAllTiles (
+			
+			) 
+	{*
+		this.tileConfig = JSON.stringify([]);
+	*}
+	/**
+	 * Remove a tile<br/>
+	 * <example><br/>
+	 * Remove a tile titled "Sales"<br/>
+	 * <code><br/>
+	 * LAUNCHPAD_1.removeTile("Sales");<br/>
+	 * </code><br/>
+	 * </example><br/>
+	 */
+	void removeTile (
+			/*Tile Title*/ String title,
+			
+			) 
+	{*
+		var o = eval(this.tileConfig);
+		if(!o) o = [];
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		tileConfig = JSON.stringify(o);
+	*}
+	

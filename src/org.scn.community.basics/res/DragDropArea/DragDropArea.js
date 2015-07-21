@@ -16,105 +16,108 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.DragDropArea";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.basics.DragDropArea;
 
-sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
+DragDropArea = {
 
-	metadata: {
-        properties: {
-              "dragKey": {type: "string"},
-              "dragContext": {type: "string"},
-
-              "dropId": {type: "string"},
-              "dropKey": {type: "string"},
-              "dropContext": {type: "string"},
-              
-              "defaultImage": {type: "string"},
-              "dropAfterKey": {type: "string"},
-              "dropIndex": {type: "int"},
-
-              "elements": {type: "string"},
-              "orientation": {type: "string"},
-              "itemWidth": {type: "int"}
-        }
-	},
+	renderer: {},
 	
 	initDesignStudio: function() {
 		var that = this;
-		this._ownScript = _readScriptPath();
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
 	},
 	
-	renderer: {},
-	
-	afterDesignStudioUpdate : function() {
-		if(!this._pImagePrefix) {
-			var defaultImage = this.getDefaultImage();
-			if(defaultImage != undefined && defaultImage != "")  {
-				this._pImagePrefix = defaultImage.substring(0, defaultImage.lastIndexOf("/") + 1);	
-			}
-		}
-		
-		var that = this;
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
 
-		if(!this._lLayout) {
-			if(this.getOrientation() == "horizontal") {
-				this._lLayout = new sap.ui.layout.HorizontalLayout({
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+	},
+	
+	afterDesignStudioUpdate: function() {
+		var that = this;
+		
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		if(!that._lLayout) {
+			if(that.getOrientation() == "Horizontal") {
+				that._lLayout = new sap.ui.layout.HorizontalLayout({
 					width : "100%",
 					height : "100%"
 				});
 			} else {
-				this._lLayout = new sap.ui.layout.VerticalLayout({
+				that._lLayout = new sap.ui.layout.VerticalLayout({
 					width : "100%",
 					height : "100%"
 				});
 			}
 
-			this._lLayout.addStyleClass("scn-pack-DragDropArea-Layout");
+			that._lLayout.addStyleClass("scn-pack-DragDropArea-Layout");
+			that.addStyleClass("scn-pack-DragDropArea");
 			
-			this.addContent(
-				this._lLayout,
-				{left: "5px", top: "5px"}
-			);
+			that.onAfterRendering = function () {
+				org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout, that.onResize);
+			}
 		}
 		
-		this.addStyleClass("scn-pack-DragDropArea");
-		
-		var lElementsToRender = this.getElements();
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		var lElementsToRender = that.getElements();
 		if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != ""){
 			var lElementsToRenderArray = JSON.parse(lElementsToRender);
 
-			// Destroy old content
-			this._lLayout.destroyContent();
+			for(var drops in that._dropAreas) {
+				var dropO = that._dropAreas[drops];
 
-			this.addDropArea("", 0, lElementsToRenderArray.length == 0);
+				$(dropO).bind('drop',function(evt) {});
+			}
+			that._dropAreas = [];
+
+			// Destroy old content
+			that._lLayout.destroyContent();
+			that._lLayout.removeContent();
+			
+			that.addDropArea(that, "", 0, lElementsToRenderArray.length == 0);
 			
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
-				this.addDragArea(lElementsToRenderArray[i].key, lElementsToRenderArray[i].text, lElementsToRenderArray[i].url);
-				this.addDropArea(lElementsToRenderArray[i].key, i + 1, i == lElementsToRenderArray.length - 1);
+				that.addDragArea(that, lElementsToRenderArray[i].key, lElementsToRenderArray[i].text, lElementsToRenderArray[i].url);
+				that.addDropArea(that, lElementsToRenderArray[i].key, i + 1, i == lElementsToRenderArray.length - 1);
 			}
 			
 		}
 	},
 	
-	addDropArea : function (dropAfterKey, dropIndex, isLast) {
-		var that = this;
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
+	
+	addDropArea : function (owner, dropAfterKey, dropIndex, isLast) {
+		var that = owner;
 		
 		var width = "12px";
 		var height = "24px";
 		
-		var orientation = this.getOrientation();
+		var orientation = that.getOrientation();
 		
-		if(orientation != "horizontal") {
-			width = this.getItemWidth() + "px";
+		if(orientation != "Horizontal") {
+			width = that.getItemWidth() + "px";
 			height = "12px";
 		}
 
@@ -132,73 +135,63 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		oDrop.dropIndex = dropIndex;
 		
 		oDrop.onAfterRendering = function () {
-			var jqThis = this.$();
-			
-			jqThis.bind('dragover', function(evt) {
-				  oDrop.addStyleClass("scn-pack-DragDropArea-DropEffect");
-				
-			      evt.preventDefault();
-			   })
-			   .bind('dragleave',function(evt) {
-				  oDrop.removeStyleClass("scn-pack-DragDropArea-DropEffect");
-				   
-			      evt.preventDefault();
-			   })
-			   .bind('dragenter',function(evt) {
-			      evt.preventDefault();
-			   })
-				
-			   /** process drop event **/
-			   .bind('drop',function(evt) {
-				  var id = evt.dataTransfer.getData('id'); 
-			      var key = evt.dataTransfer.getData('key'); 
-			      var context = evt.dataTransfer.getData('context');
+			var jqThis = oDrop.$();
 
-			      that.setDropId(id);
-			      that.setDropKey(key);
-			      that.setDropContext(context);
-			      that.setDropAfterKey(oDrop.dropAfterKey);
-			      that.setDropIndex(oDrop.dropIndex);
-			      
-			      that.fireDesignStudioPropertiesChanged(["dropId"]);
-			      that.fireDesignStudioPropertiesChanged(["dropKey"]);
-			      that.fireDesignStudioPropertiesChanged(["dropContext"]);
-			      
-			      that.fireDesignStudioPropertiesChanged(["dropAfterKey"]);
-			      that.fireDesignStudioPropertiesChanged(["dropIndex"]);
-			      
-				  that.fireDesignStudioEvent("onDrop");
-			      
-			      evt.stopPropagation();
-			      
-			      return false;
-	       });
+			jqThis.bind('dragover', function(evt) {
+			  oDrop.addStyleClass("scn-pack-DragDropArea-DropEffect");
+
+			  evt.preventDefault();
+		   })
+		   .bind('dragleave',function(evt) {
+			  oDrop.removeStyleClass("scn-pack-DragDropArea-DropEffect");
+
+			  evt.preventDefault();
+		   })
+		   .bind('dragenter',function(evt) {
+			  evt.preventDefault();
+		   });
+
+		    /** process drop event **/
+			jqThis.bind('drop',function(evt) {
+				  oDrop.removeStyleClass("scn-pack-DragDropArea-DropEffect");
+
+				  var id = evt.dataTransfer.getData('id'); 
+				  var key = evt.dataTransfer.getData('key'); 
+				  var context = evt.dataTransfer.getData('context');
+
+				  that.setDropId(id);
+				  that.setDropKey(key);
+				  that.setDropContext(context);
+				  that.setDropAfterKey(oDrop.dropAfterKey);
+				  that.setDropIndex(oDrop.dropIndex);
+
+				  that.fireDesignStudioPropertiesChangedAndEvent(["dropId", "dropKey", "dropContext", "dropAfterKey", "dropIndex"], "onDrop");
+
+				  evt.stopPropagation();
+
+				  return false;
+			});
 		};
 		
-		this._lLayout.addContent(oDrop);
+		that._lLayout.addContent(oDrop);
+		that._dropAreas.push(oDrop);
 	},
 	
-	addDragArea: function (iImageKey, iImageText, iImageUrl) {
-		var that = this;
+	addDragArea: function (owner, iImageKey, iImageText, iImageUrl) {
+		var that = owner;
 		
-		// in case starts with http, keep as is 
-		if(iImageUrl.indexOf("http") == 0) {
-			// no nothing
-		} else {
-			// in case of repository, add the prefix from repository
-			if(this._pImagePrefix != undefined && this._pImagePrefix != "" && iImageUrl != ""){
-				iImageUrl = this._pImagePrefix + iImageUrl;
-			} else {
-				// no image if not specified
-				// iImageUrl = this._ownScript + "DragDropArea.png";
-			}
+		if(iImageText == undefined) {iImageText = ""};
+		if(iImageUrl == undefined) {iImageUrl = ""};
+
+		if(iImageUrl != "") {
+			iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getDefaultImage(), iImageUrl, "");	
 		}
 
 		var oDrag = new sap.ui.commons.ToggleButton({
 			text : iImageText,
 			tooltip: iImageText,
 			icon: iImageUrl,
-			width : this.getItemWidth() + "px",
+			width : that.getItemWidth() + "px",
 			height : "24px",
 			styled: false,
 			enabled: false
@@ -209,7 +202,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		oDrag.internalKey = iImageKey;
 
 		oDrag.onAfterRendering = function () {
-			var jqThis = this.$();
+			var jqThis = oDrag.$();
 			jqThis.attr("draggable", "true");
 
 			jqThis.bind('dragstart', function(evt) {
@@ -219,22 +212,14 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			});
 		};
 		
-		this._lLayout.addContent(oDrag);
-	},
-	
-	updateSelection: function (iSelectedKey) {
-		var lContent = this.getContent();
-		
-		for (var i = 0; i < lContent.length; i++) {
-			var lImage = lContent [i];
-			
-			if(iSelectedKey == lImage.internalKey){
-				lImage.addStyleClass("scn-pack-DragDropArea-SelectedImage");
-			} else {
-				lImage.removeStyleClass("scn-pack-DragDropArea-SelectedImage");
-			};
-		};
+		that._lLayout.addContent(oDrag);
 	}
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
 
+define([myComponentData.requireName], function(basicsdragdroparea){
+	myComponentData.instance = DragDropArea;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);
