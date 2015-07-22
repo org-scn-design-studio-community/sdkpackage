@@ -233,9 +233,9 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 	
 	/**
-	 * Checks Existence of Text for Section Key<br/>
+	 * Returns value of Text for Section Key<br/>
 	 */
-	boolean hasSectionText (
+	String getSectionText (
 			/**/ String key
 			) 
 	{*
@@ -245,16 +245,16 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Section keys<br/>
@@ -312,9 +312,9 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 	
 	/**
-	 * Checks Existence of Url for Section Key<br/>
+	 * Returns value of Url for Section Key<br/>
 	 */
-	boolean hasSectionUrl (
+	String getSectionUrl (
 			/**/ String key
 			) 
 	{*
@@ -324,16 +324,16 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Text for Element keys<br/>
@@ -391,9 +391,9 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 	
 	/**
-	 * Checks Existence of Text for Element Key<br/>
+	 * Returns value of Text for Element Key<br/>
 	 */
-	boolean hasElementText (
+	String getElementText (
 			/**/ String key
 			) 
 	{*
@@ -403,16 +403,16 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Element keys<br/>
@@ -470,9 +470,9 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 	
 	/**
-	 * Checks Existence of Url for Element Key<br/>
+	 * Returns value of Url for Element Key<br/>
 	 */
-	boolean hasElementUrl (
+	String getElementUrl (
 			/**/ String key
 			) 
 	{*
@@ -482,16 +482,16 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 

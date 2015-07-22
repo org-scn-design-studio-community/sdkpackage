@@ -2778,9 +2778,9 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 	
 	/**
-	 * Checks Existence of Width for ColumnWidthEntry Key<br/>
+	 * Returns value of Width for ColumnWidthEntry Key<br/>
 	 */
-	boolean hasColumnWidthEntryWidth (
+	String getColumnWidthEntryWidth (
 			/**/ String key
 			) 
 	{*
@@ -2790,16 +2790,16 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 
 		var elementsJson = JSON.parse(this.DDataColWidths);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].width;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 

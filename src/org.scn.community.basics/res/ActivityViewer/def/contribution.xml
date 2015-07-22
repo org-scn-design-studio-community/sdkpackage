@@ -1,7 +1,7 @@
 
 <component
 	id="ActivityViewer"
-	title="Activity Viewer"
+	title="Activity Viewer 2.0"
 	tooltip="Viewer for Custom Activities"
 	icon="res/ActivityViewer/ActivityViewer.png"
 	handlerType="div"

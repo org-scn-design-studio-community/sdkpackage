@@ -239,9 +239,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of ComponentType for Component Key<br/>
+	 * Returns value of ComponentType for Component Key<br/>
 	 */
-	boolean hasComponentComponentType (
+	String getComponentComponentType (
 			/**/ String key
 			) 
 	{*
@@ -251,16 +251,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].componentType;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Top for Component keys<br/>
@@ -318,9 +318,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Top for Component Key<br/>
+	 * Returns value of Top for Component Key<br/>
 	 */
-	boolean hasComponentTop (
+	int getComponentTop (
 			/**/ String key
 			) 
 	{*
@@ -330,16 +330,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].top;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Bottom for Component keys<br/>
@@ -397,9 +397,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Bottom for Component Key<br/>
+	 * Returns value of Bottom for Component Key<br/>
 	 */
-	boolean hasComponentBottom (
+	int getComponentBottom (
 			/**/ String key
 			) 
 	{*
@@ -409,16 +409,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].bottom;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Left for Component keys<br/>
@@ -476,9 +476,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Left for Component Key<br/>
+	 * Returns value of Left for Component Key<br/>
 	 */
-	boolean hasComponentLeft (
+	int getComponentLeft (
 			/**/ String key
 			) 
 	{*
@@ -488,16 +488,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].left;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Right for Component keys<br/>
@@ -555,9 +555,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Right for Component Key<br/>
+	 * Returns value of Right for Component Key<br/>
 	 */
-	boolean hasComponentRight (
+	int getComponentRight (
 			/**/ String key
 			) 
 	{*
@@ -567,16 +567,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].right;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Width for Component keys<br/>
@@ -634,9 +634,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Width for Component Key<br/>
+	 * Returns value of Width for Component Key<br/>
 	 */
-	boolean hasComponentWidth (
+	int getComponentWidth (
 			/**/ String key
 			) 
 	{*
@@ -646,16 +646,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].width;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Height for Component keys<br/>
@@ -713,9 +713,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Height for Component Key<br/>
+	 * Returns value of Height for Component Key<br/>
 	 */
-	boolean hasComponentHeight (
+	int getComponentHeight (
 			/**/ String key
 			) 
 	{*
@@ -725,16 +725,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].height;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Specification for Component keys<br/>
@@ -792,9 +792,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Specification for Component Key<br/>
+	 * Returns value of Specification for Component Key<br/>
 	 */
-	boolean hasComponentSpecification (
+	String getComponentSpecification (
 			/**/ String key
 			) 
 	{*
@@ -804,16 +804,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].specification;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Value for Property keys<br/>
@@ -871,9 +871,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Value for Property Key<br/>
+	 * Returns value of Value for Property Key<br/>
 	 */
-	boolean hasPropertyValue (
+	String getPropertyValue (
 			/**/ String key
 			) 
 	{*
@@ -883,16 +883,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].value;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 

@@ -293,9 +293,9 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	*}
 	
 	/**
-	 * Checks Existence of Text for Item Key<br/>
+	 * Returns value of Text for Item Key<br/>
 	 */
-	boolean hasItemText (
+	String getItemText (
 			/**/ String key
 			) 
 	{*
@@ -305,16 +305,16 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 
 		var elementsJson = JSON.parse(this.items);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Icon for Item keys<br/>
@@ -372,9 +372,9 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	*}
 	
 	/**
-	 * Checks Existence of Icon for Item Key<br/>
+	 * Returns value of Icon for Item Key<br/>
 	 */
-	boolean hasItemIcon (
+	String getItemIcon (
 			/**/ String key
 			) 
 	{*
@@ -384,16 +384,16 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 
 		var elementsJson = JSON.parse(this.items);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].icon;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 

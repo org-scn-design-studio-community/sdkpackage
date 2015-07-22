@@ -77,7 +77,7 @@ ApsContent = function () {
   "nodesContent": {
     "opts": {
       "apsControl": "array",
-      "arrayDefinition": {"node": {
+      "arrayDefinition": {"rootNode": {
         "key": {
           "desc": "Unique Key",
           "type": "String"

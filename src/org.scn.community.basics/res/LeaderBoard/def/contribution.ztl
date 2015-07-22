@@ -299,9 +299,9 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 	*}
 	
 	/**
-	 * Checks Existence of Text for Element Key<br/>
+	 * Returns value of Text for Element Key<br/>
 	 */
-	boolean hasElementText (
+	String getElementText (
 			/**/ String key
 			) 
 	{*
@@ -311,16 +311,16 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Element keys<br/>
@@ -378,9 +378,9 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 	*}
 	
 	/**
-	 * Checks Existence of Url for Element Key<br/>
+	 * Returns value of Url for Element Key<br/>
 	 */
-	boolean hasElementUrl (
+	String getElementUrl (
 			/**/ String key
 			) 
 	{*
@@ -390,16 +390,16 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the ValueS for Element keys<br/>
@@ -457,9 +457,9 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 	*}
 	
 	/**
-	 * Checks Existence of ValueS for Element Key<br/>
+	 * Returns value of ValueS for Element Key<br/>
 	 */
-	boolean hasElementValueS (
+	String getElementValueS (
 			/**/ String key
 			) 
 	{*
@@ -469,16 +469,16 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].valueS;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 

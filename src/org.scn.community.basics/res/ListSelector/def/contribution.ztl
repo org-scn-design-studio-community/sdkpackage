@@ -458,9 +458,9 @@ class org.scn.community.basics.ListSelector extends org.scn.community.shared.Com
 	*}
 	
 	/**
-	 * Checks Existence of Text for Title Key<br/>
+	 * Returns value of Text for Title Key<br/>
 	 */
-	boolean hasTitleText (
+	String getTitleText (
 			/**/ String key
 			) 
 	{*
@@ -470,16 +470,16 @@ class org.scn.community.basics.ListSelector extends org.scn.community.shared.Com
 
 		var elementsJson = JSON.parse(this.titles);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 

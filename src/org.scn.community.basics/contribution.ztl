@@ -253,9 +253,9 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 	
 	/**
-	 * Checks Existence of Text for Section Key<br/>
+	 * Returns value of Text for Section Key<br/>
 	 */
-	boolean hasSectionText (
+	String getSectionText (
 			/**/ String key
 			) 
 	{*
@@ -265,16 +265,16 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Section keys<br/>
@@ -332,9 +332,9 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 	
 	/**
-	 * Checks Existence of Url for Section Key<br/>
+	 * Returns value of Url for Section Key<br/>
 	 */
-	boolean hasSectionUrl (
+	String getSectionUrl (
 			/**/ String key
 			) 
 	{*
@@ -344,16 +344,16 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Text for Element keys<br/>
@@ -411,9 +411,9 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 	
 	/**
-	 * Checks Existence of Text for Element Key<br/>
+	 * Returns value of Text for Element Key<br/>
 	 */
-	boolean hasElementText (
+	String getElementText (
 			/**/ String key
 			) 
 	{*
@@ -423,16 +423,16 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Element keys<br/>
@@ -490,9 +490,9 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 	
 	/**
-	 * Checks Existence of Url for Element Key<br/>
+	 * Returns value of Url for Element Key<br/>
 	 */
-	boolean hasElementUrl (
+	String getElementUrl (
 			/**/ String key
 			) 
 	{*
@@ -502,16 +502,16 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -899,9 +899,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of Text for Activity Key<br/>
+	 * Returns value of Text for Activity Key<br/>
 	 */
-	boolean hasActivityText (
+	String getActivityText (
 			/**/ String key
 			) 
 	{*
@@ -911,16 +911,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.activities);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Category for Activity keys<br/>
@@ -978,9 +978,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of Category for Activity Key<br/>
+	 * Returns value of Category for Activity Key<br/>
 	 */
-	boolean hasActivityCategory (
+	String getActivityCategory (
 			/**/ String key
 			) 
 	{*
@@ -990,16 +990,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.activities);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].category;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the State for Activity keys<br/>
@@ -1057,9 +1057,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of State for Activity Key<br/>
+	 * Returns value of State for Activity Key<br/>
 	 */
-	boolean hasActivityState (
+	String getActivityState (
 			/**/ String key
 			) 
 	{*
@@ -1069,16 +1069,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.activities);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].state;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the StartDate for Activity keys<br/>
@@ -1136,9 +1136,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of StartDate for Activity Key<br/>
+	 * Returns value of StartDate for Activity Key<br/>
 	 */
-	boolean hasActivityStartDate (
+	String getActivityStartDate (
 			/**/ String key
 			) 
 	{*
@@ -1148,16 +1148,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.activities);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].startDate;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the EndDate for Activity keys<br/>
@@ -1215,9 +1215,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of EndDate for Activity Key<br/>
+	 * Returns value of EndDate for Activity Key<br/>
 	 */
-	boolean hasActivityEndDate (
+	String getActivityEndDate (
 			/**/ String key
 			) 
 	{*
@@ -1227,16 +1227,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.activities);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].endDate;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -1486,9 +1486,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of Text for Category Key<br/>
+	 * Returns value of Text for Category Key<br/>
 	 */
-	boolean hasCategoryText (
+	String getCategoryText (
 			/**/ String key
 			) 
 	{*
@@ -1498,16 +1498,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.categories);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Visible for Category keys<br/>
@@ -1587,9 +1587,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of Visible for Category Key<br/>
+	 * Returns value of Visible for Category Key<br/>
 	 */
-	boolean hasCategoryVisible (
+	String getCategoryVisible (
 			/**/ String key
 			) 
 	{*
@@ -1599,16 +1599,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.categories);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].visible;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -1878,9 +1878,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of Style for State Key<br/>
+	 * Returns value of Style for State Key<br/>
 	 */
-	boolean hasStateStyle (
+	String getStateStyle (
 			/**/ String key
 			) 
 	{*
@@ -1890,16 +1890,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.states);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].style;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -2203,9 +2203,9 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	*}
 	
 	/**
-	 * Checks Existence of Text for Item Key<br/>
+	 * Returns value of Text for Item Key<br/>
 	 */
-	boolean hasItemText (
+	String getItemText (
 			/**/ String key
 			) 
 	{*
@@ -2215,16 +2215,16 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 
 		var elementsJson = JSON.parse(this.items);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Icon for Item keys<br/>
@@ -2282,9 +2282,9 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	*}
 	
 	/**
-	 * Checks Existence of Icon for Item Key<br/>
+	 * Returns value of Icon for Item Key<br/>
 	 */
-	boolean hasItemIcon (
+	String getItemIcon (
 			/**/ String key
 			) 
 	{*
@@ -2294,16 +2294,16 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 
 		var elementsJson = JSON.parse(this.items);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].icon;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -3023,9 +3023,9 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Text for Element Key<br/>
+	 * Returns value of Text for Element Key<br/>
 	 */
-	boolean hasElementText (
+	String getElementText (
 			/**/ String key
 			) 
 	{*
@@ -3035,16 +3035,16 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Element keys<br/>
@@ -3102,9 +3102,9 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Url for Element Key<br/>
+	 * Returns value of Url for Element Key<br/>
 	 */
-	boolean hasElementUrl (
+	String getElementUrl (
 			/**/ String key
 			) 
 	{*
@@ -3114,16 +3114,16 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Selected for Element keys<br/>
@@ -3203,9 +3203,9 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Selected for Element Key<br/>
+	 * Returns value of Selected for Element Key<br/>
 	 */
-	boolean hasElementSelected (
+	String getElementSelected (
 			/**/ String key
 			) 
 	{*
@@ -3215,16 +3215,16 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].selected;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -4115,9 +4115,9 @@ class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Com
 	*}
 	
 	/**
-	 * Checks Existence of Text for Element Key<br/>
+	 * Returns value of Text for Element Key<br/>
 	 */
-	boolean hasElementText (
+	String getElementText (
 			/**/ String key
 			) 
 	{*
@@ -4127,16 +4127,16 @@ class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Com
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Element keys<br/>
@@ -4194,9 +4194,9 @@ class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Com
 	*}
 	
 	/**
-	 * Checks Existence of Url for Element Key<br/>
+	 * Returns value of Url for Element Key<br/>
 	 */
-	boolean hasElementUrl (
+	String getElementUrl (
 			/**/ String key
 			) 
 	{*
@@ -4206,16 +4206,16 @@ class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Com
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -5012,9 +5012,9 @@ class org.scn.community.basics.FishEye extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Text for Element Key<br/>
+	 * Returns value of Text for Element Key<br/>
 	 */
-	boolean hasElementText (
+	String getElementText (
 			/**/ String key
 			) 
 	{*
@@ -5024,16 +5024,16 @@ class org.scn.community.basics.FishEye extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Element keys<br/>
@@ -5091,9 +5091,9 @@ class org.scn.community.basics.FishEye extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Url for Element Key<br/>
+	 * Returns value of Url for Element Key<br/>
 	 */
-	boolean hasElementUrl (
+	String getElementUrl (
 			/**/ String key
 			) 
 	{*
@@ -5103,16 +5103,16 @@ class org.scn.community.basics.FishEye extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -5711,9 +5711,9 @@ class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Text for Element Key<br/>
+	 * Returns value of Text for Element Key<br/>
 	 */
-	boolean hasElementText (
+	String getElementText (
 			/**/ String key
 			) 
 	{*
@@ -5723,16 +5723,16 @@ class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Element keys<br/>
@@ -5790,9 +5790,9 @@ class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Url for Element Key<br/>
+	 * Returns value of Url for Element Key<br/>
 	 */
-	boolean hasElementUrl (
+	String getElementUrl (
 			/**/ String key
 			) 
 	{*
@@ -5802,16 +5802,16 @@ class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -6070,9 +6070,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of ComponentType for Component Key<br/>
+	 * Returns value of ComponentType for Component Key<br/>
 	 */
-	boolean hasComponentComponentType (
+	String getComponentComponentType (
 			/**/ String key
 			) 
 	{*
@@ -6082,16 +6082,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].componentType;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Top for Component keys<br/>
@@ -6149,9 +6149,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Top for Component Key<br/>
+	 * Returns value of Top for Component Key<br/>
 	 */
-	boolean hasComponentTop (
+	int getComponentTop (
 			/**/ String key
 			) 
 	{*
@@ -6161,16 +6161,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].top;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Bottom for Component keys<br/>
@@ -6228,9 +6228,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Bottom for Component Key<br/>
+	 * Returns value of Bottom for Component Key<br/>
 	 */
-	boolean hasComponentBottom (
+	int getComponentBottom (
 			/**/ String key
 			) 
 	{*
@@ -6240,16 +6240,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].bottom;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Left for Component keys<br/>
@@ -6307,9 +6307,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Left for Component Key<br/>
+	 * Returns value of Left for Component Key<br/>
 	 */
-	boolean hasComponentLeft (
+	int getComponentLeft (
 			/**/ String key
 			) 
 	{*
@@ -6319,16 +6319,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].left;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Right for Component keys<br/>
@@ -6386,9 +6386,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Right for Component Key<br/>
+	 * Returns value of Right for Component Key<br/>
 	 */
-	boolean hasComponentRight (
+	int getComponentRight (
 			/**/ String key
 			) 
 	{*
@@ -6398,16 +6398,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].right;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Width for Component keys<br/>
@@ -6465,9 +6465,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Width for Component Key<br/>
+	 * Returns value of Width for Component Key<br/>
 	 */
-	boolean hasComponentWidth (
+	int getComponentWidth (
 			/**/ String key
 			) 
 	{*
@@ -6477,16 +6477,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].width;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Height for Component keys<br/>
@@ -6544,9 +6544,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Height for Component Key<br/>
+	 * Returns value of Height for Component Key<br/>
 	 */
-	boolean hasComponentHeight (
+	int getComponentHeight (
 			/**/ String key
 			) 
 	{*
@@ -6556,16 +6556,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].height;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Specification for Component keys<br/>
@@ -6623,9 +6623,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Specification for Component Key<br/>
+	 * Returns value of Specification for Component Key<br/>
 	 */
-	boolean hasComponentSpecification (
+	String getComponentSpecification (
 			/**/ String key
 			) 
 	{*
@@ -6635,16 +6635,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].specification;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Value for Property keys<br/>
@@ -6702,9 +6702,9 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Value for Property Key<br/>
+	 * Returns value of Value for Property Key<br/>
 	 */
-	boolean hasPropertyValue (
+	String getPropertyValue (
 			/**/ String key
 			) 
 	{*
@@ -6714,16 +6714,16 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.componentsSpec);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].value;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -7538,9 +7538,9 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 	*}
 	
 	/**
-	 * Checks Existence of Text for Element Key<br/>
+	 * Returns value of Text for Element Key<br/>
 	 */
-	boolean hasElementText (
+	String getElementText (
 			/**/ String key
 			) 
 	{*
@@ -7550,16 +7550,16 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Element keys<br/>
@@ -7617,9 +7617,9 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 	*}
 	
 	/**
-	 * Checks Existence of Url for Element Key<br/>
+	 * Returns value of Url for Element Key<br/>
 	 */
-	boolean hasElementUrl (
+	String getElementUrl (
 			/**/ String key
 			) 
 	{*
@@ -7629,16 +7629,16 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the ValueS for Element keys<br/>
@@ -7696,9 +7696,9 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 	*}
 	
 	/**
-	 * Checks Existence of ValueS for Element Key<br/>
+	 * Returns value of ValueS for Element Key<br/>
 	 */
-	boolean hasElementValueS (
+	String getElementValueS (
 			/**/ String key
 			) 
 	{*
@@ -7708,16 +7708,16 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 
 		var elementsJson = JSON.parse(this.elements);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].valueS;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -8274,9 +8274,9 @@ class org.scn.community.basics.ListSelector extends org.scn.community.shared.Com
 	*}
 	
 	/**
-	 * Checks Existence of Text for Title Key<br/>
+	 * Returns value of Text for Title Key<br/>
 	 */
-	boolean hasTitleText (
+	String getTitleText (
 			/**/ String key
 			) 
 	{*
@@ -8286,16 +8286,16 @@ class org.scn.community.basics.ListSelector extends org.scn.community.shared.Com
 
 		var elementsJson = JSON.parse(this.titles);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -8608,9 +8608,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Text for Item Key<br/>
+	 * Returns value of Text for Item Key<br/>
 	 */
-	boolean hasItemText (
+	String getItemText (
 			/**/ String key
 			) 
 	{*
@@ -8620,16 +8620,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Item keys<br/>
@@ -8687,9 +8687,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Url for Item Key<br/>
+	 * Returns value of Url for Item Key<br/>
 	 */
-	boolean hasItemUrl (
+	String getItemUrl (
 			/**/ String key
 			) 
 	{*
@@ -8699,16 +8699,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Enabled for Item keys<br/>
@@ -8788,9 +8788,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Enabled for Item Key<br/>
+	 * Returns value of Enabled for Item Key<br/>
 	 */
-	boolean hasItemEnabled (
+	String getItemEnabled (
 			/**/ String key
 			) 
 	{*
@@ -8800,16 +8800,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].enabled;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -8891,9 +8891,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Text for SubItem Key<br/>
+	 * Returns value of Text for SubItem Key<br/>
 	 */
-	boolean hasSubItemText (
+	String getSubItemText (
 			/**/ String key
 			) 
 	{*
@@ -8903,16 +8903,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for SubItem keys<br/>
@@ -8970,9 +8970,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Url for SubItem Key<br/>
+	 * Returns value of Url for SubItem Key<br/>
 	 */
-	boolean hasSubItemUrl (
+	String getSubItemUrl (
 			/**/ String key
 			) 
 	{*
@@ -8982,16 +8982,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Enabled for SubItem keys<br/>
@@ -9071,9 +9071,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Enabled for SubItem Key<br/>
+	 * Returns value of Enabled for SubItem Key<br/>
 	 */
-	boolean hasSubItemEnabled (
+	String getSubItemEnabled (
 			/**/ String key
 			) 
 	{*
@@ -9083,16 +9083,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].enabled;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -9479,9 +9479,9 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 	*}
 	
 	/**
-	 * Checks Existence of Text for Item Key<br/>
+	 * Returns value of Text for Item Key<br/>
 	 */
-	boolean hasItemText (
+	String getItemText (
 			/**/ String key
 			) 
 	{*
@@ -9491,16 +9491,16 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Item keys<br/>
@@ -9558,9 +9558,9 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 	*}
 	
 	/**
-	 * Checks Existence of Url for Item Key<br/>
+	 * Returns value of Url for Item Key<br/>
 	 */
-	boolean hasItemUrl (
+	String getItemUrl (
 			/**/ String key
 			) 
 	{*
@@ -9570,16 +9570,16 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Enabled for Item keys<br/>
@@ -9659,9 +9659,9 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 	*}
 	
 	/**
-	 * Checks Existence of Enabled for Item Key<br/>
+	 * Returns value of Enabled for Item Key<br/>
 	 */
-	boolean hasItemEnabled (
+	String getItemEnabled (
 			/**/ String key
 			) 
 	{*
@@ -9671,16 +9671,16 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].enabled;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -9762,9 +9762,9 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 	*}
 	
 	/**
-	 * Checks Existence of Text for SubItem Key<br/>
+	 * Returns value of Text for SubItem Key<br/>
 	 */
-	boolean hasSubItemText (
+	String getSubItemText (
 			/**/ String key
 			) 
 	{*
@@ -9774,16 +9774,16 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for SubItem keys<br/>
@@ -9841,9 +9841,9 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 	*}
 	
 	/**
-	 * Checks Existence of Url for SubItem Key<br/>
+	 * Returns value of Url for SubItem Key<br/>
 	 */
-	boolean hasSubItemUrl (
+	String getSubItemUrl (
 			/**/ String key
 			) 
 	{*
@@ -9853,16 +9853,16 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Enabled for SubItem keys<br/>
@@ -9942,9 +9942,9 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 	*}
 	
 	/**
-	 * Checks Existence of Enabled for SubItem Key<br/>
+	 * Returns value of Enabled for SubItem Key<br/>
 	 */
-	boolean hasSubItemEnabled (
+	String getSubItemEnabled (
 			/**/ String key
 			) 
 	{*
@@ -9954,16 +9954,16 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].enabled;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -10475,9 +10475,9 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Text for Step Key<br/>
+	 * Returns value of Text for Step Key<br/>
 	 */
-	boolean hasStepText (
+	String getStepText (
 			/**/ String key
 			) 
 	{*
@@ -10487,16 +10487,16 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Visible for Step keys<br/>
@@ -10576,9 +10576,9 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Visible for Step Key<br/>
+	 * Returns value of Visible for Step Key<br/>
 	 */
-	boolean hasStepVisible (
+	String getStepVisible (
 			/**/ String key
 			) 
 	{*
@@ -10588,16 +10588,16 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].visible;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -10701,9 +10701,9 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Enabled for Step Key<br/>
+	 * Returns value of Enabled for Step Key<br/>
 	 */
-	boolean hasStepEnabled (
+	String getStepEnabled (
 			/**/ String key
 			) 
 	{*
@@ -10713,16 +10713,16 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].enabled;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -11443,9 +11443,9 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Text for Location Key<br/>
+	 * Returns value of Text for Location Key<br/>
 	 */
-	boolean hasLocationText (
+	String getLocationText (
 			/**/ String key
 			) 
 	{*
@@ -11455,16 +11455,16 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Location keys<br/>
@@ -11522,9 +11522,9 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Url for Location Key<br/>
+	 * Returns value of Url for Location Key<br/>
 	 */
-	boolean hasLocationUrl (
+	String getLocationUrl (
 			/**/ String key
 			) 
 	{*
@@ -11534,16 +11534,16 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -12577,9 +12577,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Text for Step Key<br/>
+	 * Returns value of Text for Step Key<br/>
 	 */
-	boolean hasStepText (
+	String getStepText (
 			/**/ String key
 			) 
 	{*
@@ -12589,16 +12589,16 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Visible for Step keys<br/>
@@ -12678,9 +12678,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Visible for Step Key<br/>
+	 * Returns value of Visible for Step Key<br/>
 	 */
-	boolean hasStepVisible (
+	String getStepVisible (
 			/**/ String key
 			) 
 	{*
@@ -12690,16 +12690,16 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].visible;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -12803,9 +12803,9 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Enabled for Step Key<br/>
+	 * Returns value of Enabled for Step Key<br/>
 	 */
-	boolean hasStepEnabled (
+	String getStepEnabled (
 			/**/ String key
 			) 
 	{*
@@ -12815,16 +12815,16 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].enabled;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -13180,9 +13180,9 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	*}
 	
 	/**
-	 * Checks Existence of Text for Button Key<br/>
+	 * Returns value of Text for Button Key<br/>
 	 */
-	boolean hasButtonText (
+	String getButtonText (
 			/**/ String key
 			) 
 	{*
@@ -13192,16 +13192,16 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Image for Button keys<br/>
@@ -13259,9 +13259,9 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	*}
 	
 	/**
-	 * Checks Existence of Image for Button Key<br/>
+	 * Returns value of Image for Button Key<br/>
 	 */
-	boolean hasButtonImage (
+	String getButtonImage (
 			/**/ String key
 			) 
 	{*
@@ -13271,16 +13271,16 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].image;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Selected for Button keys<br/>
@@ -13360,9 +13360,9 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	*}
 	
 	/**
-	 * Checks Existence of Selected for Button Key<br/>
+	 * Returns value of Selected for Button Key<br/>
 	 */
-	boolean hasButtonSelected (
+	String getButtonSelected (
 			/**/ String key
 			) 
 	{*
@@ -13372,16 +13372,16 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].selected;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -13463,9 +13463,9 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	*}
 	
 	/**
-	 * Checks Existence of Text for Item Key<br/>
+	 * Returns value of Text for Item Key<br/>
 	 */
-	boolean hasItemText (
+	String getItemText (
 			/**/ String key
 			) 
 	{*
@@ -13475,16 +13475,16 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Image for Item keys<br/>
@@ -13542,9 +13542,9 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	*}
 	
 	/**
-	 * Checks Existence of Image for Item Key<br/>
+	 * Returns value of Image for Item Key<br/>
 	 */
-	boolean hasItemImage (
+	String getItemImage (
 			/**/ String key
 			) 
 	{*
@@ -13554,16 +13554,16 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].image;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Selected for Item keys<br/>
@@ -13643,9 +13643,9 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	*}
 	
 	/**
-	 * Checks Existence of Selected for Item Key<br/>
+	 * Returns value of Selected for Item Key<br/>
 	 */
-	boolean hasItemSelected (
+	String getItemSelected (
 			/**/ String key
 			) 
 	{*
@@ -13655,16 +13655,16 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].selected;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -14223,13 +14223,13 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
  	<example>
 	You want to add 2 root elements
 	<code>
-	TREE.addNode(key [String], text [String], url [String]);<br>
-	TREE.addNode(key [String], text [String], url [String]);<br>
+	TREE.addRootNode(key [String], text [String], url [String]);<br>
+	TREE.addRootNode(key [String], text [String], url [String]);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void addNode (
+	void addRootNode (
 			/**Unique Key*/String key, 
 			/**Given Text*/String text, 
 			/**Given Url*/String url
@@ -14283,12 +14283,12 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
  	<example>
 	You want to remove root element
 	<code>
-	TREE.removeNode(String key);<br>
+	TREE.removeRootNode(String key);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void removeNode (
+	void removeRootNode (
 			String key
 			) {*		
 		
@@ -14296,17 +14296,17 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 
 	/**
-	 * Gets Nodes As JSON String
+	 * Gets RootNodes As JSON String
 	 */	
-	String getNodesAsJSON() {*
+	String getRootNodesAsJSON() {*
 		var jsonObject = JSON.parse(this.nodesContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
 	/**
-	 * Sets the Text for Node keys<br/>
+	 * Sets the Text for RootNode keys<br/>
 	 */
-	void setNodeTexts (
+	void setRootNodeTexts (
 			/**/ String keys,
 			/**/ String separator,
 	        /* Text */ String text
@@ -14334,9 +14334,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 
 	/**
-	 * Sets the Text for Node Key<br/>
+	 * Sets the Text for RootNode Key<br/>
 	 */
-	void setNodeText (
+	void setRootNodeText (
 			/**/ String key,
 			/**/ String text
 			) 
@@ -14359,9 +14359,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Text for Node Key<br/>
+	 * Returns value of Text for RootNode Key<br/>
 	 */
-	boolean hasNodeText (
+	String getRootNodeText (
 			/**/ String key
 			) 
 	{*
@@ -14371,21 +14371,21 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.nodesContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
-	 * Sets the Url for Node keys<br/>
+	 * Sets the Url for RootNode keys<br/>
 	 */
-	void setNodeUrls (
+	void setRootNodeUrls (
 			/**/ String keys,
 			/**/ String separator,
 	        /* Url */ String url
@@ -14413,9 +14413,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 
 	/**
-	 * Sets the Url for Node Key<br/>
+	 * Sets the Url for RootNode Key<br/>
 	 */
-	void setNodeUrl (
+	void setRootNodeUrl (
 			/**/ String key,
 			/**/ String url
 			) 
@@ -14438,9 +14438,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Url for Node Key<br/>
+	 * Returns value of Url for RootNode Key<br/>
 	 */
-	boolean hasNodeUrl (
+	String getRootNodeUrl (
 			/**/ String key
 			) 
 	{*
@@ -14450,16 +14450,16 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.nodesContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Text for SubNode keys<br/>
@@ -14517,9 +14517,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Text for SubNode Key<br/>
+	 * Returns value of Text for SubNode Key<br/>
 	 */
-	boolean hasSubNodeText (
+	String getSubNodeText (
 			/**/ String key
 			) 
 	{*
@@ -14529,16 +14529,16 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.nodesContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for SubNode keys<br/>
@@ -14596,9 +14596,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Url for SubNode Key<br/>
+	 * Returns value of Url for SubNode Key<br/>
 	 */
-	boolean hasSubNodeUrl (
+	String getSubNodeUrl (
 			/**/ String key
 			) 
 	{*
@@ -14608,16 +14608,16 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.nodesContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -14659,6 +14659,61 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	void noNodeUpdate () {*
 		this.roundtrip = "-";	
 	*}
+	
+	/** Adds a tree node containing Key, Text, Image Url, Parent Node and is Leaf information.
+	 * You need to specify a unique and existing parent node.
+	 * if Parent is set to "ROOT" then the node will be inserted into "ROOT". 
+
+ 	<example>
+	You want to add 2 nodes, second one is a child of fist one
+	<code>
+	TREE_1.addNode("KEY1", "First Node", "", "ROOT", true);<br>
+	TREE_1.addNode("KEY2", "First Node", "", "KEY1", true);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	@Visibility(deprecated)
+	void addNode (
+			/**Node Key (must be unique)*/String nodeKey, 
+			/**Node text*/String nodeText, 
+			/**Image URL, if not set, no image*/String imageUrl, 
+			/**The Key of the parent Node*/String parentNodeKey, 
+			/**Leafs do not have expand option by default*/optional boolean isLeaf) {*		
+		
+		if(isLeaf == undefined) {
+			isLeaf = true;
+		}
+		
+		var itemDef = { 
+			"key": nodeKey, 
+			"text": nodeText, 
+			"url": imageUrl,
+			"parentKey": parentNodeKey,
+			"leaf": isLeaf
+			};
+	
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			this.nodesContent = "[]";
+		}
+		
+		var nodesJson = JSON.parse(this.nodesContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < nodesJson.length ; i++){
+			if (nodesJson[i].key == nodeKey) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			nodesJson.push(itemDef);
+		}
+	
+		this.nodesContent = JSON.stringify(nodesJson);
+	*}
+
 }
 
 /**

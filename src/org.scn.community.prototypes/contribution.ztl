@@ -288,9 +288,9 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Text for Button Key<br/>
+	 * Returns value of Text for Button Key<br/>
 	 */
-	boolean hasButtonText (
+	String getButtonText (
 			/**/ String key
 			) 
 	{*
@@ -300,16 +300,16 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.doublearray);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Image for Button keys<br/>
@@ -367,9 +367,9 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Image for Button Key<br/>
+	 * Returns value of Image for Button Key<br/>
 	 */
-	boolean hasButtonImage (
+	String getButtonImage (
 			/**/ String key
 			) 
 	{*
@@ -379,16 +379,16 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.doublearray);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].image;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Selected for Button keys<br/>
@@ -468,9 +468,9 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Selected for Button Key<br/>
+	 * Returns value of Selected for Button Key<br/>
 	 */
-	boolean hasButtonSelected (
+	String getButtonSelected (
 			/**/ String key
 			) 
 	{*
@@ -480,16 +480,16 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.doublearray);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].selected;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -571,9 +571,9 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Text for Item Key<br/>
+	 * Returns value of Text for Item Key<br/>
 	 */
-	boolean hasItemText (
+	String getItemText (
 			/**/ String key
 			) 
 	{*
@@ -583,16 +583,16 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.doublearray);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Image for Item keys<br/>
@@ -650,9 +650,9 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Image for Item Key<br/>
+	 * Returns value of Image for Item Key<br/>
 	 */
-	boolean hasItemImage (
+	String getItemImage (
 			/**/ String key
 			) 
 	{*
@@ -662,16 +662,16 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.doublearray);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].image;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Selected for Item keys<br/>
@@ -751,9 +751,9 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Selected for Item Key<br/>
+	 * Returns value of Selected for Item Key<br/>
 	 */
-	boolean hasItemSelected (
+	String getItemSelected (
 			/**/ String key
 			) 
 	{*
@@ -763,16 +763,16 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.doublearray);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].selected;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -1067,9 +1067,9 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Text for Button Key<br/>
+	 * Returns value of Text for Button Key<br/>
 	 */
-	boolean hasButtonText (
+	String getButtonText (
 			/**/ String key
 			) 
 	{*
@@ -1079,16 +1079,16 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.singlearray);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Image for Button keys<br/>
@@ -1146,9 +1146,9 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Image for Button Key<br/>
+	 * Returns value of Image for Button Key<br/>
 	 */
-	boolean hasButtonImage (
+	String getButtonImage (
 			/**/ String key
 			) 
 	{*
@@ -1158,16 +1158,16 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.singlearray);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].image;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Selected for Button keys<br/>
@@ -1247,9 +1247,9 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Selected for Button Key<br/>
+	 * Returns value of Selected for Button Key<br/>
 	 */
-	boolean hasButtonSelected (
+	String getButtonSelected (
 			/**/ String key
 			) 
 	{*
@@ -1259,16 +1259,16 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.singlearray);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].selected;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**

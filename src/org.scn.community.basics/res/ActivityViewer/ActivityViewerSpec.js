@@ -146,7 +146,7 @@
 {
   "description": "Activity Viewer - Gantt Chart for Activities",
   "icon": "ActivityViewer.png",
-  "title": "Activity Viewer",
+  "title": "Activity Viewer 2.0",
   "topics": [
     {
       "content": "Activity must have a start and end date, it must also have a name and category. The Activity Viewer is showing all activities for a category (like a Gantt Chart).",
@@ -182,7 +182,7 @@
       "space": "known"
     }
   ],
-  "title": "Activity Viewer",
+  "title": "Activity Viewer 2.0",
   "tooltip": "Viewer for Custom Activities",
   "width": "600"
 };

@@ -1,21 +1,47 @@
-.sap-desktop .sapSuiteCmc:focus {
-	outline-color: @sapUiFocus;
-	outline-style: dotted;
-	outline-width: 1px;
+.sapSuiteCmc {
+	display: inline-block;
+	text-align: center;
+	outline: none;
+	min-height: 2px;
 }
 
-.sapSuiteCmcBar.Error {
-	background-color: @sapUiChartBad;
+.sapUiMedia-Std-Desktop .sapSuiteCmc.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmc.Auto,
+.sapSuiteCmc.L,
+.sapSuiteCmc.M {
+    height: 4.5rem;
+    width: 10.5rem;
 }
 
-.sapSuiteCmcBar.Good {
-	background-color: @sapUiChartGood;
+.sapUiMedia-Std-Phone .sapSuiteCmc.Auto,
+.sapSuiteCmc.S,
+.sapSuiteCmc.XS {
+    height: 3.5rem;
+    width: 8.25rem;
 }
 
-.sapSuiteCmcBar.Critical {
-	background-color: @sapUiChartCritical;
+.sapSuiteCmcCnt {
+	display: inline-block;
+	position: relative;
+	height: 100%;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
-.sapSuiteCmcBar.Neutral {
-	background-color: @sapUiChartNeutral;	
+.sapSuiteCmcBar {
+    min-width: 3px;
+    position: relative;
+    float: left;
+    min-height: 1px;
+    top: ~"calc(100% - 1px)";
+    top: ~"-webkit-calc(100% - 1px)";
+    top: ~"-moz-calc(100% - 1px)";
+}
+
+.sapSuiteCmcBar:not(:FIRST-CHILD) {
+	margin-left: 3px;
+}
+
+.sapSuiteCmc:focus:not([tabindex]) {
+	outline: none;
 }

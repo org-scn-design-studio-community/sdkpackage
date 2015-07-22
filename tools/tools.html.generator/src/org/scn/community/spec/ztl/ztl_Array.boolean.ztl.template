@@ -76,9 +76,9 @@
 	*}
 	
 	/**
-	 * Checks Existence of %NAME_CAPITAL% for %PROPERTY_CAPITAL_CUT% Key<br/>
+	 * Returns value of %NAME_CAPITAL% for %PROPERTY_CAPITAL_CUT% Key<br/>
 	 */
-	boolean has%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL% (
+	String get%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL% (
 			/**/ String key
 			) 
 	{*
@@ -88,16 +88,16 @@
 
 		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].%NAME%;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**

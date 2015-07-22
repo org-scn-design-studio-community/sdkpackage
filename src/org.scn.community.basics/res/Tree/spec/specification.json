@@ -44,7 +44,7 @@
 	        "ztlFunction":"",
 	         
 	        "arrayDefinition":{
-	            "node":{
+	            "rootNode":{
 	               "type":"Array",
 	               "sequence":"key,text,url,subNode",
 	               "key":{

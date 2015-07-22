@@ -104,13 +104,13 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
  	<example>
 	You want to add 2 root elements
 	<code>
-	TREE.addNode(key [String], text [String], url [String]);<br>
-	TREE.addNode(key [String], text [String], url [String]);<br>
+	TREE.addRootNode(key [String], text [String], url [String]);<br>
+	TREE.addRootNode(key [String], text [String], url [String]);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void addNode (
+	void addRootNode (
 			/**Unique Key*/String key, 
 			/**Given Text*/String text, 
 			/**Given Url*/String url
@@ -164,12 +164,12 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
  	<example>
 	You want to remove root element
 	<code>
-	TREE.removeNode(String key);<br>
+	TREE.removeRootNode(String key);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void removeNode (
+	void removeRootNode (
 			String key
 			) {*		
 		
@@ -177,17 +177,17 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 
 	/**
-	 * Gets Nodes As JSON String
+	 * Gets RootNodes As JSON String
 	 */	
-	String getNodesAsJSON() {*
+	String getRootNodesAsJSON() {*
 		var jsonObject = JSON.parse(this.nodesContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
 	/**
-	 * Sets the Text for Node keys<br/>
+	 * Sets the Text for RootNode keys<br/>
 	 */
-	void setNodeTexts (
+	void setRootNodeTexts (
 			/**/ String keys,
 			/**/ String separator,
 	        /* Text */ String text
@@ -215,9 +215,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 
 	/**
-	 * Sets the Text for Node Key<br/>
+	 * Sets the Text for RootNode Key<br/>
 	 */
-	void setNodeText (
+	void setRootNodeText (
 			/**/ String key,
 			/**/ String text
 			) 
@@ -240,9 +240,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Text for Node Key<br/>
+	 * Returns value of Text for RootNode Key<br/>
 	 */
-	boolean hasNodeText (
+	String getRootNodeText (
 			/**/ String key
 			) 
 	{*
@@ -252,21 +252,21 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.nodesContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
-	 * Sets the Url for Node keys<br/>
+	 * Sets the Url for RootNode keys<br/>
 	 */
-	void setNodeUrls (
+	void setRootNodeUrls (
 			/**/ String keys,
 			/**/ String separator,
 	        /* Url */ String url
@@ -294,9 +294,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 
 	/**
-	 * Sets the Url for Node Key<br/>
+	 * Sets the Url for RootNode Key<br/>
 	 */
-	void setNodeUrl (
+	void setRootNodeUrl (
 			/**/ String key,
 			/**/ String url
 			) 
@@ -319,9 +319,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Url for Node Key<br/>
+	 * Returns value of Url for RootNode Key<br/>
 	 */
-	boolean hasNodeUrl (
+	String getRootNodeUrl (
 			/**/ String key
 			) 
 	{*
@@ -331,16 +331,16 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.nodesContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Text for SubNode keys<br/>
@@ -398,9 +398,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Text for SubNode Key<br/>
+	 * Returns value of Text for SubNode Key<br/>
 	 */
-	boolean hasSubNodeText (
+	String getSubNodeText (
 			/**/ String key
 			) 
 	{*
@@ -410,16 +410,16 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.nodesContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for SubNode keys<br/>
@@ -477,9 +477,9 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Url for SubNode Key<br/>
+	 * Returns value of Url for SubNode Key<br/>
 	 */
-	boolean hasSubNodeUrl (
+	String getSubNodeUrl (
 			/**/ String key
 			) 
 	{*
@@ -489,16 +489,16 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.nodesContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -540,4 +540,59 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	void noNodeUpdate () {*
 		this.roundtrip = "-";	
 	*}
+	
+	/** Adds a tree node containing Key, Text, Image Url, Parent Node and is Leaf information.
+	 * You need to specify a unique and existing parent node.
+	 * if Parent is set to "ROOT" then the node will be inserted into "ROOT". 
+
+ 	<example>
+	You want to add 2 nodes, second one is a child of fist one
+	<code>
+	TREE_1.addNode("KEY1", "First Node", "", "ROOT", true);<br>
+	TREE_1.addNode("KEY2", "First Node", "", "KEY1", true);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	@Visibility(deprecated)
+	void addNode (
+			/**Node Key (must be unique)*/String nodeKey, 
+			/**Node text*/String nodeText, 
+			/**Image URL, if not set, no image*/String imageUrl, 
+			/**The Key of the parent Node*/String parentNodeKey, 
+			/**Leafs do not have expand option by default*/optional boolean isLeaf) {*		
+		
+		if(isLeaf == undefined) {
+			isLeaf = true;
+		}
+		
+		var itemDef = { 
+			"key": nodeKey, 
+			"text": nodeText, 
+			"url": imageUrl,
+			"parentKey": parentNodeKey,
+			"leaf": isLeaf
+			};
+	
+		if (this.nodesContent === undefined || this.nodesContent === "" || this.nodesContent === "<delete>"){
+			this.nodesContent = "[]";
+		}
+		
+		var nodesJson = JSON.parse(this.nodesContent);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < nodesJson.length ; i++){
+			if (nodesJson[i].key == nodeKey) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			nodesJson.push(itemDef);
+		}
+	
+		this.nodesContent = JSON.stringify(nodesJson);
+	*}
+
 }

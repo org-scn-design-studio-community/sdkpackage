@@ -269,9 +269,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of Text for Activity Key<br/>
+	 * Returns value of Text for Activity Key<br/>
 	 */
-	boolean hasActivityText (
+	String getActivityText (
 			/**/ String key
 			) 
 	{*
@@ -281,16 +281,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.activities);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Category for Activity keys<br/>
@@ -348,9 +348,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of Category for Activity Key<br/>
+	 * Returns value of Category for Activity Key<br/>
 	 */
-	boolean hasActivityCategory (
+	String getActivityCategory (
 			/**/ String key
 			) 
 	{*
@@ -360,16 +360,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.activities);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].category;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the State for Activity keys<br/>
@@ -427,9 +427,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of State for Activity Key<br/>
+	 * Returns value of State for Activity Key<br/>
 	 */
-	boolean hasActivityState (
+	String getActivityState (
 			/**/ String key
 			) 
 	{*
@@ -439,16 +439,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.activities);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].state;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the StartDate for Activity keys<br/>
@@ -506,9 +506,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of StartDate for Activity Key<br/>
+	 * Returns value of StartDate for Activity Key<br/>
 	 */
-	boolean hasActivityStartDate (
+	String getActivityStartDate (
 			/**/ String key
 			) 
 	{*
@@ -518,16 +518,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.activities);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].startDate;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the EndDate for Activity keys<br/>
@@ -585,9 +585,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of EndDate for Activity Key<br/>
+	 * Returns value of EndDate for Activity Key<br/>
 	 */
-	boolean hasActivityEndDate (
+	String getActivityEndDate (
 			/**/ String key
 			) 
 	{*
@@ -597,16 +597,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.activities);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].endDate;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -856,9 +856,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of Text for Category Key<br/>
+	 * Returns value of Text for Category Key<br/>
 	 */
-	boolean hasCategoryText (
+	String getCategoryText (
 			/**/ String key
 			) 
 	{*
@@ -868,16 +868,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.categories);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Visible for Category keys<br/>
@@ -957,9 +957,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of Visible for Category Key<br/>
+	 * Returns value of Visible for Category Key<br/>
 	 */
-	boolean hasCategoryVisible (
+	String getCategoryVisible (
 			/**/ String key
 			) 
 	{*
@@ -969,16 +969,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.categories);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].visible;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -1248,9 +1248,9 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 	
 	/**
-	 * Checks Existence of Style for State Key<br/>
+	 * Returns value of Style for State Key<br/>
 	 */
-	boolean hasStateStyle (
+	String getStateStyle (
 			/**/ String key
 			) 
 	{*
@@ -1260,16 +1260,16 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsJson = JSON.parse(this.states);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].style;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 

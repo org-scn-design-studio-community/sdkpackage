@@ -1,36 +1,47 @@
-.sapSuiteUtgTitle {
-	font-size: @sapMFontHeader2Size;
-}
 
-.sap-phone .sapSuiteUtgTitle {
-	font-size: @sapMFontHeader3Size;
-}
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/UnifiedThingGroup.control */
+/* ============================================= */
 
-.sapSuiteUtgDesc {
-    font-size: @sapMFontLargeSize;
+.sapSuiteUtg {
+	padding: 20px 32px;
 }
-
 .sap-phone .sapSuiteUtg {
-	background-color: @sapUiWhite;
+	margin: 0;
 }
 
 .sapSuiteUtgHeader {
-    border-bottom : 1px solid @sapUiMediumBorder;
+    padding: 0 0 4px 0;
+	margin: 0;
 }
 
 .sapSuiteUtgTitle {
-    color: @sapUiDarkText;
-	font-family: @sapUiFontFamily;
+	font-size: 24px;
+	font-weight: normal;
+    line-height: 2em;
+    text-overflow : ellipsis;
+    margin-bottom: 12px;
 }
 
 .sap-phone .sapSuiteUtgTitle {
-	color: @sapUiText;
+	padding: 1rem 1rem 0 1rem;
+	font-size: 1.25rem;
+}
+
+.sapSuiteUtgDesc {
+    font-size: 16px;
+    font-weight: normal;
+    text-overflow : ellipsis;
 }
 
 .sap-phone .sapSuiteUtgDesc {
-	color: @sapUiDarkText;
+	padding: 1rem 1rem 0.5rem 1rem;
 }
 
-.sap-phone .sapSuiteUtgContent {
-	background-color: @sapUiWhite;
+.sapSuiteUtgContent {
 }
+
+.sapSuiteUtgContentTopIndent {
+    padding-top: 1.5rem;
+}
+

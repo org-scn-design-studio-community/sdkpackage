@@ -279,9 +279,9 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Text for Step Key<br/>
+	 * Returns value of Text for Step Key<br/>
 	 */
-	boolean hasStepText (
+	String getStepText (
 			/**/ String key
 			) 
 	{*
@@ -291,16 +291,16 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Visible for Step keys<br/>
@@ -380,9 +380,9 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Visible for Step Key<br/>
+	 * Returns value of Visible for Step Key<br/>
 	 */
-	boolean hasStepVisible (
+	String getStepVisible (
 			/**/ String key
 			) 
 	{*
@@ -392,16 +392,16 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].visible;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -505,9 +505,9 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 	*}
 	
 	/**
-	 * Checks Existence of Enabled for Step Key<br/>
+	 * Returns value of Enabled for Step Key<br/>
 	 */
-	boolean hasStepEnabled (
+	String getStepEnabled (
 			/**/ String key
 			) 
 	{*
@@ -517,16 +517,16 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 
 		var elementsJson = JSON.parse(this.DElementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].enabled;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**

@@ -239,9 +239,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Text for Item Key<br/>
+	 * Returns value of Text for Item Key<br/>
 	 */
-	boolean hasItemText (
+	String getItemText (
 			/**/ String key
 			) 
 	{*
@@ -251,16 +251,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Item keys<br/>
@@ -318,9 +318,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Url for Item Key<br/>
+	 * Returns value of Url for Item Key<br/>
 	 */
-	boolean hasItemUrl (
+	String getItemUrl (
 			/**/ String key
 			) 
 	{*
@@ -330,16 +330,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Enabled for Item keys<br/>
@@ -419,9 +419,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Enabled for Item Key<br/>
+	 * Returns value of Enabled for Item Key<br/>
 	 */
-	boolean hasItemEnabled (
+	String getItemEnabled (
 			/**/ String key
 			) 
 	{*
@@ -431,16 +431,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].enabled;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -522,9 +522,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Text for SubItem Key<br/>
+	 * Returns value of Text for SubItem Key<br/>
 	 */
-	boolean hasSubItemText (
+	String getSubItemText (
 			/**/ String key
 			) 
 	{*
@@ -534,16 +534,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for SubItem keys<br/>
@@ -601,9 +601,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Url for SubItem Key<br/>
+	 * Returns value of Url for SubItem Key<br/>
 	 */
-	boolean hasSubItemUrl (
+	String getSubItemUrl (
 			/**/ String key
 			) 
 	{*
@@ -613,16 +613,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Enabled for SubItem keys<br/>
@@ -702,9 +702,9 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	*}
 	
 	/**
-	 * Checks Existence of Enabled for SubItem Key<br/>
+	 * Returns value of Enabled for SubItem Key<br/>
 	 */
-	boolean hasSubItemEnabled (
+	String getSubItemEnabled (
 			/**/ String key
 			) 
 	{*
@@ -714,16 +714,16 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].enabled;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**

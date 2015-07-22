@@ -299,9 +299,9 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Text for Location Key<br/>
+	 * Returns value of Text for Location Key<br/>
 	 */
-	boolean hasLocationText (
+	String getLocationText (
 			/**/ String key
 			) 
 	{*
@@ -311,16 +311,16 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].text;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Url for Location keys<br/>
@@ -378,9 +378,9 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 	*}
 	
 	/**
-	 * Checks Existence of Url for Location Key<br/>
+	 * Returns value of Url for Location Key<br/>
 	 */
-	boolean hasLocationUrl (
+	String getLocationUrl (
 			/**/ String key
 			) 
 	{*
@@ -390,16 +390,16 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 
 		var elementsJson = JSON.parse(this.elementsContent);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].url;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
