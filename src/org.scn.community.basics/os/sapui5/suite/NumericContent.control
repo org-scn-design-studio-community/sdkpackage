@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>NumericContent</name>
+	<documentation>NumericContent to be used in tile or in other place where need to show numeric values with sematic colors and deviations.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" type="sap.suite.ui.commons/InfoTileSize" name="size" defaultValue='Auto'>
+			<documentation>Updates the size of the chart. If not set then the default size is applied based on the device tile.</documentation>
+		</property>
+		<property group="Misc" name="value" type="sap.ui.core/string">
+			<documentation>The actual value.</documentation>
+		</property>
+		<property group="Misc" name="scale" type="sap.ui.core/string">
+			<documentation>The scaling prefix. Financial characters can be used for currencies and counters. The SI prefixes can be used for units.</documentation>
+		</property>
+		<property group="Misc" name="valueColor" type="sap.suite.ui.commons/InfoTileValueColor" defaultValue="Neutral">
+			<documentation>The semantic color of the value.</documentation>
+		</property>
+		<property group="Misc" name="indicator" type="sap.ui.core/string">
+			<documentation>The indicator arrow that shows value deviation.</documentation>
+		</property>
+		<property group="Misc" name="state" type="LoadState" defaultValue="Loaded">
+			<documentation>Indicates the load status.</documentation>
+		</property>
+		<property group="Misc" name="animateTextChange" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>If set to true, the change of the value will be animated.</documentation>
+		</property>
+		<property group="Misc" name="formatterValue" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>If set to true, the value parameter contains a numeric value and scale. If set to false (default), the value parameter contains a numeric value only.</documentation>
+		</property>
+		<property group="Misc" name="truncateValueTo" type="sap.ui.core/int" defaultValue="4">
+			<documentation>The number of characters to display for the value property.</documentation>
+		</property>
+			<property group="Misc" name="icon" type="sap.ui.core/URI" since="1.21">
+			<documentation>The icon to be displayed as a graphical element within the control. This can be an image or an icon from the icon font.</documentation>
+		</property>
+		<property group="Misc" name="nullifyValue" type="sap.ui.core/boolean" defaultValue="true" since="1.21">
+			<documentation>If set to true, the omitted value property is set to 0.</documentation>
+		</property>
+		<property group="Misc" name="iconDescription" type="sap.ui.core/string" since="1.23">
+			<documentation>Description of an icon that is used in the tooltip.</documentation>
+		</property>
+		<property group="Misc" name="width" type="sap.ui.core/CSSSize" since="1.25">
+			<documentation>The width of the chart. If it is not set, the size of the control is defined by the size property.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the numeric content.</documentation>
+		</event>
+	</events>
+</control>

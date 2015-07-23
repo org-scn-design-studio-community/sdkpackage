@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+  <name>ProcessFlowNodeState</name>
+  <author></author>
+  <documentation>Describes the state info connected to the content displayed in the Process Flow Node body. Also Process Flow Lane Header uses this enumeration for the chart</documentation>
+  <baseType>sap.ui.core/string</baseType>
+  <enumeration>
+    <value name="Positive">
+      <documentation>Positive status for a Created document: document is done, finished, solved </documentation>
+    </value>
+    <value name="Negative">
+      <documentation>Negative status for a Created document: a document has an issue</documentation>
+    </value>
+    <value name="Planned">
+    	<documentation>Planned status for a document: a document is planned</documentation>
+    </value>
+    <value name="Neutral">
+    	<documentation>Neutral status for a Created document: document is in progress </documentation>
+    </value>
+    <value name="PlannedNegative">
+    	<documentation>Planned document has an issue</documentation>
+    </value>
+  </enumeration>
+</simple-type>

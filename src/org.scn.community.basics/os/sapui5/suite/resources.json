@@ -1,0 +1,2342 @@
+{
+	"resources":[
+		{
+			"name": ".library"
+		},
+		{
+			"name": ".theming"
+		},
+		{
+			"name": "BulletChart-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "BulletChart.control"
+		},
+		{
+			"name": "BulletChart.js"
+		},
+		{
+			"name": "BulletChartData-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "BulletChartData.control"
+		},
+		{
+			"name": "BulletChartData.js"
+		},
+		{
+			"name": "BulletChartMode.type"
+		},
+		{
+			"name": "BulletChartRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "BulletChartRenderer.js"
+		},
+		{
+			"name": "BusinessCard-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "BusinessCard.control"
+		},
+		{
+			"name": "BusinessCard.js"
+		},
+		{
+			"name": "BusinessCardRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "BusinessCardRenderer.js"
+		},
+		{
+			"name": "ChartContainer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ChartContainer.control"
+		},
+		{
+			"name": "ChartContainer.js"
+		},
+		{
+			"name": "ChartContainerContent-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ChartContainerContent.control"
+		},
+		{
+			"name": "ChartContainerContent.js"
+		},
+		{
+			"name": "ChartContainerContentRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ChartContainerContentRenderer.js"
+		},
+		{
+			"name": "ChartContainerRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ChartContainerRenderer.js"
+		},
+		{
+			"name": "ChartTile-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ChartTile.control"
+		},
+		{
+			"name": "ChartTile.js"
+		},
+		{
+			"name": "ChartTileRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ChartTileRenderer.js"
+		},
+		{
+			"name": "ColumnData-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ColumnData.control"
+		},
+		{
+			"name": "ColumnData.js"
+		},
+		{
+			"name": "ColumnMicroChart-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ColumnMicroChart.control"
+		},
+		{
+			"name": "ColumnMicroChart.js"
+		},
+		{
+			"name": "ColumnMicroChartLabel-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ColumnMicroChartLabel.control"
+		},
+		{
+			"name": "ColumnMicroChartLabel.js"
+		},
+		{
+			"name": "ColumnMicroChartRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ColumnMicroChartRenderer.js"
+		},
+		{
+			"name": "CommonBackground.type"
+		},
+		{
+			"name": "ComparisonChart-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ComparisonChart.control"
+		},
+		{
+			"name": "ComparisonChart.js"
+		},
+		{
+			"name": "ComparisonChartRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ComparisonChartRenderer.js"
+		},
+		{
+			"name": "ComparisonChartView.type"
+		},
+		{
+			"name": "ComparisonData-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ComparisonData.control"
+		},
+		{
+			"name": "ComparisonData.js"
+		},
+		{
+			"name": "CountingNavigationItem-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "CountingNavigationItem.control"
+		},
+		{
+			"name": "CountingNavigationItem.js"
+		},
+		{
+			"name": "DateRangeScroller-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "DateRangeScroller.control"
+		},
+		{
+			"name": "DateRangeScroller.js"
+		},
+		{
+			"name": "DateRangeScrollerRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "DateRangeScrollerRenderer.js"
+		},
+		{
+			"name": "DateRangeSlider-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "DateRangeSlider.control"
+		},
+		{
+			"name": "DateRangeSlider.js"
+		},
+		{
+			"name": "DateRangeSliderInternal-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "DateRangeSliderInternal.control"
+		},
+		{
+			"name": "DateRangeSliderInternal.js"
+		},
+		{
+			"name": "DateRangeSliderInternalRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "DateRangeSliderInternalRenderer.js"
+		},
+		{
+			"name": "DateRangeSliderRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "DateRangeSliderRenderer.js"
+		},
+		{
+			"name": "DeltaMicroChart-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "DeltaMicroChart.control"
+		},
+		{
+			"name": "DeltaMicroChart.js"
+		},
+		{
+			"name": "DeltaMicroChartRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "DeltaMicroChartRenderer.js"
+		},
+		{
+			"name": "DeviationIndicator.type"
+		},
+		{
+			"name": "DynamicContainer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "DynamicContainer.control"
+		},
+		{
+			"name": "DynamicContainer.js"
+		},
+		{
+			"name": "DynamicContainerRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "DynamicContainerRenderer.js"
+		},
+		{
+			"name": "FacetOverview-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "FacetOverview.control"
+		},
+		{
+			"name": "FacetOverview.js"
+		},
+		{
+			"name": "FacetOverviewHeight.type"
+		},
+		{
+			"name": "FacetOverviewRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "FacetOverviewRenderer.js"
+		},
+		{
+			"name": "FeedItem-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "FeedItem.control"
+		},
+		{
+			"name": "FeedItem.js"
+		},
+		{
+			"name": "FeedItemHeader-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "FeedItemHeader.control"
+		},
+		{
+			"name": "FeedItemHeader.js"
+		},
+		{
+			"name": "FeedItemHeaderRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "FeedItemHeaderRenderer.js"
+		},
+		{
+			"name": "FeedTile-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "FeedTile.control"
+		},
+		{
+			"name": "FeedTile.js"
+		},
+		{
+			"name": "FeedTileRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "FeedTileRenderer.js"
+		},
+		{
+			"name": "FrameType.type"
+		},
+		{
+			"name": "GenericTile-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "GenericTile.control"
+		},
+		{
+			"name": "GenericTile.js"
+		},
+		{
+			"name": "GenericTile2X2-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "GenericTile2X2.control"
+		},
+		{
+			"name": "GenericTile2X2.js"
+		},
+		{
+			"name": "GenericTile2X2Renderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "GenericTile2X2Renderer.js"
+		},
+		{
+			"name": "GenericTileRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "GenericTileRenderer.js"
+		},
+		{
+			"name": "HarveyBallMicroChart-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "HarveyBallMicroChart.control"
+		},
+		{
+			"name": "HarveyBallMicroChart.js"
+		},
+		{
+			"name": "HarveyBallMicroChartItem-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "HarveyBallMicroChartItem.control"
+		},
+		{
+			"name": "HarveyBallMicroChartItem.js"
+		},
+		{
+			"name": "HarveyBallMicroChartRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "HarveyBallMicroChartRenderer.js"
+		},
+		{
+			"name": "HeaderCell-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "HeaderCell.control"
+		},
+		{
+			"name": "HeaderCell.js"
+		},
+		{
+			"name": "HeaderCellItem-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "HeaderCellItem.control"
+		},
+		{
+			"name": "HeaderCellItem.js"
+		},
+		{
+			"name": "HeaderCellRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "HeaderCellRenderer.js"
+		},
+		{
+			"name": "HeaderContainer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "HeaderContainer.control"
+		},
+		{
+			"name": "HeaderContainer.js"
+		},
+		{
+			"name": "HeaderContainerRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "HeaderContainerRenderer.js"
+		},
+		{
+			"name": "HeaderContainerView.type"
+		},
+		{
+			"name": "InfoTile-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "InfoTile.control"
+		},
+		{
+			"name": "InfoTile.js"
+		},
+		{
+			"name": "InfoTileRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "InfoTileRenderer.js"
+		},
+		{
+			"name": "InfoTileSize.type"
+		},
+		{
+			"name": "InfoTileTextColor.type"
+		},
+		{
+			"name": "InfoTileValueColor.type"
+		},
+		{
+			"name": "JamContent-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "JamContent.control"
+		},
+		{
+			"name": "JamContent.js"
+		},
+		{
+			"name": "JamContentRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "JamContentRenderer.js"
+		},
+		{
+			"name": "KpiTile-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "KpiTile.control"
+		},
+		{
+			"name": "KpiTile.js"
+		},
+		{
+			"name": "KpiTileRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "KpiTileRenderer.js"
+		},
+		{
+			"name": "LaunchTile-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "LaunchTile.control"
+		},
+		{
+			"name": "LaunchTile.js"
+		},
+		{
+			"name": "LaunchTileRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "LaunchTileRenderer.js"
+		},
+		{
+			"name": "LinkActionSheet-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "LinkActionSheet.control"
+		},
+		{
+			"name": "LinkActionSheet.js"
+		},
+		{
+			"name": "LinkActionSheetRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "LinkActionSheetRenderer.js"
+		},
+		{
+			"name": "LoadState.type"
+		},
+		{
+			"name": "MicroAreaChart-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "MicroAreaChart.control"
+		},
+		{
+			"name": "MicroAreaChart.js"
+		},
+		{
+			"name": "MicroAreaChartItem-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "MicroAreaChartItem.control"
+		},
+		{
+			"name": "MicroAreaChartItem.js"
+		},
+		{
+			"name": "MicroAreaChartLabel-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "MicroAreaChartLabel.control"
+		},
+		{
+			"name": "MicroAreaChartLabel.js"
+		},
+		{
+			"name": "MicroAreaChartPoint-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "MicroAreaChartPoint.control"
+		},
+		{
+			"name": "MicroAreaChartPoint.js"
+		},
+		{
+			"name": "MicroAreaChartRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "MicroAreaChartRenderer.js"
+		},
+		{
+			"name": "MicroAreaChartView.type"
+		},
+		{
+			"name": "MonitoringContent-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "MonitoringContent.control"
+		},
+		{
+			"name": "MonitoringContent.js"
+		},
+		{
+			"name": "MonitoringContentRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "MonitoringContentRenderer.js"
+		},
+		{
+			"name": "MonitoringTile-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "MonitoringTile.control"
+		},
+		{
+			"name": "MonitoringTile.js"
+		},
+		{
+			"name": "MonitoringTileRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "MonitoringTileRenderer.js"
+		},
+		{
+			"name": "NewsContent-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NewsContent.control"
+		},
+		{
+			"name": "NewsContent.js"
+		},
+		{
+			"name": "NewsContentRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NewsContentRenderer.js"
+		},
+		{
+			"name": "NoteTaker-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NoteTaker.control"
+		},
+		{
+			"name": "NoteTaker.js"
+		},
+		{
+			"name": "NoteTakerCard-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NoteTakerCard.control"
+		},
+		{
+			"name": "NoteTakerCard.js"
+		},
+		{
+			"name": "NoteTakerCardRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NoteTakerCardRenderer.js"
+		},
+		{
+			"name": "NoteTakerFeeder-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NoteTakerFeeder.control"
+		},
+		{
+			"name": "NoteTakerFeeder.js"
+		},
+		{
+			"name": "NoteTakerFeederRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NoteTakerFeederRenderer.js"
+		},
+		{
+			"name": "NoteTakerRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NoteTakerRenderer.js"
+		},
+		{
+			"name": "NumericContent-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NumericContent.control"
+		},
+		{
+			"name": "NumericContent.js"
+		},
+		{
+			"name": "NumericContentRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NumericContentRenderer.js"
+		},
+		{
+			"name": "NumericTile-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NumericTile.control"
+		},
+		{
+			"name": "NumericTile.js"
+		},
+		{
+			"name": "NumericTileRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "NumericTileRenderer.js"
+		},
+		{
+			"name": "PictureZoomIn-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "PictureZoomIn.control"
+		},
+		{
+			"name": "PictureZoomIn.js"
+		},
+		{
+			"name": "PictureZoomInRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "PictureZoomInRenderer.js"
+		},
+		{
+			"name": "ProcessFlow-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ProcessFlow.control"
+		},
+		{
+			"name": "ProcessFlow.js"
+		},
+		{
+			"name": "ProcessFlowConnection-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ProcessFlowConnection.control"
+		},
+		{
+			"name": "ProcessFlowConnection.js"
+		},
+		{
+			"name": "ProcessFlowConnectionRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ProcessFlowConnectionRenderer.js"
+		},
+		{
+			"name": "ProcessFlowDisplayState.type"
+		},
+		{
+			"name": "ProcessFlowLaneHeader-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ProcessFlowLaneHeader.control"
+		},
+		{
+			"name": "ProcessFlowLaneHeader.js"
+		},
+		{
+			"name": "ProcessFlowLaneHeaderRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ProcessFlowLaneHeaderRenderer.js"
+		},
+		{
+			"name": "ProcessFlowLaneState.type"
+		},
+		{
+			"name": "ProcessFlowNode-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ProcessFlowNode.control"
+		},
+		{
+			"name": "ProcessFlowNode.js"
+		},
+		{
+			"name": "ProcessFlowNodeRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ProcessFlowNodeRenderer.js"
+		},
+		{
+			"name": "ProcessFlowNodeState.type"
+		},
+		{
+			"name": "ProcessFlowRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ProcessFlowRenderer.js"
+		},
+		{
+			"name": "ProcessFlowZoomLevel.type"
+		},
+		{
+			"name": "RepeaterViewConfiguration-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "RepeaterViewConfiguration.control"
+		},
+		{
+			"name": "RepeaterViewConfiguration.js"
+		},
+		{
+			"name": "SelectionState.type"
+		},
+		{
+			"name": "SplitButton-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "SplitButton.control"
+		},
+		{
+			"name": "SplitButton.js"
+		},
+		{
+			"name": "SplitButtonRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "SplitButtonRenderer.js"
+		},
+		{
+			"name": "TargetFilter-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TargetFilter.control"
+		},
+		{
+			"name": "TargetFilter.js"
+		},
+		{
+			"name": "TargetFilterColumn-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TargetFilterColumn.control"
+		},
+		{
+			"name": "TargetFilterColumn.js"
+		},
+		{
+			"name": "TargetFilterRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TargetFilterRenderer.js"
+		},
+		{
+			"name": "ThingCollection-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ThingCollection.control"
+		},
+		{
+			"name": "ThingCollection.js"
+		},
+		{
+			"name": "ThingCollectionRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ThingCollectionRenderer.js"
+		},
+		{
+			"name": "ThingGroupDesign.type"
+		},
+		{
+			"name": "ThreePanelThingInspector-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ThreePanelThingInspector.control"
+		},
+		{
+			"name": "ThreePanelThingInspector.js"
+		},
+		{
+			"name": "ThreePanelThingInspectorRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ThreePanelThingInspectorRenderer.js"
+		},
+		{
+			"name": "ThreePanelThingViewer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ThreePanelThingViewer.control"
+		},
+		{
+			"name": "ThreePanelThingViewer.js"
+		},
+		{
+			"name": "ThreePanelThingViewerRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ThreePanelThingViewerRenderer.js"
+		},
+		{
+			"name": "TileContent-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TileContent.control"
+		},
+		{
+			"name": "TileContent.js"
+		},
+		{
+			"name": "TileContent2X2-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TileContent2X2.control"
+		},
+		{
+			"name": "TileContent2X2.js"
+		},
+		{
+			"name": "TileContent2X2Renderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TileContent2X2Renderer.js"
+		},
+		{
+			"name": "TileContentRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TileContentRenderer.js"
+		},
+		{
+			"name": "Timeline-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "Timeline.control"
+		},
+		{
+			"name": "Timeline.js"
+		},
+		{
+			"name": "TimelineAlignment.type"
+		},
+		{
+			"name": "TimelineAxisOrientation.type"
+		},
+		{
+			"name": "TimelineFilterListItem-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TimelineFilterListItem.control"
+		},
+		{
+			"name": "TimelineFilterListItem.js"
+		},
+		{
+			"name": "TimelineFilterListItemRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TimelineFilterListItemRenderer.js"
+		},
+		{
+			"name": "TimelineItem-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TimelineItem.control"
+		},
+		{
+			"name": "TimelineItem.js"
+		},
+		{
+			"name": "TimelineItemPosition.type"
+		},
+		{
+			"name": "TimelineItemRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TimelineItemRenderer.js"
+		},
+		{
+			"name": "TimelineRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "TimelineRenderer.js"
+		},
+		{
+			"name": "UnifiedThingGroup-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "UnifiedThingGroup.control"
+		},
+		{
+			"name": "UnifiedThingGroup.js"
+		},
+		{
+			"name": "UnifiedThingGroupRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "UnifiedThingGroupRenderer.js"
+		},
+		{
+			"name": "UnifiedThingInspector-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "UnifiedThingInspector.control"
+		},
+		{
+			"name": "UnifiedThingInspector.js"
+		},
+		{
+			"name": "UnifiedThingInspectorRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "UnifiedThingInspectorRenderer.js"
+		},
+		{
+			"name": "ValueStatus.type"
+		},
+		{
+			"name": "VerticalNavigationBar-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "VerticalNavigationBar.control"
+		},
+		{
+			"name": "VerticalNavigationBar.js"
+		},
+		{
+			"name": "VerticalNavigationBarRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "VerticalNavigationBarRenderer.js"
+		},
+		{
+			"name": "ViewRepeater-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ViewRepeater.control"
+		},
+		{
+			"name": "ViewRepeater.js"
+		},
+		{
+			"name": "ViewRepeaterRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "ViewRepeaterRenderer.js"
+		},
+		{
+			"name": "library-all-dbg.js",
+			"isDebug":true,
+			"merged":true
+		},
+		{
+			"name": "library-all.js",
+			"merged":true
+		},
+		{
+			"name": "library-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "library-preload.json",
+			"merged":true
+		},
+		{
+			"name": "library.dependencies.json"
+		},
+		{
+			"name": "library.dependencies.xml"
+		},
+		{
+			"name": "library.js"
+		},
+		{
+			"name": "library.properties"
+		},
+		{
+			"name": "library.templates.xml"
+		},
+		{
+			"name": "manifest.json"
+		},
+		{
+			"name": "messagebundle.properties",
+			"raw":"messagebundle.properties",
+			"locale":""
+		},
+		{
+			"name": "messagebundle_ar.properties",
+			"raw":"messagebundle.properties",
+			"locale":"ar"
+		},
+		{
+			"name": "messagebundle_bg.properties",
+			"raw":"messagebundle.properties",
+			"locale":"bg"
+		},
+		{
+			"name": "messagebundle_ca.properties",
+			"raw":"messagebundle.properties",
+			"locale":"ca"
+		},
+		{
+			"name": "messagebundle_cs.properties",
+			"raw":"messagebundle.properties",
+			"locale":"cs"
+		},
+		{
+			"name": "messagebundle_da.properties",
+			"raw":"messagebundle.properties",
+			"locale":"da"
+		},
+		{
+			"name": "messagebundle_de.properties",
+			"raw":"messagebundle.properties",
+			"locale":"de"
+		},
+		{
+			"name": "messagebundle_el.properties",
+			"raw":"messagebundle.properties",
+			"locale":"el"
+		},
+		{
+			"name": "messagebundle_en.properties",
+			"raw":"messagebundle.properties",
+			"locale":"en"
+		},
+		{
+			"name": "messagebundle_en_US_sappsd.properties",
+			"raw":"messagebundle.properties",
+			"locale":"en_US_sappsd"
+		},
+		{
+			"name": "messagebundle_en_US_saptrc.properties",
+			"raw":"messagebundle.properties",
+			"locale":"en_US_saptrc"
+		},
+		{
+			"name": "messagebundle_es.properties",
+			"raw":"messagebundle.properties",
+			"locale":"es"
+		},
+		{
+			"name": "messagebundle_et.properties",
+			"raw":"messagebundle.properties",
+			"locale":"et"
+		},
+		{
+			"name": "messagebundle_fi.properties",
+			"raw":"messagebundle.properties",
+			"locale":"fi"
+		},
+		{
+			"name": "messagebundle_fr.properties",
+			"raw":"messagebundle.properties",
+			"locale":"fr"
+		},
+		{
+			"name": "messagebundle_hi.properties",
+			"raw":"messagebundle.properties",
+			"locale":"hi"
+		},
+		{
+			"name": "messagebundle_hr.properties",
+			"raw":"messagebundle.properties",
+			"locale":"hr"
+		},
+		{
+			"name": "messagebundle_hu.properties",
+			"raw":"messagebundle.properties",
+			"locale":"hu"
+		},
+		{
+			"name": "messagebundle_it.properties",
+			"raw":"messagebundle.properties",
+			"locale":"it"
+		},
+		{
+			"name": "messagebundle_iw.properties",
+			"raw":"messagebundle.properties",
+			"locale":"iw"
+		},
+		{
+			"name": "messagebundle_ja.properties",
+			"raw":"messagebundle.properties",
+			"locale":"ja"
+		},
+		{
+			"name": "messagebundle_ko.properties",
+			"raw":"messagebundle.properties",
+			"locale":"ko"
+		},
+		{
+			"name": "messagebundle_lt.properties",
+			"raw":"messagebundle.properties",
+			"locale":"lt"
+		},
+		{
+			"name": "messagebundle_lv.properties",
+			"raw":"messagebundle.properties",
+			"locale":"lv"
+		},
+		{
+			"name": "messagebundle_nl.properties",
+			"raw":"messagebundle.properties",
+			"locale":"nl"
+		},
+		{
+			"name": "messagebundle_no.properties",
+			"raw":"messagebundle.properties",
+			"locale":"no"
+		},
+		{
+			"name": "messagebundle_pl.properties",
+			"raw":"messagebundle.properties",
+			"locale":"pl"
+		},
+		{
+			"name": "messagebundle_pt.properties",
+			"raw":"messagebundle.properties",
+			"locale":"pt"
+		},
+		{
+			"name": "messagebundle_ro.properties",
+			"raw":"messagebundle.properties",
+			"locale":"ro"
+		},
+		{
+			"name": "messagebundle_ru.properties",
+			"raw":"messagebundle.properties",
+			"locale":"ru"
+		},
+		{
+			"name": "messagebundle_sh.properties",
+			"raw":"messagebundle.properties",
+			"locale":"sh"
+		},
+		{
+			"name": "messagebundle_sk.properties",
+			"raw":"messagebundle.properties",
+			"locale":"sk"
+		},
+		{
+			"name": "messagebundle_sl.properties",
+			"raw":"messagebundle.properties",
+			"locale":"sl"
+		},
+		{
+			"name": "messagebundle_sv.properties",
+			"raw":"messagebundle.properties",
+			"locale":"sv"
+		},
+		{
+			"name": "messagebundle_th.properties",
+			"raw":"messagebundle.properties",
+			"locale":"th"
+		},
+		{
+			"name": "messagebundle_tr.properties",
+			"raw":"messagebundle.properties",
+			"locale":"tr"
+		},
+		{
+			"name": "messagebundle_uk.properties",
+			"raw":"messagebundle.properties",
+			"locale":"uk"
+		},
+		{
+			"name": "messagebundle_vi.properties",
+			"raw":"messagebundle.properties",
+			"locale":"vi"
+		},
+		{
+			"name": "messagebundle_zh_CN.properties",
+			"raw":"messagebundle_zh.properties",
+			"locale":"CN"
+		},
+		{
+			"name": "messagebundle_zh_TW.properties",
+			"raw":"messagebundle_zh.properties",
+			"locale":"TW"
+		},
+		{
+			"name": "themes/base/.theming",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/BulletChart.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/BusinessCard.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ChartContainer.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ChartContainerContent.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ChartTile.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ColumnMicroChart.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ComparisonChart.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/DateRangeScroller.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/DateRangeSlider.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/DateRangeSliderInternal.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/DeltaMicroChart.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/DynamicContainer.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/FacetOverview.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/FeedItemHeader.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/FeedTile.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/GenericTile.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/GenericTile2X2.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/HarveyBallMicroChart.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/HeaderCell.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/HeaderContainer.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/InfoTile.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/InfoTileSize.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/JamContent.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/KpiTile.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/LaunchTile.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/LinkActionSheet.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/MicroAreaChart.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/MonitoringContent.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/MonitoringTile.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/NewsContent.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/NoteTaker.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/NoteTakerCard.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/NoteTakerFeeder.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/NumericContent.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/NumericTile.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/PictureZoomIn.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ProcessFlow.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ProcessFlowConnection.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ProcessFlowLaneHeader.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ProcessFlowNode.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/SplitButton.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/TargetFilter.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ThingCollection.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ThreePanelThingViewer.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/TileContent.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/TileContent2X2.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/Timeline.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/TimelineFilterListItem.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/TimelineItem.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/UnifiedThingGroup.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/UnifiedThingInspector.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/VerticalNavigationBar.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/ViewRepeater.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/fonts/PFBusinessSuiteInAppSymbols.eot",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/fonts/PFBusinessSuiteInAppSymbols.ttf",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/arrow_left.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/arrow_left_hover.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/arrow_right.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/arrow_right_hover.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/attachment_16.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/attachment_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/btn_actions_hover.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/btn_actions_regular.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/btn_nav_left_a.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/btn_nav_left_p.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/btn_nav_right_a.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/btn_nav_right_p.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/bubble.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/bubble_1.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/decline_16.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/delete_16.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/edit_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/edit_grey_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/home_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/img_bg.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/img_bg_ti.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/search_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/stripes.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/tag_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/thumbDown_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img-RTL/thumbUp_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/arrow_left.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/arrow_left_hover.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/arrow_right.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/arrow_right_hover.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/attachment_16.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/attachment_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/btn_actions_hover.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/btn_actions_regular.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/btn_nav_left_a.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/btn_nav_left_p.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/btn_nav_right_a.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/btn_nav_right_p.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/bubble.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/bubble_1.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/decline_16.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/delete_16.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/edit_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/edit_grey_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/home_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/img_bg.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/img_bg_ti.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/search_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/stripes.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/tag_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/thumbDown_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/img/thumbUp_24.png",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/library-RTL-dbg.css",
+			"isDebug":true,
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/library-RTL.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/library-dbg.css",
+			"isDebug":true,
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/library-parameters.json",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/library.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/library.less",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/library.source.less",
+			"theme":"base"
+		},
+		{
+			"name": "themes/base/shared.css",
+			"theme":"base"
+		},
+		{
+			"name": "themes/sap_bluecrystal/.theming",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/BulletChart.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/ChartContainer.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/ChartTile.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/ColumnMicroChart.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/ComparisonChart.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/DeltaMicroChart.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/DynamicContainer.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/FacetOverview.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/GenericTile.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/GenericTile2X2.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/HarveyBallMicroChart.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/HeaderContainer.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/JamContent.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/KpiTile.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/LinkActionSheet.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/MicroAreaChart.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/MonitoringTile.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/NewsContent.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/NumericContent.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/NumericTile.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/ProcessFlow.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/ProcessFlowConnection.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/ProcessFlowLaneHeader.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/ProcessFlowNode.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/TargetFilter.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/TileContent.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/TileContent2X2.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/Timeline.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/TimelineItem.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/UnifiedThingGroup.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/UnifiedThingInspector.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/library-RTL-dbg.css",
+			"isDebug":true,
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/library-RTL.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/library-dbg.css",
+			"isDebug":true,
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/library-parameters.json",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/library.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/library.less",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/library.source.less",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_bluecrystal/shared.css",
+			"theme":"sap_bluecrystal"
+		},
+		{
+			"name": "themes/sap_goldreflection/.theming",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/DateRangeScroller.css",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/NoteTaker.css",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/NoteTakerCard.css",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/NoteTakerFeeder.css",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/ThreePanelThingViewer.css",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/VerticalNavigationBar.css",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/library-RTL-dbg.css",
+			"isDebug":true,
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/library-RTL.css",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/library-dbg.css",
+			"isDebug":true,
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/library-parameters.json",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/library.css",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/library.less",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/library.source.less",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_goldreflection/shared.css",
+			"theme":"sap_goldreflection"
+		},
+		{
+			"name": "themes/sap_hcb/.theming",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/BulletChart.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/ChartContainer.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/ColumnMicroChart.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/ComparisonChart.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/DateRangeScroller.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/DeltaMicroChart.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/DynamicContainer.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/FacetOverview.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/FeedTile.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/GenericTile.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/HarveyBallMicroChart.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/HeaderContainer.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/JamContent.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/KpiTile.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/LinkActionSheet.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/MicroAreaChart.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/NewsContent.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/NoteTaker.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/NoteTakerCard.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/NoteTakerFeeder.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/NumericContent.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/ProcessFlow.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/ProcessFlowConnection.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/ProcessFlowLaneHeader.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/ProcessFlowNode.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/TargetFilter.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/ThingCollection.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/ThreePanelThingViewer.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/TileContent.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/Timeline.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/TimelineItem.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/UnifiedThingGroup.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/UnifiedThingInspector.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/VerticalNavigationBar.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/ViewRepeater.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/arrow_left.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/arrow_right.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/attachment_16.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/attachment_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/btn_nav_left_p.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/btn_nav_right_p.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/delete_16.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/edit_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/home_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/search_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/tag_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/thumbDown_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img-RTL/thumbUp_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/arrow_left.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/arrow_right.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/attachment_16.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/attachment_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/btn_nav_left_p.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/btn_nav_right_p.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/delete_16.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/edit_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/home_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/search_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/tag_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/thumbDown_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/img/thumbUp_24.png",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/library-RTL-dbg.css",
+			"isDebug":true,
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/library-RTL.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/library-dbg.css",
+			"isDebug":true,
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/library-parameters.json",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/library.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/library.less",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/library.source.less",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "themes/sap_hcb/shared.css",
+			"theme":"sap_hcb"
+		},
+		{
+			"name": "util/DateUtils-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "util/DateUtils.js"
+		},
+		{
+			"name": "util/FeedAggregator-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "util/FeedAggregator.js"
+		},
+		{
+			"name": "util/FeedItemUtils-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "util/FeedItemUtils.js"
+		},
+		{
+			"name": "util/RenderUtils-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "util/RenderUtils.js"
+		}
+	]
+}

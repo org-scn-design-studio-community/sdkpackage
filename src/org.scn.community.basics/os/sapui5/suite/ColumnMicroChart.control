@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ColumnMicroChart</name>
+
+	<documentation>This control shows a column chart.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="size" type="sap.suite.ui.commons/InfoTileSize" defaultValue="Auto">
+			<documentation>Updates the size of the chart. If not set then the default size is applied based on the device tile.</documentation>
+		</property>
+		<property group="Misc" name="width" type="sap.ui.core/CSSSize">
+			<documentation>The width of the chart. If it is not set, the width of the control is defined by the size property.</documentation>
+		</property>
+		<property group="Misc" name="height" type="sap.ui.core/CSSSize">
+			<documentation>The height of the chart. If it is not set, the height of the control is defined by the size property.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the column chart.</documentation>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..n" name="columns" type="ColumnData">
+			<documentation>The column chart data.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="leftTopLabel" type="sap.suite.ui.commons/ColumnMicroChartLabel" since="1.28">
+			<documentation>The label on the left top corner of the chart.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="rightTopLabel" type="sap.suite.ui.commons/ColumnMicroChartLabel" since="1.28">
+			<documentation>The label on the right top corner of the chart.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="leftBottomLabel" type="sap.suite.ui.commons/ColumnMicroChartLabel" since="1.28">
+			<documentation>The label on the left bottom corner of the chart.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="rightBottomLabel" type="sap.suite.ui.commons/ColumnMicroChartLabel" since="1.28">
+			<documentation>The label on the right bottom corner of the chart.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

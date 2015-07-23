@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>TargetFilter</name>
+
+	<documentation>The filter control for the SmartTable control</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<developmentState state="experimental" since="1.29">API is not yet finished and might change completely.</developmentState>
+	<properties>
+		<property group="Misc" name="entitySet" type="sap.ui.core/string">
+			<documentation>Entity set</documentation>
+		</property>
+		<property group="Misc" name="measureColumnName" type="sap.ui.core/string">
+			<documentation>aggregationColumnName</documentation>
+		</property>
+		<property group="Misc" name="selectedColumnNames" type="sap.ui.core/string[]">
+			<documentation>selected columns</documentation>
+		</property>
+	</properties>
+	<events>
+        <event name="search">
+            <documentation>This event is fired if the button 'Search' is executed.</documentation>
+        </event>
+        <event name="filterChange">
+            <documentation>Event fired when the filter criteria has changed.</documentation>
+        </event>
+    </events>
+
+    <aggregations>
+		<aggregation cardinality="0..n" name="columns" type="TargetFilterColumn">
+			<documentation>columns</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="_dialog" type="sap.m/SelectDialog" visibility="hidden">
+			<documentation>doc</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="_countDisplay" type="sap.ui.core/Control" visibility="hidden">
+			<documentation>doc</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="_quad0" type="sap.ui.core/Control" visibility="hidden">
+			<documentation>doc</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="_quad1" type="sap.ui.core/Control" visibility="hidden">
+			<documentation>doc</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="_quad2" type="sap.ui.core/Control" visibility="hidden">
+			<documentation>doc</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="_quad3" type="sap.ui.core/Control" visibility="hidden">
+			<documentation>doc</documentation>
+		</aggregation>
+	</aggregations>
+    <associations>
+    	<association cardinality="0..n" name="selectedColumns" type="TargetFilterColumn">
+    		<documentation>doc</documentation>
+    	</association>
+    </associations>
+</control>

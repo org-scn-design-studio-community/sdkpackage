@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>FeedItem</name>
+	<documentation>This element represents a news feed item.</documentation>
+	<baseType>sap.ui.core/Element</baseType>
+	<properties>
+		<property group="Misc" name="title" type="sap.ui.core/string">
+			<documentation>The title of the feed item.</documentation>
+		</property>
+		<property group="Misc" name="image" type="sap.ui.core/URI">
+			<documentation>The background image for the feed item.</documentation>
+		</property>
+		<property group="Misc" name="link" type="sap.ui.core/URI">
+			<documentation>The target location of the feed item.</documentation>
+		</property>
+		<property group="Misc" type="sap.ui.core/string" name="source">
+			<documentation>The source of the feed item.</documentation>
+		</property>
+		<property group="Misc" type="sap.ui.core/object" name="publicationDate">
+			<documentation>The date the feed was published.</documentation>
+		</property>
+	</properties>
+</control>

@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>InfoTile</name>
+	<documentation>The tile control that displays the title, description, footer, and customizable main area.</documentation>
+	<developmentState state="deprecated" since="1.25">This control has been deprecated in favor of new sap.suite.ui.commons.GenericTile.</developmentState>
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Appearance" type="sap.ui.core/string" name="description">
+			<documentation>Shows the description of the selected tile.</documentation>
+		</property>
+		<property group="Appearance" name="title" type="sap.ui.core/string">
+			<documentation>The title of the tile.</documentation>
+		</property>
+		<property group="Appearance" name="footer" type="sap.ui.core/string">
+			<documentation>The footer text of the tile.</documentation>
+		</property>
+		<property group="Misc" name="size" type="sap.suite.ui.commons/InfoTileSize" defaultValue='"Auto"'>
+			<documentation>Updates the size of the tile. If not set then the default size is applied based on the device tile.</documentation>
+		</property>
+		<property group="Misc" name="state" type="LoadState" defaultValue="Loading">
+			<documentation>Indicates the load status.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the tile.</documentation>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..1" name="content" type="sap.ui.core/Control">
+			<documentation>The switchable view that depends on the tile type.</documentation>
+		</aggregation>
+		<aggregation name="titleText" type="sap.m/Text" visibility="hidden" cardinality="0..1">
+			<documentation>The hidden aggregation for the title.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

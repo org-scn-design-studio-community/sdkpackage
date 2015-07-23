@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>MicroAreaChartItem</name>
+	<documentation>The configuration of the graphic element on the chart.</documentation>
+
+	<baseType>sap.ui.core/Element</baseType>
+	<properties>
+		<property group="Misc" name="color" type="InfoTileValueColor" defaultValue='Neutral'>
+			<documentation>The graphic element color.</documentation>
+		</property>
+		<property group="Misc" name="title" type="sap.ui.core/string" since="1.29">
+			<documentation>The line title.</documentation>
+		</property>
+	</properties>
+	<aggregations>
+		<aggregation cardinality="0..n" name="points" bindable="bindable" type="MicroAreaChartPoint">
+			<documentation>The set of points for this graphic element.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

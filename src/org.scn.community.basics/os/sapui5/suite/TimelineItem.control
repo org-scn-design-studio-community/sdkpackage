@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>TimelineItem</name>
+
+	<documentation>TimelineItem</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+	     <property group="Misc" name="dateTime" type="sap.ui.core/any">
+		 <documentation>Datetime value of Timeline item</documentation>
+		</property>
+		<property group="Misc" name="userName" type="sap.ui.core/string">
+			<documentation>User name shown in the title</documentation>
+		</property>
+		<property group="Misc" name="title" type="sap.ui.core/string">
+			<documentation>Text shown in the title after user name</documentation>
+		</property>
+		<property group="Misc" name="text" type="sap.ui.core/string">
+			<documentation>Text shown inside the item</documentation>
+		</property>
+		<property group="Misc" name="icon" type="sap.ui.core/string">
+			<documentation>Icon for this item</documentation>
+		</property>
+		<property group="Misc" name="filterValue" type="sap.ui.core/string">
+			<documentation>Text for filter value</documentation>
+		</property>
+		<property group="Misc" name="userNameClickable" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>Make user name as a clickable to raise userNameClicked event</documentation>
+		</property>
+		<property group="Misc" name="userPicture" type="sap.ui.core/URI">
+			<documentation>User Picture</documentation>
+		</property>
+		<property group="Misc" name="replyCount" type="sap.ui.core/int">
+			<documentation>count of the replies to the post</documentation>
+		</property>
+		<property group="Behavior" name="maxCharacters" type="sap.ui.core/int">
+			<documentation>The expand and collapse feature is set by default and uses 300 characters on mobile devices and 500 characters on desktops as limits. Based on these values, the text of the timeline utem is collapsed once text reaches these limits. In this case, only the specified number of characters is displayed. By clicking on the text link More, the entire text can be displayed. The text link Less collapses the text. The application is able to set the value to its needs. </documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="userNameClicked">
+			<documentation>Fire when user name in the item header is clicked</documentation>
+		</event>
+		<event name="replyPost">
+			<documentation>fire when Reply button is clicked</documentation>
+			<parameters>
+				<parameter name="value" type="sap.ui.core/string">
+					<documentation>content of reply post</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="replyListOpen">
+			<documentation>fire when the reply link is clicked to open reply popover</documentation>
+		</event>
+		<event name="customActionClicked">
+			<documentation>fire when custom action link is clicked</documentation>
+			<parameters>
+				<parameter name="value" type="sap.ui.core/string">
+					<documentation>Value of the custom action</documentation>
+				</parameter>
+				<parameter name="key" type="sap.ui.core/string">
+					<documentation>Key of the custom action</documentation>
+				</parameter>
+				<parameter name="linkObj" type="sap.ui.core/Control">
+					<documentation>Control of the custom action</documentation>
+				</parameter>				
+			</parameters>
+		</event>
+		<event name="suggest" since="1.28.1">
+			<documentation>This event is fired when user types in the input and showSuggestion is set to true. Changing the suggestItems aggregation will show the suggestions within a popup.</documentation>
+			<parameters>
+				<parameter name="suggestValue" type="sap.ui.core/string">
+					<documentation>The current value which has been typed in the input.</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="suggestionItemSelected" since="1.28.1">
+			<documentation>This event is fired when suggestionItem shown in suggestion popup are selected. This event is only fired when showSuggestion is set to true and there are suggestionItems shown in the suggestion popup.</documentation>
+			<parameters>
+				<parameter name="selectedItem" type="sap.ui.core/Item">
+					<documentation>This is the item selected in the suggestion popup.</documentation>
+				</parameter>
+			</parameters>
+		</event>
+	</events>
+		
+	<aggregations>
+		<aggregation cardinality="0..1" name="embeddedControl" type="sap.ui.core/Control">
+			<documentation>Embed other control in timeline item, such as a button or a check box, etc.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="replyList" type="sap.m/List">
+			<documentation>Reply list related to the post</documentation>
+		</aggregation>
+		<aggregation cardinality="0..n" name="customAction" type="sap.ui.core/CustomData">
+			<documentation>Custom actions to display as links on the social bar</documentation>
+		</aggregation>
+		<aggregation cardinality="0..n" name="suggestionItems" type="sap.m/StandardListItem">
+			<documentation>Items for suggestions</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="customReply" type="sap.ui.core/Control">
+			<documentation>Customer reply for embedded reply action</documentation>
+		</aggregation>
+	</aggregations>
+	<methods>
+		<method name="setCustomMessage" type="sap.ui.core/void">
+			<documentation>set custom message</documentation>
+			<parameters>
+				<parameter name="msg" type="sap.ui.core/string">
+					<documentation>Message to be set</documentation>
+				</parameter>
+			</parameters>
+		</method>
+	</methods>
+	
+</control>

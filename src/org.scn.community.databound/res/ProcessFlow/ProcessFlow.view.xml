@@ -1,0 +1,66 @@
+<core:View
+  xmlns="sap.suite.ui.commons"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:m="sap.m"
+  
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  
+  controllerName="org.scn.community.databound.ProcessFlow.Controller"
+  >
+  <l:VerticalLayout
+    width="100%" content="{/}">
+    <l:content
+      width="{width}"
+      >
+      
+      <l:VerticalLayout
+	    width="100%">
+	    <l:content
+	      width="{width}"
+	      >
+	  	  <m:Label
+	      	text="{actual/label}"
+	      	visible="{withLabel}" 
+	      	>
+	      </m:Label>
+	       <ProcessFlow 
+				nodes="{nodes}"
+				lanes="{lanes}"
+				
+				headerPress="onHeaderPressed"
+				nodePress="onNodePressed"
+				>
+				
+				 <nodes>
+      				<ProcessFlowNode 
+      					app:ownKey="{key}"
+      					nodeId="{nodeId}"
+      					laneId="{laneId}" 
+      					title="{title}" 
+      					titleAbbreviation="{titleAbbreviation}" 
+      					isTitleClickable="{isTitleClickable}" 
+      					children="{children}" 
+      					state="{state}" 
+      					stateText="{stateText}" 
+      					texts="{texts}" 
+      				/>
+				</nodes>
+				
+				<lanes>
+					<ProcessFlowLaneHeader 
+      					app:ownKey="{key}"
+						laneId="{laneId}" 
+						iconSrc="{iconSrc}" 
+						text="{text}" 
+						position="{position}"
+						
+						press="onHeaderPressed"
+					/>
+				</lanes>
+		    </ProcessFlow>
+	    </l:content>
+	  </l:VerticalLayout> 
+    </l:content>
+  </l:VerticalLayout> 
+</core:View>

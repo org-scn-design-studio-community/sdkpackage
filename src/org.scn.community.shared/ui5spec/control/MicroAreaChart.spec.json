@@ -35,7 +35,7 @@
 	"maxXValue" : {
 		"template" : "float",
 		"type" : "float",
-		"value" : 0.0,
+		"value" : 30.0,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -51,7 +51,7 @@
 	"minXValue" : {
 		"template" : "float",
 		"type" : "float",
-		"value" : 0.0,
+		"value" : 10.0,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -67,7 +67,7 @@
 	"maxYValue" : {
 		"template" : "float",
 		"type" : "float",
-		"value" : 0.0,
+		"value" : 100.0,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -128,7 +128,7 @@
 		"template" : "ObjectSingle-double",
 		"type" : "String",
 		"origType": "MicroAreaChartItem";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Neutral\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":40},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":90},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":40}]",
 		"visible": true,
 
 		"opts" : {
@@ -153,7 +153,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"points":{
 						"type":"Array",
@@ -169,10 +171,12 @@
 						},
 						"x":{
 						   "desc":"X",
+							
 						   "type":"float"
 						},
 						"y":{
 						   "desc":"Y",
+							
 						   "type":"float"
 						}
 
@@ -187,7 +191,7 @@
 		"template" : "ObjectSingle-double",
 		"type" : "String",
 		"origType": "MicroAreaChartItem";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":30},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":20},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":10}]",
 		"visible": true,
 
 		"opts" : {
@@ -212,7 +216,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"points":{
 						"type":"Array",
@@ -228,10 +234,12 @@
 						},
 						"x":{
 						   "desc":"X",
+							
 						   "type":"float"
 						},
 						"y":{
 						   "desc":"Y",
+							
 						   "type":"float"
 						}
 
@@ -246,7 +254,7 @@
 		"template" : "ObjectSingle-double",
 		"type" : "String",
 		"origType": "MicroAreaChartItem";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Neutral\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":70},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":60},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":80}]",
 		"visible": true,
 
 		"opts" : {
@@ -271,7 +279,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"points":{
 						"type":"Array",
@@ -287,10 +297,12 @@
 						},
 						"x":{
 						   "desc":"X",
+							
 						   "type":"float"
 						},
 						"y":{
 						   "desc":"Y",
+							
 						   "type":"float"
 						}
 
@@ -305,7 +317,7 @@
 		"template" : "ObjectSingle-double",
 		"type" : "String",
 		"origType": "MicroAreaChartItem";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Error\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":40},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":40},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":60}]",
 		"visible": true,
 
 		"opts" : {
@@ -330,7 +342,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"points":{
 						"type":"Array",
@@ -346,10 +360,12 @@
 						},
 						"x":{
 						   "desc":"X",
+							
 						   "type":"float"
 						},
 						"y":{
 						   "desc":"Y",
+							
 						   "type":"float"
 						}
 
@@ -364,7 +380,7 @@
 		"template" : "ObjectSingle-double",
 		"type" : "String",
 		"origType": "MicroAreaChartItem";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Error\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":30},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":20},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":10}]",
 		"visible": true,
 
 		"opts" : {
@@ -389,7 +405,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"points":{
 						"type":"Array",
@@ -405,10 +423,12 @@
 						},
 						"x":{
 						   "desc":"X",
+							
 						   "type":"float"
 						},
 						"y":{
 						   "desc":"Y",
+							
 						   "type":"float"
 						}
 
@@ -423,7 +443,7 @@
 		"template" : "ObjectSingle-double",
 		"type" : "String",
 		"origType": "MicroAreaChartItem";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":20},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":80},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":55}]",
 		"visible": true,
 
 		"opts" : {
@@ -448,7 +468,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"points":{
 						"type":"Array",
@@ -464,10 +486,12 @@
 						},
 						"x":{
 						   "desc":"X",
+							
 						   "type":"float"
 						},
 						"y":{
 						   "desc":"Y",
+							
 						   "type":"float"
 						}
 
@@ -482,7 +506,7 @@
 		"template" : "ObjectSingle",
 		"type" : "String",
 		"origType": "MicroAreaChartLabel";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"First X\"}]",
 		"visible": true,
 
 		"opts" : {
@@ -507,7 +531,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"label": {
 					  "desc": "Label",
@@ -523,7 +549,7 @@
 		"template" : "ObjectSingle",
 		"type" : "String",
 		"origType": "MicroAreaChartLabel";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"First Y\"}]",
 		"visible": true,
 
 		"opts" : {
@@ -548,7 +574,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"label": {
 					  "desc": "Label",
@@ -564,7 +592,7 @@
 		"template" : "ObjectSingle",
 		"type" : "String",
 		"origType": "MicroAreaChartLabel";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Last X\"}]",
 		"visible": true,
 
 		"opts" : {
@@ -589,7 +617,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"label": {
 					  "desc": "Label",
@@ -605,7 +635,7 @@
 		"template" : "ObjectSingle",
 		"type" : "String",
 		"origType": "MicroAreaChartLabel";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Last Y\"}]",
 		"visible": true,
 
 		"opts" : {
@@ -630,7 +660,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"label": {
 					  "desc": "Label",
@@ -646,7 +678,7 @@
 		"template" : "ObjectSingle",
 		"type" : "String",
 		"origType": "MicroAreaChartLabel";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Max\"}]",
 		"visible": true,
 
 		"opts" : {
@@ -671,7 +703,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"label": {
 					  "desc": "Label",
@@ -687,7 +721,7 @@
 		"template" : "ObjectSingle",
 		"type" : "String",
 		"origType": "MicroAreaChartLabel";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Min\"}]",
 		"visible": true,
 
 		"opts" : {
@@ -712,7 +746,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"label": {
 					  "desc": "Label",

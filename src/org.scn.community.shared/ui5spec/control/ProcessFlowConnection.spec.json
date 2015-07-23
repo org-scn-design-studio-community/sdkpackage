@@ -1,0 +1,60 @@
+{
+
+	"drawData": {
+		"template" : "StringArray",
+		"type":"String",
+		"origType": "object[]";
+		"value":"",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"StringArray",
+	        "ztlFunction":"",
+	         
+			"desc" : "Draw Data",
+			"cat" : "Display",
+			"tooltip" : "This is an array of the following attributes for one element:1. flowLine (string) - A connection definition where the line should be drawn. A string which defines a course of a flow line. A flow line is a connection between nodes in a process flow control. The string can contain the following characters:- 'r' for right, - 't' for top, - 'l' for left,- 'b' for bottom.2. targetNodeState (ProcessFlowNodeState) - A copy of the target node status. If the target node is created, the line is solid. If the target node is planned, the line is dashed.3. displayState (ProcessFlowDisplayState) - Display state of the node. This property defines if the node is displayed regularly, highlighted, or dimmed in combination with a selected visual style of the control.4. hasArrow (boolean) - Indicates if the line has an arrow on the right end.",
+			"apsControl" : "array",
+			"arrayMode":"StringArray",
+			
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"zoomLevel" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Two",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "ProcessFlowZoomLevel",
+			"ztlFunction": "",
+			"desc" : "Zoom Level",
+			"cat" : "Display",
+			"tooltip" : "This is a current zoom level for the connection. The point of connection to the node is derived from zoom level.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "One",
+					"text" : "zoom level for least details - only icon is displayed"
+				},
+				{
+					"key" : "Two",
+					"text" : "The detail is icon, title text and no additional texts"
+				},
+				{
+					"key" : "Three",
+					"text" : "The full detail view of the node but with smaller font size"
+				},
+				{
+					"key" : "Four",
+					"text" : "The full details with normal font size"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

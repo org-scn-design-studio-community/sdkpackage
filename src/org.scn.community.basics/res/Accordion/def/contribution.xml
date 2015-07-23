@@ -132,7 +132,7 @@
 		
 		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
 		<defaultValue property="defaultImage"><![CDATA[]]></defaultValue>
-		<defaultValue property="elementsContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="elementsContent"><![CDATA[[{"parentKey":"ROOT","key":"SECTION1","leaf":false,"text":"First Section"},{"parentKey":"ROOT","key":"SECTION2","leaf":false,"text":"Second Section"},{"parentKey":"ROOT","key":"SECTION3","leaf":false,"text":"Third Section"},{"parentKey":"SECTION1","key":"SECTION1_ITEM","leaf":true,"text":"Item 1"},{"parentKey":"SECTION1","key":"SECTION1_ITEM1","leaf":true,"text":"Item 2"},{"parentKey":"SECTION2","key":"SECTION2_ITEM","leaf":true,"text":"Item 2/1"},{"parentKey":"SECTION2","key":"SECTION2_ITEM1","leaf":true,"text":"Item 2/2"},{"parentKey":"SECTION2","key":"SECTION2_ITEM2","leaf":true,"text":"Item 2/3"},{"parentKey":"SECTION3","key":"SECTION3_ITEM","leaf":true,"text":"Item 3/1"}]]]></defaultValue>
 		<defaultValue property="expandedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="imageSize"><![CDATA[Size_16px]]></defaultValue>
 		<defaultValue property="maxSectionHeight"><![CDATA[200]]></defaultValue>

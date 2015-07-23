@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>PictureZoomIn</name>
+	<documentation>Shows picture in fullscreen.</documentation>
+	<developmentState state="experimental" since="1.25">API is not yet finished and might change completely</developmentState>
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" type="sap.ui.core/string" name="description">
+			<documentation>Description is shown under image.</documentation>
+		</property>
+		<property group="Misc" name="imageSrc" type="sap.ui.core/URI">
+			<documentation>Source for image.</documentation>
+		</property>
+	</properties>
+	<aggregations>
+		<aggregation cardinality="0..1" name="busyIndicator" type="sap.ui.core/Control">
+			<documentation>Custom busy indicator.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

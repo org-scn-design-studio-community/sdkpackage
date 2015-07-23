@@ -28,7 +28,19 @@
 .bar-killed {
 	fill: #ffbb33;
 }
- 
+
+.text {
+	stroke: white;
+	fill: white;
+	writing-mode: tb;
+	stroke-width: 1;
+	word-spacing: 4;
+	letter-spacing: 3;
+	kerning: 2;
+	font-family: Verdana;
+	font-size: 12px;
+}
+
 #forkme_banner {
 	display: block;
 	position: absolute;

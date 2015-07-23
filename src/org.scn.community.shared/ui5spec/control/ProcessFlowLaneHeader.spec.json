@@ -1,0 +1,119 @@
+{
+
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Text",
+			"cat" : "Display",
+			"tooltip" : "Text information that is displayed in the control.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"iconSrc" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Url",
+			"ztlFunction": "",
+			"desc" : "Icon Src",
+			"cat" : "Display",
+			"tooltip" : "Icon to be displayed in the middle of the control.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"position" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Position",
+			"cat" : "Display",
+			"tooltip" : "Position of the lane in the process flow control. Numbering of the position has to be sequential and needs to start from 0.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"laneId" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Lane Id",
+			"cat" : "Display",
+			"tooltip" : "Internal identification of the header.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"state" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "State",
+			"cat" : "Display",
+			"tooltip" : "Array of the ProcessFlowLaneState. The user can explicitly set an array with the two properties state and value of the state, for example [state:sap.suite.ui.commons.ProcessFlowNodeState.Neutral, value: 20]. Possible states are states are positive, negative, neutral, and planned.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"zoomLevel" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Two",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "ProcessFlowZoomLevel",
+			"ztlFunction": "",
+			"desc" : "Zoom Level",
+			"cat" : "Display",
+			"tooltip" : "Current zoom level for the lane header.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "One",
+					"text" : "zoom level for least details - only icon is displayed"
+				},
+				{
+					"key" : "Two",
+					"text" : "The detail is icon, title text and no additional texts"
+				},
+				{
+					"key" : "Three",
+					"text" : "The full detail view of the node but with smaller font size"
+				},
+				{
+					"key" : "Four",
+					"text" : "The full details with normal font size"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

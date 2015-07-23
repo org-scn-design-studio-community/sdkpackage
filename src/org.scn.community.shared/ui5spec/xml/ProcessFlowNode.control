@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+   <name>ProcessFlowNode</name>
+   <documentation>This control enables you to see documents (or other items) in respect to their statuses â€“ positive, negative, neutral, planned. In addition to the node title (which can be optionally a hyperlink) also two other text fields are provided and can be filled. The process flow nodes consider all styles depending on the status they are in. The user can update or change the content of the node. The content of the node can be also filtered according to updated data and specific parameters set. This means that also the nodeâ€™s style is affected.</documentation>
+   <baseType>sap.ui.core/Control</baseType>
+   <properties>
+      <property group="Misc" name="title" type="sap.ui.core/string">
+         <documentation>The node title.</documentation>
+      </property>
+      <property group="Misc" name="isTitleClickable" type="sap.ui.core/boolean" defaultValue="false">
+         <documentation>Specifies if the node title is clickable.</documentation>
+         <deprecation since="1.26">According to the new requirement there should be only one click event for each node (click on the whole node â€“ see Press event) that is why titlePress event should not be used any longer. Hence isTitleClickable should not be used either.</deprecation>
+      </property>
+      <property group="Misc" name="laneId" type="sap.ui.core/string">
+         <documentation>Specifies the assignment of the node to the respective lane.</documentation>
+      </property>
+      <property group="Misc" name="nodeId" type="sap.ui.core/string">
+         <documentation>&gt;Node identifier.</documentation>
+      </property>
+      <property group="Misc" name="state" type="ProcessFlowNodeState" defaultValue="Neutral">
+         <documentation>State of the node.</documentation>
+      </property>
+      <property group="Misc" name="children" type="sap.ui.core/string[]">
+         <documentation>Defines an array of children of the node.</documentation>
+      </property>
+      <property group="Misc" name="titleAbbreviation" type="sap.ui.core/string">
+         <documentation>Title abbreviation is used in the compact mode.</documentation>
+      </property>
+      <property group="Misc" name="stateText" type="sap.ui.core/string">
+         <documentation>Description of the state, for example "Status OK".</documentation>
+      </property>
+      <property group="Misc" name="texts" type="sap.ui.core/string[]">
+         <documentation>The property contains the additional texts on the node. The expected type is array of strings. One array must not contain more than two strings. Additional strings in the array will be ignored.</documentation>
+      </property>
+      <property group="Misc" name="highlighted" type="sap.ui.core/boolean" defaultValue="false">
+         <documentation>The parameter defines if the node should be displayed in highlighted state.</documentation>
+      </property>
+      <property group="Misc" name="focused" type="sap.ui.core/boolean" defaultValue="false">
+         <documentation>The parameter defines if the node should be displayed in focus state.</documentation>
+      </property>
+      <property group="Misc" name="tag" type="sap.ui.core/object">
+         <documentation>The user-defined object which is returned back to the user by a node click event.</documentation>
+      </property>
+   </properties>
+   <events>
+      <event name="titlePress">
+         <documentation>This event handler is executed when the user clicks the node title. This event is fired only when the title is clickable (isTitleClickable equals true).</documentation>
+         <deprecation since="1.26">Should not be used any longer, use Press event instead ( click on the node)</deprecation>
+         <parameters>
+            <parameter name="oEvent" type="sap.ui.core/object">
+               <documentation>The node identification.</documentation>
+            </parameter>
+         </parameters>
+      </event>
+      <event name="press">
+         <documentation>This event is fired when the user clicks on the node. However, this event is not fired if the titlePress event has been fired.</documentation>
+         <parameters>
+            <parameter name="oEvent" type="sap.ui.core/object">
+               <documentation>The node identification.</documentation>
+            </parameter>
+         </parameters>
+      </event>
+   </events>
+</control>

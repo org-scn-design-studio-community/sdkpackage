@@ -40,21 +40,17 @@ HarveyBallMicroChart = {
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		var componentPath = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage , "");
-		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.name, componentPath);
+		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.fullComponentName, componentPath);
 
-		sap.ui.controller(org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.fullComponentName, {
+		sap.ui.controller(org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.fullComponentName + ".Controller", {
 			owner: that,
 
-			// implement an event handler in the Controller
-			doSomething: function() {
-				alert("Hello World!");
-			}
 		});
 
 		that._view = new sap.ui.view({ type: sap.ui.core.mvc.ViewType.XML,  
-            viewName: org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.name + "." 
+            viewName: org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.fullComponentName + "." 
 				+ org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.id,  
-            controllerName: org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.fullComponentName  
+            controllerName: org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.fullComponentName + ".Controller" 
         });
 		
 		that._oModel = new sap.ui.model.json.JSONModel(); 
@@ -125,6 +121,8 @@ HarveyBallMicroChart = {
 		var l_TotalScale = that.getTotalScale();
 
 
+
+
 		var rowI = 0;
 		var counterI = 1;
 
@@ -164,6 +162,8 @@ HarveyBallMicroChart = {
 
 
 
+
+
 			that._specialDataModel.push(customData);
 		}
 
@@ -178,25 +178,6 @@ HarveyBallMicroChart = {
 		// visualization on processed data 
 	},
 	
-	getObjectArrayContent: function (owner, name, options) {
-		var that = owner;
-		var propertyObject = that.getObjectContent(that, name, options);
-
-		propertyObject.jsonTemplate = [];
-		for (var jI in propertyObject.value) {
-			var jO = propertyObject.value[jI];
-			
-			var pO = {};
-			for (var pI in jO) {
-				if(pI == "parentKey" || pI == "leaf" || pI == "key") continue;
-				pO[pI] = jO[pI];
-			}
-			propertyObject.jsonTemplate.push(pO);
-		}
-		
-		return propertyObject;
-	},
-
 	onResize: function(width, height, parent) {
 		var that = parent;
 		// in case special resize code is required

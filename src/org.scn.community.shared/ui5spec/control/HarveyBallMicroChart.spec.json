@@ -3,7 +3,7 @@
 	"total" : {
 		"template" : "float",
 		"type" : "float",
-		"value" : 0,
+		"value" : 100,
 		"visible": true,
 		"opts" : {
 			"ztlType": "float",
@@ -35,7 +35,7 @@
 	"totalScale" : {
 		"template" : "String",
 		"type" : "String",
-		"value" : "",
+		"value" : "M",
 		"visible": true,
 		"opts" : {
 			"ztlType": "String",
@@ -139,6 +139,7 @@
 	"colorPalette": {
 		"template" : "StringArray",
 		"type":"String",
+		"origType": "string[]";
 		"value":"[]",
 		"visible":true,
 	  
@@ -176,7 +177,7 @@
 		"template" : "ObjectArray",
 		"type" : "String",
 		"origType": "HarveyBallMicroChartItem";
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"formattedLabel\":false,\"color\":\"Good\",\"fraction\":20,\"fractionLabel\":\"sold \",\"fractionScale\":\"20T\"}]",
 		"visible": true,
 
 		"opts" : {
@@ -201,7 +202,9 @@
 					},
 					"color": {
 					  "desc": "Colour",
-					  "type": "String"
+					  "type": "String",
+					  "options": [{"key":"Neutral","text":"Neutral InfoTile value color"},{"key":"Good","text":"Good InfoTile value color"},{"key":"Critical","text":"Critical InfoTile value color"},{"key":"Error","text":"Error InfoTile value color"}],
+					  "apsControl": "combobox"
 					},
 					"formattedLabel": {
 					  "desc": "Formatted Label",

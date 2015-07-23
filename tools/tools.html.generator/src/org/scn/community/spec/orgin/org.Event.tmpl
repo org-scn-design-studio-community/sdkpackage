@@ -1,0 +1,30 @@
+   "%NAME%edKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "%TITLE%ed Key",
+			"cat" : "Internal",
+			"tooltip" : "%NAME_CAPITAL%ed Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":false
+		}
+	},
+	"on%NAME_CAPITAL%ed": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On %TITLE%ed",
+            "cat": "Events",
+            "tooltip": "Event triggered on %DESCRIPTION%",
+            "noAps":true,
+            "noZtl":true
+        }
+    }

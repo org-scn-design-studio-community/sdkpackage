@@ -1,0 +1,78 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/DeltaMicroChart.control */
+/* ============================================= */
+
+.sapSuiteDmc {
+    font-family: @sapUiFontHeaderFamily;
+	font-weight: @sapUiFontHeaderWeight; 
+	font-color: @sapUiExtraDarkText;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteDmc.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteDmc.Auto,
+.sapSuiteDmc.M,
+.sapSuiteDmc.L {
+	font-size: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteDmc.Auto,
+.sapSuiteDmc.S,
+.sapSuiteDmc.XS {
+	font-size: @sapMFontSmallSize;
+}
+
+.sap-desktop .sapSuiteDmc:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: .0625rem;
+}
+
+.sapSuiteDmc:focus:not([tabindex]) {
+	outline: none;
+}
+
+
+.sapSuiteDmcDelta.Neutral {
+    color: @sapUiLightText;
+}
+
+.sapSuiteDmcDelta.Good {
+    color: @sapUiPositiveText;
+}
+
+.sapSuiteDmcDelta.Critical {
+    color: @sapUiCriticalText;
+}
+
+.sapSuiteDmcDelta.Error {
+    color: @sapUiNegativeText;
+}
+
+.sapSuiteDmcBarDeltaInt.Neutral {
+    background-color: @sapUiChartNeutral;
+    border-color: @sapUiChartNeutral;
+}
+
+.sapSuiteDmcBarDeltaInt.Good {
+    background-color: @sapUiChartGood;
+    border-color: @sapUiChartGood;
+}
+
+.sapSuiteDmcBarDeltaInt.Critical {
+    background-color: @sapUiChartCritical;
+    border-color: @sapUiChartCritical;
+}
+
+.sapSuiteDmcBarDeltaInt.Error {
+    background-color: @sapUiChartBad;
+    border-color: @sapUiChartBad;
+}
+
+.sapSuiteDmcBarDeltaStripe {
+	background-color: @sapUiDarkestBG;
+}
+
+.sapSuiteDmcBarInternal {
+	background-color: @sapUiDarkBG;
+}

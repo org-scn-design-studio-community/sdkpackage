@@ -1,0 +1,229 @@
+{
+
+	"title" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Title",
+			"cat" : "Display",
+			"tooltip" : "The node title.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"isTitleClickable" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Is Title Clickable",
+			"cat" : "Display",
+			"tooltip" : "Specifies if the node title is clickable.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"laneId" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Lane Id",
+			"cat" : "Display",
+			"tooltip" : "Specifies the assignment of the node to the respective lane.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"nodeId" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Node Id",
+			"cat" : "Display",
+			"tooltip" : ">",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"state" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Neutral",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "ProcessFlowNodeState",
+			"ztlFunction": "",
+			"desc" : "State",
+			"cat" : "Display",
+			"tooltip" : "State of the node.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Positive",
+					"text" : "Positive status for a Created document: document is done, finished, solved "
+				},
+				{
+					"key" : "Negative",
+					"text" : "Negative status for a Created document: a document has an issue"
+				},
+				{
+					"key" : "Planned",
+					"text" : "Planned status for a document: a document is planned"
+				},
+				{
+					"key" : "Neutral",
+					"text" : "Neutral status for a Created document: document is in progress "
+				},
+				{
+					"key" : "PlannedNegative",
+					"text" : "Planned document has an issue"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"children": {
+		"template" : "StringArray",
+		"type":"String",
+		"origType": "string[]";
+		"value":"",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"StringArray",
+	        "ztlFunction":"",
+	         
+			"desc" : "Children",
+			"cat" : "Display",
+			"tooltip" : "Defines an array of children of the node.",
+			"apsControl" : "array",
+			"arrayMode":"StringArray",
+			
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"titleAbbreviation" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Title Abbreviation",
+			"cat" : "Display",
+			"tooltip" : "Title abbreviation is used in the compact mode.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"stateText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "State Text",
+			"cat" : "Display",
+			"tooltip" : "Description of the state, for example 'Status OK'.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"texts": {
+		"template" : "StringArray",
+		"type":"String",
+		"origType": "string[]";
+		"value":"",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"StringArray",
+	        "ztlFunction":"",
+	         
+			"desc" : "Texts",
+			"cat" : "Display",
+			"tooltip" : "The property contains the additional texts on the node. The expected type is array of strings. One array must not contain more than two strings. Additional strings in the array will be ignored.",
+			"apsControl" : "array",
+			"arrayMode":"StringArray",
+			
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"highlighted" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Highlighted",
+			"cat" : "Display",
+			"tooltip" : "The parameter defines if the node should be displayed in highlighted state.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"focused" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Focused",
+			"cat" : "Display",
+			"tooltip" : "The parameter defines if the node should be displayed in focus state.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"tag" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Tag",
+			"cat" : "Display",
+			"tooltip" : "The user-defined object which is returned back to the user by a node click event.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

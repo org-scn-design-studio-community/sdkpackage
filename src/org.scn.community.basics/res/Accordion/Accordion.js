@@ -83,6 +83,23 @@ Accordion = {
 						lNewElement = that._createElement(owner, i, element.key, element.text, element.url, element.parentKey, element.leaf);	
 					} else {
 						lNewElement = that._oElementsTemp[element.key];
+						if(lNewElement._oLabel) {
+							lNewElement._oLabel.setText(element.text);
+						} else {
+							lNewElement.setTitle(element.text);
+							lNewElement.setTooltip(element.text);	
+						}
+						if(lNewElement._oImage) {
+							var withImage = that.getWithImage();
+							if(withImage) {
+								var iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getDefaultImage(), element.url, "Accordion.png");
+								lNewElement._oImage.setSrc(iImageUrl);
+								lNewElement._oImage.setAlt(element.text);
+								lNewElement._oImage.setTooltip(element.text);
+							} else {
+								lNewElement._oImage.setSrc("");
+							}
+						}
 					}
 					
 					lNewElement.index = that._oElementsArray.length;
@@ -250,15 +267,7 @@ Accordion = {
 	_createElement: function (owner, index, iElementKey, iElementText, iImageUrl, iParentKey, isLeaf) {
 		var that = owner;
 		
-		// in case starts with http, keep as is 
-		if(iImageUrl === undefined || iImageUrl.indexOf("http") == 0) {
-			// no nothing
-		} else {
-			// in case of repository, add the prefix from repository
-			if(iImageUrl != "" && that._pImagePrefix != undefined && that._pImagePrefix != ""){
-				iImageUrl = that._pImagePrefix + iImageUrl;
-			}
-		}
+		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getDefaultImage(), iImageUrl, "Accordion.png");
 		
 		var lElement = undefined;
 		
@@ -333,6 +342,7 @@ Accordion = {
 					{left: "4px", top: topImage}
 			);
 		}
+		oLayout._oImage = oImage;
 
 		var oLabel = new sap.ui.commons.Label({
 			text: iText
@@ -345,6 +355,7 @@ Accordion = {
 				oLabel,
 				{left: leftText, top: topText}
 		);
+		oLayout._oLabel = oLabel;
 		
 		if(that.getSelectedKey() == iKey) {
 			oLayout.addStyleClass("scn-pack-Accordion-SelectedValue");

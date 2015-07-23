@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>BulletChartData</name>
+	<documentation>Thresholds data holder.</documentation>
+
+	<baseType>sap.ui.core/Element</baseType>
+	<properties>
+		<property group="Misc" name="value" type="sap.ui.core/float" defaultValue="0">
+			<documentation>The actual value.</documentation>
+		</property>
+		<property group="Misc" name="color" type="InfoTileValueColor" defaultValue="Neutral">
+			<documentation>The semantic color of the actual value.</documentation>
+		</property>
+	</properties>
+</control>

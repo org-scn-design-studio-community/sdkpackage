@@ -57,6 +57,9 @@ public class UI5Type {
 				readNextTag(reader);
 				
 				this.docu = reader.getText();
+				this.docu = this.docu.replace("\"", "'");
+				this.docu = this.docu.replace("\r", "");
+				this.docu = this.docu.replace("\n", " ");
 			}
 		} while (hasNextTag(reader));
 	}

@@ -18,12 +18,13 @@ import org.scn.community.htmlgenerator.Property;
 import org.scn.community.spec.SpecHelper;
 import org.scn.community.utils.Helpers;
 
-public class UI5Control {
+public class UI5Control extends UI5Reader {
 
 	private File ui5spec;
 	private String name;
 	
 	private ArrayList<UI5Property> properties = new ArrayList<UI5Property>();
+	private ArrayList<UI5Event> events = new ArrayList<UI5Event>();
 	
 	public UI5Control (File spec) {
 		this.ui5spec = spec;
@@ -66,6 +67,9 @@ public class UI5Control {
 			} else if (localName.equals("aggregation")) {
 				currentProperty = new UI5Property(reader, this.name.replace(".control", ""), ui5spec);
 				this.properties.add(currentProperty);
+			} else if (localName.equals("event")) {
+				UI5Event currentEvent = new UI5Event(reader, this.name.replace(".control", ""), ui5spec);
+				this.events.add(currentEvent);
 			}
 		} while (hasNextTag(reader));
 	}
@@ -74,29 +78,12 @@ public class UI5Control {
 		// TODO Auto-generated method stub
 	}
 
-	private boolean hasNextTag(XMLStreamReader reader) {
-		try {
-			return reader.hasNext();
-		} catch (XMLStreamException e) {
-			// TODO Auto-generated catch block
-	
-		}
-		return false;
-	}
-	
 	@Override
 	public String toString() {
 		return "UI5Component \r\n\t[\r\n\t\tui5spec=" + ui5spec + ", \r\n\t\tname=" + name
 				+ ", \r\n\t\tproperties=" + properties + "]";
 	}
-	private void readNextTag(XMLStreamReader reader) {
-		try {
-			reader.nextTag();
-		} catch (XMLStreamException e) {
-			// TODO Auto-generated catch block
-	
-		}
-	}
+
 	public String[] toSpec20() {
 		String spec = "{\r\n";
 		String specDs = "{\r\n";
@@ -129,6 +116,27 @@ public class UI5Control {
 			Helpers.string2File(newSpec, specDs);
 		}
 		
+		String specEvents = "{\r\n";
+		for (UI5Event ui5Event : events) {
+			if(!ui5Event.isDeprecated()) {
+				String[] propSpec = ui5Event.toSpec20("");
+				
+				specEvents = specEvents + "\r\n" + propSpec[0] + ",";
+			}
+		}
+		if(specEvents.length() > 3) {
+			specEvents = specEvents.substring(0, specEvents.length()-1);	
+		}
+		specEvents = specEvents + "\r\n}";
+		
+		if(!specEvents.equals("{\r\n\r\n}")) {
+			newSpec = newSpec.replace(".ds.spec.json", ".events.spec.json");
+			specFile = new File(newSpec);
+			if(!specFile.exists()) {
+				Helpers.string2File(newSpec, specEvents);
+			}
+		}
+
 		String ztl = this.generateZtl();
 		
 		return new String[] {spec, ztl};
@@ -159,6 +167,7 @@ public class UI5Control {
 			genProperties.add(property);
 		}
 
+		// default
 		SpecHelper helper = new SpecHelper(this.name, this.ui5spec);
 		String newSpec = ui5spec.getAbsolutePath().replace(".control", ".spec.json").replace("\\xml", "\\control");
 		String jsonSpecContent = Helpers.file2String(newSpec);
@@ -167,10 +176,38 @@ public class UI5Control {
 		try {
 			jsonSpec = new JSONObject(jsonSpecContent);
 		} catch (JSONException e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException(newSpec + "\r\n" + e);
+		}
+		
+		helper.readSpecification(genProperties, jsonSpec);
+		
+		// ds
+		newSpec = ui5spec.getAbsolutePath().replace(".control", ".ds.spec.json").replace("\\xml", "\\control");
+		jsonSpecContent = Helpers.file2String(newSpec);
+		
+		jsonSpec = null;
+		try {
+			jsonSpec = new JSONObject(jsonSpecContent);
+		} catch (JSONException e) {
+			throw new RuntimeException(newSpec + "\r\n" + e);
 		}
 
 		helper.readSpecification(genProperties, jsonSpec);
+		
+		// events
+		newSpec = ui5spec.getAbsolutePath().replace(".control", ".events.spec.json").replace("\\xml", "\\control");
+		jsonSpecContent = Helpers.file2String(newSpec);
+		
+		if(jsonSpecContent != null) {
+			jsonSpec = null;
+			try {
+				jsonSpec = new JSONObject(jsonSpecContent);
+			} catch (JSONException e) {
+				throw new RuntimeException(newSpec + "\r\n" + e);
+			}
+
+			helper.readSpecification(genProperties, jsonSpec);
+		}
 		
 		String template = Helpers.resource2String(ParamSimpleSpec.class, "ztl_root.ztl.tmlp");
 		
@@ -197,7 +234,10 @@ public class UI5Control {
 		for (UI5Property ui5property : this.properties) {
 			String typeChild = ui5property.getType();
 			
-			if(typeChild.equals("String") || typeChild.equals("int") || typeChild.equals("Choice") || typeChild.equals("float")) {
+			if(typeChild.equals("String") 
+					|| typeChild.equals("boolean") || typeChild.equals("int") || typeChild.equals("float") 
+					|| typeChild.equals("Url") || typeChild.equals("Color") || typeChild.equals("Choice") 
+					|| typeChild.equals("StringArray")) {
 				// those we accept in single array
 			} else {
 				return true;

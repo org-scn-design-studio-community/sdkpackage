@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>FeedTile</name>
+	<documentation>This control displays news feeds.</documentation>
+	<baseType>sap.ui.core/Control</baseType>
+	<developmentState state="deprecated" since="1.25">This control has been deprecated in favor of new sap.suite.ui.commons.GenericTile.</developmentState>
+	<properties>
+		<property group="Misc" name="displayDuration" type="sap.ui.core/int" defaultValue="5">
+			<documentation>The length of time in seconds the control displays each  feed item. Default value is 5 seconds.</documentation>
+		</property>
+		<property group="Behavior" name="displayArticleImage" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>To display article Image or not. If it is true, the article Image will be displayed based on precedence. If it is false, the default image will be displayed.</documentation>
+		</property>
+		<property group="Misc" name="source" type="sap.ui.core/string">
+			<documentation>The source of the feed item.</documentation>
+		</property>
+		<property group="Misc" name="defaultImages" type="sap.ui.core/URI[]">
+			<documentation>A list of default images that is cycled by the control when no image is available for a feed item or when no feed items exist. After a random image is displayed first time, control cycles through this list of images.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event fired when the user clicks on the control.</documentation>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..n" name="items" type="FeedItem">
+			<documentation>The feed items the control cycles through.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

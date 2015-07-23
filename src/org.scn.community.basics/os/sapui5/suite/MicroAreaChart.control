@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>MicroAreaChart</name>
+	<documentation>This control displays the history of values as a line mini chart or an area mini chart. </documentation>
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="width" type="sap.ui.core/CSSSize" defaultValue="200px">
+			<documentation>The width of the chart.</documentation>
+		</property>
+		<property group="Misc" name="height" type="sap.ui.core/CSSSize" defaultValue="190px">
+			<documentation>The height of the chart.</documentation>
+		</property>
+		<property group="Misc" name="maxXValue" type="sap.ui.core/float">
+			<documentation>If this property is set it indicates the value X axis ends with.</documentation>
+		</property>
+		<property group="Misc" name="minXValue" type="sap.ui.core/float">
+			<documentation>If this property is set it indicates the value X axis starts with.</documentation>
+		</property>
+		<property group="Misc" name="maxYValue" type="sap.ui.core/float">
+			<documentation>If this property is set it indicates the value Y axis ends with.</documentation>
+		</property>
+		<property group="Misc" name="minYValue" type="sap.ui.core/float">
+			<documentation>If this property is set it indicates the value Y axis starts with.</documentation>
+		</property>
+		<property group="Appearance" name="view" type="MicroAreaChartView" defaultValue="Normal" since="1.25">
+			<documentation>The view of the chart.</documentation>
+		</property>
+		<property group="Misc" name="colorPalette" type="sap.ui.core/string[]" defaultValue="[]" since="1.29">
+			<documentation>The color palette for the chart. If this property is set, semantic colors defined in MicroAreaChartItem are ignored. Colors from the palette are assigned to each line consequentially. When all the palette colors are used, assignment of the colors begins from the first palette color.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the micro area chart.</documentation>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..1" name="chart" type="MicroAreaChartItem">
+			<documentation>The configuration of the actual values line. The color property defines the color of the line. Points are rendered in the same sequence as in this aggregation.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="maxThreshold" type="MicroAreaChartItem">
+			<documentation>The configuration of the max threshold area. The color property defines the color of the area above the max threshold line. Points are rendered in the same sequence as in this aggregation.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="innerMaxThreshold" type="MicroAreaChartItem">
+			<documentation>The configuration of the upper line of the inner threshold area. The color property defines the color of the area between inner thresholds. For rendering of the inner threshold area, both innerMaxThreshold and innerMinThreshold aggregations must be defined. Points are rendered in the same sequence as in this aggregation.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="innerMinThreshold" type="MicroAreaChartItem">
+			<documentation>The configuration of the bottom line of the inner threshold area. The color property is ignored. For rendering of the inner threshold area, both innerMaxThreshold and innerMinThreshold aggregations must be defined. Points are rendered in the same sequence as in this aggregation.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="minThreshold" type="MicroAreaChartItem">
+			<documentation>The configuration of the min threshold area. The color property defines the color of the area below the min threshold line. Points are rendered in the same sequence as in this aggregation.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="target" type="MicroAreaChartItem">
+			<documentation>The configuration of the target values line. The color property defines the color of the line. Points are rendered in the same sequence as in this aggregation.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="firstXLabel" type="MicroAreaChartLabel">
+			<documentation>The label on X axis for the first point of the chart.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="firstYLabel" type="MicroAreaChartLabel">
+			<documentation>The label on Y axis for the first point of the chart.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="lastXLabel" type="MicroAreaChartLabel">
+			<documentation>The label on X axis for the last point of the chart.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="lastYLabel" type="MicroAreaChartLabel">
+			<documentation>The label on Y axis for the last point of the chart.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="maxLabel" type="MicroAreaChartLabel">
+			<documentation>The label for the maximum point of the chart.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="minLabel" type="MicroAreaChartLabel">
+			<documentation>The label for the minimum point of the chart.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..n" name="lines" type="MicroAreaChartItem" since="1.29">
+			<documentation>The set of lines.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

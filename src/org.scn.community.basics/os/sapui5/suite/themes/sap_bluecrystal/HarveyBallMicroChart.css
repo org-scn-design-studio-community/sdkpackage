@@ -1,0 +1,110 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/HarveyBallMicroChart.control */
+/* ============================================= */
+
+.sap-desktop .suiteHBMC:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: .0625rem;
+}
+
+.suiteHBMC:focus:not([tabindex]) {
+	outline: none;
+}
+
+.suiteHBMCValSclCnt.Good {
+	color: @sapUiPositiveText;	
+}
+
+.suiteHBMCValSclCnt.Critical {
+	color: @sapUiCriticalText;	
+}
+
+.suiteHBMCValSclCnt.Error {
+	color: @sapUiNegativeText;	
+}
+
+.suiteHBMCTtlSclCnt,
+.suiteHBMCValSclCnt.CP,
+.suiteHBMCValSclCnt.Neutral {
+	color: darken(@sapUiChartNeutral,30);
+}
+
+.suiteHBMCValSclCnt.CP > .suiteHBMCVal,
+.suiteHBMCValSclCnt.Neutral > .suiteHBMCVal {
+	color: darken(@sapUiChartNeutral, 10);
+}
+
+.suiteHBMCSgmnt.Error {
+	fill: @sapUiChartBad;
+}
+
+.suiteHBMCSgmnt.Neutral {
+	fill: @sapUiChartNeutral;	
+}
+
+.suiteHBMCSgmnt.Good {
+	fill: @sapUiChartGood;	
+}
+
+.suiteHBMCSgmnt.Critical {
+	fill: @sapUiChartCritical;	
+}
+
+.suiteHBMCSgmnt {
+	stroke: @sapUiLightestBorder;
+	stroke-width: 1.5;
+}
+
+.suiteHBMCSBall {
+	fill: lighten(@sapUiChartNeutral, 30);
+}
+
+/* Common scale css*/
+.sapUiMedia-Std-Desktop .suiteHBMCTtlScale.Auto,
+.sapUiMedia-Std-Tablet .suiteHBMCTtlScale.Auto,
+.suiteHBMCTtlScale.M {
+	font-size: @sapMFontMediumSize;
+	line-height: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Desktop .suiteHBMCValScale.Auto,
+.sapUiMedia-Std-Tablet .suiteHBMCValScale.Auto,
+.suiteHBMCValScale.M {
+	font-size: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Phone .suiteHBMCTtlScale.Auto,
+.suiteHBMCTtlScale.S,
+.suiteHBMCTtlScale.XS,
+
+.sapUiMedia-Std-Phone .suiteHBMCValScale.Auto,
+.suiteHBMCValScale.S,
+.suiteHBMCValScale.XS {
+	font-size: @sapMFontSmallSize;
+	line-height: @sapMFontSmallSize;
+}
+
+.sapUiMedia-Std-Phone .suiteHBMCTtl.Auto,
+.suiteHBMCTtl.S,
+.suiteHBMCTtl.XS {
+	font-size: @sapMFontMediumSize;
+	line-height: @sapMFontMediumSize;
+	height: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Desktop .suiteHBMCTtl.Auto,
+.sapUiMedia-Std-Tablet .suiteHBMCTtl.Auto,
+.suiteHBMCTtl.M {
+	font-size: @sapMFontLargeSize;
+	height: @sapMFontLargeSize;
+}
+
+html[data-sap-ui-os^="bb"] {
+	.sapUiMedia-Std-Desktop .suiteHBMCTtl.Auto,
+	.sapUiMedia-Std-Tablet .suiteHBMCTtl.Auto,
+	.suiteHBMCTtl.M {
+		line-height: @sapMFontLargeSize;
+	}
+}

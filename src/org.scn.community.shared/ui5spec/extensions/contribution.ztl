@@ -194,9 +194,9 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	*}
 	
 	/**
-	 * Checks Existence of Color for Actual Key<br/>
+	 * Returns value of Color for Actual Key<br/>
 	 */
-	boolean hasActualColor (
+	String getActualColor (
 			/**/ String key
 			) 
 	{*
@@ -206,16 +206,16 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 
 		var elementsJson = JSON.parse(this.actual);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -247,6 +247,18 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	int getContentWidth() {*
 		return this.contentWidth;
 	*}
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/**
 	 * Sets Delta Value Label Property
@@ -330,6 +342,15 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	 */	
 	org_scn_community_shared_BulletChartModeEnumfield getMode() {*
 		return this.mode;
+	*}
+
+
+
+	/**
+	 * Gets Pressed Key Property
+	 */	
+	String getPressedKey() {*
+		return this.pressedKey;
 	*}
 
 	/**
@@ -731,9 +752,9 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 	*}
 	
 	/**
-	 * Checks Existence of Color for Threshold Key<br/>
+	 * Returns value of Color for Threshold Key<br/>
 	 */
-	boolean hasThresholdColor (
+	String getThresholdColor (
 			/**/ String key
 			) 
 	{*
@@ -743,19 +764,117 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 
 		var elementsJson = JSON.parse(this.thresholds);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
+
+	/**
+	 * Sets Use Manual 'Actual' Property
+	 */	
+	void setUseActual( /**Use Manual 'Actual'*/ boolean useActual){*
+		this.useActual = useActual;
+	*}
+
+	/**
+	 * Gets Use Manual 'Actual' Property
+	 */	
+	boolean isUseActual() {*
+		return this.useActual;
+	*}
+
+	/**
+	 * Sets Use Manual 'Content Width' Property
+	 */	
+	void setUseContentWidth( /**Use Manual 'Content Width'*/ boolean useContentWidth){*
+		this.useContentWidth = useContentWidth;
+	*}
+
+	/**
+	 * Gets Use Manual 'Content Width' Property
+	 */	
+	boolean isUseContentWidth() {*
+		return this.useContentWidth;
+	*}
+
+	/**
+	 * Sets Use Manual 'Forecast Value' Property
+	 */	
+	void setUseForecastValue( /**Use Manual 'Forecast Value'*/ boolean useForecastValue){*
+		this.useForecastValue = useForecastValue;
+	*}
+
+	/**
+	 * Gets Use Manual 'Forecast Value' Property
+	 */	
+	boolean isUseForecastValue() {*
+		return this.useForecastValue;
+	*}
+
+	/**
+	 * Sets Use Manual 'Max Value' Property
+	 */	
+	void setUseMaxValue( /**Use Manual 'Max Value'*/ boolean useMaxValue){*
+		this.useMaxValue = useMaxValue;
+	*}
+
+	/**
+	 * Gets Use Manual 'Max Value' Property
+	 */	
+	boolean isUseMaxValue() {*
+		return this.useMaxValue;
+	*}
+
+	/**
+	 * Sets Use Manual 'Min Value' Property
+	 */	
+	void setUseMinValue( /**Use Manual 'Min Value'*/ boolean useMinValue){*
+		this.useMinValue = useMinValue;
+	*}
+
+	/**
+	 * Gets Use Manual 'Min Value' Property
+	 */	
+	boolean isUseMinValue() {*
+		return this.useMinValue;
+	*}
+
+	/**
+	 * Sets Use Manual 'Target Value' Property
+	 */	
+	void setUseTargetValue( /**Use Manual 'Target Value'*/ boolean useTargetValue){*
+		this.useTargetValue = useTargetValue;
+	*}
+
+	/**
+	 * Gets Use Manual 'Target Value' Property
+	 */	
+	boolean isUseTargetValue() {*
+		return this.useTargetValue;
+	*}
+
+	/**
+	 * Sets Use Manual 'Thresholds' Property
+	 */	
+	void setUseThresholds( /**Use Manual 'Thresholds'*/ boolean useThresholds){*
+		this.useThresholds = useThresholds;
+	*}
+
+	/**
+	 * Gets Use Manual 'Thresholds' Property
+	 */	
+	boolean isUseThresholds() {*
+		return this.useThresholds;
+	*}
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
@@ -796,6 +915,22 @@ class org.scn.community.shared.ui5.BulletChartData extends org.scn.community.sha
 	 */	
 	org_scn_community_shared_InfoTileValueColorEnumfield getColor() {*
 		return this.color;
+	*}
+
+
+
+	/**
+	 * Sets Use Manual 'Value' Property
+	 */	
+	void setUseValue( /**Use Manual 'Value'*/ boolean useValue){*
+		this.useValue = useValue;
+	*}
+
+	/**
+	 * Gets Use Manual 'Value' Property
+	 */	
+	boolean isUseValue() {*
+		return this.useValue;
 	*}
 
 	/**
@@ -859,6 +994,10 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 	int getContentWidth() {*
 		return this.contentWidth;
 	*}
+
+
+
+
 
 	/**
 	 * Sets Formatted Label Property
@@ -1137,9 +1276,9 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 	*}
 	
 	/**
-	 * Checks Existence of Color for Item Key<br/>
+	 * Returns value of Color for Item Key<br/>
 	 */
-	boolean hasItemColor (
+	String getItemColor (
 			/**/ String key
 			) 
 	{*
@@ -1149,16 +1288,16 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 
 		var elementsJson = JSON.parse(this.items);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the FormattedLabel for Item keys<br/>
@@ -1238,9 +1377,9 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 	*}
 	
 	/**
-	 * Checks Existence of FormattedLabel for Item Key<br/>
+	 * Returns value of FormattedLabel for Item Key<br/>
 	 */
-	boolean hasItemFormattedLabel (
+	String getItemFormattedLabel (
 			/**/ String key
 			) 
 	{*
@@ -1250,16 +1389,16 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 
 		var elementsJson = JSON.parse(this.items);
 
-		var exists = false;
+		var value = undefined;
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].formattedLabel;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 	/**
@@ -1341,9 +1480,9 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 	*}
 	
 	/**
-	 * Checks Existence of FractionLabel for Item Key<br/>
+	 * Returns value of FractionLabel for Item Key<br/>
 	 */
-	boolean hasItemFractionLabel (
+	String getItemFractionLabel (
 			/**/ String key
 			) 
 	{*
@@ -1353,16 +1492,16 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 
 		var elementsJson = JSON.parse(this.items);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].fractionLabel;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the FractionScale for Item keys<br/>
@@ -1420,9 +1559,9 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 	*}
 	
 	/**
-	 * Checks Existence of FractionScale for Item Key<br/>
+	 * Returns value of FractionScale for Item Key<br/>
 	 */
-	boolean hasItemFractionScale (
+	String getItemFractionScale (
 			/**/ String key
 			) 
 	{*
@@ -1432,19 +1571,28 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 
 		var elementsJson = JSON.parse(this.items);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].fractionScale;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
+
+
+
+	/**
+	 * Gets Pressed Key Property
+	 */	
+	String getPressedKey() {*
+		return this.pressedKey;
+	*}
 
 	/**
 	 * Sets Show Fractions Property
@@ -1544,6 +1692,62 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 		return this.totalScale;
 	*}
 
+	/**
+	 * Sets Use Manual 'Colour Palette' Property
+	 */	
+	void setUseColorPalette( /**Use Manual 'Colour Palette'*/ boolean useColorPalette){*
+		this.useColorPalette = useColorPalette;
+	*}
+
+	/**
+	 * Gets Use Manual 'Colour Palette' Property
+	 */	
+	boolean isUseColorPalette() {*
+		return this.useColorPalette;
+	*}
+
+	/**
+	 * Sets Use Manual 'Content Width' Property
+	 */	
+	void setUseContentWidth( /**Use Manual 'Content Width'*/ boolean useContentWidth){*
+		this.useContentWidth = useContentWidth;
+	*}
+
+	/**
+	 * Gets Use Manual 'Content Width' Property
+	 */	
+	boolean isUseContentWidth() {*
+		return this.useContentWidth;
+	*}
+
+	/**
+	 * Sets Use Manual 'Items' Property
+	 */	
+	void setUseItems( /**Use Manual 'Items'*/ boolean useItems){*
+		this.useItems = useItems;
+	*}
+
+	/**
+	 * Gets Use Manual 'Items' Property
+	 */	
+	boolean isUseItems() {*
+		return this.useItems;
+	*}
+
+	/**
+	 * Sets Use Manual 'Total' Property
+	 */	
+	void setUseTotal( /**Use Manual 'Total'*/ boolean useTotal){*
+		this.useTotal = useTotal;
+	*}
+
+	/**
+	 * Gets Use Manual 'Total' Property
+	 */	
+	boolean isUseTotal() {*
+		return this.useTotal;
+	*}
+
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
@@ -1584,6 +1788,8 @@ class org.scn.community.shared.ui5.HarveyBallMicroChartItem extends org.scn.comm
 	org_scn_community_shared_InfoTileValueColorEnumfield getColor() {*
 		return this.color;
 	*}
+
+
 
 	/**
 	 * Sets Formatted Label Property
@@ -1639,6 +1845,20 @@ class org.scn.community.shared.ui5.HarveyBallMicroChartItem extends org.scn.comm
 	 */	
 	String getFractionScale() {*
 		return this.fractionScale;
+	*}
+
+	/**
+	 * Sets Use Manual 'Fraction' Property
+	 */	
+	void setUseFraction( /**Use Manual 'Fraction'*/ boolean useFraction){*
+		this.useFraction = useFraction;
+	*}
+
+	/**
+	 * Gets Use Manual 'Fraction' Property
+	 */	
+	boolean isUseFraction() {*
+		return this.useFraction;
 	*}
 
 
@@ -1872,9 +2092,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for Chart Key<br/>
+	 * Returns value of Color for Chart Key<br/>
 	 */
-	boolean hasChartColor (
+	String getChartColor (
 			/**/ String key
 			) 
 	{*
@@ -1884,16 +2104,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.chart);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -1924,6 +2144,38 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	int getContentWidth() {*
 		return this.contentWidth;
 	*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/** Adds a root element containing key [String], color [String], label [String].
 
@@ -2112,9 +2364,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for FirstXLabel Key<br/>
+	 * Returns value of Color for FirstXLabel Key<br/>
 	 */
-	boolean hasFirstXLabelColor (
+	String getFirstXLabelColor (
 			/**/ String key
 			) 
 	{*
@@ -2124,16 +2376,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.firstXLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Label for FirstXLabel keys<br/>
@@ -2191,9 +2443,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Label for FirstXLabel Key<br/>
+	 * Returns value of Label for FirstXLabel Key<br/>
 	 */
-	boolean hasFirstXLabelLabel (
+	String getFirstXLabelLabel (
 			/**/ String key
 			) 
 	{*
@@ -2203,16 +2455,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.firstXLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].label;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -2404,9 +2656,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for FirstYLabel Key<br/>
+	 * Returns value of Color for FirstYLabel Key<br/>
 	 */
-	boolean hasFirstYLabelColor (
+	String getFirstYLabelColor (
 			/**/ String key
 			) 
 	{*
@@ -2416,16 +2668,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.firstYLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Label for FirstYLabel keys<br/>
@@ -2483,9 +2735,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Label for FirstYLabel Key<br/>
+	 * Returns value of Label for FirstYLabel Key<br/>
 	 */
-	boolean hasFirstYLabelLabel (
+	String getFirstYLabelLabel (
 			/**/ String key
 			) 
 	{*
@@ -2495,16 +2747,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.firstYLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].label;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -2727,9 +2979,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for InnerMaxThreshold Key<br/>
+	 * Returns value of Color for InnerMaxThreshold Key<br/>
 	 */
-	boolean hasInnerMaxThresholdColor (
+	String getInnerMaxThresholdColor (
 			/**/ String key
 			) 
 	{*
@@ -2739,16 +2991,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.innerMaxThreshold);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -2970,9 +3222,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for InnerMinThreshold Key<br/>
+	 * Returns value of Color for InnerMinThreshold Key<br/>
 	 */
-	boolean hasInnerMinThresholdColor (
+	String getInnerMinThresholdColor (
 			/**/ String key
 			) 
 	{*
@@ -2982,16 +3234,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.innerMinThreshold);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -3182,9 +3434,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for LastXLabel Key<br/>
+	 * Returns value of Color for LastXLabel Key<br/>
 	 */
-	boolean hasLastXLabelColor (
+	String getLastXLabelColor (
 			/**/ String key
 			) 
 	{*
@@ -3194,16 +3446,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.lastXLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Label for LastXLabel keys<br/>
@@ -3261,9 +3513,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Label for LastXLabel Key<br/>
+	 * Returns value of Label for LastXLabel Key<br/>
 	 */
-	boolean hasLastXLabelLabel (
+	String getLastXLabelLabel (
 			/**/ String key
 			) 
 	{*
@@ -3273,16 +3525,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.lastXLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].label;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -3474,9 +3726,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for LastYLabel Key<br/>
+	 * Returns value of Color for LastYLabel Key<br/>
 	 */
-	boolean hasLastYLabelColor (
+	String getLastYLabelColor (
 			/**/ String key
 			) 
 	{*
@@ -3486,16 +3738,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.lastYLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Label for LastYLabel keys<br/>
@@ -3553,9 +3805,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Label for LastYLabel Key<br/>
+	 * Returns value of Label for LastYLabel Key<br/>
 	 */
-	boolean hasLastYLabelLabel (
+	String getLastYLabelLabel (
 			/**/ String key
 			) 
 	{*
@@ -3565,16 +3817,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.lastYLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].label;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -3766,9 +4018,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for MaxLabel Key<br/>
+	 * Returns value of Color for MaxLabel Key<br/>
 	 */
-	boolean hasMaxLabelColor (
+	String getMaxLabelColor (
 			/**/ String key
 			) 
 	{*
@@ -3778,16 +4030,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.maxLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Label for MaxLabel keys<br/>
@@ -3845,9 +4097,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Label for MaxLabel Key<br/>
+	 * Returns value of Label for MaxLabel Key<br/>
 	 */
-	boolean hasMaxLabelLabel (
+	String getMaxLabelLabel (
 			/**/ String key
 			) 
 	{*
@@ -3857,16 +4109,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.maxLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].label;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -4089,9 +4341,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for MaxThreshold Key<br/>
+	 * Returns value of Color for MaxThreshold Key<br/>
 	 */
-	boolean hasMaxThresholdColor (
+	String getMaxThresholdColor (
 			/**/ String key
 			) 
 	{*
@@ -4101,16 +4353,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.maxThreshold);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -4329,9 +4581,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for MinLabel Key<br/>
+	 * Returns value of Color for MinLabel Key<br/>
 	 */
-	boolean hasMinLabelColor (
+	String getMinLabelColor (
 			/**/ String key
 			) 
 	{*
@@ -4341,16 +4593,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.minLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 	/**
 	 * Sets the Label for MinLabel keys<br/>
@@ -4408,9 +4660,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Label for MinLabel Key<br/>
+	 * Returns value of Label for MinLabel Key<br/>
 	 */
-	boolean hasMinLabelLabel (
+	String getMinLabelLabel (
 			/**/ String key
 			) 
 	{*
@@ -4420,16 +4672,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.minLabel);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].label;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -4652,9 +4904,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for MinThreshold Key<br/>
+	 * Returns value of Color for MinThreshold Key<br/>
 	 */
-	boolean hasMinThresholdColor (
+	String getMinThresholdColor (
 			/**/ String key
 			) 
 	{*
@@ -4664,16 +4916,16 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.minThreshold);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
 
@@ -4703,6 +4955,15 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	 */	
 	float getMinYValue() {*
 		return this.minYValue;
+	*}
+
+
+
+	/**
+	 * Gets Pressed Key Property
+	 */	
+	String getPressedKey() {*
+		return this.pressedKey;
 	*}
 
 	/** Adds an element containing parentKey [String], key [String], x [float], y [float] properties.
@@ -4923,9 +5184,9 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Checks Existence of Color for Target Key<br/>
+	 * Returns value of Color for Target Key<br/>
 	 */
-	boolean hasTargetColor (
+	String getTargetColor (
 			/**/ String key
 			) 
 	{*
@@ -4935,18 +5196,270 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 
 		var elementsJson = JSON.parse(this.target);
 
-		var exists = false;
+		var value = "";
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
-				exists = true;
+				value = elementsJson[i].color;
 				break;
 			}
 		}
 		
-		return exists;
+		return value;
 	*}
 
+
+	/**
+	 * Sets Use Manual 'Chart' Property
+	 */	
+	void setUseChart( /**Use Manual 'Chart'*/ boolean useChart){*
+		this.useChart = useChart;
+	*}
+
+	/**
+	 * Gets Use Manual 'Chart' Property
+	 */	
+	boolean isUseChart() {*
+		return this.useChart;
+	*}
+
+	/**
+	 * Sets Use Manual 'Content Height' Property
+	 */	
+	void setUseContentHeight( /**Use Manual 'Content Height'*/ boolean useContentHeight){*
+		this.useContentHeight = useContentHeight;
+	*}
+
+	/**
+	 * Gets Use Manual 'Content Height' Property
+	 */	
+	boolean isUseContentHeight() {*
+		return this.useContentHeight;
+	*}
+
+	/**
+	 * Sets Use Manual 'Content Width' Property
+	 */	
+	void setUseContentWidth( /**Use Manual 'Content Width'*/ boolean useContentWidth){*
+		this.useContentWidth = useContentWidth;
+	*}
+
+	/**
+	 * Gets Use Manual 'Content Width' Property
+	 */	
+	boolean isUseContentWidth() {*
+		return this.useContentWidth;
+	*}
+
+	/**
+	 * Sets Use Manual 'First X Label' Property
+	 */	
+	void setUseFirstXLabel( /**Use Manual 'First X Label'*/ boolean useFirstXLabel){*
+		this.useFirstXLabel = useFirstXLabel;
+	*}
+
+	/**
+	 * Gets Use Manual 'First X Label' Property
+	 */	
+	boolean isUseFirstXLabel() {*
+		return this.useFirstXLabel;
+	*}
+
+	/**
+	 * Sets Use Manual 'First Y Label' Property
+	 */	
+	void setUseFirstYLabel( /**Use Manual 'First Y Label'*/ boolean useFirstYLabel){*
+		this.useFirstYLabel = useFirstYLabel;
+	*}
+
+	/**
+	 * Gets Use Manual 'First Y Label' Property
+	 */	
+	boolean isUseFirstYLabel() {*
+		return this.useFirstYLabel;
+	*}
+
+	/**
+	 * Sets Use Manual 'Inner Max Threshold' Property
+	 */	
+	void setUseInnerMaxThreshold( /**Use Manual 'Inner Max Threshold'*/ boolean useInnerMaxThreshold){*
+		this.useInnerMaxThreshold = useInnerMaxThreshold;
+	*}
+
+	/**
+	 * Gets Use Manual 'Inner Max Threshold' Property
+	 */	
+	boolean isUseInnerMaxThreshold() {*
+		return this.useInnerMaxThreshold;
+	*}
+
+	/**
+	 * Sets Use Manual 'Inner Min Threshold' Property
+	 */	
+	void setUseInnerMinThreshold( /**Use Manual 'Inner Min Threshold'*/ boolean useInnerMinThreshold){*
+		this.useInnerMinThreshold = useInnerMinThreshold;
+	*}
+
+	/**
+	 * Gets Use Manual 'Inner Min Threshold' Property
+	 */	
+	boolean isUseInnerMinThreshold() {*
+		return this.useInnerMinThreshold;
+	*}
+
+	/**
+	 * Sets Use Manual 'Last X Label' Property
+	 */	
+	void setUseLastXLabel( /**Use Manual 'Last X Label'*/ boolean useLastXLabel){*
+		this.useLastXLabel = useLastXLabel;
+	*}
+
+	/**
+	 * Gets Use Manual 'Last X Label' Property
+	 */	
+	boolean isUseLastXLabel() {*
+		return this.useLastXLabel;
+	*}
+
+	/**
+	 * Sets Use Manual 'Last Y Label' Property
+	 */	
+	void setUseLastYLabel( /**Use Manual 'Last Y Label'*/ boolean useLastYLabel){*
+		this.useLastYLabel = useLastYLabel;
+	*}
+
+	/**
+	 * Gets Use Manual 'Last Y Label' Property
+	 */	
+	boolean isUseLastYLabel() {*
+		return this.useLastYLabel;
+	*}
+
+	/**
+	 * Sets Use Manual 'Max Label' Property
+	 */	
+	void setUseMaxLabel( /**Use Manual 'Max Label'*/ boolean useMaxLabel){*
+		this.useMaxLabel = useMaxLabel;
+	*}
+
+	/**
+	 * Gets Use Manual 'Max Label' Property
+	 */	
+	boolean isUseMaxLabel() {*
+		return this.useMaxLabel;
+	*}
+
+	/**
+	 * Sets Use Manual 'Max Threshold' Property
+	 */	
+	void setUseMaxThreshold( /**Use Manual 'Max Threshold'*/ boolean useMaxThreshold){*
+		this.useMaxThreshold = useMaxThreshold;
+	*}
+
+	/**
+	 * Gets Use Manual 'Max Threshold' Property
+	 */	
+	boolean isUseMaxThreshold() {*
+		return this.useMaxThreshold;
+	*}
+
+	/**
+	 * Sets Use Manual 'Max X Value' Property
+	 */	
+	void setUseMaxXValue( /**Use Manual 'Max X Value'*/ boolean useMaxXValue){*
+		this.useMaxXValue = useMaxXValue;
+	*}
+
+	/**
+	 * Gets Use Manual 'Max X Value' Property
+	 */	
+	boolean isUseMaxXValue() {*
+		return this.useMaxXValue;
+	*}
+
+	/**
+	 * Sets Use Manual 'Max Y Value' Property
+	 */	
+	void setUseMaxYValue( /**Use Manual 'Max Y Value'*/ boolean useMaxYValue){*
+		this.useMaxYValue = useMaxYValue;
+	*}
+
+	/**
+	 * Gets Use Manual 'Max Y Value' Property
+	 */	
+	boolean isUseMaxYValue() {*
+		return this.useMaxYValue;
+	*}
+
+	/**
+	 * Sets Use Manual 'Min Label' Property
+	 */	
+	void setUseMinLabel( /**Use Manual 'Min Label'*/ boolean useMinLabel){*
+		this.useMinLabel = useMinLabel;
+	*}
+
+	/**
+	 * Gets Use Manual 'Min Label' Property
+	 */	
+	boolean isUseMinLabel() {*
+		return this.useMinLabel;
+	*}
+
+	/**
+	 * Sets Use Manual 'Min Threshold' Property
+	 */	
+	void setUseMinThreshold( /**Use Manual 'Min Threshold'*/ boolean useMinThreshold){*
+		this.useMinThreshold = useMinThreshold;
+	*}
+
+	/**
+	 * Gets Use Manual 'Min Threshold' Property
+	 */	
+	boolean isUseMinThreshold() {*
+		return this.useMinThreshold;
+	*}
+
+	/**
+	 * Sets Use Manual 'Min X Value' Property
+	 */	
+	void setUseMinXValue( /**Use Manual 'Min X Value'*/ boolean useMinXValue){*
+		this.useMinXValue = useMinXValue;
+	*}
+
+	/**
+	 * Gets Use Manual 'Min X Value' Property
+	 */	
+	boolean isUseMinXValue() {*
+		return this.useMinXValue;
+	*}
+
+	/**
+	 * Sets Use Manual 'Min Y Value' Property
+	 */	
+	void setUseMinYValue( /**Use Manual 'Min Y Value'*/ boolean useMinYValue){*
+		this.useMinYValue = useMinYValue;
+	*}
+
+	/**
+	 * Gets Use Manual 'Min Y Value' Property
+	 */	
+	boolean isUseMinYValue() {*
+		return this.useMinYValue;
+	*}
+
+	/**
+	 * Sets Use Manual 'Target' Property
+	 */	
+	void setUseTarget( /**Use Manual 'Target'*/ boolean useTarget){*
+		this.useTarget = useTarget;
+	*}
+
+	/**
+	 * Gets Use Manual 'Target' Property
+	 */	
+	boolean isUseTarget() {*
+		return this.useTarget;
+	*}
 
 	/**
 	 * Sets View Property by String
@@ -5016,6 +5529,8 @@ class org.scn.community.shared.ui5.MicroAreaChartItem extends org.scn.community.
 	org_scn_community_shared_InfoTileValueColorEnumfield getColor() {*
 		return this.color;
 	*}
+
+
 
 	/** Adds a root element containing key [String], x [float], y [float].
 
@@ -5209,6 +5724,20 @@ class org.scn.community.shared.ui5.MicroAreaChartItem extends org.scn.community.
 
 
 
+	/**
+	 * Sets Use Manual 'Points' Property
+	 */	
+	void setUsePoints( /**Use Manual 'Points'*/ boolean usePoints){*
+		this.usePoints = usePoints;
+	*}
+
+	/**
+	 * Gets Use Manual 'Points' Property
+	 */	
+	boolean isUsePoints() {*
+		return this.usePoints;
+	*}
+
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
@@ -5277,6 +5806,38 @@ class org.scn.community.shared.ui5.MicroAreaChartLabel extends org.scn.community
  */
 class org.scn.community.shared.ui5.MicroAreaChartPoint extends org.scn.community.shared.DataComponent {
 
+
+
+
+
+	/**
+	 * Sets Use Manual 'X' Property
+	 */	
+	void setUseX( /**Use Manual 'X'*/ boolean useX){*
+		this.useX = useX;
+	*}
+
+	/**
+	 * Gets Use Manual 'X' Property
+	 */	
+	boolean isUseX() {*
+		return this.useX;
+	*}
+
+	/**
+	 * Sets Use Manual 'Y' Property
+	 */	
+	void setUseY( /**Use Manual 'Y'*/ boolean useY){*
+		this.useY = useY;
+	*}
+
+	/**
+	 * Gets Use Manual 'Y' Property
+	 */	
+	boolean isUseY() {*
+		return this.useY;
+	*}
+
 	/**
 	 * Sets X Property
 	 */	
@@ -5303,6 +5864,2984 @@ class org.scn.community.shared.ui5.MicroAreaChartPoint extends org.scn.community
 	 */	
 	float getY() {*
 		return this.y;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+
+/**
+ * Generated ZTL Class for ProcessFlow
+ * 
+ * DO NOT EDIT, ROOT SOURCE is based on SAP UI5 specification
+ */
+class org.scn.community.shared.ui5.ProcessFlow extends org.scn.community.shared.DataComponent {
+
+	/** Adds a root element containing key [String], drawData [String], zoomLevel [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	PROCESSFLOW.addConnection(key [String], drawData [String], zoomLevel [String]);<br>
+	PROCESSFLOW.addConnection(key [String], drawData [String], zoomLevel [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addConnection (
+			/**Unique Property Key*/String key, 
+			/**Draw Data [Array]*/String drawData, 
+			/**Zoom Level*/String zoomLevel
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			drawData:drawData, 
+			zoomLevel:zoomLevel
+			};
+
+		if (this.connections === undefined || this.connections === "" || this.connections === "<delete>"){
+			this.connections = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.connections);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.connections = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	PROCESSFLOW.removeConnection(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeConnection (
+			String key
+			) {*
+
+		if (this.connections === undefined || this.connections === "" || this.connections === "<delete>"){
+			this.connections = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.connections);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.connections = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	PROCESSFLOW.insertConnection(index [int], key [String], drawData [String], zoomLevel [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertConnection (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Property Key*/String key, 
+			/**Draw Data [Array]*/String drawData, 
+			/**Zoom Level*/String zoomLevel
+			) {*
+
+		if (this.connections === undefined || this.connections === "" || this.connections === "<delete>"){
+			this.connections = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.connections);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			drawData:drawData, 
+			zoomLevel:zoomLevel
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.connections = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Connection<br/>
+	 */
+	void updateConnection (
+			/**Unique Property Key*/String key, 
+			/**Draw Data [Array]*/String drawData, 
+			/**Zoom Level*/String zoomLevel
+			) 
+	{*
+		if (this.connections === undefined || this.connections === "" || this.connections === "<delete>"){
+			this.connections = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			drawData:drawData, 
+			zoomLevel:zoomLevel
+		};
+
+		var elementsJson = JSON.parse(this.connections);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.connections = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getConnectionAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.connections === undefined || this.connections === "" || this.connections === "<delete>"){
+			this.connections = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.connections);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Connections As JSON String
+	 */	
+	String getConnectionsAsJSON() {*
+		var jsonObject = JSON.parse(this.connections);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the DrawData for Connection keys<br/>
+	 */
+	void setConnectionDrawDatas (
+			/**/ String keys,
+			/**/ String separator,
+	        /* DrawData */ String drawData
+			) 
+	{*
+		if (this.connections === undefined || this.connections === "" || this.connections === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.connections);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].drawData = drawData;
+					break;
+				}
+			}
+		}
+		
+		this.connections = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the DrawData for Connection Key<br/>
+	 */
+	void setConnectionDrawData (
+			/**/ String key,
+			/**/ String drawData
+			) 
+	{*
+		if (this.connections === undefined || this.connections === "" || this.connections === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.connections);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].drawData = drawData;
+				break;
+			}
+		}
+
+		this.connections = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of DrawData for Connection Key<br/>
+	 */
+	String getConnectionDrawData (
+			/**/ String key
+			) 
+	{*
+		if (this.connections === undefined || this.connections === "" || this.connections === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.connections);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].drawData;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the ZoomLevel for Connection keys<br/>
+	 */
+	void setConnectionZoomLevels (
+			/**/ String keys,
+			/**/ String separator,
+	        /* ZoomLevel */ String zoomLevel
+			) 
+	{*
+		if (this.connections === undefined || this.connections === "" || this.connections === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.connections);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].zoomLevel = zoomLevel;
+					break;
+				}
+			}
+		}
+		
+		this.connections = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the ZoomLevel for Connection Key<br/>
+	 */
+	void setConnectionZoomLevel (
+			/**/ String key,
+			/**/ String zoomLevel
+			) 
+	{*
+		if (this.connections === undefined || this.connections === "" || this.connections === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.connections);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].zoomLevel = zoomLevel;
+				break;
+			}
+		}
+
+		this.connections = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of ZoomLevel for Connection Key<br/>
+	 */
+	String getConnectionZoomLevel (
+			/**/ String key
+			) 
+	{*
+		if (this.connections === undefined || this.connections === "" || this.connections === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.connections);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].zoomLevel;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
+
+
+
+
+
+
+
+	/**
+	 * Sets Folded Corners Property
+	 */	
+	void setFoldedCorners( /**Folded Corners*/ boolean foldedCorners){*
+		this.foldedCorners = foldedCorners;
+	*}
+
+	/**
+	 * Gets Folded Corners Property
+	 */	
+	boolean isFoldedCorners() {*
+		return this.foldedCorners;
+	*}
+
+	/**
+	 * Gets Header Pressed Key Property
+	 */	
+	String getHeaderPressedKey() {*
+		return this.headerPressedKey;
+	*}
+
+	/** Adds a root element containing key [String], iconSrc [String], laneId [String], position [int], state [String], text [String], zoomLevel [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	PROCESSFLOW.addLane(key [String], iconSrc [String], laneId [String], position [int], state [String], text [String], zoomLevel [String]);<br>
+	PROCESSFLOW.addLane(key [String], iconSrc [String], laneId [String], position [int], state [String], text [String], zoomLevel [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addLane (
+			/**Unique Property Key*/String key, 
+			/**Icon Src*/String iconSrc, 
+			/**Lane Id*/String laneId, 
+			/**Position*/int position, 
+			/**State*/String state, 
+			/**Text*/String text, 
+			/**Zoom Level*/String zoomLevel
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			iconSrc:iconSrc, 
+			laneId:laneId, 
+			position:position, 
+			state:state, 
+			text:text, 
+			zoomLevel:zoomLevel
+			};
+
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			this.lanes = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	PROCESSFLOW.removeLane(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeLane (
+			String key
+			) {*
+
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			this.lanes = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	PROCESSFLOW.insertLane(index [int], key [String], iconSrc [String], laneId [String], position [int], state [String], text [String], zoomLevel [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertLane (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Property Key*/String key, 
+			/**Icon Src*/String iconSrc, 
+			/**Lane Id*/String laneId, 
+			/**Position*/int position, 
+			/**State*/String state, 
+			/**Text*/String text, 
+			/**Zoom Level*/String zoomLevel
+			) {*
+
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			this.lanes = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.lanes);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			iconSrc:iconSrc, 
+			laneId:laneId, 
+			position:position, 
+			state:state, 
+			text:text, 
+			zoomLevel:zoomLevel
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.lanes = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Lane<br/>
+	 */
+	void updateLane (
+			/**Unique Property Key*/String key, 
+			/**Icon Src*/String iconSrc, 
+			/**Lane Id*/String laneId, 
+			/**Position*/int position, 
+			/**State*/String state, 
+			/**Text*/String text, 
+			/**Zoom Level*/String zoomLevel
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			this.lanes = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			iconSrc:iconSrc, 
+			laneId:laneId, 
+			position:position, 
+			state:state, 
+			text:text, 
+			zoomLevel:zoomLevel
+		};
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getLaneAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			this.lanes = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Lanes As JSON String
+	 */	
+	String getLanesAsJSON() {*
+		var jsonObject = JSON.parse(this.lanes);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the IconSrc for Lane keys<br/>
+	 */
+	void setLaneIconSrcs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* IconSrc */ String iconSrc
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].iconSrc = iconSrc;
+					break;
+				}
+			}
+		}
+		
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the IconSrc for Lane Key<br/>
+	 */
+	void setLaneIconSrc (
+			/**/ String key,
+			/**/ String iconSrc
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].iconSrc = iconSrc;
+				break;
+			}
+		}
+
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of IconSrc for Lane Key<br/>
+	 */
+	String getLaneIconSrc (
+			/**/ String key
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].iconSrc;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the LaneId for Lane keys<br/>
+	 */
+	void setLaneLaneIds (
+			/**/ String keys,
+			/**/ String separator,
+	        /* LaneId */ String laneId
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].laneId = laneId;
+					break;
+				}
+			}
+		}
+		
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the LaneId for Lane Key<br/>
+	 */
+	void setLaneLaneId (
+			/**/ String key,
+			/**/ String laneId
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].laneId = laneId;
+				break;
+			}
+		}
+
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of LaneId for Lane Key<br/>
+	 */
+	String getLaneLaneId (
+			/**/ String key
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].laneId;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Position for Lane keys<br/>
+	 */
+	void setLanePositions (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Position */ int position
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].position = position;
+					break;
+				}
+			}
+		}
+		
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Position for Lane Key<br/>
+	 */
+	void setLanePosition (
+			/**/ String key,
+			/**/ int position
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].position = position;
+				break;
+			}
+		}
+
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Position for Lane Key<br/>
+	 */
+	int getLanePosition (
+			/**/ String key
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].position;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the State for Lane keys<br/>
+	 */
+	void setLaneStates (
+			/**/ String keys,
+			/**/ String separator,
+	        /* State */ String state
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].state = state;
+					break;
+				}
+			}
+		}
+		
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the State for Lane Key<br/>
+	 */
+	void setLaneState (
+			/**/ String key,
+			/**/ String state
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].state = state;
+				break;
+			}
+		}
+
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of State for Lane Key<br/>
+	 */
+	String getLaneState (
+			/**/ String key
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].state;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Text for Lane keys<br/>
+	 */
+	void setLaneTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Lane Key<br/>
+	 */
+	void setLaneText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Text for Lane Key<br/>
+	 */
+	String getLaneText (
+			/**/ String key
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].text;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the ZoomLevel for Lane keys<br/>
+	 */
+	void setLaneZoomLevels (
+			/**/ String keys,
+			/**/ String separator,
+	        /* ZoomLevel */ String zoomLevel
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].zoomLevel = zoomLevel;
+					break;
+				}
+			}
+		}
+		
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the ZoomLevel for Lane Key<br/>
+	 */
+	void setLaneZoomLevel (
+			/**/ String key,
+			/**/ String zoomLevel
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].zoomLevel = zoomLevel;
+				break;
+			}
+		}
+
+		this.lanes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of ZoomLevel for Lane Key<br/>
+	 */
+	String getLaneZoomLevel (
+			/**/ String key
+			) 
+	{*
+		if (this.lanes === undefined || this.lanes === "" || this.lanes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.lanes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].zoomLevel;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
+
+	/**
+	 * Gets Node Pressed Key Property
+	 */	
+	String getNodePressedKey() {*
+		return this.nodePressedKey;
+	*}
+
+	/** Adds a root element containing key [String], children [String], focused [boolean], highlighted [boolean], isTitleClickable [boolean], laneId [String], nodeId [String], state [String], stateText [String], tag [String], texts [String], title [String], titleAbbreviation [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	PROCESSFLOW.addNode(key [String], children [String], focused [boolean], highlighted [boolean], isTitleClickable [boolean], laneId [String], nodeId [String], state [String], stateText [String], tag [String], texts [String], title [String], titleAbbreviation [String]);<br>
+	PROCESSFLOW.addNode(key [String], children [String], focused [boolean], highlighted [boolean], isTitleClickable [boolean], laneId [String], nodeId [String], state [String], stateText [String], tag [String], texts [String], title [String], titleAbbreviation [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addNode (
+			/**Unique Property Key*/String key, 
+			/**Children [Array]*/String children, 
+			/**Focused*/boolean focused, 
+			/**Highlighted*/boolean highlighted, 
+			/**Is Title Clickable*/boolean isTitleClickable, 
+			/**Lane Id*/String laneId, 
+			/**Node Id*/String nodeId, 
+			/**State*/String state, 
+			/**State Text*/String stateText, 
+			/**Tag*/String tag, 
+			/**Texts [Array]*/String texts, 
+			/**Title*/String title, 
+			/**Title Abbreviation*/String titleAbbreviation
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			children:children, 
+			focused:focused, 
+			highlighted:highlighted, 
+			isTitleClickable:isTitleClickable, 
+			laneId:laneId, 
+			nodeId:nodeId, 
+			state:state, 
+			stateText:stateText, 
+			tag:tag, 
+			texts:texts, 
+			title:title, 
+			titleAbbreviation:titleAbbreviation
+			};
+
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			this.nodes = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	PROCESSFLOW.removeNode(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeNode (
+			String key
+			) {*
+
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			this.nodes = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	PROCESSFLOW.insertNode(index [int], key [String], children [String], focused [boolean], highlighted [boolean], isTitleClickable [boolean], laneId [String], nodeId [String], state [String], stateText [String], tag [String], texts [String], title [String], titleAbbreviation [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertNode (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Property Key*/String key, 
+			/**Children [Array]*/String children, 
+			/**Focused*/boolean focused, 
+			/**Highlighted*/boolean highlighted, 
+			/**Is Title Clickable*/boolean isTitleClickable, 
+			/**Lane Id*/String laneId, 
+			/**Node Id*/String nodeId, 
+			/**State*/String state, 
+			/**State Text*/String stateText, 
+			/**Tag*/String tag, 
+			/**Texts [Array]*/String texts, 
+			/**Title*/String title, 
+			/**Title Abbreviation*/String titleAbbreviation
+			) {*
+
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			this.nodes = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.nodes);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			children:children, 
+			focused:focused, 
+			highlighted:highlighted, 
+			isTitleClickable:isTitleClickable, 
+			laneId:laneId, 
+			nodeId:nodeId, 
+			state:state, 
+			stateText:stateText, 
+			tag:tag, 
+			texts:texts, 
+			title:title, 
+			titleAbbreviation:titleAbbreviation
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.nodes = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Node<br/>
+	 */
+	void updateNode (
+			/**Unique Property Key*/String key, 
+			/**Children [Array]*/String children, 
+			/**Focused*/boolean focused, 
+			/**Highlighted*/boolean highlighted, 
+			/**Is Title Clickable*/boolean isTitleClickable, 
+			/**Lane Id*/String laneId, 
+			/**Node Id*/String nodeId, 
+			/**State*/String state, 
+			/**State Text*/String stateText, 
+			/**Tag*/String tag, 
+			/**Texts [Array]*/String texts, 
+			/**Title*/String title, 
+			/**Title Abbreviation*/String titleAbbreviation
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			this.nodes = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			children:children, 
+			focused:focused, 
+			highlighted:highlighted, 
+			isTitleClickable:isTitleClickable, 
+			laneId:laneId, 
+			nodeId:nodeId, 
+			state:state, 
+			stateText:stateText, 
+			tag:tag, 
+			texts:texts, 
+			title:title, 
+			titleAbbreviation:titleAbbreviation
+		};
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getNodeAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			this.nodes = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Nodes As JSON String
+	 */	
+	String getNodesAsJSON() {*
+		var jsonObject = JSON.parse(this.nodes);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Children for Node keys<br/>
+	 */
+	void setNodeChildrens (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Children */ String children
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].children = children;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Children for Node Key<br/>
+	 */
+	void setNodeChildren (
+			/**/ String key,
+			/**/ String children
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].children = children;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Children for Node Key<br/>
+	 */
+	String getNodeChildren (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].children;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Focused for Node keys<br/>
+	 */
+	void setNodeFocuseds (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].focused = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].focused = true;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Focused for Node Key<br/>
+	 */
+	void setNodeFocused (
+			/**/ String key,
+			/**/ boolean focused
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].focused = focused;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Focused of Node keys<br/>
+	 */
+	void cleanAllNodeFocuseds (
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].focused = false;
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Focused for Node Key<br/>
+	 */
+	String getNodeFocused (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].focused;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+	/**
+	 * Returns the Focused keys<br/>
+	 */
+	org.scn.pack.KeyArray getNodeFocusedKeysArray (
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.nodes);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].focused == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the Highlighted for Node keys<br/>
+	 */
+	void setNodeHighlighteds (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].highlighted = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].highlighted = true;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Highlighted for Node Key<br/>
+	 */
+	void setNodeHighlighted (
+			/**/ String key,
+			/**/ boolean highlighted
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].highlighted = highlighted;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Highlighted of Node keys<br/>
+	 */
+	void cleanAllNodeHighlighteds (
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].highlighted = false;
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Highlighted for Node Key<br/>
+	 */
+	String getNodeHighlighted (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].highlighted;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+	/**
+	 * Returns the Highlighted keys<br/>
+	 */
+	org.scn.pack.KeyArray getNodeHighlightedKeysArray (
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.nodes);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].highlighted == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the IsTitleClickable for Node keys<br/>
+	 */
+	void setNodeIsTitleClickables (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].isTitleClickable = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].isTitleClickable = true;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the IsTitleClickable for Node Key<br/>
+	 */
+	void setNodeIsTitleClickable (
+			/**/ String key,
+			/**/ boolean isTitleClickable
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].isTitleClickable = isTitleClickable;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all IsTitleClickable of Node keys<br/>
+	 */
+	void cleanAllNodeIsTitleClickables (
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].isTitleClickable = false;
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of IsTitleClickable for Node Key<br/>
+	 */
+	String getNodeIsTitleClickable (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].isTitleClickable;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+	/**
+	 * Returns the IsTitleClickable keys<br/>
+	 */
+	org.scn.pack.KeyArray getNodeIsTitleClickableKeysArray (
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.nodes);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].isTitleClickable == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the LaneId for Node keys<br/>
+	 */
+	void setNodeLaneIds (
+			/**/ String keys,
+			/**/ String separator,
+	        /* LaneId */ String laneId
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].laneId = laneId;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the LaneId for Node Key<br/>
+	 */
+	void setNodeLaneId (
+			/**/ String key,
+			/**/ String laneId
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].laneId = laneId;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of LaneId for Node Key<br/>
+	 */
+	String getNodeLaneId (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].laneId;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the NodeId for Node keys<br/>
+	 */
+	void setNodeNodeIds (
+			/**/ String keys,
+			/**/ String separator,
+	        /* NodeId */ String nodeId
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].nodeId = nodeId;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the NodeId for Node Key<br/>
+	 */
+	void setNodeNodeId (
+			/**/ String key,
+			/**/ String nodeId
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].nodeId = nodeId;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of NodeId for Node Key<br/>
+	 */
+	String getNodeNodeId (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].nodeId;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the State for Node keys<br/>
+	 */
+	void setNodeStates (
+			/**/ String keys,
+			/**/ String separator,
+	        /* State */ String state
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].state = state;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the State for Node Key<br/>
+	 */
+	void setNodeState (
+			/**/ String key,
+			/**/ String state
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].state = state;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of State for Node Key<br/>
+	 */
+	String getNodeState (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].state;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the StateText for Node keys<br/>
+	 */
+	void setNodeStateTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* StateText */ String stateText
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].stateText = stateText;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the StateText for Node Key<br/>
+	 */
+	void setNodeStateText (
+			/**/ String key,
+			/**/ String stateText
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].stateText = stateText;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of StateText for Node Key<br/>
+	 */
+	String getNodeStateText (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].stateText;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Tag for Node keys<br/>
+	 */
+	void setNodeTags (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Tag */ String tag
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].tag = tag;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Tag for Node Key<br/>
+	 */
+	void setNodeTag (
+			/**/ String key,
+			/**/ String tag
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].tag = tag;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Tag for Node Key<br/>
+	 */
+	String getNodeTag (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].tag;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Texts for Node keys<br/>
+	 */
+	void setNodeTextss (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Texts */ String texts
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].texts = texts;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Texts for Node Key<br/>
+	 */
+	void setNodeTexts (
+			/**/ String key,
+			/**/ String texts
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].texts = texts;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Texts for Node Key<br/>
+	 */
+	String getNodeTexts (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].texts;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Title for Node keys<br/>
+	 */
+	void setNodeTitles (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Title */ String title
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].title = title;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Title for Node Key<br/>
+	 */
+	void setNodeTitle (
+			/**/ String key,
+			/**/ String title
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].title = title;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Title for Node Key<br/>
+	 */
+	String getNodeTitle (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].title;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the TitleAbbreviation for Node keys<br/>
+	 */
+	void setNodeTitleAbbreviations (
+			/**/ String keys,
+			/**/ String separator,
+	        /* TitleAbbreviation */ String titleAbbreviation
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].titleAbbreviation = titleAbbreviation;
+					break;
+				}
+			}
+		}
+		
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the TitleAbbreviation for Node Key<br/>
+	 */
+	void setNodeTitleAbbreviation (
+			/**/ String key,
+			/**/ String titleAbbreviation
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].titleAbbreviation = titleAbbreviation;
+				break;
+			}
+		}
+
+		this.nodes = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of TitleAbbreviation for Node Key<br/>
+	 */
+	String getNodeTitleAbbreviation (
+			/**/ String key
+			) 
+	{*
+		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.nodes);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].titleAbbreviation;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
+
+
+
+	/**
+	 * Gets  Errored Key Property
+	 */	
+	String getOnErroredKey() {*
+		return this.onErroredKey;
+	*}
+
+
+
+
+
+	/**
+	 * Sets Scrollable Property
+	 */	
+	void setScrollable( /**Scrollable*/ boolean scrollable){*
+		this.scrollable = scrollable;
+	*}
+
+	/**
+	 * Gets Scrollable Property
+	 */	
+	boolean isScrollable() {*
+		return this.scrollable;
+	*}
+
+	/**
+	 * Sets Use Manual 'Connections' Property
+	 */	
+	void setUseConnections( /**Use Manual 'Connections'*/ boolean useConnections){*
+		this.useConnections = useConnections;
+	*}
+
+	/**
+	 * Gets Use Manual 'Connections' Property
+	 */	
+	boolean isUseConnections() {*
+		return this.useConnections;
+	*}
+
+	/**
+	 * Sets Use Manual 'Lanes' Property
+	 */	
+	void setUseLanes( /**Use Manual 'Lanes'*/ boolean useLanes){*
+		this.useLanes = useLanes;
+	*}
+
+	/**
+	 * Gets Use Manual 'Lanes' Property
+	 */	
+	boolean isUseLanes() {*
+		return this.useLanes;
+	*}
+
+	/**
+	 * Sets Use Manual 'Nodes' Property
+	 */	
+	void setUseNodes( /**Use Manual 'Nodes'*/ boolean useNodes){*
+		this.useNodes = useNodes;
+	*}
+
+	/**
+	 * Gets Use Manual 'Nodes' Property
+	 */	
+	boolean isUseNodes() {*
+		return this.useNodes;
+	*}
+
+	/**
+	 * Sets Wheel Zoomable Property
+	 */	
+	void setWheelZoomable( /**Wheel Zoomable*/ boolean wheelZoomable){*
+		this.wheelZoomable = wheelZoomable;
+	*}
+
+	/**
+	 * Gets Wheel Zoomable Property
+	 */	
+	boolean isWheelZoomable() {*
+		return this.wheelZoomable;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+
+/**
+ * Generated ZTL Class for ProcessFlowConnection
+ * 
+ * DO NOT EDIT, ROOT SOURCE is based on SAP UI5 specification
+ */
+class org.scn.community.shared.ui5.ProcessFlowConnection extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Draw Data Property as StringArray
+	 */	
+	void setDrawData( /**Draw Data*/ StringArray drawData){*
+		this.drawData = drawData;
+	*}
+	
+	/** Gets Draw Data Property as StringArray
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	PROCESSFLOWCONNECTION.getDrawData();<br>
+	</code>
+	</example>
+	 */
+	StringArray getDrawData () {*		
+		var elementsJson = JSON.parse(this.drawData);
+		return elementsJson;
+	*}
+
+	/**
+	 * Sets Use Manual 'Draw Data' Property
+	 */	
+	void setUseDrawData( /**Use Manual 'Draw Data'*/ boolean useDrawData){*
+		this.useDrawData = useDrawData;
+	*}
+
+	/**
+	 * Gets Use Manual 'Draw Data' Property
+	 */	
+	boolean isUseDrawData() {*
+		return this.useDrawData;
+	*}
+
+	/**
+	 * Sets Zoom Level Property by String
+	 */	
+	void setZoomLevelByString( /**Zoom Level*/ String zoomLevel){*
+		this.zoomLevel = zoomLevel;
+	*}
+
+	/**
+	 * Gets Zoom Level Property as String
+	 */	
+	String getZoomLevelAsString() {*
+		return this.zoomLevel;
+	*}
+	
+	/**
+	 * Sets Zoom Level Property by Choice Option
+	 */	
+	void setZoomLevel( /**Zoom Level*/ org_scn_community_shared_ProcessFlowZoomLevelEnumfield zoomLevel){*
+		this.zoomLevel = zoomLevel;
+	*}
+	
+	/**
+	 * Gets Zoom Level Property as Choice Option
+	 */	
+	org_scn_community_shared_ProcessFlowZoomLevelEnumfield getZoomLevel() {*
+		return this.zoomLevel;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+
+/**
+ * Generated ZTL Class for ProcessFlowLaneHeader
+ * 
+ * DO NOT EDIT, ROOT SOURCE is based on SAP UI5 specification
+ */
+class org.scn.community.shared.ui5.ProcessFlowLaneHeader extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Icon Src Property
+	 */	
+	void setIconSrc( /**Icon Src*/ String iconSrc){*
+		this.iconSrc = iconSrc;
+	*}
+
+	/**
+	 * Gets Icon Src Property
+	 */	
+	String getIconSrc() {*
+		return this.iconSrc;
+	*}
+
+	/**
+	 * Sets Lane Id Property
+	 */	
+	void setLaneId( /**Lane Id*/ String laneId){*
+		this.laneId = laneId;
+	*}
+
+	/**
+	 * Gets Lane Id Property
+	 */	
+	String getLaneId() {*
+		return this.laneId;
+	*}
+
+
+
+	/**
+	 * Sets Position Property
+	 */	
+	void setPosition( /**Position*/ int position){*
+		this.position = position;
+	*}
+
+	/**
+	 * Gets Position Property
+	 */	
+	int getPosition() {*
+		return this.position;
+	*}
+
+	/**
+	 * Gets Pressed Key Property
+	 */	
+	String getPressedKey() {*
+		return this.pressedKey;
+	*}
+
+	/**
+	 * Sets State Property
+	 */	
+	void setState( /**State*/ String state){*
+		this.state = state;
+	*}
+
+	/**
+	 * Gets State Property
+	 */	
+	String getState() {*
+		return this.state;
+	*}
+
+	/**
+	 * Sets Text Property
+	 */	
+	void setText( /**Text*/ String text){*
+		this.text = text;
+	*}
+
+	/**
+	 * Gets Text Property
+	 */	
+	String getText() {*
+		return this.text;
+	*}
+
+	/**
+	 * Sets Use Manual 'Icon Src' Property
+	 */	
+	void setUseIconSrc( /**Use Manual 'Icon Src'*/ boolean useIconSrc){*
+		this.useIconSrc = useIconSrc;
+	*}
+
+	/**
+	 * Gets Use Manual 'Icon Src' Property
+	 */	
+	boolean isUseIconSrc() {*
+		return this.useIconSrc;
+	*}
+
+	/**
+	 * Sets Use Manual 'Position' Property
+	 */	
+	void setUsePosition( /**Use Manual 'Position'*/ boolean usePosition){*
+		this.usePosition = usePosition;
+	*}
+
+	/**
+	 * Gets Use Manual 'Position' Property
+	 */	
+	boolean isUsePosition() {*
+		return this.usePosition;
+	*}
+
+	/**
+	 * Sets Zoom Level Property by String
+	 */	
+	void setZoomLevelByString( /**Zoom Level*/ String zoomLevel){*
+		this.zoomLevel = zoomLevel;
+	*}
+
+	/**
+	 * Gets Zoom Level Property as String
+	 */	
+	String getZoomLevelAsString() {*
+		return this.zoomLevel;
+	*}
+	
+	/**
+	 * Sets Zoom Level Property by Choice Option
+	 */	
+	void setZoomLevel( /**Zoom Level*/ org_scn_community_shared_ProcessFlowZoomLevelEnumfield zoomLevel){*
+		this.zoomLevel = zoomLevel;
+	*}
+	
+	/**
+	 * Gets Zoom Level Property as Choice Option
+	 */	
+	org_scn_community_shared_ProcessFlowZoomLevelEnumfield getZoomLevel() {*
+		return this.zoomLevel;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+
+/**
+ * Generated ZTL Class for ProcessFlowNode
+ * 
+ * DO NOT EDIT, ROOT SOURCE is based on SAP UI5 specification
+ */
+class org.scn.community.shared.ui5.ProcessFlowNode extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Children Property as StringArray
+	 */	
+	void setChildren( /**Children*/ StringArray children){*
+		this.children = children;
+	*}
+	
+	/** Gets Children Property as StringArray
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	PROCESSFLOWNODE.getChildren();<br>
+	</code>
+	</example>
+	 */
+	StringArray getChildren () {*		
+		var elementsJson = JSON.parse(this.children);
+		return elementsJson;
+	*}
+
+	/**
+	 * Sets Focused Property
+	 */	
+	void setFocused( /**Focused*/ boolean focused){*
+		this.focused = focused;
+	*}
+
+	/**
+	 * Gets Focused Property
+	 */	
+	boolean isFocused() {*
+		return this.focused;
+	*}
+
+	/**
+	 * Sets Highlighted Property
+	 */	
+	void setHighlighted( /**Highlighted*/ boolean highlighted){*
+		this.highlighted = highlighted;
+	*}
+
+	/**
+	 * Gets Highlighted Property
+	 */	
+	boolean isHighlighted() {*
+		return this.highlighted;
+	*}
+
+	/**
+	 * Sets Is Title Clickable Property
+	 */	
+	void setIsTitleClickable( /**Is Title Clickable*/ boolean isTitleClickable){*
+		this.isTitleClickable = isTitleClickable;
+	*}
+
+	/**
+	 * Gets Is Title Clickable Property
+	 */	
+	boolean isIsTitleClickable() {*
+		return this.isTitleClickable;
+	*}
+
+	/**
+	 * Sets Lane Id Property
+	 */	
+	void setLaneId( /**Lane Id*/ String laneId){*
+		this.laneId = laneId;
+	*}
+
+	/**
+	 * Gets Lane Id Property
+	 */	
+	String getLaneId() {*
+		return this.laneId;
+	*}
+
+	/**
+	 * Sets Node Id Property
+	 */	
+	void setNodeId( /**Node Id*/ String nodeId){*
+		this.nodeId = nodeId;
+	*}
+
+	/**
+	 * Gets Node Id Property
+	 */	
+	String getNodeId() {*
+		return this.nodeId;
+	*}
+
+
+
+	/**
+	 * Gets Pressed Key Property
+	 */	
+	String getPressedKey() {*
+		return this.pressedKey;
+	*}
+
+	/**
+	 * Sets State Property by String
+	 */	
+	void setStateByString( /**State*/ String state){*
+		this.state = state;
+	*}
+
+	/**
+	 * Gets State Property as String
+	 */	
+	String getStateAsString() {*
+		return this.state;
+	*}
+	
+	/**
+	 * Sets State Property by Choice Option
+	 */	
+	void setState( /**State*/ org_scn_community_shared_ProcessFlowNodeStateEnumfield state){*
+		this.state = state;
+	*}
+	
+	/**
+	 * Gets State Property as Choice Option
+	 */	
+	org_scn_community_shared_ProcessFlowNodeStateEnumfield getState() {*
+		return this.state;
+	*}
+
+	/**
+	 * Sets State Text Property
+	 */	
+	void setStateText( /**State Text*/ String stateText){*
+		this.stateText = stateText;
+	*}
+
+	/**
+	 * Gets State Text Property
+	 */	
+	String getStateText() {*
+		return this.stateText;
+	*}
+
+	/**
+	 * Sets Tag Property
+	 */	
+	void setTag( /**Tag*/ String tag){*
+		this.tag = tag;
+	*}
+
+	/**
+	 * Gets Tag Property
+	 */	
+	String getTag() {*
+		return this.tag;
+	*}
+
+	/**
+	 * Sets Texts Property as StringArray
+	 */	
+	void setTexts( /**Texts*/ StringArray texts){*
+		this.texts = texts;
+	*}
+	
+	/** Gets Texts Property as StringArray
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	PROCESSFLOWNODE.getTexts();<br>
+	</code>
+	</example>
+	 */
+	StringArray getTexts () {*		
+		var elementsJson = JSON.parse(this.texts);
+		return elementsJson;
+	*}
+
+	/**
+	 * Sets Title Property
+	 */	
+	void setTitle( /**Title*/ String title){*
+		this.title = title;
+	*}
+
+	/**
+	 * Gets Title Property
+	 */	
+	String getTitle() {*
+		return this.title;
+	*}
+
+	/**
+	 * Sets Title Abbreviation Property
+	 */	
+	void setTitleAbbreviation( /**Title Abbreviation*/ String titleAbbreviation){*
+		this.titleAbbreviation = titleAbbreviation;
+	*}
+
+	/**
+	 * Gets Title Abbreviation Property
+	 */	
+	String getTitleAbbreviation() {*
+		return this.titleAbbreviation;
+	*}
+
+	/**
+	 * Sets Use Manual 'Children' Property
+	 */	
+	void setUseChildren( /**Use Manual 'Children'*/ boolean useChildren){*
+		this.useChildren = useChildren;
+	*}
+
+	/**
+	 * Gets Use Manual 'Children' Property
+	 */	
+	boolean isUseChildren() {*
+		return this.useChildren;
+	*}
+
+	/**
+	 * Sets Use Manual 'Texts' Property
+	 */	
+	void setUseTexts( /**Use Manual 'Texts'*/ boolean useTexts){*
+		this.useTexts = useTexts;
+	*}
+
+	/**
+	 * Gets Use Manual 'Texts' Property
+	 */	
+	boolean isUseTexts() {*
+		return this.useTexts;
 	*}
 
 

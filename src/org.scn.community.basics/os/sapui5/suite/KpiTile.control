@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>KpiTile</name>
+	<documentation>This control is used in UnifiedThingInspector to display object-related KPIs in a factsheet.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="value" type="sap.ui.core/string">
+			<documentation>The Value field.</documentation>
+		</property>
+		<property group="Misc" name="description" type="sap.ui.core/string">
+			<documentation>The Description field.</documentation>
+		</property>
+		<property group="Misc" type="sap.ui.core/boolean" name="doubleFontSize" defaultValue="true">
+			<documentation>If true, the value text will have 2 rem, if false - 1 rem.</documentation>
+		</property>
+		<property group="Misc" name="valueUnit" type="sap.ui.core/string">
+			<documentation>The percent sign, currency symbol, or unit for a value.</documentation>
+		</property>
+		<property group="Misc" name="valueScale" type="sap.ui.core/string">
+			<documentation>The scale of a value.</documentation>
+		</property>
+		<property group="Misc" name="valueStatus" type="sap.suite.ui.commons/ValueStatus" defaultValue="Neutral">
+			<documentation>The status color of the value. Depending on the status the tile is displayed in different colors.</documentation>
+		</property>
+	</properties>
+</control>

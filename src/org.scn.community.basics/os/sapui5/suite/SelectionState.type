@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+
+
+	<name>SelectionState</name>
+
+	<author></author>
+
+
+
+	<documentation>SelectionState</documentation>
+
+	<baseType>sap.ui.core/string</baseType>
+
+	<enumeration>
+	
+	    <value name="Selected">
+
+			<documentation>[Enter description for newValue]</documentation>
+
+		</value>
+
+		<value name="NotSelected">
+
+			<documentation>[Enter description for newValue]</documentation>
+
+		</value>
+		
+		<value name="Semantic">
+
+			<documentation>[Enter description for newValue]</documentation>
+
+		</value>
+		
+
+	</enumeration>
+
+</simple-type>
+

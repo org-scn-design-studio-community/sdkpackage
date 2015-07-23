@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ComparisonChartView</name>
+	<author></author>
+
+	<documentation>The view of the ComparisonChart.</documentation>
+	<baseType>sap.ui.core/string</baseType>
+	<enumeration>
+		<value name="Normal">
+			<documentation>Titles and values are displayed above the bars.</documentation>
+		</value>
+		<value name="Wide">
+			<documentation>Titles and values are displayed in the same line with the bars.</documentation>
+		</value>
+	</enumeration>
+</simple-type>

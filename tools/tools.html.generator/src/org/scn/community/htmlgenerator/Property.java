@@ -390,33 +390,38 @@ public class Property {
 		String parametersJson = "%ENTRY%\r\n";
 		String parametersList = "";
 		
-		ParamFullSpec parameter = spec.getParameter("opts").getParameter("arrayDefinition").getParameter(0);
-		String sequence = parameter.getPropertyValue("sequence");
-		
-		String[] params = sequence.split(",");
-		ArrayList<ParamFullSpec> parameters = parameter.getParameters();
-		
-		for (int i = 0; i < params.length; i++) {
-			String nameRequested = params[i];
-			if(nameRequested.equals("key") || nameRequested.equals("parentKey") || nameRequested.equals("leaf")) {
-				continue;
-			}
+		String parameterMode = spec.getParameter("opts").getPropertyValue("arrayMode");
+		if(!parameterMode.equals("StringArray")) {
+			ParamFullSpec parameter = spec.getParameter("opts").getParameter("arrayDefinition").getParameter(0);
+			String sequence = parameter.getPropertyValue("sequence");
 			
-			for (ParamFullSpec paramFullSpec : parameters) {
-				String nameChild = paramFullSpec.getName();
-				if(nameChild.equals(nameRequested)) {
-					String json = paramFullSpec.getJson();
-					parametersJson = parametersJson.replace("%ENTRY%", json + "\r\n%ENTRY%");
-					
-					parametersList = parametersList + nameChild + ",";
-					break;
+			String[] params = sequence.split(",");
+			ArrayList<ParamFullSpec> parameters = parameter.getParameters();
+			
+			for (int i = 0; i < params.length; i++) {
+				String nameRequested = params[i];
+				if(nameRequested.equals("key") || nameRequested.equals("parentKey") || nameRequested.equals("leaf")) {
+					continue;
+				}
+				
+				for (ParamFullSpec paramFullSpec : parameters) {
+					String nameChild = paramFullSpec.getName();
+					if(nameChild.equals(nameRequested)) {
+						String json = paramFullSpec.getJson();
+						parametersJson = parametersJson.replace("%ENTRY%", json + "\r\n%ENTRY%");
+						
+						parametersList = parametersList + nameChild + ",";
+						break;
+					}
 				}
 			}
 		}
 
 		parametersJson = parametersJson.replace(",\r\n%ENTRY%", "");
-		parametersList = parametersList.substring(0, parametersList.length()-1);
-		
+		if(parametersList.length() > 0) {
+			parametersList = parametersList.substring(0, parametersList.length()-1);	
+		}
+
 		return new String[]{parametersList, parametersJson};
 	}
 }

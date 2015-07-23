@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+  <name>ProcessFlowConnection</name>
+
+  <documentation>This control is used inside the ProcessFlow Control to connect process flow node A with process flow node B in respect to the style(s) chosen by the application.</documentation>
+
+  <baseType>sap.ui.core/Control</baseType>
+  <properties>
+    <property group="Misc" name="drawData" type="sap.ui.core/object[]">
+      <documentation>This is an array of the following attributes for one element:
+1. flowLine (string) - A connection definition where the line should be drawn. A string which defines a course of a flow line. A flow line is a connection between nodes in a process flow control. The string can contain the following characters:
+- &quot;r&quot; for right, 
+- &quot;t&quot; for top, 
+- &quot;l&quot; for left,
+- &quot;b&quot; for bottom.
+2. targetNodeState (ProcessFlowNodeState) - A copy of the target node status. If the target node is created, the line is solid.
+ If the target node is planned, the line is dashed.
+3. displayState (ProcessFlowDisplayState) - Display state of the node. This property defines if the node is displayed regularly, highlighted, or dimmed in combination with a selected visual style of the control.
+4. hasArrow (boolean) - Indicates if the line has an arrow on the right end.</documentation>
+    </property>
+    <property group="Misc" name="zoomLevel" type="ProcessFlowZoomLevel" defaultValue="sap.suite.ui.commons.ProcessFlowZoomLevel.Two">
+      <documentation>This is a current zoom level for the connection. The point of connection to the node is derived from zoom level.</documentation>
+    </property>
+  </properties>
+</control>

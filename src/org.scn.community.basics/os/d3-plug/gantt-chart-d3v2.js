@@ -17,6 +17,7 @@ var d3plug = d3plug || {};
         var timeDomainMode = FIT_TIME_DOMAIN_MODE; // fixed or fit
         var taskTypes = [];
         var taskStatus = [];
+        var tasks = [];
         var height = oHeight - margin.top - margin.bottom - 5;
         var width = oWidth - margin.right - margin.left - 5;
         
@@ -26,10 +27,16 @@ var d3plug = d3plug || {};
 
         var keyFunction = function(d) {
         	if(d) {
-        		return d.startDate + d.taskName + d.endDate;
+        		return d.startDate + d.taskName + d.endDate + d.status + d.taskDesc + y(d.taskName) + y.rangeBand() + tasks.length + d.r;
         	}
         };
 
+        var rectTextName = function(d, i) { 
+			return d.taskName + " / " + d.taskDesc + " [ " + d.endDate + " - " + d.startDate + " ]"
+		}
+        var rectTextShort = function(d, i) { 
+			return d.taskDesc
+		}
         var rectTransform = function(d) {
             return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
         };
@@ -70,9 +77,12 @@ var d3plug = d3plug || {};
             yAxis = d3.svg.axis().scale(y).orient("left").tickSize(0);
         };
 
-        this.draw = function(parentId, tasks) {
+        this.draw = function(parentId, iTasks) {
         	ownId = parentId;
-        	
+        	var that = this;
+
+        	tasks = iTasks;
+
             this.initTimeDomain(tasks);
             this.initAxis();
 
@@ -80,41 +90,47 @@ var d3plug = d3plug || {};
 
             var svg = parent.append("svg");
 			var main = svg.append("g");
-			
 			this.adjustContent(svg, main);
 
-            var select = main.selectAll(".chart")
-                .data(tasks, keyFunction).enter();
-            
-            var rect = select.append("rect")
-                .attr("rx", 5)
-                .attr("ry", 5);
+            var rects = main.selectAll(".gantt-chart")
+                .data(tasks, keyFunction);
+            rects.enter();
+            var rect = rects.append("rect");
+            this.adjustRect(rect);
+            rects.exit().remove();
 
-            rect.attr("class", function(d) {
-                    if (taskStatus[d.status] == null) {
-                        return "bar";
-                    }
-                    return taskStatus[d.status];
-                })
-                .attr("y", 0)
-
-           rect.attr("transform", rectTransform)
-                .attr("height", function(d) {
-                    return y.rangeBand();
-                })
-                .attr("width", function(d) {
-                    return (x(d.endDate) - x(d.startDate));
-                })
-                .append("svg:title")
-            		.text(function(d, i) { 
-            			return d.taskDesc + " [ " + d.endDate + " - " + d.startDate + " ]"
-            		});  // Shows tool tip
-                
+			var texts = main.selectAll(".gantt-chart")
+                .data(tasks, keyFunction);
+            texts.enter();
+            var text = texts.append("text");
+            this.adjustText(text);
+            texts.exit().remove();
 
             var xa = svg.append("g");
             var ya = svg.append("g");
-
             this.adjustAxes(xa, ya);
+			
+			var rectSel = main.selectAll("rect");
+			if(rectSel) {
+				rectSel = rectSel[0];
+				for (var rI in rectSel) {
+					var rO = rectSel[rI];
+					$(rO).click (
+						function(event){that.onClickDelegator(event)}
+					);
+				}
+			}
+
+			var textSel = main.selectAll("text");
+			if(textSel) {
+				textSel = textSel[0];
+				for (var rI in textSel) {
+					var rO = textSel[rI];
+					$(rO).click (
+						function(event){that.onClickDelegator(event)}
+					);
+				}
+			}
 
             return this;
 
@@ -153,7 +169,48 @@ var d3plug = d3plug || {};
             	.call(yAxis);
 		};
 
-        this.redraw = function(tasks) {
+		this.adjustRect = function (rect) {
+			rect.attr("rx", 5)
+                .attr("ry", 5)
+                .attr("class", function(d) {
+                    if (taskStatus[d.status] == null) {
+                        return "bar";
+                    }
+                    return taskStatus[d.status];
+                })
+                .attr("y", 0)
+                .attr("transform", rectTransform)
+            	.attr("height", function(d) {
+                    return y.rangeBand();
+                })
+                .attr("width", function(d) {
+                    return (x(d.endDate) - x(d.startDate));
+                })
+                .attr("key", function(d) {
+                    return d.key;
+                })
+                .append("svg:title")
+            		.text(rectTextName)
+				.transition();
+		};
+
+		this.adjustText = function (text) {
+			text.attr("rx", 5)
+                .attr("ry", 2)
+                .attr("y", 4)
+                .attr("x", 10)
+                .attr("class", "text")
+                .attr("transform", rectTransform)
+                .attr("key", function(d) {
+                    return d.key;
+                })
+            	.text(rectTextShort)
+				.transition();
+		};
+
+        this.redraw = function(iTasks) {
+			var that = this;
+			tasks = iTasks;
 
             this.initTimeDomain(tasks);
             this.initAxis();
@@ -164,45 +221,20 @@ var d3plug = d3plug || {};
 			
 			this.adjustContent(svg, main);
                 
-            var rect = main.selectAll("rect").data(tasks, keyFunction);
+            var rects = main.selectAll("rect").data(tasks, keyFunction);
+            var rect = rects.enter()
+                .insert("rect", ":first-child");
+            this.adjustRect(rect);
+            rects.exit().remove();
 
-            rect.enter()
-                .insert("rect", ":first-child")
-                .attr("rx", 5)
-                .attr("ry", 5)
-                .attr("class", function(d) {
-                    if (taskStatus[d.status] == null) {
-                        return "bar";
-                    }
-                    return taskStatus[d.status];
-                })
-                .append("svg:title")
-                	.text(function(d, i) { 
-                		return d.taskDesc + " [ " + d.endDate + " - " + d.startDate + " ]"
-                	})  // Shows tool tip
-                .transition()
-                .attr("y", 0)
-                .attr("transform", rectTransform)
-            	.attr("height", function(d) {
-                    return y.rangeBand();
-                })
-                .attr("width", function(d) {
-                    return (x(d.endDate) - x(d.startDate));
-                })
-
-            rect.transition()
-                .attr("transform", rectTransform)
-                .attr("height", function(d) {
-                    return y.rangeBand();
-                })
-                .attr("width", function(d) {
-                    return (x(d.endDate) - x(d.startDate));
-                })
-            rect.exit().remove();
+            texts = main.selectAll("text").data(tasks, keyFunction);
+            var text = texts.enter()
+                .insert("text");
+            this.adjustText(text);
+            texts.exit().remove();
 
             var xa = svg.select("#" + ownId + "_x");
             var ya = svg.select("#" + ownId + "_y");
-            
             this.adjustAxes(xa, ya);
 
             return this;
@@ -269,6 +301,15 @@ var d3plug = d3plug || {};
             tickFormat = value;
             return this;
         };
+
+        this.onClickDelegator = function (event) {
+        	event.stopPropagation();
+        	event.preventDefault();
+        	event.stopImmediatePropagation();
+        	if(this.clickListener != undefined) {
+				this.clickListener.processOnClick(event);
+        	}
+        }
         
         return this;
     };

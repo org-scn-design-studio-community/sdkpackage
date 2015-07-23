@@ -5,6 +5,7 @@ var myComponentData = org_scn_community_require.knownComponents.basics.ActivityV
 ActivityViewer = function () {
 	
 	var that = this;
+	that.r = 1;
 	
 	this.init = function() {
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
@@ -63,6 +64,7 @@ ActivityViewer = function () {
 		
 		if(!that._gantt) {
 			that._gantt = new d3plug.gantt(that._containerWidth, that._containerHeight, that.margin);
+			that._gantt.clickListener = that;
 		} else {
 			that._gantt.width(that._containerWidth-that.margin.left-that.margin.right-5);
 			that._gantt.height(that._containerHeight-that.margin.top-that.margin.bottom-5);
@@ -89,6 +91,10 @@ ActivityViewer = function () {
 	};
 	
 	this.onResize = function(width, height) {
+		if(width == that._gantt.width() && height == that._gantt.height()) {
+			return;
+		}
+
 		if(width > 0){
 			if(width > that.margin.left+that.margin.right+5) {
 				that._gantt.width(width-that.margin.left-that.margin.right-5);	
@@ -139,6 +145,7 @@ ActivityViewer = function () {
 			that.taskStatus[sta.key] = sta.style;
 		}
 		
+		that.r++;
 		that.tasks = [];
 		for (var actI in activities) {
 			var act = activities[actI];
@@ -146,7 +153,7 @@ ActivityViewer = function () {
 			if(that.hashCategories[act.category] == undefined) {
 				that.hashCategories[act.category] = {
 					key: act.category,
-					text: "Unknown" + act.category
+					text: "Unknown"
 				};
 				that.taskNames.push(that.hashCategories[act.category].text);
 			}
@@ -163,6 +170,8 @@ ActivityViewer = function () {
 				}
 				
 				actO.status = act.state;
+				actO.key = act.key;
+				actO.r = that.r;
 
 				that.tasks.push(actO);
 			}
@@ -174,9 +183,25 @@ ActivityViewer = function () {
 		return date;
 	};
 	
-
 	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	this.processOnClick = function (event) {
+		var target = event.target;
+		var attributes = target.attributes;
 
+		var key = undefined;
+		for (var aI in attributes) {
+			var aO = attributes[aI];
+
+			if(aO.localName == "key") {
+				key = aO.nodeValue;
+				break;
+			}			
+		}
+
+		that.setSelectedKey(key);
+				
+		that.firePropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
+	};
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 
 	org_scn_community_component_Core(this, myComponentData);

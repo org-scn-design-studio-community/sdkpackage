@@ -1,0 +1,27 @@
+{
+	"name": "ProcessFlowNodeState",
+	"docu": "Describes the state info connected to the content displayed in the Process Flow Node body. Also Process Flow Lane Header uses this enumeration for the chart",
+
+	values: [
+	{	
+		"name": "Positive",
+		"value": "Positive status for a Created document: document is done, finished, solved "	
+	},
+	{	
+		"name": "Negative",
+		"value": "Negative status for a Created document: a document has an issue"	
+	},
+	{	
+		"name": "Planned",
+		"value": "Planned status for a document: a document is planned"	
+	},
+	{	
+		"name": "Neutral",
+		"value": "Neutral status for a Created document: document is in progress "	
+	},
+	{	
+		"name": "PlannedNegative",
+		"value": "Planned document has an issue"	
+	}
+	]
+}

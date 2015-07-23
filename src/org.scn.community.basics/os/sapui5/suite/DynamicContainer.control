@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>DynamicContainer</name>
+	<documentation>The control that displays multiple GenericTile controls as changing slides.</documentation>
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Appearance" name="displayTime" type="sap.ui.core/int" defaultValue="5000">
+			<documentation>The time of the slide display in milliseconds.</documentation>
+		</property>
+		<property group="Appearance" name="transitionTime" type="sap.ui.core/int" defaultValue="500">
+			<documentation>The time of the slide changing in milliseconds.</documentation>
+		</property>
+<!--
+		<property group="Misc" name="pauseTriggerTime" type="sap.ui.core/int" defaultValue="700" since="1.23">
+			<documentation>The time after holding finger tap or mouse click to trigger pause.</documentation>
+		</property>
+-->		
+	</properties>
+	<aggregations>
+		<aggregation cardinality="0..n" name="tiles" type="sap.suite.ui.commons/GenericTile">
+			<documentation>The set of Generic Tiles to be shown in the control.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

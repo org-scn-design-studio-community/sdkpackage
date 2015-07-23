@@ -1,0 +1,93 @@
+{
+
+   "nodePressedKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Node Pressed Key",
+			"cat" : "Internal",
+			"tooltip" : "NodePressed Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":false
+		}
+	},
+	"onNodePressed": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Node Pressed",
+            "cat": "Events",
+            "tooltip": "Event triggered on This object represents the wrapped process flow node object.",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+   "headerPressedKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Header Pressed Key",
+			"cat" : "Internal",
+			"tooltip" : "HeaderPressed Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":false
+		}
+	},
+	"onHeaderPressed": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Header Pressed",
+            "cat": "Events",
+            "tooltip": "Event triggered on This object represents the wrapped process flow lane header object.",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+   "onErroredKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : " Errored Key",
+			"cat" : "Internal",
+			"tooltip" : "Errored Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":false
+		}
+	},
+	"onErrored": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On  Errored",
+            "cat": "Events",
+            "tooltip": "Event triggered on This parameters contains the localized string with error message.",
+            "noAps":true,
+            "noZtl":true
+        }
+    }
+}

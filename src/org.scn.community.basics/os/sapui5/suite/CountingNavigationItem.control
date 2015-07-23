@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>CountingNavigationItem</name>
+	<documentation>This control extends the sap.ui.ux3.NavigationItem control. This control can display the quantity of items on a corresponding content area. It also provides a rich tooltip that can appear and disappear after a certain delay. </documentation>
+
+	<baseType>sap.ui.ux3/NavigationItem</baseType>
+	<properties>
+		<property group="Misc" name="quantity" type="sap.ui.core/string">
+			<documentation>Stores the number of content items associated with this navigation item. This number appears in brackets next to the navigation item name. For example, Employes (10000).</documentation>
+		</property>
+	</properties>
+</control>

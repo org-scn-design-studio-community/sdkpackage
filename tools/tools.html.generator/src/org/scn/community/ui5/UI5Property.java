@@ -16,7 +16,7 @@ import org.scn.community.spec.SpecHelper;
 import org.scn.community.spec.orgin.OrginSpec;
 import org.scn.community.utils.Helpers;
 
-public class UI5Property {
+public class UI5Property extends UI5Reader {
 
 	private XMLStreamReader reader;
 	private String componentName;
@@ -43,33 +43,27 @@ public class UI5Property {
 		while (hasNextTag(reader)) {
 			readNextTag(reader);
 			
+			if(isEnd(reader)) {
+				break;
+			}
+			
 			String localName = reader.getLocalName();
+			
+			if(reader.isEndElement()) {
+				if(localName.equals("property")) {
+					break;
+				}
+				continue;
+			}
 			
 			if(localName.equals("documentation")) {
 				readNextTag(reader);
 				
 				this.docu = reader.getText();
-				break;
+				this.docu = this.docu.replace("\"", "'");
+				this.docu = this.docu.replace("\r", "");
+				this.docu = this.docu.replace("\n", " ");
 			}
-		}
-	}
-
-	private boolean hasNextTag(XMLStreamReader reader) {
-		try {
-			return reader.hasNext();
-		} catch (XMLStreamException e) {
-			// TODO Auto-generated catch block
-	
-		}
-		return false;
-	}
-	
-	private void readNextTag(XMLStreamReader reader) {
-		try {
-			reader.nextTag();
-		} catch (XMLStreamException e) {
-			// TODO Auto-generated catch block
-	
 		}
 	}
 
@@ -130,7 +124,7 @@ public class UI5Property {
 		template = template.replace("%NAME%", nameOfProperty);
 		template = template.replace("%ORGINAL_TYPE%", originalType);
 		template = template.replace("%DESCRIPTION%", desctiptionOfProperty);
-		template = template.replace("%TOOLTIP%", this.docu);
+		template = template.replace("%TOOLTIP%", this.docu.replace("\"", "'"));
 		template = template.replace("%ZTL_TYPE%", compatibleType);
 		template = template.replace("%CATEGORY%", category);
 		template = template.replace("%VISIBLE%", "true");
@@ -200,20 +194,24 @@ public class UI5Property {
 			SpecHelper helper = new SpecHelper(this.componentName, this.root);
 
 			if(jsonSpec == null) {
-				String url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/suite/ui/commons/"+originalType + "." +suffix;
-				String onlineSpec = helper.sendGet(url);
-				
-				if(onlineSpec == null || onlineSpec.length() == 0) {
-					throw new RuntimeException("UI5 Type/Control " + originalType + " is missing spec. Url " + url + " does not have spec.");	
+				if(!new File(xmlSpecFile).exists()) {
+					String url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/suite/ui/commons/"+originalType + "." +suffix;
+					String onlineSpec = helper.sendGet(url);
+
+					if(onlineSpec == null || onlineSpec.length() == 0) {
+						throw new RuntimeException("UI5 Type/Control " + originalType + " is missing spec. Url " + url + " does not have spec.");	
+					}
+					
+					if(!new File(xmlSpecFile).exists()) {
+						Helpers.string2File(xmlSpecFile, onlineSpec);
+					}
 				}
 
 				if(suffix.equals("type")) {
-					Helpers.string2File(xmlSpecFile, onlineSpec);
 					UI5Type ui5Type = new UI5Type(new File(xmlSpecFile));
 					ui5Type.generateSpec();
 					jsonSpec = ui5Type.updateSpecAndZtlSingle();
 				} else {
-					Helpers.string2File(xmlSpecFile, onlineSpec);
 					UI5Control ui5Control = new UI5Control(new File(xmlSpecFile));
 					ui5Control.generateSpec();
 					jsonSpec = ui5Control.updateSpecSingle();
@@ -227,7 +225,7 @@ public class UI5Property {
 			try {
 				jsonIncludeSpecification = new JSONObject(jsonSpec);
 			} catch (JSONException e) {
-				throw new RuntimeException(e);
+				throw new RuntimeException(xmlSpecFile + "\r\n" + e);
 			}
 
 			if(suffix.equals("type")) {
@@ -256,6 +254,8 @@ public class UI5Property {
 					
 					String nameChild = propertyChild.getName();
 					
+					String typeZtlChild = propertyChild.getExtendedFullSpec().getZtlType();
+
 					String keyAddition = "";
 					String tabs = "\t\t\t\t\t";
 					
@@ -276,8 +276,19 @@ public class UI5Property {
 						}
 					} else {
 						propDef = "\""+nameChild+"\": {\r\n" + tabs;
-						propDef = propDef + "  \"desc\": \""+Helpers.makeDescription(nameChild)+"\",\r\n" + tabs;
-						propDef = propDef + "  \"type\": \""+typeChild+"\"\r\n" + tabs;
+						propDef = propDef + "  \"desc\": \""+Helpers.makeDescription(nameChild) + (typeZtlChild.equals("StringArray")?" [Array]":"") + "\",\r\n" + tabs;
+						propDef = propDef + "  \"type\": \""+typeChild+"\"";
+						
+						if(typeZtlChild.equals("Choice")) {
+							String valuesJson = propertyChild.getExtendedFullSpec().getValues();
+
+							propDef = propDef + ",\r\n" + tabs;
+							propDef = propDef + "  \"options\": "+valuesJson+",\r\n" + tabs;
+							propDef = propDef + "  \"apsControl\": \""+"combobox"+"\"\r\n" + tabs;
+						} else {
+							propDef = propDef + "\r\n" + tabs;
+						}
+						
 						propDef = propDef + "}";
 
 						template = template.replace("%"+keyAddition+"ARRAY_PROPERTY_SEQUENCE%", nameChild + ",%"+keyAddition+"ARRAY_PROPERTY_SEQUENCE%");
@@ -356,6 +367,10 @@ public class UI5Property {
 			return "String";
 		}
 		
+		if(type.endsWith("/object") || type.equals("object")) {
+			return "String";
+		}
+
 		if(type.endsWith("/float") || type.equals("float")) {
 			return "float";
 		}
@@ -372,8 +387,16 @@ public class UI5Property {
 			return "StringArray";
 		}
 		
+		if(type.endsWith("/object[]") || type.equals("object[]")) {
+			return "StringArray";
+		}
+		
 		if(type.endsWith("CSSSize")) {
 			return "int";
+		}
+		
+		if(type.endsWith("URI")) {
+			return "Url";
 		}
 		
 		String cardi = this.getAttr("cardinality");

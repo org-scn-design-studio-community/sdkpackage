@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+
+
+	<name>TimelineAxisOrientation</name>
+
+	<author></author>
+
+
+
+	<documentation>Timeline Axis Orientation</documentation>
+
+	<baseType>sap.ui.core/string</baseType>
+
+	<enumeration>
+	
+	    <value name="Vertical">
+
+			<documentation>Vertical Orientation</documentation>
+
+		</value>
+		<value name="Horizontal">
+
+			<documentation>Horizontal Orientation</documentation>
+
+		</value>
+		
+
+	</enumeration>
+
+</simple-type>
+

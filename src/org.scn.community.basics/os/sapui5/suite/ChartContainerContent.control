@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ChartContainerContent</name>
+	
+	<documentation>Content Aggregation for ChartContainer.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="icon" type="sap.ui.core/string">
+			<documentation>Icon of the Chart.</documentation>
+		</property>
+		<property group="Misc" name="title" type="sap.ui.core/string">
+			<documentation>Title of the Chart/Table</documentation>
+		</property>
+	</properties>
+	<aggregations>
+		<aggregation cardinality="0..1" type="sap.ui.core/Control" name="content">
+			<documentation>Chart or Table as content of the ChartTollBar. Supported Types:
+			- vizFrame 
+			- sap.m.Table 
+			- sap.ui.table.Table
+			</documentation>
+		</aggregation>
+	</aggregations>
+</control>

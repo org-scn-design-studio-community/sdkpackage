@@ -1,0 +1,35 @@
+{
+
+	"useChildren":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Children'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Children' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"useTexts":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Texts'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Texts' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

@@ -36,6 +36,7 @@
       "ztlFunction": "",
       "ztlType": "StringArray"
     },
+    "origType": "string[]",
     "template": "StringArray",
     "type": "String",
     "value": "[]",
@@ -118,7 +119,26 @@
       "apsControl": "array",
       "arrayDefinition": {"items": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "formattedLabel": {
@@ -156,7 +176,7 @@
     "origType": "HarveyBallMicroChartItem",
     "template": "ObjectArray",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"formattedLabel\":false,\"color\":\"Good\",\"fraction\":20,\"fractionLabel\":\"sold \",\"fractionScale\":\"20T\"}]",
     "visible": true
   },
   "showFractions": {
@@ -243,7 +263,7 @@
     },
     "template": "float",
     "type": "float",
-    "value": 0,
+    "value": 100,
     "visible": true
   },
   "totalLabel": {
@@ -275,7 +295,7 @@
     },
     "template": "String",
     "type": "String",
-    "value": "",
+    "value": "M",
     "visible": true
   },
   "useColorPalette": {

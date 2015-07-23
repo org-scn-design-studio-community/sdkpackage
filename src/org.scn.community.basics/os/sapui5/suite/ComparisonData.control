@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ComparisonData</name>
+	<documentation>Comparison tile value holder.</documentation>
+	<baseType>sap.ui.core/Element</baseType>
+	<properties>
+        <property group="Misc" name="title" type="sap.ui.core/string">
+            <documentation>The comparison bar title.</documentation>
+        </property>
+		<property group="Misc" name="value" type="sap.ui.core/float" defaultValue="0">
+			<documentation>The float value for comparison.</documentation>
+		</property>
+		<property group="Misc" name="color" type="InfoTileValueColor" defaultValue="Neutral">
+			<documentation>The semantic color of the value.</documentation>
+		</property>
+		<property group="Misc" name="displayValue" type="sap.ui.core/string" since="1.22">
+			<documentation>If this property is set then it will be rendered instead of value. </documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press" since="1.30">
+			<documentation>The event is fired when the user chooses the comparison data.</documentation>
+		</event>
+	</events>
+	
+</control>

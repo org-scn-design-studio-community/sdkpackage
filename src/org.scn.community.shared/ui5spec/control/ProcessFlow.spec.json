@@ -1,0 +1,236 @@
+{
+
+	"foldedCorners" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Folded Corners",
+			"cat" : "Display",
+			"tooltip" : "This property defines the folded corners for the single node control. The following values exist: - true: means folded corner",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"scrollable" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Scrollable",
+			"cat" : "Display",
+			"tooltip" : "By default, the control body is embedded into a scroll container of fixed size, so the user can put the control into a fixe sized layout.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"wheelZoomable" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Wheel Zoomable",
+			"cat" : "Display",
+			"tooltip" : "The property specifies if to enable semantic zooming by mouse wheel events on desktop browsers.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"connections" : {
+		"template" : "ObjectArray",
+		"type" : "String",
+		"origType": "ProcessFlowConnection";
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+
+			"desc" : "Connections",
+			"cat" : "Content-Connections",
+			"tooltip" : "This is the aggregation of the connection controls put         into the table to the calculated cells.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"connections": {
+					"type": "Array",
+			        "sequence": "key,drawData,zoomLevel",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"drawData": {
+					  "desc": "Draw Data [Array]",
+					  "type": "String"
+					},
+					"zoomLevel": {
+					  "desc": "Zoom Level",
+					  "type": "String",
+					  "options": [{"key":"One","text":"zoom level for least details - only icon is displayed"},{"key":"Two","text":"The detail is icon, title text and no additional texts"},{"key":"Three","text":"The full detail view of the node but with smaller font size"},{"key":"Four","text":"The full details with normal font size"}],
+					  "apsControl": "combobox"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"nodes" : {
+		"template" : "ObjectArray",
+		"type" : "String",
+		"origType": "ProcessFlowNode";
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"children\":\"[2,3]\",\"nodeId\":\"1\",\"state\":\"Neutral\",\"stateText\":\"Positive Status\",\"title\":\"Sales Order 1\",\"laneId\":\"id0\",\"focused\":true},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT1\",\"leaf\":false,\"nodeId\":\"2\",\"title\":\"Delivery 13\",\"stateText\":\"Not Delivered Yet!\",\"state\":\"Negative\",\"texts\":\"this is delivery document\",\"laneId\":\"id1\",\"children\":\"\",\"highlighted\":false,\"focused\":false},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT2\",\"leaf\":false,\"nodeId\":\"3\",\"laneId\":\"id1\",\"state\":\"Positive\",\"stateText\":\"Positive\",\"title\":\"Positive\",\"texts\":\"Positive\",\"children\":\"\"}]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+
+			"desc" : "Nodes",
+			"cat" : "Content-Nodes",
+			"tooltip" : "this is the aggregation of the node controls put into         the table to the calculated cells.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"nodes": {
+					"type": "Array",
+			        "sequence": "key,children,focused,highlighted,isTitleClickable,laneId,nodeId,state,stateText,tag,texts,title,titleAbbreviation",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"children": {
+					  "desc": "Children [Array]",
+					  "type": "String"
+					},
+					"focused": {
+					  "desc": "Focused",
+					  "type": "boolean"
+					},
+					"highlighted": {
+					  "desc": "Highlighted",
+					  "type": "boolean"
+					},
+					"isTitleClickable": {
+					  "desc": "Is Title Clickable",
+					  "type": "boolean"
+					},
+					"laneId": {
+					  "desc": "Lane Id",
+					  "type": "String"
+					},
+					"nodeId": {
+					  "desc": "Node Id",
+					  "type": "String"
+					},
+					"state": {
+					  "desc": "State",
+					  "type": "String",
+					  "options": [{"key":"Positive","text":"Positive status for a Created document: document is done, finished, solved "},{"key":"Negative","text":"Negative status for a Created document: a document has an issue"},{"key":"Planned","text":"Planned status for a document: a document is planned"},{"key":"Neutral","text":"Neutral status for a Created document: document is in progress "},{"key":"PlannedNegative","text":"Planned document has an issue"}],
+					  "apsControl": "combobox"
+					},
+					"stateText": {
+					  "desc": "State Text",
+					  "type": "String"
+					},
+					"tag": {
+					  "desc": "Tag",
+					  "type": "String"
+					},
+					"texts": {
+					  "desc": "Texts [Array]",
+					  "type": "String"
+					},
+					"title": {
+					  "desc": "Title",
+					  "type": "String"
+					},
+					"titleAbbreviation": {
+					  "desc": "Title Abbreviation",
+					  "type": "String"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"lanes" : {
+		"template" : "ObjectArray",
+		"type" : "String",
+		"origType": "ProcessFlowLaneHeader";
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"laneId\":\"id0\",\"iconSrc\":\"sap-icon://order-status\",\"state\":\"\",\"text\":\"In Order\",\"position\":0,\"zoomLevel\":\"One\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT1\",\"leaf\":false,\"laneId\":\"id1\",\"iconSrc\":\"sap-icon://payment-approval\",\"text\":\"In Delivery\",\"position\":1,\"state\":\"Planned\"}]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+
+			"desc" : "Lanes",
+			"cat" : "Content-Lanes",
+			"tooltip" : "This is a header of the table for the process flow control.",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"lanes": {
+					"type": "Array",
+			        "sequence": "key,iconSrc,laneId,position,state,text,zoomLevel",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"iconSrc": {
+					  "desc": "Icon Src",
+					  "type": "String"
+					},
+					"laneId": {
+					  "desc": "Lane Id",
+					  "type": "String"
+					},
+					"position": {
+					  "desc": "Position",
+					  "type": "int"
+					},
+					"state": {
+					  "desc": "State",
+					  "type": "String"
+					},
+					"text": {
+					  "desc": "Text",
+					  "type": "String"
+					},
+					"zoomLevel": {
+					  "desc": "Zoom Level",
+					  "type": "String",
+					  "options": [{"key":"One","text":"zoom level for least details - only icon is displayed"},{"key":"Two","text":"The detail is icon, title text and no additional texts"},{"key":"Three","text":"The full detail view of the node but with smaller font size"},{"key":"Four","text":"The full details with normal font size"}],
+					  "apsControl": "combobox"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

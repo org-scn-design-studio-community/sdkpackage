@@ -29,7 +29,26 @@
       "apsControl": "array",
       "arrayDefinition": {"actual": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -55,7 +74,7 @@
     "origType": "BulletChartData",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"value\":1500}]",
     "visible": true
   },
   "actualValueLabel": {
@@ -508,7 +527,26 @@
       "apsControl": "array",
       "arrayDefinition": {"thresholds": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -534,7 +572,7 @@
     "origType": "BulletChartData",
     "template": "ObjectArray",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Critical\",\"value\":100},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT1\",\"leaf\":false,\"color\":\"Good\",\"value\":600},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT2\",\"leaf\":false,\"color\":\"Neutral\",\"value\":1200},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT3\",\"leaf\":false,\"color\":\"Neutral\",\"value\":1800}]",
     "visible": true
   },
   "useActual": {

@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>MonitoringContent</name>
+	<documentation>This control is used in a tile or any other place to display numeric values and an icon.</documentation>
+	<developmentState state="deprecated" since="1.25">This control has been deprecated in favor of new sap.suite.ui.commons.NumericContent.</developmentState>
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="value" type="sap.ui.core/string">
+			<documentation>The actual value.</documentation>
+		</property>
+		<property group="Misc" name="iconSrc" type="sap.ui.core/string">
+			<documentation>This property is set by the return value of sap.ui.core.IconPool.getIconURI that is called with an icon name parameter and optional collection parameter. The collection parameter is required when the application extended icons are used.</documentation>
+		</property>
+		<property group="Misc" name="size" type="sap.suite.ui.commons/InfoTileSize" defaultValue="Auto">
+			<documentation>Updates the size of the chart. If not set then the default size is applied based on the device tile.</documentation>
+		</property>
+		<property group="Misc" name="state" type="LoadState" defaultValue="Loaded">
+			<documentation>Indicates the load status.</documentation>
+		</property>
+		<property group="Misc" name="animateTextChange" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>If set to true, changing of the value is animated.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the monitoring content.</documentation>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..1" name="icon" type="sap.ui.core/Icon">
+			<documentation>The icon that is displayed in the content.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

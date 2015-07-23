@@ -62,20 +62,29 @@ org_scn_community_unified.getObjectArrayContent = function (owner, name, options
 
 	if(propertyObject.isArraySingle) {
 		for (var jI in propertyObject.value) {
-			if(jI == "parentKey" || jI == "leaf" || jI == "key") continue;
+			if(jI == "parentKey" || jI == "leaf") continue;
 			if(jI == "__children") {
 				propertyObject.jsonTemplate[propertyObject.subArrayName] = [];
 				for (var pcI in propertyObject.value[jI]) {
 					var propChildO = propertyObject.value[jI][pcI];
 					var subPropO = {};
 					for (var pCpI in propChildO) {
-						if(pCpI == "parentKey" || pCpI == "leaf" || pCpI == "key") continue;
-						subPropO[pCpI] = propChildO[pCpI];
+						if(pCpI == "parentKey" || pCpI == "leaf") continue;
+						
+						var valueToSet = propChildO[pCpI];
+						valueToSet = org_scn_community_unified.fixArrayValue(valueToSet);
+						if(valueToSet != undefined) {	
+								subPropO[pCpI] = valueToSet;
+						}
 					}
 					propertyObject.jsonTemplate[propertyObject.subArrayName].push(subPropO);
 				}
 			} else {
-				propertyObject.jsonTemplate[jI] = propertyObject.value[jI];	
+				var valueToSet = propertyObject.value[jI];
+				valueToSet = org_scn_community_unified.fixArrayValue(valueToSet);
+				if(valueToSet != undefined) {
+						propertyObject.jsonTemplate[jI] = valueToSet;
+				}
 			}
 		}
 	} else {
@@ -86,13 +95,35 @@ org_scn_community_unified.getObjectArrayContent = function (owner, name, options
 			
 			propertyObject.jsonTemplate[jAI] = {};
 			for (var jI in jO) {
-				if(jI == "parentKey" || jI == "leaf" || jI == "key") continue;
-				propertyObject.jsonTemplate[jAI][jI] = jO[jI];
+				if(jI == "parentKey" || jI == "leaf") continue;
+
+				var valueToSet = jO[jI];
+				valueToSet = org_scn_community_unified.fixArrayValue(valueToSet);
+				if(valueToSet != undefined) {
+					propertyObject.jsonTemplate[jAI][jI] = valueToSet;	
+				}
 			}
 		}
 	}
 
 	return propertyObject;
+};
+
+org_scn_community_unified.fixArrayValue= function (valueToSet) {
+	if(valueToSet != undefined && (
+		(valueToSet.length != undefined && valueToSet.length > 0)
+		|| valueToSet.length == undefined)
+		) {
+			if(valueToSet.length != undefined) {
+				// assuming JSON
+				if(valueToSet.indexOf("[") == 0) {
+					valueToSet = JSON.parse(valueToSet);
+					return valueToSet;
+				}
+			}
+			return valueToSet;
+	}
+	return undefined;
 };
 
 org_scn_community_unified.getObjectContent= function (owner, name, options) {
@@ -352,6 +383,9 @@ org_scn_community_unified.getOriginMappings = function (owner, propertyObject) {
 
 		propertyObject.origMappingChild = [];
 
+	} else if(type == "ProcessFlowConnection") {
+	} else if(type == "ProcessFlowLaneHeader") {
+	} else if(type == "ProcessFlowNode") {
 	} else {
 		throw new Error("Original Type " + type + " does not have mappings");
 	}
@@ -370,4 +404,31 @@ org_scn_community_unified.getLength = function (numArray) {
 		return numArray.length	
 	}
 	return 0;
+};
+
+org_scn_community_unified.createEvent = function (owner, eventName, event) {
+	var retO = {};
+	retO.name = eventName.substring(2,3).toLowerCase() + eventName.substring(3);
+	retO.name = retO.name.substring(0, retO.name.length-2);
+	// retO.func = function (event) {org_scn_community_unified.processEvent(that, eventName, retO.name, event)};
+	retO.func = eventName;
+	
+	return retO;
+};
+
+
+org_scn_community_unified.processEvent = function (owner, eventName, event) {
+	var that = owner;
+
+	var parameterKeyName = eventName.substring(2,3).toLowerCase() + eventName.substring(3);
+	parameterKeyName = parameterKeyName.substring(0, parameterKeyName.length-2);
+
+	parameterKeyName = parameterKeyName + "edKey";
+
+	var parameterKeyNameCap = parameterKeyName.substring(0,1).toUpperCase() + parameterKeyName.substring(1);
+
+	var key = event.getParameters().data("ownKey");
+	that["set" + parameterKeyNameCap](key);
+				
+	that.fireDesignStudioPropertiesChangedAndEvent([parameterKeyName], eventName);
 };

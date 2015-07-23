@@ -1,0 +1,35 @@
+{
+
+	"useIconSrc":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Icon Src'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Icon Src' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"usePosition":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Position'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Position' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

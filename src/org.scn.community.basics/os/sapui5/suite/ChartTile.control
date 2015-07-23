@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ChartTile</name>
+	<documentation>This control is the implementation of the InfoTile to show a comparison or bullet chart.</documentation>
+	<developmentState state="deprecated" since="1.25">This control has been deprecated in favor of new sap.suite.ui.commons.GenericTile.</developmentState>
+	<baseType>InfoTile</baseType>
+	<properties>
+		<property group="Misc" name="unit" type="sap.ui.core/string">
+			<documentation>The percent sign, the currency symbol, or the unit of measure.</documentation>
+		</property>
+	</properties>
+</control>

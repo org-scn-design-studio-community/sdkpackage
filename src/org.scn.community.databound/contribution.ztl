@@ -1951,6 +1951,18 @@ class org.scn.community.databound.NiceChart extends org.scn.community.shared.Dat
 
 }
 
+/**
+ * Generated ZTL Class for ProcessFlow
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.ProcessFlow extends org.scn.community.shared.ui5.ProcessFlow {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
 class org.scn.community.databound.Projector extends org.scn.community.shared.DataComponent {
 	/**
 	 * Sets data in serialized string form.  Meant to be used in conjunction with

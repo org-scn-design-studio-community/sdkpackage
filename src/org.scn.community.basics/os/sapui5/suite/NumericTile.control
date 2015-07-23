@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>NumericTile</name>
+	<documentation>This control is the implementation of the InfoTile to show a numeric value.</documentation>
+	<developmentState state="deprecated" since="1.25">This control has been deprecated in favor of new sap.suite.ui.commons.GenericTile.</developmentState>
+	<baseType>InfoTile</baseType>
+	<properties>
+		<property group="Misc" name="value" type="sap.ui.core/string">
+			<documentation>The actual value.</documentation>
+		</property>
+		<property group="Misc" name="scale" type="sap.ui.core/string">
+			<documentation>The scaling prefix. Financial characters can be used for currencies and counters. The SI prefixes can be used for units.</documentation>
+		</property>
+		<property group="Misc" type="sap.ui.core/string" name="unit">
+			<documentation>The percent sign, the currency symbol, or the unit of measure.</documentation>
+		</property>
+		<property group="Misc" name="valueColor" type="InfoTileValueColor">
+			<documentation>The semantic color of the value.</documentation>
+		</property>
+		<property group="Misc" name="indicator" type="DeviationIndicator">
+			<documentation>The indicator arrow that shows value deviation.</documentation>
+		</property>
+	</properties>
+</control>

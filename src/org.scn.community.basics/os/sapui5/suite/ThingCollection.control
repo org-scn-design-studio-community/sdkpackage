@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ThingCollection</name>
+	<documentation>This control contains a collection of the sap.ui.ux3.ThingViewer controls or descendants of sap.ui.ux3.ThingViewer. It allows you to navigate through them as well as delete them from the collection.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="width" type="sap.ui.core/CSSSize" defaultValue="100%">
+			<documentation>The width of the control.</documentation>
+		</property>
+		<property group="Misc" name="height" type="sap.ui.core/CSSSize" defaultValue="100%">
+			<documentation>The height of the control.</documentation>
+		</property>
+		<property group="Misc" name="minWidth" type="sap.ui.core/CSSSize">
+			<documentation>The minimal width of the control.</documentation>
+		</property>
+		<property group="Misc" name="minHeight" type="sap.ui.core/CSSSize">
+			<documentation>The minimal height of the control.</documentation>
+		</property>
+	</properties>
+	<aggregations>
+		<aggregation cardinality="0..n" name="content" type="sap.ui.ux3/ThingViewer">
+			<documentation>Contains a collection of sap.ui.ux3.ThingViewer controls or descendants of sap.ui.ux3.ThingViewer.</documentation>
+		</aggregation>
+	</aggregations>
+	<methods>
+		<method name="shiftPrev" type="sap.ui.core/void">
+			<documentation>Displays a previous item in the collection.</documentation>
+		</method>
+		<method name="shiftNext" type="sap.ui.core/void">
+			<documentation>Displays the next item in the collection.</documentation>
+		</method>
+		<method name="addNextContent" type="sap.suite.ui.commons/ThingCollection">
+			<documentation>Inserts an element into the next display position.</documentation>
+			<parameters>
+				<parameter name="oContent" type="sap.ui.ux3/ThingViewer">
+					<documentation>An instance of ThingViewer or an instance of its descendant.</documentation>
+				</parameter>
+			</parameters>
+		</method>
+	</methods>
+</control>

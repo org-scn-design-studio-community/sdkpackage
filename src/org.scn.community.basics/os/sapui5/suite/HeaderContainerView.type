@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>HeaderContainerView</name>
+	<author></author>
+
+	<documentation>The list of possible HeaderContainer views.</documentation>
+	<baseType>sap.ui.core/string</baseType>
+	<enumeration>
+		<value name="Horizontal">
+			<documentation>The horizontal orientation of the control.</documentation>
+		</value>
+		<value name="Vertical">
+			<documentation>The vertical orientation of the control.</documentation>
+		</value>
+	</enumeration>
+</simple-type>

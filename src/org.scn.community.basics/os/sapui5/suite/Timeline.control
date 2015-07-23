@@ -1,0 +1,169 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>Timeline</name>
+	<documentation>Timeline Control for sFin.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+	     <property group="Misc" name="data" type="sap.ui.core/object">
+		 <documentation>Data for Timeline Control..</documentation>
+		</property>
+		<property group="Misc" name="sortOldestFirst" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>Whether the oldest item will be displayed first.</documentation>
+		</property>
+		<property group="Misc" name="axisOrientation" type="TimelineAxisOrientation" defaultValue="Vertical">
+		 <documentation>Timeline axis orientation.</documentation>
+		</property>		
+		<property group="Misc" name="alignment" type="TimelineAlignment" defaultValue="Right">
+		 <documentation>Timeline item alignment. </documentation>
+		</property>	
+		<property group="Misc" name="showIcons" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Show icon on each Timeline item.</documentation>
+		</property>
+		<property group="Misc" name="noDataText" type="sap.ui.core/string">
+			<documentation>This text is displayed when the control has no data.</documentation>
+		</property>
+		<property group="Dimension" name="width" type="sap.ui.core/CSSSize" defaultValue="100%">
+			<documentation>Sets the width of the Timeline.</documentation>
+		</property>
+		<property group="Misc" name="enableBusyIndicator" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>When this property is set to &quot;true&quot;, Timeline will display a busy indicator when data is being loaded.This BusyIndicator blocks the interaction with the items until data loading is finished.</documentation>
+		</property>
+		<property group="Misc" name="showHeaderBar" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Show header tool bar</documentation>
+		</property>
+		<property group="Misc" name="growing" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Sets the growing(paging) feature of control. This feature only works with model binding for aggregation &quot;content&quot;. </documentation>
+		</property>
+		<property group="Misc" name="growingThreshold" type="sap.ui.core/int" defaultValue="5">
+			<documentation>Number of items requested from the server. To activate this you should set &quot;growing&quot; property to &quot;true&quot;.</documentation>
+		</property>
+		<property group="Appearance" name="visible" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Set Timeline control visibility</documentation>
+		</property>
+		<property name="enableBackendFilter" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>This flag enables to get data from backend instead of deriving filter values from front-end values(displayed list).</documentation>
+		</property>
+		<property group="Behavior" name="enableAllInFilterItem" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>This flag enables to add 'All' in the begining of filter list</documentation>
+		</property>
+		<property group="Misc" name="enableSocial" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>enable Jam Integration</documentation>
+		</property>
+		<property group="Behavior" name="showSuggestion" type="sap.ui.core/boolean" defaultValue="true" since="1.26.1">
+			<documentation>If this is set to true, suggest event is fired when user types in the input. Changing the suggestItems aggregation in suggest event listener will show suggestions within a popup. </documentation>
+		</property>
+		<property defaultValue="true" group="Misc" name="enableScroll" type="sap.ui.core/boolean">
+			<documentation>Enable scroll bar display</documentation>
+		</property>
+		<property group="Misc" name="forceGrowing" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>If set to true, the &quot;More&quot; button will always show.</documentation>
+		</property>
+		<property group="Misc" name="sort" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Allow only latest first sort when Sort is checked, otherwise display order in which data is received.</documentation>
+		</property>
+	</properties>
+		
+	<events>
+		<event name="filterSelectionChange">
+			<documentation>This event is getting triggered after selecting an item from filter list.</documentation>
+			<parameters>
+				<parameter name="selectedItem" type="sap.suite.ui.commons/TimelineFilterListItem">
+					<documentation>filterClose event returns selected key value from filterList</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="select">
+			<documentation>Select Timeline Item</documentation>
+			<parameters>
+				<parameter name="selectedItem" type="sap.suite.ui.commons/TimelineItem">
+					<documentation>Selected TimelineItem</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="addPost">
+			<documentation>Event fire when user  add a new post</documentation>
+			<parameters>
+				<parameter type="sap.ui.core/string" name="value">
+					<documentation>post message</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="suggest" since="1.26.1">
+			<documentation>This event is fired when user types in the input and showSuggestion is set to true. Changing the suggestItems aggregation will show the suggestions within a popup.</documentation>
+			<parameters>
+				<parameter name="suggestValue" type="sap.ui.core/string">
+					<documentation>The current value which has been typed in the input.</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="suggestionItemSelected" since="1.26.1">
+			<documentation>This event is fired when suggestionItem shown in suggestion popup are selected. This event is only fired when showSuggestion is set to true and there are suggestionItems shown in the suggestion popup.</documentation>
+			<parameters>
+				<parameter name="selectedItem" type="sap.ui.core/Item">
+					<documentation>This is the item selected in the suggestion popup.</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="grow">
+			<documentation>this event is fired when &quot;More&quot; button is clicked. </documentation>
+		</event>
+		<event name="filterOpen">
+			<documentation>event is fired when filter icon is clicked and filter open</documentation>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..n" type="TimelineItem" name="content">
+		  <documentation>List of Timeline Items.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..n" name="filterList" type="sap.suite.ui.commons/TimelineFilterListItem">
+			<documentation>sap.suite.ui.commons/TimelineFilterListItem</documentation>
+		</aggregation>
+		<aggregation cardinality="0..n" name="suggestionItems" type="sap.m/StandardListItem">
+			<documentation>Items for suggestions</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="customFilter" type="sap.ui.core/Control">
+			<documentation>Provide Custom Filter here</documentation>
+		</aggregation>
+	</aggregations>
+	<methods>
+		<method name="getCurrentFilter" type="sap.ui.core/string">
+			<documentation>Get the current selected filter key</documentation>
+		</method>
+		<method name="setCurrentFilter" type="sap.ui.core/void">
+			<documentation>Set the current selected filter key</documentation>
+			<parameters>
+				<parameter name="selectedItemKey" type="sap.ui.core/string">
+					<documentation>Returns the TinelineFilterListItem
+</documentation>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="setSuspendSocialFeature" type="sap.ui.core/void">
+			<documentation>when set to true, the Add Post and Reply feature will be grayed out . </documentation>
+			<parameters>
+				<parameter name="bSuspend" type="sap.ui.core/boolean">
+					<documentation>boolean value for suspend or not.</documentation>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="getSuspendSocailFeature" type="sap.ui.core/boolean">
+			<documentation>get the suspend social feature status</documentation>
+		</method>
+		<method name="setCustomMessage" type="sap.ui.core/void">
+			<documentation>set custom message</documentation>
+			<parameters>
+				<parameter name="msg" type="sap.ui.core/string">
+					<documentation>Message to be set</documentation>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="getHeaderBar" type="sap.m/Toolbar">
+			<documentation>get the header bar control to customerize</documentation>
+		</method>
+		<method name="getMessageStrip" type="sap.m/MessageStrip">
+			<documentation>Get messagestrip</documentation>
+		</method>
+	</methods>
+</control>

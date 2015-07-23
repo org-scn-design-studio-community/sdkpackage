@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+  <name>ProcessFlowZoomLevel</name>
+  <author></author>
+
+  <documentation>The zoom level defines level of details for the node and how much space the process flow requires.</documentation>
+  <baseType>sap.ui.core/string</baseType>
+  <enumeration>
+    <value name="One">
+      <documentation>The full details with normal font size.</documentation>
+    </value>
+    <value name="Two">
+    	<documentation>The full detail view of the node but with smaller font size.</documentation>
+    </value>
+    <value name="Three">
+      <documentation>The details are the icon, title text and no additional texts.</documentation>
+    </value>
+    <value name="Four">
+      <documentation>Zoom level for least details - only icon is displayed.</documentation>
+    </value>
+  </enumeration>
+</simple-type>

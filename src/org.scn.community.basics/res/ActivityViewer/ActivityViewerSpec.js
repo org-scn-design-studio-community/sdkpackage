@@ -60,7 +60,7 @@
       "ztlType": "SingleArray"
     },
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"text\":\"Distribution\",\"category\":\"CAT1\",\"state\":\"FAILED\",\"startDate\":\"20130101\",\"endDate\":\"20130205\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT1\",\"leaf\":false,\"text\":\"Process\",\"category\":\"CAT1\",\"state\":\"RUNNING\",\"startDate\":\"20140102\",\"endDate\":\"20140605\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT2\",\"leaf\":false,\"text\":\"Buying\",\"category\":\"CAT2\",\"state\":\"STANDARD\",\"startDate\":\"20140905\",\"endDate\":\"20141216\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT3\",\"leaf\":false,\"text\":\"Work On\",\"state\":\"KILLED\",\"category\":\"CAT2\",\"startDate\":\"20141228\",\"endDate\":\"20150206\"}]",
     "visible": true
   },
   "categories": {
@@ -94,7 +94,7 @@
       "ztlType": "SingleArray"
     },
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"CAT1\",\"leaf\":false,\"text\":\"Good Products\"},{\"parentKey\":\"ROOT\",\"key\":\"CAT2\",\"leaf\":false,\"text\":\"Better Products\"}]",
     "visible": true
   },
   "onSelectionChanged": {
@@ -108,6 +108,21 @@
     "type": "ScriptText",
     "value": "",
     "visible": true
+  },
+  "selectedKey": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Internal",
+      "desc": "Selected Key",
+      "noAps": true,
+      "noZtl": false,
+      "tooltip": "Selected Key",
+      "ztlFunction": "-get",
+      "ztlType": "String"
+    },
+    "type": "String",
+    "value": "",
+    "visible": false
   },
   "states": {
     "opts": {
@@ -134,7 +149,7 @@
       "ztlType": "SingleArray"
     },
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"STANDARD\",\"leaf\":false,\"style\":\"bar\"},{\"parentKey\":\"ROOT\",\"key\":\"FAILED\",\"leaf\":false,\"style\":\"bar-failed\"},{\"parentKey\":\"ROOT\",\"key\":\"RUNNING\",\"leaf\":false,\"style\":\"bar-running\"},{\"parentKey\":\"ROOT\",\"key\":\"SUCCEEDED\",\"leaf\":false,\"style\":\"bar-succeeded\"},{\"parentKey\":\"ROOT\",\"key\":\"KILLED\",\"leaf\":false,\"style\":\"killed\"}]",
     "visible": true
   }
 };

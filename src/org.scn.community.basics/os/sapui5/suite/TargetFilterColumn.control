@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>TargetFilterColumn</name>
+
+	<documentation>TargetFilterColumn</documentation>
+
+	<baseType>sap.ui.core/Element</baseType>
+	<properties>
+		<property group="Misc" name="name" type="sap.ui.core/string">
+			<documentation>name</documentation>
+		</property>
+		<property group="Misc" name="title" type="sap.ui.core/string">
+			<documentation>label</documentation>
+		</property>
+	</properties>
+</control>

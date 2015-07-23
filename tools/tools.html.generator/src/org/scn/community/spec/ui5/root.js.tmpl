@@ -40,21 +40,17 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		var componentPath = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage , "");
-		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.%COMP-id%.name, componentPath);
+		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.%COMP-id%.fullComponentName, componentPath);
 
-		sap.ui.controller(org_scn_community_require.knownComponents.databound.%COMP-id%.fullComponentName, {
+		sap.ui.controller(org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.fullComponentName + ".Controller", {
 			owner: that,
-
-			// implement an event handler in the Controller
-			doSomething: function() {
-				alert("Hello World!");
-			}
+%js.ScriptText.loop.tmpl%
 		});
 
 		that._view = new sap.ui.view({ type: sap.ui.core.mvc.ViewType.XML,  
-            viewName: org_scn_community_require.knownComponents.databound.%COMP-id%.name + "." 
+            viewName: org_scn_community_require.knownComponents.databound.%COMP-id%.fullComponentName + "." 
 				+ org_scn_community_require.knownComponents.databound.%COMP-id%.id,  
-            controllerName: org_scn_community_require.knownComponents.databound.%COMP-id%.fullComponentName  
+            controllerName: org_scn_community_require.knownComponents.databound.%COMP-id%.fullComponentName + ".Controller" 
         });
 		
 		that._oModel = new sap.ui.model.json.JSONModel(); 
@@ -115,6 +111,8 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 %js.ObjectArray.check.tmpl%
 %js.simple.check.tmpl%
 
+%js.ScriptText.check.tmpl%
+
 		var rowI = 0;
 		var counterI = 1;
 
@@ -138,6 +136,8 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 %js.ObjectSingle.json.tmpl%
 %js.ObjectArray.json.tmpl%
 
+%js.ScriptText.json.tmpl%
+
 			that._specialDataModel.push(customData);
 		}
 
@@ -152,25 +152,6 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 		// visualization on processed data 
 	},
 	
-	getObjectArrayContent: function (owner, name, options) {
-		var that = owner;
-		var propertyObject = that.getObjectContent(that, name, options);
-
-		propertyObject.jsonTemplate = [];
-		for (var jI in propertyObject.value) {
-			var jO = propertyObject.value[jI];
-			
-			var pO = {};
-			for (var pI in jO) {
-				if(pI == "parentKey" || pI == "leaf" || pI == "key") continue;
-				pO[pI] = jO[pI];
-			}
-			propertyObject.jsonTemplate.push(pO);
-		}
-		
-		return propertyObject;
-	},
-
 	onResize: function(width, height, parent) {
 		var that = parent;
 		// in case special resize code is required

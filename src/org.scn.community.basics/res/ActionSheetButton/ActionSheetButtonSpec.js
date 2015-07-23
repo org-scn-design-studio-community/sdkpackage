@@ -114,7 +114,7 @@
     },
     "template": "OneLevelArray",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"text\":\"First Element\",\"icon\":\"sap-icon://accept\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT1\",\"leaf\":false,\"icon\":\"sap-icon://notes\",\"text\":\"Notes\"}]",
     "visible": true
   },
   "onPopoverSelect": {

@@ -131,7 +131,7 @@ public class ParamFullSpec {
 			options = getParameter("opts");
 		}
 		String ztlType = options.getPropertyValue("ztlType");
-		if(ztlType != null && ztlType.contains("Array")) {
+		if(ztlType != null && ztlType.contains("Array") && !ztlType.equals("StringArray")) {
 			return true;
 		}
 		
@@ -562,11 +562,23 @@ public class ParamFullSpec {
 	public String getJson() {
 		String template = Helpers.resource2String(Ui5JsSpec.class, "json_parameter.template");
 		
-		template = template.replace("%PROPERTY_NAME%", this.getName());
+		
 		template = template.replace("%PROPERTY_DEFAULT_VALUE%", this.getValue().replace("\\\"", "\""));
-		template = template.replace("%PROPERTY_DESCRIPTION%", this.getPropertyValue("desc"));
 		template = template.replace("%PROPERTY_TYPE%", this.getPropertyValue("type"));
 		
+		String typeZtlChild = getZtlType();
+		
+		String propDef = "";
+		if(typeZtlChild.equals("Choice")) {
+			String valuesJson = getValues();
+			propDef = propDef + "\"options\": \""+valuesJson+"\",\r\n\t\t\t\t\t\t\t";
+			propDef = propDef + "\"apsControl\": \""+"combobox"+"\"\r\n";
+		}
+		template = template.replace("%PROPERTY_CHOICE_DEFINITION%", propDef);
+		
+		
+		template = template.replace("%PROPERTY_NAME%", this.getName());
+		template = template.replace("%PROPERTY_DESCRIPTION%", this.getPropertyValue("desc") + (typeZtlChild.equals("StringArray")?" [Array]":""));
 		return template;
 	}
 
@@ -582,5 +594,29 @@ public class ParamFullSpec {
 
 	public String getOriginalType() {
 		return getPropertyValue("origType");
+	}
+
+	public String getZtlType() {
+		if(getParameter("opts") != null) {
+			return getParameter("opts").getPropertyValue("ztlType");	
+		}
+		return getType(true);
+	}
+	public String getValues() {
+		ParamFullSpec parameter = getParameter("opts"); 
+		ParamFullSpec parameter2 = parameter.getParameter("options");
+		
+		String options = "[";
+		ArrayList<ParamFullSpec> parameters2 = parameter2.getParameters();
+		for (ParamFullSpec paramFullSpec : parameters2) {
+			String key = paramFullSpec.getPropertyValue("key");
+			String text = paramFullSpec.getPropertyValue("text");
+			
+			if(options.length() > 1) {options = options + ",";}
+			options = options + "{\"key\":\""+key+"\",\"text\":\""+text+"\"}";
+		}
+		
+		options = options + "]";
+		return options;
 	}
 }

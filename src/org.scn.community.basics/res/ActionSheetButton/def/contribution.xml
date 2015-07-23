@@ -97,7 +97,7 @@
 		
 		<defaultValue property="buttonType"><![CDATA[Default]]></defaultValue>
 		<defaultValue property="icon"><![CDATA[sap-icon://menu2]]></defaultValue>
-		<defaultValue property="items"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="items"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"text":"First Element","icon":"sap-icon://accept"},{"parentKey":"ROOT","key":"ELEMENT1","leaf":false,"icon":"sap-icon://notes","text":"Notes"}]]]></defaultValue>
 		<defaultValue property="onPopoverSelect"><![CDATA[]]></defaultValue>
 		<defaultValue property="placement"><![CDATA[Auto]]></defaultValue>
 		<defaultValue property="selectedItem"><![CDATA[]]></defaultValue>

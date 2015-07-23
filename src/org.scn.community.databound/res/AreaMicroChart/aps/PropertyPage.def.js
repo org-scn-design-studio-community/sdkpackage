@@ -62,7 +62,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"chart": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -105,7 +124,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Neutral\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":40},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":90},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":40}]",
     "visible": true
   },
   "contentHeight": {
@@ -465,7 +484,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"firstXLabel": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -491,7 +529,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"First X\"}]",
     "visible": true
   },
   "firstYLabel": {
@@ -499,7 +537,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"firstYLabel": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -525,7 +582,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"First Y\"}]",
     "visible": true
   },
   "innerMaxThreshold": {
@@ -533,7 +590,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"innerMaxThreshold": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -576,7 +652,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Neutral\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":70},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":60},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":80}]",
     "visible": true
   },
   "innerMinThreshold": {
@@ -584,7 +660,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"innerMinThreshold": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -627,7 +722,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Error\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":40},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":40},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":60}]",
     "visible": true
   },
   "lastXLabel": {
@@ -635,7 +730,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"lastXLabel": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -661,7 +775,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Last X\"}]",
     "visible": true
   },
   "lastYLabel": {
@@ -669,7 +783,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"lastYLabel": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -695,7 +828,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Last Y\"}]",
     "visible": true
   },
   "maxLabel": {
@@ -703,7 +836,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"maxLabel": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -729,7 +881,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Max\"}]",
     "visible": true
   },
   "maxThreshold": {
@@ -737,7 +889,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"maxThreshold": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -780,7 +951,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":30},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":20},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":10}]",
     "visible": true
   },
   "maxXValue": {
@@ -796,7 +967,7 @@ ApsContent = function () {
     },
     "template": "float",
     "type": "float",
-    "value": 0,
+    "value": 30,
     "visible": true
   },
   "maxYValue": {
@@ -812,7 +983,7 @@ ApsContent = function () {
     },
     "template": "float",
     "type": "float",
-    "value": 0,
+    "value": 100,
     "visible": true
   },
   "minLabel": {
@@ -820,7 +991,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"minLabel": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -846,7 +1036,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartLabel",
     "template": "ObjectSingle",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\",\"label\":\"Min\"}]",
     "visible": true
   },
   "minThreshold": {
@@ -854,7 +1044,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"minThreshold": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -897,7 +1106,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Error\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":30},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":20},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":10}]",
     "visible": true
   },
   "minXValue": {
@@ -913,7 +1122,7 @@ ApsContent = function () {
     },
     "template": "float",
     "type": "float",
-    "value": 0,
+    "value": 10,
     "visible": true
   },
   "minYValue": {
@@ -937,7 +1146,26 @@ ApsContent = function () {
       "apsControl": "array",
       "arrayDefinition": {"target": {
         "color": {
+          "apsControl": "combobox",
           "desc": "Colour",
+          "options": [
+            {
+              "key": "Neutral",
+              "text": "Neutral InfoTile value color"
+            },
+            {
+              "key": "Good",
+              "text": "Good InfoTile value color"
+            },
+            {
+              "key": "Critical",
+              "text": "Critical InfoTile value color"
+            },
+            {
+              "key": "Error",
+              "text": "Error InfoTile value color"
+            }
+          ],
           "type": "String"
         },
         "key": {
@@ -980,7 +1208,7 @@ ApsContent = function () {
     "origType": "MicroAreaChartItem",
     "template": "ObjectSingle-double",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"color\":\"Good\"},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM\",\"leaf\":true,\"x\":10,\"y\":20},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM1\",\"leaf\":true,\"x\":20,\"y\":80},{\"parentKey\":\"ELEMENT\",\"key\":\"ELEMENT_ITEM2\",\"leaf\":true,\"x\":30,\"y\":55}]",
     "visible": true
   },
   "useChart": {
@@ -1028,7 +1256,7 @@ ApsContent = function () {
     },
     "template": "ds-boolean",
     "type": "boolean",
-    "value": false,
+    "value": true,
     "visible": true
   },
   "useFirstXLabel": {

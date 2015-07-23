@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>HarveyBallMicroChartItem</name>
+	<documentation>The configuration of the slice on the pie chart.</documentation>
+
+	<baseType>sap.ui.core/Element</baseType>
+	<properties>
+		<property group="Misc" name="color" type="InfoTileValueColor" defaultValue='Neutral'>
+			<documentation>The slice color.</documentation>
+		</property>
+		<property group="Misc" name="fraction" type="sap.ui.core/float" defaultValue="0">
+			<documentation>The fraction value.</documentation>
+		</property>
+		<property group="Misc" name="fractionLabel" type="sap.ui.core/string">
+			<documentation>The fraction label. If specified, it is displayed instead of the fraction value.</documentation>
+		</property>
+		<property group="Misc" name="fractionScale" type="sap.ui.core/string">
+			<documentation>The scaling factor that is displayed after the fraction value.</documentation>
+		</property>
+		<property group="Misc" name="formattedLabel" type="sap.ui.core/boolean" defaultValue="false">
+			<documentation>If set to true, the fractionLabel parameter is considered as the combination of the fraction value and scaling factor. The default value is false. It means that the fraction value and the scaling factor are defined separately by the fraction and the fractionScale properties accordingly.</documentation>
+		</property>
+	</properties>
+</control>

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>TimelineFilterListItem</name>
+	<documentation>Provides Filter List Item for Timeline Control</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Data" name="key" type="sap.ui.core/string">
+			<documentation>Can be used as input for subsequent actions.</documentation>
+		</property>
+		<property group="Misc" name="text" type="sap.ui.core/string">
+			<documentation>The text to be displayed for the item.</documentation>
+		</property>
+	</properties>
+</control>

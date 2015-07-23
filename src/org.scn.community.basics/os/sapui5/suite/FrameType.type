@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>FrameType</name>
+	<author></author>
+
+	<documentation>Enumeration of possible frame types.</documentation>
+	<baseType>sap.ui.core/string</baseType>
+	<enumeration>
+		<value name="OneByOne">
+			<documentation>The 1x1 frame type.</documentation>
+		</value>
+		<value name="TwoByOne">
+			<documentation>The 2x1 frame type.</documentation>
+		</value>
+		<value name="TwoThirds">
+			<documentation>The 2/3 frame type.</documentation>
+		</value>
+		<value name="Auto">
+			<documentation>The Auto frame type that adjusts the size of the control to the content.</documentation>
+		</value>
+	</enumeration>
+</simple-type>

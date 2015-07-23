@@ -195,10 +195,10 @@ public class Main {
 			component.generateSpec();
 			
 			String[] spec20 = component.toSpec20();
-			
 			String newSpec = file.getAbsolutePath().replace(".control", ".spec.json").replace("\\xml", "\\control");
-			Helpers.string2File(newSpec, spec20[0]);
-			
+			if(!new File(newSpec).exists()) {
+				Helpers.string2File(newSpec, spec20[0]);	
+			}
 			allZtl = allZtl + "\r\n" + spec20[1];
 		}
 		
@@ -219,8 +219,9 @@ public class Main {
 			String[] spec20 = component.toSpec20();
 			
 			String newSpec = file.getAbsolutePath().replace(".type", ".spec.json").replace("\\xml", "\\type");
-			Helpers.string2File(newSpec, spec20[0]);
-			
+			if(!new File(newSpec).exists()) {
+				Helpers.string2File(newSpec, spec20[0]);	
+			}
 			allZtl = allZtl + "\r\n" + spec20[1];
 		}
 		

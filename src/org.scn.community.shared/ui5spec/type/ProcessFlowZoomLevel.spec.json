@@ -1,0 +1,23 @@
+{
+	"name": "ProcessFlowZoomLevel",
+	"docu": "The zoom level defines level of details for the node and how much space the process flow requires.",
+
+	values: [
+	{	
+		"name": "One",
+		"value": "zoom level for least details - only icon is displayed"	
+	},
+	{	
+		"name": "Two",
+		"value": "The detail is icon, title text and no additional texts"	
+	},
+	{	
+		"name": "Three",
+		"value": "The full detail view of the node but with smaller font size"	
+	},
+	{	
+		"name": "Four",
+		"value": "The full details with normal font size"	
+	}
+	]
+}

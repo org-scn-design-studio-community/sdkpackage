@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>HeaderContainer</name>
+	<documentation>The container that provides a horizontal layout. It provides a horizontal scroll on the tablet and phone. On the desktop, it provides scroll left and scroll right buttons. This control supports keyboard navigation. You can use left and right arrow keys to navigate through the inner content. The Home key puts focus on the first control and the End key puts focus on the last control. Use Enter or Space to choose the control.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="scrollStep" type="sap.ui.core/int" defaultValue="300">
+			<documentation>Number of pixels to scroll when the user chooses Next or Previous buttons. Relevant only for desktop.</documentation>
+		</property>
+		<property group="Misc" name="scrollTime" type="sap.ui.core/int" defaultValue="500">
+			<documentation>Scroll animation time in milliseconds.</documentation>
+		</property>
+		<property group="Misc" name="showDividers" type="sap.ui.core/boolean" defaultValue="true" since="1.25">
+			<documentation>If set to true, shows dividers between scrollable items.</documentation>
+		</property>
+		<property group="Misc" name="view" type="HeaderContainerView" defaultValue="Horizontal" since="1.25">
+			<documentation>The view of the HeaderContainer.</documentation>
+		</property>
+	</properties>
+	<aggregations>
+		<aggregation cardinality="0..1" name="scrollContainer" type="sap.ui.core/Control" visibility="hidden">
+			<documentation>Scroll container for smooth scrolling on different platforms.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..n" name="items" type="sap.ui.core/Control">
+			<documentation>Items to add to HeaderContainer.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="buttonPrev" type="sap.ui.core/Control" visibility="hidden">
+			<documentation>Button that allows to scroll to previous section.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="buttonNext" type="sap.ui.core/Control" visibility="hidden">
+			<documentation>Button that allows to scroll to next section.</documentation>
+		</aggregation>
+	</aggregations>
+    <interfaces>
+           <interface>sap.m/ObjectHeaderContainer</interface>
+    </interfaces>
+
+</control>

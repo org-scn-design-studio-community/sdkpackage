@@ -28,8 +28,8 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ConstImageSize\contribution.ztl ^
 ..\res\ConstMemberDisplay\contribution.ztl ^
 ..\res\ConstNavigationType\contribution.ztl ^
-..\res\Orientation\contribution.ztl ^
-..\res\OrientationType\contribution.ztl ^
+..\res\ConstOrientation\contribution.ztl ^
+..\res\ConstOrientationType\contribution.ztl ^
 ..\res\ConstPlacementType\contribution.ztl ^
 ..\res\ConstSelectionState\contribution.ztl ^
 ..\res\ConstSelectionType\contribution.ztl ^
@@ -44,11 +44,11 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\KeyLabelValue\contribution.ztl ^
 ..\res\KeyLabelValueProperty\contribution.ztl ^
 ..\res\NameValue\contribution.ztl ^
-..\res\ValidatonState\contribution.ztl ^
+..\res\ValidationState\contribution.ztl ^
 ..\res\ValueText\contribution.ztl ^
 ..\ui5spec\const\contribution.ztl ^
-..\ui5spec\extensions\contribution.ztl ^
 ..\def_shared\contribution.ztl ^
+..\ui5spec\extensions\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 

@@ -40,21 +40,17 @@ BulletMicroChart = {
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		var componentPath = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage , "");
-		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.BulletMicroChart.name, componentPath);
+		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.BulletMicroChart.fullComponentName, componentPath);
 
-		sap.ui.controller(org_scn_community_require.knownComponents.databound.BulletMicroChart.fullComponentName, {
+		sap.ui.controller(org_scn_community_require.knownComponents.databound.BulletMicroChart.fullComponentName + ".Controller", {
 			owner: that,
 
-			// implement an event handler in the Controller
-			doSomething: function() {
-				alert("Hello World!");
-			}
 		});
 
 		that._view = new sap.ui.view({ type: sap.ui.core.mvc.ViewType.XML,  
-            viewName: org_scn_community_require.knownComponents.databound.BulletMicroChart.name + "." 
+            viewName: org_scn_community_require.knownComponents.databound.BulletMicroChart.fullComponentName + "." 
 				+ org_scn_community_require.knownComponents.databound.BulletMicroChart.id,  
-            controllerName: org_scn_community_require.knownComponents.databound.BulletMicroChart.fullComponentName  
+            controllerName: org_scn_community_require.knownComponents.databound.BulletMicroChart.fullComponentName + ".Controller" 
         });
 		
 		that._oModel = new sap.ui.model.json.JSONModel(); 
@@ -133,6 +129,8 @@ BulletMicroChart = {
 		var l_TargetValueLabel = that.getTargetValueLabel();
 
 
+
+
 		var rowI = 0;
 		var counterI = 1;
 
@@ -184,6 +182,8 @@ BulletMicroChart = {
 
 
 
+
+
 			that._specialDataModel.push(customData);
 		}
 
@@ -198,25 +198,6 @@ BulletMicroChart = {
 		// visualization on processed data 
 	},
 	
-	getObjectArrayContent: function (owner, name, options) {
-		var that = owner;
-		var propertyObject = that.getObjectContent(that, name, options);
-
-		propertyObject.jsonTemplate = [];
-		for (var jI in propertyObject.value) {
-			var jO = propertyObject.value[jI];
-			
-			var pO = {};
-			for (var pI in jO) {
-				if(pI == "parentKey" || pI == "leaf" || pI == "key") continue;
-				pO[pI] = jO[pI];
-			}
-			propertyObject.jsonTemplate.push(pO);
-		}
-		
-		return propertyObject;
-	},
-
 	onResize: function(width, height, parent) {
 		var that = parent;
 		// in case special resize code is required

@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>GenericTile</name>
+	<documentation>The tile control that displays the title, description, and customizable main area.</documentation>
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Appearance" name="header" type="sap.ui.core/string">
+			<documentation>The header of the tile.</documentation>
+		</property>
+		<property group="Appearance" type="sap.ui.core/string" name="subheader">
+			<documentation>The subheader of the tile.</documentation>
+		</property>
+		<property group="Appearance" type="sap.ui.core/string" name="failedText" since="1.23">
+			<documentation>The message that appears when the control is in the Failed state.</documentation>
+		</property>
+		<property group="Misc" name="size" type="sap.suite.ui.commons/InfoTileSize" defaultValue="Auto">
+			<documentation>The size of the tile. If not set, then the default size is applied based on the device tile.</documentation>
+		</property>
+		<property group="Misc" name="frameType" type="sap.suite.ui.commons/FrameType" defaultValue="OneByOne">
+			<documentation>The frame type: 1x1 or 2x1.</documentation>
+		</property>
+		<property group="Misc" name="backgroundImage" type="sap.ui.core/URI">
+			<documentation>The URI of the background image.</documentation>
+		</property>
+		<property group="Misc" name="headerImage" type="sap.ui.core/URI">
+			<documentation>The image to be displayed as a graphical element within the header. This can be an image or an icon from the icon font.</documentation>
+		</property>
+        <property group="Misc" name="state" type="LoadState" defaultValue="Loaded" since="1.22">
+            <documentation>The load status.</documentation>
+        </property>
+		<property group="Misc" name="imageDescription" type="sap.ui.core/string" since="1.25">
+			<documentation>Description of a header image that is used in the tooltip.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the tile.</documentation>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..n" name="tileContent" type="sap.suite.ui.commons/TileContent">
+			<documentation>The switchable view that depends on the tile type.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="icon" type="sap.ui.core/Control">
+			<documentation>An icon or image to be displayed in the control.</documentation>
+		</aggregation>
+		<aggregation name="titleText" type="sap.m/Text" visibility="hidden" cardinality="0..1">
+			<documentation>The hidden aggregation for the title.</documentation>
+		</aggregation>
+		<aggregation name="failedMessageText" type="sap.m/Text" visibility="hidden" cardinality="0..1" since="1.24">
+			<documentation>The hidden aggregation for the message in the failed state.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

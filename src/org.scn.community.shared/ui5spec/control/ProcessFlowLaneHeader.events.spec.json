@@ -1,0 +1,33 @@
+{
+
+   "pressedKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Pressed Key",
+			"cat" : "Internal",
+			"tooltip" : "Pressed Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":false
+		}
+	},
+	"onPressed": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Pressed",
+            "cat": "Events",
+            "tooltip": "Event triggered on tbd",
+            "noAps":true,
+            "noZtl":true
+        }
+    }
+}

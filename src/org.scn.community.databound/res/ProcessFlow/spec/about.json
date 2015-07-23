@@ -1,0 +1,16 @@
+{
+	"title": "Process Flow 2.0",
+	"description": "Process Flow - Visualizes Processes",
+	"icon": "ProcessFlow.png",
+	"topics": 
+	[
+		{
+			"title" : "Process Flow",
+			"content" : "This component can visualize processes."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

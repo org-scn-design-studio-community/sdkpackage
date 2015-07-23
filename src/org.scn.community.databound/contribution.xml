@@ -2372,6 +2372,222 @@ __n__}
 
 </component>
 <component
+	id="ProcessFlow"
+	title="Process Flow 2.0"
+	tooltip="ProcessFlow - Component for visualization of processes."
+	icon="res/ProcessFlow/ProcessFlow.png"
+	handlerType="sapui5"
+	propertySheetPath="res/ProcessFlow/aps/PropertyPage.html"
+	group="ScnCommunityUnified"
+	databound="true"
+>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/ProcessFlow/ProcessFlowLoader.js</jsInclude>
+	<cssInclude>res/ProcessFlow/ProcessFlow.css</cssInclude>
+	
+	<property
+		id="connections"
+		type="String"
+		title="Connections"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="dataCellListConnections"
+		type="ResultCellList"
+		title="Connections Data List [Multiple]"
+		group="DataBinding"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListLanes"
+		type="ResultCellList"
+		title="Lanes Data List [Multiple]"
+		group="DataBinding"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="dataCellListNodes"
+		type="ResultCellList"
+		title="Nodes Data List [Multiple]"
+		group="DataBinding"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="foldedCorners"
+		type="boolean"
+		title="Folded Corners"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="headerPressedKey"
+		type="String"
+		title="Header Pressed Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="lanes"
+		type="String"
+		title="Lanes"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="nodePressedKey"
+		type="String"
+		title="Node Pressed Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="nodes"
+		type="String"
+		title="Nodes"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onErrored"
+		type="ScriptText"
+		title="On  Errored"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onErroredKey"
+		type="String"
+		title=" Errored Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="onHeaderPressed"
+		type="ScriptText"
+		title="On Header Pressed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onNodePressed"
+		type="ScriptText"
+		title="On Node Pressed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="scrollable"
+		type="boolean"
+		title="Scrollable"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useConnections"
+		type="boolean"
+		title="Use Manual 'Connections'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useLanes"
+		type="boolean"
+		title="Use Manual 'Lanes'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useNodes"
+		type="boolean"
+		title="Use Manual 'Nodes'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="wheelZoomable"
+		type="boolean"
+		title="Wheel Zoomable"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">420</defaultValue>
+		<defaultValue property="HEIGHT">580</defaultValue>
+		
+		<defaultValue property="connections"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="dataCellListConnections"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListLanes"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataCellListNodes"><![CDATA[null]]></defaultValue>
+		<defaultValue property="foldedCorners"><![CDATA[false]]></defaultValue>
+		<defaultValue property="headerPressedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="lanes"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"laneId":"id0","iconSrc":"sap-icon://order-status","state":"","text":"In Order","position":0,"zoomLevel":"One"},{"parentKey":"ROOT","key":"ELEMENT1","leaf":false,"laneId":"id1","iconSrc":"sap-icon://payment-approval","text":"In Delivery","position":1,"state":"Planned"}]]]></defaultValue>
+		<defaultValue property="nodePressedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="nodes"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"children":"[2,3]","nodeId":"1","state":"Neutral","stateText":"Positive Status","title":"Sales Order 1","laneId":"id0","focused":true},{"parentKey":"ROOT","key":"ELEMENT1","leaf":false,"nodeId":"2","title":"Delivery 13","stateText":"Not Delivered Yet!","state":"Negative","texts":"this is delivery document","laneId":"id1","children":"","highlighted":false,"focused":false},{"parentKey":"ROOT","key":"ELEMENT2","leaf":false,"nodeId":"3","laneId":"id1","state":"Positive","stateText":"Positive","title":"Positive","texts":"Positive","children":""}]]]></defaultValue>
+		<defaultValue property="onErrored"><![CDATA[]]></defaultValue>
+		<defaultValue property="onErroredKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="onHeaderPressed"><![CDATA[]]></defaultValue>
+		<defaultValue property="onNodePressed"><![CDATA[]]></defaultValue>
+		<defaultValue property="scrollable"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useConnections"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useLanes"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useNodes"><![CDATA[true]]></defaultValue>
+		<defaultValue property="wheelZoomable"><![CDATA[true]]></defaultValue>
+
+	</initialization>
+
+</component>
+
+<component
 		id="Projector"
 		title="Data Projector"
 		icon="res/Projector/Projector.png"
@@ -4324,7 +4540,7 @@ __n__}
 		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
 		
-		<defaultValue property="chart"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="chart"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Neutral"},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM","leaf":true,"x":10,"y":40},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM1","leaf":true,"x":20,"y":90},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM2","leaf":true,"x":30,"y":40}]]]></defaultValue>
 		<defaultValue property="contentHeight"><![CDATA[190]]></defaultValue>
 		<defaultValue property="contentWidth"><![CDATA[200]]></defaultValue>
 		<defaultValue property="dataCellListChart"><![CDATA[null]]></defaultValue>
@@ -4343,24 +4559,24 @@ __n__}
 		<defaultValue property="dataCellListMinXValue"><![CDATA[null]]></defaultValue>
 		<defaultValue property="dataCellListMinYValue"><![CDATA[null]]></defaultValue>
 		<defaultValue property="dataCellListTarget"><![CDATA[null]]></defaultValue>
-		<defaultValue property="firstXLabel"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="firstYLabel"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="innerMaxThreshold"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="innerMinThreshold"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="lastXLabel"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="lastYLabel"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="maxLabel"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="maxThreshold"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="maxXValue"><![CDATA[0.0]]></defaultValue>
-		<defaultValue property="maxYValue"><![CDATA[0.0]]></defaultValue>
-		<defaultValue property="minLabel"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="minThreshold"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="minXValue"><![CDATA[0.0]]></defaultValue>
+		<defaultValue property="firstXLabel"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Good","label":"First X"}]]]></defaultValue>
+		<defaultValue property="firstYLabel"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Good","label":"First Y"}]]]></defaultValue>
+		<defaultValue property="innerMaxThreshold"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Neutral"},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM","leaf":true,"x":10,"y":70},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM1","leaf":true,"x":20,"y":60},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM2","leaf":true,"x":30,"y":80}]]]></defaultValue>
+		<defaultValue property="innerMinThreshold"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Error"},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM","leaf":true,"x":10,"y":40},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM1","leaf":true,"x":20,"y":40},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM2","leaf":true,"x":30,"y":60}]]]></defaultValue>
+		<defaultValue property="lastXLabel"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Good","label":"Last X"}]]]></defaultValue>
+		<defaultValue property="lastYLabel"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Good","label":"Last Y"}]]]></defaultValue>
+		<defaultValue property="maxLabel"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Good","label":"Max"}]]]></defaultValue>
+		<defaultValue property="maxThreshold"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Good"},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM","leaf":true,"x":10,"y":30},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM1","leaf":true,"x":20,"y":20},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM2","leaf":true,"x":30,"y":10}]]]></defaultValue>
+		<defaultValue property="maxXValue"><![CDATA[30.0]]></defaultValue>
+		<defaultValue property="maxYValue"><![CDATA[100.0]]></defaultValue>
+		<defaultValue property="minLabel"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Good","label":"Min"}]]]></defaultValue>
+		<defaultValue property="minThreshold"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Error"},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM","leaf":true,"x":10,"y":30},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM1","leaf":true,"x":20,"y":20},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM2","leaf":true,"x":30,"y":10}]]]></defaultValue>
+		<defaultValue property="minXValue"><![CDATA[10.0]]></defaultValue>
 		<defaultValue property="minYValue"><![CDATA[0.0]]></defaultValue>
-		<defaultValue property="target"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="target"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Good"},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM","leaf":true,"x":10,"y":20},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM1","leaf":true,"x":20,"y":80},{"parentKey":"ELEMENT","key":"ELEMENT_ITEM2","leaf":true,"x":30,"y":55}]]]></defaultValue>
 		<defaultValue property="useChart"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useContentHeight"><![CDATA[true]]></defaultValue>
-		<defaultValue property="useContentWidth"><![CDATA[false]]></defaultValue>
+		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useFirstXLabel"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useFirstYLabel"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useInnerMaxThreshold"><![CDATA[true]]></defaultValue>
@@ -4704,7 +4920,7 @@ __n__}
 		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">100</defaultValue>
 		
-		<defaultValue property="actual"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="actual"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Good","value":1500}]]]></defaultValue>
 		<defaultValue property="actualValueLabel"><![CDATA[]]></defaultValue>
 		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
 		<defaultValue property="dataCellListActual"><![CDATA[null]]></defaultValue>
@@ -4727,7 +4943,7 @@ __n__}
 		<defaultValue property="size"><![CDATA[Auto]]></defaultValue>
 		<defaultValue property="targetValue"><![CDATA[0.0]]></defaultValue>
 		<defaultValue property="targetValueLabel"><![CDATA[]]></defaultValue>
-		<defaultValue property="thresholds"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="thresholds"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"color":"Critical","value":100},{"parentKey":"ROOT","key":"ELEMENT1","leaf":false,"color":"Good","value":600},{"parentKey":"ROOT","key":"ELEMENT2","leaf":false,"color":"Neutral","value":1200},{"parentKey":"ROOT","key":"ELEMENT3","leaf":false,"color":"Neutral","value":1800}]]]></defaultValue>
 		<defaultValue property="useActual"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useForecastValue"><![CDATA[true]]></defaultValue>
@@ -4920,13 +5136,13 @@ __n__}
 		<defaultValue property="dataCellListItems"><![CDATA[null]]></defaultValue>
 		<defaultValue property="dataCellListTotal"><![CDATA[null]]></defaultValue>
 		<defaultValue property="formattedLabel"><![CDATA[false]]></defaultValue>
-		<defaultValue property="items"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="items"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"formattedLabel":false,"color":"Good","fraction":20,"fractionLabel":"sold ","fractionScale":"20T"}]]]></defaultValue>
 		<defaultValue property="showFractions"><![CDATA[true]]></defaultValue>
 		<defaultValue property="showTotal"><![CDATA[true]]></defaultValue>
 		<defaultValue property="size"><![CDATA[Auto]]></defaultValue>
-		<defaultValue property="total"><![CDATA[0]]></defaultValue>
+		<defaultValue property="total"><![CDATA[100]]></defaultValue>
 		<defaultValue property="totalLabel"><![CDATA[]]></defaultValue>
-		<defaultValue property="totalScale"><![CDATA[]]></defaultValue>
+		<defaultValue property="totalScale"><![CDATA[M]]></defaultValue>
 		<defaultValue property="useColorPalette"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
 		<defaultValue property="useItems"><![CDATA[true]]></defaultValue>

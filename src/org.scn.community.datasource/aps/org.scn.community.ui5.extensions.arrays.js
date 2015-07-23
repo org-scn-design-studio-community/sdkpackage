@@ -212,6 +212,29 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 									
 									that.updateElement(that._listBuilder.getSelectedKey(),rootElement);
 							}, that);
+					} else if(parameterObject.apsControl == "combobox" && parameterObject.options != undefined) {
+						var txtElementValue = new sap.ui.commons.ComboBox({width: "90%"});
+						
+						for(var i=0;i<parameterObject.options.length;i++){
+							var option = parameterObject.options[i];
+							txtElementValue.addItem(new sap.ui.core.ListItem({
+								key : option.key,
+								text : option.key + " | " + option.text
+							}));
+						}
+						
+						txtElementValue.setSelectedKey(targetValue);
+						
+						txtElementValue.attachChange(
+								function(oControlEvent){
+									var value = oControlEvent.getSource().getSelectedKey();
+									var key = oControlEvent.getSource()._key;
+
+									var rootElement = that.getElement(that._listBuilder.getSelectedKey());
+									rootElement[key] = value;
+									
+									that.updateElement(that._listBuilder.getSelectedKey(),rootElement);
+							}, that);
 					} else if(parameterObject.type == "float" || parameterObject.type == "int") {
 						txtElementValue = new sap.ui.commons.TextField ({value : targetValue, width: "200px", textAlign: "Right"});
 						
@@ -386,6 +409,29 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 
 						that._currentItemConfig[key] = value;		
 				}, that);
+			} else if(parameterObject.apsControl == "combobox" && parameterObject.options != undefined) {
+				var txtElementValue = new sap.ui.commons.ComboBox({width: "90%"});
+
+				for(var i=0;i<parameterObject.options.length;i++){
+					var option = parameterObject.options[i];
+					txtElementValue.addItem(new sap.ui.core.ListItem({
+						key : option.key,
+						text : option.key + " | " + option.text
+					}));
+				}
+
+				txtElementValue.setSelectedKey(targetValue);
+
+				txtElementValue.attachChange(
+						function(oControlEvent){
+							var value = oControlEvent.getSource().getSelectedKey();
+							var key = oControlEvent.getSource()._key;
+
+							var rootElement = that.getElement(that._listBuilder.getSelectedKey());
+							rootElement[key] = value;
+
+							that.updateElement(that._listBuilder.getSelectedKey(),rootElement);
+					}, that);
 			} else if(parameterObject.type == "float" || parameterObject.type == "int") {
 				txtItemValue = new sap.ui.commons.TextField ({value : targetValue, width: "200px", textAlign: "Right"});
 				

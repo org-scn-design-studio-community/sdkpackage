@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ChartContainer</name>
+
+	<documentation>ToolBar used for displaying one chart amongst several and provide additional features:
+    - multiple select boxes for selecting dimensions
+    - fullscreen toggle
+    - personalization icon
+    - showLegend toggle
+    </documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="showPersonalization" type="sap.ui.core/boolean" defaultValue="false">
+            <documentation>Display or not the personalization icon into the ChartContainer</documentation>
+        </property>
+        <property group="Misc" name="showFullScreen" type="sap.ui.core/boolean" defaultValue="false">
+            <documentation>Display or not the full screen icon into the ChartContainer</documentation>
+        </property>
+        <property group="Misc" name="fullScreen" type="sap.ui.core/boolean" defaultValue="false">
+            <documentation>Display the chart and the toolbar in full screen or normal mode</documentation>
+        </property>
+        <property group="Misc" name="showLegend" type="sap.ui.core/boolean" defaultValue="true">
+            <documentation>Display or not the legend on the contained charts.</documentation>
+        </property>
+        <property group="Misc" name="title" type="sap.ui.core/string" defaultValue="">
+            <documentation>The string to display instead of the select boxes if there are no dimensions to display</documentation>
+        </property>
+        <property group="Misc" name="selectorGroupLabel" type="sap.ui.core/string">
+        	<documentation>Custom Label for Selectors Group.</documentation>
+        </property>
+        <property group="Misc" name="autoAdjustHeight" type="sap.ui.core/boolean" defaultValue="false">
+        	<documentation>Determine whether to stretch the chart height to the maximum possible height of ChartContainer's parent container. As a prerequisite, the parent container needs to have a fixed value height or be able to determine height from its parent.</documentation>
+        </property>
+		<property group="Misc" name="showZoom" type="sap.ui.core/boolean" defaultValue="true">
+        	<documentation>Display or not the zoom icons.</documentation>
+        </property>
+		<property group="Misc" name="showLegendButton" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Property to enable disable legend button</documentation>
+		</property>
+	</properties>
+	<aggregations default="content">
+		<aggregation cardinality="0..n" name="dimensionSelectors" type="sap.ui.core/Control">
+			<documentation>Dimension Selects.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..n" name="content" type="ChartContainerContent">
+			<documentation>CharToolBar Content aggregation. Only vizFrame, sap.m.Table and sap.ui.table.Table can be embedded.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="toolBar" type="sap.m/OverflowToolbar" visibility="hidden">
+			<documentation>Embedded ToolBar.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..n" name="customIcons" type="sap.ui.core/Icon">
+			<documentation>Custom Icons</documentation>
+		</aggregation>
+	</aggregations>
+
+	<events>
+        <event name="personalizationPress">
+            <documentation>Event fired when a user clicks on the personalization icon</documentation>
+        </event>
+        <event name="contentChange">
+            <documentation>Event fired when user change the Content displayed.</documentation>
+            <parameters>
+            	<parameter name="selectedItemId" type="sap.ui.core/string">
+            		<documentation>Id of the Item selected.</documentation>
+            	</parameter>
+            </parameters>
+        </event>
+        <event name="customZoomInPress">
+        	<documentation>Custom event for zoom in</documentation>
+        </event>
+        <event name="customZoomOutPress">
+        	<documentation>Custom event for zoom out</documentation>
+        </event>
+    </events>
+	<methods>
+		<method name="switchChart" type="ChartContainerContent">
+			<documentation>switch display content in the container. </documentation>
+		</method>
+		<method name="updateChartContainer" type="sap.ui.core/void">
+			<documentation>update ChartContainer Toolbar and its content will be rerendered.</documentation>
+		</method>
+	</methods>
+</control>

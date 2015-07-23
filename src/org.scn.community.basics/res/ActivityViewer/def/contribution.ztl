@@ -1009,6 +1009,13 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 
 
+	/**
+	 * Gets Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
 	/** Adds a root element containing key [String], style [String].
 
  	<example>

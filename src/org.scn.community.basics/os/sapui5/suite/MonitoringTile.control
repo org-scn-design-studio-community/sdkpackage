@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+	<name>MonitoringTile</name>
+	<documentation>This control is the implementation of the InfoTile to show a numeric value and an icon.</documentation>
+	<developmentState state="deprecated" since="1.25">This control has been deprecated in favor of new sap.suite.ui.commons.GenericTile.</developmentState>
+	<baseType>InfoTile</baseType>
+	<properties>
+		<property group="Misc" name="value" type="sap.ui.core/string">
+			<documentation>The actual value.</documentation>
+		</property>
+		<property group="Misc" name="iconSrc" type="sap.ui.core/string">
+			<documentation>This property is set by the return value of sap.ui.core.IconPool.getIconURI that is called with an icon name parameter and optional collection parameter. The collection parameter is required when the application extended icons are used.</documentation>
+		</property>
+		<property group="Misc" type="InfoTileTextColor" name="footerColor" defaultValue="Positive">
+			<documentation>The color of the tile footer text.</documentation>
+		</property>
+	</properties>
+</control>

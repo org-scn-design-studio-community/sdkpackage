@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+  <name>ProcessFlowLaneState</name>
+  <author></author>
+  <documentation>This type is used in the ‚state‘ property of the ProcessFlowLaneHeader. For example, as an app developer you have the option to set explicitly the status of the lane header outside of the control coding if the lanes are displayed without documents.
+If the complete process flow is displayed (that is, if the lane header is displayed with documents underneath), the given state values of the lane header are ignored and will be calculated in the ProcessFlow according to the current state of the documents.</documentation>
+  <baseType>sap.ui.core/string</baseType>
+  <enumeration>
+    <value name="value">
+    	<documentation>In the ‘state’ array , the total sum of all values needs to be 100%.</documentation>
+    </value>
+    <value name="state">
+      <documentation>The ‘state’ property is associated with the given value. The possible states are: positive, negative, neutral, and planned.</documentation>
+    </value>
+  </enumeration>
+</simple-type>

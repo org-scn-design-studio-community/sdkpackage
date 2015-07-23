@@ -1,0 +1,111 @@
+{
+
+	"useConnections":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Connections'",
+			"cat" : "Content-Connections",
+			"tooltip" : "If checked, the property 'Connections' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListConnections":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Connections Data List [Multiple]",
+         "cat":"Data",
+         "tooltip":"Connections Data List [Multiple]",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useNodes":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Nodes'",
+			"cat" : "Content-Nodes",
+			"tooltip" : "If checked, the property 'Nodes' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListNodes":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Nodes Data List [Multiple]",
+         "cat":"Data",
+         "tooltip":"Nodes Data List [Multiple]",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"useLanes":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Lanes'",
+			"cat" : "Content-Lanes",
+			"tooltip" : "If checked, the property 'Lanes' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListLanes":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Lanes Data List [Multiple]",
+         "cat":"Data",
+         "tooltip":"Lanes Data List [Multiple]",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    }
+}

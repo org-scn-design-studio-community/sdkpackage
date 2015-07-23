@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>DeltaMicroChart</name>
+
+	<documentation>This control displays a delta of two values as a chart.</documentation>
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="value1" type="sap.ui.core/float">
+			<documentation>The first value for delta calculation.</documentation>
+		</property>
+		<property group="Misc" type="sap.ui.core/float" name="value2">
+			<documentation>The second value for delta calculation.</documentation>
+		</property>
+		<property group="Misc" name="title1" type="sap.ui.core/string">
+			<documentation>The first value title.</documentation>
+		</property>
+		<property group="Misc" type="sap.ui.core/string" name="title2">
+			<documentation>The second value title.</documentation>
+		</property>
+		<property group="Misc" type="sap.ui.core/string" name="displayValue1">
+			<documentation>If this property is set, it is rendered instead of value1.</documentation>
+		</property>
+		<property group="Misc" type="sap.ui.core/string" name="displayValue2">
+			<documentation>If this property is set, it is rendered instead of value2.</documentation>
+		</property>
+		<property group="Misc" type="sap.ui.core/string" name="deltaDisplayValue">
+			<documentation>If this property is set, it is rendered instead of a calculated delta.</documentation>
+		</property>
+		<property group="Misc" name="color" type="InfoTileValueColor" defaultValue="Neutral">
+			<documentation>The semantic color of the delta value.</documentation>
+		</property>
+		<property group="Misc" type="sap.ui.core/CSSSize" name="width">
+			<documentation>The width of the chart.</documentation>
+		</property>
+		<property group="Misc" name="size" type="sap.suite.ui.commons/InfoTileSize" defaultValue="Auto">
+			<documentation>The size of the chart. If is not set, the default size is applied based on the device type.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the delta micro chart.</documentation>
+		</event>
+	</events>
+	
+</control>

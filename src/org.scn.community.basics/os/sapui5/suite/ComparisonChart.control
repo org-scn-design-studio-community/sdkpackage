@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd" >
+
+	<name>ComparisonChart</name>
+
+	<documentation>This control shows a comparison chart.</documentation>
+
+	<baseType>sap.ui.core/Control</baseType>
+	<properties>
+		<property group="Misc" name="scale" type="sap.ui.core/string">
+			<documentation>The scaling suffix.</documentation>
+		</property>
+		<property group="Misc" name="size" type="sap.suite.ui.commons/InfoTileSize" defaultValue="Auto">
+			<documentation>Updates the size of the chart. If not set then the default size is applied based on the device tile.</documentation>
+		</property>
+		<property group="Appearance" name="view" type="sap.suite.ui.commons/ComparisonChartView" defaultValue="Normal" since="1.25">
+			<documentation>The view of the chart. If not set, the Normal view is used by default.</documentation>
+		</property>
+		<property group="Misc" name="width" type="sap.ui.core/CSSSize" since="1.22">
+			<documentation>The width of the chart. If it is not set, the size of the control is defined by the size property.</documentation>
+		</property>
+		<property group="Misc" name="colorPalette" type="sap.ui.core/string[]" defaultValue="[]" since="1.24">
+			<documentation>The color palette for the chart. If this property is set, semantic colors defined in ComparisonData are ignored. Colors from the palette are assigned to each bar consequentially. When all the palette colors are used, assignment of the colors begins from the first palette color.</documentation>
+		</property>
+		<property group="Misc" name="shrinkable" type="sap.ui.core/boolean" defaultValue="false" since="1.25">
+			<documentation>If it is set to true, the height of the control is defined by its content. </documentation>
+		</property>
+		<property group="Appearance" name="height" type="sap.ui.core/CSSSize" since="1.25">
+			<documentation>Height of the chart.</documentation>
+		</property>
+	</properties>
+	<events>
+		<event name="press">
+			<documentation>The event is fired when the user chooses the comparison chart.</documentation>
+		</event>
+	</events>
+	<aggregations>
+		<aggregation cardinality="0..n" name="data" type="ComparisonData">
+			<documentation>The comparison chart data.</documentation>
+		</aggregation>
+	</aggregations>
+</control>

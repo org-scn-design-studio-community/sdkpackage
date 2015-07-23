@@ -1,0 +1,52 @@
+{
+	"id": "ProcessFlow",
+	"title": "Process Flow 2.0",
+	"tooltip": "ProcessFlow - Component for visualization of processes.",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityUnified",
+	"package": "databound",
+	"extension": "ui5.ProcessFlow",
+	"extends1ControlDs": "ProcessFlow.ds",
+	"extends2Control": "ProcessFlow",
+	"extends3Control": "ProcessFlow.events",
+	"generatedJsFile":"true",
+
+	"databound": true,
+	"dataType": "DataCellList",
+	
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "common_databound",
+		},
+		{
+			"space" : "known",
+			"id" : "common_unified",
+		},
+		{
+			"space" : "known",
+			"id" : "jshashtable",
+		},
+		{
+			"space" : "known",
+			"id" : "numberformatter",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_m_loader",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_suite_loader",
+		}
+	],
+	
+	"width": "420",
+	"height": "580"
+}
