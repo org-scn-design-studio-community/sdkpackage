@@ -19,9 +19,9 @@
 
  (function(){
 
-var myComponentData = org_scn_community_require.knownComponents.databound.ProcessFlow;
+var myComponentData = org_scn_community_require.knownComponents.databound.RadioButtonGroup;
 
-ProcessFlow = {
+RadioButtonGroup = {
 
 	renderer: {},
 
@@ -35,31 +35,25 @@ ProcessFlow = {
 		var that = owner;
 		org_scn_community_component_Core(that, myComponentData);
 		
-		that.addStyleClass("scn-pack-ProcessFlow");
+		that.addStyleClass("scn-pack-RadioButtonGroup");
 		that.addStyleClass("scn-pack-FullSizeChildren");
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		var componentPath = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage , "");
-		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.ProcessFlow.fullComponentName, componentPath);
+		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.RadioButtonGroup.fullComponentName, componentPath);
 
-		sap.ui.controller(org_scn_community_require.knownComponents.databound.ProcessFlow.fullComponentName + ".Controller", {
+		sap.ui.controller(org_scn_community_require.knownComponents.databound.RadioButtonGroup.fullComponentName + ".Controller", {
 			owner: that,
-				onErrored: function (event) {
-					org_scn_community_unified.processEvent(that, "onErrored", event);
-				},
-				onHeaderPressed: function (event) {
-					org_scn_community_unified.processEvent(that, "onHeaderPressed", event);
-				},
-				onNodePressed: function (event) {
-					org_scn_community_unified.processEvent(that, "onNodePressed", event);
+				onSelected: function (event) {
+					org_scn_community_unified.processEvent(that, "onSelected", event);
 				},
 
 		});
 
 		that._view = new sap.ui.view({ type: sap.ui.core.mvc.ViewType.XML,  
-            viewName: org_scn_community_require.knownComponents.databound.ProcessFlow.fullComponentName + "." 
-				+ org_scn_community_require.knownComponents.databound.ProcessFlow.id,  
-            controllerName: org_scn_community_require.knownComponents.databound.ProcessFlow.fullComponentName + ".Controller" 
+            viewName: org_scn_community_require.knownComponents.databound.RadioButtonGroup.fullComponentName + "." 
+				+ org_scn_community_require.knownComponents.databound.RadioButtonGroup.id,  
+            controllerName: org_scn_community_require.knownComponents.databound.RadioButtonGroup.fullComponentName + ".Controller" 
         });
 		
 		that._oModel = new sap.ui.model.json.JSONModel(); 
@@ -117,18 +111,18 @@ ProcessFlow = {
 
 
 
-		var l_Connections = org_scn_community_unified.getObjectArrayContent(that, "connections", options);
-		var l_Lanes = org_scn_community_unified.getObjectArrayContent(that, "lanes", options);
-		var l_Nodes = org_scn_community_unified.getObjectArrayContent(that, "nodes", options);
+		var l_Buttons = org_scn_community_unified.getObjectArrayContent(that, "buttons", options);
 
-		var l_FoldedCorners = that.getFoldedCorners();
-		var l_Scrollable = that.getScrollable();
-		var l_WheelZoomable = that.getWheelZoomable();
+		var l_Columns = that.getColumns();
+		var l_ContentWidth = that.getContentWidth();
+		var l_Editable = that.getEditable();
+		var l_Enabled = that.getEnabled();
+		var l_SelectedIndex = that.getSelectedIndex();
+		var l_TextDirection = that.getTextDirection();
+		var l_ValueState = that.getValueState();
 
 
-		var l_OnErrored = org_scn_community_unified.createEvent(that, "onErrored");
-		var l_OnHeaderPressed = org_scn_community_unified.createEvent(that, "onHeaderPressed");
-		var l_OnNodePressed = org_scn_community_unified.createEvent(that, "onNodePressed");
+		var l_OnSelected = org_scn_community_unified.createEvent(that, "onSelected");
 
 
 		var rowI = 0;
@@ -143,32 +137,28 @@ ProcessFlow = {
 
 
 
-			l_Connections = org_scn_community_unified.loopObjectArray(that, l_Connections, rowI);
-			l_Lanes = org_scn_community_unified.loopObjectArray(that, l_Lanes, rowI);
-			l_Nodes = org_scn_community_unified.loopObjectArray(that, l_Nodes, rowI);
+			l_Buttons = org_scn_community_unified.loopObjectArray(that, l_Buttons, rowI);
 
 
 			var customData = {};
 			
-			customData.foldedCorners = l_FoldedCorners;
-			customData.scrollable = l_Scrollable;
-			customData.wheelZoomable = l_WheelZoomable;
+			customData.columns = l_Columns;
+			customData.contentWidth = l_ContentWidth;
+			customData.editable = l_Editable;
+			customData.enabled = l_Enabled;
+			customData.selectedIndex = l_SelectedIndex;
+			customData.textDirection = l_TextDirection;
+			customData.valueState = l_ValueState;
 
 
 
 
 
-			customData[l_Connections.name] = l_Connections.json;
-
-			customData[l_Lanes.name] = l_Lanes.json;
-
-			customData[l_Nodes.name] = l_Nodes.json;
+			customData[l_Buttons.name] = l_Buttons.json;
 
 
 
-			customData[l_OnErrored.name] = l_OnErrored.func;
-			customData[l_OnHeaderPressed.name] = l_OnHeaderPressed.func;
-			customData[l_OnNodePressed.name] = l_OnNodePressed.func;
+			customData[l_OnSelected.name] = l_OnSelected.func;
 
 
 			that._specialDataModel.push(customData);
@@ -216,8 +206,8 @@ ProcessFlow = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundprocessflow){
-	myComponentData.instance = ProcessFlow;
+define([myComponentData.requireName], function(databoundradiobuttongroup){
+	myComponentData.instance = RadioButtonGroup;
 	return myComponentData.instance;
 });
 

@@ -1,0 +1,227 @@
+{
+
+	"enabled" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Enabled",
+			"cat" : "Display",
+			"tooltip" : "Disabled controls are displayed in another color.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"selected" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Selected",
+			"cat" : "Display",
+			"tooltip" : "Specifies the select state of the radio button",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"groupName" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "sapMRbDefaultGroup",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Group Name",
+			"cat" : "Display",
+			"tooltip" : "Name of the radio button group the current radio button belongs to. You can define a new name for the group.If no new name is specified, this radio button belongs to the sapMRbDefaultGroup per default. Default behavior of a radio button in a group is that when one of the radio buttons in a group is selected, all others are unselected.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Text",
+			"cat" : "Display",
+			"tooltip" : "Defines the text displayed next to the RadioButton",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"textDirection" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Inherit",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "TextDirection",
+			"ztlFunction": "",
+			"desc" : "Text Direction",
+			"cat" : "Display",
+			"tooltip" : "Options for the text direction are RTL and LTR. Alternatively, the control can inherit the text direction from its parent container.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "LTR",
+					"text" : "Specifies left-to-right text direction"
+				},
+				{
+					"key" : "RTL",
+					"text" : "Specifies right-to-left text direction"
+				},
+				{
+					"key" : "Inherit",
+					"text" : "Inherits the direction from its parent control/container"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"contentWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Width",
+			"cat" : "Display",
+			"tooltip" : "Width of Label",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"activeHandling" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Active Handling",
+			"cat" : "Display",
+			"tooltip" : "this is a flag to switch on activeHandling, when it is switched off,there will not be visual changes on active state. Default value is 'true'",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"editable" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Editable",
+			"cat" : "Display",
+			"tooltip" : "Specifies whether the user can select the radio button.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valueState" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "None",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "ValueState",
+			"ztlFunction": "",
+			"desc" : "Value State",
+			"cat" : "Data-Values",
+			"tooltip" : "Enumeration sap.ui.core.ValueState provides state values Error, Success, Warning, None",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Error",
+					"text" : "State is not valid"
+				},
+				{
+					"key" : "Warning",
+					"text" : "State is valid but with a warning"
+				},
+				{
+					"key" : "Success",
+					"text" : "State is valid"
+				},
+				{
+					"key" : "None",
+					"text" : "State is not specified"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"textAlign" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Begin",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "TextAlign",
+			"ztlFunction": "",
+			"desc" : "Text Align",
+			"cat" : "Display",
+			"tooltip" : "Available alignment settings are ",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Begin",
+					"text" : "Locale-specific positioning at the beginning of the line"
+				},
+				{
+					"key" : "End",
+					"text" : "Locale-specific positioning at the end of the line"
+				},
+				{
+					"key" : "Left",
+					"text" : "Hard option for left alignment"
+				},
+				{
+					"key" : "Right",
+					"text" : "Hard option for right alignment"
+				},
+				{
+					"key" : "Center",
+					"text" : "Centered text alignment"
+				},
+				{
+					"key" : "Initial",
+					"text" : "Sets no text align, so the browser default is used"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

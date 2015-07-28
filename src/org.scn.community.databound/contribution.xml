@@ -2379,7 +2379,7 @@ __n__}
 	handlerType="sapui5"
 	propertySheetPath="res/ProcessFlow/aps/PropertyPage.html"
 	group="ScnCommunityUnified"
-	databound="true"
+	databound="false"
 >
 	
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -2394,42 +2394,6 @@ __n__}
 		bindable="true"
 		visible="true">
 
-	</property>
-	<property
-		id="dataCellListConnections"
-		type="ResultCellList"
-		title="Connections Data List [Multiple]"
-		group="DataBinding"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
-	</property>
-	<property
-		id="dataCellListLanes"
-		type="ResultCellList"
-		title="Lanes Data List [Multiple]"
-		group="DataBinding"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
-	</property>
-	<property
-		id="dataCellListNodes"
-		type="ResultCellList"
-		title="Nodes Data List [Multiple]"
-		group="DataBinding"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
 		id="foldedCorners"
@@ -2565,9 +2529,6 @@ __n__}
 		<defaultValue property="HEIGHT">580</defaultValue>
 		
 		<defaultValue property="connections"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="dataCellListConnections"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListLanes"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListNodes"><![CDATA[null]]></defaultValue>
 		<defaultValue property="foldedCorners"><![CDATA[false]]></defaultValue>
 		<defaultValue property="headerPressedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="lanes"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"laneId":"id0","iconSrc":"sap-icon://order-status","state":"","text":"In Order","position":0,"zoomLevel":"One"},{"parentKey":"ROOT","key":"ELEMENT1","leaf":false,"laneId":"id1","iconSrc":"sap-icon://payment-approval","text":"In Delivery","position":1,"state":"Planned"}]]]></defaultValue>
@@ -2625,6 +2586,175 @@ __n__}
 		<defaultValue property="HEIGHT">200</defaultValue>
 	</initialization>
 </component>
+<component
+	id="RadioButtonGroup"
+	title="Radio Button Group 2.0"
+	tooltip="RadioButtonGroup - Allows Selection with Radio Buttons."
+	icon="res/RadioButtonGroup/RadioButtonGroup.png"
+	handlerType="sapui5"
+	propertySheetPath="res/RadioButtonGroup/aps/PropertyPage.html"
+	group="ScnCommunityUnified"
+	databound="false"
+>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/RadioButtonGroup/RadioButtonGroupLoader.js</jsInclude>
+	<cssInclude>res/RadioButtonGroup/RadioButtonGroup.css</cssInclude>
+	
+	<property
+		id="buttons"
+		type="String"
+		title="Buttons"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="columns"
+		type="int"
+		title="Columns"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="contentWidth"
+		type="int"
+		title="Content Width"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="editable"
+		type="boolean"
+		title="Editable"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="enabled"
+		type="boolean"
+		title="Enabled"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onSelected"
+		type="ScriptText"
+		title="On Selected"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="selectedIndex"
+		type="int"
+		title="Selected Index"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="selectedKey"
+		type="String"
+		title="Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="textDirection"
+		type="String"
+		title="Text Direction"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useButtons"
+		type="boolean"
+		title="Use Manual 'Buttons'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useColumns"
+		type="boolean"
+		title="Use Manual 'Columns'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useContentWidth"
+		type="boolean"
+		title="Use Manual 'Content Width'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useSelectedIndex"
+		type="boolean"
+		title="Use Manual 'Selected Index'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="valueState"
+		type="String"
+		title="Value State"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">320</defaultValue>
+		<defaultValue property="HEIGHT">500</defaultValue>
+		
+		<defaultValue property="buttons"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="columns"><![CDATA[1]]></defaultValue>
+		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
+		<defaultValue property="editable"><![CDATA[true]]></defaultValue>
+		<defaultValue property="enabled"><![CDATA[true]]></defaultValue>
+		<defaultValue property="onSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="selectedIndex"><![CDATA[0]]></defaultValue>
+		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="textDirection"><![CDATA[Inherit]]></defaultValue>
+		<defaultValue property="useButtons"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useColumns"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useSelectedIndex"><![CDATA[true]]></defaultValue>
+		<defaultValue property="valueState"><![CDATA[None]]></defaultValue>
+
+	</initialization>
+
+</component>
+
 <component
 	id="RangeSlider"
 	title="Data Range Slider"

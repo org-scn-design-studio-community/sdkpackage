@@ -2015,6 +2015,18 @@ class org.scn.community.databound.Projector extends org.scn.community.shared.Dat
 }
 
 /**
+ * Generated ZTL Class for RadioButtonGroup
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.RadioButtonGroup extends org.scn.community.shared.ui5.RadioButtonGroup {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
  * Class for DataRangeSlider
  */
 class org.scn.community.databound.RangeSlider extends org.scn.community.shared.DataComponent {

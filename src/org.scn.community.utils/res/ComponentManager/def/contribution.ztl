@@ -876,6 +876,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Data Projector component*/
 	org.scn.community.databound.Projector returnAsScnProjector (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Radio Button Group 2.0 component*/
+	org.scn.community.databound.RadioButtonGroup returnAsScnRadioButtonGroup (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Range Slider component*/
 	org.scn.community.databound.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
 

@@ -1,0 +1,31 @@
+{
+	"name": "TextAlign",
+	"docu": "Configuration options for text alignments.",
+
+	values: [
+	{	
+		"name": "Begin",
+		"value": "Locale-specific positioning at the beginning of the line."	
+	},
+	{	
+		"name": "End",
+		"value": "Locale-specific positioning at the end of the line."	
+	},
+	{	
+		"name": "Left",
+		"value": "Hard option for left alignment."	
+	},
+	{	
+		"name": "Right",
+		"value": "Hard option for right alignment."	
+	},
+	{	
+		"name": "Center",
+		"value": "Centered text alignment."	
+	},
+	{	
+		"name": "Initial",
+		"value": "Sets no text align, so the browser default is used."	
+	}
+	]
+}

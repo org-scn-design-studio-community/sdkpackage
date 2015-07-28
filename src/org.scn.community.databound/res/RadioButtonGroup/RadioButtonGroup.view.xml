@@ -1,0 +1,64 @@
+<core:View
+  xmlns="sap.suite.ui.commons"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:m="sap.m"
+  
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  
+  controllerName="org.scn.community.databound.RadioButtonGroup.Controller"
+  >
+  <l:VerticalLayout
+    width="100%" content="{/}">
+    <l:content
+      width="{width}"
+      >
+      
+      <l:VerticalLayout
+	    width="100%">
+	    <l:content
+	      width="{width}"
+	      >
+	  	  <m:Label
+	      	text="{actual/label}"
+	      	visible="{withLabel}" 
+	      	>
+	      </m:Label>
+	       <m:RadioButtonGroup
+				columns="{columns}"
+				contentWidth="{contentWidth}"
+				editable="{editable}"
+				enabled="{enabled}"
+				selectedIndex="{selectedIndex}"
+				textDirection="{textDirection}"
+				valueState="{valueState}"
+
+				select="onSelected"
+				app:parameter="selectedIndex"
+				app:collection="buttons"
+
+	       		buttons="{buttons}"
+	       >
+	       		<m:buttons>
+	       			<m:RadioButton
+	       				app:ownKey="{key}"
+	       				
+	       				text="{text}"
+	       				activeHandling="{activeHandling}"
+						contentWidth="{contentWidth}"
+						editable="{editable}"
+						enabled="{enabled}"
+						groupName="{groupName}"
+						selected="{selected}"
+						textAlign="{textAlign}"
+						textDirection="{textDirection}"
+						valueState="{valueState}"
+	       			>
+	       			</m:RadioButton>
+	       		</m:buttons>
+	       </m:RadioButtonGroup>
+	    </l:content>
+	  </l:VerticalLayout> 
+    </l:content>
+  </l:VerticalLayout> 
+</core:View>

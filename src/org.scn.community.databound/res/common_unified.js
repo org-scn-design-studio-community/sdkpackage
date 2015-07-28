@@ -386,6 +386,7 @@ org_scn_community_unified.getOriginMappings = function (owner, propertyObject) {
 	} else if(type == "ProcessFlowConnection") {
 	} else if(type == "ProcessFlowLaneHeader") {
 	} else if(type == "ProcessFlowNode") {
+	} else if(type == "RadioButton") {
 	} else {
 		throw new Error("Original Type " + type + " does not have mappings");
 	}
@@ -424,11 +425,27 @@ org_scn_community_unified.processEvent = function (owner, eventName, event) {
 	parameterKeyName = parameterKeyName.substring(0, parameterKeyName.length-2);
 
 	parameterKeyName = parameterKeyName + "edKey";
-
 	var parameterKeyNameCap = parameterKeyName.substring(0,1).toUpperCase() + parameterKeyName.substring(1);
+	
+	var changedParams = [];
+	changedParams.push(parameterKeyName);
+	
+	var key = undefined;
+	if(event.getParameters().data) {
+		key = event.getParameters().data("ownKey");
 
-	var key = event.getParameters().data("ownKey");
+	} else {
+		var param = event.getSource().data("parameter");
+		var collection = event.getSource().data("collection");
+
+		var paramValue = event.getParameters()[param];
+		var parameterCap = param.substring(0,1).toUpperCase() + param.substring(1);
+		
+		that["set" + parameterCap](paramValue);
+		changedParams.push(param);
+		key = that._specialDataModel[0][collection][paramValue].key;
+	}
+
 	that["set" + parameterKeyNameCap](key);
-				
-	that.fireDesignStudioPropertiesChangedAndEvent([parameterKeyName], eventName);
+	that.fireDesignStudioPropertiesChangedAndEvent(changedParams, eventName);
 };

@@ -7,7 +7,7 @@
 	handlerType="sapui5"
 	propertySheetPath="res/ProcessFlow/aps/PropertyPage.html"
 	group="ScnCommunityUnified"
-	databound="true"
+	databound="false"
 >
 	
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -22,42 +22,6 @@
 		bindable="true"
 		visible="true">
 
-	</property>
-	<property
-		id="dataCellListConnections"
-		type="ResultCellList"
-		title="Connections Data List [Multiple]"
-		group="DataBinding"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
-	</property>
-	<property
-		id="dataCellListLanes"
-		type="ResultCellList"
-		title="Lanes Data List [Multiple]"
-		group="DataBinding"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
-	</property>
-	<property
-		id="dataCellListNodes"
-		type="ResultCellList"
-		title="Nodes Data List [Multiple]"
-		group="DataBinding"
-		visible="true"
-		bindable="true">
-
-		<option name="includeFormattedData" value="true"/>
-		<option name="includeData" value="true"/>
-		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
 		id="foldedCorners"
@@ -193,9 +157,6 @@
 		<defaultValue property="HEIGHT">580</defaultValue>
 		
 		<defaultValue property="connections"><![CDATA[[]]]></defaultValue>
-		<defaultValue property="dataCellListConnections"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListLanes"><![CDATA[null]]></defaultValue>
-		<defaultValue property="dataCellListNodes"><![CDATA[null]]></defaultValue>
 		<defaultValue property="foldedCorners"><![CDATA[false]]></defaultValue>
 		<defaultValue property="headerPressedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="lanes"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"laneId":"id0","iconSrc":"sap-icon://order-status","state":"","text":"In Order","position":0,"zoomLevel":"One"},{"parentKey":"ROOT","key":"ELEMENT1","leaf":false,"laneId":"id1","iconSrc":"sap-icon://payment-approval","text":"In Delivery","position":1,"state":"Planned"}]]]></defaultValue>

@@ -143,9 +143,23 @@ public class SpecificationReader {
 	}
 
 	private void processPropertyExtension(Property property, ZtlAndAps generatedZtlAndAps) {
+		SpecHelper helper = new SpecHelper(this.componentName, new File(pathToGenSpec));
+		
 		if(generatedZtlAndAps.getXml() != null && generatedZtlAndAps.getXml().length() > 0) {
-			XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");
-			XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_TEMPLATE%", property.getExtendedFullSpec().getValueXml() + "\r\n%XML_DEAFULT_TEMPLATE%");
+			if(property.getExtendedFullSpec().getTemplateName().startsWith("ds-")) {
+				if(helper.getProperty(compProperties, "databound").getExtendedFullSpec().getPropertyValue("databound").equals("true")) {
+					XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");
+					XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_TEMPLATE%", property.getExtendedFullSpec().getValueXml() + "\r\n%XML_DEAFULT_TEMPLATE%");
+				} else {
+					if(!property.getExtendedFullSpec().getParameter("opts").getPropertyValue("type").equals("data")) {
+						XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");
+						XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_TEMPLATE%", property.getExtendedFullSpec().getValueXml() + "\r\n%XML_DEAFULT_TEMPLATE%");
+					}
+				}
+			} else {
+				XmlTmpl = XmlTmpl.replace("%XML_PROPERTY_TEMPLATE%", generatedZtlAndAps.getXml() + "\r\n%XML_PROPERTY_TEMPLATE%");
+				XmlTmpl = XmlTmpl.replace("%XML_DEAFULT_TEMPLATE%", property.getExtendedFullSpec().getValueXml() + "\r\n%XML_DEAFULT_TEMPLATE%");
+			}
 
 			if(hasUi5Spec) {
 				if(property.hasExtendSpec() && !property.getExtendedFullSpec().getTemplateName().startsWith("ds-")) {

@@ -1,0 +1,230 @@
+{
+
+	"contentWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Width",
+			"cat" : "Display",
+			"tooltip" : "Width of the RadioButtonGroup.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"columns" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 1,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Columns",
+			"cat" : "Display",
+			"tooltip" : "Number of RadioButtons displayed in one line/column.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"editable" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Editable",
+			"cat" : "Display",
+			"tooltip" : "Specifies whether the user can select the RadioButtonGroup. When the property is set to false, the control obtains visual styles different from its visual styles for the normal and the disabled state. Additionally the control is no longer interactive, but can receive focus.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valueState" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "None",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "ValueState",
+			"ztlFunction": "",
+			"desc" : "Value State",
+			"cat" : "Data-Values",
+			"tooltip" : "The value state to be displayed. Setting this attribute, when the accessibility feature is enabled, sets the value of the invalid property to â€œtrueâ€�.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Error",
+					"text" : "State is not valid"
+				},
+				{
+					"key" : "Warning",
+					"text" : "State is valid but with a warning"
+				},
+				{
+					"key" : "Success",
+					"text" : "State is valid"
+				},
+				{
+					"key" : "None",
+					"text" : "State is not specified"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"selectedIndex" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Selected Index",
+			"cat" : "Display",
+			"tooltip" : "Index of the selected/checked RadioButton.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"enabled" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Enabled",
+			"cat" : "Display",
+			"tooltip" : "Switches the enabled state of the control. All Radio Buttons inside a disabled group are disabled. Default value is â€œtrueâ€�.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"textDirection" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Inherit",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "TextDirection",
+			"ztlFunction": "",
+			"desc" : "Text Direction",
+			"cat" : "Display",
+			"tooltip" : "This property specifies the element's text directionality with enumerated options. By default, the control inherits text direction from the DOM.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "LTR",
+					"text" : "Specifies left-to-right text direction"
+				},
+				{
+					"key" : "RTL",
+					"text" : "Specifies right-to-left text direction"
+				},
+				{
+					"key" : "Inherit",
+					"text" : "Inherits the direction from its parent control/container"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"buttons" : {
+		"template" : "ObjectArray",
+		"type" : "String",
+		"origType": "RadioButton";
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+
+			"desc" : "Buttons",
+			"cat" : "Content-Buttons",
+			"tooltip" : "Returns selected button. When no button is selected, ",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"buttons": {
+					"type": "Array",
+			        "sequence": "key,activeHandling,contentWidth,editable,enabled,groupName,selected,text,textAlign,textDirection,valueState",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"activeHandling": {
+					  "desc": "Active Handling",
+					  "type": "boolean"
+					},
+					"contentWidth": {
+					  "desc": "Content Width",
+					  "type": "int"
+					},
+					"editable": {
+					  "desc": "Editable",
+					  "type": "boolean"
+					},
+					"enabled": {
+					  "desc": "Enabled",
+					  "type": "boolean"
+					},
+					"groupName": {
+					  "desc": "Group Name",
+					  "type": "String"
+					},
+					"selected": {
+					  "desc": "Selected",
+					  "type": "boolean"
+					},
+					"text": {
+					  "desc": "Text",
+					  "type": "String"
+					},
+					"textAlign": {
+					  "desc": "Text Align",
+					  "type": "String",
+					  "options": [{"key":"Begin","text":"Locale-specific positioning at the beginning of the line"},{"key":"End","text":"Locale-specific positioning at the end of the line"},{"key":"Left","text":"Hard option for left alignment"},{"key":"Right","text":"Hard option for right alignment"},{"key":"Center","text":"Centered text alignment"},{"key":"Initial","text":"Sets no text align, so the browser default is used"}],
+					  "apsControl": "combobox"
+					},
+					"textDirection": {
+					  "desc": "Text Direction",
+					  "type": "String",
+					  "options": [{"key":"LTR","text":"Specifies left-to-right text direction"},{"key":"RTL","text":"Specifies right-to-left text direction"},{"key":"Inherit","text":"Inherits the direction from its parent control/container"}],
+					  "apsControl": "combobox"
+					},
+					"valueState": {
+					  "desc": "Value State",
+					  "type": "String",
+					  "options": [{"key":"Error","text":"State is not valid"},{"key":"Warning","text":"State is valid but with a warning"},{"key":"Success","text":"State is valid"},{"key":"None","text":"State is not specified"}],
+					  "apsControl": "combobox"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

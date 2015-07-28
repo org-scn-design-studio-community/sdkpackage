@@ -47,10 +47,14 @@ public class UI5Property extends UI5Reader {
 				break;
 			}
 			
+			if(isChar(reader)) {
+				continue;
+			}
+			
 			String localName = reader.getLocalName();
 			
 			if(reader.isEndElement()) {
-				if(localName.equals("property")) {
+				if(localName.equals("property") || localName.equals("value")) {
 					break;
 				}
 				continue;
@@ -197,6 +201,16 @@ public class UI5Property extends UI5Reader {
 				if(!new File(xmlSpecFile).exists()) {
 					String url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/suite/ui/commons/"+originalType + "." +suffix;
 					String onlineSpec = helper.sendGet(url);
+
+					if(onlineSpec == null || onlineSpec.length() == 0) {
+						url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/ui/core/"+originalType + "." +suffix;
+						onlineSpec = helper.sendGet(url);
+					}
+					
+					if(onlineSpec == null || onlineSpec.length() == 0) {
+						url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/m/"+originalType + "." +suffix;
+						onlineSpec = helper.sendGet(url);
+					}
 
 					if(onlineSpec == null || onlineSpec.length() == 0) {
 						throw new RuntimeException("UI5 Type/Control " + originalType + " is missing spec. Url " + url + " does not have spec.");	

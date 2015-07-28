@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
 
+import org.scn.community.defgenerator.ParamSimpleSpec;
 import org.scn.community.spec.ui5.Ui5JsSpec;
 import org.scn.community.utils.Helpers;
 
@@ -16,7 +17,8 @@ public class Ui5JsContent {
 	private TreeMap<String, String> templates = new TreeMap<String, String>();
 	private String type;
 	private String name;
-	private String origType;   
+	private String origType;
+	private String xmlView;   
 
 	public Ui5JsContent(ParamFullSpec paramFullSpec) {
 		this.spec = paramFullSpec;

@@ -1,0 +1,19 @@
+{
+	"name": "TextDirection",
+	"docu": "Configuration options for the direction of texts.",
+
+	values: [
+	{	
+		"name": "LTR",
+		"value": "Specifies left-to-right text direction."	
+	},
+	{	
+		"name": "RTL",
+		"value": "Specifies right-to-left text direction."	
+	},
+	{	
+		"name": "Inherit",
+		"value": "Inherits the direction from its parent control/container."	
+	}
+	]
+}

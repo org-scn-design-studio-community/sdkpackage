@@ -12,8 +12,11 @@ class org_scn_community_shared_BulletChartModeEnumfield extends Enumfield {
  */
 class org_scn_community_shared_BulletChartMode extends Enum {
 
-	/** Displays delta between the Actual and Threshold values. */
+	/** Displays the Actual value. */
 	org_scn_community_shared_BulletChartModeEnumfield Actual;
+
+	/** Displays delta between the Actual and Threshold values. */
+	org_scn_community_shared_BulletChartModeEnumfield Delta;
 
 
 }
@@ -31,8 +34,29 @@ class org_scn_community_shared_CommonBackgroundEnumfield extends Enumfield {
  */
 class org_scn_community_shared_CommonBackground extends Enum {
 
-	/** The darkest background color. */
+	/** The lightest background color. */
 	org_scn_community_shared_CommonBackgroundEnumfield Lightest;
+
+	/** Extra light background color. */
+	org_scn_community_shared_CommonBackgroundEnumfield ExtraLight;
+
+	/** Light background color. */
+	org_scn_community_shared_CommonBackgroundEnumfield Light;
+
+	/** Medium light background color. */
+	org_scn_community_shared_CommonBackgroundEnumfield MediumLight;
+
+	/** Medium background color. */
+	org_scn_community_shared_CommonBackgroundEnumfield Medium;
+
+	/** Dark background color. */
+	org_scn_community_shared_CommonBackgroundEnumfield Dark;
+
+	/** Extra dark background color. */
+	org_scn_community_shared_CommonBackgroundEnumfield ExtraDark;
+
+	/** The darkest background color. */
+	org_scn_community_shared_CommonBackgroundEnumfield Darkest;
 
 
 }
@@ -50,8 +74,20 @@ class org_scn_community_shared_InfoTileSizeEnumfield extends Enumfield {
  */
 class org_scn_community_shared_InfoTileSize extends Enum {
 
-	/** The size of the tile depends on the device it is running on. It is large on desktop, medium on tablet and small on phone. */
+	/** Extra small size. */
 	org_scn_community_shared_InfoTileSizeEnumfield XS;
+
+	/** Small size. */
+	org_scn_community_shared_InfoTileSizeEnumfield S;
+
+	/** Medium size. */
+	org_scn_community_shared_InfoTileSizeEnumfield M;
+
+	/** Large size. */
+	org_scn_community_shared_InfoTileSizeEnumfield L;
+
+	/** The size of the tile depends on the device it is running on. It is large on desktop, medium on tablet and small on phone. */
+	org_scn_community_shared_InfoTileSizeEnumfield Auto;
 
 
 }
@@ -69,8 +105,17 @@ class org_scn_community_shared_InfoTileValueColorEnumfield extends Enumfield {
  */
 class org_scn_community_shared_InfoTileValueColor extends Enum {
 
-	/** Error InfoTile value color. */
+	/** Neutral InfoTile value color. */
 	org_scn_community_shared_InfoTileValueColorEnumfield Neutral;
+
+	/** Good InfoTile value color. */
+	org_scn_community_shared_InfoTileValueColorEnumfield Good;
+
+	/** Critical InfoTile value color. */
+	org_scn_community_shared_InfoTileValueColorEnumfield Critical;
+
+	/** Error InfoTile value color. */
+	org_scn_community_shared_InfoTileValueColorEnumfield Error;
 
 
 }
@@ -88,8 +133,11 @@ class org_scn_community_shared_MicroAreaChartViewEnumfield extends Enumfield {
  */
 class org_scn_community_shared_MicroAreaChartView extends Enum {
 
-	/** The view with labels on the left and right. */
+	/** The view with labels on the top and bottom. */
 	org_scn_community_shared_MicroAreaChartViewEnumfield Normal;
+
+	/** The view with labels on the left and right. */
+	org_scn_community_shared_MicroAreaChartViewEnumfield Wide;
 
 
 }
@@ -107,8 +155,20 @@ class org_scn_community_shared_ProcessFlowNodeStateEnumfield extends Enumfield {
  */
 class org_scn_community_shared_ProcessFlowNodeState extends Enum {
 
-	/** Planned document has an issue */
+	/** Positive status for a Created document: document is done, finished, solved  */
 	org_scn_community_shared_ProcessFlowNodeStateEnumfield Positive;
+
+	/** Negative status for a Created document: a document has an issue */
+	org_scn_community_shared_ProcessFlowNodeStateEnumfield Negative;
+
+	/** Planned status for a document: a document is planned */
+	org_scn_community_shared_ProcessFlowNodeStateEnumfield Planned;
+
+	/** Neutral status for a Created document: document is in progress  */
+	org_scn_community_shared_ProcessFlowNodeStateEnumfield Neutral;
+
+	/** Planned document has an issue */
+	org_scn_community_shared_ProcessFlowNodeStateEnumfield PlannedNegative;
 
 
 }
@@ -126,8 +186,70 @@ class org_scn_community_shared_ProcessFlowZoomLevelEnumfield extends Enumfield {
  */
 class org_scn_community_shared_ProcessFlowZoomLevel extends Enum {
 
-	/** The full details with normal font size */
+	/** zoom level for least details - only icon is displayed */
 	org_scn_community_shared_ProcessFlowZoomLevelEnumfield One;
+
+	/** The detail is icon, title text and no additional texts */
+	org_scn_community_shared_ProcessFlowZoomLevelEnumfield Two;
+
+	/** The full detail view of the node but with smaller font size */
+	org_scn_community_shared_ProcessFlowZoomLevelEnumfield Three;
+
+	/** The full details with normal font size */
+	org_scn_community_shared_ProcessFlowZoomLevelEnumfield Four;
+
+
+}
+
+
+/**
+ * Configuration options for the direction of texts.
+ */
+class org_scn_community_shared_TextDirectionEnumfield extends Enumfield {
+       
+}
+
+/**
+ * Configuration options for the direction of texts. 
+ */
+class org_scn_community_shared_TextDirection extends Enum {
+
+	/** Specifies left-to-right text direction. */
+	org_scn_community_shared_TextDirectionEnumfield LTR;
+
+	/** Specifies right-to-left text direction. */
+	org_scn_community_shared_TextDirectionEnumfield RTL;
+
+	/** Inherits the direction from its parent control/container. */
+	org_scn_community_shared_TextDirectionEnumfield Inherit;
+
+
+}
+
+
+/**
+ * Marker for the correctness of the current value.
+ */
+class org_scn_community_shared_ValueStateEnumfield extends Enumfield {
+       
+}
+
+/**
+ * Marker for the correctness of the current value. 
+ */
+class org_scn_community_shared_ValueState extends Enum {
+
+	/** State is not valid. */
+	org_scn_community_shared_ValueStateEnumfield Error;
+
+	/** State is valid but with a warning. */
+	org_scn_community_shared_ValueStateEnumfield Warning;
+
+	/** State is valid. */
+	org_scn_community_shared_ValueStateEnumfield Success;
+
+	/** State is not specified. */
+	org_scn_community_shared_ValueStateEnumfield None;
 
 
 }

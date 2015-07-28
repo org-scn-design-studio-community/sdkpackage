@@ -511,10 +511,10 @@
 	org_scn_community_require.knownComponents.databound.ProcessFlow.specComp = 
 {
   "dataType": "DataCellList",
-  "databound": true,
+  "databound": false,
   "extends1ControlDs": "ProcessFlow.ds",
   "extends2Control": "ProcessFlow",
-  "extends3Control": "ProcessFlow.events",
+  "extends3ControlEvents": "ProcessFlow.events",
   "extension": "ui5.ProcessFlow",
   "generatedJsFile": "true",
   "group": "ScnCommunityUnified",

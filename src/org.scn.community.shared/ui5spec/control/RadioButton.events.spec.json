@@ -1,0 +1,33 @@
+{
+
+   "selectedKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Selected Key",
+			"cat" : "Internal",
+			"tooltip" : "Selected Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":false
+		}
+	},
+	"onSelected": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Selected",
+            "cat": "Events",
+            "tooltip": "Event triggered on Checks whether the RadioButton is active or not.",
+            "noAps":true,
+            "noZtl":true
+        }
+    }
+}

@@ -44,6 +44,10 @@ public class UI5Event extends UI5Reader {
 				break;
 			}
 			
+			if(isChar(reader)) {
+				continue;
+			}
+			
 			String localName = reader.getLocalName();
 
 			if(reader.isEndElement()) {

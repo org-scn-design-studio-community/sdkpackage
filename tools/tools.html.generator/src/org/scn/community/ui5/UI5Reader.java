@@ -25,8 +25,14 @@ public class UI5Reader {
 	}
 	
 	protected boolean isEnd(XMLStreamReader reader) {
-		if(reader.getEventType() == XMLStreamReader.END_DOCUMENT || 
-			reader.getEventType() == XMLStreamReader.CHARACTERS) {
+		if(reader.getEventType() == XMLStreamReader.END_DOCUMENT) {
+			return true;
+		}
+		return false;
+	}
+	
+	protected boolean isChar(XMLStreamReader reader) {
+		if(reader.getEventType() == XMLStreamReader.CHARACTERS) {
 			return true;
 		}
 		return false;

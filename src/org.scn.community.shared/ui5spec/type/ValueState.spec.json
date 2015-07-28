@@ -1,0 +1,23 @@
+{
+	"name": "ValueState",
+	"docu": "Marker for the correctness of the current value.",
+
+	values: [
+	{	
+		"name": "Error",
+		"value": "State is not valid."	
+	},
+	{	
+		"name": "Warning",
+		"value": "State is valid but with a warning."	
+	},
+	{	
+		"name": "Success",
+		"value": "State is valid."	
+	},
+	{	
+		"name": "None",
+		"value": "State is not specified."	
+	}
+	]
+}

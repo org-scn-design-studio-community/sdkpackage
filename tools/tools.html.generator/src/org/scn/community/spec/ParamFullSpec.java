@@ -9,6 +9,7 @@ import javax.management.RuntimeErrorException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.scn.community.defgenerator.ParamSimpleSpec;
 import org.scn.community.defgenerator.ZtlAndAps;
 import org.scn.community.htmlgenerator.Property;
 import org.scn.community.htmlgenerator.Value;
@@ -586,6 +587,13 @@ public class ParamFullSpec {
 		Ui5JsContent content = new Ui5JsContent(this);
 		content.calculate();
 		return content;
+	}
+
+	public String getViewXml() {
+		String template = Helpers.resource2String(Ui5JsContent.class, "comp.view.property.xml");
+		template = exchangeTemplate(template);
+
+		return template;
 	}
 
 	public Property getParentProperty() {

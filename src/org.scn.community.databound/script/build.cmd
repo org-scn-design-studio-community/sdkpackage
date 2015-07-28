@@ -26,6 +26,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\NiceChart\def\contribution.xml ^
 ..\res\ProcessFlow\def\contribution.xml ^
 ..\res\Projector\def\contribution.xml ^
+..\res\RadioButtonGroup\def\contribution.xml ^
 ..\res\RangeSlider\def\contribution.xml ^
 ..\res\ResultSetInfo\def\contribution.xml ^
 ..\res\ResultSetMixer\def\contribution.xml ^
@@ -64,6 +65,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\NiceChart\def\contribution.ztl ^
 ..\res\ProcessFlow\def\contribution.ztl ^
 ..\res\Projector\def\contribution.ztl ^
+..\res\RadioButtonGroup\def\contribution.ztl ^
 ..\res\RangeSlider\def\contribution.ztl ^
 ..\res\ResultSetInfo\def\contribution.ztl ^
 ..\res\ResultSetMixer\def\contribution.ztl ^

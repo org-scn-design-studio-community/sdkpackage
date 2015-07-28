@@ -1,0 +1,16 @@
+{
+	"title": "Radio Button Group 2.0",
+	"description": "Radio Button Group - Allows Selection with Radio Buttons",
+	"icon": "RadioButtonGroup.png",
+	"topics": 
+	[
+		{
+			"title" : "Radio Button Group",
+			"content" : "This control is used as a wrapper for a group of RadioButton controls, which then can be used as a single UI element. You can select only one of the grouped radio buttons at a time. Some of the radio buttons can be configured as inactive (they are displayed as grayed out). The grouped radio buttons can be arranged within different number of columns. Based on the number of specified columns and the number of radio buttons used, different layout types can be achieved - as a 'matrix', horizontally or vertically aligned radio buttons, etc."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

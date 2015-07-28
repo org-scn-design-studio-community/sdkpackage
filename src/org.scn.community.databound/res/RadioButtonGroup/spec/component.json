@@ -1,15 +1,15 @@
 {
-	"id": "ProcessFlow",
-	"title": "Process Flow 2.0",
-	"tooltip": "ProcessFlow - Component for visualization of processes.",
+	"id": "RadioButtonGroup",
+	"title": "Radio Button Group 2.0",
+	"tooltip": "RadioButtonGroup - Allows Selection with Radio Buttons.",
 	"handlerType": "sapui5",
 	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityUnified",
 	"package": "databound",
-	"extension": "ui5.ProcessFlow",
-	"extends1ControlDs": "ProcessFlow.ds",
-	"extends2Control": "ProcessFlow",
-	"extends3ControlEvents": "ProcessFlow.events",
+	"extension": "ui5.RadioButtonGroup",
+	"extends1ControlDs": "RadioButtonGroup.ds",
+	"extends2Control": "RadioButtonGroup",
+	"extends3ControlEvents": "RadioButtonGroup.events",
 	"generatedJsFile":"true",
 
 	"databound": false,
@@ -47,6 +47,6 @@
 		}
 	],
 	
-	"width": "420",
-	"height": "580"
+	"width": "320",
+	"height": "500"
 }
