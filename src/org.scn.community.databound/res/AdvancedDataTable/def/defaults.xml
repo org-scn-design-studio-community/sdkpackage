@@ -4,7 +4,7 @@
 		<defaultValue property="colVisRestore">false</defaultValue>
 		<defaultValue property="colVisShowAll">true</defaultValue>
 		<defaultValue property="colVisShowNone">true</defaultValue>
-		<defaultValue property="formatting">[]</defaultValue>
+		<defaultValue property="formatting">[{}]</defaultValue>
 		<defaultValue property="paging">true</defaultValue>
 		<defaultValue property="pagingType">simple_numbers</defaultValue>
 		<defaultValue property="ordering">true</defaultValue>
