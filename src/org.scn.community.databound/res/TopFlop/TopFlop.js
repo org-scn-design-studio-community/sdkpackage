@@ -161,7 +161,13 @@ var options = org_scn_community_databound.initializeOptions();
 			// insert Average Information
 			var oText = new sap.ui.commons.TextView();
 			oText.addStyleClass("scn-pack-DataTopFlop-AverageText");
-			oText.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(returnObject.average, this._metadata.locale, this.getValueDecimalPlaces()) + this.getAverageSuffix());
+
+			if(this._metadata) {
+				oText.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(returnObject.average, this._metadata.locale, this.getValueDecimalPlaces()) + this.getAverageSuffix());
+			} else {
+				oText.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(returnObject.average, "en", this.getValueDecimalPlaces()) + this.getAverageSuffix());
+			}
+			
 			this._lLayout.addContent(
 					oText
 			);	
