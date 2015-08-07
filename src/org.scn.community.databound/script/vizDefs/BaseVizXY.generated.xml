@@ -62,4 +62,16 @@
 	<property id="maxY" title="Manual Max Y" type="int" visible="false"/>
 	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String" visible="false"/>
 	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String" visible="false"/>
+	<property id="xAxisTickFormat" title="X-Axis Tick Format" type="String"/>
+	<property id="yAxisTickFormat" title="Y-Axis Tick Format" type="String"/>
+	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
+		<possibleValue>top</possibleValue>
+		<possibleValue>bottom</possibleValue>	
+	</property>
+	<property id="yAxisOrientation" type="String" title = "Y-Axis Orientation" visible="true">
+		<possibleValue>left</possibleValue>
+		<possibleValue>right</possibleValue>
+	</property>
+	
 	<!-- End of BaseVizXY Properties -->
+	

@@ -17,4 +17,6 @@ __n__}
 		<defaultValue property="threshold">20</defaultValue>
 		<defaultValue property="xAxisTickFormat">,n</defaultValue>
 		<defaultValue property="yAxisTickFormat">,n</defaultValue>
+		<defaultValue property="xAxisOrientation">bottom</defaultValue>
+		<defaultValue property="yAxisOrientation">left</defaultValue>
 		<!-- End of HexBin Defaults -->

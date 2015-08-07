@@ -82,7 +82,19 @@
 	<property id="maxY" title="Manual Max Y" type="int" visible="false"/>
 	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String" visible="false"/>
 	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String" visible="false"/>
-	<!-- End of BaseVizXY Properties -->	
+	<property id="xAxisTickFormat" title="X-Axis Tick Format" type="String"/>
+	<property id="yAxisTickFormat" title="Y-Axis Tick Format" type="String"/>
+	<property id="xAxisOrientation" type="String" title = "X-Axis Orientation" visible="true">
+		<possibleValue>top</possibleValue>
+		<possibleValue>bottom</possibleValue>	
+	</property>
+	<property id="yAxisOrientation" type="String" title = "Y-Axis Orientation" visible="true">
+		<possibleValue>left</possibleValue>
+		<possibleValue>right</possibleValue>
+	</property>
+	
+	<!-- End of BaseVizXY Properties -->
+		
 	<!-- HexBin Properties -->
 	<property id="selectedRow" type="String" title = "Selected Row" visible="false"/>
 	<property id="selectedColumn" type="String" title = "Selected Column" visible="false"/>
@@ -161,6 +173,8 @@ __n__}
 		<defaultValue property="threshold">20</defaultValue>
 		<defaultValue property="xAxisTickFormat">,n</defaultValue>
 		<defaultValue property="yAxisTickFormat">,n</defaultValue>
+		<defaultValue property="xAxisOrientation">bottom</defaultValue>
+		<defaultValue property="yAxisOrientation">left</defaultValue>
 		<!-- End of HexBin Defaults -->
 	</initialization>
 </component>
