@@ -35,6 +35,7 @@ NavigationBar = {
 		var that = owner;
 		org_scn_community_component_Core(that, myComponentData);
 
+		jQuery.sap.require("sap.ui.ux3.NavigationBar");
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		that._oNavBar = new sap.ui.ux3.NavigationBar();
 		that.addContent(
