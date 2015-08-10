@@ -354,14 +354,15 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			    } else if (b.opts.desc.indexOf("Use") == 0){
 				   return 1;
 			    }
-
-				if (a.type.indexOf("bool") == 0 && b.type.indexOf("bool") == 0){
-					// continue
-				} else if (a.type.indexOf("bool") == 0){
-				   return -1;
-			    } else if (b.type.indexOf("bool") == 0){
-				   return 1;
-			    }
+				if (a.type) {
+					if (a.type.indexOf("bool") == 0 && b.type.indexOf("bool") == 0){
+						// continue
+					} else if (a.type.indexOf("bool") == 0){
+					   return -1;
+				    } else if (b.type.indexOf("bool") == 0){
+					   return 1;
+				    }
+				}
 
 				// alphabet
 				 var A = a.opts.desc.toLowerCase();

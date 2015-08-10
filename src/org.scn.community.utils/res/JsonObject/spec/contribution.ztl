@@ -27,6 +27,29 @@
 		return JSON.parse(this.content);
 	*}
 	
+	String getValueAsString (String key) {*
+		var js = JSON.parse(this.content);
+	
+		if(js[key] != undefined) {
+			return js[key];
+		}
+		
+		return "N/A";
+	*}
+
+	JSON getValueAsJsonObject (String key) {*
+		var js = JSON.parse(this.content);
+	
+   	    if(js[key] != undefined) {
+			var jsValue = js[key];
+			
+			return jsValue;
+		}
+
+   	    // not there, empty one
+		return {};
+	*}
+	
 	/**
 	 * Creates from a string value in notation "{'key':'value', 'key2':'value2'}"
 	 */
