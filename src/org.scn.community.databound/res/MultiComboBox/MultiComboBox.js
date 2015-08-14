@@ -113,6 +113,10 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 			this.removeSelectedKeys(["CLEAR"]);
 			//unselect ALL to clean up selection
 			this.removeSelectedKeys(["ALL"]);
+			//Since 1.5 we have to explicitly set the selectedKey to empty to avoid showing the clear and all tokens
+			if(this.getDSelectedKey() === "CLEAR" || this.getDSelectedKey() === "ALL"){
+				this.setDSelectedKey("");
+			}
 			
 			that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText", "DSelectedKeyBexReady"]);
 			that.fireDesignStudioEvent("onSelectionFinished");
@@ -149,6 +153,8 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 		
 		this.setPlaceholder("choose value...");
 		this.DItemList = [];
+		
+//		org_scn_community_basics.resizeContentAbsoluteLayout(that, $(that).find("div"), this.onResize);
 	},
 	
 	renderer: {},
