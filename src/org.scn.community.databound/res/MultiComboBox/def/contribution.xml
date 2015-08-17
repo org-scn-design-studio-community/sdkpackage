@@ -93,6 +93,12 @@
 		title="Event for On Selection Finished"
 		group="Events" />
 
+	<property
+		id="onChange"
+		type="ScriptText"
+		title="Event for On Change"
+		group="Events" />
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
