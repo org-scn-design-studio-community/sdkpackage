@@ -34,7 +34,32 @@
   "type": "String",
   "value": "",
   "visible": true
-}};
+},
+"domainrelaxlevel": {
+	  "opts": {
+		    "apsControl": "text",
+		    "cat": "Display",
+		    "desc": "Domain Relax Level",
+		    "noAps": false,
+		    "noZtl": false,
+		    "tooltip": "Level of Domain Relaxation",
+		    "ztlFunction": "",
+		    "ztlType": "int"
+		  }
+},
+"skipport": {
+	  "opts": {
+		    "apsControl": "checkbox",
+		    "cat": "Display",
+		    "desc": "Skip port in domain",
+		    "noAps": false,
+		    "noZtl": false,
+		    "tooltip": "Skip port in domain",
+		    "ztlFunction": "",
+		    "ztlType": "boolean"
+		  }
+}
+};
 
 	org_scn_community_require.knownComponents.basics.EmbeddedFrame.specInclude = 
 {};

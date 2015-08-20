@@ -20,11 +20,21 @@
 		title="Url"
 		group="Display"
 		bindable="true"
-		visible="true">
-
-	</property>
-
-
+		visible="true"/>
+	<property
+		id="domainrelaxlevel"
+		type="int"
+		title="Domain Relax Level"
+		group="Display"
+		bindable="true"
+		visible="true"/>
+	<property
+		id="skipport"
+		type="boolean"
+		title="Skip Port in domain"
+		group="Display"
+		bindable="true"
+		visible="true"/>
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
@@ -32,9 +42,9 @@
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
-		
 		<defaultValue property="url"><![CDATA[]]></defaultValue>
-
+		<defaultValue property="domainrelaxlevel">1</defaultValue>
+		<defaultValue property="skipport">true</defaultValue>
 	</initialization>
 
 </component>

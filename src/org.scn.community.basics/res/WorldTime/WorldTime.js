@@ -69,12 +69,12 @@ WorldTime = function () {
 		//add DIV
 		that.$().html('<div id="'+that._ownid+'">'+calcTime(that, that.getUtcoffset())+'</div>');
 		//remember element
-		$div = document.getElementById(that._ownid);
+		this.$div = document.getElementById(that._ownid);
 		
 		//setup interval call only once in case of multiple update calls!
 		if(that.interval_id === undefined){
 			that.interval_id = setInterval(function(){
-				$div.innerHTML = calcTime(that, that.getUtcoffset());
+				that.$div.innerHTML = calcTime(that, that.getUtcoffset());
 			}
 			, that.getInterval());
 		}
@@ -93,6 +93,20 @@ WorldTime = function () {
 		that.$().remove('#'+that._ownid);
 	};
 	
+	/**
+	 * @function generate a random id to distinguish several instances of this component in the same dashboard
+	 * @memberOf org.scn.community.basics.WorldTime
+	 */
+	function makeid()
+	{
+	    var text = "";
+	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	    for( var i=0; i < 5; i++ )
+	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	    return text;
+	}
 
 	/**
 	 * @function to calculate local time given the UTC offset

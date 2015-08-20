@@ -23,4 +23,32 @@ class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Co
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 	// here is the place for other custom functions
+	
+	/**
+	 * Gets Domain Relaxation level Property
+	 */	
+	int getDomainRelaxLevel(){*
+		return this.domainrelaxlevel;
+	*}
+	
+	/**
+	 * Gets Domain Relaxation level Property
+	 */	
+	void setDomainRelaxLevel(int level){*
+		this.domainrelaxlevel = level;
+	*}
+	
+		/**
+	 * Gets Domain Relaxation level Property
+	 */	
+	boolean getSkipPort(){*
+		return this.skipport;
+	*}
+	
+	/**
+	 * Gets Domain Relaxation level Property
+	 */	
+	void setSkipPort(boolean skip){*
+		this.skipport = skip;
+	*}
 }
