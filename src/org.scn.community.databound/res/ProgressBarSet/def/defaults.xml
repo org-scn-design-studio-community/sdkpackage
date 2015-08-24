@@ -1,0 +1,24 @@
+		<!-- ProgressBarSet Defaults -->
+		<defaultValue property="orientation">horizontal</defaultValue>
+  		<defaultValue property="barConfig">[{&quot;title&quot;:&quot;Measure&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;10&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure1&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;15&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure2&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;30&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure3&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;20&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure4&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;45&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;}]</defaultValue>
+  		<defaultValue property="progressMeasure">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}</defaultValue>
+  		<defaultValue property="palette">#8DD3C7,#FFFFB3,#BEBADA,#FB8072,#80B1D3,#FDB462,#B3DE69,#FCCDE5,#D9D9D9,#BC80BD,#CCEBC5,#FFED6F</defaultValue>
+  		<defaultValue property="inlineLabels">false</defaultValue>
+  		<defaultValue property="gradientFullWidth">false</defaultValue>
+  		<defaultValue property="barFillOpacity">1</defaultValue>
+  		<defaultValue property="barRoundness">5</defaultValue>
+  		<defaultValue property="barHeight">-1</defaultValue>
+  		<defaultValue property="labelWidth">150</defaultValue>
+  		<defaultValue property="gradientStart">.15</defaultValue>
+  		<defaultValue property="gradientStartOpacity">.35</defaultValue>
+  		<defaultValue property="gradientStartColor">#FFFFFF</defaultValue>
+  		<defaultValue property="gradientStop">.85</defaultValue>
+  		<defaultValue property="gradientStopColor">#FFFFFF</defaultValue>
+  		<defaultValue property="gradientStopOpacity">.05</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+  		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+		<!-- End of ProgressBarSet Defaults -->
