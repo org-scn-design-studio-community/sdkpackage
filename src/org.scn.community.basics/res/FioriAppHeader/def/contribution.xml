@@ -3,7 +3,7 @@
 	title="Fiori App Header"
 	icon="res/FioriAppHeader/FioriAppHeader.png"
 	handlerType="sapui5" 
-	propertySheetPath="res/FioriAppHeader/aps/FioriAppHeaderPropertyPage.html"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 	group="ScnCommunityBasics">
   	
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -14,8 +14,10 @@
   	<property id="title" type="String" title="Title" group="Display"/>
   	<property id="itemConfig" type="String" title="Item Config" visible="false" group="Display"/>
   	<property id="showNavButton" type="boolean" title="Show Back Button" group="Display"/>
-  	<property type="String" title="Selected Item" id="selectedItem" visible="false" group="Display"/>
-  	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false" group="Display"/>
+  	<property type="String" title="Selected Item Key" id="selectedItem" visible="false" group="Display"/>
+  	<property type="String" title="Selected Item Text" id="selectedItemText" visible="false" group="Display"/>
+  	<property type="String" title="Selected Header Key of Item" id="selectedHeader" visible="false" group="Display"/>
+  	<property type="String" title="Selected Header Text of Item" id="selectedHeaderText" visible="false" group="Display"/>
   	<property type="ScriptText" title="On Item Select" id="onitemselect" group="Events"/>  	
   	<property type="ScriptText" title="On Back" id="onnav" group="Events"/>
  	<initialization>

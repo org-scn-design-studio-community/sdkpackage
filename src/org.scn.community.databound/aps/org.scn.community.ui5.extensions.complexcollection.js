@@ -10,6 +10,7 @@ var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
  */
 propertyPageHandlerRegistry.push({
 	id : "complexcollection",
+	serialized : true,
 	setter : function(property, value){
 		var newValue = undefined;
 		if(value && value!=""){
@@ -27,9 +28,7 @@ propertyPageHandlerRegistry.push({
 	createComponent : function(property, propertyOptions, changeHandler){
 		var component = new org.scn.community.aps.ComplexCollection({
 			width : "100%",
-			title : new sap.ui.commons.Title({
-				text: propertyOptions.desc
-			}),
+			title : propertyOptions.desc,
 			config : propertyOptions.apsConfig,
 			showCollapseIcon : false
 		});
@@ -42,8 +41,12 @@ propertyPageHandlerRegistry.push({
  */
 sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollection", {
 	renderer : {},
+	needsLabel : function() {
+		return false;
+	},
 	metadata : {                             
         properties : {
+        	title : "string",
         	value : { 
         		type : "object[]",
         		defaultValue : []
@@ -73,6 +76,11 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollec
 	},
 	getValue : function(){
 		return sap.ui.core.Control.prototype.getProperty.apply(this,["value"]);
+	},
+	setTitle : function(s){
+		sap.ui.core.Control.prototype.setProperty.apply(this,["title",s]);
+		this.columnTable.setTitle(s);
+		return this;
 	},
 	updateTable : function(){
 		this.apsModel.setData({propertyData: this.getValue()});
@@ -134,6 +142,15 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollec
 				this.deleteItem(index);
 			};
 		}(i),this);
+		var rowDetails = new sap.ui.commons.MenuItem({
+			text : "Details...",
+			icon : ""
+		});
+		rowDetails.attachSelect(function(oControlEvent){
+			var model = oControlEvent.getSource().getModel();
+			var path = oControlEvent.getSource().getBindingContext().getPath("rows");
+			this.showDetails(model,path);
+		},this);
 		rowMenu.addItem(rowInsertBefore);
 		rowMenu.addItem(rowInsertAfter);
 		rowMenu.addItem(rowDelete);
@@ -142,6 +159,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollec
 		
 		
 		var c = this.getConfig();
+		var needsDetails = false;
 		for(var p in c){
 			var conf = c[p];
 			var template;
@@ -152,6 +170,12 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollec
 						this.fireValueChange();
 					},this);
 					break;
+				case "checkbox" :
+					template = new sap.ui.commons.CheckBox().bindProperty("checked",p);
+					template.attachChange(function (oControlEvent){
+						this.fireValueChange();
+					},this);
+					break
 				case "combobox" :
 					template = new sap.ui.commons.ComboBox().bindProperty("selectedKey",p);
 					if(conf.options){
@@ -166,17 +190,37 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollec
 					},this);
 					break;
 				default :
-					template = new sap.ui.commons.Label().bindProperty("text", p);
+					needsDetails = true;
 			}
-			var newColumn = new sap.ui.table.Column({
-				label: new sap.ui.commons.Label({text: conf.desc}),
-				template: template,
-				sortProperty: p,
-				filterProperty: p,
+			if(template){
+				var newColumn = new sap.ui.table.Column({
+					label: new sap.ui.commons.Label({text: conf.desc}),
+					template: template,
+					sortProperty: p,
+					filterProperty: p,
+					//width : "75px",
+					hAlign: "Center"
+				});
+				this.columnTable.addColumn(newColumn);
+			}			
+		}
+		if(needsDetails){
+			rowMenu.addItem(rowDetails);
+			var detailBtn = new sap.ui.commons.Button({
+				text : "More..."
+			});
+			detailBtn.attachPress(function(oControlEvent){
+				var model = oControlEvent.getSource().getModel();
+				var path = oControlEvent.getSource().getBindingContext().getPath("rows");
+				this.showDetails(model,path);
+			},this);
+			var detailColumn = new sap.ui.table.Column({
+				//label: new sap.ui.commons.Label({text: conf.desc}),
+				template: detailBtn,
 				//width : "75px",
 				hAlign: "Center"
 			});
-			this.columnTable.addColumn(newColumn);
+			this.columnTable.addColumn(detailColumn);
 		}
 		// alert(JSON.stringify(this.getConfig()));
 	},
@@ -210,6 +254,36 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollec
 		this.setValue(a);
 		this.fireValueChange();
 	},
+	showDetails : function(model,path){
+		var arrPath = path.split("/");
+        var index = parseInt(arrPath[2]);
+        var detailValue = this.getValue()[index];
+		var overlay = new sap.ui.ux3.OverlayContainer({
+			openButtonVisible : false
+		});
+		var overlayHeader = new sap.ui.commons.ApplicationHeader({
+			logoText : "Details (Row " + index + ")",
+			//logoSrc : propertyPage.appHeader.getLogoSrc(),
+			logoSrc : propertyPage.mainLayout.getAppIcon(),
+			displayWelcome : false,
+			displayLogoff : false
+		});
+		var complex = new org.scn.community.aps.ComplexProperty({
+			config : this.getConfig(),
+			value : detailValue
+		});
+		complex.attachValueChange(function(oControlEvent){
+			var a = this.getValue();
+			this.setValue(a);
+			this.fireValueChange();
+		},this);
+		overlay.addContent(overlayHeader);
+		overlay.addContent(complex);
+		overlay.open();
+		//oOverlayContainer.attachClose(handler);
+		//oOverlayContainer.attachOpen(handler);
+		//oOverlayContainer.attachOpenNew(handler);
+	},
 	init : function(){
 		this.addButton = new sap.ui.commons.Button({
 			tooltip : "Add Item",
@@ -218,9 +292,10 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollec
 		this.addContent(this.addButton);
 		this.addButton.attachPress(this.addNewItem,this);
 		this.columnTable = new sap.ui.table.Table({
-			//title: "Complex Title Here",
+			title: "Complex Title Here",
 			visibleRowCount: 15,
-			selectionMode: sap.ui.table.SelectionMode.Single
+			//selectionMode: sap.ui.table.SelectionMode.Single
+			selectionMode: sap.ui.table.SelectionMode.None
 		});
 		this.addContent(this.columnTable);
 		this.apsModel = new sap.ui.model.json.JSONModel();

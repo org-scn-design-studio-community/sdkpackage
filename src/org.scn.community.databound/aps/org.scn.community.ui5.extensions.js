@@ -3,6 +3,28 @@ var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
  * Extension-less Handlers (Regular SAPUI5 Components)
  */
 /**
+ * Register Script Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "script",
+	setter : function(property, value){
+		// No action
+	},
+	getter : function(property, control){
+		// No action
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var component = new sap.ui.commons.Button({
+			text : "Script..."
+		});
+		component.attachPress(function(oControlEvent){
+			propertyPage.openPropertyDialog(property);
+		},this);
+		return component;
+	}
+});
+
+/**
  * Register TextField Handler
  */
 propertyPageHandlerRegistry.push({

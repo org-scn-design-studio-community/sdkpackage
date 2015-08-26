@@ -111,18 +111,29 @@ class org.scn.community.basics.FioriAppHeader extends org.scn.community.shared.C
 		}		
 	*}
 	/**
-	Get item clicked.
+	Get item key clicked.
 	*/
 	String getItemClicked() {*
 		return this.selectedItem;
 	*}
 	/**
-	Get header of and item clicked.
+	Get header key of and item clicked.
 	*/
 	String getHeaderClicked() {*
 		return this.selectedHeader;
 	*}
-
+	/**
+	Get item text clicked.
+	*/
+	String getItemTextClicked() {*
+		return this.selectedItemText;
+	*}
+	/**
+	Get header text of and item clicked.
+	*/
+	String getHeaderTextClicked() {*
+		return this.selectedHeaderText;
+	*}
 	/* Shows or hides the back button. */
 	void setShowNavButton(/* If true, then the back button is shown, else it is hidden */ boolean visible) {*
 		this.showNavButton = visible;
