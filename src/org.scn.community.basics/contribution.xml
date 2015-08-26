@@ -4667,6 +4667,77 @@
 </component>
 
 <component
+	id="TimeOut"
+	title="TimeOut 2.0"
+	tooltip="TimeOut"
+	icon="res/TimeOut/TimeOut.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	group="ScnCommunityBasics"
+	databound="false">
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/TimeOut/TimeOutLoader.js</jsInclude>
+	<cssInclude>res/TimeOut/TimeOut.css</cssInclude>
+	
+	<property
+		id="timer"
+		type="int"
+		title="Timeout after (ms)"
+		group="Display"
+		bindable="true"
+		visible="true">
+	</property>
+	
+	<property
+		id="start"
+		type="String"
+		title="Timer start trigger"
+		group="Display"
+		bindable="true"
+		visible="false">
+	</property>
+	
+	<property
+		id="stop"
+		type="String"
+		title="Timer stop trigger"
+		group="Display"
+		bindable="true"
+		visible="false">
+	</property>
+	
+	<property
+		id="periodic"
+		type="boolean"
+		title="Periodic?"
+		group="Display"
+		bindable="true"
+		visible="true">
+	</property>
+	
+	<property
+		id="onTimeout"
+		type="ScriptText"
+		title="Event For On Timeout"
+		group="Events"
+		visible="true">
+	</property>
+
+	<initialization>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="TOP_MARGIN">-2000</defaultValue>
+		<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="timer"><![CDATA[5000]]></defaultValue>
+		<defaultValue property="periodic">false</defaultValue>
+	</initialization>
+
+</component>
+
+<component
 	id="ToggleButton"
 	title="Toggle Button 2.0"
 	tooltip="Toggle Button"
@@ -5056,7 +5127,6 @@
 		title="Event For On Changed"
 		group="Events"
 		visible="true">
-
 	</property>
 
 
@@ -5245,7 +5315,6 @@
 		group="Display"
 		bindable="true"
 		visible="true">
-
 	</property>
 
 

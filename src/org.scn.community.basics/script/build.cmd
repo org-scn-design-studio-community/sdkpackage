@@ -51,6 +51,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\SegmentedButton\def\contribution.xml ^
 ..\res\Slider\def\contribution.xml ^
 ..\res\TextArea\def\contribution.xml ^
+..\res\TimeOut\def\contribution.xml ^
 ..\res\ToggleButton\def\contribution.xml ^
 ..\res\Tree\def\contribution.xml ^
 ..\res\TriStateCheckBox\def\contribution.xml ^
@@ -111,6 +112,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\SegmentedButton\def\contribution.ztl ^
 ..\res\Slider\def\contribution.ztl ^
 ..\res\TextArea\def\contribution.ztl ^
+..\res\TimeOut\def\contribution.ztl ^
 ..\res\ToggleButton\def\contribution.ztl ^
 ..\res\Tree\def\contribution.ztl ^
 ..\res\TriStateCheckBox\def\contribution.ztl ^

@@ -1,0 +1,126 @@
+/**
+ * Copyright 2014 Scn Community Contributors
+ * 
+ * Original Source Code Location:
+ *  https://github.com/org-scn-design-studio-community/sdkpackage/
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ *  
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *  
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ */
+ 
+ (function(){
+
+var myComponentData = org_scn_community_require.knownComponents.basics.TimeOut;
+
+TimeOut = function () {
+
+	var that = this;
+	
+	that.init = function() {
+		// define root component
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	};
+	
+	that.initAsync = function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+	
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		// that.addStyleClass("scn-pack-?");
+		that._jqThis = that.$();
+		that.interval_id = undefined;
+		
+		that._ownid = that._jqThis[0].id + "_c";
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+	};
+
+	that.afterUpdate = function() {
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+
+		// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	};
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+
+	that.processData = function (flatData, afterPrepare, owner) {
+		var that = owner;
+		
+		// processing on data
+		that.afterPrepare(that);
+	};
+
+	that.afterPrepare = function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		var timout 		= that.getTimer();
+		var isPeriodic 	= that.getPeriodic();
+		var start		= that.getStart();
+		var stop		= that.getStop();
+		//check start trigger
+		if(start !== ""){
+			if(isPeriodic){
+				//clean up setInterval before starting new one when still active
+				if(that.interval_id !== undefined){
+					clearInterval(that.interval_id);
+				}
+				that.interval_id = setInterval(function (){
+					that.fireEvent("onTimeout");
+				}
+				,timout);
+			}else{
+				//clean up setTimeout before starting new one when still active
+				if(that.interval_id !== undefined){
+					clearInterval(that.interval_id);
+				}
+				that.interval_id = setTimeout(function(){
+					that.fireEvent("onTimeout");
+				}
+				,timout);
+			}
+			//reset start trigger
+			that.setStart("");
+			that.firePropertiesChanged(["start"]);
+		}else if(stop !== ""){
+			//stop interval
+			clearInterval(that.interval_id);
+			//reset stop trigger
+			that.setStop("");
+			that.firePropertiesChanged(["stop"]);
+		}
+	};
+
+	that.onResize = function (width, height, parent) {
+		// in case special resize code is required
+	};
+
+	/**
+	 * @function componentDeleted
+	 */
+	that.componentDeleted = function(){
+		clearInterval(that.interval_id);
+		that.$().remove('#'+that._ownid);
+	};
+	
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+	return that;
+};
+
+define([myComponentData.requireName], function(basicstimeout){
+	myComponentData.instance = TimeOut;
+	return myComponentData.instance;
+});
+
+}).call(this);

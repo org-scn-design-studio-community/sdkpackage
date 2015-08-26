@@ -7,8 +7,7 @@
 	handlerType="div"
 	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 	group="ScnCommunityBasics"
-	databound="false"
->
+	databound="false">
 	
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/WorldTime/WorldTimeLoader.js</jsInclude>
@@ -21,7 +20,6 @@
 		group="Display"
 		bindable="true"
 		visible="true">
-
 	</property>
 	<property
 		id="daylightsaving"
@@ -30,7 +28,6 @@
 		group="Display"
 		bindable="true"
 		visible="true">
-
 	</property>
 	<property
 		id="interval"
@@ -39,7 +36,6 @@
 		group="Display"
 		bindable="true"
 		visible="true">
-
 	</property>
 	<property
 		id="locale"
@@ -48,7 +44,6 @@
 		group="Display"
 		bindable="true"
 		visible="true">
-
 	</property>
 	<property
 		id="showtimezonename"
@@ -57,7 +52,6 @@
 		group="Display"
 		bindable="true"
 		visible="true">
-
 	</property>
 	<property
 		id="timeformat"
@@ -66,7 +60,6 @@
 		group="Display"
 		bindable="true"
 		visible="true">
-
 	</property>
 	<property
 		id="utcoffset"
@@ -75,9 +68,7 @@
 		group="Display"
 		bindable="true"
 		visible="true">
-
 	</property>
-
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
