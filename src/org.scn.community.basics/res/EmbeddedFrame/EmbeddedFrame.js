@@ -60,7 +60,28 @@ EmbeddedFrame = function () {
 		html = html.concat("</");
 		html = html.concat(tag);
 		html = html.concat(">");
-		
+		var myHost = window.location.host;
+		if(this.skipport() && myHost.indexOf(":") > -1){
+			myHost = myHost.substring(0,myHost.indexOf(":"));
+		}
+		var pathArray = myHost.split('.');
+        var arrLength = pathArray.length;
+        if(arrLength>1){
+        	//extract subdomain in order to allow sth like:
+        	// Actual domain is "blah.bar.foo.com" 
+        	// document.domain = "bar.foo.com" 	// Ok 
+        	// document.domain = "foo.com" 		// Still ok 
+        	var domainName = "";
+        	var level = this.domainrelaxlevel();
+        	if(level < arrLength){
+        		domainName = pathArray.slice(level, arrLength).join('.');	
+        	}else{
+        		domainName = pathArray.join('.');
+        	}
+            //set relaxed domain for the current scope where document is active
+            document.domain = domainName;
+        }
+
 		this.$().html(html);
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	};

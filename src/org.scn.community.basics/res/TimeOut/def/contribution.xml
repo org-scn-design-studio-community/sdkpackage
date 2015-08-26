@@ -1,0 +1,40 @@
+
+<component
+	id="TimeOut"
+	title="TimeOut 2.0"
+	tooltip="TimeOut"
+	icon="res/TimeOut/TimeOut.png"
+	handlerType="div"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	group="ScnCommunityBasics"
+	databound="false"
+>
+	
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/TimeOut/TimeOutLoader.js</jsInclude>
+	<cssInclude>res/TimeOut/TimeOut.css</cssInclude>
+	
+	<property
+		id="timer"
+		type="int"
+		title="Timeout after (ms)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">40</defaultValue>
+		
+		<defaultValue property="timer"><![CDATA[5000]]></defaultValue>
+
+	</initialization>
+
+</component>

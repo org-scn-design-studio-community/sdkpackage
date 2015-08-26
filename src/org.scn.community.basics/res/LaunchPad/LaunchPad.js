@@ -23,16 +23,98 @@
  * 
  */
 jQuery.sap.require("sap.m.TileContainer");
+/**
+ * Experimental - callRuntimeHandler available in DS 1.5...
+ */
+var componentInfo = {
+	visible : true,
+	title : "Fiori LaunchPad",
+	icon : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHySURBVDhPlY9NaxNRFIbPbdKFK1HwB7hxowvBVUXwB4h7xY3dK/oDBCmYNoGYtqixYHWTCIKL0oJ1YW2aBPrhTBPbkRYsVWkTC8GEaqfJzP2q771jpS1ufGfuuXfe85xz7tDef+pogdYaMVltec3w7+dB/WPCdiCP5zb6Fls4q6P84QJp8xPf/LOvN69PbUkV2YdEBokWHtvv2rs6vajFn666jTauZJvYhGXMBHDmrjaGUp/Jf2bZFXq2PuI14WCsbYWjiRRxkEJC7339FRx7stQ1XGWjX+4Wa0iaggOiP7vWAhVKO1t+bMjFy7KrNybXtZJQBESFhM5G2KSJSw0/lp6LZebpkXfz7Zo2tEmCtldQFPFQh0suRLbynQ0tdqdnWcY597zyww/9ALP3FRVwTFVq2Nm8+NI7nZ2PPZyLp0pdySJLlS7nq5dy1Z9oZnmpJGEBD7g4P7pAgw71lygxwxLvKTFN/WVKlVnmQ265DijkApFMkLLlByfThe5U+WrOvZJ32YPCiYGpO29WTiWn44Pu/cIasI4pECSMJN4Lj0vxvmJ9e7fhd3pGZm+PL4tWo/dVhQYWxrw6kCDk4EhwEYYcGvdq9yY/CY4/582d9k4ngOlsNG+NfYQFRdFMAGMqgoC3d+0xNJ51TVuY1jUk578Bvm+Y4nNJ66IAAAAASUVORK5CYII=",
+	author : "Mike Howles",
+	description : "A Fiori-Inspired LaunchPad using UI5 Handler",
+	topics : [{
+		title : "SDK Component",
+		content : "This component is an UI5 SDK Component.  Be sure you install the plugin to your server platform should you find it useful."
+	},{
+		title : "SCN SDK Components License",
+		content : "SCN SDK Components License is released under the Apache 2.0 License. Please refer to the licenses for the full copyright restrictions placed on this software.  (<a target='_blank' href='http://www.apache.org/licenses/LICENSE-2.0'>Apache 2.0 License</a>)"
+	}]
+};
+var dsProperties = {
+	tileConfig : { 
+		opts : {
+			desc : "Tile Configuration",
+			cat : "Tiles",
+			keyField : "key",
+			apsControl : "complexcollection",
+			apsConfig : {
+				key : {
+					desc : "Key",
+					apsControl : "text",
+					key : true
+				},
+				title : {
+					desc : "Title",
+					defaultValue : "Some Title",
+					apsControl : "text"				
+				},
+				styleClass : {
+					desc : "Style Class",
+					apsControl : "text"
+				},
+				info : {
+					desc : "Info",
+					defaultValue : "Info",
+					apsControl : "text"
+				},
+				icon : {
+					desc : "Icon",
+					defaultValue : "sap-icon://action",
+					apsControl : "text"
+				},
+				number : {
+					desc : "Number",
+					defaultValue : "123",
+					apsControl : "text"
+				},
+				valueState : {
+					desc : "Info State",
+					defaultValue : "None",
+					apsControl : "combobox",
+					options : [
+						{key : "None", text : "None"},
+						{key : "Success", text : "Success"},
+						{key : "Warning", text : "Warning"},
+						{key : "Error", text : "Error"}
+					]
+				}
+			}
+		},
+		ui5Meta : "string"
+	},
+	selectedTile : { 
+		value : true,
+		opts : {
+			desc : "Selected Tile",
+			noAps : true
+		},
+		ui5Meta : "string"
+	}
+};
+var meta = {
+	properties : {}
+};
+for(var p in meta){
+	if(meta[p].ui5Meta) meta[p] = meta[p].ui5Meta;
+}
+/**
+ * End of experiment
+ */
 sap.m.TileContainer.extend("org.scn.community.basics.LaunchPad", {
 	_tileConfig : [],
 	_selectedTile : "",
 	renderer : {},
-	metadata : {				// Not to be confused with the Data Source metadata property
-		properties : {
-			tileConfig : "string",		// Tiles
-			selectedTile : "string"		// Selected Tile
-		}
-	},
+	metadata : meta,
 	setSelectedTile : function(s){
 		this._selectedTile = s;
 	},
@@ -55,6 +137,29 @@ sap.m.TileContainer.extend("org.scn.community.basics.LaunchPad", {
 	tileSelect : function(title,oControlEvent){
 		this._selectedTile = title;
 		this.fireDesignStudioPropertiesChangedAndEvent(["selectedTile"],"onTileSelect");
+	},
+	callOnSet : function(property,value){
+		return null;	// TODO
+	},
+	/**
+	 * Relays Design Studio Property Information over to Additional Properties Sheet.
+	 */
+	getPropertyMetaData : function(){
+		var r = [];
+		for(var prop in dsProperties){
+			var o = {
+				name : prop,
+				opts : dsProperties[prop].opts || {}
+			}
+			if(!o.opts.noAps) r.push(o);				
+		}
+		return JSON.stringify(r);
+	},
+	/**
+	 * Component Information
+	 */
+	getComponentInformation : function(){
+		return JSON.stringify(componentInfo);
 	},
 	drawTiles : function(){
 		this.destroyTiles();

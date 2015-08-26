@@ -94,6 +94,20 @@ WorldTime = function () {
 		that.$().remove('#'+that._ownid);
 	};
 	
+	/**
+	 * @function generate a random id to distinguish several instances of this component in the same dashboard
+	 * @memberOf org.scn.community.basics.WorldTime
+	 */
+	function makeid()
+	{
+	    var text = "";
+	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	    for( var i=0; i < 5; i++ )
+	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	    return text;
+	}
 
 	/**
 	 * @function to calculate local time given the UTC offset
@@ -105,48 +119,48 @@ WorldTime = function () {
 		var result = null;
 
 	    // create Date object for current location
-	    d = new Date();
+		that.d = new Date();
 	    
 	    // convert to msec
 	    // add local time zone offset 
 	    // get UTC time in msec
-	    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+	    that.utc = that.d.getTime() + (that.d.getTimezoneOffset() * 60000);
 	    
 	    //handle daylight saving
-	    if (d.dst() && that.getDaylightsaving()){
+	    if (that.d.dst() && that.getDaylightsaving()){
 	    	offset = parseInt(offset)+1;
 	    }
 	    
 	    // create new Date object for different city
 	    // using supplied offset
-	    nd = new Date(utc + (3600000*offset));
+	    that.nd = new Date(that.utc + (3600000*offset));
 	    
 	    var options = getOptionsByParameters(that);
 	    
 	    // return time as a string
 	    if(options.defTime === true){
-	    	result = nd.toLocaleTimeString();
+	    	result = that.nd.toLocaleTimeString();
 	    }else if(options.defDate === true){
-	    	result = nd.toLocaleString();
+	    	result = that.nd.toLocaleString();
 	    }else{
 	    	var saveLocale = that.getLocale();
 	    	if(saveLocale === 'enUS' || saveLocale === 'en-US'){
 	    		if(options.hideTime === true){
-			    	result = nd.toLocaleString('en-US', options);
+			    	result = that.nd.toLocaleString('en-US', options);
 	    		}else{
-			    	result = nd.toLocaleTimeString('en-US', options);	
+			    	result = that.nd.toLocaleTimeString('en-US', options);	
 	    		}
 		    }else if(saveLocale === 'deDE' || saveLocale === 'de-DE'){
 		    	if(options.hideTime === true){
-			    	result = nd.toLocalString('de-DE', options);
+			    	result = that.nd.toLocalString('de-DE', options);
 		    	}else{
-			    	result = nd.toLocaleTimeString('de-DE', options);	
+			    	result = that.nd.toLocaleTimeString('de-DE', options);	
 		    	}
 		    }else{
 		    	if(options.hideTime === true){
-		    		result = nd.toLocaleString(navigator.language, options);
+		    		result = that.nd.toLocaleString(navigator.language, options);
 		    	}else{
-		    		result = nd.toLocaleTimeString(navigator.language, options);
+		    		result = that.nd.toLocaleTimeString(navigator.language, options);
 		    	}
 		    }
 	    }
@@ -182,10 +196,10 @@ WorldTime = function () {
 	    	options.day = '2-digit';
 	    	options.month = '2-digit';
 	    	options.year = '2-digit';
-	    }else if(saveDateFormat === 'dd.mm'){
+	    }else if(saveDateFormat === 'ddmm'){
 	    	options.day = '2-digit';
 	    	options.month = '2-digit';
-	    }else if(saveDateFormat === 'mm.yy'){
+	    }else if(saveDateFormat === 'mmyy'){
 	    	options.month = '2-digit';
 	    	options.year = '2-digit';
 	    }else if(saveDateFormat === 'hide'){

@@ -1,0 +1,24 @@
+	
+	<!-- ProgressBarSet Properties -->
+	<property type="String" title="Bar Config" id="barConfig" visible="false"/>
+	<property id="progressMeasure" title="Measure to use as Progress" type="String" visible="false"/>
+  	<property type="String" title="Palette" id="palette" visible="false"/>
+  	<property type="String" title="Selected Bar" id="selectedBar" visible="false"/>
+  	<property type="String" title="Orientation" id="orientation" visible="true">
+  		<possibleValue>horizontal</possibleValue>
+  		<possibleValue>vertical</possibleValue>
+  	</property>
+	<property type="boolean" title="In-Line Labels" id="inlineLabels" visible="true"/>
+  	<property type="boolean" title="Gradient is Full Width" id="gradientFullWidth" visible="true"/>
+  	<property type="float" title="Gradient Start (0.00 - 1.00)" id="gradientStart" visible="true"/>
+  	<property type="float" title="Gradient Start Opacity (0.00 - 1.00)" id="gradientStartOpacity" visible="true"/>
+  	<property type="Color" title="Gradient Start Color" id="gradientStartColor" visible="true"/>
+  	<property type="float" title="Gradient Stop (0.00 - 1.00)" id="gradientStop" visible="true"/>
+  	<property type="float" title="Gradient Stop Opacity (0.00 - 1.00)" id="gradientStopOpacity" visible="true"/>
+  	<property type="Color" title="Gradient Stop Color" id="gradientStopColor" visible="true"/>
+  	<property type="float" title="Bar Fill Opacity (0.00 - 1.00)" id="barFillOpacity" visible="true"/>
+  	<property type="int" title="Bar Roundness" id="barRoundness" visible="true"/>
+  	<property type="int" title="Bar Height (-1 = auto height)" id="barHeight" visible="true"/>
+  	<property type="int" title="Label Width" id="labelWidth" visible="true"/>
+  	<property type="ScriptText" title="On Bar Select" id="onBarSelect"/>
+	<!-- End of ProgressBarSet Properties -->

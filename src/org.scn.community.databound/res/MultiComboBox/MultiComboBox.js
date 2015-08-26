@@ -78,77 +78,77 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 //				    {key:"3",text:"fourth"}  
 //				  ]  
 //				};  
-		this._oModel = new sap.ui.model.json.JSONModel(/*mData*/);
+		this._oModel = new sap.ui.model.json.JSONModel();
 		sap.ui.getCore().setModel(this._oModel);
 		this.setModel(this._oModel);
 		
 		this.bindProperty("tooltip", "/tooltip");
 		this.bindProperty("editable", "/editable");
-//		this.bindItems("/items", oItemTemplate); That doesn't work according to https://github.com/SAP/openui5/issues/121
 		
 		var oItemTemplate = new sap.ui.core.Item();
 		oItemTemplate.bindProperty("text", "text");
-		oItemTemplate.bindProperty("key", "key"); 
+		oItemTemplate.bindProperty("key", "key");
+		this.bindItems("/items", oItemTemplate); //That doesn't work according to https://github.com/SAP/openui5/issues/121
 		//workaround for bindItems according to https://github.com/SAP/openui5/issues/121
-		this.bindAggregation('items', '/items', oItemTemplate);
+//		this.bindAggregation('items', '/items', oItemTemplate);
 		
+		//This event handler doesn't fire properly on IE and firefox. Therefore logic ported to onChange. Unfortunately the popover needs to be opened on every selection
 		var onSelectionFinish = function(oControlEvent) {
 			var selection = oControlEvent.getParameter("selectedItems");
-			var keys = [];
-			var texts = [];
-			for(var i=0;i<selection.length;i++){
-				keys.push(selection[i].getKey());
-				texts.push(selection[i].getText());
-			}
-			//get values bex variable ready (has to be seperated by semicolons!)
-			var keysBexReady = JSON.stringify(keys)
-			keysBexReady = keysBexReady.substring(2,keysBexReady.length-2);
-			keysBexReady = this.replaceAll(keysBexReady,",",";")
-			keysBexReady = this.replaceAll(keysBexReady,'"',"");
-			this.setDSelectedKey(keys);
-			this.setDSelectedText(texts);
-			this.setDSelectedKeyBexReady(keysBexReady);
-			
-			//unselect CLEAR to clean up selection
-			this.removeSelectedKeys(["CLEAR"]);
-			//unselect ALL to clean up selection
-			this.removeSelectedKeys(["ALL"]);
-			
-			that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText", "DSelectedKeyBexReady"]);
+//			console.log("finish "+selection);
 			that.fireDesignStudioEvent("onSelectionFinished");
 		};
 		
 		var onChange = function(oControlEvent){
-			var selection = oControlEvent.getParameter("value");
-			if(selection === this.getDSelectAllText()){
+			var item = oControlEvent.getParameter("changedItem");
+			var selected = oControlEvent.getParameter("selected");
+			var selection = item.getKey();
+			
+			var selectedKeys = [];
+			var selectedTexts = [];
+			if(selection === "ALL"){
 				var items = this._oModel.oData.items;
-				var selectedKeys = [];
 				for(var i=0;i<items.length;i++){
 					if(items[i].key !== "ALL" && items[i].key !== "CLEAR"){
 						selectedKeys.push(items[i].key);
+						selectedTexts.push(items[i].text);
 					}
 				}
 				//assign every key to be marked as selected
 				this.setSelectedKeys(selectedKeys);
-
-			}else if(selection === this.getDSelectNoText()){
-				var items = this._oModel.oData.items;
-				var selectedKeys = [];
-				for(var i=0;i<items.length;i++){
-					if(items[i].key !== "ALL" && items[i].key !== "CLEAR"){
-						selectedKeys.push(items[i].key);
+			}
+			else if(selection === "CLEAR"){
+				
+				//assign every key to be marked as selected
+				this.setSelectedKeys(undefined);
+				selectedTexts = [""];
+			}else{
+				if(selected){
+//					this.addSelectedItem(item);
+					var items = this.getSelectedItems();
+					for(var i=0;i<items.length;i++){
+						selectedTexts.push(items[i].getText());
 					}
 				}
-
-				//assign every key to be marked as selected
-				this.removeSelectedKeys(selectedKeys);
 			}
+			var keys = that.getSelectedKeys();
+			this.setDSelectedKey(keys);
+			this.setDSelectedText(selectedTexts);
+			this.setDSelectedKeyBexReady(this.getBexStringFromSelection(keys));
+			that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText", "DSelectedKeyBexReady"]);
+			that.fireDesignStudioEvent("onChange");
 		};
-		this.attachChange(onChange);
+		this.attachSelectionChange(onChange);
 		this.attachSelectionFinish(onSelectionFinish);
 		
 		this.setPlaceholder("choose value...");
 		this.DItemList = [];
+		
+//		$('div[class*="sapMMultiComboBoxList"]').focusout(function() {
+//			$(".sapMComboBoxBaseArrow").click();
+//		});
+		
+//		org_scn_community_basics.resizeContentAbsoluteLayout(that, $(that).find("div"), this.onResize);
 	},
 	
 	renderer: {},
@@ -242,5 +242,35 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 	},
 	escapeRegExp: function(string) {
 	    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-	}
+	},
+	getBexStringFromSelection: function(items){
+		var keys = [];
+		for(var i=0;i<items.length;i++){
+			if(items[i] !== "ALL" && items[i] !== "ALL"){
+				keys.push(items[i]);
+			}
+		}
+		//get values bex variable ready (has to be seperated by semicolons!)
+		var keysBexReady = JSON.stringify(keys)
+		keysBexReady = keysBexReady.substring(2,keysBexReady.length-2);
+		keysBexReady = this.replaceAll(keysBexReady,",",";")
+		keysBexReady = this.replaceAll(keysBexReady,'"',"");
+		return keysBexReady;
+	}/*,
+	onAfterRendering : function() {
+		  if (sap.m.MultiComboBox.prototype.onAfterRendering) {
+		    sap.m.MultiComboBox.prototype.onAfterRendering.apply(this);
+		  }
+		  var model = this.getModel();
+		  if (model) {
+		    var selectedKeys = model.getProperty('/selected');
+		    if (selectedKeys) {
+		      this.setSelectedKeys(selectedKeys);
+		    } else {
+		      this.setSelectedKeys([]);  
+		    }
+		  } else {
+		    this.setSelectedKeys([]);
+		  }
+		}*/
 });

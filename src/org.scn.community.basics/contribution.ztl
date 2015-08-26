@@ -14014,6 +14014,32 @@ class org.scn.community.basics.TextArea extends org.scn.community.shared.Compone
 }
 
 /**
+ * Generated ZTL Class for TimeOut
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.basics.TimeOut extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Timeout after (ms) Property
+	 */	
+	void setTimer( /**Timeout after (ms)*/ int timer){*
+		this.timer = timer;
+	*}
+
+	/**
+	 * Gets Timeout after (ms) Property
+	 */	
+	int getTimer() {*
+		return this.timer;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
  * Generated ZTL Class for ToggleButton
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
