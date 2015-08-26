@@ -2081,6 +2081,12 @@ __n__}
 		title="Event for On Selection Finished"
 		group="Events" />
 
+	<property
+		id="onChange"
+		type="ScriptText"
+		title="Event for On Change"
+		group="Events" />
+
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
@@ -2562,6 +2568,93 @@ __n__}
 
 </component>
 
+<component
+		id="ProgressBarSet"
+		title="Progress Bar Set"
+		icon="res/ProgressBarSet/ProgressBarSet.png"
+		handlerType="div"
+		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+		group="ScnCommunityDataBound"
+		databound="true"
+>
+	<stdInclude kind="d3"/>
+	<jsInclude>res/require_loader.js</jsInclude>
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/common_databound.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
+	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
+	<jsInclude>res/ProgressBarSet/ProgressBarSet.js</jsInclude>
+	<cssInclude>res/Viz.css</cssInclude>
+	<cssInclude>res/ProgressBarSet/ProgressBarSet.css</cssInclude>
+	<!-- Base Databound Properties -->
+	<property
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
+	<!-- End of Base Databound Properties -->	
+	<!-- ProgressBarSet Properties -->
+	<property type="String" title="Bar Config" id="barConfig" visible="false"/>
+	<property id="progressMeasure" title="Measure to use as Progress" type="String" visible="false"/>
+  	<property type="String" title="Palette" id="palette" visible="false"/>
+  	<property type="String" title="Selected Bar" id="selectedBar" visible="false"/>
+  	<property type="String" title="Orientation" id="orientation" visible="true">
+  		<possibleValue>horizontal</possibleValue>
+  		<possibleValue>vertical</possibleValue>
+  	</property>
+	<property type="boolean" title="In-Line Labels" id="inlineLabels" visible="true"/>
+  	<property type="boolean" title="Gradient is Full Width" id="gradientFullWidth" visible="true"/>
+  	<property type="float" title="Gradient Start (0.00 - 1.00)" id="gradientStart" visible="true"/>
+  	<property type="float" title="Gradient Start Opacity (0.00 - 1.00)" id="gradientStartOpacity" visible="true"/>
+  	<property type="Color" title="Gradient Start Color" id="gradientStartColor" visible="true"/>
+  	<property type="float" title="Gradient Stop (0.00 - 1.00)" id="gradientStop" visible="true"/>
+  	<property type="float" title="Gradient Stop Opacity (0.00 - 1.00)" id="gradientStopOpacity" visible="true"/>
+  	<property type="Color" title="Gradient Stop Color" id="gradientStopColor" visible="true"/>
+  	<property type="float" title="Bar Fill Opacity (0.00 - 1.00)" id="barFillOpacity" visible="true"/>
+  	<property type="int" title="Bar Roundness" id="barRoundness" visible="true"/>
+  	<property type="int" title="Bar Height (-1 = auto height)" id="barHeight" visible="true"/>
+  	<property type="int" title="Label Width" id="labelWidth" visible="true"/>
+  	<property type="ScriptText" title="On Bar Select" id="onBarSelect"/>
+	<!-- End of ProgressBarSet Properties -->
+	<initialization>
+		<!-- Databound Defaults -->
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
+		<!-- End of Databound Defaults -->		<!-- ProgressBarSet Defaults -->
+		<defaultValue property="orientation">horizontal</defaultValue>
+  		<defaultValue property="barConfig">[{&quot;title&quot;:&quot;Measure&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;10&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure1&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;15&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure2&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;30&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure3&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;20&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure4&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;45&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;}]</defaultValue>
+  		<defaultValue property="progressMeasure">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}</defaultValue>
+  		<defaultValue property="palette">#8DD3C7,#FFFFB3,#BEBADA,#FB8072,#80B1D3,#FDB462,#B3DE69,#FCCDE5,#D9D9D9,#BC80BD,#CCEBC5,#FFED6F</defaultValue>
+  		<defaultValue property="inlineLabels">false</defaultValue>
+  		<defaultValue property="gradientFullWidth">false</defaultValue>
+  		<defaultValue property="barFillOpacity">1</defaultValue>
+  		<defaultValue property="barRoundness">5</defaultValue>
+  		<defaultValue property="barHeight">-1</defaultValue>
+  		<defaultValue property="labelWidth">150</defaultValue>
+  		<defaultValue property="gradientStart">.15</defaultValue>
+  		<defaultValue property="gradientStartOpacity">.35</defaultValue>
+  		<defaultValue property="gradientStartColor">#FFFFFF</defaultValue>
+  		<defaultValue property="gradientStop">.85</defaultValue>
+  		<defaultValue property="gradientStopColor">#FFFFFF</defaultValue>
+  		<defaultValue property="gradientStopOpacity">.05</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+  		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+		<!-- End of ProgressBarSet Defaults -->
+	</initialization>
+</component>
 <component
 		id="Projector"
 		title="Data Projector"

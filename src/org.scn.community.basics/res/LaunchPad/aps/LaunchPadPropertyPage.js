@@ -97,6 +97,11 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.basics.LaunchPadPr
 		this.updateProps();
 	};
 	this.init = function(){
+		var o = [];
+		for(var p in this){
+			 o.push(p);
+		}
+		var componentInfo = this.callRuntimeHandler("getComponentInformation");
 		// Init
 		this._content = new sap.ui.commons.layout.VerticalLayout({
 			width : "100%"
