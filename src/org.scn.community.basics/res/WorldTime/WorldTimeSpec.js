@@ -32,15 +32,15 @@
       "options": [
         {
           "key": "ddmmyy",
-          "text": "dd.mm.yy"
+          "text": "ddmmyy"
         },
         {
           "key": "ddmm",
-          "text": "dd.mm"
+          "text": "ddmm"
         },
         {
           "key": "mmyy",
-          "text": "mm.yy"
+          "text": "mmyy"
         },
         {
           "key": "hide",
@@ -103,11 +103,11 @@
       "options": [
         {
           "key": "enUS",
-          "text": "en-US"
+          "text": "enUS"
         },
         {
           "key": "deDE",
-          "text": "de-DE"
+          "text": "deDE"
         },
         {
           "key": "default",
@@ -150,11 +150,11 @@
       "options": [
         {
           "key": "hhmmss",
-          "text": "hh:mm:ss"
+          "text": "hhmmss"
         },
         {
           "key": "hhmm",
-          "text": "hh:mm"
+          "text": "hhmm"
         },
         {
           "key": "hide",

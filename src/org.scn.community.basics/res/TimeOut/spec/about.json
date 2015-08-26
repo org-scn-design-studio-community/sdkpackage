@@ -1,0 +1,16 @@
+{
+	"title": "TimeOut 2.0",
+	"description": "TimeOut",
+	"icon": "TimeOut.png",
+	"topics": 
+	[
+		{
+			"title" : "TimeOut",
+			"content" : "TimeOut"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a non-visualization component. It requires no space in the application canvas."
+		},
+	]
+}

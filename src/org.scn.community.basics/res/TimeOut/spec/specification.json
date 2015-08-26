@@ -1,0 +1,20 @@
+{
+
+	"timer" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 5000,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Timeout after (ms)",
+			"cat" : "Display",
+			"tooltip" : "Timeout after (ms)",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+
+}

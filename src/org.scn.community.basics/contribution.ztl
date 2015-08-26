@@ -14063,6 +14063,45 @@ class org.scn.community.basics.TextArea extends org.scn.community.shared.Compone
 }
 
 /**
+ * Generated ZTL Class for WorldTime
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.basics.TimeOut extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Update Interval (in Ms) Property
+	 */	
+	void setTimeOut( /**Timeout (in Ms)*/ int time){*
+		this.timer = time;
+	*}
+
+	/**
+	 * Gets Timeout (in Ms) Property
+	 */	
+	int getTimeOut() {*
+		return this.timer;
+	*}
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	void startTimer(){*
+		this.start = ""+calcTimestamp();
+	*}
+	
+	void stopTimer(){*
+		this.stop = ""+calcTimestamp();
+	*}
+	
+	@Visibility(private)
+	/**
+	 *	Workaround for strange DesignStudio lifecycle handling when calling functions via scripting triggers
+	 */
+	String calcTimestamp() {*
+		return new Date().valueOf();
+	*}
+}
+
+/**
  * Generated ZTL Class for ToggleButton
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
