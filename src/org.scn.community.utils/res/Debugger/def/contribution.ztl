@@ -90,9 +90,30 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 //		}
 		
 		this.toConsole("Component [CUSTOM] : " + thisValue._VariableName, true);
-		this.private_inspect(thisValue);
+		this.private_inspect(thisValue, undefined, undefined, true);
 	*}
+
+	/**
+	 * Inspects only given JSON property
+	 */
+	void inspectJSONProperty (optional String comment, optional JSON property) {*
+		if(this.DActive != true) {
+			return;
+		}
 	
+		this.internal_assureGlobalAccess();
+		
+		if(comment == undefined) {comment="";}
+
+		var thisValue = {};
+		
+		var locals = {};
+		locals.property = property;
+		
+		this.toConsole("Component [CUSTOM] : " + thisValue._VariableName, true);
+		this.private_inspect(thisValue, locals, undefined, true);
+	*}
+		
 	/**
 	 * Only for Use in SDK Development in ZTL code!
 	 */
@@ -197,6 +218,7 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 					
 					if(value.indexOf("com.sap.ip.bi.zen") > -1) {
 						// internal object
+						this.toConsole("  " + name + "=" + value);
 						continue;
 					}
 					
@@ -213,11 +235,13 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 			this.toConsole("OWNER ? "+(thisValue != undefined));
 			if(thisValue) {
 				
-				var owner = thisValue.getOwner();
-				
-				if(owner) {
-					lVariables.push({"date":l.date, "item-type":name, "value":owner.getItemType(), "type":"info"});
-					lVariables.push({"date":l.date, "item-name":name, "value":owner.getName(), "type":"info"});
+				if(thisValue.getOwner) {
+					var owner = thisValue.getOwner();
+					
+					if(owner) {
+						lVariables.push({"date":l.date, "item-type":name, "value":owner.getItemType(), "type":"info"});
+						lVariables.push({"date":l.date, "item-name":name, "value":owner.getName(), "type":"info"});
+					}
 				}
 				
 				for (var name in thisValue) {
@@ -235,11 +259,13 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 						
 						if(!fullScope && value.indexOf("function") > -1) {
 							// internal function
+							this.toConsole("  " + name + "=" + value);
 							continue;
 						}
 		
 						if(!fullScope && value.indexOf("com.sap.ip.bi.zen") > -1) {
 							// internal object
+							this.toConsole("  " + name + "=" + value);
 							continue;
 						}
 		

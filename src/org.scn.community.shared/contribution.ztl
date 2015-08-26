@@ -1174,6 +1174,40 @@ class org_scn_community_shared_ProcessFlowZoomLevel extends Enum {
 
 
 /**
+ * Configuration options for text alignments.
+ */
+class org_scn_community_shared_TextAlignEnumfield extends Enumfield {
+       
+}
+
+/**
+ * Configuration options for text alignments. 
+ */
+class org_scn_community_shared_TextAlign extends Enum {
+
+	/** Locale-specific positioning at the beginning of the line. */
+	org_scn_community_shared_TextAlignEnumfield Begin;
+
+	/** Locale-specific positioning at the end of the line. */
+	org_scn_community_shared_TextAlignEnumfield End;
+
+	/** Hard option for left alignment. */
+	org_scn_community_shared_TextAlignEnumfield Left;
+
+	/** Hard option for right alignment. */
+	org_scn_community_shared_TextAlignEnumfield Right;
+
+	/** Centered text alignment. */
+	org_scn_community_shared_TextAlignEnumfield Center;
+
+	/** Sets no text align, so the browser default is used. */
+	org_scn_community_shared_TextAlignEnumfield Initial;
+
+
+}
+
+
+/**
  * Configuration options for the direction of texts.
  */
 class org_scn_community_shared_TextDirectionEnumfield extends Enumfield {
@@ -10255,6 +10289,224 @@ class org.scn.community.shared.ui5.ProcessFlowNode extends org.scn.community.sha
 	 */	
 	boolean isUseTexts() {*
 		return this.useTexts;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+
+/**
+ * Generated ZTL Class for RadioButton
+ * 
+ * DO NOT EDIT, ROOT SOURCE is based on SAP UI5 specification
+ */
+class org.scn.community.shared.ui5.RadioButton extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Active Handling Property
+	 */	
+	void setActiveHandling( /**Active Handling*/ boolean activeHandling){*
+		this.activeHandling = activeHandling;
+	*}
+
+	/**
+	 * Gets Active Handling Property
+	 */	
+	boolean isActiveHandling() {*
+		return this.activeHandling;
+	*}
+
+	/**
+	 * Sets Content Width Property
+	 */	
+	void setContentWidth( /**Content Width*/ int contentWidth){*
+		this.contentWidth = contentWidth;
+	*}
+
+	/**
+	 * Gets Content Width Property
+	 */	
+	int getContentWidth() {*
+		return this.contentWidth;
+	*}
+
+	/**
+	 * Sets Editable Property
+	 */	
+	void setEditable( /**Editable*/ boolean editable){*
+		this.editable = editable;
+	*}
+
+	/**
+	 * Gets Editable Property
+	 */	
+	boolean isEditable() {*
+		return this.editable;
+	*}
+
+	/**
+	 * Sets Enabled Property
+	 */	
+	void setEnabled( /**Enabled*/ boolean enabled){*
+		this.enabled = enabled;
+	*}
+
+	/**
+	 * Gets Enabled Property
+	 */	
+	boolean isEnabled() {*
+		return this.enabled;
+	*}
+
+	/**
+	 * Sets Group Name Property
+	 */	
+	void setGroupName( /**Group Name*/ String groupName){*
+		this.groupName = groupName;
+	*}
+
+	/**
+	 * Gets Group Name Property
+	 */	
+	String getGroupName() {*
+		return this.groupName;
+	*}
+
+
+
+	/**
+	 * Sets Selected Property
+	 */	
+	void setSelected( /**Selected*/ boolean selected){*
+		this.selected = selected;
+	*}
+
+	/**
+	 * Gets Selected Property
+	 */	
+	boolean isSelected() {*
+		return this.selected;
+	*}
+
+	/**
+	 * Gets Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Sets Text Property
+	 */	
+	void setText( /**Text*/ String text){*
+		this.text = text;
+	*}
+
+	/**
+	 * Gets Text Property
+	 */	
+	String getText() {*
+		return this.text;
+	*}
+
+	/**
+	 * Sets Text Align Property by String
+	 */	
+	void setTextAlignByString( /**Text Align*/ String textAlign){*
+		this.textAlign = textAlign;
+	*}
+
+	/**
+	 * Gets Text Align Property as String
+	 */	
+	String getTextAlignAsString() {*
+		return this.textAlign;
+	*}
+	
+	/**
+	 * Sets Text Align Property by Choice Option
+	 */	
+	void setTextAlign( /**Text Align*/ org_scn_community_shared_TextAlignEnumfield textAlign){*
+		this.textAlign = textAlign;
+	*}
+	
+	/**
+	 * Gets Text Align Property as Choice Option
+	 */	
+	org_scn_community_shared_TextAlignEnumfield getTextAlign() {*
+		return this.textAlign;
+	*}
+
+	/**
+	 * Sets Text Direction Property by String
+	 */	
+	void setTextDirectionByString( /**Text Direction*/ String textDirection){*
+		this.textDirection = textDirection;
+	*}
+
+	/**
+	 * Gets Text Direction Property as String
+	 */	
+	String getTextDirectionAsString() {*
+		return this.textDirection;
+	*}
+	
+	/**
+	 * Sets Text Direction Property by Choice Option
+	 */	
+	void setTextDirection( /**Text Direction*/ org_scn_community_shared_TextDirectionEnumfield textDirection){*
+		this.textDirection = textDirection;
+	*}
+	
+	/**
+	 * Gets Text Direction Property as Choice Option
+	 */	
+	org_scn_community_shared_TextDirectionEnumfield getTextDirection() {*
+		return this.textDirection;
+	*}
+
+	/**
+	 * Sets Use Manual 'Content Width' Property
+	 */	
+	void setUseContentWidth( /**Use Manual 'Content Width'*/ boolean useContentWidth){*
+		this.useContentWidth = useContentWidth;
+	*}
+
+	/**
+	 * Gets Use Manual 'Content Width' Property
+	 */	
+	boolean isUseContentWidth() {*
+		return this.useContentWidth;
+	*}
+
+	/**
+	 * Sets Value State Property by String
+	 */	
+	void setValueStateByString( /**Value State*/ String valueState){*
+		this.valueState = valueState;
+	*}
+
+	/**
+	 * Gets Value State Property as String
+	 */	
+	String getValueStateAsString() {*
+		return this.valueState;
+	*}
+	
+	/**
+	 * Sets Value State Property by Choice Option
+	 */	
+	void setValueState( /**Value State*/ org_scn_community_shared_ValueStateEnumfield valueState){*
+		this.valueState = valueState;
+	*}
+	
+	/**
+	 * Gets Value State Property as Choice Option
+	 */	
+	org_scn_community_shared_ValueStateEnumfield getValueState() {*
+		return this.valueState;
 	*}
 
 

@@ -203,6 +203,40 @@ class org_scn_community_shared_ProcessFlowZoomLevel extends Enum {
 
 
 /**
+ * Configuration options for text alignments.
+ */
+class org_scn_community_shared_TextAlignEnumfield extends Enumfield {
+       
+}
+
+/**
+ * Configuration options for text alignments. 
+ */
+class org_scn_community_shared_TextAlign extends Enum {
+
+	/** Locale-specific positioning at the beginning of the line. */
+	org_scn_community_shared_TextAlignEnumfield Begin;
+
+	/** Locale-specific positioning at the end of the line. */
+	org_scn_community_shared_TextAlignEnumfield End;
+
+	/** Hard option for left alignment. */
+	org_scn_community_shared_TextAlignEnumfield Left;
+
+	/** Hard option for right alignment. */
+	org_scn_community_shared_TextAlignEnumfield Right;
+
+	/** Centered text alignment. */
+	org_scn_community_shared_TextAlignEnumfield Center;
+
+	/** Sets no text align, so the browser default is used. */
+	org_scn_community_shared_TextAlignEnumfield Initial;
+
+
+}
+
+
+/**
  * Configuration options for the direction of texts.
  */
 class org_scn_community_shared_TextDirectionEnumfield extends Enumfield {

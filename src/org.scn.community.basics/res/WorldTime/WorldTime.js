@@ -69,12 +69,13 @@ WorldTime = function () {
 		//add DIV
 		that.$().html('<div id="'+that._ownid+'">'+calcTime(that, that.getUtcoffset())+'</div>');
 		//remember element
-		$div = document.getElementById(that._ownid);
+		that.$div = document.getElementById(that._ownid);
 		
 		//setup interval call only once in case of multiple update calls!
 		if(that.interval_id === undefined){
-			that.interval_id = setInterval(function(){
-				$div.innerHTML = calcTime(that, that.getUtcoffset());
+			that.interval_id = window.setInterval(function(){
+				var html = calcTime(that, that.getUtcoffset());
+				that.$div.innerHTML = html;
 			}
 			, that.getInterval());
 		}
@@ -120,7 +121,7 @@ WorldTime = function () {
 	    // using supplied offset
 	    nd = new Date(utc + (3600000*offset));
 	    
-	    var options = that.getOptionsByParameters(that);
+	    var options = getOptionsByParameters(that);
 	    
 	    // return time as a string
 	    if(options.defTime === true){
@@ -172,7 +173,7 @@ WorldTime = function () {
 	 * @function setup date display options
 	 * @memberOf org.scn.community.basics.WorldTime
 	 */
-	that.getOptionsByParameters = function (owner){
+	function getOptionsByParameters (owner){
 		var that = owner;
 		var options = {};
 		

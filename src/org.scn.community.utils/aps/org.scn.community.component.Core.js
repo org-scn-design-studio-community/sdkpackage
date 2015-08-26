@@ -4,12 +4,12 @@
 org_scn_community_component_Core = function (owner, componentData){
 	var that = owner;
 
-	that.componentData = componentData;
+	that.componentData = JSON.parse(JSON.stringify(componentData));
 
-	that.spec = componentData.spec;
-	that.specInclude = componentData.specInclude;
-	that.specAbout = componentData.specAbout;
-	that.specComp = componentData.specComp;
+	that.spec = JSON.parse(JSON.stringify(componentData.spec));
+	that.specInclude = JSON.parse(JSON.stringify(componentData.specInclude));
+	that.specAbout = JSON.parse(JSON.stringify(componentData.specAbout));
+	that.specComp = JSON.parse(JSON.stringify(componentData.specComp));
 
 	that.componentInfo = {
 		visible : true,
@@ -36,8 +36,8 @@ org_scn_community_component_Core = function (owner, componentData){
 	
 	that.beforeDesignStudioUpdate = function () {
 		// check if something changed
-		for (var propI in owner.props) {
-			var prop  = owner.props[propI];
+		for (var propI in that.props) {
+			var prop  = that.props[propI];
 			
 			if(prop.changed) {
 				prop.changed = false;
