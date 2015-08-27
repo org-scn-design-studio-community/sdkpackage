@@ -366,7 +366,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 
 				// alphabet
 				 var A = a.opts.desc.toLowerCase();
-			     var B = a.opts.desc.toLowerCase();
+			     var B = b.opts.desc.toLowerCase();
 
 			     if (A > B){
 			        return 1;
