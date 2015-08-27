@@ -1,22 +1,26 @@
 
-<component id="FioriToolbar" 
-	title="Fiori Toolbar"
-	icon="res/FioriToolbar/FioriToolbar.png"
+<component id="FioriBar" 
+	title="Fiori Bar"
+	icon="res/FioriBar/FioriBar.png"
 	handlerType="sapui5" 
 	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
 	group="ScnCommunityBasics">
 
 	<jsInclude>res/require_loader.js</jsInclude>
   	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/FioriToolbar/FioriToolbar.js</jsInclude>
-  	<cssInclude>res/FioriToolbar/FioriToolbar.css</cssInclude>
-  	<property id="itemConfig" type="String" title="Item Config" visible="false" group="Display"/>
+	<jsInclude>res/FioriBar/FioriBar.js</jsInclude>
+  	<cssInclude>res/FioriBar/FioriBar.css</cssInclude>
+  	<property id="itemConfigLeft" type="String" title="Left Item Config" visible="false" group="Display"/>
+  	<property id="itemConfigMiddle" type="String" title="Middle Item Config" visible="false" group="Display"/>
+  	<property id="itemConfigRight" type="String" title="Right Item Config" visible="false" group="Display"/>
   	<property id="enabled" type="boolean" title="Enabled"/>
+  	<property id="enableFlexBox" type="boolean" title="Enable Flex Box"/>
+  	<property id="translucent" type="boolean" title="Translucent"/>
   	<property type="String" title="Design" id="design" visible="true" group="Display">
   		<possibleValue>Auto</possibleValue>
-  		<possibleValue>Info</possibleValue>
-  		<possibleValue>Solid</possibleValue>
-  		<possibleValue>Transparent</possibleValue>
+  		<possibleValue>Footer</possibleValue>
+  		<possibleValue>Header</possibleValue>
+  		<possibleValue>SubHeader</possibleValue>
   	</property>
   	<property type="String" title="Selected Item" id="selectedItem" visible="false" group="Display"/>
   	<property type="String" title="Selected Header of Item" id="selectedHeader" visible="false" group="Display"/>
