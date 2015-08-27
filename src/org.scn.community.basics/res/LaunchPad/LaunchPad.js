@@ -22,6 +22,7 @@
  * (http://scn.sap.com/community/businessobjects-design-studio/blog/2014/10/09/design-studio-sdk-13--fiori-like-launchpad-aka-sapmtilecontainer)
  * 
  */
+(function(){
 jQuery.sap.require("sap.m.TileContainer");
 /**
  * Experimental - callRuntimeHandler available in DS 1.5...
@@ -41,6 +42,22 @@ var componentInfo = {
 	}]
 };
 var dsProperties = {
+	selectedTile : { 
+		opts : {
+			desc : "Selected Tile",
+			noAps : true
+		},
+		ui5Meta : "string"
+	},
+	onTileSelect : { 
+		ui5Meta : "string",
+		opts : {
+			cat : "Tiles",
+			order : 0,
+			desc : "On Tile Select",
+			apsControl : "script"
+		}
+	},
 	tileConfig : { 
 		opts : {
 			desc : "Tile Configuration",
@@ -91,21 +108,13 @@ var dsProperties = {
 			}
 		},
 		ui5Meta : "string"
-	},
-	selectedTile : { 
-		value : true,
-		opts : {
-			desc : "Selected Tile",
-			noAps : true
-		},
-		ui5Meta : "string"
 	}
 };
 var meta = {
 	properties : {}
 };
-for(var p in meta){
-	if(meta[p].ui5Meta) meta[p] = meta[p].ui5Meta;
+for(var p in dsProperties){
+	if(dsProperties[p].ui5Meta) meta.properties[p] = dsProperties[p].ui5Meta;
 }
 /**
  * End of experiment
@@ -179,3 +188,4 @@ sap.m.TileContainer.extend("org.scn.community.basics.LaunchPad", {
 		}
 	}
 });
+}());

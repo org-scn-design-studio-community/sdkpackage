@@ -1,3 +1,28 @@
+.sapUiBody {
+	background-image : none !important;
+}
+.sapUiUx3NavBarItem {
+	font-weight : bold !important;
+}
+.sapUiUx3NavBarToplevel {
+	box-shadow: inset 0px -3px 0px #007cc0 !important;
+	background-color: #F6F6F6 !important;
+	border-collapse: inherit !important;
+	height : 45px;
+}
+/*.sapUiUx3NavBarList > li {
+	height : 45px;
+	line-height : 45px !important;
+}*/
+.sapUiUx3NavBar {
+	text-transform : none !important;	
+}
+.sapUiUx3NavBarItemSel {
+	background-color : #007CC0;
+}
+.sapUiUx3NavBarItemSel > a{
+	color : #ffffff !important;
+}
 .org-scn-ApsBody {
 	background-color: #FFFFFF !important;
 	margin-left: 10px !important;
