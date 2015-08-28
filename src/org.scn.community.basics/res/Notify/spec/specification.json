@@ -85,44 +85,44 @@
 					"text" : "top"
 				},
 				{
-					"key" : "top_Center",
-					"text" : "top_Center"
+					"key" : "topCenter",
+					"text" : "topCenter"
 				},
 				{
-					"key" : "top_Left",
-					"text" : "top_Left"
+					"key" : "topLeft",
+					"text" : "topLeft"
 				},
 				{
-					"key" : "top_Right",
-					"text" : "top_Right"
+					"key" : "topRight",
+					"text" : "topRight"
 				},
 				{
 					"key" : "center",
 					"text" : "center"
 				},
 				{
-					"key" : "center_Left",
-					"text" : "center_Left"
+					"key" : "centerLeft",
+					"text" : "centerLeft"
 				},
 				{
-					"key" : "center_Right",
-					"text" : "center_Right"
+					"key" : "centerRight",
+					"text" : "centerRight"
 				},
 				{
 					"key" : "bottom",
 					"text" : "bottom"
 				},
 				{
-					"key" : "bottom_Center",
-					"text" : "bottom_Center"
+					"key" : "bottomCenter",
+					"text" : "bottomCenter"
 				},
 				{
-					"key" : "bottom_Left",
-					"text" : "bottom_Left"
+					"key" : "bottomLeft",
+					"text" : "bottomLeft"
 				},
 				{
-					"key" : "bottom_Right",
-					"text" : "bottom_Right"
+					"key" : "bottomRight",
+					"text" : "bottomRight"
 				}
 				
             ],
