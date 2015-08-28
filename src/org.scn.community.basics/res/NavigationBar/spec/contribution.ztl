@@ -1,0 +1,5 @@
+	// here is the place for other custom functions	
+	/** resets item selection */
+	void resetItemSelection () {*
+		this.DSelectedKey = "invisible_dummy_select";
+	*}

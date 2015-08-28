@@ -1,0 +1,15 @@
+	void startTimer(){*
+		this.start = calcTimestamp();
+	*}
+	
+	void stopTimer(){*
+		this.stop = calcTimestamp();
+	*}
+	
+	@Visibility(private)
+	/**
+	 *	Workaround for strange DesignStudio lifecycle handling when calling functions via scriptting triggers
+	 */
+	String calcTimestamp() {*
+		return new Date().valueOf();
+	*}
