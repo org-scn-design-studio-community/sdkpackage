@@ -15,6 +15,68 @@
 			"noAps" : false,
 			"noZtl" : false
 		}
+	},
+	  "periodic": {
+	    "opts": {
+	      "apsControl": "checkbox",
+	      "cat": "Display",
+	      "desc": "Is periodic?",
+	      "noAps": false,
+	      "noZtl": false,
+	      "tooltip": "Is periodic?",
+	      "ztlFunction": "",
+	      "ztlType": "boolean"
+	    },
+	    "template": "boolean",
+	    "type": "boolean",
+	    "value": false,
+	    "visible": true
+	  },
+  "start": {
+    "opts": {
+        "apsControl": "text",
+        "cat": "Display",
+        "desc": "Start trigger",
+        "noAps": true,
+        "noZtl": false,
+        "tooltip": "Start trigger",
+        "ztlFunction": "",
+        "ztlType": "String"
+      },
+      "template": "String",
+      "type": "String",
+      "value": "",
+      "visible": false
+    },
+"stop": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Stop trigger",
+      "noAps": true,
+      "noZtl": false,
+      "tooltip": "Stop trigger",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+  },
+	"onTimeout" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Timeout",
+			"cat" : "Events",
+			"tooltip" : "Event For On Timeout",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
 	}
 
 }

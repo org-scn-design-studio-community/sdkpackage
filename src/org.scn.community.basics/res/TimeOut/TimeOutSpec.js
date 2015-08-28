@@ -35,7 +35,70 @@
   "type": "int",
   "value": 5000,
   "visible": true
-}};
+},
+  "periodic": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Is periodic?",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Is periodic?",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "boolean",
+    "type": "boolean",
+    "value": false,
+    "visible": true
+  },
+  "start": {
+    "opts": {
+        "apsControl": "text",
+        "cat": "Display",
+        "desc": "Start trigger",
+        "noAps": true,
+        "noZtl": false,
+        "tooltip": "Start trigger",
+        "ztlFunction": "",
+        "ztlType": "String"
+      },
+      "template": "String",
+      "type": "String",
+      "value": "",
+      "visible": false
+    },
+"stop": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Stop trigger",
+      "noAps": true,
+      "noZtl": false,
+      "tooltip": "Stop trigger",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+  },
+  "onTimeout": {
+	    "opts": {
+	      "apsControl": "text",
+	      "cat": "Events",
+	      "desc": "Event For On Timeout",
+	      "noAps": true,
+	      "noZtl": true,
+	      "tooltip": "Event For On Timeout"
+	    },
+	    "template": "Event",
+	    "type": "ScriptText",
+	    "value": "",
+	    "visible": true
+	  }
+};
 
 	org_scn_community_require.knownComponents.basics.TimeOut.specInclude = 
 {};
@@ -63,7 +126,7 @@
   "extension": "Component",
   "group": "ScnCommunityBasics",
   "handlerType": "div",
-  "height": "40",
+  "height": "10",
   "id": "TimeOut",
   "package": "basics",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
@@ -73,7 +136,7 @@
   }],
   "title": "TimeOut 2.0",
   "tooltip": "TimeOut",
-  "width": "150"
+  "width": "10"
 };
 
 })();// End of closure

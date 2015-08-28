@@ -20,7 +20,20 @@ class org.scn.community.basics.TimeOut extends org.scn.community.shared.Componen
 		return this.timer;
 	*}
 
-
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
-
+	void startTimer(){*
+		this.start = calcTimestamp();
+	*}
+	
+	void stopTimer(){*
+		this.stop = calcTimestamp();
+	*}
+	
+	@Visibility(private)
+	/**
+	 *	Workaround for strange DesignStudio lifecycle handling when calling functions via scriptting triggers
+	 */
+	String calcTimestamp() {*
+		return new Date().valueOf();
+	*}
 }
