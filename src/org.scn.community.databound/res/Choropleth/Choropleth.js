@@ -401,7 +401,8 @@
 	    		parentInit.call(this);
 	    		this.$().addClass("Choropleth");
 	    		
-	    		this.bubbleGroup = this.plotLayer.append('g')
+	    		//this.bubbleGroup = this.plotLayer.append('g')
+	    		this.bubbleGroup = this.plotLayer.insert("g",".label-group")
 					.attr('class', 'bubble-group');
 	    		
 
