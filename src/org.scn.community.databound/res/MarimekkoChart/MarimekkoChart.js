@@ -23,6 +23,8 @@
 		 	.html(function(d) { 
 		 		var html = "<span>";
 		 		var sep = "";
+		 		html += d.col + "<br/>";
+		 		html += d.row + "<br/>";
 		 		html += d.value;
 		 		/*
 		 		for(var i=0;i<d.labels.length;i++){
