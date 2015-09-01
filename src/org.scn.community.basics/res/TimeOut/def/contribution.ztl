@@ -6,6 +6,50 @@
  */
 class org.scn.community.basics.TimeOut extends org.scn.community.shared.Component {
 
+
+
+	/**
+	 * Sets Is periodic? Property
+	 */	
+	void setPeriodic( /**Is periodic?*/ boolean periodic){*
+		this.periodic = periodic;
+	*}
+
+	/**
+	 * Gets Is periodic? Property
+	 */	
+	boolean isPeriodic() {*
+		return this.periodic;
+	*}
+
+	/**
+	 * Sets Start trigger Property
+	 */	
+	void setStart( /**Start trigger*/ String start){*
+		this.start = start;
+	*}
+
+	/**
+	 * Gets Start trigger Property
+	 */	
+	String getStart() {*
+		return this.start;
+	*}
+
+	/**
+	 * Sets Stop trigger Property
+	 */	
+	void setStop( /**Stop trigger*/ String stop){*
+		this.stop = stop;
+	*}
+
+	/**
+	 * Gets Stop trigger Property
+	 */	
+	String getStop() {*
+		return this.stop;
+	*}
+
 	/**
 	 * Sets Timeout after (ms) Property
 	 */	
@@ -19,6 +63,7 @@ class org.scn.community.basics.TimeOut extends org.scn.community.shared.Componen
 	int getTimer() {*
 		return this.timer;
 	*}
+
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 	void startTimer(){*
