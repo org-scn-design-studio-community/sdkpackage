@@ -344,9 +344,10 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			logoText : "Property Sheet",
 			appIcon : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMwSURBVHjaYtxYISDCwMDQBMSZDBAwHYjr/NrfvwFxkgrqMOTnTWjKgrIZAAKIYUUR34zLW2r+//3+DoxBbJDY////GUA4Lqdqxtqte/7DQHxu9X+YHAgDBBDTj1//0tUswhm29LkwLC6VYwCxQWJwG/7/Tw/wcGT48/cvQ3xOFcOXj+/XMAIBTBoggJi+/vjL8PPVBYYn968zcAopg9kgMUYo+PvvL8Off/8ZPnz6wvDnz+93l88db43OLJsak1X+H4inAQQQy4NXfzee3LfIP7FuLcP/P98Yjm2byQASA5kemVY8VUtNmeH/PwYGPm4ehgAvFyGgs7f8+/tXeumMHobojJJMgABi1JdnMrfTZKoU5mX0B2l6+/n/xkPX/7Wru+TFK8nLZrbVFDH8+P2H4e69BwzqqkoMnz59ZhAS4AeLJWSVMgAEEMgvrECsCMRSUG89C4jNKlJVVkhvry1m2Ln3EIOcrAxYQklBDuQ1cOCt3byTYfmqdWsAAogxIDYTPZoY9HU0GWpLssGaQQBkwN5DxxgOHDkBD9tvXz+vuX31QitAALH8/v2nJSLQJz0qxJcBGezYexCuecaC5Qw3rt9Ys3fTsg4kJa9BrgUIIJZ///6m+/u4M7z68IXh0+cvDHy8PAxvXr2EO3va3CUM129cX3Ngy6piIPcxSCwxv/YfiFaREysBCCCWv8D4/fztJ0NiRh7Ib+/8fTyFAn29GN69ecWwbM1GhitXr6yRlVP8AdT0ENmFM7prGfJLqnsAAojp6+ePa+JSsxhA9IXj+4PWbdj06u279wwCQqIMp86eZzi8fS3QZsaY0rx0BhsLUwYQDQJ3H79i+PSTgQEggFiO7toAchrIb68dfMKrgK4QExIQYPj77x8DML4ZYM6+euUKw+dPH8E0MgAIIBaghkfAqHkMSuD2PuHp+zYuY3j88iPDuo2bGb5+/bIGpOjB3Ztrp895EgzTJK+kAjaIh/0fA0AAMYLiFARAydbUwWsVOydXCIj/8/u3NU/u3Wx99vDOBaCUHFBIFGaAk2/kGRCtLCs2CSCA4AZADUFWCI4moPwfBjQAVGcMZT4BCDAAVE+Dr1XMs78AAAAASUVORK5CYII="
 		});
+		this.mainLayout.addStyleClass("org-scn-MainLayout");
 		// this.mainLayout.addContent(this.appHeader);
 		
-		this.mainLayout.addStyleClass("org-scn-ApsBody");
+		//this.mainLayout.addStyleClass("org-scn-ApsBody");
 		
 		// Get Property Metadata from Design Studio Component Runtime.
 		this.isTest = this.getUrlParameterByName("testMode") == "X";

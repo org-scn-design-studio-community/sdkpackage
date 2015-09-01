@@ -20,22 +20,21 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.TimeOut.spec = 
-{"timer": {
-  "opts": {
-    "apsControl": "spinner",
-    "cat": "Display",
-    "desc": "Timeout after (ms)",
-    "noAps": false,
-    "noZtl": false,
-    "tooltip": "Timeout after (ms)",
-    "ztlFunction": "",
-    "ztlType": "int"
+{
+  "onTimeout": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Events",
+      "desc": "Event For On Timeout",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Event For On Timeout"
+    },
+    "template": "Event",
+    "type": "ScriptText",
+    "value": "",
+    "visible": true
   },
-  "template": "int",
-  "type": "int",
-  "value": 5000,
-  "visible": true
-},
   "periodic": {
     "opts": {
       "apsControl": "checkbox",
@@ -54,21 +53,21 @@
   },
   "start": {
     "opts": {
-        "apsControl": "text",
-        "cat": "Display",
-        "desc": "Start trigger",
-        "noAps": true,
-        "noZtl": false,
-        "tooltip": "Start trigger",
-        "ztlFunction": "",
-        "ztlType": "String"
-      },
-      "template": "String",
-      "type": "String",
-      "value": "",
-      "visible": false
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Start trigger",
+      "noAps": true,
+      "noZtl": false,
+      "tooltip": "Start trigger",
+      "ztlFunction": "",
+      "ztlType": "String"
     },
-"stop": {
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+  },
+  "stop": {
     "opts": {
       "apsControl": "text",
       "cat": "Display",
@@ -84,20 +83,22 @@
     "value": "",
     "visible": false
   },
-  "onTimeout": {
-	    "opts": {
-	      "apsControl": "text",
-	      "cat": "Events",
-	      "desc": "Event For On Timeout",
-	      "noAps": true,
-	      "noZtl": true,
-	      "tooltip": "Event For On Timeout"
-	    },
-	    "template": "Event",
-	    "type": "ScriptText",
-	    "value": "",
-	    "visible": true
-	  }
+  "timer": {
+    "opts": {
+      "apsControl": "spinner",
+      "cat": "Display",
+      "desc": "Timeout after (ms)",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Timeout after (ms)",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "template": "int",
+    "type": "int",
+    "value": 5000,
+    "visible": true
+  }
 };
 
 	org_scn_community_require.knownComponents.basics.TimeOut.specInclude = 

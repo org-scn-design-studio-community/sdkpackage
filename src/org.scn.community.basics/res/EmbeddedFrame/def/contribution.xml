@@ -15,28 +15,32 @@
 	<cssInclude>res/EmbeddedFrame/EmbeddedFrame.css</cssInclude>
 	
 	<property
+		id="domainrelaxlevel"
+		type="int"
+		title="Domain Relax Level"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="skipport"
+		type="boolean"
+		title="Skip port in domain"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="url"
 		type="String"
 		title="Url"
 		group="Display"
 		bindable="true"
 		visible="true">
+
 	</property>
-	
-	<property
-		id="domainrelaxlevel"
-		type="int"
-		title="Domain Relax Level"
-		group="Display"
-		bindable="true"
-		visible="true"/>
-	<property
-		id="skipport"
-		type="boolean"
-		title="Skip Port in domain"
-		group="Display"
-		bindable="true"
-		visible="true"/>
 
 
 	<initialization>
@@ -47,9 +51,10 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
+		<defaultValue property="domainrelaxlevel"><![CDATA[]]></defaultValue>
+		<defaultValue property="skipport"><![CDATA[]]></defaultValue>
 		<defaultValue property="url"><![CDATA[]]></defaultValue>
-		<defaultValue property="domainrelaxlevel">1</defaultValue>
-		<defaultValue property="skipport">true</defaultValue>
+
 	</initialization>
 
 </component>

@@ -1981,6 +1981,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Fiori App Header component*/
 	org.scn.community.basics.FioriAppHeader returnAsScnFioriAppHeader (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Fiori Bar component*/
+	org.scn.community.basics.FioriBar returnAsScnFioriBar (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Fiori Button component*/
 	org.scn.community.basics.FioriButton returnAsScnFioriButton (Component inputComponent) {* return inputComponent; *}
 
