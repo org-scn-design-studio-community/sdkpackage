@@ -72,12 +72,11 @@
 					}
 				},
 				measureZ : { 
-					value : "",
 					opts : {
 						desc : "Z-Axis Measure",
 						cat : "Data",
-						apsControl : "text"
-					} 
+						apsControl : "measureselector"
+					}
 				},
 				colorDimension : { 
 					value : "",
@@ -104,12 +103,33 @@
 	    		var vals = [];
 	    		vals = this.flatData.values.slice();
 	    		var mx = this.measureX();
-	    		var my = this.measureY();
-	    		var mz = this.measureZ();
-	    		var cd = this.colorDimension();
+	    		if(!mx || mx=="") mx = "null";
 	    		var mxIndex = 0;
-	    		var myIndex = 1;
+	    		var mxObj = jQuery.parseJSON(mx);
+	    		if(typeof mxObj == "object"){
+	    			mx = that.determineMeasureName(mxObj);
+	    		}else{
+	    			mx = mxObj;
+	    		}
+	    		var my = this.measureY();
+	    		if(!my || my=="") my = "null";
+	    		var myIndex = 0;
+	    		var myObj = jQuery.parseJSON(my);
+	    		if(typeof myObj == "object"){
+	    			my = that.determineMeasureName(myObj);
+	    		}else{
+	    			my = myObj;
+	    		}
+	    		var mz = this.measureZ();
+	    		if(!mz || mz=="") mz = "null";
 	    		var mzIndex = -1;
+	    		var mzObj = jQuery.parseJSON(mz);
+	    		if(typeof mzObj == "object"){
+	    			mz = that.determineMeasureName(mzObj);
+	    		}else{
+	    			mz = mzObj;
+	    		}
+	    		var cd = this.colorDimension();
 	    		var cdIndex = 0;
 	    		for(var i=0;i<this.flatData.columnHeaders.length;i++){
 	    			if(this.flatData.columnHeaders[i] == mx) mxIndex = i;

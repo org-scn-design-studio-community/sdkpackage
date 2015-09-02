@@ -3347,6 +3347,7 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
+		<defaultValue property="measureZ">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:3}</defaultValue>
 		<defaultValue property="chartTitle">Scatterplot Chart</defaultValue>
 		<defaultValue property="radius">5</defaultValue>
 		<defaultValue property="bubbleMin">3</defaultValue>
