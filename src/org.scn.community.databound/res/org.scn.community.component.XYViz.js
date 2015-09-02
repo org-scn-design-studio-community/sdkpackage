@@ -39,20 +39,18 @@ function org_scn_community_databound_XYViz(d3, options){
 			}
 		},
 		measureX : { 
-			value : "",
 			opts : {
 				desc : "X-Axis Measure",
 				cat : "Data",
-				apsControl : "text"
-			} 
+				apsControl : "measureselector"
+			}
 		},
 		measureY : { 
-			value : "",
 			opts : {
 				desc : "Y-Axis Measure",
 				cat : "Data",
-				apsControl : "text"
-			} 
+				apsControl : "measureselector"
+			}		
 		}
 	};
 	for(var prop in options) properties[prop] = options[prop];
@@ -90,6 +88,12 @@ function org_scn_community_databound_XYViz(d3, options){
 		parentComputeXScale.apply(this);
 		var mx = this.measureX();
 		var mxIndex = 0;
+		var mxObj = jQuery.parseJSON(mx);
+		if(typeof mxObj == "object"){
+			mx = that.determineMeasureName(mxObj);
+		}else{
+			mx = mxObj;
+		}
 		for(var i=0;i<this.flatData.columnHeaders.length;i++){
 			if(this.flatData.columnHeaders[i] == mx) mxIndex = i;
 		}
@@ -116,7 +120,13 @@ function org_scn_community_databound_XYViz(d3, options){
 	this.computeYScale = function(){
 		parentComputeYScale.apply(this);
 		var my = this.measureY();
-		var myIndex = 1;
+		var myIndex = 0;
+		var myObj = jQuery.parseJSON(my);
+		if(typeof myObj == "object"){
+			my = that.determineMeasureName(myObj);
+		}else{
+			my = myObj;
+		}
 		for(var i=0;i<this.flatData.columnHeaders.length;i++){
 			if(this.flatData.columnHeaders[i] == my) myIndex = i;
 		}

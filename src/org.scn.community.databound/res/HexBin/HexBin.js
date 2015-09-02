@@ -62,7 +62,7 @@
 				thresholdMethod : { 
 					value : "Manual",
 					opts : {
-						apsControl : "combobox",
+						apsControl : "segmentedbutton",
 						desc : "Threshold Method",
 						cat : "Cosmetics-Scale",
 						options : [{key : "Manual", text : "Manual"},
@@ -97,9 +97,23 @@
 	    		var vals = [];
 	    		vals = this.flatData.values.slice();
 	    		var mx = this.measureX();
-	    		var my = this.measureY();
+	    		if(!mx || mx=="") mx = "null";
 	    		var mxIndex = 0;
-	    		var myIndex = 1;
+	    		var mxObj = jQuery.parseJSON(mx);
+	    		if(typeof mxObj == "object"){
+	    			mx = that.determineMeasureName(mxObj);
+	    		}else{
+	    			mx = mxObj;
+	    		}
+	    		var my = this.measureY();
+	    		if(!my || my=="") my = "null";
+	    		var myIndex = 0;
+	    		var myObj = jQuery.parseJSON(my);
+	    		if(typeof myObj == "object"){
+	    			my = that.determineMeasureName(myObj);
+	    		}else{
+	    			my = myObj;
+	    		}
 	    		for(var i=0;i<this.flatData.columnHeaders.length;i++){
 	    			if(this.flatData.columnHeaders[i] == mx) mxIndex = i;
 	    			if(this.flatData.columnHeaders[i] == my) myIndex = i;

@@ -54,7 +54,7 @@
 		    	 var that = this;
 		    	// Call super
 		    	org_scn_community_databound_AxisChart.call(this, d3,{
-		    		selectedRow : { 
+		    		selectedValue : { 
 		    			value : "",
 		    			opts : {
 		    				desc : "Data",
