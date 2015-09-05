@@ -107,8 +107,17 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 	
 	String getValueAsString (String key) {*
 		var js = JSON.parse(this.content);
-	
-		if(js[key] != undefined) {
+		var result = [];
+		if(js instanceof Array){
+			for(var i=0;i<js.length;i++){
+				var myObject = js[i];
+				if(myObject[key] != undefined){
+					result.push(myObject[key]);
+				}
+			}
+			return JSON.stringify(result);
+		}
+		else if(js[key] != undefined) {
 			return js[key];
 		}
 		
@@ -118,7 +127,17 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 	JSON getValueAsJsonObject (String key) {*
 		var js = JSON.parse(this.content);
 	
-   	    if(js[key] != undefined) {
+		var result = [];
+		if(js instanceof Array){
+			for(var i=0;i<js.length;i++){
+				var myObject = js[i];
+				if(myObject[key] != undefined){
+					result.push(myObject[key]);
+				}
+			}
+			return result;
+		}
+		else if(js[key] != undefined) {
 			var jsValue = js[key];
 			
 			return jsValue;
