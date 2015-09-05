@@ -144,6 +144,8 @@
 		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- BaseVizXY Defaults -->
+		<defaultValue property="measureX">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}</defaultValue>
+		<defaultValue property="measureY">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:1}</defaultValue>
 		<defaultValue property="maxX">0</defaultValue>
 		<defaultValue property="maxY">0</defaultValue>
 		<defaultValue property="minX">0</defaultValue>
@@ -160,6 +162,7 @@ __n__  stroke: #303030;
 __n__  stroke-width: 2px;
 __n__}
 		</defaultValue>
+		<defaultValue property="measureZ">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:3}</defaultValue>
 		<defaultValue property="chartTitle">Scatterplot Chart</defaultValue>
 		<defaultValue property="radius">5</defaultValue>
 		<defaultValue property="bubbleMin">3</defaultValue>

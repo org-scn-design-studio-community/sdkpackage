@@ -20,52 +20,52 @@
 (function() {
 
 	org_scn_community_require.knownComponents.basics.EmbeddedFrame.spec = 
-{"url": {
-  "opts": {
-    "apsControl": "text",
-    "cat": "Display",
-    "desc": "Url",
-    "noAps": false,
-    "noZtl": false,
-    "tooltip": "Url to Embedd",
-    "ztlFunction": "",
-    "ztlType": "String"
+{
+  "domainrelaxlevel": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Domain Relax Level",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Level of Domain Relaxation",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "type": "int",
+    "value": "",
+    "visible": true
   },
-  "type": "String",
-  "value": "",
-  "visible": true
-},
-"domainrelaxlevel": {
-	  "opts": {
-		    "apsControl": "text",
-		    "cat": "Display",
-		    "desc": "Domain Relax Level",
-		    "noAps": false,
-		    "noZtl": false,
-		    "tooltip": "Level of Domain Relaxation",
-		    "ztlFunction": "",
-		    "ztlType": "int"
-		  },
-		  "type": "String",
-		  "value": "1",
-		  "visible": true
-},
-"skipport": {
-	  "opts": {
-		    "apsControl": "checkbox",
-		    "cat": "Display",
-		    "desc": "Skip port in domain",
-		    "noAps": false,
-		    "noZtl": false,
-		    "tooltip": "Skip port in domain",
-		    "ztlFunction": "",
-		    "ztlType": "boolean"
-		  },
-		    "template": "boolean",
-		    "type": "boolean",
-		    "value": true,
-		    "visible": true
-}
+  "skipport": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Skip port in domain",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Skip port in domain",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": "",
+    "visible": true
+  },
+  "url": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Url",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Url to Embedd",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "type": "String",
+    "value": "",
+    "visible": true
+  }
 };
 
 	org_scn_community_require.knownComponents.basics.EmbeddedFrame.specInclude = 

@@ -23,6 +23,8 @@
 		 	.html(function(d) { 
 		 		var html = "<span>";
 		 		var sep = "";
+		 		html += d.col + "<br/>";
+		 		html += d.row + "<br/>";
 		 		html += d.value;
 		 		/*
 		 		for(var i=0;i<d.labels.length;i++){
@@ -52,7 +54,7 @@
 		    	 var that = this;
 		    	// Call super
 		    	org_scn_community_databound_AxisChart.call(this, d3,{
-		    		selectedRow : { 
+		    		selectedValue : { 
 		    			value : "",
 		    			opts : {
 		    				desc : "Data",

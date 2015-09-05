@@ -7,6 +7,34 @@
 class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Component {
 
 	/**
+	 * Sets Domain Relax Level Property
+	 */	
+	void setDomainrelaxlevel( /**Domain Relax Level*/ int domainrelaxlevel){*
+		this.domainrelaxlevel = domainrelaxlevel;
+	*}
+
+	/**
+	 * Gets Domain Relax Level Property
+	 */	
+	int getDomainrelaxlevel() {*
+		return this.domainrelaxlevel;
+	*}
+
+	/**
+	 * Sets Skip port in domain Property
+	 */	
+	void setSkipport( /**Skip port in domain*/ boolean skipport){*
+		this.skipport = skipport;
+	*}
+
+	/**
+	 * Gets Skip port in domain Property
+	 */	
+	boolean isSkipport() {*
+		return this.skipport;
+	*}
+
+	/**
 	 * Sets Url Property
 	 */	
 	void setUrl( /**Url*/ String url){*
@@ -22,7 +50,7 @@ class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Co
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
-	// here is the place for other custom functions		
+	// here is the place for other custom functions	
 	/**
 	 * Gets Domain Relaxation level Property
 	 */	

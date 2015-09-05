@@ -1,5 +1,6 @@
 
 		<!-- Begin of Marimekko Chart Defaults -->
+		<defaultValue property="measure">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}</defaultValue>
 		<defaultValue property="chartTitle">Marimekko Chart</defaultValue>
 		<defaultValue property="styleCSS">/*Default CSS*/
 __n__.plot {

@@ -4284,6 +4284,34 @@ class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Com
 class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Component {
 
 	/**
+	 * Sets Domain Relax Level Property
+	 */	
+	void setDomainrelaxlevel( /**Domain Relax Level*/ int domainrelaxlevel){*
+		this.domainrelaxlevel = domainrelaxlevel;
+	*}
+
+	/**
+	 * Gets Domain Relax Level Property
+	 */	
+	int getDomainrelaxlevel() {*
+		return this.domainrelaxlevel;
+	*}
+
+	/**
+	 * Sets Skip port in domain Property
+	 */	
+	void setSkipport( /**Skip port in domain*/ boolean skipport){*
+		this.skipport = skipport;
+	*}
+
+	/**
+	 * Gets Skip port in domain Property
+	 */	
+	boolean isSkipport() {*
+		return this.skipport;
+	*}
+
+	/**
 	 * Sets Url Property
 	 */	
 	void setUrl( /**Url*/ String url){*
@@ -4299,7 +4327,7 @@ class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Co
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
-	// here is the place for other custom functions		
+	// here is the place for other custom functions	
 	/**
 	 * Gets Domain Relaxation level Property
 	 */	
@@ -10990,6 +11018,7 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions	
 	/** resets item selection */
 	void resetItemSelection () {*
 		this.DSelectedKey = "invisible_dummy_select";
@@ -14223,6 +14252,50 @@ class org.scn.community.basics.TextArea extends org.scn.community.shared.Compone
  */
 class org.scn.community.basics.TimeOut extends org.scn.community.shared.Component {
 
+
+
+	/**
+	 * Sets Is periodic? Property
+	 */	
+	void setPeriodic( /**Is periodic?*/ boolean periodic){*
+		this.periodic = periodic;
+	*}
+
+	/**
+	 * Gets Is periodic? Property
+	 */	
+	boolean isPeriodic() {*
+		return this.periodic;
+	*}
+
+	/**
+	 * Sets Start trigger Property
+	 */	
+	void setStart( /**Start trigger*/ String start){*
+		this.start = start;
+	*}
+
+	/**
+	 * Gets Start trigger Property
+	 */	
+	String getStart() {*
+		return this.start;
+	*}
+
+	/**
+	 * Sets Stop trigger Property
+	 */	
+	void setStop( /**Stop trigger*/ String stop){*
+		this.stop = stop;
+	*}
+
+	/**
+	 * Gets Stop trigger Property
+	 */	
+	String getStop() {*
+		return this.stop;
+	*}
+
 	/**
 	 * Sets Timeout after (ms) Property
 	 */	
@@ -14236,6 +14309,7 @@ class org.scn.community.basics.TimeOut extends org.scn.community.shared.Componen
 	int getTimer() {*
 		return this.timer;
 	*}
+
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 	void startTimer(){*

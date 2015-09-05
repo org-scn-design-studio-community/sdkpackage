@@ -40,6 +40,8 @@
 		<defaultValue property="maxZoom">1</defaultValue>
 		<!-- End of Base Defaults -->
 		<!-- BaseVizXY Defaults -->
+		<defaultValue property="measureX">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}</defaultValue>
+		<defaultValue property="measureY">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:1}</defaultValue>
 		<defaultValue property="maxX">0</defaultValue>
 		<defaultValue property="maxY">0</defaultValue>
 		<defaultValue property="minX">0</defaultValue>

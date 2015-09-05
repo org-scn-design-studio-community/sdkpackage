@@ -94,6 +94,11 @@ var dsProperties = {
 					defaultValue : "123",
 					apsControl : "text"
 				},
+				numberUnit : {
+					desc : "Number Unit",
+					defaultValue : "$",
+					apsControl : "text"
+				},
 				valueState : {
 					desc : "Info State",
 					defaultValue : "None",

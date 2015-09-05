@@ -15,6 +15,9 @@
 		}
 	},
 	"domainrelaxlevel": {
+	  "type" : "int",
+	  "value" : "",
+	  "visible": true,
 	  "opts": {
 		    "apsControl": "text",
 		    "cat": "Display",
@@ -27,6 +30,9 @@
 		  }
 	},
 	"skipport": {
+	  "type" : "boolean",
+	  "value" : "",
+	  "visible": true,
 	  "opts": {
 		    "apsControl": "checkbox",
 		    "cat": "Display",
