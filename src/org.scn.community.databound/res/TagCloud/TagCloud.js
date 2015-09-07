@@ -87,7 +87,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
 			*/
 			that._previousHeight = currentHeight;
 			that._previousWidth = currentWidth;	
-			this.drawCloud();
+			draw(tags);
 		}else{
 			// Sizes are the same.  Don't redraw, but poll again after an interval.
 			that._poller = window.setTimeout(function(){that.detectSize(that)},that._pollInterval);	
