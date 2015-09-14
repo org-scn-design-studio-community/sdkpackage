@@ -1603,7 +1603,7 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="domainrelaxlevel"><![CDATA[]]></defaultValue>
+		<defaultValue property="domainrelaxlevel">0</defaultValue>
 		<defaultValue property="skipport"><![CDATA[]]></defaultValue>
 		<defaultValue property="url"><![CDATA[]]></defaultValue>
 
