@@ -51,6 +51,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
 			savedData: null,
 			tagFont: "Impact",
 			tagRotation: "None",
+			tagDuration: null,
 			dimTag: null,
 			measureSize: null,
 			measureColor: null,
@@ -142,7 +143,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
 	    	  else if (d.tagRotation === "Random") { return d.text.length > 5 ? 0 : ~~(Math.random() * 5) * 30 - 60}
 	    	  else { return 0 }
 	    	  ;})
-	      .text(function(d) { return d.key; })
+	      .text(function(d) { return d.text; })
 	      .font(function(d) { return d.tagFont; })
 	      .fontSize(function(d) { return wordScale(+d.frequency); })
 	      .on("end", draw)
@@ -190,7 +191,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
     	//Transition existing words
         var cloudTransition = cloud
             .transition()
-                .duration(600)
+                .duration(that.tagDuration())
                 .style("font-size", function(d) { return d.size + "px"; })
                 .attr("transform", function(d) {
                     return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
