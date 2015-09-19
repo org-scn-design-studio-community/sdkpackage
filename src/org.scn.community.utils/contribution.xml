@@ -1202,4 +1202,63 @@
 
 	</component>
 
+<component
+	id="WSPusher"
+	title="WebSocket Implementation"
+	tooltip="Opens a WebSocket connection to a specified web server"
+	icon="res/WSPusher/WSPusher.png"
+	handlerType="sapui5"
+	group="ScnCommunityUtils">
+
+	<jsInclude>res/common_basics.js</jsInclude>
+	<jsInclude>res/WSPusher/WSPusher.js</jsInclude>
+	
+	<property
+		id="server"
+		title="Server URL"
+		tooltip=""
+		type="String"
+		visible="true"/>
+	<property
+		id="msg"
+		title="Message for server"
+		tooltip=""
+		type="String"
+		visible="false"/>
+	<property
+		id="push"
+		title="Push answer from server"
+		tooltip=""
+		type="String"
+		visible="false"/>
+	<property
+		id="send"
+		title="Message send trigger"
+		tooltip=""
+		type="String"
+		visible="false"/>
+	<property
+		id="onPushReceived"
+		type="ScriptText"
+		title="On Push Message Received"
+		group="Events"
+		visible="true"/>
+	<property
+		id="onPushErrorReceived"
+		type="ScriptText"
+		title="On Push Error Message Received"
+		group="Events"
+		visible="true"/>
+
+	<initialization>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="TOP_MARGIN">-2000</defaultValue>
+		<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="server">ws://echo.websocket.org/</defaultValue>
+	</initialization>
+
+</component>
 </sdkExtension>

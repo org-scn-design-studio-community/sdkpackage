@@ -1,0 +1,51 @@
+/**
+ * Class for WSPusher
+ */
+class org.scn.community.utils.WSPusher extends org.scn.community.shared.Component {
+	/**
+	 * Get Server URL
+	 */
+	String getServerURL(){*
+		return this.server;
+	*}
+	/**
+	 * Set Server URL.
+	 * Examples
+	 * Non-Secure connection: ws://echo.websocket.org
+	 * Secure connection: wss://echo.websocket.org
+	 */
+	void setServerURL(String url){*
+		this.server = url;
+	*}
+	
+	/**
+	 * Get latest push message. Should be called from within event handler (onPushReceived,onPushErrorReceived)
+	 */
+	String getLastPushMessage(){*
+		return this.push;
+	*}
+	/**
+	 * Set message to be send to the destination WebSocket. Should be called before send method.
+	 * We recommend using JSON as data format
+	 */
+	void setMessage(String msg){*
+		this.msg = msg;
+	*}
+	/**
+	 * Get Message to be send to server
+	 */
+	String getMessage(){*
+		return this.msg;
+	*}
+	/**
+	 * Send actual message to WebSocket compatible server. You need to setup the message with setMessage before!
+	 */
+	void send(){*
+		this.send = calcTimestamp();
+	*}
+	
+	@Visibility(private)
+	String calcTimestamp() {*
+		return new Date().valueOf();
+	*}
+}

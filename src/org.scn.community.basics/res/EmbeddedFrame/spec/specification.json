@@ -16,7 +16,7 @@
 	},
 	"domainrelaxlevel": {
 	  "type" : "int",
-	  "value" : "",
+	  "value" : "0",
 	  "visible": true,
 	  "opts": {
 		    "apsControl": "text",
@@ -31,7 +31,7 @@
 	},
 	"skipport": {
 	  "type" : "boolean",
-	  "value" : "",
+	  "value" : "true",
 	  "visible": true,
 	  "opts": {
 		    "apsControl": "checkbox",

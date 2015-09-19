@@ -33,7 +33,7 @@
       "ztlType": "int"
     },
     "type": "int",
-    "value": "",
+    "value": "0",
     "visible": true
   },
   "skipport": {
