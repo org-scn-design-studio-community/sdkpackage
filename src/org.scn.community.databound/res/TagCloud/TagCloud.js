@@ -87,7 +87,8 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.tagCloud", 
 					"\n\nNew:" + currentWidth + " x " + currentHeight);
 			*/
 			that._previousHeight = currentHeight;
-			that._previousWidth = currentWidth;	
+			that._previousWidth = currentWidth;
+			//execute draw instead of afterUpdate function. This prevents the cloud layout from re-running on browser resize when using auto width/height
 			draw(tags);
 		}else{
 			// Sizes are the same.  Don't redraw, but poll again after an interval.
