@@ -11,7 +11,7 @@
 		<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/require_loader.js</jsInclude>
 		<jsInclude>res/TagCloud/TagCloud.js</jsInclude>
-		<cssInclude>res/TagCloud/TagCloud.css</cssInclude>
+		<cssInclude>res/TagCloud/TagCloud.css</cssInclude> 
 		<!-- This implicitly sets a metadata property -->
 		<property
 			id="savedData"
