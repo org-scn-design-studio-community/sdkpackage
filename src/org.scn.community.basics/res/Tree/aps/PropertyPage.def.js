@@ -159,14 +159,14 @@ ApsContent = function () {
       "cat": "Display",
       "desc": "Technical Proprty For Roundtrip",
       "noAps": true,
-      "noZtl": false,
+      "noZtl": true,
       "tooltip": "Technical Proprty For Roundtrip",
       "ztlFunction": "-get",
-      "ztlType": "String"
+      "ztlType": "int"
     },
     "template": "String",
-    "type": "String",
-    "value": "",
+    "type": "int",
+    "value": 0,
     "visible": false
   },
   "selectedKey": {

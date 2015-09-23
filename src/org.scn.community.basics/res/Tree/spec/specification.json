@@ -93,18 +93,18 @@
 	},
 	"roundtrip" : {
 		"template" : "String",
-		"type" : "String",
-		"value" : "",
+		"type" : "int",
+		"value" : 0,
 		"visible": false,
 		"opts" : {
-			"ztlType": "String",
+			"ztlType": "int",
 			"ztlFunction": "-get",
 			"desc" : "Technical Proprty For Roundtrip",
 			"cat" : "Display",
 			"tooltip" : "Technical Proprty For Roundtrip",
 			"apsControl" : "text",
 			"noAps" : true,
-			"noZtl" : false
+			"noZtl" : true
 		}
 	},
 	"selectedKey" : {

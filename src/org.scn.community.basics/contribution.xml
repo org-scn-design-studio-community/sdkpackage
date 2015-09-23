@@ -4969,7 +4969,7 @@
 	</property>
 	<property
 		id="roundtrip"
-		type="String"
+		type="int"
 		title="Technical Proprty For Roundtrip"
 		group="Display"
 		bindable="true"
@@ -5001,7 +5001,7 @@
 		<defaultValue property="nodesContent"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="onFirstExpand"><![CDATA[]]></defaultValue>
 		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
-		<defaultValue property="roundtrip"><![CDATA[]]></defaultValue>
+		<defaultValue property="roundtrip"><![CDATA[0]]></defaultValue>
 		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
 
 	</initialization>

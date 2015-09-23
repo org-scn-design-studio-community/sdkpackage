@@ -170,7 +170,7 @@ Tree = {
 			lNode.attachToggleOpenState(function(event) {
 				if(lNode._childrenRequested == undefined) {
 					that.setExpandedKey(lNode._Key);
-					that.setRoundtrip("+");
+					that.setRoundtrip(that.getRoundtrip() + 1);
 					
 					lNode._childrenRequested = true;
 

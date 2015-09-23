@@ -14948,12 +14948,7 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 
 
-	/**
-	 * Gets Technical Proprty For Roundtrip Property
-	 */	
-	String getRoundtrip() {*
-		return this.roundtrip;
-	*}
+
 
 	/**
 	 * Gets Technical Proprty For Selected Key Property
@@ -14980,7 +14975,7 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 	/** informs the UI that there is no note update (no children under given expanded key) */
 	void noNodeUpdate () {*
-		this.roundtrip = this.roundtrip == "-" ? "+" : "-";
+		this.roundtrip = this.roundtrip + 1;
 	*}
 	
 	/** Adds a tree node containing Key, Text, Image Url, Parent Node and is Leaf information.
