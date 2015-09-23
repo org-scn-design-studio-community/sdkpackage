@@ -48,7 +48,7 @@
       "ztlType": "boolean"
     },
     "type": "boolean",
-    "value": "",
+    "value": "true",
     "visible": true
   },
   "url": {

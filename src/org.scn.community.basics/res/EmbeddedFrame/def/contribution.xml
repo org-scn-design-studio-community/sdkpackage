@@ -51,8 +51,8 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="domainrelaxlevel">0</defaultValue>
-		<defaultValue property="skipport">true</defaultValue>
+		<defaultValue property="domainrelaxlevel"><![CDATA[0]]></defaultValue>
+		<defaultValue property="skipport"><![CDATA[true]]></defaultValue>
 		<defaultValue property="url"><![CDATA[]]></defaultValue>
 
 	</initialization>

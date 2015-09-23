@@ -2272,6 +2272,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to WebSocket Implementation component*/
+	org.scn.community.utils.WSPusher returnAsScnWSPusher (Component inputComponent) {* return inputComponent; *}
+
 
 }
 class org.scn.community.utils.CustomCssCollector extends org.scn.community.shared.Component {

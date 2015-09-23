@@ -3529,7 +3529,7 @@ __n__}
 		<jsInclude>res/common_basics.js</jsInclude>
 		<jsInclude>res/require_loader.js</jsInclude>
 		<jsInclude>res/TagCloud/TagCloud.js</jsInclude>
-		<cssInclude>res/TagCloud/TagCloud.css</cssInclude>
+		<cssInclude>res/TagCloud/TagCloud.css</cssInclude> 
 		<!-- This implicitly sets a metadata property -->
 		<property
 			id="savedData"
@@ -3551,12 +3551,14 @@ __n__}
 			type="String"
 			tooltip="Set the rotation of text tags over 5 characters in length"
 			visible="true"
-			group="Display"
-			>
-			<possibleValue>None</possibleValue>
-			<possibleValue>90 degrees</possibleValue>
-			<possibleValue>Random</possibleValue>
-		</property>
+			group="Display"/>
+		<property
+			id="tagDuration"
+			title="Tag Duration"
+			type="String"
+			tooltip="Time in ms for transitioning tags to move. Set higher for slower transitions."
+			visible="true"
+			group="Display"/>
 		<property
 			id="tagFont"
 			title="Tag Font"
@@ -3599,6 +3601,7 @@ __n__}
 			<defaultValue property="HEIGHT">400</defaultValue>
 			<defaultValue property="selectedNode">InitialNode</defaultValue>
 			<defaultValue property="tagRotation">None</defaultValue>
+			<defaultValue property="tagDuration">1000</defaultValue>
 			<defaultValue property="tagFont">Impact</defaultValue>
 		</initialization>
 	</component>

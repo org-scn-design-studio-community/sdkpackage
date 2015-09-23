@@ -14,7 +14,7 @@
 
 	/** informs the UI that there is no note update (no children under given expanded key) */
 	void noNodeUpdate () {*
-		this.roundtrip = "-";	
+		this.roundtrip = this.roundtrip == "-" ? "+" : "-";
 	*}
 	
 	/** Adds a tree node containing Key, Text, Image Url, Parent Node and is Leaf information.
