@@ -1193,6 +1193,10 @@ org_scn_community_databound.mixStructure = function (master, slave, opts) {
 org_scn_community_databound.checkRule = function (rule, content, value) {
 	var ruleAppliedPositive = false;
 	
+	if(rule.condition == undefined && rule.value == undefined) {
+		rule.condition = "contains";
+	}
+
 	if(rule.condition == "contains") {
 		for(rM in rule.members) {
 			var memberKey = rule.members[rM];
@@ -1325,27 +1329,27 @@ org_scn_community_databound.checkRule = function (rule, content, value) {
 				
 				if(!isNaN(valueFloat)) {
 					if(sign == ">") {
-						if(rule.exclude && !(valueFloat > ruleValueFloat)) {
+						if(rule.exclude && rule.exclude == true && !(valueFloat > ruleValueFloat)) {
 							ruleAppliedPositive = true;
 						}
 		
-						if(!rule.exclude && (valueFloat > ruleValueFloat)) {
+						if((rule.exclude == undefined || rule.exclude != true) && (valueFloat > ruleValueFloat)) {
 							ruleAppliedPositive = true;
 						}
 					} else if(sign == "<") {
-						if(rule.exclude && !(valueFloat < ruleValueFloat)) {
+						if(rule.exclude && rule.exclude == true && !(valueFloat < ruleValueFloat)) {
 							ruleAppliedPositive = true;
 						}
 		
-						if(!rule.exclude && (valueFloat < ruleValueFloat)) {
+						if((rule.exclude == undefined || rule.exclude != true) && (valueFloat < ruleValueFloat)) {
 							ruleAppliedPositive = true;
 						}
-					} else if(sign == "=") {
-						if(rule.exclude && !(valueFloat == ruleValueFloat)) {
+					} else if(sign == undefined || sign == "=") {
+						if(rule.exclude && rule.exclude == true && !(valueFloat == ruleValueFloat)) {
 							ruleAppliedPositive = true;
 						}
 		
-						if(!rule.exclude && (valueFloat == ruleValueFloat)) {
+						if((rule.exclude == undefined || rule.exclude != true) && (valueFloat == ruleValueFloat)) {
 							ruleAppliedPositive = true;
 						}
 					}
@@ -1467,11 +1471,12 @@ org_scn_community_databound.applyConditionalFormats = function (flatData, opts) 
 				if(insertRuleColumnPassed) {
 					for(rI in options.formattingCondition.rules) {
 						var content = flatData.data2D[mrI]["values"][mcI];
-						var value = content;
+						var value = undefined;
 						if(mcI>=flatData.geometry.headersLength) {
 							value = flatData.values[mrI][mcI-flatData.geometry.headersLength];
-							if(value == undefined) {value=content};
 						}
+
+						if(value == undefined) {value=content};
 
 						var ruleSimpleFormat = org_scn_community_databound.checkSimpleFormatingRule(options.formattingCondition.rules[rI], content, value);
 						
