@@ -161,6 +161,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 				var childUI = new sap.ui.commons.layout.VerticalLayout({
 					width : "100%"
 				});
+				childUI.addStyleClass("org-scn-ApsPropChild");
 				this.render(node.nodes[childNode],childUI);
 				if(!firstChildUI) firstChildUI = childUI;
 			};

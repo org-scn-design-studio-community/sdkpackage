@@ -14,6 +14,7 @@
 	<jsInclude>res/LeaderBoard/LeaderBoardLoader.js</jsInclude>
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 	
+	
 	<property
 		id="addCounter"
 		type="boolean"

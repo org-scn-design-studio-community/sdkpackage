@@ -14,6 +14,7 @@
 	<jsInclude>res/MenuButton/MenuButtonLoader.js</jsInclude>
 	<cssInclude>res/MenuButton/MenuButton.css</cssInclude>
 	
+	
 	<property
 		id="cleanAll"
 		type="boolean"

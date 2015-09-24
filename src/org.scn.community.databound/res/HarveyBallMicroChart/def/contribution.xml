@@ -14,6 +14,7 @@
 	<jsInclude>res/HarveyBallMicroChart/HarveyBallMicroChartLoader.js</jsInclude>
 	<cssInclude>res/HarveyBallMicroChart/HarveyBallMicroChart.css</cssInclude>
 	
+	
 	<property
 		id="colorPalette"
 		type="String"

@@ -383,6 +383,7 @@
 	<jsInclude>res/DataSourceHelper/DataSourceHelperLoader.js</jsInclude>
 	<cssInclude>res/DataSourceHelper/DataSourceHelper.css</cssInclude>
 	
+	
 	<property
 		id="cache"
 		type="boolean"
@@ -632,6 +633,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/JsonObject/JsonObjectLoader.js</jsInclude>
 	<cssInclude>res/JsonObject/JsonObject.css</cssInclude>
+	
 	
 	<property
 		id="content"

@@ -14,6 +14,7 @@
 	<jsInclude>res/Calendar/CalendarLoader.js</jsInclude>
 	<cssInclude>res/Calendar/Calendar.css</cssInclude>
 	
+	
 	<property
 		id="DCurrentValue"
 		type="String"

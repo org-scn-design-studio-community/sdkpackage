@@ -32,6 +32,10 @@
 	background-color: #FFFFFF !important;	
 }
 
+.org-scn-ApsPropChild {
+	padding-top:10px;
+}
+
 .org-scn-Aps-DetailList-SingleArray {
 	visibility: hidden;
 	display: none;

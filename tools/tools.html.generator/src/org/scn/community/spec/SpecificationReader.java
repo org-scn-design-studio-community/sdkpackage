@@ -46,6 +46,7 @@ public class SpecificationReader {
 	private ArrayList<String> componentRequries = new ArrayList<String>();
 	private ArrayList<String> componentRequries2 = new ArrayList<String>();
 	private ArrayList<String> componentStdIncludes = new ArrayList<String>();
+	private ArrayList<String> componentCssIncludes = new ArrayList<String>();
 	private String includeSpec;
 	private boolean hasUi5Spec;
 	private String repeaterSpec;
@@ -214,6 +215,19 @@ public class SpecificationReader {
 					String name = paramFullSpec.getProperties().get("name");
 					
 					componentStdIncludes.add("<stdInclude kind=\""+name+"\"/>");
+				}
+			} else if(key.equals("cssIncludes")) {
+				// special case, an array
+				
+				componentCssIncludes = new ArrayList<String>();
+				ParamFullSpec extendedFullSpecArray = property.getExtendedFullSpec();
+				
+				ArrayList<ParamFullSpec> parameters = extendedFullSpecArray.getParameters();
+				
+				for (ParamFullSpec paramFullSpec : parameters) {
+					String name = paramFullSpec.getProperties().get("name");
+					
+					componentCssIncludes.add("<cssInclude>"+name+"</cssInclude>");
 				}
 			} else if(key.startsWith("extends")) {
 				String newFile = pathToGenSpec.substring(0, pathToGenSpec.indexOf("org.scn.community."));
@@ -404,6 +418,7 @@ public class SpecificationReader {
 			content = content.replace("%COMPONENT_REQUIRE_SPEC%", this.serializeRequires());
 			content = content.replace("%COMPONENT_REQUIRE_SPEC2%", this.serializeRequires2());
 			content = content.replace("%COMPONENT_STD_INCLUDES_SPEC%", this.serializeStdIncludes());
+			content = content.replace("%COMPONENT_CSS_INCLUDES_SPEC%", this.serializeCssIncludes());
 			
 			content = content.replace("%XML_PROPERTY_TEMPLATE%", "");
 			content = content.replace("%XML_EVENT_TEMPLATE%", "");
@@ -480,6 +495,15 @@ public class SpecificationReader {
 		String requires = "";
 		
 		for (String require : componentStdIncludes) {
+			requires = requires + require + "\r\n\t";
+		}
+		return requires;
+	}
+	
+	private CharSequence serializeCssIncludes() {
+		String requires = "";
+		
+		for (String require : componentCssIncludes) {
 			requires = requires + require + "\r\n\t";
 		}
 		return requires;

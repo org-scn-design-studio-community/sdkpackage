@@ -14,6 +14,7 @@
 	<jsInclude>res/TextArea/TextAreaLoader.js</jsInclude>
 	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	
+	
 	<property
 		id="editable"
 		type="boolean"

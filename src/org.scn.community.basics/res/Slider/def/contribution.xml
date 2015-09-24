@@ -14,6 +14,7 @@
 	<jsInclude>res/Slider/SliderLoader.js</jsInclude>
 	<cssInclude>res/Slider/Slider.css</cssInclude>
 	
+	
 	<property
 		id="DLiveChangeActive"
 		type="boolean"

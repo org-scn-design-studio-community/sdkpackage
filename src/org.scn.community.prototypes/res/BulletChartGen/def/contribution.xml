@@ -15,6 +15,7 @@
 	<jsInclude>res/BulletChartGen/BulletChartGenLoader.js</jsInclude>
 	<cssInclude>res/BulletChartGen/BulletChartGen.css</cssInclude>
 	
+	
 	<property
 		id="clickedgraphkey"
 		type="String"

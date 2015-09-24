@@ -14,6 +14,7 @@
 	<jsInclude>res/DateRangeScroller/DateRangeScrollerLoader.js</jsInclude>
 	<cssInclude>res/DateRangeScroller/DateRangeScroller.css</cssInclude>
 	
+	
 	<property
 		id="DDate"
 		type="String"

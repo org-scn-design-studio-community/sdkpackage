@@ -383,46 +383,570 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		return this.DFixedHeader;
 	*}
 
-	/**
-	 * Sets (non-stable) Formatting Condition Property
-	 */	
-	void setFormattingCondition( /**(non-stable) Formatting Condition*/ String formattingCondition){*
-		this.DFormattingCondition = formattingCondition;
+	/** Adds an element containing parentKey [String], key [String] properties.
+	 * You need to specify a unique and existing parent element.
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	UI5TABLE.addMembers(parentKey [String], key [String]);<br>
+	UI5TABLE.addMembers(parentKey [String], key [String]);
+	</code>
+	</example>
+	 */
+	void addMembers (
+			/**Parent Key*/String parentKey, 
+			/**Content*/String key
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key 
+			};
+	
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			this.DFormattingContentCondition = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], description [String], condition [String], exclude [boolean], simpleFormat [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	UI5TABLE.addRule(key [String], description [String], condition [String], exclude [boolean], simpleFormat [String]);<br>
+	UI5TABLE.addRule(key [String], description [String], condition [String], exclude [boolean], simpleFormat [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addRule (
+			/**Unique Rule Key*/String key, 
+			/**Optional Description*/String description, 
+			/**Condition*/String condition, 
+			/**Exclude*/boolean exclude, 
+			/**Simple Format Name*/String simpleFormat
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:false,
+			parentKey:"ROOT",
+			key:key, 
+			description:description, 
+			condition:condition, 
+			exclude:exclude, 
+			simpleFormat:simpleFormat 
+			};
+	
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			this.DFormattingContentCondition = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	UI5TABLE.removeMembers(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeMembers (
+			String key
+			) {*		
+		
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			this.DFormattingContentCondition = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	UI5TABLE.removeRule(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeRule (
+			String key
+			) {*		
+		
+		this.removeMembers(key);
 	*}
 
 	/**
-	 * Gets (non-stable) Formatting Condition Property
+	 * Gets Rules As JSON String
 	 */	
-	String getFormattingCondition() {*
-		return this.DFormattingCondition;
+	String getRulesAsJSON() {*
+		var jsonObject = JSON.parse(this.DFormattingContentCondition);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Description for Rule keys<br/>
+	 */
+	void setRuleDescriptions (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Description */ String description
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].description = description;
+					break;
+				}
+			}
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
 	*}
 
 	/**
-	 * Sets (non-stable) Formatting Operator Property by String
+	 * Sets the Description for Rule Key<br/>
+	 */
+	void setRuleDescription (
+			/**/ String key,
+			/**/ String description
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].description = description;
+				break;
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Description for Rule Key<br/>
+	 */
+	String getRuleDescription (
+			/**/ String key
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].description;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Condition for Rule keys<br/>
+	 */
+	void setRuleConditions (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Condition */ String condition
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].condition = condition;
+					break;
+				}
+			}
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Condition for Rule Key<br/>
+	 */
+	void setRuleCondition (
+			/**/ String key,
+			/**/ String condition
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].condition = condition;
+				break;
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Condition for Rule Key<br/>
+	 */
+	String getRuleCondition (
+			/**/ String key
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].condition;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Exclude for Rule keys<br/>
+	 */
+	void setRuleExcludes (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].exclude = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].exclude = true;
+					break;
+				}
+			}
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Exclude for Rule Key<br/>
+	 */
+	void setRuleExclude (
+			/**/ String key,
+			/**/ boolean exclude
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].exclude = exclude;
+				break;
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Exclude of Rule keys<br/>
+	 */
+	void cleanAllRuleExcludes (
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].exclude = false;
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Exclude for Rule Key<br/>
+	 */
+	String getRuleExclude (
+			/**/ String key
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].exclude;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+	/**
+	 * Returns the Exclude keys<br/>
+	 */
+	org.scn.pack.KeyArray getRuleExcludeKeysArray (
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].exclude == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the SimpleFormat for Rule keys<br/>
+	 */
+	void setRuleSimpleFormats (
+			/**/ String keys,
+			/**/ String separator,
+	        /* SimpleFormat */ String simpleFormat
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].simpleFormat = simpleFormat;
+					break;
+				}
+			}
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the SimpleFormat for Rule Key<br/>
+	 */
+	void setRuleSimpleFormat (
+			/**/ String key,
+			/**/ String simpleFormat
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].simpleFormat = simpleFormat;
+				break;
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of SimpleFormat for Rule Key<br/>
+	 */
+	String getRuleSimpleFormat (
+			/**/ String key
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].simpleFormat;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
+	/**
+	 * Sets Formatting Operator Property by String
 	 */	
-	void setFormattingOperatorByString( /**(non-stable) Formatting Operator*/ String formattingOperator){*
+	void setFormattingOperatorByString( /**Formatting Operator*/ String formattingOperator){*
 		this.DFormattingOperator = formattingOperator;
 	*}
 
 	/**
-	 * Gets (non-stable) Formatting Operator Property as String
+	 * Gets Formatting Operator Property as String
 	 */	
 	String getFormattingOperatorAsString() {*
 		return this.DFormattingOperator;
 	*}
 	
 	/**
-	 * Sets (non-stable) Formatting Operator Property by Choice Option
+	 * Sets Formatting Operator Property by Choice Option
 	 */	
-	void setFormattingOperator( /**(non-stable) Formatting Operator*/ org_scn_community_shared_FormattingOperatorEnumfield formattingOperator){*
+	void setFormattingOperator( /**Formatting Operator*/ org_scn_community_shared_FormattingOperatorEnumfield formattingOperator){*
 		this.DFormattingOperator = formattingOperator;
 	*}
 	
 	/**
-	 * Gets (non-stable) Formatting Operator Property as Choice Option
+	 * Gets Formatting Operator Property as Choice Option
 	 */	
 	org_scn_community_shared_FormattingOperatorEnumfield getFormattingOperator() {*
 		return this.DFormattingOperator;
+	*}
+
+	/**
+	 * Sets Rules for Number Values Property
+	 */	
+	void setFormattingValueCondition( /**Rules for Number Values*/ String formattingValueCondition){*
+		this.DFormattingValueCondition = formattingValueCondition;
+	*}
+
+	/**
+	 * Gets Rules for Number Values Property
+	 */	
+	String getFormattingValueCondition() {*
+		return this.DFormattingValueCondition;
 	*}
 
 	/**

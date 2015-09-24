@@ -14,6 +14,7 @@
 	<jsInclude>res/RangeSlider/RangeSliderLoader.js</jsInclude>
 	<cssInclude>res/RangeSlider/RangeSlider.css</cssInclude>
 	
+	
 	<property
 		id="DLiveChangeActive"
 		type="boolean"

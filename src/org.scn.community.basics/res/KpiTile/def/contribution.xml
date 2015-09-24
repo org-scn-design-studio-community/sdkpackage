@@ -14,6 +14,7 @@
 	<jsInclude>res/KpiTile/KpiTileLoader.js</jsInclude>
 	<cssInclude>res/KpiTile/KpiTile.css</cssInclude>
 	
+	
 	<property
 		id="clickedComponent"
 		type="String"

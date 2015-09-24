@@ -206,6 +206,7 @@
 	<jsInclude>res/ApsTester/ApsTesterLoader.js</jsInclude>
 	<cssInclude>res/ApsTester/ApsTester.css</cssInclude>
 	
+	
 	<property
 		id="checkboxExample"
 		type="boolean"
@@ -346,6 +347,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ApsTesterUI5/ApsTesterUI5Loader.js</jsInclude>
 	<cssInclude>res/ApsTesterUI5/ApsTesterUI5.css</cssInclude>
+	
 	
 	<property
 		id="checkboxExample"
@@ -639,6 +641,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/BulletChartGen/BulletChartGenLoader.js</jsInclude>
 	<cssInclude>res/BulletChartGen/BulletChartGen.css</cssInclude>
+	
 	
 	<property
 		id="clickedgraphkey"

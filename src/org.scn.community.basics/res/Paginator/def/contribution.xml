@@ -14,6 +14,7 @@
 	<jsInclude>res/Paginator/PaginatorLoader.js</jsInclude>
 	<cssInclude>res/Paginator/Paginator.css</cssInclude>
 	
+	
 	<property
 		id="currentPage"
 		type="int"

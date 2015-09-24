@@ -846,6 +846,7 @@
 	<jsInclude>res/FacetFilter/FacetFilterLoader.js</jsInclude>
 	<cssInclude>res/FacetFilter/FacetFilter.css</cssInclude>
 	
+	
 	<property
 		id="DClearOthers"
 		type="boolean"
@@ -1046,6 +1047,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/FacetSelector/FacetSelectorLoader.js</jsInclude>
 	<cssInclude>res/FacetSelector/FacetSelector.css</cssInclude>
+	
 	
 	<property
 		id="DClearOthers"
@@ -2409,6 +2411,7 @@ __n__}
 	<jsInclude>res/ProcessFlow/ProcessFlowLoader.js</jsInclude>
 	<cssInclude>res/ProcessFlow/ProcessFlow.css</cssInclude>
 	
+	
 	<property
 		id="connections"
 		type="String"
@@ -2710,6 +2713,7 @@ __n__}
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/RadioButtonGroup/RadioButtonGroupLoader.js</jsInclude>
 	<cssInclude>res/RadioButtonGroup/RadioButtonGroup.css</cssInclude>
+	
 	
 	<property
 		id="buttons"
@@ -4035,6 +4039,8 @@ __n__}
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/UI5Table/UI5TableLoader.js</jsInclude>
 	<cssInclude>res/UI5Table/UI5Table.css</cssInclude>
+	<cssInclude>res/_css/simple_formats.css</cssInclude>
+	
 	
 	<property
 		id="DAllowColumnReorder"
@@ -4118,9 +4124,9 @@ __n__}
 
 	</property>
 	<property
-		id="DFormattingCondition"
+		id="DFormattingContentCondition"
 		type="String"
-		title="(non-stable) Formatting Condition"
+		title="Rules for String Content"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -4129,7 +4135,16 @@ __n__}
 	<property
 		id="DFormattingOperator"
 		type="String"
-		title="(non-stable) Formatting Operator"
+		title="Formatting Operator"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DFormattingValueCondition"
+		type="String"
+		title="Rules for Number Values"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -4234,8 +4249,9 @@ __n__}
 		<defaultValue property="DEmptyDataValue"><![CDATA[]]></defaultValue>
 		<defaultValue property="DEmptyHeaderValue"><![CDATA[]]></defaultValue>
 		<defaultValue property="DFixedHeader"><![CDATA[true]]></defaultValue>
-		<defaultValue property="DFormattingCondition"><![CDATA[]]></defaultValue>
+		<defaultValue property="DFormattingContentCondition"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="DFormattingOperator"><![CDATA[UseFirst]]></defaultValue>
+		<defaultValue property="DFormattingValueCondition"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="DHeaderColWidth"><![CDATA[200]]></defaultValue>
 		<defaultValue property="DIgnoreResults"><![CDATA[true]]></defaultValue>
 		<defaultValue property="DNavigationMode"><![CDATA[Paginator]]></defaultValue>
@@ -4264,6 +4280,7 @@ __n__}
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/AreaMicroChart/AreaMicroChartLoader.js</jsInclude>
 	<cssInclude>res/AreaMicroChart/AreaMicroChart.css</cssInclude>
+	
 	
 	<property
 		id="chart"
@@ -4873,6 +4890,7 @@ __n__}
 	<jsInclude>res/BulletMicroChart/BulletMicroChartLoader.js</jsInclude>
 	<cssInclude>res/BulletMicroChart/BulletMicroChart.css</cssInclude>
 	
+	
 	<property
 		id="actual"
 		type="String"
@@ -5230,6 +5248,7 @@ __n__}
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/HarveyBallMicroChart/HarveyBallMicroChartLoader.js</jsInclude>
 	<cssInclude>res/HarveyBallMicroChart/HarveyBallMicroChart.css</cssInclude>
+	
 	
 	<property
 		id="colorPalette"

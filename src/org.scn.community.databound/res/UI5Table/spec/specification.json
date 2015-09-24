@@ -190,9 +190,9 @@
            "ztlType":"Choice",
            "choiceType":"FormattingOperator",
            "ztlFunction":"",
-           "desc":"(non-stable) Formatting Operator",
-           "cat":"Prototypes",
-           "tooltip":"(non-stable) Formatting Operator",
+           "desc":"Formatting Operator",
+           "cat":"Conditional Formats",
+           "tooltip":"Formatting Operator",
            "apsControl":"combobox",
            "options":[
               {
@@ -210,19 +210,148 @@
            ]
         }
      },
-     "DFormattingCondition" : {
-		"type" : "String",
-		"value" : "",
-		"visible": true,
-		"opts" : {
-			"ztlType": "String",
-			"ztlFunction": "",
-			"desc" : "(non-stable) Formatting Condition",
-			"cat" : "Prototypes",
-			"tooltip" : "(non-stable) Formatting Condition",
-			"apsControl" : "text",
-			"noAps":false,
-			"noZtl":false
+	"DFormattingContentCondition": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"DoubleArray",
+	        "ztlFunction":"-unique",
+	         
+	        "arrayDefinition":{
+	            "rule":{
+	               "type":"Array",
+	               "desc": "Rule",
+	               "sequence":"key,description,condition,exclude,simpleFormat,members",
+	               "key":{
+	                  "desc":"Unique Rule Key",
+	                  "type":"String"
+	               },
+	               "description":{
+	                  "desc":"Optional Description",
+	                  "type":"String"
+	               },
+	               "condition":{
+	                 "apsControl": "combobox",
+			         "desc": "Condition",
+			         "options": [
+			            {
+			              "key": "equals",
+			              "text": "Equals"
+			            },
+			            {
+			              "key": "contains",
+			              "text": "Contains"
+			            },
+			            {
+			              "key": "pattern",
+			              "text": "Pattern"
+			            },
+			            {
+			              "key": "empty",
+			              "text": "Empty"
+			            }
+			         ],
+                     "type":"String",
+                     "value": "contains"
+               	  },
+               	  "exclude":{
+                     "desc":"Exclude",
+                     "type":"boolean"
+                  },
+                  "simpleFormat":{
+                     "desc":"Simple Format Name",
+                     "type":"String"
+                  },
+	              "members":{
+	                  "type":"Array",
+	                  "desc": "Members",
+	                  "sequence":"parentKey,key",
+	                  "parentKey":{
+		                "desc":"Parent Key",
+		                "type":"String",
+		              	"mode":"ztl"
+		              },
+	                  "key":{
+	                     "desc":"Content",
+	                     "type":"String"
+	                  }
+	               }
+	            }
+	        },
+ 
+			"desc":"Rules for String Content",
+			"cat":"Conditional Formats",
+			"tooltip":"List of Conditional Content Rules",
+
+			"apsControl":"array",
+			"arrayMode":"TwoLevelArray"
+		}
+	},
+	"DFormattingValueCondition": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"-unique",
+	         
+	        "arrayDefinition":{
+	            "rule":{
+	               "type":"Array",
+	               "desc": "Rule",
+	               "sequence":"key,description,sign,value,exclude,simpleFormat",
+	               "key":{
+	                  "desc":"Unique Rule Key",
+	                  "type":"String"
+	               },
+	               "description":{
+	                  "desc":"Optional Description",
+	                  "type":"String"
+	               },
+                   "sign":{
+	                 "apsControl": "combobox",
+			         "desc": "Sign",
+			         "options": [
+			            {
+			              "key": ">",
+			              "text": "Bigger (>)"
+			            },
+			            {
+			              "key": "<",
+			              "text": "Smaller (<)"
+			            },
+			            {
+			              "key": "=",
+			              "text": "Equals (=)"
+			            }
+			         ],
+                     "type":"String",
+                     "value": "="
+               	  },
+                  "value":{
+                     "desc":"Value to Compare",
+                     "type":"float"
+                  },
+                  "exclude":{
+                     "desc":"Exclude",
+                     "type":"boolean"
+                  },
+                  "simpleFormat":{
+                     "desc":"Simple Format Name",
+                     "type":"String"
+                  }
+	            }
+	        },
+ 
+			"desc":"Rules for Number Values",
+			"cat":"Conditional Formats",
+			"tooltip":"List of Conditional Value Rules",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray"
 		}
 	},
 	"DEmptyHeaderValue" : {

@@ -250,6 +250,7 @@
 	<jsInclude>res/ScalingDataSource/ScalingDataSourceLoader.js</jsInclude>
 	<cssInclude>res/ScalingDataSource/ScalingDataSource.css</cssInclude>
 	
+	
 	<property
 		id="data"
 		type="ResultCellSet"

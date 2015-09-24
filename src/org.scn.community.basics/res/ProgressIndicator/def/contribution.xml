@@ -14,6 +14,7 @@
 	<jsInclude>res/ProgressIndicator/ProgressIndicatorLoader.js</jsInclude>
 	<cssInclude>res/ProgressIndicator/ProgressIndicator.css</cssInclude>
 	
+	
 	<property
 		id="barColor"
 		type="String"

@@ -14,6 +14,7 @@
 	<jsInclude>res/EmbeddedFrame/EmbeddedFrameLoader.js</jsInclude>
 	<cssInclude>res/EmbeddedFrame/EmbeddedFrame.css</cssInclude>
 	
+	
 	<property
 		id="domainrelaxlevel"
 		type="int"

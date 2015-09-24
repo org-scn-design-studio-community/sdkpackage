@@ -14,6 +14,7 @@
 	<jsInclude>res/RSSFeedReader/RSSFeedReaderLoader.js</jsInclude>
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
 	
+	
 	<property
 		id="feedUrl"
 		type="Url"

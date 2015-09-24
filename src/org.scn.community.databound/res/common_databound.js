@@ -1198,12 +1198,12 @@ org_scn_community_databound.checkRule = function (rule, content, value) {
 			var memberKey = rule.members[rM];
 
 			if(content != undefined && content.length > 0) {
-				if(rule.exclude && content.indexOf(memberKey) == -1) {
+				if(rule.exclude && rule.exclude == true && content.indexOf(memberKey) == -1) {
 					ruleAppliedPositive = true;
 					break;
 				}
 				
-				if(!rule.exclude && content.indexOf(memberKey) > -1) {
+				if((rule.exclude == undefined || rule.exclude != true) && content.indexOf(memberKey) > -1) {
 					ruleAppliedPositive = true;
 					break;
 				}
@@ -1222,28 +1222,35 @@ org_scn_community_databound.checkRule = function (rule, content, value) {
 
 					if(patternCharacter == "?") {
 						// this index does not matter
+					} else if(patternCharacter == "*") {
+						break;
 					} else {
 						if(ruleAppliedPositive) {
 							// now when the characted is not fitting, we break with negative response
-							if(rule.exclude && patternCharacter == contentCharacter) {
+							if(rule.exclude && rule.exclude == true && patternCharacter == contentCharacter) {
 								ruleAppliedPositive = false;
 								break;
 							}
 							
-							if(!rule.exclude && patternCharacter != contentCharacter) {
+							if((rule.exclude == undefined || rule.exclude != true) && patternCharacter != contentCharacter) {
 								ruleAppliedPositive = false;
 								break;
 							}
 						} else {
-							if(rule.exclude && patternCharacter != contentCharacter) {
+							if(rule.exclude && rule.exclude == true && patternCharacter != contentCharacter) {
 								ruleAppliedPositive = true;
 							}
 							
-							if(!rule.exclude && patternCharacter == contentCharacter) {
+							if((rule.exclude == undefined || rule.exclude != true) && patternCharacter == contentCharacter) {
 								ruleAppliedPositive = true;
 							}
 						}
 					}
+				}
+
+				// we are in "OR" case, so first positive exits
+				if(ruleAppliedPositive) {
+					break;
 				}
 			}
 		}
@@ -1253,24 +1260,56 @@ org_scn_community_databound.checkRule = function (rule, content, value) {
 		for(rM in rule.members) {
 			var memberKey = rule.members[rM];
 
-			if(rule.exclude && content != memberKey) {
+			if(rule.exclude && rule.exclude == true && content != memberKey) {
 				ruleAppliedPositive = true;
 				break;
 			}
 
-			if(!rule.exclude && content == memberKey) {
+			if((rule.exclude == undefined || rule.exclude != true) && content == memberKey) {
 				ruleAppliedPositive = true;
 				break;
 			}
 		}
 	}
 	
+	if(rule.condition == "starts") {
+		for(rM in rule.members) {
+			var memberKey = rule.members[rM];
+
+			if(rule.exclude && rule.exclude == true && content.indexOf(memberKey) != 0) {
+				ruleAppliedPositive = true;
+				break;
+			}
+
+			if((rule.exclude == undefined || rule.exclude != true)&& content.indexOf(memberKey) == 0) {
+				ruleAppliedPositive = true;
+				break;
+			}
+		}
+	}
+
+	if(rule.condition == "ends") {
+		for(rM in rule.members) {
+			var memberKey = rule.members[rM];
+
+			if(rule.exclude && rule.exclude == true && content.indexOf(memberKey) != content.length - memberKey.length) {
+				ruleAppliedPositive = true;
+				break;
+			}
+
+			if((rule.exclude == undefined || rule.exclude != true) && content.indexOf(memberKey) == content.length - memberKey.length) {
+				ruleAppliedPositive = true;
+				break;
+			}
+		}
+	}
+
 	if(rule.condition == "empty") {
-		if(rule.exclude && content != "") {
+		if(rule.exclude && rule.exclude == true && content != "") {
 			ruleAppliedPositive = true;
 		}
 		
-		if(!rule.exclude && content == "") {
+		if((rule.exclude == undefined || rule.exclude != true) && content == "") {
 			ruleAppliedPositive = true;
 		}
 	}
@@ -1279,7 +1318,7 @@ org_scn_community_databound.checkRule = function (rule, content, value) {
 		var sign = rule.sign;
 		var ruleValue = rule.value;
 		
-		if(value) {
+		if(!isNaN(value)) {
 			try {
 				var valueFloat = parseFloat(value);
 				var ruleValueFloat = parseFloat(ruleValue);
@@ -1396,8 +1435,6 @@ org_scn_community_databound.applyConditionalFormats = function (flatData, opts) 
 	}
 	
 	if(options.formattingCondition.operator) {
-		var ruleSimpleFormat = false;
-		
 		for(var mrI=0;mrI<flatData.data2D.length;mrI++){
 			for(var mcI=0;mcI<flatData.data2D[mrI]["values"].length;mcI++){
 
@@ -1405,7 +1442,7 @@ org_scn_community_databound.applyConditionalFormats = function (flatData, opts) 
 
 				var colHeaderKey = "";
 				if(mcI < flatData.geometry.headersLength) {
-					colHeaderKey = flatData.dimensionCols[mcI].key;
+					colHeaderKey = flatData.dimensionHeadersKeys[mcI];
 				} else {
 					colHeaderKey = flatData.columnHeadersKeys[mcI - flatData.geometry.headersLength];
 				}
@@ -1427,7 +1464,7 @@ org_scn_community_databound.applyConditionalFormats = function (flatData, opts) 
 					flatData.data2D[mrI]["formats"] = [];
 				}
 
-					if(insertRuleColumnPassed) {
+				if(insertRuleColumnPassed) {
 					for(rI in options.formattingCondition.rules) {
 						var content = flatData.data2D[mrI]["values"][mcI];
 						var value = content;
@@ -1435,22 +1472,25 @@ org_scn_community_databound.applyConditionalFormats = function (flatData, opts) 
 							value = flatData.values[mrI][mcI-flatData.geometry.headersLength];
 							if(value == undefined) {value=content};
 						}
-						ruleSimpleFormat = org_scn_community_databound.checkSimpleFormatingRule(options.formattingCondition.rules[rI], content, value);
+
+						var ruleSimpleFormat = org_scn_community_databound.checkSimpleFormatingRule(options.formattingCondition.rules[rI], content, value);
 						
-						if(flatData.data2D[mrI]["formats"][mcI] == undefined || flatData.data2D[mrI]["formats"][mcI] == "") {
-							flatData.data2D[mrI]["formats"].push(ruleSimpleFormat);
-						} else {
-							if(options.formattingCondition.operator == "Collect") {
-								flatData.data2D[mrI]["formats"][mcI] = flatData.data2D[mrI]["formats"][mcI] + " " + ruleSimpleFormat;	
-							} else if(options.formattingCondition.operator == "UseLast") {
+						if(ruleSimpleFormat != "") {
+							if(flatData.data2D[mrI]["formats"][mcI] == undefined || flatData.data2D[mrI]["formats"][mcI] == "") {
 								flatData.data2D[mrI]["formats"][mcI] = ruleSimpleFormat;
-							} else if(options.formattingCondition.operator == "UseFirst") {
-								// do nothing
+							} else {
+								if(options.formattingCondition.operator == "Collect") {
+									flatData.data2D[mrI]["formats"][mcI] = flatData.data2D[mrI]["formats"][mcI] + " " + ruleSimpleFormat;	
+								} else if(options.formattingCondition.operator == "UseLast") {
+									flatData.data2D[mrI]["formats"][mcI] = ruleSimpleFormat;
+								} else if(options.formattingCondition.operator == "UseFirst") {
+									// do nothing
+								}
 							}
 						}
 					}
 				} else {
-					flatData.data2D[mrI]["formats"].push("no");
+					// flatData.data2D[mrI]["formats"].push("no");
 				}
 			}
 		}
@@ -1471,7 +1511,7 @@ org_scn_community_databound.checkSimpleFormatingRule = function (rule, content, 
 		return rule.simpleFormat;
 	}
 	
-	return "no";
+	return "";
 };
 
 org_scn_community_databound.updateCentralDataStorage = function (provisioner, data) {

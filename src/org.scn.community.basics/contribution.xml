@@ -208,6 +208,7 @@
 	<jsInclude>res/Accordion/AccordionLoader.js</jsInclude>
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 	
+	
 	<property
 		id="cleanAll"
 		type="boolean"
@@ -356,6 +357,7 @@
 	<jsInclude>res/ActivityViewer/ActivityViewerLoader.js</jsInclude>
 	<cssInclude>res/ActivityViewer/ActivityViewer.css</cssInclude>
 	
+	
 	<property
 		id="activities"
 		type="String"
@@ -434,6 +436,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ActionSheetButton/ActionSheetButtonLoader.js</jsInclude>
 	<cssInclude>res/ActionSheetButton/ActionSheetButton.css</cssInclude>
+	
 	
 	<property
 		id="buttonType"
@@ -543,6 +546,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ApplicationHeader/ApplicationHeaderLoader.js</jsInclude>
 	<cssInclude>res/ApplicationHeader/ApplicationHeader.css</cssInclude>
+	
 	
 	<property
 		id="displayLogoff"
@@ -705,6 +709,7 @@
 	<jsInclude>res/BasicBusinessCard/BasicBusinessCardLoader.js</jsInclude>
 	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
 	
+	
 	<property
 		id="image"
 		type="String"
@@ -773,6 +778,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/Calendar/CalendarLoader.js</jsInclude>
 	<cssInclude>res/Calendar/Calendar.css</cssInclude>
+	
 	
 	<property
 		id="DCurrentValue"
@@ -931,6 +937,7 @@
 	<jsInclude>res/CheckBoxGroup/CheckBoxGroupLoader.js</jsInclude>
 	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 	
+	
 	<property
 		id="cleanAll"
 		type="boolean"
@@ -1020,6 +1027,7 @@
 	<jsInclude>res/ColorPicker/ColorPickerLoader.js</jsInclude>
 	<cssInclude>res/ColorPicker/ColorPicker.css</cssInclude>
 	
+	
 	<property
 		id="colorString"
 		type="String"
@@ -1078,6 +1086,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/DateRangeScroller/DateRangeScrollerLoader.js</jsInclude>
 	<cssInclude>res/DateRangeScroller/DateRangeScroller.css</cssInclude>
+	
 	
 	<property
 		id="DDate"
@@ -1227,6 +1236,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/DateRangeSlider/DateRangeSliderLoader.js</jsInclude>
 	<cssInclude>res/DateRangeSlider/DateRangeSlider.css</cssInclude>
+	
 	
 	<property
 		id="DGranularity"
@@ -1407,6 +1417,7 @@
 	<jsInclude>res/DragDropArea/DragDropAreaLoader.js</jsInclude>
 	<cssInclude>res/DragDropArea/DragDropArea.css</cssInclude>
 	
+	
 	<property
 		id="cleanAll"
 		type="boolean"
@@ -1566,6 +1577,7 @@
 	<jsInclude>res/EmbeddedFrame/EmbeddedFrameLoader.js</jsInclude>
 	<cssInclude>res/EmbeddedFrame/EmbeddedFrame.css</cssInclude>
 	
+	
 	<property
 		id="domainrelaxlevel"
 		type="int"
@@ -1626,6 +1638,7 @@
 	<jsInclude>res/EmbeddedMedia/EmbeddedMediaLoader.js</jsInclude>
 	<cssInclude>res/EmbeddedMedia/EmbeddedMedia.css</cssInclude>
 	
+	
 	<property
 		id="tag"
 		type="String"
@@ -1675,6 +1688,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/FallbackPicture/FallbackPictureLoader.js</jsInclude>
 	<cssInclude>res/FallbackPicture/FallbackPicture.css</cssInclude>
+	
 	
 	<property
 		id="fallbackPicture"
@@ -1916,6 +1930,7 @@
 	<jsInclude>res/FishEye/FishEyeLoader.js</jsInclude>
 	<cssInclude>res/FishEye/FishEye.css</cssInclude>
 	
+	
 	<property
 		id="cleanAll"
 		type="boolean"
@@ -2066,6 +2081,7 @@
 	<jsInclude>res/ImageCarousel/ImageCarouselLoader.js</jsInclude>
 	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 	
+	
 	<property
 		id="cleanAll"
 		type="boolean"
@@ -2144,6 +2160,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/KpiTile/KpiTileLoader.js</jsInclude>
 	<cssInclude>res/KpiTile/KpiTile.css</cssInclude>
+	
 	
 	<property
 		id="clickedComponent"
@@ -2232,6 +2249,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/KpiView/KpiViewLoader.js</jsInclude>
 	<cssInclude>res/KpiView/KpiView.css</cssInclude>
+	
 	
 	<property
 		id="data"
@@ -2533,6 +2551,7 @@
 	<jsInclude>res/LeaderBoard/LeaderBoardLoader.js</jsInclude>
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 	
+	
 	<property
 		id="addCounter"
 		type="boolean"
@@ -2661,6 +2680,7 @@
 	<jsInclude>res/Link/LinkLoader.js</jsInclude>
 	<cssInclude>res/Link/Link.css</cssInclude>
 	
+	
 	<property
 		id="onPress"
 		type="ScriptText"
@@ -2709,6 +2729,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ListSelector/ListSelectorLoader.js</jsInclude>
 	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
+	
 	
 	<property
 		id="cleanAll"
@@ -2909,6 +2930,7 @@
 	<jsInclude>res/MenuBar/MenuBarLoader.js</jsInclude>
 	<cssInclude>res/MenuBar/MenuBar.css</cssInclude>
 	
+	
 	<property
 		id="cleanAll"
 		type="boolean"
@@ -2997,6 +3019,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/MenuButton/MenuButtonLoader.js</jsInclude>
 	<cssInclude>res/MenuButton/MenuButton.css</cssInclude>
+	
 	
 	<property
 		id="cleanAll"
@@ -3182,6 +3205,7 @@
 	<jsInclude>res/NavigationBar/NavigationBarLoader.js</jsInclude>
 	<cssInclude>res/NavigationBar/NavigationBar.css</cssInclude>
 	
+	
 	<property
 		id="DCleanAll"
 		type="boolean"
@@ -3270,6 +3294,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/NotificationBar/NotificationBarLoader.js</jsInclude>
 	<cssInclude>res/NotificationBar/NotificationBar.css</cssInclude>
+	
 	
 	<property
 		id="categories"
@@ -3381,6 +3406,7 @@
 	<jsInclude>res/Notify/NotifyLoader.js</jsInclude>
 	<cssInclude>res/Notify/Notify.css</cssInclude>
 	
+	
 	<property
 		id="delay"
 		type="int"
@@ -3470,6 +3496,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/Map/MapLoader.js</jsInclude>
 	<cssInclude>res/Map/Map.css</cssInclude>
+	
 	
 	<property
 		id="cleanAll"
@@ -3610,6 +3637,7 @@
 	<jsInclude>res/Paginator/PaginatorLoader.js</jsInclude>
 	<cssInclude>res/Paginator/Paginator.css</cssInclude>
 	
+	
 	<property
 		id="currentPage"
 		type="int"
@@ -3668,6 +3696,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/PasswordField/PasswordFieldLoader.js</jsInclude>
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
+	
 	
 	<property
 		id="editable"
@@ -3747,6 +3776,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/QRCode/QRCodeLoader.js</jsInclude>
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
+	
 	
 	<property
 		id="background"
@@ -3887,6 +3917,7 @@
 	<jsInclude>res/ProgressIndicator/ProgressIndicatorLoader.js</jsInclude>
 	<cssInclude>res/ProgressIndicator/ProgressIndicator.css</cssInclude>
 	
+	
 	<property
 		id="barColor"
 		type="String"
@@ -3966,6 +3997,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/RangeSlider/RangeSliderLoader.js</jsInclude>
 	<cssInclude>res/RangeSlider/RangeSlider.css</cssInclude>
+	
 	
 	<property
 		id="DLiveChangeActive"
@@ -4125,6 +4157,7 @@
 	<jsInclude>res/RatingIndicator/RatingIndicatorLoader.js</jsInclude>
 	<cssInclude>res/RatingIndicator/RatingIndicator.css</cssInclude>
 	
+	
 	<property
 		id="editable"
 		type="boolean"
@@ -4224,6 +4257,7 @@
 	<jsInclude>res/RoadMap/RoadMapLoader.js</jsInclude>
 	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
 	
+	
 	<property
 		id="DCleanAll"
 		type="boolean"
@@ -4303,6 +4337,7 @@
 	<jsInclude>res/RSSFeedReader/RSSFeedReaderLoader.js</jsInclude>
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
 	
+	
 	<property
 		id="feedUrl"
 		type="Url"
@@ -4362,6 +4397,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/SegmentedButton/SegmentedButtonLoader.js</jsInclude>
 	<cssInclude>res/SegmentedButton/SegmentedButton.css</cssInclude>
+	
 	
 	<property
 		id="DCleanAll"
@@ -4510,6 +4546,7 @@
 	<jsInclude>res/Slider/SliderLoader.js</jsInclude>
 	<cssInclude>res/Slider/Slider.css</cssInclude>
 	
+	
 	<property
 		id="DLiveChangeActive"
 		type="boolean"
@@ -4648,6 +4685,7 @@
 	<jsInclude>res/TextArea/TextAreaLoader.js</jsInclude>
 	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	
+	
 	<property
 		id="editable"
 		type="boolean"
@@ -4727,6 +4765,7 @@
 	<jsInclude>res/TimeOut/TimeOutLoader.js</jsInclude>
 	<cssInclude>res/TimeOut/TimeOut.css</cssInclude>
 	
+	
 	<property
 		id="onTimeout"
 		type="ScriptText"
@@ -4805,6 +4844,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ToggleButton/ToggleButtonLoader.js</jsInclude>
 	<cssInclude>res/ToggleButton/ToggleButton.css</cssInclude>
+	
 	
 	<property
 		id="enabled"
@@ -4915,6 +4955,7 @@
 	<jsInclude>res/Tree/TreeLoader.js</jsInclude>
 	<cssInclude>res/Tree/Tree.css</cssInclude>
 	
+	
 	<property
 		id="cleanAll"
 		type="boolean"
@@ -5023,6 +5064,7 @@
 	<jsInclude>res/TriStateCheckBox/TriStateCheckBoxLoader.js</jsInclude>
 	<cssInclude>res/TriStateCheckBox/TriStateCheckBox.css</cssInclude>
 	
+	
 	<property
 		id="editable"
 		type="boolean"
@@ -5111,6 +5153,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/ValiInput/ValiInputLoader.js</jsInclude>
 	<cssInclude>res/ValiInput/ValiInput.css</cssInclude>
+	
 	
 	<property
 		id="DDefault"
@@ -5221,6 +5264,7 @@
 	<jsInclude>res/ValueHelpField/ValueHelpFieldLoader.js</jsInclude>
 	<cssInclude>res/ValueHelpField/ValueHelpField.css</cssInclude>
 	
+	
 	<property
 		id="editable"
 		type="boolean"
@@ -5308,6 +5352,7 @@
 	<jsInclude>res/require_loader.js</jsInclude>
 	<jsInclude>res/WorldTime/WorldTimeLoader.js</jsInclude>
 	<cssInclude>res/WorldTime/WorldTime.css</cssInclude>
+	
 	
 	<property
 		id="dateformat"

@@ -14,6 +14,7 @@
 	<jsInclude>res/ImageCarousel/ImageCarouselLoader.js</jsInclude>
 	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 	
+	
 	<property
 		id="cleanAll"
 		type="boolean"

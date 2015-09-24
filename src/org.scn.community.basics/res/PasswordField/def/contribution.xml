@@ -14,6 +14,7 @@
 	<jsInclude>res/PasswordField/PasswordFieldLoader.js</jsInclude>
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
 	
+	
 	<property
 		id="editable"
 		type="boolean"

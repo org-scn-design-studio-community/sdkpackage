@@ -14,6 +14,7 @@
 	<jsInclude>res/ValueHelpField/ValueHelpFieldLoader.js</jsInclude>
 	<cssInclude>res/ValueHelpField/ValueHelpField.css</cssInclude>
 	
+	
 	<property
 		id="editable"
 		type="boolean"

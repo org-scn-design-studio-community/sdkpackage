@@ -162,7 +162,32 @@ UI5Table = {
 		
 		var options = {};
 		options.formattingCondition = {};
-		options.formattingCondition.rules = that.getDFormattingCondition();
+		options.formattingCondition.rules = [];
+
+		var contCond = JSON.parse(that.getDFormattingContentCondition());
+		var valCond = JSON.parse(that.getDFormattingValueCondition());
+
+		for(var rI in contCond) {
+			if(contCond[rI].parentKey != "ROOT") {
+				for (var r2I in contCond) {
+					if(contCond[r2I].key == contCond[rI].parentKey) {
+						contCond[r2I].members = contCond[r2I].members || [];
+						contCond[r2I].members.push(contCond[rI].key);
+						break;
+					}
+				}
+			}
+			options.formattingCondition.rules.push(contCond[rI]);
+		}
+		for(var rI in options.formattingCondition.rules) {
+			if(options.formattingCondition.rules[rI].parentKey != "ROOT") {
+				delete options.formattingCondition.rules[rI];
+			}
+		}
+		for(var rI in valCond) {
+			valCond[rI].condition = "value";
+			options.formattingCondition.rules.push(valCond[rI]);
+		}
 		options.formattingCondition.operator = that.getDFormattingOperator();
 
 		options.conditionColumns = "";//that.getDColumnFormattingCondition();
@@ -173,10 +198,6 @@ UI5Table = {
 			that.addStyleClass("scn-pack-ActivateSimpleConditions");
 			that._table.bindRows("/data2D");
 			lPathPrefix = "values/";
-
-			if(options.formattingCondition.rules.length > 1) {
-				options.formattingCondition.rules = JSON.parse(options.formattingCondition.rules);
-			}
 		} else {
 			that._table.bindRows("/data2DPlain");
 		}

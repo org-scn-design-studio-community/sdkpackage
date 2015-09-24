@@ -238,6 +238,8 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 					} else if(parameterObject.type == "float" || parameterObject.type == "int") {
 						txtElementValue = new sap.ui.commons.TextField ({value : targetValue, width: "200px", textAlign: "Right"});
 						
+						var typeForCheck = parameterObject.type;
+
 						txtElementValue.attachChange(
 								function(oControlEvent){
 									var value = oControlEvent.getParameter("newValue");
@@ -246,7 +248,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 									var rootElement = that.getElement(that._listBuilder.getSelectedKey());
 									
 									if(!isNaN(value)) {
-										if(parameterObject.type == "float") {
+										if (typeForCheck == "float") {
 											rootElement[key] = parseFloat(value);	
 										} else {
 											rootElement[key] = parseInt(value);	
@@ -285,7 +287,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		for(var attrName in arrayDefinition) {
 			for (var childName in arrayDefinition[attrName]) {
 				if(arrayDefinition[attrName][childName] && arrayDefinition[attrName][childName].type == "Array") {
-					arrayDefinition = childName;
+					arrayDefinition = arrayDefinition[attrName][childName].desc ? arrayDefinition[attrName][childName] : childName;
 					break;
 				}
 			}
@@ -435,13 +437,15 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 			} else if(parameterObject.type == "float" || parameterObject.type == "int") {
 				txtItemValue = new sap.ui.commons.TextField ({value : targetValue, width: "200px", textAlign: "Right"});
 				
+				var typeForCheck = parameterObject.type;
+				
 				txtItemValue.attachChange(
 					function(oControlEvent){
 						var value = oControlEvent.getParameter("newValue");
 						var key = oControlEvent.getSource()._key;
 
 						if(!isNaN(value)) {
-							if(parameterObject.type == "float") {
+							if(typeForCheck == "float") {
 								that._currentItemConfig[key] = parseFloat(value);
 							} else {
 								that._currentItemConfig[key] = parseInt(value);	
@@ -617,7 +621,8 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		};
 		this._listBuilder.setSelectedKey(newKey);
 		this._elementsContent.push(newElement);
-		that.fireValueChange();
+
+		// that.fireValueChange();
 		this.rerenderComp();
 	},
 	/*
@@ -922,6 +927,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.propertysheet.Lis
 		return candidate;
 	},
 	init : function(){
+		this._list = [];
 		this._tools = new sap.ui.commons.layout.HorizontalLayout({});
 		this._listBox = new sap.ui.commons.ListBox({
 			width : "100%"

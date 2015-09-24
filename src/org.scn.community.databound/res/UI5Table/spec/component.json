@@ -28,7 +28,9 @@
 			"id" : "numberformatter",
 		}
 	],
-	
+	"cssIncludes": [
+		{ "name": "res/_css/simple_formats.css" }
+	],
 	"width": "800",
 	"height": "600"
 }
