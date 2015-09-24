@@ -1,0 +1,17 @@
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: gray;
+  stroke: gray;
+}
+
+.trellis {
+  pointer-events: none; 
+}
+
+.horizon_component {
+  pointer-events: none;
+}

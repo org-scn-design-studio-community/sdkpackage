@@ -1,0 +1,160 @@
+
+<component
+		id="horizonChart"
+		title="Horizon Chart"
+		icon="res/HorizonChart/HorizonChart.png"
+		handlerType="div"
+		group="ScnCommunityPrototypes"
+		databound="true"> <!-- This is set so that a data source can be assigned -->
+		<stdInclude kind="d3"/>
+		<jsInclude>os/horizon-chart/horizon.js</jsInclude>
+		<jsInclude>res/common_basics.js</jsInclude>
+		<jsInclude>res/require_loader.js</jsInclude>
+		<jsInclude>res/HorizonChart/HorizonChart.js</jsInclude>
+		<cssInclude>res/HorizonChart/HorizonChart.css</cssInclude>
+		<!-- This implicitly sets a metadata property -->
+		<property
+			id="savedData"
+			title="Complete Data Source Result Set"
+			type="ResultSet"
+			tooltip="Holds a reference to a result set"
+			visible="false"
+			group="DataBinding"/>
+		<property
+			id="horizonMeasure"
+			title="Horizon Measure"
+			type="ResultCellList"
+			tooltip="Measure to plot on horizon chart"
+			visible="true"
+			group="DataBinding"/>
+		<property
+			id="trellisDimension"
+			title="Trellis Dimension"
+			type="String"
+			tooltip="Optional dimension for small multiples"
+			visible="true"
+			group="DataBinding"/>
+		<property
+			id="bands"
+			title="Bands"
+			type="int"
+			tooltip="Integer value between 1-9 to define number of bands in horizon chart"
+			visible="true"
+			group="Display"
+			>
+			<possibleValue>1</possibleValue>
+			<possibleValue>2</possibleValue>
+			<possibleValue>3</possibleValue>
+			<possibleValue>4</possibleValue>
+			<possibleValue>5</possibleValue>
+		</property>
+		<property
+			id="mode"
+			title="Mode"
+			type="String"
+			tooltip="Set horizon chart to offset or mirror positive and negative values"
+			visible="true"
+			group="Display"
+			>
+			<possibleValue>offset</possibleValue>
+			<possibleValue>mirror</possibleValue>
+		</property>
+		<property
+			id="selectedNode"
+			title="selectedNode"
+			type="String"
+			tooltip="Returns a JSON object of the selected node"
+			visible="false"/>
+		<property
+			id="selectedYear"
+			title="selectedYear"
+			type="String"
+			tooltip="Returns a JSON object of the selected year"
+			visible="false"/>
+		<property
+			id="selectedMonth"
+			title="selectedMonth"
+			type="String"
+			tooltip="Returns a JSON object of the selected month"
+			visible="false"/>
+		<property
+			id="selectedDate"
+			title="selectedDate"
+			type="String"
+			tooltip="Returns a JSON object of the selected date"
+			visible="false"/>
+		<property
+			id="positiveColor1"
+			title="Positive Color 1"
+			type="String"
+			tooltip="Starting color for above average value range"
+			visible="true"
+			group="Display"/>
+		<property
+			id="positiveColor2"
+			title="Positive Color 2"
+			type="String"
+			tooltip="Ending color for above average value range"
+			visible="true"
+			group="Display"/>
+		<property
+			id="negativeColor1"
+			title="Negative Color 1"
+			type="String"
+			tooltip="Starting color for below average value range"
+			visible="true"
+			group="Display"/>
+		<property
+			id="negativeColor2"
+			title="Negative Color 2"
+			type="String"
+			tooltip="Ending color for below average value range"
+			visible="true"
+			group="Display"/>
+		<property
+			id="labelSize"
+			title="Label Size"
+			type="String"
+			tooltip="Size of trellis text labels"
+			visible="true"
+			group="Display"/>
+		<property
+			id="labelOffset"
+			title="Trellis Label Text Offset"
+			type="int"
+			tooltip="Set higher if your trellis dimension is a lot of characters"
+			visible="true"
+			group="Display"/>
+		<property
+			id="isEpoch"
+			title="Unix timestamp format"
+			type="String"
+			tooltip="Set to True if your date field is in seconds since Epoch format"
+			visible="true"
+			group="DataBinding"
+			>
+			<possibleValue>true</possibleValue>
+			<possibleValue>false</possibleValue>
+		</property>
+		<property 
+			id="onclick" 
+			type="ScriptText" 
+			title="On Click" 
+			group="Events" />
+		<initialization>
+			<defaultValue property="WIDTH">400</defaultValue>
+			<defaultValue property="HEIGHT">400</defaultValue>
+			<defaultValue property="selectedNode">InitialNode</defaultValue>
+			<defaultValue property="trellisDimension">None</defaultValue>
+			<defaultValue property="bands">1</defaultValue>
+			<defaultValue property="mode">mirror</defaultValue>
+			<defaultValue property="positiveColor1">#BAE4B3</defaultValue>
+			<defaultValue property="positiveColor2">#006D2C</defaultValue>
+			<defaultValue property="negativeColor1">#08519C</defaultValue>
+			<defaultValue property="negativeColor2">#BDD7E7</defaultValue>
+			<defaultValue property="labelSize">16</defaultValue>
+			<defaultValue property="labelOffset">25</defaultValue>
+			<defaultValue property="isEpoch">false</defaultValue>
+		</initialization>
+	</component>
+	

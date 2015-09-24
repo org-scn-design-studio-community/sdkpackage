@@ -1,0 +1,28 @@
+
+/**
+ * Class for Horizon Chart
+ */
+
+class org.scn.community.prototypes.horizonChart extends org.scn.community.shared.DataComponent {
+
+/* Returns the key of the selected trellis dimension. */
+	String getSelectedNodeKey() {*
+		return this.selectedNode;
+	*}
+
+/* Returns the year of the selected data point. */	
+	String getSelectedYear() {*
+		return this.selectedYear;
+	*}
+
+/* Returns the month of the selected data point. */	
+	String getSelectedMonth() {*
+		return this.selectedMonth;
+	*}
+
+/* Returns the compounded date/hour in format yyyymmddhh of the selected data point. */	
+	String getSelectedDate() {*
+		return this.selectedDate;
+	*}
+	
+}
