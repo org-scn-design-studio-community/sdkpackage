@@ -223,7 +223,7 @@
 	            "rule":{
 	               "type":"Array",
 	               "desc": "Rule",
-	               "sequence":"key,description,condition,exclude,simpleFormat,members",
+	               "sequence":"key,description,condition,columnHeaderId,exclude,simpleFormat,members",
 	               "key":{
 	                  "desc":"Unique Rule Key",
 	                  "type":"String"
@@ -256,6 +256,10 @@
                      "type":"String",
                      "value": "contains"
                	  },
+               	  "columnHeaderId":{
+                     "desc":"Column Header Id",
+                     "type":"String"
+                  },
                	  "exclude":{
                      "desc":"Exclude",
                      "type":"boolean"
@@ -302,7 +306,7 @@
 	            "rule":{
 	               "type":"Array",
 	               "desc": "Rule",
-	               "sequence":"key,description,sign,value,exclude,simpleFormat",
+	               "sequence":"key,description,sign,value,columnHeaderId,exclude,simpleFormat",
 	               "key":{
 	                  "desc":"Unique Rule Key",
 	                  "type":"String"
@@ -334,6 +338,10 @@
                   "value":{
                      "desc":"Value to Compare",
                      "type":"float"
+                  },
+               	  "columnHeaderId":{
+                     "desc":"Column Header Id",
+                     "type":"String"
                   },
                   "exclude":{
                      "desc":"Exclude",

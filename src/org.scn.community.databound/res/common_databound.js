@@ -1471,6 +1471,13 @@ org_scn_community_databound.applyConditionalFormats = function (flatData, opts) 
 				if(insertRuleColumnPassed) {
 					for(rI in options.formattingCondition.rules) {
 						var content = flatData.data2D[mrI]["values"][mcI];
+						var colHeaderKey = "";
+						if(mcI>=flatData.geometry.headersLength) {
+							colHeaderKey = flatData.columnHeadersKeys[mcI-flatData.geometry.headersLength];
+						} else {
+							colHeaderKey = flatData.dimensionHeadersKeys[mcI];
+						}
+
 						var value = undefined;
 						if(mcI>=flatData.geometry.headersLength) {
 							value = flatData.values[mrI][mcI-flatData.geometry.headersLength];
@@ -1478,8 +1485,15 @@ org_scn_community_databound.applyConditionalFormats = function (flatData, opts) 
 
 						if(value == undefined) {value=content};
 
-						var ruleSimpleFormat = org_scn_community_databound.checkSimpleFormatingRule(options.formattingCondition.rules[rI], content, value);
-						
+						var ruleSimpleFormat = "";
+						if(options.formattingCondition.rules[rI].columnHeaderId != undefined && options.formattingCondition.rules[rI].columnHeaderId != "") {
+							if(options.formattingCondition.rules[rI].columnHeaderId == colHeaderKey) {
+								ruleSimpleFormat = org_scn_community_databound.checkSimpleFormatingRule(options.formattingCondition.rules[rI], content, value);	
+							}
+						} else {
+							ruleSimpleFormat = org_scn_community_databound.checkSimpleFormatingRule(options.formattingCondition.rules[rI], content, value);	
+						}
+
 						if(ruleSimpleFormat != "") {
 							if(flatData.data2D[mrI]["formats"][mcI] == undefined || flatData.data2D[mrI]["formats"][mcI] == "") {
 								flatData.data2D[mrI]["formats"][mcI] = ruleSimpleFormat;

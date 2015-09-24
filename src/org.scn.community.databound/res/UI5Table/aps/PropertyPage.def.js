@@ -179,6 +179,10 @@ ApsContent = function () {
     "opts": {
       "apsControl": "array",
       "arrayDefinition": {"rule": {
+        "columnHeaderId": {
+          "desc": "Column Header Id",
+          "type": "String"
+        },
         "condition": {
           "apsControl": "combobox",
           "desc": "Condition",
@@ -230,7 +234,7 @@ ApsContent = function () {
           "sequence": "parentKey,key",
           "type": "Array"
         },
-        "sequence": "key,description,condition,exclude,simpleFormat,members",
+        "sequence": "key,description,condition,columnHeaderId,exclude,simpleFormat,members",
         "simpleFormat": {
           "desc": "Simple Format Name",
           "type": "String"
@@ -280,6 +284,10 @@ ApsContent = function () {
     "opts": {
       "apsControl": "array",
       "arrayDefinition": {"rule": {
+        "columnHeaderId": {
+          "desc": "Column Header Id",
+          "type": "String"
+        },
         "desc": "Rule",
         "description": {
           "desc": "Optional Description",
@@ -293,7 +301,7 @@ ApsContent = function () {
           "desc": "Unique Rule Key",
           "type": "String"
         },
-        "sequence": "key,description,sign,value,exclude,simpleFormat",
+        "sequence": "key,description,sign,value,columnHeaderId,exclude,simpleFormat",
         "sign": {
           "apsControl": "combobox",
           "desc": "Sign",
