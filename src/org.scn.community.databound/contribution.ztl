@@ -3058,13 +3058,13 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		this.DFormattingContentCondition = JSON.stringify(elementsJson);
 	*}
 
-	/** Adds a root element containing key [String], description [String], condition [String], exclude [boolean], simpleFormat [String].
+	/** Adds a root element containing key [String], description [String], condition [String], columnHeaderId [String], exclude [boolean], simpleFormat [String].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	UI5TABLE.addRule(key [String], description [String], condition [String], exclude [boolean], simpleFormat [String]);<br>
-	UI5TABLE.addRule(key [String], description [String], condition [String], exclude [boolean], simpleFormat [String]);<br>
+	UI5TABLE.addRule(key [String], description [String], condition [String], columnHeaderId [String], exclude [boolean], simpleFormat [String]);<br>
+	UI5TABLE.addRule(key [String], description [String], condition [String], columnHeaderId [String], exclude [boolean], simpleFormat [String]);<br>
 	<br>
 	</code>
 	</example>
@@ -3073,6 +3073,7 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 			/**Unique Rule Key*/String key, 
 			/**Optional Description*/String description, 
 			/**Condition*/String condition, 
+			/**Column Header Id*/String columnHeaderId, 
 			/**Exclude*/boolean exclude, 
 			/**Simple Format Name*/String simpleFormat
 			) {*		
@@ -3084,6 +3085,7 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 			key:key, 
 			description:description, 
 			condition:condition, 
+			columnHeaderId:columnHeaderId, 
 			exclude:exclude, 
 			simpleFormat:simpleFormat 
 			};
@@ -3324,6 +3326,85 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].condition;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the ColumnHeaderId for Rule keys<br/>
+	 */
+	void setRuleColumnHeaderIds (
+			/**/ String keys,
+			/**/ String separator,
+	        /* ColumnHeaderId */ String columnHeaderId
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].columnHeaderId = columnHeaderId;
+					break;
+				}
+			}
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the ColumnHeaderId for Rule Key<br/>
+	 */
+	void setRuleColumnHeaderId (
+			/**/ String key,
+			/**/ String columnHeaderId
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].columnHeaderId = columnHeaderId;
+				break;
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of ColumnHeaderId for Rule Key<br/>
+	 */
+	String getRuleColumnHeaderId (
+			/**/ String key
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].columnHeaderId;
 				break;
 			}
 		}
