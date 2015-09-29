@@ -406,10 +406,16 @@ KpiTile = {
 						if(entryArray == "true" || entryArray == "false") {
 							entryArray = (entryArray == "true");
 						} else {
-							var intValue = parseInt(entryArray, 10);
-							if(!isNaN(intValue)) {
-								entryArray = intValue;
+							if(entryArray.indexOf(".") > -1) {
+								var floatValue = parseFloat(entryArray);
+								if(!isNaN(floatValue) && (""+floatValue).length == entryArray.length) {
+									entryArray = floatValue;
+								}	
 							}
+							var intValue = parseInt(entryArray);
+							if(!isNaN(intValue) && (""+intValue).length == entryArray.length) {
+								entryArray = intValue;
+							}	
 						}
 					}
 				} 
