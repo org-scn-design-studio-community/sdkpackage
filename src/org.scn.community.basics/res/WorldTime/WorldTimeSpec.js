@@ -197,9 +197,9 @@
 
 	org_scn_community_require.knownComponents.basics.WorldTime.specAbout = 
 {
-  "description": "WorldTime",
+  "description": "World Time",
   "icon": "WorldTime.png",
-  "title": "WorldTime 2.0",
+  "title": "World Time 2.0",
   "topics": [
     {
       "content": "WorldTime",

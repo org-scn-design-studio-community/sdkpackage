@@ -1,82 +1,128 @@
 {
-
-	"timer" : {
-		"template" : "int",
-		"type" : "int",
-		"value" : 5000,
-		"visible": true,
-		"opts" : {
-			"ztlType": "int",
-			"ztlFunction": "",
-			"desc" : "Timeout after (ms)",
-			"cat" : "Display",
-			"tooltip" : "Timeout after (ms)",
-			"apsControl" : "spinner",
-			"noAps" : false,
-			"noZtl" : false
-		}
-	},
-	  "periodic": {
-	    "opts": {
-	      "apsControl": "checkbox",
-	      "cat": "Display",
-	      "desc": "Is periodic?",
-	      "noAps": false,
-	      "noZtl": false,
-	      "tooltip": "Is periodic?",
-	      "ztlFunction": "",
-	      "ztlType": "boolean"
-	    },
-	    "template": "boolean",
-	    "type": "boolean",
-	    "value": false,
-	    "visible": true
-	  },
-  "start": {
-    "opts": {
-        "apsControl": "text",
-        "cat": "Display",
-        "desc": "Start trigger",
-        "noAps": true,
-        "noZtl": false,
-        "tooltip": "Start trigger",
-        "ztlFunction": "",
-        "ztlType": "String"
+   "timer":{
+      "template":"int",
+      "type":"int",
+      "value":5000,
+      "visible":true,
+      "opts":{
+         "ztlType":"int",
+         "ztlFunction":"",
+         "desc":"Timeout after (ms)",
+         "cat":"Display",
+         "tooltip":"Timeout after (ms)",
+         "apsControl":"spinner",
+         "noAps":false,
+         "noZtl":false
+      }
+   },
+   "periodic":{
+      "opts":{
+         "apsControl":"checkbox",
+         "cat":"Display",
+         "desc":"Is periodic?",
+         "noAps":false,
+         "noZtl":false,
+         "tooltip":"Is periodic?",
+         "ztlFunction":"",
+         "ztlType":"boolean"
       },
-      "template": "String",
-      "type": "String",
-      "value": "",
-      "visible": false
-    },
-"stop": {
-    "opts": {
-      "apsControl": "text",
-      "cat": "Display",
-      "desc": "Stop trigger",
-      "noAps": true,
-      "noZtl": false,
-      "tooltip": "Stop trigger",
-      "ztlFunction": "",
-      "ztlType": "String"
-    },
-    "template": "String",
-    "type": "String",
-    "value": "",
-    "visible": false
-  },
-	"onTimeout" : {
-		"template" : "Event",
-		"type" : "ScriptText",
-		"value" : "",
-		"visible": true,
-		"opts" : {
-			"desc" : "Event For On Timeout",
-			"cat" : "Events",
-			"tooltip" : "Event For On Timeout",
-			"apsControl" : "text",
-			"noAps" : true,
-			"noZtl" : true
-		}
-	}
-
+      "template":"boolean",
+      "type":"boolean",
+      "value":false,
+      "visible":true
+   },
+   "counterVisible":{
+      "opts":{
+         "apsControl":"checkbox",
+         "cat":"Display",
+         "desc":"Show Counter",
+         "noAps":false,
+         "noZtl":false,
+         "tooltip":"Show Counter",
+         "ztlFunction":"",
+         "ztlType":"boolean"
+      },
+      "template":"boolean",
+      "type":"boolean",
+      "value":false,
+      "visible":true
+   },
+   "start":{
+      "opts":{
+         "apsControl":"text",
+         "cat":"Display",
+         "desc":"Start trigger",
+         "noAps":true,
+         "noZtl":true,
+         "tooltip":"Start trigger",
+         "ztlFunction":"",
+         "ztlType":"String"
+      },
+      "template":"String",
+      "type":"String",
+      "value":"",
+      "visible":false
+   },
+   "stop":{
+      "opts":{
+         "apsControl":"text",
+         "cat":"Display",
+         "desc":"Stop trigger",
+         "noAps":true,
+         "noZtl":true,
+         "tooltip":"Stop trigger",
+         "ztlFunction":"",
+         "ztlType":"String"
+      },
+      "template":"String",
+      "type":"String",
+      "value":"",
+      "visible":false
+   },
+   "logoff":{
+      "opts":{
+         "apsControl":"text",
+         "cat":"Display",
+         "desc":"Logoff trigger",
+         "noAps":true,
+         "noZtl":true,
+         "tooltip":"Logoff trigger",
+         "ztlFunction":"",
+         "ztlType":"String"
+      },
+      "template":"String",
+      "type":"String",
+      "value":"",
+      "visible":false
+   },
+   "logoffText":{
+      "opts":{
+         "apsControl":"text",
+         "cat":"Display",
+         "desc":"Logoff Popup Text",
+         "noAps":false,
+         "noZtl":false,
+         "tooltip":"Logoff Popup Text",
+         "ztlFunction":"",
+         "ztlType":"String"
+      },
+      "template":"String",
+      "type":"String",
+      "value":"Session timeout - refresh the browser page.",
+      "visible":true
+   },
+   "onTimeout":{
+      "template":"Event",
+      "type":"ScriptText",
+      "value":"",
+      "visible":true,
+      "opts":{
+         "desc":"Event For On Timeout",
+         "cat":"Events",
+         "tooltip":"Event For On Timeout",
+         "apsControl":"text",
+         "noAps":true,
+         "noZtl":true
+      }
+   }
 }

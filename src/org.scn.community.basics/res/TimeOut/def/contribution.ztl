@@ -6,6 +6,36 @@
  */
 class org.scn.community.basics.TimeOut extends org.scn.community.shared.Component {
 
+	/**
+	 * Sets Show Counter Property
+	 */	
+	void setCounterVisible( /**Show Counter*/ boolean counterVisible){*
+		this.counterVisible = counterVisible;
+	*}
+
+	/**
+	 * Gets Show Counter Property
+	 */	
+	boolean isCounterVisible() {*
+		return this.counterVisible;
+	*}
+
+
+
+	/**
+	 * Sets Logoff Popup Text Property
+	 */	
+	void setLogoffText( /**Logoff Popup Text*/ String logoffText){*
+		this.logoffText = logoffText;
+	*}
+
+	/**
+	 * Gets Logoff Popup Text Property
+	 */	
+	String getLogoffText() {*
+		return this.logoffText;
+	*}
+
 
 
 	/**
@@ -22,33 +52,9 @@ class org.scn.community.basics.TimeOut extends org.scn.community.shared.Componen
 		return this.periodic;
 	*}
 
-	/**
-	 * Sets Start trigger Property
-	 */	
-	void setStart( /**Start trigger*/ String start){*
-		this.start = start;
-	*}
 
-	/**
-	 * Gets Start trigger Property
-	 */	
-	String getStart() {*
-		return this.start;
-	*}
 
-	/**
-	 * Sets Stop trigger Property
-	 */	
-	void setStop( /**Stop trigger*/ String stop){*
-		this.stop = stop;
-	*}
 
-	/**
-	 * Gets Stop trigger Property
-	 */	
-	String getStop() {*
-		return this.stop;
-	*}
 
 	/**
 	 * Sets Timeout after (ms) Property
@@ -72,6 +78,10 @@ class org.scn.community.basics.TimeOut extends org.scn.community.shared.Componen
 	
 	void stopTimer(){*
 		this.stop = calcTimestamp();
+	*}
+	
+	void logoff(){*
+		this.logoff = calcTimestamp();
 	*}
 	
 	@Visibility(private)

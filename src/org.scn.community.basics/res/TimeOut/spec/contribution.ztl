@@ -6,6 +6,10 @@
 		this.stop = calcTimestamp();
 	*}
 	
+	void logoff(){*
+		this.logoff = calcTimestamp();
+	*}
+	
 	@Visibility(private)
 	/**
 	 *	Workaround for strange DesignStudio lifecycle handling when calling functions via scriptting triggers

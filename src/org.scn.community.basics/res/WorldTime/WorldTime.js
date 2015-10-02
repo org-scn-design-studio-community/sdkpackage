@@ -67,7 +67,7 @@ WorldTime = function () {
 		// visualization on processed data
 		
 		//add DIV
-		that.$().html('<div id="'+that._ownid+'">'+calcTime(that, that.getUtcoffset())+'</div>');
+		that.$().html('<div class="org-scn-Timer" id="'+that._ownid+'">'+calcTime(that, that.getUtcoffset())+'</div>');
 		//remember element
 		that.$div = document.getElementById(that._ownid);
 		

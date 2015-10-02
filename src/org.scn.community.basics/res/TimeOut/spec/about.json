@@ -1,6 +1,6 @@
 {
-	"title": "TimeOut 2.0",
-	"description": "TimeOut",
+	"title": "Time Out 2.0",
+	"description": "Time Out",
 	"icon": "TimeOut.png",
 	"topics": 
 	[
@@ -10,7 +10,7 @@
 		},
 		{
 			"title" : "Visualization",
-			"content" : "This component is a non-visualization component. It requires no space in the application canvas."
+			"content" : "This component is an optional visualization component. It requires no space in the application canvas if the counter is deactivated."
 		},
 	]
 }

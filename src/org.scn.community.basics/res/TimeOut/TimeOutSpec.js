@@ -21,6 +21,54 @@
 
 	org_scn_community_require.knownComponents.basics.TimeOut.spec = 
 {
+  "counterVisible": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Show Counter",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Show Counter",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "boolean",
+    "type": "boolean",
+    "value": false,
+    "visible": true
+  },
+  "logoff": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Logoff trigger",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Logoff trigger",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+  },
+  "logoffText": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Logoff Popup Text",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Logoff Popup Text",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "Session timeout - refresh the browser page.",
+    "visible": true
+  },
   "onTimeout": {
     "opts": {
       "apsControl": "text",
@@ -57,7 +105,7 @@
       "cat": "Display",
       "desc": "Start trigger",
       "noAps": true,
-      "noZtl": false,
+      "noZtl": true,
       "tooltip": "Start trigger",
       "ztlFunction": "",
       "ztlType": "String"
@@ -73,7 +121,7 @@
       "cat": "Display",
       "desc": "Stop trigger",
       "noAps": true,
-      "noZtl": false,
+      "noZtl": true,
       "tooltip": "Stop trigger",
       "ztlFunction": "",
       "ztlType": "String"
@@ -106,16 +154,16 @@
 
 	org_scn_community_require.knownComponents.basics.TimeOut.specAbout = 
 {
-  "description": "TimeOut",
+  "description": "Time Out",
   "icon": "TimeOut.png",
-  "title": "TimeOut 2.0",
+  "title": "Time Out 2.0",
   "topics": [
     {
       "content": "TimeOut",
       "title": "TimeOut"
     },
     {
-      "content": "This component is a non-visualization component. It requires no space in the application canvas.",
+      "content": "This component is an optional visualization component. It requires no space in the application canvas if the counter is deactivated.",
       "title": "Visualization"
     }
   ]

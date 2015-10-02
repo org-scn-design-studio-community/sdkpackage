@@ -16,6 +16,33 @@
 	
 	
 	<property
+		id="counterVisible"
+		type="boolean"
+		title="Show Counter"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="logoff"
+		type="String"
+		title="Logoff trigger"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="logoffText"
+		type="String"
+		title="Logoff Popup Text"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="onTimeout"
 		type="ScriptText"
 		title="Event For On Timeout"
@@ -69,6 +96,9 @@
 		<defaultValue property="WIDTH">10</defaultValue>
 		<defaultValue property="HEIGHT">10</defaultValue>
 		
+		<defaultValue property="counterVisible"><![CDATA[false]]></defaultValue>
+		<defaultValue property="logoff"><![CDATA[]]></defaultValue>
+		<defaultValue property="logoffText"><![CDATA[Session timeout - refresh the browser page.]]></defaultValue>
 		<defaultValue property="onTimeout"><![CDATA[]]></defaultValue>
 		<defaultValue property="periodic"><![CDATA[false]]></defaultValue>
 		<defaultValue property="start"><![CDATA[]]></defaultValue>
