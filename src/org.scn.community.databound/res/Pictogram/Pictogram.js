@@ -33,7 +33,50 @@
 	    	 var that = this;
 	    	 // Call super
 	    	 org_scn_community_databound_Core.call(this,{
-	    		title :  {
+	    		 preserveAspectRatio : {
+	    			opts : {
+	    				apsControl : "combobox",
+	    				desc : "Align",
+	    				cat : "General",
+	    				options : [
+	    					{ key : 'xMinYMin', text : 'xMinYMin (Top Left)'},
+	    					{ key : 'xMidYMin', text : 'xMidYMin (Top Center)'},
+	    					{ key : 'xMaxYMin', text : 'xMaxYMin (Top Right)'},
+	    					{ key : 'xMinYMid', text : 'xMinYMid (Middle Left)'},
+	    					{ key : 'xMidYMid', text : 'xMidYMid (Middle Center)'},
+	    					{ key : 'xMaxYMid', text : 'xMaxYMid (Middle Right)'},    					
+	    					{ key : 'xMinYMax', text : 'xMinYMax (Bottom Left)'},
+	    					{ key : 'xMaxYMax', text : 'xMaxYMax (Bottom Right)'},
+	    					{ key : 'xMidYMax', text : 'xMidYMax (Bottom Center)'},
+	    					{ key : 'none', text : 'None'}
+	    				]
+	    			}
+	    		},
+	    		fillDirection : {
+	    			opts : {
+	    				apsControl : "combobox",
+	    				desc : "Partial Fill Direction",
+	    				cat : "General",
+	    				options : [
+	    					{ key : 'ltr', text : 'Left to Right'},
+	    					{ key : 'btt', text : 'Bottom to Top'},
+	    					{ key : 'rtl', text : 'Right to Left'},
+	    					{ key : 'ttb', text : 'Top to Bottom'}
+	    				]
+	    			}
+	    		},
+	    		fillOrder : {
+	    			opts : {
+	    				apsControl : "segmentedbutton",
+	    				desc : "Fill Order",
+	    				cat : "General",
+	    				options : [
+	    					{ key : 'forward', text : 'Forward'},
+	    					{ key : 'backward', text : 'Backward'}
+	    				]
+	    			}
+	    		},
+	    		 title :  {
 					opts : {
 						desc : "Title",
 						cat : "General",
@@ -189,6 +232,7 @@
 	    		//this.$().css("overflow-x","hidden");
 	    	};
 	    	this.redraw = function(){
+	    		try{
 	    		if(!this.$().attr("id")) return;	// Dead poller
 	    		// Loosely (very loosely) based on:
 	    		// http://bl.ocks.org/alansmithy/d832fc03f6e6a91e99f4
@@ -212,8 +256,7 @@
 	    		if(svgDoc.empty()) {
 	    			svgDoc = d3.select(this.$().get(0))
 	    				.append("svg")
-	    				.attr("id", this.$().attr("id")+"_viz")
-	    				.attr("preserveAspectRatio","xMinYMin")
+	    				.attr("id", this.$().attr("id")+"_viz");
 	    			
 	    			shadowSVG = d3.select(this.$().get(0))
 	    				.append("svg")
@@ -225,13 +268,21 @@
 	                svgDoc.append("rect")
 	                	.attr("width",0)
 	                	.attr("height",0);
-	                
+
+	                // Plotting SVG - We use this because paths could be any size and we can use viewbox to resize it.
 	    			svgDoc.append("svg")
-    					.attr("class","plots");
+    					.attr("class","plots")
+    					.attr("preserveAspectRatio",this.preserveAspectRatio() + " meet");
 	    			
 	    			svgDoc.select(".plots").append("defs")
 		                .append("g")
 		                .attr("id", this.$().attr("id") + "_iconCustom")
+		                .append("path")
+		                .attr("d",path);
+	    			
+	    			svgDoc.select(".plots").select("defs")
+	    				.append("clipPath")
+		                .attr("id", this.$().attr("id") + "_iconClip")
 		                .append("path")
 		                .attr("d",path);
 	    			
@@ -254,6 +305,9 @@
 	    		svgDoc.select("#" + this.$().attr("id") + "_iconCustom").select("path")
 	    			.transition().duration(250)
 	    			.attr("d",path);
+	    		svgDoc.select("#" + this.$().attr("id") + "_iconClip").select("path")
+    				.transition().duration(250)
+    				.attr("d",path);
 	    		svgDoc
 	    			.attr("width",this.$().width())
 	    			.attr("height",this.$().height());
@@ -297,12 +351,13 @@
 	            //horizontal and vertical spacing between the icons
 	            var hBuffer = bb.height * 1.5;//9;
 	            var wBuffer = bb.width * 1.5;//8;
-	    		
+	            
 	            var viewWidth = (numCols * wBuffer);// + (this.paddingX() * 2);
 	            var viewHeight = (numRows * hBuffer);// + (this.paddingY() * 2);
 	            
 	            svgDoc.select(".plots").transition().duration(250)
 	            	.attr("viewBox", "0 0 " + viewWidth + " " + viewHeight)
+	            	.attr("preserveAspectRatio",this.preserveAspectRatio() + " meet")
 	            	.transition().duration(250)
 	            	.attr("y", tbb.height + this.paddingY() + this.textSpacing())
 	            	.attr("x", this.paddingX())
@@ -318,7 +373,7 @@
     				
 	            
 	            //generate a d3 range for the total number of required elements
-	            var myIndex = d3.range(cells);
+	            var myIndex = d3.range(0,cells,1);	            
 	            
 	            //Update text element to display number of icons highlighted
 	            svgDoc.select("text")
@@ -334,52 +389,98 @@
 	                    .attr("dy",this.fontSize() + "px");
 	                
 	            
-	            var picts = svgDoc.select(".plots").select(".pictoLayer").selectAll("use").data(myIndex);
-				picts.enter()
-					.append("use")
-					.attr("xlink:href", "#" + this.$().attr("id")+"_iconCustom")
-					.attr("id",function(d) {
-						// return "icon"+d;
-					});
-				
-				picts.exit().remove();
-
+	            //var picts = svgDoc.select(".plots").select(".pictoLayer").selectAll("use").data(myIndex);
 	            var that = this;
+	            var picts = svgDoc.select(".plots").select(".pictoLayer")
+	            	.selectAll(".pic").data(myIndex);
 	            
-	            svgDoc.select(".plots").select(".pictoLayer").selectAll("use")
-	            	.transition().duration(250)
-	            	.attr("x",function(d) {
-						var remainder = d % numCols;//calculates the x position (column number) using modulus
-						return remainder * wBuffer;//apply the buffer and return value
-					})
-					.attr("y",function(d) {
-						var whole = Math.floor(d/numCols)//calculates the y position (row number)
-						return whole * hBuffer;//apply the buffer and return the value
-					})
-					.style("fill",function(d,i){
-						if ((d + 1) * scale <= measure)  {
-							return that.shapeColorFill();
-						} else {
-							var delta = ((d + 1) * scale) - measure;
-							if(delta < scale){	// Partial Fill
-								var color = d3.scale.linear()
-							    	.range([that.shapeColorEmpty(), that.shapeColorFill()])
-							    	.domain([0,scale]);
-								color.interpolate(d3.interpolateHcl);
-								return color(delta);
-							}else{
-								return that.shapeColorEmpty();
-							}
-						}
-					})
-	            	.attr("class",function(d,i){
-						if ((d + 1) * scale <= measure)  {
-							return "iconSelected";
-						} else {
-							return "iconPlain";
-						}
-					});
+	            var picGroup = picts.enter()
+					.append("g")
+					.attr("class","pic");
+				
+				picGroup.append("rect")	
+					.attr("class", "back")
+					.attr("clip-path", "url(#" + this.$().attr("id")+"_iconClip)");
+
+				picGroup.append("rect")	
+					.attr("class", "fore")
+					.attr("clip-path", "url(#" + this.$().attr("id")+"_iconClip)");		
+	            
+	           
+	            // Handle children
+	            picts.each(function(d,i){
+	            	var h = bb.height,
+	            		w = bb.width,
+	            		x = bb.x,
+	            		y = bb.y;
+	            	var position = d;
+	            	if(that.fillOrder()=="backward"){
+	            		position = cells - d - 1;
+	            	}
+	            	if ((position + 1) * scale > measure) {
+	            		var delta = ((position + 1) * scale) - measure;
+	            		if(delta < scale) {	// Partial Fill
+	            			var hs = d3.scale.linear()
+				    			.range([bb.height, bb.x])
+				    			.domain([0,scale]);
+	            			
+	            			var ws = d3.scale.linear()
+			    				.range([bb.width, bb.y])
+			    				.domain([0,scale]);
+	            			
+	            			switch(that.fillDirection()){
+			            		case "ttb" :
+		    						h = hs(delta);
+			    	            	break;
+			            		case "btt" :
+		    						y = bb.height + bb.y - hs(delta);
+		    	            		h = bb.height - y + bb.y;
+		    	            		break;
+			            		case "ltr" :
+			            			w = ws(delta);
+			            			break;
+			            		case "rtl" :
+		    						x = bb.width - ws(delta) + bb.x;
+		    	            		w = bb.width - x + bb.x;
+		    	            		break;
+	            			}
+			            }else{ // total empty
+			            	w = 0, h = 0;
+			            }
+	            	}
+	            	try{
+	            	// Group 
+	            	d3.select(this).transition().duration(250)
+		            	.attr("transform",function(d){
+		            		var remainder = d % numCols;		//calculates the x position (column number) using modulus
+		            		var x = remainder * wBuffer;
+							var whole = Math.floor(d/numCols)	//calculates the y position (row number)
+							var y = whole * hBuffer;
+							return "translate(" + x + "," + y + ")";
+		            	});
+	            	// Background rectangle
+	            	d3.select(this).select(".back").transition().duration(250)
+		            	.attr("width", bb.width)
+		            	.attr("height", bb.height)
+		            	.attr("x", bb.x)
+						.attr("y", bb.y)
+						.style("fill", that.shapeColorEmpty());
+	            	// Foreground
+	            	d3.select(this).select(".fore").transition().duration(250)
+		            	.attr("width", w)
+						.attr("height",h)
+						.attr("x", x)
+						.attr("y", y)
+						.style("fill", that.shapeColorFill());
+	            	}catch(e){
+	            		alert(e);
+	            	}
+	            });
+				picts.exit().remove();
 	    		this._poller = window.setTimeout(function(){that.measureSize(that)},that._pollInterval);
+	    		}catch(e){
+	    			alert(e);
+	    		}
 	    	};
 	    	this.measureSize = function(that){
 	    		var currentWidth = that.$().innerWidth();

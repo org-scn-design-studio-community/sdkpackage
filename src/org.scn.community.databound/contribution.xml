@@ -2418,6 +2418,9 @@ __n__}
 	<property type="ResultCell" title="KPI" id="kpi" visible="true" bindable="true">
 	<!--http://scn.sap.com/docs/DOC-58755-->
 	</property>
+	<property type="String" title="Preserve Aspect Ratio" id="preserveAspectRatio" visible="false"/>
+	<property type="String" title="Partial Fill Direction" id="fillDirection" visible="false"/>
+	<property type="String" title="Fill Order" id="fillOrder" visible="false"/>
 	<property type="float" title="Manual KPI" id="manualKpi" visible="true" bindable="true"/>
 	<property type="float" title="Max Kpi" id="maxKpi" visible="true" bindable="true"/>
 	<property type="String" title="Shape" id="shape" visible="false"/>
@@ -2439,6 +2442,9 @@ __n__}
 	<!-- End of Pictogram Properties -->
 	<initialization>		<!-- Pictogram Defaults -->
 		<defaultValue property="shape">M3.5,2H2.7C3,1.8,3.3,1.5,3.3,1.1c0-0.6-0.4-1-1-1c-0.6,0-1,0.4-1,1c0,0.4,0.2,0.7,0.6,0.9H1.1C0.7,2,0.4,2.3,0.4,2.6v1.9c0,0.3,0.3,0.6,0.6,0.6h0.2c0,0,0,0.1,0,0.1v1.9c0,0.3,0.2,0.6,0.3,0.6h1.3c0.2,0,0.3-0.3,0.3-0.6V5.3c0,0,0-0.1,0-0.1h0.2c0.3,0,0.6-0.3,0.6-0.6V2.6C4.1,2.3,3.8,2,3.5,2z</defaultValue>
+		<defaultValue property="preserveAspectRatio">xMinYMin</defaultValue>
+		<defaultValue property="fillDirection">btt</defaultValue>
+		<defaultValue property="fillOrder">forward</defaultValue>
 		<defaultValue property="backgroundColor">#E5E5E5</defaultValue>
 		<defaultValue property="shapeColorFill">#006699</defaultValue>
 		<defaultValue property="shapeColorEmpty">#FFFFFF</defaultValue>
