@@ -272,6 +272,56 @@ class org.scn.community.utils.Array extends org.scn.community.shared.Component {
 	*}
 	
 	/**
+	Removes a value from existing array. This implementation of array allows duplicate values - all keys will be removed.
+	<example>
+	You have an array with values "k1,k2,k3":
+	<code>
+	ARRAY_1.removeValue("k1");<br>
+	</code>
+	This array has now following values: k2,k3
+	Return is the number of removed values. 0 means no removal was done.
+	</example>
+	*/
+	int removeValue (
+			/*value*/ String value) {*  
+		
+		var s = this.items;  
+		var a = [];  
+		if(s!="") a = JSON.parse(s);
+		
+		var newArray = [];
+		var foundNumber = 0;
+		for (var aI in a) {
+			if(a[aI].value == value) {
+				foundNumber++;
+			} else {
+				newArray.push(a[aI]);
+			}
+		}
+		
+		this.items = JSON.stringify(newArray);
+
+		return foundNumber;
+	*}
+	
+	float getValueByKey(
+			/* value */ String value) {*  
+		var s = this.items;  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
+		var r = 0.0;  
+		
+		for(var i=0;i<a.length;i++){
+			if(a[i].value == value) {
+				r = a[i].value;
+				break;
+			}
+		}
+		
+		return r;  
+	*}
+
+	/**
 	 * Returns length of current array
 	 */
 	int getLength() {*  
@@ -725,6 +775,39 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		a.push(itemDef);
 		
 		this.items = JSON.stringify(a);  
+	*}
+
+	/**
+	Removes an item from existing collection. This implementation of collection allows duplicate keys - all keys will be removed.
+	<example>
+	You have an array with keys "k1,k2,k3":
+	<code>
+	ARRAY_1.removeItem("k1");<br>
+	</code>
+	This array has now following values: k2,k3
+	Return is the number of removed items. 0 means no removal was done.
+	</example>
+	*/
+	int removeItem (
+			/*key*/ String key) {*  
+		
+		var s = this.items;  
+		var a = [];  
+		if(s!="") a = JSON.parse(s);
+		
+		var newArray = [];
+		var foundNumber = 0;
+		for(var aI in a){
+			if(a[aI].key == key) {
+				foundNumber++;
+			} else {
+				newArray.push(a[aI]);
+			}
+		}
+
+		this.items = JSON.stringify(newArray);
+
+		return foundNumber;
 	*}
 
 	/**
@@ -2071,7 +2154,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Text Area 2.0 component*/
 	org.scn.community.basics.TextArea returnAsScnTextArea (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to TimeOut 2.0 component*/
+	/**Cast to TimeOut (Timer) 2.0 component*/
 	org.scn.community.basics.TimeOut returnAsScnTimeOut (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Toggle Button 2.0 component*/
@@ -2089,7 +2172,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Value Help Field 2.0 component*/
 	org.scn.community.basics.ValueHelpField returnAsScnValueHelpField (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to WorldTime 2.0 component*/
+	/**Cast to World Time 2.0 component*/
 	org.scn.community.basics.WorldTime returnAsScnWorldTime (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Advanced Data Table component*/

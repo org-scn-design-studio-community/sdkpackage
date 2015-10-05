@@ -1,7 +1,7 @@
 {
 	"id": "WorldTime",
-	"title": "WorldTime 2.0",
-	"tooltip": "WorldTime",
+	"title": "World Time 2.0",
+	"tooltip": "World Time",
 	"handlerType": "div",
 	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityBasics",

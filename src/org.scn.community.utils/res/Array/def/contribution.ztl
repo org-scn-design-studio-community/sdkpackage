@@ -252,6 +252,56 @@ class org.scn.community.utils.Array extends org.scn.community.shared.Component {
 	*}
 	
 	/**
+	Removes a value from existing array. This implementation of array allows duplicate values - all keys will be removed.
+	<example>
+	You have an array with values "k1,k2,k3":
+	<code>
+	ARRAY_1.removeValue("k1");<br>
+	</code>
+	This array has now following values: k2,k3
+	Return is the number of removed values. 0 means no removal was done.
+	</example>
+	*/
+	int removeValue (
+			/*value*/ String value) {*  
+		
+		var s = this.items;  
+		var a = [];  
+		if(s!="") a = JSON.parse(s);
+		
+		var newArray = [];
+		var foundNumber = 0;
+		for (var aI in a) {
+			if(a[aI].value == value) {
+				foundNumber++;
+			} else {
+				newArray.push(a[aI]);
+			}
+		}
+		
+		this.items = JSON.stringify(newArray);
+
+		return foundNumber;
+	*}
+	
+	float getValueByKey(
+			/* value */ String value) {*  
+		var s = this.items;  
+		var a = [];
+		if(s!="") a = JSON.parse(s);  
+		var r = 0.0;  
+		
+		for(var i=0;i<a.length;i++){
+			if(a[i].value == value) {
+				r = a[i].value;
+				break;
+			}
+		}
+		
+		return r;  
+	*}
+
+	/**
 	 * Returns length of current array
 	 */
 	int getLength() {*  

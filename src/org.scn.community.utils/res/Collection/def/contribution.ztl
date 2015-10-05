@@ -225,6 +225,39 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	*}
 
 	/**
+	Removes an item from existing collection. This implementation of collection allows duplicate keys - all keys will be removed.
+	<example>
+	You have an array with keys "k1,k2,k3":
+	<code>
+	ARRAY_1.removeItem("k1");<br>
+	</code>
+	This array has now following values: k2,k3
+	Return is the number of removed items. 0 means no removal was done.
+	</example>
+	*/
+	int removeItem (
+			/*key*/ String key) {*  
+		
+		var s = this.items;  
+		var a = [];  
+		if(s!="") a = JSON.parse(s);
+		
+		var newArray = [];
+		var foundNumber = 0;
+		for(var aI in a){
+			if(a[aI].key == key) {
+				foundNumber++;
+			} else {
+				newArray.push(a[aI]);
+			}
+		}
+
+		this.items = JSON.stringify(newArray);
+
+		return foundNumber;
+	*}
+
+	/**
 	Returns all keys as String separated by given optional separator. default separator is comma ,
 	<example>
 	You have an array with 3 elements with keys ["K1", "K2", "K3"]:

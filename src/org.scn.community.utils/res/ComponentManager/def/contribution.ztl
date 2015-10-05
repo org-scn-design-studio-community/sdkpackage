@@ -801,7 +801,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Text Area 2.0 component*/
 	org.scn.community.basics.TextArea returnAsScnTextArea (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to TimeOut 2.0 component*/
+	/**Cast to TimeOut (Timer) 2.0 component*/
 	org.scn.community.basics.TimeOut returnAsScnTimeOut (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Toggle Button 2.0 component*/
@@ -819,7 +819,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Value Help Field 2.0 component*/
 	org.scn.community.basics.ValueHelpField returnAsScnValueHelpField (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to WorldTime 2.0 component*/
+	/**Cast to World Time 2.0 component*/
 	org.scn.community.basics.WorldTime returnAsScnWorldTime (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Advanced Data Table component*/

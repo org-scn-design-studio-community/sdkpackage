@@ -1,7 +1,7 @@
 {
 	"id": "TimeOut",
-	"title": "TimeOut 2.0",
-	"tooltip": "TimeOut",
+	"title": "TimeOut (Timer) 2.0",
+	"tooltip": "Time Out (Timer)",
 	"handlerType": "div",
 	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityBasics",

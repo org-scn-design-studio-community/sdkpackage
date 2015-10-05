@@ -4752,8 +4752,8 @@
 
 <component
 	id="TimeOut"
-	title="TimeOut 2.0"
-	tooltip="TimeOut"
+	title="TimeOut (Timer) 2.0"
+	tooltip="Time Out (Timer)"
 	icon="res/TimeOut/TimeOut.png"
 	handlerType="div"
 	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
@@ -5370,8 +5370,8 @@
 
 <component
 	id="WorldTime"
-	title="WorldTime 2.0"
-	tooltip="WorldTime"
+	title="World Time 2.0"
+	tooltip="World Time"
 	icon="res/WorldTime/WorldTime.png"
 	handlerType="div"
 	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
