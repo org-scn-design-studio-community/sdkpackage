@@ -1,0 +1,24 @@
+	
+	<!-- Pictogram Properties -->
+	<property type="ResultCell" title="KPI" id="kpi" visible="true" bindable="true">
+	<!--http://scn.sap.com/docs/DOC-58755-->
+	</property>
+	<property type="float" title="Manual KPI" id="manualKpi" visible="true" bindable="true"/>
+	<property type="float" title="Max Kpi" id="maxKpi" visible="true" bindable="true"/>
+	<property type="String" title="Shape" id="shape" visible="false"/>
+	<property type="String" title="Background Color" id="backgroundColor" visible="false"/>
+	<property type="String" title="Shape Color Fill" id="shapeColorFill" visible="false"/>
+	<property type="String" title="Shape Color Empty" id="shapeColorEmpty" visible="false"/>
+	<property type="boolean" title="Scale by Max" id="scaleByMax" visible="false"/>
+	<property type="boolean" title="Show Title" id="showTitle" visible="false"/>
+	<property type="String" title="Title" id="title" visible="false"/>
+	<property type="int" title="Number of Columns" id="numColumns" visible="true" bindable="true"/>
+	<property type="String" title="Font Family" id="fontFamily" visible="false"/>
+	<property type="String" title="Font Weight" id="fontWeight" visible="false"/>
+	<property type="String" title="Font Color" id="fontColor" visible="false"/>
+	<property type="float" title="Font Size" id="fontSize" visible="false"/>
+	<property type="int" title="Number of Rows" id="numRows" visible="true" bindable="true"/>
+	<property type="int" title="Padding-X" id="paddingX" visible="false"/>
+	<property type="int" title="Padding-Y" id="paddingY" visible="false"/>
+	<property type="int" title="Text Spacing" id="textSpacing" visible="false"/>
+	<!-- End of Pictogram Properties -->

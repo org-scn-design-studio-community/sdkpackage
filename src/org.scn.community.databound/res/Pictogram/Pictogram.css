@@ -1,0 +1,26 @@
+.DesignStudioSCN.Pictogram {
+   overflow : hidden;
+}
+
+.DesignStudioSCN.Pictogram .txtValue    {   
+    /*
+    fill:orange;
+    text-anchor:left;
+    font-size:12px;
+    font-family:sans-serif,Helvetica,Arial;
+    font-weight:bold;
+    */
+}
+/*
+.DesignStudioSCN.Pictogram .iconPlain  {
+    fill:white;   
+}
+
+.DesignStudioSCN.Pictogram .iconSelected  {
+    fill:orange;   
+}
+
+.DesignStudioSCN.Pictogram rect    {
+    fill:#555555;   
+}
+*/

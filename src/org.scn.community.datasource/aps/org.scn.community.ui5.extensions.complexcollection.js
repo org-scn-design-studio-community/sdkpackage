@@ -29,6 +29,7 @@ propertyPageHandlerRegistry.push({
 		var component = new org.scn.community.aps.ComplexCollection({
 			width : "100%",
 			title : propertyOptions.desc,
+			visibleRows : propertyOptions.visibleRows || 10,
 			config : propertyOptions.apsConfig,
 			showCollapseIcon : false
 		});
@@ -47,6 +48,10 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollec
 	metadata : {                             
         properties : {
         	title : "string",
+        	visibleRows : {
+        		type : "int",
+        		defaultValue : undefined
+        	},
         	value : { 
         		type : "object[]",
         		defaultValue : []
@@ -85,6 +90,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollec
 	updateTable : function(){
 		this.apsModel.setData({propertyData: this.getValue()});
 		this.columnTable.setModel(this.apsModel);
+		this.columnTable.setVisibleRowCount(/*this.getVisibleRows() || */this.getValue().length || 1);
 		this.columnTable.bindRows("/propertyData");
 	},
 	generateColumns : function(){
@@ -284,6 +290,11 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollec
 		//oOverlayContainer.attachOpen(handler);
 		//oOverlayContainer.attachOpenNew(handler);
 	},
+	setVisibleRows : function(i){
+		sap.ui.core.Control.prototype.setProperty.apply(this,["visibleRows",i]);
+		this.columnTable.setVisibleRowCount(i);
+		return this;
+	},
 	init : function(){
 		this.addButton = new sap.ui.commons.Button({
 			tooltip : "Add Item",
@@ -293,7 +304,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexCollec
 		this.addButton.attachPress(this.addNewItem,this);
 		this.columnTable = new sap.ui.table.Table({
 			title: "Complex Title Here",
-			visibleRowCount: 15,
+			visibleRowCount: this.getVisibleRows() || undefined,
 			//selectionMode: sap.ui.table.SelectionMode.Single
 			selectionMode: sap.ui.table.SelectionMode.None
 		});
