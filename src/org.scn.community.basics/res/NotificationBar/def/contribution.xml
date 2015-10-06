@@ -61,6 +61,15 @@
 
 	</property>
 	<property
+		id="minimize"
+		type="String"
+		title="Minimize"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
 		id="removeAllOnMinimize"
 		type="boolean"
 		title="Remove All Notifications When Minimized"

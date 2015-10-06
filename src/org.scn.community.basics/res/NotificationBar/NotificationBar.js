@@ -300,6 +300,13 @@ NotificationBar = {
 		if(that.getShowOnNewNotifications() && that._pNewNotificationsAvailable) {
 			that.setVisibleStatus(sap.ui.ux3.NotificationBarStatus.Default);
 		}
+		//minimize bar on bial script call
+		if(that.getMinimize() !== ""){
+			that.setVisibleStatus(sap.ui.ux3.NotificationBarStatus.Min);
+			//reset function caller
+			that.setMinimize("");
+			that.fireDesignStudioPropertiesChanged(["minimize"]);
+		}
 	},
 	
 	onResize: function(width, height, parent) {

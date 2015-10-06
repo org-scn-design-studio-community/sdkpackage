@@ -101,6 +101,22 @@
     "value": "",
     "visible": false
   },
+  "minimize" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Minimize function trigger",
+			"cat" : "Display",
+			"tooltip" : "Minimize function trigger",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
   "removeAllOnMinimize": {
     "opts": {
       "apsControl": "checkbox",

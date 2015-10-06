@@ -11217,6 +11217,21 @@ class org.scn.community.basics.NotificationBar extends org.scn.community.shared.
 
 		this.notifications = JSON.stringify(notificationsJson);
 	*}
+	
+	/**
+	 * Minimize notification bar (for example on timeout event of TIMEOUT component)
+	 */
+	void minimizeBar(){*
+		this.minimize = calcTimestamp();
+	*}
+	
+	@Visibility(private)
+	/**
+	 *	Workaround for strange DesignStudio lifecycle handling when calling functions via scriptting triggers
+	 */
+	String calcTimestamp() {*
+		return new Date().valueOf();
+	*}
 }
 
 /**
