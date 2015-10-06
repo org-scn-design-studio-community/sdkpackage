@@ -3,6 +3,27 @@ var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
  * Extension-less Handlers (Regular SAPUI5 Components)
  */
 /**
+ * Register Data Selection Handler
+ */
+propertyPageHandlerRegistry.push({
+	id : "dataselection",
+	setter : function(property, value){
+		// No action
+	},
+	getter : function(property, control){
+		// No action
+	},
+	createComponent : function(property, propertyOptions, changeHandler){
+		var component = new sap.ui.commons.Button({
+			icon : "sap-icon://database"
+		});
+		component.attachPress(function(oControlEvent){
+			propertyPage.openPropertyDialog(property);
+		},this);
+		return component;
+	}
+});
+/**
  * Register Script Handler
  */
 propertyPageHandlerRegistry.push({

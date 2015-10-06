@@ -20,6 +20,7 @@
 /**
  *	Description Here 
  */
+(function(){
 jQuery.sap.require("sap.m.Toolbar");
 var componentInfo = {
 	visible : true,
@@ -314,3 +315,4 @@ sap.m.Toolbar.extend("org.scn.community.basics.FioriToolbar", {
 		return JSON.stringify(componentInfo);
 	}
 });
+}());

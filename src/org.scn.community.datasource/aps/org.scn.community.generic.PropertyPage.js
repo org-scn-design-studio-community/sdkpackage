@@ -119,7 +119,11 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 						// set width to 320px
 						if(this["cmp_"+property].setWidth) {
 							// Certain APS Controls don't need to have width set like checkbox (cause horizontal scroll issues)
-							if(apsControl != "checkbox" && apsControl !="script" ){
+							if(apsControl != "checkbox"
+								&& apsControl != "combobox"
+								&& apsControl !="script"
+								&& apsControl !="dataselection"
+								&& apsControl !="excelgrid"){
 								this["cmp_"+property].setWidth("320px");
 							}
 						}

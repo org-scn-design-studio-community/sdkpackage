@@ -183,8 +183,8 @@
     "id": "common_basics",
     "space": "known"
   }],
-  "title": "TimeOut 2.0",
-  "tooltip": "TimeOut",
+  "title": "TimeOut (Timer) 2.0",
+  "tooltip": "Time Out (Timer)",
   "width": "10"
 };
 

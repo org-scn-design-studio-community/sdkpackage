@@ -226,8 +226,8 @@
     "id": "common_basics",
     "space": "known"
   }],
-  "title": "WorldTime 2.0",
-  "tooltip": "WorldTime",
+  "title": "World Time 2.0",
+  "tooltip": "World Time",
   "width": "150"
 };
 

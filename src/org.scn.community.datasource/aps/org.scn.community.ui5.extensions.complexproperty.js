@@ -22,9 +22,7 @@ propertyPageHandlerRegistry.push({
 	},
 	getter : function(property, control){
 		var arrayValue = control.getValue();
-		alert(0);
 		newValue = JSON.stringify(arrayValue);
-		alert("ci new value: " +newValue);
 		return newValue;
 	},
 	createComponent : function(property, propertyOptions, changeHandler){
@@ -174,6 +172,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexProper
 				this.addContent(this["cmp_"+property]);
 			}
 		}
+		this.updateFields();
 		return;
 	},
 	hLabel : function(label,component){

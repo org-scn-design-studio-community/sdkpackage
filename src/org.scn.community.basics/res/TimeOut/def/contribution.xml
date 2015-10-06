@@ -1,8 +1,8 @@
 
 <component
 	id="TimeOut"
-	title="TimeOut 2.0"
-	tooltip="TimeOut"
+	title="TimeOut (Timer) 2.0"
+	tooltip="Time Out (Timer)"
 	icon="res/TimeOut/TimeOut.png"
 	handlerType="div"
 	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
