@@ -876,6 +876,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Nice Chart component*/
 	org.scn.community.databound.NiceChart returnAsScnNiceChart (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Pictogram component*/
+	org.scn.community.databound.Pictogram returnAsScnPictogram (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Process Flow 2.0 component*/
 	org.scn.community.databound.ProcessFlow returnAsScnProcessFlow (Component inputComponent) {* return inputComponent; *}
 

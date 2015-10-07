@@ -11078,6 +11078,8 @@ class org.scn.community.basics.NotificationBar extends org.scn.community.shared.
 
 
 
+
+
 	/**
 	 * Sets Remove All Notifications When Minimized Property
 	 */	

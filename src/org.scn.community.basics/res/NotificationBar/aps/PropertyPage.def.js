@@ -88,6 +88,22 @@ ApsContent = function () {
     "value": false,
     "visible": true
   },
+  "minimize": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Minimize function trigger",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Minimize function trigger",
+      "ztlFunction": "-get",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+  },
   "notifications": {
     "opts": {
       "apsControl": "text",

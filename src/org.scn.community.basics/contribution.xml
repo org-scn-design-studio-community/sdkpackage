@@ -3333,18 +3333,18 @@
 
 	</property>
 	<property
-		id="notifications"
+		id="minimize"
 		type="String"
-		title="Notifications"
+		title="Minimize function trigger"
 		group="Display"
 		bindable="true"
 		visible="false">
 
 	</property>
 	<property
-		id="minimize"
+		id="notifications"
 		type="String"
-		title="Minimize"
+		title="Notifications"
 		group="Display"
 		bindable="true"
 		visible="false">
@@ -3391,6 +3391,7 @@
 		<defaultValue property="connectToCommonMessages"><![CDATA[false]]></defaultValue>
 		<defaultValue property="defaultImage"><![CDATA[]]></defaultValue>
 		<defaultValue property="deleteNotificationOnClick"><![CDATA[false]]></defaultValue>
+		<defaultValue property="minimize"><![CDATA[]]></defaultValue>
 		<defaultValue property="notifications"><![CDATA[]]></defaultValue>
 		<defaultValue property="removeAllOnMinimize"><![CDATA[false]]></defaultValue>
 		<defaultValue property="showOnNewNotifications"><![CDATA[true]]></defaultValue>

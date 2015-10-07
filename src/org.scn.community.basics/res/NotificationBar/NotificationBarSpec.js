@@ -85,6 +85,22 @@
     "value": false,
     "visible": true
   },
+  "minimize": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Minimize function trigger",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Minimize function trigger",
+      "ztlFunction": "-get",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+  },
   "notifications": {
     "opts": {
       "apsControl": "text",
@@ -101,22 +117,6 @@
     "value": "",
     "visible": false
   },
-  "minimize" : {
-		"template" : "String",
-		"type" : "String",
-		"value" : "",
-		"visible": false,
-		"opts" : {
-			"ztlType": "String",
-			"ztlFunction": "-get",
-			"desc" : "Minimize function trigger",
-			"cat" : "Display",
-			"tooltip" : "Minimize function trigger",
-			"apsControl" : "text",
-			"noAps" : true,
-			"noZtl" : true
-		}
-	},
   "removeAllOnMinimize": {
     "opts": {
       "apsControl": "checkbox",
