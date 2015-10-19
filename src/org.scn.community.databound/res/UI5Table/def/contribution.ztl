@@ -1045,6 +1045,20 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
+	 * Sets Fixed Column Index (-1 means Row Dimensions) Property
+	 */	
+	void setHeaderColumnFixed( /**Fixed Column Index (-1 means Row Dimensions)*/ int headerColumnFixed){*
+		this.DHeaderColumnFixed = headerColumnFixed;
+	*}
+
+	/**
+	 * Gets Fixed Column Index (-1 means Row Dimensions) Property
+	 */	
+	int getHeaderColumnFixed() {*
+		return this.DHeaderColumnFixed;
+	*}
+
+	/**
 	 * Sets Ignore Results Property
 	 */	
 	void setIgnoreResults( /**Ignore Results*/ boolean ignoreResults){*
@@ -1084,6 +1098,20 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	 */	
 	org_scn_community_shared_NavigationModeEnumfield getNavigationMode() {*
 		return this.DNavigationMode;
+	*}
+
+	/**
+	 * Sets Show Only Header Columns Property
+	 */	
+	void setOnlyHeaderColumns( /**Show Only Header Columns*/ boolean onlyHeaderColumns){*
+		this.DOnlyHeaderColumns = onlyHeaderColumns;
+	*}
+
+	/**
+	 * Gets Show Only Header Columns Property
+	 */	
+	boolean isOnlyHeaderColumns() {*
+		return this.DOnlyHeaderColumns;
 	*}
 
 	/**

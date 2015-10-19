@@ -136,7 +136,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 	    		var status = jqXHR.status;
 	    		
 		    	if(status == that.getDExpectedResponseStatus()){
-		    		if(that.getDExpectedContentType() == "JSON") {
+		    		if(that.getDExpectedContentType() == "json") {
 		    			try{
 		    				var responseJson = JSON.parse(response);
 		    				
