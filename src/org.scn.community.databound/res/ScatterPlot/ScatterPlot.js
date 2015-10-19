@@ -132,12 +132,12 @@
 	    		var cd = this.colorDimension();
 	    		var cdIndex = 0;
 	    		for(var i=0;i<this.flatData.columnHeaders.length;i++){
-	    			if(this.flatData.columnHeaders[i] == mx) mxIndex = i;
-	    			if(this.flatData.columnHeaders[i] == my) myIndex = i;
-	    			if(this.flatData.columnHeaders[i] == mz) mzIndex = i;
+	    			if(this.flatData.columnHeadersKeys[i] == mx) mxIndex = i;
+	    			if(this.flatData.columnHeadersKeys[i] == my) myIndex = i;
+	    			if(this.flatData.columnHeadersKeys[i] == mz) mzIndex = i;
 	    		}
 	    		for(var i=0;i<this.flatData.dimensionHeaders.length;i++){
-	    			if(this.flatData.dimensionHeaders[i]==cd) cdIndex = i;
+	    			if(this.flatData.dimensionHeadersKeys[i]==cd) cdIndex = i;
 	    		}
 				for(var i=0;i<vals.length;i++){
 					var currentRow = vals[i];
