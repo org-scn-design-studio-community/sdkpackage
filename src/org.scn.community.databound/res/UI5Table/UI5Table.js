@@ -142,24 +142,24 @@ UI5Table = {
 	
 	reloadFlatDataAgain: function() {
 		var that = this;
-		
-			var options = org_scn_community_databound.initializeOptions();
-			options.ignoreResults = that.getDIgnoreResults();
-			options.emptyHeaderValue = that.getDEmptyHeaderValue();
-			options.emptyDataValue = that.getDEmptyDataValue();
-			
-			org_scn_community_databound.toRowTable(that._flatData,options);
-		
+
+		var options = org_scn_community_databound.initializeOptions();
+		options.ignoreResults = that.getDIgnoreResults();
+		options.emptyHeaderValue = that.getDEmptyHeaderValue();
+		options.emptyDataValue = that.getDEmptyDataValue();
+
+		org_scn_community_databound.toRowTable(that._flatData,options);
+
 		that._table.removeAllColumns();
 		var colI=0;
 
 		var lAllowSort = that.getDAllowSort();
 		var lAllowReorder = that.getDAllowColumnReorder();
 		var lAllowFilter = that.getDAllowFilter();
-		
+
 		var allowSelection = that.getDAllowSelection();;
 		var lPathPrefix = "";
-		
+
 		var options = {};
 		options.formattingCondition = {};
 		options.formattingCondition.rules = [];
@@ -256,36 +256,38 @@ UI5Table = {
 			}
 		}
 
-		for(var dataColI=0;dataColI<that._flatData.columnHeaders.length;dataColI++){
-			var oItemTemplate = new sap.ui.commons.Label (
-					{text: "{" + lPathPrefix + colI + "}",
-						tooltip: "{" + lPathPrefix + colI + "}",
-						textAlign: sap.ui.core.TextAlign.Right,
-					});
+		if(!that.getDOnlyHeaderColumns()) {
+			for(var dataColI=0;dataColI<that._flatData.columnHeaders.length;dataColI++){
+				var oItemTemplate = new sap.ui.commons.Label (
+						{text: "{" + lPathPrefix + colI + "}",
+							tooltip: "{" + lPathPrefix + colI + "}",
+							textAlign: sap.ui.core.TextAlign.Right,
+						});
 
-			if(hasFormattingCondition) {
-				oItemTemplate.addCustomData (new sap.ui.core.CustomData({key:"condFormat", value:"{formats/" + colI + "}", writeToDom:true}));
-			}
-			
-			var colWidth = colWidths[colI];
-			if(!colWidth) {
-				colWidth = allColWidth || "";
-			}
+				if(hasFormattingCondition) {
+					oItemTemplate.addCustomData (new sap.ui.core.CustomData({key:"condFormat", value:"{formats/" + colI + "}", writeToDom:true}));
+				}
+				
+				var colWidth = colWidths[colI];
+				if(!colWidth) {
+					colWidth = allColWidth || "";
+				}
 
-			var lColumn = new sap.ui.table.Column({
-				label: new sap.ui.commons.Label({text: that._flatData.columnHeaders[dataColI]}),
-				template: oItemTemplate,
-				sortProperty: ""+ lPathPrefix+colI,
-				filterProperty: ""+ lPathPrefix+colI,
-				showSortMenuEntry: lAllowSort,
-				showFilterMenuEntry: lAllowFilter,
-				width: colWidth,
-			});
-			
-			lColumn._dsRealColumnIndex = colI;
-			
-			that._table.addColumn(lColumn);
-			colI = colI+1;
+				var lColumn = new sap.ui.table.Column({
+					label: new sap.ui.commons.Label({text: that._flatData.columnHeaders[dataColI]}),
+					template: oItemTemplate,
+					sortProperty: ""+ lPathPrefix+colI,
+					filterProperty: ""+ lPathPrefix+colI,
+					showSortMenuEntry: lAllowSort,
+					showFilterMenuEntry: lAllowFilter,
+					width: colWidth,
+				});
+				
+				lColumn._dsRealColumnIndex = colI;
+				
+				that._table.addColumn(lColumn);
+				colI = colI+1;
+			}
 		}
 		
 		if(false) {
@@ -303,7 +305,12 @@ UI5Table = {
 		}
 
 		if(that.getDFixedHeader()) {
-			that._table.setFixedColumnCount(that._flatData.dimensionHeaders.length);	
+			var fixedIndex = that.getDHeaderColumnFixed();
+			if(fixedIndex >= 0) {
+				that._table.setFixedColumnCount(fixedIndex+1);
+			} else {
+				that._table.setFixedColumnCount(that._flatData.dimensionHeaders.length);
+			}		
 		}
 	},
 

@@ -147,7 +147,7 @@
   "DFixedHeader": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Interaction",
+      "cat": "Display",
       "desc": "Fix Header Rows",
       "tooltip": "Fix Header Rows",
       "ztlFunction": "",
@@ -338,6 +338,19 @@
     "value": 200,
     "visible": true
   },
+  "DHeaderColumnFixed": {
+    "opts": {
+      "apsControl": "spinner",
+      "cat": "Display",
+      "desc": "Fixed Column Index (-1 means Row Dimensions)",
+      "tooltip": "Fixed Column Index (-1 means Row Dimensions)",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "type": "int",
+    "value": -1,
+    "visible": true
+  },
   "DIgnoreResults": {
     "opts": {
       "apsControl": "checkbox",
@@ -373,6 +386,19 @@
     },
     "type": "String",
     "value": "Paginator",
+    "visible": true
+  },
+  "DOnlyHeaderColumns": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Show Only Header Columns",
+      "tooltip": "Show Only Header Columns",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
     "visible": true
   },
   "DRowHeight": {

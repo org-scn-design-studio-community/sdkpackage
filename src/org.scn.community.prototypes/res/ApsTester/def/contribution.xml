@@ -60,6 +60,7 @@
 
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
+		<option name="presentationDelimiter" value=" | " />
 	</property>
 	<property
 		id="doublearray"

@@ -168,4 +168,55 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 	void clear () {*
 		this.content = "{}";
 	*}
+	
+	/**
+	Returns the content of property Return Headers as loopable name/value array.
+	<example>
+	You want to loop at values:
+	<code>
+	var content = POSTRESPONSEPARSER.getReturnHeadersAsNameValueArray();<br>
+	<br>
+	// a loop for all entries<br>
+	content.forEach(function(element, index) {<br>
+		LISTBOX_1.addItem(element.name, element.value);<br>
+	});
+	</code>
+	This LISTBOX_1 has now following values entries:<br>
+		<ul>
+		<li>key: k1; value: v1</li>
+		<li>key: k2; value: v2</li>
+		<li>key: k3; value: v3</li></ul>
+	</example>
+	*/
+	org.scn.community.shared.NameValueArray getReturnHeadersAsNameValueArray () {*
+		var s = this.content;  
+		var js = []; 
+		if(s!="") js = JSON.parse(s);
+		
+		var tempA = [];
+		
+		if(js instanceof Array){
+			for(var i=0;i<js.length;i++){
+				var myObject = js[i];
+				var itemDef = { 
+					"name": "" + i, 
+					"value": myObject
+				};
+				
+				tempA.push(itemDef);
+			}
+			return result;
+		} else {
+			for (var iI in js) {
+				var itemDef = { 
+					"name": "" + iI, 
+					"value": js[iI]
+				};
+
+				tempA.push(itemDef);
+			}
+		}
+
+		return tempA;
+	*}
 }

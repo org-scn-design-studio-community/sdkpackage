@@ -7,4 +7,5 @@
 %XML_PROPERTY_POSSIBLE_VALUE%
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
+		<option name="presentationDelimiter" value=" | " />
 	</property>

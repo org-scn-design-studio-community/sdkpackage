@@ -4235,6 +4235,15 @@ __n__}
 
 	</property>
 	<property
+		id="DHeaderColumnFixed"
+		type="int"
+		title="Fixed Column Index (-1 means Row Dimensions)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="DIgnoreResults"
 		type="boolean"
 		title="Ignore Results"
@@ -4247,6 +4256,15 @@ __n__}
 		id="DNavigationMode"
 		type="String"
 		title="Navigation Mode"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DOnlyHeaderColumns"
+		type="boolean"
+		title="Show Only Header Columns"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -4288,6 +4306,7 @@ __n__}
 
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
+		<option name="presentationDelimiter" value=" | " />
 	</property>
 	<property
 		id="onCellSelected"
@@ -4328,8 +4347,10 @@ __n__}
 		<defaultValue property="DFormattingOperator"><![CDATA[UseFirst]]></defaultValue>
 		<defaultValue property="DFormattingValueCondition"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="DHeaderColWidth"><![CDATA[200]]></defaultValue>
+		<defaultValue property="DHeaderColumnFixed"><![CDATA[-1]]></defaultValue>
 		<defaultValue property="DIgnoreResults"><![CDATA[true]]></defaultValue>
 		<defaultValue property="DNavigationMode"><![CDATA[Paginator]]></defaultValue>
+		<defaultValue property="DOnlyHeaderColumns"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DRowHeight"><![CDATA[20]]></defaultValue>
 		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
 		<defaultValue property="DVisibleRowCount"><![CDATA[12]]></defaultValue>

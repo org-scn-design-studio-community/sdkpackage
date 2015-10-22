@@ -95,7 +95,7 @@ function org_scn_community_databound_XYViz(d3, options){
 			mx = mxObj;
 		}
 		for(var i=0;i<this.flatData.columnHeaders.length;i++){
-			if(this.flatData.columnHeaders[i] == mx) mxIndex = i;
+			if(this.flatData.columnHeadersKeys[i] == mx) mxIndex = i;
 		}
 		this.xVals = [];
 		for(var i=0;i<this.flatData.values.length;i++){
@@ -128,7 +128,7 @@ function org_scn_community_databound_XYViz(d3, options){
 			my = myObj;
 		}
 		for(var i=0;i<this.flatData.columnHeaders.length;i++){
-			if(this.flatData.columnHeaders[i] == my) myIndex = i;
+			if(this.flatData.columnHeadersKeys[i] == my) myIndex = i;
 		}
 		this.yVals = [];
 		for(var i=0;i<this.flatData.values.length;i++){

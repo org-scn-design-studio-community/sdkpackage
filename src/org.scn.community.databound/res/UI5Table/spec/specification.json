@@ -132,9 +132,35 @@
 	         "ztlType":"boolean",
 	         "ztlFunction":"",
 	         "desc":"Fix Header Rows",
-	         "cat":"Interaction",
+	         "cat":"Display",
 	         "tooltip":"Fix Header Rows",
 	         "apsControl":"checkbox"
+	    }
+	}, 	
+	"DOnlyHeaderColumns":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Show Only Header Columns",
+	         "cat":"Display",
+	         "tooltip":"Show Only Header Columns",
+	         "apsControl":"checkbox"
+	    }
+	}, 	
+	"DHeaderColumnFixed":{
+	    "type":"int",
+	    "value":-1,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"int",
+	         "ztlFunction":"",
+	         "desc":"Fixed Column Index (-1 means Row Dimensions)",
+	         "cat":"Display",
+	         "tooltip":"Fixed Column Index (-1 means Row Dimensions)",
+	         "apsControl":"spinner"
 	    }
 	}, 		
     "DHeaderColWidth":{

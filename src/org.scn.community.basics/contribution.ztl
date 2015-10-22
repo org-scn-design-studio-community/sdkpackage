@@ -11078,6 +11078,8 @@ class org.scn.community.basics.NotificationBar extends org.scn.community.shared.
 
 
 
+
+
 	/**
 	 * Sets Remove All Notifications When Minimized Property
 	 */	
@@ -14257,7 +14259,12 @@ class org.scn.community.basics.TextArea extends org.scn.community.shared.Compone
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
-
+	/**
+	 * Appends Text Value to the End
+	 */	
+	void appendValue( /**Text Value to Append*/ String value){*
+		this.value = this.value + value;
+	*}
 }
 
 /**

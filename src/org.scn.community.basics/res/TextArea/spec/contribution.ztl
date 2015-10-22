@@ -1,0 +1,6 @@
+	/**
+	 * Appends Text Value to the End
+	 */	
+	void appendValue( /**Text Value to Append*/ String value){*
+		this.value = this.value + value;
+	*}

@@ -106,7 +106,7 @@ Slider = {
 					
 					that.setLiveValue(value);
 					
-					that.fireDesignStudioPropertiesChangedAndValue(["liveValue"], "onLiveChange");
+					that.fireDesignStudioPropertiesChangedAndEvent(["liveValue"], "onLiveChange");
 				}
 			});
 		}

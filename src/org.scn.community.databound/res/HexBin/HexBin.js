@@ -115,8 +115,8 @@
 	    			my = myObj;
 	    		}
 	    		for(var i=0;i<this.flatData.columnHeaders.length;i++){
-	    			if(this.flatData.columnHeaders[i] == mx) mxIndex = i;
-	    			if(this.flatData.columnHeaders[i] == my) myIndex = i;
+	    			if(this.flatData.columnHeadersKeys[i] == mx) mxIndex = i;
+	    			if(this.flatData.columnHeadersKeys[i] == my) myIndex = i;
 	    		}
 				for(var i=0;i<vals.length;i++){
 					var currentRow = vals[i];
