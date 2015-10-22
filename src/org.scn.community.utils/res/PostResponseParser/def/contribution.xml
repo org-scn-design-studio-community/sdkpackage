@@ -44,7 +44,18 @@
 		title="Is this Request Cross-Domain"
 		group="Display"
 		visible="true" />
-
+	<property
+		id="DJsonp"
+		type="boolean"
+		title="Do you want to use JSONP"
+		group="Display"
+		visible="true" />
+	<property
+		id="DWithCredentials"
+		type="boolean"
+		title="Do you want to need credentials"
+		group="Display"
+		visible="true" />
 	<property
 		id="DBasicAuthorisation"
 		type="String"

@@ -41,7 +41,9 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
               
               "DRequestMethod": {type: "string"},
               "DRequestType": {type: "string"},
+              "DJsonp": {type: "boolean"},
               "DCrossDomain": {type: "boolean"},
+              "DWithCredentials": {type: "boolean"},
         }
 	},
 
@@ -126,7 +128,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 		    contentType: that.getDContentType(),
 		    processData: false,
 		    crossDomain: that.getDCrossDomain(),
-		    jsonp: false,
+//		    jsonp: false,
 		    url: url,
 		    headers: lHeadersObject,
 		    data: lData,
@@ -213,7 +215,13 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 				that.fireDesignStudioEvent("onResponse");
 		    }
 		};
-		
+		if(that.getDJsonp()){
+			ajaxRequest.dataType = 'jsonp';
+			ajaxRequest.crossDomain = true;
+			ajaxRequest.contentType = "application/javascript";
+		}else{
+			ajaxRequest.jsonp = false;
+		}
 		$.ajax(ajaxRequest);
 	},
 	
@@ -241,13 +249,16 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 			}
 		}
 		
-		http.open("POST", url, true);
+		http.open(that.getDRequestMethod(), url, true);
 
 		// "application/json; charset=utf-8"
 		if(this.getDContentType() != "") {
 			http.setRequestHeader("Content-type", that.getDContentType());	
 		}
 		
+		if(this.getDWithCredentials() != ""){
+			http.withCredentials = this.getDWithCredentials();
+		}
 		
 		if(this.getDBasicAuthorisation() != "") {
 			http.setRequestHeader("Authorization", that.getDBasicAuthorisation());	

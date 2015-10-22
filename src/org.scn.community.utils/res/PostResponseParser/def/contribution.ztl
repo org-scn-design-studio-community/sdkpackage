@@ -19,6 +19,34 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	String getBasicAuthorisation() {*
 		return this.DBasicAuthorisation;
 	*}
+	
+	/**
+	 * Sets jsonp Property
+	 */	
+	void setJsonp(Boolean jsonp){*
+		this.DJsonp = jsonp;
+	*}
+	
+	/**
+	 * Gets jsonp Property
+	 */	
+	String getJsonp() {*
+		return this.DJsonp;
+	*}
+
+	/**
+	 * Gets jsonp Property
+	 */	
+	String getWithCredentials() {*
+		return this.DWithCredentials;
+	*}
+	
+	/**
+	 * Sets jsonp Property
+	 */	
+	void setWithCredentials(Boolean withCredentials){*
+		this.DWithCredentials = withCredentials;
+	*}
 
 	/**
 	 * Remove All Parameters from the Array.

@@ -12,6 +12,12 @@
 	"DCrossDomain" : {
 		"gen-type":"boolean",
 	},
+	"DJsonp" : {
+		"gen-type":"boolean",
+	},
+	"DWithCredentials" : {
+		"gen-type":"boolean",
+	},
 
 	"DBasicAuthorisation" : {
 		"gen-type":"String",
