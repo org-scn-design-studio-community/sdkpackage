@@ -250,6 +250,7 @@
 		group="DataBinding"
 		visible="true">
 
+		<option name="maxCells" value="100000" />
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 		<option name="presentationDelimiter" value=" | " />
@@ -393,6 +394,7 @@
 		group="DataBinding"
 		visible="true">
 
+		<option name="maxCells" value="100000" />
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 		<option name="presentationDelimiter" value=" | " />
@@ -670,6 +672,7 @@
 		group="DataBinding"
 		visible="true">
 
+		<option name="maxCells" value="100000" />
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 		<option name="presentationDelimiter" value=" | " />

@@ -4304,6 +4304,7 @@ __n__}
 		group="DataBinding"
 		visible="false">
 
+		<option name="maxCells" value="100000" />
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 		<option name="presentationDelimiter" value=" | " />

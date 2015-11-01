@@ -349,8 +349,19 @@ UI5Table = {
 		selection.rowKeys = that._flatData.rowHeadersKeys2D[selection.row];
 		selection.rowValues = that._flatData.data2D[selection.row]["values"];
 		
-		selection.columnDimensions = that._flatData.dimensionCols;
-		selection.rowDimensions = that._flatData.dimensionRows;
+		selection.columnDimensions = [];
+		selection.rowDimensions = [];
+		
+		for (var colDimI in that._flatData.dimensionCols){
+			var volDimO = that._flatData.dimensionCols[colDimI];
+			
+			selection.columnDimensions.push({key: volDimO.key});
+		}
+		for (var rowDimI in that._flatData.dimensionRows){
+			var volDimO = that._flatData.dimensionRows[rowDimI];
+			
+			selection.rowDimensions.push({key: volDimO.key});
+		}
 		
 		var selectionS = JSON.stringify(selection);
 		that.setDSelection(selectionS);
@@ -383,7 +394,13 @@ UI5Table = {
 		selection.rowValues = that._flatData.data2D[selection.row]["values"];
 		
 		selection.columnDimensions = [];
-		selection.rowDimensions = that._flatData.dimensionRows;
+		selection.rowDimensions = [];
+		
+		for (var rowDimI in that._flatData.dimensionRows){
+			var volDimO = that._flatData.dimensionRows[rowDimI];
+			
+			selection.rowDimensions.push({key: volDimO.key});
+		}
 		
 		var selectionS = JSON.stringify(selection);
 		that.setDSelection(selectionS);
