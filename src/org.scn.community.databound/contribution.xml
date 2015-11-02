@@ -2121,7 +2121,6 @@ __n__}
 	<jsInclude>res/MultiLevelDropDown/MultiLevelDropDown.js</jsInclude>
 	
 	<!--CSS adapted from http://codepen.io/philhoyt/pen/ujHzd-->
-	<!--<cssInclude>res/MultiLevelDropDown/MultiLevelDropDown.css</cssInclude>-->
 	
 	<!-- Result set containing the data-->
 		<property 
@@ -2151,11 +2150,11 @@ __n__}
 		<!-- valueDisplayType -->
 		<property 
 			type="String" 
-			title="Value display type" 
-			id="valueDisplayType" >
-			<possibleValue>Key</possibleValue>
-			<possibleValue>Key+Text</possibleValue>
-			<possibleValue>Text+Key</possibleValue>
+			title="Label Display" 
+			id="labelDisplay" >
+			<possibleValue>NodeKey</possibleValue>
+			<possibleValue>Left</possibleValue>
+			<possibleValue>Right</possibleValue>
 		</property>
 		
 		<!-- Add Single root node instead of all the first child of the hierarchy -->
@@ -2212,34 +2211,37 @@ __n__}
 			group="Events">
 		</property>
 		
-		<!-- Choose to display weight -->
+		<!-- Choose to display mesure -->
 		<property
 			type="boolean" 
-			title="Display a Weight" 	
-			id="addWeight">
+			title="Display a Mesure" 	
+			id="addMesure">
 		</property>
 		
-		<!-- Selected Weight -->
+		<!-- Selected Mesure -->
 		<property 
 			type="String" 
-			title="Display Weight KF" 
-			id="selWeight"
+			title="Display Mesure KF" 
+			id="selMesure"
 			visible="false">
 		</property>
 		
-		<!-- Color Coding Weight -->
+		<!-- Color Coding Mesure -->
 		<property 
 			type="String" 
-			title="Color Coding Weight" 
-			id="colorClassWeight"
+			title="Color Coding Mesure" 
+			id="colorClassMesure"
+			visible="false">
+		</property>
+		
+		<property 
+			type="String" 
+			title="replace the text for Not Assigned node" 
+			id="notAssignedText" 
 			visible="false">
 		</property>
 
 		<initialization>
-			<defaultValue property="TOP_MARGIN">0</defaultValue>
-			<defaultValue property="LEFT_MARGIN">0</defaultValue>
-			<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-			<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 			<!-- WIDTH -->
 			<defaultValue property="WIDTH">700</defaultValue>
 			<!-- HEIGHT -->
@@ -2254,13 +2256,14 @@ __n__}
 			<defaultValue property="clickedElemKey">INITIAL VALUE</defaultValue>
 			<!-- resetButton -->
 			<defaultValue property="resetButton">None</defaultValue>
-			<!-- addWeight -->
-			<defaultValue property="addWeight">false</defaultValue>
-			<!-- selWeight -->
-			<defaultValue property="selWeight"></defaultValue>
-			<!-- selWeight -->
-			<defaultValue property="valueDisplayType">Key+Text</defaultValue>
-			<defaultValue property="colorClassWeight"></defaultValue>
+			<!-- addMesure -->
+			<defaultValue property="addMesure">false</defaultValue>
+			<!-- selMesure -->
+			<defaultValue property="selMesure"></defaultValue>
+			<!-- selMesure -->
+			<defaultValue property="labelDisplay">Left</defaultValue>
+			<defaultValue property="colorClassMesure"></defaultValue>
+			<defaultValue property="NotAssignedText"></defaultValue>
 			
 		</initialization>
 </component>
@@ -4304,6 +4307,7 @@ __n__}
 		group="DataBinding"
 		visible="false">
 
+		<option name="maxCells" value="100000" />
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 		<option name="presentationDelimiter" value=" | " />

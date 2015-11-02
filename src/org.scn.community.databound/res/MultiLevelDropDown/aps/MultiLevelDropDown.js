@@ -5,11 +5,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 	this._selChar 			= "";
 	this._content 			= "";
 	this._metadata 			= {};
-	this._selWeight			= "";
+	this._selMesure			= "";
 	this._colorClass		= "";
+	this._replaceNotAssign	= "";
 	
-	this.comboSelWeight 	= "";
+	this.comboSelMesure 	= "";
 	this.comboSelChar 		= "";
+	
+	this.inputRepNotAssign	= "";
 	
 	var selKeyfigStruc		= "";
 	
@@ -39,21 +42,32 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 		this._content.addContent(new sap.ui.commons.TextView({text : "Select the Dropdown characteristic"}));
 		this._content.addContent(this.comboSelChar);
 		
-//		--- Weight --
-		this.comboSelWeight = new sap.ui.commons.ComboBox("comboSelWeight");
+		//---- MESURE ----
+		this.comboSelMesure = new sap.ui.commons.ComboBox("comboSelMesure");
 		
-		this.comboSelWeight.attachChange(function(){
-			that.selWeight(that.comboSelWeight.getSelectedKey());
-			that.firePropertiesChanged(["selWeight"]);
+		this.comboSelMesure.attachChange(function(){
+			that.selMesure(that.comboSelMesure.getSelectedKey());
+			that.firePropertiesChanged(["selMesure"]);
 		});
 		
-		this.comboSelWeight.setTooltip("Select the weight KF");
+		this.comboSelMesure.setTooltip("Select a Mesure");
 		
-		this.comboSelWeight.setDisplaySecondaryValues(true);
+		this.comboSelMesure.setDisplaySecondaryValues(true);
 
-		this._content.addContent(new sap.ui.commons.TextView({text : "Select Weight"}));
-		this._content.addContent(this.comboSelWeight);
+		this._content.addContent(new sap.ui.commons.TextView({text : "Select a Mesure"}));
+		this._content.addContent(this.comboSelMesure);
 		
+		// ----- Not assigned node text replacement  -----
+		this.inputRepNotAssign = new sap.ui.commons.TextField("inputRepNotAssign");
+		this.inputRepNotAssign.attachChange(function(){
+			that.notAssignedText(that.inputRepNotAssign.getValue());
+			that.firePropertiesChanged(["notAssignedText"]);
+		});
+		
+		this._content.addContent(new sap.ui.commons.TextView({text : "Replace text for the Not Assigned node"}));
+		this._content.addContent(this.inputRepNotAssign);
+		
+		// ----- JSON Color coding -----
 		this._content.addContent(new sap.ui.commons.TextView({text : "JSON Color Range"}));
 		this.textAreaColorClass = new sap.ui.commons.TextArea("textAreaColorClass");
 		this.textAreaColorClass.setCols(40);
@@ -71,49 +85,39 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 		this.updateProps();
 	};
 	
-	this.updateProps = function(value){
-		var compMeta = this.callRuntimeHandler("getDimensions");
-		var dims = jQuery.parseJSON(compMeta);
-		
+	this.updateProps = function(){
+
 		this.comboSelChar.removeAllItems();
-		this.comboSelChar.setSelectedKey(this._selChar);
+		this.comboSelMesure.removeAllItems();
 		
-		this.comboSelWeight.removeAllItems();
-		this.comboSelWeight.setSelectedKey(this._selWeight);
-		
-		selKeyfigStruc = "";
-		
-		var dims = jQuery.parseJSON(compMeta);
-		for(var i=0;i<dims.length;i++){
-			var dim = dims[i];
-			
-			if (dim.hasOwnProperty('containsMeasures')) {
-				
-				selKeyfigStruc = dim.key;
-				this.callRuntimeHandler("setKeyFigStrucName", selKeyfigStruc);
-				
-				for(var j=0 ; j<dim.members.length ; j++){
-					var member = dim.members[j];
-					
-					this.comboSelWeight.addItem(new sap.ui.core.ListItem({
-						key : member.key,
-						text: member.text,
-						additionalText : member.key 
-					}));
-				}
-			} else {
-				this.comboSelChar.addItem(new sap.ui.core.ListItem({
-					key : dim.key,
-					text: dim.text,
-					additionalText : dim.key 
-				}));
-			}
+		var apsCharList = jQuery.parseJSON(this.callRuntimeHandler("getApsCharList"));
+
+		for(var i=0;i<apsCharList.length;i++){
+
+			this.comboSelChar.addItem(new sap.ui.core.ListItem({
+				key : apsCharList[i].key,
+				text: apsCharList[i].text,
+				additionalText : apsCharList[i].key 
+			}));
 		}
+		
+		var apsMesureList = jQuery.parseJSON(this.callRuntimeHandler("getApsMesureList"));
+
+		for(var i=0;i<apsMesureList.length;i++){
+
+			this.comboSelMesure.addItem(new sap.ui.core.ListItem({
+				key : apsMesureList[i].key,
+				text: apsMesureList[i].text,
+				additionalText : apsMesureList[i].key 
+			}));
+		}
+		
+		this.comboSelMesure.setSelectedKey(this._selMesure);
+		this.comboSelChar.setSelectedKey(this._selChar);
 	}
 	
 	
 	this.selChar = function(value){
-		//alert("Prop.selChar()");
 		if( value === undefined){
 			return this._selChar;
 		}else{
@@ -123,13 +127,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 		}
 	};
 	
-	this.selWeight = function(value){
-		//alert("Prop.selChar()");
+	this.selMesure = function(value){
 		if( value === undefined){
-			return this._selWeight;
+			return this._selMesure;
 		}else{
-			this._selWeight = value;
-			that.comboSelWeight.setSelectedKey(value);
+			this._selMesure = value;
+			that.comboSelMesure.setSelectedKey(value);
 			return this;
 		}
 	};
@@ -161,7 +164,18 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.databound.MultiLev
 		}
 	};
 	
+	this.replaceNotAssigned = function(value){
+		if(value===undefined){
+			return this._replaceNotAssign;
+		}else{
+			this._replaceNotAssign = value;
+			that.inputRepNotAssign.setValue(value);
+			return this;
+		}
+	};
+	
 	this.getMetadataAsString = function() {
 		return JSON.stringify(this.metadata());
 	};
+	
 });

@@ -5,6 +5,7 @@
 		group="DataBinding"
 		visible="%PROPERTY_VISIBLE%">
 %XML_PROPERTY_POSSIBLE_VALUE%
+		<option name="maxCells" value="100000" />
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 		<option name="presentationDelimiter" value=" | " />
