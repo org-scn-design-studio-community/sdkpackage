@@ -1018,7 +1018,7 @@
 	<property
 		id="DWithCredentials"
 		type="boolean"
-		title="Do you want to need credentials"
+		title="Do you need with credentials"
 		group="Display"
 		visible="true" />
 	<property
@@ -1050,6 +1050,14 @@
 		visible="true">
 			<possibleValue>text</possibleValue>
 			<possibleValue>json</possibleValue>
+	</property>
+
+	<property
+		id="DPayload"
+		type="String"
+		title="HTTP reuqest payload"
+		group="Display"
+		visible="false">
 	</property>
 
 	<property

@@ -34,6 +34,10 @@
 	"DContentType" : {
 		"gen-type":"String",
 	},
+	
+	"DPayload" : {
+		"gen-type":"String",
+	},
 
 	"DReturnParameters" : {
 		"gen-type":"shared.NameValue",

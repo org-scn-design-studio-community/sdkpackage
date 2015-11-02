@@ -44,6 +44,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
               "DJsonp": {type: "boolean"},
               "DCrossDomain": {type: "boolean"},
               "DWithCredentials": {type: "boolean"},
+              "DPayload": {type: "string"},
         }
 	},
 
@@ -121,6 +122,10 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 			if(that.getDContentType().indexOf("json") == -1) {
 				lData = lDataUrl;
 			}	
+			//payload for post requests
+			if(that.getDPayload() !== undefined && that.getDPayload() !== null && that.getDPayload() !== ""){
+				lData = that.getDPayload();
+			}
 		}
 
 		var ajaxRequest = {
@@ -140,12 +145,19 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 		    	if(status == that.getDExpectedResponseStatus()){
 		    		if(that.getDExpectedContentType() == "json") {
 		    			try{
-		    				var responseJson = JSON.parse(response);
-		    				
-		    				for (lElementKey in responseJson) {
-		    					returnParameters.push({name: lElementKey, value: responseJson[lElementKey]});
+		    				if(typeof response =='object'){			    				
+			    				for (lElementKey in response) {
+			    					returnParameters.push({name: lElementKey, value: response[lElementKey]});
+			    				}
 		    				}
-		    				
+		    				else{
+		    					var responseJson = JSON.parse(response);
+			    				
+			    				for (lElementKey in responseJson) {
+			    					returnParameters.push({name: lElementKey, value: responseJson[lElementKey]});
+			    				}	
+		    				}
+		    				response = JSON.stringify(response);
 		    			} catch (e) {
 		    				returnParameters.push({name: "STATUS", value: "PARSE_ERROR"});
 		    			}
@@ -249,6 +261,11 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 			}
 		}
 		
+		//payload for post requests
+		if(that.getDPayload() !== undefined && that.getDPayload() !== null && that.getDPayload() !== ""){
+			params = that.getDPayload();
+		}
+		
 		http.open(that.getDRequestMethod(), url, true);
 
 		// "application/json; charset=utf-8"
@@ -283,12 +300,18 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespon
 		    	if(http.status == that.getDExpectedResponseStatus()){
 		    		if(that.getDExpectedContentType() == "JSON") {
 		    			try{
-		    				var responseJson = JSON.parse(response);
-		    				
-		    				for (lElementKey in responseJson) {
-		    					returnParameters.push({name: lElementKey, value: responseJson[lElementKey]});
+		    				if(typeof response =='object'){
+			    				for (lElementKey in responseJson) {
+			    					returnParameters.push({name: lElementKey, value: response[lElementKey]});
+			    				}
+		    				}else{
+			    				var responseJson = JSON.parse(response);
+			    				
+			    				for (lElementKey in responseJson) {
+			    					returnParameters.push({name: lElementKey, value: responseJson[lElementKey]});
+			    				}
 		    				}
-		    				
+		    				response = JSON.stringify(response);
 		    			} catch (e) {
 		    				returnParameters.push({name: "STATUS", value: "PARSE_ERROR"});
 		    			}

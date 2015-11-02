@@ -1,3 +1,18 @@
+	/** Adds payload to HTTP requests. Typically used with POST requests as GET
+	 * uses the URL query string.
+
+ 	<example>
+	You want to add JSON data to your POST request to be send to the server
+	<code>
+	addPayloadToHttp("{"key":"value"}");<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addPayloadToHttp(String data){*
+		this.DPayload = data;
+	*}
+
 	/**
 	 * Trigger Execution of the given URL and parameter list
 	 */
