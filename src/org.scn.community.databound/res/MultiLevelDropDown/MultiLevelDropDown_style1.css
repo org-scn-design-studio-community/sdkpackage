@@ -33,16 +33,19 @@ li.scn-hier-ddm-root-node:hover {
 /* Place holder corresponding to the node text style
  - Must separate: Text for Root node
  - Text for nodes */
-.scn-hier-ddm-node span.scn-hier-ddm-text {
-	/* height: 28px; */
+
+.scn-hier-ddm-disp-has-mesure .scn-hier-ddm-node span.scn-hier-ddm-text {
 	float: left;
-	/* display: inline-block; */
 	width: 112px;
 	text-overflow: ellipsis;
-	/* white-space: nowrap; */
 	padding-right:15px;
-	/* overflow: hidden; */
-	/* word-wrap: break-word; */
+}
+
+.scn-hier-ddm-disp-no-mesure .scn-hier-ddm-node span.scn-hier-ddm-text {
+	float: left;
+	width: 160px;
+	text-overflow: ellipsis;
+	padding-right:15px;
 }
 
 /* Inside a Node, display the weight at the right */
@@ -89,7 +92,6 @@ span.scn-hier-ddm-mesure {
     float:right;
     padding-left:15px;
     font-weight: bold;
-    /* right: 0px; */
 }
 
 /* Div that contains text and weight */
@@ -97,7 +99,6 @@ span.scn-hier-ddm-mesure {
 .scn-hier-ddm-root-node > div
 {
 	display:block;
-	/* color:#333; */
 	text-decoration:none;
 	font-size:12px;
 	padding: 10px 0px 10px 0px;
@@ -128,6 +129,7 @@ span.scn-hier-ddm-mesure {
     text-decoration:none;
     padding: 0 0 0 15px;
     height: 35px;
+    border-bottom: 1px dotted black;
 }
 
 /* -------- HOVER -------- */
@@ -157,6 +159,6 @@ span.scn-hier-ddm-mesure {
 	position:absolute;
 	top:100%;
 	left:0;
-	background:#fff;
+	background-color:white;
 	padding:0;
 }

@@ -1783,21 +1783,21 @@ class org.scn.community.databound.MultiLevelDropDown extends Component {
 		this.selChar = value;
 	*}
 	
-	/** ------- Getter / Setter for addMesure ------ */
-	boolean isMesureDisplayActivated() {*
+	/** ------- Getter / Setter for addMeasure ------ */
+	boolean isMeasureDisplayActivated() {*
 		return this.addMesure;
 	*}
 
-	void activateDisplayMesure(Boolean value) {*
+	void activateDisplayMeasure(Boolean value) {*
 		this.addMesure = value;
 	*}
 	
-	/** ------- Getter / Setter for selMesure ------ */
-	String getSelMesure() {*
+	/** ------- Getter / Setter for selMeasure ------ */
+	String getSelMeasure() {*
 		return this.selMesure;
 	*}
 
-	void setSelMesure(String value) {*
+	void setSelMeasure(String value) {*
 		this.selMesure = value;
 	*}
 	

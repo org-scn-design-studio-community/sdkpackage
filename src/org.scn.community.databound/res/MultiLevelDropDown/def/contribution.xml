@@ -73,7 +73,7 @@
 		<!-- Menu that has been selected, "clicked" -->
 		<property 
 			type="String" 	
-			title="clicked Element Key" 	
+			title="selected Element Key" 	
 			id="selectedElemKey" 		
 			visible="false">
 		</property>
@@ -105,14 +105,14 @@
 		<!-- Choose to display mesure -->
 		<property
 			type="boolean" 
-			title="Display a Mesure" 	
+			title="Display a Measure" 	
 			id="addMesure">
 		</property>
 		
 		<!-- Selected Mesure -->
 		<property 
 			type="String" 
-			title="Display Mesure KF" 
+			title="Displayed Measure" 
 			id="selMesure"
 			visible="false">
 		</property>
@@ -120,7 +120,7 @@
 		<!-- Color Coding Mesure -->
 		<property 
 			type="String" 
-			title="Color Coding Mesure" 
+			title="Color Coding Measure" 
 			id="colorClassMesure"
 			visible="false">
 		</property>
