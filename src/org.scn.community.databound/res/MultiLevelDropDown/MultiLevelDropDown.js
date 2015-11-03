@@ -332,7 +332,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			
 			newDiv.addClass("componentLoadingState zenLoadingStateOpacity");
 			
-			newDiv.append($('<p style="font-weight:bold; color:white; font-size:22px">No data. Please assigne a datasource</p>'));
+			newDiv.append($('<p style="font-weight:bold; color:white; font-size:22px">No data. Please assign a datasource</p>'));
 			this.$().append(newDiv);
 			return;
 		}
