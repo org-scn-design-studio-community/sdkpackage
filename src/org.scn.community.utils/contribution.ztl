@@ -2211,7 +2211,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to D3 Hierarchy component*/
 	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Leader Board component*/
+	/**Cast to Data Leader Board 2.0 component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Location Intelligence component*/
@@ -3238,8 +3238,13 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 	/**
 	 * Returns as Json String (indented)
 	 */
-	String getAsJSON () {*
+	String getAsJSON (optional boolean noLinebreaks) {*
+		if(noLinebreaks == undefined) {noLinebreaks = false;}
+		
 		var jsonObject = JSON.parse(this.content);
+		if(noLinebreaks) {
+			return JSON.stringify(jsonObject);
+		}
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	

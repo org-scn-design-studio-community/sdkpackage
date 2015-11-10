@@ -297,7 +297,7 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, metada
 	var newList = [];
 		
 	var counter = 0;
-	if(options.iTopBottom == "Top X") {
+	if(options.iTopBottom == "Top X" || options.iTopBottom == "Top") {
 		for (var i = 0; i < list.length; i++) {
 			if(counter >= max) {
 				break;
@@ -315,7 +315,7 @@ org_scn_community_databound.getTopBottomElementsByIndex = function (data, metada
 			newList.push(list[i]);
 			counter = counter + 1;
 		}
-	} else if (options.iTopBottom == "Bottom X"){
+	} else if (options.iTopBottom == "Bottom X" || options.iTopBottom == "Bottom"){
 		var start = list.length-max;
 		
 		if(list.length < max) {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 SCN SDK Community
+ * Copyright 2014 Scn Community Contributors
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/
@@ -16,159 +16,166 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.databound.LeaderBoard";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.databound.LeaderBoard;
 
-sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
+LeaderBoard = {
 
-	setFallbackPicture : function(value) {
-		this._FallbackPicture = value;
-		
-		if(value != undefined && value != "")  {
-			this._pImagePrefix = value.substring(0, value.lastIndexOf("/") + 1);	
-		}
-	},
-
-	getFallbackPicture : function() {
-		return this._FallbackPicture;
-	},
+	renderer: {},
 	
-	metadata: {
-        properties: {
-              "maxNumber": {type: "int"},
-              "topBottom": {type: "string"},
-              "usePictures": {type: "boolean"},
-              "addCounter": {type: "boolean"},
-              "valueDecimalPlaces": {type: "int"},
-              "selectedKey": {type: "string"},
-              "pressedKey": {type: "string"},
-              "valuePrefix": {type: "string"},
-              "valueSuffix": {type: "string"}
-        }
-	},
-	
-	setData : function(value) {
-		this._data = value;
-		return this;
-	},
-	
-	getData : function(value) {
-		return this._data;
-	},
-	
-	setMetadata : function(value) {
-		this._metadata = value;
-		return this;
-	},
-
-	getMetadata : function(value) {
-		return this._metadata;
-	},
-  
 	initDesignStudio: function() {
 		var that = this;
-		this._oContentPlaced = false;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
 		
-		this._ownScript = _readScriptPath();
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that._oElements = {};
 		
-		this._oElements = {};
-		
-		this.addStyleClass("scn-pack-DataLeaderBoard");
+		that.addStyleClass("scn-pack-DataLeaderBoard");
 		
 		that._lLayout = new sap.ui.layout.VerticalLayout({
 			
 		});
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
-		// resize function
-		that.onAfterRendering = function() {
-			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout);
-		};
+		that.onAfterRendering = function () {
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout, that.onResize);
+		}
 	},
 	
-	renderer: {},
-	
-	afterDesignStudioUpdate : function() {
+	afterDesignStudioUpdate: function() {
 		var that = this;
-		var propertiesNow = this._serializeProperites("selectedKey;pressedKey");
-
-		var rerender = false;
-		if(this._serializedPropertiesAfter != propertiesNow) {
-		  this._serializedPropertiesAfter = propertiesNow;
-		  rerender = true;
-		}
 		
-		if(rerender) {
-			this._oElements = {};
-			
-			this._maxValue = undefined;
-			
-			var lData = this._data;
-			var lMetadata = this._metadata;
-			
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+		var loadingResultset = "DataCellList";
+		
+		var data = undefined;		
+		if(loadingResultset == "ResultSet" || loadingResultset == "ResultCell"){
+			data = that.getData();
+		} else if(loadingResultset == "DataCellList"){
+			data = that.getDataCellList();
+		}
+
+		var metadata = that.getDSMetadata();
+
+		if(!org_scn_community_databound.hasData (data, metadata)) {
+			org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare);
+		} else {
+			org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+		}
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		if(flatData == undefined) {
+			var loadingResultset = "DataCellList";
+				
+			if(loadingResultset == "ResultSet"){
+				var options = org_scn_community_databound.initializeOptions();
+				options.swapAxes = that.getSwapAxes();
+				
+				that._flatData = org_scn_community_databound.flatten(that.getData(), options);
+			} else if(loadingResultset == "ResultCell"){
+				that._flatData = that.getData();
+			} else if(loadingResultset == "DataCellList"){
+				that._oElements = {};
+				
+				that._maxValue = undefined;
+				
+				var lData = that.getDataCellList();
+				var lMetadata = that.getDSMetadata();
+				
+				var options = org_scn_community_databound.initializeOptions();
+				
+				options.iMaxNumber = that.getMaxNumber();
+				options.iTopBottom = that.getTopBottom();
+				options.iSortBy = "Value";
+				options.iDuplicates = "Ignore";
+				options.iNumberOfDecimals = that.getValueDecimalPlaces();
+				if(options.iNumberOfDecimals.length > 0 && options.iNumberOfDecimals.substring(0,1) == "D") {
+					options.iNumberOfDecimals = options.iNumberOfDecimals.substring(1);
+				}
+				
+				options.iDisplayText = "Text";
+				
+				that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
+			     (lData, lMetadata, "", options);
+				
+			}
+		} else {
+			that._flatData = flatData;
+
+			that._maxValue = undefined;
+
+			var lData = that._flatData;
+			var lMetadata = that._flatData;
+
 			var options = org_scn_community_databound.initializeOptions();
-			
-			options.iMaxNumber = this.getMaxNumber();
-			options.iTopBottom = this.getTopBottom();
+
+			options.iMaxNumber = that.getMaxNumber();
+			options.iTopBottom = that.getTopBottom();
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";
-			options.iNnumberOfDecimals = this.getValueDecimalPlaces();
-			
-			var returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
-		     (lData, lMetadata, "", options);
-			
-			lElementsToRenderArray = returnObject.list;
-
-			// Destroy old content
-			this._lLayout.destroyContent();
-
-			// distribute content
-			for (var i = 0; i < lElementsToRenderArray.length; i++) {
-				var element = lElementsToRenderArray[i];
-				var lImageElement = this.createLeaderElement(i, element.key, element.text, element.url, element.value, element.valueS, returnObject);
-				this._lLayout.addContent(lImageElement);
+			options.iNnumberOfDecimals = that.getValueDecimalPlaces();
+			if(options.iNnumberOfDecimals.length > 0 && options.iNnumberOfDecimals.substring(0,1) == "D") {
+				options.iNnumberOfDecimals = options.iNnumberOfDecimals.substring(1);
 			}
-		} else {
-			for (lElementKey in this._oElements) {
-				var lElement = this._oElements[lElementKey];
-				
-				if(this.getSelectedKey() == lElement.internalKey) {
-					lElement.addStyleClass("scn-pack-DataTopFlop-SelectedValue");
-				} else {
-					lElement.removeStyleClass("scn-pack-DataTopFlop-SelectedValue");
-				}
+
+			if(that.getDDisplayText() == "Text_Value") {
+				options.iDisplayText = "Text (Value)";
+			} else if(that.getDDisplayText() == "Text_Count") {
+				options.iDisplayText = "Text (Count)";
+			} else {
+				options.iDisplayText = "Text";
 			}
+
+			that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
+			 (lData, lMetadata, "", options);
 		}
+		
+		// processing on data
+		if(that._oResize) {
+			that.afterPrepare(that);
+		}
+	},
 
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// Destroy old content
+		that._lLayout.destroyContent();
+
+		that._oElements = that._returnObject.list;
+
+		// distribute content
+		for (var i = 0; i < that._oElements.length; i++) {
+			var element = that._oElements[i];
+			var lImageElement = that.createLeaderElement(that, i, element.key, element.text, element.url, element.value, element.valueS, that._returnObject);
+			that._lLayout.addContent(lImageElement);
+		}
 	},
 	
-	createLeaderElement: function (index, iImageKey, iImageText, iImageUrl, value, valueAsString, returnObject) {
-		var that = this;
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+		parent.afterPrepare(parent);
+	},
+	
+	createLeaderElement: function (owner, index, iImageKey, iImageText, iImageUrl, value, valueAsString, returnObject) {
+		var that = owner;
 		
-		// in case starts with http, keep as is 
-		if(iImageUrl.indexOf("http") == 0) {
-			// no nothing
-		} else {
-			// in case of repository, add the prefix from repository
-			if(this._pImagePrefix != undefined && this._pImagePrefix != ""){
-				iImageUrl = this._pImagePrefix + iImageUrl;
-				var extension = this.getFallbackPicture();
-				extension = extension.substring(extension.lastIndexOf("."));
-
-				iImageUrl = iImageUrl + extension;
-			} else {
-				iImageUrl = this._ownScript + "LeaderBoard.png";
-			}
-		}
+		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getFallbackPicture(), iImageUrl, "LeaderBoard.png");
 		
-		var lUsePictures = this.getUsePictures();
+		var lUsePictures = that.getUsePictures();
 
 		var lLeftMargin = "45px";
 		if(lUsePictures) {
@@ -176,11 +183,11 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		}
 		
 		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
-			width: "225px",
+			width: (owner._containerWidth-6) + "px",
 			height: "40px"
 		});
 		
-		value = 225 * value / returnObject.maxValue;
+		value = (owner._containerWidth-6) * value / returnObject.maxValue;
 		
 		var oValueLayout = new sap.ui.commons.layout.AbsoluteLayout ({
 			width: value + "px",
@@ -197,14 +204,14 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		oLayout.addStyleClass("scn-pack-DataLeaderBoard-Layout");
 		oLayout.internalKey = iImageKey;
 
-		if(this.getAddCounter()) {
+		if(that.getAddCounter()) {
 			var oIndexText = new sap.ui.commons.TextView();
 			oIndexText.addStyleClass("scn-pack-DataLeaderBoard-IndexText");
 			oIndexText.setText((index+1) + ".");
 			
 			oLayout.addContent(
 					oIndexText,
-					{right: "200px", top: "10px"}
+					{right: (owner._containerWidth-6-25) + "px", top: "10px"}
 			);
 		}
 		
@@ -242,7 +249,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 				{left: lLeftMargin, top: "20px"}
 		);
 		
-		if(this.getSelectedKey() == iImageKey) {
+		if(that.getSelectedKey() == iImageKey) {
 			oLayout.addStyleClass("scn-pack-DataLeaderBoard-SelectedValue");
 		}
 		
@@ -259,7 +266,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 				that._linkEvent = false;
 			} else {
 				that.setSelectedKey(oImage.internalKey);
-				that.updateSelection(oImage.internalKey);
+				that.updateSelection(that, oImage.internalKey);
 				
 				that.fireDesignStudioPropertiesChanged(["selectedKey"]);
 				that.fireDesignStudioEvent("onSelectionChanged");
@@ -295,13 +302,15 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			}
 		}
 		
-		oText.setText (this.getValuePrefix() + valueAsString + this.getValueSuffix());
+		oText.setText (that.getValuePrefix() + valueAsString + that.getValueSuffix());
 		
 		return oLayout;
 	},
 	
-	updateSelection : function (iSelectedKey) {
-		var lContent = this._lLayout.getContent();
+	updateSelection : function (owner, iSelectedKey) {
+		var that = owner;
+
+		var lContent = that._lLayout.getContent();
 		
 		for (var i = 0; i < lContent.length; i++) {
 			var lLayout = lContent [i];
@@ -314,26 +323,10 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		};
 	},
 	
-	_fFormatNumber : function (value) {
-		if(!this._metadata) {
-			return value;
-		}
-		sap.common.globalization.NumericFormatManager.setPVL(this._metadata.locale);
-		var strFormat = "#"+sap.common.globalization.NumericFormatManager.getThousandSeparator()+"##0";
-		
-		if (this.getValueDecimalPlaces() > 0) {
-			strFormat += sap.common.globalization.NumericFormatManager.getDecimalSeparator();
-			for (var i = 0; i < this.getValueDecimalPlaces(); i++) {
-				strFormat += "0";
-			}
-		}
-		
-		var valueFormatted = sap.common.globalization.NumericFormatManager.format(value, strFormat);
-		return valueFormatted;
-	},
-	
-	_serializeProperites : function (excluding){
-		var props = this.oComponentProperties.content.control;
+	_serializeProperites : function (owner, excluding){
+		var that = owner;
+
+		var props = that.oComponentProperties.content.control;
 
 		if(excluding == undefined) {
 			excluding = "";
@@ -347,14 +340,21 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		}
 		
 		// size
-		serialization = serialization + "W->" + this.oComponentProperties.width;
-		serialization = serialization + "H->" + this.oComponentProperties.height;
+		serialization = serialization + "W->" + that.oComponentProperties.width;
+		serialization = serialization + "H->" + that.oComponentProperties.height;
 		// data
-		serialization = serialization + "DATA->" + JSON.stringify(this._data);
-		serialization = serialization + "METADATA->" + JSON.stringify(this._metadata);
+		serialization = serialization + "DATA->" + JSON.stringify(that._data);
+		serialization = serialization + "METADATA->" + JSON.stringify(that._metadata);
 	
 		return serialization;
 	},
 
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+
+define([myComponentData.requireName], function(databoundleaderboard){
+	myComponentData.instance = LeaderBoard;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

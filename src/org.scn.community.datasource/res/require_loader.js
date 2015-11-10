@@ -34,7 +34,7 @@ org_scn_community_basics.isDebug = org_scn_community_basics.getUrlParameterByNam
 if(org_scn_community_basics.isDebug) {
 	org_scn_community_require.jsVersion = "0000-0-0";	
 } else {
-	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-11-1"/*%TIMESTAMP-END%*/;
+	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-11-10"/*%TIMESTAMP-END%*/;
 }
 
 org_scn_community_basics.isHana = false;

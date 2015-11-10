@@ -1482,143 +1482,166 @@ __n__}
 	
 <component
 	id="LeaderBoard"
-	title="Data Leader Board"
+	title="Data Leader Board 2.0"
+	tooltip="Data Leader Board"
 	icon="res/LeaderBoard/LeaderBoard.png"
 	handlerType="sapui5"
+	propertySheetPath="res/LeaderBoard/aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >
-
-	<jsInclude>os/jshashtable/jshashtable-min.js</jsInclude>
-	<jsInclude>os/numberformat/numberformatter-min.js</jsInclude>
+	
 	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/common_databound.js</jsInclude>
-
-	<jsInclude>res/LeaderBoard/LeaderBoard.js</jsInclude>
+	<jsInclude>res/LeaderBoard/LeaderBoardLoader.js</jsInclude>
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
-
-	<property
-		id="data"
-		title="Data List"
-		type="ResultCellList"
-		group="DataBinding"
-	>
-	</property>
-
-	<property
-		id="maxNumber"
-		title="Maximum Number"
-		type="int"
-		group="Display" />
-
-	<property
-		id="topBottom"
-		title="Top X or Bottom X"
-		type="String"
-		group="Display"
-	>
-		<possibleValue>Top X</possibleValue>
-		<possibleValue>Bottom X</possibleValue>
-	</property>
-
-	<property
-		id="fallbackPicture"
-		title="Url for the Fallback Picture"
-		type="Url"
-		group="Display"
-	>
-	</property>
-
-	<property
-		id="usePictures"
-		type="boolean"
-		title="Use Pictures"
-		group="Display"
-		visible="true" />
-
+	
+	
 	<property
 		id="addCounter"
 		type="boolean"
 		title="Add Counter"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
-		id="selectedKey"
-		type="String"
-		title="Technical proprty for Selected Key"
-		group="Display"
-		visible="false" />
+		id="dataCellList"
+		type="ResultCellList"
+		title="Data List"
+		group="DataBinding"
+		visible="true"
+		bindable="true">
 
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="fallbackPicture"
+		type="Url"
+		title="Url For The Fallback Picture"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="maxNumber"
+		type="int"
+		title="Maximum Number"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onPress"
+		type="ScriptText"
+		title="Event For On Press"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onSelectionChanged"
+		type="ScriptText"
+		title="Event For On Selection Changed"
+		group="Events"
+		visible="true">
+
+	</property>
 	<property
 		id="pressedKey"
 		type="String"
-		title="Technical proprty for Pressed Key"
+		title="Technical Proprty For Pressed Key"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="false">
 
+	</property>
+	<property
+		id="selectedKey"
+		type="String"
+		title="Technical Proprty For Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="topBottom"
+		type="String"
+		title="Top X Or Bottom X"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="usePictures"
+		type="boolean"
+		title="Use Pictures"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="valueDecimalPlaces"
+		type="String"
+		title="Value Decimal Places"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="valuePrefix"
 		type="String"
 		title="Value Prefix Text"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
 		id="valueSuffix"
 		type="String"
 		title="Value Suffix Text"
 		group="Display"
-		visible="true" />
+		bindable="true"
+		visible="true">
 
-	<property
-		id="valueDecimalPlaces"
-		title="Value Decimal Places"
-		type="int"
-		group="Display"
-	>
-		<possibleValue>0</possibleValue>
-		<possibleValue>1</possibleValue>
-		<possibleValue>2</possibleValue>
-		<possibleValue>3</possibleValue>
-		<possibleValue>4</possibleValue>
-		<possibleValue>5</possibleValue>
-		<possibleValue>6</possibleValue>
-		<possibleValue>7</possibleValue>
-		<possibleValue>8</possibleValue>
-		<possibleValue>9</possibleValue>
 	</property>
 
-	<property
-		id="onSelectionChanged"
-		type="ScriptText"
-		title="Event for On Selection Changed"
-		group="Events" />
-
-	<property
-		id="onPress"
-		type="ScriptText"
-		title="Event for On Press"
-		group="Events" />
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">225</defaultValue>
 		<defaultValue property="HEIGHT">190</defaultValue>
-
-		<defaultValue property="topBottom">Top X</defaultValue>
-		<defaultValue property="maxNumber">10</defaultValue>
-		<defaultValue property="addCounter">true</defaultValue>
-		<defaultValue property="usePictures">true</defaultValue>
-		<defaultValue property="valueDecimalPlaces">0</defaultValue>
 		
+		<defaultValue property="addCounter"><![CDATA[true]]></defaultValue>
+		<defaultValue property="dataCellList"><![CDATA[null]]></defaultValue>
+		<defaultValue property="fallbackPicture"><![CDATA[]]></defaultValue>
+		<defaultValue property="maxNumber"><![CDATA[10]]></defaultValue>
+		<defaultValue property="onPress"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="pressedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="topBottom"><![CDATA[Top]]></defaultValue>
+		<defaultValue property="usePictures"><![CDATA[true]]></defaultValue>
+		<defaultValue property="valueDecimalPlaces"><![CDATA[D0]]></defaultValue>
+		<defaultValue property="valuePrefix"><![CDATA[]]></defaultValue>
+		<defaultValue property="valueSuffix"><![CDATA[]]></defaultValue>
+
 	</initialization>
 
 </component>
+
 <component id="LocationIntel" 
 	title="Location Intelligence"
 	icon="res/LocationIntel/LocationIntel.png"

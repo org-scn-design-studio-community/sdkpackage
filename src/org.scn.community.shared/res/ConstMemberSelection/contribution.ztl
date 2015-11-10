@@ -1,0 +1,22 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_MemberSelectionEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify member selection 
+ */
+class org_scn_community_shared_MemberSelection extends Enum {
+
+	/** Top */
+	org_scn_community_shared_MemberSelectionEnumfield Top;
+	
+	/** Bottom */
+	org_scn_community_shared_MemberSelectionEnumfield Bottom;
+		
+	/** Both */
+	org_scn_community_shared_MemberSelectionEnumfield Both;
+}

@@ -1,0 +1,274 @@
+{
+	"pressedKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Proprty For Pressed Key",
+			"cat" : "Display",
+			"tooltip" : "Technical Proprty For Pressed Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"selectedKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Proprty For Selected Key",
+			"cat" : "Display",
+			"tooltip" : "Technical Proprty For Selected Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+   },
+   "dataCellList":{
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Data List",
+         "cat":"Data",
+         "tooltip":"Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+
+   "addCounter" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Add Counter",
+			"cat" : "Display",
+			"tooltip" : "Add Counter",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"fallbackPicture" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url For The Fallback Picture",
+			"cat" : "Display",
+			"tooltip" : "Url For The Fallback Picture",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"maxNumber" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 10,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Maximum Number",
+			"cat" : "Display",
+			"tooltip" : "Maximum Number",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"topBottom" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Top",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "MemberSelection",
+			"ztlFunction": "",
+			"desc" : "Top X Or Bottom X",
+			"cat" : "Display",
+			"tooltip" : "Top X Or Bottom X",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Top",
+					"text" : "Top"
+				},
+				{
+					"key" : "Bottom",
+					"text" : "Bottom"
+				},
+				{
+					"key" : "Both",
+					"text" : "Both"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"usePictures" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Pictures",
+			"cat" : "Display",
+			"tooltip" : "Use Pictures",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valueDecimalPlaces" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "D0",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "DecimalPlaces",
+			"ztlFunction": "",
+			"desc" : "Value Decimal Places",
+			"cat" : "Display",
+			"tooltip" : "Value Decimal Places",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "D0",
+					"text" : "0"
+				},
+				{
+					"key" : "D1",
+					"text" : "1"
+				},
+				{
+					"key" : "D2",
+					"text" : "2"
+				},
+				{
+					"key" : "D3",
+					"text" : "3"
+				},
+				{
+					"key" : "D4",
+					"text" : "4"
+				},
+				{
+					"key" : "D5",
+					"text" : "5"
+				},
+				{
+					"key" : "D6",
+					"text" : "6"
+				},
+				{
+					"key" : "D7",
+					"text" : "7"
+				},
+				{
+					"key" : "D8",
+					"text" : "8"
+				},
+				{
+					"key" : "D9",
+					"text" : "9"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valuePrefix" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Value Prefix Text",
+			"cat" : "Display",
+			"tooltip" : "Value Prefix Text",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"valueSuffix" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Value Suffix Text",
+			"cat" : "Display",
+			"tooltip" : "Value Suffix Text",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onPress" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Press",
+			"cat" : "Events",
+			"tooltip" : "Event For On Press",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onSelectionChanged" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Selection Changed",
+			"cat" : "Events",
+			"tooltip" : "Event For On Selection Changed",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

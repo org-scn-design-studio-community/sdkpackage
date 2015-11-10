@@ -27,6 +27,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ConstHorizontalAlign\contribution.ztl ^
 ..\res\ConstImageSize\contribution.ztl ^
 ..\res\ConstMemberDisplay\contribution.ztl ^
+..\res\ConstMemberSelection\contribution.ztl ^
 ..\res\ConstNavigationType\contribution.ztl ^
 ..\res\ConstOrientation\contribution.ztl ^
 ..\res\ConstOrientationType\contribution.ztl ^

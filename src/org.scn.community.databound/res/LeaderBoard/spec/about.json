@@ -1,0 +1,16 @@
+{
+	"title": "Data Leader Board 2.0",
+	"description": "Data Leader Board",
+	"icon": "LeaderBoard.png",
+	"topics": 
+	[
+		{
+			"title" : "Data Leader Board",
+			"content" : "Data Leader Board shows you the top and bottom members in nice manner"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

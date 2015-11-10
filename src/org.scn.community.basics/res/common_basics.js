@@ -428,6 +428,23 @@ org_scn_community_basics.getRepositoryImageUrlPrefix = function (owner, componen
 			if(componentUrl != undefined && componentUrl.length > 0) {
 				correctUrl =  componentUrl.substring(0, componentUrl.lastIndexOf("/") + 1);
 				correctUrl = correctUrl + imageUrl;
+
+   			    var version  = componentUrl.substring(componentUrl.indexOf("?"));
+   			    if(imageUrl.indexOf(".") == -1) {
+					var extension = componentUrl.substring(0, componentUrl.indexOf("?"));
+
+					if(extension.lastIndexOf("/") > -1) {
+						extension = extension.substring(extension.lastIndexOf("/")+1)
+					}
+
+					if(extension.lastIndexOf(".") > -1) {
+						extension = extension.substring(extension.lastIndexOf("."))
+					}
+
+					correctUrl = correctUrl + extension;
+				}
+
+				correctUrl = correctUrl + version;
 			} else {
 				correctUrl = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage, componentFileName);
 			}
