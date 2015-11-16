@@ -2277,7 +2277,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Data Top FLop Chart component*/
 	org.scn.community.databound.TopFlopChart returnAsScnTopFlopChart (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Top Flop component*/
+	/**Cast to Data Top Flop 2.0 component*/
 	org.scn.community.databound.TopFlop returnAsScnTopFlop (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to UI5 Table 2.0 component*/

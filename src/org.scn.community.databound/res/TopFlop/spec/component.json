@@ -1,0 +1,35 @@
+{
+	"id": "TopFlop",
+	"title": "Data Top Flop 2.0",
+	"tooltip": "Data Top Flop",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityDataBound",
+	"package": "databound",
+	"extension": "Component",
+	"dataType": "DataCellList",
+  	"databound": true,
+  
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "common_databound",
+		},
+		{
+			"space" : "known",
+			"id" : "jshashtable",
+		},
+		{
+			"space" : "known",
+			"id" : "numberformatter",
+		}
+	],
+	
+	"width": "225",
+	"height": "190"
+}

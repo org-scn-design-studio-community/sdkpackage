@@ -98,19 +98,13 @@ LeaderBoard = {
 				var options = org_scn_community_databound.initializeOptions();
 				
 				options.iMaxNumber = that.getMaxNumber();
-				options.iTopBottom = that.getTopBottom();
+				options.iTopBottom = that.getTopBottom().replace("X", "");
 				options.iSortBy = "Value";
 				options.iDuplicates = "Ignore";
-				options.iNumberOfDecimals = that.getValueDecimalPlaces();
-				if(options.iNumberOfDecimals.length > 0 && options.iNumberOfDecimals.substring(0,1) == "D") {
-					options.iNumberOfDecimals = options.iNumberOfDecimals.substring(1);
-				}
-				
+				options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "");;
 				options.iDisplayText = "Text";
 				
-				that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
-			     (lData, lMetadata, "", options);
-				
+				that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension (lData, lMetadata, "", options);
 			}
 		} else {
 			that._flatData = flatData;
@@ -123,18 +117,13 @@ LeaderBoard = {
 			var options = org_scn_community_databound.initializeOptions();
 
 			options.iMaxNumber = that.getMaxNumber();
-			options.iTopBottom = that.getTopBottom();
+			options.iTopBottom = that.getTopBottom().replace("X", "");
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";
-			options.iNumberOfDecimals = that.getValueDecimalPlaces();
-			if(options.iNumberOfDecimals.length > 0 && options.iNumberOfDecimals.substring(0,1) == "D") {
-				options.iNumberOfDecimals = options.iNumberOfDecimals.substring(1);
-			}
-			
+			options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "");
 			options.iDisplayText = "Text";
 
-			that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
-			 (lData, lMetadata, "", options);
+			that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension (lData, lMetadata, "", options);
 		}
 		
 		// processing on data
@@ -161,11 +150,12 @@ LeaderBoard = {
 	
 	onResize: function(width, height, parent) {
 		// in case special resize code is required
-		
-		if(isNaN(width) || isNaN(height)) {
-			return;
+		if(parent._returnObject == undefined) {return;}
+		try{
+			parent.afterPrepare(parent);	
+		}catch (e) {
+			alert(e + ", " + e.stack);
 		}
-		parent.afterPrepare(parent);
 	},
 	
 	createLeaderElement: function (owner, index, iImageKey, iImageText, iImageUrl, value, valueAsString, returnObject) {
@@ -321,32 +311,6 @@ LeaderBoard = {
 		};
 	},
 	
-	_serializeProperites : function (owner, excluding){
-		var that = owner;
-
-		var props = that.oComponentProperties.content.control;
-
-		if(excluding == undefined) {
-			excluding = "";
-		}
-
-		var serialization = "";
-		for (var key in props) {
-		  if (props.hasOwnProperty(key) && excluding.indexOf(key) == -1) {
-			  serialization = serialization + key + "->" + props[key] + ";";
-		  }
-		}
-		
-		// size
-		serialization = serialization + "W->" + that.oComponentProperties.width;
-		serialization = serialization + "H->" + that.oComponentProperties.height;
-		// data
-		serialization = serialization + "DATA->" + JSON.stringify(that._data);
-		serialization = serialization + "METADATA->" + JSON.stringify(that._metadata);
-	
-		return serialization;
-	},
-
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 

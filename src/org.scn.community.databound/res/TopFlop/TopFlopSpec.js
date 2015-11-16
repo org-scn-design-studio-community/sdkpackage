@@ -1,43 +1,25 @@
-ApsContent = function () {
-	var that = this; 
-	
-	that.componentData = {
+/**
+ * Copyright 2014 Scn Community Contributors
+ * 
+ * Original Source Code Location:
+ *  https://github.com/org-scn-design-studio-community/sdkpackage/
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ *  
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *  
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ */
 
-"specComp" : 
-{
-  "dataType": "DataCellList",
-  "databound": true,
-  "extension": "Component",
-  "group": "ScnCommunityDataBound",
-  "handlerType": "sapui5",
-  "height": "190",
-  "id": "LeaderBoard",
-  "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
-  "require": [
-    {
-      "id": "common_basics",
-      "space": "known"
-    },
-    {
-      "id": "common_databound",
-      "space": "known"
-    },
-    {
-      "id": "jshashtable",
-      "space": "known"
-    },
-    {
-      "id": "numberformatter",
-      "space": "known"
-    }
-  ],
-  "title": "Data Leader Board 2.0",
-  "tooltip": "Data Leader Board",
-  "width": "225"
-},
+(function() {
 
-"spec" : 
+	org_scn_community_require.knownComponents.databound.TopFlop.spec = 
 {
   "addCounter": {
     "opts": {
@@ -53,6 +35,38 @@ ApsContent = function () {
     "template": "boolean",
     "type": "boolean",
     "value": true,
+    "visible": true
+  },
+  "averagePrefix": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display-Value",
+      "desc": "Prefix For Average Value",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Prefix For Average Value",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "Average: ",
+    "visible": true
+  },
+  "averageSuffix": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display-Value",
+      "desc": "Suffix For Average Value",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Suffix For Average Value",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
     "visible": true
   },
   "dataCellList": {
@@ -74,6 +88,22 @@ ApsContent = function () {
     "value": "null",
     "visible": true
   },
+  "deltaValueSuffix": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display-Value",
+      "desc": "Delta Value Suffix Text",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Delta Value Suffix Text",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": true
+  },
   "fallbackPicture": {
     "opts": {
       "apsControl": "text",
@@ -90,6 +120,22 @@ ApsContent = function () {
     "value": "",
     "visible": true
   },
+  "fixedAverage": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Content",
+      "desc": "Fixed Average Value (-1 For Calculated Average)",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Fixed Average Value (-1 For Calculated Average)",
+      "ztlFunction": "",
+      "ztlType": "float"
+    },
+    "template": "float",
+    "type": "float",
+    "value": -1,
+    "visible": true
+  },
   "maxNumber": {
     "opts": {
       "apsControl": "spinner",
@@ -103,7 +149,7 @@ ApsContent = function () {
     },
     "template": "int",
     "type": "int",
-    "value": 10,
+    "value": 3,
     "visible": true
   },
   "onPress": {
@@ -171,7 +217,7 @@ ApsContent = function () {
       "apsControl": "combobox",
       "cat": "Content",
       "choiceType": "MemberSelection",
-      "desc": "Top X Or Bottom X",
+      "desc": "Top X, Bottom X Or Both",
       "noAps": false,
       "noZtl": false,
       "options": [
@@ -188,13 +234,13 @@ ApsContent = function () {
           "text": "Both"
         }
       ],
-      "tooltip": "Top X Or Bottom X",
+      "tooltip": "Top X, Bottom X Or Both",
       "ztlFunction": "",
       "ztlType": "Choice"
     },
     "template": "Choice",
     "type": "String",
-    "value": "Top",
+    "value": "Both",
     "visible": true
   },
   "usePictures": {
@@ -304,31 +350,60 @@ ApsContent = function () {
     "value": "",
     "visible": true
   }
-}, 
+};
 
-"specInclude" : 
-{}, 
+	org_scn_community_require.knownComponents.databound.TopFlop.specInclude = 
+{};
 
-"specAbout" : 
+	org_scn_community_require.knownComponents.databound.TopFlop.specAbout = 
 {
-  "description": "Data Leader Board",
-  "icon": "LeaderBoard.png",
-  "title": "Data Leader Board 2.0",
+  "description": "Data Top Flop",
+  "icon": "TopFlop.png",
+  "title": "Data Top Flop 2.0",
   "topics": [
     {
-      "content": "Data Leader Board shows you the top and bottom members in nice manner",
-      "title": "Data Leader Board"
+      "content": "Data Top Flop",
+      "title": "Data Top Flop"
     },
     {
       "content": "This component is a visualization component. It requires specific space in the application canvas.",
       "title": "Visualization"
     }
   ]
-}
-
 };
 
-	org_scn_community_component_Core(that, that.componentData);
-    
-	return that;
+	org_scn_community_require.knownComponents.databound.TopFlop.specComp = 
+{
+  "dataType": "DataCellList",
+  "databound": true,
+  "extension": "Component",
+  "group": "ScnCommunityDataBound",
+  "handlerType": "sapui5",
+  "height": "190",
+  "id": "TopFlop",
+  "package": "databound",
+  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "require": [
+    {
+      "id": "common_basics",
+      "space": "known"
+    },
+    {
+      "id": "common_databound",
+      "space": "known"
+    },
+    {
+      "id": "jshashtable",
+      "space": "known"
+    },
+    {
+      "id": "numberformatter",
+      "space": "known"
+    }
+  ],
+  "title": "Data Top Flop 2.0",
+  "tooltip": "Data Top Flop",
+  "width": "225"
 };
+
+})();// End of closure

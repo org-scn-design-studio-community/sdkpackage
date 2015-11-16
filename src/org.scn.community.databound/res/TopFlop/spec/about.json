@@ -1,0 +1,16 @@
+{
+	"title": "Data Top Flop 2.0",
+	"description": "Data Top Flop",
+	"icon": "TopFlop.png",
+	"topics": 
+	[
+		{
+			"title" : "Data Top Flop",
+			"content" : "Data Top Flop"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

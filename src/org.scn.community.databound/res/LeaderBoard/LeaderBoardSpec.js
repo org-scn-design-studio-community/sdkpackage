@@ -24,7 +24,7 @@
   "addCounter": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Content",
       "desc": "Add Counter",
       "noAps": false,
       "noZtl": false,
@@ -59,7 +59,7 @@
   "fallbackPicture": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Picture",
       "desc": "Url For The Fallback Picture",
       "noAps": false,
       "noZtl": false,
@@ -75,7 +75,7 @@
   "maxNumber": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "Display",
+      "cat": "Content",
       "desc": "Maximum Number",
       "noAps": false,
       "noZtl": false,
@@ -151,7 +151,7 @@
   "topBottom": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Display",
+      "cat": "Content",
       "choiceType": "MemberSelection",
       "desc": "Top X Or Bottom X",
       "noAps": false,
@@ -182,7 +182,7 @@
   "usePictures": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Display-Picture",
       "desc": "Use Pictures",
       "noAps": false,
       "noZtl": false,
@@ -198,7 +198,7 @@
   "valueDecimalPlaces": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Display",
+      "cat": "Display-Value",
       "choiceType": "DecimalPlaces",
       "desc": "Value Decimal Places",
       "noAps": false,
@@ -257,7 +257,7 @@
   "valuePrefix": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Value",
       "desc": "Value Prefix Text",
       "noAps": false,
       "noZtl": false,
@@ -273,7 +273,7 @@
   "valueSuffix": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Value",
       "desc": "Value Suffix Text",
       "noAps": false,
       "noZtl": false,

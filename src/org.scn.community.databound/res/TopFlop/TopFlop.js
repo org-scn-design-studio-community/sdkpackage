@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 SCN SDK Community
+ * Copyright 2014 Scn Community Contributors
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/
@@ -16,196 +16,207 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.databound.TopFlop";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.databound.TopFlop;
 
-sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
+TopFlop = {
 
-	setFallbackPicture : function(value) {
-		this._FallbackPicture = value;
-		
-		if(value != undefined && value != "")  {
-			this._pImagePrefix = value.substring(0, value.lastIndexOf("/") + 1);	
-		}
-	},
-
-	getFallbackPicture : function() {
-		return this._FallbackPicture;
-	},
-	
-	metadata: {
-        properties: {
-              "maxNumber": {type: "int"},
-              "topBottom": {type: "string"},
-              "usePictures": {type: "boolean"},
-              "addCounter": {type: "boolean"},
-              "valueDecimalPlaces": {type: "int"},
-              "selectedKey": {type: "string"},
-              "pressedKey": {type: "string"},
-              "valuePrefix": {type: "string"},
-              "valueSuffix": {type: "string"},
-              "deltaValueSuffix": {type: "string"},
-              "fixedAverage": {type: "int"},
-              "averagePrefix": {type: "string"},
-              "averageSuffix": {type: "string"}
-        }
-	},
-	
-	setData : function(value) {
-		this._data = value;
-		return this;
-	},
-	
-	getData : function(value) {
-		return this._data;
-	},
-	
-	setMetadata : function(value) {
-		this._metadata = value;
-		return this;
-	},
-
-	getMetadata : function(value) {
-		return this._metadata;
-	},
-  
-	initDesignStudio: function() {
-		var that = this;
-		this._ownScript = _readScriptPath();
-		
-		this._oElements = {};
-		
-		this.addStyleClass("scn-pack-DataTopFlop");
-	},
-	
 	renderer: {},
 	
-	afterDesignStudioUpdate : function() {
+	initDesignStudio: function() {
+		var that = this;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+		
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that._lLayout = new sap.ui.layout.VerticalLayout({
+			
+		});
+
+		that.addContent(
+			that._lLayout,
+			{left: "0px", top: "2px"}	
+		);
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		that.onAfterRendering = function () {
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout, that.onResize);
+		}
+	},
+	
+	afterDesignStudioUpdate: function() {
 		var that = this;
 		
-		if(!this._lLayout) {
-			this._lLayout = new sap.ui.layout.VerticalLayout({
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+		var loadingResultset = "DataCellList";
+		
+		var data = undefined;		
+		if(loadingResultset == "ResultSet" || loadingResultset == "ResultCell"){
+			data = that.getData();
+		} else if(loadingResultset == "DataCellList"){
+			data = that.getDataCellList();
+		}
+
+		var metadata = that.getDSMetadata();
+
+		if(!org_scn_community_databound.hasData (data, metadata)) {
+			org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare, "result");
+		} else {
+			org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+		}
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		if(flatData == undefined) {
+			var loadingResultset = "DataCellList";
 				
-			});
+			if(loadingResultset == "ResultSet"){
+				var options = org_scn_community_databound.initializeOptions();
+				options.swapAxes = that.getSwapAxes();
+				
+				that._flatData = org_scn_community_databound.flatten(that.getData(), options);
+			} else if(loadingResultset == "ResultCell"){
+				that._flatData = that.getData();
+			} else if(loadingResultset == "DataCellList"){
+				that._options = org_scn_community_databound.initializeOptions();
+				var options = that._options;
 
-			this.addContent(
-				this._lLayout,
-				{left: "0px", top: "2px"}	
-			);
-		}
-		
-		var propertiesNow = this._serializeProperites("selectedKey;pressedKey");
+				options.iMaxNumber = that.getMaxNumber();
+				options.iTopBottom = that.getTopBottom().replace("X", "");
+				options.allKeys = true;
+				options.idPrefix = that.getId();
+				options.iSortBy = "Value";
+				options.iDuplicates = "Ignore";
+				options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "");
+				
+				options.iDisplayText = "Text";
+				
+				var dataList = that.getDataCellList();
+				that._metaData = that.getDSMetadata();
+				
+				that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension (dataList, that._metaData, "", options);
+			}
+		} else {
+			var lData = flatData;
+			that._metaData = flatData;
 
-		var rerender = false;
-		if(this._serializedPropertiesAfter != propertiesNow) {
-		  this._serializedPropertiesAfter = propertiesNow;
-		  rerender = true;
-		}
-		
-		if(rerender) {
-			this._oElements = {};
+			that._options = org_scn_community_databound.initializeOptions();
+			var options = that._options;
 			
-			this._maxValue = undefined;
-			this._maxDelta = -1;
-			
-			var lData = this._data;
-			var lMetadata = this._metadata;
-			
-var options = org_scn_community_databound.initializeOptions();
-			
-			options.iMaxNumber = this.getMaxNumber();
-			options.iTopBottom = this.getTopBottom();
+			options.iMaxNumber = that.getMaxNumber();
+			options.iTopBottom = that.getTopBottom().replace("X", "");
+			options.iSortBy = "Value";
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";
-			options.iNnumberOfDecimals = this.getValueDecimalPlaces();
+			options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "");
 			
-			var returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
-		     (lData, lMetadata, "", options);
+			options.iDisplayText = "Text";
 			
-			lElementsToRenderArray = returnObject.list;
+			that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension (lData, that._metaData, "", options);
+		}
+
+		// processing on data
+		if(that._oResize) {
+			that._oResize(true, true);
+		}
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		var rerender = true;
+		if(rerender) {
+			that._oElements = {};
+			
+			that._maxValue = undefined;
+			that._maxDelta = -1;
+			
+			lElementsToRenderArray = that._returnObject.list;
 
 			// Destroy old content
-			this._lLayout.destroyContent();
+			that._lLayout.destroyContent();
 
 			// find highest value
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
-				if(this._maxValue == undefined) {
-					this._maxValue = element.value;
+				if(that._maxValue == undefined) {
+					that._maxValue = element.value;
 				}
-				if(element.value > this._maxValue) {
-					this._maxValue = element.value;
+				if(element.value > that._maxValue) {
+					that._maxValue = element.value;
 				}
 			}
 			
-			if(this._maxValue == 0) {
-				this._maxValue = 1;
+			if(that._maxValue == 0) {
+				that._maxValue = 1;
 			}
 			
 			// distribute content
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
-				var lImageElement = this.createLeaderElement(i, element.key, element.text, element.url, element.value, element.valueS, element.counter, element.delta, returnObject);
-				this._oElements[element.key] = lImageElement;
-				this._lLayout.addContent(lImageElement);
+				var lImageElement = that.createLeaderElement(that, i, element.key, element.text, element.url, element.value, element.valueS, element.counter, element.delta, that._returnObject);
+				that._oElements[element.key] = lImageElement;
+				that._lLayout.addContent(lImageElement);
 			}
 
 			// insert Average Information
 			var oText = new sap.ui.commons.TextView();
 			oText.addStyleClass("scn-pack-DataTopFlop-AverageText");
 
-			if(this._metadata) {
-				oText.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(returnObject.average, this._metadata.locale, this.getValueDecimalPlaces()) + this.getAverageSuffix());
+			var fixedAverage = that.getFixedAverage();
+			if(fixedAverage == -1) {
+				if(that._returnObject) {
+					oText.setText(that.getAveragePrefix() + org_scn_community_basics.getFormattedValue(that._returnObject.average, that._metaData.locale, that._options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "")) + that.getAverageSuffix());
+				} else {
+					oText.setText(that.getAveragePrefix() + org_scn_community_basics.getFormattedValue(0, "en", that._options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "")) + that.getAverageSuffix());
+				}
 			} else {
-				oText.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(returnObject.average, "en", this.getValueDecimalPlaces()) + this.getAverageSuffix());
+				oText.setText(that.getAveragePrefix() + that.getFixedAverage());
 			}
 			
-			this._lLayout.addContent(
+			that._lLayout.addContent(
 					oText
 			);	
 		} else {
-			for (lElementKey in this._oElements) {
-				var lElement = this._oElements[lElementKey];
+			for (lElementKey in that._oElements) {
+				var lElement = that._oElements[lElementKey];
 				
-				if(this.getSelectedKey() == lElement.internalKey) {
+				if(that.getSelectedKey() == lElement.internalKey) {
 					lElement.addStyleClass("scn-pack-DataTopFlop-SelectedValue");
 				} else {
 					lElement.removeStyleClass("scn-pack-DataTopFlop-SelectedValue");
 				}
 			}
 		}
-
 	},
 	
-	createLeaderElement: function (index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, delta, returnObject) {
-		var that = this;
-		
-		// in case starts with http, keep as is 
-		if(iImageUrl.indexOf("http") == 0) {
-			// no nothing
-		} else {
-			// in case of repository, add the prefix from repository
-			if(this._pImagePrefix != undefined && this._pImagePrefix != ""){
-				iImageUrl = this._pImagePrefix + iImageUrl;
-				var extension = this.getFallbackPicture();
-				extension = extension.substring(extension.lastIndexOf("."));
-
-				iImageUrl = iImageUrl + extension;
-			} else {
-				iImageUrl = this._ownScript + "TopFlop.png";
-			}
+	onResize: function(width, height, parent) {
+		if(parent._returnObject == undefined) {return;}
+		try{
+			parent.afterPrepare(parent);	
+		}catch (e) {
+			alert(e + ", " + e.stack);
 		}
+	},
+	
+	createLeaderElement: function (owner, index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, delta, returnObject) {
+		var that = owner;
 		
-		var lUsePictures = this.getUsePictures();
-		var lAddCounter = this.getAddCounter();
+		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getFallbackPicture(), iImageUrl, "TopFlop.png");
+		
+		var lUsePictures = that.getUsePictures();
+		var lAddCounter = that.getAddCounter();
 		
 		var lLeftMargin = "35px";
 		var lLeftMarginPicture = "35px";
@@ -222,7 +233,7 @@ var options = org_scn_community_databound.initializeOptions();
 		}
 		
 		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
-			width: "225px",
+			width: (owner._containerWidth-6) + "px",
 			height: "40px"
 		});
 		
@@ -230,8 +241,8 @@ var options = org_scn_community_databound.initializeOptions();
 			delta = delta * -1;
 		}
 		
-		var lSizeValueBackground = (225 - 120) * returnObject.maxDelta / returnObject.maxDelta;
-		var lSizeValue = (225 - 120) * delta / returnObject.maxDelta;
+		var lSizeValueBackground = (owner._containerWidth - 120) * returnObject.maxDelta / returnObject.maxDelta;
+		var lSizeValue = (owner._containerWidth - 120) * delta / returnObject.maxDelta;
 		
 		var oValueLayout = new sap.ui.commons.layout.AbsoluteLayout ({
 			width: lSizeValue + "px",
@@ -263,14 +274,14 @@ var options = org_scn_community_databound.initializeOptions();
 		oLayout.addStyleClass("scn-pack-DataTopFlop-Layout");
 		oLayout.internalKey = iImageKey;
 
-		if(this.getAddCounter()) {
+		if(that.getAddCounter()) {
 			var oIndexText = new sap.ui.commons.TextView();
 			oIndexText.addStyleClass("scn-pack-DataTopFlop-IndexText");
 			oIndexText.setText(counter + ".");
 			
 			oLayout.addContent(
 					oIndexText,
-					{right: "200px", top: "10px"}
+					{right: (owner._containerWidth-6-25) + "px", top: "10px"}
 			);
 		}
 		
@@ -316,7 +327,7 @@ var options = org_scn_community_databound.initializeOptions();
 				{right: "2px", top: "1px"}
 		);
 		
-		if(this.getSelectedKey() == iImageKey) {
+		if(that.getSelectedKey() == iImageKey) {
 			oLayout.addStyleClass("scn-pack-DataTopFlop-SelectedValue");
 		}
 		
@@ -324,8 +335,7 @@ var options = org_scn_community_databound.initializeOptions();
 			that._linkEvent = true;
 			that.setPressedKey(oImage.internalKey);
 			
-			that.fireDesignStudioPropertiesChanged(["pressedKey"]);
-			that.fireDesignStudioEvent("onPress");
+			that.fireDesignStudioPropertiesChangedAndEvent(["pressedKey"], "onPress");
 		});
 
 		oLayout.attachBrowserEvent('click', function () {
@@ -333,10 +343,9 @@ var options = org_scn_community_databound.initializeOptions();
 				that._linkEvent = false;
 			} else {
 				that.setSelectedKey(oImage.internalKey);
-				that.updateSelection(oImage.internalKey);
+				that.updateSelection(that, oImage.internalKey);
 				
-				that.fireDesignStudioPropertiesChanged(["selectedKey"]);
-				that.fireDesignStudioEvent("onSelectionChanged");
+				that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
 			}
 		});
 		
@@ -369,21 +378,22 @@ var options = org_scn_community_databound.initializeOptions();
 			}
 		}
 		
-		oText.setText (this.getValuePrefix() + valueAsString + this.getValueSuffix());
+		oText.setText (that.getValuePrefix() + valueAsString + that.getValueSuffix());
 		
 		var delta = value - returnObject.average;
 		if(delta > 0) {
-			oTextDeltaValue.setText (" Δ " + "+" + org_scn_community_basics.getFormattedValue(delta, this._metadata.locale, this.getValueDecimalPlaces()) + this.getDeltaValueSuffix());	
+			oTextDeltaValue.setText (" Δ " + "+" + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "")) + that.getDeltaValueSuffix());	
 		} else {
-			oTextDeltaValue.setText (" Δ " + org_scn_community_basics.getFormattedValue(delta, this._metadata.locale, this.getValueDecimalPlaces()) + this.getDeltaValueSuffix());
+			oTextDeltaValue.setText (" Δ " + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "")) + that.getDeltaValueSuffix());
 		}
 		
 		
 		return oLayout;
 	},
 	
-	updateSelection : function (iSelectedKey) {
-		var lContent = this._lLayout.getContent();
+	updateSelection : function (owner, iSelectedKey) {
+		var that = owner;
+		var lContent = that._lLayout.getContent();
 		
 		for (var i = 0; i < lContent.length; i++) {
 			var lLayout = lContent [i];
@@ -397,16 +407,16 @@ var options = org_scn_community_databound.initializeOptions();
 	},
 	
 	_fFormatNumber : function (value) {
-		if(!this._metadata) {
+		if(!that._metadata) {
 			return value;
 		}
 		
-		sap.common.globalization.NumericFormatManager.setPVL(this._metadata.locale);
+		sap.common.globalization.NumericFormatManager.setPVL(that._metadata.locale);
 		var strFormat = "#"+sap.common.globalization.NumericFormatManager.getThousandSeparator()+"##0";
 		
-		if (this.getValueDecimalPlaces() > 0) {
+		if (that.getValueDecimalPlaces() > 0) {
 			strFormat += sap.common.globalization.NumericFormatManager.getDecimalSeparator();
-			for (var i = 0; i < this.getValueDecimalPlaces(); i++) {
+			for (var i = 0; i < that.getValueDecimalPlaces(); i++) {
 				strFormat += "0";
 			}
 		}
@@ -414,30 +424,13 @@ var options = org_scn_community_databound.initializeOptions();
 		var valueFormatted = sap.common.globalization.NumericFormatManager.format(value, strFormat);
 		return valueFormatted;
 	},
-	
-	_serializeProperites : function (excluding){
-		var props = this.oComponentProperties.content.control;
 
-		if(excluding == undefined) {
-			excluding = "";
-		}
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
 
-		var serialization = "";
-		for (var key in props) {
-		  if (props.hasOwnProperty(key) && excluding.indexOf(key) == -1) {
-			  serialization = serialization + key + "->" + props[key] + ";";
-		  }
-		}
-		
-		// size
-		serialization = serialization + "W->" + this.oComponentProperties.width;
-		serialization = serialization + "H->" + this.oComponentProperties.height;
-		// data
-		serialization = serialization + "DATA->" + JSON.stringify(this._data);
-		serialization = serialization + "METADATA->" + JSON.stringify(this._metadata);
-
-		return serialization;
-	},
-
+define([myComponentData.requireName], function(databoundtopflop){
+	myComponentData.instance = TopFlop;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

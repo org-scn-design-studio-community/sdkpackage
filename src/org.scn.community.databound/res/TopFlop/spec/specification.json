@@ -30,7 +30,7 @@
 			"noAps" : true,
 			"noZtl" : false
 		}
-   },
+	},
    "dataCellList":{
       "type":"ResultCellList",
       "value":"null",
@@ -39,7 +39,7 @@
       	"includeFormattedData":"true",
       	"includeData":"true"
       },
-      "opts":{
+      "opts":{	
          "type":"data",
          "ztlFunction":"",
          "desc":"Data List",
@@ -51,7 +51,9 @@
       }
    },
 
-   "addCounter" : {
+
+
+	"addCounter" : {
 		"template" : "boolean",
 		"type" : "boolean",
 		"value" : true,
@@ -63,6 +65,54 @@
 			"cat" : "Content",
 			"tooltip" : "Add Counter",
 			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"averagePrefix" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Average: ",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Prefix For Average Value",
+			"cat" : "Display-Value",
+			"tooltip" : "Prefix For Average Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"averageSuffix" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Suffix For Average Value",
+			"cat" : "Display-Value",
+			"tooltip" : "Suffix For Average Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"deltaValueSuffix" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Delta Value Suffix Text",
+			"cat" : "Display-Value",
+			"tooltip" : "Delta Value Suffix Text",
+			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false
 		}
@@ -83,10 +133,26 @@
 			"noZtl" : false
 		}
 	},
+	"fixedAverage" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : -1,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Fixed Average Value (-1 For Calculated Average)",
+			"cat" : "Content",
+			"tooltip" : "Fixed Average Value (-1 For Calculated Average)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
 	"maxNumber" : {
 		"template" : "int",
 		"type" : "int",
-		"value" : 10,
+		"value" : 3,
 		"visible": true,
 		"opts" : {
 			"ztlType": "int",
@@ -102,15 +168,15 @@
 	"topBottom" : {
 		"template" : "Choice",
 		"type" : "String",
-		"value" : "Top",
+		"value" : "Both",
 		"visible": true,
 		"opts" : {
 			"ztlType": "Choice",
 			"choiceType": "MemberSelection",
 			"ztlFunction": "",
-			"desc" : "Top X Or Bottom X",
+			"desc" : "Top X, Bottom X Or Both",
 			"cat" : "Content",
-			"tooltip" : "Top X Or Bottom X",
+			"tooltip" : "Top X, Bottom X Or Both",
 			"apsControl" : "combobox",
 			"options":[
 				{

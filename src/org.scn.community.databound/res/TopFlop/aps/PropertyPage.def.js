@@ -11,7 +11,7 @@ ApsContent = function () {
   "group": "ScnCommunityDataBound",
   "handlerType": "sapui5",
   "height": "190",
-  "id": "LeaderBoard",
+  "id": "TopFlop",
   "package": "databound",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
   "require": [
@@ -32,8 +32,8 @@ ApsContent = function () {
       "space": "known"
     }
   ],
-  "title": "Data Leader Board 2.0",
-  "tooltip": "Data Leader Board",
+  "title": "Data Top Flop 2.0",
+  "tooltip": "Data Top Flop",
   "width": "225"
 },
 
@@ -55,6 +55,38 @@ ApsContent = function () {
     "value": true,
     "visible": true
   },
+  "averagePrefix": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display-Value",
+      "desc": "Prefix For Average Value",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Prefix For Average Value",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "Average: ",
+    "visible": true
+  },
+  "averageSuffix": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display-Value",
+      "desc": "Suffix For Average Value",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Suffix For Average Value",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": true
+  },
   "dataCellList": {
     "options": {
       "includeData": "true",
@@ -74,6 +106,22 @@ ApsContent = function () {
     "value": "null",
     "visible": true
   },
+  "deltaValueSuffix": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display-Value",
+      "desc": "Delta Value Suffix Text",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Delta Value Suffix Text",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": true
+  },
   "fallbackPicture": {
     "opts": {
       "apsControl": "text",
@@ -90,6 +138,22 @@ ApsContent = function () {
     "value": "",
     "visible": true
   },
+  "fixedAverage": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Content",
+      "desc": "Fixed Average Value (-1 For Calculated Average)",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Fixed Average Value (-1 For Calculated Average)",
+      "ztlFunction": "",
+      "ztlType": "float"
+    },
+    "template": "float",
+    "type": "float",
+    "value": -1,
+    "visible": true
+  },
   "maxNumber": {
     "opts": {
       "apsControl": "spinner",
@@ -103,7 +167,7 @@ ApsContent = function () {
     },
     "template": "int",
     "type": "int",
-    "value": 10,
+    "value": 3,
     "visible": true
   },
   "onPress": {
@@ -171,7 +235,7 @@ ApsContent = function () {
       "apsControl": "combobox",
       "cat": "Content",
       "choiceType": "MemberSelection",
-      "desc": "Top X Or Bottom X",
+      "desc": "Top X, Bottom X Or Both",
       "noAps": false,
       "noZtl": false,
       "options": [
@@ -188,13 +252,13 @@ ApsContent = function () {
           "text": "Both"
         }
       ],
-      "tooltip": "Top X Or Bottom X",
+      "tooltip": "Top X, Bottom X Or Both",
       "ztlFunction": "",
       "ztlType": "Choice"
     },
     "template": "Choice",
     "type": "String",
-    "value": "Top",
+    "value": "Both",
     "visible": true
   },
   "usePictures": {
@@ -311,13 +375,13 @@ ApsContent = function () {
 
 "specAbout" : 
 {
-  "description": "Data Leader Board",
-  "icon": "LeaderBoard.png",
-  "title": "Data Leader Board 2.0",
+  "description": "Data Top Flop",
+  "icon": "TopFlop.png",
+  "title": "Data Top Flop 2.0",
   "topics": [
     {
-      "content": "Data Leader Board shows you the top and bottom members in nice manner",
-      "title": "Data Leader Board"
+      "content": "Data Top Flop",
+      "title": "Data Top Flop"
     },
     {
       "content": "This component is a visualization component. It requires specific space in the application canvas.",
