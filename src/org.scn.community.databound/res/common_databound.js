@@ -990,9 +990,11 @@ org_scn_community_databound.fixMemberKey = function (mId, mKey, parent) {
 	return mId + "_" + mKey;
 };
 
-org_scn_community_databound.getSampleDataFlat = function (owner, callBack, afterPrepare) {
+org_scn_community_databound.getSampleDataFlat = function (owner, callBack, afterPrepare, fileName) {
 	var requestForData = new XMLHttpRequest();
     var returnValue = undefined;
+
+    if(fileName == undefined) {fileName="flat";}
     
 	requestForData.onreadystatechange = function() {
 		// check status and react
@@ -1016,11 +1018,11 @@ org_scn_community_databound.getSampleDataFlat = function (owner, callBack, after
 	};
 	
 	// trigger ajax request
-	var dataUrl = org_scn_community_require.scriptInfo.mainSDKPath + "org.scn.community.databound/res/_data/data.flat.json?v=" + org_scn_community_require.jsVersion;
+	var dataUrl = org_scn_community_require.scriptInfo.mainSDKPath + "org.scn.community.databound/res/_data/data."+fileName+".json?v=" + org_scn_community_require.jsVersion;
 	
 	requestForData.open("GET", dataUrl, true);
 	requestForData.send();
-}
+};
 
 org_scn_community_databound.mixRows = function (master, slave, opts) {
 	var options = org_scn_community_databound.initializeOptions();

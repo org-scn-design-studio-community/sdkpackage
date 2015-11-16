@@ -66,7 +66,7 @@ LeaderBoard = {
 		var metadata = that.getDSMetadata();
 
 		if(!org_scn_community_databound.hasData (data, metadata)) {
-			org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare);
+			org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare, "result");
 		} else {
 			org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
 		}
@@ -126,18 +126,12 @@ LeaderBoard = {
 			options.iTopBottom = that.getTopBottom();
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";
-			options.iNnumberOfDecimals = that.getValueDecimalPlaces();
-			if(options.iNnumberOfDecimals.length > 0 && options.iNnumberOfDecimals.substring(0,1) == "D") {
-				options.iNnumberOfDecimals = options.iNnumberOfDecimals.substring(1);
+			options.iNumberOfDecimals = that.getValueDecimalPlaces();
+			if(options.iNumberOfDecimals.length > 0 && options.iNumberOfDecimals.substring(0,1) == "D") {
+				options.iNumberOfDecimals = options.iNumberOfDecimals.substring(1);
 			}
-
-			if(that.getDDisplayText() == "Text_Value") {
-				options.iDisplayText = "Text (Value)";
-			} else if(that.getDDisplayText() == "Text_Count") {
-				options.iDisplayText = "Text (Count)";
-			} else {
-				options.iDisplayText = "Text";
-			}
+			
+			options.iDisplayText = "Text";
 
 			that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
 			 (lData, lMetadata, "", options);
