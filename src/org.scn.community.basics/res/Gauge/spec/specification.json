@@ -1,0 +1,297 @@
+{
+
+
+
+	"endValue" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 100,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "End Value",
+			"cat" : "Content",
+			"tooltip" : "End Value",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"firstColor" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "#FA1E1E",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "First Colour",
+			"cat" : "Display-Color",
+			"tooltip" : "First Colour",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"gradientColor" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Gradient Colour",
+			"cat" : "Display-Color",
+			"tooltip" : "Gradient Colour",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"haveNumbers" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Number",
+			"cat" : "Display-Value",
+			"tooltip" : "Show Number",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"indicatorValue" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 25,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Indicator Value",
+			"cat" : "Content",
+			"tooltip" : "Indicator Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"mainColor" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "#EDEDED",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Main Colour",
+			"cat" : "Display-Color",
+			"tooltip" : "Main Colour",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"needleColor" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "#D80000",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Needle Colour",
+			"cat" : "Display-Color",
+			"tooltip" : "Needle Colour",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"numOfBigTicks" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 5,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Number Of Big Ticks",
+			"cat" : "Display-Value",
+			"tooltip" : "Number Of Big Ticks",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"numOfSmallTicks" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 2,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Number Of Small Ticks",
+			"cat" : "Display-Value",
+			"tooltip" : "Number Of Small Ticks",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"secondColor" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "#FCFA4E",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Second Colour",
+			"cat" : "Display-Color",
+			"tooltip" : "Second Colour",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showValue" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Value",
+			"cat" : "Display-Value",
+			"tooltip" : "Show Value",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showedValue" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "25 %",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Showed Value",
+			"cat" : "Content",
+			"tooltip" : "Showed Value",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"startSecondColor" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 20,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Start Of Second Colour",
+			"cat" : "Display-Color",
+			"tooltip" : "Start Of Second Colour",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"startThirdColor" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 80,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Start Of Third Colour",
+			"cat" : "Display-Color",
+			"tooltip" : "Start Of Third Colour",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"startValue" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Start Value",
+			"cat" : "Content",
+			"tooltip" : "Start Value",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"thirdColor" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "#2BFC23",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Third Colour",
+			"cat" : "Display-Color",
+			"tooltip" : "Third Colour",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"title" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "Insert Title Here",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Title",
+			"cat" : "Content",
+			"tooltip" : "Title",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"ttColor" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "#000000",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Text And Ticks Colour",
+			"cat" : "Display-Color",
+			"tooltip" : "Text And Ticks Colour",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

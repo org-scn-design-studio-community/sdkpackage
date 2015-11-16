@@ -2085,7 +2085,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Fish Eye 2.0 component*/
 	org.scn.community.basics.FishEye returnAsScnFishEye (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Gauge (Speedometer) component*/
+	/**Cast to Gauge (Speedometer) 2.0 component*/
 	org.scn.community.basics.Gauge returnAsScnGauge (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Image Carousel 2.0 component*/

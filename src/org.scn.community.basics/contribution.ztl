@@ -5388,7 +5388,7 @@ class org.scn.community.basics.FishEye extends org.scn.community.shared.Componen
 }
 
 /**
- * Generated ZTL Class for Gauge (Speedometer)
+ * Generated ZTL Class for Gauge
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
@@ -5397,7 +5397,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets End Value Property
 	 */	
-	void setEndValue( /* End Value */  int endValue){*
+	void setEndValue( /**End Value*/ int endValue){*
 		this.endValue = endValue;
 	*}
 
@@ -5409,51 +5409,51 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	*}
 
 	/**
-	 * Sets First Color Property
+	 * Sets First Colour Property
 	 */	
-	void setFirstColor( /* First Color */  String firstColor){*
+	void setFirstColor( /**First Colour*/ String firstColor){*
 		this.firstColor = firstColor;
 	*}
 
 	/**
-	 * Gets First Color Property
+	 * Gets First Colour Property
 	 */	
 	String getFirstColor() {*
 		return this.firstColor;
 	*}
 
 	/**
-	 * Sets Gradient Color Property
+	 * Sets Gradient Colour Property
 	 */	
-	void setGradientColor( /* Gradient Color */  boolean gradientColor){*
+	void setGradientColor( /**Gradient Colour*/ boolean gradientColor){*
 		this.gradientColor = gradientColor;
 	*}
 
 	/**
-	 * Gets Gradient Color Property
+	 * Gets Gradient Colour Property
 	 */	
-	boolean getGradientColor() {*
+	boolean isGradientColor() {*
 		return this.gradientColor;
 	*}
 
 	/**
 	 * Sets Show Number Property
 	 */	
-	void setHaveNumbers( /* Show Number */  boolean haveNumbers){*
+	void setHaveNumbers( /**Show Number*/ boolean haveNumbers){*
 		this.haveNumbers = haveNumbers;
 	*}
 
 	/**
 	 * Gets Show Number Property
 	 */	
-	boolean getHaveNumbers() {*
+	boolean isHaveNumbers() {*
 		return this.haveNumbers;
 	*}
 
 	/**
 	 * Sets Indicator Value Property
 	 */	
-	void setIndicatorValue( /* Indicator Value */  float indicatorValue){*
+	void setIndicatorValue( /**Indicator Value*/ float indicatorValue){*
 		this.indicatorValue = indicatorValue;
 	*}
 
@@ -5465,70 +5465,70 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	*}
 
 	/**
-	 * Sets Main Color Property
+	 * Sets Main Colour Property
 	 */	
-	void setMainColor( /* Main Color */  String mainColor){*
+	void setMainColor( /**Main Colour*/ String mainColor){*
 		this.mainColor = mainColor;
 	*}
 
 	/**
-	 * Gets Main Color Property
+	 * Gets Main Colour Property
 	 */	
 	String getMainColor() {*
 		return this.mainColor;
 	*}
 
 	/**
-	 * Sets Needle Color Property
+	 * Sets Needle Colour Property
 	 */	
-	void setNeedleColor( /* Needle Color */  String needleColor){*
+	void setNeedleColor( /**Needle Colour*/ String needleColor){*
 		this.needleColor = needleColor;
 	*}
 
 	/**
-	 * Gets Needle Color Property
+	 * Gets Needle Colour Property
 	 */	
 	String getNeedleColor() {*
 		return this.needleColor;
 	*}
 
 	/**
-	 * Sets Number of Big Ticks Property
+	 * Sets Number Of Big Ticks Property
 	 */	
-	void setNumOfBigTicks( /* Number of Big Ticks */  int numOfBigTicks){*
+	void setNumOfBigTicks( /**Number Of Big Ticks*/ int numOfBigTicks){*
 		this.numOfBigTicks = numOfBigTicks;
 	*}
 
 	/**
-	 * Gets Number of Big Ticks Property
+	 * Gets Number Of Big Ticks Property
 	 */	
 	int getNumOfBigTicks() {*
 		return this.numOfBigTicks;
 	*}
 
 	/**
-	 * Sets Number of Small Ticks Property
+	 * Sets Number Of Small Ticks Property
 	 */	
-	void setNumOfSmallTicks( /* Number of Small Ticks */  int numOfSmallTicks){*
+	void setNumOfSmallTicks( /**Number Of Small Ticks*/ int numOfSmallTicks){*
 		this.numOfSmallTicks = numOfSmallTicks;
 	*}
 
 	/**
-	 * Gets Number of Small Ticks Property
+	 * Gets Number Of Small Ticks Property
 	 */	
 	int getNumOfSmallTicks() {*
 		return this.numOfSmallTicks;
 	*}
 
 	/**
-	 * Sets Second Color Property
+	 * Sets Second Colour Property
 	 */	
-	void setSecondColor( /* Second Color */  String secondColor){*
+	void setSecondColor( /**Second Colour*/ String secondColor){*
 		this.secondColor = secondColor;
 	*}
 
 	/**
-	 * Gets Second Color Property
+	 * Gets Second Colour Property
 	 */	
 	String getSecondColor() {*
 		return this.secondColor;
@@ -5537,21 +5537,21 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Show Value Property
 	 */	
-	void setShowValue( /* Show Value */  boolean showValue){*
+	void setShowValue( /**Show Value*/ boolean showValue){*
 		this.showValue = showValue;
 	*}
 
 	/**
 	 * Gets Show Value Property
 	 */	
-	boolean getShowValue() {*
+	boolean isShowValue() {*
 		return this.showValue;
 	*}
 
 	/**
 	 * Sets Showed Value Property
 	 */	
-	void setShowedValue( /* Showed Value */  String showedValue){*
+	void setShowedValue( /**Showed Value*/ String showedValue){*
 		this.showedValue = showedValue;
 	*}
 
@@ -5563,28 +5563,28 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	*}
 
 	/**
-	 * Sets Start of Second Color Property
+	 * Sets Start Of Second Colour Property
 	 */	
-	void setStartSecondColor( /* Start of Second Color */  int startSecondColor){*
+	void setStartSecondColor( /**Start Of Second Colour*/ int startSecondColor){*
 		this.startSecondColor = startSecondColor;
 	*}
 
 	/**
-	 * Gets Start of Second Color Property
+	 * Gets Start Of Second Colour Property
 	 */	
 	int getStartSecondColor() {*
 		return this.startSecondColor;
 	*}
 
 	/**
-	 * Sets Start of Third Color Property
+	 * Sets Start Of Third Colour Property
 	 */	
-	void setStartThirdColor( /* Start of Third Color */  int startThirdColor){*
+	void setStartThirdColor( /**Start Of Third Colour*/ int startThirdColor){*
 		this.startThirdColor = startThirdColor;
 	*}
 
 	/**
-	 * Gets Start of Third Color Property
+	 * Gets Start Of Third Colour Property
 	 */	
 	int getStartThirdColor() {*
 		return this.startThirdColor;
@@ -5593,7 +5593,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Start Value Property
 	 */	
-	void setStartValue( /* Start Value */  int startValue){*
+	void setStartValue( /**Start Value*/ int startValue){*
 		this.startValue = startValue;
 	*}
 
@@ -5605,14 +5605,14 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	*}
 
 	/**
-	 * Sets Third Color Property
+	 * Sets Third Colour Property
 	 */	
-	void setThirdColor( /* Third Color */  String thirdColor){*
+	void setThirdColor( /**Third Colour*/ String thirdColor){*
 		this.thirdColor = thirdColor;
 	*}
 
 	/**
-	 * Gets Third Color Property
+	 * Gets Third Colour Property
 	 */	
 	String getThirdColor() {*
 		return this.thirdColor;
@@ -5621,7 +5621,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	/**
 	 * Sets Title Property
 	 */	
-	void setTitle( /* Title */  String title){*
+	void setTitle( /**Title*/ String title){*
 		this.title = title;
 	*}
 
@@ -5633,14 +5633,14 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 	*}
 
 	/**
-	 * Sets Text and Ticks Color Property
+	 * Sets Text And Ticks Colour Property
 	 */	
-	void setTtColor( /* Text and Ticks Color */  String ttColor){*
+	void setTtColor( /**Text And Ticks Colour*/ String ttColor){*
 		this.ttColor = ttColor;
 	*}
 
 	/**
-	 * Gets Text and Ticks Color Property
+	 * Gets Text And Ticks Colour Property
 	 */	
 	String getTtColor() {*
 		return this.ttColor;
@@ -5648,7 +5648,7 @@ class org.scn.community.basics.Gauge extends org.scn.community.shared.Component 
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
-	/* CUSTOM ZTL FUNCTIONS */
+
 }
 
 /**

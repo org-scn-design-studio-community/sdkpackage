@@ -16,299 +16,133 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+ (function(){
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.Gauge";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
+var myComponentData = org_scn_community_require.knownComponents.basics.Gauge;
 
-sap.designstudio.sdk.Component.subclass(ownComponentName, function() {
+Gauge = function () {
 
 	var that = this;
-	var haveNumbers = false;
-	var showValue = false;
-	var numOfBigTicks = 4;
-	var numOfSmallTicks = 3;
-	var indicatorValue = 1.0;
-	var needleColor = "#D80000";
-	var startValue = 0;
-	var endValue = 100;
-	var title = "Insert Title Here";
-	var showedValue = "No Value";
-	var gradientColor = true;
-	var firstColor = "#FA1E1E"
-	var secondColor = "#FCFA4E";
-	var thirdColor = "#2BFC23";
-	var startSecondColor = 20;
-	var startThirdColor = 80;
-	var mainColor = "#EDEDED"
-	var ttColor = "#000000";
-
 	
-	this.fCanvas = null;
-	this.sCanvas = null;
-	this.pTitle = null;
-	
-	//FUNCTION CALLED IN ITIALIZE
-	this.init = function() {
-		this.fCanvas = document.createElement("canvas");
-		this.sCanvas = document.createElement("canvas");
-		this.pTitle = document.createElement("p");
-		this.pTitle.style.position = 'absolute';
-		this.pTitle.style.top = '-50px';
-		this.pTitle.style.width = '100%';
-		this.pTitle.style.left = '0px';
-		this.pTitle.style.textAlign = 'center';
-		this.fCanvas.style.position = 'absolute';
-		this.fCanvas.style.left = '0px';
-		this.fCanvas.style.top = '0px';
-		this.sCanvas.style.position = 'absolute';
-		this.sCanvas.style.left = '0px';
-		this.sCanvas.style.top = '0px';
-		this.$().append($(this.pTitle));
-		this.$().append($(this.fCanvas));
-		this.$().append($(this.sCanvas));
-	};
-
-	//FUNCTION CALLED AFTER RENDERING
-	this.afterUpdate = function() {
-		var script = _readScriptPath();
-		this.speedoMeter();
-	};
-
-
-	//GETTERS AND SETTERS FOR VARIABLES
-	this.haveNumbers = function(value) {
-		if (value == undefined) {
-			return haveNumbers;
-		} else {
-			haveNumbers = value;
-			return this;
-		}
-	};	
-
-	this.numOfSmallTicks = function(value) {
-		if (value == undefined) {
-			return numOfSmallTicks;
-		} else {
-			numOfSmallTicks = value;
-			return this;
-		}
-	};	
-
-	this.numOfBigTicks = function(value) {
-		if (value == undefined) {
-			return numOfBigTicks;
-		} else {
-			numOfBigTicks = value;
-			return this;
-		}
-	};	
-
-	this.indicatorValue = function(value) {
-		if (value == undefined) {
-			return indicatorValue;
-		} else {
-			indicatorValue = value;
-			return this;
-		}
-	};
-	
-	this.needleColor = function(value) {
-		if (value == undefined) {
-			return needleColor;
-		} else {
-			needleColor = value;
-			return this;
-		}
-	};
-
-	this.title = function(value) {
-		if (value == undefined) {
-			return title;
-		} else {
-			title = value;
-			return this;
-		}
-	};
-
-	this.showValue = function(value) {
-		if (value == undefined) {
-			return showValue;
-		} else {
-			showValue = value;
-			return this;
-		}
-	};	
-	
-	this.startValue = function(value) {
-		if (value == undefined) {
-			return startValue;
-		} else {
-			startValue = value;
-			return this;
-		}
-	};	
-	
-	this.endValue = function(value) {
-		if (value == undefined) {
-			return endValue;
-		} else {
-			endValue = value;
-			return this;
-		}
-	};	
-	
-	this.showedValue = function(value) {
-		if (value == undefined) {
-			return showedValue;
-		} else {
-			showedValue = value;
-			return this;
-		}
-	};
-
-	this.gradientColor = function(value) {
-		if (value == undefined) {
-			return gradientColor;
-		} else {
-			gradientColor = value;
-			return this;
-		}
-	};
-
-	this.firstColor = function(value) {
-		if (value == undefined) {
-			return firstColor;
-		} else {
-			firstColor = value;
-			return this;
-		}
-	};	
-
-	this.secondColor = function(value) {
-		if (value == undefined) {
-			return secondColor;
-		} else {
-			secondColor = value;
-			return this;
-		}
-	};	
-
-	this.thirdColor = function(value) {
-		if (value == undefined) {
-			return thirdColor;
-		} else {
-			thirdColor = value;
-			return this;
-		}
-	};	
-
-	this.mainColor = function(value) {
-		if (value == undefined) {
-			return mainColor;
-		} else {
-			mainColor = value;
-			return this;
-		}
-	};		
-	
-	this.startSecondColor = function(value) {
-		if (value == undefined) {
-			return startSecondColor;
-		} else {
-			startSecondColor = value;
-			return this;
-		}
-	};	
-
-	this.startThirdColor = function(value) {
-		if (value == undefined) {
-			return startThirdColor;
-		} else {
-			startThirdColor = value;
-			return this;
-		}
-	};		
-	
-	this.ttColor = function(value) {
-		if (value == undefined) {
-			return ttColor;
-		} else {
-			ttColor = value;
-			return this;
-		}
-	};		
-
-	//MAIN FUNCTION OF THE COMPONENT
-	this.speedoMeter = function (){
+	that.init = function() {
+		// define root component
+		that.fCanvas = document.createElement("canvas");
+		that.sCanvas = document.createElement("canvas");
+		that.pTitle = document.createElement("p");
+		that.pTitle.style.position = 'absolute';
+		that.pTitle.style.top = '-50px';
+		that.pTitle.style.width = '100%';
+		that.pTitle.style.left = '0px';
+		that.pTitle.style.textAlign = 'center';
+		that.fCanvas.style.position = 'absolute';
+		that.fCanvas.style.left = '0px';
+		that.fCanvas.style.top = '0px';
+		that.sCanvas.style.position = 'absolute';
+		that.sCanvas.style.left = '0px';
+		that.sCanvas.style.top = '0px';
+		that.$().append($(that.pTitle));
+		that.$().append($(that.fCanvas));
+		that.$().append($(that.sCanvas));
 		
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	};
+	
+	that.initAsync = function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+	
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		// that.addStyleClass("scn-pack-?");
+			
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+	};
+
+	that.afterUpdate = function() {
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+
+		// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	};
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+
+	that.processData = function (flatData, afterPrepare, owner) {
+		var that = owner;
+		
+		// processing on data
+		that.afterPrepare(that);
+	};
+
+	that.afterPrepare = function (owner) {
+		var that = owner;
+
+		if (that._myVar) {
+		    clearInterval(that._myVar);
+		}
+		// visualization on processed data
 		//INITIALIZE VARIABLES
 		var DEG2RAD = Math.PI / 180;
 		var UNIT = 100;
-		
+
 		var width = that.$().width();
 		var height = that.$().height();
 
-		
-		that.fCanvas.width=width;
-		that.fCanvas.height=height;
-		
-		that.sCanvas.width=width;
-		that.sCanvas.height=height;
-		
-		var scale = Math.min(width,height) / (2*UNIT);
-		
-		that.pTitle.style.fontSize=15*scale+"px";
-		that.pTitle.innerHTML = ""+title;
-		
-		var bodyWidth = 3.5  * scale;
-		
+
+		that.fCanvas.width = width;
+		that.fCanvas.height = height;
+
+		that.sCanvas.width = width;
+		that.sCanvas.height = height;
+
+		var scale = Math.min(width, height) / (2 * UNIT);
+
+		that.pTitle.style.fontSize = 15 * scale + "px";
+		that.pTitle.innerHTML = "" + that.getTitle();
+
+		var bodyWidth = 3.5 * scale;
+
 		var halfWidth = UNIT * scale;
 
-		
+
 		//DIMENSIONI TICKS
-		var hourTickStart = 75  * scale;
-		var hourTickEnd = 85  * scale;
-		var hourTickWidth = 3  * scale;
-		
-		var minuteTickStart = 81  * scale;
-		var minuteTickEnd = 85  * scale;
-		var minuteTickWidth = 3  * scale;
+		var hourTickStart = 75 * scale;
+		var hourTickEnd = 85 * scale;
+		var hourTickWidth = 3 * scale;
 
-		var secondHandEnd = 90  * scale;
-		var secondHandWidth = 3  * scale;
-		var bossRadius = 8.0  * scale;
+		var minuteTickStart = 81 * scale;
+		var minuteTickEnd = 85 * scale;
+		var minuteTickWidth = 3 * scale;
 
-		var shadowOffsetX = 2  * scale;
-		var shadowOffsetY = 2  * scale;
+		var secondHandEnd = 90 * scale;
+		var secondHandWidth = 3 * scale;
+		var bossRadius = 8.0 * scale;
+
+		var shadowOffsetX = 2 * scale;
+		var shadowOffsetY = 2 * scale;
 		var shadowOffsetBlur = 5 * scale;
 		var shadowColor = "rgba(0, 0, 0, 0.4)";
-		
+
 
 		//INDICATOR TAIL LENGTH
 		var indtail = 25 * scale;
 		//TICK2TICK ANGLE
-		var t2trad = (240/(numOfBigTicks-1));
+		var t2trad = (240 / (that.getNumOfBigTicks() - 1));
 		//END DIMENSIONI TICKS	
-		
+
 		//INITIALIZE CANVAS DIMENSIONSa
-	
-		
+
+
 		var ctx = that.fCanvas.getContext("2d");
-		ctx.clearRect(0, 0,  2 * halfWidth, 2 * halfWidth);
+		ctx.clearRect(0, 0, 2 * halfWidth, 2 * halfWidth);
 
 		//Raggio e centro del cerchio da disegnare. Variabile in base alla grandezza del canvas.
 		var centerX = that.fCanvas.width / 2;
 		var centerY = that.fCanvas.height / 2;
-		var radius = halfWidth-bodyWidth/2;
-		
-		
+		var radius = halfWidth - bodyWidth / 2;
+
+
 		//START DESIGNING DASH
 		ctx.beginPath();
 		//TRACCIO CERCHIO
@@ -321,9 +155,9 @@ sap.designstudio.sdk.Component.subclass(ownComponentName, function() {
 		ctx.lineWidth = bodyWidth;
 
 		//GRADIENTE PER IL BORDO
-		var grd=ctx.createLinearGradient(25,25,width,height);
-		grd.addColorStop(0,"white");
-		grd.addColorStop(1,mainColor);
+		var grd = ctx.createLinearGradient(25, 25, width, height);
+		grd.addColorStop(0, "white");
+		grd.addColorStop(1, that.getMainColor());
 
 
 		//COLORE BORDO
@@ -335,246 +169,261 @@ sap.designstudio.sdk.Component.subclass(ownComponentName, function() {
 		//START DISEGNO
 		ctx.beginPath();
 		//TRACCIO CERCHIO
-		ctx.arc(centerX, centerY, (radius-bodyWidth), 0, 2 * Math.PI, true);
+		ctx.arc(centerX, centerY, (radius - bodyWidth), 0, 2 * Math.PI, true);
 		//SCELGO IL COLORE DI RIEMPIMENTO
-		ctx.fillStyle = mainColor;
+		ctx.fillStyle = that.getMainColor();
 		//RIEMPIO
 		ctx.fill();
 		//SCELGO LARGHEZZA BORDO
 		ctx.lineWidth = bodyWidth;
 
 		//GRADIENTE PER IL BORDO
-		var grd=ctx.createLinearGradient(25,25,width,height);
-		grd.addColorStop(0,mainColor);
-		grd.addColorStop(1,"white");
-	
+		var grd = ctx.createLinearGradient(25, 25, width, height);
+		grd.addColorStop(0, that.getMainColor());
+		grd.addColorStop(1, "white");
+
 
 		//COLORE BORDO
 		ctx.strokeStyle = grd;
-	
+
 		//DIESGNO FINITO
 		ctx.stroke();
 
 		//END DISEGNO BODY CLOCK
 
 		//START DISEGNO COLORI
-if(!gradientColor){
-	ctx.beginPath();
-	//RUOTO 30� A SINISTRA
-	//TRACCIO CERCHIO
-	ctx.arc(centerX, centerY, (radius-bodyWidth*2), 150*DEG2RAD, (150 + startSecondColor*240/100)*DEG2RAD, false);
+		if (!that.getGradientColor()) {
+		    ctx.beginPath();
+		    //RUOTO 30� A SINISTRA
+		    //TRACCIO CERCHIO
+		    ctx.arc(centerX, centerY, (radius - bodyWidth * 2), 150 * DEG2RAD, (150 + that.getStartSecondColor() * 240 / 100) * DEG2RAD, false);
 
-	//SCELGO LARGHEZZA BORDO
-	ctx.lineWidth = bodyWidth;
+		    //SCELGO LARGHEZZA BORDO
+		    ctx.lineWidth = bodyWidth;
 
-	ctx.lineCap = "square";
-	
-	//COLORE BORDO
-	ctx.strokeStyle = firstColor;
-	
-	//DIESGNO FINITO
-	ctx.stroke();
-	
-	ctx.beginPath();
-	//RUOTO 30� A SINISTRA
-	//TRACCIO CERCHIO
-	ctx.arc(centerX, centerY, (radius-bodyWidth*2), (150 + startSecondColor*240/100)*DEG2RAD, (150 + startThirdColor*240/100)*DEG2RAD, false);
+		    ctx.lineCap = "square";
 
-	//SCELGO LARGHEZZA BORDO
-	ctx.lineWidth = bodyWidth;
+		    //COLORE BORDO
+		    ctx.strokeStyle = that.getFirstColor();
 
-	ctx.lineCap = "square";
-	
-	//COLORE BORDO
-	ctx.strokeStyle = secondColor;
-	
-	//DIESGNO FINITO
-	ctx.stroke();
-	
-	ctx.beginPath();
-	//RUOTO 30� A SINISTRA
-	//TRACCIO CERCHIO
-	ctx.arc(centerX, centerY, (radius-bodyWidth*2), (150 + startThirdColor*240/100)*DEG2RAD, 390*DEG2RAD, false);
+		    //DIESGNO FINITO
+		    ctx.stroke();
 
-	//SCELGO LARGHEZZA BORDO
-	ctx.lineWidth = bodyWidth;
+		    ctx.beginPath();
+		    //RUOTO 30� A SINISTRA
+		    //TRACCIO CERCHIO
+		    ctx.arc(centerX, centerY, (radius - bodyWidth * 2), (150 + that.getStartSecondColor() * 240 / 100) * DEG2RAD, (150 + that.getStartThirdColor() * 240 / 100) * DEG2RAD, false);
 
-	ctx.lineCap = "square";
-	
-	//COLORE BORDO
-	ctx.strokeStyle = thirdColor;
-	
-	//DIESGNO FINITO
-	ctx.stroke();
-	
-}else{
-	ctx.beginPath();
+		    //SCELGO LARGHEZZA BORDO
+		    ctx.lineWidth = bodyWidth;
 
-	//RUOTO 30� A SINISTRA
-	//TRACCIO CERCHIO
-	//alert(centerX);
-	sx = centerX+Math.cos(210*DEG2RAD)*(radius-bodyWidth*2);
-	sy = centerY+Math.sin(210*DEG2RAD)*(radius-bodyWidth*2);
-	dx = centerX+Math.cos(-30*DEG2RAD)*(radius-bodyWidth*2);
-	dy = centerY+Math.sin(-30*DEG2RAD)*(radius-bodyWidth*2);
-	ctx.arc(centerX, centerY, (radius-bodyWidth*2), 30*DEG2RAD, 150*DEG2RAD, true);
-	
-	//alert(sx+" "+sy);
-	//SCELGO LARGHEZZA BORDO
-	ctx.lineWidth = bodyWidth;
+		    ctx.lineCap = "square";
 
-	ctx.lineCap = "round";
+		    //COLORE BORDO
+		    ctx.strokeStyle = that.getSecondColor();
 
+		    //DIESGNO FINITO
+		    ctx.stroke();
 
-	//GRADIENTE PER IL BORDO
-	var grd=ctx.createLinearGradient(sx,sy,dx,dy);
-	grd.addColorStop(0,firstColor);
-	grd.addColorStop((startSecondColor/100),secondColor);
-	grd.addColorStop((startThirdColor/100),secondColor);
-	grd.addColorStop(1,thirdColor);
+		    ctx.beginPath();
+		    //RUOTO 30� A SINISTRA
+		    //TRACCIO CERCHIO
+		    ctx.arc(centerX, centerY, (radius - bodyWidth * 2), (150 + that.getStartThirdColor() * 240 / 100) * DEG2RAD, 390 * DEG2RAD, false);
+
+		    //SCELGO LARGHEZZA BORDO
+		    ctx.lineWidth = bodyWidth;
+
+		    ctx.lineCap = "square";
+
+		    //COLORE BORDO
+		    ctx.strokeStyle = that.getThirdColor();
+
+		    //DIESGNO FINITO
+		    ctx.stroke();
+
+		} else {
+		    ctx.beginPath();
+
+		    //RUOTO 30� A SINISTRA
+		    //TRACCIO CERCHIO
+		    //alert(centerX);
+		    sx = centerX + Math.cos(210 * DEG2RAD) * (radius - bodyWidth * 2);
+		    sy = centerY + Math.sin(210 * DEG2RAD) * (radius - bodyWidth * 2);
+		    dx = centerX + Math.cos(-30 * DEG2RAD) * (radius - bodyWidth * 2);
+		    dy = centerY + Math.sin(-30 * DEG2RAD) * (radius - bodyWidth * 2);
+		    ctx.arc(centerX, centerY, (radius - bodyWidth * 2), 30 * DEG2RAD, 150 * DEG2RAD, true);
+
+		    //alert(sx+" "+sy);
+		    //SCELGO LARGHEZZA BORDO
+		    ctx.lineWidth = bodyWidth;
+
+		    ctx.lineCap = "round";
 
 
-	//COLORE BORDO
-	ctx.strokeStyle = grd;
+		    //GRADIENTE PER IL BORDO
+		    var grd = ctx.createLinearGradient(sx, sy, dx, dy);
+		    grd.addColorStop(0, that.getFirstColor());
+		    grd.addColorStop((that.getStartSecondColor() / 100), that.getSecondColor());
+		    grd.addColorStop((that.getStartThirdColor() / 100), that.getSecondColor());
+		    grd.addColorStop(1, that.getThirdColor());
 
-	//DIESGNO FINITO
-	ctx.stroke();
 
-	//END DISEGNO COLORI
-}
+		    //COLORE BORDO
+		    ctx.strokeStyle = grd;
+
+		    //DIESGNO FINITO
+		    ctx.stroke();
+
+		    //END DISEGNO COLORI
+		}
 
 
 		//WRITE VALUE IF true
-		if(showValue){
-			ctx.font = 13*scale+'pt Georgia';
-			ctx.textAlign = 'center';
-			ctx.fillStyle = ttColor;
-			ctx.fillText(showedValue, centerX,centerY+50*scale);
+		if (that.getShowValue()) {
+		    ctx.font = 13 * scale + 'pt Georgia';
+		    ctx.textAlign = 'center';
+		    ctx.fillStyle = that.getTtColor();
+		    ctx.fillText(that.getShowedValue(), centerX, centerY + 50 * scale);
 		}
 
 		//START TICKS
 
 		// draw big ticks		
 		ctx.translate(centerX, centerY);
-		ctx.strokeStyle=ttColor;
+		ctx.strokeStyle = that.getTtColor();
 		ctx.lineCap = "round";
 		ctx.lineWidth = hourTickWidth;
 		ctx.save();
 
-		ctx.rotate((150-t2trad)*DEG2RAD);
-		
-		
-		var numInterval = (endValue-startValue)/(numOfBigTicks-1);
-		
-		
-		for(var i = 0; i < numOfBigTicks; i++) {
-			ctx.rotate(t2trad * DEG2RAD);
-			ctx.beginPath();
-			ctx.moveTo(hourTickStart, 0);
-			ctx.lineTo(hourTickEnd, 0);
-			ctx.stroke();
-			if(haveNumbers){
-				var ndist = hourTickEnd-(20*scale);
-				ctx.translate(ndist,0);
-				ctx.rotate((210-(t2trad*i))*DEG2RAD);
-				ctx.font=12*scale+"px Georgia";
-				ctx.textAlign='start';
-				ctx.fillStyle=ttColor;
-				if((Math.round(startValue+(i*numInterval)))>=100&&(i>(numOfBigTicks/2))){
-					ctx.fillText(Math.round(startValue+(i*numInterval)),(-15*scale),(5*scale));			
-				}else if(i<(numOfBigTicks*2/3)){
-					ctx.fillText(Math.round(startValue+(i*numInterval)),(-5*scale),(5*scale));	
-				}else{
-					ctx.fillText(Math.round(startValue+(i*numInterval)),(-10*scale),(5*scale));
-				}
-				ctx.rotate(-(210-(t2trad*i))*DEG2RAD);
-				ctx.translate(-ndist,0);
-			}
+		ctx.rotate((150 - t2trad) * DEG2RAD);
+
+
+		var numInterval = (that.getEndValue() - that.getStartValue()) / (that.getNumOfBigTicks() - 1);
+
+
+		for (var i = 0; i < that.getNumOfBigTicks(); i++) {
+		    ctx.rotate(t2trad * DEG2RAD);
+		    ctx.beginPath();
+		    ctx.moveTo(hourTickStart, 0);
+		    ctx.lineTo(hourTickEnd, 0);
+		    ctx.stroke();
+		    if (that.getHaveNumbers()) {
+		        var ndist = hourTickEnd - (20 * scale);
+		        ctx.translate(ndist, 0);
+		        ctx.rotate((210 - (t2trad * i)) * DEG2RAD);
+		        ctx.font = 12 * scale + "px Georgia";
+		        ctx.textAlign = 'start';
+		        ctx.fillStyle = that.getTtColor();
+		        if ((Math.round(that.getStartValue() + (i * numInterval))) >= 100 && (i > (that.getNumOfBigTicks() / 2))) {
+		            ctx.fillText(Math.round(that.getStartValue() + (i * numInterval)), (-15 * scale), (5 * scale));
+		        } else if (i < (that.getNumOfBigTicks() * 2 / 3)) {
+		            ctx.fillText(Math.round(that.getStartValue() + (i * numInterval)), (-5 * scale), (5 * scale));
+		        } else {
+		            ctx.fillText(Math.round(that.getStartValue() + (i * numInterval)), (-10 * scale), (5 * scale));
+		        }
+		        ctx.rotate(-(210 - (t2trad * i)) * DEG2RAD);
+		        ctx.translate(-ndist, 0);
+		    }
 		}
 		ctx.restore();
 		//end big ticks
 
 		// draw minute ticks		
 		ctx.save();
-		ctx.lineWidth =  minuteTickWidth;
-		ctx.rotate(150*DEG2RAD);
-		for (i = 0; i < numOfBigTicks-1; i++) {
-			for(k=0; k<numOfSmallTicks; k++){
-				ctx.rotate(t2trad / (numOfSmallTicks+1) * DEG2RAD);
-				ctx.beginPath();
-				ctx.moveTo(minuteTickStart, 0);
-				ctx.lineTo(minuteTickEnd, 0);
-				ctx.stroke();
+		ctx.lineWidth = minuteTickWidth;
+		ctx.rotate(150 * DEG2RAD);
+		for (i = 0; i < that.getNumOfBigTicks() - 1; i++) {
+		    for (k = 0; k < that.getNumOfSmallTicks(); k++) {
+		        ctx.rotate(t2trad / (that.getNumOfSmallTicks() + 1) * DEG2RAD);
+		        ctx.beginPath();
+		        ctx.moveTo(minuteTickStart, 0);
+		        ctx.lineTo(minuteTickEnd, 0);
+		        ctx.stroke();
 
-			}
-			ctx.rotate(t2trad / (numOfSmallTicks+1) * DEG2RAD);
+		    }
+		    ctx.rotate(t2trad / (that.getNumOfSmallTicks() + 1) * DEG2RAD);
 		}
 		ctx.restore();
 
 		//END TICK DESIGN
-		
-	
+
+
 		// ANIMAZIONE E DISEGNO LANCETTA
-		var myVar = setInterval(function(){drawIndicator()}, 1);
+		that._myVar = setInterval(function () {
+		    drawIndicator()
+		}, 1);
 
 		function myStopFunction() {
-			clearInterval(myVar);
+		    clearInterval(that._myVar);
 		}
-		
+
 		var currentIndicator = 0.5;
 
 		var ctx = that.sCanvas.getContext("2d");
 		ctx.translate(centerX, centerY);
 
-		ctx.rotate(150*DEG2RAD);
+		ctx.rotate(150 * DEG2RAD);
+
 		function drawIndicator() {
-			// Clear the canvas
-			ctx.translate(-centerX,-centerY);
-			ctx.clearRect(0,0, width, height);
-			ctx.translate(centerX,centerY);
-			ctx.save();
-			ctx.shadowOffsetX = shadowOffsetX;
-			ctx.shadowOffsetY = shadowOffsetY;
-			ctx.shadowBlur = shadowOffsetBlur;
-			ctx.shadowColor = shadowColor;
-		
-			ctx.rotate(0.5  * DEG2RAD);
-			ctx.strokeStyle = needleColor;
-			ctx.lineWidth = secondHandWidth;
-			ctx.beginPath();
-			ctx.moveTo(secondHandEnd-5*scale, 0);
-			ctx.lineTo(-indtail,5*scale);
-			ctx.lineTo(-indtail,-5*scale);
-			ctx.fillStyle = needleColor;
-			ctx.fill();
-		
-			// draw boss	
-			ctx.save();
-			ctx.fillStyle = "grey";
-			ctx.beginPath();
-			ctx.globalAlpha=0.2;
-			ctx.arc(0, 0, bossRadius*1.5, 0, 360 * DEG2RAD);
-			ctx.fill();
-			ctx.restore();
-		
-	
-			ctx.save();
-			var grd=ctx.createLinearGradient(-10,-10,10,10);
-			grd.addColorStop(0,"white");
-			grd.addColorStop(1,mainColor);
-			ctx.fillStyle = grd;
-			ctx.beginPath();
-			ctx.arc(0, 0, bossRadius, 0, 360 * DEG2RAD);
-			ctx.fill();
-			ctx.restore();
-		
+		    // Clear the canvas
+		    ctx.translate(-centerX, -centerY);
+		    ctx.clearRect(0, 0, width, height);
+		    ctx.translate(centerX, centerY);
+		    ctx.save();
+		    ctx.shadowOffsetX = shadowOffsetX;
+		    ctx.shadowOffsetY = shadowOffsetY;
+		    ctx.shadowBlur = shadowOffsetBlur;
+		    ctx.shadowColor = shadowColor;
 
-			if(currentIndicator>=(indicatorValue*240/(endValue-startValue))){
-				myStopFunction();
-			}
-			currentIndicator+=0.5;
+		    ctx.rotate(0.5 * DEG2RAD);
+		    ctx.strokeStyle = that.getNeedleColor();
+		    ctx.lineWidth = secondHandWidth;
+		    ctx.beginPath();
+		    ctx.moveTo(secondHandEnd - 5 * scale, 0);
+		    ctx.lineTo(-indtail, 5 * scale);
+		    ctx.lineTo(-indtail, -5 * scale);
+		    ctx.fillStyle = that.getNeedleColor();
+		    ctx.fill();
 
+		    // draw boss	
+		    ctx.save();
+		    ctx.fillStyle = "grey";
+		    ctx.beginPath();
+		    ctx.globalAlpha = 0.2;
+		    ctx.arc(0, 0, bossRadius * 1.5, 0, 360 * DEG2RAD);
+		    ctx.fill();
+		    ctx.restore();
+
+
+		    ctx.save();
+		    var grd = ctx.createLinearGradient(-10, -10, 10, 10);
+		    grd.addColorStop(0, "white");
+		    grd.addColorStop(1, that.getMainColor());
+		    ctx.fillStyle = grd;
+		    ctx.beginPath();
+		    ctx.arc(0, 0, bossRadius, 0, 360 * DEG2RAD);
+		    ctx.fill();
+		    ctx.restore();
+
+
+		    if (currentIndicator >= (that.getIndicatorValue() * 240 / (that.getEndValue() - that.getStartValue()))) {
+		        myStopFunction();
+		    }
+		    currentIndicator += 0.5;
 		}
-	}
+	};
+
+	that.onResize = function (width, height, parent) {
+		// in case special resize code is required
+	};
+
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+	return that;
+};
+
+define([myComponentData.requireName], function(basicsgauge){
+	myComponentData.instance = Gauge;
+	return myComponentData.instance;
 });
-})();
+
+}).call(this);

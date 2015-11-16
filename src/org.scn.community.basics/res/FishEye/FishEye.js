@@ -119,7 +119,7 @@ FishEye = {
 		
 		if(iImageText == undefined) {iImageText = ""};
 		if(iImageUrl == undefined) {iImageUrl = ""};
-		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getDefaultImage(), iImageUrl, "ImageCarousel.png");
+		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getDefaultImage(), iImageUrl, "FishEye.png");
 
 		var oImage = new sap.ui.commons.Image ({
 			src : iImageUrl,

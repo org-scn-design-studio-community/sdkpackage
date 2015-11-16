@@ -1,0 +1,16 @@
+{
+	"title": "Gauge (Speedometer) 2.0",
+	"description": "Displays a Gauge (Speedometer)",
+	"icon": "Gauge.png",
+	"topics": 
+	[
+		{
+			"title" : "Gauge (Speedometer)",
+			"content" : "Displays a Gauge (Speedometer)"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}
