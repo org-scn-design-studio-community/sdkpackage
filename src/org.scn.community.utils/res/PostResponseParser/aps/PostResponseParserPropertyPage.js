@@ -19,11 +19,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		that["fun_DExpectedContentType"].init();
 		that["fun_DExpectedResponseStatus"].init();
 		that["fun_DHeaders"].init();
+		that["fun_DJsonp"].init();
 		that["fun_DParameters"].init();
+		that["fun_DPayload"].init();
 		that["fun_DRawParameters"].init();
 		that["fun_DRequestMethod"].init();
 		that["fun_DRequestType"].init();
 		that["fun_DUrl"].init();
+		that["fun_DWithCredentials"].init();
 		
 	};
 	
@@ -34,11 +37,14 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		that["fun_DExpectedContentType"].update();
 		that["fun_DExpectedResponseStatus"].update();
 		that["fun_DHeaders"].update();
+		that["fun_DJsonp"].update();
 		that["fun_DParameters"].update();
+		that["fun_DPayload"].update();
 		that["fun_DRawParameters"].update();
 		that["fun_DRequestMethod"].update();
 		that["fun_DRequestType"].update();
 		that["fun_DUrl"].update();
+		that["fun_DWithCredentials"].update();
 		
 	};
 	
@@ -620,6 +626,41 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		}
 	};
 
+	that["fun_DJsonp"] = {};
+	
+	that["fun_DJsonp"].update = function(){
+		that["fun_DJsonp"]._input.setChecked(that["fun_DJsonp"]._);
+	};
+	
+	that["fun_DJsonp"].init = function(){
+		that["fun_DJsonp"]._label = new sap.ui.commons.Label({text: " Do you want to use JSONP"});
+		that["fun_DJsonp"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DJsonp"]._label);
+		
+		that["fun_DJsonp"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Do you want to use JSONP"});
+		that._content.addContent(that["fun_DJsonp"]._input);
+		that["fun_DJsonp"]._input.attachChange(that["fun_DJsonp"].propertyChanged, that);
+		that["fun_DJsonp"]._input.addStyleClass("org-scn-ApsBoolean");
+		
+		that["fun_DJsonp"].update();
+	};
+
+	that["fun_DJsonp"].propertyChanged = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		that["fun_DJsonp"]._ = checked;
+		that.firePropertiesChanged(["DJsonp"]);
+	};
+	
+	that.DJsonp = function(s){
+		if( s === undefined){
+			return that["fun_DJsonp"]._;
+		}else{
+			that["fun_DJsonp"]._ = s;
+			that["fun_DJsonp"].update();
+			return that;
+		}
+	};
+
 	that["fun_DParameters"] = {};
 	
 	that["fun_DParameters"]._elementsContent = [];
@@ -1017,6 +1058,41 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		}
 	};
 
+	that["fun_DPayload"] = {};
+	
+	that["fun_DPayload"].update = function(){
+		that["fun_DPayload"]._input.setValue(that["fun_DPayload"]._);
+	};
+	
+	that["fun_DPayload"].init = function(){
+		that["fun_DPayload"]._label = new sap.ui.commons.Label({text: " HTTP reuqest payload"});
+		that["fun_DPayload"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DPayload"]._label);
+		
+		that["fun_DPayload"]._input = new sap.ui.commons.TextField({width: "300px"});
+		that._content.addContent(that["fun_DPayload"]._input);
+		that["fun_DPayload"]._input.attachChange(that["fun_DPayload"].propertyChanged, that);
+		that["fun_DPayload"]._input.addStyleClass("org-scn-ApsSimple");
+		
+		that["fun_DPayload"].update();
+	};
+
+	that["fun_DPayload"].propertyChanged = function(oControlEvent){
+		var value = oControlEvent.getParameter("newValue");
+		that["fun_DPayload"]._ = value;
+		that.firePropertiesChanged(["DPayload"]);
+	};
+	
+	that.DPayload = function(s){
+		if( s === undefined){
+			return that["fun_DPayload"]._;
+		}else{
+			that["fun_DPayload"]._ = s;
+			that["fun_DPayload"].update();
+			return that;
+		}
+	};
+
 	that["fun_DRawParameters"] = {};
 	
 	that["fun_DRawParameters"].update = function(){
@@ -1168,6 +1244,41 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.utils.PostResponse
 		}else{
 			that["fun_DUrl"]._ = s;
 			that["fun_DUrl"].update();
+			return that;
+		}
+	};
+
+	that["fun_DWithCredentials"] = {};
+	
+	that["fun_DWithCredentials"].update = function(){
+		that["fun_DWithCredentials"]._input.setChecked(that["fun_DWithCredentials"]._);
+	};
+	
+	that["fun_DWithCredentials"].init = function(){
+		that["fun_DWithCredentials"]._label = new sap.ui.commons.Label({text: " Do you need with credentials"});
+		that["fun_DWithCredentials"]._label.addStyleClass("org-scn-ApsLabel");
+		that._content.addContent(that["fun_DWithCredentials"]._label);
+		
+		that["fun_DWithCredentials"]._input = new sap.ui.commons.CheckBox({width: "300px", text: "Do you need with credentials"});
+		that._content.addContent(that["fun_DWithCredentials"]._input);
+		that["fun_DWithCredentials"]._input.attachChange(that["fun_DWithCredentials"].propertyChanged, that);
+		that["fun_DWithCredentials"]._input.addStyleClass("org-scn-ApsBoolean");
+		
+		that["fun_DWithCredentials"].update();
+	};
+
+	that["fun_DWithCredentials"].propertyChanged = function(oControlEvent){
+		var checked = oControlEvent.getParameter("checked");
+		that["fun_DWithCredentials"]._ = checked;
+		that.firePropertiesChanged(["DWithCredentials"]);
+	};
+	
+	that.DWithCredentials = function(s){
+		if( s === undefined){
+			return that["fun_DWithCredentials"]._;
+		}else{
+			that["fun_DWithCredentials"]._ = s;
+			that["fun_DWithCredentials"].update();
 			return that;
 		}
 	};
