@@ -1336,7 +1336,14 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 		
 		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
 		for(var i=0;i<l.list.length;i++){
-			selectionComponent.addItem(l.list[i].key, l.list[i].label);
+			//erase '\"' to prettify titles/keys since json strings usually come with '"'
+			var replacer = new RegExp('"','g');
+			var label = l.list[i].label;
+			var key = l.list[i].key;
+			label = label.replace(replacer,'');
+			key = key.replace(replacer,'');
+			
+			selectionComponent.addItem(key, label);
 		}
 		
 		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
@@ -1346,7 +1353,9 @@ class org.scn.community.utils.Collection extends org.scn.community.shared.Compon
 	 * Gets Collection As JSON String
 	 */	
 	String getCollectionAsJSON() {*
-		var jsonObject = JSON.parse(this.items);
+		//erase '\"' to prettify titles/keys since json strings usually come with '"'
+		var result = this.items.replace(/\\"/g,'');
+		var jsonObject = JSON.parse(result);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 
@@ -3196,7 +3205,12 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 		}
 
 		if(!alreadyFound) {
-			elementsJson[key] = value;
+			try{
+				var json_value = JSON.parse(value);
+				elementsJson[key] = json_value;
+			}catch(e){
+				elementsJson[key] = value;
+			}
 		}
 	
 		this.content = JSON.stringify(elementsJson);
@@ -3776,6 +3790,34 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	String getBasicAuthorisation() {*
 		return this.DBasicAuthorisation;
 	*}
+	
+	/**
+	 * Sets jsonp Property
+	 */	
+	void setJsonp(Boolean jsonp){*
+		this.DJsonp = jsonp;
+	*}
+	
+	/**
+	 * Gets jsonp Property
+	 */	
+	String getJsonp() {*
+		return this.DJsonp;
+	*}
+
+	/**
+	 * Gets jsonp Property
+	 */	
+	String getWithCredentials() {*
+		return this.DWithCredentials;
+	*}
+	
+	/**
+	 * Sets jsonp Property
+	 */	
+	void setWithCredentials(Boolean withCredentials){*
+		this.DWithCredentials = withCredentials;
+	*}
 
 	/**
 	 * Remove All Parameters from the Array.
@@ -3842,7 +3884,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	int getExpectedResponseStatus() {*
 		return this.DExpectedResponseStatus;
 	*}
-
+	
 	/** Adds a root element containing key [String], value [String].
 
  	<example>
@@ -4165,6 +4207,21 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/** Adds payload to HTTP requests. Typically used with POST requests as GET
+	 * uses the URL query string.
+
+ 	<example>
+	You want to add JSON data to your POST request to be send to the server
+	<code>
+	addPayloadToHttp("{"key":"value"}");<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addPayloadToHttp(String data){*
+		this.DPayload = data;
+	*}
+	
 	/**
 	 * Trigger Execution of the given URL and parameter list
 	 */

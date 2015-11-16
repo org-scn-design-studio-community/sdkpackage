@@ -193,16 +193,25 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 		}else{
 			this.setPlaceholder("choose value...");
 			//try to extract values from Item list setter
-			try{
-				var list = JSON.parse(this.getDItemList());
-				for(var i=0;i<list.length;i++){
-					//convert Collection object key "label" to match the data model ("text")
-					list[i].text = list[i].label; 
-					this._content.push(list[i]);
-				}
-			}catch (err){
-				if(window.console){
-					console.log(err);
+			var list = this.getDItemList();
+			if(list !== ""){
+				try{
+					list = JSON.parse(list);
+					for(var i=0;i<list.length;i++){
+						//erase '"' to prettify titles since json string usually come with '"'
+						var replacer = new RegExp('"','g');
+						var label = list[i].label;
+						var key = list[i].key;
+						
+						list[i].key = key.replace(replacer,'');
+						//convert Collection object key "label" to match the data model ("text")
+						list[i].text = label.replace(replacer,''); 
+						this._content.push(list[i]);
+					}
+				}catch (err){
+					if(window.console){
+						console.log(err);
+					}
 				}
 			}
 		}

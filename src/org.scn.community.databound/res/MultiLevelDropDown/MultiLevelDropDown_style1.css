@@ -1,0 +1,164 @@
+/* -------- Style -------- */
+
+.DD_GREEN{
+	color:green;
+}
+.DD_YEL{
+	color:orange;
+}
+.DD_RED{
+	color:red;
+}
+
+li.scn-hier-ddm-sel-node > div {
+	font-weight: bold !important;
+}
+li.scn-hier-ddm-sel-node,
+li.scn-hier-ddm-sel-parents {
+	background-color:aliceblue;
+}
+
+li.scn-hier-ddm-sel-parents > div {
+	font-weight: bold;;
+	font-style: italic;;
+}
+
+/* Style of the node when you "hover" it */
+li.scn-hier-ddm-node:hover,
+li.scn-hier-ddm-root-node:hover {
+	background: lightblue;
+	cursor:pointer;
+}
+
+/* Place holder corresponding to the node text style
+ - Must separate: Text for Root node
+ - Text for nodes */
+
+.scn-hier-ddm-disp-has-mesure .scn-hier-ddm-node span.scn-hier-ddm-text {
+	float: left;
+	width: 112px;
+	text-overflow: ellipsis;
+	padding-right:15px;
+}
+
+.scn-hier-ddm-disp-no-mesure .scn-hier-ddm-node span.scn-hier-ddm-text {
+	float: left;
+	width: 160px;
+	text-overflow: ellipsis;
+	padding-right:15px;
+}
+
+/* Inside a Node, display the weight at the right */
+span.scn-hier-ddm-mesure {
+	height: 28px;
+	float:right;
+	width: 70px;
+}
+
+/* Set the size of the subnodes */
+.scn-hier-ddm-list > .scn-hier-ddm-node {
+	float:none;
+	width: 200px;
+}
+
+/* List style */
+.scn-hier-ddm-list,
+.scn-hier-ddm-root-list {
+	list-style:none;
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0;
+	background-color:gray;
+}
+
+/* Display an arrow if it is a node, and not a leaf ! (basically, if the nodes has children) */
+/* After on the mesure span mesure if a mesure is displayed */
+.scn-hier-ddm-disp-has-mesure .scn-hier-ddm-node.scn-hier-ddm-has-sub > div > span.scn-hier-ddm-mesure:after {
+    background-image: url(data:image/gif;base64,R0lGODlhDwAOANUsAAEBASoqKuLi4mtra+7u7hMTEzs7OwICAqurq9PT0zw8PGlpaWhoaPT09D09PQUFBXZ2dtTU1PPz8zk5OWpqak5OTsrKyjo6Ot7e3tra2szMzM3Nzdvb23l5eQMDAzc3NzY2Nt/f33x8fKqqqs7Ozt3d3Xd3d9fX135+ftDQ0AAAAP///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAACwALAAAAAAPAA4AAAZ6QJaQtSoaV8NhsYFYVCiIRlG5SjhUD5XWEZkSBQEVgzTRqgICZHGgRa04Ze3ASChoPZ3V6aMtEIoaAGYHECshBioAG0UWglqEKyUKiRZFdY8mKxkgfX9rWiIrGJNyUytgYikXZmhIRFWIWVoGXa6vEiNOUBJeSUdGSUEAOw==);
+    content: "\a0";
+    padding-right:0px;
+    background-repeat: no-repeat;
+    float:right;
+    padding-left:15px;
+    font-weight: bold;
+}
+/* After on the div when no mesure*/
+.scn-hier-ddm-disp-no-mesure .scn-hier-ddm-node.scn-hier-ddm-has-sub > div:after {
+    background-image: url(data:image/gif;base64,R0lGODlhDwAOANUsAAEBASoqKuLi4mtra+7u7hMTEzs7OwICAqurq9PT0zw8PGlpaWhoaPT09D09PQUFBXZ2dtTU1PPz8zk5OWpqak5OTsrKyjo6Ot7e3tra2szMzM3Nzdvb23l5eQMDAzc3NzY2Nt/f33x8fKqqqs7Ozt3d3Xd3d9fX135+ftDQ0AAAAP///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAACwALAAAAAAPAA4AAAZ6QJaQtSoaV8NhsYFYVCiIRlG5SjhUD5XWEZkSBQEVgzTRqgICZHGgRa04Ze3ASChoPZ3V6aMtEIoaAGYHECshBioAG0UWglqEKyUKiRZFdY8mKxkgfX9rWiIrGJNyUytgYikXZmhIRFWIWVoGXa6vEiNOUBJeSUdGSUEAOw==);
+    content: "\a0";
+    padding-right:0px;
+    background-repeat: no-repeat;
+    float:right;
+    padding-left:15px;
+    font-weight: bold;
+}
+
+/* Div that contains text and weight */
+.scn-hier-ddm-node > div,
+.scn-hier-ddm-root-node > div
+{
+	display:block;
+	text-decoration:none;
+	font-size:12px;
+	padding: 10px 0px 10px 0px;
+}
+
+/* Node style */
+
+.scn-hier-ddm-root-node {
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    text-decoration:none;
+    padding: 0 15px 0 15px;
+    height: 35px;
+    /* width: 70px; */
+}
+
+.scn-hier-ddm-reset-button {
+	/* width:30px; */
+}
+
+.scn-hier-ddm-node {
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
+    text-decoration:none;
+    padding: 0 0 0 15px;
+    height: 35px;
+    border-bottom: 1px dotted black;
+}
+
+/* -------- HOVER -------- */
+/* When on a node, how the sub menus will be displayed */
+.scn-hier-ddm-has-sub:hover > ul,
+.scn-hier-ddm-root-node:hover > ul {
+	display:block
+}
+
+/* -------- INTERNAL -------- */
+/* Hide all of the sub lists / nodes */
+.scn-hier-ddm-has-sub ul,
+.scn-hier-ddm-root-node ul {
+	display:none;
+}
+
+/* Displays subnodes to the right of the node */
+.scn-hier-ddm-root ul ul ul {
+	top:0;
+	left:100%
+}
+
+/* Display the subnodes below the root at the bottom */
+.scn-hier-ddm-root ul ul
+{
+	display:none;
+	position:absolute;
+	top:100%;
+	left:0;
+	background-color:white;
+	padding:0;
+}

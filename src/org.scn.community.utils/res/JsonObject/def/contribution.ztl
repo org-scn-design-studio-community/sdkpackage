@@ -37,7 +37,12 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 		}
 
 		if(!alreadyFound) {
-			elementsJson[key] = value;
+			try{
+				var json_value = JSON.parse(value);
+				elementsJson[key] = json_value;
+			}catch(e){
+				elementsJson[key] = value;
+			}
 		}
 	
 		this.content = JSON.stringify(elementsJson);

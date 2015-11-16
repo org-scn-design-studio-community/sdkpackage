@@ -32,11 +32,19 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	var _propSelectedElemKey		= null;
 	var _propSelectedElemText		= null;
 	var _propResetButton			= "";
-	var _propValueDisplayType		= "";
+	var _propLabelDisplay			= "";
 	var _propColorClass			    = "";
-	var _propAddWeight			    = "";
-	var _propSelWeight			    = "";	
+	var _propAddMesure			    = "";
+	var _propSelMesure			    = "";	
 	var _colorClassArray			= {};
+	var _propNotAssignedText		= "";
+	
+	/*
+	 * Properties for APS
+	 */
+	
+	var apsCharList					= [];
+	var apsMesureList				= [];
 	
 	/*
 	 * Constants
@@ -48,27 +56,47 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	var c_ResetButton_RIGHT 		= "Right";
 
 	//Different values for Value Display Type
-	var c_ValueDisplayType_KEY 		= "Key";
-	var c_ValueDisplayType_KEY_TEXT	= "Key+Text";
-	var c_ValueDisplayType_TEXT_KEY	= "Text+Key";
+	var c_LabelDisplay_NODEKEY 		= "NodeKey";
+	var c_LabelDisplay_LEFT			= "Left";
+	var c_LabelDisplay_RIGHT		= "Right";
 	
-	var c_DebugFlag					= false;
+	//--- CSS CLASS DEFINITION ---
 	
-	var c_CSSClassSelectedItem		= "selected-menu-item";
-	var c_CSSClassSelectedParents	= "selected-menu-parents";
+	var c_CSSClassSCNPrefix			= "scn-hier-ddm-";
+	
+	var c_CSSClassRoot				= "root";
 	var c_CSSClassHasSubMenu		= "has-sub";
+	var c_CSSClassSelectedItem		= "sel-node";
+	var c_CSSClassSelectedParents	= "sel-parents";
+	
+	var c_CSSClassNode				= "node";
+	
+	var c_CSSClassRootNode			= "root-node"
+	var c_CSSClassList				= "list"
+	var c_CSSClassRootList			= "root-list"
+		
+	var c_CSSClassResetButton		= "reset-button"
+		
+	var c_CSSClassText				= "text";
+	var c_CSSClassMesure			= "mesure";
+	
+	var c_CSSHasMesure				= "disp-has-mesure";
+	var c_CSSHasNoMesure			= "disp-no-mesure";
+	
 	
 	/*
 	 * Others
 	 */
 	
+	var debugFlag					= false;
 	var dimensionId					= -1; // init with -1 to assure component correct initialized (KK)
 	
 	//Optimization variables
 	var _rendered					= false;
 	var loaded						= false;
 	
-	//Strings
+	//---- Strings ----
+	
 	var div_id 						= null;
 	var wrap_id						= null;
 	var id_selectedMenuItem			= null;
@@ -76,11 +104,11 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	var object_selected_attr		= null;
 	var keyFigureIndex				= -1;
 	
-	//Selected Menu(s)
+	//Selected nodes, and its parents
 	var elemSelected				= null;
 	var elemJqSelParents			= [];
 	
-	//Weight variables
+	//Mesure variables
 	var keyFigStrucName				= ""
 	var transformedResultSet		=  {};
 	var transformedMetadata			= null;
@@ -91,15 +119,22 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	 * ***********************/
 	this.init = function() {
 		//Get the unique ID of the DIV that DS is creating
+		this.debugConsoleDir("INIT - START");
+		
 		div_id 				= "#" + this.$()[0].id;
 		wrap_id 			= div_id + "root_nav";
 		id_selectedMenuItem = div_id + c_CSSClassSelectedItem;
+		
+		this.debugConsoleDir("INIT - DIVID = " + div_id);
 		
 		object_id 			= div_id;
 		object_id = object_id.replace("#","");
 		object_id = object_id.replace("_control","");
 		
-		object_selected_attr = object_id + "selected_item";
+		object_selected_attr = c_CSSClassSCNPrefix + c_CSSClassSelectedItem;
+		this.debugConsoleDir("INIT : " + div_id);
+		
+		this.debugConsoleDir("INIT - END");
 	};
 	
 	this.removeEscapeChars = function(stringValue) {
@@ -111,30 +146,39 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	}
 	
 	this.getRender = function() {
+		//return false;
 		return _rendered;
+	}
+	
+	this.getApsMesureList = function() {
+		return JSON.stringify(apsMesureList);
+	}
+	
+	this.getApsCharList = function() {
+		return JSON.stringify(apsCharList);
 	}
 	
 	this.JQ_SelectedSet = function(jqElemSelected) {
 		jqElemSelected.attr(object_selected_attr,"X");
 		
 		//Set the classs (update display of the selected items)
-		$(jqElemSelected).addClass(c_CSSClassSelectedItem);
+		$(jqElemSelected).addClass(c_CSSClassSCNPrefix + c_CSSClassSelectedItem);
 		
-		//+FBL20150317
-		elemJqSelParents = jqElemSelected.parents("ul","nav").prev().addClass(c_CSSClassSelectedParents);
+		//Apply CSS class to parents
+		elemJqSelParents = jqElemSelected.parents("li").addClass(c_CSSClassSCNPrefix + c_CSSClassSelectedParents);
 	}
 	
 	this.JQ_SelectedRemove = function() {
 		
 		//Remove the attribute selected
 		var localId = "["+object_selected_attr+"='X']";
-		$(localId).attr(object_selected_attr,"");
+		$(localId).removeAttr(object_selected_attr);
 		
 		//remove the class of all selected item.
-		var localClassSelItem 		= "." + c_CSSClassSelectedItem;
-		var localClassSelParents 	= "." + c_CSSClassSelectedParents;
-		$(localClassSelItem).removeClass(c_CSSClassSelectedItem);
-		$(localClassSelParents).removeClass(c_CSSClassSelectedParents);
+		var localClassSelItem 		= "." + c_CSSClassSCNPrefix + c_CSSClassSelectedItem;
+		var localClassSelParents 	= "." + c_CSSClassSCNPrefix + c_CSSClassSelectedParents;
+		$(localClassSelItem).removeClass(c_CSSClassSCNPrefix + c_CSSClassSelectedItem);
+		$(localClassSelParents).removeClass(c_CSSClassSCNPrefix + c_CSSClassSelectedParents);
 	}
 	
 	this.JQ_SelectedGet = function() {
@@ -143,25 +187,30 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	
 	
 	/*
-	 * Method findSelWeightIndex
+	 * Method findSelMesureIndex
 	 * 
 	 * Find the index of the selected key figure
 	 */
-	this.findSelWeightIndex = function() {
+	this.findSelMesureIndex = function() {
 		//reset the value
 		keyFigureIndex = -1;
 		
 		for(var i=0;i<transformedMeasureList.length;i++){
-			if (transformedMeasureList[i].key == _propSelWeight) {
+			if (transformedMeasureList[i].key == _propSelMesure) {
 				keyFigureIndex = i + 1;
 			}
 		}
 	}
 	
 	this.afterUpdate = function() {
+		this.debugConsoleDir("afterUpdate - START");
 		
 		if (!this.getRender()) {
+			this.debugConsoleDir("afterUpdate - Render");
 			this.$().empty();
+			
+			this.populateAPS();
+			
 			this.updateDisplayFromData();
 			
 			//Since we keep a reference to the selected node
@@ -170,17 +219,14 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			
 			this.updateSelection(elemSelected);
 			this.setRendered(true);
-			
-			loaded = true;
 		}
+		this.debugConsoleDir("afterUpdate - END");
 	};
 	
 	this.clearSelection = function() {
 		_propSelectedElemKey 	= "";
 		_propSelectedElemText 	= "";
-		
-		//$(id_selectedMenuItem).attr("id","");
-		
+				
 		this.JQ_SelectedRemove();
 		
 		elemSelected 		= null;
@@ -189,12 +235,13 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	
 	this.renewSelectionReference = function() {
 		//Find the previously selected node in the new tree
-		var jqElemSelected = $("div[valuekey='" + _propSelectedElemKey + "']");
+		var jqElemSelected = $("li[valuekey='" + _propSelectedElemKey + "']");
 		//replace the DOM object with the new value
 		elemSelected = jqElemSelected.get()[0];
 	}
 	
 	this.updateSelection = function(pSelectedItem) {
+		this.debugConsoleDir("updateSelection - Start");
 		
 		if (pSelectedItem == undefined) {
 			//Do nothing
@@ -209,7 +256,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 		
 		if (!!pSelectedItem) {
 //			Find the first globdiv parent (DIV) where the attributes are
-			jqElemSelected = jQuery(pSelectedItem).closest("div[globdiv='true']");
+			jqElemSelected = jQuery(pSelectedItem).closest("li");
 //			Set the selected item (DOM)
 			elemSelected = jqElemSelected.get()[0];
 			
@@ -220,6 +267,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			
 			this.JQ_SelectedSet(jqElemSelected);
 		}
+		this.debugConsoleDir("updateSelection - End");
 	};
 	
 	/*
@@ -228,6 +276,9 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	 * Defined differently from the others because it is called by the Standard class
 	 */
 	function actionOnReset(e) {
+		
+		//Stop the propagation of the click event to the parents LI
+		e.stopPropagation();
 
 //		Clear the current selection internally
 		that.clearSelection();
@@ -243,7 +294,10 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	 * 
 	 * Defined differently from the others because it is called by the Standard class
 	 */
-	function actionOnClick(e) {		
+	function actionOnClick(e) {
+		//Stop the propagation of the click event to the parents LI
+		e.stopPropagation();
+		
 		that.updateSelection(e.target);
 		that.firePropertiesChanged(["selectedElemKey"]);
 		that.firePropertiesChanged(["selectedElemText"]);
@@ -266,14 +320,22 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	 * Will update all the display and redraw the menu, using UL, LI and A
 	 */
 	this.updateDisplayFromData = function() {
-
+		this.debugConsoleDir("updateDisplayFromData - Start");
 		this.debugConsoleDir(data, "this.updateDisplayFromData / var data");
-		
-		//Convert the data to a 2D table, easily usable by code
-		this.generateDataTuples();
 		
 		var rootUL		= null;
 		var dim 		= null;
+		
+		if (!data) {
+			//TODO: componentLoadingState zenLoadingStateOpacity
+			var newDiv = $('<div/>');
+			
+			newDiv.addClass("componentLoadingState zenLoadingStateOpacity");
+			
+			newDiv.append($('<p style="font-weight:bold; color:white; font-size:22px">No data. Please assign a datasource</p>'));
+			this.$().append(newDiv);
+			return;
+		}
 		
 //		Look for the selected dimension
 		for(var i=0;i<data.dimensions.length;i++){
@@ -285,9 +347,19 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			}
 		}
 		
+		//No dimension with a hierarchy has been found
 		if (dimensionId == -1) {
-			this.$().append($('<p>Please select a dimension</p>'));
+			
+			var newDiv = $('<div/>');
+			
+			newDiv.addClass("componentLoadingState zenLoadingStateOpacity");
+			
+			newDiv.append($('<p "font-weight:bold; color:white; font-size:22px">Please select a dimension with a hierarchy (Additional Property pane)</p>'));
+			this.$().append(newDiv);
 		} else {
+			
+			//Convert the data to a 2D table, easily usable by code
+			this.generateDataTuples();
 			
 			this.debugConsoleDir(dim, "this.updateDisplayFromData / var Dim");
 			//Should parse and display the member as list				
@@ -296,14 +368,22 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			
 //			Create the first node as NAV
 			var rootNav		= $('<nav/>');
-//			Set the ID for CSS purpose
-//			Please note that a correct HTML document should only have one occurence of an ID
-//			Therefore, if several dropdown menus are added in the document, the HTML would not be striclty correct.
-			rootNav.attr("id", wrap_id);
-			rootNav.addClass("primary_nav_wrap");
 			
-//			Createt the first UL section
+//			Set the ID for CSS purpose
+			rootNav.attr("id", wrap_id);
+			rootNav.addClass(c_CSSClassSCNPrefix + c_CSSClassRoot);
+			
+			//if the user wants to see a mesure, or not, we'll had a class
+			//to help designing
+			if (_propAddMesure)
+				rootNav.addClass(c_CSSClassSCNPrefix + c_CSSHasMesure);
+			else 
+				rootNav.addClass(c_CSSClassSCNPrefix + c_CSSHasNoMesure);
+			
+//			Create the first UL section
 			rootUL		= $('<ul/>');
+			rootUL.addClass(c_CSSClassSCNPrefix + c_CSSClassRootList);
+			rootUL.attr("level", 0);
 			
 			rootNav.append(rootUL);
 			
@@ -312,7 +392,17 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			 */
 			if (_propAddSingleRootNode) {
 				var newLI 	= this.createLIText(_propSingleRootNodeName);
+				
+				//Override "onClick" for "onReset"
+				newLI.unbind('click');
+				newLI.click(actionOnReset);
+				
+				newLI.addClass(c_CSSClassSCNPrefix + c_CSSClassRootNode);
+				newLI.attr("level", 0);
+				
 				var newUL	= $('<ul/>');
+				newUL.addClass(c_CSSClassSCNPrefix + c_CSSClassList);
+				
 				newLI.append(newUL);
 				
 				rootUL.append(newLI);
@@ -328,27 +418,29 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			
 			curParent		= rootUL;
 			
-			var curLevel	= 0;
+			var startLevel = 0;
+			if (_propAddSingleRootNode) {
+				startLevel = 1;
+			}
+			
+			var curLevel	= startLevel;
 			var lastLevel	= 0;
 			
 			var isSubMenu 	= false;
+			
+			//Has to treat HIERARCHY_NODE/1HIER_REST/REST_H (to replace value if wanted)
 			
 //			Loop at each member of the hierarchy
 			for(var i=0;i<transformedResultSet.length;i++){
 				var line = transformedResultSet[i];
 				
 				var dim    = line [0];
-				var weight = 0;
+				var mesure = 0;
 				
 				//Select the correct EN COURS
 				if (keyFigureIndex > 0) {
-					weight = line[keyFigureIndex];
+					mesure = line[keyFigureIndex];
 				}
-				
-//				-FBL20150225 Not needed anymore for FromData
-////				Ignore result lines
-//				if (mem.type == "RESULT")
-//					continue;
 				
 //				Keep track of the last level
 				lastLevel = curLevel;
@@ -356,10 +448,10 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 				
 //				The first node do not have a level property, therefore = 0
 				if (dim.hasOwnProperty('level')) {
-					curLevel = dim.level;
+					curLevel = dim.level + startLevel;
 				}
 				else {
-					curLevel = 0;
+					curLevel = startLevel;
 				}
 				
 				if (curLevel == lastLevel) {
@@ -371,8 +463,13 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 					//should pile, create a LI and a UL inside
 					
 					var newUL	= $('<ul/>');
+					newUL.addClass(c_CSSClassSCNPrefix + c_CSSClassList);
+					newUL.attr("level", curLevel);
+					
 					curNode.append(newUL);
-					curNode.addClass(c_CSSClassHasSubMenu);
+					
+					if (curLevel > 0)
+						curNode.addClass(c_CSSClassSCNPrefix + c_CSSClassHasSubMenu);
 					
 					trackPile.push(curParent);
 					
@@ -395,7 +492,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 					isSubMenu = curLevel>0;
 				}
 				
-				curNode = this.createLI(dim, weight, isSubMenu);
+				curNode = this.createLI(dim, curLevel, mesure, isSubMenu);
 				curParent.append(curNode);
 			};
 			
@@ -404,6 +501,10 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 //				Create a JQuery element to make it easier to call a onClick method
 				jqResButton = this.createLIText("X");
 				jqResButton.click(actionOnReset);
+				
+				jqResButton.addClass(c_CSSClassSCNPrefix + c_CSSClassRootNode);
+				jqResButton.addClass(c_CSSClassSCNPrefix + c_CSSClassResetButton);
+				jqResButton.attr("level",0);
 			}
 			
 			if (!!jqResButton) {
@@ -423,33 +524,32 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 //			Append the list to the HTML
 			this.$().append(rootNav);
 		}
+		this.debugConsoleDir("updateDisplayFromData - END");
 	}
 	
-	this.createLIBase = function(pKey, pText, pLevel, pWeight, isSubMenu){
-		//var node 		= document.createElement("LI");
+	/*
+	 * Base method to create a node
+	 */
+	this.createLIBase = function(pKey, pText, pLevel, pMesure, isSubMenu){
 		var node 		= $('<li/>');
 		
-		if (isSubMenu)
-			node.addClass(isSubMenu);
-			//node.className = node.className + " isSubMenu";
+		node.click(actionOnClick);
+		
+		//add the internal value from the hierarchy as an attribute
+		node.attr("valuekey", pKey );
+		
+		if (pLevel > 0) {
+			node.addClass(c_CSSClassSCNPrefix + c_CSSClassNode);
+		} else {
+			node.addClass(c_CSSClassSCNPrefix + c_CSSClassRootNode);
+		}
+		
+		node.attr("level", pLevel);
 		
 		var genDiv 		= $('<div/>');
-		//document.createElement("DIV");
-		
-		genDiv.attr("valuekey", pKey );
-		genDiv.attr("globdiv", "true" );
-//		genDiv.className 	= "content";
-		
-		genDiv.attr("firstLink", "true");
-		
-//		link.name 		= div_id + pKey + "LI";
-		
-		genDiv.click(actionOnClick);
 		
 		var divKey 		= $('<span/>');
-		divKey.addClass("DDP_TEXT");
-		
-//		var link		= document.createElement("A");
+		divKey.addClass(c_CSSClassSCNPrefix + c_CSSClassText);
 		
 		//Handle Text decomposition
 		var textTmp  = pText;
@@ -458,35 +558,39 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 		//If the separator is found, handle it
 		//Else, use the full description as Text
 		if (sepIndex >= 0) {
-			switch (_propValueDisplayType) {
-				case c_ValueDisplayType_KEY:
+			switch (_propLabelDisplay) {
+				case c_LabelDisplay_NODEKEY:
 					//Nothing to do
 					textTmp = pKey;
 					break;
-				case c_ValueDisplayType_KEY_TEXT:
+				case c_LabelDisplay_RIGHT:
 					sepIndex++;
 					textTmp = textTmp.substring(sepIndex, textTmp.length);
 					break;
-				case c_ValueDisplayType_TEXT_KEY:
+				case c_LabelDisplay_LEFT:
 					textTmp = textTmp.substring(0, sepIndex);
 					break;
 			};
 		}
-		genDiv.attr("valuetext", textTmp);
-		//textNode 		= document.createTextNode(textTmp);
+		node.attr("valuetext", textTmp);
 		
-		divKey.text(textTmp);
+		//Check if we are on the not assigned node. If yes, and the user
+		//passed a value to replace it, we replace it !
+		if (pKey == "HIERARCHY_NODE/1HIER_REST/REST_H" && _propNotAssignedText != "")
+			divKey.text(_propNotAssignedText);
+		else divKey.text(textTmp);
+		
 		genDiv.append(divKey);
 		
-		//Check if the weight is filled
-		if (pWeight != "" && _propAddWeight) {
+		//Check if the mesure is filled
+		if (pMesure != "" && _propAddMesure) {
 			//Check if the value is present
-			if (pWeight.source != "") {
-				var divWeight 	= $('<span/>');
-				divWeight.addClass("DDP_WEIGHT");
-				divWeight.text(pWeight.formated);
+			if (pMesure.source != "") {
+				var divMesure 	= $('<span/>');
+				divMesure.addClass(c_CSSClassSCNPrefix + c_CSSClassMesure);
+				divMesure.text(pMesure.formated);
 				
-				genDiv.append(divWeight);
+				genDiv.append(divMesure);
 				
 				if (_colorClassArray.length > 0) {
 					
@@ -495,7 +599,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 						var high 		= _colorClassArray[indexColorClass].high;
 						var cssClass 	= _colorClassArray[indexColorClass].cssClass;
 						
-						if ((pWeight.source >= low && pWeight.source <= high)) {
+						if ((pMesure.source >= low && pMesure.source <= high)) {
 							//Apply CSS class
 							node.addClass(cssClass);
 						}
@@ -509,33 +613,12 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 		return node;
 	}
 	
-	this.createLI = function(mem, weight, isSubMenu) {
-		var lvl = 0;
-		
-		if (mem.hasOwnProperty('level')) {
-			lvl = mem.level;
-		}
-		return this.createLIBase(mem.key, mem.text, lvl, weight, isSubMenu );
+	this.createLI = function(pMem, pLevel, pMesure, isSubMenu) {
+		return this.createLIBase(pMem.key, pMem.text, pLevel, pMesure, isSubMenu );
 	}
 	
 	this.createLIText = function(text) {
-		//mem is a member of a dimension
-		
-		//-FBL20150225 Simplified
-//		var node 		= document.createElement("LI");
-//		var link		= document.createElement("A");
-//		
-//		//link.id = div_id + text;
-//		link.setAttribute("HREF", "#");
-//		
-//		var nodeText 		= document.createTextNode(text);
-//		
-//		link.appendChild(nodeText);
-//		node.appendChild(link);
-		
-		var node = this.createLIBase(text, text, "", "", false );
-		
-		return node;
+		return this.createLIBase(text, text, "", "", false );;
 	}
 	
 	/*
@@ -558,7 +641,11 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	
 	
 	this.generateDataTuples = function() {
-		//https://github.com/davidhstocker/SAPDSResultSetTransformer/blob/master/formatTransform.js
+		this.debugConsoleDir("generateDataTuples - Start");
+		
+		/* adapted from Mike Howles Result Set Transformation
+		 * https://github.com/davidhstocker/SAPDSResultSetTransformer/blob/master/formatTransform.js
+		 */
 		var displayType 			= "text";
 		var tuples 					= data.tuples;
 		var lastTuple 				= tuples[tuples.length -1];
@@ -694,11 +781,6 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 					
 					var strFormat =colMeasSorted[kfNumIndex].formatString;
 					
-//					If a % is found, the value must be divided by 100 to avoid having 1000%
-					var nPC = strFormat.search("%");
-					if (nPC) {
-						value = value / 100;
-					}
 					if (strFormat) {
 						// use CVOM library to format cell value
 						sap.common.globalization.NumericFormatManager.setPVL(data.locale);
@@ -725,12 +807,16 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 		this.debugConsoleDir(rowTuples, "MLDD.generateDataTyples - rowTuples");
 		
 		transformedResultSet = rowTuples;
+		
+		this.debugConsoleDir("generateDataTuples - END");
 	}
 	
 	/*
 	 * --- GETTER SETTER for DS properties !
 	 */
 	this.data = function(value) {
+		this.debugConsoleDir("Function Data - Start");
+		
 		if (value === undefined) {
 			return data;
 		} else {
@@ -743,6 +829,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			
 			return this;
 		}
+		this.debugConsoleDir(data,"Function Data - End");
 	};
 	
 
@@ -802,32 +889,32 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 		}
 	};
 	
-	this.addWeight = function(value) {	
+	this.addMesure = function(value) {	
 		
 		if (value === undefined) {
-			return _propAddWeight;
+			return _propAddMesure;
 		} else {
-			if (value != _propAddWeight) {
+			if (value != _propAddMesure) {
 				this.setRendered(false);
-				_propAddWeight = value;
+				_propAddMesure = value;
 				
-				if (_propAddWeight)
-					this.findSelWeightIndex();
+				if (_propAddMesure)
+					this.findSelMesureIndex();
 			}
 			
 			return this;
 		}
 	};
 	
-	this.selWeight = function(value) {	
+	this.selMesure = function(value) {
 		if (value === undefined) {
-			return _propSelWeight;
+			return _propSelMesure;
 		} else {
 			
-			if (value != _propSelWeight) {
+			if (value != _propSelMesure) {
 				this.setRendered(false);
-				_propSelWeight = value;
-				this.findSelWeightIndex();
+				_propSelMesure = value;
+				this.findSelMesureIndex();
 			}
 
 			return this;
@@ -865,13 +952,26 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 		}
 	};
 	
-	this.valueDisplayType = function(value) {	
+	this.labelDisplay = function(value) {	
 		if (value === undefined) {
-			return _propValueDisplayType;
+			return _propLabelDisplay;
 		} else {
 			if (value != this.getRender()) {
 				this.setRendered(false);
-				_propValueDisplayType = value;
+				_propLabelDisplay = value;
+			}
+			
+			return this;
+		}
+	};
+	
+	this.notAssignedText = function(value) {	
+		if (value === undefined) {
+			return _propNotAssignedText;
+		} else {
+			if (value != this.getRender()) {
+				this.setRendered(false);
+				_propNotAssignedText = value;
 			}
 			
 			return this;
@@ -902,17 +1002,89 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	 * ---- Utilities Method
 	 */
 	
-	this.debugConsoleDir = function(object, title) {
-		if (c_DebugFlag) {
-			if (title != undefined)
-				console.dir(title);
+	this.populateAPS = function() {
+//		var compMeta = this.callRuntimeHandler("getDimensions");
+//		
+//		this.comboSelChar.removeAllItems();
+//		this.comboSelMesure.removeAllItems();
+//		this.comboSelMesure.setSelectedKey(this._selMesure);
+//		
+//		selKeyfigStruc = "";
+//		
+//		var previousSelChar = this._selChar;
+//		
+//		var dims = jQuery.parseJSON(compMeta);
+		if (!data)
+			return;
+		
+		apsMesureList = [];
+		apsCharList = [];
+		
+		var dims = data.dimensions;
+		var nbDimsWithHier = 0;
+//		
+		for(var i=0;i<dims.length;i++){
+			var dim = dims[i];
 			
-			console.dir(object);
+			if (dim.hasOwnProperty('containsMeasures')) {
+				this.setKeyFigStrucName(dim.key);
+//				
+				for(var j=0 ; j<dim.members.length ; j++) {
+					var newMesure = {	key: dim.members[j].key, 
+									text: dim.members[j].text};
+								 
+					apsMesureList.push(newMesure);
+				}
+			} else {
+//				
+				var has_hier = false;
+////				//that.debugEclipse("updateProps - Dim",dim.key);
+//				//Look at the dimension member to find a type "HIERARCHY_NODE"
+//								
+				for(var j=0 ; j<dim.members.length ; j++){
+					var member = dim.members[j];
+
+					if (member.hasOwnProperty('type'))
+						if (member.type == 'HIERARCHY_NODE')	{
+							has_hier = true;
+							break;
+						}
+				}
+				
+				if (has_hier) {
+					//that.debugEclipse("updateProps - addEntry",dim.key);
+					
+					var newChar = {	key: dim.key, 
+									text: dim.text};
+					apsCharList.push(newChar);
+					
+					nbDimsWithHier++;
+					
+//					if (this.selChar() == "" && nbDimsWithHier == 1) {
+//						this.selChar(_selChar);
+//						this.firePropertiesChanged(["selChar"]);
+//					}
+				}
+			}
+		}
+	}
+	
+	this.debugConsoleDir = function(object, title) {
+		if (debugFlag) {
+			if (title != undefined) {
+				
+				//alert(title + object);
+				console.log(title);
+				console.log(object);
+			} else {
+				//alert(object);
+				console.log(object);
+			}
 		}
 	}
 	
 	this.debugAlert = function(text) {
-		if (c_DebugFlag) {
+		if (debugFlag) {
 			alert(text);
 		}
 	}

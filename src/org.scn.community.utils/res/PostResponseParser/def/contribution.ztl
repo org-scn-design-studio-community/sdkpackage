@@ -19,6 +19,34 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	String getBasicAuthorisation() {*
 		return this.DBasicAuthorisation;
 	*}
+	
+	/**
+	 * Sets jsonp Property
+	 */	
+	void setJsonp(Boolean jsonp){*
+		this.DJsonp = jsonp;
+	*}
+	
+	/**
+	 * Gets jsonp Property
+	 */	
+	String getJsonp() {*
+		return this.DJsonp;
+	*}
+
+	/**
+	 * Gets jsonp Property
+	 */	
+	String getWithCredentials() {*
+		return this.DWithCredentials;
+	*}
+	
+	/**
+	 * Sets jsonp Property
+	 */	
+	void setWithCredentials(Boolean withCredentials){*
+		this.DWithCredentials = withCredentials;
+	*}
 
 	/**
 	 * Remove All Parameters from the Array.
@@ -85,7 +113,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	int getExpectedResponseStatus() {*
 		return this.DExpectedResponseStatus;
 	*}
-
+	
 	/** Adds a root element containing key [String], value [String].
 
  	<example>
@@ -408,6 +436,21 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/** Adds payload to HTTP requests. Typically used with POST requests as GET
+	 * uses the URL query string.
+
+ 	<example>
+	You want to add JSON data to your POST request to be send to the server
+	<code>
+	addPayloadToHttp("{"key":"value"}");<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addPayloadToHttp(String data){*
+		this.DPayload = data;
+	*}
+	
 	/**
 	 * Trigger Execution of the given URL and parameter list
 	 */

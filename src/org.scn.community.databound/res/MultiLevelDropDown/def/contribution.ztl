@@ -1,7 +1,7 @@
 class org.scn.community.databound.MultiLevelDropDown extends Component {
 	
 	/** ------- Getter / Setter for addSingleRootNode ------ */
-	boolean getAddSingleRootNode() {*
+	boolean isSingleNodeActivated() {*
 		return this.addSingleRootNode;
 	*}
 
@@ -28,12 +28,12 @@ class org.scn.community.databound.MultiLevelDropDown extends Component {
 	*}
 	
 	/** ------- Getter / Setter for selectedElemKey ------ */
-	String getvalueDisplayType() {*
-		return this.valueDisplayType;
+	String getLabelDisplay() {*
+		return this.labelDisplay;
 	*}
 
-	void setvalueDisplayType(String value) {*
-		this.valueDisplayType = value;
+	void setLabelDisplay(String value) {*
+		this.labelDisplay = value;
 	*}
 	
 	/** ------- Getter / Setter for selectedElemKey ------ */
@@ -63,22 +63,22 @@ class org.scn.community.databound.MultiLevelDropDown extends Component {
 		this.selChar = value;
 	*}
 	
-	/** ------- Getter / Setter for addWeight ------ */
-	boolean getAddWeight() {*
-		return this.addWeight;
+	/** ------- Getter / Setter for addMeasure ------ */
+	boolean isMeasureDisplayActivated() {*
+		return this.addMesure;
 	*}
 
-	void setAddWeight(Boolean value) {*
-		this.addWeight = value;
+	void activateDisplayMeasure(Boolean value) {*
+		this.addMesure = value;
 	*}
 	
-	/** ------- Getter / Setter for selWeight ------ */
-	String getSelWeight() {*
-		return this.selWeight;
+	/** ------- Getter / Setter for selMeasure ------ */
+	String getSelMeasure() {*
+		return this.selMesure;
 	*}
 
-	void setSelWeight(String value) {*
-		this.selWeight = value;
+	void setSelMeasure(String value) {*
+		this.selMesure = value;
 	*}
 	
 	/** ------- Getter / Setter for colorClass ------ */
@@ -88,6 +88,15 @@ class org.scn.community.databound.MultiLevelDropDown extends Component {
 
 	void setColorClass(String value) {*
 		this.colorClass = value;
+	*}
+	
+	/** ------- Getter / Setter for replaceNotAssignedText ------ */
+	String getNotAssignedText() {*
+		return this.notAssignedText;
+	*}
+
+	void setNotAssignedText(String value) {*
+		this.notAssignedText = value;
 	*}
 	
 	
