@@ -139,7 +139,7 @@ LeaderBoard = {
 		
 		// processing on data
 		if(that._oResize) {
-			that.afterPrepare(that);
+			that._oResize(true, true);
 		}
 	},
 
@@ -161,6 +161,10 @@ LeaderBoard = {
 	
 	onResize: function(width, height, parent) {
 		// in case special resize code is required
+		
+		if(isNaN(width) || isNaN(height)) {
+			return;
+		}
 		parent.afterPrepare(parent);
 	},
 	
