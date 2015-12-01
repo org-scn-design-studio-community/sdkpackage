@@ -321,6 +321,7 @@
 				title = title.replace(/{scaledmax}/g, cells);
 				title = title.replace(/{value}/g, measure);
 				title = title.replace(/{max}/g, this.maxKpi());
+				title = title.replace(/{percent}/g, (measure / this.maxKpi()));
 				title = title.replace(/{scale}/g, scale);
 	            
 	            
