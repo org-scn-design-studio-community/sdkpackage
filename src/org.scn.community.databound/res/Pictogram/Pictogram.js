@@ -83,6 +83,13 @@
 						apsControl : "text"
 					}					
 				},
+				precision :  {
+					opts : {
+						desc : "Decimal Precision",
+						cat : "General",
+						apsControl : "spinner"
+					}	
+				},
 				kpi :  {
 					opts : {
 						desc : "KPI",
@@ -317,12 +324,13 @@
 	    		var scale = 1;
 	    		if(this.scaleByMax()) scale = ratio;
 	    		
-				title = title.replace(/{scaledvalue}/g, (measure / ratio));
-				title = title.replace(/{scaledmax}/g, cells);
-				title = title.replace(/{value}/g, measure);
-				title = title.replace(/{max}/g, this.maxKpi());
-				title = title.replace(/{percent}/g, (measure / this.maxKpi()));
-				title = title.replace(/{scale}/g, scale);
+	    		
+				title = title.replace(/{scaledvalue}/g, this.round(measure / ratio));
+				title = title.replace(/{scaledmax}/g, this.round(cells));
+				title = title.replace(/{value}/g, this.round(measure));
+				title = title.replace(/{max}/g, this.round(this.maxKpi()));
+				title = title.replace(/{percent}/g, ((this.round(measure / this.maxKpi() * 100 )) + "%"));
+				title = title.replace(/{scale}/g, this.round(scale));
 	            
 	            
 	    		// Measure some pixels
@@ -482,6 +490,12 @@
 	    		}catch(e){
 	    			alert(e);
 	    		}
+	    	};
+	    	this.round = function(n){
+	    		var p = this.precision();
+	    		if(p<0) return n;
+	    		var multiplier = Math.pow(10, p);
+	    		return Math.round(n * multiplier) / multiplier;
 	    	};
 	    	this.measureSize = function(that){
 	    		var currentWidth = that.$().innerWidth();

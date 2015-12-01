@@ -3,6 +3,7 @@
 	<property type="ResultCell" title="KPI" id="kpi" visible="true" bindable="true">
 	<!--http://scn.sap.com/docs/DOC-58755-->
 	</property>
+	<property type="String" title="Decimal Precision" id="precision" visible="false"/>
 	<property type="String" title="Preserve Aspect Ratio" id="preserveAspectRatio" visible="false"/>
 	<property type="String" title="Partial Fill Direction" id="fillDirection" visible="false"/>
 	<property type="String" title="Fill Order" id="fillOrder" visible="false"/>
