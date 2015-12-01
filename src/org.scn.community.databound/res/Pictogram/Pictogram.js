@@ -496,5 +496,5 @@ define(["d3","../_modules/VizCoreDatabound","sap/designstudio/sdk/component"], f
 	 Pictogram.prototype.toString = function(){
     	 return ownComponentName;
      }
-	Component.subclass(ownComponentName, Pictogram);	// End of SDK
+	 Component.subclass(ownComponentName, Pictogram);	// End of SDK
 });

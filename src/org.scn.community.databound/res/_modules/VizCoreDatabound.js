@@ -1,7 +1,7 @@
 /**
  * Base Databound Class
  */
-define(["./VizCore","./org_scn_community_databound"], function(VizCore) {
+define(["./VizCore","./org_scn_community_databound"], function(VizCore, org_scn_community_databound) {
 	VizCoreDatabound.prototype = VizCore;
 	VizCoreDatabound.constructor = VizCoreDatabound;
 	function VizCoreDatabound(options){

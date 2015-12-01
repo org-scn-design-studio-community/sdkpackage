@@ -1,0 +1,140 @@
+.DesignStudioSCN.Viz .axis path,
+.DesignStudioSCN.Viz .axis line {
+	fill: none;
+  	stroke: #303030;
+  	shape-rendering: crispEdges;
+  	stroke-width: .75px;
+}
+.DesignStudioSCN.Viz .legend-container {
+  stroke-width: .5px;
+  fill: #FFFFFF;
+  fill-opacity: 0.9;
+  stroke: #898989;
+}
+
+.DesignStudioSCN.Viz .legend-label {
+  font-weight: bold;
+}
+
+.DesignStudioSCN.Viz .chartTitle {
+  font-weight: bold;
+}
+
+.hidden { 
+  display: none; 
+}
+
+.DesignStudioSCN.Map .subunit-label {
+  fill: #000;
+  fill-opacity: .5;
+  /* font-size: 20px; */
+  font-weight: 300;
+  text-anchor: middle;
+}
+
+.DesignStudioSCN.Map .background {
+  fill: transparent;
+  stroke: 0;
+}
+
+.DesignStudioSCN.Map .path {
+  stroke: #898989;
+  stroke-width: .4px;
+  stroke-opacity: .85;
+}
+
+.DesignStudioSCN.Map .path:hover {
+  stroke-opacity: .5;
+  stroke: #000000;
+  stroke-width: 2px;
+}
+
+.DesignStudioSCN.Map .canvas.tooltipped .path:hover, 
+.DesignStudioSCN.Map .canvas.tooltipped .text:hover{
+  cursor: pointer;
+}
+
+.DesignStudioSCN.Map .legend-container {
+  stroke-width: .5px;
+  fill: #FFFFFF;
+  fill-opacity: 0.9;
+  stroke: #898989;
+}
+
+.DesignStudioSCN.Map .legend-label {
+  font-weight: bold;
+}
+
+.DesignStudioSCN.Map .graticule {
+  fill: none;
+  stroke: #808080;
+  stroke-width: .5px;
+  stroke-opacity: .75;
+}
+
+.DesignStudioSCN.Map .globe {
+  fill: #7FB5DF;
+  stroke: #222222;
+  stroke-width: 1.5px;
+}
+.DesignStudioSCN.Viz .d3-tip, div.tooltip {
+	background: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	border-radius: 2px;
+	box-shadow: 0px 0px 2px 0px #a6a6a6;
+	/*text-shadow: #f5f5f5 0 1px 0;*/
+	padding: 12px;
+	pointer-events: none;
+	opacity: 0.9;
+	line-height: 1;
+  	font-weight: bold;
+}
+.DesignStudioSCN.Viz .tooltip {
+ 	position: absolute;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.DesignStudioSCN.Viz .d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Northward tooltips */
+.DesignStudioSCN.Viz .d3-tip.n:after {
+  content: "\25BC";
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+  text-align: center;
+}
+
+/* Eastward tooltips */
+.DesignStudioSCN.Viz .d3-tip.e:after {
+  content: "\25C0";
+  margin: -4px 0 0 0;
+  top: 50%;
+  left: -8px;
+}
+
+/* Southward tooltips */
+.DesignStudioSCN.Viz .d3-tip.s:after {
+  content: "\25B2";
+  margin: 0 0 1px 0;
+  top: -8px;
+  left: 0;
+  text-align: center;
+}
+
+/* Westward tooltips */
+.DesignStudioSCN.Viz .d3-tip.w:after {
+  content: "\25B6";
+  margin: -4px 0 0 -1px;
+  top: 50%;
+  left: 100%;
+}
