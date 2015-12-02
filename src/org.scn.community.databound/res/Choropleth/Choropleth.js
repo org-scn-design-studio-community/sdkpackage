@@ -836,4 +836,4 @@ define(["../_modules/VizMap","sap/designstudio/sdk/component"], function(VizMap,
     	 return ownComponentName;
      }
 	Component.subclass(ownComponentName, Choropleth);	// End of SDK
-});// End of closure
+});
