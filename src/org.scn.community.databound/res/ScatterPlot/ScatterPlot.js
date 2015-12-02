@@ -13,47 +13,58 @@ define(["../_modules/VizXYChart","sap/designstudio/sdk/component"], function(Viz
 	 ScatterPlot.prototype = VizXYChart;
      function ScatterPlot() {
     	 // Call super
-    	 	VizXYChart.call(this, {
-				radius : { 
-					value : 20,
-					opts : {
-						desc : "Plot Radius",
-						cat : "Cosmetics-Sizes",
-						apsControl : "spinner"	
-					}
-				},
-				bubbleMin : { 
-					value : 5,
-					opts : {
-						desc : "Minimum Bubble Size",
-						cat : "Cosmetics-Sizes",
-						apsControl : "spinner"	
-					}
-				},
-				bubbleMax : { 
-					value : 20,
-					opts : {
-						desc : "Maximum Bubble Size",
-						cat : "Cosmetics-Sizes",
-						apsControl : "spinner"	
-					}
-				},
-				measureZ : { 
-					opts : {
-						desc : "Z-Axis Measure",
-						cat : "Data",
-						apsControl : "measureselector"
-					}
-				},
-				colorDimension : { 
-					value : "",
-					opts : {
-						desc : "Dimension for Color",
-						cat : "Data",
-						apsControl : "text"
-					} 
+	 	VizXYChart.call(this, {
+			radius : { 
+				value : 20,
+				opts : {
+					desc : "Plot Radius",
+					cat : "Cosmetics-Sizes",
+					apsControl : "spinner"	
 				}
-			});
+			},
+			bubbleMin : { 
+				value : 5,
+				opts : {
+					desc : "Minimum Bubble Size",
+					cat : "Cosmetics-Sizes",
+					apsControl : "spinner"	
+				}
+			},
+			bubbleMax : { 
+				value : 20,
+				opts : {
+					desc : "Maximum Bubble Size",
+					cat : "Cosmetics-Sizes",
+					apsControl : "spinner"	
+				}
+			},
+			measureZ : { 
+				opts : {
+					desc : "Z-Axis Measure",
+					cat : "Data",
+					apsControl : "measureselector"
+				}
+			},
+			colorDimension : { 
+				value : "",
+				opts : {
+					desc : "Dimension for Color",
+					cat : "Data",
+					apsControl : "text"
+				} 
+			}
+		});
+	 	this.d3tip.html(function (d) {
+			var html = "<span>";
+			var sep = "";
+			for(var i=0;i<d.labels.length;i++){
+				html+=d.labels[i]+"<br/>";
+			}
+			html += d.x + "<br/>";
+			html += d.y + "<br/>";
+			html += "</span>";
+			return html;
+		});
     	this.componentInfo.title = "ScatterPlot/Bubble Chart";
     	this.componentInfo.description = "This is a ScatterPlot and Bubble Chart Component.  X and Y measures are taken from columns, defaulting to the first 2 columns.  A 3rd Z measure representing Bubble Size can be set by explicitely naming the column Member."
     	var parentInit = this.init;

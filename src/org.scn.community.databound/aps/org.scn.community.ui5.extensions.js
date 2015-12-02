@@ -331,7 +331,7 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 	},
 	mapLoadComplete : function(data){
 		try{
-			this.presets = jQuery.parseJSON(data);
+			this.presets = data; //jQuery.parseJSON(data);
 			for(var i=0;i<this.presets.length;i++){
 				if(this.presets[i].type && this.presets[i].type=="external"){
 					$.ajax({
@@ -386,7 +386,7 @@ sap.ui.commons.Panel.extend("org.scn.community.aps.MapDownloader",{
 						url : mapURL,
 						headers : config.headers
 					}).done(function(data){
-						data = removeDiacritics(data);
+						// data = removeDiacritics(data);
 						that._mapData = that.processMapData(data);
 						that.updateContents();
 						that.fireMapDataChange();

@@ -4,17 +4,9 @@
 		title="Marimekko Chart"
 		icon="res/MarimekkoChart/MarimekkoChart.png"
 		handlerType="div"
+		modes="commons m"
 		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
-		group="ScnCommunityChartMaps"
+		group="ScnCommunityDataBound"
 		databound="true"
 >
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/common_databound.js</jsInclude>
-	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
-	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
-	<jsInclude>res/org.scn.community.component.BaseViz.js</jsInclude>
-	<jsInclude>res/org.scn.community.component.AxisChart.js</jsInclude>
-	<jsInclude>res/MarimekkoChart/MarimekkoChart.js</jsInclude>
-	<cssInclude>res/Viz.css</cssInclude>
-	<cssInclude>os/d3-tip.css</cssInclude>
+	<requireJs modes="commons m">res/MarimekkoChart/MarimekkoChart</requireJs>

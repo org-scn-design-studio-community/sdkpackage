@@ -533,6 +533,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.datasource.BYOData
 	 * Insert a Row
 	 */
 	this.insertRow = function(index,direction){
+		alert(index);
 		var m = this.table.getModel();
 		var s = m.getJSON();
 		var o = jQuery.parseJSON(s);
@@ -680,6 +681,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.datasource.BYOData
 		this.table.destroyRows();
 		this.table.unbindRows();
 		var headers = [];
+		if(d.length==0){
+			d.push([]);	// Header
+		}
 		if(d.length>0){
 			var headers = d[0];
 			var rowMenu = new sap.ui.commons.Menu({});
@@ -701,8 +705,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.datasource.BYOData
 				return function(oControlEvent){
 					var model = oControlEvent.getSource().getModel();
 					var path = oControlEvent.getSource().getBindingContext().getPath("rows");
-			        var arrPath = path.split("/");
-			        var index = parseInt(arrPath[arrPath.length-1]);
+					var index = parseInt(arrPath[2]);
 					this.insertRow(index,0);
 				};
 			}(),this);
@@ -715,7 +718,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.datasource.BYOData
 					var model = oControlEvent.getSource().getModel();
 					var path = oControlEvent.getSource().getBindingContext().getPath("rows");
 			        var arrPath = path.split("/");
-			        var index = parseInt(arrPath[arrPath.length-1]);
+			        var index = parseInt(arrPath[2]);
 					this.insertRow(index,1);
 				};
 			}(i),this);
@@ -728,7 +731,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.datasource.BYOData
 					var model = oControlEvent.getSource().getModel();
 					var path = oControlEvent.getSource().getBindingContext().getPath("rows");
 			        var arrPath = path.split("/");
-			        var index = parseInt(arrPath[arrPath.length-1]);
+			        var index = parseInt(arrPath[2]);
 					this.deleteRow(index);
 				};
 			}(i),this);
@@ -867,7 +870,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.datasource.BYOData
 			width : "100%"
 		});
 		this.table = new sap.ui.table.Table({
-			title : "Data",
 			selectionMode: sap.ui.table.SelectionMode.None,
 			visibleRowCount : 10,
 			navigationMode : sap.ui.table.NavigationMode.Scrollbar
@@ -882,11 +884,11 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.datasource.BYOData
 			wrapping : sap.ui.core.Wrapping.Off
 		});
 		this.dataContents.attachChange(this.dataContentsChanged, this);
+		this.updateProps();
 		this._content.addContent(this.dataLayout);
 		this._content.addContent(this.table);
 		this.panel.addContent(this._content);
 		this.panel.placeAt($("#content"));
-		this.updateProps();
 	}catch(e){alert(e);}};
 	this.kfIndex = function(s){
 		if(s===undefined){

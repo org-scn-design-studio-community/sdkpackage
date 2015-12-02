@@ -6,7 +6,10 @@ define(["./VizBase","../../os/d3v3/d3-tip"], function(VizBase,d3tip) {
 	VizAxisChart.constructor = VizAxisChart;
 	function VizAxisChart(options){
 		var that = this;
-		this.d3tip = d3tip;
+		this.d3tip = d3tip()
+			.attr('class', 'd3-tip DesignStudioSCN')
+			.offset([-12, 0]);
+		
 		var properties = {
 			xAxisTicks : { 
 				value : 5,

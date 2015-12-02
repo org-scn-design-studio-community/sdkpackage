@@ -2,6 +2,7 @@
 <component id="BYOData" 
 	title="Bring Your Own Data" 
 	handlerType="datasource"
+	modes = "commons m"
 	icon="res/BYOData/BYOData.png"
 	propertySheetPath="res/BYOData/aps/BYODataPropertyPage.html"
 >

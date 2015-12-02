@@ -77,7 +77,7 @@
   stroke: #222222;
   stroke-width: 1.5px;
 }
-.DesignStudioSCN.Viz .d3-tip, div.tooltip {
+.DesignStudioSCN.d3-tip, .DesignStudioSCN div.tooltip {
 	background: rgba(0, 0, 0, 0.8);
 	color: #fff;
 	border-radius: 2px;
@@ -137,4 +137,11 @@
   margin: -4px 0 0 -1px;
   top: 50%;
   left: 100%;
+}
+
+.DesignStudioSCN.MarimekkoChart svg {
+	shape-rendering: crispEdges;
+}
+.DesignStudioSCN.MarimekkoChart .plot {
+	stroke: #000;
 }
