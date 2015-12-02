@@ -1,14 +1,14 @@
 /**
  * CC BY-NC-SA License
  * Pictogram by Mike Howles is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
- * Based on a work at http://github.com/org-scn-design-studio-community/sdkpackage/tree/master/src/org.scn.community.databound/res/Pictogram 
+ * Based on a work at http://github.com/org-scn-design-studio-community/sdkpackage/tree/master/src/org.scn.community.databound/res/ScatterPlot 
  *
  */
 
 define(["../_modules/VizXYChart","sap/designstudio/sdk/component"], function(VizXYChart,Component) {
 	var ownComponentName = "org.scn.community.databound.ScatterPlot";
 	 /**
-	 * Pictogram
+	 * ScatterPlot
 	 */
 	 ScatterPlot.prototype = VizXYChart;
      function ScatterPlot() {

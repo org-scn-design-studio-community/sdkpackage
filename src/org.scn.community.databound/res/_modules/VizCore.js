@@ -1,7 +1,7 @@
 /**
  * VizCore Class
  */
-define([], function() {
+define(["css!../_modules/Viz.css"], function() {
 	function VizCore(options){
 		var that = this;
 		this.componentInfo = {
