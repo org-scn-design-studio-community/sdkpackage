@@ -219,6 +219,10 @@ define(["../_modules/DatasourceCore", "sap/designstudio/sdk/databuffer"], functi
 			}
 		});
 	}
+	BYOData.prototype.constructor = BYOData;
+	BYOData.prototype.toString = function(){
+   	 return ownComponentName;
+    }
 	DataBuffer.subclass(ownComponentName,BYOData);
 });
 	

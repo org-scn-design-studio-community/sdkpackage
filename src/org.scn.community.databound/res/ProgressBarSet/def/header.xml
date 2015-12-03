@@ -4,16 +4,9 @@
 		title="Progress Bar Set"
 		icon="res/ProgressBarSet/ProgressBarSet.png"
 		handlerType="div"
+		modes="commons m"
 		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
-		group="ScnCommunityDataBound"
+		group="ScnCommunityChartMaps"
 		databound="true"
 >
-	<stdInclude kind="d3"/>
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/common_databound.js</jsInclude>
-	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
-	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
-	<jsInclude>res/ProgressBarSet/ProgressBarSet.js</jsInclude>
-	<cssInclude>res/Viz.css</cssInclude>
-	<cssInclude>res/ProgressBarSet/ProgressBarSet.css</cssInclude>
+<requireJs modes="commons m">res/ProgressBarSet/ProgressBarSet</requireJs>
