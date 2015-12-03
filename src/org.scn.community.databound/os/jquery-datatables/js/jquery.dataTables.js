@@ -29,11 +29,11 @@
 (function( factory ) {
 	"use strict";
 
-	if ( typeof xxdefine === 'function' && define.amd ) {
+	if ( typeof define === 'function' && define.amd ) {
 		// Define as an AMD module if possible
 		define( 'datatables', ['jquery'], factory );
 	}
-    else if ( typeof xxexports === 'object' ) {
+    else if ( typeof exports === 'object' ) {
         // Node/CommonJS
         module.exports = factory( require( 'jquery' ) );
     }

@@ -147,4 +147,3 @@ $(document).on( 'init.dt', function ( e, settings ) {
 } );
 
 }(jQuery));
-
