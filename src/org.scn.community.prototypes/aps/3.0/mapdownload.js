@@ -1,4 +1,4 @@
-define(["../os/d3v3/d3.min","../os/d3v3/topojson.v1.min"],function(d3,topojson){
+define(["../../os/d3v3/d3.min","../../os/d3v3/topojson.v1.min"],function(d3,topojson){
 	/**
 	 * Create Map Downloader Extension
 	 */
@@ -151,7 +151,7 @@ define(["../os/d3v3/d3.min","../os/d3v3/topojson.v1.min"],function(d3,topojson){
 			}
 			if(o.url) {
 				var mapURL = o.url;
-				if(o.type!="external") mapURL = "../os/maps/" + mapURL + "?r=" + Math.random();
+				if(o.type!="external") mapURL = "../../os/maps/" + mapURL + "?r=" + Math.random();
 				if(rootConfig.indexUrl) mapURL = rootConfig.indexUrl + mapURL;
 				menuitem.attachSelect(function(mapURL,config){return function(oControlEvent){
 					try{
@@ -272,7 +272,7 @@ define(["../os/d3v3/d3.min","../os/d3v3/topojson.v1.min"],function(d3,topojson){
 			this.mapProperties.addContent(this.tableAttributes);
 			try{
 				$.ajax({
-					url : "../os/maps/index.json?r=" + Math.random(),
+					url : "../../os/maps/index.json?r=" + Math.random(),
 					context : this
 				})
 				.done(this.mapLoadComplete)

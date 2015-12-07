@@ -1,8 +1,22 @@
 .sapUiBody {
 	background-image : none !important;
 }
-.sapUiUx3NavBarItem, .sapUiMenuButtonIco, .sapUiBtnTxt, .sapUiMnuItm, .sapUiSliText, .sapUiMnuTfItemLbl, .sapUiTv{
+.sapUiTf, 
+.sapUiTv, 
+.sapUiTfStd,
+.sapUiTf.sapUiTfInner,
+.sapUiLbl,
+.sapUiTableCell>.sapUiTv,
+.sapUiTableCell>.sapUiTf,
+.sapUiSegmentedButton, .sapUiBtnS, .sapUiUx3NavBarItem, .sapUiMenuButtonIco, .sapUiBtnTxt, .sapUiMnuItm, .sapUiSliText, .sapUiMnuTfItemLbl, .sapUiTv{
 	font-size : 11px !important;
+}
+/* Panel and Section titles */
+.sapUiPanelHdrItem.sapUiPanelTitle {
+	color : #007CC0;
+	font-size : 10px !important;
+	text-transform : uppercase;
+	margin-left : 10px;
 }
 .sapUiUx3NavBarItem {
 	font-weight : bold !important;
