@@ -5,7 +5,7 @@
 	tooltip="Fiori-Inspired LaunchPad/Tile Container"
 	icon="res/LaunchPad/LaunchPad.png"
 	handlerType="sapui5"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/3.0/PropertyPage.html"
 	group="ScnCommunityBasics">
 
 	<jsInclude>res/require_loader.js</jsInclude>

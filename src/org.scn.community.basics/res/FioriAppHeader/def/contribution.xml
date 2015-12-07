@@ -3,7 +3,7 @@
 	title="Fiori App Header"
 	icon="res/FioriAppHeader/FioriAppHeader.png"
 	handlerType="sapui5" 
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/3.0/PropertyPage.html"
 	group="ScnCommunityBasics">
   	
 	<jsInclude>res/require_loader.js</jsInclude>

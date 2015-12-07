@@ -48,14 +48,16 @@ define([], function () {
 			for (var field in o) {
 				if (this["cmp_" + field] && this["cmp_" + field]) {
 					var that = this
-					require([c[field].apsControl],function(field,value){return function(handler){
+					require(["./"+c[field].apsControl],function(field){return function(handler){
 						if (handler.serialized) {
 							value = JSON.stringify(o[field]);
 						} else {
 							value = o[field];
 						}
 						handler.setter.call(this, field, value);
-					};}(field,value));
+					};}(field));
+				}else{
+					// alert(field + " not exist yet.");
 				}
 			}
 			// this.apsModel.setData({propertyData: this.getValue()});
@@ -63,77 +65,106 @@ define([], function () {
 			// this.columnTable.bindRows("/propertyData");
 		},
 		generateFields : function () {
+			try{
 			this.destroyContent();
 			this.components = {};
 			var config = this.getConfig();
-			for (var field in config) {
-				var item = config[field];
+			for (var property in config) {
+				var item = config[property];
 				var control;
-				for (var i = 0; i < propertyPageHandlerRegistry.length; i++) {
-					var reg = propertyPageHandlerRegistry[i];
-					if (reg.id == item.apsControl) {
-						var getHandler = function (property, apsControl) {
+				var that = this;
+				
+				var failureFunction = function (componentContainer, property, propertyOptions) {
+					return function () {
+						alert("fail");
+						// assure there is a control! Make text Area
+						that["cmp_" + property] = new sap.ui.commons.TextArea({
+								design : sap.ui.core.Design.Monospace,
+								rows : 20,
+								width : "100%",
+								wrapping : sap.ui.core.Wrapping.Off
+							});
+						that["cmp_" + property].attachChange(function (oControlEvent) {
+							var newValue = oControlEvent.getSource().getValue();
+							that.props[property].value = newValue;
+							if (!that.isTest) {
+								that.firePropertiesChanged([property]);
+							} else {
+								alert("Property: " + property + "\r\nValue:\r\n" + newValue);
+							}
+						}, this);
+						componentContainer.addContent(that.hLabel(propertyOptions.desc || property, that["cmp_" + property]));
+					}
+				}(this, property+"", JSON.parse(JSON.stringify(item)));
+				
+				var callbackFunction = function(componentContainer, property, propertyOptions) {
+					return function (handler) {
+						try{
+						// Closure to store property name
+						var changeHandler = function (property, handler) {
 							return function (oControlEvent) {
-								var newValue;
-								/**
-								 * Scan handler registry
-								 */
-								for (var i = 0; i < propertyPageHandlerRegistry.length; i++) {
-									var handler = propertyPageHandlerRegistry[i];
-									if (handler.id == apsControl) {
-										newValue = handler.getter.call(this, property, oControlEvent.getSource());
-										if (handler.serialized) {
-											if (newValue && newValue != "") {
-												newValue = jQuery.parseJSON(newValue);
-											} else {
-												newValue = null;
-											}
-										}
+								var newValue = handler.getter.call(that, property, oControlEvent.getSource());
+								if (handler.serialized) {
+									if (newValue && newValue != "") {
+										newValue = jQuery.parseJSON(newValue);
+									} else {
+										newValue = null;
 									}
 								}
-								var v = this.getValue();
+								var v = that.getValue();
 								v[property] = newValue;
-								this.setValue(v);
-								this.fireValueChange();
+								that.setValue(v);
+								that.fireValueChange();
 							};
+						}(property, handler);
+						control = handler.createComponent.call(that, property, propertyOptions, changeHandler);
+						that["cmp_" + property] = control;
+						var setValue = that.getValue()[property];
+						if(handler.serialized){
+							handler.setter.call(that, property, JSON.stringify(that.getValue()[property]));	
+						}else{
+							handler.setter.call(that, property, that.getValue()[property]);	
+						}						
+						// assure there is a control! Make text Area
+						/* TODO
+						if (that["cmp_" + property] == undefined) {
+							that["cmp_" + property] = new sap.ui.commons.TextArea({
+									design : sap.ui.core.Design.Monospace,
+									rows : 20,
+									width : "100%",
+									wrapping : sap.ui.core.Wrapping.Off
+								});
+							that["cmp_" + property].attachChange(getHandler, that);
 						}
-						(field, item.apsControl);
-						control = reg.createComponent.call(this, field, item, getHandler);
-						this["cmp_" + field] = control;
-					}
-				}
-				var property = field;
-				// assure there is a control! Make text Area
-				if (this["cmp_" + property] == undefined) {
-					this["cmp_" + property] = new sap.ui.commons.TextArea({
-							design : sap.ui.core.Design.Monospace,
-							rows : 20,
-							width : "100%",
-							wrapping : sap.ui.core.Wrapping.Off
-						});
-					this["cmp_" + property].attachChange(getHandler, this);
-				}
+						*/
+						// Step 3a, if component has afterInit method, call it!
 
-				// Step 3a, if component has afterInit method, call it!
+						if (that["cmp_" + property].afterInit) {
+							that["cmp_" + property].afterInit();
+						}
 
-				if (this["cmp_" + property].afterInit) {
-					this["cmp_" + property].afterInit();
-				}
+						// Step 4, add control to layout
+						//etcLayout.addContent(that.hLabel(property,that["cmp_"+property]));
+						var useLabel = true;
+						if (that["cmp_" + property].needsLabel) {
+							useLabel = that["cmp_" + property].needsLabel();
+						}
 
-				// Step 4, add control to layout
-				//etcLayout.addContent(this.hLabel(property,this["cmp_"+property]));
-				var useLabel = true;
-				if (this["cmp_" + property].needsLabel) {
-					useLabel = this["cmp_" + property].needsLabel();
-				}
-
-				if (useLabel) {
-					this.addContent(this.hLabel(item.desc || property, this["cmp_" + property]));
-				} else {
-					this.addContent(this["cmp_" + property]);
-				}
+						if (useLabel) {
+							componentContainer.addContent(that.hLabel(propertyOptions.desc || property, that["cmp_" + property]));
+						} else {
+							componentContainer.addContent(that["cmp_" + property]);
+						}
+						}catch(e){
+							alert("Error on handler callback:\n\n" + e);
+						}
+					};
+				}(this, property+"", JSON.parse(JSON.stringify(item)));
+				require(["./"+item.apsControl],callbackFunction,failureFunction);			
 			}
-			return;
+			}catch(e){
+				alert("Error generating fields\n\n"+e);
+			}
 		},
 		hLabel : function (label, component) {
 			var hLayout = new sap.ui.commons.layout.HorizontalLayout({})
