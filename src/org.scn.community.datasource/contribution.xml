@@ -192,7 +192,7 @@
 	handlerType="datasource"
 	modes = "commons m"
 	icon="res/BYOData/BYOData.png"
-	propertySheetPath="aps/PropertyPage.html"
+	propertySheetPath="aps/3.0/PropertyPage.html"
 >
 	<requireJs modes="commons m">res/BYOData/BYOData</requireJs>
 	<property type="String" title="Data" id="data"/>
