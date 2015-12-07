@@ -27,7 +27,6 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Pictogram\def\contribution.xml ^
 ..\res\ProcessFlow\def\contribution.xml ^
 ..\res\ProgressBarSet\def\contribution.xml ^
-..\res\Projector\def\contribution.xml ^
 ..\res\RadioButtonGroup\def\contribution.xml ^
 ..\res\RangeSlider\def\contribution.xml ^
 ..\res\ResultSetInfo\def\contribution.xml ^
@@ -68,7 +67,6 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\Pictogram\def\contribution.ztl ^
 ..\res\ProcessFlow\def\contribution.ztl ^
 ..\res\ProgressBarSet\def\contribution.ztl ^
-..\res\Projector\def\contribution.ztl ^
 ..\res\RadioButtonGroup\def\contribution.ztl ^
 ..\res\RangeSlider\def\contribution.ztl ^
 ..\res\ResultSetInfo\def\contribution.ztl ^

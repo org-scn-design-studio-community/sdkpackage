@@ -5,7 +5,7 @@
 		icon="res/Pictogram/Pictogram.png"
 		handlerType="div"
 		modes="commons m"
-		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+		propertySheetPath="aps/3.0/PropertyPage.html"
 		group="ScnCommunityChartMaps"
 		databound="true"
 >

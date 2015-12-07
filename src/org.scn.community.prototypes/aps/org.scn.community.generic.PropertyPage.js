@@ -1,7 +1,20 @@
 var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
+var propertyPage;
+
 sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPage", function() {
 	var that = this;
 	this.rendered = false;
+	/**
+	 * Mike - 12/03/2015 - Convenience function to both modify a property in APS component handler, and fire a DS Update message
+	 */
+	this.updateProperty = function(propertyName,value){
+		if(this[propertyName]){
+			this[propertyName](value);
+			this.firePropertiesChanged([propertyName]);	
+		}else{
+			alert("Property '" + propertyName + "' update to "  + value + " requested but not present in property sheet.\n\n" + JSON.stringify(this.metaProps));
+		}		
+	}
 	/**
 	 * Crawl Node config by node key to find its UI sheet.
 	 */
@@ -47,51 +60,70 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 									}
 								}
 								this.props[property].value = value;
-								/**
-								 * Scan handler registry
-								 */
-								for(var i=0;i<propertyPageHandlerRegistry.length;i++){
-									var handler = propertyPageHandlerRegistry[i];
-									if(handler.id == apsControl) {
-										handler.setter.call(this, property, value);
-									}
-								}
+
+								var that = this;
+								require([apsControl],function(property,value){return function(handler){
+									handler.setter.call(that, property, value);
+								};}(property,value));
 								return this;
 							}
 						};
 					}(property,apsControl,propertyOptions.onSet);
 					// Step 2, create component event handler
-					var f = function(property,apsControl){
-						return function(oControlEvent){
-							var newValue;
-							/**
-							 * Scan handler registry
-							 */
-							for(var i=0;i<propertyPageHandlerRegistry.length;i++){
-								var handler = propertyPageHandlerRegistry[i];
-								if(handler.id == apsControl) {
-									newValue = handler.getter.call(this, property, oControlEvent.getSource());
-								}
-							}
-							this.props[property].value = newValue;
-							if(!this.isTest) {
-								this.firePropertiesChanged([property]);	
-							} else {
-								alert("Property: " + property + "\r\nValue:\r\n" + newValue);
+					var that = this;
+					var callbackFunction = function(node, property, propertyOptions){
+						return function(handler){
+							// Closure to store property name
+							var changeHandler = function(property,handler){
+								return function(oControlEvent){
+									var newValue = handler.getter.call(that, property, oControlEvent.getSource());
+									that.props[property].value = newValue;
+									if(!that.isTest) {
+										that.firePropertiesChanged([property]);	
+									} else {
+										alert("Property: " + property + "\r\nValue:\r\n" + newValue);
+									}
+									
+								};
+							}(property,handler);
+							// alert(property + that["cmp_"+property] + "\n\n" + node+ "\n\n" + handler);
+							that["cmp_"+property] = handler.createComponent.call(that, property, propertyOptions,changeHandler);
+							// Step 3a, if component has afterInit method, call it!
+							
+							if(that["cmp_"+property].afterInit) {
+								that["cmp_"+property].afterInit();	
 							}
 							
-						};
-					}(property,apsControl);
-					/**
-					 * Scan handler registry
-					 */
-					for(var i=0;i<propertyPageHandlerRegistry.length;i++){
-						var handler = propertyPageHandlerRegistry[i];
-						if(handler.id == apsControl) {
-							this["cmp_"+property] = handler.createComponent.call(this, property, propertyOptions, f);
-						}
-					}
+							// Step 4, add control to layout
+							//etcLayout.addContent(that.hLabel(property,that["cmp_"+property]));
+							var useLabel = true;
+							if(that["cmp_"+property].needsLabel) {
+								useLabel = that["cmp_"+property].needsLabel();	
+							}
+							
+							if(useLabel){
+								// set width to 320px
+								if(that["cmp_"+property].setWidth) {
+									// Certain APS Controls don't need to have width set like checkbox (cause horizontal scroll issues)
+									if(propertyOptions.apsControl != "checkbox"
+										&& propertyOptions.apsControl != "combobox"
+										&& propertyOptions.apsControl !="script"
+										&& propertyOptions.apsControl !="dataselection"
+										&& propertyOptions.apsControl !="excelgrid"
+										&& propertyOptions.apsControl !="byodata"
+										&& propertyOptions.apsControl !="codemirror"){
+										that["cmp_"+property].setWidth("320px");
+									}
+								}
+								node.ui.addContent(that.hLabel(propertyOptions.desc || property,that["cmp_"+property]));
+							}else{
+								node.ui.addContent(that["cmp_"+property]);
+							}
+						};	// End of closure
+					}(node, property, JSON.parse(JSON.stringify(propertyOptions)));
+					require([apsControl], callbackFunction);
 					// assure there is a control! Make text Area
+					/* TODO
 					if(this["cmp_"+property] == undefined){
 						this["cmp_"+property] = new sap.ui.commons.TextArea({
 							design : sap.ui.core.Design.Monospace,
@@ -100,37 +132,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 							wrapping : sap.ui.core.Wrapping.Off
 						});
 						this["cmp_"+property].attachChange(f,this);
-					}
+					}*/
 					
-					// Step 3a, if component has afterInit method, call it!
 					
-					if(this["cmp_"+property].afterInit) {
-						this["cmp_"+property].afterInit();	
-					}
-					
-					// Step 4, add control to layout
-					//etcLayout.addContent(this.hLabel(property,this["cmp_"+property]));
-					var useLabel = true;
-					if(this["cmp_"+property].needsLabel) {
-						useLabel = this["cmp_"+property].needsLabel();	
-					}
-					
-					if(useLabel){
-						// set width to 320px
-						if(this["cmp_"+property].setWidth) {
-							// Certain APS Controls don't need to have width set like checkbox (cause horizontal scroll issues)
-							if(apsControl != "checkbox"
-								&& apsControl != "combobox"
-								&& apsControl !="script"
-								&& apsControl !="dataselection"
-								&& apsControl !="excelgrid"){
-								this["cmp_"+property].setWidth("320px");
-							}
-						}
-						node.ui.addContent(this.hLabel(propertyOptions.desc || property,this["cmp_"+property]));
-					}else{
-						node.ui.addContent(this["cmp_"+property]);
-					}
 			}
 		}else{	// Render nav strip and child ui area.
 			var strip;
@@ -325,20 +329,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 				}
 			};
 		}
-
-		/*this.appHeader = new sap.ui.commons.ApplicationHeader({
-			displayLogoff : false,
-			logoText : "Property Sheet",
-			displayWelcome : false,
-			logoSrc : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMwSURBVHjaYtxYISDCwMDQBMSZDBAwHYjr/NrfvwFxkgrqMOTnTWjKgrIZAAKIYUUR34zLW2r+//3+DoxBbJDY////GUA4Lqdqxtqte/7DQHxu9X+YHAgDBBDTj1//0tUswhm29LkwLC6VYwCxQWJwG/7/Tw/wcGT48/cvQ3xOFcOXj+/XMAIBTBoggJi+/vjL8PPVBYYn968zcAopg9kgMUYo+PvvL8Off/8ZPnz6wvDnz+93l88db43OLJsak1X+H4inAQQQy4NXfzee3LfIP7FuLcP/P98Yjm2byQASA5kemVY8VUtNmeH/PwYGPm4ehgAvFyGgs7f8+/tXeumMHobojJJMgABi1JdnMrfTZKoU5mX0B2l6+/n/xkPX/7Wru+TFK8nLZrbVFDH8+P2H4e69BwzqqkoMnz59ZhAS4AeLJWSVMgAEEMgvrECsCMRSUG89C4jNKlJVVkhvry1m2Ln3EIOcrAxYQklBDuQ1cOCt3byTYfmqdWsAAogxIDYTPZoY9HU0GWpLssGaQQBkwN5DxxgOHDkBD9tvXz+vuX31QitAALH8/v2nJSLQJz0qxJcBGezYexCuecaC5Qw3rt9Ys3fTsg4kJa9BrgUIIJZ///6m+/u4M7z68IXh0+cvDHy8PAxvXr2EO3va3CUM129cX3Ngy6piIPcxSCwxv/YfiFaREysBCCCWv8D4/fztJ0NiRh7Ib+/8fTyFAn29GN69ecWwbM1GhitXr6yRlVP8AdT0ENmFM7prGfJLqnsAAojp6+ePa+JSsxhA9IXj+4PWbdj06u279wwCQqIMp86eZzi8fS3QZsaY0rx0BhsLUwYQDQJ3H79i+PSTgQEggFiO7toAchrIb68dfMKrgK4QExIQYPj77x8DML4ZYM6+euUKw+dPH8E0MgAIIBaghkfAqHkMSuD2PuHp+zYuY3j88iPDuo2bGb5+/bIGpOjB3Ztrp895EgzTJK+kAjaIh/0fA0AAMYLiFARAydbUwWsVOydXCIj/8/u3NU/u3Wx99vDOBaCUHFBIFGaAk2/kGRCtLCs2CSCA4AZADUFWCI4moPwfBjQAVGcMZT4BCDAAVE+Dr1XMs78AAAAASUVORK5CYII="
-		});
-		*/
 		/**
 		 * Main Layout is coupled with top level node config (this.tree)
 		 */
-		/*this.mainLayout = new sap.ui.commons.layout.VerticalLayout({
-			width : "98%"
-		});*/
 		this.mainLayout = new sap.ui.ux3.Shell({
 			fullHeightContent : true,
 			headerType : sap.ui.ux3.ShellHeaderType.Standard,
@@ -350,9 +343,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			appIcon : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMwSURBVHjaYtxYISDCwMDQBMSZDBAwHYjr/NrfvwFxkgrqMOTnTWjKgrIZAAKIYUUR34zLW2r+//3+DoxBbJDY////GUA4Lqdqxtqte/7DQHxu9X+YHAgDBBDTj1//0tUswhm29LkwLC6VYwCxQWJwG/7/Tw/wcGT48/cvQ3xOFcOXj+/XMAIBTBoggJi+/vjL8PPVBYYn968zcAopg9kgMUYo+PvvL8Off/8ZPnz6wvDnz+93l88db43OLJsak1X+H4inAQQQy4NXfzee3LfIP7FuLcP/P98Yjm2byQASA5kemVY8VUtNmeH/PwYGPm4ehgAvFyGgs7f8+/tXeumMHobojJJMgABi1JdnMrfTZKoU5mX0B2l6+/n/xkPX/7Wru+TFK8nLZrbVFDH8+P2H4e69BwzqqkoMnz59ZhAS4AeLJWSVMgAEEMgvrECsCMRSUG89C4jNKlJVVkhvry1m2Ln3EIOcrAxYQklBDuQ1cOCt3byTYfmqdWsAAogxIDYTPZoY9HU0GWpLssGaQQBkwN5DxxgOHDkBD9tvXz+vuX31QitAALH8/v2nJSLQJz0qxJcBGezYexCuecaC5Qw3rt9Ys3fTsg4kJa9BrgUIIJZ///6m+/u4M7z68IXh0+cvDHy8PAxvXr2EO3va3CUM129cX3Ngy6piIPcxSCwxv/YfiFaREysBCCCWv8D4/fztJ0NiRh7Ib+/8fTyFAn29GN69ecWwbM1GhitXr6yRlVP8AdT0ENmFM7prGfJLqnsAAojp6+ePa+JSsxhA9IXj+4PWbdj06u279wwCQqIMp86eZzi8fS3QZsaY0rx0BhsLUwYQDQJ3H79i+PSTgQEggFiO7toAchrIb68dfMKrgK4QExIQYPj77x8DML4ZYM6+euUKw+dPH8E0MgAIIBaghkfAqHkMSuD2PuHp+zYuY3j88iPDuo2bGb5+/bIGpOjB3Ztrp895EgzTJK+kAjaIh/0fA0AAMYLiFARAydbUwWsVOydXCIj/8/u3NU/u3Wx99vDOBaCUHFBIFGaAk2/kGRCtLCs2CSCA4AZADUFWCI4moPwfBjQAVGcMZT4BCDAAVE+Dr1XMs78AAAAASUVORK5CYII="
 		});
 		this.mainLayout.addStyleClass("org-scn-MainLayout");
-		// this.mainLayout.addContent(this.appHeader);
-		
-		//this.mainLayout.addStyleClass("org-scn-ApsBody");
 		
 		// Get Property Metadata from Design Studio Component Runtime.
 		this.isTest = this.getUrlParameterByName("testMode") == "X";
@@ -477,10 +467,6 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			this.aboutLayout = new sap.ui.commons.layout.VerticalLayout({
 				width : "100%"
 			});
-			/*this.tree.strip.addItem(new sap.ui.ux3.NavigationItem({
-				key:"ABOUT",
-				text:"About",
-			}));*/
 			this.tree.strip.addWorksetItem(new sap.ui.ux3.NavigationItem({
 				key:"ABOUT",
 				text:"About",
@@ -492,11 +478,8 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 				width : "100%"
 			});
 
-			//this.appHeader.setLogoText("  " + componentInfo.title);
 			this.mainLayout.setAppTitle(componentInfo.title);
-			//if(componentInfo.icon) this.appHeader.setLogoSrc(componentInfo.icon);
 			if(componentInfo.icon) this.mainLayout.setAppIcon(componentInfo.icon);
-			//var aboutDescription = new sap.ui.commons.TextView({ text : componentInfo.description});
 			var aboutDescription = new sap.ui.core.HTML({ content : "<div>" + componentInfo.description + "</div>"});
 			aboutPanel.addContent(aboutDescription);
 			this.aboutLayout.addContent(aboutPanel);
@@ -533,3 +516,4 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 	}
 });
+propertyPage = new org.scn.community.generic.PropertyPage();

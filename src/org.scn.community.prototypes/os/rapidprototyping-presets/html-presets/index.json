@@ -1,0 +1,21 @@
+[{
+		"label" : "Tiles",
+		"presets" : [{
+				"label" : "Fiori-Like",
+				"url" : "fiori-blue.html"
+			}, {
+				"label" : "Metro-Like",
+				"url" : "metro-blue.html"
+			}
+		]
+	},{
+		"label" : "Tables",
+		"presets" : [{
+				"label" : "Columns",
+				"url" : "table-columns.html"
+			}
+		]
+	},{
+		"label" : "Shapes"
+	}
+]

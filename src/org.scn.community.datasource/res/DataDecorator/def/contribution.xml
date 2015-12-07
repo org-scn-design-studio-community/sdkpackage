@@ -1,0 +1,23 @@
+
+<component id="DataDecorator" 
+	title="Data Decorator" 
+	handlerType="datasource"
+	modes = "commons m"
+	icon="res/DataDecorator/DataDecorator.png"
+	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	databound="true"
+>
+	<requireJs modes="commons m">res/DataDecorator/DataDecorator</requireJs>
+	<property
+		id="sourceData"
+		type="ResultSet"
+		title="Source Data"
+		group="DataBinding"
+		visible="true"
+		bindable="true">
+		<option name="includeFormattedData" value="false"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property type="String" title="Data" id="data"/>
+</component>
