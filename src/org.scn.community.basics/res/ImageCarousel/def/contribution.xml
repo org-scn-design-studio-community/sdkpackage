@@ -5,7 +5,7 @@
 	tooltip="Image Carousel"
 	icon="res/ImageCarousel/ImageCarousel.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ImageCarousel/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

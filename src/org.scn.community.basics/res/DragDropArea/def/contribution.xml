@@ -5,7 +5,7 @@
 	tooltip="Drag Drop Area"
 	icon="res/DragDropArea/DragDropArea.png"
 	handlerType="sapui5"
-	propertySheetPath="res/DragDropArea/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

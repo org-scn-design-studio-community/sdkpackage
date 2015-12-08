@@ -5,7 +5,7 @@
 	tooltip="Fiori-Inspired Action Sheet Button menu"
 	icon="res/ActionSheetButton/ActionSheetButton.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ActionSheetButton/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

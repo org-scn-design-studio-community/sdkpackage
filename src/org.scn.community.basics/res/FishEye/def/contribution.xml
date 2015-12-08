@@ -5,7 +5,7 @@
 	tooltip="Fish Eye"
 	icon="res/FishEye/FishEye.png"
 	handlerType="sapui5"
-	propertySheetPath="res/FishEye/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

@@ -2247,9 +2247,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Progress Bar Set component*/
 	org.scn.community.databound.ProgressBarSet returnAsScnProgressBarSet (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Projector component*/
-	org.scn.community.databound.Projector returnAsScnProjector (Component inputComponent) {* return inputComponent; *}
-
 	/**Cast to Radio Button Group 2.0 component*/
 	org.scn.community.databound.RadioButtonGroup returnAsScnRadioButtonGroup (Component inputComponent) {* return inputComponent; *}
 
@@ -2285,6 +2282,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Bring Your Own Data component*/
 	org.scn.community.datasource.BYOData returnAsScnBYOData (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Data Decorator component*/
+	org.scn.community.datasource.DataDecorator returnAsScnDataDecorator (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Dynamic Csv Data Source component*/
 	org.scn.community.datasource.DynCsvDataSource returnAsScnDynCsvDataSource (Component inputComponent) {* return inputComponent; *}

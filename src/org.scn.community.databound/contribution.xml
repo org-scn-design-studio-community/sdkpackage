@@ -204,7 +204,7 @@
 		icon="res/AdvancedDataTable/AdvancedDataTable.png"
 		handlerType="div"
 		modes="commons m"
-		propertySheetPath="aps/3.0/PropertyPage.html"
+		propertySheetPath="aps/PropertyPage.html"
 		group="ScnCommunityDataBound"
 		databound="true"
 >
@@ -358,7 +358,7 @@
 	icon="res/Choropleth/Choropleth.png"
 	handlerType="div"
 	modes="commons m"
-	propertySheetPath="aps/3.0/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	databound = "true"
 	group="ScnCommunityChartMaps">
 	<requireJs modes="commons m">res/Choropleth/Choropleth</requireJs>
@@ -813,7 +813,7 @@
 	tooltip="FacetFilter - A simple selector which is using the facet techniques"
 	icon="res/FacetFilter/FacetFilter.png"
 	handlerType="sapui5"
-	propertySheetPath="res/FacetFilter/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >
@@ -1015,7 +1015,7 @@
 	tooltip="FacetSelector - A simple selector which is using the facet techniques"
 	icon="res/FacetSelector/FacetSelector.png"
 	handlerType="sapui5"
-	propertySheetPath="res/FacetSelector/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >
@@ -1197,7 +1197,7 @@
 		icon="res/HexBin/HexBin.png"
 		handlerType="div"
 		modes="commons m"
-		propertySheetPath="aps/3.0/PropertyPage.html"
+		propertySheetPath="aps/PropertyPage.html"
 		group="ScnCommunityChartMaps"
 		databound="true"
 >
@@ -1453,7 +1453,7 @@ __n__}
 	tooltip="Data Leader Board"
 	icon="res/LeaderBoard/LeaderBoard.png"
 	handlerType="sapui5"
-	propertySheetPath="res/LeaderBoard/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >
@@ -1614,7 +1614,7 @@ __n__}
 	icon="res/LocationIntel/LocationIntel.png"
 	handlerType="div"
 	modes="commons m"
-	propertySheetPath="aps/3.0/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	databound = "true"
 	group="ScnCommunityChartMaps">
 	<requireJs modes="commons m">res/LocationIntel/LocationIntel</requireJs>
@@ -2385,7 +2385,7 @@ __n__}
 		icon="res/Pictogram/Pictogram.png"
 		handlerType="div"
 		modes="commons m"
-		propertySheetPath="aps/3.0/PropertyPage.html"
+		propertySheetPath="aps/PropertyPage.html"
 		group="ScnCommunityChartMaps"
 		databound="true"
 >
@@ -2456,7 +2456,7 @@ __n__}
 	tooltip="ProcessFlow - Component for visualization of processes."
 	icon="res/ProcessFlow/ProcessFlow.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ProcessFlow/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
 >
@@ -2634,7 +2634,7 @@ __n__}
 		icon="res/ProgressBarSet/ProgressBarSet.png"
 		handlerType="div"
 		modes="commons m"
-		propertySheetPath="aps/3.0/PropertyPage.html"
+		propertySheetPath="aps/PropertyPage.html"
 		group="ScnCommunityChartMaps"
 		databound="true"
 >
@@ -2714,7 +2714,7 @@ __n__}
 	tooltip="RadioButtonGroup - Allows Selection with Radio Buttons."
 	icon="res/RadioButtonGroup/RadioButtonGroup.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RadioButtonGroup/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
 >
@@ -3203,7 +3203,7 @@ __n__}
 		icon="res/ScatterPlot/ScatterPlot.png"
 		handlerType="div"
 		modes="commons m"
-		propertySheetPath="aps/3.0/PropertyPage.html"
+		propertySheetPath="aps/PropertyPage.html"
 		group="ScnCommunityChartMaps"
 		databound="true"
 >
@@ -3479,7 +3479,7 @@ __n__}
 		icon="res/Table2D/Table2D.png"
 		handlerType="div"
 		modes="commons m"
-		propertySheetPath="aps/3.0/PropertyPage.html"
+		propertySheetPath="aps/PropertyPage.html"
 		group="ScnCommunityDataBound"
 		databound="true"
 >
@@ -3609,7 +3609,7 @@ __n__}
 	tooltip="Data Top Flop"
 	icon="res/TopFlop/TopFlop.png"
 	handlerType="sapui5"
-	propertySheetPath="res/TopFlop/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >
@@ -4054,7 +4054,7 @@ __n__}
 	tooltip="UI5 Table - A simple table with rows and columns"
 	icon="res/UI5Table/UI5Table.png"
 	handlerType="sapui5"
-	propertySheetPath="res/UI5Table/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >
@@ -4317,7 +4317,7 @@ __n__}
 	tooltip="Area Micro Chart - Component for visualization of data on small areas."
 	icon="res/AreaMicroChart/AreaMicroChart.png"
 	handlerType="sapui5"
-	propertySheetPath="res/AreaMicroChart/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
 >
@@ -4926,7 +4926,7 @@ __n__}
 	tooltip="Bullet Micro Chart - Component for visualization of data on small areas."
 	icon="res/BulletMicroChart/BulletMicroChart.png"
 	handlerType="sapui5"
-	propertySheetPath="res/BulletMicroChart/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
 >
@@ -5285,7 +5285,7 @@ __n__}
 	tooltip="Harvey Ball Micro Chart- Component for visualization of data on small areas."
 	icon="res/HarveyBallMicroChart/HarveyBallMicroChart.png"
 	handlerType="sapui5"
-	propertySheetPath="res/HarveyBallMicroChart/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
 >

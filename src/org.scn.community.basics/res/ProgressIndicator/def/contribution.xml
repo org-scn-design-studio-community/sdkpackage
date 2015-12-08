@@ -5,7 +5,7 @@
 	tooltip="Progress Indicator"
 	icon="res/ProgressIndicator/ProgressIndicator.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ProgressIndicator/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

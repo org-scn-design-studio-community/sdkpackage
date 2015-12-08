@@ -5,7 +5,7 @@
 	tooltip="Notify - Leandro Cardoso"
 	icon="res/Notify/Notify.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

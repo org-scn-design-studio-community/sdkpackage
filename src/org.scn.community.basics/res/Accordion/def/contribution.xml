@@ -5,7 +5,7 @@
 	tooltip="Accordion - Dynamic List of Entries"
 	icon="res/Accordion/Accordion.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Accordion/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

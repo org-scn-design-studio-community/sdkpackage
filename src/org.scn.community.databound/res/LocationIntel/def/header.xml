@@ -4,7 +4,7 @@
 	icon="res/LocationIntel/LocationIntel.png"
 	handlerType="div"
 	modes="commons m"
-	propertySheetPath="aps/3.0/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	databound = "true"
 	group="ScnCommunityChartMaps">
 	<requireJs modes="commons m">res/LocationIntel/LocationIntel</requireJs>

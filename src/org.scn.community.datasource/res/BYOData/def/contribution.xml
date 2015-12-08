@@ -4,7 +4,7 @@
 	handlerType="datasource"
 	modes = "commons m"
 	icon="res/BYOData/BYOData.png"
-	propertySheetPath="aps/3.0/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 >
 	<requireJs modes="commons m">res/BYOData/BYOData</requireJs>
 	<property type="String" title="Data" id="data"/>
@@ -19,5 +19,6 @@
 		<defaultValue property="kfIndex">2</defaultValue>
 		<defaultValue property="data">Department,Product,Sales,Quantity~|~Produce,Apples,100,20~|~Produce,Oranges,75,15~|~Produce,Kiwis,30,5~|~Produce,Bananas,150,30~|~Grocery,Cereal,34,20~|~Grocery,Juice,25,15~|~Grocery,Coffee,17,5~|~Meat,Poultry,150,30~|~Meat,Pork,78,23</defaultValue>
 		<defaultValue property="mutators">[1,1,1]</defaultValue>
+		<defaultValue property="sortMethod">NONE</defaultValue>
 	</initialization>
 </component>

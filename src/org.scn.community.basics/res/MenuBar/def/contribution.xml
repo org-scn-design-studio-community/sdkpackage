@@ -5,7 +5,7 @@
 	tooltip="Menu Bar"
 	icon="res/MenuBar/MenuBar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/MenuBar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

@@ -5,7 +5,7 @@
 	tooltip="ProcessFlow - Component for visualization of processes."
 	icon="res/ProcessFlow/ProcessFlow.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ProcessFlow/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
 >

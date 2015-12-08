@@ -5,7 +5,7 @@
 	tooltip="Application Property Sheet Tester"
 	icon="res/ApsTester/ApsTester.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
 >

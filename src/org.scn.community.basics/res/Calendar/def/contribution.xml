@@ -5,7 +5,7 @@
 	tooltip="Calendar"
 	icon="res/Calendar/Calendar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Calendar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
 >

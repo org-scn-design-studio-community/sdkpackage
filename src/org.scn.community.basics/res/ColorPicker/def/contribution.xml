@@ -5,7 +5,7 @@
 	tooltip="Color Picker"
 	icon="res/ColorPicker/ColorPicker.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ColorPicker/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

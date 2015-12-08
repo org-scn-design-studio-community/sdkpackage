@@ -5,7 +5,7 @@
 	tooltip="Check Box Group"
 	icon="res/CheckBoxGroup/CheckBoxGroup.png"
 	handlerType="sapui5"
-	propertySheetPath="res/CheckBoxGroup/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

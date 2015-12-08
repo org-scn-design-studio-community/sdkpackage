@@ -3,7 +3,7 @@
 	title="Fiori Bar"
 	icon="res/FioriBar/FioriBar.png"
 	handlerType="sapui5" 
-	propertySheetPath="aps/3.0/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 
 	<jsInclude>res/require_loader.js</jsInclude>

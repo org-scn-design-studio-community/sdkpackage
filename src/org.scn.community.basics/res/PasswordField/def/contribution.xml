@@ -5,7 +5,7 @@
 	tooltip="Password Field"
 	icon="res/PasswordField/PasswordField.png"
 	handlerType="sapui5"
-	propertySheetPath="res/PasswordField/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

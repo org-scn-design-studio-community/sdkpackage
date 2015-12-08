@@ -374,7 +374,7 @@
 	tooltip="DataSourceHelper - Utilities for Data Sources"
 	icon="res/DataSourceHelper/DataSourceHelper.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
 	databound="true"
 >
@@ -625,7 +625,7 @@
 	tooltip="Utility for work with Json Object"
 	icon="res/JsonObject/JsonObject.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
 	databound="false"
 >

@@ -5,7 +5,7 @@
 	tooltip="DataSourceHelper - Utilities for Data Sources"
 	icon="res/DataSourceHelper/DataSourceHelper.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
 	databound="true"
 >

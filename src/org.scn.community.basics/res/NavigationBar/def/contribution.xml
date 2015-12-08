@@ -5,7 +5,7 @@
 	tooltip="Navigation Bar"
 	icon="res/NavigationBar/NavigationBar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/NavigationBar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

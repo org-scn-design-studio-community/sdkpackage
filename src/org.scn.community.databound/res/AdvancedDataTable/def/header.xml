@@ -5,7 +5,7 @@
 		icon="res/AdvancedDataTable/AdvancedDataTable.png"
 		handlerType="div"
 		modes="commons m"
-		propertySheetPath="aps/3.0/PropertyPage.html"
+		propertySheetPath="aps/PropertyPage.html"
 		group="ScnCommunityDataBound"
 		databound="true"
 >

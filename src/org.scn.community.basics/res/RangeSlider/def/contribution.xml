@@ -5,7 +5,7 @@
 	tooltip="Range Slider"
 	icon="res/RangeSlider/RangeSlider.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RangeSlider/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

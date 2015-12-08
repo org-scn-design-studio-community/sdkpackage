@@ -5,7 +5,7 @@
 	tooltip="Data Leader Board"
 	icon="res/LeaderBoard/LeaderBoard.png"
 	handlerType="sapui5"
-	propertySheetPath="res/LeaderBoard/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >

@@ -1619,8 +1619,8 @@
 					var rootView = svg.ViewPort.viewPorts[0];
 					
 					var rect = new svg.Element.rect();
-					rect.attributes['x'] = new svg.Property('x', -svg.MAX_VIRTUAL_PIXELS/3.0);
-					rect.attributes['y'] = new svg.Property('y', -svg.MAX_VIRTUAL_PIXELS/3.0);
+					rect.attributes['x'] = new svg.Property('x', -svg.MAX_VIRTUAL_PIXELS);
+					rect.attributes['y'] = new svg.Property('y', -svg.MAX_VIRTUAL_PIXELS);
 					rect.attributes['width'] = new svg.Property('width', svg.MAX_VIRTUAL_PIXELS);
 					rect.attributes['height'] = new svg.Property('height', svg.MAX_VIRTUAL_PIXELS);
 					

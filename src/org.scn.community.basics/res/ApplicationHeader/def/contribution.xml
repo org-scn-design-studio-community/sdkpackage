@@ -5,7 +5,7 @@
 	tooltip="Application Header"
 	icon="res/ApplicationHeader/ApplicationHeader.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ApplicationHeader/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

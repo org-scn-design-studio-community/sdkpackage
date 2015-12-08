@@ -5,7 +5,7 @@
 	tooltip="Date Range Slider"
 	icon="res/DateRangeSlider/DateRangeSlider.png"
 	handlerType="sapui5"
-	propertySheetPath="res/DateRangeSlider/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

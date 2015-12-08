@@ -5,7 +5,7 @@
 	tooltip="Segmented Button"
 	icon="res/SegmentedButton/SegmentedButton.png"
 	handlerType="sapui5"
-	propertySheetPath="res/SegmentedButton/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

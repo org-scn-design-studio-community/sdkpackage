@@ -5,7 +5,7 @@
 		icon="res/Table2D/Table2D.png"
 		handlerType="div"
 		modes="commons m"
-		propertySheetPath="aps/3.0/PropertyPage.html"
+		propertySheetPath="aps/PropertyPage.html"
 		group="ScnCommunityDataBound"
 		databound="true"
 >

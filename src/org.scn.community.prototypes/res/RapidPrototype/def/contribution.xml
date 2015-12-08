@@ -5,7 +5,7 @@
 		handlerType="div"
 		modes="commons m"
 		group="ScnCommunityPrototypes"
-		propertySheetPath="aps/3.0/PropertyPage.html"
+		propertySheetPath="aps/PropertyPage.html"
 		databound="true">
 		
 		<requireJs modes="commons m">res/RapidPrototype/RapidPrototype</requireJs>

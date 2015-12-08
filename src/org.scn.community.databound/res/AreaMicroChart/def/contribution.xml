@@ -5,7 +5,7 @@
 	tooltip="Area Micro Chart - Component for visualization of data on small areas."
 	icon="res/AreaMicroChart/AreaMicroChart.png"
 	handlerType="sapui5"
-	propertySheetPath="res/AreaMicroChart/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
 >

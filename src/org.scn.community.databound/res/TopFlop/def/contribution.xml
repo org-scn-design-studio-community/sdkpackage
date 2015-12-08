@@ -5,7 +5,7 @@
 	tooltip="Data Top Flop"
 	icon="res/TopFlop/TopFlop.png"
 	handlerType="sapui5"
-	propertySheetPath="res/TopFlop/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >

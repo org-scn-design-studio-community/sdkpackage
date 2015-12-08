@@ -40,8 +40,6 @@ public class SpecificationReader {
 	private HashMap<String, String> templates = new HashMap<String, String>();
 	private String componentName;
 	private String rootPath;
-	private String ApsJs;
-	private String ApsHtml;
 	private String JsSpecTmpl;
 	private ArrayList<String> componentRequries = new ArrayList<String>();
 	private ArrayList<String> componentRequries2 = new ArrayList<String>();
@@ -338,14 +336,7 @@ public class SpecificationReader {
 		
 		ZtlTmpl = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_root.ztl.template");
 		
-		if(compTypeValue.equals("sapui5")) {
-			ApsJs  = Helpers.resource2String(SpecificationApsTemplate.class, "PropertyPage."+compTypeValue+".def.js.template");
-			ApsHtml  = Helpers.resource2String(SpecificationApsTemplate.class, "PropertyPage."+compTypeValue+".html.template");
-
-			XmlTmpl = XmlTmpl.replace("%PROPERTY_PAGE_LINK%", "res/%COMP-id%/aps/PropertyPage.html");
-		} else {
-			XmlTmpl = XmlTmpl.replace("%PROPERTY_PAGE_LINK%", "aps/org.scn.community.PropertyPage."+compTypeValue+".html");
-		}
+		XmlTmpl = XmlTmpl.replace("%PROPERTY_PAGE_LINK%", "aps/PropertyPage.html");
 		
 		if(jsonIncludeSpecification == null) {
 			jsonIncludeSpecification = new JSONObject();
@@ -380,27 +371,6 @@ public class SpecificationReader {
 		templates.put("%COMPONENT_NAME%.js", JsTmpl);
 		
 		templates.put("def"+File.separator+"contribution.ztl", ZtlTmpl);
-		
-		if(ApsHtml != null){
-			ApsHtml = ApsHtml.replace("<!-- %PART_USED_AS_TEMPLATE%", "");
-			ApsHtml = ApsHtml.replace("%PART_USED_AS_TEMPLATE% -->", "");
-
-			ApsHtml = ApsHtml.replace("src=\"/", "src=|\"/");
-			ApsHtml = ApsHtml.replace("src=\"PropertyPage", "src=|\"PropertyPage");
-			ApsHtml = ApsHtml.replace("href=\"/", "href=|\"/");
-			
-			ApsHtml = ApsHtml.replace("src=\"", "src=\"../../../aps/");
-			ApsHtml = ApsHtml.replace("href=\"", "href=\"../../../aps/");
-			
-			ApsHtml = ApsHtml.replace("src=|", "src=");
-			ApsHtml = ApsHtml.replace("href=|", "href=");
-
-			templates.put("aps"+File.separator+"PropertyPage.html", ApsHtml);
-		}
-		
-		if(ApsJs != null){
-			templates.put("aps"+File.separator+"PropertyPage.def.js", ApsJs);
-		}
 		
 		SpecHelper helper = new SpecHelper(this.componentName, new File(pathToGenSpec));
 		Property generatedJs = null;

@@ -5,7 +5,7 @@
 	tooltip="RadioButtonGroup - Allows Selection with Radio Buttons."
 	icon="res/RadioButtonGroup/RadioButtonGroup.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RadioButtonGroup/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
 >

@@ -5,7 +5,7 @@
 	tooltip="Paginator"
 	icon="res/Paginator/Paginator.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Paginator/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

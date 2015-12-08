@@ -5,7 +5,7 @@
 	tooltip="Fallback Picture"
 	icon="res/FallbackPicture/FallbackPicture.png"
 	handlerType="sapui5"
-	propertySheetPath="res/FallbackPicture/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

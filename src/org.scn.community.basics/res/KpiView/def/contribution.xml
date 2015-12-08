@@ -5,7 +5,7 @@
 	tooltip="Kpi View"
 	icon="res/KpiView/KpiView.png"
 	handlerType="sapui5"
-	propertySheetPath="res/KpiView/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
 >

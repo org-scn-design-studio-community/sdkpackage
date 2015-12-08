@@ -5,7 +5,7 @@
 	tooltip="Validated Input Field"
 	icon="res/ValiInput/ValiInput.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ValiInput/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

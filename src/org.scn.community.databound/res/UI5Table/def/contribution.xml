@@ -5,7 +5,7 @@
 	tooltip="UI5 Table - A simple table with rows and columns"
 	icon="res/UI5Table/UI5Table.png"
 	handlerType="sapui5"
-	propertySheetPath="res/UI5Table/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >

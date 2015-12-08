@@ -5,7 +5,7 @@
 	tooltip="Kpi Tile - Custom KPI Visualization"
 	icon="res/KpiTile/KpiTile.png"
 	handlerType="sapui5"
-	propertySheetPath="res/KpiTile/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
 >

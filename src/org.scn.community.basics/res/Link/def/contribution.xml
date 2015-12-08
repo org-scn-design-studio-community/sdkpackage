@@ -5,7 +5,7 @@
 	tooltip="Link"
 	icon="res/Link/Link.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Link/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

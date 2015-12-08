@@ -5,7 +5,7 @@
 	tooltip="Basic Business Card"
 	icon="res/BasicBusinessCard/BasicBusinessCard.png"
 	handlerType="sapui5"
-	propertySheetPath="res/BasicBusinessCard/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

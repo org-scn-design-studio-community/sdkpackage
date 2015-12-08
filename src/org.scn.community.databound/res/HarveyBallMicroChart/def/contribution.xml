@@ -5,7 +5,7 @@
 	tooltip="Harvey Ball Micro Chart- Component for visualization of data on small areas."
 	icon="res/HarveyBallMicroChart/HarveyBallMicroChart.png"
 	handlerType="sapui5"
-	propertySheetPath="res/HarveyBallMicroChart/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
 >

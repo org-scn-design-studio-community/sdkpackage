@@ -5,7 +5,7 @@
 	tooltip="Text Area"
 	icon="res/TextArea/TextArea.png"
 	handlerType="sapui5"
-	propertySheetPath="res/TextArea/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

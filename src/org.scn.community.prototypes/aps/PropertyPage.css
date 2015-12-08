@@ -1,0 +1,113 @@
+.sapUiBody {
+	background-image : none !important;
+}
+.sapUiTf, 
+.sapUiTv, 
+.sapUiTfStd,
+.sapUiTf.sapUiTfInner,
+.sapUiLbl,
+.sapUiTableCell>.sapUiTv,
+.sapUiTableCell>.sapUiTf,
+.sapUiSegmentedButton, .sapUiBtnS, .sapUiUx3NavBarItem, .sapUiMenuButtonIco, .sapUiBtnTxt, .sapUiMnuItm, .sapUiSliText, .sapUiMnuTfItemLbl, .sapUiTv{
+	font-size : 11px !important;
+}
+/* Panel and Section titles */
+.sapUiPanelHdrItem.sapUiPanelTitle {
+	color : #007CC0;
+	font-size : 10px !important;
+	text-transform : uppercase;
+	margin-left : 10px;
+}
+.sapUiUx3NavBarItem {
+	font-weight : bold !important;
+}
+.sapUiUx3NavBarToplevel {
+	box-shadow: inset 0px -3px 0px #007cc0 !important;
+	background-color: #F6F6F6 !important;
+	border-collapse: inherit !important;
+	height : 45px;
+}
+/*.sapUiUx3NavBarList > li {
+	height : 45px;
+	line-height : 45px !important;
+}*/
+.sapUiUx3NavBar {
+	text-transform : none !important;	
+}
+.sapUiUx3NavBarItemSel {
+	background-color : #007CC0;
+}
+.sapUiUx3NavBarItemSel > a{
+	color : #ffffff !important;
+}
+.org-scn-ApsBody {
+	background-color: #FFFFFF !important;
+	margin-left: 10px !important;
+}
+
+.org-scn-ApsMain {
+	background-color: #FFFFFF !important;	
+}
+
+.org-scn-ApsPropChild {
+	padding-top:10px;
+}
+
+.org-scn-Aps-DetailList-SingleArray {
+	visibility: hidden;
+	display: none;
+}
+.org-scn-Aps-DetailList-DoubleArray {	
+}
+
+.org-scn-ApsLabel {
+	margin-left: 4px;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	border-bottom: 2px solid #000000;
+	background-color: #FAFAFA;
+	width: 100%;
+}
+
+.org-scn-ApsLabelArray {
+	margin-left: 4px;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	border-bottom: 2px solid #000000;
+	background-color: #FAFAFA;
+	width: 95%;
+}
+
+.org-scn-ApsInputArray {
+	margin-left: 16px;
+}
+
+.org-scn-ApsSimple {
+	margin-left: 16px;
+}
+
+.org-scn-ApsBoolean {
+	margin-left: 16px;
+}
+
+.org-scn-ApsDoubleArray {
+	margin-left: 16px;
+}
+.org-scn-ApsDoubleArrayVertical {
+	margin-left: 16px;
+}
+
+.org-scn-ApsPopUpButtons {
+	margin-top: 8px;
+	border-top: 2px solid #000000;
+	margin-left: 4px;
+	background-color: #FAFAFA;
+}
+
+.org-scn-ApsPopupPanel {
+	margin: 8px;
+}

@@ -5,7 +5,7 @@
 	tooltip="Embedded Media - Include external media directly in your application"
 	icon="res/EmbeddedMedia/EmbeddedMedia.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

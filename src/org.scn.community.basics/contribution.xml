@@ -199,7 +199,7 @@
 	tooltip="Accordion - Dynamic List of Entries"
 	icon="res/Accordion/Accordion.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Accordion/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -348,7 +348,7 @@
 	tooltip="Viewer for Custom Activities"
 	icon="res/ActivityViewer/ActivityViewer.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -428,7 +428,7 @@
 	tooltip="Fiori-Inspired Action Sheet Button menu"
 	icon="res/ActionSheetButton/ActionSheetButton.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ActionSheetButton/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -538,7 +538,7 @@
 	tooltip="Application Header"
 	icon="res/ApplicationHeader/ApplicationHeader.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ApplicationHeader/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -700,7 +700,7 @@
 	tooltip="Basic Business Card"
 	icon="res/BasicBusinessCard/BasicBusinessCard.png"
 	handlerType="sapui5"
-	propertySheetPath="res/BasicBusinessCard/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -770,7 +770,7 @@
 	tooltip="Calendar"
 	icon="res/Calendar/Calendar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Calendar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
 >
@@ -928,7 +928,7 @@
 	tooltip="Check Box Group"
 	icon="res/CheckBoxGroup/CheckBoxGroup.png"
 	handlerType="sapui5"
-	propertySheetPath="res/CheckBoxGroup/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -1018,7 +1018,7 @@
 	tooltip="Color Picker"
 	icon="res/ColorPicker/ColorPicker.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ColorPicker/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -1078,7 +1078,7 @@
 	tooltip="Date Range Scroller"
 	icon="res/DateRangeScroller/DateRangeScroller.png"
 	handlerType="sapui5"
-	propertySheetPath="res/DateRangeScroller/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -1228,7 +1228,7 @@
 	tooltip="Date Range Slider"
 	icon="res/DateRangeSlider/DateRangeSlider.png"
 	handlerType="sapui5"
-	propertySheetPath="res/DateRangeSlider/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -1408,7 +1408,7 @@
 	tooltip="Drag Drop Area"
 	icon="res/DragDropArea/DragDropArea.png"
 	handlerType="sapui5"
-	propertySheetPath="res/DragDropArea/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -1568,7 +1568,7 @@
 	tooltip="Embedded Frame - Include external web pages directly in your application"
 	icon="res/EmbeddedFrame/EmbeddedFrame.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -1629,7 +1629,7 @@
 	tooltip="Embedded Media - Include external media directly in your application"
 	icon="res/EmbeddedMedia/EmbeddedMedia.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -1680,7 +1680,7 @@
 	tooltip="Fallback Picture"
 	icon="res/FallbackPicture/FallbackPicture.png"
 	handlerType="sapui5"
-	propertySheetPath="res/FallbackPicture/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -1729,7 +1729,7 @@
 	title="Fiori App Header"
 	icon="res/FioriAppHeader/FioriAppHeader.png"
 	handlerType="sapui5" 
-	propertySheetPath="aps/3.0/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
   	
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -1755,7 +1755,7 @@
 	title="Fiori Bar"
 	icon="res/FioriBar/FioriBar.png"
 	handlerType="sapui5" 
-	propertySheetPath="aps/3.0/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -1884,7 +1884,7 @@
 	title="Fiori Toolbar"
 	icon="res/FioriToolbar/FioriToolbar.png"
 	handlerType="sapui5" 
-	propertySheetPath="aps/3.0/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -1921,7 +1921,7 @@
 	tooltip="Fish Eye"
 	icon="res/FishEye/FishEye.png"
 	handlerType="sapui5"
-	propertySheetPath="res/FishEye/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -2011,7 +2011,7 @@
 	tooltip="Displays a Gauge (Speedometer)"
 	icon="res/Gauge/Gauge.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -2222,7 +2222,7 @@
 	tooltip="Image Carousel"
 	icon="res/ImageCarousel/ImageCarousel.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ImageCarousel/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -2302,7 +2302,7 @@
 	tooltip="Kpi Tile - Custom KPI Visualization"
 	icon="res/KpiTile/KpiTile.png"
 	handlerType="sapui5"
-	propertySheetPath="res/KpiTile/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
 >
@@ -2391,7 +2391,7 @@
 	tooltip="Kpi View"
 	icon="res/KpiView/KpiView.png"
 	handlerType="sapui5"
-	propertySheetPath="res/KpiView/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
 >
@@ -2663,7 +2663,7 @@
 	tooltip="Fiori-Inspired LaunchPad/Tile Container"
 	icon="res/LaunchPad/LaunchPad.png"
 	handlerType="sapui5"
-	propertySheetPath="aps/3.0/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 
 	<jsInclude>res/require_loader.js</jsInclude>
@@ -2692,7 +2692,7 @@
 	tooltip="Leader Board"
 	icon="res/LeaderBoard/LeaderBoard.png"
 	handlerType="sapui5"
-	propertySheetPath="res/LeaderBoard/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -2821,7 +2821,7 @@
 	tooltip="Link"
 	icon="res/Link/Link.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Link/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -2871,7 +2871,7 @@
 	tooltip="List Selector"
 	icon="res/ListSelector/ListSelector.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -3071,7 +3071,7 @@
 	tooltip="Menu Bar"
 	icon="res/MenuBar/MenuBar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/MenuBar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -3161,7 +3161,7 @@
 	tooltip="Menu Button"
 	icon="res/MenuButton/MenuButton.png"
 	handlerType="sapui5"
-	propertySheetPath="res/MenuButton/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -3346,7 +3346,7 @@
 	tooltip="Navigation Bar"
 	icon="res/NavigationBar/NavigationBar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/NavigationBar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -3436,7 +3436,7 @@
 	tooltip="Notification Bar"
 	icon="res/NotificationBar/NotificationBar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/NotificationBar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -3557,7 +3557,7 @@
 	tooltip="Notify - Leandro Cardoso"
 	icon="res/Notify/Notify.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -3648,7 +3648,7 @@
 	tooltip="Open Street Map (Basic)"
 	icon="res/Map/Map.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -3788,7 +3788,7 @@
 	tooltip="Paginator"
 	icon="res/Paginator/Paginator.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Paginator/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -3848,7 +3848,7 @@
 	tooltip="Password Field"
 	icon="res/PasswordField/PasswordField.png"
 	handlerType="sapui5"
-	propertySheetPath="res/PasswordField/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -3928,7 +3928,7 @@
 	tooltip="QRCode Generation"
 	icon="res/QRCode/QRCode.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -4068,7 +4068,7 @@
 	tooltip="Progress Indicator"
 	icon="res/ProgressIndicator/ProgressIndicator.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ProgressIndicator/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -4149,7 +4149,7 @@
 	tooltip="Range Slider"
 	icon="res/RangeSlider/RangeSlider.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RangeSlider/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -4308,7 +4308,7 @@
 	tooltip="Rating Indicator"
 	icon="res/RatingIndicator/RatingIndicator.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RatingIndicator/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -4408,7 +4408,7 @@
 	tooltip="Road Map"
 	icon="res/RoadMap/RoadMap.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RoadMap/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -4488,7 +4488,7 @@
 	tooltip="RSSFeedReader"
 	icon="res/RSSFeedReader/RSSFeedReader.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -4549,7 +4549,7 @@
 	tooltip="Segmented Button"
 	icon="res/SegmentedButton/SegmentedButton.png"
 	handlerType="sapui5"
-	propertySheetPath="res/SegmentedButton/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -4697,7 +4697,7 @@
 	tooltip="Slider"
 	icon="res/Slider/Slider.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Slider/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -4836,7 +4836,7 @@
 	tooltip="Text Area"
 	icon="res/TextArea/TextArea.png"
 	handlerType="sapui5"
-	propertySheetPath="res/TextArea/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -4916,7 +4916,7 @@
 	tooltip="Time Out (Timer)"
 	icon="res/TimeOut/TimeOut.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -5026,7 +5026,7 @@
 	tooltip="Toggle Button"
 	icon="res/ToggleButton/ToggleButton.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ToggleButton/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -5136,7 +5136,7 @@
 	tooltip="Tree"
 	icon="res/Tree/Tree.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Tree/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -5245,7 +5245,7 @@
 	tooltip="Tri State CheckBox"
 	icon="res/TriStateCheckBox/TriStateCheckBox.png"
 	handlerType="sapui5"
-	propertySheetPath="res/TriStateCheckBox/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -5335,7 +5335,7 @@
 	tooltip="Validated Input Field"
 	icon="res/ValiInput/ValiInput.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ValiInput/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -5445,7 +5445,7 @@
 	tooltip="Value Help Field"
 	icon="res/ValueHelpField/ValueHelpField.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ValueHelpField/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >
@@ -5534,7 +5534,7 @@
 	tooltip="World Time"
 	icon="res/WorldTime/WorldTime.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

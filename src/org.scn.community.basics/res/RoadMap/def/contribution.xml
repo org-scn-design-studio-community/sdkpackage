@@ -5,7 +5,7 @@
 	tooltip="Road Map"
 	icon="res/RoadMap/RoadMap.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RoadMap/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
 >

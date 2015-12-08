@@ -197,7 +197,7 @@
 	tooltip="Application Property Sheet Tester"
 	icon="res/ApsTester/ApsTester.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
 >
@@ -341,7 +341,7 @@
 	tooltip="Application Property Sheet Tester UI5"
 	icon="res/ApsTesterUI5/ApsTesterUI5.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ApsTesterUI5/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
 >
@@ -636,7 +636,7 @@
 	tooltip="Bullet Chart Visualization"
 	icon="res/BulletChartGen/BulletChartGen.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
 >
@@ -876,7 +876,7 @@
 		handlerType="div"
 		modes="commons m"
 		group="ScnCommunityPrototypes"
-		propertySheetPath="aps/3.0/PropertyPage.html"
+		propertySheetPath="aps/PropertyPage.html"
 		databound="true">
 		
 		<requireJs modes="commons m">res/RapidPrototype/RapidPrototype</requireJs>
