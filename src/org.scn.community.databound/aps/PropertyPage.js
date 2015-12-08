@@ -323,6 +323,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 					this.dataPropertyListeners.push(cmp);
 				};
 
+
 				/**
 				 * Get Data Source Metadata
 				 */

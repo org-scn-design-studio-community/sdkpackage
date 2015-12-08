@@ -1367,21 +1367,18 @@ __n__}
 		<defaultValue property="yAxisOrientation">left</defaultValue>
 		<!-- End of HexBin Defaults -->
 	</initialization>
-</component>
-<component
+</component><component
 		id="jpd3hier"
 		title="D3 Hierarchy 1.0"
 		icon="res/Hierarchy/jpd3hier.png"
 		handlerType="div"
-		propertySheetPath="res/Hierarchy/aps/aps_hierarchy.html"
+		modes="commons m"
+		propertySheetPath="aps/PropertyPage.html"	
 		tooltip="Includes D3 Hierarchy"
 		group="ScnCommunityDataBound"
 		databound="true">
-		<stdInclude kind="d3"/>
-		<jsInclude>res/require_loader.js</jsInclude>
-		<jsInclude>res/common_basics.js</jsInclude>
-		<jsInclude>res/Hierarchy/hierarchy_component.js</jsInclude>
-		<cssInclude>res/Hierarchy/hierarchy_component.css</cssInclude>
+		
+		<requireJs modes="commons m">res/Hierarchy/Hierarchy</requireJs>
 		
 		<!-- Resultset Entries -->
 		<property id="rsltSet" type="ResultSet" title="JSON Object that contains the metadata that is assigned with the Datasource" visible="false" group="DataBinding"></property>
@@ -1409,7 +1406,7 @@ __n__}
 		<property id="AlerterColorGreenVal" type="int" title="AlerterColorGreenVal - What percentage or real value should good values have - value has to be higher than Yellow" ></property>
 		<property id="AlerterColorYellowVal" type="int" title="AlerterColorYellowVal - What percentage or real value should medium values have - all lower values are red" ></property>
 		<!-- property id="AlerterColorRedVal" type="int" title="AlerterColorRedVal - What percentage or real value should bad values have" ></property -->
-		
+		<property id="pollInterval" type="int" title="Resize Poll interval (ms)" ></property>		
 		
 		<!-- color parameters -->
 		<property id="alertColorRed" title="alertColorRed - Alert Red Color" type="Color" group="Display" ></property>
@@ -1424,6 +1421,7 @@ __n__}
 		<property id="onHCollapseInv" title="onHCollapseInv" type="ScriptText" group="Events" visible="false" ></property>
 		
 		<initialization>
+			<defaultValue property="pollInterval">250</defaultValue>
 			<defaultValue property="WIDTH">100</defaultValue>
 			<defaultValue property="HEIGHT">100</defaultValue>
 			<defaultValue property="TOP_MARGIN">0</defaultValue>

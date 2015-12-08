@@ -30,7 +30,7 @@ define(["./VizCore","./org_scn_community_databound"], function(VizCore, org_scn_
 					cat : "Data",
 					tooltip : "Data from datasource",
 					value : null,
-					noAps : true
+					apsControl : "dataselection"
 				}
 			},
 			ignoreTotals : {
