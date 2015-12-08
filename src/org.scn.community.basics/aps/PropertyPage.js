@@ -1,7 +1,7 @@
 require.config({
 	map: {
 		'*': {
-			'css': '../../os/require-css'
+			'css': '../os/require-css'
 		}
 	}
 });

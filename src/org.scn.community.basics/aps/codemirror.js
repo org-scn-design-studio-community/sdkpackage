@@ -3,12 +3,12 @@
  */
 require.config({
 	paths : {
-		cm : "../../os/codemirror",
-		cmxml : "../../os/codemirror/mode/xml/xml",
-		cmjs : "../../os/codemirror/mode/javascript/javascript",
-		cmhtml : "../../os/codemirror/mode/htmlmixed/htmlmixed",
-		cmcss : "../../os/codemirror/mode/css/css",
-		cmmb : "../../os/codemirror/addon/edit/matchbrackets",
+		cm : "../os/codemirror",
+		cmxml : "../os/codemirror/mode/xml/xml",
+		cmjs : "../os/codemirror/mode/javascript/javascript",
+		cmhtml : "../os/codemirror/mode/htmlmixed/htmlmixed",
+		cmcss : "../os/codemirror/mode/css/css",
+		cmmb : "../os/codemirror/addon/edit/matchbrackets",
 	},
 	shim : {
 		"cm" : {
@@ -115,7 +115,7 @@ define(["css!cm/lib/codemirror.css",
 			if (o.url) {
 				var presetURL = o.url;
 				if (o.type != "external")
-					presetURL = "../../os/rapidprototyping-presets/" + this.getPresets() + "/" + presetURL;
+					presetURL = "../os/rapidprototyping-presets/" + this.getPresets() + "/" + presetURL;
 				if (rootConfig.indexUrl)
 					presetURL = rootConfig.indexUrl + presetURL;
 				menuitem.attachSelect(function (presetURL, config) {
@@ -153,7 +153,7 @@ define(["css!cm/lib/codemirror.css",
 			sap.ui.core.Control.prototype.setProperty.apply(this, ["presets", s]);
 			try {
 				$.ajax({
-					url : "../../os/rapidprototyping-presets/" + this.getPresets() + "/index.json?r=" + Math.random(),
+					url : "../os/rapidprototyping-presets/" + this.getPresets() + "/index.json?r=" + Math.random(),
 					context : this
 				})
 				.done(this.presetsLoadComplete)
