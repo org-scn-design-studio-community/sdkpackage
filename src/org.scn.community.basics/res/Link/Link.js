@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./LinkSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.Link;
 
@@ -73,9 +73,9 @@ Link = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicslink){
+// // define([], function(basicslink){
 	myComponentData.instance = Link;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

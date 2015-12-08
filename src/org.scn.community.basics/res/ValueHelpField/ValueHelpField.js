@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./ValueHelpFieldSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.ValueHelpField;
 
@@ -79,9 +79,9 @@ ValueHelpField = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsvaluehelpfield){
+// // define([], function(basicsvaluehelpfield){
 	myComponentData.instance = ValueHelpField;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

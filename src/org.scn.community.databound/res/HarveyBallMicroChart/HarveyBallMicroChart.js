@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
 
- (function(){
+define(["../../aps/org.scn.community.component.Core", "./HarveyBallMicroChartSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.HarveyBallMicroChart;
 
@@ -209,9 +209,9 @@ HarveyBallMicroChart = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundharveyballmicrochart){
+// define([], function(databoundharveyballmicrochart){
 	myComponentData.instance = HarveyBallMicroChart;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

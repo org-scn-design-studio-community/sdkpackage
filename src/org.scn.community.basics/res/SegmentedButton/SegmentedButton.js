@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./SegmentedButtonSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.SegmentedButton;
 
@@ -384,9 +384,9 @@ SegmentedButton = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicssegmentedbutton){
+// // define([], function(basicssegmentedbutton){
 	myComponentData.instance = SegmentedButton;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

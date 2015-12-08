@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Notify/NotifyLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/Notify/NotifySpec</requireJs>
+	<requireJs modes="commons m">res/Notify/NotifyLoader</requireJs>
+
 	<cssInclude>res/Notify/Notify.css</cssInclude>
 	
 	

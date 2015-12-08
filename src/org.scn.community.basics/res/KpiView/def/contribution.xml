@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/KpiView/KpiViewLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/KpiView/KpiViewSpec</requireJs>
+	<requireJs modes="commons m">res/KpiView/KpiViewLoader</requireJs>
+
 	<cssInclude>res/KpiView/KpiView.css</cssInclude>
 	
 	

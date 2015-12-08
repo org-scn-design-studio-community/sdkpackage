@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./TopFlopSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.TopFlop;
 
@@ -428,9 +428,9 @@ TopFlop = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundtopflop){
+// // define([], function(databoundtopflop){
 	myComponentData.instance = TopFlop;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

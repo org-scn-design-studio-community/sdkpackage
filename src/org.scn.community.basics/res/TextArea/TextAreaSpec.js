@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.TextArea = {
+		id: "TextArea",
+		name: "basics.TextArea",
+		requireName: "basicstextarea",
+		fullComponentName: "org.scn.community.basics.TextArea",
+		fullComponentPackage: "org.scn.community.basics/res/TextArea",
+		script: "org.scn.community.basics/res/TextArea/TextArea",
+		scriptSpec: "org.scn.community.basics/res/TextArea/TextAreaSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.TextArea.spec = 
 {
@@ -140,4 +151,4 @@
   "width": "230"
 };
 
-})();// End of closure
+});// End of closure

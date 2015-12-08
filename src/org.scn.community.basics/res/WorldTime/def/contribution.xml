@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/WorldTime/WorldTimeLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/WorldTime/WorldTimeSpec</requireJs>
+	<requireJs modes="commons m">res/WorldTime/WorldTimeLoader</requireJs>
+
 	<cssInclude>res/WorldTime/WorldTime.css</cssInclude>
 	
 	

@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./RoadMapSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.RoadMap;
 
@@ -148,9 +148,9 @@ RoadMap = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsroadmap){
+// // define([], function(basicsroadmap){
 	myComponentData.instance = RoadMap;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

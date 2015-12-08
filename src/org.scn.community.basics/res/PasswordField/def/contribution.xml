@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/PasswordField/PasswordFieldLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/PasswordField/PasswordFieldSpec</requireJs>
+	<requireJs modes="commons m">res/PasswordField/PasswordFieldLoader</requireJs>
+
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
 	
 	

@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./EmbeddedFrameSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.EmbeddedFrame;
 
@@ -95,9 +95,9 @@ EmbeddedFrame = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsembeddedframe){
+// // define([], function(basicsembeddedframe){
 	myComponentData.instance = EmbeddedFrame;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

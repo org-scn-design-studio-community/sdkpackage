@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RoadMap/RoadMapLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/RoadMap/RoadMapSpec</requireJs>
+	<requireJs modes="commons m">res/RoadMap/RoadMapLoader</requireJs>
+
 	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
 	
 	

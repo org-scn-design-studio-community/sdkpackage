@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./DataSourceHelperSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.utils.DataSourceHelper;
 
@@ -27,9 +27,9 @@ DataSourceHelper = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(utilsdatasourcehelper){
+// // define([], function(utilsdatasourcehelper){
 	myComponentData.instance = DataSourceHelper;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

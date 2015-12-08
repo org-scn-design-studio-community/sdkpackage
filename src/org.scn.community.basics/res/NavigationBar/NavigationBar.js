@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./NavigationBarSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.NavigationBar;
 
@@ -177,9 +177,9 @@ NavigationBar = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsnavigationbar){
+// // define([], function(basicsnavigationbar){
 	myComponentData.instance = NavigationBar;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

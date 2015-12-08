@@ -17,31 +17,21 @@
  * limitations under the License. 
  */
 
-(function() {
+define([
+        "./ProgressIndicatorSpec", 
+        "./ProgressIndicator",
+        "../../aps/org.scn.community.component.Core"
+        ]
+     , function() {
 
-	org_scn_community_require.knownComponents.basics.ProgressIndicator = {
-		id: "ProgressIndicator",
-		name: "basics.ProgressIndicator",
-		requireName: "basicsprogressindicator",
-		fullComponentName: "org.scn.community.basics.ProgressIndicator",
-		fullComponentPackage: "org.scn.community.basics/res/ProgressIndicator",
-		script: "org.scn.community.basics/res/ProgressIndicator/ProgressIndicator",
-		scriptSpec: "org.scn.community.basics/res/ProgressIndicator/ProgressIndicatorSpec",
-		min: false
-	};
-
-	var myComponentData = org_scn_community_require.knownComponents.basics.ProgressIndicator;
+	 var myComponentData = org_scn_community_require.knownComponents.basics.ProgressIndicator;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		org_scn_community_require.knownModules.component_core.name,
-		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.common_basics.name,
 		
      ]);
-
-	 sap.zen.Dispatcher.instance.pauseDispatching();	 
 
 	 var sdkReqs = require.config({
 		 context : "sdk",
@@ -50,24 +40,11 @@
 	 });
 
 	 sdkReqs(requireInfo1.plainNames, function() {
-	     /** RequireJS Config **/
-		 var requireInfo2 = org_scn_community_require.collectRequire (
-		 [
-		  	myComponentData.name
-	     ]);
-		 
-		 var sdkReqs2 = require.config({
-			 context : "sdk",
-			 paths: requireInfo2.definition,
-			 urlArgs: "v=" + org_scn_community_require.jsVersion,
-		 });
+	 });//End of Require Callback
+	 
+ 	 jQuery.sap.require("sap.ui.commons.ProgressIndicator");
 
-		 sdkReqs(requireInfo2.plainNames, function() {
-		 	 jQuery.sap.require("sap.ui.commons.ProgressIndicator");
-
-			 sap.ui.commons.ProgressIndicator.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-	     	 sap.zen.Dispatcher.instance.resumeDispatching();
-		});//End of Require Callback Component
-	});//End of Require Callback
-})();// End of closure
+	 sap.ui.commons.ProgressIndicator.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+ 
+});// End of closure
 

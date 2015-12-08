@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.KpiView = {
+		id: "KpiView",
+		name: "basics.KpiView",
+		requireName: "basicskpiview",
+		fullComponentName: "org.scn.community.basics.KpiView",
+		fullComponentPackage: "org.scn.community.basics/res/KpiView",
+		script: "org.scn.community.basics/res/KpiView/KpiView",
+		scriptSpec: "org.scn.community.basics/res/KpiView/KpiViewSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.KpiView.spec = 
 {
@@ -548,4 +559,4 @@
   "width": "220"
 };
 
-})();// End of closure
+});// End of closure

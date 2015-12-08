@@ -1,4 +1,4 @@
-	(function(){
+	define(["../../aps/org.scn.community.component.Core", "./ScalingDataSourceSpec"], function() {
 
 	var myComponentData = org_scn_community_require.knownComponents.datasource.ScalingDataSource;
 
@@ -73,9 +73,9 @@
 		return that;
 	};
 
-	define([myComponentData.requireName], function(datasourcescalingdatasource){
+	// // define([], function(datasourcescalingdatasource){
 		myComponentData.instance = ScalingDataSource;
 		return myComponentData.instance;
-	});
+	// });
 
-}).call(this);
+});

@@ -815,10 +815,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/FacetFilter/FacetFilterLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/FacetFilter/FacetFilterSpec</requireJs>
+	<requireJs modes="commons m">res/FacetFilter/FacetFilterLoader</requireJs>
+
 	<cssInclude>res/FacetFilter/FacetFilter.css</cssInclude>
 	
 	
@@ -1017,10 +1020,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/FacetSelector/FacetSelectorLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/FacetSelector/FacetSelectorSpec</requireJs>
+	<requireJs modes="commons m">res/FacetSelector/FacetSelectorLoader</requireJs>
+
 	<cssInclude>res/FacetSelector/FacetSelector.css</cssInclude>
 	
 	
@@ -1455,10 +1461,13 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/LeaderBoard/LeaderBoardLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/LeaderBoard/LeaderBoardSpec</requireJs>
+	<requireJs modes="commons m">res/LeaderBoard/LeaderBoardLoader</requireJs>
+
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 	
 	
@@ -2458,10 +2467,13 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ProcessFlow/ProcessFlowLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/ProcessFlow/ProcessFlowSpec</requireJs>
+	<requireJs modes="commons m">res/ProcessFlow/ProcessFlowLoader</requireJs>
+
 	<cssInclude>res/ProcessFlow/ProcessFlow.css</cssInclude>
 	
 	
@@ -2716,10 +2728,13 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RadioButtonGroup/RadioButtonGroupLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/RadioButtonGroup/RadioButtonGroupSpec</requireJs>
+	<requireJs modes="commons m">res/RadioButtonGroup/RadioButtonGroupLoader</requireJs>
+
 	<cssInclude>res/RadioButtonGroup/RadioButtonGroup.css</cssInclude>
 	
 	
@@ -3611,10 +3626,13 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/TopFlop/TopFlopLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/TopFlop/TopFlopSpec</requireJs>
+	<requireJs modes="commons m">res/TopFlop/TopFlopLoader</requireJs>
+
 	<cssInclude>res/TopFlop/TopFlop.css</cssInclude>
 	
 	
@@ -4056,10 +4074,13 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/UI5Table/UI5TableLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/UI5Table/UI5TableSpec</requireJs>
+	<requireJs modes="commons m">res/UI5Table/UI5TableLoader</requireJs>
+
 	<cssInclude>res/UI5Table/UI5Table.css</cssInclude>
 	<cssInclude>res/_css/simple_formats.css</cssInclude>
 	
@@ -4319,10 +4340,13 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/AreaMicroChart/AreaMicroChartLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/AreaMicroChart/AreaMicroChartSpec</requireJs>
+	<requireJs modes="commons m">res/AreaMicroChart/AreaMicroChartLoader</requireJs>
+
 	<cssInclude>res/AreaMicroChart/AreaMicroChart.css</cssInclude>
 	
 	
@@ -4928,10 +4952,13 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/BulletMicroChart/BulletMicroChartLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/BulletMicroChart/BulletMicroChartSpec</requireJs>
+	<requireJs modes="commons m">res/BulletMicroChart/BulletMicroChartLoader</requireJs>
+
 	<cssInclude>res/BulletMicroChart/BulletMicroChart.css</cssInclude>
 	
 	
@@ -5287,10 +5314,13 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/HarveyBallMicroChart/HarveyBallMicroChartLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/HarveyBallMicroChart/HarveyBallMicroChartSpec</requireJs>
+	<requireJs modes="commons m">res/HarveyBallMicroChart/HarveyBallMicroChartLoader</requireJs>
+
 	<cssInclude>res/HarveyBallMicroChart/HarveyBallMicroChart.css</cssInclude>
 	
 	

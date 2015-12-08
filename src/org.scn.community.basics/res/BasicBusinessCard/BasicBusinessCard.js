@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./BasicBusinessCardSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.BasicBusinessCard;
 
@@ -94,9 +94,9 @@ BasicBusinessCard = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsbasicbusinesscard){
+// // define([], function(basicsbasicbusinesscard){
 	myComponentData.instance = BasicBusinessCard;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

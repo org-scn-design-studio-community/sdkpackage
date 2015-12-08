@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./FacetFilterSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.FacetFilter;
 
@@ -253,9 +253,9 @@ FacetFilter = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundfacetfilter){
+// // define([], function(databoundfacetfilter){
 	myComponentData.instance = FacetFilter;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

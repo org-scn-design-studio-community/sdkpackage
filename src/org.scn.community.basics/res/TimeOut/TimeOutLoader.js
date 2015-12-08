@@ -17,26 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define([
+        "./TimeOutSpec", 
+        "./TimeOut",
+        "../../aps/org.scn.community.component.Core"
+        ]
+     , function() {
 
-	org_scn_community_require.knownComponents.basics.TimeOut = {
-		id: "TimeOut",
-		name: "basics.TimeOut",
-		requireName: "basicstimeout",
-		fullComponentName: "org.scn.community.basics.TimeOut",
-		fullComponentPackage: "org.scn.community.basics/res/TimeOut",
-		script: "org.scn.community.basics/res/TimeOut/TimeOut",
-		scriptSpec: "org.scn.community.basics/res/TimeOut/TimeOutSpec",
-		min: false
-	};
-
-	var myComponentData = org_scn_community_require.knownComponents.basics.TimeOut;
+	 var myComponentData = org_scn_community_require.knownComponents.basics.TimeOut;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		org_scn_community_require.knownModules.component_core.name,
-		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.common_basics.name,
 		
      ]);
@@ -54,7 +46,6 @@
 		 var requireInfo2 = org_scn_community_require.collectRequire (
 		 [
 		 	
-		  	myComponentData.name
 	     ]);
 		 
 		 var sdkReqs2 = require.config({
@@ -63,10 +54,11 @@
 			 urlArgs: "v=" + org_scn_community_require.jsVersion,
 		 });
 
-		 sdkReqs(requireInfo2.plainNames, function() {
-			 sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-		     sap.zen.Dispatcher.instance.resumeDispatching();
+		 sdkReqs2(requireInfo2.plainNames, function() {
 		});//End of Require Callback Component
 	});//End of Require Callback
-})();// End of closure
+	
+	sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+
+});// End of closure
 

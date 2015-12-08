@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
 
- (function(){
+define(["../../aps/org.scn.community.component.Core", "./AreaMicroChartSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.AreaMicroChart;
 
@@ -237,9 +237,9 @@ AreaMicroChart = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundareamicrochart){
+// define([], function(databoundareamicrochart){
 	myComponentData.instance = AreaMicroChart;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

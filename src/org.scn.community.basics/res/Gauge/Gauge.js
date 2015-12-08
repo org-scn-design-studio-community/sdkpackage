@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./GaugeSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.Gauge;
 
@@ -421,9 +421,9 @@ Gauge = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsgauge){
+// // define([], function(basicsgauge){
 	myComponentData.instance = Gauge;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

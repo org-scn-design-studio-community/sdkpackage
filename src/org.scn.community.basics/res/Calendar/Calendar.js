@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
 
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./CalendarSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.Calendar;
 
@@ -189,9 +189,9 @@ Calendar = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicscalendar){
+// // define([], function(basicscalendar){
 	myComponentData.instance = Calendar;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

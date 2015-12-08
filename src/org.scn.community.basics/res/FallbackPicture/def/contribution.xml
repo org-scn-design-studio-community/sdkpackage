@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/FallbackPicture/FallbackPictureLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/FallbackPicture/FallbackPictureSpec</requireJs>
+	<requireJs modes="commons m">res/FallbackPicture/FallbackPictureLoader</requireJs>
+
 	<cssInclude>res/FallbackPicture/FallbackPicture.css</cssInclude>
 	
 	

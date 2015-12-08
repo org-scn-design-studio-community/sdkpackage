@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.TriStateCheckBox = {
+		id: "TriStateCheckBox",
+		name: "basics.TriStateCheckBox",
+		requireName: "basicstristatecheckbox",
+		fullComponentName: "org.scn.community.basics.TriStateCheckBox",
+		fullComponentPackage: "org.scn.community.basics/res/TriStateCheckBox",
+		script: "org.scn.community.basics/res/TriStateCheckBox/TriStateCheckBox",
+		scriptSpec: "org.scn.community.basics/res/TriStateCheckBox/TriStateCheckBoxSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.TriStateCheckBox.spec = 
 {
@@ -171,4 +182,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

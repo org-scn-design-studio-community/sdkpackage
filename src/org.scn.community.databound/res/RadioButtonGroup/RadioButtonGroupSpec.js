@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.databound.RadioButtonGroup = {
+		id: "RadioButtonGroup",
+		name: "databound.RadioButtonGroup",
+		requireName: "databoundradiobuttongroup",
+		fullComponentName: "org.scn.community.databound.RadioButtonGroup",
+		fullComponentPackage: "org.scn.community.databound/res/RadioButtonGroup",
+		script: "org.scn.community.databound/res/RadioButtonGroup/RadioButtonGroup",
+		scriptSpec: "org.scn.community.databound/res/RadioButtonGroup/RadioButtonGroupSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.databound.RadioButtonGroup.spec = 
 {};
@@ -480,4 +491,4 @@
   "width": "320"
 };
 
-})();// End of closure
+});// End of closure

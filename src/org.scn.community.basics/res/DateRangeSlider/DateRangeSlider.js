@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./DateRangeSliderSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.DateRangeSlider;
 
@@ -157,9 +157,9 @@ DateRangeSlider = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsdaterangeslider){
+// // define([], function(basicsdaterangeslider){
 	myComponentData.instance = DateRangeSlider;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

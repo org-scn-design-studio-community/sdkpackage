@@ -200,10 +200,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ApsTester/ApsTesterLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/ApsTester/ApsTesterSpec</requireJs>
+	<requireJs modes="commons m">res/ApsTester/ApsTesterLoader</requireJs>
+
 	<cssInclude>res/ApsTester/ApsTester.css</cssInclude>
 	
 	
@@ -344,10 +347,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ApsTesterUI5/ApsTesterUI5Loader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/ApsTesterUI5/ApsTesterUI5Spec</requireJs>
+	<requireJs modes="commons m">res/ApsTesterUI5/ApsTesterUI5Loader</requireJs>
+
 	<cssInclude>res/ApsTesterUI5/ApsTesterUI5.css</cssInclude>
 	
 	
@@ -639,11 +645,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
+	modes="commons m"
 >
-	<stdInclude kind="d3"/>
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/BulletChartGen/BulletChartGenLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/BulletChartGen/BulletChartGenSpec</requireJs>
+	<requireJs modes="commons m">res/BulletChartGen/BulletChartGenLoader</requireJs>
+
 	<cssInclude>res/BulletChartGen/BulletChartGen.css</cssInclude>
 	
 	

@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./UI5TableSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.UI5Table;
 
@@ -425,9 +425,9 @@ UI5Table = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundui5table){
+// // define([], function(databoundui5table){
 	myComponentData.instance = UI5Table;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

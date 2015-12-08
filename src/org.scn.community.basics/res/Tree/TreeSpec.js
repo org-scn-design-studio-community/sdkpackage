@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.Tree = {
+		id: "Tree",
+		name: "basics.Tree",
+		requireName: "basicstree",
+		fullComponentName: "org.scn.community.basics.Tree",
+		fullComponentPackage: "org.scn.community.basics/res/Tree",
+		script: "org.scn.community.basics/res/Tree/Tree",
+		scriptSpec: "org.scn.community.basics/res/Tree/TreeSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.Tree.spec = 
 {
@@ -223,4 +234,4 @@
   "width": "230"
 };
 
-})();// End of closure
+});// End of closure

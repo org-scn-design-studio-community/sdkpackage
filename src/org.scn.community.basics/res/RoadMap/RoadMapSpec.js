@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.RoadMap = {
+		id: "RoadMap",
+		name: "basics.RoadMap",
+		requireName: "basicsroadmap",
+		fullComponentName: "org.scn.community.basics.RoadMap",
+		fullComponentPackage: "org.scn.community.basics/res/RoadMap",
+		script: "org.scn.community.basics/res/RoadMap/RoadMap",
+		scriptSpec: "org.scn.community.basics/res/RoadMap/RoadMapSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.RoadMap.spec = 
 {
@@ -160,4 +171,4 @@
   "width": "230"
 };
 
-})();// End of closure
+});// End of closure

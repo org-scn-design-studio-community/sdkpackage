@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.PasswordField = {
+		id: "PasswordField",
+		name: "basics.PasswordField",
+		requireName: "basicspasswordfield",
+		fullComponentName: "org.scn.community.basics.PasswordField",
+		fullComponentPackage: "org.scn.community.basics/res/PasswordField",
+		script: "org.scn.community.basics/res/PasswordField/PasswordField",
+		scriptSpec: "org.scn.community.basics/res/PasswordField/PasswordFieldSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.PasswordField.spec = 
 {
@@ -140,4 +151,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.FallbackPicture = {
+		id: "FallbackPicture",
+		name: "basics.FallbackPicture",
+		requireName: "basicsfallbackpicture",
+		fullComponentName: "org.scn.community.basics.FallbackPicture",
+		fullComponentPackage: "org.scn.community.basics/res/FallbackPicture",
+		script: "org.scn.community.basics/res/FallbackPicture/FallbackPicture",
+		scriptSpec: "org.scn.community.basics/res/FallbackPicture/FallbackPictureSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.FallbackPicture.spec = 
 {
@@ -94,4 +105,4 @@
   "width": "100"
 };
 
-})();// End of closure
+});// End of closure

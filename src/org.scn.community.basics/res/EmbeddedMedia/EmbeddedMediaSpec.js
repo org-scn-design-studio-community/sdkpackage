@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.EmbeddedMedia = {
+		id: "EmbeddedMedia",
+		name: "basics.EmbeddedMedia",
+		requireName: "basicsembeddedmedia",
+		fullComponentName: "org.scn.community.basics.EmbeddedMedia",
+		fullComponentPackage: "org.scn.community.basics/res/EmbeddedMedia",
+		script: "org.scn.community.basics/res/EmbeddedMedia/EmbeddedMedia",
+		scriptSpec: "org.scn.community.basics/res/EmbeddedMedia/EmbeddedMediaSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.EmbeddedMedia.spec = 
 {
@@ -100,4 +111,4 @@
   "width": "600"
 };
 
-})();// End of closure
+});// End of closure

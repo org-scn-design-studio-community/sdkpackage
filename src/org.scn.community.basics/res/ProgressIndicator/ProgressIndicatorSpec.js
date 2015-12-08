@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.ProgressIndicator = {
+		id: "ProgressIndicator",
+		name: "basics.ProgressIndicator",
+		requireName: "basicsprogressindicator",
+		fullComponentName: "org.scn.community.basics.ProgressIndicator",
+		fullComponentPackage: "org.scn.community.basics/res/ProgressIndicator",
+		script: "org.scn.community.basics/res/ProgressIndicator/ProgressIndicator",
+		scriptSpec: "org.scn.community.basics/res/ProgressIndicator/ProgressIndicatorSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.ProgressIndicator.spec = 
 {
@@ -161,4 +172,4 @@
   "width": "270"
 };
 
-})();// End of closure
+});// End of closure

@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RadioButtonGroup/RadioButtonGroupLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/RadioButtonGroup/RadioButtonGroupSpec</requireJs>
+	<requireJs modes="commons m">res/RadioButtonGroup/RadioButtonGroupLoader</requireJs>
+
 	<cssInclude>res/RadioButtonGroup/RadioButtonGroup.css</cssInclude>
 	
 	

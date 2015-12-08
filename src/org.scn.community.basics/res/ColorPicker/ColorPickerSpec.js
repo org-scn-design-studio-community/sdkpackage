@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.ColorPicker = {
+		id: "ColorPicker",
+		name: "basics.ColorPicker",
+		requireName: "basicscolorpicker",
+		fullComponentName: "org.scn.community.basics.ColorPicker",
+		fullComponentPackage: "org.scn.community.basics/res/ColorPicker",
+		script: "org.scn.community.basics/res/ColorPicker/ColorPicker",
+		scriptSpec: "org.scn.community.basics/res/ColorPicker/ColorPickerSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.ColorPicker.spec = 
 {
@@ -108,4 +119,4 @@
   "width": "270"
 };
 
-})();// End of closure
+});// End of closure

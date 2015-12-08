@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./TreeSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.Tree;
 
@@ -192,9 +192,9 @@ Tree = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicstree){
+// // define([], function(basicstree){
 	myComponentData.instance = Tree;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

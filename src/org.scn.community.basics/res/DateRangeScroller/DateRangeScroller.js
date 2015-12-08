@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./DateRangeScrollerSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.DateRangeScroller;
 
@@ -165,9 +165,9 @@ DateRangeScroller = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsdaterangescroller){
+// // define([], function(basicsdaterangescroller){
 	myComponentData.instance = DateRangeScroller;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

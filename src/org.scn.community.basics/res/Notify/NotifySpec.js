@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.Notify = {
+		id: "Notify",
+		name: "basics.Notify",
+		requireName: "basicsnotify",
+		fullComponentName: "org.scn.community.basics.Notify",
+		fullComponentPackage: "org.scn.community.basics/res/Notify",
+		script: "org.scn.community.basics/res/Notify/Notify",
+		scriptSpec: "org.scn.community.basics/res/Notify/NotifySpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.Notify.spec = 
 {
@@ -211,4 +222,4 @@
   "width": "100"
 };
 
-})();// End of closure
+});// End of closure

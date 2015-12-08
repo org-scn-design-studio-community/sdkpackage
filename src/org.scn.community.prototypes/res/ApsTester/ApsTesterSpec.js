@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.prototypes.ApsTester = {
+		id: "ApsTester",
+		name: "prototypes.ApsTester",
+		requireName: "prototypesapstester",
+		fullComponentName: "org.scn.community.prototypes.ApsTester",
+		fullComponentPackage: "org.scn.community.prototypes/res/ApsTester",
+		script: "org.scn.community.prototypes/res/ApsTester/ApsTester",
+		scriptSpec: "org.scn.community.prototypes/res/ApsTester/ApsTesterSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.prototypes.ApsTester.spec = 
 {
@@ -281,4 +292,4 @@
   "width": "200"
 };
 
-})();// End of closure
+});// End of closure

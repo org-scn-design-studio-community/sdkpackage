@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./ToggleButtonSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.ToggleButton;
 
@@ -75,9 +75,9 @@ ToggleButton = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicstogglebutton){
+// // define([], function(basicstogglebutton){
 	myComponentData.instance = ToggleButton;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

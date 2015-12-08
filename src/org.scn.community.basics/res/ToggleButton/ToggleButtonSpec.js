@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.ToggleButton = {
+		id: "ToggleButton",
+		name: "basics.ToggleButton",
+		requireName: "basicstogglebutton",
+		fullComponentName: "org.scn.community.basics.ToggleButton",
+		fullComponentPackage: "org.scn.community.basics/res/ToggleButton",
+		script: "org.scn.community.basics/res/ToggleButton/ToggleButton",
+		scriptSpec: "org.scn.community.basics/res/ToggleButton/ToggleButtonSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.ToggleButton.spec = 
 {
@@ -188,4 +199,4 @@
   "width": "80"
 };
 
-})();// End of closure
+});// End of closure

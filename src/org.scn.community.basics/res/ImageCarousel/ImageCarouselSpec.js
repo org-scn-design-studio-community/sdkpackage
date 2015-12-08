@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.ImageCarousel = {
+		id: "ImageCarousel",
+		name: "basics.ImageCarousel",
+		requireName: "basicsimagecarousel",
+		fullComponentName: "org.scn.community.basics.ImageCarousel",
+		fullComponentPackage: "org.scn.community.basics/res/ImageCarousel",
+		script: "org.scn.community.basics/res/ImageCarousel/ImageCarousel",
+		scriptSpec: "org.scn.community.basics/res/ImageCarousel/ImageCarouselSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.ImageCarousel.spec = 
 {
@@ -156,4 +167,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

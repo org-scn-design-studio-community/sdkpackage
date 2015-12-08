@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./EmbeddedMediaSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.EmbeddedMedia;
 
@@ -82,9 +82,9 @@ EmbeddedMedia = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsembeddedmedia){
+// // define([], function(basicsembeddedmedia){
 	myComponentData.instance = EmbeddedMedia;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

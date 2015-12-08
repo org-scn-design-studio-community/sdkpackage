@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ApsTesterUI5/ApsTesterUI5Loader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/ApsTesterUI5/ApsTesterUI5Spec</requireJs>
+	<requireJs modes="commons m">res/ApsTesterUI5/ApsTesterUI5Loader</requireJs>
+
 	<cssInclude>res/ApsTesterUI5/ApsTesterUI5.css</cssInclude>
 	
 	

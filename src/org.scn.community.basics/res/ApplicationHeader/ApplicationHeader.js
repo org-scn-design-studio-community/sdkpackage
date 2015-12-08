@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./ApplicationHeaderSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.ApplicationHeader;
 
@@ -45,9 +45,9 @@ ApplicationHeader = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsapplicationheader){
+// // define([], function(basicsapplicationheader){
 	myComponentData.instance = ApplicationHeader;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

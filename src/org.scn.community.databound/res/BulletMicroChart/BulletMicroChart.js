@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
 
- (function(){
+define(["../../aps/org.scn.community.component.Core", "./BulletMicroChartSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.BulletMicroChart;
 
@@ -229,9 +229,9 @@ BulletMicroChart = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundbulletmicrochart){
+// define([], function(databoundbulletmicrochart){
 	myComponentData.instance = BulletMicroChart;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

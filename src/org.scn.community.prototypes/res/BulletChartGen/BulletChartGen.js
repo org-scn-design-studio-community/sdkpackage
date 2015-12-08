@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./BulletChartGenSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.prototypes.BulletChartGen;
 
@@ -29,9 +29,9 @@ BulletChartGen = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(prototypesbulletchartgen){
+// // define([], function(prototypesbulletchartgen){
 	myComponentData.instance = BulletChartGen;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

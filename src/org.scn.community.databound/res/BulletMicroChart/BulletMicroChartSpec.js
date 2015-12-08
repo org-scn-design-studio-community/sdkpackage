@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.databound.BulletMicroChart = {
+		id: "BulletMicroChart",
+		name: "databound.BulletMicroChart",
+		requireName: "databoundbulletmicrochart",
+		fullComponentName: "org.scn.community.databound.BulletMicroChart",
+		fullComponentPackage: "org.scn.community.databound/res/BulletMicroChart",
+		script: "org.scn.community.databound/res/BulletMicroChart/BulletMicroChart",
+		scriptSpec: "org.scn.community.databound/res/BulletMicroChart/BulletMicroChartSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.databound.BulletMicroChart.spec = 
 {};
@@ -756,4 +767,4 @@
   "width": "400"
 };
 
-})();// End of closure
+});// End of closure

@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.ValiInput = {
+		id: "ValiInput",
+		name: "basics.ValiInput",
+		requireName: "basicsvaliinput",
+		fullComponentName: "org.scn.community.basics.ValiInput",
+		fullComponentPackage: "org.scn.community.basics/res/ValiInput",
+		script: "org.scn.community.basics/res/ValiInput/ValiInput",
+		scriptSpec: "org.scn.community.basics/res/ValiInput/ValiInputSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.ValiInput.spec = 
 {
@@ -292,4 +303,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

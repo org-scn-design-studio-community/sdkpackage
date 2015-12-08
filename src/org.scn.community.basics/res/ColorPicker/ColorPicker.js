@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./ColorPickerSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.ColorPicker;
 
@@ -75,9 +75,9 @@ ColorPicker = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicscolorpicker){
+// // define([], function(basicscolorpicker){
 	myComponentData.instance = ColorPicker;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

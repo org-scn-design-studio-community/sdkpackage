@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.databound.UI5Table = {
+		id: "UI5Table",
+		name: "databound.UI5Table",
+		requireName: "databoundui5table",
+		fullComponentName: "org.scn.community.databound.UI5Table",
+		fullComponentPackage: "org.scn.community.databound/res/UI5Table",
+		script: "org.scn.community.databound/res/UI5Table/UI5Table",
+		scriptSpec: "org.scn.community.databound/res/UI5Table/UI5TableSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.databound.UI5Table.spec = 
 {
@@ -541,4 +552,4 @@
   "width": "800"
 };
 
-})();// End of closure
+});// End of closure

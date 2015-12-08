@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./WorldTimeSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.WorldTime;
 
@@ -73,7 +73,7 @@ WorldTime = function () {
 		
 		//setup interval call only once in case of multiple update calls!
 		if(that.interval_id === undefined){
-			that.interval_id = window.setInterval(function(){
+			that.interval_id = window.setIntervaldefine(["../../aps/org.scn.community.component.Core", "./WorldTimeSpec"], function() {
 				var html = calcTime(that, that.getUtcoffset());
 				that.$div.innerHTML = html;
 			}
@@ -243,9 +243,9 @@ WorldTime = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsworldtime){
+// define([], function(basicsworldtime){
 	myComponentData.instance = WorldTime;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

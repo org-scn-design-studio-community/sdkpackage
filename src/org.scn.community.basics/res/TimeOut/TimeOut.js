@@ -192,9 +192,9 @@
         return that;
     };
 
-    define([myComponentData.requireName], function (basicstimeout) {
+    define([], function (basicstimeout) {
         myComponentData.instance = TimeOut;
         return myComponentData.instance;
     });
 
-}).call(this);
+});

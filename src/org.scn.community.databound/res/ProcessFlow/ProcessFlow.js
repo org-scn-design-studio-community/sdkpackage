@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
 
- (function(){
+define(["../../aps/org.scn.community.component.Core", "./ProcessFlowSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.ProcessFlow;
 
@@ -216,9 +216,9 @@ ProcessFlow = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundprocessflow){
+// define([], function(databoundprocessflow){
 	myComponentData.instance = ProcessFlow;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

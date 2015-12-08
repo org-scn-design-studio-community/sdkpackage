@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/MenuBar/MenuBarLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/MenuBar/MenuBarSpec</requireJs>
+	<requireJs modes="commons m">res/MenuBar/MenuBarLoader</requireJs>
+
 	<cssInclude>res/MenuBar/MenuBar.css</cssInclude>
 	
 	

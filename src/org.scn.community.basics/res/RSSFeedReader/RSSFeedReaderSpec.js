@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.RSSFeedReader = {
+		id: "RSSFeedReader",
+		name: "basics.RSSFeedReader",
+		requireName: "basicsrssfeedreader",
+		fullComponentName: "org.scn.community.basics.RSSFeedReader",
+		fullComponentPackage: "org.scn.community.basics/res/RSSFeedReader",
+		script: "org.scn.community.basics/res/RSSFeedReader/RSSFeedReader",
+		scriptSpec: "org.scn.community.basics/res/RSSFeedReader/RSSFeedReaderSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.RSSFeedReader.spec = 
 {
@@ -110,4 +121,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

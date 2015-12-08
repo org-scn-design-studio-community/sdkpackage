@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.Gauge = {
+		id: "Gauge",
+		name: "basics.Gauge",
+		requireName: "basicsgauge",
+		fullComponentName: "org.scn.community.basics.Gauge",
+		fullComponentPackage: "org.scn.community.basics/res/Gauge",
+		script: "org.scn.community.basics/res/Gauge/Gauge",
+		scriptSpec: "org.scn.community.basics/res/Gauge/GaugeSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.Gauge.spec = 
 {
@@ -350,4 +361,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

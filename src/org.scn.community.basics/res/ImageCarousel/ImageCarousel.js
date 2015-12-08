@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./ImageCarouselSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.ImageCarousel;
 
@@ -133,9 +133,9 @@ ImageCarousel = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsimagecarousel){
+// // define([], function(basicsimagecarousel){
 	myComponentData.instance = ImageCarousel;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

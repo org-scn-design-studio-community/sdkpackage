@@ -202,9 +202,9 @@
         return that;
     };
 
-    define([myComponentData.requireName], function(basicslistselector) {
+    // // define([], function(basicslistselector) {
         myComponentData.instance = ListSelector;
         return myComponentData.instance;
-    });
+    // });
 
-}).call(this);
+});

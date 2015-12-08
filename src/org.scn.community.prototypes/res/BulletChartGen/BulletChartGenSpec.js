@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.prototypes.BulletChartGen = {
+		id: "BulletChartGen",
+		name: "prototypes.BulletChartGen",
+		requireName: "prototypesbulletchartgen",
+		fullComponentName: "org.scn.community.prototypes.BulletChartGen",
+		fullComponentPackage: "org.scn.community.prototypes/res/BulletChartGen",
+		script: "org.scn.community.prototypes/res/BulletChartGen/BulletChartGen",
+		scriptSpec: "org.scn.community.prototypes/res/BulletChartGen/BulletChartGenSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.prototypes.BulletChartGen.spec = 
 {
@@ -420,10 +431,9 @@
     "id": "common_databound",
     "space": "known"
   }],
-  "stdIncludes": [{"name": "d3"}],
   "title": "Bullet Chart (Gen Prototype)",
   "tooltip": "Bullet Chart Visualization",
   "width": "600"
 };
 
-})();// End of closure
+});// End of closure

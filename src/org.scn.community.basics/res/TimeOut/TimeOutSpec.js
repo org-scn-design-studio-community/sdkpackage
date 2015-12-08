@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.TimeOut = {
+		id: "TimeOut",
+		name: "basics.TimeOut",
+		requireName: "basicstimeout",
+		fullComponentName: "org.scn.community.basics.TimeOut",
+		fullComponentPackage: "org.scn.community.basics/res/TimeOut",
+		script: "org.scn.community.basics/res/TimeOut/TimeOut",
+		scriptSpec: "org.scn.community.basics/res/TimeOut/TimeOutSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.TimeOut.spec = 
 {
@@ -188,4 +199,4 @@
   "width": "10"
 };
 
-})();// End of closure
+});// End of closure

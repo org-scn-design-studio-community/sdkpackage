@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.BasicBusinessCard = {
+		id: "BasicBusinessCard",
+		name: "basics.BasicBusinessCard",
+		requireName: "basicsbasicbusinesscard",
+		fullComponentName: "org.scn.community.basics.BasicBusinessCard",
+		fullComponentPackage: "org.scn.community.basics/res/BasicBusinessCard",
+		script: "org.scn.community.basics/res/BasicBusinessCard/BasicBusinessCard",
+		scriptSpec: "org.scn.community.basics/res/BasicBusinessCard/BasicBusinessCardSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.BasicBusinessCard.spec = 
 {
@@ -124,4 +135,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

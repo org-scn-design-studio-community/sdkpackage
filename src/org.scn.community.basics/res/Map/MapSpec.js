@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.Map = {
+		id: "Map",
+		name: "basics.Map",
+		requireName: "basicsmap",
+		fullComponentName: "org.scn.community.basics.Map",
+		fullComponentPackage: "org.scn.community.basics/res/Map",
+		script: "org.scn.community.basics/res/Map/Map",
+		scriptSpec: "org.scn.community.basics/res/Map/MapSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.Map.spec = 
 {
@@ -271,4 +282,4 @@
   "width": "600"
 };
 
-})();// End of closure
+});// End of closure

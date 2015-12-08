@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.ValueHelpField = {
+		id: "ValueHelpField",
+		name: "basics.ValueHelpField",
+		requireName: "basicsvaluehelpfield",
+		fullComponentName: "org.scn.community.basics.ValueHelpField",
+		fullComponentPackage: "org.scn.community.basics/res/ValueHelpField",
+		script: "org.scn.community.basics/res/ValueHelpField/ValueHelpField",
+		scriptSpec: "org.scn.community.basics/res/ValueHelpField/ValueHelpFieldSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.ValueHelpField.spec = 
 {
@@ -154,4 +165,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

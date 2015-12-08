@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.databound.HarveyBallMicroChart = {
+		id: "HarveyBallMicroChart",
+		name: "databound.HarveyBallMicroChart",
+		requireName: "databoundharveyballmicrochart",
+		fullComponentName: "org.scn.community.databound.HarveyBallMicroChart",
+		fullComponentPackage: "org.scn.community.databound/res/HarveyBallMicroChart",
+		script: "org.scn.community.databound/res/HarveyBallMicroChart/HarveyBallMicroChart",
+		scriptSpec: "org.scn.community.databound/res/HarveyBallMicroChart/HarveyBallMicroChartSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.spec = 
 {};
@@ -431,4 +442,4 @@
   "width": "200"
 };
 
-})();// End of closure
+});// End of closure

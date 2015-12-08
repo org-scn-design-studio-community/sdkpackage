@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./CheckBoxGroupSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.CheckBoxGroup;
 
@@ -223,9 +223,9 @@ CheckBoxGroup = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicscheckboxgroup){
+// // define([], function(basicscheckboxgroup){
 	myComponentData.instance = CheckBoxGroup;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

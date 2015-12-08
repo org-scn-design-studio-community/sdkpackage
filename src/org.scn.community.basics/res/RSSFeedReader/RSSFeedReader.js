@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./RSSFeedReaderSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.RSSFeedReader;
 
@@ -105,9 +105,9 @@ RSSFeedReader = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsrssfeedreader){
+// // define([], function(basicsrssfeedreader){
 	myComponentData.instance = RSSFeedReader;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

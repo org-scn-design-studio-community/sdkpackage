@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.databound.FacetFilter = {
+		id: "FacetFilter",
+		name: "databound.FacetFilter",
+		requireName: "databoundfacetfilter",
+		fullComponentName: "org.scn.community.databound.FacetFilter",
+		fullComponentPackage: "org.scn.community.databound/res/FacetFilter",
+		script: "org.scn.community.databound/res/FacetFilter/FacetFilter",
+		scriptSpec: "org.scn.community.databound/res/FacetFilter/FacetFilterSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.databound.FacetFilter.spec = 
 {
@@ -400,4 +411,4 @@
   "width": "800"
 };
 
-})();// End of closure
+});// End of closure

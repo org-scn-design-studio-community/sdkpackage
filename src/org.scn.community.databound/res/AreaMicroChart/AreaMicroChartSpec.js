@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.databound.AreaMicroChart = {
+		id: "AreaMicroChart",
+		name: "databound.AreaMicroChart",
+		requireName: "databoundareamicrochart",
+		fullComponentName: "org.scn.community.databound.AreaMicroChart",
+		fullComponentPackage: "org.scn.community.databound/res/AreaMicroChart",
+		script: "org.scn.community.databound/res/AreaMicroChart/AreaMicroChart",
+		scriptSpec: "org.scn.community.databound/res/AreaMicroChart/AreaMicroChartSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.databound.AreaMicroChart.spec = 
 {};
@@ -1561,4 +1572,4 @@
   "width": "400"
 };
 
-})();// End of closure
+});// End of closure

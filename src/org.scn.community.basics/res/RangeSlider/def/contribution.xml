@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RangeSlider/RangeSliderLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/RangeSlider/RangeSliderSpec</requireJs>
+	<requireJs modes="commons m">res/RangeSlider/RangeSliderLoader</requireJs>
+
 	<cssInclude>res/RangeSlider/RangeSlider.css</cssInclude>
 	
 	

@@ -377,10 +377,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/DataSourceHelper/DataSourceHelperLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/DataSourceHelper/DataSourceHelperSpec</requireJs>
+	<requireJs modes="commons m">res/DataSourceHelper/DataSourceHelperLoader</requireJs>
+
 	<cssInclude>res/DataSourceHelper/DataSourceHelper.css</cssInclude>
 	
 	
@@ -628,10 +631,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/JsonObject/JsonObjectLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/JsonObject/JsonObjectSpec</requireJs>
+	<requireJs modes="commons m">res/JsonObject/JsonObjectLoader</requireJs>
+
 	<cssInclude>res/JsonObject/JsonObject.css</cssInclude>
 	
 	

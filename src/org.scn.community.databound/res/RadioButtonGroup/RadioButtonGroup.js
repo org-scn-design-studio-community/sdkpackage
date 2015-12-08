@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
 
- (function(){
+define(["../../aps/org.scn.community.component.Core", "./RadioButtonGroupSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.RadioButtonGroup;
 
@@ -206,9 +206,9 @@ RadioButtonGroup = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundradiobuttongroup){
+// define([], function(databoundradiobuttongroup){
 	myComponentData.instance = RadioButtonGroup;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

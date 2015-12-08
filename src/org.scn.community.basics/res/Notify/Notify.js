@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./NotifySpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.Notify;
 
@@ -97,9 +97,9 @@ Notify = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsnotify){
+// // define([], function(basicsnotify){
 	myComponentData.instance = Notify;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

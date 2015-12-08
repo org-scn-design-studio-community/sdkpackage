@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.KpiTile = {
+		id: "KpiTile",
+		name: "basics.KpiTile",
+		requireName: "basicskpitile",
+		fullComponentName: "org.scn.community.basics.KpiTile",
+		fullComponentPackage: "org.scn.community.basics/res/KpiTile",
+		script: "org.scn.community.basics/res/KpiTile/KpiTile",
+		scriptSpec: "org.scn.community.basics/res/KpiTile/KpiTileSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.KpiTile.spec = 
 {
@@ -241,4 +252,4 @@
   "width": "260"
 };
 
-})();// End of closure
+});// End of closure

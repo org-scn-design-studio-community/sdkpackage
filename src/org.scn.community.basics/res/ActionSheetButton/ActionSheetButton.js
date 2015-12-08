@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./ActionSheetButtonSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.ActionSheetButton;
 
@@ -81,9 +81,8 @@ ActionSheetButton = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsactionsheetbutton){
+
 	myComponentData.instance = ActionSheetButton;
 	return myComponentData.instance;
-});
 
-}).call(this);
+});

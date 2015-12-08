@@ -17,31 +17,21 @@
  * limitations under the License. 
  */
 
-(function() {
+define([
+        "./AccordionSpec", 
+        "./Accordion",
+        "../../aps/org.scn.community.component.Core"
+        ]
+     , function() {
 
-	org_scn_community_require.knownComponents.basics.Accordion = {
-		id: "Accordion",
-		name: "basics.Accordion",
-		requireName: "basicsaccordion",
-		fullComponentName: "org.scn.community.basics.Accordion",
-		fullComponentPackage: "org.scn.community.basics/res/Accordion",
-		script: "org.scn.community.basics/res/Accordion/Accordion",
-		scriptSpec: "org.scn.community.basics/res/Accordion/AccordionSpec",
-		min: false
-	};
-
-	var myComponentData = org_scn_community_require.knownComponents.basics.Accordion;
+	 var myComponentData = org_scn_community_require.knownComponents.basics.Accordion;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		org_scn_community_require.knownModules.component_core.name,
-		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.common_basics.name,
 		
      ]);
-
-	 sap.zen.Dispatcher.instance.pauseDispatching();	 
 
 	 var sdkReqs = require.config({
 		 context : "sdk",
@@ -50,24 +40,11 @@
 	 });
 
 	 sdkReqs(requireInfo1.plainNames, function() {
-	     /** RequireJS Config **/
-		 var requireInfo2 = org_scn_community_require.collectRequire (
-		 [
-		  	myComponentData.name
-	     ]);
-		 
-		 var sdkReqs2 = require.config({
-			 context : "sdk",
-			 paths: requireInfo2.definition,
-			 urlArgs: "v=" + org_scn_community_require.jsVersion,
-		 });
+	 });//End of Require Callback
+	 
+ 	 jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
 
-		 sdkReqs(requireInfo2.plainNames, function() {
-		 	 jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
-
-			 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-	     	 sap.zen.Dispatcher.instance.resumeDispatching();
-		});//End of Require Callback Component
-	});//End of Require Callback
-})();// End of closure
+	 sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+ 
+});// End of closure
 

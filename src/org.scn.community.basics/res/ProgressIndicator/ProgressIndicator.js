@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./ProgressIndicatorSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.ProgressIndicator;
 
@@ -71,9 +71,9 @@ ProgressIndicator = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsprogressindicator){
+// // define([], function(basicsprogressindicator){
 	myComponentData.instance = ProgressIndicator;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

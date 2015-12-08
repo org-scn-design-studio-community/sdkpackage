@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.NavigationBar = {
+		id: "NavigationBar",
+		name: "basics.NavigationBar",
+		requireName: "basicsnavigationbar",
+		fullComponentName: "org.scn.community.basics.NavigationBar",
+		fullComponentPackage: "org.scn.community.basics/res/NavigationBar",
+		script: "org.scn.community.basics/res/NavigationBar/NavigationBar",
+		scriptSpec: "org.scn.community.basics/res/NavigationBar/NavigationBarSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.NavigationBar.spec = 
 {
@@ -176,4 +187,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure
