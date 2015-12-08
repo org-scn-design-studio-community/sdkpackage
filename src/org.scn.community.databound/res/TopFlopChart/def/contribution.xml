@@ -1,7 +1,7 @@
 
 <component
 	id="TopFlopChart"
-	title="Data Top FLop Chart"
+	title="Data Top Flop Chart 0.0"
 	icon="res/TopFlopChart/TopFlopChart.png"
 	handlerType="sapui5"
 	group="ScnCommunityChartMaps"

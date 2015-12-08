@@ -1,7 +1,7 @@
 
 <component
 	id="FlowLayouter"
-	title="Flow Layouter"
+	title="Flow Layouter 0.0"
 	icon="res/FlowLayouter/FlowLayouter.png"
 	handlerType="div"
 	group="ScnCommunityUtils"

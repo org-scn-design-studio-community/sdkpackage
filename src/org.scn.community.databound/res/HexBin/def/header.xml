@@ -1,7 +1,7 @@
 
 <component
 		id="HexBin"
-		title="Hexbin Chart"
+		title="Hexbin Chart 2.0"
 		icon="res/HexBin/HexBin.png"
 		handlerType="div"
 		modes="commons m"

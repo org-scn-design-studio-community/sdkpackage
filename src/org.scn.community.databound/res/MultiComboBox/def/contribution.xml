@@ -1,7 +1,7 @@
 
 <component
 	id="MultiComboBox"
-	title="Multi ComboBox"
+	title="Multi ComboBox 0.0"
 	icon="res/MultiComboBox/MultiComboBox.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"

@@ -1,7 +1,7 @@
 
 <component
 	id="PostResponseParser"
-	title="Post Response Parser"
+	title="Post Response Parser 1.0"
 	tooltip="Creates a Request and Parses the Response (Json)"
 	icon="res/PostResponseParser/PostResponseParser.png"
 	handlerType="sapui5"

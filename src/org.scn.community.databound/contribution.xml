@@ -200,7 +200,7 @@
 		title="Scn Community Unified"/>		
 <component
 		id="AdvancedDataTable"
-		title="Advanced Data Table"
+		title="Advanced Data Table 2.0"
 		icon="res/AdvancedDataTable/AdvancedDataTable.png"
 		handlerType="div"
 		modes="commons m"
@@ -283,7 +283,7 @@
 </component>
 	<component
 		id="BulletChart"
-		title="Bullet Chart"
+		title="Bullet Chart 0.0"
 		icon="res/BulletChart/BulletChart.png"
 		handlerType="div"
 		databound="true"
@@ -354,7 +354,7 @@
 	</component>
 
 <component id="Choropleth" 
-	title="Choropleth Map"
+	title="Choropleth Map 2.0"
 	icon="res/Choropleth/Choropleth.png"
 	handlerType="div"
 	modes="commons m"
@@ -582,10 +582,9 @@
 </component>
 <component
 	id="Table"
-	title="Data Table"
+	title="Data Table 0.0"
 	icon="res/DataTable/DataTable.png"
 	handlerType="div"
-	propertySheetPath="res/DataTable/aps/DataTable.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >
@@ -647,7 +646,7 @@
 </component>
 <component
 	id="DropDown"
-	title="Data Drop Down"
+	title="Data Drop Down 0.0"
 	icon="res/DropDown/DropDown.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
@@ -1193,7 +1192,7 @@
 
 <component
 		id="HexBin"
-		title="Hexbin Chart"
+		title="Hexbin Chart 2.0"
 		icon="res/HexBin/HexBin.png"
 		handlerType="div"
 		modes="commons m"
@@ -1365,7 +1364,7 @@ __n__}
 </component>
 <component
 		id="jpd3hier"
-		title="D3 Hierarchy"
+		title="D3 Hierarchy 1.0"
 		icon="res/Hierarchy/jpd3hier.png"
 		handlerType="div"
 		propertySheetPath="res/Hierarchy/aps/aps_hierarchy.html"
@@ -1610,7 +1609,7 @@ __n__}
 </component>
 
 <component id="LocationIntel" 
-	title="Location Intelligence"
+	title="Location Intelligence 2.0"
 	icon="res/LocationIntel/LocationIntel.png"
 	handlerType="div"
 	modes="commons m"
@@ -1818,7 +1817,7 @@ __n__}
 </component>
 <component
 		id="MarimekkoChart"
-		title="Marimekko Chart"
+		title="Marimekko Chart 2.0"
 		icon="res/MarimekkoChart/MarimekkoChart.png"
 		handlerType="div"
 		modes="commons m"
@@ -1970,7 +1969,7 @@ __n__}
 </component>
 <component
 	id="MultiComboBox"
-	title="Multi ComboBox"
+	title="Multi ComboBox 0.0"
 	icon="res/MultiComboBox/MultiComboBox.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
@@ -2086,7 +2085,7 @@ __n__}
 </component>
 <component
 	id="MultiLevelDropDown"
-	title="Hierarchical Menu"
+	title="Hierarchical Menu 1.0"
 	icon="res/MultiLevelDropDown/tree_layout.png"
 	handlerType="div"
 	propertySheetPath="res/MultiLevelDropDown/aps/MultiLevelDropDown.html"
@@ -2250,7 +2249,7 @@ __n__}
 
 <component
 	id="NiceChart"
-	title="Nice Chart"
+	title="Nice Chart 1.0"
 	icon="res/NiceChart/NiceChart.png"
 	handlerType="div"
 	group="ScnCommunityChartMaps"
@@ -2880,7 +2879,7 @@ __n__}
 
 <component
 	id="RangeSlider"
-	title="Data Range Slider"
+	title="Data Range Slider 0.0"
 	icon="res/RangeSlider/RangeSlider.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
@@ -3011,7 +3010,7 @@ __n__}
 </component>
 <component
 	id="ResultSetInfo"
-	title="Result Set Information"
+	title="Result Set Information 1.0"
 	icon="res/ResultSetInfo/ResultSetInfo.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
@@ -3088,7 +3087,7 @@ __n__}
 </component>
 <component
 	id="ResultSetMixer"
-	title="Result Set Mixer"
+	title="Result Set Mixer 1.0"
 	icon="res/ResultSetMixer/ResultSetMixer.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
@@ -3199,7 +3198,7 @@ __n__}
 </component>
 <component
 		id="ScatterPlot"
-		title="Scatter Plot Chart"
+		title="Scatter Plot Chart 2.0"
 		icon="res/ScatterPlot/ScatterPlot.png"
 		handlerType="div"
 		modes="commons m"
@@ -3365,7 +3364,7 @@ __n__}
 </component>
 <component
 	id="Slider"
-	title="Data Slider"
+	title="Data Slider 0.0"
 	icon="res/Slider/Slider.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"
@@ -3475,7 +3474,7 @@ __n__}
 </component>
 <component
 		id="Table2D"
-		title="2D Crosstab"
+		title="2D Crosstab 2.0"
 		icon="res/Table2D/Table2D.png"
 		handlerType="div"
 		modes="commons m"
@@ -3516,7 +3515,7 @@ __n__}
 </component>
 <component
 		id="tagCloud"
-		title="Tag Cloud"
+		title="Tag Cloud 0.0"
 		icon="res/TagCloud/TagCloud.png"
 		handlerType="div"
 		group="ScnCommunityDataBound"
@@ -3807,7 +3806,7 @@ __n__}
 
 <component
 	id="TopFlopChart"
-	title="Data Top FLop Chart"
+	title="Data Top Flop Chart 0.0"
 	icon="res/TopFlopChart/TopFlopChart.png"
 	handlerType="sapui5"
 	group="ScnCommunityChartMaps"
@@ -5281,7 +5280,7 @@ __n__}
 
 <component
 	id="HarveyBallMicroChart"
-	title="Harvey Ball Micro Chart2.0"
+	title="Harvey Ball Micro Chart 2.0"
 	tooltip="Harvey Ball Micro Chart- Component for visualization of data on small areas."
 	icon="res/HarveyBallMicroChart/HarveyBallMicroChart.png"
 	handlerType="sapui5"

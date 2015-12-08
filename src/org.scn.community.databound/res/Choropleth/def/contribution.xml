@@ -1,6 +1,6 @@
 
 <component id="Choropleth" 
-	title="Choropleth Map"
+	title="Choropleth Map 2.0"
 	icon="res/Choropleth/Choropleth.png"
 	handlerType="div"
 	modes="commons m"

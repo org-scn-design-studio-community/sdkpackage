@@ -1,7 +1,7 @@
 
 <!-- Fiori LaunchPad Component -->
 <component id="LaunchPad"
-	title="Launch Pad"
+	title="Launch Pad 2.0"
 	tooltip="Fiori-Inspired LaunchPad/Tile Container"
 	icon="res/LaunchPad/LaunchPad.png"
 	handlerType="sapui5"

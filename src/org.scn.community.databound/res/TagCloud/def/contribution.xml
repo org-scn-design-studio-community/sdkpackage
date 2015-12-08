@@ -1,7 +1,7 @@
 
 <component
 		id="tagCloud"
-		title="Tag Cloud"
+		title="Tag Cloud 0.0"
 		icon="res/TagCloud/TagCloud.png"
 		handlerType="div"
 		group="ScnCommunityDataBound"

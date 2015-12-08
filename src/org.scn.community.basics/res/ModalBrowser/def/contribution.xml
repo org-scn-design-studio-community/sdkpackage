@@ -1,7 +1,7 @@
 
 <component id="ModalBrowser"
 	tooltip="In-App Modal Browser Pop-Up"
-	title="Modal Browser"
+	title="Modal Browser 0.0"
 	icon="res/ModalBrowser/ModalBrowser.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics">

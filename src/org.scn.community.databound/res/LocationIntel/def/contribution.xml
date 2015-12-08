@@ -1,6 +1,6 @@
 
 <component id="LocationIntel" 
-	title="Location Intelligence"
+	title="Location Intelligence 2.0"
 	icon="res/LocationIntel/LocationIntel.png"
 	handlerType="div"
 	modes="commons m"

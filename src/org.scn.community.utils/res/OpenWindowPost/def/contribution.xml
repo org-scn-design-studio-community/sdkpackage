@@ -1,7 +1,7 @@
 
 <component
 	id="OpenWindowPost"
-	title="Open Window by Post"
+	title="Open Window by Post 0.0"
 	tooltip="Open new Window by Post Method (removes URL size restriction)"
 	icon="res/OpenWindowPost/OpenWindowPost.png"
 	handlerType="sapui5"

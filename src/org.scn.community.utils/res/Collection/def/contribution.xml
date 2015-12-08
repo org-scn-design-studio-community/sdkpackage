@@ -1,7 +1,7 @@
 
 <component
 	id="Collection"
-	title="Collection Utility"
+	title="Collection Utility 0.0"
 	icon="res/Collection/Collection.png"
 	handlerType="div"
 	group="ScnCommunityUtils"

@@ -1,7 +1,7 @@
 
 	<component
 		id="SimpleDate"
-		title="Simple Date"
+		title="Simple Date 0.0"
 		icon="res/SimpleDate/SimpleDate.png"
 		handlerType="div"
 		group="ScnCommunityUtils">

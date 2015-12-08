@@ -426,7 +426,7 @@
       "space": "known"
     }
   ],
-  "title": "Harvey Ball Micro Chart2.0",
+  "title": "Harvey Ball Micro Chart 2.0",
   "tooltip": "Harvey Ball Micro Chart- Component for visualization of data on small areas.",
   "width": "200"
 };

@@ -1,6 +1,6 @@
 
 <component id="FioriAppHeader" 
-	title="Fiori App Header"
+	title="Fiori App Header 2.0"
 	icon="res/FioriAppHeader/FioriAppHeader.png"
 	handlerType="sapui5" 
 	propertySheetPath="aps/PropertyPage.html"

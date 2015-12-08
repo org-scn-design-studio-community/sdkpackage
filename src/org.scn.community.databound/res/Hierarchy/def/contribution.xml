@@ -1,7 +1,7 @@
 
 <component
 		id="jpd3hier"
-		title="D3 Hierarchy"
+		title="D3 Hierarchy 1.0"
 		icon="res/Hierarchy/jpd3hier.png"
 		handlerType="div"
 		propertySheetPath="res/Hierarchy/aps/aps_hierarchy.html"

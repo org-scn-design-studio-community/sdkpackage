@@ -1,7 +1,7 @@
 
 <component
 	id="Slider"
-	title="Data Slider"
+	title="Data Slider 0.0"
 	icon="res/Slider/Slider.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"

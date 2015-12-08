@@ -1,7 +1,7 @@
 
 <component
 	id="ComponentManager"
-	title="Component Manager"
+	title="Component Manager 0.0"
 	tooltip="Allows managing and listing of components"
 	icon="res/ComponentManager/ComponentManager.png"
 	handlerType="sapui5"

@@ -1,7 +1,7 @@
 
 <component
 	id="DropDown"
-	title="Data Drop Down"
+	title="Data Drop Down 0.0"
 	icon="res/DropDown/DropDown.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"

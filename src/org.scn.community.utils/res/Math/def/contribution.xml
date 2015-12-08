@@ -1,7 +1,7 @@
 
 <component
 	id="Math"
-	title="Math Utility"
+	title="Math Utility 0.0"
 	icon="res/Math/Math.png"
 	handlerType="div"
 	group="ScnCommunityUtils"

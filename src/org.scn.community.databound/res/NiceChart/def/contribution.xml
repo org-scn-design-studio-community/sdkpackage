@@ -1,7 +1,7 @@
 
 <component
 	id="NiceChart"
-	title="Nice Chart"
+	title="Nice Chart 1.0"
 	icon="res/NiceChart/NiceChart.png"
 	handlerType="div"
 	group="ScnCommunityChartMaps"

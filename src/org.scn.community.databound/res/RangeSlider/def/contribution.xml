@@ -1,7 +1,7 @@
 
 <component
 	id="RangeSlider"
-	title="Data Range Slider"
+	title="Data Range Slider 0.0"
 	icon="res/RangeSlider/RangeSlider.png"
 	handlerType="sapui5"
 	group="ScnCommunityDataBound"

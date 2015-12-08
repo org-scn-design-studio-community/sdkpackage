@@ -1,7 +1,7 @@
 
 <component
 		id="Table2D"
-		title="2D Crosstab"
+		title="2D Crosstab 2.0"
 		icon="res/Table2D/Table2D.png"
 		handlerType="div"
 		modes="commons m"

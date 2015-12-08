@@ -1974,7 +1974,7 @@ class org.scn.community.databound.MultiLevelDropDown extends Component {
 }
 
 /**
- * Generated ZTL Class for Nice Chart
+ * Generated ZTL Class for Nice Chart 1.0
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
@@ -2375,7 +2375,7 @@ class org.scn.community.databound.RangeSlider extends org.scn.community.shared.D
 }
 
 /**
- * Generated ZTL Class for Result Set Information
+ * Generated ZTL Class for Result Set Information 1.0
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
@@ -2447,7 +2447,7 @@ class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared
 }
 
 /**
- * Generated ZTL Class for Result Set Mixer
+ * Generated ZTL Class for Result Set Mixer 1.0
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */

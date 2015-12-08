@@ -1,10 +1,9 @@
 
 <component
 	id="Table"
-	title="Data Table"
+	title="Data Table 0.0"
 	icon="res/DataTable/DataTable.png"
 	handlerType="div"
-	propertySheetPath="res/DataTable/aps/DataTable.html"
 	group="ScnCommunityDataBound"
 	databound="true"
 >

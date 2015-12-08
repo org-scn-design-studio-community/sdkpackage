@@ -1,6 +1,6 @@
 
 <component id="FioriToolbar" 
-	title="Fiori Toolbar"
+	title="Fiori Toolbar 2.0"
 	icon="res/FioriToolbar/FioriToolbar.png"
 	handlerType="sapui5" 
 	propertySheetPath="aps/PropertyPage.html"

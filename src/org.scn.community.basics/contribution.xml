@@ -624,7 +624,7 @@
 
 <component
 	id="ArrowedLine"
-    title="Arrowed Line"
+    title="Arrowed Line 0.0"
     group="ScnCommunityBasics"
     tooltip="Displays an arrowed line"
     icon="res/ArrowedLine/ArrowedLine.png"
@@ -671,7 +671,7 @@
 	</initialization>
 </component>
 <component id="Base64Image"
-	title="Base64 Image Encoder"
+	title="Base64 Image Encoder 0.0"
 	icon="res/Base64Image/Base64Image.png"
 	tooltip="Handy Base-64 encoder property sheet (requires IE10+ for design-time)"
 	handlerType="sapui5"
@@ -1726,7 +1726,7 @@
 </component>
 
 <component id="FioriAppHeader" 
-	title="Fiori App Header"
+	title="Fiori App Header 2.0"
 	icon="res/FioriAppHeader/FioriAppHeader.png"
 	handlerType="sapui5" 
 	propertySheetPath="aps/PropertyPage.html"
@@ -1752,7 +1752,7 @@
  	</initialization>
  </component>
 <component id="FioriBar" 
-	title="Fiori Bar"
+	title="Fiori Bar 2.0"
 	icon="res/FioriBar/FioriBar.png"
 	handlerType="sapui5" 
 	propertySheetPath="aps/PropertyPage.html"
@@ -1792,7 +1792,7 @@
  </component>
 <component
 	id="FioriButton"
-	title="Fiori Button"
+	title="Fiori Button 1.0"
 	icon="res/FioriButton/FioriButton.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
@@ -1881,7 +1881,7 @@
 	</initialization>
 </component>
 <component id="FioriToolbar" 
-	title="Fiori Toolbar"
+	title="Fiori Toolbar 2.0"
 	icon="res/FioriToolbar/FioriToolbar.png"
 	handlerType="sapui5" 
 	propertySheetPath="aps/PropertyPage.html"
@@ -2659,7 +2659,7 @@
 
 <!-- Fiori LaunchPad Component -->
 <component id="LaunchPad"
-	title="Launch Pad"
+	title="Launch Pad 2.0"
 	tooltip="Fiori-Inspired LaunchPad/Tile Container"
 	icon="res/LaunchPad/LaunchPad.png"
 	handlerType="sapui5"
@@ -3287,7 +3287,7 @@
 
 <component id="ModalBrowser"
 	tooltip="In-App Modal Browser Pop-Up"
-	title="Modal Browser"
+	title="Modal Browser 0.0"
 	icon="res/ModalBrowser/ModalBrowser.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics">

@@ -1,7 +1,7 @@
 
 <component
 	id="MultiLevelDropDown"
-	title="Hierarchical Menu"
+	title="Hierarchical Menu 1.0"
 	icon="res/MultiLevelDropDown/tree_layout.png"
 	handlerType="div"
 	propertySheetPath="res/MultiLevelDropDown/aps/MultiLevelDropDown.html"

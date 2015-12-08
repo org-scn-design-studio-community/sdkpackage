@@ -1,7 +1,7 @@
 
 	<component
 		id="BulletChart"
-		title="Bullet Chart"
+		title="Bullet Chart 0.0"
 		icon="res/BulletChart/BulletChart.png"
 		handlerType="div"
 		databound="true"

@@ -1,6 +1,6 @@
 
 <component id="Base64Image"
-	title="Base64 Image Encoder"
+	title="Base64 Image Encoder 0.0"
 	icon="res/Base64Image/Base64Image.png"
 	tooltip="Handy Base-64 encoder property sheet (requires IE10+ for design-time)"
 	handlerType="sapui5"

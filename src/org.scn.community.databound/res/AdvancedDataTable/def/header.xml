@@ -1,7 +1,7 @@
 
 <component
 		id="AdvancedDataTable"
-		title="Advanced Data Table"
+		title="Advanced Data Table 2.0"
 		icon="res/AdvancedDataTable/AdvancedDataTable.png"
 		handlerType="div"
 		modes="commons m"

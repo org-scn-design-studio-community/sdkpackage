@@ -1,7 +1,7 @@
 
 <component
 	id="OpenUrlInplace"
-	title="Open Url Inplace"
+	title="Open Url Inplace 0.0"
 	tooltip="Open the URL in the same frame as Design Studio"
 	icon="res/OpenUrlInplace/OpenUrlInplace.png"
 	handlerType="sapui5"

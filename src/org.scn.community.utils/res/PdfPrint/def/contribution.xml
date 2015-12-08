@@ -1,7 +1,7 @@
 
 <component
 	id="PdfPrint"
-	title="PDF Print"
+	title="PDF Print 1.0"
 	icon="res/PdfPrint/PdfPrint.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
