@@ -17,26 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define([
+        "./%COMP-id%Spec", 
+        "./%COMP-id%",
+        "../../aps/org.scn.community.component.Core"
+        ]
+     , function() {
 
-	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id% = {
-		id: "%COMP-id%",
-		name: "%COMP-package%.%COMP-id%",
-		requireName: "%COMP-package%%COMP-id(lower)%",
-		fullComponentName: "org.scn.community.%COMP-package%.%COMP-id%",
-		fullComponentPackage: "org.scn.community.%COMP-package%/res/%COMP-id%",
-		script: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%",
-		scriptSpec: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%Spec",
-		min: false
-	};
-
-	var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
+	 var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		org_scn_community_require.knownModules.component_core.name,
-		org_scn_community_require.knownModules.common_basics.name,
 		%COMPONENT_REQUIRE_SPEC%
      ]);
 
@@ -53,7 +45,6 @@
 		 var requireInfo2 = org_scn_community_require.collectRequire (
 		 [
 		 	%COMPONENT_REQUIRE_SPEC2%
-		  	myComponentData.name
 	     ]);
 		 
 		 var sdkReqs2 = require.config({
@@ -62,10 +53,11 @@
 			 urlArgs: "v=" + org_scn_community_require.jsVersion,
 		 });
 
-		 sdkReqs(requireInfo2.plainNames, function() {
-			 sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-		     sap.zen.Dispatcher.instance.resumeDispatching();
+		 sdkReqs2(requireInfo2.plainNames, function() {
 		});//End of Require Callback Component
 	});//End of Require Callback
-})();// End of closure
+	
+	sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+
+});// End of closure
 

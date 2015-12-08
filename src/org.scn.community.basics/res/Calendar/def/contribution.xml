@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Calendar/CalendarLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/Calendar/CalendarSpec</requireJs>
+	<requireJs modes="commons m">res/Calendar/CalendarLoader</requireJs>
+
 	<cssInclude>res/Calendar/Calendar.css</cssInclude>
 	
 	

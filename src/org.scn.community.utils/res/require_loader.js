@@ -19,47 +19,48 @@
 var org_scn_community_basics = org_scn_community_basics || {};
 var org_scn_community_require = org_scn_community_require || {};
 
-/* IMPORTANT! ORIGINAL LOCATION - basics/res */
-
-org_scn_community_basics.getUrlParameterByName = function (name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
-//set the version to assure cache is cleared
-/*NO DELTA CHECK START*/
-org_scn_community_basics.isDebug = org_scn_community_basics.getUrlParameterByName("d").toLowerCase() == "x";
-if(org_scn_community_basics.isDebug) {
-	org_scn_community_require.jsVersion = "0000-0-0";	
-} else {
-	org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-12-8"/*%TIMESTAMP-END%*/;
-}
-
-org_scn_community_basics.isHana = false;
-if(sap.firefly != undefined) {
-	org_scn_community_basics.isHana = true;
-}
-
-//hana runtime case, no . in folder names!
-if(!org_scn_community_basics.isHana) {
-	C_ORG_SCN_COMMUNITY_ = "org.scn.community.";	
-} else {
-	C_ORG_SCN_COMMUNITY_ = "org_scn_community_";
-}
+define(["./common_basics","./common_databound"], function() {
 
 
-/*NO DELTA CHECK END*/
+	/* IMPORTANT! ORIGINAL LOCATION - basics/res */
 
-var org_scn_community_components = org_scn_community_components || {};
-org_scn_community_components.basics = org_scn_community_components.basics || {};
-org_scn_community_components.databound = org_scn_community_components.databound || {};
-org_scn_community_components.datasource = org_scn_community_components.datasource || {};
-org_scn_community_components.prototypes = org_scn_community_components.prototypes || {};
-org_scn_community_components.utils = org_scn_community_components.utils || {};
+	org_scn_community_basics.getUrlParameterByName = function (name) {
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	        results = regex.exec(location.search);
+	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
 
-(function() {
+	//set the version to assure cache is cleared
+	/*NO DELTA CHECK START*/
+	org_scn_community_basics.isDebug = org_scn_community_basics.getUrlParameterByName("d").toLowerCase() == "x";
+	if(org_scn_community_basics.isDebug) {
+		org_scn_community_require.jsVersion = "0000-0-0";	
+	} else {
+		org_scn_community_require.jsVersion = /*%TIMESTAMP-START%*/"2015-12-8"/*%TIMESTAMP-END%*/;
+	}
+
+	org_scn_community_basics.isHana = false;
+	if(sap.firefly != undefined) {
+		org_scn_community_basics.isHana = true;
+	}
+
+	//hana runtime case, no . in folder names!
+	if(!org_scn_community_basics.isHana) {
+		C_ORG_SCN_COMMUNITY_ = "org.scn.community.";	
+	} else {
+		C_ORG_SCN_COMMUNITY_ = "org_scn_community_";
+	}
+
+
+	/*NO DELTA CHECK END*/
+
+	var org_scn_community_components = org_scn_community_components || {};
+	org_scn_community_components.basics = org_scn_community_components.basics || {};
+	org_scn_community_components.databound = org_scn_community_components.databound || {};
+	org_scn_community_components.datasource = org_scn_community_components.datasource || {};
+	org_scn_community_components.prototypes = org_scn_community_components.prototypes || {};
+	org_scn_community_components.utils = org_scn_community_components.utils || {};
 
 	org_scn_community_basics.readOwnScriptAccess = function(scriptSrc, componentFullName) {
 		var packageAndName = componentFullName.substring("org.scn.community.".length);
@@ -319,4 +320,4 @@ org_scn_community_components.utils = org_scn_community_components.utils || {};
 	    
 		return retObject;
 	};
-})();
+});

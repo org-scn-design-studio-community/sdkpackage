@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.FishEye = {
+		id: "FishEye",
+		name: "basics.FishEye",
+		requireName: "basicsfisheye",
+		fullComponentName: "org.scn.community.basics.FishEye",
+		fullComponentPackage: "org.scn.community.basics/res/FishEye",
+		script: "org.scn.community.basics/res/FishEye/FishEye",
+		scriptSpec: "org.scn.community.basics/res/FishEye/FishEyeSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.FishEye.spec = 
 {
@@ -183,4 +194,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

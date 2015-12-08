@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ActivityViewer/ActivityViewerLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/ActivityViewer/ActivityViewerSpec</requireJs>
+	<requireJs modes="commons m">res/ActivityViewer/ActivityViewerLoader</requireJs>
+
 	<cssInclude>res/ActivityViewer/ActivityViewer.css</cssInclude>
 	
 	

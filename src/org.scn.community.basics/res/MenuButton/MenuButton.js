@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./MenuButtonSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.MenuButton;
 
@@ -240,9 +240,9 @@ MenuButton = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsmenubutton){
+// // define([], function(basicsmenubutton){
 	myComponentData.instance = MenuButton;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

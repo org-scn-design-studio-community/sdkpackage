@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.prototypes.ApsTesterUI5 = {
+		id: "ApsTesterUI5",
+		name: "prototypes.ApsTesterUI5",
+		requireName: "prototypesapstesterui5",
+		fullComponentName: "org.scn.community.prototypes.ApsTesterUI5",
+		fullComponentPackage: "org.scn.community.prototypes/res/ApsTesterUI5",
+		script: "org.scn.community.prototypes/res/ApsTesterUI5/ApsTesterUI5",
+		scriptSpec: "org.scn.community.prototypes/res/ApsTesterUI5/ApsTesterUI5Spec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.prototypes.ApsTesterUI5.spec = 
 {
@@ -172,4 +183,4 @@
   "width": "200"
 };
 
-})();// End of closure
+});// End of closure

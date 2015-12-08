@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./JsonObjectSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.utils.JsonObject;
 
@@ -27,9 +27,9 @@ JsonObject = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(utilsjsonobject){
+// // define([], function(utilsjsonobject){
 	myComponentData.instance = JsonObject;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

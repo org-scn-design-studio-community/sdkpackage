@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.Calendar = {
+		id: "Calendar",
+		name: "basics.Calendar",
+		requireName: "basicscalendar",
+		fullComponentName: "org.scn.community.basics.Calendar",
+		fullComponentPackage: "org.scn.community.basics/res/Calendar",
+		script: "org.scn.community.basics/res/Calendar/Calendar",
+		scriptSpec: "org.scn.community.basics/res/Calendar/CalendarSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.Calendar.spec = 
 {
@@ -285,4 +296,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

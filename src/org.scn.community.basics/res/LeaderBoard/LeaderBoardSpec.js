@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.LeaderBoard = {
+		id: "LeaderBoard",
+		name: "basics.LeaderBoard",
+		requireName: "basicsleaderboard",
+		fullComponentName: "org.scn.community.basics.LeaderBoard",
+		fullComponentPackage: "org.scn.community.basics/res/LeaderBoard",
+		script: "org.scn.community.basics/res/LeaderBoard/LeaderBoard",
+		scriptSpec: "org.scn.community.basics/res/LeaderBoard/LeaderBoardSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.LeaderBoard.spec = 
 {
@@ -242,4 +253,4 @@
   "width": "230"
 };
 
-})();// End of closure
+});// End of closure

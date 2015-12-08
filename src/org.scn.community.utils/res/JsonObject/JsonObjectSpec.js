@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.utils.JsonObject = {
+		id: "JsonObject",
+		name: "utils.JsonObject",
+		requireName: "utilsjsonobject",
+		fullComponentName: "org.scn.community.utils.JsonObject",
+		fullComponentPackage: "org.scn.community.utils/res/JsonObject",
+		script: "org.scn.community.utils/res/JsonObject/JsonObject",
+		scriptSpec: "org.scn.community.utils/res/JsonObject/JsonObjectSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.utils.JsonObject.spec = 
 {"content": {
@@ -76,4 +87,4 @@
   "width": "10"
 };
 
-})();// End of closure
+});// End of closure

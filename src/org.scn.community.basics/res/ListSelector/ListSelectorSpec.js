@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.ListSelector = {
+		id: "ListSelector",
+		name: "basics.ListSelector",
+		requireName: "basicslistselector",
+		fullComponentName: "org.scn.community.basics.ListSelector",
+		fullComponentPackage: "org.scn.community.basics/res/ListSelector",
+		script: "org.scn.community.basics/res/ListSelector/ListSelector",
+		scriptSpec: "org.scn.community.basics/res/ListSelector/ListSelectorSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.ListSelector.spec = 
 {
@@ -396,4 +407,4 @@
   "width": "200"
 };
 
-})();// End of closure
+});// End of closure

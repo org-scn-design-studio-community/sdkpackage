@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Accordion/AccordionLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/Accordion/AccordionSpec</requireJs>
+	<requireJs modes="commons m">res/Accordion/AccordionLoader</requireJs>
+
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 	
 	

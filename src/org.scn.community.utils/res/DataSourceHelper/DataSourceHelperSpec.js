@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.utils.DataSourceHelper = {
+		id: "DataSourceHelper",
+		name: "utils.DataSourceHelper",
+		requireName: "utilsdatasourcehelper",
+		fullComponentName: "org.scn.community.utils.DataSourceHelper",
+		fullComponentPackage: "org.scn.community.utils/res/DataSourceHelper",
+		script: "org.scn.community.utils/res/DataSourceHelper/DataSourceHelper",
+		scriptSpec: "org.scn.community.utils/res/DataSourceHelper/DataSourceHelperSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.utils.DataSourceHelper.spec = 
 {"cache": {
@@ -74,4 +85,4 @@
   "width": "50"
 };
 
-})();// End of closure
+});// End of closure

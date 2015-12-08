@@ -16,13 +16,6 @@
 		}
 	],
 	
-	"stdIncludes": 
-	[
-		{
-			"name" : "d3",
-		}
-	],
-	
 	"width": "600",
 	"height": "400"
 }

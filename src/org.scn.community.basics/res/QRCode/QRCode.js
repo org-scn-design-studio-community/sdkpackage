@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./QRCodeSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.QRCode;
 
@@ -133,9 +133,9 @@ QRCode = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsqrcode){
+// // define([], function(basicsqrcode){
 	myComponentData.instance = QRCode;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

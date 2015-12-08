@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/DateRangeScroller/DateRangeScrollerLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/DateRangeScroller/DateRangeScrollerSpec</requireJs>
+	<requireJs modes="commons m">res/DateRangeScroller/DateRangeScrollerLoader</requireJs>
+
 	<cssInclude>res/DateRangeScroller/DateRangeScroller.css</cssInclude>
 	
 	

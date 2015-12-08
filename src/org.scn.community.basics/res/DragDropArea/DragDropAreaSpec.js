@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.DragDropArea = {
+		id: "DragDropArea",
+		name: "basics.DragDropArea",
+		requireName: "basicsdragdroparea",
+		fullComponentName: "org.scn.community.basics.DragDropArea",
+		fullComponentPackage: "org.scn.community.basics/res/DragDropArea",
+		script: "org.scn.community.basics/res/DragDropArea/DragDropArea",
+		scriptSpec: "org.scn.community.basics/res/DragDropArea/DragDropAreaSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.DragDropArea.spec = 
 {
@@ -301,4 +312,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

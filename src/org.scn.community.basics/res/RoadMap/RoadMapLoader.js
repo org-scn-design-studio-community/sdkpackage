@@ -17,31 +17,21 @@
  * limitations under the License. 
  */
 
-(function() {
+define([
+        "./RoadMapSpec", 
+        "./RoadMap",
+        "../../aps/org.scn.community.component.Core"
+        ]
+     , function() {
 
-	org_scn_community_require.knownComponents.basics.RoadMap = {
-		id: "RoadMap",
-		name: "basics.RoadMap",
-		requireName: "basicsroadmap",
-		fullComponentName: "org.scn.community.basics.RoadMap",
-		fullComponentPackage: "org.scn.community.basics/res/RoadMap",
-		script: "org.scn.community.basics/res/RoadMap/RoadMap",
-		scriptSpec: "org.scn.community.basics/res/RoadMap/RoadMapSpec",
-		min: false
-	};
-
-	var myComponentData = org_scn_community_require.knownComponents.basics.RoadMap;
+	 var myComponentData = org_scn_community_require.knownComponents.basics.RoadMap;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		org_scn_community_require.knownModules.component_core.name,
-		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.common_basics.name,
 		
      ]);
-
-	 sap.zen.Dispatcher.instance.pauseDispatching();	 
 
 	 var sdkReqs = require.config({
 		 context : "sdk",
@@ -50,24 +40,11 @@
 	 });
 
 	 sdkReqs(requireInfo1.plainNames, function() {
-	     /** RequireJS Config **/
-		 var requireInfo2 = org_scn_community_require.collectRequire (
-		 [
-		  	myComponentData.name
-	     ]);
-		 
-		 var sdkReqs2 = require.config({
-			 context : "sdk",
-			 paths: requireInfo2.definition,
-			 urlArgs: "v=" + org_scn_community_require.jsVersion,
-		 });
+	 });//End of Require Callback
+	 
+ 	 jQuery.sap.require("sap.ui.commons.RoadMap");
 
-		 sdkReqs(requireInfo2.plainNames, function() {
-		 	 jQuery.sap.require("sap.ui.commons.RoadMap");
-
-			 sap.ui.commons.RoadMap.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-	     	 sap.zen.Dispatcher.instance.resumeDispatching();
-		});//End of Require Callback Component
-	});//End of Require Callback
-})();// End of closure
+	 sap.ui.commons.RoadMap.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+ 
+});// End of closure
 

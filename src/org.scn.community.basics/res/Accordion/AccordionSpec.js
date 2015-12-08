@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.Accordion = {
+		id: "Accordion",
+		name: "basics.Accordion",
+		requireName: "basicsaccordion",
+		fullComponentName: "org.scn.community.basics.Accordion",
+		fullComponentPackage: "org.scn.community.basics/res/Accordion",
+		script: "org.scn.community.basics/res/Accordion/Accordion",
+		scriptSpec: "org.scn.community.basics/res/Accordion/AccordionSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.Accordion.spec = 
 {
@@ -289,4 +300,4 @@
   "width": "260"
 };
 
-})();// End of closure
+});// End of closure

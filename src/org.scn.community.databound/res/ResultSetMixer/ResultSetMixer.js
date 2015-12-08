@@ -1,7 +1,7 @@
 var org_scn_community_databound = org_scn_community_databound || {};
 org_scn_community_databound.centralDataStorage = org_scn_community_databound.centralDataStorage || {}; 
 
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./ResultSetMixerSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.ResultSetMixer;
 myComponentData.instance = {
@@ -151,8 +151,8 @@ myComponentData.instance = {
 	},
 };
 
-define([myComponentData.requireName], function(databoundresultsetmixer){
+// define([], function(databoundresultsetmixer){
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

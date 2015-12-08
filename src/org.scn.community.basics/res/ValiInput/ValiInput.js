@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./ValiInputSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.ValiInput;
 
@@ -184,9 +184,9 @@ ValiInput = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsvaliinput){
+// // define([], function(basicsvaliinput){
 	myComponentData.instance = ValiInput;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

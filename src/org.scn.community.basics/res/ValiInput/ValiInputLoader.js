@@ -17,32 +17,22 @@
  * limitations under the License. 
  */
 
-(function() {
+define([
+        "./ValiInputSpec", 
+        "./ValiInput",
+        "../../aps/org.scn.community.component.Core"
+        ]
+     , function() {
 
-	org_scn_community_require.knownComponents.basics.ValiInput = {
-		id: "ValiInput",
-		name: "basics.ValiInput",
-		requireName: "basicsvaliinput",
-		fullComponentName: "org.scn.community.basics.ValiInput",
-		fullComponentPackage: "org.scn.community.basics/res/ValiInput",
-		script: "org.scn.community.basics/res/ValiInput/ValiInput",
-		scriptSpec: "org.scn.community.basics/res/ValiInput/ValiInputSpec",
-		min: false
-	};
-
-	var myComponentData = org_scn_community_require.knownComponents.basics.ValiInput;
+	 var myComponentData = org_scn_community_require.knownComponents.basics.ValiInput;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		org_scn_community_require.knownModules.component_core.name,
-		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.validate.name,
 		
      ]);
-
-	 sap.zen.Dispatcher.instance.pauseDispatching();	 
 
 	 var sdkReqs = require.config({
 		 context : "sdk",
@@ -51,24 +41,11 @@
 	 });
 
 	 sdkReqs(requireInfo1.plainNames, function() {
-	     /** RequireJS Config **/
-		 var requireInfo2 = org_scn_community_require.collectRequire (
-		 [
-		  	myComponentData.name
-	     ]);
-		 
-		 var sdkReqs2 = require.config({
-			 context : "sdk",
-			 paths: requireInfo2.definition,
-			 urlArgs: "v=" + org_scn_community_require.jsVersion,
-		 });
+	 });//End of Require Callback
+	 
+ 	 jQuery.sap.require("sap.ui.commons.TextField");
 
-		 sdkReqs(requireInfo2.plainNames, function() {
-		 	 jQuery.sap.require("sap.ui.commons.TextField");
-
-			 sap.ui.commons.TextField.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-	     	 sap.zen.Dispatcher.instance.resumeDispatching();
-		});//End of Require Callback Component
-	});//End of Require Callback
-})();// End of closure
+	 sap.ui.commons.TextField.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+ 
+});// End of closure
 

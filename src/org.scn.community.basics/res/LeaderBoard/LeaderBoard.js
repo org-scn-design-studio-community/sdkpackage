@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./LeaderBoardSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.LeaderBoard;
 
@@ -279,9 +279,9 @@ LeaderBoard = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsleaderboard){
+// // define([], function(basicsleaderboard){
 	myComponentData.instance = LeaderBoard;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

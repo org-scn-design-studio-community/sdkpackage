@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./MenuBarSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.MenuBar;
 
@@ -223,9 +223,9 @@ MenuBar = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsmenubar){
+// // define([], function(basicsmenubar){
 	myComponentData.instance = MenuBar;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

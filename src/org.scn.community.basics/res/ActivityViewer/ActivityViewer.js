@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./ActivityViewerSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.ActivityViewer;
 
@@ -207,9 +207,9 @@ ActivityViewer = function () {
 	org_scn_community_component_Core(this, myComponentData);
 };
 
-define([myComponentData.requireName], function(basicsactivityviewer){
+// // define([], function(basicsactivityviewer){
 	myComponentData.instance = ActivityViewer;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

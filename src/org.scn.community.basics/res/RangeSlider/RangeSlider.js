@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./RangeSliderSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.RangeSlider;
 
@@ -135,9 +135,9 @@ RangeSlider = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsrangeslider){
+// // define([], function(basicsrangeslider){
 	myComponentData.instance = RangeSlider;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

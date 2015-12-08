@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./ApsTesterUI5Spec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.prototypes.ApsTesterUI5;
 
@@ -28,9 +28,9 @@ ApsTesterUI5 = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(prototypesapstesterui5){
+// // define([], function(prototypesapstesterui5){
 	myComponentData.instance = ApsTesterUI5;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.ApplicationHeader = {
+		id: "ApplicationHeader",
+		name: "basics.ApplicationHeader",
+		requireName: "basicsapplicationheader",
+		fullComponentName: "org.scn.community.basics.ApplicationHeader",
+		fullComponentPackage: "org.scn.community.basics/res/ApplicationHeader",
+		script: "org.scn.community.basics/res/ApplicationHeader/ApplicationHeader",
+		scriptSpec: "org.scn.community.basics/res/ApplicationHeader/ApplicationHeaderSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.ApplicationHeader.spec = 
 {
@@ -156,4 +167,4 @@
   "width": "auto"
 };
 
-})();// End of closure
+});// End of closure

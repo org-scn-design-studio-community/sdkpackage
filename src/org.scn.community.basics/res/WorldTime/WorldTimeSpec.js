@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.WorldTime = {
+		id: "WorldTime",
+		name: "basics.WorldTime",
+		requireName: "basicsworldtime",
+		fullComponentName: "org.scn.community.basics.WorldTime",
+		fullComponentPackage: "org.scn.community.basics/res/WorldTime",
+		script: "org.scn.community.basics/res/WorldTime/WorldTime",
+		scriptSpec: "org.scn.community.basics/res/WorldTime/WorldTimeSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.WorldTime.spec = 
 {
@@ -231,4 +242,4 @@
   "width": "150"
 };
 
-})();// End of closure
+});// End of closure

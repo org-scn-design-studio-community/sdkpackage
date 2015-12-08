@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/FacetFilter/FacetFilterLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/FacetFilter/FacetFilterSpec</requireJs>
+	<requireJs modes="commons m">res/FacetFilter/FacetFilterLoader</requireJs>
+
 	<cssInclude>res/FacetFilter/FacetFilter.css</cssInclude>
 	
 	

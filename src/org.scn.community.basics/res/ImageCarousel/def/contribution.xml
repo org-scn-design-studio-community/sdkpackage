@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ImageCarousel/ImageCarouselLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/ImageCarousel/ImageCarouselSpec</requireJs>
+	<requireJs modes="commons m">res/ImageCarousel/ImageCarouselLoader</requireJs>
+
 	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 	
 	

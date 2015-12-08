@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./KpiTileSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.KpiTile;
 
@@ -693,9 +693,9 @@ KpiTile = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicskpitile){
+// // define([], function(basicskpitile){
 	myComponentData.instance = KpiTile;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);	
+});	

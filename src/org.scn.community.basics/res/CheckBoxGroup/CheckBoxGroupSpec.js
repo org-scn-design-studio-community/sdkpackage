@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.CheckBoxGroup = {
+		id: "CheckBoxGroup",
+		name: "basics.CheckBoxGroup",
+		requireName: "basicscheckboxgroup",
+		fullComponentName: "org.scn.community.basics.CheckBoxGroup",
+		fullComponentPackage: "org.scn.community.basics/res/CheckBoxGroup",
+		script: "org.scn.community.basics/res/CheckBoxGroup/CheckBoxGroup",
+		scriptSpec: "org.scn.community.basics/res/CheckBoxGroup/CheckBoxGroupSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.CheckBoxGroup.spec = 
 {
@@ -187,4 +198,4 @@
   "width": "230"
 };
 
-})();// End of closure
+});// End of closure

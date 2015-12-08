@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.RatingIndicator = {
+		id: "RatingIndicator",
+		name: "basics.RatingIndicator",
+		requireName: "basicsratingindicator",
+		fullComponentName: "org.scn.community.basics.RatingIndicator",
+		fullComponentPackage: "org.scn.community.basics/res/RatingIndicator",
+		script: "org.scn.community.basics/res/RatingIndicator/RatingIndicator",
+		scriptSpec: "org.scn.community.basics/res/RatingIndicator/RatingIndicatorSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.RatingIndicator.spec = 
 {
@@ -172,4 +183,4 @@
   "width": "200"
 };
 
-})();// End of closure
+});// End of closure

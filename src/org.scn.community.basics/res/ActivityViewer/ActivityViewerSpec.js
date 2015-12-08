@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.ActivityViewer = {
+		id: "ActivityViewer",
+		name: "basics.ActivityViewer",
+		requireName: "basicsactivityviewer",
+		fullComponentName: "org.scn.community.basics.ActivityViewer",
+		fullComponentPackage: "org.scn.community.basics/res/ActivityViewer",
+		script: "org.scn.community.basics/res/ActivityViewer/ActivityViewer",
+		scriptSpec: "org.scn.community.basics/res/ActivityViewer/ActivityViewerSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.ActivityViewer.spec = 
 {
@@ -202,4 +213,4 @@
   "width": "600"
 };
 
-})();// End of closure
+});// End of closure

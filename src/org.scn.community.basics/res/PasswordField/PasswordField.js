@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./PasswordFieldSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.PasswordField;
 
@@ -75,9 +75,9 @@ PasswordField = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicspasswordfield){
+// // define([], function(basicspasswordfield){
 	myComponentData.instance = PasswordField;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

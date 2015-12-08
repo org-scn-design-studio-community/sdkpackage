@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.Paginator = {
+		id: "Paginator",
+		name: "basics.Paginator",
+		requireName: "basicspaginator",
+		fullComponentName: "org.scn.community.basics.Paginator",
+		fullComponentPackage: "org.scn.community.basics/res/Paginator",
+		script: "org.scn.community.basics/res/Paginator/Paginator",
+		scriptSpec: "org.scn.community.basics/res/Paginator/PaginatorSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.Paginator.spec = 
 {
@@ -108,4 +119,4 @@
   "width": "270"
 };
 
-})();// End of closure
+});// End of closure

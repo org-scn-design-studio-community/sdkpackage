@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./ApsTesterSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.prototypes.ApsTester;
 
@@ -27,9 +27,9 @@ ApsTester = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(prototypesapstester){
+// // define([], function(prototypesapstester){
 	myComponentData.instance = ApsTester;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

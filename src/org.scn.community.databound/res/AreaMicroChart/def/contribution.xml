@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/AreaMicroChart/AreaMicroChartLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/AreaMicroChart/AreaMicroChartSpec</requireJs>
+	<requireJs modes="commons m">res/AreaMicroChart/AreaMicroChartLoader</requireJs>
+
 	<cssInclude>res/AreaMicroChart/AreaMicroChart.css</cssInclude>
 	
 	

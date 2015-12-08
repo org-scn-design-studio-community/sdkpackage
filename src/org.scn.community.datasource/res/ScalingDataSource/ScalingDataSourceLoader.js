@@ -17,20 +17,14 @@
  * limitations under the License. 
  */
 
-(function() {
+define([
+        "./ScalingDataSourceSpec", 
+        "./ScalingDataSource",
+        "../../aps/org.scn.community.component.Core"
+        ]
+     , function() {
 
-	org_scn_community_require.knownComponents.datasource.ScalingDataSource = {
-		id: "ScalingDataSource",
-		name: "datasource.ScalingDataSource",
-		requireName: "datasourcescalingdatasource",
-		fullComponentName: "org.scn.community.datasource.ScalingDataSource",
-		fullComponentPackage: "org.scn.community.datasource/res/ScalingDataSource",
-		script: "org.scn.community.datasource/res/ScalingDataSource/ScalingDataSource",
-		scriptSpec: "org.scn.community.datasource/res/ScalingDataSource/ScalingDataSourceSpec",
-		min: false
-	};
-
-	var myComponentData = org_scn_community_require.knownComponents.datasource.ScalingDataSource;
+	 var myComponentData = org_scn_community_require.knownComponents.datasource.ScalingDataSource;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
@@ -41,7 +35,12 @@
 		
      ]);
 
-	 sap.zen.Dispatcher.instance.pauseDispatching();	 
+	 /** RequireJS Config **/
+	 var requireInfo1 = org_scn_community_require.collectRequire (
+	 [
+		org_scn_community_require.knownModules.common_basics.name,
+		
+     ]);
 
 	 var sdkReqs = require.config({
 		 context : "sdk",
@@ -50,22 +49,9 @@
 	 });
 
 	 sdkReqs(requireInfo1.plainNames, function() {
-		 /** RequireJS Config **/
-		 var requireInfo2 = org_scn_community_require.collectRequire (
-		 [
-		  	myComponentData.name
-	     ]);
-		 
-		 var sdkReqs2 = require.config({
-			 context : "sdk",
-			 paths: requireInfo2.definition,
-			 urlArgs: "v=" + org_scn_community_require.jsVersion,
-		 });
+	 });//End of Require Callback
 
-		 sdkReqs(requireInfo2.plainNames, function() {
-			 sap.designstudio.sdk.DataBuffer.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-		     sap.zen.Dispatcher.instance.resumeDispatching();
-		});//End of Require Callback Component
-	});//End of Require Callback
-})();// End of closure
+	 sap.designstudio.sdk.DataBuffer.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+
+});// End of closure
 

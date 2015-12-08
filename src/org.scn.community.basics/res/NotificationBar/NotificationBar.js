@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./NotificationBarSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.NotificationBar;
 
@@ -413,9 +413,9 @@ NotificationBar = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsnotificationbar){
+// // define([], function(basicsnotificationbar){
 	myComponentData.instance = NotificationBar;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

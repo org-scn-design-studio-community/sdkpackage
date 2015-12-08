@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/BulletMicroChart/BulletMicroChartLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/BulletMicroChart/BulletMicroChartSpec</requireJs>
+	<requireJs modes="commons m">res/BulletMicroChart/BulletMicroChartLoader</requireJs>
+
 	<cssInclude>res/BulletMicroChart/BulletMicroChart.css</cssInclude>
 	
 	

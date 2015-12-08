@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./FallbackPictureSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.FallbackPicture;
 
@@ -96,9 +96,9 @@ FallbackPicture = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsfallbackpicture){
+// // define([], function(basicsfallbackpicture){
 	myComponentData.instance = FallbackPicture;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

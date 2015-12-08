@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./FishEyeSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.FishEye;
 
@@ -340,9 +340,9 @@ FishEye = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsfisheye){
+// // define([], function(basicsfisheye){
 	myComponentData.instance = FishEye;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.NotificationBar = {
+		id: "NotificationBar",
+		name: "basics.NotificationBar",
+		requireName: "basicsnotificationbar",
+		fullComponentName: "org.scn.community.basics.NotificationBar",
+		fullComponentPackage: "org.scn.community.basics/res/NotificationBar",
+		script: "org.scn.community.basics/res/NotificationBar/NotificationBar",
+		scriptSpec: "org.scn.community.basics/res/NotificationBar/NotificationBarSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.NotificationBar.spec = 
 {
@@ -206,4 +217,4 @@
   "width": "auto"
 };
 
-})();// End of closure
+});// End of closure

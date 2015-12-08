@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.Link = {
+		id: "Link",
+		name: "basics.Link",
+		requireName: "basicslink",
+		fullComponentName: "org.scn.community.basics.Link",
+		fullComponentPackage: "org.scn.community.basics/res/Link",
+		script: "org.scn.community.basics/res/Link/Link",
+		scriptSpec: "org.scn.community.basics/res/Link/LinkSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.Link.spec = 
 {
@@ -92,4 +103,4 @@
   "width": "100"
 };
 
-})();// End of closure
+});// End of closure

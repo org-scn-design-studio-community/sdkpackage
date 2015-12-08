@@ -17,33 +17,23 @@
  * limitations under the License. 
  */
 
-(function() {
+define([
+        "./DateRangeSliderSpec", 
+        "./DateRangeSlider",
+        "../../aps/org.scn.community.component.Core"
+        ]
+     , function() {
 
-	org_scn_community_require.knownComponents.basics.DateRangeSlider = {
-		id: "DateRangeSlider",
-		name: "basics.DateRangeSlider",
-		requireName: "basicsdaterangeslider",
-		fullComponentName: "org.scn.community.basics.DateRangeSlider",
-		fullComponentPackage: "org.scn.community.basics/res/DateRangeSlider",
-		script: "org.scn.community.basics/res/DateRangeSlider/DateRangeSlider",
-		scriptSpec: "org.scn.community.basics/res/DateRangeSlider/DateRangeSliderSpec",
-		min: false
-	};
-
-	var myComponentData = org_scn_community_require.knownComponents.basics.DateRangeSlider;
+	 var myComponentData = org_scn_community_require.knownComponents.basics.DateRangeSlider;
 	
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		org_scn_community_require.knownModules.component_core.name,
-		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.common_basics.name,
 		org_scn_community_require.knownModules.dateformatter.name,
 		org_scn_community_require.knownModules.sap_suite_loader.name,
 		
      ]);
-
-	 sap.zen.Dispatcher.instance.pauseDispatching();	 
 
 	 var sdkReqs = require.config({
 		 context : "sdk",
@@ -52,24 +42,11 @@
 	 });
 
 	 sdkReqs(requireInfo1.plainNames, function() {
-	     /** RequireJS Config **/
-		 var requireInfo2 = org_scn_community_require.collectRequire (
-		 [
-		  	myComponentData.name
-	     ]);
-		 
-		 var sdkReqs2 = require.config({
-			 context : "sdk",
-			 paths: requireInfo2.definition,
-			 urlArgs: "v=" + org_scn_community_require.jsVersion,
-		 });
+	 });//End of Require Callback
+	 
+ 	 jQuery.sap.require("sap.suite.ui.commons.DateRangeSlider");
 
-		 sdkReqs(requireInfo2.plainNames, function() {
-		 	 jQuery.sap.require("sap.suite.ui.commons.DateRangeSlider");
-
-			 sap.suite.ui.commons.DateRangeSlider.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-	     	 sap.zen.Dispatcher.instance.resumeDispatching();
-		});//End of Require Callback Component
-	});//End of Require Callback
-})();// End of closure
+	 sap.suite.ui.commons.DateRangeSlider.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+ 
+});// End of closure
 

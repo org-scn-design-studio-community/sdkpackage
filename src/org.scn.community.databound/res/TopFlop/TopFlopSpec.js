@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.databound.TopFlop = {
+		id: "TopFlop",
+		name: "databound.TopFlop",
+		requireName: "databoundtopflop",
+		fullComponentName: "org.scn.community.databound.TopFlop",
+		fullComponentPackage: "org.scn.community.databound/res/TopFlop",
+		script: "org.scn.community.databound/res/TopFlop/TopFlop",
+		scriptSpec: "org.scn.community.databound/res/TopFlop/TopFlopSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.databound.TopFlop.spec = 
 {
@@ -406,4 +417,4 @@
   "width": "225"
 };
 
-})();// End of closure
+});// End of closure

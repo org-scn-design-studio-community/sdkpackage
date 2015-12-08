@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./PaginatorSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.Paginator;
 
@@ -73,9 +73,9 @@ Paginator = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicspaginator){
+// // define([], function(basicspaginator){
 	myComponentData.instance = Paginator;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

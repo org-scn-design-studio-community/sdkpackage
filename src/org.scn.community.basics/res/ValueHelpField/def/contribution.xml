@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ValueHelpField/ValueHelpFieldLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/ValueHelpField/ValueHelpFieldSpec</requireJs>
+	<requireJs modes="commons m">res/ValueHelpField/ValueHelpFieldLoader</requireJs>
+
 	<cssInclude>res/ValueHelpField/ValueHelpField.css</cssInclude>
 	
 	

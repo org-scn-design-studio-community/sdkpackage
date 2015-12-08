@@ -8,11 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
+	modes="commons m"
 >
-	<stdInclude kind="d3"/>
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/BulletChartGen/BulletChartGenLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/BulletChartGen/BulletChartGenSpec</requireJs>
+	<requireJs modes="commons m">res/BulletChartGen/BulletChartGenLoader</requireJs>
+
 	<cssInclude>res/BulletChartGen/BulletChartGen.css</cssInclude>
 	
 	

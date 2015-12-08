@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.SegmentedButton = {
+		id: "SegmentedButton",
+		name: "basics.SegmentedButton",
+		requireName: "basicssegmentedbutton",
+		fullComponentName: "org.scn.community.basics.SegmentedButton",
+		fullComponentPackage: "org.scn.community.basics/res/SegmentedButton",
+		script: "org.scn.community.basics/res/SegmentedButton/SegmentedButton",
+		scriptSpec: "org.scn.community.basics/res/SegmentedButton/SegmentedButtonSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.SegmentedButton.spec = 
 {
@@ -315,4 +326,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

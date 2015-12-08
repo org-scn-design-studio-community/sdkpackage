@@ -436,6 +436,18 @@ public class SpecificationReader {
 			if(templatePath.endsWith(this.componentName + ".js")) {
 				if(!new File(iFileName).exists() || (generatedJs != null && generatedJs.getExtendedFullSpec().getPropertyValue("generatedJsFile").equals("true"))) {
 					Helpers.string2File(iFileName, content);
+				} else {
+//					String contentJs = Helpers.file2String(iFileName);
+
+//					contentJs = contentJs.replace("(function(){", "define([\"../../aps/org.scn.community.component.Core\"], function() {");
+//					contentJs = contentJs.replace("}).call(this);", "});");
+//
+//					contentJs = contentJs.replace("define([], function(", "// define([], function(");
+//					contentJs = contentJs.replace("\r\n});\r\n", "\r\n// });\r\n");
+//					
+//					contentJs = contentJs.replace("org.scn.community.component.Core\"", "org.scn.community.component.Core\", \""+this.componentName+"Spec\"");
+					
+//					Helpers.string2File(iFileName, contentJs);
 				}
 			} else {
 				Helpers.string2File(iFileName, content);

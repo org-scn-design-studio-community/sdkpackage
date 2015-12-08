@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Gauge/GaugeLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/Gauge/GaugeSpec</requireJs>
+	<requireJs modes="commons m">res/Gauge/GaugeLoader</requireJs>
+
 	<cssInclude>res/Gauge/Gauge.css</cssInclude>
 	
 	

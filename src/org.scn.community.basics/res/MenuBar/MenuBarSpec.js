@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.MenuBar = {
+		id: "MenuBar",
+		name: "basics.MenuBar",
+		requireName: "basicsmenubar",
+		fullComponentName: "org.scn.community.basics.MenuBar",
+		fullComponentPackage: "org.scn.community.basics/res/MenuBar",
+		script: "org.scn.community.basics/res/MenuBar/MenuBar",
+		scriptSpec: "org.scn.community.basics/res/MenuBar/MenuBarSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.MenuBar.spec = 
 {
@@ -201,4 +212,4 @@
   "width": "400"
 };
 
-})();// End of closure
+});// End of closure

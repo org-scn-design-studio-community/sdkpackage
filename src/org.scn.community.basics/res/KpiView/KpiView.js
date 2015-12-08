@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./KpiViewSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.KpiView;
 
@@ -341,9 +341,9 @@ KpiView = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicskpiview){
+// // define([], function(basicskpiview){
 	myComponentData.instance = KpiView;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

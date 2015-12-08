@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id% = {
+		id: "%COMP-id%",
+		name: "%COMP-package%.%COMP-id%",
+		requireName: "%COMP-package%%COMP-id(lower)%",
+		fullComponentName: "org.scn.community.%COMP-package%.%COMP-id%",
+		fullComponentPackage: "org.scn.community.%COMP-package%/res/%COMP-id%",
+		script: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%",
+		scriptSpec: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%Spec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.spec = 
 %FULL_SPEC_DEFINITION%
@@ -31,4 +42,4 @@
 	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.specComp = 
 %FULL_COMP_SPEC_DEFINITION%
 
-})();// End of closure
+});// End of closure

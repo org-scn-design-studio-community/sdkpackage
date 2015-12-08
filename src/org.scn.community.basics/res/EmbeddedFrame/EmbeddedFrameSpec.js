@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.EmbeddedFrame = {
+		id: "EmbeddedFrame",
+		name: "basics.EmbeddedFrame",
+		requireName: "basicsembeddedframe",
+		fullComponentName: "org.scn.community.basics.EmbeddedFrame",
+		fullComponentPackage: "org.scn.community.basics/res/EmbeddedFrame",
+		script: "org.scn.community.basics/res/EmbeddedFrame/EmbeddedFrame",
+		scriptSpec: "org.scn.community.basics/res/EmbeddedFrame/EmbeddedFrameSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.EmbeddedFrame.spec = 
 {
@@ -106,4 +117,4 @@
   "width": "600"
 };
 
-})();// End of closure
+});// End of closure

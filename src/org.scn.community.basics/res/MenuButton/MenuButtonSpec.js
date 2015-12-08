@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.MenuButton = {
+		id: "MenuButton",
+		name: "basics.MenuButton",
+		requireName: "basicsmenubutton",
+		fullComponentName: "org.scn.community.basics.MenuButton",
+		fullComponentPackage: "org.scn.community.basics/res/MenuButton",
+		script: "org.scn.community.basics/res/MenuButton/MenuButton",
+		scriptSpec: "org.scn.community.basics/res/MenuButton/MenuButtonSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.MenuButton.spec = 
 {
@@ -265,4 +276,4 @@
   "width": "400"
 };
 
-})();// End of closure
+});// End of closure

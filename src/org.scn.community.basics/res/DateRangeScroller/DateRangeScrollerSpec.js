@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.DateRangeScroller = {
+		id: "DateRangeScroller",
+		name: "basics.DateRangeScroller",
+		requireName: "basicsdaterangescroller",
+		fullComponentName: "org.scn.community.basics.DateRangeScroller",
+		fullComponentPackage: "org.scn.community.basics/res/DateRangeScroller",
+		script: "org.scn.community.basics/res/DateRangeScroller/DateRangeScroller",
+		scriptSpec: "org.scn.community.basics/res/DateRangeScroller/DateRangeScrollerSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.DateRangeScroller.spec = 
 {
@@ -304,4 +315,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

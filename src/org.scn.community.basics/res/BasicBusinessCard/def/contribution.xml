@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/BasicBusinessCard/BasicBusinessCardLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/BasicBusinessCard/BasicBusinessCardSpec</requireJs>
+	<requireJs modes="commons m">res/BasicBusinessCard/BasicBusinessCardLoader</requireJs>
+
 	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
 	
 	

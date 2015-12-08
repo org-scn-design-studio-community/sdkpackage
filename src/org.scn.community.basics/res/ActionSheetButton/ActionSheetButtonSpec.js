@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.ActionSheetButton = {
+		id: "ActionSheetButton",
+		name: "basics.ActionSheetButton",
+		requireName: "basicsactionsheetbutton",
+		fullComponentName: "org.scn.community.basics.ActionSheetButton",
+		fullComponentPackage: "org.scn.community.basics/res/ActionSheetButton",
+		script: "org.scn.community.basics/res/ActionSheetButton/ActionSheetButton",
+		scriptSpec: "org.scn.community.basics/res/ActionSheetButton/ActionSheetButtonSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.ActionSheetButton.spec = 
 {
@@ -273,4 +284,4 @@
   "width": "48"
 };
 
-})();// End of closure
+});// End of closure

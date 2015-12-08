@@ -1,4 +1,4 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./AccordionSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.Accordion;
 
@@ -411,9 +411,9 @@ Accordion = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsaccordion){
+// // define([], function(basicsaccordion){
 	myComponentData.instance = Accordion;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

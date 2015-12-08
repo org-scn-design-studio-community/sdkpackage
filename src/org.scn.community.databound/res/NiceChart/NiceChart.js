@@ -1,6 +1,7 @@
-(function(){
+define(["../../aps/org.scn.community.component.Core", "./NiceChartSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.NiceChart;
+
 myComponentData.instance = function () {
 
 /*AUTO PROPERTIES - START*/
@@ -478,8 +479,8 @@ myComponentData.instance = function () {
     };
 };
 
-define([myComponentData.requireName], function(databoundnicechart){
+// define([], function(databoundnicechart){
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

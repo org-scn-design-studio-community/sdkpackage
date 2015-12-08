@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.DateRangeSlider = {
+		id: "DateRangeSlider",
+		name: "basics.DateRangeSlider",
+		requireName: "basicsdaterangeslider",
+		fullComponentName: "org.scn.community.basics.DateRangeSlider",
+		fullComponentPackage: "org.scn.community.basics/res/DateRangeSlider",
+		script: "org.scn.community.basics/res/DateRangeSlider/DateRangeSlider",
+		scriptSpec: "org.scn.community.basics/res/DateRangeSlider/DateRangeSliderSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.DateRangeSlider.spec = 
 {
@@ -340,4 +351,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

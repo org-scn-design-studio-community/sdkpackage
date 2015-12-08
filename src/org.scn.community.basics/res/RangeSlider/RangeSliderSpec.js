@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.basics.RangeSlider = {
+		id: "RangeSlider",
+		name: "basics.RangeSlider",
+		requireName: "basicsrangeslider",
+		fullComponentName: "org.scn.community.basics.RangeSlider",
+		fullComponentPackage: "org.scn.community.basics/res/RangeSlider",
+		script: "org.scn.community.basics/res/RangeSlider/RangeSlider",
+		scriptSpec: "org.scn.community.basics/res/RangeSlider/RangeSliderSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.basics.RangeSlider.spec = 
 {
@@ -266,4 +277,4 @@
   "width": "300"
 };
 
-})();// End of closure
+});// End of closure

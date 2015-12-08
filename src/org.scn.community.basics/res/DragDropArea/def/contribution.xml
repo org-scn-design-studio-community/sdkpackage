@@ -8,10 +8,13 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/DragDropArea/DragDropAreaLoader.js</jsInclude>
+	<requireJs modes="commons m">res/require_loader</requireJs>
+	<requireJs modes="commons m">res/DragDropArea/DragDropAreaSpec</requireJs>
+	<requireJs modes="commons m">res/DragDropArea/DragDropAreaLoader</requireJs>
+
 	<cssInclude>res/DragDropArea/DragDropArea.css</cssInclude>
 	
 	

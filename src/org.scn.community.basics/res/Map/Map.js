@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- (function(){
+ define(["../../aps/org.scn.community.component.Core", "./MapSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.Map;
 
@@ -332,9 +332,9 @@ Map = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsmap){
+// // define([], function(basicsmap){
 	myComponentData.instance = Map;
 	return myComponentData.instance;
-});
+// });
 
-}).call(this);
+});

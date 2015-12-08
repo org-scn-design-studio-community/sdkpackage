@@ -17,7 +17,18 @@
  * limitations under the License. 
  */
 
-(function() {
+define(["../require_loader"], function() {
+
+	org_scn_community_require.knownComponents.databound.ProcessFlow = {
+		id: "ProcessFlow",
+		name: "databound.ProcessFlow",
+		requireName: "databoundprocessflow",
+		fullComponentName: "org.scn.community.databound.ProcessFlow",
+		fullComponentPackage: "org.scn.community.databound/res/ProcessFlow",
+		script: "org.scn.community.databound/res/ProcessFlow/ProcessFlow",
+		scriptSpec: "org.scn.community.databound/res/ProcessFlow/ProcessFlowSpec",
+		min: false
+	};
 
 	org_scn_community_require.knownComponents.databound.ProcessFlow.spec = 
 {};
@@ -558,4 +569,4 @@
   "width": "420"
 };
 
-})();// End of closure
+});// End of closure
