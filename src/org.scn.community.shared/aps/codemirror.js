@@ -1,14 +1,15 @@
 /**
  * CodeMirror Handler
  */
+var sharedPath = "../../org.scn.community.shared/os/"
 require.config({
 	paths : {
-		cm : "../os/codemirror",
-		cmxml : "../os/codemirror/mode/xml/xml",
-		cmjs : "../os/codemirror/mode/javascript/javascript",
-		cmhtml : "../os/codemirror/mode/htmlmixed/htmlmixed",
-		cmcss : "../os/codemirror/mode/css/css",
-		cmmb : "../os/codemirror/addon/edit/matchbrackets",
+		cm : sharedPath + "codemirror",
+		cmxml : sharedPath + "codemirror/mode/xml/xml",
+		cmjs : sharedPath + "codemirror/mode/javascript/javascript",
+		cmhtml : sharedPath + "codemirror/mode/htmlmixed/htmlmixed",
+		cmcss : sharedPath + "codemirror/mode/css/css",
+		cmmb : sharedPath + "codemirror/addon/edit/matchbrackets",
 	},
 	shim : {
 		"cm" : {
