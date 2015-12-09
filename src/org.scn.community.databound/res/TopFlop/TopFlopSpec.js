@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.databound.TopFlop = {
+	var spec = {
 		id: "TopFlop",
 		name: "databound.TopFlop",
 		requireName: "databoundtopflop",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.databound.TopFlop.spec = 
+	spec.spec = 
 {
   "addCounter": {
     "opts": {
@@ -363,10 +363,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.databound.TopFlop.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.databound.TopFlop.specAbout = 
+	spec.specAbout = 
 {
   "description": "Data Top Flop",
   "icon": "TopFlop.png",
@@ -383,7 +383,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.TopFlop.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": true,
@@ -417,4 +417,5 @@ define(["../require_loader"], function() {
   "width": "225"
 };
 
+	return spec;
 });// End of closure

@@ -22,14 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./MenuBarSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.MenuBar;
+var myComponentData = spec;
 
 MenuBar = {
 
@@ -233,9 +238,8 @@ MenuBar = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicsmenubar){
-	myComponentData.instance = MenuBar;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = MenuBar;
+jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

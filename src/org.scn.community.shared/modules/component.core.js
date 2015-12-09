@@ -1,6 +1,10 @@
 /**
  * Core Class
  */
+
+var org_scn_community_component_Core;
+
+define([],function(){
 org_scn_community_component_Core = function (owner, componentData){
 	var that = owner;
 
@@ -239,3 +243,5 @@ org_scn_community_component_Core = function (owner, componentData){
 		return correctSpec[property]["type"];
 	};
 };
+return org_scn_community_component_Core;
+});

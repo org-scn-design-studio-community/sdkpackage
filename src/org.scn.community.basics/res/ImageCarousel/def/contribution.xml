@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ImageCarousel/ImageCarouselSpec</requireJs>
-	<requireJs modes="commons m">res/ImageCarousel/ImageCarouselLoader</requireJs>
+	<requireJs modes="commons m">res/ImageCarousel/ImageCarousel</requireJs>
 
 	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 	

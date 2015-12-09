@@ -22,14 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./RangeSliderSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.RangeSlider;
+var myComponentData = spec;
 
 RangeSlider = {
 
@@ -145,9 +150,8 @@ RangeSlider = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicsrangeslider){
-	myComponentData.instance = RangeSlider;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = RangeSlider;
+jQuery.sap.require("sap.ui.commons.RangeSlider");
+sap.ui.commons.RangeSlider.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

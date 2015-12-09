@@ -17,9 +17,22 @@
  * limitations under the License. 
  */
 
-define(["../../../org.scn.community.shared/modules/component.core", "./ProcessFlowSpec"], function() {
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./ProcessFlowSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.unified"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 
-var myComponentData = org_scn_community_require.knownComponents.databound.ProcessFlow;
+var myComponentData = spec;
 
 ProcessFlow = {
 
@@ -40,9 +53,9 @@ ProcessFlow = {
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		var componentPath = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage , "");
-		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.ProcessFlow.fullComponentName, componentPath);
+		jQuery.sap.registerModulePath(myComponentData.fullComponentName, componentPath);
 
-		sap.ui.controller(org_scn_community_require.knownComponents.databound.ProcessFlow.fullComponentName + ".Controller", {
+		sap.ui.controller(myComponentData.fullComponentName + ".Controller", {
 			owner: that,
 				onErrored: function (event) {
 					org_scn_community_unified.processEvent(that, "onErrored", event);
@@ -57,9 +70,9 @@ ProcessFlow = {
 		});
 
 		that._view = new sap.ui.view({ type: sap.ui.core.mvc.ViewType.XML,  
-            viewName: org_scn_community_require.knownComponents.databound.ProcessFlow.fullComponentName + "." 
-				+ org_scn_community_require.knownComponents.databound.ProcessFlow.id,  
-            controllerName: org_scn_community_require.knownComponents.databound.ProcessFlow.fullComponentName + ".Controller" 
+            viewName: myComponentData.fullComponentName + "." 
+				+ myComponentData.id,  
+            controllerName: myComponentData.fullComponentName + ".Controller" 
         });
 		
 		that._oModel = new sap.ui.model.json.JSONModel(); 
@@ -216,9 +229,8 @@ ProcessFlow = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// define([], function(databoundprocessflow){
-	myComponentData.instance = ProcessFlow;
-	return myComponentData.instance;
-// });
+myComponentData.instance = ProcessFlow;
+jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 
 });

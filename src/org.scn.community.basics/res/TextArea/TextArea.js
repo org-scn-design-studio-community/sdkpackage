@@ -22,14 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./TextAreaSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.TextArea;
+var myComponentData = spec;
 
 TextArea = {
 
@@ -87,9 +92,8 @@ that.addStyleClass("scn-pack-TextArea");
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicstextarea){
-	myComponentData.instance = TextArea;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = TextArea;
+jQuery.sap.require("sap.ui.commons.TextArea");
+sap.ui.commons.TextArea.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.Paginator = {
+	var spec = {
 		id: "Paginator",
 		name: "basics.Paginator",
 		requireName: "basicspaginator",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.Paginator.spec = 
+	spec.spec = 
 {
   "currentPage": {
     "opts": {
@@ -80,10 +80,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Paginator.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Paginator.specAbout = 
+	spec.specAbout = 
 {
   "description": "Paginator",
   "icon": "Paginator.png",
@@ -100,7 +100,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Paginator.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -119,4 +119,5 @@ define(["../require_loader"], function() {
   "width": "270"
 };
 
+	return spec;
 });// End of closure

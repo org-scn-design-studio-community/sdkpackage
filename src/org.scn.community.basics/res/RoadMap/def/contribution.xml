@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/RoadMap/RoadMapSpec</requireJs>
-	<requireJs modes="commons m">res/RoadMap/RoadMapLoader</requireJs>
+	<requireJs modes="commons m">res/RoadMap/RoadMap</requireJs>
 
 	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
 	

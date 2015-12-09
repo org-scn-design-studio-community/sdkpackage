@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/KpiView/KpiViewSpec</requireJs>
-	<requireJs modes="commons m">res/KpiView/KpiViewLoader</requireJs>
+	<requireJs modes="commons m">res/KpiView/KpiView</requireJs>
 
 	<cssInclude>res/KpiView/KpiView.css</cssInclude>
 	

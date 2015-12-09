@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Map/MapSpec</requireJs>
-	<requireJs modes="commons m">res/Map/MapLoader</requireJs>
+	<requireJs modes="commons m">res/Map/Map</requireJs>
 
 	<cssInclude>res/Map/Map.css</cssInclude>
 	

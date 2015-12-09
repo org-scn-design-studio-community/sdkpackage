@@ -3,14 +3,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./ApsTesterSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.prototypes"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.prototypes.ApsTester;
+var myComponentData = spec;
 
 ApsTester = function () {
 
@@ -37,9 +42,9 @@ ApsTester = function () {
 	return that;
 };
 
-// // define([], function(prototypesapstester){
-	myComponentData.instance = ApsTester;
-	return myComponentData.instance;
-// });
+//%INIT-START%
+myComponentData.instance = ApsTester;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
+return myComponentData.instance;
 });

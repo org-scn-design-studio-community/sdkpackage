@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.FishEye = {
+	var spec = {
 		id: "FishEye",
 		name: "basics.FishEye",
 		requireName: "basicsfisheye",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.FishEye.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -155,10 +155,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.FishEye.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.FishEye.specAbout = 
+	spec.specAbout = 
 {
   "description": "Fish Eye",
   "icon": "FishEye.png",
@@ -175,7 +175,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.FishEye.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -194,4 +194,5 @@ define(["../require_loader"], function() {
   "width": "300"
 };
 
+	return spec;
 });// End of closure

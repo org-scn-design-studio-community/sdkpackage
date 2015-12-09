@@ -3,14 +3,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./BulletChartGenSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.prototypes"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.prototypes.BulletChartGen;
+var myComponentData = spec;
 
 BulletChartGen = function () {
 
@@ -39,9 +44,9 @@ BulletChartGen = function () {
 	return that;
 };
 
-// // define([], function(prototypesbulletchartgen){
-	myComponentData.instance = BulletChartGen;
-	return myComponentData.instance;
-// });
+//%INIT-START%
+myComponentData.instance = BulletChartGen;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
+return myComponentData.instance;
 });

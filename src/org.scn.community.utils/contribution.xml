@@ -380,9 +380,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/DataSourceHelper/DataSourceHelperSpec</requireJs>
-	<requireJs modes="commons m">res/DataSourceHelper/DataSourceHelperLoader</requireJs>
+	<requireJs modes="commons m">res/DataSourceHelper/DataSourceHelper</requireJs>
 
 	<cssInclude>res/DataSourceHelper/DataSourceHelper.css</cssInclude>
 	
@@ -634,9 +632,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/JsonObject/JsonObjectSpec</requireJs>
-	<requireJs modes="commons m">res/JsonObject/JsonObjectLoader</requireJs>
+	<requireJs modes="commons m">res/JsonObject/JsonObject</requireJs>
 
 	<cssInclude>res/JsonObject/JsonObject.css</cssInclude>
 	

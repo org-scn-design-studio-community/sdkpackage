@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.databound.UI5Table = {
+	var spec = {
 		id: "UI5Table",
 		name: "databound.UI5Table",
 		requireName: "databoundui5table",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.databound.UI5Table.spec = 
+	spec.spec = 
 {
   "DAllowColumnReorder": {
     "opts": {
@@ -498,10 +498,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.databound.UI5Table.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.databound.UI5Table.specAbout = 
+	spec.specAbout = 
 {
   "description": "UI5 Table - A simple table with rows and columns",
   "icon": "UI5Table.png",
@@ -518,7 +518,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.UI5Table.specComp = 
+	spec.specComp = 
 {
   "cssIncludes": [{"name": "res/_css/simple_formats.css"}],
   "databound": true,
@@ -552,4 +552,5 @@ define(["../require_loader"], function() {
   "width": "800"
 };
 
+	return spec;
 });// End of closure

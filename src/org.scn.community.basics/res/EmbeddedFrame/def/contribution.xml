@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/EmbeddedFrame/EmbeddedFrameSpec</requireJs>
-	<requireJs modes="commons m">res/EmbeddedFrame/EmbeddedFrameLoader</requireJs>
+	<requireJs modes="commons m">res/EmbeddedFrame/EmbeddedFrame</requireJs>
 
 	<cssInclude>res/EmbeddedFrame/EmbeddedFrame.css</cssInclude>
 	

@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/DragDropArea/DragDropAreaSpec</requireJs>
-	<requireJs modes="commons m">res/DragDropArea/DragDropAreaLoader</requireJs>
+	<requireJs modes="commons m">res/DragDropArea/DragDropArea</requireJs>
 
 	<cssInclude>res/DragDropArea/DragDropArea.css</cssInclude>
 	

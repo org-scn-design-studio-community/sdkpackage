@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Calendar/CalendarSpec</requireJs>
-	<requireJs modes="commons m">res/Calendar/CalendarLoader</requireJs>
+	<requireJs modes="commons m">res/Calendar/Calendar</requireJs>
 
 	<cssInclude>res/Calendar/Calendar.css</cssInclude>
 	

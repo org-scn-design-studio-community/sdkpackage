@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/RadioButtonGroup/RadioButtonGroupSpec</requireJs>
-	<requireJs modes="commons m">res/RadioButtonGroup/RadioButtonGroupLoader</requireJs>
+	<requireJs modes="commons m">res/RadioButtonGroup/RadioButtonGroup</requireJs>
 
 	<cssInclude>res/RadioButtonGroup/RadioButtonGroup.css</cssInclude>
 	

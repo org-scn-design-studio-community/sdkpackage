@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/BulletMicroChart/BulletMicroChartSpec</requireJs>
-	<requireJs modes="commons m">res/BulletMicroChart/BulletMicroChartLoader</requireJs>
+	<requireJs modes="commons m">res/BulletMicroChart/BulletMicroChart</requireJs>
 
 	<cssInclude>res/BulletMicroChart/BulletMicroChart.css</cssInclude>
 	

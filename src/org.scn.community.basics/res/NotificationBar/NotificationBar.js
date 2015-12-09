@@ -22,14 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./NotificationBarSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.NotificationBar;
+var myComponentData = spec;
 
 NotificationBar = {
 
@@ -423,9 +428,8 @@ NotificationBar = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicsnotificationbar){
-	myComponentData.instance = NotificationBar;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = NotificationBar;
+jQuery.sap.require("sap.ui.ux3.NotificationBar");
+sap.ui.ux3.NotificationBar.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

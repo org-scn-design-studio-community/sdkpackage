@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.ValiInput = {
+	var spec = {
 		id: "ValiInput",
 		name: "basics.ValiInput",
 		requireName: "basicsvaliinput",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.ValiInput.spec = 
+	spec.spec = 
 {
   "DDefault": {
     "opts": {
@@ -258,10 +258,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ValiInput.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ValiInput.specAbout = 
+	spec.specAbout = 
 {
   "description": "Validated Input Field",
   "icon": "ValiInput.png",
@@ -278,7 +278,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ValiInput.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -303,4 +303,5 @@ define(["../require_loader"], function() {
   "width": "300"
 };
 
+	return spec;
 });// End of closure

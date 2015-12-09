@@ -3,17 +3,21 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./ActivityViewerSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
 	"../../../"+scn_pkg+"basics/os/d3/d3",
 	"../../../"+scn_pkg+"basics/os/d3-plug/gantt-chart-d3v2",
-	"../../../"+scn_pkg+"basics/os/date/DateFormat",
-	
-	"../../../"+scn_pkg+"shared/modules/component.core"
+	"../../../"+scn_pkg+"basics/os/date/DateFormat"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.ActivityViewer;
+var myComponentData = spec;
 
 ActivityViewer = function () {
 	
@@ -221,7 +225,9 @@ ActivityViewer = function () {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
+//%INIT-START%
 myComponentData.instance = ActivityViewer;
-return myComponentData.instance;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
+return myComponentData.instance;
 });

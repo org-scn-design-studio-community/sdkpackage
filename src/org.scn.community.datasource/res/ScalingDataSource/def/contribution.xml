@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ScalingDataSource/ScalingDataSourceSpec</requireJs>
-	<requireJs modes="commons m">res/ScalingDataSource/ScalingDataSourceLoader</requireJs>
+	<requireJs modes="commons m">res/ScalingDataSource/ScalingDataSource</requireJs>
 
 	<cssInclude>res/ScalingDataSource/ScalingDataSource.css</cssInclude>
 	

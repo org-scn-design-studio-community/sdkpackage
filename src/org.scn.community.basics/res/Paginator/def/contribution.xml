@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Paginator/PaginatorSpec</requireJs>
-	<requireJs modes="commons m">res/Paginator/PaginatorLoader</requireJs>
+	<requireJs modes="commons m">res/Paginator/Paginator</requireJs>
 
 	<cssInclude>res/Paginator/Paginator.css</cssInclude>
 	

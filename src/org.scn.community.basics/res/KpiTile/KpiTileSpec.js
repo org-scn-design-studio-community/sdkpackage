@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.KpiTile = {
+	var spec = {
 		id: "KpiTile",
 		name: "basics.KpiTile",
 		requireName: "basicskpitile",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.KpiTile.spec = 
+	spec.spec = 
 {
   "clickedComponent": {
     "opts": {
@@ -196,10 +196,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.KpiTile.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.KpiTile.specAbout = 
+	spec.specAbout = 
 {
   "description": "Kpi Tile",
   "icon": "KpiTile.png",
@@ -210,7 +210,7 @@ define(["../require_loader"], function() {
   }]
 };
 
-	org_scn_community_require.knownComponents.basics.KpiTile.specComp = 
+	spec.specComp = 
 {
   "dataType": "-",
   "databound": false,
@@ -252,4 +252,5 @@ define(["../require_loader"], function() {
   "width": "260"
 };
 
+	return spec;
 });// End of closure

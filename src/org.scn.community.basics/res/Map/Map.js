@@ -22,16 +22,20 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./MapSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
 	"../../../"+scn_pkg+"basics/os/mm/mm",
-	"../../../"+scn_pkg+"basics/os/mm/mm-follower",
-	
-	"../../../"+scn_pkg+"shared/modules/component.core"
+	"../../../"+scn_pkg+"basics/os/mm/mm-follower"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.Map;
+var myComponentData = spec;
 
 Map = function () {
 
@@ -352,9 +356,9 @@ Map = function () {
 	return that;
 };
 
-// // define([], function(basicsmap){
-	myComponentData.instance = Map;
-	return myComponentData.instance;
-// });
+//%INIT-START%
+myComponentData.instance = Map;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
+return myComponentData.instance;
 });

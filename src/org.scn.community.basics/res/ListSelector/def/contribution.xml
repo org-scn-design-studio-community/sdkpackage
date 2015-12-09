@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ListSelector/ListSelectorSpec</requireJs>
-	<requireJs modes="commons m">res/ListSelector/ListSelectorLoader</requireJs>
+	<requireJs modes="commons m">res/ListSelector/ListSelector</requireJs>
 
 	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
 	

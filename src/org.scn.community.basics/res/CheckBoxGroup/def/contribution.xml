@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/CheckBoxGroup/CheckBoxGroupSpec</requireJs>
-	<requireJs modes="commons m">res/CheckBoxGroup/CheckBoxGroupLoader</requireJs>
+	<requireJs modes="commons m">res/CheckBoxGroup/CheckBoxGroup</requireJs>
 
 	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 	

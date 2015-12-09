@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ValueHelpField/ValueHelpFieldSpec</requireJs>
-	<requireJs modes="commons m">res/ValueHelpField/ValueHelpFieldLoader</requireJs>
+	<requireJs modes="commons m">res/ValueHelpField/ValueHelpField</requireJs>
 
 	<cssInclude>res/ValueHelpField/ValueHelpField.css</cssInclude>
 	

@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/UI5Table/UI5TableSpec</requireJs>
-	<requireJs modes="commons m">res/UI5Table/UI5TableLoader</requireJs>
+	<requireJs modes="commons m">res/UI5Table/UI5Table</requireJs>
 
 	<cssInclude>res/UI5Table/UI5Table.css</cssInclude>
 	<cssInclude>res/_css/simple_formats.css</cssInclude>

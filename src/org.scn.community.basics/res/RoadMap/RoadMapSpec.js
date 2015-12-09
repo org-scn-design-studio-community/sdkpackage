@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.RoadMap = {
+	var spec = {
 		id: "RoadMap",
 		name: "basics.RoadMap",
 		requireName: "basicsroadmap",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.RoadMap.spec = 
+	spec.spec = 
 {
   "DCleanAll": {
     "opts": {
@@ -132,10 +132,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.RoadMap.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.RoadMap.specAbout = 
+	spec.specAbout = 
 {
   "description": "Road Map",
   "icon": "RoadMap.png",
@@ -152,7 +152,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.RoadMap.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -171,4 +171,5 @@ define(["../require_loader"], function() {
   "width": "230"
 };
 
+	return spec;
 });// End of closure

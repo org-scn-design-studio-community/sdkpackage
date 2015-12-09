@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Tree/TreeSpec</requireJs>
-	<requireJs modes="commons m">res/Tree/TreeLoader</requireJs>
+	<requireJs modes="commons m">res/Tree/Tree</requireJs>
 
 	<cssInclude>res/Tree/Tree.css</cssInclude>
 	

@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.DragDropArea = {
+	var spec = {
 		id: "DragDropArea",
 		name: "basics.DragDropArea",
 		requireName: "basicsdragdroparea",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.DragDropArea.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -267,10 +267,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.DragDropArea.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.DragDropArea.specAbout = 
+	spec.specAbout = 
 {
   "description": "Drag Drop Area",
   "icon": "DragDropArea.png",
@@ -287,7 +287,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.DragDropArea.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -312,4 +312,5 @@ define(["../require_loader"], function() {
   "width": "300"
 };
 
+	return spec;
 });// End of closure

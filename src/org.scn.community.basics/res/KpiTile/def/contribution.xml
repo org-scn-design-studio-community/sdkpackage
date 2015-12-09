@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/KpiTile/KpiTileSpec</requireJs>
-	<requireJs modes="commons m">res/KpiTile/KpiTileLoader</requireJs>
+	<requireJs modes="commons m">res/KpiTile/KpiTile</requireJs>
 
 	<cssInclude>res/KpiTile/KpiTile.css</cssInclude>
 	

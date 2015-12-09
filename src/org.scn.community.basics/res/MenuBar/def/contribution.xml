@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/MenuBar/MenuBarSpec</requireJs>
-	<requireJs modes="commons m">res/MenuBar/MenuBarLoader</requireJs>
+	<requireJs modes="commons m">res/MenuBar/MenuBar</requireJs>
 
 	<cssInclude>res/MenuBar/MenuBar.css</cssInclude>
 	

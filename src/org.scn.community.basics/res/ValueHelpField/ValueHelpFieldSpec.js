@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.ValueHelpField = {
+	var spec = {
 		id: "ValueHelpField",
 		name: "basics.ValueHelpField",
 		requireName: "basicsvaluehelpfield",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.ValueHelpField.spec = 
+	spec.spec = 
 {
   "editable": {
     "opts": {
@@ -126,10 +126,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ValueHelpField.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ValueHelpField.specAbout = 
+	spec.specAbout = 
 {
   "description": "Value Help Field",
   "icon": "ValueHelpField.png",
@@ -146,7 +146,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ValueHelpField.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -165,4 +165,5 @@ define(["../require_loader"], function() {
   "width": "300"
 };
 
+	return spec;
 });// End of closure

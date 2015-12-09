@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/RatingIndicator/RatingIndicatorSpec</requireJs>
-	<requireJs modes="commons m">res/RatingIndicator/RatingIndicatorLoader</requireJs>
+	<requireJs modes="commons m">res/RatingIndicator/RatingIndicator</requireJs>
 
 	<cssInclude>res/RatingIndicator/RatingIndicator.css</cssInclude>
 	

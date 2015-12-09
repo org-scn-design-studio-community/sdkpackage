@@ -22,14 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./RSSFeedReaderSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.RSSFeedReader;
+var myComponentData = spec;
 
 RSSFeedReader = function () {
 
@@ -115,9 +120,9 @@ RSSFeedReader = function () {
 	return that;
 };
 
-// // define([], function(basicsrssfeedreader){
-	myComponentData.instance = RSSFeedReader;
-	return myComponentData.instance;
-// });
+//%INIT-START%
+myComponentData.instance = RSSFeedReader;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
+return myComponentData.instance;
 });

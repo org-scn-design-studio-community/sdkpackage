@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/TextArea/TextAreaSpec</requireJs>
-	<requireJs modes="commons m">res/TextArea/TextAreaLoader</requireJs>
+	<requireJs modes="commons m">res/TextArea/TextArea</requireJs>
 
 	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	

@@ -3,14 +3,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./ApsTesterUI5Spec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.prototypes"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.prototypes.ApsTesterUI5;
+var myComponentData = spec;
 
 ApsTesterUI5 = {
 
@@ -38,9 +43,8 @@ ApsTesterUI5 = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(prototypesapstesterui5){
-	myComponentData.instance = ApsTesterUI5;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = ApsTesterUI5;
+jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

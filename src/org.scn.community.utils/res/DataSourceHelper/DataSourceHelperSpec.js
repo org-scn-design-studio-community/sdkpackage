@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.utils.DataSourceHelper = {
+	var spec = {
 		id: "DataSourceHelper",
 		name: "utils.DataSourceHelper",
 		requireName: "utilsdatasourcehelper",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.utils.DataSourceHelper.spec = 
+	spec.spec = 
 {"cache": {
   "opts": {
     "apsControl": "checkbox",
@@ -47,10 +47,10 @@ define(["../require_loader"], function() {
   "visible": true
 }};
 
-	org_scn_community_require.knownComponents.utils.DataSourceHelper.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.utils.DataSourceHelper.specAbout = 
+	spec.specAbout = 
 {
   "description": "Data Source Helper - Utilities for work with Data Sources",
   "icon": "DataSourceHelper.png",
@@ -67,7 +67,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.utils.DataSourceHelper.specComp = 
+	spec.specComp = 
 {
   "databound": true,
   "extension": "Component",
@@ -85,4 +85,5 @@ define(["../require_loader"], function() {
   "width": "50"
 };
 
+	return spec;
 });// End of closure

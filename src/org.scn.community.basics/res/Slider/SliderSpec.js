@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.Slider = {
+	var spec = {
 		id: "Slider",
 		name: "basics.Slider",
 		requireName: "basicsslider",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.Slider.spec = 
+	spec.spec = 
 {
   "DLiveChangeActive": {
     "opts": {
@@ -206,10 +206,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Slider.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Slider.specAbout = 
+	spec.specAbout = 
 {
   "description": "Slider",
   "icon": "Slider.png",
@@ -226,7 +226,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Slider.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -245,4 +245,5 @@ define(["../require_loader"], function() {
   "width": "300"
 };
 
+	return spec;
 });// End of closure

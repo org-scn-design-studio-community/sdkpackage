@@ -22,14 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./FallbackPictureSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.FallbackPicture;
+var myComponentData = spec;
 
 FallbackPicture = {
 
@@ -106,9 +111,8 @@ FallbackPicture = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicsfallbackpicture){
-	myComponentData.instance = FallbackPicture;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = FallbackPicture;
+jQuery.sap.require("sap.ui.commons.Image");
+sap.ui.commons.Image.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

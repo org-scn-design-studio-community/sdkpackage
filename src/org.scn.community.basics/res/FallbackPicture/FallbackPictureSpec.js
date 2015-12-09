@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.FallbackPicture = {
+	var spec = {
 		id: "FallbackPicture",
 		name: "basics.FallbackPicture",
 		requireName: "basicsfallbackpicture",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.FallbackPicture.spec = 
+	spec.spec = 
 {
   "fallbackPicture": {
     "opts": {
@@ -66,10 +66,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.FallbackPicture.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.FallbackPicture.specAbout = 
+	spec.specAbout = 
 {
   "description": "Fallback Picture",
   "icon": "FallbackPicture.png",
@@ -86,7 +86,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.FallbackPicture.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -105,4 +105,5 @@ define(["../require_loader"], function() {
   "width": "100"
 };
 
+	return spec;
 });// End of closure

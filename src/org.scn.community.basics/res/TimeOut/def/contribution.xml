@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/TimeOut/TimeOutSpec</requireJs>
-	<requireJs modes="commons m">res/TimeOut/TimeOutLoader</requireJs>
+	<requireJs modes="commons m">res/TimeOut/TimeOut</requireJs>
 
 	<cssInclude>res/TimeOut/TimeOut.css</cssInclude>
 	

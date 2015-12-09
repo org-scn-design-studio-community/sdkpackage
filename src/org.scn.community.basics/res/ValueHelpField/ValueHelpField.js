@@ -22,14 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./ValueHelpFieldSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.ValueHelpField;
+var myComponentData = spec;
 
 ValueHelpField = {
 
@@ -89,9 +94,8 @@ ValueHelpField = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicsvaluehelpfield){
-	myComponentData.instance = ValueHelpField;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = ValueHelpField;
+jQuery.sap.require("sap.ui.commons.ValueHelpField");
+sap.ui.commons.ValueHelpField.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

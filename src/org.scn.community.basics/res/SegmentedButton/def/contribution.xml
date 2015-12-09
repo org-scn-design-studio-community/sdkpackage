@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/SegmentedButton/SegmentedButtonSpec</requireJs>
-	<requireJs modes="commons m">res/SegmentedButton/SegmentedButtonLoader</requireJs>
+	<requireJs modes="commons m">res/SegmentedButton/SegmentedButton</requireJs>
 
 	<cssInclude>res/SegmentedButton/SegmentedButton.css</cssInclude>
 	

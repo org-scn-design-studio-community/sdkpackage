@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/DateRangeScroller/DateRangeScrollerSpec</requireJs>
-	<requireJs modes="commons m">res/DateRangeScroller/DateRangeScrollerLoader</requireJs>
+	<requireJs modes="commons m">res/DateRangeScroller/DateRangeScroller</requireJs>
 
 	<cssInclude>res/DateRangeScroller/DateRangeScroller.css</cssInclude>
 	

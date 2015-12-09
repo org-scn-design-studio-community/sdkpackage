@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/TopFlop/TopFlopSpec</requireJs>
-	<requireJs modes="commons m">res/TopFlop/TopFlopLoader</requireJs>
+	<requireJs modes="commons m">res/TopFlop/TopFlop</requireJs>
 
 	<cssInclude>res/TopFlop/TopFlop.css</cssInclude>
 	

@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ToggleButton/ToggleButtonSpec</requireJs>
-	<requireJs modes="commons m">res/ToggleButton/ToggleButtonLoader</requireJs>
+	<requireJs modes="commons m">res/ToggleButton/ToggleButton</requireJs>
 
 	<cssInclude>res/ToggleButton/ToggleButton.css</cssInclude>
 	

@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.ColorPicker = {
+	var spec = {
 		id: "ColorPicker",
 		name: "basics.ColorPicker",
 		requireName: "basicscolorpicker",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.ColorPicker.spec = 
+	spec.spec = 
 {
   "colorString": {
     "opts": {
@@ -80,10 +80,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ColorPicker.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ColorPicker.specAbout = 
+	spec.specAbout = 
 {
   "description": "Color Picker",
   "icon": "ColorPicker.png",
@@ -100,7 +100,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ColorPicker.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -119,4 +119,5 @@ define(["../require_loader"], function() {
   "width": "270"
 };
 
+	return spec;
 });// End of closure

@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/MenuButton/MenuButtonSpec</requireJs>
-	<requireJs modes="commons m">res/MenuButton/MenuButtonLoader</requireJs>
+	<requireJs modes="commons m">res/MenuButton/MenuButton</requireJs>
 
 	<cssInclude>res/MenuButton/MenuButton.css</cssInclude>
 	

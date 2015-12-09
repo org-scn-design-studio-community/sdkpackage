@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.ApplicationHeader = {
+	var spec = {
 		id: "ApplicationHeader",
 		name: "basics.ApplicationHeader",
 		requireName: "basicsapplicationheader",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.ApplicationHeader.spec = 
+	spec.spec = 
 {
   "displayLogoff": {
     "opts": {
@@ -128,10 +128,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ApplicationHeader.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ApplicationHeader.specAbout = 
+	spec.specAbout = 
 {
   "description": "Application Header",
   "icon": "ApplicationHeader.png",
@@ -148,7 +148,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ApplicationHeader.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -167,4 +167,5 @@ define(["../require_loader"], function() {
   "width": "auto"
 };
 
+	return spec;
 });// End of closure

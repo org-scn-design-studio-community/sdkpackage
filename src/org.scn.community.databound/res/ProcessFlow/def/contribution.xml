@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ProcessFlow/ProcessFlowSpec</requireJs>
-	<requireJs modes="commons m">res/ProcessFlow/ProcessFlowLoader</requireJs>
+	<requireJs modes="commons m">res/ProcessFlow/ProcessFlow</requireJs>
 
 	<cssInclude>res/ProcessFlow/ProcessFlow.css</cssInclude>
 	

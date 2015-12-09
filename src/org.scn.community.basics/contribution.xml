@@ -205,9 +205,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Accordion/AccordionSpec</requireJs>
-	<requireJs modes="commons m">res/Accordion/AccordionLoader</requireJs>
+	<requireJs modes="commons m">res/Accordion/Accordion</requireJs>
 
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 	
@@ -357,9 +355,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ActivityViewer/ActivityViewerSpec</requireJs>
-	<requireJs modes="commons m">res/ActivityViewer/ActivityViewerLoader</requireJs>
+	<requireJs modes="commons m">res/ActivityViewer/ActivityViewer</requireJs>
 
 	<cssInclude>res/ActivityViewer/ActivityViewer.css</cssInclude>
 	
@@ -440,9 +436,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ActionSheetButton/ActionSheetButtonSpec</requireJs>
-	<requireJs modes="commons m">res/ActionSheetButton/ActionSheetButtonLoader</requireJs>
+	<requireJs modes="commons m">res/ActionSheetButton/ActionSheetButton</requireJs>
 
 	<cssInclude>res/ActionSheetButton/ActionSheetButton.css</cssInclude>
 	
@@ -553,9 +547,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ApplicationHeader/ApplicationHeaderSpec</requireJs>
-	<requireJs modes="commons m">res/ApplicationHeader/ApplicationHeaderLoader</requireJs>
+	<requireJs modes="commons m">res/ApplicationHeader/ApplicationHeader</requireJs>
 
 	<cssInclude>res/ApplicationHeader/ApplicationHeader.css</cssInclude>
 	
@@ -719,9 +711,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/BasicBusinessCard/BasicBusinessCardSpec</requireJs>
-	<requireJs modes="commons m">res/BasicBusinessCard/BasicBusinessCardLoader</requireJs>
+	<requireJs modes="commons m">res/BasicBusinessCard/BasicBusinessCard</requireJs>
 
 	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
 	
@@ -792,9 +782,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Calendar/CalendarSpec</requireJs>
-	<requireJs modes="commons m">res/Calendar/CalendarLoader</requireJs>
+	<requireJs modes="commons m">res/Calendar/Calendar</requireJs>
 
 	<cssInclude>res/Calendar/Calendar.css</cssInclude>
 	
@@ -953,9 +941,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/CheckBoxGroup/CheckBoxGroupSpec</requireJs>
-	<requireJs modes="commons m">res/CheckBoxGroup/CheckBoxGroupLoader</requireJs>
+	<requireJs modes="commons m">res/CheckBoxGroup/CheckBoxGroup</requireJs>
 
 	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 	
@@ -1046,9 +1032,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ColorPicker/ColorPickerSpec</requireJs>
-	<requireJs modes="commons m">res/ColorPicker/ColorPickerLoader</requireJs>
+	<requireJs modes="commons m">res/ColorPicker/ColorPicker</requireJs>
 
 	<cssInclude>res/ColorPicker/ColorPicker.css</cssInclude>
 	
@@ -1109,9 +1093,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/DateRangeScroller/DateRangeScrollerSpec</requireJs>
-	<requireJs modes="commons m">res/DateRangeScroller/DateRangeScrollerLoader</requireJs>
+	<requireJs modes="commons m">res/DateRangeScroller/DateRangeScroller</requireJs>
 
 	<cssInclude>res/DateRangeScroller/DateRangeScroller.css</cssInclude>
 	
@@ -1262,9 +1244,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/DateRangeSlider/DateRangeSliderSpec</requireJs>
-	<requireJs modes="commons m">res/DateRangeSlider/DateRangeSliderLoader</requireJs>
+	<requireJs modes="commons m">res/DateRangeSlider/DateRangeSlider</requireJs>
 
 	<cssInclude>res/DateRangeSlider/DateRangeSlider.css</cssInclude>
 	
@@ -1445,9 +1425,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/DragDropArea/DragDropAreaSpec</requireJs>
-	<requireJs modes="commons m">res/DragDropArea/DragDropAreaLoader</requireJs>
+	<requireJs modes="commons m">res/DragDropArea/DragDropArea</requireJs>
 
 	<cssInclude>res/DragDropArea/DragDropArea.css</cssInclude>
 	
@@ -1608,9 +1586,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/EmbeddedFrame/EmbeddedFrameSpec</requireJs>
-	<requireJs modes="commons m">res/EmbeddedFrame/EmbeddedFrameLoader</requireJs>
+	<requireJs modes="commons m">res/EmbeddedFrame/EmbeddedFrame</requireJs>
 
 	<cssInclude>res/EmbeddedFrame/EmbeddedFrame.css</cssInclude>
 	
@@ -1672,9 +1648,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/EmbeddedMedia/EmbeddedMediaSpec</requireJs>
-	<requireJs modes="commons m">res/EmbeddedMedia/EmbeddedMediaLoader</requireJs>
+	<requireJs modes="commons m">res/EmbeddedMedia/EmbeddedMedia</requireJs>
 
 	<cssInclude>res/EmbeddedMedia/EmbeddedMedia.css</cssInclude>
 	
@@ -1726,9 +1700,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/FallbackPicture/FallbackPictureSpec</requireJs>
-	<requireJs modes="commons m">res/FallbackPicture/FallbackPictureLoader</requireJs>
+	<requireJs modes="commons m">res/FallbackPicture/FallbackPicture</requireJs>
 
 	<cssInclude>res/FallbackPicture/FallbackPicture.css</cssInclude>
 	
@@ -1775,8 +1747,6 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
   	
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
   	
   	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
@@ -1801,8 +1771,6 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FioriBar/FioriBar.js</jsInclude>
   	<cssInclude>res/FioriBar/FioriBar.css</cssInclude>
   	<property id="itemConfigLeft" type="String" title="Left Item Config" visible="false" group="Display"/>
@@ -1842,8 +1810,6 @@
 	propertySheetPath="res/FioriButton/aps/FioriButton.html"
 >
 
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FioriButton/FioriButton.js</jsInclude>
 	<cssInclude>res/FioriButton/FioriButton.css</cssInclude>
 	
@@ -1930,8 +1896,6 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FioriToolbar/FioriToolbar.js</jsInclude>
   	<cssInclude>res/FioriToolbar/FioriToolbar.css</cssInclude>
   	<property id="itemConfig" type="String" title="Item Config" visible="false" group="Display"/>
@@ -1970,9 +1934,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/FishEye/FishEyeSpec</requireJs>
-	<requireJs modes="commons m">res/FishEye/FishEyeLoader</requireJs>
+	<requireJs modes="commons m">res/FishEye/FishEye</requireJs>
 
 	<cssInclude>res/FishEye/FishEye.css</cssInclude>
 	
@@ -2063,9 +2025,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Gauge/GaugeSpec</requireJs>
-	<requireJs modes="commons m">res/Gauge/GaugeLoader</requireJs>
+	<requireJs modes="commons m">res/Gauge/Gauge</requireJs>
 
 	<cssInclude>res/Gauge/Gauge.css</cssInclude>
 	
@@ -2277,9 +2237,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ImageCarousel/ImageCarouselSpec</requireJs>
-	<requireJs modes="commons m">res/ImageCarousel/ImageCarouselLoader</requireJs>
+	<requireJs modes="commons m">res/ImageCarousel/ImageCarousel</requireJs>
 
 	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 	
@@ -2360,9 +2318,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/KpiTile/KpiTileSpec</requireJs>
-	<requireJs modes="commons m">res/KpiTile/KpiTileLoader</requireJs>
+	<requireJs modes="commons m">res/KpiTile/KpiTile</requireJs>
 
 	<cssInclude>res/KpiTile/KpiTile.css</cssInclude>
 	
@@ -2452,9 +2408,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/KpiView/KpiViewSpec</requireJs>
-	<requireJs modes="commons m">res/KpiView/KpiViewLoader</requireJs>
+	<requireJs modes="commons m">res/KpiView/KpiView</requireJs>
 
 	<cssInclude>res/KpiView/KpiView.css</cssInclude>
 	
@@ -2756,9 +2710,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/LeaderBoard/LeaderBoardSpec</requireJs>
-	<requireJs modes="commons m">res/LeaderBoard/LeaderBoardLoader</requireJs>
+	<requireJs modes="commons m">res/LeaderBoard/LeaderBoard</requireJs>
 
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 	
@@ -2888,9 +2840,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Link/LinkSpec</requireJs>
-	<requireJs modes="commons m">res/Link/LinkLoader</requireJs>
+	<requireJs modes="commons m">res/Link/Link</requireJs>
 
 	<cssInclude>res/Link/Link.css</cssInclude>
 	
@@ -2941,9 +2891,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ListSelector/ListSelectorSpec</requireJs>
-	<requireJs modes="commons m">res/ListSelector/ListSelectorLoader</requireJs>
+	<requireJs modes="commons m">res/ListSelector/ListSelector</requireJs>
 
 	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
 	
@@ -3144,9 +3092,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/MenuBar/MenuBarSpec</requireJs>
-	<requireJs modes="commons m">res/MenuBar/MenuBarLoader</requireJs>
+	<requireJs modes="commons m">res/MenuBar/MenuBar</requireJs>
 
 	<cssInclude>res/MenuBar/MenuBar.css</cssInclude>
 	
@@ -3237,9 +3183,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/MenuButton/MenuButtonSpec</requireJs>
-	<requireJs modes="commons m">res/MenuButton/MenuButtonLoader</requireJs>
+	<requireJs modes="commons m">res/MenuButton/MenuButton</requireJs>
 
 	<cssInclude>res/MenuButton/MenuButton.css</cssInclude>
 	
@@ -3425,9 +3369,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/NavigationBar/NavigationBarSpec</requireJs>
-	<requireJs modes="commons m">res/NavigationBar/NavigationBarLoader</requireJs>
+	<requireJs modes="commons m">res/NavigationBar/NavigationBar</requireJs>
 
 	<cssInclude>res/NavigationBar/NavigationBar.css</cssInclude>
 	
@@ -3518,9 +3460,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/NotificationBar/NotificationBarSpec</requireJs>
-	<requireJs modes="commons m">res/NotificationBar/NotificationBarLoader</requireJs>
+	<requireJs modes="commons m">res/NotificationBar/NotificationBar</requireJs>
 
 	<cssInclude>res/NotificationBar/NotificationBar.css</cssInclude>
 	
@@ -3642,9 +3582,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Notify/NotifySpec</requireJs>
-	<requireJs modes="commons m">res/Notify/NotifyLoader</requireJs>
+	<requireJs modes="commons m">res/Notify/Notify</requireJs>
 
 	<cssInclude>res/Notify/Notify.css</cssInclude>
 	
@@ -3736,9 +3674,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Map/MapSpec</requireJs>
-	<requireJs modes="commons m">res/Map/MapLoader</requireJs>
+	<requireJs modes="commons m">res/Map/Map</requireJs>
 
 	<cssInclude>res/Map/Map.css</cssInclude>
 	
@@ -3879,9 +3815,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Paginator/PaginatorSpec</requireJs>
-	<requireJs modes="commons m">res/Paginator/PaginatorLoader</requireJs>
+	<requireJs modes="commons m">res/Paginator/Paginator</requireJs>
 
 	<cssInclude>res/Paginator/Paginator.css</cssInclude>
 	
@@ -3942,9 +3876,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/PasswordField/PasswordFieldSpec</requireJs>
-	<requireJs modes="commons m">res/PasswordField/PasswordFieldLoader</requireJs>
+	<requireJs modes="commons m">res/PasswordField/PasswordField</requireJs>
 
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
 	
@@ -4024,13 +3956,9 @@
 	databound="false"
 	modes="commons m"
 >
-	<!-- 
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/QRCode/QRCodeSpec</requireJs>
-	<requireJs modes="commons m">res/QRCode/QRCodeLoader</requireJs>
-	-->
-	<requireJs modes="commons m">res/QRCode/QRCode</requireJs>
 	
+	<requireJs modes="commons m">res/QRCode/QRCode</requireJs>
+
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
 	
 	
@@ -4170,9 +4098,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ProgressIndicator/ProgressIndicatorSpec</requireJs>
-	<requireJs modes="commons m">res/ProgressIndicator/ProgressIndicatorLoader</requireJs>
+	<requireJs modes="commons m">res/ProgressIndicator/ProgressIndicator</requireJs>
 
 	<cssInclude>res/ProgressIndicator/ProgressIndicator.css</cssInclude>
 	
@@ -4254,9 +4180,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/RangeSlider/RangeSliderSpec</requireJs>
-	<requireJs modes="commons m">res/RangeSlider/RangeSliderLoader</requireJs>
+	<requireJs modes="commons m">res/RangeSlider/RangeSlider</requireJs>
 
 	<cssInclude>res/RangeSlider/RangeSlider.css</cssInclude>
 	
@@ -4416,9 +4340,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/RatingIndicator/RatingIndicatorSpec</requireJs>
-	<requireJs modes="commons m">res/RatingIndicator/RatingIndicatorLoader</requireJs>
+	<requireJs modes="commons m">res/RatingIndicator/RatingIndicator</requireJs>
 
 	<cssInclude>res/RatingIndicator/RatingIndicator.css</cssInclude>
 	
@@ -4519,9 +4441,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/RoadMap/RoadMapSpec</requireJs>
-	<requireJs modes="commons m">res/RoadMap/RoadMapLoader</requireJs>
+	<requireJs modes="commons m">res/RoadMap/RoadMap</requireJs>
 
 	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
 	
@@ -4602,9 +4522,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/RSSFeedReader/RSSFeedReaderSpec</requireJs>
-	<requireJs modes="commons m">res/RSSFeedReader/RSSFeedReaderLoader</requireJs>
+	<requireJs modes="commons m">res/RSSFeedReader/RSSFeedReader</requireJs>
 
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
 	
@@ -4666,9 +4584,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/SegmentedButton/SegmentedButtonSpec</requireJs>
-	<requireJs modes="commons m">res/SegmentedButton/SegmentedButtonLoader</requireJs>
+	<requireJs modes="commons m">res/SegmentedButton/SegmentedButton</requireJs>
 
 	<cssInclude>res/SegmentedButton/SegmentedButton.css</cssInclude>
 	
@@ -4817,9 +4733,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Slider/SliderSpec</requireJs>
-	<requireJs modes="commons m">res/Slider/SliderLoader</requireJs>
+	<requireJs modes="commons m">res/Slider/Slider</requireJs>
 
 	<cssInclude>res/Slider/Slider.css</cssInclude>
 	
@@ -4959,9 +4873,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/TextArea/TextAreaSpec</requireJs>
-	<requireJs modes="commons m">res/TextArea/TextAreaLoader</requireJs>
+	<requireJs modes="commons m">res/TextArea/TextArea</requireJs>
 
 	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	
@@ -5042,9 +4954,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/TimeOut/TimeOutSpec</requireJs>
-	<requireJs modes="commons m">res/TimeOut/TimeOutLoader</requireJs>
+	<requireJs modes="commons m">res/TimeOut/TimeOut</requireJs>
 
 	<cssInclude>res/TimeOut/TimeOut.css</cssInclude>
 	
@@ -5155,9 +5065,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ToggleButton/ToggleButtonSpec</requireJs>
-	<requireJs modes="commons m">res/ToggleButton/ToggleButtonLoader</requireJs>
+	<requireJs modes="commons m">res/ToggleButton/ToggleButton</requireJs>
 
 	<cssInclude>res/ToggleButton/ToggleButton.css</cssInclude>
 	
@@ -5268,9 +5176,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Tree/TreeSpec</requireJs>
-	<requireJs modes="commons m">res/Tree/TreeLoader</requireJs>
+	<requireJs modes="commons m">res/Tree/Tree</requireJs>
 
 	<cssInclude>res/Tree/Tree.css</cssInclude>
 	
@@ -5380,9 +5286,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/TriStateCheckBox/TriStateCheckBoxSpec</requireJs>
-	<requireJs modes="commons m">res/TriStateCheckBox/TriStateCheckBoxLoader</requireJs>
+	<requireJs modes="commons m">res/TriStateCheckBox/TriStateCheckBox</requireJs>
 
 	<cssInclude>res/TriStateCheckBox/TriStateCheckBox.css</cssInclude>
 	
@@ -5473,9 +5377,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ValiInput/ValiInputSpec</requireJs>
-	<requireJs modes="commons m">res/ValiInput/ValiInputLoader</requireJs>
+	<requireJs modes="commons m">res/ValiInput/ValiInput</requireJs>
 
 	<cssInclude>res/ValiInput/ValiInput.css</cssInclude>
 	
@@ -5586,9 +5488,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ValueHelpField/ValueHelpFieldSpec</requireJs>
-	<requireJs modes="commons m">res/ValueHelpField/ValueHelpFieldLoader</requireJs>
+	<requireJs modes="commons m">res/ValueHelpField/ValueHelpField</requireJs>
 
 	<cssInclude>res/ValueHelpField/ValueHelpField.css</cssInclude>
 	
@@ -5678,9 +5578,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/WorldTime/WorldTimeSpec</requireJs>
-	<requireJs modes="commons m">res/WorldTime/WorldTimeLoader</requireJs>
+	<requireJs modes="commons m">res/WorldTime/WorldTime</requireJs>
 
 	<cssInclude>res/WorldTime/WorldTime.css</cssInclude>
 	

@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/EmbeddedMedia/EmbeddedMediaSpec</requireJs>
-	<requireJs modes="commons m">res/EmbeddedMedia/EmbeddedMediaLoader</requireJs>
+	<requireJs modes="commons m">res/EmbeddedMedia/EmbeddedMedia</requireJs>
 
 	<cssInclude>res/EmbeddedMedia/EmbeddedMedia.css</cssInclude>
 	

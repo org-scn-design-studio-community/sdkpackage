@@ -22,14 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./WorldTimeSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.WorldTime;
+var myComponentData = spec;
 
 WorldTime = function () {
 
@@ -253,9 +258,9 @@ WorldTime = function () {
 	return that;
 };
 
-// define([], function(basicsworldtime){
-	myComponentData.instance = WorldTime;
-	return myComponentData.instance;
-// });
+//%INIT-START%
+myComponentData.instance = WorldTime;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
+return myComponentData.instance;
 });

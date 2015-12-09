@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.SegmentedButton = {
+	var spec = {
 		id: "SegmentedButton",
 		name: "basics.SegmentedButton",
 		requireName: "basicssegmentedbutton",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.SegmentedButton.spec = 
+	spec.spec = 
 {
   "DCleanAll": {
     "opts": {
@@ -287,10 +287,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.SegmentedButton.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.SegmentedButton.specAbout = 
+	spec.specAbout = 
 {
   "description": "Segmented Button",
   "icon": "SegmentedButton.png",
@@ -307,7 +307,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.SegmentedButton.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -326,4 +326,5 @@ define(["../require_loader"], function() {
   "width": "300"
 };
 
+	return spec;
 });// End of closure

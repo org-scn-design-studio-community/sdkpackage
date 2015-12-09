@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Slider/SliderSpec</requireJs>
-	<requireJs modes="commons m">res/Slider/SliderLoader</requireJs>
+	<requireJs modes="commons m">res/Slider/Slider</requireJs>
 
 	<cssInclude>res/Slider/Slider.css</cssInclude>
 	

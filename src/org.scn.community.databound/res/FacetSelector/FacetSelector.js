@@ -3,14 +3,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./FacetSelectorSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.databound"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.databound.FacetSelector;
+var myComponentData = spec;
 
 FacetSelector = {
 
@@ -224,9 +229,8 @@ FacetSelector = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(databoundfacetselector){
-	myComponentData.instance = FacetSelector;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = FacetSelector;
+jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

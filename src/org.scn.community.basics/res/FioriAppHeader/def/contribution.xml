@@ -6,8 +6,6 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
   	
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
   	
   	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>

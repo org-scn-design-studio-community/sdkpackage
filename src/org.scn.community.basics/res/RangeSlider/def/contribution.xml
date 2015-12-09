@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/RangeSlider/RangeSliderSpec</requireJs>
-	<requireJs modes="commons m">res/RangeSlider/RangeSliderLoader</requireJs>
+	<requireJs modes="commons m">res/RangeSlider/RangeSlider</requireJs>
 
 	<cssInclude>res/RangeSlider/RangeSlider.css</cssInclude>
 	

@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/BasicBusinessCard/BasicBusinessCardSpec</requireJs>
-	<requireJs modes="commons m">res/BasicBusinessCard/BasicBusinessCardLoader</requireJs>
+	<requireJs modes="commons m">res/BasicBusinessCard/BasicBusinessCard</requireJs>
 
 	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
 	

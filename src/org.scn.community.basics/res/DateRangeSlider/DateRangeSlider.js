@@ -22,16 +22,20 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./DateRangeSliderSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
 	"../../../"+scn_pkg+"basics/os/date/DateFormat",
-	"../../../"+scn_pkg+"basics/os/sapui5/sap_suite_loader",
-	
-	"../../../"+scn_pkg+"shared/modules/component.core"
+	"../../../"+scn_pkg+"basics/os/sapui5/sap_suite_loader"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.DateRangeSlider;
+var myComponentData = spec;
 
 DateRangeSlider = {
 
@@ -169,9 +173,8 @@ DateRangeSlider = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicsdaterangeslider){
-	myComponentData.instance = DateRangeSlider;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = DateRangeSlider;
+jQuery.sap.require("sap.suite.ui.commons.DateRangeSlider");
+sap.suite.ui.commons.DateRangeSlider.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

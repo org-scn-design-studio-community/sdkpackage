@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.DateRangeScroller = {
+	var spec = {
 		id: "DateRangeScroller",
 		name: "basics.DateRangeScroller",
 		requireName: "basicsdaterangescroller",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.DateRangeScroller.spec = 
+	spec.spec = 
 {
   "DDate": {
     "opts": {
@@ -266,10 +266,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.DateRangeScroller.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.DateRangeScroller.specAbout = 
+	spec.specAbout = 
 {
   "description": "Date Range Scroller",
   "icon": "DateRangeScroller.png",
@@ -286,7 +286,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.DateRangeScroller.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -315,4 +315,5 @@ define(["../require_loader"], function() {
   "width": "300"
 };
 
+	return spec;
 });// End of closure

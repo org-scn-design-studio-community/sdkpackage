@@ -22,15 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./NotifySpec",
-	"../require_loader",
-	"../../../"+scn_pkg+"basics/os/noty/packaged/noty",
-	
-	"../../../"+scn_pkg+"shared/modules/component.core"
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"basics/os/noty/packaged/noty"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.Notify;
+var myComponentData = spec;
 
 Notify = function () {
 
@@ -108,9 +112,9 @@ Notify = function () {
 	return that;
 };
 
-// // define([], function(basicsnotify){
-	myComponentData.instance = Notify;
-	return myComponentData.instance;
-// });
+//%INIT-START%
+myComponentData.instance = Notify;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
+return myComponentData.instance;
 });

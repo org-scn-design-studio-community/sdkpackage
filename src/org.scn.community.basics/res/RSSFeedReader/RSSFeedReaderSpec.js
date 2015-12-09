@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.RSSFeedReader = {
+	var spec = {
 		id: "RSSFeedReader",
 		name: "basics.RSSFeedReader",
 		requireName: "basicsrssfeedreader",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.RSSFeedReader.spec = 
+	spec.spec = 
 {
   "feedUrl": {
     "opts": {
@@ -82,10 +82,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.RSSFeedReader.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.RSSFeedReader.specAbout = 
+	spec.specAbout = 
 {
   "description": "RSSFeedReader",
   "icon": "RSSFeedReader.png",
@@ -102,7 +102,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.RSSFeedReader.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -121,4 +121,5 @@ define(["../require_loader"], function() {
   "width": "300"
 };
 
+	return spec;
 });// End of closure

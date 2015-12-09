@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.databound.RadioButtonGroup = {
+	var spec = {
 		id: "RadioButtonGroup",
 		name: "databound.RadioButtonGroup",
 		requireName: "databoundradiobuttongroup",
@@ -30,10 +30,10 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.databound.RadioButtonGroup.spec = 
+	spec.spec = 
 {};
 
-	org_scn_community_require.knownComponents.databound.RadioButtonGroup.specInclude = 
+	spec.specInclude = 
 {
   "buttons": {
     "opts": {
@@ -424,7 +424,7 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.databound.RadioButtonGroup.specAbout = 
+	spec.specAbout = 
 {
   "description": "Radio Button Group - Allows Selection with Radio Buttons",
   "icon": "RadioButtonGroup.png",
@@ -441,7 +441,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.RadioButtonGroup.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": false,
@@ -491,4 +491,5 @@ define(["../require_loader"], function() {
   "width": "320"
 };
 
+	return spec;
 });// End of closure

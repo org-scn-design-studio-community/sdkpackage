@@ -22,14 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./ToggleButtonSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.ToggleButton;
+var myComponentData = spec;
 
 ToggleButton = {
 
@@ -85,9 +90,8 @@ ToggleButton = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicstogglebutton){
-	myComponentData.instance = ToggleButton;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = ToggleButton;
+jQuery.sap.require("sap.ui.commons.ToggleButton");
+sap.ui.commons.ToggleButton.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

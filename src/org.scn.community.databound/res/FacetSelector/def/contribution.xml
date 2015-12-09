@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/FacetSelector/FacetSelectorSpec</requireJs>
-	<requireJs modes="commons m">res/FacetSelector/FacetSelectorLoader</requireJs>
+	<requireJs modes="commons m">res/FacetSelector/FacetSelector</requireJs>
 
 	<cssInclude>res/FacetSelector/FacetSelector.css</cssInclude>
 	

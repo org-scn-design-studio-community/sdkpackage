@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.Tree = {
+	var spec = {
 		id: "Tree",
 		name: "basics.Tree",
 		requireName: "basicstree",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.Tree.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -195,10 +195,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Tree.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Tree.specAbout = 
+	spec.specAbout = 
 {
   "description": "Tree",
   "icon": "Tree.png",
@@ -215,7 +215,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Tree.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -234,4 +234,5 @@ define(["../require_loader"], function() {
   "width": "230"
 };
 
+	return spec;
 });// End of closure

@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Accordion/AccordionSpec</requireJs>
-	<requireJs modes="commons m">res/Accordion/AccordionLoader</requireJs>
+	<requireJs modes="commons m">res/Accordion/Accordion</requireJs>
 
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 	

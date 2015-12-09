@@ -1,5 +1,4 @@
 define([
-        "../../res/require_loader"
         ]
      , function() {
 

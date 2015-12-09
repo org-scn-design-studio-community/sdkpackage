@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.TimeOut = {
+	var spec = {
 		id: "TimeOut",
 		name: "basics.TimeOut",
 		requireName: "basicstimeout",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.TimeOut.spec = 
+	spec.spec = 
 {
   "counterVisible": {
     "opts": {
@@ -160,10 +160,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.TimeOut.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.TimeOut.specAbout = 
+	spec.specAbout = 
 {
   "description": "Time Out",
   "icon": "TimeOut.png",
@@ -180,7 +180,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.TimeOut.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -199,4 +199,5 @@ define(["../require_loader"], function() {
   "width": "10"
 };
 
+	return spec;
 });// End of closure

@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.ActivityViewer = {
+	var spec = {
 		id: "ActivityViewer",
 		name: "basics.ActivityViewer",
 		requireName: "basicsactivityviewer",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.ActivityViewer.spec = 
+	spec.spec = 
 {
   "activities": {
     "opts": {
@@ -165,10 +165,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ActivityViewer.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ActivityViewer.specAbout = 
+	spec.specAbout = 
 {
   "description": "Activity Viewer - Gantt Chart for Activities",
   "icon": "ActivityViewer.png",
@@ -185,7 +185,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ActivityViewer.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -213,4 +213,5 @@ define(["../require_loader"], function() {
   "width": "600"
 };
 
+	return spec;
 });// End of closure

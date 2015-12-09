@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.databound.ProcessFlow = {
+	var spec = {
 		id: "ProcessFlow",
 		name: "databound.ProcessFlow",
 		requireName: "databoundprocessflow",
@@ -30,10 +30,10 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.databound.ProcessFlow.spec = 
+	spec.spec = 
 {};
 
-	org_scn_community_require.knownComponents.databound.ProcessFlow.specInclude = 
+	spec.specInclude = 
 {
   "connections": {
     "opts": {
@@ -502,7 +502,7 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.databound.ProcessFlow.specAbout = 
+	spec.specAbout = 
 {
   "description": "Process Flow - Visualizes Processes",
   "icon": "ProcessFlow.png",
@@ -519,7 +519,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.ProcessFlow.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": false,
@@ -569,4 +569,5 @@ define(["../require_loader"], function() {
   "width": "420"
 };
 
+	return spec;
 });// End of closure

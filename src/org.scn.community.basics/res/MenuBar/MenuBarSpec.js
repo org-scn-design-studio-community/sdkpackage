@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.MenuBar = {
+	var spec = {
 		id: "MenuBar",
 		name: "basics.MenuBar",
 		requireName: "basicsmenubar",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.MenuBar.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -173,10 +173,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.MenuBar.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.MenuBar.specAbout = 
+	spec.specAbout = 
 {
   "description": "Menu Bar (>= 1.4)",
   "icon": "MenuBar.png",
@@ -193,7 +193,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.MenuBar.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -212,4 +212,5 @@ define(["../require_loader"], function() {
   "width": "400"
 };
 
+	return spec;
 });// End of closure

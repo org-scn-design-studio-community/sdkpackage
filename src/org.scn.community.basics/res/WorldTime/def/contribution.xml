@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/WorldTime/WorldTimeSpec</requireJs>
-	<requireJs modes="commons m">res/WorldTime/WorldTimeLoader</requireJs>
+	<requireJs modes="commons m">res/WorldTime/WorldTime</requireJs>
 
 	<cssInclude>res/WorldTime/WorldTime.css</cssInclude>
 	

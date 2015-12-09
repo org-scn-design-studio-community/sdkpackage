@@ -25,16 +25,18 @@ if(!org_scn_community_basics_FioriButton.registeredStyles){
 	org_scn_community_basics_FioriButton.registeredStyles = org_scn_community_basics_FioriButton.registeredStyles || "";	
 }
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.FioriButton";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
-
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 sap.ui.commons.Button.extend(ownComponentName, {
 
 	metadata: {
@@ -51,7 +53,7 @@ sap.ui.commons.Button.extend(ownComponentName, {
 	
   	initDesignStudio: function() {
 		var that = this;
-		this._ownScript = _readScriptPath();
+		this._ownScript = org_scn_community_basics.readOwnScriptAccess("", "org.scn.community.basics.FioriButton");
 		
 		this.addStyleClass("scn-pack-FioriButton");
 		

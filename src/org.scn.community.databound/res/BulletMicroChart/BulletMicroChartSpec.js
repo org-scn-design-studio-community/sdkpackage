@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.databound.BulletMicroChart = {
+	var spec = {
 		id: "BulletMicroChart",
 		name: "databound.BulletMicroChart",
 		requireName: "databoundbulletmicrochart",
@@ -30,10 +30,10 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.databound.BulletMicroChart.spec = 
+	spec.spec = 
 {};
 
-	org_scn_community_require.knownComponents.databound.BulletMicroChart.specInclude = 
+	spec.specInclude = 
 {
   "actual": {
     "opts": {
@@ -700,7 +700,7 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.databound.BulletMicroChart.specAbout = 
+	spec.specAbout = 
 {
   "description": "Bullet Micro Chart - Component for Visualization of Data on small areas",
   "icon": "BulletMicroChart.png",
@@ -717,7 +717,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.BulletMicroChart.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": true,
@@ -767,4 +767,5 @@ define(["../require_loader"], function() {
   "width": "400"
 };
 
+	return spec;
 });// End of closure

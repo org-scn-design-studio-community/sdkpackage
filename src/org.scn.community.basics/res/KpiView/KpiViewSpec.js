@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.KpiView = {
+	var spec = {
 		id: "KpiView",
 		name: "basics.KpiView",
 		requireName: "basicskpiview",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.KpiView.spec = 
+	spec.spec = 
 {
   "data": {
     "opts": {
@@ -509,10 +509,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.KpiView.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.KpiView.specAbout = 
+	spec.specAbout = 
 {
   "description": "Kpi View",
   "icon": "KpiView.png",
@@ -529,7 +529,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.KpiView.specComp = 
+	spec.specComp = 
 {
   "dataType": "ResultCell",
   "databound": true,
@@ -559,4 +559,5 @@ define(["../require_loader"], function() {
   "width": "220"
 };
 
+	return spec;
 });// End of closure

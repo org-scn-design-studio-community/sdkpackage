@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.Gauge = {
+	var spec = {
 		id: "Gauge",
 		name: "basics.Gauge",
 		requireName: "basicsgauge",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.Gauge.spec = 
+	spec.spec = 
 {
   "endValue": {
     "opts": {
@@ -322,10 +322,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Gauge.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Gauge.specAbout = 
+	spec.specAbout = 
 {
   "description": "Displays a Gauge (Speedometer)",
   "icon": "Gauge.png",
@@ -342,7 +342,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Gauge.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -361,4 +361,5 @@ define(["../require_loader"], function() {
   "width": "300"
 };
 
+	return spec;
 });// End of closure

@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.TextArea = {
+	var spec = {
 		id: "TextArea",
 		name: "basics.TextArea",
 		requireName: "basicstextarea",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.TextArea.spec = 
+	spec.spec = 
 {
   "editable": {
     "opts": {
@@ -112,10 +112,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.TextArea.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.TextArea.specAbout = 
+	spec.specAbout = 
 {
   "description": "Text Area",
   "icon": "TextArea.png",
@@ -132,7 +132,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.TextArea.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -151,4 +151,5 @@ define(["../require_loader"], function() {
   "width": "230"
 };
 
+	return spec;
 });// End of closure

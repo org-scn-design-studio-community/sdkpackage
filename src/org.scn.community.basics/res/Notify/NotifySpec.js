@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.Notify = {
+	var spec = {
 		id: "Notify",
 		name: "basics.Notify",
 		requireName: "basicsnotify",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.Notify.spec = 
+	spec.spec = 
 {
   "delay": {
     "opts": {
@@ -177,10 +177,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Notify.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Notify.specAbout = 
+	spec.specAbout = 
 {
   "description": "Notify - Leandro Cardoso",
   "icon": "Notify.png",
@@ -197,7 +197,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Notify.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -222,4 +222,5 @@ define(["../require_loader"], function() {
   "width": "100"
 };
 
+	return spec;
 });// End of closure

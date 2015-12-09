@@ -21,7 +21,7 @@ var org_scn_community_unified = {
 	version : "3.0"
 };
 
-define([], function() {
+define(["./component.databound"], function() {
 
 	org_scn_community_unified.getObjectSingleContent= function (owner, name, options) {
 		var that = owner;

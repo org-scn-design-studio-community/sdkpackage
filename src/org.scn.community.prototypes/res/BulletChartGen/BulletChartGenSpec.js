@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.prototypes.BulletChartGen = {
+	var spec = {
 		id: "BulletChartGen",
 		name: "prototypes.BulletChartGen",
 		requireName: "prototypesbulletchartgen",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.prototypes.BulletChartGen.spec = 
+	spec.spec = 
 {
   "clickedgraphkey": {
     "opts": {
@@ -404,10 +404,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.prototypes.BulletChartGen.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.prototypes.BulletChartGen.specAbout = 
+	spec.specAbout = 
 {
   "description": "Bullet Chart",
   "icon": "BulletChartGen.png",
@@ -418,7 +418,7 @@ define(["../require_loader"], function() {
   }]
 };
 
-	org_scn_community_require.knownComponents.prototypes.BulletChartGen.specComp = 
+	spec.specComp = 
 {
   "databound": true,
   "extension": "Component",
@@ -436,4 +436,5 @@ define(["../require_loader"], function() {
   "width": "600"
 };
 
+	return spec;
 });// End of closure

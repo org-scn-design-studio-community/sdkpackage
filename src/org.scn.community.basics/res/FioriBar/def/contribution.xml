@@ -6,8 +6,6 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FioriBar/FioriBar.js</jsInclude>
   	<cssInclude>res/FioriBar/FioriBar.css</cssInclude>
   	<property id="itemConfigLeft" type="String" title="Left Item Config" visible="false" group="Display"/>

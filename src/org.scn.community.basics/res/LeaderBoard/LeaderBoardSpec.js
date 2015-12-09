@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.LeaderBoard = {
+	var spec = {
 		id: "LeaderBoard",
 		name: "basics.LeaderBoard",
 		requireName: "basicsleaderboard",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.LeaderBoard.spec = 
+	spec.spec = 
 {
   "addCounter": {
     "opts": {
@@ -214,10 +214,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.LeaderBoard.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.LeaderBoard.specAbout = 
+	spec.specAbout = 
 {
   "description": "Leader Board",
   "icon": "LeaderBoard.png",
@@ -234,7 +234,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.LeaderBoard.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -253,4 +253,5 @@ define(["../require_loader"], function() {
   "width": "230"
 };
 
+	return spec;
 });// End of closure

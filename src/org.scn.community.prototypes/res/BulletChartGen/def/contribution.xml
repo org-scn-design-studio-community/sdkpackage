@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/BulletChartGen/BulletChartGenSpec</requireJs>
-	<requireJs modes="commons m">res/BulletChartGen/BulletChartGenLoader</requireJs>
+	<requireJs modes="commons m">res/BulletChartGen/BulletChartGen</requireJs>
 
 	<cssInclude>res/BulletChartGen/BulletChartGen.css</cssInclude>
 	

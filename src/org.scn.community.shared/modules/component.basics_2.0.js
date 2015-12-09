@@ -35,11 +35,11 @@ define(["../os/numberformat/numberformatter"], function () {
 					var changed = org_scn_community_basics.determineOwnSize(parent, true);
 
 					if (changed || forced) {
-						if (mainObject.setWidth) {
+						if (mainObject && mainObject.setWidth) {
 							mainObject.setWidth(parent._containerWidth - 2 + "px");
 						}
 
-						if (mainObject.setHeight) {
+						if (mainObject && mainObject.setHeight) {
 							mainObject.setHeight(parent._containerHeight - 2 + "px");
 						}
 

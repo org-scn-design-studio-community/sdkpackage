@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.NotificationBar = {
+	var spec = {
 		id: "NotificationBar",
 		name: "basics.NotificationBar",
 		requireName: "basicsnotificationbar",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.NotificationBar.spec = 
+	spec.spec = 
 {
   "categories": {
     "opts": {
@@ -178,10 +178,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.NotificationBar.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.NotificationBar.specAbout = 
+	spec.specAbout = 
 {
   "description": "Notification Bar",
   "icon": "NotificationBar.png",
@@ -198,7 +198,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.NotificationBar.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -217,4 +217,5 @@ define(["../require_loader"], function() {
   "width": "auto"
 };
 
+	return spec;
 });// End of closure

@@ -22,7 +22,9 @@
 	}
 
 	sap.zen = {};
-	require(["../../org.scn.community.shared/res/require_loader", "../../org.scn.community.basics/res/Accordion/AccordionLoader"], function () {
+	require([ 
+	         "../../org.scn.community.basics/res/Accordion/AccordionLoader"
+	        ], function () {
 		var page = new org.scn.community.generic.PropertyPage();
 		
 		page.componentInstance = new org.scn.community.basics.Accordion();

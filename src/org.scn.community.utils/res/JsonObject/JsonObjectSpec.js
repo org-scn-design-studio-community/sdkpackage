@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.utils.JsonObject = {
+	var spec = {
 		id: "JsonObject",
 		name: "utils.JsonObject",
 		requireName: "utilsjsonobject",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.utils.JsonObject.spec = 
+	spec.spec = 
 {"content": {
   "opts": {
     "apsControl": "array",
@@ -58,10 +58,10 @@ define(["../require_loader"], function() {
   "visible": true
 }};
 
-	org_scn_community_require.knownComponents.utils.JsonObject.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.utils.JsonObject.specAbout = 
+	spec.specAbout = 
 {
   "description": "A class for Json Object, small utilities in Json Format, like creation of JSON objects",
   "icon": "JsonObject.png",
@@ -72,7 +72,7 @@ define(["../require_loader"], function() {
   }]
 };
 
-	org_scn_community_require.knownComponents.utils.JsonObject.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -87,4 +87,5 @@ define(["../require_loader"], function() {
   "width": "10"
 };
 
+	return spec;
 });// End of closure

@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ActionSheetButton/ActionSheetButtonSpec</requireJs>
-	<requireJs modes="commons m">res/ActionSheetButton/ActionSheetButtonLoader</requireJs>
+	<requireJs modes="commons m">res/ActionSheetButton/ActionSheetButton</requireJs>
 
 	<cssInclude>res/ActionSheetButton/ActionSheetButton.css</cssInclude>
 	

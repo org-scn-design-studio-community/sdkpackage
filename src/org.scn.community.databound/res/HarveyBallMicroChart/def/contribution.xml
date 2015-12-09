@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/HarveyBallMicroChart/HarveyBallMicroChartSpec</requireJs>
-	<requireJs modes="commons m">res/HarveyBallMicroChart/HarveyBallMicroChartLoader</requireJs>
+	<requireJs modes="commons m">res/HarveyBallMicroChart/HarveyBallMicroChart</requireJs>
 
 	<cssInclude>res/HarveyBallMicroChart/HarveyBallMicroChart.css</cssInclude>
 	

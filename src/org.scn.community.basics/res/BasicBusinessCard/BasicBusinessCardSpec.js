@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.BasicBusinessCard = {
+	var spec = {
 		id: "BasicBusinessCard",
 		name: "basics.BasicBusinessCard",
 		requireName: "basicsbasicbusinesscard",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.BasicBusinessCard.spec = 
+	spec.spec = 
 {
   "image": {
     "opts": {
@@ -96,10 +96,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.BasicBusinessCard.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.BasicBusinessCard.specAbout = 
+	spec.specAbout = 
 {
   "description": "Basic Business Card",
   "icon": "BasicBusinessCard.png",
@@ -116,7 +116,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.BasicBusinessCard.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -135,4 +135,5 @@ define(["../require_loader"], function() {
   "width": "300"
 };
 
+	return spec;
 });// End of closure

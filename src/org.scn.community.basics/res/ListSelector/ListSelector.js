@@ -16,9 +16,24 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-(function() {
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./ListSelectorSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-    var myComponentData = org_scn_community_require.knownComponents.basics.ListSelector;
+    var myComponentData = spec;
 
     ListSelector = function() {
 
@@ -201,10 +216,9 @@
         /* COMPONENT SPECIFIC CODE - END METHODS*/
         return that;
     };
+//%INIT-START%
+myComponentData.instance = ListSelector;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-    // // define([], function(basicslistselector) {
-        myComponentData.instance = ListSelector;
-        return myComponentData.instance;
-    // });
-
+return myComponentData.instance;
 });

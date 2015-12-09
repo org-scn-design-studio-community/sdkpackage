@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.PasswordField = {
+	var spec = {
 		id: "PasswordField",
 		name: "basics.PasswordField",
 		requireName: "basicspasswordfield",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.PasswordField.spec = 
+	spec.spec = 
 {
   "editable": {
     "opts": {
@@ -112,10 +112,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.PasswordField.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.PasswordField.specAbout = 
+	spec.specAbout = 
 {
   "description": "Password Field",
   "icon": "PasswordField.png",
@@ -132,7 +132,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.PasswordField.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -151,4 +151,5 @@ define(["../require_loader"], function() {
   "width": "300"
 };
 
+	return spec;
 });// End of closure

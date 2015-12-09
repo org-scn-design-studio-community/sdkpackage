@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.Link = {
+	var spec = {
 		id: "Link",
 		name: "basics.Link",
 		requireName: "basicslink",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.Link.spec = 
+	spec.spec = 
 {
   "onPress": {
     "opts": {
@@ -64,10 +64,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Link.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Link.specAbout = 
+	spec.specAbout = 
 {
   "description": "Link",
   "icon": "Link.png",
@@ -84,7 +84,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Link.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -103,4 +103,5 @@ define(["../require_loader"], function() {
   "width": "100"
 };
 
+	return spec;
 });// End of closure

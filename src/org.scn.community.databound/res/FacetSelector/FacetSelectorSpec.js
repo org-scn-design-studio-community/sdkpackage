@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.databound.FacetSelector = {
+	var spec = {
 		id: "FacetSelector",
 		name: "databound.FacetSelector",
 		requireName: "databoundfacetselector",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.databound.FacetSelector.spec = 
+	spec.spec = 
 {
   "DClearOthers": {
     "opts": {
@@ -317,10 +317,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.databound.FacetSelector.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.databound.FacetSelector.specAbout = 
+	spec.specAbout = 
 {
   "description": "Facet Selector - A simple selector which is using the facet techniques",
   "icon": "FacetSelector.png",
@@ -337,7 +337,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.FacetSelector.specComp = 
+	spec.specComp = 
 {
   "databound": true,
   "extension": "DataComponent",
@@ -370,4 +370,5 @@ define(["../require_loader"], function() {
   "width": "800"
 };
 
+	return spec;
 });// End of closure

@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/FishEye/FishEyeSpec</requireJs>
-	<requireJs modes="commons m">res/FishEye/FishEyeLoader</requireJs>
+	<requireJs modes="commons m">res/FishEye/FishEye</requireJs>
 
 	<cssInclude>res/FishEye/FishEye.css</cssInclude>
 	

@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/PasswordField/PasswordFieldSpec</requireJs>
-	<requireJs modes="commons m">res/PasswordField/PasswordFieldLoader</requireJs>
+	<requireJs modes="commons m">res/PasswordField/PasswordField</requireJs>
 
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
 	

@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.ListSelector = {
+	var spec = {
 		id: "ListSelector",
 		name: "basics.ListSelector",
 		requireName: "basicslistselector",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.ListSelector.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -368,10 +368,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ListSelector.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ListSelector.specAbout = 
+	spec.specAbout = 
 {
   "description": "List Selector",
   "icon": "ListSelector.png",
@@ -388,7 +388,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ListSelector.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -407,4 +407,5 @@ define(["../require_loader"], function() {
   "width": "200"
 };
 
+	return spec;
 });// End of closure

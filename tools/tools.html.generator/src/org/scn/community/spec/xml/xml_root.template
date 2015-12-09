@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	%COMPONENT_STD_INCLUDES_SPEC%
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/%COMP-id%/%COMP-id%Spec</requireJs>
-	<requireJs modes="commons m">res/%COMP-id%/%COMP-id%Loader</requireJs>
+	<requireJs modes="commons m">res/%COMP-id%/%COMP-id%</requireJs>
 
 	<cssInclude>res/%COMP-id%/%COMP-id%.css</cssInclude>
 	%COMPONENT_CSS_INCLUDES_SPEC%

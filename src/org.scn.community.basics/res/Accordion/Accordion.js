@@ -3,14 +3,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./AccordionSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.Accordion;
+var myComponentData = spec;
 
 Accordion = {
 
@@ -28,7 +33,7 @@ Accordion = {
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		that._ownScript = org_scn_community_basics.readOwnScriptAccess
-			("", org_scn_community_require.knownComponents.basics.Accordion.fullComponentName).myScriptPath;
+			("", spec.fullComponentName).myScriptPath;
 		
 		that.addStyleClass("scn-pack-Accordion");
 		
@@ -421,9 +426,8 @@ Accordion = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicsaccordion){
-	myComponentData.instance = Accordion;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = Accordion;
+jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

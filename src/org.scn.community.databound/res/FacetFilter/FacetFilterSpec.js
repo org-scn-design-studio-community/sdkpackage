@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.databound.FacetFilter = {
+	var spec = {
 		id: "FacetFilter",
 		name: "databound.FacetFilter",
 		requireName: "databoundfacetfilter",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.databound.FacetFilter.spec = 
+	spec.spec = 
 {
   "DClearOthers": {
     "opts": {
@@ -358,10 +358,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.databound.FacetFilter.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.databound.FacetFilter.specAbout = 
+	spec.specAbout = 
 {
   "description": "Facet Filter - A simple filter which is using the facet techniques",
   "icon": "FacetFilter.png",
@@ -378,7 +378,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.FacetFilter.specComp = 
+	spec.specComp = 
 {
   "databound": true,
   "extension": "DataComponent",
@@ -411,4 +411,5 @@ define(["../require_loader"], function() {
   "width": "800"
 };
 
+	return spec;
 });// End of closure

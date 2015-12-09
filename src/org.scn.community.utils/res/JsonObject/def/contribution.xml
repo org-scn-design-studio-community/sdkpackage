@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/JsonObject/JsonObjectSpec</requireJs>
-	<requireJs modes="commons m">res/JsonObject/JsonObjectLoader</requireJs>
+	<requireJs modes="commons m">res/JsonObject/JsonObject</requireJs>
 
 	<cssInclude>res/JsonObject/JsonObject.css</cssInclude>
 	

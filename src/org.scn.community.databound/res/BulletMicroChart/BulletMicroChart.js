@@ -17,9 +17,22 @@
  * limitations under the License. 
  */
 
-define(["../../../org.scn.community.shared/modules/component.core", "./BulletMicroChartSpec"], function() {
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./BulletMicroChartSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.unified"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 
-var myComponentData = org_scn_community_require.knownComponents.databound.BulletMicroChart;
+var myComponentData = spec;
 
 BulletMicroChart = {
 
@@ -40,17 +53,17 @@ BulletMicroChart = {
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		var componentPath = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage , "");
-		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.BulletMicroChart.fullComponentName, componentPath);
+		jQuery.sap.registerModulePath(myComponentData.fullComponentName, componentPath);
 
-		sap.ui.controller(org_scn_community_require.knownComponents.databound.BulletMicroChart.fullComponentName + ".Controller", {
+		sap.ui.controller(myComponentData.fullComponentName + ".Controller", {
 			owner: that,
 
 		});
 
 		that._view = new sap.ui.view({ type: sap.ui.core.mvc.ViewType.XML,  
-            viewName: org_scn_community_require.knownComponents.databound.BulletMicroChart.fullComponentName + "." 
-				+ org_scn_community_require.knownComponents.databound.BulletMicroChart.id,  
-            controllerName: org_scn_community_require.knownComponents.databound.BulletMicroChart.fullComponentName + ".Controller" 
+            viewName: myComponentData.fullComponentName + "." 
+				+ myComponentData.id,  
+            controllerName: myComponentData.fullComponentName + ".Controller" 
         });
 		
 		that._oModel = new sap.ui.model.json.JSONModel(); 
@@ -229,9 +242,8 @@ BulletMicroChart = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// define([], function(databoundbulletmicrochart){
-	myComponentData.instance = BulletMicroChart;
-	return myComponentData.instance;
-// });
+myComponentData.instance = BulletMicroChart;
+jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 
 });

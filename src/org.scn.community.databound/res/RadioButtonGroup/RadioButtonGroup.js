@@ -17,9 +17,22 @@
  * limitations under the License. 
  */
 
-define(["../../../org.scn.community.shared/modules/component.core", "./RadioButtonGroupSpec"], function() {
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./RadioButtonGroupSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.unified"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 
-var myComponentData = org_scn_community_require.knownComponents.databound.RadioButtonGroup;
+var myComponentData = spec;
 
 RadioButtonGroup = {
 
@@ -40,9 +53,9 @@ RadioButtonGroup = {
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		var componentPath = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage , "");
-		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.RadioButtonGroup.fullComponentName, componentPath);
+		jQuery.sap.registerModulePath(myComponentData.fullComponentName, componentPath);
 
-		sap.ui.controller(org_scn_community_require.knownComponents.databound.RadioButtonGroup.fullComponentName + ".Controller", {
+		sap.ui.controller(myComponentData.fullComponentName + ".Controller", {
 			owner: that,
 				onSelected: function (event) {
 					org_scn_community_unified.processEvent(that, "onSelected", event);
@@ -51,9 +64,9 @@ RadioButtonGroup = {
 		});
 
 		that._view = new sap.ui.view({ type: sap.ui.core.mvc.ViewType.XML,  
-            viewName: org_scn_community_require.knownComponents.databound.RadioButtonGroup.fullComponentName + "." 
-				+ org_scn_community_require.knownComponents.databound.RadioButtonGroup.id,  
-            controllerName: org_scn_community_require.knownComponents.databound.RadioButtonGroup.fullComponentName + ".Controller" 
+            viewName: myComponentData.fullComponentName + "." 
+				+ myComponentData.id,  
+            controllerName: myComponentData.fullComponentName + ".Controller" 
         });
 		
 		that._oModel = new sap.ui.model.json.JSONModel(); 
@@ -206,9 +219,8 @@ RadioButtonGroup = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// define([], function(databoundradiobuttongroup){
-	myComponentData.instance = RadioButtonGroup;
-	return myComponentData.instance;
-// });
+myComponentData.instance = RadioButtonGroup;
+jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 
 });

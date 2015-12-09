@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.databound.LeaderBoard = {
+	var spec = {
 		id: "LeaderBoard",
 		name: "databound.LeaderBoard",
 		requireName: "databoundleaderboard",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.databound.LeaderBoard.spec = 
+	spec.spec = 
 {
   "addCounter": {
     "opts": {
@@ -299,10 +299,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.databound.LeaderBoard.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.databound.LeaderBoard.specAbout = 
+	spec.specAbout = 
 {
   "description": "Data Leader Board",
   "icon": "LeaderBoard.png",
@@ -319,7 +319,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.LeaderBoard.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": true,
@@ -353,4 +353,5 @@ define(["../require_loader"], function() {
   "width": "225"
 };
 
+	return spec;
 });// End of closure

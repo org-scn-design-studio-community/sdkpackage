@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/DateRangeSlider/DateRangeSliderSpec</requireJs>
-	<requireJs modes="commons m">res/DateRangeSlider/DateRangeSliderLoader</requireJs>
+	<requireJs modes="commons m">res/DateRangeSlider/DateRangeSlider</requireJs>
 
 	<cssInclude>res/DateRangeSlider/DateRangeSlider.css</cssInclude>
 	

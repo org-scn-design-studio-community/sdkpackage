@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.Accordion = {
+	var spec = {
 		id: "Accordion",
 		name: "basics.Accordion",
 		requireName: "basicsaccordion",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.Accordion.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -261,10 +261,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Accordion.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Accordion.specAbout = 
+	spec.specAbout = 
 {
   "description": "Accordion - Dynamic List of Entries",
   "icon": "Accordion.png",
@@ -281,7 +281,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Accordion.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -300,4 +300,5 @@ define(["../require_loader"], function() {
   "width": "260"
 };
 
+	return spec;
 });// End of closure

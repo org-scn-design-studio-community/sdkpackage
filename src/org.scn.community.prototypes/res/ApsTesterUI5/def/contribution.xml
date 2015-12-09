@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ApsTesterUI5/ApsTesterUI5Spec</requireJs>
-	<requireJs modes="commons m">res/ApsTesterUI5/ApsTesterUI5Loader</requireJs>
+	<requireJs modes="commons m">res/ApsTesterUI5/ApsTesterUI5</requireJs>
 
 	<cssInclude>res/ApsTesterUI5/ApsTesterUI5.css</cssInclude>
 	

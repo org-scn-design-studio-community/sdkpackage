@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/AreaMicroChart/AreaMicroChartSpec</requireJs>
-	<requireJs modes="commons m">res/AreaMicroChart/AreaMicroChartLoader</requireJs>
+	<requireJs modes="commons m">res/AreaMicroChart/AreaMicroChart</requireJs>
 
 	<cssInclude>res/AreaMicroChart/AreaMicroChart.css</cssInclude>
 	

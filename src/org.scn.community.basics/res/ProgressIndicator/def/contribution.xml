@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ProgressIndicator/ProgressIndicatorSpec</requireJs>
-	<requireJs modes="commons m">res/ProgressIndicator/ProgressIndicatorLoader</requireJs>
+	<requireJs modes="commons m">res/ProgressIndicator/ProgressIndicator</requireJs>
 
 	<cssInclude>res/ProgressIndicator/ProgressIndicator.css</cssInclude>
 	

@@ -22,14 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./PaginatorSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.Paginator;
+var myComponentData = spec;
 
 Paginator = {
 
@@ -83,9 +88,8 @@ Paginator = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicspaginator){
-	myComponentData.instance = Paginator;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = Paginator;
+jQuery.sap.require("sap.ui.commons.Paginator");
+sap.ui.commons.Paginator.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

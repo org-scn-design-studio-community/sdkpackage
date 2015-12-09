@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.databound.AreaMicroChart = {
+	var spec = {
 		id: "AreaMicroChart",
 		name: "databound.AreaMicroChart",
 		requireName: "databoundareamicrochart",
@@ -30,10 +30,10 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.databound.AreaMicroChart.spec = 
+	spec.spec = 
 {};
 
-	org_scn_community_require.knownComponents.databound.AreaMicroChart.specInclude = 
+	spec.specInclude = 
 {
   "chart": {
     "opts": {
@@ -1506,7 +1506,7 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.databound.AreaMicroChart.specAbout = 
+	spec.specAbout = 
 {
   "description": "Area Micro Chart - Component for Visualization of Data on small areas",
   "icon": "AreaMicroChart.png",
@@ -1523,7 +1523,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.AreaMicroChart.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": true,
@@ -1572,4 +1572,5 @@ define(["../require_loader"], function() {
   "width": "400"
 };
 
+	return spec;
 });// End of closure

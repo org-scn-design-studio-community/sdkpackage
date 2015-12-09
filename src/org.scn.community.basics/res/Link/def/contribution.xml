@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/Link/LinkSpec</requireJs>
-	<requireJs modes="commons m">res/Link/LinkLoader</requireJs>
+	<requireJs modes="commons m">res/Link/Link</requireJs>
 
 	<cssInclude>res/Link/Link.css</cssInclude>
 	

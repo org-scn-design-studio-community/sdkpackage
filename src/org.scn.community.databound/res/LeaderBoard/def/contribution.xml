@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/LeaderBoard/LeaderBoardSpec</requireJs>
-	<requireJs modes="commons m">res/LeaderBoard/LeaderBoardLoader</requireJs>
+	<requireJs modes="commons m">res/LeaderBoard/LeaderBoard</requireJs>
 
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 	

@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.RatingIndicator = {
+	var spec = {
 		id: "RatingIndicator",
 		name: "basics.RatingIndicator",
 		requireName: "basicsratingindicator",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.RatingIndicator.spec = 
+	spec.spec = 
 {
   "editable": {
     "opts": {
@@ -144,10 +144,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.RatingIndicator.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.RatingIndicator.specAbout = 
+	spec.specAbout = 
 {
   "description": "Rating Indicator",
   "icon": "RatingIndicator.png",
@@ -164,7 +164,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.RatingIndicator.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -183,4 +183,5 @@ define(["../require_loader"], function() {
   "width": "200"
 };
 
+	return spec;
 });// End of closure

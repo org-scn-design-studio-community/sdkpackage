@@ -22,17 +22,21 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./KpiTileSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
 	"../../../"+scn_pkg+"basics/os/sapui5/sap_m_loader",
 	"../../../"+scn_pkg+"basics/os/sapui5/sap_suite_loader",
-	"../../../"+scn_pkg+"basics/os/x2js/xml2json",
-	
-	"../../../"+scn_pkg+"shared/modules/component.core"
+	"../../../"+scn_pkg+"basics/os/x2js/xml2json"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.KpiTile;
+var myComponentData = spec;
 
 KpiTile = {
 
@@ -706,9 +710,8 @@ KpiTile = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicskpitile){
-	myComponentData.instance = KpiTile;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = KpiTile;
+jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });	

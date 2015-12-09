@@ -22,15 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./DragDropAreaSpec",
-	"../require_loader",
-	"../../../"+scn_pkg+"basics/os/ndd/jq-ndd",
-	
-	"../../../"+scn_pkg+"shared/modules/component.core"
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"basics/os/ndd/jq-ndd"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.DragDropArea;
+var myComponentData = spec;
 
 DragDropArea = {
 
@@ -228,9 +232,8 @@ DragDropArea = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicsdragdroparea){
-	myComponentData.instance = DragDropArea;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = DragDropArea;
+jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
+sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

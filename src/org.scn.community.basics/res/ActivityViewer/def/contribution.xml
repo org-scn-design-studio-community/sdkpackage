@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ActivityViewer/ActivityViewerSpec</requireJs>
-	<requireJs modes="commons m">res/ActivityViewer/ActivityViewerLoader</requireJs>
+	<requireJs modes="commons m">res/ActivityViewer/ActivityViewer</requireJs>
 
 	<cssInclude>res/ActivityViewer/ActivityViewer.css</cssInclude>
 	

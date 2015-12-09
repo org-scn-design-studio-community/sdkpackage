@@ -3,14 +3,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./DataSourceHelperSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.utils"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.utils.DataSourceHelper;
+var myComponentData = spec;
 
 DataSourceHelper = function () {
 
@@ -37,9 +42,9 @@ DataSourceHelper = function () {
 	return that;
 };
 
-// // define([], function(utilsdatasourcehelper){
-	myComponentData.instance = DataSourceHelper;
-	return myComponentData.instance;
-// });
+//%INIT-START%
+myComponentData.instance = DataSourceHelper;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
+return myComponentData.instance;
 });

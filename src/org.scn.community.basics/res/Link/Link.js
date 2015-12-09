@@ -22,14 +22,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./LinkSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.Link;
+var myComponentData = spec;
 
 Link = {
 
@@ -83,9 +88,8 @@ Link = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicslink){
-	myComponentData.instance = Link;
-	return myComponentData.instance;
-// });
-
+//%INIT-START%
+myComponentData.instance = Link;
+jQuery.sap.require("sap.ui.commons.Link");
+sap.ui.commons.Link.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
 });

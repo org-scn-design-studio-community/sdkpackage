@@ -19,8 +19,8 @@
 define([
 		"css!./QRCode.css",
 		"sap/designstudio/sdk/component",
-		"../../../org.scn.community.shared/modules/component.core_2.0",
-		"../../../org.scn.community.shared/modules/component.basics_2.0",
+		"../../../org.scn.community.shared/modules/component.core",
+		"../../../org.scn.community.shared/modules/component.basics",
 		"./QRCodeSpec",
 		"../../../org.scn.community.basics/os/qrcode/qrcode"
 	], function (
@@ -68,6 +68,12 @@ define([
 		that.afterPrepare = function (owner) {
 			var that = owner;
 
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._QR, that.onResize);
+		};
+
+		that.onResize = function (width, height, parent) {
+			var that = parent;
+
 			// visualization on processed data
 			if (that.getPrintOnly()) {
 				if (!(sap && sap.zen && sap.zen.designmode)) {
@@ -106,7 +112,7 @@ define([
 			}
 
 			that.$().empty();
-			that.$().qrcode({
+			that._QR = that.$().qrcode({
 				render : that.render(),
 				minVersion : that.getMinVersion(),
 				maxVersion : that.getMaxVersion(),
@@ -129,21 +135,12 @@ define([
 				fontcolor : "#000000",
 				image : null
 			});
-
-		};
-
-		that.onResize = function (width, height, parent) {
-			// in case special resize code is required
 		};
 
 		/* COMPONENT SPECIFIC CODE - END METHODS*/
 		return that;
 	};
 
-	// // define([], function(basicsqrcode){
 	spec.instance = QRCode;
 	Component.subclass(spec.fullComponentName, spec.instance); // End of SDK
-	return spec.instance;	// return to what, and why?
-	// });
-
 });

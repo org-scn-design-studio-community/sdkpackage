@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.WorldTime = {
+	var spec = {
 		id: "WorldTime",
 		name: "basics.WorldTime",
 		requireName: "basicsworldtime",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.WorldTime.spec = 
+	spec.spec = 
 {
   "dateformat": {
     "opts": {
@@ -203,10 +203,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.WorldTime.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.WorldTime.specAbout = 
+	spec.specAbout = 
 {
   "description": "World Time",
   "icon": "WorldTime.png",
@@ -223,7 +223,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.WorldTime.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -242,4 +242,5 @@ define(["../require_loader"], function() {
   "width": "150"
 };
 
+	return spec;
 });// End of closure

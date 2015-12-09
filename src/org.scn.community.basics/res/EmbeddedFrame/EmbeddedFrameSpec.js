@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.basics.EmbeddedFrame = {
+	var spec = {
 		id: "EmbeddedFrame",
 		name: "basics.EmbeddedFrame",
 		requireName: "basicsembeddedframe",
@@ -30,7 +30,7 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.basics.EmbeddedFrame.spec = 
+	spec.spec = 
 {
   "domainrelaxlevel": {
     "opts": {
@@ -79,10 +79,10 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.basics.EmbeddedFrame.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.EmbeddedFrame.specAbout = 
+	spec.specAbout = 
 {
   "description": "Embedded Frame - Include external web pages directly in your application",
   "icon": "EmbeddedFrame.png",
@@ -99,7 +99,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.EmbeddedFrame.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -117,4 +117,5 @@ define(["../require_loader"], function() {
   "width": "600"
 };
 
+	return spec;
 });// End of closure

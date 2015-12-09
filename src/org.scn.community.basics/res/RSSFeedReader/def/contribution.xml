@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/RSSFeedReader/RSSFeedReaderSpec</requireJs>
-	<requireJs modes="commons m">res/RSSFeedReader/RSSFeedReaderLoader</requireJs>
+	<requireJs modes="commons m">res/RSSFeedReader/RSSFeedReader</requireJs>
 
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
 	

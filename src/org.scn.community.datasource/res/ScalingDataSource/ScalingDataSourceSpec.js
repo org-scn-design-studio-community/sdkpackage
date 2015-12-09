@@ -16,10 +16,11 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([],
+function() {
 
-(function() {
-
-	org_scn_community_require.knownComponents.datasource.ScalingDataSource = {
+	var spec = {
 		id: "ScalingDataSource",
 		name: "datasource.ScalingDataSource",
 		requireName: "datasourcescalingdatasource",
@@ -30,7 +31,7 @@
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.datasource.ScalingDataSource.spec = 
+	spec.spec = 
 {
   "data": {
     "options": {
@@ -85,7 +86,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.datasource.ScalingDataSource.specAbout = 
+	spec.specInclude = 
+{};
+
+	spec.specAbout = 
 {
   "description": "Scaling Data Source - Scales a selection by given factor",
   "icon": "ScalingDataSource.png",
@@ -96,7 +100,7 @@
   }]
 };
 
-	org_scn_community_require.knownComponents.datasource.ScalingDataSource.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "BufferDataSource",
@@ -115,4 +119,5 @@
   "width": "260"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

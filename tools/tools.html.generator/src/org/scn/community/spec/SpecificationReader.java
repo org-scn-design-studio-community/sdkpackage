@@ -41,6 +41,7 @@ public class SpecificationReader {
 	private String ZtlTmpl;
 	
 	private HashMap<String, String> templates = new HashMap<String, String>();
+	private HashMap<String, String> replacedTemplates = new HashMap<String, String>();
 	private String componentName;
 	private String rootPath;
 	private String JsSpecTmpl;
@@ -455,14 +456,23 @@ public class SpecificationReader {
 				}
 			}
 		
-			// content = content.replace("%", "_");
+			replacedTemplates.put(templatePath, content);
 			
 			// last check if we have not missed some
 			if(content.contains("%")) {
 				// throw new RuntimeException(content.substring(content.indexOf("%"), 10));
 			}
+		}
 
+		for (String templatePath : this.replacedTemplates.keySet()) {
+			String content = replacedTemplates.get(templatePath);
+			
 			String iFileName = this.rootPath + File.separator + templatePath;
+			
+			if(templatePath.endsWith(this.componentName + "Loader.js")) {
+				continue;
+			}
+
 			if(templatePath.endsWith(this.componentName + ".js")) {
 				if(!new File(iFileName).exists() || (generatedJs != null && generatedJs.getExtendedFullSpec().getPropertyValue("generatedJsFile").equals("true"))) {
 					Helpers.string2File(iFileName, content);
@@ -479,14 +489,63 @@ public class SpecificationReader {
 						String defineContent = "//%DEFINE-START%\r\n";
 						defineContent += "var scn_pkg=\"org.scn.community.\";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(\".\",\"_\");}";
 						defineContent += "\r\ndefine([";
+						
 						defineContent += "\r\n\t\"sap/designstudio/sdk/component\",";
 						defineContent += "\r\n\t\"./"+this.componentName+"Spec\",";
-						defineContent += "\r\n\t\"../require_loader\",";
-						defineContent += "\r\n\t" + this.serializeRequires();
-						defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.core\"";
-						defineContent += "\r\n\t],\r\n\tfunction() {\r\n";
+						defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.core\",";
+						
+						Property packageProp = helper.getProperty(this.compProperties, "package");
+						HashMap<String, String> packageProperties = packageProp.getExtendedFullSpec().getProperties();
+						String packagePropValue = this.getAdvancedProperty(packageProperties, "package");
+						
+						Property unifiedProp = helper.getProperty(this.compProperties, "extension");
+						boolean hasExtension = unifiedProp != null;
+						
+						if(hasExtension) {
+							HashMap<String, String> unifiedProperties = unifiedProp.getExtendedFullSpec().getProperties();
+							String unifiedPropValue = this.getAdvancedProperty(unifiedProperties, "extension");
+							if(unifiedPropValue.startsWith("ui5.")) {
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.unified\"";
+							} else {
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component."+packagePropValue+"\"";
+							}
+						} else {
+							defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component."+packagePropValue+"\"";	
+						}
+
+						String requ = this.serializeRequires();
+						if(!requ.isEmpty()) {
+							defineContent += ",";	
+						}
+						
+						defineContent += "\r\n\t" + requ;
+						
+						defineContent += "\r\n\t],\r\n\tfunction(";
+						defineContent += "\r\n\t\tComponent,";
+						defineContent += "\r\n\t\tspec,";
+						defineContent += "\r\n\t\tcore,";
+						defineContent += "\r\n\t\tbasics";
+						defineContent += "\r\n\t) {\r\n";
 
 						contentJs = contentJs.substring(0, indexDefineStart) + defineContent + contentJs.substring(indexDefineEnd);
+						
+						indexDefineStart = contentJs.indexOf("//%INIT-START%");
+						if(indexDefineStart == -1) {
+							indexDefineStart = contentJs.indexOf("myComponentData.instance = "+this.componentName+";");
+							indexDefineStart = contentJs.lastIndexOf("};") + 4;
+						}
+						indexDefineEnd = contentJs.lastIndexOf("});");
+						
+						defineContent = "//%INIT-START%\r\n";
+						defineContent += "myComponentData.instance = "+this.componentName+";\r\n";
+						defineContent += "" + replacedTemplates.get(this.componentName+"Loader.js");
+						defineContent += "return myComponentData.instance;\r\n";
+						
+						contentJs = contentJs.substring(0, indexDefineStart) + defineContent + contentJs.substring(indexDefineEnd);
+						
+						contentJs = contentJs.replace("myComponentData = org_scn_community_require.knownComponents."+packagePropValue+"." + this.componentName, "myComponentData = spec");
+						
+						// contentJs = contentJs.replace("", "");
 						Helpers.string2File(iFileName, contentJs);
 					}
 
@@ -497,7 +556,7 @@ public class SpecificationReader {
 		}
 	}
 
-	private CharSequence serializeRequires() {
+	private String serializeRequires() {
 		String requires = "";
 		
 		for (String require : componentRequries) {
@@ -506,6 +565,10 @@ public class SpecificationReader {
 		
 		for (String require : componentRequries2) {
 			requires = requires + require + ",\r\n\t";
+		}
+
+		if(!requires.isEmpty()) {
+			requires = requires.substring(0, requires.lastIndexOf(",\r\n\t"));	
 		}
 
 		return requires;

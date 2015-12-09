@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-define(["../require_loader"], function() {
-
-	org_scn_community_require.knownComponents.databound.HarveyBallMicroChart = {
+	var spec = {
 		id: "HarveyBallMicroChart",
 		name: "databound.HarveyBallMicroChart",
 		requireName: "databoundharveyballmicrochart",
@@ -30,10 +30,10 @@ define(["../require_loader"], function() {
 		min: false
 	};
 
-	org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.spec = 
+	spec.spec = 
 {};
 
-	org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.specInclude = 
+	spec.specInclude = 
 {
   "colorPalette": {
     "opts": {
@@ -375,7 +375,7 @@ define(["../require_loader"], function() {
   }
 };
 
-	org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.specAbout = 
+	spec.specAbout = 
 {
   "description": "Harvey Ball Micro Chart - Component for Visualization of Data on small areas",
   "icon": "HarveyBallMicroChart.png",
@@ -392,7 +392,7 @@ define(["../require_loader"], function() {
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": true,
@@ -442,4 +442,5 @@ define(["../require_loader"], function() {
   "width": "200"
 };
 
+	return spec;
 });// End of closure

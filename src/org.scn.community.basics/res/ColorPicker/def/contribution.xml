@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ColorPicker/ColorPickerSpec</requireJs>
-	<requireJs modes="commons m">res/ColorPicker/ColorPickerLoader</requireJs>
+	<requireJs modes="commons m">res/ColorPicker/ColorPicker</requireJs>
 
 	<cssInclude>res/ColorPicker/ColorPicker.css</cssInclude>
 	

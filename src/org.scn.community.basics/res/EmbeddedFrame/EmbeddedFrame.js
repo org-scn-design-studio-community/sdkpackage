@@ -3,14 +3,19 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"sap/designstudio/sdk/component",
 	"./EmbeddedFrameSpec",
-	"../require_loader",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
-	"../../../"+scn_pkg+"shared/modules/component.core"
 	],
-	function() {
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 //%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.EmbeddedFrame;
+var myComponentData = spec;
 
 EmbeddedFrame = function () {
 
@@ -105,9 +110,9 @@ EmbeddedFrame = function () {
 	return that;
 };
 
-// // define([], function(basicsembeddedframe){
-	myComponentData.instance = EmbeddedFrame;
-	return myComponentData.instance;
-// });
+//%INIT-START%
+myComponentData.instance = EmbeddedFrame;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
+return myComponentData.instance;
 });

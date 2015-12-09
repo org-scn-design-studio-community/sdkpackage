@@ -11,9 +11,7 @@
 	modes="commons m"
 >
 	
-	<requireJs modes="commons m">res/require_loader</requireJs>
-	<requireJs modes="commons m">res/ValiInput/ValiInputSpec</requireJs>
-	<requireJs modes="commons m">res/ValiInput/ValiInputLoader</requireJs>
+	<requireJs modes="commons m">res/ValiInput/ValiInput</requireJs>
 
 	<cssInclude>res/ValiInput/ValiInput.css</cssInclude>
 	
