@@ -69,11 +69,17 @@ define([
 			var that = owner;
 
 			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._QR, that.onResize);
+			
+			that.doRender();
 		};
 
 		that.onResize = function (width, height, parent) {
 			var that = parent;
 
+			that.doRender();
+		};
+		
+		that.doRender = function () {
 			// visualization on processed data
 			if (that.getPrintOnly()) {
 				if (!(sap && sap.zen && sap.zen.designmode)) {
