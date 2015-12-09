@@ -19,6 +19,7 @@
 
 var org_scn_community_basics = org_scn_community_basics || {};
 
+define(["../os/jshashtable/jshashtable","../os/numberformat/numberformatter"], function() {
 /* IMPORTANT! ORIGINAL LOCATION - basics/res */
 
 org_scn_community_basics.resizeContentAbsoluteLayout = function (parent, mainObject, callback) {
@@ -453,3 +454,5 @@ org_scn_community_basics.getRepositoryImageUrlPrefix = function (owner, componen
 
 	return correctUrl;
 };
+
+});

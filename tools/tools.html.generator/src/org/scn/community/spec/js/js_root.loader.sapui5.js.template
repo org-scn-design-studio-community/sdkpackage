@@ -29,7 +29,7 @@ define([
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		%COMPONENT_REQUIRE_SPEC%
+		
      ]);
 
 	 var sdkReqs = require.config({

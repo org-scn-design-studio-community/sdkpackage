@@ -29,8 +29,6 @@ define([
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		org_scn_community_require.knownModules.common_basics.name,
-		org_scn_community_require.knownModules.mm.name,
 		
      ]);
 
@@ -46,8 +44,7 @@ define([
 		 /** RequireJS Config **/
 		 var requireInfo2 = org_scn_community_require.collectRequire (
 		 [
-		 	org_scn_community_require.knownModules.mmfollower.name,
-		
+		 	
 	     ]);
 		 
 		 var sdkReqs2 = require.config({

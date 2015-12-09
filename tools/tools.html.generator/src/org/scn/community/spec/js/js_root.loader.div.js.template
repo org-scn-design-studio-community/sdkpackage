@@ -29,7 +29,7 @@ define([
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		%COMPONENT_REQUIRE_SPEC%
+		
      ]);
 
 	 sap.zen.Dispatcher.instance.pauseDispatching();	 
@@ -44,7 +44,7 @@ define([
 		 /** RequireJS Config **/
 		 var requireInfo2 = org_scn_community_require.collectRequire (
 		 [
-		 	%COMPONENT_REQUIRE_SPEC2%
+		 	
 	     ]);
 		 
 		 var sdkReqs2 = require.config({
