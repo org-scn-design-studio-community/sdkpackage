@@ -26,9 +26,9 @@ if(sap.firefly != undefined) {
 var C_ORG_SCN_COMMUNITY_;	// Declare with a var
 //hana runtime case, no . in folder names!
 if(!org_scn_community_basics.isHana) {
-	var C_ORG_SCN_COMMUNITY_ = "org.scn.community.";	
+	C_ORG_SCN_COMMUNITY_ = "org.scn.community.";	
 } else {
-	var C_ORG_SCN_COMMUNITY_ = "org_scn_community_";
+	C_ORG_SCN_COMMUNITY_ = "org_scn_community_";
 }
 
 define([
