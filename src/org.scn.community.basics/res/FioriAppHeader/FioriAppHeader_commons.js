@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 SCN Community Contributors
+ * Copyright 2014 SCN Community Contributors
  * 
  * Original Source Code Location:
  *  https://github.com/sap-design-studio-free-addons/sdk-package
@@ -18,16 +18,27 @@
  * 
  */
 /**
- *	Officially working sap.m mode sap.m.Toolbar for Design Studio 1.6
+ * 
+ * DEPRECATED Commons mode
+ * 
+ * Based on from original version by Mike Howles, blogged here: 
+ * (http://scn.sap.com/community/businessobjects-design-studio/blog/2014/11/03/design-studio-sdk-13--fiori-like-page-heading-with-buttons-and-more)
+ * 
  */
-define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], function() {
+define([
+        "../../../org.scn.community.shared/os/sapui5/commons-warning",
+        "../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"
+    ],function(warningTopic){
+	jQuery.sap.require("sap.m.Page");
 	var componentInfo = {
 		visible : true,
-		title : "Fiori Toolbar",
+		title : "Fiori App Header (Deprecated Commons Mode)",
 		icon : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHySURBVDhPlY9NaxNRFIbPbdKFK1HwB7hxowvBVUXwB4h7xY3dK/oDBCmYNoGYtqixYHWTCIKL0oJ1YW2aBPrhTBPbkRYsVWkTC8GEaqfJzP2q771jpS1ufGfuuXfe85xz7tDef+pogdYaMVltec3w7+dB/WPCdiCP5zb6Fls4q6P84QJp8xPf/LOvN69PbUkV2YdEBokWHtvv2rs6vajFn666jTauZJvYhGXMBHDmrjaGUp/Jf2bZFXq2PuI14WCsbYWjiRRxkEJC7339FRx7stQ1XGWjX+4Wa0iaggOiP7vWAhVKO1t+bMjFy7KrNybXtZJQBESFhM5G2KSJSw0/lp6LZebpkXfz7Zo2tEmCtldQFPFQh0suRLbynQ0tdqdnWcY597zyww/9ALP3FRVwTFVq2Nm8+NI7nZ2PPZyLp0pdySJLlS7nq5dy1Z9oZnmpJGEBD7g4P7pAgw71lygxwxLvKTFN/WVKlVnmQ265DijkApFMkLLlByfThe5U+WrOvZJ32YPCiYGpO29WTiWn44Pu/cIasI4pECSMJN4Lj0vxvmJ9e7fhd3pGZm+PL4tWo/dVhQYWxrw6kCDk4EhwEYYcGvdq9yY/CY4/582d9k4ngOlsNG+NfYQFRdFMAGMqgoC3d+0xNJ51TVuY1jUk578Bvm+Y4nNJ66IAAAAASUVORK5CYII=",
 		author : "Mike Howles",
-		description : "A Fiori-Inspired Toolbar using UI5 Handler",
-		topics : [{
+		description : "A Fiori-Inspired App Header using UI5 Handler",
+		topics : [
+			warningTopic,
+		{
 			title : "SDK Component",
 			content : "This component is an UI5 SDK Component.  Be sure you install the plugin to your server platform should you find it useful."
 		},{
@@ -36,23 +47,23 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 		}]
 	};
 	var dsProperties = {
-		selectedItemKey : { 
+		selectedItem : { 
 			opts : {
-				desc : "Selected Item Key",
+				desc : "Selected Item",
 				noAps : true
 			},
 			ui5Meta : "string"
 		},
-		selectedHeaderKey : { 
+		selectedHeader : { 
 			opts : {
-				desc : "Selected Header Item Key",
+				desc : "Selected Header Item Text",
 				noAps : true
 			},
 			ui5Meta : "string"
 		},
 		selectedItemText : { 
 			opts : {
-				desc : "Selected Item Text",
+				desc : "Selected Item",
 				noAps : true
 			},
 			ui5Meta : "string"
@@ -73,29 +84,28 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 				apsControl : "script"
 			}
 		},
-		design : {
+		onnav : { 
+			ui5Meta : "string",
 			opts : {
 				cat : "Items",
-				desc : "Design",
-				apsControl : "segmentedbutton",
-				defaultValue : "Auto",
-				options : [
-				   {key : "Auto", text : "Auto"},
-				   {key : "Info", text : "Info"},
-				   {key : "Solid", text : "Solid"},
-				   {key : "Transparent", text : "Transparent"}
-				]			
-			},
-			ui5Meta : "string"
+				order : 0,
+				desc : "On Back",
+				apsControl : "script"
+			}
 		},
-		enabled : {
+		title : { 
 			opts : {
-				cat : "Items",
-				desc : "Enabled",
-				defaultValue : true,
-				apsControl : "checkbox",
-			},
-			ui5Meta : "boolean"
+				desc : "Title",
+				cat : "General",
+				apsControl : "text"
+			}
+		},
+		showNavButton : { 
+			opts : {
+				desc : "Show Back Button",
+				cat : "General",
+				apsControl : "checkbox"
+			}
 		},
 		itemConfig : { 
 			opts : {
@@ -164,10 +174,7 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 					}
 				}
 			},
-			ui5Meta : {
-				type : "object[]",
-				defaultValue : []
-			}
+			ui5Meta : "string"
 		}
 	};
 	var meta = {
@@ -176,7 +183,7 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 	for(var p in dsProperties){
 		if(dsProperties[p].ui5Meta) meta.properties[p] = dsProperties[p].ui5Meta;
 	}
-	sap.m.OverflowToolbar.extend("org.scn.community.basics.FioriToolbar", {
+	sap.m.Page.extend("org.scn.community.basics.FioriAppHeader", {
 		_itemConfig : [],
 		_selectedItem : "",
 		_selectedHeader : "",
@@ -185,45 +192,40 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 		initDesignStudio : function() {
 			// Called by sap.designstudio.sdkui5.Handler  (sdkui5_handler.js)
 			this.addStyleClass("DesignStudioSCN");
-			this.addStyleClass("FioriToolbar");
+			this.addStyleClass("FioriAppHeader");
+			if(this._navBtn) this._navBtn.attachBrowserEvent("click",this.dsClick,this);
 		},
 		dsClick : function(oControlEvent){
 			this.fireDesignStudioEvent("onnav");
 		},
+		setShowNavButton : function(b){
+			sap.m.Page.prototype.setShowNavButton.apply(this,arguments);
+			if(this._navBtn) this._navBtn.attachBrowserEvent("click",this.dsClick,this);
+		},
 		setSelectedItem : function(s){
 			this._selectedItem = s;
-		},
-		setSelectedItemKey : function(s){
-			this._selectedItemKey = s;
 		},
 		getSelectedItem : function(){
 			return this._selectedItem;
 		},
-		getSelectedItemKey : function(){
-			return this._selectedItemKey;
-		},
 		setSelectedHeader : function(s){
 			this._selectedHeader = s;
-		},
-		setSelectedHeaderKey : function(s){
-			this._selectedHeaderKey = s;
 		},
 		getSelectedHeader : function(){
 			return this._selectedHeader;
 		},
-		getSelectedHeaderKey : function(){
-			return this._selectedHeaderKey;
-		},
-		setItemConfig : function(a){
-			this._itemConfig = a;
+		setItemConfig : function(s){
+			var o = [];
+			if(s && s!="") o = jQuery.parseJSON(s);
+			this._itemConfig = o;
 			this.redraw();
 			return this;
 		},
 		getItemConfig : function(){
-			return this._itemConfig;
+			return JSON.stringify(this._itemConfig);
 		},
 		redraw : function(){
-			this.destroyContent();
+			this.destroyHeaderContent();
 			for(var i=0;i<this._itemConfig.length;i++){
 				var title = "";
 				var actualTitle = this._itemConfig[i].text;
@@ -232,59 +234,53 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 					text : title,
 					icon : this._itemConfig[i].icon
 				});
-				b.addStyleClass("DesignStudioSCN");
 				if(this._itemConfig[i].type) b.setType(this._itemConfig[i].type);
-				this.addContent(b);
+				this.addHeaderContent(b);
 				var items = this._itemConfig[i].items || [];
 				if(items.length<=0){	// Single button
-					b.attachPress(function(o){
+					b.attachBrowserEvent("click",function(text,key){
 						return function(oControlEvent){
-							this._selectedItem = o.headerTitle;
-							this._selectedItemKey = o.headerKey;
-							this._selectedHeader = o.headerTitle;
-							this._selectedHeaderKey = o.headerKey;
-							this.fireDesignStudioPropertiesChangedAndEvent(["selectedHeader","selectedItem","selectedHeaderKey","selectedItemKey"],"onitemselect");
+							this._selectedItem = key;
+							this._selectedHeader = key;
+							this.setSelectedItemText(text);
+							this.setSelectedHeaderText(text);
+							this.fireDesignStudioPropertiesChangedAndEvent(["selectedHeader","selectedItem","selectedHeaderText","selectedItemText"],"onitemselect");
 						};
-					}({
-						headerTitle : actualTitle,
-						headerKey : this._itemConfig[i].key
-					}),this);
-	
+					}(actualTitle,this._itemConfig[i].key),this);
 				}else{	// Action Sheet
-					// Event Handler definition
-					var clickHandler = function(index){
+					b.attachBrowserEvent("click",function(index){
 						return function(oControlEvent){
 							var items = this._itemConfig[index].items;
 							var actionSheet = new sap.m.ActionSheet({
 								title :  this._itemConfig[index].text,
 								placement : "Vertical",
 							});
-							actionSheet.addStyleClass("DesignStudioSCN");
 							for(var j=0;j<items.length;j++){
 								var item = items[j];
 								var actionButton = new sap.m.Button({
 									text : item.text,
 								    icon : item.icon
 								});
-								actionButton.addStyleClass("DesignStudioSCN");
-								// Action Item Handler
-								var actionHandler = function(it,section,as){
+								// Event Handler definition
+								var clickHandler = function(it,section,as){
 									return function(oControlEvent){
-										this._selectedItem = it.text;
-										this._selectedItemKey = it.key;
-										this._selectedHeader = section.text;
-										this._selectedHeaderKey = section.key;
+										this._selectedItem = it.key;
+										this._selectedHeader = section.key;
+										this.setSelectedItemText(it.text);
+										this.setSelectedHeaderText(section.text);
 										as.close();
-										this.fireDesignStudioPropertiesChangedAndEvent(["selectedHeader","selectedItem","selectedHeaderKey","selectedItemKey"],"onitemselect");
+										this.fireDesignStudioPropertiesChangedAndEvent(["selectedHeader","selectedItem","selectedHeaderText","selectedItemText"],"onitemselect");
 									};
 								}(item,this._itemConfig[index],actionSheet);
-								actionButton.attachPress(actionHandler,this);
+								// Desktop Support
+								// actionButton.attachBrowserEvent("click",clickHandler,this);
+								// Mobile Support
+								actionButton.attachPress(clickHandler,this);
 								actionSheet.addButton(actionButton);
 							}
-							actionSheet.openBy(this.getContent()[index]);
+							actionSheet.openBy(this.getHeaderContent()[index]);
 						};
-					}(i);
-					b.attachPress(clickHandler,this);
+					}(i),this);
 				}
 			}
 		},

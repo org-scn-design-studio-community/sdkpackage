@@ -1,0 +1,35 @@
+/*
+Undo Zen Crosstab CSS damage for non-compact form factor
+*/
+
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapMBtnInner * .sapMBtnDefault,
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapMBtnCustomIcon,
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapMBtnIcon,
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapMBtnInner * .sapUiIcon,
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapMBtnInner * .sapUiIconMirrorInRTL {
+    font-size: 1.37rem !important;
+    line-height: 2.37rem !important;
+}
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapMBtnInner * .sapMBtnDefault,
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapMBtnHoverable,
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapMBtnInner,
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapMFocusable,
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapMToggleBtnPressed {
+    height: 2.37rem !important;
+}
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapMBtnIconsapMBtnCustomIcon * .sapMBtnIcon,
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapUiIcon,
+body:not(.sapUiSizeCompact) .DesignStudioSCN .sapUiIconMirrorInRTL {
+    width: 2rem !important;
+}
+
+/*
+Button Fix
+*/
+.DesignStudioSCN.Button .sapMBtnInner{
+    display : block !important;
+}
+.DesignStudioSCN.Button {
+    padding-bottom : 0px !important;
+    padding-top: 0px !important;
+}

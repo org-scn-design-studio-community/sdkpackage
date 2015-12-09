@@ -48,7 +48,7 @@ define([], function () {
 			for (var field in o) {
 				if (this["cmp_" + field] && this["cmp_" + field]) {
 					var that = this
-					require(["./"+c[field].apsControl],function(field){return function(handler){
+					require(["../../org.scn.community.shared/aps/"+c[field].apsControl],function(field){return function(handler){
 						if (handler.serialized) {
 							value = JSON.stringify(o[field]);
 						} else {
@@ -160,7 +160,7 @@ define([], function () {
 						}
 					};
 				}(this, property+"", JSON.parse(JSON.stringify(item)));
-				require(["./"+item.apsControl],callbackFunction,failureFunction);			
+				require(["../../org.scn.community.shared/aps/"+item.apsControl],callbackFunction,failureFunction);			
 			}
 			}catch(e){
 				alert("Error generating fields\n\n"+e);

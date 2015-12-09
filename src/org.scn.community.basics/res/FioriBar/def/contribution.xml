@@ -3,11 +3,13 @@
 	title="Fiori Bar 2.0"
 	icon="res/FioriBar/FioriBar.png"
 	handlerType="sapui5" 
+	modes="commons m"
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 
-	<jsInclude>res/FioriBar/FioriBar.js</jsInclude>
-  	<cssInclude>res/FioriBar/FioriBar.css</cssInclude>
+	<requireJs modes="commons">res/FioriBar/FioriBar_commons</requireJs>
+	<requireJs modes="m">res/FioriBar/FioriBar</requireJs>
+	
   	<property id="itemConfigLeft" type="String" title="Left Item Config" visible="false" group="Display"/>
   	<property id="itemConfigMiddle" type="String" title="Middle Item Config" visible="false" group="Display"/>
   	<property id="itemConfigRight" type="String" title="Right Item Config" visible="false" group="Display"/>

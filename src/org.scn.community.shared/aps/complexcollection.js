@@ -222,7 +222,7 @@ define(["./complexitem"],function(){
 	        var index = parseInt(arrPath[2]);
 	        var detailValue = this.getValue()[index];
 			var that = this;
-			require(["./complexproperty"],function(){
+			require(["../../org.scn.community.shared/aps/complexproperty"],function(){
 				var overlay = new sap.ui.ux3.OverlayContainer({
 					openButtonVisible : false
 				});
