@@ -26,9 +26,10 @@
  * 
  */
 define([
+        "css!./LaunchPad.css",
         "../../../org.scn.community.shared/os/sapui5/commons-warning",
         "../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"
-    ],function(warningTopic){
+    ],function(css, warningTopic){
 	jQuery.sap.require("sap.m.TileContainer");
 	var componentInfo = {
 		visible : true,
@@ -37,7 +38,7 @@ define([
 		author : "Mike Howles",
 		description : "A Fiori-Inspired LaunchPad using UI5 Handler",
 		topics : [
-			warningTopic,
+		warningTopic,
 		{
 			title : "SDK Component",
 			content : "This component is an UI5 SDK Component.  Be sure you install the plugin to your server platform should you find it useful."
@@ -198,4 +199,4 @@ define([
 			}
 		}
 	});
-}());
+});
