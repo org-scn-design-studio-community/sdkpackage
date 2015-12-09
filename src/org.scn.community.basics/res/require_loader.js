@@ -23,7 +23,7 @@ org_scn_community_basics.isHana = false;
 if(sap.firefly != undefined) {
 	org_scn_community_basics.isHana = true;
 }
-
+var C_ORG_SCN_COMMUNITY_;	// Declare with a var
 //hana runtime case, no . in folder names!
 if(!org_scn_community_basics.isHana) {
 	C_ORG_SCN_COMMUNITY_ = "org.scn.community.";	
