@@ -1,0 +1,29 @@
+
+<component id="FioriSwitch" 
+	title="Fiori Switch"
+	tooltip="sap.m Switch"
+	icon="res/FioriSwitch/FioriSwitch.png"
+	handlerType="sapui5" 
+	modes="m"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics">
+
+	<requireJs modes="m">res/FioriSwitch/FioriSwitch</requireJs>
+	<property id="state" type="boolean" title="State"/>
+  	<property id="enabled" type="boolean" title="Enabled"/>
+  	<property id="switchType" type="String" title="Type"/>
+  	<property type="String" title="Custom Text On" id="customTextOn" group="Display"/>
+  	<property type="String" title="Custom Text Off" id="customTextOff" group="Display"/>
+  	<property type="ScriptText" title="On Change" id="onchange" group="Events"/> 
+ 	<initialization>
+ 		<defaultValue property="state">false</defaultValue>
+ 		<defaultValue property="switchType">Default</defaultValue>
+ 		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+ 		<defaultValue property="WIDTH">400</defaultValue>
+ 		<defaultValue property="HEIGHT">48</defaultValue>
+ 	</initialization>
+ </component>

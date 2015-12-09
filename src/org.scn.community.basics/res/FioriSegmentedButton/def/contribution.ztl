@@ -1,0 +1,33 @@
+class org.scn.community.m.basics.SegmentedButton extends org.scn.community.shared.Component {
+	/** Add an item
+ 	<example>
+	Add or update a item by key 'A'.
+	<code>
+	SEGMENTEDBUTTON_1.addItem("MENU","Menu",false,"sap-icon://menu2");<br>
+	</code>
+	</example>
+	 */
+	void addItem (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon) {*		
+		var o = this.itemConfig || [];
+		var matchIndex = -1;
+		var sTitle = true;
+		if(showTitle != undefined) sTitle = showTitle;
+		var h;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex==-1) {
+			o.push({
+				key : buttonKey,
+				text : buttonTitle,
+				showTitle : sTitle,
+				icon : icon
+			});
+		}else{	// Don't overwrite items
+			o[matchIndex].text = buttonTitle;
+			o[matchIndex].showTitle = sTitle;
+			o[matchIndex].icon = icon;
+		}		
+		itemConfig = o;
+	*}
+}

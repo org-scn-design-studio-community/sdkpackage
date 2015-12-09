@@ -24,6 +24,10 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\FioriAppHeader\def\contribution.xml ^
 ..\res\FioriBar\def\contribution.xml ^
 ..\res\FioriButton\def\contribution.xml ^
+..\res\FioriInput\def\contribution.xml ^
+..\res\FioriSegmentedButton\def\contribution.xml ^
+..\res\FioriSlider\def\contribution.xml ^
+..\res\FioriSwitch\def\contribution.xml ^
 ..\res\FioriToolbar\def\contribution.xml ^
 ..\res\FishEye\def\contribution.xml ^
 ..\res\Gauge\def\contribution.xml ^
@@ -86,6 +90,10 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\FioriAppHeader\def\contribution.ztl ^
 ..\res\FioriBar\def\contribution.ztl ^
 ..\res\FioriButton\def\contribution.ztl ^
+..\res\FioriInput\def\contribution.ztl ^
+..\res\FioriSegmentedButton\def\contribution.ztl ^
+..\res\FioriSlider\def\contribution.ztl ^
+..\res\FioriSwitch\def\contribution.ztl ^
 ..\res\FioriToolbar\def\contribution.ztl ^
 ..\res\FishEye\def\contribution.ztl ^
 ..\res\Gauge\def\contribution.ztl ^

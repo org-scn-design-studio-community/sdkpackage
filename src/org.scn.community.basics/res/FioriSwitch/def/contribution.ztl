@@ -1,0 +1,13 @@
+class org.scn.community.m.basics.Switch extends org.scn.community.shared.Component {
+	/** 
+ 	<example>
+	Get Switch State
+	<code>
+	SWITCH_1.getState();<br>
+	</code>
+	</example>
+	 */
+	boolean getState() {*		
+		return this.state; 
+	*}
+}
