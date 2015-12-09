@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 define([
-        "css!./QRCode.css",
-        "sap/designstudio/sdk/component",
-        "../../../org.scn.community.shared/modules/component.core_2.0",
+		"css!./QRCode.css",
+		"sap/designstudio/sdk/component",
+		"../../../org.scn.community.shared/modules/component.core_2.0",
 		"../../../org.scn.community.shared/modules/component.basics_2.0",
 		"./QRCodeSpec",
 		"../../../org.scn.community.basics/os/qrcode/qrcode"
