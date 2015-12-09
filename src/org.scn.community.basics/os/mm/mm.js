@@ -11,10 +11,6 @@
  * See CHANGELOG and http://semver.org/ for more details.
  *
  */
-define([
-        "./mm"
-        ]
-     , function() {
 var previousMM = MM;
 
 // namespacing for backwards-compatibility
@@ -29,6 +25,10 @@ var MM = com.modestmaps = {
     return this;
   }
 };
+
+define([
+        ]
+     , function() {
 
 (function(MM) {
     // Make inheritance bearable: clone one level of properties

@@ -17,8 +17,7 @@
  * limitations under the License. 
  */
  
- define(["../../../org.scn.community.shared/modules/component.core", "./QRCodeSpec",
-], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./QRCodeSpec",], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.QRCode;
 
