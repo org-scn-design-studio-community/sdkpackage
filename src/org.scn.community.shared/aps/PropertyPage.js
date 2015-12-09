@@ -72,7 +72,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 							this.props[property].value = value;
 
 							var that = this;
-							require([apsControl], function (property, value) {
+							require(["../../org.scn.community.shared/aps/" + apsControl], function (property, value) {
 								return function (handler) {
 									handler.setter.call(that, property, value);
 								};
@@ -157,7 +157,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 					}; // End of closure
 				}(componentContainer, property, JSON.parse(JSON.stringify(propertyOptions)));
 				node.ui.addContent(componentContainer);
-				require([apsControl], callbackFunction, failureFunction);
+				require(["../../org.scn.community.shared/aps/" + apsControl], callbackFunction, failureFunction);
 			}
 		} else { // Render nav strip and child ui area.
 			var strip;

@@ -21,7 +21,8 @@ define([
         "./NotifySpec", 
         "./Notify",
         "../require_loader",
-//        %-COMPONENT_REQUIRE_SPEC%
+		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/noty/packaged/noty",
+		
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {

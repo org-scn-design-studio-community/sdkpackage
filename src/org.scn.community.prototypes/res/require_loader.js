@@ -19,7 +19,6 @@
 var org_scn_community_basics = org_scn_community_basics || {};
 var org_scn_community_require = org_scn_community_require || {};
 
-
 org_scn_community_basics.isHana = false;
 if(sap.firefly != undefined) {
 	org_scn_community_basics.isHana = true;
@@ -37,7 +36,6 @@ define([
         "../../org.scn.community.shared/modules/component.databound",
         "../../org.scn.community.shared/modules/component.unified"
         ], function() {
-
 
 	/* IMPORTANT! ORIGINAL LOCATION - basics/res */
 

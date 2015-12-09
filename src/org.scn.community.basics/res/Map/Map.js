@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- define(["../../../org.scn.community.shared/modules/component.core", "./MapSpec"], function() {
+ define(["../../../org.scn.community.shared/modules/component.core","./MapSpec",], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.Map;
 
@@ -60,6 +60,7 @@ Map = function () {
 	};
 
 	that.afterPrepare = function (owner) {
+		try{
 		var that = owner;
 			
 		// visualization on processed data
@@ -140,6 +141,9 @@ Map = function () {
 			}
 
 			that._oldZoom = zoom;
+		}
+		} catch(e) {
+			alert("e: " + e.stack);
 		}
 	};
 
@@ -319,8 +323,12 @@ Map = function () {
 	    else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 
 	    xmlhttp.open("GET","http://api.hostip.info/get_json.php?position=true",false);
-	    xmlhttp.send();
-
+	    try{
+	    	xmlhttp.send();
+	    } catch (e) {
+		    return false;
+	    }
+	    
 		if(xmlhttp.readyState == 4) {
 			return JSON.parse(xmlhttp.responseText);
 		}

@@ -1,3 +1,8 @@
+define([
+        "./mm"
+        ]
+     , function() {
+
 // namespacing!
 if (!com) {
     var com = { };
@@ -182,4 +187,6 @@ if (!com) {
     
     };
     
-})(com.modestmaps)
+})(com.modestmaps);
+
+});// End of closure

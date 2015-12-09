@@ -21,7 +21,10 @@ define([
         "./ActivityViewerSpec", 
         "./ActivityViewer",
         "../require_loader",
-//        %-COMPONENT_REQUIRE_SPEC%
+		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/d3/d3",
+		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/d3-plug/gantt-chart-d3v2",
+		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/date/DateFormat",
+		
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {

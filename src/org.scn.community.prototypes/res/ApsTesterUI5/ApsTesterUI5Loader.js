@@ -21,7 +21,7 @@ define([
         "./ApsTesterUI5Spec", 
         "./ApsTesterUI5",
         "../require_loader",
-//      %-COMPONENT_REQUIRE_SPEC%
+		
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {

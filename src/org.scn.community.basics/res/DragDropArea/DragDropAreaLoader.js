@@ -21,7 +21,8 @@ define([
         "./DragDropAreaSpec", 
         "./DragDropArea",
         "../require_loader",
-//      %-COMPONENT_REQUIRE_SPEC%
+		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/ndd/jq-ndd",
+		
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {

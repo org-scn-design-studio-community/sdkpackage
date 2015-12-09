@@ -21,7 +21,8 @@ define([
         "./ValiInputSpec", 
         "./ValiInput",
         "../require_loader",
-//      %-COMPONENT_REQUIRE_SPEC%
+		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/validate/validate",
+		
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {

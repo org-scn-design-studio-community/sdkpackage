@@ -21,7 +21,10 @@ define([
         "./KpiTileSpec", 
         "./KpiTile",
         "../require_loader",
-//      %-COMPONENT_REQUIRE_SPEC%
+		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/sapui5/sap_m_loader",
+		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/sapui5/sap_suite_loader",
+		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/x2js/xml2json",
+		
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {

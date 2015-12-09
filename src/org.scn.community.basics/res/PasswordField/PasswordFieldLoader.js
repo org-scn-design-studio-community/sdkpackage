@@ -21,7 +21,7 @@ define([
         "./PasswordFieldSpec", 
         "./PasswordField",
         "../require_loader",
-//      %-COMPONENT_REQUIRE_SPEC%
+		
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {

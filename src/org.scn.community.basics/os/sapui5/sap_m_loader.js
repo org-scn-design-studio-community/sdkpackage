@@ -1,3 +1,7 @@
+define([
+        "../../res/require_loader"
+        ]
+     , function() {
 
 // load sap.m and sap.me
 var oCore = sap.ui.getCore();
@@ -17,3 +21,5 @@ if(oCfgData.libs.indexOf("sap.m") == -1) {
 		jQuery.sap.require("jquery.sap.events");
 	}
 }
+
+});// End of closure

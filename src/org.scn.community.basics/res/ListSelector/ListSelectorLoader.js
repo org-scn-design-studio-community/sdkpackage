@@ -21,7 +21,7 @@ define([
         "./ListSelectorSpec", 
         "./ListSelector",
         "../require_loader",
-//        %-COMPONENT_REQUIRE_SPEC%
+		
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {

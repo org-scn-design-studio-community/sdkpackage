@@ -195,6 +195,8 @@ public class SpecificationReader {
 					String id = paramFullSpec.getProperties().get("id");
 					String ind = paramFullSpec.getProperties().get("ind");
 					
+					String idOld = id;
+					
 					if(id.startsWith("common_")) {continue;}
 					if(id.startsWith("jshashtable")) {continue;}
 					if(id.startsWith("numberformatter")) {continue;}
@@ -212,10 +214,18 @@ public class SpecificationReader {
 					if(id.equals("validate")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/validate/validate";}
 					if(id.equals("ndd")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/ndd/jq-ndd";}
 
-					if(ind == null || ind.equals("1")) {
-						componentRequries.add("\"../../../\"+C_ORG_SCN_COMMUNITY_+\""+id+"\"");	
+					if(!idOld.equals(id)) {
+						if(ind == null || ind.equals("1")) {
+							componentRequries.add("\""+id+"\"");
+						} else {
+							componentRequries2.add("\""+id+"\"");
+						}
 					} else {
-						componentRequries2.add("org_scn_community_require."+space+"Modules." + id + ".script");
+						if(ind == null || ind.equals("1")) {
+							componentRequries.add("\"../../../\"+C_ORG_SCN_COMMUNITY_+\""+id+"\"");
+						} else {
+							componentRequries2.add("\"../../../\"+C_ORG_SCN_COMMUNITY_+\""+id+"\"");
+						}
 					}
 				}
 			} else if(key.equals("stdIncludes")) {
@@ -476,11 +486,11 @@ public class SpecificationReader {
 		String requires = "";
 		
 		for (String require : componentRequries) {
-			requires = requires + "\"../../../\" + " + require + ",\r\n\t\t";
+			requires = requires + require + ",\r\n\t\t";
 		}
 		
 		for (String require : componentRequries2) {
-			requires = requires + "\"../../../\" + " + require + ",\r\n\t\t";
+			requires = requires + require + ",\r\n\t\t";
 		}
 
 		return requires;

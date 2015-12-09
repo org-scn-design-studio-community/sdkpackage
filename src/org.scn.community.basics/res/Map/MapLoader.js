@@ -17,11 +17,15 @@
  * limitations under the License. 
  */
 
+C_ORG_SCN_COMMUNITY_ = "org.scn.community.";
+
 define([
         "./MapSpec", 
         "./Map",
         "../require_loader",
-//        %-COMPONENT_REQUIRE_SPEC%
+		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/mm/mm",
+		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/mm/mm-follower",
+		
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {
