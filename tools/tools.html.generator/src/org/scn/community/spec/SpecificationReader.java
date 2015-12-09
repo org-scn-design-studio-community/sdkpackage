@@ -26,6 +26,9 @@ import com.sun.xml.internal.messaging.saaj.soap.ver1_1.HeaderElement1_1Impl;
 
 public class SpecificationReader {
 
+	// private static final String CONS_LINK = "\"+C_ORG_SCN_COMMUNITY_+\"";
+	private static final String CONS_LINK = "org.scn.community.";
+
 	private String pathToGenSpec;
 
 	private JSONObject jsonSpecification;
@@ -201,18 +204,18 @@ public class SpecificationReader {
 					if(id.startsWith("jshashtable")) {continue;}
 					if(id.startsWith("numberformatter")) {continue;}
 					
-					if(id.startsWith("sap_m_loader")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/sapui5/" + id;}
-					if(id.startsWith("sap_suite_loader")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/sapui5/" + id;}
-					if(id.startsWith("x2js")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/x2js/xml2json";}
-					if(id.equals("mm")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/mm/mm";}
-					if(id.equals("mmfollower")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/mm/mm-follower";}
-					if(id.equals("noty")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/noty/packaged/noty";}
-					if(id.equals("qrcode")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/qrcode/qrcode";}
-					if(id.equals("chartjs")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/chartjs/Chart";}
-					if(id.equals("scheme")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/color/scheme";}
-					if(id.equals("dateformatter")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/date/DateFormat";}
-					if(id.equals("validate")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/validate/validate";}
-					if(id.equals("ndd")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/ndd/jq-ndd";}
+					if(id.startsWith("sap_m_loader")) {id = "../../../"+CONS_LINK+"basics/os/sapui5/" + id;}
+					if(id.startsWith("sap_suite_loader")) {id = "../../../"+CONS_LINK+"basics/os/sapui5/" + id;}
+					if(id.startsWith("x2js")) {id = "../../../"+CONS_LINK+"basics/os/x2js/xml2json";}
+					if(id.equals("mm")) {id = "../../../"+CONS_LINK+"basics/os/mm/mm";}
+					if(id.equals("mmfollower")) {id = "../../../"+CONS_LINK+"basics/os/mm/mm-follower";}
+					if(id.equals("noty")) {id = "../../../"+CONS_LINK+"basics/os/noty/packaged/noty";}
+					if(id.equals("qrcode")) {id = "../../../"+CONS_LINK+"basics/os/qrcode/qrcode";}
+					if(id.equals("chartjs")) {id = "../../../"+CONS_LINK+"basics/os/chartjs/Chart";}
+					if(id.equals("scheme")) {id = "../../../"+CONS_LINK+"basics/os/color/scheme";}
+					if(id.equals("dateformatter")) {id = "../../../"+CONS_LINK+"basics/os/date/DateFormat";}
+					if(id.equals("validate")) {id = "../../../"+CONS_LINK+"basics/os/validate/validate";}
+					if(id.equals("ndd")) {id = "../../../"+CONS_LINK+"basics/os/ndd/jq-ndd";}
 
 					if(!idOld.equals(id)) {
 						if(ind == null || ind.equals("1")) {
@@ -222,9 +225,9 @@ public class SpecificationReader {
 						}
 					} else {
 						if(ind == null || ind.equals("1")) {
-							componentRequries.add("\"../../../\"+C_ORG_SCN_COMMUNITY_+\""+id+"\"");
+							componentRequries.add("\"../../../"+CONS_LINK+""+id+"\"");
 						} else {
-							componentRequries2.add("\"../../../\"+C_ORG_SCN_COMMUNITY_+\""+id+"\"");
+							componentRequries2.add("\"../../../"+CONS_LINK+""+id+"\"");
 						}
 					}
 				}

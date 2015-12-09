@@ -18,37 +18,15 @@
  */
 
 define([
-        "./ScalingDataSourceSpec", 
-        "./ScalingDataSource",
-        "../require_loader",
-		
-        "../../../org.scn.community.shared/modules/component.core"
-        ]
-     , function() {
-
-	 var myComponentData = org_scn_community_require.knownComponents.datasource.ScalingDataSource;
+    "./ScalingDataSourceSpec", 
+    "./ScalingDataSource",
+    "../require_loader",
 	
-	 /** RequireJS Config **/
-	 var requireInfo1 = org_scn_community_require.collectRequire (
-	 [
-     ]);
+	"../../../org.scn.community.shared/modules/component.core",
+    ],
 
-	 /** RequireJS Config **/
-	 var requireInfo1 = org_scn_community_require.collectRequire (
-	 [
-		
-     ]);
+	function() {
+	   var myComponentData = org_scn_community_require.knownComponents.datasource.ScalingDataSource;
 
-	 var sdkReqs = require.config({
-		 context : "sdk",
-		 paths: requireInfo1.definition,
-		 urlArgs: "v=" + org_scn_community_require.jsVersion,
-	 });
-
-	 sdkReqs(requireInfo1.plainNames, function() {
-	 });//End of Require Callback
-
-	 sap.designstudio.sdk.DataBuffer.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-
+	   sap.designstudio.sdk.DataBuffer.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 });// End of closure
-

@@ -18,51 +18,18 @@
  */
 
 define([
-        "./ActivityViewerSpec", 
-        "./ActivityViewer",
-        "../require_loader",
-		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/d3/d3",
-		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/d3-plug/gantt-chart-d3v2",
-		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/date/DateFormat",
+    "./ActivityViewerSpec", 
+    "./ActivityViewer",
+    "../require_loader",
+	"../../../org.scn.community.basics/os/d3/d3",
+		"../../../org.scn.community.basics/os/d3-plug/gantt-chart-d3v2",
+		"../../../org.scn.community.basics/os/date/DateFormat",
 		
-        "../../../org.scn.community.shared/modules/component.core"
-        ]
-     , function() {
+	"../../../org.scn.community.shared/modules/component.core",
+    ],
 
-	 var myComponentData = org_scn_community_require.knownComponents.basics.ActivityViewer;
-	
-	 /** RequireJS Config **/
-	 var requireInfo1 = org_scn_community_require.collectRequire (
-	 [
-		
-     ]);
+	function() {
+	   var myComponentData = org_scn_community_require.knownComponents.basics.ActivityViewer;
 
-	 sap.zen.Dispatcher.instance.pauseDispatching();	 
-
-	 var sdkReqs = require.config({
-		 context : "sdk",
-		 paths: requireInfo1.definition,
-		 urlArgs: "v=" + org_scn_community_require.jsVersion,
-	 });
-
-	 sdkReqs(requireInfo1.plainNames, function() {
-		 /** RequireJS Config **/
-		 var requireInfo2 = org_scn_community_require.collectRequire (
-		 [
-		 	
-	     ]);
-		 
-		 var sdkReqs2 = require.config({
-			 context : "sdk",
-			 paths: requireInfo2.definition,
-			 urlArgs: "v=" + org_scn_community_require.jsVersion,
-		 });
-
-		 sdkReqs2(requireInfo2.plainNames, function() {
-		});//End of Require Callback Component
-	});//End of Require Callback
-	
-	sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-
+ 	   sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 });// End of closure
-

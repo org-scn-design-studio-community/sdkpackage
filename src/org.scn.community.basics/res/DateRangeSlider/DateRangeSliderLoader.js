@@ -16,38 +16,20 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
-define([
-        "./DateRangeSliderSpec", 
-        "./DateRangeSlider",
-        "../require_loader",
-		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/date/DateFormat",
-		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/sapui5/sap_suite_loader",
-		
-        "../../../org.scn.community.shared/modules/component.core"
-        ]
-     , function() {
-
-	 var myComponentData = org_scn_community_require.knownComponents.basics.DateRangeSlider;
-	
-	 /** RequireJS Config **/
-	 var requireInfo1 = org_scn_community_require.collectRequire (
-	 [
-		
-     ]);
-
-	 var sdkReqs = require.config({
-		 context : "sdk",
-		 paths: requireInfo1.definition,
-		 urlArgs: "v=" + org_scn_community_require.jsVersion,
-	 });
-
-	 sdkReqs(requireInfo1.plainNames, function() {
-	 });//End of Require Callback
-	 
- 	 jQuery.sap.require("sap.suite.ui.commons.DateRangeSlider");
-
-	 sap.suite.ui.commons.DateRangeSlider.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
  
-});// End of closure
+define([
+    "./DateRangeSliderSpec", 
+    "./DateRangeSlider",
+    "../require_loader",
+	"../../../org.scn.community.basics/os/date/DateFormat",
+		"../../../org.scn.community.basics/os/sapui5/sap_suite_loader",
+		
+	"../../../org.scn.community.shared/modules/component.core",
+    ],
 
+	function() {
+	   var myComponentData = org_scn_community_require.knownComponents.basics.DateRangeSlider;
+
+ 	   jQuery.sap.require("sap.suite.ui.commons.DateRangeSlider");
+	   sap.suite.ui.commons.DateRangeSlider.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+});// End of closure

@@ -18,48 +18,15 @@
  */
 
 define([
-        "./GaugeSpec", 
-        "./Gauge",
-        "../require_loader",
-		
-        "../../../org.scn.community.shared/modules/component.core"
-        ]
-     , function() {
-
-	 var myComponentData = org_scn_community_require.knownComponents.basics.Gauge;
+    "./GaugeSpec", 
+    "./Gauge",
+    "../require_loader",
 	
-	 /** RequireJS Config **/
-	 var requireInfo1 = org_scn_community_require.collectRequire (
-	 [
-		
-     ]);
+	"../../../org.scn.community.shared/modules/component.core",
+    ],
 
-	 sap.zen.Dispatcher.instance.pauseDispatching();	 
+	function() {
+	   var myComponentData = org_scn_community_require.knownComponents.basics.Gauge;
 
-	 var sdkReqs = require.config({
-		 context : "sdk",
-		 paths: requireInfo1.definition,
-		 urlArgs: "v=" + org_scn_community_require.jsVersion,
-	 });
-
-	 sdkReqs(requireInfo1.plainNames, function() {
-		 /** RequireJS Config **/
-		 var requireInfo2 = org_scn_community_require.collectRequire (
-		 [
-		 	
-	     ]);
-		 
-		 var sdkReqs2 = require.config({
-			 context : "sdk",
-			 paths: requireInfo2.definition,
-			 urlArgs: "v=" + org_scn_community_require.jsVersion,
-		 });
-
-		 sdkReqs2(requireInfo2.plainNames, function() {
-		});//End of Require Callback Component
-	});//End of Require Callback
-	
-	sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-
+ 	   sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 });// End of closure
-

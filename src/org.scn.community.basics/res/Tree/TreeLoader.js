@@ -16,36 +16,18 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
-define([
-        "./TreeSpec", 
-        "./Tree",
-        "../require_loader",
-		
-        "../../../org.scn.community.shared/modules/component.core"
-        ]
-     , function() {
-
-	 var myComponentData = org_scn_community_require.knownComponents.basics.Tree;
-	
-	 /** RequireJS Config **/
-	 var requireInfo1 = org_scn_community_require.collectRequire (
-	 [
-		
-     ]);
-
-	 var sdkReqs = require.config({
-		 context : "sdk",
-		 paths: requireInfo1.definition,
-		 urlArgs: "v=" + org_scn_community_require.jsVersion,
-	 });
-
-	 sdkReqs(requireInfo1.plainNames, function() {
-	 });//End of Require Callback
-	 
- 	 jQuery.sap.require("sap.ui.commons.Tree");
-
-	 sap.ui.commons.Tree.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
  
-});// End of closure
+define([
+    "./TreeSpec", 
+    "./Tree",
+    "../require_loader",
+	
+	"../../../org.scn.community.shared/modules/component.core",
+    ],
 
+	function() {
+	   var myComponentData = org_scn_community_require.knownComponents.basics.Tree;
+
+ 	   jQuery.sap.require("sap.ui.commons.Tree");
+	   sap.ui.commons.Tree.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+});// End of closure

@@ -16,36 +16,18 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
-define([
-        "./PasswordFieldSpec", 
-        "./PasswordField",
-        "../require_loader",
-		
-        "../../../org.scn.community.shared/modules/component.core"
-        ]
-     , function() {
-
-	 var myComponentData = org_scn_community_require.knownComponents.basics.PasswordField;
-	
-	 /** RequireJS Config **/
-	 var requireInfo1 = org_scn_community_require.collectRequire (
-	 [
-		
-     ]);
-
-	 var sdkReqs = require.config({
-		 context : "sdk",
-		 paths: requireInfo1.definition,
-		 urlArgs: "v=" + org_scn_community_require.jsVersion,
-	 });
-
-	 sdkReqs(requireInfo1.plainNames, function() {
-	 });//End of Require Callback
-	 
- 	 jQuery.sap.require("sap.ui.commons.PasswordField");
-
-	 sap.ui.commons.PasswordField.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
  
-});// End of closure
+define([
+    "./PasswordFieldSpec", 
+    "./PasswordField",
+    "../require_loader",
+	
+	"../../../org.scn.community.shared/modules/component.core",
+    ],
 
+	function() {
+	   var myComponentData = org_scn_community_require.knownComponents.basics.PasswordField;
+
+ 	   jQuery.sap.require("sap.ui.commons.PasswordField");
+	   sap.ui.commons.PasswordField.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+});// End of closure

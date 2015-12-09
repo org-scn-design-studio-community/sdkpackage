@@ -18,37 +18,15 @@
  */
 
 define([
-        "./%COMP-id%Spec", 
-        "./%COMP-id%",
-        "../require_loader",
-		%COMPONENT_REQUIRE_SPEC%
-        "../../../org.scn.community.shared/modules/component.core"
-        ]
-     , function() {
+    "./%COMP-id%Spec", 
+    "./%COMP-id%",
+    "../require_loader",
+	%COMPONENT_REQUIRE_SPEC%
+	"../../../org.scn.community.shared/modules/component.core",
+    ],
 
-	 var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
-	
-	 /** RequireJS Config **/
-	 var requireInfo1 = org_scn_community_require.collectRequire (
-	 [
-     ]);
+	function() {
+	   var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
 
-	 /** RequireJS Config **/
-	 var requireInfo1 = org_scn_community_require.collectRequire (
-	 [
-		
-     ]);
-
-	 var sdkReqs = require.config({
-		 context : "sdk",
-		 paths: requireInfo1.definition,
-		 urlArgs: "v=" + org_scn_community_require.jsVersion,
-	 });
-
-	 sdkReqs(requireInfo1.plainNames, function() {
-	 });//End of Require Callback
-
-	 %COMP-parentControl%.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-
+	   sap.designstudio.sdk.DataBuffer.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 });// End of closure
-

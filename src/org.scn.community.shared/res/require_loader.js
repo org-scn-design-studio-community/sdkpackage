@@ -26,16 +26,16 @@ if(sap.firefly != undefined) {
 
 //hana runtime case, no . in folder names!
 if(!org_scn_community_basics.isHana) {
-	C_ORG_SCN_COMMUNITY_ = "org.scn.community.";	
+	var C_ORG_SCN_COMMUNITY_ = "org.scn.community.";	
 } else {
-	C_ORG_SCN_COMMUNITY_ = "org_scn_community_";
+	var C_ORG_SCN_COMMUNITY_ = "org_scn_community_";
 }
 
 define([
-        "../../org.scn.community.shared/modules/component.basics",
-        "../../org.scn.community.shared/modules/component.databound",
-        "../../org.scn.community.shared/modules/component.unified"
-        ], function() {
+        "../../"+C_ORG_SCN_COMMUNITY_+"shared/modules/component.basics",
+        "../../"+C_ORG_SCN_COMMUNITY_+"shared/modules/component.databound",
+        "../../"+C_ORG_SCN_COMMUNITY_+"shared/modules/component.unified"
+        ], function(basics, databound, unified) {
 
 	/* IMPORTANT! ORIGINAL LOCATION - basics/res */
 
@@ -201,4 +201,6 @@ define([
 	    
 		return retObject;
 	};
+	
+	return org_scn_community_require;
 });

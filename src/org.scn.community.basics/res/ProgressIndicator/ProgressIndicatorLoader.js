@@ -16,36 +16,18 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
-define([
-        "./ProgressIndicatorSpec", 
-        "./ProgressIndicator",
-        "../require_loader",
-		
-        "../../../org.scn.community.shared/modules/component.core"
-        ]
-     , function() {
-
-	 var myComponentData = org_scn_community_require.knownComponents.basics.ProgressIndicator;
-	
-	 /** RequireJS Config **/
-	 var requireInfo1 = org_scn_community_require.collectRequire (
-	 [
-		
-     ]);
-
-	 var sdkReqs = require.config({
-		 context : "sdk",
-		 paths: requireInfo1.definition,
-		 urlArgs: "v=" + org_scn_community_require.jsVersion,
-	 });
-
-	 sdkReqs(requireInfo1.plainNames, function() {
-	 });//End of Require Callback
-	 
- 	 jQuery.sap.require("sap.ui.commons.ProgressIndicator");
-
-	 sap.ui.commons.ProgressIndicator.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
  
-});// End of closure
+define([
+    "./ProgressIndicatorSpec", 
+    "./ProgressIndicator",
+    "../require_loader",
+	
+	"../../../org.scn.community.shared/modules/component.core",
+    ],
 
+	function() {
+	   var myComponentData = org_scn_community_require.knownComponents.basics.ProgressIndicator;
+
+ 	   jQuery.sap.require("sap.ui.commons.ProgressIndicator");
+	   sap.ui.commons.ProgressIndicator.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+});// End of closure

@@ -16,38 +16,20 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
-define([
-        "./CalendarSpec", 
-        "./Calendar",
-        "../require_loader",
-		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/date/DateFormat",
-		"../../../"+C_ORG_SCN_COMMUNITY_+"basics/os/sapui5/sap_m_loader",
-		
-        "../../../org.scn.community.shared/modules/component.core"
-        ]
-     , function() {
-
-	 var myComponentData = org_scn_community_require.knownComponents.basics.Calendar;
-	
-	 /** RequireJS Config **/
-	 var requireInfo1 = org_scn_community_require.collectRequire (
-	 [
-		
-     ]);
-
-	 var sdkReqs = require.config({
-		 context : "sdk",
-		 paths: requireInfo1.definition,
-		 urlArgs: "v=" + org_scn_community_require.jsVersion,
-	 });
-
-	 sdkReqs(requireInfo1.plainNames, function() {
-	 });//End of Require Callback
-	 
- 	 jQuery.sap.require("sap.me.Calendar");
-
-	 sap.me.Calendar.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
  
-});// End of closure
+define([
+    "./CalendarSpec", 
+    "./Calendar",
+    "../require_loader",
+	"../../../org.scn.community.basics/os/date/DateFormat",
+		"../../../org.scn.community.basics/os/sapui5/sap_m_loader",
+		
+	"../../../org.scn.community.shared/modules/component.core",
+    ],
 
+	function() {
+	   var myComponentData = org_scn_community_require.knownComponents.basics.Calendar;
+
+ 	   jQuery.sap.require("sap.me.Calendar");
+	   sap.me.Calendar.extend(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+});// End of closure
