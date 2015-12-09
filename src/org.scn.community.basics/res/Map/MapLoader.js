@@ -16,19 +16,16 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+var scn_pkg = "org.scn.community.";
+if(sap.firefly != undefined) { scn_pkg = scn_pkg.replace(".", "_"); }
 
 define([
-    "./MapSpec", 
-    "./Map",
-    "../require_loader",
-	"../../../org.scn.community.basics/os/mm/mm",
-		"../../../org.scn.community.basics/os/mm/mm-follower",
-		
-	"../../../org.scn.community.shared/modules/component.core",
+    "sap/designstudio/sdk/component",
+    "./Map"
     ],
 
-	function() {
+	function(component) {
 	   var myComponentData = org_scn_community_require.knownComponents.basics.Map;
 
- 	   sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+ 	   component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 });// End of closure

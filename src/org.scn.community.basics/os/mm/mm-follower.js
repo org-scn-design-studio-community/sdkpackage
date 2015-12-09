@@ -3,14 +3,6 @@ define([
         ]
      , function() {
 
-// namespacing!
-if (!com) {
-    var com = { };
-    if (!com.modestmaps) {
-        com.modestmaps = { };
-    }
-}
-
 (function(MM) {
 
     MM.Follower = function(map, location, content, imageUrl, onClickHandler) {

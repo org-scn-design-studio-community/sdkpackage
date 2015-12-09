@@ -421,7 +421,7 @@ define(["../os/numberformat/numberformatter"], function() {
 			if(imageUrl.indexOf("http://") !== -1 || imageUrl.indexOf("https://") !== -1){
 				correctUrl = imageUrl;
 			} else {
-				if(componentUrl != undefined && componentUrl.length() > 0) {
+				if(componentUrl != undefined && componentUrl.length > 0) {
 					correctUrl =  componentUrl.substring(0, value.lastIndexOf("/") + 1);
 					correctUrl = correctUrl + imageUrl;
 				} else {

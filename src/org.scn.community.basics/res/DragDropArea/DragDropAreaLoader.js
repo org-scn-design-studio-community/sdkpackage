@@ -16,17 +16,20 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
- 
+var scn_pkg = "org.scn.community.";
+if(sap.firefly != undefined) { scn_pkg = scn_pkg.replace(".", "_"); }
+
 define([
+	"sap/designstudio/sdk/component",
     "./DragDropAreaSpec", 
     "./DragDropArea",
     "../require_loader",
-	"../../../org.scn.community.basics/os/ndd/jq-ndd",
-		
-	"../../../org.scn.community.shared/modules/component.core",
+	"../../../"+scn_pkg+"basics/os/ndd/jq-ndd",
+	
+	"../../../"+scn_pkg+"shared/modules/component.core",
     ],
 
-	function() {
+	function(component) {
 	   var myComponentData = org_scn_community_require.knownComponents.basics.DragDropArea;
 
  	   jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");

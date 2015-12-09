@@ -26,8 +26,8 @@ import com.sun.xml.internal.messaging.saaj.soap.ver1_1.HeaderElement1_1Impl;
 
 public class SpecificationReader {
 
-	// private static final String CONS_LINK = "\"+C_ORG_SCN_COMMUNITY_+\"";
-	private static final String CONS_LINK = "org.scn.community.";
+	private static final String CONS_LINK = "\"+scn_pkg+\"";
+	// private static final String CONS_LINK = "org.scn.community.";
 
 	private String pathToGenSpec;
 
@@ -467,17 +467,29 @@ public class SpecificationReader {
 				if(!new File(iFileName).exists() || (generatedJs != null && generatedJs.getExtendedFullSpec().getPropertyValue("generatedJsFile").equals("true"))) {
 					Helpers.string2File(iFileName, content);
 				} else {
-//					String contentJs = Helpers.file2String(iFileName);
+					String contentJs = Helpers.file2String(iFileName);
 
-//					contentJs = contentJs.replace("(function(){", "define([\"../../aps/org.scn.community.component.Core\"], function() {");
-//					contentJs = contentJs.replace("}).call(this);", "});");
-//
-//					contentJs = contentJs.replace("define([], function(", "// define([], function(");
-//					contentJs = contentJs.replace("\r\n});\r\n", "\r\n// });\r\n");
-//					
-//					contentJs = contentJs.replace("org.scn.community.component.Core\"", "org.scn.community.component.Core\", \""+this.componentName+"Spec\"");
+					int indexDefineStart = contentJs.indexOf("//%DEFINE-START%");
+					if(indexDefineStart == -1) {
+						indexDefineStart = contentJs.indexOf("var scn_pkg=\"org.scn.community.\"");
+					}
+					int indexDefineEnd = contentJs.lastIndexOf("//%DEFINE-END%");
 					
-//					Helpers.string2File(iFileName, contentJs);
+					if(indexDefineStart > -1) {
+						String defineContent = "//%DEFINE-START%\r\n";
+						defineContent += "var scn_pkg=\"org.scn.community.\";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(\".\",\"_\");}";
+						defineContent += "\r\ndefine([";
+						defineContent += "\r\n\t\"sap/designstudio/sdk/component\",";
+						defineContent += "\r\n\t\"./"+this.componentName+"Spec\",";
+						defineContent += "\r\n\t\"../require_loader\",";
+						defineContent += "\r\n\t" + this.serializeRequires();
+						defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.core\"";
+						defineContent += "\r\n\t],\r\n\tfunction() {\r\n";
+
+						contentJs = contentJs.substring(0, indexDefineStart) + defineContent + contentJs.substring(indexDefineEnd);
+						Helpers.string2File(iFileName, contentJs);
+					}
+
 				}
 			} else {
 				Helpers.string2File(iFileName, content);
@@ -489,11 +501,11 @@ public class SpecificationReader {
 		String requires = "";
 		
 		for (String require : componentRequries) {
-			requires = requires + require + ",\r\n\t\t";
+			requires = requires + require + ",\r\n\t";
 		}
 		
 		for (String require : componentRequries2) {
-			requires = requires + require + ",\r\n\t\t";
+			requires = requires + require + ",\r\n\t";
 		}
 
 		return requires;

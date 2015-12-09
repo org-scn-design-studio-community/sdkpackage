@@ -17,7 +17,20 @@
  * limitations under the License. 
  */
  
- define(["../../../org.scn.community.shared/modules/component.core", "./KpiTileSpec"], function() {
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./KpiTileSpec",
+	"../require_loader",
+	"../../../"+scn_pkg+"basics/os/sapui5/sap_m_loader",
+	"../../../"+scn_pkg+"basics/os/sapui5/sap_suite_loader",
+	"../../../"+scn_pkg+"basics/os/x2js/xml2json",
+	
+	"../../../"+scn_pkg+"shared/modules/component.core"
+	],
+	function() {
+//%DEFINE-END%
 
 var myComponentData = org_scn_community_require.knownComponents.basics.KpiTile;
 

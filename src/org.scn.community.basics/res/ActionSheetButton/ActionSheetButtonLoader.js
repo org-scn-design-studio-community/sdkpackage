@@ -16,17 +16,20 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
- 
+var scn_pkg = "org.scn.community.";
+if(sap.firefly != undefined) { scn_pkg = scn_pkg.replace(".", "_"); }
+
 define([
+	"sap/designstudio/sdk/component",
     "./ActionSheetButtonSpec", 
     "./ActionSheetButton",
     "../require_loader",
-	"../../../org.scn.community.basics/os/sapui5/sap_m_loader",
-		
-	"../../../org.scn.community.shared/modules/component.core",
+	"../../../"+scn_pkg+"basics/os/sapui5/sap_m_loader",
+	
+	"../../../"+scn_pkg+"shared/modules/component.core",
     ],
 
-	function() {
+	function(component) {
 	   var myComponentData = org_scn_community_require.knownComponents.basics.ActionSheetButton;
 
  	   jQuery.sap.require("sap.m.Button");

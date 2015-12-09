@@ -1,4 +1,14 @@
-	define(["../../../org.scn.community.shared/modules/component.core", "./ScalingDataSourceSpec"], function() {
+	//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./ScalingDataSourceSpec",
+	"../require_loader",
+	
+	"../../../"+scn_pkg+"shared/modules/component.core"
+	],
+	function() {
+//%DEFINE-END%
 
 	var myComponentData = org_scn_community_require.knownComponents.datasource.ScalingDataSource;
 

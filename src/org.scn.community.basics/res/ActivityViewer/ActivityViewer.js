@@ -1,4 +1,17 @@
-define(["../../../org.scn.community.shared/modules/component.core", "./ActivityViewerSpec"], function() {
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./ActivityViewerSpec",
+	"../require_loader",
+	"../../../"+scn_pkg+"basics/os/d3/d3",
+	"../../../"+scn_pkg+"basics/os/d3-plug/gantt-chart-d3v2",
+	"../../../"+scn_pkg+"basics/os/date/DateFormat",
+	
+	"../../../"+scn_pkg+"shared/modules/component.core"
+	],
+	function() {
+//%DEFINE-END%
 
 var myComponentData = org_scn_community_require.knownComponents.basics.ActivityViewer;
 
@@ -202,14 +215,13 @@ ActivityViewer = function () {
 				
 		that.firePropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
 	};
-	/* COMPONENT SPECIFIC CODE - END METHODS*/
+	
+    org_scn_community_component_Core(this, myComponentData);
 
-	org_scn_community_component_Core(this, myComponentData);
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-// // define([], function(basicsactivityviewer){
-	myComponentData.instance = ActivityViewer;
-	return myComponentData.instance;
-// });
+myComponentData.instance = ActivityViewer;
+return myComponentData.instance;
 
 });

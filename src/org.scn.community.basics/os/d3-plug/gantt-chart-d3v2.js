@@ -6,6 +6,12 @@
  */
 var d3plug = d3plug || {};
 
+define([
+        "../d3v3/d3"
+        ]
+     , function() {
+
+
 (function() {
 
     d3plug.gantt = function(oWidth, oHeight, margin) {
@@ -314,3 +320,5 @@ var d3plug = d3plug || {};
         return this;
     };
 })(); // End of closure
+
+});

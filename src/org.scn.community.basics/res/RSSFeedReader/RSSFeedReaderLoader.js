@@ -16,17 +16,16 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+var scn_pkg = "org.scn.community.";
+if(sap.firefly != undefined) { scn_pkg = scn_pkg.replace(".", "_"); }
 
 define([
-    "./RSSFeedReaderSpec", 
-    "./RSSFeedReader",
-    "../require_loader",
-	
-	"../../../org.scn.community.shared/modules/component.core",
+    "sap/designstudio/sdk/component",
+    "./RSSFeedReader"
     ],
 
-	function() {
+	function(component) {
 	   var myComponentData = org_scn_community_require.knownComponents.basics.RSSFeedReader;
 
- 	   sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
+ 	   component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
 });// End of closure
