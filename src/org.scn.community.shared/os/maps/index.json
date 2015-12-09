@@ -1,0 +1,133 @@
+[ { "label" : "Canned Maps",
+    "maps" : [ { "label" : "Global",
+          "maps" : [ { "label" : "Countries",
+                "url" : "world-countries.json"
+              },{ "label" : "Countries (Low-Res)",
+                "url" : "world-countries-low.json"
+              } ]
+        },
+        { "label" : "North America",
+          "maps" : [ { "label" : "United States",
+                "url" : "NorthAmerica/USA-regions.json"
+              },
+              { "label" : "United States (Low-Res)",
+                "url" : "NorthAmerica/USA-regions-low.json"
+              },
+              { "label" : "Canada",
+                "url" : "NorthAmerica/Canada-regions.json"
+              },
+              { "label" : "Mexico",
+                "url" : "NorthAmerica/Mexico-regions.json"
+              },
+              { "label" : "Greenland",
+                "url" : "NorthAmerica/Greenland-regions.json"
+              }
+            ]
+        },
+        { "label" : "South America",
+          "maps" : [ { "label" : "Argentina",
+                "url" : "SouthAmerica/Argentina-regions.json"
+              },
+              { "label" : "Brazil",
+                "url" : "SouthAmerica/Brazil-regions.json"
+              },
+              { "label" : "Chile",
+                "url" : "SouthAmerica/Chile-regions.json"
+              },
+              { "label" : "Columbia",
+                "url" : "SouthAmerica/Columbia-regions.json"
+              }
+            ]
+        },
+        { "label" : "Europe",
+          "maps" : [
+              { "label" : "Albania",
+                "url" : "Europe/Aland-regions.json"
+              },
+              { "label" : "Austria",
+                "url" : "Europe/Austria-regions.json"
+              },
+              { "label" : "France",
+                "url" : "Europe/France-regions.json"
+              },
+              { "label" : "Germany",
+                "url" : "Europe/Germany-regions.json"
+              },
+              { "label" : "Iceland",
+                "url" : "Europe/Iceland-regions.json"
+              },
+              { "label" : "Poland",
+                "url" : "Europe/Poland-regions.json"
+              },
+              { "label" : "Russia",
+                "url" : "Europe/Russia-regions.json"
+              },
+              { "label" : "Sweden",
+                "url" : "Europe/Sweden-regions.json"
+              },
+              { "label" : "Switzerland",
+                "url" : "Europe/Switzerland-regions.json"
+              },
+              { "label" : "Ukraine",
+                "url" : "Europe/Ukraine-regions.json"
+              },
+              { "label" : "United Kingdom",
+                "url" : "Europe/United-Kingdom-regions.json"
+              },
+              { "label" : "Åland Islands",
+                "url" : "Europe/Aland-regions.json"
+              }
+            ]
+        },
+        { "label" : "Africa",
+          "maps" : [ { "label" : "Nigeria",
+                "url" : "Africa/Nigeria-regions.json"
+              },
+              { "label" : "Ethiopia",
+                "url" : "Africa/Ethiopia-regions.json"
+              },
+              { "label" : "Egypt",
+                "url" : "Africa/Egypt-regions.json"
+              }
+            ]
+        },
+        { "label" : "Asia",
+          "maps" : [ { "label" : "China",
+                "url" : "Asia/China-regions.json"
+              },
+              { "label" : "Hong Kong",
+                "url" : "Asia/Hong-Kong-regions.json"
+              },
+              { "label" : "India",
+                "url" : "Asia/India-regions.json"
+              },
+              { "label" : "Indonesia",
+                "url" : "Asia/Indonesia-regions.json"
+              },
+              { "label" : "Iraq",
+                "url" : "Asia/Iraq-regions.json"
+              },
+              { "label" : "Afghanistan",
+                "url" : "Asia/Afghanistan-regions.json"
+              }
+            ]
+        },{ "label" : "Oceania",
+          "maps" : [ { "label" : "Australia",
+                "url" : "Oceania/Australia-regions.json"
+              },{ "label" : "New Zealand",
+                "url" : "Oceania/New-Zealand-regions.json"
+              },{ "label" : "Guam",
+                "url" : "Oceania/Guam-regions.json"
+              }
+            ]
+        },{ "label" : "Antarctica",
+          "maps" : [ { "label" : "Antarctica",
+                "url" : "Antarctica/Antarctica-regions.json"
+              },{ "label" : "South Georgia and the Sandwich Islands",
+                "url" : "Antarctica/South-Georgia-Sandwich-Islands-regions.json"
+              }
+            ]
+        }
+      ]
+  }
+]
