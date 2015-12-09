@@ -196,9 +196,9 @@ public class SpecificationReader {
 					String ind = paramFullSpec.getProperties().get("ind");
 					
 					if(ind == null || ind.equals("1")) {
-						componentRequries.add("org_scn_community_require."+space+"Modules." + id + ".name");	
+						componentRequries.add("org_scn_community_require."+space+"Modules." + id + ".script");	
 					} else {
-						componentRequries2.add("org_scn_community_require."+space+"Modules." + id + ".name");
+						componentRequries2.add("org_scn_community_require."+space+"Modules." + id + ".script");
 					}
 				}
 			} else if(key.equals("stdIncludes")) {
@@ -459,8 +459,13 @@ public class SpecificationReader {
 		String requires = "";
 		
 		for (String require : componentRequries) {
-			requires = requires + require + ",\r\n\t\t";
+			requires = requires + "\"../../../\" + " + require + ",\r\n\t\t";
 		}
+		
+		for (String require : componentRequries2) {
+			requires = requires + "\"../../../\" + " + require + ",\r\n\t\t";
+		}
+
 		return requires;
 	}
 	

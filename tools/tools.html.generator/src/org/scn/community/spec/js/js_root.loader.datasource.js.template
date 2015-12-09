@@ -20,6 +20,8 @@
 define([
         "./%COMP-id%Spec", 
         "./%COMP-id%",
+        "../require_loader",
+//        %-COMPONENT_REQUIRE_SPEC%
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {
@@ -34,7 +36,7 @@ define([
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		%COMPONENT_REQUIRE_SPEC%
+		
      ]);
 
 	 var sdkReqs = require.config({

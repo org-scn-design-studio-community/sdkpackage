@@ -21,7 +21,7 @@ var org_scn_community_basics = {
 	version : "3.0"
 };
 
-define([], function() {
+define(["../os/numberformat/numberformatter"], function() {
 
 	/* IMPORTANT! ORIGINAL LOCATION - basics/res */
 	

@@ -20,6 +20,8 @@
 define([
         "./ScalingDataSourceSpec", 
         "./ScalingDataSource",
+        "../require_loader",
+//        %-COMPONENT_REQUIRE_SPEC%
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {
@@ -34,7 +36,6 @@ define([
 	 /** RequireJS Config **/
 	 var requireInfo1 = org_scn_community_require.collectRequire (
 	 [
-		org_scn_community_require.knownModules.common_basics.name,
 		
      ]);
 

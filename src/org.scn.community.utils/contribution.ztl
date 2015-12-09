@@ -2034,10 +2034,10 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Application Header 2.0 component*/
 	org.scn.community.basics.ApplicationHeader returnAsScnApplicationHeader (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Arrowed Line 0.0 component*/
+	/**Cast to Arrowed Line 2.0 component*/
 	org.scn.community.basics.ArrowedLine returnAsScnArrowedLine (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Base64 Image Encoder 0.0 component*/
+	/**Cast to Base64 Image Encoder 2.0 component*/
 	org.scn.community.basics.Base64Image returnAsScnBase64Image (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Basic Business Card 2.0 component*/

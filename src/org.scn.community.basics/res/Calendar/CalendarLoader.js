@@ -20,6 +20,8 @@
 define([
         "./CalendarSpec", 
         "./Calendar",
+        "../require_loader",
+//      %-COMPONENT_REQUIRE_SPEC%
         "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {
