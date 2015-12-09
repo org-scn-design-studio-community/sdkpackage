@@ -195,8 +195,25 @@ public class SpecificationReader {
 					String id = paramFullSpec.getProperties().get("id");
 					String ind = paramFullSpec.getProperties().get("ind");
 					
+					if(id.startsWith("common_")) {continue;}
+					if(id.startsWith("jshashtable")) {continue;}
+					if(id.startsWith("numberformatter")) {continue;}
+					
+					if(id.startsWith("sap_m_loader")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/sapui5/" + id;}
+					if(id.startsWith("sap_suite_loader")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/sapui5/" + id;}
+					if(id.startsWith("x2js")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/x2js/xml2json";}
+					if(id.equals("mm")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/mm/mm";}
+					if(id.equals("mmfollower")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/mm/mm-follower";}
+					if(id.equals("noty")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/noty/packaged/noty";}
+					if(id.equals("qrcode")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/qrcode/qrcode";}
+					if(id.equals("chartjs")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/chartjs/Chart";}
+					if(id.equals("scheme")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/color/scheme";}
+					if(id.equals("dateformatter")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/date/DateFormat";}
+					if(id.equals("validate")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/validate/validate";}
+					if(id.equals("ndd")) {id = "../../../\"+C_ORG_SCN_COMMUNITY_+\"basics/os/ndd/jq-ndd";}
+
 					if(ind == null || ind.equals("1")) {
-						componentRequries.add("org_scn_community_require."+space+"Modules." + id + ".script");	
+						componentRequries.add("\"../../../\"+C_ORG_SCN_COMMUNITY_+\""+id+"\"");	
 					} else {
 						componentRequries2.add("org_scn_community_require."+space+"Modules." + id + ".script");
 					}

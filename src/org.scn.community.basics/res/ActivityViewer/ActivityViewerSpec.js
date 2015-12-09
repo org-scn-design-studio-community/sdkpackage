@@ -196,11 +196,11 @@ define(["../require_loader"], function() {
   "package": "basics",
   "require": [
     {
-      "id": "d3",
+      "id": "basics/os/d3/d3",
       "space": "d3"
     },
     {
-      "id": "d3plug_gantt",
+      "id": "basics/os/d3-plug/gantt-chart-d3v2",
       "space": "d3"
     },
     {
