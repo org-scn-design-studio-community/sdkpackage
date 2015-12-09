@@ -1,6 +1,6 @@
 define([
-        "../os/d3v3/d3",
-        "../os/d3v3/topojson.v1"
+        "../../org.scn.community.shared/os/d3v3/d3",
+        "../../org.scn.community.shared/os/d3v3/topojson.v1"
     ],function(d3,topojson){
 
 	/**
@@ -155,7 +155,7 @@ define([
 			}
 			if(o.url) {
 				var mapURL = o.url;
-				if(o.type!="external") mapURL = "../os/maps/" + mapURL + "?r=" + Math.random();
+				if(o.type!="external") mapURL = "../../org.scn.community.shared/os/maps/" + mapURL + "?r=" + Math.random();
 				if(rootConfig.indexUrl) mapURL = rootConfig.indexUrl + mapURL;
 				menuitem.attachSelect(function(mapURL,config){return function(oControlEvent){
 					try{
@@ -276,7 +276,7 @@ define([
 			this.mapProperties.addContent(this.tableAttributes);
 			try{
 				$.ajax({
-					url : "../os/maps/index.json?r=" + Math.random(),
+					url : "../../org.scn.community.shared/os/maps/index.json?r=" + Math.random(),
 					context : this
 				})
 				.done(this.mapLoadComplete)

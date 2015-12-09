@@ -116,7 +116,7 @@ define(["css!cm/lib/codemirror.css",
 			if (o.url) {
 				var presetURL = o.url;
 				if (o.type != "external")
-					presetURL = "../os/rapidprototyping-presets/" + this.getPresets() + "/" + presetURL;
+					presetURL = "../../org.scn.community.shared/os/rapidprototyping-presets/" + this.getPresets() + "/" + presetURL;
 				if (rootConfig.indexUrl)
 					presetURL = rootConfig.indexUrl + presetURL;
 				menuitem.attachSelect(function (presetURL, config) {
@@ -154,7 +154,7 @@ define(["css!cm/lib/codemirror.css",
 			sap.ui.core.Control.prototype.setProperty.apply(this, ["presets", s]);
 			try {
 				$.ajax({
-					url : "../os/rapidprototyping-presets/" + this.getPresets() + "/index.json?r=" + Math.random(),
+					url : "../../org.scn.community.shared/os/rapidprototyping-presets/" + this.getPresets() + "/index.json?r=" + Math.random(),
 					context : this
 				})
 				.done(this.presetsLoadComplete)
