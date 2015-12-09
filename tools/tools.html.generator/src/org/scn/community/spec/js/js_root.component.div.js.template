@@ -18,7 +18,7 @@
  */
  
 define([
-	"../../aps/org.scn.community.component.Core", 
+	"../../../org.scn.community.shared/modules/component.core", 
 	"./%COMP-id%Spec"
 	], function() {
 

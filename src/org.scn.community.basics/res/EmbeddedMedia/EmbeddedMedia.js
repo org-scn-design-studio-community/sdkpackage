@@ -1,4 +1,4 @@
-define(["../../aps/org.scn.community.component.Core", "./EmbeddedMediaSpec"], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./EmbeddedMediaSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.EmbeddedMedia;
 

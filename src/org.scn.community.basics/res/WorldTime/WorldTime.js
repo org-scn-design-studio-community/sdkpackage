@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- define(["../../aps/org.scn.community.component.Core", "./WorldTimeSpec"], function() {
+ define(["../../../org.scn.community.shared/modules/component.core", "./WorldTimeSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.WorldTime;
 
@@ -73,7 +73,7 @@ WorldTime = function () {
 		
 		//setup interval call only once in case of multiple update calls!
 		if(that.interval_id === undefined){
-			that.interval_id = window.setIntervaldefine(["../../aps/org.scn.community.component.Core", "./WorldTimeSpec"], function() {
+			that.interval_id = window.setIntervaldefine(["../../../org.scn.community.shared/modules/component.core", "./WorldTimeSpec"], function() {
 				var html = calcTime(that, that.getUtcoffset());
 				that.$div.innerHTML = html;
 			}

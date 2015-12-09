@@ -19,7 +19,11 @@
 var org_scn_community_basics = org_scn_community_basics || {};
 var org_scn_community_require = org_scn_community_require || {};
 
-define(["./common_basics","./common_databound"], function() {
+define([
+        "../../org.scn.community.shared/modules/component.basics",
+        "../../org.scn.community.shared/modules/component.databound",
+        "../../org.scn.community.shared/modules/component.unified"
+        ], function() {
 
 
 	/* IMPORTANT! ORIGINAL LOCATION - basics/res */

@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- define(["../../aps/org.scn.community.component.Core", "./DateRangeScrollerSpec"], function() {
+ define(["../../../org.scn.community.shared/modules/component.core", "./DateRangeScrollerSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.DateRangeScroller;
 

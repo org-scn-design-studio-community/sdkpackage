@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- define(["../../aps/org.scn.community.component.Core", "./TreeSpec"], function() {
+ define(["../../../org.scn.community.shared/modules/component.core", "./TreeSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.Tree;
 

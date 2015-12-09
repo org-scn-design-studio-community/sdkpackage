@@ -20,7 +20,7 @@
 define([
         "./TopFlopSpec", 
         "./TopFlop",
-        "../../aps/org.scn.community.component.Core"
+        "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {
 

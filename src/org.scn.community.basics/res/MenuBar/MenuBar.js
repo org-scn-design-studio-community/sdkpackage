@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- define(["../../aps/org.scn.community.component.Core", "./MenuBarSpec"], function() {
+ define(["../../../org.scn.community.shared/modules/component.core", "./MenuBarSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.MenuBar;
 

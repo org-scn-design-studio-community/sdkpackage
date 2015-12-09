@@ -23,7 +23,7 @@
 %PART_USED_FOR_TESTING% -->
 
 <script src="../os/stackoverflow/remove_diacritics.js"></script>
-<script src="../os/d3v3/d3.min.js"></script>
+<script src="../../org.scn.community.basics/os/d3v3/d3.js"></script>
 <script src="../os/d3v3/topojson.v1.min.js"></script>
 
 <script src="org.scn.community.generic.PropertyPage.js" type="text/javascript"></script>

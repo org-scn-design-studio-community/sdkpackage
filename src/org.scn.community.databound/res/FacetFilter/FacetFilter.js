@@ -1,4 +1,4 @@
-define(["../../aps/org.scn.community.component.Core", "./FacetFilterSpec"], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./FacetFilterSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.FacetFilter;
 

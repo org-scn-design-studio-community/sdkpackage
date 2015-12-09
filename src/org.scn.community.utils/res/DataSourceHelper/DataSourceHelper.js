@@ -1,4 +1,4 @@
-define(["../../aps/org.scn.community.component.Core", "./DataSourceHelperSpec"], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./DataSourceHelperSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.utils.DataSourceHelper;
 

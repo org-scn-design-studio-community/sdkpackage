@@ -20,7 +20,7 @@
 define([
         "./UI5TableSpec", 
         "./UI5Table",
-        "../../aps/org.scn.community.component.Core"
+        "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {
 

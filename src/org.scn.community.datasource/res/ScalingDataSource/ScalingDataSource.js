@@ -1,4 +1,4 @@
-	define(["../../aps/org.scn.community.component.Core", "./ScalingDataSourceSpec"], function() {
+	define(["../../../org.scn.community.shared/modules/component.core", "./ScalingDataSourceSpec"], function() {
 
 	var myComponentData = org_scn_community_require.knownComponents.datasource.ScalingDataSource;
 

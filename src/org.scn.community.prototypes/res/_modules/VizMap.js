@@ -2,7 +2,7 @@
  * Map Visualization Class for use in databound D3 (V3) Visualizations.
  */
 define(["./VizBase",
-        "../../os/d3v3/topojson.v1.min",
+        "../../../org.scn.community.basics/os/d3v3/topojson.v1",
         "../../os/d3v3/d3.geo.projection",
         "../../os/d3v3/d3-tip"
         ], function(VizBase,topojson,d3geo,d3tip) {

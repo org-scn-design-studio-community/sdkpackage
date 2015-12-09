@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
  
- define(["../../aps/org.scn.community.component.Core", "./RSSFeedReaderSpec"], function() {
+ define(["../../../org.scn.community.shared/modules/component.core", "./RSSFeedReaderSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.RSSFeedReader;
 

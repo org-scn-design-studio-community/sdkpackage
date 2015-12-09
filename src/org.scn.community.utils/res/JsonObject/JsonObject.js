@@ -1,4 +1,4 @@
-define(["../../aps/org.scn.community.component.Core", "./JsonObjectSpec"], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./JsonObjectSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.utils.JsonObject;
 

@@ -1,4 +1,4 @@
-define(["../../aps/org.scn.community.component.Core", "./ApsTesterUI5Spec"], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./ApsTesterUI5Spec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.prototypes.ApsTesterUI5;
 

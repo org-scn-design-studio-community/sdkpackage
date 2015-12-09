@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
 
-define(["../../aps/org.scn.community.component.Core", "./CalendarSpec"], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./CalendarSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.Calendar;
 

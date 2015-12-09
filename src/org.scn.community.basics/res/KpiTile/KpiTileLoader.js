@@ -20,7 +20,7 @@
 define([
         "./KpiTileSpec", 
         "./KpiTile",
-        "../../aps/org.scn.community.component.Core"
+        "../../../org.scn.community.shared/modules/component.core"
         ]
      , function() {
 

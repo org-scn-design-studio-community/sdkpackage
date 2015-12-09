@@ -1,4 +1,4 @@
-define(["../../aps/org.scn.community.component.Core", "./ActionSheetButtonSpec"], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./ActionSheetButtonSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.ActionSheetButton;
 

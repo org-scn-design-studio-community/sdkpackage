@@ -1,4 +1,4 @@
-define(["../../aps/org.scn.community.component.Core", "./EmbeddedFrameSpec"], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./EmbeddedFrameSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.basics.EmbeddedFrame;
 

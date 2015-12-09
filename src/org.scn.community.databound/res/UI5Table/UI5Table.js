@@ -1,4 +1,4 @@
-define(["../../aps/org.scn.community.component.Core", "./UI5TableSpec"], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./UI5TableSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.UI5Table;
 

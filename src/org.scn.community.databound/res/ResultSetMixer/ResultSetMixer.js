@@ -1,7 +1,7 @@
 var org_scn_community_databound = org_scn_community_databound || {};
 org_scn_community_databound.centralDataStorage = org_scn_community_databound.centralDataStorage || {}; 
 
-define(["../../aps/org.scn.community.component.Core", "./ResultSetMixerSpec"], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./ResultSetMixerSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.ResultSetMixer;
 myComponentData.instance = {

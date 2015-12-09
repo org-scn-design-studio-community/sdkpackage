@@ -1,4 +1,4 @@
-define(["../../aps/org.scn.community.component.Core", "./NiceChartSpec"], function() {
+define(["../../../org.scn.community.shared/modules/component.core", "./NiceChartSpec"], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.databound.NiceChart;
 
