@@ -4024,11 +4024,13 @@
 	databound="false"
 	modes="commons m"
 >
-	
+	<!-- 
 	<requireJs modes="commons m">res/require_loader</requireJs>
 	<requireJs modes="commons m">res/QRCode/QRCodeSpec</requireJs>
 	<requireJs modes="commons m">res/QRCode/QRCodeLoader</requireJs>
-
+	-->
+	<requireJs modes="commons m">res/QRCode/QRCode</requireJs>
+	
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
 	
 	

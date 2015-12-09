@@ -17,17 +17,5 @@
  * limitations under the License. 
  */
 
-define([
-    "./QRCodeSpec", 
-    "./QRCode",
-    "../require_loader",
-	"../../../org.scn.community.basics/os/qrcode/qrcode",
-		
-	"../../../org.scn.community.shared/modules/component.core",
-    ],
 
-	function() {
-	   var myComponentData = org_scn_community_require.knownComponents.basics.QRCode;
-
- 	   sap.designstudio.sdk.Component.subclass(myComponentData.fullComponentName, myComponentData.instance);	// End of SDK
-});// End of closure
+// NOT NEEDED
