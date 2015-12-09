@@ -39,6 +39,7 @@ copy ..\src\org.scn.community.basics\res\require_loader.js ..\src\org.scn.commun
 copy ..\src\org.scn.community.basics\res\require_loader.js ..\src\org.scn.community.utils\res\require_loader.js /Y
 copy ..\src\org.scn.community.basics\res\require_loader.js ..\src\org.scn.community.datasource\res\require_loader.js /Y
 copy ..\src\org.scn.community.basics\res\require_loader.js ..\src\org.scn.community.prototypes\res\require_loader.js /Y
+copy ..\src\org.scn.community.basics\res\require_loader.js ..\src\org.scn.community.shared\res\require_loader.js /Y
 
 copy ..\src\org.scn.community.basics\aps\*.* ..\src\org.scn.community.databound\aps\ /Y
 copy ..\src\org.scn.community.basics\aps\*.* ..\src\org.scn.community.utils\aps\ /Y
