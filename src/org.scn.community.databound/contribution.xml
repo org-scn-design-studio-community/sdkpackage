@@ -2629,7 +2629,7 @@ __n__}
 
 <component
 		id="ProgressBarSet"
-		title="Progress Bar Set"
+		title="Progress Bar Set 2.0"
 		icon="res/ProgressBarSet/ProgressBarSet.png"
 		handlerType="div"
 		modes="commons m"
