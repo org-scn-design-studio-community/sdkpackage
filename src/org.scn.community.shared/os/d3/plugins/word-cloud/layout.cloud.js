@@ -1,6 +1,6 @@
 // Word cloud layout by Jason Davies, http://www.jasondavies.com/word-cloud/
 // Algorithm due to Jonathan Feinberg, http://static.mrfeinberg.com/bv_ch03.pdf
-(function() {
+define(["d3"], function() {
   function cloud() {
     var size = [256, 256],
         text = cloudText,
@@ -398,4 +398,4 @@
 
   if (typeof module === "object" && module.exports) module.exports = cloud;
   else (d3.layout || (d3.layout = {})).cloud = cloud;
-})();
+});

@@ -1,17 +1,16 @@
 
 <component
 		id="tagCloud"
-		title="Tag Cloud 0.0"
+		title="Tag Cloud 2.0"
 		icon="res/TagCloud/TagCloud.png"
 		handlerType="div"
+		modes="commons m"
+		propertySheetPath="aps/PropertyPage.html"
 		group="ScnCommunityDataBound"
 		databound="true"> <!-- This is set so that a data source can be assigned -->
-		<stdInclude kind="d3"/>
-		<jsInclude>os/word-cloud/layout.cloud.js</jsInclude>
-		<jsInclude>res/common_basics.js</jsInclude>
-		<jsInclude>res/require_loader.js</jsInclude>
-		<jsInclude>res/TagCloud/TagCloud.js</jsInclude>
-		<cssInclude>res/TagCloud/TagCloud.css</cssInclude> 
+
+		<requireJs modes="commons m">res/TagCloud/TagCloud</requireJs>
+		
 		<!-- This implicitly sets a metadata property -->
 		<property
 			id="savedData"
@@ -60,6 +59,27 @@
 			tooltip="Measure to specify size of tags"
 			visible="true"
 			group="DataBinding"/>
+		<property 
+			id="measureColorScale"
+			title="Measure Color Scale Palette"
+			type="String"
+			tooltip="Measure Color Scale Palette"
+			visible="true"
+		/>
+		<property 
+			id="measureScaleMinimum"
+			title="Measure Color Scale Minimum"
+			type="float"
+			tooltip="Measure Color Scale Minimum"
+			visible="true"
+		/>
+		<property 
+			id="measureScaleMaximum"
+			title="Measure Color Scale Maximum"
+			type="float"
+			tooltip="Measure Color Scale Maximum"
+			visible="true"
+		/>
 		<property
 			id="measureColor"
 			title="Tag Color"
@@ -79,6 +99,9 @@
 			title="On Click" 
 			group="Events" />
 		<initialization>
+			<defaultValue property="measureColorScale">#FF0000,#5D6770,#00FF00</defaultValue>
+			<defaultValue property="measureScaleMinimum">-2</defaultValue>
+			<defaultValue property="measureScaleMaximum">2</defaultValue>
 			<defaultValue property="WIDTH">400</defaultValue>
 			<defaultValue property="HEIGHT">400</defaultValue>
 			<defaultValue property="selectedNode">InitialNode</defaultValue>
