@@ -17,13 +17,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require.config({
-	shim : {
-		"../../../org.scn.community.shared/os/d3/plugins/word-cloud/layout.cloud" : {
-			deps : ["d3"]
-		}
-	}
-})
 define(["css!./TagCloud.css",
         "d3",
         "../_modules/SDKCore",
