@@ -146,7 +146,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 								     && propertyOptions.apsControl != "mapdownload"
 									 && propertyOptions.apsControl != "byodata"
 									 && propertyOptions.apsControl != "codemirror") {
-									that["cmp_" + property].setWidth("320px");
+									//that["cmp_" + property].setWidth("320px");		-- This makes most stuff look ugly - Mike 12/10/2015
 								}
 							}
 							componentContainer.addContent(that.hLabel(propertyOptions.desc || property, that["cmp_" + property]));

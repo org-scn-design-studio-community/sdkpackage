@@ -1,19 +1,15 @@
 
 	<component
 		id="BulletChart"
-		title="Bullet Chart 0.0"
+		title="Bullet Chart 2.0"
 		icon="res/BulletChart/BulletChart.png"
 		handlerType="div"
+		modes="commons m"
 		databound="true"
 		group="ScnCommunityChartMaps"
-		propertySheetPath="res/BulletChart/aps/BulletChart.html">
+		propertySheetPath="aps/PropertyPage.html">
 
-		<stdInclude kind="d3"/>
-
-		<jsInclude>res/common_basics.js</jsInclude>
-		<jsInclude>res/common_databound.js</jsInclude>
-		<jsInclude>res/BulletChart/BulletChart.js</jsInclude>
-		<cssInclude>res/BulletChart/BulletChart.css</cssInclude>
+		<requireJs modes="commons m">res/BulletChart/BulletChart</requireJs>
 
 		<property id="onclick" type="ScriptText" title="On Click" group="Events" />
 		<property id="clickedgraphkey" title="clickedgraphkey" type="String" visible="false"/>
@@ -54,6 +50,8 @@
 		<property id="higherisbetter" title="realization higher than target is better" type="boolean"/>
 		<initialization>
 			<defaultValue property="numberofcolumns">1</defaultValue>
+			<defaultValue property="rowmargin">20</defaultValue>
+			<defaultValue property="columnmargin">30</defaultValue>
 			<defaultValue property="maxgraphheight">70</defaultValue>
 			<defaultValue property="mingraphheight">50</defaultValue>
 			<defaultValue property="higherisbetter">true</defaultValue>
