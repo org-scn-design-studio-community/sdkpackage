@@ -681,11 +681,12 @@
 	icon="res/Base64Image/Base64Image.png"
 	tooltip="Handy Base-64 encoder property sheet (requires IE10+ for design-time)"
 	handlerType="sapui5"
-	modes="commons"
+	modes="commons m"
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 	
-	<requireJs modes="commons">res/Base64Image/Base64Image</requireJs>
+	<requireJs modes="commons">res/Base64Image/Base64Image_commons</requireJs>
+	<requireJs modes="m">res/Base64Image/Base64Image</requireJs>
 	
 	<property type="String" title="Image Source URI" id="src" group="Display"/>
 	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>			

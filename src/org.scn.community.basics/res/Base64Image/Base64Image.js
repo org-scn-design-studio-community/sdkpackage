@@ -63,7 +63,7 @@ define([], function() {
 	for(var p in dsProperties){
 		if(dsProperties[p].ui5Meta) meta.properties[p] = dsProperties[p].ui5Meta;
 	}
-	sap.ui.commons.Image.extend("org.scn.community.basics.Base64Image", {
+	sap.m.Image.extend("org.scn.community.basics.Base64Image", {
 		renderer : {},
 		metadata : meta,
 		initDesignStudio : function() {
