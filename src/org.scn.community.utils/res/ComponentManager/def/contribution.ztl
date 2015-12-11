@@ -717,6 +717,18 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Fiori Button 1.0 component*/
 	org.scn.community.basics.FioriButton returnAsScnFioriButton (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Fiori Input Field component*/
+	org.scn.community.basics.FioriInput returnAsScnFioriInput (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Fiori Segmented Button component*/
+	org.scn.community.basics.FioriSegmentedButton returnAsScnFioriSegmentedButton (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Fiori Slider component*/
+	org.scn.community.basics.FioriSlider returnAsScnFioriSlider (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Fiori Switch component*/
+	org.scn.community.basics.FioriSwitch returnAsScnFioriSwitch (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Fiori Toolbar 2.0 component*/
 	org.scn.community.basics.FioriToolbar returnAsScnFioriToolbar (Component inputComponent) {* return inputComponent; *}
 
@@ -828,7 +840,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Area Micro Chart 2.0 component*/
 	org.scn.community.databound.AreaMicroChart returnAsScnAreaMicroChart (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Bullet Chart 0.0 component*/
+	/**Cast to Bullet Chart 2.0 component*/
 	org.scn.community.databound.BulletChart returnAsScnBulletChart (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Bullet Micro Chart 2.0 component*/
@@ -855,7 +867,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Hexbin Chart 2.0 component*/
 	org.scn.community.databound.HexBin returnAsScnHexBin (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to D3 Hierarchy 1.0 component*/
+	/**Cast to D3 Hierarchy 2.0 component*/
 	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Leader Board 2.0 component*/
@@ -882,7 +894,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Process Flow 2.0 component*/
 	org.scn.community.databound.ProcessFlow returnAsScnProcessFlow (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Progress Bar Set component*/
+	/**Cast to Progress Bar Set 2.0 component*/
 	org.scn.community.databound.ProgressBarSet returnAsScnProgressBarSet (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Radio Button Group 2.0 component*/
@@ -906,7 +918,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to 2D Crosstab 2.0 component*/
 	org.scn.community.databound.Table2D returnAsScnTable2D (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Tag Cloud 0.0 component*/
+	/**Cast to Tag Cloud 2.0 component*/
 	org.scn.community.databound.tagCloud returnAsScntagCloud (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Top Flop Chart 0.0 component*/

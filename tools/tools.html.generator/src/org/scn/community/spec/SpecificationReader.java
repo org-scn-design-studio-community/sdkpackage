@@ -467,6 +467,8 @@ public class SpecificationReader {
 		for (String templatePath : this.replacedTemplates.keySet()) {
 			String content = replacedTemplates.get(templatePath);
 			
+			content = content.replace("%LOADER%", replacedTemplates.get(this.componentName+"Loader.js"));
+			
 			String iFileName = this.rootPath + File.separator + templatePath;
 			
 			if(templatePath.endsWith(this.componentName + "Loader.js")) {
