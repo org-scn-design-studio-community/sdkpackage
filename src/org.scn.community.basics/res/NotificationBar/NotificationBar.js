@@ -431,5 +431,5 @@ NotificationBar = {
 //%INIT-START%
 myComponentData.instance = NotificationBar;
 jQuery.sap.require("sap.ui.ux3.NotificationBar");
-sap.ui.ux3.NotificationBar.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.ux3.NotificationBar.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

@@ -93,5 +93,5 @@ PasswordField = {
 //%INIT-START%
 myComponentData.instance = PasswordField;
 jQuery.sap.require("sap.ui.commons.PasswordField");
-sap.ui.commons.PasswordField.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.PasswordField.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

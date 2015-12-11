@@ -124,5 +124,5 @@ RSSFeedReader = function () {
 myComponentData.instance = RSSFeedReader;
 Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-return myComponentData.instance;
+
 });

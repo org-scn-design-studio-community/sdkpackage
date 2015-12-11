@@ -101,5 +101,5 @@ EmbeddedMedia = function () {
 myComponentData.instance = EmbeddedMedia;
 Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-return myComponentData.instance;
+
 });

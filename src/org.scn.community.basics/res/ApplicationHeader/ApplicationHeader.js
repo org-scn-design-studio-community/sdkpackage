@@ -63,5 +63,5 @@ ApplicationHeader = {
 //%INIT-START%
 myComponentData.instance = ApplicationHeader;
 jQuery.sap.require("sap.ui.commons.ApplicationHeader");
-sap.ui.commons.ApplicationHeader.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.ApplicationHeader.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

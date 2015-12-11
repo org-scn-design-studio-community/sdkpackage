@@ -93,5 +93,5 @@ ToggleButton = {
 //%INIT-START%
 myComponentData.instance = ToggleButton;
 jQuery.sap.require("sap.ui.commons.ToggleButton");
-sap.ui.commons.ToggleButton.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.ToggleButton.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

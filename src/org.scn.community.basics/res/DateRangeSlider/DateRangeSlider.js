@@ -176,5 +176,5 @@ DateRangeSlider = {
 //%INIT-START%
 myComponentData.instance = DateRangeSlider;
 jQuery.sap.require("sap.suite.ui.commons.DateRangeSlider");
-sap.suite.ui.commons.DateRangeSlider.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.suite.ui.commons.DateRangeSlider.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

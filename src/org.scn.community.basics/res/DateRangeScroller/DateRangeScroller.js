@@ -184,5 +184,5 @@ DateRangeScroller = {
 //%INIT-START%
 myComponentData.instance = DateRangeScroller;
 jQuery.sap.require("sap.suite.ui.commons.DateRangeScroller");
-sap.suite.ui.commons.DateRangeScroller.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.suite.ui.commons.DateRangeScroller.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

@@ -64,9 +64,7 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 	return that;
 };
 
-// define([], function(%COMP-package%%COMP-id(lower)%){
-	myComponentData.instance = %COMP-id%;
-	return myComponentData.instance;
-// });
+myComponentData.instance = %COMP-id%;
+%LOADER%
 
 });

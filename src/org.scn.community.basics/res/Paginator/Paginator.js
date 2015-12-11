@@ -91,5 +91,5 @@ Paginator = {
 //%INIT-START%
 myComponentData.instance = Paginator;
 jQuery.sap.require("sap.ui.commons.Paginator");
-sap.ui.commons.Paginator.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.Paginator.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

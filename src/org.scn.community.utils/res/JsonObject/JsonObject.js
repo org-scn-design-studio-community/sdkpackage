@@ -46,5 +46,5 @@ JsonObject = function () {
 myComponentData.instance = JsonObject;
 Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-return myComponentData.instance;
+
 });

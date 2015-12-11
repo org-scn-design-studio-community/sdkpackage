@@ -138,5 +138,5 @@ Slider = {
 //%INIT-START%
 myComponentData.instance = Slider;
 jQuery.sap.require("sap.ui.commons.Slider");
-sap.ui.commons.Slider.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.Slider.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

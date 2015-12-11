@@ -271,5 +271,5 @@ FacetFilter = {
 //%INIT-START%
 myComponentData.instance = FacetFilter;
 jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
-sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

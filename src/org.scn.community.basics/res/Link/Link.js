@@ -91,5 +91,5 @@ Link = {
 //%INIT-START%
 myComponentData.instance = Link;
 jQuery.sap.require("sap.ui.commons.Link");
-sap.ui.commons.Link.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.Link.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

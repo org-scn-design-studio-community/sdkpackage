@@ -48,5 +48,5 @@ BulletChartGen = function () {
 myComponentData.instance = BulletChartGen;
 Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-return myComponentData.instance;
+
 });

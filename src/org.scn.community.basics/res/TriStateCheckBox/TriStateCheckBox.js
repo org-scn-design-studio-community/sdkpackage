@@ -93,5 +93,5 @@ TriStateCheckBox = {
 //%INIT-START%
 myComponentData.instance = TriStateCheckBox;
 jQuery.sap.require("sap.ui.commons.TriStateCheckBox");
-sap.ui.commons.TriStateCheckBox.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.TriStateCheckBox.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

@@ -114,5 +114,5 @@ EmbeddedFrame = function () {
 myComponentData.instance = EmbeddedFrame;
 Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-return myComponentData.instance;
+
 });

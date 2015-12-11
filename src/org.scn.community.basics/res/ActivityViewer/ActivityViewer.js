@@ -229,5 +229,5 @@ ActivityViewer = function () {
 myComponentData.instance = ActivityViewer;
 Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-return myComponentData.instance;
+
 });

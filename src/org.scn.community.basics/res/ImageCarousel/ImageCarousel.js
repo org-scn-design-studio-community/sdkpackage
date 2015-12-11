@@ -151,5 +151,5 @@ ImageCarousel = {
 //%INIT-START%
 myComponentData.instance = ImageCarousel;
 jQuery.sap.require("sap.ui.commons.Carousel");
-sap.ui.commons.Carousel.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.Carousel.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

@@ -202,5 +202,5 @@ ValiInput = {
 //%INIT-START%
 myComponentData.instance = ValiInput;
 jQuery.sap.require("sap.ui.commons.TextField");
-sap.ui.commons.TextField.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.TextField.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

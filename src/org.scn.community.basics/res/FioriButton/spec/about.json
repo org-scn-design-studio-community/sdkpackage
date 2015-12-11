@@ -1,0 +1,16 @@
+{
+	"title": "Fiori Button 2.0",
+	"description": "Fiori Button 2.0",
+	"icon": "FioriButton.png",
+	"topics": 
+	[
+		{
+			"title" : "Source of Icons",
+			"content" : "Open in browser the link https://openui5.hana.ondemand.com/iconExplorer.html with icon library. The icon id is in right bottom corner."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

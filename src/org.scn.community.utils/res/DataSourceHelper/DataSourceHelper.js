@@ -46,5 +46,5 @@ DataSourceHelper = function () {
 myComponentData.instance = DataSourceHelper;
 Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-return myComponentData.instance;
+
 });

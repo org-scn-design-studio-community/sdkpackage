@@ -99,5 +99,5 @@ ActionSheetButton = {
 //%INIT-START%
 myComponentData.instance = ActionSheetButton;
 jQuery.sap.require("sap.m.Button");
-sap.m.Button.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.m.Button.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

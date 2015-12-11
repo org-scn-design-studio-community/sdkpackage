@@ -91,5 +91,5 @@ RatingIndicator = {
 //%INIT-START%
 myComponentData.instance = RatingIndicator;
 jQuery.sap.require("sap.ui.commons.RatingIndicator");
-sap.ui.commons.RatingIndicator.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.RatingIndicator.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

@@ -90,5 +90,5 @@ define([
 
 //%INIT-START%
 myComponentData.instance = ScalingDataSource;
-sap.designstudio.sdk.DataBuffer.subclass(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.designstudio.sdk.DataBuffer.subclass(myComponentData.fullComponentName, myComponentData.instance);
 });

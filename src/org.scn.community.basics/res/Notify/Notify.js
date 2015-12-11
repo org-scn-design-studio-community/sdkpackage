@@ -116,5 +116,5 @@ Notify = function () {
 myComponentData.instance = Notify;
 Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-return myComponentData.instance;
+
 });

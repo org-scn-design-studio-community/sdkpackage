@@ -13,6 +13,7 @@ del ..\contribution.ztl /q
 type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\templates\contribution.ztl.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.js.txt ^
+..\res\ConstAlign\contribution.ztl ^
 ..\res\ConstBarColor\contribution.ztl ^
 ..\res\ComponentsArrays\contribution.ztl ^
 ..\res\ConstBrowser\contribution.ztl ^

@@ -210,5 +210,5 @@ Tree = {
 //%INIT-START%
 myComponentData.instance = Tree;
 jQuery.sap.require("sap.ui.commons.Tree");
-sap.ui.commons.Tree.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.Tree.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

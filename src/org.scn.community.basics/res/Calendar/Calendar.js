@@ -208,5 +208,5 @@ Calendar = {
 //%INIT-START%
 myComponentData.instance = Calendar;
 jQuery.sap.require("sap.me.Calendar");
-sap.me.Calendar.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.me.Calendar.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

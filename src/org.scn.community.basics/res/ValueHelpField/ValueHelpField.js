@@ -97,5 +97,5 @@ ValueHelpField = {
 //%INIT-START%
 myComponentData.instance = ValueHelpField;
 jQuery.sap.require("sap.ui.commons.ValueHelpField");
-sap.ui.commons.ValueHelpField.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.ValueHelpField.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

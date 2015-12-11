@@ -262,5 +262,5 @@ WorldTime = function () {
 myComponentData.instance = WorldTime;
 Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-return myComponentData.instance;
+
 });

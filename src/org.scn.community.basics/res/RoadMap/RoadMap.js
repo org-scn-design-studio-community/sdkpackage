@@ -166,5 +166,5 @@ RoadMap = {
 //%INIT-START%
 myComponentData.instance = RoadMap;
 jQuery.sap.require("sap.ui.commons.RoadMap");
-sap.ui.commons.RoadMap.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.RoadMap.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

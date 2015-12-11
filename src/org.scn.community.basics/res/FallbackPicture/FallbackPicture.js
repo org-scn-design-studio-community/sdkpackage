@@ -114,5 +114,5 @@ FallbackPicture = {
 //%INIT-START%
 myComponentData.instance = FallbackPicture;
 jQuery.sap.require("sap.ui.commons.Image");
-sap.ui.commons.Image.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.Image.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

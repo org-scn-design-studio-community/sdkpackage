@@ -89,5 +89,5 @@ ProgressIndicator = {
 //%INIT-START%
 myComponentData.instance = ProgressIndicator;
 jQuery.sap.require("sap.ui.commons.ProgressIndicator");
-sap.ui.commons.ProgressIndicator.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.ProgressIndicator.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

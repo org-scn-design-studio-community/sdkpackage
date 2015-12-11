@@ -46,5 +46,5 @@ ApsTester = function () {
 myComponentData.instance = ApsTester;
 Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-return myComponentData.instance;
+
 });

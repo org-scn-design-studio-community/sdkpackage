@@ -440,5 +440,5 @@ Gauge = function () {
 myComponentData.instance = Gauge;
 Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-return myComponentData.instance;
+
 });

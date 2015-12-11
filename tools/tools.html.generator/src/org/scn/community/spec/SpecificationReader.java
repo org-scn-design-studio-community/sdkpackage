@@ -541,7 +541,7 @@ public class SpecificationReader {
 						defineContent = "//%INIT-START%\r\n";
 						defineContent += "myComponentData.instance = "+this.componentName+";\r\n";
 						defineContent += "" + replacedTemplates.get(this.componentName+"Loader.js");
-						defineContent += "return myComponentData.instance;\r\n";
+						defineContent += "\r\n";
 						
 						contentJs = contentJs.substring(0, indexDefineStart) + defineContent + contentJs.substring(indexDefineEnd);
 						

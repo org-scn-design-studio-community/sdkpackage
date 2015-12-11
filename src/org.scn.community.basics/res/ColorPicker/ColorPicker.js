@@ -93,5 +93,5 @@ ColorPicker = {
 //%INIT-START%
 myComponentData.instance = ColorPicker;
 jQuery.sap.require("sap.ui.commons.ColorPicker");
-sap.ui.commons.ColorPicker.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.ColorPicker.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

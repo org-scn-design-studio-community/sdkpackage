@@ -95,5 +95,5 @@ that.addStyleClass("scn-pack-TextArea");
 //%INIT-START%
 myComponentData.instance = TextArea;
 jQuery.sap.require("sap.ui.commons.TextArea");
-sap.ui.commons.TextArea.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.TextArea.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

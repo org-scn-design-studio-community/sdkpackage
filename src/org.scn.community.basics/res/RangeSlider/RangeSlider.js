@@ -153,5 +153,5 @@ RangeSlider = {
 //%INIT-START%
 myComponentData.instance = RangeSlider;
 jQuery.sap.require("sap.ui.commons.RangeSlider");
-sap.ui.commons.RangeSlider.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.RangeSlider.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

@@ -46,5 +46,5 @@ ApsTesterUI5 = {
 //%INIT-START%
 myComponentData.instance = ApsTesterUI5;
 jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
-sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);return myComponentData.instance;
+sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
