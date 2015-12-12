@@ -1,6 +1,6 @@
 
 /**
- * Generated ZTL Class for Post Response Parser 1.0
+ * Generated ZTL Class for Post Response Parser 1.X
  * 
  * DO NOT EDIT
  */

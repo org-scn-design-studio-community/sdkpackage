@@ -193,15 +193,13 @@
 
 <component
 	id="Array"
-	title="Array Utility 0.0"
+	title="Array Utility 0.X"
 	icon="res/Array/Array.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Array/Array.js</jsInclude>
-
 	<property
 		id="items"
 		type="String"
@@ -225,14 +223,13 @@
 
 <component
 	id="ClientInformation"
-	title="Client Information 0.0"
+	title="Client Information 0.X"
 	tooltip="Returns on first roundtrip some information from web client (browser)"
 	icon="res/ClientInformation/ClientInformation.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ClientInformation/ClientInformation.js</jsInclude>
 
 	<property
@@ -338,13 +335,12 @@
 </component>
 <component
 	id="Collection"
-	title="Collection Utility 0.0"
+	title="Collection Utility 0.X"
 	icon="res/Collection/Collection.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Collection/Collection.js</jsInclude>
 
 	<property
@@ -412,13 +408,12 @@
 
 <component
 	id="Debugger"
-	title="Debugger Code Inspector 0.0"
+	title="Debugger Code Inspector 0.X"
 	icon="res/Debugger/Debugger.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Debugger/Debugger.js</jsInclude>
 	<cssInclude>res/Debugger/Debugger.css</cssInclude>
 
@@ -511,14 +506,13 @@
 
 <component
 	id="ComponentManager"
-	title="Component Manager 0.0"
+	title="Component Manager 0.X"
 	tooltip="Allows managing and listing of components"
 	icon="res/ComponentManager/ComponentManager.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ComponentManager/ComponentManager.js</jsInclude>
 
 	<property
@@ -529,8 +523,8 @@
 		visible="false" />
 
 	<initialization>
-		<defaultValue property="WIDTH">50</defaultValue>
-		<defaultValue property="HEIGHT">50</defaultValue>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
@@ -542,14 +536,13 @@
 </component>
 <component
 	id="CustomCssCollector"
-	title="Custom Css Collector 0.0"
+	title="Custom Css Collector 0.X"
 	tooltip="Allows to add Custom Css Files Dynamically"
 	icon="res/CustomCssCollector/CustomCssCollector.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/CustomCssCollector/CustomCssCollector.js</jsInclude>
 
 	<property
@@ -582,13 +575,12 @@
 
 <component
 	id="FlowLayouter"
-	title="Flow Layouter 0.0"
+	title="Flow Layouter 0.X"
 	icon="res/FlowLayouter/FlowLayouter.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FlowLayouter/FlowLayouter.js</jsInclude>
 
 	<property
@@ -606,8 +598,8 @@
 		visible="true" />
 
 	<initialization>
-		<defaultValue property="WIDTH">800</defaultValue>
-		<defaultValue property="HEIGHT">600</defaultValue>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
@@ -664,13 +656,12 @@
 
 <component
 	id="Math"
-	title="Math Utility 0.0"
+	title="Math Utility 0.X"
 	icon="res/Math/Math.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Math/Math.js</jsInclude>
 
 	<initialization>
@@ -686,14 +677,13 @@
 
 <component
 	id="OpenUrlInplace"
-	title="Open Url Inplace 0.0"
+	title="Open Url Inplace 0.X"
 	tooltip="Open the URL in the same frame as Design Studio"
 	icon="res/OpenUrlInplace/OpenUrlInplace.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/OpenUrlInplace/OpenUrlInplace.js</jsInclude>
 
 	<property
@@ -732,14 +722,13 @@
 </component>
 <component
 	id="OpenWindowPost"
-	title="Open Window by Post 0.0"
+	title="Open Window by Post 0.X"
 	tooltip="Open new Window by Post Method (removes URL size restriction)"
 	icon="res/OpenWindowPost/OpenWindowPost.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/OpenWindowPost/OpenWindowPost.js</jsInclude>
 
 	<property
@@ -807,7 +796,7 @@
 </component>
 <component
 	id="PdfPrint"
-	title="PDF Print 1.0"
+	title="PDF Print 1.X"
 	icon="res/PdfPrint/PdfPrint.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
@@ -836,7 +825,6 @@
 	<jsInclude>os/jspdf/jspdf.plugin.standard_fonts_metrics.js</jsInclude>
 	<jsInclude>os/jspdf/jspdf.plugin.total_pages.js</jsInclude>
 	
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/PdfPrint/PdfPrint.js</jsInclude>
 
 	<property
@@ -968,7 +956,7 @@
 
 <component
 	id="PostResponseParser"
-	title="Post Response Parser 1.0"
+	title="Post Response Parser 1.X"
 	tooltip="Creates a Request and Parses the Response (Json)"
 	icon="res/PostResponseParser/PostResponseParser.png"
 	handlerType="sapui5"
@@ -976,7 +964,6 @@
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/PostResponseParser/PostResponseParser.js</jsInclude>
 
 	<property
@@ -1157,12 +1144,11 @@
 </component>
 	<component
 		id="RealDate"
-		title="Real Date 0.0"
+		title="Real Date 0.X"
 		icon="res/RealDate/RealDate.png"
 		handlerType="div"
 		group="ScnCommunityUtils">
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/RealDate/RealDate.js</jsInclude>
 
 	<property
@@ -1192,12 +1178,11 @@
 
 	<component
 		id="SimpleDate"
-		title="Simple Date 0.0"
+		title="Simple Date 0.X"
 		icon="res/SimpleDate/SimpleDate.png"
 		handlerType="div"
 		group="ScnCommunityUtils">
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/SimpleDate/SimpleDate.js</jsInclude>
 
 	<property
@@ -1227,13 +1212,12 @@
 
 <component
 	id="WSPusher"
-	title="WebSocket Implementation 0.0"
+	title="WebSocket Implementation 0.X"
 	tooltip="Opens a WebSocket connection to a specified web server"
 	icon="res/WSPusher/WSPusher.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils">
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/WSPusher/WSPusher.js</jsInclude>
 	
 	<property

@@ -1,7 +1,7 @@
 
 <component
 	id="PostResponseParser"
-	title="Post Response Parser 1.0"
+	title="Post Response Parser 1.X"
 	tooltip="Creates a Request and Parses the Response (Json)"
 	icon="res/PostResponseParser/PostResponseParser.png"
 	handlerType="sapui5"
@@ -9,7 +9,6 @@
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/PostResponseParser/PostResponseParser.js</jsInclude>
 
 	<property

@@ -2130,7 +2130,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Menu Button 2.0 component*/
 	org.scn.community.basics.MenuButton returnAsScnMenuButton (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Modal Browser 0.0 component*/
+	/**Cast to Modal Browser 0.X component*/
 	org.scn.community.basics.ModalBrowser returnAsScnModalBrowser (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Navigation Bar 2.0 component*/
@@ -2334,55 +2334,55 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to (PROTOTYPE!) Sap M List component*/
 	org.scn.community.prototypes.SapMList returnAsScnSapMList (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Array Utility 0.0 component*/
+	/**Cast to Array Utility 0.X component*/
 	org.scn.community.utils.Array returnAsScnArray (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Client Information 0.0 component*/
+	/**Cast to Client Information 0.X component*/
 	org.scn.community.utils.ClientInformation returnAsScnClientInformation (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Collection Utility 0.0 component*/
+	/**Cast to Collection Utility 0.X component*/
 	org.scn.community.utils.Collection returnAsScnCollection (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Component Manager 0.0 component*/
+	/**Cast to Component Manager 0.X component*/
 	org.scn.community.utils.ComponentManager returnAsScnComponentManager (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Custom Css Collector 0.0 component*/
+	/**Cast to Custom Css Collector 0.X component*/
 	org.scn.community.utils.CustomCssCollector returnAsScnCustomCssCollector (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Source Helper 2.0 component*/
 	org.scn.community.utils.DataSourceHelper returnAsScnDataSourceHelper (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Debugger Code Inspector 0.0 component*/
+	/**Cast to Debugger Code Inspector 0.X component*/
 	org.scn.community.utils.Debugger returnAsScnDebugger (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Flow Layouter 0.0 component*/
+	/**Cast to Flow Layouter 0.X component*/
 	org.scn.community.utils.FlowLayouter returnAsScnFlowLayouter (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Json Object component*/
 	org.scn.community.utils.JsonObject returnAsScnJsonObject (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Math Utility 0.0 component*/
+	/**Cast to Math Utility 0.X component*/
 	org.scn.community.utils.Math returnAsScnMath (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Open Url Inplace 0.0 component*/
+	/**Cast to Open Url Inplace 0.X component*/
 	org.scn.community.utils.OpenUrlInplace returnAsScnOpenUrlInplace (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Open Window by Post 0.0 component*/
+	/**Cast to Open Window by Post 0.X component*/
 	org.scn.community.utils.OpenWindowPost returnAsScnOpenWindowPost (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to PDF Print 1.0 component*/
+	/**Cast to PDF Print 1.X component*/
 	org.scn.community.utils.PdfPrint returnAsScnPdfPrint (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Post Response Parser 1.0 component*/
+	/**Cast to Post Response Parser 1.X component*/
 	org.scn.community.utils.PostResponseParser returnAsScnPostResponseParser (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Real Date 0.0 component*/
+	/**Cast to Real Date 0.X component*/
 	org.scn.community.utils.RealDate returnAsScnRealDate (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Simple Date 0.0 component*/
+	/**Cast to Simple Date 0.X component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to WebSocket Implementation 0.0 component*/
+	/**Cast to WebSocket Implementation 0.X component*/
 	org.scn.community.utils.WSPusher returnAsScnWSPusher (Component inputComponent) {* return inputComponent; *}
 
 
@@ -3778,7 +3778,7 @@ class org.scn.community.utils.PdfPrint extends org.scn.community.shared.Componen
 }
 
 /**
- * Generated ZTL Class for Post Response Parser 1.0
+ * Generated ZTL Class for Post Response Parser 1.X
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */

@@ -1,13 +1,12 @@
 
 <component
 	id="WSPusher"
-	title="WebSocket Implementation 0.0"
+	title="WebSocket Implementation 0.X"
 	tooltip="Opens a WebSocket connection to a specified web server"
 	icon="res/WSPusher/WSPusher.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils">
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/WSPusher/WSPusher.js</jsInclude>
 	
 	<property

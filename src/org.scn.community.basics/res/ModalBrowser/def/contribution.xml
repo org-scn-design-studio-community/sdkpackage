@@ -1,13 +1,11 @@
 
 <component id="ModalBrowser"
 	tooltip="In-App Modal Browser Pop-Up"
-	title="Modal Browser 0.0"
+	title="Modal Browser 0.X"
 	icon="res/ModalBrowser/ModalBrowser.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics">
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ModalBrowser/ModalBrowser.js</jsInclude>
   	<cssInclude>res/ModalBrowser/ModalBrowser.css</cssInclude>
   	
