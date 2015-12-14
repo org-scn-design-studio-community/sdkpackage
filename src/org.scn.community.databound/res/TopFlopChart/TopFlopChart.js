@@ -103,6 +103,11 @@ TopFlopChart = {
 			options.iDuplicates = "Ignore";
 			options.iNumberOfDecimals = parseInt(that.getValueDecimalPlaces().replace("D", ""));
 			
+			options.average = that.getFixedAverage();
+			if(options.average == -1) {
+				options.average = undefined;
+			}
+
 			options.iDisplayText = "Text";
 			
 			var dataList = that.getDataCellList();
@@ -119,7 +124,12 @@ TopFlopChart = {
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";
 			options.iNumberOfDecimals = parseInt(that.getValueDecimalPlaces().replace("D", ""));
-			
+
+			options.average = that.getFixedAverage();
+			if(options.average == -1) {
+				options.average = undefined;
+			}
+
 			options.iDisplayText = "Text";
 			
 			var dataList = flatData;

@@ -293,26 +293,40 @@ define(["./component.basics"], function() {
 			list.sort(function(a,b) { return parseFloat(b.value) - parseFloat(a.value); } );
 		}
 	
-		var lAverage = 0;
-		for (var i = 0; i < lValues.length; i++) {
-			lAverage = lAverage + lValues[i];
+		var lAverage = options.average;
+		if(options.average == undefined) {
+			lAverage = 0;
+			for (var i = 0; i < lValues.length; i++) {
+				lAverage = lAverage + lValues[i];
+			}
+
+			if(lValues.length > 0) {
+				lAverage = lAverage / lValues.length;
+			}
 		}
 		
-		if(lValues.length > 0) {
-			lAverage = lAverage / lValues.length;
+		var sameValues = 0;
+		for (var i = 0; i < lValues.length - 1; i++) {
+			if(lValues[i] == lValues[i+1]) {
+				sameValues++;
+			}
 		}
-		
+
 		var max = options.iMaxNumber;
-		var newList = [];
+		var newListT = [];
+		var newListB = [];
 			
 		var counter = 0;
-		if(options.iTopBottom == "Top X" || options.iTopBottom == "Top") {
+		if(options.iTopBottom == "Both" || options.iTopBottom == "Top X" || options.iTopBottom == "Top") {
+			var counterAdjustment = 0;
 			for (var i = 0; i < list.length; i++) {
 				if(counter >= max) {
-					break;
+					if(list[i-1].value != list[i].value) {
+						break;	
+					}
 				}
 				
-				list[i].counter = (i+1);
+				list[i].counter = (i+1+counterAdjustment);
 				list[i].delta = (list[i].value - lAverage);
 	
 				if(options.iSortBy!="Default") { // break criteria only for sorted lists
@@ -321,92 +335,58 @@ define(["./component.basics"], function() {
 					}
 				}
 				
-				newList.push(list[i]);
+				if(i < list.length-1 && list[i].value == list[i+1].value) {
+					counterAdjustment -= 1;
+				}
+
+				newListT.push(list[i]);
 				counter = counter + 1;
 			}
-		} else if (options.iTopBottom == "Bottom X" || options.iTopBottom == "Bottom"){
-			var start = list.length-max;
-			
-			if(list.length < max) {
-				start = 0;
-			}
-	
-			for (var i = start; i < list.length; i++) {
+		}
+		
+		counter = 0;
+		
+		if (options.iTopBottom == "Both" || options.iTopBottom == "Bottom X" || options.iTopBottom == "Bottom"){
+			var counterAdjustment = 0;
+			for (var i = list.length - 1; i >= 0; i--) {
 				if(counter >= max) {
-					break;
+					if(list[i+1].value != list[i].value) {
+						break;
+					}
 				}
-				
-				list[i].counter = (i+1);
+
+				list[i].counter = (i+1+counterAdjustment);
 				list[i].delta = (list[i].value - lAverage);
 	
 				if(options.iSortBy!="Default") { // break criteria only for sorted lists
 					if(list[i].delta > 0) {
-						continue;
-					}
-				}
-				
-				newList.push(list[i]);
-				counter = counter + 1;
-			}
-		} else {
-			for (var i = 0; i < list.length; i++) {
-				if(counter >= max) {
-					break;
-				}
-				
-				list[i].counter = (i+1);
-				list[i].delta = (list[i].value - lAverage);
-	
-				if(options.iSortBy!="Default") { // break criteria only for sorted lists
-					if(list[i].delta < 0) {
 						break;
 					}
 				}
+
+				if(i > 0 && list[i].value == list[i-1].value) {
+					counterAdjustment += 1;
+				}
 				
-				newList.push(list[i]);
+				newListB.splice(0, 0, list[i]);
 				counter = counter + 1;
 			}
 			
-			var start = list.length-max;
-			if(list.length < max) {
-				start = 0;
-			}
-			
-			if(start < counter) {
-				start = counter;
-			}
-	
-			counter = 0;
-			
-			for (var i = start; i < list.length; i++) {
-				if(counter >= max) {
-					break;
-				}
-				
-				var element = list[i];
-				
-				element.counter = (i+1);
-				element.delta = (element.value - lAverage);
-				
-				if(options.iSortBy!="Default") { // break criteria only for sorted lists
-					if(element.delta > 0) {
-						continue;
-					}
-				}
-				
-				newList.push(list[i]);
-				counter = counter + 1;
+			for (var nLI in newListB) {
+				var nLO = newListB[nLI];
+				nLO.counter -= sameValues;
+				newListT.push(nLO);
 			}
 		}
 	
-		if(newList.length > 0) {
-			var lMaxDelta = Math.abs(newList[0].delta);
-			var lMinValue = newList[0].value;
-			var lMaxValue = newList[0].value;
+		if(newListT.length > 0) {
+			var lMaxDelta = Math.abs(newListT[0].delta);
+			var lMinValue = newListT[0].value;
+			var lMaxValue = newListT[0].value;
 		}
 		
-		for (var i = 0; i < newList.length; i++) {
-			var element = newList[i];
+		for (var i = 0; i < newListT.length; i++) {
+			var element = newListT[i];
 			
 			if(lMaxDelta < Math.abs(element.delta)) {
 				lMaxDelta = Math.abs(element.delta);	
@@ -424,7 +404,7 @@ define(["./component.basics"], function() {
 		}
 	
 		var returnObject = org_scn_community_databound.initializeEmptyReturn();
-		returnObject.list = newList;
+		returnObject.list = newListT;
 		returnObject.maxDelta = lMaxDelta;
 		returnObject.average = lAverage;
 		returnObject.maxValue = lMaxValue;

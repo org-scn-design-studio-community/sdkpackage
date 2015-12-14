@@ -115,6 +115,11 @@ TopFlop = {
 				options.iDuplicates = "Ignore";
 				options.iNumberOfDecimals = parseInt(that.getValueDecimalPlaces().replace("D", ""));
 				
+				options.average = that.getFixedAverage();
+				if(options.average == -1) {
+					options.average = undefined;
+				}
+
 				options.iDisplayText = "Text";
 				
 				var dataList = that.getDataCellList();
@@ -135,7 +140,12 @@ TopFlop = {
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";
 			options.iNumberOfDecimals = parseInt(that.getValueDecimalPlaces().replace("D", ""));
-			
+
+			options.average = that.getFixedAverage();
+			if(options.average == -1) {
+				options.average = undefined;
+			}
+
 			options.iDisplayText = "Text";
 			
 			that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension (lData, that._metaData, "", options);
