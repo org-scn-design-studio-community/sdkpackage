@@ -22,7 +22,8 @@ var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.repl
 define([
 	"./%COMP-id%Spec",
 	"../../../"+scn_pkg+"shared/modules/component.core",
-	"../../../"+scn_pkg+"shared/modules/component.%COMP-package%"
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"shared/modules/component.databound"
 	
 	],
 	function(

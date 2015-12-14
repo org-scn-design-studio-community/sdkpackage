@@ -1,0 +1,241 @@
+{
+	"data" : {
+		"template" : "default",
+		"type" : "ResultSet",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "ResultSet",
+			"ztlFunction": "-get",
+			"desc" : "Result Set",
+			"cat" : "DataBinding",
+			"tooltip" : "Result Set",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"DChartType" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Line",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "ChartSimpleType",
+			"ztlFunction": "",
+			"desc" : "Chart Type",
+			"cat" : "Display",
+			"tooltip" : "Chart Type",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Line",
+					"text" : "Line"
+				},
+				{
+					"key" : "Bar",
+					"text" : "Bar"
+				},
+				{
+					"key" : "LineBar",
+					"text" : "LineBar"
+				},
+				{
+					"key" : "Radar",
+					"text" : "Radar"
+				},
+				{
+					"key" : "PolarArea",
+					"text" : "PolarArea"
+				},
+				{
+					"key" : "Pie",
+					"text" : "Pie"
+				},
+				{
+					"key" : "Doughnut",
+					"text" : "Doughnut"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DColorDistance" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.2,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Starting Colour Distance",
+			"cat" : "Display",
+			"tooltip" : "Starting Colour Distance",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DColorHue" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 120,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Starting Colour Hue",
+			"cat" : "Display",
+			"tooltip" : "Starting Colour Hue",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DColorPalette" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Triade",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "ChartColorPalete",
+			"ztlFunction": "",
+			"desc" : "Starting Colour Palette",
+			"cat" : "Display",
+			"tooltip" : "Starting Colour Palette",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Mono",
+					"text" : "mono"
+				},
+				{
+					"key" : "Monochromatic",
+					"text" : "monochromatic"
+				},
+				{
+					"key" : "Contrast",
+					"text" : "contrast"
+				},
+				{
+					"key" : "Triade",
+					"text" : "triade"
+				},
+				{
+					"key" : "Tetrade",
+					"text" : "tetrade"
+				},
+				{
+					"key" : "Analogic",
+					"text" : "analogic"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DLegendPosition" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Right",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "HorizontalAlign",
+			"ztlFunction": "",
+			"desc" : "Legend Position",
+			"cat" : "Display",
+			"tooltip" : "Legend Position",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Left",
+					"text" : "Left"
+				},
+				{
+					"key" : "Right",
+					"text" : "Right"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DLegendWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 200,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Width Of Legend In Px",
+			"cat" : "Display",
+			"tooltip" : "Width Of Legend In Px",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DMaxDataPoints" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 100,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Maximum Number Of Data Points",
+			"cat" : "Display",
+			"tooltip" : "Maximum Number Of Data Points",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DShowLegend" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Legend",
+			"cat" : "Display",
+			"tooltip" : "Show Legend",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DSwapAxes" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Swap Axes",
+			"cat" : "Display",
+			"tooltip" : "Swap Axes",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

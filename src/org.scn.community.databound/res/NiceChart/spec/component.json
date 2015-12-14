@@ -1,0 +1,30 @@
+{
+	"id": "NiceChart",
+	"title": "Nice Chart 2.0",
+	"tooltip": "Nice Chart 2.0",
+	"handlerType": "div",
+	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityChartMaps",
+	"package": "databound",
+	"extension": "Component",
+	"databound": true,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "os",
+			"id" : "databound/os/chartjs/Chart",
+		},
+		{
+			"space" : "os",
+			"id" : "databound/os/color/ColorScheme",
+		}
+	],
+	
+	"width": "600",
+	"height": "400"
+}

@@ -20,10 +20,13 @@
  * org_scn_community_databound utility object
  */
 
-define([], function() {
-	var org_scn_community_databound = {
-		version : "3.0"
-	};
+var org_scn_community_databound = {
+	version : "3.0"
+};
+var org_scn_community_require = org_scn_community_require || {};
+
+define(["./component.basics"], function() {
+
 	org_scn_community_databound.centralDataStorage = org_scn_community_databound.centralDataStorage || {}; 
 	org_scn_community_databound.centralEventStorage = org_scn_community_databound.centralEventStorage || {};
 	

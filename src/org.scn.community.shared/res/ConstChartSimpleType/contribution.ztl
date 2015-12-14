@@ -1,0 +1,34 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_ChartSimpleTypeEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify
+ */
+class org_scn_community_shared_ChartSimpleType extends Enum {
+
+	/** Line */
+	org_scn_community_shared_ChartSimpleTypeEnumfield Line;
+       
+	/** Bar */
+	org_scn_community_shared_ChartSimpleTypeEnumfield Bar;	
+    
+	/** LineBar */
+	org_scn_community_shared_ChartSimpleTypeEnumfield LineBar;	
+    
+	/** Radar */
+	org_scn_community_shared_ChartSimpleTypeEnumfield Radar;	
+    
+	/** PolarArea */
+	org_scn_community_shared_ChartSimpleTypeEnumfield PolarArea;	
+    
+	/** Pie */
+	org_scn_community_shared_ChartSimpleTypeEnumfield Pie;	
+    
+	/** Doughnut */
+	org_scn_community_shared_ChartSimpleTypeEnumfield Doughnut;	
+}

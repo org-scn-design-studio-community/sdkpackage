@@ -2247,7 +2247,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Hierarchical Menu 1.0 component*/
 	org.scn.community.databound.MultiLevelDropDown returnAsScnMultiLevelDropDown (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Nice Chart 1.0 component*/
+	/**Cast to Nice Chart 2.0 component*/
 	org.scn.community.databound.NiceChart returnAsScnNiceChart (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Pictogram component*/

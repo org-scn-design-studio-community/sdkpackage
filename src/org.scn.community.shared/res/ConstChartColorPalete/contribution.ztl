@@ -1,0 +1,31 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_ChartColorPaleteEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify
+ */
+class org_scn_community_shared_ChartColorPalete extends Enum {
+       
+	/** Mono */
+	org_scn_community_shared_ChartColorPaleteEnumfield Mono;	
+    
+	/** Monochromatic */
+	org_scn_community_shared_ChartColorPaleteEnumfield Monochromatic;	
+    
+	/** Contrast */
+	org_scn_community_shared_ChartColorPaleteEnumfield Contrast;	
+    
+	/** Triade */
+	org_scn_community_shared_ChartColorPaleteEnumfield Triade;	
+    
+	/** Tetrade */
+	org_scn_community_shared_ChartColorPaleteEnumfield Tetrade;	
+    
+	/** Analogic */
+	org_scn_community_shared_ChartColorPaleteEnumfield Analogic;	
+}

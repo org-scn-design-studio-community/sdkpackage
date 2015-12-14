@@ -251,6 +251,7 @@ FacetFilter = {
 			}
 		}
 
+		that._oModel.setSizeLimit(that.getDMaxDisplayMembers()+1);
 		that._oModel.setData(sortedDimensions);
 	},
 	

@@ -19,6 +19,8 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ConstBrowser\contribution.ztl ^
 ..\res\ConstButtonStyle\contribution.ztl ^
 ..\res\ConstButtonType\contribution.ztl ^
+..\res\ConstChartColorPalete\contribution.ztl ^
+..\res\ConstChartSimpleType\contribution.ztl ^
 ..\res\ConstContentNotation\contribution.ztl ^
 ..\res\ConstDateViewType\contribution.ztl ^
 ..\res\ConstDimensionSet\contribution.ztl ^
