@@ -1,21 +1,354 @@
 
 /**
- * Class for DataTopFlopChart
+ * Generated ZTL Class for TopFlopChart
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
-class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.DataComponent {
+class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.Component {
 
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
+	/**
+	 * Sets Add Counter Property
+	 */	
+	void setAddCounter( /**Add Counter*/ boolean addCounter){*
+		this.addCounter = addCounter;
+	*}
+
+	/**
+	 * Gets Add Counter Property
+	 */	
+	boolean isAddCounter() {*
+		return this.addCounter;
+	*}
+
+	/**
+	 * Sets Allow Any Interaction (Link, Selection) Property
+	 */	
+	void setAllowInteraction( /**Allow Any Interaction (Link, Selection)*/ boolean allowInteraction){*
+		this.allowInteraction = allowInteraction;
+	*}
+
+	/**
+	 * Gets Allow Any Interaction (Link, Selection) Property
+	 */	
+	boolean isAllowInteraction() {*
+		return this.allowInteraction;
+	*}
+
+	/**
+	 * Sets Prefix For Average Value Property
+	 */	
+	void setAveragePrefix( /**Prefix For Average Value*/ String averagePrefix){*
+		this.averagePrefix = averagePrefix;
+	*}
+
+	/**
+	 * Gets Prefix For Average Value Property
+	 */	
+	String getAveragePrefix() {*
+		return this.averagePrefix;
+	*}
+
+	/**
+	 * Sets Suffix For Average Value Property
+	 */	
+	void setAverageSuffix( /**Suffix For Average Value*/ String averageSuffix){*
+		this.averageSuffix = averageSuffix;
+	*}
+
+	/**
+	 * Gets Suffix For Average Value Property
+	 */	
+	String getAverageSuffix() {*
+		return this.averageSuffix;
+	*}
+
+	/**
+	 * Sets Place An Empty Area After Average Is Matched Property
+	 */	
+	void setBreakOnAverage( /**Place An Empty Area After Average Is Matched*/ boolean breakOnAverage){*
+		this.breakOnAverage = breakOnAverage;
+	*}
+
+	/**
+	 * Gets Place An Empty Area After Average Is Matched Property
+	 */	
+	boolean isBreakOnAverage() {*
+		return this.breakOnAverage;
+	*}
+
+	/**
+	 * Sets Place An Empty Area After Index Property
+	 */	
+	void setBreakOnIndex( /**Place An Empty Area After Index*/ int breakOnIndex){*
+		this.breakOnIndex = breakOnIndex;
+	*}
+
+	/**
+	 * Gets Place An Empty Area After Index Property
+	 */	
+	int getBreakOnIndex() {*
+		return this.breakOnIndex;
+	*}
+
+
+
+	/**
+	 * Sets Delta Value Suffix Text Property
+	 */	
+	void setDeltaValueSuffix( /**Delta Value Suffix Text*/ String deltaValueSuffix){*
+		this.deltaValueSuffix = deltaValueSuffix;
+	*}
+
+	/**
+	 * Gets Delta Value Suffix Text Property
+	 */	
+	String getDeltaValueSuffix() {*
+		return this.deltaValueSuffix;
+	*}
+
+	/**
+	 * Sets Url For The Fallback Picture Property
+	 */	
+	void setFallbackPicture( /**Url For The Fallback Picture*/ String fallbackPicture){*
+		this.fallbackPicture = fallbackPicture;
+	*}
+
+	/**
+	 * Gets Url For The Fallback Picture Property
+	 */	
+	String getFallbackPicture() {*
+		return this.fallbackPicture;
+	*}
+
+	/**
+	 * Sets Fixed Average Value (-1 For Calculated Average) Property
+	 */	
+	void setFixedAverage( /**Fixed Average Value (-1 For Calculated Average)*/ int fixedAverage){*
+		this.fixedAverage = fixedAverage;
+	*}
+
+	/**
+	 * Gets Fixed Average Value (-1 For Calculated Average) Property
+	 */	
+	int getFixedAverage() {*
+		return this.fixedAverage;
+	*}
+
+	/**
+	 * Sets Maximum Number Property
+	 */	
+	void setMaxNumber( /**Maximum Number*/ int maxNumber){*
+		this.maxNumber = maxNumber;
+	*}
+
+	/**
+	 * Gets Maximum Number Property
+	 */	
+	int getMaxNumber() {*
+		return this.maxNumber;
+	*}
+
+	/**
+	 * Sets Maximal Size Of The Value Area In Px Property
+	 */	
+	void setMaxValueSize( /**Maximal Size Of The Value Area In Px*/ int maxValueSize){*
+		this.maxValueSize = maxValueSize;
+	*}
+
+	/**
+	 * Gets Maximal Size Of The Value Area In Px Property
+	 */	
+	int getMaxValueSize() {*
+		return this.maxValueSize;
+	*}
+
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Pressed Key Property
+	 */	
+	String getPressedKey() {*
+		return this.pressedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Sets Show Average Information Property
+	 */	
+	void setShowAverage( /**Show Average Information*/ boolean showAverage){*
+		this.showAverage = showAverage;
+	*}
+
+	/**
+	 * Gets Show Average Information Property
+	 */	
+	boolean isShowAverage() {*
+		return this.showAverage;
+	*}
+
+	/**
+	 * Sets Show Delta Value In Item Property
+	 */	
+	void setShowDelta( /**Show Delta Value In Item*/ boolean showDelta){*
+		this.showDelta = showDelta;
+	*}
+
+	/**
+	 * Gets Show Delta Value In Item Property
+	 */	
+	boolean isShowDelta() {*
+		return this.showDelta;
+	*}
+
+	/**
+	 * Sets Top X, Bottom X Or Both Property by String
+	 */	
+	void setTopBottomByString( /**Top X, Bottom X Or Both*/ String topBottom){*
+		this.topBottom = topBottom;
+	*}
+
+	/**
+	 * Gets Top X, Bottom X Or Both Property as String
+	 */	
+	String getTopBottomAsString() {*
+		return this.topBottom;
 	*}
 	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
+	/**
+	 * Sets Top X, Bottom X Or Both Property by Choice Option
+	 */	
+	void setTopBottom( /**Top X, Bottom X Or Both*/ org_scn_community_shared_MemberSelectionEnumfield topBottom){*
+		this.topBottom = topBottom;
+	*}
+	
+	/**
+	 * Gets Top X, Bottom X Or Both Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberSelectionEnumfield getTopBottom() {*
+		return this.topBottom;
 	*}
 
-	/** returns the pressed key */
-	String getPressedKey () {*
-		return this.pressedKey;	
+	/**
+	 * Sets Mark Background Property
+	 */	
+	void setUseBackground( /**Mark Background*/ boolean useBackground){*
+		this.useBackground = useBackground;
 	*}
+
+	/**
+	 * Gets Mark Background Property
+	 */	
+	boolean isUseBackground() {*
+		return this.useBackground;
+	*}
+
+	/**
+	 * Sets Use Delta As Value Property
+	 */	
+	void setUseDelta( /**Use Delta As Value*/ boolean useDelta){*
+		this.useDelta = useDelta;
+	*}
+
+	/**
+	 * Gets Use Delta As Value Property
+	 */	
+	boolean isUseDelta() {*
+		return this.useDelta;
+	*}
+
+	/**
+	 * Sets Use Pictures Property
+	 */	
+	void setUsePictures( /**Use Pictures*/ boolean usePictures){*
+		this.usePictures = usePictures;
+	*}
+
+	/**
+	 * Gets Use Pictures Property
+	 */	
+	boolean isUsePictures() {*
+		return this.usePictures;
+	*}
+
+	/**
+	 * Sets Value Decimal Places Property by String
+	 */	
+	void setValueDecimalPlacesByString( /**Value Decimal Places*/ String valueDecimalPlaces){*
+		this.valueDecimalPlaces = valueDecimalPlaces;
+	*}
+
+	/**
+	 * Gets Value Decimal Places Property as String
+	 */	
+	String getValueDecimalPlacesAsString() {*
+		return this.valueDecimalPlaces;
+	*}
+	
+	/**
+	 * Sets Value Decimal Places Property by Choice Option
+	 */	
+	void setValueDecimalPlaces( /**Value Decimal Places*/ org_scn_community_shared_DecimalPlacesEnumfield valueDecimalPlaces){*
+		this.valueDecimalPlaces = valueDecimalPlaces;
+	*}
+	
+	/**
+	 * Gets Value Decimal Places Property as Choice Option
+	 */	
+	org_scn_community_shared_DecimalPlacesEnumfield getValueDecimalPlaces() {*
+		return this.valueDecimalPlaces;
+	*}
+
+	/**
+	 * Sets Value Prefix Text Property
+	 */	
+	void setValuePrefix( /**Value Prefix Text*/ String valuePrefix){*
+		this.valuePrefix = valuePrefix;
+	*}
+
+	/**
+	 * Gets Value Prefix Text Property
+	 */	
+	String getValuePrefix() {*
+		return this.valuePrefix;
+	*}
+
+	/**
+	 * Sets Text / Value Split Point In Px Property
+	 */	
+	void setValueStart( /**Text / Value Split Point In Px*/ int valueStart){*
+		this.valueStart = valueStart;
+	*}
+
+	/**
+	 * Gets Text / Value Split Point In Px Property
+	 */	
+	int getValueStart() {*
+		return this.valueStart;
+	*}
+
+	/**
+	 * Sets Value Suffix Text Property
+	 */	
+	void setValueSuffix( /**Value Suffix Text*/ String valueSuffix){*
+		this.valueSuffix = valueSuffix;
+	*}
+
+	/**
+	 * Gets Value Suffix Text Property
+	 */	
+	String getValueSuffix() {*
+		return this.valueSuffix;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

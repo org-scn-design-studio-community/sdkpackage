@@ -113,7 +113,7 @@ TopFlop = {
 				options.idPrefix = that.getId();
 				options.iSortBy = "Value";
 				options.iDuplicates = "Ignore";
-				options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "");
+				options.iNumberOfDecimals = parseInt(that.getValueDecimalPlaces().replace("D", ""));
 				
 				options.iDisplayText = "Text";
 				
@@ -134,7 +134,7 @@ TopFlop = {
 			options.iSortBy = "Value";
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";
-			options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "");
+			options.iNumberOfDecimals = parseInt(that.getValueDecimalPlaces().replace("D", ""));
 			
 			options.iDisplayText = "Text";
 			
@@ -192,9 +192,9 @@ TopFlop = {
 			var fixedAverage = that.getFixedAverage();
 			if(fixedAverage == -1) {
 				if(that._returnObject) {
-					oText.setText(that.getAveragePrefix() + org_scn_community_basics.getFormattedValue(that._returnObject.average, that._metaData.locale, that._options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "")) + that.getAverageSuffix());
+					oText.setText(that.getAveragePrefix() + org_scn_community_basics.getFormattedValue(that._returnObject.average, that._metaData.locale, that._options.iNumberOfDecimals) + that.getAverageSuffix());
 				} else {
-					oText.setText(that.getAveragePrefix() + org_scn_community_basics.getFormattedValue(0, "en", that._options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "")) + that.getAverageSuffix());
+					oText.setText(that.getAveragePrefix() + org_scn_community_basics.getFormattedValue(0, "en", that._options.iNumberOfDecimals) + that.getAverageSuffix());
 				}
 			} else {
 				oText.setText(that.getAveragePrefix() + that.getFixedAverage());
@@ -397,9 +397,9 @@ TopFlop = {
 		
 		var delta = value - returnObject.average;
 		if(delta > 0) {
-			oTextDeltaValue.setText (" Δ " + "+" + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "")) + that.getDeltaValueSuffix());	
+			oTextDeltaValue.setText (" Δ " + "+" + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals) + that.getDeltaValueSuffix());	
 		} else {
-			oTextDeltaValue.setText (" Δ " + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "")) + that.getDeltaValueSuffix());
+			oTextDeltaValue.setText (" Δ " + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals) + that.getDeltaValueSuffix());
 		}
 		
 		
@@ -429,9 +429,10 @@ TopFlop = {
 		sap.common.globalization.NumericFormatManager.setPVL(that._metadata.locale);
 		var strFormat = "#"+sap.common.globalization.NumericFormatManager.getThousandSeparator()+"##0";
 		
-		if (that.getValueDecimalPlaces() > 0) {
+		var decPlaces = parseInt(that.getValueDecimalPlaces().replace("D", ""));
+		if (decPlaces > 0) {
 			strFormat += sap.common.globalization.NumericFormatManager.getDecimalSeparator();
-			for (var i = 0; i < that.getValueDecimalPlaces(); i++) {
+			for (var i = 0; i < decPlaces; i++) {
 				strFormat += "0";
 			}
 		}
