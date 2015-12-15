@@ -796,8 +796,8 @@
 </component>
 <component
 	id="PdfPrint"
-	title="PDF Print 1.X 2.0"
-	tooltip="PDF Print 1.X"
+	title="PDF Print 2.0"
+	tooltip="PDF Print"
 	icon="res/PdfPrint/PdfPrint.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
@@ -908,7 +908,7 @@
 
 <component
 	id="PostResponseParser"
-	title="Post Response Parser 1.X 2.0"
+	title="Post Response Parser 2.0"
 	tooltip="Creates a Request and Parses the Response (Json)"
 	icon="res/PostResponseParser/PostResponseParser.png"
 	handlerType="sapui5"
