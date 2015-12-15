@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 SCN SDK Community
+ * Copyright 2014 Scn Community Contributors
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/
@@ -16,62 +16,58 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
-sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
-
-	setData : function(value) {
-		this._data = value;
-		return this;
-	},
+ 
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./DropDownSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"shared/modules/component.databound"
 	
-	getData : function(value) {
-		return this._data;
-	},
-	
-	setMetadata : function(value) {
-		this._metadata = value;
-		return this;
-	},
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-	getMetadata : function(value) {
-		return this._metadata;
-	},
-	
-	metadata: {
-        properties: {
-        	  "DBindingMode": {type: "string"},
-        	  "DElements": {type: "string"},
-              "DDimension": {type: "string"},
-              "DTopBottom": {type: "string"},
-              "DSorting": {type: "string"},
-              "DMaxMembers": {type: "int"},
-              "DSelectedKey": {type: "string"},
-              "DSelectedKeyExt": {type: "string"},
-              "DSelectedKeyExtFull": {type: "string"},
-              "DSelectedText": {type: "string"},
-              "DDoRefresh": {type: "boolean"},
-        }
-	},
+var myComponentData = spec;
 
+DropDown = {
+
+	renderer: {},
+	
 	initDesignStudio: function() {
 		var that = this;
 
-		this._content = []; 
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+		
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that._content = []; 
 
 		// set the model
-		this._oModel = new sap.ui.model.json.JSONModel(); 
-		sap.ui.getCore().setModel(this._oModel);
+		that._oModel = new sap.ui.model.json.JSONModel(); 
+		sap.ui.getCore().setModel(that._oModel);
 		
 		// bind all properties
-		this.bindProperty("tooltip", "/tooltip");
-		this.bindProperty("editable", "/editable");
-		this.setModel(this._oModel);
+		that.bindProperty("tooltip", "/tooltip");
+		that.bindProperty("editable", "/editable");
+		that.setModel(that._oModel);
 		
 		// create a list item template for the entries
 		var oItemTemplate = new sap.ui.core.ListItem();
 		oItemTemplate.bindProperty("text", "t");
 		oItemTemplate.bindProperty("key", "k");
-		this.bindItems("/items", oItemTemplate);
+		that.bindItems("/items", oItemTemplate);
 
 		var onChange = function (oEvent) {
 			var selection = oEvent.getParameters().selectedItem;
@@ -80,41 +76,77 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 
 			if(key == "-N/A-") {
 // currently this does not work...
-//				this.setDSelectedKey("-N/A-");
-//				this.setDSelectedText("");
+//				that.setDSelectedKey("-N/A-");
+//				that.setDSelectedText("");
 //				
 //				that.fireDesignStudioPropertiesChanged(["dSelectedKey", "dSelectedText"]);
 //				that.fireDesignStudioEvent("onUnselect");
 			} else if(key == "-CLEAR-") {
-				this.setDSelectedKey("-N/A-");
-				this.setDSelectedText("");
+				that.setDSelectedKey("-N/A-");
+				that.setDSelectedText("");
 				
 				that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText"]);
 				that.fireDesignStudioEvent("onInternalSelectionChanged");
 				that.fireDesignStudioEvent("onClear");
 			} else {
-				this.setDSelectedKey(key);
-				this.setDSelectedText(text);
+				that.setDSelectedKey(key);
+				that.setDSelectedText(text);
 				
 				that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText"]);
 				that.fireDesignStudioEvent("onInternalSelectionChanged");
 				that.fireDesignStudioEvent("onSelectionChanged");
 			}
 		};
-		this.attachChange(onChange);
+		that.attachChange(onChange);
+
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
 	},
 	
-	renderer: {},
-		
 	afterDesignStudioUpdate: function() {
 		var that = this;
 		
-		var lData = this._data;
-		var lMetadata = this._metadata;
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+		var loadingResultset = "ResultSet";
+		
+		var data = undefined;		
+		if(loadingResultset == "ResultSet" || loadingResultset == "ResultCell"){
+			data = that.getData();
+		} else if(loadingResultset == "DataCellList"){
+			data = that.getDataCellList();
+		}
+
+		var metadata = that.getDSMetadata();
+
+		if(!org_scn_community_databound.hasData (data, metadata)) {
+			org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare);
+		} else {
+			org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+		}
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		var lData = that.getData();
+		var lMetadata = that.getDSMetadata();
 		
 		var selectionList = "";
-		if(this.getDSelectedKeyExtFull() != undefined && this.getDSelectedKeyExtFull().length > 0) {
-			var selection = this.getDSelectedKeyExtFull();
+		if(that.getDSelectedKeyExtFull() != undefined && that.getDSelectedKeyExtFull().length > 0) {
+			var selection = that.getDSelectedKeyExtFull();
 			if(selection.length > 25) {
 				selection = selection.substring(0, 25) + " ( & more ... )";
 			}
@@ -124,76 +156,86 @@ sap.ui.commons.DropdownBox.extend("org.scn.community.databound.DropDown", {
 		}
 		var lCurrentSelection = "Current Selection" + selectionList;
 		
-		if(this.getDDoRefresh()){
-			var lDBindingMode = this.getDBindingMode();
+		if(that.getDDoRefresh()){
+			var lDBindingMode = that.getDBindingMode().replace(" ", "");
 			
-			this._ElementsToRenderArray = [];
+			that._ElementsToRenderArray = [];
 			
-			if(lDBindingMode == "Result Set") {
+			if(lDBindingMode == "ResultSet") {
 				var options = org_scn_community_databound.initializeOptions();
 				
-				options.iMaxNumber = this.getDMaxMembers();
-				options.iTopBottom = this.getDTopBottom();
-				options.iSortBy = this.getDSorting();
+				options.iMaxNumber = that.getDMaxMembers();
+				options.iTopBottom = that.getDTopBottom();
+				options.iSortBy = that.getDSorting();
 				options.iDuplicates = "Ignore";
 				options.iNnumberOfDecimals = 2;
 				
-				this._ElementsToRenderArray = org_scn_community_databound.getTopBottomElementsForDimension 
-			     (lData, lMetadata, this.getDDimension(), options).list;
-			} else if(lDBindingMode == "Master Data") {
-				var lDElements = this.getDElements();
+				that._ElementsToRenderArray = org_scn_community_databound.getTopBottomElementsForDimension 
+			     (lData, lMetadata, that.getDDimension(), options).list;
+			} else if(lDBindingMode == "MasterData") {
+				var lDElements = that.getDElements();
 				if(lDElements != null && lDElements != undefined && lDElements != ""){
 					var lDlementsJson = JSON.parse(lDElements);
-					this._ElementsToRenderArray = lDlementsJson.members;
+					that._ElementsToRenderArray = lDlementsJson.members;
 				}
 			}
 			
-			this._content = []; 
+			that._content = []; 
 			
-			this._content.push({k:"-N/A-", t: lCurrentSelection});
+			that._content.push({k:"-N/A-", t: lCurrentSelection});
 
-			for (var i = 0; i < this._ElementsToRenderArray.length; i++) {
-				var element = this._ElementsToRenderArray[i];
+			for (var i = 0; i < that._ElementsToRenderArray.length; i++) {
+				var element = that._ElementsToRenderArray[i];
 				
-				if(lDBindingMode == "Result Set") {
-					this._content.push({k:element.key, t:element.text + " (" + element.value + ")"});	
-				} else if(lDBindingMode == "Master Data") {
-					this._content.push({k:element.key, t:element.text});
+				if(lDBindingMode == "ResultSet") {
+					that._content.push({k:element.key, t:element.text + " (" + element.value + ")"});	
+				} else if(lDBindingMode == "MasterData") {
+					that._content.push({k:element.key, t:element.text});
 				}
 			};
 			
-			this._content.push({k:"-CLEAR-", t:"Clear..."});
+			that._content.push({k:"-CLEAR-", t:"Clear..."});
 		};
 
 		// define model
-		this._oModel.setData({
-			items: this._content,
+		that._oModel.setData({
+			items: that._content,
 			editable: true, 
 			tooltip: lCurrentSelection});
 
-		if(this._oldContent == undefined || JSON.stringify(this._content) != JSON.stringify(this._oldContent)) {
+		if(that._oldContent == undefined || JSON.stringify(that._content) != JSON.stringify(that._oldContent)) {
 			// if data has changed, remove always selected key!
-			this.setDSelectedKey("-N/A-");
-			this.setDSelectedText("");
+			that.setDSelectedKey("-N/A-");
+			that.setDSelectedText("");
 			
 			that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText"]);
 			that.fireDesignStudioEvent("onDataChanged");
 			
-			this._oldContent = this._content;
+			that._oldContent = that._content;
 		}
 
 		// internal key selection is possible only via external key
-		if(this.getDSelectedKeyExt() != "") {
-			for (var i = 0; i < this._ElementsToRenderArray.length; i++) {
-				var currentKey = this._ElementsToRenderArray[i].key;
-				var currentKeyExt = this._ElementsToRenderArray[i].keyExt;
-				if(currentKeyExt == this.getDSelectedKeyExt()) {
-					this.setSelectedKey(currentKey);
+		if(that.getDSelectedKeyExt() != "") {
+			for (var i = 0; i < that._ElementsToRenderArray.length; i++) {
+				var currentKey = that._ElementsToRenderArray[i].key;
+				var currentKeyExt = that._ElementsToRenderArray[i].keyExt;
+				if(currentKeyExt == that.getDSelectedKeyExt()) {
+					that.setSelectedKey(currentKey);
 					break;
 				};
 			};
 		} else {
-			this.setSelectedKey("-N/A-");
+			that.setSelectedKey("-N/A-");
 		};
 	},
+	
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+//%INIT-START%
+myComponentData.instance = DropDown;
+jQuery.sap.require("sap.ui.commons.DropdownBox");
+sap.ui.commons.DropdownBox.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

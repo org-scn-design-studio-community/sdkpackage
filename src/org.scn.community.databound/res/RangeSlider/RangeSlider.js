@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 SCN SDK Community
+ * Copyright 2014 Scn Community Contributors
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/
@@ -16,45 +16,43 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
-sap.ui.commons.RangeSlider.extend("org.scn.community.databound.RangeSlider", {
-
-	setData : function(value) {
-		this._data = value;
-		return this;
-	},
+ 
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./RangeSliderSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"shared/modules/component.databound"
 	
-	getData : function(value) {
-		return this._data;
-	},
-	
-	setMetadata : function(value) {
-		this._metadata = value;
-		return this;
-	},
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-	getMetadata : function(value) {
-		return this._metadata;
-	},
-	
-	metadata: {
-        properties: {
-              "maxNumber": {type: "int"},
-              "topBottom": {type: "string"},
-              "sorting": {type: "string"},
-              "selectedKey": {type: "string"},
-              "selectedText": {type: "string"},
-              "selectedKey2": {type: "string"},
-              "selectedText2": {type: "string"},
-              "selectedKeys": {type: "string"},
-              "doRefresh": {type: "boolean"},
-        }
-	},
+var myComponentData = spec;
 
+RangeSlider = {
+
+	renderer: {},
+	
 	initDesignStudio: function() {
 		var that = this;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
 		
-		this.attachChange(function() {
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that.attachChange(function() {
 			var value = that.getValue();
 			
 			var key = that._lLabelKeys[value];
@@ -105,28 +103,32 @@ sap.ui.commons.RangeSlider.extend("org.scn.community.databound.RangeSlider", {
 				that.fireDesignStudioEvent("onSelectionChanged");
 			}
 		});
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
 	},
 	
-	renderer: {},
-		
 	afterDesignStudioUpdate: function() {
 		var that = this;
 		
-		if(this.getVertical() == true) {
-			this.addStyleClass("scn-pack-DataRangeSlider-Vertical");
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+		if(that.getVertical() == true) {
+			that.addStyleClass("scn-pack-DataRangeSlider-Vertical");
 		} else {
-			this.removeStyleClass("scn-pack-DataRangeSlider-Vertical");	
+			that.removeStyleClass("scn-pack-DataRangeSlider-Vertical");	
 		}
 
-		var lData = this._data;
-		var lMetadata = this._metadata;
+		var lData = that.getData();
+		var lMetadata = that.getDSMetadata();
 		
-		if(this.getDoRefresh()){
+		if(that.getDoRefresh()){
 			var options = org_scn_community_databound.initializeOptions();
 			
-			options.iMaxNumber = this.getMaxNumber();
-			options.iTopBottom = this.getTopBottom();
-			options.iSortBy = this.getSorting();
+			options.iMaxNumber = that.getMaxNumber();
+			options.iTopBottom = that.getTopBottom();
+			options.iSortBy = that.getSorting();
 			options.iDuplicates = "Ignore";
 			options.iNnumberOfDecimals = 2;
 			
@@ -135,66 +137,75 @@ sap.ui.commons.RangeSlider.extend("org.scn.community.databound.RangeSlider", {
 			
 			lElementsToRenderArray = returnObject.list;
 
-			this._lLabels = []; 
-			this._lLabelKeys = [];
+			that._lLabels = []; 
+			that._lLabelKeys = [];
 			
-			this._lLabels.push("Not Selected");
-			this._lLabelKeys.push("-N/A-1");
+			that._lLabels.push("Not Selected");
+			that._lLabelKeys.push("-N/A-1");
 
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
 				
-				this._lLabels.push(element.text);
-				this._lLabelKeys.push(element.key);
+				that._lLabels.push(element.text);
+				that._lLabelKeys.push(element.key);
 			};
 			
-			this._lLabels.push("Not Selected");
-			this._lLabelKeys.push("-N/A-2");
+			that._lLabels.push("Not Selected");
+			that._lLabelKeys.push("-N/A-2");
 
-			this.setMin(0);
-			this.setMax(this._lLabels.length - 1);
+			that.setMin(0);
+			that.setMax(that._lLabels.length - 1);
 
-			this.setTotalUnits(this._lLabels.length - 1);
+			that.setTotalUnits(that._lLabels.length - 1);
 			
-			this.setSmallStepWidth(1);
-			this.setStepLabels(true);
+			that.setSmallStepWidth(1);
+			that.setStepLabels(true);
 			
-			this.setLabels(this._lLabels);
+			that.setLabels(that._lLabels);
 		};
 		
-		if(this._oldContent == undefined || JSON.stringify(this._lLabels) != JSON.stringify(this._oldContent)) {
+		if(that._oldContent == undefined || JSON.stringify(that._lLabels) != JSON.stringify(that._oldContent)) {
 			// if data has changed, remove always selected key!
-			this.setSelectedKey("-N/A-1");
-			this.setSelectedText("");
-			this.setSelectedKey2("-N/A-2");
-			this.setSelectedText2("");
-			this.setSelectedKeys("");
+			that.setSelectedKey("-N/A-1");
+			that.setSelectedText("");
+			that.setSelectedKey2("-N/A-2");
+			that.setSelectedText2("");
+			that.setSelectedKeys("");
 			
 			that.fireDesignStudioPropertiesChanged(["selectedKeys", "selectedKey", "selectedText", "selectedKey2", "selectedText2"]);
 			that.fireDesignStudioEvent("onDataChanged");
 			
-			this._oldContent = this._lLabels;
+			that._oldContent = that._lLabels;
 		}
 		
-		if(this.getSelectedKey() != "") {
-			for (var i = 0; i < this._lLabelKeys.length; i++) {
-				if(this._lLabelKeys[i] == this.getSelectedKey()) {
-					this.setValue(i);
+		if(that.getSelectedKey() != "") {
+			for (var i = 0; i < that._lLabelKeys.length; i++) {
+				if(that._lLabelKeys[i] == that.getSelectedKey()) {
+					that.setValue(i);
 					break;
 				};
 			};
 		} else {
-			this.setValue(0);
+			that.setValue(0);
 		};
-		if(this.getSelectedKey2() != "") {
-			for (var i = 0; i < this._lLabelKeys.length; i++) {
-				if(this._lLabelKeys[i] == this.getSelectedKey2()) {
-					this.setValue2(i);
+		if(that.getSelectedKey2() != "") {
+			for (var i = 0; i < that._lLabelKeys.length; i++) {
+				if(that._lLabelKeys[i] == that.getSelectedKey2()) {
+					that.setValue2(i);
 					break;
 				};
 			};
 		} else {
-			this.setValue2(this._lLabelKeys.length);
+			that.setValue2(that._lLabelKeys.length);
 		};
+
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	},
+
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+//%INIT-START%
+myComponentData.instance = RangeSlider;
+jQuery.sap.require("sap.ui.commons.RangeSlider");
+sap.ui.commons.RangeSlider.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

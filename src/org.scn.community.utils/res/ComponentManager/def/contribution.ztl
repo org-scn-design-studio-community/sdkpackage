@@ -849,10 +849,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Choropleth Map 2.0 component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Table 0.0 component*/
-	org.scn.community.databound.Table returnAsScnTable (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Data Drop Down 0.0 component*/
+	/**Cast to Data Drop Down 2.0 component*/
 	org.scn.community.databound.DropDown returnAsScnDropDown (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Facet Filter 2.0 component*/
@@ -900,7 +897,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Radio Button Group 2.0 component*/
 	org.scn.community.databound.RadioButtonGroup returnAsScnRadioButtonGroup (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Range Slider 0.0 component*/
+	/**Cast to Data Range Slider 2.0 component*/
 	org.scn.community.databound.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Result Set Information 1.0 component*/
@@ -912,11 +909,14 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Scatter Plot Chart 2.0 component*/
 	org.scn.community.databound.ScatterPlot returnAsScnScatterPlot (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Slider 0.0 component*/
+	/**Cast to Data Slider 2.0 component*/
 	org.scn.community.databound.Slider returnAsScnSlider (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to 2D Crosstab 2.0 component*/
 	org.scn.community.databound.Table2D returnAsScnTable2D (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Data Table 2.0 component*/
+	org.scn.community.databound.Table returnAsScnTable (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Tag Cloud 2.0 component*/
 	org.scn.community.databound.tagCloud returnAsScntagCloud (Component inputComponent) {* return inputComponent; *}

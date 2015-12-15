@@ -1,0 +1,72 @@
+{
+
+
+	"data" : {
+		"template" : "default",
+		"type" : "ResultCellList",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "ResultCellList",
+			"ztlFunction": "",
+			"desc" : "Column 1",
+			"cat" : "DataBinding",
+			"tooltip" : "Column 1",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"column1" : {
+		"template" : "default",
+		"type" : "ResultCellList",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "ResultCellList",
+			"ztlFunction": "",
+			"desc" : "Column 1",
+			"cat" : "DataBinding",
+			"tooltip" : "Column 1",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"column2" : {
+		"template" : "default",
+		"type" : "ResultCellList",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "ResultCellList",
+			"ztlFunction": "",
+			"desc" : "Column 2",
+			"cat" : "DataBinding",
+			"tooltip" : "Column 2",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"column3" : {
+		"template" : "default",
+		"type" : "ResultCellList",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "ResultCellList",
+			"ztlFunction": "",
+			"desc" : "Column 3",
+			"cat" : "DataBinding",
+			"tooltip" : "Column 3",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

@@ -28,7 +28,7 @@ define([
 	function(
 		spec,
 		core,
-		%COMP-package%
+		basics
 	) {
 //%DEFINE-END%
 

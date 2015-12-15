@@ -23,6 +23,7 @@ define([
 	"sap/designstudio/sdk/component",
 	"./TopFlopSpec",
 	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
 	"../../../"+scn_pkg+"shared/modules/component.databound"
 	
 	],

@@ -1,0 +1,56 @@
+
+/**
+ * Generated ZTL Class for Table
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.Table extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Column 1 Property
+	 */	
+	void setColumn1( /**Column 1*/ ResultCellList column1){*
+		this.column1 = column1;
+	*}
+
+	/**
+	 * Gets Column 1 Property
+	 */	
+	ResultCellList getColumn1() {*
+		return this.column1;
+	*}
+
+	/**
+	 * Sets Column 2 Property
+	 */	
+	void setColumn2( /**Column 2*/ ResultCellList column2){*
+		this.column2 = column2;
+	*}
+
+	/**
+	 * Gets Column 2 Property
+	 */	
+	ResultCellList getColumn2() {*
+		return this.column2;
+	*}
+
+	/**
+	 * Sets Column 3 Property
+	 */	
+	void setColumn3( /**Column 3*/ ResultCellList column3){*
+		this.column3 = column3;
+	*}
+
+	/**
+	 * Gets Column 3 Property
+	 */	
+	ResultCellList getColumn3() {*
+		return this.column3;
+	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}

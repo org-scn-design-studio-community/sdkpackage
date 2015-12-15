@@ -4,6 +4,7 @@ define([
 	"sap/designstudio/sdk/component",
 	"./ApsTesterUI5Spec",
 	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
 	"../../../"+scn_pkg+"shared/modules/component.prototypes"
 	
 	],

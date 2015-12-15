@@ -511,12 +511,24 @@ public class SpecificationReader {
 							HashMap<String, String> unifiedProperties = unifiedProp.getExtendedFullSpec().getProperties();
 							String unifiedPropValue = this.getAdvancedProperty(unifiedProperties, "extension");
 							if(unifiedPropValue.startsWith("ui5.")) {
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\",";
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.databound\"";
 								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.unified\"";
 							} else {
-								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component."+packagePropValue+"\"";
+								if(!packagePropValue.equals("basics")) {
+									defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\",";
+									defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component."+packagePropValue+"\"";	
+								} else {
+									defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\"";
+								}
 							}
 						} else {
-							defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component."+packagePropValue+"\"";	
+							if(!packagePropValue.equals("basics")) {
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\",";
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component."+packagePropValue+"\"";
+							} else {
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\"";
+							}
 						}
 
 						String requ = this.serializeRequires();

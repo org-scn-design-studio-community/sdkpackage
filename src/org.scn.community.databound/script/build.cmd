@@ -12,7 +12,6 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\AdvancedDataTable\def\contribution.xml ^
 ..\res\BulletChart\def\contribution.xml ^
 ..\res\Choropleth\def\contribution.xml ^
-..\res\DataTable\def\contribution.xml ^
 ..\res\DropDown\def\contribution.xml ^
 ..\res\FacetFilter\def\contribution.xml ^
 ..\res\FacetSelector\def\contribution.xml ^
@@ -33,6 +32,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\ResultSetMixer\def\contribution.xml ^
 ..\res\ScatterPlot\def\contribution.xml ^
 ..\res\Slider\def\contribution.xml ^
+..\res\Table\def\contribution.xml ^
 ..\res\Table2D\def\contribution.xml ^
 ..\res\TagCloud\def\contribution.xml ^
 ..\res\TopFlop\def\contribution.xml ^

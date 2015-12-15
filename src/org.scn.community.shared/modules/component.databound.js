@@ -368,7 +368,10 @@ define(["./component.basics"], function() {
 					counterAdjustment += 1;
 				}
 				
-				newListB.splice(0, 0, list[i]);
+				if(allKeys.indexOf("|" + list[i].key + "|") == -1) {
+					newListB.splice(0, 0, list[i]);	
+				}
+				
 				counter = counter + 1;
 			}
 			

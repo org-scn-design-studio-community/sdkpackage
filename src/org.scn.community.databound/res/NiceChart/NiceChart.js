@@ -23,6 +23,7 @@ define([
 	"sap/designstudio/sdk/component",
 	"./NiceChartSpec",
 	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
 	"../../../"+scn_pkg+"shared/modules/component.databound",
 	"../../../"+scn_pkg+"databound/os/chartjs/Chart",
 	"../../../"+scn_pkg+"databound/os/color/ColorScheme"

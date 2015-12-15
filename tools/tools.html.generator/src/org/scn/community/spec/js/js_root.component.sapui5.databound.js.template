@@ -29,7 +29,8 @@ define([
 	function(
 		spec,
 		core,
-		%COMP-package%
+		basics,
+		databound
 	) {
 //%DEFINE-END%
 

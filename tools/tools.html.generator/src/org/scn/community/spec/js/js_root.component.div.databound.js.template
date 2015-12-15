@@ -23,14 +23,16 @@ define([
 	"sap/designstudio/sdk/component",
 	"./%COMP-id%Spec",
 	"../../../"+scn_pkg+"shared/modules/component.core",
-	"../../../"+scn_pkg+"shared/modules/component.basics"
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"shared/modules/component.databound"
 	
 	],
 	function(
 		Component,
 		spec,
 		core,
-		basics
+		basics,
+		databound
 	) {
 //%DEFINE-END%
 

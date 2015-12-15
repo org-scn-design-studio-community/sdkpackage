@@ -1,0 +1,16 @@
+{
+	"title": "Data Table 2.0",
+	"description": "Data Table",
+	"icon": "Table.png",
+	"topics": 
+	[
+		{
+			"title" : "Data Table",
+			"content" : "Data Table"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}
