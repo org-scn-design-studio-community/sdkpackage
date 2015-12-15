@@ -104,7 +104,7 @@ var ResultSetInfo = {
 	createFlowPanel: function (label, value) {
 		var that = this;
 		
-		var lPanel = new sap.ui.commons.layout.AbsoluteLayout({width: "100%", height: "22px"});
+		var lPanel = new sap.zen.commons.layout.AbsoluteLayout({width: "100%", height: "22px"});
 		
 		var oLabel = new sap.ui.commons.Label({width: "60%", height: "22px"});
 		oLabel.setText(label + ": ");

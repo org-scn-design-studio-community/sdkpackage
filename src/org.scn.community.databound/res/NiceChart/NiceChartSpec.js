@@ -292,7 +292,7 @@ function() {
   "height": "400",
   "id": "NiceChart",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",

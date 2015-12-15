@@ -153,7 +153,7 @@ LeaderBoard = {
 
 		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getFallbackPicture(), iImageUrl, "LeaderBoard.png");
 
-		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: "225px",
 			height: "40px"
 		});
@@ -162,7 +162,7 @@ LeaderBoard = {
 		var realValue = value;
 		value = 225 * value / that._maxValue;
 		
-		var oValueLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oValueLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: value + "px",
 			height: "40px"
 		});
@@ -296,6 +296,6 @@ LeaderBoard = {
 
 //%INIT-START%
 myComponentData.instance = LeaderBoard;
-jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
-sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

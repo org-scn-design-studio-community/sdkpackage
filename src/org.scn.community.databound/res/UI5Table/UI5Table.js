@@ -442,6 +442,6 @@ UI5Table = {
 
 //%INIT-START%
 myComponentData.instance = UI5Table;
-jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
-sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

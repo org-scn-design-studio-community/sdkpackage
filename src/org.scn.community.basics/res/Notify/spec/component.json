@@ -3,7 +3,7 @@
 	"title": "Notify 2.0",
 	"tooltip": "Notify - Leandro Cardoso",
 	"handlerType": "div",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityBasics",
 	"package": "basics",
 	"extension": "Component",

@@ -3,7 +3,7 @@
 	"title": "Menu Bar 2.0",
 	"tooltip": "Menu Bar",
 	"handlerType": "sapui5",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityBasics",
 	"package": "basics",
 	"extension": "Component",

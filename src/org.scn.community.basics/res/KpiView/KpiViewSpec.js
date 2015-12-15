@@ -539,7 +539,7 @@ function() {
   "height": "190",
   "id": "KpiView",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",

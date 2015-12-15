@@ -3,7 +3,7 @@
 	"title": "Nice Chart 2.0",
 	"tooltip": "Nice Chart 2.0",
 	"handlerType": "div",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityChartMaps",
 	"package": "databound",
 	"extension": "Component",

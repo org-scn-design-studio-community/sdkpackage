@@ -111,7 +111,7 @@ function() {
   "height": "200",
   "id": "RSSFeedReader",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"

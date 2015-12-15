@@ -110,7 +110,7 @@ FishEye = {
 				);
 			}
 
-			that._lContentBig = new sap.ui.commons.layout.AbsoluteLayout ({
+			that._lContentBig = new sap.zen.commons.layout.AbsoluteLayout ({
 				width : "0px",
 				height : "100%",
 			});
@@ -166,7 +166,7 @@ FishEye = {
 		oTextView.addStyleClass("scn-pack-FishEye-Text");
 		// oTextView.attachBrowserEvent('click', clickFunction);
 
-		var oCcontentPanel = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oCcontentPanel = new sap.zen.commons.layout.AbsoluteLayout ({
 			width : "100%",
 			height : "100%",
 		});
@@ -357,6 +357,6 @@ FishEye = {
 
 //%INIT-START%
 myComponentData.instance = FishEye;
-jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
-sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

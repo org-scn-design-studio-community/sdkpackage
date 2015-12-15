@@ -18,7 +18,7 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PdfPrint", {
+sap.zen.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PdfPrint", {
 
 	metadata: {
         properties: {

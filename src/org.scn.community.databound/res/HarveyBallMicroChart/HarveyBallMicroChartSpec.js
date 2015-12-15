@@ -406,7 +406,7 @@ function() {
   "id": "HarveyBallMicroChart",
   "modes": "commons m",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "repeaterProperty": "items",
   "require": [
     {

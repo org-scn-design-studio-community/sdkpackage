@@ -3,7 +3,7 @@
 	"title": "Process Flow 2.0",
 	"tooltip": "ProcessFlow - Component for visualization of processes.",
 	"handlerType": "sapui5",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityUnified",
 	"package": "databound",
 	"extension": "ui5.ProcessFlow",

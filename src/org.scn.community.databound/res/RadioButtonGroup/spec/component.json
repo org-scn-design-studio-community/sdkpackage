@@ -3,7 +3,7 @@
 	"title": "Radio Button Group 2.0",
 	"tooltip": "RadioButtonGroup - Allows Selection with Radio Buttons.",
 	"handlerType": "sapui5",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityUnified",
 	"package": "databound",
 	"extension": "ui5.RadioButtonGroup",

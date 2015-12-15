@@ -234,6 +234,6 @@ DragDropArea = {
 
 //%INIT-START%
 myComponentData.instance = DragDropArea;
-jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
-sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

@@ -257,7 +257,7 @@ TopFlop = {
 			lLeftMarginPicture = "2px";
 		}
 		
-		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: (owner._containerWidth-6) + "px",
 			height: "40px"
 		});
@@ -269,12 +269,12 @@ TopFlop = {
 		var lSizeValueBackground = (owner._containerWidth - 120) * returnObject.maxDelta / returnObject.maxDelta;
 		var lSizeValue = (owner._containerWidth - 120) * delta / returnObject.maxDelta;
 		
-		var oValueLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oValueLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: lSizeValue + "px",
 			height: "3px"
 		});
 		
-		var oValueLayoutBackground = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oValueLayoutBackground = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: lSizeValueBackground + "px",
 			height: "3px"
 		});
@@ -456,6 +456,6 @@ TopFlop = {
 
 //%INIT-START%
 myComponentData.instance = TopFlop;
-jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
-sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

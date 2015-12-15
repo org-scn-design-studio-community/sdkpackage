@@ -208,7 +208,7 @@ TopFlopChart = {
 	createEmptyLeaderElement: function (owner, index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, delta, returnObject) {
 		var that = owner;
 		
-		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: that._containerWidth + "px",
 			height: that._height + "px"
 		});
@@ -226,7 +226,7 @@ TopFlopChart = {
 		var lUsePictures = that.getUsePictures();
 		var lAddCounter = that.getAddCounter();
 		
-		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: (owner._containerWidth-6) + "px",
 			height: 40 + "px"
 		});
@@ -255,14 +255,14 @@ TopFlopChart = {
 		var lSizeValueBackground = (baseWidth - baseStart) * baseMax / baseMax;
 		var lSizeValue = (baseWidth - baseStart) * baseValue / baseMax;
 		
-		var oValueLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oValueLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: lSizeValue + "px",
 			height: "18px"
 		});		
 		
 		var oValueLayoutBackground = undefined;
 		if(that.getUseBackground()) {
-			oValueLayoutBackground = new sap.ui.commons.layout.AbsoluteLayout ({
+			oValueLayoutBackground = new sap.zen.commons.layout.AbsoluteLayout ({
 				width: lSizeValueBackground + "px",
 				height: "18px"
 			});
@@ -482,6 +482,6 @@ TopFlopChart = {
 };
 //%INIT-START%
 myComponentData.instance = TopFlopChart;
-jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
-sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

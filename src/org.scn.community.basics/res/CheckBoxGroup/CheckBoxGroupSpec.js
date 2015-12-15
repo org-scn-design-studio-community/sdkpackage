@@ -188,7 +188,7 @@ function() {
   "height": "400",
   "id": "CheckBoxGroup",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"

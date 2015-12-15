@@ -140,7 +140,7 @@ CheckBoxGroup = {
 			topImage = "3px";
 		} 
 
-		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: "225px",
 			height: height
 		});
@@ -240,6 +240,6 @@ CheckBoxGroup = {
 
 //%INIT-START%
 myComponentData.instance = CheckBoxGroup;
-jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
-sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

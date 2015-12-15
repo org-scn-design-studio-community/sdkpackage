@@ -316,7 +316,7 @@ function() {
   "height": "22",
   "id": "SegmentedButton",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"

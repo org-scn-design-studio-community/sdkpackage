@@ -232,7 +232,7 @@ function() {
   "height": "40",
   "id": "WorldTime",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"

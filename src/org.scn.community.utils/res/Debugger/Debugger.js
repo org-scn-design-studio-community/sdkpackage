@@ -20,7 +20,7 @@
 jQuery.sap.require("sap.ui.table.Table");
 // jQuery.sap.require("sap.sap.ui.table.SelectionMode");
 
-sap.ui.commons.layout.AbsoluteLayout.extend("org.scn.community.utils.Debugger", {
+sap.zen.commons.layout.AbsoluteLayout.extend("org.scn.community.utils.Debugger", {
 
 	metadata: {
         properties: {

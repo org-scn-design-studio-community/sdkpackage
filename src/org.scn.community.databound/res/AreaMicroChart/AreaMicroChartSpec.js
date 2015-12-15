@@ -1537,7 +1537,7 @@ function() {
   "id": "AreaMicroChart",
   "modes": "commons m",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",

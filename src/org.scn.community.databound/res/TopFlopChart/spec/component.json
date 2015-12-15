@@ -3,7 +3,7 @@
 	"title": "Data Top Flop Chart 2.0",
 	"tooltip": "Data Top Flop Chart 2.0",
 	"handlerType": "sapui5",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityChartMaps",
 	"package": "databound",
 	"extension": "Component",

@@ -731,7 +731,7 @@ function() {
   "id": "BulletMicroChart",
   "modes": "commons m",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "repeaterProperty": "actual",
   "require": [
     {

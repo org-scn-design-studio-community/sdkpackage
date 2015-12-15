@@ -331,7 +331,7 @@ Accordion = {
 			topImage = "2px";
 		} 
 
-		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			height: height
 		});
 		
@@ -428,6 +428,6 @@ Accordion = {
 
 //%INIT-START%
 myComponentData.instance = Accordion;
-jQuery.sap.require("sap.ui.commons.layout.AbsoluteLayout");
-sap.ui.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
