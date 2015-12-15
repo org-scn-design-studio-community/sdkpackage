@@ -515,7 +515,7 @@ public class SpecificationReader {
 								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.databound\"";
 								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.unified\"";
 							} else {
-								if(!packagePropValue.equals("basics")) {
+								if(!packagePropValue.equals("basics") && !packagePropValue.equals("utils")) {
 									defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\",";
 									defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component."+packagePropValue+"\"";	
 								} else {
@@ -523,7 +523,7 @@ public class SpecificationReader {
 								}
 							}
 						} else {
-							if(!packagePropValue.equals("basics")) {
+							if(!packagePropValue.equals("basics") && !packagePropValue.equals("utils")) {
 								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\",";
 								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component."+packagePropValue+"\"";
 							} else {

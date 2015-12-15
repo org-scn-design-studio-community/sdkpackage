@@ -4,8 +4,7 @@ define([
 	"sap/designstudio/sdk/component",
 	"./DataSourceHelperSpec",
 	"../../../"+scn_pkg+"shared/modules/component.core",
-	"../../../"+scn_pkg+"shared/modules/component.basics",
-	"../../../"+scn_pkg+"shared/modules/component.utils"
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
 	],
 	function(

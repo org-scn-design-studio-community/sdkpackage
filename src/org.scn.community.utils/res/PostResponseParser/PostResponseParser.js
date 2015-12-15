@@ -16,45 +16,50 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
-sap.zen.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostResponseParser", {
-
-	metadata: {
-        properties: {
-              "DUrl": {type: "string"},
-              "DTrigger": {type: "string"},
-              
-              "DParameters": {type: "string"},
-              "DRawParameters": {type: "string"},
-              "DHeaders": {type: "string"},
-              
-              "DBasicAuthorisation": {type: "string"},
-              "DContentType": {type: "string"},
-
-              "DExpectedResponseStatus": {type: "int"},
-              "DExpectedContentType": {type: "string"},
-              
-              "DReturnParameters": {type: "string"},
-              "DReturnResponse": {type: "string"},
-              "DReturnStatus": {type: "string"},
-              "DReturnHeaders": {type: "string"},
-              
-              "DRequestMethod": {type: "string"},
-              "DRequestType": {type: "string"},
-              "DJsonp": {type: "boolean"},
-              "DCrossDomain": {type: "boolean"},
-              "DWithCredentials": {type: "boolean"},
-              "DPayload": {type: "string"},
-        }
-	},
-
-	initDesignStudio: function() {
-		var that = this;
-	},	
+ 
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./PostResponseParserSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
 	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
+
+var myComponentData = spec;
+
+PostResponseParser = {
+
 	renderer: {},
 	
-	afterDesignStudioUpdate : function() {
+	initDesignStudio: function() {
+		var that = this;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
+	},
+	
+	afterDesignStudioUpdate: function() {
 		var that = this;
 
 		if(this.getDUrl() != "" && this.getDTrigger() == "GO") {
@@ -365,4 +370,10 @@ sap.zen.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PostRespo
 			that.fireDesignStudioEvent("onResponse");
 		}
 	},
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+//%INIT-START%
+myComponentData.instance = PostResponseParser;
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

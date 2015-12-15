@@ -1008,10 +1008,10 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Open Window by Post 0.X component*/
 	org.scn.community.utils.OpenWindowPost returnAsScnOpenWindowPost (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to PDF Print 1.X component*/
+	/**Cast to PDF Print 2.0 component*/
 	org.scn.community.utils.PdfPrint returnAsScnPdfPrint (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Post Response Parser 1.X component*/
+	/**Cast to Post Response Parser 2.0 component*/
 	org.scn.community.utils.PostResponseParser returnAsScnPostResponseParser (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Real Date 0.X component*/

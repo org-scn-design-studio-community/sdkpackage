@@ -1,0 +1,16 @@
+{
+	"title": "Post Response Parser 2.0",
+	"description": "Creates a Request and Parses the Response (Json)",
+	"icon": "PostResponseParser.png",
+	"topics": 
+	[
+		{
+			"title" : "Post Response Parser",
+			"content" : "Creates a Request and Parses the Response (Json)"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

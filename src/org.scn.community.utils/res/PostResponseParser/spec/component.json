@@ -1,0 +1,22 @@
+{
+	"id": "PostResponseParser",
+	"title": "Post Response Parser 2.0",
+	"tooltip": "Creates a Request and Parses the Response (Json)",
+	"handlerType": "sapui5",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityUtils",
+	"package": "utils",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "10",
+	"height": "10"
+}

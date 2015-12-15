@@ -1,188 +1,240 @@
 
 <component
 	id="PostResponseParser"
-	title="Post Response Parser 1.X"
+	title="Post Response Parser 2.0"
 	tooltip="Creates a Request and Parses the Response (Json)"
 	icon="res/PostResponseParser/PostResponseParser.png"
 	handlerType="sapui5"
-	propertySheetPath="res/PostResponseParser/aps/PostResponseParserPropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
+	databound="false"
+	modes="commons"
 >
+	
+	<requireJs modes="commons">res/PostResponseParser/PostResponseParser</requireJs>
 
-	<jsInclude>res/PostResponseParser/PostResponseParser.js</jsInclude>
-
+	<cssInclude>res/PostResponseParser/PostResponseParser.css</cssInclude>
+	
+	
 	<property
-		id="DUrl"
+		id="DBasicAuthorisation"
 		type="String"
-		title="Url To Send the Request"
+		title="Basic Authorization Content [Basic: GUID]"
 		group="Display"
-		visible="true" />
-		
-	<property
-		id="DRequestType"
-		type="String"
-		title="Request Type (JQuery | HTTP)"
-		group="Display"
+		bindable="true"
 		visible="true">
-			<possibleValue>JQuery</possibleValue>
-			<possibleValue>HTTPRequest</possibleValue>
+
+	</property>
+	<property
+		id="DCleanAll"
+		type="String"
+		title="Clean All Parameters"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DContentType"
+		type="String"
+		title="Content Type"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DCrossDomain"
+		type="boolean"
+		title="Is This Request Cross-Domain"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DExpectedContentType"
+		type="String"
+		title="Expected Content Type"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DExpectedResponseStatus"
+		type="int"
+		title="Response Status For Good Response"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DHeaders"
+		type="String"
+		title="List Of Headers (Name / Value)"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DJsonp"
+		type="boolean"
+		title="Do You Want To Use JSONP"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DParameters"
+		type="String"
+		title="List Of Parameters (Name / Value)"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DPayload"
+		type="String"
+		title="HTTP Reuqest Payload"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DRawParameters"
+		type="String"
+		title="Raw Parameters As String Content"
+		group="Display"
+		bindable="true"
+		visible="false">
+
 	</property>
 	<property
 		id="DRequestMethod"
 		type="String"
 		title="Request Method (POST | GET | PUT)"
 		group="Display"
+		bindable="true"
 		visible="true">
-			<possibleValue>POST</possibleValue>
-			<possibleValue>GET</possibleValue>
-			<possibleValue>PUT</possibleValue>
+
 	</property>
 	<property
-		id="DCrossDomain"
-		type="boolean"
-		title="Is this Request Cross-Domain"
-		group="Display"
-		visible="true" />
-	<property
-		id="DJsonp"
-		type="boolean"
-		title="Do you want to use JSONP"
-		group="Display"
-		visible="true" />
-	<property
-		id="DWithCredentials"
-		type="boolean"
-		title="Do you need with credentials"
-		group="Display"
-		visible="true" />
-	<property
-		id="DBasicAuthorisation"
+		id="DRequestType"
 		type="String"
-		title="Basic Authorization Content [Basic: GUID]"
+		title="Request Type (JQuery | HTTP)"
 		group="Display"
-		visible="true" />
-
-	<property
-		id="DContentType"
-		type="String"
-		title="Content Type"
-		group="Display"
-		visible="true" />
-
-	<property
-		id="DExpectedResponseStatus"
-		type="int"
-		title="Response Status for Good Response"
-		group="Display"
-		visible="true" />
-
-	<property
-		id="DExpectedContentType"
-		type="String"
-		title="Expected Content Type"
-		group="Display"
+		bindable="true"
 		visible="true">
-			<possibleValue>text</possibleValue>
-			<possibleValue>json</possibleValue>
-	</property>
 
-	<property
-		id="DPayload"
-		type="String"
-		title="HTTP reuqest payload"
-		group="Display"
-		visible="false">
 	</property>
-
-	<property
-		id="DReturnParameters"
-		type="String"
-		title="Return Parameters"
-		group="Display"
-		visible="false">
-	</property>
-
-	<property
-		id="DReturnResponse"
-		type="String"
-		title="Return Response as String"
-		group="Display"
-		visible="false">
-	</property>
-
-	<property
-		id="DReturnStatus"
-		type="int"
-		title="Return Status"
-		group="Display"
-		visible="false">
-	</property>
-
 	<property
 		id="DReturnHeaders"
 		type="String"
 		title="Return Headers"
 		group="Display"
+		bindable="true"
 		visible="false">
-	</property>
 
+	</property>
+	<property
+		id="DReturnParameters"
+		type="String"
+		title="Return Parameters"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DReturnResponse"
+		type="String"
+		title="Return Response As String"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DReturnStatus"
+		type="int"
+		title="Return Status"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
 	<property
 		id="DTrigger"
 		type="String"
-		title="Just as Simple Triger"
+		title="Just As Simple Triger"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="false">
 
+	</property>
 	<property
-		id="DCleanAll"
+		id="DUrl"
 		type="String"
-		title="Clean All Parameters"
+		title="Url To Send The Request"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="true">
 
+	</property>
 	<property
-		id="DParameters"
-		type="String"
-		title="List of Parameters (Name / Value)"
+		id="DWithCredentials"
+		type="boolean"
+		title="Do You Need With Credentials"
 		group="Display"
-		visible="false" />
+		bindable="true"
+		visible="true">
 
-	<property
-		id="DHeaders"
-		type="String"
-		title="List of Headers (Name / Value)"
-		group="Display"
-		visible="false" />
-
-	<property
-		id="DRawParameters"
-		type="String"
-		title="Raw Parameters as String Content"
-		group="Display"
-		visible="false" />
-
+	</property>
 	<property
 		id="onResponse"
 		type="ScriptText"
-		title="Event for On Response"
-		group="Events" />
+		title="Event For On Response"
+		group="Events"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">10</defaultValue>
 		<defaultValue property="HEIGHT">10</defaultValue>
-		<defaultValue property="TOP_MARGIN">-2000</defaultValue>
-		<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
-		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-
-		<defaultValue property="DUrl"></defaultValue>
-		<defaultValue property="DRequestType">JQuery</defaultValue>
-		<defaultValue property="DRequestMethod">POST</defaultValue>
 		
-		<defaultValue property="DParameters"></defaultValue>
-		<defaultValue property="DContentType">application/x-www-form-urlencoded</defaultValue>
-		<defaultValue property="DExpectedResponseStatus">200</defaultValue>
-		<defaultValue property="DExpectedContentType">text</defaultValue>
+		<defaultValue property="DBasicAuthorisation"><![CDATA[]]></defaultValue>
+		<defaultValue property="DCleanAll"><![CDATA[]]></defaultValue>
+		<defaultValue property="DContentType"><![CDATA[application/x-www-form-urlencoded]]></defaultValue>
+		<defaultValue property="DCrossDomain"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DExpectedContentType"><![CDATA[text]]></defaultValue>
+		<defaultValue property="DExpectedResponseStatus"><![CDATA[200]]></defaultValue>
+		<defaultValue property="DHeaders"><![CDATA[]]></defaultValue>
+		<defaultValue property="DJsonp"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DParameters"><![CDATA[]]></defaultValue>
+		<defaultValue property="DPayload"><![CDATA[]]></defaultValue>
+		<defaultValue property="DRawParameters"><![CDATA[]]></defaultValue>
+		<defaultValue property="DRequestMethod"><![CDATA[POST]]></defaultValue>
+		<defaultValue property="DRequestType"><![CDATA[JQuery]]></defaultValue>
+		<defaultValue property="DReturnHeaders"><![CDATA[]]></defaultValue>
+		<defaultValue property="DReturnParameters"><![CDATA[]]></defaultValue>
+		<defaultValue property="DReturnResponse"><![CDATA[]]></defaultValue>
+		<defaultValue property="DReturnStatus"><![CDATA[200]]></defaultValue>
+		<defaultValue property="DTrigger"><![CDATA[]]></defaultValue>
+		<defaultValue property="DUrl"><![CDATA[]]></defaultValue>
+		<defaultValue property="DWithCredentials"><![CDATA[false]]></defaultValue>
+		<defaultValue property="onResponse"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
