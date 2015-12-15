@@ -22,7 +22,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * ====================================================================
  */
-
+define(["./jspdf"], function() {
 (function(jsPDFAPI) {
 'use strict';
 
@@ -37,3 +37,4 @@ jsPDFAPI.putTotalPages = function(pageExpression) {
 };
 
 })(jsPDF.API);
+});

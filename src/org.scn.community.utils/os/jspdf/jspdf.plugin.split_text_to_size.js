@@ -24,7 +24,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * ====================================================================
  */
-
+define(["./jspdf"], function() {
 ;(function(API) {
 'use strict'
 
@@ -323,3 +323,4 @@ API.splitTextToSize = function(text, maxlen, options) {
 }
 
 })(jsPDF.API);
+});

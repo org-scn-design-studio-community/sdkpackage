@@ -1,52 +1,75 @@
 
 /**
- * Generated ZTL Class for Result Set Information 1.0
+ * Generated ZTL Class for ResultSetInfo
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
-class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared.DataComponent {
+class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared.Component {
 
 	/**
 	 * Sets Central Data Provisioning Property
 	 */	
-	void setCentralProvisioning( /* Provision Data Centrally for Component Access */  boolean centralProvisioning){*
+	void setCentralProvisioning( /**Central Data Provisioning*/ boolean centralProvisioning){*
 		this.DCentralProvisioning = centralProvisioning;
 	*}
 
 	/**
 	 * Gets Central Data Provisioning Property
 	 */	
-	boolean getCentralProvisioning() {*
+	boolean isCentralProvisioning() {*
 		return this.DCentralProvisioning;
 	*}
 
 	/**
-	 * Sets Ignore Results Rows and Columns Property
+	 * Gets Technical Component For Data Information Property
 	 */	
-	void setIgnoreResults( /* Ignore Results Rows and Columns */  boolean ignoreResults){*
+	String getDataInformation() {*
+		return this.DDataInformation;
+	*}
+
+	/**
+	 * Sets Ignore Results Rows And Columns Property
+	 */	
+	void setIgnoreResults( /**Ignore Results Rows And Columns*/ boolean ignoreResults){*
 		this.DIgnoreResults = ignoreResults;
 	*}
 
 	/**
-	 * Gets Ignore Results Rows and Columns Property
+	 * Gets Ignore Results Rows And Columns Property
 	 */	
-	boolean getIgnoreResults() {*
+	boolean isIgnoreResults() {*
 		return this.DIgnoreResults;
 	*}
 
 	/**
 	 * Sets Information Event Active Property
 	 */	
-	void setInformationEventActive( /* Send Data Information Event when data is available */  boolean informationEventActive){*
+	void setInformationEventActive( /**Information Event Active*/ boolean informationEventActive){*
 		this.DInformationEventActive = informationEventActive;
 	*}
 
 	/**
 	 * Gets Information Event Active Property
 	 */	
-	boolean getInformationEventActive() {*
+	boolean isInformationEventActive() {*
 		return this.DInformationEventActive;
 	*}
+
+	/**
+	 * Sets Result Set Property
+	 */	
+	void setData( /**Result Set*/ ResultSet data){*
+		this.data = data;
+	*}
+
+	/**
+	 * Gets Result Set Property
+	 */	
+	ResultSet getData() {*
+		return this.data;
+	*}
+
+
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */

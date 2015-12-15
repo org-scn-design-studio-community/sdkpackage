@@ -24,7 +24,7 @@
  */
 
 /*global jsPDF */
-
+define(["./jspdf"], function() {
 (function (jsPDFAPI) {
     'use strict';
     var jsNamesObj, jsJsObj, text;
@@ -50,3 +50,4 @@
         return this;
     };
 }(jsPDF.API));
+});

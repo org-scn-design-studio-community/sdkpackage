@@ -1,0 +1,177 @@
+{
+	"DReloadTrigger" : {
+		"template" : "float",
+		"type" : "float",
+		"value" : 0.0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "-get",
+			"desc" : "Internal Property To Trigger The Reload",
+			"cat" : "Display",
+			"tooltip" : "Internal Property To Trigger The Reload",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"DCollectMultipleMatches" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Collect",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "Collect Multiple Matches",
+			"cat" : "Display",
+			"tooltip" : "Procedure What Should Happen When Multiple Matches Are Available",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Collect",
+					"text" : "Collect"
+				},
+				{
+					"key" : "UseLast",
+					"text" : "UseLast"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DMasterGeometry" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Rows",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "Geometry Of The Master Result Set",
+			"cat" : "Display",
+			"tooltip" : "Geometry Of The Master Result Set",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Structure",
+					"text" : "Structure"
+				},
+				{
+					"key" : "Rows",
+					"text" : "Rows"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DMasterProvisioner" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Master Central Data Provisioner",
+			"cat" : "Display",
+			"tooltip" : "Result Set With Master Data",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DSlaveColumnCondition" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Column Condition To Read Slave Result Set",
+			"cat" : "Display",
+			"tooltip" : "Under Which Condition Should Be The Slave Result Set Read (based On Contnet Of Header Column Key)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DSlaveColumnIndex" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 1,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Column Index For The Selection From Slave Result Set",
+			"cat" : "Display",
+			"tooltip" : "Which Column Should Be Selected From The Slave Result Set",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DSlaveContentCondition" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Content Condition To Read Slave Result Set",
+			"cat" : "Display",
+			"tooltip" : "Under Which Condition Should Be The Slave Result Set Read (based On Content Or Value)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DSlaveProvisioner" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Slave Central Data Provisioner",
+			"cat" : "Display",
+			"tooltip" : "Result Set With Slave Data For Selection",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DSlaveRowCondition" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Row Condition To Read Slave Result Set",
+			"cat" : "Display",
+			"tooltip" : "Under Which Condition Should Be The Slave Result Set Read (based On Contnet Of Header Row Key)",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

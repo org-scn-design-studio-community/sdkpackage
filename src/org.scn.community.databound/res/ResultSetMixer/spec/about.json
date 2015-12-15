@@ -1,0 +1,16 @@
+{
+	"title": "Result Set Mixer 2.0",
+	"description": "Result Set Mixer",
+	"icon": "ResultSetMixer.png",
+	"topics": 
+	[
+		{
+			"title" : "Result Set Mixer",
+			"content" : "Result Set Mixer"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

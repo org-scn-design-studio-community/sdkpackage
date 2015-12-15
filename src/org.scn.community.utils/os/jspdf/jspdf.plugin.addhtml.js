@@ -5,7 +5,7 @@
  * Licensed under the MIT License.
  * http://opensource.org/licenses/mit-license
  */
-
+define(["./jspdf"], function() {
 (function (jsPDFAPI) {
 	'use strict';
 
@@ -114,3 +114,4 @@
 		return null;
 	};
 })(jsPDF.API);
+});
