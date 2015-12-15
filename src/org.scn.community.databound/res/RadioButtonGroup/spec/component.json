@@ -11,6 +11,7 @@
 	"extends2Control": "RadioButtonGroup",
 	"extends3ControlEvents": "RadioButtonGroup.events",
 	"generatedJsFile":"true",
+	"modes":"commons m",
 
 	"databound": false,
 	"dataType": "DataCellList",

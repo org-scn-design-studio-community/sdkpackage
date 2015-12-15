@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/PasswordField/PasswordField</requireJs>
+	<requireJs modes="commons">res/PasswordField/PasswordField</requireJs>
 
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
 	

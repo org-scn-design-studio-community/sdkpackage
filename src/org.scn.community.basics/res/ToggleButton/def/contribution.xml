@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ToggleButton/ToggleButton</requireJs>
+	<requireJs modes="commons">res/ToggleButton/ToggleButton</requireJs>
 
 	<cssInclude>res/ToggleButton/ToggleButton.css</cssInclude>
 	

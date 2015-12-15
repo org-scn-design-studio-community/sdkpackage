@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/TextArea/TextArea</requireJs>
+	<requireJs modes="commons">res/TextArea/TextArea</requireJs>
 
 	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	

@@ -1535,6 +1535,7 @@ function() {
   "handlerType": "sapui5",
   "height": "200",
   "id": "AreaMicroChart",
+  "modes": "commons m",
   "package": "databound",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
   "require": [

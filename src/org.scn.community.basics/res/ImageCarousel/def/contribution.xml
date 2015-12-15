@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ImageCarousel/ImageCarousel</requireJs>
+	<requireJs modes="commons">res/ImageCarousel/ImageCarousel</requireJs>
 
 	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 	

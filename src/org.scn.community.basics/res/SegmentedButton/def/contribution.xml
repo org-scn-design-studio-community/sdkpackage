@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/SegmentedButton/SegmentedButton</requireJs>
+	<requireJs modes="commons">res/SegmentedButton/SegmentedButton</requireJs>
 
 	<cssInclude>res/SegmentedButton/SegmentedButton.css</cssInclude>
 	

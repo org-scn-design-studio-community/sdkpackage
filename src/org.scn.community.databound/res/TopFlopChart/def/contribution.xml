@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityChartMaps"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/TopFlopChart/TopFlopChart</requireJs>
+	<requireJs modes="commons">res/TopFlopChart/TopFlopChart</requireJs>
 
 	<cssInclude>res/TopFlopChart/TopFlopChart.css</cssInclude>
 	

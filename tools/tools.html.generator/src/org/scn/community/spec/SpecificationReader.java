@@ -455,6 +455,10 @@ public class SpecificationReader {
 					content = content.replace("%COMP-"+extendedPropertyKey+"%", value);
 				}
 			}
+			
+			if(content.contains("%COMP-modes%")) {
+				content = content.replace("%COMP-modes%", "commons");
+			}
 		
 			replacedTemplates.put(templatePath, content);
 			

@@ -219,6 +219,7 @@ function() {
   "handlerType": "sapui5",
   "height": "240",
   "id": "KpiTile",
+  "modes": "commons m",
   "package": "basics",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
   "require": [

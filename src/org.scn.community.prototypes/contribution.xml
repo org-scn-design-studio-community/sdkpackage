@@ -200,10 +200,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ApsTester/ApsTester</requireJs>
+	<requireJs modes="commons">res/ApsTester/ApsTester</requireJs>
 
 	<cssInclude>res/ApsTester/ApsTester.css</cssInclude>
 	
@@ -345,10 +345,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ApsTesterUI5/ApsTesterUI5</requireJs>
+	<requireJs modes="commons">res/ApsTesterUI5/ApsTesterUI5</requireJs>
 
 	<cssInclude>res/ApsTesterUI5/ApsTesterUI5.css</cssInclude>
 	
@@ -641,10 +641,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/BulletChartGen/BulletChartGen</requireJs>
+	<requireJs modes="commons">res/BulletChartGen/BulletChartGen</requireJs>
 
 	<cssInclude>res/BulletChartGen/BulletChartGen.css</cssInclude>
 	

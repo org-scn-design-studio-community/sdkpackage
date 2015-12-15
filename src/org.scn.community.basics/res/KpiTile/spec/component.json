@@ -9,6 +9,7 @@
 	"extension": "Component",
 	"databound": false,
 	"dataType": "-",
+	"modes":"commons m",
 
 	"require": 
 	[

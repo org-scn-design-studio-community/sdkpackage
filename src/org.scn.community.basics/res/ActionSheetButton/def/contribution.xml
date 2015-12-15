@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ActionSheetButton/ActionSheetButton</requireJs>
+	<requireJs modes="commons">res/ActionSheetButton/ActionSheetButton</requireJs>
 
 	<cssInclude>res/ActionSheetButton/ActionSheetButton.css</cssInclude>
 	

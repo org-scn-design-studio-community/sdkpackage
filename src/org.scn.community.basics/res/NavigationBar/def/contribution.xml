@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/NavigationBar/NavigationBar</requireJs>
+	<requireJs modes="commons">res/NavigationBar/NavigationBar</requireJs>
 
 	<cssInclude>res/NavigationBar/NavigationBar.css</cssInclude>
 	

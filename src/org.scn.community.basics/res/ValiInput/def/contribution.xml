@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ValiInput/ValiInput</requireJs>
+	<requireJs modes="commons">res/ValiInput/ValiInput</requireJs>
 
 	<cssInclude>res/ValiInput/ValiInput.css</cssInclude>
 	

@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/RatingIndicator/RatingIndicator</requireJs>
+	<requireJs modes="commons">res/RatingIndicator/RatingIndicator</requireJs>
 
 	<cssInclude>res/RatingIndicator/RatingIndicator.css</cssInclude>
 	

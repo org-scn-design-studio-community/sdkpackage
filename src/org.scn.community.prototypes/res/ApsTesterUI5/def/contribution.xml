@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ApsTesterUI5/ApsTesterUI5</requireJs>
+	<requireJs modes="commons">res/ApsTesterUI5/ApsTesterUI5</requireJs>
 
 	<cssInclude>res/ApsTesterUI5/ApsTesterUI5.css</cssInclude>
 	

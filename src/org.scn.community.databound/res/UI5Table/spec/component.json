@@ -8,6 +8,7 @@
 	"package": "databound",
 	"extension": "DataComponent",
 	"databound": true,
+	"modes":"commons m",
 
 	"require": 
 	[

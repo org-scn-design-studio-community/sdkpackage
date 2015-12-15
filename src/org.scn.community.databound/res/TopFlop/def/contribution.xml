@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/TopFlop/TopFlop</requireJs>
+	<requireJs modes="commons">res/TopFlop/TopFlop</requireJs>
 
 	<cssInclude>res/TopFlop/TopFlop.css</cssInclude>
 	

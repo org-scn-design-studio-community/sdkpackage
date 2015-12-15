@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/DataSourceHelper/DataSourceHelper</requireJs>
+	<requireJs modes="commons">res/DataSourceHelper/DataSourceHelper</requireJs>
 
 	<cssInclude>res/DataSourceHelper/DataSourceHelper.css</cssInclude>
 	

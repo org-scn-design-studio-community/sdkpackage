@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/FioriButton/FioriButton</requireJs>
+	<requireJs modes="commons">res/FioriButton/FioriButton</requireJs>
 
 	<cssInclude>res/FioriButton/FioriButton.css</cssInclude>
 	

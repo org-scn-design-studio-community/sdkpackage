@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Accordion/Accordion</requireJs>
+	<requireJs modes="commons">res/Accordion/Accordion</requireJs>
 
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 	

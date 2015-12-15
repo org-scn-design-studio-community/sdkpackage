@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/QRCode/QRCode</requireJs>
+	<requireJs modes="commons">res/QRCode/QRCode</requireJs>
 
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
 	

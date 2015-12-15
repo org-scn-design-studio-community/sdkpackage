@@ -202,10 +202,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Accordion/Accordion</requireJs>
+	<requireJs modes="commons">res/Accordion/Accordion</requireJs>
 
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 	
@@ -352,10 +352,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ActivityViewer/ActivityViewer</requireJs>
+	<requireJs modes="commons">res/ActivityViewer/ActivityViewer</requireJs>
 
 	<cssInclude>res/ActivityViewer/ActivityViewer.css</cssInclude>
 	
@@ -433,10 +433,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ActionSheetButton/ActionSheetButton</requireJs>
+	<requireJs modes="commons">res/ActionSheetButton/ActionSheetButton</requireJs>
 
 	<cssInclude>res/ActionSheetButton/ActionSheetButton.css</cssInclude>
 	
@@ -544,10 +544,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ApplicationHeader/ApplicationHeader</requireJs>
+	<requireJs modes="commons">res/ApplicationHeader/ApplicationHeader</requireJs>
 
 	<cssInclude>res/ApplicationHeader/ApplicationHeader.css</cssInclude>
 	
@@ -709,10 +709,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/BasicBusinessCard/BasicBusinessCard</requireJs>
+	<requireJs modes="commons">res/BasicBusinessCard/BasicBusinessCard</requireJs>
 
 	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
 	
@@ -780,10 +780,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Calendar/Calendar</requireJs>
+	<requireJs modes="commons">res/Calendar/Calendar</requireJs>
 
 	<cssInclude>res/Calendar/Calendar.css</cssInclude>
 	
@@ -939,10 +939,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/CheckBoxGroup/CheckBoxGroup</requireJs>
+	<requireJs modes="commons">res/CheckBoxGroup/CheckBoxGroup</requireJs>
 
 	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 	
@@ -1030,10 +1030,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ColorPicker/ColorPicker</requireJs>
+	<requireJs modes="commons">res/ColorPicker/ColorPicker</requireJs>
 
 	<cssInclude>res/ColorPicker/ColorPicker.css</cssInclude>
 	
@@ -1091,10 +1091,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/DateRangeScroller/DateRangeScroller</requireJs>
+	<requireJs modes="commons">res/DateRangeScroller/DateRangeScroller</requireJs>
 
 	<cssInclude>res/DateRangeScroller/DateRangeScroller.css</cssInclude>
 	
@@ -1242,10 +1242,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/DateRangeSlider/DateRangeSlider</requireJs>
+	<requireJs modes="commons">res/DateRangeSlider/DateRangeSlider</requireJs>
 
 	<cssInclude>res/DateRangeSlider/DateRangeSlider.css</cssInclude>
 	
@@ -1423,10 +1423,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/DragDropArea/DragDropArea</requireJs>
+	<requireJs modes="commons">res/DragDropArea/DragDropArea</requireJs>
 
 	<cssInclude>res/DragDropArea/DragDropArea.css</cssInclude>
 	
@@ -1584,10 +1584,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/EmbeddedFrame/EmbeddedFrame</requireJs>
+	<requireJs modes="commons">res/EmbeddedFrame/EmbeddedFrame</requireJs>
 
 	<cssInclude>res/EmbeddedFrame/EmbeddedFrame.css</cssInclude>
 	
@@ -1646,10 +1646,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/EmbeddedMedia/EmbeddedMedia</requireJs>
+	<requireJs modes="commons">res/EmbeddedMedia/EmbeddedMedia</requireJs>
 
 	<cssInclude>res/EmbeddedMedia/EmbeddedMedia.css</cssInclude>
 	
@@ -1698,10 +1698,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/FallbackPicture/FallbackPicture</requireJs>
+	<requireJs modes="commons">res/FallbackPicture/FallbackPicture</requireJs>
 
 	<cssInclude>res/FallbackPicture/FallbackPicture.css</cssInclude>
 	
@@ -1814,10 +1814,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/FioriButton/FioriButton</requireJs>
+	<requireJs modes="commons">res/FioriButton/FioriButton</requireJs>
 
 	<cssInclude>res/FioriButton/FioriButton.css</cssInclude>
 	
@@ -2075,10 +2075,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/FishEye/FishEye</requireJs>
+	<requireJs modes="commons">res/FishEye/FishEye</requireJs>
 
 	<cssInclude>res/FishEye/FishEye.css</cssInclude>
 	
@@ -2166,10 +2166,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Gauge/Gauge</requireJs>
+	<requireJs modes="commons">res/Gauge/Gauge</requireJs>
 
 	<cssInclude>res/Gauge/Gauge.css</cssInclude>
 	
@@ -2378,10 +2378,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ImageCarousel/ImageCarousel</requireJs>
+	<requireJs modes="commons">res/ImageCarousel/ImageCarousel</requireJs>
 
 	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 	
@@ -2549,10 +2549,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/KpiView/KpiView</requireJs>
+	<requireJs modes="commons">res/KpiView/KpiView</requireJs>
 
 	<cssInclude>res/KpiView/KpiView.css</cssInclude>
 	
@@ -2849,10 +2849,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/LeaderBoard/LeaderBoard</requireJs>
+	<requireJs modes="commons">res/LeaderBoard/LeaderBoard</requireJs>
 
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 	
@@ -2979,10 +2979,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Link/Link</requireJs>
+	<requireJs modes="commons">res/Link/Link</requireJs>
 
 	<cssInclude>res/Link/Link.css</cssInclude>
 	
@@ -3030,10 +3030,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ListSelector/ListSelector</requireJs>
+	<requireJs modes="commons">res/ListSelector/ListSelector</requireJs>
 
 	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
 	
@@ -3231,10 +3231,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/MenuBar/MenuBar</requireJs>
+	<requireJs modes="commons">res/MenuBar/MenuBar</requireJs>
 
 	<cssInclude>res/MenuBar/MenuBar.css</cssInclude>
 	
@@ -3322,10 +3322,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/MenuButton/MenuButton</requireJs>
+	<requireJs modes="commons">res/MenuButton/MenuButton</requireJs>
 
 	<cssInclude>res/MenuButton/MenuButton.css</cssInclude>
 	
@@ -3506,10 +3506,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/NavigationBar/NavigationBar</requireJs>
+	<requireJs modes="commons">res/NavigationBar/NavigationBar</requireJs>
 
 	<cssInclude>res/NavigationBar/NavigationBar.css</cssInclude>
 	
@@ -3597,10 +3597,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/NotificationBar/NotificationBar</requireJs>
+	<requireJs modes="commons">res/NotificationBar/NotificationBar</requireJs>
 
 	<cssInclude>res/NotificationBar/NotificationBar.css</cssInclude>
 	
@@ -3719,10 +3719,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Notify/Notify</requireJs>
+	<requireJs modes="commons">res/Notify/Notify</requireJs>
 
 	<cssInclude>res/Notify/Notify.css</cssInclude>
 	
@@ -3811,10 +3811,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Map/Map</requireJs>
+	<requireJs modes="commons">res/Map/Map</requireJs>
 
 	<cssInclude>res/Map/Map.css</cssInclude>
 	
@@ -3952,10 +3952,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Paginator/Paginator</requireJs>
+	<requireJs modes="commons">res/Paginator/Paginator</requireJs>
 
 	<cssInclude>res/Paginator/Paginator.css</cssInclude>
 	
@@ -4013,10 +4013,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/PasswordField/PasswordField</requireJs>
+	<requireJs modes="commons">res/PasswordField/PasswordField</requireJs>
 
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
 	
@@ -4094,10 +4094,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/QRCode/QRCode</requireJs>
+	<requireJs modes="commons">res/QRCode/QRCode</requireJs>
 
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
 	
@@ -4235,10 +4235,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ProgressIndicator/ProgressIndicator</requireJs>
+	<requireJs modes="commons">res/ProgressIndicator/ProgressIndicator</requireJs>
 
 	<cssInclude>res/ProgressIndicator/ProgressIndicator.css</cssInclude>
 	
@@ -4317,10 +4317,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/RangeSlider/RangeSlider</requireJs>
+	<requireJs modes="commons">res/RangeSlider/RangeSlider</requireJs>
 
 	<cssInclude>res/RangeSlider/RangeSlider.css</cssInclude>
 	
@@ -4477,10 +4477,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/RatingIndicator/RatingIndicator</requireJs>
+	<requireJs modes="commons">res/RatingIndicator/RatingIndicator</requireJs>
 
 	<cssInclude>res/RatingIndicator/RatingIndicator.css</cssInclude>
 	
@@ -4578,10 +4578,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/RoadMap/RoadMap</requireJs>
+	<requireJs modes="commons">res/RoadMap/RoadMap</requireJs>
 
 	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
 	
@@ -4659,10 +4659,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/RSSFeedReader/RSSFeedReader</requireJs>
+	<requireJs modes="commons">res/RSSFeedReader/RSSFeedReader</requireJs>
 
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
 	
@@ -4721,10 +4721,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/SegmentedButton/SegmentedButton</requireJs>
+	<requireJs modes="commons">res/SegmentedButton/SegmentedButton</requireJs>
 
 	<cssInclude>res/SegmentedButton/SegmentedButton.css</cssInclude>
 	
@@ -4870,10 +4870,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Slider/Slider</requireJs>
+	<requireJs modes="commons">res/Slider/Slider</requireJs>
 
 	<cssInclude>res/Slider/Slider.css</cssInclude>
 	
@@ -5010,10 +5010,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/TextArea/TextArea</requireJs>
+	<requireJs modes="commons">res/TextArea/TextArea</requireJs>
 
 	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	
@@ -5091,10 +5091,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/TimeOut/TimeOut</requireJs>
+	<requireJs modes="commons">res/TimeOut/TimeOut</requireJs>
 
 	<cssInclude>res/TimeOut/TimeOut.css</cssInclude>
 	
@@ -5202,10 +5202,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ToggleButton/ToggleButton</requireJs>
+	<requireJs modes="commons">res/ToggleButton/ToggleButton</requireJs>
 
 	<cssInclude>res/ToggleButton/ToggleButton.css</cssInclude>
 	
@@ -5313,10 +5313,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Tree/Tree</requireJs>
+	<requireJs modes="commons">res/Tree/Tree</requireJs>
 
 	<cssInclude>res/Tree/Tree.css</cssInclude>
 	
@@ -5423,10 +5423,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/TriStateCheckBox/TriStateCheckBox</requireJs>
+	<requireJs modes="commons">res/TriStateCheckBox/TriStateCheckBox</requireJs>
 
 	<cssInclude>res/TriStateCheckBox/TriStateCheckBox.css</cssInclude>
 	
@@ -5514,10 +5514,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ValiInput/ValiInput</requireJs>
+	<requireJs modes="commons">res/ValiInput/ValiInput</requireJs>
 
 	<cssInclude>res/ValiInput/ValiInput.css</cssInclude>
 	
@@ -5625,10 +5625,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ValueHelpField/ValueHelpField</requireJs>
+	<requireJs modes="commons">res/ValueHelpField/ValueHelpField</requireJs>
 
 	<cssInclude>res/ValueHelpField/ValueHelpField.css</cssInclude>
 	
@@ -5715,10 +5715,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/WorldTime/WorldTime</requireJs>
+	<requireJs modes="commons">res/WorldTime/WorldTime</requireJs>
 
 	<cssInclude>res/WorldTime/WorldTime.css</cssInclude>
 	

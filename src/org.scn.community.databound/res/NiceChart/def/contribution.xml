@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityChartMaps"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/NiceChart/NiceChart</requireJs>
+	<requireJs modes="commons">res/NiceChart/NiceChart</requireJs>
 
 	<cssInclude>res/NiceChart/NiceChart.css</cssInclude>
 	

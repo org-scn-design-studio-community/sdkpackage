@@ -532,6 +532,7 @@ function() {
   "handlerType": "sapui5",
   "height": "580",
   "id": "ProcessFlow",
+  "modes": "commons m",
   "package": "databound",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
   "require": [

@@ -729,6 +729,7 @@ function() {
   "handlerType": "sapui5",
   "height": "100",
   "id": "BulletMicroChart",
+  "modes": "commons m",
   "package": "databound",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
   "repeaterProperty": "actual",

@@ -373,10 +373,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/DataSourceHelper/DataSourceHelper</requireJs>
+	<requireJs modes="commons">res/DataSourceHelper/DataSourceHelper</requireJs>
 
 	<cssInclude>res/DataSourceHelper/DataSourceHelper.css</cssInclude>
 	
@@ -621,10 +621,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/JsonObject/JsonObject</requireJs>
+	<requireJs modes="commons">res/JsonObject/JsonObject</requireJs>
 
 	<cssInclude>res/JsonObject/JsonObject.css</cssInclude>
 	

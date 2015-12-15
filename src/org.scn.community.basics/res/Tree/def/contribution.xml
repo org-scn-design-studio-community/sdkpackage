@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Tree/Tree</requireJs>
+	<requireJs modes="commons">res/Tree/Tree</requireJs>
 
 	<cssInclude>res/Tree/Tree.css</cssInclude>
 	

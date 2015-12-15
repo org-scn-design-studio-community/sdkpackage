@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/ListSelector/ListSelector</requireJs>
+	<requireJs modes="commons">res/ListSelector/ListSelector</requireJs>
 
 	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
 	

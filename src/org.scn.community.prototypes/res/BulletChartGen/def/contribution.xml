@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/BulletChartGen/BulletChartGen</requireJs>
+	<requireJs modes="commons">res/BulletChartGen/BulletChartGen</requireJs>
 
 	<cssInclude>res/BulletChartGen/BulletChartGen.css</cssInclude>
 	

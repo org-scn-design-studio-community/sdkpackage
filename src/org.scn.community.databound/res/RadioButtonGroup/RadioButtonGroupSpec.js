@@ -454,6 +454,7 @@ function() {
   "handlerType": "sapui5",
   "height": "500",
   "id": "RadioButtonGroup",
+  "modes": "commons m",
   "package": "databound",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
   "require": [

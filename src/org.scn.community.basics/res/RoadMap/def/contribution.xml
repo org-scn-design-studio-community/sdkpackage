@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/RoadMap/RoadMap</requireJs>
+	<requireJs modes="commons">res/RoadMap/RoadMap</requireJs>
 
 	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
 	

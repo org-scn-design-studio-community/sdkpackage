@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/FishEye/FishEye</requireJs>
+	<requireJs modes="commons">res/FishEye/FishEye</requireJs>
 
 	<cssInclude>res/FishEye/FishEye.css</cssInclude>
 	

@@ -10,6 +10,7 @@
 	"extends1ControlDs": "MicroAreaChart.ds",
 	"extends2Control": "MicroAreaChart",
 	"generatedJsFile":"true",
+	"modes":"commons m",
 
 	"databound": true,
 	"dataType": "DataCellList",

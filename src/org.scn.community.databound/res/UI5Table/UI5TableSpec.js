@@ -527,6 +527,7 @@ function() {
   "handlerType": "sapui5",
   "height": "600",
   "id": "UI5Table",
+  "modes": "commons m",
   "package": "databound",
   "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
   "require": [

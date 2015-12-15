@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/KpiView/KpiView</requireJs>
+	<requireJs modes="commons">res/KpiView/KpiView</requireJs>
 
 	<cssInclude>res/KpiView/KpiView.css</cssInclude>
 	

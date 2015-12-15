@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/EmbeddedMedia/EmbeddedMedia</requireJs>
+	<requireJs modes="commons">res/EmbeddedMedia/EmbeddedMedia</requireJs>
 
 	<cssInclude>res/EmbeddedMedia/EmbeddedMedia.css</cssInclude>
 	

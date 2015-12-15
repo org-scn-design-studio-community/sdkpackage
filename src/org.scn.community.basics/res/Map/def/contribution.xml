@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/Map/Map</requireJs>
+	<requireJs modes="commons">res/Map/Map</requireJs>
 
 	<cssInclude>res/Map/Map.css</cssInclude>
 	

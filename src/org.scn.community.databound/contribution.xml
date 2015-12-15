@@ -813,10 +813,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/FacetFilter/FacetFilter</requireJs>
+	<requireJs modes="commons">res/FacetFilter/FacetFilter</requireJs>
 
 	<cssInclude>res/FacetFilter/FacetFilter.css</cssInclude>
 	
@@ -1016,10 +1016,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/FacetSelector/FacetSelector</requireJs>
+	<requireJs modes="commons">res/FacetSelector/FacetSelector</requireJs>
 
 	<cssInclude>res/FacetSelector/FacetSelector.css</cssInclude>
 	
@@ -1453,10 +1453,10 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/LeaderBoard/LeaderBoard</requireJs>
+	<requireJs modes="commons">res/LeaderBoard/LeaderBoard</requireJs>
 
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 	
@@ -2255,10 +2255,10 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityChartMaps"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/NiceChart/NiceChart</requireJs>
+	<requireJs modes="commons">res/NiceChart/NiceChart</requireJs>
 
 	<cssInclude>res/NiceChart/NiceChart.css</cssInclude>
 	
@@ -3639,10 +3639,10 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/TopFlop/TopFlop</requireJs>
+	<requireJs modes="commons">res/TopFlop/TopFlop</requireJs>
 
 	<cssInclude>res/TopFlop/TopFlop.css</cssInclude>
 	
@@ -3842,10 +3842,10 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityChartMaps"
 	databound="true"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/TopFlopChart/TopFlopChart</requireJs>
+	<requireJs modes="commons">res/TopFlopChart/TopFlopChart</requireJs>
 
 	<cssInclude>res/TopFlopChart/TopFlopChart.css</cssInclude>
 	

@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/CheckBoxGroup/CheckBoxGroup</requireJs>
+	<requireJs modes="commons">res/CheckBoxGroup/CheckBoxGroup</requireJs>
 
 	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 	

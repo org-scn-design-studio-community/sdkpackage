@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/TimeOut/TimeOut</requireJs>
+	<requireJs modes="commons">res/TimeOut/TimeOut</requireJs>
 
 	<cssInclude>res/TimeOut/TimeOut.css</cssInclude>
 	
