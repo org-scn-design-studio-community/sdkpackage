@@ -621,7 +621,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		this._listBuilder.setSelectedKey(newKey);
 		this._elementsContent.push(newElement);
 
-		// that.fireValueChange();
+		that.fireValueChange();
 		this.rerenderComp();
 	},
 	/*
