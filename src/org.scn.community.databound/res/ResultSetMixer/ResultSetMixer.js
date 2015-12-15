@@ -20,6 +20,7 @@
 //%DEFINE-START%
 var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
 define([
+	"sap/designstudio/sdk/component",
 	"./ResultSetMixerSpec",
 	"../../../"+scn_pkg+"shared/modules/component.core",
 	"../../../"+scn_pkg+"shared/modules/component.basics",
@@ -27,10 +28,10 @@ define([
 	
 	],
 	function(
+		Component,
 		spec,
 		core,
-		basics,
-		databound
+		basics
 	) {
 //%DEFINE-END%
 
@@ -181,9 +182,8 @@ ResultSetMixer = {
 	},
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
-
+//%INIT-START%
 myComponentData.instance = ResultSetMixer;
 jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
 sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
-
 });

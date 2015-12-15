@@ -1,0 +1,16 @@
+{
+	"title": "Fiori Link 2.0",
+	"description": "Fiori Link - A Link",
+	"icon": "FioriLink.png",
+	"topics": 
+	[
+		{
+			"title" : "Fiori Link",
+			"content" : "This component can display links."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

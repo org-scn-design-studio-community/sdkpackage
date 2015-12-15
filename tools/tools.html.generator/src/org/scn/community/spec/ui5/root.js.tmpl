@@ -83,7 +83,9 @@ var myComponentData = spec;
 		
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 		that._data = undefined;
-		that._metadata = that.getDSMetadata();
+		if(that.getDSMetadata) {
+			that._metadata = that.getDSMetadata();
+		}
 
 		if(!org_scn_community_databound.hasData (that._data, that._metadata)) {
 			org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare);

@@ -20,7 +20,7 @@
 var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
 define([
 	"sap/designstudio/sdk/component",
-	"./AreaMicroChartSpec",
+	"./FioriLinkSpec",
 	"../../../"+scn_pkg+"shared/modules/component.core",
 	"../../../"+scn_pkg+"shared/modules/component.basics",
 	"../../../"+scn_pkg+"shared/modules/component.databound",
@@ -36,7 +36,7 @@ define([
 
 var myComponentData = spec;
 
-AreaMicroChart = {
+FioriLink = {
 
 	renderer: {},
 
@@ -50,7 +50,7 @@ AreaMicroChart = {
 		var that = owner;
 		org_scn_community_component_Core(that, myComponentData);
 		
-		that.addStyleClass("scn-pack-AreaMicroChart");
+		that.addStyleClass("scn-pack-FioriLink");
 		that.addStyleClass("scn-pack-FullSizeChildren");
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
@@ -59,6 +59,9 @@ AreaMicroChart = {
 
 		sap.ui.controller(myComponentData.fullComponentName + ".Controller", {
 			owner: that,
+				onPressed: function (event) {
+					org_scn_community_unified.processEvent(that, "onPressed", event);
+				},
 
 		});
 
@@ -121,32 +124,24 @@ AreaMicroChart = {
 
 		that._specialDataModel = [];
 
-		var l_Chart = org_scn_community_unified.getObjectArrayContent(that, "chart", options);
-		var l_InnerMaxThreshold = org_scn_community_unified.getObjectArrayContent(that, "innerMaxThreshold", options);
-		var l_InnerMinThreshold = org_scn_community_unified.getObjectArrayContent(that, "innerMinThreshold", options);
-		var l_MaxThreshold = org_scn_community_unified.getObjectArrayContent(that, "maxThreshold", options);
-		var l_MinThreshold = org_scn_community_unified.getObjectArrayContent(that, "minThreshold", options);
-		var l_Target = org_scn_community_unified.getObjectArrayContent(that, "target", options);
-
-		var l_FirstXLabel = org_scn_community_unified.getObjectSingleContent(that, "firstXLabel", options);
-		var l_FirstYLabel = org_scn_community_unified.getObjectSingleContent(that, "firstYLabel", options);
-		var l_LastXLabel = org_scn_community_unified.getObjectSingleContent(that, "lastXLabel", options);
-		var l_LastYLabel = org_scn_community_unified.getObjectSingleContent(that, "lastYLabel", options);
-		var l_MaxLabel = org_scn_community_unified.getObjectSingleContent(that, "maxLabel", options);
-		var l_MinLabel = org_scn_community_unified.getObjectSingleContent(that, "minLabel", options);
-
-		var l_MaxXValue = org_scn_community_unified.getObjectSingleContent(that, "maxXValue", options, true);
-		var l_MaxYValue = org_scn_community_unified.getObjectSingleContent(that, "maxYValue", options, true);
-		var l_MinXValue = org_scn_community_unified.getObjectSingleContent(that, "minXValue", options, true);
-		var l_MinYValue = org_scn_community_unified.getObjectSingleContent(that, "minYValue", options, true);
 
 
 
-		var l_ContentHeight = that.getContentHeight();
+
+
 		var l_ContentWidth = that.getContentWidth();
-		var l_View = that.getView();
+		var l_Emphasized = that.getEmphasized();
+		var l_Enabled = that.getEnabled();
+		var l_Href = that.getHref();
+		var l_Subtle = that.getSubtle();
+		var l_Target = that.getTarget();
+		var l_Text = that.getText();
+		var l_TextAlign = that.getTextAlign();
+		var l_TextDirection = that.getTextDirection();
+		var l_Wrapping = that.getWrapping();
 
 
+		var l_OnPressed = org_scn_community_unified.createEvent(that, "onPressed");
 
 
 		var rowI = 0;
@@ -157,56 +152,32 @@ AreaMicroChart = {
 		for(rowI=0;rowI<counterI;rowI++){
 			var rowHeaderName = "NONE";
 
-			l_Chart = org_scn_community_unified.loopObjectSingleDouble(that, l_Chart, rowI);
-			l_InnerMaxThreshold = org_scn_community_unified.loopObjectSingleDouble(that, l_InnerMaxThreshold, rowI);
-			l_InnerMinThreshold = org_scn_community_unified.loopObjectSingleDouble(that, l_InnerMinThreshold, rowI);
-			l_MaxThreshold = org_scn_community_unified.loopObjectSingleDouble(that, l_MaxThreshold, rowI);
-			l_MinThreshold = org_scn_community_unified.loopObjectSingleDouble(that, l_MinThreshold, rowI);
-			l_Target = org_scn_community_unified.loopObjectSingleDouble(that, l_Target, rowI);
 
-			l_FirstXLabel = org_scn_community_unified.loopObjectSingle(that, l_FirstXLabel, rowI);
-			l_FirstYLabel = org_scn_community_unified.loopObjectSingle(that, l_FirstYLabel, rowI);
-			l_LastXLabel = org_scn_community_unified.loopObjectSingle(that, l_LastXLabel, rowI);
-			l_LastYLabel = org_scn_community_unified.loopObjectSingle(that, l_LastYLabel, rowI);
-			l_MaxLabel = org_scn_community_unified.loopObjectSingle(that, l_MaxLabel, rowI);
-			l_MinLabel = org_scn_community_unified.loopObjectSingle(that, l_MinLabel, rowI);
 
-			l_MaxXValue = org_scn_community_unified.loopFloat(that, l_MaxXValue, rowI);
-			l_MaxYValue = org_scn_community_unified.loopFloat(that, l_MaxYValue, rowI);
-			l_MinXValue = org_scn_community_unified.loopFloat(that, l_MinXValue, rowI);
-			l_MinYValue = org_scn_community_unified.loopFloat(that, l_MinYValue, rowI);
 
 
 
 
 			var customData = {};
 			
-			customData.contentHeight = l_ContentHeight;
 			customData.contentWidth = l_ContentWidth;
-			customData.view = l_View;
-
-			customData[l_MaxXValue.name] = l_MaxXValue.value;
-			customData[l_MaxYValue.name] = l_MaxYValue.value;
-			customData[l_MinXValue.name] = l_MinXValue.value;
-			customData[l_MinYValue.name] = l_MinYValue.value;
-
-
-			customData[l_Chart.name] = l_Chart.json;
-			customData[l_InnerMaxThreshold.name] = l_InnerMaxThreshold.json;
-			customData[l_InnerMinThreshold.name] = l_InnerMinThreshold.json;
-			customData[l_MaxThreshold.name] = l_MaxThreshold.json;
-			customData[l_MinThreshold.name] = l_MinThreshold.json;
-			customData[l_Target.name] = l_Target.json;
-
-			customData[l_FirstXLabel.name] = l_FirstXLabel.json;
-			customData[l_FirstYLabel.name] = l_FirstYLabel.json;
-			customData[l_LastXLabel.name] = l_LastXLabel.json;
-			customData[l_LastYLabel.name] = l_LastYLabel.json;
-			customData[l_MaxLabel.name] = l_MaxLabel.json;
-			customData[l_MinLabel.name] = l_MinLabel.json;
+			customData.emphasized = l_Emphasized;
+			customData.enabled = l_Enabled;
+			customData.href = l_Href;
+			customData.subtle = l_Subtle;
+			customData.target = l_Target;
+			customData.text = l_Text;
+			customData.textAlign = l_TextAlign;
+			customData.textDirection = l_TextDirection;
+			customData.wrapping = l_Wrapping;
 
 
 
+
+
+
+
+			customData[l_OnPressed.name] = l_OnPressed.func;
 
 
 			that._specialDataModel.push(customData);
@@ -254,7 +225,7 @@ AreaMicroChart = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-myComponentData.instance = AreaMicroChart;
+myComponentData.instance = FioriLink;
 jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
 sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 

@@ -858,6 +858,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Facet Selector 2.0 component*/
 	org.scn.community.databound.FacetSelector returnAsScnFacetSelector (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Fiori Link 2.0 component*/
+	org.scn.community.databound.FioriLink returnAsScnFioriLink (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Harvey Ball Micro Chart 2.0 component*/
 	org.scn.community.databound.HarveyBallMicroChart returnAsScnHarveyBallMicroChart (Component inputComponent) {* return inputComponent; *}
 

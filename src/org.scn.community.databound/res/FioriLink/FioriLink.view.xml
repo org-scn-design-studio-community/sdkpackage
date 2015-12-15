@@ -1,0 +1,32 @@
+<core:View
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:m="sap.m"
+  
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  
+  controllerName="org.scn.community.databound.FioriLink.Controller"
+  >
+  <l:VerticalLayout
+    width="100%" content="{/}">
+    <l:content
+      width="{width}"
+      >
+        <Link 
+			text="{text}"
+			enabled="{enabled}"
+			target="{target}"
+			
+			href="{href}"
+			wrapping="{wrapping}"
+			
+			textAlign="{textAlign}"
+			textDirection="{textDirection}"
+			subtle="{subtle}"
+			emphasized="{emphasized}"
+		>
+	    </Link>
+    </l:content>
+  </l:VerticalLayout> 
+</core:View>

@@ -262,6 +262,12 @@ public class SpecificationReader {
 				String newFile = pathToGenSpec.substring(0, pathToGenSpec.indexOf("org.scn.community."));
 				String specName = property.getExtendedFullSpec().getPropertyValue(key);
 				
+				String ui5package = "sap/suite/ui/commons";
+				if(helper.hasProperty(this.compProperties, "ui5package")) {
+					ui5package = helper.getProperty(this.compProperties, "ui5package").getExtendedFullSpec().getPropertyValue("ui5package");
+					ui5package = ui5package.replace(".", "/");
+				}
+				
 				newFile = newFile + "org.scn.community.shared\\ui5spec\\control\\" + specName + ".spec.json";
 				String includeSpecN = Helpers.file2String(newFile);
 				if(includeSpec != null) {
@@ -272,7 +278,7 @@ public class SpecificationReader {
 				}
 				
 				if(includeSpecN == null) {
-					String url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/suite/ui/commons/" + specName.replace(".ds",  "") + ".control";
+					String url = "https://sapui5.hana.ondemand.com/sdk/resources/"+ui5package+"/" + specName.replace(".ds",  "") + ".control";
 					String onlineSpec = helper.sendGet(url);
 					
 					if(onlineSpec == null || onlineSpec.length() == 0) {

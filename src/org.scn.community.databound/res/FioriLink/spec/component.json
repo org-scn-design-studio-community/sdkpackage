@@ -1,0 +1,30 @@
+{
+	"id": "FioriLink",
+	"title": "Fiori Link 2.0",
+	"tooltip": "Fiori Link - Component for links.",
+	"handlerType": "sapui5",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityUnified",
+	"package": "databound",
+	"ui5package": "sap.m",
+	"extension": "ui5.Link",
+	"extends1ControlDs": "Link.ds",
+	"extends2Control": "Link",
+	"extends3ControlEvents": "Link.events",
+	"generatedJsFile":"true",
+	"modes":"m",
+
+	"databound": false,
+	"dataType": "DataCellList",
+	
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "420",
+	"height": "580"
+}

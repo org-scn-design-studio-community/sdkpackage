@@ -12058,4 +12058,222 @@ class org.scn.community.shared.ui5.RadioButtonGroup extends org.scn.community.sh
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
 }
+
+
+/**
+ * Generated ZTL Class for Link
+ * 
+ * DO NOT EDIT, ROOT SOURCE is based on SAP UI5 specification
+ */
+class org.scn.community.shared.ui5.Link extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Content Width Property
+	 */	
+	void setContentWidth( /**Content Width*/ int contentWidth){*
+		this.contentWidth = contentWidth;
+	*}
+
+	/**
+	 * Gets Content Width Property
+	 */	
+	int getContentWidth() {*
+		return this.contentWidth;
+	*}
+
+	/**
+	 * Sets Emphasized Property
+	 */	
+	void setEmphasized( /**Emphasized*/ boolean emphasized){*
+		this.emphasized = emphasized;
+	*}
+
+	/**
+	 * Gets Emphasized Property
+	 */	
+	boolean isEmphasized() {*
+		return this.emphasized;
+	*}
+
+	/**
+	 * Sets Enabled Property
+	 */	
+	void setEnabled( /**Enabled*/ boolean enabled){*
+		this.enabled = enabled;
+	*}
+
+	/**
+	 * Gets Enabled Property
+	 */	
+	boolean isEnabled() {*
+		return this.enabled;
+	*}
+
+	/**
+	 * Sets Href Property
+	 */	
+	void setHref( /**Href*/ String href){*
+		this.href = href;
+	*}
+
+	/**
+	 * Gets Href Property
+	 */	
+	String getHref() {*
+		return this.href;
+	*}
+
+
+
+	/**
+	 * Gets Pressed Key Property
+	 */	
+	String getPressedKey() {*
+		return this.pressedKey;
+	*}
+
+	/**
+	 * Sets Subtle Property
+	 */	
+	void setSubtle( /**Subtle*/ boolean subtle){*
+		this.subtle = subtle;
+	*}
+
+	/**
+	 * Gets Subtle Property
+	 */	
+	boolean isSubtle() {*
+		return this.subtle;
+	*}
+
+	/**
+	 * Sets Target Property
+	 */	
+	void setTarget( /**Target*/ String target){*
+		this.target = target;
+	*}
+
+	/**
+	 * Gets Target Property
+	 */	
+	String getTarget() {*
+		return this.target;
+	*}
+
+	/**
+	 * Sets Text Property
+	 */	
+	void setText( /**Text*/ String text){*
+		this.text = text;
+	*}
+
+	/**
+	 * Gets Text Property
+	 */	
+	String getText() {*
+		return this.text;
+	*}
+
+	/**
+	 * Sets Text Align Property by String
+	 */	
+	void setTextAlignByString( /**Text Align*/ String textAlign){*
+		this.textAlign = textAlign;
+	*}
+
+	/**
+	 * Gets Text Align Property as String
+	 */	
+	String getTextAlignAsString() {*
+		return this.textAlign;
+	*}
+	
+	/**
+	 * Sets Text Align Property by Choice Option
+	 */	
+	void setTextAlign( /**Text Align*/ org_scn_community_shared_TextAlignEnumfield textAlign){*
+		this.textAlign = textAlign;
+	*}
+	
+	/**
+	 * Gets Text Align Property as Choice Option
+	 */	
+	org_scn_community_shared_TextAlignEnumfield getTextAlign() {*
+		return this.textAlign;
+	*}
+
+	/**
+	 * Sets Text Direction Property by String
+	 */	
+	void setTextDirectionByString( /**Text Direction*/ String textDirection){*
+		this.textDirection = textDirection;
+	*}
+
+	/**
+	 * Gets Text Direction Property as String
+	 */	
+	String getTextDirectionAsString() {*
+		return this.textDirection;
+	*}
+	
+	/**
+	 * Sets Text Direction Property by Choice Option
+	 */	
+	void setTextDirection( /**Text Direction*/ org_scn_community_shared_TextDirectionEnumfield textDirection){*
+		this.textDirection = textDirection;
+	*}
+	
+	/**
+	 * Gets Text Direction Property as Choice Option
+	 */	
+	org_scn_community_shared_TextDirectionEnumfield getTextDirection() {*
+		return this.textDirection;
+	*}
+
+	/**
+	 * Sets Use Manual 'Content Width' Property
+	 */	
+	void setUseContentWidth( /**Use Manual 'Content Width'*/ boolean useContentWidth){*
+		this.useContentWidth = useContentWidth;
+	*}
+
+	/**
+	 * Gets Use Manual 'Content Width' Property
+	 */	
+	boolean isUseContentWidth() {*
+		return this.useContentWidth;
+	*}
+
+	/**
+	 * Sets Use Manual 'Href' Property
+	 */	
+	void setUseHref( /**Use Manual 'Href'*/ boolean useHref){*
+		this.useHref = useHref;
+	*}
+
+	/**
+	 * Gets Use Manual 'Href' Property
+	 */	
+	boolean isUseHref() {*
+		return this.useHref;
+	*}
+
+	/**
+	 * Sets Wrapping Property
+	 */	
+	void setWrapping( /**Wrapping*/ boolean wrapping){*
+		this.wrapping = wrapping;
+	*}
+
+	/**
+	 * Gets Wrapping Property
+	 */	
+	boolean isWrapping() {*
+		return this.wrapping;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
 /* ZTL END */
