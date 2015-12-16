@@ -199,6 +199,8 @@ public class ParamFullSpec {
 	public ZtlAndAps getFunctions() {
 		String template = null;
 		String templateXml = null;
+		String templateUI5Xml = null;
+		String templateUI5ComplexXml = null;
 
 		String xmlType = getPropertyValue("type");
 		
@@ -207,6 +209,11 @@ public class ParamFullSpec {
 		if(templateXml == null) {
 			templateXml = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_prop.template");
 		}
+		
+		if(this.isNotSimple()) {
+			templateUI5ComplexXml = Helpers.resource2String(Ui5JsSpec.class, "comp.view.param.complex.xml.tmpl");
+		}
+		templateUI5Xml = Helpers.resource2String(Ui5JsSpec.class, "comp.view.param.xml.tmpl");
 
 		options = getParameter("opts");
 
@@ -439,6 +446,8 @@ public class ParamFullSpec {
 	
 		template = exchangeTemplate(template);
 		templateXml = exchangeTemplate(templateXml);
+		templateUI5Xml = exchangeTemplate(templateUI5Xml);
+		templateUI5ComplexXml = exchangeTemplate(templateUI5ComplexXml);
 
 		ZtlAndAps faa = new ZtlAndAps();
 		
@@ -446,6 +455,9 @@ public class ParamFullSpec {
 			faa.setFunctions(template);
 		}
 		faa.setXml(templateXml);
+		faa.setParamXml(templateUI5Xml);
+		faa.setParamComplexXml(templateUI5ComplexXml);
+
 		return faa;
 	}
 
@@ -468,6 +480,7 @@ public class ParamFullSpec {
 	}
 
 	public String exchangeTemplate (String template) {
+		 if(template == null) {return null;}
 		 String nameCut = this.parentProperty.getNameCut();
 		 String nameCutCapital = Helpers.makeFirstUpper(nameCut);
 		 template = template.replace("%PROPERTY_CAPITAL_CUT%", nameCutCapital);
@@ -627,4 +640,20 @@ public class ParamFullSpec {
 		options = options + "]";
 		return options;
 	}
+	
+	public boolean isNotSimple() {
+		String typeChild =  getPropertyValue("type");
+		
+		if(typeChild.equals("String") 
+				|| typeChild.equals("boolean") || typeChild.equals("int") || typeChild.equals("float") 
+				|| typeChild.equals("Url") || typeChild.equals("Color") || typeChild.equals("Choice") 
+				|| typeChild.equals("StringArray")) {
+			// those we accept in single array
+		} else {
+			return true;
+		}
+		
+		return false;
+	}
+
 }

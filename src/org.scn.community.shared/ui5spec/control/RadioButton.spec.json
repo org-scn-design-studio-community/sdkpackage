@@ -191,7 +191,7 @@
 			"ztlFunction": "",
 			"desc" : "Text Align",
 			"cat" : "Display",
-			"tooltip" : "Available alignment settings are ",
+			"tooltip" : "Available alignment settings are 'Begin', 'Center', 'End', 'Left', and 'Right'.",
 			"apsControl" : "combobox",
 			"options":[
 				{

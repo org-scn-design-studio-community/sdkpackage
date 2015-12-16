@@ -90,7 +90,7 @@ function() {
       "desc": "Href",
       "noAps": false,
       "noZtl": false,
-      "tooltip": "The link target URI. Supports standard hyperlink behavior. If a JavaScript action should be triggered, this should not be set, but instead an event handler for the ",
+      "tooltip": "The link target URI. Supports standard hyperlink behavior. If a JavaScript action should be triggered, this should not be set, but instead an event handler for the 'press' event should be registered.",
       "ztlFunction": "",
       "ztlType": "Url"
     },

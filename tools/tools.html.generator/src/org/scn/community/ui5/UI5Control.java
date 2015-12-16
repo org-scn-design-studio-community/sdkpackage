@@ -16,6 +16,7 @@ import org.scn.community.defgenerator.ParamSimpleSpec;
 import org.scn.community.defgenerator.ZtlAndAps;
 import org.scn.community.htmlgenerator.Property;
 import org.scn.community.spec.SpecHelper;
+import org.scn.community.spec.ui5.Ui5JsSpec;
 import org.scn.community.utils.Helpers;
 
 public class UI5Control extends UI5Reader {
@@ -137,9 +138,9 @@ public class UI5Control extends UI5Reader {
 			}
 		}
 
-		String ztl = this.generateZtl();
+		String[] ztlAndUI5Xml = this.generateZtlAndUI5Xml();
 		
-		return new String[] {spec, ztl};
+		return new String[] {spec, ztlAndUI5Xml[0], ztlAndUI5Xml[1]};
 	}
 	public String updateSpecSingle() {
 		String[] spec20 = this.toSpec20();
@@ -155,7 +156,7 @@ public class UI5Control extends UI5Reader {
 		return spec20[0];
 	}
 	
-	public String generateZtl () {
+	public String[] generateZtlAndUI5Xml() {
 		ArrayList<Property> genProperties = new ArrayList<Property>();
 		for (UI5Property ui5property : this.properties) {
 			Property property = new Property(ui5property, ui5spec);
@@ -210,12 +211,19 @@ public class UI5Control extends UI5Reader {
 		}
 		
 		String template = Helpers.resource2String(ParamSimpleSpec.class, "ztl_root.ztl.tmlp");
+		String templateUI5Xml = Helpers.resource2String(Ui5JsSpec.class, "comp.view.xml.tmlp");
 		
 		for (Property property : genProperties) {
 			if(property.hasExtendSpec()) {
 				ZtlAndAps generatedZtlAndAps = property.generateZtlAndAps();
 				
 				template = template.replace("%FUNCTION_ENTRY%", generatedZtlAndAps.getFunctions() + "\r\n\r\n%FUNCTION_ENTRY%");
+				
+				String propInitialTemplate = property.getExtendedFullSpec().getPropertyValue("template");
+				if(!propInitialTemplate.startsWith("ds-")) {
+					templateUI5Xml = templateUI5Xml.replace("%PROPERTY_SIMPLE%", generatedZtlAndAps.getParamXml() + "\r\n\t\t%PROPERTY_SIMPLE%");
+					templateUI5Xml = templateUI5Xml.replace("%PROPERTY_COMPLEX%", generatedZtlAndAps.getParamComplexXml() + "\r\n\t\t%PROPERTY_COMPLEX%");
+				}
 			}
 		}
 		
@@ -226,25 +234,23 @@ public class UI5Control extends UI5Reader {
 		template = template.replace("%FUNCTION_ENTRY%", "");
 		template = template.replace("%CUSTOM_ENTRY%", "");
 		
+		templateUI5Xml = templateUI5Xml.replace("%NAME%", this.name);
+		templateUI5Xml = templateUI5Xml.replace("%PROPERTY_SIMPLE%", "");
+		templateUI5Xml = templateUI5Xml.replace("%PROPERTY_COMPLEX%", "");
+		
 		template = template.replace("for custom functions in /spec/contribution.ztl", "is based on SAP UI5 specification");
 		
-		return template;
+		return new String[]{template, templateUI5Xml};
 	}
 	public boolean is2notSimple() {
 		for (UI5Property ui5property : this.properties) {
-			String typeChild = ui5property.getType();
-			
-			if(typeChild.equals("String") 
-					|| typeChild.equals("boolean") || typeChild.equals("int") || typeChild.equals("float") 
-					|| typeChild.equals("Url") || typeChild.equals("Color") || typeChild.equals("Choice") 
-					|| typeChild.equals("StringArray")) {
-				// those we accept in single array
-			} else {
+			if(ui5property.isNotSimple()) {
 				return true;
 			}
 		}
 		return false;
 	}
+	
 	public String getName() {
 		return this.name;
 	}

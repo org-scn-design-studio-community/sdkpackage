@@ -74,7 +74,7 @@
 			"ztlFunction": "",
 			"desc" : "Href",
 			"cat" : "Display",
-			"tooltip" : "The link target URI. Supports standard hyperlink behavior. If a JavaScript action should be triggered, this should not be set, but instead an event handler for the ",
+			"tooltip" : "The link target URI. Supports standard hyperlink behavior. If a JavaScript action should be triggered, this should not be set, but instead an event handler for the 'press' event should be registered.",
 			"apsControl" : "text",
 			"noAps" : false,
 			"noZtl" : false

@@ -199,6 +199,10 @@ public class Main {
 			if(!new File(newSpec).exists()) {
 				Helpers.string2File(newSpec, spec20[0]);	
 			}
+			String newXmlSpec = file.getAbsolutePath().replace(".control", ".view.xml").replace("\\xml", "\\view");
+			if(!new File(newXmlSpec).exists()) {
+				Helpers.string2File(newXmlSpec, spec20[2]);	
+			}
 			allZtl = allZtl + "\r\n" + spec20[1];
 		}
 		

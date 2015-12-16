@@ -39,6 +39,7 @@ public class SpecificationReader {
 	private String JsLoaderTmpl;
 	private String JsTmpl;
 	private String ZtlTmpl;
+	private String UI5XmlTmpl;
 	
 	private HashMap<String, String> templates = new HashMap<String, String>();
 	private HashMap<String, String> replacedTemplates = new HashMap<String, String>();
@@ -353,6 +354,8 @@ public class SpecificationReader {
 		}
 		if(hasUi5Spec) {
 			JsTmpl = Helpers.resource2String(Ui5JsSpec.class, "root.js.tmpl");	
+			
+			UI5XmlTmpl = Helpers.resource2String(Ui5JsSpec.class, "comp.view.xml");
 		} else {
 			JsTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.component."+compTypeValue+databoundTamplate+".js.template");	
 		}
@@ -406,7 +409,10 @@ public class SpecificationReader {
 		templates.put("%COMPONENT_NAME%Spec.js", JsSpecTmpl);
 		
 		templates.put("%COMPONENT_NAME%.js", JsTmpl);
-		
+		if(UI5XmlTmpl!=null) {
+			templates.put("%COMPONENT_NAME%.view.xml", UI5XmlTmpl);			
+		}
+
 		templates.put("def"+File.separator+"contribution.ztl", ZtlTmpl);
 		
 		SpecHelper helper = new SpecHelper(this.componentName, new File(pathToGenSpec));
