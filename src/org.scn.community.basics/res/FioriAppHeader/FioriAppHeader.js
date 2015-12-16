@@ -103,12 +103,12 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 				desc : "Item Configuration",
 				cat : "Items",
 				keyField : "key",
-				apsControl : "objectarray",
+				apsControl : "complexcollection",
 				apsConfig : {
 					items : {
 						desc : "Sub-Items",
 						cat : "n/a",
-						apsControl : "objectarray",
+						apsControl : "complexcollection",
 						apsConfig : {
 							key : {
 								desc : "Key",
@@ -208,13 +208,15 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 		getSelectedHeader : function(){
 			return this._selectedHeader;
 		},
-		setItemConfig : function(a){
-			this._itemConfig = a;
+		setItemConfig : function(s){
+			var o = [];
+			if(s && s!="") o = jQuery.parseJSON(s);
+			this._itemConfig = o;
 			this.redraw();
 			return this;
 		},
 		getItemConfig : function(){
-			return this._itemConfig;
+			return JSON.stringify(this._itemConfig);
 		},
 		redraw : function(){
 			this.destroyHeaderContent();
