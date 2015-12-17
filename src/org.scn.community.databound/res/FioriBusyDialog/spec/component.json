@@ -1,0 +1,30 @@
+{
+	"id": "FioriBusyDialog",
+	"title": "Busy Dialog 2.0",
+	"tooltip": "Busy Dialog - Component for busy dialog.",
+	"handlerType": "sapui5",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityUnified",
+	"package": "databound",
+	"ui5package": "sap.m",
+	"extension": "ui5.BusyDialog",
+	"extends1ControlDs": "BusyDialog.ds",
+	"extends2Control": "BusyDialog",
+	"extends3ControlEvents": "BusyDialog.events",
+	"generatedJsFile":"true",
+	"modes":"m",
+
+	"databound": false,
+	"dataType": "DataCellList",
+	
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "420",
+	"height": "580"
+}

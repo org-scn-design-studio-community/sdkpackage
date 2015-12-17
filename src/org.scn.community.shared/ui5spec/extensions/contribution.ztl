@@ -954,6 +954,210 @@ class org.scn.community.shared.ui5.BulletChartData extends org.scn.community.sha
 
 
 /**
+ * Generated ZTL Class for BusyDialog
+ * 
+ * DO NOT EDIT, ROOT SOURCE is based on SAP UI5 specification
+ */
+class org.scn.community.shared.ui5.BusyDialog extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Cancel Button Text Property
+	 */	
+	void setCancelButtonText( /**Cancel Button Text*/ String cancelButtonText){*
+		this.cancelButtonText = cancelButtonText;
+	*}
+
+	/**
+	 * Gets Cancel Button Text Property
+	 */	
+	String getCancelButtonText() {*
+		return this.cancelButtonText;
+	*}
+
+	/**
+	 * Gets Closeed Key Property
+	 */	
+	String getCloseedKey() {*
+		return this.closeedKey;
+	*}
+
+	/**
+	 * Sets Custom Icon Property
+	 */	
+	void setCustomIcon( /**Custom Icon*/ String customIcon){*
+		this.customIcon = customIcon;
+	*}
+
+	/**
+	 * Gets Custom Icon Property
+	 */	
+	String getCustomIcon() {*
+		return this.customIcon;
+	*}
+
+	/**
+	 * Sets Custom Icon Density Aware Property
+	 */	
+	void setCustomIconDensityAware( /**Custom Icon Density Aware*/ boolean customIconDensityAware){*
+		this.customIconDensityAware = customIconDensityAware;
+	*}
+
+	/**
+	 * Gets Custom Icon Density Aware Property
+	 */	
+	boolean isCustomIconDensityAware() {*
+		return this.customIconDensityAware;
+	*}
+
+	/**
+	 * Sets Custom Icon Height Property
+	 */	
+	void setCustomIconHeight( /**Custom Icon Height*/ int customIconHeight){*
+		this.customIconHeight = customIconHeight;
+	*}
+
+	/**
+	 * Gets Custom Icon Height Property
+	 */	
+	int getCustomIconHeight() {*
+		return this.customIconHeight;
+	*}
+
+	/**
+	 * Sets Custom Icon Rotation Speed Property
+	 */	
+	void setCustomIconRotationSpeed( /**Custom Icon Rotation Speed*/ int customIconRotationSpeed){*
+		this.customIconRotationSpeed = customIconRotationSpeed;
+	*}
+
+	/**
+	 * Gets Custom Icon Rotation Speed Property
+	 */	
+	int getCustomIconRotationSpeed() {*
+		return this.customIconRotationSpeed;
+	*}
+
+	/**
+	 * Sets Custom Icon Width Property
+	 */	
+	void setCustomIconWidth( /**Custom Icon Width*/ int customIconWidth){*
+		this.customIconWidth = customIconWidth;
+	*}
+
+	/**
+	 * Gets Custom Icon Width Property
+	 */	
+	int getCustomIconWidth() {*
+		return this.customIconWidth;
+	*}
+
+
+
+	/**
+	 * Sets Show Cancel Button Property
+	 */	
+	void setShowCancelButton( /**Show Cancel Button*/ boolean showCancelButton){*
+		this.showCancelButton = showCancelButton;
+	*}
+
+	/**
+	 * Gets Show Cancel Button Property
+	 */	
+	boolean isShowCancelButton() {*
+		return this.showCancelButton;
+	*}
+
+	/**
+	 * Sets Text Property
+	 */	
+	void setText( /**Text*/ String text){*
+		this.text = text;
+	*}
+
+	/**
+	 * Gets Text Property
+	 */	
+	String getText() {*
+		return this.text;
+	*}
+
+	/**
+	 * Sets Title Property
+	 */	
+	void setTitle( /**Title*/ String title){*
+		this.title = title;
+	*}
+
+	/**
+	 * Gets Title Property
+	 */	
+	String getTitle() {*
+		return this.title;
+	*}
+
+	/**
+	 * Sets Use Manual 'Custom Icon' Property
+	 */	
+	void setUseCustomIcon( /**Use Manual 'Custom Icon'*/ boolean useCustomIcon){*
+		this.useCustomIcon = useCustomIcon;
+	*}
+
+	/**
+	 * Gets Use Manual 'Custom Icon' Property
+	 */	
+	boolean isUseCustomIcon() {*
+		return this.useCustomIcon;
+	*}
+
+	/**
+	 * Sets Use Manual 'Custom Icon Height' Property
+	 */	
+	void setUseCustomIconHeight( /**Use Manual 'Custom Icon Height'*/ boolean useCustomIconHeight){*
+		this.useCustomIconHeight = useCustomIconHeight;
+	*}
+
+	/**
+	 * Gets Use Manual 'Custom Icon Height' Property
+	 */	
+	boolean isUseCustomIconHeight() {*
+		return this.useCustomIconHeight;
+	*}
+
+	/**
+	 * Sets Use Manual 'Custom Icon Rotation Speed' Property
+	 */	
+	void setUseCustomIconRotationSpeed( /**Use Manual 'Custom Icon Rotation Speed'*/ boolean useCustomIconRotationSpeed){*
+		this.useCustomIconRotationSpeed = useCustomIconRotationSpeed;
+	*}
+
+	/**
+	 * Gets Use Manual 'Custom Icon Rotation Speed' Property
+	 */	
+	boolean isUseCustomIconRotationSpeed() {*
+		return this.useCustomIconRotationSpeed;
+	*}
+
+	/**
+	 * Sets Use Manual 'Custom Icon Width' Property
+	 */	
+	void setUseCustomIconWidth( /**Use Manual 'Custom Icon Width'*/ boolean useCustomIconWidth){*
+		this.useCustomIconWidth = useCustomIconWidth;
+	*}
+
+	/**
+	 * Gets Use Manual 'Custom Icon Width' Property
+	 */	
+	boolean isUseCustomIconWidth() {*
+		return this.useCustomIconWidth;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+
+/**
  * Generated ZTL Class for HarveyBallMicroChart
  * 
  * DO NOT EDIT, ROOT SOURCE is based on SAP UI5 specification
