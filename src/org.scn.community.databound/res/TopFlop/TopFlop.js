@@ -109,7 +109,7 @@ TopFlop = {
 				var options = that._options;
 
 				options.iMaxNumber = that.getMaxNumber();
-				options.iTopBottom = that.getTopBottom().replace("X", "");
+				options.iTopBottom = that.getTopBottom().replace(" ", "").replace("X", "");
 				options.allKeys = true;
 				options.idPrefix = that.getId();
 				options.iSortBy = "Value";
@@ -136,7 +136,7 @@ TopFlop = {
 			var options = that._options;
 			
 			options.iMaxNumber = that.getMaxNumber();
-			options.iTopBottom = that.getTopBottom().replace("X", "");
+			options.iTopBottom = that.getTopBottom().replace(" ", "").replace("X", "");
 			options.iSortBy = "Value";
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";

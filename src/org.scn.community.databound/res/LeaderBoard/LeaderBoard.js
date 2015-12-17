@@ -114,7 +114,7 @@ LeaderBoard = {
 				var options = org_scn_community_databound.initializeOptions();
 				
 				options.iMaxNumber = that.getMaxNumber();
-				options.iTopBottom = that.getTopBottom().replace("X", "");
+				options.iTopBottom = that.getTopBottom().replace(" ", "").replace("X", "");
 				options.iSortBy = "Value";
 				options.iDuplicates = "Ignore";
 				options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "");;
@@ -133,7 +133,7 @@ LeaderBoard = {
 			var options = org_scn_community_databound.initializeOptions();
 
 			options.iMaxNumber = that.getMaxNumber();
-			options.iTopBottom = that.getTopBottom().replace("X", "");
+			options.iTopBottom = that.getTopBottom().replace(" ", "").replace("X", "");
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";
 			options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "");

@@ -1,5 +1,5 @@
 
 	xmlns="http://www.sap.com/bi/zen/sdk"
-	version="2.0"
+	version="3.0"
 	vendor="SCN Design Studio Community"
 	eula="Content is free for use and distribution under Apache License Version 2.0. Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License. For details refer to https://github.com/org-scn-design-studio-community/sdkpackage//blob/master/LICENSE">

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014, Contributors
+ * Copyright 2015, Contributors
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/
