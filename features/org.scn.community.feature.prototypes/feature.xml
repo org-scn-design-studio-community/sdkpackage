@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.scn.community.sdk.feature.prototypes"
-      label="SCN Community Free SDK Prototypes for Design Studio [Optional]"
-      version="2.0.0.qualifier"
+      label="Prototypes [OPTIONAL] (SCN Community Free Extensions for Design Studio)"
+      version="3.0.0.qualifier"
       provider-name="SCN Community Contributors">
 
    <description url="http://org-scn-design-studio-community.github.io/sdkinstall/web/components/index.html">
@@ -226,7 +226,7 @@ http://www.apache.org/licenses/
    </url>
 
    <requires>
-      <import plugin="com.sap.ip.bi.zen.rt.components.sdk.eclipse" version="13.0.0" match="greaterOrEqual"/>
+      <import plugin="com.sap.ip.bi.zen.rt.components.sdk.eclipse" version="16.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
