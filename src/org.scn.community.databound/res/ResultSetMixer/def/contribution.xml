@@ -1,112 +1,122 @@
 
 <component
 	id="ResultSetMixer"
-	title="Result Set Mixer"
+	title="Result Set Mixer 2.0"
+	tooltip="Result Set Mixer"
 	icon="res/ResultSetMixer/ResultSetMixer.png"
 	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
-	propertySheetPath="res/ResultSetMixer/aps/ResultSetMixerPropertyPage.html"
-	databound="false"
->	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ResultSetMixer/ResultSetMixerLoader.js</jsInclude>
+	databound="true"
+	modes="commons"
+>
 	
-	<property
-		id="DReloadTrigger"
-		title="Internal Property to Trigger the reload"
-		type="float"
-		group="Display"
-		visible="false">
-	</property>
+	<requireJs modes="commons">res/ResultSetMixer/ResultSetMixer</requireJs>
+
+	<cssInclude>res/ResultSetMixer/ResultSetMixer.css</cssInclude>
 	
-	<property
-		id="DMasterProvisioner"
-		title="Master Central Data Provisioner"
-		tooltip="Result Set with Master Data"
-		type="String"
-		group="Display"
-		visible="true">
-	</property>
-
-	<property
-		id="DMasterGeometry"
-		title="Geometry of the Master Result Set"
-		type="String"
-		group="Display"
-		visible="true">
-			<possibleValue>Structure</possibleValue>
-			<possibleValue>Rows</possibleValue>
-	</property>
 	
-	<property
-		id="DSlaveProvisioner"
-		title="Slave Central Data Provisioner"
-		tooltip="Result Set with Slave Data for Selection"
-		type="String"
-		group="Display"
-		visible="true">
-	</property>
-
-	<property
-		id="DSlaveColumnIndex"
-		title="Column Index for the Selection from Slave Result Set"
-		tooltip="Which column should be selected from the slave result set"
-		type="int"
-		group="Display"
-		visible="true">
-	</property>
-
 	<property
 		id="DCollectMultipleMatches"
+		type="String"
 		title="Collect Multiple Matches"
-		tooltip="Procedure what should happen when multiple matches are available"
-		type="String"
 		group="Display"
+		bindable="true"
 		visible="true">
-			<possibleValue>Collect</possibleValue>
-			<possibleValue>UseLast</possibleValue>
-	</property>
 
+	</property>
 	<property
-		id="DSlaveContentCondition"
-		title="Content Condition to Read Slave Result Set"
-		tooltip="Under which condition should be the slave result set read (based on content or value)"
+		id="DMasterGeometry"
 		type="String"
+		title="Geometry Of The Master Result Set"
 		group="Display"
+		bindable="true"
 		visible="true">
-	</property>
 
+	</property>
 	<property
-		id="DSlaveRowCondition"
-		title="Row Condition to Read Slave Result Set"
-		tooltip="Under which condition should be the slave result set read (based on contnet of header row key)"
+		id="DMasterProvisioner"
 		type="String"
+		title="Master Central Data Provisioner"
 		group="Display"
+		bindable="true"
 		visible="true">
-	</property>
 
+	</property>
+	<property
+		id="DReloadTrigger"
+		type="float"
+		title="Internal Property To Trigger The Reload"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
 	<property
 		id="DSlaveColumnCondition"
-		title="Column Condition to Read Slave Result Set"
-		tooltip="Under which condition should be the slave result set read (based on contnet of header column key)"
 		type="String"
+		title="Column Condition To Read Slave Result Set"
 		group="Display"
+		bindable="true"
 		visible="true">
+
 	</property>
+	<property
+		id="DSlaveColumnIndex"
+		type="int"
+		title="Column Index For The Selection From Slave Result Set"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DSlaveContentCondition"
+		type="String"
+		title="Content Condition To Read Slave Result Set"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DSlaveProvisioner"
+		type="String"
+		title="Slave Central Data Provisioner"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DSlaveRowCondition"
+		type="String"
+		title="Row Condition To Read Slave Result Set"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
-		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="DMasterGeometry">Rows</defaultValue>
-		<defaultValue property="DCollectMultipleMatches">Collect</defaultValue>
-		<defaultValue property="DSlaveColumnIndex">1</defaultValue>
-		<defaultValue property="DReloadTrigger">0.0</defaultValue>
-		
+		<defaultValue property="DCollectMultipleMatches"><![CDATA[Collect]]></defaultValue>
+		<defaultValue property="DMasterGeometry"><![CDATA[Rows]]></defaultValue>
+		<defaultValue property="DMasterProvisioner"><![CDATA[]]></defaultValue>
+		<defaultValue property="DReloadTrigger"><![CDATA[0.0]]></defaultValue>
+		<defaultValue property="DSlaveColumnCondition"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSlaveColumnIndex"><![CDATA[1]]></defaultValue>
+		<defaultValue property="DSlaveContentCondition"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSlaveProvisioner"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSlaveRowCondition"><![CDATA[]]></defaultValue>
+
 	</initialization>
 
 </component>

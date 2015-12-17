@@ -1,13 +1,12 @@
 
 <component
 	id="FlowLayouter"
-	title="Flow Layouter"
+	title="Flow Layouter 0.X"
 	icon="res/FlowLayouter/FlowLayouter.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/FlowLayouter/FlowLayouter.js</jsInclude>
 
 	<property
@@ -25,8 +24,8 @@
 		visible="true" />
 
 	<initialization>
-		<defaultValue property="WIDTH">800</defaultValue>
-		<defaultValue property="HEIGHT">600</defaultValue>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>

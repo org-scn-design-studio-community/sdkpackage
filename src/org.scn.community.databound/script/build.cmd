@@ -12,10 +12,11 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\AdvancedDataTable\def\contribution.xml ^
 ..\res\BulletChart\def\contribution.xml ^
 ..\res\Choropleth\def\contribution.xml ^
-..\res\DataTable\def\contribution.xml ^
 ..\res\DropDown\def\contribution.xml ^
 ..\res\FacetFilter\def\contribution.xml ^
 ..\res\FacetSelector\def\contribution.xml ^
+..\res\FioriLink\def\contribution.xml ^
+..\res\FioriBusyDialog\def\contribution.xml ^
 ..\res\HexBin\def\contribution.xml ^
 ..\res\Hierarchy\def\contribution.xml ^
 ..\res\LeaderBoard\def\contribution.xml ^
@@ -27,13 +28,13 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Pictogram\def\contribution.xml ^
 ..\res\ProcessFlow\def\contribution.xml ^
 ..\res\ProgressBarSet\def\contribution.xml ^
-..\res\Projector\def\contribution.xml ^
 ..\res\RadioButtonGroup\def\contribution.xml ^
 ..\res\RangeSlider\def\contribution.xml ^
 ..\res\ResultSetInfo\def\contribution.xml ^
 ..\res\ResultSetMixer\def\contribution.xml ^
 ..\res\ScatterPlot\def\contribution.xml ^
 ..\res\Slider\def\contribution.xml ^
+..\res\Table\def\contribution.xml ^
 ..\res\Table2D\def\contribution.xml ^
 ..\res\TagCloud\def\contribution.xml ^
 ..\res\TopFlop\def\contribution.xml ^
@@ -58,6 +59,8 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\Hierarchy\def\contribution.ztl ^
 ..\res\FacetFilter\def\contribution.ztl ^
 ..\res\FacetSelector\def\contribution.ztl ^
+..\res\FioriLink\def\contribution.ztl ^
+..\res\FioriBusyDialog\def\contribution.ztl ^
 ..\res\HexBin\def\contribution.ztl ^
 ..\res\LeaderBoard\def\contribution.ztl ^
 ..\res\LocationIntel\def\contribution.ztl ^
@@ -68,7 +71,6 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\Pictogram\def\contribution.ztl ^
 ..\res\ProcessFlow\def\contribution.ztl ^
 ..\res\ProgressBarSet\def\contribution.ztl ^
-..\res\Projector\def\contribution.ztl ^
 ..\res\RadioButtonGroup\def\contribution.ztl ^
 ..\res\RangeSlider\def\contribution.ztl ^
 ..\res\ResultSetInfo\def\contribution.ztl ^

@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "LeaderBoard",
+		name: "basics.LeaderBoard",
+		requireName: "basicsleaderboard",
+		fullComponentName: "org.scn.community.basics.LeaderBoard",
+		fullComponentPackage: "org.scn.community.basics/res/LeaderBoard",
+		script: "org.scn.community.basics/res/LeaderBoard/LeaderBoard",
+		scriptSpec: "org.scn.community.basics/res/LeaderBoard/LeaderBoardSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.LeaderBoard.spec = 
+	spec.spec = 
 {
   "addCounter": {
     "opts": {
@@ -203,10 +214,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.LeaderBoard.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.LeaderBoard.specAbout = 
+	spec.specAbout = 
 {
   "description": "Leader Board",
   "icon": "LeaderBoard.png",
@@ -223,7 +234,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.LeaderBoard.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -232,7 +243,7 @@
   "height": "400",
   "id": "LeaderBoard",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -242,4 +253,5 @@
   "width": "230"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

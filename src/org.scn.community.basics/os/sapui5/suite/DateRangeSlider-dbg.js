@@ -65,7 +65,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * The Date Range Slider provides the user with a Range Slider control that is optimized for use with Dates.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

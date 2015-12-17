@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "ListSelector",
+		name: "basics.ListSelector",
+		requireName: "basicslistselector",
+		fullComponentName: "org.scn.community.basics.ListSelector",
+		fullComponentPackage: "org.scn.community.basics/res/ListSelector",
+		script: "org.scn.community.basics/res/ListSelector/ListSelector",
+		scriptSpec: "org.scn.community.basics/res/ListSelector/ListSelectorSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.ListSelector.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -357,10 +368,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ListSelector.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ListSelector.specAbout = 
+	spec.specAbout = 
 {
   "description": "List Selector",
   "icon": "ListSelector.png",
@@ -377,7 +388,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ListSelector.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -386,7 +397,7 @@
   "height": "200",
   "id": "ListSelector",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -396,4 +407,5 @@
   "width": "200"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

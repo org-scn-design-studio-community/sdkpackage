@@ -1,13 +1,12 @@
 
 <component
 	id="Collection"
-	title="Collection Utility"
+	title="Collection Utility 0.X"
 	icon="res/Collection/Collection.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Collection/Collection.js</jsInclude>
 
 	<property

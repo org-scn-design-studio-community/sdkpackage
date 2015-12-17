@@ -22,11 +22,7 @@
  * (http://scn.sap.com/community/businessobjects-design-studio/blog/2014/10/09/design-studio-sdk-13--fiori-like-launchpad-aka-sapmtilecontainer)
  * 
  */
-(function(){
-jQuery.sap.require("sap.m.TileContainer");
-/**
- * Experimental - callRuntimeHandler available in DS 1.5...
- */
+define(["css!./LaunchPad.css","css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], function() {
 var componentInfo = {
 	visible : true,
 	title : "Fiori LaunchPad",
@@ -193,4 +189,4 @@ sap.m.TileContainer.extend("org.scn.community.basics.LaunchPad", {
 		}
 	}
 });
-}());
+});

@@ -5,13 +5,14 @@
 	tooltip="UI5 Table - A simple table with rows and columns"
 	icon="res/UI5Table/UI5Table.png"
 	handlerType="sapui5"
-	propertySheetPath="res/UI5Table/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/UI5Table/UI5TableLoader.js</jsInclude>
+	<requireJs modes="commons m">res/UI5Table/UI5Table</requireJs>
+
 	<cssInclude>res/UI5Table/UI5Table.css</cssInclude>
 	<cssInclude>res/_css/simple_formats.css</cssInclude>
 	

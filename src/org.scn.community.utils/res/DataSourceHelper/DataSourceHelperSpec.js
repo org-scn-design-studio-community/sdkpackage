@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "DataSourceHelper",
+		name: "utils.DataSourceHelper",
+		requireName: "utilsdatasourcehelper",
+		fullComponentName: "org.scn.community.utils.DataSourceHelper",
+		fullComponentPackage: "org.scn.community.utils/res/DataSourceHelper",
+		script: "org.scn.community.utils/res/DataSourceHelper/DataSourceHelper",
+		scriptSpec: "org.scn.community.utils/res/DataSourceHelper/DataSourceHelperSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.utils.DataSourceHelper.spec = 
+	spec.spec = 
 {"cache": {
   "opts": {
     "apsControl": "checkbox",
@@ -36,10 +47,10 @@
   "visible": true
 }};
 
-	org_scn_community_require.knownComponents.utils.DataSourceHelper.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.utils.DataSourceHelper.specAbout = 
+	spec.specAbout = 
 {
   "description": "Data Source Helper - Utilities for work with Data Sources",
   "icon": "DataSourceHelper.png",
@@ -56,7 +67,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.utils.DataSourceHelper.specComp = 
+	spec.specComp = 
 {
   "databound": true,
   "extension": "Component",
@@ -74,4 +85,5 @@
   "width": "50"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

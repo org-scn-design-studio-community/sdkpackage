@@ -5,13 +5,14 @@
 	tooltip="Time Out (Timer)"
 	icon="res/TimeOut/TimeOut.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/TimeOut/TimeOutLoader.js</jsInclude>
+	<requireJs modes="commons">res/TimeOut/TimeOut</requireJs>
+
 	<cssInclude>res/TimeOut/TimeOut.css</cssInclude>
 	
 	

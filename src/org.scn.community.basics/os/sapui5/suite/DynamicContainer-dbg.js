@@ -51,7 +51,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * The control that displays multiple GenericTile controls as changing slides.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

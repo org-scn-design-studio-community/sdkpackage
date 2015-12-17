@@ -3,7 +3,7 @@
 	"title": "Facet Filter 2.0",
 	"tooltip": "FacetFilter - A simple selector which is using the facet techniques",
 	"handlerType": "sapui5",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityDataBound",
 	"package": "databound",
 	"extension": "DataComponent",

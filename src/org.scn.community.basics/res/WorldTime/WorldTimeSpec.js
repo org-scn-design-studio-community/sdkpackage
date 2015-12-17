@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "WorldTime",
+		name: "basics.WorldTime",
+		requireName: "basicsworldtime",
+		fullComponentName: "org.scn.community.basics.WorldTime",
+		fullComponentPackage: "org.scn.community.basics/res/WorldTime",
+		script: "org.scn.community.basics/res/WorldTime/WorldTime",
+		scriptSpec: "org.scn.community.basics/res/WorldTime/WorldTimeSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.WorldTime.spec = 
+	spec.spec = 
 {
   "dateformat": {
     "opts": {
@@ -192,10 +203,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.WorldTime.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.WorldTime.specAbout = 
+	spec.specAbout = 
 {
   "description": "World Time",
   "icon": "WorldTime.png",
@@ -212,7 +223,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.WorldTime.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -221,7 +232,7 @@
   "height": "40",
   "id": "WorldTime",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -231,4 +242,5 @@
   "width": "150"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

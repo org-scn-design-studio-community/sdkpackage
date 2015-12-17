@@ -5,13 +5,14 @@
 	tooltip="Leader Board"
 	icon="res/LeaderBoard/LeaderBoard.png"
 	handlerType="sapui5"
-	propertySheetPath="res/LeaderBoard/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/LeaderBoard/LeaderBoardLoader.js</jsInclude>
+	<requireJs modes="commons">res/LeaderBoard/LeaderBoard</requireJs>
+
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 	
 	

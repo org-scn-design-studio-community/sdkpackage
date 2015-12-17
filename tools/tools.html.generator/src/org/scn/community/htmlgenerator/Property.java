@@ -424,4 +424,8 @@ public class Property {
 
 		return new String[]{parametersList, parametersJson};
 	}
+
+	public String generateXml() {
+		return "name=\"{value}\"";
+	}
 }

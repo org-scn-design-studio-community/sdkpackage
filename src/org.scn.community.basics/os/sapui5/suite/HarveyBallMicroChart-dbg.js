@@ -59,7 +59,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * This chart shows the part comparative to total.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

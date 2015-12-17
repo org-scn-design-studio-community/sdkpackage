@@ -1,0 +1,16 @@
+{
+	"title": "Data Drop Down 2.0",
+	"description": "Data Drop Down",
+	"icon": "DropDown.png",
+	"topics": 
+	[
+		{
+			"title" : "Data Drop Down",
+			"content" : "Data Drop Down"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

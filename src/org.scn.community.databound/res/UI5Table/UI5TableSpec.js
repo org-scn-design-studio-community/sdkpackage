@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "UI5Table",
+		name: "databound.UI5Table",
+		requireName: "databoundui5table",
+		fullComponentName: "org.scn.community.databound.UI5Table",
+		fullComponentPackage: "org.scn.community.databound/res/UI5Table",
+		script: "org.scn.community.databound/res/UI5Table/UI5Table",
+		scriptSpec: "org.scn.community.databound/res/UI5Table/UI5TableSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.databound.UI5Table.spec = 
+	spec.spec = 
 {
   "DAllowColumnReorder": {
     "opts": {
@@ -487,10 +498,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.databound.UI5Table.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.databound.UI5Table.specAbout = 
+	spec.specAbout = 
 {
   "description": "UI5 Table - A simple table with rows and columns",
   "icon": "UI5Table.png",
@@ -507,7 +518,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.UI5Table.specComp = 
+	spec.specComp = 
 {
   "cssIncludes": [{"name": "res/_css/simple_formats.css"}],
   "databound": true,
@@ -516,8 +527,9 @@
   "handlerType": "sapui5",
   "height": "600",
   "id": "UI5Table",
+  "modes": "commons m",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -541,4 +553,5 @@
   "width": "800"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

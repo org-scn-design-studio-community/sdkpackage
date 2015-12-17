@@ -1,14 +1,13 @@
 
 <component
 	id="OpenWindowPost"
-	title="Open Window by Post"
+	title="Open Window by Post 0.X"
 	tooltip="Open new Window by Post Method (removes URL size restriction)"
 	icon="res/OpenWindowPost/OpenWindowPost.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/OpenWindowPost/OpenWindowPost.js</jsInclude>
 
 	<property

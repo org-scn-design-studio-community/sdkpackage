@@ -41,4 +41,18 @@ class org_scn_community_shared_DecimalPlaces extends Enum {
 	/** 9 */
 	org_scn_community_shared_DecimalPlacesEnumfield D9;
 
+	/** 10 */
+	org_scn_community_shared_DecimalPlacesEnumfield D10;
+
+	/** 11 */
+	org_scn_community_shared_DecimalPlacesEnumfield D11;
+
+	/** 12 */
+	org_scn_community_shared_DecimalPlacesEnumfield D12;
+
+	/** 13 */
+	org_scn_community_shared_DecimalPlacesEnumfield D13;
+
+	/** 14 */
+	org_scn_community_shared_DecimalPlacesEnumfield D14;
 }

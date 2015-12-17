@@ -1,47 +1,52 @@
-.sapSuiteCmc {
-	display: inline-block;
-	text-align: center;
-	outline: none;
-	min-height: 2px;
+.sap-desktop .sapSuiteCmc:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: 1px;
 }
 
-.sapUiMedia-Std-Desktop .sapSuiteCmc.Auto,
-.sapUiMedia-Std-Tablet .sapSuiteCmc.Auto,
-.sapSuiteCmc.L,
-.sapSuiteCmc.M {
-    height: 4.5rem;
-    width: 10.5rem;
+.sapSuiteCmcBar.Error {
+	background-color: @sapUiChartBad;
 }
 
-.sapUiMedia-Std-Phone .sapSuiteCmc.Auto,
-.sapSuiteCmc.S,
-.sapSuiteCmc.XS {
-    height: 3.5rem;
-    width: 8.25rem;
+.sapSuiteCmcBar.Good {
+	background-color: @sapUiChartGood;
 }
 
-.sapSuiteCmcCnt {
-	display: inline-block;
-	position: relative;
-	height: 100%;
-	white-space: nowrap;
-	overflow: hidden;
+.sapSuiteCmcBar.Critical {
+	background-color: @sapUiChartCritical;
+}
+
+.sapSuiteCmcBar.Neutral {
+	background-color: @sapUiChartNeutral;	
+}
+
+.sapSuiteCmcLbl {
+	font-family: @sapUiFontFamily;
+	font-size: @sapMFontMediumSize;
+}
+
+.sapSuiteCmcLbl.Neutral {
+	color: darken(@sapUiChartNeutral, 10);
+}
+
+.sapSuiteCmcLbl.Good {
+	color: @sapUiPositiveText;
+}
+
+.sapSuiteCmcLbl.Critical {
+	color: @sapUiCriticalText;	
+}
+
+.sapSuiteCmcLbl.Error {
+	color: @sapUiNegativeText;	
 }
 
 .sapSuiteCmcBar {
-    min-width: 3px;
-    position: relative;
-    float: left;
-    min-height: 1px;
-    top: ~"calc(100% - 1px)";
-    top: ~"-webkit-calc(100% - 1px)";
-    top: ~"-moz-calc(100% - 1px)";
-}
-
-.sapSuiteCmcBar:not(:FIRST-CHILD) {
-	margin-left: 3px;
-}
-
-.sapSuiteCmc:focus:not([tabindex]) {
 	outline: none;
+}
+
+.sap-desktop .sapSuiteCmcBar:focus {
+	border-color: @sapUiFocus;
+	border-style: dotted;
+	border-width: 1px;
 }

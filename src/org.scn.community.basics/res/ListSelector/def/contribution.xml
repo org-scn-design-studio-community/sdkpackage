@@ -5,13 +5,14 @@
 	tooltip="List Selector"
 	icon="res/ListSelector/ListSelector.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ListSelector/ListSelectorLoader.js</jsInclude>
+	<requireJs modes="commons">res/ListSelector/ListSelector</requireJs>
+
 	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
 	
 	

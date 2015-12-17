@@ -1,6 +1,21 @@
-(function(){
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./ActionSheetButtonSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"basics/os/sapui5/sap_m_loader"
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.ActionSheetButton;
+var myComponentData = spec;
 
 ActionSheetButton = {
 
@@ -81,9 +96,8 @@ ActionSheetButton = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsactionsheetbutton){
-	myComponentData.instance = ActionSheetButton;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = ActionSheetButton;
+jQuery.sap.require("sap.m.Button");
+sap.m.Button.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

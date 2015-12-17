@@ -1,6 +1,22 @@
-	(function(){
+	//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./ScalingDataSourceSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"shared/modules/component.datasource"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-	var myComponentData = org_scn_community_require.knownComponents.datasource.ScalingDataSource;
+	var myComponentData = spec;
 
 	ScalingDataSource = function () {
 
@@ -73,9 +89,7 @@
 		return that;
 	};
 
-	define([myComponentData.requireName], function(datasourcescalingdatasource){
-		myComponentData.instance = ScalingDataSource;
-		return myComponentData.instance;
-	});
-
-}).call(this);
+//%INIT-START%
+myComponentData.instance = ScalingDataSource;
+sap.designstudio.sdk.DataBuffer.subclass(myComponentData.fullComponentName, myComponentData.instance);
+});

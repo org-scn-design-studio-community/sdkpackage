@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./RatingIndicatorSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.RatingIndicator;
+var myComponentData = spec;
 
 RatingIndicator = {
 
@@ -73,9 +88,8 @@ RatingIndicator = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsratingindicator){
-	myComponentData.instance = RatingIndicator;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = RatingIndicator;
+jQuery.sap.require("sap.ui.commons.RatingIndicator");
+sap.ui.commons.RatingIndicator.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

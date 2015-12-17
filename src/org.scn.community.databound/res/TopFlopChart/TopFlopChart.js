@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 SCN SDK Community
+ * Copyright 2014 Scn Community Contributors
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/
@@ -16,232 +16,220 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.databound.TopFlopChart";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	 return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
-
-sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
-
-	setFallbackPicture : function(value) {
-		this._FallbackPicture = value;
-		
-		if(value != undefined && value != "")  {
-			this._pImagePrefix = value.substring(0, value.lastIndexOf("/") + 1);	
-		}
-	},
-
-	getFallbackPicture : function() {
-		return this._FallbackPicture;
-	},
+ 
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./TopFlopChartSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"shared/modules/component.databound"
 	
-	metadata: {
-        properties: {
-              "maxNumber": {type: "int"},
-              "topBottom": {type: "string"},
-              "usePictures": {type: "boolean"},
-              "addCounter": {type: "boolean"},
-              "valueDecimalPlaces": {type: "int"},
-              "selectedKey": {type: "string"},
-              "pressedKey": {type: "string"},
-              "valuePrefix": {type: "string"},
-              "valueSuffix": {type: "string"},
-              "deltaValueSuffix": {type: "string"},
-              "fixedAverage": {type: "int"},
-              "averagePrefix": {type: "string"},
-              "averageSuffix": {type: "string"},
-              "useBackground": {type: "boolean"},
-              "showDelta": {type: "boolean"},
-              "useDelta": {type: "boolean"},
-              "allowInteraction": {type: "boolean"},
-              "breakOnIndex": {type: "int"},
-              "breakOnAverage": {type: "boolean"},
-              "showAverage": {type: "boolean"},
-              "valueStart": {type: "int"},
-              "maxValueSize": {type: "int"},
-        }
-	},
-	
-	setData : function(value) {
-		this._data = value;
-		return this;
-	},
-	
-	getData : function(value) {
-		return this._data;
-	},
-	
-	setMetadata : function(value) {
-		this._metadata = value;
-		return this;
-	},
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-	getMetadata : function(value) {
-		return this._metadata;
-	},
-  
+var myComponentData = spec;
+
+TopFlopChart = {
+
+	renderer: {},
+	
 	initDesignStudio: function() {
 		var that = this;
-		this._ownScript = _readScriptPath();
 
-		this._oElements = {};
-
-		this.addStyleClass("scn-pack-DataTopFlopChart");
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
 		
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that._oElements = {};
+
+		that.addStyleClass("scn-pack-DataTopFlopChart");
+				
 		that._lLayout = new sap.ui.layout.VerticalLayout({
 			
 		});
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
-		// resize function
-		that.onAfterRendering = function() {
-			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout);
-		};
+		that.onAfterRendering = function () {
+			 org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout, that.onResize);
+		}
 	},
 	
-	renderer: {},
-	
-	beforeDesignStudioUpdate : function() {
-		this._width = this.oComponentProperties.width - 4;
-		this._height = 20;
-	},
-	
-	afterDesignStudioUpdate : function() {
+	afterDesignStudioUpdate: function() {
 		var that = this;
-		this._valueStart = this.getValueStart();
 		
-		var rerender = false;
-		var propertiesNow = this._serializeProperites("selectedKey;pressedKey");
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+		var loadingResultset = "DataCellList";
 		
-		if(this._serializedPropertiesAfter != propertiesNow) {
-			this._serializedPropertiesAfter = propertiesNow;
-			rerender = true;
+		var data = undefined;		
+		if(loadingResultset == "ResultSet" || loadingResultset == "ResultCell"){
+			data = that.getData();
+		} else if(loadingResultset == "DataCellList"){
+			data = that.getDataCellList();
 		}
 
-		if(rerender) {
-			this._oElements = {};
+		var metadata = that.getDSMetadata();
 
-			var lData = this._data;
-			var lMetadata = this._metadata;
-		
+		if(!org_scn_community_databound.hasData (data, metadata)) {
+			org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare);
+		} else {
+			org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+		}
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
+
+		if(flatData == undefined) {
 			var options = org_scn_community_databound.initializeOptions();
-			
-			options.iMaxNumber = this.getMaxNumber();
-			options.iTopBottom = this.getTopBottom();
+
+			options.iMaxNumber = that.getMaxNumber();
+			options.iTopBottom = that.getTopBottom().replace("X", "");
+			options.allKeys = true;
+			options.idPrefix = that.getId();
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";
-			options.iNnumberOfDecimals = this.getValueDecimalPlaces();
+			options.iNumberOfDecimals = parseInt(that.getValueDecimalPlaces().replace("D", ""));
 			
 			options.average = that.getFixedAverage();
 			if(options.average == -1) {
 				options.average = undefined;
 			}
+
+			options.iDisplayText = "Text";
 			
-			var returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
-		     (lData, lMetadata, "", options);
+			var dataList = that.getDataCellList();
+			that._metaData = that.getDSMetadata();
 			
-			lElementsToRenderArray = returnObject.list;
-			
-			// Destroy old content
-			this._lLayout.destroyContent();
-			
-			var breakOnIndex = this.getBreakOnIndex();
-			var breakOnAverage = this.getBreakOnAverage();
-			var showAverage = this.getShowAverage();
-			
-			// distribute content
-			for (var i = 0; i < lElementsToRenderArray.length; i++) {
-				if(breakOnIndex == i) {
-					var lImageElement = this.createEmptyLeaderElement();
-					this._lLayout.addContent(lImageElement);
-				}
-				
-				var element = lElementsToRenderArray[i];
-				if(breakOnAverage) {
-					if(this.getTopBottom() != "Bottom X" && element.delta < 0) {
-						var lImageElement = this.createEmptyLeaderElement();
-						this._lLayout.addContent(lImageElement);
-						breakOnAverage = false;
-					}
-				}
-				
-				var lImageElement = this.createLeaderElement(i, element.key, element.text, element.url, element.value, element.valueS, element.counter, element.delta, returnObject);
-				this._oElements[element.key] = lImageElement;
-				this._lLayout.addContent(lImageElement);
+			that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension(dataList, that._metaData, "", options);
+		} else {
+			var options = org_scn_community_databound.initializeOptions();
+
+			options.iMaxNumber = that.getMaxNumber();
+			options.iTopBottom = that.getTopBottom().replace("X", "");
+			options.allKeys = true;
+			options.idPrefix = that.getId();
+			options.iSortBy = "Value";
+			options.iDuplicates = "Ignore";
+			options.iNumberOfDecimals = parseInt(that.getValueDecimalPlaces().replace("D", ""));
+
+			options.average = that.getFixedAverage();
+			if(options.average == -1) {
+				options.average = undefined;
 			}
 
-			if(showAverage) {
-				var lMetaDataLocale = "en";
-				if(lMetadata) {lMetaDataLocale = lMetadata.locale;}
-				
-				// insert Average Information
-				var oTextValue = new sap.ui.commons.TextView();
-				oTextValue.addStyleClass("scn-pack-DataTopFlopChart-AverageText");
-				oTextValue.setText(this.getAveragePrefix() + org_scn_community_basics.getFormattedValue(returnObject.average, lMetaDataLocale, this.getValueDecimalPlaces()) + this.getAverageSuffix());
-				this._lLayout.addContent(
-						oTextValue
-				);
+			options.iDisplayText = "Text";
+			
+			var dataList = flatData;
+			that._metaData = flatData;
+			
+			that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension(dataList, that._metaData, "", options);
+		}
+		
+		// processing on data
+		if(that._oResize) {
+			that._oResize(true, true);
+		}
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
+		that._valueStart = that.getValueStart();
+		
+		that._oElements = {};
+
+		lElementsToRenderArray = that._returnObject.list;
+		
+		// Destroy old content
+		that._lLayout.destroyContent();
+		
+		var breakOnIndex = that.getBreakOnIndex();
+		var breakOnAverage = that.getBreakOnAverage();
+		var showAverage = that.getShowAverage();
+		
+		// distribute content
+		for (var i = 0; i < lElementsToRenderArray.length; i++) {
+			if(breakOnIndex == i) {
+				var lImageElement = that.createEmptyLeaderElement();
+				that._lLayout.addContent(lImageElement);
 			}
-		} else {
-			for (lElementKey in this._oElements) {
-				var lElement = this._oElements[lElementKey];
-				
-				if(this.getSelectedKey() == lElement.internalKey) {
-					lElement.addStyleClass("scn-pack-DataTopFlopChart-SelectedValue");
-				} else {
-					lElement.removeStyleClass("scn-pack-DataTopFlopChart-SelectedValue");
+			
+			var element = lElementsToRenderArray[i];
+			if(breakOnAverage) {
+				if(that.getTopBottom().replace(" ", "").replace("X", "") != "Bottom" && element.delta < 0) {
+					var lImageElement = that.createEmptyLeaderElement();
+					that._lLayout.addContent(lImageElement);
+					breakOnAverage = false;
 				}
 			}
+			
+			var lImageElement = that.createLeaderElement(that, i, element.key, element.text, element.url, element.value, element.valueS, element.counter, element.delta, that._returnObject);
+			that._oElements[element.key] = lImageElement;
+			that._lLayout.addContent(lImageElement);
+		}
+
+		if(showAverage) {
+			var lMetaDataLocale = "en";
+			if(that._metaData) {lMetaDataLocale = that._metaData.locale;}
+			
+			// insert Average Information
+			var oTextValue = new sap.ui.commons.TextView();
+			oTextValue.addStyleClass("scn-pack-DataTopFlopChart-AverageText");
+			oTextValue.setText(that.getAveragePrefix() + org_scn_community_basics.getFormattedValue(that._returnObject.average, lMetaDataLocale, parseInt(that.getValueDecimalPlaces().replace("D", ""))) + that.getAverageSuffix());
+			that._lLayout.addContent(
+					oTextValue
+			);
 		}
 	},
 	
-	createEmptyLeaderElement: function (index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, delta, returnObject) {
-		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
-			width: this._width + "px",
-			height: this._height + "px"
+	onResize: function(width, height, parent) {
+		if(parent._returnObject == undefined) {return;}
+		try{
+			parent.afterPrepare(parent);	
+		}catch (e) {
+			alert(e + ", " + e.stack);
+		}
+	},
+	
+	createEmptyLeaderElement: function (owner, index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, delta, returnObject) {
+		var that = owner;
+		
+		var oLayout = new sap.zen.commons.layout.AbsoluteLayout ({
+			width: that._containerWidth + "px",
+			height: that._height + "px"
 		});
 		
 		return oLayout;
 	},
 	
-	createLeaderElement: function (index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, delta, returnObject) {
-		var that = this;
+	createLeaderElement: function (owner, index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, delta, returnObject) {
+		var that = owner;
 		
-		// in case starts with http, keep as is 
-		if(iImageUrl.indexOf("http") == 0) {
-			// no nothing
-		} else {
-			// in case of repository, add the prefix from repository
-			if(this._pImagePrefix != undefined && this._pImagePrefix != ""){
-				iImageUrl = this._pImagePrefix + iImageUrl;
-				var extension = this.getFallbackPicture();
-				extension = extension.substring(extension.lastIndexOf("."));
-
-				iImageUrl = iImageUrl + extension;
-			} else {
-				iImageUrl = this._ownScript + "TopFlopChart.png";
-			}
-		}
+		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getFallbackPicture(), iImageUrl, "TopFlopChart.png");
 		
-		var lAllowInteraction = this.getAllowInteraction();
+		var lAllowInteraction = that.getAllowInteraction();
 		
-		var lUsePictures = this.getUsePictures();
-		var lAddCounter = this.getAddCounter();
+		var lUsePictures = that.getUsePictures();
+		var lAddCounter = that.getAddCounter();
 		
-		var oLine = new sap.ui.commons.layout.AbsoluteLayout ({
-			width: "1px",
-			height: this._height + "px"
-		});
-		oLine.addStyleClass("scn-pack-DataTopFlopChart-BaseLine");
-		
-		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
-			width: this._width + "px",
-			height: this._height + "px"
+		var oLayout = new sap.zen.commons.layout.AbsoluteLayout ({
+			width: (owner._containerWidth-6) + "px",
+			height: 40 + "px"
 		});
 		
 		if(delta < 0) {
@@ -250,17 +238,17 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 
 		var baseValue = value;
 		var baseMax = returnObject.maxValue;
-		var baseStart = this._valueStart; 
-		var baseWidth = this.getMaxValueSize();
+		var baseStart = that._valueStart; 
+		var baseWidth = that.getMaxValueSize();
 		if(baseWidth == -1) {
-			baseWidth = this._width;
+			baseWidth = that._containerWidth - 8;
 		}
 
-		if(this.getUseDelta()) {
+		if(that.getUseDelta()) {
 			baseValue = delta;
 			baseMax = returnObject.maxDelta;
-			baseStart = ((this._width - this._valueStart) / 2) + this._valueStart;
-			if(baseWidth == this._width) {
+			baseStart = ((that._containerWidth - that._valueStart) / 2) + that._valueStart;
+			if(baseWidth == that._containerWidth - 8) {
 				baseWidth = baseWidth - 70;
 			}
 		}
@@ -268,14 +256,14 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		var lSizeValueBackground = (baseWidth - baseStart) * baseMax / baseMax;
 		var lSizeValue = (baseWidth - baseStart) * baseValue / baseMax;
 		
-		var oValueLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oValueLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: lSizeValue + "px",
 			height: "18px"
 		});		
 		
 		var oValueLayoutBackground = undefined;
-		if(this.getUseBackground()) {
-			oValueLayoutBackground = new sap.ui.commons.layout.AbsoluteLayout ({
+		if(that.getUseBackground()) {
+			oValueLayoutBackground = new sap.zen.commons.layout.AbsoluteLayout ({
 				width: lSizeValueBackground + "px",
 				height: "18px"
 			});
@@ -296,13 +284,6 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		
 		oLayout.internalKey = iImageKey;
 
-		var oIndexText = undefined;
-		if(lAddCounter) {
-			oIndexText = new sap.ui.commons.TextView();
-			oIndexText.addStyleClass("scn-pack-DataTopFlopChart-IndexText");
-			oIndexText.setText(counter + ".");
-		}
-
 		var oNameLink = undefined;
 		if(lAllowInteraction) {
 			oNameLink = new sap.ui.commons.Link();	
@@ -314,8 +295,8 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 
 		var oImage = new sap.ui.commons.Image ({
 			src : iImageUrl,
-			width : "16px",
-			height : "16px",
+			width : "32px",
+			height : "32px",
 			alt : iImageText,
 			tooltip : iImageText,
 		});
@@ -329,7 +310,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 		var oTextDeltaValue = new sap.ui.commons.TextView();
 		oTextDeltaValue.addStyleClass("scn-pack-DataTopFlopChart-TextDelta");
 		
-		if(this.getSelectedKey() == iImageKey) {
+		if(that.getSelectedKey() == iImageKey) {
 			oLayout.addStyleClass("scn-pack-DataTopFlopChart-SelectedValue");
 		}
 		
@@ -384,17 +365,17 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			}
 		}
 		
-		oTextValue.setText (this.getValuePrefix() + valueAsString + this.getValueSuffix());
+		oTextValue.setText (that.getValuePrefix() + valueAsString + that.getValueSuffix());
 		
 		var delta = value - returnObject.average;
 		if(delta > 0) {
-			oTextDeltaValue.setText (" Δ " + "+" + org_scn_community_basics.getFormattedValue(delta, this._metadata.locale, this.getValueDecimalPlaces()) + this.getDeltaValueSuffix());	
+			oTextDeltaValue.setText (" Δ " + "+" + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, parseInt(that.getValueDecimalPlaces().replace("D", ""))) + that.getDeltaValueSuffix());	
 		} else {
-			oTextDeltaValue.setText (" Δ " + org_scn_community_basics.getFormattedValue(delta, this._metadata.locale, this.getValueDecimalPlaces()) + this.getDeltaValueSuffix());
+			oTextDeltaValue.setText (" Δ " + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, parseInt(that.getValueDecimalPlaces().replace("D", ""))) + that.getDeltaValueSuffix());
 		}
 		
-		if(!this.getUseDelta() || delta > 0) {
-			if(this.getUseBackground()) {
+		if(!that.getUseDelta() || delta > 0) {
+			if(that.getUseBackground()) {
 				oLayout.addContent(
 						oValueLayoutBackground,
 						{left: baseStart + "px", top: "1px"}	
@@ -405,7 +386,7 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 					{left: baseStart + "px", bottom: "1px"}	
 			);
 		} else {
-			if(this.getUseBackground()) {
+			if(that.getUseBackground()) {
 				oLayout.addContent(
 						oValueLayoutBackground,
 						{left: (baseStart - lSizeValueBackground) + "px", top: "1px"}	
@@ -417,12 +398,18 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			);
 		}
 
-		if(lAddCounter) {
+
+		if(that.getAddCounter()) {
+			var oIndexText = new sap.ui.commons.TextView();
+			oIndexText.addStyleClass("scn-pack-DataTopFlopChart-IndexText");
+			oIndexText.setText(counter + ".");
+			
 			oLayout.addContent(
 					oIndexText,
-					{left: "1px", top: "0px"}
+					{right: (owner._containerWidth-6-16) + "px", top: "10px"}
 			);
 		}
+		
 		if(lUsePictures) {
 			if(lAddCounter) {
 				oLayout.addContent(
@@ -437,22 +424,22 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			}
 		}
 
-		var textNamePlace = this._width - this._valueStart + 5;
+		var textNamePlace = that._containerWidth - that._valueStart + 5;
 		oLayout.addContent(
 				oNameLink,
 				{right: (textNamePlace) + "px", top: "0px"}	
 		);
 		
-		var textValuePlace = this._valueStart + 3;
+		var textValuePlace = that._valueStart + 3;
 		oLayout.addContent(
 				oTextValue,
 				{left: (textValuePlace) + "px", top: "0px"}
 		);
 
-		var textDeltaPlace = this._width - baseStart - lSizeValue + 3;
+		var textDeltaPlace = that._containerWidth - baseStart - lSizeValue + 3;
 		
-		if(this.getShowDelta()){
-			if(this.getUseDelta()){
+		if(that.getShowDelta()){
+			if(that.getUseDelta()){
 				textDeltaPlace = 2;
 				oLayout.addContent(
 						oTextDeltaValue,
@@ -474,16 +461,13 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			}
 		}
 
-		oLayout.addContent(
-				oLine,
-				{left: (baseStart - 1) + "px", top: "0px"}
-		);
-		
 		return oLayout;
 	},
 	
 	updateSelection : function (iSelectedKey) {
-		var lContent = this._lLayout.getContent();
+		var that = this;
+
+		var lContent = that._lLayout.getContent();
 		
 		for (var i = 0; i < lContent.length; i++) {
 			var lLayout = lContent [i];
@@ -495,51 +479,10 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			};
 		};
 	},
-	
-	// http://www.sitepoint.com/javascript-generate-lighter-darker-color/
-	_colorLuminance : function (hex, lum) {
-
-		// validate hex string
-		hex = String(hex).replace(/[^0-9a-f]/gi, '');
-		if (hex.length < 6) {
-			hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
-		}
-		lum = lum || 0;
-
-		// convert to decimal and change luminosity
-		var rgb = "#", c, i;
-		for (i = 0; i < 3; i++) {
-			c = parseInt(hex.substr(i*2,2), 16);
-			c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
-			rgb += ("00"+c).substr(c.length);
-		}
-
-		return rgb;
-	},
-	
-	_serializeProperites : function (excluding){
-		var props = this.oComponentProperties.content.control;
-
-		if(excluding == undefined) {
-			excluding = "";
-		}
-
-		var serialization = "";
-		for (var key in props) {
-		  if (props.hasOwnProperty(key) && excluding.indexOf(key) == -1) {
-			  serialization = serialization + key + "->" + props[key] + ";";
-		  }
-		}
-		
-		// size
-		serialization = serialization + "W->" + this.oComponentProperties.width;
-		serialization = serialization + "H->" + this.oComponentProperties.height;
-		// data
-		serialization = serialization + "DATA->" + JSON.stringify(this._data);
-		serialization = serialization + "METADATA->" + JSON.stringify(this._metadata);
-
-		return serialization;
-	},
-
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+//%INIT-START%
+myComponentData.instance = TopFlopChart;
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-})();

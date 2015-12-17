@@ -17,9 +17,25 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./LeaderBoardSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"shared/modules/component.databound"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.databound.LeaderBoard;
+var myComponentData = spec;
 
 LeaderBoard = {
 
@@ -170,14 +186,14 @@ LeaderBoard = {
 			lLeftMargin = "82px";
 		}
 		
-		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: (owner._containerWidth-6) + "px",
 			height: "40px"
 		});
 		
 		value = (owner._containerWidth-6) * value / returnObject.maxValue;
 		
-		var oValueLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oValueLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: value + "px",
 			height: "40px"
 		});
@@ -314,9 +330,8 @@ LeaderBoard = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundleaderboard){
-	myComponentData.instance = LeaderBoard;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = LeaderBoard;
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

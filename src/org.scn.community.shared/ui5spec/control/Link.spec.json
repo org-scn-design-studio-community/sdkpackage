@@ -1,0 +1,207 @@
+{
+
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Text",
+			"cat" : "Display",
+			"tooltip" : "Link text to be displayed.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"enabled" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Enabled",
+			"cat" : "Display",
+			"tooltip" : "Determines whether the link can be triggered by the user.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"target" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Target",
+			"cat" : "Display",
+			"tooltip" : "Options are the standard values for window.open() supported by browsers: _self, _top, _blank, _parent, _search. Alternatively, a frame name can be entered. This property is only used when the href property is set.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"contentWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Width",
+			"cat" : "Display",
+			"tooltip" : "Width of the link (CSS-size such as % or px). When it is set, this is the exact size. When left blank, the text defines the size.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"href" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Url",
+			"ztlFunction": "",
+			"desc" : "Href",
+			"cat" : "Display",
+			"tooltip" : "The link target URI. Supports standard hyperlink behavior. If a JavaScript action should be triggered, this should not be set, but instead an event handler for the 'press' event should be registered.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"wrapping" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Wrapping",
+			"cat" : "Display",
+			"tooltip" : "Determines whether the link text is allowed to wrap when there is not sufficient space.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"textAlign" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Initial",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "TextAlign",
+			"ztlFunction": "",
+			"desc" : "Text Align",
+			"cat" : "Display",
+			"tooltip" : "Sets the horizontal alignment of the text.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Begin",
+					"text" : "Locale-specific positioning at the beginning of the line"
+				},
+				{
+					"key" : "End",
+					"text" : "Locale-specific positioning at the end of the line"
+				},
+				{
+					"key" : "Left",
+					"text" : "Hard option for left alignment"
+				},
+				{
+					"key" : "Right",
+					"text" : "Hard option for right alignment"
+				},
+				{
+					"key" : "Center",
+					"text" : "Centered text alignment"
+				},
+				{
+					"key" : "Initial",
+					"text" : "Sets no text align, so the browser default is used"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"textDirection" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Inherit",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "TextDirection",
+			"ztlFunction": "",
+			"desc" : "Text Direction",
+			"cat" : "Display",
+			"tooltip" : "This property specifies the element's text directionality with enumerated options. By default, the control inherits text direction from the parent DOM.",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "LTR",
+					"text" : "Specifies left-to-right text direction"
+				},
+				{
+					"key" : "RTL",
+					"text" : "Specifies right-to-left text direction"
+				},
+				{
+					"key" : "Inherit",
+					"text" : "Inherits the direction from its parent control/container"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"subtle" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Subtle",
+			"cat" : "Display",
+			"tooltip" : "Subtle links look more like standard text than like links. They should only be used to help with visual hierarchy between large data lists of important and less important links. Subtle links should not be used in any other use case.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"emphasized" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Emphasized",
+			"cat" : "Display",
+			"tooltip" : "Emphasized links look visually more important than regular links.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

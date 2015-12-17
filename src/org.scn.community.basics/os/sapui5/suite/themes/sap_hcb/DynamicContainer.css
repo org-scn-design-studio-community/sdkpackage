@@ -1,0 +1,25 @@
+.sapSuiteDC {
+	box-shadow: 0px 0px 0px 1px @sapHCStandardFG;
+}
+
+.sap-desktop .sapSuiteDC:focus {
+	outline-color: @sapHCStandardFG;
+	outline-style: dotted;
+	outline-width: 0.125rem;
+	box-shadow: 0px 0px 0px 1px @sapHCStandardFG;
+}
+
+.sap-desktop .sapSuiteDC:hover:not(:focus) {
+	 box-shadow: 0px 0px 0px 2px @sapHCStandardFG;
+}
+
+
+.sapSuiteDCIcon {
+	color: @sapHCStandardBG;
+}
+
+.sap-desktop .sapSuiteDC:hover,
+.sap-tablet .sapSuiteDCHvr:hover,
+.sap-phone .sapSuiteDCHvr:hover {
+	box-shadow: 0px 0px 0px 2px @sapHCStandardFG;
+}

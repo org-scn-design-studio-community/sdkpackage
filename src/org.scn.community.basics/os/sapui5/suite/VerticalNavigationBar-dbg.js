@@ -51,7 +51,7 @@ jQuery.sap.require("sap.ui.ux3.NavigationBar");
  * @class
  * This control extends the sap.ui.ux3.NavigationBar and allows you to display navigation items vertically. The navigation list can contain sap.ui.ux3.NavigationItem or sap.suite.ui.commons.CountingNavigationItem controls.
  * @extends sap.ui.ux3.NavigationBar
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

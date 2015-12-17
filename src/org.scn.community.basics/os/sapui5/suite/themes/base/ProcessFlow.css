@@ -1,0 +1,325 @@
+/* ======================================================== */
+/* CSS for control sap.suite.ui.commons/ProcessFlow.control */
+/* ======================================================== */
+
+/* Common styles */
+table.sapSuiteUiCommonsPF {
+  padding: 1rem 1rem 2rem 1rem;
+  table-layout: fixed;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-transition: -webkit-transform 0ms;
+  -ms-touch-select: none;
+  touch-action: manipulation;
+}
+
+table.sapSuiteUiCommonsPF td, table.sapSuiteUiCommonsPF th {
+  vertical-align: top;
+  padding: 0;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-transition: -webkit-transform 0ms;
+  -ms-touch-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+table.sapSuiteUiCommonsPF td:focus {
+  outline: none;
+}
+
+tr.sapSuiteUiCommonsPFHeaderHidden {
+  visibility: hidden;
+}
+
+tr.sapSuiteUiCommonsPFHeader > th:first-child,
+tr.sapSuiteUiCommonsPFHeader > th:last-child {
+  width: 1rem;
+  min-width: 1rem;
+  max-width: 1rem;
+}
+
+tr.sapSuiteUiCommonsPFHeader > th:nth-child(5n+5) {
+  width: 1rem;
+  min-width: 1rem;
+  max-width: 1rem;
+}
+
+tr.sapSuiteUiCommonsPFHeader > th:nth-child(5n+6) {
+  width: 1rem;
+  min-width: 1rem;
+  max-width: 1rem;
+}
+
+/* Styles for zoom level 1 */
+table.sapSuiteUiCommonsPFZoomLevel1 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+2),
+table.sapSuiteUiCommonsPFZoomLevel1 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+4) {
+  width: 1rem;
+  min-width: 1rem;
+  max-width: 1rem;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel1 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+3) {
+  width: 11rem;
+  min-width: 11rem;
+  max-width: 11rem;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel1 > thead > tr.sapSuiteUiCommonsPFHeaderRow > th:nth-child(2n+2) {
+  max-width: 13rem;
+}
+
+
+/* Styles for zoom level 2 */
+table.sapSuiteUiCommonsPFZoomLevel2 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+2),
+table.sapSuiteUiCommonsPFZoomLevel2 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+4) {
+  width: 0.5rem;
+  min-width: 0.5rem;
+  max-width: 0.5rem;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel2 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+3) {
+  width: 9rem;
+  min-width: 9rem;
+  max-width: 9rem;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel2 > thead > tr.sapSuiteUiCommonsPFHeaderRow > th:nth-child(2n+2) {
+  max-width: 10rem;
+}
+
+
+/* Styles for zoom level 3 */
+table.sapSuiteUiCommonsPFZoomLevel3 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+2),
+table.sapSuiteUiCommonsPFZoomLevel3 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+4) {
+  width: 1rem;
+  min-width: 1rem;
+  max-width: 1rem;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel3 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+3) {
+  width: 6.5rem;
+  min-width: 6.5rem;
+  max-width: 6.5rem;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel3 > thead > tr.sapSuiteUiCommonsPFHeaderRow > th:nth-child(2n+2) {
+  max-width: 8.5rem;
+}
+
+
+/* Styles for zoom level 4 */
+table.sapSuiteUiCommonsPFZoomLevel4 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+2),
+table.sapSuiteUiCommonsPFZoomLevel4 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+4) {
+  width: 1.5rem;
+  min-width: 1.5rem;
+  max-width: 1.5rem;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel4 > thead > tr.sapSuiteUiCommonsPFHeaderHidden > th:nth-child(5n+3) {
+  width: 3rem;
+  min-width: 3rem;
+  max-width: 3rem;
+}
+
+table.sapSuiteUiCommonsPFZoomLevel4 > thead > tr.sapSuiteUiCommonsPFHeaderRow > th:nth-child(2n+2) {
+  max-width: 6rem;
+}
+
+
+/* Table cell paddings for flow nodes table body */
+table.sapSuiteUiCommonsPF > tbody div.sapSuiteUiCommonsProcessFlowNode {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sapSuiteUiPFContainer{
+    display: block;
+    height: inherit;
+    -webkit-user-select: none;
+    min-height: 7rem;
+    min-width: 13rem;
+    width: 100%;
+    position: relative;
+}
+
+.sapSuiteUiScrollContainerPF {
+  clear: both;
+  display: block;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -ms-touch-select: none;
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  margin: 0rem 2.8rem 0rem 2.8rem;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sap-phone .sapSuiteUiScrollContainerPF,
+.sap-tablet .sapSuiteUiScrollContainerPF{
+  margin: 0rem 1.6rem 0rem 1.6rem;
+  overflow: auto;
+}
+
+.sapSuiteUiScrollContainerPF::-webkit-scrollbar {
+  display: none;
+  overflow: hidden;
+}
+
+.sapSuiteUiScrollContainerPF > * {
+  clear: both;
+  float: none;
+  display: inline-block;
+  position: relative;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -ms-touch-select: none;
+  -webkit-transition: -webkit-transform 0ms;
+  -webkit-transform-origin: 0rem 0rem;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Selector for BlackBerry 'bb' and Chrome/Fiori-App - 'cr'.
+ * Used to enable hardware acceleration.
+ * Possible solution for the future: 
+ * https://developer.mozilla.org/de/docs/Web/CSS/will-change
+ */
+html[data-sap-ui-browser^="cr"] .sapSuiteUiScrollContainerPF > *,
+html[data-sap-ui-os^="bb"] .sapSuiteUiScrollContainerPF > * {
+  -webkit-transform: translate3d(0,0,0);
+}
+
+.sapSuiteUiScrollContainerPF div:focus {
+  outline: none;
+}
+
+.sapSuiteUiGrabCursorPF, .sapSuiteUiGrabCursorPF .sapMText {
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+}
+
+.sapSuiteUiGrabbingCursorPF, .sapSuiteUiGrabbingCursorPF .sapMText {
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+}
+
+.sapSuiteUiGrabCursorIEPF, .sapSuiteUiGrabCursorIEPF .sapMText {
+  cursor: all-croll;
+}
+
+.sapSuiteUiGrabbingCursorIEPF, .sapSuiteUiGrabbingCursorIEPF .sapMText {
+  cursor: all-croll;
+}
+
+.sapSuiteUiDefaultCursorPF, .sapSuiteUiDefaultCursorPF .sapMText {
+  cursor: default;
+}
+
+table.sapSuiteUiCommonsPF > tbody > tr:first-child {
+  height : 0.5rem;
+}
+
+.sapPFHArrowScroll {
+    size: 1rem;
+    cursor: pointer;
+    position: absolute;
+    top: 2.5rem;
+}
+
+.sap-phone .sapPFHArrowScroll,
+.sap-tablet .sapPFHArrowScroll,
+html[data-sap-ui-os=win8] .sapPFHArrowScroll,
+.sap-phone .suiteUiPFHCounter,
+.sap-tablet .suiteUiPFHCounter,
+html[data-sap-ui-os=win8] .suiteUiPFHCounter {
+    top: 2.45rem;
+}
+
+.sapPFHArrowScrollLeft {
+    left: 0rem;
+    padding: 0.5rem 1rem;
+}
+
+.sapPFHArrowScrollRight {
+    right: 0rem;
+    padding: 0.5rem 1rem;
+}
+
+.suiteUiPFHCounter{
+    font-weight: normal;
+    top: 2.5rem;
+    position: absolute;
+}
+
+.suiteUiPFHCounterLeft{
+    left: 0.8rem;
+    padding: 0.6rem 1rem;
+}
+
+.suiteUiPFHCounterRight{
+    right: 0.8rem;
+    padding: 0.6rem 1rem;
+}
+
+.sap-phone .suiteUiPFHCounterLeft,
+.sap-tablet .suiteUiPFHCounterLeft{
+    left: 0.1rem;
+    padding: 0.6rem 0.5rem;
+}
+
+.sap-phone .suiteUiPFHCounterRight,
+.sap-tablet .suiteUiPFHCounterRight{
+    right: 0.1rem;
+    padding: 0.6rem 0.5rem;
+}
+
+.sap-phone .sapPFHArrowScrollLeft,
+.sap-tablet .sapPFHArrowScrollLeft {
+    left: 0rem;
+    padding: 0.5rem 0;
+}
+
+.sap-phone .sapPFHArrowScrollRight,
+.sap-tablet .sapPFHArrowScrollRight {
+    right: 0rem;
+    padding: 0.5rem 0;
+}
+
+.sapPFHNotScrollable > .sapPFHArrowScroll {
+    visibility: hidden;
+}
+
+.sapPFHNotScrollable > .suiteUiPFHCounter {
+    visibility: hidden;
+}
+
+.sapPFHScrollable.sapPFHNoScrollBack > .sapPFHArrowScrollLeft,
+.sapPFHScrollable.sapPFHNoScrollForward > .sapPFHArrowScrollRight,
+.sapPFHScrollable.sapPFHNoScrollBack > .suiteUiPFHCounterLeft,
+.sapPFHScrollable.sapPFHNoScrollForward > .suiteUiPFHCounterRight {
+    visibility: hidden;
+}
+
+.sapPFHArrowScroll:focus,
+.sapSuiteUiScrollContainerPF:focus {
+    outline: none;
+}

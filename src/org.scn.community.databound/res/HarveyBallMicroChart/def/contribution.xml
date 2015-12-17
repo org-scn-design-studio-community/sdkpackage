@@ -1,17 +1,18 @@
 
 <component
 	id="HarveyBallMicroChart"
-	title="Harvey Ball Micro Chart2.0"
+	title="Harvey Ball Micro Chart 2.0"
 	tooltip="Harvey Ball Micro Chart- Component for visualization of data on small areas."
 	icon="res/HarveyBallMicroChart/HarveyBallMicroChart.png"
 	handlerType="sapui5"
-	propertySheetPath="res/HarveyBallMicroChart/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/HarveyBallMicroChart/HarveyBallMicroChartLoader.js</jsInclude>
+	<requireJs modes="commons m">res/HarveyBallMicroChart/HarveyBallMicroChart</requireJs>
+
 	<cssInclude>res/HarveyBallMicroChart/HarveyBallMicroChart.css</cssInclude>
 	
 	

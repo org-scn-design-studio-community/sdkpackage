@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./ImageCarouselSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.ImageCarousel;
+var myComponentData = spec;
 
 ImageCarousel = {
 
@@ -133,9 +148,8 @@ ImageCarousel = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsimagecarousel){
-	myComponentData.instance = ImageCarousel;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = ImageCarousel;
+jQuery.sap.require("sap.ui.commons.Carousel");
+sap.ui.commons.Carousel.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

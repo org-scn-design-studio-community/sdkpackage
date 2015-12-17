@@ -57,7 +57,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * This control is used in UnifiedThingInspector to display the preview of the facet content.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./ValiInputSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"basics/os/validate/validate"
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.ValiInput;
+var myComponentData = spec;
 
 ValiInput = {
 
@@ -184,9 +199,8 @@ ValiInput = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsvaliinput){
-	myComponentData.instance = ValiInput;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = ValiInput;
+jQuery.sap.require("sap.ui.commons.TextField");
+sap.ui.commons.TextField.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

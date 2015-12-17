@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "Slider",
+		name: "basics.Slider",
+		requireName: "basicsslider",
+		fullComponentName: "org.scn.community.basics.Slider",
+		fullComponentPackage: "org.scn.community.basics/res/Slider",
+		script: "org.scn.community.basics/res/Slider/Slider",
+		scriptSpec: "org.scn.community.basics/res/Slider/SliderSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.Slider.spec = 
+	spec.spec = 
 {
   "DLiveChangeActive": {
     "opts": {
@@ -195,10 +206,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Slider.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Slider.specAbout = 
+	spec.specAbout = 
 {
   "description": "Slider",
   "icon": "Slider.png",
@@ -215,7 +226,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Slider.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -234,4 +245,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

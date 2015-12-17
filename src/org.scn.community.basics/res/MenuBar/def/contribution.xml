@@ -5,13 +5,14 @@
 	tooltip="Menu Bar"
 	icon="res/MenuBar/MenuBar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/MenuBar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/MenuBar/MenuBarLoader.js</jsInclude>
+	<requireJs modes="commons">res/MenuBar/MenuBar</requireJs>
+
 	<cssInclude>res/MenuBar/MenuBar.css</cssInclude>
 	
 	

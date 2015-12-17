@@ -5,13 +5,14 @@
 	tooltip="Notify - Leandro Cardoso"
 	icon="res/Notify/Notify.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Notify/NotifyLoader.js</jsInclude>
+	<requireJs modes="commons">res/Notify/Notify</requireJs>
+
 	<cssInclude>res/Notify/Notify.css</cssInclude>
 	
 	

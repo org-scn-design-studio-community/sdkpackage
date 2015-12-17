@@ -1,0 +1,22 @@
+{
+	"id": "FioriButton",
+	"title": "Fiori Button 2.0",
+	"tooltip": "Fiori Button 2.0",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.Button",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "42",
+	"height": "42"
+}

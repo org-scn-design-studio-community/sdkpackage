@@ -1,0 +1,268 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/TimelineItem.control */
+/* ============================================= */
+.sapSuiteUiCommonsTimelineItemUserPicture{
+  float: left;
+  padding-top: 0.3rem;
+  padding-right: 0.3rem;
+}
+
+.sapSuiteUiCommonsTimelineItemShellBody .sapMOH {
+margin: 0;
+padding: 0 0 0 0;
+}
+
+.sapSuiteUiCommonsTimelineItemShellBody .sapMOHTitle .sapMOHTitle {
+font-size: 1.2rem;
+}
+
+.sapSuiteUiCommonsTimelineItemShellBody .sapMOHNumber {
+font-size: 1.5rem;
+}
+
+
+.sapSuiteUiCommonsTimelineItem {
+	border-bottom: 0rem;
+	height: 7rem;
+	width: 100%;
+	-webkit-user-select: all;
+	-moz-user-select: auto;
+	-ms-user-select: auto;
+	user-select: none;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.sapSuiteUiCommonsTimelineItemShell{
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.sapSuiteUiCommonsTimelineItemShellUser{
+  font-family: @sapUiFontFamily;
+  font-size: @sapMFontMediumSize;
+  font-weight: normal;
+  color: @sapHCStandardFG;
+  line-height: 1.4rem;
+}
+
+.sapSuiteUiCommonsTimelineItemShellHdr{
+  font-family: @sapUiFontFamily;
+  font-size: @sapMFontMediumSize;
+  font-weight: normal;
+  color: @sapHCStandardFG;
+  line-height: 1.4rem;
+}
+
+.sapSuiteUiCommonsTimelineItemShellDateTime{
+  font-family: @sapUiFontFamily;
+  font-size: @sapMFontSmallSize;
+  font-weight: normal;
+  color: @sapHCStandardFG;
+  line-height: auto;
+}
+
+.sapSuiteUiCommonsTimelineItemShellBody{
+	padding: 0.5rem 0 0.2rem 0;
+	font-size: .9rem;
+}
+
+.sapSuiteUiCommonsTimelineItem .sapSuiteUiCommonsTimelineItemWrapper {
+	position: relative;
+}
+
+.sapSuiteUiCommonsTimelineItem .sapSuiteUiCommonsTimelineItemWrapper
+{
+	width: 100%;
+	height: 100%;
+}
+
+.sapSuiteUiCommonsTimelineItemBar
+{
+	position: absolute;
+	width: 0.125rem;
+	height: 7rem;
+	top: 2.1rem;
+	background-color: @sapHCHighlightBG;
+	left: 1.375rem;
+}
+
+
+.sap-desktop .sap-tablet .sapSuiteUiCommonsTimelineItem {
+/*	left: 50.35%;*/
+}
+
+.sapSuiteUiCommonsTimelineItemBar.sapSuiteUiCommonsTimelineItemBarBottom {
+    height: 0rem;
+    top: 0;
+}
+
+.sapSuiteUiCommonsTimelineItemDot
+{
+	position: absolute;
+	top: 16px;
+	width: 11px;
+	height: 11px;
+	border-radius: 11px;
+	background-color: #36a9e0;
+	left: 7px;
+}
+
+
+.sapSuiteUiCommonsTimelineItemWrapper .sapSuiteUiCommonsTimelineItemIcon
+    {
+	position: absolute;
+	font-size: 1.375rem;
+	color: @sapHCStandardFG;
+	top: 0rem;
+	left: 0.5rem;
+}
+.sapSuiteUiCommonsTimelineItemWrapper .sapSuiteUiCommonsTimelineItemNoIcon
+    {
+	position: absolute;
+	top: 1.12rem;
+	height: 0.5rem;
+	width: 0.5rem;
+	border-radius: 50%;
+	left: 1.15rem;
+	background-color: @sapHCHighlightBG;
+}
+
+.sapSuiteUiCommonsTimelineItemArrow {
+    position: relative;
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: @sapHCStandardBG ;
+    opacity:1;
+    -moz-opacity:1; 
+    -webkit-opacity:1;
+    border-bottom: 0.0625rem solid @sapHCStandardFG;
+    border-left: 0.0625rem solid @sapHCStandardFG;
+    -webkit-transform: translateX(0px) translateY(0px) rotate(45deg);
+    transform: translateX(0px) translateY(0px) rotate(45deg);
+    -moz-transform: translateX(0px) translateY(0px) rotate(45deg);
+    z-index: 1;
+}
+
+.sapSuiteUiCommonsTimelineItemBox {
+    position: absolute;
+    //width: 12rem;
+    min-height: 4rem;
+    background-color: @sapHCStandardBG ;
+    opacity:1;
+    -moz-opacity:1; 
+    -webkit-opacity:1;
+    height: auto;
+    border: 0.0625rem solid @sapHCStandardFG;
+    padding: 0 0 0 0;
+    font-family: @sapUiFontFamily;
+}
+
+.sapSuiteUiCommonsTimelineItemBubble {
+    position: relative;
+    width: 100%;;
+    //height: 100%;
+    left: -0.2rem;
+}
+
+.sapSuiteUiCommonsTimelineItemArrow {
+    position: absolute;
+    top: 1rem;
+    left: -1.2rem;
+}
+
+.sapSuiteUiCommonsTimelineItemBox {
+    position: absolute;
+    top: 0.2rem;
+	left: -0.8rem;
+	width: 100%; 
+}
+
+.sapSuiteUiCommonsTimelineItemBubbleSpacer {
+    position: relative;
+    width: ~"calc( 100% - 0.5rem)";
+    left: 3.875rem;
+    //top: 0px;
+}
+
+.sapSuiteUiCommonsTimelineItemBubbleSpacerRight,
+.sapSuiteUiCommonsTimelineItemBubbleSpacerLeft { /*box will render to the right of the timeline*/
+    .sapSuiteUiCommonsTimelineItemArrow {
+        -webkit-transform: translateX(0px) translateY(0px) rotate(45deg);
+        transform: translateX(0px) translateY(0px) rotate(45deg);
+        -moz-transform: translateX(0px) translateY(0px) rotate(45deg);
+    }
+}
+
+.sapSuiteUiCommonsTimelineItemDot.sapSuiteUiCommonsTimelineItemDotBottom {
+    //top: 18px;
+}
+
+.sapSuiteUiCommonsTimelineItemShell:focus{
+	border: 2px dotted @sapHCStandardFG;
+	outline: 1px dotted @sapHCStandardFG;
+}
+
+/* ============================================= */
+/* Horizontal stuff  */
+/* ============================================= */
+
+.sapSuiteUiCommonsTimelineItemWrapperV {
+	width: 18rem;
+	display: inline-block;
+	height: 5rem;
+	position: relative;
+	top: 40px;
+}
+ 
+.sapSuiteUiCommonsTimelineItemBarV {
+	position: absolute;
+	width: 16rem;
+	height: 0.125rem;
+	background-color: @sapHCHighlightBG;
+	top: -1.4rem;
+	left: 3.6rem;
+}
+
+.sapSuiteUiCommonsTimelineItemWrapperV .sapSuiteUiCommonsTimelineItemArrow {
+	position: absolute;
+	top: -3px;
+	left: 1rem;
+	border-left: 0.0625rem solid @sapHCStandardFG;
+	border-top: 0.0625rem solid @sapHCStandardFG;
+	border-bottom: 0rem;
+}
+
+.sapSuiteUiCommonsTimelineItemWrapperV .sapSuiteUiCommonsTimelineItemIcon {
+	position: absolute;
+	font-size: 1.375rem;
+	color: @sapHCStandardFG;
+	top: -2.1rem;
+	left: 2.1rem;
+}
+
+.sapSuiteUiCommonsTimelineItemWrapperV .sapSuiteUiCommonsTimelineItemNoIcon {
+	position: absolute;
+	top: -1.7rem;
+	left: 2.5rem;
+	height: 0.5rem;
+	width: 0.5rem;
+	border-radius: 50%;
+	background-color: @sapHCHighlightBG;
+}
+
+.sapSuiteUiCommonsTimelineItemBubbleSpacerV {
+	position: relative;
+	width: ~"calc( 100% - 1rem)";
+	left: 1.5rem;
+}
+
+.sapSuiteUiCommonsTimelineItemLiWrapperV {
+	display:inline-block;
+}

@@ -1,0 +1,1010 @@
+/* ============================================================ */
+/* CSS for control sap.suite.ui.commons/ProcessFlowNode.control */
+/* ============================================================ */
+
+/*-----------------------------------------------------------------*/
+/* font faces */
+/*-----------------------------------------------------------------*/
+@font-face {
+/* used for folded corner */
+  font-family: 'PFBusinessSuiteInAppSymbols';
+  src: url('fonts/PFBusinessSuiteInAppSymbols.eot');
+  src: url('fonts/PFBusinessSuiteInAppSymbols.eot?#iefix') format('embedded-opentype'),
+       url('fonts/PFBusinessSuiteInAppSymbols.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+/* node general settings */
+.sapSuiteUiCommonsProcessFlowNode0,
+.sapSuiteUiCommonsProcessFlowNode0 *,
+.sapSuiteUiCommonsProcessFlowNode1,
+.sapSuiteUiCommonsProcessFlowNode1 *,
+.sapSuiteUiCommonsProcessFlowFoldedCornerNode1,
+.sapSuiteUiCommonsProcessFlowFoldedCornerNode1 *,
+.sapSuiteUiCommonsProcessFlowNode2,
+.sapSuiteUiCommonsProcessFlowNode2 *,
+.sapSuiteUiCommonsProcessFlowNode3,
+.sapSuiteUiCommonsProcessFlowNode3 * {
+  clear: none;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  /* background-color: transparent; */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-transition: -webkit-transform 0ms;
+  -ms-touch-select: none;
+  touch-action: manipulation;
+  text-size-adjust: none;
+  -ms-text-autospace: none;
+  -ms-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+}
+
+/* ----- */
+/* node0 */
+/* ----- */
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel1 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 11rem;
+  min-width: 11rem;
+  max-width: 11rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel2 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 9rem;
+  min-width: 9rem;
+  max-width: 9rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel3 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 6.5rem;
+  min-width: 6.5rem;
+  max-width: 6.5rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel4 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin-bottom: 0.3125rem;
+  padding: 0rem;
+  width: 3rem;
+  min-width: 3rem;
+  max-width: 3rem;
+  height: 3.75rem;
+  min-height: 3.75rem;
+  max-height: 3.75rem;
+}
+
+/*IE doesn't support rem values for line-height but it's need by other browsers*/
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode0ZoomLevel4 {
+  line-height: 3.75rem;
+}
+
+/* ----- */
+/* node1 */
+/* ----- */
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel1,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel2,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel1 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel2 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel1 > .sapUiIcon:before,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel2 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  /* background-color: transparent; */
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  vertical-align: middle;
+  width: 1rem;
+  min-width: 1rem;
+  max-width: 1rem;
+  height: 1rem;
+  min-height: 1rem;
+  max-height: 1rem;
+  overflow: hidden;
+}
+
+/*IE doesn't support rem values for line-height but it's need by other browsers*/
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode1ZoomLevel1 > .sapUiIcon,
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode1ZoomLevel2 > .sapUiIcon,
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode1ZoomLevel1 > .sapUiIcon:before,
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode1ZoomLevel2 > .sapUiIcon:before {
+  line-height: 1rem;
+}
+
+/*Fix that substitute the line-height for IE, it's not needed for IE but it's for IE in WP. Anyway works fine in
+all IE versions*/
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsProcessFlowNode1ZoomLevel1 > .sapUiIcon,
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsProcessFlowNode1ZoomLevel2 > .sapUiIcon,
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsProcessFlowNode1ZoomLevel1 > .sapUiIcon:before,
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsProcessFlowNode1ZoomLevel2 > .sapUiIcon:before {
+  width: 1.25rem;
+  min-width: 1.25rem;
+  max-width: 1.25rem;
+  height: 1.28rem;
+  min-height: 1.28rem;
+  max-height: 1.28rem;
+  margin-left: -0.05rem;
+  margin-top: -0.04rem;
+}
+
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel3,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel4,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel3 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel4 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel3 > .sapUiIcon:before,
+.sapSuiteUiCommonsProcessFlowNode1ZoomLevel4 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  /* background-color: transparent; */
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  vertical-align: middle;
+  width: 0.75rem;
+  min-width: 0.75rem;
+  max-width: 0.75rem;
+  height: 0.75rem;
+  min-height: 0.75rem;
+  max-height: 0.75rem;
+  overflow: hidden;
+}
+
+/*IE doesn't support rem values for line-height but it's need by other browsers*/
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode1ZoomLevel3 > .sapUiIcon,
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode1ZoomLevel4 > .sapUiIcon,
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode1ZoomLevel3 > .sapUiIcon:before,
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode1ZoomLevel4 > .sapUiIcon:before {
+  line-height: 0.75rem;
+}
+
+/*Fix that substitute the line-height for IE, it's not needed for IE but it's for IE in WP. Anyway works fine in
+all IE versions*/
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsProcessFlowNode1ZoomLevel3 > .sapUiIcon,
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsProcessFlowNode1ZoomLevel4 > .sapUiIcon,
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsProcessFlowNode1ZoomLevel3 > .sapUiIcon:before,
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsProcessFlowNode1ZoomLevel4 > .sapUiIcon:before {
+  width: 0.78rem;
+  min-width: 0.78rem;
+  max-width: 0.78rem;
+  height: 0.81rem;
+  min-height: 0.81rem;
+  max-height: 0.81rem;
+  margin-left: -0.015rem;
+  margin-top: -0.03rem;
+}
+
+/* ----- */
+/* node2 */
+/* ----- */
+.sapSuiteUiCommonsProcessFlowNode2ZoomLevel1 {
+  clear: none;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 10rem;
+  min-width: 10rem;
+  max-width: 10rem;
+  height: 1rem;
+  min-height: 1rem;
+  max-height: 1rem;
+  line-height: 1rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode2ZoomLevel2 {
+  clear: none;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 8rem;
+  min-width: 8rem;
+  max-width: 8rem;
+  height: 1rem;
+  min-height: 1rem;
+  max-height: 1rem;
+  line-height: 1rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode2ZoomLevel3 {
+  clear: none;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 5.75rem;
+  min-width: 5.75rem;
+  max-width: 5.75rem;
+  height: 0.75rem;
+  min-height: 0.75rem;
+  max-height: 0.75rem;
+  line-height: 0.75rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode2ZoomLevel4 {
+  clear: none;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 2.25rem;
+  min-width: 2.25rem;
+  max-width: 2.25rem;
+  height: 0.75rem;
+  min-height: 0.75rem;
+  max-height: 0.75rem;
+  line-height: 0.75rem;
+  overflow: hidden;
+}
+
+/* ----- */
+/* node3 */
+/* ----- */
+.sapSuiteUiCommonsProcessFlowNode3ZoomLevel1 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem 0.9375rem 0.9375rem 0.9375rem;
+  width: 11rem;
+  min-width: 11rem;
+  max-width: 11rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3ZoomLevel2 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem 0.9375rem 0.9375rem 0.9375rem;
+  width: 9rem;
+  min-width: 9rem;
+  max-width: 9rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3ZoomLevel3 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem 0.6875rem 0.6875rem 0.6875rem;
+  width: 6.5rem;
+  min-width: 6.5rem;
+  max-width: 6.5rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3ZoomLevel4 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 3rem;
+  min-width: 3rem;
+  max-width: 3rem;
+  height: 3rem;
+  min-height: 3rem;
+  max-height: 3rem;
+  line-height: 3rem;
+  overflow: hidden;
+}
+
+/*---------------*/
+/* folded corner */
+/*---------------*/
+.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel1,
+.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel2 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 1rem;
+  min-width: 1rem;
+  max-width: 1rem;
+  height: 1rem;
+  min-height: 1rem;
+  max-height: 1rem;
+  line-height: 1rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel3,
+.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel4 {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 0.75rem;
+  min-width: 0.75rem;
+  max-width: 0.75rem;
+  height: 0.75rem;
+  min-height: 0.75rem;
+  max-height: 0.75rem;
+  line-height: 0.75rem;
+  overflow: hidden;
+}
+
+/* Title */
+.sapSuiteUiCommonsProcessFlowNode3Title,
+.sapSuiteUiCommonsProcessFlowNode3Title > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: top;
+  font-family: @sapUiFontFamily;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  overflow: hidden;
+}
+
+.sapSuiteUiCommonsProcessFlowNode3TitleClickable:hover,
+.sapSuiteUiCommonsProcessFlowNode3TitleClickable:hover > .sapMTextMaxLine {
+  cursor: pointer;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 {
+  clear: both;
+  float: left;
+  display: table-row;
+  position: relative;
+  text-align: left;
+  vertical-align: top;
+  margin: 0rem;
+  margin-bottom: 0.5rem;
+  padding: 0rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: top;
+  font-size: sapMFontLargeSize;
+  width: 8.75rem;
+  min-width: 8.75rem;
+  max-width: 8.75rem;
+  height: 3.5625rem;
+  min-height: 3.5625rem;
+  max-height: 3.5625rem;
+  line-height: 1.1875rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 {
+  clear: both;
+  float: left;
+  display: table-row;
+  position: relative;
+  text-align: left;
+  vertical-align: top;
+  margin: 0rem;
+  margin-bottom: 0.5rem;
+  padding: 0rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: top;
+  width: 6.75rem;
+  min-width: 6.75rem;
+  max-width: 6.75rem;
+  height: 3.1875rem;
+  min-height: 3.1875rem;
+  max-height: 3.1875rem;
+  line-height: 1.0625rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 {
+  clear: both;
+  float: left;
+  display: table-row;
+  position: relative;
+  margin: 0rem;
+  margin-bottom: 0.25rem;
+  padding: 0rem;
+  text-align: center;
+  vertical-align: top;
+  width: 4.75rem;
+  max-width: 4.75rem;
+  height: 2.125rem;
+  min-height: 2.125rem;
+  max-height: 2.125rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  text-align: center;
+  vertical-align: top;
+  width: 4.75rem;
+  max-width: 4.75rem;
+  height: 2.125rem;
+  min-height: 2.125rem;
+  max-height: 2.125rem;
+  line-height: 1.0625rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel4 {
+  clear: both;
+  float: left;
+  display: none;
+  position: relative;
+  width: 0rem;
+  min-width: 0rem;
+  max-width: 0rem;
+  height: 0rem;
+  min-height: 0rem;
+  max-height: 0rem;
+  line-height: 0rem;
+  overflow: hidden;
+}
+
+/* State area */
+.sapSuiteUiCommonsProcessFlowNode3State {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateZoomLevel1 {
+  clear: both;
+  float: left;
+  display: table;
+  position: relative;
+  margin: 0rem;
+  margin-bottom: 0.5rem;
+  padding: 0rem;
+  width: 8.75rem;
+  min-width: 8.75rem;
+  max-width: 8.75rem;
+  height: 2.5rem;
+  min-height: 2.5rem;
+  max-height: 2.5rem;
+  line-height: 2.5rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateZoomLevel2 {
+  clear: both;
+  float: left;
+  display: table;
+  position: relative;
+  margin: 0rem;
+  margin-bottom: 0.5rem;
+  padding: 0rem;
+  width: 6.75rem;
+  min-width: 6.75rem;
+  max-width: 6.75rem;
+  height: 2rem;
+  min-height: 2rem;
+  max-height: 2rem;
+  line-height: 2rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateZoomLevel3 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 4.75rem;
+  min-width: 4.75rem;
+  max-width: 4.75rem;
+  height: 4.125rem;
+  min-height: 4.125rem;
+  max-height: 4.125rem;
+  line-height: 4.125rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateZoomLevel4 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  width: 2.875rem;
+  min-width: 2.875rem;
+  max-width: 2.875rem;
+  height: 2.875rem;
+  min-height: 2.875rem;
+  max-height: 2.875rem;
+  line-height: 2.875rem;
+  overflow: hidden;
+}
+
+/* State icon */
+.sapSuiteUiCommonsProcessFlowNode3StateIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIcon > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIcon > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconLeft {
+  text-align: left;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconRight {
+  text-align: right;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconCenter {
+  text-align: center;
+}
+
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel1 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: middle;
+  width: 2rem;
+  min-width: 2rem;
+  max-width: 2rem;
+  height: 2.5rem;
+  min-height: 2.5rem;
+  max-height: 2.5rem;
+  line-height: 2.5rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel1 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel1 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: middle;
+  font-size: 1.250rem; /*Maybe will be replaced by less if designers are done with less refactoring at all*/
+  width: 2rem;
+  min-width: 2rem;
+  max-width: 2rem;
+  height: 2.125rem;
+  min-height: 2.125rem;
+  max-height: 2.125rem;
+  overflow: hidden;
+}
+
+/*IE doesn't support rem values for line-height but it's need by other browsers*/
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel1 > .sapUiIcon,
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel1 > .sapUiIcon:before {
+  line-height: 2.125rem;
+}
+
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel2 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: middle;
+  width: 1.5rem;
+  min-width: 1.5rem;
+  max-width: 1.5rem;
+  height: 2rem;
+  min-height: 2rem;
+  max-height: 2rem;
+  line-height: 2rem;
+  overflow: hidden;
+}
+
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel2 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel2 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: middle;
+  width: 1.5rem;
+  min-width: 1.5rem;
+  max-width: 1.5rem;
+  height: 2rem;
+  min-height: 2rem;
+  max-height: 2rem;
+  overflow: hidden;
+}
+
+/*IE doesn't support rem values for line-height but it's need by other browsers*/
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel2 > .sapUiIcon,
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel2 > .sapUiIcon:before {
+  line-height: 2rem;
+}
+
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel3 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: middle;
+  width: 4.75rem;
+  min-width: 4.75rem;
+  max-width: 4.75rem;
+  height: 2rem;
+  min-height: 2rem;
+  max-height: 2rem;
+  line-height: 2rem;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel3 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel3 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: middle;
+  font-size: 1.250rem; /*Maybe will be replaced by less if designers are done with less refactoring at all*/
+  width: 4.75rem;
+  min-width: 4.75rem;
+  max-width: 4.75rem;
+  height: 2rem;
+  min-height: 2rem;
+  max-height: 2rem;
+  overflow: hidden;
+}
+
+/*IE doesn't support rem values for line-height but it's need by other browsers*/
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel3 > .sapUiIcon,
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel3 > .sapUiIcon:before {
+  line-height: 2rem
+}
+
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel4 {
+  clear: both;
+  float: left;
+  display: table-cell;
+  position: absolute;
+  top: -0.125rem;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: middle;
+  width: 2.875rem;
+  min-width: 2.875rem;
+  max-width: 2.875rem;
+  height: 2.875rem;
+  min-height: 2.875rem;
+  max-height: 2.875rem;
+  line-height: 2.875rem;
+  overflow: hidden;
+}
+
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel4 > .sapUiIcon,
+.sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel4 > .sapUiIcon:before {
+  clear: both;
+  float: left;
+  display: block;
+  position: absolute;
+  top: -0.125rem;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: middle;
+  font-size: 1.375rem; /*Maybe will be replaced by less if designers are done with less refactoring at all*/
+  width: 2.875rem;
+  min-width: 2.875rem;
+  max-width: 2.875rem;
+  height: 2.875rem;
+  min-height: 2.875rem;
+  max-height: 2.875rem;
+  overflow: hidden;
+}
+
+/*IE doesn't support rem values for line-height but it's need by other browsers*/
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel4 > .sapUiIcon,
+html:not([data-sap-ui-browser^="ie"]) .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel4 > .sapUiIcon:before {
+  line-height: 2.875rem;
+}
+
+/* State text */
+.sapSuiteUiCommonsProcessFlowNode3StateText,
+.sapSuiteUiCommonsProcessFlowNode3StateText > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3StateText > .sapMTextMaxWidth {
+  clear: both;
+  float: none;
+  display: block;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: middle;
+  font-family: @sapUiFontFamily;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 {
+  clear: both;
+  float: none;
+  display: table-cell;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+  margin: 0rem;
+  padding: 0rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: middle;
+  width: 6.375rem;
+  min-width: 6.375rem;
+  max-width: 6.375rem;
+  max-height: 2.125rem;
+  line-height: 1.0625rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 {
+  clear: both;
+  float: none;
+  display: table-cell;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+  margin: 0rem;
+  padding: 0rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  vertical-align: middle;
+  width: 4.875rem;
+  min-width: 4.875rem;
+  max-width: 4.875rem;
+  max-height: 2rem;
+  line-height: 0.9375rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 {
+  clear: both;
+  float: none;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0rem;
+  padding: 0rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  margin: 0rem;
+  padding: 0rem;
+  text-align: center;
+  vertical-align: middle;
+  width: 4.5rem;
+  max-width: 4.5rem;
+  height: 1.875rem;
+  min-height: 1.875rem;
+  max-height: 1.875rem;
+  line-height: 0.9375rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel4 {
+  clear: both;
+  float: none;
+  display: none;
+  position: relative;
+  width: 0rem;
+  min-width: 0rem;
+  max-width: 0rem;
+  height: 0rem;
+  min-height: 0rem;
+  max-height: 0rem;
+  line-height: 0rem;
+  overflow: hidden;
+}
+
+/* Text area */
+.sapSuiteUiCommonsProcessFlowNode3Text,
+.sapSuiteUiCommonsProcessFlowNode3Text > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3Text > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3Text > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+  padding: 0rem;
+  vertical-align: top;
+  font-family: @sapUiFontFamily;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 {
+  clear: both;
+  float: left;
+  display: table-row;
+  position: relative;
+  text-align: left;
+  vertical-align: top;
+  padding: 0rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  padding: 0rem;
+  vertical-align: top;
+  width: 8.75rem;
+  min-width: 8.75rem;
+  /*max-width: 2.125rem;*/
+  max-width: 8.75rem;
+  height: 2.125rem;
+  min-height: 2.125rem;
+  max-height: 2.125rem;
+  line-height: 1.0625rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 {
+  clear: both;
+  float: left;
+  display: table-row;
+  position: relative;
+  text-align: left;
+  vertical-align: top;
+  padding: 0rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 > .sapMTextMaxWidth {
+  clear: both;
+  float: left;
+  position: relative;
+  padding: 0rem;
+  vertical-align: top;
+  width: 6.75rem;
+  min-width: 6.75rem;
+  max-width: 6.75rem;
+  height: 1.875rem;
+  min-height: 1.875rem;
+  max-height: 1.875rem;
+  line-height: 0.9375rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel3,
+.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel4 {
+  clear: both;
+  float: left;
+  display: none;
+  position: relative;
+  width: 0rem;
+  min-width: 0rem;
+  max-width: 0rem;
+  height: 0rem;
+  min-height: 0rem;
+  max-height: 0rem;
+  line-height: 0rem;
+  overflow: hidden;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextWithGapZoomLevel1 {
+  padding-bottom: 0.5rem;
+}
+.sapSuiteUiCommonsProcessFlowNode3TextWithGapZoomLevel2 {
+  padding-bottom: 0.25rem;
+}
+
+/* special effects */
+.sapSuiteUiCommonsProcessFlowFoldedCornerNodeHover {
+  cursor: pointer;
+}
+.sapSuiteUiCommonsProcessFlowFoldedCornerNodeIconHover {
+  cursor: pointer;
+}
+.sapSuiteUiCommonsProcessFlowNodeHover {
+  cursor: pointer;
+}
+
+.sapSuiteUiCommonsProcessFlowFoldedCornerNodeActive {
+  cursor: pointer;
+}
+.sapSuiteUiCommonsProcessFlowNodeActive {
+  cursor: pointer;
+}

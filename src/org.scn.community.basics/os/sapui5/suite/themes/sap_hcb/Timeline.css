@@ -1,0 +1,131 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/Timeline.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsTimeline{
+    min-width: 20rem;
+	height: 100%;
+}
+.sapSuiteUiCommonsTimelineContents{
+	width: 100%;
+	padding: 1rem 0 0 0;
+	overflow: hidden;
+	position: relative; 
+	z-index: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.sapSuiteUiCommonsTimelineScroll {
+	display: inline-block; 
+	//background-color: white;
+	//opacity:0.8;
+    //-moz-opacity:0.8; 
+    //-webkit-opacity:0.8;
+}
+
+.sapSuiteUiCommonsTimelineScrollV .sapSuiteUiCommonsTimelineScroll {
+	display: block; 
+	width: ~"calc(100% - 3rem)";
+}
+
+.sapSuiteUiCommonsTimelineGetMoreBar{
+	width: 0.0625rem;
+	height: 3.1rem;
+	margin-left: 1.375rem;
+	margin-top: -0.1rem;
+	background: linear-gradient(@sapHCHighlightBG, transparent);
+	background: -webkit-linear-gradient(@sapHCHighlightBG, transparent);
+	background: -o-linear-gradient(@sapHCHighlightBG, transparent);  
+    background: -moz-linear-gradient(@sapHCHighlightBG, transparent);  
+    background: -ms-linear-gradient(@sapHCHighlightBG, transparent);
+}
+
+.sapSuiteUiCommonsTimelineGetMoreBox{
+	background: transperent;
+    width: 100%;
+    height: 3rem;
+    margin-left: 1.5rem;
+	margin-right: -2.5rem;
+}
+
+.sapSuiteUiCommonsTimelineGetMoreBox .sapMBtn .sapMBtnInner{
+	border: 0.0625rem solid @sapHCStandardFG;
+    padding: 0 0 0 0;
+}
+
+
+/* ============================================= */
+/* Horizontal stuff */
+/* ============================================= */
+
+.sapSuiteUiCommonsTimelineH{
+    height: 100%;
+    width: 100%;
+}
+.sapSuiteUiCommonsTimelineContentsH{
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+    overflow-x: auto;
+    overflow-y: auto;
+	position: relative; 
+	display: inline-block; 
+}
+.sapSuiteUiCommonsTimelineScrollH{
+	min-width: 25rem;
+	height: ~"calc(100% - 3rem)";
+	display: block;
+    position: relative;
+}
+
+.sapSuiteUiCommonsTimelineGetMoreH {
+	width: 10rem;
+	display: inline-block;
+	height: 5rem;
+	position: relative;
+	top: 2.5rem;
+	left: 0.5rem;
+	padding: 0px 0px;
+}
+
+.sapSuiteUiCommonsTimelineGetMoreBarH{
+	position: absolute;
+	width: 9rem;
+	height: 0.0625rem;
+	top: -1.4rem;
+    left: 1rem;
+    background: linear-gradient(left, @sapHCHighlightBG, transparent);
+    background: -webkit-linear-gradient(left, @sapHCHighlightBG, transparent);
+    background: -o-linear-gradient(left, @sapHCHighlightBG, transparent);  
+    background: -moz-linear-gradient(left, @sapHCHighlightBG, transparent);  
+    background: -ms-linear-gradient(left, @sapHCHighlightBG, transparent);   
+}
+
+.sapSuiteUiCommonsTimelineGetMoreBoxH{
+	position: absolute;
+	width: 10rem;
+    height: 3rem;
+    //top: 2rem;
+}
+
+.sapSuiteUiCommonsTimelineGetMoreBoxH .sapMBtn .sapMBtnInner{
+	border: 0.0625rem solid @sapHCStandardFG;
+    padding: 0 0 0 0;
+}
+
+.sapSuiteUiCommonsTimelineItemUlWrapperV {
+	display:inline-block;
+	padding-left:0px;
+}
+
+.sapSuiteUiCommonsTimelineItemUlWrapper{
+	padding-left:0px;
+	margin-bottom:0px;
+}
+
+.sapSuiteUiCommonsTimelineGetMoreUlWrapper{
+	padding-left:0px;
+	margin-top:0px;
+}

@@ -1,0 +1,32 @@
+
+/* ============================================================== */
+/* CSS for sap_hcb theme for sap.suite.ui.commons/KpiTile.control */
+/* ============================================================== */
+
+.sapSuiteKTileStatusGood {
+    color: @sapHCPositive;
+}
+
+.sapSuiteKTileStatusNeutral {
+    color: @sapHCNeutral;
+}
+
+.sapSuiteKTileStatusCritical {
+    color: @sapHCCritical;
+}
+
+.sapSuiteKTileStatusBad {
+    color: @sapHCNegative;
+}
+
+.sapSuiteKTileValueSmallText {
+    font-size: @sapMFontLargeSize;
+}
+
+.sapSuiteKTileScale {
+    font-size: @sapMFontMediumSize;
+}
+
+.sapSuiteKTileDesc{
+    font-size: @sapMFontSmallSize;
+}

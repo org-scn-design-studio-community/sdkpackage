@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "BasicBusinessCard",
+		name: "basics.BasicBusinessCard",
+		requireName: "basicsbasicbusinesscard",
+		fullComponentName: "org.scn.community.basics.BasicBusinessCard",
+		fullComponentPackage: "org.scn.community.basics/res/BasicBusinessCard",
+		script: "org.scn.community.basics/res/BasicBusinessCard/BasicBusinessCard",
+		scriptSpec: "org.scn.community.basics/res/BasicBusinessCard/BasicBusinessCardSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.BasicBusinessCard.spec = 
+	spec.spec = 
 {
   "image": {
     "opts": {
@@ -85,10 +96,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.BasicBusinessCard.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.BasicBusinessCard.specAbout = 
+	spec.specAbout = 
 {
   "description": "Basic Business Card",
   "icon": "BasicBusinessCard.png",
@@ -105,7 +116,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.BasicBusinessCard.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -114,7 +125,7 @@
   "height": "100",
   "id": "BasicBusinessCard",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -124,4 +135,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

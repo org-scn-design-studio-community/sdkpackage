@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "FacetSelector",
+		name: "databound.FacetSelector",
+		requireName: "databoundfacetselector",
+		fullComponentName: "org.scn.community.databound.FacetSelector",
+		fullComponentPackage: "org.scn.community.databound/res/FacetSelector",
+		script: "org.scn.community.databound/res/FacetSelector/FacetSelector",
+		scriptSpec: "org.scn.community.databound/res/FacetSelector/FacetSelectorSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.databound.FacetSelector.spec = 
+	spec.spec = 
 {
   "DClearOthers": {
     "opts": {
@@ -306,10 +317,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.databound.FacetSelector.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.databound.FacetSelector.specAbout = 
+	spec.specAbout = 
 {
   "description": "Facet Selector - A simple selector which is using the facet techniques",
   "icon": "FacetSelector.png",
@@ -326,7 +337,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.FacetSelector.specComp = 
+	spec.specComp = 
 {
   "databound": true,
   "extension": "DataComponent",
@@ -335,7 +346,7 @@
   "height": "400",
   "id": "FacetSelector",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -359,4 +370,5 @@
   "width": "800"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

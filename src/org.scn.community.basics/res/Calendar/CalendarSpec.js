@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "Calendar",
+		name: "basics.Calendar",
+		requireName: "basicscalendar",
+		fullComponentName: "org.scn.community.basics.Calendar",
+		fullComponentPackage: "org.scn.community.basics/res/Calendar",
+		script: "org.scn.community.basics/res/Calendar/Calendar",
+		scriptSpec: "org.scn.community.basics/res/Calendar/CalendarSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.Calendar.spec = 
+	spec.spec = 
 {
   "DCurrentValue": {
     "opts": {
@@ -236,10 +247,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Calendar.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Calendar.specAbout = 
+	spec.specAbout = 
 {
   "description": "Calendar",
   "icon": "Calendar.png",
@@ -256,7 +267,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Calendar.specComp = 
+	spec.specComp = 
 {
   "databound": true,
   "extension": "Component",
@@ -285,4 +296,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

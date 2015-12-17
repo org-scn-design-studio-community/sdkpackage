@@ -1,0 +1,19 @@
+{
+	"title": "PDF Print 2.0",
+	"description": "PDF Print 2.0",
+	"icon": "PdfPrint.png",
+	"topics": 
+	[
+		{
+			"title" : "PDF Print",
+			"content" : "PDF Print"
+		},
+		{
+			"title" : "Formats",
+			"content" : "<ul><li>a0 [2383.94 x 3370.39 pts ]</li><li>a1 [1683.78 x 2383.94 pts ]</li><li>a2 [1190.55 x 1683.78 pts ]</li><li>a3 [ 841.89 x 1190.55 pts ]</li><li>a4 [ 595.28 x 841.89 pts ]</li><li>a5 [ 419.53 x 595.28 pts ]</li><li>a6 [ 297.64 x 419.53 pts ]</li><li>a7 [ 209.76 x 297.64 pts ]</li><li>a8 [ 147.40 x 209.76 pts ]</li><li>a9 [ 104.88 x 147.40 pts ]</li><li>a10 [ 73.70 x 104.88 pts ]</li><li>b0 [2834.65 x 4008.19 pts ]</li><li>b1 [2004.09 x 2834.65 pts ]</li><li>b2 [1417.32 x 2004.09 pts ]</li><li>b3 [1000.63 x 1417.32 pts ]</li><li>b4 [ 708.66 x 1000.63 pts ]</li><li>b5 [ 498.90 x 708.66 pts ]</li><li>b6 [ 354.33 x 498.90 pts ]</li><li>b7 [ 249.45 x 354.33 pts ]</li><li>b8 [ 175.75 x 249.45 pts ]</li><li>b9 [ 124.72 x 175.75 pts ]</li><li>b10 [ 87.87 x 124.72 pts ]</li><li>c0 [2599.37 x 3676.54 pts ]</li><li>c1 [1836.85 x 2599.37 pts ]</li><li>c2 [1298.27 x 1836.85 pts ]</li><li>c3 [ 918.43 x 1298.27 pts ]</li><li>c4 [ 649.13 x 918.43 pts ]</li><li>c5 [ 459.21 x 649.13 pts ]</li><li>c6 [ 323.15 x 459.21 pts ]</li><li>c7 [ 229.61 x 323.15 pts ]</li><li>c8 [ 161.57 x 229.61 pts ]</li><li>c9 [ 113.39 x 161.57 pts ]</li><li>c10 [ 79.37 x 113.39 pts ]</li><li>dl [ 311.81 x 623.62 pts ]</li><li>letter [612 x 792 pts ]</li><li>government-letter [576 x 756 pts ]</li><li>legal [612 x 1008 pts ]</li><li>junior-legal [576 x 360 pts ]</li><li>ledger [1224 x 792 pts ]</li><li>tabloid [792 x 1224 pts ]</li><li>credit-card [153 x 243 pts ]</li></ul></p>"
+		},		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

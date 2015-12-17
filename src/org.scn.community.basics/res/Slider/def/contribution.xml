@@ -5,13 +5,14 @@
 	tooltip="Slider"
 	icon="res/Slider/Slider.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Slider/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Slider/SliderLoader.js</jsInclude>
+	<requireJs modes="commons">res/Slider/Slider</requireJs>
+
 	<cssInclude>res/Slider/Slider.css</cssInclude>
 	
 	

@@ -53,7 +53,7 @@ jQuery.sap.require("sap.m.ActionSheet");
  * @class
  * This control contains one or more sap.m.Button controls or sap.ui.commons.Link controls. The LinkActionSheet control is closed if the user chooses one of the buttons or links. It looks similar to sap.m.Dialog in iPhone and Android, and to sap.m.Popover in iPad.
  * @extends sap.m.ActionSheet
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

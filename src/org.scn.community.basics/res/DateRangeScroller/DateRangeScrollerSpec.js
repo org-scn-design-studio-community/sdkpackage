@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "DateRangeScroller",
+		name: "basics.DateRangeScroller",
+		requireName: "basicsdaterangescroller",
+		fullComponentName: "org.scn.community.basics.DateRangeScroller",
+		fullComponentPackage: "org.scn.community.basics/res/DateRangeScroller",
+		script: "org.scn.community.basics/res/DateRangeScroller/DateRangeScroller",
+		scriptSpec: "org.scn.community.basics/res/DateRangeScroller/DateRangeScrollerSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.DateRangeScroller.spec = 
+	spec.spec = 
 {
   "DDate": {
     "opts": {
@@ -255,10 +266,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.DateRangeScroller.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.DateRangeScroller.specAbout = 
+	spec.specAbout = 
 {
   "description": "Date Range Scroller",
   "icon": "DateRangeScroller.png",
@@ -275,7 +286,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.DateRangeScroller.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -304,4 +315,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

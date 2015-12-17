@@ -1,0 +1,24 @@
+/* =========================================================================== */
+/* CSS for sap_hcb theme of sap.suite.ui.commons/UnifiedThingInspector.control */
+/* =========================================================================== */
+.sap-desktop .sapSuiteUti .sapMBar.sapMPageHeader {
+	background: @sapHCStandardBG;
+}
+
+.sapSuiteUti .sapMOH.sapMOHC {
+	background-color: transparent;
+	border-bottom: 0;
+}
+
+.sapSuiteUti .sapMOHC .sapMOHTitle>.sapMText {
+	line-height: 1.313rem;
+	font-size: @sapMFontLargeSize;
+}
+
+/* makes black background */
+.sap-desktop .sapSuiteUti .sapMBar.sapMPageHeader {
+	background: @sapHCStandardBG;
+	border-top: 1px solid @sapHCStandardFG;
+	border-bottom: 1px solid @sapHCStandardFG;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=black, endColorstr=black, GradientType=0);
+}

@@ -59,7 +59,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * The default-action button control represents a simple push button. It is used for initiating actions, such as save or print. It can contain some text, an icon, or both; the order of the two can be configured. The action initiated by this button is considered to be the default action for the control, and it must be one of the selections defined in the Menu Button menu.
  * The Menu Button control is a button that opens a menu upon user's click. MenuButton is a composition of the Menu control and the Button control and thus inheriting all features. When a menu item is selected by the user, MenuButton throws an event called itemSelected. The event transfers the itemId of the selected item. As an alternative, the button press event can be used which has a similar behavior.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

@@ -1,0 +1,23 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/NoteTaker.control */
+/* HCB theme */
+/* ============================================= */
+
+.sapSuiteUiCommonsNoteTaker{
+  border: 1px solid white; 
+}
+
+.sapSuiteUiCommonsNoteTaker .sapSuiteUiCommonsNoteTakerFilterPane {
+    background-color: black;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+.sapSuiteUiCommonsNoteTaker>.sapSuiteUiCommonsNoteTakerFilterPane .sapSuiteUiCommonsNoteTakerFilterButtonSelected {
+	background-color: white;
+}
+
+.sapUiCrslHorizontal .sapUiCrslCnt {
+	top: -4px;
+}

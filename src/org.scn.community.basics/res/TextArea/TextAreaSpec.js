@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "TextArea",
+		name: "basics.TextArea",
+		requireName: "basicstextarea",
+		fullComponentName: "org.scn.community.basics.TextArea",
+		fullComponentPackage: "org.scn.community.basics/res/TextArea",
+		script: "org.scn.community.basics/res/TextArea/TextArea",
+		scriptSpec: "org.scn.community.basics/res/TextArea/TextAreaSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.TextArea.spec = 
+	spec.spec = 
 {
   "editable": {
     "opts": {
@@ -101,10 +112,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.TextArea.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.TextArea.specAbout = 
+	spec.specAbout = 
 {
   "description": "Text Area",
   "icon": "TextArea.png",
@@ -121,7 +132,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.TextArea.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -140,4 +151,5 @@
   "width": "230"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

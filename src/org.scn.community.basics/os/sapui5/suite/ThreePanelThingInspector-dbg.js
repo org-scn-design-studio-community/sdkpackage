@@ -55,7 +55,7 @@ jQuery.sap.require("sap.ui.ux3.ThingInspector");
  * @class
  * This control extends the sap.ui.ux3.ThingInspector control. It displays the sap.suite.ui.commons.ThreePanelThingViewer control in the sap.ui.ux3.Overlay control.
  * @extends sap.ui.ux3.ThingInspector
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

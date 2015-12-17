@@ -1,14 +1,13 @@
 
 <component
 	id="ClientInformation"
-	title="Client Information"
+	title="Client Information 0.X"
 	tooltip="Returns on first roundtrip some information from web client (browser)"
 	icon="res/ClientInformation/ClientInformation.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ClientInformation/ClientInformation.js</jsInclude>
 
 	<property
@@ -93,12 +92,12 @@
 		group="Events" />
 		
 	<initialization>
-		<defaultValue property="WIDTH">auto</defaultValue>
-		<defaultValue property="HEIGHT">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">600</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
-		<defaultValue property="RIGHT_MARGIN">0</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 
 		<defaultValue property="ownHeight">-1</defaultValue>
 		<defaultValue property="ownWwidth">-1</defaultValue>

@@ -3,12 +3,13 @@
 	"title": "Kpi Tile 2.0",
 	"tooltip": "Kpi Tile - Custom KPI Visualization",
 	"handlerType": "sapui5",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityUnified",
 	"package": "basics",
 	"extension": "Component",
 	"databound": false,
 	"dataType": "-",
+	"modes":"commons m",
 
 	"require": 
 	[

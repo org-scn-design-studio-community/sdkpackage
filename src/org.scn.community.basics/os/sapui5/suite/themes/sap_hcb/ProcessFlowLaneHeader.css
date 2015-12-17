@@ -1,0 +1,85 @@
+/* ====================================================================================== */
+/* CSS for control sap.suite.ui.commons/ProcessFlowLaneHeader.control (HCB theme)         */
+/* ====================================================================================== */
+
+.suiteUiProcessFlowLaneHeaderText {
+  color: @sapHCStandardFG;
+  font-family: @sapUiFontFamily;
+  font-size: @sapMFontSmallSize;
+}
+
+.suiteUiProcessFlowLaneHeaderDonutSvg {
+  color: @sapHCStandardBG;
+}
+
+.suiteUiProcessFlowLaneHeaderIconContainer {
+  color: @sapHCStandardBG;
+}
+
+.suiteUiProcessFlowLaneHeaderHorizontalLine {
+  background-color: @sapHCStandardFG;
+}
+
+.suiteUiProcessFlowLaneHeaderStartEndSymbolContainer {
+  border: none;
+}
+
+.suiteUiProcessFlowLaneHeaderStartEndSymbol {
+  background-color: @sapHCStandardFG;
+}
+
+.suiteUiProcessFlowLaneHeaderProcessSymbolContainer {
+  border: none;
+  color: @sapHCStandardBG;
+}
+
+.suiteUiProcessFlowLaneHeaderProcessSymbol {
+  color: @sapHCStandardFG;
+  font-size: @sapMFontHeader5Size;
+}
+
+.suiteUiProcessFlowLaneHeaderProcessSymbolIcon,
+.suiteUiProcessFlowLaneHeaderProcessSymbolIcon > .sapUiIcon,
+.suiteUiProcessFlowLaneHeaderProcessSymbolIcon > .sapUiIcon:before {
+  color: @sapHCStandardFG;
+}
+.suiteUiCommonsProcessFlowHeaderIconFill {
+  fill: @sapHCStandardBG;
+  stroke: @sapHCStandardFG;
+}
+
+.suiteUiCommonsProcessFlowHeaderPositiveColor {
+  fill: @sapHCPositive;
+}
+
+.suiteUiCommonsProcessFlowHeaderNegativeColor {
+  fill: @sapHCNegative;
+}
+
+.suiteUiCommonsProcessFlowHeaderNeutralColor {
+  fill: @sapHCStandardBG;
+}
+
+.suiteUiCommonsProcessFlowHeaderPlannedColor {
+  fill: @sapHCNeutral;
+}
+
+.suiteUiCommonsProcessFlowHeaderIconFill.suiteUiCommonsProcessFlowHeaderPositiveColor {
+  stroke: @sapHCPositive;
+  fill: @sapHCStandardBG;
+}
+
+.suiteUiCommonsProcessFlowHeaderIconFill.suiteUiCommonsProcessFlowHeaderNegativeColor {
+  stroke: @sapHCNegative;
+  fill: @sapHCStandardBG;
+}
+
+.suiteUiCommonsProcessFlowHeaderIconFill.suiteUiCommonsProcessFlowHeaderNeutralColor {
+  stroke: @sapHCStandardBG;
+  fill: @sapHCStandardBG;
+}
+
+.suiteUiCommonsProcessFlowHeaderIconFill.suiteUiCommonsProcessFlowHeaderPlannedColor {
+  stroke: @sapHCNeutral;
+  fill: @sapHCStandardBG;
+}

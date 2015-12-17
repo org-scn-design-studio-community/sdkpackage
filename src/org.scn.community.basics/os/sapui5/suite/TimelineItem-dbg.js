@@ -69,7 +69,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * TimelineItem
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -1374,14 +1374,14 @@ sap.suite.ui.commons.TimelineItem.prototype.setUserNameClickable = function(user
 
 sap.suite.ui.commons.TimelineItem.prototype.setText = function(text) {  // todo... change m.Text
 	this.setProperty("text", text);
-	if (!this._textBox){
+//	if (!this._textBox){
 	/*	this._textBox = new sap.m.Text({
 			maxLines : 10,
 			text : this.getText()		
 		});*/
 		
 		this._textBox = this.getText();
-	}
+//	}
 };
 
 

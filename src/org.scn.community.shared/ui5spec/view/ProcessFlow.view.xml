@@ -1,0 +1,52 @@
+<core:View
+  xmlns="sap.package"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:m="sap.m"
+  
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  
+  controllerName="org.scn.community.%COMP-package%.%COMP-id%.Controller"
+  >
+  
+  <l:VerticalLayout
+    width="100%" content="{/}">
+    <l:content
+		width="{width}"
+	>
+		<ProcessFlow
+				connections="{connections}"
+				foldedCorners="{foldedCorners}"
+				headerPressedKey="{headerPressedKey}"
+				nodePressedKey="{nodePressedKey}"
+				onErrored="{onErrored}"
+				onErroredKey="{onErroredKey}"
+				onHeaderPressed="{onHeaderPressed}"
+				onNodePressed="{onNodePressed}"
+				scrollable="{scrollable}"
+				wheelZoomable="{wheelZoomable}"
+		
+		>
+	     	
+			
+		
+		
+		
+		<onErrored>
+			
+		</onErrored>
+		
+		<onHeaderPressed>
+			
+		</onHeaderPressed>
+		<onNodePressed>
+			
+		</onNodePressed>
+		
+		
+		
+
+		</ProcessFlow>
+	</l:content>
+  </l:VerticalLayout> 
+</core:View>

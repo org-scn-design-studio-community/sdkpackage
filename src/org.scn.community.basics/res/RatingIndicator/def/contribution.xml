@@ -5,13 +5,14 @@
 	tooltip="Rating Indicator"
 	icon="res/RatingIndicator/RatingIndicator.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RatingIndicator/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RatingIndicator/RatingIndicatorLoader.js</jsInclude>
+	<requireJs modes="commons">res/RatingIndicator/RatingIndicator</requireJs>
+
 	<cssInclude>res/RatingIndicator/RatingIndicator.css</cssInclude>
 	
 	

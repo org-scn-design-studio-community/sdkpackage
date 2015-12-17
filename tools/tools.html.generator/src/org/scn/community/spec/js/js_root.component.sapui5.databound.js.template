@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"./%COMP-id%Spec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"shared/modules/component.databound"
+	
+	],
+	function(
+		spec,
+		core,
+		basics,
+		databound
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
+var myComponentData = spec;
 
 %COMP-id% = {
 
@@ -125,9 +140,7 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(%COMP-package%%COMP-id(lower)%){
-	myComponentData.instance = %COMP-id%;
-	return myComponentData.instance;
-});
+myComponentData.instance = %COMP-id%;
+%LOADER%
 
-}).call(this);
+});

@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "FacetFilter",
+		name: "databound.FacetFilter",
+		requireName: "databoundfacetfilter",
+		fullComponentName: "org.scn.community.databound.FacetFilter",
+		fullComponentPackage: "org.scn.community.databound/res/FacetFilter",
+		script: "org.scn.community.databound/res/FacetFilter/FacetFilter",
+		scriptSpec: "org.scn.community.databound/res/FacetFilter/FacetFilterSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.databound.FacetFilter.spec = 
+	spec.spec = 
 {
   "DClearOthers": {
     "opts": {
@@ -136,8 +147,8 @@
     "opts": {
       "apsControl": "spinner",
       "cat": "Display",
-      "desc": "Maximum Number of Display Members",
-      "tooltip": "Maximum Number of Display Members",
+      "desc": "Maximum Members for Display",
+      "tooltip": "Maximum Members for Display",
       "ztlFunction": "",
       "ztlType": "int"
     },
@@ -347,10 +358,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.databound.FacetFilter.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.databound.FacetFilter.specAbout = 
+	spec.specAbout = 
 {
   "description": "Facet Filter - A simple filter which is using the facet techniques",
   "icon": "FacetFilter.png",
@@ -367,7 +378,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.FacetFilter.specComp = 
+	spec.specComp = 
 {
   "databound": true,
   "extension": "DataComponent",
@@ -376,7 +387,7 @@
   "height": "400",
   "id": "FacetFilter",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -400,4 +411,5 @@
   "width": "800"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

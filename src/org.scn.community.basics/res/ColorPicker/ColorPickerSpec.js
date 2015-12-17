@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "ColorPicker",
+		name: "basics.ColorPicker",
+		requireName: "basicscolorpicker",
+		fullComponentName: "org.scn.community.basics.ColorPicker",
+		fullComponentPackage: "org.scn.community.basics/res/ColorPicker",
+		script: "org.scn.community.basics/res/ColorPicker/ColorPicker",
+		scriptSpec: "org.scn.community.basics/res/ColorPicker/ColorPickerSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.ColorPicker.spec = 
+	spec.spec = 
 {
   "colorString": {
     "opts": {
@@ -69,10 +80,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ColorPicker.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ColorPicker.specAbout = 
+	spec.specAbout = 
 {
   "description": "Color Picker",
   "icon": "ColorPicker.png",
@@ -89,7 +100,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ColorPicker.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -108,4 +119,5 @@
   "width": "270"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

@@ -1,0 +1,47 @@
+.sap-desktop .sapSuiteCmc:focus {
+	outline-color: @sapHCStandardFG;
+	outline-style: dotted;
+	outline-width: 1px;
+}
+
+.sapSuiteCmcBar.Error {
+	background-color: @sapUiChartBad;
+}
+
+.sapSuiteCmcBar.Good {
+	background-color: @sapUiChartGood;
+}
+
+.sapSuiteCmcBar.Critical {
+	background-color: @sapUiChartCritical;
+}
+
+.sapSuiteCmcBar.Neutral {
+	background-color: @sapHCStandardFG;	
+}
+
+.sapSuiteCmcLbl.Neutral {
+	color: @sapHCNeutral;
+}
+
+.sapSuiteCmcLbl.Good {
+	color: @sapHCPositive;
+}
+
+.sapSuiteCmcLbl.Critical {
+	color: @sapHCCritical;
+}
+
+.sapSuiteCmcLbl.Error {
+	color: @sapHCNegative;
+}
+
+.sapSuiteCmcBar {
+	outline: none;
+}
+
+.sap-desktop .sapSuiteCmcBar:focus {
+	border-color: @sapUiFocus;
+	border-style: dotted;
+	border-width: 1px;
+}

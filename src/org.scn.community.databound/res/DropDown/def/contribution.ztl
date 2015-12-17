@@ -1,9 +1,177 @@
 
 /**
- * Class for DataDropDown
+ * Generated ZTL Class for DropDown
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
-class org.scn.community.databound.DropDown extends org.scn.community.shared.DataComponent {
+class org.scn.community.databound.DropDown extends org.scn.community.shared.Component {
 
+	/**
+	 * Sets Binding Mode (metadata, Resultset) Property by String
+	 */	
+	void setBindingModeByString( /**Binding Mode (metadata, Resultset)*/ String bindingMode){*
+		this.DBindingMode = bindingMode;
+	*}
+
+	/**
+	 * Gets Binding Mode (metadata, Resultset) Property as String
+	 */	
+	String getBindingModeAsString() {*
+		return this.DBindingMode;
+	*}
+	
+	/**
+	 * Sets Binding Mode (metadata, Resultset) Property by Choice Option
+	 */	
+	void setBindingMode( /**Binding Mode (metadata, Resultset)*/ org_scn_community_shared_Enumfield bindingMode){*
+		this.DBindingMode = bindingMode;
+	*}
+	
+	/**
+	 * Gets Binding Mode (metadata, Resultset) Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getBindingMode() {*
+		return this.DBindingMode;
+	*}
+
+	/**
+	 * Sets Selected Dimension Property
+	 */	
+	void setDimension( /**Selected Dimension*/ String dimension){*
+		this.DDimension = dimension;
+	*}
+
+	/**
+	 * Gets Selected Dimension Property
+	 */	
+	String getDimension() {*
+		return this.DDimension;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Pause Refresh Property
+	 */	
+	boolean isDoRefresh() {*
+		return this.DDoRefresh;
+	*}
+
+	/**
+	 * Gets Master Data Elements Property
+	 */	
+	String getElements() {*
+		return this.DElements;
+	*}
+
+	/**
+	 * Sets Maximum Numner Of Members Property
+	 */	
+	void setMaxMembers( /**Maximum Numner Of Members*/ int maxMembers){*
+		this.DMaxMembers = maxMembers;
+	*}
+
+	/**
+	 * Gets Maximum Numner Of Members Property
+	 */	
+	int getMaxMembers() {*
+		return this.DMaxMembers;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.DSelectedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKeyExt() {*
+		return this.DSelectedKeyExt;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected External String Full Property
+	 */	
+	String getSelectedKeyExtFull() {*
+		return this.DSelectedKeyExtFull;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Text Property
+	 */	
+	String getSelectedText() {*
+		return this.DSelectedText;
+	*}
+
+	/**
+	 * Sets Sorting By Value | Defalut Property by String
+	 */	
+	void setSortingByString( /**Sorting By Value | Defalut*/ String sorting){*
+		this.DSorting = sorting;
+	*}
+
+	/**
+	 * Gets Sorting By Value | Defalut Property as String
+	 */	
+	String getSortingAsString() {*
+		return this.DSorting;
+	*}
+	
+	/**
+	 * Sets Sorting By Value | Defalut Property by Choice Option
+	 */	
+	void setSorting( /**Sorting By Value | Defalut*/ org_scn_community_shared_Enumfield sorting){*
+		this.DSorting = sorting;
+	*}
+	
+	/**
+	 * Gets Sorting By Value | Defalut Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getSorting() {*
+		return this.DSorting;
+	*}
+
+	/**
+	 * Sets Top X, Bottom X Or Both Property by String
+	 */	
+	void setTopBottomByString( /**Top X, Bottom X Or Both*/ String topBottom){*
+		this.DTopBottom = topBottom;
+	*}
+
+	/**
+	 * Gets Top X, Bottom X Or Both Property as String
+	 */	
+	String getTopBottomAsString() {*
+		return this.DTopBottom;
+	*}
+	
+	/**
+	 * Sets Top X, Bottom X Or Both Property by Choice Option
+	 */	
+	void setTopBottom( /**Top X, Bottom X Or Both*/ org_scn_community_shared_MemberSelectionEnumfield topBottom){*
+		this.DTopBottom = topBottom;
+	*}
+	
+	/**
+	 * Gets Top X, Bottom X Or Both Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberSelectionEnumfield getTopBottom() {*
+		return this.DTopBottom;
+	*}
+
+
+
+
+
+
+
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 	void private_onSelectionChanged () {*
 		var key = this.getSelectedKey();
 	
@@ -43,43 +211,6 @@ class org.scn.community.databound.DropDown extends org.scn.community.shared.Data
 		}
 	*}
 
-	/** returns the selected key 
-    <example>
-	You want to get first and second selected key in the range
-	<code>
-    var selection1 = DATARANGESLIDER_1.getSelectedKey();
-	var selection2 = DATARANGESLIDER_1.getSelectedKey2();
-	
-	APPLICATION.createInfoMessage("Selected Range: " + selection1 + " - " + selection2);
-	APPLICATION.createInfoMessage("Selected Range Keys: " + DATARANGESLIDER_1.getSelectedKeys());
-	
-	if(selection1.indexOf("-N/A-") > -1 || selection2.indexOf("-N/A-") > -1) {
-		// do nothing
-	} else {
-		DS_1.setFilterExt("0BC_PERS1", "" + DATARANGESLIDER_1.getSelectedKey()  + " - " + DATARANGESLIDER_1.getSelectedKey2());
-	}
-	</code>
-	</example>
-	*/
-	String getSelectedKey () {*
-		return this.DSelectedKey;	
-	*}
-
-	/** returns the selected text */
-	String getSelectedText () {*
-		return this.DSelectedText;	
-	*}
-	
-	/** gest the dimension */
-	String getDimension () {*
-		return this.DDimension;	
-	*}
-	
-	/** sets the dimension */
-	void setDimension (String dimension) {*
-		this.DDimension = dimension;	
-	*}
-	
 	/** sets the pause refresh flag */
 	void pauseRefresh () {*
 		this.DDoRefresh = false;	
@@ -89,4 +220,5 @@ class org.scn.community.databound.DropDown extends org.scn.community.shared.Data
 	void allowRefresh () {*
 		this.DDoRefresh = true;	
 	*}
+
 }

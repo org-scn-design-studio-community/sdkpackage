@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./DragDropAreaSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"basics/os/ndd/jq-ndd"
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.DragDropArea;
+var myComponentData = spec;
 
 DragDropArea = {
 
@@ -217,9 +232,8 @@ DragDropArea = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsdragdroparea){
-	myComponentData.instance = DragDropArea;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = DragDropArea;
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

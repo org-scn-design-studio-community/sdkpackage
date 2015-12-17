@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "ToggleButton",
+		name: "basics.ToggleButton",
+		requireName: "basicstogglebutton",
+		fullComponentName: "org.scn.community.basics.ToggleButton",
+		fullComponentPackage: "org.scn.community.basics/res/ToggleButton",
+		script: "org.scn.community.basics/res/ToggleButton/ToggleButton",
+		scriptSpec: "org.scn.community.basics/res/ToggleButton/ToggleButtonSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.ToggleButton.spec = 
+	spec.spec = 
 {
   "enabled": {
     "opts": {
@@ -149,10 +160,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ToggleButton.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ToggleButton.specAbout = 
+	spec.specAbout = 
 {
   "description": "Toggle Button",
   "icon": "ToggleButton.png",
@@ -169,7 +180,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ToggleButton.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -188,4 +199,5 @@
   "width": "80"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

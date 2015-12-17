@@ -5,13 +5,14 @@
 	tooltip="Date Range Slider"
 	icon="res/DateRangeSlider/DateRangeSlider.png"
 	handlerType="sapui5"
-	propertySheetPath="res/DateRangeSlider/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/DateRangeSlider/DateRangeSliderLoader.js</jsInclude>
+	<requireJs modes="commons">res/DateRangeSlider/DateRangeSlider</requireJs>
+
 	<cssInclude>res/DateRangeSlider/DateRangeSlider.css</cssInclude>
 	
 	

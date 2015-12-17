@@ -69,6 +69,7 @@ sap.suite.ui.commons.ProcessFlowRenderer.render = function(oRm, oControl) {
 
   oRm.write("<div"); // scroll content
   oRm.writeAttribute("id", oControl.getId() + "-scroll-content");
+  oRm.writeAttribute("tabindex", 0);
   oRm.write(">"); // div element
 
   // nothing to render if there are no lanes
@@ -87,13 +88,6 @@ sap.suite.ui.commons.ProcessFlowRenderer.render = function(oRm, oControl) {
     oControl._handleException( exc );
     return;
   }
-
-  // fake field for accessibility keyboard interaction
-  oRm.write("<span tabindex=0 ");
-  oRm.writeAttribute("id", oControl.getId() + "-KbInteractionFakeElement");
-  oRm.addClass("sapSuiteUiKbInteractionFakeElementPF");
-  oRm.writeClasses();
-  oRm.write("></span>");
 
   oRm.write("<table");
   oRm.writeAttribute("id", oControl.getId() + "-table");
@@ -201,7 +195,6 @@ sap.suite.ui.commons.ProcessFlowRenderer.render = function(oRm, oControl) {
     oRm.write("<td colspan=\"" + (nLaneNumber*5).toString() + "\"></td>");
     oRm.write("</tr>");
   }
-
   i = 0;
   while (i < m) {
     oRm.write("<tr>");
@@ -212,26 +205,39 @@ sap.suite.ui.commons.ProcessFlowRenderer.render = function(oRm, oControl) {
 
     while (j < n - 1) {
       oNode = calcMatrixNodes[i][j];
-
+      var isTDTagOpen = false; //Indicates if td element tag is open
       if ((j == 0) || (j % 2)) {
-        oRm.write("<td>");
+        isTDTagOpen = true;
+        oRm.write("<td");
       } else {
         oRm.write("<td colspan=\"4\">");
       }
 
       if (oNode) {
         if (oNode instanceof sap.suite.ui.commons.ProcessFlowNode) {
+          if(isTDTagOpen){
+            oRm.writeAttribute("tabindex", 0);
+            oRm.writeAttributeEscaped("aria-label", oNode._getAriaText());
+            oRm.write(">");
+            isTDTagOpen = false;
+          }
           oNode._setParentFlow(oControl);
           oNode._setZoomLevel(oControl.getZoomLevel());
           oNode._setFoldedCorner(oControl.getFoldedCorners());
           oRm.renderControl(oNode);
         } else {
+          if(isTDTagOpen){
+            oRm.write(">");
+            isTDTagOpen = false;
+          }
           oNode.setZoomLevel(oControl.getZoomLevel());
           oControl.addAggregation("connections", oNode);
           oRm.renderControl(oNode);
         }
       }
-
+      if(isTDTagOpen){
+        oRm.write(">");
+      }
       oRm.write("</td>");
       j++;
     }
@@ -317,4 +323,3 @@ sap.suite.ui.commons.ProcessFlowRenderer._writeCounter = function (oRm, oControl
     oRm.write("</span>"); // text
 
 };
-

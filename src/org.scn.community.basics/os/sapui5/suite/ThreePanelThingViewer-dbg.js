@@ -55,7 +55,7 @@ jQuery.sap.require("sap.ui.ux3.ThingViewer");
  * @class
  * This control extends the sap.ui.ux3.ThingViewer control. The first panel can display a thing icon, a title, the Action Menu button, up to two rows of text descriptions (the first is wrapped, the second is truncated), vertical navigation bar (sap.suite.ui.commons.VerticalNavigationBar), and an image aka key visual. The second panel displays the header area as a vertical panel containing ThingGroup objects. The third panel is a main content area designed to display ThingGroup objects.
  * @extends sap.ui.ux3.ThingViewer
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

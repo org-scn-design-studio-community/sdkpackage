@@ -1,13 +1,12 @@
 
 <component
 	id="Math"
-	title="Math Utility"
+	title="Math Utility 0.X"
 	icon="res/Math/Math.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Math/Math.js</jsInclude>
 
 	<initialization>

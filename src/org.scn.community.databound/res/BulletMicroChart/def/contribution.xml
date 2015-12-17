@@ -5,13 +5,14 @@
 	tooltip="Bullet Micro Chart - Component for visualization of data on small areas."
 	icon="res/BulletMicroChart/BulletMicroChart.png"
 	handlerType="sapui5"
-	propertySheetPath="res/BulletMicroChart/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="true"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/BulletMicroChart/BulletMicroChartLoader.js</jsInclude>
+	<requireJs modes="commons m">res/BulletMicroChart/BulletMicroChart</requireJs>
+
 	<cssInclude>res/BulletMicroChart/BulletMicroChart.css</cssInclude>
 	
 	

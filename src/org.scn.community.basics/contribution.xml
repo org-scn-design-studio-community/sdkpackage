@@ -199,13 +199,14 @@
 	tooltip="Accordion - Dynamic List of Entries"
 	icon="res/Accordion/Accordion.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Accordion/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Accordion/AccordionLoader.js</jsInclude>
+	<requireJs modes="commons">res/Accordion/Accordion</requireJs>
+
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 	
 	
@@ -348,13 +349,14 @@
 	tooltip="Viewer for Custom Activities"
 	icon="res/ActivityViewer/ActivityViewer.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ActivityViewer/ActivityViewerLoader.js</jsInclude>
+	<requireJs modes="commons">res/ActivityViewer/ActivityViewer</requireJs>
+
 	<cssInclude>res/ActivityViewer/ActivityViewer.css</cssInclude>
 	
 	
@@ -428,13 +430,14 @@
 	tooltip="Fiori-Inspired Action Sheet Button menu"
 	icon="res/ActionSheetButton/ActionSheetButton.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ActionSheetButton/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ActionSheetButton/ActionSheetButtonLoader.js</jsInclude>
+	<requireJs modes="commons">res/ActionSheetButton/ActionSheetButton</requireJs>
+
 	<cssInclude>res/ActionSheetButton/ActionSheetButton.css</cssInclude>
 	
 	
@@ -538,13 +541,14 @@
 	tooltip="Application Header"
 	icon="res/ApplicationHeader/ApplicationHeader.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ApplicationHeader/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ApplicationHeader/ApplicationHeaderLoader.js</jsInclude>
+	<requireJs modes="commons">res/ApplicationHeader/ApplicationHeader</requireJs>
+
 	<cssInclude>res/ApplicationHeader/ApplicationHeader.css</cssInclude>
 	
 	
@@ -624,13 +628,15 @@
 
 <component
 	id="ArrowedLine"
-    title="Arrowed Line"
+    title="Arrowed Line 2.0"
     group="ScnCommunityBasics"
     tooltip="Displays an arrowed line"
+    modes="commons m"
+	propertySheetPath="aps/PropertyPage.html"
     icon="res/ArrowedLine/ArrowedLine.png"
     handlerType="div">
 
-    <jsInclude>res/ArrowedLine/ArrowedLine.js</jsInclude>
+    <requireJs modes="commons m">res/ArrowedLine/ArrowedLine</requireJs>
 
     <property id="lineColor" type="Color" title="Line Color" group="Display" />
     <property id="lineSize" type="int" title="Size" group="Display" />
@@ -671,16 +677,16 @@
 	</initialization>
 </component>
 <component id="Base64Image"
-	title="Base64 Image Encoder"
+	title="Base64 Image Encoder 2.0"
 	icon="res/Base64Image/Base64Image.png"
 	tooltip="Handy Base-64 encoder property sheet (requires IE10+ for design-time)"
 	handlerType="sapui5"
-	propertySheetPath="res/Base64Image/aps/Base64ImagePropertyPage.html"
+	modes="commons m"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/Base64Image/Base64Image.js</jsInclude>
+	<requireJs modes="commons">res/Base64Image/Base64Image_commons</requireJs>
+	<requireJs modes="m">res/Base64Image/Base64Image</requireJs>
 	
 	<property type="String" title="Image Source URI" id="src" group="Display"/>
 	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>			
@@ -700,13 +706,14 @@
 	tooltip="Basic Business Card"
 	icon="res/BasicBusinessCard/BasicBusinessCard.png"
 	handlerType="sapui5"
-	propertySheetPath="res/BasicBusinessCard/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/BasicBusinessCard/BasicBusinessCardLoader.js</jsInclude>
+	<requireJs modes="commons">res/BasicBusinessCard/BasicBusinessCard</requireJs>
+
 	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
 	
 	
@@ -770,13 +777,14 @@
 	tooltip="Calendar"
 	icon="res/Calendar/Calendar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Calendar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Calendar/CalendarLoader.js</jsInclude>
+	<requireJs modes="commons">res/Calendar/Calendar</requireJs>
+
 	<cssInclude>res/Calendar/Calendar.css</cssInclude>
 	
 	
@@ -928,13 +936,14 @@
 	tooltip="Check Box Group"
 	icon="res/CheckBoxGroup/CheckBoxGroup.png"
 	handlerType="sapui5"
-	propertySheetPath="res/CheckBoxGroup/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/CheckBoxGroup/CheckBoxGroupLoader.js</jsInclude>
+	<requireJs modes="commons">res/CheckBoxGroup/CheckBoxGroup</requireJs>
+
 	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 	
 	
@@ -1018,13 +1027,14 @@
 	tooltip="Color Picker"
 	icon="res/ColorPicker/ColorPicker.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ColorPicker/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ColorPicker/ColorPickerLoader.js</jsInclude>
+	<requireJs modes="commons">res/ColorPicker/ColorPicker</requireJs>
+
 	<cssInclude>res/ColorPicker/ColorPicker.css</cssInclude>
 	
 	
@@ -1078,13 +1088,14 @@
 	tooltip="Date Range Scroller"
 	icon="res/DateRangeScroller/DateRangeScroller.png"
 	handlerType="sapui5"
-	propertySheetPath="res/DateRangeScroller/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/DateRangeScroller/DateRangeScrollerLoader.js</jsInclude>
+	<requireJs modes="commons">res/DateRangeScroller/DateRangeScroller</requireJs>
+
 	<cssInclude>res/DateRangeScroller/DateRangeScroller.css</cssInclude>
 	
 	
@@ -1228,13 +1239,14 @@
 	tooltip="Date Range Slider"
 	icon="res/DateRangeSlider/DateRangeSlider.png"
 	handlerType="sapui5"
-	propertySheetPath="res/DateRangeSlider/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/DateRangeSlider/DateRangeSliderLoader.js</jsInclude>
+	<requireJs modes="commons">res/DateRangeSlider/DateRangeSlider</requireJs>
+
 	<cssInclude>res/DateRangeSlider/DateRangeSlider.css</cssInclude>
 	
 	
@@ -1408,13 +1420,14 @@
 	tooltip="Drag Drop Area"
 	icon="res/DragDropArea/DragDropArea.png"
 	handlerType="sapui5"
-	propertySheetPath="res/DragDropArea/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/DragDropArea/DragDropAreaLoader.js</jsInclude>
+	<requireJs modes="commons">res/DragDropArea/DragDropArea</requireJs>
+
 	<cssInclude>res/DragDropArea/DragDropArea.css</cssInclude>
 	
 	
@@ -1568,13 +1581,14 @@
 	tooltip="Embedded Frame - Include external web pages directly in your application"
 	icon="res/EmbeddedFrame/EmbeddedFrame.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/EmbeddedFrame/EmbeddedFrameLoader.js</jsInclude>
+	<requireJs modes="commons">res/EmbeddedFrame/EmbeddedFrame</requireJs>
+
 	<cssInclude>res/EmbeddedFrame/EmbeddedFrame.css</cssInclude>
 	
 	
@@ -1629,13 +1643,14 @@
 	tooltip="Embedded Media - Include external media directly in your application"
 	icon="res/EmbeddedMedia/EmbeddedMedia.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/EmbeddedMedia/EmbeddedMediaLoader.js</jsInclude>
+	<requireJs modes="commons">res/EmbeddedMedia/EmbeddedMedia</requireJs>
+
 	<cssInclude>res/EmbeddedMedia/EmbeddedMedia.css</cssInclude>
 	
 	
@@ -1680,13 +1695,14 @@
 	tooltip="Fallback Picture"
 	icon="res/FallbackPicture/FallbackPicture.png"
 	handlerType="sapui5"
-	propertySheetPath="res/FallbackPicture/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/FallbackPicture/FallbackPictureLoader.js</jsInclude>
+	<requireJs modes="commons">res/FallbackPicture/FallbackPicture</requireJs>
+
 	<cssInclude>res/FallbackPicture/FallbackPicture.css</cssInclude>
 	
 	
@@ -1726,17 +1742,16 @@
 </component>
 
 <component id="FioriAppHeader" 
-	title="Fiori App Header"
+	title="Fiori App Header 2.0"
 	icon="res/FioriAppHeader/FioriAppHeader.png"
 	handlerType="sapui5" 
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	modes="commons m"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
   	
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
+	<requireJs modes="commons">res/FioriAppHeader/FioriAppHeader_commons</requireJs>
+	<requireJs modes="m">res/FioriAppHeader/FioriAppHeader</requireJs>
   	
-  	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
   	<property id="title" type="String" title="Title" group="Display"/>
   	<property id="itemConfig" type="String" title="Item Config" visible="false" group="Display"/>
   	<property id="showNavButton" type="boolean" title="Show Back Button" group="Display"/>
@@ -1752,16 +1767,16 @@
  	</initialization>
  </component>
 <component id="FioriBar" 
-	title="Fiori Bar"
+	title="Fiori Bar 2.0"
 	icon="res/FioriBar/FioriBar.png"
 	handlerType="sapui5" 
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	modes="commons m"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/FioriBar/FioriBar.js</jsInclude>
-  	<cssInclude>res/FioriBar/FioriBar.css</cssInclude>
+	<requireJs modes="commons">res/FioriBar/FioriBar_commons</requireJs>
+	<requireJs modes="m">res/FioriBar/FioriBar</requireJs>
+	
   	<property id="itemConfigLeft" type="String" title="Left Item Config" visible="false" group="Display"/>
   	<property id="itemConfigMiddle" type="String" title="Middle Item Config" visible="false" group="Display"/>
   	<property id="itemConfigRight" type="String" title="Right Item Config" visible="false" group="Display"/>
@@ -1792,105 +1807,241 @@
  </component>
 <component
 	id="FioriButton"
-	title="Fiori Button"
+	title="Fiori Button 2.0"
+	tooltip="Fiori Button 2.0"
 	icon="res/FioriButton/FioriButton.png"
 	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
-	propertySheetPath="res/FioriButton/aps/FioriButton.html"
+	databound="false"
+	modes="commons"
 >
+	
+	<requireJs modes="commons">res/FioriButton/FioriButton</requireJs>
 
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/FioriButton/FioriButton.js</jsInclude>
 	<cssInclude>res/FioriButton/FioriButton.css</cssInclude>
 	
+	
+	<property
+		id="dBackColor"
+		type="String"
+		title="Background Colour"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="dFontColor"
+		type="String"
+		title="Font Colour"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="dIcon"
 		type="String"
 		title="Icon"
-		tooltip="Icon for this Button"
 		group="Display"
-		visible="true" />
-	<property
-		id="dText"
-		type="String"
-		title="Text"
-		tooltip="Text for this Button"
-		group="Display"
-		visible="true" />
-	<property
-		id="dTooltip"
-		type="String"
-		title="Tooltip"
-		tooltip="Tooltip for this Button"
-		group="Display"
-		visible="true" />
-	<property
-		id="dStyle"
-		type="String"
-		title="Button Style"
-		tooltip="Predefined Style for this Button"
-		group="Display"
-		visible="true"
-	>
-		<possibleValue>Default</possibleValue>
-		<possibleValue>Emph</possibleValue>
-		<possibleValue>Accept</possibleValue>
-		<possibleValue>Reject</possibleValue>
+		bindable="true"
+		visible="true">
+
 	</property>
-	<property
-		id="dFontColor"
-		type="Color"
-		title="Font Color"
-		tooltip="Font Color for this Button"
-		group="Display"
-		visible="true" />
-	<property
-		id="dBackColor"
-		type="Color"
-		title="Background Color"
-		tooltip="Background Color for this Button"
-		group="Display"
-		visible="true" />
 	<property
 		id="dSize"
 		type="String"
 		title="Size M (16px) | L (22px)"
-		tooltip="The Size of the content"
 		group="Display"
-		visible="true"
-	>
-		<possibleValue>M</possibleValue>
-		<possibleValue>L</possibleValue>
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="dStyle"
+		type="String"
+		title="Button Style"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="dText"
+		type="String"
+		title="Text"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="dTooltip"
+		type="String"
+		title="Tooltip"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
 	<property
 		id="onClick"
 		type="ScriptText"
-		title="Event for On Click"
-		group="Events" />
+		title="Event For On Click"
+		group="Events"
+		visible="true">
+
+	</property>
+
+
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">42</defaultValue>
 		<defaultValue property="HEIGHT">42</defaultValue>
+		
+		<defaultValue property="dBackColor"><![CDATA[]]></defaultValue>
+		<defaultValue property="dFontColor"><![CDATA[]]></defaultValue>
+		<defaultValue property="dIcon"><![CDATA[e03e]]></defaultValue>
+		<defaultValue property="dSize"><![CDATA[L]]></defaultValue>
+		<defaultValue property="dStyle"><![CDATA[Default]]></defaultValue>
+		<defaultValue property="dText"><![CDATA[]]></defaultValue>
+		<defaultValue property="dTooltip"><![CDATA[]]></defaultValue>
+		<defaultValue property="onClick"><![CDATA[]]></defaultValue>
+
+	</initialization>
+
+</component>
+
+<component id="FioriInput" 
+	title="Fiori Input Field"
+	tooltip="sap.m Input Field"
+	icon="res/FioriInput/FioriInput.png"
+	handlerType="sapui5" 
+	modes="m"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics">
+
+	<requireJs modes="m">res/FioriInput/FioriInput</requireJs>
+  	<property id="enabled" type="boolean" title="Enabled"/>
+  	<property id="inputType" type="String" title="Input Type"/>
+  	<property id="placeholder" type="String" title="Placeholder"/>
+  	<property id="value" type="String" title="Value"/>
+  	<property type="ScriptText" title="On Change" id="onchange" group="Events"/> 
+  	<property id="itemConfig" title = "Item Config" type="String" visible = "false"/>
+  	<property id="showSuggestion" type="boolean" title="Show Suggestions"/>
+  	<property id="showValueHelp" type="boolean" title="Show Value Help"/>
+ 	<initialization>
+ 		<defaultValue property="placeholder"></defaultValue>
+ 		<defaultValue property="value"></defaultValue>
+ 		<defaultValue property="itemConfig">[]</defaultValue>
+ 		<defaultValue property="showSuggestion">true</defaultValue>
+ 		<defaultValue property="showValueHelp">false</defaultValue>
+ 		<defaultValue property="inputType">Text</defaultValue>
+ 		<defaultValue property="enabled">true</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="dSize">L</defaultValue>
-		<defaultValue property="dIcon">e03e</defaultValue>
-		<defaultValue property="dStyle">Default</defaultValue>
-	</initialization>
-</component>
-<component id="FioriToolbar" 
-	title="Fiori Toolbar"
-	icon="res/FioriToolbar/FioriToolbar.png"
+ 		<defaultValue property="WIDTH">400</defaultValue>
+ 		<defaultValue property="HEIGHT">48</defaultValue>
+ 	</initialization>
+ </component>
+<component id="FioriSegmentedButton" 
+	title="Fiori Segmented Button"
+	tooltip="sap.m Segmented Button"
+	icon="res/FioriSegmentedButton/FioriSegmentedButton.png"
 	handlerType="sapui5" 
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	modes="m"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/FioriToolbar/FioriToolbar.js</jsInclude>
-  	<cssInclude>res/FioriToolbar/FioriToolbar.css</cssInclude>
+	<requireJs modes="m">res/FioriSegmentedButton/FioriSegmentedButton</requireJs>
+  	<property id="itemConfig" title = "Item Config" type="String" visible = "false"/>
+  	<property id="enabled" type="boolean" title="Enabled"/>
+  	<property type="String" title="Selected Key" id="selectedKey" group="Display"/>
+  	<property type="ScriptText" title="On Select" id="onselect" group="Events"/> 
+ 	<initialization>
+ 		<defaultValue property="itemConfig">[]</defaultValue>
+ 		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+ 		<defaultValue property="WIDTH">400</defaultValue>
+ 		<defaultValue property="HEIGHT">48</defaultValue>
+ 	</initialization>
+ </component>
+<component id="FioriSlider" 
+	title="Fiori Slider"
+	tooltip="sap.m Slider"
+	icon="res/FioriSlider/FioriSlider.png"
+	handlerType="sapui5" 
+	modes="m"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics">
+
+	<requireJs modes="m">res/FioriSlider/FioriSlider</requireJs>
+  	<property id="enabled" type="boolean" title="Enabled"/>
+	<property id="min" type="float" title="Minimum"/>
+	<property id="max" type="float" title="Maximum"/>
+  	<property id="step" type="float" title="Step"/>
+  	<property id="value" type="float" title="Value"/>
+  	<property id="progress" type="boolean" title="Progress"/>
+  	<property id="showHandleTooltip" type="boolean" title="Show Handle Tooltip"/>
+  	<property id="onchange" type="ScriptText" title="On Change" group="Events"/>
+ 	<initialization>
+ 		<defaultValue property="value">0</defaultValue>
+ 		<defaultValue property="min">0</defaultValue>
+ 		<defaultValue property="max">100</defaultValue>
+ 		<defaultValue property="step">1</defaultValue>
+ 		<defaultValue property="progress">true</defaultValue>
+ 		<defaultValue property="showHandleTooltip">true</defaultValue>
+ 		<defaultValue property="enabled">true</defaultValue>
+ 	</initialization>
+ </component>
+<component id="FioriSwitch" 
+	title="Fiori Switch"
+	tooltip="sap.m Switch"
+	icon="res/FioriSwitch/FioriSwitch.png"
+	handlerType="sapui5" 
+	modes="m"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics">
+
+	<requireJs modes="m">res/FioriSwitch/FioriSwitch</requireJs>
+	<property id="state" type="boolean" title="State"/>
+  	<property id="enabled" type="boolean" title="Enabled"/>
+  	<property id="switchType" type="String" title="Type"/>
+  	<property type="String" title="Custom Text On" id="customTextOn" group="Display"/>
+  	<property type="String" title="Custom Text Off" id="customTextOff" group="Display"/>
+  	<property type="ScriptText" title="On Change" id="onchange" group="Events"/> 
+ 	<initialization>
+ 		<defaultValue property="state">false</defaultValue>
+ 		<defaultValue property="switchType">Default</defaultValue>
+ 		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+ 		<defaultValue property="WIDTH">400</defaultValue>
+ 		<defaultValue property="HEIGHT">48</defaultValue>
+ 	</initialization>
+ </component>
+<component id="FioriToolbar" 
+	title="Fiori Toolbar 2.0"
+	icon="res/FioriToolbar/FioriToolbar.png"
+	handlerType="sapui5" 
+	modes="commons m"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics">
+
+	<requireJs modes="commons">res/FioriToolbar/FioriToolbar_commons</requireJs>
+	<requireJs modes="m">res/FioriToolbar/FioriToolbar</requireJs>
+	
   	<property id="itemConfig" type="String" title="Item Config" visible="false" group="Display"/>
   	<property id="enabled" type="boolean" title="Enabled"/>
   	<property type="String" title="Design" id="design" visible="true" group="Display">
@@ -1921,13 +2072,14 @@
 	tooltip="Fish Eye"
 	icon="res/FishEye/FishEye.png"
 	handlerType="sapui5"
-	propertySheetPath="res/FishEye/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/FishEye/FishEyeLoader.js</jsInclude>
+	<requireJs modes="commons">res/FishEye/FishEye</requireJs>
+
 	<cssInclude>res/FishEye/FishEye.css</cssInclude>
 	
 	
@@ -2011,13 +2163,14 @@
 	tooltip="Displays a Gauge (Speedometer)"
 	icon="res/Gauge/Gauge.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Gauge/GaugeLoader.js</jsInclude>
+	<requireJs modes="commons">res/Gauge/Gauge</requireJs>
+
 	<cssInclude>res/Gauge/Gauge.css</cssInclude>
 	
 	
@@ -2222,13 +2375,14 @@
 	tooltip="Image Carousel"
 	icon="res/ImageCarousel/ImageCarousel.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ImageCarousel/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ImageCarousel/ImageCarouselLoader.js</jsInclude>
+	<requireJs modes="commons">res/ImageCarousel/ImageCarousel</requireJs>
+
 	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 	
 	
@@ -2302,13 +2456,14 @@
 	tooltip="Kpi Tile - Custom KPI Visualization"
 	icon="res/KpiTile/KpiTile.png"
 	handlerType="sapui5"
-	propertySheetPath="res/KpiTile/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/KpiTile/KpiTileLoader.js</jsInclude>
+	<requireJs modes="commons m">res/KpiTile/KpiTile</requireJs>
+
 	<cssInclude>res/KpiTile/KpiTile.css</cssInclude>
 	
 	
@@ -2391,13 +2546,14 @@
 	tooltip="Kpi View"
 	icon="res/KpiView/KpiView.png"
 	handlerType="sapui5"
-	propertySheetPath="res/KpiView/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="true"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/KpiView/KpiViewLoader.js</jsInclude>
+	<requireJs modes="commons">res/KpiView/KpiView</requireJs>
+
 	<cssInclude>res/KpiView/KpiView.css</cssInclude>
 	
 	
@@ -2659,19 +2815,17 @@
 
 <!-- Fiori LaunchPad Component -->
 <component id="LaunchPad"
-	title="Launch Pad"
+	title="Launch Pad 2.0"
 	tooltip="Fiori-Inspired LaunchPad/Tile Container"
 	icon="res/LaunchPad/LaunchPad.png"
 	handlerType="sapui5"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	modes="commons m"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
-  	<jsInclude>os/sapui5/sap_m_loader.js</jsInclude>
-  	
-	<jsInclude>res/LaunchPad/LaunchPad.js</jsInclude>
-  	<cssInclude>res/LaunchPad/LaunchPad.css</cssInclude>
+	<requireJs modes="commons">res/LaunchPad/LaunchPad_commons</requireJs>
+	<requireJs modes="m">res/LaunchPad/LaunchPad</requireJs>
+	
   	<property group="Display" type="String" title="Tile Config" id="tileConfig" visible="false"/>
   	<property group="Display" type="String" title="Selected Tile" id="selectedTile" visible="false"/>
   	<property group="Events" type="ScriptText" title="On Tile Select" id="onTileSelect"/>
@@ -2692,13 +2846,14 @@
 	tooltip="Leader Board"
 	icon="res/LeaderBoard/LeaderBoard.png"
 	handlerType="sapui5"
-	propertySheetPath="res/LeaderBoard/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/LeaderBoard/LeaderBoardLoader.js</jsInclude>
+	<requireJs modes="commons">res/LeaderBoard/LeaderBoard</requireJs>
+
 	<cssInclude>res/LeaderBoard/LeaderBoard.css</cssInclude>
 	
 	
@@ -2821,13 +2976,14 @@
 	tooltip="Link"
 	icon="res/Link/Link.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Link/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Link/LinkLoader.js</jsInclude>
+	<requireJs modes="commons">res/Link/Link</requireJs>
+
 	<cssInclude>res/Link/Link.css</cssInclude>
 	
 	
@@ -2871,13 +3027,14 @@
 	tooltip="List Selector"
 	icon="res/ListSelector/ListSelector.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ListSelector/ListSelectorLoader.js</jsInclude>
+	<requireJs modes="commons">res/ListSelector/ListSelector</requireJs>
+
 	<cssInclude>res/ListSelector/ListSelector.css</cssInclude>
 	
 	
@@ -3071,13 +3228,14 @@
 	tooltip="Menu Bar"
 	icon="res/MenuBar/MenuBar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/MenuBar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/MenuBar/MenuBarLoader.js</jsInclude>
+	<requireJs modes="commons">res/MenuBar/MenuBar</requireJs>
+
 	<cssInclude>res/MenuBar/MenuBar.css</cssInclude>
 	
 	
@@ -3161,13 +3319,14 @@
 	tooltip="Menu Button"
 	icon="res/MenuButton/MenuButton.png"
 	handlerType="sapui5"
-	propertySheetPath="res/MenuButton/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/MenuButton/MenuButtonLoader.js</jsInclude>
+	<requireJs modes="commons">res/MenuButton/MenuButton</requireJs>
+
 	<cssInclude>res/MenuButton/MenuButton.css</cssInclude>
 	
 	
@@ -3287,13 +3446,11 @@
 
 <component id="ModalBrowser"
 	tooltip="In-App Modal Browser Pop-Up"
-	title="Modal Browser"
+	title="Modal Browser 0.X"
 	icon="res/ModalBrowser/ModalBrowser.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics">
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ModalBrowser/ModalBrowser.js</jsInclude>
   	<cssInclude>res/ModalBrowser/ModalBrowser.css</cssInclude>
   	
@@ -3346,13 +3503,14 @@
 	tooltip="Navigation Bar"
 	icon="res/NavigationBar/NavigationBar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/NavigationBar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/NavigationBar/NavigationBarLoader.js</jsInclude>
+	<requireJs modes="commons">res/NavigationBar/NavigationBar</requireJs>
+
 	<cssInclude>res/NavigationBar/NavigationBar.css</cssInclude>
 	
 	
@@ -3436,13 +3594,14 @@
 	tooltip="Notification Bar"
 	icon="res/NotificationBar/NotificationBar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/NotificationBar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/NotificationBar/NotificationBarLoader.js</jsInclude>
+	<requireJs modes="commons">res/NotificationBar/NotificationBar</requireJs>
+
 	<cssInclude>res/NotificationBar/NotificationBar.css</cssInclude>
 	
 	
@@ -3557,13 +3716,14 @@
 	tooltip="Notify - Leandro Cardoso"
 	icon="res/Notify/Notify.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Notify/NotifyLoader.js</jsInclude>
+	<requireJs modes="commons">res/Notify/Notify</requireJs>
+
 	<cssInclude>res/Notify/Notify.css</cssInclude>
 	
 	
@@ -3648,13 +3808,14 @@
 	tooltip="Open Street Map (Basic)"
 	icon="res/Map/Map.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Map/MapLoader.js</jsInclude>
+	<requireJs modes="commons">res/Map/Map</requireJs>
+
 	<cssInclude>res/Map/Map.css</cssInclude>
 	
 	
@@ -3788,13 +3949,14 @@
 	tooltip="Paginator"
 	icon="res/Paginator/Paginator.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Paginator/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Paginator/PaginatorLoader.js</jsInclude>
+	<requireJs modes="commons">res/Paginator/Paginator</requireJs>
+
 	<cssInclude>res/Paginator/Paginator.css</cssInclude>
 	
 	
@@ -3848,13 +4010,14 @@
 	tooltip="Password Field"
 	icon="res/PasswordField/PasswordField.png"
 	handlerType="sapui5"
-	propertySheetPath="res/PasswordField/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/PasswordField/PasswordFieldLoader.js</jsInclude>
+	<requireJs modes="commons">res/PasswordField/PasswordField</requireJs>
+
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
 	
 	
@@ -3928,13 +4091,14 @@
 	tooltip="QRCode Generation"
 	icon="res/QRCode/QRCode.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/QRCode/QRCodeLoader.js</jsInclude>
+	<requireJs modes="commons">res/QRCode/QRCode</requireJs>
+
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
 	
 	
@@ -4068,13 +4232,14 @@
 	tooltip="Progress Indicator"
 	icon="res/ProgressIndicator/ProgressIndicator.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ProgressIndicator/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ProgressIndicator/ProgressIndicatorLoader.js</jsInclude>
+	<requireJs modes="commons">res/ProgressIndicator/ProgressIndicator</requireJs>
+
 	<cssInclude>res/ProgressIndicator/ProgressIndicator.css</cssInclude>
 	
 	
@@ -4149,13 +4314,14 @@
 	tooltip="Range Slider"
 	icon="res/RangeSlider/RangeSlider.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RangeSlider/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RangeSlider/RangeSliderLoader.js</jsInclude>
+	<requireJs modes="commons">res/RangeSlider/RangeSlider</requireJs>
+
 	<cssInclude>res/RangeSlider/RangeSlider.css</cssInclude>
 	
 	
@@ -4308,13 +4474,14 @@
 	tooltip="Rating Indicator"
 	icon="res/RatingIndicator/RatingIndicator.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RatingIndicator/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RatingIndicator/RatingIndicatorLoader.js</jsInclude>
+	<requireJs modes="commons">res/RatingIndicator/RatingIndicator</requireJs>
+
 	<cssInclude>res/RatingIndicator/RatingIndicator.css</cssInclude>
 	
 	
@@ -4408,13 +4575,14 @@
 	tooltip="Road Map"
 	icon="res/RoadMap/RoadMap.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RoadMap/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RoadMap/RoadMapLoader.js</jsInclude>
+	<requireJs modes="commons">res/RoadMap/RoadMap</requireJs>
+
 	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
 	
 	
@@ -4488,13 +4656,14 @@
 	tooltip="RSSFeedReader"
 	icon="res/RSSFeedReader/RSSFeedReader.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RSSFeedReader/RSSFeedReaderLoader.js</jsInclude>
+	<requireJs modes="commons">res/RSSFeedReader/RSSFeedReader</requireJs>
+
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
 	
 	
@@ -4549,13 +4718,14 @@
 	tooltip="Segmented Button"
 	icon="res/SegmentedButton/SegmentedButton.png"
 	handlerType="sapui5"
-	propertySheetPath="res/SegmentedButton/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/SegmentedButton/SegmentedButtonLoader.js</jsInclude>
+	<requireJs modes="commons">res/SegmentedButton/SegmentedButton</requireJs>
+
 	<cssInclude>res/SegmentedButton/SegmentedButton.css</cssInclude>
 	
 	
@@ -4697,13 +4867,14 @@
 	tooltip="Slider"
 	icon="res/Slider/Slider.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Slider/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Slider/SliderLoader.js</jsInclude>
+	<requireJs modes="commons">res/Slider/Slider</requireJs>
+
 	<cssInclude>res/Slider/Slider.css</cssInclude>
 	
 	
@@ -4836,13 +5007,14 @@
 	tooltip="Text Area"
 	icon="res/TextArea/TextArea.png"
 	handlerType="sapui5"
-	propertySheetPath="res/TextArea/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/TextArea/TextAreaLoader.js</jsInclude>
+	<requireJs modes="commons">res/TextArea/TextArea</requireJs>
+
 	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	
 	
@@ -4916,13 +5088,14 @@
 	tooltip="Time Out (Timer)"
 	icon="res/TimeOut/TimeOut.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/TimeOut/TimeOutLoader.js</jsInclude>
+	<requireJs modes="commons">res/TimeOut/TimeOut</requireJs>
+
 	<cssInclude>res/TimeOut/TimeOut.css</cssInclude>
 	
 	
@@ -5026,13 +5199,14 @@
 	tooltip="Toggle Button"
 	icon="res/ToggleButton/ToggleButton.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ToggleButton/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ToggleButton/ToggleButtonLoader.js</jsInclude>
+	<requireJs modes="commons">res/ToggleButton/ToggleButton</requireJs>
+
 	<cssInclude>res/ToggleButton/ToggleButton.css</cssInclude>
 	
 	
@@ -5136,13 +5310,14 @@
 	tooltip="Tree"
 	icon="res/Tree/Tree.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Tree/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Tree/TreeLoader.js</jsInclude>
+	<requireJs modes="commons">res/Tree/Tree</requireJs>
+
 	<cssInclude>res/Tree/Tree.css</cssInclude>
 	
 	
@@ -5245,13 +5420,14 @@
 	tooltip="Tri State CheckBox"
 	icon="res/TriStateCheckBox/TriStateCheckBox.png"
 	handlerType="sapui5"
-	propertySheetPath="res/TriStateCheckBox/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/TriStateCheckBox/TriStateCheckBoxLoader.js</jsInclude>
+	<requireJs modes="commons">res/TriStateCheckBox/TriStateCheckBox</requireJs>
+
 	<cssInclude>res/TriStateCheckBox/TriStateCheckBox.css</cssInclude>
 	
 	
@@ -5335,13 +5511,14 @@
 	tooltip="Validated Input Field"
 	icon="res/ValiInput/ValiInput.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ValiInput/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ValiInput/ValiInputLoader.js</jsInclude>
+	<requireJs modes="commons">res/ValiInput/ValiInput</requireJs>
+
 	<cssInclude>res/ValiInput/ValiInput.css</cssInclude>
 	
 	
@@ -5445,13 +5622,14 @@
 	tooltip="Value Help Field"
 	icon="res/ValueHelpField/ValueHelpField.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ValueHelpField/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ValueHelpField/ValueHelpFieldLoader.js</jsInclude>
+	<requireJs modes="commons">res/ValueHelpField/ValueHelpField</requireJs>
+
 	<cssInclude>res/ValueHelpField/ValueHelpField.css</cssInclude>
 	
 	
@@ -5534,13 +5712,14 @@
 	tooltip="World Time"
 	icon="res/WorldTime/WorldTime.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/WorldTime/WorldTimeLoader.js</jsInclude>
+	<requireJs modes="commons">res/WorldTime/WorldTime</requireJs>
+
 	<cssInclude>res/WorldTime/WorldTime.css</cssInclude>
 	
 	

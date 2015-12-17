@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "ImageCarousel",
+		name: "basics.ImageCarousel",
+		requireName: "basicsimagecarousel",
+		fullComponentName: "org.scn.community.basics.ImageCarousel",
+		fullComponentPackage: "org.scn.community.basics/res/ImageCarousel",
+		script: "org.scn.community.basics/res/ImageCarousel/ImageCarousel",
+		scriptSpec: "org.scn.community.basics/res/ImageCarousel/ImageCarouselSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.ImageCarousel.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -117,10 +128,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ImageCarousel.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ImageCarousel.specAbout = 
+	spec.specAbout = 
 {
   "description": "Image Carousel",
   "icon": "ImageCarousel.png",
@@ -137,7 +148,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ImageCarousel.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -156,4 +167,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

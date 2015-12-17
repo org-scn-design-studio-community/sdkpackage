@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "DateRangeSlider",
+		name: "basics.DateRangeSlider",
+		requireName: "basicsdaterangeslider",
+		fullComponentName: "org.scn.community.basics.DateRangeSlider",
+		fullComponentPackage: "org.scn.community.basics/res/DateRangeSlider",
+		script: "org.scn.community.basics/res/DateRangeSlider/DateRangeSlider",
+		scriptSpec: "org.scn.community.basics/res/DateRangeSlider/DateRangeSliderSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.DateRangeSlider.spec = 
+	spec.spec = 
 {
   "DGranularity": {
     "opts": {
@@ -291,10 +302,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.DateRangeSlider.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.DateRangeSlider.specAbout = 
+	spec.specAbout = 
 {
   "description": "Date Range Slider",
   "icon": "DateRangeSlider.png",
@@ -311,7 +322,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.DateRangeSlider.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -340,4 +351,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

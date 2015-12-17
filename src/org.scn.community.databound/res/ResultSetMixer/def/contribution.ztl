@@ -1,43 +1,71 @@
 
 /**
- * Generated ZTL Class for Result Set Mixer
+ * Generated ZTL Class for ResultSetMixer
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
-class org.scn.community.databound.ResultSetMixer extends org.scn.community.shared.DataComponent {
+class org.scn.community.databound.ResultSetMixer extends org.scn.community.shared.Component {
 
 	/**
-	 * Sets Collect Multiple Matches Property
+	 * Sets Collect Multiple Matches Property by String
 	 */	
-	void setCollectMultipleMatches( /* Procedure what should happen when multiple matches are available */  choice collectMultipleMatches){*
+	void setCollectMultipleMatchesByString( /**Collect Multiple Matches*/ String collectMultipleMatches){*
 		this.DCollectMultipleMatches = collectMultipleMatches;
 	*}
 
 	/**
-	 * Gets Collect Multiple Matches Property
+	 * Gets Collect Multiple Matches Property as String
 	 */	
-	choice getCollectMultipleMatches() {*
+	String getCollectMultipleMatchesAsString() {*
+		return this.DCollectMultipleMatches;
+	*}
+	
+	/**
+	 * Sets Collect Multiple Matches Property by Choice Option
+	 */	
+	void setCollectMultipleMatches( /**Collect Multiple Matches*/ org_scn_community_shared_Enumfield collectMultipleMatches){*
+		this.DCollectMultipleMatches = collectMultipleMatches;
+	*}
+	
+	/**
+	 * Gets Collect Multiple Matches Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getCollectMultipleMatches() {*
 		return this.DCollectMultipleMatches;
 	*}
 
 	/**
-	 * Sets Geometry of the Master Result Set Property
+	 * Sets Geometry Of The Master Result Set Property by String
 	 */	
-	void setMasterGeometry( /* Geometry of the Master Result Set */  choice masterGeometry){*
+	void setMasterGeometryByString( /**Geometry Of The Master Result Set*/ String masterGeometry){*
 		this.DMasterGeometry = masterGeometry;
 	*}
 
 	/**
-	 * Gets Geometry of the Master Result Set Property
+	 * Gets Geometry Of The Master Result Set Property as String
 	 */	
-	choice getMasterGeometry() {*
+	String getMasterGeometryAsString() {*
+		return this.DMasterGeometry;
+	*}
+	
+	/**
+	 * Sets Geometry Of The Master Result Set Property by Choice Option
+	 */	
+	void setMasterGeometry( /**Geometry Of The Master Result Set*/ org_scn_community_shared_Enumfield masterGeometry){*
+		this.DMasterGeometry = masterGeometry;
+	*}
+	
+	/**
+	 * Gets Geometry Of The Master Result Set Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getMasterGeometry() {*
 		return this.DMasterGeometry;
 	*}
 
 	/**
 	 * Sets Master Central Data Provisioner Property
 	 */	
-	void setMasterProvisioner( /* Result Set with Master Data */  String masterProvisioner){*
+	void setMasterProvisioner( /**Master Central Data Provisioner*/ String masterProvisioner){*
 		this.DMasterProvisioner = masterProvisioner;
 	*}
 
@@ -49,49 +77,56 @@ class org.scn.community.databound.ResultSetMixer extends org.scn.community.share
 	*}
 
 	/**
-	 * Reloads the Component (with re-rendering)
+	 * Sets Internal Property To Trigger The Reload Property
 	 */	
-	void reload (){*
-		this.DReloadTrigger = this.DReloadTrigger + 0.0001;
+	void setReloadTrigger( /**Internal Property To Trigger The Reload*/ float reloadTrigger){*
+		this.DReloadTrigger = reloadTrigger;
 	*}
 
 	/**
-	 * Sets Column Condition to Read Slave Result Set Property
+	 * Gets Internal Property To Trigger The Reload Property
 	 */	
-	void setSlaveColumnCondition( /* Under which condition should be the slave result set read (based on contnet of header column key) */  String slaveColumnCondition){*
+	float getReloadTrigger() {*
+		return this.DReloadTrigger;
+	*}
+
+	/**
+	 * Sets Column Condition To Read Slave Result Set Property
+	 */	
+	void setSlaveColumnCondition( /**Column Condition To Read Slave Result Set*/ String slaveColumnCondition){*
 		this.DSlaveColumnCondition = slaveColumnCondition;
 	*}
 
 	/**
-	 * Gets Column Condition to Read Slave Result Set Property
+	 * Gets Column Condition To Read Slave Result Set Property
 	 */	
 	String getSlaveColumnCondition() {*
 		return this.DSlaveColumnCondition;
 	*}
 
 	/**
-	 * Sets Column Index for the Selection from Slave Result Set Property
+	 * Sets Column Index For The Selection From Slave Result Set Property
 	 */	
-	void setSlaveColumnIndex( /* Which column should be selected from the slave result set */  int slaveColumnIndex){*
+	void setSlaveColumnIndex( /**Column Index For The Selection From Slave Result Set*/ int slaveColumnIndex){*
 		this.DSlaveColumnIndex = slaveColumnIndex;
 	*}
 
 	/**
-	 * Gets Column Index for the Selection from Slave Result Set Property
+	 * Gets Column Index For The Selection From Slave Result Set Property
 	 */	
 	int getSlaveColumnIndex() {*
 		return this.DSlaveColumnIndex;
 	*}
 
 	/**
-	 * Sets Content Condition to Read Slave Result Set Property
+	 * Sets Content Condition To Read Slave Result Set Property
 	 */	
-	void setSlaveContentCondition( /* Under which condition should be the slave result set read (based on content or value) */  String slaveContentCondition){*
+	void setSlaveContentCondition( /**Content Condition To Read Slave Result Set*/ String slaveContentCondition){*
 		this.DSlaveContentCondition = slaveContentCondition;
 	*}
 
 	/**
-	 * Gets Content Condition to Read Slave Result Set Property
+	 * Gets Content Condition To Read Slave Result Set Property
 	 */	
 	String getSlaveContentCondition() {*
 		return this.DSlaveContentCondition;
@@ -100,7 +135,7 @@ class org.scn.community.databound.ResultSetMixer extends org.scn.community.share
 	/**
 	 * Sets Slave Central Data Provisioner Property
 	 */	
-	void setSlaveProvisioner( /* Result Set with Slave Data for Selection */  String slaveProvisioner){*
+	void setSlaveProvisioner( /**Slave Central Data Provisioner*/ String slaveProvisioner){*
 		this.DSlaveProvisioner = slaveProvisioner;
 	*}
 
@@ -112,14 +147,14 @@ class org.scn.community.databound.ResultSetMixer extends org.scn.community.share
 	*}
 
 	/**
-	 * Sets Row Condition to Read Slave Result Set Property
+	 * Sets Row Condition To Read Slave Result Set Property
 	 */	
-	void setSlaveRowCondition( /* Under which condition should be the slave result set read (based on contnet of header row key) */  String slaveRowCondition){*
+	void setSlaveRowCondition( /**Row Condition To Read Slave Result Set*/ String slaveRowCondition){*
 		this.DSlaveRowCondition = slaveRowCondition;
 	*}
 
 	/**
-	 * Gets Row Condition to Read Slave Result Set Property
+	 * Gets Row Condition To Read Slave Result Set Property
 	 */	
 	String getSlaveRowCondition() {*
 		return this.DSlaveRowCondition;

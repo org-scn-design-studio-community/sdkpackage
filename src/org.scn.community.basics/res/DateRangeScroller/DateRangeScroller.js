@@ -17,9 +17,25 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./DateRangeScrollerSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"basics/os/date/DateFormat",
+	"../../../"+scn_pkg+"basics/os/sapui5/sap_suite_loader"
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.DateRangeScroller;
+var myComponentData = spec;
 
 DateRangeScroller = {
 
@@ -165,9 +181,8 @@ DateRangeScroller = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsdaterangescroller){
-	myComponentData.instance = DateRangeScroller;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = DateRangeScroller;
+jQuery.sap.require("sap.suite.ui.commons.DateRangeScroller");
+sap.suite.ui.commons.DateRangeScroller.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

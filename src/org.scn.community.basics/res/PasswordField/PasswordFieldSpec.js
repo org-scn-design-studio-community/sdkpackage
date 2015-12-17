@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "PasswordField",
+		name: "basics.PasswordField",
+		requireName: "basicspasswordfield",
+		fullComponentName: "org.scn.community.basics.PasswordField",
+		fullComponentPackage: "org.scn.community.basics/res/PasswordField",
+		script: "org.scn.community.basics/res/PasswordField/PasswordField",
+		scriptSpec: "org.scn.community.basics/res/PasswordField/PasswordFieldSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.PasswordField.spec = 
+	spec.spec = 
 {
   "editable": {
     "opts": {
@@ -101,10 +112,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.PasswordField.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.PasswordField.specAbout = 
+	spec.specAbout = 
 {
   "description": "Password Field",
   "icon": "PasswordField.png",
@@ -121,7 +132,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.PasswordField.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -140,4 +151,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

@@ -1,0 +1,41 @@
+
+/* ======================================================================= */
+/* CSS for sap_hcb theme of sap.suite.ui.commons/UnifiedThingGroup.control */
+/* ======================================================================= */
+
+.sapSuiteUtgTitle {
+	font-size: @sapMFontHeader2Size;
+}
+
+.sap-phone .sapSuiteUtgTitle {
+	font-size: @sapMFontHeader3Size;
+}
+
+.sapSuiteUtgDesc {
+    font-size: @sapMFontLargeSize;
+}
+
+.sap-phone .sapSuiteUtg {
+	background-color: @sapHCStandardFG;
+}
+
+.sapSuiteUtgHeader {
+    border-bottom : 1px solid @sapHCStandardFG;
+}
+
+.sapSuiteUtgTitle {
+    color: @sapHCStandardFG;
+	font-family: @sapUiFontFamily;
+}
+
+.sap-phone .sapSuiteUtgTitle {
+	color: @sapHCStandardFG;
+}
+
+.sap-phone .sapSuiteUtgDesc {
+	color: @sapHCStandardFG;
+}
+
+.sap-phone .sapSuiteUtgContent {
+	background-color: @sapHCStandardFG;
+}

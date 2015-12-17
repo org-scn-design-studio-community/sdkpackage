@@ -62,7 +62,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * NumericContent to be used in tile or in other place where need to show numeric values with sematic colors and deviations.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

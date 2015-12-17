@@ -5,13 +5,14 @@
 	tooltip="Tri State CheckBox"
 	icon="res/TriStateCheckBox/TriStateCheckBox.png"
 	handlerType="sapui5"
-	propertySheetPath="res/TriStateCheckBox/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/TriStateCheckBox/TriStateCheckBoxLoader.js</jsInclude>
+	<requireJs modes="commons">res/TriStateCheckBox/TriStateCheckBox</requireJs>
+
 	<cssInclude>res/TriStateCheckBox/TriStateCheckBox.css</cssInclude>
 	
 	

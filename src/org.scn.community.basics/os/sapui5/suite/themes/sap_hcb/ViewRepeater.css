@@ -1,0 +1,16 @@
+/* ========================================================= */
+/* CSS for control sap.suite.ui.commons/ViewRepeater.control */
+/* HCB theme                                                 */
+/* ========================================================= */
+
+.suiteUiVrViewSwHolder {
+	background-color: @sapUiBaseBG;
+	border-top: 1px solid;
+	border-left: 1px solid;
+	border-right: 1px solid;
+	margin-bottom: 0;
+}
+
+.suiteUiVr .sapUiTablePaginator {
+	background-color: @sapUiHighlight;
+}

@@ -26,7 +26,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * ====================================================================
  */
-
+define(["./jspdf"], function() {
 (function (jsPDFAPI) {
 	var clone,
 	DrillForContent,
@@ -999,3 +999,4 @@
 		return process(this, HTML, isNaN(x) ? 4 : x, isNaN(y) ? 4 : y, settings, callback);
 	};
 })(jsPDF.API);
+});

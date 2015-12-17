@@ -55,7 +55,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * The filter control for the SmartTable control
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

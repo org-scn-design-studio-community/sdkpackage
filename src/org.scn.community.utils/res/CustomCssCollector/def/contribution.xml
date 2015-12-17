@@ -1,14 +1,13 @@
 
 <component
 	id="CustomCssCollector"
-	title="Custom Css Collector"
+	title="Custom Css Collector 0.X"
 	tooltip="Allows to add Custom Css Files Dynamically"
 	icon="res/CustomCssCollector/CustomCssCollector.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/CustomCssCollector/CustomCssCollector.js</jsInclude>
 
 	<property

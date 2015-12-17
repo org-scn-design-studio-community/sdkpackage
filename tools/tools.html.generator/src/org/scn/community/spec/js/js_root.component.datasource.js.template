@@ -17,7 +17,10 @@
  * limitations under the License. 
  */
  
- (function(){
+define([
+	"../../../org.scn.community.shared/modules/component.core", 
+	"./%COMP-id%Spec"
+	], function() {
 
 var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%;
 
@@ -61,9 +64,7 @@ var myComponentData = org_scn_community_require.knownComponents.%COMP-package%.%
 	return that;
 };
 
-define([myComponentData.requireName], function(%COMP-package%%COMP-id(lower)%){
-	myComponentData.instance = %COMP-id%;
-	return myComponentData.instance;
-});
+myComponentData.instance = %COMP-id%;
+%LOADER%
 
-}).call(this);
+});

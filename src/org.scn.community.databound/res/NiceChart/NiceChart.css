@@ -49,7 +49,7 @@
         border: 1px solid #000000;
         color: white;
         margin: 2px;
-        width: 220px;
+        width: 260px;
         padding: 3px;
         border-radius: 3px;
         -webkit-transition: all .1s ease;
@@ -85,7 +85,7 @@
  		margin: 1px;
  		display:inline-block;
  		height:16px;
-
+		text-align: right;
  		float: right;
  		text-align:right;
  		margin-right: 0.5em;

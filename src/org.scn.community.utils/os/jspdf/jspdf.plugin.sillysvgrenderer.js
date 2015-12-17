@@ -23,7 +23,7 @@ Copyright (c) 2012 Willow Systems Corporation, willow-systems.com
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * ====================================================================
  */
-
+define(["./jspdf"], function() {
 ;(function(jsPDFAPI) {
 'use strict'
 
@@ -179,3 +179,4 @@ jsPDFAPI.addSVG = function(svgtext, x, y, w, h) {
 }
 
 })(jsPDF.API);
+});

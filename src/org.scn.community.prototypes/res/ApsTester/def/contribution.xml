@@ -5,13 +5,14 @@
 	tooltip="Application Property Sheet Tester"
 	icon="res/ApsTester/ApsTester.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ApsTester/ApsTesterLoader.js</jsInclude>
+	<requireJs modes="commons">res/ApsTester/ApsTester</requireJs>
+
 	<cssInclude>res/ApsTester/ApsTester.css</cssInclude>
 	
 	

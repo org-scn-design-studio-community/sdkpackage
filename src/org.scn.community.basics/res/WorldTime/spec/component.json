@@ -3,7 +3,7 @@
 	"title": "World Time 2.0",
 	"tooltip": "World Time",
 	"handlerType": "div",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityBasics",
 	"package": "basics",
 	"extension": "Component",

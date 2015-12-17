@@ -1,9 +1,9 @@
 {
 	"id": "HarveyBallMicroChart",
-	"title": "Harvey Ball Micro Chart2.0",
+	"title": "Harvey Ball Micro Chart 2.0",
 	"tooltip": "Harvey Ball Micro Chart- Component for visualization of data on small areas.",
 	"handlerType": "sapui5",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityUnified",
 	"package": "databound",
 	"extension": "ui5.HarveyBallMicroChart",
@@ -11,6 +11,7 @@
 	"extends2Control": "HarveyBallMicroChart",
 	"repeaterProperty": "items",
 	"generatedJsFile":"true",
+	"modes":"commons m",
 
 	"databound": true,
 	"dataType": "DataCellList",

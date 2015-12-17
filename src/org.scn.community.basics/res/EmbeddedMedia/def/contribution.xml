@@ -5,13 +5,14 @@
 	tooltip="Embedded Media - Include external media directly in your application"
 	icon="res/EmbeddedMedia/EmbeddedMedia.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/EmbeddedMedia/EmbeddedMediaLoader.js</jsInclude>
+	<requireJs modes="commons">res/EmbeddedMedia/EmbeddedMedia</requireJs>
+
 	<cssInclude>res/EmbeddedMedia/EmbeddedMedia.css</cssInclude>
 	
 	

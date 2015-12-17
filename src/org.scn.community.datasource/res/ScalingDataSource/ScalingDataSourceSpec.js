@@ -16,10 +16,22 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "ScalingDataSource",
+		name: "datasource.ScalingDataSource",
+		requireName: "datasourcescalingdatasource",
+		fullComponentName: "org.scn.community.datasource.ScalingDataSource",
+		fullComponentPackage: "org.scn.community.datasource/res/ScalingDataSource",
+		script: "org.scn.community.datasource/res/ScalingDataSource/ScalingDataSource",
+		scriptSpec: "org.scn.community.datasource/res/ScalingDataSource/ScalingDataSourceSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.datasource.ScalingDataSource.spec = 
+	spec.spec = 
 {
   "data": {
     "options": {
@@ -74,7 +86,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.datasource.ScalingDataSource.specAbout = 
+	spec.specInclude = 
+{};
+
+	spec.specAbout = 
 {
   "description": "Scaling Data Source - Scales a selection by given factor",
   "icon": "ScalingDataSource.png",
@@ -85,7 +100,7 @@
   }]
 };
 
-	org_scn_community_require.knownComponents.datasource.ScalingDataSource.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "BufferDataSource",
@@ -104,4 +119,5 @@
   "width": "260"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

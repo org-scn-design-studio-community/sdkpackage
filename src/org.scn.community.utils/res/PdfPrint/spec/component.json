@@ -1,0 +1,43 @@
+{
+	"id": "PdfPrint",
+	"title": "PDF Print 2.0",
+	"tooltip": "PDF Print",
+	"handlerType": "sapui5",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityUtils",
+	"package": "utils",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{ space: "known", id: "utils/os/date/DateFormat"},
+	
+		{ space: "known", id: "utils/os/canvas/canvg"},
+		{ space: "known", id: "utils/os/canvas/html2canvas"},
+		{ space: "known", id: "utils/os/rgb/rgbcolor"},
+		{ space: "known", id: "utils/os/blur/StackBlur"},
+		{ space: "known", id: "utils/os/svg/saveSvgAsPng"},
+		{ space: "known", id: "utils/os/file/FileSaver"},
+	
+		{ space: "known", id: "utils/os/jspdf/jspdf"},
+		{ space: "known", id: "utils/os/jspdf/jspdf.plugin.addhtml"},
+		{ space: "known", id: "utils/os/jspdf/jspdf.plugin.addimage"},
+		{ space: "known", id: "utils/os/jspdf/jspdf.plugin.autoprint"},
+		{ space: "known", id: "utils/os/jspdf/jspdf.plugin.cell"},
+		{ space: "known", id: "utils/os/jspdf/jspdf.plugin.from_html"},
+		{ space: "known", id: "utils/os/jspdf/jspdf.plugin.javascript"},
+		{ space: "known", id: "utils/os/jspdf/jspdf.plugin.png_support"},
+		{ space: "known", id: "utils/os/jspdf/jspdf.plugin.sillysvgrenderer"},
+		{ space: "known", id: "utils/os/jspdf/jspdf.plugin.split_text_to_size"},
+		{ space: "known", id: "utils/os/jspdf/jspdf.plugin.standard_fonts_metrics"},
+		{ space: "known", id: "utils/os/jspdf/jspdf.plugin.total_pages"}
+
+	],
+	"width": "100",
+	"height": "20"
+}

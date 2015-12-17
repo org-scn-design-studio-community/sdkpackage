@@ -16,13 +16,24 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "AreaMicroChart",
+		name: "databound.AreaMicroChart",
+		requireName: "databoundareamicrochart",
+		fullComponentName: "org.scn.community.databound.AreaMicroChart",
+		fullComponentPackage: "org.scn.community.databound/res/AreaMicroChart",
+		script: "org.scn.community.databound/res/AreaMicroChart/AreaMicroChart",
+		scriptSpec: "org.scn.community.databound/res/AreaMicroChart/AreaMicroChartSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.databound.AreaMicroChart.spec = 
+	spec.spec = 
 {};
 
-	org_scn_community_require.knownComponents.databound.AreaMicroChart.specInclude = 
+	spec.specInclude = 
 {
   "chart": {
     "opts": {
@@ -1495,7 +1506,7 @@
   }
 };
 
-	org_scn_community_require.knownComponents.databound.AreaMicroChart.specAbout = 
+	spec.specAbout = 
 {
   "description": "Area Micro Chart - Component for Visualization of Data on small areas",
   "icon": "AreaMicroChart.png",
@@ -1512,7 +1523,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.AreaMicroChart.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": true,
@@ -1524,8 +1535,9 @@
   "handlerType": "sapui5",
   "height": "200",
   "id": "AreaMicroChart",
+  "modes": "commons m",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -1561,4 +1573,5 @@
   "width": "400"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

@@ -1,15 +1,15 @@
 
 <component id="Base64Image"
-	title="Base64 Image Encoder"
+	title="Base64 Image Encoder 2.0"
 	icon="res/Base64Image/Base64Image.png"
 	tooltip="Handy Base-64 encoder property sheet (requires IE10+ for design-time)"
 	handlerType="sapui5"
-	propertySheetPath="res/Base64Image/aps/Base64ImagePropertyPage.html"
+	modes="commons m"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/Base64Image/Base64Image.js</jsInclude>
+	<requireJs modes="commons">res/Base64Image/Base64Image_commons</requireJs>
+	<requireJs modes="m">res/Base64Image/Base64Image</requireJs>
 	
 	<property type="String" title="Image Source URI" id="src" group="Display"/>
 	<property type="ScriptText" title="On Click" group="Events" id="onclick"></property>			

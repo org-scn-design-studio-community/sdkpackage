@@ -1,0 +1,16 @@
+{
+	"title": "Data Range Slider 2.0",
+	"description": "Data Range Slider",
+	"icon": "RangeSlider.png",
+	"topics": 
+	[
+		{
+			"title" : "Data Range Slider",
+			"content" : "Data Range Slider"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

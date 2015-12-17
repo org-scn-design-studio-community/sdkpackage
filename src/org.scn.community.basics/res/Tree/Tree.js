@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./TreeSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.Tree;
+var myComponentData = spec;
 
 Tree = {
 
@@ -192,9 +207,8 @@ Tree = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicstree){
-	myComponentData.instance = Tree;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = Tree;
+jQuery.sap.require("sap.ui.commons.Tree");
+sap.ui.commons.Tree.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

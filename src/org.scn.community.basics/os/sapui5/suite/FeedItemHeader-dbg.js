@@ -57,7 +57,7 @@ jQuery.sap.require("sap.m.ListItemBase");
  * @class
  * This control displays feed item header information.
  * @extends sap.m.ListItemBase
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

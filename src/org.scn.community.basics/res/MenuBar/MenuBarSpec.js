@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "MenuBar",
+		name: "basics.MenuBar",
+		requireName: "basicsmenubar",
+		fullComponentName: "org.scn.community.basics.MenuBar",
+		fullComponentPackage: "org.scn.community.basics/res/MenuBar",
+		script: "org.scn.community.basics/res/MenuBar/MenuBar",
+		scriptSpec: "org.scn.community.basics/res/MenuBar/MenuBarSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.MenuBar.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -162,10 +173,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.MenuBar.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.MenuBar.specAbout = 
+	spec.specAbout = 
 {
   "description": "Menu Bar (>= 1.4)",
   "icon": "MenuBar.png",
@@ -182,7 +193,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.MenuBar.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -191,7 +202,7 @@
   "height": "29",
   "id": "MenuBar",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -201,4 +212,5 @@
   "width": "400"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

@@ -1,0 +1,50 @@
+<core:View
+  xmlns="sap.package"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:m="sap.m"
+  
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  
+  controllerName="org.scn.community.%COMP-package%.%COMP-id%.Controller"
+  >
+  
+  <l:VerticalLayout
+    width="100%" content="{/}">
+    <l:content
+		width="{width}"
+	>
+		<BusyDialog
+				cancelButtonText="{cancelButtonText}"
+				closeedKey="{closeedKey}"
+				customIcon="{customIcon}"
+				customIconDensityAware="{customIconDensityAware}"
+				customIconHeight="{customIconHeight}"
+				customIconRotationSpeed="{customIconRotationSpeed}"
+				customIconWidth="{customIconWidth}"
+				onCloseed="{onCloseed}"
+				showCancelButton="{showCancelButton}"
+				text="{text}"
+				title="{title}"
+		
+		>
+	     	
+			
+		
+		
+		
+		
+		
+		
+		<onCloseed>
+			
+		</onCloseed>
+		
+		
+		
+		
+
+		</BusyDialog>
+	</l:content>
+  </l:VerticalLayout> 
+</core:View>

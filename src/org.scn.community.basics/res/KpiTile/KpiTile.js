@@ -17,9 +17,26 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./KpiTileSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"basics/os/sapui5/sap_m_loader",
+	"../../../"+scn_pkg+"basics/os/sapui5/sap_suite_loader",
+	"../../../"+scn_pkg+"basics/os/x2js/xml2json"
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.KpiTile;
+var myComponentData = spec;
 
 KpiTile = {
 
@@ -693,9 +710,8 @@ KpiTile = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicskpitile){
-	myComponentData.instance = KpiTile;
-	return myComponentData.instance;
-});
-
-}).call(this);	
+//%INIT-START%
+myComponentData.instance = KpiTile;
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
+});	

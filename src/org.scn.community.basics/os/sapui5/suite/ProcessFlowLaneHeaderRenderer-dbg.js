@@ -18,7 +18,7 @@ sap.suite.ui.commons.ProcessFlowLaneHeaderRenderer = {
  * @param {sap.ui.core.Control} oControl an object representation of the control that should be rendered
  */
 sap.suite.ui.commons.ProcessFlowLaneHeaderRenderer.render = function(oRm, oControl) {
-    // write the HTML into the render manager
+    // Write the HTML into the render manager
     switch(oControl.getSymbolType()) {
       case sap.suite.ui.commons.ProcessFlowLaneHeader.symbolType.startSymbol:
         this._writeSymbolNodeType(

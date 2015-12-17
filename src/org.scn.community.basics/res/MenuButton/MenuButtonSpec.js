@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "MenuButton",
+		name: "basics.MenuButton",
+		requireName: "basicsmenubutton",
+		fullComponentName: "org.scn.community.basics.MenuButton",
+		fullComponentPackage: "org.scn.community.basics/res/MenuButton",
+		script: "org.scn.community.basics/res/MenuButton/MenuButton",
+		scriptSpec: "org.scn.community.basics/res/MenuButton/MenuButtonSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.MenuButton.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -226,10 +237,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.MenuButton.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.MenuButton.specAbout = 
+	spec.specAbout = 
 {
   "description": "Menu Button (>= 1.4)",
   "icon": "MenuButton.png",
@@ -246,7 +257,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.MenuButton.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -255,7 +266,7 @@
   "height": "29",
   "id": "MenuButton",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -265,4 +276,5 @@
   "width": "400"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

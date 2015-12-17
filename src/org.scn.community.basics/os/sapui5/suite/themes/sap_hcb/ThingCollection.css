@@ -1,0 +1,14 @@
+/* ================================================================== */
+/* CSS for control sap.suite.ui.commons/ThingCollection.control */
+/* HCB theme                                                          */
+/* ================================================================== */
+
+.sapSuiteTc {
+	background: @sapUiBaseBG;
+	border: 1px solid;
+}
+
+.sapSuiteTcContainer {
+	border-right: 1px solid;
+	border-bottom: 1px solid;
+}

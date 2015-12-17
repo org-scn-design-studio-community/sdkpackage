@@ -78,7 +78,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * Timeline Control for sFin.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -2206,7 +2206,10 @@ sap.suite.ui.commons.Timeline.prototype.onAfterRendering = function() {
 //			console.log(this._scHeight);
 		}
 	} 
-	jQuery.sap.delayedCall(150, this, function() {
+
+//*to fix event grow binding issue - when click on more, scroll back to the top
+//	jQuery.sap.delayedCall(150, this, function() {
+	jQuery.sap.delayedCall(500, this, function() {
 		that._performUiChanges();
 		
 	     /* var p = this.$().find("#" + this.getId() + "-showmore");
@@ -2952,11 +2955,10 @@ sap.suite.ui.commons.Timeline.prototype.onfocusin = function(oEvent) {
 				if (oEvent.target == outFocusShellTarget) { //shidt_tab
 					return; 
 				}
-			} 
+			}
 			
 			//skip this block of codes, when tab back and current focus field is 'more' button
 			//with more button and shift+f6 directly from other control will stop here
-//			if (this._outFocusTarget !== this._moreTarget) { //directly tab back - no tab field available in item shell
 /*			if (this._outFocusTarget !== this._moreTarget && this._outFocusTarget !== null) { //directly tab back - no tab field available in item shell
 				this._setFocus(oEvent, this._moreTarget);
 				alert(sap.ui.getCore().getCurrentFocusedControlId());

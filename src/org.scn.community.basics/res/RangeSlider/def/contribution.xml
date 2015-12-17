@@ -5,13 +5,14 @@
 	tooltip="Range Slider"
 	icon="res/RangeSlider/RangeSlider.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RangeSlider/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RangeSlider/RangeSliderLoader.js</jsInclude>
+	<requireJs modes="commons">res/RangeSlider/RangeSlider</requireJs>
+
 	<cssInclude>res/RangeSlider/RangeSlider.css</cssInclude>
 	
 	

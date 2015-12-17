@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "Map",
+		name: "basics.Map",
+		requireName: "basicsmap",
+		fullComponentName: "org.scn.community.basics.Map",
+		fullComponentPackage: "org.scn.community.basics/res/Map",
+		script: "org.scn.community.basics/res/Map/Map",
+		scriptSpec: "org.scn.community.basics/res/Map/MapSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.Map.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -221,10 +232,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Map.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Map.specAbout = 
+	spec.specAbout = 
 {
   "description": "Open Street Map (Basic)",
   "icon": "Map.png",
@@ -241,7 +252,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Map.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -250,7 +261,7 @@
   "height": "400",
   "id": "Map",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -271,4 +282,5 @@
   "width": "600"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

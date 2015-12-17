@@ -5,13 +5,14 @@
 	tooltip="Notification Bar"
 	icon="res/NotificationBar/NotificationBar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/NotificationBar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/NotificationBar/NotificationBarLoader.js</jsInclude>
+	<requireJs modes="commons">res/NotificationBar/NotificationBar</requireJs>
+
 	<cssInclude>res/NotificationBar/NotificationBar.css</cssInclude>
 	
 	

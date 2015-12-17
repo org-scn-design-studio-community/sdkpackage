@@ -1,0 +1,267 @@
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/NoteTakerFeeder.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsNoteTakerFeeder {
+	color: @sapUiTextColor;
+	background-color: @sapUiMediumBG;
+	width: 300px;
+	height: 500px;
+    border: 1px solid @sapUiMediumLine;
+    padding: 14px;
+}
+
+/* Header section contains title, and add button */
+.sapSuiteUiCommonsNoteTakerFeederHeader {
+	color: @sapUiText;
+    font-size: 20px;
+    height: 40px;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+    border-bottom-color: @sapUiHighlight;
+	margin-bottom: 10px;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederHeaderAddButton {
+	min-width: 60px;
+	height: 28px;
+    position: absolute;
+    top: 15px;
+    right: 32px;
+}
+/* End of header section styles */
+
+.sapSuiteUiCommonsNoteTakerFeederBodySmaller {
+	margin-top: 10px;
+	height: 332px;
+	position: relative;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederBody {
+	margin-top: 10px;
+	height: 352px;
+	position: relative;
+}
+
+.sapSuiteUiCommonsNoteTakerFeeder textarea.sapUiTf.sapUiTxtA {
+	height: 100%;
+	width: 100%;
+	font-size: 16px;
+	border-style: none;
+	resize: none;
+	overflow: auto;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederTagPanel {
+    background-color: @sapUiLightBG;
+    height: 30px;
+    border: 3px solid @sapUiWhite;
+    padding: 5px;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederTagPanel button {
+    width: 28px;
+    height: 28px;
+    background-repeat:no-repeat;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederTagButton {
+    background-image: url(img/tag_24.png);
+}
+
+.sapSuiteUiCommonsNoteTakerFeederThumbUpButton {
+    background-image: url(img/thumbUp_24.png);
+}
+
+.sapSuiteUiCommonsNoteTakerFeederThumbDownButton {
+    background-image: url(img/thumbDown_24.png);
+    background-position: left bottom;
+}
+
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTagPanel .sapSuiteUiCommonsNoteTakerFeederButtonSelected {
+	background-color: @sapUiDarkAltBG;
+	box-shadow: 0 1px 0 @sapUiMediumAltBG inset;
+}
+
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTagPanel .sapSuiteUiCommonsNoteTakerFeederButtonSelected:hover,
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTagPanel .sapSuiteUiCommonsNoteTakerFeederButtonSelected.sapUiBtnStdHover,
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTagPanel .sapSuiteUiCommonsNoteTakerFeederButtonSelected:focus,
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTagPanel .sapSuiteUiCommonsNoteTakerFeederButtonSelected.sapUiBtnStdFocus {
+	background-color: #00669C;
+}
+
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTagPanel .sapUiBtnAct.sapSuiteUiCommonsNoteTakerFeederButtonSelected {
+	background-color: @sapUiDarkAltBG;
+	box-shadow: none;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederTitlePanel {
+	height: 6%;
+	margin-top: 10px;
+	font-size: 30px;
+}
+
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTitlePanel input {
+	height: 100%;
+	width: 100%;
+	font-size: 20px;
+	border-style: none;
+}
+
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederSelectTagPanel input {
+	width: 100%;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederSelectTagPanel {
+    border: 10px solid @sapUiLightBorder;
+	color: @sapUiTextColor;
+	background-color: @sapUiWhite;
+    position: absolute;
+    top: 107px;
+    left: 12px;
+    width: 176px;
+    padding: 12px;
+    display: none;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederSelectTagArrow {
+    display: block;
+    width: 13px;
+    height: 13px;
+    background-color: @sapUiWhite;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: -6px;
+    left: 12px;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederSelectTagButtons {
+	margin-top: 5px;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederCancelTagButton {
+	position: absolute;
+	right: 12px;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederSelectTagHeader {
+	font-size: 14px;
+	color: @sapUiText;
+	margin-bottom: 5px;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederLeftPanel {
+	float: left;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederRightPanel {
+	float: right;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederRightPanel .sapUiFup {
+	display: none;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederRightPanel button {
+	margin-left: 4px;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederRightPanel .sapSuiteUiCommonsNtDsblAttachIcon {
+	border-style: none;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederAttachmentPanel {
+	display : none;
+	height: 20px;
+	margin-bottom: 10px;
+	width: 300px;
+	background: @sapUiWhite;
+}
+.sapSuiteUiCommonsNoteTakerFeederAttachmentContent {
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	margin-right: 3px;
+	margin-left: 3px;
+}
+
+.sapSuiteUiCommonsNtfAttachmentNamelbl {
+	display: inline;
+}
+
+.sapSuiteUiCommonsNtfAttachmentNamelbl label {
+	color: @sapUiHighlight;	
+}
+
+.sapSuiteUiCommonsNtfLoadingLbl {
+	display: inline;
+	float: right;
+	padding-right: 10px;
+	position: absolute;
+	top:0px;
+	right: 2px;
+	color: @sapUiHighlight;
+}
+
+.sapSuiteUiCommonsNtfDeleteBtn {
+	display: none;
+	float: right;
+	padding-right: 10px;
+	height: 9px;
+	position: relative;
+	bottom: 3px;
+	position: absolute;
+	top:-3px;
+	right: 2px;
+}
+.sapSuiteUiCommonsNtfDeleteBtn button {
+	background-image: url(img/decline_16.png);
+	background-position: center center;
+	height: 22px;
+}
+.sapSuiteUiCommonsNtfAttachImg {
+	background-image: url(img/attachment_16.png);
+	background-position: center center;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+}
+
+.sapSuiteUiCommonsNtfUploader {
+	width: 28px;
+	height: 28px;
+	overflow: hidden;
+	margin-left: -28px;
+	position: relative;
+	visibility: visible;
+}
+
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsNtfUploader {
+	display: inline-block;
+	opacity: 0;
+}
+
+
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsNoteTakerFeeder .sapSuiteUiCommonsNtfUploader div,
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsNoteTakerFeeder .sapSuiteUiCommonsNtfUploader form {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+}
+
+html[data-sap-ui-browser^="ie"] .sapSuiteUiCommonsNtfUploader input[type='file'] {
+	float: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	height: 28px;
+}
+
+.sapSuiteRequiredLbl {
+	position: absolute;
+	left: -16px;
+}

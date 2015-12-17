@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "Link",
+		name: "basics.Link",
+		requireName: "basicslink",
+		fullComponentName: "org.scn.community.basics.Link",
+		fullComponentPackage: "org.scn.community.basics/res/Link",
+		script: "org.scn.community.basics/res/Link/Link",
+		scriptSpec: "org.scn.community.basics/res/Link/LinkSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.Link.spec = 
+	spec.spec = 
 {
   "onPress": {
     "opts": {
@@ -53,10 +64,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Link.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Link.specAbout = 
+	spec.specAbout = 
 {
   "description": "Link",
   "icon": "Link.png",
@@ -73,7 +84,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Link.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -92,4 +103,5 @@
   "width": "100"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

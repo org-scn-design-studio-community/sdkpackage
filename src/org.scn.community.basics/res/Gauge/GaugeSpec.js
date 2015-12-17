@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "Gauge",
+		name: "basics.Gauge",
+		requireName: "basicsgauge",
+		fullComponentName: "org.scn.community.basics.Gauge",
+		fullComponentPackage: "org.scn.community.basics/res/Gauge",
+		script: "org.scn.community.basics/res/Gauge/Gauge",
+		scriptSpec: "org.scn.community.basics/res/Gauge/GaugeSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.Gauge.spec = 
+	spec.spec = 
 {
   "endValue": {
     "opts": {
@@ -311,10 +322,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Gauge.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Gauge.specAbout = 
+	spec.specAbout = 
 {
   "description": "Displays a Gauge (Speedometer)",
   "icon": "Gauge.png",
@@ -331,7 +342,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Gauge.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -340,7 +351,7 @@
   "height": "300",
   "id": "Gauge",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -350,4 +361,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

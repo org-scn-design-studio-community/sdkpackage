@@ -1,3 +1,4 @@
+define(["./jspdf"], function() {
 (function (jsPDFAPI) {
 	'use strict';
 
@@ -16,3 +17,4 @@
 		return this;
 	};
 })(jsPDF.API);
+});

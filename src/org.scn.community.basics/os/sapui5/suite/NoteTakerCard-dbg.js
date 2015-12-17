@@ -63,7 +63,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * This control allows you to store Note Taker card header and body text.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

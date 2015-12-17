@@ -16,8 +16,8 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
-sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.OpenWindowPost", {
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.OpenWindowPost", {
 
 	metadata: {
         properties: {

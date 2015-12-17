@@ -5,13 +5,14 @@
 	tooltip="ProcessFlow - Component for visualization of processes."
 	icon="res/ProcessFlow/ProcessFlow.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ProcessFlow/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ProcessFlow/ProcessFlowLoader.js</jsInclude>
+	<requireJs modes="commons m">res/ProcessFlow/ProcessFlow</requireJs>
+
 	<cssInclude>res/ProcessFlow/ProcessFlow.css</cssInclude>
 	
 	

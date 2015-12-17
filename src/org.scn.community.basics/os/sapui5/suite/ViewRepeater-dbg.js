@@ -63,7 +63,7 @@ jQuery.sap.require("sap.ui.commons.RowRepeater");
  * @class
  * This control extends the sap.ui.commons.RowRepeater control providing an ability to change data representation by switching between a number of views. The data can be displayed not only in rows but also in tiles that are adjusted to fill the entire horizontal space in a row.
  * @extends sap.ui.commons.RowRepeater
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

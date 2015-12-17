@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "ActivityViewer",
+		name: "basics.ActivityViewer",
+		requireName: "basicsactivityviewer",
+		fullComponentName: "org.scn.community.basics.ActivityViewer",
+		fullComponentPackage: "org.scn.community.basics/res/ActivityViewer",
+		script: "org.scn.community.basics/res/ActivityViewer/ActivityViewer",
+		scriptSpec: "org.scn.community.basics/res/ActivityViewer/ActivityViewerSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.ActivityViewer.spec = 
+	spec.spec = 
 {
   "activities": {
     "opts": {
@@ -154,10 +165,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ActivityViewer.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ActivityViewer.specAbout = 
+	spec.specAbout = 
 {
   "description": "Activity Viewer - Gantt Chart for Activities",
   "icon": "ActivityViewer.png",
@@ -174,7 +185,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ActivityViewer.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -185,11 +196,11 @@
   "package": "basics",
   "require": [
     {
-      "id": "d3",
+      "id": "basics/os/d3/d3",
       "space": "d3"
     },
     {
-      "id": "d3plug_gantt",
+      "id": "basics/os/d3-plug/gantt-chart-d3v2",
       "space": "d3"
     },
     {
@@ -202,4 +213,5 @@
   "width": "600"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

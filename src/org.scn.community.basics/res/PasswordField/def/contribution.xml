@@ -5,13 +5,14 @@
 	tooltip="Password Field"
 	icon="res/PasswordField/PasswordField.png"
 	handlerType="sapui5"
-	propertySheetPath="res/PasswordField/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/PasswordField/PasswordFieldLoader.js</jsInclude>
+	<requireJs modes="commons">res/PasswordField/PasswordField</requireJs>
+
 	<cssInclude>res/PasswordField/PasswordField.css</cssInclude>
 	
 	

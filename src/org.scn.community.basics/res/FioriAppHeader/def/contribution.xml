@@ -1,16 +1,15 @@
 
 <component id="FioriAppHeader" 
-	title="Fiori App Header"
+	title="Fiori App Header 2.0"
 	icon="res/FioriAppHeader/FioriAppHeader.png"
 	handlerType="sapui5" 
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	modes="commons m"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics">
   	
-	<jsInclude>res/require_loader.js</jsInclude>
-  	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/FioriAppHeader/FioriAppHeader.js</jsInclude>
+	<requireJs modes="commons">res/FioriAppHeader/FioriAppHeader_commons</requireJs>
+	<requireJs modes="m">res/FioriAppHeader/FioriAppHeader</requireJs>
   	
-  	<cssInclude>res/FioriAppHeader/FioriAppHeader.css</cssInclude>
   	<property id="title" type="String" title="Title" group="Display"/>
   	<property id="itemConfig" type="String" title="Item Config" visible="false" group="Display"/>
   	<property id="showNavButton" type="boolean" title="Show Back Button" group="Display"/>

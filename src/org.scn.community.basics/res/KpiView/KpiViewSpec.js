@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "KpiView",
+		name: "basics.KpiView",
+		requireName: "basicskpiview",
+		fullComponentName: "org.scn.community.basics.KpiView",
+		fullComponentPackage: "org.scn.community.basics/res/KpiView",
+		script: "org.scn.community.basics/res/KpiView/KpiView",
+		scriptSpec: "org.scn.community.basics/res/KpiView/KpiViewSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.KpiView.spec = 
+	spec.spec = 
 {
   "data": {
     "opts": {
@@ -498,10 +509,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.KpiView.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.KpiView.specAbout = 
+	spec.specAbout = 
 {
   "description": "Kpi View",
   "icon": "KpiView.png",
@@ -518,7 +529,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.KpiView.specComp = 
+	spec.specComp = 
 {
   "dataType": "ResultCell",
   "databound": true,
@@ -528,7 +539,7 @@
   "height": "190",
   "id": "KpiView",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -548,4 +559,5 @@
   "width": "220"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "RatingIndicator",
+		name: "basics.RatingIndicator",
+		requireName: "basicsratingindicator",
+		fullComponentName: "org.scn.community.basics.RatingIndicator",
+		fullComponentPackage: "org.scn.community.basics/res/RatingIndicator",
+		script: "org.scn.community.basics/res/RatingIndicator/RatingIndicator",
+		scriptSpec: "org.scn.community.basics/res/RatingIndicator/RatingIndicatorSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.RatingIndicator.spec = 
+	spec.spec = 
 {
   "editable": {
     "opts": {
@@ -133,10 +144,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.RatingIndicator.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.RatingIndicator.specAbout = 
+	spec.specAbout = 
 {
   "description": "Rating Indicator",
   "icon": "RatingIndicator.png",
@@ -153,7 +164,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.RatingIndicator.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -172,4 +183,5 @@
   "width": "200"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

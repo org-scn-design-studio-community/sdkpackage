@@ -5,13 +5,14 @@
 	tooltip="Navigation Bar"
 	icon="res/NavigationBar/NavigationBar.png"
 	handlerType="sapui5"
-	propertySheetPath="res/NavigationBar/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/NavigationBar/NavigationBarLoader.js</jsInclude>
+	<requireJs modes="commons">res/NavigationBar/NavigationBar</requireJs>
+
 	<cssInclude>res/NavigationBar/NavigationBar.css</cssInclude>
 	
 	

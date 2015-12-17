@@ -1,8 +1,188 @@
 
 /**
- * Class for PdfPrint
+ * Generated ZTL Class for PdfPrint
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.utils.PdfPrint extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets File Name Property
+	 */	
+	void setFileName( /**File Name*/ String fileName){*
+		this.fileName = fileName;
+	*}
+
+	/**
+	 * Gets File Name Property
+	 */	
+	String getFileName() {*
+		return this.fileName;
+	*}
+
+	/**
+	 * Sets Page Format Property by String
+	 */	
+	void setFormatByString( /**Page Format*/ String format){*
+		this.format = format;
+	*}
+
+	/**
+	 * Gets Page Format Property as String
+	 */	
+	String getFormatAsString() {*
+		return this.format;
+	*}
+	
+	/**
+	 * Sets Page Format Property by Choice Option
+	 */	
+	void setFormat( /**Page Format*/ org_scn_community_shared_Enumfield format){*
+		this.format = format;
+	*}
+	
+	/**
+	 * Gets Page Format Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getFormat() {*
+		return this.format;
+	*}
+
+	/**
+	 * Sets Page Orientation Property by String
+	 */	
+	void setOrientationByString( /**Page Orientation*/ String orientation){*
+		this.orientation = orientation;
+	*}
+
+	/**
+	 * Gets Page Orientation Property as String
+	 */	
+	String getOrientationAsString() {*
+		return this.orientation;
+	*}
+	
+	/**
+	 * Sets Page Orientation Property by Choice Option
+	 */	
+	void setOrientation( /**Page Orientation*/ org_scn_community_shared_Enumfield orientation){*
+		this.orientation = orientation;
+	*}
+	
+	/**
+	 * Gets Page Orientation Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getOrientation() {*
+		return this.orientation;
+	*}
+
+	/**
+	 * Sets PDF Export Type Property by String
+	 */	
+	void setPdfMethodByString( /**PDF Export Type*/ String pdfMethod){*
+		this.pdfMethod = pdfMethod;
+	*}
+
+	/**
+	 * Gets PDF Export Type Property as String
+	 */	
+	String getPdfMethodAsString() {*
+		return this.pdfMethod;
+	*}
+	
+	/**
+	 * Sets PDF Export Type Property by Choice Option
+	 */	
+	void setPdfMethod( /**PDF Export Type*/ org_scn_community_shared_Enumfield pdfMethod){*
+		this.pdfMethod = pdfMethod;
+	*}
+	
+	/**
+	 * Gets PDF Export Type Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getPdfMethod() {*
+		return this.pdfMethod;
+	*}
+
+	/**
+	 * Sets Root Panel Name Property
+	 */	
+	void setRootPanel( /**Root Panel Name*/ String rootPanel){*
+		this.rootPanel = rootPanel;
+	*}
+
+	/**
+	 * Gets Root Panel Name Property
+	 */	
+	String getRootPanel() {*
+		return this.rootPanel;
+	*}
+
+	/**
+	 * Sets SVG Conversion Mode Property by String
+	 */	
+	void setSvgModeByString( /**SVG Conversion Mode*/ String svgMode){*
+		this.svgMode = svgMode;
+	*}
+
+	/**
+	 * Gets SVG Conversion Mode Property as String
+	 */	
+	String getSvgModeAsString() {*
+		return this.svgMode;
+	*}
+	
+	/**
+	 * Sets SVG Conversion Mode Property by Choice Option
+	 */	
+	void setSvgMode( /**SVG Conversion Mode*/ org_scn_community_shared_Enumfield svgMode){*
+		this.svgMode = svgMode;
+	*}
+	
+	/**
+	 * Gets SVG Conversion Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getSvgMode() {*
+		return this.svgMode;
+	*}
+
+	/**
+	 * Gets Just As Simple Triger Property
+	 */	
+	String getTrigger() {*
+		return this.trigger;
+	*}
+
+	/**
+	 * Sets Unit Property by String
+	 */	
+	void setUnitByString( /**Unit*/ String unit){*
+		this.unit = unit;
+	*}
+
+	/**
+	 * Gets Unit Property as String
+	 */	
+	String getUnitAsString() {*
+		return this.unit;
+	*}
+	
+	/**
+	 * Sets Unit Property by Choice Option
+	 */	
+	void setUnit( /**Unit*/ org_scn_community_shared_Enumfield unit){*
+		this.unit = unit;
+	*}
+	
+	/**
+	 * Gets Unit Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getUnit() {*
+		return this.unit;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
 	/**
 	 * Trigger Execution of the given URL and parameter list
@@ -17,4 +197,5 @@ class org.scn.community.utils.PdfPrint extends org.scn.community.shared.Componen
 	void setRootPanel (/*Name of the panel to print*/ String panelName) {*
 		this.rootPanel = panelName;
 	*}
+
 }

@@ -6,10 +6,11 @@
     "type": "library",
     "embeds": [],
     "applicationVersion": {
-      "version": "1.30.3"
+      "version": "1.30.8"
     },
     "title": "SAP UI library: sap.suite.ui.commons",
     "description": "SAP UI library: sap.suite.ui.commons",
+    "ach": "CA-UI5-BS-FCW",
     "resources": "resources.json",
     "offline": true
   },
@@ -29,7 +30,7 @@
       "minUI5Version": "1.30",
       "libs": {
         "sap.ui.core": {
-          "minVersion": "1.30.3"
+          "minVersion": "1.30.0"
         }
       }
     }

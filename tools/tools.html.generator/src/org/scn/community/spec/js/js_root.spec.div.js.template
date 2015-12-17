@@ -16,19 +16,31 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "%COMP-id%",
+		name: "%COMP-package%.%COMP-id%",
+		requireName: "%COMP-package%%COMP-id(lower)%",
+		fullComponentName: "org.scn.community.%COMP-package%.%COMP-id%",
+		fullComponentPackage: "org.scn.community.%COMP-package%/res/%COMP-id%",
+		script: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%",
+		scriptSpec: "org.scn.community.%COMP-package%/res/%COMP-id%/%COMP-id%Spec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.spec = 
+	spec.spec = 
 %FULL_SPEC_DEFINITION%
 
-	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.specInclude = 
+	spec.specInclude = 
 %FULL_SPEC_INCLUDE_DEFINITION%
 
-	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.specAbout = 
+	spec.specAbout = 
 %FULL_ABOUT_SPEC_DEFINITION%
 
-	org_scn_community_require.knownComponents.%COMP-package%.%COMP-id%.specComp = 
+	spec.specComp = 
 %FULL_COMP_SPEC_DEFINITION%
 
-})();// End of closure
+	return spec;
+});// End of closure

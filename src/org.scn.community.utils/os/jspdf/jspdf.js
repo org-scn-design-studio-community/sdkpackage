@@ -53,7 +53,10 @@
  * @returns {jsPDF}
  * @name jsPDF
  */
-var jsPDF = (
+var jsPDF = {};
+
+define([], function() {
+jsPDF = (
 		function(global) {
 	'use strict';
 	var pdfVersion = '1.3',
@@ -1726,3 +1729,4 @@ var jsPDF = (
 	}
 	return jsPDF;
 }(typeof self !== "undefined" && self || typeof window !== "undefined" && window || this));
+});

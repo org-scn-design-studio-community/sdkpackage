@@ -3,7 +3,7 @@
 	"title": "TimeOut (Timer) 2.0",
 	"tooltip": "Time Out (Timer)",
 	"handlerType": "div",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityBasics",
 	"package": "basics",
 	"extension": "Component",

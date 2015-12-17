@@ -1,0 +1,161 @@
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/MicroAreaChart.control */
+/* ============================================= */
+
+.sapSuiteMac {
+ 	background-color: transparent;
+ 	display: inline-block;
+ 	position: relative;
+ 	outline: none; 
+}
+
+.sapSuiteMacSideLabels {
+	position: absolute;
+	width: 23%;
+	top: 0px;
+	bottom: 0px;
+	min-width: 64px;
+	max-width: 80px;
+}
+
+.sapSuiteMacSideLabels.Left {
+	left: 0px;
+}
+
+.sapSuiteMacSideLabels.Right {
+	right: 0px;
+}
+
+.sapSuiteMacCanvas {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+}
+
+.sapSuiteMac.topLbls>.sapSuiteMacSideLabels,
+.sapSuiteMac.topLbls>.sapSuiteMacCanvas {
+	top: 1rem;
+}
+
+.sapSuiteMac.btmLbls>.sapSuiteMacSideLabels,
+.sapSuiteMac.btmLbls>.sapSuiteMacCanvas {
+	bottom: 1rem;
+}
+
+.sapSuiteMacTarget {
+	width: 2px;
+}
+
+.sapSuiteMacChart {
+	width: 2px;
+}
+
+.sapSuiteMacLine {
+	width: 2px;
+}
+
+.sapSuiteMacThreshold {
+	width: 1px;
+}
+
+.sapSuiteMacLbl {
+	float: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	min-height: 1px;
+	width: 0%;
+}
+
+.sapSuiteMacLbl.Top {
+	position: absolute;
+	top: 0px;
+}
+
+.sapSuiteMacLbl.Btm {
+	position: absolute;
+	bottom: 0px;
+}
+
+.sapSuiteMacLbl.Top,
+.sapSuiteMacLbl.Btm,
+.sapSuiteMacLbl.Left.L,
+.sapSuiteMacLbl.Center.C,
+.sapSuiteMacLbl.Right.R {
+	width: 100%;
+}
+
+.sapSuiteMacLbl.Left.LR,
+.sapSuiteMacLbl.Right.LR {
+	width: 50%;
+}
+
+.sapSuiteMacLbl.LCR,
+.sapSuiteMacLbl.LC,
+.sapSuiteMacLbl.CR {
+	width: 33.33%;
+}
+
+.sapSuiteMacLbl.Left {
+	text-align: left;
+}
+
+.sapSuiteMacLbl.Center {
+	text-align: center;
+}
+
+.sapSuiteMacLbl.Right {
+	text-align: right;
+}
+
+.sapSuiteMacSideLabels > .sapSuiteMacLbl.Left {
+	padding-right: 8px;
+	text-align: right;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.sapSuiteMacSideLabels > .sapSuiteMacLbl.Right {
+	padding-left: 8px;
+	text-align: left;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.sapSuiteMacLabels {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+}
+
+.sapSuiteMacLabels.Top {
+	top: 0px;
+}
+	
+.sapSuiteMacLabels.Btm {
+	bottom: 0px;
+}
+
+.sapSuiteMac:focus:not([tabindex]) {
+	outline: none;
+}
+
+html[dir=rtl] {
+	.sapSuiteMacLbl.Right {
+		text-align: left;
+	}
+	
+	.sapSuiteMacLbl.Left {
+		text-align: right;
+	}
+	
+	.sapSuiteMacSideLabels > .sapSuiteMacLbl.Right {
+		text-align: right;
+	}
+	
+	.sapSuiteMacSideLabels > .sapSuiteMacLbl.Left {
+		text-align: left;
+	}
+}

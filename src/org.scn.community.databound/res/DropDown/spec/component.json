@@ -1,0 +1,22 @@
+{
+	"id": "DropDown",
+	"title": "Data Drop Down 2.0",
+	"tooltip": "Data Drop Down",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.DropdownBox",
+	"group": "ScnCommunityDataBound",
+	"package": "databound",
+	"extension": "Component",
+	"databound": true,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "100",
+	"height": "26"
+}

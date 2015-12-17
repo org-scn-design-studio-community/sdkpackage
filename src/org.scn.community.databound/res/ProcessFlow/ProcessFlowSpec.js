@@ -16,13 +16,24 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "ProcessFlow",
+		name: "databound.ProcessFlow",
+		requireName: "databoundprocessflow",
+		fullComponentName: "org.scn.community.databound.ProcessFlow",
+		fullComponentPackage: "org.scn.community.databound/res/ProcessFlow",
+		script: "org.scn.community.databound/res/ProcessFlow/ProcessFlow",
+		scriptSpec: "org.scn.community.databound/res/ProcessFlow/ProcessFlowSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.databound.ProcessFlow.spec = 
+	spec.spec = 
 {};
 
-	org_scn_community_require.knownComponents.databound.ProcessFlow.specInclude = 
+	spec.specInclude = 
 {
   "connections": {
     "opts": {
@@ -491,7 +502,7 @@
   }
 };
 
-	org_scn_community_require.knownComponents.databound.ProcessFlow.specAbout = 
+	spec.specAbout = 
 {
   "description": "Process Flow - Visualizes Processes",
   "icon": "ProcessFlow.png",
@@ -508,7 +519,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.ProcessFlow.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": false,
@@ -521,8 +532,9 @@
   "handlerType": "sapui5",
   "height": "580",
   "id": "ProcessFlow",
+  "modes": "commons m",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -558,4 +570,5 @@
   "width": "420"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

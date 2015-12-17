@@ -26,6 +26,9 @@ import com.sun.xml.internal.messaging.saaj.soap.ver1_1.HeaderElement1_1Impl;
 
 public class SpecificationReader {
 
+	private static final String CONS_LINK = "\"+scn_pkg+\"";
+	// private static final String CONS_LINK = "org.scn.community.";
+
 	private String pathToGenSpec;
 
 	private JSONObject jsonSpecification;
@@ -36,12 +39,12 @@ public class SpecificationReader {
 	private String JsLoaderTmpl;
 	private String JsTmpl;
 	private String ZtlTmpl;
+	private String UI5XmlTmpl;
 	
 	private HashMap<String, String> templates = new HashMap<String, String>();
+	private HashMap<String, String> replacedTemplates = new HashMap<String, String>();
 	private String componentName;
 	private String rootPath;
-	private String ApsJs;
-	private String ApsHtml;
 	private String JsSpecTmpl;
 	private ArrayList<String> componentRequries = new ArrayList<String>();
 	private ArrayList<String> componentRequries2 = new ArrayList<String>();
@@ -197,10 +200,37 @@ public class SpecificationReader {
 					String id = paramFullSpec.getProperties().get("id");
 					String ind = paramFullSpec.getProperties().get("ind");
 					
-					if(ind == null || ind.equals("1")) {
-						componentRequries.add("org_scn_community_require."+space+"Modules." + id + ".name");	
+					String idOld = id;
+					
+					if(id.startsWith("common_")) {continue;}
+					if(id.startsWith("jshashtable")) {continue;}
+					if(id.startsWith("numberformatter")) {continue;}
+					
+					if(id.startsWith("sap_m_loader")) {id = "../../../"+CONS_LINK+"basics/os/sapui5/" + id;}
+					if(id.startsWith("sap_suite_loader")) {id = "../../../"+CONS_LINK+"basics/os/sapui5/" + id;}
+					if(id.startsWith("x2js")) {id = "../../../"+CONS_LINK+"basics/os/x2js/xml2json";}
+					if(id.equals("mm")) {id = "../../../"+CONS_LINK+"basics/os/mm/mm";}
+					if(id.equals("mmfollower")) {id = "../../../"+CONS_LINK+"basics/os/mm/mm-follower";}
+					if(id.equals("noty")) {id = "../../../"+CONS_LINK+"basics/os/noty/packaged/noty";}
+					if(id.equals("qrcode")) {id = "../../../"+CONS_LINK+"basics/os/qrcode/qrcode";}
+					if(id.equals("chartjs")) {id = "../../../"+CONS_LINK+"basics/os/chartjs/Chart";}
+					if(id.equals("scheme")) {id = "../../../"+CONS_LINK+"basics/os/color/scheme";}
+					if(id.equals("dateformatter")) {id = "../../../"+CONS_LINK+"basics/os/date/DateFormat";}
+					if(id.equals("validate")) {id = "../../../"+CONS_LINK+"basics/os/validate/validate";}
+					if(id.equals("ndd")) {id = "../../../"+CONS_LINK+"basics/os/ndd/jq-ndd";}
+
+					if(!idOld.equals(id)) {
+						if(ind == null || ind.equals("1")) {
+							componentRequries.add("\""+id+"\"");
+						} else {
+							componentRequries2.add("\""+id+"\"");
+						}
 					} else {
-						componentRequries2.add("org_scn_community_require."+space+"Modules." + id + ".name");
+						if(ind == null || ind.equals("1")) {
+							componentRequries.add("\"../../../"+CONS_LINK+""+id+"\"");
+						} else {
+							componentRequries2.add("\"../../../"+CONS_LINK+""+id+"\"");
+						}
 					}
 				}
 			} else if(key.equals("stdIncludes")) {
@@ -233,6 +263,12 @@ public class SpecificationReader {
 				String newFile = pathToGenSpec.substring(0, pathToGenSpec.indexOf("org.scn.community."));
 				String specName = property.getExtendedFullSpec().getPropertyValue(key);
 				
+				String ui5package = "sap/suite/ui/commons";
+				if(helper.hasProperty(this.compProperties, "ui5package")) {
+					ui5package = helper.getProperty(this.compProperties, "ui5package").getExtendedFullSpec().getPropertyValue("ui5package");
+					ui5package = ui5package.replace(".", "/");
+				}
+				
 				newFile = newFile + "org.scn.community.shared\\ui5spec\\control\\" + specName + ".spec.json";
 				String includeSpecN = Helpers.file2String(newFile);
 				if(includeSpec != null) {
@@ -243,7 +279,7 @@ public class SpecificationReader {
 				}
 				
 				if(includeSpecN == null) {
-					String url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/suite/ui/commons/" + specName.replace(".ds",  "") + ".control";
+					String url = "https://sapui5.hana.ondemand.com/sdk/resources/"+ui5package+"/" + specName.replace(".ds",  "") + ".control";
 					String onlineSpec = helper.sendGet(url);
 					
 					if(onlineSpec == null || onlineSpec.length() == 0) {
@@ -318,6 +354,8 @@ public class SpecificationReader {
 		}
 		if(hasUi5Spec) {
 			JsTmpl = Helpers.resource2String(Ui5JsSpec.class, "root.js.tmpl");	
+			
+			UI5XmlTmpl = Helpers.resource2String(Ui5JsSpec.class, "comp.view.xml");
 		} else {
 			JsTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.component."+compTypeValue+databoundTamplate+".js.template");	
 		}
@@ -338,14 +376,7 @@ public class SpecificationReader {
 		
 		ZtlTmpl = Helpers.resource2String(SpecificationZtlTemplate.class, "ztl_root.ztl.template");
 		
-		if(compTypeValue.equals("sapui5")) {
-			ApsJs  = Helpers.resource2String(SpecificationApsTemplate.class, "PropertyPage."+compTypeValue+".def.js.template");
-			ApsHtml  = Helpers.resource2String(SpecificationApsTemplate.class, "PropertyPage."+compTypeValue+".html.template");
-
-			XmlTmpl = XmlTmpl.replace("%PROPERTY_PAGE_LINK%", "res/%COMP-id%/aps/PropertyPage.html");
-		} else {
-			XmlTmpl = XmlTmpl.replace("%PROPERTY_PAGE_LINK%", "aps/org.scn.community.PropertyPage."+compTypeValue+".html");
-		}
+		XmlTmpl = XmlTmpl.replace("%PROPERTY_PAGE_LINK%", "aps/PropertyPage.html");
 		
 		if(jsonIncludeSpecification == null) {
 			jsonIncludeSpecification = new JSONObject();
@@ -378,29 +409,11 @@ public class SpecificationReader {
 		templates.put("%COMPONENT_NAME%Spec.js", JsSpecTmpl);
 		
 		templates.put("%COMPONENT_NAME%.js", JsTmpl);
-		
+		if(UI5XmlTmpl!=null) {
+			templates.put("%COMPONENT_NAME%.view.xml", UI5XmlTmpl);			
+		}
+
 		templates.put("def"+File.separator+"contribution.ztl", ZtlTmpl);
-		
-		if(ApsHtml != null){
-			ApsHtml = ApsHtml.replace("<!-- %PART_USED_AS_TEMPLATE%", "");
-			ApsHtml = ApsHtml.replace("%PART_USED_AS_TEMPLATE% -->", "");
-
-			ApsHtml = ApsHtml.replace("src=\"/", "src=|\"/");
-			ApsHtml = ApsHtml.replace("src=\"PropertyPage", "src=|\"PropertyPage");
-			ApsHtml = ApsHtml.replace("href=\"/", "href=|\"/");
-			
-			ApsHtml = ApsHtml.replace("src=\"", "src=\"../../../aps/");
-			ApsHtml = ApsHtml.replace("href=\"", "href=\"../../../aps/");
-			
-			ApsHtml = ApsHtml.replace("src=|", "src=");
-			ApsHtml = ApsHtml.replace("href=|", "href=");
-
-			templates.put("aps"+File.separator+"PropertyPage.html", ApsHtml);
-		}
-		
-		if(ApsJs != null){
-			templates.put("aps"+File.separator+"PropertyPage.def.js", ApsJs);
-		}
 		
 		SpecHelper helper = new SpecHelper(this.componentName, new File(pathToGenSpec));
 		Property generatedJs = null;
@@ -454,18 +467,118 @@ public class SpecificationReader {
 					content = content.replace("%COMP-"+extendedPropertyKey+"%", value);
 				}
 			}
+			
+			if(content.contains("%COMP-modes%")) {
+				content = content.replace("%COMP-modes%", "commons");
+			}
 		
-			// content = content.replace("%", "_");
+			replacedTemplates.put(templatePath, content);
 			
 			// last check if we have not missed some
 			if(content.contains("%")) {
 				// throw new RuntimeException(content.substring(content.indexOf("%"), 10));
 			}
+		}
 
+		for (String templatePath : this.replacedTemplates.keySet()) {
+			String content = replacedTemplates.get(templatePath);
+			
+			content = content.replace("%LOADER%", replacedTemplates.get(this.componentName+"Loader.js"));
+			
 			String iFileName = this.rootPath + File.separator + templatePath;
+			
+			if(templatePath.endsWith(this.componentName + "Loader.js")) {
+				continue;
+			}
+
 			if(templatePath.endsWith(this.componentName + ".js")) {
 				if(!new File(iFileName).exists() || (generatedJs != null && generatedJs.getExtendedFullSpec().getPropertyValue("generatedJsFile").equals("true"))) {
 					Helpers.string2File(iFileName, content);
+				} else {
+					String contentJs = Helpers.file2String(iFileName);
+
+					int indexDefineStart = contentJs.indexOf("//%DEFINE-START%");
+					if(indexDefineStart == -1) {
+						indexDefineStart = contentJs.indexOf("var scn_pkg=\"org.scn.community.\"");
+					}
+					int indexDefineEnd = contentJs.lastIndexOf("//%DEFINE-END%");
+					
+					if(indexDefineStart > -1) {
+						String defineContent = "//%DEFINE-START%\r\n";
+						defineContent += "var scn_pkg=\"org.scn.community.\";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(\".\",\"_\");}";
+						defineContent += "\r\ndefine([";
+						
+						defineContent += "\r\n\t\"sap/designstudio/sdk/component\",";
+						defineContent += "\r\n\t\"./"+this.componentName+"Spec\",";
+						defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.core\",";
+						
+						Property packageProp = helper.getProperty(this.compProperties, "package");
+						HashMap<String, String> packageProperties = packageProp.getExtendedFullSpec().getProperties();
+						String packagePropValue = this.getAdvancedProperty(packageProperties, "package");
+						
+						Property unifiedProp = helper.getProperty(this.compProperties, "extension");
+						boolean hasExtension = unifiedProp != null;
+						
+						if(hasExtension) {
+							HashMap<String, String> unifiedProperties = unifiedProp.getExtendedFullSpec().getProperties();
+							String unifiedPropValue = this.getAdvancedProperty(unifiedProperties, "extension");
+							if(unifiedPropValue.startsWith("ui5.")) {
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\",";
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.databound\"";
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.unified\"";
+							} else {
+								if(!packagePropValue.equals("basics") && !packagePropValue.equals("utils")) {
+									defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\",";
+									defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component."+packagePropValue+"\"";	
+								} else {
+									defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\"";
+								}
+							}
+						} else {
+							if(!packagePropValue.equals("basics") && !packagePropValue.equals("utils")) {
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\",";
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component."+packagePropValue+"\"";
+							} else {
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\"";
+							}
+						}
+
+						String requ = this.serializeRequires();
+						if(!requ.isEmpty()) {
+							defineContent += ",";	
+						}
+						
+						defineContent += "\r\n\t" + requ;
+						
+						defineContent += "\r\n\t],\r\n\tfunction(";
+						defineContent += "\r\n\t\tComponent,";
+						defineContent += "\r\n\t\tspec,";
+						defineContent += "\r\n\t\tcore,";
+						defineContent += "\r\n\t\tbasics";
+						defineContent += "\r\n\t) {\r\n";
+
+						contentJs = contentJs.substring(0, indexDefineStart) + defineContent + contentJs.substring(indexDefineEnd);
+						
+						indexDefineStart = contentJs.indexOf("//%INIT-START%");
+						if(indexDefineStart == -1) {
+							indexDefineStart = contentJs.indexOf("myComponentData.instance = "+this.componentName+";");
+							indexDefineStart = contentJs.lastIndexOf("};") + 4;
+						}
+						indexDefineEnd = contentJs.lastIndexOf("});");
+						
+						defineContent = "//%INIT-START%\r\n";
+						defineContent += "myComponentData.instance = "+this.componentName+";\r\n";
+						defineContent += "" + replacedTemplates.get(this.componentName+"Loader.js");
+						defineContent += "\r\n";
+						
+						contentJs = contentJs.substring(0, indexDefineStart) + defineContent + contentJs.substring(indexDefineEnd);
+						
+						contentJs = contentJs.replace("myComponentData = org_scn_community_require.knownComponents."+packagePropValue+"." + this.componentName, "myComponentData = spec");
+						
+						// contentJs = contentJs.replace("", "");
+						Helpers.string2File(iFileName, contentJs);
+					}
+
 				}
 			} else {
 				Helpers.string2File(iFileName, content);
@@ -473,12 +586,21 @@ public class SpecificationReader {
 		}
 	}
 
-	private CharSequence serializeRequires() {
+	private String serializeRequires() {
 		String requires = "";
 		
 		for (String require : componentRequries) {
-			requires = requires + require + ",\r\n\t\t";
+			requires = requires + require + ",\r\n\t";
 		}
+		
+		for (String require : componentRequries2) {
+			requires = requires + require + ",\r\n\t";
+		}
+
+		if(!requires.isEmpty()) {
+			requires = requires.substring(0, requires.lastIndexOf(",\r\n\t"));	
+		}
+
 		return requires;
 	}
 	

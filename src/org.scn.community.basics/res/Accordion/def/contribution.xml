@@ -5,13 +5,14 @@
 	tooltip="Accordion - Dynamic List of Entries"
 	icon="res/Accordion/Accordion.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Accordion/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Accordion/AccordionLoader.js</jsInclude>
+	<requireJs modes="commons">res/Accordion/Accordion</requireJs>
+
 	<cssInclude>res/Accordion/Accordion.css</cssInclude>
 	
 	

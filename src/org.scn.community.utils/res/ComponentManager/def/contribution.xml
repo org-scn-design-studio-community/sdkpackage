@@ -1,14 +1,13 @@
 
 <component
 	id="ComponentManager"
-	title="Component Manager"
+	title="Component Manager 0.X"
 	tooltip="Allows managing and listing of components"
 	icon="res/ComponentManager/ComponentManager.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/ComponentManager/ComponentManager.js</jsInclude>
 
 	<property
@@ -19,8 +18,8 @@
 		visible="false" />
 
 	<initialization>
-		<defaultValue property="WIDTH">50</defaultValue>
-		<defaultValue property="HEIGHT">50</defaultValue>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>

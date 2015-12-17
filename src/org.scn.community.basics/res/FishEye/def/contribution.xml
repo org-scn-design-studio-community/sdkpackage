@@ -5,13 +5,14 @@
 	tooltip="Fish Eye"
 	icon="res/FishEye/FishEye.png"
 	handlerType="sapui5"
-	propertySheetPath="res/FishEye/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/FishEye/FishEyeLoader.js</jsInclude>
+	<requireJs modes="commons">res/FishEye/FishEye</requireJs>
+
 	<cssInclude>res/FishEye/FishEye.css</cssInclude>
 	
 	

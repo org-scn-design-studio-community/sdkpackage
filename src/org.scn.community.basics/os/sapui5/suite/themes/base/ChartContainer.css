@@ -1,0 +1,28 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/ChartContainer.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsChartContainer{
+width: 100%;
+height: 100%;
+background-color: white; 
+}
+
+.sapSuiteUiCommonsChartContainerWrapper{
+
+}
+
+.sapSuiteUiCommonsChartContainerToolBarArea{
+}
+
+.sapSuiteUiCommonsChartContainerChartArea{
+
+}
+
+.sapSuiteUiCommonsChartContainerOverlay{
+left:0;
+top:0;
+width:100%;
+height:100%;	
+}

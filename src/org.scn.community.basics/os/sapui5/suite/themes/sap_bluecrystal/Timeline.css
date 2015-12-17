@@ -11,12 +11,11 @@
 	width: 100%;
 	padding: 1rem 0 0 0;
 	overflow: hidden;
-	position: relative; 
+	position: relative;
 	z-index: 0;
 	overflow-x: hidden;
 	overflow-y: auto;
 }
-
 
 .sapSuiteUiCommonsTimelineScroll {
 	display: inline-block; 
@@ -31,40 +30,29 @@
 	width: ~"calc(100% - 3rem)";
 }
 
-.sapSuiteUiCommonsTimelineGetMore{
-	width: 100%;
-	-webkit-user-select: all;
-	-moz-user-select: all;
-	-ms-user-select: all;
-	user-select: all;
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-moz-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-}
-
 .sapSuiteUiCommonsTimelineGetMoreBar{
-	height: 2.1rem;
-	margin-left: 11px;
+	width: 0.0625rem;
+	height: 3.1rem;
+	margin-left: 1.375rem;
 	margin-top: -0.1rem;
-	width: 3px;
-	background: linear-gradient(#36a9e0, white);
-	background: -webkit-linear-gradient(#36a9e0, white);
-	background: -o-linear-gradient(#36a9e0, white);  
-    background: -moz-linear-gradient(#36a9e0, white);  
-    background: -ms-linear-gradient(#36a9e0, white);
+	background: linear-gradient(@sapUiHighlight, transparent);
+	background: -webkit-linear-gradient(@sapUiHighlight, transparent);
+	background: -o-linear-gradient(@sapUiHighlight, transparent);  
+    background: -moz-linear-gradient(@sapUiHighlight, transparent);  
+    background: -ms-linear-gradient(@sapUiHighlight, transparent);
 }
 
 .sapSuiteUiCommonsTimelineGetMoreBox{
 	background: transperent;
     width: 100%;
-    height: 2rem;
+    height: 3rem;
     margin-left: 1.5rem;
-    margin-right: -2.5rem;
+	margin-right: -2.5rem;
+}
+
+.sapSuiteUiCommonsTimelineGetMoreBox .sapMBtn .sapMBtnInner{
+	border: 0.0625rem solid @sapUiLightBorder;
+    padding: 0 0 0 0;
 }
 
 /* ============================================= */
@@ -98,6 +86,7 @@
 	position: relative;
 	top: 2.5rem;
 	left: 0.5rem;
+	padding: 0px 0px;
 }
 
 .sapSuiteUiCommonsTimelineGetMoreBarH{
@@ -106,11 +95,11 @@
 	height: 0.0625rem;
 	top: -1.4rem;
     left: 1rem;
-    background: linear-gradient(left, #36a9e0, transparent);
-    background: -webkit-linear-gradient(left, #36a9e0, transparent);
-    background: -o-linear-gradient(left, #36a9e0, transparent);  
-    background: -moz-linear-gradient(left, #36a9e0, transparent);  
-    background: -ms-linear-gradient(left, #36a9e0, transparent);   
+    background: linear-gradient(left, @sapUiHighlight, transparent);
+    background: -webkit-linear-gradient(left, @sapUiHighlight, transparent);
+    background: -o-linear-gradient(left, @sapUiHighlight, transparent);  
+    background: -moz-linear-gradient(left, @sapUiHighlight, transparent);  
+    background: -ms-linear-gradient(left, @sapUiHighlight, transparent);   
 }
 
 .sapSuiteUiCommonsTimelineGetMoreBoxH{
@@ -120,4 +109,22 @@
     //top: 2rem;
 }
 
+.sapSuiteUiCommonsTimelineGetMoreBoxH .sapMBtn .sapMBtnInner{
+	border: 0.0625rem solid @sapUiLightBorder;
+    padding: 0 0 0 0;
+}
 
+.sapSuiteUiCommonsTimelineItemUlWrapperV {
+	display:inline-block;
+	padding-left:0px;
+}
+
+.sapSuiteUiCommonsTimelineItemUlWrapper{
+	padding-left:0px;
+	margin-bottom:0px;
+}
+
+.sapSuiteUiCommonsTimelineGetMoreUlWrapper{
+	padding-left:0px;
+	margin-top:0px;
+}

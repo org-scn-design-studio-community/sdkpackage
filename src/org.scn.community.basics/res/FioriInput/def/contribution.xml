@@ -1,0 +1,35 @@
+
+<component id="FioriInput" 
+	title="Fiori Input Field"
+	tooltip="sap.m Input Field"
+	icon="res/FioriInput/FioriInput.png"
+	handlerType="sapui5" 
+	modes="m"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics">
+
+	<requireJs modes="m">res/FioriInput/FioriInput</requireJs>
+  	<property id="enabled" type="boolean" title="Enabled"/>
+  	<property id="inputType" type="String" title="Input Type"/>
+  	<property id="placeholder" type="String" title="Placeholder"/>
+  	<property id="value" type="String" title="Value"/>
+  	<property type="ScriptText" title="On Change" id="onchange" group="Events"/> 
+  	<property id="itemConfig" title = "Item Config" type="String" visible = "false"/>
+  	<property id="showSuggestion" type="boolean" title="Show Suggestions"/>
+  	<property id="showValueHelp" type="boolean" title="Show Value Help"/>
+ 	<initialization>
+ 		<defaultValue property="placeholder"></defaultValue>
+ 		<defaultValue property="value"></defaultValue>
+ 		<defaultValue property="itemConfig">[]</defaultValue>
+ 		<defaultValue property="showSuggestion">true</defaultValue>
+ 		<defaultValue property="showValueHelp">false</defaultValue>
+ 		<defaultValue property="inputType">Text</defaultValue>
+ 		<defaultValue property="enabled">true</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+ 		<defaultValue property="WIDTH">400</defaultValue>
+ 		<defaultValue property="HEIGHT">48</defaultValue>
+ 	</initialization>
+ </component>

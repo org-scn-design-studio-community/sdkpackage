@@ -1,86 +1,144 @@
 
 /**
- * Class for DataRangeSlider
+ * Generated ZTL Class for RangeSlider
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
-class org.scn.community.databound.RangeSlider extends org.scn.community.shared.DataComponent {
+class org.scn.community.databound.RangeSlider extends org.scn.community.shared.Component {
 
-	/** returns the selected key 
-    <example>
-	You want to get first and second selected key in the range
-	<code>
-    var selection1 = DATARANGESLIDER_1.getSelectedKey();
-	var selection2 = DATARANGESLIDER_1.getSelectedKey2();
-	
-	APPLICATION.createInfoMessage("Selected Range: " + selection1 + " - " + selection2);
-	APPLICATION.createInfoMessage("Selected Range Keys: " + DATARANGESLIDER_1.getSelectedKeys());
-	
-	if(selection1.indexOf("-N/A-") > -1 || selection2.indexOf("-N/A-") > -1) {
-		// do nothing
-	} else {
-		DS_1.setFilterExt("0BC_PERS1", "" + DATARANGESLIDER_1.getSelectedKey()  + " - " + DATARANGESLIDER_1.getSelectedKey2());
-	}
-	</code>
-	</example>
-	*/
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
+
+
+	/**
+	 * Gets Technical Proprty For Pause Refresh Property
+	 */	
+	boolean isDoRefresh() {*
+		return this.doRefresh;
 	*}
 
-	/** returns the selected key 2 */
-	String getSelectedKey2 () {*
-		return this.selectedKey2;	
+	/**
+	 * Sets Maximum Number Property
+	 */	
+	void setMaxNumber( /**Maximum Number*/ int maxNumber){*
+		this.maxNumber = maxNumber;
+	*}
+
+	/**
+	 * Gets Maximum Number Property
+	 */	
+	int getMaxNumber() {*
+		return this.maxNumber;
+	*}
+
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Key 2 Property
+	 */	
+	String getSelectedKey2() {*
+		return this.selectedKey2;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Keys Property
+	 */	
+	String getSelectedKeys() {*
+		return this.selectedKeys;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Text Property
+	 */	
+	String getSelectedText() {*
+		return this.selectedText;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Text 2 Property
+	 */	
+	String getSelectedText2() {*
+		return this.selectedText2;
+	*}
+
+	/**
+	 * Sets Sorting By Value | Defalut Property by String
+	 */	
+	void setSortingByString( /**Sorting By Value | Defalut*/ String sorting){*
+		this.sorting = sorting;
+	*}
+
+	/**
+	 * Gets Sorting By Value | Defalut Property as String
+	 */	
+	String getSortingAsString() {*
+		return this.sorting;
 	*}
 	
-	/** sets the selected key 2 */
-	void setSelectedKey2 (String key2) {*
-		this.selectedKey2 = key2;	
+	/**
+	 * Sets Sorting By Value | Defalut Property by Choice Option
+	 */	
+	void setSorting( /**Sorting By Value | Defalut*/ org_scn_community_shared_Enumfield sorting){*
+		this.sorting = sorting;
 	*}
 	
-	/** sets the selected keys as String separated by ;
-	 * This is compatible with setFilterExt function
-	
- 	<example>
-	You want to get all selected keys in the range
-	<code>
-	var selectedKeys = DATARANGESLIDER_2.getSelectedKeys();<br>
-
-	// remove the NAs, in this scenarios I do not care
-	selectedKeys = Convert.replaceAll(selectedKeys, "-N/A-1;", "");<br>
-	selectedKeys = Convert.replaceAll(selectedKeys, ";-N/A-2", "");<br>
-
-	APPLICATION.createInfoMessage("Selected Range Keys: " + selectedKeys);<br>
-
-	DS_1.setFilterExt("0BC_PERS1", selectedKeys);<br>
-	</code>
-	</example>
-	*/
-
-	String getSelectedKeys () {*
-		return this.selectedKeys;	
+	/**
+	 * Gets Sorting By Value | Defalut Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getSorting() {*
+		return this.sorting;
 	*}
 
-	/** returns the selected text */
-	String getSelectedText () {*
-		return this.selectedText;	
+	/**
+	 * Sets Top X, Bottom X Or Both Property by String
+	 */	
+	void setTopBottomByString( /**Top X, Bottom X Or Both*/ String topBottom){*
+		this.topBottom = topBottom;
+	*}
+
+	/**
+	 * Gets Top X, Bottom X Or Both Property as String
+	 */	
+	String getTopBottomAsString() {*
+		return this.topBottom;
 	*}
 	
-	/** returns the selected text 2 */
-	String getSelectedText2 () {*
-		return this.selectedText2;	
+	/**
+	 * Sets Top X, Bottom X Or Both Property by Choice Option
+	 */	
+	void setTopBottom( /**Top X, Bottom X Or Both*/ org_scn_community_shared_MemberSelectionEnumfield topBottom){*
+		this.topBottom = topBottom;
 	*}
 	
-	/** sets the pause refresh flag */
-	void pauseRefresh () {*
-		this.doRefresh = false;	
+	/**
+	 * Gets Top X, Bottom X Or Both Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberSelectionEnumfield getTopBottom() {*
+		return this.topBottom;
 	*}
 
-	/** sets the pause refresh flag */
-	void allowRefresh () {*
-		this.doRefresh = true;	
+	/**
+	 * Sets Change To Vertical Orientation Property
+	 */	
+	void setVertical( /**Change To Vertical Orientation*/ boolean vertical){*
+		this.vertical = vertical;
 	*}
+
+	/**
+	 * Gets Change To Vertical Orientation Property
+	 */	
+	boolean isVertical() {*
+		return this.vertical;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

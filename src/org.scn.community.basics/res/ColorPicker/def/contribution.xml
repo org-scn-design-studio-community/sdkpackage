@@ -5,13 +5,14 @@
 	tooltip="Color Picker"
 	icon="res/ColorPicker/ColorPicker.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ColorPicker/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ColorPicker/ColorPickerLoader.js</jsInclude>
+	<requireJs modes="commons">res/ColorPicker/ColorPicker</requireJs>
+
 	<cssInclude>res/ColorPicker/ColorPicker.css</cssInclude>
 	
 	

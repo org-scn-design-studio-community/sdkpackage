@@ -476,4 +476,20 @@ public class UI5Property extends UI5Reader {
 			}
 		}
 	}
+	
+	public boolean isNotSimple() {
+		String typeChild = this.getType();
+		
+		if(typeChild.equals("String") 
+				|| typeChild.equals("boolean") || typeChild.equals("int") || typeChild.equals("float") 
+				|| typeChild.equals("Url") || typeChild.equals("Color") || typeChild.equals("Choice") 
+				|| typeChild.equals("StringArray")) {
+			// those we accept in single array
+		} else {
+			return true;
+		}
+		
+		return false;
+	}
+
 }

@@ -60,7 +60,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * This control allows you to enter a quick note and N note cards.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

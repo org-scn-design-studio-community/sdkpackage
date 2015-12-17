@@ -1,0 +1,107 @@
+/* ================================================================== */
+/* CSS for control sap.suite.ui.commons/ProcessFlowConnection.control */
+/* ================================================================== */
+.parentPosition {
+  position: relative;
+}
+.floatLeft {
+  float: left;
+}
+.floatClear {
+  clear: both;
+}
+.boxMiddleWidth {
+  width: 0.125rem;
+}
+.boxMiddleBorderWidth {
+  width: 0rem;
+}
+.boxZoom1Width {
+  width: 1.9375rem;
+}
+.boxZoom2Width {
+  width: 1.4375rem;
+}
+.boxZoom3Width {
+  width: 1.9375rem;
+}
+.boxZoom4Width {
+  width: 2.4375rem;
+}
+.boxArrowZoom1Width {
+  width: 1.3125rem;
+}
+.boxArrowZoom2Width {
+  width: 0.8125rem;
+}
+.boxArrowZoom3Width {
+  width: 1.3125rem;
+}
+.boxArrowZoom4Width {
+  width: 1.8125rem;
+}
+.boxWideWidth {
+  width: 100%;
+}
+.boxWideArrowZoom1Width {
+  width: 3.375rem;
+}
+.boxWideArrowZoom2Width {
+  width: 2.375rem;
+}
+.boxWideArrowZoom3Width {
+  width: 3.375rem;
+}
+.boxWideArrowZoom4Width {
+  width: 4.375rem;
+}
+.boxWideZoom1Height {
+  height: 14.8125rem;
+}
+.boxWideZoom2Height {
+  height: 13.5625rem;
+}
+.boxWideZoom3Height {
+  height: 9.5rem;
+}
+.boxWideZoom4Height {
+  height: 4.75rem;
+}
+.boxTopZoom1Height {
+  height: 6rem;
+}
+.boxTopZoom2Height {
+  height: 5.5625rem;
+}
+.boxTopZoom3Height {
+  height: 4.0625rem;
+}
+.boxTopZoom4Height {
+  height: 1.75rem;
+}
+.boxMiddleHeight {
+  height: 0.125rem;
+}
+.boxMiddleBorderHeight {
+  height: 0rem;
+}
+.boxBottomZoom1Height {
+  height: 8.6875rem;
+}
+.boxBottomZoom2Height {
+  height: 7.875rem;
+}
+.boxBottomZoom3Height {
+  height: 5.3125rem;
+}
+.boxBottomZoom4Height {
+  height: 2.875rem;
+}
+
+.arrowRight {
+  width: 0rem;
+  height: 0rem;
+  position: absolute;
+  right: -1rem;
+  bottom: -0.3125rem;
+}

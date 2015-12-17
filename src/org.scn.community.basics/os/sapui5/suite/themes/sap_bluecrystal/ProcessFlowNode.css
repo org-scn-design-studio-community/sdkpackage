@@ -1,19 +1,24 @@
-/* ============================================================ */
-/* CSS for control sap.suite.ui.commons/ProcessFlowNode.control */
-/* ============================================================ */
+/* ================================================================================ */
+/* CSS for control sap.suite.ui.commons/ProcessFlowNode.control (bluecrystal theme) */
+/* ================================================================================ */
 
-/*-----------------------------------------------------------------*/
-/* font faces */
-/*-----------------------------------------------------------------*/
-@font-face {
-/* used for folded corner */
-  font-family: 'PFBusinessSuiteInAppSymbols';
-  src: url('fonts/PFBusinessSuiteInAppSymbols.eot');
-  src: url('fonts/PFBusinessSuiteInAppSymbols.eot?#iefix') format('embedded-opentype'),
-       url('fonts/PFBusinessSuiteInAppSymbols.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
+/* border styles */
+.sapSuiteUiCommonsProcessFlowNodeBorderStandard {
+  border: 0.0625rem solid @sapUiLightBorder;
+}
+.sapSuiteUiCommonsProcessFlowNode1BorderStyle {
+  border-right: none !important;
+  border-bottom: none !important;
+}
+.sapSuiteUiCommonsProcessFlowNode1FoldedBorderStyle {
+  border-style: none;
+}
+.sapSuiteUiCommonsProcessFlowNode2BorderStyle {
+  border-left: none !important;
+  border-bottom: none !important;
+}
+.sapSuiteUiCommonsProcessFlowNode3BorderStyle {
+  border-top: none !important;
 }
 
 /* node general settings */
@@ -27,85 +32,268 @@
 .sapSuiteUiCommonsProcessFlowNode2 *,
 .sapSuiteUiCommonsProcessFlowNode3,
 .sapSuiteUiCommonsProcessFlowNode3 * {
-  clear: none;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-/*   background-color: transparent; */
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  user-select: none;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-touch-callout: none;
-  -webkit-transition: -webkit-transform 0ms;
-  -ms-touch-select: none;
-  touch-action: manipulation;
-  text-size-adjust: none;
-  -ms-text-autospace: none;
-  -ms-text-size-adjust: none;
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-transform: translate3d(0,0,0);
 }
 
 /* ----- */
 /* node0 */
 /* ----- */
-.sapSuiteUiCommonsProcessFlowNode0ZoomLevel1 {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 176px;
-  min-width: 176px;
-  max-width: 176px;
+/* shadow */
+.shadowedDivBorderTop,
+.shadowedDivFoldedCornerBorderTop {
+  top: 0rem;
+  height: 0rem;
+  min-height: 0rem;
+  max-height: 0rem;
+  line-height: 0rem;
+  box-shadow: 0rem -0.0625rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -moz-box-shadow: 0rem -0.0625rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -webkit-box-shadow: 0rem -0.0625rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
 }
-.sapSuiteUiCommonsProcessFlowNode0ZoomLevel2 {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 144px;
-  min-width: 144px;
-  max-width: 144px;
+.shadowedDivBorderRight {
+  right: 0rem;
+  top: 0rem;
+  width: 0rem;
+  min-width: 0rem;
+  max-width: 0rem;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  line-height: 100%;
+  box-shadow: 0.0625rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -moz-box-shadow: 0.0625rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -webkit-box-shadow: 0.0625rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
 }
-.sapSuiteUiCommonsProcessFlowNode0ZoomLevel3 {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 104px;
-  min-width: 104px;
-  max-width: 104px;
+.shadowedDivBorderBottom {
+  left: 0rem;
+  bottom: 0rem;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 0rem;
+  min-height: 0rem;
+  max-height: 0rem;
+  line-height: 0rem;
+  box-shadow: 0rem 0.0625rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -moz-box-shadow: 0rem 0.0625rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -webkit-box-shadow: 0rem 0.0625rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
 }
-.sapSuiteUiCommonsProcessFlowNode0ZoomLevel4 {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin-bottom: 5px;
-  padding: 0px;
-  width: 48px;
-  min-width: 48px;
-  max-width: 48px;
-  height: 60px;
-  min-height: 60px;
-  max-height: 60px;
-  line-height: 60px;
+.shadowedDivBorderLeft,
+.shadowedDivFoldedCornerBorderLeft {
+  left: 0rem;
+  width: 0rem;
+  min-width: 0rem;
+  max-width: 0rem;
+  box-shadow: -0.0625rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -moz-box-shadow: -0.0625rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -webkit-box-shadow: -0.0625rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+}
+.shadowedDivFoldedCorner,
+.shadowedDivFoldedCornerSafari {
+  position: absolute;
+  border: none;
+  height: 0rem;
+  min-height: 0rem;
+  max-height: 0rem;
+  line-height: 0rem;
+  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
 
-
+.shadowedDivCommon {
+  position: absolute;
+  border: none;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel1 > .shadowedDivBorderTop  {
+  left: 0rem;
+  width: 11rem;
+  min-width: 11rem;
+  max-width: 11rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel1 > .shadowedDivFoldedCornerBorderTop  {
+  left: 1rem;
+  width: 10rem;
+  min-width: 10rem;
+  max-width: 10rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel1 > .shadowedDivBorderLeft  {
+  top: 0rem;
+  height: 13.8125rem;
+  min-height: 13.8125rem;
+  max-height: 13.8125rem;
+  line-height: 13.8125rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel1 > .shadowedDivFoldedCornerBorderLeft  {
+  top: 1rem;
+  height: 12.8125rem;
+  min-height: 12.8125rem;
+  max-height: 12.8125rem;
+  line-height: 12.8125rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel1 > .shadowedDivFoldedCorner  {
+  left: -0.18125rem;
+  top: 0.45rem;
+  width: 1.2375rem;
+  min-width: 1.2375rem;
+  max-width: 1.2375rem;
+  box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -moz-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -webkit-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel1 > .shadowedDivFoldedCornerSafari  {
+  left: -0.18125rem;
+  top: 0.5rem;
+  width: 1.25rem;
+  min-width: 1.25rem;
+  max-width: 1.25rem;
+  box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -moz-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -webkit-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel2 > .shadowedDivBorderTop  {
+  left: 0rem;
+  width: 9rem;
+  min-width: 9rem;
+  max-width: 9rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel2 > .shadowedDivFoldedCornerBorderTop  {
+  left: 1rem;
+  width: 8rem;
+  min-width: 8rem;
+  max-width: 8rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel2 > .shadowedDivBorderLeft  {
+  top: 0rem;
+  height: 12.1875rem;
+  min-height: 12.1875rem;
+  max-height: 12.1875rem;
+  line-height: 12.1875rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel2 > .shadowedDivFoldedCornerBorderLeft  {
+  top: 1rem;
+  height: 11.1875rem;
+  min-height: 11.1875rem;
+  max-height: 11.1875rem;
+  line-height: 11.1875rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel2 > .shadowedDivFoldedCorner  {
+  left: -0.18125rem;
+  top: 0.45rem;
+  width: 1.2375rem;
+  min-width: 1.2375rem;
+  max-width: 1.2375rem;
+  box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -moz-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -webkit-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel2 > .shadowedDivFoldedCornerSafari  {
+  left: -0.18125rem;
+  top: 0.5rem;
+  width: 1.25rem;
+  min-width: 1.25rem;
+  max-width: 1.25rem;
+  box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -moz-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -webkit-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel3 > .shadowedDivBorderTop  {
+  left: 0rem;
+  width: 6.5rem;
+  min-width: 6.5rem;
+  max-width: 6.5rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel3 > .shadowedDivFoldedCornerBorderTop  {
+  left: 0.75rem;
+  width: 5.75rem;
+  min-width: 5.75rem;
+  max-width: 5.75rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel3 > .shadowedDivBorderLeft  {
+  top: 0rem;
+  height: 8rem;
+  min-height: 8rem;
+  max-height: 8rem;
+  line-height: 8rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel3 > .shadowedDivFoldedCornerBorderLeft  {
+  top: 0.75rem;
+  height: 7.25rem;
+  min-height: 7.25rem;
+  max-height: 7.25rem;
+  line-height: 7.25rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel3 > .shadowedDivFoldedCorner {
+  left: -0.13125rem;
+  top: 0.325rem;
+  width: 0.89375rem;
+  min-width: 0.89375rem;
+  max-width: 0.89375rem;
+  box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -moz-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -webkit-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel3 > .shadowedDivFoldedCornerSafari  {
+  left: -0.125rem;
+  top: 0.375rem;
+  width: 0.9375rem;
+  min-width: 0.9375rem;
+  max-width: 0.9375rem;
+  box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 20%);
+  -moz-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 20%);
+  -webkit-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 20%);
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel4 > .shadowedDivBorderTop  {
+  left: 0rem;
+  width: 3rem;
+  min-width: 3rem;
+  max-width: 3rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel4 > .shadowedDivFoldedCornerBorderTop  {
+  left: 0.75rem;
+  width: 2.25rem;
+  min-width: 2.25rem;
+  max-width: 2.25rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel4 > .shadowedDivBorderLeft  {
+  top: 0rem;
+  height: 3.75rem;
+  min-height: 3.75rem;
+  max-height: 3.75rem;
+  line-height: 3.75rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel4 > .shadowedDivFoldedCornerBorderLeft  {
+  top: 0.75rem;
+  height: 3rem;
+  min-height: 3rem;
+  max-height: 3rem;
+  line-height: 3rem;
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel4 > .shadowedDivFoldedCorner {
+  left: -0.13125rem;
+  top: 0.325rem;
+  width: 0.89375rem;
+  min-width: 0.89375rem;
+  max-width: 0.89375rem;
+  box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 10%);
+  -moz-box-shadow: 0rem 0rem 0.3125rem fade(@sapUiDarkShadowTint, 10%);
+  -webkit-box-shadow: 0rem 0rem 0.3125rem fade(@sapUiDarkShadowTint, 10%);
+}
+.sapSuiteUiCommonsProcessFlowNode0ZoomLevel4 > .shadowedDivFoldedCornerSafari {
+  left: -0.125rem;
+  top: 0.375rem;
+  width: 0.9375rem;
+  min-width: 0.9375rem;
+  max-width: 0.9375rem;
+  box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 20%);
+  -moz-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 20%);
+  -webkit-box-shadow: 0rem 0rem 0.3125rem 0.125rem fade(@sapUiDarkShadowTint, 20%);
+}
 
 
 /* ----- */
@@ -117,27 +305,8 @@
 .sapSuiteUiCommonsProcessFlowNode1ZoomLevel2 > .sapUiIcon,
 .sapSuiteUiCommonsProcessFlowNode1ZoomLevel1 > .sapUiIcon:before,
 .sapSuiteUiCommonsProcessFlowNode1ZoomLevel2 > .sapUiIcon:before {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-/*   background-color: transparent; */
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  text-align: center;
-  vertical-align: middle;
-  width: 16px;
-  min-width: 16px;
-  max-width: 16px;
-  height: 16px;
-  min-height: 16px;
-  max-height: 16px;
-  line-height: 16px;
-  overflow: hidden;
+  background-color: transparent;
+  font-size: @sapMFontLargeSize;
 }
 .sapSuiteUiCommonsProcessFlowNode1ZoomLevel3,
 .sapSuiteUiCommonsProcessFlowNode1ZoomLevel4,
@@ -145,695 +314,165 @@
 .sapSuiteUiCommonsProcessFlowNode1ZoomLevel4 > .sapUiIcon,
 .sapSuiteUiCommonsProcessFlowNode1ZoomLevel3 > .sapUiIcon:before,
 .sapSuiteUiCommonsProcessFlowNode1ZoomLevel4 > .sapUiIcon:before {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-/*   background-color: transparent; */
-  font-size: 12px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  text-align: center;
-  vertical-align: middle;
-  width: 12px;
-  min-width: 12px;
-  max-width: 12px;
-  height: 12px;
-  min-height: 12px;
-  max-height: 12px;
-  line-height: 12px;
-  overflow: hidden;
+  background-color: transparent;
+  font-size: @sapMFontSmallSize;
 }
 
 /* ----- */
 /* node2 */
 /* ----- */
-.sapSuiteUiCommonsProcessFlowNode2ZoomLevel1 {
-  clear: none;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 160px;
-  min-width: 160px;
-  max-width: 160px;
-  height: 16px;
-  min-height: 16px;
-  max-height: 16px;
-  line-height: 16px;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNode2ZoomLevel2 {
-  clear: none;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 128px;
-  min-width: 128px;
-  max-width: 128px;
-  height: 16px;
-  min-height: 16px;
-  max-height: 16px;
-  line-height: 16px;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNode2ZoomLevel3 {
-  clear: none;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 92px;
-  min-width: 92px;
-  max-width: 92px;
-  height: 12px;
-  min-height: 12px;
-  max-height: 12px;
-  line-height: 12px;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNode2ZoomLevel4 {
-  clear: none;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 36px;
-  min-width: 36px;
-  max-width: 36px;
-  height: 12px;
-  min-height: 12px;
-  max-height: 12px;
-  line-height: 12px;
-  overflow: hidden;
-}
 
 /* ----- */
 /* node3 */
 /* ----- */
-.sapSuiteUiCommonsProcessFlowNode3ZoomLevel1 {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px 15px 15px 15px;
-  width: 176px;
-  min-width: 176px;
-  max-width: 176px;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNode3ZoomLevel2 {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px 15px 15px 15px;
-  width: 144px;
-  min-width: 144px;
-  max-width: 144px;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNode3ZoomLevel3 {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px 11px 11px 11px;
-  width: 104px;
-  min-width: 104px;
-  max-width: 104px;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNode3ZoomLevel4 {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 48px;
-  min-width: 48px;
-  max-width: 48px;
-  height: 48px;
-  min-height: 48px;
-  max-height: 48px;
-  line-height: 48px;
-  overflow: hidden;
-}
 
 /*---------------*/
 /* folded corner */
 /*---------------*/
-.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel1,
-.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel2 {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 16px;
-  min-width: 16px;
-  max-width: 16px;
-  height: 16px;
-  min-height: 16px;
-  max-height: 16px;
-  line-height: 16px;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel3,
-.sapSuiteUiCommonsProcessFlowNodeStateFoldedCornerZoomLevel4 {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 12px;
-  min-width: 12px;
-  max-width: 12px;
-  height: 12px;
-  min-height: 12px;
-  max-height: 12px;
-  line-height: 12px;
-  overflow: hidden;
-}
 
 /* Title */
 .sapSuiteUiCommonsProcessFlowNode3Title,
 .sapSuiteUiCommonsProcessFlowNode3Title > .sapMText,
 .sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxLine,
 .sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxWidth {
-  clear: both;
-  float: left;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: top;
-  font-family: @sapUiFontFamily;
-  font-weight: normal;
-  font-stretch: normal;
-  font-size: 16px;
-  letter-spacing: normal;
-  overflow: hidden;
+  border: none;
+  color: @sapUiHeaderText;
+  font-size: @sapMFontLargeSize;
 }
 
+.sapSuiteUiCommonsProcessFlowNodeStatePlanned > .sapSuiteUiCommonsProcessFlowNode3Title > .sapSuiteUiCommonsProcessFlowNode3Title > .sapMText,
+.sapSuiteUiCommonsProcessFlowNodeStatePlanned > .sapSuiteUiCommonsProcessFlowNode3Title > .sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNodeStatePlanned > .sapSuiteUiCommonsProcessFlowNode3Title > .sapSuiteUiCommonsProcessFlowNode3Title > .sapMTextMaxWidth {
+  color: @sapUiLightText;
+}
+
+.sapSuiteUiCommonsProcessFlowNode3TitleClickable,
+.sapSuiteUiCommonsProcessFlowNode3TitleClickable > .sapMText,
+.sapSuiteUiCommonsProcessFlowNode3TitleClickable > .sapMTextMaxLine,
+.sapSuiteUiCommonsProcessFlowNode3TitleClickable > .sapMTextMaxWidth {
+  color: @sapUiLinkActive;
+}
 .sapSuiteUiCommonsProcessFlowNode3TitleClickable:hover,
 .sapSuiteUiCommonsProcessFlowNode3TitleClickable:hover > .sapMTextMaxLine {
-  cursor: pointer;
+  color: @sapUiLinkActive;
+  text-decoration: underline;
 }
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 {
-  clear: both;
-  float: left;
-  display: table-row;
-  position: relative;
-  text-align: left;
-  vertical-align: top;
-  margin: 0px;
-  margin-bottom: 0.5rem;
-  padding: 0px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 > .sapMText,
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 > .sapMTextMaxLine,
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel1 > .sapMTextMaxWidth {
-  clear: both;
-  float: left;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: top;
-  font-size: 16px;
-  width: 140px;
-  min-width: 140px;
-  max-width: 140px;
-  height: 57px;
-  min-height: 57px;
-  max-height: 57px;
-  line-height: 19px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 {
-  clear: both;
-  float: left;
-  display: table-row;
-  position: relative;
-  text-align: left;
-  vertical-align: top;
-  font-size: 14px;
-  margin: 0px;
-  margin-bottom: 8px;
-  padding: 0px;
-  overflow: hidden;
+  border: none;
+  font-size: @sapMFontMediumSize;
 }
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 > .sapMText,
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 > .sapMTextMaxLine,
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel2 > .sapMTextMaxWidth {
-  clear: both;
-  float: left;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: top;
-  font-size: 14px;
-  width: 108px;
-  min-width: 108px;
-  max-width: 108px;
-  height: 51px;
-  min-height: 51px;
-  max-height: 51px;
-  line-height: 17px;
-  overflow: hidden;
+  border: none;
+  font-size: @sapMFontMediumSize;
 }
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 {
-  clear: both;
-  float: left;
-  display: table-row;
-  position: relative;
-  margin: 0px;
-  margin-bottom: 4px;
-  padding: 0px;
-  text-align: center;
-  vertical-align: top;
-  width: 76px;
-  max-width: 76px;
-  height: 34px;
-  min-height: 34px;
-  max-height: 34px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 > .sapMText,
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 > .sapMTextMaxLine,
 .sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel3 > .sapMTextMaxWidth {
-  clear: both;
-  float: left;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  text-align: center;
-  vertical-align: top;
-  font-size: 14px;
-  width: 76px;
-  max-width: 76px;
-  height: 34px;
-  min-height: 34px;
-  max-height: 34px;
-  line-height: 17px;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNode3TitleZoomLevel4 {
-  clear: both;
-  float: left;
-  display: none;
-  position: relative;
-  width: 0px;
-  min-width: 0px;
-  max-width: 0px;
-  height: 0px;
-  min-height: 0px;
-  max-height: 0px;
-  line-height: 0px;
-  overflow: hidden;
+  border: none;
+  font-size: @sapMFontMediumSize;
 }
 
 /* State area */
 .sapSuiteUiCommonsProcessFlowNode3State {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateZoomLevel1 {
-  clear: both;
-  float: left;
-  display: table;
-  position: relative;
-  margin: 0px;
-  margin-bottom: 0.5rem;
-  padding: 0px;
-  font-size: 14px;
-  width: 140px;
-  min-width: 140px;
-  max-width: 140px;
-  height: 40px;
-  min-height: 40px;
-  max-height: 40px;
-  line-height: 40px;
-  overflow: hidden;
+  border: none;
+  font-size: @sapMFontMediumSize;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateZoomLevel2 {
-  clear: both;
-  float: left;
-  display: table;
-  position: relative;
-  margin: 0px;
-  margin-bottom: 0.5rem;
-  padding: 0px;
-  width: 108px;
-  min-width: 108px;
-  max-width: 108px;
-  font-size: 12px;
-  height: 32px;
-  min-height: 32px;
-  max-height: 32px;
-  line-height: 32px;
-  overflow: hidden;
+  border: none;
+  font-size: @sapMFontSmallSize;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateZoomLevel3 {
-  clear: both;
-  float: left;
-  display: table-cell;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 76px;
-  min-width: 76px;
-  max-width: 76px;
-  height: 66px;
-  min-height: 66px;
-  max-height: 66px;
-  line-height: 66px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateZoomLevel4 {
-  clear: both;
-  float: left;
-  display: table-cell;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  width: 46px;
-  min-width: 46px;
-  max-width: 46px;
-  height: 46px;
-  min-height: 46px;
-  max-height: 46px;
-  line-height: 46px;
-  overflow: hidden;
+  border: none;
 }
 
 /* State icon */
 .sapSuiteUiCommonsProcessFlowNode3StateIcon,
 .sapSuiteUiCommonsProcessFlowNode3StateIcon > .sapUiIcon,
 .sapSuiteUiCommonsProcessFlowNode3StateIcon > .sapUiIcon:before {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  vertical-align: middle;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNode3StateIconLeft {
-  text-align: left;
-}
-.sapSuiteUiCommonsProcessFlowNode3StateIconRight {
-  text-align: right;
-}
-.sapSuiteUiCommonsProcessFlowNode3StateIconCenter {
-  text-align: center;
+  border: none;
 }
 
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel1 {
-  clear: both;
-  float: left;
-  display: table-cell;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  width: 32px;
-  min-width: 32px;
-  max-width: 32px;
-  height: 40px;
-  min-height: 40px;
-  max-height: 40px;
-  line-height: 40px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel1 > .sapUiIcon,
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel1 > .sapUiIcon:before {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  font-size: 20px;
-  width: 32px;
-  min-width: 32px;
-  max-width: 32px;
-  height: 34px;
-  min-height: 34px;
-  max-height: 34px;
-  line-height: 34px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel2 {
-  clear: both;
-  float: left;
-  display: table-cell;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  width: 24px;
-  min-width: 24px;
-  max-width: 24px;
-  height: 32px;
-  min-height: 32px;
-  max-height: 32px;
-  line-height: 32px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel2 > .sapUiIcon,
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel2 > .sapUiIcon:before {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  font-size: 16px;
-  width: 24px;
-  min-width: 24px;
-  max-width: 24px;
-  height: 32px;
-  min-height: 32px;
-  max-height: 32px;
-  line-height: 32px;
-  overflow: hidden;
+  border: none;
+  font-size: @sapMFontLargeSize;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel3 {
-  clear: both;
-  float: left;
-  display: table-cell;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  width: 76px;
-  min-width: 76px;
-  max-width: 76px;
-  height: 32px;
-  min-height: 32px;
-  max-height: 32px;
-  line-height: 32px;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel3 > .sapUiIcon,
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel3 > .sapUiIcon:before {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  font-size: 20px;
-  width: 76px;
-  min-width: 76px;
-  max-width: 76px;
-  height: 32px;
-  min-height: 32px;
-  max-height: 32px;
-  line-height: 32px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel4 {
-  clear: both;
-  float: left;
-  display: table-cell;
-  position: absolute;
-  top: -2px;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  width: 46px;
-  min-width: 46px;
-  max-width: 46px;
-  height: 46px;
-  min-height: 46px;
-  max-height: 46px;
-  line-height: 46px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel4 > .sapUiIcon,
 .sapSuiteUiCommonsProcessFlowNode3StateIconZoomLevel4 > .sapUiIcon:before {
-  clear: both;
-  float: left;
-  display: block;
-  position: absolute;
-  top: -2px;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  font-size: 22px;
-  width: 46px;
-  min-width: 46px;
-  max-width: 46px;
-  height: 46px;
-  min-height: 46px;
-  max-height: 46px;
-  line-height: 46px;
-  overflow: hidden;
+  border: none;
 }
 
 /* State text */
 .sapSuiteUiCommonsProcessFlowNode3StateText,
 .sapSuiteUiCommonsProcessFlowNode3StateText > .sapMText,
 .sapSuiteUiCommonsProcessFlowNode3StateText > .sapMTextMaxWidth {
-  clear: both;
-  float: none;
-  display: block;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  font-family: @sapUiFontFamily;
-  font-weight: normal;
-  font-stretch: normal;
-  letter-spacing: normal;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 {
-  clear: both;
-  float: none;
-  display: table-cell;
-  position: relative;
-  text-align: left;
-  vertical-align: middle;
-  margin: 0px;
-  padding: 0px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 > .sapMText,
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 > .sapMTextMaxLine,
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel1 > .sapMTextMaxWidth {
-  clear: both;
-  float: left;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  font-size: 14px;
-  width: 102px;
-  min-width: 102px;
-  max-width: 102px;
-  max-height: 34px;
-  line-height: 17px;
-  overflow: hidden;
+  border: none;
+  font-size: @sapMFontMediumSize;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 {
-  clear: both;
-  float: none;
-  display: table-cell;
-  position: relative;
-  text-align: left;
-  vertical-align: middle;
-  margin: 0px;
-  padding: 0px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 > .sapMText,
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 > .sapMTextMaxLine,
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel2 > .sapMTextMaxWidth {
-  clear: both;
-  float: left;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  font-size: 12px;
-  width: 78px;
-  min-width: 78px;
-  max-width: 78px;
-  max-height: 32px;
-  line-height: 15px;
-  overflow: hidden;
+  border: none;
+  font-size: @sapMFontSmallSize;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 {
-  clear: both;
-  float: none;
-  display: table-cell;
-  position: relative;
-  text-align: center;
-  vertical-align: middle;
-  margin: 0px;
-  padding: 0px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 > .sapMText,
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 > .sapMTextMaxLine,
 .sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel3 > .sapMTextMaxWidth {
-  clear: both;
-  float: left;
-  position: relative;
-  margin: 0px;
-  padding: 0px;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 12px;
-  width: 72px;
-  max-width: 72px;
-  height: 30px;
-  min-height: 30px;
-  max-height: 30px;
-  line-height: 15px;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNode3StateTextZoomLevel4 {
-  clear: both;
-  float: none;
-  display: none;
-  position: relative;
-  width: 0px;
-  min-width: 0px;
-  max-width: 0px;
-  height: 0px;
-  min-height: 0px;
-  max-height: 0px;
-  line-height: 0px;
-  overflow: hidden;
+  border: none;
+  font-size: @sapMFontSmallSize;
 }
 
 /* Text area */
@@ -841,111 +480,124 @@
 .sapSuiteUiCommonsProcessFlowNode3Text > .sapMText,
 .sapSuiteUiCommonsProcessFlowNode3Text > .sapMTextMaxLine,
 .sapSuiteUiCommonsProcessFlowNode3Text > .sapMTextMaxWidth {
-  clear: both;
-  float: left;
-  display: block;
-  position: relative;
-  padding: 0px;
-  vertical-align: top;
-  font-family: @sapUiFontFamily;
-  font-weight: normal;
-  font-stretch: normal;
-  font-size: 12px;
-  letter-spacing: normal;
-  overflow: hidden;
+  border: none;
+  color: @sapUiLightText;
+  font-size: @sapMFontSmallSize;
 }
 .sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 {
-  clear: both;
-  float: left;
-  display: table-row;
-  position: relative;
-  text-align: left;
-  vertical-align: top;
-  padding: 0px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 > .sapMText,
 .sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 > .sapMTextMaxLine,
 .sapSuiteUiCommonsProcessFlowNode3TextZoomLevel1 > .sapMTextMaxWidth {
-  clear: both;
-  float: left;
-  position: relative;
-  padding: 0px;
-  vertical-align: top;
-  font-size: 14px;
-  width: 140px;
-  min-width: 140px;
-  max-width: 140px;
-  height: 34px;
-  min-height: 34px;
-  max-height: 34px;
-  line-height: 17px;
-  overflow: hidden;
+  border: none;
+  font-size: @sapMFontMediumSize;
 }
 .sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 {
-  clear: both;
-  float: left;
-  display: table-row;
-  position: relative;
-  text-align: left;
-  vertical-align: top;
-  padding: 0px;
-  overflow: hidden;
+  border: none;
 }
 .sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 > .sapMText,
 .sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 > .sapMTextMaxLine,
 .sapSuiteUiCommonsProcessFlowNode3TextZoomLevel2 > .sapMTextMaxWidth {
-  clear: both;
-  float: left;
-  position: relative;
-  padding: 0px;
-  vertical-align: top;
-  font-size: 12px;
-  width: 108px;
-  min-width: 108px;
-  max-width: 108px;
-  height: 30px;
-  min-height: 30px;
-  max-height: 30px;
-  line-height: 15px;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel3,
-.sapSuiteUiCommonsProcessFlowNode3TextZoomLevel4 {
-  clear: both;
-  float: left;
-  display: none;
-  position: relative;
-  width: 0px;
-  min-width: 0px;
-  max-width: 0px;
-  height: 0px;
-  min-height: 0px;
-  max-height: 0px;
-  line-height: 0px;
-  overflow: hidden;
-}
-.sapSuiteUiCommonsProcessFlowNode3TextWithGapZoomLevel1 {
-  padding-bottom: 8px;
-}
-.sapSuiteUiCommonsProcessFlowNode3TextWithGapZoomLevel2 {
-  padding-bottom: 4px;
+  border: none;
+  font-size: @sapMFontSmallSize;
 }
 
-/* special effects */
+/* node content states */
+.sapSuiteUiCommonsProcessFlowNodeStateNeutral {
+  color: @sapUiNeutral;
+}
+
+.sapSuiteUiCommonsProcessFlowNodeStatePositive {
+  color: @sapUiPositiveText;
+}
+
+.sapSuiteUiCommonsProcessFlowNodeStateNegative {
+  color: @sapUiNegativeText;
+}
+
+.sapSuiteUiCommonsProcessFlowFoldedCornerPlanned {
+  color: @sapUiDarkBorder;
+}
+/* node display states */
+.sapSuiteUiCommonsProcessFlowNodeDisplayStateRegular {
+  background-color: @sapUiLightestBG;
+  border-color: @sapUiDarkBorder;
+}
+.sapSuiteUiCommonsProcessFlowNodeDisplayStateDimmed {
+  background-color: @sapUiLightestBG;
+  border-color: @sapUiDarkBorder;
+  opacity: 0.5;
+}
+.sapSuiteUiCommonsProcessFlowNodeStatePlanned,
+.sapSuiteUiCommonsProcessFlowNodeDisplayStateHighlighted.sapSuiteUiCommonsProcessFlowNodeStatePlanned {
+  background-color: fade(@sapUiLightestBG, 30%) !important;
+  border-color: @sapUiDarkBorder;
+}
+
+.sapSuiteUiCommonsProcessFlowNode3StateIcon.sapSuiteUiCommonsProcessFlowNodeStatePlanned,
+.sapSuiteUiCommonsProcessFlowNode3StateText.sapSuiteUiCommonsProcessFlowNodeStatePlanned {
+  background-color: transparent !important;
+}
+.sapSuiteUiCommonsProcessFlowNodeStatePlanned.sapSuiteUiCommonsProcessFlowNodeDisplayStateDimmed{
+  background-color: fade(@sapUiLightestBG, 30%);
+  border-color: @sapUiDarkBorder;
+  opacity: 0.5;
+}
+.sapSuiteUiCommonsProcessFlowNode1.sapSuiteUiCommonsProcessFlowNodeDisplayStateHighlighted,
+.sapSuiteUiCommonsProcessFlowNode2.sapSuiteUiCommonsProcessFlowNodeDisplayStateHighlighted,
+.sapSuiteUiCommonsProcessFlowNode3.sapSuiteUiCommonsProcessFlowNodeDisplayStateHighlighted {
+  background-color: @sapUiLightestBG;
+  border-color: @sapUiDarkBorder;
+}
+.sapSuiteUiCommonsProcessFlowFoldedCornerDisplayStateRegular {
+  color: @sapUiDarkBorder;
+}
+.sapSuiteUiCommonsProcessFlowFoldedCornerDisplayStateDimmed {
+  opacity: 0.5;
+  color: @sapUiDarkBorder;
+}
+.sapSuiteUiCommonsProcessFlowFoldedCornerDisplayStateHighlighted {
+  color: @sapUiDarkBorder;
+}
+.sapSuiteUiCommonsProcessFlowNodeDisplayStateSelected {
+  border-color: @sapUiHighlight !important;
+}
+.sapSuiteUiCommonsProcessFlowNode0.sapSuiteUiCommonsProcessFlowFoldedCornerDisplayStateNavigation {
+  outline-style: dotted !important;
+  outline-color: @sapUiFocus !important;
+  outline-width: 0.0625rem !important;
+  outline-offset: 0.0625rem !important;
+}
+.sapSuiteUiCommonsProcessFlowFoldedCornerDisplayStateSelected {
+  color: @sapUiHighlight !important;
+}
+.sapSuiteUiCommonsProcessFlowNodeStatePlannedDashedBorder {
+  border-width: 0.0625rem;
+  border-style: dashed;
+}
+
+/* special effects  */
 .sapSuiteUiCommonsProcessFlowFoldedCornerNodeHover {
-  cursor: pointer;
+  background-color: transparent;
 }
 .sapSuiteUiCommonsProcessFlowFoldedCornerNodeIconHover {
-  cursor: pointer;
+  background-color: transparent;
+  color: @sapUiDarkBorder;
 }
-.sapSuiteUiCommonsProcessFlowNodeHover {
-  cursor: pointer;
+.sapSuiteUiCommonsProcessFlowNodeHover,
+.sapSuiteUiCommonsProcessFlowFoldedCornerIndication.sapSuiteUiCommonsProcessFlowNodeHover.sapSuiteUiCommonsProcessFlowNodeDisplayStateHighlighted.sapSuiteUiCommonsProcessFlowNodeStatePlanned,
+.sapSuiteUiCommonsProcessFlowNodeHover.sapSuiteUiCommonsProcessFlowNodeDisplayStateHighlighted.sapSuiteUiCommonsProcessFlowNodeStatePlanned {
+  border-color: @sapUiDarkBorder !important; 
+  background-color: contrast(@sapUiLightestBG, darken(@sapUiLightestBG,3)) !important;
 }
 
 .sapSuiteUiCommonsProcessFlowFoldedCornerNodeActive {
-  cursor: pointer;
+  background-color: transparent;
+  color: @sapUiLightestBG;
 }
 .sapSuiteUiCommonsProcessFlowNodeActive {
-  cursor: pointer;
+  border-color: @sapUiHighlight !important;
+  background-color: @sapUiHighlight !important;
+  color: @sapUiLightestBG !important;
 }

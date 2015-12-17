@@ -1,6 +1,21 @@
-(function(){
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./ApplicationHeaderSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.ApplicationHeader;
+var myComponentData = spec;
 
 ApplicationHeader = {
 
@@ -45,9 +60,8 @@ ApplicationHeader = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsapplicationheader){
-	myComponentData.instance = ApplicationHeader;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = ApplicationHeader;
+jQuery.sap.require("sap.ui.commons.ApplicationHeader");
+sap.ui.commons.ApplicationHeader.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

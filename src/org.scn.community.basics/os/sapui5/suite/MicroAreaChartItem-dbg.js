@@ -54,7 +54,7 @@ jQuery.sap.require("sap.ui.core.Element");
  * @class
  * The configuration of the graphic element on the chart.
  * @extends sap.ui.core.Element
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

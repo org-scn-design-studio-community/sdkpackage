@@ -5,13 +5,14 @@
 	tooltip="Check Box Group"
 	icon="res/CheckBoxGroup/CheckBoxGroup.png"
 	handlerType="sapui5"
-	propertySheetPath="res/CheckBoxGroup/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/CheckBoxGroup/CheckBoxGroupLoader.js</jsInclude>
+	<requireJs modes="commons">res/CheckBoxGroup/CheckBoxGroup</requireJs>
+
 	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 	
 	

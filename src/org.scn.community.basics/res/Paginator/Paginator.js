@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./PaginatorSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.Paginator;
+var myComponentData = spec;
 
 Paginator = {
 
@@ -73,9 +88,8 @@ Paginator = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicspaginator){
-	myComponentData.instance = Paginator;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = Paginator;
+jQuery.sap.require("sap.ui.commons.Paginator");
+sap.ui.commons.Paginator.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

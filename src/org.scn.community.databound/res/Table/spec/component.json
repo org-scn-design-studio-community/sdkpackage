@@ -1,0 +1,22 @@
+{
+	"id": "Table",
+	"title": "Data Table 2.0",
+	"tooltip": "Data Table",
+	"handlerType": "div",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityDataBound",
+	"package": "databound",
+	"extension": "Component",
+	"databound": true,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "400",
+	"height": "400"
+}

@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./WorldTimeSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.WorldTime;
+var myComponentData = spec;
 
 WorldTime = function () {
 
@@ -73,7 +88,7 @@ WorldTime = function () {
 		
 		//setup interval call only once in case of multiple update calls!
 		if(that.interval_id === undefined){
-			that.interval_id = window.setInterval(function(){
+			that.interval_id = window.setIntervaldefine(["../../../org.scn.community.shared/modules/component.core", "./WorldTimeSpec"], function() {
 				var html = calcTime(that, that.getUtcoffset());
 				that.$div.innerHTML = html;
 			}
@@ -243,9 +258,9 @@ WorldTime = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsworldtime){
-	myComponentData.instance = WorldTime;
-	return myComponentData.instance;
-});
+//%INIT-START%
+myComponentData.instance = WorldTime;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-}).call(this);
+
+});

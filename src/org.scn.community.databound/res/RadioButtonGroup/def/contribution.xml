@@ -5,13 +5,14 @@
 	tooltip="RadioButtonGroup - Allows Selection with Radio Buttons."
 	icon="res/RadioButtonGroup/RadioButtonGroup.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RadioButtonGroup/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUnified"
 	databound="false"
+	modes="commons m"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RadioButtonGroup/RadioButtonGroupLoader.js</jsInclude>
+	<requireJs modes="commons m">res/RadioButtonGroup/RadioButtonGroup</requireJs>
+
 	<cssInclude>res/RadioButtonGroup/RadioButtonGroup.css</cssInclude>
 	
 	

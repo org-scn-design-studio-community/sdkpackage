@@ -16,50 +16,50 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./FioriButtonSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-jQuery.sap.require("sap.ui.core.IconPool");
+var myComponentData = spec;
 
-var org_scn_community_basics_FioriButton = org_scn_community_basics_FioriButton || {};
+FioriButton = {
 
-if(!org_scn_community_basics_FioriButton.registeredStyles){
-	org_scn_community_basics_FioriButton.registeredStyles = org_scn_community_basics_FioriButton.registeredStyles || "";	
-}
+	renderer: {},
+	
+	initDesignStudio: function() {
+		var that = this;
 
-(function() {
-/** code for recognition of script path */
-var myScript = $("script:last")[0].src;
-var ownComponentName = "org.scn.community.basics.FioriButton";
-var _readScriptPath = function () {
-	var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-	return scriptInfo.myScriptPath;
-};
-/** end of path recognition */
-
-sap.ui.commons.Button.extend(ownComponentName, {
-
-	metadata: {
-        properties: {
-              "dSize": {type: "string"},
-              "dIcon": {type: "string"},
-              "dText": {type: "string"},
-              "dTooltip": {type: "string"},
-              "dFontColor": {type: "string"},
-              "dBackColor": {type: "string"},
-              "dStyle": {type: "string"},
-        }
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
 	},
 	
-  	initDesignStudio: function() {
-		var that = this;
-		this._ownScript = _readScriptPath();
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		that._ownScript = org_scn_community_basics.readOwnScriptAccess("", "org.scn.community.basics.FioriButton");
 		
-		this.addStyleClass("scn-pack-FioriButton");
+		that.addStyleClass("scn-pack-FioriButton");
 		
-		this.attachPress(function() {
+		that.attachPress(function() {
 			that.fireDesignStudioEvent("onClick");
 		});
 		
-		this.onAfterRendering = function() {
+		that.onAfterRendering = function() {
 			var jqThis = that.$();
 			
 			var color = that.getDFontColor();
@@ -73,28 +73,46 @@ sap.ui.commons.Button.extend(ownComponentName, {
 			}
 			
 			if(backColor != "") {
-				this.addStyleClass("scn-pack-FioriButton-S");
+				that.addStyleClass("scn-pack-FioriButton-S");
 			}
 		};
-  	},
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
+	},
 	
-	renderer: {},
-	
-	afterDesignStudioUpdate : function() {
+	afterDesignStudioUpdate: function() {
 		var that = this;
+		
+		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
+	},
+	
+	/* COMPONENT SPECIFIC CODE - START METHODS*/
+	processData: function (flatData, afterPrepare, owner) {
+		var that = owner;
 
+		// processing on data
+		that.afterPrepare(that);
+	},
+
+	afterPrepare: function (owner) {
+		var that = owner;
+			
+		// visualization on processed data
 		var size = that.getDSize();
 		var icon = that.getDIcon();
 		var text = that.getDText();
 		var tooltip = that.getDTooltip();
 
 		if(text != ""){
-			this.setText(" " + text);	
+			that.setText(" " + text);	
 		} else {
-			this.setText(text);
+			that.setText(text);
 		}
 		
-		this.setTooltip(tooltip);
+		that.setTooltip(tooltip);
 				
 		// check if already registered, mark if not
 		if(org_scn_community_basics_FioriButton.registeredStyles.indexOf("."+icon) == -1){
@@ -103,28 +121,43 @@ sap.ui.commons.Button.extend(ownComponentName, {
 			$( "<style>.sf"+icon+":before{content:'\\"+icon+"';}</style>" ).appendTo("head");	
 		}
 		
-		this.addStyleClass("scn-pack-FioriButton-" + size);
-		this.addStyleClass("sf" + icon);
+		that.addStyleClass("scn-pack-FioriButton-" + size);
+		that.addStyleClass("sf" + icon);
 		
 		var aNames = sap.ui.core.IconPool.getIconNames();
 		
 		var style = that.getDStyle();
 		
 		if(style == "Default") {
-			this.setStyle(sap.ui.commons.ButtonStyle.Default);
+			that.setStyle(sap.ui.commons.ButtonStyle.Default);
 			// other settings on after rendering
 		} else {
 			if(style == "Emph") {
-				this.setStyle(sap.ui.commons.ButtonStyle.Emph);
+				that.setStyle(sap.ui.commons.ButtonStyle.Emph);
 			} else if(style == "Accept") {
-				this.setStyle(sap.ui.commons.ButtonStyle.Accept);
+				that.setStyle(sap.ui.commons.ButtonStyle.Accept);
 			} else if(style == "Reject") {
-				this.setStyle(sap.ui.commons.ButtonStyle.Reject);
+				that.setStyle(sap.ui.commons.ButtonStyle.Reject);
 			} else {
-				this.setStyle(sap.ui.commons.ButtonStyle.Default);
+				that.setStyle(sap.ui.commons.ButtonStyle.Default);
 			}
 		}
 	},
+	
+	onResize: function(width, height, parent) {
+		// in case special resize code is required
+	},
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
 
+jQuery.sap.require("sap.ui.core.IconPool");
+var org_scn_community_basics_FioriButton = org_scn_community_basics_FioriButton || {};
+if(!org_scn_community_basics_FioriButton.registeredStyles){
+	org_scn_community_basics_FioriButton.registeredStyles = org_scn_community_basics_FioriButton.registeredStyles || "";	
+}
+
+//%INIT-START%
+myComponentData.instance = FioriButton;
+jQuery.sap.require("sap.ui.commons.Button");
+sap.ui.commons.Button.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-})();

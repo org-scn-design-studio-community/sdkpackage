@@ -1,0 +1,383 @@
+{
+	"DCleanAll" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Clean All Parameters",
+			"cat" : "Display",
+			"tooltip" : "Clean All Parameters",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DHeaders" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "List Of Headers (Name / Value)",
+			"cat" : "Display",
+			"tooltip" : "List Of Headers (Name / Value)",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DParameters" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "List Of Parameters (Name / Value)",
+			"cat" : "Display",
+			"tooltip" : "List Of Parameters (Name / Value)",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DPayload" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "HTTP Reuqest Payload",
+			"cat" : "Display",
+			"tooltip" : "HTTP Reuqest Payload",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DRawParameters" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Raw Parameters As String Content",
+			"cat" : "Display",
+			"tooltip" : "Raw Parameters As String Content",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DReturnHeaders" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Return Headers",
+			"cat" : "Display",
+			"tooltip" : "Return Headers",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DReturnParameters" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Return Parameters",
+			"cat" : "Display",
+			"tooltip" : "Return Parameters",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DReturnResponse" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Return Response As String",
+			"cat" : "Display",
+			"tooltip" : "Return Response As String",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DReturnStatus" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 200,
+		"visible": false,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "-get",
+			"desc" : "Return Status",
+			"cat" : "Display",
+			"tooltip" : "Return Status",
+			"apsControl" : "spinner",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DTrigger" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Just As Simple Triger",
+			"cat" : "Display",
+			"tooltip" : "Just As Simple Triger",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"DBasicAuthorisation" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Basic Authorization Content [Basic: GUID]",
+			"cat" : "Display",
+			"tooltip" : "Basic Authorization Content [Basic: GUID]",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DContentType" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "application/x-www-form-urlencoded",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Content Type",
+			"cat" : "Display",
+			"tooltip" : "Content Type",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DCrossDomain" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Is This Request Cross-Domain",
+			"cat" : "Display",
+			"tooltip" : "Is This Request Cross-Domain",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DExpectedContentType" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "text",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "Expected Content Type",
+			"cat" : "Display",
+			"tooltip" : "Expected Content Type",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "text",
+					"text" : "text"
+				},
+				{
+					"key" : "json",
+					"text" : "json"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DExpectedResponseStatus" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 200,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Response Status For Good Response",
+			"cat" : "Display",
+			"tooltip" : "Response Status For Good Response",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DJsonp" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Do You Want To Use JSONP",
+			"cat" : "Display",
+			"tooltip" : "Do You Want To Use JSONP",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DRequestMethod" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "POST",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "Request Method (POST | GET | PUT)",
+			"cat" : "Display",
+			"tooltip" : "Request Method (POST | GET | PUT)",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "POST",
+					"text" : "POST"
+				},
+				{
+					"key" : "GET",
+					"text" : "GET"
+				},
+				{
+					"key" : "PUT",
+					"text" : "PUT"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DRequestType" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "JQuery",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "Request Type (JQuery | HTTP)",
+			"cat" : "Display",
+			"tooltip" : "Request Type (JQuery | HTTP)",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "JQuery",
+					"text" : "JQuery"
+				},
+				{
+					"key" : "HTTPRequest",
+					"text" : "HTTPRequest"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DUrl" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url To Send The Request",
+			"cat" : "Display",
+			"tooltip" : "Url To Send The Request",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DWithCredentials" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Do You Need With Credentials",
+			"cat" : "Display",
+			"tooltip" : "Do You Need With Credentials",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onResponse" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Response",
+			"cat" : "Events",
+			"tooltip" : "Event For On Response",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./GaugeSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.Gauge;
+var myComponentData = spec;
 
 Gauge = function () {
 
@@ -421,9 +436,9 @@ Gauge = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsgauge){
-	myComponentData.instance = Gauge;
-	return myComponentData.instance;
-});
+//%INIT-START%
+myComponentData.instance = Gauge;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-}).call(this);
+
+});

@@ -1,0 +1,181 @@
+
+<component
+	id="FioriBusyDialog"
+	title="Busy Dialog 2.0"
+	tooltip="Busy Dialog - Component for busy dialog."
+	icon="res/FioriBusyDialog/FioriBusyDialog.png"
+	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityUnified"
+	databound="false"
+	modes="m"
+>
+	
+	<requireJs modes="m">res/FioriBusyDialog/FioriBusyDialog</requireJs>
+
+	<cssInclude>res/FioriBusyDialog/FioriBusyDialog.css</cssInclude>
+	
+	
+	<property
+		id="cancelButtonText"
+		type="String"
+		title="Cancel Button Text"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="closeedKey"
+		type="String"
+		title="Closeed Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="customIcon"
+		type="Url"
+		title="Custom Icon"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="customIconDensityAware"
+		type="boolean"
+		title="Custom Icon Density Aware"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="customIconHeight"
+		type="int"
+		title="Custom Icon Height"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="customIconRotationSpeed"
+		type="int"
+		title="Custom Icon Rotation Speed"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="customIconWidth"
+		type="int"
+		title="Custom Icon Width"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onCloseed"
+		type="ScriptText"
+		title="On Closeed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="showCancelButton"
+		type="boolean"
+		title="Show Cancel Button"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="text"
+		type="String"
+		title="Text"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="title"
+		type="String"
+		title="Title"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useCustomIcon"
+		type="boolean"
+		title="Use Manual 'Custom Icon'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useCustomIconHeight"
+		type="boolean"
+		title="Use Manual 'Custom Icon Height'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useCustomIconRotationSpeed"
+		type="boolean"
+		title="Use Manual 'Custom Icon Rotation Speed'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="useCustomIconWidth"
+		type="boolean"
+		title="Use Manual 'Custom Icon Width'"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">420</defaultValue>
+		<defaultValue property="HEIGHT">580</defaultValue>
+		
+		<defaultValue property="cancelButtonText"><![CDATA[]]></defaultValue>
+		<defaultValue property="closeedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="customIcon"><![CDATA[]]></defaultValue>
+		<defaultValue property="customIconDensityAware"><![CDATA[true]]></defaultValue>
+		<defaultValue property="customIconHeight"><![CDATA[44]]></defaultValue>
+		<defaultValue property="customIconRotationSpeed"><![CDATA[1000]]></defaultValue>
+		<defaultValue property="customIconWidth"><![CDATA[44]]></defaultValue>
+		<defaultValue property="onCloseed"><![CDATA[]]></defaultValue>
+		<defaultValue property="showCancelButton"><![CDATA[false]]></defaultValue>
+		<defaultValue property="text"><![CDATA[]]></defaultValue>
+		<defaultValue property="title"><![CDATA[]]></defaultValue>
+		<defaultValue property="useCustomIcon"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useCustomIconHeight"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useCustomIconRotationSpeed"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useCustomIconWidth"><![CDATA[true]]></defaultValue>
+
+	</initialization>
+
+</component>

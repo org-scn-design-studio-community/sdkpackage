@@ -2,24 +2,23 @@
 <component id="BYOData" 
 	title="Bring Your Own Data" 
 	handlerType="datasource"
+	modes = "commons m"
 	icon="res/BYOData/BYOData.png"
-	propertySheetPath="res/BYOData/aps/BYODataPropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 >
-	<jsInclude>res/BYOData/BYOData.js</jsInclude>
+	<requireJs modes="commons m">res/BYOData/BYOData</requireJs>
 	<property type="String" title="Data" id="data"/>
-	<property type="String" title="Mutators" id="mutators"/>
+	<property type="String" title="Mutators (Deprecated)" id="mutators"/>
 	<property type="String" title="Number of Dimensions" id="kfIndex"/>
-	<property type="boolean" title="Measures in Rows" id="swap"/>
-	<property type="String" title="Sort Method" id="sortMethod">
+	<property type="String" title="Sort Method (Deprecated)" id="sortMethod">
 		<possibleValue>NONE</possibleValue>
 		<possibleValue>Alphanumeric Ascending</possibleValue>
 		<possibleValue>Alphanumeric Descending</possibleValue>
 	</property>
 	<initialization>
 		<defaultValue property="kfIndex">2</defaultValue>
-		<defaultValue property="swap">false</defaultValue>
-		<defaultValue property="sortMethod">Alphanumeric Ascending</defaultValue>
-		<defaultValue property="data">Region,Year,Sales,Quantity~|~East,2011,100,5~|~West,2011,75,7</defaultValue>
+		<defaultValue property="data">Department,Product,Sales,Quantity~|~Produce,Apples,100,20~|~Produce,Oranges,75,15~|~Produce,Kiwis,30,5~|~Produce,Bananas,150,30~|~Grocery,Cereal,34,20~|~Grocery,Juice,25,15~|~Grocery,Coffee,17,5~|~Meat,Poultry,150,30~|~Meat,Pork,78,23</defaultValue>
 		<defaultValue property="mutators">[1,1,1]</defaultValue>
+		<defaultValue property="sortMethod">NONE</defaultValue>
 	</initialization>
 </component>

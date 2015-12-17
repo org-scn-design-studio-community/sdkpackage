@@ -63,7 +63,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * This control enables you to see documents (or other items) in respect to their statuses – positive, negative, neutral, planned, planned negative. In addition to the node title (which can be optionally a hyperlink) also two other text fields are provided and can be filled. The process flow nodes consider all styles depending on the status they are in. The user can update or change the content of the node. The content of the node can be also filtered according to updated data and specific parameters set. This means that also the node’s style is affected.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -1080,7 +1080,7 @@ sap.suite.ui.commons.ProcessFlowNode.prototype._setZoomLevel = function(zoomLeve
   this._zoomLevel = zoomLevel;
 };
 
-sap.suite.ui.commons.ProcessFlowNode.prototype._setNavigationFocus = function( navigationFocus ) {
+sap.suite.ui.commons.ProcessFlowNode.prototype._setNavigationFocus = function(navigationFocus) {
   this._navigationFocus = navigationFocus;
 };
 
@@ -1202,7 +1202,8 @@ sap.suite.ui.commons.ProcessFlowNode.prototype._handleClick = function(oEvent) {
       else {
         this._parent.fireNodePress(this);
       }
-      this._parent._setFocusOnMouseClick( this );
+      // Changes the focus from previous node to the current one.
+      this.getParent()._changeNavigationFocus(this.getParent()._lastNavigationFocusNode, this);
     }
   }
   if (oEvent && !oEvent.isPropagationStopped()) {
@@ -1376,8 +1377,10 @@ sap.suite.ui.commons.ProcessFlowNode.prototype._getAriaText = function() {
   var contentTexts = this.getTexts();
   if (contentTexts) {
     for(var i in contentTexts){
-      var valueText = contentTexts[i].concat(", ");
-      contentText = contentText.concat(valueText);
+      if (contentTexts[i]) {
+        var valueText = contentTexts[i].concat(", ");
+        contentText = contentText.concat(valueText);
+      }
     }
     //Removes the last character which is a ' '
     contentText = contentText.slice(0, -1);

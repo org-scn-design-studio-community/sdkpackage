@@ -1,0 +1,172 @@
+.sapSuiteInfoTile {
+	background-color: #FFFFFF;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+	font-family: Arial, Helvetica, sans-serif;
+	display: inline-block;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	position: relative;
+	cursor: pointer;
+}
+
+html[dir=rtl] .sapSuiteInfoTile {
+	text-align: right;
+}
+
+.sapSuiteInfoTile.L {
+	height: 212px;
+	width: 224px;
+  	border-radius: 8px;
+  	padding: 12px 16px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteInfoTile.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteInfoTile.Auto,
+.sapSuiteInfoTile.M {
+	height: 174px;
+	width: 184px;
+	border-radius: 6px;
+	padding: 8px 10px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteInfoTile.Auto,
+.sapSuiteInfoTile.S {
+	height: 142px;
+	width: 148px;
+	border-radius: 6px;
+	padding: 6px 10px;
+}
+
+.sapSuiteInfoTileTitleTxt {
+	color: @sapUiText;
+}
+
+.sapSuiteInfoTileTitleTxt > .sapMText {
+	cursor: inherit;
+}
+
+.sapSuiteInfoTileTitleTxt.L > .sapMText {
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 22px;
+	margin-bottom: 5px;
+	width: 192px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteInfoTileTitleTxt.Auto > .sapMText,
+.sapUiMedia-Std-Tablet .sapSuiteInfoTileTitleTxt.Auto > .sapMText,
+.sapSuiteInfoTileTitleTxt.M > .sapMText  {
+	font-size: 16px;
+	line-height: 20px;
+	margin-bottom: 3px;
+	width: 164px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteInfoTileTitleTxt.Auto > .sapMText,
+.sapSuiteInfoTileTitleTxt.S > .sapMText  {
+	font-size: 14px;
+	line-height: 18px;
+	margin-bottom: 2px;
+	width: 128px;
+}
+
+.sapSuiteInfoTileFtrTxt {
+	position: absolute;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: @sapUiLightText;
+}
+
+.sapSuiteInfoTileTitleTxt.Failed,
+.sapSuiteInfoTileDescTxt.Failed {
+	color: fade(@sapUiLightText, 20);
+}
+
+.sapUiMedia-Std-Phone .sapSuiteInfoTileFtrTxt.Auto,
+.sapSuiteInfoTileFtrTxt.S {
+	bottom: 8px;
+	font-size: 12px;
+	line-height: 16px;
+	left: 10px;
+	right: 10px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteInfoTileFtrTxt.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteInfoTileFtrTxt.Auto,
+.sapSuiteInfoTileFtrTxt.M {
+	bottom: 10px;
+	font-size: 14px;
+	left: 10px;
+	right: 10px;
+}
+
+.sapSuiteInfoTileFtrTxt.L {
+	bottom: 12px;
+	font-size: 14px;
+	left: 16px;
+	right: 16px;
+}
+
+.sapSuiteInfoTileDescTxt {
+	color: @sapUiLightText;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.sapSuiteInfoTileDescTxt.L {
+	font-size: 14px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteInfoTileDescTxt.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteInfoTileDescTxt.Auto,
+.sapSuiteInfoTileDescTxt.M {
+	font-size: 14px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteInfoTileDescTxt.Auto,
+.sapSuiteInfoTileDescTxt.S {
+	font-size: 12px;
+}
+
+.sapSuiteInfoTileContent {
+	position: absolute;
+	overflow: hidden;
+}
+
+.sapSuiteInfoTileContent.L {
+	max-height: 90px;
+	bottom: 30px;
+	left: 16px;
+	right: 16px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteInfoTileContent.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteInfoTileContent.Auto,
+.sapSuiteInfoTileContent.M {
+	max-height: 60px;
+	bottom: 28px;
+	left: 10px;
+	right: 10px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteInfoTileContent.Auto,
+.sapSuiteInfoTileContent.S {
+	max-height: 45px;
+	bottom: 23px;
+	left: 10px;
+	right: 10px;
+}
+
+.sapSuiteInfoTileFtrFldTxt {
+	padding-left: 0.5rem;
+}
+
+.sapSuiteInfoTile .sapUiLocalBusyIndicator {
+	background-color: transparent;
+}
+.sapSuiteInfoTileLoading {
+	width:40px;
+	height: 8px
+}

@@ -1,0 +1,97 @@
+
+/* ============================================================================= */
+/* CSS for sap.suite.ui.commons/HarveyBallMicroChart.control for 'sap_hcb' theme */
+/* ============================================================================= */
+.sap-desktop .suiteHBMC:focus {
+	outline-color: @sapHCStandardFG;
+	outline-style: dotted;
+	outline-width: .0625rem;
+}
+
+.suiteHBMC:focus:not([tabindex]) {
+	outline: none;
+}
+
+.suiteHBMCVal.Neutral,
+.suiteHBMCValScale.Neutral {
+    color: @sapHCNeutral;
+}
+
+.suiteHBMCVal.Good,
+.suiteHBMCValScale.Good {
+    color: @sapHCPositive;
+}
+
+.suiteHBMCVal.Critical,
+.suiteHBMCValScale.Critical {
+    color: @sapHCCritical;
+}
+
+.suiteHBMCVal.Error,
+.suiteHBMCValScale.Error {
+    color: @sapHCNegative;
+}
+
+.suiteHBMCTtlSclCnt {
+	color: @sapHCStandardFG;
+}
+
+.suiteHBMCSgmnt.Error {
+	fill: @sapHCNegative;
+}
+
+.suiteHBMCSgmnt.Neutral {
+	fill: @sapHCNeutral;	
+}
+
+.suiteHBMCSgmnt.Good {
+	fill: @sapHCPositive;	
+}
+
+.suiteHBMCSgmnt.Critical {
+	fill: @sapHCCritical;	
+}
+
+.suiteHBMCSgmnt {
+	stroke: @sapHCStandardFG;
+	stroke-width: 1.5;
+}
+
+.suiteHBMCSBall {
+	stroke: @sapHCStandardFG;
+	stroke-width: 1.5;
+	fill: @sapHCStandardBG;
+}
+
+/* Common scale css*/
+.sapUiMedia-Std-Desktop .suiteHBMCTtlScale.Auto,
+.sapUiMedia-Std-Tablet .suiteHBMCTtlScale.Auto,
+.suiteHBMCTtlScale.M, 
+
+.sapUiMedia-Std-Desktop .suiteHBMCValScale.Auto,
+.sapUiMedia-Std-Tablet .suiteHBMCValScale.Auto,
+.suiteHBMCValScale.M {
+	font-size: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Phone .suiteHBMCTtlScale.Auto,
+.suiteHBMCTtlScale.S,
+.suiteHBMCTtlScale.XS,
+
+.sapUiMedia-Std-Phone .suiteHBMCValScale.Auto,
+.suiteHBMCValScale.S,
+.suiteHBMCValScale.XS {
+	font-size: @sapMFontSmallSize;
+}
+
+.sapUiMedia-Std-Phone .suiteHBMCTtl.Auto,
+.suiteHBMCTtl.S,
+.suiteHBMCTtl.XS {
+	font-size: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Desktop .suiteHBMCTtl.Auto,
+.sapUiMedia-Std-Tablet .suiteHBMCTtl.Auto,
+.suiteHBMCTtl.M {
+	font-size: @sapMFontLargeSize;
+}

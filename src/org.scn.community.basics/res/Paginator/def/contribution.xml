@@ -5,13 +5,14 @@
 	tooltip="Paginator"
 	icon="res/Paginator/Paginator.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Paginator/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Paginator/PaginatorLoader.js</jsInclude>
+	<requireJs modes="commons">res/Paginator/Paginator</requireJs>
+
 	<cssInclude>res/Paginator/Paginator.css</cssInclude>
 	
 	

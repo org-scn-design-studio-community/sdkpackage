@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "Notify",
+		name: "basics.Notify",
+		requireName: "basicsnotify",
+		fullComponentName: "org.scn.community.basics.Notify",
+		fullComponentPackage: "org.scn.community.basics/res/Notify",
+		script: "org.scn.community.basics/res/Notify/Notify",
+		scriptSpec: "org.scn.community.basics/res/Notify/NotifySpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.Notify.spec = 
+	spec.spec = 
 {
   "delay": {
     "opts": {
@@ -166,10 +177,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Notify.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Notify.specAbout = 
+	spec.specAbout = 
 {
   "description": "Notify - Leandro Cardoso",
   "icon": "Notify.png",
@@ -186,7 +197,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Notify.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -195,7 +206,7 @@
   "height": "100",
   "id": "Notify",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -211,4 +222,5 @@
   "width": "100"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

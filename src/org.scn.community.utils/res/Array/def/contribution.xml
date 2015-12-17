@@ -1,15 +1,13 @@
 
 <component
 	id="Array"
-	title="Array Utility"
+	title="Array Utility 0.X"
 	icon="res/Array/Array.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Array/Array.js</jsInclude>
-
 	<property
 		id="items"
 		type="String"

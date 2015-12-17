@@ -1,0 +1,16 @@
+{
+	"title": "Result Set Information 2.0",
+	"description": "Result Set Information",
+	"icon": "ResultSetInfo.png",
+	"topics": 
+	[
+		{
+			"title" : "Result Set Information",
+			"content" : "Result Set Information"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

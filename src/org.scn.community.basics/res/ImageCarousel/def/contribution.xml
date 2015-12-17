@@ -5,13 +5,14 @@
 	tooltip="Image Carousel"
 	icon="res/ImageCarousel/ImageCarousel.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ImageCarousel/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ImageCarousel/ImageCarouselLoader.js</jsInclude>
+	<requireJs modes="commons">res/ImageCarousel/ImageCarousel</requireJs>
+
 	<cssInclude>res/ImageCarousel/ImageCarousel.css</cssInclude>
 	
 	

@@ -1,0 +1,47 @@
+/* ================================================================== */
+/* CSS for control sap.suite.ui.commons/ThreePanelThingViewer.control */
+/* HCB theme                                                          */
+/* ================================================================== */
+
+.sapUiUx3TV {
+	background: @sapUiBaseBG;
+	border: solid 1px;
+}
+
+.sapSuiteTvTitle {
+    background: @sapUiBaseBG;
+}
+
+.sapSuiteTvTitleType {
+	color: @sapUiBase;
+}
+
+.sapSuiteTvTitleFirst {
+	color: @sapUiBase;
+}
+
+.sapSuiteTvTitleSecond {
+	color: @sapUiBase;
+}
+
+.sapSuiteTvHeader {
+    background: @sapUiBaseBG;
+}
+
+.sapSuiteTvFacet {
+	background: @sapUiBaseBG;
+}
+
+html[data-sap-ui-browser="ie8"] .sapSuiteTvPopupMenu,
+.sapSuiteTvPopupMenu {
+    border: 1px solid @sapUiWhiteBorder;
+}
+
+.sapSuiteTvPopupMenuLink {
+	text-decoration: none;
+}
+
+.sapSuiteTvPopupMenuLink:hover {
+	text-decoration: underline;
+	background-color: @sapUiHighlight;
+}

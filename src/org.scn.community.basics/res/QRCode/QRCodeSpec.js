@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "QRCode",
+		name: "basics.QRCode",
+		requireName: "basicsqrcode",
+		fullComponentName: "org.scn.community.basics.QRCode",
+		fullComponentPackage: "org.scn.community.basics/res/QRCode",
+		script: "org.scn.community.basics/res/QRCode/QRCode",
+		scriptSpec: "org.scn.community.basics/res/QRCode/QRCodeSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.QRCode.spec = 
+	spec.spec = 
 {
   "background": {
     "opts": {
@@ -231,10 +242,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.QRCode.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.QRCode.specAbout = 
+	spec.specAbout = 
 {
   "description": "QRCode Generation",
   "icon": "QRCode.png",
@@ -251,7 +262,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.QRCode.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -260,7 +271,7 @@
   "height": "256",
   "id": "QRCode",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -276,4 +287,5 @@
   "width": "256"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

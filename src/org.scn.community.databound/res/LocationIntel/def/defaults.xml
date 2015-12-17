@@ -6,4 +6,5 @@
 		<defaultValue property="markerMax">50</defaultValue>
 		<defaultValue property="markerAlpha">70</defaultValue>
 		<defaultValue property="markerColor">#006699</defaultValue>
+		<defaultValue property="markerSizeMeasure">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}</defaultValue>
 		<!-- End of LocationIntel Defaults -->

@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
-(function(){
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./CheckBoxGroupSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.CheckBoxGroup;
+var myComponentData = spec;
 
 CheckBoxGroup = {
 
@@ -125,7 +140,7 @@ CheckBoxGroup = {
 			topImage = "3px";
 		} 
 
-		var oLayout = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oLayout = new sap.zen.commons.layout.AbsoluteLayout ({
 			width: "225px",
 			height: height
 		});
@@ -223,9 +238,8 @@ CheckBoxGroup = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicscheckboxgroup){
-	myComponentData.instance = CheckBoxGroup;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = CheckBoxGroup;
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

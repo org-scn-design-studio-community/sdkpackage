@@ -8,10 +8,11 @@
 	propertySheetPath="%PROPERTY_PAGE_LINK%"
 	group="%COMP-group%"
 	databound="%COMP-databound%"
+	modes="%COMP-modes%"
 >
 	%COMPONENT_STD_INCLUDES_SPEC%
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/%COMP-id%/%COMP-id%Loader.js</jsInclude>
+	<requireJs modes="%COMP-modes%">res/%COMP-id%/%COMP-id%</requireJs>
+
 	<cssInclude>res/%COMP-id%/%COMP-id%.css</cssInclude>
 	%COMPONENT_CSS_INCLUDES_SPEC%
 	

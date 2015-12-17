@@ -1,31 +1,123 @@
 
 /**
- * Class for DataSlider
+ * Generated ZTL Class for Slider
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
-class org.scn.community.databound.Slider extends org.scn.community.shared.DataComponent {
+class org.scn.community.databound.Slider extends org.scn.community.shared.Component {
 
-	/** returns the selected key */
-	String getSelectedKey () {*
-		return this.selectedKey;	
-	*}
-	
-	/** sets the selected key */
-	void setSelectedKey (String key) {*
-		this.selectedKey = key;	
-	*}
-	
-	/** returns the selected text */
-	String getSelectedText () {*
-		return this.selectedText;	
-	*}
-	
-	/** sets the pause refresh flag */
-	void pauseRefresh () {*
-		this.doRefresh = false;	
+
+
+	/**
+	 * Gets Technical Proprty For Pause Refresh Property
+	 */	
+	boolean isDoRefresh() {*
+		return this.doRefresh;
 	*}
 
-	/** sets the pause refresh flag */
-	void allowRefresh () {*
-		this.doRefresh = true;	
+	/**
+	 * Sets Maximum Number Property
+	 */	
+	void setMaxNumber( /**Maximum Number*/ int maxNumber){*
+		this.maxNumber = maxNumber;
 	*}
+
+	/**
+	 * Gets Maximum Number Property
+	 */	
+	int getMaxNumber() {*
+		return this.maxNumber;
+	*}
+
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Text Property
+	 */	
+	String getSelectedText() {*
+		return this.selectedText;
+	*}
+
+	/**
+	 * Sets Sorting By Value | Defalut Property by String
+	 */	
+	void setSortingByString( /**Sorting By Value | Defalut*/ String sorting){*
+		this.sorting = sorting;
+	*}
+
+	/**
+	 * Gets Sorting By Value | Defalut Property as String
+	 */	
+	String getSortingAsString() {*
+		return this.sorting;
+	*}
+	
+	/**
+	 * Sets Sorting By Value | Defalut Property by Choice Option
+	 */	
+	void setSorting( /**Sorting By Value | Defalut*/ org_scn_community_shared_Enumfield sorting){*
+		this.sorting = sorting;
+	*}
+	
+	/**
+	 * Gets Sorting By Value | Defalut Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getSorting() {*
+		return this.sorting;
+	*}
+
+	/**
+	 * Sets Top X, Bottom X Or Both Property by String
+	 */	
+	void setTopBottomByString( /**Top X, Bottom X Or Both*/ String topBottom){*
+		this.topBottom = topBottom;
+	*}
+
+	/**
+	 * Gets Top X, Bottom X Or Both Property as String
+	 */	
+	String getTopBottomAsString() {*
+		return this.topBottom;
+	*}
+	
+	/**
+	 * Sets Top X, Bottom X Or Both Property by Choice Option
+	 */	
+	void setTopBottom( /**Top X, Bottom X Or Both*/ org_scn_community_shared_MemberSelectionEnumfield topBottom){*
+		this.topBottom = topBottom;
+	*}
+	
+	/**
+	 * Gets Top X, Bottom X Or Both Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberSelectionEnumfield getTopBottom() {*
+		return this.topBottom;
+	*}
+
+	/**
+	 * Sets Change To Vertical Orientation Property
+	 */	
+	void setVertical( /**Change To Vertical Orientation*/ boolean vertical){*
+		this.vertical = vertical;
+	*}
+
+	/**
+	 * Gets Change To Vertical Orientation Property
+	 */	
+	boolean isVertical() {*
+		return this.vertical;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }

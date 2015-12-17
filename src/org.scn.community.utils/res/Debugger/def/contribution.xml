@@ -1,13 +1,12 @@
 
 <component
 	id="Debugger"
-	title="Debugger Code Inspector"
+	title="Debugger Code Inspector 0.X"
 	icon="res/Debugger/Debugger.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/Debugger/Debugger.js</jsInclude>
 	<cssInclude>res/Debugger/Debugger.css</cssInclude>
 

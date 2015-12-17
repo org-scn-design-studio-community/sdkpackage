@@ -1,0 +1,147 @@
+{
+
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Text",
+			"cat" : "Display",
+			"tooltip" : "Optional text displayed inside the dialog.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"title" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Title",
+			"cat" : "Display",
+			"tooltip" : "Sets the title of the BusyDialog. The default value is an empty string.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"customIcon" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Url",
+			"ztlFunction": "",
+			"desc" : "Custom Icon",
+			"cat" : "Display",
+			"tooltip" : "Icon displayed in the dialog header. This icon is invisible in iOS platform and it is density aware. You can use the density convention (@2, @1.5, etc.) to provide higher resolution image for higher density screens.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"customIconRotationSpeed" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 1000,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Custom Icon Rotation Speed",
+			"cat" : "Display",
+			"tooltip" : "Defines the rotation speed of the given image. If GIF file is used, the speed has to be set to 0. The value is in milliseconds.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"customIconDensityAware" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Custom Icon Density Aware",
+			"cat" : "Display",
+			"tooltip" : "If this is set to ",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"customIconWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 44,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Custom Icon Width",
+			"cat" : "Display",
+			"tooltip" : "Width of the provided icon with default value ",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"customIconHeight" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 44,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Custom Icon Height",
+			"cat" : "Display",
+			"tooltip" : "Height of the provided icon with default value ",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"cancelButtonText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Cancel Button Text",
+			"cat" : "Display",
+			"tooltip" : "The text of the cancel button. The default text is ",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showCancelButton" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Cancel Button",
+			"cat" : "Display",
+			"tooltip" : "Indicates if the cancel button will be rendered inside the busy dialog. The default value is set to ",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

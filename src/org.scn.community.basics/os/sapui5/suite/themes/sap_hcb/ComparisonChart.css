@@ -1,0 +1,85 @@
+/* ============================================================================== */
+/* CSS for sap.suite.ui.commons/ComparisonChart.control for 'sap_hcb' theme*/
+/* ============================================================================== */
+
+.sapSuiteCmpChartItemValue {
+	color: @sapHCStandardFG;
+}
+
+.sapSuiteCmpChartItemValue.Neutral {
+    color: @sapHCNeutral;
+}
+
+.sapSuiteCmpChartItemValue.Good {
+    color: @sapHCPositive;
+}
+
+.sapSuiteCmpChartItemValue.Critical {
+    color: @sapHCCritical;
+}
+
+.sapSuiteCmpChartItemValue.Error {
+    color: @sapHCNegative;
+}
+
+.sapSuiteCmpChartBarValue.Neutral {
+    background-color: @sapHCNeutral;
+}
+
+.sapSuiteCmpChartBarValue.Good {
+    background-color: @sapHCPositive;
+}
+
+.sapSuiteCmpChartBarValue.Critical {
+    background-color: @sapHCCritical;
+}
+
+.sapSuiteCmpChartBarValue.Error {
+    background-color: @sapHCNegative;
+}
+
+.sapSuiteCmpChartContent {
+	font-family: @sapUiFontFamily;
+	font-weight: normal;
+	font-size: @sapMFontSmallSize;
+}
+
+.sapSuiteCmpChartContent.L {
+	font-size: @sapMFontLargeSize;
+}
+
+.sap-desktop .sapSuiteCmpChartContent:focus {
+	outline-color: @sapHCStandardFG;
+	outline-style: dotted;
+	outline-width: .0625rem;
+}
+
+.sapSuiteCmpChartContent:focus:not([tabindex]) {
+	outline: none;
+}
+
+.sapSuiteCmpChartBarNegNoValue {
+	border: .0625rem @sapUiFieldBorderColor solid;
+	border-right: .125rem @sapUiFieldBackground solid;
+}
+
+.sapSuiteCmpChartBarNoValue {
+	border: .0625rem @sapUiFieldBorderColor solid;
+	border-left: .125rem @sapUiFieldBackground solid;
+}
+
+.sapSuiteCmpChartItemTitle {
+    color: @sapHCStandardFG;
+}
+
+
+.sapSuiteCmpChartBar {
+	outline: none;
+}
+
+.sap-desktop .sapSuiteCmpChartBar:focus {
+	border-color: @sapUiFocus;
+	border-style: dotted;
+	border-width: 1px;
+}
+

@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "EmbeddedFrame",
+		name: "basics.EmbeddedFrame",
+		requireName: "basicsembeddedframe",
+		fullComponentName: "org.scn.community.basics.EmbeddedFrame",
+		fullComponentPackage: "org.scn.community.basics/res/EmbeddedFrame",
+		script: "org.scn.community.basics/res/EmbeddedFrame/EmbeddedFrame",
+		scriptSpec: "org.scn.community.basics/res/EmbeddedFrame/EmbeddedFrameSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.EmbeddedFrame.spec = 
+	spec.spec = 
 {
   "domainrelaxlevel": {
     "opts": {
@@ -68,10 +79,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.EmbeddedFrame.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.EmbeddedFrame.specAbout = 
+	spec.specAbout = 
 {
   "description": "Embedded Frame - Include external web pages directly in your application",
   "icon": "EmbeddedFrame.png",
@@ -88,7 +99,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.EmbeddedFrame.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -106,4 +117,5 @@
   "width": "600"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

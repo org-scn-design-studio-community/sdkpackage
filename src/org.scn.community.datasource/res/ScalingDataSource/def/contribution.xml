@@ -5,13 +5,14 @@
 	tooltip="Scaling Data Source - Data Source with Scaling on Selection"
 	icon="res/ScalingDataSource/ScalingDataSource.png"
 	handlerType="datasource"
-	propertySheetPath="aps/org.scn.community.PropertyPage.datasource.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDatasource"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ScalingDataSource/ScalingDataSourceLoader.js</jsInclude>
+	<requireJs modes="commons">res/ScalingDataSource/ScalingDataSource</requireJs>
+
 	<cssInclude>res/ScalingDataSource/ScalingDataSource.css</cssInclude>
 	
 	

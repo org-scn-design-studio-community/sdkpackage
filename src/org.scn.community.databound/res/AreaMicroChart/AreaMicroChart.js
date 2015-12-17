@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
 
- (function(){
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./AreaMicroChartSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"shared/modules/component.databound",
+	"../../../"+scn_pkg+"shared/modules/component.unified"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
 
-var myComponentData = org_scn_community_require.knownComponents.databound.AreaMicroChart;
+var myComponentData = spec;
 
 AreaMicroChart = {
 
@@ -40,17 +55,17 @@ AreaMicroChart = {
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 		var componentPath = sap.zen.createStaticSdkMimeUrl(that.componentData.fullComponentPackage , "");
-		jQuery.sap.registerModulePath(org_scn_community_require.knownComponents.databound.AreaMicroChart.fullComponentName, componentPath);
+		jQuery.sap.registerModulePath(myComponentData.fullComponentName, componentPath);
 
-		sap.ui.controller(org_scn_community_require.knownComponents.databound.AreaMicroChart.fullComponentName + ".Controller", {
+		sap.ui.controller(myComponentData.fullComponentName + ".Controller", {
 			owner: that,
 
 		});
 
 		that._view = new sap.ui.view({ type: sap.ui.core.mvc.ViewType.XML,  
-            viewName: org_scn_community_require.knownComponents.databound.AreaMicroChart.fullComponentName + "." 
-				+ org_scn_community_require.knownComponents.databound.AreaMicroChart.id,  
-            controllerName: org_scn_community_require.knownComponents.databound.AreaMicroChart.fullComponentName + ".Controller" 
+            viewName: myComponentData.fullComponentName + "." 
+				+ myComponentData.id,  
+            controllerName: myComponentData.fullComponentName + ".Controller" 
         });
 		
 		that._oModel = new sap.ui.model.json.JSONModel(); 
@@ -68,7 +83,9 @@ AreaMicroChart = {
 		
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 		that._data = undefined;
-		that._metadata = that.getDSMetadata();
+		if(that.getDSMetadata) {
+			that._metadata = that.getDSMetadata();
+		}
 
 		if(!org_scn_community_databound.hasData (that._data, that._metadata)) {
 			org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare);
@@ -237,9 +254,8 @@ AreaMicroChart = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundareamicrochart){
-	myComponentData.instance = AreaMicroChart;
-	return myComponentData.instance;
-});
+myComponentData.instance = AreaMicroChart;
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 
-}).call(this);
+});

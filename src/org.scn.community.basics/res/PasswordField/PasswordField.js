@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./PasswordFieldSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.PasswordField;
+var myComponentData = spec;
 
 PasswordField = {
 
@@ -75,9 +90,8 @@ PasswordField = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicspasswordfield){
-	myComponentData.instance = PasswordField;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = PasswordField;
+jQuery.sap.require("sap.ui.commons.PasswordField");
+sap.ui.commons.PasswordField.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

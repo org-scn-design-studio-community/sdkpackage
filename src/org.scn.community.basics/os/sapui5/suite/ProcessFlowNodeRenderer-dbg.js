@@ -439,11 +439,6 @@ sap.suite.ui.commons.ProcessFlowNodeRenderer.render = function(oRm, oControl){ /
   oRm.writeControlData(oControl);
   sap.suite.ui.commons.ProcessFlowNodeRenderer.assignNodeClasses(oRm, oControl, 0);
 
-  //Write ARIA details
-  oRm.writeAttribute("role", "textbox");
-  oRm.writeAttribute("aria-readonly", true);
-  oRm.writeAttributeEscaped("aria-label", oControl._getAriaText());
-
   oRm.write(">");
   switch( oControl._getDisplayState() ) {
     case sap.suite.ui.commons.ProcessFlowDisplayState.Highlighted:
@@ -492,7 +487,6 @@ sap.suite.ui.commons.ProcessFlowNodeRenderer.render = function(oRm, oControl){ /
     // node3
     oRm.write("<div");
     sap.suite.ui.commons.ProcessFlowNodeRenderer.assignNodeClasses(oRm, oControl, 3);
-    oRm.writeAttribute("aria-hidden", "true");
     oRm.write(">");
       // node3 contents (actual node contents - title, state, texts)
       // title

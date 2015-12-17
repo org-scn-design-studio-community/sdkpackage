@@ -5,13 +5,14 @@
 	tooltip="Open Street Map (Basic)"
 	icon="res/Map/Map.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Map/MapLoader.js</jsInclude>
+	<requireJs modes="commons">res/Map/Map</requireJs>
+
 	<cssInclude>res/Map/Map.css</cssInclude>
 	
 	

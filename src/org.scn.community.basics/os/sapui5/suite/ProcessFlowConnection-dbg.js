@@ -50,7 +50,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * This control is used inside the ProcessFlow Control to connect process flow node A with process flow node B in respect to the style(s) chosen by the application.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

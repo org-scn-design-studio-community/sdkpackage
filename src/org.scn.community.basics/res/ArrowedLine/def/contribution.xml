@@ -1,13 +1,15 @@
 
 <component
 	id="ArrowedLine"
-    title="Arrowed Line"
+    title="Arrowed Line 2.0"
     group="ScnCommunityBasics"
     tooltip="Displays an arrowed line"
+    modes="commons m"
+	propertySheetPath="aps/PropertyPage.html"
     icon="res/ArrowedLine/ArrowedLine.png"
     handlerType="div">
 
-    <jsInclude>res/ArrowedLine/ArrowedLine.js</jsInclude>
+    <requireJs modes="commons m">res/ArrowedLine/ArrowedLine</requireJs>
 
     <property id="lineColor" type="Color" title="Line Color" group="Display" />
     <property id="lineSize" type="int" title="Size" group="Display" />

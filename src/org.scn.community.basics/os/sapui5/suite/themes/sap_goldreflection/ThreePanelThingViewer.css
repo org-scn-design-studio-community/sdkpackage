@@ -1,0 +1,13 @@
+/* ================================================================== */
+/* CSS for control sap.suite.ui.commons/ThreePanelThingViewer.control */
+/* Gold Reflection theme                                              */
+/* ================================================================== */
+
+html[data-sap-ui-browser*="sf"] .sapSuiteTvNav::-webkit-scrollbar,
+html[data-sap-ui-browser*="cr"] .sapSuiteTvNav::-webkit-scrollbar {
+    background-color: @sapSuiteUiThingViewerFacetBgRGBA;
+}
+
+.sapSuiteTvTitle {
+    filter: progid:DXImageTransform.Microsoft.Alpha(style=1, opacity=100, finishOpacity=0, startX=0, startY=20, finishX=20, finishY=100);
+}

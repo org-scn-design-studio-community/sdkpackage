@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./FishEyeSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.FishEye;
+var myComponentData = spec;
 
 FishEye = {
 
@@ -95,7 +110,7 @@ FishEye = {
 				);
 			}
 
-			that._lContentBig = new sap.ui.commons.layout.AbsoluteLayout ({
+			that._lContentBig = new sap.zen.commons.layout.AbsoluteLayout ({
 				width : "0px",
 				height : "100%",
 			});
@@ -151,7 +166,7 @@ FishEye = {
 		oTextView.addStyleClass("scn-pack-FishEye-Text");
 		// oTextView.attachBrowserEvent('click', clickFunction);
 
-		var oCcontentPanel = new sap.ui.commons.layout.AbsoluteLayout ({
+		var oCcontentPanel = new sap.zen.commons.layout.AbsoluteLayout ({
 			width : "100%",
 			height : "100%",
 		});
@@ -340,9 +355,8 @@ FishEye = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsfisheye){
-	myComponentData.instance = FishEye;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = FishEye;
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

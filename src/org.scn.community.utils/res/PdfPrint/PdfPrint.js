@@ -1,11 +1,9 @@
 /**
- * Copyright 2014 SCN SDK Community
+ * Copyright 2014 Scn Community Contributors
  * 
  * Original Source Code Location:
  *  https://github.com/org-scn-design-studio-community/sdkpackage/
- * Forked from 
- *  https://github.com/Antoninjo/DesignStudioPDFExportComponent.git
- *  
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
  * You may obtain a copy of the License at 
@@ -18,28 +16,68 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PdfPrint", {
+ 
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./PdfPrintSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"utils/os/date/DateFormat",
+	"../../../"+scn_pkg+"utils/os/canvas/canvg",
+	"../../../"+scn_pkg+"utils/os/canvas/html2canvas",
+	"../../../"+scn_pkg+"utils/os/rgb/rgbcolor",
+	"../../../"+scn_pkg+"utils/os/blur/StackBlur",
+	"../../../"+scn_pkg+"utils/os/svg/saveSvgAsPng",
+	"../../../"+scn_pkg+"utils/os/file/FileSaver",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf.plugin.addhtml",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf.plugin.addimage",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf.plugin.autoprint",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf.plugin.cell",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf.plugin.from_html",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf.plugin.javascript",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf.plugin.png_support",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf.plugin.sillysvgrenderer",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf.plugin.split_text_to_size",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf.plugin.standard_fonts_metrics",
+	"../../../"+scn_pkg+"utils/os/jspdf/jspdf.plugin.total_pages"
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-	metadata: {
-        properties: {
-              "pdfMethod": {type: "string"},
-              "svgMode": {type: "string"},
-              "trigger": {type: "string"},
-              "rootPanel": {type: "string"},
-              "format": {type: "string"},
-              "orientation": {type: "string"},
-              "unit": {type: "string"},
-              "fileName": {type: "string"},
-        }
-	},
+var myComponentData = spec;
 
-	initDesignStudio: function() {
-		var that = this;
-	},
-	
+PdfPrint = {
+
 	renderer: {},
 	
-	afterDesignStudioUpdate : function() {
+	initDesignStudio: function() {
+		var that = this;
+
+		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);		
+	},
+	
+	initAsync: function (owner) {
+		var that = owner;
+		org_scn_community_component_Core(that, myComponentData);
+
+		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
+		
+		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+		
+		// that.onAfterRendering = function () {
+			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		// }
+	},
+	
+	afterDesignStudioUpdate: function() {
 		var that = this;
 		
 		if(this.getTrigger() == "GO") {
@@ -131,4 +169,10 @@ sap.ui.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.PdfPrint",
       		$('svg').show();
 		});
 	},
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
+//%INIT-START%
+myComponentData.instance = PdfPrint;
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

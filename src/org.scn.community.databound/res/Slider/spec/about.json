@@ -1,0 +1,16 @@
+{
+	"title": "Data Slider 2.0",
+	"description": "Data Slider",
+	"icon": "Slider.png",
+	"topics": 
+	[
+		{
+			"title" : "Data Slider",
+			"content" : "Data Slider"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

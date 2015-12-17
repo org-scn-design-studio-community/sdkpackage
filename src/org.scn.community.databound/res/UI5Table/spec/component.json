@@ -3,11 +3,12 @@
 	"title": "UI5 Table 2.0",
 	"tooltip": "UI5 Table - A simple table with rows and columns",
 	"handlerType": "sapui5",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityDataBound",
 	"package": "databound",
 	"extension": "DataComponent",
 	"databound": true,
+	"modes":"commons m",
 
 	"require": 
 	[

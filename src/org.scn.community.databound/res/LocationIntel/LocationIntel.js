@@ -1,33 +1,13 @@
-(function() {
-	 var myScript = $("script:last")[0].src;
-	 var ownComponentName = "org.scn.community.databound.LocationIntel";
-	 var _readScriptPath = function () {
-		 var scriptInfo = org_scn_community_basics.readOwnScriptAccess(myScript, ownComponentName);
-		 return scriptInfo;
-	 };
-	 /** end of recognition of script path */
-	 /** RequireJS Config **/
-	 var pathInfo = _readScriptPath();
-	 sap.zen.Dispatcher.instance.pauseDispatching();
-	 var sdkReqs = require.config({
-		 context : "sdk",
-		 paths: {
-			d3 :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.min",
-			d3tip :		pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3-tip",
-			topojson : 	pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/topojson.v1.min",
-			"d3-geo-projection" : 	pathInfo.mainSDKPath + "org.scn.community.databound/os/d3v3/d3.geo.projection"
-		 }
-	 });
-	 sdkReqs(["require","d3","d3tip","topojson","d3-geo-projection"], function(require,d3,d3tip,topojson,d3geoproj) {
-		 LocationIntel.prototype = org_scn_community_databound_Map;
-		 LocationIntel.prototype.constructor = LocationIntel;
-		 LocationIntel.prototype.toString = function(){
-	    	 return ownComponentName;
-	     }
-	     function LocationIntel() {
-	    	 var that = this;
-	    	// Call super
-	    	org_scn_community_databound_Map.call(this, d3,topojson,{
+ /**
+ * Location Intelligence
+ */
+define(["../_modules/VizMap","sap/designstudio/sdk/component"], function(VizMap,Component) {
+	var ownComponentName = "org.scn.community.databound.LocationIntel";
+	LocationIntel.prototype = VizMap;
+	function LocationIntel() {
+    	 var that = this;
+    	 // Call super
+    	 VizMap.call(this, {
 	    		latitudeField :  { 
 					value : "",
 					opts : {
@@ -81,7 +61,7 @@
 					opts : {
 						desc : "Marker Size Measure (Optional)",
 						cat : "Data",
-						apsControl : "text"
+						apsControl : "measureselector"
 					}					
 				},
 				markerMin : { 
@@ -201,10 +181,17 @@
 		        var d, domain;
 		        this.bubbleSet = [0];
 		        if(this.markerSizeMeasure()){
+		        	var msObj = jQuery.parseJSON(this.markerSizeMeasure());
+		        	var msm;
+		        	if(typeof msObj == "object"){
+						msm = this.determineMeasureName(msObj);
+					}else{
+						msm = msObj;			// Backwards compat
+					}
 		        	for(var i=0;i<this.plots.length;i++){
 		        		var plot = this.plots[i];
-		        		if(plot.designStudioMeasures && plot.designStudioMeasures[this.markerSizeMeasure()]){
-		        			this.bubbleSet.push(plot.designStudioMeasures[this.markerSizeMeasure()]);
+		        		if(plot.designStudioMeasures && plot.designStudioMeasures[msm]){
+		        			this.bubbleSet.push(plot.designStudioMeasures[msm]);
 		        		}else{
 		        			// No value
 		        		}
@@ -348,7 +335,9 @@
 	    	}
 	     }
 	    	
-		sap.designstudio.sdk.Component.subclass(ownComponentName, LocationIntel);	// End of SDK
-		sap.zen.Dispatcher.instance.resumeDispatching();
-	 });//End of Require Callback 	
-})();// End of closure
+		 LocationIntel.prototype.constructor = LocationIntel;
+		 LocationIntel.prototype.toString = function(){
+			 return ownComponentName;
+		 }
+		 Component.subclass(ownComponentName, LocationIntel);	// End of SDK
+});// End of closure

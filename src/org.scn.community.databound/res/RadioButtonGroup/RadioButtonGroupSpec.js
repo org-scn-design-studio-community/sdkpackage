@@ -16,13 +16,24 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "RadioButtonGroup",
+		name: "databound.RadioButtonGroup",
+		requireName: "databoundradiobuttongroup",
+		fullComponentName: "org.scn.community.databound.RadioButtonGroup",
+		fullComponentPackage: "org.scn.community.databound/res/RadioButtonGroup",
+		script: "org.scn.community.databound/res/RadioButtonGroup/RadioButtonGroup",
+		scriptSpec: "org.scn.community.databound/res/RadioButtonGroup/RadioButtonGroupSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.databound.RadioButtonGroup.spec = 
+	spec.spec = 
 {};
 
-	org_scn_community_require.knownComponents.databound.RadioButtonGroup.specInclude = 
+	spec.specInclude = 
 {
   "buttons": {
     "opts": {
@@ -413,7 +424,7 @@
   }
 };
 
-	org_scn_community_require.knownComponents.databound.RadioButtonGroup.specAbout = 
+	spec.specAbout = 
 {
   "description": "Radio Button Group - Allows Selection with Radio Buttons",
   "icon": "RadioButtonGroup.png",
@@ -430,7 +441,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.RadioButtonGroup.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": false,
@@ -443,8 +454,9 @@
   "handlerType": "sapui5",
   "height": "500",
   "id": "RadioButtonGroup",
+  "modes": "commons m",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -480,4 +492,5 @@
   "width": "320"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

@@ -55,7 +55,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * This control allows you to display business card information including an image, first title (either URL link or text), second title, and multiple text lines.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

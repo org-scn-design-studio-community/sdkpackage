@@ -55,7 +55,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * This control gives you an overview of documents/items used in a process flow. The process flow is represented by the doughnut chart sections which are colored according to the documents’ status(es). This control can be used in two different ways. If you use it standalone, an event is fired and can be caught in to display the node map. If you use it with the node/document, it gives you an overview of the documents/items used in the process flow that is represented by the doughnut chart sections.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -334,7 +334,7 @@ sap.suite.ui.commons.ProcessFlowLaneHeader.prototype.init = function() { // EXC_
 sap.suite.ui.commons.ProcessFlowLaneHeader.prototype.onBeforeRendering = function () {
   this.$("lh-icon").off('click', jQuery.proxy(this.ontouchend, this));
   this.$().unbind("click", this.ontouchend);
-}
+};
 
 /**
  * Standard method called after the control rendering.

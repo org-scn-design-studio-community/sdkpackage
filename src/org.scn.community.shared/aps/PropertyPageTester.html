@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+<title>Additional Properties</title>
+
+<link rel="stylesheet" type="text/css" href="../../org.scn.community.shared/aps/PropertyPage.css">
+<script src="/aad/resources/sap-ui-cachebuster/sap-ui-core-dbg.js"
+	id='sap-ui-bootstrap' type='text/javascript' data-sap-ui-theme='sap_bluecrystal' 
+	data-sap-ui-libs="sap.m, sap.ui.ux3, sap.ui.commons, sap.ui.table, sap.ui.core"></script>
+
+<script	src="/aad/zen.rt.components.sdk/resources/js/sdk_propertysheets_handler.js"></script>
+<script src="../../org.scn.community.shared/os/require.js"></script>
+<script src="../../org.scn.community.shared/aps/PropertyPage.js"></script>
+
+<script type="text/javascript">
+	try {
+		global = {};
+	} catch (e) {
+		alert(e);
+	}
+
+	sap.zen = {};
+	require([ 
+	         "../../org.scn.community.basics/res/Accordion/AccordionLoader"
+	        ], function () {
+		var page = new org.scn.community.generic.PropertyPage();
+		
+		page.componentInstance = new org.scn.community.basics.Accordion();
+		page.componentInstance.initDesignStudio();
+
+		page.init();
+	});
+</script>
+<style>
+	.sapUiAppHdr .sapUiImg{
+		margin-right : 5px;
+	}
+</style>
+</head>
+<body class="sapUiBody" style="background-color:#ffffff !important;">
+	<div id="content" class="sapUiBody" style="background-color:#ffffff !important"></div>
+</body>
+</html>

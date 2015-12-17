@@ -1,0 +1,9 @@
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/NoteTakerFeeder.control */
+/* Gold Reflection theme */
+/* ============================================= */
+
+.sapSuiteUiCommonsNoteTakerFeederHeader {
+	border-bottom-color: @sapUiHighlight;
+}
+

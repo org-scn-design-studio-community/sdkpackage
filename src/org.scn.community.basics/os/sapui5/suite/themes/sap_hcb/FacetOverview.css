@@ -1,0 +1,63 @@
+
+/* =================================================================== */
+/* CSS for sap_hcb theme of sap.suite.ui.commons/FacetOverview.control */
+/* =================================================================== */
+
+.sapSuiteFovHoverIcon {
+	color: @sapHCStandardFG;
+	opacity: 1;
+}
+
+.sapSuiteFov {
+	background-color: @sapHCStandardBG;
+	border: 1px solid @sapHCStandardFG;
+	border-radius: 6px;
+	margin: 1px;
+}
+
+.sapSuiteFovSelected {
+	background-color: @sapHCHighlightBG;
+	color: @sapHCStandardFG;
+}
+
+.sap-desktop .sapSuiteFovActiveCont:focus,
+.sap-desktop .sapSuiteFovClickable:focus {
+	outline: 0.125rem dotted @sapHCStandardFG;
+	outline-offset: -0.125rem;
+	border-color: transparent;
+}
+
+.sapSuiteFovTitle {
+    font-size: @sapMFontHeader4Size;
+}
+
+.sapSuiteFov > .sapSuiteFovContent .sapMLabel {
+    color: @sapHCStandardFG;
+}
+
+.sapSuiteFov.sapSuiteFovSelected {
+    .sapSuiteFovHoverIcon,
+    .sapMLabel {
+        color: @sapHCStandardFG;
+    }
+}
+
+.sapSuiteFov.sapSuiteFovSelected > .sapSuiteFovContent {
+    .sapMLabel,
+    .sapMText,
+    .sapMLnk {
+        color: @sapHCStandardFG;
+   }
+}
+
+.sapSuiteFovSelected .sapUiForm {
+    background-color: transparent;
+}
+
+.sapSuiteFovClickable {
+	box-shadow: 0;
+}
+
+.sap-desktop .sapSuiteFov.sapSuiteFovClickable:hover {
+	box-shadow: 0px 0px 0px 1px @sapHCStandardFG;
+}

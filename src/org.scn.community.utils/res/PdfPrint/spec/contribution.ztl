@@ -1,0 +1,14 @@
+
+	/**
+	 * Trigger Execution of the given URL and parameter list
+	 */
+	void print () {*
+		this.trigger = "GO";
+	*}
+	
+	/**
+	 * Sets the root panel name, this panel will be printed as sub part of the application
+	 */
+	void setRootPanel (/*Name of the panel to print*/ String panelName) {*
+		this.rootPanel = panelName;
+	*}

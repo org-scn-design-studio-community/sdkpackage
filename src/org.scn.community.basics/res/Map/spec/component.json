@@ -3,7 +3,7 @@
 	"title": "Open Street Map (Basic) 2.0",
 	"tooltip": "Open Street Map (Basic)",
 	"handlerType": "div",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityBasics",
 	"package": "basics",
 	"extension": "Component",

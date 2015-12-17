@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "BulletChartGen",
+		name: "prototypes.BulletChartGen",
+		requireName: "prototypesbulletchartgen",
+		fullComponentName: "org.scn.community.prototypes.BulletChartGen",
+		fullComponentPackage: "org.scn.community.prototypes/res/BulletChartGen",
+		script: "org.scn.community.prototypes/res/BulletChartGen/BulletChartGen",
+		scriptSpec: "org.scn.community.prototypes/res/BulletChartGen/BulletChartGenSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.prototypes.BulletChartGen.spec = 
+	spec.spec = 
 {
   "clickedgraphkey": {
     "opts": {
@@ -393,10 +404,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.prototypes.BulletChartGen.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.prototypes.BulletChartGen.specAbout = 
+	spec.specAbout = 
 {
   "description": "Bullet Chart",
   "icon": "BulletChartGen.png",
@@ -407,7 +418,7 @@
   }]
 };
 
-	org_scn_community_require.knownComponents.prototypes.BulletChartGen.specComp = 
+	spec.specComp = 
 {
   "databound": true,
   "extension": "Component",
@@ -420,10 +431,10 @@
     "id": "common_databound",
     "space": "known"
   }],
-  "stdIncludes": [{"name": "d3"}],
   "title": "Bullet Chart (Gen Prototype)",
   "tooltip": "Bullet Chart Visualization",
   "width": "600"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

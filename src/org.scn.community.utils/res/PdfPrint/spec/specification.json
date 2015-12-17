@@ -1,0 +1,381 @@
+{
+	"trigger" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Just As Simple Triger",
+			"cat" : "Display",
+			"tooltip" : "Just As Simple Triger",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"fileName" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "PDF_$TIME",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "File Name",
+			"cat" : "Behavior",
+			"tooltip" : "File Name",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"format" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "a4",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "Page Format",
+			"cat" : "Behavior",
+			"tooltip" : "Page Format",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "a0",
+					"text" : "a0"
+				},
+				{
+					"key" : "a1",
+					"text" : "a1"
+				},
+				{
+					"key" : "a2",
+					"text" : "a2"
+				},
+				{
+					"key" : "a3",
+					"text" : "a3"
+				},
+				{
+					"key" : "a4",
+					"text" : "a4"
+				},
+				{
+					"key" : "a5",
+					"text" : "a5"
+				},
+				{
+					"key" : "a6",
+					"text" : "a6"
+				},
+				{
+					"key" : "a7",
+					"text" : "a7"
+				},
+				{
+					"key" : "a8",
+					"text" : "a8"
+				},
+				{
+					"key" : "a9",
+					"text" : "a9"
+				},
+				{
+					"key" : "a10",
+					"text" : "a10"
+				},
+				{
+					"key" : "b0",
+					"text" : "b0"
+				},
+				{
+					"key" : "b1",
+					"text" : "b1"
+				},
+				{
+					"key" : "b2",
+					"text" : "b2"
+				},
+				{
+					"key" : "b3",
+					"text" : "b3"
+				},
+				{
+					"key" : "b4",
+					"text" : "b4"
+				},
+				{
+					"key" : "b5",
+					"text" : "b5"
+				},
+				{
+					"key" : "b6",
+					"text" : "b6"
+				},
+				{
+					"key" : "b7",
+					"text" : "b7"
+				},
+				{
+					"key" : "b8",
+					"text" : "b8"
+				},
+				{
+					"key" : "b9",
+					"text" : "b9"
+				},
+				{
+					"key" : "b10",
+					"text" : "b10"
+				},
+				{
+					"key" : "c0",
+					"text" : "c0"
+				},
+				{
+					"key" : "c1",
+					"text" : "c1"
+				},
+				{
+					"key" : "c2",
+					"text" : "c2"
+				},
+				{
+					"key" : "c3",
+					"text" : "c3"
+				},
+				{
+					"key" : "c4",
+					"text" : "c4"
+				},
+				{
+					"key" : "c5",
+					"text" : "c5"
+				},
+				{
+					"key" : "c6",
+					"text" : "c6"
+				},
+				{
+					"key" : "c7",
+					"text" : "c7"
+				},
+				{
+					"key" : "c8",
+					"text" : "c8"
+				},
+				{
+					"key" : "c9",
+					"text" : "c9"
+				},
+				{
+					"key" : "c10",
+					"text" : "c10"
+				},
+				{
+					"key" : "dl",
+					"text" : "dl"
+				},
+				{
+					"key" : "letter",
+					"text" : "letter"
+				},
+				{
+					"key" : "governmentletter",
+					"text" : "government-letter"
+				},
+				{
+					"key" : "legal",
+					"text" : "legal"
+				},
+				{
+					"key" : "juniorlegal",
+					"text" : "junior-legal"
+				},
+				{
+					"key" : "ledger",
+					"text" : "ledger"
+				},
+				{
+					"key" : "tabloid",
+					"text" : "tabloid"
+				},
+				{
+					"key" : "creditcard",
+					"text" : "credit-card"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"orientation" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "portrait",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "Page Orientation",
+			"cat" : "Behavior",
+			"tooltip" : "Page Orientation",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "portrait",
+					"text" : "portrait"
+				},
+				{
+					"key" : "landscape",
+					"text" : "landscape"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"pdfMethod" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Save",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "PDF Export Type",
+			"cat" : "Behavior",
+			"tooltip" : "PDF Export Type",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Save",
+					"text" : "Save"
+				},
+				{
+					"key" : "NewWindow",
+					"text" : "New Window"
+				},
+				{
+					"key" : "SamePage",
+					"text" : "Same Page"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"rootPanel" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Root Panel Name",
+			"cat" : "Behavior",
+			"tooltip" : "Root Panel Name",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"svgMode" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "DataUri",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "SVG Conversion Mode",
+			"cat" : "Behavior",
+			"tooltip" : "SVG Conversion Mode",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "DataUri",
+					"text" : "Data Uri"
+				},
+				{
+					"key" : "Canvas",
+					"text" : "Canvas"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"unit" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "pt",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "Unit",
+			"cat" : "Behavior",
+			"tooltip" : "Unit",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "pt",
+					"text" : "pt"
+				},
+				{
+					"key" : "mm",
+					"text" : "mm"
+				},
+				{
+					"key" : "cm",
+					"text" : "cm"
+				},
+				{
+					"key" : "in",
+					"text" : "in"
+				},
+				{
+					"key" : "px",
+					"text" : "px"
+				},
+				{
+					"key" : "pc",
+					"text" : "pc"
+				},
+				{
+					"key" : "em",
+					"text" : "em"
+				},
+				{
+					"key" : "ex",
+					"text" : "ex"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+
+}

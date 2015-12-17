@@ -142,12 +142,14 @@ sap.suite.ui.commons.TimelineRenderer.renderV = function(oRm, oControl){
 	oRm.writeClasses();
 	oRm.writeAttribute("id", oControl.getId() + "-scroll-ul");
 	oRm.writeAttribute("role", "listbox");
-	oRm.write(">");
+	oRm.write(">"); 
     if (oContent.length > 0) {
     	for (var i = 0; i < oContent.length; i++) {
-            oRm.renderControl(oContent[i]);  
+            var oC = oContent[i];
+            oC._orientation = 'V';
+            oRm.renderControl(oC);  
         }
-    } else {
+    } else { 
     	if (oControl._finishLoading){
     		oRm.renderControl(oControl._emptyList);
     	}

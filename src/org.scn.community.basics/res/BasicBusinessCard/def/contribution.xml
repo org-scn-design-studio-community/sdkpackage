@@ -5,13 +5,14 @@
 	tooltip="Basic Business Card"
 	icon="res/BasicBusinessCard/BasicBusinessCard.png"
 	handlerType="sapui5"
-	propertySheetPath="res/BasicBusinessCard/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/BasicBusinessCard/BasicBusinessCardLoader.js</jsInclude>
+	<requireJs modes="commons">res/BasicBusinessCard/BasicBusinessCard</requireJs>
+
 	<cssInclude>res/BasicBusinessCard/BasicBusinessCard.css</cssInclude>
 	
 	

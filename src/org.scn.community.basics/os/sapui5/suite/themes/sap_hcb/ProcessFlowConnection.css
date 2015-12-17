@@ -1,0 +1,47 @@
+/* ====================================================================================== */
+/* CSS for control sap.suite.ui.commons/ProcessFlowConnection.control (HCB theme)         */
+/* ====================================================================================== */
+.borderLeft {
+  border-left-width: 0.125rem;
+}
+.borderBottom {
+  border-bottom-width: 0.125rem;
+}
+.borderLeftStateCreated {
+  border-left-style: solid;
+}
+.borderLeftStatePlanned {
+  border-left-style: dashed;
+}
+.borderBottomStateCreated {
+  border-bottom-style: solid;
+}
+.borderBottomStatePlanned {
+  border-bottom-style: dashed;
+}
+.borderLeftDisplayRegular {
+  border-left-color: @sapHCStandardFG;
+}
+.borderLeftDisplayHighlighted {
+  border-left-color: @sapHCEnhancedFG;
+}
+.borderLeftDisplayDimmed {
+  border-left-color: @sapHCReducedFG;
+}
+.borderBottomDisplayRegular {
+  border-bottom-color: @sapHCStandardFG;
+}
+.borderBottomDisplayHighlighted {
+  border-bottom-color: @sapHCEnhancedFG;
+}
+.borderBottomDisplayDimmed {
+  border-bottom-color: @sapHCReducedFG;
+}
+
+.arrowRight {
+  border-style: solid;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-width: 0.25rem 0.5rem 0.25rem 0.5rem;
+}

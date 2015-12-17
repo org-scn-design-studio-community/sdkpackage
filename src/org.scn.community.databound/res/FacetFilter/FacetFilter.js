@@ -1,6 +1,22 @@
-(function(){
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./FacetFilterSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"shared/modules/component.databound"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.databound.FacetFilter;
+var myComponentData = spec;
 
 sap.ui.core.ListItem.extend("org.scn.community.databound.ExtraListItem", {
 
@@ -236,8 +252,7 @@ FacetFilter = {
 			}
 		}
 
-		var maxDisplayMembers = that.getDMaxDisplayMembers();
-		that._oModel.setSizeLimit(maxDisplayMembers+1);
+		that._oModel.setSizeLimit(that.getDMaxDisplayMembers()+1);
 		that._oModel.setData(sortedDimensions);
 	},
 	
@@ -255,9 +270,8 @@ FacetFilter = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(databoundfacetfilter){
-	myComponentData.instance = FacetFilter;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = FacetFilter;
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

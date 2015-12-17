@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "FishEye",
+		name: "basics.FishEye",
+		requireName: "basicsfisheye",
+		fullComponentName: "org.scn.community.basics.FishEye",
+		fullComponentPackage: "org.scn.community.basics/res/FishEye",
+		script: "org.scn.community.basics/res/FishEye/FishEye",
+		scriptSpec: "org.scn.community.basics/res/FishEye/FishEyeSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.FishEye.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -144,10 +155,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.FishEye.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.FishEye.specAbout = 
+	spec.specAbout = 
 {
   "description": "Fish Eye",
   "icon": "FishEye.png",
@@ -164,7 +175,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.FishEye.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -173,7 +184,7 @@
   "height": "100",
   "id": "FishEye",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -183,4 +194,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

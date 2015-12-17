@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "TriStateCheckBox",
+		name: "basics.TriStateCheckBox",
+		requireName: "basicstristatecheckbox",
+		fullComponentName: "org.scn.community.basics.TriStateCheckBox",
+		fullComponentPackage: "org.scn.community.basics/res/TriStateCheckBox",
+		script: "org.scn.community.basics/res/TriStateCheckBox/TriStateCheckBox",
+		scriptSpec: "org.scn.community.basics/res/TriStateCheckBox/TriStateCheckBoxSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.TriStateCheckBox.spec = 
+	spec.spec = 
 {
   "editable": {
     "opts": {
@@ -132,10 +143,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.TriStateCheckBox.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.TriStateCheckBox.specAbout = 
+	spec.specAbout = 
 {
   "description": "Tri State CheckBox",
   "icon": "TriStateCheckBox.png",
@@ -152,7 +163,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.TriStateCheckBox.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -171,4 +182,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

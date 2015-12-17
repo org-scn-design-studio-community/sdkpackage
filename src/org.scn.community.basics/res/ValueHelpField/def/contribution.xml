@@ -5,13 +5,14 @@
 	tooltip="Value Help Field"
 	icon="res/ValueHelpField/ValueHelpField.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ValueHelpField/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ValueHelpField/ValueHelpFieldLoader.js</jsInclude>
+	<requireJs modes="commons">res/ValueHelpField/ValueHelpField</requireJs>
+
 	<cssInclude>res/ValueHelpField/ValueHelpField.css</cssInclude>
 	
 	

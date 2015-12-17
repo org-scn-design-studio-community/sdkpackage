@@ -5,13 +5,14 @@
 	tooltip="Progress Indicator"
 	icon="res/ProgressIndicator/ProgressIndicator.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ProgressIndicator/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ProgressIndicator/ProgressIndicatorLoader.js</jsInclude>
+	<requireJs modes="commons">res/ProgressIndicator/ProgressIndicator</requireJs>
+
 	<cssInclude>res/ProgressIndicator/ProgressIndicator.css</cssInclude>
 	
 	

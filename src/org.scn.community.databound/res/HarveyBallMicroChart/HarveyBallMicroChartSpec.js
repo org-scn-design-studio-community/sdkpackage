@@ -16,13 +16,24 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "HarveyBallMicroChart",
+		name: "databound.HarveyBallMicroChart",
+		requireName: "databoundharveyballmicrochart",
+		fullComponentName: "org.scn.community.databound.HarveyBallMicroChart",
+		fullComponentPackage: "org.scn.community.databound/res/HarveyBallMicroChart",
+		script: "org.scn.community.databound/res/HarveyBallMicroChart/HarveyBallMicroChart",
+		scriptSpec: "org.scn.community.databound/res/HarveyBallMicroChart/HarveyBallMicroChartSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.spec = 
+	spec.spec = 
 {};
 
-	org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.specInclude = 
+	spec.specInclude = 
 {
   "colorPalette": {
     "opts": {
@@ -364,7 +375,7 @@
   }
 };
 
-	org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.specAbout = 
+	spec.specAbout = 
 {
   "description": "Harvey Ball Micro Chart - Component for Visualization of Data on small areas",
   "icon": "HarveyBallMicroChart.png",
@@ -381,7 +392,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.HarveyBallMicroChart.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": true,
@@ -393,8 +404,9 @@
   "handlerType": "sapui5",
   "height": "100",
   "id": "HarveyBallMicroChart",
+  "modes": "commons m",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "repeaterProperty": "items",
   "require": [
     {
@@ -426,9 +438,10 @@
       "space": "known"
     }
   ],
-  "title": "Harvey Ball Micro Chart2.0",
+  "title": "Harvey Ball Micro Chart 2.0",
   "tooltip": "Harvey Ball Micro Chart- Component for visualization of data on small areas.",
   "width": "200"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

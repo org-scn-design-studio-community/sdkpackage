@@ -60,7 +60,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * A configuration control defining how the content of the sap.suite.ui.commons.ViewRepeater control is displayed and what data is bound.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

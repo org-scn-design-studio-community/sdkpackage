@@ -1,0 +1,25 @@
+/* ===========================================================================*/
+/* CSS for control sap.suite.ui.commons/ProcessFlow.control HCB theme         */
+/* ===========================================================================*/
+
+/* Common styles */
+table.sapSuiteUiCommonsPF {
+  color: @sapHCStandardFG;
+  border-spacing: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sapPFHArrowScroll {
+  color: @sapHCStandardFG;
+}
+
+.suiteUiPFHCounter{
+  font-family: @sapUiFontFamily;
+  font-size: @sapMFontSmallSize;
+  color: @sapHCStandardFG;
+}
+
+.sap-desktop .sapPFHArrowScroll:hover,
+.sap-desktop .sapPFHArrowScroll:active {
+  color: @sapHCHighlightBG;
+}

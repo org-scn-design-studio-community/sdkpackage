@@ -1,0 +1,154 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/HarveyBallMicroChart.control */
+/* ============================================= */
+
+.suiteHBMC {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.suiteHBMC.L {
+	height: 5.625rem;
+	width: 12rem;
+}
+
+.sapUiMedia-Std-Desktop .suiteHBMC.Auto,
+.sapUiMedia-Std-Tablet .suiteHBMC.Auto,
+.suiteHBMC.M {
+	height: 4.5rem;
+	min-width: 10.5rem;
+}
+
+.sapUiMedia-Std-Phone .suiteHBMC.Auto,
+.suiteHBMC.S,
+.suiteHBMC.XS {
+	height: 3.5rem;
+	min-width: 8.25rem;
+}
+
+.suiteHBMCVal,
+.suiteHBMCValScale,
+.suiteHBMCTtl,
+.suiteHBMCTtlScale {
+	display: inline-block;
+	overflow: hidden;
+	/*vertical-align: text-bottom;*/
+	white-space: normal;
+	word-wrap: break-word;
+	text-overflow: '';
+}
+
+.suiteHBMCValScale,
+.suiteHBMCTtlScale {
+	overflow: hidden;
+}
+
+html[dir=rtl] .suiteHBMCTtlScale {
+	margin-right: 0.2rem;
+}
+
+html[dir=rtl] .suiteHBMCValScale {
+	margin-right: 0.2rem;
+}
+
+/*
+.suiteHBMCTtl,
+.suiteHBMCTtlScale {
+	float: right;
+}
+*/
+
+.sapUiMedia-Std-Desktop .suiteHBMCTtlScale.Auto,
+.sapUiMedia-Std-Tablet .suiteHBMCTtlScale.Auto,
+.suiteHBMCTtlScale.M {
+	/*line-height: 1.1rem;*/
+	max-width: 2.4375rem;
+	margin-left: 0.2rem;
+	position: relative;
+	top: 0px;
+}
+
+.sapUiMedia-Std-Desktop .suiteHBMCValScale.Auto,
+.sapUiMedia-Std-Tablet .suiteHBMCValScale.Auto,
+.suiteHBMCValScale.M {
+	/*line-height: 0.875rem;*/
+	max-width: 2.4375rem;
+	margin-left: 0.2rem;
+	position: relative;
+	top: 0px;
+}
+
+/* Common scale css*/
+.sapUiMedia-Std-Phone .suiteHBMCTtlScale.Auto,
+.suiteHBMCTtlScale.S,
+.suiteHBMCTtlScale.XS {
+	max-width: 2.07rem;
+	margin-left: 0.1rem;
+	position: relative;
+	top: 0px;
+}
+
+.sapUiMedia-Std-Phone .suiteHBMCValScale.Auto,
+.suiteHBMCValScale.S,
+.suiteHBMCValScale.XS {
+	max-width: 2.07rem;
+	margin-left: 0.1rem;
+}
+
+/*Fraction label css*/
+.sapUiMedia-Std-Desktop .suiteHBMCVal.Auto,
+.sapUiMedia-Std-Tablet .suiteHBMCVal.Auto,
+.suiteHBMCVal.M {
+	font-size: 1.25rem;
+	line-height: 1.25rem;
+	height: 1.25rem;
+}
+
+.sapUiMedia-Std-Phone .suiteHBMCVal.Auto,
+.suiteHBMCVal.S,
+.suiteHBMCVal.XS {
+	font-size: 1rem;
+	height: 1rem;
+	line-height: 1rem;
+}
+
+
+
+/* Containers CSS */
+.suiteHBMCValSclCnt {
+	display: inline-block;
+	position: absolute;
+}
+
+.sapUiMedia-Std-Desktop .suiteHBMCValSclCnt.Auto,
+.sapUiMedia-Std-Tablet .suiteHBMCValSclCnt.Auto,
+.suiteHBMCValSclCnt.M {
+	top: 0.875rem;
+	margin-left: 0.2rem;
+}
+
+.sapUiMedia-Std-Phone .suiteHBMCValSclCnt.Auto,
+.suiteHBMCValSclCnt.S,
+.suiteHBMCValSclCnt.XS {
+	top: 0.4rem;
+	margin-left: 0.1rem;
+}
+
+.suiteHBMCTtlSclCnt {
+	display: inline-block;
+	position: absolute;
+	bottom: 0px;
+	text-align: right;
+}
+
+html[dir=rtl] .suiteHBMCTtlSclCnt {
+	text-align: left;
+}
+
+.suiteHBMCValSclCnt>p,
+.suiteHBMCTtlSclCnt>p {
+	margin: 0rem;
+}

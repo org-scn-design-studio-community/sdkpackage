@@ -1,0 +1,249 @@
+/* =========================================================== */
+/* CSS for control sap.suite.ui.commons/ComparisonChart.control */
+/* =========================================================== */
+
+.sapSuiteCmpChartContent {
+    position: relative;
+    outline: none;
+    overflow: hidden;
+}
+
+.sapSuiteCmpChartContent.L {
+	min-height: 5.875rem;
+    width: 12rem;
+}
+
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpChartContent.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmpChartContent.Auto,
+.sapSuiteCmpChartContent.M {
+	min-height: 4.5rem;
+    width: 10.5rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmpChartContent.Auto,
+.sapSuiteCmpChartContent.S,
+.sapSuiteCmpChartContent.XS {
+	min-height: 3.5rem;
+    width: 8.25rem;
+}
+
+.sapSuiteCmpChartDescInner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.sapSuiteCmpChartItemHeader {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.sapSuiteCmpChartItemHeader.Wide {
+    display: inline-block;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpChartItemHeader.Wide.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmpChartItemHeader.Wide.Auto,
+.sapSuiteCmpChartItemHeader.Wide.L,
+.sapSuiteCmpChartItemHeader.Wide.M {
+	width: 10rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmpChartItemHeader.Wide.Auto,
+.sapSuiteCmpChartItemHeader.Wide.S,
+.sapSuiteCmpChartItemHeader.Wide.XS {
+	width: 8rem;
+}
+
+.sapSuiteCmpChartBar.Wide {
+    display: inline-block;
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpChartBar.Wide.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmpChartBar.Wide.Auto,
+.sapSuiteCmpChartBar.Wide.L,
+.sapSuiteCmpChartBar.Wide.M {
+	left: 10rem;
+	padding-left: .5rem;
+	height: 14px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmpChartBar.Wide.Auto,
+.sapSuiteCmpChartBar.Wide.S,
+.sapSuiteCmpChartBar.Wide.XS {
+	left: 8rem;
+	padding-left: .5rem;
+	height: 14px;
+}
+
+.sapSuiteCmpChartItem.Wide {
+	position: relative;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpChartItem.Wide.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmpChartItem.Wide.Auto,
+.sapSuiteCmpChartItem.Wide.L,
+.sapSuiteCmpChartItem.Wide.M {
+	height: 1.125rem;
+	max-height: 2.75rem;
+	min-height: 1.126rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmpChartItem.Wide.Auto,
+.sapSuiteCmpChartItem.Wide.S,
+.sapSuiteCmpChartItem.Wide.XS {
+	height: .9375rem;
+	min-height: .9375rem;
+	max-height: 1.4125rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpChartItem.Normal.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmpChartItem.Normal.Auto,
+.sapSuiteCmpChartItem.Normal.L,
+.sapSuiteCmpChartItem.Normal.M {
+	min-height: 1.42rem;
+	max-height: 2.8125rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmpChartItem.Normal.Auto,
+.sapSuiteCmpChartItem.Normal.S,
+.sapSuiteCmpChartItem.Normal.XS {
+	min-height: 1.22rem;
+	max-height: 1.5rem;
+}
+
+.sapSuiteCmpChartBar.L.Normal {
+    height: 0.95rem;
+}
+
+.sapSuiteCmpChartItemTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpChartItemValue.Wide.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmpChartItemValue.Wide.Auto,
+.sapSuiteCmpChartItemValue.Wide.L,
+.sapSuiteCmpChartItemValue.Wide.M {
+	max-width: 10rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmpChartItemValue.Wide.Auto,
+.sapSuiteCmpChartItemValue.Wide.S,
+.sapSuiteCmpChartItemValue.Wide.XS {
+	max-width: 8rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpChartItemValue.Wide.T.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmpChartItemValue.Wide.T.Auto,
+.sapSuiteCmpChartItemValue.Wide.T.L,
+.sapSuiteCmpChartItemValue.Wide.T.M {
+	max-width: 7rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmpChartItemValue.Wide.T.Auto,
+.sapSuiteCmpChartItemValue.Wide.T.S,
+.sapSuiteCmpChartItemValue.Wide.T.XS {
+	max-width: 5.5rem;
+}
+
+.sapSuiteCmpChartItemValue {
+    overflow: hidden;
+  /*  text-overflow: ellipsis;
+    white-space: nowrap;*/
+    max-width: 100%;
+}
+
+.sapSuiteCmpChartItemValue.T {
+	max-width: ~"calc(100% - 1.5rem)";
+}
+
+.sapSuiteCmpChartItemValue.T.L {
+	max-width: ~"calc(100% - 1.55rem)";
+}
+
+.sapSuiteCmpChartItemValue.Wide.T {
+	padding-left: .5rem;
+}
+
+.sapSuiteCmpChartItemValue {
+	float: right;
+	min-height: .9375rem;
+}
+
+.sapSuiteCmpChartItemValue.L {
+	min-height: 1rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpChartBar.Auto.Wide,
+.sapUiMedia-Std-Tablet .sapSuiteCmpChartBar.Auto.Wide,
+.sapSuiteCmpChartBar.M.Wide {
+    //margin-top: 0.3125rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpChartBar.Auto.Normal,
+.sapUiMedia-Std-Tablet .sapSuiteCmpChartBar.Auto.Normal,
+.sapSuiteCmpChartBar.M.Normal {
+   // margin-top: 0.3125rem;
+    height: 0.375rem;
+    padding-top: .0625rem;
+    padding-bottom: .125rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpChartBar.Auto.Normal>div,
+.sapUiMedia-Std-Tablet .sapSuiteCmpChartBar.Auto.Normal>div,
+.sapSuiteCmpChartBar.M.Normal>div,
+.sapSuiteCmpChartBar.L.Normal>div {
+	max-height: 0.75rem;
+	min-height: 0.375rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmpChartBar.Auto.Normal>div,
+.sapSuiteCmpChartBar.S.Normal>div,
+.sapSuiteCmpChartBar.XS.Normal>div {
+	max-height: 0.5rem;
+	min-height: 0.25rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmpChartBar.Auto,
+.sapSuiteCmpChartBar.S,
+.sapSuiteCmpChartBar.XS {
+    height: 0.25rem;
+    margin-top: -.0625rem;
+}
+
+.sapSuiteCmpChartBar.Wide>div {
+	max-height: 0.75rem;
+	min-height: 0.375rem;
+}
+
+.sapSuiteCmpChartBar>div {
+	height: 33%;
+	float: left;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+}
+
+.sapSuiteCmpChartBarNegNoValue {
+    border-right: .0625rem solid white;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+}
+
+.sapSuiteCmpChartBarNoValue {
+    border-left: .0625rem solid white;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}

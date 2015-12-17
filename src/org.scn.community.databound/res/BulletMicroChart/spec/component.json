@@ -3,7 +3,7 @@
 	"title": "Bullet Micro Chart 2.0",
 	"tooltip": "Bullet Micro Chart - Component for visualization of data on small areas.",
 	"handlerType": "sapui5",
-	"parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityUnified",
 	"package": "databound",
 	"extension": "ui5.BulletChart",
@@ -11,6 +11,7 @@
 	"extends2Control": "BulletChart",
 	"repeaterProperty": "actual",
 	"generatedJsFile":"true",
+	"modes":"commons m",
 
 	"databound": true,
 	"dataType": "DataCellList",

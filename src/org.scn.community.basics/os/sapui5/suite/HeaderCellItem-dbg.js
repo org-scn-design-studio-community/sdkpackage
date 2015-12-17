@@ -53,7 +53,7 @@ jQuery.sap.require("sap.ui.core.Element");
  * @class
  * Object that contains instance of control and infomation about height. It should be used inside sap.suite.ui.commons.HeaderCell
  * @extends sap.ui.core.Element
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

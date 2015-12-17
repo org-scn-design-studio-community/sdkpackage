@@ -1,0 +1,16 @@
+{
+	"title": "Nice Chart 2.0",
+	"description": "Nice Chart 2.0",
+	"icon": "NiceChart.png",
+	"topics": 
+	[
+		{
+			"title" : "Nice Chart 2.0",
+			"content" : "Nice Chart 2.0"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

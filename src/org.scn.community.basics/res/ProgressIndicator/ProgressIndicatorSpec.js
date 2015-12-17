@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "ProgressIndicator",
+		name: "basics.ProgressIndicator",
+		requireName: "basicsprogressindicator",
+		fullComponentName: "org.scn.community.basics.ProgressIndicator",
+		fullComponentPackage: "org.scn.community.basics/res/ProgressIndicator",
+		script: "org.scn.community.basics/res/ProgressIndicator/ProgressIndicator",
+		scriptSpec: "org.scn.community.basics/res/ProgressIndicator/ProgressIndicatorSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.ProgressIndicator.spec = 
+	spec.spec = 
 {
   "barColor": {
     "opts": {
@@ -122,10 +133,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ProgressIndicator.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ProgressIndicator.specAbout = 
+	spec.specAbout = 
 {
   "description": "Progress Indicator",
   "icon": "ProgressIndicator.png",
@@ -142,7 +153,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ProgressIndicator.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -161,4 +172,5 @@
   "width": "270"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

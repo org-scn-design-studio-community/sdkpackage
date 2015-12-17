@@ -1,0 +1,16 @@
+{
+	"title": "Fiori Busy Dialog 2.0",
+	"description": "Fiori Busy Dialog - A Busy Dialog",
+	"icon": "BusyDialog.png",
+	"topics": 
+	[
+		{
+			"title" : "Busy Dialog",
+			"content" : "This component can display busy dialog."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

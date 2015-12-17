@@ -1,161 +1,112 @@
 
 <component
 	id="PdfPrint"
-	title="PDF Print"
+	title="PDF Print 2.0"
+	tooltip="PDF Print"
 	icon="res/PdfPrint/PdfPrint.png"
 	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
+	databound="false"
+	modes="commons"
+>
 	
-	propertySheetPath="res/PdfPrint/aps/PdfPrintPropertypage.html">
+	<requireJs modes="commons">res/PdfPrint/PdfPrint</requireJs>
 
-	<jsInclude>os/date/DateFormat.js</jsInclude>
+	<cssInclude>res/PdfPrint/PdfPrint.css</cssInclude>
 	
-	<jsInclude>os/canvas/canvg.js</jsInclude>
-	<jsInclude>os/canvas/html2canvas.js</jsInclude>
-	<jsInclude>os/rgb/rgbcolor.js</jsInclude>
-	<jsInclude>os/blur/StackBlur.js</jsInclude>
-	<jsInclude>os/svg/saveSvgAsPng.js</jsInclude>
-	<jsInclude>os/file/FileSaver.js</jsInclude>
-
-	<jsInclude>os/jspdf/jspdf.js</jsInclude>
-	<jsInclude>os/jspdf/jspdf.plugin.addhtml.js</jsInclude>
-	<jsInclude>os/jspdf/jspdf.plugin.addimage.js</jsInclude>
-	<jsInclude>os/jspdf/jspdf.plugin.autoprint.js</jsInclude>
-	<jsInclude>os/jspdf/jspdf.plugin.cell.js</jsInclude>
-	<jsInclude>os/jspdf/jspdf.plugin.from_html.js</jsInclude>
-	<jsInclude>os/jspdf/jspdf.plugin.javascript.js</jsInclude>
-	<jsInclude>os/jspdf/jspdf.plugin.png_support.js</jsInclude>
-	<jsInclude>os/jspdf/jspdf.plugin.sillysvgrenderer.js</jsInclude>
-	<jsInclude>os/jspdf/jspdf.plugin.split_text_to_size.js</jsInclude>
-	<jsInclude>os/jspdf/jspdf.plugin.standard_fonts_metrics.js</jsInclude>
-	<jsInclude>os/jspdf/jspdf.plugin.total_pages.js</jsInclude>
 	
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/PdfPrint/PdfPrint.js</jsInclude>
+	<property
+		id="fileName"
+		type="String"
+		title="File Name"
+		group="Display"
+		bindable="true"
+		visible="true">
 
+	</property>
+	<property
+		id="format"
+		type="String"
+		title="Page Format"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="orientation"
+		type="String"
+		title="Page Orientation"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="pdfMethod"
+		type="String"
+		title="PDF Export Type"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="rootPanel"
+		type="String"
+		title="Root Panel Name"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="svgMode"
+		type="String"
+		title="SVG Conversion Mode"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="trigger"
 		type="String"
-		title="Just as Simple Triger"
+		title="Just As Simple Triger"
 		group="Display"
-		visible="false" />
-	<property
-		id="pdfMethod"
-		title="PDF Export Type"
-		type="String"
-		group="Behavior"
-	>
-		<possibleValue>Save</possibleValue>
-		<possibleValue>New Window</possibleValue>
-		<possibleValue>Same Page</possibleValue>
+		bindable="true"
+		visible="false">
+
 	</property>
-
-	<property
-		id="svgMode"
-		title="SVG Conversion Mode"
-		type="String"
-		group="Behavior"
-	>
-		<possibleValue>Data Uri</possibleValue>
-		<possibleValue>Canvas</possibleValue>
-	</property>
-
-	<property
-		id="rootPanel"
-		title="Root Panel Name"
-		type="String"
-		group="Behavior"/>
-
-	<property
-		id="fileName"
-		title="File Name"
-		type="String"
-		group="Behavior"/>
-
 	<property
 		id="unit"
+		type="String"
 		title="Unit"
-		type="String"
-		group="Behavior"
-	>
-		<possibleValue>pt</possibleValue>
-		<possibleValue>mm</possibleValue>
-		<possibleValue>cm</possibleValue>
-		<possibleValue>in</possibleValue>
-		<possibleValue>px</possibleValue>
-		<possibleValue>pc</possibleValue>
-		<possibleValue>em</possibleValue>
-		<possibleValue>ex</possibleValue>
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
 
-	<property
-		id="orientation"
-		title="Page Orientation"
-		type="String"
-		group="Behavior"
-	>
-		<possibleValue>portrait</possibleValue>
-		<possibleValue>landscape</possibleValue>
-	</property>
 
-	<property
-		id="format"
-		title="Page Format"
-		type="String"
-		group="Behavior"
-	>
-		<possibleValue>a0</possibleValue>
-		<possibleValue>a1</possibleValue>
-		<possibleValue>a2</possibleValue>
-		<possibleValue>a3</possibleValue>
-		<possibleValue>a4</possibleValue>
-		<possibleValue>a5</possibleValue>
-		<possibleValue>a6</possibleValue>
-		<possibleValue>a7</possibleValue>
-		<possibleValue>a8</possibleValue>
-		<possibleValue>a9</possibleValue>
-		<possibleValue>a10</possibleValue>
-		<possibleValue>b0</possibleValue>
-		<possibleValue>b1</possibleValue>
-		<possibleValue>b2</possibleValue>
-		<possibleValue>b3</possibleValue>
-		<possibleValue>b4</possibleValue>
-		<possibleValue>b5</possibleValue>
-		<possibleValue>b6</possibleValue>
-		<possibleValue>b7</possibleValue>
-		<possibleValue>b8</possibleValue>
-		<possibleValue>b9</possibleValue>
-		<possibleValue>b10</possibleValue>
-		<possibleValue>c0</possibleValue>
-		<possibleValue>c1</possibleValue>
-		<possibleValue>c2</possibleValue>
-		<possibleValue>c3</possibleValue>
-		<possibleValue>c4</possibleValue>
-		<possibleValue>c5</possibleValue>
-		<possibleValue>c6</possibleValue>
-		<possibleValue>c7</possibleValue>
-		<possibleValue>c8</possibleValue>
-		<possibleValue>c9</possibleValue>
-		<possibleValue>c10</possibleValue>
-		<possibleValue>dl</possibleValue>
-		<possibleValue>letter</possibleValue>
-		<possibleValue>government-letter</possibleValue>
-		<possibleValue>legal</possibleValue>
-		<possibleValue>junior-legal</possibleValue>
-		<possibleValue>ledger</possibleValue>
-		<possibleValue>tabloid</possibleValue>
-		<possibleValue>credit-card</possibleValue>
-	</property>
 	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">100</defaultValue>
 		<defaultValue property="HEIGHT">20</defaultValue>
-		<defaultValue property="text">Export PDF</defaultValue>
-		<defaultValue property="svgMode">Data Uri</defaultValue>
-		<defaultValue property="pdfMethod">Save</defaultValue>
-		<defaultValue property="rootPanel"></defaultValue>
-		<defaultValue property="format">a4</defaultValue>
-		<defaultValue property="orientation">portrait</defaultValue>
-		<defaultValue property="unit">pt</defaultValue>
-		<defaultValue property="fileName">PDF_$TIME</defaultValue>
+		
+		<defaultValue property="fileName"><![CDATA[PDF_$TIME]]></defaultValue>
+		<defaultValue property="format"><![CDATA[a4]]></defaultValue>
+		<defaultValue property="orientation"><![CDATA[portrait]]></defaultValue>
+		<defaultValue property="pdfMethod"><![CDATA[Save]]></defaultValue>
+		<defaultValue property="rootPanel"><![CDATA[]]></defaultValue>
+		<defaultValue property="svgMode"><![CDATA[DataUri]]></defaultValue>
+		<defaultValue property="trigger"><![CDATA[]]></defaultValue>
+		<defaultValue property="unit"><![CDATA[pt]]></defaultValue>
+
 	</initialization>
+
 </component>

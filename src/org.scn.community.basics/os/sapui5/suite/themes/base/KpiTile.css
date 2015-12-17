@@ -1,0 +1,73 @@
+/* ==================================================== */
+/* CSS for control sap.suite.ui.commons/KpiTile.control */
+/* ==================================================== */
+
+.sapSuiteKTile {
+    min-width: 148px;
+    width: 148px;
+    height: 64px;
+    position: relative;
+    padding: 6px 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    display: inline-block;
+    text-align: left;
+}
+
+html[dir=rtl] .sapSuiteKTile {
+	text-align: right;
+}
+
+.sap-phone .sapSuiteKTile:nth-of-type(1) > .sapSuiteKTileBorder {
+    display:none;
+}
+
+.sapSuiteKTileValue {
+    font-weight: bold;
+    position: absolute;
+    bottom: 22px;
+    left: 0;
+    right: 0;
+    padding: 0 0 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sapSuiteKTileValueSmallText {
+    font-size: 1rem;
+}
+
+.sapSuiteKTileValueLargeText {
+    font-size: 2rem;
+    margin-bottom: -4px;
+}
+
+.sapSuiteKTileScale {
+    font-size: 0.875rem;
+    padding-left: 4px;
+}
+
+.sapSuiteKTileDesc{
+    font-size: 0.75rem;
+    color: @sapUiExtraLightText;
+    position: absolute;
+    bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    left: 10px;
+    right: 0;
+    display: block;
+    text-overflow: ellipsis;
+}
+
+.sapSuiteKTileBorder {
+    height: 48px;
+    width: 1px;
+    background-color: @sapUiFieldBorderColor;
+    bottom: 0px;
+    position: absolute;
+    left: -1px;
+
+}
+

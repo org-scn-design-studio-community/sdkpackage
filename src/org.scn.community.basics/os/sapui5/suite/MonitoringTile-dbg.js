@@ -54,7 +54,7 @@ jQuery.sap.require("sap.suite.ui.commons.InfoTile");
  * @class
  * This control is the implementation of the InfoTile to show a numeric value and an icon.
  * @extends sap.suite.ui.commons.InfoTile
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

@@ -53,7 +53,7 @@ jQuery.sap.require("sap.ui.core.Element");
  * @class
  * This element contains data for a label in MicroAreaChart control.
  * @extends sap.ui.core.Element
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

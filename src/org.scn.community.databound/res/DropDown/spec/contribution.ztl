@@ -1,0 +1,48 @@
+	void private_onSelectionChanged () {*
+		var key = this.getSelectedKey();
+	
+		this.internalWriteLog("Internal Selection on Dimension: " + this.getDimension() + " | " + key);
+
+		if(key == "-CLEAR-") {
+			this.getDataSource().clearFilter(this.getDimension());
+		} else {
+			this.getDataSource().setFilter(this.getDimension(), key);	
+		}
+	*}
+	
+	void private_onBeforeRender() {*
+		
+	*}
+	
+	void reloadDataSource() {*
+		// unfortunately this does not work correctly as this method is too late included (as first method on rendering, instead on before rendering)
+		// this causes incorrect events in a phase where events are not allowed any more... (error: DS_1 cannot be changed in rendering phase)
+		// workaround is to call once explicitelly "getMembers" on this dimension
+		if(this.DBindingMode == "Master Data") {
+			this.internalWriteLog("Call Members on Dimension: " + this.getDimension() + " | " + this.DMaxMembers);
+			this.DElements = this.superReadMembers(this.getDimension(), this.DMaxMembers);	
+		}
+	
+		// check current selection from data source
+		var selectionExt = this.getDataSource().getFilterExt(this.getDimension());
+		this.internalWriteLog("Selection on Dimension: " + this.getDimension() + " | " + selectionExt);
+
+		this.DSelectedKeyExtFull = selectionExt;
+		
+		// only single member
+		if(selectionExt.indexOf(";") == -1 && selectionExt.indexOf(" - ") == -1) {
+			this.DSelectedKeyExt = selectionExt;	
+		} else {
+			this.DSelectedKeyExt = "";
+		}
+	*}
+
+	/** sets the pause refresh flag */
+	void pauseRefresh () {*
+		this.DDoRefresh = false;	
+	*}
+
+	/** sets the pause refresh flag */
+	void allowRefresh () {*
+		this.DDoRefresh = true;	
+	*}

@@ -1,0 +1,25 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_AlignEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify sort type 
+ */
+class org_scn_community_shared_Align extends Enum {
+
+	/** Start */
+	org_scn_community_shared_AlignEnumfield Start;
+       
+	/** End */
+	org_scn_community_shared_AlignEnumfield End;
+
+	/** None */
+	org_scn_community_shared_AlignEnumfield None;
+
+	/** Both */
+	org_scn_community_shared_AlignEnumfield both;
+}

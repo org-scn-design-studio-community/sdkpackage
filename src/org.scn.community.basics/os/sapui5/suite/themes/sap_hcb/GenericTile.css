@@ -1,0 +1,77 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/GenericTile.control */
+/* ============================================= */
+
+.sapSuiteGT {
+	border-radius: 6px;
+}
+
+.sapSuiteGTHdrContent {
+	color: @sapHCStandardFG;
+} 
+
+.sapUiMedia-Std-Desktop .sapSuiteGTHdrTxt.Auto > .sapMText,
+.sapSuiteGTHdrTxt.L > .sapMText,
+.sapUiMedia-Std-Tablet .sapSuiteGTHdrTxt.Auto > .sapMText,
+.sapSuiteGTHdrTxt.M > .sapMText  {
+    color: @sapHCStandardFG;
+    font-family: @sapUiFontFamily;   
+    font-size: @sapUiFontLargeSize;
+    font-weight: normal;
+}
+
+.sapSuiteGTSubHdrTxt {
+    font-family: @sapUiFontFamily;   
+    font-size: @sapMFontMediumSize;
+    font-weight: normal;  
+    color: @sapHCStandardFG;
+}
+
+.sapSuiteGTHdrIconImage {
+    font-family: @sapUiFontFamily;
+	color: @sapHCStandardFG;
+}
+
+.sap-desktop .sapSuiteGT:focus {
+    border-color: @sapHCStandardFG;
+    box-shadow: 0px 0px 0px 1px @sapHCStandardFG;
+}
+
+.sap-desktop .sapSuiteGT:hover:not(:focus) {
+	 box-shadow: 0px 0px 0px 2px @sapHCStandardFG;
+}
+
+.sap-desktop .sapSuiteGT:focus:not([tabindex]) {
+	border-color: transparent;
+}
+
+.sapSuiteGT {
+	box-shadow: 0px 0px 0px 1px @sapHCStandardFG;
+}
+
+.sapSuiteGenericTileFtrFldTxt {
+    font-family: @sapUiFontFamily;  
+    font-size: @sapMFontMediumSize;
+    color:@sapHCStandardFG;
+}
+
+.sapSuiteGenericTileFtrFldIcn {
+    color: @sapHCStandardFG;
+}
+
+.sapSuiteGTOverlay {
+	background-color: @sapUiBaseBG;
+	opacity: 1;
+}
+
+.sapSuiteGTOverlay>.sapUiLocalBusyIndicator>.sapUiLocalBusyIndicatorAnimation {
+	border: none;
+	box-shadow: none;
+}
+
+.sap-desktop .sapSuiteGT:hover,
+.sap-phone .sapSuiteGTHvrOutln:hover,
+.sap-tablet .sapSuiteGTHvrOutln:hover {
+	box-shadow: 0px 0px 0px 2px @sapHCStandardFG;
+}

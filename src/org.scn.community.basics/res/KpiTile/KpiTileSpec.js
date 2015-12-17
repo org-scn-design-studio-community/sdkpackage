@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "KpiTile",
+		name: "basics.KpiTile",
+		requireName: "basicskpitile",
+		fullComponentName: "org.scn.community.basics.KpiTile",
+		fullComponentPackage: "org.scn.community.basics/res/KpiTile",
+		script: "org.scn.community.basics/res/KpiTile/KpiTile",
+		scriptSpec: "org.scn.community.basics/res/KpiTile/KpiTileSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.KpiTile.spec = 
+	spec.spec = 
 {
   "clickedComponent": {
     "opts": {
@@ -185,10 +196,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.KpiTile.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.KpiTile.specAbout = 
+	spec.specAbout = 
 {
   "description": "Kpi Tile",
   "icon": "KpiTile.png",
@@ -199,7 +210,7 @@
   }]
 };
 
-	org_scn_community_require.knownComponents.basics.KpiTile.specComp = 
+	spec.specComp = 
 {
   "dataType": "-",
   "databound": false,
@@ -208,8 +219,9 @@
   "handlerType": "sapui5",
   "height": "240",
   "id": "KpiTile",
+  "modes": "commons m",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -241,4 +253,5 @@
   "width": "260"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

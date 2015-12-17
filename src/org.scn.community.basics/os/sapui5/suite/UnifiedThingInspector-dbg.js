@@ -69,7 +69,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * This control provides an ability to display a thing (for example, object factsheet) on the desktop, tablet, and phone devices in a Fiori style.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

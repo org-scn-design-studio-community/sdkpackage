@@ -70,7 +70,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * This control displays the history of values as a line mini chart or an area mini chart.
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

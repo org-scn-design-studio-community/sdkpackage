@@ -5,13 +5,14 @@
 	tooltip="Displays a Gauge (Speedometer)"
 	icon="res/Gauge/Gauge.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Gauge/GaugeLoader.js</jsInclude>
+	<requireJs modes="commons">res/Gauge/Gauge</requireJs>
+
 	<cssInclude>res/Gauge/Gauge.css</cssInclude>
 	
 	

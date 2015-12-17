@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./SliderSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.Slider;
+var myComponentData = spec;
 
 Slider = {
 
@@ -120,9 +135,8 @@ Slider = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsslider){
-	myComponentData.instance = Slider;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = Slider;
+jQuery.sap.require("sap.ui.commons.Slider");
+sap.ui.commons.Slider.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

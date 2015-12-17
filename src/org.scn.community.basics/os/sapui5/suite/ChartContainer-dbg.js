@@ -68,7 +68,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * - personalization icon
  * - showLegend toggle
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -1072,7 +1072,7 @@ sap.suite.ui.commons.ChartContainer.prototype.setFullScreen = function(bFullScre
 sap.suite.ui.commons.ChartContainer.prototype.toggleFullScreen = function() {
 	var fullScreen = this.getProperty("fullScreen");
 	var sId;
-	var sHeight;
+	var sHeight; 
 	if (fullScreen) {
 		this.closeFullScreen();
 		this.setProperty("fullScreen", false);
@@ -1096,7 +1096,10 @@ sap.suite.ui.commons.ChartContainer.prototype.toggleFullScreen = function() {
 				this._chartHeight[sId] = sHeight;
 				}
 			}
-		this.openFullScreen(this, true);
+//*to fix chart disappear when toggle chart with full screen button
+		jQuery.sap.delayedCall(100, this, function() {
+			this.openFullScreen(this, true);
+		});
 		this.setProperty("fullScreen", true);
 	}
 	var sIcon = (fullScreen ? "sap-icon://full-screen" : "sap-icon://exit-full-screen");
@@ -1153,7 +1156,9 @@ sap.suite.ui.commons.ChartContainer.prototype.onAfterRendering = function(oEvent
 		this.sResizeListenerId = sap.ui.core.ResizeHandler.register(this, jQuery.proxy(this._performHeightChanges, this));
 	}
 	if (this.getAutoAdjustHeight() || this.getFullScreen()) {
-		jQuery.sap.delayedCall(100, this, function() {
+//*to fix the flickering issue when switch chart in full screen mode
+//		jQuery.sap.delayedCall(100, this, function() {
+		jQuery.sap.delayedCall(500, this, function() { 
 			that._performHeightChanges();
 		});
 	}
@@ -1503,6 +1508,8 @@ sap.suite.ui.commons.ChartContainer.prototype._chartChange = function() {
 			var oButtonIcon = new sap.m.Button({
 				icon : aCharts[i].getIcon(),
 				type : sap.m.ButtonType.Transparent,
+//to fix the chart button and chart itself disappear when switch chart in full screen mode 
+				width: "3em",
 				tooltip : aCharts[i].getTitle(),
 				customData : [new sap.ui.core.CustomData({
 					key : 'chartId',

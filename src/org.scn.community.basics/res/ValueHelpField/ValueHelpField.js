@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./ValueHelpFieldSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.ValueHelpField;
+var myComponentData = spec;
 
 ValueHelpField = {
 
@@ -79,9 +94,8 @@ ValueHelpField = {
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 
-define([myComponentData.requireName], function(basicsvaluehelpfield){
-	myComponentData.instance = ValueHelpField;
-	return myComponentData.instance;
+//%INIT-START%
+myComponentData.instance = ValueHelpField;
+jQuery.sap.require("sap.ui.commons.ValueHelpField");
+sap.ui.commons.ValueHelpField.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
-
-}).call(this);

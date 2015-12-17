@@ -22,6 +22,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.utils.Array", functio
 	var that = this;
 
 	this.afterUpdate = function() {
+		
 	};
 
 });

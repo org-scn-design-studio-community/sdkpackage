@@ -5,13 +5,14 @@
 	tooltip="Data Top Flop"
 	icon="res/TopFlop/TopFlop.png"
 	handlerType="sapui5"
-	propertySheetPath="res/TopFlop/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/TopFlop/TopFlopLoader.js</jsInclude>
+	<requireJs modes="commons">res/TopFlop/TopFlop</requireJs>
+
 	<cssInclude>res/TopFlop/TopFlop.css</cssInclude>
 	
 	

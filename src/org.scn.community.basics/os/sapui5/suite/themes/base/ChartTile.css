@@ -1,0 +1,114 @@
+/* =========================================================== */
+/* CSS for control sap.suite.ui.commons/ComparisonTile.control */
+/* =========================================================== */
+
+.sapSuiteCmpTileContent {
+    position: absolute;
+}
+
+.sapSuiteCmpTileContent.L {
+    top: 102px;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    font-size: 14px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpTileContent.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmpTileContent.Auto,
+.sapSuiteCmpTileContent.M {
+    top: 88px;
+    bottom: 12px;
+    left: 10px;
+    right: 10px;
+    font-size: 12px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmpTileContent.Auto,
+.sapSuiteCmpTileContent.S {
+    top: 67px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    font-size: 12px;
+}
+
+.sapSuiteCmpTileDescInner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.sapSuiteCmpTileUnitInner {
+    vertical-align: top;
+    padding-left: 2px;
+}
+
+.sapSuiteCmpTileItemHeader {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.sapSuiteCmpTileItemTitle {
+    color: @sapUiLightText;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sapSuiteCmpTileItemValue.L {
+    float: right;
+    margin-left: 3px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpTileItemValue.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmpTileItemValue.Auto,
+.sapSuiteCmpTileItemValue.M,
+.sapUiMedia-Std-Phone .sapSuiteCmpTileItemValue.Auto,
+.sapSuiteCmpTileItemValue.S {
+    float: right;
+    margin-left: 2px;
+}
+
+.sapSuiteCmpTileBar.L {
+    height: 6px;
+    padding-top: 3px;
+    padding-bottom: 9px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmpTileBar.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmpTileBar.Auto,
+.sapSuiteCmpTileBar.M {
+    height: 6px;
+    padding-top: 1px;
+    padding-bottom: 4px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmpTileBar.Auto,
+.sapSuiteCmpTileBar.S {
+    height: 6px;
+    padding-top: 0;
+    padding-bottom: 1px;
+}
+
+.sapSuiteCmpTileBar>div {
+    height: 100%;
+    float: left;
+}
+
+.sapSuiteCmpTileBarNegNoValue {
+    background-color: #e2e2e2;
+    border-right: 1px solid white;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+}
+
+.sapSuiteCmpTileBarNoValue {
+    background-color: #e2e2e2;
+    border-left: 1px solid white;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}

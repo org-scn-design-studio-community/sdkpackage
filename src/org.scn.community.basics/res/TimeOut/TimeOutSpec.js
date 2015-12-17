@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "TimeOut",
+		name: "basics.TimeOut",
+		requireName: "basicstimeout",
+		fullComponentName: "org.scn.community.basics.TimeOut",
+		fullComponentPackage: "org.scn.community.basics/res/TimeOut",
+		script: "org.scn.community.basics/res/TimeOut/TimeOut",
+		scriptSpec: "org.scn.community.basics/res/TimeOut/TimeOutSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.TimeOut.spec = 
+	spec.spec = 
 {
   "counterVisible": {
     "opts": {
@@ -149,10 +160,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.TimeOut.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.TimeOut.specAbout = 
+	spec.specAbout = 
 {
   "description": "Time Out",
   "icon": "TimeOut.png",
@@ -169,7 +180,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.TimeOut.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -178,7 +189,7 @@
   "height": "10",
   "id": "TimeOut",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -188,4 +199,5 @@
   "width": "10"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

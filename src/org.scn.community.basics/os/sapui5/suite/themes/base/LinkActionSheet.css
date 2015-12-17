@@ -1,0 +1,66 @@
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/LinkActionSheet.control */
+/* ============================================= */
+.sapUILinkActionSheet> {
+	.sapUILinkActionSheetLink,
+	.sapUILinkActionSheetLink:visited,
+	.sapUILinkActionSheetLink:active {
+		display: block;
+		border-top: 0.0625rem solid rgba(229, 229, 229, 0.2);
+		height: 3rem;
+		color: @sapUiTextInverted;
+		text-shadow: 0 -0.0625rem 0 rgba(0, 0, 0, 0.6);
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		text-align: left;
+		text-decoration: none;
+		padding: 1rem 1rem 0 1rem;
+		font-family: @sapUiFontFamily;
+		font-size: 0.875rem;
+		outline: none;
+	}
+}
+
+.sapMActionSheetMixedButtons.sapUILinkActionSheet>.sapUILinkActionSheetLink {
+	padding-left: 3rem;
+}
+
+.sapUILinkActionSheet>.sapUILinkActionSheetLink:active {
+	background-color: @sapUiHighlight;
+}
+
+html[data-sap-ui-browser^="ie"] {
+	.sapUILinkActionSheet > .sapUILinkActionSheetLink { 
+		padding-left:1rem;
+	}
+	
+	.sapUILinkActionSheetButton {
+		text-align: left;
+	}
+
+}
+
+.sap-desktop .sapUILinkActionSheetLink:focus {
+	outline: 1px dotted;
+	outline-color: @sapUiWhite;
+	outline-offset: -1px;
+}
+
+/* IE ignores outline-offset. Use an overlay. */
+.sap-desktop[data-sap-ui-browser^="ie"] {
+    .sapUILinkActionSheetLink:focus {
+        outline: none;
+        position: relative;
+    }
+
+    .sapUILinkActionSheetLink:focus:before {
+        content: " ";
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border: 1px dotted @sapUiWhite;
+    }
+}

@@ -1,0 +1,46 @@
+/* ================================================================== */
+/* CSS for control sap.suite.ui.commons/VerticalNavigationBar.control */
+/* HCB theme                                                          */
+/* ================================================================== */
+
+.sapSuiteTvNavBar {
+    background-color: @sapUiBaseBG;
+    border: solid 1px;
+}
+
+.sapSuiteTvNavBarItem {
+    color: @sapUiBase;
+}
+
+.sapSuiteTvNavBarItem.sapUiUx3NavBarItemSel {
+    background-color: @sapUiDarkBG;
+    color: @sapUiBase;
+}
+
+.sapSuiteTvNavBarItemLink:hover {
+    background-color: @sapUiDarkBG;
+    color: @sapUiBase;
+}
+.sapSuiteTvNavBarItemLink:focus {
+    background-color: @sapUiDarkBG;
+    color: @sapUiBase;
+    border: 2px @sapHighlightColor solid;
+    padding: 5px 0;
+}
+
+.sapSuiteTvNavBarItemLink {
+    padding: 7px 2px;
+}
+
+.sapSuiteTvNavBarItem.sapUiUx3NavBarItemSel>a {
+    color: @sapUiBase;
+    padding: 7px 2px;
+    transition-duration: 0s;
+    -moz-transition-duration: 0s;
+    -ms-transition-duration: 0s;
+    -webkit-transition-duration: 0s;
+}
+
+.sapSuiteTvNavBarItem.sapUiUx3NavBarItemSel>a:focus {
+    padding: 5px 0;
+}

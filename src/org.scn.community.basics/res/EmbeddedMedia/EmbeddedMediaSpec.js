@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "EmbeddedMedia",
+		name: "basics.EmbeddedMedia",
+		requireName: "basicsembeddedmedia",
+		fullComponentName: "org.scn.community.basics.EmbeddedMedia",
+		fullComponentPackage: "org.scn.community.basics/res/EmbeddedMedia",
+		script: "org.scn.community.basics/res/EmbeddedMedia/EmbeddedMedia",
+		scriptSpec: "org.scn.community.basics/res/EmbeddedMedia/EmbeddedMediaSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.EmbeddedMedia.spec = 
+	spec.spec = 
 {
   "tag": {
     "opts": {
@@ -62,10 +73,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.EmbeddedMedia.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.EmbeddedMedia.specAbout = 
+	spec.specAbout = 
 {
   "description": "Embedded Media - Include external media directly in your application",
   "icon": "EmbeddedMedia.png",
@@ -82,7 +93,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.EmbeddedMedia.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -100,4 +111,5 @@
   "width": "600"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

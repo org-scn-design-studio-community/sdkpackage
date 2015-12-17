@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "TopFlop",
+		name: "databound.TopFlop",
+		requireName: "databoundtopflop",
+		fullComponentName: "org.scn.community.databound.TopFlop",
+		fullComponentPackage: "org.scn.community.databound/res/TopFlop",
+		script: "org.scn.community.databound/res/TopFlop/TopFlop",
+		scriptSpec: "org.scn.community.databound/res/TopFlop/TopFlopSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.databound.TopFlop.spec = 
+	spec.spec = 
 {
   "addCounter": {
     "opts": {
@@ -352,10 +363,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.databound.TopFlop.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.databound.TopFlop.specAbout = 
+	spec.specAbout = 
 {
   "description": "Data Top Flop",
   "icon": "TopFlop.png",
@@ -372,7 +383,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.TopFlop.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": true,
@@ -382,7 +393,7 @@
   "height": "190",
   "id": "TopFlop",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -406,4 +417,5 @@
   "width": "225"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

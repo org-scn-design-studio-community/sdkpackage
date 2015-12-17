@@ -5,13 +5,14 @@
 	tooltip="RSSFeedReader"
 	icon="res/RSSFeedReader/RSSFeedReader.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RSSFeedReader/RSSFeedReaderLoader.js</jsInclude>
+	<requireJs modes="commons">res/RSSFeedReader/RSSFeedReader</requireJs>
+
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
 	
 	

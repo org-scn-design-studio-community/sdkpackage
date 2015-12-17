@@ -5,13 +5,14 @@
 	tooltip="Road Map"
 	icon="res/RoadMap/RoadMap.png"
 	handlerType="sapui5"
-	propertySheetPath="res/RoadMap/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/RoadMap/RoadMapLoader.js</jsInclude>
+	<requireJs modes="commons">res/RoadMap/RoadMap</requireJs>
+
 	<cssInclude>res/RoadMap/RoadMap.css</cssInclude>
 	
 	

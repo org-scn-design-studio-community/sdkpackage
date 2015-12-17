@@ -1,91 +1,111 @@
 
 <component
 	id="FioriButton"
-	title="Fiori Button"
+	title="Fiori Button 2.0"
+	tooltip="Fiori Button 2.0"
 	icon="res/FioriButton/FioriButton.png"
 	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
-	propertySheetPath="res/FioriButton/aps/FioriButton.html"
+	databound="false"
+	modes="commons"
 >
+	
+	<requireJs modes="commons">res/FioriButton/FioriButton</requireJs>
 
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/FioriButton/FioriButton.js</jsInclude>
 	<cssInclude>res/FioriButton/FioriButton.css</cssInclude>
 	
+	
+	<property
+		id="dBackColor"
+		type="String"
+		title="Background Colour"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="dFontColor"
+		type="String"
+		title="Font Colour"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="dIcon"
 		type="String"
 		title="Icon"
-		tooltip="Icon for this Button"
 		group="Display"
-		visible="true" />
-	<property
-		id="dText"
-		type="String"
-		title="Text"
-		tooltip="Text for this Button"
-		group="Display"
-		visible="true" />
-	<property
-		id="dTooltip"
-		type="String"
-		title="Tooltip"
-		tooltip="Tooltip for this Button"
-		group="Display"
-		visible="true" />
-	<property
-		id="dStyle"
-		type="String"
-		title="Button Style"
-		tooltip="Predefined Style for this Button"
-		group="Display"
-		visible="true"
-	>
-		<possibleValue>Default</possibleValue>
-		<possibleValue>Emph</possibleValue>
-		<possibleValue>Accept</possibleValue>
-		<possibleValue>Reject</possibleValue>
+		bindable="true"
+		visible="true">
+
 	</property>
-	<property
-		id="dFontColor"
-		type="Color"
-		title="Font Color"
-		tooltip="Font Color for this Button"
-		group="Display"
-		visible="true" />
-	<property
-		id="dBackColor"
-		type="Color"
-		title="Background Color"
-		tooltip="Background Color for this Button"
-		group="Display"
-		visible="true" />
 	<property
 		id="dSize"
 		type="String"
 		title="Size M (16px) | L (22px)"
-		tooltip="The Size of the content"
 		group="Display"
-		visible="true"
-	>
-		<possibleValue>M</possibleValue>
-		<possibleValue>L</possibleValue>
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="dStyle"
+		type="String"
+		title="Button Style"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="dText"
+		type="String"
+		title="Text"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="dTooltip"
+		type="String"
+		title="Tooltip"
+		group="Display"
+		bindable="true"
+		visible="true">
+
 	</property>
 	<property
 		id="onClick"
 		type="ScriptText"
-		title="Event for On Click"
-		group="Events" />
+		title="Event For On Click"
+		group="Events"
+		visible="true">
+
+	</property>
+
+
 	<initialization>
-		<defaultValue property="WIDTH">42</defaultValue>
-		<defaultValue property="HEIGHT">42</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="dSize">L</defaultValue>
-		<defaultValue property="dIcon">e03e</defaultValue>
-		<defaultValue property="dStyle">Default</defaultValue>
+		<defaultValue property="WIDTH">42</defaultValue>
+		<defaultValue property="HEIGHT">42</defaultValue>
+		
+		<defaultValue property="dBackColor"><![CDATA[]]></defaultValue>
+		<defaultValue property="dFontColor"><![CDATA[]]></defaultValue>
+		<defaultValue property="dIcon"><![CDATA[e03e]]></defaultValue>
+		<defaultValue property="dSize"><![CDATA[L]]></defaultValue>
+		<defaultValue property="dStyle"><![CDATA[Default]]></defaultValue>
+		<defaultValue property="dText"><![CDATA[]]></defaultValue>
+		<defaultValue property="dTooltip"><![CDATA[]]></defaultValue>
+		<defaultValue property="onClick"><![CDATA[]]></defaultValue>
+
 	</initialization>
+
 </component>

@@ -5,14 +5,14 @@
 	tooltip="Bullet Chart Visualization"
 	icon="res/BulletChartGen/BulletChartGen.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityPrototypes"
 	databound="true"
+	modes="commons"
 >
-	<stdInclude kind="d3"/>
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/BulletChartGen/BulletChartGenLoader.js</jsInclude>
+	<requireJs modes="commons">res/BulletChartGen/BulletChartGen</requireJs>
+
 	<cssInclude>res/BulletChartGen/BulletChartGen.css</cssInclude>
 	
 	

@@ -1,132 +1,135 @@
 
 <component
 	id="NiceChart"
-	title="Nice Chart"
+	title="Nice Chart 2.0"
+	tooltip="Nice Chart 2.0"
 	icon="res/NiceChart/NiceChart.png"
 	handlerType="div"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityChartMaps"
-	propertySheetPath="res/NiceChart/aps/NiceChartPropertyPage.html"
 	databound="true"
->	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/NiceChart/NiceChartLoader.js</jsInclude>
+	modes="commons"
+>
+	
+	<requireJs modes="commons">res/NiceChart/NiceChart</requireJs>
+
 	<cssInclude>res/NiceChart/NiceChart.css</cssInclude>
-
-	<property
-		id="data"
-		title="Result Set"
-		type="ResultSet"
-		group="DataBinding"
-		visible="false"
-	>
-		<option name="includeFormattedData" value="true"/>
-	</property>
-
+	
+	
 	<property
 		id="DChartType"
-		title="Chart Type"
 		type="String"
+		title="Chart Type"
 		group="Display"
+		bindable="true"
 		visible="true">
-			<possibleValue>Line</possibleValue>
-			<possibleValue>Bar</possibleValue>
-			<possibleValue>LineBar</possibleValue>
-			<possibleValue>Radar</possibleValue>
-			<possibleValue>PolarArea</possibleValue>
-			<possibleValue>Pie</possibleValue>
-			<possibleValue>Doughnut</possibleValue>
-	</property>
 
-	<property
-		id="DSwapAxes"
-		title="Swap Axes"
-		type="boolean"
-		group="Display"
-		visible="true">
 	</property>
-	
-	<property
-		id="DColorHue"
-		title="Starting Color Hue"
-		type="int"
-		group="Display"
-		visible="true">
-	</property>
-
 	<property
 		id="DColorDistance"
-		title="Starting Color Distance"
 		type="float"
+		title="Starting Colour Distance"
 		group="Display"
+		bindable="true"
 		visible="true">
-	</property>
 
+	</property>
+	<property
+		id="DColorHue"
+		type="int"
+		title="Starting Colour Hue"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="DColorPalette"
-		title="Starting Color Palette"
 		type="String"
+		title="Starting Colour Palette"
 		group="Display"
+		bindable="true"
 		visible="true">
-		<possibleValue>mono</possibleValue>
-		<possibleValue>monochromatic</possibleValue>
-		<possibleValue>contrast</possibleValue>
-		<possibleValue>triade</possibleValue>
-		<possibleValue>tetrade</possibleValue>
-		<possibleValue>analogic</possibleValue>
-	</property>
 
-	<property
-		id="DShowLegend"
-		title="Show Legend"
-		type="boolean"
-		group="Display"
-		visible="true">
 	</property>
-	
 	<property
 		id="DLegendPosition"
-		title="Legend Position"
 		type="String"
+		title="Legend Position"
 		group="Display"
+		bindable="true"
 		visible="true">
-		<possibleValue>Left</possibleValue>
-		<possibleValue>Right</possibleValue>
+
 	</property>
-	
 	<property
 		id="DLegendWidth"
-		title="Width of Legend in px"
 		type="int"
+		title="Width Of Legend In Px"
 		group="Display"
+		bindable="true"
 		visible="true">
-	</property>
 
+	</property>
 	<property
 		id="DMaxDataPoints"
-		title="Maximum Number of Data Points"
 		type="int"
+		title="Maximum Number Of Data Points"
 		group="Display"
+		bindable="true"
 		visible="true">
+
 	</property>
+	<property
+		id="DShowLegend"
+		type="boolean"
+		title="Show Legend"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DSwapAxes"
+		type="boolean"
+		title="Swap Axes"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultSet"
+		title="Result Set"
+		group="DataBinding"
+		visible="false">
+
+		<option name="maxCells" value="100000" />
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="presentationDelimiter" value=" | " />
+	</property>
+
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
-		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
-		<defaultValue property="DSwapAxes">false</defaultValue>
-		<defaultValue property="DChartType">Line</defaultValue>
-		<defaultValue property="DColorHue">120</defaultValue>
-		<defaultValue property="DColorDistance">0.2</defaultValue>
-		<defaultValue property="DColorPalette">triade</defaultValue>
-		
-		<defaultValue property="DShowLegend">true</defaultValue>
-		<defaultValue property="DLegendPosition">Right</defaultValue>
-		<defaultValue property="DLegendWidth">200</defaultValue>
-		<defaultValue property="DMaxDataPoints">100</defaultValue>
+		<defaultValue property="DChartType"><![CDATA[Line]]></defaultValue>
+		<defaultValue property="DColorDistance"><![CDATA[0.2]]></defaultValue>
+		<defaultValue property="DColorHue"><![CDATA[120]]></defaultValue>
+		<defaultValue property="DColorPalette"><![CDATA[Triade]]></defaultValue>
+		<defaultValue property="DLegendPosition"><![CDATA[Right]]></defaultValue>
+		<defaultValue property="DLegendWidth"><![CDATA[200]]></defaultValue>
+		<defaultValue property="DMaxDataPoints"><![CDATA[100]]></defaultValue>
+		<defaultValue property="DShowLegend"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DSwapAxes"><![CDATA[false]]></defaultValue>
+		<defaultValue property="data"><![CDATA[]]></defaultValue>
+
 	</initialization>
 
 </component>

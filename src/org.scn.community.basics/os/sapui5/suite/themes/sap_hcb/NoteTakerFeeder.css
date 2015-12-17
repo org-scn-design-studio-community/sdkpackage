@@ -1,0 +1,48 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/NoteTakerFeeder.control */
+/* HCB theme */
+/* ============================================= */
+
+.sapSuiteUiCommonsNoteTakerFeeder {
+	background-color: black;
+	color: #7a5100;
+	border: 1px solid white;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederHeader {
+	border-bottom-color: white;
+	color: white;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederTagPanel {
+	background-color: black;
+    border-color: white;
+    border: 1px;
+}
+
+.sapSuiteUiCommonsNtfAttachmentNamelbl label {
+	color: white;
+}
+
+.sapSuiteUiCommonsNtfLoadingLbl {
+	color: white;
+}
+
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTagPanel .sapSuiteUiCommonsNoteTakerFeederButtonSelected:hover,
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTagPanel .sapSuiteUiCommonsNoteTakerFeederButtonSelected.sapUiBtnStdHover,
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTagPanel .sapSuiteUiCommonsNoteTakerFeederButtonSelected:focus,
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTagPanel .sapSuiteUiCommonsNoteTakerFeederButtonSelected.sapUiBtnStdFocus {
+	background-color: #7a6628;
+}
+
+.sapSuiteUiCommonsNoteTakerFeeder>.sapSuiteUiCommonsNoteTakerFeederTagPanel .sapSuiteUiCommonsNoteTakerFeederButtonSelected {
+	background-color: #7a5100;
+}
+
+.sapSuiteUiCommonsNoteTakerFeederTagPanel,
+.sapSuiteUiCommonsNoteTakerFeederTitlePanel,
+.sapSuiteUiCommonsNoteTakerFeederBody {
+	border: 1px solid white;
+}
+

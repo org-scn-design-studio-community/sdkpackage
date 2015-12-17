@@ -1,0 +1,103 @@
+{
+	"DDataInformation" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Component For Data Information",
+			"cat" : "Display",
+			"tooltip" : "Technical Component For Data Information",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"data" : {
+		"template" : "default",
+		"type" : "ResultSet",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "ResultSet",
+			"ztlFunction": "-get",
+			"desc" : "Result Set",
+			"cat" : "DataBinding",
+			"tooltip" : "Result Set",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"DCentralProvisioning" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Central Data Provisioning",
+			"cat" : "Display",
+			"tooltip" : "Provision Data Centrally For Component Access",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DIgnoreResults" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Ignore Results Rows And Columns",
+			"cat" : "Display",
+			"tooltip" : "Ignore Results Rows And Columns",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DInformationEventActive" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Information Event Active",
+			"cat" : "Display",
+			"tooltip" : "Send Data Information Event When Data Is Available",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onDataAvailable" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Data Available",
+			"cat" : "Events",
+			"tooltip" : "Event For On Data Available",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

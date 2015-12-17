@@ -2034,10 +2034,10 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Application Header 2.0 component*/
 	org.scn.community.basics.ApplicationHeader returnAsScnApplicationHeader (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Arrowed Line component*/
+	/**Cast to Arrowed Line 2.0 component*/
 	org.scn.community.basics.ArrowedLine returnAsScnArrowedLine (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Base64 Image Encoder component*/
+	/**Cast to Base64 Image Encoder 2.0 component*/
 	org.scn.community.basics.Base64Image returnAsScnBase64Image (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Basic Business Card 2.0 component*/
@@ -2070,16 +2070,28 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Fallback Picture 2.0 component*/
 	org.scn.community.basics.FallbackPicture returnAsScnFallbackPicture (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Fiori App Header component*/
+	/**Cast to Fiori App Header 2.0 component*/
 	org.scn.community.basics.FioriAppHeader returnAsScnFioriAppHeader (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Fiori Bar component*/
+	/**Cast to Fiori Bar 2.0 component*/
 	org.scn.community.basics.FioriBar returnAsScnFioriBar (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Fiori Button component*/
+	/**Cast to Fiori Button 2.0 component*/
 	org.scn.community.basics.FioriButton returnAsScnFioriButton (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Fiori Toolbar component*/
+	/**Cast to Fiori Input Field component*/
+	org.scn.community.basics.FioriInput returnAsScnFioriInput (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Fiori Segmented Button component*/
+	org.scn.community.basics.FioriSegmentedButton returnAsScnFioriSegmentedButton (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Fiori Slider component*/
+	org.scn.community.basics.FioriSlider returnAsScnFioriSlider (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Fiori Switch component*/
+	org.scn.community.basics.FioriSwitch returnAsScnFioriSwitch (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Fiori Toolbar 2.0 component*/
 	org.scn.community.basics.FioriToolbar returnAsScnFioriToolbar (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Fish Eye 2.0 component*/
@@ -2097,7 +2109,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Kpi View 2.0 component*/
 	org.scn.community.basics.KpiView returnAsScnKpiView (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Launch Pad component*/
+	/**Cast to Launch Pad 2.0 component*/
 	org.scn.community.basics.LaunchPad returnAsScnLaunchPad (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Leader Board 2.0 component*/
@@ -2118,7 +2130,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Menu Button 2.0 component*/
 	org.scn.community.basics.MenuButton returnAsScnMenuButton (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Modal Browser component*/
+	/**Cast to Modal Browser 0.X component*/
 	org.scn.community.basics.ModalBrowser returnAsScnModalBrowser (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Navigation Bar 2.0 component*/
@@ -2184,25 +2196,22 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to World Time 2.0 component*/
 	org.scn.community.basics.WorldTime returnAsScnWorldTime (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Advanced Data Table component*/
+	/**Cast to Advanced Data Table 2.0 component*/
 	org.scn.community.databound.AdvancedDataTable returnAsScnAdvancedDataTable (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Area Micro Chart 2.0 component*/
 	org.scn.community.databound.AreaMicroChart returnAsScnAreaMicroChart (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Bullet Chart component*/
+	/**Cast to Bullet Chart 2.0 component*/
 	org.scn.community.databound.BulletChart returnAsScnBulletChart (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Bullet Micro Chart 2.0 component*/
 	org.scn.community.databound.BulletMicroChart returnAsScnBulletMicroChart (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Choropleth Map component*/
+	/**Cast to Choropleth Map 2.0 component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Table component*/
-	org.scn.community.databound.Table returnAsScnTable (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Data Drop Down component*/
+	/**Cast to Data Drop Down 2.0 component*/
 	org.scn.community.databound.DropDown returnAsScnDropDown (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Facet Filter 2.0 component*/
@@ -2211,31 +2220,37 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Facet Selector 2.0 component*/
 	org.scn.community.databound.FacetSelector returnAsScnFacetSelector (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Harvey Ball Micro Chart2.0 component*/
+	/**Cast to Busy Dialog 2.0 component*/
+	org.scn.community.databound.FioriBusyDialog returnAsScnFioriBusyDialog (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Fiori Link 2.0 component*/
+	org.scn.community.databound.FioriLink returnAsScnFioriLink (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Harvey Ball Micro Chart 2.0 component*/
 	org.scn.community.databound.HarveyBallMicroChart returnAsScnHarveyBallMicroChart (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Hexbin Chart component*/
+	/**Cast to Hexbin Chart 2.0 component*/
 	org.scn.community.databound.HexBin returnAsScnHexBin (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to D3 Hierarchy component*/
+	/**Cast to D3 Hierarchy 2.0 component*/
 	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Leader Board 2.0 component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Location Intelligence component*/
+	/**Cast to Location Intelligence 2.0 component*/
 	org.scn.community.databound.LocationIntel returnAsScnLocationIntel (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Marimekko Chart component*/
+	/**Cast to Marimekko Chart 2.0 component*/
 	org.scn.community.databound.MarimekkoChart returnAsScnMarimekkoChart (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Multi ComboBox component*/
+	/**Cast to Multi ComboBox 0.0 component*/
 	org.scn.community.databound.MultiComboBox returnAsScnMultiComboBox (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Hierarchical Menu component*/
+	/**Cast to Hierarchical Menu 1.0 component*/
 	org.scn.community.databound.MultiLevelDropDown returnAsScnMultiLevelDropDown (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Nice Chart component*/
+	/**Cast to Nice Chart 2.0 component*/
 	org.scn.community.databound.NiceChart returnAsScnNiceChart (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Pictogram component*/
@@ -2244,37 +2259,37 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Process Flow 2.0 component*/
 	org.scn.community.databound.ProcessFlow returnAsScnProcessFlow (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Progress Bar Set component*/
+	/**Cast to Progress Bar Set 2.0 component*/
 	org.scn.community.databound.ProgressBarSet returnAsScnProgressBarSet (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to Data Projector component*/
-	org.scn.community.databound.Projector returnAsScnProjector (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Radio Button Group 2.0 component*/
 	org.scn.community.databound.RadioButtonGroup returnAsScnRadioButtonGroup (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Range Slider component*/
+	/**Cast to Data Range Slider 2.0 component*/
 	org.scn.community.databound.RangeSlider returnAsScnRangeSlider (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Result Set Information component*/
+	/**Cast to Result Set Information 2.0 component*/
 	org.scn.community.databound.ResultSetInfo returnAsScnResultSetInfo (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Result Set Mixer component*/
+	/**Cast to Result Set Mixer 2.0 component*/
 	org.scn.community.databound.ResultSetMixer returnAsScnResultSetMixer (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Scatter Plot Chart component*/
+	/**Cast to Scatter Plot Chart 2.0 component*/
 	org.scn.community.databound.ScatterPlot returnAsScnScatterPlot (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Slider component*/
+	/**Cast to Data Slider 2.0 component*/
 	org.scn.community.databound.Slider returnAsScnSlider (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to 2D Crosstab component*/
+	/**Cast to 2D Crosstab 2.0 component*/
 	org.scn.community.databound.Table2D returnAsScnTable2D (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Tag Cloud component*/
+	/**Cast to Data Table 2.0 component*/
+	org.scn.community.databound.Table returnAsScnTable (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Tag Cloud 2.0 component*/
 	org.scn.community.databound.tagCloud returnAsScntagCloud (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Top FLop Chart component*/
+	/**Cast to Data Top Flop Chart 2.0 component*/
 	org.scn.community.databound.TopFlopChart returnAsScnTopFlopChart (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Top Flop 2.0 component*/
@@ -2285,6 +2300,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Bring Your Own Data component*/
 	org.scn.community.datasource.BYOData returnAsScnBYOData (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Data Decorator component*/
+	org.scn.community.datasource.DataDecorator returnAsScnDataDecorator (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Dynamic Csv Data Source component*/
 	org.scn.community.datasource.DynCsvDataSource returnAsScnDynCsvDataSource (Component inputComponent) {* return inputComponent; *}
@@ -2322,55 +2340,55 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to (PROTOTYPE!) Sap M List component*/
 	org.scn.community.prototypes.SapMList returnAsScnSapMList (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Array Utility component*/
+	/**Cast to Array Utility 0.X component*/
 	org.scn.community.utils.Array returnAsScnArray (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Client Information component*/
+	/**Cast to Client Information 0.X component*/
 	org.scn.community.utils.ClientInformation returnAsScnClientInformation (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Collection Utility component*/
+	/**Cast to Collection Utility 0.X component*/
 	org.scn.community.utils.Collection returnAsScnCollection (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Component Manager component*/
+	/**Cast to Component Manager 0.X component*/
 	org.scn.community.utils.ComponentManager returnAsScnComponentManager (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Custom Css Collector component*/
+	/**Cast to Custom Css Collector 0.X component*/
 	org.scn.community.utils.CustomCssCollector returnAsScnCustomCssCollector (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Source Helper 2.0 component*/
 	org.scn.community.utils.DataSourceHelper returnAsScnDataSourceHelper (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Debugger Code Inspector component*/
+	/**Cast to Debugger Code Inspector 0.X component*/
 	org.scn.community.utils.Debugger returnAsScnDebugger (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Flow Layouter component*/
+	/**Cast to Flow Layouter 0.X component*/
 	org.scn.community.utils.FlowLayouter returnAsScnFlowLayouter (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Json Object component*/
 	org.scn.community.utils.JsonObject returnAsScnJsonObject (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Math Utility component*/
+	/**Cast to Math Utility 0.X component*/
 	org.scn.community.utils.Math returnAsScnMath (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Open Url Inplace component*/
+	/**Cast to Open Url Inplace 0.X component*/
 	org.scn.community.utils.OpenUrlInplace returnAsScnOpenUrlInplace (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Open Window by Post component*/
+	/**Cast to Open Window by Post 0.X component*/
 	org.scn.community.utils.OpenWindowPost returnAsScnOpenWindowPost (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to PDF Print component*/
+	/**Cast to PDF Print 2.0 component*/
 	org.scn.community.utils.PdfPrint returnAsScnPdfPrint (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Post Response Parser component*/
+	/**Cast to Post Response Parser 2.0 component*/
 	org.scn.community.utils.PostResponseParser returnAsScnPostResponseParser (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Real Date component*/
+	/**Cast to Real Date 0.X component*/
 	org.scn.community.utils.RealDate returnAsScnRealDate (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Simple Date component*/
+	/**Cast to Simple Date 0.X component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to WebSocket Implementation component*/
+	/**Cast to WebSocket Implementation 0.X component*/
 	org.scn.community.utils.WSPusher returnAsScnWSPusher (Component inputComponent) {* return inputComponent; *}
 
 
@@ -3746,9 +3764,189 @@ class org.scn.community.utils.OpenWindowPost extends org.scn.community.shared.Co
 	*}
 }
 /**
- * Class for PdfPrint
+ * Generated ZTL Class for PdfPrint
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.utils.PdfPrint extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets File Name Property
+	 */	
+	void setFileName( /**File Name*/ String fileName){*
+		this.fileName = fileName;
+	*}
+
+	/**
+	 * Gets File Name Property
+	 */	
+	String getFileName() {*
+		return this.fileName;
+	*}
+
+	/**
+	 * Sets Page Format Property by String
+	 */	
+	void setFormatByString( /**Page Format*/ String format){*
+		this.format = format;
+	*}
+
+	/**
+	 * Gets Page Format Property as String
+	 */	
+	String getFormatAsString() {*
+		return this.format;
+	*}
+	
+	/**
+	 * Sets Page Format Property by Choice Option
+	 */	
+	void setFormat( /**Page Format*/ org_scn_community_shared_Enumfield format){*
+		this.format = format;
+	*}
+	
+	/**
+	 * Gets Page Format Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getFormat() {*
+		return this.format;
+	*}
+
+	/**
+	 * Sets Page Orientation Property by String
+	 */	
+	void setOrientationByString( /**Page Orientation*/ String orientation){*
+		this.orientation = orientation;
+	*}
+
+	/**
+	 * Gets Page Orientation Property as String
+	 */	
+	String getOrientationAsString() {*
+		return this.orientation;
+	*}
+	
+	/**
+	 * Sets Page Orientation Property by Choice Option
+	 */	
+	void setOrientation( /**Page Orientation*/ org_scn_community_shared_Enumfield orientation){*
+		this.orientation = orientation;
+	*}
+	
+	/**
+	 * Gets Page Orientation Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getOrientation() {*
+		return this.orientation;
+	*}
+
+	/**
+	 * Sets PDF Export Type Property by String
+	 */	
+	void setPdfMethodByString( /**PDF Export Type*/ String pdfMethod){*
+		this.pdfMethod = pdfMethod;
+	*}
+
+	/**
+	 * Gets PDF Export Type Property as String
+	 */	
+	String getPdfMethodAsString() {*
+		return this.pdfMethod;
+	*}
+	
+	/**
+	 * Sets PDF Export Type Property by Choice Option
+	 */	
+	void setPdfMethod( /**PDF Export Type*/ org_scn_community_shared_Enumfield pdfMethod){*
+		this.pdfMethod = pdfMethod;
+	*}
+	
+	/**
+	 * Gets PDF Export Type Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getPdfMethod() {*
+		return this.pdfMethod;
+	*}
+
+	/**
+	 * Sets Root Panel Name Property
+	 */	
+	void setRootPanel( /**Root Panel Name*/ String rootPanel){*
+		this.rootPanel = rootPanel;
+	*}
+
+	/**
+	 * Gets Root Panel Name Property
+	 */	
+	String getRootPanel() {*
+		return this.rootPanel;
+	*}
+
+	/**
+	 * Sets SVG Conversion Mode Property by String
+	 */	
+	void setSvgModeByString( /**SVG Conversion Mode*/ String svgMode){*
+		this.svgMode = svgMode;
+	*}
+
+	/**
+	 * Gets SVG Conversion Mode Property as String
+	 */	
+	String getSvgModeAsString() {*
+		return this.svgMode;
+	*}
+	
+	/**
+	 * Sets SVG Conversion Mode Property by Choice Option
+	 */	
+	void setSvgMode( /**SVG Conversion Mode*/ org_scn_community_shared_Enumfield svgMode){*
+		this.svgMode = svgMode;
+	*}
+	
+	/**
+	 * Gets SVG Conversion Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getSvgMode() {*
+		return this.svgMode;
+	*}
+
+	/**
+	 * Gets Just As Simple Triger Property
+	 */	
+	String getTrigger() {*
+		return this.trigger;
+	*}
+
+	/**
+	 * Sets Unit Property by String
+	 */	
+	void setUnitByString( /**Unit*/ String unit){*
+		this.unit = unit;
+	*}
+
+	/**
+	 * Gets Unit Property as String
+	 */	
+	String getUnitAsString() {*
+		return this.unit;
+	*}
+	
+	/**
+	 * Sets Unit Property by Choice Option
+	 */	
+	void setUnit( /**Unit*/ org_scn_community_shared_Enumfield unit){*
+		this.unit = unit;
+	*}
+	
+	/**
+	 * Gets Unit Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getUnit() {*
+		return this.unit;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
 	/**
 	 * Trigger Execution of the given URL and parameter list
@@ -3763,10 +3961,11 @@ class org.scn.community.utils.PdfPrint extends org.scn.community.shared.Componen
 	void setRootPanel (/*Name of the panel to print*/ String panelName) {*
 		this.rootPanel = panelName;
 	*}
+
 }
 
 /**
- * Generated ZTL Class for Post Response Parser
+ * Generated ZTL Class for PostResponseParser
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
@@ -3775,7 +3974,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	/**
 	 * Sets Basic Authorization Content [Basic: GUID] Property
 	 */	
-	void setBasicAuthorisation( /* Basic Authorization Content [Basic: GUID] */  String basicAuthorisation){*
+	void setBasicAuthorisation( /**Basic Authorization Content [Basic: GUID]*/ String basicAuthorisation){*
 		this.DBasicAuthorisation = basicAuthorisation;
 	*}
 
@@ -3787,19 +3986,16 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	*}
 
 	/**
-	 * Remove All Parameters from the Array.
+	 * Gets Clean All Parameters Property
 	 */	
-	void cleanAllElements (){*
-		this.DCleanAll = true;
-
-		var elementsArray = [];
-		this.DParameters = JSON.stringify(elementsArray);
+	String getCleanAll() {*
+		return this.DCleanAll;
 	*}
 
 	/**
 	 * Sets Content Type Property
 	 */	
-	void setContentType( /* Content Type */  String contentType){*
+	void setContentType( /**Content Type*/ String contentType){*
 		this.DContentType = contentType;
 	*}
 
@@ -3811,369 +4007,175 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	*}
 
 	/**
-	 * Sets Is this Request Cross-Domain Property
+	 * Sets Is This Request Cross-Domain Property
 	 */	
-	void setCrossDomain( /* Is this Request Cross-Domain */  boolean crossDomain){*
+	void setCrossDomain( /**Is This Request Cross-Domain*/ boolean crossDomain){*
 		this.DCrossDomain = crossDomain;
 	*}
 
 	/**
-	 * Gets Is this Request Cross-Domain Property
+	 * Gets Is This Request Cross-Domain Property
 	 */	
-	boolean getCrossDomain() {*
+	boolean isCrossDomain() {*
 		return this.DCrossDomain;
 	*}
 
 	/**
-	 * Sets Expected Content Type Property
+	 * Sets Expected Content Type Property by String
 	 */	
-	void setExpectedContentType( /* Expected Content Type */  choice expectedContentType){*
+	void setExpectedContentTypeByString( /**Expected Content Type*/ String expectedContentType){*
 		this.DExpectedContentType = expectedContentType;
 	*}
 
 	/**
-	 * Gets Expected Content Type Property
+	 * Gets Expected Content Type Property as String
 	 */	
-	choice getExpectedContentType() {*
+	String getExpectedContentTypeAsString() {*
+		return this.DExpectedContentType;
+	*}
+	
+	/**
+	 * Sets Expected Content Type Property by Choice Option
+	 */	
+	void setExpectedContentType( /**Expected Content Type*/ org_scn_community_shared_Enumfield expectedContentType){*
+		this.DExpectedContentType = expectedContentType;
+	*}
+	
+	/**
+	 * Gets Expected Content Type Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getExpectedContentType() {*
 		return this.DExpectedContentType;
 	*}
 
 	/**
-	 * Sets Response Status for Good Response Property
+	 * Sets Response Status For Good Response Property
 	 */	
-	void setExpectedResponseStatus( /* Response Status for Good Response */  int expectedResponseStatus){*
+	void setExpectedResponseStatus( /**Response Status For Good Response*/ int expectedResponseStatus){*
 		this.DExpectedResponseStatus = expectedResponseStatus;
 	*}
 
 	/**
-	 * Gets Response Status for Good Response Property
+	 * Gets Response Status For Good Response Property
 	 */	
 	int getExpectedResponseStatus() {*
 		return this.DExpectedResponseStatus;
 	*}
 
-	/** Adds a root element containing key [String], value [String].
-
- 	<example>
-	You want to add 2 root elements
-	<code>
-	POSTRESPONSEPARSER.addHeader(key [String], value [String]);<br>
-	POSTRESPONSEPARSER.addHeader(key [String], value [String]);<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void addHeader (
-			/**Header Name*/String key, 
-			/**Header Value*/String value
-			) {*		
-		
-		
-		var itemDef = {
-			leaf:true,
-			key:key, 
-			value:value
-			};
-	
-		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
-			this.DHeaders = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.DHeaders);
-		
-		var alreadyFound = false;
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				alreadyFound = true;
-				break;
-			}
-		}
-		
-		if(!alreadyFound) {
-			elementsJson.push(itemDef);
-		}
-	
-		this.DHeaders = JSON.stringify(elementsJson);
-	*}
-	
-	/** Removes a root element by key.
-
- 	<example>
-	You want to remove root element
-	<code>
-	POSTRESPONSEPARSER.removeHeader(String key);<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void removeHeader (
-			String key
-			) {*		
-		
-		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
-			this.DHeaders = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.DHeaders);
-		
-		var alreadyFound = false;
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson.splice(i,1);
-				break;
-			}
-		}
-
-		// remove all items with this parent
-		for (var i = elementsJson.length - 1; i >= 0; i--){
-			if (elementsJson[i].parentKey == key) {
-				elementsJson.splice(i,1);
-			}
-		}
-
-		this.DHeaders = JSON.stringify(elementsJson);
+	/**
+	 * Gets List Of Headers (Name / Value) Property
+	 */	
+	String getHeaders() {*
+		return this.DHeaders;
 	*}
 
 	/**
-	 * Sets Do you want to use JSONP Property
+	 * Sets Do You Want To Use JSONP Property
 	 */	
-	void setJsonp( /* Do you want to use JSONP */  boolean jsonp){*
+	void setJsonp( /**Do You Want To Use JSONP*/ boolean jsonp){*
 		this.DJsonp = jsonp;
 	*}
 
 	/**
-	 * Gets Do you want to use JSONP Property
+	 * Gets Do You Want To Use JSONP Property
 	 */	
-	boolean getJsonp() {*
+	boolean isJsonp() {*
 		return this.DJsonp;
 	*}
 
-	/** Adds a root element containing key [String], value [String].
-
- 	<example>
-	You want to add 2 root elements
-	<code>
-	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
-	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void addParameter (
-			/**Parameter Name*/String key, 
-			/**Parameter Value*/String value
-			) {*		
-		
-		
-		var itemDef = {
-			leaf:true,
-			key:key, 
-			value:value
-			};
-	
-		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
-			this.DParameters = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.DParameters);
-		
-		var alreadyFound = false;
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				alreadyFound = true;
-				break;
-			}
-		}
-		
-		if(!alreadyFound) {
-			elementsJson.push(itemDef);
-		}
-	
-		this.DParameters = JSON.stringify(elementsJson);
-	*}
-	
-	/** Removes a root element by key.
-
- 	<example>
-	You want to remove root element
-	<code>
-	POSTRESPONSEPARSER.removeParameter(String key);<br>
-	<br>
-	</code>
-	</example>
-	 */
-	void removeParameter (
-			String key
-			) {*		
-		
-		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
-			this.DParameters = "[]";
-		}
-		
-		var elementsJson = JSON.parse(this.DParameters);
-		
-		var alreadyFound = false;
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson.splice(i,1);
-				break;
-			}
-		}
-
-		// remove all items with this parent
-		for (var i = elementsJson.length - 1; i >= 0; i--){
-			if (elementsJson[i].parentKey == key) {
-				elementsJson.splice(i,1);
-			}
-		}
-
-		this.DParameters = JSON.stringify(elementsJson);
-	*}
-
 	/**
-	 * Sets HTTP reuqest payload Property
+	 * Gets List Of Parameters (Name / Value) Property
 	 */	
-	void setPayload( /* HTTP reuqest payload */  String payload){*
-		this.DPayload = payload;
+	String getParameters() {*
+		return this.DParameters;
 	*}
 
 	/**
-	 * Gets HTTP reuqest payload Property
+	 * Gets HTTP Reuqest Payload Property
 	 */	
 	String getPayload() {*
 		return this.DPayload;
 	*}
 
 	/**
-	 * Sets Raw Parameters as String Content Property
-	 */	
-	void setRawParameters( /* Raw Parameters as String Content */  String rawParameters){*
-		this.DRawParameters = rawParameters;
-	*}
-
-	/**
-	 * Gets Raw Parameters as String Content Property
+	 * Gets Raw Parameters As String Content Property
 	 */	
 	String getRawParameters() {*
 		return this.DRawParameters;
 	*}
 
 	/**
-	 * Sets Request Method (POST | GET | PUT) Property
+	 * Sets Request Method (POST | GET | PUT) Property by String
 	 */	
-	void setRequestMethod( /* Request Method (POST | GET | PUT) */  choice requestMethod){*
+	void setRequestMethodByString( /**Request Method (POST | GET | PUT)*/ String requestMethod){*
 		this.DRequestMethod = requestMethod;
 	*}
 
 	/**
-	 * Gets Request Method (POST | GET | PUT) Property
+	 * Gets Request Method (POST | GET | PUT) Property as String
 	 */	
-	choice getRequestMethod() {*
+	String getRequestMethodAsString() {*
+		return this.DRequestMethod;
+	*}
+	
+	/**
+	 * Sets Request Method (POST | GET | PUT) Property by Choice Option
+	 */	
+	void setRequestMethod( /**Request Method (POST | GET | PUT)*/ org_scn_community_shared_Enumfield requestMethod){*
+		this.DRequestMethod = requestMethod;
+	*}
+	
+	/**
+	 * Gets Request Method (POST | GET | PUT) Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getRequestMethod() {*
 		return this.DRequestMethod;
 	*}
 
 	/**
-	 * Sets Request Type (JQuery | HTTP) Property
+	 * Sets Request Type (JQuery | HTTP) Property by String
 	 */	
-	void setRequestType( /* Request Type (JQuery | HTTP) */  choice requestType){*
+	void setRequestTypeByString( /**Request Type (JQuery | HTTP)*/ String requestType){*
 		this.DRequestType = requestType;
 	*}
 
 	/**
-	 * Gets Request Type (JQuery | HTTP) Property
+	 * Gets Request Type (JQuery | HTTP) Property as String
 	 */	
-	choice getRequestType() {*
+	String getRequestTypeAsString() {*
+		return this.DRequestType;
+	*}
+	
+	/**
+	 * Sets Request Type (JQuery | HTTP) Property by Choice Option
+	 */	
+	void setRequestType( /**Request Type (JQuery | HTTP)*/ org_scn_community_shared_Enumfield requestType){*
+		this.DRequestType = requestType;
+	*}
+	
+	/**
+	 * Gets Request Type (JQuery | HTTP) Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getRequestType() {*
 		return this.DRequestType;
 	*}
 
 	/**
-	Returns the content of property Return Headers as loopable name/value array.
-	<example>
-	You want to loop at values:
-	<code>
-	var content = POSTRESPONSEPARSER.getReturnHeadersAsNameValueArray();<br>
-	<br>
-	// a loop for all entries<br>
-	content.forEach(function(element, index) {<br>
-		LISTBOX_1.addItem(element.name, element.value);<br>
-	});
-	</code>
-	This LISTBOX_1 has now following values entries:<br>
-		<ul>
-		<li>key: k1; value: v1</li>
-		<li>key: k2; value: v2</li>
-		<li>key: k3; value: v3</li></ul>
-	</example>
-	*/
-	org.scn.community.shared.NameValueArray getReturnHeadersAsNameValueArray (
-			/**max members*/ optional int maxMembers) {*
-		var s = this.DReturnHeaders;  
-		var a = []; 
-		if(s!="") a = JSON.parse(s);
-		
-		var tempA = [];
-		
-		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > a.length) {
-			maxMembers = a.length;
-		}
-		
-		for(var i=0;i<maxMembers;i++){
-			var itemDef = { 
-				"name": a[i].name, 
-				"value": a[i].value
-			};
-			
-			tempA.push(itemDef);
-		}
-		
-		return tempA;
+	 * Gets Return Headers Property
+	 */	
+	String getReturnHeaders() {*
+		return this.DReturnHeaders;
 	*}
 
 	/**
-	Returns the content of property Return Parameters as loopable name/value array.
-	<example>
-	You want to loop at values:
-	<code>
-	var content = POSTRESPONSEPARSER.getReturnParametersAsNameValueArray();<br>
-	<br>
-	// a loop for all entries<br>
-	content.forEach(function(element, index) {<br>
-		LISTBOX_1.addItem(element.name, element.value);<br>
-	});
-	</code>
-	This LISTBOX_1 has now following values entries:<br>
-		<ul>
-		<li>key: k1; value: v1</li>
-		<li>key: k2; value: v2</li>
-		<li>key: k3; value: v3</li></ul>
-	</example>
-	*/
-	org.scn.community.shared.NameValueArray getReturnParametersAsNameValueArray (
-			/**max members*/ optional int maxMembers) {*
-		var s = this.DReturnParameters;  
-		var a = []; 
-		if(s!="") a = JSON.parse(s);
-		
-		var tempA = [];
-		
-		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > a.length) {
-			maxMembers = a.length;
-		}
-		
-		for(var i=0;i<maxMembers;i++){
-			var itemDef = { 
-				"name": a[i].name, 
-				"value": a[i].value
-			};
-			
-			tempA.push(itemDef);
-		}
-		
-		return tempA;
+	 * Gets Return Parameters Property
+	 */	
+	String getReturnParameters() {*
+		return this.DReturnParameters;
 	*}
 
 	/**
-	 * Gets Return Response as String Property
+	 * Gets Return Response As String Property
 	 */	
 	String getReturnResponse() {*
 		return this.DReturnResponse;
@@ -4187,32 +4189,41 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	*}
 
 	/**
-	 * Sets Url To Send the Request Property
+	 * Gets Just As Simple Triger Property
 	 */	
-	void setUrl( /* Url To Send the Request */  String url){*
+	String getTrigger() {*
+		return this.DTrigger;
+	*}
+
+	/**
+	 * Sets Url To Send The Request Property
+	 */	
+	void setUrl( /**Url To Send The Request*/ String url){*
 		this.DUrl = url;
 	*}
 
 	/**
-	 * Gets Url To Send the Request Property
+	 * Gets Url To Send The Request Property
 	 */	
 	String getUrl() {*
 		return this.DUrl;
 	*}
 
 	/**
-	 * Sets Do you need with credentials Property
+	 * Sets Do You Need With Credentials Property
 	 */	
-	void setWithCredentials( /* Do you need with credentials */  boolean withCredentials){*
+	void setWithCredentials( /**Do You Need With Credentials*/ boolean withCredentials){*
 		this.DWithCredentials = withCredentials;
 	*}
 
 	/**
-	 * Gets Do you need with credentials Property
+	 * Gets Do You Need With Credentials Property
 	 */	
-	boolean getWithCredentials() {*
+	boolean isWithCredentials() {*
 		return this.DWithCredentials;
 	*}
+
+
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */

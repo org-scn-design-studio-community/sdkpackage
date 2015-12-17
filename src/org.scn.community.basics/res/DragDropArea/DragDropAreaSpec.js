@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "DragDropArea",
+		name: "basics.DragDropArea",
+		requireName: "basicsdragdroparea",
+		fullComponentName: "org.scn.community.basics.DragDropArea",
+		fullComponentPackage: "org.scn.community.basics/res/DragDropArea",
+		script: "org.scn.community.basics/res/DragDropArea/DragDropArea",
+		scriptSpec: "org.scn.community.basics/res/DragDropArea/DragDropAreaSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.DragDropArea.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -256,10 +267,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.DragDropArea.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.DragDropArea.specAbout = 
+	spec.specAbout = 
 {
   "description": "Drag Drop Area",
   "icon": "DragDropArea.png",
@@ -276,7 +287,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.DragDropArea.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -285,7 +296,7 @@
   "height": "100",
   "id": "DragDropArea",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -301,4 +312,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

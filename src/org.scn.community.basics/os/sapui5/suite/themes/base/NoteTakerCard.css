@@ -1,0 +1,437 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/NoteTakerCard.control */
+/* ============================================= */
+
+.sapSuiteUiCommonsNoteTakerCard {
+    background-color: @sapUiMediumBG;
+    width: 300px;
+    height: 500px;
+    border-top: 4px solid @sapUiMediumLine;
+    padding-top: 11px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+
+.suiteUiNtcPositiveCard {
+    border-top-color: @sapUiPositiveBorder;
+}
+
+.suiteUiNtcNegativeCard {
+    border-top-color: @sapUiErrorBorder;
+}
+
+/* Header section contains title, date and edit button */
+.sapSuiteUiCommonsNoteTakerCardHeader {
+  color: @sapUiTextTitle;
+  font-size: 20px;
+  height: 40px;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: @sapUiHighlight;
+  margin-bottom: 10px;
+}
+
+.sapSuiteUiCommonsNoteTakerCardHeaderButtons {
+    float: right;
+}
+
+.sapSuiteUiCommonsNoteTakerCardHeaderButtons button {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 28px;
+    height: 28px;
+}
+
+.sapSuiteUiCommonsNoteTakerCardDeleteButton {
+    background-image: url(img/delete_16.png);
+    margin-left: 4px;
+}
+
+.sapSuiteUiCommonsNoteTakerCardEditButton {
+    background-image: url(img/edit_24.png);
+}
+
+.sapSuiteUiCommonsNoteTakerCardEditButtonDsbl {
+    background-image: url(img/edit_grey_24.png);
+}
+
+.sapSuiteUiCommonsNoteTakerCardTimestamp {
+  color: @sapUiLightText;
+  font-size: 12px;
+}
+/* End of header section styles */
+
+
+/* Content section includes toolbar, note body and footer */
+.sapSuiteUiCommonsNoteTakerCardBodyContent {
+  background-color: @sapUiWhite;
+  height: 448px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sapSuiteUiCommonsNoteTakerCardTagList {
+  height: inherit;
+  display: table-cell;
+  vertical-align: middle;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.sapSuiteUiCommonsNoteTakerCardTagList span {
+  color: @sapUiHighlight;
+}
+
+.sapSuiteUiCommonsNoteTakerCardBody {
+  font-size: 14px;
+  padding: 5px;
+  overflow: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  height: 392px;
+}
+
+.sapSuiteUiCommonsNoteTakerCardBody a {
+	font-size: inherit;
+}
+
+.sapSuiteUiCommonsNtcBodyViewAllAttach {
+	height: 336px;
+}
+.sapSuiteUiCommonsNtcBodyViewAll {
+	height: 360px;
+}
+.sapSuiteUiCommonsNtcBodyAttach {
+	height: 368px;
+}
+
+.sapSuiteUiCommonsNoteTakerCardViewAll {
+  background-color: @sapUiWhite;
+  padding: 7px;
+  height: 18px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.sapSuiteUiCommonsNoteTakerCardViewAllLink {
+  font-size: 14px;
+}
+/* End of content section styles */
+
+
+/* Overlay section */
+.sapSuiteCommonsNoteTakerCardOverlayWindow {
+  //to avoid moving of the closing cross: 696px = content's min-width(200) + left and right position(2*130) + padding(2*18)
+  //to limit movement with the left border: 260px = left and right position(2*130)
+  min-width: 260px;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapUiUx3OCContent {
+  background-color: @sapUiMediumBG;
+
+  position: absolute;
+  top: 100px;
+  bottom: 100px;
+  right: 130px;
+  left: 130px;
+  min-height: 200px;
+  min-width: 400px;
+
+    border-top: 4px solid @sapUiMediumLine;
+    padding-top: 14px;
+    padding-right: 18px;
+    padding-left: 18px;
+    padding-bottom: 18px;
+}
+.suiteUiNtcPositiveCard .sapUiUx3OCContent {
+    border-top-color: @sapUiPositiveBorder;
+}
+
+.suiteUiNtcNegativeCard .sapUiUx3OCContent {
+    border-top-color: @sapUiErrorBorder;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapUiUx3OCContent>div {
+    width: 100%;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow a.sapUiUx3OverlayCloseButton {
+  top: 89px;
+  right: 119px;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow div.sapUiUx3OverlayOverlay {
+  opacity: 0.9;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapSuiteUiCommonsNoteTakerCardTitle {
+    display: block;
+    width: 100%;
+    height: 25px;
+    color: @sapUiTextTitle;
+    font-size: 20px;
+    font-weight: bolder;
+    line-height: normal;
+    margin-bottom: 2px;
+}
+
+.sapSuiteUiCommonsNtcdTitleEdit {
+    width: 800px;
+    color: @sapUiTextTitle;
+    font-size: 20px;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapSuiteUiCommonsNoteTakerCardTimestamp {
+    display: block;
+    height: 20px;
+    font-size: 15px;
+    padding-left: 1px;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapSuiteUiCommonsNoteTakerCardContent {
+    width: 100%;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    margin-top: -4px;
+    position: relative;
+}
+
+.suiteUiNtcOverlayWithAttachment {
+    margin-top: -4px;
+    margin-bottom: -160px;
+    padding-bottom: 176px;
+
+}
+
+.suiteUiNtcOverlayWithoutAttachment {
+    margin-top: 0px;
+    margin-bottom: -135px;
+    padding-bottom: 151px;
+
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapSuiteUiCommonsNoteTakerCardContent>.sapUiHLayoutChildWrapper:FIRST-CHILD {
+    background-color: @sapUiWhite;
+    width: 100%;
+    height: 100%;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapSuiteUiCommonsNoteTakerCardContent div.sapSuiteUiCommonsNoteTakerCardBody,
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapSuiteUiCommonsNoteTakerCardContent textarea.sapSuiteUiCommonsNoteTakerCardBody {
+    font-size: 16px;
+    line-height: 20px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: none;
+}
+
+.sapSuiteUiCommonsNoteTakerCardOverlayButtonPanel {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.sapSuiteUiCommonsNoteTakerCardOverlayButtonPanel button {
+    width: 150px;
+    height: 30px;
+}
+
+.sapSuiteUiCommonsNoteTakerCardOverlayButtonDelete {
+    background-image: url(img/delete_16.png);
+    margin-left: 4px;
+}
+
+.sapSuiteUiCommonsNoteTakerCardOverlayButtonSave {
+    position: absolute;
+    right: 30px;
+}
+/* End of overlay section */
+
+.sapSuiteUiCommonsNoteTakerCardRightPanel {
+	float: right;
+    height: 30px;
+}
+.sapSuiteUiCommonsNoteTakerCardLeftPanel {
+	overflow-y:auto;
+	float: left;
+	height: 30px;
+}
+.sapSuiteUiCommonsNoteTakerCardNoThumbs {
+	width: 100%;
+}
+
+.sapSuiteUiCommonsNoteTakerCardWithThumbs {
+	width: 255px;
+}
+
+.sapSuiteUiCommonsNoteTakerCardThumbUp,
+.sapSuiteUiCommonsNoteTakerCardThumbDown {
+    width : 28px;
+    height : 28px;
+    background-position: center;
+}
+.sapSuiteUiCommonsNoteTakerCardThumbUp {
+	background-image: url(img/thumbUp_24.png);
+}
+
+.sapSuiteUiCommonsNoteTakerCardThumbDown {
+	background-image: url(img/thumbDown_24.png);
+}
+
+.suiteUiNtcToolbar button {
+    width: 28px;
+    height: 28px;
+    background-repeat: no-repeat;
+    margin-right: 4px;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .suiteUiNtcOverlayToolbarRightPanel .sapSuiteUiCommonsNoteTakerCardSelectedBtn {
+	background-color: @sapUiDarkAltBG;
+	box-shadow: 0 1px 0 @sapUiMediumAltBG inset;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .suiteUiNtcOverlayToolbarRightPanel .sapSuiteUiCommonsNoteTakerCardSelectedBtn:hover,
+.sapSuiteCommonsNoteTakerCardOverlayWindow .suiteUiNtcOverlayToolbarRightPanel .sapSuiteUiCommonsNoteTakerCardSelectedBtn.sapUiBtnStdHover,
+.sapSuiteCommonsNoteTakerCardOverlayWindow .suiteUiNtcOverlayToolbarRightPanel .sapSuiteUiCommonsNoteTakerCardSelectedBtn:focus,
+.sapSuiteCommonsNoteTakerCardOverlayWindow .suiteUiNtcOverlayToolbarRightPanel .sapSuiteUiCommonsNoteTakerCardSelectedBtn.sapUiBtnStdFocus {
+    background-color: @sapUiButtonHoverBackground;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .suiteUiNtcOverlayToolbarRightPanel .sapUiBtnAct.sapSuiteUiCommonsNoteTakerCardSelectedBtn {
+	background-color: @sapUiDarkAltBG;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow div.sapSuiteUiCommonsNoteTakerFeederSelectTagPanel {
+    z-index: 20;
+    top: 118px;
+    width: 176px;
+    overflow: visible;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapSuiteUiCommonsNoteTakerFeederSelectTagPanel input {
+	width: 100%;
+}
+
+.suiteUiNtcToolbar {
+    background-color: @sapUiLightBG;
+    border: 3px solid @sapUiWhite;
+    padding: 5px;
+    width: 100%;
+    height: 46px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    position: relative;
+}
+
+.suiteUiNtcOverlayToolbarLeftPanel {
+    position: absolute;
+    left: 5px;
+    right: 37px;
+}
+
+.suiteUiNtcOverlayToolbarRightPanel {
+    position: absolute;
+    right: 1px;
+}
+
+.suiteUiNtcOverlayToolbarLeftPanel,
+.suiteUiNtcOverlayToolbarRightPanel,
+.sapSuiteUiCommonsNoteTakerCardLeftPanel,
+.sapSuiteUiCommonsNoteTakerCardRightPanel {
+    height: 30px;
+}
+
+.suiteUiNtcOverlayTagPanelViewMode {
+    position: absolute;
+    right: 0px;
+    left: 0px;
+	height: 30px;
+	overflow-y: auto;
+}
+
+.suiteUiNtcOverlayTagPanelEditMode {
+    position: absolute;
+    right: 32px;
+    left: 32px;
+	height: 30px;
+	overflow-y: auto;
+}
+
+.suiteUiNtcAttachmentPanel {
+    margin-top: 3px;
+    margin-bottom: 5px;
+    margin-right: 2px;
+    margin-left: 2px;
+    height: 16px;
+}
+
+.suiteUiNtcAttachmentPanel>* {
+    vertical-align: middle;
+}
+
+.suiteUiNtcOverlayAttachmentPanel {
+    display: block;
+    height: 25px;
+
+    box-sizing: border-box;
+    padding: 2px 2px 4px 2px;
+
+    background-color: @sapUiWhite;
+}
+
+.suiteUiNtcAttachmentIcon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url(img/attachment_16.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 2px;
+}
+
+.sapSuiteUiCommonsNtcOverlayHeader {
+	width: 100%;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: @sapUiHighlight;
+	margin-bottom: 10px;
+}
+
+.sapSuiteUiCommonsNtcOverlayTitle {
+	width: 100%;
+}
+
+.sapSuiteUiCommonsNtcOverlayTimestamp {
+  color: @sapUiLightText;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.sapSuiteUiCommonsNtcHeaderButtons {
+    position: absolute;
+    right: 20px;
+}
+
+.sapSuiteUiCommonsNtcHeaderButtons button {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 28px;
+    height: 28px;
+}
+
+.sapSuiteRequiredLbl {
+	position: absolute;
+	left: -16px;
+}

@@ -1,0 +1,110 @@
+.sapSuiteCmc {
+	display: inline-block;
+	outline: none;
+	min-height: 2px;
+	position: relative;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteCmc.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteCmc.Auto,
+.sapSuiteCmc.L,
+.sapSuiteCmc.M {
+    height: 4.5rem;
+    width: 10.5rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteCmc.Auto,
+.sapSuiteCmc.S,
+.sapSuiteCmc.XS {
+    height: 3.5rem;
+    width: 8.25rem;
+}
+
+.sapSuiteCmcBars {
+	display: inline-block;
+	height: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+}
+
+.sapSuiteCmcCnt {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	width: 100%;
+	text-align: center;
+}
+
+.sapSuiteCmcCnt.T {
+	top: 1rem;
+}
+
+.sapSuiteCmcCnt.B {
+	bottom: 1rem;
+}
+
+.sapSuiteCmcBar {
+    min-width: 3px;
+    position: relative;
+    float: left;
+    min-height: 1px;
+    top: ~"calc(100% - 1px)";
+    top: ~"-webkit-calc(100% - 1px)";
+    top: ~"-moz-calc(100% - 1px)";
+}
+
+.sapSuiteCmcBar:not(:FIRST-CHILD) {
+	margin-left: 3px;
+}
+
+.sapSuiteCmc:focus:not([tabindex]) {
+	outline: none;
+}
+
+.sapSuiteCmcLbls {
+	height: 1rem;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+}
+
+.sapSuiteCmcLbls.T {
+	top: 0px;
+}
+
+.sapSuiteCmcLbls.B {
+	bottom: 0px;
+}
+	
+.sapSuiteCmcLbl {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	min-height: 1px;
+	float: left;
+	width: 50%;
+	font-size: .875rem;
+}
+
+.sapSuiteCmcLbl.W {
+	width: 100%;
+}
+
+.sapSuiteCmcLbl.L {
+	text-align: left;
+}
+
+.sapSuiteCmcLbl.R {
+	text-align: right;
+}
+
+html[dir=rtl] {
+	.sapSuiteCmcLbl.R {
+		text-align: left;
+	}
+	
+	.sapSuiteCmcLbl.L {
+		text-align: right;
+	}
+}

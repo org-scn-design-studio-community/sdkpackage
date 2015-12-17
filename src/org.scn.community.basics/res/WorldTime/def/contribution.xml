@@ -5,13 +5,14 @@
 	tooltip="World Time"
 	icon="res/WorldTime/WorldTime.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/WorldTime/WorldTimeLoader.js</jsInclude>
+	<requireJs modes="commons">res/WorldTime/WorldTime</requireJs>
+
 	<cssInclude>res/WorldTime/WorldTime.css</cssInclude>
 	
 	

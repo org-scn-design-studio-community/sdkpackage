@@ -5,13 +5,14 @@
 	tooltip="Application Header"
 	icon="res/ApplicationHeader/ApplicationHeader.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ApplicationHeader/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ApplicationHeader/ApplicationHeaderLoader.js</jsInclude>
+	<requireJs modes="commons">res/ApplicationHeader/ApplicationHeader</requireJs>
+
 	<cssInclude>res/ApplicationHeader/ApplicationHeader.css</cssInclude>
 	
 	

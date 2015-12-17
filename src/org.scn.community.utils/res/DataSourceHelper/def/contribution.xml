@@ -5,13 +5,14 @@
 	tooltip="DataSourceHelper - Utilities for Data Sources"
 	icon="res/DataSourceHelper/DataSourceHelper.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
 	databound="true"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/DataSourceHelper/DataSourceHelperLoader.js</jsInclude>
+	<requireJs modes="commons">res/DataSourceHelper/DataSourceHelper</requireJs>
+
 	<cssInclude>res/DataSourceHelper/DataSourceHelper.css</cssInclude>
 	
 	

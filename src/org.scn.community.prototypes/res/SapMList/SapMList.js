@@ -28,7 +28,7 @@ var _readScriptPath = function () {
 
 jQuery.sap.require("sap.m.List");
 
-sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
+sap.zen.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 
 	metadata: {
         properties: {

@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "Accordion",
+		name: "basics.Accordion",
+		requireName: "basicsaccordion",
+		fullComponentName: "org.scn.community.basics.Accordion",
+		fullComponentPackage: "org.scn.community.basics/res/Accordion",
+		script: "org.scn.community.basics/res/Accordion/Accordion",
+		scriptSpec: "org.scn.community.basics/res/Accordion/AccordionSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.Accordion.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -250,10 +261,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.Accordion.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.Accordion.specAbout = 
+	spec.specAbout = 
 {
   "description": "Accordion - Dynamic List of Entries",
   "icon": "Accordion.png",
@@ -270,7 +281,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.Accordion.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -279,7 +290,7 @@
   "height": "600",
   "id": "Accordion",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -289,4 +300,5 @@
   "width": "260"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

@@ -17,9 +17,24 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./NotifySpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"basics/os/noty/packaged/noty"
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.Notify;
+var myComponentData = spec;
 
 Notify = function () {
 
@@ -97,9 +112,9 @@ Notify = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsnotify){
-	myComponentData.instance = Notify;
-	return myComponentData.instance;
-});
+//%INIT-START%
+myComponentData.instance = Notify;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-}).call(this);
+
+});

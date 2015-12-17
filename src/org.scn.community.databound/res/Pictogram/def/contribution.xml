@@ -4,19 +4,13 @@
 		title="Pictogram"
 		icon="res/Pictogram/Pictogram.png"
 		handlerType="div"
-		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
-		group="ScnCommunityDataBound"
+		modes="commons m"
+		propertySheetPath="aps/PropertyPage.html"
+		group="ScnCommunityChartMaps"
 		databound="true"
 >
-	<stdInclude kind="d3"/>
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/common_databound.js</jsInclude>
-	<jsInclude>res/org.scn.community.component.Core.js</jsInclude>
-	<jsInclude>res/org.scn.community.component.Databound.js</jsInclude>
-	<jsInclude>res/Pictogram/Pictogram.js</jsInclude>
-	<cssInclude>res/Viz.css</cssInclude>
-	<cssInclude>res/Pictogram/Pictogram.css</cssInclude>	
+	<requireJs modes="commons m">res/Pictogram/Pictogram</requireJs>
+		
 	<!-- Pictogram Properties -->
 	<property type="ResultCell" title="KPI" id="kpi" visible="true" bindable="true">
 	<!--http://scn.sap.com/docs/DOC-58755-->

@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "CheckBoxGroup",
+		name: "basics.CheckBoxGroup",
+		requireName: "basicscheckboxgroup",
+		fullComponentName: "org.scn.community.basics.CheckBoxGroup",
+		fullComponentPackage: "org.scn.community.basics/res/CheckBoxGroup",
+		script: "org.scn.community.basics/res/CheckBoxGroup/CheckBoxGroup",
+		scriptSpec: "org.scn.community.basics/res/CheckBoxGroup/CheckBoxGroupSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.CheckBoxGroup.spec = 
+	spec.spec = 
 {
   "cleanAll": {
     "opts": {
@@ -148,10 +159,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.CheckBoxGroup.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.CheckBoxGroup.specAbout = 
+	spec.specAbout = 
 {
   "description": "Check Box Group",
   "icon": "CheckBoxGroup.png",
@@ -168,7 +179,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.CheckBoxGroup.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -177,7 +188,7 @@
   "height": "400",
   "id": "CheckBoxGroup",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -187,4 +198,5 @@
   "width": "230"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

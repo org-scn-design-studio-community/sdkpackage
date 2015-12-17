@@ -1,0 +1,75 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/NoteTakerCard.control */
+/* HCB theme */
+/* ============================================= */
+
+.sapSuiteUiCommonsNoteTakerCard {
+    background-color: black;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    color: #7a5100;
+}
+
+.sapSuiteUiCommonsNoteTakerCardTagPanel {
+  background-color: black;
+  border-color: black;
+  border-bottom-color: #0f5d94;
+  font-weight: normal;
+}
+
+.sapSuiteUiCommonsNoteTakerCardTagList span {
+  color: @sapUiLink;
+  font-weight: bold;
+}
+
+.suiteUiNtcToolbar {
+	height: 42px;
+    background-color: black;
+    border: 1px solid white;
+}
+
+.sapSuiteUiCommonsNoteTakerCardBody,
+.sapSuiteUiCommonsNoteTakerCardTagList {
+	color: white;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapUiUx3OCContent {
+	background-color: black;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapSuiteUiCommonsNoteTakerCardTitle {
+	font-size: 20px;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapSuiteUiCommonsNtcdTitleEdit {
+	height: 25px;
+	font-size: 20px;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .suiteUiNtcOverlayToolbarRightPanel .sapSuiteUiCommonsNoteTakerCardSelectedBtn {
+	background-color: #7a5100;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapUiUx3OCContent {
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	border-bottom: 1px solid white;
+}
+
+.sapSuiteUiCommonsNoteTakerCardTimestamp {
+	color: white;
+}
+
+.sapSuiteUiCommonsNoteTakerCardHeader {
+	border-bottom-color: white;
+}
+
+.sapSuiteUiCommonsNtcOverlayHeader {
+	border-bottom-color: white;
+}
+
+.sapSuiteCommonsNoteTakerCardOverlayWindow .sapSuiteUiCommonsNoteTakerCardContent textarea.sapSuiteUiCommonsNoteTakerCardBody {
+	border: 1px solid white;
+}

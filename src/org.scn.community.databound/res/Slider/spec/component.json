@@ -1,0 +1,22 @@
+{
+	"id": "Slider",
+	"title": "Data Slider 2.0",
+	"tooltip": "Data Slider",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.commons.Slider",
+	"group": "ScnCommunityDataBound",
+	"package": "databound",
+	"extension": "Component",
+	"databound": true,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "60",
+	"height": "600"
+}

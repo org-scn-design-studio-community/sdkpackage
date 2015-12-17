@@ -1,0 +1,38 @@
+
+/* ============================================================================= */
+/* CSS for sap_hcb theme of control sap.suite.ui.commons/LinkActionSheet.control */
+/* ============================================================================= */
+
+.sap-desktop .sapUILinkActionSheetLink:focus {
+	outline: .125rem dotted @sapHCStandardFG;
+	outline-offset: -.4rem;
+}
+
+.sap-desktop[data-sap-ui-browser^="ie"] .sapUILinkActionSheetLink:focus {
+		outline: none;
+}
+	
+.sap-desktop[data-sap-ui-browser^="ie"] .sapUILinkActionSheetLink:focus::after {
+    	content: "";
+    	display: inline-block;
+    	position: absolute;
+    	top: .275rem;
+    	left: .275rem;
+    	right: .275rem;
+    	bottom: .275rem; 
+    	border: 0.125rem dotted @sapHCStandardFG;
+}
+
+.sapUILinkActionSheet> {
+	.sapUILinkActionSheetLink, 
+	.sapUILinkActionSheetLink:visited,
+	.sapUILinkActionSheetLink:active {
+		color: @sapHCStandardFG;
+		border-top: 0.0625rem solid @sapHCStandardFG;
+        font-size: @sapMFontMediumSize;
+	}
+}
+
+.sap-desktop .sapUILinkActionSheetLink:hover {
+	background-color: @sapHCHighlightBG;  
+}

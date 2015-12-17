@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "ApplicationHeader",
+		name: "basics.ApplicationHeader",
+		requireName: "basicsapplicationheader",
+		fullComponentName: "org.scn.community.basics.ApplicationHeader",
+		fullComponentPackage: "org.scn.community.basics/res/ApplicationHeader",
+		script: "org.scn.community.basics/res/ApplicationHeader/ApplicationHeader",
+		scriptSpec: "org.scn.community.basics/res/ApplicationHeader/ApplicationHeaderSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.ApplicationHeader.spec = 
+	spec.spec = 
 {
   "displayLogoff": {
     "opts": {
@@ -117,10 +128,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ApplicationHeader.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ApplicationHeader.specAbout = 
+	spec.specAbout = 
 {
   "description": "Application Header",
   "icon": "ApplicationHeader.png",
@@ -137,7 +148,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ApplicationHeader.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -156,4 +167,5 @@
   "width": "auto"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

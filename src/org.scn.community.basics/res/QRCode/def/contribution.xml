@@ -5,13 +5,14 @@
 	tooltip="QRCode Generation"
 	icon="res/QRCode/QRCode.png"
 	handlerType="div"
-	propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/QRCode/QRCodeLoader.js</jsInclude>
+	<requireJs modes="commons">res/QRCode/QRCode</requireJs>
+
 	<cssInclude>res/QRCode/QRCode.css</cssInclude>
 	
 	

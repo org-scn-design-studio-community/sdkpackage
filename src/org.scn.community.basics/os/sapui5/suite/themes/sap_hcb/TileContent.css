@@ -1,0 +1,9 @@
+.sapSuiteTileCntFtrTxt {
+    font-family: @sapUiFontFamily;   
+    font-size: @sapMFontMediumSize;
+    color: @sapHCStandardFG;
+}
+
+.sapSuiteTileCnt.News {
+	background-color: @sapHCStandardBG;
+}

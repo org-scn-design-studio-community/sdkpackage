@@ -5,13 +5,14 @@
 	tooltip="FacetFilter - A simple selector which is using the facet techniques"
 	icon="res/FacetFilter/FacetFilter.png"
 	handlerType="sapui5"
-	propertySheetPath="res/FacetFilter/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityDataBound"
 	databound="true"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/FacetFilter/FacetFilterLoader.js</jsInclude>
+	<requireJs modes="commons">res/FacetFilter/FacetFilter</requireJs>
+
 	<cssInclude>res/FacetFilter/FacetFilter.css</cssInclude>
 	
 	
@@ -72,7 +73,7 @@
 	<property
 		id="DMaxDisplayMembers"
 		type="int"
-		title="Maximum Number of Display Members"
+		title="Maximum Members for Display"
 		group="Display"
 		bindable="true"
 		visible="true">

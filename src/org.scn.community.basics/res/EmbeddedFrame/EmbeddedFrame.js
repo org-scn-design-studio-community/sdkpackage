@@ -1,6 +1,21 @@
-(function(){
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./EmbeddedFrameSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.EmbeddedFrame;
+var myComponentData = spec;
 
 EmbeddedFrame = function () {
 
@@ -64,28 +79,22 @@ EmbeddedFrame = function () {
 		if(this.skipport() && myHost.indexOf(":") > -1){
 			myHost = myHost.substring(0,myHost.indexOf(":"));
 		}
-		
-		//Get Domain relax level
-		var level = this.domainrelaxlevel();
-		//if different from 0, apply. Else, do not change domain
-		if (level > 0) {
-			var pathArray = myHost.split('.');
-	        var arrLength = pathArray.length;
-	        if(arrLength>1){
-	        	//extract subdomain in order to allow sth like:
-	        	// Actual domain is "blah.bar.foo.com" 
-	        	// document.domain = "bar.foo.com" 	// Ok 
-	        	// document.domain = "foo.com" 		// Still ok 
-	        	var domainName = "";
-	        	
-	        	if(level < arrLength){
-	        		domainName = pathArray.slice(level, arrLength).join('.');	
-	        	}else{
-	        		domainName = pathArray.join('.');
-	        	}
-	            //set relaxed domain for the current scope where document is active
-	            document.domain = domainName;
-	        }
+		var pathArray = myHost.split('.');
+        var arrLength = pathArray.length;
+        if(arrLength>1){
+        	//extract subdomain in order to allow sth like:
+        	// Actual domain is "blah.bar.foo.com" 
+        	// document.domain = "bar.foo.com" 	// Ok 
+        	// document.domain = "foo.com" 		// Still ok 
+        	var domainName = "";
+        	var level = this.domainrelaxlevel();
+        	if(level < arrLength){
+        		domainName = pathArray.slice(level, arrLength).join('.');	
+        	}else{
+        		domainName = pathArray.join('.');
+        	}
+            //set relaxed domain for the current scope where document is active
+            document.domain = domainName;
         }
 
 		this.$().html(html);
@@ -101,9 +110,9 @@ EmbeddedFrame = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsembeddedframe){
-	myComponentData.instance = EmbeddedFrame;
-	return myComponentData.instance;
-});
+//%INIT-START%
+myComponentData.instance = EmbeddedFrame;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-}).call(this);
+
+});

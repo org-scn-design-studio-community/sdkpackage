@@ -50,7 +50,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * Provides Filter List Item for Timeline Control
  * @extends sap.ui.core.Control
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

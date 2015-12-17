@@ -29,7 +29,7 @@ sap.suite.ui.commons.BulletChartRenderer.render = function (oRm, oControl) {
     var sOrientation = bRtl ? "right" : "left";
     var sMode = oControl.getMode();
     var sDeltaValue = (sap.suite.ui.commons.BulletChartMode.Delta == sMode) ? oControl._calculateDeltaValue() : 0;
-    var bIsActualSet = oControl.getActual()._isValueSet;
+    var bIsActualSet = oControl.getActual() && oControl.getActual()._isValueSet;
     var bShowActualValue = oControl.getShowActualValue() && (sap.suite.ui.commons.InfoTileSize.XS != sSize) && sap.suite.ui.commons.BulletChartMode.Actual == sMode;
     var bShowDeltaValue = oControl.getShowDeltaValue() && (sap.suite.ui.commons.InfoTileSize.XS != sSize) && sap.suite.ui.commons.BulletChartMode.Delta == sMode;
     var bShowTargetValue = oControl.getShowTargetValue() && (sap.suite.ui.commons.InfoTileSize.XS != sSize);
@@ -38,6 +38,9 @@ sap.suite.ui.commons.BulletChartRenderer.render = function (oRm, oControl) {
 	var sTargetValueLabel = oControl.getTargetValueLabel();
 	var aData = oControl.getThresholds();
     var sTooltip = oControl.getTooltip_AsString();
+    if (typeof sTooltip !== "string") {
+    	sTooltip = "";
+    }
 
     oRm.write("<div");
     oRm.writeControlData(oControl);
@@ -216,7 +219,7 @@ sap.suite.ui.commons.BulletChartRenderer.render = function (oRm, oControl) {
  */
 sap.suite.ui.commons.BulletChartRenderer.renderThreshold = function(oRm, oControl, oThreshold) {
     var sOrientation = sap.ui.getCore().getConfiguration().getRTL() ? "right" : "left";
-    var iValuePct = oThreshold.valuePct;
+    var fValuePct = .98 * oThreshold.valuePct + 1;
     var sColor = oThreshold.color;
     var sSize = oControl.getSize();
   
@@ -226,19 +229,18 @@ sap.suite.ui.commons.BulletChartRenderer.renderThreshold = function(oRm, oContro
         oRm.addClass(sSize);
         oRm.addClass(sColor);
         oRm.writeClasses();
-        oRm.addStyle(sOrientation, iValuePct + "%");
+        oRm.addStyle(sOrientation, fValuePct + "%");
         oRm.writeStyles();
         oRm.write("></div>");
-    } else {
-	    oRm.write("<div");
-	    oRm.addClass("sapSuiteBCThreshold");
-	    oRm.addClass(sSize);
-	    oRm.addClass(sColor);
-	    oRm.writeClasses();
-	    oRm.addStyle(sOrientation, iValuePct + "%");
-	    oRm.writeStyles();
-	    oRm.write("></div>");
-    }
+    } 
+    oRm.write("<div");
+    oRm.addClass("sapSuiteBCThreshold");
+    oRm.addClass(sSize);
+    oRm.addClass(sColor);
+    oRm.writeClasses();
+    oRm.addStyle(sOrientation, fValuePct + "%");
+    oRm.writeStyles();
+    oRm.write("></div>");
 };
 
 
@@ -462,7 +464,12 @@ sap.suite.ui.commons.ChartContainerRenderer.render = function(oRm, oControl) {
 	oRm.writeClasses();
 	oRm.write(">");
 
-	oRm.renderControl(selectedChart);//oControl.getContent()[0]);
+  if (selectedChart !== null) {
+  	oRm.renderControl(selectedChart);
+	} else if (oControl.getContent().length > 0) {
+	  selectedChart = oControl.getContent()[0];
+	  oRm.renderControl(selectedChart);
+	}
 
 	oRm.write("</div>");// end chartArea
 	oRm.write("</div>"); // end wrapper
@@ -492,43 +499,131 @@ sap.suite.ui.commons.ColumnMicroChartRenderer = {
  * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
  * @param {sap.ui.core.Control} oControl an object representation of the control that should be rendered
  */
-sap.suite.ui.commons.ColumnMicroChartRenderer.render = function(oRm, oControl){ 
+sap.suite.ui.commons.ColumnMicroChartRenderer.render = function(oRm, oControl) {
+	function fnWriteLbl(oLabel, sId, sClass, bWideBtmLbl) {
+		oRm.write("<div");
+		oRm.writeAttribute("id", oControl.getId() + sId);
+		oRm.addClass("sapSuiteCmcLbl");
+		oRm.addClass(sClass);
+		oRm.addClass(oLabel.getColor());
+		if (bWideBtmLbl) {
+			oRm.addClass("W");
+		}
+		oRm.writeClasses();
+		oRm.write(">");
+			oRm.writeEscaped(oLabel.getLabel());
+		oRm.write("</div>");
+	};
+	 
 	oRm.write("<div");
 	oRm.writeControlData(oControl);
 	oRm.addClass("sapSuiteCmc");
 	oRm.addClass(oControl.getSize());
-	
-    oRm.writeAttributeEscaped("title", oControl.getTooltip_AsString());
+    var sTooltip = oControl.getTooltip_AsString();
+
+    if (typeof sTooltip !== "string") {
+    	sTooltip = "";
+    }
+    oRm.writeAttributeEscaped("title", sTooltip);
     
 	if (oControl.hasListeners("press")) {    
 		oRm.addClass("sapSuiteUiCommonsPointer");
 		oRm.writeAttribute("tabindex", "0");
     }
     oRm.writeAttribute("role", "presentation");
-   	oRm.writeAttributeEscaped("aria-label", oControl.getAltText().replace(/\s/g, " ") + (sap.ui.Device.browser.firefox ? "" : " " + oControl.getTooltip_AsString() ));
+   	oRm.writeAttributeEscaped("aria-label", oControl.getAltText().replace(/\s/g, " ") + (sap.ui.Device.browser.firefox ? "" : " " + sTooltip ));
     
     oRm.writeClasses();
 	oRm.addStyle("width", oControl.getWidth());
 	oRm.addStyle("height", oControl.getHeight());
 	oRm.writeStyles();
 	oRm.write(">");
+		var bLeftTopLbl = oControl.getLeftTopLabel() && oControl.getLeftTopLabel().getLabel() != "";
+		var bRightTopLbl = oControl.getRightTopLabel() && oControl.getRightTopLabel().getLabel() != "";
+		var bLeftBtmLbl = oControl.getLeftBottomLabel() && oControl.getLeftBottomLabel().getLabel() != "";
+		var bRightBtmLbl = oControl.getRightBottomLabel() && oControl.getRightBottomLabel().getLabel() != "";
+		
+		if (bLeftTopLbl || bRightTopLbl) {
+			oRm.write("<div");
+			oRm.writeAttribute("id", oControl.getId() + "-top-lbls");
+			oRm.addClass("sapSuiteCmcLbls");
+			oRm.addClass("T");
+			oRm.writeClasses();
+			oRm.write(">");
+				var bWideTopLbl = bLeftTopLbl ^ bRightTopLbl;
+				if (bLeftTopLbl) {
+					fnWriteLbl(oControl.getLeftTopLabel(), "-left-top-lbl", "L", bWideTopLbl);
+				}
+				
+				if (bRightTopLbl) {
+					fnWriteLbl(oControl.getRightTopLabel(), "-right-top-lbl", "R", bWideTopLbl);
+				}
+			oRm.write("</div>");
+		}
+
 		oRm.write("<div");
 		oRm.writeAttributeEscaped("id", oControl.getId() + "-content");
 		oRm.addClass("sapSuiteCmcCnt");
+		if (bLeftTopLbl || bRightTopLbl) {
+			oRm.addClass("T");
+		}
+		if (bLeftBtmLbl || bRightBtmLbl) {
+			oRm.addClass("B");
+		}
 		oRm.writeClasses();
 		oRm.write(">");
-			var iColumnsNum = oControl.getColumns().length;
-			for (var i = 0; i < iColumnsNum; i++) {
-				var oColumn = oControl.getColumns()[i];
-				oRm.write("<div");
-				oRm.writeAttribute("id", oControl.getId() + "-bar-" + i);
-				oRm.addClass("sapSuiteCmcBar");
-				oRm.addClass(oColumn.getColor());
-				oRm.writeClasses();
-				oRm.write(">");
-				oRm.write("</div>");
-			}
+			oRm.write("<div");
+			oRm.writeAttributeEscaped("id", oControl.getId() + "-bars");
+			oRm.addClass("sapSuiteCmcBars");
+			oRm.writeClasses();
+			oRm.write(">");
+				var iColumnsNum = oControl.getColumns().length;
+				for (var i = 0; i < iColumnsNum; i++) {
+					var oColumn = oControl.getColumns()[i];
+					oRm.write("<div");
+					oRm.writeAttribute("id", oControl.getId() + "-bar-" + i);
+					oRm.addClass("sapSuiteCmcBar");
+					oRm.addClass(oColumn.getColor());
+					if (oColumn.hasListeners("press")) {
+						oRm.writeAttribute("tabindex", "0");
+						oRm.writeAttribute("role", "presentation");
+						var sBarAltText = oControl._getBarAltText(i);
+						oRm.writeAttributeEscaped("title", sBarAltText);
+						oRm.writeAttributeEscaped("aria-label", sBarAltText);
+						oRm.addClass("sapSuiteUiCommonsPointer");
+					}			
+					oRm.writeClasses();
+					oRm.write(">");
+					oRm.write("</div>");
+				}
+			oRm.write("</div>");
 		oRm.write("</div>");
+
+		if (bLeftBtmLbl || bRightBtmLbl) {
+			oRm.write("<div");
+			oRm.writeAttribute("id", oControl.getId() + "-btm-lbls");
+			oRm.addClass("sapSuiteCmcLbls");
+			oRm.addClass("B");
+			oRm.writeClasses();
+			oRm.write(">");
+				var bWideBtmLbl = bLeftBtmLbl ^ bRightBtmLbl;
+				if (bLeftBtmLbl) {
+					fnWriteLbl(oControl.getLeftBottomLabel(), "-left-btm-lbl", "L", bWideBtmLbl);
+				}
+				
+				if (bRightBtmLbl) {
+					fnWriteLbl(oControl.getRightBottomLabel(), "-right-btm-lbl", "R", bWideBtmLbl);
+				}
+			oRm.write("</div>");
+		}
+		
+		oRm.write("<div");
+		oRm.writeAttribute("id", oControl.getId() + "-hidden");
+		oRm.writeAttribute("aria-hidden", "true");
+		oRm.writeAttribute("tabindex", "0");
+		oRm.writeStyles();
+		oRm.write(">");
+		oRm.write("</div>");	
 	oRm.write("</div>");
 };
 }; // end of sap/suite/ui/commons/ColumnMicroChartRenderer.js
@@ -551,6 +646,11 @@ sap.suite.ui.commons.ComparisonChartRenderer = {
 };
 
 sap.suite.ui.commons.ComparisonChartRenderer.render = function (oRm, oControl) {
+	var sTooltip = oControl.getTooltip_AsString();
+	if (typeof sTooltip !== "string") {
+    	sTooltip = "";
+    }
+
 	oRm.write("<div");
 	oRm.writeControlData(oControl);
     oRm.addClass("sapSuiteCmpChartContent");
@@ -562,7 +662,7 @@ sap.suite.ui.commons.ComparisonChartRenderer.render = function (oRm, oControl) {
 	oRm.writeClasses();
 	
     oRm.writeAttribute("role", "presentation");
-   	oRm.writeAttributeEscaped("aria-label", oControl.getAltText().replace(/\s/g, " ") + (sap.ui.Device.browser.firefox ? "" : " " + oControl.getTooltip_AsString() ));
+   	oRm.writeAttributeEscaped("aria-label", oControl.getAltText().replace(/\s/g, " ") + (sap.ui.Device.browser.firefox ? "" : " " + sTooltip ));
    
 	if (oControl.getShrinkable()) {
 		oRm.addStyle("min-height", "0px");
@@ -576,7 +676,7 @@ sap.suite.ui.commons.ComparisonChartRenderer.render = function (oRm, oControl) {
     
     oRm.writeStyles();
     
-    oRm.writeAttributeEscaped("title", oControl.getTooltip_AsString());
+    oRm.writeAttributeEscaped("title", sTooltip);
     oRm.write(">");
         this.renderInnerContent(oRm, oControl);
 
@@ -586,8 +686,17 @@ sap.suite.ui.commons.ComparisonChartRenderer.render = function (oRm, oControl) {
 	    oRm.addStyle("display", "none");
 	    oRm.writeStyles();
 	    oRm.write(">");
-	    	oRm.writeEscaped(oControl.getTooltip_AsString());
+	    	oRm.writeEscaped(sTooltip);
 	    oRm.write("</div>");
+
+	    oRm.write("<div");
+	    oRm.writeAttribute("id", oControl.getId() + "-hidden");
+	    oRm.writeAttribute("aria-hidden", "true");
+	    oRm.writeAttribute("tabindex", "0");
+	    oRm.writeStyles();
+	    oRm.write(">");
+	    oRm.write("</div>");
+
         
     oRm.write("</div>");
 };
@@ -637,11 +746,18 @@ sap.suite.ui.commons.ComparisonChartRenderer.renderChartBar = function(oRm, oCon
     var oData = oControl.getData()[iIndex];
 
     oRm.write("<div");
-    oRm.writeAttribute("id", oControl.getId() + "-chart-item-" + iIndex + "-bar");
+    oRm.writeAttribute("id", oControl.getId() + "-chart-item-bar-" + iIndex);
     oRm.addClass("sapSuiteCmpChartBar");
 	oRm.addClass(oControl.getView());
     oRm.addClass(oControl.getSize());
-    oRm.writeClasses();
+	if (oControl.getData()[iIndex].hasListeners("press")) {
+	    oRm.writeAttribute("tabindex", "0");
+	    oRm.writeAttribute("role", "presentation");
+	    oRm.writeAttributeEscaped("title", oControl._getBarAltText(iIndex));
+	    oRm.writeAttributeEscaped("aria-label", oControl._getBarAltText(iIndex));
+		oRm.addClass("sapSuiteUiCommonsPointer");
+    }
+	oRm.writeClasses();
     oRm.write(">");
 
     if (oChartData.negativeNoValue > 0) {
@@ -1263,6 +1379,247 @@ sap.suite.ui.commons.DateRangeSliderRenderer.render = function(oRm, oDateRangeSl
 };
 
 }; // end of sap/suite/ui/commons/DateRangeSliderRenderer.js
+if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.DeltaMicroChartRenderer') ) {
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+
+jQuery.sap.declare("sap.suite.ui.commons.DeltaMicroChartRenderer");
+
+/**
+ * @class DeltaMicroChart renderer. 
+ * @static
+ */
+sap.suite.ui.commons.DeltaMicroChartRenderer = {
+};
+
+
+/**
+ * Renders the HTML for the given control, using the provided {@link sap.ui.core.RenderManager}.
+ * 
+ * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
+ * @param {sap.ui.core.Control} oControl an object representation of the control that should be rendered
+ */
+sap.suite.ui.commons.DeltaMicroChartRenderer.render = function(oRm, oControl){ 
+    var sDv1 = oControl.getDisplayValue1();
+    var sDv2 = oControl.getDisplayValue2();
+    var fVal1 = oControl.getValue1();
+    var fVal2 = oControl.getValue2();
+    var sDdv = oControl.getDeltaDisplayValue();
+	var sAdv1ToShow = sDv1 ? sDv1 : "" + fVal1;
+	var sAdv2ToShow = sDv2 ? sDv2 : "" + fVal2;
+	var sAddvToShow = sDdv ? sDdv : "" + Math.abs(fVal1 - fVal2).toFixed(Math.max(oControl._digitsAfterDecimalPoint(fVal1), oControl._digitsAfterDecimalPoint(fVal2)));
+	var sColor = oControl.getColor();
+	var sTooltip = oControl.getTooltip_AsString();
+    if (typeof sTooltip !== "string") {
+    	sTooltip = "";
+    }
+
+	var sSize = oControl.getSize();
+	var bNoTitles = (!oControl.getTitle1() && !oControl.getTitle2());
+	
+	function getDir(bLeft) {
+		return bLeft ? "Left" : "Right";
+	};
+	
+	oRm.write("<div");
+	oRm.writeControlData(oControl);
+	oRm.addClass("sapSuiteDmc");
+		if (oControl.hasListeners("press")) {    
+		oRm.addClass("sapSuiteUiCommonsPointer");
+		oRm.writeAttribute("tabindex", "0");
+    }
+    oRm.addClass(sSize);
+    oRm.writeAttribute("role", "presentation");
+   	oRm.writeAttributeEscaped("aria-label", oControl.getAltText().replace(/\s/g, " ") + (sap.ui.Device.browser.firefox ? "" : " " + sTooltip ));
+	oRm.writeAttributeEscaped("title", sTooltip);
+	oRm.writeClasses();
+    if (oControl.getWidth()) {
+    	oRm.addStyle("width", oControl.getWidth());
+    	oRm.writeStyles();
+    }
+    
+	oRm.write(">");
+		oRm.write("<div");
+		oRm.addClass("sapSuiteDmcCnt");
+		oRm.addClass(sSize);
+		oRm.writeClasses();
+		oRm.write(">");
+			oRm.write("<div");
+			oRm.writeAttribute("id", oControl.getId() + "-title1");
+			oRm.addClass("sapSuiteDmcTitle");
+			oRm.addClass("Top");
+			oRm.writeClasses();
+			oRm.write(">");
+				oRm.writeEscaped(oControl.getTitle1());
+			oRm.write("</div>");
+			
+			oRm.write("<div");
+			oRm.addClass("sapSuiteDmcChart");
+			oRm.addClass(sSize);
+			if (bNoTitles){
+				oRm.addClass("NoTitles");
+			}
+			oRm.writeClasses();
+			oRm.writeAttribute("id", oControl.getId() + "-dmc-chart");
+			oRm.write(">");
+				oRm.write("<div");
+				oRm.addClass("sapSuiteDmcBar");
+				oRm.addClass("Bar1");
+				oRm.addClass(sSize);
+				if (oControl._oChartData.delta.isMax) {
+					oRm.addClass("MaxDelta");
+				}
+				if (oControl._oChartData.bar1.isSmaller) {
+					oRm.addClass("Smaller");
+				}
+				oRm.addClass(getDir(oControl._oChartData.bar1.left));
+				oRm.writeClasses();
+				oRm.addStyle("width", oControl._oChartData.bar1.width + "%");
+				oRm.writeStyles();
+				oRm.writeAttribute("id", oControl.getId() + "-dmc-bar1");
+				oRm.write(">");
+					oRm.write("<div");
+					oRm.addClass("sapSuiteDmcBarInternal");
+					oRm.addClass(getDir(oControl._oChartData.bar2.left));
+					oRm.writeClasses();
+					oRm.write(">");
+					oRm.write("</div>");
+				oRm.write("</div>");
+				
+				oRm.write("<div");
+				oRm.addClass("sapSuiteDmcBar");
+				oRm.addClass("Bar2");
+				oRm.addClass(sSize);
+				if (oControl._oChartData.delta.isMax) {
+					oRm.addClass("MaxDelta");
+				}
+				if (oControl._oChartData.bar2.isSmaller) {
+					oRm.addClass("Smaller");
+				}
+				oRm.addClass(getDir(oControl._oChartData.bar2.left));
+				oRm.writeClasses();
+				oRm.addStyle("width", oControl._oChartData.bar2.width + "%");
+				oRm.writeStyles();
+				oRm.writeAttribute("id", oControl.getId() + "-dmc-bar2");
+				oRm.write(">");
+					oRm.write("<div");
+					oRm.addClass("sapSuiteDmcBarInternal");
+					oRm.addClass(getDir(oControl._oChartData.bar1.left));
+					oRm.writeClasses();
+					oRm.write(">");
+					oRm.write("</div>");
+				oRm.write("</div>");
+
+				oRm.write("<div");
+				oRm.addClass("sapSuiteDmcBar");
+				oRm.addClass("Delta");
+				oRm.addClass(sSize);
+				if (!oControl._oChartData.delta.isMax) {
+					oRm.addClass("NotMax");
+				}
+				if (oControl._oChartData.delta.isZero) {
+					oRm.addClass("Zero");
+				}
+				if (oControl._oChartData.delta.isEqual) {
+					oRm.addClass("Equal");
+				}
+				oRm.addClass(getDir(oControl._oChartData.delta.left));
+				oRm.writeClasses();
+				oRm.addStyle("width", oControl._oChartData.delta.width + "%");
+				oRm.writeStyles();
+				oRm.writeAttribute("id", oControl.getId() + "-dmc-bar-delta");
+				oRm.write(">");
+					oRm.write("<div");
+					oRm.addClass(sColor);
+					oRm.addClass("sapSuiteDmcBarDeltaInt");
+					oRm.writeClasses();
+					oRm.write(">");
+					oRm.write("</div>");
+					
+					oRm.write("<div");
+					oRm.addClass("sapSuiteDmcBarDeltaStripe");
+					oRm.addClass(getDir(true));
+					if (oControl._oChartData.delta.isEqual) {
+						oRm.addClass("Equal");
+					}
+					oRm.addClass(oControl._oChartData.delta.isFirstStripeUp ? "Up" : "Down");
+					oRm.writeClasses();
+					oRm.write(">");
+					oRm.write("</div>");
+					
+					oRm.write("<div");
+					oRm.addClass("sapSuiteDmcBarDeltaStripe");
+					oRm.addClass(getDir(false));
+					oRm.addClass(oControl._oChartData.delta.isFirstStripeUp ? "Down" : "Up");
+					oRm.writeClasses();
+					oRm.write(">");
+					oRm.write("</div>");
+				oRm.write("</div>");
+				
+			oRm.write("</div>");
+			
+			oRm.write("<div");
+			oRm.writeAttribute("id", oControl.getId() + "-title2");
+			oRm.addClass("sapSuiteDmcTitle");
+			oRm.addClass("Btm");
+			oRm.writeClasses();
+			oRm.write(">");
+				oRm.writeEscaped(oControl.getTitle2());
+			oRm.write("</div>");
+		oRm.write("</div>");
+		 
+		oRm.write("<div");
+		oRm.addClass("sapSuiteDmcLbls");
+		oRm.addClass(sSize);
+		oRm.writeClasses();
+		oRm.write(">");
+			oRm.write("<div");
+			oRm.writeAttribute("id", oControl.getId() + "-value1");
+			oRm.addClass("sapSuiteDmcValue1");
+			oRm.writeClasses();
+			oRm.write(">");
+				oRm.writeEscaped(sAdv1ToShow);
+			oRm.write("</div>");
+
+			oRm.write("<div");
+			oRm.writeAttribute("id", oControl.getId() + "-delta");
+			oRm.addClass("sapSuiteDmcDelta");
+			oRm.addClass(sColor);
+			oRm.writeClasses();
+			oRm.write(">");
+				oRm.writeEscaped(sAddvToShow);
+			oRm.write("</div>");
+			
+			oRm.write("<div");
+			oRm.writeAttribute("id", oControl.getId() + "-value2");
+			oRm.addClass("sapSuiteDmcValue2");
+			oRm.writeClasses();
+			oRm.write(">");
+				oRm.writeEscaped(sAdv2ToShow);
+			oRm.write("</div>");
+		oRm.write("</div>");
+		
+		oRm.write("<div");
+		oRm.writeAttribute("id", oControl.getId() + "-calc");
+		oRm.addClass("sapSuiteDmcCalc");
+		oRm.writeClasses();
+		oRm.write(">");
+			oRm.write("<div");
+			oRm.writeAttribute("id", oControl.getId() + "-calc1");
+			oRm.addClass("sapSuiteDmcCalc1");
+			oRm.writeClasses();
+			oRm.write("></div>");
+			oRm.write("<div");
+			oRm.writeAttribute("id", oControl.getId() + "-calc2");
+			oRm.addClass("sapSuiteDmcCalc2");
+			oRm.writeClasses();
+			oRm.write("></div>");
+		oRm.write("</div>");
+	oRm.write("</div>");
+};
+
+}; // end of sap/suite/ui/commons/DeltaMicroChartRenderer.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.DynamicContainerRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
@@ -1345,6 +1702,7 @@ sap.suite.ui.commons.FacetOverviewRenderer.render = function(oRm, oControl) {
     oRm.addStyle("width", oControl.getWidth());
     oRm.addStyle("height", oControl.getHeight());
     oRm.writeStyles();
+    oRm.writeAttribute("role", "listitem");
     oRm.write(">");
         oRm.write("<div");
         oRm.writeAttribute("id", oControl.getId() + "-title");
@@ -1485,7 +1843,7 @@ sap.suite.ui.commons.GenericTile2X2Renderer.render = function(rm, oControl) {
 		 rm.writeAttributeEscaped("title", sTooltip);
 	 }
 	 
-	 rm.addClass("sapSuiteGT");
+	 rm.addClass("sapSuiteGT2x2");
 	 rm.addClass(oControl.getSize());
 	 rm.addClass("TwoByTwo");
 	 
@@ -1695,6 +2053,7 @@ sap.suite.ui.commons.GenericTileRenderer.render = function(rm, oControl) {
 			 rm.addClass("sapSuiteGTOverlay");
 			 rm.writeClasses();
 			 rm.writeAttribute("id", oControl.getId() + "-overlay");
+			 rm.writeAttributeEscaped("title", oControl.getAltText());
 			 rm.write(">");  
 		        switch(sState) {
 		        case sap.suite.ui.commons.LoadState.Disabled:
@@ -1765,6 +2124,218 @@ sap.suite.ui.commons.GenericTileRenderer.render = function(rm, oControl) {
 };
 
 }; // end of sap/suite/ui/commons/GenericTileRenderer.js
+if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.HarveyBallMicroChartRenderer') ) {
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+ 
+jQuery.sap.declare("sap.suite.ui.commons.HarveyBallMicroChartRenderer");
+
+/**
+ * @class HarveyBallMicroChart renderer. 
+ * @static
+ */
+sap.suite.ui.commons.HarveyBallMicroChartRenderer = {
+};
+
+
+/**
+ * Renders the HTML for the given control, using the provided {@link sap.ui.core.RenderManager}.
+ * 
+ * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
+ * @param {sap.ui.core.Control} oControl an object representation of the control that should be rendered
+ */
+sap.suite.ui.commons.HarveyBallMicroChartRenderer.render = function(oRm, oControl){ 
+	 // write the HTML into the render manager
+	 
+	 var bRtl = sap.ui.getCore().getConfiguration().getRTL();
+	 var sTooltip = oControl.getTooltip_AsString();
+	 if (typeof sTooltip !== "string") {
+    	sTooltip = "";
+	 }
+	 var sValueLabel = "";
+	 var sValueScale = "";
+	 var bFmtLabel = false;
+	 var fValue = 0;
+	 var sColor = "";
+	 var sCpColor = false;
+	 // support only value from first item
+	 if (oControl.getItems().length) {
+	 	 var oPieItem = oControl.getItems()[0];
+		 fValue = oPieItem.getFraction();
+		 sColor = oPieItem.getColor();
+		 sValueLabel = oPieItem.getFractionLabel() ? oPieItem.getFractionLabel() : ""+oPieItem.getFraction();
+		 sValueScale = oPieItem.getFractionScale().substring(0,3);
+		 bFmtLabel = oPieItem.getFormattedLabel();
+	 }
+	 	
+	 if (bFmtLabel) {
+		 var oFormattedValue = oControl._parseFormattedValue(sValueLabel);
+		
+		 sValueScale = oFormattedValue.scale.substring(0,3);
+		 sValueLabel = oFormattedValue.value;
+	 }
+	 
+	 var fTotal = oControl.getTotal();
+	 var sTotalLabel = oControl.getTotalLabel() ? oControl.getTotalLabel() : ""+oControl.getTotal();
+	 var sTotalScale = oControl.getTotalScale().substring(0,3);
+   
+	 if (oControl.getFormattedLabel()) {
+		 var oFormattedTotal = oControl._parseFormattedValue(sTotalLabel);
+		
+		 sTotalScale = oFormattedTotal.scale.substring(0,3);
+		 sTotalLabel = oFormattedTotal.value;
+	 }
+	 var iTrunc = 5; //truncate values to 5 chars
+	 if (sValueLabel) {
+		 sValueLabel = (sValueLabel.length >= iTrunc && (sValueLabel[iTrunc-1] === "." || sValueLabel[iTrunc-1] === ",")) ? sValueLabel.substring(0, iTrunc-1) : sValueLabel.substring(0,iTrunc);
+	 }
+	 if (sTotalLabel) {
+		 sTotalLabel = (sTotalLabel.length >= iTrunc && (sTotalLabel[iTrunc-1] === "." || sTotalLabel[iTrunc-1] === ",")) ? sTotalLabel.substring(0, iTrunc-1) : sTotalLabel.substring(0,iTrunc);
+	 }
+	if(oControl.getColorPalette()) {
+		sCpColor = oControl.getColorPalette()[0];
+	}
+   
+   var sSize = oControl.getSize();
+	 oRm.write("<div");
+	 oRm.writeControlData(oControl);
+	 oRm.writeAttributeEscaped("title", sTooltip);
+	 oRm.addClass("suiteHBMC");
+	 oRm.addClass(sSize);
+	 if (oControl.hasListeners("press")) {    
+		oRm.addClass("sapSuiteUiCommonsPointer");
+		oRm.writeAttribute("tabindex", "0");
+	 }
+	 oRm.writeClasses();
+	 
+   if (oControl.getWidth()) {
+    oRm.addStyle("width", oControl.getWidth());
+   }
+   oRm.writeStyles();
+    
+	 oRm.write(">");
+	 
+	 	 oRm.write("<div");
+	 	 oRm.addClass("suiteHBMCChartCnt");
+	 	 oRm.addClass(sSize);
+	 	 oRm.writeClasses();
+	 	 oRm.addStyle("display", "inline-block");
+	 	 oRm.writeStyles();
+	 	 oRm.writeAttribute("role", "presentation");
+	 	 oRm.writeAttributeEscaped("aria-label", oControl.getAltText().replace(/\s/g, " ") + (sap.ui.Device.browser.firefox ? "" : " " + sTooltip ));
+	 	 
+		 oRm.write(">");
+		 	oRm.write("<svg");
+		 	oRm.writeAttribute("id", oControl.getId() + "-harvey-ball");
+			oRm.writeAttribute("width",oControl._oPath.size);
+			oRm.writeAttribute("height",oControl._oPath.size);
+			oRm.writeAttribute("focusable", false);
+			oRm.write(">");
+			 	oRm.write("<g>");
+					oRm.write("<circle");
+					oRm.writeAttribute("cx",oControl._oPath.center);
+					oRm.writeAttribute("cy",oControl._oPath.center);
+					oRm.writeAttribute("r", (sap.ui.getCore().getConfiguration().getTheme() === "sap_hcb") ? oControl._oPath.center-1 : oControl._oPath.center);
+					oRm.addClass("suiteHBMCSBall");
+				  oRm.writeClasses();
+					oRm.write("/>");
+					
+					
+					if(!fValue) {
+						//no pie
+					}	else if(fValue >= fTotal) {
+						oRm.write("<circle");
+						oRm.writeAttribute("cx",oControl._oPath.center);
+						oRm.writeAttribute("cy",oControl._oPath.center);
+						oRm.writeAttribute("r",oControl._oPath.center - oControl._oPath.border);
+						oRm.addClass("suiteHBMCSgmnt");
+						oRm.addClass(sColor);
+					  oRm.writeClasses();
+						
+						if(oControl.getColorPalette()) {
+							oRm.addStyle("fill", oControl.getColorPalette()[0]);
+							oRm.writeStyles();							
+						}
+						
+						oRm.write("/>");
+					} else if(fValue > 0) {
+						oRm.write("<path");
+						oRm.writeAttribute("id", oControl.getId() + "-segment");
+						oRm.addClass("suiteHBMCSgmnt");
+						oRm.addClass(sColor);
+					  oRm.writeClasses();
+						oRm.writeAttribute("d",oControl.serializePieChart());
+						//oRm.writeAttribute("d","M36,36 L36,4 A32,32 0 0,1 42,5 z");//remove hardcode
+						
+						if(oControl.getColorPalette().length != 0) {
+							oRm.addStyle("fill", oControl.getColorPalette()[0]);
+							oRm.writeStyles();
+						}
+
+						oRm.write("/>");					
+					}
+					
+					
+			 	oRm.write("</g>");
+		 	oRm.write("</svg>");
+		 oRm.write("</div>");
+		 
+	 	 oRm.write("<div");
+	 	 oRm.addClass("suiteHBMCValSclCnt");
+	 	 oRm.addClass(sSize);
+	 	 oRm.addClass(sColor);
+	 	 
+	 	 if (sCpColor) {
+	 		 oRm.addClass("CP");
+	 	 }
+	 	 
+	 	 oRm.writeClasses();
+	 	 oRm.addStyle("display", oControl.getShowFractions() ? "inline-block" :"none");
+	 	 oRm.writeStyles();
+		 oRm.write(">");
+			 oRm.write("<p");
+			 oRm.write(">");
+				 this.renderLabel(oRm, oControl, [sColor, sSize, "suiteHBMCVal"], sValueLabel, "-fraction");
+				 this.renderLabel(oRm, oControl, [sColor, sSize, "suiteHBMCValScale"], sValueScale, "-fraction-scale");
+			 oRm.write("</p>");
+		 oRm.write("</div>");
+		 
+		 oRm.write("<div");
+		 oRm.addClass("suiteHBMCTtlSclCnt");
+		 oRm.addClass(sSize);
+		 oRm.writeClasses();
+		 if (bRtl) {
+			 oRm.addStyle("left", "0");
+		 } else {
+			 oRm.addStyle("right", "0");
+		 }
+		 oRm.addStyle("display", oControl.getShowTotal() ? "inline-block" :"none");
+		 oRm.writeStyles();
+		 oRm.write(">");
+		 this.renderLabel(oRm, oControl, [sColor, sSize, "suiteHBMCTtl"], sTotalLabel, "-total");
+		 this.renderLabel(oRm, oControl, [sColor, sSize, "suiteHBMCTtlScale"], sTotalScale, "-total-scale");
+		 oRm.write("</div>");
+	 oRm.write("</div>");
+};
+
+sap.suite.ui.commons.HarveyBallMicroChartRenderer.renderLabel = function(oRm, oControl, aClasses, sLabel, sId) {
+	oRm.write("<span");
+	oRm.writeAttribute("id", oControl.getId() + sId);
+	for (var i=0; i<aClasses.length; i++) {
+		oRm.addClass(aClasses[i]);
+	}
+	oRm.writeClasses();
+	oRm.write(">");
+		if (sLabel) {
+			oRm.writeEscaped(sLabel);
+		}
+	oRm.write("</span>");
+
+};
+
+
+}; // end of sap/suite/ui/commons/HarveyBallMicroChartRenderer.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.HeaderCellRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
@@ -1796,19 +2367,19 @@ sap.suite.ui.commons.HeaderCellRenderer.render = function(rm, oControl){
 	 
 	 if(oWestControl != null) {
 		 sType += "W";
-		 sDesc += oWestControl.getId() + " ";
+		 sDesc += oControl.getId() + "-west ";
 	 }
 	 if(oNorthControl != null) {
 		 sType += "N";
-		 sDesc += oNorthControl.getId() + " ";
+		 sDesc += oControl.getId() + "-north ";
 	 }
 	 if(oEastControl != null) {
 		 sType += "E";
-		 sDesc += oEastControl.getId() + " ";
+		 sDesc += oControl.getId() + "-east ";
 	 }
 	 if(oSouthControl != null) {
 		 sType += "S";
-		 sDesc += oSouthControl.getId();
+		 sDesc += oControl.getId() + "-south";
 	 }
 	 
 	 rm.write("<div");
@@ -1819,31 +2390,35 @@ sap.suite.ui.commons.HeaderCellRenderer.render = function(rm, oControl){
 	 rm.writeClasses();
 	 rm.writeAttribute("role", "presentation");
 	 rm.writeAttribute("aria-live", "assertive");
-	 rm.writeAttribute("aria-describedby", sDesc);
+	 rm.writeAttribute("aria-labelledby", sDesc);
 	 rm.write(">");
 		 // write the HTML into the render manager
 		 if(oWestControl != null) {
-			 this._renderInnerCell(rm, oWestControl, sType, "sapSuiteHdrCellWest");
+			 this._renderInnerCell(rm, oWestControl, sType, "sapSuiteHdrCellWest", oControl.getId() + "-west");
 		 }
 		 if(oNorthControl != null) {
-			 this._renderInnerCell(rm, oNorthControl, sType, "sapSuiteHdrCellNorth");
+			 this._renderInnerCell(rm, oNorthControl, sType, "sapSuiteHdrCellNorth", oControl.getId() + "-north");
 		 }
 		 if(oEastControl != null) {
-			 this._renderInnerCell(rm, oEastControl, sType, "sapSuiteHdrCellEast");
+			 this._renderInnerCell(rm, oEastControl, sType, "sapSuiteHdrCellEast", oControl.getId() + "-east");
 		 }
 		 if(oSouthControl != null) {
-			 this._renderInnerCell(rm, oSouthControl, sType, "sapSuiteHdrCellSouth");
+			 this._renderInnerCell(rm, oSouthControl, sType, "sapSuiteHdrCellSouth", oControl.getId() + "-south");
 		 }
 	rm.write("</div>");
 };
-sap.suite.ui.commons.HeaderCellRenderer._renderInnerCell = function(rm, oControl, sType, side) {
+sap.suite.ui.commons.HeaderCellRenderer._renderInnerCell = function(rm, oControl, sType, side, sId) {
 		 rm.write("<div");
 		 rm.addClass(sType);
 		 rm.addClass(side);
 		 rm.addStyle("height", oControl.getHeight());
 		 rm.writeStyles();
 		 rm.writeClasses();
-		 rm.writeAttribute("aria-hidden", "true");
+		 rm.writeAttribute("id", sId);
+		 //rm.writeAttribute("aria-hidden", "true");
+		 if (oControl.getContent() && oControl.getContent().getId()) {
+			 rm.writeAttribute("aria-labelledby", oControl.getContent().getId());
+		 }
 		 rm.write(">");
 		 rm.renderControl(oControl.getContent());
 		 rm.write("</div>");
@@ -1874,29 +2449,25 @@ sap.suite.ui.commons.HeaderContainerRenderer.render = function(rm, oControl){
 	 // write the HTML into the render manager
 	 rm.write("<div");
 	 rm.writeControlData(oControl);
-	 if (sTooltip) {
-     rm.writeAttributeEscaped("title", sTooltip);
-   }
+	 if (sTooltip && (typeof sTooltip === "string")) {
+	     rm.writeAttributeEscaped("title", sTooltip);
+	 }
 	 rm.addClass("sapSuiteHdrCntr");
 	 rm.addClass(oControl.getView());
 	 if(oControl.getShowDividers()) {
 	   rm.addClass("sapSuiteHrdrCntrDvdrs");
 	 }
 	 rm.writeClasses();
-	 rm.addStyle("height", oControl.getHeight());
+	 rm.addStyle("height", "100%");
 	 rm.writeStyles();
+	 var sDesc = "";
+	 var aItems = oControl.getItems();
+	 for (var i = 0; aItems && i < aItems.length; i++) {
+		 sDesc += aItems[i].getId() + " ";
+	 }
+	 rm.writeAttribute("aria-labelledby", sDesc);
+	 
 	 rm.write(">");
-
-     if (oControl._oArrowPrev) {
-         rm.write("<div");
-         rm.addClass("sapSuiteHdrCntrBtnCntr");
-		 rm.addClass("sapSuiteHdrCntrLeft");
-		 rm.addClass(oControl.getView());
-		 rm.writeClasses();
-		 rm.write(">");
-		 rm.renderControl(oControl._oArrowPrev);
-         rm.write("</div>");
-     }
 
 	 rm.write("<div");
 	 rm.writeAttributeEscaped("id", oControl.getId() + "-scroll-area");
@@ -1907,6 +2478,17 @@ sap.suite.ui.commons.HeaderContainerRenderer.render = function(rm, oControl){
 	 rm.renderControl(oControl._oScrollCntr);
      rm.write("</div>");
  
+     if (oControl._oArrowPrev) {
+         rm.write("<div");
+         rm.addClass("sapSuiteHdrCntrBtnCntr");
+		 rm.addClass("sapSuiteHdrCntrLeft");
+		 rm.addClass(oControl.getView());
+		 rm.writeClasses();
+		 rm.write(">");
+		 rm.renderControl(oControl._oArrowPrev);
+         rm.write("</div>");
+     }
+     
      if (oControl._oArrowNext) {
          rm.write("<div");
          rm.addClass("sapSuiteHdrCntrBtnCntr");
@@ -2128,6 +2710,9 @@ sap.suite.ui.commons.JamContentRenderer.render = function(oRm, oControl){
     var sSubheader = oControl.getSubheader(); 
     var sValue = oControl.getValue();
     var sTooltip = oControl.getTooltip_AsString();
+    if (typeof sTooltip !== "string") {
+    	sTooltip = "";
+    }
 
     oRm.write("<div");
     oRm.writeControlData(oControl);
@@ -2447,6 +3032,9 @@ sap.suite.ui.commons.MicroAreaChartRenderer.render = function(oRm, oControl) {
 	};
 	
     var sTooltip = oControl.getTooltip_AsString();
+    if (typeof sTooltip !== "string") {
+    	sTooltip = "";
+    }
     
     var sTopLblType = ((oControl.getView() == "Normal" && oControl.getFirstYLabel() && oControl.getFirstYLabel().getLabel()) ? "L" : "")
     	+ ((oControl.getMaxLabel() && oControl.getMaxLabel().getLabel()) ? "C" : "")
@@ -2695,6 +3283,9 @@ sap.suite.ui.commons.NewsContentRenderer.render = function(oRm, oControl){
     var sSize = oControl.getSize();
     var sSubheader = oControl.getSubheader(); 
     var sTooltip = oControl.getTooltip_AsString();
+    if (typeof sTooltip !== "string") {
+    	sTooltip = "";
+    }
 
     oRm.write("<div");
     oRm.writeControlData(oControl);
@@ -2761,7 +3352,6 @@ sap.suite.ui.commons.NoteTakerFeederRenderer.render = function(oRm, oControl){
     }
     oRm.addClass("sapSuiteUiCommonsNoteTakerFeeder");
     oRm.writeClasses();
-    oRm.writeAttribute("tabindex", "0");
     oRm.writeAccessibilityState(oControl, {
 		role : 'region',
 		describedby : oControl.getId() + "-header"
@@ -2872,6 +3462,7 @@ sap.suite.ui.commons.NoteTakerFeederRenderer.render = function(oRm, oControl){
         }
         oRm.writeClasses();
         oRm.write(">");
+        	oRm.renderControl(oControl._oRequiredLbl);
             oRm.renderControl(oControl._oBody);
         oRm.write("</div>");
 
@@ -3091,9 +3682,17 @@ sap.suite.ui.commons.NumericContentRenderer.render = function(oRm, oControl) {
 	var bScale = sScale && sValue;
     oRm.write("<div");
     oRm.writeControlData(oControl);
-    oRm.writeAttributeEscaped("title", oControl.getTooltip_AsString());
+    var sTooltip = oControl.getTooltip_AsString();
+    if (typeof sTooltip !== "string") {
+    	sTooltip = "";
+    }
+
+    oRm.writeAttributeEscaped("title", sTooltip);
     oRm.writeAttribute("role", "presentation");
-   	oRm.writeAttributeEscaped("aria-label", oControl.getAltText().replace(/\s/g, " ") + (sap.ui.Device.browser.firefox ? "" : " " + oControl.getTooltip_AsString() ));
+   	oRm.writeAttributeEscaped("aria-label", oControl.getAltText().replace(/\s/g, " ") + (sap.ui.Device.browser.firefox ? "" : " " + sTooltip ));
+    if (sState == "Failed" || sState == "Loading") {
+    	oRm.writeAttribute("aria-disabled", "true");
+    }
     
     if(oControl.getAnimateTextChange()) {
 	    oRm.addStyle("opacity", "0.25");
@@ -3317,14 +3916,118 @@ sap.suite.ui.commons.ProcessFlowConnectionRenderer = {};
 sap.suite.ui.commons.ProcessFlowConnectionRenderer.render = function(oRm, oControl) { // EXC_SAP_006_1, EXC_JSHINT_046, EXC_JSHINT_047
   var connection = oControl._traverseConnectionData();
   var zoomLevel = oControl.getZoomLevel();
+  var processFlowConnectionRenderer = sap.suite.ui.commons.ProcessFlowConnectionRenderer;
 
-  oRm.write("<div id = \"" + oControl.getId() + "\">");
-  if (connection.hasOwnProperty("left") && connection.left.draw &&
-    connection.hasOwnProperty("right") && connection.right.draw &&
-    connection.hasOwnProperty("top") && !connection.top.draw &&
-    connection.hasOwnProperty("bottom") && !connection.bottom.draw) {
-    // horizontal connection
+  oRm.write("<div");
+  oRm.writeAttribute("id", oControl.getId());
 
+  //Write ARIA details
+  oRm.writeAttribute("role", "textbox");
+  oRm.writeAttribute("aria-readonly", true);
+  oRm.writeAttributeEscaped("aria-label", oControl._getAriaText());
+  oRm.write(">");
+
+  //Write the lines  
+  if (oControl._isHorizontalLine(connection)) {
+    processFlowConnectionRenderer._writeHorizontalLine(oRm, connection, zoomLevel);
+  } else if (oControl._isVerticalLine(connection)) {
+    processFlowConnectionRenderer._writeVerticalLine(oRm, connection, zoomLevel);
+  } else {
+    processFlowConnectionRenderer._writeSpecialLine(oRm, connection, zoomLevel);
+  }
+  oRm.write("</div>");
+};
+
+/**
+ * Writes the vertical line.
+ *
+ * @private
+ * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
+ * @param {Object} Connection which needs to be checked
+ * @param {Object} Zoom level of control
+ */
+sap.suite.ui.commons.ProcessFlowConnectionRenderer._writeVerticalLine = function(oRm, connection, zoomLevel) {
+    // left column
+    oRm.write("<div");
+    oRm.addClass("floatLeft");
+    switch (zoomLevel) {
+      case sap.suite.ui.commons.ProcessFlowZoomLevel.One:
+        oRm.addClass("boxZoom1Width");
+        oRm.addClass("boxWideZoom1Height");
+        break;
+      case sap.suite.ui.commons.ProcessFlowZoomLevel.Three:
+        oRm.addClass("boxZoom3Width");
+        oRm.addClass("boxWideZoom3Height");
+        break;
+      case sap.suite.ui.commons.ProcessFlowZoomLevel.Four:
+        oRm.addClass("boxZoom4Width");
+        oRm.addClass("boxWideZoom4Height");
+        break;
+      default:
+        oRm.addClass("boxZoom2Width");
+        oRm.addClass("boxWideZoom2Height");
+    }
+    oRm.writeClasses();
+    oRm.write(">");
+    oRm.write("</div>");
+
+    // middle column
+    oRm.write("<div");
+    oRm.addClass("floatLeft");
+    oRm.addClass("boxMiddleBorderWidth");
+    switch (zoomLevel) {
+      case sap.suite.ui.commons.ProcessFlowZoomLevel.One:
+        oRm.addClass("boxWideZoom1Height");
+        break;
+      case sap.suite.ui.commons.ProcessFlowZoomLevel.Three:
+        oRm.addClass("boxWideZoom3Height");
+        break;
+      case sap.suite.ui.commons.ProcessFlowZoomLevel.Four:
+        oRm.addClass("boxWideZoom4Height");
+        break;
+      default:
+        oRm.addClass("boxWideZoom2Height");
+    }
+    oRm.addClass("borderLeft");
+    if (connection.top.state === "Planned") {
+      oRm.addClass("borderLeftStatePlanned");
+    } else {
+      oRm.addClass("borderLeftStateCreated");
+    }
+    if (connection.top.display === "Highlighted") {
+      oRm.addClass("borderLeftDisplayHighlighted");
+      oRm.addClass("displayHighlighted");
+    } else if (connection.top.display === "Dimmed") {
+      oRm.addClass("borderLeftDisplayDimmed");
+      oRm.addClass("displayDimmed");
+    } else {
+      oRm.addClass("borderLeftDisplayRegular");
+      oRm.addClass("displayRegular");
+    }
+    oRm.writeClasses();
+    oRm.write(">");
+    oRm.write("</div>");
+
+    // right column
+    // omitted
+
+    // reset
+    oRm.write("<div");
+    oRm.addClass("floatClear");
+    oRm.writeClasses();
+    oRm.write(">");
+    oRm.write("</div>");
+}
+
+/**
+ * Writes the horizontal line.
+ *
+ * @private
+ * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
+ * @param {Object} Connection which needs to be checked
+ * @param {Object} Zoom level of control
+ */
+sap.suite.ui.commons.ProcessFlowConnectionRenderer._writeHorizontalLine = function(oRm, connection, zoomLevel) {
     // 1st row
     oRm.write("<div");
     oRm.addClass("boxWideWidth");
@@ -3403,87 +4106,18 @@ sap.suite.ui.commons.ProcessFlowConnectionRenderer.render = function(oRm, oContr
 
     // 3rd row
     // omitted
+};
 
-  } else if (connection.hasOwnProperty("left") && !connection.left.draw &&
-    connection.hasOwnProperty("right") && !connection.right.draw &&
-    connection.hasOwnProperty("top") && connection.top.draw &&
-    connection.hasOwnProperty("bottom") && connection.bottom.draw) {
-    // vertical connection
-
-    // left column
-    oRm.write("<div");
-    oRm.addClass("floatLeft");
-    switch (zoomLevel) {
-      case sap.suite.ui.commons.ProcessFlowZoomLevel.One:
-        oRm.addClass("boxZoom1Width");
-        oRm.addClass("boxWideZoom1Height");
-        break;
-      case sap.suite.ui.commons.ProcessFlowZoomLevel.Three:
-        oRm.addClass("boxZoom3Width");
-        oRm.addClass("boxWideZoom3Height");
-        break;
-      case sap.suite.ui.commons.ProcessFlowZoomLevel.Four:
-        oRm.addClass("boxZoom4Width");
-        oRm.addClass("boxWideZoom4Height");
-        break;
-      default:
-        oRm.addClass("boxZoom2Width");
-        oRm.addClass("boxWideZoom2Height");
-    }
-    oRm.writeClasses();
-    oRm.write(">");
-    oRm.write("</div>");
-
-    // middle column
-    oRm.write("<div");
-    oRm.addClass("floatLeft");
-    oRm.addClass("boxMiddleBorderWidth");
-    switch (zoomLevel) {
-      case sap.suite.ui.commons.ProcessFlowZoomLevel.One:
-        oRm.addClass("boxWideZoom1Height");
-        break;
-      case sap.suite.ui.commons.ProcessFlowZoomLevel.Three:
-        oRm.addClass("boxWideZoom3Height");
-        break;
-      case sap.suite.ui.commons.ProcessFlowZoomLevel.Four:
-        oRm.addClass("boxWideZoom4Height");
-        break;
-      default:
-        oRm.addClass("boxWideZoom2Height");
-    }
-    oRm.addClass("borderLeft");
-    if (connection.top.state === "Planned") {
-      oRm.addClass("borderLeftStatePlanned");
-    } else {
-      oRm.addClass("borderLeftStateCreated");
-    }
-    if (connection.top.display === "Highlighted") {
-      oRm.addClass("borderLeftDisplayHighlighted");
-      oRm.addClass("displayHighlighted");
-    } else if (connection.top.display === "Dimmed") {
-      oRm.addClass("borderLeftDisplayDimmed");
-      oRm.addClass("displayDimmed");
-    } else {
-      oRm.addClass("borderLeftDisplayRegular");
-      oRm.addClass("displayRegular");
-    }
-    oRm.writeClasses();
-    oRm.write(">");
-    oRm.write("</div>");
-
-    // right column
-    // omitted
-
-    // reset
-    oRm.write("<div");
-    oRm.addClass("floatClear");
-    oRm.writeClasses();
-    oRm.write(">");
-    oRm.write("</div>");
-
-  } else {
-    // other connections
-
+/**
+ * Writes the special line (e.g. branch)
+ *
+ * @private
+ * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
+ * @param {Object} Connection which needs to be checked
+ * @param {Object} Zoom level of control
+ */
+sap.suite.ui.commons.ProcessFlowConnectionRenderer._writeSpecialLine = function(oRm, connection, zoomLevel) {
+    // other connections e.g. branch
     // 1st row
 
     // left column
@@ -3789,11 +4423,7 @@ sap.suite.ui.commons.ProcessFlowConnectionRenderer.render = function(oRm, oContr
     oRm.writeClasses();
     oRm.write(">");
     oRm.write("</div>");
-
-  }
-  oRm.write("</div>");
 };
-
 }; // end of sap/suite/ui/commons/ProcessFlowConnectionRenderer.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.ProcessFlowLaneHeaderRenderer') ) {
 /*
@@ -3816,7 +4446,7 @@ sap.suite.ui.commons.ProcessFlowLaneHeaderRenderer = {
  * @param {sap.ui.core.Control} oControl an object representation of the control that should be rendered
  */
 sap.suite.ui.commons.ProcessFlowLaneHeaderRenderer.render = function(oRm, oControl) {
-    // write the HTML into the render manager
+    // Write the HTML into the render manager
     switch(oControl.getSymbolType()) {
       case sap.suite.ui.commons.ProcessFlowLaneHeader.symbolType.startSymbol:
         this._writeSymbolNodeType(
@@ -3912,6 +4542,13 @@ sap.suite.ui.commons.ProcessFlowLaneHeaderRenderer._writeDefaultNodeType = funct
 
     oRm.write("<div");
     oRm.writeAttribute("id", oControl.getId() + "-standard");
+
+    //Write ARIA details
+    oRm.writeAttribute("role", "textbox");
+    oRm.writeAttribute("aria-readonly", true);
+    var statusText = oControl.getText() + ", " + oControl._getAriaText();
+    oRm.writeAttributeEscaped("aria-label", statusText);
+
     oRm.addClass("suiteUiProcessFlowLaneHeaderBodyContainer");
     oRm.writeClasses();
     oRm.write(">"); // div element for header
@@ -3954,6 +4591,7 @@ sap.suite.ui.commons.ProcessFlowLaneHeaderRenderer._writeDefaultNodeType = funct
       oRm.writeAttribute("id", oControl.getId() + "-lh-text");
       oRm.addClass("suiteUiProcessFlowLaneHeaderText");
       oRm.writeClasses();
+      oRm.writeAttribute("aria-hidden", true);
       oRm.write(">"); // div element for the text span
         oRm.writeEscaped(oControl.getText());
       oRm.write("</span>"); // text
@@ -3962,7 +4600,6 @@ sap.suite.ui.commons.ProcessFlowLaneHeaderRenderer._writeDefaultNodeType = funct
 
   oRm.write("</div>"); // whole control
 };
-
 }; // end of sap/suite/ui/commons/ProcessFlowLaneHeaderRenderer.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.ProcessFlowNodeRenderer') ) {
 /*
@@ -4405,6 +5042,7 @@ sap.suite.ui.commons.ProcessFlowNodeRenderer.render = function(oRm, oControl){ /
   oRm.write("<div");
   oRm.writeControlData(oControl);
   sap.suite.ui.commons.ProcessFlowNodeRenderer.assignNodeClasses(oRm, oControl, 0);
+
   oRm.write(">");
   switch( oControl._getDisplayState() ) {
     case sap.suite.ui.commons.ProcessFlowDisplayState.Highlighted:
@@ -4502,7 +5140,6 @@ sap.suite.ui.commons.ProcessFlowNodeRenderer.render = function(oRm, oControl){ /
 sap.suite.ui.commons.ProcessFlowNodeRenderer._isSafari = function() {
   return /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 };
-
 }; // end of sap/suite/ui/commons/ProcessFlowNodeRenderer.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.SplitButtonRenderer') ) {
 /*!
@@ -4543,6 +5180,189 @@ sap.suite.ui.commons.SplitButtonRenderer.render = function(oRm, oSplitButton) {
 };
 
 }; // end of sap/suite/ui/commons/SplitButtonRenderer.js
+if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.TargetFilterRenderer') ) {
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+ 
+jQuery.sap.declare("sap.suite.ui.commons.TargetFilterRenderer");
+
+/**
+ * @class TargetFilter renderer. 
+ * @static
+ */
+sap.suite.ui.commons.TargetFilterRenderer = {
+};
+
+
+/**
+ * Renders the HTML for the given control, using the provided {@link sap.ui.core.RenderManager}.
+ * 
+ * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
+ * @param {sap.ui.core.Control} oControl an object representation of the control that should be rendered
+ */
+sap.suite.ui.commons.TargetFilterRenderer.render = function(oRm, oControl){ 
+	 oRm.write("<div");
+	 oRm.writeControlData(oControl);
+	 oRm.addClass("sapSuiteUiTF");
+	 oRm.writeClasses();
+	 oRm.write(">");
+		oRm.write("<div");
+		oRm.addClass("sapSuiteUiTFOuterCont");
+		oRm.writeClasses();
+		oRm.write(">");
+
+			 oRm.write("<div");
+			 oRm.addClass("sapSuiteUiTFOuterCircle");
+			 oRm.writeClasses();
+			 oRm.write(">");
+
+				 oRm.write("<div");
+				 oRm.addClass("sapSuiteUiTFVerticalLine");
+				 oRm.writeClasses();
+				 oRm.write(">");
+				 oRm.write("</div>");
+
+//				 for (var iOthers = 0; iOthers < 4; iOthers++) {
+//					 if (oControl.oLinkOthers[iOthers]) {
+//						 oRm.write("<div>");
+//				//			 oRm.renderControl(oControl.oLinkOthers[iOthers]);
+//						 oRm.write("</div>");
+//					 }
+//				 }
+
+//				var aLinkClouds = oControl._oModel.getLinkClouds();
+//				for (var i = 0; i < aLinkClouds.length; i++) {
+//					oRm.renderControl(aLinkClouds[i]);
+//			 	}
+			for (var i = 0; i < oControl._aQudrants.length; i++) {
+				oRm.renderControl(oControl._aQudrants[i]);
+		 	}
+			 oRm.write("</div>");
+
+//			 oRm.write("<div");
+//			 oRm.addClass("sapSuiteUiTFParCont");
+//			 oRm.addClass("Quad1");
+//			 oRm.writeClasses();
+//			 oRm.write(">");
+//			 	oRm.renderControl(oControl._oFilterCb0);
+//			 oRm.write("</div>");
+//
+//			 oRm.write("<div");
+//			 oRm.addClass("sapSuiteUiTFValHel");
+//			 oRm.addClass("Quad1");
+//			 oRm.writeClasses();
+//			 oRm.write(">");
+//			 	oRm.renderControl(oControl._oValueHelpBtn1);
+//			 oRm.write("</div>");
+//			 
+//			 oRm.write("<div");
+//			 oRm.addClass("sapSuiteUiTFParCont");
+//			 oRm.addClass("Quad2");
+//			 oRm.writeClasses();
+//			 oRm.write(">");
+//			 	oRm.renderControl(oControl._oFilterCb1);
+//			 oRm.write("</div>");
+//
+//			 oRm.write("<div");
+//			 oRm.addClass("sapSuiteUiTFParCont");
+//			 oRm.addClass("Quad3");
+//			 oRm.writeClasses();
+//			 oRm.write(">");
+//			 	oRm.renderControl(oControl._oFilterCb2);
+//			 oRm.write("</div>");
+//
+//			 oRm.write("<div");
+//			 oRm.addClass("sapSuiteUiTFParCont");
+//			 oRm.addClass("Quad4");
+//			 oRm.writeClasses();
+//			 oRm.write(">");
+//			 	oRm.renderControl(oControl._oFilterCb3);
+//			 oRm.write("</div>");
+//
+//
+//
+//			 oRm.write("<div");
+//			 oRm.addClass("sapSuiteUiTFValHel");
+//			 oRm.addClass("Quad2");
+//			 oRm.writeClasses();
+//			 oRm.write(">");
+//			 	oRm.renderControl(oControl._oValueHelpBtn2);
+//			 oRm.write("</div>");
+//
+//			 oRm.write("<div");
+//			 oRm.addClass("sapSuiteUiTFValHel");
+//			 oRm.addClass("Quad3");
+//			 oRm.writeClasses();
+//			 oRm.write(">");
+//			 	oRm.renderControl(oControl._oValueHelpBtn3);
+//			 oRm.write("</div>");
+//
+//			 oRm.write("<div");
+//			 oRm.addClass("sapSuiteUiTFValHel");
+//			 oRm.addClass("Quad4");
+//			 oRm.writeClasses();
+//			 oRm.write(">");
+//			 	oRm.renderControl(oControl._oValueHelpBtn4);
+//			 oRm.write("</div>");
+
+			 oRm.write("<div");
+			 oRm.addClass("sapSuiteUiTFHorizontalLine");
+			 oRm.writeClasses();
+			 oRm.write(">");
+			 oRm.write("</div>");
+
+			 oRm.write("<div");
+			 oRm.addClass("sapSuiteUiTFCentralCircle");
+			 oRm.writeClasses();
+			 oRm.write(">");
+
+				 oRm.write("<div");
+				 oRm.addClass("sapSuiteUiTFCentralTopLabel");
+				 oRm.writeClasses();
+				 oRm.write(">");
+				 oRm.writeEscaped("Show Selected");
+				 oRm.write("</div>");
+	
+				 oRm.renderControl(oControl._oCountDisplay);
+
+			 oRm.write("</div>");
+
+/*
+			 oRm.write("<div");
+			 oRm.addClass("sapSuiteUiTFSettingsCont");
+			 oRm.writeClasses();
+			 oRm.write(">");
+			 	oRm.renderControl(oControl._oSettingsBtn);
+			 oRm.write("</div>");
+*/
+			 oRm.write("<div");
+			 oRm.addClass("sapSuiteUiTFRightPanel");
+			 oRm.writeClasses();
+			 oRm.write(">");
+			 	oRm.renderControl(oControl._oRightPanel);
+			 oRm.write("</div>");
+
+		oRm.write("</div>");
+
+	oRm.write("<div");
+	oRm.addClass("sapSuiteUiTFShutter");
+	oRm.addClass("Top");
+	oRm.writeClasses();
+	oRm.write(">");
+	oRm.write("</div>");
+	
+	oRm.write("<div");
+	oRm.addClass("sapSuiteUiTFShutter");
+	oRm.addClass("Bottom");
+	oRm.writeClasses();
+	oRm.write(">");
+	oRm.write("</div>");
+
+	oRm.write("</div>");
+};
+
+}; // end of sap/suite/ui/commons/TargetFilterRenderer.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.ThingCollectionRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
@@ -5028,17 +5848,19 @@ sap.suite.ui.commons.TileContentRenderer.render = function(rm, oControl) {
  */
 sap.suite.ui.commons.TileContentRenderer.renderContent = function(rm, oControl) {
 	var oCnt = oControl.getContent();
-	rm.write("<div");
-	rm.addClass("sapSuiteTileCntContent");
-	rm.addClass(oControl.getSize());
-	rm.writeClasses();
-	rm.writeAttribute("id", oControl.getId() + "-content");
-	rm.write(">");
-		if(!oCnt.hasStyleClass("sapSuiteUiTcInnerMarker")) {
-			oCnt.addStyleClass("sapSuiteUiTcInnerMarker");
-		}
-		rm.renderControl(oCnt);
-	rm.write("</div>");
+	if (oCnt) {
+		rm.write("<div");
+		rm.addClass("sapSuiteTileCntContent");
+		rm.addClass(oControl.getSize());
+		rm.writeClasses();
+		rm.writeAttribute("id", oControl.getId() + "-content");
+		rm.write(">");
+			if(!oCnt.hasStyleClass("sapSuiteUiTcInnerMarker")) {
+				oCnt.addStyleClass("sapSuiteUiTcInnerMarker");
+			}
+			rm.renderControl(oCnt);
+		rm.write("</div>");
+	}
 };
 
 /**
@@ -5145,6 +5967,11 @@ sap.suite.ui.commons.TimelineItemRenderer = {
 
 
 sap.suite.ui.commons.TimelineItemRenderer.renderLIContentH = function(oRm, oLI) {
+	oRm.write("<li ");
+	oRm.writeAttribute("role", "option");
+	oRm.addClass("sapSuiteUiCommonsTimelineItemLiWrapperV");
+	oRm.writeClasses();
+	oRm.write(">");
 	oRm.write("<div ");
 	oRm.addClass("sapSuiteUiCommonsTimelineItemWrapperV");
 	oRm.writeClasses();
@@ -5193,11 +6020,13 @@ sap.suite.ui.commons.TimelineItemRenderer.renderLIContentH = function(oRm, oLI) 
 	oRm.write("</div>"); // close bubble
 	oRm.write("</div>"); // close spacer
 	oRm.write("</div>");
+	oRm.write("</li>");
 };
 
 sap.suite.ui.commons.TimelineItemRenderer.renderLIContentV = function(oRm, oLI) {
 
   oRm.write("<li ");
+  oRm.writeAttribute("role", "option");
   oRm.writeControlData(oLI);
 	oRm.addClass("sapSuiteUiCommonsTimelineItem");
 	oRm.writeClasses();
@@ -5271,7 +6100,27 @@ sap.suite.ui.commons.TimelineItemRenderer.renderLIContentV = function(oRm, oLI) 
 };
 
  
-
+	sap.suite.ui.commons.TimelineItemRenderer._writeCollapsedText = function(rm, oControl, sMyId) {
+		// 'oFeedListItem._bTextExpanded' is true if the text had been expanded and rendering needs to be done again.
+		if (oControl._bTextExpanded) {
+			rm.writeEscaped(oControl._sFullText, true);
+			rm.write('</span>');
+			rm.write('<span id="' + sMyId + '-threeDots" class ="sapMFeedListItemTextString">');
+			rm.write("&#32"); // space
+			rm.write('</span>');
+		} else {
+			rm.writeEscaped(oControl._getCollapsedText(), true);
+			rm.write('</span>');
+			rm.write('<span id="' + sMyId + '-threeDots" class ="sapMFeedListItemTextString">');
+			rm.write("&#32&#46&#46&#46&#32"); // space + three dots + space
+			rm.write('</span>');
+		}
+		var oLinkExpandCollapse = oControl._getLinkExpandCollapse();
+		oLinkExpandCollapse.addStyleClass("sapMFeedListItemLinkExpandCollapse");
+		rm.renderControl(oLinkExpandCollapse);
+	};
+	
+	
 sap.suite.ui.commons.TimelineItemRenderer.renderItemShell = function(oRm, oControl){ 
 	 oRm.write("<div");
 //	 oRm.writeControlData(oControl);
@@ -5280,9 +6129,20 @@ sap.suite.ui.commons.TimelineItemRenderer.renderItemShell = function(oRm, oContr
 	 oRm.writeAttribute("tabindex", "-1");
 	 oRm.writeClasses();
 	 oRm.write(">"); 
+	 oRm.renderControl(oControl._replyInfoBar);
+	 
+	 if (oControl.getUserPicture()) {
+		 oRm.write("<div");
+		 oRm.writeAttribute("id", oControl.getId() + "-userpicture");
+		 oRm.addClass("sapSuiteUiCommonsTimelineItemUserPicture");
+		 oRm.writeClasses();
+	   oRm.write(">");
+	   oRm.renderControl(oControl._getUserPictureControl());
+	   oRm.write("</div>");
+	 }
 	 
 	 oRm.write("<div");
-	 oRm.writeAttributeEscaped("title", oControl.getUserName() + oControl.getTitle());
+	 oRm.writeAttribute("title", oControl.getUserName() + " " + oControl.getTitle());
 	 //added yy
 	 oRm.writeAttribute("id", oControl.getId() + "-header");
 	 oRm.addClass("sapSuiteUiCommonsTimelineItemHeader");
@@ -5327,8 +6187,9 @@ sap.suite.ui.commons.TimelineItemRenderer.renderItemShell = function(oRm, oContr
 	 oRm.write("</div>");
 	 
 	 oRm.write("<div");
-	 //oRm.writeControlData(oControl);
+	 //oRm.writeControlData(oControl); 
 	 oRm.addClass("sapSuiteUiCommonsTimelineItemShellBody");
+	// oRm.writeAttribute("id", oControl.getId() + "-sapSuiteUiCommonsTimelineItemShellBody");
 	 oRm.writeClasses();
 	 oRm.write(">"); 
 	 if (oControl.getEmbeddedControl() !== null ) {
@@ -5336,13 +6197,22 @@ sap.suite.ui.commons.TimelineItemRenderer.renderItemShell = function(oRm, oContr
 	 } else {
 		 //oRm.writeEscaped(oControl.getText());
 		 if(oControl._textBox) {
-			 oRm.renderControl(oControl._textBox);
+			// oRm.renderControl(oControl._textBox);
+				oRm.write('<span id="' + oControl.getId() + '-realtext">');
+			if (!!oControl._checkTextIsExpandable()) {
+				this._writeCollapsedText(oRm, oControl, oControl.getId());
+			} else {
+				oRm.writeEscaped(oControl._textBox);
+			}
+			
+			
+			 	 
 		 }
 	 }
 	 oRm.write("</div>");
 	 
 	 // here we should do the bottom bar 
-	 if (oControl.getParent()._aFilterList && oControl.getParent().getEnableSocial()) {  //Check if there is Timeline as parent
+	 if (oControl.getParent()._aFilterList && (oControl.getParent().getEnableSocial() || oControl.getCustomAction().length > 0)) {  //Check if there is Timeline as parent
 		 oRm.write("<div");
 		 oRm.addClass("sapSuiteUiCommonsTimelineItemShellBottom");
 		 oRm.writeClasses();
@@ -5400,34 +6270,45 @@ sap.suite.ui.commons.TimelineRenderer.renderH = function(oRm, oControl) {
 	
 	oRm.renderControl(oControl._headerBar);
 	oRm.renderControl(oControl._headerInfoBar);
+	if ((oControl.getMessageStrip() !== null) && (oControl.getMessageStrip() !== undefined) && oControl.getMessageStrip().getText() !== "") {
+		oRm.renderControl(oControl._messageStrip);
+		}
 	
+
 	oRm.write("<div ");
+	oRm.writeAttribute("id", oControl.getId() + "-contentH");
 	oRm.addClass("sapSuiteUiCommonsTimelineContentsH");
 	oRm.writeStyles();
 	oRm.writeClasses();
-	oRm.write(">");
+	oRm.write(">"); 
 
 	oRm.write("<div ");
 	oRm.writeAttribute("id", oControl.getId() + "-scrollH");
 	oRm.addClass("sapSuiteUiCommonsTimelineScrollH");
-	oRm.addStyle("width", 11 + oContent.length * 18 + "rem");
+	oRm.addStyle("width", 19 + oContent.length * 18 + "rem");
 	oRm.writeStyles();
 	oRm.writeClasses();
 	oRm.write(">");
-
+	oRm.write("<ul ");
+	oRm.writeAttribute("role", "listbox");
+	oRm.addClass("sapSuiteUiCommonsTimelineItemUlWrapperV");
+	oRm.writeClasses();
+	oRm.write(">");
+	
 	if (oContent.length > 0) {
 		for ( var i = 0; i < oContent.length; i++) {
 			var oC = oContent[i];
 			oC._orientation = 'H';
 			oRm.renderControl(oC);
 		}
-		if (oControl._showMore){
-		   this.renderGetMoreH(oRm, oControl);
-		}
 	} else {
 		if (oControl._finishLoading){
     		oRm.renderControl(oControl._emptyList);
     	}
+	}
+	oRm.write("</ul>");
+	if (oControl._showMore){
+	   this.renderGetMoreH(oRm, oControl);
 	}
 
 	oRm.write("</div>"); // scroll div
@@ -5453,10 +6334,13 @@ sap.suite.ui.commons.TimelineRenderer.renderV = function(oRm, oControl){
 
 	oRm.renderControl(oControl._headerBar);
 	oRm.renderControl(oControl._headerInfoBar);
-	
+	if (oControl.getMessageStrip().getText() !== "") {
+		oRm.renderControl(oControl._messageStrip);
+	}
 	
     oRm.write("<div ");
     oRm.writeAttribute("id", oControl.getId() + "-content");
+    oRm.writeAttribute("data-sap-ui-fastnavgroup", "true");
 	oRm.addClass("sapSuiteUiCommonsTimelineContents");
 	//if (height) {
 	//	oRm.addStyle("height", "300px");
@@ -5480,18 +6364,32 @@ sap.suite.ui.commons.TimelineRenderer.renderV = function(oRm, oControl){
 	oRm.writeStyles();
 	oRm.writeClasses();
 	oRm.write(">");
-	
+	oRm.write("<ul ");
+	oRm.addClass("sapSuiteUiCommonsTimelineItemUlWrapper");
+	oRm.writeClasses();
+	oRm.writeAttribute("id", oControl.getId() + "-scroll-ul");
+	oRm.writeAttribute("role", "listbox");
+	oRm.write(">"); 
     if (oContent.length > 0) {
     	for (var i = 0; i < oContent.length; i++) {
-            oRm.renderControl(oContent[i]);  
+            var oC = oContent[i];
+            oC._orientation = 'V';
+            oRm.renderControl(oC);  
         }
-      if (oControl._showMore){
-      	this.renderGetMore(oRm, oControl);
-      }
-    } else {
+    } else { 
     	if (oControl._finishLoading){
     		oRm.renderControl(oControl._emptyList);
     	}
+    }
+     oRm.write("</ul>");
+    if (oControl._showMore){
+    	oRm.write("<ul ");
+    	oRm.addClass("sapSuiteUiCommonsTimelineGetMoreUlWrapper");
+    	oRm.writeClasses();
+    	oRm.writeAttribute("id", oControl.getId() + "-scroll-getmore-ul");
+    	oRm.write(">");
+    	this.renderGetMore(oRm, oControl);
+    	oRm.write("</ul>");
     }
     oRm.write("</div>");
     oRm.write("</div>");
@@ -5519,7 +6417,8 @@ sap.suite.ui.commons.TimelineRenderer.renderGetMoreH = function(oRm, oControl) {
 };
 
 sap.suite.ui.commons.TimelineRenderer.renderGetMore = function(oRm, oControl) {
-		oRm.write("<li ");
+		oRm.write("<div ");
+		oRm.writeAttribute("id", oControl.getId() + "-showmore");
 		oRm.addClass("sapSuiteUiCommonsTimelineGetMore");
 		oRm.writeClasses();
 		oRm.write(">");
@@ -5534,7 +6433,7 @@ sap.suite.ui.commons.TimelineRenderer.renderGetMore = function(oRm, oControl) {
 		oRm.write(">");
 		oRm.renderControl(oControl._getMoreButton);
 		oRm.write("</div>");
-		oRm.write("</li>");
+		oRm.write("</div>");
 };
 
 }; // end of sap/suite/ui/commons/TimelineRenderer.js
@@ -5900,7 +6799,7 @@ if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.library') ) {
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.suite.ui.commons (1.26.6)
+ * Initialization Code and shared classes of library sap.suite.ui.commons (1.30.8)
  */
 jQuery.sap.declare("sap.suite.ui.commons.library");
 jQuery.sap.require('sap.ui.core.Core'); // unlisted dependency retained
@@ -5958,12 +6857,14 @@ sap.ui.getCore().initLibrary({
 		"sap.suite.ui.commons.DateRangeScroller",
 		"sap.suite.ui.commons.DateRangeSlider",
 		"sap.suite.ui.commons.DateRangeSliderInternal",
+		"sap.suite.ui.commons.DeltaMicroChart",
 		"sap.suite.ui.commons.DynamicContainer",
 		"sap.suite.ui.commons.FacetOverview",
 		"sap.suite.ui.commons.FeedItemHeader",
 		"sap.suite.ui.commons.FeedTile",
 		"sap.suite.ui.commons.GenericTile",
 		"sap.suite.ui.commons.GenericTile2X2",
+		"sap.suite.ui.commons.HarveyBallMicroChart",
 		"sap.suite.ui.commons.HeaderCell",
 		"sap.suite.ui.commons.HeaderContainer",
 		"sap.suite.ui.commons.InfoTile",
@@ -5987,6 +6888,7 @@ sap.ui.getCore().initLibrary({
 		"sap.suite.ui.commons.ProcessFlowNode",
 		"sap.suite.ui.commons.RepeaterViewConfiguration",
 		"sap.suite.ui.commons.SplitButton",
+		"sap.suite.ui.commons.TargetFilter",
 		"sap.suite.ui.commons.ThingCollection",
 		"sap.suite.ui.commons.ThreePanelThingInspector",
 		"sap.suite.ui.commons.ThreePanelThingViewer",
@@ -6003,15 +6905,18 @@ sap.ui.getCore().initLibrary({
 	elements: [
 		"sap.suite.ui.commons.BulletChartData",
 		"sap.suite.ui.commons.ColumnData",
+		"sap.suite.ui.commons.ColumnMicroChartLabel",
 		"sap.suite.ui.commons.ComparisonData",
 		"sap.suite.ui.commons.CountingNavigationItem",
 		"sap.suite.ui.commons.FeedItem",
+		"sap.suite.ui.commons.HarveyBallMicroChartItem",
 		"sap.suite.ui.commons.HeaderCellItem",
 		"sap.suite.ui.commons.MicroAreaChartItem",
 		"sap.suite.ui.commons.MicroAreaChartLabel",
-		"sap.suite.ui.commons.MicroAreaChartPoint"
+		"sap.suite.ui.commons.MicroAreaChartPoint",
+		"sap.suite.ui.commons.TargetFilterColumn"
 	],
-	version: "1.26.6"
+	version: "1.30.8"
 });
 
 /*!
@@ -6028,7 +6933,7 @@ jQuery.sap.declare("sap.suite.ui.commons.BulletChartMode");
 /**
  * @class Enumeration of possible BulletChart display modes.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6062,7 +6967,7 @@ jQuery.sap.declare("sap.suite.ui.commons.CommonBackground");
 /**
  * @class Enumeration of possible theme specific background colors.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6132,7 +7037,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ComparisonChartView");
 /**
  * @class The view of the ComparisonChart.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6166,7 +7071,7 @@ jQuery.sap.declare("sap.suite.ui.commons.DeviationIndicator");
 /**
  * @class The marker for the deviation trend.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6206,7 +7111,7 @@ jQuery.sap.declare("sap.suite.ui.commons.FacetOverviewHeight");
 /**
  * @class Enumeration of possible FacetOverview height settings.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6276,7 +7181,7 @@ jQuery.sap.declare("sap.suite.ui.commons.FrameType");
 /**
  * @class Enumeration of possible frame types.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6322,7 +7227,7 @@ jQuery.sap.declare("sap.suite.ui.commons.HeaderContainerView");
 /**
  * @class The list of possible HeaderContainer views.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6356,7 +7261,7 @@ jQuery.sap.declare("sap.suite.ui.commons.InfoTileSize");
 /**
  * @class Enumeration of possible PointTile size settings.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6408,7 +7313,7 @@ jQuery.sap.declare("sap.suite.ui.commons.InfoTileTextColor");
 /**
  * @class Enumeration of possible InfoTile text color settings.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6448,7 +7353,7 @@ jQuery.sap.declare("sap.suite.ui.commons.InfoTileValueColor");
 /**
  * @class Enumeration of possible InfoTile value color settings.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6494,7 +7399,7 @@ jQuery.sap.declare("sap.suite.ui.commons.LoadState");
 /**
  * @class Enumeration of possible load states for LoadableView.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6540,7 +7445,7 @@ jQuery.sap.declare("sap.suite.ui.commons.MicroAreaChartView");
 /**
  * @class The list of possible MicroAreaChart views.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6574,7 +7479,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ProcessFlowDisplayState");
 /**
  * @class The ProcessFlow calculates the ProcessFlowDisplayState based on the 'focused' and ?highlighted? properties of each node.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6630,10 +7535,10 @@ sap.suite.ui.commons.ProcessFlowDisplayState = {
 // Provides enumeration sap.suite.ui.commons.ProcessFlowLaneState.
 jQuery.sap.declare("sap.suite.ui.commons.ProcessFlowLaneState");
 /**
- * @class This type is used in the ?state? property of the ProcessFlowLaneHeader. For example, an app developer has the option of explicitly setting the status of the lane header outside of the control coding if the lanes are displayed without documents.
+ * @class This type is used in the ?state? property of the ProcessFlowLaneHeader. For example, as an app developer you have the option to set explicitly the status of the lane header outside of the control coding if the lanes are displayed without documents.
  * If the complete process flow is displayed (that is, if the lane header is displayed with documents underneath), the given state values of the lane header are ignored and will be calculated in the ProcessFlow according to the current state of the documents.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6667,7 +7572,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ProcessFlowNodeState");
 /**
  * @class Describes the state info connected to the content displayed in the Process Flow Node body. Also Process Flow Lane Header uses this enumeration for the chart
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6719,7 +7624,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ProcessFlowZoomLevel");
 /**
  * @class The zoom level defines level of details for the node and how much space the process flow requires.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6727,25 +7632,25 @@ jQuery.sap.declare("sap.suite.ui.commons.ProcessFlowZoomLevel");
 sap.suite.ui.commons.ProcessFlowZoomLevel = {
 
 	/**
-	 * zoom level for least details - only icon is displayed
+	 * The full details with normal font size.
 	 * @public
 	 */
 	One : "One",
 
 	/**
-	 * The detail is icon, title text and no additional texts
+	 * The full detail view of the node but with smaller font size.
 	 * @public
 	 */
 	Two : "Two",
 
 	/**
-	 * The full detail view of the node but with smaller font size
+	 * The details are the icon, title text and no additional texts.
 	 * @public
 	 */
 	Three : "Three",
 
 	/**
-	 * The full details with normal font size
+	 * Zoom level for least details - only icon is displayed.
 	 * @public
 	 */
 	Four : "Four"
@@ -6765,7 +7670,7 @@ jQuery.sap.declare("sap.suite.ui.commons.SelectionState");
 /**
  * @class SelectionState
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6805,7 +7710,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ThingGroupDesign");
 /**
  * @class Defines the way how UnifiedThingGroup control is rendered.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6839,7 +7744,7 @@ jQuery.sap.declare("sap.suite.ui.commons.TimelineAlignment");
 /**
  * @class Where to align items with respect to the time line.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6867,7 +7772,7 @@ jQuery.sap.declare("sap.suite.ui.commons.TimelineAxisOrientation");
 /**
  * @class Timeline Axis Orientation
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6901,7 +7806,7 @@ jQuery.sap.declare("sap.suite.ui.commons.TimelineItemPosition");
 /**
  * @class Position of TimelineItem
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -6941,7 +7846,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ValueStatus");
 /**
  * @class Marker for the key value status.
  *
- * @version 1.26.6
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -7710,7 +8615,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control shows a bullet chart.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -7800,6 +8705,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  *
  * @return {sap.suite.ui.commons.BulletChartMode} the value of property <code>mode</code>
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.BulletChart#getMode
  * @function
  */
@@ -7812,6 +8718,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  * @param {sap.suite.ui.commons.BulletChartMode} oMode  new value for property <code>mode</code>
  * @return {sap.suite.ui.commons.BulletChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.BulletChart#setMode
  * @function
  */
@@ -7850,6 +8757,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  *
  * @return {float} the value of property <code>forecastValue</code>
  * @public
+ * @since 1.21
  * @name sap.suite.ui.commons.BulletChart#getForecastValue
  * @function
  */
@@ -7862,6 +8770,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  * @param {float} fForecastValue  new value for property <code>forecastValue</code>
  * @return {sap.suite.ui.commons.BulletChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.21
  * @name sap.suite.ui.commons.BulletChart#setForecastValue
  * @function
  */
@@ -7975,6 +8884,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  *
  * @return {boolean} the value of property <code>showDeltaValue</code>
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.BulletChart#getShowDeltaValue
  * @function
  */
@@ -7987,6 +8897,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  * @param {boolean} bShowDeltaValue  new value for property <code>showDeltaValue</code>
  * @return {sap.suite.ui.commons.BulletChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.BulletChart#setShowDeltaValue
  * @function
  */
@@ -8025,6 +8936,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  *
  * @return {boolean} the value of property <code>showValueMarker</code>
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.BulletChart#getShowValueMarker
  * @function
  */
@@ -8037,6 +8949,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  * @param {boolean} bShowValueMarker  new value for property <code>showValueMarker</code>
  * @return {sap.suite.ui.commons.BulletChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.BulletChart#setShowValueMarker
  * @function
  */
@@ -8075,6 +8988,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  *
  * @return {string} the value of property <code>deltaValueLabel</code>
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.BulletChart#getDeltaValueLabel
  * @function
  */
@@ -8087,6 +9001,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  * @param {string} sDeltaValueLabel  new value for property <code>deltaValueLabel</code>
  * @return {sap.suite.ui.commons.BulletChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.BulletChart#setDeltaValueLabel
  * @function
  */
@@ -8125,6 +9040,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  *
  * @return {string} the value of property <code>width</code>
  * @public
+ * @since 1.22
  * @name sap.suite.ui.commons.BulletChart#getWidth
  * @function
  */
@@ -8137,6 +9053,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  * @param {string} sWidth  new value for property <code>width</code>
  * @return {sap.suite.ui.commons.BulletChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.22
  * @name sap.suite.ui.commons.BulletChart#setWidth
  * @function
  */
@@ -8150,6 +9067,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  *
  * @return {sap.suite.ui.commons.CommonBackground} the value of property <code>scaleColor</code>
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.BulletChart#getScaleColor
  * @function
  */
@@ -8162,6 +9080,7 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  * @param {sap.suite.ui.commons.CommonBackground} oScaleColor  new value for property <code>scaleColor</code>
  * @return {sap.suite.ui.commons.BulletChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.BulletChart#setScaleColor
  * @function
  */
@@ -8335,7 +9254,6 @@ sap.suite.ui.commons.BulletChart.M_EVENTS = {'press':'press'};
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/BulletChart.js
 ///**
 // * This file defines behavior for the control,
@@ -8358,12 +9276,12 @@ sap.suite.ui.commons.BulletChart.prototype._calculateChartData = function() {
     var aThresholds = [];
     var fTarget = this.getTargetValue();
     var fForecast = this.getForecastValue();
-    var fActual = this.getActual().getValue();
+    var fActual = this.getActual() && this.getActual().getValue() ? this.getActual().getValue() : 0;
     var aValues = [];
-    var fLowestValue = fActual;
-    var fHighestValue = fActual;
+    var fLowestValue = 0;
+    var fHighestValue = 0;
 
-    if (this.getActual()._isValueSet) {
+    if (this.getActual() && this.getActual()._isValueSet) {
     	aValues.push(fActual);
     }
 
@@ -8411,7 +9329,7 @@ sap.suite.ui.commons.BulletChart.prototype._calculateChartData = function() {
     }
 
     return {
-        actualValuePct: (!this.getActual()._isValueSet || fTotal==0) ? 0 : ( .05 + (fActual - fLowestValue) * fScaleWidthPct / fTotal).toFixed(2),
+        actualValuePct: (!this.getActual() || !this.getActual()._isValueSet || fTotal==0) ? 0 : ( .05 + (fActual - fLowestValue) * fScaleWidthPct / fTotal).toFixed(2),
         targetValuePct: (!this._isTargetValueSet || fTotal==0) ? 0 : ((fTarget - fLowestValue) * fScaleWidthPct / fTotal).toFixed(2),
         forecastValuePct: (!this._isForecastValueSet || fTotal==0) ? 0 : ((fForecast - fLowestValue) * fScaleWidthPct / fTotal).toFixed(2),
         thresholdsPct: aThresholds,
@@ -8552,6 +9470,54 @@ sap.suite.ui.commons.BulletChart.prototype.detachEvent = function(sEventId, fnFu
 	return this;
 }; 
 
+//sap.suite.ui.commons.BulletChart.prototype.onBeforeRendering = function() {
+//
+//	if(!this.getEntitySet()) {
+//		return;
+//	}
+//
+//	var oModel = this.getModel();
+//	var oMetaData = oModel.getServiceMetadata();
+//	var aAnnos = oMetaData.dataServices.schema[0].annotations;
+//	var sNameSpace = oMetaData.dataServices.schema[0].namespace;
+//	var sEntType = sNameSpace + "." + this.getEntitySet();
+//	
+//	for(var i = 0; i < aAnnos.length; i++) {
+//		var oAnno = aAnnos[i];
+//		
+//		if(sEntType === oAnno.target) {
+//			
+//			for(var j = 0; j < oAnno.annotation.length; j++) {
+//				if(oAnno.annotation[j].term === "UI.DataPoint") {
+//
+//					if(oAnno.annotation[j].record.propertyValue && oAnno.annotation[j].record.propertyValue.length > 0) {
+//						for(var m = 0; m < oAnno.annotation[j].record.propertyValue.length; m++) {
+//							var oProp = oAnno.annotation[j].record.propertyValue[m];
+//							switch(oProp.property) {
+//								case "Value" :
+//									if(this.getActual())
+//										break;
+//									
+//									var oActual = new sap.suite.ui.commons.BulletChartData();
+//									oActual.bindProperty("value", oProp.path);
+//									this.setActual(oActual);
+//									break;
+//							}
+//							
+//						}
+//						
+//					}
+//					
+//				}
+//				
+//			}
+//			
+//		}
+//		
+//	}
+//	
+//};
+
 sap.suite.ui.commons.BulletChart.prototype.onAfterRendering = function() {
 	if (this._sBarResizeHandlerId) {
 		sap.ui.core.ResizeHandler.deregister(this._sBarResizeHandlerId);
@@ -8575,29 +9541,30 @@ sap.suite.ui.commons.BulletChart.prototype._adjustLabelsPos = function() {
 	var oChartBar = jQuery.sap.byId(this.getId() + "-chart-bar");
 	var fFullWidth = oChartBar.width();
 
-	var fTValWidth = 0; 
-	if (oTBarVal && oTBarVal.offset()) {
-		fTValWidth = oTBarVal.offset().left - oChartBar.offset().left;
-		if (bRtl) {
-			fTValWidth = fFullWidth - fTValWidth;
-		}
-		this._adjustLabelPos(jQuery.sap.byId(this.getId() + "-bc-target-value"), fFullWidth, fTValWidth, bRtl);
-	}	
-
-	var oValMarker = jQuery.sap.byId(this.getId() + "-bc-bar-value-marker");
-	if (oValMarker && oValMarker.offset()) {
-		var fAValWidth = oValMarker.offset().left - oChartBar.offset().left;
-		if (bRtl) {
-			fAValWidth = fFullWidth - fAValWidth;
-		}
-		
-		if ((sap.suite.ui.commons.BulletChartMode.Delta == this.getMode())) {
-			fAValWidth = (fAValWidth + fTValWidth) / 2;
-		}
-		
-		this._adjustLabelPos(jQuery.sap.byId(this.getId() + "-bc-item-value"), fFullWidth, fAValWidth, bRtl);
-	}
+	if (fFullWidth) {
+		var fTValWidth = 0; 
+		if (oTBarVal && oTBarVal.offset()) {
+			fTValWidth = oTBarVal.offset().left - oChartBar.offset().left;
+			if (bRtl) {
+				fTValWidth = fFullWidth - fTValWidth;
+			}
+			this._adjustLabelPos(jQuery.sap.byId(this.getId() + "-bc-target-value"), fFullWidth, fTValWidth, bRtl);
+		}	
 	
+		var oValMarker = jQuery.sap.byId(this.getId() + "-bc-bar-value-marker");
+		if (oValMarker && oValMarker.offset()) {
+			var fAValWidth = oValMarker.offset().left - oChartBar.offset().left;
+			if (bRtl) {
+				fAValWidth = fFullWidth - fAValWidth;
+			}
+			
+			if ((sap.suite.ui.commons.BulletChartMode.Delta == this.getMode())) {
+				fAValWidth = (fAValWidth + fTValWidth) / 2;
+			}
+			
+			this._adjustLabelPos(jQuery.sap.byId(this.getId() + "-bc-item-value"), fFullWidth, fAValWidth, bRtl);
+		}
+	}
 };
 
 sap.suite.ui.commons.BulletChart.prototype._adjustLabelPos = function(oLabel, fFullWidth, fOffset, bRtl) {
@@ -8625,10 +9592,10 @@ sap.suite.ui.commons.BulletChart.prototype.getLocalizedColorMeaning = function(s
 };
 
 sap.suite.ui.commons.BulletChart.prototype.getAltText = function() {
-	var bIsActualSet = this.getActual()._isValueSet;
+	var bIsActualSet = this.getActual() && this.getActual()._isValueSet;
 	var sScale = this.getScale();
 	var sTargetValueLabel = this.getTargetValueLabel();
-	var sMeaning = this.getLocalizedColorMeaning(this.getActual().getColor());
+	var sMeaning = !this.getActual() || !this.getActual().getColor() ? "" : this.getLocalizedColorMeaning(this.getActual().getColor());
 	
 	var sAltText = "";
 	
@@ -8670,7 +9637,7 @@ sap.suite.ui.commons.BulletChart.prototype.getTooltip_AsString  = function() {
 	var sTooltip = this.getAltText();
 	
 	if(typeof oTooltip === "string" || oTooltip instanceof String) {
-		sTooltip = oTooltip.split("{AltText}").join(sTooltip);
+		sTooltip = oTooltip.split("{AltText}").join(sTooltip).split("((AltText))").join(sTooltip);
 		return sTooltip;
 	}
 	return oTooltip ? oTooltip : "";
@@ -8704,6 +9671,16 @@ sap.suite.ui.commons.BulletChart.prototype._adjustValueToMarker = function() {
 		}
 	}
 };
+
+sap.suite.ui.commons.BulletChart.prototype.clone = function(sIdSuffix, aLocalIds, oOptions) {
+	var oClone = sap.ui.core.Control.prototype.clone.apply(this, arguments);
+	oClone._isMinValueSet = this._isMinValueSet;
+	oClone._isMaxValueSet = this._isMaxValueSet;
+	oClone._isForecastValueSet = this._isForecastValueSet;
+	oClone._isTargetValueSet = this._isTargetValueSet;
+	return oClone;
+};
+
 }; // end of sap/suite/ui/commons/BulletChart.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.BulletChartData') ) {
 /*!
@@ -8762,7 +9739,7 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * Thresholds data holder.
  * @extends sap.ui.core.Element
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -8845,7 +9822,6 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.BulletChartData", { metadata : 
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/BulletChartData.js
 /*!
  * @copyright@
@@ -8870,6 +9846,12 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.BulletChartData", { metadata : 
 	 return typeof n == 'number' && !isNaN(n) && isFinite(n);
  };
 	 
+ sap.suite.ui.commons.BulletChartData.prototype.clone = function(sIdSuffix, aLocalIds, oOptions) {
+		var oClone = sap.ui.core.Control.prototype.clone.apply(this, arguments);
+		oClone._isValueSet = this._isValueSet;
+		return oClone;
+ };
+
 }; // end of sap/suite/ui/commons/BulletChartData.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.BusinessCard') ) {
 /*!
@@ -8930,7 +9912,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control allows you to display business card information including an image, first title (either URL link or text), second title, and multiple text lines.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -9157,7 +10139,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.BusinessCard", { metadata : {
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/BusinessCard.js
 ///**
 // * This file defines behavior for the control,
@@ -9204,12 +10185,15 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * <li>{@link #getShowLegend showLegend} : boolean (default: true)</li>
  * <li>{@link #getTitle title} : string (default: '')</li>
  * <li>{@link #getSelectorGroupLabel selectorGroupLabel} : string</li>
- * <li>{@link #getAutoAdjustHeight autoAdjustHeight} : boolean (default: false)</li></ul>
+ * <li>{@link #getAutoAdjustHeight autoAdjustHeight} : boolean (default: false)</li>
+ * <li>{@link #getShowZoom showZoom} : boolean (default: true)</li>
+ * <li>{@link #getShowLegendButton showLegendButton} : boolean (default: true)</li></ul>
  * </li>
  * <li>Aggregations
  * <ul>
  * <li>{@link #getDimensionSelectors dimensionSelectors} : sap.ui.core.Control[]</li>
- * <li>{@link #getContent content} <strong>(default aggregation)</strong> : sap.suite.ui.commons.ChartContainerContent[]</li></ul>
+ * <li>{@link #getContent content} <strong>(default aggregation)</strong> : sap.suite.ui.commons.ChartContainerContent[]</li>
+ * <li>{@link #getCustomIcons customIcons} : sap.ui.core.Icon[]</li></ul>
  * </li>
  * <li>Associations
  * <ul></ul>
@@ -9217,7 +10201,9 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * <li>Events
  * <ul>
  * <li>{@link sap.suite.ui.commons.ChartContainer#event:personalizationPress personalizationPress} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
- * <li>{@link sap.suite.ui.commons.ChartContainer#event:contentChange contentChange} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
+ * <li>{@link sap.suite.ui.commons.ChartContainer#event:contentChange contentChange} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+ * <li>{@link sap.suite.ui.commons.ChartContainer#event:customZoomInPress customZoomInPress} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+ * <li>{@link sap.suite.ui.commons.ChartContainer#event:customZoomOutPress customZoomOutPress} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
  * </li>
  * </ul> 
 
@@ -9232,7 +10218,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * - personalization icon
  * - showLegend toggle
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -9241,6 +10227,10 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  */
 sap.ui.core.Control.extend("sap.suite.ui.commons.ChartContainer", { metadata : {
 
+	publicMethods : [
+		// methods
+		"switchChart", "updateChartContainer"
+	],
 	library : "sap.suite.ui.commons",
 	properties : {
 		"showPersonalization" : {type : "boolean", group : "Misc", defaultValue : false},
@@ -9249,17 +10239,22 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.ChartContainer", { metadata : {
 		"showLegend" : {type : "boolean", group : "Misc", defaultValue : true},
 		"title" : {type : "string", group : "Misc", defaultValue : ''},
 		"selectorGroupLabel" : {type : "string", group : "Misc", defaultValue : null},
-		"autoAdjustHeight" : {type : "boolean", group : "Misc", defaultValue : false}
+		"autoAdjustHeight" : {type : "boolean", group : "Misc", defaultValue : false},
+		"showZoom" : {type : "boolean", group : "Misc", defaultValue : true},
+		"showLegendButton" : {type : "boolean", group : "Misc", defaultValue : true}
 	},
 	defaultAggregation : "content",
 	aggregations : {
 		"dimensionSelectors" : {type : "sap.ui.core.Control", multiple : true, singularName : "dimensionSelector"}, 
 		"content" : {type : "sap.suite.ui.commons.ChartContainerContent", multiple : true, singularName : "content"}, 
-		"toolBar" : {type : "sap.m.Toolbar", multiple : false, visibility : "hidden"}
+		"toolBar" : {type : "sap.m.OverflowToolbar", multiple : false, visibility : "hidden"}, 
+		"customIcons" : {type : "sap.ui.core.Icon", multiple : true, singularName : "customIcon"}
 	},
 	events : {
 		"personalizationPress" : {}, 
-		"contentChange" : {}
+		"contentChange" : {}, 
+		"customZoomInPress" : {}, 
+		"customZoomOutPress" : {}
 	}
 }});
 
@@ -9280,7 +10275,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.ChartContainer", { metadata : {
  * @function
  */
 
-sap.suite.ui.commons.ChartContainer.M_EVENTS = {'personalizationPress':'personalizationPress','contentChange':'contentChange'};
+sap.suite.ui.commons.ChartContainer.M_EVENTS = {'personalizationPress':'personalizationPress','contentChange':'contentChange','customZoomInPress':'customZoomInPress','customZoomOutPress':'customZoomOutPress'};
 
 
 /**
@@ -9459,6 +10454,56 @@ sap.suite.ui.commons.ChartContainer.M_EVENTS = {'personalizationPress':'personal
 
 
 /**
+ * Getter for property <code>showZoom</code>.
+ * Display or not the zoom icons.
+ *
+ * Default value is <code>true</code>
+ *
+ * @return {boolean} the value of property <code>showZoom</code>
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#getShowZoom
+ * @function
+ */
+
+/**
+ * Setter for property <code>showZoom</code>.
+ *
+ * Default value is <code>true</code> 
+ *
+ * @param {boolean} bShowZoom  new value for property <code>showZoom</code>
+ * @return {sap.suite.ui.commons.ChartContainer} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#setShowZoom
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>showLegendButton</code>.
+ * Property to enable disable legend button
+ *
+ * Default value is <code>true</code>
+ *
+ * @return {boolean} the value of property <code>showLegendButton</code>
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#getShowLegendButton
+ * @function
+ */
+
+/**
+ * Setter for property <code>showLegendButton</code>.
+ *
+ * Default value is <code>true</code> 
+ *
+ * @param {boolean} bShowLegendButton  new value for property <code>showLegendButton</code>
+ * @return {sap.suite.ui.commons.ChartContainer} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#setShowLegendButton
+ * @function
+ */
+
+
+/**
  * Getter for aggregation <code>dimensionSelectors</code>.<br/>
  * Dimension Selects.
  * 
@@ -9622,6 +10667,87 @@ sap.suite.ui.commons.ChartContainer.M_EVENTS = {'personalizationPress':'personal
 
 
 /**
+ * Getter for aggregation <code>customIcons</code>.<br/>
+ * Custom Icons
+ * 
+ * @return {sap.ui.core.Icon[]}
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#getCustomIcons
+ * @function
+ */
+
+
+/**
+ * Inserts a customIcon into the aggregation named <code>customIcons</code>.
+ *
+ * @param {sap.ui.core.Icon}
+ *          oCustomIcon the customIcon to insert; if empty, nothing is inserted
+ * @param {int}
+ *             iIndex the <code>0</code>-based index the customIcon should be inserted at; for 
+ *             a negative value of <code>iIndex</code>, the customIcon is inserted at position 0; for a value 
+ *             greater than the current size of the aggregation, the customIcon is inserted at 
+ *             the last position        
+ * @return {sap.suite.ui.commons.ChartContainer} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#insertCustomIcon
+ * @function
+ */
+
+/**
+ * Adds some customIcon <code>oCustomIcon</code> 
+ * to the aggregation named <code>customIcons</code>.
+ *
+ * @param {sap.ui.core.Icon}
+ *            oCustomIcon the customIcon to add; if empty, nothing is inserted
+ * @return {sap.suite.ui.commons.ChartContainer} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#addCustomIcon
+ * @function
+ */
+
+/**
+ * Removes an customIcon from the aggregation named <code>customIcons</code>.
+ *
+ * @param {int | string | sap.ui.core.Icon} vCustomIcon the customIcon to remove or its index or id
+ * @return {sap.ui.core.Icon} the removed customIcon or null
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#removeCustomIcon
+ * @function
+ */
+
+/**
+ * Removes all the controls in the aggregation named <code>customIcons</code>.<br/>
+ * Additionally unregisters them from the hosting UIArea.
+ * @return {sap.ui.core.Icon[]} an array of the removed elements (might be empty)
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#removeAllCustomIcons
+ * @function
+ */
+
+/**
+ * Checks for the provided <code>sap.ui.core.Icon</code> in the aggregation named <code>customIcons</code> 
+ * and returns its index if found or -1 otherwise.
+ *
+ * @param {sap.ui.core.Icon}
+ *            oCustomIcon the customIcon whose index is looked for.
+ * @return {int} the index of the provided control in the aggregation if found, or -1 otherwise
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#indexOfCustomIcon
+ * @function
+ */
+	
+
+/**
+ * Destroys all the customIcons in the aggregation 
+ * named <code>customIcons</code>.
+ * @return {sap.suite.ui.commons.ChartContainer} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#destroyCustomIcons
+ * @function
+ */
+
+
+/**
  * Event fired when a user clicks on the personalization icon
  *
  * @name sap.suite.ui.commons.ChartContainer#personalizationPress
@@ -9741,6 +10867,141 @@ sap.suite.ui.commons.ChartContainer.M_EVENTS = {'personalizationPress':'personal
  */
 
 
+/**
+ * Custom event for zoom in
+ *
+ * @name sap.suite.ui.commons.ChartContainer#customZoomInPress
+ * @event
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'customZoomInPress' event of this <code>sap.suite.ui.commons.ChartContainer</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.ChartContainer</code>.<br/> itself. 
+ *  
+ * Custom event for zoom in
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.ChartContainer</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.ChartContainer} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#attachCustomZoomInPress
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'customZoomInPress' event of this <code>sap.suite.ui.commons.ChartContainer</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.ChartContainer} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#detachCustomZoomInPress
+ * @function
+ */
+
+/**
+ * Fire event customZoomInPress to attached listeners.
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.ChartContainer} <code>this</code> to allow method chaining
+ * @protected
+ * @name sap.suite.ui.commons.ChartContainer#fireCustomZoomInPress
+ * @function
+ */
+
+
+/**
+ * Custom event for zoom out
+ *
+ * @name sap.suite.ui.commons.ChartContainer#customZoomOutPress
+ * @event
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'customZoomOutPress' event of this <code>sap.suite.ui.commons.ChartContainer</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.ChartContainer</code>.<br/> itself. 
+ *  
+ * Custom event for zoom out
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.ChartContainer</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.ChartContainer} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#attachCustomZoomOutPress
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'customZoomOutPress' event of this <code>sap.suite.ui.commons.ChartContainer</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.ChartContainer} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ChartContainer#detachCustomZoomOutPress
+ * @function
+ */
+
+/**
+ * Fire event customZoomOutPress to attached listeners.
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.ChartContainer} <code>this</code> to allow method chaining
+ * @protected
+ * @name sap.suite.ui.commons.ChartContainer#fireCustomZoomOutPress
+ * @function
+ */
+
+
+/**
+ * switch display content in the container.
+ *
+ * @name sap.suite.ui.commons.ChartContainer#switchChart
+ * @function
+ * @type sap.suite.ui.commons.ChartContainerContent
+ * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
+ */
+
+
+/**
+ * update ChartContainer Toolbar and its content will be rerendered.
+ *
+ * @name sap.suite.ui.commons.ChartContainer#updateChartContainer
+ * @function
+ * @type void
+ * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
+ */
+
 // Start of sap/suite/ui/commons/ChartContainer.js
 jQuery.sap.declare("sap.suite.ui.commons.ChartContainer");
 jQuery.sap.require('sap.m.Popover'); // unlisted dependency retained
@@ -9759,17 +11020,20 @@ jQuery.sap.require('sap.ui.Device'); // unlisted dependency retained
 sap.ui.getCore().loadLibrary("sap.viz");
 
 sap.suite.ui.commons.ChartContainer.prototype.init = function() {
-
+	this._firstTime = true;
 	this._aChartIcons = [];
 	this._selectedChart = null;
 	this._dimSelectorsAll = [];
+	this._customIconsAll = []; 
+	this._oShowLegendButton = null;
 	var oLocale = sap.ui.getCore().getConfiguration().getLanguage();
 	this.resBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.ui.commons", oLocale);
 
 	//Right side..
-	this._oFullScreenButton = new sap.m.Button({
+	this._oFullScreenButton = new sap.m.OverflowToolbarButton({
 		icon : "sap-icon://full-screen",
 		type : sap.m.ButtonType.Transparent,
+		text : this.resBundle.getText("CHARTCONTAINER_FULLSCREEN"),
 		tooltip : this.resBundle.getText("CHARTCONTAINER_FULLSCREEN"),
 		press : jQuery.proxy(this.toggleFullScreen, this)
 	});
@@ -9779,7 +11043,7 @@ sap.suite.ui.commons.ChartContainer.prototype.init = function() {
 		shadow : false,
 		autoClose : false
 	});
-	this._oPopup._applyPosition = function(oPostion) {
+	/*this._oPopup._applyPosition = function(oPostion) {
 		var $Ref = this._$();
 		$Ref.css({
 			left : "0px",
@@ -9787,16 +11051,18 @@ sap.suite.ui.commons.ChartContainer.prototype.init = function() {
 			right : "0px",
 			bottom : "0px"
 		});
-	};
+	};*/
 
-	this._oShowLegendButton = new sap.m.Button({
+	this._oShowLegendButton = new sap.m.OverflowToolbarButton({
 		icon : "sap-icon://legend",
 		type : sap.m.ButtonType.Transparent,
+		text : this.resBundle.getText("CHARTCONTAINER_LEGEND"),
 		tooltip : this.resBundle.getText("CHARTCONTAINER_LEGEND"),
 		press : jQuery.proxy(this._onLegendButtonPress, this)
 	});
 
 	this._oShowAllChartButton = new sap.m.Button({
+//	this._oShowAllChartButton = new sap.m.OverflowToolbarButton({  //??????????????
 		type : sap.m.ButtonType.Transparent,
 		press : jQuery.proxy(this._onShowAllChartPress, this)
 	});
@@ -9807,14 +11073,31 @@ sap.suite.ui.commons.ChartContainer.prototype.init = function() {
 		press : jQuery.proxy(this._onPhonePopoverPress, this)
 	});
 
-	this._oPersonalizationButton = new sap.m.Button({
+	this._oPersonalizationButton = new sap.m.OverflowToolbarButton({
 		icon : "sap-icon://action-settings",
 		type : sap.m.ButtonType.Transparent,
+		text : this.resBundle.getText("CHARTCONTAINER_PERSONALIZE"),
 		tooltip : this.resBundle.getText("CHARTCONTAINER_PERSONALIZE"),
 		press : jQuery.proxy(this._oPersonalizationPress, this)
 	});
 	this._oActiveChartButton = null;
 
+	this._oZoomInButton = new sap.m.OverflowToolbarButton({
+		icon : "sap-icon://zoom-in",
+		type : sap.m.ButtonType.Transparent,
+		text : this.resBundle.getText("CHARTCONTAINER_ZOOMIN"),
+		tooltip : this.resBundle.getText("CHARTCONTAINER_ZOOMIN"),
+		press : jQuery.proxy(this._zoom, this, true)
+	});
+	
+	this._oZoomOutButton = new sap.m.OverflowToolbarButton({
+		icon : "sap-icon://zoom-out",
+		type : sap.m.ButtonType.Transparent,
+		text : this.resBundle.getText("CHARTCONTAINER_ZOOMOUT"),
+		tooltip : this.resBundle.getText("CHARTCONTAINER_ZOOMOUT"),
+		press : jQuery.proxy(this._zoom, this, false)
+	});
+	
 	this._oAllChartList = new sap.m.List({
 		mode : sap.m.ListMode.SingleSelectMaster,
 		showSeparators : sap.m.ListSeparators.None,
@@ -9867,7 +11150,14 @@ sap.suite.ui.commons.ChartContainer.prototype.init = function() {
 
 	this._oSelectedChart = null;
 	
-	this._oChartSegmentedButton = new sap.m.SegmentedButton();
+//	this._oChartSegmentedButton = new sap.m.SegmentedButton();
+	this._oChartSegmentedButton = new sap.m.SegmentedButton( {	
+		select : jQuery.proxy(function(oEvent) {
+			var sChartId = oEvent.getParameter("button").getCustomData()[0].getValue();
+			this._switchChart(sChartId);
+		}, this)
+	  }
+	);
 
 	// Left side...
 	this._oChartTitle = new sap.m.Label();
@@ -9875,6 +11165,7 @@ sap.suite.ui.commons.ChartContainer.prototype.init = function() {
 	this._oViewBy = new sap.m.Button({
 		text : this.resBundle.getText("CHARTCONTAINER_VIEWBY"),
 		type : sap.m.ButtonType.Transparent,
+		layoutData: new sap.m.OverflowToolbarLayoutData({moveToOverflow: false}),
 		press : jQuery.proxy(this._showViewByPopover, this)
 	//		press : function(oEvent) {
 	//			this._ViewByPopover.openBy(oEvent.getSource());
@@ -9901,10 +11192,11 @@ sap.suite.ui.commons.ChartContainer.prototype.init = function() {
 	});
 	this._oViewByDialog.addStyleClass("sapUiPopupWithPadding");
   
-	this._oToolBar = new sap.m.Toolbar({
+	this._oToolBar = new sap.m.OverflowToolbar({
 // Use ToolBarDesign.Auto
 //	design : sap.m.ToolbarDesign.Transparent,
-		content : [new sap.m.ToolbarSpacer()]
+		content : [new sap.m.ToolbarSpacer()],
+		width: "auto"
 	/// contents are set at onBeforeRendering.
 	});
 	this.setAggregation("toolBar", this._oToolBar);
@@ -9922,17 +11214,28 @@ sap.suite.ui.commons.ChartContainer.prototype.init = function() {
   
 };
 
+sap.suite.ui.commons.ChartContainer.prototype.setFullScreen = function(bFullScreen ){
+	if (this._firstTime) {
+		// can't set the full screen and toggle since dom is not loaded yet
+		return;
+	}	
+	var fullScreen = this.getProperty("fullScreen");
+	if (fullScreen !== bFullScreen) {
+		this.toggleFullScreen();
+	} 
+};
+
 sap.suite.ui.commons.ChartContainer.prototype.toggleFullScreen = function() {
 	var fullScreen = this.getProperty("fullScreen");
 	var sId;
-	var sHeight;
+	var sHeight; 
 	if (fullScreen) {
 		this.closeFullScreen();
 		this.setProperty("fullScreen", false);
 		sId = this.getSelectedChart().getContent().getId();
 		this.getSelectedChart().getContent().setWidth("100%");
 		sHeight = this._chartHeight[sId];
-		if ((sHeight !== 0) && (sHeight !== null)) {
+		if (sHeight) {
 			this.getSelectedChart().getContent().setHeight(sHeight);
 		}
 	} else {
@@ -9949,11 +11252,15 @@ sap.suite.ui.commons.ChartContainer.prototype.toggleFullScreen = function() {
 				this._chartHeight[sId] = sHeight;
 				}
 			}
-		this.openFullScreen(this, true);
+//*to fix chart disappear when toggle chart with full screen button
+		jQuery.sap.delayedCall(100, this, function() {
+			this.openFullScreen(this, true);
+		});
 		this.setProperty("fullScreen", true);
 	}
 	var sIcon = (fullScreen ? "sap-icon://full-screen" : "sap-icon://exit-full-screen");
 	this._oFullScreenButton.setIcon(sIcon);
+	this._oFullScreenButton.focus();
 };
 
 sap.suite.ui.commons.ChartContainer.prototype.openFullScreen = function(oContent, bNeedsScroll) {
@@ -9972,7 +11279,8 @@ sap.suite.ui.commons.ChartContainer.prototype.openFullScreen = function(oContent
 		this.$content.before(this.$tempNode);
 
 		this._$overlay = jQuery("<div id='" + jQuery.sap.uid() + "'></div>");
-		this._$overlay.addClass("sapCaUiOverlay");
+//		this._$overlay.addClass("sapCaUiOverlay");
+		this._$overlay.addClass("sapSuiteUiCommonsChartContainerOverlay");
 		this._$overlay.append(this.$content);
 		this._oPopup.setContent(this._$overlay);
 	} else {
@@ -9990,23 +11298,27 @@ sap.suite.ui.commons.ChartContainer.prototype.closeFullScreen = function() {
 	}
 	this.$tempNode.replaceWith(this.$content);
 	this._oToolBar.setDesign(sap.m.ToolbarDesign.Auto);
-	this._oPopup.close(200);
+	this._oPopup.close();
 	this._$overlay.remove();
 };
 
 sap.suite.ui.commons.ChartContainer.prototype.onAfterRendering = function(oEvent) {
-  if (this._chartContentChange) {
-  	this._chartChange();
-  }
+	this._customIconsAll = [];
+	if (this._chartContentChange) {
+		this._chartChange();
+	}
 	var that = this;
 	if ((this.sResizeListenerId == null) && (jQuery.device.is.desktop)) {
 		this.sResizeListenerId = sap.ui.core.ResizeHandler.register(this, jQuery.proxy(this._performHeightChanges, this));
 	}
 	if (this.getAutoAdjustHeight() || this.getFullScreen()) {
-		jQuery.sap.delayedCall(100, this, function() {
+//*to fix the flickering issue when switch chart in full screen mode
+//		jQuery.sap.delayedCall(100, this, function() {
+		jQuery.sap.delayedCall(500, this, function() { 
 			that._performHeightChanges();
 		});
 	}
+	this._firstTime = false;
 };
 
 sap.suite.ui.commons.ChartContainer.prototype._performHeightChanges = function() {
@@ -10021,16 +11333,17 @@ sap.suite.ui.commons.ChartContainer.prototype._performHeightChanges = function()
 			_toolBarHeight = jThis.find('.sapSuiteUiCommonsChartContainerToolBarArea').children()[0].clientHeight;
 			_chartHeight = jThis.find('.sapSuiteUiCommonsChartContainerChartArea').children()[0].clientHeight;
 			// Give 5px room to avoid rounding and scroll bar
-			var _newHeight = _chartContainerHeight - _toolBarHeight;
+			var _newHeight = _chartContainerHeight - _toolBarHeight - 1;
 			var innerChart = this.getSelectedChart().getContent();
 			if (innerChart instanceof sap.viz.ui5.controls.VizFrame) {
 				if (((_chartHeight > _newHeight) || (_newHeight - _chartHeight > 5)) && (_newHeight > 0)) {
-					if (innerChart.setHeight()) {
+//					if (innerChart.setHeight()) {
 						// innerChart.setHeight((_chartContainerHeight - _toolBarHeight) + "px");
 						innerChart.setHeight(_newHeight + "px");
-					}
+//					}
 				}
-			} else if (innerChart.getDomRef().offsetWidth !== this.getDomRef().clientWidth) {
+//			} else if (innerChart.getDomRef().offsetWidth !== this.getDomRef().clientWidth) {
+				} else if (Math.abs(innerChart.getDomRef().offsetWidth - this.getDomRef().clientWidth) > 3) {
 				// For table/non-vizFrame case, if width changes during resize event, force a rerender to have it fit 100% width
 				this.rerender();
 			}
@@ -10039,14 +11352,33 @@ sap.suite.ui.commons.ChartContainer.prototype._performHeightChanges = function()
 };
 
 sap.suite.ui.commons.ChartContainer.prototype.onBeforeRendering = function(oEvent) {
-  this._adjustDisplay(oEvent);
+	  if (this.getAggregation("customIcons")) {
+		    if (this._customIconsAll.length === 0 && this.getAggregation("customIcons").length > 0) {
+		      for (var i = 0; i < this.getAggregation("customIcons").length; i++) {
+		        var oIcon = this.getAggregation("customIcons")[i];
+		        var oButton = new sap.m.OverflowToolbarButton({          
+		            icon :oIcon.getSrc(),
+		            text:oIcon.getTooltip(),
+		            tooltip:oIcon.getTooltip(),
+		            type : sap.m.ButtonType.Transparent,
+		            width : "3em"
+		        });
+		        var onPress = function(oEvent, oData){
+		           oData.icon.firePress();
+		        };
+		        oButton.attachPress({icon: oIcon}, onPress);
+		        this._customIconsAll.push(oButton);
+		      }
+		    }
+	  }
+	  this._adjustDisplay(oEvent);
 };
 
 sap.suite.ui.commons.ChartContainer.prototype._onLegendButtonPress = function(oEvent) {
 //		this.setShowLegend(!this.getShowLegend());
 	if (this.getSelectedChart()) {
 		var selectedChart = this.getSelectedChart().getContent();
-		if (selectedChart instanceof sap.viz.ui5.controls.VizFrame) {
+/*		if (selectedChart instanceof sap.viz.ui5.controls.VizFrame) {
 			var legendOn;
 			if (selectedChart.getVizProperties().legendGroup.computedVisibility) {
 				legendOn = false;
@@ -10060,16 +11392,26 @@ sap.suite.ui.commons.ChartContainer.prototype._onLegendButtonPress = function(oE
 			} else {
 				this.setShowLegend(legendOn);
 			}
-		} else {
-			this.setShowLegend(!this.getShowLegend());
-		}
+		} else {*/
+			//only support if content has legendVisible property
+//			if (typeof selectedChart.getLegendVisible === "function"()) {
+			if (typeof selectedChart.getLegendVisible === "function") {
+				var legendOn = selectedChart.getLegendVisible();
+				selectedChart.setLegendVisible(!legendOn);
+				this.setShowLegend(!legendOn);			
+			} else {
+				this.setShowLegend(!this.getShowLegend());
+			}
+//		}
 	} else {
 		this.setShowLegend(!this.getShowLegend());
 	}
 };
 
 sap.suite.ui.commons.ChartContainer.prototype._onShowAllChartPress = function(oEvent) {
-	this._oShowAllChartPopover.openBy(this._oShowAllChartButton);
+	jQuery.sap.delayedCall(500, this, function() {
+		this._oShowAllChartPopover.openBy(this._oShowAllChartButton);
+	});
 };
 
 sap.suite.ui.commons.ChartContainer.prototype._onPhonePopoverPress = function(oEvent) {
@@ -10083,7 +11425,7 @@ sap.suite.ui.commons.ChartContainer.prototype._oPersonalizationPress = function(
 };
 
 sap.suite.ui.commons.ChartContainer.prototype._switchChart = function(sChartId) {
-	var oRelatedButton = null;
+/*	var oRelatedButton = null;
 	for (var i = 0; !oRelatedButton && i < this._aChartIcons.length; i++) {
 		if (this._aChartIcons[i].getCustomData()[0].getValue() === sChartId) {
 			oRelatedButton = this._aChartIcons[i];
@@ -10095,7 +11437,7 @@ sap.suite.ui.commons.ChartContainer.prototype._switchChart = function(sChartId) 
 		}
 		this._oActiveChartButton = oRelatedButton;
 		this._oActiveChartButton.addStyleClass("activeButton");
-	}
+	}*/
 
 	var oChart = this._findChartById(sChartId);
 
@@ -10109,9 +11451,23 @@ sap.suite.ui.commons.ChartContainer.prototype._switchChart = function(sChartId) 
 	this.rerender();//invalidate();
 };
 
+
+sap.suite.ui.commons.ChartContainer.prototype.switchChart = function(oChart) {
+
+
+	this.setSelectedChart(oChart);
+	if (this._oShowAllChartPopover.isOpen()) {
+		this._oShowAllChartPopover.close();
+	}
+ // fire the change event with id of the newly selected item..
+	this.rerender();//invalidate();
+};
+
+
 sap.suite.ui.commons.ChartContainer.prototype._switchFunctionPhone = function(customData) {
 	var oFunction = customData.getKey();
 	var oValue = customData.getValue();
+	var customIcon = null; 
 	if (oFunction === 'chartId') {
 		this._switchChart(oValue);
 	} else if (oFunction === 'function') {
@@ -10122,7 +11478,19 @@ sap.suite.ui.commons.ChartContainer.prototype._switchFunctionPhone = function(cu
 			this._oPersonalizationPress();
 		} else if (oValue === 'fullscreen') {
 			this.toggleFullScreen();
+		} else if (oValue === 'zoomin') {
+			this._zoom(true);
+		} else if (oValue === 'zoomout') {
+			this._zoom(false);
 		}
+	} else if (oFunction === 'customicon') {
+      for (var i = 0; i < this._customIconsAll.length; i++ ) {
+         if (this._customIconsAll[i].getId() === oValue) {
+           customIcon = this._customIconsAll[i];
+           break;                                   
+         }
+      }
+      customIcon.firePress();
 	}
 	//close the phone popup..
 /*	if (this._oPhonePopover.isOpen()) {
@@ -10138,6 +11506,13 @@ sap.suite.ui.commons.ChartContainer.prototype.setTitle = function(sValue) {
 	this.setProperty("title", sValue);
 };
 
+sap.suite.ui.commons.ChartContainer.prototype.setShowLegendButton = function(bValue) {
+	this.setProperty("showLegendButton", bValue);
+	if(!this.getShowLegendButton()) {
+		this.setShowLegend(false);
+	}
+};
+
 sap.suite.ui.commons.ChartContainer.prototype.setShowLegend = function(bValue) {
 	this.setProperty("showLegend", bValue);
 
@@ -10147,7 +11522,7 @@ sap.suite.ui.commons.ChartContainer.prototype.setShowLegend = function(bValue) {
 	if (aContents) {
 		for (var i = 0; i < aContents.length; i++) {
 			var innerChart = aContents[i].getContent();
-			if (innerChart.setVizProperties) {
+/*			if (innerChart.setVizProperties) {
 				// innerChart.setShowLegend(bValue);
 				innerChart.setVizProperties({
 					legend : {
@@ -10158,12 +11533,16 @@ sap.suite.ui.commons.ChartContainer.prototype.setShowLegend = function(bValue) {
 					}
 				});
 				jQuery.sap.log.info("ChartContainer: propagate showLegend to chart id " + innerChart.getId());
+			} else if (typeof innerChart.setLegendVisible === "function") { //non viz frame charts
+*/
+			if (typeof innerChart.setLegendVisible === "function") {
+				innerChart.setLegendVisible(bValue);
 			} else {
 				jQuery.sap.log.info("ChartContainer: chart id " + innerChart.getId()
 						+ " is missing the setVizProperties property");
 			}
 		}
-		if (this.getSelectedChart()) {
+/*		if (this.getSelectedChart()) {
 			var selectedChart = this.getSelectedChart().getContent();
 			if (selectedChart instanceof sap.viz.ui5.controls.VizFrame) {
 				this._legendPopup = selectedChart.getResponsiveLegend();
@@ -10178,13 +11557,17 @@ sap.suite.ui.commons.ChartContainer.prototype.setShowLegend = function(bValue) {
 					this._legendPopup.hide();
 				}
 			}
-		}
+		}*/
 	}
 };
 
 sap.suite.ui.commons.ChartContainer.prototype.addDimensionSelector = function(oObject) {
 	this.addAggregation("dimensionSelectors", oObject);
 	this._dimSelectorsAll.push(oObject);
+};
+
+sap.suite.ui.commons.ChartContainer.prototype.addCustomIcons = function(oObject) {
+	this.addAggregation("customIcons", oObject);
 };
 
 sap.suite.ui.commons.ChartContainer.prototype.addContent = function(oObject) {
@@ -10203,6 +11586,10 @@ sap.suite.ui.commons.ChartContainer.prototype.updateContent = function(sReason) 
 	this._chartContentChange = true;
 };
 
+sap.suite.ui.commons.ChartContainer.prototype.updateChartContainer = function() {
+	this._chartContentChange = true;
+	this.rerender();
+};
 
 /*sap.suite.ui.commons.ChartContainer.prototype._onAddingChart = function(oObject) {
 	var innerChart = oObject.getContent();
@@ -10254,6 +11641,10 @@ sap.suite.ui.commons.ChartContainer.prototype._chartChange = function() {
   var aCharts = this.getContent();
   this._aChartIcons = [];
 	this._oAllChartList.removeAllItems();
+	if (this.getContent().length == 0) {
+		this._oChartSegmentedButton.removeAllButtons();
+		this.switchChart(null);
+	}
 	if (aCharts) {
 		for (var i = 0; i < aCharts.length; i++) {
 			var innerChart = aCharts[i].getContent();
@@ -10273,6 +11664,8 @@ sap.suite.ui.commons.ChartContainer.prototype._chartChange = function() {
 			var oButtonIcon = new sap.m.Button({
 				icon : aCharts[i].getIcon(),
 				type : sap.m.ButtonType.Transparent,
+//to fix the chart button and chart itself disappear when switch chart in full screen mode 
+				width: "3em",
 				tooltip : aCharts[i].getTitle(),
 				customData : [new sap.ui.core.CustomData({
 					key : 'chartId',
@@ -10305,13 +11698,37 @@ sap.suite.ui.commons.ChartContainer.prototype._chartChange = function() {
 };
 
 sap.suite.ui.commons.ChartContainer.prototype.setSelectedChart = function(oObject) {
+	if (oObject == null) {
+		this._oShowLegendButton.setVisible(false);
+		return;
+	}
 	//show/hide the showLegend buttons
 	var oChart = oObject.getContent();
-	this._oChartTitle.setText(oObject.getTitle());
-	var bShowChart = (oChart instanceof sap.viz.ui5.controls.VizFrame); //hide legend icon if table, show if chart
-	this._oShowLegendButton.setVisible(bShowChart);
+//	this._oChartTitle.setText(oObject.getTitle());
+  var sChartId = oChart.getId();
+	var oRelatedButton = null;
+	for (var i = 0; !oRelatedButton && i < this._aChartIcons.length; i++) {
+		if (this._aChartIcons[i].getCustomData()[0].getValue() === sChartId) {
+			oRelatedButton = this._aChartIcons[i];
+		}
+	}
+	if (oRelatedButton) {
+		if (this._oActiveChartButton) {
+			this._oActiveChartButton.removeStyleClass("activeButton");
+		}
+		this._oActiveChartButton = oRelatedButton;
+		this._oActiveChartButton.addStyleClass("activeButton");
+	}
+	var bShowChart = (oChart instanceof sap.viz.ui5.controls.VizFrame) || (typeof oChart.setLegendVisible === "function"); //hide legend icon if table, show if chart
+	if(this.getShowLegendButton()){
+		this._oShowLegendButton.setVisible(bShowChart);
+	}
+	var bShowZoom = (this.getShowZoom()) && (sap.ui.Device.system.desktop) && (oChart instanceof sap.viz.ui5.controls.VizFrame);
+	this._oZoomInButton.setVisible(bShowZoom);
+	this._oZoomOutButton.setVisible(bShowZoom);
 	this._oShowAllChartButton.setIcon(oObject.getIcon());
 	this._oShowAllChartButton.setTooltip(oObject.getTitle());
+//	this._oShowAllChartButton.setText(oObject.getTitle());      //?????????????
 	this._oSelectedChart = oObject;
 };
 
@@ -10335,6 +11752,17 @@ sap.suite.ui.commons.ChartContainer.prototype._findChartById = function(sId) {
 sap.suite.ui.commons.ChartContainer.prototype._preparePhonePopup = function() {
 	this._oAllIconsList.removeAllItems();
 	var oIconsItems = this._oAllChartList.getItems();
+	for (var i = 0; i < this._customIconsAll.length; i++ )	{
+		var oCustomIcon = new sap.m.StandardListItem({
+			icon : this._customIconsAll[i].getIcon(),
+			title : this._customIconsAll[i].getTooltip(),
+			customData : [new sap.ui.core.CustomData({
+				key : 'customicon',
+				value : this._customIconsAll[i].getId()
+			})]
+		});
+		this._oAllIconsList.addItem(oCustomIcon);
+	}
 	for (var i = 0; i < oIconsItems.length; i++) {
 		var chartId = oIconsItems[i].getCustomData()[0].getValue();
 		var oShowAllIconsItem = new sap.m.StandardListItem({
@@ -10347,7 +11775,7 @@ sap.suite.ui.commons.ChartContainer.prototype._preparePhonePopup = function() {
 		});
 		this._oAllIconsList.addItem(oShowAllIconsItem);
 	}
-	if (this._oShowLegendButton.getVisible()) {
+	if (this._oShowLegendButton !== null && this._oShowLegendButton !== undefined && this._oShowLegendButton.getVisible()) {
 		var oPhoneLegendItem = new sap.m.StandardListItem({
 			icon : this._oShowLegendButton.getIcon(),
 			title : this.resBundle.getText("CHARTCONTAINER_LEGEND"),
@@ -10369,6 +11797,28 @@ sap.suite.ui.commons.ChartContainer.prototype._preparePhonePopup = function() {
 		});
 		this._oAllIconsList.addItem(oPhonePersonalizationItem);
 	}
+	if (this._oZoomInButton.getVisible()) {
+		var oPhoneLegendItem = new sap.m.StandardListItem({
+			icon : this._oZoomInButton.getIcon(),
+			title : this.resBundle.getText("CHARTCONTAINER_ZOOMIN"),
+			customData : [new sap.ui.core.CustomData({
+				key : 'function',
+				value : 'zoomin'
+			})]
+		});
+		this._oAllIconsList.addItem(oPhoneLegendItem);
+	}
+	if (this._oZoomOutButton.getVisible()) {
+		var oPhoneLegendItem = new sap.m.StandardListItem({
+			icon : this._oZoomOutButton.getIcon(),
+			title : this.resBundle.getText("CHARTCONTAINER_ZOOMOUT"),
+			customData : [new sap.ui.core.CustomData({
+				key : 'function',
+				value : 'zoomout'
+			})]
+		});
+		this._oAllIconsList.addItem(oPhoneLegendItem);
+	}
 	if (this.getShowFullScreen()) {
 		var oPhoneFullscreenItem = new sap.m.StandardListItem({
 			icon : this._oFullScreenButton.getIcon(),
@@ -10385,38 +11835,73 @@ sap.suite.ui.commons.ChartContainer.prototype._preparePhonePopup = function() {
 sap.suite.ui.commons.ChartContainer.prototype._adjustIconsDisplay = function(oEvent) {
 //	var isPhone = sap.ui.Device.system.phone;
 	//var isTab = sap.ui.Device.system.tablet;
-	//var isDesktop = sap.ui.Device.system.desktop;
+//	var isDesktop = sap.ui.Device.system.desktop;
 
 //	if (!isPhone) { // same behavior for Tablet/Desktop wrt icons.
-	if (this._currentRangeName !== 'Phone') {
+//	if (this._currentRangeName !== 'Phone') {
+		for (var i = 0; i < this._customIconsAll.length; i++ )	{
+			this._oToolBar.addContent(this._customIconsAll[i]);
+		}
 		if (this._aChartIcons.length > 3) {
 			//show only allChart icon
-			this._oToolBar.addContent(this._oShowAllChartButton);
-		} else {
-		  this._oChartSegmentedButton.removeAllButtons();
-			for (var iChart = 0; iChart < this._aChartIcons.length; iChart++) {
-//				this._oToolBar.addContent(this._aChartIcons[iChart]);
-				this._oChartSegmentedButton.addButton(this._aChartIcons[iChart]);
+//			this._oToolBar.addContent(this._oShowAllChartButton);
+			
+			if(!this._firstTime) {
+				this._oChartSegmentedButton.removeAllButtons();
+				for (var iChart = 0; iChart < this._aChartIcons.length; iChart++) {
+					this._oChartSegmentedButton.addButton(this._aChartIcons[iChart]);
+				}
+				this._oToolBar.addContent(this._oChartSegmentedButton);
 			}
-			this._oToolBar.addContent(this._oChartSegmentedButton);
+		
+		} else {
+			if(!this._firstTime && this._aChartIcons.length > 1) {
+				this._oChartSegmentedButton.removeAllButtons();
+				for (var iChart = 0; iChart < this._aChartIcons.length; iChart++) {
+//					this._oToolBar.addContent(this._aChartIcons[iChart]);
+					this._oChartSegmentedButton.addButton(this._aChartIcons[iChart]);
+				}
+				this._oToolBar.addContent(this._oChartSegmentedButton);
+			}
 		}
-		this._oToolBar.addContent(this._oShowLegendButton);
+		if(this.getShowLegendButton()){
+			this._oToolBar.addContent(this._oShowLegendButton);
+		}
 		if (this.getShowPersonalization()) {
 			this._oToolBar.addContent(this._oPersonalizationButton);
 		}
-		if (this.getShowFullScreen()) {
-			this._oToolBar.addContent(this._oFullScreenButton);
+		if (this.getShowZoom() && (sap.ui.Device.system.desktop)) {
+			this._oToolBar.addContent(this._oZoomInButton);
+			this._oToolBar.addContent(this._oZoomOutButton);
 		}
-	} else {
+		if (this.getShowFullScreen()) {
+			this._oToolBar.addContent(this._oFullScreenButton); 
+		}
+/*	} else {
 		// add the phone popover
 		this._preparePhonePopup();
 		this._oToolBar.addContent(this._oPhonePopoverButton);
 		// icon for ... is: horizontal-grip or overflow 
-	}
+	}*/
 };
 
 sap.suite.ui.commons.ChartContainer.prototype._adjustSelectorDisplay = function(oEvent) {
 	var dimensionSelectors = this._dimSelectorsAll;//this.getDimensionSelectors();
+	if (dimensionSelectors.length == 0) {
+		this._oViewBy.setVisible(false);
+		this._oChartTitle.setVisible(true);
+		this._oToolBar.addContent(this._oChartTitle);
+		return;
+	}
+	for (var i = 0; i < dimensionSelectors.length; i++) {
+	  if (typeof dimensionSelectors[i].setAutoAdjustWidth == 'function') {
+	  	dimensionSelectors[i].setAutoAdjustWidth(true);
+	  }
+		this._oToolBar.insertContent(dimensionSelectors[i], i);		
+//		this._oToolBar.addContent(dimensionSelectors[i]);
+	};
+	
+/*	
 	if (dimensionSelectors.length == 0) {
 		this._oViewBy.setVisible(false);
 		this._oChartTitle.setVisible(true);
@@ -10461,7 +11946,7 @@ sap.suite.ui.commons.ChartContainer.prototype._adjustSelectorDisplay = function(
 			}
 		}
 	}
-
+*/
 };
 
 sap.suite.ui.commons.ChartContainer.prototype._showViewByPopover = function(oEvent) {
@@ -10489,6 +11974,22 @@ sap.suite.ui.commons.ChartContainer.prototype.setSelectorGroupLabel = function(s
 sap.suite.ui.commons.ChartContainer.prototype._handleMediaChange = function(oEvent) {
 	this._currentRangeName = sap.ui.Device.media.getCurrentRange(sap.ui.Device.media.RANGESETS.SAP_STANDARD).name;
 	this._adjustDisplay(oEvent);
+};
+
+sap.suite.ui.commons.ChartContainer.prototype._zoom = function(zoomin) {
+	var oChart = this.getSelectedChart().getContent();
+	if (oChart instanceof sap.viz.ui5.controls.VizFrame) {
+		if (zoomin) {
+			oChart.zoom({'direction': 'in'});
+		} else {
+			oChart.zoom({'direction': 'out'});
+		}
+	}
+	if(zoomin){
+		this.fireCustomZoomInPress();
+	} else {
+		this.fireCustomZoomOutPress();
+	}
 };
 
 sap.suite.ui.commons.ChartContainer.prototype.exit = function() {
@@ -10572,6 +12073,14 @@ sap.suite.ui.commons.ChartContainer.prototype.exit = function() {
 		sap.ui.Device.orientation.detachHandler(this._performHeightChanges, this);
 		sap.ui.Device.resize.detachHandler(this._performHeightChanges, this);
 	}
+	if (this._oZoomInButton) {
+		this._oZoomInButton.destroy();
+		this._oZoomInButton = undefined;
+	}
+	if (this._oZoomOutButton) {
+		this._oZoomOutButton.destroy();
+		this._oZoomOutButton = undefined;
+	}
 	
 };
 
@@ -10631,7 +12140,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Content Aggregation for ChartContainer.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -10750,7 +12259,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.ChartContainerContent", { metad
  * @name sap.suite.ui.commons.ChartContainerContent#destroyContent
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/ChartContainerContent.js
 ///**
@@ -10900,7 +12408,8 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * <ul></ul>
  * </li>
  * <li>Events
- * <ul></ul>
+ * <ul>
+ * <li>{@link sap.suite.ui.commons.ColumnData#event:press press} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
  * </li>
  * </ul> 
  *
@@ -10914,7 +12423,7 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * Column data holder.
  * @extends sap.ui.core.Element
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -10928,6 +12437,9 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.ColumnData", { metadata : {
 		"label" : {type : "string", group : "Misc", defaultValue : null},
 		"value" : {type : "float", group : "Misc", defaultValue : null},
 		"color" : {type : "sap.suite.ui.commons.InfoTileValueColor", group : "Misc", defaultValue : sap.suite.ui.commons.InfoTileValueColor.Neutral}
+	},
+	events : {
+		"press" : {}
 	}
 }});
 
@@ -10947,6 +12459,8 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.ColumnData", { metadata : {
  * @name sap.suite.ui.commons.ColumnData.extend
  * @function
  */
+
+sap.suite.ui.commons.ColumnData.M_EVENTS = {'press':'press'};
 
 
 /**
@@ -11024,16 +12538,85 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.ColumnData", { metadata : {
  */
 
 
+/**
+ * The event is fired when the user chooses the column data.
+ *
+ * @name sap.suite.ui.commons.ColumnData#press
+ * @event
+ * @since 1.30
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'press' event of this <code>sap.suite.ui.commons.ColumnData</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.ColumnData</code>.<br/> itself. 
+ *  
+ * The event is fired when the user chooses the column data.
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.ColumnData</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.ColumnData} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.30
+ * @name sap.suite.ui.commons.ColumnData#attachPress
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'press' event of this <code>sap.suite.ui.commons.ColumnData</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.ColumnData} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.30
+ * @name sap.suite.ui.commons.ColumnData#detachPress
+ * @function
+ */
+
+/**
+ * Fire event press to attached listeners.
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.ColumnData} <code>this</code> to allow method chaining
+ * @protected
+ * @since 1.30
+ * @name sap.suite.ui.commons.ColumnData#firePress
+ * @function
+ */
+
 // Start of sap/suite/ui/commons/ColumnData.js
 /*!
  * @copyright@
  */
-///**
-// * This file defines behavior for the control,
-// */
-//sap.suite.ui.commons.ColumnData.prototype.init = function(){
-//   // do something for initialization...
-//};
+sap.suite.ui.commons.ColumnData.prototype.attachEvent = function(sEventId, oData, fnFunction, oListener) {
+    sap.ui.core.Control.prototype.attachEvent.call(this, sEventId, oData, fnFunction, oListener);
+    if (this.getParent()) {
+    	this.getParent().setBarPressable(this.getParent().getColumns().indexOf(this), true);
+    }
+    return this;
+};
+
+sap.suite.ui.commons.ColumnData.prototype.detachEvent = function(sEventId, fnFunction, oListener) {
+	sap.ui.core.Control.prototype.detachEvent.call(this, sEventId, fnFunction, oListener);
+	if (this.getParent()) {
+		this.getParent().setBarPressable(this.getParent().getColumns().indexOf(this), false);
+    }
+    return this;
+};
 
 }; // end of sap/suite/ui/commons/ColumnData.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.ColumnMicroChart') ) {
@@ -11075,7 +12658,11 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * </li>
  * <li>Aggregations
  * <ul>
- * <li>{@link #getColumns columns} : sap.suite.ui.commons.ColumnData[]</li></ul>
+ * <li>{@link #getColumns columns} : sap.suite.ui.commons.ColumnData[]</li>
+ * <li>{@link #getLeftTopLabel leftTopLabel} : sap.suite.ui.commons.ColumnMicroChartLabel</li>
+ * <li>{@link #getRightTopLabel rightTopLabel} : sap.suite.ui.commons.ColumnMicroChartLabel</li>
+ * <li>{@link #getLeftBottomLabel leftBottomLabel} : sap.suite.ui.commons.ColumnMicroChartLabel</li>
+ * <li>{@link #getRightBottomLabel rightBottomLabel} : sap.suite.ui.commons.ColumnMicroChartLabel</li></ul>
  * </li>
  * <li>Associations
  * <ul></ul>
@@ -11093,7 +12680,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control shows a column chart.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -11109,7 +12696,11 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.ColumnMicroChart", { metadata :
 		"height" : {type : "sap.ui.core.CSSSize", group : "Misc", defaultValue : null}
 	},
 	aggregations : {
-		"columns" : {type : "sap.suite.ui.commons.ColumnData", multiple : true, singularName : "column"}
+		"columns" : {type : "sap.suite.ui.commons.ColumnData", multiple : true, singularName : "column"}, 
+		"leftTopLabel" : {type : "sap.suite.ui.commons.ColumnMicroChartLabel", multiple : false}, 
+		"rightTopLabel" : {type : "sap.suite.ui.commons.ColumnMicroChartLabel", multiple : false}, 
+		"leftBottomLabel" : {type : "sap.suite.ui.commons.ColumnMicroChartLabel", multiple : false}, 
+		"rightBottomLabel" : {type : "sap.suite.ui.commons.ColumnMicroChartLabel", multiple : false}
 	},
 	events : {
 		"press" : {}
@@ -11293,6 +12884,142 @@ sap.suite.ui.commons.ColumnMicroChart.M_EVENTS = {'press':'press'};
 
 
 /**
+ * Getter for aggregation <code>leftTopLabel</code>.<br/>
+ * The label on the left top corner of the chart.
+ * 
+ * @return {sap.suite.ui.commons.ColumnMicroChartLabel}
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#getLeftTopLabel
+ * @function
+ */
+
+
+/**
+ * Setter for the aggregated <code>leftTopLabel</code>.
+ * @param {sap.suite.ui.commons.ColumnMicroChartLabel} oLeftTopLabel
+ * @return {sap.suite.ui.commons.ColumnMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#setLeftTopLabel
+ * @function
+ */
+	
+
+/**
+ * Destroys the leftTopLabel in the aggregation 
+ * named <code>leftTopLabel</code>.
+ * @return {sap.suite.ui.commons.ColumnMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#destroyLeftTopLabel
+ * @function
+ */
+
+
+/**
+ * Getter for aggregation <code>rightTopLabel</code>.<br/>
+ * The label on the right top corner of the chart.
+ * 
+ * @return {sap.suite.ui.commons.ColumnMicroChartLabel}
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#getRightTopLabel
+ * @function
+ */
+
+
+/**
+ * Setter for the aggregated <code>rightTopLabel</code>.
+ * @param {sap.suite.ui.commons.ColumnMicroChartLabel} oRightTopLabel
+ * @return {sap.suite.ui.commons.ColumnMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#setRightTopLabel
+ * @function
+ */
+	
+
+/**
+ * Destroys the rightTopLabel in the aggregation 
+ * named <code>rightTopLabel</code>.
+ * @return {sap.suite.ui.commons.ColumnMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#destroyRightTopLabel
+ * @function
+ */
+
+
+/**
+ * Getter for aggregation <code>leftBottomLabel</code>.<br/>
+ * The label on the left bottom corner of the chart.
+ * 
+ * @return {sap.suite.ui.commons.ColumnMicroChartLabel}
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#getLeftBottomLabel
+ * @function
+ */
+
+
+/**
+ * Setter for the aggregated <code>leftBottomLabel</code>.
+ * @param {sap.suite.ui.commons.ColumnMicroChartLabel} oLeftBottomLabel
+ * @return {sap.suite.ui.commons.ColumnMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#setLeftBottomLabel
+ * @function
+ */
+	
+
+/**
+ * Destroys the leftBottomLabel in the aggregation 
+ * named <code>leftBottomLabel</code>.
+ * @return {sap.suite.ui.commons.ColumnMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#destroyLeftBottomLabel
+ * @function
+ */
+
+
+/**
+ * Getter for aggregation <code>rightBottomLabel</code>.<br/>
+ * The label on the right bottom corner of the chart.
+ * 
+ * @return {sap.suite.ui.commons.ColumnMicroChartLabel}
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#getRightBottomLabel
+ * @function
+ */
+
+
+/**
+ * Setter for the aggregated <code>rightBottomLabel</code>.
+ * @param {sap.suite.ui.commons.ColumnMicroChartLabel} oRightBottomLabel
+ * @return {sap.suite.ui.commons.ColumnMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#setRightBottomLabel
+ * @function
+ */
+	
+
+/**
+ * Destroys the rightBottomLabel in the aggregation 
+ * named <code>rightBottomLabel</code>.
+ * @return {sap.suite.ui.commons.ColumnMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28
+ * @name sap.suite.ui.commons.ColumnMicroChart#destroyRightBottomLabel
+ * @function
+ */
+
+
+/**
  * The event is fired when the user chooses the column chart.
  *
  * @name sap.suite.ui.commons.ColumnMicroChart#press
@@ -11347,7 +13074,6 @@ sap.suite.ui.commons.ColumnMicroChart.M_EVENTS = {'press':'press'};
  * @name sap.suite.ui.commons.ColumnMicroChart#firePress
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/ColumnMicroChart.js
 ///**
@@ -11528,37 +13254,44 @@ sap.suite.ui.commons.ColumnMicroChart.prototype.detachEvent = function(sEventId,
 	return this;
 };
 
- sap.suite.ui.commons.ColumnMicroChart.prototype.ontap = function(oEvent) {
-     if (sap.ui.Device.browser.internet_explorer) {
-         this.$().focus();
-     }
-     this.firePress();
-};
-
-sap.suite.ui.commons.ColumnMicroChart.prototype.onkeydown = function(oEvent) {
-  if (oEvent.which == jQuery.sap.KeyCodes.SPACE) {
-      oEvent.preventDefault();
-  }
-};
-
-sap.suite.ui.commons.ColumnMicroChart.prototype.onkeyup = function(oEvent) {
-    if (oEvent.which == jQuery.sap.KeyCodes.ENTER || oEvent.which == jQuery.sap.KeyCodes.SPACE) {
-        this.firePress();
-        oEvent.preventDefault();
-    }
-};
-
 sap.suite.ui.commons.ColumnMicroChart.prototype.getLocalizedColorMeaning = function(sColor) {
-	return this._oRb.getText(("SEMANTIC_COLOR_"+sColor).toUpperCase());
+	if (sColor) {
+		return this._oRb.getText(("SEMANTIC_COLOR_"+sColor).toUpperCase());
+	}
 };
 
 sap.suite.ui.commons.ColumnMicroChart.prototype.getAltText = function() {
 	var sAltText = "";
+	var bIsFirst = true;
+	var oLeftTopLabel = this.getLeftTopLabel();
+	var oRightTopLabel = this.getRightTopLabel();
+	var oLeftBtmLabel = this.getLeftBottomLabel();
+	var oRightBtmLabel = this.getRightBottomLabel();
+	
+	var sColor;
+	var sLeftTopLabel = oLeftTopLabel && oLeftTopLabel.getLabel();
+	
+	if (oLeftTopLabel && oLeftTopLabel.getLabel() || oLeftBtmLabel && oLeftBtmLabel.getLabel()) {
+		sColor = oLeftTopLabel ? oLeftTopLabel.getColor() : oLeftBtmLabel ? oLeftBtmLabel.getColor() : "";
+		
+		sAltText += (bIsFirst ? "" : "\n") + this._oRb.getText(("MICRO_AREA_CHART_START")) + ": " + (oLeftBtmLabel ? oLeftBtmLabel.getLabel() + " " : "")
+			+ (oLeftTopLabel ? oLeftTopLabel.getLabel() + " " : "") + this.getLocalizedColorMeaning(sColor);
+		bIsFirst = false;
+	}
+	
+	if (oRightTopLabel && oRightTopLabel.getLabel() || oRightBtmLabel && oRightBtmLabel.getLabel()) {
+		sColor = oRightTopLabel ? oRightTopLabel.getColor() : oRightBtmLabel ? oRightBtmLabel.getColor() : "";
+		
+		sAltText += (bIsFirst ? "" : "\n") + this._oRb.getText(("MICRO_AREA_CHART_END")) + ": " + (oRightBtmLabel ? oRightBtmLabel.getLabel() + " " : "")
+			+ (oRightTopLabel ? oRightTopLabel.getLabel() + " " : "") + this.getLocalizedColorMeaning(sColor);  
+		bIsFirst = false;
+	}
+	
 	var aColumns = this.getColumns();
 	for (var i = 0; i < aColumns.length; i++) {
 		var oBar = aColumns[i];
 		var sMeaning = this.getLocalizedColorMeaning(oBar.getColor());
-		sAltText += ((i==0) ? "" : "\n") + oBar.getLabel() + " " + oBar.getValue() + " " + sMeaning;
+		sAltText += ((!bIsFirst || i != 0) ? "\n" : "") + oBar.getLabel() + " " + oBar.getValue() + " " + sMeaning;
 	}
 
 	return sAltText;
@@ -11569,12 +13302,270 @@ sap.suite.ui.commons.ColumnMicroChart.prototype.getTooltip_AsString  = function(
 	var sTooltip = this.getAltText();
 	
 	if(typeof oTooltip === "string" || oTooltip instanceof String) {
-		sTooltip = oTooltip.split("{AltText}").join(sTooltip);
+		sTooltip = oTooltip.split("{AltText}").join(sTooltip).split("((AltText))").join(sTooltip);
 		return sTooltip;
 	}
 	return oTooltip ? oTooltip : "";
 };
+
+sap.suite.ui.commons.ColumnMicroChart.prototype.ontap = function(oEvent) {
+	if (!this.fireBarPress(oEvent)) {
+		if (sap.ui.Device.browser.internet_explorer) {
+			this.$().focus();
+		}
+		this.firePress();
+    }
+};
+
+sap.suite.ui.commons.ColumnMicroChart.prototype.onkeydown = function(oEvent) {
+	switch (oEvent.keyCode) {
+		case jQuery.sap.KeyCodes.SPACE:
+			oEvent.preventDefault();
+			break;
+
+		case jQuery.sap.KeyCodes.ARROW_LEFT:
+		case jQuery.sap.KeyCodes.ARROW_UP:
+			var oFocusables = this.$().find(":focusable"); // all tabstops in the control
+			var iThis = oFocusables.index(oEvent.target);  // focused element index
+			if (oFocusables.length > 0) {
+				oFocusables.eq(iThis - 1).get(0).focus();	// previous tab stop element
+					oEvent.preventDefault();
+					oEvent.stopPropagation();
+			}
+			break;
+			
+		case jQuery.sap.KeyCodes.ARROW_DOWN:
+		case jQuery.sap.KeyCodes.ARROW_RIGHT:
+			var oFocusables = this.$().find(":focusable"); // all tabstops in the control
+			var iThis = oFocusables.index(oEvent.target);  // focused element index
+			if (oFocusables.length > 0) {
+				oFocusables.eq((iThis + 1 < oFocusables.length) ? iThis + 1 : 0).get(0).focus(); // next tab stop element
+					oEvent.preventDefault();
+					oEvent.stopPropagation();
+			}
+			break;
+	  }
+};
+
+sap.suite.ui.commons.ColumnMicroChart.prototype.onkeyup = function(oEvent) {
+    if (oEvent.which == jQuery.sap.KeyCodes.ENTER || oEvent.which == jQuery.sap.KeyCodes.SPACE) {
+        if (!this.fireBarPress(oEvent)) {
+	        this.firePress();
+	        oEvent.preventDefault();
+	    }
+    }
+};
+
+
+sap.suite.ui.commons.ColumnMicroChart.prototype.fireBarPress = function(oEvent) {
+	var oFocused = this.$().find(":focus").get(0);
+	if (oFocused) {
+		var iIndex = this.$().find(".sapSuiteCmcBar").index(jQuery(oFocused));
+			var oCmcData = this.getColumns()[iIndex];
+			if (oCmcData) {
+				oCmcData.firePress();
+				oEvent.preventDefault();
+				oEvent.stopPropagation();
+				return true;
+			}
+	}
+	return false;
+};
+
+sap.suite.ui.commons.ColumnMicroChart.prototype._getBarAltText = function(iBarIndex) {
+	var oBar = this.getColumns()[iBarIndex];
+	var sMeaning = this.getLocalizedColorMeaning(oBar.getColor());
+	return oBar.getLabel() + " " + oBar.getValue() + " " + sMeaning;
+};
+
+sap.suite.ui.commons.ColumnMicroChart.prototype.setBarPressable = function(iBarIndex, bPressable) {
+	if (bPressable) {
+		var sBarAltText = this._getBarAltText(iBarIndex);
+		jQuery.sap.byId(this.getId() + "-bar-" + iBarIndex).addClass("sapSuiteUiCommonsPointer").attr("tabindex", 0).attr("title", sBarAltText).attr("role", "presentation").attr("aria-label", sBarAltText);
+    } else {
+    	jQuery.sap.byId(this.getId() + "-bar-" + iBarIndex).removeAttr("tabindex").removeClass("sapSuiteUiCommonsPointer").removeAttr("title").removeAttr("role").removeAttr("aria-label");
+    }
+};
+
+sap.suite.ui.commons.ColumnMicroChart.prototype.onsaptabnext = function(oEvent) {
+	var oLast = this.$().find(":focusable").last();  // last tabstop in the control
+	if (oLast) {
+		this._bIgnoreFocusEvt = true;
+		oLast.get(0).focus();
+	}
+};
+
+sap.suite.ui.commons.ColumnMicroChart.prototype.onsaptabprevious = function(oEvent) {
+	if (oEvent.target.id != oEvent.currentTarget.id) {
+		var oFirst = this.$().find(":focusable").first(); // first tabstop in the control
+		if (oFirst) {
+			oFirst.get(0).focus();
+		}
+	}
+};
+
+sap.suite.ui.commons.ColumnMicroChart.prototype.onfocusin = function(oEvent) {
+	if (this._bIgnoreFocusEvt) {
+		this._bIgnoreFocusEvt = false;
+		return;
+	}
+	if (this.getId()+"-hidden" == oEvent.target.id) {
+		this.$().focus();
+		oEvent.preventDefault();
+		oEvent.stopPropagation();
+	}
+};
+		
 }; // end of sap/suite/ui/commons/ColumnMicroChart.js
+if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.ColumnMicroChartLabel') ) {
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+
+/* ----------------------------------------------------------------------------------
+ * Hint: This is a derived (generated) file. Changes should be done in the underlying 
+ * source files only (*.control, *.js) or they will be lost after the next generation.
+ * ---------------------------------------------------------------------------------- */
+
+// Provides control sap.suite.ui.commons.ColumnMicroChartLabel.
+jQuery.sap.declare("sap.suite.ui.commons.ColumnMicroChartLabel");
+
+jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
+
+
+
+/**
+ * Constructor for a new ColumnMicroChartLabel.
+ * 
+ * Accepts an object literal <code>mSettings</code> that defines initial 
+ * property values, aggregated and associated objects as well as event handlers. 
+ * 
+ * If the name of a setting is ambiguous (e.g. a property has the same name as an event), 
+ * then the framework assumes property, aggregation, association, event in that order. 
+ * To override this automatic resolution, one of the prefixes "aggregation:", "association:" 
+ * or "event:" can be added to the name of the setting (such a prefixed name must be
+ * enclosed in single or double quotes).
+ *
+ * The supported settings are:
+ * <ul>
+ * <li>Properties
+ * <ul>
+ * <li>{@link #getLabel label} : string</li>
+ * <li>{@link #getColor color} : sap.suite.ui.commons.InfoTileValueColor (default: "Neutral")</li></ul>
+ * </li>
+ * <li>Aggregations
+ * <ul></ul>
+ * </li>
+ * <li>Associations
+ * <ul></ul>
+ * </li>
+ * <li>Events
+ * <ul></ul>
+ * </li>
+ * </ul> 
+ *
+ * 
+ * In addition, all settings applicable to the base type {@link sap.ui.core.Element#constructor sap.ui.core.Element}
+ * can be used as well.
+ *
+ * @param {string} [sId] id for the new control, generated automatically if no id is given 
+ * @param {object} [mSettings] initial settings for the new control
+ *
+ * @class
+ * This element contains data for a label in ColumnMicroChart control.
+ * @extends sap.ui.core.Element
+ * @version 1.30.8
+ *
+ * @constructor
+ * @public
+ * @name sap.suite.ui.commons.ColumnMicroChartLabel
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
+ */
+sap.ui.core.Element.extend("sap.suite.ui.commons.ColumnMicroChartLabel", { metadata : {
+
+	library : "sap.suite.ui.commons",
+	properties : {
+		"label" : {type : "string", group : "Misc", defaultValue : null},
+		"color" : {type : "sap.suite.ui.commons.InfoTileValueColor", group : "Misc", defaultValue : "Neutral"}
+	}
+}});
+
+
+/**
+ * Creates a new subclass of class sap.suite.ui.commons.ColumnMicroChartLabel with name <code>sClassName</code> 
+ * and enriches it with the information contained in <code>oClassInfo</code>.
+ * 
+ * <code>oClassInfo</code> might contain the same kind of informations as described in {@link sap.ui.core.Element.extend Element.extend}.
+ *   
+ * @param {string} sClassName name of the class to be created
+ * @param {object} [oClassInfo] object literal with informations about the class  
+ * @param {function} [FNMetaImpl] constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
+ * @return {function} the created class / constructor function
+ * @public
+ * @static
+ * @name sap.suite.ui.commons.ColumnMicroChartLabel.extend
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>label</code>.
+ * The text of the label.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>label</code>
+ * @public
+ * @name sap.suite.ui.commons.ColumnMicroChartLabel#getLabel
+ * @function
+ */
+
+/**
+ * Setter for property <code>label</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sLabel  new value for property <code>label</code>
+ * @return {sap.suite.ui.commons.ColumnMicroChartLabel} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ColumnMicroChartLabel#setLabel
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>color</code>.
+ * The color of the label.
+ *
+ * Default value is <code>"Neutral"</code>
+ *
+ * @return {sap.suite.ui.commons.InfoTileValueColor} the value of property <code>color</code>
+ * @public
+ * @name sap.suite.ui.commons.ColumnMicroChartLabel#getColor
+ * @function
+ */
+
+/**
+ * Setter for property <code>color</code>.
+ *
+ * Default value is <code>"Neutral"</code> 
+ *
+ * @param {sap.suite.ui.commons.InfoTileValueColor} oColor  new value for property <code>color</code>
+ * @return {sap.suite.ui.commons.ColumnMicroChartLabel} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ColumnMicroChartLabel#setColor
+ * @function
+ */
+
+// Start of sap/suite/ui/commons/ColumnMicroChartLabel.js
+///**
+// * This file defines behavior for the control,
+// */
+//sap.suite.ui.commons.ColumnMicroChartLabel.prototype.init = function(){
+//   // do something for initialization...
+//};
+
+}; // end of sap/suite/ui/commons/ColumnMicroChartLabel.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.ComparisonChart') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
@@ -11636,7 +13627,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control shows a comparison chart.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -11741,6 +13732,7 @@ sap.suite.ui.commons.ComparisonChart.M_EVENTS = {'press':'press'};
  *
  * @return {sap.suite.ui.commons.ComparisonChartView} the value of property <code>view</code>
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.ComparisonChart#getView
  * @function
  */
@@ -11753,6 +13745,7 @@ sap.suite.ui.commons.ComparisonChart.M_EVENTS = {'press':'press'};
  * @param {sap.suite.ui.commons.ComparisonChartView} oView  new value for property <code>view</code>
  * @return {sap.suite.ui.commons.ComparisonChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.ComparisonChart#setView
  * @function
  */
@@ -11766,6 +13759,7 @@ sap.suite.ui.commons.ComparisonChart.M_EVENTS = {'press':'press'};
  *
  * @return {sap.ui.core.CSSSize} the value of property <code>width</code>
  * @public
+ * @since 1.22
  * @name sap.suite.ui.commons.ComparisonChart#getWidth
  * @function
  */
@@ -11778,6 +13772,7 @@ sap.suite.ui.commons.ComparisonChart.M_EVENTS = {'press':'press'};
  * @param {sap.ui.core.CSSSize} sWidth  new value for property <code>width</code>
  * @return {sap.suite.ui.commons.ComparisonChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.22
  * @name sap.suite.ui.commons.ComparisonChart#setWidth
  * @function
  */
@@ -11791,6 +13786,7 @@ sap.suite.ui.commons.ComparisonChart.M_EVENTS = {'press':'press'};
  *
  * @return {string[]} the value of property <code>colorPalette</code>
  * @public
+ * @since 1.24
  * @name sap.suite.ui.commons.ComparisonChart#getColorPalette
  * @function
  */
@@ -11803,6 +13799,7 @@ sap.suite.ui.commons.ComparisonChart.M_EVENTS = {'press':'press'};
  * @param {string[]} aColorPalette  new value for property <code>colorPalette</code>
  * @return {sap.suite.ui.commons.ComparisonChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.24
  * @name sap.suite.ui.commons.ComparisonChart#setColorPalette
  * @function
  */
@@ -11816,6 +13813,7 @@ sap.suite.ui.commons.ComparisonChart.M_EVENTS = {'press':'press'};
  *
  * @return {boolean} the value of property <code>shrinkable</code>
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.ComparisonChart#getShrinkable
  * @function
  */
@@ -11828,6 +13826,7 @@ sap.suite.ui.commons.ComparisonChart.M_EVENTS = {'press':'press'};
  * @param {boolean} bShrinkable  new value for property <code>shrinkable</code>
  * @return {sap.suite.ui.commons.ComparisonChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.ComparisonChart#setShrinkable
  * @function
  */
@@ -11841,6 +13840,7 @@ sap.suite.ui.commons.ComparisonChart.M_EVENTS = {'press':'press'};
  *
  * @return {sap.ui.core.CSSSize} the value of property <code>height</code>
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.ComparisonChart#getHeight
  * @function
  */
@@ -11853,6 +13853,7 @@ sap.suite.ui.commons.ComparisonChart.M_EVENTS = {'press':'press'};
  * @param {sap.ui.core.CSSSize} sHeight  new value for property <code>height</code>
  * @return {sap.suite.ui.commons.ComparisonChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.ComparisonChart#setHeight
  * @function
  */
@@ -11995,7 +13996,6 @@ sap.suite.ui.commons.ComparisonChart.M_EVENTS = {'press':'press'};
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/ComparisonChart.js
 /*!
  * @copyright@
@@ -12069,26 +14069,6 @@ sap.suite.ui.commons.ComparisonChart.prototype._calculateChartData = function() 
     return aResult;
 };
 
-sap.suite.ui.commons.ComparisonChart.prototype.ontap = function(oEvent) {
-    if (sap.ui.Device.browser.internet_explorer) {
-        this.$().focus();
-    }
-    this.firePress();
-};
-
-sap.suite.ui.commons.ComparisonChart.prototype.onkeydown = function(oEvent) {
-  if (oEvent.which == jQuery.sap.KeyCodes.SPACE) {
-      oEvent.preventDefault();
-  }
-};
-
-sap.suite.ui.commons.ComparisonChart.prototype.onkeyup = function(oEvent) {
-    if (oEvent.which == jQuery.sap.KeyCodes.ENTER || oEvent.which == jQuery.sap.KeyCodes.SPACE) {
-        this.firePress();
-        oEvent.preventDefault();
-    }
-};
-
 sap.suite.ui.commons.ComparisonChart.prototype.attachEvent = function(sEventId, oData, fnFunction, oListener) {
     sap.ui.core.Control.prototype.attachEvent.call(this, sEventId, oData, fnFunction, oListener);
     
@@ -12131,7 +14111,7 @@ sap.suite.ui.commons.ComparisonChart.prototype.getTooltip_AsString  = function()
 	var sTooltip = this.getAltText();
 	
 	if(typeof oTooltip === "string" || oTooltip instanceof String) {
-		sTooltip = oTooltip.split("{AltText}").join(sTooltip);
+		sTooltip = oTooltip.split("{AltText}").join(sTooltip).split("((AltText))").join(sTooltip);
 		return sTooltip;
 	}
 	return oTooltip ? oTooltip : "";
@@ -12143,33 +14123,33 @@ sap.suite.ui.commons.ComparisonChart.prototype._adjustBars = function() {
 	var aBarContainers = this.$().find(".sapSuiteCmpChartItem");
 	var iMinH = parseFloat(aBarContainers.css("min-height"));
 	var iMaxH = parseFloat(aBarContainers.css("max-height"));
-	var iBarHeight;
 	var iBarContHeight;
 	
 	if(iBarCount != 0) {
 		iBarContHeight = iHeight/iBarCount;
-	}
 
-	if(iBarContHeight>iMaxH) {
-		iBarContHeight = iMaxH;
-	} else if(iBarContHeight<iMinH) {
-		iBarContHeight = iMinH;
-	}
-	
-	aBarContainers.css("height", iBarContHeight);
-	
-	if(this.getView() === "Wide" ) {
-		var iChartBarHeight = iBarContHeight*79/42;
-		this.$().find(".sapSuiteCmpChartBar>div").css("height",iChartBarHeight + "%");
+		if(iBarContHeight>iMaxH) {
+			iBarContHeight = iMaxH;
+		} else if(iBarContHeight<iMinH) {
+			iBarContHeight = iMinH;
+		}
 		
-	} else if(this.getView() === "Normal") {
-		var iChartBarHeight = iBarContHeight - 19;
-		this.$().find(".sapSuiteCmpChartBar>div").css("height",iChartBarHeight);
-	}
+		aBarContainers.css("height", iBarContHeight);
+		
+		if(this.getView() === "Wide" ) {
+			var iChartBarHeight = iBarContHeight*79/42;
+			this.$().find(".sapSuiteCmpChartBar>div").css("height",iChartBarHeight + "%");
+			
+		} else if(this.getView() === "Normal") {
+			var iChartBarHeight = iBarContHeight - 19;
+			this.$().find(".sapSuiteCmpChartBar>div").css("height",iChartBarHeight);
+		}
+
 		var iChartsHeightDelta = (iHeight - iBarContHeight * iBarCount)/2;
 		if(iChartsHeightDelta > 0) {
-			jQuery(aBarContainers[0]).css("margin-top", iChartsHeightDelta + 7 + "px")
+			jQuery(aBarContainers[0]).css("margin-top", iChartsHeightDelta + 7 + "px");
 		}
+	}
 };
 
 sap.suite.ui.commons.ComparisonChart.prototype.onAfterRendering = function() {
@@ -12182,6 +14162,121 @@ sap.suite.ui.commons.ComparisonChart.prototype.onAfterRendering = function() {
 	}
 	
 };
+
+sap.suite.ui.commons.ComparisonChart.prototype._getBarAltText = function(iBarIndex) {
+		var sScale = this.getScale();
+		var oBar = this.getData()[iBarIndex];
+		var sMeaning = (this.getColorPalette().length) ? "" : this.getLocalizedColorMeaning(oBar.getColor());
+		return oBar.getTitle() + " " + (oBar.getDisplayValue() ? oBar.getDisplayValue() : oBar.getValue()) + sScale + " " + sMeaning;
+};
+
+sap.suite.ui.commons.ComparisonChart.prototype.onsaptabnext = function(oEvent) {
+	var oLast = this.$().find(":focusable").last();	// last tabstop in the control
+	if (oLast) {
+		this._bIgnoreFocusEvt = true;
+		oLast.get(0).focus(); 
+	}
+};
+
+sap.suite.ui.commons.ComparisonChart.prototype.onsaptabprevious = function(oEvent) {
+	if (oEvent.target.id != oEvent.currentTarget.id) {
+		var oFirst = this.$().find(":focusable").first();	// first tabstop in the control
+		if (oFirst) {
+			oFirst.get(0).focus(); 
+		}
+	}
+};
+
+
+sap.suite.ui.commons.ComparisonChart.prototype.ontap = function(oEvent) {
+	if (!this.fireBarPress(oEvent)) {
+	    if (sap.ui.Device.browser.internet_explorer) {
+	        this.$().focus();
+	    }
+	    this.firePress();
+    }
+};
+
+sap.suite.ui.commons.ComparisonChart.prototype.onkeydown = function(oEvent) {
+	switch (oEvent.keyCode) {
+		case jQuery.sap.KeyCodes.SPACE:
+			oEvent.preventDefault();
+			break;
+			
+		case jQuery.sap.KeyCodes.ARROW_LEFT:
+		case jQuery.sap.KeyCodes.ARROW_UP:
+			var oFocusables = this.$().find(":focusable");	// all tabstops in the control
+			var iThis = oFocusables.index(oEvent.target);  // focused element index
+			if (oFocusables.length > 0) {
+				oFocusables.eq(iThis - 1).get(0).focus();	// previous tab stop element
+				oEvent.preventDefault();
+				oEvent.stopPropagation();
+			}
+			break;
+
+		case jQuery.sap.KeyCodes.ARROW_DOWN:
+		case jQuery.sap.KeyCodes.ARROW_RIGHT:
+			var oFocusables = this.$().find(":focusable");	// all tabstops in the control
+			var iThis = oFocusables.index(oEvent.target);  // focused element index
+			if (oFocusables.length > 0) {
+				oFocusables.eq((iThis + 1 < oFocusables.length) ? iThis + 1 : 0).get(0).focus();	// next tab stop element
+				oEvent.preventDefault();
+				oEvent.stopPropagation();
+			}
+			break;
+	}
+};
+
+sap.suite.ui.commons.ComparisonChart.prototype.onkeyup = function(oEvent) {
+    if (oEvent.which == jQuery.sap.KeyCodes.ENTER || oEvent.which == jQuery.sap.KeyCodes.SPACE) {
+    	if (! this.fireBarPress(oEvent)) {
+	        this.firePress();
+	        oEvent.preventDefault();
+        }
+    }
+};
+
+sap.suite.ui.commons.ComparisonChart.prototype.fireBarPress = function(oEvent) {
+	var oFocused = this.$().find(":focus").get(0);
+	if (oFocused) {
+		var iIndex = this.$().find(".sapSuiteCmpChartBar").index(jQuery(oFocused));
+		var oComparisonData = this.getData()[iIndex];
+		if (oComparisonData) {
+			oComparisonData.firePress();
+			oEvent.preventDefault();
+			oEvent.stopPropagation();
+			return true;
+		}
+	}
+	return false;
+};
+
+
+sap.suite.ui.commons.ComparisonChart.prototype.setBarPressable = function(iBarIndex, bPressable) {
+	if (bPressable) {
+		var sBarAltText = this._getBarAltText(iBarIndex);
+		jQuery.sap.byId(this.getId() + "-chart-item-bar-" + iBarIndex).addClass("sapSuiteUiCommonsPointer").attr("tabindex", 0).attr("title", sBarAltText).attr("role", "presentation").attr("aria-label", sBarAltText);
+	} else {
+        jQuery.sap.byId(this.getId() + "-chart-item-bar-" + iBarIndex).removeAttr("tabindex").removeClass("sapSuiteUiCommonsPointer").removeAttr("title").removeAttr("role").removeAttr("aria-label");
+	}
+};
+
+sap.suite.ui.commons.ComparisonChart.prototype.onfocusin = function(oEvent) {
+	if (this._bIgnoreFocusEvt) {
+		this._bIgnoreFocusEvt = false;
+		return;
+	}
+	if (this.getId()+"-hidden" == oEvent.target.id) {
+		this.$().focus();
+		oEvent.preventDefault();
+		oEvent.stopPropagation();
+	}
+};
+
+
+
+
+
 }; // end of sap/suite/ui/commons/ComparisonChart.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.ComparisonData') ) {
 /*!
@@ -12228,7 +14323,8 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * <ul></ul>
  * </li>
  * <li>Events
- * <ul></ul>
+ * <ul>
+ * <li>{@link sap.suite.ui.commons.ComparisonData#event:press press} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
  * </li>
  * </ul> 
  *
@@ -12242,7 +14338,7 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * Comparison tile value holder.
  * @extends sap.ui.core.Element
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -12257,6 +14353,9 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.ComparisonData", { metadata : {
 		"value" : {type : "float", group : "Misc", defaultValue : 0},
 		"color" : {type : "sap.suite.ui.commons.InfoTileValueColor", group : "Misc", defaultValue : sap.suite.ui.commons.InfoTileValueColor.Neutral},
 		"displayValue" : {type : "string", group : "Misc", defaultValue : null}
+	},
+	events : {
+		"press" : {}
 	}
 }});
 
@@ -12276,6 +14375,8 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.ComparisonData", { metadata : {
  * @name sap.suite.ui.commons.ComparisonData.extend
  * @function
  */
+
+sap.suite.ui.commons.ComparisonData.M_EVENTS = {'press':'press'};
 
 
 /**
@@ -12361,6 +14462,7 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.ComparisonData", { metadata : {
  *
  * @return {string} the value of property <code>displayValue</code>
  * @public
+ * @since 1.22
  * @name sap.suite.ui.commons.ComparisonData#getDisplayValue
  * @function
  */
@@ -12373,10 +14475,71 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.ComparisonData", { metadata : {
  * @param {string} sDisplayValue  new value for property <code>displayValue</code>
  * @return {sap.suite.ui.commons.ComparisonData} <code>this</code> to allow method chaining
  * @public
+ * @since 1.22
  * @name sap.suite.ui.commons.ComparisonData#setDisplayValue
  * @function
  */
 
+
+/**
+ * The event is fired when the user chooses the comparison data.
+ *
+ * @name sap.suite.ui.commons.ComparisonData#press
+ * @event
+ * @since 1.30
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'press' event of this <code>sap.suite.ui.commons.ComparisonData</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.ComparisonData</code>.<br/> itself. 
+ *  
+ * The event is fired when the user chooses the comparison data.
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.ComparisonData</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.ComparisonData} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.30
+ * @name sap.suite.ui.commons.ComparisonData#attachPress
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'press' event of this <code>sap.suite.ui.commons.ComparisonData</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.ComparisonData} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.30
+ * @name sap.suite.ui.commons.ComparisonData#detachPress
+ * @function
+ */
+
+/**
+ * Fire event press to attached listeners.
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.ComparisonData} <code>this</code> to allow method chaining
+ * @protected
+ * @since 1.30
+ * @name sap.suite.ui.commons.ComparisonData#firePress
+ * @function
+ */
 
 // Start of sap/suite/ui/commons/ComparisonData.js
 /*!
@@ -12402,6 +14565,31 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.ComparisonData", { metadata : {
 	 return typeof n == 'number' && !isNaN(n) && isFinite(n);
  };
  
+ 
+ sap.suite.ui.commons.ComparisonData.prototype.clone = function(sIdSuffix, aLocalIds, oOptions) {
+		var oClone = sap.ui.core.Control.prototype.clone.apply(this, arguments);
+		oClone._isValueSet = this._isValueSet;
+		return oClone;
+ };
+ 
+ sap.suite.ui.commons.ComparisonData.prototype.attachEvent = function(sEventId, oData, fnFunction, oListener) {
+    sap.ui.core.Control.prototype.attachEvent.call(this, sEventId, oData, fnFunction, oListener);
+    if (this.getParent()) {
+    	this.getParent().setBarPressable(this.getParent().getData().indexOf(this), true);
+    }
+    return this;
+ };
+
+ sap.suite.ui.commons.ComparisonData.prototype.detachEvent = function(sEventId, fnFunction, oListener) {
+    sap.ui.core.Control.prototype.detachEvent.call(this, sEventId, fnFunction, oListener);
+    if (this.getParent()) {
+    	this.getParent().setBarPressable(this.getParent().getData().indexOf(this), false);
+    }
+    return this;
+};
+
+
+
 }; // end of sap/suite/ui/commons/ComparisonData.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.CountingNavigationItem') ) {
 /*!
@@ -12459,7 +14647,7 @@ jQuery.sap.require('sap.ui.ux3.NavigationItem'); // unlisted dependency retained
  * @class
  * This control extends the sap.ui.ux3.NavigationItem control. This control can display the quantity of items on a corresponding content area. It also provides a rich tooltip that can appear and disappear after a certain delay.
  * @extends sap.ui.ux3.NavigationItem
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -12515,7 +14703,6 @@ sap.ui.ux3.NavigationItem.extend("sap.suite.ui.commons.CountingNavigationItem", 
  * @name sap.suite.ui.commons.CountingNavigationItem#setQuantity
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/CountingNavigationItem.js
 ///**
@@ -12581,7 +14768,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * The DateRangeScroller provides a method to scroll through a series of time periods, each of which is represented by a starting date and an ending date, known as the date range. The user may scroll to the previous or next date range. Several predefined ranges are supported such as day, week, work week, month, and year.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -12755,7 +14942,6 @@ sap.suite.ui.commons.DateRangeScroller.M_EVENTS = {'change':'change'};
  * @name sap.suite.ui.commons.DateRangeScroller#fireChange
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/DateRangeScroller.js
 jQuery.sap.require('sap.ui.commons.Label'); // unlisted dependency retained
@@ -13361,7 +15547,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * The Date Range Slider provides the user with a Range Slider control that is optimized for use with Dates.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -13901,7 +16087,6 @@ sap.suite.ui.commons.DateRangeSlider.M_EVENTS = {'change':'change','liveChange':
  * @name sap.suite.ui.commons.DateRangeSlider#fireLiveChange
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/DateRangeSlider.js
 jQuery.sap.require('jquery.sap.resources'); // unlisted dependency retained
@@ -14558,7 +16743,7 @@ jQuery.sap.require('sap.ui.commons.RangeSlider'); // unlisted dependency retaine
  * @class
  * The Date Range Slider provides the user with a Range Slider control that is optimized for use with Dates.
  * @extends sap.ui.commons.RangeSlider
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -14786,7 +16971,6 @@ sap.suite.ui.commons.DateRangeSliderInternal.M_EVENTS = {'change':'change','live
  * @name sap.suite.ui.commons.DateRangeSliderInternal#fireLiveChange
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/DateRangeSliderInternal.js
 jQuery.sap.require('sap.ui.commons.RangeSlider'); // unlisted dependency retained
@@ -15900,9 +18084,629 @@ jQuery.sap.require('sap.ui.commons.Label'); // unlisted dependency retained
 
 	};
 
+	sap.suite.ui.commons.DateRangeSliderInternal.prototype.onkeydown = function(oEvent) {
+			this.oMovingGrip.setAttribute('aria-busy', 'true');
+	};
+	
+	sap.suite.ui.commons.DateRangeSliderInternal.prototype.onkeyup = function(oEvent) {
+			this.oMovingGrip.setAttribute('aria-busy', 'false');
+	};
 }());
 
 }; // end of sap/suite/ui/commons/DateRangeSliderInternal.js
+if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.DeltaMicroChart') ) {
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+
+/* ----------------------------------------------------------------------------------
+ * Hint: This is a derived (generated) file. Changes should be done in the underlying 
+ * source files only (*.control, *.js) or they will be lost after the next generation.
+ * ---------------------------------------------------------------------------------- */
+
+// Provides control sap.suite.ui.commons.DeltaMicroChart.
+jQuery.sap.declare("sap.suite.ui.commons.DeltaMicroChart");
+
+jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
+
+
+
+/**
+ * Constructor for a new DeltaMicroChart.
+ * 
+ * Accepts an object literal <code>mSettings</code> that defines initial 
+ * property values, aggregated and associated objects as well as event handlers. 
+ * 
+ * If the name of a setting is ambiguous (e.g. a property has the same name as an event), 
+ * then the framework assumes property, aggregation, association, event in that order. 
+ * To override this automatic resolution, one of the prefixes "aggregation:", "association:" 
+ * or "event:" can be added to the name of the setting (such a prefixed name must be
+ * enclosed in single or double quotes).
+ *
+ * The supported settings are:
+ * <ul>
+ * <li>Properties
+ * <ul>
+ * <li>{@link #getValue1 value1} : float</li>
+ * <li>{@link #getValue2 value2} : float</li>
+ * <li>{@link #getTitle1 title1} : string</li>
+ * <li>{@link #getTitle2 title2} : string</li>
+ * <li>{@link #getDisplayValue1 displayValue1} : string</li>
+ * <li>{@link #getDisplayValue2 displayValue2} : string</li>
+ * <li>{@link #getDeltaDisplayValue deltaDisplayValue} : string</li>
+ * <li>{@link #getColor color} : sap.suite.ui.commons.InfoTileValueColor (default: sap.suite.ui.commons.InfoTileValueColor.Neutral)</li>
+ * <li>{@link #getWidth width} : sap.ui.core.CSSSize</li>
+ * <li>{@link #getSize size} : sap.suite.ui.commons.InfoTileSize (default: sap.suite.ui.commons.InfoTileSize.Auto)</li></ul>
+ * </li>
+ * <li>Aggregations
+ * <ul></ul>
+ * </li>
+ * <li>Associations
+ * <ul></ul>
+ * </li>
+ * <li>Events
+ * <ul>
+ * <li>{@link sap.suite.ui.commons.DeltaMicroChart#event:press press} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
+ * </li>
+ * </ul> 
+
+ *
+ * @param {string} [sId] id for the new control, generated automatically if no id is given 
+ * @param {object} [mSettings] initial settings for the new control
+ *
+ * @class
+ * This control displays a delta of two values as a chart.
+ * @extends sap.ui.core.Control
+ * @version 1.30.8
+ *
+ * @constructor
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
+ */
+sap.ui.core.Control.extend("sap.suite.ui.commons.DeltaMicroChart", { metadata : {
+
+	library : "sap.suite.ui.commons",
+	properties : {
+		"value1" : {type : "float", group : "Misc", defaultValue : null},
+		"value2" : {type : "float", group : "Misc", defaultValue : null},
+		"title1" : {type : "string", group : "Misc", defaultValue : null},
+		"title2" : {type : "string", group : "Misc", defaultValue : null},
+		"displayValue1" : {type : "string", group : "Misc", defaultValue : null},
+		"displayValue2" : {type : "string", group : "Misc", defaultValue : null},
+		"deltaDisplayValue" : {type : "string", group : "Misc", defaultValue : null},
+		"color" : {type : "sap.suite.ui.commons.InfoTileValueColor", group : "Misc", defaultValue : sap.suite.ui.commons.InfoTileValueColor.Neutral},
+		"width" : {type : "sap.ui.core.CSSSize", group : "Misc", defaultValue : null},
+		"size" : {type : "sap.suite.ui.commons.InfoTileSize", group : "Misc", defaultValue : sap.suite.ui.commons.InfoTileSize.Auto}
+	},
+	events : {
+		"press" : {}
+	}
+}});
+
+
+/**
+ * Creates a new subclass of class sap.suite.ui.commons.DeltaMicroChart with name <code>sClassName</code> 
+ * and enriches it with the information contained in <code>oClassInfo</code>.
+ * 
+ * <code>oClassInfo</code> might contain the same kind of informations as described in {@link sap.ui.core.Element.extend Element.extend}.
+ *   
+ * @param {string} sClassName name of the class to be created
+ * @param {object} [oClassInfo] object literal with informations about the class  
+ * @param {function} [FNMetaImpl] constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
+ * @return {function} the created class / constructor function
+ * @public
+ * @static
+ * @name sap.suite.ui.commons.DeltaMicroChart.extend
+ * @function
+ */
+
+sap.suite.ui.commons.DeltaMicroChart.M_EVENTS = {'press':'press'};
+
+
+/**
+ * Getter for property <code>value1</code>.
+ * The first value for delta calculation.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {float} the value of property <code>value1</code>
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#getValue1
+ * @function
+ */
+
+/**
+ * Setter for property <code>value1</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {float} fValue1  new value for property <code>value1</code>
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#setValue1
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>value2</code>.
+ * The second value for delta calculation.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {float} the value of property <code>value2</code>
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#getValue2
+ * @function
+ */
+
+/**
+ * Setter for property <code>value2</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {float} fValue2  new value for property <code>value2</code>
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#setValue2
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>title1</code>.
+ * The first value title.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>title1</code>
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#getTitle1
+ * @function
+ */
+
+/**
+ * Setter for property <code>title1</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sTitle1  new value for property <code>title1</code>
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#setTitle1
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>title2</code>.
+ * The second value title.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>title2</code>
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#getTitle2
+ * @function
+ */
+
+/**
+ * Setter for property <code>title2</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sTitle2  new value for property <code>title2</code>
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#setTitle2
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>displayValue1</code>.
+ * If this property is set, it is rendered instead of value1.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>displayValue1</code>
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#getDisplayValue1
+ * @function
+ */
+
+/**
+ * Setter for property <code>displayValue1</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sDisplayValue1  new value for property <code>displayValue1</code>
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#setDisplayValue1
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>displayValue2</code>.
+ * If this property is set, it is rendered instead of value2.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>displayValue2</code>
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#getDisplayValue2
+ * @function
+ */
+
+/**
+ * Setter for property <code>displayValue2</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sDisplayValue2  new value for property <code>displayValue2</code>
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#setDisplayValue2
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>deltaDisplayValue</code>.
+ * If this property is set, it is rendered instead of a calculated delta.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>deltaDisplayValue</code>
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#getDeltaDisplayValue
+ * @function
+ */
+
+/**
+ * Setter for property <code>deltaDisplayValue</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sDeltaDisplayValue  new value for property <code>deltaDisplayValue</code>
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#setDeltaDisplayValue
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>color</code>.
+ * The semantic color of the delta value.
+ *
+ * Default value is <code>Neutral</code>
+ *
+ * @return {sap.suite.ui.commons.InfoTileValueColor} the value of property <code>color</code>
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#getColor
+ * @function
+ */
+
+/**
+ * Setter for property <code>color</code>.
+ *
+ * Default value is <code>Neutral</code> 
+ *
+ * @param {sap.suite.ui.commons.InfoTileValueColor} oColor  new value for property <code>color</code>
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#setColor
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>width</code>.
+ * The width of the chart.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {sap.ui.core.CSSSize} the value of property <code>width</code>
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#getWidth
+ * @function
+ */
+
+/**
+ * Setter for property <code>width</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {sap.ui.core.CSSSize} sWidth  new value for property <code>width</code>
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#setWidth
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>size</code>.
+ * The size of the chart. If is not set, the default size is applied based on the device type.
+ *
+ * Default value is <code>Auto</code>
+ *
+ * @return {sap.suite.ui.commons.InfoTileSize} the value of property <code>size</code>
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#getSize
+ * @function
+ */
+
+/**
+ * Setter for property <code>size</code>.
+ *
+ * Default value is <code>Auto</code> 
+ *
+ * @param {sap.suite.ui.commons.InfoTileSize} oSize  new value for property <code>size</code>
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#setSize
+ * @function
+ */
+
+
+/**
+ * The event is fired when the user chooses the delta micro chart.
+ *
+ * @name sap.suite.ui.commons.DeltaMicroChart#press
+ * @event
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'press' event of this <code>sap.suite.ui.commons.DeltaMicroChart</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.DeltaMicroChart</code>.<br/> itself. 
+ *  
+ * The event is fired when the user chooses the delta micro chart.
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.DeltaMicroChart</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#attachPress
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'press' event of this <code>sap.suite.ui.commons.DeltaMicroChart</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.DeltaMicroChart#detachPress
+ * @function
+ */
+
+/**
+ * Fire event press to attached listeners.
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.DeltaMicroChart} <code>this</code> to allow method chaining
+ * @protected
+ * @name sap.suite.ui.commons.DeltaMicroChart#firePress
+ * @function
+ */
+
+// Start of sap/suite/ui/commons/DeltaMicroChart.js
+///**
+// * This file defines behavior for the control,
+// */
+sap.suite.ui.commons.DeltaMicroChart.prototype.init = function(){
+	this._oRb = sap.ui.getCore().getLibraryResourceBundle("sap.suite.ui.commons");
+	this.setTooltip("{AltText}");
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype._calcChartData = function() {
+	var fVal1 = this.getValue1();
+	var fVal2 = this.getValue2();
+	
+	var fMin = Math.min(fVal1, fVal2, 0);
+	var fMax = Math.max(fVal1, fVal2, 0);
+	var fTotal = fMax - fMin;
+	
+	function calcPercent(fVal) {
+		return (fTotal == 0 ?  0 : Math.abs(fVal) / fTotal * 100).toFixed(2);
+	};
+		
+	var oConf = {};
+	var fDelta = fVal1 - fVal2;
+	
+	oConf.delta = {
+		left: fMax == 0,
+		width: calcPercent(fDelta),
+		isFirstStripeUp: fVal1 < fVal2,
+		isMax: (fVal1 < 0 && fVal2 >= 0) || (fVal1 >= 0 && fVal2 < 0),
+		isZero: fVal1 == 0 && fVal2 == 0,
+		isEqual: fDelta == 0
+	};
+	
+	oConf.bar1 = {
+		left: fVal2 >= 0,
+		width: calcPercent(fVal1),
+		isSmaller: Math.abs(fVal1) < Math.abs(fVal2)
+	};
+	
+	oConf.bar2 = {
+		left: fVal1 >= 0,
+		width: calcPercent(fVal2),
+		isSmaller: Math.abs(fVal2) < Math.abs(fVal1)
+	};
+
+	return oConf;
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype.getLocalizedColorMeaning = function(sColor) {
+	return this._oRb.getText(("SEMANTIC_COLOR_"+sColor).toUpperCase());
+};
+
+/**
+ * Calculates the number of digits after the decimal point.
+ *
+ * @param {float} fValue float value
+ * @returns int number of digits after the decimal point in fValue.
+ * @private
+ */
+sap.suite.ui.commons.DeltaMicroChart.prototype._digitsAfterDecimalPoint = function(fValue) {
+	var sAfter = (""+fValue).match(/[.,](\d+)/g);
+	return (sAfter) ? (""+sAfter).length - 1 : 0;
+};
+
+
+sap.suite.ui.commons.DeltaMicroChart.prototype.getAltText = function() {
+    var sDv1 = this.getDisplayValue1();
+    var sDv2 = this.getDisplayValue2();
+    var sDdv = this.getDeltaDisplayValue();
+	var fVal1 = this.getValue1();
+	var fVal2 = this.getValue2();
+	var sAdv1ToShow = sDv1 ? sDv1 : "" + fVal1;
+	var sAdv2ToShow = sDv2 ? sDv2 : "" + fVal2;
+	var sAddvToShow = sDdv ? sDdv : "" + Math.abs(fVal1 - fVal2).toFixed(Math.max(this._digitsAfterDecimalPoint(fVal1), this._digitsAfterDecimalPoint(fVal2)));
+	var sMeaning = this.getLocalizedColorMeaning(this.getColor());
+	
+	return this.getTitle1() + " " + sAdv1ToShow + "\n" + this.getTitle2() + " " + sAdv2ToShow + "\n" +  this._oRb.getText("DELTAMICROCHART_DELTA_TOOLTIP", [sAddvToShow, sMeaning]);
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype.getTooltip_AsString  = function() {
+	var oTooltip = this.getTooltip();
+	var sTooltip = this.getAltText();
+	
+	if(typeof oTooltip === "string" || oTooltip instanceof String) {
+		sTooltip = oTooltip.split("{AltText}").join(sTooltip).split("((AltText))").join(sTooltip);
+		return sTooltip;
+	}
+	return oTooltip ? oTooltip : "";
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype._isCalcSupported = function() {
+	return "11px" == jQuery.sap.byId(this.getId() + "-calc").css("max-width");
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype._isRoundingSupported = function() {
+	return 4 == jQuery.sap.byId(this.getId() + "-calc1").width();
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype.onBeforeRendering = function() {
+	this._oChartData = this._calcChartData();
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype.onAfterRendering = function() {
+	this._bCalc = this._isCalcSupported();
+	this._bRounding = this._isRoundingSupported();
+	
+	if (!this._bCalc || !this._bRounding) {
+		if (this._sResizeHandlerId) {
+			sap.ui.core.ResizeHandler.deregister(this._sResizeHandlerId);
+		}
+		
+	    var oChart = jQuery.sap.domById(this.getId() + "-dmc-chart");
+	    this._sResizeHandlerId = sap.ui.core.ResizeHandler.register(oChart,  jQuery.proxy(this._adjust, this));
+	    
+	    if (!this._bCalc) {
+	    	this._adjustCalc();
+	    }
+	    
+	    if (!this._bRounding) {
+	    	this._adjustRound();
+	    }
+	}
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype._adjust = function() {
+    if (!this._bCalc) {
+    	this._adjustCalc();
+    }
+    
+    if (!this._bRounding) {
+    	this._adjustRound();
+    }
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype._adjustRound = function() {
+	var iChartWidth = jQuery.sap.byId(this.getId() + "-dmc-chart").width();
+	var iDeltaWidth = Math.round(iChartWidth * this._oChartData.delta.width / 100);
+	
+	jQuery.sap.byId(this.getId() + "-dmc-bar-delta").width(iDeltaWidth);
+	
+	if (this._oChartData.bar1.isSmaller && !this._oChartData.delta.isMax) {
+		jQuery.sap.byId(this.getId() + "-dmc-bar1").width(iChartWidth - iDeltaWidth);
+	}
+	
+	if (this._oChartData.bar2.isSmaller && !this._oChartData.delta.isMax) {
+		jQuery.sap.byId(this.getId() + "-dmc-bar2").width(iChartWidth - iDeltaWidth);
+	}
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype._adjustCalc = function() {
+	var iChartWidth = jQuery.sap.byId(this.getId() + "-dmc-chart").width();
+	
+	function adjustBar(oBar) {
+		oBar.css("max-width", iChartWidth - parseInt(oBar.css("max-width")) + "px");
+	};
+	
+	adjustBar(jQuery.sap.byId(this.getId() + "-dmc-bar1"));
+	adjustBar(jQuery.sap.byId(this.getId() + "-dmc-bar2"));
+	adjustBar(jQuery.sap.byId(this.getId() + "-dmc-bar-delta"));
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype.attachEvent = function(sEventId, oData, fnFunction, oListener) {
+	sap.ui.core.Control.prototype.attachEvent.call(this, sEventId, oData, fnFunction, oListener);
+	if (this.hasListeners("press")) {
+		this.$().attr("tabindex", 0).addClass("sapSuiteUiCommonsPointer");
+	}
+	return this;
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype.detachEvent = function(sEventId, fnFunction, oListener) {
+	sap.ui.core.Control.prototype.detachEvent.call(this, sEventId, fnFunction, oListener);
+	if (!this.hasListeners("press")) {
+		this.$().removeAttr("tabindex").removeClass("sapSuiteUiCommonsPointer");
+	}
+	return this;
+}; 
+
+ sap.suite.ui.commons.DeltaMicroChart.prototype.ontap = function(oEvent) {
+     if (sap.ui.Device.browser.internet_explorer) {
+         this.$().focus();
+     }
+     this.firePress();
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype.onkeydown = function(oEvent) {
+    if (oEvent.which == jQuery.sap.KeyCodes.SPACE) {
+        oEvent.preventDefault();
+    }
+};
+
+sap.suite.ui.commons.DeltaMicroChart.prototype.onkeyup = function(oEvent) {
+    if (oEvent.which == jQuery.sap.KeyCodes.ENTER || oEvent.which == jQuery.sap.KeyCodes.SPACE) {
+        this.firePress();
+        oEvent.preventDefault();
+    }
+};
+}; // end of sap/suite/ui/commons/DeltaMicroChart.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.DynamicContainer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
@@ -15958,7 +18762,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * The control that displays multiple GenericTile controls as changing slides.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -16125,7 +18929,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.DynamicContainer", { metadata :
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/DynamicContainer.js
 sap.suite.ui.commons.DynamicContainer.prototype.init = function() {
 	this._oDelegate = {
@@ -16263,7 +19066,7 @@ sap.suite.ui.commons.DynamicContainer.prototype._scrollToNextTile = function(bPa
 	}
 	this._setAriaDescriptor();
 };
-
+/*
 sap.suite.ui.commons.DynamicContainer.prototype._scrollToPrevTile = function(bPause) {
 	var iTransitionTime = this._iCurrAnimationTime - this.getDisplayTime();
 	iTransitionTime = this.getTransitionTime() - (iTransitionTime > 0 ? iTransitionTime : 0);
@@ -16330,7 +19133,7 @@ sap.suite.ui.commons.DynamicContainer.prototype._scrollToPrevTile = function(bPa
 	}
 	this._setAriaDescriptor();
 };
-
+*/
 sap.suite.ui.commons.DynamicContainer.prototype._setAriaDescriptor = function() {
 	this.$().attr("aria-label", this.getTiles()[this._iCurrentTile].getAltText().replace(/\s/g, " "));
 };
@@ -16366,21 +19169,15 @@ sap.suite.ui.commons.DynamicContainer.prototype._getPrevTileIndex = function(iIn
 	return this.getTiles().length-1;
 };
 
-
-sap.suite.ui.commons.DynamicContainer.prototype.onsaptouchstart = function (oEvent) {
-    this.addStyleClass("sapSuiteDCHvr");
-};
-
-sap.suite.ui.commons.DynamicContainer.prototype.onsaptouchend = function (oEvent) {
-    this.removeStyleClass("sapSuiteDCHvr");
-};
-
-//ontouchstart/ontouchend are generated on iOS devices. onsaptouchstart/end is not fired on them.
 sap.suite.ui.commons.DynamicContainer.prototype.ontouchstart = function (oEvent) {
     this.addStyleClass("sapSuiteDCHvr");
 };
 
 sap.suite.ui.commons.DynamicContainer.prototype.ontouchend = function (oEvent) {
+    this.removeStyleClass("sapSuiteDCHvr");
+};
+
+sap.suite.ui.commons.GenericTile.prototype.ontouchcancel = function (oEvent) {
     this.removeStyleClass("sapSuiteDCHvr");
 };
 
@@ -16515,7 +19312,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control is used in UnifiedThingInspector to display the preview of the facet content.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -16870,7 +19667,6 @@ sap.suite.ui.commons.FacetOverview.M_EVENTS = {'press':'press','heightChange':'h
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/FacetOverview.js
 jQuery.sap.require('sap.ui.core.IconPool'); // unlisted dependency retained
 
@@ -17112,7 +19908,7 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * This element represents a news feed item.
  * @extends sap.ui.core.Element
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -17273,7 +20069,6 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.FeedItem", { metadata : {
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/FeedItem.js
 /**
  * validate the url first and then set the image property
@@ -17376,7 +20171,7 @@ jQuery.sap.require('sap.m.ListItemBase'); // unlisted dependency retained
  * @class
  * This control displays feed item header information.
  * @extends sap.m.ListItemBase
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -17565,7 +20360,6 @@ sap.m.ListItemBase.extend("sap.suite.ui.commons.FeedItemHeader", { metadata : {
  * @name sap.suite.ui.commons.FeedItemHeader#setDescription
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/FeedItemHeader.js
 ///**
@@ -17830,7 +20624,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control displays news feeds.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -18113,7 +20907,6 @@ sap.suite.ui.commons.FeedTile.M_EVENTS = {'press':'press'};
  * @name sap.suite.ui.commons.FeedTile#firePress
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/FeedTile.js
 ///**
@@ -18656,7 +21449,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * The tile control that displays the title, description, and customizable main area.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -18766,6 +21559,7 @@ sap.suite.ui.commons.GenericTile.M_EVENTS = {'press':'press'};
  *
  * @return {string} the value of property <code>failedText</code>
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.GenericTile#getFailedText
  * @function
  */
@@ -18778,6 +21572,7 @@ sap.suite.ui.commons.GenericTile.M_EVENTS = {'press':'press'};
  * @param {string} sFailedText  new value for property <code>failedText</code>
  * @return {sap.suite.ui.commons.GenericTile} <code>this</code> to allow method chaining
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.GenericTile#setFailedText
  * @function
  */
@@ -18891,6 +21686,7 @@ sap.suite.ui.commons.GenericTile.M_EVENTS = {'press':'press'};
  *
  * @return {sap.suite.ui.commons.LoadState} the value of property <code>state</code>
  * @public
+ * @since 1.22
  * @name sap.suite.ui.commons.GenericTile#getState
  * @function
  */
@@ -18903,6 +21699,7 @@ sap.suite.ui.commons.GenericTile.M_EVENTS = {'press':'press'};
  * @param {sap.suite.ui.commons.LoadState} oState  new value for property <code>state</code>
  * @return {sap.suite.ui.commons.GenericTile} <code>this</code> to allow method chaining
  * @public
+ * @since 1.22
  * @name sap.suite.ui.commons.GenericTile#setState
  * @function
  */
@@ -18916,6 +21713,7 @@ sap.suite.ui.commons.GenericTile.M_EVENTS = {'press':'press'};
  *
  * @return {string} the value of property <code>imageDescription</code>
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.GenericTile#getImageDescription
  * @function
  */
@@ -18928,6 +21726,7 @@ sap.suite.ui.commons.GenericTile.M_EVENTS = {'press':'press'};
  * @param {string} sImageDescription  new value for property <code>imageDescription</code>
  * @return {sap.suite.ui.commons.GenericTile} <code>this</code> to allow method chaining
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.GenericTile#setImageDescription
  * @function
  */
@@ -19101,7 +21900,6 @@ sap.suite.ui.commons.GenericTile.M_EVENTS = {'press':'press'};
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/GenericTile.js
 jQuery.sap.require('sap.m.Text'); // unlisted dependency retained
 
@@ -19260,18 +22058,14 @@ sap.suite.ui.commons.GenericTile.prototype.detachEvent = function(sEventId, fnFu
 	return this;
 };
 
-
-sap.suite.ui.commons.GenericTile.prototype.onsaptouchstart = function (oEvent) {
-    this.addStyleClass("sapSuiteGTHvrOutln");
-};
-
-sap.suite.ui.commons.GenericTile.prototype.onsaptouchend = function (oEvent) {
-    this.removeStyleClass("sapSuiteGTHvrOutln");
-};
-
-//ontouchstart/ontouchend are generated on iOS devices. onsaptouchstart/end is not fired on them.
 sap.suite.ui.commons.GenericTile.prototype.ontouchstart = function (oEvent) {
-    this.addStyleClass("sapSuiteGTHvrOutln");
+	if(this.getState() != "Disabled") {
+		this.addStyleClass("sapSuiteGTHvrOutln");
+	}
+};
+
+sap.suite.ui.commons.GenericTile.prototype.ontouchcancel = function (oEvent) {
+    this.removeStyleClass("sapSuiteGTHvrOutln");
 };
 
 sap.suite.ui.commons.GenericTile.prototype.ontouchend = function (oEvent) {
@@ -19302,14 +22096,30 @@ sap.suite.ui.commons.GenericTile.prototype.getBodyAltText = function() {
 	var bIsFirst = true;
 	var aTiles = this.getTileContent();
 	
-	for (var i = 0; i < aTiles.length; i++) {
-		if (aTiles[i].getAltText) {
-			sAltText += (bIsFirst ? "" : "\n" ) + aTiles[i].getAltText();
-			bIsFirst = false;
-		} else if (aTiles[i].getTooltip_AsString()){
-			sAltText += (bIsFirst ? "" : "\n" ) + aTiles[i].getTooltip_AsString();
-			bIsFirst = false;
+	function calcFt(eFt) {
+		if (eFt == "TwoByOne") {
+			return 2;
 		}
+	
+		return 1;
+	}
+	
+	var iFt = calcFt(this.getFrameType());
+	var iTotalFt = 0;
+	
+	for (var i = 0; i < aTiles.length; i++) {
+		if (iFt > iTotalFt) {
+			if (aTiles[i].getAltText) {
+				sAltText += (bIsFirst ? "" : "\n" ) + aTiles[i].getAltText();
+				bIsFirst = false;
+			} else if (aTiles[i].getTooltip_AsString()){
+				sAltText += (bIsFirst ? "" : "\n" ) + aTiles[i].getTooltip_AsString();
+				bIsFirst = false;
+			}
+		} else {
+			break;
+		}
+		iTotalFt += calcFt(aTiles[i].getFrameType());
 	}
 	
 	return sAltText;
@@ -19394,7 +22204,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * The tile control that displays the title, description, and customizable main area.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -19841,7 +22651,6 @@ sap.suite.ui.commons.GenericTile2X2.M_EVENTS = {'press':'press'};
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/GenericTile2X2.js
 jQuery.sap.require('sap.m.Text'); // unlisted dependency retained
 
@@ -20058,6 +22867,913 @@ sap.suite.ui.commons.GenericTile2X2.prototype.getAltText = function() {
 	return this.getHeaderAltText() + "\n" + this.getBodyAltText();
 };
 }; // end of sap/suite/ui/commons/GenericTile2X2.js
+if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.HarveyBallMicroChart') ) {
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+
+/* ----------------------------------------------------------------------------------
+ * Hint: This is a derived (generated) file. Changes should be done in the underlying 
+ * source files only (*.control, *.js) or they will be lost after the next generation.
+ * ---------------------------------------------------------------------------------- */
+
+// Provides control sap.suite.ui.commons.HarveyBallMicroChart.
+jQuery.sap.declare("sap.suite.ui.commons.HarveyBallMicroChart");
+
+jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
+
+
+
+/**
+ * Constructor for a new HarveyBallMicroChart.
+ * 
+ * Accepts an object literal <code>mSettings</code> that defines initial 
+ * property values, aggregated and associated objects as well as event handlers. 
+ * 
+ * If the name of a setting is ambiguous (e.g. a property has the same name as an event), 
+ * then the framework assumes property, aggregation, association, event in that order. 
+ * To override this automatic resolution, one of the prefixes "aggregation:", "association:" 
+ * or "event:" can be added to the name of the setting (such a prefixed name must be
+ * enclosed in single or double quotes).
+ *
+ * The supported settings are:
+ * <ul>
+ * <li>Properties
+ * <ul>
+ * <li>{@link #getTotal total} : float (default: 0)</li>
+ * <li>{@link #getTotalLabel totalLabel} : string</li>
+ * <li>{@link #getTotalScale totalScale} : string</li>
+ * <li>{@link #getFormattedLabel formattedLabel} : boolean (default: false)</li>
+ * <li>{@link #getShowTotal showTotal} : boolean (default: true)</li>
+ * <li>{@link #getShowFractions showFractions} : boolean (default: true)</li>
+ * <li>{@link #getSize size} : sap.suite.ui.commons.InfoTileSize (default: sap.suite.ui.commons.InfoTileSize.Auto)</li>
+ * <li>{@link #getColorPalette colorPalette} : string[] (default: [])</li>
+ * <li>{@link #getWidth width} : sap.ui.core.CSSSize</li></ul>
+ * </li>
+ * <li>Aggregations
+ * <ul>
+ * <li>{@link #getItems items} : sap.suite.ui.commons.HarveyBallMicroChartItem[]</li></ul>
+ * </li>
+ * <li>Associations
+ * <ul></ul>
+ * </li>
+ * <li>Events
+ * <ul>
+ * <li>{@link sap.suite.ui.commons.HarveyBallMicroChart#event:press press} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
+ * </li>
+ * </ul> 
+
+ *
+ * @param {string} [sId] id for the new control, generated automatically if no id is given 
+ * @param {object} [mSettings] initial settings for the new control
+ *
+ * @class
+ * This chart shows the part comparative to total.
+ * @extends sap.ui.core.Control
+ * @version 1.30.8
+ *
+ * @constructor
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
+ */
+sap.ui.core.Control.extend("sap.suite.ui.commons.HarveyBallMicroChart", { metadata : {
+
+	library : "sap.suite.ui.commons",
+	properties : {
+		"total" : {type : "float", group : "Misc", defaultValue : 0},
+		"totalLabel" : {type : "string", group : "Misc", defaultValue : null},
+		"totalScale" : {type : "string", group : "Misc", defaultValue : null},
+		"formattedLabel" : {type : "boolean", group : "Misc", defaultValue : false},
+		"showTotal" : {type : "boolean", group : "Misc", defaultValue : true},
+		"showFractions" : {type : "boolean", group : "Misc", defaultValue : true},
+		"size" : {type : "sap.suite.ui.commons.InfoTileSize", group : "Misc", defaultValue : sap.suite.ui.commons.InfoTileSize.Auto},
+		"colorPalette" : {type : "string[]", group : "Misc", defaultValue : []},
+		"width" : {type : "sap.ui.core.CSSSize", group : "Misc", defaultValue : null}
+	},
+	aggregations : {
+		"items" : {type : "sap.suite.ui.commons.HarveyBallMicroChartItem", multiple : true, singularName : "item"}
+	},
+	events : {
+		"press" : {}
+	}
+}});
+
+
+/**
+ * Creates a new subclass of class sap.suite.ui.commons.HarveyBallMicroChart with name <code>sClassName</code> 
+ * and enriches it with the information contained in <code>oClassInfo</code>.
+ * 
+ * <code>oClassInfo</code> might contain the same kind of informations as described in {@link sap.ui.core.Element.extend Element.extend}.
+ *   
+ * @param {string} sClassName name of the class to be created
+ * @param {object} [oClassInfo] object literal with informations about the class  
+ * @param {function} [FNMetaImpl] constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
+ * @return {function} the created class / constructor function
+ * @public
+ * @static
+ * @name sap.suite.ui.commons.HarveyBallMicroChart.extend
+ * @function
+ */
+
+sap.suite.ui.commons.HarveyBallMicroChart.M_EVENTS = {'press':'press'};
+
+
+/**
+ * Getter for property <code>total</code>.
+ * The total value. This is taken as 360 degrees value on the chart.
+ *
+ * Default value is <code>0</code>
+ *
+ * @return {float} the value of property <code>total</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#getTotal
+ * @function
+ */
+
+/**
+ * Setter for property <code>total</code>.
+ *
+ * Default value is <code>0</code> 
+ *
+ * @param {float} fTotal  new value for property <code>total</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#setTotal
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>totalLabel</code>.
+ * The total label. If specified, it is displayed instead of the total value.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>totalLabel</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#getTotalLabel
+ * @function
+ */
+
+/**
+ * Setter for property <code>totalLabel</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sTotalLabel  new value for property <code>totalLabel</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#setTotalLabel
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>totalScale</code>.
+ * The scaling factor that is displayed next to the total value.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>totalScale</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#getTotalScale
+ * @function
+ */
+
+/**
+ * Setter for property <code>totalScale</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sTotalScale  new value for property <code>totalScale</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#setTotalScale
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>formattedLabel</code>.
+ * If set to true, the totalLabel parameter is considered as the combination of the total value and its scaling factor. The default value is false. It means that the total value and the scaling factor are defined separately by the total and the totalScale properties accordingly.
+ *
+ * Default value is <code>false</code>
+ *
+ * @return {boolean} the value of property <code>formattedLabel</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#getFormattedLabel
+ * @function
+ */
+
+/**
+ * Setter for property <code>formattedLabel</code>.
+ *
+ * Default value is <code>false</code> 
+ *
+ * @param {boolean} bFormattedLabel  new value for property <code>formattedLabel</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#setFormattedLabel
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>showTotal</code>.
+ * If it is set to true, the total value is displayed next to the chart. The default setting is true.
+ *
+ * Default value is <code>true</code>
+ *
+ * @return {boolean} the value of property <code>showTotal</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#getShowTotal
+ * @function
+ */
+
+/**
+ * Setter for property <code>showTotal</code>.
+ *
+ * Default value is <code>true</code> 
+ *
+ * @param {boolean} bShowTotal  new value for property <code>showTotal</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#setShowTotal
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>showFractions</code>.
+ * If it is set to true, the fraction values are displayed next to the chart. The default setting is true.
+ *
+ * Default value is <code>true</code>
+ *
+ * @return {boolean} the value of property <code>showFractions</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#getShowFractions
+ * @function
+ */
+
+/**
+ * Setter for property <code>showFractions</code>.
+ *
+ * Default value is <code>true</code> 
+ *
+ * @param {boolean} bShowFractions  new value for property <code>showFractions</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#setShowFractions
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>size</code>.
+ * The size of the chart. If it is not set, the default size is applied based on the device type.
+ *
+ * Default value is <code>Auto</code>
+ *
+ * @return {sap.suite.ui.commons.InfoTileSize} the value of property <code>size</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#getSize
+ * @function
+ */
+
+/**
+ * Setter for property <code>size</code>.
+ *
+ * Default value is <code>Auto</code> 
+ *
+ * @param {sap.suite.ui.commons.InfoTileSize} oSize  new value for property <code>size</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#setSize
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>colorPalette</code>.
+ * The color palette for the chart. If this property is set, semantic colors defined in HarveyBallMicroChart are ignored. Colors from the palette are assigned to each slice consequentially. When all the palette colors are used, assignment of the colors begins from the first palette color.
+ *
+ * Default value is <code>[]</code>
+ *
+ * @return {string[]} the value of property <code>colorPalette</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#getColorPalette
+ * @function
+ */
+
+/**
+ * Setter for property <code>colorPalette</code>.
+ *
+ * Default value is <code>[]</code> 
+ *
+ * @param {string[]} aColorPalette  new value for property <code>colorPalette</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#setColorPalette
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>width</code>.
+ * The width of the chart. If it is not set, the size of the control is defined by the size property.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {sap.ui.core.CSSSize} the value of property <code>width</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#getWidth
+ * @function
+ */
+
+/**
+ * Setter for property <code>width</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {sap.ui.core.CSSSize} sWidth  new value for property <code>width</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#setWidth
+ * @function
+ */
+
+
+/**
+ * Getter for aggregation <code>items</code>.<br/>
+ * The pie chart slices.
+ * 
+ * @return {sap.suite.ui.commons.HarveyBallMicroChartItem[]}
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#getItems
+ * @function
+ */
+
+
+/**
+ * Inserts a item into the aggregation named <code>items</code>.
+ *
+ * @param {sap.suite.ui.commons.HarveyBallMicroChartItem}
+ *          oItem the item to insert; if empty, nothing is inserted
+ * @param {int}
+ *             iIndex the <code>0</code>-based index the item should be inserted at; for 
+ *             a negative value of <code>iIndex</code>, the item is inserted at position 0; for a value 
+ *             greater than the current size of the aggregation, the item is inserted at 
+ *             the last position        
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#insertItem
+ * @function
+ */
+
+/**
+ * Adds some item <code>oItem</code> 
+ * to the aggregation named <code>items</code>.
+ *
+ * @param {sap.suite.ui.commons.HarveyBallMicroChartItem}
+ *            oItem the item to add; if empty, nothing is inserted
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#addItem
+ * @function
+ */
+
+/**
+ * Removes an item from the aggregation named <code>items</code>.
+ *
+ * @param {int | string | sap.suite.ui.commons.HarveyBallMicroChartItem} vItem the item to remove or its index or id
+ * @return {sap.suite.ui.commons.HarveyBallMicroChartItem} the removed item or null
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#removeItem
+ * @function
+ */
+
+/**
+ * Removes all the controls in the aggregation named <code>items</code>.<br/>
+ * Additionally unregisters them from the hosting UIArea.
+ * @return {sap.suite.ui.commons.HarveyBallMicroChartItem[]} an array of the removed elements (might be empty)
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#removeAllItems
+ * @function
+ */
+
+/**
+ * Checks for the provided <code>sap.suite.ui.commons.HarveyBallMicroChartItem</code> in the aggregation named <code>items</code> 
+ * and returns its index if found or -1 otherwise.
+ *
+ * @param {sap.suite.ui.commons.HarveyBallMicroChartItem}
+ *            oItem the item whose index is looked for.
+ * @return {int} the index of the provided control in the aggregation if found, or -1 otherwise
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#indexOfItem
+ * @function
+ */
+	
+
+/**
+ * Destroys all the items in the aggregation 
+ * named <code>items</code>.
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#destroyItems
+ * @function
+ */
+
+
+/**
+ * The event is fired when the user chooses the control.
+ *
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#press
+ * @event
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'press' event of this <code>sap.suite.ui.commons.HarveyBallMicroChart</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.HarveyBallMicroChart</code>.<br/> itself. 
+ *  
+ * The event is fired when the user chooses the control.
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.HarveyBallMicroChart</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#attachPress
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'press' event of this <code>sap.suite.ui.commons.HarveyBallMicroChart</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#detachPress
+ * @function
+ */
+
+/**
+ * Fire event press to attached listeners.
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.HarveyBallMicroChart} <code>this</code> to allow method chaining
+ * @protected
+ * @name sap.suite.ui.commons.HarveyBallMicroChart#firePress
+ * @function
+ */
+
+// Start of sap/suite/ui/commons/HarveyBallMicroChart.js
+///**
+// * This file defines behavior for the control,
+// */
+sap.suite.ui.commons.HarveyBallMicroChart.prototype.getAltText = function() {
+	var sAltText = "";
+	var bIsFirst = true;
+
+	var aItems = this.getItems();
+	for (var i = 0; i < aItems.length; i++) {
+		var oItem = aItems[i];
+		var sColor = (this.getColorPalette().length == 0) ? this._rb
+				.getText(("SEMANTIC_COLOR_" + oItem.getColor()).toUpperCase())
+				: "";
+		var sLabel = oItem.getFractionLabel();
+		if (!sLabel) {
+			sLabel = oItem.getFormattedLabel() ? oItem.getFraction() : oItem
+					.getFraction()
+					+ oItem.getFractionScale().substring(0,3);
+		} else if (!oItem.getFormattedLabel()) {
+			sLabel += oItem.getFractionScale().substring(0,3);
+		}
+
+		sAltText += (bIsFirst ? "" : "\n") + sLabel + " " + sColor;
+		bIsFirst = false;
+	}
+
+	if (this.getTotal()) {
+		var sTLabel = this.getTotalLabel();
+		if (!sTLabel) {
+			sTLabel = this.getFormattedLabel() ? this.getTotal() : this
+					.getTotal()
+					+ this.getTotalScale().substring(0,3);
+		} else if (!this.getFormattedLabel()) {
+			sTLabel += this.getTotalScale().substring(0,3);
+		}
+
+		sAltText += (bIsFirst ? "" : "\n")
+				+ this._rb.getText("HARVEYBALLMICROCHART_TOTAL_TOOLTIP") + " "
+				+ sTLabel;
+	}
+	return sAltText;
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype.getTooltip_AsString = function() {
+	var oTooltip = this.getTooltip();
+	var sTooltip = this.getAltText();
+
+	if (typeof oTooltip === "string" || oTooltip instanceof String) {
+		sTooltip = oTooltip.split("{AltText}").join(sTooltip).split("((AltText))").join(sTooltip);
+		return sTooltip;
+	}
+	return oTooltip ? oTooltip : "";
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype.init = function() {
+	this._rb = sap.ui.getCore()
+			.getLibraryResourceBundle("sap.suite.ui.commons");
+	this.setTooltip("{AltText}");
+	sap.ui.Device.media.attachHandler(this.rerender, this, sap.ui.Device.media.RANGESETS.SAP_STANDARD);
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype._calculatePath = function() {
+	var oSize = this.getSize();
+	
+	var fTot = this.getTotal();
+	var fFrac = 0;
+	
+	if (this.getItems().length) {
+		fFrac = this.getItems()[0].getFraction();
+	}
+	
+	var bIsPhone = false;
+
+	if (oSize == "Auto") {
+		bIsPhone = jQuery("html").hasClass("sapUiMedia-Std-Phone");
+	}
+
+	if (oSize == "S" || oSize == "XS") {
+		bIsPhone = true;
+	}
+
+	var iMeadiaSize = bIsPhone ? 56 : 72;
+	var iCenter = iMeadiaSize / 2;
+	// var iBorder = bIsPhone? 3 : 4;
+	var iBorder = 4;
+	this._oPath = {
+		initial : {
+			x : iCenter,
+			y : iCenter,
+			x1 : iCenter,
+			y1 : iCenter		
+		},
+		lineTo : {
+			x : iCenter,
+			y : iBorder
+		},
+		arc : {
+			x1 : iCenter - iBorder,
+			y1 : iCenter - iBorder,
+			xArc : 0,
+			largeArc : 0,
+			sweep : 1,
+			x2 : "",
+			y2 : ""
+		},
+		size : iMeadiaSize,
+		border : iBorder,
+		center : iCenter
+	};
+
+	var fAngle = fFrac / fTot * 360;
+	if (fAngle < 10) {
+		this._oPath.initial.x -= 1.5;
+		this._oPath.initial.x1 += 1.5;
+		this._oPath.arc.x2 = this._oPath.initial.x1;
+		this._oPath.arc.y2 = this._oPath.lineTo.y;
+	} else if (fAngle > 350 && fAngle < 360) {
+		this._oPath.initial.x += 1.5;
+		this._oPath.initial.x1 -= 1.5;
+		this._oPath.arc.x2 = this._oPath.initial.x1;
+		this._oPath.arc.y2 = this._oPath.lineTo.y;
+	} else {
+		var fRad = Math.PI / 180.0;
+		var fRadius = this._oPath.center - this._oPath.border;
+	
+		var ix = fRadius * Math.cos((fAngle - 90) * fRad) + this._oPath.center;
+		var iy = this._oPath.size - (fRadius * Math.sin((fAngle + 90) * fRad) + this._oPath.center);
+		
+		this._oPath.arc.x2 = ix.toFixed(2);
+		this._oPath.arc.y2 = iy.toFixed(2);
+	}
+	
+	var iLargeArc = fTot / fFrac < 2 ? 1 : 0;
+
+	this._oPath.arc.largeArc = iLargeArc;
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype.onBeforeRendering = function() {
+	this._calculatePath();
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype.serializePieChart = function() {
+	var p = this._oPath;
+			
+	return ["M", p.initial.x, ",", p.initial.y, " L", p.initial.x, ",", p.lineTo.y, " A", p.arc.x1, ",", p.arc.y1,
+			" ", p.arc.xArc, " ", p.arc.largeArc, ",", p.arc.sweep, " ", p.arc.x2, ",", p.arc.y2, " L", p.initial.x1, 
+			",", p.initial.y1, " z"].join("");
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype._parseFormattedValue = function(
+		sValue) {
+	return {
+		scale: sValue.replace(/.*?([^+-.,\d]*)$/g, "$1").trim(),
+		value: sValue.replace(/(.*?)[^+-.,\d]*$/g, "$1").trim()
+	};
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype.ontap = function(oEvent) {
+	if (sap.ui.Device.browser.internet_explorer) {
+		this.$().focus();
+	}
+	this.firePress();
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype.onkeydown = function(oEvent) {
+	if (oEvent.which == jQuery.sap.KeyCodes.SPACE) {
+		oEvent.preventDefault();
+	}
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype.onkeyup = function(oEvent) {
+	if (oEvent.which == jQuery.sap.KeyCodes.ENTER
+			|| oEvent.which == jQuery.sap.KeyCodes.SPACE) {
+		this.firePress();
+		oEvent.preventDefault();
+	}
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype.attachEvent = function(
+		sEventId, oData, fnFunction, oListener) {
+	sap.ui.core.Control.prototype.attachEvent.call(this, sEventId, oData,
+			fnFunction, oListener);
+	if (this.hasListeners("press")) {
+		this.$().attr("tabindex", 0).addClass("sapSuiteUiCommonsPointer");
+	}
+	return this;
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype.detachEvent = function(
+		sEventId, fnFunction, oListener) {
+	sap.ui.core.Control.prototype.detachEvent.call(this, sEventId, fnFunction,
+			oListener);
+	if (!this.hasListeners("press")) {
+		this.$().removeAttr("tabindex").removeClass("sapSuiteUiCommonsPointer");
+	}
+	return this;
+};
+
+sap.suite.ui.commons.HarveyBallMicroChart.prototype.exit = function(oEvent) {
+	sap.ui.Device.media.detachHandler(this.rerender, this, sap.ui.Device.media.RANGESETS.SAP_STANDARD);
+};
+}; // end of sap/suite/ui/commons/HarveyBallMicroChart.js
+if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.HarveyBallMicroChartItem') ) {
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+
+/* ----------------------------------------------------------------------------------
+ * Hint: This is a derived (generated) file. Changes should be done in the underlying 
+ * source files only (*.control, *.js) or they will be lost after the next generation.
+ * ---------------------------------------------------------------------------------- */
+
+// Provides control sap.suite.ui.commons.HarveyBallMicroChartItem.
+jQuery.sap.declare("sap.suite.ui.commons.HarveyBallMicroChartItem");
+
+jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
+
+
+
+/**
+ * Constructor for a new HarveyBallMicroChartItem.
+ * 
+ * Accepts an object literal <code>mSettings</code> that defines initial 
+ * property values, aggregated and associated objects as well as event handlers. 
+ * 
+ * If the name of a setting is ambiguous (e.g. a property has the same name as an event), 
+ * then the framework assumes property, aggregation, association, event in that order. 
+ * To override this automatic resolution, one of the prefixes "aggregation:", "association:" 
+ * or "event:" can be added to the name of the setting (such a prefixed name must be
+ * enclosed in single or double quotes).
+ *
+ * The supported settings are:
+ * <ul>
+ * <li>Properties
+ * <ul>
+ * <li>{@link #getColor color} : sap.suite.ui.commons.InfoTileValueColor (default: sap.suite.ui.commons.InfoTileValueColor.Neutral)</li>
+ * <li>{@link #getFraction fraction} : float (default: 0)</li>
+ * <li>{@link #getFractionLabel fractionLabel} : string</li>
+ * <li>{@link #getFractionScale fractionScale} : string</li>
+ * <li>{@link #getFormattedLabel formattedLabel} : boolean (default: false)</li></ul>
+ * </li>
+ * <li>Aggregations
+ * <ul></ul>
+ * </li>
+ * <li>Associations
+ * <ul></ul>
+ * </li>
+ * <li>Events
+ * <ul></ul>
+ * </li>
+ * </ul> 
+ *
+ * 
+ * In addition, all settings applicable to the base type {@link sap.ui.core.Element#constructor sap.ui.core.Element}
+ * can be used as well.
+ *
+ * @param {string} [sId] id for the new control, generated automatically if no id is given 
+ * @param {object} [mSettings] initial settings for the new control
+ *
+ * @class
+ * The configuration of the slice on the pie chart.
+ * @extends sap.ui.core.Element
+ * @version 1.30.8
+ *
+ * @constructor
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
+ */
+sap.ui.core.Element.extend("sap.suite.ui.commons.HarveyBallMicroChartItem", { metadata : {
+
+	library : "sap.suite.ui.commons",
+	properties : {
+		"color" : {type : "sap.suite.ui.commons.InfoTileValueColor", group : "Misc", defaultValue : sap.suite.ui.commons.InfoTileValueColor.Neutral},
+		"fraction" : {type : "float", group : "Misc", defaultValue : 0},
+		"fractionLabel" : {type : "string", group : "Misc", defaultValue : null},
+		"fractionScale" : {type : "string", group : "Misc", defaultValue : null},
+		"formattedLabel" : {type : "boolean", group : "Misc", defaultValue : false}
+	}
+}});
+
+
+/**
+ * Creates a new subclass of class sap.suite.ui.commons.HarveyBallMicroChartItem with name <code>sClassName</code> 
+ * and enriches it with the information contained in <code>oClassInfo</code>.
+ * 
+ * <code>oClassInfo</code> might contain the same kind of informations as described in {@link sap.ui.core.Element.extend Element.extend}.
+ *   
+ * @param {string} sClassName name of the class to be created
+ * @param {object} [oClassInfo] object literal with informations about the class  
+ * @param {function} [FNMetaImpl] constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
+ * @return {function} the created class / constructor function
+ * @public
+ * @static
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem.extend
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>color</code>.
+ * The slice color.
+ *
+ * Default value is <code>Neutral</code>
+ *
+ * @return {sap.suite.ui.commons.InfoTileValueColor} the value of property <code>color</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem#getColor
+ * @function
+ */
+
+/**
+ * Setter for property <code>color</code>.
+ *
+ * Default value is <code>Neutral</code> 
+ *
+ * @param {sap.suite.ui.commons.InfoTileValueColor} oColor  new value for property <code>color</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChartItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem#setColor
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>fraction</code>.
+ * The fraction value.
+ *
+ * Default value is <code>0</code>
+ *
+ * @return {float} the value of property <code>fraction</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem#getFraction
+ * @function
+ */
+
+/**
+ * Setter for property <code>fraction</code>.
+ *
+ * Default value is <code>0</code> 
+ *
+ * @param {float} fFraction  new value for property <code>fraction</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChartItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem#setFraction
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>fractionLabel</code>.
+ * The fraction label. If specified, it is displayed instead of the fraction value.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>fractionLabel</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem#getFractionLabel
+ * @function
+ */
+
+/**
+ * Setter for property <code>fractionLabel</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sFractionLabel  new value for property <code>fractionLabel</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChartItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem#setFractionLabel
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>fractionScale</code>.
+ * The scaling factor that is displayed after the fraction value.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>fractionScale</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem#getFractionScale
+ * @function
+ */
+
+/**
+ * Setter for property <code>fractionScale</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sFractionScale  new value for property <code>fractionScale</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChartItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem#setFractionScale
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>formattedLabel</code>.
+ * If set to true, the fractionLabel parameter is considered as the combination of the fraction value and scaling factor. The default value is false. It means that the fraction value and the scaling factor are defined separately by the fraction and the fractionScale properties accordingly.
+ *
+ * Default value is <code>false</code>
+ *
+ * @return {boolean} the value of property <code>formattedLabel</code>
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem#getFormattedLabel
+ * @function
+ */
+
+/**
+ * Setter for property <code>formattedLabel</code>.
+ *
+ * Default value is <code>false</code> 
+ *
+ * @param {boolean} bFormattedLabel  new value for property <code>formattedLabel</code>
+ * @return {sap.suite.ui.commons.HarveyBallMicroChartItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.HarveyBallMicroChartItem#setFormattedLabel
+ * @function
+ */
+
+// Start of sap/suite/ui/commons/HarveyBallMicroChartItem.js
+///**
+// * This file defines behavior for the control,
+// */
+//sap.suite.ui.commons.HarveyBallMicroChartItem.prototype.init = function(){
+//   // do something for initialization...
+//};
+
+}; // end of sap/suite/ui/commons/HarveyBallMicroChartItem.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.HeaderCell') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
@@ -20116,7 +23832,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control contains 4 cells (West, North, East, South). It can display one or more controls in different layouts. Each aggregation must contain only one instance of HeaderCellItem.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -20333,7 +24049,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.HeaderCell", { metadata : {
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/HeaderCell.js
 ///**
 // * This file defines behavior for the control,
@@ -20401,7 +24116,7 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * Object that contains instance of control and infomation about height. It should be used inside sap.suite.ui.commons.HeaderCell
  * @extends sap.ui.core.Element
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -20492,7 +24207,6 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.HeaderCellItem", { metadata : {
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/HeaderCellItem.js
 ///**
 // * This file defines behavior for the control,
@@ -20538,8 +24252,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * <li>{@link #getScrollStep scrollStep} : int (default: 300)</li>
  * <li>{@link #getScrollTime scrollTime} : int (default: 500)</li>
  * <li>{@link #getShowDividers showDividers} : boolean (default: true)</li>
- * <li>{@link #getView view} : sap.suite.ui.commons.HeaderContainerView (default: sap.suite.ui.commons.HeaderContainerView.Horizontal)</li>
- * <li>{@link #getHeight height} : sap.ui.core.CSSSize</li></ul>
+ * <li>{@link #getView view} : sap.suite.ui.commons.HeaderContainerView (default: sap.suite.ui.commons.HeaderContainerView.Horizontal)</li></ul>
  * </li>
  * <li>Aggregations
  * <ul>
@@ -20558,10 +24271,10 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @param {object} [mSettings] initial settings for the new control
  *
  * @class
- * Container that provides horizontal layout. Provides horizontal scroll on tablet and phone. On desktop provides scroll left and scroll right buttons. This control supports keyboard navigation. You can use left and right arrow keys to navigate through the inner contents. The Home key puts focus on the first control and the End key puts focus on the last control. Use Enter or Space to choose the control.
+ * The container that provides a horizontal layout. It provides a horizontal scroll on the tablet and phone. On the desktop, it provides scroll left and scroll right buttons. This control supports keyboard navigation. You can use left and right arrow keys to navigate through the inner content. The Home key puts focus on the first control and the End key puts focus on the last control. Use Enter or Space to choose the control.
  * @extends sap.ui.core.Control
  * @implements sap.m.ObjectHeaderContainer
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -20578,8 +24291,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.HeaderContainer", { metadata : 
 		"scrollStep" : {type : "int", group : "Misc", defaultValue : 300},
 		"scrollTime" : {type : "int", group : "Misc", defaultValue : 500},
 		"showDividers" : {type : "boolean", group : "Misc", defaultValue : true},
-		"view" : {type : "sap.suite.ui.commons.HeaderContainerView", group : "Misc", defaultValue : sap.suite.ui.commons.HeaderContainerView.Horizontal},
-		"height" : {type : "sap.ui.core.CSSSize", group : "Misc", defaultValue : null}
+		"view" : {type : "sap.suite.ui.commons.HeaderContainerView", group : "Misc", defaultValue : sap.suite.ui.commons.HeaderContainerView.Horizontal}
 	},
 	aggregations : {
 		"scrollContainer" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
@@ -20634,7 +24346,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.HeaderContainer", { metadata : 
 
 /**
  * Getter for property <code>scrollTime</code>.
- * Scroll animation time miliseconds.
+ * Scroll animation time in milliseconds.
  *
  * Default value is <code>500</code>
  *
@@ -20665,6 +24377,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.HeaderContainer", { metadata : 
  *
  * @return {boolean} the value of property <code>showDividers</code>
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.HeaderContainer#getShowDividers
  * @function
  */
@@ -20677,6 +24390,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.HeaderContainer", { metadata : 
  * @param {boolean} bShowDividers  new value for property <code>showDividers</code>
  * @return {sap.suite.ui.commons.HeaderContainer} <code>this</code> to allow method chaining
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.HeaderContainer#setShowDividers
  * @function
  */
@@ -20684,12 +24398,13 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.HeaderContainer", { metadata : 
 
 /**
  * Getter for property <code>view</code>.
- * Experimental. The view of the HeaderContainer.
+ * The view of the HeaderContainer.
  *
  * Default value is <code>Horizontal</code>
  *
  * @return {sap.suite.ui.commons.HeaderContainerView} the value of property <code>view</code>
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.HeaderContainer#getView
  * @function
  */
@@ -20702,32 +24417,8 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.HeaderContainer", { metadata : 
  * @param {sap.suite.ui.commons.HeaderContainerView} oView  new value for property <code>view</code>
  * @return {sap.suite.ui.commons.HeaderContainer} <code>this</code> to allow method chaining
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.HeaderContainer#setView
- * @function
- */
-
-
-/**
- * Getter for property <code>height</code>.
- * Experimental. The height of the HeaderContainer in the Vertical view.
- *
- * Default value is empty/<code>undefined</code>
- *
- * @return {sap.ui.core.CSSSize} the value of property <code>height</code>
- * @public
- * @name sap.suite.ui.commons.HeaderContainer#getHeight
- * @function
- */
-
-/**
- * Setter for property <code>height</code>.
- *
- * Default value is empty/<code>undefined</code> 
- *
- * @param {sap.ui.core.CSSSize} sHeight  new value for property <code>height</code>
- * @return {sap.suite.ui.commons.HeaderContainer} <code>this</code> to allow method chaining
- * @public
- * @name sap.suite.ui.commons.HeaderContainer#setHeight
  * @function
  */
 
@@ -20812,7 +24503,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.HeaderContainer", { metadata : 
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/HeaderContainer.js
 ///**
 // * This file defines behavior for the control,
@@ -20825,6 +24515,7 @@ jQuery.sap.require('sap.ui.core.delegate.ItemNavigation'); // unlisted dependenc
 
 
 sap.suite.ui.commons.HeaderContainer.prototype.init = function(){
+   this._iSelectedCell = 0;
    this._bRtl = sap.ui.getCore().getConfiguration().getRTL();
    this._rb = sap.ui.getCore().getLibraryResourceBundle("sap.suite.ui.commons");
    this._oScrollCntr = new sap.m.ScrollContainer(this.getId() + "-scrl-cntnr", {
@@ -20843,12 +24534,12 @@ sap.suite.ui.commons.HeaderContainer.prototype.init = function(){
   		 iWidth = oObj.width;
   	 }
    });
-   
+
    if(jQuery.device.is.desktop) {
 		this._oArrowPrev = new sap.m.Button( {
 			id : this.getId() + "-scrl-prev-button",
 //			icon: "sap-icon://navigation-left-arrow", 
-			type:sap.m.ButtonType.Transparent,
+//			type:sap.m.ButtonType.Transparent,
 			tooltip: this._rb.getText("HEADERCONTAINER_BUTTON_PREV_SECTION"),
 			press : function(oE) {
 				that._scroll(-that.getScrollStep(), that.getScrollTime());
@@ -20860,7 +24551,7 @@ sap.suite.ui.commons.HeaderContainer.prototype.init = function(){
 		this._oArrowNext = new sap.m.Button({
 			id : this.getId() + "-scrl-next-button",
 //			icon:"sap-icon://navigation-right-arrow", 
-			type:sap.m.ButtonType.Transparent,
+//			type:sap.m.ButtonType.Transparent,
 			tooltip: this._rb.getText("HEADERCONTAINER_BUTTON_NEXT_SECTION"),
 			press : function(oE) {
 				that._scroll(that.getScrollStep(), that.getScrollTime());
@@ -20875,7 +24566,7 @@ sap.suite.ui.commons.HeaderContainer.prototype.init = function(){
 		 	   if(jQuery.device.is.desktop) {
 		 				var oFocusRef = jQuery.sap.domById(that.getId() + "-scrl-cntnr-scroll");
 						var oFocusObj = jQuery.sap.byId(that.getId() + "-scrl-cntnr-scroll");
-						var aDomRefs = oFocusObj.find("[tabindex=0]");
+						var aDomRefs = oFocusObj.find(".sapSuiteHrdrCntrInner").attr("tabindex", "0");
 	
 						if (!that._oItemNavigation) {
 							that._oItemNavigation = new sap.ui.core.delegate.ItemNavigation();
@@ -20886,8 +24577,10 @@ sap.suite.ui.commons.HeaderContainer.prototype.init = function(){
 			
 						that._oItemNavigation.setRootDomRef(oFocusRef);
 						that._oItemNavigation.setItemDomRefs(aDomRefs);
-						that._oItemNavigation.setCycling(false);	
+						that._oItemNavigation.setTabIndex0();
+						that._oItemNavigation.setCycling(false);
 			   }
+			   that._refreshScroll();
 		    },
 		    
 		    onBeforeRendering: function(oObj) {
@@ -20896,9 +24589,9 @@ sap.suite.ui.commons.HeaderContainer.prototype.init = function(){
 					that._oScrollCntr._oScroller = new sap.ui.core.delegate.ScrollEnablement(that._oScrollCntr, that._oScrollCntr.getId() + "-scroll", {
 						horizontal: true,
 						vertical: true,
-						zynga: true,
+						zynga: false,
 						preventDefault: false,
-						nonTouchScrolling: "scrollbar"
+						nonTouchScrolling: true
 					});
 		    	}
 		    }
@@ -20981,25 +24674,24 @@ sap.suite.ui.commons.HeaderContainer.prototype._checkVOverflow = function() {
 		if (iScrollTop > 0) {
 			bScrollBack = true;
 		}
-		if ((realHeight > availableHeight) && (iScrollTop + availableHeight + 32 < realHeight)) {
+		if ((realHeight > availableHeight) && (iScrollTop + availableHeight/* + 32*/ < realHeight)) {
 			bScrollForward = true;
 		}
 		
 		var oScrl = jQuery.sap.byId(this.getId() + "-scroll-area");
 	    if(!bScrollBack) {
 	    	jQuery.sap.byId(this._oArrowPrev.getId()).hide();
-	    	oScrl.css("padding-top", "0px");
+	    //	oScrl.css("padding-top", "0px");
 	    } else {
 	    	jQuery.sap.byId(this._oArrowPrev.getId()).show();
-	    	oScrl.css("padding-top", "32px");
-	    }
-	    
+	    //	oScrl.css("padding-top", "32px");
+	    }	    
 	    if(!bScrollForward) {
 	    	jQuery.sap.byId(this._oArrowNext.getId()).hide();
-	    	oScrl.css("padding-bottom", "0px");
+	  //  	oScrl.css("padding-bottom", "0px");
 	    } else {
 	    	jQuery.sap.byId(this._oArrowNext.getId()).show();
-	    	oScrl.css("padding-bottom", "32px");
+	  //  	oScrl.css("padding-bottom", "32px");
 	    }
 	}
 };
@@ -21065,13 +24757,13 @@ sap.suite.ui.commons.HeaderContainer.prototype._checkHOverflow = function() {
 		var bRefresh = false;
 	    if(oOldScrollBack && !bScrollBack) {
 	    	jQuery.sap.byId(this._oArrowPrev.getId()).hide();
-	    	oScrl.css(this._bRtl ? "padding-right" : "padding-left", "0rem");
+	 //   	oScrl.css(this._bRtl ? "padding-right" : "padding-left", "0rem");
 			//oScrlDelegate.refresh();
 	    	bRefresh = true;
 	    } 
 	    if (!oOldScrollBack && bScrollBack){
 	    	jQuery.sap.byId(this._oArrowPrev.getId()).show();
-	    	oScrl.css(this._bRtl ? "padding-right" : "padding-left", "2rem");
+	    //	oScrl.css(this._bRtl ? "padding-right" : "padding-left", "2rem");
 			//oScrlDelegate.refresh();
 	    	bRefresh = true;
 	    }
@@ -21079,13 +24771,13 @@ sap.suite.ui.commons.HeaderContainer.prototype._checkHOverflow = function() {
 		var oOldScrollForward = this._oArrowNext.$().is(":visible");
 	    if(oOldScrollForward && !bScrollForward) {
 	    	jQuery.sap.byId(this._oArrowNext.getId()).hide();
-	    	oScrl.css(this._bRtl ? "padding-left" : "padding-right", "0rem");
+//	    	oScrl.css(this._bRtl ? "padding-left" : "padding-right", "0rem");
 			//oScrlDelegate.refresh();
 	    	bRefresh = true;
 	    } 
 	    if (!oOldScrollForward && bScrollForward) {
 	    	jQuery.sap.byId(this._oArrowNext.getId()).show();
-	    	oScrl.css(this._bRtl ? "padding-left" : "padding-right", "2rem");
+//	    	oScrl.css(this._bRtl ? "padding-left" : "padding-right", "2rem");
 			//oScrlDelegate.refresh();
 	    	bRefresh = true;
 	    }
@@ -21140,20 +24832,29 @@ sap.suite.ui.commons.HeaderContainer.prototype.onAfterRendering = function() {
 	jQuery.sap.byId(this.getId() + "-scrl-next-button").attr("tabindex","-1");
 	jQuery.sap.byId(this.getId() + "-scrl-prev-button").attr("tabindex","-1");
 	if (jQuery.device.is.desktop) { 
-		this.$().bind("swipe", jQuery.proxy(this.handleSwipe, this));		
-	}
+		this.$().bind("swipe", jQuery.proxy(this.handleSwipe, this));
+    }
 	
 	if (this._sScrollResizeHandlerId) {
 		sap.ui.core.ResizeHandler.deregister(this._sScrollResizeHandlerId);
 	}
 	
-    var oScroll = jQuery.sap.domById(this.getId() + "-scrl-cntnr");
-    //this._sScrollResizeHandlerId = sap.ui.core.ResizeHandler.register(oScroll,  jQuery.proxy(this._refreshScroll, this));
+    var oScroll = jQuery.sap.domById(this.getId());
+    this._sScrollResizeHandlerId = sap.ui.core.ResizeHandler.register(oScroll,  jQuery.proxy(this._refreshScroll, this));
 };
 
 sap.suite.ui.commons.HeaderContainer.prototype._refreshScroll = function() {
-	if(!this.bScrollInProcess) {
-		this._oScrollCntr.getScrollDelegate().refresh();		
+//	if(!this.bScrollInProcess) {
+//		this._oScrollCntr.getScrollDelegate().refresh();		
+//	}
+	var oHc = this.$();
+	var iRealHeight = jQuery.sap.domById(this.getId() + "-scrl-cntnr").scrollHeight;
+	var iAvailHeight = oHc.height();
+	
+	if (iRealHeight > iAvailHeight) {
+		oHc.css("height", "100%");
+	} else {
+		oHc.css("height", "");
 	}
 };
 
@@ -21233,6 +24934,73 @@ sap.suite.ui.commons.HeaderContainer.prototype.destroyAggregation = function(sAg
     return this;
 };
 
+sap.suite.ui.commons.HeaderContainer.prototype._getParentCell = function(oDomElement) {
+	return jQuery(oDomElement).parents(".sapSuiteHrdrCntrInner").andSelf(".sapSuiteHrdrCntrInner").get(0);
+};
+
+sap.suite.ui.commons.HeaderContainer.prototype.onsaptabnext = function(oEvent) {
+	this._iSelectedCell = this._oItemNavigation.getFocusedIndex();
+	var oFocusables = this.$().find(":focusable");	// all tabstops in the control
+	var iThis = oFocusables.index(oEvent.target);  // focused element index
+	var oNext = oFocusables.eq(iThis + 1).get(0);	// next tab stop element
+	var oFromCell = this._getParentCell(oEvent.target);
+	var oToCell = (typeof oNext != 'undefined') ? this._getParentCell(oNext) : undefined;
+	if ((typeof oFromCell != 'undefined') && (typeof oToCell != 'undefined') && oFromCell.id != oToCell.id) { // attempt to jump to other cell
+		var oLastInnerTab = oFocusables.last().get(0);
+		if (typeof oLastInnerTab != 'undefined') {
+			oLastInnerTab.focus();
+		}
+	}
+};
+
+sap.suite.ui.commons.HeaderContainer.prototype.onfocusin = function(oEvent) {
+	var oInnerTabs = this.$().find(":focusable").map(function() { return this.id; });;
+	if (oEvent.relatedTarget != undefined && (this === oEvent.relatedTarget || jQuery.inArray(oEvent.relatedTarget.id, oInnerTabs) >= 0)) {
+		return; // we only process here tab propagation from outside
+	}
+	var oCurrent = oEvent.target;
+	var oCurrentCell = this._getParentCell(oEvent.target);
+	var aCells = this._oItemNavigation.getItemDomRefs().get();
+	var oCurrentCellIndex = aCells.indexOf(oCurrentCell);
+	if (oCurrentCellIndex != this._iSelectedCell) { // cell correction needed
+		if (oCurrentCellIndex == aCells.length - 1 && oCurrent != oCurrentCell) { //this means reverse tab direction
+			if (aCells[this._iSelectedCell]) {
+				var oLastInCell = jQuery(aCells[this._iSelectedCell]).find(":focusable").last().get(0);	// last tabstop in the cell
+				if (typeof oLastInCell != 'undefined') {
+					oLastInCell.focus();
+					return;
+				}
+			}
+		}
+		if (aCells[this._iSelectedCell]) {
+			aCells[this._iSelectedCell].focus();
+		}
+	}
+};
+
+sap.suite.ui.commons.HeaderContainer.prototype.onsaptabprevious = function(oEvent) {
+	var oFocusables = this.$().find(":focusable");	// all tabstops in the control
+	var iThis = oFocusables.index(oEvent.target);  // focused element index
+	var oPrev = oFocusables.eq(iThis - 1).get(0);	// previous tab stop element
+	var oFromCell = this._getParentCell(oEvent.target);
+	this._iSelectedCell = this._oItemNavigation.getFocusedIndex();
+	var oToCell = (typeof oPrev != 'undefined') ? this._getParentCell(oPrev) : undefined;
+	if (typeof oPrev != 'undefined' && typeof oToCell != 'undefined' && oToCell.id == oPrev.id) { // previous step goes to cell
+		oEvent.preventDefault();
+		oEvent.stopPropagation();
+		oToCell.tabindex=0;
+		oToCell.focus();
+	} else if (typeof oToCell == 'undefined' || oFromCell && oFromCell.id != oToCell.id) { // attempt to jump outside or to other cell
+		var sTabIndex = this.$().attr("tabindex");	// save tabindex
+		this.$().attr("tabindex", "0");	
+		this.$().focus();							// set focus before the control
+		if (typeof sTabIndex == 'undefined') {		// restore tabindex
+			this.$().removeAttr("tabindex");
+		} else {
+			this.$().attr("tabindex", sTabIndex);
+		}
+	}
+};
 
 }; // end of sap/suite/ui/commons/HeaderContainer.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.InfoTile') ) {
@@ -21294,7 +25062,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * The tile control that displays the title, description, footer, and customizable main area.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -21555,7 +25323,6 @@ sap.suite.ui.commons.InfoTile.M_EVENTS = {'press':'press'};
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/InfoTile.js
 jQuery.sap.require('sap.m.Text'); // unlisted dependency retained
 
@@ -21657,7 +25424,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control displays the jam content text, subheader, and numeric value in a tile.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -21909,7 +25676,6 @@ sap.suite.ui.commons.JamContent.M_EVENTS = {'press':'press'};
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/JamContent.js
 ///**
 // * This file defines behavior for the control,
@@ -21986,7 +25752,7 @@ sap.suite.ui.commons.JamContent.prototype.getTooltip_AsString  = function() {
 	var sTooltip = this.getAltText();
 	
 	if(typeof oTooltip === "string" || oTooltip instanceof String) {
-		sTooltip = oTooltip.split("{AltText}").join(sTooltip);
+		sTooltip = oTooltip.split("{AltText}").join(sTooltip).split("((AltText))").join(sTooltip);
 		return sTooltip;
 	}
 	return oTooltip ? oTooltip : "";
@@ -22051,7 +25817,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control is used in UnifiedThingInspector to display object-related KPIs in a factsheet.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -22238,7 +26004,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.KpiTile", { metadata : {
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/KpiTile.js
 ///**
 // * This file defines behavior for the control,
@@ -22304,7 +26069,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control launches a URL.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -22478,7 +26243,6 @@ sap.suite.ui.commons.LaunchTile.M_EVENTS = {'press':'press'};
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/LaunchTile.js
 ///**
 // * This file defines behavior for the control,
@@ -22600,7 +26364,7 @@ jQuery.sap.require('sap.m.ActionSheet'); // unlisted dependency retained
  * @class
  * This control contains one or more sap.m.Button controls or sap.ui.commons.Link controls. The LinkActionSheet control is closed if the user chooses one of the buttons or links. It looks similar to sap.m.Dialog in iPhone and Android, and to sap.m.Popover in iPad.
  * @extends sap.m.ActionSheet
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -22783,7 +26547,6 @@ sap.suite.ui.commons.LinkActionSheet.M_EVENTS = {'itemPress':'itemPress'};
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/LinkActionSheet.js
 ///**
 // * This file defines behavior for the control,
@@ -22915,7 +26678,8 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * <li>{@link #getMinXValue minXValue} : float</li>
  * <li>{@link #getMaxYValue maxYValue} : float</li>
  * <li>{@link #getMinYValue minYValue} : float</li>
- * <li>{@link #getView view} : sap.suite.ui.commons.MicroAreaChartView (default: sap.suite.ui.commons.MicroAreaChartView.Normal)</li></ul>
+ * <li>{@link #getView view} : sap.suite.ui.commons.MicroAreaChartView (default: sap.suite.ui.commons.MicroAreaChartView.Normal)</li>
+ * <li>{@link #getColorPalette colorPalette} : string[] (default: [])</li></ul>
  * </li>
  * <li>Aggregations
  * <ul>
@@ -22930,7 +26694,8 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * <li>{@link #getLastXLabel lastXLabel} : sap.suite.ui.commons.MicroAreaChartLabel</li>
  * <li>{@link #getLastYLabel lastYLabel} : sap.suite.ui.commons.MicroAreaChartLabel</li>
  * <li>{@link #getMaxLabel maxLabel} : sap.suite.ui.commons.MicroAreaChartLabel</li>
- * <li>{@link #getMinLabel minLabel} : sap.suite.ui.commons.MicroAreaChartLabel</li></ul>
+ * <li>{@link #getMinLabel minLabel} : sap.suite.ui.commons.MicroAreaChartLabel</li>
+ * <li>{@link #getLines lines} : sap.suite.ui.commons.MicroAreaChartItem[]</li></ul>
  * </li>
  * <li>Associations
  * <ul></ul>
@@ -22948,7 +26713,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control displays the history of values as a line mini chart or an area mini chart.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -22965,7 +26730,8 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.MicroAreaChart", { metadata : {
 		"minXValue" : {type : "float", group : "Misc", defaultValue : null},
 		"maxYValue" : {type : "float", group : "Misc", defaultValue : null},
 		"minYValue" : {type : "float", group : "Misc", defaultValue : null},
-		"view" : {type : "sap.suite.ui.commons.MicroAreaChartView", group : "Appearance", defaultValue : sap.suite.ui.commons.MicroAreaChartView.Normal}
+		"view" : {type : "sap.suite.ui.commons.MicroAreaChartView", group : "Appearance", defaultValue : sap.suite.ui.commons.MicroAreaChartView.Normal},
+		"colorPalette" : {type : "string[]", group : "Misc", defaultValue : []}
 	},
 	aggregations : {
 		"chart" : {type : "sap.suite.ui.commons.MicroAreaChartItem", multiple : false}, 
@@ -22979,7 +26745,8 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.MicroAreaChart", { metadata : {
 		"lastXLabel" : {type : "sap.suite.ui.commons.MicroAreaChartLabel", multiple : false}, 
 		"lastYLabel" : {type : "sap.suite.ui.commons.MicroAreaChartLabel", multiple : false}, 
 		"maxLabel" : {type : "sap.suite.ui.commons.MicroAreaChartLabel", multiple : false}, 
-		"minLabel" : {type : "sap.suite.ui.commons.MicroAreaChartLabel", multiple : false}
+		"minLabel" : {type : "sap.suite.ui.commons.MicroAreaChartLabel", multiple : false}, 
+		"lines" : {type : "sap.suite.ui.commons.MicroAreaChartItem", multiple : true, singularName : "line"}
 	},
 	events : {
 		"press" : {}
@@ -23164,6 +26931,7 @@ sap.suite.ui.commons.MicroAreaChart.M_EVENTS = {'press':'press'};
  *
  * @return {sap.suite.ui.commons.MicroAreaChartView} the value of property <code>view</code>
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.MicroAreaChart#getView
  * @function
  */
@@ -23176,7 +26944,35 @@ sap.suite.ui.commons.MicroAreaChart.M_EVENTS = {'press':'press'};
  * @param {sap.suite.ui.commons.MicroAreaChartView} oView  new value for property <code>view</code>
  * @return {sap.suite.ui.commons.MicroAreaChart} <code>this</code> to allow method chaining
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.MicroAreaChart#setView
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>colorPalette</code>.
+ * The color palette for the chart. If this property is set, semantic colors defined in MicroAreaChartItem are ignored. Colors from the palette are assigned to each line consequentially. When all the palette colors are used, assignment of the colors begins from the first palette color.
+ *
+ * Default value is <code>[]</code>
+ *
+ * @return {string[]} the value of property <code>colorPalette</code>
+ * @public
+ * @since 1.29
+ * @name sap.suite.ui.commons.MicroAreaChart#getColorPalette
+ * @function
+ */
+
+/**
+ * Setter for property <code>colorPalette</code>.
+ *
+ * Default value is <code>[]</code> 
+ *
+ * @param {string[]} aColorPalette  new value for property <code>colorPalette</code>
+ * @return {sap.suite.ui.commons.MicroAreaChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.29
+ * @name sap.suite.ui.commons.MicroAreaChart#setColorPalette
  * @function
  */
 
@@ -23554,6 +27350,94 @@ sap.suite.ui.commons.MicroAreaChart.M_EVENTS = {'press':'press'};
 
 
 /**
+ * Getter for aggregation <code>lines</code>.<br/>
+ * The set of lines.
+ * 
+ * @return {sap.suite.ui.commons.MicroAreaChartItem[]}
+ * @public
+ * @since 1.29
+ * @name sap.suite.ui.commons.MicroAreaChart#getLines
+ * @function
+ */
+
+
+/**
+ * Inserts a line into the aggregation named <code>lines</code>.
+ *
+ * @param {sap.suite.ui.commons.MicroAreaChartItem}
+ *          oLine the line to insert; if empty, nothing is inserted
+ * @param {int}
+ *             iIndex the <code>0</code>-based index the line should be inserted at; for 
+ *             a negative value of <code>iIndex</code>, the line is inserted at position 0; for a value 
+ *             greater than the current size of the aggregation, the line is inserted at 
+ *             the last position        
+ * @return {sap.suite.ui.commons.MicroAreaChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.29
+ * @name sap.suite.ui.commons.MicroAreaChart#insertLine
+ * @function
+ */
+
+/**
+ * Adds some line <code>oLine</code> 
+ * to the aggregation named <code>lines</code>.
+ *
+ * @param {sap.suite.ui.commons.MicroAreaChartItem}
+ *            oLine the line to add; if empty, nothing is inserted
+ * @return {sap.suite.ui.commons.MicroAreaChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.29
+ * @name sap.suite.ui.commons.MicroAreaChart#addLine
+ * @function
+ */
+
+/**
+ * Removes an line from the aggregation named <code>lines</code>.
+ *
+ * @param {int | string | sap.suite.ui.commons.MicroAreaChartItem} vLine the line to remove or its index or id
+ * @return {sap.suite.ui.commons.MicroAreaChartItem} the removed line or null
+ * @public
+ * @since 1.29
+ * @name sap.suite.ui.commons.MicroAreaChart#removeLine
+ * @function
+ */
+
+/**
+ * Removes all the controls in the aggregation named <code>lines</code>.<br/>
+ * Additionally unregisters them from the hosting UIArea.
+ * @return {sap.suite.ui.commons.MicroAreaChartItem[]} an array of the removed elements (might be empty)
+ * @public
+ * @since 1.29
+ * @name sap.suite.ui.commons.MicroAreaChart#removeAllLines
+ * @function
+ */
+
+/**
+ * Checks for the provided <code>sap.suite.ui.commons.MicroAreaChartItem</code> in the aggregation named <code>lines</code> 
+ * and returns its index if found or -1 otherwise.
+ *
+ * @param {sap.suite.ui.commons.MicroAreaChartItem}
+ *            oLine the line whose index is looked for.
+ * @return {int} the index of the provided control in the aggregation if found, or -1 otherwise
+ * @public
+ * @since 1.29
+ * @name sap.suite.ui.commons.MicroAreaChart#indexOfLine
+ * @function
+ */
+	
+
+/**
+ * Destroys all the lines in the aggregation 
+ * named <code>lines</code>.
+ * @return {sap.suite.ui.commons.MicroAreaChart} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.29
+ * @name sap.suite.ui.commons.MicroAreaChart#destroyLines
+ * @function
+ */
+
+
+/**
  * The event is fired when the user chooses the micro area chart.
  *
  * @name sap.suite.ui.commons.MicroAreaChart#press
@@ -23608,7 +27492,6 @@ sap.suite.ui.commons.MicroAreaChart.M_EVENTS = {'press':'press'};
  * @name sap.suite.ui.commons.MicroAreaChart#firePress
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/MicroAreaChart.js
 ///**
@@ -23772,6 +27655,37 @@ sap.suite.ui.commons.MicroAreaChart.prototype.renderChart = function(c, d) {
 	}
 };
 
+sap.suite.ui.commons.MicroAreaChart.prototype.renderLines = function(c, d) {
+	var iCpLength = this.getColorPalette().length;
+	var iCpIndex = 0;
+	var that = this;
+	
+	var fnNextColor = function() {
+		if (iCpLength) {
+			if (iCpIndex == iCpLength) {
+				iCpIndex = 0;
+			}
+			return that.getColorPalette()[iCpIndex++];
+		}
+	};
+	
+	var oCsses = this._getCssValues("sapSuiteMacLine");
+	c.lineWidth = parseFloat(oCsses.width);
+	
+	var iLength = d.lines.length;
+	for (var i = 0; i < iLength; i++) {
+		if (d.lines[i].length > 1) {
+			if (iCpLength) {
+				c.strokeStyle = fnNextColor();
+			} else {
+				oCsses = this._getCssValues("sapSuiteMacLine", this.getLines()[i].getColor());
+				c.strokeStyle = oCsses.color;		
+			}
+			this._renderLine(c, d.lines[i], d);
+		}
+	}
+};
+
 sap.suite.ui.commons.MicroAreaChart.prototype.renderCanvas = function() {
 	this._cssHelper = document.getElementById(this.getId() + "-css-helper");
 	
@@ -23780,8 +27694,12 @@ sap.suite.ui.commons.MicroAreaChart.prototype.renderCanvas = function() {
 	
 	var canvas = document.getElementById(this.getId() + "-canvas");
 	var canvasSettings = window.getComputedStyle(canvas);
-	canvas.setAttribute("width", parseFloat(canvasSettings.width));
-	canvas.setAttribute("height", parseFloat(canvasSettings.height));
+	
+	var fWidth = parseFloat(canvasSettings.width);
+	canvas.setAttribute("width", fWidth ? fWidth : 360);
+	
+	var fHeight = parseFloat(canvasSettings.height)
+	canvas.setAttribute("height", fHeight ? fHeight : 242);
 	
 	var c = canvas.getContext("2d");
 	
@@ -23822,6 +27740,7 @@ sap.suite.ui.commons.MicroAreaChart.prototype.renderCanvas = function() {
 	this.renderThresholdLine(c, d.innerMaxThreshold, d);
 	this.renderTarget(c, d);
 	this.renderChart(c, d);
+	this.renderLines(c, d);
 };
 
 sap.suite.ui.commons.MicroAreaChart.prototype._calculateDimensions = function(fWidth, fHeight) {
@@ -23831,7 +27750,7 @@ sap.suite.ui.commons.MicroAreaChart.prototype._calculateDimensions = function(fW
 	
 	function calculateExtremums() {
 		if (!that._isMinXValue || !that._isMaxXValue || !that._isMinYValue || !that._isMaxYValue) {
-			var lines = [];
+			var lines = that.getLines();
 			if (that.getMaxThreshold()) {
 				lines.push(that.getMaxThreshold());
 			}
@@ -23901,7 +27820,8 @@ sap.suite.ui.commons.MicroAreaChart.prototype._calculateDimensions = function(fW
 		minY: 0,
 		minX: 0,
 		maxY: fHeight,
-		maxX: fWidth
+		maxX: fWidth,
+		lines: []
 	};
 	
 	var kx = undefined;
@@ -23996,6 +27916,10 @@ sap.suite.ui.commons.MicroAreaChart.prototype._calculateDimensions = function(fW
 	oResult.innerMaxThreshold = calculateCoordinates(that.getInnerMaxThreshold());
 	oResult.innerMinThreshold = calculateCoordinates(that.getInnerMinThreshold());
 	
+	var iLength = that.getLines().length;
+	for (var i = 0; i < iLength; i++) {
+		oResult.lines.push(calculateCoordinates(that.getLines()[i]));
+	}
 	return oResult;
 };
 
@@ -24101,7 +28025,7 @@ sap.suite.ui.commons.MicroAreaChart.prototype.getAltText = function() {
 		sAltText += (bIsFirst ? "" : "\n") + this._oRb.getText(("MICRO_AREA_CHART_MAXIMAL_VALUE")) + ": " + oMaxLabel.getLabel() + " " + this.getLocalizedColorMeaning(oMaxLabel.getColor());  
 		bIsFirst = false;
 	}
-	if (oActual && oActual.getPoints()) {
+	if (oActual && oActual.getPoints() && oActual.getPoints().length > 0) {
 		sAltText += (bIsFirst ? "" : "\n") + this._oRb.getText(("MICRO_AREA_CHART_ACTUAL_VALUES")) + ":";
 		bIsFirst = false;
 		var aActual = oActual.getPoints();
@@ -24109,7 +28033,7 @@ sap.suite.ui.commons.MicroAreaChart.prototype.getAltText = function() {
 			sAltText += " " + aActual[i].getY();
 		}
 	}
-	if (oTarget && oTarget.getPoints()) {
+	if (oTarget && oTarget.getPoints() && oTarget.getPoints().length > 0) {
 		sAltText += (bIsFirst ? "" : "\n") + this._oRb.getText(("MICRO_AREA_CHART_TARGET_VALUES")) + ":";
 		var aTarget = oTarget.getPoints();
 		for (var i=0; i<aTarget.length; i++) {
@@ -24117,6 +28041,20 @@ sap.suite.ui.commons.MicroAreaChart.prototype.getAltText = function() {
 		}
 	}
 
+	for (var i = 0; i < this.getLines().length; i++) {
+		var oLine = this.getLines()[i];
+		if (oLine.getPoints() && oLine.getPoints().length > 0) {
+			sAltText += (bIsFirst ? "" : "\n") + oLine.getTitle() + ":";
+			var aLine = oLine.getPoints();
+			for (var y=0; y<aLine.length; y++) {
+				sAltText += " " + aLine[y].getY();
+			}
+			
+			if (this.getColorPalette().length == 0) {
+				sAltText += " " + this.getLocalizedColorMeaning(oLine.getColor());
+			}
+		}
+	}
 	return sAltText;
 };
 
@@ -24126,10 +28064,19 @@ sap.suite.ui.commons.MicroAreaChart.prototype.getTooltip_AsString  = function() 
 	var sTooltip = this.getAltText();
 	
 	if(typeof oTooltip === "string" || oTooltip instanceof String) {
-		sTooltip = oTooltip.split("{AltText}").join(sTooltip);
+		sTooltip = oTooltip.split("{AltText}").join(sTooltip).split("((AltText))").join(sTooltip);
 		return sTooltip;
 	}
 	return oTooltip ? oTooltip : "";
+};
+
+sap.suite.ui.commons.MicroAreaChart.prototype.clone = function(sIdSuffix, aLocalIds, oOptions) {
+	var oClone = sap.ui.core.Control.prototype.clone.apply(this, arguments);
+	oClone._isMinXValue = this._isMinXValue;
+	oClone._isMaxXValue = this._isMaxXValue;
+	oClone._isMinYValue = this._isMinYValue;
+	oClone._isMaxYValue = this._isMaxYValue;
+	return oClone;
 };
 
 }; // end of sap/suite/ui/commons/MicroAreaChart.js
@@ -24166,7 +28113,8 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * <ul>
  * <li>Properties
  * <ul>
- * <li>{@link #getColor color} : sap.suite.ui.commons.InfoTileValueColor (default: sap.suite.ui.commons.InfoTileValueColor.Neutral)</li></ul>
+ * <li>{@link #getColor color} : sap.suite.ui.commons.InfoTileValueColor (default: sap.suite.ui.commons.InfoTileValueColor.Neutral)</li>
+ * <li>{@link #getTitle title} : string</li></ul>
  * </li>
  * <li>Aggregations
  * <ul>
@@ -24190,7 +28138,7 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * The configuration of the graphic element on the chart.
  * @extends sap.ui.core.Element
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -24201,7 +28149,8 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.MicroAreaChartItem", { metadata
 
 	library : "sap.suite.ui.commons",
 	properties : {
-		"color" : {type : "sap.suite.ui.commons.InfoTileValueColor", group : "Misc", defaultValue : sap.suite.ui.commons.InfoTileValueColor.Neutral}
+		"color" : {type : "sap.suite.ui.commons.InfoTileValueColor", group : "Misc", defaultValue : sap.suite.ui.commons.InfoTileValueColor.Neutral},
+		"title" : {type : "string", group : "Misc", defaultValue : null}
 	},
 	aggregations : {
 		"points" : {type : "sap.suite.ui.commons.MicroAreaChartPoint", multiple : true, singularName : "point", bindable : "bindable"}
@@ -24247,6 +28196,33 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.MicroAreaChartItem", { metadata
  * @return {sap.suite.ui.commons.MicroAreaChartItem} <code>this</code> to allow method chaining
  * @public
  * @name sap.suite.ui.commons.MicroAreaChartItem#setColor
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>title</code>.
+ * The line title.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>title</code>
+ * @public
+ * @since 1.29
+ * @name sap.suite.ui.commons.MicroAreaChartItem#getTitle
+ * @function
+ */
+
+/**
+ * Setter for property <code>title</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sTitle  new value for property <code>title</code>
+ * @return {sap.suite.ui.commons.MicroAreaChartItem} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.29
+ * @name sap.suite.ui.commons.MicroAreaChartItem#setTitle
  * @function
  */
 
@@ -24354,7 +28330,6 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.MicroAreaChartItem", { metadata
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/MicroAreaChartItem.js
 ///**
 // * This file defines behavior for the control,
@@ -24421,7 +28396,7 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * This element contains data for a label in MicroAreaChart control.
  * @extends sap.ui.core.Element
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -24504,7 +28479,6 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.MicroAreaChartLabel", { metadat
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/MicroAreaChartLabel.js
 ///**
 // * This file defines behavior for the control,
@@ -24571,7 +28545,7 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * This control contains data for the point.
  * @extends sap.ui.core.Element
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -24680,7 +28654,6 @@ sap.ui.core.Element.extend("sap.suite.ui.commons.MicroAreaChartPoint", { metadat
  * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
-
 // Start of sap/suite/ui/commons/MicroAreaChartPoint.js
 ///**
 // * This file defines behavior for the control,
@@ -24708,6 +28681,14 @@ sap.suite.ui.commons.MicroAreaChartPoint.prototype.getYValue = function() {
 sap.suite.ui.commons.MicroAreaChartPoint.prototype._isNumber = function(n) {
     return typeof n == 'number' && !isNaN(n) && isFinite(n);
 };
+
+sap.suite.ui.commons.MicroAreaChartPoint.prototype.clone = function(sIdSuffix, aLocalIds, oOptions) {
+	var oClone = sap.ui.core.Control.prototype.clone.apply(this, arguments);
+	oClone._isXValue = this._isXValue;
+	oClone._isYValue = this._isYValue;
+	return oClone;
+};
+
 }; // end of sap/suite/ui/commons/MicroAreaChartPoint.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.MonitoringContent') ) {
 /*!
@@ -24768,7 +28749,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control is used in a tile or any other place to display numeric values and an icon.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -25028,7 +29009,6 @@ sap.suite.ui.commons.MonitoringContent.M_EVENTS = {'press':'press'};
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/MonitoringContent.js
 ///**
 // * This file defines behavior for the control,
@@ -25122,7 +29102,7 @@ jQuery.sap.declare("sap.suite.ui.commons.MonitoringTile");
  * @class
  * This control is the implementation of the InfoTile to show a numeric value and an icon.
  * @extends sap.suite.ui.commons.InfoTile
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -25233,7 +29213,6 @@ sap.suite.ui.commons.InfoTile.extend("sap.suite.ui.commons.MonitoringTile", { me
  * @name sap.suite.ui.commons.MonitoringTile#setFooterColor
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/MonitoringTile.js
 ///**
@@ -25350,7 +29329,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control displays the news content text and subheader in a tile.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -25524,7 +29503,6 @@ sap.suite.ui.commons.NewsContent.M_EVENTS = {'press':'press'};
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/NewsContent.js
 ///**
 // * This file defines behavior for the control,
@@ -25596,7 +29574,7 @@ sap.suite.ui.commons.NewsContent.prototype.getTooltip_AsString  = function() {
 	var sTooltip = this.getAltText();
 	
 	if(typeof oTooltip === "string" || oTooltip instanceof String) {
-		sTooltip = oTooltip.split("{AltText}").join(sTooltip);
+		sTooltip = oTooltip.split("{AltText}").join(sTooltip).split("((AltText))").join(sTooltip);
 		return sTooltip;
 	}
 	return oTooltip ? oTooltip : "";
@@ -25668,7 +29646,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control allows you to create and store your notes for further reference.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -26493,7 +30471,6 @@ sap.suite.ui.commons.NoteTaker.M_EVENTS = {'addCard':'addCard','deleteCard':'del
  * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
-
 // Start of sap/suite/ui/commons/NoteTaker.js
 jQuery.sap.require('sap.ui.commons.Carousel'); // unlisted dependency retained
 
@@ -26610,7 +30587,11 @@ jQuery.sap.require('sap.ui.commons.SearchField'); // unlisted dependency retaine
             }
         });
         this._oCancelFilterTagButton.addStyleClass("sapSuiteUiCommonsNoteTakerCancelFilterTagButton");
-
+        
+        this._oCancelFilterTagButton.onfocusout = function(oEvent) {
+        	that._oFilterTagList.focus();
+        }
+        
         this._oApplyFilterTagButton = new sap.ui.commons.Button({
             id: this.getId() + "-apply-filterTags-button",
             text: this._rb.getText("NOTETAKER_BUTTON_FILTER_TAG_APPLY_TEXT"),
@@ -27413,6 +31394,19 @@ jQuery.sap.require('sap.ui.commons.SearchField'); // unlisted dependency retaine
         this._nextCardAttachmentUrl = sUrl;
         return this;
     };
+    
+    sap.suite.ui.commons.NoteTaker.prototype.onkeyup = function(oEvent) {
+  		if (oEvent.which == jQuery.sap.KeyCodes.ESCAPE) {
+  			if(this._feeder._bTagPopupOpen) {
+  				this._feeder._toggleTagPopup();
+  				this._feeder._oTagButton.focus();
+  			}
+  			if(this._bFilterTagPopupOpen) {
+  				this._toggleFilterTagPopup();
+  				this._oFilterTagButton.focus();
+  			}
+  		}
+  }
 }());
 
 }; // end of sap/suite/ui/commons/NoteTaker.js
@@ -27483,7 +31477,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control allows you to store Note Taker card header and body text.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -28049,7 +32043,6 @@ sap.suite.ui.commons.NoteTakerCard.M_EVENTS = {'editNote':'editNote','deleteNote
  * @name sap.suite.ui.commons.NoteTakerCard#fireAttachmentClick
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/NoteTakerCard.js
 jQuery.sap.require('sap.ui.core.Locale'); // unlisted dependency retained
@@ -28661,7 +32654,7 @@ sap.suite.ui.commons.NoteTakerCard.prototype._prepareOverlayLayouts = function()
     this._oOverlayCard.addContent(oTopSectionLayout);
 
     // Body section
-    var oBodySectionVerticalLayout = new sap.ui.commons.layout.VerticalLayout();
+    var oBodySectionVerticalLayout = new sap.ui.layout.HorizontalLayout();
     oBodySectionVerticalLayout.addStyleClass("sapSuiteUiCommonsNoteTakerCardContent");
     
     // Buttons section
@@ -28737,7 +32730,6 @@ sap.suite.ui.commons.NoteTakerCard.prototype._prepareOverlayToolbar = function(b
 
 sap.suite.ui.commons.NoteTakerCard.prototype._prepareOverlayBody = function() {
     this._oOverlayCard.addContent(this._oOverlayCard.layouts.body);
-
 };
 
 sap.suite.ui.commons.NoteTakerCard.prototype._prepareOverlayButtons = function(bEditMode) {
@@ -28971,6 +32963,7 @@ sap.suite.ui.commons.NoteTakerCard.prototype._fnCreateInEditMode = function() {
     var oSaveButton = that._oOverlayCard.layouts.buttons.getContent()[1];
     oSaveButton.setEnabled(true);
     var oCardBody = new sap.ui.commons.TextArea(that.getId() + "-overlayBody" ,{
+    	required: true,
         liveChange : function(e) {
             var sEnteredText = e.getParameter("liveValue");
             var bEnabled = (sEnteredText != null) && !/^\s*$/.test(sEnteredText);
@@ -28983,7 +32976,8 @@ sap.suite.ui.commons.NoteTakerCard.prototype._fnCreateInEditMode = function() {
     oCardBody.setValue(that.getBody());
     oCardBody.addStyleClass("sapSuiteUiCommonsNoteTakerCardBody");
     that._oOverlayCard.layouts.body.addContent(oCardBody);
-
+    that._oOverlayCard.layouts.body.addContent(new sap.ui.commons.Label({required: true}).addStyleClass("sapSuiteRequiredLbl"));
+    
     // Display Edit button in the correct state
     var oEditBtn = that._oOverlayCard.layouts.headerRight.getContent()[0];
     oEditBtn.setEnabled(false);
@@ -29023,7 +33017,7 @@ sap.suite.ui.commons.NoteTakerCard.prototype._fnSave = function() {
         that._oOverlayCard.layouts.headerLeft.removeContent(oTitleEdit);
         oTitleEdit.destroy();
         oCardTitleField.destroy();
-        that._oOverlayCard.layouts.body.removeContent(oCardBody);
+        that._oOverlayCard.layouts.body.removeAllContent();
         oCardBody.destroy();
 
         that._destroyTagControls();
@@ -29116,14 +33110,13 @@ sap.suite.ui.commons.NoteTakerCardRenderer.render = function(rm, oControl){
         rm.addClass("suiteUiNtcNegativeCard");
     }
     rm.writeClasses();
-    rm.writeAttribute("tabindex", "0");
     
     var ariaInfo = {role : 'region'};
-    
-    if (!jQuery.browser.msie) {
-	    ariaInfo.describedby = [oControl.getId() + "-headerLabel", oControl.getId() + "-timestamp",
-	      		              oControl.getId() + "-toolbar", oControl.getId() + "-body"].join(" ");
-    }	
+    // For JAWS 15 is not needed.
+//    if (!jQuery.browser.msie) {
+//	    ariaInfo.describedby = [oControl.getId() + "-headerLabel", oControl.getId() + "-timestamp",
+//	      		              oControl.getId() + "-toolbar", oControl.getId() + "-body"].join(" ");
+//    }	
     rm.writeAccessibilityState(oControl, ariaInfo);
     rm.write(">");
 
@@ -29349,7 +33342,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control allows you to enter a quick note and N note cards.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -29902,7 +33895,6 @@ sap.suite.ui.commons.NoteTakerFeeder.M_EVENTS = {'addNote':'addNote','attachment
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/NoteTakerFeeder.js
 jQuery.sap.require('sap.ui.ux3.ToolPopup'); // unlisted dependency retained
 
@@ -29962,6 +33954,10 @@ sap.suite.ui.commons.NoteTakerFeeder.prototype.init = function() {
         }
     });
     this._oCancelTagButton.addStyleClass("sapSuiteUiCommonsNoteTakerFeederCancelTagButton");
+    
+    this._oCancelTagButton.onfocusout = function(oE) {
+    		that._oTagInput.focus();
+    };
 
     this._oAddTagButton = new sap.ui.commons.Button({
         id: this.getId() + "-add-tags-button",
@@ -29994,6 +33990,7 @@ sap.suite.ui.commons.NoteTakerFeeder.prototype.init = function() {
     this._oBody = new sap.ui.commons.TextArea({
         id : this.getId() + "-body-field",
         placeholder : this._rb.getText("NOTETAKERFEEDER_PLACEHOLDER_BODY") + "...",
+        required: true,
         liveChange : function(e) {
             that._setAddButtonEnabled(e.mParameters["liveValue"], null);
         }
@@ -30040,6 +34037,9 @@ sap.suite.ui.commons.NoteTakerFeeder.prototype.init = function() {
         }
     });
     
+    this._oFileUploader.onfocusin = function(oE) {
+    	that._oTitle.focus();
+    };
     this._oFileUploader.oBrowse.setText("");
     
     this.setAggregation("fileUploader", this._oFileUploader);
@@ -30079,6 +34079,8 @@ sap.suite.ui.commons.NoteTakerFeeder.prototype.init = function() {
         },
         width: "200px"
     });
+    
+    this._oRequiredLbl = new sap.ui.commons.Label({required: true}).addStyleClass("sapSuiteRequiredLbl");
 };
 
 sap.suite.ui.commons.NoteTakerFeeder.prototype.exit = function() {
@@ -30097,22 +34099,7 @@ sap.suite.ui.commons.NoteTakerFeeder.prototype.exit = function() {
     this._oAttachmentLoadingLabel.destroy();
     this._oDeleteAttachButton.destroy();   
     this._oAttachmentLink.destroy();
-    
-    this._oAddButton = null;
-    this._oTitle = null;
-    this._oBody = null;
-    this._oTagButton = null;
-    this._oTagList = null;
-    this._oTagInput = null;
-    this._oCancelTagButton = null;
-    this._oAddTagButton = null;
-    this._oThumbUpButton = null;
-    this._oThumbDownButton = null;
-    this._oFileUploader = null;
-    this._oAddAttachButton = null;
-    this._oAttachmentLoadingLabel = null;
-    this._oDeleteAttachButton = null;
-    this._oAttachmentLink = null;
+    this._oRequiredLbl.destroy();
 };
 
 sap.suite.ui.commons.NoteTakerFeeder.prototype._handleAdd = function() {
@@ -30577,7 +34564,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * NumericContent to be used in tile or in other place where need to show numeric values with sematic colors and deviations.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -30860,6 +34847,7 @@ sap.suite.ui.commons.NumericContent.M_EVENTS = {'press':'press'};
  *
  * @return {sap.ui.core.URI} the value of property <code>icon</code>
  * @public
+ * @since 1.21
  * @name sap.suite.ui.commons.NumericContent#getIcon
  * @function
  */
@@ -30872,6 +34860,7 @@ sap.suite.ui.commons.NumericContent.M_EVENTS = {'press':'press'};
  * @param {sap.ui.core.URI} sIcon  new value for property <code>icon</code>
  * @return {sap.suite.ui.commons.NumericContent} <code>this</code> to allow method chaining
  * @public
+ * @since 1.21
  * @name sap.suite.ui.commons.NumericContent#setIcon
  * @function
  */
@@ -30885,6 +34874,7 @@ sap.suite.ui.commons.NumericContent.M_EVENTS = {'press':'press'};
  *
  * @return {boolean} the value of property <code>nullifyValue</code>
  * @public
+ * @since 1.21
  * @name sap.suite.ui.commons.NumericContent#getNullifyValue
  * @function
  */
@@ -30897,6 +34887,7 @@ sap.suite.ui.commons.NumericContent.M_EVENTS = {'press':'press'};
  * @param {boolean} bNullifyValue  new value for property <code>nullifyValue</code>
  * @return {sap.suite.ui.commons.NumericContent} <code>this</code> to allow method chaining
  * @public
+ * @since 1.21
  * @name sap.suite.ui.commons.NumericContent#setNullifyValue
  * @function
  */
@@ -30910,6 +34901,7 @@ sap.suite.ui.commons.NumericContent.M_EVENTS = {'press':'press'};
  *
  * @return {string} the value of property <code>iconDescription</code>
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.NumericContent#getIconDescription
  * @function
  */
@@ -30922,6 +34914,7 @@ sap.suite.ui.commons.NumericContent.M_EVENTS = {'press':'press'};
  * @param {string} sIconDescription  new value for property <code>iconDescription</code>
  * @return {sap.suite.ui.commons.NumericContent} <code>this</code> to allow method chaining
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.NumericContent#setIconDescription
  * @function
  */
@@ -30935,6 +34928,7 @@ sap.suite.ui.commons.NumericContent.M_EVENTS = {'press':'press'};
  *
  * @return {sap.ui.core.CSSSize} the value of property <code>width</code>
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.NumericContent#getWidth
  * @function
  */
@@ -30947,6 +34941,7 @@ sap.suite.ui.commons.NumericContent.M_EVENTS = {'press':'press'};
  * @param {sap.ui.core.CSSSize} sWidth  new value for property <code>width</code>
  * @return {sap.suite.ui.commons.NumericContent} <code>this</code> to allow method chaining
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.NumericContent#setWidth
  * @function
  */
@@ -31007,7 +35002,6 @@ sap.suite.ui.commons.NumericContent.M_EVENTS = {'press':'press'};
  * @name sap.suite.ui.commons.NumericContent#firePress
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/NumericContent.js
 ///**
@@ -31126,7 +35120,7 @@ sap.suite.ui.commons.NumericContent.prototype.getTooltip_AsString  = function() 
 	var sTooltip = this.getAltText();
 	
 	if(typeof oTooltip === "string" || oTooltip instanceof String) {
-		sTooltip = oTooltip.split("{AltText}").join(sTooltip);
+		sTooltip = oTooltip.split("{AltText}").join(sTooltip).split("((AltText))").join(sTooltip);
 		return sTooltip;
 	}
 	return oTooltip ? oTooltip : "";
@@ -31134,8 +35128,8 @@ sap.suite.ui.commons.NumericContent.prototype.getTooltip_AsString  = function() 
 
 sap.suite.ui.commons.NumericContent.prototype._parseFormattedValue = function(sValue) {
 	return {
-		scale: sValue.replace(/[^a-z ا-ي]/gi, "").trim(),
-	  	value: sValue.replace(/([+-.,\d]*).*/g, "$1").trim()
+		scale: sValue.replace(/.*?([^+-.,\d]*)$/g, "$1").trim(),
+		value: sValue.replace(/(.*?)[^+-.,\d]*$/g, "$1").trim()
 	};
 };
 }; // end of sap/suite/ui/commons/NumericContent.js
@@ -31198,7 +35192,7 @@ jQuery.sap.declare("sap.suite.ui.commons.NumericTile");
  * @class
  * This control is the implementation of the InfoTile to show a numeric value.
  * @extends sap.suite.ui.commons.InfoTile
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -31362,7 +35356,6 @@ sap.suite.ui.commons.InfoTile.extend("sap.suite.ui.commons.NumericTile", { metad
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/NumericTile.js
 ///**
 // * This file defines behavior for the control,
@@ -31491,7 +35484,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Shows picture in fullscreen.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -31609,7 +35602,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.PictureZoomIn", { metadata : {
  * @name sap.suite.ui.commons.PictureZoomIn#destroyBusyIndicator
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/PictureZoomIn.js
 ///**
@@ -31775,11 +35767,11 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @param {object} [mSettings] initial settings for the new control
  *
  * @class
- * Process Flow is a complex control that enables you to display documents or other items in their flow.
+ * Complex control that enables you to display documents or other items in their flow.
  * @extends sap.ui.core.Control
  *
  * @author SAP SE
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -31917,8 +35909,7 @@ sap.suite.ui.commons.ProcessFlow.M_EVENTS = {'nodeTitlePress':'nodeTitlePress','
 
 /**
  * Getter for aggregation <code>nodes</code>.<br/>
- * this is the aggregation of the node controls put into
- * the table to the calculated cells.
+ * This is the aggregation of the node controls put into the table to the calculated cells.
  * 
  * @return {sap.suite.ui.commons.ProcessFlowNode[]}
  * @public
@@ -32215,7 +36206,7 @@ sap.suite.ui.commons.ProcessFlow.M_EVENTS = {'nodeTitlePress':'nodeTitlePress','
 
 
 /**
- * This event is fired when the the header column was clicked.
+ * This event is fired when the header column was clicked.
  *
  * @name sap.suite.ui.commons.ProcessFlow#headerPress
  * @event
@@ -32231,7 +36222,7 @@ sap.suite.ui.commons.ProcessFlow.M_EVENTS = {'nodeTitlePress':'nodeTitlePress','
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.suite.ui.commons.ProcessFlow</code>.<br/> itself. 
  *  
- * This event is fired when the the header column was clicked.
+ * This event is fired when the header column was clicked.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -32341,7 +36332,7 @@ sap.suite.ui.commons.ProcessFlow.M_EVENTS = {'nodeTitlePress':'nodeTitlePress','
 
 
 /**
- * the method returns current zoom level of the control.
+ * This method returns the current zoom level of the control.
  *
  * @name sap.suite.ui.commons.ProcessFlow#getZoomLevel
  * @function
@@ -32418,27 +36409,33 @@ sap.suite.ui.commons.ProcessFlow.M_EVENTS = {'nodeTitlePress':'nodeTitlePress','
  * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
-
 // Start of sap/suite/ui/commons/ProcessFlow.js
 ///**
-// * This file defines behavior for the control,
+// * This file defines behavior for the control.
 // */
 
+jQuery.sap.require('sap.m.Image'); // unlisted dependency retained
+
 /*
- * resource bundle for the localized strings
+ * Resource bundle for the localized strings.
  */
 sap.suite.ui.commons.ProcessFlow.prototype._resBundle = null;
 
 
 /**
- * Zoom level for the control.It is propagated to all created sub controls
+ * Zoom level for the control. It is propagated to all created sub controls.
  */
 sap.suite.ui.commons.ProcessFlow.prototype._zoomLevel = sap.suite.ui.commons.ProcessFlowZoomLevel.Two;
 
 /**
- * The wheel events timeout.
+ * The wheel events time-out.
  */
 sap.suite.ui.commons.ProcessFlow.prototype._wheelTimeout = null;
+
+/**
+ * Set to true when the focus is changing to another node.
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._isFocusChanged = false;
 
 /**
  * The wheel events timestamp for the last wheel event occurrence.
@@ -32451,27 +36448,29 @@ sap.suite.ui.commons.ProcessFlow.prototype._wheelTimestamp = null;
 sap.suite.ui.commons.ProcessFlow.prototype._wheelCalled = false;
 
 /**
- * The internal matrix after calculation. use for keyboard movement
+ * The internal matrix after calculation. Use for keyboard movement.
  */
 sap.suite.ui.commons.ProcessFlow.prototype._internalCalcMatrix = false;
 
 /**
- * internal lanes, which can differ from original ones. especially when more nodes are in
- * the same lane
+ * Internal lanes, which can differ from original ones. Especially when more nodes are in
+ * the same lane.
  */
 sap.suite.ui.commons.ProcessFlow.prototype._internalLanes = false;
 
 /**
- * definition for jump over more elements based on the visual design
+ * Definition for jump over more elements based on the visual design.
  */
 sap.suite.ui.commons.ProcessFlow.prototype._jumpOverElements = 5;
 /**
- * last node with navigation focus. It is marked when the focus out event
+ * Last node with navigation focus. It is marked when the focus out event
  * is handled.
  */
 sap.suite.ui.commons.ProcessFlow.prototype._lastNavigationFocusNode = false;
 
-  // set up the cursor classes
+/**
+ * Set up the cursor classes.
+ */
 sap.suite.ui.commons.ProcessFlow.prototype._defaultCursorClass = "sapSuiteUiDefaultCursorPF";
 
   if(sap.ui.Device.browser.msie) {
@@ -32486,25 +36485,36 @@ sap.suite.ui.commons.ProcessFlow.prototype._mousePreventEvents = 'contextmenu db
 
 sap.suite.ui.commons.ProcessFlow.prototype._mouseEvents = 'contextmenu mousemove mouseleave mousedown mouseup mouseenter';
 
- sap.suite.ui.commons.ProcessFlow.prototype._mouseWheelEvent = (sap.ui.Device.browser.mozilla) ? 'DOMMouseScroll MozMousePixelScroll' : 'mousewheel wheel';
+sap.suite.ui.commons.ProcessFlow.prototype._mouseWheelEvent = (sap.ui.Device.browser.mozilla) ? 'DOMMouseScroll MozMousePixelScroll' : 'mousewheel wheel';
  
- sap.suite.ui.commons.ProcessFlow.prototype._headerHasFocus = false;
+sap.suite.ui.commons.ProcessFlow.prototype._headerHasFocus = false;
  
+sap.suite.ui.commons.ProcessFlow.prototype._isInitialZoomLevelNeeded = true;
+
+/**
+ * Variables used for overflow scrolling.
+ */ 
+sap.suite.ui.commons.ProcessFlow.prototype._bDoScroll = !sap.ui.Device.system.desktop || (sap.ui.Device.os.windows && sap.ui.Device.os.version === 8);
+sap.suite.ui.commons.ProcessFlow.prototype._scrollStep = 192;
+sap.suite.ui.commons.ProcessFlow.prototype._bPreviousScrollForward = false; // remember the item overflow state
+sap.suite.ui.commons.ProcessFlow.prototype._bPreviousScrollBack = false;
+sap.suite.ui.commons.ProcessFlow.prototype._iInitialArrowTop = undefined;
+sap.suite.ui.commons.ProcessFlow.prototype._iInitialCounterTop = undefined;
+sap.suite.ui.commons.ProcessFlow.prototype._bRtl = false;
+sap.suite.ui.commons.ProcessFlow.prototype._arrowScrollable = null;
+sap.suite.ui.commons.ProcessFlow.prototype._iTouchStartScrollTop = undefined;
+sap.suite.ui.commons.ProcessFlow.prototype._iTouchStartScrollLeft = undefined;
+
 sap.suite.ui.commons.ProcessFlow.prototype.init = function() {
-  if ( (sap.ui.Device.os.android ||
-        sap.ui.Device.os.blackberry ||
-        sap.ui.Device.os.ios ||
-        sap.ui.Device.os.windows_phone)
-       && sap.ui.Device.system.phone ) {
-    this.setZoomLevel(sap.suite.ui.commons.ProcessFlowZoomLevel.Four);
-  }
+  this._bRtl = sap.ui.getCore().getConfiguration().getRTL();
+
   if( !this._resBundle ) {
     this._resBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.ui.commons");
   }
   this._internalLanes = this.getLanes();
 
-  this.$().bind('keydown', jQuery.proxy(this.onkeydown, this));
-  this.$().bind('keyup', jQuery.proxy(this.onkeyup, this));
+  this.$("scrollContainer").bind('keydown', jQuery.proxy(this.onkeydown, this));
+  this.$("scrollContainer").bind('keyup', jQuery.proxy(this.onkeyup, this));
 };
 
 /**
@@ -32531,6 +36541,12 @@ sap.suite.ui.commons.ProcessFlow.prototype.exit = function() {
     }
     internalConnectionAgg = null;
   }
+  if (this._oArrowLeft) {
+    this._oArrowLeft.destroy();
+  }
+  if (this._oArrowRight) {
+    this._oArrowRight.destroy();
+  }
 
   if(this._resizeRegId) {
     sap.ui.core.ResizeHandler.deregister(this._resizeRegId);
@@ -32540,20 +36556,23 @@ sap.suite.ui.commons.ProcessFlow.prototype.exit = function() {
     this._internalCalcMatrix = null;
   }
  
-  this.$().unbind(this._mousePreventEvents, this._handlePrevent);
-  this.$().unbind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
-  this.$().unbind(this._mouseWheelEvent, jQuery.proxy(this._registerMouseWheel, this)); 
-  this.$().unbind('keydown', jQuery.proxy(this.onkeydown, this));
+  this.$("scrollContainer").unbind(this._mousePreventEvents, this._handlePrevent);
+  this.$("scrollContainer").unbind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
+  this.$("scrollContainer").unbind(this._mouseWheelEvent, jQuery.proxy(this._registerMouseWheel, this));
+  this.$("scrollContainer").unbind('keydown', jQuery.proxy(this.onkeydown, this));
+  this.$("scrollContainer").unbind('scroll', jQuery.proxy(this._onScroll, this));
 };
 
 sap.suite.ui.commons.ProcessFlow.prototype.onBeforeRendering = function() {
-  this.$().unbind(this._mousePreventEvents, this._handlePrevent); 
-  this.$().unbind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
-  this.$().unbind(this._mouseWheelEvent, jQuery.proxy(this._registerMouseWheel, this));
+  this.$("scrollContainer").unbind(this._mousePreventEvents, this._handlePrevent);
+  this.$("scrollContainer").unbind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
+  this.$("scrollContainer").unbind(this._mouseWheelEvent, jQuery.proxy(this._registerMouseWheel, this));
+  this.$("scrollContainer").unbind('keydown', jQuery.proxy(this.onkeydown, this));
+  this.$("scrollContainer").unbind('scroll', jQuery.proxy(this._onScroll, this));
 };
 
 /**
- * function handles the exception based on the business requirements
+ * Function handles the exception based on the business requirements.
  */
 sap.suite.ui.commons.ProcessFlow.prototype._handleException = function( exc ) {
   var textToDisplay = this._resBundle.getText('PF_ERROR_INPUT_DATA');
@@ -32570,16 +36589,18 @@ sap.suite.ui.commons.ProcessFlow.prototype._handleException = function( exc ) {
 };
 
 /**
- * function makes the update of the lanes, if more nodes belong to the same lane
- * it must check the node consistency, so this is done first time the consistency check
+ * Function updates the lanes, if more nodes belong to the same lane
+ * it must check the node consistency, so this is done the first time the consistency check runs.
  */
 sap.suite.ui.commons.ProcessFlow.prototype._updateLanesFromNodes = function() {
     sap.suite.ui.commons.ProcessFlow.NodeElement.createNodeElementsFromProcessFlowNodes(this.getNodes(), this.getLanes());
+    var aInternalNodes = this._arrangeNodesByParentChildRelation(this.getNodes());
     this._internalLanes =
-     sap.suite.ui.commons.ProcessFlow.NodeElement.updateLanesFromNodes(this.getLanes(), this.getNodes()).lanes;
+     sap.suite.ui.commons.ProcessFlow.NodeElement.updateLanesFromNodes(this.getLanes(), aInternalNodes).lanes;
 };
+
 /**
- * function creates the lane header objects.
+ * Function creates the lane header objects.
  * @returns object with the position definition
  * @private
  */
@@ -32596,8 +36617,43 @@ sap.suite.ui.commons.ProcessFlow.prototype._getOrCreateLaneMap = function( ) {
 };
 
 /**
- * function creates matrix with positions of nodes and connections. This is
- * relative node connection representation and does not cover real page layout
+ * This function sorts the internal array of nodes in terms all parents are followed by their children, i.e. no child occurs before his parent in the array.
+ * @param {sap.suite.ui.commons.ProcessFlowNode[]} aInternalNodes an internal array of nodes to be sorted.
+ * @returns {sap.suite.ui.commons.ProcessFlowNode[]} aInternalNodes sorted internal array of nodes.
+ * @private
+ * @since 1.26
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._arrangeNodesByParentChildRelation = function(aInternalNodes) {
+  var cInternalNodes = aInternalNodes ? aInternalNodes.length : 0;
+  var aChildren = [];
+  var i, j;
+    // Move parents before their children, if they are in the same lane.
+    if (cInternalNodes > 0) {
+      this._setParentForNodes(aInternalNodes);
+      for (i = 0; i < cInternalNodes; i++) {
+        aChildren = aInternalNodes[i].getChildren();
+        if (aChildren) {
+          var cChildren = aChildren.length;
+          for (j = 0; j < cChildren; j++) {
+            aChildren[j] = aChildren[j].toString();
+          }
+        }
+      for (j = 0; j < i; j++) {
+        if (jQuery.inArray(aInternalNodes[j].getNodeId(), aChildren) > -1 && aInternalNodes[j].getLaneId() === aInternalNodes[i].getLaneId()) {
+          aInternalNodes.splice(j, 0, aInternalNodes[i]);
+          aInternalNodes.splice(i+1, 1);
+          aInternalNodes = this._arrangeNodesByParentChildRelation(aInternalNodes);
+          break;
+        }
+      }
+    }
+  }
+  return aInternalNodes;
+};
+
+/**
+ * Function creates matrix with positions of nodes and connections. This is
+ * relative node connection representation and does not cover real page layout.
  *
  * @private
  * @returns the created process flow control
@@ -32625,7 +36681,7 @@ sap.suite.ui.commons.ProcessFlow.prototype._getOrCreateProcessFlow = function( )
   var calcMatrix = sap.suite.ui.commons.ProcessFlow.prototype.calculateMatrix(elementForId);
 
   calcMatrix = this.addFirstAndLastColumn(calcMatrix);
-//  now change to the process flow nodes again
+  // Now change to the process flow nodes again
   for (var i = 0; i < calcMatrix.length; i++) {
     for (var j = 0; j < calcMatrix[i].length; j++) {
       if (calcMatrix[i][j] instanceof sap.suite.ui.commons.ProcessFlow.NodeElement) {
@@ -32638,32 +36694,31 @@ sap.suite.ui.commons.ProcessFlow.prototype._getOrCreateProcessFlow = function( )
 };
 
 /**
- * function applies the changes to the display state based on the requirement.s
- * 1. if any node is in the highlighted state all others go to the dimmed
+ * Function applies the changes to the display state based on the requirements.
+ * If any node is in the highlighted state all others go to the dimmed state.
  * @public
  */
 sap.suite.ui.commons.ProcessFlow.prototype.applyNodeDisplayState = function() {
-  var aInternalNodes = this.getNodes()
-      , iNodeCount = aInternalNodes ? aInternalNodes.length : 0
-      , i = 0
-      ;
+  var aInternalNodes = this.getNodes(), 
+      iNodeCount = aInternalNodes ? aInternalNodes.length : 0, 
+      i = 0;
 
   if (iNodeCount === 0) {
     return;
   } else {
-    // first put all the nodes to the regular state - if possible
+    // First put all the nodes to the regular state - if possible
     while (i < iNodeCount) {
       aInternalNodes[i]._setRegularState();
       i++;
     }
 
-    // check for the highlighted - at least one is required
+    // Check for the highlighted - at least one is required
     i = 0;
     while ((i < iNodeCount) && !aInternalNodes[i].getHighlighted()) {
       i++;
     }
 
-    // if a highlighted node found
+    // If a highlighted node found
     if(i < iNodeCount) {
       i = 0;
       while (i < iNodeCount) {
@@ -32677,8 +36732,8 @@ sap.suite.ui.commons.ProcessFlow.prototype.applyNodeDisplayState = function() {
 };
 
 /**
- * function adds first and last column, which serves for the special header signs. It has to add
- * single cell to all internal arrays - we need to increase Y
+ * Function adds first and last column, which serves for the special header signs. It has to add
+ * single cell to all internal arrays - we need to increase Y.
  * @param calculatedMatrix
  */
 sap.suite.ui.commons.ProcessFlow.prototype.addFirstAndLastColumn = function( calculatedMatrix ) {
@@ -32709,14 +36764,13 @@ sap.suite.ui.commons.ProcessFlow.prototype.addFirstAndLastColumn = function( cal
  */
 
 sap.suite.ui.commons.ProcessFlow.prototype.calculateMatrix = function(elementForId) {
-  var internalMatrixCalculation
-      , oElementInfo
-      , aSortedRootElements
-      , highestLaneNumber
-      , rows
-      , return2DimArray
-      , bRefocusRequired
-      ;
+  var internalMatrixCalculation, 
+      oElementInfo, 
+      aSortedRootElements, 
+      highestLaneNumber, 
+      rows, 
+      return2DimArray, 
+      bRefocusRequired;
 
   // no calculation in case of zero input
   if (!elementForId || (elementForId.length === 0)) {
@@ -32747,8 +36801,8 @@ sap.suite.ui.commons.ProcessFlow.prototype.calculateMatrix = function(elementFor
         aSortedRootElements[i], elementForId, return2DimArray);
   }
 
-  // if true, it is neccessa to recalculate the focus state for all to false. root is
-  // afterwards set to focused
+  // If true, it is necessary to recalculate the focus state for all to false. Root is
+  // afterwards set to focused.
   if( bRefocusRequired && return2DimArray[0][0] && return2DimArray[0][0].oNode.setFocused ) {
     Object.keys(elementForId).forEach( function(sElementId ) {
       var oElement = elementForId[sElementId];
@@ -32794,7 +36848,7 @@ sap.suite.ui.commons.ProcessFlow.NodeElement = function(
 
 
 /**
- * Extend the NodeElement object with to String function
+ * Extend the NodeElement object with to String function.
  *
  * @private
  */
@@ -32822,7 +36876,7 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.prototype = {
 };
 
 /**
- * Another type of the nodel ement contructor
+ * Another type of the node element constructor.
  * @param id node id
  * @param lane lane position
  * @param oNode reference to a PF node control
@@ -32836,15 +36890,15 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.initNodeElement = function(id,
 };
 
 /**
- * function calculates the state part of the lane from nodes belong to this lane
+ * Function calculates the state part of the lane from nodes belong to this lane.
  */
 sap.suite.ui.commons.ProcessFlow.NodeElement.calculateLaneStatePieChart = function(elementsForLane, laneArray, internalNodes, processFlowObject) {
-  // check input parameters
+  // Check input parameters.
   if( !elementsForLane || !laneArray || !internalNodes) {
     return;
   }
 
-  // first check if all nodes are in the regular state. If not only highligted are taken into calculation
+  // First, check if all nodes are in the regular state. If not, only the highlighted ones are taken into calculation.
   for( var i = 0; i < internalNodes.length; i++) {
     processFlowObject._bHighlightedMode = internalNodes[i].getHighlighted();
     if( processFlowObject._bHighlightedMode ) {
@@ -32858,7 +36912,7 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.calculateLaneStatePieChart = functi
   for( var i = 0; i < laneArray.length; i++ ) {
     var laneObject = laneArray[i];
     var elements = elementsForLane[laneObject.getLaneId()];
-    // if we do not have nodes, nothing to calculate
+    // If we do not have nodes, nothing needs to be calculated.
 
     if (!elements) {
       continue;
@@ -32890,20 +36944,20 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.calculateLaneStatePieChart = functi
       case sap.suite.ui.commons.ProcessFlowNodeState.PlannedNegative:
           negative++;
           break;
-        };
-      };
-    }; // end of nodes for single lane
-    var stateData = [{state: sap.suite.ui.commons.ProcessFlowNodeState.Positive, value:positive}
-    , {state: sap.suite.ui.commons.ProcessFlowNodeState.Negative, value:negative}
-    , {state: sap.suite.ui.commons.ProcessFlowNodeState.Neutral, value:planned}
-    , {state: sap.suite.ui.commons.ProcessFlowNodeState.Planned, value:neutral}];
+        }
+      }
+    } // End of nodes for single lane.
+    var stateData = [{state: sap.suite.ui.commons.ProcessFlowNodeState.Positive, value:positive},
+                     {state: sap.suite.ui.commons.ProcessFlowNodeState.Negative, value:negative}, 
+                     {state: sap.suite.ui.commons.ProcessFlowNodeState.Neutral, value:planned}, 
+                     {state: sap.suite.ui.commons.ProcessFlowNodeState.Planned, value:neutral}];
     laneObject.setState(stateData);
   }
 };
 
 /**
- * this function must check and calculate the potentially new lanes
- * this is because more nodes can lay in the same lane. In this case
+ * This function must check and calculate the potentially new lanes.
+ * This is, because more nodes can be located in the same lane. In this case,
  * the new artificial lane is created and positioned just after original one.
  * @param aProcessFlowLanes the original lane array
  * @param aInternalNodes internal nodes
@@ -32927,38 +36981,38 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.updateLanesFromNodes = function(
   for( var i = 0; i < aInternalNodes.length; i++) { // for each node
     var node = aInternalNodes[i];
     var children = node.getChildren() || [];
-    var positionUp = 1; // check the move up for the given sublanes of the lane. Every new sublane creation
+    var positionUp = 1; // Check the move up for the given sublanes of the lane. Every new sublane creation.
     var potentialNewLaneId = null;
     var potentialNewLane = null;
-    // makes plus 1 effect
-    for( var j = 0; j < children.length; j++) { // check the children
+    // Makes plus 1 effect.
+    for( var j = 0; j < children.length; j++) { // Check the children.
       var childrenNode = nodeArray[children[j]];
       if( childrenNode && (node.getLaneId() == childrenNode.getLaneId()) ) {
-        // create new lane id and check the lane
+        // Create new lane id and check the lane.
         potentialNewLaneId = childrenNode.getLaneId()+positionUp;
         potentialNewLane = mapLanesArrayId[potentialNewLaneId];
-        if( !potentialNewLane ) { // if we have the lane already
+        if( !potentialNewLane ) { // If we have the lane already.
           var origLaneObject = mapLanesArrayId[node.getLaneId()];
           potentialNewLane = sap.suite.ui.commons.ProcessFlow.NodeElement.createNewProcessFlowElement(
               origLaneObject, potentialNewLaneId, origLaneObject.getPosition()+positionUp);
-          // update the maps and output array
+          // Update the maps and output array.
           mapLanesArrayId[potentialNewLane.getLaneId()] = potentialNewLane;
-        //tempProcessFlowLanes.push(potentialNewLane);
+         //tempProcessFlowLanes.push(potentialNewLane);
          tempProcessFlowLanes.splice(potentialNewLane.getPosition(), 0, potentialNewLane);
         }
-        // assign new lane to children
+        // Assign new lane to children
         childrenNode.setLaneId(potentialNewLane.getLaneId());
       }
-      // move also the assignment of this lane for all children. Otherwise it is bad ...
-      // so, take the children of current children and move the lane position to the new lane, if neccessary
-      // neccessary it is in the case when the lane is the same as was PARENT node. this is important to understand,
+      // Move also the assignment of this lane for all children. Otherwise it is bad ...
+      // so, take the children of current children and move the lane position to the new lane, if necessary
+      // it is in the case when the lane is the same as was PARENT node. this is important to understand,
       // that this children is already moved to new one, so parent lane is compared.
-      // this is a recursion
+      // This is a recursion.
       sap.suite.ui.commons.ProcessFlow.NodeElement.changeLaneOfChildren(node.getLaneId(), childrenNode, nodeArray );
     } // end of children loop
-    // now we should move all positions up about the number positionUp
-    // also the position map is in wrong state now
-    // now work with all vector, later on we can move only to lanes with higher position than working one
+    // Now we should move all positions up about the number positionUp.
+    // Also the position map is in wrong state now.
+    // Now work with all vector, later on we can move only to lanes with higher position than working one.
     if( potentialNewLane ) {
       tempLanesPos = {};
       bPotentialNewLaneExists = false;
@@ -32966,12 +37020,12 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.updateLanesFromNodes = function(
         if( potentialNewLane .getLaneId() == mapLanesArrayPosition[key].getLaneId() ) {
           bPotentialNewLaneExists = true;
           break;
-        };
+        }
         if( parseInt(key) >= potentialNewLane.getPosition() ) {
           var tempLaneObject = mapLanesArrayPosition[key];
           tempLanesPos[tempLaneObject.getPosition()+positionUp] = tempLaneObject;
          // tempLaneObject.setPosition(tempLaneObject.getPosition()+positionUp);
-        };
+        }
       }
       if (!bPotentialNewLaneExists) {
         for( var w in tempLanesPos) {
@@ -32984,9 +37038,9 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.updateLanesFromNodes = function(
         }
         mapLanesArrayPosition = tempLanesPos;
        // mapLanesArrayPosition[potentialNewLane.getPosition()] = potentialNewLane;
-      };
-    };
-  };
+      }
+    }
+  }
   return { lanes: tempProcessFlowLanes, nodes: aInternalNodes };
 };
 
@@ -33026,12 +37080,11 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.createNewProcessFlowElement = funct
  */
 sap.suite.ui.commons.ProcessFlow.NodeElement.createMapFromLanes = function(
   aProcessFlowLanes, fnTapHandler, bHeaderMode) {
-  var oLane
-    , aMapLaneArrayPosition = {}
-    , aMapLaneArrayId = {}
-    , nLanes = aProcessFlowLanes ? aProcessFlowLanes.length : 0
-    , i = 0
-    ;
+  var oLane, 
+      aMapLaneArrayPosition = {},
+      aMapLaneArrayId = {},
+      nLanes = aProcessFlowLanes ? aProcessFlowLanes.length : 0,
+      i = 0;
 
   if (!nLanes) {
     return {};
@@ -33041,7 +37094,7 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.createMapFromLanes = function(
       if (oLane instanceof sap.suite.ui.commons.ProcessFlowLaneHeader) {
         aMapLaneArrayPosition[oLane.getPosition()] = oLane;
         aMapLaneArrayId[oLane.getLaneId()] = oLane;
-        // forward the icon click events from the lane header items to the flow control
+        // Forward the icon click events from the lane header items to the ProcessFlow control.
         if (fnTapHandler) {
           oLane.attachPress(fnTapHandler);
         }
@@ -33057,7 +37110,7 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.createMapFromLanes = function(
 /**
 *
 * This function transforms from process flow node element into the internal
-* node element. the strategy is to work inside algorithm only with internal
+* node element. The strategy is to work inside algorithm only with internal
 * representation.
 * @parameter processFlowNodes PF nodes from the controls interface, preprocessed - so they all have a valid (user entered, resp. generated) lane id
 * @parameter elementsForLane
@@ -33066,24 +37119,23 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.createMapFromLanes = function(
 */
 sap.suite.ui.commons.ProcessFlow.NodeElement.createNodeElementsFromProcessFlowNodes = function(
    processFlowNodes, processFlowLanes) {
- var aPositionForLaneId = {}   // map holds the transition between lane id and position
-     , aElementsForLane = {}   // holds a map from laneId to array of the elements for given laneId
-     , aParentsForChild = {}
-     , oNode
-     , iNodeCount = processFlowNodes ? processFlowNodes.length : 0
-     , sNodeId
-     , oLane
-     , iLaneCount = processFlowLanes ? processFlowLanes.length : 0
-     , sLaneId
-     , aPositions = []
-     , iLanePosition
-     , aChildren
-     , sChild
-     , nChildCount
-     , i
-     , j
-     , aElementForId = {}
-     ;
+ var aPositionForLaneId = {}, // Map holds the transition between lane id and position.
+     aElementsForLane = {}, // Holds a map from laneId to array of the elements for given laneId.
+     aParentsForChild = {},
+     oNode,
+     iNodeCount = processFlowNodes ? processFlowNodes.length : 0,
+     sNodeId,
+     oLane,
+     iLaneCount = processFlowLanes ? processFlowLanes.length : 0,
+     sLaneId,
+     aPositions = [],
+     iLanePosition,
+     aChildren,
+     sChild,
+     nChildCount,
+     i,
+     j,
+     aElementForId = {};
 
  if (iNodeCount === 0) {
    return {elementForId : {}, elementsForLane : {}};
@@ -33169,7 +37221,7 @@ sap.suite.ui.commons.ProcessFlow.NodeElement.createNodeElementsFromProcessFlowNo
 };
 
 /**
- * constructor of the algorithm object
+ * Constructor of the algorithm object.
  *
  * @private
  */
@@ -33184,7 +37236,7 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation = function(parentCont
 };
 
 /**
- * Function checks consistency of the node array. It checks
+ * Function checks consistency of the node array. It checks,
  * if all children defined for the nodes are also presented as the nodes themselves.
 
  * @param elementForId Map of node id's to NodeElements. Expectation is to have at least 1 element there. No check for empty array.
@@ -33193,14 +37245,13 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation = function(parentCont
  * @public
  */
 sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.checkInputNodeConsistency = function (elementForId) {
-  var returnArr = []
-      , j
-      , sChildId
-      , nChildCount
-      , aChildren
-      , oElement
-      , nFocusNodes = 0
-      ;
+  var returnArr = [],
+      j,
+      sChildId,
+      nChildCount,
+      aChildren,
+      oElement,
+      nFocusNodes = 0;
 
 
   // preparation phase
@@ -33231,8 +37282,8 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.checkInputN
 
 
 /**
- * function resets the positions into initial one to keep new calculation
- * without sideeffects
+ * Function resets the positions into initial one to keep new calculation
+ * without side effects.
  *
  * @private
  */
@@ -33247,12 +37298,10 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.resetPositi
   this.mapChildToNode = {};
 };
 
-//first argument is number of columns ( x )
-//second argument is number of rows
 /**
-* function creates matrix based on the length first argument is number of
-* columns second argument is number of rows
+* Function creates matrix based on the length.
 *
+* @param {String} length number of columns
 * @private
 */
 sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.createMatrix = function(
@@ -33265,7 +37314,7 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.createMatri
     var args = Array.prototype.slice.call(arguments, 1);
     while (i--) {
       arr[length - 1 - i] = this.createMatrix.apply(this, args);
-    };
+    }
   }
   return arr;
 };
@@ -33279,10 +37328,9 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.createMatri
 sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.retrieveInfoFromInputArray = function(
   elementForId) {
 
-  var highestLanePosition = 0
-  , rootElements = []
-  , oElement
-  ;
+  var highestLanePosition = 0,
+      rootElements = [],
+      oElement;
 
   Object.keys(elementForId).forEach(function(sElementId) {
     oElement = elementForId[sElementId];
@@ -33303,9 +37351,9 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.retrieveInf
 };
 
 /**
- * function doubles the matrix for drawing purposes and it only doubles the columns and add undefined values there.
-  * @private
-*/
+ * Function doubles the matrix for drawing purposes and it only doubles the columns and add undefined values there.
+ * @private
+ */
 sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.doubleColumnsInMatrix = function(
     currentMatrix) {
   var matrixY = 0;
@@ -33322,16 +37370,16 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.doubleColum
     for (var j = 0; j < matrixY; j++) {
       if (currentMatrix[i][j]) {
         doubleArray[i][2 * j] = currentMatrix[i][j];
-      };
-    };
+      }
+    }
   }
   return doubleArray;
 };
 
 
 /**
- * function removes empty lines from the matrix.
-*/
+ * Function removes empty lines from the matrix.
+ */
 sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.removeEmptyLines = function(
    originalMatrix) {
  // first check the number of valid lines
@@ -33341,8 +37389,8 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.removeEmpty
      if (originalMatrix[i][j]) {
        numberOfLines++;
        break;
-     };
-   };
+     }
+   }
  }
 
  var returnArray = this.createMatrix(numberOfLines, originalMatrix[0].length);
@@ -33352,8 +37400,8 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.removeEmpty
      returnArray[i][j] = null; // everything is at least null
      if (originalMatrix[i][j]) {
        returnArray[i][j] = originalMatrix[i][j];
-     };
-   };
+     }
+   }
  }
  return returnArray;
 };
@@ -33370,11 +37418,11 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.removeEmpty
  */
 sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.processCurrentElement = function(
     currentElement, elementForId, return2DimArray) {
-  var aElementsChildIds
-  , aElementsChildren
-  , that = this
-  , bMoveToNextLine = true // this is check for repeated parent child relationship. The childrenArr is notempty but
-  ;                        // in fact it is required to move to the next line.
+  var aElementsChildIds,
+      aElementsChildren,
+      that = this,
+      bMoveToNextLine = true; // This is the check for repeated parent child relationship. The childrenArr is not empty but
+                              // in fact it is required to move to the next line.
 
   if (currentElement.isProcessed) {
     return return2DimArray;
@@ -33433,19 +37481,18 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.sortRootEle
  * @param elementForId  contains a map of the node id's to node elements
  * @return sorted child elements (first sort by lanes, than the elements having the same children gets next to each other)
  * @private
-*/
+ */
 sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.sortBasedOnChildren = function(aElementsChildIds, elementForId) {
- var oElementsForLane = {}
-     , aElements
-     , laneId = null
-     , aLaneIds
-     , aNmbrChildren
-     , bNmbrChildren
-     , finalSortedArray = []
-     , aSingleLaneContent
-     , aSingleContent
-     , oProcessedChildElement
-     ;
+ var oElementsForLane = {},
+     aElements,
+     laneId = null,
+     aLaneIds,
+     aNmbrChildren,
+     bNmbrChildren,
+     finalSortedArray = [],
+     aSingleLaneContent,
+     aSingleContent,
+     oProcessedChildElement;
 
  if (aElementsChildIds) {
    aElementsChildIds.forEach(function(oChildId) {
@@ -33459,7 +37506,7 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.sortBasedOn
    return [];
  }
 
- aLaneIds = new Array();
+ aLaneIds = [];
  for (laneId in oElementsForLane) {
    aLaneIds.push(laneId);
    oElementsForLane[laneId].sort(function(a, b) {
@@ -33476,15 +37523,15 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.sortBasedOn
    return b - a;
  });
 
- // now we have in aLaneIds the lane orders and based on that we take from map the elements for the lanes.
- // now order based on the children
+ // Now we have in aLaneIds the lane orders and based on that we take from map the elements for the lanes.
+ // Now order based on the children.
  aLaneIds.forEach(function(laneId) {
    aSingleLaneContent = oElementsForLane[laneId];
 
    if (aSingleLaneContent.length > 1) {
      aSingleContent = [];
-     // we iterate through the all the children
-     // put all the nodes having at least 1 common child next to each other
+     // We iterate through all the children and
+     // put all the nodes having at least 1 common child next to each other.
      oProcessedChildElement = aSingleLaneContent.shift();
      while (oProcessedChildElement) {
        if (aSingleContent.indexOf(oProcessedChildElement) < 0) {
@@ -33509,8 +37556,8 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.sortBasedOn
 
 
 /**
- * function calculates the connection and writes into the virtual matrix. It gets the matrix plus
- * parent children relationship
+ * Function calculates the connection and writes into the virtual matrix. It gets the matrix plus
+ * parent children relationship.
  * @param originalMatrix the matrix with the setup of nodes
  * @returns the matrix updated with the calculated paths
  */
@@ -33535,9 +37582,9 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.calculatePa
 };
 
 /**
- * function based on the parent children position calculated the path from parent to children. The idea is like following
+ * Function based on the parent children position calculated the path from parent to children. The idea is like following
  * go from parent half right and use next connection column to go up or down. Afterwards on the line with children go
- * horizontal
+ * horizontal.
  * @param nodeParent
  * @param nodeChildren
  * @param parentX
@@ -33559,7 +37606,7 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.calculateSi
                "Coordinates : '" + parentX + "','" + parentY + "','" + childrenX +  "','" +  childrenY  + "'"];
     throw errMsg;
   } else if (ver < -1) {
-    // half left and up
+    // Half left and up
 
     var bNormalHorizontalLinePossible =
       this.checkIfHorizontalLinePossible(originalMatrix, childrenX, parentY + 2, childrenY);
@@ -33627,7 +37674,7 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.calculateSi
         parentY + 2, childrenY, nodeParent, nodeChildren);
   } else // ver > 1
   {
-    // go down until children and do horizontal line
+    // Go down until children and do horizontal line
     // half left and down
     originalMatrix[parentX][parentY + 1] =
       this.createConnectionElement(originalMatrix[parentX][parentY + 1],
@@ -33647,7 +37694,7 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.calculateSi
 };
 
 /**
- * write vertical line from firstrow to lastrow on the column position
+ * Write vertical line from firstrow to lastrow on the column position.
  * @private
  */
 sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.writeVerticalLine = function(
@@ -33667,7 +37714,7 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.writeVertic
 * @param row
 * @param firstColumn
 * @param lastColumn
-* @returns function return true, if the path is free, otherwise false
+* @returns {boolean} Function return true, if the path is free, otherwise false
 */
 sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.checkIfHorizontalLinePossible = function(
    originalMatrix, row, firstColumn, lastColumn) {
@@ -33676,14 +37723,14 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.checkIfHori
    if( originalMatrix[row][i] instanceof sap.suite.ui.commons.ProcessFlow.NodeElement ) {
      bLinePossible = false;
      break;
-     };
-   };
+     }
+   }
 
  return bLinePossible;
 };
 
 /**
- * function calculated and writes horizontal line
+ * Function calculated and writes horizontal line.
  * @param originalMatrix matrix to write to
  * @param row the horizontal position
  * @param firstColumn where to start
@@ -33709,8 +37756,8 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.writeHorizo
 };
 
 /**
- * function adds new connection element to the cell in the matrix. It is additiv approach where during the
- * drawing phase all the connections in one cell will be joined togethe
+ * Function adds new connection element to the cell in the matrix. It is an additive approach where during the
+ * drawing phase all the connections in one cell will be joined together.
  * @private
  * @param originalConnectionValue
  * @param addStringValue
@@ -33762,54 +37809,73 @@ String.prototype.contains = function(it) {
 
 sap.suite.ui.commons.ProcessFlow.prototype.addNode = function( addNode ) {
   return this.addAggregation("nodes",addNode, false);
-//  return this.addProperty();
+  //  return this.addProperty();
 };
 
 /**
- * function sets the zoom level.
+ * Function sets the zoom level.
  * @param zoomLevel. this is a new zoom level of the type sap.suite.ui.commons.ProcessFlowZoomLevel
-*/
+ */
 sap.suite.ui.commons.ProcessFlow.prototype.setZoomLevel = function( zoomLevel ) {
-  var $scrollContainer = this.$();
+  var $scrollContainer = this.$("scrollContainer");
+  var oScrollContainerContextOld;
+  var oScrollContainerContextNew;
   if ($scrollContainer.context) {
-    var oScrollContainerContextOld = {
+      oScrollContainerContextOld = {
       scrollWidth : $scrollContainer.context.scrollWidth,
       scrollHeight : $scrollContainer.context.scrollHeight,
       scrollLeft : $scrollContainer.context.scrollLeft,
       scrollTop : $scrollContainer.context.scrollTop
       };
-    var oScrollContainerContextNew = oScrollContainerContextOld;
+    oScrollContainerContextNew = oScrollContainerContextOld;
     if (this._zoomLevel === zoomLevel) {
+      this._isInitialZoomLevelNeeded = false;
       return;
-    };
-  };
+    }
+  }
   if (!(zoomLevel in sap.suite.ui.commons.ProcessFlowZoomLevel)){ // Enumeration
     this._handleException("\"" + zoomLevel + "\" is not a valid entry of the enumeration for property zoom level of ProcessFlow");
     return;
-  };
+  }
   this._zoomLevel = zoomLevel;
-  this.rerender();
+  // When setting the initial zoomlevel, invalidate() has to be called,
+  // because the method call comes from onAfterRendering() and to call the rerender() is not allowed
+  if (this._isInitialZoomLevelNeeded){
+    this._isInitialZoomLevelNeeded = false;
+    this.invalidate();
+  // In all other cases, the rerender() has to be called, so that the offset can be set afterwards
+  }else{
+    this.rerender();
+  }
+
   if (oScrollContainerContextOld) {
     // set the grab cursor class in case for touch devices
     if (sap.ui.Device.support.touch || jQuery.sap.simulateMobileOnDesktop) {
-      var iHeight = parseInt(this.$().css("height").slice(0, -2), 10);
-      var iWidth = parseInt(this.$().css("width").slice(0, -2), 10);
-      var iScrollHeight = this.$()[0].scrollHeight;
-      var iScrollWidth = this.$()[0].scrollWidth;
+      var iHeight = parseInt(this.$("scrollContainer").css("height").slice(0, -2), 10);
+      var iWidth = parseInt(this.$("scrollContainer").css("width").slice(0, -2), 10);
+      var iScrollHeight = this.$("scrollContainer")[0].scrollHeight;
+      var iScrollWidth = this.$("scrollContainer")[0].scrollWidth;
       if (this.getScrollable() && (iScrollHeight > iHeight || iScrollWidth > iWidth)) {
-        this._switchCursors(this.$(), this._defaultCursorClass, this._grabCursorClass);
-        this.$().css("overflow", "auto");
+        this._switchCursors(this.$("scrollContainer"), this._defaultCursorClass, this._grabCursorClass);
+        this.$("scrollContainer").css("overflow", "auto");
       }
-    };
-    $scrollContainer = this.$();
+    }
+    // Sets the scroll offset to the scrollContainer
+    $scrollContainer = this.$("scrollContainer");
     oScrollContainerContextNew = this._getScrollContainerOnZoomChanged(oScrollContainerContextOld, $scrollContainer);
     $scrollContainer.scrollLeft(oScrollContainerContextNew.scrollLeft);
     $scrollContainer.scrollTop(oScrollContainerContextNew.scrollTop);
+    this._adjustAndShowArrow();
+    // Avoids not setting the focus on clickable elements.
+    if (this._isFocusChanged){
+      this._setFocusToNode();
+      this._isFocusChanged = false;
+    }
   }
 };
 
 /**
- * function returns current zoom level.
+ * Function returns current zoom level.
  * @return zoomLevel.
 */
 sap.suite.ui.commons.ProcessFlow.prototype.getZoomLevel = function() {
@@ -33817,8 +37883,8 @@ sap.suite.ui.commons.ProcessFlow.prototype.getZoomLevel = function() {
 };
 
 /**
- * function sets new zoom level with smaller level of details. Having the least detail view it stays as it is.
-*/
+ * Function sets new zoom level with smaller level of details. Having the least detail view it stays as it is.
+ */
 sap.suite.ui.commons.ProcessFlow.prototype.zoomOut = function( ) {
   var currentZoomLevel = this.getZoomLevel();
   var newLevel = currentZoomLevel;
@@ -33832,14 +37898,14 @@ sap.suite.ui.commons.ProcessFlow.prototype.zoomOut = function( ) {
         case (sap.suite.ui.commons.ProcessFlowZoomLevel.Three):
           newLevel = sap.suite.ui.commons.ProcessFlowZoomLevel.Four;
           break;
-          };
+          }
   this.setZoomLevel(newLevel);
   return this.getZoomLevel();
 };
 
 /**
- * function sets new zoom level with higher level of details. Having max details it stays as it is.
-*/
+ * Function sets new zoom level with higher level of details. Having max details it stays as it is.
+ */
 sap.suite.ui.commons.ProcessFlow.prototype.zoomIn = function( ) {
   var currentZoomLevel = this.getZoomLevel();
   var newLevel = currentZoomLevel;
@@ -33853,13 +37919,12 @@ sap.suite.ui.commons.ProcessFlow.prototype.zoomIn = function( ) {
         case (sap.suite.ui.commons.ProcessFlowZoomLevel.Two):
           newLevel = sap.suite.ui.commons.ProcessFlowZoomLevel.One;
           break;
-          };
+          }
   this.setZoomLevel(newLevel);
   return this.getZoomLevel();
 };
 
 sap.suite.ui.commons.ProcessFlow.prototype.updateModel = function() {
-  //this.getModel(this.getBindingInfo("nodes").model).refresh();
   //initialize internalLanes so that they get recalculated from the new nodes
   this._internalLanes = [];
   if(this._isHeaderMode()) {
@@ -33880,7 +37945,7 @@ sap.suite.ui.commons.ProcessFlow.prototype.updateNodesOnly = function() {
 };
 
 /**
- * function returns the nodeId of the node which is focused.
+ * Function returns the nodeId of the node which is focused.
  */
 sap.suite.ui.commons.ProcessFlow.prototype.getFocusedNode = function() {
   if (this._lastNavigationFocusNode.sId) {
@@ -33893,8 +37958,15 @@ sap.suite.ui.commons.ProcessFlow.prototype.getFocusedNode = function() {
  * @private
  */
 sap.suite.ui.commons.ProcessFlow.prototype.ontouchend = function(oEvent) {
+  if (oEvent.target && oEvent.target.id.contains("arrowScroll")){
+    this._onArrowClick(oEvent);
+  }
+  else {
   if (!sap.ui.Device.support.touch && !jQuery.sap.simulateMobileOnDesktop) {
     this.onAfterRendering();
+  }
+  else {
+    this._adjustAndShowArrow();
   }
   if (oEvent === null || oEvent.oSource === undefined) {
     return false;
@@ -33906,12 +37978,13 @@ sap.suite.ui.commons.ProcessFlow.prototype.ontouchend = function(oEvent) {
     this._internalLanes = [];
     this.fireHeaderPress(this);
   }
+  }
   return false;
 };
 
 sap.suite.ui.commons.ProcessFlow.prototype._isHeaderMode = function() {
   var aNodes = this.getNodes();
-  return !aNodes || (aNodes.length == 0);
+  return !aNodes || (aNodes.length === 0);
 };
 
 /**
@@ -33957,61 +38030,120 @@ sap.suite.ui.commons.ProcessFlow.prototype._clearHandlers = function($scrollCont
  * Standard method called after the control rendering.
  */
 sap.suite.ui.commons.ProcessFlow.prototype.onAfterRendering = function () {
-  var bScrollable = false
-  , $content = this.$("scroll-content")
-  , iHeight
-  , iWidth
-  , iScrollWidth
-  , iScrollHeight
-//, $scrollContainer
-  , that = this;
-  
-   this.nCursorXPosition = 0;
-   this.nCursorYPosition = 0;
-  
+  var bScrollable = false,
+      $content = this.$("scroll-content"),
+      iHeight,
+      iWidth,
+      iScrollWidth,
+      iScrollHeight;
+
+  // Initializes scrolling.
+  this._checkOverflow(this.getDomRef("scrollContainer"), this.$());
+
+  this.nCursorXPosition = 0;
+  this.nCursorYPosition = 0;
+
   if ($content && $content.length) {
-    // set PF node icon cursors, because these are unfortunately set as inline styles, so cannot be overriden by applying a css class.
-	//  $scrollContainer = this.$();
-	  this.$().find('.sapSuiteUiCommonsProcessFlowNode .sapUiIcon').css("cursor", "inherit");
+    // Sets PF node icon cursors, because these are unfortunately set as inline styles, so they cannot be overriden by applying a CSS class.
+    this.$("scrollContainer").find('.sapSuiteUiCommonsProcessFlowNode .sapUiIcon').css("cursor", "inherit");
 
     if (this.getScrollable()) {
-      iHeight = parseInt(this.$().css("height").slice(0, -2), 10);
-      iWidth = parseInt(this.$().css("width").slice(0, -2), 10);
+      iHeight = parseInt(this.$("scrollContainer").css("height").slice(0, -2), 10);
+      iWidth = parseInt(this.$("scrollContainer").css("width").slice(0, -2), 10);
       iScrollHeight = $content[0].scrollHeight;
       iScrollWidth = $content[0].scrollWidth;
 
       if (iScrollHeight <= iHeight && iScrollWidth <= iWidth) {
-        this._clearHandlers(this.$());
+        this._clearHandlers(this.$("scrollContainer"));
         // no scrolling makes sense, so clean up the mouse handlers and switch the cursors
-        this._switchCursors(this.$(), this._grabCursorClass, this._defaultCursorClass);
+        this._switchCursors(this.$("scrollContainer"), this._grabCursorClass, this._defaultCursorClass);
       } else {
-        this._switchCursors(this.$(), this._defaultCursorClass, this._grabCursorClass);
+        this._switchCursors(this.$("scrollContainer"), this._defaultCursorClass, this._grabCursorClass);
         bScrollable = true;
       }
     } else {
-      this._clearHandlers(this.$());
-      this._switchCursors(this.$(), this._grabCursorClass, this._defaultCursorClass);
-      this.$().css("overflow", "visible");
+      this._clearHandlers(this.$("scrollContainer"));
+      this._switchCursors(this.$("scrollContainer"), this._grabCursorClass, this._defaultCursorClass);
       $content.css("position", "static");
     }
     if (bScrollable) {
-      if (!sap.ui.Device.support.touch && !jQuery.sap.simulateMobileOnDesktop) {
-        this.$().bind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
+      //Initialize top margin of arrow and counter.
+      if (!this._iInitialArrowTop || !this._iInitialCounterTop) {
+        this._iInitialArrowTop = parseInt(this.$("arrowScrollRight").css("top"), 10);
+        this._iInitialCounterTop = parseInt(this.$("counterRight").css("top"), 10);
+      }
+
+      if (sap.ui.Device.os.windows && sap.ui.Device.system.combi && sap.ui.Device.browser.chrome) {
+        //Win8 Surface: Chrome 
+        this.$("scrollContainer").bind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
+        this.$("scrollContainer").css("overflow", "auto");
+      } else if (sap.ui.Device.os.windows && sap.ui.Device.system.combi && sap.ui.Device.browser.msie && (sap.ui.Device.browser.version > 9)) {
+        //Win8 Surface: IE 10 and higher.
+        this.$("scrollContainer").bind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
+        this.$("scrollContainer").css("overflow", "auto");
+        this.$("scrollContainer").css("-ms-overflow-style", "none");
+      } else if (!sap.ui.Device.support.touch && !jQuery.sap.simulateMobileOnDesktop) {
+        // Desktop
+        this.$("scrollContainer").bind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
       } else {
-        this._clearHandlers(this.$());
-        this.$().css("overflow", "auto");
+        // Mobile: use native scrolling.
+        this._clearHandlers(this.$("scrollContainer"));
+        this.$("scrollContainer").css("overflow", "auto");
+      }
+    } else { //Not scrollable ProcessFlow: Set overflow for chevron navigation anyway.
+      if (this._bDoScroll) {
+        //Is Not Desktop OR Is Win8.
+        this.$("scrollContainer").css("overflow", "auto");
+      } else {
+        this.$("scrollContainer").css("overflow", "hidden");
       }
     }
-    if (that.getWheelZoomable() && !sap.ui.Device.support.touch && !jQuery.sap.simulateMobileOnDesktop && !that._isHeaderMode()) { //only on desktop browsers, only in non-header mode
-      this.$().bind(this._mouseWheelEvent, jQuery.proxy(this._registerMouseWheel, this)); 
+    if (this.getWheelZoomable() && sap.ui.Device.system.desktop && !this._isHeaderMode()) {
+      this.$("scrollContainer").bind(this._mouseWheelEvent, jQuery.proxy(this._registerMouseWheel, this));
+    }
+    if (this._bDoScroll) {
+      // Bind scroll event for mobile.
+      this.$("scrollContainer").bind("scroll", jQuery.proxy(this._onScroll, this));
     }
     this._resizeRegId = sap.ui.core.ResizeHandler.register(this, jQuery.proxy(sap.suite.ui.commons.ProcessFlow.prototype._onResize, this));
+    if(this._isInitialZoomLevelNeeded) {
+      this._initZoomLevel();
+    }
+    // Sets the focus to the next node if PF was in headers mode before rerendering
+    if (this._headerHasFocus){
+      this._headerHasFocus = false;
+      var $nodeToFocus = this.$("scroll-content").children().children().children(1).children("td[tabindex='0']").first().children();
+      var oNodeToFocus = sap.ui.getCore().byId($nodeToFocus[0].id);
+      this._changeNavigationFocus(null, oNodeToFocus);
+    }
   }
 };
 
+  sap.suite.ui.commons.ProcessFlow.prototype._initZoomLevel = function () {
+    // set initial ZoomLevel according to ProcessFlow container size
+    // Breakpoints: until 599px = Level 4 / 600px-1023px = Level 3 / from 1024px = Level 2
+    if (this.$()) {
+      var iWidth = this.$().width();
+      if (iWidth) {
+        if (iWidth < sap.m.ScreenSizes.tablet) {
+          this.setZoomLevel(sap.suite.ui.commons.ProcessFlowZoomLevel.Four);
+        }
+        else if (iWidth < sap.m.ScreenSizes.desktop) {
+          this.setZoomLevel(sap.suite.ui.commons.ProcessFlowZoomLevel.Three);
+        }
+        else {
+          this.setZoomLevel(sap.suite.ui.commons.ProcessFlowZoomLevel.Two);
+        }
+      }
+    }
+  };
 
 sap.suite.ui.commons.ProcessFlow.prototype._registerMouseWheel = function  (oEvent) {
         var oDirection = oEvent.originalEvent.wheelDelta || -oEvent.originalEvent.detail;
+        if (oDirection === 0) {
+            //for IE only
+            oDirection = -oEvent.originalEvent.deltaY;
+        }
         var that = this;
         if (oEvent && !oEvent.isDefaultPrevented()) {
           oEvent.preventDefault();
@@ -34023,7 +38155,7 @@ sap.suite.ui.commons.ProcessFlow.prototype._registerMouseWheel = function  (oEve
           var diff = new Date() - that._wheelTimestamp;
 
           if (diff < waitTime) {
-            that._wheelTimeout = window.setTimeout(doNotListen, waitTime - diff);
+          	that._wheelTimeout = jQuery.sap.delayedCall(waitTime - diff, that, doNotListen);
           } else {
             that._wheelTimeout = null;
             that._wheelCalled = false;
@@ -34033,14 +38165,16 @@ sap.suite.ui.commons.ProcessFlow.prototype._registerMouseWheel = function  (oEve
           that._wheelCalled = true;
 
           if (oDirection < 0) {
+            this._isFocusChanged = true;
             that.zoomOut();
           } else {
+            this._isFocusChanged = true;
             that.zoomIn();
           }
         }
         if (! that._wheelTimeout) {
           that._wheelTimestamp = new Date();
-          that._wheelTimeout = window.setTimeout(doNotListen, waitTime);
+          that._wheelTimeout = jQuery.sap.delayedCall(waitTime, that, doNotListen);
         }
         if (oEvent && !oEvent.isPropagationStopped()) {
           oEvent.stopPropagation();
@@ -34051,55 +38185,63 @@ sap.suite.ui.commons.ProcessFlow.prototype._registerMouseWheel = function  (oEve
 };
 
   sap.suite.ui.commons.ProcessFlow.prototype._registerMouseEvents = function (oEvent) {
-
           if (oEvent && !oEvent.isDefaultPrevented()) {
             oEvent.preventDefault();
           }
           switch(oEvent.type) {
             case 'mousemove':
-              if (this.$().hasClass(this._grabbingCursorClass)) {
+              if (this.$("scrollContainer").hasClass(this._grabbingCursorClass)) {
                 if (sap.ui.getCore().getConfiguration().getRTL()) {
-                	this.$().scrollLeftRTL(this.nCursorXPosition - oEvent.pageX);
+                    this.$("scrollContainer").scrollLeftRTL(this.nCursorXPosition - oEvent.pageX);
                 }
                 else {
-                	this.$().scrollLeft(this.nCursorXPosition - oEvent.pageX);
+                    this.$("scrollContainer").scrollLeft(this.nCursorXPosition - oEvent.pageX);
                 }
-                this.$().scrollTop(this.nCursorYPosition - oEvent.pageY);
+                this.$("scrollContainer").scrollTop(this.nCursorYPosition - oEvent.pageY);
+                this._adjustAndShowArrow();
               }
               break;
             case 'mousedown':
-              this._switchCursors(this.$(), this._defaultCursorClass, this._grabbingCursorClass);
+              this._switchCursors(this.$("scrollContainer"), this._defaultCursorClass, this._grabbingCursorClass);
               if (sap.ui.getCore().getConfiguration().getRTL()) {
-            	  this.nCursorXPosition = this.$().scrollLeftRTL() + oEvent.pageX;
+                  this.nCursorXPosition = this.$("scrollContainer").scrollLeftRTL() + oEvent.pageX;
               } else {
-            	  this.nCursorXPosition = this.$().scrollLeft() + oEvent.pageX;
+                  this.nCursorXPosition = this.$("scrollContainer").scrollLeft() + oEvent.pageX;
               }
-              this.nCursorYPosition = this.$().scrollTop() + oEvent.pageY;
+              this.nCursorYPosition = this.$("scrollContainer").scrollTop() + oEvent.pageY;
+              if (sap.ui.Device.system.combi) {
+                // for Win8 surface no touchstart event is fired, but the mousedown event instead
+                // do initialization here
+                this._iTouchStartScrollLeft = this.$("scrollContainer").scrollLeft();
+                if (this.getScrollable()) {
+                  this._iTouchStartScrollTop = this.$("scrollContainer").scrollTop();
+                }
+              }
               break;
             case 'mouseup':
-              this._switchCursors(this.$(), this._grabbingCursorClass, this._grabCursorClass);
+              this._switchCursors(this.$("scrollContainer"), this._grabbingCursorClass, this._grabCursorClass);
               break;
             case 'mouseleave':
-              this.$().removeClass(this._grabbingCursorClass);
-              this.$().removeClass(this._grabCursorClass);
-              this.$().addClass(this._defaultCursorClass);
+              this.$("scrollContainer").removeClass(this._grabbingCursorClass);
+              this.$("scrollContainer").removeClass(this._grabCursorClass);
+              this.$("scrollContainer").addClass(this._defaultCursorClass);
               break;
             case 'mouseenter':
-            	this.$().removeClass(this._defaultCursorClass);
-              if (oEvent.buttons == null) {
+              this.$("scrollContainer").removeClass(this._defaultCursorClass);
+              if (oEvent.buttons === null) {
                 if (oEvent.which === 1) {
-                	this.$().addClass(this._grabbingCursorClass);
+                  this.$("scrollContainer").addClass(this._grabbingCursorClass);
                 }
                 else {
-                	this.$().addClass(this._grabCursorClass);
+                  this.$("scrollContainer").addClass(this._grabCursorClass);
                 }
               }
               else {
                if ( oEvent.buttons === 0) {
-            	   this.$().addClass(this._grabCursorClass);
+                 this.$("scrollContainer").addClass(this._grabCursorClass);
               }
               else if ( oEvent.buttons === 1) { 
-            	  this.$().addClass(this._grabbingCursorClass);
+                this.$("scrollContainer").addClass(this._grabbingCursorClass);
               }
              }
              break;
@@ -34111,7 +38253,6 @@ sap.suite.ui.commons.ProcessFlow.prototype._registerMouseWheel = function  (oEve
             oEvent.stopImmediatePropagation();
           }
 };
-
 
 /**
  * Control resize handler for setting the cursor type/scroll setup.
@@ -34138,38 +38279,26 @@ sap.suite.ui.commons.ProcessFlow._enumMoveDirection = {
     'RIGHT' : 'right', // move right
     'UP' : 'up', // move left
     'DOWN' : 'down' // move right
-  }; // end of move enumeration
+}; // end of move enumeration
 
-/**
- * Changes the navigation focus to the specified node on mouse click.
- * @param {sap.suite.ui.commons.ProcessFlowNode} the new node to focus to
+/** Sets the tab focus on the given element or to _lastNavigationFocusNode if no parameter is given. If no parameter
+ * is given and _lastNavigationFocusNode is false, nothing happens.
+ * @param {sap.suite.ui.commons.ProcessFlowNode} the node to focus.
  * @private
- * @since 1.23
- */
-sap.suite.ui.commons.ProcessFlow.prototype._setFocusOnMouseClick = function(oNode) {
-  var oNodeFrom = this._lastNavigationFocusNode
-    , oNodeTo = oNode
-    ;
-  this._lastNavigationFocusNode = oNodeTo;
-  this._bKeyboardInputActive = this._bKeyboardInputActive || false;
-
-  if (this._bKeyboardInputActive == false) {
-    // get the current offset
-    var $scrollContainer = this.$();
-    var oScrollContainerContext = {
-      scrollLeft : $scrollContainer.context.scrollLeft,
-      scrollTop : $scrollContainer.context.scrollTop
-    };
-    // set the focus to the PF table to grab the keyboard input further on
-    this.getDomRef().children[0].children[0].focus();
-    // set the offset back
-    $scrollContainer.scrollLeft(oScrollContainerContext.scrollLeft);
-    $scrollContainer.scrollTop(oScrollContainerContext.scrollTop);
-    this._bKeyboardInputActive = true;
-  };
-
-  this._changeNavigationFocus(oNodeFrom, oNodeTo);
-};
+*/
+sap.suite.ui.commons.ProcessFlow.prototype._setFocusToNode = function(oNode) {
+  // If there's a node as parameter
+  if (oNode){
+    jQuery("#" + oNode.sId).parent().focus();
+    oNode._setNavigationFocus(true); 
+    oNode.rerender();
+  // If there's no parameter, set the focus to _lastNavigationFocusNode if is not false
+  }else if (this._lastNavigationFocusNode){
+    jQuery("#" + this._lastNavigationFocusNode.sId).parent().focus();
+    this._lastNavigationFocusNode._setNavigationFocus(true); 
+    this._lastNavigationFocusNode.rerender();
+  }
+}
 
 /**
  * Changes the navigation focus from the actual node to the node specified as parameter.
@@ -34181,32 +38310,29 @@ sap.suite.ui.commons.ProcessFlow.prototype._setFocusOnMouseClick = function(oNod
  */
 sap.suite.ui.commons.ProcessFlow.prototype._changeNavigationFocus = function (oNodeFrom, oNodeTo) {
   if (oNodeFrom && oNodeTo && (oNodeFrom.getId() !== oNodeTo.getId())) {
-    jQuery.sap.log.debug("Rerendering PREVIOUS node with id '" + oNodeFrom.getId()
-     + "' and title '" + oNodeFrom.getTitle()
-     + "' navigation focus : "
-     + oNodeFrom._getNavigationFocus()
-    );
+    jQuery.sap.log.debug("Rerendering PREVIOUS node with id '" + oNodeFrom.getId() +
+                         "' and title '" + oNodeFrom.getTitle() +
+                         "' navigation focus : " + oNodeFrom._getNavigationFocus());
     oNodeFrom._setNavigationFocus(false);
     oNodeFrom.rerender();
   }
 
-  if ((oNodeFrom && oNodeTo && (oNodeFrom.getId() !== oNodeTo.getId())) || oNodeTo) {
-    jQuery.sap.log.debug("Rerendering CURRENT node with id '" + oNodeTo.getId()
-      + "' and title '" + oNodeTo.getTitle()
-      + "' navigation focus : "
-      + oNodeTo._getNavigationFocus()
-    );
+  if (oNodeTo) {
+    jQuery.sap.log.debug("Rerendering CURRENT node with id '" + oNodeTo.getId() +
+                          "' and title '" + oNodeTo.getTitle() +
+                          "' navigation focus : " + oNodeTo._getNavigationFocus());
     oNodeTo._setNavigationFocus(true);
     oNodeTo.rerender();
+    this._lastNavigationFocusNode = oNodeTo;
     this._onFocusChanged();
   }
 };
 
 /**
- * function reacts on page up and page down. it should go 5 lines up or down.
- * or little bit less if there is not enough space
- * with alt page up move focus left by 5 items maximum
- * with alt page down move focus right by 5 items maximum
+ * Function reacts on page up and page down. It should go 5 lines up or down
+ * or little bit less if there is not enough space.
+ * With alt page up move focus left by 5 items maximum.
+ * With alt page down move focus right by 5 items maximum.
  * @param direction please see sap.suite.ui.commons.ProcessFlow._enumMoveDirection
  * @param altKey, true if alt key is pressed, false otherwise
  * @private
@@ -34247,9 +38373,9 @@ sap.suite.ui.commons.ProcessFlow.prototype._moveOnePage = function( direction, a
             newX = origX;
             newY = j;
             bNewNodeFound = true;
-          };
-        };
-      };
+          }
+        }
+      }
     } else {
       if( direction == sap.suite.ui.commons.ProcessFlow._enumMoveDirection.UP) {
         for( var i = origX-1; i >= 0 && nodesOver < this._jumpOverElements; i--) {
@@ -34267,9 +38393,9 @@ sap.suite.ui.commons.ProcessFlow.prototype._moveOnePage = function( direction, a
             newX = i;
             newY = origY;
             bNewNodeFound = true;
-          };
-        };
-      };
+          }
+        }
+      }
   }
 
   if( bNewNodeFound ) {
@@ -34282,9 +38408,9 @@ sap.suite.ui.commons.ProcessFlow.prototype._moveOnePage = function( direction, a
 };
 
 /**
- * function reacts on home/end. it should go to the first/last element on given row.
- * with ctrl it goes to the first/last active element on the process flow
- * or little bit less if there is not enough space
+ * Function reacts on home/end. it should go to the first/last element on given row.
+ * With ctrl it goes to the first/last active element on the process flow
+ * or little bit less if there is not enough space.
  * @param direction please see sap.suite.ui.commons.ProcessFlow._enumMoveDirection
  * LEFT -> HOME
  * RIGHT -> END
@@ -34331,7 +38457,7 @@ sap.suite.ui.commons.ProcessFlow.prototype._moveHomeEnd = function( direction, c
             break;
           }
        }
-      };
+      }
     } else { // going to the first/last element of the row
       if( direction == sap.suite.ui.commons.ProcessFlow._enumMoveDirection.LEFT) {
         for( var j = 0; j < origY; j++) {
@@ -34349,9 +38475,9 @@ sap.suite.ui.commons.ProcessFlow.prototype._moveHomeEnd = function( direction, c
             newY = j;
             bNewNodeFound = true;
             break;
-          };
-        };
-      };
+          }
+        }
+      }
 
   }
 
@@ -34363,13 +38489,13 @@ sap.suite.ui.commons.ProcessFlow.prototype._moveHomeEnd = function( direction, c
   return bNewNodeFound;
 };
 /**
- * function moves the focus to the next node based on tab behaviour
- * First going left, after to the next row
+ * Function moves the focus to the next node based on tab behaviour.
+ * First going left, after to the next row.
  * @param direction please see enumeration Direction ( sap.suite.ui.commons.ProcessFlow._enumMoveDirection )
  * @returns true if the next element is possible to set. False if there is not more elements to set.
  */
 sap.suite.ui.commons.ProcessFlow.prototype._moveToNextNode = function( direction, step ) {
-// first find the current focus element
+  // First find the current focus element.
   direction = direction || sap.suite.ui.commons.ProcessFlow._enumMoveDirection.RIGHT;
 
   if (sap.ui.getCore().getConfiguration().getRTL()) {
@@ -34446,14 +38572,17 @@ sap.suite.ui.commons.ProcessFlow.prototype._moveToNextNode = function( direction
     } // end loop i
   } //end right direction
 
+  var deviation,
+      yPositionLeft,
+      yPositionRight;
   if( direction == sap.suite.ui.commons.ProcessFlow._enumMoveDirection.UP) {
     // go through lines
     for( var i =  posX -1; i >= 0 ; i--) {
       // we have single line, check from posY first left, after right.
-      var deviation = 0;
+      deviation = 0;
       while( !bNewNodeSet ) {
-        var yPositionLeft = posY-deviation;
-        var yPositionRight = posY+deviation;
+        yPositionLeft = posY-deviation;
+        yPositionRight = posY+deviation;
         if( yPositionLeft >= 0 && this._internalCalcMatrix[i][yPositionLeft] instanceof sap.suite.ui.commons.ProcessFlowNode ) {
           if(  bFocusNodeFound && (!this._bHighlightedMode || this._internalCalcMatrix[i][yPositionLeft].getHighlighted()) ) {
             this._internalCalcMatrix[i][yPositionLeft]._setNavigationFocus(true);
@@ -34483,10 +38612,10 @@ sap.suite.ui.commons.ProcessFlow.prototype._moveToNextNode = function( direction
     // go through lines
     for( var i =  posX  + 1; i < this._internalCalcMatrix.length ; i++) {
       // we have single line, check from posY first left, after right.
-      var deviation = 0;
+      deviation = 0;
       while( !bNewNodeSet ) {
-        var yPositionLeft = posY-deviation;
-        var yPositionRight = posY+deviation;
+        yPositionLeft = posY-deviation;
+        yPositionRight = posY+deviation;
         if( yPositionLeft >= 0 && this._internalCalcMatrix[i][yPositionLeft] instanceof sap.suite.ui.commons.ProcessFlowNode ) {
           if(  bFocusNodeFound && (!this._bHighlightedMode || this._internalCalcMatrix[i][yPositionLeft].getHighlighted()) ) {
             this._lastNavigationFocusNode = this._internalCalcMatrix[i][yPositionLeft]._setNavigationFocus(true);
@@ -34526,49 +38655,16 @@ sap.suite.ui.commons.ProcessFlow.prototype._bNFocusOutside = false;
 // internal PF flag whether we operate in highlighted mode.
 sap.suite.ui.commons.ProcessFlow.prototype._bHighlightedMode = false;
 
-
-// --------------------------------------------------------------------------------------------
-sap.suite.ui.commons.ProcessFlow.prototype.getFocusDomRef = function() {
-  var oDomRef = this.getDomRef().children[0].children[0];
-  jQuery.sap.log.debug("ProcessFlow::getFocusDomRef : Keyboard focus has been changed to element:  id='"+ oDomRef.id + "' outerHTML='" + oDomRef.outerHTML +"'");
-  return oDomRef;
-};
-
 //--------------------------------------------------------------------------------------------
 /**
- * process flow has the focus, now it is neccessary to set the navigation
- * the method is called both when process flow gets the focus and at any click event
+ * ProcessFlow has the focus, now it is neccessary to set the navigation
+ * the method is called both when ProcessFlow gets the focus and at any click event.
  */
 sap.suite.ui.commons.ProcessFlow.prototype.onfocusin = function(oEvent) {
 // set the navigation focus to the lane header if in lanes-only mode
   if (this._isHeaderMode()) {
     this._setFocusOnHeader(true);
   }
-  else {
-    jQuery.sap.log.debug("ProcessFlow::focus in" + (this._lastNavigationFocusNode ? this._lastNavigationFocusNode.getTitle() : "not defined"));
-    if( this._lastNavigationFocusNode ) {
-      this._lastNavigationFocusNode._setNavigationFocus(true);
-      this._lastNavigationFocusNode.rerender();
-    }
-    else { // define navigation focus from root
-      var bNodeFound = false;
-      for( var i = 0; i < this._internalCalcMatrix.length; i++ ) {
-        for( var j = 0; j < this._internalCalcMatrix[i].length; j++ ) {
-          if( this._internalCalcMatrix[i][j] instanceof sap.suite.ui.commons.ProcessFlowNode ) {
-            this._internalCalcMatrix[i][j]._setNavigationFocus(true);
-            this._internalCalcMatrix[i][j].rerender();
-            this._lastNavigationFocusNode = this._internalCalcMatrix[i][j];
-            bNodeFound = true;
-            break;
-          }
-        } // end inner loop
-        if( bNodeFound ) {
-          break;
-        }
-      }
-    }
-  }
-
 };
 
 sap.suite.ui.commons.ProcessFlow.prototype.onfocusout = function(oEvent) {
@@ -34584,7 +38680,8 @@ sap.suite.ui.commons.ProcessFlow.prototype.onfocusout = function(oEvent) {
 };
 
 /**
- * Method called on zoom change. Scrolls the PF content after a zoom change so, that the focused content of the scroll container stays in focus (if possible).
+ * Method called on zoom change.
+ * Scrolls the PF content after a zoom change so, that the focused content of the scroll container stays in focus (if possible).
  * @private
  * @since 1.26
  */
@@ -34598,30 +38695,32 @@ sap.suite.ui.commons.ProcessFlow.prototype._getScrollContainerOnZoomChanged = fu
 };
 
 /**
- * Method called on navigation focus change. Scrolls the PF content, so the node is as close to the middle of the scroll container viewport as possible.
+ * Method called on navigation focus change.
+ * Scrolls the PF content, so the node is as close to the middle of the scroll container viewport as possible.
  * @private
  * @since 1.23
  */
 sap.suite.ui.commons.ProcessFlow.prototype._onFocusChanged = function() {
-  var oFocusedNode = this._lastNavigationFocusNode
-    , $focusedNode = oFocusedNode ? oFocusedNode.$() : null
-   // , $scrollContainer
-    , iScrollInnerWidth
-    , iScrollInnerHeight
-    , iScrollLeft
-    , iScrollTop
-    , $scrollContent
-    , iContentInnerWidth
-    , iContentInnerHeight
-    , iNodeOuterWidth
-    , iNodeOuterHeight
-    , oPositionInContent
-    , iNL, iNT, iNR, iNB
-    , iCL, iCT
-    , max = function(a,b) { return (a > b) ? a : b; }
-    , min = function(a,b) { return (a < b) ? a : b; }
-    , iScrollTimeInMillis = 500
-    ;
+  var oFocusedNode = this._lastNavigationFocusNode,
+      $focusedNode = oFocusedNode ? oFocusedNode.$() : null,
+      iScrollContainerInnerWidth,
+      iScrollContainerInnerHeight,
+      iScrollLeft,
+      iScrollTop,
+      $scrollContent,
+      iContentInnerWidth,
+      iContentInnerHeight,
+      iNodeOuterWidth,
+      iNodeOuterHeight,
+      oPositionInContent,
+      iNodeLeftPosition,
+      iNodeTopPosition,
+      iNodeRightPosition,
+      iNodeBottomPosition,
+      iCorrectionLeft, iCorrectionTop,
+      max = function(a,b) { return (a > b) ? a : b; },
+      min = function(a,b) { return (a < b) ? a : b; },
+      iScrollTimeInMillis = 500;
 
   if (oFocusedNode && this.getScrollable()) {
     jQuery.sap.log.debug("The actually focused node is " + oFocusedNode.getId() + " with title " + oFocusedNode.getTitle());
@@ -34632,63 +38731,71 @@ sap.suite.ui.commons.ProcessFlow.prototype._onFocusChanged = function() {
     oPositionInContent = $focusedNode.position(); // oPositionInContent.left, oPositionInContent.top
     jQuery.sap.log.debug("Position of node in the content is [" + oPositionInContent.left + ", " + oPositionInContent.top + "]");
 
-  //  $scrollContainer = this.$();
     $scrollContent = this.$("scroll-content");
-    iScrollInnerWidth = this.$().innerWidth();
-    iScrollInnerHeight = this.$().innerHeight();
-    jQuery.sap.log.debug("Scroll container inner width x height [" + iScrollInnerWidth + " x " + iScrollInnerHeight + "]");
+    iScrollContainerInnerWidth = this.$("scrollContainer").innerWidth();
+    iScrollContainerInnerHeight = this.$("scrollContainer").innerHeight();
+    jQuery.sap.log.debug("Scroll container inner width x height [" + iScrollContainerInnerWidth + " x " + iScrollContainerInnerHeight + "]");
 
-    iScrollLeft = this.$().scrollLeft();
-    iScrollTop = this.$().scrollTop();
+    iScrollLeft = this.$("scrollContainer").scrollLeft();
+    iScrollTop = this.$("scrollContainer").scrollTop();
     jQuery.sap.log.debug("Current scroll offset is [" + iScrollLeft + ", " + iScrollTop + "]");
 
     iContentInnerWidth = $scrollContent.innerWidth();
     iContentInnerHeight = $scrollContent.innerHeight();
     jQuery.sap.log.debug("Scroll content inner width x height [" + iContentInnerWidth + " x " + iContentInnerHeight + "]");
 
-    iNL = -iScrollLeft + oPositionInContent.left;
-    iNR = iNL + iNodeOuterWidth;
-    iNT= -iScrollTop + oPositionInContent.top;
-    iNB = iNT + iNodeOuterHeight;
+    //Defines 4 borders (L: Left, R: Right, T: Top, B: Bottom) for position of the clicked node in the visible content.
+    iNodeLeftPosition = -iScrollLeft + oPositionInContent.left;
+    iNodeRightPosition = iNodeLeftPosition + iNodeOuterWidth;
+    iNodeTopPosition= -iScrollTop + oPositionInContent.top;
+    iNodeBottomPosition = iNodeTopPosition + iNodeOuterHeight;
 
-    // check if the node lies (even in part) out of the scroll container visible part
-    if ((iNR > iScrollInnerWidth) || (iNL < 0) || (iNB > iScrollInnerHeight) || (iNT < 0)) {
-      iCL = Math.round((iScrollInnerWidth - iNodeOuterWidth)/2);
-      iCL = max(iScrollInnerWidth - iContentInnerWidth + oPositionInContent.left, iCL);
-      iCL = min(oPositionInContent.left, iCL);
+    // Checks if the node lies (even in part) outside of the scroll container visible part.
+    if ((iNodeRightPosition > iScrollContainerInnerWidth) || (iNodeLeftPosition < 0) || (iNodeBottomPosition > iScrollContainerInnerHeight) || (iNodeTopPosition < 0)) {
+      //iCorrectionLeft, correction on left direction to center the node.
+      iCorrectionLeft = Math.round((iScrollContainerInnerWidth - iNodeOuterWidth)/2);
+      iCorrectionLeft = max(iScrollContainerInnerWidth - iContentInnerWidth + oPositionInContent.left, iCorrectionLeft);
+      iCorrectionLeft = min(oPositionInContent.left, iCorrectionLeft);
 
-      iCT = Math.round((iScrollInnerHeight - iNodeOuterHeight)/2);
-      iCT = max(iScrollInnerHeight - iContentInnerHeight + oPositionInContent.top, iCT);
-      iCT = min(oPositionInContent.top, iCT);
-
-      jQuery.sap.log.debug("Node lies outside the scroll container, scrolling from [" + iNL + "," + iNT + "] to [" + iCL + "," + iCT + "]");
-      this.$().animate({
-        scrollTop: oPositionInContent.top - iCT,
-        scrollLeft: oPositionInContent.left - iCL
-      }, iScrollTimeInMillis, "swing");
+      //iCorrectionTop, correction on upwards to center the node.
+      iCorrectionTop = Math.round((iScrollContainerInnerHeight - iNodeOuterHeight)/2);
+      iCorrectionTop = max(iScrollContainerInnerHeight - iContentInnerHeight + oPositionInContent.top, iCorrectionTop);
+      iCorrectionTop = min(oPositionInContent.top, iCorrectionTop);
+      jQuery.sap.log.debug("Node lies outside the scroll container, scrolling from [" + iNodeLeftPosition + "," + iNodeTopPosition + "] to [" + iCorrectionLeft + "," + iCorrectionTop + "]");
+      this._isFocusChanged = true;
+      this.$("scrollContainer").animate({
+          scrollTop: oPositionInContent.top - iCorrectionTop,
+          scrollLeft: oPositionInContent.left - iCorrectionLeft
+        }, iScrollTimeInMillis, "swing", jQuery.proxy(this._adjustAndShowArrow, this));
     } else {
       jQuery.sap.log.debug("Node lies inside the scroll container, no scrolling happens.");
+      this._setFocusToNode(oFocusedNode);
     }
+  } else { // Non scrollable needs also to set the focus
+    this._setFocusToNode(oFocusedNode);
+    this._adjustAndShowArrow();
   }
 };
 
 /**
- * Method called if the ProcessFlow has the navigation focus and the key '+' is pressed ( for keyboard support)
+ * Method called if the ProcessFlow has the navigation focus and the key '+' is pressed ( for keyboard support).
  * @private
  * @since 1.26
  */
 sap.suite.ui.commons.ProcessFlow.prototype.onsapplus = function(oEvent) {
+    this._isFocusChanged = true;
     this.zoomIn();
-}
+};
 
 /**
- *  Method called if the ProcessFlow has the navigation focus and the key '-' is pressed ( for keyboard support)
+ * Method called if the ProcessFlow has the navigation focus and the key '-' is pressed ( for keyboard support).
  * @private
  * @since 1.26
  */
 sap.suite.ui.commons.ProcessFlow.prototype.onsapminus = function(oEvent) {
+    this._isFocusChanged = true;
     this.zoomOut();
-}
+};
 
 // --------------------------------------------------------------------------------------------
 sap.suite.ui.commons.ProcessFlow.prototype.onkeydown = function(oEvent) {
@@ -34706,31 +38813,31 @@ sap.suite.ui.commons.ProcessFlow.prototype.onkeydown = function(oEvent) {
   var thead;
 
   switch (keycode) {
-    //ENTER and SPACE are fired onkeyup according to the spec
     case jQuery.sap.KeyCodes.TAB:
       if (shiftKeyPressed) {
-        oReleaseNFocus = this.getDomRef().parentElement.previousElementSibling;
+        oReleaseNFocus = this.$("scrollContainer").parent().parent().prev();
         if (this._isHeaderMode()) { // lanes-only
           this._setFocusOnHeader(false);
         }
-      }
-      else {
+      }else{
         if (this._isHeaderMode()) { // lanes-only
           if (!this._headerHasFocus) {
             this._setFocusOnHeader(true);
-          } 
-          else {
+          }else{
             this._setFocusOnHeader(false);
-            oReleaseNFocus = this.getDomRef().parentElement.nextElementSibling;
+            oReleaseNFocus = this.$("scrollContainer").parent().parent().next();
             bReleaseNFocus = true;
           }
-        }
-        else {
-          oReleaseNFocus = this.getDomRef().parentElement.nextElementSibling;
-          bReleaseNFocus = true;
+        } else {
+            var $nextElement = this.$("scrollContainer").parent().parent().next();
+            if ($nextElement.length !== 0){
+              oReleaseNFocus = $nextElement;
+              bReleaseNFocus = true;
+              this._lastNavigationFocusNode = false;
+            }
         }
       }
-      
+
       break;
     case jQuery.sap.KeyCodes.ARROW_RIGHT:
       bNFocusChanged = this._moveToNextNode(sap.suite.ui.commons.ProcessFlow._enumMoveDirection.RIGHT);
@@ -34758,12 +38865,16 @@ sap.suite.ui.commons.ProcessFlow.prototype.onkeydown = function(oEvent) {
       break;
     case jQuery.sap.KeyCodes.NUMPAD_0:
     case jQuery.sap.KeyCodes.DIGIT_0:
-        this.setZoomLevel(sap.suite.ui.commons.ProcessFlowZoomLevel.Two);
+      this._initZoomLevel();
       break;
+    case jQuery.sap.KeyCodes.ENTER:
+    case jQuery.sap.KeyCodes.SPACE:
+      // ENTER and SPACE are fired onkeyup according to the spec, but we need to prevent the default behavior.
+      oEvent.preventDefault();
+      return;
     default:
       // it was not our key, let default action be executed if any
       return;
-
   } // end switch keycode
 
   // it was our key, default action has to suppressed
@@ -34780,12 +38891,13 @@ sap.suite.ui.commons.ProcessFlow.prototype.onkeydown = function(oEvent) {
     jQuery.sap.log.debug("keypressdown: Keyboard focus has been changed to element:  id='"+ oReleaseNFocus.id + "' outerHTML='" + oReleaseNFocus.outerHTML +"'");
     oReleaseNFocus = null;
   }
-
 };
 
 sap.suite.ui.commons.ProcessFlow.prototype.onkeyup = function(oEvent) {
   var keycode = (oEvent.keyCode ? oEvent.keyCode : oEvent.which);
   jQuery.sap.log.debug("ProcessFlow::keyboard input has been catched and action going to start: keycode=" + keycode);
+  var $nodeToFocus;
+  var oNodeToFocus;
   switch (keycode) {
     //------------------------------------------------------------------------------- TAB
     case jQuery.sap.KeyCodes.ENTER:
@@ -34793,22 +38905,32 @@ sap.suite.ui.commons.ProcessFlow.prototype.onkeyup = function(oEvent) {
       if (this._isHeaderMode()) { // lanes-only
         this._internalLanes = [];
         this.fireHeaderPress(this);
+        $nodeToFocus = this.$("scroll-content").children().children().children(1).children("td[tabindex='0']").first().children();
+        oNodeToFocus = sap.ui.getCore().byId($nodeToFocus[0].id);
+        this._changeNavigationFocus(null, oNodeToFocus);
       }
       else {
         for( var i = 0; i < this.getNodes().length; i++ ) {
           if( this.getNodes()[i]._getNavigationFocus() ) {
             this.fireNodePress(this.getNodes()[i]);
-            // probably useles to set focus...
-            //this._setFocusOnMouseClick(this.getNodes[i]);
             break;
           }
         }
       }
       break;
+    case jQuery.sap.KeyCodes.TAB:
+      if (!this._isHeaderMode() && !this._lastNavigationFocusNode) {
+        $nodeToFocus = this.$("scroll-content").children().children().children(1).children("td[tabindex='0']").first().children();
+        oNodeToFocus = sap.ui.getCore().byId($nodeToFocus[0].id);
+        this._changeNavigationFocus(null, oNodeToFocus);
+      } else if (!this._isHeaderMode()){
+        this._changeNavigationFocus(null, this._lastNavigationFocusNode);
+      }
+      break;
   }
-}
+};
 /**
- * merge values of node states for several nodes 
+ * Merge values of node states for several nodes.
  * @param {array} aLaneIdNodeStates node states for all nodes of the same laneId 
  * @param altKey, true if alt key is pressed, false otherwise
  * @returns aResult Array of cumulated node states for aLaneIdNodeStates 
@@ -34843,16 +38965,16 @@ sap.suite.ui.commons.ProcessFlow.prototype._mergeLaneIdNodeStates = function(aLa
     }
   }
 
-  var aResult = [{state: sap.suite.ui.commons.ProcessFlowNodeState.Positive, value: iPositive}
-               , {state: sap.suite.ui.commons.ProcessFlowNodeState.Negative, value: iNegative}
-               , {state: sap.suite.ui.commons.ProcessFlowNodeState.Neutral,  value: iNeutral}
-               , {state: sap.suite.ui.commons.ProcessFlowNodeState.Planned,  value: iPlanned}];
+  var aResult = [{state: sap.suite.ui.commons.ProcessFlowNodeState.Positive, value: iPositive},
+                 {state: sap.suite.ui.commons.ProcessFlowNodeState.Negative, value: iNegative},
+                 {state: sap.suite.ui.commons.ProcessFlowNodeState.Neutral,  value: iNeutral},
+                 {state: sap.suite.ui.commons.ProcessFlowNodeState.Planned,  value: iPlanned}];
 
 return aResult;
 };
 
 /**
- * sets or removes navigation focus on the Lane header ( for keyboard support )
+ * Sets or removes navigation focus on the Lane header ( for keyboard support ).
  * @param {boolean} if true the navigation focus is set, if false the navigation focus is removed
  * @private
  * @since 1.26
@@ -34863,7 +38985,7 @@ sap.suite.ui.commons.ProcessFlow.prototype._setFocusOnHeader = function(setFlag)
     thead.focus();
     thead.addClass("sapSuiteUiCommonsPFHeaderFocused");
     this._headerHasFocus = true;
-  } 
+  }
   else {
     thead.blur();
     thead.removeClass("sapSuiteUiCommonsPFHeaderFocused");
@@ -34872,31 +38994,382 @@ sap.suite.ui.commons.ProcessFlow.prototype._setFocusOnHeader = function(setFlag)
 };
 
 /**
- * sets navigation focus on a node for keyboard support
+ * Handles the click on the arrows.
  * @private
- * @since 1.26
+ * @since 1.30
  */
-sap.suite.ui.commons.ProcessFlow.prototype._setFocusOnNode = function() {
-    jQuery.sap.log.debug("ProcessFlow::focus in" + (this._lastNavigationFocusNode ? this._lastNavigationFocusNode.getTitle() : "not defined"));
-  if( this._lastNavigationFocusNode ) {
-    this._lastNavigationFocusNode._setNavigationFocus(true);
-    this._lastNavigationFocusNode.rerender();
-  }
-  else { // define navigation focus from root
-    var bNodeFound = false;
-    for( var i = 0; i < this._internalCalcMatrix.length; i++ ) {
-      for( var j = 0; j < this._internalCalcMatrix[i].length; j++ ) {
-        if( this._internalCalcMatrix[i][j] instanceof sap.suite.ui.commons.ProcessFlowNode ) {
-          this._internalCalcMatrix[i][j]._setNavigationFocus(true);
-          this._internalCalcMatrix[i][j].rerender();
-          this._lastNavigationFocusNode = this._internalCalcMatrix[i][j];
-          bNodeFound = true;
-          break;
+sap.suite.ui.commons.ProcessFlow.prototype._onArrowClick = function(oEvent) {
+  var sTargetId = oEvent.target.id;
+      if (sTargetId) {
+        var sId = this.getId();
+        // For scroll buttons: Prevent IE from firing beforeunload event -> see CSN 4378288 2012
+        oEvent.preventDefault();
+        //on mobile devices, the click on arrows has no effect
+        if (sTargetId == sId + "-arrowScrollLeft" && sap.ui.Device.system.desktop) {
+          // scroll back/left button
+          this._scroll(-this._scrollStep, 500);
+        } else if (sTargetId == sId + "-arrowScrollRight" && sap.ui.Device.system.desktop) {
+          // scroll forward/right button
+          this._scroll(this._scrollStep, 500);
         }
-      } // end inner loop
-      if( bNodeFound ) {
-        break;
       }
+};
+
+/**
+ * Scrolls the header if possible, using an animation.
+ *
+ * @param iDelta how far to scroll
+ * @param iDuration how long to scroll (ms)
+ * @private
+ * @since 1.30
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._scroll = function(iDelta, iDuration) {
+  var oDomRef = this.getDomRef("scrollContainer");
+  var iScrollLeft = oDomRef.scrollLeft;
+  if (!!!sap.ui.Device.browser.internet_explorer && this._bRtl) {
+    iDelta = -iDelta;
+  } // RTL lives in the negative space
+  var iScrollTarget = iScrollLeft + iDelta;
+  jQuery(oDomRef).stop(true, true).animate({scrollLeft: iScrollTarget}, iDuration, jQuery.proxy(this._adjustAndShowArrow, this));
+};
+
+/**
+ * Adjusts the arrow position and shows the arrow.
+ * @private
+ * @since 1.30
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._adjustAndShowArrow = function() {
+  this._checkOverflow(this.getDomRef("scrollContainer"), this.$());
+  if (this.getScrollable()) {
+    this._moveArrowAndCounterVertical();
+  }
+  if (this._isFocusChanged){
+    this._setFocusToNode(this._lastNavigationFocusNode);
+    this._isFocusChanged = false;
+  }
+};
+
+/**
+ * Gets the icon of the requested arrow (left/right).
+ * @private
+ * @param sName left or right
+ * @returns icon of the requested arrow
+ * @since 1.30
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._getScrollingArrow = function(sName) {
+  var src;
+
+  if (sap.ui.Device.system.desktop) {
+    // use navigation arrows on desktop and win8 combi devices
+    src = "sap-icon://navigation-" + sName + "-arrow";
+  } else {
+    // use slim arrows on mobile devices
+    src = "sap-icon://slim-arrow-" + sName;
+  }
+
+  var mProperties = {
+    src : src
+  };
+
+  var sLeftArrowClass = "sapPFHArrowScrollLeft";
+  var sRightArrowClass = "sapPFHArrowScrollRight";
+  var aCssClassesToAddLeft = ["sapPFHArrowScroll", sLeftArrowClass];
+  var aCssClassesToAddRight = ["sapPFHArrowScroll", sRightArrowClass];
+
+  if (sName === "left") {
+    if (!this._oArrowLeft) {
+      this._oArrowLeft = sap.m.ImageHelper.getImageControl(this.getId() + "-arrowScrollLeft", null, this, mProperties, aCssClassesToAddLeft);
+    }
+    return this._oArrowLeft;
+  }
+  if (sName === "right") {
+    if (!this._oArrowRight) {
+      this._oArrowRight = sap.m.ImageHelper.getImageControl(this.getId() + "-arrowScrollRight", null, this, mProperties, aCssClassesToAddRight);
+    }
+    return this._oArrowRight;
+  }
+};
+
+/**
+ * Checks if scrolling is needed.
+ *
+ * @param oScrollContainer the scroll container
+ * @param $processFlow the ProcessFlow container
+ * @private
+ * @returns true if scrolling is needed, otherwise false
+ * @since 1.30
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._checkScrolling = function(oScrollContainer, $processFlow) {
+  var bScrolling = false;
+
+    //check if there are more lanes than displayed
+    if (oScrollContainer) {
+      if (oScrollContainer.scrollWidth > oScrollContainer.clientWidth) {
+          //scrolling possible
+          bScrolling = true;
+      }
+    }
+
+  if (this._arrowScrollable !== bScrolling) {
+    $processFlow.toggleClass("sapPFHScrollable", bScrolling);
+    $processFlow.toggleClass("sapPFHNotScrollable", !bScrolling);
+    this._arrowScrollable = bScrolling;
+  }
+
+  return bScrolling;
+};
+
+/**
+ * Sets the scroll width depending on the zoom level.
+ *
+ * @param oScrollContainer the scroll container
+ * @private
+ * @since 1.30
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._setScrollWidth = function(oScrollContainer) {
+  // the distance to scroll depends on the ZoomLevel
+  switch (this.getZoomLevel()) {
+    case (sap.suite.ui.commons.ProcessFlowZoomLevel.One) :
+      this._scrollStep = 240;
+      break;
+    case (sap.suite.ui.commons.ProcessFlowZoomLevel.Two) :
+      this._scrollStep = 192;
+      break;
+    case (sap.suite.ui.commons.ProcessFlowZoomLevel.Three) :
+      this._scrollStep = 168;
+      break;
+    case (sap.suite.ui.commons.ProcessFlowZoomLevel.Four) :
+      this._scrollStep = 128;
+      break;
+  }
+};
+
+/**
+ * Calculates the left counter.
+ *
+ * @returns the left counter
+ * @private
+ * @since 1.30
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._updateLeftCounter = function() {
+  var iScrollDelta;
+  if (!this._bRtl) { // normal LTR mode
+    iScrollDelta = this.$("scrollContainer").scrollLeft();
+  }
+  else { // RTL mode
+    iScrollDelta = this.$("scrollContainer").scrollRightRTL();
+  }
+  var counterLeft = Math.round(iScrollDelta / this._scrollStep);
+  this.$("counterLeft").text(counterLeft.toString());
+  return counterLeft;
+};
+
+/**
+ * Calculates the right counter.
+ *
+ * @param availableWidth
+ * @param realWidth
+ * @returns the right counter
+ * @private
+ * @since 1.30
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._updateRightCounter = function(availableWidth, realWidth) {
+  var iScrollDelta;
+  var counterRight;
+  if (!this._bRtl) { // normal LTR mode
+    iScrollDelta = this.$("scrollContainer").scrollLeft();
+    counterRight = Math.round((realWidth - iScrollDelta - availableWidth) / this._scrollStep);
+  }
+  else { // RTL mode
+    iScrollDelta = this.$("scrollContainer").scrollLeftRTL();
+    counterRight = Math.round(iScrollDelta / this._scrollStep);
+  }
+  this.$("counterRight").text(counterRight.toString());
+  return counterRight;
+};
+
+/**
+ * For scrollable ProcessFlow : move arrows and counter vertically when scrolling.
+ *
+ * @private
+ * @since 1.30
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._moveArrowAndCounterVertical = function() {
+  var iScrollTop = this.$("scrollContainer").scrollTop();
+  if (iScrollTop > 0) {
+    var iArrowTop = this._iInitialArrowTop - iScrollTop;
+    var iCounterTop = this._iInitialCounterTop - iScrollTop;
+    var iDiffArrowCounter = this._iInitialCounterTop - this._iInitialArrowTop;
+    if (iArrowTop > 0) {
+      this.$("arrowScrollRight").css("top", iArrowTop + "px");
+      this.$("arrowScrollLeft").css("top", iArrowTop + "px");
+    }
+    else {
+      this.$("arrowScrollRight").css("top", "0px");
+      this.$("arrowScrollLeft").css("top", "0px");
+    }
+    if (iCounterTop > iDiffArrowCounter) {
+      this.$("counterRight").css("top", iCounterTop + "px");
+      this.$("counterLeft").css("top", iCounterTop + "px");
+    }
+    else {
+      this.$("counterRight").css("top", iDiffArrowCounter + "px");
+      this.$("counterLeft").css("top", iDiffArrowCounter + "px");
+    }
+  }
+  else {
+    this.$("arrowScrollRight").css("top", this._iInitialArrowTop + "px");
+    this.$("arrowScrollLeft").css("top", this._iInitialArrowTop + "px");
+    this.$("counterRight").css("top", this._iInitialCounterTop + "px");
+    this.$("counterLeft").css("top", this._iInitialCounterTop + "px");
+  }
+};
+
+/**
+ * Changes the state of the scroll arrows depending on whether they are required due to overflow.
+ *
+ * @param oScrollContainer the scroll container
+ * @param $processFlow the ProcessFlow container
+ * @private
+ * @since 1.30
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._checkOverflow = function(oScrollContainer, $processFlow) {
+  if (this._checkScrolling(oScrollContainer, $processFlow) && oScrollContainer) {
+    this._setScrollWidth(oScrollContainer);
+    // Check whether scrolling to the left is possible
+    var bScrollBack = false;
+    var bScrollForward = false;
+    var iOffset = 20; // display arrow and counter only if the distance to the end of the scroll container is at least 20px
+    var iScrollLeft = this.$("scrollContainer").scrollLeft();
+    var realWidth = oScrollContainer.scrollWidth;
+    var availableWidth = oScrollContainer.clientWidth;
+    if (Math.abs(realWidth - availableWidth) == 1) { // Avoid rounding issues see CSN 1316630 2013
+        realWidth = availableWidth;
+    }
+
+    if (!this._bRtl) {   // normal LTR mode
+        if (iScrollLeft > iOffset) {
+            bScrollBack = true;
+        }
+        if ((realWidth > availableWidth) && (iScrollLeft + availableWidth + iOffset < realWidth)) {
+            bScrollForward = true;
+        }
+    } else {  // RTL mode
+        var $ScrollContainer = jQuery(oScrollContainer);
+        if ($ScrollContainer.scrollLeftRTL() > iOffset) {
+            bScrollForward = true;
+        }
+        if ($ScrollContainer.scrollRightRTL() > iOffset) {
+            bScrollBack = true;
+        }
+    }
+    // update left and right counter
+    this._updateLeftCounter();
+    this._updateRightCounter(availableWidth, realWidth);
+
+    // only do DOM changes if the state changed to avoid periodic application of identical values
+    if ((bScrollForward !== this._bPreviousScrollForward) || (bScrollBack !== this._bPreviousScrollBack)) {
+        this._bPreviousScrollForward = bScrollForward;
+        this._bPreviousScrollBack = bScrollBack;
+        $processFlow.toggleClass("sapPFHScrollBack", bScrollBack);
+        $processFlow.toggleClass("sapPFHNoScrollBack", !bScrollBack);
+        $processFlow.toggleClass("sapPFHScrollForward", bScrollForward);
+        $processFlow.toggleClass("sapPFHNoScrollForward", !bScrollForward);
+    }
+  } else {
+    this._bPreviousScrollForward = false;
+    this._bPreviousScrollBack = false;
+  }
+};
+
+sap.suite.ui.commons.ProcessFlow.prototype._onScroll = function(oEvent) {
+  var iScrollLeft = this.$("scrollContainer").scrollLeft();
+  var iDelta = Math.abs(iScrollLeft - this._iTouchStartScrollLeft);
+  // Only valid if the focus does not change.
+  if (iDelta > (this._scrollStep / 4) && !this._isFocusChanged) {
+      // Update arrows when 1/4 lane was scrolled
+      this._adjustAndShowArrow();
+      this._iTouchStartScrollLeft = iScrollLeft;
+  }
+  else {
+   // update vertical alignment of arrows if only vertical scrolling is possible
+    if (this.getScrollable()) {
+      var iScrollTop = this.$("scrollContainer").scrollTop();
+      var iDeltaTop = Math.abs(iScrollTop - this._iTouchStartScrollTop);
+      if (iDeltaTop > 10) {
+         this._moveArrowAndCounterVertical();
+         this._iTouchStartScrollTop = iScrollTop;
+      }
+    }
+  }
+};
+
+/**
+ * Initializes left and top distance when scrolling starts.
+ *
+ * @param {jQuery.Event} oEvent
+ * @private
+ * @since 1.30
+ */
+sap.suite.ui.commons.ProcessFlow.prototype.ontouchstart = function(oEvent) {
+  this._iTouchStartScrollLeft = this.$("scrollContainer").scrollLeft();
+  if (this.getScrollable()) {
+    this._iTouchStartScrollTop = this.$("scrollContainer").scrollTop();
+  }
+};
+
+/**
+ * Sets the parent association for given nodes.
+ *
+ * @param {sap.suite.ui.commons.ProcessFlowNode[]} aInternalNodes Array of nodes to set parents on
+ * @private
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._setParentForNodes = function(aInternalNodes) {
+  var cInternalNodes = aInternalNodes ? aInternalNodes.length : 0;
+  var aChildren;
+  var i, j;
+  //Cleanup association to avoid duplicates.
+  for (var currentNode in aInternalNodes) {
+    aInternalNodes[currentNode].removeAllAssociation("parents", true);
+  }
+  for (i = 0; i < cInternalNodes; i++) {
+    aChildren = aInternalNodes[i].getChildren();
+    if (aChildren) {
+      for (j = 0; j < aChildren.length; j++) {
+        var childNode = this._getNode(aChildren[j].toString(), aInternalNodes);
+        if (childNode) {
+          childNode.addAssociation("parents", aInternalNodes[i], true);
+        }
+      }
+    }
+  }
+};
+
+/**
+ * Returns the node from the given array which matches to the given nodeId.
+ *
+ * @param {String} nodeId Id of node to retrieve
+ * @param {sap.suite.ui.commons.ProcessFlowNode[]} aInternalNodes Array of nodes to search in
+ * @private
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._getNode = function(nodeId, aInternalNodes) {
+  for (var i = 0; i < aInternalNodes.length; i++) {
+    if (aInternalNodes[i].getNodeId() === nodeId) {
+      return aInternalNodes[i];
+    }
+  }
+};
+
+/**
+ * Returns the lane from the _internalLanes array which matches to the given laneId.
+ *
+ * @param {String} nodeId Id of node to retrieve
+ * @private
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._getLane = function(laneId) {
+  for (var i = 0; i < this._internalLanes.length; i++) {
+    if (this._internalLanes[i].getLaneId() === laneId) {
+      return this._internalLanes[i];
     }
   }
 };
@@ -34954,9 +39427,9 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @param {object} [mSettings] initial settings for the new control
  *
  * @class
- * This control is used internally to connect process flow node A with process flow node B in respect to the style(s) chosen by the end-user
+ * This control is used inside the ProcessFlow Control to connect process flow node A with process flow node B in respect to the style(s) chosen by the application.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -35048,14 +39521,18 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.ProcessFlowConnection", { metad
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/ProcessFlowConnection.js
+/* resource bundle for the localized strings */
+sap.suite.ui.commons.ProcessFlowConnection.prototype._oResBundle = null;
+
 /**
  * This file defines behavior for the control,
  */
-//sap.suite.ui.commons.ProcessFlowConnection.prototype.init = function(){
-//   // do something for initialization...
-//};
+sap.suite.ui.commons.ProcessFlowConnection.prototype.init = function(){
+  if( !this._oResBundle ) {
+    this._oResBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.ui.commons");
+  }
+};
 
 /**
  * Create connection object depends on draw data
@@ -35127,7 +39604,7 @@ sap.suite.ui.commons.ProcessFlowConnection.prototype._traverseConnectionData = f
 };
 
 /**
- * Add connection data
+ * Adds connection data
  *
  * @public
  * @param {object} singleConnectionData
@@ -35143,6 +39620,70 @@ sap.suite.ui.commons.ProcessFlowConnection.prototype.addConnectionData = functio
   return tempConnectionData;
 };
 
+/**
+ * Returns ARIA text for current connection object
+ *
+ * @private
+ * @returns {String} The Aria result text for the connection
+ */
+sap.suite.ui.commons.ProcessFlowConnection.prototype._getAriaText = function() {
+  var connection = this._traverseConnectionData();
+  var ariaValue = "";
+  var withArrowValue = " " + this._oResBundle.getText('PF_CONNECTION_ENDS');
+  if (this._isHorizontalLine(connection)) {
+    ariaValue = this._oResBundle.getText('PF_CONNECTION_HORIZONTAL_LINE');
+    if (connection.arrow) {
+      ariaValue += withArrowValue;
+    }
+  } else if (this._isVerticalLine(connection)) {
+    ariaValue = this._oResBundle.getText('PF_CONNECTION_VERTICAL_LINE');
+    if (connection.arrow) {
+      ariaValue += withArrowValue;
+    }
+  } else {
+    ariaValue = this._oResBundle.getText('PF_CONNECTION_BRANCH');
+    if (connection.arrow) {
+      ariaValue += withArrowValue;
+    }
+  }
+  return ariaValue;
+};
+
+/**
+ * Checks if the given connection is a vertical line.
+ *
+ * @private
+ * @param {Object} Connection to retrieve information for vertical line from
+ * @returns {Boolean}
+ */
+sap.suite.ui.commons.ProcessFlowConnection.prototype._isVerticalLine = function(connection) {
+  if (connection.hasOwnProperty("left") && !connection.left.draw &&
+    connection.hasOwnProperty("right") && !connection.right.draw &&
+    connection.hasOwnProperty("top") && connection.top.draw &&
+    connection.hasOwnProperty("bottom") && connection.bottom.draw) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+/**
+ * Checks if the given connection is a horizontal line.
+ *
+ * @private
+ * @param {Object} Connection to retrieve information for horizontal line from
+ * @returns {Boolean}
+ */
+sap.suite.ui.commons.ProcessFlowConnection.prototype._isHorizontalLine = function(connection) {
+  if (connection.hasOwnProperty("left") && connection.left.draw &&
+      connection.hasOwnProperty("right") && connection.right.draw &&
+      connection.hasOwnProperty("top") && !connection.top.draw &&
+      connection.hasOwnProperty("bottom") && !connection.bottom.draw) {
+    return true;
+  } else {
+    return false;
+  }
+};
 }; // end of sap/suite/ui/commons/ProcessFlowConnection.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.ProcessFlowLaneHeader') ) {
 /*!
@@ -35201,9 +39742,9 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @param {object} [mSettings] initial settings for the new control
  *
  * @class
- * This control gives you an overview of documents/items used in the process flow. The process flow is represented by the doughnut chart sections which are colored according to the documents’ status(es). This control can be used in two different ways. If you use it standalone, an event is fired and can be caught in to display the node map. If you use it with the node/document, it gives you an overview of the documents/items used in the process flow that is represented by the doughnut chart sections.
+ * This control gives you an overview of documents/items used in a process flow. The process flow is represented by the doughnut chart sections which are colored according to the documents’ status(es). This control can be used in two different ways. If you use it standalone, an event is fired and can be caught in to display the node map. If you use it with the node/document, it gives you an overview of the documents/items used in the process flow that is represented by the doughnut chart sections.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -35458,12 +39999,16 @@ sap.suite.ui.commons.ProcessFlowLaneHeader.M_EVENTS = {'press':'press'};
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/ProcessFlowLaneHeader.js
 jQuery.sap.require('sap.ui.core.IconPool'); // unlisted dependency retained
 
 jQuery.sap.require('sap.m.Image'); // unlisted dependency retained
 
+
+/*
+ * Resource bundle for the localized strings
+ */
+sap.suite.ui.commons.ProcessFlowLaneHeader.prototype._oResBundle = null;
 
 /**
  * Process Flow Lane Header controller.
@@ -35471,11 +40016,16 @@ jQuery.sap.require('sap.m.Image'); // unlisted dependency retained
  */
 sap.suite.ui.commons.ProcessFlowLaneHeader.prototype.init = function() { // EXC_JSLINT_021
   this._virtualTableSpan = 1;
+
+  if(!this._oResBundle) {
+    this._oResBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.ui.commons");
+  }
 };
 
 sap.suite.ui.commons.ProcessFlowLaneHeader.prototype.onBeforeRendering = function () {
   this.$("lh-icon").off('click', jQuery.proxy(this.ontouchend, this));
-}
+  this.$().unbind("click", this.ontouchend);
+};
 
 /**
  * Standard method called after the control rendering.
@@ -35494,6 +40044,8 @@ sap.suite.ui.commons.ProcessFlowLaneHeader.prototype.onAfterRendering = function
   //  $icon.addClass("suiteUiProcessFlowLaneHeaderProcessSymbolIcon");
     $icon.css("cursor", "inherit");
   }
+
+  this.$().bind("click", jQuery.proxy(this.ontouchend, this));
 
   if (this._isHeaderMode()) {
      jThis.addClass("suiteUiProcessFlowLaneHeaderPointer");
@@ -36018,6 +40570,7 @@ sap.suite.ui.commons.ProcessFlowLaneHeader.prototype._getImage = function(sId, s
  */
 sap.suite.ui.commons.ProcessFlowLaneHeader.prototype.exit = function() {
   this._destroyImage();
+  this.$().unbind("click", this.ontouchend);
 };
 
 /**
@@ -36183,6 +40736,36 @@ sap.suite.ui.commons.ProcessFlowLaneHeader._getVirtualTableSpan = function () {
   return this._virtualTableSpan;
 };
 
+/**
+ * Returns ARIA text for current lane header object.
+ * @returns {String} message for screen reader
+ * @private
+ */
+sap.suite.ui.commons.ProcessFlowLaneHeader.prototype._getAriaText = function() {
+  var ariaText = "";
+  var oStatuses = this.getState();
+  if (oStatuses){
+    var statusValues = [];
+    for (var i in oStatuses){
+      statusValues.push(oStatuses[i].value);
+    }
+
+    // Needed to rescale the values to percentage
+    this._clampValues(statusValues, 0, 0);
+    this._rescaleToUnit(statusValues);
+
+    ariaText = this._oResBundle.getText('PF_ARIA_STATUS');
+    for(var j in oStatuses){
+      if (oStatuses[j].value != 0){
+        var valueText = " " + Math.round(statusValues[j] * 100) + "% " + oStatuses[j].state + ",";
+        ariaText = ariaText.concat(valueText);
+      }
+    }
+    // Removes the last character which is a ','
+    ariaText = ariaText.slice(0, -1);
+  }
+  return ariaText;
+};
 }; // end of sap/suite/ui/commons/ProcessFlowLaneHeader.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.ProcessFlowNode') ) {
 /*!
@@ -36234,7 +40817,8 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * <ul></ul>
  * </li>
  * <li>Associations
- * <ul></ul>
+ * <ul>
+ * <li>{@link #getParents parents} : string | sap.suite.ui.commons.ProcessFlowNode</li></ul>
  * </li>
  * <li>Events
  * <ul>
@@ -36248,9 +40832,9 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @param {object} [mSettings] initial settings for the new control
  *
  * @class
- * This control enables you to see documents (or other items) in respect to their statuses – positive, negative, neutral, planned. In addition to the node title (which can be optionally a hyperlink) also two other text fields are provided and can be filled. The process flow nodes consider all styles depending on the status they are in. The user can update or change the content of the node. The content of the node can be also filtered according to updated data and specific parameters set. This means that also the node’s style is affected.
+ * This control enables you to see documents (or other items) in respect to their statuses – positive, negative, neutral, planned, planned negative. In addition to the node title (which can be optionally a hyperlink) also two other text fields are provided and can be filled. The process flow nodes consider all styles depending on the status they are in. The user can update or change the content of the node. The content of the node can be also filtered according to updated data and specific parameters set. This means that also the node’s style is affected.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -36273,6 +40857,9 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.ProcessFlowNode", { metadata : 
 		"highlighted" : {type : "boolean", group : "Misc", defaultValue : false},
 		"focused" : {type : "boolean", group : "Misc", defaultValue : false},
 		"tag" : {type : "object", group : "Misc", defaultValue : null}
+	},
+	associations : {
+		"parents" : {type : "sap.suite.ui.commons.ProcessFlowNode", multiple : true, singularName : "parent"}
 	},
 	events : {
 		"titlePress" : {deprecated: true}, 
@@ -36605,6 +41192,43 @@ sap.suite.ui.commons.ProcessFlowNode.M_EVENTS = {'titlePress':'titlePress','pres
 
 
 /**
+ * Reference to ProcessFlowNodes which appears before this ProcessFlowNode.
+ * 
+ * @return {string[]}
+ * @public
+ * @name sap.suite.ui.commons.ProcessFlowNode#getParents
+ * @function
+ */
+
+	
+/**
+ *
+ * @param {string | sap.suite.ui.commons.ProcessFlowNode} vParent
+ *    Id of a parent which becomes an additional target of this <code>parents</code> association.
+ *    Alternatively, a parent instance may be given. 
+ * @return {sap.suite.ui.commons.ProcessFlowNode} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.ProcessFlowNode#addParent
+ * @function
+ */
+
+/**
+ * @param {int | string | sap.suite.ui.commons.ProcessFlowNode} vParent the parent to remove or its index or id
+ * @return {string} the id of the removed parent or null
+ * @public
+ * @name sap.suite.ui.commons.ProcessFlowNode#removeParent
+ * @function
+ */
+
+/**
+ * @return {string[]} an array with the ids of the removed elements (might be empty)
+ * @public
+ * @name sap.suite.ui.commons.ProcessFlowNode#removeAllParents
+ * @function
+ */
+
+	
+/**
  * This event handler is executed when the user clicks the node title. This event is fired only when the title is clickable (isTitleClickable equals true).
  *
  * @name sap.suite.ui.commons.ProcessFlowNode#titlePress
@@ -36737,7 +41361,6 @@ sap.suite.ui.commons.ProcessFlowNode.M_EVENTS = {'titlePress':'titlePress','pres
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/ProcessFlowNode.js
 /**
 * Process Flow Node controller.
@@ -36753,6 +41376,8 @@ sap.suite.ui.commons.ProcessFlowNode.prototype._zoomLevel = sap.suite.ui.commons
 sap.suite.ui.commons.ProcessFlowNode.prototype._tag = null;
 /* The display state of the node. This property dictates the regular, highlighted, dimmed visual style of the control */
 sap.suite.ui.commons.ProcessFlowNode.prototype._displayState = sap.suite.ui.commons.ProcessFlowDisplayState.Regular;
+/* resource bundle for the localized strings */
+sap.suite.ui.commons.ProcessFlowNode.prototype._oResBundle = null;
 /* This property defines the folded corners for the single node control. The values true - means folded corner
 false/null/undefined - means normal corner
 */
@@ -36787,10 +41412,13 @@ sap.suite.ui.commons.ProcessFlowNode.prototype._sMouseTouchEvents = (sap.ui.Devi
  */
 sap.suite.ui.commons.ProcessFlowNode.prototype.init = function() {
   sap.ui.core.IconPool.addIcon("context-menu", "businessSuite", "PFBusinessSuiteInAppSymbols", "e02b", true);
+  if( !this._oResBundle ) {
+    this._oResBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.ui.commons");
+  }
 };
 
 /**
- * Destroy all created controls
+ * Destroys all created controls
  * @public
  */
 sap.suite.ui.commons.ProcessFlowNode.prototype.exit = function() {
@@ -36954,12 +41582,7 @@ sap.suite.ui.commons.ProcessFlowNode.prototype._getIconControl = function() { //
   var bVisible = true;
   var stateText = this.getStateText();
 
-  // do not display icon when stateText is empty string
-  if ( ( stateText === undefined || stateText === null || stateText.trim().length === 0 ) &&
-      this._getZoomLevel() !== sap.suite.ui.commons.ProcessFlowZoomLevel.Four ) {
-    sSrc = null;
-  }
-  else {
+  // request (Dec 2014): display icon even when there's no stateText
     switch( this.getState() ) {
       case sap.suite.ui.commons.ProcessFlowNodeState.Positive:
         sSrc = "sap-icon://message-success";
@@ -36975,7 +41598,6 @@ sap.suite.ui.commons.ProcessFlowNode.prototype._getIconControl = function() { //
         sSrc = "sap-icon://process";
         break;
     }
-  }
   this._iconControl = new sap.ui.core.Icon({
     id: this.getId() + "-icon",
     src: sSrc,
@@ -37036,7 +41658,8 @@ sap.suite.ui.commons.ProcessFlowNode.prototype._getStateTextControl = function()
   var bVisible = true;
   var oState = this.getState();
   var sText = (oState === sap.suite.ui.commons.ProcessFlowNodeState.Planned) ? "" : this.getStateText(); // latest request: do not display state text for planned state
-  if (oState === sap.suite.ui.commons.ProcessFlowNodeState.PlannedNegative && sText === oState) {
+  if (oState === sap.suite.ui.commons.ProcessFlowNodeState.PlannedNegative && sText.length === 0) {
+  //set default status text for status PlannedNegativ when no text is provided
     sText = "Planned Negative"; 
   }
   // number of lines
@@ -37230,7 +41853,7 @@ sap.suite.ui.commons.ProcessFlowNode.prototype._setZoomLevel = function(zoomLeve
   this._zoomLevel = zoomLevel;
 };
 
-sap.suite.ui.commons.ProcessFlowNode.prototype._setNavigationFocus = function( navigationFocus ) {
+sap.suite.ui.commons.ProcessFlowNode.prototype._setNavigationFocus = function(navigationFocus) {
   this._navigationFocus = navigationFocus;
 };
 
@@ -37352,7 +41975,8 @@ sap.suite.ui.commons.ProcessFlowNode.prototype._handleClick = function(oEvent) {
       else {
         this._parent.fireNodePress(this);
       }
-      this._parent._setFocusOnMouseClick( this );
+      // Changes the focus from previous node to the current one.
+      this.getParent()._changeNavigationFocus(this.getParent()._lastNavigationFocusNode, this);
     }
   }
   if (oEvent && !oEvent.isPropagationStopped()) {
@@ -37487,6 +42111,86 @@ sap.suite.ui.commons.ProcessFlowNode.prototype._handleEvents = function(oEvent) 
     }
 };
 
+/**
+ * Checks if current node contains children
+ *
+ * @private
+ * @returns {boolean}
+ */
+sap.suite.ui.commons.ProcessFlowNode.prototype._hasChildren = function() {
+  var children = this.getChildren();
+  if (children && children.length > 0) {
+    return true;
+  }
+  return false;
+};
+
+/**
+ * @private
+ * @returns {String} Aria details
+ */
+sap.suite.ui.commons.ProcessFlowNode.prototype._getAriaText = function() {
+  var cParents = this.getParents().length;
+
+  var cChildren = 0;
+  if (this._hasChildren()) {
+    cChildren = this.getChildren().length;
+  }
+
+  var laneText = "";
+  var lane = this._getLane();
+  if (lane) {
+    laneText = lane.getText();
+    if (!laneText){
+      laneText = this._oResBundle.getText('PF_VALUE_UNDEFINED');
+    }
+  }
+
+  var contentText = "";
+  var contentTexts = this.getTexts();
+  if (contentTexts) {
+    for(var i in contentTexts){
+      if (contentTexts[i]) {
+        var valueText = contentTexts[i].concat(", ");
+        contentText = contentText.concat(valueText);
+      }
+    }
+    //Removes the last character which is a ' '
+    contentText = contentText.slice(0, -1);
+  }
+
+  var titleText = this.getTitle();
+  if (!titleText) {
+    titleText = this._oResBundle.getText('PF_VALUE_UNDEFINED');
+  }
+
+  var stateValueText = this.getState();
+  if (!stateValueText) {
+    stateValueText = this._oResBundle.getText('PF_VALUE_UNDEFINED');
+  }
+
+  var stateText = this.getStateText();
+  if (this.getState() === sap.suite.ui.commons.ProcessFlowNodeState.Planned) {
+    stateText = "";
+  }
+
+  var ariaValue = this._oResBundle.getText('PF_ARIA_NODE', [titleText, stateValueText, stateText, laneText, contentText, cParents, cChildren]);
+  return ariaValue;
+};
+
+/**
+ * @private
+ * @returns {sap.suite.ui.commons.ProcessFlowLaneHeader} Lane of current node
+ */
+sap.suite.ui.commons.ProcessFlowNode.prototype._getLane = function() {
+  var processFlow = this.getParent();
+  var lane;
+  if (processFlow) {
+    lane = processFlow._getLane(this.getLaneId());
+  }
+  return lane;
+};
+
 }; // end of sap/suite/ui/commons/ProcessFlowNode.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.ProcessFlowRenderer') ) {
 /*
@@ -37526,18 +42230,46 @@ sap.suite.ui.commons.ProcessFlowRenderer.render = function(oRm, oControl) {
       ;
 
   // write the HTML into the render manager
-  oRm.write("<div");
+
+  oRm.write("<div"); // ProcessFlow container
   oRm.writeControlData(oControl);
+  oRm.addClass("sapSuiteUiPFContainer");
+  if (oControl._arrowScrollable) {
+    oRm.addClass("sapPFHScrollable");
+    if (oControl._bPreviousScrollForward) {
+      oRm.addClass("sapPFHScrollForward");
+    } else {
+      oRm.addClass("sapPFHNoScrollForward");
+    }
+    if (oControl._bPreviousScrollBack) {
+      oRm.addClass("sapPFHScrollBack");
+    } else {
+      oRm.addClass("sapPFHNoScrollBack");
+    }
+  } else {
+    oRm.addClass("sapPFHNotScrollable");
+  }
+  oRm.writeClasses();
+  oRm.write(">");
+
+  this._writeCounter(oRm, oControl, "Left");
+  oRm.renderControl(oControl._getScrollingArrow("left"));
+
+  oRm.write("<div"); // scroll container
+  oRm.writeAttribute("id", oControl.getId() + "-scrollContainer");
   oRm.addClass("sapSuiteUiScrollContainerPF");
+  oRm.addClass("sapSuiteUiDefaultCursorPF");
   oRm.writeClasses();
   oRm.write(">"); // div element
 
-  oRm.write("<div");
+  oRm.write("<div"); // scroll content
   oRm.writeAttribute("id", oControl.getId() + "-scroll-content");
+  oRm.writeAttribute("tabindex", 0);
   oRm.write(">"); // div element
 
   // nothing to render if there are no lanes
   if (!oControl.getLanes() || oControl.getLanes().length == 0) {
+    oRm.write("</div>"); // scroll content
     oRm.write("</div>"); // scroll container
     oRm.write("</div>"); // whole control
     return;
@@ -37551,12 +42283,6 @@ sap.suite.ui.commons.ProcessFlowRenderer.render = function(oRm, oControl) {
     oControl._handleException( exc );
     return;
   }
-
-  // fake field for accessibility keyboard interaction
-  oRm.write("<span tabindex=0 ");
-  oRm.writeAttribute("id", oControl.getId() + "-KbInteractionFakeElement");
-  oRm.addClass("sapSuiteUiKbInteractionFakeElementPF");
-  oRm.write("></span>");
 
   oRm.write("<table");
   oRm.writeAttribute("id", oControl.getId() + "-table");
@@ -37598,6 +42324,7 @@ sap.suite.ui.commons.ProcessFlowRenderer.render = function(oRm, oControl) {
     oRm.addClass("sapSuiteUiCommonsPFHeaderRow");
     oRm.writeClasses();
     oRm.write(">");
+
       oRm.write("<th>");
       oLaneHeaderSymbol = sap.suite.ui.commons.ProcessFlowLaneHeader.createNewStartSymbol(oControl._isHeaderMode());
       oRm.renderControl(oLaneHeaderSymbol);
@@ -37663,7 +42390,6 @@ sap.suite.ui.commons.ProcessFlowRenderer.render = function(oRm, oControl) {
     oRm.write("<td colspan=\"" + (nLaneNumber*5).toString() + "\"></td>");
     oRm.write("</tr>");
   }
-
   i = 0;
   while (i < m) {
     oRm.write("<tr>");
@@ -37674,26 +42400,39 @@ sap.suite.ui.commons.ProcessFlowRenderer.render = function(oRm, oControl) {
 
     while (j < n - 1) {
       oNode = calcMatrixNodes[i][j];
-
+      var isTDTagOpen = false; //Indicates if td element tag is open
       if ((j == 0) || (j % 2)) {
-        oRm.write("<td>");
+        isTDTagOpen = true;
+        oRm.write("<td");
       } else {
         oRm.write("<td colspan=\"4\">");
       }
 
       if (oNode) {
         if (oNode instanceof sap.suite.ui.commons.ProcessFlowNode) {
+          if(isTDTagOpen){
+            oRm.writeAttribute("tabindex", 0);
+            oRm.writeAttributeEscaped("aria-label", oNode._getAriaText());
+            oRm.write(">");
+            isTDTagOpen = false;
+          }
           oNode._setParentFlow(oControl);
           oNode._setZoomLevel(oControl.getZoomLevel());
           oNode._setFoldedCorner(oControl.getFoldedCorners());
           oRm.renderControl(oNode);
         } else {
+          if(isTDTagOpen){
+            oRm.write(">");
+            isTDTagOpen = false;
+          }
           oNode.setZoomLevel(oControl.getZoomLevel());
           oControl.addAggregation("connections", oNode);
           oRm.renderControl(oNode);
         }
       }
-
+      if(isTDTagOpen){
+        oRm.write(">");
+      }
       oRm.write("</td>");
       j++;
     }
@@ -37707,8 +42446,13 @@ sap.suite.ui.commons.ProcessFlowRenderer.render = function(oRm, oControl) {
 
   oRm.write("</tbody>");
   oRm.write("</table>");
+
   oRm.write("</div>"); // scroll content
   oRm.write("</div>"); // scroll container
+  this._writeCounter(oRm, oControl, "Right");
+  oRm.renderControl(oControl._getScrollingArrow("right"));
+
+  oRm.write("</div>"); // ProcessFlow container
 };
 
 
@@ -37763,6 +42507,17 @@ sap.suite.ui.commons.ProcessFlowRenderer._renderMergedNode = function( oRm, oCon
   }
 };
 
+sap.suite.ui.commons.ProcessFlowRenderer._writeCounter = function (oRm, oControl, sDirection) {
+    oRm.write("<span");
+    oRm.writeAttribute("id", oControl.getId() + "-counter" + sDirection);
+    oRm.addClass("suiteUiPFHCounter");
+    oRm.addClass("suiteUiPFHCounter" + sDirection);
+    oRm.writeClasses();
+    oRm.write(">"); // end span
+    oRm.writeEscaped("0");
+    oRm.write("</span>"); // text
+
+};
 }; // end of sap/suite/ui/commons/ProcessFlowRenderer.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.RepeaterViewConfiguration') ) {
 /*!
@@ -37828,7 +42583,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * A configuration control defining how the content of the sap.suite.ui.commons.ViewRepeater control is displayed and what data is bound.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -38185,7 +42940,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.RepeaterViewConfiguration", { m
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/RepeaterViewConfiguration.js
 
 }; // end of sap/suite/ui/commons/RepeaterViewConfiguration.js
@@ -38252,7 +43006,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * The default-action button control represents a simple push button. It is used for initiating actions, such as save or print. It can contain some text, an icon, or both; the order of the two can be configured. The action initiated by this button is considered to be the default action for the control, and it must be one of the selections defined in the Menu Button menu.
  * The Menu Button control is a button that opens a menu upon user's click. MenuButton is a composition of the Menu control and the Button control and thus inheriting all features. When a menu item is selected by the user, MenuButton throws an event called itemSelected. The event transfers the itemId of the selected item. As an alternative, the button press event can be used which has a similar behavior.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -38524,7 +43278,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.SplitButton", { metadata : {
  * @name sap.suite.ui.commons.SplitButton#destroyMenu
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/SplitButton.js
 jQuery.sap.require('sap.ui.commons.Button'); // unlisted dependency retained
@@ -38881,6 +43634,1326 @@ jQuery.sap.require('sap.ui.commons.MenuItem'); // unlisted dependency retained
 }());
 
 }; // end of sap/suite/ui/commons/SplitButton.js
+if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.TargetFilter') ) {
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+
+/* ----------------------------------------------------------------------------------
+ * Hint: This is a derived (generated) file. Changes should be done in the underlying 
+ * source files only (*.control, *.js) or they will be lost after the next generation.
+ * ---------------------------------------------------------------------------------- */
+
+// Provides control sap.suite.ui.commons.TargetFilter.
+jQuery.sap.declare("sap.suite.ui.commons.TargetFilter");
+
+jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
+
+
+
+/**
+ * Constructor for a new TargetFilter.
+ * 
+ * Accepts an object literal <code>mSettings</code> that defines initial 
+ * property values, aggregated and associated objects as well as event handlers. 
+ * 
+ * If the name of a setting is ambiguous (e.g. a property has the same name as an event), 
+ * then the framework assumes property, aggregation, association, event in that order. 
+ * To override this automatic resolution, one of the prefixes "aggregation:", "association:" 
+ * or "event:" can be added to the name of the setting (such a prefixed name must be
+ * enclosed in single or double quotes).
+ *
+ * The supported settings are:
+ * <ul>
+ * <li>Properties
+ * <ul>
+ * <li>{@link #getEntitySet entitySet} : string</li>
+ * <li>{@link #getMeasureColumnName measureColumnName} : string</li>
+ * <li>{@link #getSelectedColumnNames selectedColumnNames} : string[]</li></ul>
+ * </li>
+ * <li>Aggregations
+ * <ul>
+ * <li>{@link #getColumns columns} : sap.suite.ui.commons.TargetFilterColumn[]</li></ul>
+ * </li>
+ * <li>Associations
+ * <ul>
+ * <li>{@link #getSelectedColumns selectedColumns} : string | sap.suite.ui.commons.TargetFilterColumn</li></ul>
+ * </li>
+ * <li>Events
+ * <ul>
+ * <li>{@link sap.suite.ui.commons.TargetFilter#event:search search} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+ * <li>{@link sap.suite.ui.commons.TargetFilter#event:filterChange filterChange} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
+ * </li>
+ * </ul> 
+
+ *
+ * @param {string} [sId] id for the new control, generated automatically if no id is given 
+ * @param {object} [mSettings] initial settings for the new control
+ *
+ * @class
+ * The filter control for the SmartTable control
+ * @extends sap.ui.core.Control
+ * @version 1.30.8
+ *
+ * @constructor
+ * @public
+ * @experimental Since version 1.29. 
+ * API is not yet finished and might change completely.
+ * @name sap.suite.ui.commons.TargetFilter
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
+ */
+sap.ui.core.Control.extend("sap.suite.ui.commons.TargetFilter", { metadata : {
+
+	library : "sap.suite.ui.commons",
+	properties : {
+		"entitySet" : {type : "string", group : "Misc", defaultValue : null},
+		"measureColumnName" : {type : "string", group : "Misc", defaultValue : null},
+		"selectedColumnNames" : {type : "string[]", group : "Misc", defaultValue : null}
+	},
+	aggregations : {
+		"columns" : {type : "sap.suite.ui.commons.TargetFilterColumn", multiple : true, singularName : "column"}, 
+		"_dialog" : {type : "sap.m.SelectDialog", multiple : false, visibility : "hidden"}, 
+		"_countDisplay" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
+		"_quad0" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
+		"_quad1" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
+		"_quad2" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
+		"_quad3" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
+	},
+	associations : {
+		"selectedColumns" : {type : "sap.suite.ui.commons.TargetFilterColumn", multiple : true, singularName : "selectedColumn"}
+	},
+	events : {
+		"search" : {}, 
+		"filterChange" : {}
+	}
+}});
+
+
+/**
+ * Creates a new subclass of class sap.suite.ui.commons.TargetFilter with name <code>sClassName</code> 
+ * and enriches it with the information contained in <code>oClassInfo</code>.
+ * 
+ * <code>oClassInfo</code> might contain the same kind of informations as described in {@link sap.ui.core.Element.extend Element.extend}.
+ *   
+ * @param {string} sClassName name of the class to be created
+ * @param {object} [oClassInfo] object literal with informations about the class  
+ * @param {function} [FNMetaImpl] constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
+ * @return {function} the created class / constructor function
+ * @public
+ * @static
+ * @name sap.suite.ui.commons.TargetFilter.extend
+ * @function
+ */
+
+sap.suite.ui.commons.TargetFilter.M_EVENTS = {'search':'search','filterChange':'filterChange'};
+
+
+/**
+ * Getter for property <code>entitySet</code>.
+ * Entity set
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>entitySet</code>
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#getEntitySet
+ * @function
+ */
+
+/**
+ * Setter for property <code>entitySet</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sEntitySet  new value for property <code>entitySet</code>
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#setEntitySet
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>measureColumnName</code>.
+ * aggregationColumnName
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>measureColumnName</code>
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#getMeasureColumnName
+ * @function
+ */
+
+/**
+ * Setter for property <code>measureColumnName</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sMeasureColumnName  new value for property <code>measureColumnName</code>
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#setMeasureColumnName
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>selectedColumnNames</code>.
+ * selected columns
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string[]} the value of property <code>selectedColumnNames</code>
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#getSelectedColumnNames
+ * @function
+ */
+
+/**
+ * Setter for property <code>selectedColumnNames</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string[]} aSelectedColumnNames  new value for property <code>selectedColumnNames</code>
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#setSelectedColumnNames
+ * @function
+ */
+
+
+/**
+ * Getter for aggregation <code>columns</code>.<br/>
+ * columns
+ * 
+ * @return {sap.suite.ui.commons.TargetFilterColumn[]}
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#getColumns
+ * @function
+ */
+
+
+/**
+ * Inserts a column into the aggregation named <code>columns</code>.
+ *
+ * @param {sap.suite.ui.commons.TargetFilterColumn}
+ *          oColumn the column to insert; if empty, nothing is inserted
+ * @param {int}
+ *             iIndex the <code>0</code>-based index the column should be inserted at; for 
+ *             a negative value of <code>iIndex</code>, the column is inserted at position 0; for a value 
+ *             greater than the current size of the aggregation, the column is inserted at 
+ *             the last position        
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#insertColumn
+ * @function
+ */
+
+/**
+ * Adds some column <code>oColumn</code> 
+ * to the aggregation named <code>columns</code>.
+ *
+ * @param {sap.suite.ui.commons.TargetFilterColumn}
+ *            oColumn the column to add; if empty, nothing is inserted
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#addColumn
+ * @function
+ */
+
+/**
+ * Removes an column from the aggregation named <code>columns</code>.
+ *
+ * @param {int | string | sap.suite.ui.commons.TargetFilterColumn} vColumn the column to remove or its index or id
+ * @return {sap.suite.ui.commons.TargetFilterColumn} the removed column or null
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#removeColumn
+ * @function
+ */
+
+/**
+ * Removes all the controls in the aggregation named <code>columns</code>.<br/>
+ * Additionally unregisters them from the hosting UIArea.
+ * @return {sap.suite.ui.commons.TargetFilterColumn[]} an array of the removed elements (might be empty)
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#removeAllColumns
+ * @function
+ */
+
+/**
+ * Checks for the provided <code>sap.suite.ui.commons.TargetFilterColumn</code> in the aggregation named <code>columns</code> 
+ * and returns its index if found or -1 otherwise.
+ *
+ * @param {sap.suite.ui.commons.TargetFilterColumn}
+ *            oColumn the column whose index is looked for.
+ * @return {int} the index of the provided control in the aggregation if found, or -1 otherwise
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#indexOfColumn
+ * @function
+ */
+	
+
+/**
+ * Destroys all the columns in the aggregation 
+ * named <code>columns</code>.
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#destroyColumns
+ * @function
+ */
+
+
+/**
+ * doc
+ * 
+ * @return {string[]}
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#getSelectedColumns
+ * @function
+ */
+
+	
+/**
+ *
+ * @param {string | sap.suite.ui.commons.TargetFilterColumn} vSelectedColumn
+ *    Id of a selectedColumn which becomes an additional target of this <code>selectedColumns</code> association.
+ *    Alternatively, a selectedColumn instance may be given. 
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#addSelectedColumn
+ * @function
+ */
+
+/**
+ * @param {int | string | sap.suite.ui.commons.TargetFilterColumn} vSelectedColumn the selectedColumn to remove or its index or id
+ * @return {string} the id of the removed selectedColumn or null
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#removeSelectedColumn
+ * @function
+ */
+
+/**
+ * @return {string[]} an array with the ids of the removed elements (might be empty)
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#removeAllSelectedColumns
+ * @function
+ */
+
+	
+/**
+ * This event is fired if the button 'Search' is executed.
+ *
+ * @name sap.suite.ui.commons.TargetFilter#search
+ * @event
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'search' event of this <code>sap.suite.ui.commons.TargetFilter</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.TargetFilter</code>.<br/> itself. 
+ *  
+ * This event is fired if the button 'Search' is executed.
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.TargetFilter</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#attachSearch
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'search' event of this <code>sap.suite.ui.commons.TargetFilter</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#detachSearch
+ * @function
+ */
+
+/**
+ * Fire event search to attached listeners.
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @protected
+ * @name sap.suite.ui.commons.TargetFilter#fireSearch
+ * @function
+ */
+
+
+/**
+ * Event fired when the filter criteria has changed.
+ *
+ * @name sap.suite.ui.commons.TargetFilter#filterChange
+ * @event
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'filterChange' event of this <code>sap.suite.ui.commons.TargetFilter</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.TargetFilter</code>.<br/> itself. 
+ *  
+ * Event fired when the filter criteria has changed.
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.TargetFilter</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#attachFilterChange
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'filterChange' event of this <code>sap.suite.ui.commons.TargetFilter</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilter#detachFilterChange
+ * @function
+ */
+
+/**
+ * Fire event filterChange to attached listeners.
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.TargetFilter} <code>this</code> to allow method chaining
+ * @protected
+ * @name sap.suite.ui.commons.TargetFilter#fireFilterChange
+ * @function
+ */
+
+// Start of sap/suite/ui/commons/TargetFilter.js
+///**
+// * This file defines behavior for the control,
+// */
+sap.m.ComboBox.extend("sap.suite.ui.commons.TargetFilterComboBox", {
+	metadata : {
+		properties : {
+			popoverPlacement : {
+				type : "sap.m.PlacementType",
+				group : "Misc",
+				defaultValue : sap.m.PlacementType.Bottom
+			}
+		}
+	},
+
+	_createPopover : function() {
+		var oPicker = new sap.m.Popover({
+			showHeader : false,
+			placement : this.getPopoverPlacement(),
+			offsetX : 0,
+			offsetY : 0,
+			initialFocus : this,
+			bounce : false
+		});
+		oPicker.addStyleClass("TFComboBox");
+
+		this._decoratePopover(oPicker);
+		return oPicker;
+	},
+	
+	renderer : function(oRm, oControl) {
+		sap.m.ComboBoxRenderer.render.apply(this, arguments);
+	}
+});
+
+sap.m.Link.extend("sap.suite.ui.commons.TargetFilterLink", {
+	metadata : {
+		properties : {
+			count : {
+				type : "sap.ui.core/int"
+			}
+		}
+	},
+
+	renderer : function(oRm, oControl) {
+		sap.m.LinkRenderer.render.apply(this, arguments);
+	}
+});
+
+sap.ui.core.Control.extend(
+				"sap.suite.ui.commons.TargetFilterLinksCloud",
+				{
+					metadata : {
+						properties : {
+							index : {
+								type : "sap.ui.core/int"
+							}
+						},
+						aggregations : {
+							links : {
+								cardinality : "0..n",
+								type : "sap.suite.ui.commons.TargetFilterLink"
+							}
+						}
+					},
+
+					_setFontSizes : function(aLinks) {
+						var aLabelSizes = [ "Largest", "Large", "Medium", "Small", "Smallest" ];
+						var aOccurrencies = jQuery.unique(aLinks.map(function(o) {	return o.getCount(); })); // Unique values of occurrence
+						switch (aOccurrencies.length) {
+						case 1:
+							for (var iLine = 0; iLine < aLinks.length; iLine++) {
+								aLinks[iLine].addStyleClass(aLabelSizes[2]);
+							}
+
+							break; // for a single occurrence value - use font in the middle
+						case 2:
+							for (var iLine = 0; iLine < aLinks.length; iLine++) {
+								if (aOccurrencies[0] == aLinks[iLine]
+										.getCount()) {
+									aLinks[iLine].addStyleClass(aLabelSizes[1]);
+								} else {
+									aLinks[iLine].addStyleClass(aLabelSizes[3]);
+								}
+							}
+							break;
+						default:
+							var iOccMin = Math.min.apply(null, aOccurrencies);
+							var iOccMax = Math.max.apply(null, aOccurrencies);
+							for (var iLine = 0; iLine < aLinks.length; iLine++) {
+								var iSize = Math.floor(4.99	* (iOccMax - aLinks[iLine].getCount()) / (iOccMax - iOccMin));
+								aLinks[iLine].addStyleClass(aLabelSizes[iSize]); // Apply label sizes (0..4) by occurrence
+							}
+						}
+					},
+
+					renderer : function(oRm, oControl) {
+						var oTfQuadrant = oControl.getParent();
+						var aLinks = oControl.getLinks();
+						oRm.write("<div");
+						oRm.writeControlData(oControl);
+						oRm.addClass("sapSuiteUiTFLinksCloud");
+						oRm.writeClasses();
+						oRm.write(">");
+						oControl._setFontSizes(aLinks);
+						for (var i = 0; i < aLinks.length; i++) {
+							if (!oTfQuadrant._oFilters[aLinks[i].getText()]) {
+								aLinks[i].addStyleClass("Unselected");
+							}
+							oRm.renderControl(aLinks[i]);
+						}
+						oRm.write("</div>");
+					},
+					
+					updateDirtyFlag: function() {
+						var oTfQuadrant = this.getParent();
+						if (Object.getOwnPropertyNames(oTfQuadrant._oFilters).length) {
+							this.$().addClass("Dirty");
+						} else {
+							this.$().removeClass("Dirty");
+						}
+					},
+
+					onAfterRendering : function() {
+						this.drawCloudCircle();
+						this.updateDirtyFlag();
+					},
+					
+					calculateBgSquare : function() {
+						var iSquare = 0;
+						for (var i = 0; i < this._bgArea.length; i++) {
+							var iWidth = this._bgArea[i].width;
+							iSquare += (iWidth > 0) ? iWidth : 0;
+						}
+						return iSquare;
+					},
+					
+					calculateLinesSquare : function(oLines) {
+						var iSquare = 0;
+						oLines.each(function() {
+							var oLine = jQuery(this);
+							iSquare += (1 + parseInt(oLine.outerWidth(true)) * parseInt(oLine.outerHeight(true)));
+						});
+						return iSquare;
+					},
+
+					drawCloudCircle : function() {
+						var iOuterCircleRadius = parseInt(jQuery(".sapSuiteUiTFOuterCircle").outerWidth(true) / 2) - 3;
+						var iCentralCircleRadius = parseInt(jQuery(".sapSuiteUiTFCentralCircle").outerWidth(true) / 2) + 3;
+						var iVisibleHeight = parseInt(jQuery(".sapSuiteUiTFOuterCont").outerHeight(true) / 2);
+						var bIsPhone = jQuery("html").hasClass("sapUiMedia-Std-Phone");
+						var iBoxHeight = parseInt(jQuery(".sapSuiteUiTFParCont").outerHeight(true));
+						var iBoxWidth = 90;
+						if (bIsPhone) {
+							iVisibleHeight = 200;
+							iBoxWidth = 200;
+						}
+						this.initQuadArea(iOuterCircleRadius - 16,	iVisibleHeight - 16, iCentralCircleRadius + 16,	iBoxHeight + 16, iBoxWidth + 16, 16);
+						var that = this;
+						var iQuad = this.getIndex();
+						var aPlaced;
+						var oLines = jQuery(".sapSuiteUiTFLine.Quad"+ iQuad);
+						if (oLines.length != 0) {
+							var oLinkOthers = jQuery(".sapSuiteUiTFOthersLine.Quad" + iQuad);
+							var bLinkOthers = oLinkOthers.length !== 0;
+	
+							var iBgSquare = this.calculateBgSquare();
+							var iLinesSquare = this.calculateLinesSquare(oLines);
+							var fSquareFactor = iBgSquare / iLinesSquare; 
+	
+							var iQuadrantAttempts = 3;
+							do {
+								aPlaced = [];
+								if (bLinkOthers) {
+									// pre-place line "+ N other"
+									if (iQuad <= 1) { // place at minimal possible Y coordinates
+										var aPlacements = that.findPlacements(parseInt(oLinkOthers.outerWidth(true)), parseInt(oLinkOthers.outerHeight(true)));
+										aPlaced.push(that.placeLine(oLinkOthers, aPlacements[0], iQuad, true, iOuterCircleRadius));
+									} else { // place at maximal possible Y coordinates
+										var aPlacements = that.findPlacements(parseInt(oLinkOthers.outerWidth(true)), parseInt(oLinkOthers.outerHeight(true)));
+										aPlaced.push(that.placeLine(oLinkOthers, aPlacements[aPlacements.length - 1], iQuad, true, iOuterCircleRadius));
+									}
+								}
+								var bVisible = true;
+								oLines.each(function() {
+									var oLine = jQuery(this);
+									if (!bVisible) {
+										oLine.addClass("Hidden");
+										return;
+									}
+										
+									var iRealLineWidth = parseInt(oLine.outerWidth(true)) + 1;
+									if (fSquareFactor < .9) { // Need to do narrowing of the keywords
+									//if (iQuadrantAttempts == 0) { // Last attempt - allow narrowing the keywords
+										var bPlaced = false;
+										var bFirstLoop = true;
+										var iLineWidth = iRealLineWidth;
+										do {
+											var aPlacements = that.findPlacements(iLineWidth, parseInt(oLine.outerHeight(true)));
+											var iAttempts = Math.min(aPlacements.length, 10);
+											while (iAttempts-- > 0) { // try to randomly place the keyword
+												var oPlacementAttempt = that.placeLine(oLine, aPlacements[Math.floor(Math.random() * aPlacements.length)],	1 + iQuad,	false,	iOuterCircleRadius);
+												if (!that.isIntersecting(oPlacementAttempt,	aPlaced)) {
+													aPlaced.push(oPlacementAttempt);
+													bPlaced = true;
+													break;
+												}
+											}
+											if (!bPlaced && bFirstLoop) {
+												iLineWidth -= parseInt(iLineWidth * fSquareFactor);  // to speed up, on the first loop we diminish size depending on square factor.
+											}
+											bFirstLoop = false;
+										} while (!bPlaced && (iLineWidth --) > parseInt(oLine.css("min-width"))); // if there is no place for the line - try narrowing the line
+										if (!bPlaced) { // If failed to place next line - hide this line and all the next lines in quadrant
+											bVisible = false;
+										}
+										if (!bVisible) {
+											oLine.addClass("Hidden");
+										}
+									} else { // Try to place keyword without narrowing
+										var aPlacements = that.findPlacements(iRealLineWidth, parseInt(oLine.outerHeight(true)));
+										var iAttempts = Math.min(aPlacements.length, 10);
+										while (iAttempts-- > 0) { // try to randomly place the keyword
+											var oPlacementAttempt = that.placeLine(oLine, aPlacements[Math.floor(Math.random() * aPlacements.length)], 1 + iQuad, false, iOuterCircleRadius);
+											if (!that.isIntersecting(oPlacementAttempt, aPlaced)) {
+												aPlaced.push(oPlacementAttempt);
+												break;
+											}
+										}
+									}
+							});
+							} while (oLines.length + (bLinkOthers ? 1 : 0) > aPlaced.length	&& iQuadrantAttempts-- > 0); // if we haven't found the way to place all keywords - try again iQuadrantAttempts times
+							for (var iPl = 0; iPl < aPlaced.length; iPl++) { // do actual placement
+								var oPlaced = aPlaced[iPl].line;
+								oPlaced.css("top", "" + aPlaced[iPl].y1 + "px");
+								oPlaced.css("left", "" + aPlaced[iPl].x1 + "px");
+								oPlaced.outerWidth("" + aPlaced[iPl].lineWidth + "px");
+							}
+						}
+					},
+
+					isIntersecting : function(oPl, aPlaced) {
+						for (var i = 0; i < aPlaced.length; i++) {
+							if (Math.max(0, Math.min(oPl.x2, aPlaced[i].x2)	- Math.max(oPl.x1, aPlaced[i].x1)) * Math.max(0, Math.min(oPl.y2, aPlaced[i].y2) - Math.max(oPl.y1, aPlaced[i].y1)) > 0) {
+								return true;
+							}
+						}
+						return false;
+					},
+
+					initQuadArea : function(iOuterRadius, iVisibleHeight,
+							iInnerRadius, iBoxHeight, iBoxWidth, iAxisMargin) {
+						var bIsPhone = jQuery("html").hasClass(
+								"sapUiMedia-Std-Phone");
+						this._bgArea = new Array(iVisibleHeight);
+						for (var i = 0; i <= iVisibleHeight; i++) { // limit available space with outer radius and visible height
+							this._bgArea[i] = {
+								start : iAxisMargin,
+								width : parseInt(Math.sqrt(iOuterRadius	* iOuterRadius - i * i))
+							};
+							if (i <= iInnerRadius) { // limit available space with inner circle
+								this._bgArea[i].start = parseInt(Math.sqrt(iInnerRadius * iInnerRadius - i * i));
+								this._bgArea[i].width -= this._bgArea[i].start;
+							}
+							if (i <= iAxisMargin) { // prohibit placing lines near the axis
+								this._bgArea[i].width = 0;
+							}
+							if (i <= iBoxHeight) { // limit available space with combo box
+								this._bgArea[i].width -= iBoxWidth;
+							} else { // limit available width with visible width on phone layout
+								if (bIsPhone) {
+									this._bgArea[i].width = Math.min(this._bgArea[i].width, 160);
+								}
+							}
+						}
+					},
+
+					findPlacements : function(iWidth, iHeight) {
+						var aPlacements = [];
+						var iBgHeight = this._bgArea.length; // number of lines in bg area
+						for (var i = 0; i <= iBgHeight - iHeight; i++) { // loop through possible start Y
+							var iMaxStart = 0;
+							var iMinBgWidth = this._bgArea[i].width;
+							var bCanBePlaced = true;
+							for (var j = i; j < i + iHeight; j++) { // see if it can be placed
+								var iBgLine = this._bgArea[j];
+								if (iWidth > iBgLine.width) {
+									bCanBePlaced = false;
+									break;
+								}
+								if (iBgLine.start > iMaxStart) {
+									iMaxStart = iBgLine.start;
+								}
+								if (iBgLine.width < iMinBgWidth) {
+									iMinBgWidth = iBgLine.width;
+								}
+							}
+							if (bCanBePlaced) {
+								aPlacements.push({
+									x : iMaxStart,
+									y : i,
+									lineWidth : iWidth,
+									availableWidth : iMinBgWidth
+								});
+							}
+						}
+						return aPlacements;
+					},
+
+					placeLine : function(oLine, oPlacement, iQuad, bCentered, iRadius) {
+						var iXshift = Math.floor((oPlacement.availableWidth - oPlacement.lineWidth)	* (bCentered ? .5 : Math.random()));
+						var iX = oPlacement.x + iXshift; // place randomly in available horizontal space
+						var iY = oPlacement.y;
+						if (iQuad == 4) {
+							iX = iRadius + iX;
+							iY = iRadius + iY;
+						} else if (iQuad == 1) {
+							iX = iRadius + iX;
+							iY = iRadius - iY - oLine.outerHeight(true);
+						} else if (iQuad == 2) {
+							iX = iRadius - iX - oPlacement.lineWidth;
+							iY = iRadius - iY - oLine.outerHeight(true);
+						} else {
+							iX = iRadius - iX - oPlacement.lineWidth;
+							iY = iRadius + iY;
+						}
+						return {
+							x1 : iX,
+							x2 : iX + oPlacement.lineWidth,
+							y1 : iY,
+							y2 : iY + oLine.outerHeight(true),
+							lineWidth : oPlacement.lineWidth,
+							line : oLine
+						};
+					}
+				});
+
+sap.ui.core.Control.extend("sap.suite.ui.commons.TargetFilterQuadrant", {
+	metadata: {
+		properties : {
+			index : {type : "sap.ui.core/int"}
+		},
+		aggregations: {
+			linkClouds : {cardinality : "0..n", type : "sap.suite.ui.commons.TargetFilterLinksCloud"}
+		}
+	 },
+	 
+	 init: function() {
+		var that = this;
+		 
+		this._oFilterCb = new sap.suite.ui.commons.TargetFilterComboBox(this.getId() + "-cb", {
+			selectionChange : function() {
+				that.setColumn(this.getSelectedKey(), true);
+			},
+		});
+		
+		this._oValueHelpBtn = new sap.m.Button(this.getId() + "-btn", {
+			icon : "sap-icon://value-help",
+			press : function() {
+				that.fnShowValueHelper();
+			}
+		});
+		
+		this.addLinkCloud(new sap.suite.ui.commons.TargetFilterLinksCloud(this.getId() + "-links"));
+	 },
+
+	setProperty : function(sPropertyName, iValue, bSuppressInvalidate) {
+		sap.ui.core.Element.prototype.setProperty.apply(this, arguments);
+		if (sPropertyName === "index") {
+			if (iValue == 0 || iValue == 1) {
+				this._oFilterCb.setPopoverPlacement(sap.m.PlacementType.VerticalPreferedTop)
+					.addStyleClass("sapSuiteTFCBTop");
+			} else {
+				this._oFilterCb.setPopoverPlacement(sap.m.PlacementType.VerticalPreferedBottom);
+			}
+			
+			if (iValue == 0 || iValue == 3) {
+				this._oFilterCb.addStyleClass("sapSuiteTFCBArrowBeforeVal");
+			}
+			
+			this.getLinkClouds()[0].setIndex(iValue);
+		}
+	},
+	
+	setColumn: function(sColumnId, bDontUpdateFilter) {
+		this._oColumn = sap.ui.getCore().byId(sColumnId);
+		
+		if (this._oColumn) {
+			this._oFilters = {};
+			
+			if (!bDontUpdateFilter) {
+				this._oFilterCb.setSelectedKey(sColumnId);
+			}
+			
+			var oTf = this.getParent();
+			var that = this;
+			var oRowTmpl = new sap.suite.ui.commons.TargetFilterLink({
+				text : "{" + this._oColumn.getName() + "}",
+				count : "{" + oTf.getMeasureColumnName() + "}",
+				press : function(oEvent) {
+//					oTf._oSelLst.addItem(new sap.m.StandardListItem({
+//						title : this.getText()
+//					}));
+					if (that._oFilters[this.getText()]) {
+						delete that._oFilters[this.getText()];
+						this.$().addClass("Unselected");
+					} else {
+						that._oFilters[this.getText()] = new sap.ui.model.Filter(that._oColumn.getName(),
+							sap.ui.model.FilterOperator.EQ, this.getText());
+							
+						this.$().removeClass("Unselected");
+					}
+					that.getLinkClouds()[0].updateDirtyFlag();
+				}
+			});
+			oRowTmpl.addStyleClass("sapSuiteUiTFLine");
+			oRowTmpl.addStyleClass("Quad" + this.getIndex());
+		
+			this.getLinkClouds()[0].bindAggregation("links", {
+				path : "/" + oTf.getEntitySet(),
+				parameters : {
+					select : this._oColumn.getName() + "," + oTf.getMeasureColumnName()
+				},
+				template : oRowTmpl,
+				length : 25,
+				sorter : [ new sap.ui.model.Sorter(oTf.getMeasureColumnName(), true),
+						new sap.ui.model.Sorter(this._oColumn.getName(), false) ]
+			});
+		} else {
+			this.getLinkClouds()[0].removeAllLinks();
+		}
+	},
+	
+	fnShowValueHelper: function() {
+		var oTf = this.getParent();
+		
+		var oItem = new sap.m.StandardListItem({
+			title : "{" + this._oColumn.getName() + "}",
+			description : {
+				path : oTf.getMeasureColumnName(),
+				formatter : function(iNum) {
+					return "Entries " + iNum
+				}
+			},
+		// selected: "{selected}"
+		});
+	
+		oTf._oSelectDialog.bindAggregation("items", {
+			path : "/" + oTf.getEntitySet(),
+			parameters : {
+				select : this._oColumn.getName() + "," + oTf.getMeasureColumnName()
+			},
+			sorter : [ new sap.ui.model.Sorter(oTf.getMeasureColumnName(), true),
+					new sap.ui.model.Sorter(this._oColumn.getName(), false) ],
+			template : oItem
+		});
+	
+		oTf._oSelectDialog._oColumn = this._oColumn;
+		oTf._oSelectDialog.setTitle(this._oColumn.getTitle()),
+		oTf._oSelectDialog.open();
+	},
+	
+	rebindColumns: function() {
+		var oTf = this.getParent();
+		this._oFilterCb.removeAllItems();
+
+		for (var i = 0; i < oTf.getColumns().length; i++) {
+			var oColumn = oTf.getColumns()[i];
+
+			var oItem = new sap.ui.core.Item({
+				key : oColumn.getId(),
+				text : oColumn.getTitle()
+			});
+			this._oFilterCb.addItem(oItem);
+		}
+
+		if (oTf.getSelectedColumns() && oTf.getSelectedColumns()[this.getIndex()]) {
+			this.setColumn(oTf.getSelectedColumns()[this.getIndex()]);
+		} else if (oTf.getColumns()[this.getIndex()]) {
+			this.setColumn(oTf.getColumns()[this.getIndex()].getId());
+		} else {
+			this.setColumn();
+		}
+	},
+	
+	 exit: function() {
+		 this._oFilterCb.destroy();
+		 this._oValueHelpBtn.destroy();
+	 },
+	 
+	renderer : function(oRm, oControl) {
+		oRm.write("<div");
+		oRm.writeControlData(oControl);
+		oRm.addClass("sapSuiteUiTFQuadrant");
+		oRm.addClass("Quad" + oControl.getIndex());
+		oRm.writeClasses();
+			oRm.write(">");
+			 oRm.write("<div");
+			 oRm.addClass("sapSuiteUiTFParCont");
+			 oRm.addClass("Quad" + oControl.getIndex());
+			 oRm.writeClasses();
+			 oRm.write(">");
+			 	oRm.renderControl(oControl._oFilterCb);
+			 oRm.write("</div>");
+
+			 oRm.write("<div");
+			 oRm.addClass("sapSuiteUiTFValHel");
+			 oRm.addClass("Quad" + oControl.getIndex());
+			 oRm.writeClasses();
+			 oRm.write(">");
+			 	oRm.renderControl(oControl._oValueHelpBtn);
+			 oRm.write("</div>");
+			 
+			 oRm.renderControl(oControl.getLinkClouds()[0]);
+		oRm.write("</div>");
+	}
+ });
+
+sap.ui.core.Control.extend("sap.suite.ui.commons.TargetFilterCountDisplay", {
+	metadata : {
+		aggregations : {
+			counts : {
+				cardinality : "0..n",
+				type : "sap.suite.ui.commons.TargetFilterCount"
+			}
+		}
+	},
+
+	renderer : function(oRm, oControl) {
+		oRm.write("<div");
+		oRm.writeControlData(oControl);
+		oRm.addClass("sapSuiteUiTFCentralLabel");
+		oRm.writeClasses();
+		oRm.write(">");
+		if (oControl.getCounts().length) {
+			oRm.write(oControl.getCounts()[0].getCount());
+		}
+		oRm.write("</div>");
+	}
+});
+
+sap.ui.core.Element.extend("sap.suite.ui.commons.TargetFilterCount", {
+	metadata : {
+		properties : {
+			count : {
+				type : "sap.ui.core/int"
+			}
+		},
+		events : {
+			countUpdated : {}
+		}
+	},
+
+	setProperty : function(sPropertyName, oValue, bSuppressInvalidate) {
+		sap.ui.core.Element.prototype.setProperty.apply(this, arguments);
+		if (sPropertyName === "count") {
+			this.fireCountUpdated({});
+		}
+	}
+});
+
+sap.suite.ui.commons.TargetFilter.prototype.init = function() {
+	sap.ui.Device.media.attachHandler(this.rerender, this,
+			sap.ui.Device.media.RANGESETS.SAP_STANDARD);
+
+	var that = this;
+	
+	this._aQudrants = [];
+	for (var i = 0; i < 4; i++) {
+		var oQuad = new sap.suite.ui.commons.TargetFilterQuadrant(this.getId() + "-quad" + i, {index: i});
+		this._aQudrants.push(oQuad);
+		this.setAggregation("_quad" + i, oQuad);
+	}	
+
+	this._oSearchBtn = new sap.m.Button(this.getId() + "-search", {
+		icon : "sap-icon://initiative",
+		press : function() {
+		}
+	}).addStyleClass("sapSuiteUiTFSearchBtn");
+
+	this._oSettingsBtn = new sap.m.Button(this.getId()
+			+ "-master-settings-button", {
+		icon : "sap-icon://action-settings"
+	});
+
+	this._oSearchFieldLbl = new sap.m.Label(this.getId()
+			+ "-search-field-label", {
+		text : "Search other keyword",
+		labelFor : this.getId() + "-search-field"
+	});
+
+	this._oSearchField = new sap.m.SearchField(this.getId() + "-search-field");
+
+	this._oSelLstLbl = new sap.m.Label(this.getId() + "-selection-list-label",
+			{
+				text : "Your selection",
+				labelFor : this.getId() + "-selection-list"
+			});
+
+	this._oSelLst = new sap.m.List(this.getId() + "-selection-list", {
+		mode : "Delete",
+		"delete" : this.fnHandleDelete,
+		enableBusyIndicator : true,
+		showSeparators : "None",
+		growing : true
+	});
+
+	this._oScrollCont = new sap.m.ScrollContainer(this.getId() + "-scrl-cntnr",
+			{
+				width : "14.5rem",
+				horizontal : false,
+				vertical : true,
+				height : "17rem",
+				content : this._oSelLst
+			});
+	this._oShowSelLbl = new sap.m.Link(this.getId() + "-show-selected-label")
+			.addStyleClass("sapSuiteUiTFShowSelLbl");
+
+	this._oShowSelBox = new sap.m.HBox(this.getId() + "-selection-box", {
+		items : [ this._oShowSelLbl, this._oSearchBtn ]
+	}).addStyleClass("sapSuiteUiTFShowSelBox");
+
+	this._oRightPanel = new sap.m.VBox(this.getId() + "-right-panel", {
+		items : [ this._oSearchFieldLbl, this._oSearchField, this._oSelLstLbl,
+				this._oScrollCont, this._oShowSelBox ]
+	});
+
+	this._oSelectDialog = new sap.m.SelectDialog({
+		multiSelect : true,
+		liveChange : function(oEvent) {
+			var aFilters = [];
+			var sSearchValue = oEvent.getParameter("value");
+			var itemsBinding = oEvent.getParameter("itemsBinding");
+
+			if (sSearchValue !== undefined && sSearchValue.length) {
+				aFilters.push(new sap.ui.model.Filter(this._oColumn.getName(),
+						sap.ui.model.FilterOperator.EQ, sSearchValue));
+			}
+			itemsBinding.filter(aFilters);
+		}
+	});
+	this.setAggregation("_dialog", this._oSelectDialog);
+	
+	this._oCountDisplay = new sap.suite.ui.commons.TargetFilterCountDisplay();
+	this.setAggregation("_countDisplay", this._oCountDisplay);
+};
+
+sap.suite.ui.commons.TargetFilter.prototype._bindModel = function() {
+	if (this._bBindModel) {
+		this._bBindModel = false;
+
+
+		for (var i = 0; i < this._aQudrants.length; i++) {
+			this._aQudrants[i].rebindColumns();
+		}
+		
+		var that = this;
+		this._oCountDisplay.bindAggregation("counts", {
+			path : "/" + this.getEntitySet(),
+			parameters : {
+				select : this.getMeasureColumnName()
+			},
+			length : 1,
+			template : new sap.suite.ui.commons.TargetFilterCount({
+				count : "{" + this.getMeasureColumnName() + "}",
+				countUpdated: function() {
+					that._oShowSelLbl.setText("Show selected " + this.getCount());
+				}
+			})
+		});
+	}
+};
+
+sap.suite.ui.commons.TargetFilter.prototype._callMethodInManagedObject = function(
+		sFunctionName, sEntityName) {
+	if (sEntityName === "columns" || sEntityName === "entitySet"
+			|| sEntityName === "measureColumnName") {
+		this._bBindModel = true;
+	}
+	var args = Array.prototype.slice.call(arguments);
+	return sap.ui.core.Control.prototype[sFunctionName].apply(this, args
+			.slice(1));
+};
+
+sap.suite.ui.commons.TargetFilter.prototype.setProperty = function(sProp,
+		oValue, bSuppressInvalidate) {
+	this._callMethodInManagedObject("setProperty", sProp, oValue,
+			bSuppressInvalidate);
+	return this;
+};
+
+sap.suite.ui.commons.TargetFilter.prototype.insertAggregation = function(
+		sAggregationName, oObject, iIndex, bSuppressInvalidate) {
+	this._callMethodInManagedObject("insertAggregation", sAggregationName,
+			oObject, iIndex, bSuppressInvalidate);
+	return this;
+};
+
+sap.suite.ui.commons.TargetFilter.prototype.addAggregation = function(
+		sAggregationName, oObject, bSuppressInvalidate) {
+	this._callMethodInManagedObject("addAggregation", sAggregationName,
+			oObject, bSuppressInvalidate);
+	return this;
+};
+
+sap.suite.ui.commons.TargetFilter.prototype.removeAggregation = function(
+		sAggregationName, oObject, bSuppressInvalidate) {
+	return this._callMethodInManagedObject("removeAggregation",
+			sAggregationName, oObject, bSuppressInvalidate);
+};
+
+sap.suite.ui.commons.TargetFilter.prototype.removeAllAggregation = function(
+		sAggregationName, bSuppressInvalidate) {
+	return this._callMethodInManagedObject("removeAllAggregation",
+			sAggregationName, bSuppressInvalidate);
+};
+
+sap.suite.ui.commons.TargetFilter.prototype.destroyAggregation = function(
+		sAggregationName, bSuppressInvalidate) {
+	this._callMethodInManagedObject("destroyAggregation", sAggregationName,
+			bSuppressInvalidate);
+	return this;
+};
+
+sap.suite.ui.commons.TargetFilter.prototype.fnHandleDelete = function(oEvent) {
+	var oList = oEvent.getSource();
+	// after deletion put the focus back to the list
+	oList.attachEventOnce("updateFinished", oList.focus, oList);
+	oList.removeItem(oEvent.getParameter("listItem"));
+	oList.rerender();
+};
+
+sap.suite.ui.commons.TargetFilter.prototype.onBeforeRendering = function() {
+	this._bindModel();
+};
+
+sap.suite.ui.commons.TargetFilter.prototype.exit = function() {
+	sap.ui.Device.media.detachHandler(this.rerender, this,
+			sap.ui.Device.media.RANGESETS.SAP_STANDARD);
+	this._oSearchBtn.destroy();
+	this._oSettingsBtn.destroy();
+	this._oSearchFieldLbl.destroy();
+	this._oSearchField.destroy();
+	this._oSelLstLbl.destroy();
+	this._oSelLst.destroy();
+	this._oScrollCont.destroy();
+	this._oShowSelLbl.destroy();
+	this._oShowSelBox.destroy();
+	this._oRightPanel.destroy();
+};
+}; // end of sap/suite/ui/commons/TargetFilter.js
+if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.TargetFilterColumn') ) {
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
+ */
+
+/* ----------------------------------------------------------------------------------
+ * Hint: This is a derived (generated) file. Changes should be done in the underlying 
+ * source files only (*.control, *.js) or they will be lost after the next generation.
+ * ---------------------------------------------------------------------------------- */
+
+// Provides control sap.suite.ui.commons.TargetFilterColumn.
+jQuery.sap.declare("sap.suite.ui.commons.TargetFilterColumn");
+
+jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
+
+
+
+/**
+ * Constructor for a new TargetFilterColumn.
+ * 
+ * Accepts an object literal <code>mSettings</code> that defines initial 
+ * property values, aggregated and associated objects as well as event handlers. 
+ * 
+ * If the name of a setting is ambiguous (e.g. a property has the same name as an event), 
+ * then the framework assumes property, aggregation, association, event in that order. 
+ * To override this automatic resolution, one of the prefixes "aggregation:", "association:" 
+ * or "event:" can be added to the name of the setting (such a prefixed name must be
+ * enclosed in single or double quotes).
+ *
+ * The supported settings are:
+ * <ul>
+ * <li>Properties
+ * <ul>
+ * <li>{@link #getName name} : string</li>
+ * <li>{@link #getTitle title} : string</li></ul>
+ * </li>
+ * <li>Aggregations
+ * <ul></ul>
+ * </li>
+ * <li>Associations
+ * <ul></ul>
+ * </li>
+ * <li>Events
+ * <ul></ul>
+ * </li>
+ * </ul> 
+ *
+ * 
+ * In addition, all settings applicable to the base type {@link sap.ui.core.Element#constructor sap.ui.core.Element}
+ * can be used as well.
+ *
+ * @param {string} [sId] id for the new control, generated automatically if no id is given 
+ * @param {object} [mSettings] initial settings for the new control
+ *
+ * @class
+ * TargetFilterColumn
+ * @extends sap.ui.core.Element
+ * @version 1.30.8
+ *
+ * @constructor
+ * @public
+ * @name sap.suite.ui.commons.TargetFilterColumn
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
+ */
+sap.ui.core.Element.extend("sap.suite.ui.commons.TargetFilterColumn", { metadata : {
+
+	library : "sap.suite.ui.commons",
+	properties : {
+		"name" : {type : "string", group : "Misc", defaultValue : null},
+		"title" : {type : "string", group : "Misc", defaultValue : null}
+	}
+}});
+
+
+/**
+ * Creates a new subclass of class sap.suite.ui.commons.TargetFilterColumn with name <code>sClassName</code> 
+ * and enriches it with the information contained in <code>oClassInfo</code>.
+ * 
+ * <code>oClassInfo</code> might contain the same kind of informations as described in {@link sap.ui.core.Element.extend Element.extend}.
+ *   
+ * @param {string} sClassName name of the class to be created
+ * @param {object} [oClassInfo] object literal with informations about the class  
+ * @param {function} [FNMetaImpl] constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
+ * @return {function} the created class / constructor function
+ * @public
+ * @static
+ * @name sap.suite.ui.commons.TargetFilterColumn.extend
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>name</code>.
+ * name
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>name</code>
+ * @public
+ * @name sap.suite.ui.commons.TargetFilterColumn#getName
+ * @function
+ */
+
+/**
+ * Setter for property <code>name</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sName  new value for property <code>name</code>
+ * @return {sap.suite.ui.commons.TargetFilterColumn} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilterColumn#setName
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>title</code>.
+ * label
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>title</code>
+ * @public
+ * @name sap.suite.ui.commons.TargetFilterColumn#getTitle
+ * @function
+ */
+
+/**
+ * Setter for property <code>title</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sTitle  new value for property <code>title</code>
+ * @return {sap.suite.ui.commons.TargetFilterColumn} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TargetFilterColumn#setTitle
+ * @function
+ */
+
+// Start of sap/suite/ui/commons/TargetFilterColumn.js
+///**
+// * This file defines behavior for the control,
+// */
+//sap.suite.ui.commons.TargetFilterColumn.prototype.init = function(){
+//   // do something for initialization...
+//};
+
+}; // end of sap/suite/ui/commons/TargetFilterColumn.js
 if ( !jQuery.sap.isDeclared('sap.suite.ui.commons.ThingCollection') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
@@ -38938,7 +45011,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control contains a collection of the sap.ui.ux3.ThingViewer controls or descendants of sap.ui.ux3.ThingViewer. It allows you to navigate through them as well as delete them from the collection.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -39195,7 +45268,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.ThingCollection", { metadata : 
  * @public
  * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
-
 
 // Start of sap/suite/ui/commons/ThingCollection.js
 ///**
@@ -39513,7 +45585,7 @@ jQuery.sap.require('sap.ui.ux3.ThingInspector'); // unlisted dependency retained
  * @class
  * This control extends the sap.ui.ux3.ThingInspector control. It displays the sap.suite.ui.commons.ThreePanelThingViewer control in the sap.ui.ux3.Overlay control.
  * @extends sap.ui.ux3.ThingInspector
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -39706,7 +45778,6 @@ sap.ui.ux3.ThingInspector.extend("sap.suite.ui.commons.ThreePanelThingInspector"
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/ThreePanelThingInspector.js
 jQuery.sap.require('sap.ui.ux3.ThingInspector'); // unlisted dependency retained
 
@@ -39847,7 +45918,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control serves a universal container for different types of content and footer.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -39970,6 +46041,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.TileContent", { metadata : {
  *
  * @return {boolean} the value of property <code>disabled</code>
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.TileContent#getDisabled
  * @function
  */
@@ -39982,6 +46054,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.TileContent", { metadata : {
  * @param {boolean} bDisabled  new value for property <code>disabled</code>
  * @return {sap.suite.ui.commons.TileContent} <code>this</code> to allow method chaining
  * @public
+ * @since 1.23
  * @name sap.suite.ui.commons.TileContent#setDisabled
  * @function
  */
@@ -39995,6 +46068,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.TileContent", { metadata : {
  *
  * @return {sap.suite.ui.commons.FrameType} the value of property <code>frameType</code>
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.TileContent#getFrameType
  * @function
  */
@@ -40007,6 +46081,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.TileContent", { metadata : {
  * @param {sap.suite.ui.commons.FrameType} oFrameType  new value for property <code>frameType</code>
  * @return {sap.suite.ui.commons.TileContent} <code>this</code> to allow method chaining
  * @public
+ * @since 1.25
  * @name sap.suite.ui.commons.TileContent#setFrameType
  * @function
  */
@@ -40042,7 +46117,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.TileContent", { metadata : {
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/TileContent.js
 ///**
 // * This file defines behavior for the control,
@@ -40066,15 +46140,16 @@ sap.suite.ui.commons.TileContent.prototype._getContentType = function() {
 
 sap.suite.ui.commons.TileContent.prototype.onAfterRendering = function() {
 	var oContent = this.getContent();
-	var thisRef = jQuery(this.getDomRef());
-	if(!thisRef.attr("title")) {
-		var sCntTooltip = oContent.getTooltip_AsString();
-		var aTooltipEments = thisRef.find("*");
-		aTooltipEments.removeAttr("title");
-		var oCntTooltip = sCntTooltip ? sCntTooltip : "";
-		thisRef.attr("title", oCntTooltip + "\n" + this._getFooterText());
+	if (oContent) {
+		var thisRef = jQuery(this.getDomRef());
+		if(!thisRef.attr("title")) {
+			var sCntTooltip = oContent.getTooltip_AsString();
+			var aTooltipEments = thisRef.find("*");
+			aTooltipEments.removeAttr("title");
+			var oCntTooltip = sCntTooltip ? sCntTooltip : "";
+			thisRef.attr("title", oCntTooltip + "\n" + this._getFooterText());
+		}
 	}
-	
 };
 
 sap.suite.ui.commons.TileContent.prototype._getFooterText = function() {
@@ -40110,14 +46185,15 @@ sap.suite.ui.commons.TileContent.prototype.getAltText = function() {
 	var bIsFirst = true;
 	var oContent = this.getContent();
 	
-	if (oContent.getAltText) {
-		sAltText += oContent.getAltText();
-		bIsFirst = false;
-	} else if (oContent.getTooltip_AsString()){
-		sAltText += oContent.getTooltip_AsString();
-		bIsFirst = false;
+	if (oContent) {
+		if (oContent.getAltText) {
+			sAltText += oContent.getAltText();
+			bIsFirst = false;
+		} else if (oContent.getTooltip_AsString()){
+			sAltText += oContent.getTooltip_AsString();
+			bIsFirst = false;
+		}
 	}
-
 	if (this.getUnit()) {
 		sAltText += (bIsFirst ? "" : "\n" ) + this.getUnit();
 		bIsFirst = false;
@@ -40187,7 +46263,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control serves a universal container for different types of content and footer.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -40358,7 +46434,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.TileContent2X2", { metadata : {
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/TileContent2X2.js
 ///**
 // * This file defines behavior for the control,
@@ -40489,7 +46564,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Provides Filter List Item for Timeline Control
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -40572,7 +46647,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.TimelineFilterListItem", { meta
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/TimelineFilterListItem.js
 ///**
 // * This file defines behavior for the control,
@@ -40622,12 +46696,17 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * <li>{@link #getIcon icon} : string</li>
  * <li>{@link #getFilterValue filterValue} : string</li>
  * <li>{@link #getUserNameClickable userNameClickable} : boolean (default: false)</li>
- * <li>{@link #getReplyCount replyCount} : int</li></ul>
+ * <li>{@link #getUserPicture userPicture} : sap.ui.core.URI</li>
+ * <li>{@link #getReplyCount replyCount} : int</li>
+ * <li>{@link #getMaxCharacters maxCharacters} : int</li></ul>
  * </li>
  * <li>Aggregations
  * <ul>
  * <li>{@link #getEmbeddedControl embeddedControl} : sap.ui.core.Control</li>
- * <li>{@link #getReplyList replyList} : sap.m.List</li></ul>
+ * <li>{@link #getReplyList replyList} : sap.m.List</li>
+ * <li>{@link #getCustomAction customAction} : sap.ui.core.CustomData[]</li>
+ * <li>{@link #getSuggestionItems suggestionItems} : sap.m.StandardListItem[]</li>
+ * <li>{@link #getCustomReply customReply} : sap.ui.core.Control</li></ul>
  * </li>
  * <li>Associations
  * <ul></ul>
@@ -40636,7 +46715,10 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * <ul>
  * <li>{@link sap.suite.ui.commons.TimelineItem#event:userNameClicked userNameClicked} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
  * <li>{@link sap.suite.ui.commons.TimelineItem#event:replyPost replyPost} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
- * <li>{@link sap.suite.ui.commons.TimelineItem#event:replyListOpen replyListOpen} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
+ * <li>{@link sap.suite.ui.commons.TimelineItem#event:replyListOpen replyListOpen} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+ * <li>{@link sap.suite.ui.commons.TimelineItem#event:customActionClicked customActionClicked} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+ * <li>{@link sap.suite.ui.commons.TimelineItem#event:suggest suggest} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+ * <li>{@link sap.suite.ui.commons.TimelineItem#event:suggestionItemSelected suggestionItemSelected} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
  * </li>
  * </ul> 
 
@@ -40647,7 +46729,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * TimelineItem
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -40656,6 +46738,10 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  */
 sap.ui.core.Control.extend("sap.suite.ui.commons.TimelineItem", { metadata : {
 
+	publicMethods : [
+		// methods
+		"setCustomMessage"
+	],
 	library : "sap.suite.ui.commons",
 	properties : {
 		"dateTime" : {type : "any", group : "Misc", defaultValue : null},
@@ -40665,16 +46751,24 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.TimelineItem", { metadata : {
 		"icon" : {type : "string", group : "Misc", defaultValue : null},
 		"filterValue" : {type : "string", group : "Misc", defaultValue : null},
 		"userNameClickable" : {type : "boolean", group : "Misc", defaultValue : false},
-		"replyCount" : {type : "int", group : "Misc", defaultValue : null}
+		"userPicture" : {type : "sap.ui.core.URI", group : "Misc", defaultValue : null},
+		"replyCount" : {type : "int", group : "Misc", defaultValue : null},
+		"maxCharacters" : {type : "int", group : "Behavior", defaultValue : null}
 	},
 	aggregations : {
 		"embeddedControl" : {type : "sap.ui.core.Control", multiple : false}, 
-		"replyList" : {type : "sap.m.List", multiple : false}
+		"replyList" : {type : "sap.m.List", multiple : false}, 
+		"customAction" : {type : "sap.ui.core.CustomData", multiple : true, singularName : "customAction"}, 
+		"suggestionItems" : {type : "sap.m.StandardListItem", multiple : true, singularName : "suggestionItem"}, 
+		"customReply" : {type : "sap.ui.core.Control", multiple : false}
 	},
 	events : {
 		"userNameClicked" : {}, 
 		"replyPost" : {}, 
-		"replyListOpen" : {}
+		"replyListOpen" : {}, 
+		"customActionClicked" : {}, 
+		"suggest" : {}, 
+		"suggestionItemSelected" : {}
 	}
 }});
 
@@ -40695,7 +46789,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.TimelineItem", { metadata : {
  * @function
  */
 
-sap.suite.ui.commons.TimelineItem.M_EVENTS = {'userNameClicked':'userNameClicked','replyPost':'replyPost','replyListOpen':'replyListOpen'};
+sap.suite.ui.commons.TimelineItem.M_EVENTS = {'userNameClicked':'userNameClicked','replyPost':'replyPost','replyListOpen':'replyListOpen','customActionClicked':'customActionClicked','suggest':'suggest','suggestionItemSelected':'suggestionItemSelected'};
 
 
 /**
@@ -40874,6 +46968,31 @@ sap.suite.ui.commons.TimelineItem.M_EVENTS = {'userNameClicked':'userNameClicked
 
 
 /**
+ * Getter for property <code>userPicture</code>.
+ * User Picture
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {sap.ui.core.URI} the value of property <code>userPicture</code>
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#getUserPicture
+ * @function
+ */
+
+/**
+ * Setter for property <code>userPicture</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {sap.ui.core.URI} sUserPicture  new value for property <code>userPicture</code>
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#setUserPicture
+ * @function
+ */
+
+
+/**
  * Getter for property <code>replyCount</code>.
  * count of the replies to the post
  *
@@ -40894,6 +47013,31 @@ sap.suite.ui.commons.TimelineItem.M_EVENTS = {'userNameClicked':'userNameClicked
  * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
  * @public
  * @name sap.suite.ui.commons.TimelineItem#setReplyCount
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>maxCharacters</code>.
+ * The expand and collapse feature is set by default and uses 300 characters on mobile devices and 500 characters on desktops as limits. Based on these values, the text of the timeline utem is collapsed once text reaches these limits. In this case, only the specified number of characters is displayed. By clicking on the text link More, the entire text can be displayed. The text link Less collapses the text. The application is able to set the value to its needs.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {int} the value of property <code>maxCharacters</code>
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#getMaxCharacters
+ * @function
+ */
+
+/**
+ * Setter for property <code>maxCharacters</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {int} iMaxCharacters  new value for property <code>maxCharacters</code>
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#setMaxCharacters
  * @function
  */
 
@@ -40956,6 +47100,199 @@ sap.suite.ui.commons.TimelineItem.M_EVENTS = {'userNameClicked':'userNameClicked
  * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
  * @public
  * @name sap.suite.ui.commons.TimelineItem#destroyReplyList
+ * @function
+ */
+
+
+/**
+ * Getter for aggregation <code>customAction</code>.<br/>
+ * Custom actions to display as links on the social bar
+ * 
+ * @return {sap.ui.core.CustomData[]}
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#getCustomAction
+ * @function
+ */
+
+
+/**
+ * Inserts a customAction into the aggregation named <code>customAction</code>.
+ *
+ * @param {sap.ui.core.CustomData}
+ *          oCustomAction the customAction to insert; if empty, nothing is inserted
+ * @param {int}
+ *             iIndex the <code>0</code>-based index the customAction should be inserted at; for 
+ *             a negative value of <code>iIndex</code>, the customAction is inserted at position 0; for a value 
+ *             greater than the current size of the aggregation, the customAction is inserted at 
+ *             the last position        
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#insertCustomAction
+ * @function
+ */
+
+/**
+ * Adds some customAction <code>oCustomAction</code> 
+ * to the aggregation named <code>customAction</code>.
+ *
+ * @param {sap.ui.core.CustomData}
+ *            oCustomAction the customAction to add; if empty, nothing is inserted
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#addCustomAction
+ * @function
+ */
+
+/**
+ * Removes an customAction from the aggregation named <code>customAction</code>.
+ *
+ * @param {int | string | sap.ui.core.CustomData} vCustomAction the customAction to remove or its index or id
+ * @return {sap.ui.core.CustomData} the removed customAction or null
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#removeCustomAction
+ * @function
+ */
+
+/**
+ * Removes all the controls in the aggregation named <code>customAction</code>.<br/>
+ * Additionally unregisters them from the hosting UIArea.
+ * @return {sap.ui.core.CustomData[]} an array of the removed elements (might be empty)
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#removeAllCustomAction
+ * @function
+ */
+
+/**
+ * Checks for the provided <code>sap.ui.core.CustomData</code> in the aggregation named <code>customAction</code> 
+ * and returns its index if found or -1 otherwise.
+ *
+ * @param {sap.ui.core.CustomData}
+ *            oCustomAction the customAction whose index is looked for.
+ * @return {int} the index of the provided control in the aggregation if found, or -1 otherwise
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#indexOfCustomAction
+ * @function
+ */
+	
+
+/**
+ * Destroys all the customAction in the aggregation 
+ * named <code>customAction</code>.
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#destroyCustomAction
+ * @function
+ */
+
+
+/**
+ * Getter for aggregation <code>suggestionItems</code>.<br/>
+ * Items for suggestions
+ * 
+ * @return {sap.m.StandardListItem[]}
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#getSuggestionItems
+ * @function
+ */
+
+
+/**
+ * Inserts a suggestionItem into the aggregation named <code>suggestionItems</code>.
+ *
+ * @param {sap.m.StandardListItem}
+ *          oSuggestionItem the suggestionItem to insert; if empty, nothing is inserted
+ * @param {int}
+ *             iIndex the <code>0</code>-based index the suggestionItem should be inserted at; for 
+ *             a negative value of <code>iIndex</code>, the suggestionItem is inserted at position 0; for a value 
+ *             greater than the current size of the aggregation, the suggestionItem is inserted at 
+ *             the last position        
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#insertSuggestionItem
+ * @function
+ */
+
+/**
+ * Adds some suggestionItem <code>oSuggestionItem</code> 
+ * to the aggregation named <code>suggestionItems</code>.
+ *
+ * @param {sap.m.StandardListItem}
+ *            oSuggestionItem the suggestionItem to add; if empty, nothing is inserted
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#addSuggestionItem
+ * @function
+ */
+
+/**
+ * Removes an suggestionItem from the aggregation named <code>suggestionItems</code>.
+ *
+ * @param {int | string | sap.m.StandardListItem} vSuggestionItem the suggestionItem to remove or its index or id
+ * @return {sap.m.StandardListItem} the removed suggestionItem or null
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#removeSuggestionItem
+ * @function
+ */
+
+/**
+ * Removes all the controls in the aggregation named <code>suggestionItems</code>.<br/>
+ * Additionally unregisters them from the hosting UIArea.
+ * @return {sap.m.StandardListItem[]} an array of the removed elements (might be empty)
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#removeAllSuggestionItems
+ * @function
+ */
+
+/**
+ * Checks for the provided <code>sap.m.StandardListItem</code> in the aggregation named <code>suggestionItems</code> 
+ * and returns its index if found or -1 otherwise.
+ *
+ * @param {sap.m.StandardListItem}
+ *            oSuggestionItem the suggestionItem whose index is looked for.
+ * @return {int} the index of the provided control in the aggregation if found, or -1 otherwise
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#indexOfSuggestionItem
+ * @function
+ */
+	
+
+/**
+ * Destroys all the suggestionItems in the aggregation 
+ * named <code>suggestionItems</code>.
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#destroySuggestionItems
+ * @function
+ */
+
+
+/**
+ * Getter for aggregation <code>customReply</code>.<br/>
+ * Customer reply for embedded reply action
+ * 
+ * @return {sap.ui.core.Control}
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#getCustomReply
+ * @function
+ */
+
+
+/**
+ * Setter for the aggregated <code>customReply</code>.
+ * @param {sap.ui.core.Control} oCustomReply
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#setCustomReply
+ * @function
+ */
+	
+
+/**
+ * Destroys the customReply in the aggregation 
+ * named <code>customReply</code>.
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#destroyCustomReply
  * @function
  */
 
@@ -41137,6 +47474,219 @@ sap.suite.ui.commons.TimelineItem.M_EVENTS = {'userNameClicked':'userNameClicked
  */
 
 
+/**
+ * fire when custom action link is clicked
+ *
+ * @name sap.suite.ui.commons.TimelineItem#customActionClicked
+ * @event
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @param {string} oControlEvent.getParameters.value Value of the custom action
+ * @param {string} oControlEvent.getParameters.key Key of the custom action
+ * @param {sap.ui.core.Control} oControlEvent.getParameters.linkObj Control of the custom action
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'customActionClicked' event of this <code>sap.suite.ui.commons.TimelineItem</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.TimelineItem</code>.<br/> itself. 
+ *  
+ * fire when custom action link is clicked
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.TimelineItem</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#attachCustomActionClicked
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'customActionClicked' event of this <code>sap.suite.ui.commons.TimelineItem</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.TimelineItem#detachCustomActionClicked
+ * @function
+ */
+
+/**
+ * Fire event customActionClicked to attached listeners.
+ * 
+ * Expects following event parameters:
+ * <ul>
+ * <li>'value' of type <code>string</code> Value of the custom action</li>
+ * <li>'key' of type <code>string</code> Key of the custom action</li>
+ * <li>'linkObj' of type <code>sap.ui.core.Control</code> Control of the custom action</li>
+ * </ul>
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @protected
+ * @name sap.suite.ui.commons.TimelineItem#fireCustomActionClicked
+ * @function
+ */
+
+
+/**
+ * This event is fired when user types in the input and showSuggestion is set to true. Changing the suggestItems aggregation will show the suggestions within a popup.
+ *
+ * @name sap.suite.ui.commons.TimelineItem#suggest
+ * @event
+ * @since 1.28.1
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @param {string} oControlEvent.getParameters.suggestValue The current value which has been typed in the input.
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'suggest' event of this <code>sap.suite.ui.commons.TimelineItem</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.TimelineItem</code>.<br/> itself. 
+ *  
+ * This event is fired when user types in the input and showSuggestion is set to true. Changing the suggestItems aggregation will show the suggestions within a popup.
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.TimelineItem</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28.1
+ * @name sap.suite.ui.commons.TimelineItem#attachSuggest
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'suggest' event of this <code>sap.suite.ui.commons.TimelineItem</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28.1
+ * @name sap.suite.ui.commons.TimelineItem#detachSuggest
+ * @function
+ */
+
+/**
+ * Fire event suggest to attached listeners.
+ * 
+ * Expects following event parameters:
+ * <ul>
+ * <li>'suggestValue' of type <code>string</code> The current value which has been typed in the input.</li>
+ * </ul>
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @protected
+ * @since 1.28.1
+ * @name sap.suite.ui.commons.TimelineItem#fireSuggest
+ * @function
+ */
+
+
+/**
+ * This event is fired when suggestionItem shown in suggestion popup are selected. This event is only fired when showSuggestion is set to true and there are suggestionItems shown in the suggestion popup.
+ *
+ * @name sap.suite.ui.commons.TimelineItem#suggestionItemSelected
+ * @event
+ * @since 1.28.1
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @param {sap.ui.core.Item} oControlEvent.getParameters.selectedItem This is the item selected in the suggestion popup.
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'suggestionItemSelected' event of this <code>sap.suite.ui.commons.TimelineItem</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.TimelineItem</code>.<br/> itself. 
+ *  
+ * This event is fired when suggestionItem shown in suggestion popup are selected. This event is only fired when showSuggestion is set to true and there are suggestionItems shown in the suggestion popup.
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.TimelineItem</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28.1
+ * @name sap.suite.ui.commons.TimelineItem#attachSuggestionItemSelected
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'suggestionItemSelected' event of this <code>sap.suite.ui.commons.TimelineItem</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.28.1
+ * @name sap.suite.ui.commons.TimelineItem#detachSuggestionItemSelected
+ * @function
+ */
+
+/**
+ * Fire event suggestionItemSelected to attached listeners.
+ * 
+ * Expects following event parameters:
+ * <ul>
+ * <li>'selectedItem' of type <code>sap.ui.core.Item</code> This is the item selected in the suggestion popup.</li>
+ * </ul>
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.TimelineItem} <code>this</code> to allow method chaining
+ * @protected
+ * @since 1.28.1
+ * @name sap.suite.ui.commons.TimelineItem#fireSuggestionItemSelected
+ * @function
+ */
+
+
+/**
+ * set custom message
+ *
+ * @name sap.suite.ui.commons.TimelineItem#setCustomMessage
+ * @function
+ * @param {string} sMsg
+ *         Message to be set
+ * @type void
+ * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
+ */
+
 // Start of sap/suite/ui/commons/TimelineItem.js
 ///**
 // * This file defines behavior for the control,
@@ -41149,31 +47699,69 @@ jQuery.sap.require('sap.ui.core.IconPool'); // unlisted dependency retained
 jQuery.sap.require('sap.ui.core.format.DateFormat'); // unlisted dependency retained
 
 
-sap.suite.ui.commons.TimelineItem.prototype.init = function() {
+sap.suite.ui.commons.TimelineItem.prototype.init = function() { 
 	var that = this;
+	this._customReply = false;
+	
+		this._nMaxCharactersMobile = 300;
+	  this._nMaxCharactersDesktop = 500;
+	
 	var oLocale = sap.ui.getCore().getConfiguration().getLanguage();
 	this.resBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.ui.commons", oLocale);
   //initialize _showIcons prop.
 	this._showIcons = false;
-  
+	this._firstTime = true;
+	
+	this._sTextShowMore = this.resBundle.getText("TIMELINE_TEXT_SHOW_MORE");
+	this._sTextShowLess = this.resBundle.getText("TIMELINE_TEXT_SHOW_LESS");
+	
+	this._replyInfoText = new sap.m.Text({
+		maxLines : 1,
+		width : "100%"
+	});
+	this._replyInfoBar = new sap.m.Toolbar({
+		id : this.getId() + "-replyInfoBar",
+		content : [this._replyInfoText],
+		design : sap.m.ToolbarDesign.Info,
+		visible : false
+	});
+	
 	this._replyLink = new sap.m.Link({
 		text: this.resBundle.getText("TIMELINE_REPLY"),
+		tooltip: this.resBundle.getText("TIMELINE_REPLY"), 
 		press: function(oEvent) {
 			that._openReplyDialog();
 		}
 	});
-  
-	this._jamBar = new sap.m.Toolbar({
-		content: [this._replyLink]
-	  	});
+	this._replyLink.addStyleClass("sapSuiteUiCommonsTimelineItemActionLink");
 	
-	this._replyInput = new sap.m.Input();
+	this._jamBar = new sap.m.Toolbar({
+		//content: [this._replyLink]
+	  	});
+	/*
+	this._replyInput = new sap.m.Input({
+		liveChange: function(oEvent){
+			that._addReplyInputArea();
+		}
+	});
+	*/
+	this._replyInputArea = new sap.m.TextArea({
+		height: "4rem",
+		width: "100%",
+		liveChange: function (oEvent) {
+			that._liveChange(oEvent);
+		}
+
+	}); 
 	this._replyPop = new sap.m.Popover({
+		initialFocus: this._replyInputArea,
 		title: this.resBundle.getText("TIMELINE_REPLIES"),   
 		placement: sap.m.PlacementType.Vertical,
+		
 		footer: new sap.m.Toolbar({
 			content: [
-			          this._replyInput,
+			          //this._replyInput,
+			          new sap.m.ToolbarSpacer(),
 			          new sap.m.Button({
 			        	  text: this.resBundle.getText("TIMELINE_REPLY"),
 			        	  press: function() {
@@ -41183,8 +47771,16 @@ sap.suite.ui.commons.TimelineItem.prototype.init = function() {
 			          })
 			         ]
 		}),
-		// contentHeight : "15rem",
-		contentWidth: "30rem"
+		afterClose: function(oEvent) {
+			// recalculate reply number?
+			if (that._list && that._list.getItems().length) {
+				
+				that._replyLink.setText(that.resBundle.getText("TIMELINE_REPLY") + " (" + that._list.getItems().length + ")");
+			}
+		},
+
+		contentHeight : "15rem",
+		contentWidth: "20rem"
 	});
 	
 	//notch orientation
@@ -41194,30 +47790,164 @@ sap.suite.ui.commons.TimelineItem.prototype.init = function() {
 
 sap.suite.ui.commons.TimelineItem.prototype._replyPost = function() {
 
-	var replyText = this._replyInput.getValue();
+	var replyText = this._replyInputArea.getValue();
 	this.fireReplyPost({value: replyText});
 
 };
 
-sap.suite.ui.commons.TimelineItem.prototype._openReplyDialog = function() {
-	this.fireReplyListOpen();
-	this._replyInput.setValue('');
 
-	if (!this._list) {
-		this._list = this.getReplyList(); //when odata update happens, only once?
-	}
 
-	if (this._list != null) {
-		this._replyPop.addContent(this._list);
-		jQuery.sap.delayedCall(100, this, function() {
-			this._replyPop.openBy(this._replyLink);
-		}); // have to wait till the odata update is done, render is done
+sap.suite.ui.commons.TimelineItem.prototype.setReplyList = function(replyList) {
+	if (replyList === null) return;
+	  //this method get called  implicitly when open popup, thus need to check if its null
+	this.setAggregation("replyList", replyList, true);
 
-	} else {
-		this._replyPop.openBy(this._replyLink);
-	}
-
+	// after update need to reset the focus
+	var that = this;
+	this.getReplyList().attachUpdateFinished(function(oEvent) {
+		var oFocusRef = that._replyInputArea.getDomRef("inner");
+		if (oFocusRef) { //if popup already open , reset focus
+			jQuery(oFocusRef.id).focus();
+		}
+	});
 };
+
+
+
+
+sap.suite.ui.commons.TimelineItem.prototype._openReplyDialog = function() {
+
+
+	if (this._customReply){
+		this.getCustomReply().openBy(this._replyLink);
+		this.fireReplyListOpen();
+		return;
+	} else {
+		this.fireReplyListOpen();
+		this._replyInputArea.setValue('');
+		this._oldReplyInputArea = '';
+		
+		/*if (!this._list) {
+			this._list = this.getReplyList(); // when odata update happens, only once?
+		}*/
+		this._list = this.getReplyList();
+		if (this._list !== null) {
+			this._replyPop.addContent(this._list);
+		
+	
+		} 
+		this._replyPop.addContent(this._replyInputArea);
+		this._replyPop.openBy(this._replyLink);
+}
+	
+};
+
+sap.suite.ui.commons.TimelineItem.prototype._createSuggestionPopup = function(oInput) {
+	var that = this;
+	this._suggestionPopup = new sap.m.Popover(oInput.getId() + "-suggestion_popup", {
+				showHeader : false,
+				placement : sap.m.PlacementType.Bottom,
+				contentWidth: "20rem",
+				initialFocus : oInput
+			}).attachAfterClose(function() {
+
+			});
+	//this._overwritePopover(this._suggestionPopup, oInput);		
+	if (this.getParent() && this.getParent()._overwritePopover) {
+		this.getParent()._overwritePopover(this._suggestionPopup, oInput);
+	}
+	
+	this._suggestList = new sap.m.List(this.getId() + "-suggestlist", {
+		showNoData: false,
+		mode : sap.m.ListMode.SingleSelectMaster,
+
+		selectionChange : function(oEvent) {
+			var oItem = oEvent.getSource().getSelectedItem();
+			that._suggestionPopup.close();
+			var strInput = that._replyInputArea.getValue();
+			var insertVal = '';
+			var desc = oItem.getDescription();
+			if (desc.match(/\S+@\S+\.\S+/)) {  // if its an email address, get the first part of it
+				insertVal =  "@" + desc.split('@')[0] + " ";
+			} else {
+				insertVal = "@" + desc + " ";
+			}
+			
+			var newVal = that.getParent()._getNewString(strInput, that._inputDiff.val, insertVal);
+			that._replyInputArea.setValue(newVal);
+			that._oldReplyInputArea = newVal;
+			that.fireSuggestionItemSelected({
+					//selectedItem: new sap.ui.core.Item({"text": oItem.getLabel(), "key": oItem.getValue()})
+					selectedItem: oItem
+			});
+		}
+	});	
+	this._suggestionPopup.addContent(this._suggestList);	
+};
+
+sap.suite.ui.commons.TimelineItem.prototype._liveChange = function(oEvent) {
+	// only fire event when change is ^@ or \s@
+	//should close popover if it is open
+	if (this._suggestionPopup && this._suggestionPopup.isOpen()) {
+		this._suggestionPopup.close();
+	}
+	
+	var strInput = oEvent.getParameters().value;
+	
+	if (!this.getParent() || !this.getParent().getShowSuggestion()) {
+		this._oldReplyInputArea = strInput; 
+		return;
+	}
+	
+	//this._getCursorPosition(strInput, this._oldAddInput);
+	var oInput = oEvent.getSource();
+	this._inputDiff = this.getParent()._getDiffWord(strInput, this._oldReplyInputArea);
+//	if (this._lastInputOp == "A" || this._lastInputOp == "D") {
+	if (this._inputDiff.val.match(/^@|\s@/g) && this._inputDiff.val.length > 1) {
+			if (this._inputDiff.op === "A") {
+			var that = this;
+			if (!this._suggestionPopup) {
+				this._createSuggestionPopup(oInput);
+			}
+			this.fireSuggest({
+					suggestValue: this._inputDiff.val
+			});
+	
+	
+			this._suggestList.destroyItems();
+			var items = this.getSuggestionItems();
+			
+			for (var i=0; i<items.length; i++) {
+				this._suggestList.addItem(new sap.m.StandardListItem({
+					icon: items[i].getIcon(),
+					title: items[i].getTitle(),
+					description: items[i].getDescription()
+				}));
+			}
+	
+			
+			this._suggestionPopup.openBy(oInput);			
+		} else if (this._inputDiff.op === "D") {
+			//delete the whole words
+			var newVal = this.getParent()._getNewString(strInput, this._inputDiff.val, '');
+			this._replyInputArea.setValue(newVal);
+			
+		}
+
+	} else if (this._suggestionPopup && this._inputDiff.val.length == 0) { // adding a space. should close the suggestion
+		this._suggestionPopup.close();			
+	}
+
+	
+
+	this._oldReplyInputArea = strInput; 
+};
+
+
+sap.suite.ui.commons.TimelineItem.prototype._addReplyInputArea = function(oEvent) {
+	this._replyPop.addContent(this._replyInputArea);
+};
+
 sap.suite.ui.commons.TimelineItem.prototype._formatDateValue = function(iDate) {
 // Check different input type for Date
 	var oDate;
@@ -41307,13 +48037,124 @@ sap.suite.ui.commons.TimelineItem.prototype.setUserNameClickable = function(user
 
 sap.suite.ui.commons.TimelineItem.prototype.setText = function(text) {  // todo... change m.Text
 	this.setProperty("text", text);
-	if (!this._textBox){
-		this._textBox = new sap.m.Text({
+//	if (!this._textBox){
+	/*	this._textBox = new sap.m.Text({
 			maxLines : 10,
 			text : this.getText()		
-		});
+		});*/
+		
+		this._textBox = this.getText();
+//	}
+};
+
+
+/**
+	 * The first this._nMaxCollapsedLength characters of the text are shown in the collapsed form, the text string ends up
+	 * with a complete word, the text string contains at least one word
+	 *
+	 * @private
+	 */
+	sap.suite.ui.commons.TimelineItem.prototype._getCollapsedText = function() {
+		var sShortText = this._sFullText.substring(0, this._nMaxCollapsedLength);
+		var nLastSpace = sShortText.lastIndexOf(" ");
+		if (nLastSpace > 0) {
+			this._sShortText = sShortText.substr(0, nLastSpace);
+		} else {
+			this._sShortText = sShortText;
+		}
+		return this._sShortText;
+	};
+
+
+/**
+	 * Expands or collapses the text of the FeedListItem expanded state: this._sFullText + ' ' + 'LESS' collapsed state:
+	 * this._sShortText + '...' + 'MORE'
+	 *
+	 * @private
+	 */
+	sap.suite.ui.commons.TimelineItem.prototype._toggleTextExpanded = function() {
+		var $text = jQuery.sap.byId(this.getId() + "-realtext");
+		var $threeDots = jQuery.sap.byId(this.getId() + "-threeDots");
+		if (this._bTextExpanded) {
+			$text.html(jQuery.sap.encodeHTML(this._sShortText).replace(/&#xa;/g, "<br>"));
+			$threeDots.text(" ... ");
+			this._oLinkExpandCollapse.setText(this._sTextShowMore);
+			this._bTextExpanded = false;
+		} else {
+			$text.html(jQuery.sap.encodeHTML(this._sFullText).replace(/&#xa;/g, "<br>"));
+			$threeDots.text("  ");
+			this._oLinkExpandCollapse.setText(this._sTextShowLess);
+			this._bTextExpanded = true;
+		}
+		this.getParent()._performUiChanges(this); 
+	};
+	
+	/**
+	 * Gets the link for expanding/collapsing the text
+	 *
+	 * @private
+	 */
+	sap.suite.ui.commons.TimelineItem.prototype._getLinkExpandCollapse = function() {
+		if (!this._oLinkExpandCollapse) {
+			jQuery.sap.require("sap.m.Link");
+			this._oLinkExpandCollapse = new sap.m.Link({
+				text : this._sTextShowMore,
+				press : jQuery.proxy(function() {
+					this._toggleTextExpanded();
+				}, this)
+			});
+			this._bTextExpanded = false;
+			// Necessary so this gets garbage collected and the text of the link changes at clicking on it
+			this._oLinkExpandCollapse.setParent(this, null, true);
+		}
+		return this._oLinkExpandCollapse;
+	};
+	
+	/**
+	 * Checks if the text is expandable: If maxCharacters is empty the default values are used, which are 300 characters (
+	 * on mobile devices) and 500 characters ( on tablet and desktop). Otherwise maxCharacters is used as a limit. Based on
+	 * this value, the text of the FeedListItem is collapsed once the text reaches this limit.
+	 *
+	 * @private
+	 */
+	sap.suite.ui.commons.TimelineItem.prototype._checkTextIsExpandable = function() {
+		this._nMaxCollapsedLength = this.getMaxCharacters();
+		if (this._nMaxCollapsedLength === 0) {
+			if (sap.ui.Device.system.phone) {
+				this._nMaxCollapsedLength = this._nMaxCharactersMobile;
+			} else {
+				this._nMaxCollapsedLength = this._nMaxCharactersDesktop;
+			}
+		}
+		this._sFullText = this.getText();
+		var bTextIsExpandable = false;
+		if (this._sFullText.length > this._nMaxCollapsedLength) {
+			bTextIsExpandable = true;
+		}
+		return bTextIsExpandable;
+	};
+
+
+sap.suite.ui.commons.TimelineItem.prototype.setCustomReply = function(oReply){
+	if (oReply){
+		this._customReply = true;
+		this.setAggregation("customReply", oReply, true);
+
+	} else {
+		this._customReply = false;
 	}
 };
+
+sap.suite.ui.commons.TimelineItem.prototype.setCustomMessage = function(msg){
+	this._replyInfoText.setText(msg);
+	if (msg && msg.length > 0) {
+		this._replyInfoBar.setVisible(true);
+	} else {
+		this._replyInfoBar.setVisible(false);
+	}
+	this.invalidate();   //otherwise, it doesn't re-render
+};
+
 
 sap.suite.ui.commons.TimelineItem.prototype.onBeforeRendering = function() {
 	if (this.getUserNameClickable() && (!this._userNameLink)) {
@@ -41328,12 +48169,36 @@ sap.suite.ui.commons.TimelineItem.prototype.onBeforeRendering = function() {
 
 	};
 
-	if (this._list && this._list.getItems().length > 0) {
-		this._replyLink.setText(this.resBundle.getText("TIMELINE_REPLY") + " (" + this._list.getItems().length + ")");
-
-	} else if (this.getReplyCount()) {
+	if (this.getReplyCount() > 0) {		
 		this._replyLink.setText(this.resBundle.getText("TIMELINE_REPLY") + " (" + this.getReplyCount() + ")");
+	} else if (this._list && this._list.getItems().length > 0) {
+		this._replyLink.setText(this.resBundle.getText("TIMELINE_REPLY") + " (" + this._list.getItems().length + ")");
 	}
+	var that = this;
+	var actionList = this.getCustomAction();
+	if (this._firstTime && this.getParent()._aFilterList && this.getParent().getEnableSocial() ) {
+		this._jamBar.addContent(this._replyLink);
+	}
+	if (this._firstTime && actionList  && actionList.length > 0) {
+
+		for (var i = 0; i < actionList.length; i++) {
+			var key = actionList[i].getKey();
+			var value = actionList[i].getValue();
+			var actionLink = new sap.m.Link({
+				text: actionList[i].getValue(),
+				tooltip: actionList[i].getValue()
+			});
+			actionLink.addStyleClass("sapSuiteUiCommonsTimelineItemActionLink");
+			actionLink.attachPress({"value" : value, "key" : key}, function(oEvent, oData) {
+				
+				that.fireCustomActionClicked({"value": oData.value, "key": oData.key, "linkObj": this});
+			});
+			this._jamBar.addContent(actionLink);
+			
+		}
+	this._firstTime = false;
+	};
+
 	
 };
 
@@ -41352,17 +48217,43 @@ sap.suite.ui.commons.TimelineItem.prototype._getUserPictureControl = function() 
 	var sWidth = sSize;
 
 	var mProperties = {
-		src: this.getUserPicture(),
-		height: sHeight,
-		width: sWidth,
-		size: sSize
-	};
+			src: this.getUserPicture(),
+			height: sHeight,
+//			size: sSize,
+			width: sWidth
+		};
 
 	this._oUserPictureControl = sap.m.ImageHelper.getImageControl(sImgId, this._oUserPictureControl, this, mProperties);
 	this._oUserPictureControl.setDensityAware(false); // Jam Can't deal with that
 	return this._oUserPictureControl;
 };
 
+sap.suite.ui.commons.TimelineItem.prototype._setSuggestionList = function() {
+	//this._suggestList.updateAggregation("items", this.getSuggestionItems());
+	this._suggestList.destroyItems();
+	var items = this.getSuggestionItems();
+	
+	for (var i=0; i<items.length; i++) {
+		this._suggestList.addItem(new sap.m.StandardListItem({
+			icon: items[i].getIcon(),
+			title: items[i].getTitle(),
+			description: items[i].getDescription()
+		}));
+	}
+};
+
+sap.suite.ui.commons.TimelineItem.prototype.refreshSuggestionItems = function(sReason) {
+	this._suggestList.setBusy(true);
+	this.updateAggregation("suggestionItems");  //this will call the update method
+};
+
+sap.suite.ui.commons.TimelineItem.prototype.updateSuggestionItems = function() {
+	this.updateAggregation("suggestionItems");
+	this._setSuggestionList(); 
+	this._suggestList.setBusy(false);
+
+	
+};
 
 sap.suite.ui.commons.TimelineItem.prototype.exit = function() {
 
@@ -41390,9 +48281,21 @@ sap.suite.ui.commons.TimelineItem.prototype.exit = function() {
 		this._oUserPictureControl.destroy();
 		this._oUserPictureControl = undefined;
 	}
-	if (this._textBox) {
-		this._textBox.destroy();
-		this._textBox = undefined;
+	//if (this._textBox) {
+		//this._textBox.destroy();
+		//this._textBox = undefined;
+//	}
+	if (this._replyInputArea) {
+		this._replyInputArea.destroy();
+		this._replyInputArea = undefined;
+	}
+	if (this._replyInfoText) {
+		this._replyInfoText.destroy();
+		this._replyInfoText = undefined;
+	}
+	if (this._replyInfoBar) {
+		this._replyInfoBar.destroy();
+		this._replyInfoBar = undefined;
 	}
 };
 
@@ -41455,7 +48358,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control is used in UnifiedThingInspector to display the facet header information.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -41598,7 +48501,6 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.UnifiedThingGroup", { metadata 
  * @function
  */
 
-
 // Start of sap/suite/ui/commons/UnifiedThingGroup.js
 ///**
 // * This file defines behavior for the control,
@@ -41681,7 +48583,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * This control provides an ability to display a thing (for example, object factsheet) on the desktop, tablet, and phone devices in a Fiori style.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -42967,7 +49869,6 @@ sap.suite.ui.commons.UnifiedThingInspector.M_EVENTS = {'backAction':'backAction'
  * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
-
 // Start of sap/suite/ui/commons/UnifiedThingInspector.js
 jQuery.sap.require('sap.m.NavContainer'); // unlisted dependency retained
 
@@ -43037,7 +49938,12 @@ sap.suite.ui.commons.UnifiedThingInspector.prototype.init = function(){
         width: "auto"
     });
     this._oFacetsGrid.addStyleClass("sapSuiteUtiFacetGrid");
-
+    this._oFacetsGrid.addDelegate({
+		onAfterRendering: function(oEvent) {
+			oEvent.srcControl.$().attr("role", "list");
+		}
+    });
+    
     this._oHeader = this._createHeaderObject(this.getId() + "-header");
     this._oHeader.getObjectHeader()._titleText.setMaxLines(2);
 
@@ -43925,7 +50831,7 @@ jQuery.sap.require('sap.ui.ux3.NavigationBar'); // unlisted dependency retained
  * @class
  * This control extends the sap.ui.ux3.NavigationBar and allows you to display navigation items vertically. The navigation list can contain sap.ui.ux3.NavigationItem or sap.suite.ui.commons.CountingNavigationItem controls.
  * @extends sap.ui.ux3.NavigationBar
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -43953,7 +50859,6 @@ sap.ui.ux3.NavigationBar.extend("sap.suite.ui.commons.VerticalNavigationBar", { 
  * @name sap.suite.ui.commons.VerticalNavigationBar.extend
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/VerticalNavigationBar.js
 ///**
@@ -44105,7 +51010,7 @@ jQuery.sap.require('sap.ui.commons.RowRepeater'); // unlisted dependency retaine
  * @class
  * This control extends the sap.ui.commons.RowRepeater control providing an ability to change data representation by switching between a number of views. The data can be displayed not only in rows but also in tiles that are adjusted to fill the entire horizontal space in a row.
  * @extends sap.ui.commons.RowRepeater
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -44593,7 +51498,6 @@ sap.suite.ui.commons.ViewRepeater.M_EVENTS = {'search':'search','changeView':'ch
  * @name sap.suite.ui.commons.ViewRepeater#fireChangeView
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/ViewRepeater.js
 ///**
@@ -45100,7 +52004,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ChartTile");
  * @class
  * This control is the implementation of the InfoTile to show a comparison or bullet chart.
  * @extends sap.suite.ui.commons.InfoTile
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -45159,7 +52063,6 @@ sap.suite.ui.commons.InfoTile.extend("sap.suite.ui.commons.ChartTile", { metadat
  * @name sap.suite.ui.commons.ChartTile#setUnit
  * @function
  */
-
 
 // Start of sap/suite/ui/commons/ChartTile.js
 /*!
@@ -45258,7 +52161,7 @@ jQuery.sap.require('sap.ui.ux3.ThingViewer'); // unlisted dependency retained
  * @class
  * This control extends the sap.ui.ux3.ThingViewer control. The first panel can display a thing icon, a title, the Action Menu button, up to two rows of text descriptions (the first is wrapped, the second is truncated), vertical navigation bar (sap.suite.ui.commons.VerticalNavigationBar), and an image aka key visual. The second panel displays the header area as a vertical panel containing ThingGroup objects. The third panel is a main content area designed to display ThingGroup objects.
  * @extends sap.ui.ux3.ThingViewer
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -45465,7 +52368,6 @@ sap.ui.ux3.ThingViewer.extend("sap.suite.ui.commons.ThreePanelThingViewer", { me
  * @public
  * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
-
 
 // Start of sap/suite/ui/commons/ThreePanelThingViewer.js
 
@@ -45696,13 +52598,15 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * <li>{@link #getEnableSocial enableSocial} : boolean (default: false)</li>
  * <li>{@link #getShowSuggestion showSuggestion} : boolean (default: true)</li>
  * <li>{@link #getEnableScroll enableScroll} : boolean (default: true)</li>
- * <li>{@link #getForceGrowing forceGrowing} : boolean (default: false)</li></ul>
+ * <li>{@link #getForceGrowing forceGrowing} : boolean (default: false)</li>
+ * <li>{@link #getSort sort} : boolean (default: true)</li></ul>
  * </li>
  * <li>Aggregations
  * <ul>
  * <li>{@link #getContent content} : sap.suite.ui.commons.TimelineItem[]</li>
  * <li>{@link #getFilterList filterList} : sap.suite.ui.commons.TimelineFilterListItem[]</li>
- * <li>{@link #getSuggestionItems suggestionItems} : sap.m.StandardListItem[]</li></ul>
+ * <li>{@link #getSuggestionItems suggestionItems} : sap.m.StandardListItem[]</li>
+ * <li>{@link #getCustomFilter customFilter} : sap.ui.core.Control</li></ul>
  * </li>
  * <li>Associations
  * <ul></ul>
@@ -45714,7 +52618,8 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * <li>{@link sap.suite.ui.commons.Timeline#event:addPost addPost} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
  * <li>{@link sap.suite.ui.commons.Timeline#event:suggest suggest} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
  * <li>{@link sap.suite.ui.commons.Timeline#event:suggestionItemSelected suggestionItemSelected} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
- * <li>{@link sap.suite.ui.commons.Timeline#event:grow grow} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
+ * <li>{@link sap.suite.ui.commons.Timeline#event:grow grow} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+ * <li>{@link sap.suite.ui.commons.Timeline#event:filterOpen filterOpen} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
  * </li>
  * </ul> 
 
@@ -45725,7 +52630,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Timeline Control for sFin.
  * @extends sap.ui.core.Control
- * @version 1.26.6
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -45736,7 +52641,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.Timeline", { metadata : {
 
 	publicMethods : [
 		// methods
-		"getCurrentFilter", "setCurrentFilter"
+		"getCurrentFilter", "setCurrentFilter", "setSuspendSocialFeature", "getSuspendSocailFeature", "setCustomMessage", "getHeaderBar", "getMessageStrip"
 	],
 	library : "sap.suite.ui.commons",
 	properties : {
@@ -45757,12 +52662,14 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.Timeline", { metadata : {
 		"enableSocial" : {type : "boolean", group : "Misc", defaultValue : false},
 		"showSuggestion" : {type : "boolean", group : "Behavior", defaultValue : true},
 		"enableScroll" : {type : "boolean", group : "Misc", defaultValue : true},
-		"forceGrowing" : {type : "boolean", group : "Misc", defaultValue : false}
+		"forceGrowing" : {type : "boolean", group : "Misc", defaultValue : false},
+		"sort" : {type : "boolean", group : "Misc", defaultValue : true}
 	},
 	aggregations : {
 		"content" : {type : "sap.suite.ui.commons.TimelineItem", multiple : true, singularName : "content"}, 
 		"filterList" : {type : "sap.suite.ui.commons.TimelineFilterListItem", multiple : true, singularName : "filterList"}, 
-		"suggestionItems" : {type : "sap.m.StandardListItem", multiple : true, singularName : "suggestionItem"}
+		"suggestionItems" : {type : "sap.m.StandardListItem", multiple : true, singularName : "suggestionItem"}, 
+		"customFilter" : {type : "sap.ui.core.Control", multiple : false}
 	},
 	events : {
 		"filterSelectionChange" : {}, 
@@ -45770,7 +52677,8 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.Timeline", { metadata : {
 		"addPost" : {}, 
 		"suggest" : {}, 
 		"suggestionItemSelected" : {}, 
-		"grow" : {}
+		"grow" : {}, 
+		"filterOpen" : {}
 	}
 }});
 
@@ -45791,7 +52699,7 @@ sap.ui.core.Control.extend("sap.suite.ui.commons.Timeline", { metadata : {
  * @function
  */
 
-sap.suite.ui.commons.Timeline.M_EVENTS = {'filterSelectionChange':'filterSelectionChange','select':'select','addPost':'addPost','suggest':'suggest','suggestionItemSelected':'suggestionItemSelected','grow':'grow'};
+sap.suite.ui.commons.Timeline.M_EVENTS = {'filterSelectionChange':'filterSelectionChange','select':'select','addPost':'addPost','suggest':'suggest','suggestionItemSelected':'suggestionItemSelected','grow':'grow','filterOpen':'filterOpen'};
 
 
 /**
@@ -46247,6 +53155,31 @@ sap.suite.ui.commons.Timeline.M_EVENTS = {'filterSelectionChange':'filterSelecti
 
 
 /**
+ * Getter for property <code>sort</code>.
+ * Allow only latest first sort when Sort is checked, otherwise display order in which data is received.
+ *
+ * Default value is <code>true</code>
+ *
+ * @return {boolean} the value of property <code>sort</code>
+ * @public
+ * @name sap.suite.ui.commons.Timeline#getSort
+ * @function
+ */
+
+/**
+ * Setter for property <code>sort</code>.
+ *
+ * Default value is <code>true</code> 
+ *
+ * @param {boolean} bSort  new value for property <code>sort</code>
+ * @return {sap.suite.ui.commons.Timeline} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.Timeline#setSort
+ * @function
+ */
+
+
+/**
  * Getter for aggregation <code>content</code>.<br/>
  * List of Timeline Items.
  * 
@@ -46485,6 +53418,37 @@ sap.suite.ui.commons.Timeline.M_EVENTS = {'filterSelectionChange':'filterSelecti
  * @return {sap.suite.ui.commons.Timeline} <code>this</code> to allow method chaining
  * @public
  * @name sap.suite.ui.commons.Timeline#destroySuggestionItems
+ * @function
+ */
+
+
+/**
+ * Getter for aggregation <code>customFilter</code>.<br/>
+ * Provide Custom Filter here
+ * 
+ * @return {sap.ui.core.Control}
+ * @public
+ * @name sap.suite.ui.commons.Timeline#getCustomFilter
+ * @function
+ */
+
+
+/**
+ * Setter for the aggregated <code>customFilter</code>.
+ * @param {sap.ui.core.Control} oCustomFilter
+ * @return {sap.suite.ui.commons.Timeline} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.Timeline#setCustomFilter
+ * @function
+ */
+	
+
+/**
+ * Destroys the customFilter in the aggregation 
+ * named <code>customFilter</code>.
+ * @return {sap.suite.ui.commons.Timeline} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.Timeline#destroyCustomFilter
  * @function
  */
 
@@ -46870,6 +53834,63 @@ sap.suite.ui.commons.Timeline.M_EVENTS = {'filterSelectionChange':'filterSelecti
 
 
 /**
+ * event is fired when filter icon is clicked and filter open
+ *
+ * @name sap.suite.ui.commons.Timeline#filterOpen
+ * @event
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'filterOpen' event of this <code>sap.suite.ui.commons.Timeline</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.suite.ui.commons.Timeline</code>.<br/> itself. 
+ *  
+ * event is fired when filter icon is clicked and filter open
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.suite.ui.commons.Timeline</code>.<br/> itself.
+ *
+ * @return {sap.suite.ui.commons.Timeline} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.Timeline#attachFilterOpen
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'filterOpen' event of this <code>sap.suite.ui.commons.Timeline</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.suite.ui.commons.Timeline} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.suite.ui.commons.Timeline#detachFilterOpen
+ * @function
+ */
+
+/**
+ * Fire event filterOpen to attached listeners.
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.suite.ui.commons.Timeline} <code>this</code> to allow method chaining
+ * @protected
+ * @name sap.suite.ui.commons.Timeline#fireFilterOpen
+ * @function
+ */
+
+
+/**
  * Get the current selected filter key
  *
  * @name sap.suite.ui.commons.Timeline#getCurrentFilter
@@ -46892,6 +53913,64 @@ sap.suite.ui.commons.Timeline.M_EVENTS = {'filterSelectionChange':'filterSelecti
  * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
+
+/**
+ * when set to true, the Add Post and Reply feature will be grayed out .
+ *
+ * @name sap.suite.ui.commons.Timeline#setSuspendSocialFeature
+ * @function
+ * @param {boolean} bBSuspend
+ *         boolean value for suspend or not.
+ * @type void
+ * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
+ */
+
+
+/**
+ * get the suspend social feature status
+ *
+ * @name sap.suite.ui.commons.Timeline#getSuspendSocailFeature
+ * @function
+ * @type boolean
+ * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
+ */
+
+
+/**
+ * set custom message
+ *
+ * @name sap.suite.ui.commons.Timeline#setCustomMessage
+ * @function
+ * @param {string} sMsg
+ *         Message to be set
+ * @type void
+ * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
+ */
+
+
+/**
+ * get the header bar control to customerize
+ *
+ * @name sap.suite.ui.commons.Timeline#getHeaderBar
+ * @function
+ * @type sap.m.Toolbar
+ * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
+ */
+
+
+/**
+ * Get messagestrip
+ *
+ * @name sap.suite.ui.commons.Timeline#getMessageStrip
+ * @function
+ * @type sap.m.MessageStrip
+ * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
+ */
 
 // Start of sap/suite/ui/commons/Timeline.js
 ///**
@@ -46921,7 +54000,8 @@ sap.suite.ui.commons.Timeline.prototype.init = function() {
 	this._addTarget = null;
 	this._shell = null;
 	this._aRows = null;
-	this._aDomRefs = null;
+	this._aDomRefs = null; 
+	this._messageStrip = null;
 	this._sapTabbable = null;
 	this._moreButtonFound = false;
 	this._pageSize = 10;
@@ -46929,11 +54009,18 @@ sap.suite.ui.commons.Timeline.prototype.init = function() {
 	this._dummy = false;
 	this._tabprevious = false;
 	this._tabnext = false;
-	this._addTarget = null;
-	this._filterTarget = null;
 	this._moreTarget = null;
 	this._saveTarget = null;
 	this._previousShellTarget = null;
+	this._previousLineItemsHeight = 0;
+	this._showMorescrollLocation = 0;
+	this._skipOnFocusIn = false; 
+	this._previousShiftF6Target = null;
+	this._outFocusTarget = null;
+	this._outFocusTargetClassName = null;
+	this._firstTimeSetFocus = true;
+	this._headerBarFieldLength = 0;
+	
 	sap.m.DisplayListItem.extend("sap.suite.ui.commons.DisplayListItemWithKey", {
 		metadata : {
 			properties : {
@@ -46949,7 +54036,7 @@ sap.suite.ui.commons.Timeline.prototype.init = function() {
 	// create an internal model.
 	this._prevTargetId = "";
 	this._internalModel = new sap.ui.model.json.JSONModel();
-	this._finishLoading = false;
+	this._finishLoading = true; //false;  change for cs 1570523249
 	this.setModel(this._internalModel, sap.suite.ui.commons.Timeline.INTERNAL_MODEL_NAME);
 	var oLocale = sap.ui.getCore().getConfiguration().getLanguage();
 	this.resBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.ui.commons", oLocale);
@@ -46963,6 +54050,7 @@ sap.suite.ui.commons.Timeline.prototype.init = function() {
 			that._openFilterDialog();
 		}
 	});
+	/*  per Social component, they will handle addIcon themselves
 	this._addIcon = new sap.m.Button(this.getId() + "-add", {
     	type:sap.m.ButtonType.Transparent,
     	icon:"sap-icon://add",
@@ -46971,12 +54059,28 @@ sap.suite.ui.commons.Timeline.prototype.init = function() {
 			that._openAddDialog();
 		}
     });
+    */
 	var oToolbarSpacer = new sap.m.ToolbarSpacer();
 
 	this._headerBar = new sap.m.Toolbar({
 		id : this.getId() + "-filterToolBar",
 		content : [oToolbarSpacer, this._filterIcon]
 	});
+	
+
+	var that = this; 
+
+
+	this._messageStrip =  new sap.m.MessageStrip({
+		close: function(oEvent) {
+			this.setText("");
+			if (that._lastHeaderBaRTabField !== null) {
+				jQuery(that._lastHeaderBaRTabField).focus();
+				oEvent.preventDefault();				
+			}
+		}
+		});
+	
 
 	this._filterInfoText = new sap.m.Text({
 		maxLines : 1,
@@ -46988,7 +54092,8 @@ sap.suite.ui.commons.Timeline.prototype.init = function() {
 		design : sap.m.ToolbarDesign.Info,
 		visible : false
 	});
-
+	
+	this._customFilter = false;
 	this._filterChange = false;
 	this._contentChange = true;
 	this._filterDialog = new sap.m.ResponsivePopover(this.getId() + "-popover_filter", {
@@ -47027,15 +54132,23 @@ sap.suite.ui.commons.Timeline.prototype.init = function() {
 	this._filterText = this.resBundle.getText("TIMELINE_ALL");
 	this._growing = false;
 	if (this.getGrowing()) {
+	
 		this._growDisplayCount = this.getGrowingThreshold();  //max current display item count
 		this._iItemCount = this.getGrowingThreshold();
 		this._getMoreButton = new sap.m.Button(this.getId() + "-getmore", {
-			text : this.resBundle.getText("TIMELINE_MORE"),
+			text : this.resBundle.getText("TIMELINE_SHOW_MORE"),
 			width : "100%",
 			press : function() {
+			
+			if (document.getElementById(that.getId() + '-contentH'))	{
+				that._showMorescrollLocation = document.getElementById(that.getId() + '-contentH').scrollLeft;
+			} else {
+				that._showMorescrollLocation = document.getElementById(that.getId() + '-content').scrollTop;
+			}
 				// fire the event
 				that.fireGrow();
 				that._iItemCount += that.getGrowingThreshold();
+				var oldDisplayCount = that._growDisplayCount;
 				that._growDisplayCount += that.getGrowingThreshold();
 				if (that.oItemNavigation) {
 					that.removeDelegate(that.oItemNavigation);
@@ -47054,6 +54167,15 @@ sap.suite.ui.commons.Timeline.prototype.init = function() {
 				} else {
 					that.rerender();
 				}
+			
+				//focus on the last item preceding more button before growing was fired.
+				jQuery.sap.delayedCall(300, that, function() {
+					if (document.getElementById(that.getId() + '-contentH'))	{
+						document.getElementById(that.getId() + '-contentH').scrollLeft =  that._showMorescrollLocation;
+					} else {
+						document.getElementById(that.getId() + '-content').scrollTop =	that._showMorescrollLocation ;
+						}
+		      });
 
 			}
 		});
@@ -47083,7 +54205,7 @@ sap.suite.ui.commons.Timeline.prototype.init = function() {
 	}*/
 }; // init
 
-
+	
 sap.suite.ui.commons.Timeline.prototype._createAddDialog = function(){
 // add dialog
 	var that = this;
@@ -47094,7 +54216,7 @@ sap.suite.ui.commons.Timeline.prototype._createAddDialog = function(){
          contentMiddle : [
 				new sap.m.Button({
 					text: this.resBundle.getText("TIMELINE_OK"),
-				    icon: "sap-icon://ok",
+				    //icon: "sap-icon://ok",
 				    press: function () {
 				      that._addDialog.close();
 				      that._addPost();
@@ -47103,7 +54225,7 @@ sap.suite.ui.commons.Timeline.prototype._createAddDialog = function(){
 				  }),
 				  new sap.m.Button({
 				      text: this.resBundle.getText("TIMELINE_FILTER_CANCEL"),
-				      icon: "sap-icon://cancel",
+				      //icon: "sap-icon://cancel",
 				      press: function () {
 				        that._addDialog.close();
 				       
@@ -47116,7 +54238,7 @@ sap.suite.ui.commons.Timeline.prototype._createAddDialog = function(){
 	});
     
    	this._addInput = new sap.m.TextArea({
-		height: "14rem",
+		height: "15rem",
 		width: "100%",
 		liveChange: function (oEvent) {
 			that._liveChange(oEvent);
@@ -47137,6 +54259,7 @@ sap.suite.ui.commons.Timeline.prototype._createSuggestionPopup = function(oInput
 			});
 	this._overwritePopover(this._suggestionPopup, oInput);		
 	this._suggestList = new sap.m.List(this.getId() + "-suggestlist", {
+		showNoData: false,
 		mode : sap.m.ListMode.SingleSelectMaster,
 
 		selectionChange : function(oEvent) {
@@ -47146,12 +54269,12 @@ sap.suite.ui.commons.Timeline.prototype._createSuggestionPopup = function(oInput
 			var insertVal = '';
 			var desc = oItem.getDescription();
 			if (desc.match(/\S+@\S+\.\S+/)) {  // if its an email address, get the first part of it
-				insertVal =  "@" + desc.split('@')[0];
+				insertVal =  "@" + desc.split('@')[0] + " ";
 			} else {
-				insertVal = "@" + desc;
+				insertVal = "@" + desc + " ";
 			}
 			
-			var newVal = that._getNewString(strInput, that._inputDiff, insertVal);
+			var newVal = that._getNewString(strInput, that._inputDiff.val, insertVal);
 			that._addInput.setValue(newVal);
 			that._oldAddInput = newVal;
 			that.fireSuggestionItemSelected({
@@ -47188,6 +54311,11 @@ sap.suite.ui.commons.Timeline.prototype._overwritePopover = function (oPopover, 
 
 sap.suite.ui.commons.Timeline.prototype._liveChange = function(oEvent) {
 // only fire event when change is ^@ or \s@
+	//should close popover if it is open
+	if (this._suggestionPopup && this._suggestionPopup.isOpen()) {
+		this._suggestionPopup.close();
+	}
+	
 	var strInput = oEvent.getParameters().value;
 	
 	if (!this.getShowSuggestion()) {
@@ -47198,35 +54326,42 @@ sap.suite.ui.commons.Timeline.prototype._liveChange = function(oEvent) {
 	//this._getCursorPosition(strInput, this._oldAddInput);
 	var oInput = oEvent.getSource();
 	this._inputDiff = this._getDiffWord(strInput, this._oldAddInput);
+	this._lastInputOp = this._inputDiff.op;
 //	if (this._lastInputOp == "A" || this._lastInputOp == "D") {
-		if (this._inputDiff.match(/^@|\s@/g) && this._inputDiff.length > 1) {
+	if (this._inputDiff.val.match(/^@|\s@/g) && this._inputDiff.val.length > 1) {
+			if (this._lastInputOp === "A") {
 			var that = this;
 			if (!this._suggestionPopup) {
 				this._createSuggestionPopup(oInput);
 			}
 			this.fireSuggest({
-					suggestValue: this._inputDiff
+					suggestValue: this._inputDiff.val
 			});
-
-			this._iSuggestDelay = jQuery.sap.delayedCall(300, this, function(){
-				this._suggestList.destroyItems();
-				var items = this.getSuggestionItems();
-				
-				for (var i=0; i<items.length; i++) {
-					this._suggestList.addItem(new sap.m.StandardListItem({
-						icon: items[i].getIcon(),
-						title: items[i].getTitle(),
-						description: items[i].getDescription()
-					}));
-				}
 	
-				
-				this._suggestionPopup.openBy(oInput);			
 	
-			});
-		} else if (this._suggestionPopup && this._inputDiff.length == 0) { // adding a space. should close the suggestion
-			this._suggestionPopup.close();			
+			this._suggestList.destroyItems();
+			var items = this.getSuggestionItems();
+			
+			for (var i=0; i<items.length; i++) {
+				this._suggestList.addItem(new sap.m.StandardListItem({
+					icon: items[i].getIcon(),
+					title: items[i].getTitle(),
+					description: items[i].getDescription()
+				}));
+			}
+	
+			
+			this._suggestionPopup.openBy(oInput);			
+		} else if (this._lastInputOp === "D") {
+			//delete the whole words
+			var newVal = this._getNewString(strInput, this._inputDiff.val, '');
+			this._addInput.setValue(newVal);
+			
 		}
+
+	} else if (this._suggestionPopup && this._inputDiff.val.length == 0) { // adding a space. should close the suggestion
+		this._suggestionPopup.close();			
+	}
 
 	
 
@@ -47263,42 +54398,46 @@ sap.suite.ui.commons.Timeline.prototype._getDiffWord = function(newStr, oldStr) 
 // compares the old string and new string, return the new string's diff words. If nstr words 
 	var nwords = [];
 	var owords = [];
+	var op = "";
 	if (newStr) {
-		nwords = newStr.split(" ");
+		nwords = newStr.split(/\s|\r\n|\r|\n/g);
 	}
 	if (oldStr) {
-		owords = oldStr.split(" ");
+		owords = oldStr.split(/\s|\r\n|\r|\n/g);
 	}
 	if (newStr.length < oldStr.length) {   // this is a delete
-		this._lastInputOp = "D";
+		op = "D";
+		//this._lastInputOp = "D";
 		for (var i=0; i<nwords.length; i++) {
 			if (nwords[i] != owords[i]) {
 				if (nwords[i] == owords[i+1]) {
 					//deleting one word charactor, shouldn't matter
-					return "d";
+					return {val: "d", op: op};
 				}
 				else {
-					return nwords[i];
+					return {val: nwords[i], op:op};
 				}
 			}
 		}
-		return "d"; // delete the last one character, shouldn't matter
+		return {val: "d", op: op}; // delete the last one character, shouldn't matter
 	} else {   // this is add
-		this._lastInputOp = "A";
+		op = "A";
+		//this._lastInputOp = "A";
 		if (nwords.length > owords.length) {
-			return nwords[nwords.length-1];
+			return {val: nwords[nwords.length-1], op: op};
 		}
-		for (var i=0; i<owords.length; i++) {
+		for (var i=0; i < owords.length; i++) {
 			if (owords[i] != nwords[i]) {  // insert into existing words
-				return nwords[i];
+				return {val: nwords[i], op: op};
 			} 
 		}
-		return " " ; // only space difference...
+		return {val: " ", op: op}; // only space difference...
 	}
 }; 
 
 sap.suite.ui.commons.Timeline.prototype._getNewString = function (oldStr, diff, insertStr) {
-	return oldStr.replace(diff, insertStr);
+	var regi = new RegExp(diff + '$');
+	return oldStr.replace(regi, insertStr);
 };
 
 //sap.suite.ui.commons.Timeline.prototype.getScrollDelegate = function() {
@@ -47328,6 +54467,7 @@ sap.suite.ui.commons.Timeline.prototype._addPost = function(){
 	
 };
 
+/* requested by social component, they will handle add button and dialog
 sap.suite.ui.commons.Timeline.prototype._openAddDialog = function() {
 	if (!this._addDialog) {
 		this._createAddDialog();
@@ -47340,7 +54480,21 @@ sap.suite.ui.commons.Timeline.prototype._openAddDialog = function() {
 	this._addDialog.openBy(this._addIcon);
 
 };
+*/
 
+sap.suite.ui.commons.Timeline.prototype._setSuggestionList = function() {
+	//this._suggestList.updateAggregation("items", this.getSuggestionItems());
+	this._suggestList.destroyItems();
+	var items = this.getSuggestionItems();
+	
+	for (var i=0; i<items.length; i++) {
+		this._suggestList.addItem(new sap.m.StandardListItem({
+			icon: items[i].getIcon(),
+			title: items[i].getTitle(),
+			description: items[i].getDescription()
+		}));
+	}
+};
 
 sap.suite.ui.commons.Timeline.prototype._setFilterInfoText = function(oFilter) {
 	var oFilterInfoText = this.resBundle.getText("TIMELINE_FILTER_INFO_BY", [oFilter]);
@@ -47430,6 +54584,11 @@ sap.suite.ui.commons.Timeline.prototype._resetFilter = function() {
 sap.suite.ui.commons.Timeline.prototype._openFilterDialog = function() {
 
 //	if (!this._aFilterList || ( this._contentChange && !this.getEnableBackendFilter())) { 	
+	if (this._customFilter){
+		this.getCustomFilter().openBy(this._filterIcon);
+		this.fireFilterOpen();
+		return;
+	}
 	this._setFilterList(); //reset filterList always in case of content change....
 	if ((this.getEnableBackendFilter() && (this._aFilterList.length === 0)) || ( this._contentChange && !this.getEnableBackendFilter())) {
 		//this._setFilterList();
@@ -47438,7 +54597,7 @@ sap.suite.ui.commons.Timeline.prototype._openFilterDialog = function() {
 	
 	this._filterDialog.addContent(this._filterList);
 	this._filterDialog.openBy(this._filterIcon);
-
+	this.fireFilterOpen();
 };
 
 sap.suite.ui.commons.Timeline.prototype._resetDisplayItems = function(filter) {
@@ -47455,12 +54614,13 @@ sap.suite.ui.commons.Timeline.prototype._resetDisplayItems = function(filter) {
 };
 
 sap.suite.ui.commons.Timeline.prototype.setEnableSocial = function(flag){
+	/* per request socail component, add icon will handle by social component
 	if (flag) {
 		this._headerBar.insertContent(this._addIcon, 0);
 	} else {
 		this._headerBar.removeContent(this._addIcon);
 	}
-	
+	*/
 	this.setProperty("enableSocial", flag);
 	
 };
@@ -47477,7 +54637,7 @@ sap.suite.ui.commons.Timeline.prototype.setData = function(oData) {
 		path : sPath,
 		sorter : this._getDefaultSorter('dateTime', this.getSortOldestFirst()),
 		factory : jQuery.proxy(this._defaultItemsFactory, this)
-	});
+		});
 	this._displayItems = this.getContent();
 	this._finishLoading = true;
 	this._contentChange = true;
@@ -47499,7 +54659,12 @@ sap.suite.ui.commons.Timeline.prototype._getDefaultSorter = function(property, o
 	} else {
 		descending = true;
 	}
-	return new sap.ui.model.Sorter(property, descending, false);
+	
+	if (this.getSort()) {
+		return new sap.ui.model.Sorter(property, descending, false);
+	} else {
+		return null;
+	}
 };
 
 sap.suite.ui.commons.Timeline.prototype._defaultItemsFactory = function(sId, oContext) {
@@ -47596,12 +54761,25 @@ sap.suite.ui.commons.Timeline.prototype.onAfterRendering = function() {
 		this.$().css("height", this._height);
 		if (this.getEnableScroll()) { // only set height when we want scrolling
 			this.$().find("#" + this.getId() + "-scroll").css("height", this._scHeight);
+//			console.log(this._scHeight);
 		}
 	} 
-	jQuery.sap.delayedCall(150, this, function() {
+
+//*to fix event grow binding issue - when click on more, scroll back to the top
+//	jQuery.sap.delayedCall(150, this, function() {
+	jQuery.sap.delayedCall(500, this, function() {
 		that._performUiChanges();
-	});
+		
+	     /* var p = this.$().find("#" + this.getId() + "-showmore");
+          var position = p.position();
+//          console.log(p);
+//          console.log(this.$().find("#" + this.getId() + "-scroll-ul").height());
+		  p.css({ "top": this.$().find("#" + this.getId() + "-scroll-ul").height(), position:'relative'});
+//		  console.log(position);
+*/	});
 	this._startItemNavigation();
+	
+	
 	//scroll event
 //	this.$().find("#" + this.getId() + "-content").bind("scroll", jQuery.proxy(this.onScroll, this));
 };
@@ -47615,6 +54793,7 @@ sap.suite.ui.commons.Timeline.prototype.onScroll = function(oEvent) {
 	}
 };
 */
+
 
 /* Keyboard Handling */
 sap.suite.ui.commons.Timeline.prototype._startItemNavigation = function(oEvent) {
@@ -47647,19 +54826,78 @@ sap.suite.ui.commons.Timeline.prototype._startItemNavigation = function(oEvent) 
  	this._addTarget = null;
  	this._filterTarget = null;
   	this._moreTarget = null;
+  	this._lastMessageStripTabElem = null;
+  	this._messageStripTabFields = [];  
+  	this._messageStripIsAvailable = false;  
+  	this._messageStripCloseButtonTarget = null;  
+  	this._firstShell = null;
+  	this._lastShell = null;
+  	this._lastTab = null;
+  	this._lastHeaderBaRTabField = null;
+  	this._firstHeaderBaRTabField = null;  	
+  	this._headerBarFieldLength = this.getHeaderBar().getContent().length;
+
 	for (var i = 0; i < this._sapTabbable.length; i++) {
+		if (this._headerBarFieldLength >= 2) {
+			if (this._sapTabbable[i].id == this.getHeaderBar().getContent()[this._headerBarFieldLength - 1].sId) {
+				this._lastHeaderBaRTabField = this._sapTabbable[i];
+				if (this._firstHeaderBaRTabField === null) {
+					this._firstHeaderBaRTabField = this._sapTabbable[i];
+				}
+			}			
+		}
+		if (this._headerBarFieldLength >= 2) {
+			if (this._sapTabbable[i].id == this.getHeaderBar().getContent()[1].sId) {
+				if (this._firstHeaderBaRTabField === null) {
+					this._firstHeaderBaRTabField = this._sapTabbable[i];
+				}
+			} 			
+		}
+
+		if (this._sapTabbable[i].id.indexOf("shell") >= 0 && this._firstShell == null) {
+			this._firstShell = this._sapTabbable[i];
+		}
+		if (this._sapTabbable[i].id.indexOf("shell") >= 0) {
+			this._lastShell = this._sapTabbable[i];
+		}
+		if (this._sapTabbable[i].id.indexOf("more") < 0) {
+			this._lastTab = this._sapTabbable[i];
+		}
 		if (this._sapTabbable[i].id.indexOf("more") >= 0) {
 			this._moreButtonFound = true;
 			this._moreTarget = this._sapTabbable[i];
 		}
-		if (this._sapTabbable[i].id.indexOf("add") >= 0) {
+		if (this._sapTabbable[i].id.indexOf("add") >= 0) { 
 			this._addButtonFound = true;
 			this._addTarget = this._sapTabbable[i];
 		}
 		if (this._sapTabbable[i].id.indexOf("filter") >= 0) {
 			this._filterTarget = this._sapTabbable[i];
 		}
+		if (this._sapTabbable[i].className === "sapMMsgStripCloseButton") {
+			this._messageStripCloseButtonTarget = this._sapTabbable[i];
+		}
 	}		
+	for (var i = 0; i < this._sapTabbable.length; i++) {
+		if (this._lastMessageStripTabElem == null && this.getMessageStrip().getText() != '') { 	
+			if (this._sapTabbable[i].id.indexOf("add") >= 0) {
+				continue;
+			}
+			if (this._sapTabbable[i].className === "sapMMsgStripCloseButton") {
+				this._messageStripIsAvailable = true;
+				this._lastMessageStripTabElem = this._sapTabbable[i];
+				break;
+			}
+			if (this._sapTabbable[i].id.indexOf("shell") < 0 && this._sapTabbable[i].id.indexOf("filter") < 0) {
+				this._messageStripTabFields.push(this._sapTabbable[i]);
+			}	
+			if (this._lastMessageStripTabElem == null && this._sapTabbable[i].className == "sapSuiteUiCommonsTimelineItemShell" && this._sapTabbable[i - 1]) {
+				this._lastMessageStripTabElem = this._sapTabbable[i - 1];	
+				break;
+			}
+		}
+	}
+	
 	// set the array of dom nodes representing the items.
 	this.oItemNavigation.setItemDomRefs(aDomRefs);
 	// turn off the cycling
@@ -47669,24 +54907,52 @@ sap.suite.ui.commons.Timeline.prototype._startItemNavigation = function(oEvent) 
 	if (this._pageSize == 0) {
 		this._pageSize = 10;
 	}
-//	this._pageSize = 3; 
+//	this._pageSize = 2; 
 	this.oItemNavigation.setPageSize(this._pageSize);
 };
 
+sap.suite.ui.commons.Timeline.prototype._targetIdIsMessageStripTab = function(oEvent) {
+	for (var i=0; i < this._messageStripTabFields.length; i++) {
+		if (this._messageStripTabFields[i].id === oEvent.target.id ) {
+			return true;
+		}
+	}
+	return false;
+};
+
 sap.suite.ui.commons.Timeline.prototype.onsaphome = function(oEvent) {
-	jQuery(this._aRows[0]).focus();
-	oEvent.preventDefault();
-	oEvent.setMarked();
+	this._skipOnFocusIn = true; 
+	this._setFocus(oEvent, this._aRows[0]);
+	this._previousTarget = this._aRows[0];
+	this._previousShellTarget = this._aRows[0]; //when shift+f6 from outside, we need use this value
 };
 
 sap.suite.ui.commons.Timeline.prototype.onsapend = function(oEvent) {
-	jQuery(this._aRows[this._aRows.length - 1]).focus();
+	this._skipOnFocusIn = true;
+	this._setFocus(oEvent, this._aRows[this._aRows.length - 1]);
+	this._previousTarget = this._aRows[this._aRows.length - 1];
+	this._previousShellTarget = this._aRows[this._aRows.length - 1]; //when shift+f6 from outside, we need use this value
+};
+
+sap.suite.ui.commons.Timeline.prototype._setFocus = function(oEvent, id) {
+	jQuery(id).focus();
 	oEvent.preventDefault();
-	oEvent.setMarked();
+	oEvent.setMarked();	
 };
 
 sap.suite.ui.commons.Timeline.prototype.onsappagedown = function(oEvent) {
 //page down on item level only	
+	this._skipOnFocusIn = true;
+	this._setPageDownUpFocus(oEvent, true);
+};
+
+sap.suite.ui.commons.Timeline.prototype.onsappageup = function(oEvent) {
+//page up item level only
+	this._skipOnFocusIn = true;
+	this._setPageDownUpFocus(oEvent, false);
+};
+
+sap.suite.ui.commons.Timeline.prototype._setPageDownUpFocus = function(oEvent, down) {
 	var focusInItemLevelFound = false;
 	for (var i=0; i < this._aRows.length; i++) {
 			if (this._aRows[i].id == oEvent.target.id ) {
@@ -47695,131 +54961,77 @@ sap.suite.ui.commons.Timeline.prototype.onsappagedown = function(oEvent) {
 			}
 	}
 	if (focusInItemLevelFound == false) {
-		jQuery(oEvent.target).focus();
-		oEvent.preventDefault();
-		oEvent.setMarked();
+		this._setFocus(oEvent, oEvent.target);
 		return;
 	}
-	var nextFocusIndex = i + this._pageSize;
-	if (nextFocusIndex >= this._aRows.length) {
-		nextFocusIndex = this._aRows.length - 1;
-	}
-	jQuery(this._aRows[nextFocusIndex]).focus();
-	oEvent.preventDefault();
-	oEvent.setMarked();
-};
-
-sap.suite.ui.commons.Timeline.prototype.onsappageup = function(oEvent) {
-//page up item level only
-	var focusInItemLevelFound = false;
-	for (var i = 0; i < this._aRows.length; i++) {
-		if (this._aRows[i].id == oEvent.target.id ) {
-			focusInItemLevelFound = true;
-			break;
+	
+	var nextFocusIndex = 0;
+	
+	if (down) {
+		nextFocusIndex = i + this._pageSize;
+		if (nextFocusIndex >= this._aRows.length) {
+			nextFocusIndex = this._aRows.length - 1;
 		}
+	} else {
+		nextFocusIndex = i - this._pageSize;
+		if (nextFocusIndex < 0) {
+			nextFocusIndex = 0;
+		}		
 	}
-	if (focusInItemLevelFound == false) {
-		jQuery(oEvent.target).focus();
-		oEvent.preventDefault();
-		oEvent.setMarked();
-		return;
-	}
-	var nextFocusIndex = i - this._pageSize;
-	if (nextFocusIndex < 0) {
-		nextFocusIndex = 0;
-	}
-	jQuery(this._aRows[nextFocusIndex]).focus();
-	oEvent.preventDefault();
-	oEvent.setMarked();
+
+	this._setFocus(oEvent, this._aRows[nextFocusIndex]);
+	this._previousTarget = this._aRows[nextFocusIndex];
+	this._previousShellTarget = this._aRows[nextFocusIndex]; //when shift+f6 from outside, we need use this value
 };
 
 sap.suite.ui.commons.Timeline.prototype.onsapup = function(oEvent) {
 //arrow down only on item level
-
-	var j = 0;
-	
-	for (var i = 0; i < this._sapTabbable.length; i++) {
-			if (this._sapTabbable[i].id == oEvent.target.id ) {
-				j = i;
-			}
-	}	
-
-	for (var i = j-1; i >= 0; i--) {
-		if (this._sapTabbable[i].id.indexOf("shell") >= 0 && this._sapTabbable[i].id != oEvent.target.id && this._shell != this._sapTabbable[i].id  && i < j) {
-            this._shell = this._sapTabbable[i].id;
-			this._previousTarget = this._sapTabbable[i];
-			this._previousShellTarget = this._sapTabbable[i];
-			jQuery(this._sapTabbable[i]).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
-			break;
-		}
-	}
+	this._skipOnFocusIn = true;
+	this._setArrowUpLeftFocus(oEvent);
 };
 
 sap.suite.ui.commons.Timeline.prototype.onsapleft = function(oEvent) {
 //arrow down only on item level
+	this._skipOnFocusIn = true;
+	this._setArrowUpLeftFocus(oEvent);
+};
 
+sap.suite.ui.commons.Timeline.prototype._setArrowUpLeftFocus = function(oEvent) {
 	var j = 0;
 	
 	for (var i = 0; i < this._sapTabbable.length; i++) {
 			if (this._sapTabbable[i].id == oEvent.target.id ) {
 				j = i;
+				break;
 			}
 	}	
+
 	for (var i = j-1; i >= 0; i--) {
 		if (this._sapTabbable[i].id.indexOf("shell") >= 0 && this._sapTabbable[i].id != oEvent.target.id && this._shell != this._sapTabbable[i].id  && i < j) {
             this._shell = this._sapTabbable[i].id;
 			this._previousTarget = this._sapTabbable[i];
 			this._previousShellTarget = this._sapTabbable[i];
-			jQuery(this._sapTabbable[i]).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
+			this._setFocus(oEvent, this._sapTabbable[i]);
 			break;
 		}
-	}
+	}	
 };
 
 sap.suite.ui.commons.Timeline.prototype.onsapdown = function(oEvent) {
 //arrow down only on item level
-	
-	if (oEvent.target.id.indexOf("shell") < 0) {
-		jQuery(this.$().find(oEvent.target)).focus();
-		oEvent.preventDefault();
-		oEvent.setMarked();
-		return;
-	}
-						
-
-	var j = 0;
-	
-	for (var i = 0; i < this._sapTabbable.length; i++) {
-		if (this._sapTabbable[i].id == oEvent.target.id ) {
-			j = i;
-		}
-	}	
-
-	for (var i=0; i <this._sapTabbable.length; i++) {
-		if (this._sapTabbable[i].id.indexOf("shell") >= 0 && this._sapTabbable[i].id != oEvent.target.id && this._shell != this._sapTabbable[i].id  && i > j) {
-        this._shell = this._sapTabbable[i].id;
-		this._previousTarget = this._sapTabbable[i];
-		this._previousShellTarget = this._sapTabbable[i];
-		jQuery(this._sapTabbable[i]).focus();
-		oEvent.preventDefault();
-		oEvent.setMarked();
-		return;
-		}
-	}
-
+	this._skipOnFocusIn = true;
+	this._setArrowDownRightFocus(oEvent);
 };
 
 sap.suite.ui.commons.Timeline.prototype.onsapright = function(oEvent) {
 //arrow down only on item level
-	
+	this._skipOnFocusIn = true;
+	this._setArrowDownRightFocus(oEvent);
+};
+
+sap.suite.ui.commons.Timeline.prototype._setArrowDownRightFocus = function(oEvent) {
 	if (oEvent.target.id.indexOf("shell") < 0) {
-		jQuery(this.$().find(oEvent.target)).focus();
-		oEvent.preventDefault();
-		oEvent.setMarked();
+		this._setFocus(oEvent, this.$().find(oEvent.target));
 		return;
 	}					
 
@@ -47828,6 +55040,7 @@ sap.suite.ui.commons.Timeline.prototype.onsapright = function(oEvent) {
 	for (var i = 0; i < this._sapTabbable.length; i++) {
 		if (this._sapTabbable[i].id == oEvent.target.id ) {
 			j = i;
+			break;
 		}
 	}	
 
@@ -47836,20 +55049,20 @@ sap.suite.ui.commons.Timeline.prototype.onsapright = function(oEvent) {
 	        this._shell = this._sapTabbable[i].id;
 			this._previousTarget = this._sapTabbable[i];
 			this._previousShellTarget = this._sapTabbable[i];
-			jQuery(this._sapTabbable[i]).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
+			this._setFocus(oEvent, this._sapTabbable[i]);
 			return;
 		}
-	}
+	}	
 };
+
 
 sap.suite.ui.commons.Timeline.prototype.onsaptabprevious = function(oEvent) {
 	var lastInteractiveElement = null;
 	this._tabprevious = true;
-	if (oEvent.target.id.indexOf("filter") < 0 && oEvent.target.id.indexOf("add") < 0 && oEvent.target.id.indexOf("more") < 0) {
-//	if (oEvent.target.id.indexOf("filter") < 0 && oEvent.target.id.indexOf("add") < 0) {
-		this._previousTabPreviousTarget = oEvent.target;
+	if (!this._targetIdInHeaderBar(oEvent) && oEvent.target.id.indexOf("more") < 0 && oEvent.target.className !== "sapMMsgStripCloseButton") {
+		if (!this._targetIdIsMessageStripTab(oEvent)) { 
+			this._previousTabPreviousTarget = oEvent.target;			
+		}
 	}
 	if (this.oItemNavigation) {
 		this.removeDelegate(this.oItemNavigation);
@@ -47857,30 +55070,8 @@ sap.suite.ui.commons.Timeline.prototype.onsaptabprevious = function(oEvent) {
 	}
 	this._startItemNavigation(); 
 	var $Tabbables = this._sapTabbable;
-	if (this._addButtonFound) {
-		if (this._addTarget == null) { //without any tab and enter click any item and enter shift+tab 
-			for (var i=0; i <this._sapTabbable.length; i++) {
-				if (this._sapTabbable[i].id.indexOf("add") >= 0 ) {
-					jQuery(this._sapTabbable[i]).focus();
-					oEvent.preventDefault();
-					oEvent.setMarked();
-					return;
-				}
-			}	
-		}
-	}
-	else {
-		if (this._filterTarget == null) { //without any tab and enter click any item and enter shift+tab 
-			for (var i=0; i <this._sapTabbable.length; i++) {
-				if (this._sapTabbable[i].id.indexOf("filter") >= 0 ) {
-					jQuery(this._sapTabbable[i]).focus();
-					oEvent.preventDefault();
-					oEvent.setMarked();
-					return;
-				}
-			}	
-		}
-	}
+
+	
 	var prevFocusShellTarget = null;
 	if (oEvent.target.id.indexOf("getmore") >= 0) {
 		if (this._previousTarget == null) {
@@ -47894,14 +55085,12 @@ sap.suite.ui.commons.Timeline.prototype.onsaptabprevious = function(oEvent) {
 					if (this._previousShellTarget.id ==  this._sapTabbable[i].id) {		
 						lastInteractiveElement = this._getLastInteractiveElementInItem(this._sapTabbable[i]);
 						this._previousTarget = lastInteractiveElement;
-						jQuery(lastInteractiveElement).focus();
-						oEvent.preventDefault();
-						oEvent.setMarked();		
-						shellTargetFound = true;	
+						this._setFocus(oEvent, lastInteractiveElement);
+						shellTargetFound = true;
 						return;
 					}
-				}		    	
-		    }
+				}
+			}
 			//focus on 1st shell if previous shell not found
 			var lastInteractiveElement = null;
 			if (!shellTargetFound) {
@@ -47911,9 +55100,7 @@ sap.suite.ui.commons.Timeline.prototype.onsaptabprevious = function(oEvent) {
 						lastInteractiveElement = this._getLastInteractiveElementInItem(this._getFirstShellTarget());
 						this._previousTarget = lastInteractiveElement;
 						this._previousShellTarget = this._sapTabbable[i];
-						jQuery(lastInteractiveElement).focus();
-						oEvent.preventDefault();
-						oEvent.setMarked();
+						this._setFocus(oEvent, lastInteractiveElement);
 						return;
 					}
 				}
@@ -47923,14 +55110,21 @@ sap.suite.ui.commons.Timeline.prototype.onsaptabprevious = function(oEvent) {
 		oEvent.setMarked();
 		return;
 	}
-		
+	
 	if (oEvent.target.id.indexOf("shell") >= 0) {
-		jQuery(this._filterTarget).focus();
-		oEvent.preventDefault();
-		oEvent.setMarked();
-		return;
+		if (this._messageStripIsAvailable) {  
+			this._setFocus(oEvent, this._messageStripCloseButtonTarget);
+			return;
+		}
+		if (this._lastHeaderBaRTabField !== null) {
+			this._setFocus(oEvent, this._lastHeaderBaRTabField);
+			return;			
+		}
+		//headerbar without button
+		jQuery(this._firstShell).focus(); 
+
 	}	
-	if (oEvent.target.id.indexOf("filter") >= 0 || oEvent.target.id.indexOf("add") >= 0 ) {
+	if (oEvent.target.id == this._firstHeaderBaRTabField.id) {
 		this._dummy = true; //assume will tab through dummy...
 	}
 };
@@ -47940,10 +55134,10 @@ sap.suite.ui.commons.Timeline.prototype._getLastInteractiveElementInItem = funct
 	if (target == null) {
 		return;
 	}
-
+	
 	var LastItemInteractiveElement = target;
 	
-	var j = 0;
+	var j = 0; 
 	
 	//find the item using shell target
 	for (var i = 0; i < this._sapTabbable.length; i++) {
@@ -48026,7 +55220,24 @@ sap.suite.ui.commons.Timeline.prototype.onsaptabnext = function(oEvent) {
 		this.oItemNavigation.destroy();
 	}
 	this._startItemNavigation();
-
+//headerbar
+//oEvent.target.id point to current position
+	for (var i = 0; i < this._headerBarFieldLength; i++) { //currently already focused on the last headerbar button. If the prev focus not in 1st shell
+		if (oEvent.target.id === this.getHeaderBar().getContent()[i].sId && oEvent.target.id === this._lastHeaderBaRTabField.id) {
+			if (!this._messageStripIsAvailable && this._previousShellTarget != null) {			
+				for (var i = 0; i < this._sapTabbable.length; i++) { 
+					if (this._previousShellTarget.id ==  this._sapTabbable[i].id) {
+						this._setFocus(oEvent, this._sapTabbable[i]);
+						return;
+					}
+				}
+			}
+		}
+		if (oEvent.target.id === this.getHeaderBar().getContent()[i].sId) { //button in headerbar, let central handle the focus
+			return;
+		}
+	}
+	
 	var oTargetPosition = -1;
 	for (var i = 0; i < this._sapTabbable.length; i++) {
 		if (oEvent.target.id ==  this._sapTabbable[i].id) {
@@ -48034,8 +55245,21 @@ sap.suite.ui.commons.Timeline.prototype.onsaptabnext = function(oEvent) {
 			break;
 		}
 	}
+	
+	if (dataInMessageStrip && this._targetIdInHeaderBar(oEvent)) {
+		return;
+	}
+	
+	if (oEvent.target.className === "sapMMsgStripCloseButton" && this._previousShellTarget != null) {
+		for (var i = 0; i < this._sapTabbable.length; i++) { //when click more, we need to find the new generated tab item
+			if (this._previousShellTarget.id ==  this._sapTabbable[i].id) {
+				this._setFocus(oEvent, this._sapTabbable[i]);
+				return;
+			}
+		}
+	}
 		
-	if (oEvent.target.id.indexOf("more") < 0 && oEvent.target.id.indexOf("filter") < 0 && oEvent.target.id.indexOf("add") < 0) {
+	if (oEvent.target.id.indexOf("more") < 0 && !this._targetIdInHeaderBar(oEvent) && oEvent.target.id != "") {
 		if (oTargetPosition == this._sapTabbable.length - 1) {
 			this._setFocusOnMoreOrOutOfFocusArea(oEvent);
 		}
@@ -48043,19 +55267,20 @@ sap.suite.ui.commons.Timeline.prototype.onsaptabnext = function(oEvent) {
 			this._setFocusOnMoreOrOutOfFocusArea(oEvent);
 		}
 	}
-
+	
 	var prevFocusShellTarget = null;
-	if (oEvent.target.id.indexOf("filter") >= 0 && this._previousTarget != null && oEvent.target != this._previousTarget) {
+	if (this._targetIdIsLastHeaderBarBtn(oEvent) && this._previousTarget != null && oEvent.target != this._previousTarget) {
+		if (this._messageStripIsAvailable) { 
+			return;
+		}
 		if (this._previousTarget.id.indexOf("shell") >= 0) {
 			var shellTargetFound = false;
 			for (var i = 0; i < this._sapTabbable.length; i++) {
 				if (this._previousTarget.id ==  this._sapTabbable[i].id) {
-					jQuery(this._sapTabbable[i]).focus();
-					oEvent.preventDefault();
-					oEvent.setMarked();
+					this._setFocus(oEvent, this._sapTabbable[i]);
 					return;
 				}
-			}				
+			}
 			if (!shellTargetFound) {
 				for (var i = 0; i < this._sapTabbable.length; i++) {
 					if (this._sapTabbable[i].id.indexOf("shell") >= 0) {
@@ -48063,20 +55288,17 @@ sap.suite.ui.commons.Timeline.prototype.onsaptabnext = function(oEvent) {
 						break;
 					}
 				}
-			}
-		} 
-		else {
+			} 
+		} else {
 			var shellTargetFound = false;
 			if (this._previousShellTarget != null) {
 				for (var i = 0; i < this._sapTabbable.length; i++) {
 					if (this._previousShellTarget.id ==  this._sapTabbable[i].id) {
-						jQuery(this._sapTabbable[i]).focus();
-						oEvent.preventDefault();
-						oEvent.setMarked();
+						this._setFocus(oEvent, this._sapTabbable[i]);
 						shellTargetFound = true;
 						return;
 					}
-				}				
+				}
 			}
 			//focus on 1st shell if previous shell not found
 			if (!shellTargetFound) {
@@ -48093,22 +55315,29 @@ sap.suite.ui.commons.Timeline.prototype.onsaptabnext = function(oEvent) {
 		if (prevFocusShellTarget == null) {
 			for (var i = 0; i < this._sapTabbable.length; i++) {
 				if (this._sapTabbable[i].id.indexOf("shell") >= 0) {
-					prevFocusShellTarget = this._sapTabbable[i];
 					break;
 				}
 			}	
 		}
-		jQuery(prevFocusShellTarget).focus();
-		oEvent.preventDefault();
-		oEvent.setMarked();
-		return;					
+		this._setFocus(oEvent, prevFocusShellTarget);
+		return;
 	}
 		
-	if (oEvent.target.id.indexOf("getmore") < 0 && oEvent.target.id.indexOf("filter") < 0 && oEvent.target.id.indexOf("add") < 0 ) {
-		this._previousTarget = oEvent.target;
-		this._previousShellTarget = this._getItemShellTarget(oEvent.target);
-	}	
-	
+	if (oEvent.target.id.indexOf("getmore") < 0 && !this._targetIdInHeaderBar(oEvent) && oEvent.target.className !== "sapMMsgStripCloseButton") {
+		var dataInMessageStrip = false;
+		//do not save messagestrip element in previous target
+		for (var i = 0; i < this._messageStripTabFields.length; i++) {
+			if (this._messageStripTabFields[i].id == oEvent.target.id) {
+				dataInMessageStrip = true;
+				break;
+			}
+		}
+		if (!dataInMessageStrip) {
+			this._previousTarget = oEvent.target;
+			this._previousShellTarget = this._getItemShellTarget(oEvent.target);
+		}
+	}
+ 
 };
 
 sap.suite.ui.commons.Timeline.prototype._setFocusOnMoreOrOutOfFocusArea = function(oEvent) {
@@ -48123,9 +55352,7 @@ sap.suite.ui.commons.Timeline.prototype._setFocusOnMoreOrOutOfFocusArea = functi
 	if (this._moreButtonFound) {
 		this._previousTarget = oEvent.target;
 		this._previousShellTarget = this._getItemShellTarget(oEvent.target);  
-		jQuery(this._moreTarget).focus();
-		oEvent.preventDefault();
-		oEvent.setMarked();
+		this._setFocus(oEvent, this._moreTarget);
 		return;
 	}
 };
@@ -48157,82 +55384,239 @@ sap.suite.ui.commons.Timeline.prototype._switchFocus = function(oEvent) {
 };
 sap.suite.ui.commons.Timeline.prototype.onkeydown = function(oEvent) {
 		// toggle between control and item with F7
+	
+	this._skipOnFocusIn = false;
+	this._firstTimeSetFocus = true;
+	
 	if (oEvent.which == jQuery.sap.KeyCodes.F7 && !oEvent.isMarked()) {
+//		this._dummy = false;
+		this._skipOnFocusIn = true;
 		this._switchFocus(oEvent);
 		oEvent.preventDefault();
 		oEvent.setMarked();
 		return;
 	}
+	
 };
 
 sap.suite.ui.commons.Timeline.prototype.onsapspace = function(oEvent) {
 	// if non 'getmore' button entered, then prevent scrolling when focus
-	if (oEvent.target.id.indexOf("getmore") < 0) {
+/*	if (oEvent.target.id.indexOf("getmore") < 0) {
 		oEvent.preventDefault();
 		oEvent.setMarked();
-		this.focus();
-	}
+		this.focus(); 
+	}*/
+};
+
+sap.suite.ui.commons.Timeline.prototype.onfocusout = function(oEvent) {
+	this._outFocusTarget = oEvent.target;
+	this._outFocusTargetClassName = oEvent.target.className;
+
 };
 
 sap.suite.ui.commons.Timeline.prototype.onfocusin = function(oEvent) {
-//tab and then shift+tab back from 'out of focus area'
-	if (this._dummy && oEvent.target.id.indexOf("filter") < 0 && oEvent.target.id.indexOf("add") < 0 && this._previousTarget != null) {
-		this._tabprevious = false;
-		this._dummy = false;
-		if (this._moreButtonFound) {
-			jQuery(this._moreTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
+	//*headerbar without tabble buttons
+	if (this._firstHeaderBaRTabField == null) { 
+		if (!this._dummy && this._previousTarget == null && !this._moreButtonFound && this._tabnext == false && oEvent.target.id == this._sapTabbable[this._sapTabbable.length - 1].id) {
+			this._setFocusOnMoreAddFilterButton(oEvent);
 			return;
 		}
-		//find the previous shell target and then find the last interactive element
-		var lastInteractiveElement = this._getLastInteractiveElementInItem(this._previousTarget);
-		jQuery(lastInteractiveElement).focus();
-		oEvent.preventDefault();
-		oEvent.setMarked();
 		return;
 	}
-	//without tab next, click on item, and then shift+tab back from 'out of focus area'
-	if (this._dummy && oEvent.target.id.indexOf("filter") < 0 && oEvent.target.id.indexOf("add") < 0 && this._previousTarget == null) {
-		this._tabprevious = false;
+	//***********************************************************************************************************************************************
+	//for shift+f6, when enableSocial = "true", without more button, and only one tabble field in social toolbar (embedded control), since the social 
+	//toolbar set fastgroup as true ("sap-ui-fastnavgroup"), so when shift+f6 entered will 
+	//focus on the social toolbar first tab field i.e. 'Reply' buttton and then focus on item shell level when shift+f6 againl 	
+	//For shift+tab, the focus will be on the first social tabble field and then focus on the next (up one) tabble timeline control field and then 
+	//keep going up...	
+	//when enableSocial="false", the focus will be on timeline control shell level when the shift+f6 entered 	
+	//***********************************************************************************************************************************************
+
+	if (this._skipOnFocusIn) {
+		return;
+	}
+
+	//***********************************************************************************************************************************************	
+	// with more button, this block of codes will be executed when,
+	// tab and then shift+tab back from 'out of focus area'
+	// f6 and then shift+f6 back from 'out of focus area'
+	//***********************************************************************************************************************************************
+	
+	if (this._dummy && !this._targetIdInHeaderBar(oEvent) && this._previousTarget != null) {
 		this._dummy = false;
-		//if focus back and the current position not at more button
-		if (this._moreButtonFound && oEvent.target.id.indexOf("more") < 0) {
-			jQuery(this._moreTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
+		if (this._moreButtonFound) {
+			this._setFocus(oEvent, this._moreTarget);
 			return;
 		}
-		if (this._moreButtonFound) { 
-			jQuery(this._moreTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
-			return;
-		} else if (this._previousTabPreviousTarget != null) {
-			jQuery(this._previousTabPreviousTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
-			return;
-		} else if (this._addButtonFound) {
-			jQuery(this._addTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
-			return;
-		} else if (this._filterTarget !== null) {
-			jQuery(this._filterTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
-			return;
+		
+	//***********************************************************************************************************************************************
+	// when shift+f6 without social enable (no embedded control with F6 fast group), then shell oEvent.target == this._previousShellTarget
+	// this block of codes will be executed when,
+	// f6 out and shift f6 back
+	// f6 to shell level and shift+f6
+	//***********************************************************************************************************************************************
+		if (oEvent.target.id.indexOf("shell") >= 0 && this._previousShellTarget !== null) { //tab next out of control area and come back with f6, should focus on shell level
+			if (oEvent.target == this._firstShell) { //*this condition for shift+f6 and the last tab is shell
+				this._setFocus(oEvent, this._previousShellTarget);
+				this._tabprevious = false;
+				return;					
+			}
+			
+	//***********************************************************************************************************************************************
+	// tab and arrow down and out timeline control focus area and shift tab back 
+	// this block of codes will be executed when,
+	// tab and tab out timeline ontrol focus area  and shift+tab
+	//***********************************************************************************************************************************************
+			if (oEvent.target == this._lastShell) { //for shift+tab
+				var lastInteractiveElement = this._getLastInteractiveElementInItem(this._previousShellTarget);  //*tab out and shift+tab back
+				this._setFocus(oEvent, lastInteractiveElement);
+				this._tabprevious = false; 
+				return;				
+			}
+
+		}
+	
+	//***********************************************************************************************************************************************		
+	// tab out and shift+tab back. the last tab field is link instead of shell
+	// f6 to first shell and shift+tab back...
+	//***********************************************************************************************************************************************
+		var lastInteractiveElement = this._getLastInteractiveElementInItem(this._previousTarget);
+		this._setFocus(oEvent, lastInteractiveElement);
+		return;
+	}
+		
+	//without tab next, click on item, and then shift+tab back from 'out of focus area'
+	if (this._dummy && !this._targetIdInHeaderBar(oEvent) && this._previousTarget == null) {
+	//f6 to first shell and come back with shift+tab
+		this._tabprevious = false;
+		this._dummy = false;
+		
+	//***********************************************************************************************************************************************	
+	// if focus back and the current position is not at more button
+	// with more button, shift+f6 directly and then shift+f6 again, focus on more - required this block (continue 2nd back)
+	//***********************************************************************************************************************************************	
+		if (this._moreButtonFound && oEvent.target.id.indexOf("more") < 0) {
+			this._setFocus(oEvent, this._moreTarget);
+			return; 
+		}
+	}
+
+	//***********************************************************************************************************************************************		
+	// directly shift+f6 back
+	//***********************************************************************************************************************************************	
+	if (!this._dummy && this._previousTarget == null && this._moreButtonFound && this._tabnext == false && oEvent.target == this._firstShell) {
+		if (this._moreButtonFound && oEvent.target.id.indexOf("more") < 0) {
+			var outFocusShellTarget = null;
+			//when directly shift+tab back
+			if (this._outFocusTarget != null && oEvent.target.id.indexOf("shell") >= 0) {
+				outFocusShellTarget = this._getItemShellTarget(this._outFocusTarget);	
+				if (oEvent.target == outFocusShellTarget) { //shidt_tab
+					return; 
+				}
+			}
+			
+			//skip this block of codes, when tab back and current focus field is 'more' button
+			//with more button and shift+f6 directly from other control will stop here
+/*			if (this._outFocusTarget !== this._moreTarget && this._outFocusTarget !== null) { //directly tab back - no tab field available in item shell
+				this._setFocus(oEvent, this._moreTarget);
+				alert(sap.ui.getCore().getCurrentFocusedControlId());
+				alert("a9");
+				return;				
+			}*/
+
+		}
+	}
+	//***********************************************************************************************************************************************	
+	// tab out and shift+f6
+	//***********************************************************************************************************************************************	
+	if (!this._dummy && this._previousTarget !== null && this._moreButtonFound && oEvent.target == this._firstShell) {
+		//*only shift+f6 from outside control to execute this block
+		//*when repeat tab through 2nd time, do not execute this block, otherwise the focus woll be on 'more' button after messagestrip close button clicked
+		if (this._outFocusTargetClassName !== "sapMMsgStripCloseButton" && this._outFocusTarget !== this._filterTarget) { //*only shift+f6 execute this bloack
+			if (this._moreButtonFound && oEvent.target.id.indexOf("more") < 0) {
+				var outFocusShellTarget = null;
+				//when directly shift+tab back
+				if (this._outFocusTarget != null && oEvent.target.id.indexOf("shell") >= 0) {
+					outFocusShellTarget = this._getItemShellTarget(this._outFocusTarget);	
+					if (oEvent.target == outFocusShellTarget) { //shidt_tab
+						return; 
+				 	}
+				}
+				//tab to more and tab back, when focus on 'more' skip this block
+				if (this._outFocusTarget !== this._moreTarget) {
+					this._setFocus(oEvent, this._moreTarget);
+					return;					
+				}
+			}			
 		}
 	}
 	
-	//directly shift+tab from 'out of focus' area
+	//***********************************************************************************************************************************************	
+	// directly shift+tab back
+	//***********************************************************************************************************************************************	
+/*	if (!this._dummy && this._previousTarget == null && this._moreButtonFound && this._tabnext == false && oEvent.target == this._lastShell) {
+		if (this._moreButtonFound && oEvent.target.id.indexOf("more") < 0) {
+			this._setFocus(oEvent, this._moreTarget);
+			alert("a12");
+			return;
+		}
+	}*/	
+
+	//***********************************************************************************************************************************************
+	//this block will be used when the enable social
+	//directly shift+tab or shift+tab from 'out of focus' area; the last tab social toolbar and is "sap-ui-fastnavgroup"
+	//***********************************************************************************************************************************************	
 	if (!this._dummy && this._previousTarget == null && !this._moreButtonFound && this._tabnext == false && oEvent.target.id == this._sapTabbable[this._sapTabbable.length - 1].id) {
 		this._setFocusOnMoreAddFilterButton(oEvent);
+		return;
 	}
-	if (!this._dummy && this._previousTarget == null && this._moreButtonFound && this._tabnext == false && oEvent.target.id == this._sapTabbable[this._sapTabbable.length - 2].id) {
-		this._setFocusOnMoreAddFilterButton(oEvent);
+
+	//***********************************************************************************************************************************************
+	//when directly shift+f6 from other control,
+	//social is enable and there is no 'more' button and there are more than one tabble fields in social toolbar.
+	//this block of codes will force the focus on shell level instead tabble field of item shell
+	//**********************************************************************************************************************************************
+	if (!this._dummy && this._previousTarget == null && !this._moreButtonFound && this._tabnext == false && this._firstTimeSetFocus == true &&  
+//		oEvent.target.id.indexOf("filter") < 0) { //directl tab next and target id is filter, then skip this block
+		!this._targetIdInHeaderBar(oEvent)) { //directl tab next and target id is filter, then skip this block
+		var oTargetPosition = null;
+		for (var i = 0; i < this._sapTabbable.length; i++) {
+			if (oEvent.target.id ==  this._sapTabbable[i].id) {
+				oTargetPosition = i;
+				break; 
+			}
+		}
+		var lastTabPosition = this._sapTabbable.length - 1;
+		if (oTargetPosition !== null && oTargetPosition < lastTabPosition) {
+			this._firstTimeSetFocus = false;
+			this._setFocus(oEvent, this._firstShell);
+			return;
+		}
+
+	} 
+};
+
+sap.suite.ui.commons.Timeline.prototype._targetIdInHeaderBar = function(oEvent) {
+	for (var i = 0; i < this._headerBarFieldLength; i++) { //currently already focused on the last headerbar button. If the prev focus not in 1st shell
+		if (oEvent.target.id === this.getHeaderBar().getContent()[i].sId) { //button in headerbar, let central handle the focus
+			return true;
+		}
 	}
+	return false;
+};
+
+sap.suite.ui.commons.Timeline.prototype._targetIdIsLastHeaderBarBtn = function(oEvent) {
+	if (oEvent.target.id === this._lastHeaderBaRTabField.id) {
+		return true;
+	}
+	return false;
+};
+
+sap.suite.ui.commons.Timeline.prototype._targetIdIsFirstHeaderBarBtn = function(oEvent) {
+	if (oEvent.target.id === this._firstHeaderBaRTabField.id) {
+		return true;
+	}
+	return false;
 };
 
 sap.suite.ui.commons.Timeline.prototype._setFocusOnMoreAddFilterButton = function(oEvent) {
@@ -48242,13 +55626,150 @@ sap.suite.ui.commons.Timeline.prototype._setFocusOnMoreAddFilterButton = functio
 	var lastInteractiveElement = this._getLastInteractiveElementInItem(firstShellTarget);
 	this._previousTarget = lastInteractiveElement;
 	this._previousShellTarget = firstShellTarget;
-	jQuery(lastInteractiveElement).focus();
-	oEvent.preventDefault();
-	oEvent.setMarked();
+	this._setFocus(oEvent, lastInteractiveElement);
 };
 
 //Handle F6
 sap.suite.ui.commons.Timeline.prototype.onsapskipforward = function(oEvent) {
+	this._skipOnFocusIn = true;
+	this._tabnext = false;
+	this._dummy = true;
+	if (this.oItemNavigation) {
+		this.removeDelegate(this.oItemNavigation);
+		this.oItemNavigation.destroy();
+	}
+	this._startItemNavigation();
+
+//	if (oEvent.target.id.indexOf("add") < 0 && oEvent.target.id.indexOf("filter") < 0 && oEvent.target.id.indexOf("more") < 0 && oEvent.target.className !== "sapMMsgStripCloseButton") {
+	if (!this._targetIdInHeaderBar(oEvent) && oEvent.target.id.indexOf("more") < 0 && oEvent.target.className !== "sapMMsgStripCloseButton") {
+		if (!this._targetIdIsMessageStripTab(oEvent)) { 
+			this._previousTabPreviousTarget = oEvent.target;	
+		}	
+	}
+	
+	if (oEvent.target.id.indexOf("more") >= 0) { //when hit more, then out of timeline control
+		return;
+	}
+
+	
+	if (oEvent.target.id.indexOf("shell") >= 0) {
+		if (this._moreButtonFound) {
+			this._setFocus(oEvent, this._moreTarget);
+			return;
+		}
+		jQuery(this._sapTabbable[this._sapTabbable.length - 1]).focus();
+		return;
+	}
+
+	if (oEvent.target.className === "sapMMsgStripCloseButton") {
+		this._findNextF6ShellTarget(oEvent);
+		return;
+	}
+	
+//	if (oEvent.target.id.indexOf("shell") < 0 && oEvent.target.id.indexOf("add") < 0 && oEvent.target.id.indexOf("filter") < 0 && oEvent.target.id.indexOf("more") < 0) {
+	if (oEvent.target.id.indexOf("shell") < 0 && !this._targetIdInHeaderBar(oEvent) && oEvent.target.id.indexOf("more") < 0) {
+		var shellTarget = null;
+		shellTarget = this._getItemShellTarget(oEvent.target);
+		if (this._moreButtonFound) {
+			this._setFocus(oEvent, this._moreTarget);
+			return;
+		}
+		jQuery(this._sapTabbable[this._sapTabbable.length - 1]).focus();
+		return;		
+	}
+		
+/*	if (this._previousTarget == null && oEvent.target.id.indexOf("add") < 0 && oEvent.target.id.indexOf("filter") < 0) {
+		if (this._addButtonFound) {
+			this._setFocus(oEvent, this._addTarget);
+			return;
+		}
+		if (this._filterTarget != null) {
+			this._setFocus(oEvent, this._filterTarget);
+			return;
+		}
+	}*/
+	
+	if (this._previousTarget == null && !this._targetIdInHeaderBar(oEvent)) { 
+		this._setFocus(oEvent, this._firstHeaderBaRTabField);
+		return;
+	}	
+	
+//	if (oEvent.target.id.indexOf("add") >= 0 || oEvent.target.id.indexOf("filter") >= 0) {
+	if (this._targetIdIsLastHeaderBarBtn(oEvent)) {
+		if (this._messageStripIsAvailable) { 
+			var nextTarget = null;
+			for (var i=0; i < this._sapTabbable.length; i++) {
+				if (this._sapTabbable[i].className == "sapMMsgStripCloseButton" ) {
+					nextTarget = this._sapTabbable[i];
+					break;
+				}
+			}
+			if (nextTarget !== null) {
+				this._setFocus(oEvent, this._sapTabbable[2]);
+				return;			
+			}
+		}
+		if (this._previousTarget == null) {
+			var firstTarget = this._getFirstShellTarget();
+			this._previousTarget = firstTarget;
+			this._previousShellTarget = firstTarget; 
+			this._setFocus(oEvent, firstTarget);
+			return;
+		}
+	}
+	
+	var prevFocusShellTarget = null;
+//	if ((oEvent.target.id.indexOf("filter") >= 0 || oEvent.target.id.indexOf("add") >= 0) && this._previousTarget != null && oEvent.target != this._previousTarget) {
+	if (this._targetIdIsLastHeaderBarBtn(oEvent) && this._previousTarget != null && oEvent.target != this._previousTarget) {
+		this._findNextF6ShellTarget(oEvent);
+		return;		
+	}	
+
+};
+
+sap.suite.ui.commons.Timeline.prototype._findNextF6ShellTarget = function(oEvent) {
+	
+	if (this._previousShellTarget != null) {
+		for (var i = 0; i < this._sapTabbable.length; i++) {
+			if (this._previousShellTarget.id ==  this._sapTabbable[i].id) {
+				this._setFocus(oEvent, this._sapTabbable[i]);
+				return;
+			}
+		}
+	}
+
+	//focus on 1st shell if previous shell not found
+	for (var i = 0; i < this._sapTabbable.length; i++) {
+		if (this._sapTabbable[i].id.indexOf("shell") >= 0) {
+			this._previousShellTarget = this._sapTabbable[i];
+			this._setFocus(oEvent, this._sapTabbable[i]);  
+			break;
+		}
+	}
+	
+	if (this._previousTarget.id.indexOf("shell") >= 0) {
+		for (var i = 0; i < this._sapTabbable.length; i++) {
+			if (this._previousTarget.id ==  this._sapTabbable[i].id) {
+				this._setFocus(oEvent, this._sapTabbable[i]);
+				return;
+			}
+		}
+	}			
+	
+	for (var i = 0; i < this._sapTabbable.length; i++) {
+		if (this._sapTabbable[i].id.indexOf("shell") >= 0) {
+			this._previousShellTarget = this._sapTabbable[i];  
+			this._setFocus(oEvent, this._sapTabbable[i]);
+			break;
+		}
+	}
+
+};
+
+//Handle SHIFT+F6
+sap.suite.ui.commons.Timeline.prototype.onsapskipback = function(oEvent) {
+	this._skipOnFocusIn = true;
+	this._dummy = true;
 	if (this.oItemNavigation) {
 		this.removeDelegate(this.oItemNavigation);
 		this.oItemNavigation.destroy();
@@ -48256,187 +55777,98 @@ sap.suite.ui.commons.Timeline.prototype.onsapskipforward = function(oEvent) {
 	this._startItemNavigation(); 
 
 	if (oEvent.target.id.indexOf("shell") >= 0) {
-		if (this._moreButtonFound) {
-			jQuery(this._moreTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
-			return;
-		}
-			jQuery(this._sapTabbable[this._sapTabbable.length - 1]).focus();
-			return;			
-		
+		this._previousShiftF6Target = oEvent.target; //save for shift back without more button and no focus before - for 2nd run
 	}
 
-	if (oEvent.target.id.indexOf("shell") < 0 && oEvent.target.id.indexOf("add") < 0 && oEvent.target.id.indexOf("filter") < 0 && oEvent.target.id.indexOf("more") < 0) {
-		var shellTarget = null;
-		shellTarget = this._getItemShellTarget(oEvent.target);
-		if (this._moreButtonFound) {
-			jQuery(this._moreTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
+	
+	if (this._messageStripIsAvailable && oEvent.target.id.indexOf("shell") >= 0) {
+		this._setFocus(oEvent, this._messageStripCloseButtonTarget);
+		return;
+	}
+	if (oEvent.target.id.indexOf("shell") >= 0) { 
+		if (this._messageStripCloseButtonTarget !== null) {
+			this._setFocus(oEvent, this._messageStripCloseButtonTarget);
 			return;
 		}
-		jQuery(this._sapTabbable[this._sapTabbable.length - 1]).focus();
-		return;		
+			
+		if (this._firstHeaderBaRTabField != null) {
+			this._setFocus(oEvent, this._firstHeaderBaRTabField);
+			return;			
+		}
+		jQuery(this._firstShell).focus(); 
+		return;
+
 	}
+	
+	if (oEvent.target.className === "sapMMsgStripCloseButton") {
+		return;
+	}
+	
+	if (oEvent.target.id.indexOf("shell") >= 0 && !this._targetIdInHeaderBar(oEvent)) {
+		this._setFocus(oEvent, this._lastHeaderBaRTabField);
+		return;
+	};
 		
-	if (this._previousTarget == null && oEvent.target.id.indexOf("add") < 0 && oEvent.target.id.indexOf("filter") < 0) {
-		if (this._addButtonFound) {
-			jQuery(this._addTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
-			return;
-		}
-		if (this._filterTarget != null) {
-			jQuery(this._filterTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
-			return;
-		}
-	}
 	
-	if (oEvent.target.id.indexOf("add") >= 0 || oEvent.target.id.indexOf("filter") >= 0) {
-		if (this._previousTarget == null) {
-			var firstTarget = this._getFirstShellTarget();
-			this._previousTarget = firstTarget;
-			this._previousShellTarget = firstTarget; 
-			jQuery(firstTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
-			return;
-		}
-	}
+	if (oEvent.target.id.indexOf("more") >= 0 && this._previousTarget === null) {
+		this._setFocus(oEvent, this._getFirstShellTarget());	
+		return;
+	};
 	
-	var prevFocusShellTarget = null;
-	if ((oEvent.target.id.indexOf("filter") >= 0 || oEvent.target.id.indexOf("add") >= 0) && this._previousTarget != null && oEvent.target != this._previousTarget) {
+	if (oEvent.target.id.indexOf("more") >= 0 && this._previousTarget !== null) {
 		if (this._previousTarget.id.indexOf("shell") >= 0) {
-			var shellTargetFound = false;
 			for (var i = 0; i < this._sapTabbable.length; i++) {
 				if (this._previousTarget.id ==  this._sapTabbable[i].id) {
-					jQuery(this._sapTabbable[i]).focus();
-					oEvent.preventDefault();
-					oEvent.setMarked();
+					this._setFocus(oEvent, this._sapTabbable[i]);
 					return;
 				}
-			}				
-			if (!shellTargetFound) {
-				for (var i = 0; i < this._sapTabbable.length; i++) {
-					if (this._sapTabbable[i].id.indexOf("shell") >= 0) {
-						prevFocusShellTarget = this._sapTabbable[i];
-						break;
-					}
-				}
-			}
-		} else {
-			var shellTargetFound = false;
-			if (this._previousShellTarget != null) {
-				for (var i = 0; i < this._sapTabbable.length; i++) {
-					if (this._previousShellTarget.id ==  this._sapTabbable[i].id) {
-						jQuery(this._sapTabbable[i]).focus();
-						oEvent.preventDefault();
-						oEvent.setMarked();
-						shellTargetFound = true;
-						return;
-					}
-				}				
-			}
-			//focus on 1st shell if previous shell not found
-			if (!shellTargetFound) {
-				for (var i = 0; i < this._sapTabbable.length; i++) {
-					if (this._sapTabbable[i].id.indexOf("shell") >= 0) {
-						prevFocusShellTarget = this._sapTabbable[i];
-						this._previousTarget = this._sapTabbable[i];
-						this._previousShellTarget = this._sapTabbable[i];
-						break;
-					}
-				}
 			}
 		}
-		if (prevFocusShellTarget == null) {
+		else {
 			for (var i = 0; i < this._sapTabbable.length; i++) {
-				if (this._sapTabbable[i].id.indexOf("shell") >= 0) {
-					prevFocusShellTarget = this._sapTabbable[i];
+				if (this._previousTarget.id ==  this._sapTabbable[i].id) { 
 					break;
 				}
-			}	
-		}
-		jQuery(prevFocusShellTarget).focus();
-		oEvent.preventDefault();
-		oEvent.setMarked();
-		return;
-	}	
-};
-
-//Handle SHIFT+F6
-sap.suite.ui.commons.Timeline.prototype.onsapskipback = function(oEvent) {
-
-	this._shiftf6 = true;
-	if (this.oItemNavigation) {
-		this.removeDelegate(this.oItemNavigation);
-		this.oItemNavigation.destroy();
-	}
-	this._startItemNavigation(); 
-
-	if (oEvent.target.id.indexOf("shell") >= 0 && oEvent.target.id.indexOf("add") < 0 && oEvent.target.id.indexOf("filter") < 0) {
-		if (this._addButtonFound) {
-			jQuery(this._addTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
+			}
+			this._setFocus(oEvent, this._getItemShellTarget(this._sapTabbable[i]));
 			return;
 		}
-		if (this._filterTarget != null) {
-			jQuery(this._filterTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
+	};
+	
+	if (oEvent.target.id.indexOf("shell") < 0 && !this._targetIdInHeaderBar(oEvent) && oEvent.target.id.indexOf("more") < 0) {
+		if (this._previousTarget == null) {
+			if (this._moreButtonFound) { 
+				this._setFocus(oEvent, this._moreTarget);
+				return;
+			}
+			lastInteractiveElement = this._getLastInteractiveElementInItem(this._getFirstShellTarget());
+			jQuery(lastInteractiveElement).focus();
 			return;
 		}
 	}
-
-	if (oEvent.target.id.indexOf("shell") < 0 && oEvent.target.id.indexOf("add") < 0 && oEvent.target.id.indexOf("filter") < 0) {
-		if (this._addButtonFound) {
-			jQuery(this._addTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
-			return;
-		}
-		if (this._filterTarget != null) {
-			jQuery(this._filterTarget).focus();
-			oEvent.preventDefault();
-			oEvent.setMarked();
-			return;
-		}
-	}
-
+	
+	var lastInteractiveElement = null;
 	var prevFocusShellTarget = null;
-	if (oEvent.target.id.indexOf("add") < 0 && oEvent.target.id.indexOf("filter") < 0) {
+	var ShellTarget = null;
+
+	if (!this._targetIdInHeaderBar(oEvent) && oEvent.target.id.indexOf("more") < 0) {
 		if (this._previousTarget == null) {
 			lastInteractiveElement = this._getLastInteractiveElementInItem(this._getFirstShellTarget());
 			jQuery(lastInteractiveElement).focus();
 		}
 		else {
-		    var shellTargetFound = false;
-			for (var i = 0; i < this._sapTabbable.length; i++) {
-				if (this._previousShellTarget.id ==  this._sapTabbable[i].id) {		
-					jQuery(this._sapTabbable[i]).focus();
-					oEvent.preventDefault();
-					oEvent.setMarked();		
-					shellTargetFound = true;	
-					return;
-				}
-			}		    	
-			//focus on 1st shell if previous shell not found
-			var lastInteractiveElement = null;
-			if (!shellTargetFound) {
-				for (var i = 0; i < this._sapTabbable.length; i++) {
-					if (this._sapTabbable[i].id.indexOf("shell") >= 0) {
-						prevFocusShellTarget = this._sapTabbable[i];
-						jQuery(this._sapTabbable[i]).focus();
-						oEvent.preventDefault();
-						oEvent.setMarked();
-						return;
-					}
-				}
-			}
+			//always focus on shell level
+		    var shellTargetFound = false;   	
+		   	ShellTarget = this._getItemShellTarget(this._previousShellTarget);
+		   	shellTargetFound = true;	   	
+		   	if (shellTargetFound) { 
+				prevFocusShellTarget = ShellTarget;
+				jQuery(ShellTarget).focus();
+				oEvent.preventDefault();
+				oEvent.setMarked();
+				return;						
+		   	}
+
 		}
 		oEvent.preventDefault();
 		oEvent.setMarked();
@@ -48525,7 +55957,7 @@ sap.suite.ui.commons.Timeline.prototype._performUiChangesV = function() {
 	}
 
 	this._performScrollChanges();
-
+	
 };
 
 sap.suite.ui.commons.Timeline.prototype._performScrollChanges = function() {
@@ -48583,6 +56015,13 @@ sap.suite.ui.commons.Timeline.prototype._performScrollChanges = function() {
 			jThis.find("#" + myId + "-scroll").css({
 				'height' : this._scHeight
 			});
+			
+		
+ 
+	
+		
+			
+			
 		}
 	}
 	}
@@ -48592,7 +56031,9 @@ sap.suite.ui.commons.Timeline.prototype.setOutput = function(oItems) {
 	this._outputItem = [];
 	var showIcons = this.getShowIcons();// if no icons property set... set _showIcons prop
 	if (oItems.length > 1) {
-		oItems.sort(this.sortBy('dateTime', this.getSortOldestFirst()));
+	    if (this.getSort()) {
+	    	oItems.sort(this.sortBy('dateTime', this.getSortOldestFirst()));
+		}
 	}
 	var displayItemCount = oItems.length;
 	if (this._showMore && displayItemCount > this._growDisplayCount){
@@ -48674,6 +56115,75 @@ sap.suite.ui.commons.Timeline.prototype.updateFilterList = function() { // July/
 	this._setFilterList();
 };
 
+
+sap.suite.ui.commons.Timeline.prototype.refreshSuggestionItems = function(sReason) {
+	this._suggestList.setBusy(true);
+	this.updateAggregation("suggestionItems");  //this will call the update method
+};
+
+sap.suite.ui.commons.Timeline.prototype.updateSuggestionItems = function() {
+	this.updateAggregation("suggestionItems");
+	this._setSuggestionList(); 
+	this._suggestList.setBusy(false);
+
+	
+};
+
+sap.suite.ui.commons.Timeline.prototype.setSuspendSocialFeature = function(bSuspense){
+	this._suspenseSocial = bSuspense;
+	if (!this.getEnableSocial()) {
+		// do nothing
+		return;
+	}
+	if (bSuspense){
+	//	this._addIcon.setEnabled(false);   /* change requested by social component
+		var oItems = this.getContent();
+		for (var i = 0; i < oItems.length; i++) {
+			oItems[i]._replyLink.setEnabled(false);
+		};
+	} else {
+	//	this._addIcon.setEnabled(true);   /* change requested by social component
+		var oItems = this.getContent();
+		for (var i = 0; i < oItems.length; i++) {
+			oItems[i]._replyLink.setEnabled(true);
+		};
+	}
+	this.invalidate();
+};
+
+sap.suite.ui.commons.Timeline.prototype.getSuspendSocialFeature = function(){
+	return this._suspenseSocial;
+};
+
+sap.suite.ui.commons.Timeline.prototype.setCustomFilter = function(oFilter){
+	if (oFilter){
+		this._customFilter = true;
+		this.setAggregation("customFilter", oFilter, true);
+
+	} else {
+		this._customFilter = false;
+	}
+};
+
+
+sap.suite.ui.commons.Timeline.prototype.setCustomMessage = function(msg){
+	this._filterInfoText.setText(msg);
+	if (msg && msg.length > 0) {
+		this._headerInfoBar.setVisible(true);
+	} else {
+		this._headerInfoBar.setVisible(false);
+	}
+	this.invalidate();   //otherwise, it doesn't re-render
+};
+
+sap.suite.ui.commons.Timeline.prototype.getHeaderBar = function() {
+	return this._headerBar;
+};
+
+sap.suite.ui.commons.Timeline.prototype.getMessageStrip = function() {
+	return this._messageStrip;
+};
+
 sap.suite.ui.commons.Timeline.prototype.exit = function() {
 	if (this._emptyList) {
 		this._emptyList.destroy();
@@ -48699,10 +56209,12 @@ sap.suite.ui.commons.Timeline.prototype.exit = function() {
 		this._filterInfoText.destroy();
 		this._filterInfoText = undefined;
 	}
+	/*
 	if (this._addIcon) {
 		this._addIcon.destroy();
 		this._addIcon = undefined;
 	}
+	*/
 	if (this._addInput) {
 		this._addInput.destroy();
 		this._addInput = undefined;
@@ -48734,6 +56246,10 @@ sap.suite.ui.commons.Timeline.prototype.exit = function() {
 	if (this._suggestionPopup) {
 		this._suggestionPopup.destroy();
 		this._suggestionPopup = undefined;
+	}
+	if(this._messageStrip){
+		this._messageStrip.destroy();
+		this._messageStrip = undefined;  
 	}
 /*	if (jQuery.device.is.desktop && this.sResizeListenerId) {
 		sap.ui.core.ResizeHandler.deregister(this.sResizeListenerId);
@@ -48776,6 +56292,8 @@ sap.suite.ui.commons.Timeline.prototype.setGrowing = function(bGrowing) {
 		this.setProperty("growing", bGrowing, !bGrowing);
 	}
 };
+
+
 
 sap.suite.ui.commons.Timeline.prototype.setGrowingThreshold = function(growingThreshold) {
 	this.setProperty("growingThreshold", growingThreshold, true);

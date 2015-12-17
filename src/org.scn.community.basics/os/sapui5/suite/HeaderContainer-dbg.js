@@ -54,7 +54,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * The container that provides a horizontal layout. It provides a horizontal scroll on the tablet and phone. On the desktop, it provides scroll left and scroll right buttons. This control supports keyboard navigation. You can use left and right arrow keys to navigate through the inner content. The Home key puts focus on the first control and the End key puts focus on the last control. Use Enter or Space to choose the control.
  * @extends sap.ui.core.Control
  * @implements sap.m.ObjectHeaderContainer
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

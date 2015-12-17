@@ -37,7 +37,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/suite/ui/commons/ChartContainer.js" size="68289" compressedSize="23612">
+  <module name="sap/suite/ui/commons/ChartContainer.js" size="68652" compressedSize="23670">
     <description>Provides control sap.suite.ui.commons.ChartContainer.</description>
     <requires>
       <module name="sap/suite/ui/commons/library.js"/>
@@ -632,7 +632,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/suite/ui/commons/ProcessFlow.js" size="139035" compressedSize="54748">
+  <module name="sap/suite/ui/commons/ProcessFlow.js" size="139715" compressedSize="54476">
     <description>Provides control sap.suite.ui.commons.ProcessFlow.</description>
     <requires>
       <module name="sap/suite/ui/commons/library.js"/>
@@ -655,7 +655,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/suite/ui/commons/ProcessFlowLaneHeader.js" size="37471" compressedSize="11381">
+  <module name="sap/suite/ui/commons/ProcessFlowLaneHeader.js" size="37472" compressedSize="11381">
     <description>Provides control sap.suite.ui.commons.ProcessFlowLaneHeader.</description>
     <requires>
       <module name="sap/suite/ui/commons/library.js"/>
@@ -671,7 +671,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/suite/ui/commons/ProcessFlowNode.js" size="52628" compressedSize="23204">
+  <module name="sap/suite/ui/commons/ProcessFlowNode.js" size="52780" compressedSize="23261">
     <description>Provides control sap.suite.ui.commons.ProcessFlowNode.</description>
     <requires>
       <module name="sap/suite/ui/commons/library.js"/>
@@ -681,13 +681,13 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/suite/ui/commons/ProcessFlowNodeRenderer.js" size="21844" compressedSize="13122">
+  <module name="sap/suite/ui/commons/ProcessFlowNodeRenderer.js" size="21619" compressedSize="12954">
     <description>SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
     <requires>
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/suite/ui/commons/ProcessFlowRenderer.js" size="10516" compressedSize="5230">
+  <module name="sap/suite/ui/commons/ProcessFlowRenderer.js" size="10756" compressedSize="5263">
     <description>SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
     <requires>
       <module name="sap/suite/ui/commons/ProcessFlowLaneHeader.js"/>
@@ -819,7 +819,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/suite/ui/commons/Timeline.js" size="131163" compressedSize="46954">
+  <module name="sap/suite/ui/commons/Timeline.js" size="131182" compressedSize="46954">
     <description>Provides control sap.suite.ui.commons.Timeline.</description>
     <requires>
       <module name="sap/suite/ui/commons/library.js"/>
@@ -850,7 +850,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/suite/ui/commons/TimelineItem.js" size="56349" compressedSize="13645">
+  <module name="sap/suite/ui/commons/TimelineItem.js" size="56353" compressedSize="13625">
     <description>Provides control sap.suite.ui.commons.TimelineItem.</description>
     <requires>
       <module name="sap/suite/ui/commons/library.js"/>
@@ -868,7 +868,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/suite/ui/commons/TimelineRenderer.js" size="6118" compressedSize="3953">
+  <module name="sap/suite/ui/commons/TimelineRenderer.js" size="6182" compressedSize="3980">
     <description>! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved</description>
     <requires>
       <module name="jquery.sap.global.js"/>
@@ -937,7 +937,7 @@
     </requires>
   </module>
   <module name="sap/suite/ui/commons/library.js" size="30661" compressedSize="7411">
-    <description>Initialization Code and shared classes of library sap.suite.ui.commons (1.30.3)</description>
+    <description>Initialization Code and shared classes of library sap.suite.ui.commons (1.30.8)</description>
     <requires>
       <module name="sap/ui/core/Core.js"/>
       <module name="sap/ui/core/library.js"/>
@@ -970,7 +970,7 @@
   </module>
   <module name="sap/suite/ui/commons/library.properties" size="7492">
   </module>
-  <module name="sap/suite/ui/commons/messagebundle.properties" size="12844">
+  <module name="sap/suite/ui/commons/messagebundle.properties" size="12849">
   </module>
   <module name="sap/suite/ui/commons/messagebundle_ar.properties" size="20112">
   </module>

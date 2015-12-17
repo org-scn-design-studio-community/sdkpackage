@@ -1,0 +1,125 @@
+	/**
+	 * Sets Background Colour Property
+	 */	
+	void setBackColor( /**Background Colour*/ String backColor){*
+		this.dBackColor = backColor;
+	*}
+
+	/**
+	 * Gets Background Colour Property
+	 */	
+	String getBackColor() {*
+		return this.dBackColor;
+	*}
+
+	/**
+	 * Sets Font Colour Property
+	 */	
+	void setFontColor( /**Font Colour*/ String fontColor){*
+		this.dFontColor = fontColor;
+	*}
+
+	/**
+	 * Gets Font Colour Property
+	 */	
+	String getFontColor() {*
+		return this.dFontColor;
+	*}
+
+	/**
+	 * Sets Icon Property
+	 */	
+	void setIcon( /**Icon*/ String icon){*
+		this.dIcon = icon;
+	*}
+
+	/**
+	 * Gets Icon Property
+	 */	
+	String getIcon() {*
+		return this.dIcon;
+	*}
+
+	/**
+	 * Sets Size M (16px) | L (22px) Property by String
+	 */	
+	void setSizeByString( /**Size M (16px) | L (22px)*/ String size){*
+		this.dSize = size;
+	*}
+
+	/**
+	 * Gets Size M (16px) | L (22px) Property as String
+	 */	
+	String getSizeAsString() {*
+		return this.dSize;
+	*}
+	
+	/**
+	 * Sets Size M (16px) | L (22px) Property by Choice Option
+	 */	
+	void setSize( /**Size M (16px) | L (22px)*/ org_scn_community_shared_Enumfield size){*
+		this.dSize = size;
+	*}
+	
+	/**
+	 * Gets Size M (16px) | L (22px) Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getSize() {*
+		return this.dSize;
+	*}
+
+	/**
+	 * Sets Button Style Property by String
+	 */	
+	void setStyleByString( /**Button Style*/ String style){*
+		this.dStyle = style;
+	*}
+
+	/**
+	 * Gets Button Style Property as String
+	 */	
+	String getStyleAsString() {*
+		return this.dStyle;
+	*}
+	
+	/**
+	 * Sets Button Style Property by Choice Option
+	 */	
+	void setStyle( /**Button Style*/ org_scn_community_shared_ButtonStyleEnumfield style){*
+		this.dStyle = style;
+	*}
+	
+	/**
+	 * Gets Button Style Property as Choice Option
+	 */	
+	org_scn_community_shared_ButtonStyleEnumfield getStyle() {*
+		return this.dStyle;
+	*}
+
+	/**
+	 * Sets Text Property
+	 */	
+	void setText( /**Text*/ String text){*
+		this.dText = text;
+	*}
+
+	/**
+	 * Gets Text Property
+	 */	
+	String getText() {*
+		return this.dText;
+	*}
+
+	/**
+	 * Sets Tooltip Property
+	 */	
+	void setTooltip( /**Tooltip*/ String tooltip){*
+		this.dTooltip = tooltip;
+	*}
+
+	/**
+	 * Gets Tooltip Property
+	 */	
+	String getTooltip() {*
+		return this.dTooltip;
+	*}

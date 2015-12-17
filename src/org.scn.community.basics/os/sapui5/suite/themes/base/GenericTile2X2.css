@@ -1,0 +1,150 @@
+
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/GenericTile.control */
+/* ============================================= */
+
+.sapSuiteGT2x2 {
+	display: inline-block;
+	overflow: hidden;
+	background: @sapUiWhite; 
+	border-radius: 4px;
+	position: relative;
+	border: 0.0625rem transparent dotted;
+	outline: none;
+}
+
+.sapSuiteGT2x2 .sapSuiteGTHdrTxt>.sapSuiteGTTitle,
+.sapSuiteGT2x2 .sapSuiteGTSubHdrTxt,
+.sapSuiteGT2x2 .sapSuiteGT .sapSuiteGTContent {
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+}
+
+.sapSuiteGT2x2 .sapSuiteGTHdrTxt>.sapSuiteGTTitle,
+.sapSuiteGT2x2 .sapSuiteGenericTileFtrFldTxt>.sapSuiteGTFailed {
+	cursor: inherit;
+}
+
+.sapSuiteGT2x2 .sapSuiteGTFailed {
+	width: 90%;
+}
+
+.sapSuiteGT2x2 .sapSuiteGTInnrCnt {
+	display: inline-block;
+}
+
+.sapSuiteGT2x2 .sapSuiteGTContent {
+	display: inline-block;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteGT2x2 .sapSuiteGTContent.Auto,
+.sapSuiteGT2x2 .sapSuiteGTContent.L,
+.sapUiMedia-Std-Tablet .sapSuiteGT2x2 .sapSuiteGTContent.Auto,
+.sapSuiteGT2x2 .sapSuiteGTContent.M {
+	height: 19.5rem;
+}
+	
+.sapUiMedia-Std-Phone .sapSuiteGT2x2 .sapSuiteGTContent.Auto,
+.sapSuiteGT2x2 .sapSuiteGTContent.S {
+	height: 15.3rem;
+}
+
+.sapSuiteGT2x2 .sapSuiteGTHdrTxt {
+    overflow: hidden;
+}
+
+.sapSuiteGT2x2 .sapSuiteGTSubHdrTxt {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space:nowrap;
+	margin-top: -.1875rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteGT2x2 .sapSuiteGT.Auto.TwoByTwo,
+.sapSuiteGT2x2 .sapSuiteGT.S.TwoByTwo {
+    width: 19rem;
+    height: 19rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteGT2x2 .sapSuiteGT.Auto.TwoByTwo,
+.sapSuiteGT2x2 .sapSuiteGT.L.TwoByTwo,
+.sapUiMedia-Std-Tablet .sapSuiteGT2x2 .sapSuiteGT.Auto.TwoByTwo,
+.sapSuiteGT2x2 .sapSuiteGT.M.TwoByTwo {
+    width: 23.5rem;
+    height: 23.5rem;
+}
+
+.sapSuiteGT2x2 .sapSuiteGTHdrContent {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteGT2x2 .sapSuiteGTHdrContent.Auto,
+.sapSuiteGT2x2 .sapSuiteGTHdrContent.S {
+    height: 3.125rem;
+    margin-top: 0.5rem;
+}
+
+.sapSuiteGT2x2 .sapSuiteGTHdrContent.L.TwoByTwo,
+.sapUiMedia-Std-Desktop .sapSuiteGT2x2 .sapSuiteGTHdrContent.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteGT2x2 .sapSuiteGTHdrContent.Auto,
+.sapSuiteGT2x2 .sapSuiteGTHdrContent.M {
+    height: 3.5rem;
+    margin-top: 0.5rem;
+}
+
+.sapSuiteGT2x2 .sapSuiteGTHdrIconImage {
+	float: right;
+	width: 2.5rem;
+	min-height: 2.5rem;
+	font-size: 2.5rem;
+}
+
+.sapSuiteGT2x2 .sapSuiteGTOverlay {
+	position: absolute !important;
+	opacity: 0.8;
+	z-index: 1;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	bottom: 0px;
+}
+
+.sapSuiteGT2x2 .sapSuiteGenericTileLoading {
+    height: 100%;
+}
+
+.sapSuiteGT2x2 .sapSuiteGenericTileFtrFld {
+    left: 0.5rem;
+    bottom: 0.5rem;
+    display: table;
+    position: absolute;
+	padding-right: 1rem;
+	padding-left: 1rem;
+}
+
+.sapSuiteGT2x2 .sapSuiteGenericTileFtrFldTxt {
+	font-weight: normal; 
+    display:table-cell;
+    padding-left: 0.5rem;
+    vertical-align: bottom;
+    width: 100%;
+}
+
+html[dir=rtl] .sapSuiteGT2x2 .sapSuiteGenericTileFtrFldTxt {
+	padding-right:0.5rem;	
+}
+
+.sapSuiteGT2x2 .sapSuiteGenericTileFtrFldIcn {
+    margin-right: 0.5rem;
+    display: table-cell;
+    vertical-align: bottom;
+}
+
+.sapSuiteGT2x2 .sapSuiteGenericTileFtrFldIcn>.sapSuiteGTFtrFldIcnMrk {
+	vertical-align: bottom;
+}

@@ -1,6 +1,21 @@
-(function(){
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./JsonObjectSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.utils.JsonObject;
+var myComponentData = spec;
 
 JsonObject = function () {
 
@@ -27,9 +42,9 @@ JsonObject = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(utilsjsonobject){
-	myComponentData.instance = JsonObject;
-	return myComponentData.instance;
-});
+//%INIT-START%
+myComponentData.instance = JsonObject;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-}).call(this);
+
+});

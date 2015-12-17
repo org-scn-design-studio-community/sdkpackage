@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "LeaderBoard",
+		name: "databound.LeaderBoard",
+		requireName: "databoundleaderboard",
+		fullComponentName: "org.scn.community.databound.LeaderBoard",
+		fullComponentPackage: "org.scn.community.databound/res/LeaderBoard",
+		script: "org.scn.community.databound/res/LeaderBoard/LeaderBoard",
+		scriptSpec: "org.scn.community.databound/res/LeaderBoard/LeaderBoardSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.databound.LeaderBoard.spec = 
+	spec.spec = 
 {
   "addCounter": {
     "opts": {
@@ -288,10 +299,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.databound.LeaderBoard.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.databound.LeaderBoard.specAbout = 
+	spec.specAbout = 
 {
   "description": "Data Leader Board",
   "icon": "LeaderBoard.png",
@@ -308,7 +319,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.LeaderBoard.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": true,
@@ -318,7 +329,7 @@
   "height": "190",
   "id": "LeaderBoard",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
     {
       "id": "common_basics",
@@ -342,4 +353,5 @@
   "width": "225"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

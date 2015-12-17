@@ -1,0 +1,468 @@
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/TargetFilter.control */
+/* ============================================= */
+
+.sapSuiteUiTFOuterCont {
+	position: relative;
+	overflow: hidden;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFOuterCont {
+	height: 700px;
+	width: 1600px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFOuterCont {
+	height: 460px;
+	width: 1024px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFOuterCont {
+	height: 2000px;
+	width: 360px;
+}
+
+.sapSuiteUiTFOuterCircle {
+	border-radius: 50%;
+	position: absolute;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFOuterCircle {
+	left: 105px;
+	top: -95px;
+	height: 884px;
+	width: 884px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFOuterCircle {
+	left: 105px;
+	top: -82px;
+	height: 598px;
+	width: 598px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFOuterCircle {
+	left: -83px;
+	top: 35px;
+	height: 500px;
+	width: 500px;
+}
+
+.sapSuiteUiTFCentralCircle {
+   	border-radius: 50%;
+	position: absolute;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFCentralCircle {
+ 	top: 262px;
+	left: 468px;
+	height: 176px;
+	width: 176px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFCentralCircle {
+ 	top: 139px;
+	left: 323px;
+	height: 176px;
+	width: 176px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFCentralCircle {
+	top: 238px;
+  	left: 130px;
+  	height: 92px;
+	width: 92px;
+}
+
+.sapSuiteUiTFCentralCircle:before {
+	content: "";
+	top: 0px;
+	left: 0px;
+  	border-radius: 50%;
+	position: absolute;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFCentralCircle:before {
+  	height: 170px;
+  	width: 170px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFCentralCircle:before {
+  	height: 170px;
+  	width: 170px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFCentralCircle:before {
+  	height: 86px;
+  	width: 86px;
+}
+
+.sapSuiteUiTFCentralCircle>.sapSuiteUiTFCentralLabel {
+	text-align: center;
+	width: 100%;
+	font-size: 3.75rem;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFCentralCircle .sapSuiteUiTFCentralLabel {
+	font-size: 2rem;
+	text-align: center;
+}
+
+.sapSuiteUiTFCentralCircle .sapSuiteUiTFCentralTopLabel {
+	margin-top: 3.5rem;
+	font-size: 1.125rem;
+	text-align: center;
+	width: 100%;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFCentralCircle .sapSuiteUiTFCentralTopLabel {
+	margin-top: 1rem;
+  	font-size: 1rem;
+  	text-align: center;
+}
+
+.sapSuiteUiTFVerticalLine {
+	height: 100%;
+	width: 3px;
+	position: absolute;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFVerticalLine {
+	left: 446px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFVerticalLine {
+	left: 302px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFVerticalLine {
+	left: 253.5px;
+	height: 510px;
+}
+
+.sapSuiteUiTFHorizontalLine {
+	position: absolute;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFHorizontalLine {
+	left: 30px;
+	top: 348.5px;
+	width: 1026px;
+	height: 3px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFHorizontalLine {
+	left: 30px;
+	top: 225.5px;
+	width: 740px;
+	height: 3px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFHorizontalLine {
+	left: 0;
+	top: 283.5px;
+	width: 600px;
+	height: 3px;
+}
+
+.sapSuiteUiTFParCont {
+	width: 120px;
+	position: absolute;
+}
+
+.sapSuiteUiTFParCont .sapMInputBaseInner {
+  	text-overflow: ellipsis;
+  	overflow: hidden;
+  	border-radius: 15%;
+}
+
+.sapSuiteUiTFParCont.Quad1 .sapMInputBaseInner,
+.sapSuiteUiTFParCont.Quad2 .sapMInputBaseInner {
+	text-align: right;
+}
+
+.sapSuiteUiTFParCont .sapMComboBoxBaseArrow {
+	border-radius: 15%;
+}
+
+.sapSuiteTFCBTop .sapMComboBoxBaseArrow::before,
+.sapSuiteTFCBTop .sapMComboBoxBaseArrow::before {
+	content: "\e1f0";
+}
+
+.sapSuiteTFCBArrowBeforeVal .sapMComboBoxBaseArrow {
+	left: 0.0625rem;
+}
+
+.sapSuiteTFCBArrowBeforeVal input.sapMComboBoxBaseInputInner:not(.sapMComboBoxBaseInputInnerReadonly) {
+  	padding-right: 0;
+  	padding-left: 3rem;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFParCont.Quad0 {
+	left: 834px;
+	top: 401px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFParCont.Quad0 {
+	left: 656px;
+	top: 184px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFParCont.Quad0 {
+	left: 240px;
+	top: 242px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFParCont.Quad1 {
+	left: -78px;
+	top: 401px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFParCont.Quad1 {
+	left: 30px;
+	top: 184px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFParCont.Quad1 {
+	left: 0;
+	top: 242px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFParCont.Quad2 {
+	left: -78px;
+	top: 442px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFParCont.Quad2 {
+	left: 30px;
+	top: 228px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFParCont.Quad2 {
+	left: 0;
+	top: 286px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFParCont.Quad3 {
+	left: 834px;
+	top: 442px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFParCont.Quad3 {
+	left: 656px;
+	top: 228px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFParCont.Quad3 {
+	left: 240px;
+	top: 286px;
+}
+
+.sapSuiteUiTFValHel {
+	position: absolute;
+	display: inline-block;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFValHel.Quad0 {
+	left: 792px;
+	top: 401px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFValHel.Quad0 {
+	left: 614px;
+	top: 184px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFValHel {
+	display: none;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFValHel.Quad1 {
+	left: 44px;
+	top: 401px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFValHel.Quad1 {
+	left: 152px;
+	top: 184px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFValHel.Quad2 {
+	left: 44px;
+	top: 442px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFValHel.Quad2 {
+	left: 152px;
+	top: 228px;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFValHel.Quad3 {
+	left: 792px;
+	top: 442px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFValHel.Quad3 {
+	left: 614px;
+	top: 228px;
+}
+
+.sapSuiteUiTFValHel .sapMBtnIcon {
+	border-radius: 15%;
+}
+
+.sapSuiteUiTFValHel .sapMBtnInner {
+	border-radius: 15%;
+}
+
+.sapSuiteUiTFLine {
+	position: absolute;
+	white-space: nowrap;
+	vertical-align: middle;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 8px;
+}
+
+.sapSuiteUiTFLinksCloud.Dirty>.sapSuiteUiTFLine.Unselected {
+	opacity: .5;
+}
+
+.sapSuiteUiTFLine.Largest {
+	font-size: 28px;
+	height: 31px;
+	min-width: 94px;
+}
+
+.sapSuiteUiTFLine.Large {
+	font-size: 24px;
+	height: 26px;
+	min-width: 68px;
+}
+
+.sapSuiteUiTFLine.Medium {
+	font-size: 20px;
+	height: 23px;
+	min-width: 67px;
+}
+
+.sapSuiteUiTFLine.Small {
+	font-size: 16px;
+	height: 18px;
+	min-width: 54px;
+}
+
+.sapSuiteUiTFLine.Smallest {
+	font-size: 14px;
+	height: 16px;
+	min-width: 47px;
+}
+
+.sapSuiteUiTFOthersLine {
+	position: absolute;
+	white-space: nowrap;
+	vertical-align: middle;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 14px;
+	margin: 8px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFLine.Largest {
+	font-size: 24px;
+	height: 26px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFLine.Large {
+	font-size: 20px;
+	height: 23px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFLine.Medium {
+	font-size: 18px;
+	height: 21px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFLine.Small {
+	font-size: 14px;
+	height: 16px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFLine.Smallest {
+	font-size: 12px;
+	height: 15px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFOthersLine {
+	font-size: 12px;
+}
+
+.sapSuiteUiTFRightPanel {
+	position: absolute;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFRightPanel {
+	left: 1100px;
+	top: 26px;
+	height: 350px;
+}
+
+.sapUiMedia-Std-Tablet .sapSuiteUiTFRightPanel {
+	left: 790px;
+	top: 26px;
+	height: 350px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFRightPanel {
+	left: 0;
+	top: 600px;
+	height: 350px;
+}
+
+
+.sapSuiteUiTFRightPanel .sapMSLITitleOnly {
+	font-size: 0.85rem;
+}
+
+.sapSuiteUiTFRightPanel .sapMLIBSelectD>.sapUiIcon {
+  	font-size: 0.85rem;
+}
+
+.sapSuiteUiTFRightPanel .sapSuiteUiTFShowSelLbl {
+	font-size: 0.85rem;
+	text-align: right !important;
+	display: table-cell;
+	line-height: 2.5rem;
+	height: 2.5rem;
+	width: 12.5rem;
+}
+
+.sapSuiteUiTFSearchBtn .sapMBtnIcon {
+	font-size: 0.85rem;
+}
+
+.sapSuiteUiTFSearchBtn .sapMBtnInner {
+	background: transparent;
+	border: none;
+}
+
+
+.sapUiMedia-Std-Desktop .sapSuiteUiTFShutter,
+.sapUiMedia-Std-Tablet .sapSuiteUiTFShutter {
+	display: none;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFShutter {
+	position: absolute;
+	width: 360px;
+	height: 80px;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFShutter.Top {
+	top: 0;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFShutter.Bottom {
+	top: 496px;
+}

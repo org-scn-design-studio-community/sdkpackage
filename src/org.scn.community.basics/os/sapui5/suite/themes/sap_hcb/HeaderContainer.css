@@ -1,0 +1,10 @@
+/* ============================================= */
+/* CSS for control sap.suite.ui.commons/HeaderContainer.control */
+/* ============================================= */
+.sapSuiteHdrCntrBtn.sapMBtn {
+	background-color: transparent;
+}
+.sapSuiteHdrCntrBtn .sapMBtnIcon {
+	color: @sapHCStandardFG;
+	font-size: 22px;
+}

@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "NavigationBar",
+		name: "basics.NavigationBar",
+		requireName: "basicsnavigationbar",
+		fullComponentName: "org.scn.community.basics.NavigationBar",
+		fullComponentPackage: "org.scn.community.basics/res/NavigationBar",
+		script: "org.scn.community.basics/res/NavigationBar/NavigationBar",
+		scriptSpec: "org.scn.community.basics/res/NavigationBar/NavigationBarSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.NavigationBar.spec = 
+	spec.spec = 
 {
   "DCleanAll": {
     "opts": {
@@ -137,10 +148,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.NavigationBar.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.NavigationBar.specAbout = 
+	spec.specAbout = 
 {
   "description": "Navigation Bar",
   "icon": "NavigationBar.png",
@@ -157,7 +168,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.NavigationBar.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -166,7 +177,7 @@
   "height": "22",
   "id": "NavigationBar",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -176,4 +187,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

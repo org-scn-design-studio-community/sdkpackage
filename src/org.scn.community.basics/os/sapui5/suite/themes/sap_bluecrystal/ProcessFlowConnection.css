@@ -1,107 +1,56 @@
-/* ================================================================== */
-/* CSS for control sap.suite.ui.commons/ProcessFlowConnection.control */
-/* ================================================================== */
-.parentPosition {
-  position: relative;
+/* ====================================================================================== */
+/* CSS for control sap.suite.ui.commons/ProcessFlowConnection.control (bluecrystal theme) */
+/* ====================================================================================== */
+.borderLeft {
+  border-left-width: 0.125rem;
 }
-.floatLeft {
-  float: left;
+.borderBottom {
+  border-bottom-width: 0.125rem;
 }
-.floatClear {
-  clear: both;
+.borderLeftStateCreated {
+  border-left-style: solid;
 }
-.boxMiddleWidth {
-  width: 2px;
+.borderLeftStatePlanned {
+  border-left-style: dashed;
 }
-.boxMiddleBorderWidth {
-  width: 0px;
+.borderBottomStateCreated {
+  border-bottom-style: solid;
 }
-.boxZoom1Width {
-  width: 31px;
+.borderBottomStatePlanned {
+  border-bottom-style: dashed;
 }
-.boxZoom2Width {
-  width: 23px;
+.borderLeftDisplayRegular {
+  border-left-color:@sapUiExtraDarkBorder;
 }
-.boxZoom3Width {
-  width: 31px;
+.borderLeftDisplayHighlighted {
+  border-left-color: @sapUiHighlight;
 }
-.boxZoom4Width {
-  width: 39px;
+.borderLeftDisplayDimmed {
+  border-left-color: @sapUiExtraDarkBorder;
 }
-.boxArrowZoom1Width {
-  width: 21px;
+.borderBottomDisplayRegular {
+  border-bottom-color: @sapUiExtraDarkBorder;
 }
-.boxArrowZoom2Width {
-  width: 13px;
+.borderBottomDisplayHighlighted {
+  border-bottom-color: @sapUiHighlight;
 }
-.boxArrowZoom3Width {
-  width: 21px;
+.borderBottomDisplayDimmed {
+  border-bottom-color: @sapUiExtraDarkBorder;
 }
-.boxArrowZoom4Width {
-  width: 29px;
+.displayRegular {
+  opacity: 0.8;
 }
-.boxWideWidth {
-  width: 100%;
+.displayHighlighted {
+  opacity: 1;
 }
-.boxWideArrowZoom1Width {
-  width: 54px;
-}
-.boxWideArrowZoom2Width {
-  width: 38px;
-}
-.boxWideArrowZoom3Width {
-  width: 54px;
-}
-.boxWideArrowZoom4Width {
-  width: 70px;
-}
-.boxWideZoom1Height {
-  height: 237px;
-}
-.boxWideZoom2Height {
-  height: 217px;
-}
-.boxWideZoom3Height {
-  height: 152px;
-}
-.boxWideZoom4Height {
-  height: 76px;
-}
-.boxTopZoom1Height {
-  height: 96px;
-}
-.boxTopZoom2Height {
-  height: 89px;
-}
-.boxTopZoom3Height {
-  height: 65px;
-}
-.boxTopZoom4Height {
-  height: 28px;
-}
-.boxMiddleHeight {
-  height: 2px;
-}
-.boxMiddleBorderHeight {
-  height: 0px;
-}
-.boxBottomZoom1Height {
-  height: 139px;
-}
-.boxBottomZoom2Height {
-  height: 126px;
-}
-.boxBottomZoom3Height {
-  height: 85px;
-}
-.boxBottomZoom4Height {
-  height: 46px;
+.displayDimmed {
+  opacity: 0.5;
 }
 
 .arrowRight {
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  right: -16px;
-  bottom: -5px;
+  border-style: solid;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-width: 0.25rem 0.5rem 0.25rem 0.5rem;
 }

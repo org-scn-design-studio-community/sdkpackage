@@ -43,8 +43,8 @@
     {
       "name" : "sap/suite/ui/commons/ChartContainer.js",
       "description" : "Provides control sap.suite.ui.commons.ChartContainer.",
-      "size" : 68289,
-      "compressedSize" : 23612,
+      "size" : 68652,
+      "compressedSize" : 23670,
       "required" : ["sap/suite/ui/commons/library.js", "sap/ui/core/Control.js", "sap/m/Popover.js", "sap/m/Button.js", "sap/m/Select.js", "sap/m/Dialog.js", "sap/ui/core/ResizeHandler.js", "sap/ui/Device.js", "jquery.sap.global.js"],
       "includes" : []
     },
@@ -651,8 +651,8 @@
     {
       "name" : "sap/suite/ui/commons/ProcessFlow.js",
       "description" : "Provides control sap.suite.ui.commons.ProcessFlow.",
-      "size" : 139035,
-      "compressedSize" : 54748,
+      "size" : 139715,
+      "compressedSize" : 54476,
       "required" : ["sap/suite/ui/commons/library.js", "sap/ui/core/Control.js", "sap/m/Image.js", "jquery.sap.global.js"],
       "includes" : []
     },
@@ -675,7 +675,7 @@
     {
       "name" : "sap/suite/ui/commons/ProcessFlowLaneHeader.js",
       "description" : "Provides control sap.suite.ui.commons.ProcessFlowLaneHeader.",
-      "size" : 37471,
+      "size" : 37472,
       "compressedSize" : 11381,
       "required" : ["sap/suite/ui/commons/library.js", "sap/ui/core/Control.js", "sap/ui/core/IconPool.js", "sap/m/Image.js", "jquery.sap.global.js"],
       "includes" : []
@@ -691,24 +691,24 @@
     {
       "name" : "sap/suite/ui/commons/ProcessFlowNode.js",
       "description" : "Provides control sap.suite.ui.commons.ProcessFlowNode.",
-      "size" : 52628,
-      "compressedSize" : 23204,
+      "size" : 52780,
+      "compressedSize" : 23261,
       "required" : ["sap/suite/ui/commons/library.js", "sap/ui/core/Control.js", "sap/ui/core/IconPool.js", "sap/m/Text.js", "jquery.sap.global.js"],
       "includes" : []
     },
     {
       "name" : "sap/suite/ui/commons/ProcessFlowNodeRenderer.js",
       "description" : "SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved",
-      "size" : 21844,
-      "compressedSize" : 13122,
+      "size" : 21619,
+      "compressedSize" : 12954,
       "required" : ["jquery.sap.global.js"],
       "includes" : []
     },
     {
       "name" : "sap/suite/ui/commons/ProcessFlowRenderer.js",
       "description" : "SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved",
-      "size" : 10516,
-      "compressedSize" : 5230,
+      "size" : 10756,
+      "compressedSize" : 5263,
       "required" : ["sap/suite/ui/commons/ProcessFlowLaneHeader.js", "jquery.sap.global.js"],
       "includes" : []
     },
@@ -843,7 +843,7 @@
     {
       "name" : "sap/suite/ui/commons/Timeline.js",
       "description" : "Provides control sap.suite.ui.commons.Timeline.",
-      "size" : 131163,
+      "size" : 131182,
       "compressedSize" : 46954,
       "required" : ["sap/suite/ui/commons/library.js", "sap/ui/core/Control.js", "sap/m/library.js", "sap/ui/core/IconPool.js", "sap/ui/core/Icon.js", "sap/ui/core/delegate/ItemNavigation.js", "sap/suite/ui/commons/TimelineFilterListItem.js", "sap/ui/core/ResizeHandler.js", "sap/ui/Device.js", "jquery.sap.global.js"],
       "includes" : []
@@ -867,8 +867,8 @@
     {
       "name" : "sap/suite/ui/commons/TimelineItem.js",
       "description" : "Provides control sap.suite.ui.commons.TimelineItem.",
-      "size" : 56349,
-      "compressedSize" : 13645,
+      "size" : 56353,
+      "compressedSize" : 13625,
       "required" : ["sap/suite/ui/commons/library.js", "sap/ui/core/Control.js", "sap/m/library.js", "sap/ui/core/IconPool.js", "sap/ui/core/format/DateFormat.js", "jquery.sap.global.js"],
       "includes" : []
     },
@@ -883,8 +883,8 @@
     {
       "name" : "sap/suite/ui/commons/TimelineRenderer.js",
       "description" : "! SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved",
-      "size" : 6118,
-      "compressedSize" : 3953,
+      "size" : 6182,
+      "compressedSize" : 3980,
       "required" : ["jquery.sap.global.js"],
       "includes" : []
     },
@@ -954,7 +954,7 @@
     },
     {
       "name" : "sap/suite/ui/commons/library.js",
-      "description" : "Initialization Code and shared classes of library sap.suite.ui.commons (1.30.3)",
+      "description" : "Initialization Code and shared classes of library sap.suite.ui.commons (1.30.8)",
       "size" : 30661,
       "compressedSize" : 7411,
       "required" : ["sap/ui/core/Core.js", "sap/ui/core/library.js", "jquery.sap.global.js"],
@@ -968,7 +968,7 @@
     },
     {
       "name" : "sap/suite/ui/commons/messagebundle.properties",
-      "size" : 12844,
+      "size" : 12849,
       "required" : [],
       "includes" : []
     },

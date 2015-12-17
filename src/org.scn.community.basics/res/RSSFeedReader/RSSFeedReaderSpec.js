@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "RSSFeedReader",
+		name: "basics.RSSFeedReader",
+		requireName: "basicsrssfeedreader",
+		fullComponentName: "org.scn.community.basics.RSSFeedReader",
+		fullComponentPackage: "org.scn.community.basics/res/RSSFeedReader",
+		script: "org.scn.community.basics/res/RSSFeedReader/RSSFeedReader",
+		scriptSpec: "org.scn.community.basics/res/RSSFeedReader/RSSFeedReaderSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.RSSFeedReader.spec = 
+	spec.spec = 
 {
   "feedUrl": {
     "opts": {
@@ -71,10 +82,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.RSSFeedReader.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.RSSFeedReader.specAbout = 
+	spec.specAbout = 
 {
   "description": "RSSFeedReader",
   "icon": "RSSFeedReader.png",
@@ -91,7 +102,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.RSSFeedReader.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -100,7 +111,7 @@
   "height": "200",
   "id": "RSSFeedReader",
   "package": "basics",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
@@ -110,4 +121,5 @@
   "width": "300"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "ActionSheetButton",
+		name: "basics.ActionSheetButton",
+		requireName: "basicsactionsheetbutton",
+		fullComponentName: "org.scn.community.basics.ActionSheetButton",
+		fullComponentPackage: "org.scn.community.basics/res/ActionSheetButton",
+		script: "org.scn.community.basics/res/ActionSheetButton/ActionSheetButton",
+		scriptSpec: "org.scn.community.basics/res/ActionSheetButton/ActionSheetButtonSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.ActionSheetButton.spec = 
+	spec.spec = 
 {
   "buttonType": {
     "opts": {
@@ -228,10 +239,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.ActionSheetButton.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.ActionSheetButton.specAbout = 
+	spec.specAbout = 
 {
   "description": "Fiori-Inspired Action Sheet Button menu",
   "icon": "ActionSheetButton.png",
@@ -248,7 +259,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.ActionSheetButton.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -273,4 +284,5 @@
   "width": "48"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

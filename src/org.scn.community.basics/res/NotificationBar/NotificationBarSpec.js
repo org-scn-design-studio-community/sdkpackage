@@ -16,10 +16,21 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "NotificationBar",
+		name: "basics.NotificationBar",
+		requireName: "basicsnotificationbar",
+		fullComponentName: "org.scn.community.basics.NotificationBar",
+		fullComponentPackage: "org.scn.community.basics/res/NotificationBar",
+		script: "org.scn.community.basics/res/NotificationBar/NotificationBar",
+		scriptSpec: "org.scn.community.basics/res/NotificationBar/NotificationBarSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.basics.NotificationBar.spec = 
+	spec.spec = 
 {
   "categories": {
     "opts": {
@@ -167,10 +178,10 @@
   }
 };
 
-	org_scn_community_require.knownComponents.basics.NotificationBar.specInclude = 
+	spec.specInclude = 
 {};
 
-	org_scn_community_require.knownComponents.basics.NotificationBar.specAbout = 
+	spec.specAbout = 
 {
   "description": "Notification Bar",
   "icon": "NotificationBar.png",
@@ -187,7 +198,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.basics.NotificationBar.specComp = 
+	spec.specComp = 
 {
   "databound": false,
   "extension": "Component",
@@ -206,4 +217,5 @@
   "width": "auto"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

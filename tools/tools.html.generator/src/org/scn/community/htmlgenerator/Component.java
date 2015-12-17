@@ -660,6 +660,9 @@ public class Component {
 			
 			resFiles = Helpers.listFiles(parentFolder, filter);
 			for (File file : resFiles) {
+				if(file.isDirectory()) {
+					continue;
+				}
 				String file2String = Helpers.file2String(file);
 
 				int indexOfTimestamp = file2String.indexOf("/*%TIMESTAMP-START%*/");

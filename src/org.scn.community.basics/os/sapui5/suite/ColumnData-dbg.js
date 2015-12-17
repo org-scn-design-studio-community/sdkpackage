@@ -55,7 +55,7 @@ jQuery.sap.require("sap.ui.core.Element");
  * @class
  * Column data holder.
  * @extends sap.ui.core.Element
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

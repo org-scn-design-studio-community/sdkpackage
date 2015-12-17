@@ -52,7 +52,7 @@ jQuery.sap.require("sap.ui.ux3.NavigationItem");
  * @class
  * This control extends the sap.ui.ux3.NavigationItem control. This control can display the quantity of items on a corresponding content area. It also provides a rich tooltip that can appear and disappear after a certain delay.
  * @extends sap.ui.ux3.NavigationItem
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public

@@ -5,13 +5,14 @@
 	tooltip="Fallback Picture"
 	icon="res/FallbackPicture/FallbackPicture.png"
 	handlerType="sapui5"
-	propertySheetPath="res/FallbackPicture/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/FallbackPicture/FallbackPictureLoader.js</jsInclude>
+	<requireJs modes="commons">res/FallbackPicture/FallbackPicture</requireJs>
+
 	<cssInclude>res/FallbackPicture/FallbackPicture.css</cssInclude>
 	
 	

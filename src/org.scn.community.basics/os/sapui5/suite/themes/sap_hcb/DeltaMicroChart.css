@@ -1,0 +1,88 @@
+
+/* =================================================== */
+/* CSS for DeltaMicroChart control for 'sap_hcb' theme */
+/* =================================================== */
+
+.sapSuiteDmc {
+    font-family: @sapUiFontFamily;
+	font-weight: normal; 
+	font-color: @sapHCStandardFG;
+}
+
+.sapUiMedia-Std-Desktop .sapSuiteDmc.Auto,
+.sapUiMedia-Std-Tablet .sapSuiteDmc.Auto,
+.sapSuiteDmc.M,
+.sapSuiteDmc.L {
+	font-size: @sapMFontMediumSize;
+}
+
+.sapUiMedia-Std-Phone .sapSuiteDmc.Auto,
+.sapSuiteDmc.S,
+.sapSuiteDmc.XS {
+	font-size: @sapMFontSmallSize;
+}
+
+.sap-desktop .sapSuiteDmc:focus {
+	outline-color: @sapUiFocus;
+	outline-style: dotted;
+	outline-width: .0625rem;
+}
+
+.sapSuiteDmc:focus:not([tabindex]) {
+	outline: none;
+}
+
+.sapSuiteDmcDelta.Neutral {
+    color: @sapHCNeutral;
+}
+
+.sapSuiteDmcDelta.Good {
+    color: @sapHCPositive;
+}
+
+.sapSuiteDmcDelta.Critical {
+    color: @sapHCCritical;
+}
+
+.sapSuiteDmcDelta.Error {
+    color: @sapHCNegative;
+}
+
+.sapSuiteDmcBarDeltaInt.Neutral {
+    background-color: @sapHCStandardBG;
+    border-color: @sapHCNeutral;
+}
+
+.sapSuiteDmcBarDeltaInt.Good {
+    background-color: @sapHCPositive;
+    border-color: @sapHCPositive;
+}
+
+.sapSuiteDmcBarDeltaInt.Critical {
+    background-color: @sapHCCritical;
+    border-color: @sapHCCritical;
+}
+
+.sapSuiteDmcBarDeltaInt.Error {
+    background-color: @sapHCNegative;
+    border-color: @sapHCNegative;
+}
+
+.sapSuiteDmcBarDeltaStripe {
+	background-color: @sapHCStandardBG;
+	border: .0625rem solid @sapHCStandardFG;
+}
+
+.sapSuiteDmc .sapSuiteDmcBarInternal.Left {
+	margin-right: 0;
+}
+
+.sapSuiteDmc .sapSuiteDmcBarInternal.Right {
+	margin-left: 0;
+}
+
+.sapSuiteDmcBarInternal {
+	background-color: @sapHCStandardBG;
+	border: .0625rem solid @sapHCStandardFG;
+	box-sizing: border-box;
+}

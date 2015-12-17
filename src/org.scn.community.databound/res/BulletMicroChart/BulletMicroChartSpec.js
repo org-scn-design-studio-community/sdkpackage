@@ -16,13 +16,24 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+define([],
+function() {
 
-(function() {
+	var spec = {
+		id: "BulletMicroChart",
+		name: "databound.BulletMicroChart",
+		requireName: "databoundbulletmicrochart",
+		fullComponentName: "org.scn.community.databound.BulletMicroChart",
+		fullComponentPackage: "org.scn.community.databound/res/BulletMicroChart",
+		script: "org.scn.community.databound/res/BulletMicroChart/BulletMicroChart",
+		scriptSpec: "org.scn.community.databound/res/BulletMicroChart/BulletMicroChartSpec",
+		min: false
+	};
 
-	org_scn_community_require.knownComponents.databound.BulletMicroChart.spec = 
+	spec.spec = 
 {};
 
-	org_scn_community_require.knownComponents.databound.BulletMicroChart.specInclude = 
+	spec.specInclude = 
 {
   "actual": {
     "opts": {
@@ -689,7 +700,7 @@
   }
 };
 
-	org_scn_community_require.knownComponents.databound.BulletMicroChart.specAbout = 
+	spec.specAbout = 
 {
   "description": "Bullet Micro Chart - Component for Visualization of Data on small areas",
   "icon": "BulletMicroChart.png",
@@ -706,7 +717,7 @@
   ]
 };
 
-	org_scn_community_require.knownComponents.databound.BulletMicroChart.specComp = 
+	spec.specComp = 
 {
   "dataType": "DataCellList",
   "databound": true,
@@ -718,8 +729,9 @@
   "handlerType": "sapui5",
   "height": "100",
   "id": "BulletMicroChart",
+  "modes": "commons m",
   "package": "databound",
-  "parentControl": "sap.ui.commons.layout.AbsoluteLayout",
+  "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "repeaterProperty": "actual",
   "require": [
     {
@@ -756,4 +768,5 @@
   "width": "400"
 };
 
-})();// End of closure
+	return spec;
+});// End of closure

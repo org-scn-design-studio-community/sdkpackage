@@ -59,7 +59,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  *
  * @author SAP SE
- * @version 1.30.3
+ * @version 1.30.8
  *
  * @constructor
  * @public
@@ -703,7 +703,6 @@ sap.suite.ui.commons.ProcessFlow.M_EVENTS = {'nodeTitlePress':'nodeTitlePress','
 // */
 
 jQuery.sap.require("sap.m.Image");
-
 /*
  * Resource bundle for the localized strings.
  */
@@ -719,6 +718,11 @@ sap.suite.ui.commons.ProcessFlow.prototype._zoomLevel = sap.suite.ui.commons.Pro
  * The wheel events time-out.
  */
 sap.suite.ui.commons.ProcessFlow.prototype._wheelTimeout = null;
+
+/**
+ * Set to true when the focus is changing to another node.
+ */
+sap.suite.ui.commons.ProcessFlow.prototype._isFocusChanged = false;
 
 /**
  * The wheel events timestamp for the last wheel event occurrence.
@@ -787,7 +791,7 @@ sap.suite.ui.commons.ProcessFlow.prototype._bRtl = false;
 sap.suite.ui.commons.ProcessFlow.prototype._arrowScrollable = null;
 sap.suite.ui.commons.ProcessFlow.prototype._iTouchStartScrollTop = undefined;
 sap.suite.ui.commons.ProcessFlow.prototype._iTouchStartScrollLeft = undefined;
- 
+
 sap.suite.ui.commons.ProcessFlow.prototype.init = function() {
   this._bRtl = sap.ui.getCore().getConfiguration().getRTL();
 
@@ -1997,7 +2001,7 @@ sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.writeVertic
 * @param row
 * @param firstColumn
 * @param lastColumn
-* @returns Function return true, if the path is free, otherwise false
+* @returns {boolean} Function return true, if the path is free, otherwise false
 */
 sap.suite.ui.commons.ProcessFlow.InternalMatrixCalculation.prototype.checkIfHorizontalLinePossible = function(
    originalMatrix, row, firstColumn, lastColumn) {
@@ -2112,6 +2116,7 @@ sap.suite.ui.commons.ProcessFlow.prototype.setZoomLevel = function( zoomLevel ) 
       };
     oScrollContainerContextNew = oScrollContainerContextOld;
     if (this._zoomLevel === zoomLevel) {
+      this._isInitialZoomLevelNeeded = false;
       return;
     }
   }
@@ -2120,7 +2125,15 @@ sap.suite.ui.commons.ProcessFlow.prototype.setZoomLevel = function( zoomLevel ) 
     return;
   }
   this._zoomLevel = zoomLevel;
-  this.invalidate();
+  // When setting the initial zoomlevel, invalidate() has to be called,
+  // because the method call comes from onAfterRendering() and to call the rerender() is not allowed
+  if (this._isInitialZoomLevelNeeded){
+    this._isInitialZoomLevelNeeded = false;
+    this.invalidate();
+  // In all other cases, the rerender() has to be called, so that the offset can be set afterwards
+  }else{
+    this.rerender();
+  }
 
   if (oScrollContainerContextOld) {
     // set the grab cursor class in case for touch devices
@@ -2134,10 +2147,17 @@ sap.suite.ui.commons.ProcessFlow.prototype.setZoomLevel = function( zoomLevel ) 
         this.$("scrollContainer").css("overflow", "auto");
       }
     }
+    // Sets the scroll offset to the scrollContainer
     $scrollContainer = this.$("scrollContainer");
     oScrollContainerContextNew = this._getScrollContainerOnZoomChanged(oScrollContainerContextOld, $scrollContainer);
     $scrollContainer.scrollLeft(oScrollContainerContextNew.scrollLeft);
     $scrollContainer.scrollTop(oScrollContainerContextNew.scrollTop);
+    this._adjustAndShowArrow();
+    // Avoids not setting the focus on clickable elements.
+    if (this._isFocusChanged){
+      this._setFocusToNode();
+      this._isFocusChanged = false;
+    }
   }
 };
 
@@ -2304,14 +2324,14 @@ sap.suite.ui.commons.ProcessFlow.prototype.onAfterRendering = function () {
       iScrollWidth,
       iScrollHeight;
 
-  // initialize scrolling
-    this._checkOverflow(this.getDomRef("scrollContainer"), this.$());
+  // Initializes scrolling.
+  this._checkOverflow(this.getDomRef("scrollContainer"), this.$());
 
-   this.nCursorXPosition = 0;
-   this.nCursorYPosition = 0;
-  
+  this.nCursorXPosition = 0;
+  this.nCursorYPosition = 0;
+
   if ($content && $content.length) {
-    // set PF node icon cursors, because these are unfortunately set as inline styles, so cannot be overriden by applying a css class.
+    // Sets PF node icon cursors, because these are unfortunately set as inline styles, so they cannot be overriden by applying a CSS class.
     this.$("scrollContainer").find('.sapSuiteUiCommonsProcessFlowNode .sapUiIcon').css("cursor", "inherit");
 
     if (this.getScrollable()) {
@@ -2334,56 +2354,57 @@ sap.suite.ui.commons.ProcessFlow.prototype.onAfterRendering = function () {
       $content.css("position", "static");
     }
     if (bScrollable) {
-        //initialize top margin of arrow and counter
-        if (!this._iInitialArrowTop || !this._iInitialCounterTop) {
-          this._iInitialArrowTop = parseInt(this.$("arrowScrollRight").css("top"), 10);
-          this._iInitialCounterTop = parseInt(this.$("counterRight").css("top"), 10);
-        }
+      //Initialize top margin of arrow and counter.
+      if (!this._iInitialArrowTop || !this._iInitialCounterTop) {
+        this._iInitialArrowTop = parseInt(this.$("arrowScrollRight").css("top"), 10);
+        this._iInitialCounterTop = parseInt(this.$("counterRight").css("top"), 10);
+      }
 
-      if (sap.ui.Device.os.windows && sap.ui.Device.system.combi && sap.ui.Device.browser.chrome) { 
-            //Win8 Surface: Chrome 
-            this.$("scrollContainer").bind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
-            this.$("scrollContainer").css("overflow", "auto");
-        }
-        else if (sap.ui.Device.os.windows && sap.ui.Device.system.combi && sap.ui.Device.browser.msie && (sap.ui.Device.browser.version > 9)) {
-          //Win8 Surface: IE 10 and higher 
-               this.$("scrollContainer").bind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
-               this.$("scrollContainer").css("overflow", "auto");
-               this.$("scrollContainer").css("-ms-overflow-style", "none");
-        }
-        else if (!sap.ui.Device.support.touch && !jQuery.sap.simulateMobileOnDesktop) {
-          // Desktop
-           this.$("scrollContainer").bind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
-         }
-        else {
-          // Mobile: use native scrolling
-           this._clearHandlers(this.$("scrollContainer"));
-           this.$("scrollContainer").css("overflow", "auto");
-         }
-     } else { //not scrollable ProcessFlow: set overflow for chevron navigation anyway
-          if (!this._bDoScroll) {
-             //desktop
-            this.$("scrollContainer").css("overflow", "hidden");
-          } else {
-            //mobile
-            this.$("scrollContainer").css("overflow", "auto");
-          }
-     }
-    if (this.getWheelZoomable() && sap.ui.Device.system.desktop && !this._isHeaderMode()) { 
+      if (sap.ui.Device.os.windows && sap.ui.Device.system.combi && sap.ui.Device.browser.chrome) {
+        //Win8 Surface: Chrome 
+        this.$("scrollContainer").bind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
+        this.$("scrollContainer").css("overflow", "auto");
+      } else if (sap.ui.Device.os.windows && sap.ui.Device.system.combi && sap.ui.Device.browser.msie && (sap.ui.Device.browser.version > 9)) {
+        //Win8 Surface: IE 10 and higher.
+        this.$("scrollContainer").bind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
+        this.$("scrollContainer").css("overflow", "auto");
+        this.$("scrollContainer").css("-ms-overflow-style", "none");
+      } else if (!sap.ui.Device.support.touch && !jQuery.sap.simulateMobileOnDesktop) {
+        // Desktop
+        this.$("scrollContainer").bind(this._mouseEvents, jQuery.proxy(this._registerMouseEvents, this));
+      } else {
+        // Mobile: use native scrolling.
+        this._clearHandlers(this.$("scrollContainer"));
+        this.$("scrollContainer").css("overflow", "auto");
+      }
+    } else { //Not scrollable ProcessFlow: Set overflow for chevron navigation anyway.
+      if (this._bDoScroll) {
+        //Is Not Desktop OR Is Win8.
+        this.$("scrollContainer").css("overflow", "auto");
+      } else {
+        this.$("scrollContainer").css("overflow", "hidden");
+      }
+    }
+    if (this.getWheelZoomable() && sap.ui.Device.system.desktop && !this._isHeaderMode()) {
       this.$("scrollContainer").bind(this._mouseWheelEvent, jQuery.proxy(this._registerMouseWheel, this));
     }
     if (this._bDoScroll) {
-      // bind scroll event for mobile
+      // Bind scroll event for mobile.
       this.$("scrollContainer").bind("scroll", jQuery.proxy(this._onScroll, this));
     }
-
     this._resizeRegId = sap.ui.core.ResizeHandler.register(this, jQuery.proxy(sap.suite.ui.commons.ProcessFlow.prototype._onResize, this));
-
     if(this._isInitialZoomLevelNeeded) {
       this._initZoomLevel();
     }
+    // Sets the focus to the next node if PF was in headers mode before rerendering
+    if (this._headerHasFocus){
+      this._headerHasFocus = false;
+      var $nodeToFocus = this.$("scroll-content").children().children().children(1).children("td[tabindex='0']").first().children();
+      var oNodeToFocus = sap.ui.getCore().byId($nodeToFocus[0].id);
+      this._changeNavigationFocus(null, oNodeToFocus);
+    }
   }
-  };
+};
 
   sap.suite.ui.commons.ProcessFlow.prototype._initZoomLevel = function () {
     // set initial ZoomLevel according to ProcessFlow container size
@@ -2391,7 +2412,6 @@ sap.suite.ui.commons.ProcessFlow.prototype.onAfterRendering = function () {
     if (this.$()) {
       var iWidth = this.$().width();
       if (iWidth) {
-        this._isInitialZoomLevelNeeded = false;
         if (iWidth < sap.m.ScreenSizes.tablet) {
           this.setZoomLevel(sap.suite.ui.commons.ProcessFlowZoomLevel.Four);
         }
@@ -2404,7 +2424,6 @@ sap.suite.ui.commons.ProcessFlow.prototype.onAfterRendering = function () {
       }
     }
   };
-
 
 sap.suite.ui.commons.ProcessFlow.prototype._registerMouseWheel = function  (oEvent) {
         var oDirection = oEvent.originalEvent.wheelDelta || -oEvent.originalEvent.detail;
@@ -2433,8 +2452,10 @@ sap.suite.ui.commons.ProcessFlow.prototype._registerMouseWheel = function  (oEve
           that._wheelCalled = true;
 
           if (oDirection < 0) {
+            this._isFocusChanged = true;
             that.zoomOut();
           } else {
+            this._isFocusChanged = true;
             that.zoomIn();
           }
         }
@@ -2545,36 +2566,26 @@ sap.suite.ui.commons.ProcessFlow._enumMoveDirection = {
     'RIGHT' : 'right', // move right
     'UP' : 'up', // move left
     'DOWN' : 'down' // move right
-  }; // end of move enumeration
+}; // end of move enumeration
 
-/**
- * Changes the navigation focus to the specified node on mouse click.
- * @param {sap.suite.ui.commons.ProcessFlowNode} the new node to focus to
+/** Sets the tab focus on the given element or to _lastNavigationFocusNode if no parameter is given. If no parameter
+ * is given and _lastNavigationFocusNode is false, nothing happens.
+ * @param {sap.suite.ui.commons.ProcessFlowNode} the node to focus.
  * @private
- * @since 1.23
- */
-sap.suite.ui.commons.ProcessFlow.prototype._setFocusOnMouseClick = function(oNode) {
-  var oNodeFrom = this._lastNavigationFocusNode,
-      oNodeTo = oNode;
-  this._lastNavigationFocusNode = oNodeTo;
-  this._bKeyboardInputActive = this._bKeyboardInputActive || false;
-
-  if (this._bKeyboardInputActive === false) {
-    // get the current offset
-    var $scrollContainer = this.$("scrollContainer");
-    var oScrollContainerContext = {
-      scrollLeft : $scrollContainer.context.scrollLeft,
-      scrollTop : $scrollContainer.context.scrollTop
-    };
-    // set the offset back
-    $scrollContainer.scrollLeft(oScrollContainerContext.scrollLeft);
-    $scrollContainer.scrollTop(oScrollContainerContext.scrollTop);
-    this._bKeyboardInputActive = true;
+*/
+sap.suite.ui.commons.ProcessFlow.prototype._setFocusToNode = function(oNode) {
+  // If there's a node as parameter
+  if (oNode){
+    jQuery("#" + oNode.sId).parent().focus();
+    oNode._setNavigationFocus(true); 
+    oNode.rerender();
+  // If there's no parameter, set the focus to _lastNavigationFocusNode if is not false
+  }else if (this._lastNavigationFocusNode){
+    jQuery("#" + this._lastNavigationFocusNode.sId).parent().focus();
+    this._lastNavigationFocusNode._setNavigationFocus(true); 
+    this._lastNavigationFocusNode.rerender();
   }
-  // set the focus to the PF table to grab the keyboard input further on
-  jQuery(jQuery(this.$("scrollContainer").children()[0]).children()[0]).focus();
-  this._changeNavigationFocus(oNodeFrom, oNodeTo);
-};
+}
 
 /**
  * Changes the navigation focus from the actual node to the node specified as parameter.
@@ -2586,19 +2597,20 @@ sap.suite.ui.commons.ProcessFlow.prototype._setFocusOnMouseClick = function(oNod
  */
 sap.suite.ui.commons.ProcessFlow.prototype._changeNavigationFocus = function (oNodeFrom, oNodeTo) {
   if (oNodeFrom && oNodeTo && (oNodeFrom.getId() !== oNodeTo.getId())) {
-    jQuery.sap.log.debug("Rerendering PREVIOUS node with id '" + oNodeFrom.getId() + 
-                         "' and title '" + oNodeFrom.getTitle() + 
+    jQuery.sap.log.debug("Rerendering PREVIOUS node with id '" + oNodeFrom.getId() +
+                         "' and title '" + oNodeFrom.getTitle() +
                          "' navigation focus : " + oNodeFrom._getNavigationFocus());
     oNodeFrom._setNavigationFocus(false);
     oNodeFrom.rerender();
   }
 
-  if ((oNodeFrom && oNodeTo && (oNodeFrom.getId() !== oNodeTo.getId())) || oNodeTo) {
-    jQuery.sap.log.debug("Rerendering CURRENT node with id '" + oNodeTo.getId() + 
-                          "' and title '" + oNodeTo.getTitle() + 
+  if (oNodeTo) {
+    jQuery.sap.log.debug("Rerendering CURRENT node with id '" + oNodeTo.getId() +
+                          "' and title '" + oNodeTo.getTitle() +
                           "' navigation focus : " + oNodeTo._getNavigationFocus());
     oNodeTo._setNavigationFocus(true);
     oNodeTo.rerender();
+    this._lastNavigationFocusNode = oNodeTo;
     this._onFocusChanged();
   }
 };
@@ -2930,14 +2942,6 @@ sap.suite.ui.commons.ProcessFlow.prototype._bNFocusOutside = false;
 // internal PF flag whether we operate in highlighted mode.
 sap.suite.ui.commons.ProcessFlow.prototype._bHighlightedMode = false;
 
-
-// --------------------------------------------------------------------------------------------
-sap.suite.ui.commons.ProcessFlow.prototype.getFocusDomRef = function() {
-  var oDomRef = this.getDomRef("scrollContainer").children[0].children[0];
-  jQuery.sap.log.debug("ProcessFlow::getFocusDomRef : Keyboard focus has been changed to element:  id='"+ oDomRef.id + "' outerHTML='" + oDomRef.outerHTML +"'");
-  return oDomRef;
-};
-
 //--------------------------------------------------------------------------------------------
 /**
  * ProcessFlow has the focus, now it is neccessary to set the navigation
@@ -2948,31 +2952,6 @@ sap.suite.ui.commons.ProcessFlow.prototype.onfocusin = function(oEvent) {
   if (this._isHeaderMode()) {
     this._setFocusOnHeader(true);
   }
-  else {
-    jQuery.sap.log.debug("ProcessFlow::focus in" + (this._lastNavigationFocusNode ? this._lastNavigationFocusNode.getTitle() : "not defined"));
-    if( this._lastNavigationFocusNode ) {
-      this._lastNavigationFocusNode._setNavigationFocus(true);
-      this._lastNavigationFocusNode.rerender();
-    }
-    else { // define navigation focus from root
-      var bNodeFound = false;
-      for( var i = 0; i < this._internalCalcMatrix.length; i++ ) {
-        for( var j = 0; j < this._internalCalcMatrix[i].length; j++ ) {
-          if( this._internalCalcMatrix[i][j] instanceof sap.suite.ui.commons.ProcessFlowNode ) {
-            this._internalCalcMatrix[i][j]._setNavigationFocus(true);
-            this._internalCalcMatrix[i][j].rerender();
-            this._lastNavigationFocusNode = this._internalCalcMatrix[i][j];
-            bNodeFound = true;
-            break;
-          }
-        } // end inner loop
-        if( bNodeFound ) {
-          break;
-        }
-      }
-    }
-  }
-
 };
 
 sap.suite.ui.commons.ProcessFlow.prototype.onfocusout = function(oEvent) {
@@ -3011,8 +2990,8 @@ sap.suite.ui.commons.ProcessFlow.prototype._getScrollContainerOnZoomChanged = fu
 sap.suite.ui.commons.ProcessFlow.prototype._onFocusChanged = function() {
   var oFocusedNode = this._lastNavigationFocusNode,
       $focusedNode = oFocusedNode ? oFocusedNode.$() : null,
-      iScrollInnerWidth,
-      iScrollInnerHeight,
+      iScrollContainerInnerWidth,
+      iScrollContainerInnerHeight,
       iScrollLeft,
       iScrollTop,
       $scrollContent,
@@ -3021,8 +3000,11 @@ sap.suite.ui.commons.ProcessFlow.prototype._onFocusChanged = function() {
       iNodeOuterWidth,
       iNodeOuterHeight,
       oPositionInContent,
-      iNL, iNT, iNR, iNB,
-      iCL, iCT,
+      iNodeLeftPosition,
+      iNodeTopPosition,
+      iNodeRightPosition,
+      iNodeBottomPosition,
+      iCorrectionLeft, iCorrectionTop,
       max = function(a,b) { return (a > b) ? a : b; },
       min = function(a,b) { return (a < b) ? a : b; },
       iScrollTimeInMillis = 500;
@@ -3037,9 +3019,9 @@ sap.suite.ui.commons.ProcessFlow.prototype._onFocusChanged = function() {
     jQuery.sap.log.debug("Position of node in the content is [" + oPositionInContent.left + ", " + oPositionInContent.top + "]");
 
     $scrollContent = this.$("scroll-content");
-    iScrollInnerWidth = this.$("scrollContainer").innerWidth();
-    iScrollInnerHeight = this.$("scrollContainer").innerHeight();
-    jQuery.sap.log.debug("Scroll container inner width x height [" + iScrollInnerWidth + " x " + iScrollInnerHeight + "]");
+    iScrollContainerInnerWidth = this.$("scrollContainer").innerWidth();
+    iScrollContainerInnerHeight = this.$("scrollContainer").innerHeight();
+    jQuery.sap.log.debug("Scroll container inner width x height [" + iScrollContainerInnerWidth + " x " + iScrollContainerInnerHeight + "]");
 
     iScrollLeft = this.$("scrollContainer").scrollLeft();
     iScrollTop = this.$("scrollContainer").scrollTop();
@@ -3049,29 +3031,36 @@ sap.suite.ui.commons.ProcessFlow.prototype._onFocusChanged = function() {
     iContentInnerHeight = $scrollContent.innerHeight();
     jQuery.sap.log.debug("Scroll content inner width x height [" + iContentInnerWidth + " x " + iContentInnerHeight + "]");
 
-    iNL = -iScrollLeft + oPositionInContent.left;
-    iNR = iNL + iNodeOuterWidth;
-    iNT= -iScrollTop + oPositionInContent.top;
-    iNB = iNT + iNodeOuterHeight;
+    //Defines 4 borders (L: Left, R: Right, T: Top, B: Bottom) for position of the clicked node in the visible content.
+    iNodeLeftPosition = -iScrollLeft + oPositionInContent.left;
+    iNodeRightPosition = iNodeLeftPosition + iNodeOuterWidth;
+    iNodeTopPosition= -iScrollTop + oPositionInContent.top;
+    iNodeBottomPosition = iNodeTopPosition + iNodeOuterHeight;
 
-    // check if the node lies (even in part) out of the scroll container visible part
-    if ((iNR > iScrollInnerWidth) || (iNL < 0) || (iNB > iScrollInnerHeight) || (iNT < 0)) {
-      iCL = Math.round((iScrollInnerWidth - iNodeOuterWidth)/2);
-      iCL = max(iScrollInnerWidth - iContentInnerWidth + oPositionInContent.left, iCL);
-      iCL = min(oPositionInContent.left, iCL);
+    // Checks if the node lies (even in part) outside of the scroll container visible part.
+    if ((iNodeRightPosition > iScrollContainerInnerWidth) || (iNodeLeftPosition < 0) || (iNodeBottomPosition > iScrollContainerInnerHeight) || (iNodeTopPosition < 0)) {
+      //iCorrectionLeft, correction on left direction to center the node.
+      iCorrectionLeft = Math.round((iScrollContainerInnerWidth - iNodeOuterWidth)/2);
+      iCorrectionLeft = max(iScrollContainerInnerWidth - iContentInnerWidth + oPositionInContent.left, iCorrectionLeft);
+      iCorrectionLeft = min(oPositionInContent.left, iCorrectionLeft);
 
-      iCT = Math.round((iScrollInnerHeight - iNodeOuterHeight)/2);
-      iCT = max(iScrollInnerHeight - iContentInnerHeight + oPositionInContent.top, iCT);
-      iCT = min(oPositionInContent.top, iCT);
-
-      jQuery.sap.log.debug("Node lies outside the scroll container, scrolling from [" + iNL + "," + iNT + "] to [" + iCL + "," + iCT + "]");
+      //iCorrectionTop, correction on upwards to center the node.
+      iCorrectionTop = Math.round((iScrollContainerInnerHeight - iNodeOuterHeight)/2);
+      iCorrectionTop = max(iScrollContainerInnerHeight - iContentInnerHeight + oPositionInContent.top, iCorrectionTop);
+      iCorrectionTop = min(oPositionInContent.top, iCorrectionTop);
+      jQuery.sap.log.debug("Node lies outside the scroll container, scrolling from [" + iNodeLeftPosition + "," + iNodeTopPosition + "] to [" + iCorrectionLeft + "," + iCorrectionTop + "]");
+      this._isFocusChanged = true;
       this.$("scrollContainer").animate({
-          scrollTop: oPositionInContent.top - iCT,
-          scrollLeft: oPositionInContent.left - iCL
+          scrollTop: oPositionInContent.top - iCorrectionTop,
+          scrollLeft: oPositionInContent.left - iCorrectionLeft
         }, iScrollTimeInMillis, "swing", jQuery.proxy(this._adjustAndShowArrow, this));
     } else {
       jQuery.sap.log.debug("Node lies inside the scroll container, no scrolling happens.");
+      this._setFocusToNode(oFocusedNode);
     }
+  } else { // Non scrollable needs also to set the focus
+    this._setFocusToNode(oFocusedNode);
+    this._adjustAndShowArrow();
   }
 };
 
@@ -3081,6 +3070,7 @@ sap.suite.ui.commons.ProcessFlow.prototype._onFocusChanged = function() {
  * @since 1.26
  */
 sap.suite.ui.commons.ProcessFlow.prototype.onsapplus = function(oEvent) {
+    this._isFocusChanged = true;
     this.zoomIn();
 };
 
@@ -3090,6 +3080,7 @@ sap.suite.ui.commons.ProcessFlow.prototype.onsapplus = function(oEvent) {
  * @since 1.26
  */
 sap.suite.ui.commons.ProcessFlow.prototype.onsapminus = function(oEvent) {
+    this._isFocusChanged = true;
     this.zoomOut();
 };
 
@@ -3109,31 +3100,31 @@ sap.suite.ui.commons.ProcessFlow.prototype.onkeydown = function(oEvent) {
   var thead;
 
   switch (keycode) {
-    //ENTER and SPACE are fired onkeyup according to the spec
     case jQuery.sap.KeyCodes.TAB:
       if (shiftKeyPressed) {
-        oReleaseNFocus = this.getDomRef("scrollContainer").parentElement.previousElementSibling;
+        oReleaseNFocus = this.$("scrollContainer").parent().parent().prev();
         if (this._isHeaderMode()) { // lanes-only
           this._setFocusOnHeader(false);
         }
-      }
-      else {
+      }else{
         if (this._isHeaderMode()) { // lanes-only
           if (!this._headerHasFocus) {
             this._setFocusOnHeader(true);
-          } 
-          else {
+          }else{
             this._setFocusOnHeader(false);
-            oReleaseNFocus = this.$("scrollContainer").parent().next();
+            oReleaseNFocus = this.$("scrollContainer").parent().parent().next();
             bReleaseNFocus = true;
           }
-        }
-        else {
-          oReleaseNFocus = this.$("scrollContainer").parent().next();
-          bReleaseNFocus = true;
+        } else {
+            var $nextElement = this.$("scrollContainer").parent().parent().next();
+            if ($nextElement.length !== 0){
+              oReleaseNFocus = $nextElement;
+              bReleaseNFocus = true;
+              this._lastNavigationFocusNode = false;
+            }
         }
       }
-      
+
       break;
     case jQuery.sap.KeyCodes.ARROW_RIGHT:
       bNFocusChanged = this._moveToNextNode(sap.suite.ui.commons.ProcessFlow._enumMoveDirection.RIGHT);
@@ -3163,10 +3154,14 @@ sap.suite.ui.commons.ProcessFlow.prototype.onkeydown = function(oEvent) {
     case jQuery.sap.KeyCodes.DIGIT_0:
       this._initZoomLevel();
       break;
+    case jQuery.sap.KeyCodes.ENTER:
+    case jQuery.sap.KeyCodes.SPACE:
+      // ENTER and SPACE are fired onkeyup according to the spec, but we need to prevent the default behavior.
+      oEvent.preventDefault();
+      return;
     default:
       // it was not our key, let default action be executed if any
       return;
-
   } // end switch keycode
 
   // it was our key, default action has to suppressed
@@ -3188,6 +3183,8 @@ sap.suite.ui.commons.ProcessFlow.prototype.onkeydown = function(oEvent) {
 sap.suite.ui.commons.ProcessFlow.prototype.onkeyup = function(oEvent) {
   var keycode = (oEvent.keyCode ? oEvent.keyCode : oEvent.which);
   jQuery.sap.log.debug("ProcessFlow::keyboard input has been catched and action going to start: keycode=" + keycode);
+  var $nodeToFocus;
+  var oNodeToFocus;
   switch (keycode) {
     //------------------------------------------------------------------------------- TAB
     case jQuery.sap.KeyCodes.ENTER:
@@ -3195,16 +3192,26 @@ sap.suite.ui.commons.ProcessFlow.prototype.onkeyup = function(oEvent) {
       if (this._isHeaderMode()) { // lanes-only
         this._internalLanes = [];
         this.fireHeaderPress(this);
+        $nodeToFocus = this.$("scroll-content").children().children().children(1).children("td[tabindex='0']").first().children();
+        oNodeToFocus = sap.ui.getCore().byId($nodeToFocus[0].id);
+        this._changeNavigationFocus(null, oNodeToFocus);
       }
       else {
         for( var i = 0; i < this.getNodes().length; i++ ) {
           if( this.getNodes()[i]._getNavigationFocus() ) {
             this.fireNodePress(this.getNodes()[i]);
-            // probably useles to set focus...
-            //this._setFocusOnMouseClick(this.getNodes[i]);
             break;
           }
         }
+      }
+      break;
+    case jQuery.sap.KeyCodes.TAB:
+      if (!this._isHeaderMode() && !this._lastNavigationFocusNode) {
+        $nodeToFocus = this.$("scroll-content").children().children().children(1).children("td[tabindex='0']").first().children();
+        oNodeToFocus = sap.ui.getCore().byId($nodeToFocus[0].id);
+        this._changeNavigationFocus(null, oNodeToFocus);
+      } else if (!this._isHeaderMode()){
+        this._changeNavigationFocus(null, this._lastNavigationFocusNode);
       }
       break;
   }
@@ -3265,41 +3272,11 @@ sap.suite.ui.commons.ProcessFlow.prototype._setFocusOnHeader = function(setFlag)
     thead.focus();
     thead.addClass("sapSuiteUiCommonsPFHeaderFocused");
     this._headerHasFocus = true;
-  } 
+  }
   else {
     thead.blur();
     thead.removeClass("sapSuiteUiCommonsPFHeaderFocused");
     this._headerHasFocus = false;
-  }
-};
-
-/**
- * Sets navigation focus on a node for keyboard support.
- * @private
- * @since 1.26
- */
-sap.suite.ui.commons.ProcessFlow.prototype._setFocusOnNode = function() {
-    jQuery.sap.log.debug("ProcessFlow::focus in" + (this._lastNavigationFocusNode ? this._lastNavigationFocusNode.getTitle() : "not defined"));
-  if( this._lastNavigationFocusNode ) {
-    this._lastNavigationFocusNode._setNavigationFocus(true);
-    this._lastNavigationFocusNode.rerender();
-  }
-  else { // define navigation focus from root
-    var bNodeFound = false;
-    for( var i = 0; i < this._internalCalcMatrix.length; i++ ) {
-      for( var j = 0; j < this._internalCalcMatrix[i].length; j++ ) {
-        if( this._internalCalcMatrix[i][j] instanceof sap.suite.ui.commons.ProcessFlowNode ) {
-          this._internalCalcMatrix[i][j]._setNavigationFocus(true);
-          this._internalCalcMatrix[i][j].rerender();
-          this._lastNavigationFocusNode = this._internalCalcMatrix[i][j];
-          bNodeFound = true;
-          break;
-        }
-      } // end inner loop
-      if( bNodeFound ) {
-        break;
-      }
-    }
   }
 };
 
@@ -3322,7 +3299,7 @@ sap.suite.ui.commons.ProcessFlow.prototype._onArrowClick = function(oEvent) {
           // scroll forward/right button
           this._scroll(this._scrollStep, 500);
         }
-    }
+      }
 };
 
 /**
@@ -3352,6 +3329,10 @@ sap.suite.ui.commons.ProcessFlow.prototype._adjustAndShowArrow = function() {
   this._checkOverflow(this.getDomRef("scrollContainer"), this.$());
   if (this.getScrollable()) {
     this._moveArrowAndCounterVertical();
+  }
+  if (this._isFocusChanged){
+    this._setFocusToNode(this._lastNavigationFocusNode);
+    this._isFocusChanged = false;
   }
 };
 
@@ -3540,7 +3521,6 @@ sap.suite.ui.commons.ProcessFlow.prototype._moveArrowAndCounterVertical = functi
  * @since 1.30
  */
 sap.suite.ui.commons.ProcessFlow.prototype._checkOverflow = function(oScrollContainer, $processFlow) {
-
   if (this._checkScrolling(oScrollContainer, $processFlow) && oScrollContainer) {
     this._setScrollWidth(oScrollContainer);
     // Check whether scrolling to the left is possible
@@ -3592,8 +3572,8 @@ sap.suite.ui.commons.ProcessFlow.prototype._checkOverflow = function(oScrollCont
 sap.suite.ui.commons.ProcessFlow.prototype._onScroll = function(oEvent) {
   var iScrollLeft = this.$("scrollContainer").scrollLeft();
   var iDelta = Math.abs(iScrollLeft - this._iTouchStartScrollLeft);
-
-  if (iDelta > (this._scrollStep / 4)) {
+  // Only valid if the focus does not change.
+  if (iDelta > (this._scrollStep / 4) && !this._isFocusChanged) {
       // Update arrows when 1/4 lane was scrolled
       this._adjustAndShowArrow();
       this._iTouchStartScrollLeft = iScrollLeft;
@@ -3635,6 +3615,10 @@ sap.suite.ui.commons.ProcessFlow.prototype._setParentForNodes = function(aIntern
   var cInternalNodes = aInternalNodes ? aInternalNodes.length : 0;
   var aChildren;
   var i, j;
+  //Cleanup association to avoid duplicates.
+  for (var currentNode in aInternalNodes) {
+    aInternalNodes[currentNode].removeAllAssociation("parents", true);
+  }
   for (i = 0; i < cInternalNodes; i++) {
     aChildren = aInternalNodes[i].getChildren();
     if (aChildren) {

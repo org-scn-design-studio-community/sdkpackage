@@ -5,13 +5,14 @@
 	tooltip="Date Range Scroller"
 	icon="res/DateRangeScroller/DateRangeScroller.png"
 	handlerType="sapui5"
-	propertySheetPath="res/DateRangeScroller/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/DateRangeScroller/DateRangeScrollerLoader.js</jsInclude>
+	<requireJs modes="commons">res/DateRangeScroller/DateRangeScroller</requireJs>
+
 	<cssInclude>res/DateRangeScroller/DateRangeScroller.css</cssInclude>
 	
 	

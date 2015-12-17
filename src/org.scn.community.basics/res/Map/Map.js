@@ -17,9 +17,25 @@
  * limitations under the License. 
  */
  
- (function(){
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"./MapSpec",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics",
+	"../../../"+scn_pkg+"basics/os/mm/mm",
+	"../../../"+scn_pkg+"basics/os/mm/mm-follower"
+	],
+	function(
+		Component,
+		spec,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-var myComponentData = org_scn_community_require.knownComponents.basics.Map;
+var myComponentData = spec;
 
 Map = function () {
 
@@ -60,6 +76,7 @@ Map = function () {
 	};
 
 	that.afterPrepare = function (owner) {
+		try{
 		var that = owner;
 			
 		// visualization on processed data
@@ -140,6 +157,9 @@ Map = function () {
 			}
 
 			that._oldZoom = zoom;
+		}
+		} catch(e) {
+			alert("e: " + e.stack);
 		}
 	};
 
@@ -319,8 +339,12 @@ Map = function () {
 	    else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 
 	    xmlhttp.open("GET","http://api.hostip.info/get_json.php?position=true",false);
-	    xmlhttp.send();
-
+	    try{
+	    	xmlhttp.send();
+	    } catch (e) {
+		    return false;
+	    }
+	    
 		if(xmlhttp.readyState == 4) {
 			return JSON.parse(xmlhttp.responseText);
 		}
@@ -332,9 +356,9 @@ Map = function () {
 	return that;
 };
 
-define([myComponentData.requireName], function(basicsmap){
-	myComponentData.instance = Map;
-	return myComponentData.instance;
-});
+//%INIT-START%
+myComponentData.instance = Map;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
-}).call(this);
+
+});

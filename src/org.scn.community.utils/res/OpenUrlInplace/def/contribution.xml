@@ -1,14 +1,13 @@
 
 <component
 	id="OpenUrlInplace"
-	title="Open Url Inplace"
+	title="Open Url Inplace 0.X"
 	tooltip="Open the URL in the same frame as Design Studio"
 	icon="res/OpenUrlInplace/OpenUrlInplace.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/OpenUrlInplace/OpenUrlInplace.js</jsInclude>
 
 	<property

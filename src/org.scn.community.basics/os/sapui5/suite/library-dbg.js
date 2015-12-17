@@ -8,7 +8,7 @@
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.suite.ui.commons (1.30.3)
+ * Initialization Code and shared classes of library sap.suite.ui.commons (1.30.8)
  */
 jQuery.sap.declare("sap.suite.ui.commons.library");
 jQuery.sap.require("sap.ui.core.Core");
@@ -123,7 +123,7 @@ sap.ui.getCore().initLibrary({
 		"sap.suite.ui.commons.MicroAreaChartPoint",
 		"sap.suite.ui.commons.TargetFilterColumn"
 	],
-	version: "1.30.3"
+	version: "1.30.8"
 });
 
 /*!
@@ -140,7 +140,7 @@ jQuery.sap.declare("sap.suite.ui.commons.BulletChartMode");
 /**
  * @class Enumeration of possible BulletChart display modes.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -174,7 +174,7 @@ jQuery.sap.declare("sap.suite.ui.commons.CommonBackground");
 /**
  * @class Enumeration of possible theme specific background colors.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -244,7 +244,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ComparisonChartView");
 /**
  * @class The view of the ComparisonChart.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -278,7 +278,7 @@ jQuery.sap.declare("sap.suite.ui.commons.DeviationIndicator");
 /**
  * @class The marker for the deviation trend.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -318,7 +318,7 @@ jQuery.sap.declare("sap.suite.ui.commons.FacetOverviewHeight");
 /**
  * @class Enumeration of possible FacetOverview height settings.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -388,7 +388,7 @@ jQuery.sap.declare("sap.suite.ui.commons.FrameType");
 /**
  * @class Enumeration of possible frame types.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -434,7 +434,7 @@ jQuery.sap.declare("sap.suite.ui.commons.HeaderContainerView");
 /**
  * @class The list of possible HeaderContainer views.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -468,7 +468,7 @@ jQuery.sap.declare("sap.suite.ui.commons.InfoTileSize");
 /**
  * @class Enumeration of possible PointTile size settings.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -520,7 +520,7 @@ jQuery.sap.declare("sap.suite.ui.commons.InfoTileTextColor");
 /**
  * @class Enumeration of possible InfoTile text color settings.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -560,7 +560,7 @@ jQuery.sap.declare("sap.suite.ui.commons.InfoTileValueColor");
 /**
  * @class Enumeration of possible InfoTile value color settings.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -606,7 +606,7 @@ jQuery.sap.declare("sap.suite.ui.commons.LoadState");
 /**
  * @class Enumeration of possible load states for LoadableView.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -652,7 +652,7 @@ jQuery.sap.declare("sap.suite.ui.commons.MicroAreaChartView");
 /**
  * @class The list of possible MicroAreaChart views.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -686,7 +686,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ProcessFlowDisplayState");
 /**
  * @class The ProcessFlow calculates the ProcessFlowDisplayState based on the 'focused' and ?highlighted? properties of each node.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -745,7 +745,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ProcessFlowLaneState");
  * @class This type is used in the ?state? property of the ProcessFlowLaneHeader. For example, as an app developer you have the option to set explicitly the status of the lane header outside of the control coding if the lanes are displayed without documents.
  * If the complete process flow is displayed (that is, if the lane header is displayed with documents underneath), the given state values of the lane header are ignored and will be calculated in the ProcessFlow according to the current state of the documents.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -779,7 +779,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ProcessFlowNodeState");
 /**
  * @class Describes the state info connected to the content displayed in the Process Flow Node body. Also Process Flow Lane Header uses this enumeration for the chart
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -831,7 +831,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ProcessFlowZoomLevel");
 /**
  * @class The zoom level defines level of details for the node and how much space the process flow requires.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -877,7 +877,7 @@ jQuery.sap.declare("sap.suite.ui.commons.SelectionState");
 /**
  * @class SelectionState
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -917,7 +917,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ThingGroupDesign");
 /**
  * @class Defines the way how UnifiedThingGroup control is rendered.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -951,7 +951,7 @@ jQuery.sap.declare("sap.suite.ui.commons.TimelineAlignment");
 /**
  * @class Where to align items with respect to the time line.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -979,7 +979,7 @@ jQuery.sap.declare("sap.suite.ui.commons.TimelineAxisOrientation");
 /**
  * @class Timeline Axis Orientation
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -1013,7 +1013,7 @@ jQuery.sap.declare("sap.suite.ui.commons.TimelineItemPosition");
 /**
  * @class Position of TimelineItem
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
@@ -1053,7 +1053,7 @@ jQuery.sap.declare("sap.suite.ui.commons.ValueStatus");
 /**
  * @class Marker for the key value status.
  *
- * @version 1.30.3
+ * @version 1.30.8
  * @static
  * @public
  * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel

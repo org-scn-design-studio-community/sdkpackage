@@ -1,12 +1,11 @@
 
 	<component
 		id="SimpleDate"
-		title="Simple Date"
+		title="Simple Date 0.X"
 		icon="res/SimpleDate/SimpleDate.png"
 		handlerType="div"
 		group="ScnCommunityUtils">
 
-	<jsInclude>res/common_basics.js</jsInclude>
 	<jsInclude>res/SimpleDate/SimpleDate.js</jsInclude>
 
 	<property

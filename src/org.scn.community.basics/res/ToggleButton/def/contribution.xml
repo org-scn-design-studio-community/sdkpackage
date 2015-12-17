@@ -5,13 +5,14 @@
 	tooltip="Toggle Button"
 	icon="res/ToggleButton/ToggleButton.png"
 	handlerType="sapui5"
-	propertySheetPath="res/ToggleButton/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/ToggleButton/ToggleButtonLoader.js</jsInclude>
+	<requireJs modes="commons">res/ToggleButton/ToggleButton</requireJs>
+
 	<cssInclude>res/ToggleButton/ToggleButton.css</cssInclude>
 	
 	

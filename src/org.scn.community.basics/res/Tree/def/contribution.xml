@@ -5,13 +5,14 @@
 	tooltip="Tree"
 	icon="res/Tree/Tree.png"
 	handlerType="sapui5"
-	propertySheetPath="res/Tree/aps/PropertyPage.html"
+	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
+	modes="commons"
 >
 	
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/Tree/TreeLoader.js</jsInclude>
+	<requireJs modes="commons">res/Tree/Tree</requireJs>
+
 	<cssInclude>res/Tree/Tree.css</cssInclude>
 	
 	

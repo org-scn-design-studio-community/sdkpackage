@@ -1,0 +1,51 @@
+
+/* ================================================================== */
+/* CSS for sap_hcb theme of sap.suite.ui.commons/TargetFilter.control */
+/* ================================================================== */
+
+.sapSuiteUiTF {
+	font-family: Arial;
+	color: @sapHCStandardFG;
+}
+
+.sapSuiteUiTFOuterCircle {
+	border: 3px solid @sapHCStandardFG;
+	background-color: @sapHCStandardBG;
+	box-shadow: 0 0.250rem 0.375rem 0 fade(@sapUiShadowTint, 15%);
+}
+
+.sapSuiteUiTFCentralCircle {
+	border: 3px solid @sapHCStandardFG;
+	background-color: @sapHCStandardBG;
+}
+
+.sapSuiteUiTFCentralCircle:before {
+	background-color: transparent;
+}
+
+.sapSuiteUiTFVerticalLine {
+	margin-left: 3px;
+	background-color: @sapHCStandardFG;
+}
+
+.sapSuiteUiTFHorizontalLine {
+	margin-top: 3px;
+	background-color: @sapHCStandardFG;
+}
+
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFShutter {
+	background: rgba(255,255,255,0.5);
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFShutter.Top {
+	border-bottom: 2px @sapHCStandardFG solid; 
+}
+
+.sapUiMedia-Std-Phone .sapSuiteUiTFShutter.Bottom {
+	border-top: 2px @sapHCStandardFG solid; 
+}
+
+.sapSuiteUiTFRightPanel .sapSuiteUiTFShowSelLbl {
+	color: @sapHCStandardFG;
+}
