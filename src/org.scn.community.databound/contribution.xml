@@ -904,7 +904,7 @@
 	<property
 		id="DMaxDisplayMembers"
 		type="int"
-		title="Maximum Number of Members"
+		title="Maximum Number of Display Members"
 		group="Display"
 		bindable="true"
 		visible="true">

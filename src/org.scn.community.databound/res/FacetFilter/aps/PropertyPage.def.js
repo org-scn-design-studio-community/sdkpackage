@@ -153,8 +153,8 @@ ApsContent = function () {
     "opts": {
       "apsControl": "spinner",
       "cat": "Display",
-      "desc": "Maximum Number of Members",
-      "tooltip": "Maximum Number of Members",
+      "desc": "Maximum Number of Display Members",
+      "tooltip": "Maximum Number of Display Members",
       "ztlFunction": "",
       "ztlType": "int"
     },

@@ -406,14 +406,14 @@ class org.scn.community.databound.FacetFilter extends org.scn.community.shared.D
 	*}
 
 	/**
-	 * Sets Maximum Number of Members Property
+	 * Sets Maximum Number of Display Members Property
 	 */	
-	void setMaxDisplayMembers( /**Maximum Number of Members*/ int maxDisplayMembers){*
+	void setMaxDisplayMembers( /**Maximum Number of Display Members*/ int maxDisplayMembers){*
 		this.DMaxDisplayMembers = maxDisplayMembers;
 	*}
 
 	/**
-	 * Gets Maximum Number of Members Property
+	 * Gets Maximum Number of Display Members Property
 	 */	
 	int getMaxDisplayMembers() {*
 		return this.DMaxDisplayMembers;
