@@ -1,0 +1,1 @@
+This is for RequireJS-compatible modules for Design Studio 1.6 loading.

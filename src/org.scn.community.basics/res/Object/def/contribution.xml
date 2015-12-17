@@ -1,0 +1,17 @@
+
+<component id="Object" 
+	title="Object 2.0"
+	icon="res/Object/Object.png"
+	handlerType="div" 
+	modes="commons m"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics">
+
+	<requireJs modes="commons m">res/Object/Object</requireJs>
+	
+  	<property id="value" type="String" title="Value" visible="true" group="Display"/>
+
+ 	<initialization>
+ 		<defaultValue property="value">{}</defaultValue>
+ 	</initialization>
+ </component>
