@@ -173,9 +173,9 @@
 	    "opts":{
 	         "ztlType":"int",
 	         "ztlFunction":"",
-	         "desc":"Maximum Number of Members",
+	         "desc":"Maximum Number of Display Members",
 	         "cat":"Display",
-	         "tooltip":"Maximum Number of Members",
+	         "tooltip":"Maximum Number of Display Members",
 	         "apsControl":"spinner"
 		}
     },

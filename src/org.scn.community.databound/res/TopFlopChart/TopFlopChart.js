@@ -137,6 +137,11 @@ sap.ui.commons.layout.AbsoluteLayout.extend(ownComponentName, {
 			options.iDuplicates = "Ignore";
 			options.iNnumberOfDecimals = this.getValueDecimalPlaces();
 			
+			options.average = that.getFixedAverage();
+			if(options.average == -1) {
+				options.average = undefined;
+			}
+			
 			var returnObject = org_scn_community_databound.getTopBottomElementsForDimension 
 		     (lData, lMetadata, "", options);
 			

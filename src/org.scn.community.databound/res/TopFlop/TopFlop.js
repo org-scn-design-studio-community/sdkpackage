@@ -102,6 +102,11 @@ TopFlop = {
 				
 				options.iDisplayText = "Text";
 				
+				options.average = that.getFixedAverage();
+				if(options.average == -1) {
+					options.average = undefined;
+				}
+				
 				var dataList = that.getDataCellList();
 				that._metaData = that.getDSMetadata();
 				
