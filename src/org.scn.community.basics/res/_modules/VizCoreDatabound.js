@@ -6,6 +6,7 @@ define(["./VizCore","../../../org.scn.community.shared/modules/component.databou
 	VizCoreDatabound.constructor = VizCoreDatabound;
 	function VizCoreDatabound(options){
 		this.flatData = null;
+		this.org_scn_community_databound = org_scn_community_databound;
 		this.flattenData = function (value, options) {
 			// Make a copy so we don't mess with references
 			this.flatData = null;
