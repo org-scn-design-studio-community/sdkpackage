@@ -780,6 +780,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Notify 2.0 component*/
 	org.scn.community.basics.Notify returnAsScnNotify (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Object 2.0 component*/
+	org.scn.community.basics.Object returnAsScnObject (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Paginator 2.0 component*/
 	org.scn.community.basics.Paginator returnAsScnPaginator (Component inputComponent) {* return inputComponent; *}
 

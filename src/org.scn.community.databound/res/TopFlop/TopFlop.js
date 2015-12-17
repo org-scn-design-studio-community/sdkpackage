@@ -55,11 +55,6 @@ TopFlop = {
 		that._lLayout = new sap.ui.layout.VerticalLayout({
 			
 		});
-
-		that.addContent(
-			that._lLayout,
-			{left: "0px", top: "2px"}	
-		);
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
 		that.onAfterRendering = function () {
@@ -408,9 +403,9 @@ TopFlop = {
 		
 		var delta = value - returnObject.average;
 		if(delta > 0) {
-			oTextDeltaValue.setText (" Δ " + "+" + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals) + that.getDeltaValueSuffix());	
+			oTextDeltaValue.setText (" ? " + "+" + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals) + that.getDeltaValueSuffix());	
 		} else {
-			oTextDeltaValue.setText (" Δ " + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals) + that.getDeltaValueSuffix());
+			oTextDeltaValue.setText (" ? " + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals) + that.getDeltaValueSuffix());
 		}
 		
 		

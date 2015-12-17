@@ -1,0 +1,4 @@
+	/* Sets the data cell whose value is displayed. */
+	void setDataSelection(/* Data cell tha tcontains the value displayed */ ResultCellSelection cellSelection) {*
+		this.data = this.stringifySelection(cellSelection);
+	*}
