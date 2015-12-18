@@ -18,7 +18,8 @@
  * 
  */
 
-define(["../_modules/SDKCore", "sap/designstudio/sdk/component"], function (SDKCore, Component) {
+define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
+        "sap/designstudio/sdk/component"], function (SDKCore, Component) {
 	var ownComponentName = "org.scn.community.basics.Object";
 	Impl.prototype = SDKCore;
 	function Impl() {
