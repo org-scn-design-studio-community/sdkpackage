@@ -6,7 +6,7 @@
 	icon="res/RangeSlider/RangeSlider.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityBasics"
 	databound="true"
 	modes="commons"
 >

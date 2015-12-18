@@ -528,7 +528,7 @@ function() {
   "extends3ControlEvents": "ProcessFlow.events",
   "extension": "ui5.ProcessFlow",
   "generatedJsFile": "true",
-  "group": "ScnCommunityUnified",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "sapui5",
   "height": "580",
   "id": "ProcessFlow",

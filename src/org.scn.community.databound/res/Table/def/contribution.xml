@@ -6,7 +6,7 @@
 	icon="res/Table/Table.png"
 	handlerType="div"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons"
 >

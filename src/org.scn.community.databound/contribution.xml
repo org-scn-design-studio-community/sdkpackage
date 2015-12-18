@@ -192,12 +192,8 @@
 		title="Scn Community Data Bound"/>
 
 	<group
-		id="ScnCommunityChartMaps"
-		title="Scn Community Charts and Maps"/>
-
-	<group
-		id="ScnCommunityUnified"
-		title="Scn Community Unified"/>		
+		id="ScnCommunityVisualizations"
+		title="Scn Community Visualizations"/>		
 <component
 		id="AdvancedDataTable"
 		title="Advanced Data Table 2.0"
@@ -205,7 +201,7 @@
 		handlerType="div"
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"
-		group="ScnCommunityDataBound"
+		group="ScnCommunityVisualizations"
 		databound="true"
 >
 
@@ -288,7 +284,7 @@
 		handlerType="div"
 		modes="commons m"
 		databound="true"
-		group="ScnCommunityChartMaps"
+		group="ScnCommunityVisualizations"
 		propertySheetPath="aps/PropertyPage.html">
 
 		<requireJs modes="commons m">res/BulletChart/BulletChart</requireJs>
@@ -358,7 +354,7 @@
 	modes="commons m"
 	propertySheetPath="aps/PropertyPage.html"
 	databound = "true"
-	group="ScnCommunityChartMaps">
+	group="ScnCommunityVisualizations">
 	<requireJs modes="commons m">res/Choropleth/Choropleth</requireJs>
 	<!-- Base Databound Properties -->
 	<property
@@ -585,7 +581,7 @@
 	icon="res/DropDown/DropDown.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityBasics"
 	databound="true"
 	modes="commons"
 >
@@ -776,7 +772,7 @@
 	icon="res/FacetFilter/FacetFilter.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityBasics"
 	databound="true"
 	modes="commons"
 >
@@ -979,7 +975,7 @@
 	icon="res/FacetSelector/FacetSelector.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityBasics"
 	databound="true"
 	modes="commons"
 >
@@ -1162,7 +1158,7 @@
 	icon="res/FioriLink/FioriLink.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUnified"
+	group="ScnCommunityBasics"
 	databound="false"
 	modes="m"
 >
@@ -1333,7 +1329,7 @@
 	icon="res/FioriBusyDialog/FioriBusyDialog.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUnified"
+	group="ScnCommunityBasics"
 	databound="false"
 	modes="m"
 >
@@ -1514,7 +1510,7 @@
 		handlerType="div"
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"
-		group="ScnCommunityChartMaps"
+		group="ScnCommunityVisualizations"
 		databound="true"
 >
 <requireJs modes="commons m">res/HexBin/HexBin</requireJs>
@@ -1686,7 +1682,7 @@ __n__}
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"	
 		tooltip="Includes D3 Hierarchy"
-		group="ScnCommunityDataBound"
+		group="ScnCommunityBasics"
 		databound="true">
 		
 		<requireJs modes="commons m">res/Hierarchy/Hierarchy</requireJs>
@@ -1768,7 +1764,7 @@ __n__}
 	icon="res/LeaderBoard/LeaderBoard.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons"
 >
@@ -1931,7 +1927,7 @@ __n__}
 	modes="commons m"
 	propertySheetPath="aps/PropertyPage.html"
 	databound = "true"
-	group="ScnCommunityChartMaps">
+	group="ScnCommunityVisualizations">
 	<requireJs modes="commons m">res/LocationIntel/LocationIntel</requireJs>
 	<!-- Base Databound Properties -->
 	<property
@@ -2138,7 +2134,7 @@ __n__}
 		handlerType="div"
 		modes="commons m"
 		propertySheetPath="aps/org.scn.community.PropertyPage.div.html"
-		group="ScnCommunityChartMaps"
+		group="ScnCommunityVisualizations"
 		databound="true"
 >
 	<requireJs modes="commons m">res/MarimekkoChart/MarimekkoChart</requireJs>
@@ -2288,7 +2284,7 @@ __n__}
 	title="Multi ComboBox 0.0"
 	icon="res/MultiComboBox/MultiComboBox.png"
 	handlerType="sapui5"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityBasics"
 	databound="true">
 	<jsInclude>res/MultiComboBox/MultiComboBox.js</jsInclude>
 	<cssInclude>res/MultiComboBox/MultiComboBox.css</cssInclude>
@@ -2406,7 +2402,7 @@ __n__}
 	handlerType="div"
 	propertySheetPath="res/MultiLevelDropDown/aps/MultiLevelDropDown.html"
 	databound="true"
-	group="ScnCommunityDataBound">
+	group="ScnCommunityBasics">
 	
 	<stdInclude kind="cvom"/>
 	<jsInclude>res/MultiLevelDropDown/MultiLevelDropDown.js</jsInclude>
@@ -2570,7 +2566,7 @@ __n__}
 	icon="res/NiceChart/NiceChart.png"
 	handlerType="div"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityChartMaps"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons"
 >
@@ -2705,7 +2701,7 @@ __n__}
 		handlerType="div"
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"
-		group="ScnCommunityChartMaps"
+		group="ScnCommunityVisualizations"
 		databound="true"
 >
 	<requireJs modes="commons m">res/Pictogram/Pictogram</requireJs>
@@ -2776,7 +2772,7 @@ __n__}
 	icon="res/ProcessFlow/ProcessFlow.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUnified"
+	group="ScnCommunityVisualizations"
 	databound="false"
 	modes="commons m"
 >
@@ -2955,7 +2951,7 @@ __n__}
 		handlerType="div"
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"
-		group="ScnCommunityChartMaps"
+		group="ScnCommunityVisualizations"
 		databound="true"
 >
 <requireJs modes="commons m">res/ProgressBarSet/ProgressBarSet</requireJs>
@@ -3035,7 +3031,7 @@ __n__}
 	icon="res/RadioButtonGroup/RadioButtonGroup.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUnified"
+	group="ScnCommunityBasics"
 	databound="false"
 	modes="commons m"
 >
@@ -3206,7 +3202,7 @@ __n__}
 	icon="res/RangeSlider/RangeSlider.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityBasics"
 	databound="true"
 	modes="commons"
 >
@@ -3369,7 +3365,7 @@ __n__}
 	icon="res/ResultSetInfo/ResultSetInfo.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons"
 >
@@ -3463,7 +3459,7 @@ __n__}
 	icon="res/ResultSetMixer/ResultSetMixer.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityBasics"
 	databound="true"
 	modes="commons"
 >
@@ -3585,7 +3581,7 @@ __n__}
 		handlerType="div"
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"
-		group="ScnCommunityChartMaps"
+		group="ScnCommunityVisualizations"
 		databound="true"
 >
 <requireJs modes="commons m">res/ScatterPlot/ScatterPlot</requireJs>
@@ -3751,7 +3747,7 @@ __n__}
 	icon="res/Slider/Slider.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityBasics"
 	databound="true"
 	modes="commons"
 >
@@ -3884,7 +3880,7 @@ __n__}
 	icon="res/Table/Table.png"
 	handlerType="div"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons"
 >
@@ -3968,7 +3964,7 @@ __n__}
 		handlerType="div"
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"
-		group="ScnCommunityDataBound"
+		group="ScnCommunityVisualizations"
 		databound="true"
 >
 	<requireJs modes="commons m">res/Table2D/Table2D</requireJs>
@@ -4009,7 +4005,7 @@ __n__}
 		handlerType="div"
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"
-		group="ScnCommunityDataBound"
+		group="ScnCommunityVisualizations"
 		databound="true"> <!-- This is set so that a data source can be assigned -->
 
 		<requireJs modes="commons m">res/TagCloud/TagCloud</requireJs>
@@ -4121,7 +4117,7 @@ __n__}
 	icon="res/TopFlop/TopFlop.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons"
 >
@@ -4324,7 +4320,7 @@ __n__}
 	icon="res/TopFlopChart/TopFlopChart.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityChartMaps"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons"
 >
@@ -4617,7 +4613,7 @@ __n__}
 	icon="res/UI5Table/UI5Table.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons m"
 >
@@ -4881,7 +4877,7 @@ __n__}
 	icon="res/AreaMicroChart/AreaMicroChart.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUnified"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons m"
 >
@@ -5491,7 +5487,7 @@ __n__}
 	icon="res/BulletMicroChart/BulletMicroChart.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUnified"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons m"
 >
@@ -5851,7 +5847,7 @@ __n__}
 	icon="res/HarveyBallMicroChart/HarveyBallMicroChart.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUnified"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons m"
 >

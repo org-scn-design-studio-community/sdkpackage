@@ -6,7 +6,7 @@
 	handlerType="div"
 	propertySheetPath="res/MultiLevelDropDown/aps/MultiLevelDropDown.html"
 	databound="true"
-	group="ScnCommunityDataBound">
+	group="ScnCommunityBasics">
 	
 	<stdInclude kind="cvom"/>
 	<jsInclude>res/MultiLevelDropDown/MultiLevelDropDown.js</jsInclude>

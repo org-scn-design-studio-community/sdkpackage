@@ -4,7 +4,7 @@
 	"tooltip": "Result Set Mixer",
 	"handlerType": "sapui5",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
-	"group": "ScnCommunityDataBound",
+	"group": "ScnCommunityBasics",
 	"package": "databound",
 	"extension": "Component",
 	"databound": true,

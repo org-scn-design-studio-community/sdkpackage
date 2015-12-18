@@ -6,7 +6,7 @@
 	icon="res/NiceChart/NiceChart.png"
 	handlerType="div"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityChartMaps"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons"
 >

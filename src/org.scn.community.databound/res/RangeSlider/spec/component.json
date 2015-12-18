@@ -4,7 +4,7 @@
 	"tooltip": "Data Range Slider",
 	"handlerType": "sapui5",
 	"parentControl": "sap.ui.commons.RangeSlider",
-	"group": "ScnCommunityDataBound",
+	"group": "ScnCommunityBasics",
 	"package": "databound",
 	"extension": "Component",
 	"databound": true,

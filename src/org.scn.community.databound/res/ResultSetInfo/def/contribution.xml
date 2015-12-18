@@ -6,7 +6,7 @@
 	icon="res/ResultSetInfo/ResultSetInfo.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons"
 >

@@ -341,7 +341,7 @@ function() {
 {
   "databound": true,
   "extension": "DataComponent",
-  "group": "ScnCommunityDataBound",
+  "group": "ScnCommunityBasics",
   "handlerType": "sapui5",
   "height": "400",
   "id": "FacetSelector",

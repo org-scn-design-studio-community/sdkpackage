@@ -4,9 +4,5 @@
 		title="Scn Community Data Bound"/>
 
 	<group
-		id="ScnCommunityChartMaps"
-		title="Scn Community Charts and Maps"/>
-
-	<group
-		id="ScnCommunityUnified"
-		title="Scn Community Unified"/>		
+		id="ScnCommunityVisualizations"
+		title="Scn Community Visualizations"/>		

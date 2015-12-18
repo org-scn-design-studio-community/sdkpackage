@@ -4,7 +4,7 @@
 	"tooltip": "RadioButtonGroup - Allows Selection with Radio Buttons.",
 	"handlerType": "sapui5",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
-	"group": "ScnCommunityUnified",
+	"group": "ScnCommunityBasics",
 	"package": "databound",
 	"extension": "ui5.RadioButtonGroup",
 	"extends1ControlDs": "RadioButtonGroup.ds",

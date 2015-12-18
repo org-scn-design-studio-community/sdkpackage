@@ -4,7 +4,7 @@
 	title="Multi ComboBox 0.0"
 	icon="res/MultiComboBox/MultiComboBox.png"
 	handlerType="sapui5"
-	group="ScnCommunityDataBound"
+	group="ScnCommunityBasics"
 	databound="true">
 	<jsInclude>res/MultiComboBox/MultiComboBox.js</jsInclude>
 	<cssInclude>res/MultiComboBox/MultiComboBox.css</cssInclude>

@@ -4,7 +4,7 @@
 	"tooltip": "Busy Dialog - Component for busy dialog.",
 	"handlerType": "sapui5",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
-	"group": "ScnCommunityUnified",
+	"group": "ScnCommunityBasics",
 	"package": "databound",
 	"ui5package": "sap.m",
 	"extension": "ui5.BusyDialog",

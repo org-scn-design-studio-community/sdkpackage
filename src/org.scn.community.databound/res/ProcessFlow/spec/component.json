@@ -4,7 +4,7 @@
 	"tooltip": "ProcessFlow - Component for visualization of processes.",
 	"handlerType": "sapui5",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
-	"group": "ScnCommunityUnified",
+	"group": "ScnCommunityVisualizations",
 	"package": "databound",
 	"extension": "ui5.ProcessFlow",
 	"extends1ControlDs": "ProcessFlow.ds",

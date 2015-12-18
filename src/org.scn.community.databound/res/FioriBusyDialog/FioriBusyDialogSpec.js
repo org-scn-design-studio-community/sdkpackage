@@ -301,7 +301,7 @@ function() {
   "extends3ControlEvents": "BusyDialog.events",
   "extension": "ui5.BusyDialog",
   "generatedJsFile": "true",
-  "group": "ScnCommunityUnified",
+  "group": "ScnCommunityBasics",
   "handlerType": "sapui5",
   "height": "580",
   "id": "FioriBusyDialog",

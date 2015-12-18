@@ -400,7 +400,7 @@ function() {
   "extends2Control": "HarveyBallMicroChart",
   "extension": "ui5.HarveyBallMicroChart",
   "generatedJsFile": "true",
-  "group": "ScnCommunityUnified",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "sapui5",
   "height": "100",
   "id": "HarveyBallMicroChart",

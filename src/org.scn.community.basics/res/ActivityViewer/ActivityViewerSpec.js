@@ -189,7 +189,7 @@ function() {
 {
   "databound": false,
   "extension": "Component",
-  "group": "ScnCommunityBasics",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "div",
   "height": "400",
   "id": "ActivityViewer",

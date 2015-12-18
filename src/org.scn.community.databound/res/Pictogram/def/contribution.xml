@@ -6,7 +6,7 @@
 		handlerType="div"
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"
-		group="ScnCommunityChartMaps"
+		group="ScnCommunityVisualizations"
 		databound="true"
 >
 	<requireJs modes="commons m">res/Pictogram/Pictogram</requireJs>

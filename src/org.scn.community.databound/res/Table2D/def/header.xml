@@ -6,7 +6,7 @@
 		handlerType="div"
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"
-		group="ScnCommunityDataBound"
+		group="ScnCommunityVisualizations"
 		databound="true"
 >
 	<requireJs modes="commons m">res/Table2D/Table2D</requireJs>

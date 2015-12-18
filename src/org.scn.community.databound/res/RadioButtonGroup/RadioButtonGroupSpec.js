@@ -450,7 +450,7 @@ function() {
   "extends3ControlEvents": "RadioButtonGroup.events",
   "extension": "ui5.RadioButtonGroup",
   "generatedJsFile": "true",
-  "group": "ScnCommunityUnified",
+  "group": "ScnCommunityBasics",
   "handlerType": "sapui5",
   "height": "500",
   "id": "RadioButtonGroup",

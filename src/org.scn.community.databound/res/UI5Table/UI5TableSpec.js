@@ -523,7 +523,7 @@ function() {
   "cssIncludes": [{"name": "res/_css/simple_formats.css"}],
   "databound": true,
   "extension": "DataComponent",
-  "group": "ScnCommunityDataBound",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "sapui5",
   "height": "600",
   "id": "UI5Table",

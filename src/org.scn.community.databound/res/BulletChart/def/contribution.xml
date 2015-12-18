@@ -6,7 +6,7 @@
 		handlerType="div"
 		modes="commons m"
 		databound="true"
-		group="ScnCommunityChartMaps"
+		group="ScnCommunityVisualizations"
 		propertySheetPath="aps/PropertyPage.html">
 
 		<requireJs modes="commons m">res/BulletChart/BulletChart</requireJs>

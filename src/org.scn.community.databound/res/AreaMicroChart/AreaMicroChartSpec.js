@@ -1531,7 +1531,7 @@ function() {
   "extends2Control": "MicroAreaChart",
   "extension": "ui5.MicroAreaChart",
   "generatedJsFile": "true",
-  "group": "ScnCommunityUnified",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "sapui5",
   "height": "200",
   "id": "AreaMicroChart",

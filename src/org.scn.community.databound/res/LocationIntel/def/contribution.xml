@@ -6,7 +6,7 @@
 	modes="commons m"
 	propertySheetPath="aps/PropertyPage.html"
 	databound = "true"
-	group="ScnCommunityChartMaps">
+	group="ScnCommunityVisualizations">
 	<requireJs modes="commons m">res/LocationIntel/LocationIntel</requireJs>
 	<!-- Base Databound Properties -->
 	<property

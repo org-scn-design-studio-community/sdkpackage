@@ -6,7 +6,7 @@
 	icon="res/AreaMicroChart/AreaMicroChart.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUnified"
+	group="ScnCommunityVisualizations"
 	databound="true"
 	modes="commons m"
 >

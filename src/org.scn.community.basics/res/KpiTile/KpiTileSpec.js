@@ -215,7 +215,7 @@ function() {
   "dataType": "-",
   "databound": false,
   "extension": "Component",
-  "group": "ScnCommunityUnified",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "sapui5",
   "height": "240",
   "id": "KpiTile",

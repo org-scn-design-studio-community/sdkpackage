@@ -122,7 +122,7 @@ function() {
 {
   "databound": true,
   "extension": "Component",
-  "group": "ScnCommunityDataBound",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "div",
   "height": "400",
   "id": "Table",

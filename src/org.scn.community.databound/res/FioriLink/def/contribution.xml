@@ -6,7 +6,7 @@
 	icon="res/FioriLink/FioriLink.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUnified"
+	group="ScnCommunityBasics"
 	databound="false"
 	modes="m"
 >

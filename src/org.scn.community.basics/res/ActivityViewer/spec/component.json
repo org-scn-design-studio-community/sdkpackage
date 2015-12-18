@@ -3,7 +3,7 @@
 	"title": "Activity Viewer 2.0",
 	"tooltip": "Viewer for Custom Activities",
 	"handlerType": "div",
-	"group": "ScnCommunityBasics",
+	"group": "ScnCommunityVisualizations",
 	"package": "basics",
 	"extension": "Component",
 	"databound": false,

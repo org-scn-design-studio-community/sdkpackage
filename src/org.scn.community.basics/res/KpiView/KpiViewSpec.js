@@ -534,7 +534,7 @@ function() {
   "dataType": "ResultCell",
   "databound": true,
   "extension": "Component",
-  "group": "ScnCommunityBasics",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "sapui5",
   "height": "190",
   "id": "KpiView",

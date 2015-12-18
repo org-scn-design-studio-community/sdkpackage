@@ -4,7 +4,7 @@
 	"tooltip": "Data Drop Down",
 	"handlerType": "sapui5",
 	"parentControl": "sap.ui.commons.DropdownBox",
-	"group": "ScnCommunityDataBound",
+	"group": "ScnCommunityBasics",
 	"package": "databound",
 	"extension": "Component",
 	"databound": true,

@@ -3,5 +3,5 @@
 		id="ScnCommunityBasics"
 		title="Scn Community Basics"/>
 	<group
-		id="ScnCommunityUnified"
-		title="Scn Community Unified"/>
+		id="ScnCommunityVisualizations"
+		title="Scn Community Visualizations"/>

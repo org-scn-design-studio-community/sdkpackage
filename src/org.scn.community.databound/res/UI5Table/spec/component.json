@@ -4,7 +4,7 @@
 	"tooltip": "UI5 Table - A simple table with rows and columns",
 	"handlerType": "sapui5",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
-	"group": "ScnCommunityDataBound",
+	"group": "ScnCommunityVisualizations",
 	"package": "databound",
 	"extension": "DataComponent",
 	"databound": true,

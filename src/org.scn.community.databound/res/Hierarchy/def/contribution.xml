@@ -6,7 +6,7 @@
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"	
 		tooltip="Includes D3 Hierarchy"
-		group="ScnCommunityDataBound"
+		group="ScnCommunityBasics"
 		databound="true">
 		
 		<requireJs modes="commons m">res/Hierarchy/Hierarchy</requireJs>

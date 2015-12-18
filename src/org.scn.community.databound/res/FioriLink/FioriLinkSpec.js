@@ -327,7 +327,7 @@ function() {
   "extends3ControlEvents": "Link.events",
   "extension": "ui5.Link",
   "generatedJsFile": "true",
-  "group": "ScnCommunityUnified",
+  "group": "ScnCommunityBasics",
   "handlerType": "sapui5",
   "height": "580",
   "id": "FioriLink",

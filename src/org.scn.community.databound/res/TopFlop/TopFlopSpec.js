@@ -388,7 +388,7 @@ function() {
   "dataType": "DataCellList",
   "databound": true,
   "extension": "Component",
-  "group": "ScnCommunityDataBound",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "sapui5",
   "height": "190",
   "id": "TopFlop",

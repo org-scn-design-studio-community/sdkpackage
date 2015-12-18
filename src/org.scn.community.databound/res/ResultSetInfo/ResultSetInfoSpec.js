@@ -152,7 +152,7 @@ function() {
 {
   "databound": true,
   "extension": "Component",
-  "group": "ScnCommunityDataBound",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "sapui5",
   "height": "400",
   "id": "ResultSetInfo",

@@ -4,7 +4,7 @@
 	"tooltip": "Displays a Gauge (Speedometer)",
 	"handlerType": "div",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
-	"group": "ScnCommunityBasics",
+	"group": "ScnCommunityVisualizations",
 	"package": "basics",
 	"extension": "Component",
 	"databound": false,

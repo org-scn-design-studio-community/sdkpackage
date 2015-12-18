@@ -288,7 +288,7 @@ function() {
 {
   "databound": true,
   "extension": "Component",
-  "group": "ScnCommunityDataBound",
+  "group": "ScnCommunityBasics",
   "handlerType": "sapui5",
   "height": "600",
   "id": "RangeSlider",

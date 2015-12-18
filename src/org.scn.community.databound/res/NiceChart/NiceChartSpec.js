@@ -287,7 +287,7 @@ function() {
 {
   "databound": true,
   "extension": "Component",
-  "group": "ScnCommunityChartMaps",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "div",
   "height": "400",
   "id": "NiceChart",

@@ -725,7 +725,7 @@ function() {
   "extends2Control": "BulletChart",
   "extension": "ui5.BulletChart",
   "generatedJsFile": "true",
-  "group": "ScnCommunityUnified",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "sapui5",
   "height": "100",
   "id": "BulletMicroChart",

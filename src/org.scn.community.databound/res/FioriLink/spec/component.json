@@ -4,7 +4,7 @@
 	"tooltip": "Fiori Link - Component for links.",
 	"handlerType": "sapui5",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
-	"group": "ScnCommunityUnified",
+	"group": "ScnCommunityBasics",
 	"package": "databound",
 	"ui5package": "sap.m",
 	"extension": "ui5.Link",

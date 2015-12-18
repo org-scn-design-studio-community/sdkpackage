@@ -6,7 +6,7 @@
 	icon="res/KpiTile/KpiTile.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUnified"
+	group="ScnCommunityVisualizations"
 	databound="false"
 	modes="commons m"
 >

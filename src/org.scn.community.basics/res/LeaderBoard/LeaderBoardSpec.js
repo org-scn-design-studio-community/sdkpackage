@@ -238,7 +238,7 @@ function() {
 {
   "databound": false,
   "extension": "Component",
-  "group": "ScnCommunityBasics",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "sapui5",
   "height": "400",
   "id": "LeaderBoard",

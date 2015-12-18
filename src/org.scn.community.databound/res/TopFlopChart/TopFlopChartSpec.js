@@ -531,7 +531,7 @@ function() {
 {
   "databound": true,
   "extension": "Component",
-  "group": "ScnCommunityChartMaps",
+  "group": "ScnCommunityVisualizations",
   "handlerType": "sapui5",
   "height": "190",
   "id": "TopFlopChart",
