@@ -15,7 +15,7 @@ require.config({
 		}
 	}
 });
-define(["../_modules/VizCoreDatabound",
+define(["./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
 		"sap/designstudio/sdk/component",
 		"../../os/jquery-datatables/plugins/dataTables.jqueryui",
 		"pageresize",

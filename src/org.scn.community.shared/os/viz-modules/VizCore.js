@@ -1,7 +1,7 @@
 /**
  * VizCore Class
  */
-define(["./SDKCore","css!../_modules/Viz.css"], function(SDKCore) {
+define(["./SDKCore","css!./Viz.css"], function(SDKCore) {
 	VizCore.prototype = SDKCore;
 	VizCore.constructor = VizCore;
 	function VizCore(options){

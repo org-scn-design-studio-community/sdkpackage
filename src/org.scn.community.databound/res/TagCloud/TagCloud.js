@@ -19,9 +19,9 @@
  */
 define(["css!./TagCloud.css",
         "d3",
-        "../_modules/SDKCore",
+        "./../../../org.scn.community.shared/os/viz-modules/SDKCore",
         "sap/designstudio/sdk/component",
-        "../../../org.scn.community.shared/os/d3/plugins/word-cloud/layout.cloud"], function (css, d3, SDKCore, Component) {
+        "./../../../org.scn.community.shared/os/d3/plugins/word-cloud/layout.cloud"], function (css, d3, SDKCore, Component) {
 	var ownComponentName = "org.scn.community.databound.tagCloud";
 	tagCloud.prototype = SDKCore;
 

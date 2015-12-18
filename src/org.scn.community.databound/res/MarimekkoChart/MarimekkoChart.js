@@ -5,7 +5,8 @@
  *
  */
 
-define(["../_modules/VizAxisChart", "sap/designstudio/sdk/component"], function (VizAxisChart, Component) {
+define(["./../../../org.scn.community.shared/os/viz-modules/VizAxisChart",
+        "sap/designstudio/sdk/component"], function (VizAxisChart, Component) {
 	var ownComponentName = "org.scn.community.databound.MarimekkoChart";
 	/**
 	 * Marimekko Chart

@@ -1,7 +1,9 @@
  /**
  * Location Intelligence
  */
-define(["../_modules/VizMap","sap/designstudio/sdk/component"], function(VizMap,Component) {
+define(["./../../../org.scn.community.shared/os/viz-modules/VizMap",
+        "sap/designstudio/sdk/component"
+    ], function(VizMap,Component) {
 	var ownComponentName = "org.scn.community.databound.LocationIntel";
 	LocationIntel.prototype = VizMap;
 	function LocationIntel() {

@@ -2,7 +2,8 @@
  * Choropleth on D3 Example:
  * http://bl.ocks.org
  */
-define(["../_modules/VizMap","sap/designstudio/sdk/component"], function(VizMap,Component) {
+define(["./../../../org.scn.community.shared/os/viz-modules/VizMap",
+        "sap/designstudio/sdk/component"], function(VizMap,Component) {
 	var ownComponentName = "org.scn.community.databound.Choropleth";
 	Choropleth.prototype = VizMap;
 	function Choropleth() {
