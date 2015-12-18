@@ -147,8 +147,8 @@ function() {
     "opts": {
       "apsControl": "spinner",
       "cat": "Display",
-      "desc": "Maximum Number of Members",
-      "tooltip": "Maximum Number of Members",
+      "desc": "Maximum Members for Display",
+      "tooltip": "Maximum Members for Display",
       "ztlFunction": "",
       "ztlType": "int"
     },
