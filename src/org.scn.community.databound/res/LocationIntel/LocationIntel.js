@@ -291,33 +291,36 @@ define(["../_modules/VizMap","sap/designstudio/sdk/component"], function(VizMap,
 	    	};
 			var parentAfterUpdate = this.afterUpdate;
 			this.afterUpdate = function(){
+				this.plots = [];
 				try{
 					var that = this;
-				var dimHeaders = this.flatData.dimensionHeaders.slice();
-				this.plots = [];
-				var latIndex = -1;
-				var lngIndex = -1;
-				var titleIndex = -1;
-				for(var i=0;i<dimHeaders.length;i++){
-					if(dimHeaders[i] == this.latitudeField()) latIndex = i;
-					if(dimHeaders[i] == this.longitudeField()) lngIndex = i;
-					if(dimHeaders[i] == this.markerTitle()) titleIndex = i;
-				}
-				if(latIndex != -1 && lngIndex !=-1){
-					for(var i=0;i<this.flatData.rowHeaders2D.length;i++){
-						var row = this.flatData.rowHeaders2D[i];
-						var dsm = {};
-						for(var j=0;j<this.flatData.columnHeaders.length;j++){
-							dsm[this.flatData.columnHeaders[j]] = this.flatData.values[i][j];
+					if(this.flatData && this.flatData.dimensionHeaders){
+						var dimHeaders = this.flatData.dimensionHeaders.slice();
+						
+						var latIndex = -1;
+						var lngIndex = -1;
+						var titleIndex = -1;
+						for(var i=0;i<dimHeaders.length;i++){
+							if(dimHeaders[i] == this.latitudeField()) latIndex = i;
+							if(dimHeaders[i] == this.longitudeField()) lngIndex = i;
+							if(dimHeaders[i] == this.markerTitle()) titleIndex = i;
 						}
-						this.plots.push({
-							latitude : row[latIndex],
-							longitude : row[lngIndex],
-							title : row[titleIndex],
-							designStudioMeasures : dsm
-						})
+						if(latIndex != -1 && lngIndex !=-1){
+							for(var i=0;i<this.flatData.rowHeaders2D.length;i++){
+								var row = this.flatData.rowHeaders2D[i];
+								var dsm = {};
+								for(var j=0;j<this.flatData.columnHeaders.length;j++){
+									dsm[this.flatData.columnHeaders[j]] = this.flatData.values[i][j];
+								}
+								this.plots.push({
+									latitude : row[latIndex],
+									longitude : row[lngIndex],
+									title : row[titleIndex],
+									designStudioMeasures : dsm
+								})
+							}
+						}						
 					}
-				}
 				}catch(e){
 					alert(e);
 				}

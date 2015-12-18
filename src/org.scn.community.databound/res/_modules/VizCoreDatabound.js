@@ -141,9 +141,11 @@ define(["./VizCore","../../../org.scn.community.shared/modules/component.databou
 				fieldName = measureObj.fieldName;
 			}
 			if(measureObj.fieldType=="position"){
-				var fieldPosition = measureObj.fieldPosition;
-				if(this.flatData.columnHeadersKeys.length>=fieldPosition-1){
-					fieldName = this.flatData.columnHeadersKeys[fieldPosition];
+				if(this.flatData && this.flatData.columnHeadersKeys){
+					var fieldPosition = measureObj.fieldPosition;
+					if(this.flatData.columnHeadersKeys.length>=fieldPosition-1){
+						fieldName = this.flatData.columnHeadersKeys[fieldPosition];
+					}
 				}
 			}
 			return fieldName;
