@@ -125,7 +125,7 @@ define(["./complexitem"],function(){
 			var needsDetails = false;
 			for(var p in c){
 				var conf = c[p];
-				var template;
+				var template = null;
 				switch(conf.apsControl) {
 					case "text" :
 						template = new sap.ui.commons.TextField().bindProperty("value", p);
@@ -153,6 +153,7 @@ define(["./complexitem"],function(){
 						},this);
 						break;
 					default :
+						delete template;
 						needsDetails = true;
 				}
 				if(template){

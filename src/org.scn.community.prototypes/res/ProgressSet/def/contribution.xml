@@ -1,12 +1,8 @@
 
 <component
 	id="ProgressSet" title="Progress Bar Set" handlerType="div" icon="res/ProgressSet/ProgressSet.png" group="ScnCommunityPrototypes"
-	propertySheetPath="res/ProgressSet/aps/ProgressSetPropertyPage.html">
-	<stdInclude kind="d3"/>
-	<jsInclude>res/require_loader.js</jsInclude>
-	<jsInclude>res/common_basics.js</jsInclude>
-	<jsInclude>res/ProgressSet/ProgressSet.js</jsInclude>
-  	<cssInclude>res/ProgressSet/ProgressSet.css</cssInclude>
+	propertySheetPath="aps/PropertyPage.html">
+	<requireJs modes="commons m">res/ProgressSet/ProgressSet</requireJs>
   	<property type="String" title="Bar Config" id="barConfig" visible="false"/>
   	<property type="String" title="Selected Bar" id="selectedBar" visible="false"/>
   	<property type="String" title="Orientation" id="orientation" visible="true">
@@ -21,6 +17,7 @@
   	<property type="float" title="Gradient Stop (0.00 - 1.00)" id="gradientStop" visible="true"/>
   	<property type="float" title="Gradient Stop Opacity (0.00 - 1.00)" id="gradientStopOpacity" visible="true"/>
   	<property type="Color" title="Gradient Stop Color" id="gradientStopColor" visible="true"/>
+  	<property type="String" title="Palette" id="palette" visible="false"/>
   	<property type="float" title="Bar Fill Opacity (0.00 - 1.00)" id="barFillOpacity" visible="true"/>
   	<property type="int" title="Bar Roundness" id="barRoundness" visible="true"/>
   	<property type="int" title="Bar Height (-1 = auto height)" id="barHeight" visible="true"/>
@@ -29,6 +26,7 @@
   	<initialization>
   		<defaultValue property="orientation">horizontal</defaultValue>
   		<defaultValue property="barConfig">[{&quot;title&quot;:&quot;Measure&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;10&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure1&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;15&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure2&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;30&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure3&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;20&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Measure4&quot;,&quot;fillColor&quot;:&quot;auto&quot;,&quot;number&quot;:&quot;45&quot;,&quot;numberUnit&quot;:&quot;USD&quot;,&quot;styleClass&quot;:&quot;&quot;}]</defaultValue>
+  		<defaultValue property="palette">#8DD3C7,#FFFFB3,#BEBADA,#FB8072,#80B1D3,#FDB462,#B3DE69,#FCCDE5,#D9D9D9,#BC80BD,#CCEBC5,#FFED6F</defaultValue>
   		<defaultValue property="inlineLabels">false</defaultValue>
   		<defaultValue property="gradientFullWidth">false</defaultValue>
   		<defaultValue property="barFillOpacity">1</defaultValue>
