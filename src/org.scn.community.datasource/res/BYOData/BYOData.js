@@ -27,7 +27,8 @@
  * where the datasource does not yet exist, or hardcoding tabular data such as targets
  * 
  */
-define(["../_modules/DatasourceCore", "sap/designstudio/sdk/databuffer"], function(DatasourceCore, DataBuffer) {
+define(["./../../../org.scn.community.shared/os/viz-modules/DatasourceCore",
+        "sap/designstudio/sdk/databuffer"], function(DatasourceCore, DataBuffer) {
 	var ownComponentName = "org.scn.community.datasource.BYOData";
 	 // Call super
 	function BYOData() {
