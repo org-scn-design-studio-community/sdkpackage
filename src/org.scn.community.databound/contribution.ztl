@@ -93,3 +93,4972 @@ class org.scn.community.databound.Choropleth extends org.scn.community.shared.Co
 		this.labelProperty = attribute;
 	*}
 }
+/**
+ * Generated ZTL Class for DropDown
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.DropDown extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Binding Mode (metadata, Resultset) Property by String
+	 */	
+	void setBindingModeByString( /**Binding Mode (metadata, Resultset)*/ String bindingMode){*
+		this.DBindingMode = bindingMode;
+	*}
+
+	/**
+	 * Gets Binding Mode (metadata, Resultset) Property as String
+	 */	
+	String getBindingModeAsString() {*
+		return this.DBindingMode;
+	*}
+	
+	/**
+	 * Sets Binding Mode (metadata, Resultset) Property by Choice Option
+	 */	
+	void setBindingMode( /**Binding Mode (metadata, Resultset)*/ org_scn_community_shared_Enumfield bindingMode){*
+		this.DBindingMode = bindingMode;
+	*}
+	
+	/**
+	 * Gets Binding Mode (metadata, Resultset) Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getBindingMode() {*
+		return this.DBindingMode;
+	*}
+
+	/**
+	 * Sets Selected Dimension Property
+	 */	
+	void setDimension( /**Selected Dimension*/ String dimension){*
+		this.DDimension = dimension;
+	*}
+
+	/**
+	 * Gets Selected Dimension Property
+	 */	
+	String getDimension() {*
+		return this.DDimension;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Pause Refresh Property
+	 */	
+	boolean isDoRefresh() {*
+		return this.DDoRefresh;
+	*}
+
+	/**
+	 * Gets Master Data Elements Property
+	 */	
+	String getElements() {*
+		return this.DElements;
+	*}
+
+	/**
+	 * Sets Maximum Numner Of Members Property
+	 */	
+	void setMaxMembers( /**Maximum Numner Of Members*/ int maxMembers){*
+		this.DMaxMembers = maxMembers;
+	*}
+
+	/**
+	 * Gets Maximum Numner Of Members Property
+	 */	
+	int getMaxMembers() {*
+		return this.DMaxMembers;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.DSelectedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKeyExt() {*
+		return this.DSelectedKeyExt;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected External String Full Property
+	 */	
+	String getSelectedKeyExtFull() {*
+		return this.DSelectedKeyExtFull;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Text Property
+	 */	
+	String getSelectedText() {*
+		return this.DSelectedText;
+	*}
+
+	/**
+	 * Sets Sorting By Value | Defalut Property by String
+	 */	
+	void setSortingByString( /**Sorting By Value | Defalut*/ String sorting){*
+		this.DSorting = sorting;
+	*}
+
+	/**
+	 * Gets Sorting By Value | Defalut Property as String
+	 */	
+	String getSortingAsString() {*
+		return this.DSorting;
+	*}
+	
+	/**
+	 * Sets Sorting By Value | Defalut Property by Choice Option
+	 */	
+	void setSorting( /**Sorting By Value | Defalut*/ org_scn_community_shared_Enumfield sorting){*
+		this.DSorting = sorting;
+	*}
+	
+	/**
+	 * Gets Sorting By Value | Defalut Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getSorting() {*
+		return this.DSorting;
+	*}
+
+	/**
+	 * Sets Top X, Bottom X Or Both Property by String
+	 */	
+	void setTopBottomByString( /**Top X, Bottom X Or Both*/ String topBottom){*
+		this.DTopBottom = topBottom;
+	*}
+
+	/**
+	 * Gets Top X, Bottom X Or Both Property as String
+	 */	
+	String getTopBottomAsString() {*
+		return this.DTopBottom;
+	*}
+	
+	/**
+	 * Sets Top X, Bottom X Or Both Property by Choice Option
+	 */	
+	void setTopBottom( /**Top X, Bottom X Or Both*/ org_scn_community_shared_MemberSelectionEnumfield topBottom){*
+		this.DTopBottom = topBottom;
+	*}
+	
+	/**
+	 * Gets Top X, Bottom X Or Both Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberSelectionEnumfield getTopBottom() {*
+		return this.DTopBottom;
+	*}
+
+
+
+
+
+
+
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	void private_onSelectionChanged () {*
+		var key = this.getSelectedKey();
+	
+		this.internalWriteLog("Internal Selection on Dimension: " + this.getDimension() + " | " + key);
+
+		if(key == "-CLEAR-") {
+			this.getDataSource().clearFilter(this.getDimension());
+		} else {
+			this.getDataSource().setFilter(this.getDimension(), key);	
+		}
+	*}
+	
+	void private_onBeforeRender() {*
+		
+	*}
+	
+	void reloadDataSource() {*
+		// unfortunately this does not work correctly as this method is too late included (as first method on rendering, instead on before rendering)
+		// this causes incorrect events in a phase where events are not allowed any more... (error: DS_1 cannot be changed in rendering phase)
+		// workaround is to call once explicitelly "getMembers" on this dimension
+		if(this.DBindingMode == "Master Data") {
+			this.internalWriteLog("Call Members on Dimension: " + this.getDimension() + " | " + this.DMaxMembers);
+			this.DElements = this.superReadMembers(this.getDimension(), this.DMaxMembers);	
+		}
+	
+		// check current selection from data source
+		var selectionExt = this.getDataSource().getFilterExt(this.getDimension());
+		this.internalWriteLog("Selection on Dimension: " + this.getDimension() + " | " + selectionExt);
+
+		this.DSelectedKeyExtFull = selectionExt;
+		
+		// only single member
+		if(selectionExt.indexOf(";") == -1 && selectionExt.indexOf(" - ") == -1) {
+			this.DSelectedKeyExt = selectionExt;	
+		} else {
+			this.DSelectedKeyExt = "";
+		}
+	*}
+
+	/** sets the pause refresh flag */
+	void pauseRefresh () {*
+		this.DDoRefresh = false;	
+	*}
+
+	/** sets the pause refresh flag */
+	void allowRefresh () {*
+		this.DDoRefresh = true;	
+	*}
+
+}
+
+/**
+ * Class for D3Hier
+ */
+class org.scn.community.databound.jpd3hier extends org.scn.community.shared.DataComponent {
+
+	/* Returns the Key of the currently selected Tree Element. */
+	String getSelectedNodeKey() {*
+		return this.selectedNode;
+	*}
+	
+	/* Returns the Dimension Key containing the hierarchy of the datasource. */
+	String getHierarchyDimensionKey() {*
+		return this.dimHierarchy;
+	*}
+	
+	/* Returns the maximum Size of the Bubbles in Pixel */
+	String getBubbleSizeMaxSize() {*
+		return this.BubbleSizeMaxSize;
+	*}
+	
+	/* Sets the maximum Size of the Bubbles in Pixel */
+	void setBubbleSizeMaxSize(/* New maximum Bubble size in Pixel */ int newBubbleSize) {*
+		this.BubbleSizeMaxSize = newBubbleSize;
+	*}
+	
+	/* Sets the Bubble Size Keyfigure id during runtime */
+	void setkfBubbleSize(/* New id of a keyfigure column */ String newkfBubbleSizeId) {*
+		this.kfBubbleSize = newkfBubbleSizeId;
+	*}
+	
+	/* Gets the Bubble Size Keyfigure id during runtime */
+	void getkfBubbleSize() {*
+		return this.kfBubbleSize;
+	*}
+	
+	/* Sets the Bubble Alerter Keyfigure id during runtime */
+	void setkfBubbleAlerter(/* New id of a keyfigure column */ String newkfBubbleAlerterId) {*
+		this.kfColBub = newkfBubbleAlerterId;
+	*}
+	
+	/* Gets the Bubble Alerter Keyfigure id during runtime */
+	void getkfBubbleAlerter() {*
+		return this.kfColBub;
+	*}
+	
+	/* Sets the Bubble Alerter Color Value for Green during runtime */
+	void setAlerterColorGreenVal(/* New value for the Bubble color Green*/ int newAlerterColorGreenVal) {*
+		this.AlerterColorGreenVal = newAlerterColorGreenVal;
+	*}
+	
+	/* Sets the Bubble Alerter Color Value for Yellow during runtime */
+	void setAlerterColorYellowVal(/* New value for the Bubble color Yellow*/ int newAlerterColorYellowVal) {*
+		this.AlerterColorYellowVal = newAlerterColorYellowVal;
+	*}
+	
+	/* Returns the x-translation of the whole tree in Pixel */
+	String getBubbleRootXTranslation() {*
+		return this.BubbleRootXTranslation;
+	*}
+	/* Sets the x-translation of the whole tree in Pixel */
+	void setBubbleRootXTranslation(/* New x translation in Pixel -> positive = right, negative = left*/ int newXTranslation) {*
+		this.BubbleRootXTranslation = newXTranslation;
+	*}
+	
+	/* Expand the hierarchy (used for DS 1.4 private functionality) - it seems that the private call does not work */
+	@Visibility(private) 
+	void expandHierarchyNode() {*
+	    this.getDataSource().expandNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+	/* Collapse the hierarchy (used for DS 1.4 private functionality) - it seems that the private call does not work */
+	@Visibility(private) 
+	void collapseHierarchyNode() {*
+		this.getDataSource().collapseNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+	/* Expand the hierarchy */
+	void expandHierarchyNodes() {*
+	    this.getDataSource().expandNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+	/* Collapse the hierarchy */
+	void collapseHierarchyNodes() {*
+		this.getDataSource().collapseNode(this.getHierarchyDimensionKey(), this.getSelectedNodeKey());
+	*}
+	
+}
+
+/**
+ * Generated ZTL Class for FacetFilter
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.FacetFilter extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Clear Selections if 0 Property
+	 */	
+	void setClearOthers( /**Clear Selections if 0*/ boolean clearOthers){*
+		this.DClearOthers = clearOthers;
+	*}
+
+	/**
+	 * Gets Clear Selections if 0 Property
+	 */	
+	boolean isClearOthers() {*
+		return this.DClearOthers;
+	*}
+
+	/**
+	 * Sets Content Mode Property by String
+	 */	
+	void setContentModeByString( /**Content Mode*/ String contentMode){*
+		this.DContentMode = contentMode;
+	*}
+
+	/**
+	 * Gets Content Mode Property as String
+	 */	
+	String getContentModeAsString() {*
+		return this.DContentMode;
+	*}
+	
+	/**
+	 * Sets Content Mode Property by Choice Option
+	 */	
+	void setContentMode( /**Content Mode*/ org_scn_community_shared_DimensionSetEnumfield contentMode){*
+		this.DContentMode = contentMode;
+	*}
+	
+	/**
+	 * Gets Content Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_DimensionSetEnumfield getContentMode() {*
+		return this.DContentMode;
+	*}
+
+	/**
+	 * Sets Custom Dimensions Property as StringArray
+	 */	
+	void setCustomDimensions( /**Custom Dimensions*/ StringArray customDimensions){*
+		this.DCustomDimensions = customDimensions;
+	*}
+	
+	/** Gets Custom Dimensions Property as StringArray
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	FACETFILTER.getCustomDimensions();<br>
+	</code>
+	</example>
+	 */
+	StringArray getCustomDimensions () {*		
+		var elementsJson = JSON.parse(this.DCustomDimensions);
+		return elementsJson;
+	*}
+
+	/**
+	 * Sets Display Text Property by String
+	 */	
+	void setDisplayTextByString( /**Display Text*/ String displayText){*
+		this.DDisplayText = displayText;
+	*}
+
+	/**
+	 * Gets Display Text Property as String
+	 */	
+	String getDisplayTextAsString() {*
+		return this.DDisplayText;
+	*}
+	
+	/**
+	 * Sets Display Text Property by Choice Option
+	 */	
+	void setDisplayText( /**Display Text*/ org_scn_community_shared_MemberDisplayEnumfield displayText){*
+		this.DDisplayText = displayText;
+	*}
+	
+	/**
+	 * Gets Display Text Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberDisplayEnumfield getDisplayText() {*
+		return this.DDisplayText;
+	*}
+
+
+
+	/**
+	 * Sets Facet Width in px Property
+	 */	
+	void setFacetWidth( /**Facet Width in px*/ int facetWidth){*
+		this.DFacetWidth = facetWidth;
+	*}
+
+	/**
+	 * Gets Facet Width in px Property
+	 */	
+	int getFacetWidth() {*
+		return this.DFacetWidth;
+	*}
+
+	/**
+	 * Sets Maximum Members for Display Property
+	 */	
+	void setMaxDisplayMembers( /**Maximum Members for Display*/ int maxDisplayMembers){*
+		this.DMaxDisplayMembers = maxDisplayMembers;
+	*}
+
+	/**
+	 * Gets Maximum Members for Display Property
+	 */	
+	int getMaxDisplayMembers() {*
+		return this.DMaxDisplayMembers;
+	*}
+
+	/**
+	 * Sets Maximum Number of Members Property
+	 */	
+	void setMaxMembers( /**Maximum Number of Members*/ int maxMembers){*
+		this.DMaxMembers = maxMembers;
+	*}
+
+	/**
+	 * Gets Maximum Number of Members Property
+	 */	
+	int getMaxMembers() {*
+		return this.DMaxMembers;
+	*}
+
+	/**
+	 * Sets Second Value Content Property by String
+	 */	
+	void setSecondValueContentByString( /**Second Value Content*/ String secondValueContent){*
+		this.DSecondValueContent = secondValueContent;
+	*}
+
+	/**
+	 * Gets Second Value Content Property as String
+	 */	
+	String getSecondValueContentAsString() {*
+		return this.DSecondValueContent;
+	*}
+	
+	/**
+	 * Sets Second Value Content Property by Choice Option
+	 */	
+	void setSecondValueContent( /**Second Value Content*/ org_scn_community_shared_SecondValueContentEnumfield secondValueContent){*
+		this.DSecondValueContent = secondValueContent;
+	*}
+	
+	/**
+	 * Gets Second Value Content Property as Choice Option
+	 */	
+	org_scn_community_shared_SecondValueContentEnumfield getSecondValueContent() {*
+		return this.DSecondValueContent;
+	*}
+
+
+
+	/**
+	 * Sets Show Second Value Property
+	 */	
+	void setShowSecondValue( /**Show Second Value*/ boolean showSecondValue){*
+		this.DShowSecondValue = showSecondValue;
+	*}
+
+	/**
+	 * Gets Show Second Value Property
+	 */	
+	boolean isShowSecondValue() {*
+		return this.DShowSecondValue;
+	*}
+
+	/**
+	 * Sets Member Sorting Direction Property by String
+	 */	
+	void setSortingDirectionByString( /**Member Sorting Direction*/ String sortingDirection){*
+		this.DSortingDirection = sortingDirection;
+	*}
+
+	/**
+	 * Gets Member Sorting Direction Property as String
+	 */	
+	String getSortingDirectionAsString() {*
+		return this.DSortingDirection;
+	*}
+	
+	/**
+	 * Sets Member Sorting Direction Property by Choice Option
+	 */	
+	void setSortingDirection( /**Member Sorting Direction*/ org_scn_community_shared_SortDirectionEnumfield sortingDirection){*
+		this.DSortingDirection = sortingDirection;
+	*}
+	
+	/**
+	 * Gets Member Sorting Direction Property as Choice Option
+	 */	
+	org_scn_community_shared_SortDirectionEnumfield getSortingDirection() {*
+		return this.DSortingDirection;
+	*}
+
+	/**
+	 * Sets Member Sorting Type Property by String
+	 */	
+	void setSortingTypeByString( /**Member Sorting Type*/ String sortingType){*
+		this.DSortingType = sortingType;
+	*}
+
+	/**
+	 * Gets Member Sorting Type Property as String
+	 */	
+	String getSortingTypeAsString() {*
+		return this.DSortingType;
+	*}
+	
+	/**
+	 * Sets Member Sorting Type Property by Choice Option
+	 */	
+	void setSortingType( /**Member Sorting Type*/ org_scn_community_shared_SortTypeEnumfield sortingType){*
+		this.DSortingType = sortingType;
+	*}
+	
+	/**
+	 * Gets Member Sorting Type Property as Choice Option
+	 */	
+	org_scn_community_shared_SortTypeEnumfield getSortingType() {*
+		return this.DSortingType;
+	*}
+
+	/**
+	 * Sets Zero Values Display Mode Property by String
+	 */	
+	void setZeroValuesModeByString( /**Zero Values Display Mode*/ String zeroValuesMode){*
+		this.DZeroValuesMode = zeroValuesMode;
+	*}
+
+	/**
+	 * Gets Zero Values Display Mode Property as String
+	 */	
+	String getZeroValuesModeAsString() {*
+		return this.DZeroValuesMode;
+	*}
+	
+	/**
+	 * Sets Zero Values Display Mode Property by Choice Option
+	 */	
+	void setZeroValuesMode( /**Zero Values Display Mode*/ org_scn_community_shared_Enumfield zeroValuesMode){*
+		this.DZeroValuesMode = zeroValuesMode;
+	*}
+	
+	/**
+	 * Gets Zero Values Display Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getZeroValuesMode() {*
+		return this.DZeroValuesMode;
+	*}
+
+
+
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Reads the Dimensions from Data Source 
+	 */
+	@Visibility(private)
+	void private_readDimensions (Object dataSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		if(this.DContentMode == "Resultset") {
+			l.dimensionsRows = dataSource.getDimensions(Axis.ROWS);
+			l.dimensionsColumns = dataSource.getDimensions(Axis.COLUMNS);
+			
+			l.dimensions = [];
+
+			l.dimensionsRows.forEach(function(dimension, indexD) {
+				l.dimensions.push(dimension);
+			});	
+			l.dimensionsColumns.forEach(function(dimension, indexD) {
+				l.dimensions.push(dimension);
+			});
+			
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		} else if(this.DContentMode == "Custom") {
+			l.dimensionsAll = dataSource.getDimensions();
+			l.customDimensions = JSON.parse(that.DCustomDimensions);
+			
+			l.dimensions = [];
+			for (var iD = 0; iD < l.customDimensions.length; iD++) {
+				l.dimensionsAll.forEach(function(dimension, indexD) {
+					if(dimension.name == l.customDimensions[iD]) {
+						l.dimensions.push(dimension);
+					}
+				});
+			}
+		} else {
+			l.dimensions = dataSource.getDimensions();
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+		
+		this._tempDimensions = l.dimensions;
+	*}
+
+	/**
+	 * Resets the actual data of all dimensions (and causes reload of all members in "reloadDataSource" method.
+	 * Use it together like below
+	 * <example>
+	 * You want to reload actual members again
+	 * <code>
+	 * FACET.resetDimensions();
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 */
+	void resetDimensions() {*
+		this.oldDimensionKeys = "";
+	*}
+
+	/**
+	 * This function must be used for initialization and in case the drilldown structure has been changed.
+	 * You should trigger it once and ideally when filters are NOT set on dimensions, other case you will see only members which are available in resultset (depends on your setting "member selection" on dimension level).
+	 * When to use this method?
+	 * - As soon the Data Source is initialized, either in "onStartup()" script or after loading in script.
+	 * <example>
+	 * You have loaded the data source and want to initialize.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource();
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource(DS_FULL);
+	 * FACET.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadDataSource(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.elementsJson = [];
+
+		l.DS = this.getDataSource();
+
+		if(!memberAccessSource) {
+			memberAccessSource = l.DS;
+		}
+
+		if(l.DS) {
+			this.private_readDimensions(memberAccessSource);
+			l.dimensions = this._tempDimensions;
+
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensionKeys = "";
+			l.dimensions.forEach(function(dimension, index) {
+				l.dimensionKeys = l.dimensionKeys + dimension.name;
+			});
+			
+			if(this.oldDimensionKeys != l.dimensionKeys) {
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						// warnings to assure query is ok
+						if(l.DS.isHierarchyActive(dimension)) {
+							APPLICATION.createWarningMessage("Data Source has an Active Hierarchy on Dimension: " + dimension.name);
+						}
+	
+						l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+	
+						l.dimensionJson = {};
+						l.dimensionJson.name = dimension.name;
+						l.dimensionJson.text = dimension.text;
+						l.dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
+	
+						l.dimensionJson.hierarchyActive = l.DS.isHierarchyActive(dimension);
+						l.dimensionJson.filterExt = ";" + l.DS.getFilterExt(dimension);
+						
+						l.dimensionJson.members = l.members;
+			
+						l.elementsJson.push(l.dimensionJson);
+					}
+				});
+
+				this.DElements = JSON.stringify(l.elementsJson);
+				this.oldDimensionKeys = l.dimensionKeys;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			}
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+	*}
+
+	/**
+	 * This function can be used after the filter in data source was changed to update the component.
+	 * You should be trigered every time the filter change occurs, therefore the event in Data Source -> onResultSetChanged() is a good place.
+	 * When to use this method?
+	 * - Always the filter is changed, also the "onResultSetChanged()" event is good for this.
+	 * <example>
+	 * You want to keep the selections with data source.
+	 * The code should be placed in "onResultSetChanged()" method.
+	 * <code>
+	 * // if you want to update also dimensions when drilldown is changed
+	 * FACET.reloadDataSource();
+	 * 
+	 * // every time 
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource(DS_FULL);
+	 * FACET.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadSelection(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+	
+		l.elementsJson = {};
+
+		l.DS = this.getDataSource();
+
+		if(!memberAccessSource) {
+			memberAccessSource = l.DS;
+		}
+		
+		if(l.DS) {
+			this.private_readDimensions(memberAccessSource);
+			l.dimensions = this._tempDimensions;
+
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensions.forEach(function(dimension, indexD) {
+				l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+
+				l.dimensionJson = {};
+				l.dimensionJson.name = dimension.name;
+				l.dimensionJson.members = [];
+				l.dimensionJson.filterExt = "; " + l.DS.getFilterExt(dimension) + ";";
+
+				l.elementsJson[dimension.name] = l.dimensionJson;
+			});
+
+			this.DSelection = JSON.stringify(l.elementsJson);
+			
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug("DEBUG_2")) { DEBUG_2.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+	*}
+	
+	/**
+	 * DO NOT USE PRIVATE METHODS
+	 */
+	@Visibility(private)
+	void private_onSelectionChanged () {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.selection = this.DSelection;
+	
+		l.selectionJson = JSON.parse(l.selection);
+		
+		l.dimensionName = l.selectionJson.dimension;
+		l.keys = l.selectionJson.keys;
+		
+		l.keysAsArray = [];
+
+		l.DS = this.getDataSource();
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		if(l.DS) {
+			if(l.selectionJson.clearOthers && that.isClearOthers()) {
+				this.private_readDimensions(l.DS);
+				l.dimensions = this._tempDimensions;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(this, l)};
+				
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						l.currentDimensionName = dimension.name
+						if(l.currentDimensionName != l.dimensionName) {
+							l.DS.clearFilter(l.currentDimensionName);
+						}
+					}
+				});
+			}
+			
+			if(l.keys.length == 1 && l.keys[0] == "-ALL-") {
+				l.DS.clearFilter(l.dimensionName);
+			} else {
+				for (var iK = 0; iK < l.keys.length; iK++) {
+					l.key = l.keys[iK];
+					
+					l.keysAsArray.push(l.key);
+				}
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+				
+				l.DS.setFilter(l.dimensionName, l.keysAsArray);
+			}
+		}
+		
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+	*}
+
+}
+
+/**
+ * Generated ZTL Class for FacetSelector
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.FacetSelector extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Clear Selections if 0 Property
+	 */	
+	void setClearOthers( /**Clear Selections if 0*/ boolean clearOthers){*
+		this.DClearOthers = clearOthers;
+	*}
+
+	/**
+	 * Gets Clear Selections if 0 Property
+	 */	
+	boolean isClearOthers() {*
+		return this.DClearOthers;
+	*}
+
+	/**
+	 * Sets Content Mode Property by String
+	 */	
+	void setContentModeByString( /**Content Mode*/ String contentMode){*
+		this.DContentMode = contentMode;
+	*}
+
+	/**
+	 * Gets Content Mode Property as String
+	 */	
+	String getContentModeAsString() {*
+		return this.DContentMode;
+	*}
+	
+	/**
+	 * Sets Content Mode Property by Choice Option
+	 */	
+	void setContentMode( /**Content Mode*/ org_scn_community_shared_DimensionSetEnumfield contentMode){*
+		this.DContentMode = contentMode;
+	*}
+	
+	/**
+	 * Gets Content Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_DimensionSetEnumfield getContentMode() {*
+		return this.DContentMode;
+	*}
+
+	/**
+	 * Sets Custom Dimensions Property as StringArray
+	 */	
+	void setCustomDimensions( /**Custom Dimensions*/ StringArray customDimensions){*
+		this.DCustomDimensions = customDimensions;
+	*}
+	
+	/** Gets Custom Dimensions Property as StringArray
+
+ 	<example>
+	You want to ask for the current property value
+	<code>
+	FACETSELECTOR.getCustomDimensions();<br>
+	</code>
+	</example>
+	 */
+	StringArray getCustomDimensions () {*		
+		var elementsJson = JSON.parse(this.DCustomDimensions);
+		return elementsJson;
+	*}
+
+	/**
+	 * Sets Display Text Property by String
+	 */	
+	void setDisplayTextByString( /**Display Text*/ String displayText){*
+		this.DDisplayText = displayText;
+	*}
+
+	/**
+	 * Gets Display Text Property as String
+	 */	
+	String getDisplayTextAsString() {*
+		return this.DDisplayText;
+	*}
+	
+	/**
+	 * Sets Display Text Property by Choice Option
+	 */	
+	void setDisplayText( /**Display Text*/ org_scn_community_shared_MemberDisplayEnumfield displayText){*
+		this.DDisplayText = displayText;
+	*}
+	
+	/**
+	 * Gets Display Text Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberDisplayEnumfield getDisplayText() {*
+		return this.DDisplayText;
+	*}
+
+
+
+	/**
+	 * Sets Facet Width in px Property
+	 */	
+	void setFacetWidth( /**Facet Width in px*/ int facetWidth){*
+		this.DFacetWidth = facetWidth;
+	*}
+
+	/**
+	 * Gets Facet Width in px Property
+	 */	
+	int getFacetWidth() {*
+		return this.DFacetWidth;
+	*}
+
+	/**
+	 * Sets Maximum Number of Members Property
+	 */	
+	void setMaxDisplayMembers( /**Maximum Number of Members*/ int maxDisplayMembers){*
+		this.DMaxDisplayMembers = maxDisplayMembers;
+	*}
+
+	/**
+	 * Gets Maximum Number of Members Property
+	 */	
+	int getMaxDisplayMembers() {*
+		return this.DMaxDisplayMembers;
+	*}
+
+	/**
+	 * Sets Maximum Number of Members Property
+	 */	
+	void setMaxMembers( /**Maximum Number of Members*/ int maxMembers){*
+		this.DMaxMembers = maxMembers;
+	*}
+
+	/**
+	 * Gets Maximum Number of Members Property
+	 */	
+	int getMaxMembers() {*
+		return this.DMaxMembers;
+	*}
+
+
+
+	/**
+	 * Sets Member Sorting Direction Property by String
+	 */	
+	void setSortingDirectionByString( /**Member Sorting Direction*/ String sortingDirection){*
+		this.DSortingDirection = sortingDirection;
+	*}
+
+	/**
+	 * Gets Member Sorting Direction Property as String
+	 */	
+	String getSortingDirectionAsString() {*
+		return this.DSortingDirection;
+	*}
+	
+	/**
+	 * Sets Member Sorting Direction Property by Choice Option
+	 */	
+	void setSortingDirection( /**Member Sorting Direction*/ org_scn_community_shared_SortDirectionEnumfield sortingDirection){*
+		this.DSortingDirection = sortingDirection;
+	*}
+	
+	/**
+	 * Gets Member Sorting Direction Property as Choice Option
+	 */	
+	org_scn_community_shared_SortDirectionEnumfield getSortingDirection() {*
+		return this.DSortingDirection;
+	*}
+
+	/**
+	 * Sets Member Sorting Type Property by String
+	 */	
+	void setSortingTypeByString( /**Member Sorting Type*/ String sortingType){*
+		this.DSortingType = sortingType;
+	*}
+
+	/**
+	 * Gets Member Sorting Type Property as String
+	 */	
+	String getSortingTypeAsString() {*
+		return this.DSortingType;
+	*}
+	
+	/**
+	 * Sets Member Sorting Type Property by Choice Option
+	 */	
+	void setSortingType( /**Member Sorting Type*/ org_scn_community_shared_SortTypeEnumfield sortingType){*
+		this.DSortingType = sortingType;
+	*}
+	
+	/**
+	 * Gets Member Sorting Type Property as Choice Option
+	 */	
+	org_scn_community_shared_SortTypeEnumfield getSortingType() {*
+		return this.DSortingType;
+	*}
+
+	/**
+	 * Sets Zero Values Display Mode Property by String
+	 */	
+	void setZeroValuesModeByString( /**Zero Values Display Mode*/ String zeroValuesMode){*
+		this.DZeroValuesMode = zeroValuesMode;
+	*}
+
+	/**
+	 * Gets Zero Values Display Mode Property as String
+	 */	
+	String getZeroValuesModeAsString() {*
+		return this.DZeroValuesMode;
+	*}
+	
+	/**
+	 * Sets Zero Values Display Mode Property by Choice Option
+	 */	
+	void setZeroValuesMode( /**Zero Values Display Mode*/ org_scn_community_shared_Enumfield zeroValuesMode){*
+		this.DZeroValuesMode = zeroValuesMode;
+	*}
+	
+	/**
+	 * Gets Zero Values Display Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getZeroValuesMode() {*
+		return this.DZeroValuesMode;
+	*}
+
+
+
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Reads the Dimensions from Data Source 
+	 */
+	@Visibility(private)
+	void private_readDimensions (Object dataSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		if(this.DContentMode == "Resultset") {
+			l.dimensionsRows = dataSource.getDimensions(Axis.ROWS);
+			l.dimensionsColumns = dataSource.getDimensions(Axis.COLUMNS);
+			
+			l.dimensions = [];
+
+			l.dimensionsRows.forEach(function(dimension, indexD) {
+				l.dimensions.push(dimension);
+			});	
+			l.dimensionsColumns.forEach(function(dimension, indexD) {
+				l.dimensions.push(dimension);
+			});
+			
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		} else if(this.DContentMode == "Custom") {
+			l.dimensionsAll = dataSource.getDimensions();
+			l.customDimensions = JSON.parse(that.DCustomDimensions);
+			
+			l.customDimensionsFlat = "|";
+			for (var iD = 0; iD < l.customDimensions.length; iD++) {
+				l.customDimensionsFlat = l.customDimensionsFlat + l.customDimensions[iD] + "|";
+			}
+			
+			l.dimensions = [];
+			
+			l.dimensionsAll.forEach(function(dimension, indexD) {
+				l.currentAvailableDimensionName = dimension.name; 
+				if(l.customDimensionsFlat.indexOf("|" + l.currentAvailableDimensionName + "|") > -1) {
+					l.dimensions.push(dimension);
+				}
+			});	
+		} else {
+			l.dimensions = dataSource.getDimensions();
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+		
+		this._tempDimensions = l.dimensions;
+	*}
+
+	/**
+	 * Resets the actual data of all dimensions (and causes reload of all members in "reloadDataSource" method.
+	 * Use it together like below
+	 * <example>
+	 * You want to reload actual members again
+	 * <code>
+	 * FACET.resetDimensions();
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 */
+	void resetDimensions() {*
+		this.oldDimensionKeys = "";
+	*}
+
+	/**
+	 * This function must be used for initialization and in case the drilldown structure has been changed.
+	 * You should trigger it once and ideally when filters are NOT set on dimensions, other case you will see only members which are available in resultset (depends on your setting "member selection" on dimension level).
+	 * When to use this method?
+	 * - As soon the Data Source is initialized, either in "onStartup()" script or after loading in script.
+	 * <example>
+	 * You have loaded the data source and want to initialize.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource();
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource(DS_FULL);
+	 * FACET.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadDataSource(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.elementsJson = [];
+
+		l.DS = this.getDataSource();
+
+		if(!memberAccessSource) {
+			memberAccessSource = l.DS;
+		}
+
+		if(l.DS) {
+			this.private_readDimensions(memberAccessSource);
+			l.dimensions = this._tempDimensions;
+
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensionKeys = "";
+			l.dimensions.forEach(function(dimension, index) {
+				l.dimensionKeys = l.dimensionKeys + dimension.name;
+			});
+			
+			if(this.oldDimensionKeys != l.dimensionKeys) {
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						// warnings to assure query is ok
+						if(l.DS.isHierarchyActive(dimension)) {
+							APPLICATION.createWarningMessage("Data Source has an Active Hierarchy on Dimension: " + dimension.name);
+						}
+	
+						l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+	
+						l.dimensionJson = {};
+						l.dimensionJson.name = dimension.name;
+						l.dimensionJson.text = dimension.text;
+						l.dimensionJson.isMeasuresDimension = dimension.isMeasuresDimension;
+	
+						l.dimensionJson.hierarchyActive = l.DS.isHierarchyActive(dimension);
+						l.dimensionJson.filterExt = ";" + l.DS.getFilterExt(dimension);
+						
+						l.dimensionJson.members = l.members;
+			
+						l.elementsJson.push(l.dimensionJson);
+					}
+				});
+
+				this.DElements = JSON.stringify(l.elementsJson);
+				this.oldDimensionKeys = l.dimensionKeys;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			}
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+	*}
+
+	/**
+	 * This function can be used after the filter in data source was changed to update the component.
+	 * You should be trigered every time the filter change occurs, therefore the event in Data Source -> onResultSetChanged() is a good place.
+	 * When to use this method?
+	 * - Always the filter is changed, also the "onResultSetChanged()" event is good for this.
+	 * <example>
+	 * You want to keep the selections with data source.
+	 * The code should be placed in "onResultSetChanged()" method.
+	 * <code>
+	 * // if you want to update also dimensions when drilldown is changed
+	 * FACET.reloadDataSource();
+	 * 
+	 * // every time 
+	 * FACET.reloadSelection();
+	 * </code>
+	 * </example>
+	 * <example>
+	 * Especially when you are using option of "Only From Result Set", you can bind a different data source (on the same query) to assure that it stays unfiltered for member selection. This Data Source should be not filtered on any dimension.
+	 * The code should be placed in "onStartup()" method.
+	 * <code>
+	 * FACET.reloadDataSource(DS_FULL);
+	 * FACET.reloadSelection(DS_FULL);
+	 * </code>
+	 * </example>
+	 */
+	void reloadSelection(/*Data Source which should be used for member selection, in case not the linked Data Source*/optional DataSourceAlias memberAccessSource) {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+	
+		l.elementsJson = {};
+
+		l.DS = this.getDataSource();
+
+		if(!memberAccessSource) {
+			memberAccessSource = l.DS;
+		}
+		
+		if(l.DS) {
+			this.private_readDimensions(memberAccessSource);
+			l.dimensions = this._tempDimensions;
+
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+			
+			l.dimensions.forEach(function(dimension, indexD) {
+				l.members = memberAccessSource.getMembers(dimension, that.getMaxMembers());
+
+				l.dimensionJson = {};
+				l.dimensionJson.name = dimension.name;
+				l.dimensionJson.members = [];
+				l.dimensionJson.filterExt = "; " + l.DS.getFilterExt(dimension) + ";";
+
+				l.elementsJson[dimension.name] = l.dimensionJson;
+			});
+
+			this.DSelection = JSON.stringify(l.elementsJson);
+			
+			if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		}
+		
+		/* exiting general block*/
+		if(this.isDebug("DEBUG_2")) { DEBUG_2.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+		/* exiting general block*/
+	*}
+	
+	/**
+	 * DO NOT USE PRIVATE METHODS
+	 */
+	@Visibility(private)
+	void private_onSelectionChanged () {*
+		/* entering general block*/
+		var that = this;
+		var l = {};
+
+		try{
+		if(this.isDebug()) {	DEBUG.openZtl(that, l)};
+		/* entering general block*/
+
+		l.selection = this.DSelection;
+	
+		l.selectionJson = JSON.parse(l.selection);
+		
+		l.dimensionName = l.selectionJson.dimension;
+		l.keys = l.selectionJson.keys;
+		
+		l.keysAsArray = [];
+
+		l.DS = this.getDataSource();
+		
+		if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+		
+		if(l.DS) {
+			if(l.selectionJson.clearOthers && that.isClearOthers()) {
+				this.private_readDimensions(l.DS);
+				l.dimensions = this._tempDimensions;
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(this, l)};
+				
+				l.dimensions.forEach(function(dimension, index) {
+					if(!dimension.isMeasuresDimension) {
+						l.currentDimensionName = dimension.name
+						if(l.currentDimensionName != l.dimensionName) {
+							l.DS.clearFilter(l.currentDimensionName);
+						}
+					}
+				});
+			}
+			
+			if(l.keys.length == 1 && l.keys[0] == "-ALL-") {
+				l.DS.clearFilter(l.dimensionName);
+			} else {
+				for (var iK = 0; iK < l.keys.length; iK++) {
+					l.key = l.keys[iK];
+					
+					l.keysAsArray.push(l.key);
+				}
+				
+				if(this.isDebug()) {	DEBUG.inspectZtl(that, l)};
+				
+				l.DS.setFilter(l.dimensionName, l.keysAsArray);
+			}
+		}
+		
+		if(this.isDebug()) {	DEBUG.exitZtl(that, l)};
+		} catch (e) {
+			if(this.isDebug()) {	DEBUG.processZtlException(that, l, e)};throw e;
+		}
+	*}
+
+}
+
+/**
+ * Generated ZTL Class for FioriLink
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.FioriLink extends org.scn.community.shared.ui5.Link {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Generated ZTL Class for FioriBusyDialog
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.FioriBusyDialog extends org.scn.community.shared.ui5.BusyDialog {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+/**
+ * enum field definition
+ */
+class org_scn_community_shared_ThresholdMethod extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify field 
+ */
+class org_scn_community_shared_ThresholdMethodTypes extends Enum {
+
+	/** CHECKED */
+	org_scn_community_shared_ThresholdMethod CHECKED;
+       
+	/** UNCHECKED */
+	org_scn_community_shared_ThresholdMethod UNCHECKED;
+
+	/** MIXED */
+	org_scn_community_shared_ThresholdMethod MIXED;
+}
+
+
+class org.scn.community.databound.HexBin extends org.scn.community.shared.DataComponent {
+	/**
+	Set Threshold Method
+	*/
+	void setThresholdMethod(/*Method*/ String method) {*
+		this.thresholdMethod = method;
+	*}
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+	/**
+	Set Hexagon Radius
+	*/
+	void setRadius(/*Radius (px)*/int radius) {*
+		this.radius = radius;
+	*}
+	/**
+	Get Hexagon Radius
+	*/
+	int getRadius() {*
+		return this.radius;
+	*}
+	/**
+	Set Max Threshold
+	*/
+	void setThreshold(/*Threshold*/int threshold) {*
+		this.threshold = threshold;
+	*}
+	/**
+	Get Max Threshold
+	*/
+	int getThreshold() {*
+		return this.threshold;
+	*}
+	/**
+	Set Min Threshold (Tolerance)
+	*/
+	void setTolerance(/*Tolerance*/int tolerance) {*
+		this.tolerance = tolerance;
+	*}
+	/**
+	Get Min Threshold (Tolerance)
+	*/
+	int getTolerance() {*
+		return this.tolerance;
+	*}
+	/**
+	Set X-Axis Measure by text
+	*/
+	void setMeasureX(/*Measure*/String measure) {*
+		this.measureX = measure;
+	*}
+	/**
+	Get X-Axis Measure text
+	*/
+	String getMeasureX() {*
+		return this.measureX;
+	*}
+	/**
+	Set Y-Axis Measure by text
+	*/
+	void setMeasureY(/*Measure*/String measure) {*
+		this.measureY = measure;
+	*}
+	/**
+	Get Y-Axis Measure text
+	*/
+	String getMeasureY() {*
+		return this.measureY;
+	*}
+	/**
+	Set Y-Axis Min
+	*/
+	void setMinY(/*Minimume*/int min) {*
+		this.minY = min;
+	*}
+	/**
+	Get Y-Axis Min
+	*/
+	int getMinY() {*
+		return this.minY;
+	*}
+	/**
+	Set Y-Axis Max
+	*/
+	void setMaxY(/*Minimume*/int max) {*
+		this.maxY = max;
+	*}
+	/**
+	Get Y-Axis Max
+	*/
+	int getMaxY() {*
+		return this.maxY;
+	*}
+	/**
+	Set X-Axis Min
+	*/
+	void setMinX(/*Minimume*/int min) {*
+		this.minX = min;
+	*}
+	/**
+	Get X-Axis Min
+	*/
+	int getMinX() {*
+		return this.minX;
+	*}
+	/**
+	Set X-Axis Max
+	*/
+	void setMaxX(/*Minimume*/int max) {*
+		this.maxX = max;
+	*}
+	/**
+	Get X-Axis Max
+	*/
+	int getMaxX() {*
+		return this.maxX;
+	*}
+}
+
+/**
+ * Generated ZTL Class for LeaderBoard
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.LeaderBoard extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Add Counter Property
+	 */	
+	void setAddCounter( /**Add Counter*/ boolean addCounter){*
+		this.addCounter = addCounter;
+	*}
+
+	/**
+	 * Gets Add Counter Property
+	 */	
+	boolean isAddCounter() {*
+		return this.addCounter;
+	*}
+
+
+
+	/**
+	 * Sets Url For The Fallback Picture Property
+	 */	
+	void setFallbackPicture( /**Url For The Fallback Picture*/ String fallbackPicture){*
+		this.fallbackPicture = fallbackPicture;
+	*}
+
+	/**
+	 * Gets Url For The Fallback Picture Property
+	 */	
+	String getFallbackPicture() {*
+		return this.fallbackPicture;
+	*}
+
+	/**
+	 * Sets Maximum Number Property
+	 */	
+	void setMaxNumber( /**Maximum Number*/ int maxNumber){*
+		this.maxNumber = maxNumber;
+	*}
+
+	/**
+	 * Gets Maximum Number Property
+	 */	
+	int getMaxNumber() {*
+		return this.maxNumber;
+	*}
+
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Pressed Key Property
+	 */	
+	String getPressedKey() {*
+		return this.pressedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Sets Top X Or Bottom X Property by String
+	 */	
+	void setTopBottomByString( /**Top X Or Bottom X*/ String topBottom){*
+		this.topBottom = topBottom;
+	*}
+
+	/**
+	 * Gets Top X Or Bottom X Property as String
+	 */	
+	String getTopBottomAsString() {*
+		return this.topBottom;
+	*}
+	
+	/**
+	 * Sets Top X Or Bottom X Property by Choice Option
+	 */	
+	void setTopBottom( /**Top X Or Bottom X*/ org_scn_community_shared_MemberSelectionEnumfield topBottom){*
+		this.topBottom = topBottom;
+	*}
+	
+	/**
+	 * Gets Top X Or Bottom X Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberSelectionEnumfield getTopBottom() {*
+		return this.topBottom;
+	*}
+
+	/**
+	 * Sets Use Pictures Property
+	 */	
+	void setUsePictures( /**Use Pictures*/ boolean usePictures){*
+		this.usePictures = usePictures;
+	*}
+
+	/**
+	 * Gets Use Pictures Property
+	 */	
+	boolean isUsePictures() {*
+		return this.usePictures;
+	*}
+
+	/**
+	 * Sets Value Decimal Places Property by String
+	 */	
+	void setValueDecimalPlacesByString( /**Value Decimal Places*/ String valueDecimalPlaces){*
+		this.valueDecimalPlaces = valueDecimalPlaces;
+	*}
+
+	/**
+	 * Gets Value Decimal Places Property as String
+	 */	
+	String getValueDecimalPlacesAsString() {*
+		return this.valueDecimalPlaces;
+	*}
+	
+	/**
+	 * Sets Value Decimal Places Property by Choice Option
+	 */	
+	void setValueDecimalPlaces( /**Value Decimal Places*/ org_scn_community_shared_DecimalPlacesEnumfield valueDecimalPlaces){*
+		this.valueDecimalPlaces = valueDecimalPlaces;
+	*}
+	
+	/**
+	 * Gets Value Decimal Places Property as Choice Option
+	 */	
+	org_scn_community_shared_DecimalPlacesEnumfield getValueDecimalPlaces() {*
+		return this.valueDecimalPlaces;
+	*}
+
+	/**
+	 * Sets Value Prefix Text Property
+	 */	
+	void setValuePrefix( /**Value Prefix Text*/ String valuePrefix){*
+		this.valuePrefix = valuePrefix;
+	*}
+
+	/**
+	 * Gets Value Prefix Text Property
+	 */	
+	String getValuePrefix() {*
+		return this.valuePrefix;
+	*}
+
+	/**
+	 * Sets Value Suffix Text Property
+	 */	
+	void setValueSuffix( /**Value Suffix Text*/ String valueSuffix){*
+		this.valueSuffix = valueSuffix;
+	*}
+
+	/**
+	 * Gets Value Suffix Text Property
+	 */	
+	String getValueSuffix() {*
+		return this.valueSuffix;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+class org.scn.community.databound.LocationIntel extends org.scn.community.shared.Component {
+	/**
+	Get selected feature
+	*/
+	String getSelectedMarker() {*
+		return this.selectedMarker;
+	*}
+	/**
+	Set Projection Method
+	*/
+	void setProjection(/*Projection*/String projection) {*
+		this.projection = projection;
+	*}
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		return this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+	/**
+	Set Marker Color
+	*/
+	void setMarkerColor(/*Color*/String color) {*
+		this.markerColor = color;
+	*}
+	/**
+	Set Marker Title Field
+	*/
+	void setMarkerTitle(/*Color*/String dimension) {*
+		this.markerTitle = dimension;
+	*}
+	/**
+	Set Marker Size Field
+	*/
+	void setMarkerSizeMeasure(/*Color*/String measure) {*
+		this.markerSizeMeasure = measure;
+	*}
+	/**
+	Set Label Attribute from GeoJSON that should be used for labeling
+	*/
+	void setLabelProperty(/*Attribute*/String attribute) {*
+		this.labelProperty = attribute;
+	*}
+}
+class org.scn.community.databound.MarimekkoChart extends org.scn.community.shared.DataComponent {
+	/**
+	Get selected row
+	*/
+	String getSelectedRow() {*
+		return this.selectedRow;
+	*}
+	/**
+	Get selected column
+	*/
+	String getSelectedColumn() {*
+		return this.selectedColumn;
+	*}
+	/**
+	Get selected value
+	*/
+	float getSelectedValue() {*
+		return this.selectedValue;
+	*}
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		return this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+}
+
+/**
+ * Class for MultiComboBox
+ */
+class org.scn.community.databound.MultiComboBox extends org.scn.community.shared.DataComponent {
+
+	/** returns the selected key 
+    <example>
+	
+	<code>
+    
+	</code>
+	</example>
+	*/
+	String getSelectedKey () {*
+		return this.DSelectedKey;	
+	*}
+	/** returns the selected key 
+    <example>
+	
+	<code>
+    
+	</code>
+	</example>
+	*/
+	String getSelectedKeyBexReady () {*
+		return this.DSelectedKeyBexReady;	
+	*}
+
+	/** returns the selected text */
+	String getSelectedText () {*
+		return this.DSelectedText;	
+	*}
+	
+	/** gest the dimension */
+	String getDimension () {*
+		return this.DDimension;	
+	*}
+	
+	/** sets the dimension */
+	void setDimension (String dimension) {*
+		this.DDimension = dimension;	
+	*}
+	/**
+	 * Set to true to enable Ascending sorting, false for the opposite
+	 */
+	void setSortingDirection (boolean direction) {* 
+		if(direction){
+			this.DSortingDirection = "Ascending";	
+		}else{
+			this.DSortingDirection = "Descending";
+		}
+	*}
+	/**
+	 * 
+	 */
+	void setSkipResult (boolean skip) {* 
+		this.DSkipResultRow = skip;
+	*}
+	
+	void setItems (String itemList) {*
+		this.DItemList = itemList;
+	*}
+	
+}
+class org.scn.community.databound.MultiLevelDropDown extends Component {
+	
+	/** ------- Getter / Setter for addSingleRootNode ------ */
+	boolean isSingleNodeActivated() {*
+		return this.addSingleRootNode;
+	*}
+
+	void setAddSingleRootNode(Boolean value) {*
+		this.addSingleRootNode = value;
+	*}
+	
+	/** ------- Getter / Setter for singleRootName ------ */
+	String getSingleRootNodeName() {*
+		return this.singleRootNodeName;
+	*}
+
+	void setSingleRootNodeName(String newName) {*
+		this.singleRootNodeName = newName;
+	*}
+	
+	/** ------- Getter / Setter for selectedElemKey ------ */
+	String getSelectedElemKey() {*
+		return this.SelectedElemKey;
+	*}
+
+	void setSelectedElemKey(String selectedKey) {*
+		this.SelectedElemKey = selectedKey;
+	*}
+	
+	/** ------- Getter / Setter for selectedElemKey ------ */
+	String getLabelDisplay() {*
+		return this.labelDisplay;
+	*}
+
+	void setLabelDisplay(String value) {*
+		this.labelDisplay = value;
+	*}
+	
+	/** ------- Getter / Setter for selectedElemKey ------ */
+	String getSelectedElemText() {*
+		return this.SelectedElemText;
+	*}
+
+	void setSelectedElemText(String selectedText) {*
+		this.SelectedElemText = selectedText;
+	*}
+	
+	/** ------- Getter / Setter for resetButton ------ */
+	String getResetButton() {*
+		return this.resetButton;
+	*}
+
+	void setResetButton(String value) {*
+		this.resetButton = value;
+	*}
+
+	/** ------- Getter / Setter for singleRootName ------ */
+	String getDimension() {*
+		return this.selChar;
+	*}
+
+	void setDimension(String value) {*
+		this.selChar = value;
+	*}
+	
+	/** ------- Getter / Setter for addMeasure ------ */
+	boolean isMeasureDisplayActivated() {*
+		return this.addMesure;
+	*}
+
+	void activateDisplayMeasure(Boolean value) {*
+		this.addMesure = value;
+	*}
+	
+	/** ------- Getter / Setter for selMeasure ------ */
+	String getSelMeasure() {*
+		return this.selMesure;
+	*}
+
+	void setSelMeasure(String value) {*
+		this.selMesure = value;
+	*}
+	
+	/** ------- Getter / Setter for colorClass ------ */
+	String getColorClass() {*
+		return this.colorClass;
+	*}
+
+	void setColorClass(String value) {*
+		this.colorClass = value;
+	*}
+	
+	/** ------- Getter / Setter for replaceNotAssignedText ------ */
+	String getNotAssignedText() {*
+		return this.notAssignedText;
+	*}
+
+	void setNotAssignedText(String value) {*
+		this.notAssignedText = value;
+	*}
+	
+	
+}
+
+/**
+ * Generated ZTL Class for NiceChart
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.NiceChart extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Chart Type Property by String
+	 */	
+	void setChartTypeByString( /**Chart Type*/ String chartType){*
+		this.DChartType = chartType;
+	*}
+
+	/**
+	 * Gets Chart Type Property as String
+	 */	
+	String getChartTypeAsString() {*
+		return this.DChartType;
+	*}
+	
+	/**
+	 * Sets Chart Type Property by Choice Option
+	 */	
+	void setChartType( /**Chart Type*/ org_scn_community_shared_ChartSimpleTypeEnumfield chartType){*
+		this.DChartType = chartType;
+	*}
+	
+	/**
+	 * Gets Chart Type Property as Choice Option
+	 */	
+	org_scn_community_shared_ChartSimpleTypeEnumfield getChartType() {*
+		return this.DChartType;
+	*}
+
+	/**
+	 * Sets Starting Colour Distance Property
+	 */	
+	void setColorDistance( /**Starting Colour Distance*/ float colorDistance){*
+		this.DColorDistance = colorDistance;
+	*}
+
+	/**
+	 * Gets Starting Colour Distance Property
+	 */	
+	float getColorDistance() {*
+		return this.DColorDistance;
+	*}
+
+	/**
+	 * Sets Starting Colour Hue Property
+	 */	
+	void setColorHue( /**Starting Colour Hue*/ int colorHue){*
+		this.DColorHue = colorHue;
+	*}
+
+	/**
+	 * Gets Starting Colour Hue Property
+	 */	
+	int getColorHue() {*
+		return this.DColorHue;
+	*}
+
+	/**
+	 * Sets Starting Colour Palette Property by String
+	 */	
+	void setColorPaletteByString( /**Starting Colour Palette*/ String colorPalette){*
+		this.DColorPalette = colorPalette;
+	*}
+
+	/**
+	 * Gets Starting Colour Palette Property as String
+	 */	
+	String getColorPaletteAsString() {*
+		return this.DColorPalette;
+	*}
+	
+	/**
+	 * Sets Starting Colour Palette Property by Choice Option
+	 */	
+	void setColorPalette( /**Starting Colour Palette*/ org_scn_community_shared_ChartColorPaleteEnumfield colorPalette){*
+		this.DColorPalette = colorPalette;
+	*}
+	
+	/**
+	 * Gets Starting Colour Palette Property as Choice Option
+	 */	
+	org_scn_community_shared_ChartColorPaleteEnumfield getColorPalette() {*
+		return this.DColorPalette;
+	*}
+
+	/**
+	 * Sets Legend Position Property by String
+	 */	
+	void setLegendPositionByString( /**Legend Position*/ String legendPosition){*
+		this.DLegendPosition = legendPosition;
+	*}
+
+	/**
+	 * Gets Legend Position Property as String
+	 */	
+	String getLegendPositionAsString() {*
+		return this.DLegendPosition;
+	*}
+	
+	/**
+	 * Sets Legend Position Property by Choice Option
+	 */	
+	void setLegendPosition( /**Legend Position*/ org_scn_community_shared_HorizontalAlignEnumfield legendPosition){*
+		this.DLegendPosition = legendPosition;
+	*}
+	
+	/**
+	 * Gets Legend Position Property as Choice Option
+	 */	
+	org_scn_community_shared_HorizontalAlignEnumfield getLegendPosition() {*
+		return this.DLegendPosition;
+	*}
+
+	/**
+	 * Sets Width Of Legend In Px Property
+	 */	
+	void setLegendWidth( /**Width Of Legend In Px*/ int legendWidth){*
+		this.DLegendWidth = legendWidth;
+	*}
+
+	/**
+	 * Gets Width Of Legend In Px Property
+	 */	
+	int getLegendWidth() {*
+		return this.DLegendWidth;
+	*}
+
+	/**
+	 * Sets Maximum Number Of Data Points Property
+	 */	
+	void setMaxDataPoints( /**Maximum Number Of Data Points*/ int maxDataPoints){*
+		this.DMaxDataPoints = maxDataPoints;
+	*}
+
+	/**
+	 * Gets Maximum Number Of Data Points Property
+	 */	
+	int getMaxDataPoints() {*
+		return this.DMaxDataPoints;
+	*}
+
+	/**
+	 * Sets Show Legend Property
+	 */	
+	void setShowLegend( /**Show Legend*/ boolean showLegend){*
+		this.DShowLegend = showLegend;
+	*}
+
+	/**
+	 * Gets Show Legend Property
+	 */	
+	boolean isShowLegend() {*
+		return this.DShowLegend;
+	*}
+
+	/**
+	 * Sets Swap Axes Property
+	 */	
+	void setSwapAxes( /**Swap Axes*/ boolean swapAxes){*
+		this.DSwapAxes = swapAxes;
+	*}
+
+	/**
+	 * Gets Swap Axes Property
+	 */	
+	boolean isSwapAxes() {*
+		return this.DSwapAxes;
+	*}
+
+	/**
+	 * Sets Result Set Property
+	 */	
+	void setData( /**Result Set*/ ResultSet data){*
+		this.data = data;
+	*}
+
+	/**
+	 * Gets Result Set Property
+	 */	
+	ResultSet getData() {*
+		return this.data;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+/**
+ * Class for Pictogram
+ */
+class org.scn.community.databound.Pictogram extends org.scn.community.shared.Component {
+	/**
+	Sets number of columns
+	*/
+	void setNumCols(/* Number of Columns */ int columns) {*
+		this.numCols = columns;
+	*}
+	/**
+	Sets number of rows
+	*/
+	void setNumRows(/* Number of Rows */ int rows) {*
+		this.numRows = rows;
+	*}
+	/**
+	Gets number of columns
+	*/
+	int getNumCols() {* return this.numCols; *}
+	/**
+	Gets number of rows
+	*/
+	int getNumCols() {* return this.numRows; *}
+}
+
+/**
+ * Generated ZTL Class for ProcessFlow
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.ProcessFlow extends org.scn.community.shared.ui5.ProcessFlow {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+/**
+ * Class for ProgressBar Properties
+ */
+class org.scn.community.databound.BarProperty {
+  String title;
+  String fillColor;
+  String number;
+  String numberUnit;
+}
+
+/**
+ * Class for ProgressBar
+ */
+class org.scn.community.databound.ProgressSet extends org.scn.community.shared.Component {
+	/**
+	Sets bar thickness (-1 = auto)
+	*/
+	void setBarThickness(/* Thickness */ int thickness) {*
+		this.barHeight = thickness;
+	*}
+	/**
+	Gets bar thickness (-1 = auto)
+	*/
+	int getBarThickness() {*
+		return this.barHeight;
+	*}
+	/**
+	Sets inline labels to true/false
+	*/
+	void setInlineLabels(/* true/false */ boolean isInline) {*
+		this.inlineLabels = isInline;
+	*}
+	/**
+	Gets whether labels are inline are not
+	*/
+	boolean getInlineLabels() {*
+		return this.inlineLabels;
+	*}
+	/**
+	Gets Bar Selected
+	*/
+	String getBarClicked() {*
+		return this.selectedBar;
+	*}
+	/** Remove All Bars
+ 	<example>
+	Remove all bars
+	<code>
+	PROGRESSET_1.removeAllBars();<br>
+	</code>
+	</example>
+	 */
+	void removeAllBars () {*		
+		this.barConfig = JSON.stringify([]);
+	*}
+	/** Remove a bar
+ 	<example>
+	Remove a bar titled "Sales"
+	<code>
+	PROGRESSET_1.removeBar("Sales");<br>
+	</code>
+	</example>
+	 */
+	void removeBar (/*Tile Title*/String title) {*		
+		var o = eval(this.barConfig);
+		if(!o) o = [];
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		barConfig = JSON.stringify(o);
+	*}
+	com.sample.utilities.BarProperty getBarProperty(/*Title*/String title){*
+		var r = {
+			title : "",
+			fillColor : "",
+			number : "",
+			numberUnit : ""
+		}
+		var o = eval(this.barConfig);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex>-1){
+			var barConf = o[matchIndex];
+			r.title = barConf.title;
+			r.fillColor = barConf.fillColor;
+			r.number = tileConf.number;
+			r.numberUnit = tileConf.numberUnit;
+		}
+		return r;
+	*}
+	/** Adds or Updates a Bar (if title already exists)
+ 	<example>
+	Add/Update a bar called "Sales"
+	<code>
+	PROGRESSET_1.addBar("Sales", "#FF0000", "1234", "USD");<br>
+	</code>
+	</example>
+	 */
+	void addBar (
+			/*Title*/String title, 
+			/*Number*/optional String number, 
+			/*Number Unit*/optional String numberUnit,
+			/*Fill Color*/optional String fillColor
+			) {*		
+		var o = eval(this.barConfig);
+		if(!o) o = [];
+		var bar = {
+			title: title,
+			fillColor: fillColor || "auto",
+			number: number,
+			numberUnit: numberUnit
+		};	
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].title == title) matchIndex = i;
+		}
+		if(matchIndex==-1){	// New Bar
+			o.push(bar);
+		}else{	// Update Bar
+			o[matchIndex] = bar;
+		}
+		barConfig = JSON.stringify(o);
+	*}
+}
+
+/**
+ * Generated ZTL Class for RadioButtonGroup
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.RadioButtonGroup extends org.scn.community.shared.ui5.RadioButtonGroup {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Generated ZTL Class for RangeSlider
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.RangeSlider extends org.scn.community.shared.Component {
+
+
+
+	/**
+	 * Gets Technical Proprty For Pause Refresh Property
+	 */	
+	boolean isDoRefresh() {*
+		return this.doRefresh;
+	*}
+
+	/**
+	 * Sets Maximum Number Property
+	 */	
+	void setMaxNumber( /**Maximum Number*/ int maxNumber){*
+		this.maxNumber = maxNumber;
+	*}
+
+	/**
+	 * Gets Maximum Number Property
+	 */	
+	int getMaxNumber() {*
+		return this.maxNumber;
+	*}
+
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Key 2 Property
+	 */	
+	String getSelectedKey2() {*
+		return this.selectedKey2;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Keys Property
+	 */	
+	String getSelectedKeys() {*
+		return this.selectedKeys;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Text Property
+	 */	
+	String getSelectedText() {*
+		return this.selectedText;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Text 2 Property
+	 */	
+	String getSelectedText2() {*
+		return this.selectedText2;
+	*}
+
+	/**
+	 * Sets Sorting By Value | Defalut Property by String
+	 */	
+	void setSortingByString( /**Sorting By Value | Defalut*/ String sorting){*
+		this.sorting = sorting;
+	*}
+
+	/**
+	 * Gets Sorting By Value | Defalut Property as String
+	 */	
+	String getSortingAsString() {*
+		return this.sorting;
+	*}
+	
+	/**
+	 * Sets Sorting By Value | Defalut Property by Choice Option
+	 */	
+	void setSorting( /**Sorting By Value | Defalut*/ org_scn_community_shared_Enumfield sorting){*
+		this.sorting = sorting;
+	*}
+	
+	/**
+	 * Gets Sorting By Value | Defalut Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getSorting() {*
+		return this.sorting;
+	*}
+
+	/**
+	 * Sets Top X, Bottom X Or Both Property by String
+	 */	
+	void setTopBottomByString( /**Top X, Bottom X Or Both*/ String topBottom){*
+		this.topBottom = topBottom;
+	*}
+
+	/**
+	 * Gets Top X, Bottom X Or Both Property as String
+	 */	
+	String getTopBottomAsString() {*
+		return this.topBottom;
+	*}
+	
+	/**
+	 * Sets Top X, Bottom X Or Both Property by Choice Option
+	 */	
+	void setTopBottom( /**Top X, Bottom X Or Both*/ org_scn_community_shared_MemberSelectionEnumfield topBottom){*
+		this.topBottom = topBottom;
+	*}
+	
+	/**
+	 * Gets Top X, Bottom X Or Both Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberSelectionEnumfield getTopBottom() {*
+		return this.topBottom;
+	*}
+
+	/**
+	 * Sets Change To Vertical Orientation Property
+	 */	
+	void setVertical( /**Change To Vertical Orientation*/ boolean vertical){*
+		this.vertical = vertical;
+	*}
+
+	/**
+	 * Gets Change To Vertical Orientation Property
+	 */	
+	boolean isVertical() {*
+		return this.vertical;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Generated ZTL Class for ResultSetInfo
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.ResultSetInfo extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Central Data Provisioning Property
+	 */	
+	void setCentralProvisioning( /**Central Data Provisioning*/ boolean centralProvisioning){*
+		this.DCentralProvisioning = centralProvisioning;
+	*}
+
+	/**
+	 * Gets Central Data Provisioning Property
+	 */	
+	boolean isCentralProvisioning() {*
+		return this.DCentralProvisioning;
+	*}
+
+	/**
+	 * Gets Technical Component For Data Information Property
+	 */	
+	String getDataInformation() {*
+		return this.DDataInformation;
+	*}
+
+	/**
+	 * Sets Ignore Results Rows And Columns Property
+	 */	
+	void setIgnoreResults( /**Ignore Results Rows And Columns*/ boolean ignoreResults){*
+		this.DIgnoreResults = ignoreResults;
+	*}
+
+	/**
+	 * Gets Ignore Results Rows And Columns Property
+	 */	
+	boolean isIgnoreResults() {*
+		return this.DIgnoreResults;
+	*}
+
+	/**
+	 * Sets Information Event Active Property
+	 */	
+	void setInformationEventActive( /**Information Event Active*/ boolean informationEventActive){*
+		this.DInformationEventActive = informationEventActive;
+	*}
+
+	/**
+	 * Gets Information Event Active Property
+	 */	
+	boolean isInformationEventActive() {*
+		return this.DInformationEventActive;
+	*}
+
+	/**
+	 * Sets Result Set Property
+	 */	
+	void setData( /**Result Set*/ ResultSet data){*
+		this.data = data;
+	*}
+
+	/**
+	 * Gets Result Set Property
+	 */	
+	ResultSet getData() {*
+		return this.data;
+	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/** Returns the information about number of cells */
+	int getDataInfoNumberOfCells () {*
+		return JSON.parse(this.DDataInformation).dataCells;
+	*}
+
+	/** Returns the information about number of data columns */
+	int getDataInfoNumberOfDataColumns () {*
+		return JSON.parse(this.DDataInformation).dataColumns;
+	*}
+	
+	/** Returns the information about number of header columns */
+	int getDataInfoNumberOfHeaderColumns () {*
+		return JSON.parse(this.DDataInformation).headerColumns;
+	*}
+	
+	/** Returns the information about number of rows */
+	int getDataInfoNumberOfRows () {*
+		return JSON.parse(this.DDataInformation).rows;
+	*}
+}
+
+/**
+ * Generated ZTL Class for ResultSetMixer
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.ResultSetMixer extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Collect Multiple Matches Property by String
+	 */	
+	void setCollectMultipleMatchesByString( /**Collect Multiple Matches*/ String collectMultipleMatches){*
+		this.DCollectMultipleMatches = collectMultipleMatches;
+	*}
+
+	/**
+	 * Gets Collect Multiple Matches Property as String
+	 */	
+	String getCollectMultipleMatchesAsString() {*
+		return this.DCollectMultipleMatches;
+	*}
+	
+	/**
+	 * Sets Collect Multiple Matches Property by Choice Option
+	 */	
+	void setCollectMultipleMatches( /**Collect Multiple Matches*/ org_scn_community_shared_Enumfield collectMultipleMatches){*
+		this.DCollectMultipleMatches = collectMultipleMatches;
+	*}
+	
+	/**
+	 * Gets Collect Multiple Matches Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getCollectMultipleMatches() {*
+		return this.DCollectMultipleMatches;
+	*}
+
+	/**
+	 * Sets Geometry Of The Master Result Set Property by String
+	 */	
+	void setMasterGeometryByString( /**Geometry Of The Master Result Set*/ String masterGeometry){*
+		this.DMasterGeometry = masterGeometry;
+	*}
+
+	/**
+	 * Gets Geometry Of The Master Result Set Property as String
+	 */	
+	String getMasterGeometryAsString() {*
+		return this.DMasterGeometry;
+	*}
+	
+	/**
+	 * Sets Geometry Of The Master Result Set Property by Choice Option
+	 */	
+	void setMasterGeometry( /**Geometry Of The Master Result Set*/ org_scn_community_shared_Enumfield masterGeometry){*
+		this.DMasterGeometry = masterGeometry;
+	*}
+	
+	/**
+	 * Gets Geometry Of The Master Result Set Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getMasterGeometry() {*
+		return this.DMasterGeometry;
+	*}
+
+	/**
+	 * Sets Master Central Data Provisioner Property
+	 */	
+	void setMasterProvisioner( /**Master Central Data Provisioner*/ String masterProvisioner){*
+		this.DMasterProvisioner = masterProvisioner;
+	*}
+
+	/**
+	 * Gets Master Central Data Provisioner Property
+	 */	
+	String getMasterProvisioner() {*
+		return this.DMasterProvisioner;
+	*}
+
+	/**
+	 * Sets Internal Property To Trigger The Reload Property
+	 */	
+	void setReloadTrigger( /**Internal Property To Trigger The Reload*/ float reloadTrigger){*
+		this.DReloadTrigger = reloadTrigger;
+	*}
+
+	/**
+	 * Gets Internal Property To Trigger The Reload Property
+	 */	
+	float getReloadTrigger() {*
+		return this.DReloadTrigger;
+	*}
+
+	/**
+	 * Sets Column Condition To Read Slave Result Set Property
+	 */	
+	void setSlaveColumnCondition( /**Column Condition To Read Slave Result Set*/ String slaveColumnCondition){*
+		this.DSlaveColumnCondition = slaveColumnCondition;
+	*}
+
+	/**
+	 * Gets Column Condition To Read Slave Result Set Property
+	 */	
+	String getSlaveColumnCondition() {*
+		return this.DSlaveColumnCondition;
+	*}
+
+	/**
+	 * Sets Column Index For The Selection From Slave Result Set Property
+	 */	
+	void setSlaveColumnIndex( /**Column Index For The Selection From Slave Result Set*/ int slaveColumnIndex){*
+		this.DSlaveColumnIndex = slaveColumnIndex;
+	*}
+
+	/**
+	 * Gets Column Index For The Selection From Slave Result Set Property
+	 */	
+	int getSlaveColumnIndex() {*
+		return this.DSlaveColumnIndex;
+	*}
+
+	/**
+	 * Sets Content Condition To Read Slave Result Set Property
+	 */	
+	void setSlaveContentCondition( /**Content Condition To Read Slave Result Set*/ String slaveContentCondition){*
+		this.DSlaveContentCondition = slaveContentCondition;
+	*}
+
+	/**
+	 * Gets Content Condition To Read Slave Result Set Property
+	 */	
+	String getSlaveContentCondition() {*
+		return this.DSlaveContentCondition;
+	*}
+
+	/**
+	 * Sets Slave Central Data Provisioner Property
+	 */	
+	void setSlaveProvisioner( /**Slave Central Data Provisioner*/ String slaveProvisioner){*
+		this.DSlaveProvisioner = slaveProvisioner;
+	*}
+
+	/**
+	 * Gets Slave Central Data Provisioner Property
+	 */	
+	String getSlaveProvisioner() {*
+		return this.DSlaveProvisioner;
+	*}
+
+	/**
+	 * Sets Row Condition To Read Slave Result Set Property
+	 */	
+	void setSlaveRowCondition( /**Row Condition To Read Slave Result Set*/ String slaveRowCondition){*
+		this.DSlaveRowCondition = slaveRowCondition;
+	*}
+
+	/**
+	 * Gets Row Condition To Read Slave Result Set Property
+	 */	
+	String getSlaveRowCondition() {*
+		return this.DSlaveRowCondition;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+class org.scn.community.databound.ScatterPlot extends org.scn.community.shared.DataComponent {
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+	/**
+	Set Hexagon Radius
+	*/
+	void setRadius(/*Radius (px)*/int radius) {*
+		this.radius = radius;
+	*}
+	/**
+	Get Hexagon Radius
+	*/
+	int getRadius() {*
+		return this.radius;
+	*}
+	/**
+	Set X-Axis Measure by text
+	*/
+	void setMeasureX(/*Measure*/String measure) {*
+		this.measureX = measure;
+	*}
+	/**
+	Get X-Axis Measure text
+	*/
+	String getMeasureX() {*
+		return this.measureX;
+	*}
+	/**
+	Set Y-Axis Measure by text
+	*/
+	void setMeasureY(/*Measure*/String measure) {*
+		this.measureY = measure;
+	*}
+	/**
+	Get Y-Axis Measure text
+	*/
+	String getMeasureY() {*
+		return this.measureY;
+	*}
+	/**
+	Set Y-Axis Min
+	*/
+	void setMinY(/*Minimume*/int min) {*
+		this.minY = min;
+	*}
+	/**
+	Get Y-Axis Min
+	*/
+	int getMinY() {*
+		return this.minY;
+	*}
+	/**
+	Set Y-Axis Max
+	*/
+	void setMaxY(/*Minimume*/int max) {*
+		this.maxY = max;
+	*}
+	/**
+	Get Y-Axis Max
+	*/
+	int getMaxY() {*
+		return this.maxY;
+	*}
+	/**
+	Set X-Axis Min
+	*/
+	void setMinX(/*Minimume*/int min) {*
+		this.minX = min;
+	*}
+	/**
+	Get X-Axis Min
+	*/
+	int getMinX() {*
+		return this.minX;
+	*}
+	/**
+	Set X-Axis Max
+	*/
+	void setMaxX(/*Minimume*/int max) {*
+		this.maxX = max;
+	*}
+	/**
+	Get X-Axis Max
+	*/
+	int getMaxX() {*
+		return this.maxX;
+	*}
+}
+
+/**
+ * Generated ZTL Class for Slider
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.Slider extends org.scn.community.shared.Component {
+
+
+
+	/**
+	 * Gets Technical Proprty For Pause Refresh Property
+	 */	
+	boolean isDoRefresh() {*
+		return this.doRefresh;
+	*}
+
+	/**
+	 * Sets Maximum Number Property
+	 */	
+	void setMaxNumber( /**Maximum Number*/ int maxNumber){*
+		this.maxNumber = maxNumber;
+	*}
+
+	/**
+	 * Gets Maximum Number Property
+	 */	
+	int getMaxNumber() {*
+		return this.maxNumber;
+	*}
+
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Text Property
+	 */	
+	String getSelectedText() {*
+		return this.selectedText;
+	*}
+
+	/**
+	 * Sets Sorting By Value | Defalut Property by String
+	 */	
+	void setSortingByString( /**Sorting By Value | Defalut*/ String sorting){*
+		this.sorting = sorting;
+	*}
+
+	/**
+	 * Gets Sorting By Value | Defalut Property as String
+	 */	
+	String getSortingAsString() {*
+		return this.sorting;
+	*}
+	
+	/**
+	 * Sets Sorting By Value | Defalut Property by Choice Option
+	 */	
+	void setSorting( /**Sorting By Value | Defalut*/ org_scn_community_shared_Enumfield sorting){*
+		this.sorting = sorting;
+	*}
+	
+	/**
+	 * Gets Sorting By Value | Defalut Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getSorting() {*
+		return this.sorting;
+	*}
+
+	/**
+	 * Sets Top X, Bottom X Or Both Property by String
+	 */	
+	void setTopBottomByString( /**Top X, Bottom X Or Both*/ String topBottom){*
+		this.topBottom = topBottom;
+	*}
+
+	/**
+	 * Gets Top X, Bottom X Or Both Property as String
+	 */	
+	String getTopBottomAsString() {*
+		return this.topBottom;
+	*}
+	
+	/**
+	 * Sets Top X, Bottom X Or Both Property by Choice Option
+	 */	
+	void setTopBottom( /**Top X, Bottom X Or Both*/ org_scn_community_shared_MemberSelectionEnumfield topBottom){*
+		this.topBottom = topBottom;
+	*}
+	
+	/**
+	 * Gets Top X, Bottom X Or Both Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberSelectionEnumfield getTopBottom() {*
+		return this.topBottom;
+	*}
+
+	/**
+	 * Sets Change To Vertical Orientation Property
+	 */	
+	void setVertical( /**Change To Vertical Orientation*/ boolean vertical){*
+		this.vertical = vertical;
+	*}
+
+	/**
+	 * Gets Change To Vertical Orientation Property
+	 */	
+	boolean isVertical() {*
+		return this.vertical;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Generated ZTL Class for Table
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.Table extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Column 1 Property
+	 */	
+	void setColumn1( /**Column 1*/ ResultCellList column1){*
+		this.column1 = column1;
+	*}
+
+	/**
+	 * Gets Column 1 Property
+	 */	
+	ResultCellList getColumn1() {*
+		return this.column1;
+	*}
+
+	/**
+	 * Sets Column 2 Property
+	 */	
+	void setColumn2( /**Column 2*/ ResultCellList column2){*
+		this.column2 = column2;
+	*}
+
+	/**
+	 * Gets Column 2 Property
+	 */	
+	ResultCellList getColumn2() {*
+		return this.column2;
+	*}
+
+	/**
+	 * Sets Column 3 Property
+	 */	
+	void setColumn3( /**Column 3*/ ResultCellList column3){*
+		this.column3 = column3;
+	*}
+
+	/**
+	 * Gets Column 3 Property
+	 */	
+	ResultCellList getColumn3() {*
+		return this.column3;
+	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Class for Tag Cloud
+ */
+
+class org.scn.community.databound.tagCloud extends org.scn.community.shared.DataComponent {
+
+/* Returns the Key of the currently selected Tree Element. */
+	String getSelectedNodeKey() {*
+		return this.selectedNode;
+	*}
+	
+}
+
+/**
+ * Generated ZTL Class for TopFlop
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.TopFlop extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Add Counter Property
+	 */	
+	void setAddCounter( /**Add Counter*/ boolean addCounter){*
+		this.addCounter = addCounter;
+	*}
+
+	/**
+	 * Gets Add Counter Property
+	 */	
+	boolean isAddCounter() {*
+		return this.addCounter;
+	*}
+
+	/**
+	 * Sets Prefix For Average Value Property
+	 */	
+	void setAveragePrefix( /**Prefix For Average Value*/ String averagePrefix){*
+		this.averagePrefix = averagePrefix;
+	*}
+
+	/**
+	 * Gets Prefix For Average Value Property
+	 */	
+	String getAveragePrefix() {*
+		return this.averagePrefix;
+	*}
+
+	/**
+	 * Sets Suffix For Average Value Property
+	 */	
+	void setAverageSuffix( /**Suffix For Average Value*/ String averageSuffix){*
+		this.averageSuffix = averageSuffix;
+	*}
+
+	/**
+	 * Gets Suffix For Average Value Property
+	 */	
+	String getAverageSuffix() {*
+		return this.averageSuffix;
+	*}
+
+
+
+	/**
+	 * Sets Delta Value Suffix Text Property
+	 */	
+	void setDeltaValueSuffix( /**Delta Value Suffix Text*/ String deltaValueSuffix){*
+		this.deltaValueSuffix = deltaValueSuffix;
+	*}
+
+	/**
+	 * Gets Delta Value Suffix Text Property
+	 */	
+	String getDeltaValueSuffix() {*
+		return this.deltaValueSuffix;
+	*}
+
+	/**
+	 * Sets Url For The Fallback Picture Property
+	 */	
+	void setFallbackPicture( /**Url For The Fallback Picture*/ String fallbackPicture){*
+		this.fallbackPicture = fallbackPicture;
+	*}
+
+	/**
+	 * Gets Url For The Fallback Picture Property
+	 */	
+	String getFallbackPicture() {*
+		return this.fallbackPicture;
+	*}
+
+	/**
+	 * Sets Fixed Average Value (-1 For Calculated Average) Property
+	 */	
+	void setFixedAverage( /**Fixed Average Value (-1 For Calculated Average)*/ float fixedAverage){*
+		this.fixedAverage = fixedAverage;
+	*}
+
+	/**
+	 * Gets Fixed Average Value (-1 For Calculated Average) Property
+	 */	
+	float getFixedAverage() {*
+		return this.fixedAverage;
+	*}
+
+	/**
+	 * Sets Maximum Number Property
+	 */	
+	void setMaxNumber( /**Maximum Number*/ int maxNumber){*
+		this.maxNumber = maxNumber;
+	*}
+
+	/**
+	 * Gets Maximum Number Property
+	 */	
+	int getMaxNumber() {*
+		return this.maxNumber;
+	*}
+
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Pressed Key Property
+	 */	
+	String getPressedKey() {*
+		return this.pressedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Sets Top X, Bottom X Or Both Property by String
+	 */	
+	void setTopBottomByString( /**Top X, Bottom X Or Both*/ String topBottom){*
+		this.topBottom = topBottom;
+	*}
+
+	/**
+	 * Gets Top X, Bottom X Or Both Property as String
+	 */	
+	String getTopBottomAsString() {*
+		return this.topBottom;
+	*}
+	
+	/**
+	 * Sets Top X, Bottom X Or Both Property by Choice Option
+	 */	
+	void setTopBottom( /**Top X, Bottom X Or Both*/ org_scn_community_shared_MemberSelectionEnumfield topBottom){*
+		this.topBottom = topBottom;
+	*}
+	
+	/**
+	 * Gets Top X, Bottom X Or Both Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberSelectionEnumfield getTopBottom() {*
+		return this.topBottom;
+	*}
+
+	/**
+	 * Sets Use Pictures Property
+	 */	
+	void setUsePictures( /**Use Pictures*/ boolean usePictures){*
+		this.usePictures = usePictures;
+	*}
+
+	/**
+	 * Gets Use Pictures Property
+	 */	
+	boolean isUsePictures() {*
+		return this.usePictures;
+	*}
+
+	/**
+	 * Sets Value Decimal Places Property by String
+	 */	
+	void setValueDecimalPlacesByString( /**Value Decimal Places*/ String valueDecimalPlaces){*
+		this.valueDecimalPlaces = valueDecimalPlaces;
+	*}
+
+	/**
+	 * Gets Value Decimal Places Property as String
+	 */	
+	String getValueDecimalPlacesAsString() {*
+		return this.valueDecimalPlaces;
+	*}
+	
+	/**
+	 * Sets Value Decimal Places Property by Choice Option
+	 */	
+	void setValueDecimalPlaces( /**Value Decimal Places*/ org_scn_community_shared_DecimalPlacesEnumfield valueDecimalPlaces){*
+		this.valueDecimalPlaces = valueDecimalPlaces;
+	*}
+	
+	/**
+	 * Gets Value Decimal Places Property as Choice Option
+	 */	
+	org_scn_community_shared_DecimalPlacesEnumfield getValueDecimalPlaces() {*
+		return this.valueDecimalPlaces;
+	*}
+
+	/**
+	 * Sets Value Prefix Text Property
+	 */	
+	void setValuePrefix( /**Value Prefix Text*/ String valuePrefix){*
+		this.valuePrefix = valuePrefix;
+	*}
+
+	/**
+	 * Gets Value Prefix Text Property
+	 */	
+	String getValuePrefix() {*
+		return this.valuePrefix;
+	*}
+
+	/**
+	 * Sets Value Suffix Text Property
+	 */	
+	void setValueSuffix( /**Value Suffix Text*/ String valueSuffix){*
+		this.valueSuffix = valueSuffix;
+	*}
+
+	/**
+	 * Gets Value Suffix Text Property
+	 */	
+	String getValueSuffix() {*
+		return this.valueSuffix;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Generated ZTL Class for TopFlopChart
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Add Counter Property
+	 */	
+	void setAddCounter( /**Add Counter*/ boolean addCounter){*
+		this.addCounter = addCounter;
+	*}
+
+	/**
+	 * Gets Add Counter Property
+	 */	
+	boolean isAddCounter() {*
+		return this.addCounter;
+	*}
+
+	/**
+	 * Sets Allow Any Interaction (Link, Selection) Property
+	 */	
+	void setAllowInteraction( /**Allow Any Interaction (Link, Selection)*/ boolean allowInteraction){*
+		this.allowInteraction = allowInteraction;
+	*}
+
+	/**
+	 * Gets Allow Any Interaction (Link, Selection) Property
+	 */	
+	boolean isAllowInteraction() {*
+		return this.allowInteraction;
+	*}
+
+	/**
+	 * Sets Prefix For Average Value Property
+	 */	
+	void setAveragePrefix( /**Prefix For Average Value*/ String averagePrefix){*
+		this.averagePrefix = averagePrefix;
+	*}
+
+	/**
+	 * Gets Prefix For Average Value Property
+	 */	
+	String getAveragePrefix() {*
+		return this.averagePrefix;
+	*}
+
+	/**
+	 * Sets Suffix For Average Value Property
+	 */	
+	void setAverageSuffix( /**Suffix For Average Value*/ String averageSuffix){*
+		this.averageSuffix = averageSuffix;
+	*}
+
+	/**
+	 * Gets Suffix For Average Value Property
+	 */	
+	String getAverageSuffix() {*
+		return this.averageSuffix;
+	*}
+
+	/**
+	 * Sets Place An Empty Area After Average Is Matched Property
+	 */	
+	void setBreakOnAverage( /**Place An Empty Area After Average Is Matched*/ boolean breakOnAverage){*
+		this.breakOnAverage = breakOnAverage;
+	*}
+
+	/**
+	 * Gets Place An Empty Area After Average Is Matched Property
+	 */	
+	boolean isBreakOnAverage() {*
+		return this.breakOnAverage;
+	*}
+
+	/**
+	 * Sets Place An Empty Area After Index Property
+	 */	
+	void setBreakOnIndex( /**Place An Empty Area After Index*/ int breakOnIndex){*
+		this.breakOnIndex = breakOnIndex;
+	*}
+
+	/**
+	 * Gets Place An Empty Area After Index Property
+	 */	
+	int getBreakOnIndex() {*
+		return this.breakOnIndex;
+	*}
+
+
+
+	/**
+	 * Sets Delta Value Suffix Text Property
+	 */	
+	void setDeltaValueSuffix( /**Delta Value Suffix Text*/ String deltaValueSuffix){*
+		this.deltaValueSuffix = deltaValueSuffix;
+	*}
+
+	/**
+	 * Gets Delta Value Suffix Text Property
+	 */	
+	String getDeltaValueSuffix() {*
+		return this.deltaValueSuffix;
+	*}
+
+	/**
+	 * Sets Url For The Fallback Picture Property
+	 */	
+	void setFallbackPicture( /**Url For The Fallback Picture*/ String fallbackPicture){*
+		this.fallbackPicture = fallbackPicture;
+	*}
+
+	/**
+	 * Gets Url For The Fallback Picture Property
+	 */	
+	String getFallbackPicture() {*
+		return this.fallbackPicture;
+	*}
+
+	/**
+	 * Sets Fixed Average Value (-1 For Calculated Average) Property
+	 */	
+	void setFixedAverage( /**Fixed Average Value (-1 For Calculated Average)*/ int fixedAverage){*
+		this.fixedAverage = fixedAverage;
+	*}
+
+	/**
+	 * Gets Fixed Average Value (-1 For Calculated Average) Property
+	 */	
+	int getFixedAverage() {*
+		return this.fixedAverage;
+	*}
+
+	/**
+	 * Sets Maximum Number Property
+	 */	
+	void setMaxNumber( /**Maximum Number*/ int maxNumber){*
+		this.maxNumber = maxNumber;
+	*}
+
+	/**
+	 * Gets Maximum Number Property
+	 */	
+	int getMaxNumber() {*
+		return this.maxNumber;
+	*}
+
+	/**
+	 * Sets Maximal Size Of The Value Area In Px Property
+	 */	
+	void setMaxValueSize( /**Maximal Size Of The Value Area In Px*/ int maxValueSize){*
+		this.maxValueSize = maxValueSize;
+	*}
+
+	/**
+	 * Gets Maximal Size Of The Value Area In Px Property
+	 */	
+	int getMaxValueSize() {*
+		return this.maxValueSize;
+	*}
+
+
+
+
+
+	/**
+	 * Gets Technical Proprty For Pressed Key Property
+	 */	
+	String getPressedKey() {*
+		return this.pressedKey;
+	*}
+
+	/**
+	 * Gets Technical Proprty For Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+	/**
+	 * Sets Show Average Information Property
+	 */	
+	void setShowAverage( /**Show Average Information*/ boolean showAverage){*
+		this.showAverage = showAverage;
+	*}
+
+	/**
+	 * Gets Show Average Information Property
+	 */	
+	boolean isShowAverage() {*
+		return this.showAverage;
+	*}
+
+	/**
+	 * Sets Show Delta Value In Item Property
+	 */	
+	void setShowDelta( /**Show Delta Value In Item*/ boolean showDelta){*
+		this.showDelta = showDelta;
+	*}
+
+	/**
+	 * Gets Show Delta Value In Item Property
+	 */	
+	boolean isShowDelta() {*
+		return this.showDelta;
+	*}
+
+	/**
+	 * Sets Top X, Bottom X Or Both Property by String
+	 */	
+	void setTopBottomByString( /**Top X, Bottom X Or Both*/ String topBottom){*
+		this.topBottom = topBottom;
+	*}
+
+	/**
+	 * Gets Top X, Bottom X Or Both Property as String
+	 */	
+	String getTopBottomAsString() {*
+		return this.topBottom;
+	*}
+	
+	/**
+	 * Sets Top X, Bottom X Or Both Property by Choice Option
+	 */	
+	void setTopBottom( /**Top X, Bottom X Or Both*/ org_scn_community_shared_MemberSelectionEnumfield topBottom){*
+		this.topBottom = topBottom;
+	*}
+	
+	/**
+	 * Gets Top X, Bottom X Or Both Property as Choice Option
+	 */	
+	org_scn_community_shared_MemberSelectionEnumfield getTopBottom() {*
+		return this.topBottom;
+	*}
+
+	/**
+	 * Sets Mark Background Property
+	 */	
+	void setUseBackground( /**Mark Background*/ boolean useBackground){*
+		this.useBackground = useBackground;
+	*}
+
+	/**
+	 * Gets Mark Background Property
+	 */	
+	boolean isUseBackground() {*
+		return this.useBackground;
+	*}
+
+	/**
+	 * Sets Use Delta As Value Property
+	 */	
+	void setUseDelta( /**Use Delta As Value*/ boolean useDelta){*
+		this.useDelta = useDelta;
+	*}
+
+	/**
+	 * Gets Use Delta As Value Property
+	 */	
+	boolean isUseDelta() {*
+		return this.useDelta;
+	*}
+
+	/**
+	 * Sets Use Pictures Property
+	 */	
+	void setUsePictures( /**Use Pictures*/ boolean usePictures){*
+		this.usePictures = usePictures;
+	*}
+
+	/**
+	 * Gets Use Pictures Property
+	 */	
+	boolean isUsePictures() {*
+		return this.usePictures;
+	*}
+
+	/**
+	 * Sets Value Decimal Places Property by String
+	 */	
+	void setValueDecimalPlacesByString( /**Value Decimal Places*/ String valueDecimalPlaces){*
+		this.valueDecimalPlaces = valueDecimalPlaces;
+	*}
+
+	/**
+	 * Gets Value Decimal Places Property as String
+	 */	
+	String getValueDecimalPlacesAsString() {*
+		return this.valueDecimalPlaces;
+	*}
+	
+	/**
+	 * Sets Value Decimal Places Property by Choice Option
+	 */	
+	void setValueDecimalPlaces( /**Value Decimal Places*/ org_scn_community_shared_DecimalPlacesEnumfield valueDecimalPlaces){*
+		this.valueDecimalPlaces = valueDecimalPlaces;
+	*}
+	
+	/**
+	 * Gets Value Decimal Places Property as Choice Option
+	 */	
+	org_scn_community_shared_DecimalPlacesEnumfield getValueDecimalPlaces() {*
+		return this.valueDecimalPlaces;
+	*}
+
+	/**
+	 * Sets Value Prefix Text Property
+	 */	
+	void setValuePrefix( /**Value Prefix Text*/ String valuePrefix){*
+		this.valuePrefix = valuePrefix;
+	*}
+
+	/**
+	 * Gets Value Prefix Text Property
+	 */	
+	String getValuePrefix() {*
+		return this.valuePrefix;
+	*}
+
+	/**
+	 * Sets Text / Value Split Point In Px Property
+	 */	
+	void setValueStart( /**Text / Value Split Point In Px*/ int valueStart){*
+		this.valueStart = valueStart;
+	*}
+
+	/**
+	 * Gets Text / Value Split Point In Px Property
+	 */	
+	int getValueStart() {*
+		return this.valueStart;
+	*}
+
+	/**
+	 * Sets Value Suffix Text Property
+	 */	
+	void setValueSuffix( /**Value Suffix Text*/ String valueSuffix){*
+		this.valueSuffix = valueSuffix;
+	*}
+
+	/**
+	 * Gets Value Suffix Text Property
+	 */	
+	String getValueSuffix() {*
+		return this.valueSuffix;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Generated ZTL Class for UI5Table
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.UI5Table extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Allow Reorder of Columns Property
+	 */	
+	void setAllowColumnReorder( /**Allow Reorder of Columns*/ boolean allowColumnReorder){*
+		this.DAllowColumnReorder = allowColumnReorder;
+	*}
+
+	/**
+	 * Gets Allow Reorder of Columns Property
+	 */	
+	boolean isAllowColumnReorder() {*
+		return this.DAllowColumnReorder;
+	*}
+
+	/**
+	 * Sets Allow Filter in Columns Property
+	 */	
+	void setAllowFilter( /**Allow Filter in Columns*/ boolean allowFilter){*
+		this.DAllowFilter = allowFilter;
+	*}
+
+	/**
+	 * Gets Allow Filter in Columns Property
+	 */	
+	boolean isAllowFilter() {*
+		return this.DAllowFilter;
+	*}
+
+	/**
+	 * Sets Allow Selection in the Table Property
+	 */	
+	void setAllowSelection( /**Allow Selection in the Table*/ boolean allowSelection){*
+		this.DAllowSelection = allowSelection;
+	*}
+
+	/**
+	 * Gets Allow Selection in the Table Property
+	 */	
+	boolean isAllowSelection() {*
+		return this.DAllowSelection;
+	*}
+
+	/**
+	 * Sets Allow Sort in Columns Property
+	 */	
+	void setAllowSort( /**Allow Sort in Columns*/ boolean allowSort){*
+		this.DAllowSort = allowSort;
+	*}
+
+	/**
+	 * Gets Allow Sort in Columns Property
+	 */	
+	boolean isAllowSort() {*
+		return this.DAllowSort;
+	*}
+
+	/** Adds a root element containing key [String], width [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	UI5TABLE.addColumnWidthEntry(key [String], width [String]);<br>
+	UI5TABLE.addColumnWidthEntry(key [String], width [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addColumnWidthEntry (
+			/**Column index (0-based)*/String key, 
+			/**Width with unit (e.g. 200px | 30%)*/String width
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			width:width
+			};
+
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DDataColWidths);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	UI5TABLE.removeColumnWidthEntry(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeColumnWidthEntry (
+			String key
+			) {*
+
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DDataColWidths);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	UI5TABLE.insertColumnWidthEntry(index [int], key [String], width [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertColumnWidthEntry (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Column index (0-based)*/String key, 
+			/**Width with unit (e.g. 200px | 30%)*/String width
+			) {*
+
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DDataColWidths);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			width:width
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DDataColWidths = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given ColumnWidthEntry<br/>
+	 */
+	void updateColumnWidthEntry (
+			/**Column index (0-based)*/String key, 
+			/**Width with unit (e.g. 200px | 30%)*/String width
+			) 
+	{*
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			width:width
+		};
+
+		var elementsJson = JSON.parse(this.DDataColWidths);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getColumnWidthEntryAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			this.DDataColWidths = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DDataColWidths);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets ColumnWidthEntrys As JSON String
+	 */	
+	String getColumnWidthEntrysAsJSON() {*
+		var jsonObject = JSON.parse(this.DDataColWidths);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Width for ColumnWidthEntry keys<br/>
+	 */
+	void setColumnWidthEntryWidths (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Width */ String width
+			) 
+	{*
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DDataColWidths);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].width = width;
+					break;
+				}
+			}
+		}
+		
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Width for ColumnWidthEntry Key<br/>
+	 */
+	void setColumnWidthEntryWidth (
+			/**/ String key,
+			/**/ String width
+			) 
+	{*
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DDataColWidths);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].width = width;
+				break;
+			}
+		}
+
+		this.DDataColWidths = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Width for ColumnWidthEntry Key<br/>
+	 */
+	String getColumnWidthEntryWidth (
+			/**/ String key
+			) 
+	{*
+		if (this.DDataColWidths === undefined || this.DDataColWidths === "" || this.DDataColWidths === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DDataColWidths);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].width;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
+
+	/**
+	 * Sets Central Result Set with Data Property
+	 */	
+	void setDataProvisioner( /**Central Result Set with Data*/ String dataProvisioner){*
+		this.DDataProvisioner = dataProvisioner;
+	*}
+
+	/**
+	 * Gets Central Result Set with Data Property
+	 */	
+	String getDataProvisioner() {*
+		return this.DDataProvisioner;
+	*}
+
+	/**
+	 * Sets Empty Value For Data Cell Property
+	 */	
+	void setEmptyDataValue( /**Empty Value For Data Cell*/ String emptyDataValue){*
+		this.DEmptyDataValue = emptyDataValue;
+	*}
+
+	/**
+	 * Gets Empty Value For Data Cell Property
+	 */	
+	String getEmptyDataValue() {*
+		return this.DEmptyDataValue;
+	*}
+
+	/**
+	 * Sets Empty Value For Header Cell Property
+	 */	
+	void setEmptyHeaderValue( /**Empty Value For Header Cell*/ String emptyHeaderValue){*
+		this.DEmptyHeaderValue = emptyHeaderValue;
+	*}
+
+	/**
+	 * Gets Empty Value For Header Cell Property
+	 */	
+	String getEmptyHeaderValue() {*
+		return this.DEmptyHeaderValue;
+	*}
+
+	/**
+	 * Sets Fix Header Rows Property
+	 */	
+	void setFixedHeader( /**Fix Header Rows*/ boolean fixedHeader){*
+		this.DFixedHeader = fixedHeader;
+	*}
+
+	/**
+	 * Gets Fix Header Rows Property
+	 */	
+	boolean isFixedHeader() {*
+		return this.DFixedHeader;
+	*}
+
+	/** Adds an element containing parentKey [String], key [String] properties.
+	 * You need to specify a unique and existing parent element.
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	UI5TABLE.addMembers(parentKey [String], key [String]);<br>
+	UI5TABLE.addMembers(parentKey [String], key [String]);
+	</code>
+	</example>
+	 */
+	void addMembers (
+			/**Parent Key*/String parentKey, 
+			/**Content*/String key
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key 
+			};
+	
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			this.DFormattingContentCondition = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], description [String], condition [String], columnHeaderId [String], exclude [boolean], simpleFormat [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	UI5TABLE.addRule(key [String], description [String], condition [String], columnHeaderId [String], exclude [boolean], simpleFormat [String]);<br>
+	UI5TABLE.addRule(key [String], description [String], condition [String], columnHeaderId [String], exclude [boolean], simpleFormat [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addRule (
+			/**Unique Rule Key*/String key, 
+			/**Optional Description*/String description, 
+			/**Condition*/String condition, 
+			/**Column Header Id*/String columnHeaderId, 
+			/**Exclude*/boolean exclude, 
+			/**Simple Format Name*/String simpleFormat
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:false,
+			parentKey:"ROOT",
+			key:key, 
+			description:description, 
+			condition:condition, 
+			columnHeaderId:columnHeaderId, 
+			exclude:exclude, 
+			simpleFormat:simpleFormat 
+			};
+	
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			this.DFormattingContentCondition = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	UI5TABLE.removeMembers(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeMembers (
+			String key
+			) {*		
+		
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			this.DFormattingContentCondition = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	UI5TABLE.removeRule(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeRule (
+			String key
+			) {*		
+		
+		this.removeMembers(key);
+	*}
+
+	/**
+	 * Gets Rules As JSON String
+	 */	
+	String getRulesAsJSON() {*
+		var jsonObject = JSON.parse(this.DFormattingContentCondition);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Description for Rule keys<br/>
+	 */
+	void setRuleDescriptions (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Description */ String description
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].description = description;
+					break;
+				}
+			}
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Description for Rule Key<br/>
+	 */
+	void setRuleDescription (
+			/**/ String key,
+			/**/ String description
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].description = description;
+				break;
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Description for Rule Key<br/>
+	 */
+	String getRuleDescription (
+			/**/ String key
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].description;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Condition for Rule keys<br/>
+	 */
+	void setRuleConditions (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Condition */ String condition
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].condition = condition;
+					break;
+				}
+			}
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Condition for Rule Key<br/>
+	 */
+	void setRuleCondition (
+			/**/ String key,
+			/**/ String condition
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].condition = condition;
+				break;
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Condition for Rule Key<br/>
+	 */
+	String getRuleCondition (
+			/**/ String key
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].condition;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the ColumnHeaderId for Rule keys<br/>
+	 */
+	void setRuleColumnHeaderIds (
+			/**/ String keys,
+			/**/ String separator,
+	        /* ColumnHeaderId */ String columnHeaderId
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].columnHeaderId = columnHeaderId;
+					break;
+				}
+			}
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the ColumnHeaderId for Rule Key<br/>
+	 */
+	void setRuleColumnHeaderId (
+			/**/ String key,
+			/**/ String columnHeaderId
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].columnHeaderId = columnHeaderId;
+				break;
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of ColumnHeaderId for Rule Key<br/>
+	 */
+	String getRuleColumnHeaderId (
+			/**/ String key
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].columnHeaderId;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Exclude for Rule keys<br/>
+	 */
+	void setRuleExcludes (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].exclude = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].exclude = true;
+					break;
+				}
+			}
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Exclude for Rule Key<br/>
+	 */
+	void setRuleExclude (
+			/**/ String key,
+			/**/ boolean exclude
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].exclude = exclude;
+				break;
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Exclude of Rule keys<br/>
+	 */
+	void cleanAllRuleExcludes (
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].exclude = false;
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Exclude for Rule Key<br/>
+	 */
+	String getRuleExclude (
+			/**/ String key
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].exclude;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+	/**
+	 * Returns the Exclude keys<br/>
+	 */
+	org.scn.pack.KeyArray getRuleExcludeKeysArray (
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].exclude == true) {
+				newElementsJson.push(elementsJson[i]);
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the SimpleFormat for Rule keys<br/>
+	 */
+	void setRuleSimpleFormats (
+			/**/ String keys,
+			/**/ String separator,
+	        /* SimpleFormat */ String simpleFormat
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].simpleFormat = simpleFormat;
+					break;
+				}
+			}
+		}
+		
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the SimpleFormat for Rule Key<br/>
+	 */
+	void setRuleSimpleFormat (
+			/**/ String key,
+			/**/ String simpleFormat
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].simpleFormat = simpleFormat;
+				break;
+			}
+		}
+
+		this.DFormattingContentCondition = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of SimpleFormat for Rule Key<br/>
+	 */
+	String getRuleSimpleFormat (
+			/**/ String key
+			) 
+	{*
+		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DFormattingContentCondition);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].simpleFormat;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
+	/**
+	 * Sets Formatting Operator Property by String
+	 */	
+	void setFormattingOperatorByString( /**Formatting Operator*/ String formattingOperator){*
+		this.DFormattingOperator = formattingOperator;
+	*}
+
+	/**
+	 * Gets Formatting Operator Property as String
+	 */	
+	String getFormattingOperatorAsString() {*
+		return this.DFormattingOperator;
+	*}
+	
+	/**
+	 * Sets Formatting Operator Property by Choice Option
+	 */	
+	void setFormattingOperator( /**Formatting Operator*/ org_scn_community_shared_FormattingOperatorEnumfield formattingOperator){*
+		this.DFormattingOperator = formattingOperator;
+	*}
+	
+	/**
+	 * Gets Formatting Operator Property as Choice Option
+	 */	
+	org_scn_community_shared_FormattingOperatorEnumfield getFormattingOperator() {*
+		return this.DFormattingOperator;
+	*}
+
+	/**
+	 * Sets Rules for Number Values Property
+	 */	
+	void setFormattingValueCondition( /**Rules for Number Values*/ String formattingValueCondition){*
+		this.DFormattingValueCondition = formattingValueCondition;
+	*}
+
+	/**
+	 * Gets Rules for Number Values Property
+	 */	
+	String getFormattingValueCondition() {*
+		return this.DFormattingValueCondition;
+	*}
+
+	/**
+	 * Sets Header Column Width in px Property
+	 */	
+	void setHeaderColWidth( /**Header Column Width in px*/ int headerColWidth){*
+		this.DHeaderColWidth = headerColWidth;
+	*}
+
+	/**
+	 * Gets Header Column Width in px Property
+	 */	
+	int getHeaderColWidth() {*
+		return this.DHeaderColWidth;
+	*}
+
+	/**
+	 * Sets Fixed Column Index (-1 means Row Dimensions) Property
+	 */	
+	void setHeaderColumnFixed( /**Fixed Column Index (-1 means Row Dimensions)*/ int headerColumnFixed){*
+		this.DHeaderColumnFixed = headerColumnFixed;
+	*}
+
+	/**
+	 * Gets Fixed Column Index (-1 means Row Dimensions) Property
+	 */	
+	int getHeaderColumnFixed() {*
+		return this.DHeaderColumnFixed;
+	*}
+
+	/**
+	 * Sets Ignore Results Property
+	 */	
+	void setIgnoreResults( /**Ignore Results*/ boolean ignoreResults){*
+		this.DIgnoreResults = ignoreResults;
+	*}
+
+	/**
+	 * Gets Ignore Results Property
+	 */	
+	boolean isIgnoreResults() {*
+		return this.DIgnoreResults;
+	*}
+
+	/**
+	 * Sets Navigation Mode Property by String
+	 */	
+	void setNavigationModeByString( /**Navigation Mode*/ String navigationMode){*
+		this.DNavigationMode = navigationMode;
+	*}
+
+	/**
+	 * Gets Navigation Mode Property as String
+	 */	
+	String getNavigationModeAsString() {*
+		return this.DNavigationMode;
+	*}
+	
+	/**
+	 * Sets Navigation Mode Property by Choice Option
+	 */	
+	void setNavigationMode( /**Navigation Mode*/ org_scn_community_shared_NavigationModeEnumfield navigationMode){*
+		this.DNavigationMode = navigationMode;
+	*}
+	
+	/**
+	 * Gets Navigation Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_NavigationModeEnumfield getNavigationMode() {*
+		return this.DNavigationMode;
+	*}
+
+	/**
+	 * Sets Show Only Header Columns Property
+	 */	
+	void setOnlyHeaderColumns( /**Show Only Header Columns*/ boolean onlyHeaderColumns){*
+		this.DOnlyHeaderColumns = onlyHeaderColumns;
+	*}
+
+	/**
+	 * Gets Show Only Header Columns Property
+	 */	
+	boolean isOnlyHeaderColumns() {*
+		return this.DOnlyHeaderColumns;
+	*}
+
+	/**
+	 * Sets Row Height in px Property
+	 */	
+	void setRowHeight( /**Row Height in px*/ int rowHeight){*
+		this.DRowHeight = rowHeight;
+	*}
+
+	/**
+	 * Gets Row Height in px Property
+	 */	
+	int getRowHeight() {*
+		return this.DRowHeight;
+	*}
+
+
+
+	/**
+	 * Sets Visible Row Count Property
+	 */	
+	void setVisibleRowCount( /**Visible Row Count*/ int visibleRowCount){*
+		this.DVisibleRowCount = visibleRowCount;
+	*}
+
+	/**
+	 * Gets Visible Row Count Property
+	 */	
+	int getVisibleRowCount() {*
+		return this.DVisibleRowCount;
+	*}
+
+
+
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Gets Selection As JSON String
+	 */	
+	String getSelectionAsJSON() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Gets Selection As JSON String
+	 */	
+	JSON getSelectionAsJSONObject() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Selected Row Index (0 - based)
+	 */
+	int getSelectedRow() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.row;
+	*}
+	
+	/**
+	 * Selected Column Index (0 - based)
+	 */
+	int getSelectedColumn() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.column;
+	*}
+
+	/**
+	 * Selected Visual Row Index (0 - based)
+	 */
+	int getSelectedVisualRow() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.visualRow;
+	*}
+	
+	/**
+	 * Selected Visual Column Index (0 - based)
+	 */
+	int getSelectedVisualColumn() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.visualColumn;
+	*}
+
+	/**
+	 * Selected Value Content
+	 */
+	int getSelectedValue() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.value;
+	*}
+	
+	/**
+	 * Selection Space (Header, Data)
+	 */
+	String getSelectionSpace() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		return jsonObject.value;
+	*}
+
+	/**
+	 * Return dimensions and corresponding members for the selection as array
+	 */
+	org.scn.community.shared.DimensionMemberArray getSelectionDimensionMembers() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		
+		var tempA = [];
+		
+		for(var i=0;i<jsonObject.rowDimensions.length;i++){
+			var itemDef = { 
+				"dimension": jsonObject.rowDimensions[i].key, 
+				"member": jsonObject.rowKeys[i]
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		if(jsonObject.columnDimensions) {
+			for(var i=0;i<jsonObject.columnDimensions.length;i++){
+				var itemDef = { 
+					"dimension": jsonObject.columnDimensions[i].key, 
+					"member": jsonObject.columnKeys[i]
+				};
+				
+				tempA.push(itemDef);
+			}
+		}
+		
+		return tempA;
+	*}
+
+	/**
+	 * Values of the Row
+	 */
+	StringArray getSelectionRowValues() {*
+		var jsonObject = JSON.parse(this.DSelection);
+		
+	
+		var tempA = [];
+		for(var i=0;i<jsonObject.rowValues.length;i++){
+			var itemDef = jsonObject.rowValues[i];
+			
+			tempA.push(itemDef);
+		}
+
+		return tempA;
+	*}
+}
+
+/**
+ * Generated ZTL Class for AreaMicroChart
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.AreaMicroChart extends org.scn.community.shared.ui5.MicroAreaChart {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Generated ZTL Class for BulletMicroChart
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.BulletMicroChart extends org.scn.community.shared.ui5.BulletChart {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
+ * Generated ZTL Class for HarveyBallMicroChart
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.HarveyBallMicroChart extends org.scn.community.shared.ui5.HarveyBallMicroChart {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+/* ZTL END */

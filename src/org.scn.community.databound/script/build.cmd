@@ -54,7 +54,6 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\AdvancedDataTable\def\contribution.ztl ^
 ..\res\BulletChart\def\contribution.ztl ^
 ..\res\Choropleth\def\contribution.ztl ^
-..\res\DataTable\def\contribution.ztl ^
 ..\res\DropDown\def\contribution.ztl ^
 ..\res\Hierarchy\def\contribution.ztl ^
 ..\res\FacetFilter\def\contribution.ztl ^
@@ -77,6 +76,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ResultSetMixer\def\contribution.ztl ^
 ..\res\ScatterPlot\def\contribution.ztl ^
 ..\res\Slider\def\contribution.ztl ^
+..\res\Table\def\contribution.ztl ^
 ..\res\TagCloud\def\contribution.ztl ^
 ..\res\TopFlop\def\contribution.ztl ^
 ..\res\TopFlopChart\def\contribution.ztl ^
