@@ -1,8 +1,7 @@
 
 	<group
-		id="ScnCommunityDataBound"
-		title="Scn Community Data Bound"/>
-
-	<group
 		id="ScnCommunityVisualizations"
-		title="Scn Community Visualizations"/>		
+		title="Scn Community Visualizations"/>	
+	<group
+		id="ScnCommunityBasics"
+		title="Scn Community Basics"/>	

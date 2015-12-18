@@ -188,12 +188,11 @@
   </license>
 
 	<group
-		id="ScnCommunityDataBound"
-		title="Scn Community Data Bound"/>
-
-	<group
 		id="ScnCommunityVisualizations"
-		title="Scn Community Visualizations"/>		
+		title="Scn Community Visualizations"/>	
+	<group
+		id="ScnCommunityBasics"
+		title="Scn Community Basics"/>	
 <component
 		id="AdvancedDataTable"
 		title="Advanced Data Table 2.0"
@@ -1042,7 +1041,7 @@
 	<property
 		id="DMaxDisplayMembers"
 		type="int"
-		title="Maximum Number of Members"
+		title="Maximum Members for Display"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1682,7 +1681,7 @@ __n__}
 		modes="commons m"
 		propertySheetPath="aps/PropertyPage.html"	
 		tooltip="Includes D3 Hierarchy"
-		group="ScnCommunityBasics"
+		group="ScnCommunityVisualizations"
 		databound="true">
 		
 		<requireJs modes="commons m">res/Hierarchy/Hierarchy</requireJs>
