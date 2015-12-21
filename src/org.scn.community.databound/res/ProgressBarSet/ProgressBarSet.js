@@ -5,7 +5,9 @@
  *
  */
 
-define(["d3", "../_modules/VizCoreDatabound", "sap/designstudio/sdk/component"], function (d3, VizCoreDatabound, Component) {
+define(["d3",
+        "./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
+        "sap/designstudio/sdk/component"], function (d3, VizCoreDatabound, Component) {
 	var ownComponentName = "org.scn.community.databound.ProgressBarSet";
 	/**
 	 * Progress Bar Set

@@ -1,7 +1,9 @@
  /**
  * Location Intelligence
  */
-define(["../_modules/VizMap","sap/designstudio/sdk/component"], function(VizMap,Component) {
+define(["./../../../org.scn.community.shared/os/viz-modules/VizMap",
+        "sap/designstudio/sdk/component"
+    ], function(VizMap,Component) {
 	var ownComponentName = "org.scn.community.databound.LocationIntel";
 	LocationIntel.prototype = VizMap;
 	function LocationIntel() {
@@ -234,15 +236,20 @@ define(["../_modules/VizMap","sap/designstudio/sdk/component"], function(VizMap,
 					.attr("r", 0)
 					.attr("opacity", this.markerAlpha()/100)
 					.attr("fill", this.markerColor());
-
+				var msObj = jQuery.parseJSON(this.markerSizeMeasure());
+				var msm;
+	        	if(typeof msObj == "object"){
+					msm = this.determineMeasureName(msObj);
+				}else{
+					msm = msObj;			// Backwards compat
+				}
 				this.markerGroup.selectAll("circle")
 					.transition().duration(this.ms())	
 					.attr("r",function(d){
 						if(d.designStudioMeasures){
-							var bm = that.markerSizeMeasure();
-							if(bm){
-								if(d.designStudioMeasures[bm]){
-									return that.bubbleScale(d.designStudioMeasures[bm])/that.zoomScale;
+							if(msm){
+								if(d.designStudioMeasures[msm]){
+									return that.bubbleScale(d.designStudioMeasures[msm])/that.zoomScale;
 									// linear scale
 								}else{
 									return that.markerSize()/that.zoomScale;	
@@ -291,33 +298,36 @@ define(["../_modules/VizMap","sap/designstudio/sdk/component"], function(VizMap,
 	    	};
 			var parentAfterUpdate = this.afterUpdate;
 			this.afterUpdate = function(){
+				this.plots = [];
 				try{
 					var that = this;
-				var dimHeaders = this.flatData.dimensionHeaders.slice();
-				this.plots = [];
-				var latIndex = -1;
-				var lngIndex = -1;
-				var titleIndex = -1;
-				for(var i=0;i<dimHeaders.length;i++){
-					if(dimHeaders[i] == this.latitudeField()) latIndex = i;
-					if(dimHeaders[i] == this.longitudeField()) lngIndex = i;
-					if(dimHeaders[i] == this.markerTitle()) titleIndex = i;
-				}
-				if(latIndex != -1 && lngIndex !=-1){
-					for(var i=0;i<this.flatData.rowHeaders2D.length;i++){
-						var row = this.flatData.rowHeaders2D[i];
-						var dsm = {};
-						for(var j=0;j<this.flatData.columnHeaders.length;j++){
-							dsm[this.flatData.columnHeaders[j]] = this.flatData.values[i][j];
+					if(this.flatData && this.flatData.dimensionHeaders){
+						var dimHeaders = this.flatData.dimensionHeaders.slice();
+						
+						var latIndex = -1;
+						var lngIndex = -1;
+						var titleIndex = -1;
+						for(var i=0;i<dimHeaders.length;i++){
+							if(dimHeaders[i] == this.latitudeField()) latIndex = i;
+							if(dimHeaders[i] == this.longitudeField()) lngIndex = i;
+							if(dimHeaders[i] == this.markerTitle()) titleIndex = i;
 						}
-						this.plots.push({
-							latitude : row[latIndex],
-							longitude : row[lngIndex],
-							title : row[titleIndex],
-							designStudioMeasures : dsm
-						})
+						if(latIndex != -1 && lngIndex !=-1){
+							for(var i=0;i<this.flatData.rowHeaders2D.length;i++){
+								var row = this.flatData.rowHeaders2D[i];
+								var dsm = {};
+								for(var j=0;j<this.flatData.columnHeaders.length;j++){
+									dsm[this.flatData.columnHeaders[j]] = this.flatData.values[i][j];
+								}
+								this.plots.push({
+									latitude : row[latIndex],
+									longitude : row[lngIndex],
+									title : row[titleIndex],
+									designStudioMeasures : dsm
+								})
+							}
+						}						
 					}
-				}
 				}catch(e){
 					alert(e);
 				}

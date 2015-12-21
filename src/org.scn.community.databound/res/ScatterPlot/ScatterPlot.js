@@ -5,7 +5,8 @@
  *
  */
 
-define(["../_modules/VizXYChart","sap/designstudio/sdk/component"], function(VizXYChart,Component) {
+define(["./../../../org.scn.community.shared/os/viz-modules/VizXYChart",
+        "sap/designstudio/sdk/component"], function(VizXYChart,Component) {
 	var ownComponentName = "org.scn.community.databound.ScatterPlot";
 	 /**
 	 * ScatterPlot

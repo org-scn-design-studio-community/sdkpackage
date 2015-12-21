@@ -1,4 +1,6 @@
-define(["d3", "../_modules/SDKCore", "sap/designstudio/sdk/component","css!./Hierarchy.css"], function (d3, SDKCore, Component) {
+define(["d3",
+        "./../../../org.scn.community.shared/os/viz-modules/SDKCore",
+        "sap/designstudio/sdk/component","css!./Hierarchy.css"], function (d3, SDKCore, Component) {
 	var ownComponentName = "org.scn.community.databound.jpd3hier";
 	Hierarchy.prototype = SDKCore;
 	function Hierarchy() {

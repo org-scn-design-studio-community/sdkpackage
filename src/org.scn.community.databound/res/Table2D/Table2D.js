@@ -1,7 +1,10 @@
 /**
  * 2D Table
  */
-define(["css!./Table2D.css", "d3", "../_modules/VizCoreDatabound", "sap/designstudio/sdk/component"], function (css, d3, VizCoreDatabound, Component) {
+define(["css!./Table2D.css",
+        "d3",
+        "./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
+        "sap/designstudio/sdk/component"], function (css, d3, VizCoreDatabound, Component) {
 	var ownComponentName = "org.scn.community.databound.Table2D";
 	Table2D.prototype = VizCoreDatabound;
 	function Table2D() {

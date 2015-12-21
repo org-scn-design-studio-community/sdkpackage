@@ -942,9 +942,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Bring Your Own Data component*/
 	org.scn.community.datasource.BYOData returnAsScnBYOData (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Decorator component*/
-	org.scn.community.datasource.DataDecorator returnAsScnDataDecorator (Component inputComponent) {* return inputComponent; *}
-
 	/**Cast to Dynamic Csv Data Source component*/
 	org.scn.community.datasource.DynCsvDataSource returnAsScnDynCsvDataSource (Component inputComponent) {* return inputComponent; *}
 

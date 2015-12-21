@@ -1,11 +1,12 @@
 /**
  * Base Databound Class
  */
-define(["./VizCore","../../../org.scn.community.shared/modules/component.databound"], function(VizCore, org_scn_community_databound) {
+define(["./VizCore","./../../modules/component.databound"], function(VizCore, org_scn_community_databound) {
 	VizCoreDatabound.prototype = VizCore;
 	VizCoreDatabound.constructor = VizCoreDatabound;
 	function VizCoreDatabound(options){
 		this.flatData = null;
+		this.org_scn_community_databound = org_scn_community_databound;
 		this.flattenData = function (value, options) {
 			// Make a copy so we don't mess with references
 			this.flatData = null;
@@ -140,9 +141,11 @@ define(["./VizCore","../../../org.scn.community.shared/modules/component.databou
 				fieldName = measureObj.fieldName;
 			}
 			if(measureObj.fieldType=="position"){
-				var fieldPosition = measureObj.fieldPosition;
-				if(this.flatData.columnHeadersKeys.length>=fieldPosition-1){
-					fieldName = this.flatData.columnHeadersKeys[fieldPosition];
+				if(this.flatData && this.flatData.columnHeadersKeys){
+					var fieldPosition = measureObj.fieldPosition;
+					if(this.flatData.columnHeadersKeys.length>=fieldPosition-1){
+						fieldName = this.flatData.columnHeadersKeys[fieldPosition];
+					}
 				}
 			}
 			return fieldName;

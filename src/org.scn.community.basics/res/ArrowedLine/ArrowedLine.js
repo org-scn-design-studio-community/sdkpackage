@@ -23,7 +23,8 @@
  * Original by Donnie Burhan: http://scn.sap.com/community/businessobjects-design-studio/blog/2015/06/16/design-studio-sdk--line-with-arrow
  */
 
-define(["../_modules/SDKCore","sap/designstudio/sdk/component"], function(SDKCore,Component) {
+define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
+        "sap/designstudio/sdk/component"], function(SDKCore,Component) {
 	var ownComponentName = "org.scn.community.basics.ArrowedLine";
 	ArrowedLine.prototype = SDKCore;
 	function ArrowedLine() {

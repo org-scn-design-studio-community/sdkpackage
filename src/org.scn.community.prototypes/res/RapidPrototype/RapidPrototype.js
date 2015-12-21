@@ -23,7 +23,8 @@
  * 
  * 
  */
-define(["../_modules/SDKCore", "sap/designstudio/sdk/component"], function (SDKCore, Component) {
+define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
+        "sap/designstudio/sdk/component"], function (SDKCore, Component) {
 	var ownComponentName = "org.scn.community.prototypes.RapidPrototype";
 	RapidPrototype.prototype = SDKCore;
 	function RapidPrototype() {
