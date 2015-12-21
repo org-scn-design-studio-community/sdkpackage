@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.scn.community.sdk.feature.main"
-      label="Components (SCN Community Free Extensions for Design Studio)"
+      label="SCN Community Free Extensions for Design Studio"
       version="3.0.0.qualifier"
       provider-name="SCN Community Contributors">
 
