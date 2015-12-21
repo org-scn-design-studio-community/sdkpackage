@@ -236,15 +236,20 @@ define(["./../../../org.scn.community.shared/os/viz-modules/VizMap",
 					.attr("r", 0)
 					.attr("opacity", this.markerAlpha()/100)
 					.attr("fill", this.markerColor());
-
+				var msObj = jQuery.parseJSON(this.markerSizeMeasure());
+				var msm;
+	        	if(typeof msObj == "object"){
+					msm = this.determineMeasureName(msObj);
+				}else{
+					msm = msObj;			// Backwards compat
+				}
 				this.markerGroup.selectAll("circle")
 					.transition().duration(this.ms())	
 					.attr("r",function(d){
 						if(d.designStudioMeasures){
-							var bm = that.markerSizeMeasure();
-							if(bm){
-								if(d.designStudioMeasures[bm]){
-									return that.bubbleScale(d.designStudioMeasures[bm])/that.zoomScale;
+							if(msm){
+								if(d.designStudioMeasures[msm]){
+									return that.bubbleScale(d.designStudioMeasures[msm])/that.zoomScale;
 									// linear scale
 								}else{
 									return that.markerSize()/that.zoomScale;	
