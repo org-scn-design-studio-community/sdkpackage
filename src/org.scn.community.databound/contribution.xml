@@ -188,6 +188,10 @@
   </license>
 
 	<group
+		id="ScnCommunityBasics"
+		title="Scn Community Basics"/>
+		
+	<group
 		id="ScnCommunityDataBound"
 		title="Scn Community Data Bound"/>
 
@@ -1042,7 +1046,7 @@
 	<property
 		id="DMaxDisplayMembers"
 		type="int"
-		title="Maximum Number of Members"
+		title="Maximum Members for Display"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1340,21 +1344,21 @@
 	
 	
 	<property
-		id="cancelButtonText"
-		type="String"
-		title="Cancel Button Text"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
-		id="closeedKey"
-		type="String"
-		title="Closeed Key"
+		id="interactionInt"
+		type="int"
+		title="-technical-"
 		group="Display"
 		bindable="true"
 		visible="false">
+
+	</property>
+	<property
+		id="cancelButtonText"
+		type="String"
+		title="Close Button Text"
+		group="Display"
+		bindable="true"
+		visible="true">
 
 	</property>
 	<property
@@ -1403,9 +1407,9 @@
 
 	</property>
 	<property
-		id="onCloseed"
+		id="onClosed"
 		type="ScriptText"
-		title="On Closeed"
+		title="On Closed"
 		group="Events"
 		visible="true">
 
@@ -1413,7 +1417,7 @@
 	<property
 		id="showCancelButton"
 		type="boolean"
-		title="Show Cancel Button"
+		title="Show Close Button"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1437,42 +1441,6 @@
 		visible="true">
 
 	</property>
-	<property
-		id="useCustomIcon"
-		type="boolean"
-		title="Use Manual 'Custom Icon'"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
-		id="useCustomIconHeight"
-		type="boolean"
-		title="Use Manual 'Custom Icon Height'"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
-		id="useCustomIconRotationSpeed"
-		type="boolean"
-		title="Use Manual 'Custom Icon Rotation Speed'"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
-		id="useCustomIconWidth"
-		type="boolean"
-		title="Use Manual 'Custom Icon Width'"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
 
 
 	<initialization>
@@ -1483,21 +1451,17 @@
 		<defaultValue property="WIDTH">420</defaultValue>
 		<defaultValue property="HEIGHT">580</defaultValue>
 		
-		<defaultValue property="cancelButtonText"><![CDATA[]]></defaultValue>
-		<defaultValue property="closeedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="interactionInt"><![CDATA[0]]></defaultValue>
+		<defaultValue property="cancelButtonText"><![CDATA[Close]]></defaultValue>
 		<defaultValue property="customIcon"><![CDATA[]]></defaultValue>
 		<defaultValue property="customIconDensityAware"><![CDATA[true]]></defaultValue>
 		<defaultValue property="customIconHeight"><![CDATA[44]]></defaultValue>
 		<defaultValue property="customIconRotationSpeed"><![CDATA[1000]]></defaultValue>
 		<defaultValue property="customIconWidth"><![CDATA[44]]></defaultValue>
-		<defaultValue property="onCloseed"><![CDATA[]]></defaultValue>
+		<defaultValue property="onClosed"><![CDATA[]]></defaultValue>
 		<defaultValue property="showCancelButton"><![CDATA[false]]></defaultValue>
 		<defaultValue property="text"><![CDATA[]]></defaultValue>
 		<defaultValue property="title"><![CDATA[]]></defaultValue>
-		<defaultValue property="useCustomIcon"><![CDATA[true]]></defaultValue>
-		<defaultValue property="useCustomIconHeight"><![CDATA[true]]></defaultValue>
-		<defaultValue property="useCustomIconRotationSpeed"><![CDATA[true]]></defaultValue>
-		<defaultValue property="useCustomIconWidth"><![CDATA[true]]></defaultValue>
 
 	</initialization>
 

@@ -31,47 +31,45 @@ function() {
 	};
 
 	spec.spec = 
-{};
+{"interactionInt": {
+  "opts": {
+    "apsControl": "spinner",
+    "cat": "Content",
+    "desc": "-technical-",
+    "noAps": true,
+    "noZtl": true,
+    "tooltip": "-technical-",
+    "ztlFunction": "",
+    "ztlType": "int"
+  },
+  "template": "int",
+  "type": "int",
+  "value": 0,
+  "visible": false
+}};
 
 	spec.specInclude = 
 {
   "cancelButtonText": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
-      "desc": "Cancel Button Text",
+      "cat": "Display-Button",
+      "desc": "Close Button Text",
       "noAps": false,
       "noZtl": false,
-      "tooltip": "The text of the cancel button. The default text is ",
+      "tooltip": "The text of the close button. The default text is CLose",
       "ztlFunction": "",
       "ztlType": "String"
     },
     "template": "String",
     "type": "String",
-    "value": "",
+    "value": "Close",
     "visible": true
-  },
-  "closeedKey": {
-    "opts": {
-      "apsControl": "text",
-      "cat": "Internal",
-      "desc": "Closeed Key",
-      "noAps": true,
-      "noZtl": false,
-      "tooltip": "Closeed Key",
-      "ztlFunction": "-get",
-      "ztlType": "String"
-    },
-    "origType": "EventKey",
-    "template": "EventKey",
-    "type": "String",
-    "value": "",
-    "visible": false
   },
   "customIcon": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Icon",
       "desc": "Custom Icon",
       "noAps": false,
       "noZtl": false,
@@ -87,7 +85,7 @@ function() {
   "customIconDensityAware": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Display-Icon",
       "desc": "Custom Icon Density Aware",
       "noAps": false,
       "noZtl": false,
@@ -103,7 +101,7 @@ function() {
   "customIconHeight": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "Display",
+      "cat": "Display-Icon",
       "desc": "Custom Icon Height",
       "noAps": false,
       "noZtl": false,
@@ -119,7 +117,7 @@ function() {
   "customIconRotationSpeed": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "Display",
+      "cat": "Display-Icon",
       "desc": "Custom Icon Rotation Speed",
       "noAps": false,
       "noZtl": false,
@@ -135,7 +133,7 @@ function() {
   "customIconWidth": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "Display",
+      "cat": "Display-Icon",
       "desc": "Custom Icon Width",
       "noAps": false,
       "noZtl": false,
@@ -148,10 +146,10 @@ function() {
     "value": 44,
     "visible": true
   },
-  "onCloseed": {
+  "onClosed": {
     "opts": {
       "cat": "Events",
-      "desc": "On Closeed",
+      "desc": "On Closed",
       "noAps": true,
       "noZtl": true,
       "tooltip": "Event triggered on Indicates if the close events are triggered by a user, pressing a cancel button or because the operation was terminated.This parameter is set to true if the close event is fired by user interaction."
@@ -164,11 +162,11 @@ function() {
   "showCancelButton": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
-      "desc": "Show Cancel Button",
+      "cat": "Display-Button",
+      "desc": "Show Close Button",
       "noAps": false,
       "noZtl": false,
-      "tooltip": "Indicates if the cancel button will be rendered inside the busy dialog. The default value is set to ",
+      "tooltip": "Indicates if the close button will be rendered inside the busy dialog. The default value is set to false",
       "ztlFunction": "",
       "ztlType": "boolean"
     },
@@ -180,7 +178,7 @@ function() {
   "text": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Content",
       "desc": "Text",
       "noAps": false,
       "noZtl": false,
@@ -196,7 +194,7 @@ function() {
   "title": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Content",
       "desc": "Title",
       "noAps": false,
       "noZtl": false,
@@ -207,70 +205,6 @@ function() {
     "template": "String",
     "type": "String",
     "value": "",
-    "visible": true
-  },
-  "useCustomIcon": {
-    "opts": {
-      "apsControl": "checkbox",
-      "cat": "Display",
-      "desc": "Use Manual 'Custom Icon'",
-      "noAps": false,
-      "noZtl": false,
-      "tooltip": "If checked, the property 'Custom Icon' will be used.",
-      "ztlFunction": "",
-      "ztlType": "boolean"
-    },
-    "template": "ds-boolean",
-    "type": "boolean",
-    "value": true,
-    "visible": true
-  },
-  "useCustomIconHeight": {
-    "opts": {
-      "apsControl": "checkbox",
-      "cat": "Display",
-      "desc": "Use Manual 'Custom Icon Height'",
-      "noAps": false,
-      "noZtl": false,
-      "tooltip": "If checked, the property 'Custom Icon Height' will be used.",
-      "ztlFunction": "",
-      "ztlType": "boolean"
-    },
-    "template": "ds-boolean",
-    "type": "boolean",
-    "value": true,
-    "visible": true
-  },
-  "useCustomIconRotationSpeed": {
-    "opts": {
-      "apsControl": "checkbox",
-      "cat": "Display",
-      "desc": "Use Manual 'Custom Icon Rotation Speed'",
-      "noAps": false,
-      "noZtl": false,
-      "tooltip": "If checked, the property 'Custom Icon Rotation Speed' will be used.",
-      "ztlFunction": "",
-      "ztlType": "boolean"
-    },
-    "template": "ds-boolean",
-    "type": "boolean",
-    "value": true,
-    "visible": true
-  },
-  "useCustomIconWidth": {
-    "opts": {
-      "apsControl": "checkbox",
-      "cat": "Display",
-      "desc": "Use Manual 'Custom Icon Width'",
-      "noAps": false,
-      "noZtl": false,
-      "tooltip": "If checked, the property 'Custom Icon Width' will be used.",
-      "ztlFunction": "",
-      "ztlType": "boolean"
-    },
-    "template": "ds-boolean",
-    "type": "boolean",
-    "value": true,
     "visible": true
   }
 };
@@ -300,7 +234,7 @@ function() {
   "extends2Control": "BusyDialog",
   "extends3ControlEvents": "BusyDialog.events",
   "extension": "ui5.BusyDialog",
-  "generatedJsFile": "true",
+  "generatedJsFile": "false",
   "group": "ScnCommunityBasics",
   "handlerType": "sapui5",
   "height": "580",

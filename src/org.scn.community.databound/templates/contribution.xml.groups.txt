@@ -1,5 +1,9 @@
 
 	<group
+		id="ScnCommunityBasics"
+		title="Scn Community Basics"/>
+		
+	<group
 		id="ScnCommunityDataBound"
 		title="Scn Community Data Bound"/>
 

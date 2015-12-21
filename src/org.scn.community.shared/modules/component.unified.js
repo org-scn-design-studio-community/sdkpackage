@@ -432,7 +432,6 @@ define(["./component.databound"], function() {
 		var parameterKeyNameCap = parameterKeyName.substring(0,1).toUpperCase() + parameterKeyName.substring(1);
 		
 		var changedParams = [];
-		changedParams.push(parameterKeyName);
 		
 		var key = undefined;
 		if(event.getParameters().data) {
@@ -440,17 +439,23 @@ define(["./component.databound"], function() {
 	
 		} else {
 			var param = event.getSource().data("parameter");
-			var collection = event.getSource().data("collection");
-	
-			var paramValue = event.getParameters()[param];
-			var parameterCap = param.substring(0,1).toUpperCase() + param.substring(1);
-			
-			that["set" + parameterCap](paramValue);
-			changedParams.push(param);
-			key = that._specialDataModel[0][collection][paramValue].key;
+			if(param != undefined) {
+				var collection = event.getSource().data("collection");
+
+				var paramValue = event.getParameters()[param];
+				var parameterCap = param.substring(0,1).toUpperCase() + param.substring(1);
+
+				that["set" + parameterCap](paramValue);
+				changedParams.push(param);
+				key = that._specialDataModel[0][collection][paramValue].key;
+			}
 		}
 	
-		that["set" + parameterKeyNameCap](key);
+		if(that["set" + parameterKeyNameCap]) {
+			if(key == undefined) {key = "";}
+			that["set" + parameterKeyNameCap](key);
+			changedParams.push(parameterKeyName);
+		}
 		that.fireDesignStudioPropertiesChangedAndEvent(changedParams, eventName);
 	};
 });

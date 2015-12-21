@@ -22,7 +22,7 @@
 				customIconHeight="{customIconHeight}"
 				customIconRotationSpeed="{customIconRotationSpeed}"
 				customIconWidth="{customIconWidth}"
-				onCloseed="{onCloseed}"
+				close="onClosed"
 				showCancelButton="{showCancelButton}"
 				text="{text}"
 				title="{title}"

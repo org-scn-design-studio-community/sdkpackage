@@ -273,7 +273,11 @@ public class SpecificationReader {
 				String includeSpecN = Helpers.file2String(newFile);
 				if(includeSpec != null) {
 					includeSpec = includeSpec.substring(0, includeSpec.length() - 1);
-					includeSpec = includeSpec + ",\r\n" + includeSpecN.substring(1);
+					if(includeSpec.contains("}")) {
+						includeSpec = includeSpec + ",";
+					}
+							
+					includeSpec = includeSpec + "\r\n" + includeSpecN.substring(1);
 				} else {
 					includeSpec = includeSpecN;
 				}
@@ -295,7 +299,11 @@ public class SpecificationReader {
 					includeSpecN = Helpers.file2String(newFile);
 					if(includeSpec != null) {
 						includeSpec = includeSpec.substring(0, includeSpec.length() - 1);
-						includeSpec = includeSpec + ",\r\n" + includeSpecN.substring(1);
+						if(includeSpec.contains("}")) {
+							includeSpec = includeSpec + ",";
+						}
+								
+						includeSpec = includeSpec + "\r\n" + includeSpecN.substring(1);
 					} else {
 						includeSpec = includeSpecN;
 					}
@@ -524,7 +532,7 @@ public class SpecificationReader {
 							String unifiedPropValue = this.getAdvancedProperty(unifiedProperties, "extension");
 							if(unifiedPropValue.startsWith("ui5.")) {
 								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.basics\",";
-								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.databound\"";
+								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.databound\",";
 								defineContent += "\r\n\t\"../../../\"+scn_pkg+\"shared/modules/component.unified\"";
 							} else {
 								if(!packagePropValue.equals("basics") && !packagePropValue.equals("utils")) {
@@ -557,24 +565,26 @@ public class SpecificationReader {
 						defineContent += "\r\n\t\tbasics";
 						defineContent += "\r\n\t) {\r\n";
 
-						contentJs = contentJs.substring(0, indexDefineStart) + defineContent + contentJs.substring(indexDefineEnd);
-						
-						indexDefineStart = contentJs.indexOf("//%INIT-START%");
-						if(indexDefineStart == -1) {
-							indexDefineStart = contentJs.indexOf("myComponentData.instance = "+this.componentName+";");
-							indexDefineStart = contentJs.lastIndexOf("};") + 4;
+						if(indexDefineStart > -1) {
+							contentJs = contentJs.substring(0, indexDefineStart) + defineContent + contentJs.substring(indexDefineEnd);
+							
+							indexDefineStart = contentJs.indexOf("//%INIT-START%");
+							if(indexDefineStart == -1) {
+								indexDefineStart = contentJs.indexOf("myComponentData.instance = "+this.componentName+";");
+								indexDefineStart = contentJs.lastIndexOf("};") + 4;
+							}
+							indexDefineEnd = contentJs.lastIndexOf("});");
+							
+							defineContent = "//%INIT-START%\r\n";
+							defineContent += "myComponentData.instance = "+this.componentName+";\r\n";
+							defineContent += "" + replacedTemplates.get(this.componentName+"Loader.js");
+							defineContent += "\r\n";
+							
+							contentJs = contentJs.substring(0, indexDefineStart) + defineContent + contentJs.substring(indexDefineEnd);
+							
+							contentJs = contentJs.replace("myComponentData = org_scn_community_require.knownComponents."+packagePropValue+"." + this.componentName, "myComponentData = spec");							
 						}
-						indexDefineEnd = contentJs.lastIndexOf("});");
-						
-						defineContent = "//%INIT-START%\r\n";
-						defineContent += "myComponentData.instance = "+this.componentName+";\r\n";
-						defineContent += "" + replacedTemplates.get(this.componentName+"Loader.js");
-						defineContent += "\r\n";
-						
-						contentJs = contentJs.substring(0, indexDefineStart) + defineContent + contentJs.substring(indexDefineEnd);
-						
-						contentJs = contentJs.replace("myComponentData = org_scn_community_require.knownComponents."+packagePropValue+"." + this.componentName, "myComponentData = spec");
-						
+
 						// contentJs = contentJs.replace("", "");
 						Helpers.string2File(iFileName, contentJs);
 					}

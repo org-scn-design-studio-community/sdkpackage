@@ -11,7 +11,7 @@
 	"extends1ControlDs": "BusyDialog.ds",
 	"extends2Control": "BusyDialog",
 	"extends3ControlEvents": "BusyDialog.events",
-	"generatedJsFile":"true",
+	"generatedJsFile":"false",
 	"modes":"m",
 
 	"databound": false,

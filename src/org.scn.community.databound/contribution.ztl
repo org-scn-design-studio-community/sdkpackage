@@ -1093,14 +1093,14 @@ class org.scn.community.databound.FacetSelector extends org.scn.community.shared
 	*}
 
 	/**
-	 * Sets Maximum Number of Members Property
+	 * Sets Maximum Members for Display Property
 	 */	
-	void setMaxDisplayMembers( /**Maximum Number of Members*/ int maxDisplayMembers){*
+	void setMaxDisplayMembers( /**Maximum Members for Display*/ int maxDisplayMembers){*
 		this.DMaxDisplayMembers = maxDisplayMembers;
 	*}
 
 	/**
-	 * Gets Maximum Number of Members Property
+	 * Gets Maximum Members for Display Property
 	 */	
 	int getMaxDisplayMembers() {*
 		return this.DMaxDisplayMembers;
@@ -1534,7 +1534,22 @@ class org.scn.community.databound.FioriLink extends org.scn.community.shared.ui5
 class org.scn.community.databound.FioriBusyDialog extends org.scn.community.shared.ui5.BusyDialog {
 
 
+
+
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	/**
+	 * Opens The Dilaog
+	 */
+	void open() {*
+		this.interactionInt = this.interactionInt + 1;
+	*}
+	
+	/**
+	 * Closes The Dilaog
+	 */
+	void close() {*
+		this.interactionInt = this.interactionInt - 1;
+	*}
 
 }
 /**

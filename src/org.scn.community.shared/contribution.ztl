@@ -2533,24 +2533,17 @@ class org.scn.community.shared.ui5.BulletChartData extends org.scn.community.sha
 class org.scn.community.shared.ui5.BusyDialog extends org.scn.community.shared.DataComponent {
 
 	/**
-	 * Sets Cancel Button Text Property
+	 * Sets Close Button Text Property
 	 */	
-	void setCancelButtonText( /**Cancel Button Text*/ String cancelButtonText){*
+	void setCancelButtonText( /**Close Button Text*/ String cancelButtonText){*
 		this.cancelButtonText = cancelButtonText;
 	*}
 
 	/**
-	 * Gets Cancel Button Text Property
+	 * Gets Close Button Text Property
 	 */	
 	String getCancelButtonText() {*
 		return this.cancelButtonText;
-	*}
-
-	/**
-	 * Gets Closeed Key Property
-	 */	
-	String getCloseedKey() {*
-		return this.closeedKey;
 	*}
 
 	/**
@@ -2626,14 +2619,14 @@ class org.scn.community.shared.ui5.BusyDialog extends org.scn.community.shared.D
 
 
 	/**
-	 * Sets Show Cancel Button Property
+	 * Sets Show Close Button Property
 	 */	
-	void setShowCancelButton( /**Show Cancel Button*/ boolean showCancelButton){*
+	void setShowCancelButton( /**Show Close Button*/ boolean showCancelButton){*
 		this.showCancelButton = showCancelButton;
 	*}
 
 	/**
-	 * Gets Show Cancel Button Property
+	 * Gets Show Close Button Property
 	 */	
 	boolean isShowCancelButton() {*
 		return this.showCancelButton;
@@ -2665,62 +2658,6 @@ class org.scn.community.shared.ui5.BusyDialog extends org.scn.community.shared.D
 	 */	
 	String getTitle() {*
 		return this.title;
-	*}
-
-	/**
-	 * Sets Use Manual 'Custom Icon' Property
-	 */	
-	void setUseCustomIcon( /**Use Manual 'Custom Icon'*/ boolean useCustomIcon){*
-		this.useCustomIcon = useCustomIcon;
-	*}
-
-	/**
-	 * Gets Use Manual 'Custom Icon' Property
-	 */	
-	boolean isUseCustomIcon() {*
-		return this.useCustomIcon;
-	*}
-
-	/**
-	 * Sets Use Manual 'Custom Icon Height' Property
-	 */	
-	void setUseCustomIconHeight( /**Use Manual 'Custom Icon Height'*/ boolean useCustomIconHeight){*
-		this.useCustomIconHeight = useCustomIconHeight;
-	*}
-
-	/**
-	 * Gets Use Manual 'Custom Icon Height' Property
-	 */	
-	boolean isUseCustomIconHeight() {*
-		return this.useCustomIconHeight;
-	*}
-
-	/**
-	 * Sets Use Manual 'Custom Icon Rotation Speed' Property
-	 */	
-	void setUseCustomIconRotationSpeed( /**Use Manual 'Custom Icon Rotation Speed'*/ boolean useCustomIconRotationSpeed){*
-		this.useCustomIconRotationSpeed = useCustomIconRotationSpeed;
-	*}
-
-	/**
-	 * Gets Use Manual 'Custom Icon Rotation Speed' Property
-	 */	
-	boolean isUseCustomIconRotationSpeed() {*
-		return this.useCustomIconRotationSpeed;
-	*}
-
-	/**
-	 * Sets Use Manual 'Custom Icon Width' Property
-	 */	
-	void setUseCustomIconWidth( /**Use Manual 'Custom Icon Width'*/ boolean useCustomIconWidth){*
-		this.useCustomIconWidth = useCustomIconWidth;
-	*}
-
-	/**
-	 * Gets Use Manual 'Custom Icon Width' Property
-	 */	
-	boolean isUseCustomIconWidth() {*
-		return this.useCustomIconWidth;
 	*}
 
 

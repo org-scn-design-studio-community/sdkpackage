@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
+//%DEFINE-START%
 var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
 define([
 	"sap/designstudio/sdk/component",
@@ -33,7 +33,7 @@ define([
 		core,
 		basics
 	) {
-
+//%DEFINE-END%
 var myComponentData = spec;
 
 FioriBusyDialog = {
@@ -59,8 +59,8 @@ FioriBusyDialog = {
 
 		sap.ui.controller(myComponentData.fullComponentName + ".Controller", {
 			owner: that,
-				onCloseed: function (event) {
-					org_scn_community_unified.processEvent(that, "onCloseed", event);
+				onClosed: function (event) {
+					org_scn_community_unified.processEvent(that, "onClosed", event);
 				},
 
 		});
@@ -79,6 +79,8 @@ FioriBusyDialog = {
 		that.onAfterRendering = function () {
 			org_scn_community_basics.resizeContentAbsoluteLayout(that, that._view, that.onResize);
 		}
+
+		that._oldInteraction = 0;
 	},
 	
 	afterDesignStudioUpdate: function() {
@@ -124,38 +126,21 @@ FioriBusyDialog = {
 
 		that._specialDataModel = [];
 
-
-
-
-
-
 		var l_CancelButtonText = that.getCancelButtonText();
 		var l_CustomIcon = that.getCustomIcon();
 		var l_CustomIconDensityAware = that.getCustomIconDensityAware();
-		var l_CustomIconHeight = that.getCustomIconHeight();
+		var l_CustomIconHeight = that.getCustomIconHeight() + "px";
 		var l_CustomIconRotationSpeed = that.getCustomIconRotationSpeed();
-		var l_CustomIconWidth = that.getCustomIconWidth();
+		var l_CustomIconWidth = that.getCustomIconWidth() + "px";
 		var l_ShowCancelButton = that.getShowCancelButton();
 		var l_Text = that.getText();
 		var l_Title = that.getTitle();
 
-
-		var l_OnCloseed = org_scn_community_unified.createEvent(that, "onCloseed");
-
-
 		var rowI = 0;
 		var counterI = 1;
 
-
-
 		for(rowI=0;rowI<counterI;rowI++){
 			var rowHeaderName = "NONE";
-
-
-
-
-
-
 
 			var customData = {};
 			
@@ -169,14 +154,7 @@ FioriBusyDialog = {
 			customData.text = l_Text;
 			customData.title = l_Title;
 
-
-
-
-
-
-
-			customData[l_OnCloseed.name] = l_OnCloseed.func;
-
+			customData["onClosed"] = "onClosed";
 
 			that._specialDataModel.push(customData);
 		}
@@ -189,7 +167,22 @@ FioriBusyDialog = {
 	afterPrepare: function (owner) {
 		var that = owner;
 
-		// visualization on processed data 
+		var dialog = that._view.mAggregations.content[0].mAggregations.content[0];
+		
+		dialog.close();
+		dialog.addStyleClass("scnBusyDialogHide");
+		
+		// visualization on processed data
+		if(that.getInteractionInt() > that._oldInteraction) {
+			that._oldInteraction = that.getInteractionInt();
+			dialog.removeStyleClass("scnBusyDialogHide");
+			dialog.open();
+		}
+		
+		if(that.getInteractionInt() < that._oldInteraction) {
+			that._oldInteraction = that.getInteractionInt();
+			dialog.close();
+		}
 	},
 	
 	onResize: function(width, height, parent) {
@@ -222,9 +215,8 @@ FioriBusyDialog = {
 	},
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
-
+//%INIT-START%
 myComponentData.instance = FioriBusyDialog;
 jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
 sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
-
 });

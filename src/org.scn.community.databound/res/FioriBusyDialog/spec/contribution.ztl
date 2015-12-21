@@ -1,0 +1,13 @@
+	/**
+	 * Opens The Dilaog
+	 */
+	void open() {*
+		this.interactionInt = this.interactionInt + 1;
+	*}
+	
+	/**
+	 * Closes The Dilaog
+	 */
+	void close() {*
+		this.interactionInt = this.interactionInt - 1;
+	*}

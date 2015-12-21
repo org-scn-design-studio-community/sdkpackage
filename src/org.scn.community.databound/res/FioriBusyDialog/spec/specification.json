@@ -1,3 +1,18 @@
 {
-
+	"interactionInt" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "-technical-",
+			"cat" : "Content",
+			"tooltip" : "-technical-",
+			"apsControl" : "spinner",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
 }
