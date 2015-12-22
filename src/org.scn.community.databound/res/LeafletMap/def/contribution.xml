@@ -1,0 +1,23 @@
+
+<component
+		id="LeafletMap"
+		title="Leaflet Map"
+		icon="res/LeafletMap/LeafletMap.png"
+		handlerType="div"
+		modes="commons m"
+		propertySheetPath="aps/PropertyPage.html"
+		group="ScnCommunityVisualizations"
+		databound="true"
+>
+	<requireJs modes="commons m">res/LeafletMap/LeafletMap</requireJs>
+	
+	<property type="String" title="Tile Options" id="tileOptions" visible="false"/>
+	<property type="String" title="Markers" id="markers" visible="false"/>
+
+	<initialization>
+		<defaultValue property="tileOptions">{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png&quot;,&quot;subdomains&quot;:&quot;12&quot;}</defaultValue>
+		<defaultValue property="markers">[]</defaultValue>
+		<defaultValue property="WIDTH">500</defaultValue>
+		<defaultValue property="HEIGHT">350</defaultValue>
+	</initialization>
+</component>
