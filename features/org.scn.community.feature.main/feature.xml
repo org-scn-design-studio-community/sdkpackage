@@ -261,6 +261,7 @@ http://www.apache.org/licenses/
          id="org.scn.community.datasource"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
