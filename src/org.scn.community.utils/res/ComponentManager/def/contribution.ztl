@@ -879,6 +879,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Leaflet Map component*/
+	org.scn.community.databound.LeafletMap returnAsScnLeafletMap (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Location Intelligence 2.0 component*/
 	org.scn.community.databound.LocationIntel returnAsScnLocationIntel (Component inputComponent) {* return inputComponent; *}
 
