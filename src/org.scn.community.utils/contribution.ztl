@@ -2241,6 +2241,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Leaflet Map component*/
+	org.scn.community.databound.LeafletMap returnAsScnLeafletMap (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Location Intelligence 2.0 component*/
 	org.scn.community.databound.LocationIntel returnAsScnLocationIntel (Component inputComponent) {* return inputComponent; *}
 
@@ -2295,7 +2298,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Data Top Flop Chart component*/
 	org.scn.community.databound.TopFlopChart returnAsScnTopFlopChart (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Top Flop 2.0 component*/
+	/**Cast to Data Top Flop component*/
 	org.scn.community.databound.TopFlop returnAsScnTopFlop (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to UI5 Table 2.0 component*/
@@ -4308,6 +4311,8 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		this.internal_initializeNow();
 	
 		this.date.setUTCDate(this.date.getUTCDate() + days);
+		
+		this.date.recalculate();
 	*}
 	
 	/**
@@ -4317,6 +4322,8 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		this.internal_initializeNow();
 		
 		this.date.setUTCDate(this.date.getUTCDate() + (weeks*7));
+		
+		this.date.recalculate();
 	*}
 
 	/**
@@ -4326,6 +4333,8 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		this.internal_initializeNow();
 
 		this.date.setUTCMonth(this.date.getUTCMonth() + months);
+		
+		this.date.recalculate();
 	*}
 
 	/**
@@ -4335,6 +4344,8 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		this.internal_initializeNow();
 
 		this.date.setUTCFullYear(this.date.getUTCFullYear() + years);
+		
+		this.date.recalculate();
 	*}
 
 	/**
@@ -4758,11 +4769,7 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		                mask = date;
 		                date = undefined;
 		            }
-	
-		            // Passing date through Date applies Date.parse, if necessary
-		            date = date ? new Date(date) : new Date;
-		            if (isNaN(date)) throw SyntaxError("invalid date");
-	
+
 		            mask = String(dF.masks[mask] || mask || dF.masks["default"]);
 	
 		            // Allow setting the utc argument via the mask

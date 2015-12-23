@@ -57,6 +57,8 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		this.internal_initializeNow();
 	
 		this.date.setUTCDate(this.date.getUTCDate() + days);
+		
+		this.date.recalculate();
 	*}
 	
 	/**
@@ -66,6 +68,8 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		this.internal_initializeNow();
 		
 		this.date.setUTCDate(this.date.getUTCDate() + (weeks*7));
+		
+		this.date.recalculate();
 	*}
 
 	/**
@@ -75,6 +79,8 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		this.internal_initializeNow();
 
 		this.date.setUTCMonth(this.date.getUTCMonth() + months);
+		
+		this.date.recalculate();
 	*}
 
 	/**
@@ -84,6 +90,8 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		this.internal_initializeNow();
 
 		this.date.setUTCFullYear(this.date.getUTCFullYear() + years);
+		
+		this.date.recalculate();
 	*}
 
 	/**
@@ -507,11 +515,7 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		                mask = date;
 		                date = undefined;
 		            }
-	
-		            // Passing date through Date applies Date.parse, if necessary
-		            date = date ? new Date(date) : new Date;
-		            if (isNaN(date)) throw SyntaxError("invalid date");
-	
+
 		            mask = String(dF.masks[mask] || mask || dF.masks["default"]);
 	
 		            // Allow setting the utc argument via the mask
