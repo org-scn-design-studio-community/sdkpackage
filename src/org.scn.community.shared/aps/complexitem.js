@@ -6,6 +6,9 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 	 * Create UI5 Extension
 	 */
 	new sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexItem",{
+		_requiredModules : [
+		    "../../org.scn.community.shared/aps/measureselector"
+		],
 		_config : {
 			/* Empty */
 		},
@@ -45,68 +48,75 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 			}
 		},
 		attachListeners : function(){
-			for(var comp in this.cmps){
-				var component = this.cmps[comp];
-				if(component instanceof sap.ui.commons.TextField 
-					&& !(component instanceof sap.ui.commons.ComboBox)){
-					component.attachChange(function(comp){return function(oControlEvent){
-						var value = oControlEvent.getSource().getValue();
-						if(value==""||value==null) value = undefined;
-						this.updateProperty(value,comp);
-					}}(comp),this);
-				}
-				if(component instanceof org.scn.community.aps.MeasureSelector){
-					component.attachValueChange(function(comp){return function(oControlEvent){
-						var value = oControlEvent.getSource().getValue();
-						this.updateProperty(value,comp);
-					};}(comp),this);
-				}
-				if(component instanceof sap.ui.commons.ComboBox){
-					component.attachChange(function(comp){return function(oControlEvent){
-						var value = oControlEvent.getSource().getSelectedKey();
-						if(value == "") value = undefined;
-						this.updateProperty(value,comp);
-					}}(comp),this);
-				}
-				if(component instanceof org.scn.community.aps.SegmentedButton){
-					component.attachKeyChange(function(comp){return function(oControlEvent){
-						var value = oControlEvent.getSource().getSelectedKey();
-						if(value == "") value = undefined;
-						this.updateProperty(value,comp);
-					}}(comp),this);
-				}
-				if(component instanceof sap.ui.commons.CheckBox){
-					component.attachChange(function(comp){return function(oControlEvent){
-						var value = oControlEvent.getSource().getChecked();
-						this.updateProperty(value,comp);
-					}}(comp),this);
-				}
-				if(component instanceof org.scn.community.aps.ColorPicker){
-					component.attachColorChange(function(comp){return function(oControlEvent){
-						var value = oControlEvent.getSource().getBackgroundColor();
-						if(value=="") value = undefined;
-						this.updateProperty(value,comp);
-					}}(comp),this);
-				}
-				if(component instanceof org.scn.community.aps.ColorBuilder){
-					component.attachColorChange(function(comp){return function(oControlEvent){
-						var csv = oControlEvent.getSource().getColors();
-						var value = [];
-						if(csv && csv != "") value = csv.split(",");
-						if(!value || !value.length || value.length == 0){
-							value = undefined;
+			var that = this;
+			require(this._requiredModules,function(){
+				for(var comp in that.cmps){
+					var component = that.cmps[comp];
+					try{
+						if(component instanceof sap.ui.commons.TextField 
+							&& !(component instanceof sap.ui.commons.ComboBox)){
+							component.attachChange(function(comp){return function(oControlEvent){
+								var value = oControlEvent.getSource().getValue();
+								if(value==""||value==null) value = undefined;
+								that.updateProperty(value,comp);
+							}}(comp),that);
 						}
-						this.updateProperty(value,comp);
-					}}(comp),this);
+						if(component instanceof org.scn.community.aps.MeasureSelector){
+							component.attachValueChange(function(comp){return function(oControlEvent){
+								var value = oControlEvent.getSource().getValue();
+								that.updateProperty(value,comp);
+							};}(comp),that);
+						}
+						if(component instanceof sap.ui.commons.ComboBox){
+							component.attachChange(function(comp){return function(oControlEvent){
+								var value = oControlEvent.getSource().getSelectedKey();
+								if(value == "") value = undefined;
+								that.updateProperty(value,comp);
+							}}(comp),that);
+						}
+						if(component instanceof org.scn.community.aps.SegmentedButton){
+							component.attachKeyChange(function(comp){return function(oControlEvent){
+								var value = oControlEvent.getSource().getSelectedKey();
+								if(value == "") value = undefined;
+								that.updateProperty(value,comp);
+							}}(comp),that);
+						}
+						if(component instanceof sap.ui.commons.CheckBox){
+							component.attachChange(function(comp){return function(oControlEvent){
+								var value = oControlEvent.getSource().getChecked();
+								that.updateProperty(value,comp);
+							}}(comp),that);
+						}
+						if(component instanceof org.scn.community.aps.ColorPicker){
+							component.attachColorChange(function(comp){return function(oControlEvent){
+								var value = oControlEvent.getSource().getBackgroundColor();
+								if(value=="") value = undefined;
+								that.updateProperty(value,comp);
+							}}(comp),that);
+						}
+						if(component instanceof org.scn.community.aps.ColorBuilder){
+							component.attachColorChange(function(comp){return function(oControlEvent){
+								var csv = oControlEvent.getSource().getColors();
+								var value = [];
+								if(csv && csv != "") value = csv.split(",");
+								if(!value || !value.length || value.length == 0){
+									value = undefined;
+								}
+								that.updateProperty(value,comp);
+							}}(comp),that);
+						}
+						if(component instanceof org.scn.community.aps.Spinner){
+							component.attachValueChange(function(comp){return function(oControlEvent){
+								var value = parseFloat(oControlEvent.getSource().getValue());
+								if(isNaN(value)) value = undefined;
+								that.updateProperty(value,comp);
+							}}(comp),that);
+						}
+					}catch(e){
+						// Muzzle.
+					}
 				}
-				if(component instanceof org.scn.community.aps.Spinner){
-					component.attachValueChange(function(comp){return function(oControlEvent){
-						var value = parseFloat(oControlEvent.getSource().getValue());
-						if(isNaN(value)) value = undefined;
-						this.updateProperty(value,comp);
-					}}(comp),this);
-				}
-			}
+			});
 		},
 		createComponents : function(){
 			// Override
@@ -142,33 +152,40 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 			this.attachListeners();
 		},
 		updateComponents : function(){
-			for(var comp in this.cmps){
-				var component = this.cmps[comp];
-				if(component instanceof org.scn.community.aps.SegmentedButton){
-					if(this._config[comp]!=undefined) component.setSelectedKey(this._config[comp]);
-				}
-				if(component instanceof sap.ui.commons.TextField && !(component instanceof sap.ui.commons.ComboBox)){
-					if(this._config[comp]!=undefined) component.setValue(this._config[comp]);
-				}
-				if(component instanceof org.scn.community.aps.MeasureSelector){
-					if(this._config[comp]!=undefined) component.setValue(this._config[comp]);
-				}
-				if(component instanceof sap.ui.commons.ComboBox){
-					if(this._config[comp]!=undefined) component.setSelectedKey(this._config[comp]);
-				}
-				if(component instanceof sap.ui.commons.CheckBox){
-					if(this._config[comp]!= undefined) component.setChecked(this._config[comp]);
-				}
-				if(component instanceof org.scn.community.aps.ColorPicker){
-					if(this._config[comp]!=undefined) component.setBackgroundColor(this._config[comp]);
-				}
-				if(component instanceof org.scn.community.aps.ColorBuilder){
-					if(this._config[comp]!=undefined) if(this._config[comp]) component.setColors((this._config[comp] || "").join(","));
-				}
-				if(component instanceof org.scn.community.aps.Spinner){
-					if(this._config[comp]!=undefined) component.setValue(this._config[comp]);
-				}
-			}
+			var that = this;
+			require(this._requiredModules,function(){
+				for(var comp in that.cmps){
+					var component = that.cmps[comp];
+						try{
+							if(component instanceof org.scn.community.aps.SegmentedButton){
+								if(that._config[comp]!=undefined) component.setSelectedKey(that._config[comp]);
+							}
+							if(component instanceof sap.ui.commons.TextField && !(component instanceof sap.ui.commons.ComboBox)){
+								if(that._config[comp]!=undefined) component.setValue(that._config[comp]);
+							}
+							if(component instanceof org.scn.community.aps.MeasureSelector){
+								if(that._config[comp]!=undefined) component.setValue(that._config[comp]);
+							}
+							if(component instanceof sap.ui.commons.ComboBox){
+								if(that._config[comp]!=undefined) component.setSelectedKey(that._config[comp]);
+							}
+							if(component instanceof sap.ui.commons.CheckBox){
+								if(that._config[comp]!= undefined) component.setChecked(that._config[comp]);
+							}
+							if(component instanceof org.scn.community.aps.ColorPicker){
+								if(that._config[comp]!=undefined) component.setBackgroundColor(that._config[comp]);
+							}
+							if(component instanceof org.scn.community.aps.ColorBuilder){
+								if(that._config[comp]!=undefined) if(that._config[comp]) component.setColors((that._config[comp] || "").join(","));
+							}
+							if(component instanceof org.scn.community.aps.Spinner){
+								if(that._config[comp]!=undefined) component.setValue(that._config[comp]);
+							}
+						}catch(e){
+							alert(e + comp);
+						}
+					}
+			});
 		},
 		renderer : {}
 	});

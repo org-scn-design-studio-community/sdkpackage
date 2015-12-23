@@ -1903,6 +1903,31 @@ class org.scn.community.databound.LeaderBoard extends org.scn.community.shared.C
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
 }
+/**
+ * Class for Pictogram
+ */
+class org.scn.community.databound.Pictogram extends org.scn.community.shared.Component {
+	/**
+	Sets number of columns
+	*/
+	void setNumCols(/* Number of Columns */ int columns) {*
+		this.numCols = columns;
+	*}
+	/**
+	Sets number of rows
+	*/
+	void setNumRows(/* Number of Rows */ int rows) {*
+		this.numRows = rows;
+	*}
+	/**
+	Gets number of columns
+	*/
+	int getNumCols() {* return this.numCols; *}
+	/**
+	Gets number of rows
+	*/
+	int getNumCols() {* return this.numRows; *}
+}
 class org.scn.community.databound.LocationIntel extends org.scn.community.shared.Component {
 	/**
 	Get selected feature
