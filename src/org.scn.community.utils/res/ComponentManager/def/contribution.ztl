@@ -876,7 +876,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to D3 Hierarchy 2.0 component*/
 	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Leader Board 2.0 component*/
+	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Location Intelligence 2.0 component*/
@@ -930,10 +930,10 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Tag Cloud 2.0 component*/
 	org.scn.community.databound.tagCloud returnAsScntagCloud (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Top Flop Chart 2.0 component*/
+	/**Cast to Data Top Flop Chart component*/
 	org.scn.community.databound.TopFlopChart returnAsScnTopFlopChart (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Data Top Flop 2.0 component*/
+	/**Cast to Data Top Flop component*/
 	org.scn.community.databound.TopFlop returnAsScnTopFlop (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to UI5 Table 2.0 component*/

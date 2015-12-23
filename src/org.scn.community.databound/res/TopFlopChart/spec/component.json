@@ -1,7 +1,7 @@
 {
 	"id": "TopFlopChart",
-	"title": "Data Top Flop Chart 2.0",
-	"tooltip": "Data Top Flop Chart 2.0",
+	"title": "Data Top Flop Chart",
+	"tooltip": "Data Top Flop Chart",
 	"handlerType": "sapui5",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
 	"group": "ScnCommunityVisualizations",
@@ -17,6 +17,6 @@
 		}
 	],
 	
-	"width": "225",
+	"width": "300",
 	"height": "190"
 }

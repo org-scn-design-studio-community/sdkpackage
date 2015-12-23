@@ -35,7 +35,7 @@ function() {
   "addCounter": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Content",
       "desc": "Add Counter",
       "noAps": false,
       "noZtl": false,
@@ -51,8 +51,8 @@ function() {
   "allowInteraction": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
-      "desc": "Allow Any Interaction (Link, Selection)",
+      "cat": "Interaction",
+      "desc": "Allow Any Interaction",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Allow Any Interaction (Link, Selection)",
@@ -67,7 +67,7 @@ function() {
   "averagePrefix": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Average",
       "desc": "Prefix For Average Value",
       "noAps": false,
       "noZtl": false,
@@ -77,13 +77,13 @@ function() {
     },
     "template": "String",
     "type": "String",
-    "value": "",
+    "value": "Average: ",
     "visible": true
   },
   "averageSuffix": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Average",
       "desc": "Suffix For Average Value",
       "noAps": false,
       "noZtl": false,
@@ -100,7 +100,7 @@ function() {
     "opts": {
       "apsControl": "checkbox",
       "cat": "Display",
-      "desc": "Place An Empty Area After Average Is Matched",
+      "desc": "Place Empty Area After Average ",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Place An Empty Area After Average Is Matched",
@@ -150,7 +150,7 @@ function() {
   "deltaValueSuffix": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Delta",
       "desc": "Delta Value Suffix Text",
       "noAps": false,
       "noZtl": false,
@@ -166,7 +166,7 @@ function() {
   "fallbackPicture": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Picture",
       "desc": "Url For The Fallback Picture",
       "noAps": false,
       "noZtl": false,
@@ -182,8 +182,8 @@ function() {
   "fixedAverage": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "Display",
-      "desc": "Fixed Average Value (-1 For Calculated Average)",
+      "cat": "Display-Average",
+      "desc": "Fixed Average Value",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Fixed Average Value (-1 For Calculated Average)",
@@ -195,10 +195,26 @@ function() {
     "value": -1,
     "visible": true
   },
+  "ignoreAverage": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Content",
+      "desc": "Ignore Average",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Ignore Average when calculating Top / Bottom",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "boolean",
+    "type": "boolean",
+    "value": true,
+    "visible": true
+  },
   "maxNumber": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "Display",
+      "cat": "Content",
       "desc": "Maximum Number",
       "noAps": false,
       "noZtl": false,
@@ -215,7 +231,7 @@ function() {
     "opts": {
       "apsControl": "spinner",
       "cat": "Display",
-      "desc": "Maximal Size Of The Value Area In Px",
+      "desc": "Maximal Value Area Size",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Maximal Size Of The Value Area In Px",
@@ -259,10 +275,10 @@ function() {
     "opts": {
       "apsControl": "text",
       "cat": "Display",
-      "desc": "Technical Proprty For Pressed Key",
+      "desc": "Technical Property For Pressed Key",
       "noAps": true,
       "noZtl": false,
-      "tooltip": "Technical Proprty For Pressed Key",
+      "tooltip": "Technical Property For Pressed Key",
       "ztlFunction": "-get",
       "ztlType": "String"
     },
@@ -275,10 +291,10 @@ function() {
     "opts": {
       "apsControl": "text",
       "cat": "Display",
-      "desc": "Technical Proprty For Selected Key",
+      "desc": "Technical Property For Selected Key",
       "noAps": true,
       "noZtl": false,
-      "tooltip": "Technical Proprty For Selected Key",
+      "tooltip": "Technical Property For Selected Key",
       "ztlFunction": "-get",
       "ztlType": "String"
     },
@@ -290,7 +306,7 @@ function() {
   "showAverage": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Display-Average",
       "desc": "Show Average Information",
       "noAps": false,
       "noZtl": false,
@@ -306,7 +322,7 @@ function() {
   "showDelta": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Display-Delta",
       "desc": "Show Delta Value In Item",
       "noAps": false,
       "noZtl": false,
@@ -322,7 +338,7 @@ function() {
   "topBottom": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Display",
+      "cat": "Content",
       "choiceType": "MemberSelection",
       "desc": "Top X, Bottom X Or Both",
       "noAps": false,
@@ -369,7 +385,7 @@ function() {
   "useDelta": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Display-Delta",
       "desc": "Use Delta As Value",
       "noAps": false,
       "noZtl": false,
@@ -385,7 +401,7 @@ function() {
   "usePictures": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Display-Picture",
       "desc": "Use Pictures",
       "noAps": false,
       "noZtl": false,
@@ -454,13 +470,13 @@ function() {
     },
     "template": "Choice",
     "type": "String",
-    "value": "D0",
+    "value": "D2",
     "visible": true
   },
   "valuePrefix": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Value",
       "desc": "Value Prefix Text",
       "noAps": false,
       "noZtl": false,
@@ -477,7 +493,7 @@ function() {
     "opts": {
       "apsControl": "spinner",
       "cat": "Display",
-      "desc": "Text / Value Split Point In Px",
+      "desc": "Text / Value Split Point",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Text / Value Split Point In Px",
@@ -486,13 +502,13 @@ function() {
     },
     "template": "int",
     "type": "int",
-    "value": 80,
+    "value": 160,
     "visible": true
   },
   "valueSuffix": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Display-Value",
       "desc": "Value Suffix Text",
       "noAps": false,
       "noZtl": false,
@@ -512,13 +528,13 @@ function() {
 
 	spec.specAbout = 
 {
-  "description": "Data Top Flop Chart 2.0",
+  "description": "Data Top Flop Chart",
   "icon": "TopFlopChart.png",
-  "title": "Data Top Flop Chart 2.0",
+  "title": "Data Top Flop Chart",
   "topics": [
     {
-      "content": "Data Top Flop Chart 2.0",
-      "title": "Data Top Flop Chart 2.0"
+      "content": "This component allows you to select a dimension which will be sorted and only top / bottom elements will be shown. The elements will be selected only to the given number. Exception of it occurs when more elements have same value, then more elements can be visible with same value and same position.",
+      "title": "Data Top Flop Chart"
     },
     {
       "content": "This component is a visualization component. It requires specific space in the application canvas.",
@@ -541,9 +557,9 @@ function() {
     "id": "common_basics",
     "space": "known"
   }],
-  "title": "Data Top Flop Chart 2.0",
-  "tooltip": "Data Top Flop Chart 2.0",
-  "width": "225"
+  "title": "Data Top Flop Chart",
+  "tooltip": "Data Top Flop Chart",
+  "width": "300"
 };
 
 	return spec;

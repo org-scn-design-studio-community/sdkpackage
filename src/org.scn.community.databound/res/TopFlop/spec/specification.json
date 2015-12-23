@@ -7,9 +7,9 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "-get",
-			"desc" : "Technical Proprty For Pressed Key",
+			"desc" : "Technical Property For Pressed Key",
 			"cat" : "Display",
-			"tooltip" : "Technical Proprty For Pressed Key",
+			"tooltip" : "Technical Property For Pressed Key",
 			"apsControl" : "text",
 			"noAps" : true,
 			"noZtl" : false
@@ -23,15 +23,15 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "-get",
-			"desc" : "Technical Proprty For Selected Key",
+			"desc" : "Technical Property For Selected Key",
 			"cat" : "Display",
-			"tooltip" : "Technical Proprty For Selected Key",
+			"tooltip" : "Technical Property For Selected Key",
 			"apsControl" : "text",
 			"noAps" : true,
 			"noZtl" : false
 		}
 	},
-   "dataCellList":{
+    "dataCellList":{
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -53,6 +53,22 @@
 
 
 
+	"ignoreAverage" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Ignore Average",
+			"cat" : "Content",
+			"tooltip" : "Ignore Average when calculating Top / Bottom",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
 	"addCounter" : {
 		"template" : "boolean",
 		"type" : "boolean",
@@ -78,7 +94,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Prefix For Average Value",
-			"cat" : "Display-Value",
+			"cat" : "Display-Average",
 			"tooltip" : "Prefix For Average Value",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -94,7 +110,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Suffix For Average Value",
-			"cat" : "Display-Value",
+			"cat" : "Display-Average",
 			"tooltip" : "Suffix For Average Value",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -110,7 +126,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Delta Value Suffix Text",
-			"cat" : "Display-Value",
+			"cat" : "Display-Delta",
 			"tooltip" : "Delta Value Suffix Text",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -141,8 +157,8 @@
 		"opts" : {
 			"ztlType": "float",
 			"ztlFunction": "",
-			"desc" : "Fixed Average Value (-1 For Calculated Average)",
-			"cat" : "Content",
+			"desc" : "Fixed Average Value",
+			"cat" : "Display-Average",
 			"tooltip" : "Fixed Average Value (-1 For Calculated Average)",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -216,7 +232,7 @@
 	"valueDecimalPlaces" : {
 		"template" : "Choice",
 		"type" : "String",
-		"value" : "D0",
+		"value" : "D2",
 		"visible": true,
 		"opts" : {
 			"ztlType": "Choice",
@@ -285,6 +301,22 @@
 			"cat" : "Display-Value",
 			"tooltip" : "Value Prefix Text",
 			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"allowInteraction" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Allow Any Interaction",
+			"cat" : "Interaction",
+			"tooltip" : "Allow Any Interaction (Link, Selection)",
+			"apsControl" : "checkbox",
 			"noAps" : false,
 			"noZtl" : false
 		}

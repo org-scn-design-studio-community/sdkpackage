@@ -117,7 +117,8 @@ LeaderBoard = {
 				options.iTopBottom = that.getTopBottom().replace(" ", "").replace("X", "");
 				options.iSortBy = "Value";
 				options.iDuplicates = "Ignore";
-				options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "");;
+				options.iNumberOfDecimals = that.getValueDecimalPlaces().replace("D", "");
+				options.iIgnoreAverage = that.getIgnoreAverage();
 				options.iDisplayText = "Text";
 				
 				that._returnObject = org_scn_community_databound.getTopBottomElementsForDimension (lData, lMetadata, "", options);
@@ -159,7 +160,7 @@ LeaderBoard = {
 		// distribute content
 		for (var i = 0; i < that._oElements.length; i++) {
 			var element = that._oElements[i];
-			var lImageElement = that.createLeaderElement(that, i, element.key, element.text, element.url, element.value, element.valueS, that._returnObject);
+			var lImageElement = that.createLeaderElement(that, i, element.key, element.text, element.url, element.value, element.valueS, element.counter, that._returnObject);
 			that._lLayout.addContent(lImageElement);
 		}
 	},
@@ -174,11 +175,12 @@ LeaderBoard = {
 		}
 	},
 	
-	createLeaderElement: function (owner, index, iImageKey, iImageText, iImageUrl, value, valueAsString, returnObject) {
+	createLeaderElement: function (owner, index, iImageKey, iImageText, iImageUrl, value, valueAsString, counter, returnObject) {
 		var that = owner;
 		
 		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getFallbackPicture(), iImageUrl, "LeaderBoard.png");
 		
+		var lAllowInteraction = that.getAllowInteraction();
 		var lUsePictures = that.getUsePictures();
 
 		var lLeftMargin = "45px";
@@ -198,7 +200,11 @@ LeaderBoard = {
 			height: "40px"
 		});
 		
-		oValueLayout.addStyleClass("scn-pack-DataLeaderBoard-ValueLayout");
+		if(lAllowInteraction) {
+			oValueLayout.addStyleClass("scn-pack-DataLeaderBoard-ValueLayout");	
+		} else {
+			oValueLayout.addStyleClass("scn-pack-DataLeaderBoard-ValueLayoutNoInteraction");	
+		}
 
 		oLayout.addContent(
 				oValueLayout,
@@ -211,7 +217,7 @@ LeaderBoard = {
 		if(that.getAddCounter()) {
 			var oIndexText = new sap.ui.commons.TextView();
 			oIndexText.addStyleClass("scn-pack-DataLeaderBoard-IndexText");
-			oIndexText.setText((index+1) + ".");
+			oIndexText.setText(counter + ".");
 			
 			oLayout.addContent(
 					oIndexText,
@@ -219,7 +225,12 @@ LeaderBoard = {
 			);
 		}
 		
-		oNameLink = new sap.ui.commons.Link();
+		var oNameLink = undefined;
+		if(lAllowInteraction) {
+			oNameLink = new sap.ui.commons.Link();	
+		} else {
+			oNameLink = new sap.ui.commons.TextView();
+		}
 		oNameLink.addStyleClass("scn-pack-DataLeaderBoard-Link");
 
 		oLayout.addContent(
@@ -257,26 +268,28 @@ LeaderBoard = {
 			oLayout.addStyleClass("scn-pack-DataLeaderBoard-SelectedValue");
 		}
 		
-		oNameLink.attachBrowserEvent('click', function() {
-			that._linkEvent = true;
-			that.setPressedKey(oImage.internalKey);
-			
-			that.fireDesignStudioPropertiesChanged(["pressedKey"]);
-			that.fireDesignStudioEvent("onPress");
-		});
-
-		oLayout.attachBrowserEvent('click', function () {
-			if(that._linkEvent == true) {
-				that._linkEvent = false;
-			} else {
-				that.setSelectedKey(oImage.internalKey);
-				that.updateSelection(that, oImage.internalKey);
+		if(lAllowInteraction) {
+			oNameLink.attachBrowserEvent('click', function() {
+				that._linkEvent = true;
+				that.setPressedKey(oImage.internalKey);
 				
-				that.fireDesignStudioPropertiesChanged(["selectedKey"]);
-				that.fireDesignStudioEvent("onSelectionChanged");
-			}
-		});
-		
+				that.fireDesignStudioPropertiesChanged(["pressedKey"]);
+				that.fireDesignStudioEvent("onPress");
+			});
+	
+			oLayout.attachBrowserEvent('click', function () {
+				if(that._linkEvent == true) {
+					that._linkEvent = false;
+				} else {
+					that.setSelectedKey(oImage.internalKey);
+					that.updateSelection(that, oImage.internalKey);
+					
+					that.fireDesignStudioPropertiesChanged(["selectedKey"]);
+					that.fireDesignStudioEvent("onSelectionChanged");
+				}
+			});
+		}
+
 		oNameLink.setText (iImageText);
 		oNameLink.setTooltip (iImageText);
 

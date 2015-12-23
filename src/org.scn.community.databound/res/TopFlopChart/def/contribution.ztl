@@ -21,14 +21,14 @@ class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.
 	*}
 
 	/**
-	 * Sets Allow Any Interaction (Link, Selection) Property
+	 * Sets Allow Any Interaction Property
 	 */	
-	void setAllowInteraction( /**Allow Any Interaction (Link, Selection)*/ boolean allowInteraction){*
+	void setAllowInteraction( /**Allow Any Interaction*/ boolean allowInteraction){*
 		this.allowInteraction = allowInteraction;
 	*}
 
 	/**
-	 * Gets Allow Any Interaction (Link, Selection) Property
+	 * Gets Allow Any Interaction Property
 	 */	
 	boolean isAllowInteraction() {*
 		return this.allowInteraction;
@@ -63,14 +63,14 @@ class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.
 	*}
 
 	/**
-	 * Sets Place An Empty Area After Average Is Matched Property
+	 * Sets Place Empty Area After Average  Property
 	 */	
-	void setBreakOnAverage( /**Place An Empty Area After Average Is Matched*/ boolean breakOnAverage){*
+	void setBreakOnAverage( /**Place Empty Area After Average */ boolean breakOnAverage){*
 		this.breakOnAverage = breakOnAverage;
 	*}
 
 	/**
-	 * Gets Place An Empty Area After Average Is Matched Property
+	 * Gets Place Empty Area After Average  Property
 	 */	
 	boolean isBreakOnAverage() {*
 		return this.breakOnAverage;
@@ -121,17 +121,31 @@ class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.
 	*}
 
 	/**
-	 * Sets Fixed Average Value (-1 For Calculated Average) Property
+	 * Sets Fixed Average Value Property
 	 */	
-	void setFixedAverage( /**Fixed Average Value (-1 For Calculated Average)*/ int fixedAverage){*
+	void setFixedAverage( /**Fixed Average Value*/ int fixedAverage){*
 		this.fixedAverage = fixedAverage;
 	*}
 
 	/**
-	 * Gets Fixed Average Value (-1 For Calculated Average) Property
+	 * Gets Fixed Average Value Property
 	 */	
 	int getFixedAverage() {*
 		return this.fixedAverage;
+	*}
+
+	/**
+	 * Sets Ignore Average Property
+	 */	
+	void setIgnoreAverage( /**Ignore Average*/ boolean ignoreAverage){*
+		this.ignoreAverage = ignoreAverage;
+	*}
+
+	/**
+	 * Gets Ignore Average Property
+	 */	
+	boolean isIgnoreAverage() {*
+		return this.ignoreAverage;
 	*}
 
 	/**
@@ -149,14 +163,14 @@ class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.
 	*}
 
 	/**
-	 * Sets Maximal Size Of The Value Area In Px Property
+	 * Sets Maximal Value Area Size Property
 	 */	
-	void setMaxValueSize( /**Maximal Size Of The Value Area In Px*/ int maxValueSize){*
+	void setMaxValueSize( /**Maximal Value Area Size*/ int maxValueSize){*
 		this.maxValueSize = maxValueSize;
 	*}
 
 	/**
-	 * Gets Maximal Size Of The Value Area In Px Property
+	 * Gets Maximal Value Area Size Property
 	 */	
 	int getMaxValueSize() {*
 		return this.maxValueSize;
@@ -167,14 +181,14 @@ class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.
 
 
 	/**
-	 * Gets Technical Proprty For Pressed Key Property
+	 * Gets Technical Property For Pressed Key Property
 	 */	
 	String getPressedKey() {*
 		return this.pressedKey;
 	*}
 
 	/**
-	 * Gets Technical Proprty For Selected Key Property
+	 * Gets Technical Property For Selected Key Property
 	 */	
 	String getSelectedKey() {*
 		return this.selectedKey;
@@ -321,14 +335,14 @@ class org.scn.community.databound.TopFlopChart extends org.scn.community.shared.
 	*}
 
 	/**
-	 * Sets Text / Value Split Point In Px Property
+	 * Sets Text / Value Split Point Property
 	 */	
-	void setValueStart( /**Text / Value Split Point In Px*/ int valueStart){*
+	void setValueStart( /**Text / Value Split Point*/ int valueStart){*
 		this.valueStart = valueStart;
 	*}
 
 	/**
-	 * Gets Text / Value Split Point In Px Property
+	 * Gets Text / Value Split Point Property
 	 */	
 	int getValueStart() {*
 		return this.valueStart;

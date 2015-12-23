@@ -1,12 +1,12 @@
 {
-	"title": "Data Top Flop 2.0",
+	"title": "Data Top Flop",
 	"description": "Data Top Flop",
 	"icon": "TopFlop.png",
 	"topics": 
 	[
 		{
 			"title" : "Data Top Flop",
-			"content" : "Data Top Flop"
+			"content" : "This component allows you to select a dimension which will be sorted and only top / bottom elements will be shown. The elements will be selected only to the given number. Exception of it occurs when more elements have same value, then more elements can be visible with same value and same position."
 		},
 		{
 			"title" : "Visualization",

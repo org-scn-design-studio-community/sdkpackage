@@ -1,8 +1,8 @@
 
 <component
 	id="TopFlopChart"
-	title="Data Top Flop Chart 2.0"
-	tooltip="Data Top Flop Chart 2.0"
+	title="Data Top Flop Chart"
+	tooltip="Data Top Flop Chart"
 	icon="res/TopFlopChart/TopFlopChart.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
@@ -28,7 +28,7 @@
 	<property
 		id="allowInteraction"
 		type="boolean"
-		title="Allow Any Interaction (Link, Selection)"
+		title="Allow Any Interaction"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -55,7 +55,7 @@
 	<property
 		id="breakOnAverage"
 		type="boolean"
-		title="Place An Empty Area After Average Is Matched"
+		title="Place Empty Area After Average "
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -103,7 +103,16 @@
 	<property
 		id="fixedAverage"
 		type="int"
-		title="Fixed Average Value (-1 For Calculated Average)"
+		title="Fixed Average Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="ignoreAverage"
+		type="boolean"
+		title="Ignore Average"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -121,7 +130,7 @@
 	<property
 		id="maxValueSize"
 		type="int"
-		title="Maximal Size Of The Value Area In Px"
+		title="Maximal Value Area Size"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -146,7 +155,7 @@
 	<property
 		id="pressedKey"
 		type="String"
-		title="Technical Proprty For Pressed Key"
+		title="Technical Property For Pressed Key"
 		group="Display"
 		bindable="true"
 		visible="false">
@@ -155,7 +164,7 @@
 	<property
 		id="selectedKey"
 		type="String"
-		title="Technical Proprty For Selected Key"
+		title="Technical Property For Selected Key"
 		group="Display"
 		bindable="true"
 		visible="false">
@@ -236,7 +245,7 @@
 	<property
 		id="valueStart"
 		type="int"
-		title="Text / Value Split Point In Px"
+		title="Text / Value Split Point"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -258,12 +267,12 @@
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="WIDTH">225</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">190</defaultValue>
 		
 		<defaultValue property="addCounter"><![CDATA[true]]></defaultValue>
 		<defaultValue property="allowInteraction"><![CDATA[true]]></defaultValue>
-		<defaultValue property="averagePrefix"><![CDATA[]]></defaultValue>
+		<defaultValue property="averagePrefix"><![CDATA[Average: ]]></defaultValue>
 		<defaultValue property="averageSuffix"><![CDATA[]]></defaultValue>
 		<defaultValue property="breakOnAverage"><![CDATA[false]]></defaultValue>
 		<defaultValue property="breakOnIndex"><![CDATA[-1]]></defaultValue>
@@ -271,6 +280,7 @@
 		<defaultValue property="deltaValueSuffix"><![CDATA[]]></defaultValue>
 		<defaultValue property="fallbackPicture"><![CDATA[]]></defaultValue>
 		<defaultValue property="fixedAverage"><![CDATA[-1]]></defaultValue>
+		<defaultValue property="ignoreAverage"><![CDATA[true]]></defaultValue>
 		<defaultValue property="maxNumber"><![CDATA[3]]></defaultValue>
 		<defaultValue property="maxValueSize"><![CDATA[-1]]></defaultValue>
 		<defaultValue property="onPress"><![CDATA[]]></defaultValue>
@@ -283,9 +293,9 @@
 		<defaultValue property="useBackground"><![CDATA[false]]></defaultValue>
 		<defaultValue property="useDelta"><![CDATA[false]]></defaultValue>
 		<defaultValue property="usePictures"><![CDATA[true]]></defaultValue>
-		<defaultValue property="valueDecimalPlaces"><![CDATA[D0]]></defaultValue>
+		<defaultValue property="valueDecimalPlaces"><![CDATA[D2]]></defaultValue>
 		<defaultValue property="valuePrefix"><![CDATA[]]></defaultValue>
-		<defaultValue property="valueStart"><![CDATA[80]]></defaultValue>
+		<defaultValue property="valueStart"><![CDATA[160]]></defaultValue>
 		<defaultValue property="valueSuffix"><![CDATA[]]></defaultValue>
 
 	</initialization>

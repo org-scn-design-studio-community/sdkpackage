@@ -1,6 +1,6 @@
 {
 	"id": "TopFlop",
-	"title": "Data Top Flop 2.0",
+	"title": "Data Top Flop",
 	"tooltip": "Data Top Flop",
 	"handlerType": "sapui5",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",

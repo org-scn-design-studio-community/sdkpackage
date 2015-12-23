@@ -109,6 +109,7 @@ TopFlop = {
 				options.idPrefix = that.getId();
 				options.iSortBy = "Value";
 				options.iDuplicates = "Ignore";
+				options.iIgnoreAverage = that.getIgnoreAverage();
 				options.iNumberOfDecimals = parseInt(that.getValueDecimalPlaces().replace("D", ""));
 				
 				options.average = that.getFixedAverage();
@@ -236,6 +237,8 @@ TopFlop = {
 		
 		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getFallbackPicture(), iImageUrl, "TopFlop.png");
 		
+		var lAllowInteraction = that.getAllowInteraction();
+		
 		var lUsePictures = that.getUsePictures();
 		var lAddCounter = that.getAddCounter();
 		
@@ -275,8 +278,12 @@ TopFlop = {
 			height: "3px"
 		});
 		
-		oValueLayoutBackground.addStyleClass("scn-pack-DataTopFlop-ValueLayout");
-		
+		if(lAllowInteraction) {
+			oValueLayoutBackground.addStyleClass("scn-pack-DataTopFlop-ValueLayout");	
+		} else {
+			oValueLayoutBackground.addStyleClass("scn-pack-DataTopFlop-ValueLayoutNoInteraction");	
+		}
+
 		if(value < returnObject.average) {
 			oValueLayout.addStyleClass("scn-pack-DataTopFlop-ValueLayoutBad");
 		} else {
@@ -306,7 +313,12 @@ TopFlop = {
 			);
 		}
 		
-		oNameLink = new sap.ui.commons.Link();
+		var oNameLink = undefined;
+		if(lAllowInteraction) {
+			oNameLink = new sap.ui.commons.Link();	
+		} else {
+			oNameLink = new sap.ui.commons.TextView();
+		}
 		oNameLink.addStyleClass("scn-pack-DataTopFlop-Link");
 
 		oLayout.addContent(
@@ -352,24 +364,26 @@ TopFlop = {
 			oLayout.addStyleClass("scn-pack-DataTopFlop-SelectedValue");
 		}
 		
-		oNameLink.attachBrowserEvent('click', function() {
-			that._linkEvent = true;
-			that.setPressedKey(oImage.internalKey);
-			
-			that.fireDesignStudioPropertiesChangedAndEvent(["pressedKey"], "onPress");
-		});
-
-		oLayout.attachBrowserEvent('click', function () {
-			if(that._linkEvent == true) {
-				that._linkEvent = false;
-			} else {
-				that.setSelectedKey(oImage.internalKey);
-				that.updateSelection(that, oImage.internalKey);
+		if(lAllowInteraction) {
+			oNameLink.attachBrowserEvent('click', function() {
+				that._linkEvent = true;
+				that.setPressedKey(oImage.internalKey);
 				
-				that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
-			}
-		});
-		
+				that.fireDesignStudioPropertiesChangedAndEvent(["pressedKey"], "onPress");
+			});
+	
+			oLayout.attachBrowserEvent('click', function () {
+				if(that._linkEvent == true) {
+					that._linkEvent = false;
+				} else {
+					that.setSelectedKey(oImage.internalKey);
+					that.updateSelection(that, oImage.internalKey);
+					
+					that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
+				}
+			});
+		}
+
 		oNameLink.setText (iImageText);
 		oNameLink.setTooltip (iImageText);
 
@@ -403,9 +417,9 @@ TopFlop = {
 		
 		var delta = value - returnObject.average;
 		if(delta > 0) {
-			oTextDeltaValue.setText (" ? " + "+" + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals) + that.getDeltaValueSuffix());	
+			oTextDeltaValue.setText (" Δ " + "+" + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals) + that.getDeltaValueSuffix());	
 		} else {
-			oTextDeltaValue.setText (" ? " + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals) + that.getDeltaValueSuffix());
+			oTextDeltaValue.setText (" Δ " + org_scn_community_basics.getFormattedValue(delta, that._metaData.locale, that._options.iNumberOfDecimals) + that.getDeltaValueSuffix());
 		}
 		
 		

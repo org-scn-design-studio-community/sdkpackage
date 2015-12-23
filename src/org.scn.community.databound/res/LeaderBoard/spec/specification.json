@@ -31,7 +31,24 @@
 			"noZtl" : false
 		}
    },
-   "dataCellList":{
+   
+   	"ignoreAverage" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Ignore Average",
+			"cat" : "Content",
+			"tooltip" : "Ignore Average when calculating Top / Bottom",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+    "dataCellList":{
       "type":"ResultCellList",
       "value":"null",
       "visible":true,
@@ -120,10 +137,6 @@
 				{
 					"key" : "Bottom",
 					"text" : "Bottom"
-				},
-				{
-					"key" : "Both",
-					"text" : "Both"
 				}
 				
             ],
@@ -150,7 +163,7 @@
 	"valueDecimalPlaces" : {
 		"template" : "Choice",
 		"type" : "String",
-		"value" : "D0",
+		"value" : "D2",
 		"visible": true,
 		"opts" : {
 			"ztlType": "Choice",
@@ -235,6 +248,22 @@
 			"cat" : "Display-Value",
 			"tooltip" : "Value Suffix Text",
 			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"allowInteraction" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Allow Any Interaction",
+			"cat" : "Interaction",
+			"tooltip" : "Allow Any Interaction (Link, Selection)",
+			"apsControl" : "checkbox",
 			"noAps" : false,
 			"noZtl" : false
 		}

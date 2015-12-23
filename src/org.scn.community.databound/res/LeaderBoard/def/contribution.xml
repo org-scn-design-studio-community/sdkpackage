@@ -1,7 +1,7 @@
 
 <component
 	id="LeaderBoard"
-	title="Data Leader Board 2.0"
+	title="Data Leader Board"
 	tooltip="Data Leader Board"
 	icon="res/LeaderBoard/LeaderBoard.png"
 	handlerType="sapui5"
@@ -26,6 +26,15 @@
 
 	</property>
 	<property
+		id="allowInteraction"
+		type="boolean"
+		title="Allow Any Interaction"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="dataCellList"
 		type="ResultCellList"
 		title="Data List"
@@ -41,6 +50,15 @@
 		id="fallbackPicture"
 		type="Url"
 		title="Url For The Fallback Picture"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="ignoreAverage"
+		type="boolean"
+		title="Ignore Average"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -145,8 +163,10 @@
 		<defaultValue property="HEIGHT">190</defaultValue>
 		
 		<defaultValue property="addCounter"><![CDATA[true]]></defaultValue>
+		<defaultValue property="allowInteraction"><![CDATA[true]]></defaultValue>
 		<defaultValue property="dataCellList"><![CDATA[null]]></defaultValue>
 		<defaultValue property="fallbackPicture"><![CDATA[]]></defaultValue>
+		<defaultValue property="ignoreAverage"><![CDATA[true]]></defaultValue>
 		<defaultValue property="maxNumber"><![CDATA[10]]></defaultValue>
 		<defaultValue property="onPress"><![CDATA[]]></defaultValue>
 		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
@@ -154,7 +174,7 @@
 		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="topBottom"><![CDATA[Top]]></defaultValue>
 		<defaultValue property="usePictures"><![CDATA[true]]></defaultValue>
-		<defaultValue property="valueDecimalPlaces"><![CDATA[D0]]></defaultValue>
+		<defaultValue property="valueDecimalPlaces"><![CDATA[D2]]></defaultValue>
 		<defaultValue property="valuePrefix"><![CDATA[]]></defaultValue>
 		<defaultValue property="valueSuffix"><![CDATA[]]></defaultValue>
 

@@ -21,6 +21,20 @@ class org.scn.community.databound.TopFlop extends org.scn.community.shared.Compo
 	*}
 
 	/**
+	 * Sets Allow Any Interaction Property
+	 */	
+	void setAllowInteraction( /**Allow Any Interaction*/ boolean allowInteraction){*
+		this.allowInteraction = allowInteraction;
+	*}
+
+	/**
+	 * Gets Allow Any Interaction Property
+	 */	
+	boolean isAllowInteraction() {*
+		return this.allowInteraction;
+	*}
+
+	/**
 	 * Sets Prefix For Average Value Property
 	 */	
 	void setAveragePrefix( /**Prefix For Average Value*/ String averagePrefix){*
@@ -79,17 +93,31 @@ class org.scn.community.databound.TopFlop extends org.scn.community.shared.Compo
 	*}
 
 	/**
-	 * Sets Fixed Average Value (-1 For Calculated Average) Property
+	 * Sets Fixed Average Value Property
 	 */	
-	void setFixedAverage( /**Fixed Average Value (-1 For Calculated Average)*/ float fixedAverage){*
+	void setFixedAverage( /**Fixed Average Value*/ float fixedAverage){*
 		this.fixedAverage = fixedAverage;
 	*}
 
 	/**
-	 * Gets Fixed Average Value (-1 For Calculated Average) Property
+	 * Gets Fixed Average Value Property
 	 */	
 	float getFixedAverage() {*
 		return this.fixedAverage;
+	*}
+
+	/**
+	 * Sets Ignore Average Property
+	 */	
+	void setIgnoreAverage( /**Ignore Average*/ boolean ignoreAverage){*
+		this.ignoreAverage = ignoreAverage;
+	*}
+
+	/**
+	 * Gets Ignore Average Property
+	 */	
+	boolean isIgnoreAverage() {*
+		return this.ignoreAverage;
 	*}
 
 	/**
@@ -111,14 +139,14 @@ class org.scn.community.databound.TopFlop extends org.scn.community.shared.Compo
 
 
 	/**
-	 * Gets Technical Proprty For Pressed Key Property
+	 * Gets Technical Property For Pressed Key Property
 	 */	
 	String getPressedKey() {*
 		return this.pressedKey;
 	*}
 
 	/**
-	 * Gets Technical Proprty For Selected Key Property
+	 * Gets Technical Property For Selected Key Property
 	 */	
 	String getSelectedKey() {*
 		return this.selectedKey;

@@ -48,10 +48,26 @@ function() {
     "value": true,
     "visible": true
   },
+  "allowInteraction": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Interaction",
+      "desc": "Allow Any Interaction",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Allow Any Interaction (Link, Selection)",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "boolean",
+    "type": "boolean",
+    "value": true,
+    "visible": true
+  },
   "averagePrefix": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display-Value",
+      "cat": "Display-Average",
       "desc": "Prefix For Average Value",
       "noAps": false,
       "noZtl": false,
@@ -67,7 +83,7 @@ function() {
   "averageSuffix": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display-Value",
+      "cat": "Display-Average",
       "desc": "Suffix For Average Value",
       "noAps": false,
       "noZtl": false,
@@ -102,7 +118,7 @@ function() {
   "deltaValueSuffix": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display-Value",
+      "cat": "Display-Delta",
       "desc": "Delta Value Suffix Text",
       "noAps": false,
       "noZtl": false,
@@ -134,8 +150,8 @@ function() {
   "fixedAverage": {
     "opts": {
       "apsControl": "text",
-      "cat": "Content",
-      "desc": "Fixed Average Value (-1 For Calculated Average)",
+      "cat": "Display-Average",
+      "desc": "Fixed Average Value",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Fixed Average Value (-1 For Calculated Average)",
@@ -145,6 +161,22 @@ function() {
     "template": "float",
     "type": "float",
     "value": -1,
+    "visible": true
+  },
+  "ignoreAverage": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Content",
+      "desc": "Ignore Average",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Ignore Average when calculating Top / Bottom",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "boolean",
+    "type": "boolean",
+    "value": true,
     "visible": true
   },
   "maxNumber": {
@@ -195,10 +227,10 @@ function() {
     "opts": {
       "apsControl": "text",
       "cat": "Display",
-      "desc": "Technical Proprty For Pressed Key",
+      "desc": "Technical Property For Pressed Key",
       "noAps": true,
       "noZtl": false,
-      "tooltip": "Technical Proprty For Pressed Key",
+      "tooltip": "Technical Property For Pressed Key",
       "ztlFunction": "-get",
       "ztlType": "String"
     },
@@ -211,10 +243,10 @@ function() {
     "opts": {
       "apsControl": "text",
       "cat": "Display",
-      "desc": "Technical Proprty For Selected Key",
+      "desc": "Technical Property For Selected Key",
       "noAps": true,
       "noZtl": false,
-      "tooltip": "Technical Proprty For Selected Key",
+      "tooltip": "Technical Property For Selected Key",
       "ztlFunction": "-get",
       "ztlType": "String"
     },
@@ -326,7 +358,7 @@ function() {
     },
     "template": "Choice",
     "type": "String",
-    "value": "D0",
+    "value": "D2",
     "visible": true
   },
   "valuePrefix": {
@@ -370,10 +402,10 @@ function() {
 {
   "description": "Data Top Flop",
   "icon": "TopFlop.png",
-  "title": "Data Top Flop 2.0",
+  "title": "Data Top Flop",
   "topics": [
     {
-      "content": "Data Top Flop",
+      "content": "This component allows you to select a dimension which will be sorted and only top / bottom elements will be shown. The elements will be selected only to the given number. Exception of it occurs when more elements have same value, then more elements can be visible with same value and same position.",
       "title": "Data Top Flop"
     },
     {
@@ -412,7 +444,7 @@ function() {
       "space": "known"
     }
   ],
-  "title": "Data Top Flop 2.0",
+  "title": "Data Top Flop",
   "tooltip": "Data Top Flop",
   "width": "225"
 };

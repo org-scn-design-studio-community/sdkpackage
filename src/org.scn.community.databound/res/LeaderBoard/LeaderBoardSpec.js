@@ -48,6 +48,22 @@ function() {
     "value": true,
     "visible": true
   },
+  "allowInteraction": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Interaction",
+      "desc": "Allow Any Interaction",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Allow Any Interaction (Link, Selection)",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "boolean",
+    "type": "boolean",
+    "value": true,
+    "visible": true
+  },
   "dataCellList": {
     "options": {
       "includeData": "true",
@@ -81,6 +97,22 @@ function() {
     "template": "Url",
     "type": "Url",
     "value": "",
+    "visible": true
+  },
+  "ignoreAverage": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Content",
+      "desc": "Ignore Average",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Ignore Average when calculating Top / Bottom",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "boolean",
+    "type": "boolean",
+    "value": true,
     "visible": true
   },
   "maxNumber": {
@@ -175,10 +207,6 @@ function() {
         {
           "key": "Bottom",
           "text": "Bottom"
-        },
-        {
-          "key": "Both",
-          "text": "Both"
         }
       ],
       "tooltip": "Top X Or Bottom X",
@@ -262,7 +290,7 @@ function() {
     },
     "template": "Choice",
     "type": "String",
-    "value": "D0",
+    "value": "D2",
     "visible": true
   },
   "valuePrefix": {
@@ -306,10 +334,10 @@ function() {
 {
   "description": "Data Leader Board",
   "icon": "LeaderBoard.png",
-  "title": "Data Leader Board 2.0",
+  "title": "Data Leader Board",
   "topics": [
     {
-      "content": "Data Leader Board shows you the top and bottom members in nice manner",
+      "content": "Data Leader Board shows you the top and bottom members in nice manner (like in SCN). In case some values are occurring twice, those will be shown as well.",
       "title": "Data Leader Board"
     },
     {
@@ -348,7 +376,7 @@ function() {
       "space": "known"
     }
   ],
-  "title": "Data Leader Board 2.0",
+  "title": "Data Leader Board",
   "tooltip": "Data Leader Board",
   "width": "225"
 };

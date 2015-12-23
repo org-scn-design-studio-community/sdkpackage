@@ -1,7 +1,7 @@
 
 <component
 	id="TopFlop"
-	title="Data Top Flop 2.0"
+	title="Data Top Flop"
 	tooltip="Data Top Flop"
 	icon="res/TopFlop/TopFlop.png"
 	handlerType="sapui5"
@@ -20,6 +20,15 @@
 		id="addCounter"
 		type="boolean"
 		title="Add Counter"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="allowInteraction"
+		type="boolean"
+		title="Allow Any Interaction"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -76,7 +85,16 @@
 	<property
 		id="fixedAverage"
 		type="float"
-		title="Fixed Average Value (-1 For Calculated Average)"
+		title="Fixed Average Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="ignoreAverage"
+		type="boolean"
+		title="Ignore Average"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -110,7 +128,7 @@
 	<property
 		id="pressedKey"
 		type="String"
-		title="Technical Proprty For Pressed Key"
+		title="Technical Property For Pressed Key"
 		group="Display"
 		bindable="true"
 		visible="false">
@@ -119,7 +137,7 @@
 	<property
 		id="selectedKey"
 		type="String"
-		title="Technical Proprty For Selected Key"
+		title="Technical Property For Selected Key"
 		group="Display"
 		bindable="true"
 		visible="false">
@@ -181,12 +199,14 @@
 		<defaultValue property="HEIGHT">190</defaultValue>
 		
 		<defaultValue property="addCounter"><![CDATA[true]]></defaultValue>
+		<defaultValue property="allowInteraction"><![CDATA[true]]></defaultValue>
 		<defaultValue property="averagePrefix"><![CDATA[Average: ]]></defaultValue>
 		<defaultValue property="averageSuffix"><![CDATA[]]></defaultValue>
 		<defaultValue property="dataCellList"><![CDATA[null]]></defaultValue>
 		<defaultValue property="deltaValueSuffix"><![CDATA[]]></defaultValue>
 		<defaultValue property="fallbackPicture"><![CDATA[]]></defaultValue>
 		<defaultValue property="fixedAverage"><![CDATA[-1]]></defaultValue>
+		<defaultValue property="ignoreAverage"><![CDATA[true]]></defaultValue>
 		<defaultValue property="maxNumber"><![CDATA[3]]></defaultValue>
 		<defaultValue property="onPress"><![CDATA[]]></defaultValue>
 		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
@@ -194,7 +214,7 @@
 		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="topBottom"><![CDATA[Both]]></defaultValue>
 		<defaultValue property="usePictures"><![CDATA[true]]></defaultValue>
-		<defaultValue property="valueDecimalPlaces"><![CDATA[D0]]></defaultValue>
+		<defaultValue property="valueDecimalPlaces"><![CDATA[D2]]></defaultValue>
 		<defaultValue property="valuePrefix"><![CDATA[]]></defaultValue>
 		<defaultValue property="valueSuffix"><![CDATA[]]></defaultValue>
 

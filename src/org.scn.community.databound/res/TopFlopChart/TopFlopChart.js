@@ -82,7 +82,7 @@ TopFlopChart = {
 		var metadata = that.getDSMetadata();
 
 		if(!org_scn_community_databound.hasData (data, metadata)) {
-			org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare);
+			org_scn_community_databound.getSampleDataFlat (that, that.processData, that.afterPrepare, "result");
 		} else {
 			org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
 		}
@@ -102,6 +102,7 @@ TopFlopChart = {
 			options.idPrefix = that.getId();
 			options.iSortBy = "Value";
 			options.iDuplicates = "Ignore";
+			options.iIgnoreAverage = that.getIgnoreAverage();
 			options.iNumberOfDecimals = parseInt(that.getValueDecimalPlaces().replace("D", ""));
 			
 			options.average = that.getFixedAverage();

@@ -20,6 +20,20 @@ class org.scn.community.databound.LeaderBoard extends org.scn.community.shared.C
 		return this.addCounter;
 	*}
 
+	/**
+	 * Sets Allow Any Interaction Property
+	 */	
+	void setAllowInteraction( /**Allow Any Interaction*/ boolean allowInteraction){*
+		this.allowInteraction = allowInteraction;
+	*}
+
+	/**
+	 * Gets Allow Any Interaction Property
+	 */	
+	boolean isAllowInteraction() {*
+		return this.allowInteraction;
+	*}
+
 
 
 	/**
@@ -34,6 +48,20 @@ class org.scn.community.databound.LeaderBoard extends org.scn.community.shared.C
 	 */	
 	String getFallbackPicture() {*
 		return this.fallbackPicture;
+	*}
+
+	/**
+	 * Sets Ignore Average Property
+	 */	
+	void setIgnoreAverage( /**Ignore Average*/ boolean ignoreAverage){*
+		this.ignoreAverage = ignoreAverage;
+	*}
+
+	/**
+	 * Gets Ignore Average Property
+	 */	
+	boolean isIgnoreAverage() {*
+		return this.ignoreAverage;
 	*}
 
 	/**

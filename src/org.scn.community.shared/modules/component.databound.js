@@ -94,6 +94,8 @@ define(["./component.basics"], function() {
 		options.formattingCondition.rules = [];
 	
 		options.keepDataArray = false;
+		options.iIgnoreAverage = false;
+		options.average = undefined;
 	
 		return options;
 	}
@@ -304,13 +306,6 @@ define(["./component.basics"], function() {
 				lAverage = lAverage / lValues.length;
 			}
 		}
-		
-		var sameValues = 0;
-		for (var i = 0; i < lValues.length - 1; i++) {
-			if(lValues[i] == lValues[i+1]) {
-				sameValues++;
-			}
-		}
 
 		var max = options.iMaxNumber;
 		var newListT = [];
@@ -318,7 +313,6 @@ define(["./component.basics"], function() {
 			
 		var counter = 0;
 		if(options.iTopBottom == "Both" || options.iTopBottom == "Top X" || options.iTopBottom == "Top") {
-			var counterAdjustment = 0;
 			for (var i = 0; i < list.length; i++) {
 				if(counter >= max) {
 					if(list[i-1].value != list[i].value) {
@@ -326,28 +320,37 @@ define(["./component.basics"], function() {
 					}
 				}
 				
-				list[i].counter = (i+1+counterAdjustment);
+				list[i].counter = (i+1);
 				list[i].delta = (list[i].value - lAverage);
 	
 				if(options.iSortBy!="Default") { // break criteria only for sorted lists
-					if(list[i].delta < 0) {
+					if(options.iIgnoreAverage == false && list[i].delta < 0) {
 						break;
 					}
 				}
 				
-				if(i < list.length-1 && list[i].value == list[i+1].value) {
-					counterAdjustment -= 1;
-				}
-
 				newListT.push(list[i]);
 				counter = counter + 1;
+			}
+			
+			// renumber
+			var adjustmentCounter = 0;
+			for (var nLI in newListT) {
+				var nLO = newListT[nLI];
+				
+				nLO.counter -= adjustmentCounter; 
+				var nextElem = newListT[parseInt(nLI)+1];
+				if(nextElem != undefined) {
+					if(nextElem.value == nLO.value) {
+						adjustmentCounter++;
+					}
+				}
 			}
 		}
 		
 		counter = 0;
 		
 		if (options.iTopBottom == "Both" || options.iTopBottom == "Bottom X" || options.iTopBottom == "Bottom"){
-			var counterAdjustment = 0;
 			for (var i = list.length - 1; i >= 0; i--) {
 				if(counter >= max) {
 					if(list[i+1].value != list[i].value) {
@@ -355,30 +358,56 @@ define(["./component.basics"], function() {
 					}
 				}
 
-				list[i].counter = (i+1+counterAdjustment);
-				list[i].delta = (list[i].value - lAverage);
-	
 				if(options.iSortBy!="Default") { // break criteria only for sorted lists
-					if(list[i].delta > 0) {
+					if(options.iIgnoreAverage == false && list[i].delta > 0) {
 						break;
 					}
 				}
 
-				if(i > 0 && list[i].value == list[i-1].value) {
-					counterAdjustment += 1;
-				}
-				
-				if(allKeys.indexOf("|" + list[i].key + "|") == -1) {
-					newListB.splice(0, 0, list[i]);	
+				if(options.iTopBottom != "Both") {
+					list[i].counter = (i+1);
+					list[i].delta = (list[i].value - lAverage);
+
+					newListB.splice(0, 0, list[i]);
+				} else if (allKeys.indexOf("|" + list[i].key + "|") == -1) {
+					list[i].counter = (i+1);
+					list[i].delta = (list[i].value - lAverage);
+	
+					newListB.splice(0, 0, list[i]);
 				}
 				
 				counter = counter + 1;
 			}
 			
-			for (var nLI in newListB) {
-				var nLO = newListB[nLI];
-				nLO.counter -= sameValues;
-				newListT.push(nLO);
+			if(newListB.length > 0) {
+				var adjustmentCounter = 0;
+				for (var nLI in list) {
+					var nLO = list[nLI];
+
+					if(nLO.value == newListB[0].value) {
+						break;
+					}
+
+					var nextElem = list[parseInt(nLI)+1];
+					if(nextElem != undefined) {
+						if(nextElem.value == nLO.value) {
+							adjustmentCounter++;
+						}
+					}
+				}
+				for (var nLI in newListB) {
+					var nLO = newListB[nLI];
+
+					nLO.counter -= adjustmentCounter; 
+					var nextElem = newListB[parseInt(nLI)+1];
+					if(nextElem != undefined) {
+						if(nextElem.value == nLO.value) {
+							adjustmentCounter++;
+						}
+					}
+
+					newListT.push(nLO);
+				}
 			}
 		}
 	
