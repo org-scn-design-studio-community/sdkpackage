@@ -7,7 +7,8 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 	 */
 	new sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ComplexItem",{
 		_requiredModules : [
-		    "../../org.scn.community.shared/aps/measureselector"
+		    "../../org.scn.community.shared/aps/measureselector",
+		    "../../org.scn.community.shared/aps/tileconfig"
 		],
 		_config : {
 			/* Empty */

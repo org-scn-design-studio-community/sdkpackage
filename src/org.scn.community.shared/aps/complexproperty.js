@@ -54,7 +54,7 @@ define([], function () {
 						} else {
 							value = o[field];
 						}
-						handler.setter.call(this, field, value);
+						handler.setter.call(that, field, value);
 					};}(field));
 				}else{
 					// alert(field + " not exist yet.");

@@ -59,7 +59,7 @@ define(["./complexitem"], function () {
 				this.makeLayout();
 				this.layoutComponents();
 			} catch (e) {
-				alert(e);
+				alert("Error in tileconfig:\n\n" + e);
 			}
 		},
 		makeLayout : function () {
@@ -96,18 +96,20 @@ define(["./complexitem"], function () {
 	return {
 		id : "tileconfig",
 		setter : function (property, value) {
-			var newValue = {};
+			/*var newValue = {};
 			try{
 				newValue = JSON.parse(value);
 			}catch(e){
 				// Bad JSON
 			}
-			this["cmp_" + property].setValue(newValue);
+			this["cmp_" + property].setValue(newValue);*/
+			this["cmp_" + property].setValue(value);
 		},
 		getter : function (property, control) {
-			var arrayValue = control.getValue();
-			newValue = JSON.stringify(arrayValue);
-			return newValue;
+			var value = control.getValue();
+			//newValue = JSON.stringify(arrayValue);
+			//return newValue;
+			return value; 
 		},
 		createComponent : function (property, propertyOptions, changeHandler) {
 			try{
@@ -120,7 +122,7 @@ define(["./complexitem"], function () {
 			});
 			component.attachValueChange(changeHandler, this);
 			}catch(e){
-				alert(e);
+				alert("Error creating tile config:\n\n" + e);
 			}
 			return component;
 		}

@@ -26,17 +26,87 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		var that = this;
 		// Call super
 		VizCoreDatabound.call(this, {
+			fitBounds : {
+				opts : {
+					desc : "Fit to Bounds",
+					cat : "General",
+					apsControl : "checkbox"
+				}
+			},
+			currentBaseLayer : {
+				opts : {
+					desc : "Active Base Layer",
+					cat : "Layers-Base Maps",
+					apsControl : "text"
+				}
+			},
+			hiddenLayers : {
+				opts : {
+					desc : "Hidden Layers",
+					cat : "Layers-Hidden",
+					noAps : true
+				}
+			},
+			zoom : {
+				opts : {
+					desc : "Zoom Level",
+					cat : "General",
+					apsControl : "spinner"
+				}
+			},
 			tileOptions : {
 				opts : {
-					desc : "Tile Options",
-					cat : "General",
-					apsControl : "tileconfig"
+					desc : "Base Map Tiles",
+					cat : "Layers-Base Maps",
+					apsControl : "complexcollection",
+					apsConfig : {
+						key : {
+							desc : "Label",
+							defaultValue : "SOME_BASEMAP",
+							apsControl : "text",
+							key : true
+						},
+						tileConfig : {
+							desc : "Tile Config",
+							defaultValue : {
+						    	baseUrl : "http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png",
+						    	subdomains : "12"
+						    },
+							apsControl : "tileconfig"
+						}
+					}
+				}
+			},
+			geoJSONLayers : {
+				opts : {
+					desc : "GeoJSON",
+					cat : "Layers-GeoJSON",
+					apsControl : "complexcollection",
+					apsConfig : {
+						key : {
+							desc : "Layer Key",
+							defaultValue : "SOME_KEY",
+							apsControl : "text",
+							key : true
+						},
+						color : {
+							desc : "Layer Color",
+							defaultValue : "#009966",
+							apsControl : "color",
+							key : true
+						},
+						geoJSON : {
+							desc : "GeoJSON",
+							defaultValue : "{}",
+							apsControl : "mapdownload"
+						}
+					}
 				}
 			},
 			markers : {
 				opts : {
 					desc : "Markers",
-					cat : "Items",
+					cat : "Layers-Markers",
 					keyField : "key",
 					apsControl : "complexcollection",
 					apsConfig : {
@@ -90,14 +160,36 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			this.updateMap();
 		};
 		this.updateMap = function () {
-			var tileOptions = {
-				baseUrl : "http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png",
-				subdomains : "12"
-			};
+			var that = this;
+			this._hiddenList = JSON.parse((this.hiddenLayers()||"{}"));
+			// Remove event listeners
+			this._map.off("baselayerchange", this.baseLayerChanged);
+			this._map.off("overlayadd", this.overlayAdded);
+			this._map.off("overlayremove", this.overlayRemoved);
+			
+			this._map.eachLayer(function (layer) {
+			    that._map.removeLayer(layer);
+			});
+			try{
+				if(this._controlLayer) this._controlLayer.removeFrom(this._map);
+			}catch(e){
+				// alert("caught" + e);
+			}
+			this._controlLayer = L.control.layers(null,null,{ });
+			if(!this._designTime) {
+				this._controlLayer.addTo(this._map);
+			}else{
+				
+			}
+			this._controlLayer._update();
+			var tileOptions = [];
 			var markers = [];
+			var featureLayers = [];
 			var sTileOptions = this.tileOptions();
+			var sGeoJSONLayers = this.geoJSONLayers();
 			var sMarkers = this.markers();
 			if (sTileOptions && sTileOptions != "") tileOptions = JSON.parse(sTileOptions);
+			if (sGeoJSONLayers && sGeoJSONLayers != "") featureLayers = JSON.parse(sGeoJSONLayers);
 			if (sMarkers && sMarkers != "") markers = JSON.parse(sMarkers);
 			// Ensure right data types.
 			// if(tileOptions.minZoom) tileOptions.minZoom = parseInt(tileOptions.minZoom);
@@ -105,8 +197,43 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 
 			if (this._layer) this._map.removeLayer(this._layer);
 			if (this._markerLayer) this._map.removeLayer(this._markerLayer);
-			this._layer = L.tileLayer(tileOptions.baseUrl, tileOptions);
+			if (this._featureLayer) this._map.removeLayer(this._featureLayer);
+			
+			// BASE MAP
+			for(var i=0;i<tileOptions.length;i++){
+				var tileConfig = tileOptions[i].tileConfig;
+				var newTileLayer = L.tileLayer(tileConfig.baseUrl, tileConfig);
+				this._controlLayer.addBaseLayer(newTileLayer, tileOptions[i].key);
+				if(this.currentBaseLayer()==tileOptions[i].key || (!this.currentBaseLayer() && i==0)){
+					newTileLayer.addTo(this._map);
+				}
+				// 
+			}
+			// GEOJSON Layers
+			this._featureLayer = L.featureGroup();
+			for(var i=0;i<featureLayers.length;i++){
+				var layer = featureLayers[i];
+				var feature = JSON.parse(layer.geoJSON);
+				var styleConfig = {
+					color : layer.color || "#C0C0C0",
+					weight : layer.weight || 1,
+					opacity : layer.opacity || 0.8
+				}
+				try{
+					var LgeoJSON = new L.geoJson(feature, styleConfig);
+					if(!this._hiddenList[featureLayers[i].key]){
+						LgeoJSON.addTo(this._featureLayer);
+					
+					}
+					this._controlLayer.addOverlay(LgeoJSON, featureLayers[i].key);
+				}catch(e){
+					// Bad GeoJson
+				}
+			}
+			this._featureLayer.addTo(this._map);
+			// MARKERS
 			this._markerLayer = L.featureGroup();
+			this._controlLayer.addOverlay(this._markerLayer, "Markers");
 			for(var i=0;i<markers.length;i++){
 				var marker = markers[i];
 				// alert([marker.latitude, marker.longitude]);
@@ -120,30 +247,83 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				});
 				Lmarker.addTo(this._markerLayer);
 			}
-			this._layer.addTo(this._map);
 			this._markerLayer.addTo(this._map);
-			try{
-				this._map.fitBounds(this._markerLayer.getBounds(),{
-					paddingTopLeft : [15,15]
-				});
-			}catch(e){
-				
+			if(this.fitBounds()){
+				try{
+					this._map.fitBounds(this._markerLayer.getBounds(),{
+						paddingTopLeft : [15,15]
+					});
+				}catch(e){
+					
+				}	
+			}else{
+				this._map.setView([51.505, -0.09], this.zoom() || 1);
 			}
-			
+			// Add event listeners
+			this._map.on("baselayerchange", this.baseLayerChanged);
+			this._map.on("overlayadd", this.overlayAdded);
+			this._map.on("overlayremove", this.overlayRemoved);
 		};
+		var that = this;
+		this.baseLayerChanged = function(LayersControlEvent){
+			that.currentBaseLayer(LayersControlEvent.name);
+			that.firePropertiesChanged(["currentBaseLayer"]);
+			//that.fireEvent("onSelect");
+		};
+		this.overlayAdded = function(LayersControlEvent){
+			that._hiddenList[LayersControlEvent.name] = false;
+			that.hiddenLayers(JSON.stringify(that._hiddenList));
+			that.firePropertiesChanged(["hiddenLayers"]);
+		};
+		this.overlayRemoved = function(LayersControlEvent){
+			// Bugged
+			var index = -1;
+			that._hiddenList[LayersControlEvent.name] = true;
+			that.hiddenLayers(JSON.stringify(that._hiddenList));
+			that.firePropertiesChanged(["hiddenLayers"]);
+			/*
+			that._map.eachLayer(function(layer){
+				alert(layer);
+			});*/
+			// alert(LayersControlEvent.name);
+		};
+
 		var parentInit = this.init;
 		this.init = function () {
-			parentInit.call(this);
-			// Create Map Container DIV
-			this._mapContainer = $("<div/>");
-			this._mapContainer.css({
-				width : "100%",
-				height : "100%"
-			});
-			this.$().append(this._mapContainer);
-			this._map = new L.Map(this._mapContainer.get(0), {});
-			this._map.setView([51.505, -0.09], 3);
-			this.updateMap();
+			try{
+				this._designTime = false;
+				if(sap && sap.zen && sap.zen.designmode) {
+					this._designTime = true;
+				}
+				parentInit.call(this);
+				// Create Map Container DIV
+				this._mapContainer = $("<div/>");
+				this._mapContainer.css({
+					width : "100%",
+					height : "100%"
+				});
+				this.$().append(this._mapContainer);
+				
+				this._map = new L.Map(this._mapContainer.get(0), {
+					attributionControl : false,
+					zoomControl : !this._designTime,
+					maxBounds:[L.latLng(-85.0511,-180),L.latLng(85.0511,180)]
+				});
+				// CONTROL LAYER
+				// this._controlLayer = L.control.layers(null,null,{ });
+				
+				var attributionControl = new L.control.attribution({
+					position : "bottomright",
+		    		prefix : false
+		    	});
+				attributionControl.addTo(this._map);
+				// this._map.setView([51.505, -0.09], 3);
+			
+				this.updateMap();	
+			}catch(e){
+				alert("init" + e);				
+			}
+			
 		};
 	}
 	LeafletMap.prototype.constructor = LeafletMap;

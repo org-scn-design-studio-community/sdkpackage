@@ -1912,11 +1912,21 @@ __n__}
 	<requireJs modes="commons m">res/LeafletMap/LeafletMap</requireJs>
 	
 	<property type="String" title="Tile Options" id="tileOptions" visible="false"/>
+	<property type="String" title="Hidden Layers" id="hiddenLayers" visible="false"/>
+	<property type="String" title="Active Base Layer" id="currentBaseLayer" visible="false"/>
 	<property type="String" title="Markers" id="markers" visible="false"/>
+	<property type="String" title="GeoJSON Layers" id="geoJSONLayers" visible="false"/>
+	<property type="boolean" title="Markers" id="fitBounds" visible="false"/>
+	<property type="int" title="Zoom" id="zoom" visible="false"/>
 
 	<initialization>
-		<defaultValue property="tileOptions">{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png&quot;,&quot;subdomains&quot;:&quot;12&quot;}</defaultValue>
+		<defaultValue property="tileOptions">[{&quot;key&quot;:&quot;Standard&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;}},{&quot;key&quot;:&quot;Satellite&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;}}]</defaultValue>
+		<defaultValue property="currentBaseLayer">Standard</defaultValue>
 		<defaultValue property="markers">[]</defaultValue>
+		<defaultValue property="geoJSONLayers">[]</defaultValue>
+		<defaultValue property="hiddenLayers">{}</defaultValue>
+		<defaultValue property="fitBounds">true</defaultValue>
+		<defaultValue property="zoom">3</defaultValue>
 		<defaultValue property="WIDTH">500</defaultValue>
 		<defaultValue property="HEIGHT">350</defaultValue>
 	</initialization>
