@@ -300,6 +300,7 @@ define(["./complexitem"],function(){
 				config : propertyOptions.apsConfig,
 				showCollapseIcon : false
 			});
+			if(propertyOptions.visibleRows) component.columnTable.setVisibleRowCount(propertyOptions.visibleRows);
 			component.attachValueChange(changeHandler ,this);
 			return component;
 		}

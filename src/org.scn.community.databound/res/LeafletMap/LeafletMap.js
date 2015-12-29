@@ -4,6 +4,8 @@
  * Based on a work at http://github.com/org-scn-design-studio-community/sdkpackage/tree/master/src/org.scn.community.databound/res/LeafletMap
  *
  */
+// http://jsperf.com/leaflet-svg-vs-canvas/3 shows that canvas is FASTER in IE than SVG, however SLOWER in Chrome than SVG.  Maybe browser detection later...
+L_PREFER_CANVAS = true;		// http://leafletjs.com/reference.html#global
 require.config({
 	paths : {
 		"leaflet-markers" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet-plugins/scn-markers/leaflet.scn-designstudio-markers",
@@ -12,11 +14,13 @@ require.config({
 });
 define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
         "css!./../../../org.scn.community.shared/os/leaflet-plugins/scn-markers/leaflet.scn-designstudio-markers.css",
+        "d3",
+        "../../../org.scn.community.shared/os/d3v3/topojson.v1",
 		"leaflet",
 		"./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
 		"sap/designstudio/sdk/component",
 		"leaflet-markers"],
-	function (Lcss, Lmarkercss, L, VizCoreDatabound, Component) {
+	function (Lcss, Lmarkercss, d3, topojson, L, VizCoreDatabound, Component) {
 	var ownComponentName = "org.scn.community.databound.LeafletMap";
 	/**
 	 * LeafletMap
@@ -77,37 +81,10 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					}
 				}
 			},
-			geoJSONLayers : {
+			geoJson : {
 				opts : {
-					desc : "GeoJSON",
-					cat : "Layers-GeoJSON",
-					apsControl : "complexcollection",
-					apsConfig : {
-						key : {
-							desc : "Layer Key",
-							defaultValue : "SOME_KEY",
-							apsControl : "text",
-							key : true
-						},
-						color : {
-							desc : "Layer Color",
-							defaultValue : "#009966",
-							apsControl : "color",
-							key : true
-						},
-						geoJSON : {
-							desc : "GeoJSON",
-							defaultValue : "{}",
-							apsControl : "mapdownload"
-						}
-					}
-				}
-			},
-			markers : {
-				opts : {
-					desc : "Markers",
-					cat : "Layers-Markers",
-					keyField : "key",
+					desc : "GeoJSON Library",
+					cat : "Layers-GeoJSON Library",
 					apsControl : "complexcollection",
 					apsConfig : {
 						key : {
@@ -116,28 +93,97 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							apsControl : "text",
 							key : true
 						},
-						latitude : {
-							desc : "Latitude",
-							defaultValue : 51.505,
-							apsControl : "text"
+						content : {
+							desc : "Custom GeoJSON",
+							defaultValue : {},
+							apsControl : "mapeditor"
+						}
+					}
+				}
+			},
+			overlays : {
+				opts : {
+					desc : "Map Overlays",
+					cat : "Layers-Overlays",
+					apsControl : "complexcollection",
+					apsConfig : {
+						key : {
+							desc : "Layer Key",
+							defaultValue : "SOME_KEY",
+							apsControl : "text",
+							key : true
 						},
-						longitude : {
-							desc : "Longitude",
-							defaultValue : -0.09,
-							apsControl : "text"
+						visible : {
+							desc : "Visible",
+							defaultValue : true,
+							apsControl : "checkbox"
 						},
-						marker : {
-							desc : "Marker Type",
-							defaultValue : "marker",
-							apsControl : "combobox",
-							options : [{
-									key : "marker",
-									text : "Marker"
-								}, {
-									key : "circle",
-									text : "Circle"
+						color : {
+							desc : "Layer Color",
+							defaultValue : "#009966",
+							apsControl : "color",
+						},
+						weight : {
+							desc : "Line Weight",
+							defaultValue : 1,
+							apsControl : "spinner"
+						},
+						opacity : {
+							desc : "Border Opacity (0.00 - 1.00)",
+							defaultValue : 0.8,
+							apsControl : "spinner"
+						},
+						fillOpacity : {
+							desc : "Fill Opacity (0.00 - 1.00)",
+							defaultValue : 0.5,
+							apsControl : "spinner"
+						},
+						geoJson : {
+							desc : "Custom GeoJSON",
+							defaultValue : "",
+							apsControl : "mapeditor"
+						},
+						geoJsonUrl : {
+							desc : "GeoJSON URL",
+							defaultValue : "",
+							apsControl : "text-presets",
+							presetsIndex : "os/maps/presets.json",
+						},
+						markers : {
+							desc : "Markers",
+							defaultValues : [],
+							apsControl : "complexcollection",
+							visibleRows : 5,
+							apsConfig : {
+								key : {
+									desc : "Key",
+									defaultValue : "SOME_MARKER_KEY",
+									apsControl : "text"
+								},
+								latitude : {
+									desc : "Latitude",
+									defaultValue : 51.505,
+									apsControl : "text"
+								},
+								longitude : {
+									desc : "Longitude",
+									defaultValue : -0.09,
+									apsControl : "text"
+								},
+								marker : {
+									desc : "Marker Type",
+									defaultValue : "marker",
+									apsControl : "combobox",
+									options : [{
+											key : "marker",
+											text : "Marker"
+										}, {
+											key : "circle",
+											text : "Circle"
+										}
+									]
 								}
-							]
+							}
 						}
 					}
 				}
@@ -161,7 +207,6 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		};
 		this.updateMap = function () {
 			var that = this;
-			this._hiddenList = JSON.parse((this.hiddenLayers()||"{}"));
 			// Remove event listeners
 			this._map.off("baselayerchange", this.baseLayerChanged);
 			this._map.off("overlayadd", this.overlayAdded);
@@ -182,21 +227,14 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				
 			}
 			this._controlLayer._update();
-			var tileOptions = [];
-			var markers = [];
-			var featureLayers = [];
-			var sTileOptions = this.tileOptions();
-			var sGeoJSONLayers = this.geoJSONLayers();
-			var sMarkers = this.markers();
-			if (sTileOptions && sTileOptions != "") tileOptions = JSON.parse(sTileOptions);
-			if (sGeoJSONLayers && sGeoJSONLayers != "") featureLayers = JSON.parse(sGeoJSONLayers);
-			if (sMarkers && sMarkers != "") markers = JSON.parse(sMarkers);
+			var tileOptions = this.parse(this.tileOptions(),[]);
+			var featureLayers = this.parse(this.overlays(),[]);
+			var geoJson = this.parse(this.geoJson(),[]);
 			// Ensure right data types.
 			// if(tileOptions.minZoom) tileOptions.minZoom = parseInt(tileOptions.minZoom);
 			// if(tileOptions.maxZoom) tileOptions.maxZoom = parseInt(tileOptions.maxZoom);
 
 			if (this._layer) this._map.removeLayer(this._layer);
-			if (this._markerLayer) this._map.removeLayer(this._markerLayer);
 			if (this._featureLayer) this._map.removeLayer(this._featureLayer);
 			
 			// BASE MAP
@@ -209,46 +247,92 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				}
 				// 
 			}
-			// GEOJSON Layers
+			// Overlay Group
 			this._featureLayer = L.featureGroup();
 			for(var i=0;i<featureLayers.length;i++){
 				var layer = featureLayers[i];
-				var feature = JSON.parse(layer.geoJSON);
+				var newOverlay = L.featureGroup();
 				var styleConfig = {
 					color : layer.color || "#C0C0C0",
 					weight : layer.weight || 1,
-					opacity : layer.opacity || 0.8
+					opacity : layer.opacity || 0.8,
+					fillOpacity : layer.fillOpacity || 0.5
 				}
 				try{
-					var LgeoJSON = new L.geoJson(feature, styleConfig);
-					if(!this._hiddenList[featureLayers[i].key]){
-						LgeoJSON.addTo(this._featureLayer);
-					
+					if(layer.geoJsonUrl){
+						var url = layer.geoJsonUrl;
+						var osMapPath = sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","os/maps")
+						url = url.replace(/{os-maps}/g, osMapPath);
+						
+						$.ajax({
+							dataType : "json",
+							url : url,
+							success : function(overlay,styleConfig){return function(data){
+								// Convert TopoJSON to GeoJSON if needed.  TopoJSON smaller in size.
+								var obj;
+								var mapdata = data;
+								if (data && data.type && data.type.toLowerCase() === 'topology' && typeof topojson != 'undefined') {
+									for (var o in data.objects) {
+										if (data.objects.hasOwnProperty(o)) {
+											obj = data.objects[o];
+											break;
+										}
+									}
+									mapdata = topojson.feature(data, data.objects[o]);
+								}
+								var LgeoJSON = new L.geoJson(mapdata, styleConfig);
+								// Slow at runtime
+								LgeoJSON.addTo(overlay);								
+							};}(newOverlay,styleConfig),
+							fail : function(jqxhr, textStatus, error){
+								alert(error);
+							}
+						})
 					}
-					this._controlLayer.addOverlay(LgeoJSON, featureLayers[i].key);
+					// Custom GeoJSON
+					if(layer.geoJson){
+						try{
+							var LgeoJSON = new L.geoJson(layer.geoJson, styleConfig);
+							LgeoJSON.addTo(newOverlay);
+						}catch(e){
+							alert("Bad Custom GeoJSON: " + e);
+							// Bad GeoJSON
+						}
+					}
+					
+					/*else{
+						var LgeoJSON = new L.geoJson(this.parse(geoJson[j].content,{}), styleConfig);
+						LgeoJSON.addTo(newOverlay);	
+					}*/
+				
+					// LgeoJSON.addTo(this._featureLayer);
+					
+					//if(featureLayers[i].visible) LgeoJSON.addTo(this._featureLayer);
+					//this._controlLayer.addOverlay(LgeoJSON, featureLayers[i].key);
 				}catch(e){
 					// Bad GeoJson
 				}
+				var Lmarkers = L.featureGroup();
+				var markers = layer.markers || [];
+				for(var j=0;j<markers.length;j++){
+					var marker = markers[j];
+					// alert([marker.latitude, marker.longitude]);
+					var Lmarker = new L.marker([marker.latitude, marker.longitude],{
+						icon : L.SCNDesignStudioMarkers.icon({
+							markerColor : "#009966",
+							icon : marker.marker,
+							iconSize : [32 , 32],
+							anchorPosition : [.5,1]		// .5, .5 for circle
+						})
+					});
+					Lmarker.addTo(Lmarkers);
+				}
+				Lmarkers.addTo(newOverlay);
+				if(featureLayers[i].visible) newOverlay.addTo(this._featureLayer);
+				this._controlLayer.addOverlay(newOverlay, featureLayers[i].key);
 			}
 			this._featureLayer.addTo(this._map);
-			// MARKERS
-			this._markerLayer = L.featureGroup();
-			this._controlLayer.addOverlay(this._markerLayer, "Markers");
-			for(var i=0;i<markers.length;i++){
-				var marker = markers[i];
-				// alert([marker.latitude, marker.longitude]);
-				var Lmarker = new L.marker([marker.latitude, marker.longitude],{
-					icon : L.SCNDesignStudioMarkers.icon({
-						markerColor : "#009966",
-						icon : marker.marker,
-						iconSize : [32 , 32],
-						anchorPosition : [.5,1]		// .5, .5 for circle
-					})
-				});
-				Lmarker.addTo(this._markerLayer);
-			}
-			this._markerLayer.addTo(this._map);
-			if(this.fitBounds()){
+			/*if(this.fitBounds()){
 				try{
 					this._map.fitBounds(this._markerLayer.getBounds(),{
 						paddingTopLeft : [15,15]
@@ -258,7 +342,8 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				}	
 			}else{
 				this._map.setView([51.505, -0.09], this.zoom() || 1);
-			}
+			}*/
+			this._map.setView([51.505, -0.09], this.zoom() || 1);
 			// Add event listeners
 			this._map.on("baselayerchange", this.baseLayerChanged);
 			this._map.on("overlayadd", this.overlayAdded);
@@ -271,21 +356,20 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			//that.fireEvent("onSelect");
 		};
 		this.overlayAdded = function(LayersControlEvent){
-			that._hiddenList[LayersControlEvent.name] = false;
-			that.hiddenLayers(JSON.stringify(that._hiddenList));
-			that.firePropertiesChanged(["hiddenLayers"]);
+			var a = that.parse(that.overlays(),[]);
+			for(var i=0;i<a.length;i++){
+				if(a[i].key == LayersControlEvent.name) a[i].visible = true;
+			}
+			that.overlays(JSON.stringify(a));
+			that.firePropertiesChanged(["overlays"]);
 		};
 		this.overlayRemoved = function(LayersControlEvent){
-			// Bugged
-			var index = -1;
-			that._hiddenList[LayersControlEvent.name] = true;
-			that.hiddenLayers(JSON.stringify(that._hiddenList));
-			that.firePropertiesChanged(["hiddenLayers"]);
-			/*
-			that._map.eachLayer(function(layer){
-				alert(layer);
-			});*/
-			// alert(LayersControlEvent.name);
+			var a = that.parse(that.overlays(),[]);
+			for(var i=0;i<a.length;i++){
+				if(a[i].key == LayersControlEvent.name) a[i].visible = false;
+			}
+			that.overlays(JSON.stringify(a));
+			that.firePropertiesChanged(["overlays"]);
 		};
 
 		var parentInit = this.init;

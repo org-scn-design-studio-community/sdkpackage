@@ -1,0 +1,51 @@
+[{
+		"label" : "Open StreetMaps",
+		"presets" : [{
+				"label" : "Standard",
+				"url" : "osm-standard.json"
+			}, {
+				"label" : "Satellite",
+				"url" : "osm-satellite.json"
+			}
+		]
+	},{
+		"label" : "Nokia HERE",
+		"presets" : [{
+				"label" : "Standard",
+				"url" : "nokia-standard.json"
+			}, {
+				"label" : "Satellite",
+				"url" : "nokia-satellite.json"
+			}, {
+				"label" : "Terrain",
+				"url" : "nokia-terrain.json"
+			}
+		]
+	},{
+		"label" : "Stamen",
+		"presets" : [{
+				"label" : "Terrain (US Only)",
+				"url" : "stamen-terrain.json"
+			},{
+				"label" : "Toner",
+				"url" : "stamen-toner.json"
+			},{
+				"label" : "Watercolor",
+				"url" : "stamen-watercolor.json"
+			}
+		]
+	},{
+		"label" : "ESRI ArcGIS",
+		"url" : "esri-arcgis.json"
+	},{
+		"label" : "MapBox",
+		"presets" : [{
+				"label" : "Example Map",
+				"url" : "mapbox-example.json"
+			},{
+				"label" : "Natural Earth",
+				"url" : "mapbox-naturalearth.json"
+			}
+		]
+	}
+]

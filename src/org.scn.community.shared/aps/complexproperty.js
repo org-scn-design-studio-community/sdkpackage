@@ -75,8 +75,8 @@ define([], function () {
 				var that = this;
 				
 				var failureFunction = function (componentContainer, property, propertyOptions) {
-					return function () {
-						alert("fail");
+					return function (err) {
+						alert("fail" + err);
 						// assure there is a control! Make text Area
 						that["cmp_" + property] = new sap.ui.commons.TextArea({
 								design : sap.ui.core.Design.Monospace,

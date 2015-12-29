@@ -127,6 +127,13 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 			this.fieldLayout.removeAllContent();
 			this.addContent(this.fieldLayout);
 			try{
+				if(this.buttons.length > 0){
+					var bar = new sap.ui.commons.layout.HorizontalLayout({});
+					this.fieldLayout.addContent(bar);
+					for(var i=0;i<this.buttons.length;i++){
+						bar.addContent(this.buttons[i]);
+					}
+				}
 				for(var i=0;i<this.layout.length;i++){
 					var item = this.layout[i];
 					if(!item.tooltip){
@@ -148,6 +155,7 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 			this.cmps = {};
 			this.cmpChange = {};
 			this.layout = [];
+			this.buttons = this.buttons || [];
 			this.createComponents();
 			this.layoutComponents();
 			this.attachListeners();
