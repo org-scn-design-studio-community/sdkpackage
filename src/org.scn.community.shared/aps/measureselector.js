@@ -1,7 +1,7 @@
 /**
  * Measure Selector Handler
  */
-define(["./complexitem"], function () {
+define(["./complexitem","./segmentedbutton"], function () {
 	/**
 	 * Measure List
 	 */
@@ -82,8 +82,12 @@ define(["./complexitem"], function () {
 				fieldPosition : "Position of field starting at index of 0"
 			};
 			try {
-				this.cmps.fieldType = new sap.ui.commons.ComboBox({
-						width : "100px",
+				this.cmps.fieldType = new org.scn.community.aps.SegmentedButton({});
+				this.cmps.fieldType.addButton(new sap.ui.commons.Button({text : "Unassigned" }).data("key","unassigned"));
+				this.cmps.fieldType.addButton(new sap.ui.commons.Button({text : "By Name" }).data("key","name"));
+				this.cmps.fieldType.addButton(new sap.ui.commons.Button({text : "By Position" }).data("key","position"));
+				/*this.cmps.fieldType = new sap.ui.commons.ComboBox({
+				   width : "100px",
 						items : [
 							new sap.ui.core.ListItem({
 								key : "unassigned",
@@ -98,10 +102,13 @@ define(["./complexitem"], function () {
 								text : "By Position"
 							})
 						]
-					});
-				this.cmps.fieldType.attachChange(function (e) {
-					this.makeLayout();
-					this.layoutComponents();
+					});*/
+				this.cmps.fieldType.attachKeyChange(function (e) {
+					var o = JSON.parse(JSON.stringify(this.getValue()));
+					o.fieldType = e.getSource().getSelectedKey();
+					this.setValue(o);
+					//this.makeLayout();
+					//this.layoutComponents();
 				}, this);
 				this.cmps.fieldName = new org.scn.community.aps.MeasureList({
 						width : "100px"
@@ -123,13 +130,15 @@ define(["./complexitem"], function () {
 				desc : "Field Type",
 				comp : "fieldType"
 			});
-			if (this.cmps.fieldType.getSelectedKey() == "name") {
+			if (this.getValue().fieldType == "name"){
+			//if (this.cmps.fieldType.getSelectedKey() == "name") {
 				this.layout.push({
 					desc : "Field Name",
 					comp : "fieldName"
 				});
 			}
-			if (this.cmps.fieldType.getSelectedKey() == "position") {
+			if (this.getValue().fieldType == "position"){
+			//if (this.cmps.fieldType.getSelectedKey() == "position") {
 				this.layout.push({
 					desc : "Field Position",
 					comp : "fieldPosition"
@@ -140,6 +149,7 @@ define(["./complexitem"], function () {
 	});
 	return {
 		id : "measureselector",
+		serialized : true,
 		setter : function (property, value) {
 			var newValue = jQuery.parseJSON(value);
 			this["cmp_" + property].setValue(newValue);
@@ -151,12 +161,12 @@ define(["./complexitem"], function () {
 		},
 		createComponent : function (property, propertyOptions, changeHandler) {
 			var component = new org.scn.community.aps.MeasureSelector({
-					width : "100%",
-					title : new sap.ui.commons.Title({
-						text : propertyOptions.desc
-					}),
-					showCollapseIcon : false
-				});
+				width : "100%",
+				title : new sap.ui.commons.Title({
+					text : propertyOptions.desc
+				}),
+				showCollapseIcon : false
+			});
 			component.attachValueChange(changeHandler, this);
 			return component;
 		}

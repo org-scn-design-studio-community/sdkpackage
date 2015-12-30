@@ -120,15 +120,40 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							apsControl : "text",
 							key : true
 						},
+						featureKey : {
+							desc : "Feature Property Key",
+							defaultValue : "NAME_0",
+							apsControl : "text"
+						},
 						visible : {
 							desc : "Visible",
 							defaultValue : true,
 							apsControl : "checkbox"
 						},
 						color : {
-							desc : "Layer Color",
+							desc : "Default Feature Color",
 							defaultValue : "#009966",
 							apsControl : "color",
+						},
+						colorScale : {
+							desc : "Measure Color Scale",
+							defaultValue : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
+							apsControl : "palette",
+						},
+						colorScaleMin : {
+							desc : "Color Scale Maximum",
+							defaultValue : 0,
+							apsControl : "spinner",
+						},
+						colorScaleMax : {
+							desc : "Color Scale Minimum",
+							defaultValue : 0,
+							apsControl : "spinner",
+						},
+						colorScaleMeasure : {
+							desc : "Color Scale Measure",
+							defaultValue : {fieldType:"position", fieldPosition:0},
+							apsControl : "measureselector",
 						},
 						weight : {
 							desc : "Line Weight",
@@ -219,6 +244,8 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			this._map.off("baselayerchange", this.baseLayerChanged);
 			this._map.off("overlayadd", this.overlayAdded);
 			this._map.off("overlayremove", this.overlayRemoved);
+			this._map.off("zoomend", this.zoomChanged);
+			this._map.off("moveend", this.zoomChanged);
 			
 			this._map.eachLayer(function (layer) {
 			    that._map.removeLayer(layer);
@@ -372,8 +399,10 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			this._map.on("baselayerchange", this.baseLayerChanged);
 			this._map.on("overlayadd", this.overlayAdded);
 			this._map.on("overlayremove", this.overlayRemoved);
-			this._map.on("zoomend", this.zoomChanged);
-			this._map.on("moveend", this.zoomChanged);
+			if(!this._designTime){
+				this._map.on("zoomend", this.zoomChanged);
+				this._map.on("moveend", this.zoomChanged);
+			}
 		};
 		var that = this;
 		this.zoomChanged = function(event){

@@ -10,7 +10,20 @@
 		databound="true"
 >
 	<requireJs modes="commons m">res/LeafletMap/LeafletMap</requireJs>
-	
+	<!-- Base Databound Properties -->
+	<property
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
+	<!-- End of Base Databound Properties -->
 	<property type="String" title="Tile Options" id="tileOptions" visible="false"/>
 	<property type="String" title="Active Base Layer" id="currentBaseLayer" visible="false"/>
 	<property type="String" title="Overlays" id="overlays" visible="false"/>
@@ -18,6 +31,12 @@
 	<property type="int" title="Zoom" id="zoom" visible="false"/>
 
 	<initialization>
+		<!-- Databound Defaults -->
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
+		<!-- End of Databound Defaults -->
 		<defaultValue property="tileOptions">[{&quot;key&quot;:&quot;Standard&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;}},{&quot;key&quot;:&quot;Satellite&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;}}]</defaultValue>
 		<defaultValue property="currentBaseLayer">Standard</defaultValue>
 		<defaultValue property="overlays">[]</defaultValue>
