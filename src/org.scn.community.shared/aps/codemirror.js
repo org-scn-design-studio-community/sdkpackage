@@ -80,9 +80,11 @@ define(["css!cm/lib/codemirror.css",
 					container.get(0).appendChild(e);
 				}, this.getOptions());
 			this.editor.setValue(this.getValue());
+			/*
 			this.editor.on("blur", function (e) {
 				that.updateCode();
 			});
+			*/
 		},
 		presetsLoadComplete : function (data) {
 			this.addButton(this.presetButton);
@@ -179,11 +181,12 @@ define(["css!cm/lib/codemirror.css",
 					menu : this.presetMenu
 				});
 			this.htmlArea = new sap.ui.core.HTML({
-					preferDOM : false,
-					width : "100%",
-					height : "500px",
-					content : "<div></div>"
-				});
+				//preferDOM : false,
+				preferDOM : false,
+				width : "100%",
+				height : "500px",
+				content : "<div></div>"
+			});
 			this.applyButton = new sap.ui.commons.Button({
 					text : "Apply Changes"
 				});
@@ -205,13 +208,13 @@ define(["css!cm/lib/codemirror.css",
 		},
 		createComponent : function (property, propertyOptions, changeHandler) {
 			var component = new org.scn.community.aps.CodeMirror({
-					width : "100%",
-					height : "500px",
-					options : propertyOptions.apsConfig,
-					showCollapseIcon : false,
-					presets : propertyOptions.presets,
-					text : propertyOptions.desc
-				});
+				width : "100%",
+				height : "500px",
+				options : propertyOptions.apsConfig,
+				showCollapseIcon : false,
+				presets : propertyOptions.presets,
+				text : propertyOptions.desc
+			});
 			component.attachValueChange(changeHandler, this);
 			return component;
 		}

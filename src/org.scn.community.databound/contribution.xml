@@ -1913,17 +1913,17 @@ __n__}
 	
 	<property type="String" title="Tile Options" id="tileOptions" visible="false"/>
 	<property type="String" title="Active Base Layer" id="currentBaseLayer" visible="false"/>
-	<property type="String" title="GeoJSON Library" id="geoJson" visible="false"/>
 	<property type="String" title="Overlays" id="overlays" visible="false"/>
+	<property type="String" title="Map Center" id="mapCenter" visible="false"/>
 	<property type="int" title="Zoom" id="zoom" visible="false"/>
 
 	<initialization>
 		<defaultValue property="tileOptions">[{&quot;key&quot;:&quot;Standard&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;}},{&quot;key&quot;:&quot;Satellite&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;}}]</defaultValue>
 		<defaultValue property="currentBaseLayer">Standard</defaultValue>
 		<defaultValue property="overlays">[]</defaultValue>
-		<defaultValue property="geoJson">[{&quot;key&quot;:&quot;Design Studio Maps&quot;,&quot;url&quot;:&quot;zen.rt.components.geomaps/resources/js/geo/countries_medium.json&quot;,&quot;content&quot;:&quot;{}&quot;}]</defaultValue>
 		<defaultValue property="fitBounds">true</defaultValue>
 		<defaultValue property="zoom">3</defaultValue>
+		<defaultValue property="mapCenter">[51.505, -0.09]</defaultValue>
 		<defaultValue property="WIDTH">500</defaultValue>
 		<defaultValue property="HEIGHT">350</defaultValue>
 	</initialization>

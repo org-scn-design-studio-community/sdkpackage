@@ -51,6 +51,13 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					noAps : true
 				}
 			},
+			mapCenter : {
+				opts : {
+					desc : "Map Center",
+					cat : "General",
+					apsControl : "latlng"
+				}
+			},
 			zoom : {
 				opts : {
 					desc : "Zoom Level",
@@ -80,7 +87,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 						}
 					}
 				}
-			},
+			},/*
 			geoJson : {
 				opts : {
 					desc : "GeoJSON Library",
@@ -100,7 +107,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 						}
 					}
 				}
-			},
+			},*/
 			overlays : {
 				opts : {
 					desc : "Map Overlays",
@@ -148,7 +155,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							defaultValue : "",
 							apsControl : "text-presets",
 							presetsIndex : "os/maps/presets.json",
-						},
+						}/*,
 						markers : {
 							desc : "Markers",
 							defaultValues : [],
@@ -185,6 +192,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 								}
 							}
 						}
+						*/
 					}
 				}
 			}
@@ -229,7 +237,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			this._controlLayer._update();
 			var tileOptions = this.parse(this.tileOptions(),[]);
 			var featureLayers = this.parse(this.overlays(),[]);
-			var geoJson = this.parse(this.geoJson(),[]);
+			// var geoJson = this.parse(this.geoJson(),[]);
 			// Ensure right data types.
 			// if(tileOptions.minZoom) tileOptions.minZoom = parseInt(tileOptions.minZoom);
 			// if(tileOptions.maxZoom) tileOptions.maxZoom = parseInt(tileOptions.maxZoom);
@@ -292,7 +300,23 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					// Custom GeoJSON
 					if(layer.geoJson){
 						try{
-							var LgeoJSON = new L.geoJson(layer.geoJson, styleConfig);
+							var LgeoJSON = new L.geoJson(layer.geoJson, {
+								style : styleConfig,
+								pointToLayer : function(feature, latlng){
+									var marker = "marker";
+									if(feature && feature.properties){
+										if(feature.properties.marker) marker = feature.properties.marker; 
+									}
+									return new L.marker(latlng,{
+										icon : L.SCNDesignStudioMarkers.icon({
+											markerColor : "#009966",
+											icon : marker,
+											iconSize : [32 , 32],
+											anchorPosition : [.5,1]		// .5, .5 for circle
+										})
+									});
+								}
+							});
 							LgeoJSON.addTo(newOverlay);
 						}catch(e){
 							alert("Bad Custom GeoJSON: " + e);
@@ -343,13 +367,20 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			}else{
 				this._map.setView([51.505, -0.09], this.zoom() || 1);
 			}*/
-			this._map.setView([51.505, -0.09], this.zoom() || 1);
+			this._map.setView(this.parse(this.mapCenter(),[51.505, -0.09]), this.zoom() || 1);
 			// Add event listeners
 			this._map.on("baselayerchange", this.baseLayerChanged);
 			this._map.on("overlayadd", this.overlayAdded);
 			this._map.on("overlayremove", this.overlayRemoved);
+			this._map.on("zoomend", this.zoomChanged);
+			this._map.on("moveend", this.zoomChanged);
 		};
 		var that = this;
+		this.zoomChanged = function(event){
+			that.zoom(that._map.getZoom());
+			that.mapCenter(that._map.getCenter());
+			that.firePropertiesChanged(["zoom","mapCenter"]);
+		};
 		this.baseLayerChanged = function(LayersControlEvent){
 			that.currentBaseLayer(LayersControlEvent.name);
 			that.firePropertiesChanged(["currentBaseLayer"]);

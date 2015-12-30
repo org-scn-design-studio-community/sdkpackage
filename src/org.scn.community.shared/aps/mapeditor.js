@@ -36,8 +36,10 @@ require.config({
 define([
         "css!../../org.scn.community.shared/os/leaflet/leaflet.css",
         "css!../../org.scn.community.shared/os/leaflet-plugins/leaflet-draw/leaflet.draw.css",
-	    "lf/leaflet"        
-        ], function (css,c22,L) {
+	    "lf/leaflet",
+	    "./codemirror",
+	    "./complexproperty"
+        ], function (css,c22,L,codeMirrorHandler,complexPropertyHandler) {
 	/**
 	 * Create UI5 Extension
 	 */
@@ -67,9 +69,10 @@ define([
 		renderer : {},
 		setValue : function (s) {
 			sap.ui.core.Control.prototype.setProperty.apply(this, ["value", s]);
-			return;
-			if (this.editor)
-				this.editor.setValue(s);
+			if (this.editor) this.updateMap();
+			if (this.code){
+				this.code.setValue(JSON.stringify(s,null,2));
+			}
 			//var incoming = JSON.stringify(a);
 			//var original = JSON.stringify(this.getValue());
 			//if(incoming != original){
@@ -91,12 +94,34 @@ define([
 			this.editor.on("blur", function (e) {
 				that.updateCode();
 			});*/
-			var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-			osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-			osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+
 			// map = new L.Map('map', {layers: [osm], center: new L.LatLng(-37.7772, 175.2756), zoom: 15 });
 			if(!this.editor) {
-				this.editor = new L.Map(container.get(0), {layers: [osm], center: new L.LatLng(-37.7772, 175.2756), zoom: 3 });
+				var osm = L.tileLayer("http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
+					minZoom: 0,
+					maxZoom: 22,
+					subdomains : "12",
+					attribution: "&copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest"
+				});
+				var sat = L.tileLayer("http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png", {
+					minZoom: 0,
+					maxZoom: 22,
+					subdomains : "12",
+					attribution: "&copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest"
+				});
+				this.editor = new L.Map(container.get(0), {
+					layers: [osm],
+					center: new L.LatLng(34.513299, -94.1628807),
+					zoom: 1,
+					attributionControl : false
+				});
+				var attributionControl = new L.control.attribution({
+					position : "bottomright",
+		    		prefix : false
+		    	});
+				attributionControl.addTo(this.editor);
+				this._controlLayer = L.control.layers({"Standard":osm, "Satellite" : sat },null,{ });
+				this._controlLayer.addTo(this.editor);
 				this.drawnItems = new L.FeatureGroup();
 				this.editor.addLayer(this.drawnItems);
 				var that = this;
@@ -118,12 +143,13 @@ define([
 							},
 							polyline: {
 								metric: false
-							},
+							},/*,
 							circle: {
 								shapeOptions: {
 									color: '#662d91'
 								}
-							}
+							}*/
+							circle : false
 						},
 						edit: {
 							featureGroup: that.drawnItems
@@ -133,7 +159,7 @@ define([
 					that.editor.on('draw:created', function (e) {
 						var type = e.layerType,
 							layer = e.layer;
-
+						
 						if (type === 'marker') {
 							layer.bindPopup('A popup!');
 						}
@@ -143,6 +169,17 @@ define([
 						that.setValue(geoJson);
 						that.fireValueChange();
 					});
+					that.editor.on('draw:edited', function (e) {
+						var geoJson = that.getShapes(that.drawnItems);
+						that.setValue(geoJson);
+						that.fireValueChange();
+					});
+					that.editor.on('draw:deleted', function (e) {
+						var geoJson = that.getShapes(that.drawnItems);
+						that.setValue(geoJson);
+						that.fireValueChange();
+					});
+					that.updateMap();
 				});
 			}
 			
@@ -160,6 +197,90 @@ define([
 				geoJson.features.push(layer.toGeoJSON());
 			});
 			return geoJson;
+		},
+		buildConfig : function(){
+			var s = this.getValue();
+			var o = {};
+			var that = this;
+			L.geoJson(s,{
+				onEachFeature : function(feature, layer){
+					if (layer.getLayers) {
+						layer.getLayers().forEach(function (l) {
+							var gj = l.toGeoJSON();
+							if(gj.properties){
+								for (var field in gj.properties){
+									o[field] = true;
+								}
+							}
+						})
+					} else {
+						var gj = layer.toGeoJSON();
+						if(gj.properties){
+							for (var field in gj.properties){
+								o[field] = true;
+							}
+						}
+					}
+				}
+			});
+			return o;
+		},
+		updateProperties : function(oControlEvent){
+			var geoJson = this.getShapes(this.drawnItems);
+			this.setValue(geoJson);
+			this.fireValueChange();
+		},
+		showProperties : function(layer){
+			this.selectedLayer = layer;
+			var geoJson = layer.toGeoJSON();
+			var configTemplate = this.buildConfig();
+			var config = {};
+			for(var field in configTemplate){
+				config[field] = {
+					desc : field,
+					apsControl : "text"
+				}
+			}
+			this.ci.setValue(null);
+			this.ci.setConfig(config);
+			if(geoJson){
+				this.ci.setValue(geoJson.properties);
+			}
+		},
+		updateMap : function(){
+			var that = this;
+			var s = this.getValue();
+			this.drawnItems.eachLayer(function(layer){
+				that.drawnItems.removeLayer(layer);
+			});
+			L.geoJson(s,{
+				onEachFeature : function(feature, layer){
+					if (layer.getLayers) {
+						layer.getLayers().forEach(function (l) {
+							l.on("click",function(e){
+								that.showProperties(this);
+							});
+							that.drawnItems.addLayer(l);
+						})
+					} else {
+						that.drawnItems.addLayer(layer);
+						layer.on("click",function(e){
+							that.showProperties(this);
+						});
+					}
+				}
+			});
+			/*
+			return;
+			var styleConfig = {};
+			if(s && s.features){
+				for(var i=0;i<s.features.length;i++){
+					var feature = s.features[i];
+					var newLayer = new L.geoJson(feature, styleConfig);
+					this.drawnItems.addLayer(newLayer);
+				}
+			}
+			*/
 		},
 		presetsLoadComplete : function (data) {
 			this.addButton(this.presetButton);
@@ -223,6 +344,21 @@ define([
 					(presetURL, rootConfig), this);
 			}
 		},
+		validateCode : function(oControlEvent){
+			var s = this.code.getValue();
+			try{
+				var o = JSON.parse(s);
+				var layer = L.geoJson(o);
+				this.setValue(o);
+				this.fireValueChange();
+				delete this.selectedLayer;
+				this.ci.setValue(null);
+				this.ci.setConfig(null);
+			}catch(e){
+				alert("JSON looks bad." + e);
+				// Bad JSON - Do nothing.
+			}
+		},
 		updateCode : function () {
 			this.setValue(this.editor.getValue());
 			this.fireValueChange();
@@ -249,20 +385,62 @@ define([
 			var that = this;
 			sap.ui.commons.Panel.prototype.init.apply(this, arguments);
 			this.presetMenu = new sap.ui.commons.Menu({
-					items : []
-				});
+				items : []
+			});
 			this.presetButton = new sap.ui.commons.MenuButton({
-					text : "Presets...",
-					menu : this.presetMenu
-				});
+				text : "Presets...",
+				menu : this.presetMenu
+			});
+			this.mapLayout = new sap.ui.commons.layout.HorizontalLayout({});
+			this.propertiesLayout = new sap.ui.commons.layout.VerticalLayout({
+				width : "100%"
+			});
+			this.featureProperties = new sap.ui.commons.Panel({
+				width : "250px",
+				text : "Feature Properties",
+				showCollapseIcon : false
+			});
+			this.ci = new org.scn.community.aps.ComplexProperty({
+				width : "100%",
+				labelOrientation : "Vertical",
+				title : new sap.ui.commons.Title({
+					text : "Feature Properties"
+				}),
+				showCollapseIcon : false
+			});
+			this.ci.attachValueChange(this.updateProperties,this);
+			this.featureProperties.addContent(this.ci);
 			this.htmlArea = new sap.ui.core.HTML({
-					preferDOM : true,
-					width : "400px",
-					height : "400px",
-					content : "<div style='width:400px;height:400px;'></div>"
-				});
+				preferDOM : true,
+				//width : "400px",
+				//height : "350px",
+				content : "<div style='width:400px;height:350px;'></div>"
+			});
+			this.mapLayout.addContent(this.htmlArea);
+			this.mapLayout.addContent(this.featureProperties);
+			this.code = new org.scn.community.aps.CodeMirror({
+				width : "100%",
+				height : "350px",
+				options : {
+					lineNumbers: true,
+					mode: "text/javascript",
+					theme: "eclipse",
+					matchBrackets: true
+				},
+				showCollapseIcon : false,
+				//presets : propertyOptions.presets,
+				text : "GeoJSON"
+			});
+			this.code.attachValueChange(this.validateCode, this);
+			this.tabStrip =  new sap.ui.commons.TabStrip({
+				width : "100%",
+				height : "375px"
+			});
+			this.mapTab = this.tabStrip.createTab("Map",this.mapLayout);
+			this.propertiesTab = this.tabStrip.createTab("Table",this.propertiesLayout);
+			this.codeTab = this.tabStrip.createTab("Source",this.code);
 			this.htmlArea.attachAfterRendering(this.afterRenderHandler, this);
-			this.addContent(this.htmlArea);
+			this.addContent(this.tabStrip);
 		}
 	});
 	return {
@@ -275,13 +453,13 @@ define([
 		},
 		createComponent : function (property, propertyOptions, changeHandler) {
 			var component = new org.scn.community.aps.MapEditor({
-					width : "400px",
-					height : "400px",
-					options : propertyOptions.apsConfig,
-					showCollapseIcon : false,
-					presets : propertyOptions.presets,
-					text : propertyOptions.desc
-				});
+				width : "600px",
+				//height : "400px",
+				options : propertyOptions.apsConfig,
+				showCollapseIcon : false,
+				presets : propertyOptions.presets,
+				text : propertyOptions.desc
+			});
 			component.attachValueChange(changeHandler, this);
 			return component;
 		}
