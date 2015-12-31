@@ -41,7 +41,7 @@
 		<defaultValue property="currentBaseLayer">Standard</defaultValue>
 		<defaultValue property="overlays">[]</defaultValue>
 		<defaultValue property="fitBounds">true</defaultValue>
-		<defaultValue property="zoom">3</defaultValue>
+		<defaultValue property="zoom">1</defaultValue>
 		<defaultValue property="mapCenter">[51.505, -0.09]</defaultValue>
 		<defaultValue property="WIDTH">500</defaultValue>
 		<defaultValue property="HEIGHT">350</defaultValue>
