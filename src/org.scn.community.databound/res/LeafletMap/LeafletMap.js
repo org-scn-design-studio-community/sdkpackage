@@ -397,11 +397,11 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			}*/
 			this._map.setView(
 				this.parse(this.mapCenter(),[51.505, -0.09]),
-				this.zoom() || 1,{
+				this.zoom() || 1/*,{
 					pan : {
 						noMoveStart : true
 					}
-				});
+				}*/);
 			// Add event listeners
 			this._map.on("baselayerchange", this.baseLayerChanged);
 			this._map.on("overlayadd", this.overlayAdded);
