@@ -239,13 +239,14 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			this.updateMap();
 		};
 		this.updateMap = function () {
+			// console.log("afterupdate");
 			var that = this;
 			// Remove event listeners
 			this._map.off("baselayerchange", this.baseLayerChanged);
 			this._map.off("overlayadd", this.overlayAdded);
 			this._map.off("overlayremove", this.overlayRemoved);
-			this._map.off("zoomend", this.zoomChanged);
-			this._map.off("moveend", this.zoomChanged);
+			//this._map.off("zoomend", this.moveEndHandler);
+			this._map.off("moveend", this.moveEndHandler);
 			
 			this._map.eachLayer(function (layer) {
 			    that._map.removeLayer(layer);
@@ -394,21 +395,39 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			}else{
 				this._map.setView([51.505, -0.09], this.zoom() || 1);
 			}*/
-			this._map.setView(this.parse(this.mapCenter(),[51.505, -0.09]), this.zoom() || 1);
+			this._map.setView(
+				this.parse(this.mapCenter(),[51.505, -0.09]),
+				this.zoom() || 1,{
+					pan : {
+						noMoveStart : true
+					}
+				});
 			// Add event listeners
 			this._map.on("baselayerchange", this.baseLayerChanged);
 			this._map.on("overlayadd", this.overlayAdded);
 			this._map.on("overlayremove", this.overlayRemoved);
 			if(!this._designTime){
-				this._map.on("zoomend", this.zoomChanged);
-				this._map.on("moveend", this.zoomChanged);
+				//this._map.on("zoomend", this.moveEndHandler);
+				this._map.on("moveend", this.moveEndHandler);
 			}
 		};
 		var that = this;
-		this.zoomChanged = function(event){
-			that.zoom(that._map.getZoom());
-			that.mapCenter(that._map.getCenter());
-			that.firePropertiesChanged(["zoom","mapCenter"]);
+		this.moveEndHandler = function(event){
+			var changes = [];
+			var c = that._map.getCenter();
+			var cs = JSON.stringify([c.lat,c.lng]);
+			if(cs!=that.mapCenter()){
+				changes.push("mapCenter");
+				that.mapCenter(cs);
+			}
+			if(that._map.getZoom() != that.zoom()){
+				that.zoom(that._map.getZoom());
+				changes.push("zoom");
+			}
+			if(changes.length>0){
+				// console.log(changes);
+				that.firePropertiesChanged(changes);
+			}
 		};
 		this.baseLayerChanged = function(LayersControlEvent){
 			that.currentBaseLayer(LayersControlEvent.name);
