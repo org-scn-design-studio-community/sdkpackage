@@ -1,0 +1,8 @@
+{
+	"baseUrl" : "http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_BaseMap/MapServer/tile/{z}/{y}/{x}",
+	"attribution" : "Esri, FAO, NOAA, AAFC, NRCan",
+	"subdomains" : "",
+	"minZoom" : 0,
+	"maxZoom" : 10,
+	"tileSize" : 256
+}

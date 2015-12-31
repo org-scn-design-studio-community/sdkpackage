@@ -35,8 +35,27 @@
 			}
 		]
 	},{
-		"label" : "ESRI ArcGIS",
-		"url" : "esri-arcgis.json"
+		"label" : "ESRI",
+		"presets" : [{
+				"label" : "World Topo Map",
+				"url" : "esri-worldtopo.json"
+			},{
+				"label" : "World Imagery",
+				"url" : "esri-worldimagery.json"
+			},{
+				"label" : "World Navigation",
+				"url" : "esri-worldnavigation.json"
+			},{
+				"label" : "World Street Map",
+				"url" : "esri-worldstreetmap.json"
+			},{
+				"label" : "Ocean",
+				"url" : "esri-ocean.json"
+			},{
+				"label" : "National Geographic",
+				"url" : "esri-natgeo.json"
+			}
+		]
 	},{
 		"label" : "MapBox",
 		"presets" : [{
@@ -45,6 +64,9 @@
 			},{
 				"label" : "Natural Earth",
 				"url" : "mapbox-naturalearth.json"
+			},{
+				"label" : "Warden",
+				"url" : "mapbox-warden.json"
 			}
 		]
 	}
