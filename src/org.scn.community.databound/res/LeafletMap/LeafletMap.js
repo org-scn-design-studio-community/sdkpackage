@@ -130,15 +130,27 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							defaultValue : true,
 							apsControl : "checkbox"
 						},
-						color : {
+						fillColor : {
 							desc : "Default Feature Color",
-							defaultValue : "#009966",
+							defaultValue : "#DFDFDF",
+							apsControl : "color",
+						},
+						color : {
+							desc : "Default Feature Border Color",
+							defaultValue : "#808080",
 							apsControl : "color",
 						},
 						colorScale : {
 							desc : "Measure Color Scale",
 							defaultValue : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
 							apsControl : "palette",
+						},
+						colorScaleMethod : {
+							apsControl : "segmentedbutton",
+							desc : "Color Scale Method",
+							defaultValue : "quantile",
+							options : [{key : "quantile", text : "Quantile"},
+							         {key : "quantize", text : "Quantize"}]
 						},
 						colorScaleMin : {
 							desc : "Color Scale Maximum",
@@ -236,11 +248,49 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		 * Fires after property change.
 		 */
 		this.afterUpdate = function () {
-			this.updateMap();
+			var deltas = ["tileOptions","overlays"];
+			var rerender = false;
+			for(var i=0;i<deltas.length;i++){
+				if(this[deltas[i]]()!=this.prior[deltas[i]]) rerender = true;
+			}
+			if(rerender || this._designTime) this.updateMap();
+			for(var i=0;i<deltas.length;i++){
+				this.prior[deltas[i]] = this[deltas[i]]();
+			}
+		};
+		this.createStyle = function(options){
+			var ret = {
+				fillColor : options.layer.fillColor || "#DFDFDF",
+				color : options.layer.color || "#808080",
+				weight : options.layer.weight || 1,
+				opacity : options.layer.opacity || 0.8,
+				fillOpacity : options.layer.fillOpacity || 0.5
+			}
+			if(!options.feature) {
+				alert("bad feature detected.");
+				return ret;
+			}
+			if(!that.flatData || !options.colorMeasureIndex <0 || !options.colorScale) {
+				return ret;
+			}
+			var p = options.feature.properties[options.layer.featureKey];
+			var rowIndex = -1;
+			for(var i=0;i<that.flatData.rowHeaders.length;i++){
+				if(that.flatData.rowHeaders[i] == p) rowIndex = i;
+			}
+			if(rowIndex>-1){
+				var value = that.flatData.values[rowIndex][options.colorMeasureIndex];
+				ret.fillColor = options.colorScale(value);
+				// ret.fillColor = options.colorScale(value);
+			}
+			return ret;
 		};
 		this.updateMap = function () {
 			// console.log("afterupdate");
 			var that = this;
+			var tileOptions = this.parse(this.tileOptions(),[]);
+			var featureLayers = this.parse(this.overlays(),[]);
+			
 			// Remove event listeners
 			this._map.off("baselayerchange", this.baseLayerChanged);
 			this._map.off("overlayadd", this.overlayAdded);
@@ -263,8 +313,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				
 			}
 			this._controlLayer._update();
-			var tileOptions = this.parse(this.tileOptions(),[]);
-			var featureLayers = this.parse(this.overlays(),[]);
+			
 			// var geoJson = this.parse(this.geoJson(),[]);
 			// Ensure right data types.
 			// if(tileOptions.minZoom) tileOptions.minZoom = parseInt(tileOptions.minZoom);
@@ -288,11 +337,26 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			for(var i=0;i<featureLayers.length;i++){
 				var layer = featureLayers[i];
 				var newOverlay = L.featureGroup();
-				var styleConfig = {
-					color : layer.color || "#C0C0C0",
-					weight : layer.weight || 1,
-					opacity : layer.opacity || 0.8,
-					fillOpacity : layer.fillOpacity || 0.5
+				var colorScale;
+				var colorMeasureIndex = -1;
+				if(layer && layer.colorScaleMeasure){
+					colorMeasureIndex = this.determineMeasureIndex(layer.colorScaleMeasure);
+				}
+				if(layer && layer.colorScale && colorMeasureIndex >-1){
+					var values = [];
+					this.flatData.values.map(function(e){
+						values.push(e[colorMeasureIndex]);
+					});
+					values.sort(function(a, b) { return a - b; });
+					var csm = layer.colorScaleMethod || "quantile";
+					var colorScale = d3.scale[csm]()
+		        		//.domain([layer.colorScaleMin || 0,layer.colorScaleMax || 100])
+						.domain(values)
+						.range(layer.colorScale.split(","));
+			        // Clamp if can
+			        if (typeof colorScale.clamp == 'function') {
+			        	colorScale.clamp(true);
+			        }		
 				}
 				try{
 					if(layer.geoJsonUrl){
@@ -303,7 +367,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 						$.ajax({
 							dataType : "json",
 							url : url,
-							success : function(overlay,styleConfig){return function(data){
+							success : function(overlay){return function(data){
 								// Convert TopoJSON to GeoJSON if needed.  TopoJSON smaller in size.
 								var obj;
 								var mapdata = data;
@@ -316,28 +380,57 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 									}
 									mapdata = topojson.feature(data, data.objects[o]);
 								}
-								var LgeoJSON = new L.geoJson(mapdata, styleConfig);
-								// Slow at runtime
+								var LgeoJSON = new L.geoJson(mapdata, {
+									style : function(options){
+										return function(feature){
+											options.feature = feature;
+											return that.createStyle(options);
+										};
+									}({
+										layer : layer,
+										colorMeasureIndex : colorMeasureIndex,
+										colorScale : colorScale
+									}),
+								});
 								LgeoJSON.addTo(overlay);								
-							};}(newOverlay,styleConfig),
+							};}(newOverlay),
 							fail : function(jqxhr, textStatus, error){
 								alert(error);
 							}
 						})
 					}
+	
+					// alert(colorMeasure + "\n\n" + colorMeasure);
 					// Custom GeoJSON
 					if(layer.geoJson){
 						try{
 							var LgeoJSON = new L.geoJson(layer.geoJson, {
-								style : styleConfig,
+								//style : styleConfig,
+								style : function(options){
+									return function(feature){
+										options.feature = feature;
+										return that.createStyle(options);
+									};
+								}({
+									layer : layer,
+									colorMeasureIndex : colorMeasureIndex,
+									colorScale : colorScale
+								}),
 								pointToLayer : function(feature, latlng){
 									var marker = "marker";
 									if(feature && feature.properties){
 										if(feature.properties.marker) marker = feature.properties.marker; 
 									}
+									var conf = that.createStyle({
+										feature : feature,
+										layer : layer,
+										colorMeasureIndex : colorMeasureIndex,
+										colorScale : colorScale
+									});
+									
 									return new L.marker(latlng,{
 										icon : L.SCNDesignStudioMarkers.icon({
-											markerColor : "#009966",
+											markerColor : conf.fillColor,
 											icon : marker,
 											iconSize : [32 , 32],
 											anchorPosition : [.5,1]		// .5, .5 for circle
@@ -453,6 +546,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 
 		var parentInit = this.init;
 		this.init = function () {
+			this.prior = {};
 			try{
 				this._designTime = false;
 				if(sap && sap.zen && sap.zen.designmode) {
