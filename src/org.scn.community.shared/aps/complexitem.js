@@ -38,12 +38,15 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 		getValue : function(){
 			return this._config;
 		},
-		hLabel : function(label,component){
+		hLabel : function(label,component,tooltip){
 			if(component instanceof org.scn.community.aps.ColorBuilder){
 				return component;
 			}else{
 				var hLayout = new sap.ui.commons.layout.HorizontalLayout({})
-				hLayout.addContent(new sap.ui.commons.Label({ text : label }));
+				hLayout.addContent(new sap.ui.commons.Label({ 
+					text : label,
+					tooltip : tooltip || label
+				}));
 				hLayout.addContent(component);	
 				return hLayout;			
 			}
@@ -79,6 +82,25 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 							component.attachKeyChange(function(comp){return function(oControlEvent){
 								var value = oControlEvent.getSource().getSelectedKey();
 								if(value == "") value = undefined;
+								that.updateProperty(value,comp);
+							}}(comp),that);
+						}
+						if(component instanceof org.scn.community.aps.TextInputPresets){
+							component.attachValueChange(function(comp){return function(oControlEvent){
+								var value = oControlEvent.getSource().getValue();
+								if(value == "") value = undefined;
+								that.updateProperty(value,comp);
+							}}(comp),that);
+						}
+						if(component instanceof org.scn.community.aps.MapEditor){
+							component.attachValueChange(function(comp){return function(oControlEvent){
+								var value = oControlEvent.getSource().getValue();
+								that.updateProperty(value,comp);
+							}}(comp),that);
+						}
+						if(component instanceof org.scn.community.aps.DataSourceAlias){
+							component.attachValueChange(function(comp){return function(oControlEvent){
+								var value = oControlEvent.getSource().getSelectedKey();
 								that.updateProperty(value,comp);
 							}}(comp),that);
 						}
@@ -140,7 +162,7 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 						if(this.tooltips && this.tooltips[item.comp]) item.tooltip = this.tooltips[item.comp];
 					}
 					if(item && item.desc ){
-						this.fieldLayout.addContent(this.hLabel(item.desc,this.cmps[item.comp]));
+						this.fieldLayout.addContent(this.hLabel(item.desc,this.cmps[item.comp],item.tooltip));
 					}
 				}
 			}catch(e){
@@ -167,6 +189,15 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 					var component = that.cmps[comp];
 						try{
 							if(component instanceof org.scn.community.aps.SegmentedButton){
+								if(that._config[comp]!=undefined) component.setSelectedKey(that._config[comp]);
+							}
+							if(component instanceof org.scn.community.aps.TextInputPresets){
+								if(that._config[comp]!=undefined) component.setValue(that._config[comp]);
+							}
+							if(component instanceof org.scn.community.aps.MapEditor){
+								if(that._config[comp]!=undefined) component.setValue(that._config[comp]);
+							}
+							if(component instanceof org.scn.community.aps.DataSourceAlias){
 								if(that._config[comp]!=undefined) component.setSelectedKey(that._config[comp]);
 							}
 							if(component instanceof sap.ui.commons.TextField && !(component instanceof sap.ui.commons.ComboBox)){

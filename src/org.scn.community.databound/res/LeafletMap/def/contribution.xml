@@ -39,7 +39,7 @@
 		<!-- End of Databound Defaults -->
 		<defaultValue property="tileOptions">[{&quot;key&quot;:&quot;Standard&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;}},{&quot;key&quot;:&quot;Satellite&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;}}]</defaultValue>
 		<defaultValue property="currentBaseLayer">Standard</defaultValue>
-		<defaultValue property="overlays">[]</defaultValue>
+		<defaultValue property="overlays">[{&quot;key&quot;:&quot;Sample Map - World Countries&quot;,&quot;visible&quot;:true,&quot;fillColor&quot;:&quot;#DFDFDF&quot;,&quot;color&quot;:&quot;#B0B0B0&quot;,&quot;colorScale&quot;:&quot;#D7191C,#FDAE61,#FFFFBF,#A6D96A,#1A9641&quot;,&quot;colorScaleMethod&quot;:&quot;quantile&quot;,&quot;colorScaleMeasure&quot;:{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0},&quot;weight&quot;:1,&quot;opacity&quot;:0.8,&quot;fillOpacity&quot;:0.8,&quot;map&quot;:{&quot;mapType&quot;:&quot;url&quot;,&quot;featureKey&quot;:&quot;sovereignt&quot;,&quot;url&quot;:&quot;{ds-maps}/countries_medium.json&quot;,&quot;geoJSON&quot;:{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;features&quot;:[]}}}]</defaultValue>
 		<defaultValue property="fitBounds">true</defaultValue>
 		<defaultValue property="zoom">1</defaultValue>
 		<defaultValue property="mapCenter">[51.505, -0.09]</defaultValue>

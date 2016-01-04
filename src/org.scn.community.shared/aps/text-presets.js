@@ -38,27 +38,27 @@ define([], function () {
 		},
 		makePresetMenu : function (o, menuitem, rootConfig) {
 			try{
-			var that = this;
-			menuitem.setText(o.label);
-			if (o.presets) {
-				var newMenu = new sap.ui.commons.Menu({});
-				menuitem.setSubmenu(newMenu);
-				for (var i = 0; i < o.presets.length; i++) {
-					var newMenuItem = new sap.ui.commons.MenuItem({
-						text : o.presets[i].label
-					});
-					newMenu.addItem(newMenuItem);
-					this.makePresetMenu(o.presets[i], newMenuItem, rootConfig);
+				var that = this;
+				menuitem.setText(o.label);
+				if (o.presets) {
+					var newMenu = new sap.ui.commons.Menu({});
+					menuitem.setSubmenu(newMenu);
+					for (var i = 0; i < o.presets.length; i++) {
+						var newMenuItem = new sap.ui.commons.MenuItem({
+							text : o.presets[i].label
+						});
+						newMenu.addItem(newMenuItem);
+						this.makePresetMenu(o.presets[i], newMenuItem, rootConfig);
+					}
 				}
-			}
-			if (o.value) {
-				menuitem.attachSelect(function (v){ return function(oControlEvent){
-					this.setValue(v);
-					this.text.setValue(v);
-					this.fireValueChange();
-				};
-				}(o.value), this);
-			}
+				if (o.value) {
+					menuitem.attachSelect(function (v){ return function(oControlEvent){
+						this.setValue(v);
+						this.text.setValue(v);
+						this.fireValueChange();
+					};
+					}(o.value), this);
+				}
 			}catch(e){
 				alert(e);
 			}

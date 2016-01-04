@@ -87,27 +87,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 						}
 					}
 				}
-			},/*
-			geoJson : {
-				opts : {
-					desc : "GeoJSON Library",
-					cat : "Layers-GeoJSON Library",
-					apsControl : "complexcollection",
-					apsConfig : {
-						key : {
-							desc : "Key",
-							defaultValue : "SOME_KEY",
-							apsControl : "text",
-							key : true
-						},
-						content : {
-							desc : "Custom GeoJSON",
-							defaultValue : {},
-							apsControl : "mapeditor"
-						}
-					}
-				}
-			},*/
+			},
 			overlays : {
 				opts : {
 					desc : "Map Overlays",
@@ -119,11 +99,6 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							defaultValue : "SOME_KEY",
 							apsControl : "text",
 							key : true
-						},
-						featureKey : {
-							desc : "Feature Property Key",
-							defaultValue : "NAME_0",
-							apsControl : "text"
 						},
 						visible : {
 							desc : "Visible",
@@ -137,7 +112,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 						},
 						color : {
 							desc : "Default Feature Border Color",
-							defaultValue : "#808080",
+							defaultValue : "#B0B0B0",
 							apsControl : "color",
 						},
 						colorScale : {
@@ -179,20 +154,32 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 						},
 						fillOpacity : {
 							desc : "Fill Opacity (0.00 - 1.00)",
-							defaultValue : 0.5,
+							defaultValue : 0.8,
 							apsControl : "spinner"
 						},
-						geoJson : {
-							desc : "Custom GeoJSON",
-							defaultValue : "",
-							apsControl : "mapeditor"
+						dataselection : {
+							desc : "Data Source",
+							defaultValue : {
+								alias : "",
+								selection : {}
+							},
+							apsControl : "dataselection2.0"
 						},
-						geoJsonUrl : {
-							desc : "GeoJSON URL",
-							defaultValue : "",
-							apsControl : "text-presets",
-							presetsIndex : "os/maps/presets.json",
-						}/*,
+						map : {
+							desc : "Custom GeoJSON",
+							defaultValue : {
+								mapType : "url",
+								featureKey : "sovereignt",
+								url :"{ds-maps}/countries_medium.json",
+								geoJSON : {
+								  "type": "FeatureCollection",
+								  "features": []
+								}
+							},
+							apsControl : "layereditor"
+						},
+						
+						/*,
 						markers : {
 							desc : "Markers",
 							defaultValues : [],
@@ -273,7 +260,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			if(!that.flatData || !options.colorMeasureIndex <0 || !options.colorScale) {
 				return ret;
 			}
-			var p = options.feature.properties[options.layer.featureKey];
+			var p = options.feature.properties[options.layer.map.featureKey];
 			var rowIndex = -1;
 			for(var i=0;i<that.flatData.rowHeaders.length;i++){
 				if(that.flatData.rowHeaders[i] == p) rowIndex = i;
@@ -284,6 +271,76 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				// ret.fillColor = options.colorScale(value);
 			}
 			return ret;
+		};
+		this.renderLayer = function(geoJSON,layerConfig){
+			var mapdata = geoJSON;
+			var newOverlay = L.featureGroup();
+			var colorScale;
+			var colorMeasureIndex = -1;
+			if(layerConfig && layerConfig.colorScaleMeasure){
+				colorMeasureIndex = this.determineMeasureIndex(layerConfig.colorScaleMeasure);
+			}
+			if(layerConfig && layerConfig.colorScale && colorMeasureIndex >-1){
+				var values = [];
+				this.flatData.values.map(function(e){
+					values.push(e[colorMeasureIndex]);
+				});
+				values.sort(function(a, b) { return a - b; });
+				var csm = layerConfig.colorScaleMethod || "quantile";
+				var colorScale = d3.scale[csm]()
+	        		//.domain([layerConfig.colorScaleMin || 0,layerConfig.colorScaleMax || 100])
+					.domain(values)
+					.range(layerConfig.colorScale.split(","));
+		        // Clamp if can
+		        if (typeof colorScale.clamp == 'function') {
+		        	colorScale.clamp(true);
+		        }		
+			}
+			
+			if (geoJSON && geoJSON.type && geoJSON.type.toLowerCase() === 'topology' && typeof topojson != 'undefined') {
+				for (var o in geoJSON.objects) {
+					if (geoJSON.objects.hasOwnProperty(o)) {
+						obj = geoJSON.objects[o];
+						break;
+					}
+				}
+				mapdata = topojson.feature(geoJSON, geoJSON.objects[o]);
+			}
+			var LgeoJSON = new L.geoJson(mapdata, {
+				//style : styleConfig,
+				style : function(options){
+					return function(feature){
+						options.feature = feature;
+						return that.createStyle(options);
+					};
+				}({
+					layer : layerConfig,
+					colorMeasureIndex : colorMeasureIndex,
+					colorScale : colorScale
+				}),
+				pointToLayer : function(feature, latlng){
+					var marker = "marker";
+					if(feature && feature.properties){
+						if(feature.properties.marker) marker = feature.properties.marker; 
+					}
+					var conf = that.createStyle({
+						feature : feature,
+						layer : layerConfig,
+						colorMeasureIndex : colorMeasureIndex,
+						colorScale : colorScale
+					});
+					
+					return new L.marker(latlng,{
+						icon : L.SCNDesignStudioMarkers.icon({
+							markerColor : conf.fillColor,
+							icon : marker,
+							iconSize : [32 , 32],
+							anchorPosition : [.5,1]		// .5, .5 for circle
+						})
+					});
+				}
+			});
+			return LgeoJSON;
 		};
 		this.updateMap = function () {
 			// console.log("afterupdate");
@@ -314,7 +371,6 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			}
 			this._controlLayer._update();
 			
-			// var geoJson = this.parse(this.geoJson(),[]);
 			// Ensure right data types.
 			// if(tileOptions.minZoom) tileOptions.minZoom = parseInt(tileOptions.minZoom);
 			// if(tileOptions.maxZoom) tileOptions.maxZoom = parseInt(tileOptions.maxZoom);
@@ -336,145 +392,35 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			this._featureLayer = L.featureGroup();
 			for(var i=0;i<featureLayers.length;i++){
 				var layer = featureLayers[i];
-				var newOverlay = L.featureGroup();
-				var colorScale;
-				var colorMeasureIndex = -1;
-				if(layer && layer.colorScaleMeasure){
-					colorMeasureIndex = this.determineMeasureIndex(layer.colorScaleMeasure);
-				}
-				if(layer && layer.colorScale && colorMeasureIndex >-1){
-					var values = [];
-					this.flatData.values.map(function(e){
-						values.push(e[colorMeasureIndex]);
-					});
-					values.sort(function(a, b) { return a - b; });
-					var csm = layer.colorScaleMethod || "quantile";
-					var colorScale = d3.scale[csm]()
-		        		//.domain([layer.colorScaleMin || 0,layer.colorScaleMax || 100])
-						.domain(values)
-						.range(layer.colorScale.split(","));
-			        // Clamp if can
-			        if (typeof colorScale.clamp == 'function') {
-			        	colorScale.clamp(true);
-			        }		
-				}
-				try{
-					if(layer.geoJsonUrl){
-						var url = layer.geoJsonUrl;
-						var osMapPath = sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","os/maps")
-						url = url.replace(/{os-maps}/g, osMapPath);
-						
-						$.ajax({
-							dataType : "json",
-							url : url,
-							success : function(overlay){return function(data){
-								// Convert TopoJSON to GeoJSON if needed.  TopoJSON smaller in size.
-								var obj;
-								var mapdata = data;
-								if (data && data.type && data.type.toLowerCase() === 'topology' && typeof topojson != 'undefined') {
-									for (var o in data.objects) {
-										if (data.objects.hasOwnProperty(o)) {
-											obj = data.objects[o];
-											break;
-										}
-									}
-									mapdata = topojson.feature(data, data.objects[o]);
-								}
-								var LgeoJSON = new L.geoJson(mapdata, {
-									style : function(options){
-										return function(feature){
-											options.feature = feature;
-											return that.createStyle(options);
-										};
-									}({
-										layer : layer,
-										colorMeasureIndex : colorMeasureIndex,
-										colorScale : colorScale
-									}),
-								});
-								LgeoJSON.addTo(overlay);								
-							};}(newOverlay),
-							fail : function(jqxhr, textStatus, error){
-								alert(error);
-							}
-						})
-					}
-	
-					// alert(colorMeasure + "\n\n" + colorMeasure);
-					// Custom GeoJSON
-					if(layer.geoJson){
-						try{
-							var LgeoJSON = new L.geoJson(layer.geoJson, {
-								//style : styleConfig,
-								style : function(options){
-									return function(feature){
-										options.feature = feature;
-										return that.createStyle(options);
-									};
-								}({
-									layer : layer,
-									colorMeasureIndex : colorMeasureIndex,
-									colorScale : colorScale
-								}),
-								pointToLayer : function(feature, latlng){
-									var marker = "marker";
-									if(feature && feature.properties){
-										if(feature.properties.marker) marker = feature.properties.marker; 
-									}
-									var conf = that.createStyle({
-										feature : feature,
-										layer : layer,
-										colorMeasureIndex : colorMeasureIndex,
-										colorScale : colorScale
-									});
-									
-									return new L.marker(latlng,{
-										icon : L.SCNDesignStudioMarkers.icon({
-											markerColor : conf.fillColor,
-											icon : marker,
-											iconSize : [32 , 32],
-											anchorPosition : [.5,1]		// .5, .5 for circle
-										})
-									});
-								}
-							});
-							LgeoJSON.addTo(newOverlay);
-						}catch(e){
-							alert("Bad Custom GeoJSON: " + e);
-							// Bad GeoJSON
+				var map = layer.map;
+				if(map.mapType == "url"){
+					var url = map.url;
+					var osMapPath = sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","os/maps")
+					url = url.replace(/{os-maps}/g, osMapPath);
+					url = url.replace(/{ds-maps}/g, "zen.rt.components.geomaps/resources/js/geo");
+					$.ajax({
+						dataType : "json",
+						url : url,
+						success : function(layer){return function(data){
+							var newLayer = that.renderLayer(data, layer);
+							if(layer.visible) newLayer.addTo(that._featureLayer);
+							that._controlLayer.addOverlay(newLayer, layer.key);							
+						};}(layer),
+						fail : function(jqxhr, textStatus, error){
+							alert(error);
 						}
-					}
-					
-					/*else{
-						var LgeoJSON = new L.geoJson(this.parse(geoJson[j].content,{}), styleConfig);
-						LgeoJSON.addTo(newOverlay);	
-					}*/
-				
-					// LgeoJSON.addTo(this._featureLayer);
-					
-					//if(featureLayers[i].visible) LgeoJSON.addTo(this._featureLayer);
-					//this._controlLayer.addOverlay(LgeoJSON, featureLayers[i].key);
-				}catch(e){
-					// Bad GeoJson
-				}
-				var Lmarkers = L.featureGroup();
-				var markers = layer.markers || [];
-				for(var j=0;j<markers.length;j++){
-					var marker = markers[j];
-					// alert([marker.latitude, marker.longitude]);
-					var Lmarker = new L.marker([marker.latitude, marker.longitude],{
-						icon : L.SCNDesignStudioMarkers.icon({
-							markerColor : "#009966",
-							icon : marker.marker,
-							iconSize : [32 , 32],
-							anchorPosition : [.5,1]		// .5, .5 for circle
-						})
 					});
-					Lmarker.addTo(Lmarkers);
 				}
-				Lmarkers.addTo(newOverlay);
-				if(featureLayers[i].visible) newOverlay.addTo(this._featureLayer);
-				this._controlLayer.addOverlay(newOverlay, featureLayers[i].key);
+				if(map.mapType == "custom"){
+					try{
+						var newLayer = that.renderLayer(map.geoJSON, layer);
+						if(layer.visible) newLayer.addTo(that._featureLayer);
+						that._controlLayer.addOverlay(newLayer, layer.key);
+					}catch(e){
+						alert("Bad Custom GeoJSON: " + e);
+						// Bad GeoJSON
+					}
+				}
 			}
 			this._featureLayer.addTo(this._map);
 			/*if(this.fitBounds()){

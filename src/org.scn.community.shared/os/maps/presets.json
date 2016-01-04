@@ -132,9 +132,9 @@
   },{
   	"label" : "Design Studio Maps",
   	"presets" : [ { "label" : "Countries - Medium",
-                "value" : "zen.rt.components.geomaps/resources/js/geo/countries_medium.json"
+                "value" : "{ds-maps}/countries_medium.json"
               },{ "label" : "Countries - Small",
-                "value" : "zen.rt.components.geomaps/resources/js/geo/countries_small.json"
+                "value" : "{ds-maps}/countries_small.json"
               }
             ]
   }
