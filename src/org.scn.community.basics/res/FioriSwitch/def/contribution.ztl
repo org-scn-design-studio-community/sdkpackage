@@ -1,4 +1,4 @@
-class org.scn.community.m.basics.Switch extends org.scn.community.shared.Component {
+class org.scn.community.basics.FioriSwitch extends org.scn.community.shared.Component {
 	/** 
  	<example>
 	Get Switch State

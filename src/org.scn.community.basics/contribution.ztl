@@ -4910,9 +4910,9 @@ class org.scn.community.basics.FioriButton extends org.scn.community.shared.Comp
 	*}
 
 }
-class org.scn.community.m.basics.Input extends org.scn.community.shared.Component {
+class org.scn.community.basics.FioriInput extends org.scn.community.shared.Component {
 	
-}class org.scn.community.m.basics.SegmentedButton extends org.scn.community.shared.Component {
+}class org.scn.community.basics.FioriSegmentedButton extends org.scn.community.shared.Component {
 	/** Add an item
  	<example>
 	Add or update a item by key 'A'.
@@ -4944,9 +4944,9 @@ class org.scn.community.m.basics.Input extends org.scn.community.shared.Componen
 		}		
 		itemConfig = o;
 	*}
-}class org.scn.community.m.basics.Input extends org.scn.community.shared.Component {
+}class org.scn.community.basics.FioriSlider extends org.scn.community.shared.Component {
 	
-}class org.scn.community.m.basics.Switch extends org.scn.community.shared.Component {
+}class org.scn.community.basics.FioriSwitch extends org.scn.community.shared.Component {
 	/** 
  	<example>
 	Get Switch State
