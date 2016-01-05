@@ -227,11 +227,13 @@ UI5Table = {
 		that._oModel.setData(that._flatData);
 		that._table.setAllowColumnReordering();
 
+		var correctLabelPackage = sap.ui.commons == undefined ? sap.m : sap.ui.commons;
+		
 		for(colI=0;colI<that._flatData.dimensionHeaders.length;colI++){
-			var oItemTemplate = new sap.ui.commons.Label (
+			var oItemTemplate = new correctLabelPackage.Label (
 					{text: "{" + lPathPrefix +colI + "}",
 						tooltip: "{" + lPathPrefix + colI + "}",
-						design: sap.ui.commons.LabelDesign.Bold,
+						design: correctLabelPackage.LabelDesign.Bold,
 					});
 			
 			if(hasFormattingCondition) {
@@ -239,10 +241,10 @@ UI5Table = {
 			}
 			
 			var lColumn = new sap.ui.table.Column({
-				label: new sap.ui.commons.Label(
+				label: new correctLabelPackage.Label(
 				{
 					text: that._flatData.dimensionHeaders[colI],
-					design: sap.ui.commons.LabelDesign.Bold,
+					design: correctLabelPackage.LabelDesign.Bold,
 				}),
 				template: oItemTemplate,
 				sortProperty: ""+ lPathPrefix+colI,
@@ -274,7 +276,7 @@ UI5Table = {
 
 		if(!that.getDOnlyHeaderColumns()) {
 			for(var dataColI=0;dataColI<that._flatData.columnHeaders.length;dataColI++){
-				var oItemTemplate = new sap.ui.commons.Label (
+				var oItemTemplate = new correctLabelPackage.Label (
 						{text: "{" + lPathPrefix + colI + "}",
 							tooltip: "{" + lPathPrefix + colI + "}",
 							textAlign: sap.ui.core.TextAlign.Right,
@@ -290,7 +292,7 @@ UI5Table = {
 				}
 
 				var lColumn = new sap.ui.table.Column({
-					label: new sap.ui.commons.Label({text: that._flatData.columnHeaders[dataColI]}),
+					label: new correctLabelPackage.Label({text: that._flatData.columnHeaders[dataColI]}),
 					template: oItemTemplate,
 					sortProperty: ""+ lPathPrefix+colI,
 					filterProperty: ""+ lPathPrefix+colI,
@@ -309,8 +311,8 @@ UI5Table = {
 		if(false) {
 			// a try to fix resizing
 			that._table.addColumn(new sap.ui.table.Column({
-				label: new sap.ui.commons.Label({text: ""}),
-				template: new sap.ui.commons.Label({text: ""}),
+				label: new correctLabelPackage.Label({text: ""}),
+				template: new correctLabelPackage.Label({text: ""}),
 				sortProperty: ""+colI,
 				filterProperty: ""+colI,
 				showSortMenuEntry: false,
