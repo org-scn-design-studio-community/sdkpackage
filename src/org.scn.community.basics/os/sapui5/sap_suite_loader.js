@@ -9,7 +9,8 @@ var oCore = sap.ui.getCore();
 oCfgData = window["sap-ui-config"]
 
 if(oCfgData.libs.indexOf("sap.suite.ui.commons") == -1) {
-	jQuery.sap.registerModulePath("sap.suite.ui.commons", org_scn_community_require.scriptInfo.myPackagePath + "os/sapui5/suite");
+	var packagePath = sap.zen.createStaticSdkMimeUrl("org.scn.community.basics", "os/sapui5/suite");
+	jQuery.sap.registerModulePath("sap.suite.ui.commons", packagePath);
 
 	oCore.loadLibrary("sap.suite.ui.commons");
 	oCfgData.libs = oCfgData.libs + ",sap.suite.ui.commons";
