@@ -4,6 +4,18 @@
 define([], function() {
 	function SDKCore(options){
 		var that = this;
+		this.parse = function(s,o){
+			var r = o;
+			if(s && s!=""){
+				try{
+					r = JSON.parse(s);
+				}catch(e){
+					console.log("Error JSON parsing " + s + "\n" + e);
+					r = o;
+				}
+			}
+			return r;
+		},
 		this.componentInfo = {
 			visible : true,
 			title : "Core Component",

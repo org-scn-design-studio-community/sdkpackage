@@ -260,6 +260,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 	 * Design Studio Events
 	 */
 	this.init = function () {
+		this.dataPropertyListeners = [];
+		this.dataPropertyListeners2 = [];
+		this.dataSourceAliases = [];
 		try {
 
 			if (global != undefined && global.component != undefined) {
@@ -289,53 +292,68 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 					alert("Bad Component Info found.")
 				}
 			}
-
-			// alert("Component Info." + componentInfo);
-			/**
-			 * Attach additional handlers, depending on component capabilities
-			 */
-			if (componentInfo && componentInfo.supportsFlatData) {
-				var that = this;
-				this.dataPropertyListeners = [];
-				if (!this.DATA_SOURCE_ALIAS_REF)
-					this.DATA_SOURCE_ALIAS_REF = function (v) {
-						if (v === undefined) {
-							return this._dsr;
-						} else {
-							this._dsr = v;
-							if (this.dsPoll)
-								window.clearTimeout(this.dsPoll);
-							this.dsPoll = window.setTimeout(function () {
-									that.updateDataInfo("DATA_SOURCE_ALIAS_REF changed");
-								}, 1500);
-							return this;
-						}
-					}
-				this.componentSelected = function () {
+			this.registerDataComponent = function (cmp) {
+				this.dataPropertyListeners.push(cmp);
+			};
+			this.registerDataComponent2 = function (cmp) {
+				this.dataPropertyListeners2.push(cmp);
+			};
+			this.componentSelected = function () {
+				if (this.dsPoll) window.clearTimeout(this.dsPoll);
+				this.updateDataInfo("Component Selected");
+				//alert(JSON.stringify(ds_getDataJSON()));
+				//alert(ds_getMetadataPropertiesAsJSON());
+			}
+			var that = this;
+			if (!this.DATA_SOURCE_ALIAS_REF) this.DATA_SOURCE_ALIAS_REF = function (v) {
+				if (v === undefined) {
+					return this._dsr;
+				} else {
+					this._dsr = v;
 					if (this.dsPoll)
 						window.clearTimeout(this.dsPoll);
-					this.updateDataInfo("Component Selected");
-					//alert(JSON.stringify(ds_getDataJSON()));
-					//alert(ds_getMetadataPropertiesAsJSON());
+					this.dsPoll = window.setTimeout(function () {
+							that.updateDataInfo("DATA_SOURCE_ALIAS_REF changed");
+						}, 1500);
+					return this;
 				}
-
-				this.registerDataComponent = function (cmp) {
-					this.dataPropertyListeners.push(cmp);
-				};
-
-				/**
-				 * Get Data Source Metadata
-				 */
-				this.updateDataInfo = function (reason) {
-					jQuery.sap.log.info("Updating Data Source Info because: " + reason);
-					var that = this;
-					// Get Property Metadata from Design Studio Component Runtime.
-					try {
+			}
+			/**
+			 * Get Data Source Metadata
+			 */
+			this.updateDataInfo = function (reason) {
+				jQuery.sap.log.info("Updating Data Source Info because: " + reason);
+				var that = this;
+				
+				/*var json = ds_getDataJSON(datasource, selection,
+				   "includeMetadata","true",
+				   "fillMetadataProperty","false",
+				   "includeData","false",
+				   "includeAttributes", "true",
+				   "includeAxesTuples","false",
+				   "includeTuples","false"
+				);*/
+				// Get Property Metadata from Design Studio Component Runtime.
+				try {
+					try{
+						var dsa = ds_getDataSourceAliases(); // Multiple Data Source Support - Mike 01/04/2016
+						this.oldDSA = dsa;
+						if (dsa && dsa != "") {
+							this.dataSourceAliases = jQuery.parseJSON(dsa);
+							// Update data-sensitive components to metadata or flatdata changes.
+							for (var i = 0; i < this.dataPropertyListeners2.length; i++) {
+								var cmp = this.dataPropertyListeners2[i];
+								if (cmp != undefined && cmp.notifyDataChange2) cmp.notifyDataChange2();
+							}
+						}
+					}catch(e){
+						alert(e);
+					}
+					if (componentInfo && componentInfo.supportsFlatData) {
 						var dsm = this.callRuntimeHandler("getAPSMetaData");
 						var fd = this.callRuntimeHandler("getAPSFlatData");
 						// If both values are the same, don't bother updating APS components
-						if (dsm == this.oldDSM && fd == this.oldFD)
-							return;
+						if (dsm == this.oldDSM && fd == this.oldFD && dsa == this.oldDSA) return;
 						this.oldDSM = dsm;
 						this.oldFD = fd;
 						var fdMeta = {
@@ -358,10 +376,17 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 							if (cmp != undefined && cmp.notifyDataChange)
 								cmp.notifyDataChange();
 						}
-					} catch (e) {
-						alert("An error occured with APS communicating with the Design Studio runtime.  Please try reloading your dashboard.\n\n" + e);
+						
 					}
-				};
+				} catch (e) {
+					alert("An error occured with APS communicating with the Design Studio runtime.  Please try reloading your dashboard.\n\n" + e);
+				}
+			};
+			/**
+			 * Attach additional handlers, depending on component capabilities
+			 */
+			if (componentInfo && componentInfo.supportsFlatData) {
+				// Stub
 			}
 			/**
 			 * Main Layout is coupled with top level node config (this.tree)
@@ -552,6 +577,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 				}
 			}
 			this.mainLayout.placeAt("content");
+			this.updateDataInfo("Initialize");
 		} catch (e2) {
 			alert(e2.stack);
 		}

@@ -1,25 +1,11 @@
 /**
  * Class for Pictogram
  */
-class org.scn.community.databound.Pictogram extends org.scn.community.shared.Component {
+class org.scn.community.databound.LeafletMap extends org.scn.community.shared.Component {
 	/**
-	Sets number of columns
+	Debug
 	*/
-	void setNumCols(/* Number of Columns */ int columns) {*
-		this.numCols = columns;
+	String setBIAL(/* Debug */ String bial) {*
+		return JSON.stringify(eval(bial));
 	*}
-	/**
-	Sets number of rows
-	*/
-	void setNumRows(/* Number of Rows */ int rows) {*
-		this.numRows = rows;
-	*}
-	/**
-	Gets number of columns
-	*/
-	int getNumCols() {* return this.numCols; *}
-	/**
-	Gets number of rows
-	*/
-	int getNumCols() {* return this.numRows; *}
 }

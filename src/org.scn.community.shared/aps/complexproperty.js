@@ -19,6 +19,10 @@ define([], function () {
 				config : {
 					type : "object",
 					defaultValue : {}
+				},
+				labelOrientation : {
+					type : "String",
+					defaultValue : "Horizontal"
 				}
 			},
 			events : {
@@ -33,6 +37,15 @@ define([], function () {
 		},
 		getConfig : function () {
 			return sap.ui.core.Control.prototype.getProperty.apply(this, ["config"]);
+		},
+		setLabelOrientation : function (o) {
+			sap.ui.core.Control.prototype.setProperty.apply(this, ["labelOrientation", o]);
+			this.generateFields();
+			this.updateFields();
+			return this;
+		},
+		getLabelOrientation : function () {
+			return sap.ui.core.Control.prototype.getProperty.apply(this, ["labelOrientation"]);
 		},
 		setValue : function (o) {
 			sap.ui.core.Control.prototype.setProperty.apply(this, ["value", o]);
@@ -54,7 +67,7 @@ define([], function () {
 						} else {
 							value = o[field];
 						}
-						handler.setter.call(this, field, value);
+						handler.setter.call(that, field, value);
 					};}(field));
 				}else{
 					// alert(field + " not exist yet.");
@@ -75,8 +88,8 @@ define([], function () {
 				var that = this;
 				
 				var failureFunction = function (componentContainer, property, propertyOptions) {
-					return function () {
-						alert("fail");
+					return function (err) {
+						alert("fail" + err);
 						// assure there is a control! Make text Area
 						that["cmp_" + property] = new sap.ui.commons.TextArea({
 								design : sap.ui.core.Design.Monospace,
@@ -167,11 +180,16 @@ define([], function () {
 			}
 		},
 		hLabel : function (label, component) {
-			var hLayout = new sap.ui.commons.layout.HorizontalLayout({})
-				hLayout.addContent(new sap.ui.commons.TextView({
-						text : label,
-						width : "180px"
-					}));
+			var hLayout;
+			if(this.getLabelOrientation()=="Horizontal"){
+				hLayout = new sap.ui.commons.layout.HorizontalLayout({});
+			}else{
+				hLayout = new sap.ui.commons.layout.VerticalLayout({});
+			}
+			hLayout.addContent(new sap.ui.commons.TextView({
+				text : label,
+				width : "180px"
+			}));
 			hLayout.addContent(component);
 			return hLayout;
 		},

@@ -1,0 +1,73 @@
+[{
+		"label" : "Open StreetMaps",
+		"presets" : [{
+				"label" : "Standard",
+				"url" : "osm-standard.json"
+			}, {
+				"label" : "Satellite",
+				"url" : "osm-satellite.json"
+			}
+		]
+	},{
+		"label" : "Nokia HERE",
+		"presets" : [{
+				"label" : "Standard",
+				"url" : "nokia-standard.json"
+			}, {
+				"label" : "Satellite",
+				"url" : "nokia-satellite.json"
+			}, {
+				"label" : "Terrain",
+				"url" : "nokia-terrain.json"
+			}
+		]
+	},{
+		"label" : "Stamen",
+		"presets" : [{
+				"label" : "Terrain (US Only)",
+				"url" : "stamen-terrain.json"
+			},{
+				"label" : "Toner",
+				"url" : "stamen-toner.json"
+			},{
+				"label" : "Watercolor",
+				"url" : "stamen-watercolor.json"
+			}
+		]
+	},{
+		"label" : "ESRI",
+		"presets" : [{
+				"label" : "World Topo Map",
+				"url" : "esri-worldtopo.json"
+			},{
+				"label" : "World Imagery",
+				"url" : "esri-worldimagery.json"
+			},{
+				"label" : "World Navigation",
+				"url" : "esri-worldnavigation.json"
+			},{
+				"label" : "World Street Map",
+				"url" : "esri-worldstreetmap.json"
+			},{
+				"label" : "Ocean",
+				"url" : "esri-ocean.json"
+			},{
+				"label" : "National Geographic",
+				"url" : "esri-natgeo.json"
+			}
+		]
+	},{
+		"label" : "MapBox",
+		"presets" : [{
+				"label" : "Example Map",
+				"url" : "mapbox-example.json"
+			},{
+				"label" : "Natural Earth",
+				"url" : "mapbox-naturalearth.json"
+			},{
+				"label" : "Warden",
+				"url" : "mapbox-warden.json"
+			}
+		]
+	}
+]

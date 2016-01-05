@@ -165,7 +165,7 @@ define([
 							headers : config.headers
 						}).done(function(data){
 							// data = removeDiacritics(data);
-							that._mapData = that.processMapData(data);
+							that._mapData = JSON.stringify(that.processMapData(data));
 							that.updateContents();
 							that.fireMapDataChange();
 						})
@@ -267,7 +267,7 @@ define([
 			},this);
 			this.geoJSONText.attachChange(function(oControlEvent){
 				var textvalue = oControlEvent.getSource().getValue();
-				textvalue = removeDiacritics(textvalue);
+				// textvalue = removeDiacritics(textvalue);
 				this._mapData = textvalue;
 				that.fireMapDataChange();
 			},this);

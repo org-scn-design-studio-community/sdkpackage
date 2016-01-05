@@ -1,0 +1,8 @@
+{
+	"baseUrl" : "http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+	"attribution" : "Esri, FAO, NOAA, AAFC, NRCan",
+	"subdomains" : "",
+	"minZoom" : 0,
+	"maxZoom" : 22,
+	"tileSize" : 256
+}

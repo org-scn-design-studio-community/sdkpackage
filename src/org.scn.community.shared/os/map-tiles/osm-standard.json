@@ -1,0 +1,8 @@
+{
+	"baseUrl" : "http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png",
+	"attribution" : "&copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest",
+	"subdomains" : "12",
+	"minZoom" : 0,
+	"maxZoom" : 18,
+	"tileSize" : 256
+}

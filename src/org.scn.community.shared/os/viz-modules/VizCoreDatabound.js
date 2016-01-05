@@ -150,6 +150,31 @@ define(["./VizCore","./../../modules/component.databound"], function(VizCore, or
 			}
 			return fieldName;
 		}
+		/**
+		 * Determine Field Index
+		 */
+		this.determineMeasureIndex = function(measureObj){
+			if(typeof measureObj === "string") return -1;
+			var fieldIndex = -1;
+			if(!measureObj) return -1;
+			if(measureObj.fieldType=="unassigned"){
+				fieldIndex = -1;
+			}
+			if(measureObj.fieldType=="position"){
+				if(this.flatData.columnHeadersKeys.length>measureObj.fieldPosition) fieldIndex = measureObj.fieldPosition;
+			}
+			if(measureObj.fieldType=="name"){
+				if(this.flatData && this.flatData.columnHeadersKeys){
+					var fieldIndex = -1;
+					if(this.flatData.columnHeadersKeys){
+						for(var i = 0; i<this.flatData.columnHeadersKeys.length;i++){
+							if(this.flatData.columnHeadersKeys[i]==measureObj.fieldName) fieldIndex = i;
+						}
+					}
+				}
+			}
+			return fieldIndex;
+		}
 		var parentInit = this.init;
 		this.init = function(){
 			parentInit.apply(this);

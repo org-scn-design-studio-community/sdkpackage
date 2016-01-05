@@ -1,0 +1,8 @@
+{
+	"baseUrl" : "http://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}",
+	"attribution" : "Esri, National Geographic",
+	"subdomains" : "",
+	"minZoom" : 0,
+	"maxZoom" : 12,
+	"tileSize" : 256
+}

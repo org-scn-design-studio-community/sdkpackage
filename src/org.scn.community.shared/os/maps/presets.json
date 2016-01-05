@@ -1,0 +1,141 @@
+[ { "label" : "SCN Design Studio Maps",
+    "presets" : [ { "label" : "Global",
+          "presets" : [ { "label" : "Countries",
+                "value" : "{os-maps}/world-countries.json"
+              },{ "label" : "Countries (Low-Res)",
+                "value" : "{os-maps}/world-countries-low.json"
+              } ]
+        },
+        { "label" : "North America",
+          "presets" : [ { "label" : "United States",
+                "value" : "{os-maps}/NorthAmerica/USA-regions.json"
+              },
+              { "label" : "United States (Low-Res)",
+                "value" : "{os-maps}/NorthAmerica/USA-regions-low.json"
+              },
+              { "label" : "Canada",
+                "value" : "{os-maps}/NorthAmerica/Canada-regions.json"
+              },
+              { "label" : "Mexico",
+                "value" : "{os-maps}/NorthAmerica/Mexico-regions.json"
+              },
+              { "label" : "Greenland",
+                "value" : "{os-maps}/NorthAmerica/Greenland-regions.json"
+              }
+            ]
+        },
+        { "label" : "South America",
+          "presets" : [ { "label" : "Argentina",
+                "value" : "{os-maps}/SouthAmerica/Argentina-regions.json"
+              },
+              { "label" : "Brazil",
+                "value" : "{os-maps}/SouthAmerica/Brazil-regions.json"
+              },
+              { "label" : "Chile",
+                "value" : "{os-maps}/SouthAmerica/Chile-regions.json"
+              },
+              { "label" : "Columbia",
+                "value" : "{os-maps}/SouthAmerica/Columbia-regions.json"
+              }
+            ]
+        },
+        { "label" : "Europe",
+          "presets" : [
+              { "label" : "Albania",
+                "value" : "{os-maps}/Europe/Aland-regions.json"
+              },
+              { "label" : "Austria",
+                "value" : "{os-maps}/Europe/Austria-regions.json"
+              },
+              { "label" : "France",
+                "value" : "{os-maps}/Europe/France-regions.json"
+              },
+              { "label" : "Germany",
+                "value" : "{os-maps}/Europe/Germany-regions.json"
+              },
+              { "label" : "Iceland",
+                "value" : "{os-maps}/Europe/Iceland-regions.json"
+              },
+              { "label" : "Poland",
+                "value" : "{os-maps}/Europe/Poland-regions.json"
+              },
+              { "label" : "Russia",
+                "value" : "{os-maps}/Europe/Russia-regions.json"
+              },
+              { "label" : "Sweden",
+                "value" : "{os-maps}/Europe/Sweden-regions.json"
+              },
+              { "label" : "Switzerland",
+                "value" : "{os-maps}/Europe/Switzerland-regions.json"
+              },
+              { "label" : "Ukraine",
+                "value" : "{os-maps}/Europe/Ukraine-regions.json"
+              },
+              { "label" : "United Kingdom",
+                "value" : "{os-maps}/Europe/United-Kingdom-regions.json"
+              },
+              { "label" : "Åland Islands",
+                "value" : "{os-maps}/Europe/Aland-regions.json"
+              }
+            ]
+        },
+        { "label" : "Africa",
+          "presets" : [ { "label" : "Nigeria",
+                "value" : "{os-maps}/Africa/Nigeria-regions.json"
+              },
+              { "label" : "Ethiopia",
+                "value" : "{os-maps}/Africa/Ethiopia-regions.json"
+              },
+              { "label" : "Egypt",
+                "value" : "{os-maps}/Africa/Egypt-regions.json"
+              }
+            ]
+        },
+        { "label" : "Asia",
+          "presets" : [ { "label" : "China",
+                "value" : "{os-maps}/Asia/China-regions.json"
+              },
+              { "label" : "Hong Kong",
+                "value" : "{os-maps}/Asia/Hong-Kong-regions.json"
+              },
+              { "label" : "India",
+                "value" : "{os-maps}/Asia/India-regions.json"
+              },
+              { "label" : "Indonesia",
+                "value" : "{os-maps}/Asia/Indonesia-regions.json"
+              },
+              { "label" : "Iraq",
+                "value" : "{os-maps}/Asia/Iraq-regions.json"
+              },
+              { "label" : "Afghanistan",
+                "value" : "{os-maps}/Asia/Afghanistan-regions.json"
+              }
+            ]
+        },{ "label" : "Oceania",
+          "presets" : [ { "label" : "Australia",
+                "value" : "{os-maps}/Oceania/Australia-regions.json"
+              },{ "label" : "New Zealand",
+                "value" : "{os-maps}/Oceania/New-Zealand-regions.json"
+              },{ "label" : "Guam",
+                "value" : "{os-maps}/Oceania/Guam-regions.json"
+              }
+            ]
+        },{ "label" : "Antarctica",
+          "presets" : [ { "label" : "Antarctica",
+                "value" : "{os-maps}/Antarctica/Antarctica-regions.json"
+              },{ "label" : "South Georgia and the Sandwich Islands",
+                "value" : "{os-maps}/Antarctica/South-Georgia-Sandwich-Islands-regions.json"
+              }
+            ]
+        }
+      ]
+  },{
+  	"label" : "Design Studio Maps",
+  	"presets" : [ { "label" : "Countries - Medium",
+                "value" : "{ds-maps}/countries_medium.json"
+              },{ "label" : "Countries - Small",
+                "value" : "{ds-maps}/countries_small.json"
+              }
+            ]
+  }
+]
