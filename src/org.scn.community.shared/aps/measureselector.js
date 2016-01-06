@@ -12,8 +12,7 @@ define(["./complexitem","./segmentedbutton"], function () {
 		init : function () {
 			this.setDisplaySecondaryValues(true);
 			propertyPage.registerDataComponent(this);
-			if (propertyPage.rendered)
-				this.notifyDataChange();
+			if (propertyPage.rendered) this.notifyDataChange();
 		},
 		notifyDataChange : function () {
 			this.destroyItems();
@@ -75,51 +74,43 @@ define(["./complexitem","./segmentedbutton"], function () {
 				this.layoutComponents();
 			}
 		},
-		createComponents : function () {
-			this.tooltips = {
-				fieldType : "Type of Field Mapping.",
-				fieldName : "Name of the Field to Map",
-				fieldPosition : "Position of field starting at index of 0"
-			};
-			try {
-				this.cmps.fieldType = new org.scn.community.aps.SegmentedButton({});
-				this.cmps.fieldType.addButton(new sap.ui.commons.Button({text : "Unassigned" }).data("key","unassigned"));
-				this.cmps.fieldType.addButton(new sap.ui.commons.Button({text : "By Name" }).data("key","name"));
-				this.cmps.fieldType.addButton(new sap.ui.commons.Button({text : "By Position" }).data("key","position"));
-				/*this.cmps.fieldType = new sap.ui.commons.ComboBox({
-				   width : "100px",
-						items : [
-							new sap.ui.core.ListItem({
-								key : "unassigned",
-								text : "Unassigned"
-							}),
-							new sap.ui.core.ListItem({
-								key : "name",
-								text : "By Name"
-							}),
-							new sap.ui.core.ListItem({
-								key : "position",
-								text : "By Position"
-							})
-						]
-					});*/
-				this.cmps.fieldType.attachKeyChange(function (e) {
-					var o = JSON.parse(JSON.stringify(this.getValue()));
-					o.fieldType = e.getSource().getSelectedKey();
-					this.setValue(o);
-					//this.makeLayout();
-					//this.layoutComponents();
-				}, this);
-				this.cmps.fieldName = new org.scn.community.aps.MeasureList({
-						width : "100px"
-					});
-				this.cmps.fieldPosition = new org.scn.community.aps.Spinner({
-						width : "100px",
-						min : 0,
-						max : 100
-					});
+		modulesLoaded : function(){
+			this.makeLayout();
+			this.layoutComponents();
+			this["cmp_fieldType"].attachKeyChange(function(oControlEvent){
 				this.makeLayout();
 				this.layoutComponents();
+			},this);
+		},
+		createComponents : function () {
+			try {
+			this._props = {
+				fieldType : {
+					opts : {
+						desc : "Field Type",
+						apsControl : "segmentedbutton",
+						options : [{key : "unassigned", text : "Unassigned"},
+						   {key : "name", text : "By Name"},
+						   {key : "position", text : "By Position"}
+						],
+						afterCreate : function(component){
+							
+						}
+					}
+				},
+				fieldName : {
+					opts : {
+						desc : "Field Name",
+						apsControl : "measurelist"	
+					}
+				},
+				fieldPosition : {
+					opts : {
+						desc : "Field Position",
+						apsControl : "spinner"	
+					}
+				}
+			};
 			} catch (e) {
 				alert(e);
 			}
@@ -131,14 +122,12 @@ define(["./complexitem","./segmentedbutton"], function () {
 				comp : "fieldType"
 			});
 			if (this.getValue().fieldType == "name"){
-			//if (this.cmps.fieldType.getSelectedKey() == "name") {
 				this.layout.push({
 					desc : "Field Name",
 					comp : "fieldName"
 				});
 			}
 			if (this.getValue().fieldType == "position"){
-			//if (this.cmps.fieldType.getSelectedKey() == "position") {
 				this.layout.push({
 					desc : "Field Position",
 					comp : "fieldPosition"
