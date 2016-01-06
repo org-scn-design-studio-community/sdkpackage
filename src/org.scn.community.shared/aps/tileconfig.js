@@ -7,6 +7,9 @@ define(["./complexitem"], function () {
 	 */
 	org.scn.community.aps.ComplexItem.extend("org.scn.community.aps.TileConfig", {
 		metadata : {},
+		needsLabel : function() {
+			return false;
+		},
 		/*
 		 * Overrides parent
 		 */
