@@ -154,7 +154,11 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 							
 						};
 					}(property + "", item.opts/*JSON.parse(JSON.stringify(item.opts))*/);
-					require(["../../org.scn.community.shared/aps/"+item.opts.apsControl],callbackFunction,failureFunction);
+					if(item.handler){
+						callbackFunction(item.handler);
+					}else{
+						require(["../../org.scn.community.shared/aps/"+item.opts.apsControl],callbackFunction,failureFunction);
+					}
 				}else{
 					alert("No item options for " + property);
 				}

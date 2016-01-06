@@ -12,8 +12,7 @@ define(["./complexitem","./segmentedbutton"], function () {
 		init : function () {
 			this.setDisplaySecondaryValues(true);
 			propertyPage.registerDataComponent(this);
-			if (propertyPage.rendered)
-				this.notifyDataChange();
+			if (propertyPage.rendered) this.notifyDataChange();
 		},
 		notifyDataChange : function () {
 			this.destroyItems();

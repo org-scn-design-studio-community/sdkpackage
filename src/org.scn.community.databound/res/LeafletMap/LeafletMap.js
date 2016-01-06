@@ -157,6 +157,9 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							defaultValue : 0.8,
 							apsControl : "spinner"
 						},
+						/*
+						 * Unfortunately, not supported enough to use in 1.6
+						 * Maybe another day.  -Mike
 						dataselection : {
 							desc : "Data Source",
 							defaultValue : {
@@ -165,6 +168,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							},
 							apsControl : "dataselection2.0"
 						},
+						*/
 						map : {
 							desc : "Custom GeoJSON",
 							defaultValue : {

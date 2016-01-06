@@ -42,6 +42,10 @@ define(["./complexitem"], function () {
 				this.layoutComponents();
 			}
 		},
+		modulesLoaded : function(){
+			this.makeLayout();
+			this.layoutComponents();
+		},
 		createComponents : function () {
 			this._props = {
 				baseUrl : {
@@ -79,32 +83,11 @@ define(["./complexitem"], function () {
 				tileSize : {
 					value : 256,
 					opts : {
-						desc : "Maximum Zoom",
+						desc : "Tile Size",
 						apsControl : "spinner"	
 					}
 				},
 			};
-			this.makeLayout();
-			this.layoutComponents();
-			return;
-			try {
-				this.cmps.baseUrl = new sap.ui.commons.TextField({ });
-				this.cmps.attribution = new sap.ui.commons.TextField({ });
-				this.cmps.subdomains = new sap.ui.commons.TextField({ });
-				this.cmps.minZoom = new org.scn.community.aps.Spinner({
-					value : 0
-				});
-				this.cmps.maxZoom = new org.scn.community.aps.Spinner({
-					value : 18
-				});
-				this.cmps.tileSize = new org.scn.community.aps.Spinner({
-					value : 256
-				});
-				this.makeLayout();
-				this.layoutComponents();
-			} catch (e) {
-				alert("Error in tileconfig:\n\n" + e);
-			}
 		},
 		init : function(){
 			try{
