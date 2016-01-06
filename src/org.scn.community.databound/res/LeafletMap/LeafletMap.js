@@ -115,27 +115,18 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							defaultValue : "#B0B0B0",
 							apsControl : "color",
 						},
-						colorScale : {
-							desc : "Measure Color Scale",
-							defaultValue : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
-							apsControl : "palette",
-						},
-						colorScaleMethod : {
-							apsControl : "segmentedbutton",
-							desc : "Color Scale Method",
-							defaultValue : "quantile",
-							options : [{key : "quantile", text : "Quantile"},
-							         {key : "quantize", text : "Quantize"}]
-						},
-						colorScaleMin : {
-							desc : "Color Scale Maximum",
-							defaultValue : 0,
-							apsControl : "spinner",
-						},
-						colorScaleMax : {
-							desc : "Color Scale Minimum",
-							defaultValue : 0,
-							apsControl : "spinner",
+						colorScaleConfig : {
+							apsControl : "scaleeditor",
+							desc : "Color Scale",
+							defaultValue : {
+								colors : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
+								scaleType : "quantile",
+								rangeType : "mean",
+								clamp : true,
+								interpolation : "interpolateRgb",
+								min : 0,
+								max : 10000
+							}
 						},
 						colorScaleMeasure : {
 							desc : "Color Scale Measure",
@@ -156,6 +147,21 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							desc : "Fill Opacity (0.00 - 1.00)",
 							defaultValue : 0.8,
 							apsControl : "spinner"
+						},
+						tooltipTemplate :{
+							desc : "Tooltip Template",
+							defaultValue : ["<span>{Feature Key}</span><br/>\n",
+							                "<span>{Value}</span><br/>"].join(),
+							apsControl : "codemirror",
+							opts : {
+								height : "200px",
+								apsConfig : {
+									lineNumbers: true,
+									mode: "text/html",
+									theme: "eclipse",
+									matchBrackets: true
+								}								
+							}
 						},
 						/*
 						 * Unfortunately, not supported enough to use in 1.6
@@ -284,20 +290,60 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			if(layerConfig && layerConfig.colorScaleMeasure){
 				colorMeasureIndex = this.determineMeasureIndex(layerConfig.colorScaleMeasure);
 			}
-			if(layerConfig && layerConfig.colorScale && colorMeasureIndex >-1){
+			if(layerConfig && layerConfig.colorScaleConfig && colorMeasureIndex >-1){
 				var values = [];
 				this.flatData.values.map(function(e){
 					values.push(e[colorMeasureIndex]);
 				});
 				values.sort(function(a, b) { return a - b; });
-				var csm = layerConfig.colorScaleMethod || "quantile";
-				var colorScale = d3.scale[csm]()
-	        		//.domain([layerConfig.colorScaleMin || 0,layerConfig.colorScaleMax || 100])
-					.domain(values)
-					.range(layerConfig.colorScale.split(","));
+				var csc = layerConfig.colorScaleConfig || {
+					scaleType : "quantile",
+					colors : "#000000,#FFFFFF"
+				};
+				var colorScale;
+				
+				if(csc.scaleType =="quantile" || csc.scaleType == "quantize"){
+					colorScale = d3.scale[csc.scaleType]()
+						.domain(values)
+						.range(layerConfig.colorScaleConfig.colors.split(","));
+					
+					// if(colorScale.interpolate) colorScale.interpolate(d3.interpolateRgb);
+				}
+				if(csc.scaleType == "linear"){
+					var pal = layerConfig.colorScaleConfig.colors.split(",") || [];
+					var rangeType = csc.rangeType || "minmax";
+					var r = d3.max(values) - d3.min(values);
+					var min = d3.min(values);
+					if(rangeType == "minmax"){
+						min = d3.min(values);
+						r = d3.max(values) - d3.min(values);
+					}
+					if(rangeType =="mean"){
+						min = 0;
+						r = d3.mean(values) * 2;
+					}
+					if(rangeType =="median"){
+						min = 0;
+						r = d3.median(values) * 2;
+					}
+					if(rangeType =="manual"){
+						min = csc.min || 0;
+						r = (csc.max || 100) - min;
+					}
+					var stops = [];
+					var rate = r/pal.length;
+					for(var i=0;i<pal.length;i++){
+						stops.push(min + (rate*i));
+					}
+					colorScale = d3.scale.linear()
+			    		.domain(stops)
+			    		.range(pal);
+			    		
+					if(csc.interpolation) colorScale.interpolate(d3[csc.interpolation]);					
+				}
 		        // Clamp if can
 		        if (typeof colorScale.clamp == 'function') {
-		        	colorScale.clamp(true);
+		        	if(csc.clamp) colorScale.clamp(true);
 		        }		
 			}
 			
@@ -322,6 +368,32 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					colorMeasureIndex : colorMeasureIndex,
 					colorScale : colorScale
 				}),
+				onEachFeature : function(feature, layer){
+					if(feature.properties){
+						var rowIndex = -1;
+						for(var i=0;i<that.flatData.rowHeaders.length;i++){
+							if(that.flatData.rowHeaders[i] == feature.properties[layerConfig.map.featureKey]) rowIndex = i;
+						}
+						
+						var tt = (layerConfig.tooltipTemplate + "");
+						// tt = tt.replace(/{Feature Key}/g,feature.properties[layerConfig.map.featureKey]);
+						// FEATURE
+						tt = tt.replace(/%(.*?)%/g, function(a,b){
+							return feature.properties[b]
+						});
+						// MEASURE
+						tt = tt.replace(/{column-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = parseInt(b);
+							if(rowIndex>-1){
+								ret = that.flatData.values[rowIndex][columnIndex];
+							}
+							return ret;
+						});
+						layer.bindPopup(tt);
+					}
+					
+				},
 				pointToLayer : function(feature, latlng){
 					var marker = "marker";
 					if(feature && feature.properties){

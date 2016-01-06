@@ -42,7 +42,7 @@ define([
 			return this;
 		},
 		updateMap : function(){
-			
+			this.marker.setLatLng(this.getValue());
 		},
 		afterRenderHandler : function (oControlEvent) {
 			try{
@@ -64,11 +64,15 @@ define([
 				});
 				this.map = new L.Map(container.get(0), {
 					layers: [osm],
-					center: new L.LatLng(34.513299, -94.1628807),
+					center: this.getValue(),
 					zoom: 1,
 					attributionControl : false
 				});
+				this.marker = new L.marker(new L.LatLng(34.513299, -94.1628807));
+				this.marker.setLatLng(this.getValue());
+				this.marker.addTo(this.map);
 				this.map.on("click",function(e){
+					that.marker.setLatLng(e.latlng);
 					that.setValue([e.latlng.lat, e.latlng.lng]);
 					that.fireValueChange();
 				});
