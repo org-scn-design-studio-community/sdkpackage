@@ -43,11 +43,25 @@ define(["./datasourcealias"], function () {
 			}
 		},
 		createComponents : function () {
-			this.tooltips = {
+			try {
+				this._props = {
+					alias : {
+						opts : {
+							desc : "Data Source Alias",
+							apsControl : "datasourcealias"	
+						}
+					},
+					selection : {
+						opts : {
+							desc : "Data Source Alias",
+							apsControl : "text"	
+						}
+					}
+				};/*
+							this.tooltips = {
 				alias : "Data Source Alias",
 				selection : "Data Selection"
 			};
-			try {
 				this.cmps.alias =  new org.scn.community.aps.DataSourceAlias({});
 				this.cmps.selection = new sap.ui.commons.Button({
 					icon : "sap-icon://database"
@@ -82,15 +96,6 @@ define(["./datasourcealias"], function () {
 						alert("Data Selection invalid.\n\n" + e);
 					}
 				}, this);
-				/*
-				this.cmps.fieldName = new org.scn.community.aps.MeasureList({
-					width : "100px"
-				});
-				this.cmps.fieldPosition = new org.scn.community.aps.Spinner({
-					width : "100px",
-					min : 0,
-					max : 100
-				});
 				*/
 				this.makeLayout();
 				this.layoutComponents();

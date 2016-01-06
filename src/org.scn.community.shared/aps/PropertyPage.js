@@ -3,7 +3,8 @@ require.config({
 		'*': {
 			'css': '../os/require-css'
 		}
-	}
+	},
+	waitSeconds : 300
 });
 var propertyPageHandlerRegistry = propertyPageHandlerRegistry || [];
 var propertyPage;

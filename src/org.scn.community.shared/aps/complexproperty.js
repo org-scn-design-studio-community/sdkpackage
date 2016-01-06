@@ -86,93 +86,103 @@ define([], function () {
 				var item = config[property];
 				var control;
 				var that = this;
-				
-				var failureFunction = function (componentContainer, property, propertyOptions) {
-					return function (err) {
-						alert("fail" + err);
-						// assure there is a control! Make text Area
-						that["cmp_" + property] = new sap.ui.commons.TextArea({
-								design : sap.ui.core.Design.Monospace,
-								rows : 20,
-								width : "100%",
-								wrapping : sap.ui.core.Wrapping.Off
-							});
-						that["cmp_" + property].attachChange(function (oControlEvent) {
-							var newValue = oControlEvent.getSource().getValue();
-							that.props[property].value = newValue;
-							if (!that.isTest) {
-								that.firePropertiesChanged([property]);
-							} else {
-								alert("Property: " + property + "\r\nValue:\r\n" + newValue);
-							}
-						}, this);
-						componentContainer.addContent(that.hLabel(propertyOptions.desc || property, that["cmp_" + property]));
-					}
-				}(this, property+"", JSON.parse(JSON.stringify(item)));
-				
-				var callbackFunction = function(componentContainer, property, propertyOptions) {
-					return function (handler) {
-						try{
-						// Closure to store property name
-						var changeHandler = function (property, handler) {
-							return function (oControlEvent) {
-								var newValue = handler.getter.call(that, property, oControlEvent.getSource());
-								if (handler.serialized) {
-									if (newValue && newValue != "") {
-										newValue = jQuery.parseJSON(newValue);
-									} else {
-										newValue = null;
-									}
-								}
-								var v = that.getValue();
-								v[property] = newValue;
-								that.setValue(v);
-								that.fireValueChange();
-							};
-						}(property, handler);
-						control = handler.createComponent.call(that, property, propertyOptions, changeHandler);
-						that["cmp_" + property] = control;
-						var setValue = that.getValue()[property];
-						if(handler.serialized){
-							handler.setter.call(that, property, JSON.stringify(that.getValue()[property]));	
-						}else{
-							handler.setter.call(that, property, that.getValue()[property]);	
-						}						
-						// assure there is a control! Make text Area
-						/* TODO
-						if (that["cmp_" + property] == undefined) {
+				var holder = new sap.ui.commons.layout.VerticalLayout({});
+				this.addContent(holder);
+				try{
+					var failureFunction = function (componentContainer, property, propertyOptions) {
+						return function (err) {
+							alert("fail" + err);
+							// assure there is a control! Make text Area
 							that["cmp_" + property] = new sap.ui.commons.TextArea({
 									design : sap.ui.core.Design.Monospace,
 									rows : 20,
 									width : "100%",
 									wrapping : sap.ui.core.Wrapping.Off
 								});
-							that["cmp_" + property].attachChange(getHandler, that);
-						}
-						*/
-						// Step 3a, if component has afterInit method, call it!
-
-						if (that["cmp_" + property].afterInit) {
-							that["cmp_" + property].afterInit();
-						}
-
-						// Step 4, add control to layout
-						//etcLayout.addContent(that.hLabel(property,that["cmp_"+property]));
-						var useLabel = true;
-						if (that["cmp_" + property].needsLabel) {
-							useLabel = that["cmp_" + property].needsLabel();
-						}
-
-						if (useLabel) {
+							that["cmp_" + property].attachChange(function (oControlEvent) {
+								var newValue = oControlEvent.getSource().getValue();
+								that.props[property].value = newValue;
+								if (!that.isTest) {
+									that.firePropertiesChanged([property]);
+								} else {
+									alert("Property: " + property + "\r\nValue:\r\n" + newValue);
+								}
+							}, this);
 							componentContainer.addContent(that.hLabel(propertyOptions.desc || property, that["cmp_" + property]));
-						} else {
-							componentContainer.addContent(that["cmp_" + property]);
 						}
+					}(holder, property+"", JSON.parse(JSON.stringify(item)));
+				}catch(e){
+					alert("Problem generating failure function" + e);
+				}
+				
+				var callbackFunction = function(componentContainer, property, propertyOptions) {
+					return function (handler) {
+						try{
+							// Closure to store property name
+							var changeHandler = function (property, handler) {
+								return function (oControlEvent) {
+									var newValue = handler.getter.call(that, property, oControlEvent.getSource());
+									if (handler.serialized) {
+										if (newValue && newValue != "") {
+											newValue = jQuery.parseJSON(newValue);
+										} else {
+											newValue = null;
+										}
+									}
+									var v = that.getValue();
+									v[property] = newValue;
+									that.setValue(v);
+									that.fireValueChange();
+								};
+							}(property, handler);
+							control = handler.createComponent.call(that, property, propertyOptions, changeHandler);
+							that["cmp_" + property] = control;
+							var setValue = that.getValue()[property];
+							if(handler.serialized){
+								try{
+									handler.setter.call(that, property, JSON.stringify(that.getValue()[property]));	
+								}catch(e){
+									alert("Bad JSON serialization for " + property + ":\n\n" + JSON.stringify(that.getValue()[property]) + "\n\n" + e);
+								}
+								
+							}else{
+								handler.setter.call(that, property, that.getValue()[property]);	
+							}						
+							// assure there is a control! Make text Area
+							/* TODO
+							if (that["cmp_" + property] == undefined) {
+								that["cmp_" + property] = new sap.ui.commons.TextArea({
+										design : sap.ui.core.Design.Monospace,
+										rows : 20,
+										width : "100%",
+										wrapping : sap.ui.core.Wrapping.Off
+									});
+								that["cmp_" + property].attachChange(getHandler, that);
+							}
+							*/
+							// Step 3a, if component has afterInit method, call it!
+	
+							if (that["cmp_" + property].afterInit) {
+								that["cmp_" + property].afterInit();
+							}
+	
+							// Step 4, add control to layout
+							//etcLayout.addContent(that.hLabel(property,that["cmp_"+property]));
+							var useLabel = true;
+							if (that["cmp_" + property].needsLabel) {
+								useLabel = that["cmp_" + property].needsLabel();
+							}
+	
+							if (useLabel) {
+								componentContainer.addContent(that.hLabel(propertyOptions.desc || property, that["cmp_" + property]));
+							} else {
+								componentContainer.addContent(that["cmp_" + property]);
+							}
 						}catch(e){
-							alert("Error on handler callback:\n\n" + e);
+							alert("Error on ComplexProperty handler " + property + " callback:\n\n" + JSON.stringify(propertyOptions) + "\n\n" + e);
 						}
 					};
-				}(this, property+"", JSON.parse(JSON.stringify(item)));
+				}(holder, property+"", JSON.parse(JSON.stringify(item)));
 				require(["../../org.scn.community.shared/aps/"+item.apsControl],callbackFunction,failureFunction);			
 			}
 			}catch(e){

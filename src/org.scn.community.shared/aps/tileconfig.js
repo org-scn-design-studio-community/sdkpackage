@@ -43,6 +43,50 @@ define(["./complexitem"], function () {
 			}
 		},
 		createComponents : function () {
+			this._props = {
+				baseUrl : {
+					opts : {
+						desc : "Base URL",
+						apsControl : "text"	
+					}
+				},
+				attribution : {
+					opts : {
+						desc : "Attribution",
+						apsControl : "text"	
+					}
+				},
+				subdomains : {
+					opts : {
+						desc : "Sub-domains",
+						apsControl : "text"	
+					}
+				},
+				minZoom : {
+					value : 0,
+					opts : {
+						desc : "Minimum Zoom",
+						apsControl : "spinner"	
+					}
+				},
+				maxZoom : {
+					value : 18,
+					opts : {
+						desc : "Maximum Zoom",
+						apsControl : "spinner"	
+					}
+				},
+				tileSize : {
+					value : 256,
+					opts : {
+						desc : "Maximum Zoom",
+						apsControl : "spinner"	
+					}
+				},
+			};
+			this.makeLayout();
+			this.layoutComponents();
+			return;
 			try {
 				this.cmps.baseUrl = new sap.ui.commons.TextField({ });
 				this.cmps.attribution = new sap.ui.commons.TextField({ });
