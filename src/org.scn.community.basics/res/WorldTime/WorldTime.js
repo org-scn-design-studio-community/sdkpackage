@@ -88,7 +88,7 @@ WorldTime = function () {
 		
 		//setup interval call only once in case of multiple update calls!
 		if(that.interval_id === undefined){
-			that.interval_id = window.setIntervaldefine(["../../../org.scn.community.shared/modules/component.core", "./WorldTimeSpec"], function() {
+			that.interval_id = window.setInterval(function() {
 				var html = calcTime(that, that.getUtcoffset());
 				that.$div.innerHTML = html;
 			}
