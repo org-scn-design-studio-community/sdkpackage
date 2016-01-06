@@ -381,13 +381,42 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 						tt = tt.replace(/%(.*?)%/g, function(a,b){
 							return feature.properties[b]
 						});
-						// MEASURE
-						tt = tt.replace(/{column-(.*?)}/g, function(a,b){
+						// MEASURE by Position
+						tt = tt.replace(/{measure-position-value-(.*?)}/g, function(a,b){
 							var ret = "???";
 							var columnIndex = parseInt(b);
 							if(rowIndex>-1){
 								ret = that.flatData.values[rowIndex][columnIndex];
 							}
+							return ret;
+						});
+						// MEASURE LABEL by Position
+						tt = tt.replace(/{measure-position-label-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = parseInt(b);
+							ret = that.flatData.columnHeaders[columnIndex];
+							return ret;
+						});
+						// MEASURE by Label
+						tt = tt.replace(/{measure-key-value-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = that.determineMeasureIndex({
+								fieldType : "name",
+								fieldName : b
+							});
+							if(rowIndex>-1){
+								ret = that.flatData.values[rowIndex][columnIndex];
+							}
+							return ret;
+						});
+						// MEASURE by Label
+						tt = tt.replace(/{measure-key-label-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = that.determineMeasureIndex({
+								fieldType : "name",
+								fieldName : b
+							});
+							if(columnIndex != null)	ret = that.flatData.columnHeaders[columnIndex];
 							return ret;
 						});
 						layer.bindPopup(tt);
