@@ -110,90 +110,40 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							defaultValue : true,
 							apsControl : "checkbox"
 						},
-						fillColor : {
-							desc : "Default Feature Color",
-							defaultValue : "#DFDFDF",
-							apsControl : "color",
-						},
-						color : {
-							desc : "Default Feature Border Color",
-							defaultValue : "#B0B0B0",
-							apsControl : "color",
-						},
-						colorScaleConfig : {
-							apsControl : "scaleeditor",
-							desc : "Color Scale",
+						layer : {
+							desc : "Layer",
+							apsControl : "maplayer",
 							defaultValue : {
-								colors : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
-								scaleType : "quantile",
-								rangeType : "mean",
-								clamp : true,
-								interpolation : "interpolateRgb",
-								min : 0,
-								max : 10000
-							}
-						},
-						colorScaleMeasure : {
-							desc : "Color Scale Measure",
-							defaultValue : {fieldType:"position", fieldPosition:0},
-							apsControl : "measureselector",
-						},
-						weight : {
-							desc : "Line Weight",
-							defaultValue : 1,
-							apsControl : "spinner"
-						},
-						opacity : {
-							desc : "Border Opacity (0.00 - 1.00)",
-							defaultValue : 0.8,
-							apsControl : "spinner"
-						},
-						fillOpacity : {
-							desc : "Fill Opacity (0.00 - 1.00)",
-							defaultValue : 0.8,
-							apsControl : "spinner"
-						},
-						tooltipTemplate :{
-							desc : "Tooltip Template",
-							defaultValue : ["<span>{Feature Key}</span><br/>\n",
-							                "<span>{Value}</span><br/>"].join(),
-							apsControl : "codemirror",
-							opts : {
-								height : "200px",
-								apsConfig : {
-									lineNumbers: true,
-									mode: "text/html",
-									theme: "eclipse",
-									matchBrackets: true
-								}								
-							}
-						},
-						/*
-						 * Unfortunately, not supported enough to use in 1.6
-						 * Maybe another day.  -Mike
-						dataselection : {
-							desc : "Data Source",
-							defaultValue : {
-								alias : "",
-								selection : {}
-							},
-							apsControl : "dataselection2.0"
-						},
-						*/
-						map : {
-							desc : "Custom GeoJSON",
-							defaultValue : {
-								mapType : "url",
-								featureKey : "sovereignt",
-								url :"{ds-maps}/countries_medium.json",
-								geoJSON : {
-								  "type": "FeatureCollection",
-								  "features": []
+								layerType : "feature",
+								featureConfig : {
+									fillColor : "#DFDFDF",
+									color : "#B0B0B0",
+									colorScaleConfig : {
+										colors : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
+										scaleType : "quantile",
+										rangeType : "mean",
+										clamp : true,
+										interpolation : "interpolateRgb",
+										min : 0,
+										max : 10000
+									},
+									colorScaleMeasure : {fieldType:"position", fieldPosition:0},
+									weight : 1,
+									fillOpacity : 0.8,
+									tooltipTemplate : ["<span>{Feature Key}</span><br/>\n",
+										                "<span>{Value}</span><br/>"].join(),
+							        map : {
+										mapType : "url",
+										featureKey : "sovereignt",
+										url :"{ds-maps}/countries_medium.json",
+										geoJSON : {
+										  "type": "FeatureCollection",
+										  "features": []
+										}
+									}
 								}
-							},
-							apsControl : "layereditor"
+							}
 						},
-						
 						/*,
 						markers : {
 							desc : "Markers",
@@ -287,7 +237,8 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			}
 			return ret;
 		};
-		this.renderLayer = function(geoJSON,layerConfig){
+		this.renderLayer = function(geoJSON, overlay){
+			var layerConfig = overlay.layer.featureConfig;
 			var mapdata = geoJSON;
 			var newOverlay = L.featureGroup();
 			var colorScale;
@@ -519,28 +470,31 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			// Overlay Group
 			this._featureLayer = L.featureGroup();
 			for(var i=0;i<featureLayers.length;i++){
-				var layer = featureLayers[i];
-				var map = layer.map;
-				if(map.mapType == "url"){
-					var url = map.url;
-					var osMapPath = sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","os/maps")
-					url = url.replace(/{os-maps}/g, osMapPath);
-					url = url.replace(/{ds-maps}/g, "zen.rt.components.geomaps/resources/js/geo");
-					this.loadResource(url, layer);
-				}
-				if(map.mapType == "file"){
-					var repoPath = this.repositoryPath() + "";
-					var url = repoPath.replace(/REPOSITORY_ROOT.GIF/,map.file);
-					this.loadResource(url, layer);
-				}
-				if(map.mapType == "custom"){
-					try{
-						var newLayer = that.renderLayer(map.geoJSON, layer);
-						if(layer.visible) newLayer.addTo(that._featureLayer);
-						that._controlLayer.addOverlay(newLayer, layer.key);
-					}catch(e){
-						alert("Bad Custom GeoJSON: " + e);
-						// Bad GeoJSON
+				var overlay = featureLayers[i];
+				if(overlay.layer.layerType=="feature"){
+					var layer = overlay.layer.featureConfig;
+					var map = layer.map;
+					if(map.mapType == "url"){
+						var url = map.url;
+						var osMapPath = sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","os/maps")
+						url = url.replace(/{os-maps}/g, osMapPath);
+						url = url.replace(/{ds-maps}/g, "zen.rt.components.geomaps/resources/js/geo");
+						this.loadResource(url, overlay);
+					}
+					if(map.mapType == "file"){
+						var repoPath = this.repositoryPath() + "";
+						var url = repoPath.replace(/REPOSITORY_ROOT.GIF/,map.file);
+						this.loadResource(url, overlay);
+					}
+					if(map.mapType == "custom"){
+						try{
+							var newLayer = that.renderLayer(map.geoJSON, overlay);
+							if(overlay.visible) newLayer.addTo(that._featureLayer);
+							that._controlLayer.addOverlay(newLayer, overlay.key);
+						}catch(e){
+							alert("Bad Custom GeoJSON: " + e);
+							// Bad GeoJSON
+						}
 					}
 				}
 			}
@@ -573,16 +527,16 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			}
 		};
 		var that = this;
-		this.loadResource = function(url, layer){
+		this.loadResource = function(url, overlay){
 			var that = this;
 			$.ajax({
 				dataType : "json",
 				url : url,
-				success : function(layer){return function(data){
-					var newLayer = that.renderLayer(data, layer);
-					if(layer.visible) newLayer.addTo(that._featureLayer);
-					that._controlLayer.addOverlay(newLayer, layer.key);							
-				};}(layer),
+				success : function(overlay){return function(data){
+					var newLayer = that.renderLayer(data, overlay);
+					if(overlay.visible) newLayer.addTo(that._featureLayer);
+					that._controlLayer.addOverlay(newLayer, overlay.key);							
+				};}(overlay),
 				fail : function(jqxhr, textStatus, error){
 					alert(error);
 				}
