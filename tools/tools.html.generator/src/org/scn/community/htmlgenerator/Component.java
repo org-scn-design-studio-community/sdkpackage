@@ -880,6 +880,10 @@ public class Component {
 	}
 	public String getName() {
 		return this.name;
+	}
+
+	public String getPackageShortName() {
+		return this.packageName.substring(this.packageName.lastIndexOf(".") + 1);
 	};
 	
 }

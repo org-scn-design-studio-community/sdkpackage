@@ -102,7 +102,7 @@ public class Main {
 			group = group.replace("ScnCommunity", "");
 			group = group.toLowerCase(Locale.ENGLISH);
 
-			String iFileName = targetFolder + "/" + group + "/" + component.name + ".html";
+			String iFileName = targetFolder + "/" + component.getPackageShortName() + "/" + component.name + ".html";
 			iFileName = iFileName.toLowerCase(Locale.ENGLISH);
 
 			component.copyIcon(iFileName);
@@ -111,7 +111,7 @@ public class Main {
 			String componentModelEntryCopy = componentModelEntry;
 			
 			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_HTML_PACKAGE%", group);
-			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_HTML_PAGE%", group + "/" + component.name.toLowerCase(Locale.ENGLISH));
+			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_HTML_PAGE%", component.getPackageShortName() + "/" + component.name.toLowerCase(Locale.ENGLISH));
 			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_NAME%", component.name);
 			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_TITLE%", component.title);
 			componentModelEntryCopy = componentModelEntryCopy.replace("%COMPONENT_ICON%", group + "/" + component.name.toLowerCase(Locale.ENGLISH) + ".png");
