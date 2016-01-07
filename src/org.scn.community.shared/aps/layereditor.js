@@ -62,11 +62,18 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 							desc : "Map Type",
 							options : [
 							    {key : "url", text : "By URL"},
+							    {key : "file", text : "By File"},
 							    {key : "custom", text : "Custom"}
 							],
 							afterCreate : function(component){
 								
 							}
+						}
+					},
+					file : {
+						opts : {
+							desc : "GeoJSON File",
+							apsControl : "special-url"
 						}
 					},
 					url : {
@@ -96,20 +103,37 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 				alert(e);
 			}
 		},
+		loadResource : function(url){
+			var that = this;
+			$.ajax({
+				dataType : "json",
+				url : url,
+				success : function(){return function(data){
+					that.updateFeaturePropertiesList(that.determineFeatureProperties({},that.processMap(data)));
+				};}(),
+				error : function(jqxhr, textStatus, error){
+					alert("Error in attempting to load " + url + ":\n\n" + error);
+				}
+			});
+		},
 		makeLayout : function () {
 			this.layout = [];
 			this.layout.push({
 				desc : "Map Type",
 				comp : "mapType"
 			});
-			this.layout.push({
-				desc : "Key Feature",
-				comp : "featureKey",
-				tooltip : "Feature to use as a key to match a map feature to your data."
-			});
+			if (this.getValue().mapType == "file"){
+				this.layout.push({
+					comp : "file"
+				});
+				var file = this.getValue().file;
+				if(file){
+					var url = "/aad/" + ds_generateMimeUrl(file);
+					this.loadResource(url);	
+				}
+			}
 			if (this.getValue().mapType == "url"){
 				this.layout.push({
-					desc : "URL",
 					comp : "url"
 				});
 				var url = this.getValue().url;
@@ -117,21 +141,15 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 				// {ds-maps}/countries_medium.json
 				url = url.replace(/{os-maps}/g, "/aad/zen/mimes/sdk_include/org.scn.community.shared/os/maps");
 				url = url.replace(/{ds-maps}/g, "/aad/zen.rt.components.geomaps/resources/js/geo");
-				var that = this;
-				$.ajax({
-					dataType : "json",
-					url : url,
-					success : function(){return function(data){
-						that.updateFeaturePropertiesList(that.determineFeatureProperties({},that.processMap(data)));
-					};}(),
-					error : function(jqxhr, textStatus, error){
-						alert(error);
-					}
-				});
+				this.loadResource(url);
 			}
+			this.layout.push({
+				desc : "Key Feature",
+				comp : "featureKey",
+				tooltip : "Feature to use as a key to match a map feature to your data."
+			});
 			if (this.getValue().mapType == "custom"){
 				this.layout.push({
-					desc : "Custom Map",
 					comp : "geoJSON"
 				});
 			}

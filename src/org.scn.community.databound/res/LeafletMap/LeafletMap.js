@@ -30,6 +30,11 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		var that = this;
 		// Call super
 		VizCoreDatabound.call(this, {
+			repositoryPath : {
+				opts : {
+					noAps : true
+				}
+			},
 			fitBounds : {
 				opts : {
 					desc : "Fit to Bounds",
@@ -377,11 +382,29 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 						
 						var tt = (layerConfig.tooltipTemplate + "");
 						// tt = tt.replace(/{Feature Key}/g,feature.properties[layerConfig.map.featureKey]);
-						// FEATURE
-						tt = tt.replace(/%(.*?)%/g, function(a,b){
+						// Feature Key
+						tt = tt.replace(/{featurekey}/g, function(a,b){
+							return feature.properties[layerConfig.map.featureKey]
+						});
+						// Feature Property
+						tt = tt.replace(/{feature-(.*?)}/g, function(a,b){
 							return feature.properties[b]
 						});
-						// MEASURE by Position
+						// Color Measure Value
+						tt = tt.replace(/{colormeasure-value}/g, function(a,b){
+							var ret;
+							if(rowIndex>-1){
+								ret = that.flatData.values[rowIndex][colorMeasureIndex];
+							}
+							return ret;
+						});
+						// Color Measure Label
+						tt = tt.replace(/{colormeasure-label}/g, function(a,b){
+							var ret;
+							ret = that.flatData.columnHeaders[colorMeasureIndex];
+							return ret;
+						});
+						// Measure Value by Position
 						tt = tt.replace(/{measure-position-value-(.*?)}/g, function(a,b){
 							var ret = "???";
 							var columnIndex = parseInt(b);
@@ -390,7 +413,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							}
 							return ret;
 						});
-						// MEASURE LABEL by Position
+						// Measure Label by Position
 						tt = tt.replace(/{measure-position-label-(.*?)}/g, function(a,b){
 							var ret = "???";
 							var columnIndex = parseInt(b);
@@ -503,18 +526,12 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					var osMapPath = sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","os/maps")
 					url = url.replace(/{os-maps}/g, osMapPath);
 					url = url.replace(/{ds-maps}/g, "zen.rt.components.geomaps/resources/js/geo");
-					$.ajax({
-						dataType : "json",
-						url : url,
-						success : function(layer){return function(data){
-							var newLayer = that.renderLayer(data, layer);
-							if(layer.visible) newLayer.addTo(that._featureLayer);
-							that._controlLayer.addOverlay(newLayer, layer.key);							
-						};}(layer),
-						fail : function(jqxhr, textStatus, error){
-							alert(error);
-						}
-					});
+					this.loadResource(url, layer);
+				}
+				if(map.mapType == "file"){
+					var repoPath = this.repositoryPath() + "";
+					var url = repoPath.replace(/REPOSITORY_ROOT.GIF/,map.file);
+					this.loadResource(url, layer);
 				}
 				if(map.mapType == "custom"){
 					try{
@@ -556,6 +573,21 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			}
 		};
 		var that = this;
+		this.loadResource = function(url, layer){
+			var that = this;
+			$.ajax({
+				dataType : "json",
+				url : url,
+				success : function(layer){return function(data){
+					var newLayer = that.renderLayer(data, layer);
+					if(layer.visible) newLayer.addTo(that._featureLayer);
+					that._controlLayer.addOverlay(newLayer, layer.key);							
+				};}(layer),
+				fail : function(jqxhr, textStatus, error){
+					alert(error);
+				}
+			});
+		};
 		this.moveEndHandler = function(event){
 			var changes = [];
 			var c = that._map.getCenter();

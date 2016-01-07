@@ -13,6 +13,18 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 	var that = this;
 	this.rendered = false;
 	/**
+	 * Mike - 01/07/2016 - Special setter/getter for file selection dialog
+	 */
+	this.TResourceUrl = function(s){
+		if(s===undefined){
+			return this._TResourceUrl;			
+		}else{
+			this._TResourceUrl = s;
+			if(this.TResourceCallback) this.TResourceCallback();
+			return this;
+		}
+	}
+	/**
 	 * Mike - 12/03/2015 - Convenience function to both modify a property in APS component handler, and fire a DS Update message
 	 */
 	this.updateProperty = function (propertyName, value) {

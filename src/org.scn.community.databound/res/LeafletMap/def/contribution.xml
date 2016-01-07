@@ -29,7 +29,8 @@
 	<property type="String" title="Overlays" id="overlays" visible="false"/>
 	<property type="String" title="Map Center" id="mapCenter" visible="false"/>
 	<property type="int" title="Zoom" id="zoom" visible="false"/>
-
+	<property id="repositoryPath" type="Url" title="Path to BIAPP Repository" tooltip="Property for auto calculation of the root folder" visible="false" />
+	<property id="TResourceUrl"	type="Url" title="Temporary property for Resource" visible="false" />
 	<initialization>
 		<!-- Databound Defaults -->
 		<defaultValue property="ignoreTotals">true</defaultValue>
@@ -45,5 +46,8 @@
 		<defaultValue property="mapCenter">[51.505, -0.09]</defaultValue>
 		<defaultValue property="WIDTH">500</defaultValue>
 		<defaultValue property="HEIGHT">350</defaultValue>
+		<defaultValue property="repositoryPath">
+			<![CDATA[REPOSITORY_ROOT.GIF]]>
+		</defaultValue>
 	</initialization>
 </component>
