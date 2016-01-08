@@ -144,6 +144,9 @@ define(["./complexitem"], function () {
 				comp : "color"
 			});
 			this.layout.push({
+				comp : "weight"
+			});
+			this.layout.push({
 				comp : "opacity"
 			});
 			this.layout.push({

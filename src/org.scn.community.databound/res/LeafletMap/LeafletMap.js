@@ -118,6 +118,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 								featureConfig : {
 									fillColor : "#DFDFDF",
 									color : "#B0B0B0",
+									weight : 1.0,
 									colorScaleConfig : {
 										colors : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
 										scaleType : "quantile",
@@ -129,6 +130,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 									},
 									colorScaleMeasure : {fieldType:"position", fieldPosition:0},
 									weight : 1,
+									opacity : 0.8,
 									fillOpacity : 0.8,
 									tooltipTemplate : ["<span>{Feature Key}</span><br/>\n",
 										                "<span>{Value}</span><br/>"].join(),
@@ -346,6 +348,19 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							var ret;
 							if(rowIndex>-1){
 								ret = that.flatData.values[rowIndex][colorMeasureIndex];
+							}
+							return ret;
+						});
+						// Color Measure Formatted Value
+						tt = tt.replace(/{colormeasure-formattedvalue}/g, function(a,b){
+							var ret;
+							if(rowIndex>-1){
+								if(that.flatData.formattedValues && that.flatData.formattedValues.length>rowIndex){
+									ret = that.flatData.formattedValues[rowIndex][colorMeasureIndex];	
+								}else{
+									ret = d3.format("2d")(that.flatData.values[rowIndex][colorMeasureIndex]);
+								}
+								
 							}
 							return ret;
 						});
