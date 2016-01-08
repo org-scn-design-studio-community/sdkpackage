@@ -19,6 +19,16 @@
 			<option name="includeFormattedData" value="true"/>
 			<option name="includeData" value="true"/>
 	</property>
+	<property
+			id="data2"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding"
+			bindable="true">
+			<option name="includeFormattedData" value="true"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property type="String" title="Dataset 2 Config" id="data2config" visible="false"/>
 	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
 	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
 	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
@@ -33,6 +43,7 @@
 	<property id="TResourceUrl"	type="Url" title="Temporary property for Resource" visible="false" />
 	<initialization>
 		<!-- Databound Defaults -->
+		<defaultValue property="data2config">{}</defaultValue>
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
