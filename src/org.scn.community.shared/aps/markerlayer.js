@@ -1,11 +1,11 @@
 /**
- * Map Layer
+ * Feature Layer
  */
 define(["./complexitem"], function () {
 	/**
 	 * Create UI5 Extension
 	 */
-	org.scn.community.aps.ComplexItem.extend("org.scn.community.aps.MapLayer", {
+	org.scn.community.aps.ComplexItem.extend("org.scn.community.aps.MarkerLayer", {
 		needsLabel : function () {
 			return false;
 		},
@@ -22,7 +22,7 @@ define(["./complexitem"], function () {
 					hLayout.addContent(new sap.ui.commons.Label({
 						text : label,
 						tooltip : tt,
-						width : "100px"
+						width : "200px"
 					}));
 				hLayout.addContent(component);
 				return hLayout;
@@ -47,7 +47,7 @@ define(["./complexitem"], function () {
 			}
 		},
 		modulesLoaded : function(){
-			this["cmp_layerType"].attachKeyChange(function(oControlEvent){
+			this["cmp_markerType"].attachKeyChange(function(oControlEvent){
 				this.makeLayout();
 				this.layoutComponents();
 			},this);
@@ -57,25 +57,56 @@ define(["./complexitem"], function () {
 		createComponents : function () {
 			try {
 				this._props = {
-					layerType : {
+					markerType : {
 						opts : {
 							apsControl : "segmentedbutton",
-							desc : "Layer Type",
-							options : [{key : "feature", text : "Feature", icon : "sap-icon://choropleth-chart"},
-								       {key : "marker", text : "Marker", icon : "sap-icon://map"}
+							desc : "Marker Type",
+							options : [{key : "simple", text : "Simple", icon : "sap-icon://map"},
+								       {key : "clustered", text : "Clustered", icon : "sap-icon://map"},
+								       {key : "heat", text : "Heat", icon : "sap-icon://map"}
 							]
 						}
 					},
-					featureConfig : {
+					latitude : {
 						opts : {
-							apsControl : "featurelayer",
-							desc : "Feature Configuration"							
+							desc : "Latitude",
+							apsControl : "columnselector"
 						}
 					},
-					markerConfig : {
+					longitude : {
 						opts : {
-							apsControl : "markerlayer",
-							desc : "Marker Configuration"							
+							desc : "Longitude",
+							apsControl : "columnselector"
+						}
+					},
+					color : {
+						opts : {
+							desc : "Default Marker Color",
+							apsControl : "color"
+						}
+					},
+					showCoverageOnHover : {
+						opts : {
+							desc : "Show Coverage on Hover",
+							apsControl : "checkbox"
+						}
+					},
+					zoomToBoundsOnClick : {
+						opts : {
+							desc : "Zoom to Bounds on Click",
+							apsControl : "checkbox"
+						}
+					},
+					maxClusterRadius : {
+						opts : {
+							desc : "Max. Cluster Radius",
+							apsControl : "spinner"
+						}
+					},
+					disableClusteringAtZoom : {
+						opts : {
+							desc : "Zoom Level to stop clustering",
+							apsControl : "spinner"
 						}
 					}
 				};
@@ -85,17 +116,33 @@ define(["./complexitem"], function () {
 		},
 		makeLayout : function () {
 			this.layout = [];
+			var o = this.getValue();
 			this.layout.push({
-				comp : "layerType"
+				comp : "markerType"
 			});
-			if(this.getValue().layerType == "feature"){
+			this.layout.push({
+				comp : "latitude"
+			});
+			this.layout.push({
+				comp : "longitude"
+			});
+			if(o.markerType=="simple"){
 				this.layout.push({
-					comp : "featureConfig"
-				});
+					comp : "color"
+				});	
 			}
-			if(this.getValue().layerType == "marker"){
+			if(o.markerType=="clustered"){
 				this.layout.push({
-					comp : "markerConfig"
+					comp : "maxClusterRadius"
+				});
+				this.layout.push({
+					comp : "showCoverageOnHover"
+				});
+				this.layout.push({
+					comp : "zoomToBoundsOnClick"
+				});	
+				this.layout.push({
+					comp : "disableClusteringAtZoom"
 				});
 			}
 		},
@@ -103,8 +150,12 @@ define(["./complexitem"], function () {
 		renderer : {}
 	});
 	return {
-		id : "maplayer",
+		id : "markerlayer",
 		serialized : true,
+		defaultValue : {
+			markerType : "simple",
+			color : "#009966"
+		},
 		setter : function (property, value) {
 			var newValue = jQuery.parseJSON(value);
 			this["cmp_" + property].setValue(newValue);
@@ -115,7 +166,7 @@ define(["./complexitem"], function () {
 			return newValue;
 		},
 		createComponent : function (property, propertyOptions, changeHandler) {
-			var component = new org.scn.community.aps.MapLayer({
+			var component = new org.scn.community.aps.MarkerLayer({
 				width : "100%",
 				title : new sap.ui.commons.Title({
 					text : propertyOptions.desc

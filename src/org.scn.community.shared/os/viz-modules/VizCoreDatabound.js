@@ -159,6 +159,47 @@ define(["./VizCore","./../../modules/component.databound"], function(VizCore, or
 			}
 		}
 		/**
+		 * Determine column name 01/08/2016 - Mike
+		 */
+		this.determineColumnName = function(columnObj){
+			if(!columnObj) return null;
+			if(columnObj.columnType == "measure") return this.determineMeasureName(columnObj.measure);
+			if(columnObj.columnType == "dimension") return this.determineDimensionName(columnObj.dimension);
+			return "Unknown type: " + columnObj.columnType;
+		}
+		/**
+		 * Determine column index 01/08/2016 - Mike
+		 */
+		this.determineColumnIndex = function(columnObj){
+			if(!columnObj) return null;
+			if(columnObj.columnType == "measure") return this.determineMeasureIndex(columnObj.measure);
+			if(columnObj.columnType == "dimension") return this.determineDimensionIndex(columnObj.dimension);
+			return null;
+		}
+		/**
+		 * Determine dimension name 01/08/2016 - Mike
+		 */
+		this.determineDimensionName = function(dimensionObj){
+			if(typeof dimensionObj === "string") return dimensionObj;
+			var fieldName = "UNKNOWN";
+			if(!dimensionObj) return null;
+			if(dimensionObj.fieldType=="unassigned"){
+				fieldName = null;
+			}
+			if(dimensionObj.fieldType=="name"){
+				fieldName = dimensionObj.fieldName;
+			}
+			if(dimensionObj.fieldType=="position"){
+				if(this.flatData && this.flatData.dimensionHeadersKeys){
+					var fieldPosition = dimensionObj.fieldPosition;
+					if(this.flatData.dimensionHeadersKeys.length>=fieldPosition-1){
+						fieldName = this.flatData.dimensionHeadersKeys[fieldPosition];
+					}
+				}
+			}
+			return fieldName;
+		}
+		/**
 		 * Determine Field Name
 		 */
 		this.determineMeasureName = function(measureObj){
@@ -194,12 +235,38 @@ define(["./VizCore","./../../modules/component.databound"], function(VizCore, or
 			if(measureObj.fieldType=="position"){
 				if(this.flatData.columnHeadersKeys.length>measureObj.fieldPosition) fieldIndex = measureObj.fieldPosition;
 			}
+
 			if(measureObj.fieldType=="name"){
 				if(this.flatData && this.flatData.columnHeadersKeys){
 					var fieldIndex = -1;
 					if(this.flatData.columnHeadersKeys){
 						for(var i = 0; i<this.flatData.columnHeadersKeys.length;i++){
 							if(this.flatData.columnHeadersKeys[i]==measureObj.fieldName) fieldIndex = i;
+						}
+					}
+				}
+			}
+			return fieldIndex;
+		}
+		/**
+		 * Determine Field Index
+		 */
+		this.determineDimensionIndex = function(dimensionObj){
+			if(typeof dimensionObj === "string") return -1;
+			var fieldIndex = -1;
+			if(!dimensionObj) return -1;
+			if(dimensionObj.fieldType=="unassigned"){
+				fieldIndex = -1;
+			}
+			if(dimensionObj.fieldType=="position"){
+				if(this.flatData.columnHeadersKeys.length>dimensionObj.fieldPosition) fieldIndex = dimensionObj.fieldPosition;
+			}
+			if(dimensionObj.fieldType=="name"){
+				if(this.flatData && this.flatData.dimensionHeadersKeys){
+					var fieldIndex = -1;
+					if(this.flatData.columnHeadersKeys){
+						for(var i = 0; i<this.flatData.dimensionHeadersKeys.length;i++){
+							if(this.flatData.dimensionHeadersKeys[i]==dimensionObj.fieldName) fieldIndex = i;
 						}
 					}
 				}

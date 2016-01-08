@@ -100,15 +100,16 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 								that._props[property].handler = handler;
 								return function (oControlEvent) {
 									var newValue = handler.getter.call(that, property, oControlEvent.getSource());
+									var o = newValue;
 									if (handler.serialized) {
 										if (newValue && newValue != "") {
-											newValue = jQuery.parseJSON(newValue);
+											o = jQuery.parseJSON(newValue);
 										} else {
-											newValue = null;
+											o = null;
 										}
 									}
 									var v = that.getValue();
-									v[property] = newValue;
+									v[property] = o;
 									that.setValue(v);
 									that.fireValueChange();
 								};
@@ -122,10 +123,20 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 								}
 								var setValue = that.getValue()[property];
 							}
+							var o = that.getValue();
 							if(handler.serialized){
-								handler.setter.call(that, property, JSON.stringify(that.getValue()[property]));	
+								if(o && o[property]){
+									handler.setter.call(that, property, JSON.stringify(o[property]));
+								}else{
+									handler.setter.call(that, property, JSON.stringify(handler.defaultValue));
+									// This Complex Property doesn't have a value yet.
+								}
 							}else{
-								handler.setter.call(that, property, that.getValue()[property]);	
+								if(o && o[property]){
+									handler.setter.call(that, property, o[property]);		
+								}else{
+									// handler.setter.call(that, property, handler.defaultValue);
+								}
 							}
 							// Step 3a, if component has afterInit method, call it!
 
@@ -144,7 +155,7 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 								that._props[property].container.addContent(that["cmp_" + property]);
 							}
 							}catch(e){
-								alert("Error on handler " + property + " callback:\n\n" + e);
+								alert("Error on handler " + property + " callback:\n\n" + e + "\n\n" + newValue);
 							}
 							that._props[property].loaded = true;
 							if(that.checkLoadState()==true){

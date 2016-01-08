@@ -1,14 +1,11 @@
 /**
- * Map Layer
+ * Column Selector Handler
  */
 define(["./complexitem"], function () {
 	/**
 	 * Create UI5 Extension
 	 */
-	org.scn.community.aps.ComplexItem.extend("org.scn.community.aps.MapLayer", {
-		needsLabel : function () {
-			return false;
-		},
+	org.scn.community.aps.ComplexItem.extend("org.scn.community.aps.ColumnSelector", {
 		metadata : {},
 		/*
 		 * Overrides parent
@@ -18,19 +15,19 @@ define(["./complexitem"], function () {
 				return component;
 			} else {
 				var hLayout = new sap.ui.commons.layout.HorizontalLayout({})
-					//hLayout.addStyleClass("MeasureSelectorLayout");
-					hLayout.addContent(new sap.ui.commons.Label({
-						text : label,
-						tooltip : tt,
-						width : "100px"
-					}));
+				//hLayout.addStyleClass("MeasureSelectorLayout");
+				hLayout.addContent(new sap.ui.commons.Label({
+					text : label,
+					tooltip : tt,
+					width : "100px"
+				}));
 				hLayout.addContent(component);
 				return hLayout;
 			}
 		},
 		_config : {},
 		setValue : function (value) {
-			var deltas = [];
+			var deltas = ["columnType"];
 			var oldValues = [];
 			for (var i = 0; i < deltas.length; i++) {
 				oldValues.push(this.getValue()[deltas[i]]);
@@ -47,38 +44,38 @@ define(["./complexitem"], function () {
 			}
 		},
 		modulesLoaded : function(){
-			this["cmp_layerType"].attachKeyChange(function(oControlEvent){
+			this.makeLayout();
+			this.layoutComponents();
+			this["cmp_columnType"].attachKeyChange(function(oControlEvent){
 				this.makeLayout();
 				this.layoutComponents();
 			},this);
-			this.makeLayout();
-			this.layoutComponents();
 		},
 		createComponents : function () {
 			try {
-				this._props = {
-					layerType : {
-						opts : {
-							apsControl : "segmentedbutton",
-							desc : "Layer Type",
-							options : [{key : "feature", text : "Feature", icon : "sap-icon://choropleth-chart"},
-								       {key : "marker", text : "Marker", icon : "sap-icon://map"}
-							]
-						}
-					},
-					featureConfig : {
-						opts : {
-							apsControl : "featurelayer",
-							desc : "Feature Configuration"							
-						}
-					},
-					markerConfig : {
-						opts : {
-							apsControl : "markerlayer",
-							desc : "Marker Configuration"							
-						}
+			this._props = {
+				columnType : {
+					opts : {
+						desc : "Column Type",
+						apsControl : "segmentedbutton",
+						options : [{key : "dimension", text : "Dimension"},
+						   {key : "measure", text : "Measure"}
+						]
 					}
-				};
+				},
+				measure : {
+					opts : {
+						desc : "Measure",
+						apsControl : "measureselector"	
+					}
+				},
+				dimension : {
+					opts : {
+						desc : "Dimension",
+						apsControl : "dimensionselector"	
+					}
+				}
+			};
 			} catch (e) {
 				alert(e);
 			}
@@ -86,28 +83,40 @@ define(["./complexitem"], function () {
 		makeLayout : function () {
 			this.layout = [];
 			this.layout.push({
-				comp : "layerType"
+				comp : "columnType"
 			});
-			if(this.getValue().layerType == "feature"){
+			if (this.getValue().columnType == "measure"){
 				this.layout.push({
-					comp : "featureConfig"
+					comp : "measure"
 				});
 			}
-			if(this.getValue().layerType == "marker"){
+			if (this.getValue().columnType == "dimension"){
 				this.layout.push({
-					comp : "markerConfig"
+					comp : "dimension"
 				});
 			}
 		},
-		
 		renderer : {}
 	});
 	return {
-		id : "maplayer",
+		id : "columnselector",
 		serialized : true,
+		defaultValue : {
+			columnType : "measure",
+			measure : {
+				fieldType : "position",
+				fieldPosition : 0
+			},
+			dimension : {
+				fieldType : "position",
+				fieldPosition : 0
+			}
+		},
 		setter : function (property, value) {
-			var newValue = jQuery.parseJSON(value);
-			this["cmp_" + property].setValue(newValue);
+			if(value && value!=""){
+				var newValue = jQuery.parseJSON(value);
+				this["cmp_" + property].setValue(newValue);				
+			}
 		},
 		getter : function (property, control) {
 			var arrayValue = control.getValue();
@@ -115,7 +124,7 @@ define(["./complexitem"], function () {
 			return newValue;
 		},
 		createComponent : function (property, propertyOptions, changeHandler) {
-			var component = new org.scn.community.aps.MapLayer({
+			var component = new org.scn.community.aps.ColumnSelector({
 				width : "100%",
 				title : new sap.ui.commons.Title({
 					text : propertyOptions.desc

@@ -61,9 +61,9 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 							apsControl : "segmentedbutton",
 							desc : "Map Type",
 							options : [
-							    {key : "url", text : "By URL"},
-							    {key : "file", text : "By File"},
-							    {key : "custom", text : "Custom"}
+							    {key : "url", text : "By URL", icon : "sap-icon://chain-link"},
+							    {key : "file", text : "By File", icon : "sap-icon://save"},
+							    {key : "custom", text : "Custom", icon : "sap-icon://map-2"}
 							],
 							afterCreate : function(component){
 								

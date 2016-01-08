@@ -9,18 +9,22 @@ L_PREFER_CANVAS = true;		// http://leafletjs.com/reference.html#global
 require.config({
 	paths : {
 		"leaflet-markers" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet-plugins/scn-markers/leaflet.scn-designstudio-markers",
+		"leaflet-markercluster" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet-plugins/leaflet-markercluster/leaflet.markercluster",
 		"leaflet" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet/leaflet"
 	}
 });
 define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
         "css!./../../../org.scn.community.shared/os/leaflet-plugins/scn-markers/leaflet.scn-designstudio-markers.css",
+        "css!./../../../org.scn.community.shared/os/leaflet-plugins/leaflet-markercluster/MarkerCluster.css",
+        "css!./../../../org.scn.community.shared/os/leaflet-plugins/leaflet-markercluster/MarkerCluster.Default.css",
         "d3",
         "../../../org.scn.community.shared/os/d3v3/topojson.v1",
 		"leaflet",
 		"./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
 		"sap/designstudio/sdk/component",
-		"leaflet-markers"],
-	function (Lcss, Lmarkercss, d3, topojson, L, VizCoreDatabound, Component) {
+		"leaflet-markers",
+		"leaflet-markercluster"],
+	function (Lcss, Lmarkercss, Lclustercss1, Lclustercss2, d3, topojson, L, VizCoreDatabound, Component,Lmarkers,Lmarkercluster) {
 	var ownComponentName = "org.scn.community.databound.LeafletMap";
 	/**
 	 * LeafletMap
@@ -130,35 +134,40 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							desc : "Layer",
 							apsControl : "maplayer",
 							defaultValue : {
-								layerType : "feature",
-								featureConfig : {
-									fillColor : "#DFDFDF",
-									color : "#B0B0B0",
-									weight : 1.0,
-									colorScaleConfig : {
-										colors : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
-										scaleType : "quantile",
-										rangeType : "mean",
-										clamp : true,
-										interpolation : "interpolateRgb",
-										min : 0,
-										max : 10000
+								"layerType" : "feature",
+								"featureConfig" : {
+									"fillColor" : "#DFDFDF",
+									"color" : "#B0B0B0",
+									"weight" : 1,
+									"colorScaleConfig" : {
+										"colors" : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
+										"scaleType" : "quantile",
+										"rangeType" : "mean",
+										"clamp" : true,
+										"interpolation" : "interpolateRgb",
+										"min" : 0,
+										"max" : 10000
 									},
-									colorScaleMeasure : {fieldType:"position", fieldPosition:0},
-									weight : 1,
-									opacity : 0.8,
-									fillOpacity : 0.8,
-									tooltipTemplate : ["<span>{Feature Key}</span><br/>\n",
-										                "<span>{Value}</span><br/>"].join(),
-							        map : {
-										mapType : "url",
-										featureKey : "sovereignt",
-										url :"{ds-maps}/countries_medium.json",
-										geoJSON : {
-										  "type": "FeatureCollection",
-										  "features": []
+									"colorScaleMeasure" : {
+										"fieldType" : "position",
+										"fieldPosition" : 0
+									},
+									"opacity" : 0.8,
+									"fillOpacity" : 0.8,
+									"tooltipTemplate" : "<span>{featurekey}</span><ul>\n,<li>{colormeasure-label} - {colormeasure-formattedvalue}</li>\n</ul>",
+									"map" : {
+										"mapType" : "url",
+										"featureKey" : "sovereignt",
+										"url" : "{ds-maps}/countries_medium.json",
+										"geoJSON" : {
+											"type" : "FeatureCollection",
+											"features" : []
 										}
 									}
+								},
+								"markerConfig" : {
+									"markerType" : "simple",
+									"color" : "#009966"
 								}
 							}
 						},
@@ -255,6 +264,80 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			}
 			return ret;
 		};
+		/**
+		 * Render a marker layer
+		 */
+		this.renderMarkerLayer = function(markerConfig){
+			var lat = this.determineColumnIndex(markerConfig.latitude);
+			var lng = this.determineColumnIndex(markerConfig.longitude);
+			var values = [];
+			for(var i=0;i<this.flatData.values.length;i++){
+				var newRow = {};
+				if(markerConfig.latitude.columnType=="dimension"){
+					newRow.latitude = this.flatData.rowHeadersKeys2D[i][lat];
+				}else{
+					newRow.latitude = this.flatData.values[i][lat];
+				}
+				if(markerConfig.longitude.columnType=="dimension"){
+					newRow.longitude = this.flatData.rowHeadersKeys2D[i][lng];
+				}else{
+					newRow.longitude = this.flatData.values[i][lng];
+				}
+				values.push(newRow);
+			}
+			
+			if(markerConfig.markerType=="simple"){
+				var newLayer = L.featureGroup();
+				for(var i=0;i<values.length;i++){
+					var value = values[i];
+					var newMarker = new L.marker([value.latitude, value.longitude],{
+						icon : L.SCNDesignStudioMarkers.icon({
+							markerColor : markerConfig.color,
+							icon : "marker",
+							iconSize : [32, 32],
+							anchorPosition : [.5,.5]
+						})
+					});
+					newMarker.addTo(newLayer);
+				}
+				return newLayer
+			}
+			if(markerConfig.markerType=="clustered"){
+				var newLayer = new L.MarkerClusterGroup({
+					maxClusterRadius : markerConfig.maxClusterRadius || 80,
+					zoomToBoundsOnClick : markerConfig.zoomToBoundsOnClick,
+					showCoverageOnHover : markerConfig.showCoverageOnHover,
+					disableClusteringAtZoom : markerConfig.disableClusteringAtZoom
+				});
+		    	for(var i=0;i<values.length;i++){
+		    		var value = values[i];
+		    		var newMarker = new L.Marker([value.latitude, value.longitude],{})
+		    		newMarker.addTo(newLayer);
+		    	}
+				return newLayer;
+			}
+			var newLayer = L.featureGroup();
+			
+			
+			return newLayer;
+			Lmarker.on('mouseover', function(loc){return function(evt) {
+			  //evt.target is the marker that is being moused over 
+			  //bindPopup() does not need to be called here if it was already called
+			  //somewhere else for this marker.
+			  evt.target.bindPopup(loc).openPopup();
+			};}(marker.title));
+			/*
+			marker.on('click', function(evt) {
+			  //again, evt.target will contain the marker that was clicked
+			  console.log('you clicked a marker');
+			});
+			*/
+			Lmarker.addTo(this._map);
+			alert(JSON.stringify(markerConfig));
+		}
+		/**
+		 * Render a feature layer
+		 */
 		this.renderLayer = function(geoJSON, overlay){
 			var layerConfig = overlay.layer.featureConfig;
 			var mapdata = geoJSON;
@@ -502,6 +585,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			this._featureLayer = L.featureGroup();
 			for(var i=0;i<featureLayers.length;i++){
 				var overlay = featureLayers[i];
+				// FEATURE
 				if(overlay && overlay.layer && overlay.layer.layerType=="feature"){
 					var layer = overlay.layer.featureConfig;
 					var map = layer.map;
@@ -527,6 +611,12 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							// Bad GeoJSON
 						}
 					}
+				}
+				// MARKER
+				if(overlay && overlay.layer && overlay.layer.layerType=="marker"){
+					var newLayer = this.renderMarkerLayer(overlay.layer.markerConfig);
+					if(overlay.visible) newLayer.addTo(that._featureLayer);
+					that._controlLayer.addOverlay(newLayer, overlay.key);
 				}
 			}
 			this._featureLayer.addTo(this._map);
