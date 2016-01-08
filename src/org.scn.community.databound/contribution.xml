@@ -4853,6 +4853,15 @@ __n__}
 
 	</property>
 	<property
+		id="DSortMode"
+		type="String"
+		title="Sort Mode"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="DVisibleRowCount"
 		type="int"
 		title="Visible Row Count"
@@ -4918,6 +4927,7 @@ __n__}
 		<defaultValue property="DOnlyHeaderColumns"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DRowHeight"><![CDATA[20]]></defaultValue>
 		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSortMode"><![CDATA[KeyValue]]></defaultValue>
 		<defaultValue property="DVisibleRowCount"><![CDATA[12]]></defaultValue>
 		<defaultValue property="data"><![CDATA[null]]></defaultValue>
 		<defaultValue property="onCellSelected"><![CDATA[]]></defaultValue>

@@ -440,6 +440,30 @@ function() {
     "value": "",
     "visible": false
   },
+  "DSortMode": {
+    "opts": {
+      "apsControl": "combobox",
+      "cat": "Interaction",
+      "choiceType": "-",
+      "desc": "Sort Mode",
+      "options": [
+        {
+          "key": "KeyValue",
+          "text": "Key and Value"
+        },
+        {
+          "key": "Text",
+          "text": "Text Representation"
+        }
+      ],
+      "tooltip": "Sort Mode",
+      "ztlFunction": "",
+      "ztlType": "Choice"
+    },
+    "type": "String",
+    "value": "KeyValue",
+    "visible": true
+  },
   "DVisibleRowCount": {
     "opts": {
       "apsControl": "spinner",

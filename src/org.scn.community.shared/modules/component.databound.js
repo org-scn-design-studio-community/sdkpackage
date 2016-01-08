@@ -922,19 +922,24 @@ define(["./component.basics"], function() {
 			var rowPlain = {};
 			var row = {};
 			row["values"] = [];
+			row["raw"] = [];
 			row["index"] = rI;
 			
 			for(var cI=0;cI<flatData.geometry.allColumnsLength;cI++){
 				if(cI < flatData.geometry.headersLength) {
 					var value = flatData.rowHeaders2D[rI][cI];
+					var key = flatData.rowHeadersKeys2D[rI][cI];
 					if(value == undefined || value == "") {value = options.emptyHeaderValue};
 					row["values"].push(value);
+					row["raw"].push(key);
 					rowPlain[cI] = value;
 				} else {
 					var valueArray = flatData.formattedValues ? flatData.formattedValues : flatData.values;
 					var value = valueArray[rI][cI-flatData.geometry.headersLength];
+					var rawValue = flatData.values[rI][cI-flatData.geometry.headersLength];
 					if(value == undefined || value == "") {value = options.emptyDataValue};
 					row["values"].push(""+value);
+					row["raw"].push(rawValue);
 					rowPlain[cI] = ""+value;
 				}
 			}

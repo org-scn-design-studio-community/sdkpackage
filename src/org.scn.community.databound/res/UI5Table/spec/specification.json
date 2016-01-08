@@ -85,6 +85,30 @@
 	         "apsControl":"checkbox"
 	    }
 	},
+    "DSortMode":{
+        "type":"String",
+        "value":"KeyValue",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "choiceType":"-",
+           "ztlFunction":"",
+           "desc":"Sort Mode",
+           "cat":"Interaction",
+           "tooltip":"Sort Mode",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"KeyValue",
+                 "text":"Key and Value"
+              },
+              {
+                 "key":"Text",
+                 "text":"Text Representation"
+              }
+           ]
+        }
+    },
     "DAllowFilter":{
 	    "type":"boolean",
 	    "value":true,

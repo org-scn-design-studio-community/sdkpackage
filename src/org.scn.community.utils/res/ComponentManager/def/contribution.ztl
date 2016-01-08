@@ -951,7 +951,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Scaling Data Source 2.0 component*/
 	org.scn.community.datasource.ScalingDataSource returnAsScnScalingDataSource (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Maps component*/
+	/**Cast to Maps [Obsolete - Do not use] component*/
 	org.scn.community.geovis.Maps returnAsScnMaps (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to (PROTOTYPE!) Application Header (with Event) component*/

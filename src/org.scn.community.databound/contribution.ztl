@@ -4988,6 +4988,34 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 
 
 	/**
+	 * Sets Sort Mode Property by String
+	 */	
+	void setSortModeByString( /**Sort Mode*/ String sortMode){*
+		this.DSortMode = sortMode;
+	*}
+
+	/**
+	 * Gets Sort Mode Property as String
+	 */	
+	String getSortModeAsString() {*
+		return this.DSortMode;
+	*}
+	
+	/**
+	 * Sets Sort Mode Property by Choice Option
+	 */	
+	void setSortMode( /**Sort Mode*/ org_scn_community_shared_Enumfield sortMode){*
+		this.DSortMode = sortMode;
+	*}
+	
+	/**
+	 * Gets Sort Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getSortMode() {*
+		return this.DSortMode;
+	*}
+
+	/**
 	 * Sets Visible Row Count Property
 	 */	
 	void setVisibleRowCount( /**Visible Row Count*/ int visibleRowCount){*

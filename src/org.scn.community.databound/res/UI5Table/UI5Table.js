@@ -175,6 +175,7 @@ UI5Table = {
 
 		var allowSelection = that.getDAllowSelection();;
 		var lPathPrefix = "";
+		var lPathSortPrefix = "";
 
 		var options = {};
 		options.formattingCondition = {};
@@ -212,12 +213,16 @@ UI5Table = {
 		
 		if(hasFormattingCondition || allowSelection) {
 			that.addStyleClass("scn-pack-ActivateSimpleConditions");
-			that._table.bindRows("/data2D");
-			lPathPrefix = "values/";
-		} else {
-			that._table.bindRows("/data2DPlain");
 		}
-		
+
+		that._table.bindRows("/data2D");
+		lPathPrefix = "values/";
+		if(that.getDSortMode() == "KeyValue") {
+			lPathSortPrefix = "raw/";
+		} else {
+			lPathSortPrefix = "values/";
+		}
+
 		that._table.setEnableColumnReordering(lAllowReorder);
 		
 		if(hasFormattingCondition) {
@@ -228,36 +233,6 @@ UI5Table = {
 		that._table.setAllowColumnReordering();
 
 		var correctLabelPackage = sap.ui.commons == undefined ? sap.m : sap.ui.commons;
-		
-		for(colI=0;colI<that._flatData.dimensionHeaders.length;colI++){
-			var oItemTemplate = new correctLabelPackage.Label (
-					{text: "{" + lPathPrefix +colI + "}",
-						tooltip: "{" + lPathPrefix + colI + "}",
-						design: correctLabelPackage.LabelDesign.Bold,
-					});
-			
-			if(hasFormattingCondition) {
-				oItemTemplate.addCustomData (new sap.ui.core.CustomData({key:"condFormat", value:"{formats/" + colI + "}", writeToDom:true}));
-			}
-			
-			var lColumn = new sap.ui.table.Column({
-				label: new correctLabelPackage.Label(
-				{
-					text: that._flatData.dimensionHeaders[colI],
-					design: correctLabelPackage.LabelDesign.Bold,
-				}),
-				template: oItemTemplate,
-				sortProperty: ""+ lPathPrefix+colI,
-				filterProperty: ""+ lPathPrefix+colI,
-				showSortMenuEntry: lAllowSort,
-				showFilterMenuEntry: lAllowFilter,
-				width: that.getDHeaderColWidth()+"px"
-			});
-			
-			lColumn._dsRealColumnIndex = colI;
-			
-			that._table.addColumn(lColumn);
-		}
 		
 		var colWidthObject = [];
 		try {
@@ -274,6 +249,41 @@ UI5Table = {
 			}
 		}
 
+		for(colI=0;colI<that._flatData.dimensionHeaders.length;colI++){
+			var oItemTemplate = new correctLabelPackage.Label (
+					{text: "{" + lPathPrefix +colI + "}",
+						tooltip: "{" + lPathPrefix + colI + "}",
+						design: correctLabelPackage.LabelDesign.Bold,
+					});
+			
+			if(hasFormattingCondition) {
+				oItemTemplate.addCustomData (new sap.ui.core.CustomData({key:"condFormat", value:"{formats/" + colI + "}", writeToDom:true}));
+			}
+			
+			var colWidth = colWidths[colI];
+			if(!colWidth) {
+				colWidth = that.getDHeaderColWidth()+"px";
+			}
+
+			var lColumn = new sap.ui.table.Column({
+				label: new correctLabelPackage.Label(
+				{
+					text: that._flatData.dimensionHeaders[colI],
+					design: correctLabelPackage.LabelDesign.Bold,
+				}),
+				template: oItemTemplate,
+				sortProperty: ""+ lPathSortPrefix+colI,
+				filterProperty: ""+ lPathPrefix+colI,
+				showSortMenuEntry: lAllowSort,
+				showFilterMenuEntry: lAllowFilter,
+				width: colWidth
+			});
+			
+			lColumn._dsRealColumnIndex = colI;
+			
+			that._table.addColumn(lColumn);
+		}
+		
 		if(!that.getDOnlyHeaderColumns()) {
 			for(var dataColI=0;dataColI<that._flatData.columnHeaders.length;dataColI++){
 				var oItemTemplate = new correctLabelPackage.Label (
@@ -294,7 +304,7 @@ UI5Table = {
 				var lColumn = new sap.ui.table.Column({
 					label: new correctLabelPackage.Label({text: that._flatData.columnHeaders[dataColI]}),
 					template: oItemTemplate,
-					sortProperty: ""+ lPathPrefix+colI,
+					sortProperty: ""+ lPathSortPrefix+colI,
 					filterProperty: ""+ lPathPrefix+colI,
 					showSortMenuEntry: lAllowSort,
 					showFilterMenuEntry: lAllowFilter,
