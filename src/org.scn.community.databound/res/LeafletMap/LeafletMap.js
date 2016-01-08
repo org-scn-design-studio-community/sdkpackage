@@ -358,7 +358,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 								if(that.flatData.formattedValues && that.flatData.formattedValues.length>rowIndex){
 									ret = that.flatData.formattedValues[rowIndex][colorMeasureIndex];	
 								}else{
-									ret = d3.format("2d")(that.flatData.values[rowIndex][colorMeasureIndex]);
+									ret = d3.format(",.2f")(that.flatData.values[rowIndex][colorMeasureIndex]);
 								}
 								
 							}
