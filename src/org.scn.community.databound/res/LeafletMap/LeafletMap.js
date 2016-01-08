@@ -8,6 +8,7 @@
 L_PREFER_CANVAS = true;		// http://leafletjs.com/reference.html#global
 require.config({
 	paths : {
+		"leaflet-heat" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet-plugins/leaflet-heat/leaflet-heat",
 		"leaflet-markers" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet-plugins/scn-markers/leaflet.scn-designstudio-markers",
 		"leaflet-markercluster" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet-plugins/leaflet-markercluster/leaflet.markercluster",
 		"leaflet" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet/leaflet"
@@ -23,8 +24,9 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		"./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
 		"sap/designstudio/sdk/component",
 		"leaflet-markers",
-		"leaflet-markercluster"],
-	function (Lcss, Lmarkercss, Lclustercss1, Lclustercss2, d3, topojson, L, VizCoreDatabound, Component,Lmarkers,Lmarkercluster) {
+		"leaflet-markercluster",
+		"leaflet-heat"],
+	function (Lcss, Lmarkercss, Lclustercss1, Lclustercss2, d3, topojson, L, VizCoreDatabound, Component,Lmarkers,Lmarkercluster,Lheat) {
 	var ownComponentName = "org.scn.community.databound.LeafletMap";
 	/**
 	 * LeafletMap
@@ -272,7 +274,9 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			var lng = this.determineColumnIndex(markerConfig.longitude);
 			var values = [];
 			for(var i=0;i<this.flatData.values.length;i++){
-				var newRow = {};
+				var newRow = {
+					count : 1
+				};
 				if(markerConfig.latitude.columnType=="dimension"){
 					newRow.latitude = this.flatData.rowHeadersKeys2D[i][lat];
 				}else{
@@ -283,6 +287,8 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				}else{
 					newRow.longitude = this.flatData.values[i][lng];
 				}
+				newRow.latitude = parseFloat(newRow.latitude);
+				newRow.longitude = parseFloat(newRow.longitude);
 				values.push(newRow);
 			}
 			
@@ -314,6 +320,22 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		    		var newMarker = new L.Marker([value.latitude, value.longitude],{})
 		    		newMarker.addTo(newLayer);
 		    	}
+				return newLayer;
+			}
+			if(markerConfig.markerType=="heat"){
+				var newLayer = L.heatLayer([],{
+		    		max : parseFloat(markerConfig.heatMax) || 1,
+		    		minOpacity : parseFloat(markerConfig.heatMinOpacity),
+					gradient : markerConfig.heatGradient || {".4":"blue",".6":"cyan",".7":"lime",".8":"yellow","1":"red"},
+		    		radius : parseFloat(markerConfig.heatRadius) || 25,
+		    		blur : parseFloat(markerConfig.heatBlur) || 15	
+		    	});
+				for(var i=0;i<values.length;i++){
+					var value = values[i];
+					console.log(value);
+					newLayer.addLatLng(new L.LatLng(value.latitude,value.longitude));
+					
+				}
 				return newLayer;
 			}
 			var newLayer = L.featureGroup();

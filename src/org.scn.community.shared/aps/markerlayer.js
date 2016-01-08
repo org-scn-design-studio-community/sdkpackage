@@ -108,6 +108,36 @@ define(["./complexitem"], function () {
 							desc : "Zoom Level to stop clustering",
 							apsControl : "spinner"
 						}
+					},
+					heatRadius :{
+						opts : {
+							desc : "Radius",
+							apsControl : "spinner"
+						}
+					},
+					heatBlur : {
+						opts : {
+							desc : "Blur",
+							apsControl : "spinner"
+						}
+					},
+					heatMax : {
+						opts : {
+							desc : "Maximum Point Intensity",
+							apsControl : "spinner"
+						}
+					},
+					heatMinOpacity : {
+						opts : {
+							desc : "Minimum Opacity (0.0 - 1.0)",
+							apsControl : "spinner"
+						}
+					},
+					heatMaxZoom : {
+						opts : {
+							desc : "Max Zoom Level",
+							apsControl : "spinner"
+						}
 					}
 				};
 			} catch (e) {
@@ -143,6 +173,23 @@ define(["./complexitem"], function () {
 				});	
 				this.layout.push({
 					comp : "disableClusteringAtZoom"
+				});
+			}
+			if(o.markerType=="heat"){
+				this.layout.push({
+					comp : "heatMinOpacity"
+				});
+				this.layout.push({
+					comp : "heatMax"
+				});
+				this.layout.push({
+					comp : "heatBlur"
+				});
+				this.layout.push({
+					comp : "heatRadius"
+				});	
+				this.layout.push({
+					comp : "heatMaxZoom"
 				});
 			}
 		},
