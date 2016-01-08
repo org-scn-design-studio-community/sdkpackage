@@ -47,7 +47,7 @@ define(["./VizCore","./../../modules/component.databound"], function(VizCore, or
 					swapAxes : config.swapAxes
 				});	
 			}catch(e){
-				alert("Problem flattening data:\n\n"+e);
+				// alert("Problem flattening data:\n\n"+e);
 			}
 		};
 		var that = this;

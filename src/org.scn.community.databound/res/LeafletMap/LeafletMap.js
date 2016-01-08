@@ -35,7 +35,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					noAps : true
 				}
 			},
-			/*data2 : {
+			data2 : {
 				opts : {
 					noAps : true
 				},
@@ -44,10 +44,10 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			data2config : {
 				opts : {
 					desc : "Data Set 2 Configuration",
-					cat : "Data",
+					cat : "Data-Additional Datasets",
 					apsControl : "datasetconfig"
 				}
-			},*/
+			},
 			fitBounds : {
 				opts : {
 					desc : "Fit to Bounds",
@@ -499,7 +499,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			this._featureLayer = L.featureGroup();
 			for(var i=0;i<featureLayers.length;i++){
 				var overlay = featureLayers[i];
-				if(overlay.layer.layerType=="feature"){
+				if(overlay && overlay.layer && overlay.layer.layerType=="feature"){
 					var layer = overlay.layer.featureConfig;
 					var map = layer.map;
 					if(map.mapType == "url"){

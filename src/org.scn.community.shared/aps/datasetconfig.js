@@ -8,7 +8,7 @@ define(["./complexitem"], function () {
 	org.scn.community.aps.ComplexItem.extend("org.scn.community.aps.DatasetConfig", {
 		metadata : {},
 		needsLabel : function() {
-			return false;
+			return true;
 		},
 		/*
 		 * Overrides parent
@@ -80,7 +80,7 @@ define(["./complexitem"], function () {
 		makeLayout : function () {
 			this.layout = [];
 			this.layout.push({
-				comp : "ignoreTotals"
+				comp : "ignoreResults"
 			});
 			this.layout.push({
 				comp : "ignoreExpandedNodes"
