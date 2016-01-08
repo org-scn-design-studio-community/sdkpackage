@@ -43,11 +43,62 @@ define(["./datasourcealias"], function () {
 			}
 		},
 		createComponents : function () {
-			this.tooltips = {
+			try {
+				this._props = {
+					alias : {
+						opts : {
+							desc : "Data Source Alias",
+							apsControl : "datasourcealias"	
+						}
+					},
+					selection : {
+						handler : {
+							serialize : true,
+							setter : function(property, value){ this["cmp_selection"].setTooltip(JSON.stringify(value));},
+							getter : function(property, control){ },
+							createComponent : function (property, propertyOptions, changeHandler) {
+								var component = new sap.ui.commons.Button({
+									icon : "sap-icon://database"
+								});
+								component.attachPress(function (e) {
+									var o = JSON.parse(JSON.stringify(this.getValue()));
+									var newSelection = ds_openDataSelectionDialog(o.alias, JSON.stringify(o.selection));
+									try{
+										var ns = JSON.parse(newSelection);
+										if(ns) {
+											o.selection = ns;
+											this.setValue(o);
+											this.fireValueChange();
+											// This doesn't work for SDK components.
+											// com.sap.ip.bi.zen.ui_16.0.5.jar - com.sap.ip.bi.zen.ui.internal.view.additionalproperties.AdditionalPropertyView
+											// GetDataJsonFunction checks if control is an instanceof IZenUiQueryReferenceHelper :(
+											var r = ds_getDataJSON("DS_1", "",
+												 "includeMetadata","true",
+												 "fillMetadataProperty","true",
+												 "includeData","true",
+												 "includeAttributes", "true",
+												 "includeAxesTuples","true",
+												 "includeTuples","true"
+											 );
+											alert(r);
+										}						
+									}catch(e){
+										alert("Data Selection invalid.\n\n" + e);
+									}
+								}, this);
+								return component;
+							}
+						},
+						opts : {
+							desc : "Data Selection",
+							apsControl : "text"	
+						}
+					}
+				};/*
+							this.tooltips = {
 				alias : "Data Source Alias",
 				selection : "Data Selection"
 			};
-			try {
 				this.cmps.alias =  new org.scn.community.aps.DataSourceAlias({});
 				this.cmps.selection = new sap.ui.commons.Button({
 					icon : "sap-icon://database"
@@ -82,15 +133,6 @@ define(["./datasourcealias"], function () {
 						alert("Data Selection invalid.\n\n" + e);
 					}
 				}, this);
-				/*
-				this.cmps.fieldName = new org.scn.community.aps.MeasureList({
-					width : "100px"
-				});
-				this.cmps.fieldPosition = new org.scn.community.aps.Spinner({
-					width : "100px",
-					min : 0,
-					max : 100
-				});
 				*/
 				this.makeLayout();
 				this.layoutComponents();

@@ -1,0 +1,99 @@
+
+class org.scn.community.databound.ScatterPlot extends org.scn.community.shared.DataComponent {
+	/**
+	Set Legend Visibility
+	*/
+	void setLegendVisible(/*Visible*/boolean visible) {*
+		this.legendOn = visible;
+	*}
+	/**
+	Set Color Palette
+	*/
+	void setColorPalette(/*Color Palette*/String palette) {*
+		this.colorPalette = palette;
+	*}
+	/**
+	Set Hexagon Radius
+	*/
+	void setRadius(/*Radius (px)*/int radius) {*
+		this.radius = radius;
+	*}
+	/**
+	Get Hexagon Radius
+	*/
+	int getRadius() {*
+		return this.radius;
+	*}
+	/**
+	Set X-Axis Measure by text
+	*/
+	void setMeasureX(/*Measure*/String measure) {*
+		this.measureX = measure;
+	*}
+	/**
+	Get X-Axis Measure text
+	*/
+	String getMeasureX() {*
+		return this.measureX;
+	*}
+	/**
+	Set Y-Axis Measure by text
+	*/
+	void setMeasureY(/*Measure*/String measure) {*
+		this.measureY = measure;
+	*}
+	/**
+	Get Y-Axis Measure text
+	*/
+	String getMeasureY() {*
+		return this.measureY;
+	*}
+	/**
+	Set Y-Axis Min
+	*/
+	void setMinY(/*Minimume*/int min) {*
+		this.minY = min;
+	*}
+	/**
+	Get Y-Axis Min
+	*/
+	int getMinY() {*
+		return this.minY;
+	*}
+	/**
+	Set Y-Axis Max
+	*/
+	void setMaxY(/*Minimume*/int max) {*
+		this.maxY = max;
+	*}
+	/**
+	Get Y-Axis Max
+	*/
+	int getMaxY() {*
+		return this.maxY;
+	*}
+	/**
+	Set X-Axis Min
+	*/
+	void setMinX(/*Minimume*/int min) {*
+		this.minX = min;
+	*}
+	/**
+	Get X-Axis Min
+	*/
+	int getMinX() {*
+		return this.minX;
+	*}
+	/**
+	Set X-Axis Max
+	*/
+	void setMaxX(/*Minimume*/int max) {*
+		this.maxX = max;
+	*}
+	/**
+	Get X-Axis Max
+	*/
+	int getMaxX() {*
+		return this.maxX;
+	*}
+}

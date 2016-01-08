@@ -198,6 +198,7 @@
 	<property type="String" title="Data" id="data"/>
 	<property type="String" title="Mutators (Deprecated)" id="mutators"/>
 	<property type="String" title="Number of Dimensions" id="kfIndex"/>
+	<property type="String" title="Number Format (D3 syntax)" id="numberFormat"/>
 	<property type="String" title="Sort Method (Deprecated)" id="sortMethod">
 		<possibleValue>NONE</possibleValue>
 		<possibleValue>Alphanumeric Ascending</possibleValue>
@@ -205,6 +206,7 @@
 	</property>
 	<initialization>
 		<defaultValue property="kfIndex">2</defaultValue>
+		<defaultValue property="numberFormat">,.2f</defaultValue>
 		<defaultValue property="data">Department,Product,Sales,Quantity~|~Produce,Apples,100,20~|~Produce,Oranges,75,15~|~Produce,Kiwis,30,5~|~Produce,Bananas,150,30~|~Grocery,Cereal,34,20~|~Grocery,Juice,25,15~|~Grocery,Coffee,17,5~|~Meat,Poultry,150,30~|~Meat,Pork,78,23</defaultValue>
 		<defaultValue property="mutators">[1,1,1]</defaultValue>
 		<defaultValue property="sortMethod">NONE</defaultValue>

@@ -30,6 +30,11 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		var that = this;
 		// Call super
 		VizCoreDatabound.call(this, {
+			repositoryPath : {
+				opts : {
+					noAps : true
+				}
+			},
 			fitBounds : {
 				opts : {
 					desc : "Fit to Bounds",
@@ -105,80 +110,42 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							defaultValue : true,
 							apsControl : "checkbox"
 						},
-						fillColor : {
-							desc : "Default Feature Color",
-							defaultValue : "#DFDFDF",
-							apsControl : "color",
-						},
-						color : {
-							desc : "Default Feature Border Color",
-							defaultValue : "#B0B0B0",
-							apsControl : "color",
-						},
-						colorScale : {
-							desc : "Measure Color Scale",
-							defaultValue : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
-							apsControl : "palette",
-						},
-						colorScaleMethod : {
-							apsControl : "segmentedbutton",
-							desc : "Color Scale Method",
-							defaultValue : "quantile",
-							options : [{key : "quantile", text : "Quantile"},
-							         {key : "quantize", text : "Quantize"}]
-						},
-						colorScaleMin : {
-							desc : "Color Scale Maximum",
-							defaultValue : 0,
-							apsControl : "spinner",
-						},
-						colorScaleMax : {
-							desc : "Color Scale Minimum",
-							defaultValue : 0,
-							apsControl : "spinner",
-						},
-						colorScaleMeasure : {
-							desc : "Color Scale Measure",
-							defaultValue : {fieldType:"position", fieldPosition:0},
-							apsControl : "measureselector",
-						},
-						weight : {
-							desc : "Line Weight",
-							defaultValue : 1,
-							apsControl : "spinner"
-						},
-						opacity : {
-							desc : "Border Opacity (0.00 - 1.00)",
-							defaultValue : 0.8,
-							apsControl : "spinner"
-						},
-						fillOpacity : {
-							desc : "Fill Opacity (0.00 - 1.00)",
-							defaultValue : 0.8,
-							apsControl : "spinner"
-						},
-						dataselection : {
-							desc : "Data Source",
+						layer : {
+							desc : "Layer",
+							apsControl : "maplayer",
 							defaultValue : {
-								alias : "",
-								selection : {}
-							},
-							apsControl : "dataselection2.0"
-						},
-						map : {
-							desc : "Custom GeoJSON",
-							defaultValue : {
-								mapType : "url",
-								featureKey : "sovereignt",
-								url :"{ds-maps}/countries_medium.json",
-								geoJSON : {
-								  "type": "FeatureCollection",
-								  "features": []
+								layerType : "feature",
+								featureConfig : {
+									fillColor : "#DFDFDF",
+									color : "#B0B0B0",
+									weight : 1.0,
+									colorScaleConfig : {
+										colors : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
+										scaleType : "quantile",
+										rangeType : "mean",
+										clamp : true,
+										interpolation : "interpolateRgb",
+										min : 0,
+										max : 10000
+									},
+									colorScaleMeasure : {fieldType:"position", fieldPosition:0},
+									weight : 1,
+									opacity : 0.8,
+									fillOpacity : 0.8,
+									tooltipTemplate : ["<span>{Feature Key}</span><br/>\n",
+										                "<span>{Value}</span><br/>"].join(),
+							        map : {
+										mapType : "url",
+										featureKey : "sovereignt",
+										url :"{ds-maps}/countries_medium.json",
+										geoJSON : {
+										  "type": "FeatureCollection",
+										  "features": []
+										}
+									}
 								}
-							},
-							apsControl : "layereditor"
+							}
 						},
-						
 						/*,
 						markers : {
 							desc : "Markers",
@@ -272,7 +239,8 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			}
 			return ret;
 		};
-		this.renderLayer = function(geoJSON,layerConfig){
+		this.renderLayer = function(geoJSON, overlay){
+			var layerConfig = overlay.layer.featureConfig;
 			var mapdata = geoJSON;
 			var newOverlay = L.featureGroup();
 			var colorScale;
@@ -280,20 +248,60 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			if(layerConfig && layerConfig.colorScaleMeasure){
 				colorMeasureIndex = this.determineMeasureIndex(layerConfig.colorScaleMeasure);
 			}
-			if(layerConfig && layerConfig.colorScale && colorMeasureIndex >-1){
+			if(layerConfig && layerConfig.colorScaleConfig && colorMeasureIndex >-1){
 				var values = [];
 				this.flatData.values.map(function(e){
 					values.push(e[colorMeasureIndex]);
 				});
 				values.sort(function(a, b) { return a - b; });
-				var csm = layerConfig.colorScaleMethod || "quantile";
-				var colorScale = d3.scale[csm]()
-	        		//.domain([layerConfig.colorScaleMin || 0,layerConfig.colorScaleMax || 100])
-					.domain(values)
-					.range(layerConfig.colorScale.split(","));
+				var csc = layerConfig.colorScaleConfig || {
+					scaleType : "quantile",
+					colors : "#000000,#FFFFFF"
+				};
+				var colorScale;
+				
+				if(csc.scaleType =="quantile" || csc.scaleType == "quantize"){
+					colorScale = d3.scale[csc.scaleType]()
+						.domain(values)
+						.range(layerConfig.colorScaleConfig.colors.split(","));
+					
+					// if(colorScale.interpolate) colorScale.interpolate(d3.interpolateRgb);
+				}
+				if(csc.scaleType == "linear"){
+					var pal = layerConfig.colorScaleConfig.colors.split(",") || [];
+					var rangeType = csc.rangeType || "minmax";
+					var r = d3.max(values) - d3.min(values);
+					var min = d3.min(values);
+					if(rangeType == "minmax"){
+						min = d3.min(values);
+						r = d3.max(values) - d3.min(values);
+					}
+					if(rangeType =="mean"){
+						min = 0;
+						r = d3.mean(values) * 2;
+					}
+					if(rangeType =="median"){
+						min = 0;
+						r = d3.median(values) * 2;
+					}
+					if(rangeType =="manual"){
+						min = csc.min || 0;
+						r = (csc.max || 100) - min;
+					}
+					var stops = [];
+					var rate = r/pal.length;
+					for(var i=0;i<pal.length;i++){
+						stops.push(min + (rate*i));
+					}
+					colorScale = d3.scale.linear()
+			    		.domain(stops)
+			    		.range(pal);
+			    		
+					if(csc.interpolation) colorScale.interpolate(d3[csc.interpolation]);					
+				}
 		        // Clamp if can
 		        if (typeof colorScale.clamp == 'function') {
-		        	colorScale.clamp(true);
+		        	if(csc.clamp) colorScale.clamp(true);
 		        }		
 			}
 			
@@ -318,6 +326,92 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					colorMeasureIndex : colorMeasureIndex,
 					colorScale : colorScale
 				}),
+				onEachFeature : function(feature, layer){
+					if(feature.properties){
+						var rowIndex = -1;
+						for(var i=0;i<that.flatData.rowHeaders.length;i++){
+							if(that.flatData.rowHeaders[i] == feature.properties[layerConfig.map.featureKey]) rowIndex = i;
+						}
+						
+						var tt = (layerConfig.tooltipTemplate + "");
+						// tt = tt.replace(/{Feature Key}/g,feature.properties[layerConfig.map.featureKey]);
+						// Feature Key
+						tt = tt.replace(/{featurekey}/g, function(a,b){
+							return feature.properties[layerConfig.map.featureKey]
+						});
+						// Feature Property
+						tt = tt.replace(/{feature-(.*?)}/g, function(a,b){
+							return feature.properties[b]
+						});
+						// Color Measure Value
+						tt = tt.replace(/{colormeasure-value}/g, function(a,b){
+							var ret;
+							if(rowIndex>-1){
+								ret = that.flatData.values[rowIndex][colorMeasureIndex];
+							}
+							return ret;
+						});
+						// Color Measure Formatted Value
+						tt = tt.replace(/{colormeasure-formattedvalue}/g, function(a,b){
+							var ret;
+							if(rowIndex>-1){
+								if(that.flatData.formattedValues && that.flatData.formattedValues.length>rowIndex){
+									ret = that.flatData.formattedValues[rowIndex][colorMeasureIndex];	
+								}else{
+									ret = d3.format(",.2f")(that.flatData.values[rowIndex][colorMeasureIndex]);
+								}
+								
+							}
+							return ret;
+						});
+						// Color Measure Label
+						tt = tt.replace(/{colormeasure-label}/g, function(a,b){
+							var ret;
+							ret = that.flatData.columnHeaders[colorMeasureIndex];
+							return ret;
+						});
+						// Measure Value by Position
+						tt = tt.replace(/{measure-position-value-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = parseInt(b);
+							if(rowIndex>-1){
+								ret = that.flatData.values[rowIndex][columnIndex];
+							}
+							return ret;
+						});
+						// Measure Label by Position
+						tt = tt.replace(/{measure-position-label-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = parseInt(b);
+							ret = that.flatData.columnHeaders[columnIndex];
+							return ret;
+						});
+						// MEASURE by Label
+						tt = tt.replace(/{measure-key-value-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = that.determineMeasureIndex({
+								fieldType : "name",
+								fieldName : b
+							});
+							if(rowIndex>-1){
+								ret = that.flatData.values[rowIndex][columnIndex];
+							}
+							return ret;
+						});
+						// MEASURE by Label
+						tt = tt.replace(/{measure-key-label-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = that.determineMeasureIndex({
+								fieldType : "name",
+								fieldName : b
+							});
+							if(columnIndex != null)	ret = that.flatData.columnHeaders[columnIndex];
+							return ret;
+						});
+						layer.bindPopup(tt);
+					}
+					
+				},
 				pointToLayer : function(feature, latlng){
 					var marker = "marker";
 					if(feature && feature.properties){
@@ -391,34 +485,31 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			// Overlay Group
 			this._featureLayer = L.featureGroup();
 			for(var i=0;i<featureLayers.length;i++){
-				var layer = featureLayers[i];
-				var map = layer.map;
-				if(map.mapType == "url"){
-					var url = map.url;
-					var osMapPath = sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","os/maps")
-					url = url.replace(/{os-maps}/g, osMapPath);
-					url = url.replace(/{ds-maps}/g, "zen.rt.components.geomaps/resources/js/geo");
-					$.ajax({
-						dataType : "json",
-						url : url,
-						success : function(layer){return function(data){
-							var newLayer = that.renderLayer(data, layer);
-							if(layer.visible) newLayer.addTo(that._featureLayer);
-							that._controlLayer.addOverlay(newLayer, layer.key);							
-						};}(layer),
-						fail : function(jqxhr, textStatus, error){
-							alert(error);
+				var overlay = featureLayers[i];
+				if(overlay.layer.layerType=="feature"){
+					var layer = overlay.layer.featureConfig;
+					var map = layer.map;
+					if(map.mapType == "url"){
+						var url = map.url;
+						var osMapPath = sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","os/maps")
+						url = url.replace(/{os-maps}/g, osMapPath);
+						url = url.replace(/{ds-maps}/g, "zen.rt.components.geomaps/resources/js/geo");
+						this.loadResource(url, overlay);
+					}
+					if(map.mapType == "file"){
+						var repoPath = this.repositoryPath() + "";
+						var url = repoPath.replace(/REPOSITORY_ROOT.GIF/,map.file);
+						this.loadResource(url, overlay);
+					}
+					if(map.mapType == "custom"){
+						try{
+							var newLayer = that.renderLayer(map.geoJSON, overlay);
+							if(overlay.visible) newLayer.addTo(that._featureLayer);
+							that._controlLayer.addOverlay(newLayer, overlay.key);
+						}catch(e){
+							alert("Bad Custom GeoJSON: " + e);
+							// Bad GeoJSON
 						}
-					});
-				}
-				if(map.mapType == "custom"){
-					try{
-						var newLayer = that.renderLayer(map.geoJSON, layer);
-						if(layer.visible) newLayer.addTo(that._featureLayer);
-						that._controlLayer.addOverlay(newLayer, layer.key);
-					}catch(e){
-						alert("Bad Custom GeoJSON: " + e);
-						// Bad GeoJSON
 					}
 				}
 			}
@@ -451,6 +542,21 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			}
 		};
 		var that = this;
+		this.loadResource = function(url, overlay){
+			var that = this;
+			$.ajax({
+				dataType : "json",
+				url : url,
+				success : function(overlay){return function(data){
+					var newLayer = that.renderLayer(data, overlay);
+					if(overlay.visible) newLayer.addTo(that._featureLayer);
+					that._controlLayer.addOverlay(newLayer, overlay.key);							
+				};}(overlay),
+				fail : function(jqxhr, textStatus, error){
+					alert(error);
+				}
+			});
+		};
 		this.moveEndHandler = function(event){
 			var changes = [];
 			var c = that._map.getCenter();

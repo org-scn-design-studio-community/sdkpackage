@@ -1,0 +1,13 @@
+[ { "label" : "Unformatted (9671046.2)", "value" : " " },
+  { "label" : "Fixed (9,671,046.20)", "value" : ",.2f" },
+  { "label" : "US Currency ($9,671,046.20)", "value" : "$,.2f" },
+  { "label" : "Exponential (9.67e+6)", "value" : ",.2e" },
+  { "label" : "SI-Prefix (9.7M)", "value" : ",.2s" },
+  { "label" : "Percentage (123.45%)", "value" : "%" },
+  { "label" : "Precision Rounded (9,670,000)", "value" : ",.3r" },
+  { "label" : "Whole Numbers Only", "presets" :[
+  	{ "label" : "Binary (00101010)", "value" : "b" },
+  	{ "label" : "Octal (44710606)", "value" : "o" },
+  	{ "label" : "Hexadecimal (B691EA)", "value" : "X" }
+  ]}
+]

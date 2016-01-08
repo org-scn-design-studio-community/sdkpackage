@@ -1,4 +1,4 @@
-class org.scn.community.basics.FioriSegmentedButton extends org.scn.community.shared.Component {
+class org.scn.community.m.basics.SegmentedButton extends org.scn.community.shared.Component {
 	/** Add an item
  	<example>
 	Add or update a item by key 'A'.

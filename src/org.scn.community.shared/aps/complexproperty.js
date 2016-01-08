@@ -111,6 +111,12 @@ define([], function () {
 				}(this, property+"", JSON.parse(JSON.stringify(item)));
 				
 				var callbackFunction = function(componentContainer, property, propertyOptions) {
+					// B/W Compat
+					var opts = propertyOptions;
+					if(propertyOptions.opts) {
+						opts = propertyOptions.opts;
+						opts.desc = opts.desc || propertyOptions.desc;
+					}
 					return function (handler) {
 						try{
 						// Closure to store property name
@@ -130,7 +136,7 @@ define([], function () {
 								that.fireValueChange();
 							};
 						}(property, handler);
-						control = handler.createComponent.call(that, property, propertyOptions, changeHandler);
+						control = handler.createComponent.call(that, property, opts, changeHandler);
 						that["cmp_" + property] = control;
 						var setValue = that.getValue()[property];
 						if(handler.serialized){
@@ -164,7 +170,7 @@ define([], function () {
 						}
 
 						if (useLabel) {
-							componentContainer.addContent(that.hLabel(propertyOptions.desc || property, that["cmp_" + property]));
+							componentContainer.addContent(that.hLabel(opts.desc || property, that["cmp_" + property]));
 						} else {
 							componentContainer.addContent(that["cmp_" + property]);
 						}

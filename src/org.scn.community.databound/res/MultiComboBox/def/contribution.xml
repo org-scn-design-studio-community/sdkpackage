@@ -5,8 +5,9 @@
 	icon="res/MultiComboBox/MultiComboBox.png"
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
-	databound="true">
-	<jsInclude>res/MultiComboBox/MultiComboBox.js</jsInclude>
+	databound="true"
+	modes="commons">
+	<requireJs modes="commons">res/MultiComboBox/MultiComboBox</requireJs>
 	<cssInclude>res/MultiComboBox/MultiComboBox.css</cssInclude>
 
 	<property

@@ -27,8 +27,8 @@
  * where the datasource does not yet exist, or hardcoding tabular data such as targets
  * 
  */
-define(["./../../../org.scn.community.shared/os/viz-modules/DatasourceCore",
-        "sap/designstudio/sdk/databuffer"], function(DatasourceCore, DataBuffer) {
+define(["d3","./../../../org.scn.community.shared/os/viz-modules/DatasourceCore",
+        "sap/designstudio/sdk/databuffer"], function(d3, DatasourceCore, DataBuffer) {
 	var ownComponentName = "org.scn.community.datasource.BYOData";
 	 // Call super
 	function BYOData() {
@@ -169,7 +169,8 @@ define(["./../../../org.scn.community.shared/os/viz-modules/DatasourceCore",
 			for(var i=0;i<payload.length;i++){
 				var item = payload[i];
 				try{
-					this.setDataCell(item.value.coordinate,item.value.data);				
+					this.setDataCell(item.value.coordinate,item.value.data);
+					this.setDataCell(item.value.coordinate,d3.format(this.numberFormat())(item.value.data));
 				}catch(e){
 					errLog+="\n"+i+":"+JSON.stringify(item)+e;
 				}
@@ -186,6 +187,16 @@ define(["./../../../org.scn.community.shared/os/viz-modules/DatasourceCore",
 					desc : "Key Figure Index",
 					cat : "Data",
 					apsControl : "spinner"
+				},
+				onChange : this.recalculate
+			},
+			numberFormat :  { 
+				value : "",
+				opts : {
+					desc : "Key Figure Number Format",
+					cat : "Data",
+					apsControl : "text-presets",
+					presetsIndex : "os/d3-numberformats.json"
 				},
 				onChange : this.recalculate
 			},

@@ -7,6 +7,9 @@ define(["./complexitem"], function () {
 	 */
 	org.scn.community.aps.ComplexItem.extend("org.scn.community.aps.TileConfig", {
 		metadata : {},
+		needsLabel : function() {
+			return false;
+		},
 		/*
 		 * Overrides parent
 		 */
@@ -42,25 +45,52 @@ define(["./complexitem"], function () {
 				this.layoutComponents();
 			}
 		},
+		modulesLoaded : function(){
+			this.makeLayout();
+			this.layoutComponents();
+		},
 		createComponents : function () {
-			try {
-				this.cmps.baseUrl = new sap.ui.commons.TextField({ });
-				this.cmps.attribution = new sap.ui.commons.TextField({ });
-				this.cmps.subdomains = new sap.ui.commons.TextField({ });
-				this.cmps.minZoom = new org.scn.community.aps.Spinner({
-					value : 0
-				});
-				this.cmps.maxZoom = new org.scn.community.aps.Spinner({
-					value : 18
-				});
-				this.cmps.tileSize = new org.scn.community.aps.Spinner({
-					value : 256
-				});
-				this.makeLayout();
-				this.layoutComponents();
-			} catch (e) {
-				alert("Error in tileconfig:\n\n" + e);
-			}
+			this._props = {
+				baseUrl : {
+					opts : {
+						desc : "Base URL",
+						apsControl : "text"	
+					}
+				},
+				attribution : {
+					opts : {
+						desc : "Attribution",
+						apsControl : "text"	
+					}
+				},
+				subdomains : {
+					opts : {
+						desc : "Sub-domains",
+						apsControl : "text"	
+					}
+				},
+				minZoom : {
+					value : 0,
+					opts : {
+						desc : "Minimum Zoom",
+						apsControl : "spinner"	
+					}
+				},
+				maxZoom : {
+					value : 18,
+					opts : {
+						desc : "Maximum Zoom",
+						apsControl : "spinner"	
+					}
+				},
+				tileSize : {
+					value : 256,
+					opts : {
+						desc : "Tile Size",
+						apsControl : "spinner"	
+					}
+				},
+			};
 		},
 		init : function(){
 			try{

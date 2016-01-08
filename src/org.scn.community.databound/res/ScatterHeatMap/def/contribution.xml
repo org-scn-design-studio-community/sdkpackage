@@ -1,0 +1,55 @@
+
+<component
+		id="ScatterHeatMap"
+		title="Scatter Plot Heat Map 2.0"
+		icon="res/ScatterHeatMap/ScatterHeatMap.png"
+		handlerType="div"
+		modes="commons m"
+		propertySheetPath="aps/PropertyPage.html"
+		group="ScnCommunityChartMaps"
+		databound="true"
+>
+<requireJs modes="commons m">res/ScatterHeatMap/ScatterHeatMap</requireJs>
+	<!-- Base Databound Properties -->
+	<property
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
+	<property id="measureX" title="X-Axis Measure (Blank will take whatever is in first column)" type="String" visible="false"/>
+	<property id="measureY" title="Y-Axis Measure (Blank will take whatever is in second column)" type="String" visible="false"/>
+	<property id="measureZ" title="Z-Axis Measure (Blank will disable)" type="String"/>
+	<property id="colors" title="Colors" type="String"/>
+	<property id="pollInterval" type="int" title = "Resize Poll Interval" visible="true"/>
+	<property id="radius" type="int" title = "Plot Radius" visible="true"/>
+	<property id="bubbleMin" type="int" title = "Bubble Min Radius" visible="true"/>
+	<property id="bubbleMax" type="int" title = "Bubble Max Radius" visible="true"/>
+
+	<initialization>
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">300</defaultValue>
+		<defaultValue property="colors">#748CB2,#9CC677,#EACF5E,#F9AD79,#D16A7C,#8873A2,#3A95B3,#B6D949</defaultValue>
+		<defaultValue property="pollInterval">250</defaultValue>
+		<defaultValue property="measureX">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}</defaultValue>
+		<defaultValue property="measureY">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:1}</defaultValue>
+		<defaultValue property="measureY">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:2}</defaultValue>
+		<defaultValue property="radius">5</defaultValue>
+		<defaultValue property="bubbleMin">3</defaultValue>
+		<defaultValue property="bubbleMax">50</defaultValue>
+	</initialization>
+</component>

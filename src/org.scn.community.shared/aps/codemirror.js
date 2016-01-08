@@ -209,7 +209,7 @@ define(["css!cm/lib/codemirror.css",
 		createComponent : function (property, propertyOptions, changeHandler) {
 			var component = new org.scn.community.aps.CodeMirror({
 				width : "100%",
-				height : "500px",
+				height : propertyOptions.height || "500px",
 				options : propertyOptions.apsConfig,
 				showCollapseIcon : false,
 				presets : propertyOptions.presets,

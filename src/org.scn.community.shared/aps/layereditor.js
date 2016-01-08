@@ -48,36 +48,73 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 				this.layoutComponents();
 			}
 		},
+		modulesLoaded : function(){
+			this.makeLayout();
+			this.layoutComponents();
+			//this.updateFeaturePropertiesList(this.determineFeatureProperties({},this.processMap(this.getValue().geoJSON)));
+		},
 		createComponents : function () {
-			this.tooltips = {
-				mapType : "Type of Map",
-				url : "Map URL",
-				geoJSON : "Custom Map GeoJSON",
-				featureKey : "Feature Property Key"					
-			};
 			try {
-				this.cmps.mapType = new org.scn.community.aps.SegmentedButton({});
-				this.cmps.mapType.addButton(new sap.ui.commons.Button({text : "By URL" }).data("key","url"));
-				this.cmps.mapType.addButton(new sap.ui.commons.Button({text : "Custom" }).data("key","custom"));
-				this.cmps.mapType.attachKeyChange(function (e) {
-					var o = JSON.parse(JSON.stringify(this.getValue()));
-					o.mapType = e.getSource().getSelectedKey();
-					this.setValue(o);
-				}, this);
-				this.cmps.url = new org.scn.community.aps.TextInputPresets({
-					presets : "os/maps/presets.json"
-				});
-				this.cmps.geoJSON = new org.scn.community.aps.MapEditor({
-					width : "600px"
-				});
-				this.cmps.featureKey = new sap.ui.commons.ComboBox({
-					 displaySecondaryValues:true
-				});
-				this.makeLayout();
-				this.layoutComponents();
+				this._props = {
+					mapType : {
+						opts : {
+							apsControl : "segmentedbutton",
+							desc : "Map Type",
+							options : [
+							    {key : "url", text : "By URL"},
+							    {key : "file", text : "By File"},
+							    {key : "custom", text : "Custom"}
+							],
+							afterCreate : function(component){
+								
+							}
+						}
+					},
+					file : {
+						opts : {
+							desc : "GeoJSON File",
+							apsControl : "special-url"
+						}
+					},
+					url : {
+						opts : {
+							desc : "URL",
+							apsControl : "text-presets",
+							presetsIndex : "os/maps/presets.json"
+						}
+					},
+					featureKey : {
+						opts : {
+							desc : "Feature Key",
+							apsControl : "combobox",
+							afterCreate : function(component){
+								component.setDisplaySecondaryValues(true);
+							}
+						}
+					},
+					geoJSON : {
+						opts : {
+							desc : "Custom GeoJSON",
+							apsControl : "mapeditor"
+						}
+					}
+				};
 			} catch (e) {
 				alert(e);
 			}
+		},
+		loadResource : function(url){
+			var that = this;
+			$.ajax({
+				dataType : "json",
+				url : url,
+				success : function(){return function(data){
+					that.updateFeaturePropertiesList(that.determineFeatureProperties({},that.processMap(data)));
+				};}(),
+				error : function(jqxhr, textStatus, error){
+					alert("Error in attempting to load " + url + ":\n\n" + error);
+				}
+			});
 		},
 		makeLayout : function () {
 			this.layout = [];
@@ -85,14 +122,18 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 				desc : "Map Type",
 				comp : "mapType"
 			});
-			this.layout.push({
-				desc : "Key Feature",
-				comp : "featureKey",
-				tooltip : "Feature to use as a key to match a map feature to your data."
-			});
+			if (this.getValue().mapType == "file"){
+				this.layout.push({
+					comp : "file"
+				});
+				var file = this.getValue().file;
+				if(file){
+					var url = "/aad/" + ds_generateMimeUrl(file);
+					this.loadResource(url);	
+				}
+			}
 			if (this.getValue().mapType == "url"){
 				this.layout.push({
-					desc : "URL",
 					comp : "url"
 				});
 				var url = this.getValue().url;
@@ -100,24 +141,17 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 				// {ds-maps}/countries_medium.json
 				url = url.replace(/{os-maps}/g, "/aad/zen/mimes/sdk_include/org.scn.community.shared/os/maps");
 				url = url.replace(/{ds-maps}/g, "/aad/zen.rt.components.geomaps/resources/js/geo");
-				var that = this;
-				$.ajax({
-					dataType : "json",
-					url : url,
-					success : function(){return function(data){
-						that.updateFeaturePropertiesList(that.determineFeatureProperties({},that.processMap(data)));
-					};}(),
-					error : function(jqxhr, textStatus, error){
-						alert(error);
-					}
-				});
+				this.loadResource(url);
 			}
+			this.layout.push({
+				desc : "Key Feature",
+				comp : "featureKey",
+				tooltip : "Feature to use as a key to match a map feature to your data."
+			});
 			if (this.getValue().mapType == "custom"){
 				this.layout.push({
-					desc : "Custom Map",
 					comp : "geoJSON"
 				});
-				this.updateFeaturePropertiesList(this.determineFeatureProperties({},this.processMap(this.getValue().geoJSON)));
 			}
 		},
 		processMap : function(geoJSON){
@@ -138,14 +172,16 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 			}
 		},
 		updateFeaturePropertiesList : function(p){
-			this.cmps.featureKey.destroyItems();
-			for(var field in p){
-				var newItem = new sap.ui.core.ListItem({
-					key : field,
-					text : field,
-					additionalText : p[field].sample
-				});
-				this.cmps.featureKey.addItem(newItem);
+			if(this.checkLoadState()){
+				this["cmp_featureKey"].destroyItems();
+				for(var field in p){
+					var newItem = new sap.ui.core.ListItem({
+						key : field,
+						text : field,
+						additionalText : p[field].sample
+					});
+					this["cmp_featureKey"].addItem(newItem);
+				}
 			}
 		},
 		determineFeatureProperties : function(p,o){
