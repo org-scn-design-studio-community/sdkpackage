@@ -46,6 +46,8 @@ define(["./VizCore","./../../modules/component.databound"], function(VizCore, or
 					useMockData : config.useMockData,
 					swapAxes : config.swapAxes
 				});	
+				alert(JSON.stringify(this[property]()));
+				alert(JSON.stringify(this.flattenedData[property]));
 			}catch(e){
 				// alert("Problem flattening data:\n\n"+e);
 			}

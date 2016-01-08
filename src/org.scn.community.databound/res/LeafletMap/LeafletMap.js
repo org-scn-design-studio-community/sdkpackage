@@ -35,7 +35,9 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					noAps : true
 				}
 			},
-			data2 : {
+			/*
+			 * Also does not appear to be working in 1.6 :(
+			 * data2 : {
 				opts : {
 					noAps : true
 				},
@@ -45,9 +47,10 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				opts : {
 					desc : "Data Set 2 Configuration",
 					cat : "Data-Additional Datasets",
-					apsControl : "datasetconfig"
+					apsControl : "datasetconfig",
+					dataset : "data2"
 				}
-			},
+			},*/
 			fitBounds : {
 				opts : {
 					desc : "Fit to Bounds",

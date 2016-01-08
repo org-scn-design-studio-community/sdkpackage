@@ -1912,23 +1912,74 @@ __n__}
 	<requireJs modes="commons m">res/LeafletMap/LeafletMap</requireJs>
 	<!-- Base Databound Properties -->
 	<property
-			id="data"
-			title="Data Selection"
-			type="ResultSet"
-			group="DataBinding">
-			<option name="includeFormattedData" value="true"/>
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding"
+		bindable="true">
+			<option name="includeTuples" value="true"/>
+			<option name="includeAxesTuples" value="true"/>
+			<option name="includeMetadata" value="true"/>
 			<option name="includeData" value="true"/>
+			<option name="includeFormattedData" value="true"/>
+			<option name="fillMetadataProperty" value="true"/>
 	</property>
 	<property
-			id="data2"
-			title="Data Selection"
-			type="ResultSet"
-			group="DataBinding"
-			bindable="true">
-			<option name="includeFormattedData" value="true"/>
+		id="data2"
+		title="Data Selection 2 (Not working yet in 1.6 SP0)"
+		type="ResultSet"
+		visible="false"
+		bindable="true">
+			<option name="includeTuples" value="true"/>
+			<option name="includeAxesTuples" value="true"/>
+			<option name="includeMetadata" value="true"/>
 			<option name="includeData" value="true"/>
+			<option name="includeFormattedData" value="true"/>
+			<option name="fillMetadataProperty" value="true"/>
+	</property>
+	<property
+		id="data3"
+		title="Data Selection 3 (Not working yet in 1.6 SP0)"
+		type="ResultSet"
+		visible="false"
+		bindable="true">
+			<option name="includeTuples" value="true"/>
+			<option name="includeAxesTuples" value="true"/>
+			<option name="includeMetadata" value="true"/>
+			<option name="includeData" value="true"/>
+			<option name="includeFormattedData" value="true"/>
+			<option name="fillMetadataProperty" value="true"/>
+	</property>
+	<property
+		id="data4"
+		title="Data Selection 4 (Not working yet in 1.6 SP0)"
+		type="ResultSet"
+		visible="false"
+		bindable="true">
+			<option name="includeTuples" value="true"/>
+			<option name="includeAxesTuples" value="true"/>
+			<option name="includeMetadata" value="true"/>
+			<option name="includeData" value="true"/>
+			<option name="includeFormattedData" value="true"/>
+			<option name="fillMetadataProperty" value="true"/>
+	</property>
+	<property
+		id="data5"
+		title="Data Selection 3 (Not working yet in 1.6 SP0)"
+		type="ResultSet"
+		visible="false"
+		bindable="true">
+			<option name="includeTuples" value="true"/>
+			<option name="includeAxesTuples" value="true"/>
+			<option name="includeMetadata" value="true"/>
+			<option name="includeData" value="true"/>
+			<option name="includeFormattedData" value="true"/>
+			<option name="fillMetadataProperty" value="true"/>
 	</property>
 	<property type="String" title="Dataset 2 Config" id="data2config" visible="false"/>
+	<property type="String" title="Dataset 3 Config" id="data3config" visible="false"/>
+	<property type="String" title="Dataset 4 Config" id="data4config" visible="false"/>
+	<property type="String" title="Dataset 5 Config" id="data5config" visible="false"/>
 	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
 	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
 	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
@@ -1943,7 +1994,10 @@ __n__}
 	<property id="TResourceUrl"	type="Url" title="Temporary property for Resource" visible="false" />
 	<initialization>
 		<!-- Databound Defaults -->
-		<defaultValue property="data2config">{}</defaultValue>
+		<defaultValue property="data2config">{&quot;ignoreResults&quot;:true,&quot;ignoreExpandedNodes&quot;:true,&quot;useMockData&quot;:true}</defaultValue>
+		<defaultValue property="data3config">{&quot;ignoreResults&quot;:true,&quot;ignoreExpandedNodes&quot;:true,&quot;useMockData&quot;:true}</defaultValue>
+		<defaultValue property="data4config">{&quot;ignoreResults&quot;:true,&quot;ignoreExpandedNodes&quot;:true,&quot;useMockData&quot;:true}</defaultValue>
+		<defaultValue property="data5config">{&quot;ignoreResults&quot;:true,&quot;ignoreExpandedNodes&quot;:true,&quot;useMockData&quot;:true}</defaultValue>
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>

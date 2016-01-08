@@ -98,11 +98,14 @@ define(["./complexitem"], function () {
 		serialized : true,
 		id : "datasetconfig",
 		setter : function (property, value) {
-			this["cmp_" + property].setValue(JSON.stringify(value));
+			var o = {};
+			if(value && value!="") o = JSON.parse(value);
+			this["cmp_" + property].setValue(o);
 		},
 		getter : function (property, control) {
 			var value = control.getValue();
 			newValue = JSON.stringify(value);
+			alert(newValue);
 			return newValue;
 		},
 		createComponent : function (property, propertyOptions, changeHandler) {
