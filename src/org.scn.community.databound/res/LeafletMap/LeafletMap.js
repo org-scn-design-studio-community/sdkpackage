@@ -35,6 +35,19 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					noAps : true
 				}
 			},
+			/*data2 : {
+				opts : {
+					noAps : true
+				},
+				onChange : function(){this.flatten("data2","data2config");}
+			},
+			data2config : {
+				opts : {
+					desc : "Data Set 2 Configuration",
+					cat : "Data",
+					apsControl : "datasetconfig"
+				}
+			},*/
 			fitBounds : {
 				opts : {
 					desc : "Fit to Bounds",

@@ -6,7 +6,11 @@ define(["./VizCore","./../../modules/component.databound"], function(VizCore, or
 	VizCoreDatabound.constructor = VizCoreDatabound;
 	function VizCoreDatabound(options){
 		this.flatData = null;
+		this.flattenedData = {};
 		this.org_scn_community_databound = org_scn_community_databound;
+		/*
+		 * Old databound logic
+		 */
 		this.flattenData = function (value, options) {
 			// Make a copy so we don't mess with references
 			this.flatData = null;
@@ -19,6 +23,31 @@ define(["./VizCore","./../../modules/component.databound"], function(VizCore, or
 				});	
 			}catch(e){
 				// alert("Problem flattening data:\n\n"+e);
+			}
+		};
+		/*
+		 * Enhanced logic for multiple properties that can be databound using property binding
+		 * Mike Howles - 01/08/2016
+		 */
+		this.flatten = function (property, propertyConfig, value, options) {
+			// Make a copy so we don't mess with references
+			this.flattenedData[property] = null;
+			var config = this.parse(this[propertyConfig]());
+			if(!config) config = {
+				ignoreExpandedNodes : true,
+				ignoreResults : true,
+				useMockData : true,
+				swapAxes : false
+			};
+			try{
+				this.flattenedData[property] = org_scn_community_databound.flatten(this[property](),{
+					ignoreExpandedNodes : config.ignoreExpandedNodes,
+					ignoreResults : config.ignoreTotals,
+					useMockData : config.useMockData,
+					swapAxes : config.swapAxes
+				});	
+			}catch(e){
+				alert("Problem flattening data:\n\n"+e);
 			}
 		};
 		var that = this;
