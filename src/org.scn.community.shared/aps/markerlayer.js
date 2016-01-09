@@ -62,6 +62,7 @@ define(["./complexitem"], function () {
 							apsControl : "segmentedbutton",
 							desc : "Marker Type",
 							options : [{key : "simple", text : "Simple", icon : "sap-icon://map"},
+							           {key : "image", text : "Image", icon : "sap-icon://map"},
 								       {key : "clustered", text : "Clustered", icon : "sap-icon://map"},
 								       {key : "heat", text : "Heat", icon : "sap-icon://map"}
 							]
@@ -83,6 +84,12 @@ define(["./complexitem"], function () {
 						opts : {
 							desc : "Default Marker Color",
 							apsControl : "color"
+						}
+					},
+					image : {
+						opts : {
+							desc : "Marker Image",
+							apsControl : "special-url"
 						}
 					},
 					showCoverageOnHover : {
@@ -160,6 +167,11 @@ define(["./complexitem"], function () {
 				this.layout.push({
 					comp : "color"
 				});	
+			}
+			if(o.markerType=="image"){
+				this.layout.push({
+					comp : "image"
+				});
 			}
 			if(o.markerType=="clustered"){
 				this.layout.push({

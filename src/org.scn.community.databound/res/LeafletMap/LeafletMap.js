@@ -343,6 +343,29 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				}
 				return newLayer
 			}
+			if(markerConfig.markerType=="image"){
+				var newLayer = L.featureGroup();
+				var repoPath = this.repositoryPath() + "";
+				var url = repoPath.replace(/REPOSITORY_ROOT.GIF/, markerConfig.image);
+				var icon = L.icon({
+					iconUrl: url,
+					/*shadowUrl: 'leaf-shadow.png',
+					
+					iconSize:     [38, 95], // size of the icon
+					shadowSize:   [50, 64], // size of the shadow
+					iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+					shadowAnchor: [4, 62],  // the same for the shadow
+					popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+				*/});
+				for(var i=0;i<values.length;i++){
+					var value = values[i];
+					var newMarker = new L.marker([value.latitude, value.longitude], {
+						icon : icon
+					});
+					newMarker.addTo(newLayer);
+				}
+				return newLayer
+			}
 			if(markerConfig.markerType=="clustered"){
 				var newLayer = new L.MarkerClusterGroup({
 					maxClusterRadius : markerConfig.maxClusterRadius || 80,
@@ -474,8 +497,9 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				//style : styleConfig,
 				style : function(options){
 					return function(feature){
-						options.feature = feature;
-						return that.createStyle(options);
+						options.feature = feature;						
+						var style = that.createStyle(options);
+						return style;
 					};
 				}({
 					layer : layerConfig,

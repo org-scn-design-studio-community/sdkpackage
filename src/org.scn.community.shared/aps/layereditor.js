@@ -51,7 +51,6 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 		modulesLoaded : function(){
 			this.makeLayout();
 			this.layoutComponents();
-			//this.updateFeaturePropertiesList(this.determineFeatureProperties({},this.processMap(this.getValue().geoJSON)));
 		},
 		createComponents : function () {
 			try {
@@ -149,6 +148,7 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 				tooltip : "Feature to use as a key to match a map feature to your data."
 			});
 			if (this.getValue().mapType == "custom"){
+				this.updateFeaturePropertiesList(this.determineFeatureProperties({},this.processMap(this.getValue().geoJSON)));
 				this.layout.push({
 					comp : "geoJSON"
 				});
