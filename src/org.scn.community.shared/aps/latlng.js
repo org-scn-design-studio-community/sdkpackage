@@ -62,6 +62,12 @@ define([
 					subdomains : "12",
 					attribution: "&copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest"
 				});
+				var ff = L.tileLayer("/aad/zen/mimes/sdk_include/org.scn.community.shared/os/tiles/standard/{z}/{x}/{y}.png", {
+					minZoom: 0,
+					maxZoom: 4,
+					subdomains : "",
+					attribution: "Using internal maps.  No internet connection needed."
+				});
 				this.map = new L.Map(container.get(0), {
 					layers: [osm],
 					center: this.getValue(),
@@ -81,7 +87,7 @@ define([
 		    		prefix : false
 		    	});
 				attributionControl.addTo(this.map);
-				this._controlLayer = L.control.layers({"Standard":osm, "Satellite" : sat },null,{ });
+				this._controlLayer = L.control.layers({"Standard":osm, "Satellite" : sat, "Firewall-Friendly" : ff },null,{ });
 				this._controlLayer.addTo(this.map);				
 			}
 			}catch(e){
