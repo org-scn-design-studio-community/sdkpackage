@@ -91,7 +91,7 @@ define([
 				this._controlLayer.addTo(this.map);				
 			}
 			}catch(e){
-				alert(e);
+				alert("Error in latlng APS Control\n\n" + e);
 			}
 		},
 		init : function () {

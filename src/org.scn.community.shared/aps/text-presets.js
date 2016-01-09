@@ -60,7 +60,7 @@ define([], function () {
 					}(o.value), this);
 				}
 			}catch(e){
-				alert(e);
+				alert("Error making preset menu in text-presets:\n\n" + e);
 			}
 		},
 		presetsLoadComplete : function (data) {

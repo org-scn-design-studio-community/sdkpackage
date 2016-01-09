@@ -55,101 +55,97 @@ define(["./complexitem"], function () {
 			this.layoutComponents();
 		},
 		createComponents : function () {
-			try {
-				this._props = {
-					markerType : {
-						opts : {
-							apsControl : "segmentedbutton",
-							desc : "Marker Type",
-							options : [{key : "simple", text : "Simple", icon : "sap-icon://map"},
-							           {key : "image", text : "Image", icon : "sap-icon://map"},
-								       {key : "clustered", text : "Clustered", icon : "sap-icon://map"},
-								       {key : "heat", text : "Heat", icon : "sap-icon://map"}
-							]
-						}
-					},
-					latitude : {
-						opts : {
-							desc : "Latitude",
-							apsControl : "columnselector"
-						}
-					},
-					longitude : {
-						opts : {
-							desc : "Longitude",
-							apsControl : "columnselector"
-						}
-					},
-					color : {
-						opts : {
-							desc : "Default Marker Color",
-							apsControl : "color"
-						}
-					},
-					image : {
-						opts : {
-							desc : "Marker Image",
-							apsControl : "special-url"
-						}
-					},
-					showCoverageOnHover : {
-						opts : {
-							desc : "Show Coverage on Hover",
-							apsControl : "checkbox"
-						}
-					},
-					zoomToBoundsOnClick : {
-						opts : {
-							desc : "Zoom to Bounds on Click",
-							apsControl : "checkbox"
-						}
-					},
-					maxClusterRadius : {
-						opts : {
-							desc : "Max. Cluster Radius",
-							apsControl : "spinner"
-						}
-					},
-					disableClusteringAtZoom : {
-						opts : {
-							desc : "Zoom Level to stop clustering",
-							apsControl : "spinner"
-						}
-					},
-					heatRadius :{
-						opts : {
-							desc : "Radius",
-							apsControl : "spinner"
-						}
-					},
-					heatBlur : {
-						opts : {
-							desc : "Blur",
-							apsControl : "spinner"
-						}
-					},
-					heatMax : {
-						opts : {
-							desc : "Maximum Point Intensity",
-							apsControl : "spinner"
-						}
-					},
-					heatMinOpacity : {
-						opts : {
-							desc : "Minimum Opacity (0.0 - 1.0)",
-							apsControl : "spinner"
-						}
-					},
-					heatMaxZoom : {
-						opts : {
-							desc : "Max Zoom Level",
-							apsControl : "spinner"
-						}
+			this._props = {
+				markerType : {
+					opts : {
+						apsControl : "segmentedbutton",
+						desc : "Marker Type",
+						options : [{key : "simple", text : "Simple", icon : "sap-icon://map"},
+						           {key : "image", text : "Image", icon : "sap-icon://map"},
+							       {key : "clustered", text : "Clustered", icon : "sap-icon://map"},
+							       {key : "heat", text : "Heat", icon : "sap-icon://map"}
+						]
 					}
-				};
-			} catch (e) {
-				alert(e);
-			}
+				},
+				latitude : {
+					opts : {
+						desc : "Latitude",
+						apsControl : "columnselector"
+					}
+				},
+				longitude : {
+					opts : {
+						desc : "Longitude",
+						apsControl : "columnselector"
+					}
+				},
+				color : {
+					opts : {
+						desc : "Default Marker Color",
+						apsControl : "color"
+					}
+				},
+				image : {
+					opts : {
+						desc : "Marker Image",
+						apsControl : "special-url"
+					}
+				},
+				showCoverageOnHover : {
+					opts : {
+						desc : "Show Coverage on Hover",
+						apsControl : "checkbox"
+					}
+				},
+				zoomToBoundsOnClick : {
+					opts : {
+						desc : "Zoom to Bounds on Click",
+						apsControl : "checkbox"
+					}
+				},
+				maxClusterRadius : {
+					opts : {
+						desc : "Max. Cluster Radius",
+						apsControl : "spinner"
+					}
+				},
+				disableClusteringAtZoom : {
+					opts : {
+						desc : "Zoom Level to stop clustering",
+						apsControl : "spinner"
+					}
+				},
+				heatRadius :{
+					opts : {
+						desc : "Radius",
+						apsControl : "spinner"
+					}
+				},
+				heatBlur : {
+					opts : {
+						desc : "Blur",
+						apsControl : "spinner"
+					}
+				},
+				heatMax : {
+					opts : {
+						desc : "Maximum Point Intensity",
+						apsControl : "spinner"
+					}
+				},
+				heatMinOpacity : {
+					opts : {
+						desc : "Minimum Opacity (0.0 - 1.0)",
+						apsControl : "spinner"
+					}
+				},
+				heatMaxZoom : {
+					opts : {
+						desc : "Max Zoom Level",
+						apsControl : "spinner"
+					}
+				}
+			};
 		},
 		makeLayout : function () {
 			this.layout = [];

@@ -360,7 +360,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 							}
 						}
 					}catch(e){
-						alert(e);
+						alert("Problem while reading data source aliases:\n\n" + e);
 					}
 					if (componentInfo && componentInfo.supportsFlatData) {
 						var dsm = this.callRuntimeHandler("getAPSMetaData");
@@ -592,7 +592,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			this.mainLayout.placeAt("content");
 			this.updateDataInfo("Initialize");
 		} catch (e2) {
-			alert(e2.stack);
+			alert("Problem while generating APS UI Components:\n\n"+e2.stack);
 		}
 	};
 	this.hLabel = function (label, component) {

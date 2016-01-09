@@ -32,20 +32,6 @@ define([],function(){
 			var s = propertyPage.TResourceUrl();
 			this.setValue(s);
 			this.fireValueChange();
-			return;
-			var f = this.getCallback();
-		    if(!f){
-		    	
-		    }else{
-		    	f();
-		    }
-			 alert(this.getCallback());
-			
-			try{
-				// + " file was added to the BI App repository.");
-			}catch(e){
-				alert("Error when determining file: " + e);
-			}
 		 },
 		 uploadHandler : function(oControlEvent){
 			 var that = this;

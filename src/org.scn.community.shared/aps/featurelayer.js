@@ -55,85 +55,81 @@ define(["./complexitem"], function () {
 			this.layoutComponents();
 		},
 		createComponents : function () {
-			try {
-				this._props = {
-					fillColor : {
-						opts : {
-							desc : "Default Feature Color",
-							apsControl : "color"							
-						}
-					},
-					color : {
-						opts : {
-							desc : "Default Feature Border Color",
-							apsControl : "color"
-						}
-					},
-					colorScaleConfig : {
-						opts : {
-							apsControl : "scaleeditor",
-							desc : "Color Scale"
-						}
-					},
-					colorScaleMeasure : {
-						opts :{
-							desc : "Color Scale Measure",
-							apsControl : "measureselector"							
-						}
-					},
-					weight : {
-						opts : {
-							desc : "Line Weight",
-							apsControl : "spinner"							
-						}
-					},
-					opacity : {
-						opts : {
-							desc : "Border Opacity (0.00 - 1.00)",
-							apsControl : "spinner"							
-						}
-					},
-					fillOpacity : {
-						opts :{
-							desc : "Fill Opacity (0.00 - 1.00)",
-							apsControl : "spinner"							
-						}
-					},
-					tooltipTemplate :{
-						opts : {
-							desc : "Tooltip Template",
-							apsControl : "codemirror",
-							height : "200px",
-							apsConfig : {
-								lineNumbers: true,
-								mode: "text/html",
-								theme: "eclipse",
-								matchBrackets: true
-							}								
-						}
-					},
-					/*
-					 * Unfortunately, not supported enough to use in 1.6
-					 * Maybe another day.  -Mike
-					dataselection : {
-						desc : "Data Source",
-						defaultValue : {
-							alias : "",
-							selection : {}
-						},
-						apsControl : "dataselection2.0"
-					},
-					*/
-					map : {
-						opts : {
-							desc : "Custom GeoJSON",
-							apsControl : "layereditor"							
-						}
+			this._props = {
+				fillColor : {
+					opts : {
+						desc : "Default Feature Color",
+						apsControl : "color"							
 					}
-				};
-			} catch (e) {
-				alert(e);
-			}
+				},
+				color : {
+					opts : {
+						desc : "Default Feature Border Color",
+						apsControl : "color"
+					}
+				},
+				colorScaleConfig : {
+					opts : {
+						apsControl : "scaleeditor",
+						desc : "Color Scale"
+					}
+				},
+				colorScaleMeasure : {
+					opts :{
+						desc : "Color Scale Measure",
+						apsControl : "measureselector"							
+					}
+				},
+				weight : {
+					opts : {
+						desc : "Line Weight",
+						apsControl : "spinner"							
+					}
+				},
+				opacity : {
+					opts : {
+						desc : "Border Opacity (0.00 - 1.00)",
+						apsControl : "spinner"							
+					}
+				},
+				fillOpacity : {
+					opts :{
+						desc : "Fill Opacity (0.00 - 1.00)",
+						apsControl : "spinner"							
+					}
+				},
+				tooltipTemplate :{
+					opts : {
+						desc : "Tooltip Template",
+						apsControl : "codemirror",
+						height : "200px",
+						apsConfig : {
+							lineNumbers: true,
+							mode: "text/html",
+							theme: "eclipse",
+							matchBrackets: true
+						}								
+					}
+				},
+				/*
+				 * Unfortunately, not supported enough to use in 1.6
+				 * Maybe another day.  -Mike
+				dataselection : {
+					desc : "Data Source",
+					defaultValue : {
+						alias : "",
+						selection : {}
+					},
+					apsControl : "dataselection2.0"
+				},
+				*/
+				map : {
+					opts : {
+						desc : "Custom GeoJSON",
+						apsControl : "layereditor"							
+					}
+				}
+			};
 		},
 		makeLayout : function () {
 			this.layout = [];

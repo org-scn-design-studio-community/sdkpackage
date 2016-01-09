@@ -52,7 +52,6 @@ define(["./complexitem","./segmentedbutton"], function () {
 			},this);
 		},
 		createComponents : function () {
-			try {
 			this._props = {
 				fieldType : {
 					opts : {
@@ -80,9 +79,6 @@ define(["./complexitem","./segmentedbutton"], function () {
 					}
 				}
 			};
-			} catch (e) {
-				alert(e);
-			}
 		},
 		makeLayout : function () {
 			this.layout = [];

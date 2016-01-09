@@ -53,54 +53,50 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 			this.layoutComponents();
 		},
 		createComponents : function () {
-			try {
-				this._props = {
-					mapType : {
-						opts : {
-							apsControl : "segmentedbutton",
-							desc : "Map Type",
-							options : [
-							    {key : "url", text : "By URL", icon : "sap-icon://chain-link"},
-							    {key : "file", text : "By File", icon : "sap-icon://save"},
-							    {key : "custom", text : "Custom", icon : "sap-icon://map-2"}
-							],
-							afterCreate : function(component){
-								
-							}
-						}
-					},
-					file : {
-						opts : {
-							desc : "GeoJSON File",
-							apsControl : "special-url"
-						}
-					},
-					url : {
-						opts : {
-							desc : "URL",
-							apsControl : "text-presets",
-							presetsIndex : "os/maps/presets.json"
-						}
-					},
-					featureKey : {
-						opts : {
-							desc : "Feature Key",
-							apsControl : "combobox",
-							afterCreate : function(component){
-								component.setDisplaySecondaryValues(true);
-							}
-						}
-					},
-					geoJSON : {
-						opts : {
-							desc : "Custom GeoJSON",
-							apsControl : "mapeditor"
+			this._props = {
+				mapType : {
+					opts : {
+						apsControl : "segmentedbutton",
+						desc : "Map Type",
+						options : [
+						    {key : "url", text : "By URL", icon : "sap-icon://chain-link"},
+						    {key : "file", text : "By File", icon : "sap-icon://save"},
+						    {key : "custom", text : "Custom", icon : "sap-icon://map-2"}
+						],
+						afterCreate : function(component){
+							
 						}
 					}
-				};
-			} catch (e) {
-				alert(e);
-			}
+				},
+				file : {
+					opts : {
+						desc : "GeoJSON File",
+						apsControl : "special-url"
+					}
+				},
+				url : {
+					opts : {
+						desc : "URL",
+						apsControl : "text-presets",
+						presetsIndex : "os/maps/presets.json"
+					}
+				},
+				featureKey : {
+					opts : {
+						desc : "Feature Key",
+						apsControl : "combobox",
+						afterCreate : function(component){
+							component.setDisplaySecondaryValues(true);
+						}
+					}
+				},
+				geoJSON : {
+					opts : {
+						desc : "Custom GeoJSON",
+						apsControl : "mapeditor"
+					}
+				}
+			};
 		},
 		loadResource : function(url){
 			var that = this;

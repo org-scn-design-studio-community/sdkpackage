@@ -55,33 +55,29 @@ define(["./complexitem"], function () {
 			this.layoutComponents();
 		},
 		createComponents : function () {
-			try {
-				this._props = {
-					layerType : {
-						opts : {
-							apsControl : "segmentedbutton",
-							desc : "Layer Type",
-							options : [{key : "feature", text : "Feature", icon : "sap-icon://choropleth-chart"},
-								       {key : "marker", text : "Marker", icon : "sap-icon://map"}
-							]
-						}
-					},
-					featureConfig : {
-						opts : {
-							apsControl : "featurelayer",
-							desc : "Feature Configuration"							
-						}
-					},
-					markerConfig : {
-						opts : {
-							apsControl : "markerlayer",
-							desc : "Marker Configuration"							
-						}
+			this._props = {
+				layerType : {
+					opts : {
+						apsControl : "segmentedbutton",
+						desc : "Layer Type",
+						options : [{key : "feature", text : "Feature", icon : "sap-icon://choropleth-chart"},
+							       {key : "marker", text : "Marker", icon : "sap-icon://map"}
+						]
 					}
-				};
-			} catch (e) {
-				alert(e);
-			}
+				},
+				featureConfig : {
+					opts : {
+						apsControl : "featurelayer",
+						desc : "Feature Configuration"							
+					}
+				},
+				markerConfig : {
+					opts : {
+						apsControl : "markerlayer",
+						desc : "Marker Configuration"							
+					}
+				}
+			};
 		},
 		makeLayout : function () {
 			this.layout = [];

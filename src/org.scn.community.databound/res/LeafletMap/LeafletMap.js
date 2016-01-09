@@ -136,78 +136,73 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							desc : "Layer",
 							apsControl : "maplayer",
 							defaultValue : {
-								"key" : "Sample Layer - World Countries",
-								"visible" : true,
-								"layer" : {
-									"layerType" : "feature",
-									"featureConfig" : {
-										"fillColor" : "#DFDFDF",
-										"color" : "#B0B0B0",
-										"image" : "",
-										"weight" : 1,
-										"colorScaleConfig" : {
-											"colors" : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
-											"scaleType" : "quantile",
-											"rangeType" : "mean",
-											"clamp" : true,
-											"interpolation" : "interpolateRgb",
-											"min" : 0,
-											"max" : 10000
+								"layerType" : "feature",
+								"featureConfig" : {
+									"fillColor" : "#DFDFDF",
+									"color" : "#B0B0B0",
+									"weight" : 1,
+									"colorScaleConfig" : {
+										"colors" : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
+										"scaleType" : "quantile",
+										"rangeType" : "mean",
+										"clamp" : true,
+										"interpolation" : "interpolateRgb",
+										"min" : 0,
+										"max" : 10000
+									},
+									"colorScaleMeasure" : {
+										"fieldType" : "position",
+										"fieldPosition" : 0
+									},
+									"opacity" : 0.8,
+									"fillOpacity" : 0.8,
+									"tooltipTemplate" : "<strong><span>{featurekey}</span></strong><br/>\n<ul>\n\t<li>{colormeasure-label}:{colormeasure-formattedvalue}\n</ul>",
+									"map" : {
+										"mapType" : "url",
+										"featureKey" : "admin",
+										"url" : "{ds-maps}/countries_medium.json",
+										"geoJSON" : {
+											"type" : "FeatureCollection",
+											"features" : []
+										}
+									}
+								},
+								"markerConfig" : {
+									"markerType" : "heat",
+									"color" : "#009966",
+									"image" : "",
+									"longitude" : {
+										"columnType" : "dimension",
+										"measure" : {
+											"fieldType" : "position",
+											"fieldPosition" : 1
 										},
-										"colorScaleMeasure" : {
+										"dimension" : {
+											"fieldType" : "position",
+											"fieldPosition" : 0
+										}
+									},
+									"latitude" : {
+										"columnType" : "dimension",
+										"measure" : {
 											"fieldType" : "position",
 											"fieldPosition" : 0
 										},
-										"opacity" : 0.8,
-										"fillOpacity" : 0.8,
-										"tooltipTemplate" : "<strong><span>{featurekey}</span></strong><br/>\n<ul>\n\t<li>{colormeasure-label}:{colormeasure-formattedvalue}\n</ul>",
-										"map" : {
-											"mapType" : "url",
-											"featureKey" : "admin",
-											"url" : "{ds-maps}/countries_medium.json",
-											"geoJSON" : {
-												"type" : "FeatureCollection",
-												"features" : []
-											}
+										"dimension" : {
+											"fieldType" : "position",
+											"fieldPosition" : 0
 										}
 									},
-									"markerConfig" : {
-										"markerType" : "heat",
-										"color" : "#009966",
-										"longitude" : {
-											"columnType" : "dimension",
-											"measure" : {
-												"fieldType" : "position",
-												"fieldPosition" : 1
-											},
-											"dimension" : {
-												"fieldType" : "position",
-												"fieldPosition" : 0
-											}
-										},
-										"latitude" : {
-											"columnType" : "dimension",
-											"measure" : {
-												"fieldType" : "position",
-												"fieldPosition" : 0
-											},
-											"dimension" : {
-												"fieldType" : "position",
-												"fieldPosition" : 0
-											}
-										},
-										"maxClusterRadius" : "80",
-										"zoomToBoundsOnClick" : true,
-										"disableClusteringAtZoom" : "18",
-										"heatMinOpacity" : "0.1",
-										"heatMax" : "1.0",
-										"heatBlur" : "15",
-										"heatRadius" : "25",
-										"heatMaxZoom" : "18"
-									}
+									"maxClusterRadius" : "80",
+									"zoomToBoundsOnClick" : true,
+									"disableClusteringAtZoom" : "18",
+									"heatMinOpacity" : "0.1",
+									"heatMax" : "1.0",
+									"heatBlur" : "15",
+									"heatRadius" : "25",
+									"heatMaxZoom" : "18"
 								}
 							}
-
 						},
 						/*,
 						markers : {

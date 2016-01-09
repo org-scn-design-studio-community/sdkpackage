@@ -87,7 +87,6 @@ define(["./complexitem"], function () {
 			},this);
 		},
 		createComponents : function () {
-			try {
 			this._props = {
 				fieldType : {
 					opts : {
@@ -115,9 +114,6 @@ define(["./complexitem"], function () {
 					}
 				}
 			};
-			} catch (e) {
-				alert(e);
-			}
 		},
 		makeLayout : function () {
 			this.layout = [];

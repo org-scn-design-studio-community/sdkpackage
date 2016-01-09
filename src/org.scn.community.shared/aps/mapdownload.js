@@ -136,7 +136,7 @@ define([
 					}					
 				}
 			}catch(e){
-				alert(e);
+				alert("Error in mapdownload component:\n\n" + e);
 			}
 		},
 		makeMapMenu : function(o, menuitem, rootConfig){

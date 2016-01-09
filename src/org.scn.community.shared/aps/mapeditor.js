@@ -191,7 +191,7 @@ define([
 			
 			
 			}catch(e){
-				alert(e);
+				alert("Error rendering in mapeditor:\n\n" + e);
 			}
 		},
 		getShapes : function(drawnItems){
