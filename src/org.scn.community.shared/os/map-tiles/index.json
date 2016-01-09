@@ -9,6 +9,14 @@
 			}
 		]
 	},{
+		"label" : "Firewall-Friendly",
+		"presets" : [
+			{
+				"label" : "Standard",
+				"url" : "firewall-friendly-standard.json"
+			}
+		]
+	},{
 		"label" : "Nokia HERE",
 		"presets" : [{
 				"label" : "Standard",

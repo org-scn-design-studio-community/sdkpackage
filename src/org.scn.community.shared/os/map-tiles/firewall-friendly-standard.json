@@ -1,0 +1,8 @@
+{
+	"baseUrl" : "{os-dir}/tiles/standard/{z}/{x}/{y}.png",
+	"attribution" : "",
+	"subdomains" : "",
+	"minZoom" : 0,
+	"maxZoom" : 4,
+	"tileSize" : 256
+}

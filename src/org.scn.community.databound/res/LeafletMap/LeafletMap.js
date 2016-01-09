@@ -631,7 +631,10 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			// BASE MAP
 			for(var i=0;i<tileOptions.length;i++){
 				var tileConfig = tileOptions[i].tileConfig;
-				var newTileLayer = L.tileLayer(tileConfig.baseUrl, tileConfig);
+				var url = tileConfig.baseUrl;
+				var osPath = sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","os")
+				url = url.replace(/{os-dir}/g, osPath);
+				var newTileLayer = L.tileLayer(url, tileConfig);
 				this._controlLayer.addBaseLayer(newTileLayer, tileOptions[i].key);
 				if(this.currentBaseLayer()==tileOptions[i].key || (!this.currentBaseLayer() && i==0)){
 					newTileLayer.addTo(this._map);
