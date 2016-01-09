@@ -124,19 +124,19 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 								var setValue = that.getValue()[property];
 							}
 							var o = that.getValue();
-							if(handler.serialized){
-								if(o && o[property]){
+							if(o && o[property]){
+								if(handler.serialized){
 									handler.setter.call(that, property, JSON.stringify(o[property]));
 								}else{
-									handler.setter.call(that, property, JSON.stringify(handler.defaultValue));
-									// This Complex Property doesn't have a value yet.
+									handler.setter.call(that, property, o[property]);
 								}
 							}else{
-								if(o && o[property]){
-									handler.setter.call(that, property, o[property]);		
-								}else{
-									// handler.setter.call(that, property, handler.defaultValue);
-								}
+								// No master property set yet.
+							}
+							try{
+								
+							}catch(e){
+								alert("Problem while setting '" + property + "'.\n\n"+e);
 							}
 							// Step 3a, if component has afterInit method, call it!
 

@@ -104,6 +104,8 @@ define(["./complexitem"], function () {
 	});
 	return {
 		id : "maplayer",
+		defaultValue : {
+		},
 		serialized : true,
 		setter : function (property, value) {
 			var newValue = jQuery.parseJSON(value);

@@ -143,6 +143,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 									"featureConfig" : {
 										"fillColor" : "#DFDFDF",
 										"color" : "#B0B0B0",
+										"image" : "",
 										"weight" : 1,
 										"colorScaleConfig" : {
 											"colors" : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
