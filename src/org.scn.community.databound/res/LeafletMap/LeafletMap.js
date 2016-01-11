@@ -172,7 +172,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 									}
 								},
 								"markerConfig" : {
-									"markerType" : "heat",
+									"markerType" : "simple",
 									"color" : "#009966",
 									"image" : "",
 									"longitude" : {
@@ -200,6 +200,10 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 									"maxClusterRadius" : "80",
 									"zoomToBoundsOnClick" : true,
 									"disableClusteringAtZoom" : "18",
+									"heatIntensityMeasure" : {
+										"fieldType" : "position",
+										"fieldPosition" : 0
+									},
 									"heatMinOpacity" : "0.1",
 									"heatMax" : "1.0",
 									"heatBlur" : "15",
@@ -312,6 +316,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		this.renderMarkerLayer = function(markerConfig){
 			var lat = this.determineColumnIndex(markerConfig.latitude);
 			var lng = this.determineColumnIndex(markerConfig.longitude);
+			var heatIntensityIndex = this.determineMeasureIndex(markerConfig.heatIntensityMeasure);
 			var values = [];
 			for(var i=0;i<this.flatData.values.length;i++){
 				var newRow = {
@@ -329,6 +334,11 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				}
 				newRow.latitude = parseFloat(newRow.latitude);
 				newRow.longitude = parseFloat(newRow.longitude);
+				if(heatIntensityIndex > -1){
+					newRow.heatIntensity = this.flatData.values[i][heatIntensityIndex];
+				}else{
+					newRow.heatIntensity = 1;
+				}
 				values.push(newRow);
 			}
 			
@@ -396,7 +406,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				for(var i=0;i<values.length;i++){
 					var value = values[i];
 					console.log(value);
-					newLayer.addLatLng(new L.LatLng(value.latitude,value.longitude));
+					newLayer.addLatLng(new L.LatLng(value.latitude,value.longitude,value.heatIntensity));
 					
 				}
 				return newLayer;

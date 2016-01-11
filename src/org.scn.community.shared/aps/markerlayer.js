@@ -144,6 +144,12 @@ define(["./complexitem"], function () {
 						desc : "Max Zoom Level",
 						apsControl : "spinner"
 					}
+				},
+				heatIntensityMeasure : {
+					opts : {
+						desc : "Heat Intensity Measure",
+						apsControl : "measureselector"
+					}
 				}
 			};
 		},
@@ -184,6 +190,9 @@ define(["./complexitem"], function () {
 				});
 			}
 			if(o.markerType=="heat"){
+				this.layout.push({
+					comp : "heatIntensityMeasure"
+				});
 				this.layout.push({
 					comp : "heatMinOpacity"
 				});

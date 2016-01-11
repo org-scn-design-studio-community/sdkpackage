@@ -37,7 +37,7 @@ define([], function () {
 	return {
 		id : "measurelist",
 		setter : function (property, value) {
-			this["cmp_" + property].setSelectedKey(newValue);
+			this["cmp_" + property].setSelectedKey(value);
 		},
 		getter : function (property, control) {
 			return control.getSelectedKey();
