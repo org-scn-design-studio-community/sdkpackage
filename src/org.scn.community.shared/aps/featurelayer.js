@@ -111,6 +111,12 @@ define(["./complexitem"], function () {
 						}								
 					}
 				},
+				dimensionKey : {
+					opts :{
+						desc : "Key Dimension",
+						apsControl : "dimensionselector"							
+					}
+				},
 				/*
 				 * Unfortunately, not supported enough to use in 1.6
 				 * Maybe another day.  -Mike
@@ -126,7 +132,7 @@ define(["./complexitem"], function () {
 				map : {
 					opts : {
 						desc : "Custom GeoJSON",
-						apsControl : "layereditor"							
+						apsControl : "layereditor"
 					}
 				}
 			};
@@ -156,6 +162,9 @@ define(["./complexitem"], function () {
 			});
 			this.layout.push({
 				comp : "tooltipTemplate"
+			});
+			this.layout.push({
+				comp : "dimensionKey"
 			});
 			this.layout.push({
 				comp : "map"

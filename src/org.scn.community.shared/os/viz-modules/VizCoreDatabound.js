@@ -259,7 +259,7 @@ define(["./VizCore","./../../modules/component.databound"], function(VizCore, or
 				fieldIndex = -1;
 			}
 			if(dimensionObj.fieldType=="position"){
-				if(this.flatData.columnHeadersKeys.length>dimensionObj.fieldPosition) fieldIndex = dimensionObj.fieldPosition;
+				if(this.flatData.dimensionHeadersKeys.length>dimensionObj.fieldPosition) fieldIndex = dimensionObj.fieldPosition;
 			}
 			if(dimensionObj.fieldType=="name"){
 				if(this.flatData && this.flatData.dimensionHeadersKeys){

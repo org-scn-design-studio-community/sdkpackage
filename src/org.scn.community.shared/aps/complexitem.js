@@ -124,19 +124,18 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 								var setValue = that.getValue()[property];
 							}
 							var o = that.getValue();
+							var v;
 							if(o && o[property]){
-								if(handler.serialized){
-									handler.setter.call(that, property, JSON.stringify(o[property]));
-								}else{
-									handler.setter.call(that, property, o[property]);
-								}
+								v = o[property];
 							}else{
-								// No master property set yet.
+								v = handler.defaultValue;
 							}
-							try{
-								
-							}catch(e){
-								alert("Problem while setting '" + property + "'.\n\n"+e);
+							if(v !== undefined){
+								if(handler.serialized){
+									handler.setter.call(that, property, JSON.stringify(v));
+								}else{
+									handler.setter.call(that, property, v);
+								}								
 							}
 							// Step 3a, if component has afterInit method, call it!
 
@@ -220,14 +219,23 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 		},
 		updateComponents : function(){
 			var that = this;
+			var o = this.getValue();
 			for(var property in this._props){
 				var p = this._props[property];
 				if(p.handler){
 					var handler = p.handler;
-					if(handler.serialized){
-						handler.setter.call(that, property, JSON.stringify(that.getValue()[property]));	
+					var v;
+					if(o && o[property]){
+						v = o[property];
 					}else{
-						handler.setter.call(that, property, that.getValue()[property]);	
+						v = handler.defaultValue;
+					}
+					if(v !== undefined){
+						if(handler.serialized){
+							handler.setter.call(this, property, JSON.stringify(v));
+						}else{
+							handler.setter.call(this, property, v);					
+						}						
 					}
 				}
 			}

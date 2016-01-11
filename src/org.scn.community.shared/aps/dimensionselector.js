@@ -104,6 +104,11 @@ define(["./complexitem","./segmentedbutton"], function () {
 	return {
 		id : "dimensionselector",
 		serialized : true,
+		defaultValue : {
+			fieldType : "unassigned",
+			fieldPosition : 0,
+			fieldName : ""
+		},
 		setter : function (property, value) {
 			var newValue = jQuery.parseJSON(value);
 			this["cmp_" + property].setValue(newValue);

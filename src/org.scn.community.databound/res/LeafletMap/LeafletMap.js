@@ -157,6 +157,10 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 									"opacity" : 0.8,
 									"fillOpacity" : 0.8,
 									"tooltipTemplate" : "<strong><span>{featurekey}</span></strong><br/>\n<ul>\n\t<li>{colormeasure-label}:{colormeasure-formattedvalue}\n</ul>",
+									"dimensionKey" : {
+										"fieldType" : "position",
+										"fieldPosition" : 0
+									},
 									"map" : {
 										"mapType" : "url",
 										"featureKey" : "admin",
@@ -287,8 +291,13 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			}
 			var p = options.feature.properties[options.layer.map.featureKey];
 			var rowIndex = -1;
+			var colIndex = this.determineDimensionIndex(options.layer.dimensionKey);
 			for(var i=0;i<that.flatData.rowHeaders.length;i++){
-				if(that.flatData.rowHeaders[i] == p) rowIndex = i;
+				if(colIndex == -1 || colIndex == null){	// Concatenated
+					if(that.flatData.rowHeaders[i] == p) rowIndex = i;	
+				}else{	// Specific dimension
+					if(that.flatData.rowHeadersKeys2D[i][colIndex] == p) rowIndex = i;
+				}
 			}
 			if(rowIndex>-1){
 				var value = that.flatData.values[rowIndex][options.colorMeasureIndex];
