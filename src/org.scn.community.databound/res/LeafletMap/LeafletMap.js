@@ -321,10 +321,13 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			var lat = this.determineColumnIndex(markerConfig.latitude);
 			var lng = this.determineColumnIndex(markerConfig.longitude);
 			var heatIntensityIndex = this.determineMeasureIndex(markerConfig.heatIntensityMeasure);
+			var colorMeasureIndex = this.determineMeasureIndex(markerConfig.colorScaleMeasure);
+			var markerSizeMeasureIndex = this.determineMeasureIndex(markerConfig.markerSizeMeasure);
 			var values = [];
 			for(var i=0;i<this.flatData.values.length;i++){
 				var newRow = {
-					count : 1
+					count : 1,
+					flatDataIndex : i
 				};
 				if(markerConfig.latitude.columnType=="dimension"){
 					newRow.latitude = this.flatData.rowHeadersKeys2D[i][lat];
@@ -338,16 +341,142 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				}
 				newRow.latitude = parseFloat(newRow.latitude);
 				newRow.longitude = parseFloat(newRow.longitude);
+				// Heat Index
 				if(heatIntensityIndex > -1){
 					newRow.heatIntensity = this.flatData.values[i][heatIntensityIndex];
 				}else{
 					newRow.heatIntensity = 1;
 				}
+				// Color Measure
+				if(colorMeasureIndex > -1){
+					newRow.colorMeasure = this.flatData.values[i][colorMeasureIndex];
+				}else{
+					// Null
+				}
+				// Marker Size Measure
+				if(markerSizeMeasureIndex > -1){
+					newRow.markerSizeMeasure = this.flatData.values[i][markerSizeMeasureIndex];
+				}else{
+					// Null
+				}
 				values.push(newRow);
 			}
-			
+			/*
+			values.sort(function(a, b) { 
+				if(a.colorMeasure !== undefined && b.colorMeasure !== undefined){
+					return a.colorMeasure - b.colorMeasure;					
+				}
+			});
+			*/
 			if(markerConfig.markerType=="simple"){
 				var newLayer = L.featureGroup();
+				var colorScale;
+				var markerSizeScale;
+				if(markerConfig && markerConfig.colorScaleConfig && colorMeasureIndex >-1){
+					var aValues = [];
+					values.map(function(e){
+						aValues.push(e.colorMeasure);
+					});
+					aValues.sort(function(a, b) { return a - b; });
+					var csc = markerConfig.colorScaleConfig || {
+						scaleType : "quantile",
+						colors : "#000000,#FFFFFF"
+					};
+					if(csc.scaleType =="quantile" || csc.scaleType == "quantize"){
+						colorScale = d3.scale[csc.scaleType]()
+							.domain(aValues)
+							.range(markerConfig.colorScaleConfig.colors.split(","));
+						
+						if(colorScale.interpolate) colorScale.interpolate(d3.interpolateRgb);
+					}					
+					if(csc.scaleType == "linear"){
+						var pal = markerConfig.colorScaleConfig.colors.split(",") || [];
+						var rangeType = csc.rangeType || "minmax";
+						var r = d3.max(aValues) - d3.min(aValues);
+						var min = d3.min(aValues);
+						if(rangeType == "minmax"){
+							min = d3.min(aValues);
+							r = d3.max(aValues) - d3.min(aValues);
+						}
+						if(rangeType =="mean"){
+							min = 0;
+							r = d3.mean(aValues) * 2;
+						}
+						if(rangeType =="median"){
+							min = 0;
+							r = d3.median(aValues) * 2;
+						}
+						if(rangeType =="manual"){
+							min = csc.min || 0;
+							r = (csc.max || 100) - min;
+						}
+						var stops = [];
+						var rate = r/pal.length;
+						for(var i=0;i<pal.length;i++){
+							stops.push(min + (rate*i));
+						}
+						colorScale = d3.scale.linear()
+				    		.domain(stops)
+				    		.range(pal);
+				    		
+						if(csc.interpolation) colorScale.interpolate(d3[csc.interpolation]);					
+					}
+			        // Clamp if can
+			        if (typeof colorScale.clamp == 'function') {
+			        	if(csc.clamp) colorScale.clamp(true);
+			        }
+				}
+				if(markerConfig && markerConfig.markerSizeConfig && markerSizeMeasureIndex >-1){
+					var aValues = [];
+					values.map(function(e){
+						aValues.push(e.markerSizeMeasure);
+					});
+					aValues.sort(function(a, b) { return a - b; });
+					var msc = markerConfig.markerSizeConfig || {
+						rangeType : "minmax",
+						min : 0,
+						max : 100
+					};
+					var rangeType = msc.rangeType || "minmax";
+					var max = d3.max(aValues);
+					var min = d3.min(aValues);
+					if(rangeType == "minmax"){
+						min = d3.min(aValues);
+						max = d3.max(aValues);
+					}
+					if(rangeType =="mean"){
+						min = 0;
+						max = d3.mean(aValues) * 2;
+					}
+					if(rangeType =="median"){
+						min = 0;
+						max = d3.median(aValues) * 2;
+					}
+					if(rangeType =="manual"){
+						min = msc.min || 0;
+						max = msc.max || 100;
+					}
+					markerSizeScale = d3.scale.linear()
+			    		.domain([parseFloat(min),parseFloat(max)])
+			    		.range([16,64]);
+				}
+
+				for(var i=0;i<values.length;i++){
+					var value = values[i];
+					value.color = markerConfig.color;
+					value.markerSize = markerConfig.markerSize;
+					if(colorScale && value.colorMeasure !== undefined){
+						value.color = colorScale(value.colorMeasure);
+					}
+					if(markerSizeScale && value.markerSizeMeasure !== undefined) {
+						value.markerSize = markerSizeScale(value.markerSizeMeasure);
+					}
+				}
+				// Move biggest markers to the back.
+				values.sort(function(a,b){
+					return b.markerSize - a.markerSize;
+				});
+				console.log(values);
 				for(var i=0;i<values.length;i++){
 					var value = values[i];
 					var newMarker = new L.marker([value.latitude, value.longitude],{
@@ -355,19 +484,78 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							shield : "marker",
 							icon: markerConfig.icon || "circle",
 							prefix: 'fa',
-							shieldColor: markerConfig.color,
+							shieldColor: value.color,
+							iconSize : [value.markerSize || 32, value.markerSize || 32],
+							anchorPosition : [.5, 1]
 							//spin:true
-						}),
-						xxicon : L.SCNDesignStudioMarkers.icon({
-							markerColor : markerConfig.color,
-							icon : "marker",
-							iconSize : [32, 32],
-							anchorPosition : [.5,.5]
 						})
 					});
+					var tt = (markerConfig.tooltipTemplate + "");
+					// Dimension Member Text by Position
+					var rowIndex = value.flatDataIndex;
+					tt = tt.replace(/{dimension-position-text-(.*?)}/g, function(a,b){
+						var ret = "???";
+						var columnIndex = parseInt(b);
+						if(rowIndex>-1){
+							ret = that.flatData.rowHeaders2D[rowIndex][columnIndex];
+						}
+						return ret;
+					});
+					// Dimension Member Text by Label
+					tt = tt.replace(/{dimension-key-text-(.*?)}/g, function(a,b){
+						var ret = "???";
+						var columnIndex = that.determineDimensionIndex({
+							fieldType : "name",
+							fieldName : b
+						});
+						if(rowIndex>-1){
+							ret = that.flatData.rowHeaders2D[rowIndex][columnIndex];
+						}
+						return ret;
+					});
+					// Measure Value by Position
+					tt = tt.replace(/{measure-position-value-(.*?)}/g, function(a,b){
+						var ret = "???";
+						var columnIndex = parseInt(b);
+						if(rowIndex>-1){
+							ret = that.flatData.values[rowIndex][columnIndex];
+						}
+						return ret;
+					});
+					// Measure Label by Position
+					tt = tt.replace(/{measure-position-label-(.*?)}/g, function(a,b){
+						var ret = "???";
+						var columnIndex = parseInt(b);
+						ret = that.flatData.columnHeaders[columnIndex];
+						return ret;
+					});
+					// MEASURE by Label
+					tt = tt.replace(/{measure-key-value-(.*?)}/g, function(a,b){
+						var ret = "???";
+						var columnIndex = that.determineMeasureIndex({
+							fieldType : "name",
+							fieldName : b
+						});
+						if(rowIndex>-1){
+							ret = that.flatData.values[rowIndex][columnIndex];
+						}
+						return ret;
+					});
+					// MEASURE by Label
+					tt = tt.replace(/{measure-key-label-(.*?)}/g, function(a,b){
+						var ret = "???";
+						var columnIndex = that.determineMeasureIndex({
+							fieldType : "name",
+							fieldName : b
+						});
+						if(columnIndex != null)	ret = that.flatData.columnHeaders[columnIndex];
+						return ret;
+					});
+					newMarker.setZIndexOffset(i);
+					newMarker.bindPopup(tt);
 					newMarker.addTo(newLayer);
 				}
-				return newLayer
+				return newLayer;
 			}
 			if(markerConfig.markerType=="image"){
 				var newLayer = L.featureGroup();

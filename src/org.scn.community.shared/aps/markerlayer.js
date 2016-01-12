@@ -85,10 +85,53 @@ define(["./complexitem"], function () {
 						apsControl : "color"
 					}
 				},
+				colorScaleConfig : {
+					opts : {
+						apsControl : "scaleeditor",
+						desc : "Color Scale"
+					}
+				},
+				colorScaleMeasure : {
+					opts :{
+						desc : "Color Scale Measure",
+						apsControl : "measureselector"							
+					}
+				},
 				icon : {
 					opts : {
 						desc : "Marker Icon",
 						apsControl : "text"
+					}
+				},
+				markerSize : {
+					opts : {
+						desc : "Default Marker Size",
+						apsControl : "spinner"
+					}
+				},
+				markerSizeMeasure : {
+					opts :{
+						desc : "Marker Size Measure",
+						apsControl : "measureselector"							
+					}
+				},
+				markerSizeConfig : {
+					opts : {
+						apsControl : "linearscaleeditor",
+						desc : "Marker Size Scale"
+					}
+				},
+				tooltipTemplate :{
+					opts : {
+						desc : "Tooltip Template",
+						apsControl : "codemirror",
+						height : "200px",
+						apsConfig : {
+							lineNumbers: true,
+							mode: "text/html",
+							theme: "eclipse",
+							matchBrackets: true
+						}								
 					}
 				},
 				image : {
@@ -174,10 +217,28 @@ define(["./complexitem"], function () {
 			if(o.markerType=="simple"){
 				this.layout.push({
 					comp : "color"
+				});
+				this.layout.push({
+					comp : "colorScaleMeasure"
+				});
+				this.layout.push({
+					comp : "colorScaleConfig"
 				});	
 				this.layout.push({
+					comp : "markerSizeMeasure"
+				});
+				this.layout.push({
+					comp : "markerSizeConfig"
+				});
+				this.layout.push({
 					comp : "icon"
-				});	
+				});
+				this.layout.push({
+					comp : "markerSize"
+				});
+				this.layout.push({
+					comp : "tooltipTemplate"
+				});
 			}
 			if(o.markerType=="image"){
 				this.layout.push({

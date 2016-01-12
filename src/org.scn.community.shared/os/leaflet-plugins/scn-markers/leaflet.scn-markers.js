@@ -14,7 +14,7 @@ define(["d3","leaflet"], function(d3,L){
             //iconSize: [35, 45],
             //iconAnchor:   [17, 42],
         	iconSize :[32,32],
-        	iconAnchor : [16,32],
+        	//iconAnchor : [16,32],
         	anchorPosition : [.5, .5],
             popupAnchor : [1, -32],
             shadowAnchor : [10, 12],
@@ -45,9 +45,11 @@ define(["d3","leaflet"], function(d3,L){
 			ctx.scale(size.x / 512, size.y / 512);
 			switch (markerType) {
 				case "marker":
+					this.options.anchorPosition = [.5,1];
 					this._createMarker(ctx);
 					break;
 				case "circle":
+					this.options.anchorPosition = [.5,.5];
 					this._createCircle(ctx);
 					break;
 				default:
@@ -55,16 +57,6 @@ define(["d3","leaflet"], function(d3,L){
 			}
 
 			icon.className = this.options.className;
-			/*
-			var anchor = L.point([
-				this.options.iconSize[0] * this.options.anchorPosition[0],
-				this.options.iconSize[1] * this.options.anchorPosition[1]
-			]);
-			if (anchor) {
-				icon.style.marginLeft = (-anchor.x) + 'px';
-				icon.style.marginTop = (-anchor.y) + 'px';
-			}
-			*/
 			return icon;
 		},
         
@@ -73,8 +65,7 @@ define(["d3","leaflet"], function(d3,L){
                 options = this.options;
 
             if (options.bgPos) {
-                div.style.backgroundPosition =
-                    (-options.bgPos.x) + 'px ' + (-options.bgPos.y) + 'px';
+                div.style.backgroundPosition =(-options.bgPos.x) + 'px ' + (-options.bgPos.y) + 'px';
             }
 
             this._setIconStyles(div);
@@ -83,7 +74,7 @@ define(["d3","leaflet"], function(d3,L){
             	var i = document.createElement("div");
             	i.innerHTML = this._createInner();
             	i.style.position = "absolute";
-            	i.style.top = "5px";
+            	i.style.top = (options.iconSize[1] * .1) + "px";
             	//i.style.left = "10px";
             	i.style.width = "100%";
             	i.style.textAlign = "center";
@@ -113,7 +104,7 @@ define(["d3","leaflet"], function(d3,L){
                 }
             }
 
-            return "<i " + iconColorStyle + "class='" + options.extraClasses + " " + options.prefix + " " + iconClass + " " + iconSpinClass + " " + iconColorClass + "'></i>";
+            return "<i style='font-size:"+ parseInt(options.iconSize[1] * .5) +"px;'" + iconColorStyle + "class='" + options.extraClasses + " " + options.prefix + " " + iconClass + " " + iconSpinClass + " " + iconColorClass + "'></i>";
         },
 
         _setIconStyles: function (img) {
@@ -129,11 +120,20 @@ define(["d3","leaflet"], function(d3,L){
 
             img.className = options.className;
 
+            var anchor = L.point([
+  				this.options.iconSize[0] * this.options.anchorPosition[0],
+  				this.options.iconSize[1] * this.options.anchorPosition[1]
+  			]);
+  			if (anchor) {
+  				img.style.marginLeft = (-anchor.x) + 'px';
+  				img.style.marginTop = (-anchor.y) + 'px';
+  			}
+            /*
             if (anchor) {
                 img.style.marginLeft = (-anchor.x) + 'px';
                 img.style.marginTop  = (-anchor.y) + 'px';
             }
-
+             */
             if (size) {
                 img.style.width  = size.x + 'px';
                 img.style.height = size.y + 'px';

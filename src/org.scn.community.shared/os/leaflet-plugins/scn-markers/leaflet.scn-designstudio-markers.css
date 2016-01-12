@@ -5,12 +5,12 @@
   top:0;
   display: block;
   text-align: center;
+  vertical-align: text-top;
 }
 
 .designstudio-scn-mapsmarker i {
-  color: #333;
+  vertical-align: text-top;
   display: inline-block;
-  font-size: 14px;
 }
 
 .designstudio-scn-mapsmarker .icon-white {
