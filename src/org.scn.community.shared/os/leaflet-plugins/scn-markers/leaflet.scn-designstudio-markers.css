@@ -7,6 +7,16 @@
   text-align: center;
 }
 
+.designstudio-scn-mapsmarker i {
+  color: #333;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.designstudio-scn-mapsmarker .icon-white {
+  color: #fff;
+}
+
 /* Retina displays */
 @media (min--moz-device-pixel-ratio: 1.5),(-o-min-device-pixel-ratio: 3/2),
 (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5),(min-resolution: 1.5dppx) {

@@ -10,6 +10,7 @@ require.config({
 	paths : {
 		"leaflet-heat" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet-plugins/leaflet-heat/leaflet-heat",
 		"leaflet-markers" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet-plugins/scn-markers/leaflet.scn-designstudio-markers",
+		"leaflet-scnmarkers" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet-plugins/scn-markers/leaflet.scn-markers",
 		"leaflet-markercluster" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet-plugins/leaflet-markercluster/leaflet.markercluster",
 		"leaflet" : "../" + sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","") + "os/leaflet/leaflet"
 	}
@@ -18,6 +19,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
         "css!./../../../org.scn.community.shared/os/leaflet-plugins/scn-markers/leaflet.scn-designstudio-markers.css",
         "css!./../../../org.scn.community.shared/os/leaflet-plugins/leaflet-markercluster/MarkerCluster.css",
         "css!./../../../org.scn.community.shared/os/leaflet-plugins/leaflet-markercluster/MarkerCluster.Default.css",
+        "css!./../../../org.scn.community.shared/os/fonts/font-awesome-4.5.0/css/font-awesome.min.css",
         "d3",
         "../../../org.scn.community.shared/os/d3v3/topojson.v1",
 		"leaflet",
@@ -25,8 +27,9 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		"sap/designstudio/sdk/component",
 		"leaflet-markers",
 		"leaflet-markercluster",
-		"leaflet-heat"],
-	function (Lcss, Lmarkercss, Lclustercss1, Lclustercss2, d3, topojson, L, VizCoreDatabound, Component,Lmarkers,Lmarkercluster,Lheat) {
+		"leaflet-heat",
+		"leaflet-scnmarkers"],
+	function (Lcss, Lmarkercss, Lclustercss1, Lclustercss2, fontawesome, d3, topojson, L, VizCoreDatabound, Component,Lmarkers,Lmarkercluster,Lheat,LSCNmarkers) {
 	var ownComponentName = "org.scn.community.databound.LeafletMap";
 	/**
 	 * LeafletMap
@@ -174,6 +177,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 								"markerConfig" : {
 									"markerType" : "simple",
 									"color" : "#009966",
+									"icon" : "circle",
 									"image" : "",
 									"longitude" : {
 										"columnType" : "dimension",
@@ -347,7 +351,14 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				for(var i=0;i<values.length;i++){
 					var value = values[i];
 					var newMarker = new L.marker([value.latitude, value.longitude],{
-						icon : L.SCNDesignStudioMarkers.icon({
+						icon: L.SCNMarkers.icon({
+							shield : "marker",
+							icon: markerConfig.icon || "circle",
+							prefix: 'fa',
+							shieldColor: markerConfig.color,
+							//spin:true
+						}),
+						xxicon : L.SCNDesignStudioMarkers.icon({
 							markerColor : markerConfig.color,
 							icon : "marker",
 							iconSize : [32, 32],

@@ -85,6 +85,12 @@ define(["./complexitem"], function () {
 						apsControl : "color"
 					}
 				},
+				icon : {
+					opts : {
+						desc : "Marker Icon",
+						apsControl : "text"
+					}
+				},
 				image : {
 					opts : {
 						desc : "Marker Image",
@@ -168,6 +174,9 @@ define(["./complexitem"], function () {
 			if(o.markerType=="simple"){
 				this.layout.push({
 					comp : "color"
+				});	
+				this.layout.push({
+					comp : "icon"
 				});	
 			}
 			if(o.markerType=="image"){
