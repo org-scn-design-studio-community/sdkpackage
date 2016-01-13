@@ -55,6 +55,9 @@ define([], function () {
 		getValue : function () {
 			return sap.ui.core.Control.prototype.getProperty.apply(this, ["value"]);
 		},
+		modulesLoaded : function(){
+			this.updateFields();	//?		
+		},
 		updateFields : function () {
 			var o = this.getValue();
 			var c = this.getConfig();
@@ -81,7 +84,8 @@ define([], function () {
 			try{
 			this.destroyContent();
 			this.components = {};
-			var config = this.getConfig();
+			this._props = this.getConfig();
+			var config = this._props;
 			for (var property in config) {
 				var item = config[property];
 				var control;
@@ -138,12 +142,26 @@ define([], function () {
 						}(property, handler);
 						control = handler.createComponent.call(that, property, opts, changeHandler);
 						that["cmp_" + property] = control;
-						var setValue = that.getValue()[property];
-						if(handler.serialized){
-							handler.setter.call(that, property, JSON.stringify(that.getValue()[property]));	
+						var o = that.getValue();
+						var v;
+						if(o && o.property){
+							v = o[property];
 						}else{
-							handler.setter.call(that, property, that.getValue()[property]);	
-						}						
+							if(handler.defaultValue !== undefined){
+								// v = JSON.parse(JSON.stringify(handler.defaultValue));
+								// o[property] = v;
+							}
+							//v = handler.defaultValue;
+						}
+						if(v!==undefined){
+							if(handler.serialized){
+								handler.setter.call(that, property, JSON.stringify(v));
+								
+							}else{
+								handler.setter.call(that, property, v);	
+							}
+						}
+
 						// assure there is a control! Make text Area
 						/* TODO
 						if (that["cmp_" + property] == undefined) {
@@ -175,8 +193,12 @@ define([], function () {
 							componentContainer.addContent(that["cmp_" + property]);
 						}
 						}catch(e){
-							alert("Error on handler callback:\n\n" + e);
+							alert("Error on handler callback for complexproperty " + property + ":\n\n" + e);
 						}
+						that._props[property].loaded = true;
+						if(that.checkLoadState()==true){
+							that.updateFields();
+						};
 					};
 				}(this, property+"", JSON.parse(JSON.stringify(item)));
 				require(["../../org.scn.community.shared/aps/"+item.apsControl],callbackFunction,failureFunction);			
@@ -184,6 +206,13 @@ define([], function () {
 			}catch(e){
 				alert("Error generating fields\n\n"+e);
 			}
+		},
+		checkLoadState : function(){
+			var loaded = true;
+			for(var property in this._props){
+				if(!this._props[property].loaded) return false;
+			}
+			return loaded;
 		},
 		hLabel : function (label, component) {
 			var hLayout;

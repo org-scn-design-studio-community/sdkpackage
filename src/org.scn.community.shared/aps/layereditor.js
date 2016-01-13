@@ -49,6 +49,10 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 			}
 		},
 		modulesLoaded : function(){
+			this["cmp_mapType"].attachKeyChange(function(oControlEvent){
+				this.makeLayout();
+				this.layoutComponents();
+			},this);
 			this.makeLayout();
 			this.layoutComponents();
 		},
@@ -203,6 +207,11 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 	});
 	return {
 		id : "layereditor",
+		defaultValue : {
+			mapType : "url",
+			featureKey : "admin",
+			url : "{ds-maps}/countries_medium.json?d"
+		},
 		serialized : true,
 		setter : function (property, value) {
 			var newValue = jQuery.parseJSON(value);

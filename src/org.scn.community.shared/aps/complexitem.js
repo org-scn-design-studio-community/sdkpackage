@@ -58,10 +58,11 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 			// Override
 		},
 		modulesLoaded : function(){
-			// Override
+			// Override			
 		},
 		initializeComponents : function(){
 			var that = this;
+			this.startingValue = JSON.stringify(this.getValue());
 			for(var property in this._props){
 				this._props[property].container = new sap.ui.commons.layout.VerticalLayout({}); 
 				var item = this._props[property];
@@ -121,14 +122,21 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 								if(propertyOptions.afterCreate){
 									propertyOptions.afterCreate.call(that, control);
 								}
-								var setValue = that.getValue()[property];
 							}
 							var o = that.getValue();
-							var v;
-							if(o && o[property]){
-								v = o[property];
-							}else{
-								v = handler.defaultValue;
+							var v = undefined;
+							if(o===undefined){
+								alert("Something is wrong with me.");
+							}
+							if(o){
+								if(o[property] === undefined){
+									if(handler.defaultValue !== undefined){
+										// v = JSON.parse(JSON.stringify(handler.defaultValue));
+										// o[property] = JSON.parse(JSON.stringify(handler.defaultValue));
+									}
+								}else{
+									v = o[property];							
+								}
 							}
 							if(v !== undefined){
 								if(handler.serialized){
@@ -159,6 +167,9 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 							that._props[property].loaded = true;
 							if(that.checkLoadState()==true){
 								that.updateComponents();
+								var endValue = JSON.stringify(that.getValue());
+								//alert(that.startValue + "\n\n" + endValue);
+								//that.fireValueChange();
 								that.modulesLoaded();
 							};
 							
@@ -218,26 +229,32 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 			this.layoutComponents();
 		},
 		updateComponents : function(){
-			var that = this;
-			var o = this.getValue();
-			for(var property in this._props){
-				var p = this._props[property];
-				if(p.handler){
-					var handler = p.handler;
-					var v;
-					if(o && o[property]){
-						v = o[property];
-					}else{
-						v = handler.defaultValue;
-					}
-					if(v !== undefined){
-						if(handler.serialized){
-							handler.setter.call(this, property, JSON.stringify(v));
+			if(this.checkLoadState()==true){
+				var that = this;
+				var o = this.getValue();
+				for(var property in this._props){
+					var p = this._props[property];
+					if(p.handler){
+						var handler = p.handler;
+						var v = undefined;
+						if(o && o[property]){
+							v = o[property];
 						}else{
-							handler.setter.call(this, property, v);					
-						}						
+							// v = handler.defaultValue;
+						}
+						if(v !== undefined){
+							if(handler.serialized){
+								handler.setter.call(this, property, JSON.stringify(v));
+							}else{
+								handler.setter.call(this, property, v);					
+							}						
+						}
+					}else{
+						alert("Warning, no handler found for " + property);
 					}
-				}
+				}				
+			}else{
+				// Defer
 			}
 		},
 		renderer : {}

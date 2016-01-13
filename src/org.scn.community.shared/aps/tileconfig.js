@@ -211,6 +211,13 @@ define(["./complexitem"], function () {
 	});
 	return {
 		id : "tileconfig",
+		defaultValue : {
+	    	baseUrl : "http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png",
+	    	subdomains : "12",
+	    	minZoom : "0",
+	    	maxZoom : "18",
+	    	tileSize : "256"
+	    },
 		setter : function (property, value) {
 			/*var newValue = {};
 			try{

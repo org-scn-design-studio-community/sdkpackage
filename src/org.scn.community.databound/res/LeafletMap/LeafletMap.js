@@ -60,11 +60,12 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					dataset : "data2"
 				}
 			},*/
-			fitBounds : {
+			fitBounds : {	// WIP
 				opts : {
 					desc : "Fit to Bounds",
 					cat : "General",
-					apsControl : "checkbox"
+					// apsControl : "checkbox"
+					noAps : true
 				}
 			},
 			currentBaseLayer : {
@@ -111,7 +112,10 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 							desc : "Tile Config",
 							defaultValue : {
 						    	baseUrl : "http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png",
-						    	subdomains : "12"
+						    	subdomains : "12",
+						    	minZoom : "0",
+						    	maxZoom : "18",
+						    	tileSize : "256"
 						    },
 							apsControl : "tileconfig"
 						}
@@ -144,6 +148,9 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 									"fillColor" : "#DFDFDF",
 									"color" : "#B0B0B0",
 									"weight" : 1,
+									"opacity" : 0.8,
+									"fillOpacity" : 0.8,
+									"tooltipTemplate" : "<strong><span>{featurekey}</span></strong><br/>\n<ul>\n\t<li>{colormeasure-label}:{colormeasure-formattedvalue}\n</ul>",
 									"colorScaleConfig" : {
 										"colors" : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
 										"scaleType" : "quantile",
@@ -155,105 +162,92 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 									},
 									"colorScaleMeasure" : {
 										"fieldType" : "position",
-										"fieldPosition" : 0
+										"fieldPosition" : 0,
+										"fieldName" : "1960"
 									},
-									"opacity" : 0.8,
-									"fillOpacity" : 0.8,
-									"tooltipTemplate" : "<strong><span>{featurekey}</span></strong><br/>\n<ul>\n\t<li>{colormeasure-label}:{colormeasure-formattedvalue}\n</ul>",
 									"dimensionKey" : {
 										"fieldType" : "position",
-										"fieldPosition" : 0
+										"fieldPosition" : 0,
+										"fieldName" : "Country"
 									},
 									"map" : {
 										"mapType" : "url",
 										"featureKey" : "admin",
-										"url" : "{ds-maps}/countries_medium.json",
-										"geoJSON" : {
-											"type" : "FeatureCollection",
-											"features" : []
-										}
+										"url" : "{ds-maps}/countries_medium.json"
 									}
 								},
 								"markerConfig" : {
-									"markerType" : "simple",
+									"markerType" : "heat",
 									"color" : "#009966",
-									"icon" : "circle",
-									"image" : "",
+									"latitude" : {
+										"columnType" : "dimension",
+										"measure" : {
+											"fieldType" : "name",
+											"fieldPosition" : 0,
+											"fieldName" : "Students"
+										},
+										"dimension" : {
+											"fieldType" : "name",
+											"fieldPosition" : 0,
+											"fieldName" : "Latitude"
+										}
+									},
 									"longitude" : {
 										"columnType" : "dimension",
 										"measure" : {
 											"fieldType" : "position",
-											"fieldPosition" : 1
-										},
-										"dimension" : {
-											"fieldType" : "position",
-											"fieldPosition" : 0
-										}
-									},
-									"latitude" : {
-										"columnType" : "dimension",
-										"measure" : {
-											"fieldType" : "position",
 											"fieldPosition" : 0
 										},
 										"dimension" : {
-											"fieldType" : "position",
-											"fieldPosition" : 0
+											"fieldType" : "name",
+											"fieldPosition" : 0,
+											"fieldName" : "Longitude"
 										}
 									},
+									"colorScaleConfig" : {
+										"colors" : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
+										"scaleType" : "quantile",
+										"rangeType" : "mean",
+										"clamp" : true,
+										"interpolation" : "interpolateRgb",
+										"min" : 0,
+										"max" : 10000
+									},
+									"colorScaleMeasure" : {
+										"fieldType" : "position",
+										"fieldPosition" : "0",
+										"fieldName" : ""
+									},
+									"markerSizeConfig" : {
+										"rangeType" : "minmax",
+										"min" : "0",
+										"max" : "100",
+										"clamp" : true
+									},
+									"markerSizeMeasure" : {
+										"fieldType" : "unassigned",
+										"fieldPosition" : "0",
+										"fieldName" : ""
+									},
+									"icon" : "circle",
+									"markerSize" : "32",
 									"maxClusterRadius" : "80",
+									"showCoverageOnHover" : false,
 									"zoomToBoundsOnClick" : true,
 									"disableClusteringAtZoom" : "18",
-									"heatIntensityMeasure" : {
-										"fieldType" : "position",
-										"fieldPosition" : 0
-									},
-									"heatMinOpacity" : "0.1",
-									"heatMax" : "1.0",
+									"heatMinOpacity" : ".2",
+									"heatMax" : "1",
 									"heatBlur" : "15",
 									"heatRadius" : "25",
-									"heatMaxZoom" : "18"
-								}
-							}
-						},
-						/*,
-						markers : {
-							desc : "Markers",
-							defaultValues : [],
-							apsControl : "complexcollection",
-							visibleRows : 5,
-							apsConfig : {
-								key : {
-									desc : "Key",
-									defaultValue : "SOME_MARKER_KEY",
-									apsControl : "text"
-								},
-								latitude : {
-									desc : "Latitude",
-									defaultValue : 51.505,
-									apsControl : "text"
-								},
-								longitude : {
-									desc : "Longitude",
-									defaultValue : -0.09,
-									apsControl : "text"
-								},
-								marker : {
-									desc : "Marker Type",
-									defaultValue : "marker",
-									apsControl : "combobox",
-									options : [{
-											key : "marker",
-											text : "Marker"
-										}, {
-											key : "circle",
-											text : "Circle"
-										}
-									]
+									"heatMaxZoom" : "18",
+									"heatIntensityMeasure" : {
+										"fieldType" : "position",
+										"fieldPosition" : 0,
+										"fieldName" : ""
+									}
 								}
 							}
 						}
-						*/
 					}
 				}
 			}
@@ -318,6 +312,9 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		 * Render a marker layer
 		 */
 		this.renderMarkerLayer = function(markerConfig){
+			if(!markerConfig.latitude || !markerConfig.longitude){
+				return L.featureGroup();
+			}
 			var lat = this.determineColumnIndex(markerConfig.latitude);
 			var lng = this.determineColumnIndex(markerConfig.longitude);
 			var heatIntensityIndex = this.determineMeasureIndex(markerConfig.heatIntensityMeasure);
@@ -476,84 +473,86 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 				values.sort(function(a,b){
 					return b.markerSize - a.markerSize;
 				});
-				console.log(values);
+				// console.log(values);
 				for(var i=0;i<values.length;i++){
 					var value = values[i];
-					var newMarker = new L.marker([value.latitude, value.longitude],{
-						icon: L.SCNMarkers.icon({
-							shield : "marker",
-							icon: markerConfig.icon || "circle",
-							prefix: 'fa',
-							shieldColor: value.color,
-							iconSize : [value.markerSize || 32, value.markerSize || 32],
-							anchorPosition : [.5, 1]
-							//spin:true
-						})
-					});
-					var tt = (markerConfig.tooltipTemplate + "");
-					// Dimension Member Text by Position
-					var rowIndex = value.flatDataIndex;
-					tt = tt.replace(/{dimension-position-text-(.*?)}/g, function(a,b){
-						var ret = "???";
-						var columnIndex = parseInt(b);
-						if(rowIndex>-1){
-							ret = that.flatData.rowHeaders2D[rowIndex][columnIndex];
-						}
-						return ret;
-					});
-					// Dimension Member Text by Label
-					tt = tt.replace(/{dimension-key-text-(.*?)}/g, function(a,b){
-						var ret = "???";
-						var columnIndex = that.determineDimensionIndex({
-							fieldType : "name",
-							fieldName : b
+					if(value.latitude && value.longitude){
+						var newMarker = new L.marker([value.latitude, value.longitude],{
+							icon: L.SCNMarkers.icon({
+								shield : "marker",
+								icon: markerConfig.icon || "circle",
+								prefix: 'fa',
+								shieldColor: value.color,
+								iconSize : [value.markerSize || 32, value.markerSize || 32],
+								anchorPosition : [.5, 1]
+								//spin:true
+							})
 						});
-						if(rowIndex>-1){
-							ret = that.flatData.rowHeaders2D[rowIndex][columnIndex];
-						}
-						return ret;
-					});
-					// Measure Value by Position
-					tt = tt.replace(/{measure-position-value-(.*?)}/g, function(a,b){
-						var ret = "???";
-						var columnIndex = parseInt(b);
-						if(rowIndex>-1){
-							ret = that.flatData.values[rowIndex][columnIndex];
-						}
-						return ret;
-					});
-					// Measure Label by Position
-					tt = tt.replace(/{measure-position-label-(.*?)}/g, function(a,b){
-						var ret = "???";
-						var columnIndex = parseInt(b);
-						ret = that.flatData.columnHeaders[columnIndex];
-						return ret;
-					});
-					// MEASURE by Label
-					tt = tt.replace(/{measure-key-value-(.*?)}/g, function(a,b){
-						var ret = "???";
-						var columnIndex = that.determineMeasureIndex({
-							fieldType : "name",
-							fieldName : b
+						var tt = (markerConfig.tooltipTemplate + "");
+						// Dimension Member Text by Position
+						var rowIndex = value.flatDataIndex;
+						tt = tt.replace(/{dimension-position-text-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = parseInt(b);
+							if(rowIndex>-1){
+								ret = that.flatData.rowHeaders2D[rowIndex][columnIndex];
+							}
+							return ret;
 						});
-						if(rowIndex>-1){
-							ret = that.flatData.values[rowIndex][columnIndex];
-						}
-						return ret;
-					});
-					// MEASURE by Label
-					tt = tt.replace(/{measure-key-label-(.*?)}/g, function(a,b){
-						var ret = "???";
-						var columnIndex = that.determineMeasureIndex({
-							fieldType : "name",
-							fieldName : b
+						// Dimension Member Text by Label
+						tt = tt.replace(/{dimension-key-text-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = that.determineDimensionIndex({
+								fieldType : "name",
+								fieldName : b
+							});
+							if(rowIndex>-1){
+								ret = that.flatData.rowHeaders2D[rowIndex][columnIndex];
+							}
+							return ret;
 						});
-						if(columnIndex != null)	ret = that.flatData.columnHeaders[columnIndex];
-						return ret;
-					});
-					newMarker.setZIndexOffset(i);
-					newMarker.bindPopup(tt);
-					newMarker.addTo(newLayer);
+						// Measure Value by Position
+						tt = tt.replace(/{measure-position-value-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = parseInt(b);
+							if(rowIndex>-1){
+								ret = that.flatData.values[rowIndex][columnIndex];
+							}
+							return ret;
+						});
+						// Measure Label by Position
+						tt = tt.replace(/{measure-position-label-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = parseInt(b);
+							ret = that.flatData.columnHeaders[columnIndex];
+							return ret;
+						});
+						// MEASURE by Label
+						tt = tt.replace(/{measure-key-value-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = that.determineMeasureIndex({
+								fieldType : "name",
+								fieldName : b
+							});
+							if(rowIndex>-1){
+								ret = that.flatData.values[rowIndex][columnIndex];
+							}
+							return ret;
+						});
+						// MEASURE by Label
+						tt = tt.replace(/{measure-key-label-(.*?)}/g, function(a,b){
+							var ret = "???";
+							var columnIndex = that.determineMeasureIndex({
+								fieldType : "name",
+								fieldName : b
+							});
+							if(columnIndex != null)	ret = that.flatData.columnHeaders[columnIndex];
+							return ret;
+						});
+						newMarker.setZIndexOffset(i);
+						newMarker.bindPopup(tt);
+						newMarker.addTo(newLayer);
+					}
 				}
 				return newLayer;
 			}
@@ -604,7 +603,6 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		    	});
 				for(var i=0;i<values.length;i++){
 					var value = values[i];
-					console.log(value);
 					newLayer.addLatLng(new L.LatLng(value.latitude,value.longitude,value.heatIntensity));
 					
 				}
@@ -884,30 +882,32 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			for(var i=0;i<featureLayers.length;i++){
 				var overlay = featureLayers[i];
 				// FEATURE
-				if(overlay && overlay.layer && overlay.layer.layerType=="feature"){
+				if(overlay && overlay.layer && overlay.layer.layerType=="feature" && overlay.layer.featureConfig){
 					var layer = overlay.layer.featureConfig;
-					var map = layer.map;
-					if(map.mapType == "url"){
-						var url = map.url;
-						var osMapPath = sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","os/maps")
-						url = url.replace(/{os-maps}/g, osMapPath);
-						url = url.replace(/{ds-maps}/g, "zen.rt.components.geomaps/resources/js/geo");
-						this.loadResource(url, overlay);
-					}
-					if(map.mapType == "file"){
-						var repoPath = this.repositoryPath() + "";
-						var url = repoPath.replace(/REPOSITORY_ROOT.GIF/,map.file);
-						this.loadResource(url, overlay);
-					}
-					if(map.mapType == "custom"){
-						try{
-							var newLayer = that.renderLayer(map.geoJSON, overlay);
-							if(overlay.visible) newLayer.addTo(that._featureLayer);
-							that._controlLayer.addOverlay(newLayer, overlay.key);
-						}catch(e){
-							alert("Bad Custom GeoJSON: " + e);
-							// Bad GeoJSON
+					if(layer && layer.map){
+						var map = layer.map;
+						if(map.mapType == "url"){
+							var url = map.url;
+							var osMapPath = sap.zen.createStaticSdkMimeUrl("org.scn.community.shared","os/maps")
+							url = url.replace(/{os-maps}/g, osMapPath);
+							url = url.replace(/{ds-maps}/g, "zen.rt.components.geomaps/resources/js/geo");
+							this.loadResource(url, overlay);
 						}
+						if(map.mapType == "file"){
+							var repoPath = this.repositoryPath() + "";
+							var url = repoPath.replace(/REPOSITORY_ROOT.GIF/,map.file);
+							this.loadResource(url, overlay);
+						}
+						if(map.mapType == "custom"){
+							try{
+								var newLayer = that.renderLayer(map.geoJSON, overlay);
+								if(overlay.visible) newLayer.addTo(that._featureLayer);
+								that._controlLayer.addOverlay(newLayer, overlay.key);
+							}catch(e){
+								alert("Bad Custom GeoJSON: " + e);
+								// Bad GeoJSON
+							}
+						}						
 					}
 				}
 				// MARKER

@@ -153,6 +153,15 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 	});
 	return {
 		id : "scaleeditor",
+		defaultValue : {
+			colors : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
+			scaleType : "quantile",
+			rangeType : "mean",
+			clamp : true,
+			interpolation : "interpolateRgb",
+			min : 0,
+			max : 10000
+		},
 		serialized : true,
 		setter : function (property, value) {
 			var newValue = jQuery.parseJSON(value);

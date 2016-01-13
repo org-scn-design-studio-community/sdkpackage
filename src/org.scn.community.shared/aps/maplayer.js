@@ -30,7 +30,7 @@ define(["./complexitem"], function () {
 		},
 		_config : {},
 		setValue : function (value) {
-			var deltas = [];
+			var deltas = ["layerType"];
 			var oldValues = [];
 			for (var i = 0; i < deltas.length; i++) {
 				oldValues.push(this.getValue()[deltas[i]]);
@@ -101,6 +101,7 @@ define(["./complexitem"], function () {
 	return {
 		id : "maplayer",
 		defaultValue : {
+			layerType : "feature"
 		},
 		serialized : true,
 		setter : function (property, value) {

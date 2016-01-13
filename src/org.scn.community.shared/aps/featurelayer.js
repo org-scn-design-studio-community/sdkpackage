@@ -47,10 +47,6 @@ define(["./complexitem"], function () {
 			}
 		},
 		modulesLoaded : function(){
-			/*this["cmp_layerType"].attachKeyChange(function(oControlEvent){
-				this.makeLayout();
-				this.layoutComponents();
-			},this);*/
 			this.makeLayout();
 			this.layoutComponents();
 		},
@@ -175,6 +171,14 @@ define(["./complexitem"], function () {
 	});
 	return {
 		id : "featurelayer",
+		defaultValue : {
+			fillColor : "#DFDFDF",
+			color : "#B0B0B0",
+			weight : 1,
+			opacity : 0.8,
+			fillOpacity : 0.8,
+			tooltipTemplate : "<strong><span>{featurekey}</span></strong><br/>\n<ul>\n\t<li>{colormeasure-label}:{colormeasure-formattedvalue}\n</ul>",
+		},
 		serialized : true,
 		setter : function (property, value) {
 			var newValue = jQuery.parseJSON(value);

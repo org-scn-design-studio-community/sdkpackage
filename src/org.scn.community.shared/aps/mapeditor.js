@@ -55,7 +55,10 @@ define([
 				},
 				"options" : {
 					type : "object",
-					defaultValue : {}
+					defaultValue : {
+						"type" : "FeatureCollection",
+						"features" : []
+					}
 				},
 				"value" : {
 					type : "object",
@@ -451,6 +454,10 @@ define([
 	});
 	return {
 		id : "mapeditor",
+		/*defaultValue : {
+			type : "FeatureCollection",
+			features : []
+		},*/
 		setter : function (property, value) {
 			this["cmp_" + property].setValue(value);
 		},
