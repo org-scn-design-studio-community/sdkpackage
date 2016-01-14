@@ -4,10 +4,10 @@
 	title="Flow Layouter 0.X"
 	icon="res/FlowLayouter/FlowLayouter.png"
 	handlerType="div"
-	group="TECHNICAL_COMPONENTS"
+	group="ScnCommunityUtils"
 >
 
-	<jsInclude>res/FlowLayouter/FlowLayouter.js</jsInclude>
+	<requireJs modes="commons m">res/FlowLayouter/FlowLayouter</requireJs>
 
 	<property
 		id="splitSpace"

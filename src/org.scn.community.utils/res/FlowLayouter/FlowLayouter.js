@@ -16,12 +16,15 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
-sap.designstudio.sdk.Component.subclass("org.scn.community.utils.FlowLayouter", function() {
-
-	var that = this;
-
-	this.afterUpdate = function() {
-	};
-
+define(["sap/designstudio/sdk/component"], function(Component) {
+	Component.subclass("org.scn.community.utils.FlowLayouter", function(){
+		this.init = function() {
+			if(sap && sap.zen && sap.zen.designmode) {
+				this.$().css("background-color", "rgba(0,64,128,0.5)");
+				this.$().html("This area represents Flow Layouter size.  This message is hidden at runtime.")
+			}else{
+				this.$().css("display", "none");
+			}
+		};
+	});
 });

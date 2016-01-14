@@ -10,7 +10,6 @@ class org.scn.community.utils.FlowLayouter extends org.scn.community.shared.Comp
 	void registerParentComponent (Component component) {*
 		this.parentComponent = component;
 	*}
-	
 	/** Register components which will be repositioned by this layouter.
 	 * The components will be placed in the registration order in its parent component.
 	 */
