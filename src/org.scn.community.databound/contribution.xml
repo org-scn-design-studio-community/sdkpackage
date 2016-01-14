@@ -2005,7 +2005,188 @@ __n__}
 		<!-- End of Databound Defaults -->
 		<defaultValue property="tileOptions">[{&quot;key&quot;:&quot;Standard&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;minZoom&quot;:0,&quot;maxZoom&quot;:18,&quot;tileSize&quot;:256}},{&quot;key&quot;:&quot;Satellite&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;minZoom&quot;:0,&quot;maxZoom&quot;:18,&quot;tileSize&quot;:256}}]</defaultValue>
 		<defaultValue property="currentBaseLayer">Standard</defaultValue>
-		<defaultValue property="overlays">[{&quot;key&quot;:&quot;Sample Layer - World Countries&quot;,&quot;visible&quot;:true,&quot;layer&quot;:{&quot;layerType&quot;:&quot;feature&quot;,&quot;featureConfig&quot;:{&quot;fillColor&quot;:&quot;#DFDFDF&quot;,&quot;color&quot;:&quot;#B0B0B0&quot;,&quot;weight&quot;:1,&quot;colorScaleConfig&quot;:{&quot;colors&quot;:&quot;#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C&quot;,&quot;scaleType&quot;:&quot;quantile&quot;,&quot;rangeType&quot;:&quot;mean&quot;,&quot;clamp&quot;:true,&quot;interpolation&quot;:&quot;interpolateRgb&quot;,&quot;min&quot;:0,&quot;max&quot;:10000},&quot;colorScaleMeasure&quot;:{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0},&quot;opacity&quot;:0.8,&quot;fillOpacity&quot;:0.8,&quot;tooltipTemplate&quot;:&quot;&lt;strong&gt;&lt;span&gt;{featurekey}&lt;/span&gt;&lt;/strong&gt;&lt;br/&gt;\n&lt;ul&gt;\n\t&lt;li&gt;{colormeasure-label}:{colormeasure-formattedvalue}\n&lt;/ul&gt;&quot;,&quot;map&quot;:{&quot;mapType&quot;:&quot;url&quot;,&quot;featureKey&quot;:&quot;admin&quot;,&quot;url&quot;:&quot;{ds-maps}/countries_medium.json&quot;,&quot;geoJSON&quot;:{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;features&quot;:[]}}},&quot;markerConfig&quot;:{&quot;markerType&quot;:&quot;heat&quot;,&quot;color&quot;:&quot;#009966&quot;,&quot;longitude&quot;:{&quot;columnType&quot;:&quot;dimension&quot;,&quot;measure&quot;:{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:1},&quot;dimension&quot;:{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}},&quot;latitude&quot;:{&quot;columnType&quot;:&quot;dimension&quot;,&quot;measure&quot;:{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0},&quot;dimension&quot;:{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}},&quot;maxClusterRadius&quot;:&quot;80&quot;,&quot;zoomToBoundsOnClick&quot;:true,&quot;disableClusteringAtZoom&quot;:&quot;18&quot;,&quot;heatMinOpacity&quot;:&quot;0.1&quot;,&quot;heatMax&quot;:&quot;1.0&quot;,&quot;heatBlur&quot;:&quot;15&quot;,&quot;heatRadius&quot;:&quot;25&quot;,&quot;heatMaxZoom&quot;:&quot;18&quot;}}}]</defaultValue>
+		<defaultValue property="overlays">
+		<![CDATA[
+		[{
+			"key" : "Sample Layer - World Countries",
+			"visible" : true,
+			"layer" : {
+				"layerType" : "feature",
+				"featureConfig" : {
+					"fillColor" : "#DFDFDF",
+					"color" : "#B0B0B0",
+					"weight" : 1,
+					"colorScaleConfig" : {
+						"colors" : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
+						"scaleType" : "quantile",
+						"rangeType" : "mean",
+						"clamp" : true,
+						"interpolation" : "interpolateRgb",
+						"min" : 0,
+						"max" : 10000
+					},
+					"colorScaleMeasure" : {
+						"fieldType" : "position",
+						"fieldPosition" : 0
+					},
+					"opacity" : 0.8,
+					"fillOpacity" : 0.8,
+					"tooltipTemplate" : "<strong><span>{featurekey}</span></strong><br/>\n<ul>\n\t<li>{colormeasure-label}:{colormeasure-formattedvalue}\n</ul>",
+					"map" : {
+						"mapType" : "url",
+						"featureKey" : "admin",
+						"url" : "{ds-maps}/countries_medium.json",
+						"geoJSON" : {
+							"type" : "FeatureCollection",
+							"features" : []
+						}
+					}
+				},
+				"markerConfig" : {
+					"markerType" : "heat",
+					"color" : "#009966",
+					"longitude" : {
+						"columnType" : "dimension",
+						"measure" : {
+							"fieldType" : "position",
+							"fieldPosition" : 1
+						},
+						"dimension" : {
+							"fieldType" : "position",
+							"fieldPosition" : 0
+						}
+					},
+					"latitude" : {
+						"columnType" : "dimension",
+						"measure" : {
+							"fieldType" : "position",
+							"fieldPosition" : 0
+						},
+						"dimension" : {
+							"fieldType" : "position",
+							"fieldPosition" : 0
+						}
+					},
+					"maxClusterRadius" : "80",
+					"zoomToBoundsOnClick" : true,
+					"disableClusteringAtZoom" : "18",
+					"heatMinOpacity" : "0.1",
+					"heatMax" : "1.0",
+					"heatBlur" : "15",
+					"heatRadius" : "25",
+					"heatMaxZoom" : "18"
+				}
+			}
+		}, {
+			"key" : "Sample Layer - Colored Markers",
+			"visible" : true,
+			"layer" : {
+				"layerType" : "marker",
+				"featureConfig" : {
+					"fillColor" : "#DFDFDF",
+					"color" : "#B0B0B0",
+					"weight" : 1,
+					"colorScaleConfig" : {
+						"colors" : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
+						"scaleType" : "quantile",
+						"rangeType" : "mean",
+						"clamp" : true,
+						"interpolation" : "interpolateRgb",
+						"min" : 0,
+						"max" : 10000
+					},
+					"colorScaleMeasure" : {
+						"fieldType" : "position",
+						"fieldPosition" : 0
+					},
+					"opacity" : 0.8,
+					"fillOpacity" : 0.8,
+					"tooltipTemplate" : "<strong><span>{featurekey}</span></strong><br/>\n<ul>\n\t<li>{colormeasure-label}:{colormeasure-formattedvalue}\n</ul>",
+					"map" : {
+						"mapType" : "url",
+						"featureKey" : "admin",
+						"url" : "{ds-maps}/countries_medium.json",
+						"geoJSON" : {
+							"type" : "FeatureCollection",
+							"features" : []
+						}
+					}
+				},
+				"markerConfig" : {
+					"markerType" : "simple",
+					"color" : "#009966",
+					"latitude" : {
+						"columnType" : "dimension",
+						"measure" : {
+							"fieldType" : "name",
+							"fieldPosition" : 0,
+							"fieldName" : "Students"
+						},
+						"dimension" : {
+							"fieldType" : "name",
+							"fieldPosition" : 0,
+							"fieldName" : "Latitude"
+						}
+					},
+					"longitude" : {
+						"columnType" : "dimension",
+						"measure" : {
+							"fieldType" : "position",
+							"fieldPosition" : 0
+						},
+						"dimension" : {
+							"fieldType" : "name",
+							"fieldPosition" : 0,
+							"fieldName" : "Longitude"
+						}
+					},
+					"colorScaleConfig" : {
+						"colors" : "#F03B20,#FFEDA0,#8BCC8A",
+						"scaleType" : "linear",
+						"rangeType" : "minmax",
+						"clamp" : true,
+						"interpolation" : "interpolateRgb",
+						"min" : 0,
+						"max" : 10000
+					},
+					"colorScaleMeasure" : {
+						"fieldType" : "position",
+						"fieldPosition" : "0",
+						"fieldName" : ""
+					},
+					"markerSizeConfig" : {
+						"rangeType" : "minmax",
+						"min" : "0",
+						"max" : "100",
+						"clamp" : true
+					},
+					"markerSizeMeasure" : {
+						"fieldType" : "unassigned",
+						"fieldPosition" : "0",
+						"fieldName" : ""
+					},
+					"icon" : "circle",
+					"markerSize" : "32",
+					"maxClusterRadius" : "80",
+					"showCoverageOnHover" : false,
+					"zoomToBoundsOnClick" : true,
+					"disableClusteringAtZoom" : "18",
+					"heatMinOpacity" : ".2",
+					"heatMax" : "1",
+					"heatBlur" : "15",
+					"heatRadius" : "25",
+					"heatMaxZoom" : "18",
+					"heatIntensityMeasure" : {
+						"fieldType" : "position",
+						"fieldPosition" : 0,
+						"fieldName" : ""
+					},
+					"tooltipTemplate" : "<span style=\"font-weight:bold;color:{markercolor}\">\n  {dimension-key-text-Location}\n</span>\n<ul>\n  <li>{colormeasure-label} : {colormeasure-formattedvalue}</li>\n</ul>"
+				}
+			}
+		}]
+		]]>
+		</defaultValue>
 		<defaultValue property="fitBounds">true</defaultValue>
 		<defaultValue property="zoom">1</defaultValue>
 		<defaultValue property="mapCenter">[51.505, -0.09]</defaultValue>

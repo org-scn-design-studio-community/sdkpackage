@@ -148,9 +148,6 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 									"fillColor" : "#DFDFDF",
 									"color" : "#B0B0B0",
 									"weight" : 1,
-									"opacity" : 0.8,
-									"fillOpacity" : 0.8,
-									"tooltipTemplate" : "<strong><span>{featurekey}</span></strong><br/>\n<ul>\n\t<li>{colormeasure-label}:{colormeasure-formattedvalue}\n</ul>",
 									"colorScaleConfig" : {
 										"colors" : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
 										"scaleType" : "quantile",
@@ -162,22 +159,23 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 									},
 									"colorScaleMeasure" : {
 										"fieldType" : "position",
-										"fieldPosition" : 0,
-										"fieldName" : "1960"
+										"fieldPosition" : 0
 									},
-									"dimensionKey" : {
-										"fieldType" : "position",
-										"fieldPosition" : 0,
-										"fieldName" : "Country"
-									},
+									"opacity" : 0.8,
+									"fillOpacity" : 0.8,
+									"tooltipTemplate" : "<strong><span>{featurekey}</span></strong><br/>\n<ul>\n\t<li>{colormeasure-label}:{colormeasure-formattedvalue}\n</ul>",
 									"map" : {
 										"mapType" : "url",
 										"featureKey" : "admin",
-										"url" : "{ds-maps}/countries_medium.json"
+										"url" : "{ds-maps}/countries_medium.json",
+										"geoJSON" : {
+											"type" : "FeatureCollection",
+											"features" : []
+										}
 									}
 								},
 								"markerConfig" : {
-									"markerType" : "heat",
+									"markerType" : "simple",
 									"color" : "#009966",
 									"latitude" : {
 										"columnType" : "dimension",
@@ -205,9 +203,9 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 										}
 									},
 									"colorScaleConfig" : {
-										"colors" : "#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C",
-										"scaleType" : "quantile",
-										"rangeType" : "mean",
+										"colors" : "#F03B20,#FFEDA0,#8BCC8A",
+										"scaleType" : "linear",
+										"rangeType" : "minmax",
 										"clamp" : true,
 										"interpolation" : "interpolateRgb",
 										"min" : 0,
@@ -244,7 +242,8 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 										"fieldType" : "position",
 										"fieldPosition" : 0,
 										"fieldName" : ""
-									}
+									},
+									"tooltipTemplate" : "<span style=\"font-weight:bold;color:{markercolor}\">\n  {dimension-key-text-Location}\n</span>\n<ul>\n  <li>{colormeasure-label} : {colormeasure-formattedvalue}</li>\n</ul>"
 								}
 							}
 						}
@@ -491,12 +490,41 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 						var tt = (markerConfig.tooltipTemplate + "");
 						// Dimension Member Text by Position
 						var rowIndex = value.flatDataIndex;
+						// Marker Color
+						tt = tt.replace(/{markercolor}/g, value.color);
 						tt = tt.replace(/{dimension-position-text-(.*?)}/g, function(a,b){
 							var ret = "???";
 							var columnIndex = parseInt(b);
 							if(rowIndex>-1){
 								ret = that.flatData.rowHeaders2D[rowIndex][columnIndex];
 							}
+							return ret;
+						});
+						// Color Measure Value
+						tt = tt.replace(/{colormeasure-value}/g, function(a,b){
+							var ret;
+							if(rowIndex>-1){
+								ret = that.flatData.values[rowIndex][colorMeasureIndex];
+							}
+							return ret;
+						});
+						// Color Measure Formatted Value
+						tt = tt.replace(/{colormeasure-formattedvalue}/g, function(a,b){
+							var ret;
+							if(rowIndex>-1){
+								if(that.flatData.formattedValues && that.flatData.formattedValues.length>rowIndex){
+									ret = that.flatData.formattedValues[rowIndex][colorMeasureIndex];	
+								}else{
+									ret = d3.format(",.2f")(that.flatData.values[rowIndex][colorMeasureIndex]);
+								}
+								
+							}
+							return ret;
+						});
+						// Color Measure Label
+						tt = tt.replace(/{colormeasure-label}/g, function(a,b){
+							var ret;
+							ret = that.flatData.columnHeaders[colorMeasureIndex];
 							return ret;
 						});
 						// Dimension Member Text by Label
