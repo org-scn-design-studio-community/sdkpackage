@@ -8,7 +8,7 @@
 	group="TECHNICAL_COMPONENTS"
 >
 
-	<jsInclude>res/CustomCssCollector/CustomCssCollector.js</jsInclude>
+	<requireJs modes="commons m">res/CustomCssCollector/CustomCssCollector</requireJs>
 
 	<property
 		id="additionalCss"
