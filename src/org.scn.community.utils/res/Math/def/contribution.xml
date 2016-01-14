@@ -4,7 +4,7 @@
 	title="Math Utility 0.X"
 	icon="res/Math/Math.png"
 	handlerType="div"
-	group="ScnCommunityUtils"
+	group="TECHNICAL_COMPONENTS"
 >
 
 	<jsInclude>res/Math/Math.js</jsInclude>

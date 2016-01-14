@@ -2280,6 +2280,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Result Set Mixer 2.0 component*/
 	org.scn.community.databound.ResultSetMixer returnAsScnResultSetMixer (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Scatter Plot Heat Map 2.0 component*/
+	org.scn.community.databound.ScatterHeatMap returnAsScnScatterHeatMap (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Scatter Plot Chart 2.0 component*/
 	org.scn.community.databound.ScatterPlot returnAsScnScatterPlot (Component inputComponent) {* return inputComponent; *}
 

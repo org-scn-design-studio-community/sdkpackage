@@ -5,7 +5,7 @@
 	tooltip="Returns on first roundtrip some information from web client (browser)"
 	icon="res/ClientInformation/ClientInformation.png"
 	handlerType="sapui5"
-	group="ScnCommunityUtils"
+	group="TECHNICAL_COMPONENTS"
 >
 
 	<jsInclude>res/ClientInformation/ClientInformation.js</jsInclude>

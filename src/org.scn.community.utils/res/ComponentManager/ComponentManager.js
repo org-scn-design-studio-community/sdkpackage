@@ -16,22 +16,10 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
-sap.zen.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.ComponentManager", {
-
-	metadata: {
-        properties: {
-             
-        }
-	},
-
-	initDesignStudio: function() {
-		var that = this;
-	},
-	
-	renderer: {},
-	
-	afterDesignStudioUpdate : function() {
-		var that = this;
-	},
+define(["sap/designstudio/sdk/component"], function(Component) {
+	Component.subclass("org.scn.community.utils.ComponentManager", function(){
+		this.init = function() {
+			this.$().css("display", "none"); 
+		};
+	});
 });

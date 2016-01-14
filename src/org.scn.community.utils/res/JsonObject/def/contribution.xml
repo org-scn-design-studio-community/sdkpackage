@@ -6,7 +6,7 @@
 	icon="res/JsonObject/JsonObject.png"
 	handlerType="div"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUtils"
+	group="TECHNICAL_COMPONENTS"
 	databound="false"
 	modes="commons"
 >

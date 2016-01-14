@@ -4,11 +4,11 @@
 	title="Component Manager 0.X"
 	tooltip="Allows managing and listing of components"
 	icon="res/ComponentManager/ComponentManager.png"
-	handlerType="sapui5"
-	group="ScnCommunityUtils"
+	handlerType="div"
+	group="TECHNICAL_COMPONENTS"
+	modes="commons m"
 >
-
-	<jsInclude>res/ComponentManager/ComponentManager.js</jsInclude>
+	<requireJs modes="commons m">res/ComponentManager/ComponentManager</requireJs>
 
 	<property
 		id="components"

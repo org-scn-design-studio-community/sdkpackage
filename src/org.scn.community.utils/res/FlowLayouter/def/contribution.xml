@@ -4,7 +4,7 @@
 	title="Flow Layouter 0.X"
 	icon="res/FlowLayouter/FlowLayouter.png"
 	handlerType="div"
-	group="ScnCommunityUtils"
+	group="TECHNICAL_COMPONENTS"
 >
 
 	<jsInclude>res/FlowLayouter/FlowLayouter.js</jsInclude>

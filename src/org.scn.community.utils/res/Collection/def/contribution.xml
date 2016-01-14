@@ -4,7 +4,7 @@
 	title="Collection Utility 0.X"
 	icon="res/Collection/Collection.png"
 	handlerType="div"
-	group="ScnCommunityUtils"
+	group="TECHNICAL_COMPONENTS"
 >
 
 	<jsInclude>res/Collection/Collection.js</jsInclude>
