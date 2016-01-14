@@ -1,7 +1,7 @@
 /**
  * Bullet Chart
  */
-define(["css!./BulletChart.css", "d3", "../_modules/VizCoreDatabound", "sap/designstudio/sdk/component"], function (css, d3, VizCoreDatabound, Component) {
+define(["css!./BulletChart.css", "d3", "./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound", "sap/designstudio/sdk/component"], function (css, d3, VizCoreDatabound, Component) {
 	var ownComponentName = "org.scn.community.databound.BulletChart";
 	BulletChart.prototype = VizCoreDatabound;
 	function BulletChart() {
