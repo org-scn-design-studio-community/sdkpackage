@@ -5,6 +5,9 @@ define([],function(){
 	sap.ui.commons.layout.HorizontalLayout.extend("org.scn.community.aps.RepoUpload",{
 		metadata : {                             
 	        properties : {
+	        	kind : {
+	        		defaultValue : "resource"
+	        	},
 	        	value : "",
 	        	callback : {
 	        		type : "any"
@@ -29,14 +32,36 @@ define([],function(){
 			 this.uploadButton.setText(this.getValue());
 		 },
 		 uploadComplete : function(){
-			var s = propertyPage.TResourceUrl();
+			 var r = this.getKind();
+			 var dlgType = "TResourceUrl";
+			 switch(r){
+			 case "GeoJSON":
+				 dlgType = "TGeoJSONUrl";
+				 break;
+			 default:
+				 break;
+			 }
+			var s = propertyPage[dlgType]();
 			this.setValue(s);
 			this.fireValueChange();
 		 },
 		 uploadHandler : function(oControlEvent){
 			 var that = this;
-			 propertyPage.TResourceCallback = function(){that.uploadComplete.call(that);};
-			 propertyPage.openPropertyDialog("TResourceUrl");
+			 var r = this.getKind();
+			 var dlgType = "TResourceUrl";
+			 switch(r){
+			 case "GeoJSON":
+				 dlgType = "TGeoJSONUrl";
+				 break;
+			 default:
+				 break;
+			 }
+			 try{
+				 propertyPage[dlgType + "Callback"] = function(){that.uploadComplete.call(that);};
+				 propertyPage.openPropertyDialog(dlgType);				 
+			 }catch(e){
+				 alert("Problem trying to upload.\n\n" + e);
+			 }
 		 },
 		 init : function(){
 			this.uploadButton = new sap.ui.commons.Button({
@@ -58,7 +83,8 @@ define([],function(){
 		},
 		createComponent : function(property, propertyOptions, changeHandler){
 			var component = new org.scn.community.aps.RepoUpload({
-				callback : propertyOptions.callback
+				callback : propertyOptions.callback,
+				kind : propertyOptions.kind
 			});
 			component.attachValueChange(changeHandler,this);
 			return component;

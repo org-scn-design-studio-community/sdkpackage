@@ -75,7 +75,8 @@ define(["../../org.scn.community.shared/os/d3v3/d3",
 				file : {
 					opts : {
 						desc : "GeoJSON File",
-						apsControl : "special-url"
+						apsControl : "special-url",
+						kind : "GeoJSON"
 					}
 				},
 				url : {

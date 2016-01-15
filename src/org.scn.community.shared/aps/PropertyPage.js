@@ -20,7 +20,35 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			return this._TResourceUrl;			
 		}else{
 			this._TResourceUrl = s;
-			if(this.TResourceCallback) this.TResourceCallback();
+			if(s!="empty"){
+				if(this.TResourceUrlCallback) {
+					this.TResourceUrlCallback();
+				}else{
+					// No Callback?
+				}
+				this._TResourceUrl = "empty";
+				this.firePropertiesChanged(["TResourceUrl"]);
+			}else{
+				
+			}
+			return this;
+		}
+	}
+	/**
+	 * Mike - 01/14/2016 - Special setter/getter for GeoJSON file selection dialog
+	 */
+	this.TGeoJSONUrl = function(s){
+		if(s===undefined){
+			return this._TGeoJSONUrl;			
+		}else{
+			this._TGeoJSONUrl = s;
+			if(s!="empty"){
+				if(this.TGeoJSONUrlCallback) this.TGeoJSONUrlCallback();
+				this._TGeoJSONUrl = "empty";
+				this.firePropertiesChanged(["TGeoJSONUrl"]);
+			}else{
+				// No Callback?
+			}
 			return this;
 		}
 	}

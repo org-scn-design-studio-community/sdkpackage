@@ -1992,6 +1992,9 @@ __n__}
 	<property type="int" title="Zoom" id="zoom" visible="false"/>
 	<property id="repositoryPath" type="Url" title="Path to BIAPP Repository" tooltip="Property for auto calculation of the root folder" visible="false" />
 	<property id="TResourceUrl"	type="Url" title="Temporary property for Resource" visible="false" />
+	<property id="TGeoJSONUrl"	type="Url" title="Temporary property for Resource" visible="false">
+		<option name="kind" value="GeoJSON"/>
+	</property>
 	<initialization>
 		<!-- Databound Defaults -->
 		<defaultValue property="data2config">{&quot;ignoreResults&quot;:true,&quot;ignoreExpandedNodes&quot;:true,&quot;useMockData&quot;:true}</defaultValue>
