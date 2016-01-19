@@ -1,7 +1,7 @@
 require.config({
 	map: {
 		'*': {
-			'css': '../os/require-css'
+			'css': '../../org.scn.community.shared/os/require-css'
 		}
 	},
 	waitSeconds : 300
