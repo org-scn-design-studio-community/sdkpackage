@@ -5,7 +5,7 @@
  *
  */
 
-define(["../_modules/VizXYChart", "sap/designstudio/sdk/component","../../os/d3v3/d3-hexbin"], function (VizXYChart, Component) {
+define(["./../../../org.scn.community.shared/os/viz-modules/VizXYChart", "sap/designstudio/sdk/component","../../os/d3v3/d3-hexbin"], function (VizXYChart, Component) {
 	var ownComponentName = "org.scn.community.databound.HexBin";
 	/**
 	 * Hexagonal Binning
