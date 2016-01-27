@@ -5,9 +5,10 @@
 	icon="res/Collection/Collection.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"
+	modes="commons m"
 >
 
-	<jsInclude>res/Collection/Collection.js</jsInclude>
+	<requireJs modes="commons m">res/Collection/Collection</requireJs>
 
 	<property
 		id="items"

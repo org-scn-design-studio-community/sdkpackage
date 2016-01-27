@@ -5,9 +5,10 @@
 	icon="res/Array/Array.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"
->
+	modes="commons m"
+	>
 
-	<jsInclude>res/Array/Array.js</jsInclude>
+	<requireJs modes="commons m">res/Array/Array</requireJs>
 	<property
 		id="items"
 		type="String"

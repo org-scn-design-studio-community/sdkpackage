@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/PostResponseParser/PostResponseParser</requireJs>
+	<requireJs modes="commons m">res/PostResponseParser/PostResponseParser</requireJs>
 
 	<cssInclude>res/PostResponseParser/PostResponseParser.css</cssInclude>
 	

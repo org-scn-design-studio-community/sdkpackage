@@ -5,9 +5,10 @@
 	icon="res/Debugger/Debugger.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
->
+	modes="commons m"
+	>
 
-	<jsInclude>res/Debugger/Debugger.js</jsInclude>
+	<requireJs modes="commons m">res/Debugger/Debugger</requireJs>
 	<cssInclude>res/Debugger/Debugger.css</cssInclude>
 
 	<property

@@ -5,9 +5,10 @@
 	icon="res/Math/Math.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"
->
-
-	<jsInclude>res/Math/Math.js</jsInclude>
+	modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/Math/Math</requireJs>
 
 	<initialization>
 		<defaultValue property="WIDTH">10</defaultValue>

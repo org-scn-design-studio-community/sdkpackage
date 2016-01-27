@@ -5,6 +5,7 @@
 	icon="res/FlowLayouter/FlowLayouter.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
+	modes="commons m"
 >
 
 	<requireJs modes="commons m">res/FlowLayouter/FlowLayouter</requireJs>

@@ -6,9 +6,10 @@
 	icon="res/OpenWindowPost/OpenWindowPost.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
->
-
-	<jsInclude>res/OpenWindowPost/OpenWindowPost.js</jsInclude>
+	modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/OpenWindowPost/OpenWindowPost</requireJs>
 
 	<property
 		id="url"

@@ -6,9 +6,10 @@
 	icon="res/ClientInformation/ClientInformation.png"
 	handlerType="sapui5"
 	group="TECHNICAL_COMPONENTS"
+	modes="commons m"
 >
 
-	<jsInclude>res/ClientInformation/ClientInformation.js</jsInclude>
+	<requireJs modes="commons m">res/ClientInformation/ClientInformation</requireJs>
 
 	<property
 		id="reloadRequest"

@@ -4,9 +4,11 @@
 		title="Real Date 0.X"
 		icon="res/RealDate/RealDate.png"
 		handlerType="div"
-		group="TECHNICAL_COMPONENTS">
-
-	<jsInclude>res/RealDate/RealDate.js</jsInclude>
+		group="TECHNICAL_COMPONENTS"
+		modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/RealDate/RealDate</requireJs>
 
 	<property
 			id="days"

@@ -5,9 +5,11 @@
 	tooltip="Opens a WebSocket connection to a specified web server"
 	icon="res/WSPusher/WSPusher.png"
 	handlerType="sapui5"
-	group="ScnCommunityUtils">
-
-	<jsInclude>res/WSPusher/WSPusher.js</jsInclude>
+	group="ScnCommunityUtils"
+	modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/WSPusher/WSPusher</requireJs>
 	
 	<property
 		id="server"

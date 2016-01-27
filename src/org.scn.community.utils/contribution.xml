@@ -197,9 +197,10 @@
 	icon="res/Array/Array.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"
->
+	modes="commons m"
+	>
 
-	<jsInclude>res/Array/Array.js</jsInclude>
+	<requireJs modes="commons m">res/Array/Array</requireJs>
 	<property
 		id="items"
 		type="String"
@@ -228,9 +229,10 @@
 	icon="res/ClientInformation/ClientInformation.png"
 	handlerType="sapui5"
 	group="TECHNICAL_COMPONENTS"
+	modes="commons m"
 >
 
-	<jsInclude>res/ClientInformation/ClientInformation.js</jsInclude>
+	<requireJs modes="commons m">res/ClientInformation/ClientInformation</requireJs>
 
 	<property
 		id="reloadRequest"
@@ -339,9 +341,10 @@
 	icon="res/Collection/Collection.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"
+	modes="commons m"
 >
 
-	<jsInclude>res/Collection/Collection.js</jsInclude>
+	<requireJs modes="commons m">res/Collection/Collection</requireJs>
 
 	<property
 		id="items"
@@ -412,9 +415,10 @@
 	icon="res/Debugger/Debugger.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
->
+	modes="commons m"
+	>
 
-	<jsInclude>res/Debugger/Debugger.js</jsInclude>
+	<requireJs modes="commons m">res/Debugger/Debugger</requireJs>
 	<cssInclude>res/Debugger/Debugger.css</cssInclude>
 
 	<property
@@ -541,6 +545,7 @@
 	icon="res/CustomCssCollector/CustomCssCollector.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"
+	modes="commons m"
 >
 
 	<requireJs modes="commons m">res/CustomCssCollector/CustomCssCollector</requireJs>
@@ -579,6 +584,7 @@
 	icon="res/FlowLayouter/FlowLayouter.png"
 	handlerType="div"
 	group="ScnCommunityUtils"
+	modes="commons m"
 >
 
 	<requireJs modes="commons m">res/FlowLayouter/FlowLayouter</requireJs>
@@ -621,10 +627,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="TECHNICAL_COMPONENTS"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/JsonObject/JsonObject</requireJs>
+	<requireJs modes="commons m">res/JsonObject/JsonObject</requireJs>
 
 	<cssInclude>res/JsonObject/JsonObject.css</cssInclude>
 	
@@ -660,9 +666,10 @@
 	icon="res/Math/Math.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"
->
-
-	<jsInclude>res/Math/Math.js</jsInclude>
+	modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/Math/Math</requireJs>
 
 	<initialization>
 		<defaultValue property="WIDTH">10</defaultValue>
@@ -682,9 +689,10 @@
 	icon="res/OpenUrlInplace/OpenUrlInplace.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
->
-
-	<jsInclude>res/OpenUrlInplace/OpenUrlInplace.js</jsInclude>
+	modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/OpenUrlInplace/OpenUrlInplace</requireJs>
 
 	<property
 		id="url"
@@ -727,9 +735,10 @@
 	icon="res/OpenWindowPost/OpenWindowPost.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
->
-
-	<jsInclude>res/OpenWindowPost/OpenWindowPost.js</jsInclude>
+	modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/OpenWindowPost/OpenWindowPost</requireJs>
 
 	<property
 		id="url"
@@ -915,10 +924,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityUtils"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/PostResponseParser/PostResponseParser</requireJs>
+	<requireJs modes="commons m">res/PostResponseParser/PostResponseParser</requireJs>
 
 	<cssInclude>res/PostResponseParser/PostResponseParser.css</cssInclude>
 	
@@ -1152,9 +1161,11 @@
 		title="Real Date 0.X"
 		icon="res/RealDate/RealDate.png"
 		handlerType="div"
-		group="TECHNICAL_COMPONENTS">
-
-	<jsInclude>res/RealDate/RealDate.js</jsInclude>
+		group="TECHNICAL_COMPONENTS"
+		modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/RealDate/RealDate</requireJs>
 
 	<property
 			id="days"
@@ -1186,9 +1197,11 @@
 		title="Simple Date 0.X"
 		icon="res/SimpleDate/SimpleDate.png"
 		handlerType="div"
-		group="TECHNICAL_COMPONENTS">
-
-	<jsInclude>res/SimpleDate/SimpleDate.js</jsInclude>
+		group="TECHNICAL_COMPONENTS"
+		modes="commons m"
+		>
+	
+	<requireJs modes="commons m">res/SimpleDate/SimpleDate</requireJs>
 
 	<property
 			id="days"
@@ -1221,9 +1234,11 @@
 	tooltip="Opens a WebSocket connection to a specified web server"
 	icon="res/WSPusher/WSPusher.png"
 	handlerType="sapui5"
-	group="ScnCommunityUtils">
-
-	<jsInclude>res/WSPusher/WSPusher.js</jsInclude>
+	group="ScnCommunityUtils"
+	modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/WSPusher/WSPusher</requireJs>
 	
 	<property
 		id="server"

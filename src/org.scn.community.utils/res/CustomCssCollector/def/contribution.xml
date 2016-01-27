@@ -6,6 +6,7 @@
 	icon="res/CustomCssCollector/CustomCssCollector.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"
+	modes="commons m"
 >
 
 	<requireJs modes="commons m">res/CustomCssCollector/CustomCssCollector</requireJs>

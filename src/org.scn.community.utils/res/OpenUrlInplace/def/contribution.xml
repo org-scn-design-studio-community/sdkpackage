@@ -6,9 +6,10 @@
 	icon="res/OpenUrlInplace/OpenUrlInplace.png"
 	handlerType="sapui5"
 	group="ScnCommunityUtils"
->
-
-	<jsInclude>res/OpenUrlInplace/OpenUrlInplace.js</jsInclude>
+	modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/OpenUrlInplace/OpenUrlInplace</requireJs>
 
 	<property
 		id="url"

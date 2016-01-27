@@ -4,9 +4,11 @@
 		title="Simple Date 0.X"
 		icon="res/SimpleDate/SimpleDate.png"
 		handlerType="div"
-		group="TECHNICAL_COMPONENTS">
-
-	<jsInclude>res/SimpleDate/SimpleDate.js</jsInclude>
+		group="TECHNICAL_COMPONENTS"
+		modes="commons m"
+		>
+	
+	<requireJs modes="commons m">res/SimpleDate/SimpleDate</requireJs>
 
 	<property
 			id="days"
