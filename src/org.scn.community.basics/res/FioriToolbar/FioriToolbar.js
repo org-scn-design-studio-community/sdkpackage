@@ -214,13 +214,15 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 		getSelectedHeaderKey : function(){
 			return this._selectedHeaderKey;
 		},
-		setItemConfig : function(a){
-			this._itemConfig = a;
+		setItemConfig : function(s){
+			var o = [];
+			if(s && s!="") o = jQuery.parseJSON(s);
+			this._itemConfig = o;
 			this.redraw();
 			return this;
 		},
 		getItemConfig : function(){
-			return this._itemConfig;
+			return JSON.stringify(this._itemConfig);
 		},
 		redraw : function(){
 			this.destroyContent();
