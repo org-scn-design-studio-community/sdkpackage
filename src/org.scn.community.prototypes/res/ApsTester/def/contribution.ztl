@@ -475,7 +475,7 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getButtonSelectedKeysArray (
+	org.scn.community.shared.KeyArray getButtonSelectedKeysArray (
 			) 
 	{*
 		if (this.doublearray === undefined || this.doublearray === "" || this.doublearray === "<delete>"){
@@ -489,7 +489,7 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].selected == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -758,7 +758,7 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getItemSelectedKeysArray (
+	org.scn.community.shared.KeyArray getItemSelectedKeysArray (
 			) 
 	{*
 		if (this.doublearray === undefined || this.doublearray === "" || this.doublearray === "<delete>"){
@@ -772,7 +772,7 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].selected == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -1254,7 +1254,7 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getButtonSelectedKeysArray (
+	org.scn.community.shared.KeyArray getButtonSelectedKeysArray (
 			) 
 	{*
 		if (this.singlearray === undefined || this.singlearray === "" || this.singlearray === "<delete>"){
@@ -1268,7 +1268,7 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].selected == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		

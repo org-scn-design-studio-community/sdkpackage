@@ -123,6 +123,24 @@ function() {
     "value": "TODAY",
     "visible": true
   },
+  "cleanAll": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Internal",
+      "desc": "Clean All Marked Dates",
+      "noAps": true,
+      "noZtl": false,
+      "refDesc": "Marked Dates",
+      "refProperty": "markedDates",
+      "refValue": "[]",
+      "tooltip": "Clean All Marked Dates",
+      "ztlFunction": "-clean",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
+    "visible": false
+  },
   "firstDayOffset": {
     "opts": {
       "apsControl": "spinner",
@@ -137,6 +155,79 @@ function() {
     "template": "int",
     "type": "int",
     "value": "1",
+    "visible": true
+  },
+  "markedDates": {
+    "opts": {
+      "apsControl": "array",
+      "arrayDefinition": {"element": {
+        "inactive": {
+          "desc": "Incative",
+          "type": "boolean"
+        },
+        "key": {
+          "desc": "Unique Date [YYYYMMDD]",
+          "type": "String"
+        },
+        "mark": {
+          "apsControl": "combobox",
+          "desc": "Mark",
+          "options": [
+            {
+              "key": "Type01",
+              "text": "Type01"
+            },
+            {
+              "key": "Type02",
+              "text": "Type02"
+            },
+            {
+              "key": "Type03",
+              "text": "Type03"
+            },
+            {
+              "key": "Type04",
+              "text": "Type04"
+            },
+            {
+              "key": "Type05",
+              "text": "Type05"
+            },
+            {
+              "key": "Type06",
+              "text": "Type06"
+            },
+            {
+              "key": "Type07",
+              "text": "Type07"
+            },
+            {
+              "key": "Type08",
+              "text": "Type08"
+            },
+            {
+              "key": "Type09",
+              "text": "Type09"
+            },
+            {
+              "key": "Type10",
+              "text": "Type10"
+            }
+          ],
+          "type": "String"
+        },
+        "sequence": "key,mark,inactive",
+        "type": "Array"
+      }},
+      "arrayMode": "OneLevelArray",
+      "cat": "Content",
+      "desc": "Marked Dates",
+      "tooltip": "List of Marked Dates",
+      "ztlFunction": "",
+      "ztlType": "SingleArray"
+    },
+    "type": "String",
+    "value": "[]",
     "visible": true
   },
   "monthsPerRow": {

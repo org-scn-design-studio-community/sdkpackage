@@ -1545,7 +1545,7 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 	/**
 	 * Returns the FormattedLabel keys<br/>
 	 */
-	org.scn.pack.KeyArray getItemFormattedLabelKeysArray (
+	org.scn.community.shared.KeyArray getItemFormattedLabelKeysArray (
 			) 
 	{*
 		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
@@ -1559,7 +1559,7 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].formattedLabel == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -7745,7 +7745,7 @@ class org.scn.community.shared.ui5.ProcessFlow extends org.scn.community.shared.
 	/**
 	 * Returns the Focused keys<br/>
 	 */
-	org.scn.pack.KeyArray getNodeFocusedKeysArray (
+	org.scn.community.shared.KeyArray getNodeFocusedKeysArray (
 			) 
 	{*
 		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
@@ -7759,7 +7759,7 @@ class org.scn.community.shared.ui5.ProcessFlow extends org.scn.community.shared.
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].focused == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -7870,7 +7870,7 @@ class org.scn.community.shared.ui5.ProcessFlow extends org.scn.community.shared.
 	/**
 	 * Returns the Highlighted keys<br/>
 	 */
-	org.scn.pack.KeyArray getNodeHighlightedKeysArray (
+	org.scn.community.shared.KeyArray getNodeHighlightedKeysArray (
 			) 
 	{*
 		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
@@ -7884,7 +7884,7 @@ class org.scn.community.shared.ui5.ProcessFlow extends org.scn.community.shared.
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].highlighted == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -7995,7 +7995,7 @@ class org.scn.community.shared.ui5.ProcessFlow extends org.scn.community.shared.
 	/**
 	 * Returns the IsTitleClickable keys<br/>
 	 */
-	org.scn.pack.KeyArray getNodeIsTitleClickableKeysArray (
+	org.scn.community.shared.KeyArray getNodeIsTitleClickableKeysArray (
 			) 
 	{*
 		if (this.nodes === undefined || this.nodes === "" || this.nodes === "<delete>"){
@@ -8009,7 +8009,7 @@ class org.scn.community.shared.ui5.ProcessFlow extends org.scn.community.shared.
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].isTitleClickable == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -9776,7 +9776,7 @@ class org.scn.community.shared.ui5.RadioButtonGroup extends org.scn.community.sh
 	/**
 	 * Returns the ActiveHandling keys<br/>
 	 */
-	org.scn.pack.KeyArray getButtonActiveHandlingKeysArray (
+	org.scn.community.shared.KeyArray getButtonActiveHandlingKeysArray (
 			) 
 	{*
 		if (this.buttons === undefined || this.buttons === "" || this.buttons === "<delete>"){
@@ -9790,7 +9790,7 @@ class org.scn.community.shared.ui5.RadioButtonGroup extends org.scn.community.sh
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].activeHandling == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -9980,7 +9980,7 @@ class org.scn.community.shared.ui5.RadioButtonGroup extends org.scn.community.sh
 	/**
 	 * Returns the Editable keys<br/>
 	 */
-	org.scn.pack.KeyArray getButtonEditableKeysArray (
+	org.scn.community.shared.KeyArray getButtonEditableKeysArray (
 			) 
 	{*
 		if (this.buttons === undefined || this.buttons === "" || this.buttons === "<delete>"){
@@ -9994,7 +9994,7 @@ class org.scn.community.shared.ui5.RadioButtonGroup extends org.scn.community.sh
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].editable == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -10105,7 +10105,7 @@ class org.scn.community.shared.ui5.RadioButtonGroup extends org.scn.community.sh
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getButtonEnabledKeysArray (
+	org.scn.community.shared.KeyArray getButtonEnabledKeysArray (
 			) 
 	{*
 		if (this.buttons === undefined || this.buttons === "" || this.buttons === "<delete>"){
@@ -10119,7 +10119,7 @@ class org.scn.community.shared.ui5.RadioButtonGroup extends org.scn.community.sh
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].enabled == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -10309,7 +10309,7 @@ class org.scn.community.shared.ui5.RadioButtonGroup extends org.scn.community.sh
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getButtonSelectedKeysArray (
+	org.scn.community.shared.KeyArray getButtonSelectedKeysArray (
 			) 
 	{*
 		if (this.buttons === undefined || this.buttons === "" || this.buttons === "<delete>"){
@@ -10323,7 +10323,7 @@ class org.scn.community.shared.ui5.RadioButtonGroup extends org.scn.community.sh
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].selected == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		

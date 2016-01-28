@@ -446,7 +446,7 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getItemEnabledKeysArray (
+	org.scn.community.shared.KeyArray getItemEnabledKeysArray (
 			) 
 	{*
 		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
@@ -460,7 +460,7 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].enabled == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -729,7 +729,7 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getSubItemEnabledKeysArray (
+	org.scn.community.shared.KeyArray getSubItemEnabledKeysArray (
 			) 
 	{*
 		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
@@ -743,7 +743,7 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].enabled == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		

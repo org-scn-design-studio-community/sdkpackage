@@ -4744,7 +4744,7 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	/**
 	 * Returns the Exclude keys<br/>
 	 */
-	org.scn.pack.KeyArray getRuleExcludeKeysArray (
+	org.scn.community.shared.KeyArray getRuleExcludeKeysArray (
 			) 
 	{*
 		if (this.DFormattingContentCondition === undefined || this.DFormattingContentCondition === "" || this.DFormattingContentCondition === "<delete>"){
@@ -4758,7 +4758,7 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].exclude == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		

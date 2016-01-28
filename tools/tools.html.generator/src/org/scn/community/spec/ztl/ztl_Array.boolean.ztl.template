@@ -103,7 +103,7 @@
 	/**
 	 * Returns the %NAME_CAPITAL% keys<br/>
 	 */
-	org.scn.pack.KeyArray get%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL%KeysArray (
+	org.scn.community.shared.KeyArray get%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL%KeysArray (
 			) 
 	{*
 		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
@@ -117,7 +117,7 @@
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].%NAME% == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		

@@ -444,7 +444,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getButtonSelectedKeysArray (
+	org.scn.community.shared.KeyArray getButtonSelectedKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -458,7 +458,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].selected == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -727,7 +727,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getItemSelectedKeysArray (
+	org.scn.community.shared.KeyArray getItemSelectedKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -741,7 +741,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].selected == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		

@@ -1,3 +1,20 @@
 .scn-pack-ValueHelpField {
 	
 }
+
+.sapMeCalendarApproval>.sapMeCalendarMonth>div.sapMeCalendarMonthDays>.sapMeCalendarMonthDay.sapMeCalendarType02 {
+	background-color: #FFC1CE;
+}
+.sapMeCalendarApproval>.sapMeCalendarMonth>div.sapMeCalendarMonthDays>.sapMeCalendarMonthDay.sapMeCalendarType03 {
+	background-color: #93FFCF;
+}
+.sapMeCalendarApproval>.sapMeCalendarMonth>div.sapMeCalendarMonthDays>.sapMeCalendarMonthDay.sapMeCalendarType05 {
+	background-color: #8CCAF9;
+}
+.sapMeCalendarApproval>.sapMeCalendarMonth>div.sapMeCalendarMonthDays>.sapMeCalendarMonthDay.sapMeCalendarType08 {
+	background-color: #BD8CF9;
+}
+.sapMeCalendarApproval>.sapMeCalendarMonth>div.sapMeCalendarMonthDays>.sapMeCalendarMonthDay.sapMeCalendarType09 {
+	background-color: #7C772B;
+	background-image: url(bg_white_transparent.png);
+}

@@ -407,7 +407,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Visible keys<br/>
 	 */
-	org.scn.pack.KeyArray getStepVisibleKeysArray (
+	org.scn.community.shared.KeyArray getStepVisibleKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -421,7 +421,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].visible == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -532,7 +532,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getStepEnabledKeysArray (
+	org.scn.community.shared.KeyArray getStepEnabledKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -546,7 +546,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].enabled == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		

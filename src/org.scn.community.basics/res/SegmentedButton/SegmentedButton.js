@@ -357,7 +357,7 @@ SegmentedButton = {
 						// only when toggle button, items are not marked as pressed
 						if(lElement.getPressed) {
 							if(lElement.getPressed()) {
-								selectedKeys.push(lElement._Key);;
+								selectedKeys.push({"selected": true, "key": lElement._Key});;
 							}
 						}
 					}

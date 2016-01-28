@@ -834,9 +834,27 @@
 
 	</property>
 	<property
+		id="cleanAll"
+		type="boolean"
+		title="Clean All Marked Dates"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
 		id="firstDayOffset"
 		type="int"
 		title="First Day Offset (0 == Sunday)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="markedDates"
+		type="String"
+		title="Marked Dates"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -917,7 +935,9 @@
 		<defaultValue property="DValue"><![CDATA[TODAY]]></defaultValue>
 		<defaultValue property="DValueF"><![CDATA[TODAY]]></defaultValue>
 		<defaultValue property="DValueT"><![CDATA[TODAY]]></defaultValue>
+		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
 		<defaultValue property="firstDayOffset"><![CDATA[1]]></defaultValue>
+		<defaultValue property="markedDates"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="monthsPerRow"><![CDATA[1]]></defaultValue>
 		<defaultValue property="monthsToDisplay"><![CDATA[1]]></defaultValue>
 		<defaultValue property="onCurrentChanged"><![CDATA[]]></defaultValue>

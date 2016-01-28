@@ -1,5 +1,74 @@
 {
 
+	"markedDates": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "element":{
+	               "type":"Array",
+	               "sequence":"key,mark,inactive",
+	               "key":{
+	                  "desc":"Unique Date [YYYYMMDD]",
+	                  "type":"String"
+	               },
+				   "mark": {
+					  "desc": "Mark",
+					  "type": "String",
+					  "options": [
+					  {"key":"Type01","text":"Type00"},
+					  {"key":"Type01","text":"Type01"},
+					  {"key":"Type02","text":"Type02"},
+					  {"key":"Type03","text":"Type03"},
+					  {"key":"Type04","text":"Type04"},
+					  {"key":"Type05","text":"Type05"},
+					  {"key":"Type06","text":"Type06"},
+					  {"key":"Type07","text":"Type07"},
+					  {"key":"Type08","text":"Type08"},
+					  {"key":"Type09","text":"Type09"},
+					  {"key":"Type10","text":"Type10"}
+					  ],
+					  "apsControl": "combobox"
+				   },
+	               "inactive":{
+	                  "desc":"Incative",
+	                  "type":"boolean"
+	               }
+	            }
+	        },
+ 
+			"desc":"Marked Dates",
+			"cat":"Content",
+			"tooltip":"List of Marked Dates",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray"
+		}
+	},
+	"cleanAll" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Marked Dates",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Marked Dates",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"markedDates",
+		   	"refDesc":"Marked Dates",
+		   	"refValue":"[]",
+		}
+	},
 
 
 	"DCurrentValue" : {

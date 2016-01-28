@@ -60,9 +60,9 @@ Calendar = {
 		that.attachChangeRange(that._attachChangeRange);
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
-		that.onAfterRendering = function () {
+		// that.onAfterRendering = function () {
 			// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
-		}
+		// }
 	},
 	
 	afterDesignStudioUpdate: function() {
@@ -94,6 +94,22 @@ Calendar = {
 		} else if(selectionType == "Range Selection") { 
 			that.setSelectionMode(sap.me.CalendarSelectionMode.RANGE);
 		}
+		
+		var markedDates = that.getMarkedDates();
+		markedDates = JSON.parse(markedDates);
+		for (mDate in markedDates) {
+			mDate = markedDates[mDate];
+
+			var date = mDate.key;
+			var act = !mDate.inactive;
+
+			if(date.length == 8) {
+				var year = date.substring(0,4);
+				var month = date.substring(4,6);
+				var day = date.substring(6,8);
+				that.toggleDatesType([month+"/"+day+"/"+year], mDate.mark, act);
+			}
+		}
 
 		that._deactivateEvent = true;
 		if(that._oldDateValues != currentDate.formatted+singleDate.formatted+fromDate.formatted+toDate.formatted) {
@@ -101,6 +117,7 @@ Calendar = {
 			
 			var curActual = that.getCurrentDate();
 			var dateO = new Date(curActual);
+			
 			var techDate = "" + dateO.format(dateFormat.masks.technical);
 	    	
 			if(techDate != currentDate.formatted) {

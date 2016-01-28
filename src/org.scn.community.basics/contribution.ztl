@@ -1614,7 +1614,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	/**
 	 * Returns the Visible keys<br/>
 	 */
-	org.scn.pack.KeyArray getCategoryVisibleKeysArray (
+	org.scn.community.shared.KeyArray getCategoryVisibleKeysArray (
 			) 
 	{*
 		if (this.categories === undefined || this.categories === "" || this.categories === "<delete>"){
@@ -1628,7 +1628,7 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].visible == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -2670,6 +2670,28 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	*}
 
 	/**
+	 * Clean All Marked Dates from the Array.
+	 */	
+	void cleanAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.markedDates = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Marked Dates from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllElements (){*
+		this.cleanAll = true;
+
+		var elementsArray = [];
+		this.markedDates = JSON.stringify(elementsArray);
+	*}
+
+	/**
 	 * Sets First Day Offset (0 == Sunday) Property
 	 */	
 	void setFirstDayOffset( /**First Day Offset (0 == Sunday)*/ int firstDayOffset){*
@@ -2682,6 +2704,402 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 	int getFirstDayOffset() {*
 		return this.firstDayOffset;
 	*}
+
+	/** Adds a root element containing key [String], mark [String], inactive [boolean].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	CALENDAR.addElement(key [String], mark [String], inactive [boolean]);<br>
+	CALENDAR.addElement(key [String], mark [String], inactive [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addElement (
+			/**Unique Date [YYYYMMDD]*/String key, 
+			/**Mark*/String mark, 
+			/**Incative*/boolean inactive
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			mark:mark, 
+			inactive:inactive
+			};
+
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			this.markedDates = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.markedDates);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.markedDates = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	CALENDAR.removeElement(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeElement (
+			String key
+			) {*
+
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			this.markedDates = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.markedDates);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.markedDates = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	CALENDAR.insertElement(index [int], key [String], mark [String], inactive [boolean]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertElement (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Date [YYYYMMDD]*/String key, 
+			/**Mark*/String mark, 
+			/**Incative*/boolean inactive
+			) {*
+
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			this.markedDates = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.markedDates);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			mark:mark, 
+			inactive:inactive
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.markedDates = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Element<br/>
+	 */
+	void updateElement (
+			/**Unique Date [YYYYMMDD]*/String key, 
+			/**Mark*/String mark, 
+			/**Incative*/boolean inactive
+			) 
+	{*
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			this.markedDates = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			mark:mark, 
+			inactive:inactive
+		};
+
+		var elementsJson = JSON.parse(this.markedDates);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.markedDates = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getElementAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			this.markedDates = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.markedDates);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Elements As JSON String
+	 */	
+	String getElementsAsJSON() {*
+		var jsonObject = JSON.parse(this.markedDates);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Mark for Element keys<br/>
+	 */
+	void setElementMarks (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Mark */ String mark
+			) 
+	{*
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.markedDates);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].mark = mark;
+					break;
+				}
+			}
+		}
+		
+		this.markedDates = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Mark for Element Key<br/>
+	 */
+	void setElementMark (
+			/**/ String key,
+			/**/ String mark
+			) 
+	{*
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.markedDates);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].mark = mark;
+				break;
+			}
+		}
+
+		this.markedDates = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Mark for Element Key<br/>
+	 */
+	String getElementMark (
+			/**/ String key
+			) 
+	{*
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.markedDates);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].mark;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Inactive for Element keys<br/>
+	 */
+	void setElementInactives (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.markedDates);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].inactive = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].inactive = true;
+					break;
+				}
+			}
+		}
+		
+		this.markedDates = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Inactive for Element Key<br/>
+	 */
+	void setElementInactive (
+			/**/ String key,
+			/**/ boolean inactive
+			) 
+	{*
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.markedDates);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].inactive = inactive;
+				break;
+			}
+		}
+
+		this.markedDates = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Inactive of Element keys<br/>
+	 */
+	void cleanAllElementInactives (
+			) 
+	{*
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].inactive = false;
+		}
+		
+		this.markedDates = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Inactive for Element Key<br/>
+	 */
+	String getElementInactive (
+			/**/ String key
+			) 
+	{*
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.markedDates);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].inactive;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+	/**
+	 * Returns the Inactive keys<br/>
+	 */
+	org.scn.community.shared.KeyArray getElementInactiveKeysArray (
+			) 
+	{*
+		if (this.markedDates === undefined || this.markedDates === "" || this.markedDates === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.markedDates);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].inactive == true) {
+				newElementsJson.push({"key": elementsJson[i].key});
+			}
+		}
+		
+		return newElementsJson;
+	*}
+
+
 
 	/**
 	 * Sets Months Per Row Property
@@ -3237,7 +3655,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getElementSelectedKeysArray (
+	org.scn.community.shared.KeyArray getElementSelectedKeysArray (
 			) 
 	{*
 		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
@@ -3251,7 +3669,7 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].selected == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -9215,7 +9633,7 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getItemEnabledKeysArray (
+	org.scn.community.shared.KeyArray getItemEnabledKeysArray (
 			) 
 	{*
 		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
@@ -9229,7 +9647,7 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].enabled == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -9498,7 +9916,7 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getSubItemEnabledKeysArray (
+	org.scn.community.shared.KeyArray getSubItemEnabledKeysArray (
 			) 
 	{*
 		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
@@ -9512,7 +9930,7 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].enabled == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -10086,7 +10504,7 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getItemEnabledKeysArray (
+	org.scn.community.shared.KeyArray getItemEnabledKeysArray (
 			) 
 	{*
 		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
@@ -10100,7 +10518,7 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].enabled == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -10369,7 +10787,7 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getSubItemEnabledKeysArray (
+	org.scn.community.shared.KeyArray getSubItemEnabledKeysArray (
 			) 
 	{*
 		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
@@ -10383,7 +10801,7 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].enabled == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -11003,7 +11421,7 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 	/**
 	 * Returns the Visible keys<br/>
 	 */
-	org.scn.pack.KeyArray getStepVisibleKeysArray (
+	org.scn.community.shared.KeyArray getStepVisibleKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -11017,7 +11435,7 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].visible == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -11128,7 +11546,7 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getStepEnabledKeysArray (
+	org.scn.community.shared.KeyArray getStepEnabledKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -11142,7 +11560,7 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].enabled == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -13126,7 +13544,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Visible keys<br/>
 	 */
-	org.scn.pack.KeyArray getStepVisibleKeysArray (
+	org.scn.community.shared.KeyArray getStepVisibleKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -13140,7 +13558,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].visible == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -13251,7 +13669,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 	/**
 	 * Returns the Enabled keys<br/>
 	 */
-	org.scn.pack.KeyArray getStepEnabledKeysArray (
+	org.scn.community.shared.KeyArray getStepEnabledKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -13265,7 +13683,7 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].enabled == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -13808,7 +14226,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getButtonSelectedKeysArray (
+	org.scn.community.shared.KeyArray getButtonSelectedKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -13822,7 +14240,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].selected == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
@@ -14091,7 +14509,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 	/**
 	 * Returns the Selected keys<br/>
 	 */
-	org.scn.pack.KeyArray getItemSelectedKeysArray (
+	org.scn.community.shared.KeyArray getItemSelectedKeysArray (
 			) 
 	{*
 		if (this.DElementsContent === undefined || this.DElementsContent === "" || this.DElementsContent === "<delete>"){
@@ -14105,7 +14523,7 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		// loop and find and update
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].selected == true) {
-				newElementsJson.push(elementsJson[i]);
+				newElementsJson.push({"key": elementsJson[i].key});
 			}
 		}
 		
