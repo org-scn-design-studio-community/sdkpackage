@@ -516,6 +516,9 @@ public class Component {
 		template = template.replace("%COMPONENT_GROUP%", this.group);
 		String groupLower = group.replace("ScnCommunity", "");
 		groupLower = groupLower.toLowerCase(Locale.ENGLISH);
+		if(groupLower.equals("technical_components")) {
+			groupLower = "utils";
+		}
 		template = template.replace("%FULL_HTML_PATH_ACCESS%",  groupLower + "/" + this.name.toLowerCase(Locale.ENGLISH));
 		
 
