@@ -76,7 +76,7 @@ function() {
 {
   "databound": false,
   "extension": "Component",
-  "group": "ScnCommunityUtils",
+  "group": "TECHNICAL_COMPONENTS",
   "handlerType": "div",
   "height": "10",
   "id": "JsonObject",

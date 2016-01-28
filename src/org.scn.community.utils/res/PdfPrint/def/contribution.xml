@@ -6,7 +6,7 @@
 	icon="res/PdfPrint/PdfPrint.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="ScnCommunityUtils"
+	group="TECHNICAL_COMPONENTS"
 	databound="false"
 	modes="commons"
 >

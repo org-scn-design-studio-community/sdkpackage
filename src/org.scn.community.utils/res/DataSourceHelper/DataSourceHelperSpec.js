@@ -71,7 +71,7 @@ function() {
 {
   "databound": true,
   "extension": "Component",
-  "group": "ScnCommunityUtils",
+  "group": "TECHNICAL_COMPONENTS",
   "handlerType": "div",
   "height": "50",
   "id": "DataSourceHelper",

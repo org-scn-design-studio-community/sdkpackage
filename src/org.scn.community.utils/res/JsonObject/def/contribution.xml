@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="TECHNICAL_COMPONENTS"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/JsonObject/JsonObject</requireJs>
+	<requireJs modes="commons">res/JsonObject/JsonObject</requireJs>
 
 	<cssInclude>res/JsonObject/JsonObject.css</cssInclude>
 	

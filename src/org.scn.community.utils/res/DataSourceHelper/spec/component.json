@@ -3,7 +3,7 @@
 	"title": "Data Source Helper 2.0",
 	"tooltip": "DataSourceHelper - Utilities for Data Sources",
 	"handlerType": "div",
-	"group": "ScnCommunityUtils",
+	"group": "TECHNICAL_COMPONENTS",
 	"package": "utils",
 	"extension": "Component",
 	"databound": true,

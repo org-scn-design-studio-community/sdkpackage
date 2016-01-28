@@ -3,7 +3,7 @@
 	"title": "Json Object",
 	"tooltip": "Utility for work with Json Object",
 	"handlerType": "div",
-	"group": "ScnCommunityUtils",
+	"group": "TECHNICAL_COMPONENTS",
 	"package": "utils",
 	"extension": "Component",
 	"databound": false,

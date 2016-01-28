@@ -429,7 +429,7 @@ function() {
 {
   "databound": false,
   "extension": "Component",
-  "group": "ScnCommunityUtils",
+  "group": "TECHNICAL_COMPONENTS",
   "handlerType": "sapui5",
   "height": "20",
   "id": "PdfPrint",
