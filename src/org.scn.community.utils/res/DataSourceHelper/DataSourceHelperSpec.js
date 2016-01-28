@@ -75,6 +75,7 @@ function() {
   "handlerType": "div",
   "height": "50",
   "id": "DataSourceHelper",
+  "modes": "commons m",
   "package": "utils",
   "require": [{
     "id": "common_basics",

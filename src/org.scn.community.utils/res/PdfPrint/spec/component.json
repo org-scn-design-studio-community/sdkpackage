@@ -4,10 +4,11 @@
 	"tooltip": "PDF Print",
 	"handlerType": "sapui5",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
-	"group": "TECHNICAL_COMPONENTS",
+	"group": "ScnCommunityUtils",
 	"package": "utils",
 	"extension": "Component",
 	"databound": false,
+	"modes":"commons m",
 
 	"require": 
 	[

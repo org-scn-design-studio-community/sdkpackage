@@ -80,6 +80,7 @@ function() {
   "handlerType": "div",
   "height": "10",
   "id": "JsonObject",
+  "modes": "commons m",
   "package": "utils",
   "require": [],
   "title": "Json Object",

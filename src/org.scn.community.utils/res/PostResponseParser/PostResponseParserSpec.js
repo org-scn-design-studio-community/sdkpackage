@@ -433,6 +433,7 @@ function() {
   "handlerType": "sapui5",
   "height": "10",
   "id": "PostResponseParser",
+  "modes": "commons m",
   "package": "utils",
   "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{

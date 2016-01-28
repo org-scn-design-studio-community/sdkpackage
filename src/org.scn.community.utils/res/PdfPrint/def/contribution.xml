@@ -6,12 +6,12 @@
 	icon="res/PdfPrint/PdfPrint.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
-	group="TECHNICAL_COMPONENTS"
+	group="ScnCommunityUtils"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/PdfPrint/PdfPrint</requireJs>
+	<requireJs modes="commons m">res/PdfPrint/PdfPrint</requireJs>
 
 	<cssInclude>res/PdfPrint/PdfPrint.css</cssInclude>
 	

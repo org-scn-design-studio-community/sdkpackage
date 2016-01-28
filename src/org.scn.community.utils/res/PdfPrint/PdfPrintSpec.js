@@ -429,10 +429,11 @@ function() {
 {
   "databound": false,
   "extension": "Component",
-  "group": "TECHNICAL_COMPONENTS",
+  "group": "ScnCommunityUtils",
   "handlerType": "sapui5",
   "height": "20",
   "id": "PdfPrint",
+  "modes": "commons m",
   "package": "utils",
   "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
