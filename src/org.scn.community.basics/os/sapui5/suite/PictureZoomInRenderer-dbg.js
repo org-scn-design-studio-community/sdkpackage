@@ -29,7 +29,7 @@ sap.suite.ui.commons.PictureZoomInRenderer.render = function(oRm, oControl){
 	oRm.writeAttribute("role", "img");
 	var sTooltip = oControl.getTooltip_AsString();
 	if (sTooltip) {
-		oRm.writeAttribute("title", sTooltip);
+		oRm.writeAttribute("title", jQuery.sap.encodeHTML(sTooltip));
 	}
 	oRm.write(">");
     if (oControl.getBusyIndicator()) {

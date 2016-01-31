@@ -16,7 +16,7 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		var dayString = internalDate.substring(6,8);
 		dayString = dayString.replace("0", "");
 		var day = parseInt(dayString);
-		
+		APPLICATION.createInfoMessage("Init: " + year + "," + month + ", " + day);
 		this.initialize(year, month, day);
 	*}
 	

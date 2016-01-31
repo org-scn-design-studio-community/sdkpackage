@@ -8,4 +8,4 @@ sap.suite.ui.commons.TileContent2X2.prototype.onAfterRendering=function(){var c=
 sap.suite.ui.commons.TileContent2X2.prototype._getFooterText=function(){var f=this.getFooter();var u=this.getUnit();return u?(sap.ui.getCore().getConfiguration().getRTL()?((f?f+" ,":"")+u):(u+(f?", "+f:""))):f;};
 sap.suite.ui.commons.TileContent2X2.prototype.onBeforeRendering=function(){if(this.getContent()){if(this.getDisabled()){this.getContent().addDelegate(this._oDelegate);}else{this.getContent().removeDelegate(this._oDelegate);}}};
 sap.suite.ui.commons.TileContent2X2.prototype.setContent=function(o,s){if(this.getContent()){this.getContent().removeDelegate(this._oDelegate);}this.setAggregation("content",o,s);};
-sap.suite.ui.commons.TileContent2X2.prototype.getAltText=function(){var a="";var c=this.getContent();if(c.getAltText){a+=c.getAltText();}else if(c.getTooltip_AsString()){a+=c.getTooltip_AsString();}return a;};
+sap.suite.ui.commons.TileContent2X2.prototype.getAltText=function(){var a="";var c=this.getContent();if(c&&c.getAltText){a+=c.getAltText();}else if(c&&c.getTooltip_AsString()){a+=c.getTooltip_AsString();}return a;};

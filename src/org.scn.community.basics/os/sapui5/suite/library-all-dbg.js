@@ -16105,9 +16105,11 @@ jQuery.sap.require('jquery.sap.resources'); // unlisted dependency retained
      */
     sap.suite.ui.commons.DateRangeSlider.prototype.init = function() {
 
+    	if(this._oDateRangeSliderInternal==undefined){
         this._oDateRangeSliderInternal = new sap.suite.ui.commons.DateRangeSliderInternal({
             id : this.getId() + "-dateRangeSliderInternal"
         });
+    	}
 
         sap.suite.ui.commons.DateRangeSlider.setPropertiesBasedOnSliderInternal(this);
 
@@ -17022,10 +17024,10 @@ jQuery.sap.require('sap.ui.commons.Label'); // unlisted dependency retained
 
 		if (this.getShowBubbles()) {
 			this._oBubble = new sap.ui.commons.Label({
-				id : this.getId() + '-bubbleTxt'
+				
 			});
 			this._oBubble2 = new sap.ui.commons.Label({
-				id : this.getId() + '-bubbleTxt2'
+				
 			});
 
 			this._oBubble.addStyleClass("sapSuiteUiCommonsDateRangeSliderBubbleLblTxt");

@@ -838,6 +838,13 @@
 			"name": "RepeaterViewConfiguration.js"
 		},
 		{
+			"name": "RepeaterViewConfigurationRenderer-dbg.js",
+			"isDebug":true
+		},
+		{
+			"name": "RepeaterViewConfigurationRenderer.js"
+		},
+		{
 			"name": "SelectionState.type"
 		},
 		{

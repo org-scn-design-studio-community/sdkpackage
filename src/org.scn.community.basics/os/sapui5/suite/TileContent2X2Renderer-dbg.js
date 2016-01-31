@@ -64,7 +64,7 @@ sap.suite.ui.commons.TileContent2X2Renderer.renderContent = function(rm, oContro
 	rm.writeClasses();
 	rm.writeAttribute("id", oControl.getId() + "-content");
 	rm.write(">");
-		if(!oCnt.hasStyleClass("sapSuiteUiTcInnerMarker")) {
+		if(oCnt && !oCnt.hasStyleClass("sapSuiteUiTcInnerMarker")) {
 			oCnt.addStyleClass("sapSuiteUiTcInnerMarker");
 		}
 		rm.renderControl(oCnt);

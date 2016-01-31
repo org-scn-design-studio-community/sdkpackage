@@ -330,10 +330,8 @@ jQuery.sap.require("sap.suite.ui.commons.util.DateUtils");
 
 		if (this.getShowBubbles()) {
 			this._oBubble = new sap.ui.commons.Label({
-				id : this.getId() + '-bubbleTxt'
 			});
 			this._oBubble2 = new sap.ui.commons.Label({
-				id : this.getId() + '-bubbleTxt2'
 			});
 
 			this._oBubble.addStyleClass("sapSuiteUiCommonsDateRangeSliderBubbleLblTxt");

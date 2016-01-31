@@ -20,7 +20,7 @@
 	actualValueLabel: undefined, // string
 	deltaValueLabel: undefined, // string, since 1.23
 	targetValueLabel: undefined, // string
-	width: undefined, // string, since 1.22
+	width: undefined, // sap.ui.core.CSSSize, since 1.22
 	scaleColor: sap.suite.ui.commons.CommonBackground.MediumLight, // sap.suite.ui.commons.CommonBackground, since 1.23
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -1689,7 +1689,7 @@
 	value: undefined, // string
 	scale: undefined, // string
 	valueColor: sap.suite.ui.commons.InfoTileValueColor.Neutral, // sap.suite.ui.commons.InfoTileValueColor
-	indicator: undefined, // string
+	indicator: sap.suite.ui.commons.DeviationIndicator.None, // sap.suite.ui.commons.DeviationIndicator
 	state: sap.suite.ui.commons.LoadState.Loaded, // sap.suite.ui.commons.LoadState
 	animateTextChange: true, // boolean
 	formatterValue: false, // boolean
@@ -1715,7 +1715,7 @@
 	value=""
 	scale=""
 	valueColor="Neutral"
-	indicator=""
+	indicator="None"
 	state="Loaded"
 	animateTextChange="true"
 	formatterValue="false"
@@ -1745,7 +1745,7 @@
 	scale: undefined, // string
 	unit: undefined, // string
 	valueColor: undefined, // sap.suite.ui.commons.InfoTileValueColor
-	indicator: undefined, // sap.suite.ui.commons.DeviationIndicator
+	indicator: sap.suite.ui.commons.DeviationIndicator.None, // sap.suite.ui.commons.DeviationIndicator
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
@@ -1769,7 +1769,7 @@
 	scale=""
 	unit=""
 	valueColor=""
-	indicator=""
+	indicator="None"
 	press="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->

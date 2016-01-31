@@ -204,9 +204,9 @@ sap.suite.ui.commons.TimelineItemRenderer.renderItemShell = function(oRm, oContr
 	   oRm.renderControl(oControl._getUserPictureControl());
 	   oRm.write("</div>");
 	 }
-	 
+
 	 oRm.write("<div");
-	 oRm.writeAttribute("title", oControl.getUserName() + " " + oControl.getTitle());
+	 oRm.writeAttribute("title", jQuery.sap.encodeHTML(oControl.getUserName()) + " " + jQuery.sap.encodeHTML(oControl.getTitle()));
 	 //added yy
 	 oRm.writeAttribute("id", oControl.getId() + "-header");
 	 oRm.addClass("sapSuiteUiCommonsTimelineItemHeader");
@@ -215,8 +215,8 @@ sap.suite.ui.commons.TimelineItemRenderer.renderItemShell = function(oRm, oContr
 	 oRm.writeClasses();
 	 oRm.writeStyles();
 	 //oRm.writeControlData(oControl);
-	 oRm.write(">"); 
-	 
+	 oRm.write(">");
+
 	 oRm.write("<span");
 	 //oRm.writeControlData(oControl);
 	 oRm.writeAttribute("id", oControl.getId() + "-username");
@@ -276,7 +276,7 @@ sap.suite.ui.commons.TimelineItemRenderer.renderItemShell = function(oRm, oContr
 	 oRm.write("</div>");
 	 
 	 // here we should do the bottom bar 
-	 if (oControl.getParent()._aFilterList && (oControl.getParent().getEnableSocial() || oControl.getCustomAction().length > 0)) {  //Check if there is Timeline as parent
+	 if (oControl.getParent() && oControl.getParent()._aFilterList && (oControl.getParent().getEnableSocial() || oControl.getCustomAction().length > 0)) {  //Check if there is Timeline as parent
 		 oRm.write("<div");
 		 oRm.addClass("sapSuiteUiCommonsTimelineItemShellBottom");
 		 oRm.writeClasses();

@@ -47,7 +47,7 @@
 		<property group="Misc" name="targetValueLabel" type="sap.ui.core/string">
 			<documentation>If set, displays a specified label instead of the numeric target value.</documentation>
 		</property>
-		<property group="Misc" name="width" type="sap.ui.core/string"  since="1.22">
+		<property group="Misc" name="width" type="sap.ui.core/CSSSize"  since="1.22">
 			<documentation>The width of the chart. If it is not set, the size of the control is defined by the size property.</documentation>
 		</property>
 		<property group="Misc" name="scaleColor" type="sap.suite.ui.commons/CommonBackground" defaultValue="MediumLight" since="1.23">

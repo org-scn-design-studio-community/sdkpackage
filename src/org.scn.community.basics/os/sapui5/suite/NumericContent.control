@@ -13,12 +13,12 @@
 			<documentation>The actual value.</documentation>
 		</property>
 		<property group="Misc" name="scale" type="sap.ui.core/string">
-			<documentation>The scaling prefix. Financial characters can be used for currencies and counters. The SI prefixes can be used for units.</documentation>
+			<documentation>The scaling prefix. Financial characters can be used for currencies and counters. The SI prefixes can be used for units. If the scaling prefix contains more than three characters, only the first three characters are displayed.</documentation>
 		</property>
 		<property group="Misc" name="valueColor" type="sap.suite.ui.commons/InfoTileValueColor" defaultValue="Neutral">
 			<documentation>The semantic color of the value.</documentation>
 		</property>
-		<property group="Misc" name="indicator" type="sap.ui.core/string">
+		<property group="Misc" name="indicator" type="DeviationIndicator" defaultValue="None">
 			<documentation>The indicator arrow that shows value deviation.</documentation>
 		</property>
 		<property group="Misc" name="state" type="LoadState" defaultValue="Loaded">

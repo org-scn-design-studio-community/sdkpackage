@@ -18,7 +18,7 @@
 		<property group="Misc" name="valueColor" type="InfoTileValueColor">
 			<documentation>The semantic color of the value.</documentation>
 		</property>
-		<property group="Misc" name="indicator" type="DeviationIndicator">
+		<property group="Misc" name="indicator" type="DeviationIndicator" defaultValue="None">
 			<documentation>The indicator arrow that shows value deviation.</documentation>
 		</property>
 	</properties>

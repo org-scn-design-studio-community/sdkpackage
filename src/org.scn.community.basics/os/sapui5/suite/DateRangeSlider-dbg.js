@@ -622,9 +622,11 @@ jQuery.sap.require("sap.suite.ui.commons.util.DateUtils");
      */
     sap.suite.ui.commons.DateRangeSlider.prototype.init = function() {
 
-        this._oDateRangeSliderInternal = new sap.suite.ui.commons.DateRangeSliderInternal({
-            id : this.getId() + "-dateRangeSliderInternal"
-        });
+        if(this._oDateRangeSliderInternal == undefined) {
+            this._oDateRangeSliderInternal = new sap.suite.ui.commons.DateRangeSliderInternal({
+                id : this.getId() + "-dateRangeSliderInternal"
+            });
+        }
 
         sap.suite.ui.commons.DateRangeSlider.setPropertiesBasedOnSliderInternal(this);
 
