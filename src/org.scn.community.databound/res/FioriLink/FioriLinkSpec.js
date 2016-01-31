@@ -329,7 +329,7 @@ function() {
   "generatedJsFile": "true",
   "group": "ScnCommunityBasics",
   "handlerType": "sapui5",
-  "height": "580",
+  "height": "32",
   "id": "FioriLink",
   "modes": "m",
   "package": "databound",
@@ -341,7 +341,7 @@ function() {
   "title": "Fiori Link 2.0",
   "tooltip": "Fiori Link - Component for links.",
   "ui5package": "sap.m",
-  "width": "420"
+  "width": "300"
 };
 
 	return spec;

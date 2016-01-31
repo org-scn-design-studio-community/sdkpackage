@@ -175,6 +175,10 @@ function() {
           "options": [
             {
               "key": "Type01",
+              "text": "Type00"
+            },
+            {
+              "key": "Type01",
               "text": "Type01"
             },
             {
