@@ -1,0 +1,107 @@
+
+/**
+ * Class for ComponentLayouter
+ */
+class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared.Component {
+	int getBrowserWidth(){* return this.browserWidth; *}
+	int getBrowserHeight(){* return this.browserHeight; *}
+	/**
+	Issue exploratory Rhino command
+	*/
+	String bial(/* Debug */ String bial) {*
+		return JSON.stringify(eval(bial));
+	*}
+	String layoutCanvas(String profile){*
+		this.internal_assureGlobalAccess();
+		var global = this.getGlobal();
+		var p = JSON.parse(this.profiles);
+		for(var i=0;i<p.length;i++){
+			if(profile == p[i].key){
+				APPLICATION.log("Applying layout: " + profile + "...");
+				var layout = p[i].componentLayout.components;
+				for(var j=0;j<layout.length;j++){
+					var component = layout[j];
+					if(global[component.key] && component.key != "me"){
+						APPLICATION.log("Moving " + component.key + JSON.stringify(component.position) + "...");
+						// Top
+						if(component.position.top!=-1){
+							global[component.key].setTopMargin(component.position.top);	
+						}else{
+							global[component.key].setTopMargin("auto");
+						}
+						// Bottom
+						if(component.position.bottom!=-1){
+							global[component.key].setBottomMargin(component.position.bottom);
+						}else{
+							global[component.key].setBottomMargin("auto");
+						}
+						// Left
+						if(component.position.left!=-1){
+							global[component.key].setLeftMargin(component.position.left);
+						}else{
+							global[component.key].setLeftMargin("auto");
+						}
+						// Right
+						if(component.position.right!=-1){
+							global[component.key].setRightMargin(component.position.right);
+						}else{
+							global[component.key].setRightMargin("auto");
+						}
+						// Width
+						if(component.position.width!=-1){
+							global[component.key].setWidth(component.position.width);
+						}else{
+							global[component.key].setWidth("auto");
+						}
+						// Height
+						if(component.position.height!=-1){
+							global[component.key].setHeight(component.position.height);
+						}else{
+							global[component.key].setHeight("auto");
+						}
+						global[component.key].getOwner().setContentChanged(true);
+						global[component.key].getOwner().setPositionChanged(true);
+					}else{
+						APPLICATION.log("Could not locate " + component.key + "...");
+						// Component gone
+					}
+				}
+			}
+		}
+	*}
+	String examineCanvas() {*
+		this.internal_assureGlobalAccess();
+		var payload = {
+			browserWidth : this.browserWidth,
+			browserHeight : this.browserHeight,
+			components : []
+		};
+		var global = this.getGlobal();
+		for (var key in global) {
+			var component = global[key];
+			APPLICATION.log("Examining " + key);
+			if(component.getOwner && component.getTopMargin && key != "me") {
+				try{
+					var position = {
+						top : component.getTopMargin(),
+						bottom : component.getBottomMargin(),
+						left : component.getLeftMargin(),
+						right : component.getRightMargin(),
+						width : component.getWidth(),
+						height : component.getHeight()
+					}
+					payload.components.push({
+						key : key,
+						position : position
+						//owner : global[key].getOwner(),
+						//properties : global[key]
+					});
+				}catch(e){
+					APPLICATION.log("Error trapped: " + e);
+				}
+			}
+		}
+		return JSON.stringify(payload);
+	*}
+}
+

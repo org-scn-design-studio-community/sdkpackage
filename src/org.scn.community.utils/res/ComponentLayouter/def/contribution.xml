@@ -1,0 +1,30 @@
+
+<component
+	id="ComponentLayouter"
+	title="Component Layouter"
+	tooltip="Allows managing layout of components"
+	icon="res/ComponentLayouter/ComponentLayouter.png"
+	handlerType="div"
+	group="ScnCommunityUtils"
+	propertySheetPath="aps/PropertyPage.html"
+	modes="commons m"
+>
+	<requireJs modes="commons m">res/ComponentLayouter/ComponentLayouter</requireJs>
+
+	<property id="profiles" type="String" title="Profile List" visible="false" />
+	<property id="browserWidth"	type="int" title="Width of the Window" group="Display" visible="false" />
+	<property id="browserHeight" type="int" title="Height of the Window" group="Display" visible="false" />
+	<property id="onResize" type="ScriptText" title="On Resize" group="Events" />
+	<property id="tick" type="int" title="Tick" />
+	
+	<initialization>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="profiles">[]</defaultValue>
+	</initialization>
+
+</component>
