@@ -5,24 +5,76 @@
 class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared.Component {
 	int getBrowserWidth(){* return this.browserWidth; *}
 	int getBrowserHeight(){* return this.browserHeight; *}
+	String getDevice(){* return this.device; *}
+	String getOS(){* return this.os; *}
+	String getCurrentProfile(){* return this.currentProfile; *}
 	/**
 	Issue exploratory Rhino command
 	*/
 	String bial(/* Debug */ String bial) {*
 		return JSON.stringify(eval(bial));
 	*}
-	String layoutCanvas(String profile){*
+	String checkProfiles(){*
+		var width = this.browserWidth;
+		var height = this.browserHeight;
+		var os = this.os;
+		var device = this.device;
+		APPLICATION.log("Checking for a matching profile for [" + width + "x" + height + "] OS: " + os + " Device: " + device);
+		var p = JSON.parse(this.profiles);
+		for(var i=0;i<p.length;i++){
+			var profile = p[i];
+			APPLICATION.log("Checking profile " + profile.key);
+			APPLICATION.log(profile);
+			if((	// If width between, or min/max set to -1
+					(width >= profile.browserMinWidth || profile.browserMinWidth == -1) && 
+					(width <= profile.browserMaxWidth || profile.browserMaxWidth == -1)
+				) && (// If height between, or min/max set to -1
+					(height >= profile.browserMinHeight || profile.browserMinHeight == -1) &&
+					(height <= profile.browserMaxHeight || profile.browserMaxHeight == -1)
+			)
+			// Device/OS detection later
+			){
+				this.loadProfile(profile.key);
+				return(profile.key);
+			}
+		}
+		return "";
+	*}
+	String loadProfile(String profile){*
+		APPLICATION.log("Load Profile called for key '" + profile + "'");
 		this.internal_assureGlobalAccess();
 		var global = this.getGlobal();
 		var p = JSON.parse(this.profiles);
 		for(var i=0;i<p.length;i++){
 			if(profile == p[i].key){
 				APPLICATION.log("Applying layout: " + profile + "...");
+				this.currentProfile = (profile);
 				var layout = p[i].componentLayout.components;
 				for(var j=0;j<layout.length;j++){
 					var component = layout[j];
 					if(global[component.key] && component.key != "me"){
 						APPLICATION.log("Moving " + component.key + JSON.stringify(component.position) + "...");
+						if(global[component.key].setVisible){
+							global[component.key].setVisible((component.position.visible)?true:false);							
+						}
+						component.position.width = parseInt(component.position.width);
+						component.position.height = parseInt(component.position.height);
+						component.position.top = parseInt(component.position.top);
+						component.position.left = parseInt(component.position.left);
+						component.position.bottom = parseInt(component.position.bottom);
+						component.position.right = parseInt(component.position.right);
+						// Width
+						if(component.position.width!=-1){
+							global[component.key].setWidth(component.position.width);
+						}else{
+							global[component.key].setWidth("auto");
+						}
+						// Height
+						if(component.position.height!=-1){
+							global[component.key].setHeight(component.position.height);
+						}else{
+							global[component.key].setHeight("auto");
+						}
 						// Top
 						if(component.position.top!=-1){
 							global[component.key].setTopMargin(component.position.top);	
@@ -47,20 +99,9 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 						}else{
 							global[component.key].setRightMargin("auto");
 						}
-						// Width
-						if(component.position.width!=-1){
-							global[component.key].setWidth(component.position.width);
-						}else{
-							global[component.key].setWidth("auto");
-						}
-						// Height
-						if(component.position.height!=-1){
-							global[component.key].setHeight(component.position.height);
-						}else{
-							global[component.key].setHeight("auto");
-						}
-						global[component.key].getOwner().setContentChanged(true);
-						global[component.key].getOwner().setPositionChanged(true);
+						
+						//global[component.key].getOwner().setContentChanged(true);
+						//global[component.key].getOwner().setPositionChanged(true);
 					}else{
 						APPLICATION.log("Could not locate " + component.key + "...");
 						// Component gone
@@ -82,7 +123,10 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 			APPLICATION.log("Examining " + key);
 			if(component.getOwner && component.getTopMargin && key != "me") {
 				try{
+					var visible = false;
+					if(component.isVisible) visible = component.isVisible();
 					var position = {
+						visible : visible,
 						top : component.getTopMargin(),
 						bottom : component.getBottomMargin(),
 						left : component.getLeftMargin(),

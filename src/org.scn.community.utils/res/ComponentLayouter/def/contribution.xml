@@ -12,9 +12,13 @@
 	<requireJs modes="commons m">res/ComponentLayouter/ComponentLayouter</requireJs>
 
 	<property id="profiles" type="String" title="Profile List" visible="false" />
+	<property id="currentProfile" type="String" title="Currently Active Profile" visible="false" />
 	<property id="browserWidth"	type="int" title="Width of the Window" group="Display" visible="false" />
 	<property id="browserHeight" type="int" title="Height of the Window" group="Display" visible="false" />
+	<property id="device" type="String" title="Device" group="Display" visible="false" />
+	<property id="os" type="String" title="OS" group="Display" visible="false" />
 	<property id="onResize" type="ScriptText" title="On Resize" group="Events" />
+	<property id="onProfileChange" type="ScriptText" title="On Profile Change" group="Events" />
 	<property id="tick" type="int" title="Tick" />
 	
 	<initialization>

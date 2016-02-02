@@ -22,6 +22,24 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 	ComponentLayouter.prototype = SDKCore;
 	function ComponentLayouter() {
 		SDKCore.call(this, {
+			currentProfile :  { 
+				opts : {
+					noAps : true,
+					desc : "Current Profile",
+				}			
+			},
+			os :  { 
+				opts : {
+					noAps : true,
+					desc : "OS",
+				}			
+			},
+			device :  { 
+				opts : {
+					noAps : true,
+					desc : "Device",
+				}			
+			},
 			browserWidth :  { 
 				opts : {
 					noAps : true,
@@ -39,6 +57,13 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 					apsControl : "script",
 					cat : "General",
 					desc : "On Resize"
+				}			
+			},
+			onProfileChange :  { 
+				opts : {
+					apsControl : "script",
+					cat : "General",
+					desc : "On Profile Change"
 				}			
 			},
 			profiles :  { 
@@ -59,66 +84,71 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
     	this.init = function(){
     		parentInit.call(this);
     		var that = this;
-			// this.$().css("display", "none");
-    		this.$().html("Component Layouter");
+    		if(sap && sap.zen && sap.zen.designmode) {
+    			this.$().css("background-color", "rgba(0,64,128,0.5)");
+    			this.$().html("Component Layouter<br />(Hidden at Runtime)");
+    		}else{
+    			this.$().css("display", "none");    				
+    		}
 			this.onAfterResizing = function(forcedReload) {
+				var isMobile = {
+				    Android: function() {
+				        return navigator.userAgent.match(/Android/i);
+				    },
+				    BlackBerry: function() {
+				        return navigator.userAgent.match(/BlackBerry/i);
+				    },
+				    iPad: function() {
+				        return navigator.userAgent.match(/iPad/i);
+				    },
+				    iPhone: function() {
+				        return navigator.userAgent.match(/iPhone|iPod/i);
+				    },
+				    Opera: function() {
+				        return navigator.userAgent.match(/Opera Mini/i);
+				    },
+				    Windows: function() {
+				        return navigator.userAgent.match(/IEMobile/i);
+				    },
+				    any: function() {
+				        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+				    }
+				};
+				var md = "Desktop";
+				var os = "Unknown OS";
+				
+				var OSName="Unknown OS";
+				if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+				if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+				if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+				if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+				
+				if(isMobile.Windows()) md = "Windows Mobile";
+				// if(isMobile.Opera()) md = "Opera";
+				if(isMobile.iPhone()) md = "iPhone";
+				if(isMobile.iPad()) md = "iPad";
+				if(isMobile.BlackBerry()) md = "BlackBerry";
+				if(isMobile.Android()) md = "Android";
+				
+				that.os(OSName);
+				that.device(md);
 				that.browserWidth($(window).width());
 				that.browserHeight($(window).height());
-				that.firePropertiesChanged(["browserWidth","browserHeight"]);
+				that.firePropertiesChanged(["os","device","browserWidth","browserHeight"]);
 				that.fireEvent("onResize");
 				window.clearTimeout(that.resizeHandle);
-				return;
-				var jqThis = that.$();
-				var docJqThis = $( window );
-
-				var containerWidth = jqThis.outerWidth(true);
-				var containerHeight = jqThis.outerHeight(true);
-				
-				var lVisibility = this.getHtmlVisible();
-				if(containerWidth == undefined && containerHeight == undefined) {
-					// probably not visible
-					
-					if(lVisibility != false || forcedReload) {
-						that.setHtmlVisible(false);
-						that.fireDesignStudioPropertiesChanged(["htmlVisible"]);
-						that.fireDesignStudioEvent("onSizeChanged");
-					}
-					
-					return;
-				}
-				
-				var lVisibilityChanged = false;
-				if(lVisibility != true || forcedReload) {
-					that.setHtmlVisible(true);
-					lVisibilityChanged = true;
-				}
-				
-				var windowWidth = docJqThis.outerWidth(true);
-				var windowHeight = docJqThis.outerHeight(true);
-
-				if(containerWidth != that._containerWidth ||
-					containerHeight != that._containerHeight ||
-					windowWidth != that._windowWidth ||
-					windowHeight != that._windowHeight
-					|| forcedReload == true){
-					
-					that._containerWidth = containerWidth;
-					that._containerHeight = containerHeight;
-					that._windowWidth = windowWidth;
-					that._windowHeight = windowHeight;
-					
-					that.setOwnWidth(that._containerWidth);
-					that.setOwnHeight(that._containerHeight);
-					that.setWindowWidth(that._windowWidth);
-					that.setWindowHeight(that._windowHeight);
-					
-					var changed = ["ownHeight", "ownWidth", "windowHeight", "windowWidth"];
-					if(lVisibilityChanged) {
-						changed.push("htmlVisible");
-					}
-					
-					that.fireDesignStudioPropertiesChanged(changed);
-					that.fireDesignStudioEvent("onSizeChanged");
+				if(sap && sap.zen && sap.zen.designmode) {
+					// Don't callZtl in canvas from DT - Doesn't work anyway.
+				}else{
+					that.callZTLFunction("checkProfiles", function(result){
+						if(result != that.currentProfile()){
+							that.currentProfile(result);
+							// Call asynchronously since I can't raise event from callback won' directly.
+							setTimeout(function(that){return function(){
+								that.fireEvent("onProfileChange");
+							}}(that),100);
+						}
+					});	
 				}
 			};
 			if(window.attachEvent) {
@@ -136,7 +166,15 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 			}
 			this.throttleResize();
 		};
-		this.updateProfile = function(components){
+		// Doesn't work.  YET... Dangit...
+		this.updateProfile = function(key){
+			/*
+			this.callZTLFunction("loadProfile", function(result){
+				// Never fires from canvas at DT :P
+			},key);
+			*/
+			
+			// BEx WAD 7.x flashbacks...  Can't figure out the magic command.  YET.  :P
 			try{
 				// Testing
 				var command = new sapbi_Command("UPDATE_PROPERTIES");
