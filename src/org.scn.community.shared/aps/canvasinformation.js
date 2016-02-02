@@ -220,6 +220,7 @@ define([], function () {
 			var that = this;
 			var a = this.getValue();
 			propertyPage.callZTLFunction("layoutCanvas", function(result){
+				propertyPage.callRuntimeHandler("updateProfile");
 				var a = that.getValue();
 				var profile = a[index];
 				// Hack to force canvas to update - I still cannot update other properties :P
@@ -412,7 +413,7 @@ define([], function () {
 			rowMenu.addItem(rowInsertAfter);
 			rowMenu.addItem(rowUpdate);
 			rowMenu.addItem(rowDetails);
-			//rowMenu.addItem(rowLoad); // Cannot get this to work as I want in Designtime -Mike
+			rowMenu.addItem(rowLoad); // Cannot get this to work as I want in Designtime -Mike
 			rowMenu.addItem(rowDelete);
 			/*
 			var typeField = new sap.ui.commons.ComboBox({

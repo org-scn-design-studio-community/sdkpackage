@@ -136,6 +136,39 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 			}
 			this.throttleResize();
 		};
+		this.updateProfile = function(components){
+			try{
+				// Testing
+				var command = new sapbi_Command("UPDATE_PROPERTIES");
+				command.addParameter(new sapbi_Parameter("TARGET_ITEM_REF", "BUTTON_1"));
+				var changes = new sapbi_Parameter("CHANGES", "");
+				var childListChanges = new sapbi_ParameterList();
+				var aNames = "topmargin,bottommargin,leftmargin,rightmargin".split(",");
+				sap.zen.Dispatcher.instance.dispatchUpdateControl({
+					id : "BUTTON_1", 
+					"width" : "200"
+				});
+				/*
+				for (var i = 0; i < aNames.length; i++) {
+					var propName = aNames[i];
+					//var value = this[propName]();
+					var value = 200;
+					if (Array.isArray(value) || (typeof value == "object")) {
+						value = JSON.stringify(value);
+					}
+					childListChanges.addParameter(new sapbi_Parameter(propName, value));
+				}
+				changes.setChildList(childListChanges);
+				command.addParameter(changes);
+				*/
+				//sap.zen.request.zenSendCommandArrayWoEventWZenPVT(command, false, true);
+				//sap.zen.request.zenSendCommandArrayWoEventWZenPVT(command, false);
+				//alert(command);
+				//sap.zen.request.zenSendUpdateCommand(childListChanges);
+			}catch(e){
+				throw(e);
+			}
+		};
 		this.throttleResize = function() {
 			if(this.resizeHandle) {
 				clearTimeout(this.resizeHandle);
