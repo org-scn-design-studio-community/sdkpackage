@@ -608,4 +608,10 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		    };
 		};
 	*}
+	
+	String getCurrentTime(){*
+		var d = new Date();
+		var timeString = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"."+d.getMilliseconds();
+		return timeString;
+	*}
 }
