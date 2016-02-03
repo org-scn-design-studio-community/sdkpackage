@@ -26,6 +26,12 @@ define([], function () {
 		getValue : function () {
 			return this._value;
 		},
+		updateProfile : function(index){
+			var a = this.getValue();
+			a[index].componentLayout = this.componentTable.getModel().getData();
+			this.setValue(a);
+			this.fireValueChange();
+		},
 		showDetails : function(index){
 			var overlay = new sap.ui.ux3.OverlayContainer({
 				openButtonVisible : false
@@ -39,7 +45,7 @@ define([], function () {
 			var a = this.getValue();
 			var layout = a[index].componentLayout;
 			var components = layout.components;
-			var componentTable = new sap.ui.table.Table({
+			this.componentTable = new sap.ui.table.Table({
 				title : "Component",
 				visibleRowCount : 15,
 				selectionMode : sap.ui.table.SelectionMode.None
@@ -48,8 +54,8 @@ define([], function () {
 			componentModel.setData({
 				components : components
 			});
-			componentTable.setModel(componentModel);
-			componentTable.bindRows("/components");
+			this.componentTable.setModel(componentModel);
+			this.componentTable.bindRows("/components");
 			var rowMenu = new sap.ui.commons.Menu({});
 			var rowMenuButton = new sap.ui.commons.MenuButton({
 				icon : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIElEQVR42mNkoBAwAvH6ATeAYi8MAwNGY2EwGDDEYwEA8MUEK153B5IAAAAASUVORK5CYII=",
@@ -62,7 +68,7 @@ define([], function () {
 				template : rowMenuButton.bindProperty("text","s")
 			});
 			var keyField = new sap.ui.commons.Label({});
-			// keyField.attachChange(this.updateComponent, this);
+			// keyField.attachChange(function(){this.updateProfile(index)}, this);
 			keyField.bindProperty("text", "key");
 			var keyColumn = new sap.ui.table.Column({
 				template : keyField,
@@ -71,9 +77,20 @@ define([], function () {
 				}),
 				width : "125px"
 			});
+			// Visible
+			var visibleField = new sap.ui.commons.CheckBox();
+			visibleField.attachChange(function(){this.updateProfile(index)}, this);
+			visibleField.bindProperty("checked", "position/visible");
+			var visibleColumn = new sap.ui.table.Column({
+				template : visibleField,
+				label : new sap.ui.commons.Label({
+					text : "Visible"
+				}),
+				width : "75px"
+			});
 			// Left
 			var leftField = new sap.ui.commons.TextField();
-			leftField.attachChange(this.updateComponent, this);
+			leftField.attachChange(function(){this.updateProfile(index)}, this);
 			leftField.bindProperty("value", "position/left");
 			var leftColumn = new sap.ui.table.Column({
 				template : leftField,
@@ -84,7 +101,7 @@ define([], function () {
 			});
 			// Right
 			var rightField = new sap.ui.commons.TextField();
-			rightField.attachChange(this.updateComponent, this);
+			rightField.attachChange(function(){this.updateProfile(index)}, this);
 			rightField.bindProperty("value", "position/right");
 			var rightColumn = new sap.ui.table.Column({
 				template : rightField,
@@ -95,7 +112,7 @@ define([], function () {
 			});
 			// Top
 			var topField = new sap.ui.commons.TextField();
-			topField.attachChange(this.updateComponent, this);
+			topField.attachChange(function(){this.updateProfile(index)}, this);
 			topField.bindProperty("value", "position/top");
 			var topColumn = new sap.ui.table.Column({
 				template : topField,
@@ -106,7 +123,7 @@ define([], function () {
 			});
 			// Bottom
 			var bottomField = new sap.ui.commons.TextField();
-			bottomField.attachChange(this.updateComponent, this);
+			bottomField.attachChange(function(){this.updateProfile(index)}, this);
 			bottomField.bindProperty("value", "position/bottom");
 			var bottomColumn = new sap.ui.table.Column({
 				template : bottomField,
@@ -117,7 +134,7 @@ define([], function () {
 			});
 			// Width
 			var widthField = new sap.ui.commons.TextField();
-			widthField.attachChange(this.updateComponent, this);
+			widthField.attachChange(function(){this.updateProfile(index)}, this);
 			widthField.bindProperty("value", "position/width");
 			var widthColumn = new sap.ui.table.Column({
 				template : widthField,
@@ -128,7 +145,7 @@ define([], function () {
 			});
 			// Height
 			var heightField = new sap.ui.commons.TextField();
-			heightField.attachChange(this.updateComponent, this);
+			heightField.attachChange(function(){this.updateProfile(index)}, this);
 			heightField.bindProperty("value", "position/height");
 			var heightColumn = new sap.ui.table.Column({
 				template : heightField,
@@ -137,15 +154,16 @@ define([], function () {
 				}),
 				width : "75px"
 			});
-			componentTable.addColumn(uiCol);
-			componentTable.addColumn(keyColumn);
-			componentTable.addColumn(leftColumn);
-			componentTable.addColumn(rightColumn);
-			componentTable.addColumn(topColumn);
-			componentTable.addColumn(bottomColumn);
-			componentTable.addColumn(widthColumn);
-			componentTable.addColumn(heightColumn);
-			//componentTable.addColumn(keyColumn);
+			this.componentTable.addColumn(uiCol);
+			this.componentTable.addColumn(keyColumn);
+			this.componentTable.addColumn(visibleColumn);
+			this.componentTable.addColumn(leftColumn);
+			this.componentTable.addColumn(rightColumn);
+			this.componentTable.addColumn(topColumn);
+			this.componentTable.addColumn(bottomColumn);
+			this.componentTable.addColumn(widthColumn);
+			this.componentTable.addColumn(heightColumn);
+			//this.componentTable.addColumn(keyColumn);
 			/*
 			var complex = new org.scn.community.aps.ComplexProperty({
 				config : that.getConfig(),
@@ -158,7 +176,7 @@ define([], function () {
 			},this);
 			*/
 			overlay.addContent(overlayHeader);
-			overlay.addContent(componentTable);
+			overlay.addContent(this.componentTable);
 			overlay.open();
 		},
 		updateTable : function () {
@@ -195,6 +213,8 @@ define([], function () {
 			var a = this.getValue();
 			var newProfile = {
 				key : "profile" + profile.browserWidth + "x" + profile.browserHeight,
+				os : "Any",
+				device : "Any",
 				browserMinWidth : profile.browserWidth,
 				browserMaxWidth : profile.browserWidth,
 				browserMinHeight : profile.browserHeight,
@@ -219,8 +239,11 @@ define([], function () {
 		loadProfile : function(index){
 			var that = this;
 			var a = this.getValue();
+			propertyPage.callRuntimeHandler("updateProfile",a[index].key);
+			return;
+			// Cosmetically works in canvas at DT, but properties never update :(
 			propertyPage.callZTLFunction("layoutCanvas", function(result){
-				propertyPage.callRuntimeHandler("updateProfile");
+				
 				var a = that.getValue();
 				var profile = a[index];
 				// Hack to force canvas to update - I still cannot update other properties :P
@@ -262,7 +285,7 @@ define([], function () {
 			this.columnTable = new sap.ui.table.Table({
 				title : "Profiles",
 				visibleRowCount : 15,
-				selectionMode : sap.ui.table.SelectionMode.Single
+				selectionMode : sap.ui.table.SelectionMode.None
 			});
 			var rowMenu = new sap.ui.commons.Menu({});
 			var rowMenuButton = new sap.ui.commons.MenuButton({
@@ -413,37 +436,90 @@ define([], function () {
 			rowMenu.addItem(rowInsertAfter);
 			rowMenu.addItem(rowUpdate);
 			rowMenu.addItem(rowDetails);
-			rowMenu.addItem(rowLoad); // Cannot get this to work as I want in Designtime -Mike
+			// rowMenu.addItem(rowLoad); // Cannot get this to work as I want in Designtime -Mike
 			rowMenu.addItem(rowDelete);
-			/*
-			var typeField = new sap.ui.commons.ComboBox({
-					items : [
-						new sap.ui.core.ListItem({
-							key : "auto",
-							text : "Auto"
-						}),
-						new sap.ui.core.ListItem({
-							key : "string",
-							text : "String"
-						}),
-						new sap.ui.core.ListItem({
-							key : "num",
-							text : "Numeric"
-						})
-					]
-				});
-			typeField.attachChange(this.buildColumns, this);
-			typeField.bindProperty("selectedKey", "type");
-			var typeColumn = new sap.ui.table.Column({
-					label : new sap.ui.commons.Label({
-						text : "Type"
+			var osField = new sap.ui.commons.ComboBox({
+				items : [
+					new sap.ui.core.ListItem({
+						key : "Any",
+						text : "Any"
 					}),
-					template : typeField,
-					width : "75px"
-				});
-				*/
+					new sap.ui.core.ListItem({
+						key : "Windows",
+						text : "Windows"
+					}),
+					new sap.ui.core.ListItem({
+						key : "MacOS",
+						text : "MacOS"
+					}),
+					new sap.ui.core.ListItem({
+						key : "Unix",
+						text : "Unix"
+					}),
+					new sap.ui.core.ListItem({
+						key : "Linux",
+						text : "Linux"
+					}),
+					new sap.ui.core.ListItem({
+						key : "Unknown OS",
+						text : "Unknown"
+					})
+				]
+			});
+			osField.attachChange(this.buildColumns, this);
+			osField.bindProperty("selectedKey", "os");
+			var osColumn = new sap.ui.table.Column({
+				label : new sap.ui.commons.Label({
+					text : "OS"
+				}),
+				template : osField,
+				width : "75px"
+			});
+			var deviceField = new sap.ui.commons.ComboBox({
+				items : [
+					new sap.ui.core.ListItem({
+						key : "Any",
+						text : "Any"
+					}),
+					new sap.ui.core.ListItem({
+						key : "Desktop",
+						text : "Desktop"
+					}),
+					new sap.ui.core.ListItem({
+						key : "Android",
+						text : "Android"
+					}),
+					new sap.ui.core.ListItem({
+						key : "iPad",
+						text : "iPad"
+					}),
+					new sap.ui.core.ListItem({
+						key : "iPhone",
+						text : "iPhone/iPod"
+					}),
+					new sap.ui.core.ListItem({
+						key : "Windows",
+						text : "Windows Mobile"
+					}),
+					new sap.ui.core.ListItem({
+						key : "BlackBerry",
+						text : "Linux"
+					})
+				]
+			});
+			deviceField.attachChange(this.buildColumns, this);
+			deviceField.bindProperty("selectedKey", "device");
+			var deviceColumn = new sap.ui.table.Column({
+				label : new sap.ui.commons.Label({
+					text : "Device"
+				}),
+				template : deviceField,
+				width : "75px"
+			});
 			this.columnTable.addColumn(uiCol);
 			this.columnTable.addColumn(keyColumn);
+			this.columnTable.addColumn(osColumn);
+			this.columnTable.addColumn(deviceColumn);
 			this.columnTable.addColumn(browserMinWidthColumn);
 			this.columnTable.addColumn(browserMaxWidthColumn);
 			this.columnTable.addColumn(browserMinHeightColumn);
