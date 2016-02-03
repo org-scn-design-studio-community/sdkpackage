@@ -526,18 +526,20 @@
 	<property id="browserHeight" type="int" title="Height of the Window" group="Display" visible="false" />
 	<property id="device" type="String" title="Device" group="Display" visible="false" />
 	<property id="os" type="String" title="OS" group="Display" visible="false" />
+	<property id="monitorResizes" type="boolean" title="Monitor Resize Events" group="Display" visible="false" />
 	<property id="onResize" type="ScriptText" title="On Resize" group="Events" />
 	<property id="onProfileChange" type="ScriptText" title="On Profile Change" group="Events" />
 	<property id="tick" type="int" title="Tick" />
 	
 	<initialization>
-		<defaultValue property="WIDTH">10</defaultValue>
-		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="monitorResizes">true</defaultValue>
+		<defaultValue property="WIDTH">256</defaultValue>
+		<defaultValue property="HEIGHT">48</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="profiles">[]</defaultValue>
+		<defaultValue property="profiles">{&quot;profiles&quot;:[],&quot;items&quot;:[]}</defaultValue>
 	</initialization>
 
 </component>

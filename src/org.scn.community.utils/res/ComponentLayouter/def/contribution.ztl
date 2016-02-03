@@ -14,13 +14,13 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 	String bial(/* Debug */ String bial) {*
 		return JSON.stringify(eval(bial));
 	*}
-	String checkProfiles(){*
+	String checkProfiles(String measurements){*
 		var width = this.browserWidth;
 		var height = this.browserHeight;
 		var os = this.os;
 		var device = this.device;
 		APPLICATION.log("Checking for a matching profile for [" + width + "x" + height + "] OS: " + os + " Device: " + device);
-		var p = JSON.parse(this.profiles);
+		var p = JSON.parse(this.profiles).profiles;
 		for(var i=0;i<p.length;i++){
 			var profile = p[i];
 			APPLICATION.log("Checking profile " + profile.key);
@@ -31,20 +31,24 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 				) && (// If height between, or min/max set to -1
 					(height >= profile.browserMinHeight || profile.browserMinHeight == -1) &&
 					(height <= profile.browserMaxHeight || profile.browserMaxHeight == -1)
+			) && (   // Device/OS detection
+					(profile.os == os || profile.os == "Any") &&
+					(profile.device == device || profile.device == "Any")
 			)
-			// Device/OS detection later
 			){
-				this.loadProfile(profile.key);
+				this.loadProfile(profile.key,measurements);
 				return(profile.key);
 			}
 		}
 		return "";
 	*}
-	String loadProfile(String profile){*
+	String loadProfile(String profile, String measurements){*
 		APPLICATION.log("Load Profile called for key '" + profile + "'");
+		APPLICATION.log(measurements);
+		var m = JSON.parse(measurements);
 		this.internal_assureGlobalAccess();
 		var global = this.getGlobal();
-		var p = JSON.parse(this.profiles);
+		var p = JSON.parse(this.profiles).profiles;
 		for(var i=0;i<p.length;i++){
 			if(profile == p[i].key){
 				APPLICATION.log("Applying layout: " + profile + "...");
@@ -52,17 +56,70 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 				var layout = p[i].componentLayout.components;
 				for(var j=0;j<layout.length;j++){
 					var component = layout[j];
-					if(global[component.key] && component.key != "me"){
+					if(global[component.key] && 
+							component.key != "me"){
+						// Find parent ID
+						APPLICATION.log(global[component.key].getOwner().getItemType());
+						var parent = global[component.key].getOwner().getParent().getId();
+						var pm = {
+							width : 0,
+							height : 0
+						}
+						if(parent=="ROOT") pm = {
+							width : this.browserWidth,
+							height : this.browserHeight
+						}
+						// Locate parent measurement, if possible
+						for(var p=0;p<m.length;p++){
+							if(m[p].key == parent) pm = m[p];
+						}
 						APPLICATION.log("Moving " + component.key + JSON.stringify(component.position) + "...");
 						if(global[component.key].setVisible){
 							global[component.key].setVisible((component.position.visible)?true:false);							
 						}
-						component.position.width = parseInt(component.position.width);
-						component.position.height = parseInt(component.position.height);
-						component.position.top = parseInt(component.position.top);
-						component.position.left = parseInt(component.position.left);
-						component.position.bottom = parseInt(component.position.bottom);
-						component.position.right = parseInt(component.position.right);
+						// Width
+						if(component.position.width.toString().indexOf("%")>-1){
+							var pct = parseInt(component.position.width.toString().replace(/[^0-9]+/, ''))/100;							
+							component.position.width = pm.width * pct;
+						}else{
+							component.position.width = parseInt(component.position.width);	
+						}
+						// Height
+						if(component.position.height.toString().indexOf("%")>-1){
+							var pct = parseInt(component.position.height.toString().replace(/[^0-9]+/, ''))/100;							
+							component.position.height = pm.height * pct;
+						}else{
+							component.position.height = parseInt(component.position.height);	
+						}
+						// Top
+						if(component.position.top.toString().indexOf("%")>-1){
+							var pct = parseInt(component.position.top.toString().replace(/[^0-9]+/, ''))/100;							
+							component.position.top = pm.height * pct;
+						}else{
+							component.position.top = parseInt(component.position.top);	
+						}
+						// Bottom
+						if(component.position.bottom.toString().indexOf("%")>-1){
+							var pct = parseInt(component.position.bottom.toString().replace(/[^0-9]+/, ''))/100;							
+							component.position.bottom = pm.height - (pm.height * pct);
+						}else{
+							component.position.bottom = parseInt(component.position.bottom);	
+						}
+						// Left
+						if(component.position.left.toString().indexOf("%")>-1){
+							var pct = parseInt(component.position.left.toString().replace(/[^0-9]+/, ''))/100;							
+							component.position.left = pm.width * pct;
+						}else{
+							component.position.left = parseInt(component.position.left);	
+						}
+						// Right
+						if(component.position.right.toString().indexOf("%")>-1){
+							var pct = parseInt(component.position.right.toString().replace(/[^0-9]+/, ''))/100;							
+							component.position.right = pm.width - (pm.width * pct);
+						}else{
+							component.position.right = parseInt(component.position.right);	
+						}
+						
 						// Width
 						if(component.position.width!=-1){
 							global[component.key].setWidth(component.position.width);
@@ -93,6 +150,7 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 						}else{
 							global[component.key].setLeftMargin("auto");
 						}
+						APPLICATION.log(component.position.left);
 						// Right
 						if(component.position.right!=-1){
 							global[component.key].setRightMargin(component.position.right);
@@ -109,6 +167,28 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 				}
 			}
 		}
+	*}
+	String getItems(){*
+		this.internal_assureGlobalAccess();
+		var global = this.getGlobal();
+		var a = [];
+		for (var key in global) {
+			var component = global[key];
+			if(component.getOwner && component.getTopMargin && key != "me") {
+				var owner = component.getOwner();
+				var type = "Unknown";
+				if(owner.getItemType) {
+					type = owner.getItemType();
+				}
+				if(type != "CONTEXT_MENU_COMPONENT" && type != "org_scn_community_utils_ComponentLayouter"){
+					a.push({
+						key : key,
+						type : type
+					});				
+				} 
+			}
+		}
+		return JSON.stringify(a);
 	*}
 	String examineCanvas() {*
 		this.internal_assureGlobalAccess();

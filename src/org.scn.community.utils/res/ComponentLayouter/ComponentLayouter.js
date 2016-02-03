@@ -55,21 +55,28 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 			onResize :  { 
 				opts : {
 					apsControl : "script",
-					cat : "General",
+					cat : "Events",
 					desc : "On Resize"
 				}			
+			},
+			monitorResizes : {
+				opts : {
+					apsControl : "checkbox",
+					cat : "Events",
+					desc : "Monitor Resizes (Required for Events to fire)"
+				}
 			},
 			onProfileChange :  { 
 				opts : {
 					apsControl : "script",
-					cat : "General",
+					cat : "Events",
 					desc : "On Profile Change"
 				}			
 			},
 			profiles :  { 
 				opts : {
 					apsControl : "canvasinformation",
-					cat : "General",
+					cat : "Profiles",
 					desc : "Canvas Information",
 					//ztlFunc : "examineCanvas"
 				}			
@@ -140,15 +147,35 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 				if(sap && sap.zen && sap.zen.designmode) {
 					// Don't callZtl in canvas from DT - Doesn't work anyway.
 				}else{
-					that.callZTLFunction("checkProfiles", function(result){
-						if(result != that.currentProfile()){
-							that.currentProfile(result);
-							// Call asynchronously since I can't raise event from callback won' directly.
-							setTimeout(function(that){return function(){
-								that.fireEvent("onProfileChange");
-							}}(that),100);
+					// Wait and give canvas time to resize?
+					setTimeout(function(){
+						var s = that.profiles();
+						var o = JSON.parse(s);
+						var items = o.items;						
+						var measurements = [];
+						for(var i=0;i<items.length;i++){
+							// Measure all the panels
+							if(items[i].type == "PANEL_COMPONENT"){
+								measurements.push({
+									key : items[i].key,
+									width : $("#" + items[i].key + "_panel1").width(),
+									height : $("#" + items[i].key + "_panel1").height()
+								})
+							}
 						}
-					});	
+						console.log(that.browserWidth());
+						console.log(that.browserHeight());
+						console.log(JSON.stringify(measurements));
+						that.callZTLFunction("checkProfiles", function(result){
+							if(result != that.currentProfile()){
+								that.currentProfile(result);
+								// Call asynchronously since I can't raise event from callback won' directly.
+								setTimeout(function(that){return function(){
+									that.fireEvent("onProfileChange");
+								}}(that),10);
+							}
+						},JSON.stringify(measurements));
+					},100);
 				}
 			};
 			if(window.attachEvent) {

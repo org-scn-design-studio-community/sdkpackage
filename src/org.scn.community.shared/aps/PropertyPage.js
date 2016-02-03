@@ -301,6 +301,7 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 	 * Design Studio Events
 	 */
 	this.init = function () {
+		this.selectionPropertyListeners = [];
 		this.dataPropertyListeners = [];
 		this.dataPropertyListeners2 = [];
 		this.dataSourceAliases = [];
@@ -333,6 +334,9 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 					alert("Bad Component Info found.")
 				}
 			}
+			this.registerSelectionSensitive = function (cmp) {
+				this.selectionPropertyListeners.push(cmp);
+			};
 			this.registerDataComponent = function (cmp) {
 				this.dataPropertyListeners.push(cmp);
 			};
@@ -417,7 +421,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 							if (cmp != undefined && cmp.notifyDataChange)
 								cmp.notifyDataChange();
 						}
-						
+					}
+					// Fire event for selection-sensitive components. -Mike 02/03/2016
+					for (var i = 0; i < this.selectionPropertyListeners.length; i++) {
+						var cmp = this.selectionPropertyListeners[i];
+						if (cmp != undefined && cmp.componentSelected)
+							cmp.componentSelected();
 					}
 				} catch (e) {
 					alert("An error occured with APS communicating with the Design Studio runtime.  Please try reloading your dashboard.\n\n" + e);
