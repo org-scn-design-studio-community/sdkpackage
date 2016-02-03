@@ -5869,5 +5869,11 @@ class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Compon
 		 + "Formatted [MM/DD/YYYY WW]: " + this.format("MM/DD/YYYY WW") + "\n\n"
 		 + "";
 	*}
+	
+	String getCurrentTime(){*
+		var d = new Date();
+		var timeString = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"."+d.getMilliseconds();
+		return timeString;
+	*}
 
 }

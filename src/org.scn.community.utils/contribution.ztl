@@ -5095,6 +5095,12 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		    };
 		};
 	*}
+	
+	String getCurrentTime(){*
+		var d = new Date();
+		var timeString = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"."+d.getMilliseconds();
+		return timeString;
+	*}
 }
 class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Component {
 
@@ -10966,6 +10972,12 @@ class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Compon
 		 + "Formatted [DD.MM.YYYY WW]: " + this.format("DD.MM.YYYY WW") + "\n"
 		 + "Formatted [MM/DD/YYYY WW]: " + this.format("MM/DD/YYYY WW") + "\n\n"
 		 + "";
+	*}
+	
+	String getCurrentTime(){*
+		var d = new Date();
+		var timeString = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"."+d.getMilliseconds();
+		return timeString;
 	*}
 
 }
