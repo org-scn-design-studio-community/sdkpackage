@@ -101,25 +101,26 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 						// Bottom
 						if(component.position.bottom.toString().indexOf("%")>-1){
 							var pct = parseInt(component.position.bottom.toString().replace(/[^0-9]+/, ''))/100;							
-							component.position.bottom = pm.height - (pm.height * pct);
+							component.position.bottom = Math.floor(pm.height * pct);
 						}else{
 							component.position.bottom = parseInt(component.position.bottom);	
 						}
 						// Left
 						if(component.position.left.toString().indexOf("%")>-1){
 							var pct = parseInt(component.position.left.toString().replace(/[^0-9]+/, ''))/100;							
-							component.position.left = pm.width * pct;
+							component.position.left = Math.floor(pm.width * pct);
 						}else{
 							component.position.left = parseInt(component.position.left);	
 						}
 						// Right
 						if(component.position.right.toString().indexOf("%")>-1){
 							var pct = parseInt(component.position.right.toString().replace(/[^0-9]+/, ''))/100;							
-							component.position.right = pm.width - (pm.width * pct);
+							component.position.right = Math.floor(pm.width * pct);
 						}else{
 							component.position.right = parseInt(component.position.right);	
 						}
 						
+						APPLICATION.log(JSON.stringify(component.position));
 						// Width
 						if(component.position.width!=-1){
 							global[component.key].setWidth(component.position.width);
@@ -150,7 +151,6 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 						}else{
 							global[component.key].setLeftMargin("auto");
 						}
-						APPLICATION.log(component.position.left);
 						// Right
 						if(component.position.right!=-1){
 							global[component.key].setRightMargin(component.position.right);
