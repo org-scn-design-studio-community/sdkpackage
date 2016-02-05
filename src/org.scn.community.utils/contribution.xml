@@ -521,6 +521,7 @@
 	<requireJs modes="commons m">res/ComponentLayouter/ComponentLayouter</requireJs>
 
 	<property id="profiles" type="String" title="Profile List" visible="false" />
+	<property id="measurements" type="String" title="Container Measurements" visible="false" />
 	<property id="currentProfile" type="String" title="Currently Active Profile" visible="false" />
 	<property id="browserWidth"	type="int" title="Width of the Window" group="Display" visible="false" />
 	<property id="browserHeight" type="int" title="Height of the Window" group="Display" visible="false" />
@@ -539,6 +540,7 @@
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="measurements">[]</defaultValue>
 		<defaultValue property="profiles">{&quot;profiles&quot;:[],&quot;items&quot;:[]}</defaultValue>
 	</initialization>
 

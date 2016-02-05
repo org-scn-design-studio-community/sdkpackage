@@ -117,13 +117,30 @@ define([], function () {
 				width : "125px"
 			});
 			// Visible
-			var visibleField = new sap.ui.commons.CheckBox();
+			var visibleField = new sap.ui.commons.ComboBox({
+				items : [
+					new sap.ui.core.ListItem({
+						key : "unchanged",
+						text : "Unchanged"
+					}),
+					new sap.ui.core.ListItem({
+						key : "visible",
+						icon : "sap-icon://show",
+						text : "Show"
+					}),
+					new sap.ui.core.ListItem({
+						key : "hidden",
+						icon : "sap-icon://hide",
+						text : "Hide"
+					}),
+				]
+			});
 			visibleField.attachChange(function(){this.updateProfile(index)}, this);
-			visibleField.bindProperty("checked", "position/visible");
+			visibleField.bindProperty("selectedKey", "position/visible");
 			var visibleColumn = new sap.ui.table.Column({
 				template : visibleField,
 				label : new sap.ui.commons.Label({
-					text : "Visible"
+					text : "Visiblity"
 				}),
 				width : "75px"
 			});
@@ -241,13 +258,13 @@ define([], function () {
 			
 			var a = o.profiles;
 			var newProfile = {
-				key : "profile" + profile.browserWidth + "x" + profile.browserHeight,
+				key : "New Profile",
 				os : "Any",
 				device : "Any",
-				browserMinWidth : profile.browserWidth,
-				browserMaxWidth : profile.browserWidth,
-				browserMinHeight : profile.browserHeight,
-				browserMaxHeight : profile.browserHeight,
+				browserMinWidth : -1, //profile.browserWidth,
+				browserMaxWidth : -1, //profile.browserWidth,
+				browserMinHeight : -1, //profile.browserHeight,
+				browserMaxHeight : -1, //profile.browserHeight,
 				componentLayout : {components : comps}
 			};
 			if(index===undefined){

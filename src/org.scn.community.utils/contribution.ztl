@@ -1370,6 +1370,9 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 	String getDevice(){* return this.device; *}
 	String getOS(){* return this.os; *}
 	String getCurrentProfile(){* return this.currentProfile; *}
+	void setCurrentProfile(String profileName){*
+		this.currentProfile = profileName;
+	*}
 	/**
 	Issue exploratory Rhino command
 	*/
@@ -1377,6 +1380,7 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 		return JSON.stringify(eval(bial));
 	*}
 	String checkProfiles(String measurements){*
+		this.measurements = measurements;
 		var width = this.browserWidth;
 		var height = this.browserHeight;
 		var os = this.os;
@@ -1404,17 +1408,23 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 		}
 		return "";
 	*}
-	String loadProfile(String profile, String measurements){*
+	String loadProfileExt(String profile, String measurements){*
+		APPLICATION.log(profile);
+		this.measurements = measurements;
+		this.loadProfile(profile);
+		return "done";
+	*}
+	String loadProfile(String profile){*
 		APPLICATION.log("Load Profile called for key '" + profile + "'");
-		APPLICATION.log(measurements);
-		var m = JSON.parse(measurements);
+		APPLICATION.log(this.measurements);
+		var m = JSON.parse(this.measurements);
 		this.internal_assureGlobalAccess();
 		var global = this.getGlobal();
 		var p = JSON.parse(this.profiles).profiles;
 		for(var i=0;i<p.length;i++){
 			if(profile == p[i].key){
 				APPLICATION.log("Applying layout: " + profile + "...");
-				this.currentProfile = (profile);
+				if(this.currentProfile != profile) this.currentProfile = profile;
 				var layout = p[i].componentLayout.components;
 				for(var j=0;j<layout.length;j++){
 					var component = layout[j];
@@ -1437,91 +1447,98 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 						}
 						APPLICATION.log("Moving " + component.key + JSON.stringify(component.position) + "...");
 						if(global[component.key].setVisible){
-							global[component.key].setVisible((component.position.visible)?true:false);							
+							if(component.position.visible == "visible"){
+								global[component.key].setVisible(true);	
+							}
+							if(component.position.visible == "hidden"){
+								global[component.key].setVisible(false);	
+							}
 						}
 						// Width
-						if(component.position.width.toString().indexOf("%")>-1){
-							var pct = parseInt(component.position.width.toString().replace(/[^0-9]+/, ''))/100;							
-							component.position.width = pm.width * pct;
-						}else{
-							component.position.width = parseInt(component.position.width);	
+						if(component.position.width != "unchanged"){
+							if(component.position.width != -1 && component.position.width != "auto"){
+								if(component.position.width.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.width.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.width = pm.width * pct;
+								}else{
+									component.position.width = parseInt(component.position.width);	
+								}
+								global[component.key].setWidth(component.position.width);
+							}else{
+								global[component.key].setWidth("auto");
+							}							
 						}
 						// Height
-						if(component.position.height.toString().indexOf("%")>-1){
-							var pct = parseInt(component.position.height.toString().replace(/[^0-9]+/, ''))/100;							
-							component.position.height = pm.height * pct;
-						}else{
-							component.position.height = parseInt(component.position.height);	
+						if(component.position.height != "unchanged"){
+							if(component.position.height != -1 && component.position.height != "auto"){
+								if(component.position.height.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.height.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.height = pm.height * pct;
+								}else{
+									component.position.height = parseInt(component.position.height);	
+								}
+								global[component.key].setHeight(component.position.height);
+							}else{
+								global[component.key].setHeight("auto");
+							}
 						}
 						// Top
-						if(component.position.top.toString().indexOf("%")>-1){
-							var pct = parseInt(component.position.top.toString().replace(/[^0-9]+/, ''))/100;							
-							component.position.top = pm.height * pct;
-						}else{
-							component.position.top = parseInt(component.position.top);	
+						if(component.position.top != "unchanged"){
+							if(component.position.top != -1 && component.position.top != "auto"){
+								if(component.position.top.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.top.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.top = pm.height * pct;
+								}else{
+									component.position.top = parseInt(component.position.top);	
+								}
+								global[component.key].setTopMargin(component.position.top);	
+							}else{
+								global[component.key].setTopMargin("auto");
+							}
 						}
 						// Bottom
-						if(component.position.bottom.toString().indexOf("%")>-1){
-							var pct = parseInt(component.position.bottom.toString().replace(/[^0-9]+/, ''))/100;							
-							component.position.bottom = Math.floor(pm.height * pct);
-						}else{
-							component.position.bottom = parseInt(component.position.bottom);	
+						if(component.position.bottom != "unchanged"){
+							if(component.position.bottom != -1  && component.position.bottom != "auto"){
+								if(component.position.bottom.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.bottom.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.bottom = Math.floor(pm.height * pct);
+								}else{
+									component.position.bottom = parseInt(component.position.bottom);	
+								}
+								global[component.key].setBottomMargin(component.position.bottom);
+							}else{
+								global[component.key].setBottomMargin("auto");
+							}
 						}
 						// Left
-						if(component.position.left.toString().indexOf("%")>-1){
-							var pct = parseInt(component.position.left.toString().replace(/[^0-9]+/, ''))/100;							
-							component.position.left = Math.floor(pm.width * pct);
-						}else{
-							component.position.left = parseInt(component.position.left);	
+						if(component.position.left != "unchanged"){
+							if(component.position.left != -1 && component.position.left != "auto"){
+								if(component.position.left.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.left.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.left = Math.floor(pm.width * pct);
+								}else{
+									component.position.left = parseInt(component.position.left);	
+								}
+								global[component.key].setLeftMargin(component.position.left);
+							}else{
+								global[component.key].setLeftMargin("auto");
+							}
 						}
 						// Right
-						if(component.position.right.toString().indexOf("%")>-1){
-							var pct = parseInt(component.position.right.toString().replace(/[^0-9]+/, ''))/100;							
-							component.position.right = Math.floor(pm.width * pct);
-						}else{
-							component.position.right = parseInt(component.position.right);	
+						if(component.position.right != "unchanged"){
+							if(component.position.right != -1 && component.position.right != "auto"){
+								if(component.position.right.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.right.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.right = Math.floor(pm.width * pct);
+								}else{
+									component.position.right = parseInt(component.position.right);	
+								}
+								global[component.key].setRightMargin(component.position.right);
+							}else{
+								global[component.key].setRightMargin("auto");
+							}
 						}
-						
 						APPLICATION.log(JSON.stringify(component.position));
-						// Width
-						if(component.position.width!=-1){
-							global[component.key].setWidth(component.position.width);
-						}else{
-							global[component.key].setWidth("auto");
-						}
-						// Height
-						if(component.position.height!=-1){
-							global[component.key].setHeight(component.position.height);
-						}else{
-							global[component.key].setHeight("auto");
-						}
-						// Top
-						if(component.position.top!=-1){
-							global[component.key].setTopMargin(component.position.top);	
-						}else{
-							global[component.key].setTopMargin("auto");
-						}
-						// Bottom
-						if(component.position.bottom!=-1){
-							global[component.key].setBottomMargin(component.position.bottom);
-						}else{
-							global[component.key].setBottomMargin("auto");
-						}
-						// Left
-						if(component.position.left!=-1){
-							global[component.key].setLeftMargin(component.position.left);
-						}else{
-							global[component.key].setLeftMargin("auto");
-						}
-						// Right
-						if(component.position.right!=-1){
-							global[component.key].setRightMargin(component.position.right);
-						}else{
-							global[component.key].setRightMargin("auto");
-						}
-						
-						//global[component.key].getOwner().setContentChanged(true);
-						//global[component.key].getOwner().setPositionChanged(true);
 					}else{
 						APPLICATION.log("Could not locate " + component.key + "...");
 						// Component gone
@@ -1567,7 +1584,8 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 				try{
 					var visible = false;
 					if(component.isVisible) visible = component.isVisible();
-					var position = {
+					// Eh, save for a rainy day.
+					var snapshot = {
 						visible : visible,
 						top : component.getTopMargin(),
 						bottom : component.getBottomMargin(),
@@ -1576,9 +1594,19 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 						width : component.getWidth(),
 						height : component.getHeight()
 					}
+					var position = {
+						visible : "unchanged",
+						top : "unchanged",
+						bottom : "unchanged",
+						left : "unchanged",
+						right : "unchanged",
+						width : "unchanged",
+						height : "unchanged"
+					}
 					payload.components.push({
 						key : key,
-						position : position
+						position : position,
+						snapshot : snapshot
 						//owner : global[key].getOwner(),
 						//properties : global[key]
 					});
