@@ -126,7 +126,7 @@ define([
                 
                 newItem.click(function(element) {
                     return function() {
-                    	newItem.addClass("selected");
+                    	$(this).addClass("selected");
                         
                         that.setLabelClicked(element.text);
                         that.setKeyClicked(element.key);
