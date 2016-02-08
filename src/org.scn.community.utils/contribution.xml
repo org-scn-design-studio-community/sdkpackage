@@ -385,7 +385,7 @@
 		title="Data Selection"
 		type="ResultSet"
 		group="DataBinding">
-		<option name="includeFormattedData" value="false"/>
+		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 	</property>
 	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
