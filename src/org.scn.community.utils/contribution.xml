@@ -373,7 +373,6 @@
 	tooltip="Data Iterator - Iterate over rows with ease"
 	icon="res/DataIterator/DataIterator.png"
 	handlerType="div"
-	propertySheetPath="aps/PropertyPage.html"
 	group="TECHNICAL_COMPONENTS"
 	databound="true"
 	modes="commons m"
