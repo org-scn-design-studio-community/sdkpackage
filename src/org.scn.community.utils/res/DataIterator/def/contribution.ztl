@@ -35,7 +35,26 @@ class org.scn.community.utils.DataIterator extends org.scn.community.shared.Comp
 	boolean getIgnoreTotals() {*
 		return this.ignoreTotals;
 	*}
-	
+	/**
+	 * Determine if a value is not a number
+	 */
+	boolean isNaN(float value) {*
+		this.internal_assureGlobalAccess();
+		var global = this.getGlobal();
+		return global.isNaN(value);
+	*}
+	/**
+	 * Determine if a value is null
+	 */
+	boolean isNull(float value) {*
+		return (value == null);
+	*}
+	/**
+	 * Return a null
+	 */
+	float makeNull() {*
+		return null;
+	*}
 	/**
 	 * Get Key/Text of 'Measures' currently assigned in Rows
 	 */
