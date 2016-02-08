@@ -368,6 +368,49 @@
 </component>
 
 <component
+	id="DataIterator"
+	title="Data Iterator"
+	tooltip="Data Iterator - Iterate over rows with ease"
+	icon="res/DataIterator/DataIterator.png"
+	handlerType="div"
+	propertySheetPath="aps/PropertyPage.html"
+	group="TECHNICAL_COMPONENTS"
+	databound="true"
+	modes="commons m"
+>
+	
+	<requireJs modes="commons m">res/DataIterator/DataIterator</requireJs>
+	<property
+		id="data"
+		title="Data Selection"
+		type="ResultSet"
+		group="DataBinding">
+		<option name="includeFormattedData" value="false"/>
+		<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
+	<property id="flat" type="String" title = "Flat Data for ZTL" visible="false" group="DataBinding"/>
+	<property id="onDataChange" type="ScriptText" title="On Data Change" group="Events" />
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">50</defaultValue>
+		<defaultValue property="HEIGHT">50</defaultValue>
+		<defaultValue property="flat">{}</defaultValue>
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
+	</initialization>
+
+</component>
+
+<component
 	id="DataSourceHelper"
 	title="Data Source Helper 2.0"
 	tooltip="DataSourceHelper - Utilities for Data Sources"

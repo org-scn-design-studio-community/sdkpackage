@@ -1,0 +1,143 @@
+
+class org.scn.community.utils.KeyText {
+	String key;
+	String text;
+}
+
+class org.scn.community.utils.DataRow {
+	String key;
+	org.scn.community.utils.KeyTextArray keys;
+	String getDimensionValueKey( /**Dimension Key**/ String dimensionKey){* *}
+	String getDimensionValueText( /**Dimension Key**/ String dimensionKey){* *}
+	float getMeasureValue( /**Measure Key**/ String measureKey){* *}
+	String getMeasureFormattedValue( /**Measure Key**/ String measureKey){* *}
+}
+class org.scn.community.utils.KeyTextArray extends Array {
+	org.scn.community.utils.KeyTextArray (org.scn.community.utils.KeyText b);
+	org.scn.community.utils.KeyText atIndex(int index) {* *}
+}
+class org.scn.community.utils.DataRowArray extends Array {
+	org.scn.community.utils.DataRowArray (org.scn.community.utils.DataRow b);
+	org.scn.community.utils.DataRow atIndex(int index) {* *}
+}
+class org.scn.community.utils.DataIterator extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Ignore Totals
+	 */	
+	void setIgnoreTotals( /**Ignore Totals*/ boolean ignoreTotals){*
+		this.ignoreTotals = ignoreTotals;
+	*}
+
+	/**
+	 * Gets Ignore Totals
+	 */	
+	boolean getIgnoreTotals() {*
+		return this.ignoreTotals;
+	*}
+	
+	/**
+	 * Get Key/Text of 'Measures' currently assigned in Rows
+	 */
+	org.scn.community.utils.KeyTextArray getMeasures(){*
+		var flat = JSON.parse(this.flat);
+		var ret = [];
+		ret.atIndex = function(index){
+			return this[index];
+		}
+		if(!flat.values){
+			
+		}else{
+			for(var d = 0; d < flat.columnHeaders.length; d++){
+				ret.push({
+					key : flat.columnHeadersKeys[d],	// 0SALES
+					text : flat.columnHeaders[d] 		// Sales
+				});
+			}			
+		}
+		return ret;
+	*}
+	/**
+	 * Get Key/Text of 'Dimensions' currently assigned in Rows
+	 */
+	org.scn.community.utils.KeyTextArray getDimensions(){*
+		var flat = JSON.parse(this.flat);
+		var ret = [];
+		ret.atIndex = function(index){
+			return this[index];
+		}
+		if(!flat.values){
+			
+		}else{
+			for(var d = 0; d < flat.dimensionHeadersKeys.length; d++){
+				ret.push({
+					key : flat.dimensionHeadersKeys[d],	// 0PRODUCT
+					text : flat.dimensionHeaders[d] 	// Product
+				});
+			}			
+		}
+		return ret;
+	*}
+	/**
+	 * Get Flattened (Rows) representation of the Assigned Data Source's current state.
+	 */
+	org.scn.community.utils.DataRowArray getRows (optional int offset, optional int maxRows) {*
+		var flat = JSON.parse(this.flat);
+		var ret = [];
+		ret.atIndex = function(index){
+			return this[index];
+		}
+		var rowOffset = 0;
+		if(offset) rowOffset = offset;
+		var max = -1;
+		if(maxRows) max = maxRows;
+		if(!flat.values){
+			// No Data Source
+		}else{
+			var count = 0;
+			for(var i=rowOffset;i<flat.values.length;i++){
+				count++;
+				if(max > -1 && count > max) break;
+				var newRow = {
+					key : "",
+					keys : [],
+					measures : {},
+					dimensions : {},
+					getDimensionValueKey : function(key){ return this.dimensions[key].key; },
+					getDimensionValueText : function(key){ return this.dimensions[key].text; },
+					getMeasureValue : function(key){ return this.measures[key].value; },
+					getMeasureFormattedValue : function(key){ return this.measures[key].formattedValue; }
+				};
+				
+				// Assign Dimension Member Values
+				var members = [];
+				for(var d = 0; d < flat.dimensionHeadersKeys.length; d++){
+					var dimension = flat.dimensionHeadersKeys[d];	// 0PRODUCT
+					var member = {
+						key : flat.rowHeadersKeys2D[i][d],
+						text : flat.rowHeaders2D[i][d]
+					};
+					members.push(member);
+					newRow.dimensions[dimension] = member;
+				}			
+				// Assign Measure Values
+				for(var m = 0; m< flat.columnHeadersKeys.length; m++){
+					var measure = flat.columnHeadersKeys[m];	// 0BALANCE
+					var value = {
+						value : flat.values[i][m],
+						formattedValue : flat.formattedValues[i][m]
+					}
+					newRow.measures[measure] = value;
+				}
+				var key = "";
+				members.map(function(member){
+					key += member.key;
+				});
+				newRow.key = key;
+				newRow.keys = members;
+				ret.push(newRow);
+			}
+		}
+		return ret;
+	*}
+}
