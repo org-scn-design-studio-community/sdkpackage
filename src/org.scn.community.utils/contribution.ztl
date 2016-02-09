@@ -3197,6 +3197,7 @@ class org.scn.community.utils.KeyTextArray extends Array {
 class org.scn.community.utils.DataRowArray extends Array {
 	org.scn.community.utils.DataRowArray (org.scn.community.utils.DataRow b);
 	org.scn.community.utils.DataRow atIndex(int index) {* *}
+	org.scn.community.utils.DataRowArray containing(Object options) {* *}
 }
 class org.scn.community.utils.DataIterator extends org.scn.community.shared.Component {
 
@@ -3276,14 +3277,75 @@ class org.scn.community.utils.DataIterator extends org.scn.community.shared.Comp
 		return ret;
 	*}
 	/**
+	 * Determine Dimension Column Index
+	 */
+	int determineDimension(Object filter) {*
+		var flat = JSON.parse(this.flat);
+		var index = -1;
+		var key = null;
+		if(filter.key){
+			for(var d = 0; d < flat.dimensionHeadersKeys.length; d++){
+				var fkey = flat.dimensionHeadersKeys[d];
+				if(fkey == filter.key) {
+					index = d;
+					key = fkey;
+				}
+			}
+		}
+		if(filter.index){
+			if(filter.index < flat.fimensionHeadersKeys.length) {
+				index = filter.index;
+				key = flat.dimensionHeadersKeys[index]; 
+			}
+		}
+		return {
+			index : index,
+			key : key
+		};
+	*}
+	/**
+	 * Create Empty Data Row Array Object
+	 */
+	org.scn.community.utils.DataRowArray createDataRowArray() {*
+		var that = this;
+		var ret = [];
+		ret.atIndex = function(index){
+			return this[index];
+		};
+		ret.containing = function(options){
+			var newRet = createDataRowArray();
+			var passes = [];
+			for(var i=0;i<this.length;i++) passes.push(false);
+			if(options.dimensions){
+				for(var d=0; d<options.dimensions.length; d++){
+					var dim = that.determineDimension(options.dimensions[d]);
+					if(dim.index>-1) {
+						for(var r=0;r<this.length;r++){
+							var row = this[r];
+							var key = row.getDimensionValueKey(dim.key);
+							//APPLICATION.log("Comparing " + key + " to " + options.dimensions[d].value);
+							if(key == options.dimensions[d].value) passes[r] = true;
+						}
+					}
+				}
+			}
+			for(var r=0;r<this.length;r++){
+				if(passes[r]) newRet.push(this[r]);
+			}
+			if(options.measures){
+				
+			}
+			//APPLICATION.log(JSON.stringify(newRet));
+			return newRet;
+		}
+		return ret;
+	*}
+	/**
 	 * Get Flattened (Rows) representation of the Assigned Data Source's current state.
 	 */
 	org.scn.community.utils.DataRowArray getRows (optional int offset, optional int maxRows) {*
 		var flat = JSON.parse(this.flat);
-		var ret = [];
-		ret.atIndex = function(index){
-			return this[index];
-		}
+		var ret = createDataRowArray();
 		var rowOffset = 0;
 		if(offset) rowOffset = offset;
 		var max = -1;
