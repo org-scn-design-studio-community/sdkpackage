@@ -3198,6 +3198,7 @@ class org.scn.community.utils.DataRowArray extends Array {
 	org.scn.community.utils.DataRowArray (org.scn.community.utils.DataRow b);
 	org.scn.community.utils.DataRow atIndex(int index) {* *}
 	org.scn.community.utils.DataRowArray containing(Object options) {* *}
+	org.scn.community.utils.KeyTextArray distinctMembers(String dimensionKey);
 }
 class org.scn.community.utils.DataIterator extends org.scn.community.shared.Component {
 
@@ -3312,6 +3313,19 @@ class org.scn.community.utils.DataIterator extends org.scn.community.shared.Comp
 		ret.atIndex = function(index){
 			return this[index];
 		};
+		ret.distinctMembers = function(dimensionKey){
+			var distincts = [];
+			var keys = {};
+			for(var i=0;i<this.length;i++) {
+				var row = this[i];
+				if(row.dimensions[dimensionKey]){
+					var member = row.dimensions[dimensionKey];
+					keys[member.key] = member;
+				}
+			}
+			for(var field in keys) distincts.push(keys[field]);
+			return distincts;
+		},
 		ret.containing = function(options){
 			var newRet = createDataRowArray();
 			var passes = [];
