@@ -42,6 +42,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ConstSelectionType\contribution.ztl ^
 ..\res\ConstSortType\contribution.ztl ^
 ..\res\DimensionMember\contribution.ztl ^
+..\res\HierarchyMember\contribution.ztl ^
 ..\res\Key\contribution.ztl ^
 ..\res\KeyLabel\contribution.ztl ^
 ..\res\KeyText\contribution.ztl ^

@@ -1,0 +1,17 @@
+
+
+class org.scn.community.shared.HierarchyMember {
+	int 		ID;
+	String 		key;
+	String 		text;
+	int 		level;
+	String 		type;
+	int 		parentID;
+	String 		parentKey;
+	boolean 	isLeaf;
+	String 		nodeState;
+}
+
+class org.scn.community.shared.HierarchyMemberArray extends Array {
+	org.scn.community.shared.HierarchyMemberArray (org.scn.community.shared.HierarchyMember b);
+}

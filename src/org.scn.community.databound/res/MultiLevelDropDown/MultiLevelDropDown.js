@@ -36,8 +36,10 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 	var _propColorClass			    = "";
 	var _propAddMesure			    = "";
 	var _propSelMesure			    = "";	
+	var _propHideMenu				= false;
 	var _colorClassArray			= {};
 	var _propNotAssignedText		= "";
+	var _jsonDimensionHierMembers	= "";
 	
 	/*
 	 * Properties for APS
@@ -210,14 +212,18 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			this.$().empty();
 			
 			this.populateAPS();
+			if (!_propHideMenu) {
+				this.updateDisplayFromData();
+				
+				//Since we keep a reference to the selected node
+				//We may need to update the reference if the tree has been completely refreshed
+				this.renewSelectionReference();
+				
+				this.updateSelection(elemSelected);
+			}
 			
-			this.updateDisplayFromData();
+			that.fireEvent("onLoadFinished");
 			
-			//Since we keep a reference to the selected node
-			//We may need to update the reference if the tree has been completely refreshed
-			this.renewSelectionReference();
-			
-			this.updateSelection(elemSelected);
 			this.setRendered(true);
 		}
 		this.debugConsoleDir("afterUpdate - END");
@@ -357,6 +363,12 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 			newDiv.append($('<p "font-weight:bold; color:white; font-size:22px">Please select a dimension with a hierarchy (Additional Property pane)</p>'));
 			this.$().append(newDiv);
 		} else {
+			
+			var newJson = JSON.stringify(dim);
+			if (_jsonDimensionHierMembers != newJson) {
+				_jsonDimensionHierMembers = newJson;
+				that.firePropertiesChanged(["jsonDimensionHierMembers"]);
+			}
 			
 			//Convert the data to a 2D table, easily usable by code
 			this.generateDataTuples();
@@ -599,7 +611,7 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 						var high 		= _colorClassArray[indexColorClass].high;
 						var cssClass 	= _colorClassArray[indexColorClass].cssClass;
 						
-						if ((pMesure.source >= low && pMesure.source <= high)) {
+						if ((pMesure.source >= low && pMesure.source < high)) {
 							//Apply CSS class
 							node.addClass(cssClass);
 						}
@@ -952,6 +964,19 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 		}
 	};
 	
+	this.hideMenu = function(value) {	
+		if (value === undefined) {
+			return _propHideMenu;
+		} else {
+			if (value != this.getRender()) {
+				this.setRendered(false);
+				_propHideMenu = value;
+			}
+			
+			return this;
+		}
+	};
+	
 	this.labelDisplay = function(value) {	
 		if (value === undefined) {
 			return _propLabelDisplay;
@@ -998,22 +1023,20 @@ sap.designstudio.sdk.Component.subclass("org.scn.community.databound.MultiLevelD
 		}
 	};
 	
+	this.jsonDimensionHierMembers = function(value) {	
+		if (value === undefined) {
+			return _jsonDimensionHierMembers;
+		} else {
+			_jsonDimensionHierMembers = value;
+			return this;
+		}
+	};
+	
 	/*
 	 * ---- Utilities Method
 	 */
 	
 	this.populateAPS = function() {
-//		var compMeta = this.callRuntimeHandler("getDimensions");
-//		
-//		this.comboSelChar.removeAllItems();
-//		this.comboSelMesure.removeAllItems();
-//		this.comboSelMesure.setSelectedKey(this._selMesure);
-//		
-//		selKeyfigStruc = "";
-//		
-//		var previousSelChar = this._selChar;
-//		
-//		var dims = jQuery.parseJSON(compMeta);
 		if (!data)
 			return;
 		

@@ -102,11 +102,25 @@
 			group="Events">
 		</property>
 		
+		<property 
+			type="ScriptText" 
+			title='On Load Finished' 				
+			id="onLoadFinished"				
+			group="Events">
+		</property>
+		
 		<!-- Choose to display mesure -->
 		<property
 			type="boolean" 
 			title="Display a Measure" 	
 			id="addMesure">
+		</property>
+		
+		<!-- Choose to display mesure -->
+		<property
+			type="boolean" 
+			title="Hide Menu (Utility Mode)" 	
+			id="hideMenu">
 		</property>
 		
 		<!-- Selected Mesure -->
@@ -131,6 +145,13 @@
 			id="notAssignedText" 
 			visible="false">
 		</property>
+		
+		<property 
+			type="String" 
+			title="Hierarchy members from DS dimension table in JSON Format" 
+			id="jsonDimensionHierMembers" 
+			visible="false">
+		</property>
 
 		<initialization>
 			<defaultValue property="TOP_MARGIN">0</defaultValue>
@@ -153,12 +174,13 @@
 			<defaultValue property="resetButton">None</defaultValue>
 			<!-- addMesure -->
 			<defaultValue property="addMesure">false</defaultValue>
+			<!-- hideMenu -->
+			<defaultValue property="hideMenu">false</defaultValue>
 			<!-- selMesure -->
 			<defaultValue property="selMesure"></defaultValue>
 			<!-- selMesure -->
 			<defaultValue property="labelDisplay">Left</defaultValue>
 			<defaultValue property="colorClassMesure"></defaultValue>
 			<defaultValue property="NotAssignedText"></defaultValue>
-			
 		</initialization>
 </component>
