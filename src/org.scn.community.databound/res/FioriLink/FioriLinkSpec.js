@@ -174,7 +174,7 @@ function() {
     },
     "template": "String",
     "type": "String",
-    "value": "",
+    "value": "Link to...",
     "visible": true
   },
   "textAlign": {
