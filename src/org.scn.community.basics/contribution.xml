@@ -352,10 +352,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityVisualizations"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/ActivityViewer/ActivityViewer</requireJs>
+	<requireJs modes="commons m">res/ActivityViewer/ActivityViewer</requireJs>
 
 	<cssInclude>res/ActivityViewer/ActivityViewer.css</cssInclude>
 	
@@ -433,10 +433,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/ActionSheetButton/ActionSheetButton</requireJs>
+	<requireJs modes="commons m">res/ActionSheetButton/ActionSheetButton</requireJs>
 
 	<cssInclude>res/ActionSheetButton/ActionSheetButton.css</cssInclude>
 	
@@ -519,8 +519,8 @@
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="WIDTH">48</defaultValue>
-		<defaultValue property="HEIGHT">48</defaultValue>
+		<defaultValue property="WIDTH">32</defaultValue>
+		<defaultValue property="HEIGHT">32</defaultValue>
 		
 		<defaultValue property="buttonType"><![CDATA[Default]]></defaultValue>
 		<defaultValue property="icon"><![CDATA[sap-icon://menu2]]></defaultValue>
@@ -1111,10 +1111,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/DateRangeScroller/DateRangeScroller</requireJs>
+	<requireJs modes="commons m">res/DateRangeScroller/DateRangeScroller</requireJs>
 
 	<cssInclude>res/DateRangeScroller/DateRangeScroller.css</cssInclude>
 	
@@ -1262,10 +1262,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/DateRangeSlider/DateRangeSlider</requireJs>
+	<requireJs modes="commons m">res/DateRangeSlider/DateRangeSlider</requireJs>
 
 	<cssInclude>res/DateRangeSlider/DateRangeSlider.css</cssInclude>
 	
@@ -3469,7 +3469,8 @@
 	title="Modal Browser 0.X"
 	icon="res/ModalBrowser/ModalBrowser.png"
 	handlerType="sapui5"
-	group="ScnCommunityBasics">
+	group="ScnCommunityBasics"
+	modes="commons m">
 	
 	<jsInclude>res/ModalBrowser/ModalBrowser.js</jsInclude>
   	<cssInclude>res/ModalBrowser/ModalBrowser.css</cssInclude>

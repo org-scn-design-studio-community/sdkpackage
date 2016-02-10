@@ -330,6 +330,7 @@ function() {
   "handlerType": "sapui5",
   "height": "30",
   "id": "DateRangeSlider",
+  "modes": "commons m",
   "package": "basics",
   "parentControl": "sap.suite.ui.commons.DateRangeSlider",
   "require": [

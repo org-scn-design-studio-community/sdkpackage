@@ -2614,11 +2614,17 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Collection Utility 0.X component*/
 	org.scn.community.utils.Collection returnAsScnCollection (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Component Layouter component*/
+	org.scn.community.utils.ComponentLayouter returnAsScnComponentLayouter (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Component Manager 0.X component*/
 	org.scn.community.utils.ComponentManager returnAsScnComponentManager (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Custom Css Collector 0.X component*/
 	org.scn.community.utils.CustomCssCollector returnAsScnCustomCssCollector (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Data Iterator component*/
+	org.scn.community.utils.DataIterator returnAsScnDataIterator (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Source Helper 2.0 component*/
 	org.scn.community.utils.DataSourceHelper returnAsScnDataSourceHelper (Component inputComponent) {* return inputComponent; *}

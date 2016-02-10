@@ -457,6 +457,8 @@ KpiTile = {
 
 		if(sap.m[name] != undefined) {
 			loopObject = new sap.m[name](jsonDef);
+		} else if(sap.ui.core[name] != undefined) {
+			loopObject = new sap.ui.core[name](jsonDef);
 		} else if(sap.suite.ui.commons[name] != undefined) {
 			loopObject = new sap.suite.ui.commons[name](jsonDef);
 		}

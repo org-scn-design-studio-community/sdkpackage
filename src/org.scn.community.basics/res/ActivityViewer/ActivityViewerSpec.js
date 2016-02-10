@@ -193,6 +193,7 @@ function() {
   "handlerType": "div",
   "height": "400",
   "id": "ActivityViewer",
+  "modes": "commons m",
   "package": "basics",
   "require": [
     {

@@ -4,7 +4,8 @@
 	title="Modal Browser 0.X"
 	icon="res/ModalBrowser/ModalBrowser.png"
 	handlerType="sapui5"
-	group="ScnCommunityBasics">
+	group="ScnCommunityBasics"
+	modes="commons m">
 	
 	<jsInclude>res/ModalBrowser/ModalBrowser.js</jsInclude>
   	<cssInclude>res/ModalBrowser/ModalBrowser.css</cssInclude>
