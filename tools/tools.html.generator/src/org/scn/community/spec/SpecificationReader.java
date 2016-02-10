@@ -345,12 +345,19 @@ public class SpecificationReader {
 		HashMap<String, String> properties = compType.getExtendedFullSpec().getProperties();
 		String compTypeValue = this.getAdvancedProperty(properties, "handlerType");
 		
+		String propertiesUniTempl = "";
+		if(helper.hasProperty(this.compProperties, "isUniControl")){
+			Property compIsUni = helper.getProperty(this.compProperties, "isUniControl");
+			HashMap<String, String> propertiesUni = compIsUni.getExtendedFullSpec().getProperties();
+			propertiesUniTempl = this.getAdvancedProperty(propertiesUni, "isUniControl").equals("") ? "":".uni";
+		}
+
 		HashMap<String, String> propertiesDb = databound.getExtendedFullSpec().getProperties();
 		String databoundTamplate = this.getAdvancedProperty(propertiesDb, "databound").equals("true") ? ".databound":"";
 		
 		XmlTmpl = Helpers.resource2String(SpecificationXmlTemplate.class, "xml_root.template");
 
-		JsLoaderTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.loader."+compTypeValue+".js.template");
+		JsLoaderTmpl = Helpers.resource2String(SpecificationJsTemplate.class, "js_root.loader."+compTypeValue+propertiesUniTempl+".js.template");
 		
 		hasUi5Spec = false;
 		if(helper.hasProperty(this.compProperties, "extension")){

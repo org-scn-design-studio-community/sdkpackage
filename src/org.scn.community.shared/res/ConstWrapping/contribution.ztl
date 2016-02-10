@@ -1,0 +1,25 @@
+
+/**
+ * enum filed definition
+ */
+class org_scn_community_shared_WrappingEnumfield extends Enumfield {
+       
+}
+
+/**
+ * a set of constants to specify
+ */
+class org_scn_community_shared_Wrapping extends Enum {
+
+	/** None */
+	org_scn_community_shared_WrappingEnumfield None;
+       
+	/** Off */
+	org_scn_community_shared_WrappingEnumfield Off;
+
+	/** Soft */
+	org_scn_community_shared_WrappingEnumfield Soft;
+
+	/** Hard */
+	org_scn_community_shared_WrappingEnumfield Hard;
+}

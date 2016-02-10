@@ -5031,10 +5031,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/TextArea/TextArea</requireJs>
+	<requireJs modes="commons m">res/TextArea/TextArea</requireJs>
 
 	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	
@@ -5075,9 +5075,27 @@
 
 	</property>
 	<property
+		id="rows"
+		type="int"
+		title="Rows"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="value"
 		type="String"
 		title="Text Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="wrapping"
+		type="String"
+		title="Wrapping"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -5097,7 +5115,9 @@
 		<defaultValue property="enabled"><![CDATA[true]]></defaultValue>
 		<defaultValue property="maxLength"><![CDATA[0]]></defaultValue>
 		<defaultValue property="onValueChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="rows"><![CDATA[2]]></defaultValue>
 		<defaultValue property="value"><![CDATA[]]></defaultValue>
+		<defaultValue property="wrapping"><![CDATA[None]]></defaultValue>
 
 	</initialization>
 

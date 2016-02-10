@@ -3,11 +3,13 @@
 	"title": "Text Area 2.0",
 	"tooltip": "Text Area",
 	"handlerType": "sapui5",
-	"parentControl": "sap.ui.commons.TextArea",
+	"parentControl": "contextO.TextArea",
+	"isUniControl": "TextArea",
 	"group": "ScnCommunityBasics",
 	"package": "basics",
 	"extension": "Component",
 	"databound": false,
+	"modes": "commons m",
 
 	"require": 
 	[

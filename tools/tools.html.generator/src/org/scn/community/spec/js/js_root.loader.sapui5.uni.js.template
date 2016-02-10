@@ -1,0 +1,6 @@
+myComponentData.unifiedContext = "sap.ui.commons";
+myComponentData.unified = sap.ui.commons;
+if(sap.m != undefined) { myComponentData.unifiedContext = "sap.m"; myComponentData.unified = sap.m; }
+
+jQuery.sap.require(myComponentData.unifiedContext+".%COMP-isUniControl%");
+myComponentData.unified.%COMP-isUniControl%.extend(myComponentData.fullComponentName, myComponentData.instance);
