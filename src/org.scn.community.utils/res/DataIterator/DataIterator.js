@@ -43,10 +43,17 @@ define(["./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
     		this.flat(JSON.stringify(this.flatData));
     		this.firePropertiesChanged(["flat"]);
     		this.fireEvent("onDataChange");
+    		
+    		if (this.interval_id !== undefined) {
+                clearInterval(this.interval_id);
+            }
     	};
     	this.onFlatten = function(){
     		var that = this;
-    		setTimeout(function(){that.onFlatten2();},50);
+    		if (that.interval_id !== undefined) {
+                clearInterval(that.interval_id);
+            }
+    		that.interval_id = setTimeout(function(){that.onFlatten2();},100);
     	};		
 	}
 	DataIterator.prototype.constructor = DataIterator;
