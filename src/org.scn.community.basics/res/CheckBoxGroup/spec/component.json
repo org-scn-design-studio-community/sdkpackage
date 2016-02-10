@@ -1,6 +1,6 @@
 {
 	"id": "CheckBoxGroup",
-	"title": "Check Box Group 2.0",
+	"title": "Check Box Group",
 	"tooltip": "Check Box Group",
 	"handlerType": "sapui5",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
@@ -8,6 +8,7 @@
 	"package": "basics",
 	"extension": "Component",
 	"databound": false,
+	"modes": "commons m",
 
 	"require": 
 	[

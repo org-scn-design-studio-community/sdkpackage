@@ -32,6 +32,22 @@ function() {
 
 	spec.spec = 
 {
+  "checkboxWidth": {
+    "opts": {
+      "apsControl": "spinner",
+      "cat": "Display-Layout",
+      "desc": "Checkbox Width (Horizontal)",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Checkbox Width (Horizontal)",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "template": "Choice",
+    "type": "int",
+    "value": 225,
+    "visible": true
+  },
   "cleanAll": {
     "opts": {
       "apsControl": "checkbox",
@@ -141,6 +157,33 @@ function() {
     "value": "Size_16px",
     "visible": true
   },
+  "selLayout": {
+    "opts": {
+      "apsControl": "combobox",
+      "cat": "Display-Layout",
+      "choiceType": "-",
+      "desc": "Layout",
+      "noAps": false,
+      "noZtl": false,
+      "options": [
+        {
+          "key": "VerticalLayout",
+          "text": "Vertical Layout"
+        },
+        {
+          "key": "HorizontalLayout",
+          "text": "Horizontal Layout"
+        }
+      ],
+      "tooltip": "Layout",
+      "ztlFunction": "",
+      "ztlType": "Choice"
+    },
+    "template": "Choice",
+    "type": "String",
+    "value": "VerticalLayout",
+    "visible": true
+  },
   "withPicture": {
     "opts": {
       "apsControl": "checkbox",
@@ -187,13 +230,14 @@ function() {
   "handlerType": "sapui5",
   "height": "400",
   "id": "CheckBoxGroup",
+  "modes": "commons m",
   "package": "basics",
   "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
     "id": "common_basics",
     "space": "known"
   }],
-  "title": "Check Box Group 2.0",
+  "title": "Check Box Group",
   "tooltip": "Check Box Group",
   "width": "230"
 };

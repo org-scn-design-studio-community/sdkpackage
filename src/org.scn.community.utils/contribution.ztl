@@ -2305,7 +2305,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Calendar 2.0 component*/
 	org.scn.community.basics.Calendar returnAsScnCalendar (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Check Box Group 2.0 component*/
+	/**Cast to Check Box Group component*/
 	org.scn.community.basics.CheckBoxGroup returnAsScnCheckBoxGroup (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Color Picker 2.0 component*/

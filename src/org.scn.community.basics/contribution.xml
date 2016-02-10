@@ -952,21 +952,30 @@
 
 <component
 	id="CheckBoxGroup"
-	title="Check Box Group 2.0"
+	title="Check Box Group"
 	tooltip="Check Box Group"
 	icon="res/CheckBoxGroup/CheckBoxGroup.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/CheckBoxGroup/CheckBoxGroup</requireJs>
+	<requireJs modes="commons m">res/CheckBoxGroup/CheckBoxGroup</requireJs>
 
 	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 	
 	
+	<property
+		id="checkboxWidth"
+		type="int"
+		title="Checkbox Width (Horizontal)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="cleanAll"
 		type="boolean"
@@ -1012,6 +1021,15 @@
 
 	</property>
 	<property
+		id="selLayout"
+		type="String"
+		title="Layout"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="withPicture"
 		type="boolean"
 		title="Use Pictures"
@@ -1030,11 +1048,13 @@
 		<defaultValue property="WIDTH">230</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
+		<defaultValue property="checkboxWidth"><![CDATA[225]]></defaultValue>
 		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
 		<defaultValue property="elements"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="fallbackPicture"><![CDATA[]]></defaultValue>
 		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
 		<defaultValue property="pictureSize"><![CDATA[Size_16px]]></defaultValue>
+		<defaultValue property="selLayout"><![CDATA[VerticalLayout]]></defaultValue>
 		<defaultValue property="withPicture"><![CDATA[true]]></defaultValue>
 
 	</initialization>

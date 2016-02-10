@@ -53,8 +53,13 @@ CheckBoxGroup = {
 			org_scn_community_component_Core(that, myComponentData);
 			/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
 			that.addStyleClass("scn-pack-CheckBoxGroup");
-			
-			that._lLayout = new sap.ui.layout.VerticalLayout({
+
+			var selectedLayout = that.getSelLayout();
+			if(selectedLayout == undefined) {
+				selectedLayout = "VerticalLayout";
+			}
+			that._usedLayout = selectedLayout;
+			that._lLayout = new sap.ui.layout[selectedLayout]({
 				
 			});
 			/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
@@ -83,7 +88,33 @@ CheckBoxGroup = {
 
 	afterPrepare: function (owner) {
 		var that = owner;
+
+		var selectedLayout = that.getSelLayout();
+		if(selectedLayout == undefined) {
+			selectedLayout = "VerticalLayout";
+		}
+		if(that._usedLayout != selectedLayout) {
+			that._usedLayout = selectedLayout;
 			
+			if(that._lLayout != undefined) {
+				that._lLayout.destroyContent();
+				that._cummulatedContent = [];
+				
+				that._lLayout.destroy();
+				that._oContentPlaced = false;
+				that.destroyContent();
+			}
+			
+			that._lLayout = new sap.ui.layout[selectedLayout]({
+				
+			});
+			/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
+			
+			that.onAfterRendering = function () {
+				org_scn_community_basics.resizeContentAbsoluteLayout(that, that._lLayout, that.onResize);
+			}
+		}
+
 		// visualization on processed data
 		var lElementsToRender = that.getElements();
 		if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != "") {
@@ -91,18 +122,36 @@ CheckBoxGroup = {
 
 			// Destroy old content
 			that._lLayout.destroyContent();
+			that._cummulatedContent = [];
 			
 			// distribute content
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
 				var lImageElement = that.createCheckBoxElement(owner, i, element.key, element.text, element.url, element.selected);
 				that._lLayout.addContent(lImageElement);
+				that._cummulatedContent.push(lImageElement);
 			}
 		}
 	},
 	
 	onResize: function(width, height, parent) {
+		var that = parent;
+		
+		var isVertical = that._usedLayout != "HorizontalLayout";
+		var maxDirection = (that._usedLayout == "HorizontalLayout" ? width : height);
+		var maxInLine = maxDirection / (that._usedLayout == "HorizontalLayout" ? 225 : 30);
+
+		var curLine = 0;
+		var curRow = 0;
+
 		// in case special resize code is required
+		for(var layContentI in that._cummulatedContent) {
+			if(isVertical) {
+				that._cummulatedContent[layContentI].setWidth(width + "px");	
+			}
+
+			curLine++;
+		}
 	},
 	
 	createCheckBoxElement: function (owner, index, iKey, iText, iImageUrl, selected) {
@@ -125,30 +174,42 @@ CheckBoxGroup = {
 
 		var height = "20px";
 		var topImage = "5px";
-
 		var topText = "1px";
 		var leftText = "5px";
-		
+		if(sap.m) {
+			height = "26px";
+			topImage = "8px";
+			leftText = "5px";
+		}
+
 		if(withPicture && pictureSize.indexOf("32") > -1) {
 			// for 32px
 			height = "40px";
 			topText = "11px";
 			leftText = "42px";
+			if(sap.m) {
+				height = "50px";
+			}
 		} else if(withPicture) {
 			// for 16px
 			leftText = "26px";
 			topImage = "3px";
+			if(sap.m) {
+				topImage = "8px";
+			}
 		} 
 
+		var cbWidth = that.getCheckboxWidth();
+		
 		var oLayout = new sap.zen.commons.layout.AbsoluteLayout ({
-			width: "225px",
+			width: cbWidth + "px",
 			height: height
 		});
 		
 		oLayout.addStyleClass("scn-pack-CheckBoxGroup-Layout");
 		oLayout.internalKey = iKey;
-
-		var oImage = new sap.ui.commons.Image ({
+		
+		var oImage = new myComponentData.unified.Image ({
 			src : iImageUrl,
 			width : pictureSize,
 			height : pictureSize,
@@ -166,33 +227,50 @@ CheckBoxGroup = {
 			);
 		}
 
-		var oCheckBox = new sap.ui.commons.CheckBox({
-			change: function(oControlEvent) {
+		var selectionEvent = function(oControlEvent) {
 
-				var lElementsToRender = that.getElements();
-				if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != ""){
-					var lElementsToRenderArray = JSON.parse(lElementsToRender);
+			var lElementsToRender = that.getElements();
+			if(lElementsToRender != null && lElementsToRender != undefined && lElementsToRender != ""){
+				var lElementsToRenderArray = JSON.parse(lElementsToRender);
 
-					// distribute content
-					for (var i = 0; i < lElementsToRenderArray.length; i++) {
-						var element = lElementsToRenderArray[i];
-						
-						if(element.key == oLayout.internalKey) {
-							element.selected = oCheckBox.getChecked();
-							break;
-						}
+				// distribute content
+				for (var i = 0; i < lElementsToRenderArray.length; i++) {
+					var element = lElementsToRenderArray[i];
+
+					if(element.key == oLayout.internalKey) {
+						element.selected = oCheckBox.getChecked ? oCheckBox.getChecked() : oCheckBox.getSelected();
+						break;
 					}
-					
-					lElementsToRender = JSON.stringify(lElementsToRenderArray);
-					that.setElements(lElementsToRender);
 				}
-				
-				that.fireDesignStudioPropertiesChangedAndEvent(["elements"], "onSelectionChanged");
+
+				lElementsToRender = JSON.stringify(lElementsToRenderArray);
+				that.setElements(lElementsToRender);
 			}
+
+			that.fireDesignStudioPropertiesChangedAndEvent(["elements"], "onSelectionChanged");
+		};
+
+		if(sap.m) {
+			eventName = "select";
+		}
+		
+		var oCheckBox = new myComponentData.unified.CheckBox({
+			
 		});
+
+		if(oCheckBox.attachChange) {
+			oCheckBox.attachChange(selectionEvent);
+		} else {
+			oCheckBox.attachSelect(selectionEvent);
+		}
 		
 		oCheckBox.setText(iText);
-		oCheckBox.setChecked(selected);
+		if(oCheckBox.setChecked) {
+			oCheckBox.setChecked(selected);
+		} else {
+			oCheckBox.setSelected(selected);
+		}
+		
 		oCheckBox.addStyleClass("scn-pack-CheckBoxGroup-CheckBox");
 		
 		oLayout.addContent(
@@ -237,6 +315,10 @@ CheckBoxGroup = {
 	},
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
+
+myComponentData.unifiedContext = "sap.ui.commons";
+myComponentData.unified = sap.ui.commons;
+if(sap.m != undefined) { myComponentData.unifiedContext = "sap.m"; myComponentData.unified = sap.m; }
 
 //%INIT-START%
 myComponentData.instance = CheckBoxGroup;
