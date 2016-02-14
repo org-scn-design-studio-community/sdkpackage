@@ -2234,12 +2234,12 @@ class org.scn.community.databound.MultiLevelDropDown extends Component {
 	*}
 	
 	/** Return all the hierarchy members as a JSON object. */
-	String getHierMemberAsJsonString() {*
+	String getHierarchyMembersAsJsonString() {*
 		return JSON.stringify(this.getHierarchyMembers());
 	*}
 	
 	/* Return the hierarchy members in the native DS format (JSON) */
-	String getSourceHierarchyMemebers() {*
+	String getHierarchyMembersSource() {*
 		return this.jsonDimensionHierMembers;
 	*}
 	
