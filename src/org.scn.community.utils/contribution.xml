@@ -1021,15 +1021,6 @@
 
 	</property>
 	<property
-		id="DCleanAll"
-		type="String"
-		title="Clean All Parameters"
-		group="Display"
-		bindable="true"
-		visible="false">
-
-	</property>
-	<property
 		id="DContentType"
 		type="String"
 		title="Content Type"
@@ -1068,10 +1059,10 @@
 	<property
 		id="DHeaders"
 		type="String"
-		title="List Of Headers (Name / Value)"
+		title="Headers"
 		group="Display"
 		bindable="true"
-		visible="false">
+		visible="true">
 
 	</property>
 	<property
@@ -1086,10 +1077,10 @@
 	<property
 		id="DParameters"
 		type="String"
-		title="List Of Parameters (Name / Value)"
+		title="Parameters"
 		group="Display"
 		bindable="true"
-		visible="false">
+		visible="true">
 
 	</property>
 	<property
@@ -1131,19 +1122,19 @@
 	<property
 		id="DReturnHeaders"
 		type="String"
-		title="Return Headers"
+		title="Parameters"
 		group="Display"
 		bindable="true"
-		visible="false">
+		visible="true">
 
 	</property>
 	<property
 		id="DReturnParameters"
 		type="String"
-		title="Return Parameters"
+		title="Parameters"
 		group="Display"
 		bindable="true"
-		visible="false">
+		visible="true">
 
 	</property>
 	<property
@@ -1210,20 +1201,19 @@
 		<defaultValue property="HEIGHT">10</defaultValue>
 		
 		<defaultValue property="DBasicAuthorisation"><![CDATA[]]></defaultValue>
-		<defaultValue property="DCleanAll"><![CDATA[]]></defaultValue>
 		<defaultValue property="DContentType"><![CDATA[application/x-www-form-urlencoded]]></defaultValue>
 		<defaultValue property="DCrossDomain"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DExpectedContentType"><![CDATA[text]]></defaultValue>
 		<defaultValue property="DExpectedResponseStatus"><![CDATA[200]]></defaultValue>
-		<defaultValue property="DHeaders"><![CDATA[]]></defaultValue>
+		<defaultValue property="DHeaders"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="DJsonp"><![CDATA[false]]></defaultValue>
-		<defaultValue property="DParameters"><![CDATA[]]></defaultValue>
+		<defaultValue property="DParameters"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="DPayload"><![CDATA[]]></defaultValue>
 		<defaultValue property="DRawParameters"><![CDATA[]]></defaultValue>
 		<defaultValue property="DRequestMethod"><![CDATA[POST]]></defaultValue>
 		<defaultValue property="DRequestType"><![CDATA[JQuery]]></defaultValue>
-		<defaultValue property="DReturnHeaders"><![CDATA[]]></defaultValue>
-		<defaultValue property="DReturnParameters"><![CDATA[]]></defaultValue>
+		<defaultValue property="DReturnHeaders"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DReturnParameters"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="DReturnResponse"><![CDATA[]]></defaultValue>
 		<defaultValue property="DReturnStatus"><![CDATA[200]]></defaultValue>
 		<defaultValue property="DTrigger"><![CDATA[]]></defaultValue>

@@ -35,7 +35,7 @@ function() {
   "DBasicAuthorisation": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Config",
       "desc": "Basic Authorization Content [Basic: GUID]",
       "noAps": false,
       "noZtl": false,
@@ -48,26 +48,10 @@ function() {
     "value": "",
     "visible": true
   },
-  "DCleanAll": {
-    "opts": {
-      "apsControl": "text",
-      "cat": "Display",
-      "desc": "Clean All Parameters",
-      "noAps": true,
-      "noZtl": false,
-      "tooltip": "Clean All Parameters",
-      "ztlFunction": "-get",
-      "ztlType": "String"
-    },
-    "template": "String",
-    "type": "String",
-    "value": "",
-    "visible": false
-  },
   "DContentType": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Config",
       "desc": "Content Type",
       "noAps": false,
       "noZtl": false,
@@ -83,7 +67,7 @@ function() {
   "DCrossDomain": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Flags",
       "desc": "Is This Request Cross-Domain",
       "noAps": false,
       "noZtl": false,
@@ -99,7 +83,7 @@ function() {
   "DExpectedContentType": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Display",
+      "cat": "Return",
       "choiceType": "-",
       "desc": "Expected Content Type",
       "noAps": false,
@@ -126,7 +110,7 @@ function() {
   "DExpectedResponseStatus": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "Display",
+      "cat": "Return",
       "desc": "Response Status For Good Response",
       "noAps": false,
       "noZtl": false,
@@ -141,24 +125,34 @@ function() {
   },
   "DHeaders": {
     "opts": {
-      "apsControl": "text",
-      "cat": "Display",
-      "desc": "List Of Headers (Name / Value)",
-      "noAps": true,
-      "noZtl": false,
+      "apsControl": "array",
+      "arrayDefinition": {"header": {
+        "key": {
+          "desc": "Unique Key",
+          "type": "String"
+        },
+        "sequence": "key,value",
+        "type": "Array",
+        "value": {
+          "desc": "Given Value",
+          "type": "String"
+        }
+      }},
+      "arrayMode": "OneLevelArray",
+      "cat": "Content",
+      "desc": "Headers",
       "tooltip": "List Of Headers (Name / Value)",
-      "ztlFunction": "-get",
-      "ztlType": "String"
+      "ztlFunction": "",
+      "ztlType": "SingleArray"
     },
-    "template": "String",
     "type": "String",
-    "value": "",
-    "visible": false
+    "value": "[]",
+    "visible": true
   },
   "DJsonp": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Flags",
       "desc": "Do You Want To Use JSONP",
       "noAps": false,
       "noZtl": false,
@@ -173,24 +167,34 @@ function() {
   },
   "DParameters": {
     "opts": {
-      "apsControl": "text",
-      "cat": "Display",
-      "desc": "List Of Parameters (Name / Value)",
-      "noAps": true,
-      "noZtl": false,
-      "tooltip": "List Of Parameters (Name / Value)",
-      "ztlFunction": "-get",
-      "ztlType": "String"
+      "apsControl": "array",
+      "arrayDefinition": {"parameter": {
+        "key": {
+          "desc": "Unique Key",
+          "type": "String"
+        },
+        "sequence": "key,value",
+        "type": "Array",
+        "value": {
+          "desc": "Given Value",
+          "type": "String"
+        }
+      }},
+      "arrayMode": "OneLevelArray",
+      "cat": "Content",
+      "desc": "Parameters",
+      "tooltip": "List of Parameters (Name / Value)",
+      "ztlFunction": "",
+      "ztlType": "SingleArray"
     },
-    "template": "String",
     "type": "String",
-    "value": "",
-    "visible": false
+    "value": "[]",
+    "visible": true
   },
   "DPayload": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Config",
       "desc": "HTTP Reuqest Payload",
       "noAps": true,
       "noZtl": false,
@@ -206,9 +210,9 @@ function() {
   "DRawParameters": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Content",
       "desc": "Raw Parameters As String Content",
-      "noAps": true,
+      "noAps": false,
       "noZtl": false,
       "tooltip": "Raw Parameters As String Content",
       "ztlFunction": "-get",
@@ -222,7 +226,7 @@ function() {
   "DRequestMethod": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Display",
+      "cat": "Config",
       "choiceType": "-",
       "desc": "Request Method (POST | GET | PUT)",
       "noAps": false,
@@ -253,7 +257,7 @@ function() {
   "DRequestType": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Display",
+      "cat": "Config",
       "choiceType": "-",
       "desc": "Request Type (JQuery | HTTP)",
       "noAps": false,
@@ -279,40 +283,64 @@ function() {
   },
   "DReturnHeaders": {
     "opts": {
-      "apsControl": "text",
-      "cat": "Display",
-      "desc": "Return Headers",
+      "apsControl": "array",
+      "arrayDefinition": {"returnHeader": {
+        "key": {
+          "desc": "Unique Key",
+          "type": "String"
+        },
+        "sequence": "key,value",
+        "type": "Array",
+        "value": {
+          "desc": "Given Value",
+          "type": "String"
+        }
+      }},
+      "arrayMode": "OneLevelArray",
+      "cat": "Content",
+      "desc": "Parameters",
       "noAps": true,
       "noZtl": false,
-      "tooltip": "Return Headers",
-      "ztlFunction": "-get",
-      "ztlType": "String"
+      "tooltip": "List of Parameters (Name / Value)",
+      "ztlFunction": "",
+      "ztlType": "SingleArray"
     },
-    "template": "String",
     "type": "String",
-    "value": "",
-    "visible": false
+    "value": "[]",
+    "visible": true
   },
   "DReturnParameters": {
     "opts": {
-      "apsControl": "text",
-      "cat": "Display",
-      "desc": "Return Parameters",
+      "apsControl": "array",
+      "arrayDefinition": {"returnParameter": {
+        "key": {
+          "desc": "Unique Key",
+          "type": "String"
+        },
+        "sequence": "key,value",
+        "type": "Array",
+        "value": {
+          "desc": "Given Value",
+          "type": "String"
+        }
+      }},
+      "arrayMode": "OneLevelArray",
+      "cat": "Content",
+      "desc": "Parameters",
       "noAps": true,
       "noZtl": false,
-      "tooltip": "Return Parameters",
-      "ztlFunction": "-get",
-      "ztlType": "String"
+      "tooltip": "List of Return Parameters (Name / Value)",
+      "ztlFunction": "",
+      "ztlType": "SingleArray"
     },
-    "template": "String",
     "type": "String",
-    "value": "",
-    "visible": false
+    "value": "[]",
+    "visible": true
   },
   "DReturnResponse": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Return",
       "desc": "Return Response As String",
       "noAps": true,
       "noZtl": false,
@@ -328,7 +356,7 @@ function() {
   "DReturnStatus": {
     "opts": {
       "apsControl": "spinner",
-      "cat": "Display",
+      "cat": "Return",
       "desc": "Return Status",
       "noAps": true,
       "noZtl": false,
@@ -347,7 +375,7 @@ function() {
       "cat": "Display",
       "desc": "Just As Simple Triger",
       "noAps": true,
-      "noZtl": false,
+      "noZtl": true,
       "tooltip": "Just As Simple Triger",
       "ztlFunction": "-get",
       "ztlType": "String"
@@ -360,7 +388,7 @@ function() {
   "DUrl": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
+      "cat": "Config",
       "desc": "Url To Send The Request",
       "noAps": false,
       "noZtl": false,
@@ -376,7 +404,7 @@ function() {
   "DWithCredentials": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Flags",
       "desc": "Do You Need With Credentials",
       "noAps": false,
       "noZtl": false,
