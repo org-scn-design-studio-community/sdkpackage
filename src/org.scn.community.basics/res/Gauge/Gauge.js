@@ -76,8 +76,6 @@ Gauge = function () {
 	that.afterUpdate = function() {
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 
-		// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
-
 		org_scn_community_basics.fillDummyData(that, that.processData, that.afterPrepare);
 	};
 	
@@ -93,6 +91,11 @@ Gauge = function () {
 	that.afterPrepare = function (owner) {
 		var that = owner;
 
+		if(!that._oContentPlaced) {
+			var _dummy = {};
+			org_scn_community_basics.resizeContentAbsoluteLayout(that, _dummy, that.onResize);
+		}
+
 		if (that._myVar) {
 		    clearInterval(that._myVar);
 		}
@@ -103,7 +106,6 @@ Gauge = function () {
 
 		var width = that.$().width();
 		var height = that.$().height();
-
 
 		that.fCanvas.width = width;
 		that.fCanvas.height = height;
@@ -429,7 +431,7 @@ Gauge = function () {
 	};
 
 	that.onResize = function (width, height, parent) {
-		// in case special resize code is required
+		that.afterPrepare (parent);
 	};
 
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
