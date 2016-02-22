@@ -1,0 +1,57 @@
+
+<component
+		id="CalendarViz"
+		title="Calendar Visualization"
+		icon="res/CalendarViz/CalendarViz.png"
+		handlerType="div"
+		modes="commons m"
+		propertySheetPath="aps/PropertyPage.html"
+		group="ScnCommunityVisualizations"
+		databound="true"
+>
+<requireJs modes="commons m">res/CalendarViz/CalendarViz</requireJs>
+	<!-- Base Databound Properties -->
+	<property
+			id="data"
+			title="Data Selection"
+			type="ResultSet"
+			group="DataBinding">
+			<option name="includeFormattedData" value="false"/>
+			<option name="includeData" value="true"/>
+	</property>
+	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
+	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
+	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
+	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
+	<!-- End of Base Databound Properties -->	
+	<!-- CalendarViz Properties -->
+	<property id="cellSize" title="Size of Day cell" type="int" visible="false"/>
+	<property id="colorMeasure" title="Measure to use as Color" type="String" visible="false"/>
+	<property id="colorScaleConfig" title="Color Scale Config" type="String" visible="false"/>
+	<property id="dateDimension" title="Dimension to use as Date" type="String" visible="false"/>
+	<property id="dateFormat" title="Date Format in Data Source" type="String" visible="false"/>
+	<property id="dateKeyOrText" title="Use Key or Text?" type="String" visible="false"/>
+  	<property type="ScriptText" title="On Day Select" id="onDaySelect"/>
+	<!-- End of CalendarViz Properties -->
+	<initialization>
+		<!-- Databound Defaults -->
+		<defaultValue property="ignoreTotals">true</defaultValue>
+		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
+		<defaultValue property="swapAxes">false</defaultValue>
+		<defaultValue property="useMockData">true</defaultValue>
+		<!-- End of Databound Defaults -->		<!-- CalendarViz Defaults -->
+  		<defaultValue property="cellSize">25</defaultValue>
+  		<defaultValue property="colorMeasure">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}</defaultValue>
+  		<defaultValue property="dateDimension">{&quot;fieldType&quot;:&quot;position&quot;,&quot;fieldPosition&quot;:0}</defaultValue>
+  		<defaultValue property="dateFormat">DD/MM/YYYY</defaultValue>
+  		<defaultValue property="dateKeyOrText">text</defaultValue>
+  		<defaultValue property="colorScaleConfig">{&quot;colors&quot;:&quot;#EDF8E9,#BAE4B3,#74C476,#31A354,#006D2C&quot;,&quot;scaleType&quot;:&quot;linear&quot;,&quot;rangeType&quot;:&quot;minmax&quot;,&quot;clamp&quot;:true,&quot;interpolation&quot;:&quot;interpolateRgb&quot;}</defaultValue>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+  		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">200</defaultValue>
+		<!-- End of CalendarViz Defaults -->
+	</initialization>
+</component>

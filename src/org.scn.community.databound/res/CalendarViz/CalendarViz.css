@@ -1,0 +1,29 @@
+line {
+  stroke: #fff;
+}
+
+text.active {
+  fill: red;
+}
+
+.day {
+  fill: #fff;
+  stroke: #ccc;
+  stroke-width : 1px;
+}
+
+.month {
+  fill: none;
+  stroke: #fff;
+  /*stroke-width: 4px;*/
+}
+.year-title {
+  font-size: 1.5em;
+}
+
+/* hover info */
+.calendar_tooltip {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  padding: 10px;
+}

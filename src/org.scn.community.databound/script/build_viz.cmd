@@ -39,6 +39,16 @@ type ..\res\AdvancedDataTable\def\header.xml ^
 .\vizDefs\Footer.xml > ^
 ..\res\AdvancedDataTable\def\contribution.xml
 
+del ..\res\CalendarViz\def\contribution.xml
+type ..\res\CalendarViz\def\header.xml ^
+.\vizDefs\Databound.generated.xml ^
+..\res\CalendarViz\def\properties.xml ^
+.\vizDefs\InitializationHeader.xml ^
+.\vizDefs\Databound.defaults.generated.xml ^
+..\res\CalendarViz\def\defaults.xml ^
+.\vizDefs\Footer.xml > ^
+..\res\CalendarViz\def\contribution.xml
+
 del ..\res\Pictogram\def\contribution.xml
 type ..\res\Pictogram\def\header.xml ^
 .\vizDefs\Core.generated.xml ^
