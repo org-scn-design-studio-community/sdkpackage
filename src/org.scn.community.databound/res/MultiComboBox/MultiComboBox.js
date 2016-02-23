@@ -46,7 +46,8 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 		              "DSkipResultRow": {type: "boolean"}, 
 		              "DSelectAllText": {type: "string"},
 		              "DSelectNoText": {type: "string"},
-		              "DItemList": {type: "string"}
+		              "DItemList": {type: "string"},
+		              "DPropFileUrl": {type: "string"}
 		        }
 			},
 		
@@ -54,6 +55,12 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 				var that = this;
 				//add default css class to be assigned with the combobox. That way you can override specific layout more gracefully.
 				this.addStyleClass('scn-pack-multiComboBox');
+				//i18n text identifiers
+				this.placeholderTextIdentifier = "scn-multicombobox-placeholderText";
+				//identify language dynamically
+				this.sCurrentLocale = sap.ui.getCore().getConfiguration().getLanguage();
+				//make sure default value applies even if no i18n properties file is loaded!
+				this.placeholderTextLocalized = "choose value...";
 				
 		//		// Create JSON data model
 		//		var mData = {  
@@ -125,7 +132,7 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 				this.attachSelectionChange(onChange);
 				this.attachSelectionFinish(onSelectionFinish);
 				
-				this.setPlaceholder("choose value...");
+				this.setPlaceholder(this.placeholderTextLocalized);
 				this.DItemList = [];
 				
 		//		$('div[class*="sapMMultiComboBoxList"]').focusout(function() {
@@ -138,6 +145,16 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 			renderer: {},
 				
 			afterDesignStudioUpdate: function() {
+				var oBundle = null;
+				var path = this.getDPropFileUrl();
+				//If no URL is provided, fallback text is used
+				if(path !== "" && path !== null){
+					//load language dependent translations
+					oBundle = jQuery.sap.resources({url : path, locale: this.sCurrentLocale});
+					this.placeholderTextLocalized = oBundle.getText(this.placeholderTextIdentifier);
+					this.setPlaceholder(this.placeholderTextLocalized);
+				}
+				
 				//make sure of showing formerly selected items when afterUpdate gets triggered from another context
 				var t = this.getSelectedKeys();
 			    if (this.getSelectedKeys().length === 0) {
@@ -175,7 +192,7 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 						this.setPlaceholder("Dimension "+this.getDDimension()+" doesn't match on DataSource!");
 					}
 				}else{
-					this.setPlaceholder("choose value...");
+					this.setPlaceholder(this.placeholderTextLocalized);
 					//try to extract values from Item list setter
 					var list = this.getDItemList();
 					if(list !== ""){
